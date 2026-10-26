@@ -27,12 +27,21 @@ Drei Gruppen, jede mit `en-markdown/`, `de-markdown/`, `en-pdf/` und
 
 | Gruppe / group | Ordner / folders | PDFs |
 |---|---|---|
-| `Tcl-family/` — **Tcl-Familie** / *Tcl family* | `9.0/`, `8.6/` (Tcl und Tk; englisch auch die C-API in `tcl-c/`, `tk-c/`), `tcllib/`, `tklib/`, `pakete/` (Csaba Nemethi: tablelist, mentry, scrollutil, wcb, tsw) | `tcltk-9.0`, `tcltk-8.6`, `tcltk-*-capi` (en), `tcllib`, `tklib`, `tablelist`, `mentry`, `scrollutil`, `wcb`, `tsw` |
+| `Tcl-family/` — **Tcl-Familie** / *Tcl family* | `9.0/`, `8.6/` (Tcl und Tk; englisch auch die C-API in `tcl-c/`, `tk-c/`), `tcllib/`, `tklib/`, `pakete/` (Csaba Nemethi: tablelist, mentry, scrollutil, wcb, tsw) | `tcltk-9.0`, `tcltk-8.6`, `tcltk-*-capi` (en), `tcllib`, `tklib`, `tablelist`, `mentry`, `scrollutil`, `wcb`, `tsw`; **`tcl-family-index`** |
 | `Extensions/` — **Erweiterungen** / *Extensions* | TDBC, Thread, [incr Tcl], BWidget, tDOM, tcltls, tclvfs, tcludp, tclhttpd, expect, mpexpr, mclistbox, tclws | `erweiterungen` |
-| `Books/` — **Bücher** / *Books* | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcllib-de` | gleichnamig / same names |
+| `Books/` — **Bücher** / *Books* | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcl-en`, `pdf4tcllib-de`, `pdf4tcllib-en` | gleichnamig / same names |
 
-`scripts/` enthält die Werkzeuge / holds the tools: `createpdf/`,
-`build-pdfs.sh`, `hole-lizenzen.sh`.
+**Gesamtindex / combined index:** `Tcl-family/de-pdf/tcl-family-index-de.pdf`
+und `Tcl-family/en-pdf/tcl-family-index-en.pdf` führen die Stichwörter
+aller PDFs der Tcl-Familie in einem Verzeichnis zusammen; jede Seitenzahl
+springt in das jeweilige PDF. Dafür müssen die PDFs im selben Ordner
+liegen (wie im Repository); Acrobat, Okular und Evince folgen den
+Sprüngen, manche Betrachter im Browser nicht. / The keywords of all Tcl
+family PDFs in one index; every page number jumps into that PDF. Keep the
+PDFs in one folder, as in the repository.
+
+`scripts/` enthält die Werkzeuge / holds the tools: `createpdf/`
+(mit `index-gesamt.tcl`), `build-pdfs.sh`, `hole-lizenzen.sh`.
 
 Die Seiten im Format TIP 700 tragen im YAML-Kopf Befehlsname, Abschnitt,
 Stichwörter und die Copyright-Angaben des Originals.
@@ -55,6 +64,9 @@ bash scripts/hole-lizenzen.sh /pfad/zu/fossil /pfad/zu/nemethi
 # alle PDFs, oder nur eine Sprache / einzelne PDFs
 bash scripts/build-pdfs.sh
 bash scripts/build-pdfs.sh -de tcltk-9.0 erweiterungen
+
+# nach einzelnen PDFs der Tcl-Familie den Gesamtindex neu bauen
+bash scripts/build-pdfs.sh -de tcllib tcl-family-index
 
 # die Bücher brauchen bookkit / the books need bookkit
 BOOKKIT=/pfad/zu/bookkit bash scripts/build-pdfs.sh Tclutils-de pdf4tcllib-de

@@ -10,9 +10,18 @@
 #
 #   Tcl-family/   Tcl/Tk 9.0 und 8.6, tcllib, tklib, Pakete von Csaba Nemethi
 #   Extensions/   Erweiterungen (TDBC, Thread, [incr Tcl], tDOM, expect ...)
-#   Books/        Tclutils, pdf4tcl, pdf4tcllib
+#   Books/        Tclutils, pdf4tcl, pdf4tcllib (de und en)
 #
 # Ergebnis: GRUPPE/de-pdf/NAME-de.pdf und GRUPPE/en-pdf/NAME-en.pdf.
+#
+# Gesamtindex: Fuer die Tcl-Familie entsteht je Sprache zusaetzlich
+# Tcl-family/LANG-pdf/tcl-family-index-LANG.pdf, ein Stichwortverzeichnis
+# ueber alle ihre PDFs; jede Seitenzahl springt in das jeweilige PDF
+# (scripts/createpdf/index-gesamt.tcl). Grundlage sind die Tabellen
+# NAME-LANG.index.tsv neben den PDFs, die createpdf mitschreibt. Der
+# Gesamtindex wird gebaut, wenn alle PDFs gebaut werden oder der Name
+# tcl-family-index genannt ist; er nimmt die vorhandenen Tabellen, darum
+# nach jedem neuen PDF der Tcl-Familie mitbauen.
 #
 # Handbuecher: scripts/createpdf/createpdf.tcl, mit Titelseite,
 # Inhaltsverzeichnis, Stichwortverzeichnis und Lizenzkapitel. Es braucht
@@ -56,7 +65,9 @@ BUECHER='
 Tclutils-de      Tclutils-de     de
 Tclutils-en      Tclutils-en     en
 pdf4tcl-de       pdf4tcl-de      de
+pdf4tcl-en       pdf4tcl-en      en
 pdf4tcllib-de    pdf4tcllib-de   de
+pdf4tcllib-en    pdf4tcllib-en   en
 '
 
 gewollt() {
@@ -103,12 +114,36 @@ for lang in $sprachen; do
         fi
         mkdir -p "$gruppe/$lang-pdf"
         out=$gruppe/$lang-pdf/$name-$lang.pdf
+        if [ "$gruppe" = Tcl-family ]; then
+            extra+=(-index-tsv "${out%.pdf}.index.tsv")
+        fi
         echo "== $out ($(find "$w" -name '*.md' | wc -l) Seiten)"
         if ! "$tclsh" scripts/createpdf/createpdf.tcl "$w" -o "$out" \
                 -title "$titel" "${extra[@]}"; then
             echo "$name ($lang): Fehler" >&2; rc=1
         fi
     done <<< "$LISTE"
+
+    # Gesamtindex der Tcl-Familie aus den Tabellen neben den PDFs,
+    # in der Reihenfolge der Liste
+    if [ $# -eq 0 ] || gewollt tcl-family-index "$@"; then
+        tsvs=()
+        while read -r name gruppe _; do
+            [ "$gruppe" = Tcl-family ] || continue
+            t=Tcl-family/$lang-pdf/$name-$lang.index.tsv
+            [ -f "$t" ] && tsvs+=("$t")
+        done <<< "$LISTE"
+        if [ ${#tsvs[@]} -gt 0 ]; then
+            if [ "$lang" = de ]; then gtitel="Tcl-Familie: Gesamtindex"
+            else gtitel="Tcl family: combined index"; fi
+            out=Tcl-family/$lang-pdf/tcl-family-index-$lang.pdf
+            echo "== $out (${#tsvs[@]} Handbuecher)"
+            if ! "$tclsh" scripts/createpdf/index-gesamt.tcl -pdf "$out" \
+                    -lang "$lang" -title "$gtitel" "${tsvs[@]}"; then
+                echo "tcl-family-index ($lang): Fehler" >&2; rc=1
+            fi
+        fi
+    fi
 
     while read -r name ordner blang; do
         [ -n "$name" ] && [ "$blang" = "$lang" ] || continue

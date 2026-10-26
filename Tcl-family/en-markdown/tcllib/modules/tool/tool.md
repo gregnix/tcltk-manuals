@@ -5,26 +5,7 @@ Version: 0.8
 TclPart: tcllib
 TclDescription: Standardized OO Framework for development
 Keywords:
- - TOOL adds new (or modifies) keywords used in the definitions of classes. However
- - the new keywords are only available via calls to tool::class create or tool::define
- - tool::define class_method arglist body Defines a method for the class object itself. This method will be passed on to descendents of the class
- - unlike self method
- - tool::define array name contents Declares a variable name which will be initialized as an array
- - populated with contents for objects of this class
- - as well as any objects for classes which are descendents of this class
- - "tool::define array_ensemble methodname varname ?cases? Declares a method ensemble methodname which will control access to variable varname. Cases are a key/value list of method names and bodies which will be overlaid on top of the standard template. See tool::array_ensemble. One method name is reserved: initialize. initialize Declares the initial values to be populated in the array"
- - as a key/value list
- - and will not be expressed as a method for the ensemble
- - "tool::define dict_ensemble methodname varname ?cases? Declares a method ensemble methodname which will control access to variable varname. Cases are a key/value list of method names and bodies which will be overlaid on top of the standard template. See tool::dict_ensemble. One method name is reserved: initialize. initialize Declares the initial values to be populated in the array"
- - "tool::define method methodname arglist body If methodname contains ::"
- - the method is considered to be part of a method ensemble. See tool::method_ensembles. Otherwise this command behaves exactly like the standard oo::define method command
- - "tool::define option name dictopts Declares an option. dictopts is a key/value list defining parameters for the option. See tool::option_handling. tool::class create myclass { option color { post-command: {puts [list %self%'s %field% is now %value%]} default: green } } myclass create foo foo configure color purple > foo's color is now purple"
- - tool::define property ?branch? field value Defines a new leaf in the class metadata tree. With no branch
- - the leaf will appear in the const section
- - accessible by either the object's property method
- - "or via oo::meta::info class get const field:"
- - tool::define variable name value Declares a variable name which will be initialized with the value value for objects of this class
- - as well as any objects for classes which are descendents of this class. TOOL
+ - TOOL
  - TclOO
  - framework
 Copyright:

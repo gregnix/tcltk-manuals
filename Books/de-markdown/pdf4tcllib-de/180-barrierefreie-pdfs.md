@@ -177,18 +177,14 @@ Die Ebenen dürfen nicht springen: nach `H1` ein `H2`, nicht gleich
 
 ### Diagramme
 
-Ein Diagramm wird ein `Figure` mit Ersatztext, alles darin (Balken,
-Achsen, Beschriftungen) Schmuck. Ein Vorleseprogramm sagt also den
-Ersatztext und nichts sonst. Der Titel ist als Ersatztext meist zu
+Ein Diagramm wird ein `Figure` mit Ersatztext; Balken, Achsen und
+Beschriftungen sind sein Inhalt. Ein Vorleseprogramm sagt den
+Ersatztext, nicht die einzelnen Striche. Der Titel ist als Ersatztext meist zu
 wenig: „Abweichung je Regal“ sagt nicht, wie die Abweichung aussieht.
 Im Beispiel stehen die Werte im Ersatztext.
 
-Beim Schreiben meldet pdf4tcl, das `Figure` sei leer. Das stimmt: Weil
-das ganze Diagramm Schmuck ist, enthält das Element selbst nichts außer
-dem Ersatztext. Ein Prüfprogramm nimmt das hin, die Warnung weist aber
-zu Recht darauf hin, dass ein Leser mit dem Element sonst nichts
-anfangen kann. Sind die Zahlen wichtig, gehören sie zusätzlich in eine
-Tabelle.
+Mehr als den Ersatztext bekommt ein Leser vom Diagramm nicht. Sind die
+Zahlen wichtig, gehören sie zusätzlich in eine Tabelle.
 
 ### Tabellen
 

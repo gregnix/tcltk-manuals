@@ -1,0 +1,12 @@
+# pdf	scrollutil-en.pdf
+# label	Scrollutil
+# title	Scrollutil
+index	3
+pagesman	3
+plainnotebook	10
+scrollableframe	21
+scrollarea	35
+scrollednotebook	43
+scrollsync	55
+scrollutil	60
+wheelEvent	110

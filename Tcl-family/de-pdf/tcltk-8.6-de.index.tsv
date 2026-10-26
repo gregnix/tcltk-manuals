@@ -1,0 +1,543 @@
+# pdf	tcltk-8.6-de.pdf
+# label	Tcl/Tk 8.6
+# title	Tcl/Tk 8.6
+abort	28,86
+about dialog	627
+absolute file name	109
+access mode	221
+access position	278,322
+add	137
+after	7
+alias	146,270,527
+anonymous function	10
+antialiasing	627
+API	253,335
+appearance	666,689,699
+append	9,158,221,410
+Apple event	627
+application	61,297,436,593,640
+application name	625
+apply	10
+architecture	235,236
+argument	10,238,297,640
+arithmetic	87,315
+array	11
+aspect ratio	643
+assign	158
+asynchronous I/O	107,282,343,349
+atom	635
+attributes	100
+auto-exec	159
+auto-load	159,230,232
+auto-loading	270,527
+auto_mkindex	270,527
+background error	14,630
+backslash	4
+backslash substitution	292
+base class	219
+beep	360
+bell	360
+bgerror	14
+binary	16,93
+binary code	170,340
+binary search	176
+bind	282,360,479
+binding	360,372,445,479
+bindtags	372
+bisque	562
+bitmap	373,437
+blocking	31,55,92,93,97,107,111,117,252
+boolean	87,112,136,353
+break	28,266
+buffer	111
+buffering	93
+busy	374
+button	378,654,655,672,681
+byte array	93
+bytecode	315
+call	215,279,296
+cancel	7
+canvas	381
+carriage return	93
+case	28
+case conversion	288
+catch	29,266
+cd	30
+cell	472
+chan	31
+channel	31,55,77,97,107,111,117,240,252,253,282,322,335
+character	288
+check	655
+checkbutton	404
+child interpreter	146,270,527
+children	635
+choice	656
+chooseColor	408
+chooseDirectory	409
+class	40,64,219,549,635
+cleanup	337
+clear	410,590
+clipboard	410
+clock	42
+clone	57
+close	55
+color	408,412,562,568
+color selection	408
+colors	412
+command	4,138,187,204,265,330,654
+command substitution	292
+comment	4
+compare	87,288
+compiler	315
+compress	354
+concat	56
+concatenate	56,78
+conditional	136
+configure	700
+connection	282
+console	431
+container	573,665,671
+content	573
+context	344,345
+continue	57,266
+conversion specifier	114,275
+copy	57
+copy files	100
+coroutine	58
+cpu architecture	235,236
+create	70,221
+ctype	288
+current directory	109
+cursor	433
+cursors	433
+database	546
+date	42
+dde	61,593
+debug	192
+decompress	354
+default	654
+define	64,445
+definition	64
+deflate	354
+deiconify	643
+delay	7
+delete	265
+delete files	100
+destroy	436
+dialog	408,409,437,462
+dict	70
+dictionary	70
+directory	100,409
+domain name	282
+duplication	57
+dynamic library	170
+element	157,158,165,167,168,173,174,176,179,180
+element names	11
+else	136
+encoding	75,93,252
+end of file	31,77,97,117,252
+end of line	93,97,117,252
+ensemble	204,253,335
+entry	438,595,656,658,688
+environment	315,631
+eof	77
+equal	288
+error	29,78,266,315,322,337,338
+eval	78
+evaluate	78
+event	122,343,349,360,372,445,479
+event handler	107
+events	31,454
+exception	29,78,266,322,337
+exec	79
+execute	79
+exist	118
+exit	86
+exported	204
+expr	87
+expression	87,187
+false	136
+fblocked	92
+fconfigure	93
+fcopy	97
+file	100,118,221,231,278,285
+file selection dialog	467
+fileevent	107
+filename	109
+filter	70,93
+final	337
+flush	111,343
+flushing	93
+focus	454,456
+focus model	643
+focusNext	456
+font	457,462
+font chooser	462
+font panel	462
+font selection	462
+fontchooser	462
+for	112
+foreach	113,169
+format	16,114,410,590
+frame	345,465,665,671
+fuzzy comparison	87
+generator	58
+geometry	635,643
+geometry management	563
+geometry manager	472,555,558,573
+getOpenFile	467
+gets	117
+glob	118
+global	121,345,347
+grab	470
+grid	472,643
+group	643
+groupbox	671
+grow box	687
+gzip	354
+half-close	55
+handle	445
+handler	343,590
+height	478,573,635
+history	122
+host	282
+http	123
+i18n	193
+ICCCM	590
+icon	627,643
+iconify	643
+identifier	635
+idle	343
+idle callback	7
+if	136
+image	373,478,568,666
+incr	137
+increment	137
+increments	643
+index	165,174,179,230,232,288
+inflate	354
+info	138
+information	138,635
+input	31
+insert	167
+integer value	288
+interactive	431
+internal	204
+internationalization	193
+internet	123
+interp	146
+interpreter	138,297,431,640
+interpreters	635
+introspection	138,279
+iterate	70
+iteration	57,112,113,169
+join	56,157
+keyboard	454
+keyboard events	374,470
+keyboard traversal	456,540
+keysym	479
+keysyms	479
+l10n	193
+label	515,671
+labelframe	517
+lambda	10
+lappend	158
+lassign	158
+length	168
+level	138,344,345
+library	159
+lindex	165
+line	117
+linear search	176
+linemode	93
+linsert	167
+list	56,113,157,158,165,167,168,169,173,174,176,179,180,286
+list box	656
+listbox	520
+llength	168
+lmap	169
+load	170,270,527
+loadTk	527
+localization	193
+location	472,555,558,573
+lookup	70
+loop	28,57,112,113,169,353
+lower	528
+lrange	173
+lrepeat	174
+lreplace	174
+lreverse	176
+lsearch	176
+lset	179
+lsort	180
+map	70,169
+mapped	635
+match	28,176,241,259,264,288,294
+mathfunc	183
+mathop	187
+memory	192
+menu	529,540,576,672
+menu bar	540
+menubar	540
+menubutton	541
+message	193,543
+message box	545
+messageBox	545
+metaclass	40
+method	64,203,215
+method chain	215
+method visibility	203
+modal	437
+modules	326
+move files	100
+msgcat	193
+multiple	158
+my	203
+name	61,100,549,593
+namespace	121,138,204,265,344,345,347
+network address	282
+newline	93,240
+next	215
+non-blocking	31,117,221
+non-existent command	338
+nonblocking	55,92,93,97,107,111,252
+NSImage	627
+object	40,57,64,138,203,219,279
+obscure	528,581
+offset	31
+open	221
+operating system	235,236
+operator	187
+option	412,433,546,655,681,700
+option menu	548
+optionMenu	548
+options	549
+order	180
+output	31,111,240
+output channels	431
+own	590
+pack	472,558
+pack-old	555
+package	227,230,232,326
+packagens	230
+packer	555,558
+palette	562
+pane	673
+panedwindow	563
+parcel	555,558
+parent	635
+parent interpreter	146,270,527
+parse	275
+parsing	259
+path name	635
+pattern	118,176,259,264,288
+performance measurement	323
+permissions	221
+photo	568
+pid	231
+pipeline	79,221,231
+pixmap theme	666
+pkgMkIndex	232
+place	573
+platform	93,235,236
+platform-specific	409
+platform_shell	236
+pointer events	374,470
+popup	576
+portability	109
+position	643
+POSIX	315
+post	540
+precision	315
+prefix	237,253,335
+priority	546
+private method	203
+proc	238
+procedure	10,121,138,238,266,345,347
+process	86,221
+process identifier	231
+prompt	297,640
+propagation	472,558
+public method	203
+puts	240
+pwd	241
+quoting	167,264,292
+radiobutton	577
+raise	581
+range	173
+re_syntax	241
+read	97,117,252,281,330
+readable	31,107
+record	122
+recursion	296
+redirection	79
+refchan	253
+reflection	253
+regexp	259
+registry	261
+regsub	264
+regular expression	28,176,241,259,264,294
+relative file name	109
+remote execution	61,593
+remove	342
+rename	265,330
+rename files	100
+replace	174,179
+reporting	14,630
+resource management	337
+result	266
+retrieve	546
+return	266
+reverse	176,288
+ring	360
+root class	219
+rubber sheet	573
+safe	270
+safe interpreter	146,170,270,340,527
+scale	582,682
+scan	16,275
+screen	635
+script	4,78,107,285,323
+script file	297,640
+scrollbar	585,683
+search	11,176
+security	593
+security policy	123
+seek	31,278
+seeking	322
+selection	409,410,590
+self	279
+send	593,625
+separator	157,686
+serial	221
+set	158,179,281
+shared library	170,340
+shell	297,640
+size	472,555,558,643
+sizegrip	687
+sleep	7
+slider	582,682
+slot	64
+socket	123,282
+sort	180
+source	270,285,527
+spinbox	595,688
+split	286
+splitting	259
+sprintf	114
+stack frame	344
+stacking order	528,581
+standard option	549
+stat	100
+state	700
+stdio	31
+string	114,176,241,259,286,288
+style	666,689,699
+sublist	173
+subprocess	79,315
+subst	292
+substitution	4,114,264,292
+switch	294,549
+tab	673
+table lookup	237
+tag	372
+tail recursion	296
+tailcall	296
+target	590
+Tcl	4
+tclsh	297
+tcltest	299
+tclvars	315
+tcp	282
+tell	31,322
+test	299,353
+test harness	299
+test suite	299
+text	193,604,631
+text box	656
+text field	658,688
+theme	666,689,699
+throw	322
+time	7,42,323
+timerate	323
+title	643
+tk	625
+tk_mac	627
+tkerror	630
+tkvars	604,631
+tkwait	632
+tm	326
+toggle	655
+toolkit	640
+top-level	454,456
+top-level window	643
+toplevel	633,640
+trace	330
+transchan	335
+transformation	335
+translation	93,97,193,252
+trough	582,682
+true	136
+try	337
+ttk_button	654
+ttk_checkbutton	655
+ttk_combobox	656
+ttk_entry	658
+ttk_frame	665
+ttk_image	666
+ttk_intro	667
+ttk_label	670
+ttk_labelframe	671
+ttk_menubutton	672
+ttk_notebook	673
+ttk_panedwindow	677
+ttk_progressbar	679
+ttk_radiobutton	681
+ttk_scale	682
+ttk_scrollbar	683
+ttk_separator	686
+ttk_sizegrip	687
+ttk_spinbox	688
+ttk_style	689
+ttk_treeview	692
+ttk_vsapi	699
+ttk_widget	700
+type	410,590
+types of images	478
+unicode	75
+units	643
+unknown	159,338
+unload	340
+unloading	340
+unset	330,342
+update	70,343
+uplevel	344
+upvar	345
+user	100,315
+value	137
+variable	4,9,121,137,138,158,204,281,330,342,344,345,347,349,632
+variable substitution	292
+variables	315,631
+version	227,230,232,631
+virtual event	445
+virtual root	635
+visibility	632
+volume-relative file name	109
+vwait	349
+wait	349,632
+while	353
+whitespace	159
+widget	378,381,404,438,465,515,517,520,529,541,543,563,577,582,585,595,604,633,654,655,656,658,665,671,672,681,682,683,686,687,688
+width	478,573,635
+window	374,431,436,470,632,635
+window manager	454,643
+windows	699
+winfo	635
+wish	640
+wm	643
+word	159,288
+working directory	30,241
+writable	31,107
+write	240,281,330
+www	123
+zlib	354

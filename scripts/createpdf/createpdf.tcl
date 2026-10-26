@@ -225,6 +225,18 @@ proc pageChapter {file withIndex indexLabel level} {
         }
     }
     set out "[string repeat # $level] $name\n\n"
+    # Index terms right under the heading, so that the index points to the
+    # first page of the chapter (at the end they pointed to its last page)
+    if {$withIndex} {
+        set terms [list $name]
+        foreach k $keywords {
+            if {[string tolower $k] ni [lmap t $terms {string tolower $t}]} { lappend terms $k }
+        }
+        set spans [lmap t $terms {
+            string cat "\[" [string map {\[ ( \] ) * {} _ {\_}} $t] "\]{.index}"
+        }]
+        append out "*$indexLabel:* [join $spans {, }]\n\n"
+    }
     set fence ""
     for {} {$i < [llength $lines]} {incr i} {
         set line [lindex $lines $i]
@@ -243,16 +255,6 @@ proc pageChapter {file withIndex indexLabel level} {
         }
     }
     set out [string trimright $out]
-    if {$withIndex} {
-        set terms [list $name]
-        foreach k $keywords {
-            if {[string tolower $k] ni [lmap t $terms {string tolower $t}]} { lappend terms $k }
-        }
-        set spans [lmap t $terms {
-            string cat "\[" [string map {\[ ( \] ) * {} _ {\_}} $t] "\]{.index}"
-        }]
-        append out "\n\n*$indexLabel:* [join $spans {, }]"
-    }
     # Copyright lines the page does not show itself already.
     set flat [string tolower [regsub -all {[^[:alnum:]]+} $out ""]]
     set copyrights [lmap c $copyrights {

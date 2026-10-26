@@ -58,6 +58,19 @@ stay with each page. License files with the same text are printed once.
 With `SOURCE_DATE_EPOCH` set, two runs give the same bytes, and the title
 page shows that date.
 
+## Combined index (index-gesamt.tcl)
+
+`index-gesamt.tcl` (from bookkit) joins the tables written with
+`-index-tsv` into one index PDF; every page number is a link into the
+other PDF (`GoToR`, path relative to the index PDF):
+
+```bash
+tclsh index-gesamt.tcl -pdf gesamt.pdf -lang en -title "Combined index" \
+    tcltk-9.0.index.tsv tcllib.index.tsv ...
+```
+
+`build-pdfs.sh` does this for the Tcl family (`tcl-family-index`).
+
 ---
 
 ## Deutsch
@@ -73,3 +86,7 @@ tclsh createpdf.tcl de-markdown/9.0 -lang de -o tcltk-9.0-de.pdf \
 
 Die Pakete werden mit `package require` geladen; wo sie liegen, sagen
 `TCLLIBPATH` und `TCL8_6_TM_PATH` bzw. `TCL9_0_TM_PATH` (siehe oben).
+
+Ein Gesamtindex über mehrere PDFs entsteht mit `index-gesamt.tcl` aus den
+Tabellen von `-index-tsv` (siehe oben); `build-pdfs.sh` baut ihn für die
+Tcl-Familie (`tcl-family-index`).

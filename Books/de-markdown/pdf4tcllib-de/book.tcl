@@ -6,7 +6,7 @@
 set title     "pdf4tcllib"
 set author    ""
 set subtitle  "Berichte, Tabellen und Formulare mit pdf4tcl"
-set date      "2026-10-25"
+set date      "2026-10-26"
 set lang      "de"
 set titlePage 1
 set booktype  workshop               ;# Werkstattbuch, siehe bookkit/doc/de/STYLE.md

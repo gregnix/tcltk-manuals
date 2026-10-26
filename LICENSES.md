@@ -47,6 +47,12 @@ German pages: also translated. For tDOM (Mozilla Public License 1.1) this
 is the description of modifications under section 3.3; it is also printed
 before the license chapter of every PDF.
 
+Berichtigt / corrected: Tcllib `tool` – die Stichwörter im Original sind
+versehentlich Sätze aus der Beschreibung; im YAML-Kopf stehen statt
+dessen `TOOL`, `TclOO`, `framework`. / The keywords in the original are
+sentences from the description by mistake; the YAML head lists `TOOL`,
+`TclOO`, `framework` instead.
+
 **mclistbox:** die Lizenz von Bryan Oakley erlaubt die Nutzung („may be
 used free of charge“), sagt aber nichts ausdrücklich über Änderung und
 Weitergabe. / Bryan Oakley's license permits use ("may be used free of
@@ -67,8 +73,8 @@ original pages stay with each page.
 | Ordner / folder | Lizenz / license |
 |---|---|
 | `de-markdown/Tclutils-de`, `en-markdown/Tclutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/pdf4tcl-de` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/pdf4tcllib-de` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/pdf4tcl-de`, `en-markdown/pdf4tcl-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/pdf4tcllib-de`, `en-markdown/pdf4tcllib-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 
 Der Lizenztext steht als letztes Kapitel in jedem Buch-PDF (bookkit,
 `book-build.tcl`). / The license text is the last chapter of every book PDF.
