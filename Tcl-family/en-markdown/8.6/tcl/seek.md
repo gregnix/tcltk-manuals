@@ -1,0 +1,74 @@
+---
+CommandName: seek
+ManualSection: n
+Version: 8.1
+TclPart: Tcl
+TclDescription: Tcl Built-In Commands
+Links:
+ - file(n)
+ - open(n)
+ - close(n)
+ - gets(n)
+ - tell(n)
+ - Tcl_StandardChannels(3)
+Keywords:
+ - access position
+ - file
+ - seek
+Copyright:
+ - Copyright (c) 1993 The Regents of the University of California.
+ - Copyright (c) 1994-1996 Sun Microsystems, Inc.
+---
+
+# Name
+
+seek - Change the access position for an open channel
+
+# Synopsis
+
+::: {.synopsis} :::
+[seek]{.cmd} [channelId]{.arg} [offset]{.arg} [origin]{.optarg} 
+:::
+
+# Description
+
+Changes the current access position for *channelId*.
+
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+
+The *offset* and *origin* arguments specify the position at which the next read or write will occur for *channelId*. *Offset* must be an integer (which may be negative) and *origin* must be one of the following:
+
+**start**
+: The new access position will be *offset* bytes from the start of the underlying file or device.
+
+**current**
+: The new access position will be *offset* bytes from the current access position; a negative *offset* moves the access position backwards in the underlying file or device.
+
+**end**
+: The new access position will be *offset* bytes from the end of the file or device.  A negative *offset* places the access position before the end of file, and a positive *offset* places the access position after the end of file. The *origin* argument defaults to **start**. The command flushes all buffered output for the channel before the command returns, even if the channel is in non-blocking mode. It also discards any buffered and unread input. This command returns an empty string. An error occurs if this command is applied to channels whose underlying file or device does not support seeking. Note that *offset* values are byte offsets, not character offsets.  Both **seek** and **tell** operate in terms of bytes, not characters, unlike **read**.
+
+
+# Examples
+
+Read a file twice:
+
+```
+set f [open file.txt]
+set data1 [read $f]
+seek $f 0
+set data2 [read $f]
+close $f
+# $data1 eq $data2 if the file wasn't updated
+```
+
+Read the last 10 bytes from a file:
+
+```
+set f [open file.data]
+# This is guaranteed to work with binary data but
+# may fail with other encodings...
+fconfigure $f -translation binary
+seek $f -10 end
+set data [read $f 10]
+close $f
+```

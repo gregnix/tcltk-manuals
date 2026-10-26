@@ -1,0 +1,9 @@
+These pages were converted from the original manual pages to Markdown
+(TIP 700 format). The text is unchanged; only markup without a place in
+the format (links without a target, layout images) may be lost. For
+parts under the Mozilla Public License 1.1 (tDOM) this is the description
+of modifications required by section 3.3.
+
+This collection is not an official publication of the projects. Each part
+is under the terms of its original, which follow. The copyright notices of
+the original pages stay with each page.

@@ -1,0 +1,135 @@
+---
+CommandName: doctools2idx_introduction
+ManualSection: n
+Version: 2.0
+TclPart: tcllib
+TclDescription: Documentation tools
+Links:
+ - docidx_intro
+ - doctoc_intro
+ - doctools
+ - doctools2doc_introduction
+ - doctools2toc_introduction
+ - doctools_lang_cmdref
+ - doctools_lang_faq
+ - doctools_lang_intro
+ - doctools_lang_syntax
+ - doctools_plugin_apiref
+Keywords:
+ - conversion
+ - formatting
+ - index
+ - keyword index
+ - markup
+ - parsing
+ - plugin
+ - semantic markup
+Copyright:
+ - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+---
+
+# Name
+
+doctools2idx_introduction - DocTools - Keyword indices
+
+# Description
+
+*docidx* (short for *documentation indices*) stands for a set of related, yet different, entities which are working together for the easy creation and transformation of keyword indices for documentation.
+
+These are
+
+**\[1\]**
+: A tcl based language for the semantic markup of a keyword index. Markup is represented by Tcl commands. Beginners should start with the *docidx language introduction*. The formal specification is split over two documents, one dealing with the *docidx language syntax*, the other a *docidx language command reference*.
+
+**\[2\]**
+: A set of packages for the programmatic manipulation of keyword indices in memory, and their conversion between various formats, reading and writing. The aforementioned markup language is one of the formats which can be both read from and written to.
+
+**\[3\]**
+: The system for the conversion of indices is based on a plugin mechanism, for this we have two APIs describing the interface between the packages above and the import/export plugins. Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
+
+**\[1\]**
+: A *writer* of documentation has to understand the markup language itself. A beginner to docidx should read the more informally written *docidx language introduction* first. Having digested this the formal *docidx language syntax* specification should become understandable. A writer experienced with docidx may only need the *docidx language command reference* from time to time to refresh her memory. While a document is written the **dtp** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc. The simpler **dtplite** application makes internal use of docidx when handling directories of documentation, automatically generating a proper keyword index for them.
+
+**\[2\]**
+: A *processor* of documentation written in the *docidx* markup language has to know which tools are available for use. The main tool is the aforementioned **dtp** application provided by Tcllib. The simpler **dtplite** does not expose docidx to the user. At the bottom level, common to both applications, however we find the three packages providing the basic facilities to handle keyword indices, i.e. import from textual formats, programmatic manipulation in memory, and export to textual formats. These are
+
+
+**doctools::idx**
+: Programmatic manipulation of keyword indices in memory.
+
+**doctools::idx::import**
+: Import of keyword indices from various textual formats. The set of supported formats is extensible through plugin packages.
+
+**doctools::idx::export**
+: Export of keyword indices to various textual formats. The set of supported formats is extensible through plugin packages.
+
+
+: See also section **Package Overview** for an overview of the dependencies between these and other, supporting packages.
+
+**\[3\]**
+: At last, but not least, *plugin writers* have to understand the interaction between the import and export packages and their plugins. These APIs are described in the documentation for the two relevant packages, i.e.
+
+
+**•**
+: **doctools::idx::import**
+
+**•**
+: **doctools::idx::export**
+
+
+# Related formats
+
+The docidx format does not stand alone, it has two companion formats. These are called *doctoc* and *doctools*, and they are intended for the markup of *tables of contents*, and of general documentation, respectively. They are described in their own sets of documents, starting at the *DocTools - Tables Of Contents* and the *DocTools - General*, respectively.
+
+# Package overview
+
+```
+                                    ~~~~~~~~~~~ doctools::idx ~~~~~~~~~~~
+                                   ~~                   |               ~~
+                doctools::idx::export ~~~~~~~~~~~~~~~~~ | ~~~~~~~~~~~~~ doctools::idx::import
+                        |                               |                       |
+        +---------------+-------------------------+     |    +------------------+---------------+-----------------------+---------------+
+        |               |                         |     |    |                  |               |                       |               |
+struct::map             =                         |     |    |                  =       doctools::include       struct::map      fileutil::paths
+                        |                         |     |    |                  |
+                doctools::idx::export::<*>        |     |    |          doctools::idx::import::<*>
+                        docidx                    |     |    |                  docidx, json
+                        json                      |     |    |                  |           \
+                        html                      |     |    |          doctools::idx::parse \
+                        nroff                     |     |    |                  |             \
+                        wiki                      |     |    |  +---------------+              json
+                        text                      |     |    |  |               |
+                                                doctools::idx::structure        |
+                                                                                |
+                                                                        +-------+---------------+
+                                                                        |                       |
+          doctools::html  doctools::html::cssdefaults           doctools::tcl::parse    doctools::msgcat
+                |                                                                               |
+          doctools::text  doctools::nroff::man_macros                                           =
+                                                                                                |
+                                                                                        doctools::msgcat::idx::<*>
+                                                                                                c, en, de, fr
+                                                                                                (fr == en for now)
+        ~~      Interoperable objects, without actual package dependencies
+        --      Package dependency, higher requires lower package
+        =       Dynamic dependency through plugin system
+        <*>     Multiple packages following the given form of naming.
+```
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *doctools* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Documentation tools
+
+# Copyright
+
+```
+Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+```

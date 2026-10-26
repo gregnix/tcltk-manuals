@@ -1,0 +1,53 @@
+---
+CommandName: tell
+ManualSection: n
+Version: 8.1
+TclPart: Tcl
+TclDescription: Tcl Built-In Commands
+Links:
+ - file(n)
+ - open(n)
+ - close(n)
+ - gets(n)
+ - seek(n)
+ - Tcl_StandardChannels(3)
+Keywords:
+ - access position
+ - channel
+ - seeking
+Copyright:
+ - Copyright (c) 1993 The Regents of the University of California.
+ - Copyright (c) 1994-1996 Sun Microsystems, Inc.
+---
+
+# Name
+
+tell - Return current access position for an open channel
+
+# Synopsis
+
+::: {.synopsis} :::
+[tell]{.cmd} [channelId]{.arg} 
+:::
+
+# Description
+
+Returns an integer string giving the current access position in *channelId*.  This value returned is a byte offset that can be passed to **seek** in order to set the channel to a particular position.  Note that this value is in terms of bytes, not characters like **read**. The value returned is -1 for channels that do not support seeking.
+
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+
+# Example
+
+Read a line from a file channel only if it starts with **foobar**:
+
+```
+# Save the offset in case we need to undo the read...
+set offset [tell $chan]
+if {[read $chan 6] eq "foobar"} {
+    gets $chan line
+} else {
+    set line {}
+    # Undo the read...
+    seek $chan $offset
+}
+```

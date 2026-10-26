@@ -1,0 +1,94 @@
+---
+CommandName: pop3d::udb
+ManualSection: n
+Version: 1.0.1
+TclPart: tcllib
+TclDescription: Tcl POP3 Server Package
+Keywords:
+ - internet
+ - network
+ - pop3
+ - protocol
+Copyright:
+ - Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+---
+
+# Name
+
+pop3d::udb - Simple user database for pop3d
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [pop3d::udb]{.lit} [1.0.1]{.optlit} 
+[::pop3d::udb::new]{.cmd} [dbName]{.optarg} 
+[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[dbName]{.ins} [destroy]{.sub} 
+[dbName]{.ins} [add]{.sub} [user]{.arg} [pwd]{.arg} [storage]{.arg} 
+[dbName]{.ins} [remove]{.sub} [user]{.arg} 
+[dbName]{.ins} [rename]{.sub} [user]{.arg} [newName]{.arg} 
+[dbName]{.ins} [lookup]{.sub} [user]{.arg} 
+[dbName]{.ins} [exists]{.sub} [user]{.arg} 
+[dbName]{.ins} [who]{.sub} 
+[dbName]{.ins} [save]{.sub} [file]{.optarg} 
+[dbName]{.ins} [read]{.sub} [file]{.arg} 
+:::
+
+# Description
+
+The package **pop3d::udb** provides simple in memory databases which can be used in conjunction with the pop3 server core provided by the package **pop3d**. The databases will use the names of users as keys and associates passwords and storage references with them.
+
+Objects created by this package can be directly used in the authentication callback of pop3 servers following the same interface as servers created by the package **pop3d**.
+
+**::pop3d::udb::new** ?*dbName*?
+: This command creates a new database object with an associated global Tcl command whose name is *dbName*. The command **dbName** may be used to invoke various operations on the database.  It has the following general form:
+
+**dbName** *option* ?*arg arg ...*?
+: *Option* and the *arg*s determine the exact behavior of the command. The following commands are possible for database objects:
+
+*dbName* **destroy**
+: Destroys the database object.
+
+*dbName* **add** *user pwd storage*
+: Add a new user or changes the data of an existing user. Stores *password* and *storage* reference for the given *user*.
+
+*dbName* **remove** *user*
+: Removes the specified *user* from the database.
+
+*dbName* **rename** *user newName*
+: Changes the name of the specified *user* to *newName*.
+
+*dbName* **lookup** *user*
+: Searches the database for the specified *user* and returns a two-element list containing the associated password and storage reference, in this order. Throws an error if the user could not be found. This is the interface as expected by the authentication callback of package **pop3d**.
+
+*dbName* **exists** *user*
+: Returns true if the specified *user* is known to the database, else false.
+
+*dbName* **who**
+: Returns a list of users known to the database.
+
+*dbName* **save** ?*file*?
+: Saves the contents of the database into the given *file*. If the file is not specified the system will use the path last used in a call to *dbName* **read**. The generated file can be read by the **read** method.
+
+*dbName* **read** *file*
+: Reads the specified *file* and adds the contained user definitions to the database. As the file is actually **source**'d a safe interpreter is employed to safeguard against malicious code. This interpreter knows the **add** command for adding users and their associated data to this database. This command has the same argument signature as the method **add**. The path of the *file* is remembered internally so that it can be used in the next call of *dbName* **save** without an argument.
+
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *pop3d* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Networking
+
+# Copyright
+
+```
+Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+```

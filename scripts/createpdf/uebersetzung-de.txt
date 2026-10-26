@@ -1,0 +1,11 @@
+Deutsche Übersetzung © 2026 Gregor Ebbing.
+
+Die Seiten wurden aus den Originalen nach Markdown umgewandelt und ins
+Deutsche übersetzt; Auszeichnung ohne Platz im Format (Verweise ohne
+Ziel, Layoutbilder) kann dabei wegfallen. Das sind die Änderungen; für Teile
+unter der Mozilla Public License 1.1 (tDOM) ist es die Beschreibung der
+Änderungen nach Abschnitt 3.3.
+
+Die Übersetzung steht unter denselben Bedingungen wie das jeweilige
+englische Original. Diese Bedingungen folgen. Die Copyright-Angaben der
+Originalseiten stehen bei jeder Seite.

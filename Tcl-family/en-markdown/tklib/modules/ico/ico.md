@@ -1,0 +1,188 @@
+---
+CommandName: ico
+ManualSection: n
+Version: 1.1.3
+TclPart: tklib
+TclDescription: Windows ICO handling
+Keywords:
+ - dll
+ - entry
+ - exe
+ - ico
+ - icon
+Copyright:
+---
+
+# Name
+
+ico - Reading and writing windows icons
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
+[package]{.cmd} [require]{.sub} [ico]{.lit} [1.1.3]{.optlit} 
+[::ico::icons]{.cmd} [file]{.arg} [option value]{.optdot} 
+[::ico::iconMembers]{.cmd} [file]{.arg} [name]{.arg} [option value]{.optdot} 
+[::ico::getIcon]{.cmd} [file]{.arg} [name]{.arg} [option value]{.optdot} 
+[::ico::getIconByName]{.cmd} [file]{.arg} [name]{.arg} [option value]{.optdot} 
+[::ico::getFileIcon]{.cmd} [file]{.arg} [option value]{.optdot} 
+[::ico::writeIcon]{.cmd} [file]{.arg} [name]{.arg} [depth]{.arg} [data]{.arg} [option value]{.optdot} 
+[::ico::copyIcon]{.cmd} [file]{.arg} [index]{.arg} [file2]{.arg} [index2]{.arg} [option value]{.optdot} 
+[::ico::EXEtoICO]{.cmd} [file]{.arg} [dir]{.optarg} 
+[::ico::clearCache]{.cmd} [file]{.optarg} 
+[::ico::transparentColor]{.cmd} [image]{.arg} [color]{.arg} 
+[::ico::Show]{.cmd} [file]{.arg} [option value]{.optdot} 
+:::
+
+# Description
+
+This package provides functions for reading and writing Windows icons from ICO, EXE, DLL, ICL, and BMP files. As used in this module an icon is a visual representation of an object. An icon consists of one or more images usually with varying resolution and color depth. Each icon and image has a resource identifier which may be a text string or a positive integer value. Most commands use this identifier to specify which icon or image to operate on.
+
+# Api
+
+**::ico::icons** *file* ?*option* *value*...?
+: Returns a list of icons found in *file* where each element is the name or numeric ID. Recognizes the following options:
+
+
+**-type** fileFormat
+: 
+
+
+**::ico::iconMembers** *file* *name* ?*option* *value*...?
+: Returns a list of images that make up the icon with ID *name*. Each element is itself a sublist in the format {name width height bpp}. Recognizes the following options:
+
+
+**-type** fileFormat
+: 
+
+
+**::ico::getIcon** *file* *name* ?*option* *value*...?
+: Extracts the icon with ID *name* from *file*. The default **-format** is **image** which will return the name of a Tk image containing the icon. The resolution and color depth are selected with the ?-res?, ?-bpp?, and ?-exact? options. If -exact is specified and there is no exact match, an error is thrown. Optionally **-image** may be used to specify the name of the Tk image that is created. If **-format** is **colors** then a list of color names in the #RRGGBB format is returned. Each list element is a horizontal row. Each horizontal row contains a list of colors for all the pixels in that row from left to right. If **-format** is **name** then the resource name of the image chosen is returned. This is useful for calling writeIcon or getIconByName. Recognizes the following *option*s.
+
+
+**-type** fileFormat
+: ...see next...
+
+**-format** value
+: ...see next...
+
+**-image** value
+: ...see next...
+
+**-res** value
+: ...see next...
+
+**-bpp** value
+: ...see next...
+
+**-exact** value
+: 
+
+
+**::ico::getIconByName** *file* *name* ?*option* *value*...?
+: Extracts the image with ID *name* from *file*. This name should be the name of a specific image as returned by **::ico::iconMembers**, not an icon name returned from **::ico::icons**. If there is no matching resource ID in *file* an error is thrown. Recognizes the following options:
+
+
+**-type** fileFormat
+: ...see next...
+
+**-format** value
+: 
+
+
+**::ico::getFileIcon** *file* ?*option* *value*...?
+: This command is only functional when running under Windows. It reads the Windows registry to determine the display icon for *file* as it would appear in Explorer or similar. *file* does not need to exist and may also be specified as a file extension with a leading dot. If *file* is a directory or you specify the special name **Folder** then the icon representing a folder is returned. This command takes the same arguments and usage as **getIcon**:
+
+
+**-format** value
+: ...see next...
+
+**-image** value
+: ...see next...
+
+**-res** value
+: ...see next...
+
+**-bpp** value
+: ...see next...
+
+**-exact** value
+: 
+
+
+**::ico::writeIcon** *file* *name* *depth* *data* ?*option* *value*...?
+: Writes an image to *file*. *name* is the resource identifier of the image in *file* to write. When writing to an EXE, DLL, or ICL file you may only overwrite existing icons with an icon of the same dimensions and color depth. No icons may be added to these file types. When writing to BMP the name is ignored as this type can contain only one image. This means if the file already existed it is completely overwritten. When writing to an ICO or ICODATA file if the name specified does not exist then an image is appended and will be named the next in sequence (the specified name is ignored). Images in ICO and ICODATA files may be overwritten with differing dimensions or color depths. Note that you will get strange results when displaying icons if you fail to change every image which makes up a given icon.
+
+
+integer *depth* (in)
+: This argument must have a value of **1**, **4**, **8**, **24**, or **32**. If *data* has more colors than the color depth allows an error will be generated.
+
+options *data* (in)
+: This argument is either a list of colors in the format returned by **::ico::getIcon -format colors** or the name of a Tk image.
+
+
+Recognizes the following *option*s.
+
+**-type** fileFormat
+: 
+
+
+**::ico::copyIcon** *file* *index* *file2* *index2* ?*option* *value*...?
+: Copies the icon at *index* in *file* to *index2* in *file2*.
+
+
+**-fromtype** fileFormat
+: ...see next...
+
+**-totype** fileFormat
+: 
+
+
+**::ico::EXEtoICO** *file* ?dir?
+: Extracts all icons from the executable *file* to ICO files placed in *dir*. ?dir? defaults to the directory *file* is located in. Icon files will be named in the form *file*-ID.ico where ID is the icon resource identifier.
+
+
+**-type** fileFormat
+: 
+
+
+**::ico::clearCache** ?file?
+: The **::ico::getIconList** command caches icon offsets inside EXE, DLL, ICL, and ICO files in order to speed up extraction.  This command clears that cache for the specific ?file? or all files.
+
+**::ico::transparentColor** *image* *color*
+: If *image* is a single word it is assumed to be the name of a Tk image. All pixels matching *color* in the *image* will be set transparent. Alternatively, *image* may be a color list in which case a modified list is returned.
+
+**::ico::Show** *file* ?*option* *value*...?
+: Application level command which displays a window showing all the icons in *file* and their name.
+
+
+**-type** fileFormat
+: ...see next...
+
+**-parent** pathName
+: 
+
+
+# Example
+
+```
+    button .explore -image [::ico::getIcon explorer.exe 0 -name explore -res 16 -bpp 8]
+
+    set i [lsearch -inline [::ico::iconMembers tclkit.exe 0] {* 32 32 8}]
+    set colorlist [::ico::getIconByName tclkit.exe [lindex $i 0] -format colors]
+```
+
+# Limitations
+
+Icons may not be added or removed from file types other than ICO. Icons in these files may only be replaced with icons of the same dimensions and color depth.
+
+Icons of 8bpp or lower must include black in the pallete, this means if your icon does not have black in it, you will need to leave a color free so that it may be included by writeIcon.
+
+There is currently no way to read alpha channel information from 32bpp icons.
+
+Tk images do not have an alpha channel so the only way to write a true 32bpp icon is from a color list. writing a 32bpp icon from a Tkimage is identical to writing a 24bpp icon.
+
+# Bugs, ideas, feedback
+
+This document, and the package it describes, will undoubtedly contain bugs and other problems. Please report such in the category *ico* of the [Tklib Trackers](http://core.tcl-lang.org/tklib/reportlist). Please also report any ideas for enhancements you may have for either package and/or documentation.

@@ -1,0 +1,72 @@
+---
+CommandName: pt::cparam::configuration::tea
+ManualSection: n
+Version: 0.2
+TclPart: tcllib
+TclDescription: Parser Tools
+Keywords:
+ - EBNF
+ - LL(k)
+ - PEG
+ - TDPL
+ - context-free languages
+ - expression
+ - grammar
+ - matching
+ - parser
+ - parsing expression
+ - parsing expression grammar
+ - push down automaton
+ - recursive descent
+ - state
+ - top-down parsing languages
+ - transducer
+Copyright:
+ - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+---
+
+# Name
+
+pt::cparam::configuration::tea - C/PARAM, Canned configuration, TEA
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [pt::cparam::configuration::tea]{.lit} [0.2]{.optlit} 
+[::pt::cparam::configuration::tea]{.cmd} [def]{.sub} [name]{.arg} [pkg]{.arg} [version]{.arg} [cmdprefix]{.arg} 
+:::
+
+# Description
+
+Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
+
+This package is an adjunct to **pt::peg::to::cparam**, to make the use of this highly configurable package easier by providing a canned configuration. When applied this configuration causes the package **pt::peg::to::cparam** to generate plain parser code ready for inclusion into a *TEA*-based C extension.
+
+It is a supporting package in the Core Layer of Parser Tools.
+
+IMAGE: arch_core_support
+
+# Api
+
+**::pt::cparam::configuration::tea** **def** *name* *pkg* *version* *cmdprefix*
+: The command applies the configuration provided by this package to the *cmdprefix*, causing the creation of **tea**-based parsers whose class is *name*, in package *pkg* with *version*. The use of a command prefix as API allows application of the configuration to not only **pt::peg::to::cparam** (**pt::peg::to::cparam configure**), but also export manager instances and PEG containers (**\$export configuration set** and **\[\$container exporter\] configuration set** respectively). Or anything other command prefix accepting two arguments, option and value.
+
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *pt* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Parsing and Grammars
+
+# Copyright
+
+```
+Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+```

@@ -1,0 +1,62 @@
+---
+CommandName: tcl::transform::observe
+ManualSection: n
+Version: 1.1
+TclPart: tcllib
+TclDescription: Reflected/virtual channel support
+Keywords:
+ - channel transformation
+ - observer
+ - reflected channel
+ - stream copy
+ - tip 230
+ - transformation
+ - virtual channel
+Copyright:
+ - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+---
+
+# Name
+
+tcl::transform::observe - Observer transformation, stream copy
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [tcl::transform::observe]{.lit} [1.1]{.optlit} 
+[::tcl::transform::observe]{.cmd} [chan]{.arg} [logw]{.arg} [logr]{.arg} 
+:::
+
+# Description
+
+The **tcl::transform::observer** package provides a command creating a channel transformation which passes the read and written bytes through unchanged (like **tcl::transform::identity**), but additionally copies the data it has seen for each direction into channels specified at construction time.
+
+Related transformations in this module are **tcl::transform::adler32**, **tcl::transform::counter**, **tcl::transform::crc32**, and **tcl::transform::identity**.
+
+The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
+
+# Api
+
+**::tcl::transform::observe** *chan* *logw* *logr*
+: This command creates an observer transformation on top of the channel *chan* and returns its handle. The channel handles *logr* and *logw* are there the data is copied to.
+
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *virtchannel* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Channels
+
+# Copyright
+
+```
+Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+```

@@ -1,0 +1,127 @@
+---
+CommandName: grammar::fa::dexec
+ManualSection: n
+Version: 0.3
+TclPart: tcllib
+TclDescription: Finite automaton operations and usage
+Keywords:
+ - automaton
+ - execution
+ - finite automaton
+ - grammar
+ - parsing
+ - regular expression
+ - regular grammar
+ - regular languages
+ - running
+ - state
+ - transducer
+Copyright:
+ - Copyright (c) 2004 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+ - Copyright (c) 2007 Bogdan <rftghost@users.sourceforge.net>
+---
+
+# Name
+
+grammar::fa::dexec - Execute deterministic finite automatons
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [snit]{.lit} 
+[package]{.cmd} [require]{.sub} [grammar::fa::dexec]{.lit} [0.3]{.optlit} 
+[::grammar::fa::dexec]{.cmd} [daName]{.arg} [fa]{.arg} [-any any]{.optarg} [-command cmdprefix]{.optarg} 
+[daName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[daName]{.ins} [destroy]{.sub} 
+[daName]{.ins} [put]{.sub} [symbol]{.arg} 
+[daName]{.ins} [reset]{.sub} 
+[daName]{.ins} [state]{.sub} 
+[cmdprefix]{.ins} [error]{.sub} [code]{.arg} [message]{.arg} 
+[cmdprefix]{.ins} [final]{.sub} [stateid]{.arg} 
+[cmdprefix]{.ins} [reset]{.sub} 
+[cmdprefix]{.ins} [state]{.sub} [stateid]{.arg} 
+:::
+
+# Description
+
+This package provides a class for executors constructed from deterministic *finite automatons* (DFA). Executors are objects which are given a string of symbols in a piecemal fashion, perform state transitions and report back when they enter a final state, or find an error in the input. For the actual creation of the DFAs the executors are based on we have the packages **grammar::fa** and **grammar::fa::op**.
+
+The objects follow a push model. Symbols are pushed into the executor, and when something important happens, i.e. error occurs, a state transition, or a final state is entered this will be reported via the callback specified via the option **-command**. Note that conversion of this into a pull model where the environment retrieves messages from the object and the object uses a callback to ask for more symbols is a trivial thing.
+
+*Side note*: The acceptor objects provided by **grammar::fa::dacceptor** could have been implemented on top of the executors provided here, but were not, to get a bit more performance (we avoid a number of method calls and the time required for their dispatch).
+
+# Api
+
+The package exports the API described here.
+
+**::grammar::fa::dexec** *daName* *fa* ?**-any** *any*? ?**-command** *cmdprefix*?
+: Creates a new deterministic executor with an associated global Tcl command whose name is *daName*. This command may be used to invoke various operations on the executor. It has the following general form:
+
+
+**daName** *option* ?*arg arg ...*?
+: *Option* and the *arg*s determine the exact behavior of the command. See section **EXECUTOR METHODS** for more explanations. The executor will be based on the deterministic finite automaton stored in the object *fa*. It will keep a copy of the relevant data of the FA in its own storage, in a form easy to use for its purposes. This also means that changes made to the *fa* after the construction of the executor *will not* influence the executor. If *any* has been specified, then the executor will convert all symbols in the input which are unknown to the base FA to that symbol before proceeding with the processing.
+
+
+# Executor methods
+
+All executors provide the following methods for their manipulation:
+
+*daName* **destroy**
+: Destroys the automaton, including its storage space and associated command.
+
+*daName* **put** *symbol*
+: Takes the current state of the executor and the *symbol* and performs the appropriate state transition. Reports any errors encountered via the command callback, as well as entering a final state of the underlying FA. When an error is reported all further invokations of **put** will do nothing, until the error condition has been cleared via an invokation of method **reset**.
+
+*daName* **reset**
+: Unconditionally sets the executor into the start state of the underlying FA. This also clears any error condition  **put** may have encountered.
+
+*daName* **state**
+: Returns the current state of the underlying FA. This allow for introspection without the need to pass data from the callback command.
+
+
+# Executor callback
+
+The callback command *cmdprefix* given to an executor via the option **-command** will be executed by the object at the global level, using the syntax described below. Note that *cmdprefix* is not simply the name of a command, but a full command prefix. In other words it may contain additional fixed argument words beyond the command word.
+
+*cmdprefix* **error** *code* *message*
+: The executor has encountered an error, and *message* contains a human-readable text explaining the nature of the problem. The *code* on the other hand is a fixed machine-readable text. The following error codes can be generated by executor objects.
+
+
+**BADSYM**
+: An unknown symbol was found in the input. This can happen if and only if no **-any** symbol was specified.
+
+**BADTRANS**
+: The underlying FA has no transition for the current combination of input symbol and state. In other words, the executor was not able to compute a new state for this combination.
+
+
+*cmdprefix* **final** *stateid*
+: The executor has entered the final state *stateid*.
+
+*cmdprefix* **reset**
+: The executor was reset.
+
+*cmdprefix* **state** *stateid*
+: The FA changed state due to a transition. *stateid* is the new state.
+
+
+# Examples
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar_fa* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Grammars and finite automata
+
+# Copyright
+
+```
+Copyright (c) 2004 Andreas Kupries <andreas_kupries@users.sourceforge.net>
+Copyright (c) 2007 Bogdan <rftghost@users.sourceforge.net>
+```

@@ -1,0 +1,329 @@
+---
+CommandName: struct::matrix
+ManualSection: n
+Version: 2.2
+TclPart: tcllib
+TclDescription: Tcl Data Structures
+Keywords:
+ - matrix
+Copyright:
+ - Copyright (c) 2002-2013,2019,2022 Andreas Kupries <andreas.kupries@gmail.com>
+---
+
+# Name
+
+struct::matrix - Create and manipulate matrix objects
+
+# Synopsis
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [struct::matrix]{.lit} [2.2]{.optlit} 
+[::struct::matrix]{.cmd} [aMatrix]{.optarg} [=|:=|as|deserialize source]{.optarg} 
+[aMatrix]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[aMatrix]{.ins} [=]{.sub} [sourceMatrix]{.arg} 
+[aMatrix]{.ins} [-->]{.sub} [destMatrix]{.arg} 
+[aMatrix]{.ins} [add]{.sub} [column]{.lit} [values]{.optarg} 
+[aMatrix]{.ins} [add]{.sub} [columns]{.lit} [n]{.arg} 
+[aMatrix]{.ins} [add]{.sub} [row]{.lit} [values]{.optarg} 
+[aMatrix]{.ins} [add]{.sub} [rows]{.lit} [n]{.arg} 
+[aMatrix]{.ins} [cells]{.sub} 
+[aMatrix]{.ins} [cellsize]{.sub} [column]{.arg} [row]{.arg} 
+[aMatrix]{.ins} [columns]{.sub} 
+[aMatrix]{.ins} [columnwidth]{.sub} [column]{.arg} 
+[aMatrix]{.ins} [delete]{.sub} [column]{.lit} [column]{.arg} 
+[aMatrix]{.ins} [delete]{.sub} [columns]{.lit} [n]{.arg} 
+[aMatrix]{.ins} [delete]{.sub} [row]{.lit} [row]{.arg} 
+[aMatrix]{.ins} [delete]{.sub} [rows]{.lit} [n]{.arg} 
+[aMatrix]{.ins} [deserialize]{.sub} [serialization]{.arg} 
+[aMatrix]{.ins} [destroy]{.sub} 
+[aMatrix]{.ins} [format]{.sub} [2string]{.lit} [report]{.optarg} 
+[aMatrix]{.ins} [format]{.sub} [2chan]{.lit} [?report]{.optarg} [channel?]{.arg} 
+[aMatrix]{.ins} [get]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg} 
+[aMatrix]{.ins} [get]{.sub} [column]{.lit} [column]{.arg} 
+[aMatrix]{.ins} [get]{.sub} [rect]{.lit} [column_tl]{.arg} [row_tl]{.arg} [column_br]{.arg} [row_br]{.arg} 
+[aMatrix]{.ins} [get]{.sub} [row]{.lit} [row]{.arg} 
+[aMatrix]{.ins} [insert]{.sub} [column]{.lit} [column]{.arg} [values]{.optarg} 
+[aMatrix]{.ins} [insert]{.sub} [row]{.lit} [row]{.arg} [values]{.optarg} 
+[aMatrix]{.ins} [link]{.sub} [-transpose]{.optarg} [arrayvar]{.arg} 
+[aMatrix]{.ins} [links]{.sub} 
+[aMatrix]{.ins} [rowheight]{.sub} [row]{.arg} 
+[aMatrix]{.ins} [rows]{.sub} 
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [all]{.lit} [pattern]{.arg} 
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [column]{.lit} [column]{.arg} [pattern]{.arg} 
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [row]{.lit} [row]{.arg} [pattern]{.arg} 
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [rect]{.lit} [column_tl]{.arg} [row_tl]{.arg} [column_br]{.arg} [row_br]{.arg} [pattern]{.arg} 
+[aMatrix]{.ins} [serialize]{.sub} [column_tl row_tl column_br row_br]{.optarg} 
+[aMatrix]{.ins} [set]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg} [value]{.arg} 
+[aMatrix]{.ins} [set]{.sub} [column]{.lit} [column]{.arg} [values]{.arg} 
+[aMatrix]{.ins} [set]{.sub} [rect]{.lit} [column]{.arg} [row]{.arg} [values]{.arg} 
+[aMatrix]{.ins} [set]{.sub} [row]{.lit} [row]{.arg} [values]{.arg} 
+[aMatrix]{.ins} [sort]{.sub} [columns]{.lit} [-increasing|-decreasing]{.optlit} [row]{.arg} 
+[aMatrix]{.ins} [sort]{.sub} [rows]{.lit} [-increasing|-decreasing]{.optlit} [column]{.arg} 
+[aMatrix]{.ins} [swap]{.sub} [columns]{.lit} [column_a]{.arg} [column_b]{.arg} 
+[aMatrix]{.ins} [swap]{.sub} [rows]{.lit} [row_a]{.arg} [row_b]{.arg} 
+[aMatrix]{.ins} [transpose]{.sub} 
+[aMatrix]{.ins} [unlink]{.sub} [arrayvar]{.arg} 
+:::
+
+# Description
+
+This package provides a command for creating matrices, and subcommands for manipulating matrices once created.
+
+A matrix is a rectangular collection of cells arranged in rows and columns. Each cell contains a single value of any kind. Every cell may be addressed using a pair of **0**-based integers {column, row}.
+
+The special non-numeric index **end** may be used to address a matrix’s last row or last column, depending on the context. Indices of the form **end**-**number** are counted from the end of the row or column, just the same as for standard Tcl lists.
+
+Using an out-of-range index will raise an error.
+
+By default each matrix is created empty. New rows and columns may be added as required.
+
+A matrix can export an array-view onto its contents. This can be used by, for example, *tkTable*, to link the matrix into the display.
+
+This package’s main command is:
+
+**::struct::matrix** ?*aMatrix*? ?**=**|**:=**|**as**|**deserialize** *source*?
+: This command creates a new matrix object with an associated global Tcl command whose name is *aMatrix*. This command may be used to invoke various operations on the matrix. It has the following general form:
+
+
+**aMatrix** *option* ?*arg arg ...*?
+: The *option* and the *arg*s determine what the command does.
+
+
+If *aMatrix* is not specified a unique name will be generated by the package itself. If a *source* is specified the new matrix will be initialized to it. For the operators **=**, **:=**, and **as** the argument *source* is interpreted as the name of another matrix object, and the assignment operator **=** will be executed. For **deserialize** the *source* is a serialized matrix object and **deserialize** will be executed.
+
+In other words
+
+```
+    ::struct::matrix mymatrix = b
+```
+
+is equivalent to
+
+```
+    ::struct::matrix mymatrix
+    mymatrix = b
+```
+
+and
+
+```
+    ::struct::matrix mymatrix deserialize $b
+```
+
+is equivalent to
+
+```
+    ::struct::matrix mymatrix
+    mymatrix deserialize $b
+```
+
+Matrix objects provide the following commands:
+
+*aMatrix* **=** *sourceMatrix*
+: The **=** operator is the matrix object *assignment* operator. (This operator may be written as **=** or **:=** or **as**.) It copies the matrix contained in the matrix object *sourceMatrix* over the matrix data in *aMatrix*. The old contents of *aMatrix* are deleted by this operation. This operation is in effect equivalent to
+
+
+```
+    aMatrix deserialize [sourceMatrix serialize]
+```
+
+*aMatrix* **-->** *destMatrix*
+: The **-->** operator is the matrix object *reverse assignment* operator. It copies the matrix contained in the matrix object *aMatrix* over the matrix data in the object *destMatrix*. The old contents of *destMatrix* are deleted by this operation. This operation is in effect equivalent to
+
+
+```
+    destMatrix deserialize [aMatrix serialize]
+```
+
+*aMatrix* **add column** ?*values*?
+: Extends the matrix by one column after the last column. If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set column** (see below) on the newly added column.
+
+*aMatrix* **add columns** *n*
+: Extends the matrix by *n* columns after the last column and sets all the new cells to the empty string. If *n* *<= 0* an error is raised.
+
+*aMatrix* **add row** ?*values*?
+: Extends the matrix by one row after the last row. If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set row** (see below) on the newly added row.
+
+*aMatrix* **add rows** *n*
+: Extends the matrix by *n* rows after the last row and sets all the new cells to the empty string. If *n* *<= 0* an error is raised.
+
+*aMatrix* **cells**
+: Returns the number of cells currently managed by the matrix. This is the product of **rows** and **columns**.
+
+*aMatrix* **cellsize** *column row*
+: Returns the length of the string representation of the value currently contained in the addressed cell.
+
+*aMatrix* **columns**
+: Returns the number of columns currently managed by the matrix.
+
+*aMatrix* **columnwidth** *column*
+: Returns the length of the longest string representation of all the values currently contained in the cells of the addressed column if these are all spanning only one line. For cell values spanning multiple lines the length of their longest line goes into the computation. *Note:* The command recognizes ANSI color control sequences and excludes them from the width of a line, as they are logically of zero width. *Note:* The command properly recognizes and accounts for Asian double-wide characters. *In other words*, the returned length is the number of terminal columns taken by the string, and not the number of characters.
+
+*aMatrix* **delete column** *column*
+: Deletes the specified column from the matrix and shifts all columns with higher indices one index down.
+
+*aMatrix* **delete columns** *n*
+: Deletes *n* columns from the right of the matrix. The value of *n* has to satisfy the constraint "0 < *n* < \[**aMatrix** **columns**\]"
+
+*aMatrix* **delete row** *row*
+: Deletes the specified row from the matrix and shifts all row with higher indices one index down.
+
+*aMatrix* **delete rows** *n*
+: Deletes *n* rows from the bottom of the matrix. The value of *n* has to satisfy the constraint "0 < *n* < \[**aMatrix** **rows**\]"
+
+*aMatrix* **deserialize** *serialization*
+: This is the complement to **serialize**. It replaces matrix data in *aMatrix* with the matrix described by the *serialization* value. The old contents of *aMatrix* are deleted by this operation.
+
+*aMatrix* **destroy**
+: Destroys the matrix, including its storage space and associated command.
+
+*aMatrix* **format 2string** ?*report*?
+: Formats the matrix using the specified report object and returns the string containing the result of this operation. The report has to support the **printmatrix** method. If no *report* is specified the system will use an internal report definition to format the matrix.
+
+*aMatrix* **format 2chan** ??*report*? *channel*?
+: Formats the matrix using the specified report object and writes the string containing the result of this operation into the channel. The report has to support the **printmatrix2channel** method. If no *report* is specified the system will use an internal report definition to format the matrix. If no *channel* is specified the system will use **stdout**.
+
+*aMatrix* **get cell** *column row*
+: Returns the value currently contained in the cell identified by row and column index.
+
+*aMatrix* **get column** *column*
+: Returns a list containing the values from all cells in the column identified by the index. The contents of the cell in row 0 are stored as the first element of this list.
+
+*aMatrix* **get rect** *column_tl row_tl column_br row_br*
+: Returns a list of lists of cell values. The values stored in the result come from the sub-matrix whose top-left and bottom-right cells are specified by *column_tl, row_tl* and *column_br, row_br* resp. Note that the following equations have to be true: "*column_tl* <= *column_br*" and "*row_tl* <= *row_br*". The result is organized as follows: The outer list is the list of rows, its elements are lists representing a single row. The row with the smallest index is the first element of the outer list. The elements of the row lists represent the selected cell values. The cell with the smallest index is the first element in each row list.
+
+*aMatrix* **get row** *row*
+: Returns a list containing the values from all cells in the row identified by the index. The contents of the cell in column 0 are stored as the first element of this list.
+
+*aMatrix* **insert column** *column* ?*values*?
+: Extends the matrix by one column and then acts like **set column** (see below) on this new column if there were *values* supplied. Without *values* the new cells will be set to the empty string. The new column is inserted just before the column specified by the given index. This means, if *column* is less than or equal to zero, then the new column is inserted at the beginning of the matrix, before the first column. If *column* has the value **end**, or if it is greater than or equal to the number of columns in the matrix, then the new column is appended to the matrix, behind the last column. The old column at the chosen index and all columns with higher indices are shifted one index upward.
+
+*aMatrix* **insert row** *row* ?*values*?
+: Extends the matrix by one row and then acts like **set row** (see below) on this new row if there were *values* supplied. Without *values* the new cells will be set to the empty string. The new row is inserted just before the row specified by the given index. This means, if *row* is less than or equal to zero, then the new row is inserted at the beginning of the matrix, before the first row. If *row* has the value **end**, or if it is greater than or equal to the number of rows in the matrix, then the new row is appended to the matrix, behind the last row. The old row at that index and all rows with higher indices are shifted one index upward.
+
+*aMatrix* **link** ?-transpose? *arrayvar*
+: Links the matrix to the specified array variable. This means that the contents of all cells in the matrix is stored in the array too, with all changes to the matrix propagated there too. The contents of the cell *(column,row)* is stored in the array using the key *column,row*. If the option **-transpose** is specified the key *row,column* will be used instead. It is possible to link the matrix to more than one array. Note that the link is bidirectional, i.e. changes to the array are mirrored in the matrix too.
+
+*aMatrix* **links**
+: Returns a list containing the names of all array variables the matrix was linked to through a call to method **link**.
+
+*aMatrix* **rowheight** *row*
+: Returns the height of the specified row in lines. This is the highest number of lines spanned by a cell over all cells in the row.
+
+*aMatrix* **rows**
+: Returns the number of rows currently managed by the matrix.
+
+*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **all** *pattern*
+: Searches the whole matrix for cells matching the *pattern* and returns a list with all matches. Each item in the aforementioned list is a list itself and contains the column and row index of the matching cell, in this order. The results are ordered by column first and row second, both times in ascending order. This means that matches to the left and the top of the matrix come before matches to the right and down. The type of the pattern (string, glob, regular expression) is determined by the option after the **search** keyword. If no option is given it defaults to **-exact**. If the option **-nocase** is specified the search will be case-insensitive.
+
+*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **column** *column pattern*
+: Like **search all**, but the search is restricted to the specified column.
+
+*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **row** *row pattern*
+: Like **search all**, but the search is restricted to the specified row.
+
+*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **rect** *column_tl row_tl column_br row_br pattern*
+: Like **search all**, but the search is restricted to the specified rectangular area of the matrix.
+
+*aMatrix* **serialize** ?*column_tl row_tl column_br row_br*?
+: This method serializes the sub-matrix spanned up by the rectangle specification. In other words it returns a tcl *value* completely describing that matrix. If no rectangle is specified the whole matrix will be serialized. This allows, for example, the transfer of matrix objects (or parts thereof) over arbitrary channels, persistence, etc. This method is also the basis for both the copy constructor and the assignment operator. The result of this method has to be semantically identical over all implementations of the matrix interface. This is what will enable us to copy matrix data between different implementations of the same interface. The result is a list containing exactly three items. The first two elements of the list specify the number of rows and columns of the matrix, in that order. The values integer numbers greater than or equal to zero. The last element of the list contains the values of the matrix cells we have serialized, in the form of a value like it is returned by the **get rect**. However empty cells to the right and bottom of the matrix can be left out of that value as the size information in the serialization allows the receiver the creation of a matrix with the proper size despite the missing values.
+
+
+```
+    # A possible serialization for the matrix structure
+    #
+    # | a b d g |
+    # | c e     |
+    # | f       |
+    #
+    # is
+    #
+    # 3 4 {{a b d g} {c e} {f}}
+```
+
+*aMatrix* **set cell** *column row value*
+: Sets the value in the cell identified by row and column index to the data in the third argument.
+
+*aMatrix* **set column** *column values*
+: Sets the values in the cells identified by the column index to the elements of the list provided as the third argument. Each element of the list is assigned to one cell, with the first element going into the cell in row 0 and then upward. If there are less values in the list than there are rows the remaining rows are set to the empty string. If there are more values in the list than there are rows the superfluous elements are ignored. The matrix is not extended by this operation.
+
+*aMatrix* **set rect** *column row values*
+: Takes a list of lists of cell values and writes them into the submatrix whose top-left cell is specified by the two indices. If the sublists of the outerlist are not of equal length the shorter sublists will be filled with empty strings to the length of the longest sublist. If the submatrix specified by the top-left cell and the number of rows and columns in the *values* extends beyond the matrix we are modifying the over-extending parts of the values are ignored, i.e. essentially cut off. This subcommand expects its input in the format as returned by **get rect**.
+
+*aMatrix* **set row** *row values*
+: Sets the values in the cells identified by the row index to the elements of the list provided as the third argument. Each element of the list is assigned to one cell, with the first element going into the cell in column 0 and then upward. If there are less values in the list than there are columns the remaining columns are set to the empty string. If there are more values in the list than there are columns the superfluous elements are ignored. The matrix is not extended by this operation.
+
+*aMatrix* **sort columns** ?**-increasing**|**-decreasing**? *row*
+: Sorts the columns in the matrix using the data in the specified *row* as the key to sort by. The options **-increasing** and **-decreasing** have the same meaning as for **lsort**. If no option is specified **-increasing** is assumed.
+
+*aMatrix* **sort rows** ?**-increasing**|**-decreasing**? *column*
+: Sorts the rows in the matrix using the data in the specified *column* as the key to sort by. The options **-increasing** and **-decreasing** have the same meaning as for **lsort**. If no option is specified **-increasing** is assumed.
+
+*aMatrix* **swap columns** *column_a column_b*
+: Swaps the contents of the two specified columns.
+
+*aMatrix* **swap rows** *row_a row_b*
+: Swaps the contents of the two specified rows.
+
+*aMatrix* **transpose**
+: Transposes the contents of the matrix, i.e. swaps rows for columns and vice versa.
+
+*aMatrix* **unlink** *arrayvar*
+: Removes the link between the matrix and the specified arrayvariable, if there is one.
+
+
+# Examples
+
+The examples below assume a 5x5 matrix M with the first row containing the values 1 to 5, with 1 in the top-left cell. Each other row contains the contents of the row above it, rotated by one cell to the right.
+
+```
+ % M get rect 0 0 4 4
+ {{1 2 3 4 5} {5 1 2 3 4} {4 5 1 2 3} {3 4 5 1 2} {2 3 4 5 1}}
+```
+
+```
+ % M set rect 1 1 {{0 0 0} {0 0 0} {0 0 0}}
+ % M get rect 0 0 4 4
+ {{1 2 3 4 5} {5 0 0 0 4} {4 0 0 0 3} {3 0 0 0 2} {2 3 4 5 1}}
+```
+
+Assuming that the style definitions in the example section of the manpage for the package **report** are loaded into the interpreter now an example which formats a matrix into a tabular report. The code filling the matrix with data is not shown. contains useful data.
+
+```
+    % ::struct::matrix m
+    % # ... fill m with data, assume 5 columns
+    % ::report::report r 5 style captionedtable 1
+    % m format 2string r
+    +---+-------------------+-------+-------+--------+
+    |000|VERSIONS:          |2:8.4a3|1:8.4a3|1:8.4a3%|
+    +---+-------------------+-------+-------+--------+
+    |001|CATCH return ok    |7      |13     |53.85   |
+    |002|CATCH return error |68     |91     |74.73   |
+    |003|CATCH no catch used|7      |14     |50.00   |
+    |004|IF if true numeric |12     |33     |36.36   |
+    |005|IF elseif          |15     |47     |31.91   |
+    |   |true numeric       |       |       |        |
+    +---+-------------------+-------+-------+--------+
+    %
+    % # alternate way of doing the above
+    % r printmatrix m
+```
+
+# Bugs, ideas, feedback
+
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *struct :: matrix* as the category.
+
+When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
+
+Note further that *attachments* are strongly preferred over inlined patches. Attachments can be made by going to the **Edit** form of the ticket immediately after its creation, and then using the left-most button in the secondary navigation bar.
+
+# Category
+
+Data structures
+
+# Copyright
+
+```
+Copyright (c) 2002-2013,2019,2022 Andreas Kupries <andreas.kupries@gmail.com>
+```

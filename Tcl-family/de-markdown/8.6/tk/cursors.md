@@ -1,0 +1,193 @@
+---
+CommandName: cursors
+ManualSection: n
+Version: 8.3
+TclPart: Tk
+TclDescription: Tk Built-In Commands
+Keywords:
+ - cursor
+ - option
+Copyright:
+ - Copyright (c) 1998-2000 Scriptics Corporation.
+ - All rights reserved.
+ - Copyright (c) 2006-2007 Daniel A. Steffen <das@users.sourceforge.net>
+---
+
+# NAME
+
+cursors - in Tk verfügbare Mauszeiger
+
+# BESCHREIBUNG
+
+Die Widget-Option **-cursor** ermöglicht es, den Mauszeiger für ein bestimmtes Widget zu ändern. Die von Tk auf allen Plattformen erkannten Zeigernamen sind:
+
+```
+X_cursor
+arrow
+based_arrow_down
+based_arrow_up
+boat
+bogosity
+bottom_left_corner
+bottom_right_corner
+bottom_side
+bottom_tee
+box_spiral
+center_ptr
+circle
+clock
+coffee_mug
+cross
+cross_reverse
+crosshair
+diamond_cross
+dot
+dotbox
+double_arrow
+draft_large
+draft_small
+draped_box
+exchange
+fleur
+gobbler
+gumby
+hand1
+hand2
+heart
+icon
+iron_cross
+left_ptr
+left_side
+left_tee
+leftbutton
+ll_angle
+lr_angle
+man
+middlebutton
+mouse
+none
+pencil
+pirate
+plus
+question_arrow
+right_ptr
+right_side
+right_tee
+rightbutton
+rtl_logo
+sailboat
+sb_down_arrow
+sb_h_double_arrow
+sb_left_arrow
+sb_right_arrow
+sb_up_arrow
+sb_v_double_arrow
+shuttle
+sizing
+spider
+spraycan
+star
+target
+tcross
+top_left_arrow
+top_left_corner
+top_right_corner
+top_side
+top_tee
+trek
+ul_angle
+umbrella
+ur_angle
+watch
+xterm
+```
+
+Der Zeiger **none** kann angegeben werden, um den Zeiger zu unterdrücken.
+
+# PORTIERBARKEITSPROBLEME
+
+**Windows**
+: Unter Windows werden folgende Zeiger nativen Zeigern zugeordnet:
+
+    ```
+    arrow
+    center_ptr
+    crosshair
+    fleur
+    ibeam
+    icon
+    none
+    sb_h_double_arrow
+    sb_v_double_arrow
+    watch
+    xterm
+    ```
+    Zusätzlich stehen folgende Zeiger zur Verfügung:
+
+    ```
+    no
+    starting
+    size
+    size_ne_sw
+    size_ns
+    size_nw_se
+    size_we
+    uparrow
+    wait
+    ```
+
+**macOS**
+: Unter macOS werden folgende Zeiger nativen Zeigern zugeordnet:
+
+    ```
+    arrow
+    top_left_arrow
+    left_ptr
+    cross
+    crosshair
+    tcross
+    ibeam
+    none
+    xterm
+    ```
+    Zusätzlich stehen folgende native Zeiger zur Verfügung:
+
+    ```
+    copyarrow
+    aliasarrow
+    contextualmenuarrow
+    movearrow
+    text
+    cross-hair
+    hand
+    openhand
+    closedhand
+    fist
+    pointinghand
+    resize
+    resizeleft
+    resizeright
+    resizeleftright
+    resizeup
+    resizedown
+    resizeupdown
+    resizebottomleft
+    resizetopleft
+    resizebottomright
+    resizetopright
+    notallowed
+    poof
+    wait
+    countinguphand
+    countingdownhand
+    countingupanddownhand
+    spinning
+    help
+    bucket
+    cancel
+    eyedrop
+    eyedrop-full
+    zoom-in
+    zoom-out
+    ```
+

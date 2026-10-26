@@ -1,0 +1,605 @@
+---
+CommandName: msgcat
+ManualSection: n
+Version: 1.5
+TclPart: msgcat
+TclDescription: Tcl Bundled Packages
+Links:
+ - format(n)
+ - scan(n)
+ - namespace(n)
+ - package(n)
+Keywords:
+ - internationalization
+ - i18n
+ - localization
+ - l10n
+ - message
+ - text
+ - translation
+Copyright:
+ - Copyright (c) 1998 Mark Harrison.
+---
+
+# NAME
+
+msgcat - Tcl-Message-Katalog
+
+# ÜBERSICHT
+
+::: {.synopsis} :::
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
+[package]{.cmd} [require]{.sub} [msgcat]{.lit} [1.6]{.lit} 
+
+[::msgcat::mc]{.cmd} [src-string]{.arg} [arg arg]{.optdot} 
+[::msgcat::mcmax]{.cmd} [src-string src-string]{.optdot} 
+[::msgcat::mcexists]{.cmd} [-exactnamespace]{.optlit} [-exactlocale]{.optlit} [src-string]{.arg} 
+
+[::msgcat::mclocale]{.cmd} [newLocale]{.optarg} 
+
+[::msgcat::mcpreferences]{.cmd} 
+
+[::msgcat::mcloadedlocales]{.cmd} [subcommand]{.sub} [locale]{.optarg} 
+[::msgcat::mcload]{.cmd} [dirname]{.arg} 
+[::msgcat::mcset]{.cmd} [locale]{.arg} [src-string]{.arg} [translate-string]{.optarg} 
+[::msgcat::mcmset]{.cmd} [locale]{.arg} [src-trans-list]{.arg} 
+[::msgcat::mcflset]{.cmd} [src-string]{.arg} [translate-string]{.optarg} 
+[::msgcat::mcflmset]{.cmd} [src-trans-list]{.arg} 
+[::msgcat::mcunknown]{.cmd} [locale]{.arg} [src-string]{.arg} [arg arg]{.optdot} 
+[::msgcat::mcpackagelocale]{.cmd} [subcommand]{.sub} [locale]{.optarg} 
+[::msgcat::mcpackageconfig]{.cmd} [subcommand]{.sub} [option]{.arg} [value]{.optarg} 
+[::msgcat::mcforgetpackage]{.cmd} 
+:::
+
+# BESCHREIBUNG
+
+Das Paket **msgcat** stellt eine Reihe von Funktionen bereit, mit denen
+mehrsprachige Benutzeroberflächen verwaltet werden können. Textzeichenketten werden in einem Message-Katalog definiert, der unabhängig von der Anwendung ist und bearbeitet oder lokalisiert werden kann, ohne den Anwendungsquellcode zu ändern. Neue Sprachen
+oder Locales können durch Hinzufügen einer neuen Datei zum Message-Katalog bereitgestellt werden.
+
+**msgcat** unterscheidet Pakete anhand ihres Namespace. Jedes Paket hat seinen
+eigenen Message-Katalog und seine Konfigurationseinstellungen in **msgcat**.
+
+Ein *locale* ist eine Spezifikationszeichenkette, die eine Benutzersprache beschreibt, z. B.
+
+**de_ch** für Schweizerdeutsch. In **msgcat** gibt es ein globales Locale,
+das anhand des System-Locale des aktuellen Systems initialisiert wird. Jedes Paket kann
+entscheiden, das globale Locale oder ein paketspezifisches Locale zu verwenden.
+
+Das globale Locale kann bei Bedarf geändert werden, z. B. durch eine vom Benutzer
+ausgelöste Sprachumschaltung oder in einer Mehrbenutzer-Anwendung wie einem Web-
+Server.
+
+# BEFEHLE
+
+**::msgcat::mc** *src-string* ?*arg arg \...*?
+: Gibt eine Übersetzung von *src-string* gemäß dem aktuellen
+    Locale zurück. Wenn nach *src-string* weitere Argumente angegeben werden, wird der
+    Befehl **format** verwendet, um die zusätzlichen Argumente in die
+    Übersetzung von *src-string* einzusetzen.
+
+    **::msgcat::mc** durchsucht die im aktuellen
+    Namespace definierten Meldungen nach einer Übersetzung von *src-string*; wird keine gefunden,
+    wird im übergeordneten Namespace des aktuellen Namespace gesucht und so weiter, bis
+    der globale Namespace erreicht ist. Existiert keine Übersetzungszeichenkette,
+    wird **::msgcat::mcunknown** aufgerufen und die von
+    **::msgcat::mcunknown** zurückgegebene Zeichenkette wird zurückgegeben.
+
+    **::msgcat::mc** ist die Hauptfunktion zur Lokalisierung einer
+    Anwendung. Statt eine englische Zeichenkette direkt zu verwenden, kann eine
+    Anwendung die englische Zeichenkette durch **::msgcat::mc** leiten und
+    das Ergebnis nutzen. Wird eine Anwendung auf diese Weise für eine einzige Sprache
+    geschrieben, lässt sich später leicht Unterstützung für weitere
+    Sprachen hinzufügen, indem einfach neue Message-Katalog-Einträge definiert werden.
+
+**::msgcat::mcmax ?**_src-string src-string ..._?
+: Bei mehreren Quellzeichenketten gibt **::msgcat::mcmax** die Länge
+    der längsten übersetzten Zeichenkette zurück. Das ist nützlich beim Entwurf
+    lokalisierter GUIs, die z. B. erfordern können, dass alle Schaltflächen
+    eine feste Breite haben (nämlich die Breite der breitesten Schaltfläche).
+
+**::msgcat::mcexists** ?**-exactnamespace**? ?**-exactlocale**? *src-string*
+: Gibt **true** zurück, wenn eine Übersetzung für die angegebene *src-string* existiert.
+
+::: {.info -version="TIP 412"}
+Die Suche kann mit der Option **-exactnamespace** auf den
+aktuellen Namespace beschränkt werden, ohne übergeordnete Namespaces zu prüfen.
+
+Sie kann auch mit der Option **-exactlocale** auf das
+erste bevorzugte Locale beschränkt werden (z. B. das erste Element von
+**::msgcat::mcpreferences**, wenn das globale Locale verwendet wird).
+:::
+
+**::msgcat::mclocale** ?*newLocale*?
+: Diese Funktion setzt das Locale auf *newLocale*. Wenn *newLocale*
+    weggelassen wird, wird das aktuelle Locale zurückgegeben, andernfalls wird das aktuelle
+    Locale auf *newLocale* gesetzt. **msgcat** speichert und vergleicht das Locale
+    ohne Berücksichtigung der Groß-/Kleinschreibung und gibt Locales in Kleinbuchstaben zurück. Das
+    anfängliche Locale wird durch das Locale bestimmt, das in der Umgebung des Benutzers angegeben ist. Siehe **LOCALE-SPEZIFIKATION** weiter unten für eine Beschreibung des
+    Locale-Zeichenkettenformats.
+
+::: {.info -version="TIP 412"}
+Wenn das Locale gesetzt wird, wird die Präferenzliste der Locales ausgewertet.
+Locales in dieser Liste werden jetzt geladen, falls sie noch nicht geladen sind.
+:::
+
+**::msgcat::mcpreferences**
+: Gibt eine geordnete Liste der vom Benutzer bevorzugten Locales zurück, basierend
+    auf der Sprachspezifikation des Benutzers. Die Liste ist von der spezifischsten
+    zur geringsten Präferenz geordnet. Die Liste leitet sich vom aktuellen
+    in **msgcat** durch **::msgcat::mclocale** gesetzten Locale ab und kann nicht unabhängig
+    gesetzt werden. Wenn das aktuelle Locale z. B. **en_US_funky** ist,
+    gibt **::msgcat::mcpreferences** **{en_us_funky en_us en
+    {}}** zurück.
+
+**::msgcat::mcloadedlocales subcommand** ?*locale*?
+: Diese Gruppe von Befehlen verwaltet die Liste der geladenen Locales für
+    Pakete, die kein Paket-Locale setzen.
+
+Der Unterbefehl **get** gibt die Liste der aktuell geladenen Locales zurück.
+
+Der Unterbefehl **present** erfordert das Argument *locale* und gibt
+**true** zurück, wenn dieses Locale geladen ist.
+
+Der Unterbefehl **clear** entfernt alle Locales und ihre Daten, die
+nicht in der aktuellen Präferenzliste stehen.
+
+**::msgcat::mcload** *dirname*
+: Durchsucht das angegebene Verzeichnis nach Dateien, die den von
+    **::msgcat::mcloadedlocales get** zurückgegebenen Sprachspezifikationen entsprechen (oder
+    **msgcat::mcpackagelocale preferences**, wenn ein Paket-Locale gesetzt ist)
+    (diese sind alle in Kleinbuchstaben), erweitert um die Dateierweiterung ".msg".
+Jede passende Datei wird der Reihe nach gelesen, unter Annahme einer UTF-8-Kodierung. Der Datei-
+inhalt wird dann als Tcl-Skript ausgewertet. Das bedeutet, dass Unicode-
+Zeichen in der Message-Datei entweder direkt in UTF-8-kodierter Form oder durch
+von der Tcl-Auswertung erkanntes Backslash-u-Quoting vorhanden sein können. Die Anzahl der Message-Dateien, die der
+Spezifikation entsprachen und geladen wurden, wird zurückgegeben.
+
+::: {.info -version="TIP 412"}
+Zusätzlich wird der angegebene Ordner in der Paketkonfigurationsoption *mcfolder* von **msgcat**
+gespeichert, um bei einer Locale-Änderung gegebenenfalls benötigte Message-Katalog-
+Dateien zu laden.
+:::
+
+**::msgcat::mcset** *locale src-string *?*translate-string*?
+: Legt die Übersetzung für *src-string* auf *translate-string* im
+    angegebenen *locale* und im aktuellen Namespace fest. Wenn *translate-string*
+    nicht angegeben ist, wird *src-string* für beides verwendet. Die Funktion
+    gibt *translate-string* zurück.
+
+**::msgcat::mcmset** *locale src-trans-list*
+: Legt die Übersetzung für mehrere Quellzeichenketten in *src-trans-list* im
+    angegebenen *locale* und im aktuellen Namespace fest.
+    *src-trans-list* muss eine gerade Anzahl von Elementen haben und hat die
+    Form {*src-string translate-string* ?*src-string* translate-string
+    \...?} **::msgcat::mcmset** kann deutlich schneller sein als
+    mehrere Aufrufe von **::msgcat::mcset**. Die Funktion gibt
+    die Anzahl der gesetzten Übersetzungen zurück.
+
+**::msgcat::mcflset** *src-string *?*translate-string*?
+: Legt die Übersetzung für *src-string* auf *translate-string* im
+    aktuellen Namespace für das Locale fest, das sich aus dem Namen des über **::msgcat::mcload** geladenen Message-
+    Katalogs ergibt. Wenn *translate-string*
+    nicht angegeben ist, wird *src-string* für beides verwendet. Die Funktion
+    gibt *translate-string* zurück.
+
+**::msgcat::mcflmset** *src-trans-list*
+: Legt die Übersetzung für mehrere Quellzeichenketten in *src-trans-list* im
+    aktuellen Namespace für das Locale fest, das sich aus dem Namen des über **::msgcat::mcload** geladenen Message-
+    Katalogs ergibt.
+    *src-trans-list* muss eine gerade Anzahl von Elementen haben und hat die
+    Form {*src-string* translate-string ?*src-string translate-string
+    \...*?} **::msgcat::mcflmset** kann deutlich schneller sein als
+    mehrere Aufrufe von **::msgcat::mcflset**. Die Funktion gibt
+    die Anzahl der gesetzten Übersetzungen zurück.
+
+**::msgcat::mcunknown** *locale src-string* ?*arg arg \...*?
+: Diese Routine wird von **::msgcat::mc** aufgerufen, wenn für
+    *src-string* im aktuellen Locale keine Übersetzung definiert ist.
+    Die Standardaktion ist, *src-string* per **format** zurückzugeben, wenn
+    Argumente vorhanden sind. Diese Prozedur kann von der
+    Anwendung neu definiert werden, z. B. um Fehlermeldungen für jede unbekannte
+    Zeichenkette zu protokollieren. Die Prozedur **::msgcat::mcunknown** wird im gleichen
+    Stack-Kontext wie der Aufruf von **::msgcat::mc** ausgeführt. Der Rückgabewert von
+    **::msgcat::mcunknown** wird als Rückgabewert für den Aufruf von
+    **::msgcat::mc** verwendet.
+
+::: {.info -version="TIP 412"}
+Hinweis: Diese Routine wird nur aufgerufen, wenn das betreffende Paket keinen
+paketspezifischen Unknown-Befehl gesetzt hat.
+:::
+
+**::msgcat::mcforgetpackage**
+: Das aufrufende Paket löscht seinen gesamten Zustand innerhalb des Pakets **msgcat**
+    einschließlich aller Einstellungen und Übersetzungen.
+
+# LOCALE-SPEZIFIKATION
+
+Das Locale wird **msgcat** durch eine an **::msgcat::mclocale** übergebene Locale-Zeichenkette mitgeteilt. Die Locale-Zeichenkette besteht aus einem Sprachcode, einem optionalen Ländercode und einem optionalen systemspezifischen Code, jeweils getrennt durch "\_". Die Länder- und Sprachcodes sind in den Standards ISO-639 und ISO-3166 festgelegt. Zum Beispiel legt das Locale "en" Englisch fest und "en_US" U.S.-Englisch.
+
+Wenn das Paket **msgcat** zum ersten Mal geladen wird, wird das Locale gemäß der Umgebung des Benutzers initialisiert. Die Variablen **env(LC_ALL)**, **env(LC_MESSAGES)** und **env(LANG)** werden der Reihe nach geprüft. Der erste von ihnen mit nicht leerem Wert wird zur Bestimmung des anfänglichen Locale verwendet. Der Wert wird gemäß dem XPG4-Muster
+
+```
+language[_country][.codeset][@modifier]
+```
+
+zerlegt. Das anfängliche Locale wird dann durch Aufruf von **::msgcat::mclocale** mit dem Argument
+
+```
+language[_country][_modifier]
+```
+
+gesetzt.
+
+Unter Windows und Cygwin versucht **msgcat**, falls keine dieser Umgebungsvariablen gesetzt ist, Locale-Informationen aus der Registry zu extrahieren. Ab Windows Vista wird der RFC4747-Locale-Name "lang-script-country-options" in das Locale als "lang_country_script" umgewandelt (Beispiel: sr-Latn-CS -> sr_cs_latin). Unter Windows XP wird die Sprach-ID analog umgewandelt (Beispiel: 0c1a -> sr_yu_cyrillic). Schlagen alle Versuche fehl, ein anfängliches Locale aus der Umgebung des Benutzers zu ermitteln, verwendet **msgcat** standardmäßig ein anfängliches Locale von "C".
+
+Wenn der Benutzer ein Locale angibt, wird bei der Zeichenkettenübersetzung eine "best match"-Suche durchgeführt. Gibt ein Benutzer z. B. **en_GB_Funky** an, werden die Locales "en_gb_funky", "en_gb", "en" und "" (die leere Zeichenkette) der Reihe nach durchsucht, bis eine passende Übersetzungszeichenkette gefunden wird. Ist keine Übersetzungszeichenkette verfügbar, wird der Unknown-Handler aufgerufen.
+
+# NAMESPACES UND MESSAGE-KATALOGE
+
+Im Message-Katalog gespeicherte Zeichenketten werden relativ zum
+Namespace gespeichert, aus dem sie hinzugefügt wurden. Das ermöglicht mehreren Paketen,
+dieselben Zeichenketten zu verwenden, ohne Kollisionen mit anderen Paketen zu befürchten. Außerdem können
+Quellzeichenketten kürzer und weniger fehleranfällig bei Tippfehlern sein.
+
+Zum Beispiel gibt die Ausführung des Codes
+
+```
+::msgcat::mcset en hello "hello from ::"
+namespace eval foo {
+    ::msgcat::mcset en hello "hello from ::foo"
+}
+puts [::msgcat::mc hello]
+namespace eval foo {puts [::msgcat::mc hello]}
+```
+
+aus
+
+```
+hello from ::
+hello from ::foo
+```
+
+Bei der Suche nach einer Übersetzung einer Meldung durchsucht der Message-Katalog zuerst den aktuellen Namespace, dann den übergeordneten des aktuellen Namespace und so weiter, bis der globale Namespace erreicht ist. Das ermöglicht Kind-Namespaces, Meldungen vom übergeordneten Namespace zu übernehmen.
+
+Zum Beispiel gibt die Ausführung (im Locale "en") des Codes
+
+```
+::msgcat::mcset en m1 ":: message1"
+::msgcat::mcset en m2 ":: message2"
+::msgcat::mcset en m3 ":: message3"
+namespace eval ::foo {
+    ::msgcat::mcset en m2 "::foo message2"
+    ::msgcat::mcset en m3 "::foo message3"
+}
+namespace eval ::foo::bar {
+    ::msgcat::mcset en m3 "::foo::bar message3"
+}
+namespace import ::msgcat::mc
+puts "[mc m1]; [mc m2]; [mc m3]"
+namespace eval ::foo {puts "[mc m1]; [mc m2]; [mc m3]"}
+namespace eval ::foo::bar {puts "[mc m1]; [mc m2]; [mc m3]"}
+```
+
+aus
+
+```
+:: message1; :: message2; :: message3
+:: message1; ::foo message2; ::foo message3
+:: message1; ::foo message2; ::foo::bar message3
+```
+
+# SPEICHERORT UND FORMAT VON MESSAGE-DATEIEN
+
+Message-Dateien können in jedem Verzeichnis liegen, vorbehaltlich der folgenden
+Bedingungen:
+
+\[1\]
+: Alle Message-Dateien eines Pakets liegen im selben Verzeichnis.
+
+\[2\]
+: Der Dateiname ist ein **msgcat**-Locale-Spezifizierer (alles Kleinbuchstaben) gefolgt von ".msg". Zum Beispiel:
+
+```
+es.msg    — spanish
+en_gb.msg — United Kingdom English
+```
+
+*Ausnahme:* Die Message-Datei für das Root-Locale "" heißt "**ROOT.msg**". Diese Ausnahme verhindert ungewöhnliches Verhalten, z. B. dass die Message-Datei als "hidden" auf Unix-Dateisystemen markiert wird.
+
+\[3\]
+: Die Datei enthält eine Reihe von Aufrufen von **mcflset** und **mcflmset**,
+    die die nötigen Übersetzungszeichenketten für die Sprache setzen, typischerweise
+    in einem **namespace eval**, damit alle Quellzeichenketten an den
+    Namespace des Pakets gebunden sind. Eine kurze **es.msg** könnte z. B. enthalten:
+
+```
+namespace eval ::mypackage {
+    ::msgcat::mcflset "Free Beer" "Cerveza Gratis"
+}
+```
+
+# EMPFOHLENE MESSAGE-EINRICHTUNG FÜR PAKETE
+
+Wenn ein Paket in ein Unterverzeichnis von **tcl_pkgPath** installiert und
+über **package require** geladen wird, empfiehlt sich folgendes Vorgehen.
+
+\[1\]
+: Erstellen Sie bei der Paketinstallation ein Unterverzeichnis **msgs** unter
+    Ihrem Paketverzeichnis.
+
+\[2\]
+: Kopieren Sie Ihre \*.msg-Dateien in dieses Verzeichnis.
+
+\[3\]
+: Fügen Sie den folgenden Befehl in Ihr Paket-Initialisierungsskript ein:
+
+```
+# Sprachdateien laden, gespeichert im Unterverzeichnis msgs
+::msgcat::mcload [file join [file dirname [info script]] msgs]
+```
+
+# POSITIONALE PLATZHALTER FÜR FORMAT- UND SCAN-BEFEHLE
+
+Es ist möglich, dass eine als Argument für **format** verwendete Message-Zeichenkette
+positionsabhängige Parameter hat, die beim Übersetzen umgestellt werden müssen.
+Zum Beispiel kann es syntaktisch sinnvoll sein, die Satzstruktur umzuordnen.
+
+```
+format "We produced %d units in location %s" $num $city
+format "In location %s we produced %d units" $city $num
+```
+Das lässt sich mit positionalen Parametern handhaben:
+
+```
+format "We produced %1\$d units in location %2\$s" $num $city
+format "In location %2\$s we produced %1\$d units" $num $city
+```
+Analog können positionale Parameter mit **scan** verwendet werden, um
+Werte aus internationalisierten Zeichenketten zu extrahieren. Hinweis: Es ist nicht nötig,
+die Ausgabe von **::msgcat::mc** direkt an **format** zu übergeben; durch Übergabe der
+einzusetzenden Werte als Argumente erfolgt die Format-Ersetzung
+direkt.
+
+```
+msgcat::mc {Produced %1$d at %2$s} $num $city
+# ... wobei dieser Schlüssel durch msgcat::mcset auf eine der
+# menschenlesbaren Versionen abgebildet wird
+```
+
+# PAKETPRIVATE LOCALE
+
+::: {.info -version="TIP 412"}
+Ein Paket, das **msgcat** verwendet, kann ein eigenes paketprivates
+Locale und eine eigene Menge geladener Locales verwenden, unabhängig vom globalen
+Locale, das durch **::msgcat::mclocale** gesetzt wird.
+
+So kann ein Paket sein Locale ändern, ohne Locales in anderen Paketen zu laden oder zu entfernen und ohne den globalen Locale-
+Änderungs-Rückruf aufzurufen (siehe unten).
+
+Dieses Verhalten wird durch folgendes Ensemble gesteuert:
+:::
+
+**::msgcat::mcpackagelocale set** ?*locale*?
+: Setzt oder ändert ein paketprivates Locale. Das paketprivate Locale
+    wird auf das angegebene *locale* gesetzt, wenn *locale* angegeben ist. Wenn die Option
+    *locale* nicht angegeben ist, wird das Paket in den Modus paketprivates Locale versetzt,
+    aber kein Locale geändert (z. B. wenn das globale Locale zuvor für das Paket gültig war,
+    wird es ins paketprivate Locale kopiert).
+
+::: {.info -version="TIP 412"}
+Dieser Befehl kann das Laden von Locales auslösen.
+:::
+
+**::msgcat::mcpackagelocale get**
+: Gibt das paketprivate Locale oder das globale Locale zurück, wenn kein
+    paketprivates Locale gesetzt ist.
+
+**::msgcat::mcpackagelocale preferences**
+: Gibt die paketprivaten Präferenzen oder die globalen Präferenzen zurück, wenn kein
+    paketprivates Locale gesetzt ist.
+
+**::msgcat::mcpackagelocale loaded**
+: Gibt die Liste der für dieses Paket geladenen Locales zurück.
+
+**::msgcat::mcpackagelocale isset**
+: Gibt **true** zurück, wenn ein paketprivates Locale gesetzt ist.
+
+**::msgcat::mcpackagelocale unset**
+: Hebt das paketprivate Locale auf und verwendet das globale Locale. Lädt und
+    entfernt Locales, um die Liste der geladenen Locales des Pakets an die globale Liste geladener Locales anzupassen.
+
+**::msgcat::mcpackagelocale present** *locale*
+: Gibt **true** zurück, wenn das angegebene Locale für das Paket geladen ist.
+
+**::msgcat::mcpackagelocale clear**
+: Entfernt alle geladenen Locales des Pakets, die nicht in den Paket-
+    Präferenzen enthalten sind.
+
+# ÄNDERUNG DER PAKETOPTIONEN
+
+::: {.info -version="TIP 412"}
+Jedes Paket, das **msgcat** verwendet, hat eine Menge von Optionen innerhalb von **msgcat**. Die
+Paketoptionen werden im nächsten Abschnitt **Paketoptionen** beschrieben. Jede
+Paketoption kann einzeln mit folgendem Ensemble gesetzt oder zurückgesetzt werden:
+:::
+
+**::msgcat::mcpackageconfig get** *option*
+: Gibt den aktuellen Wert der angegebenen *option* zurück. Dieser Aufruf meldet einen
+    Fehler, wenn die Option für das Paket nicht gesetzt ist.
+
+**::msgcat::mcpackageconfig isset** *option*
+: Gibt 1 zurück, wenn die angegebene *option* für das Paket gesetzt ist, sonst 0.
+
+**::msgcat::mcpackageconfig set** *option value*
+: Setzt die angegebene *option* auf den angegebenen *value*. Das kann je nach *option*
+    weitere Aktionen auslösen. Der Rückgabewert
+    ist 0 oder die Anzahl geladener Pakete für die Option **mcfolder**.
+
+**::msgcat::mcpackageconfig unset** *option*
+: Setzt die angegebene *option* für das Paket zurück. Es erfolgt keine Aktion, wenn die
+    *option* für das Paket nicht gesetzt ist. Die leere Zeichenkette wird zurückgegeben.
+
+## Paketoptionen
+
+::: {.info -version="TIP 412"}
+Folgende Paketoptionen stehen für jedes Paket zur Verfügung:
+:::
+
+**mcfolder**
+: Dies ist der Message-Ordner des Pakets. Diese Option wird durch
+    **mcload** und den Unterbefehl **set** gesetzt. Beides ist identisch und gibt
+    die Anzahl geladener Message-Katalog-Dateien zurück.
+
+::: {.info -version="TIP 412"}
+Das Setzen oder Ändern dieses Werts lädt alle Locales, die in den für das Paket gültigen
+Präferenzen enthalten sind. Das impliziert auch den Aufruf eines gesetzten **loadcmd** (siehe unten).
+
+Das Zurücksetzen dieses Werts deaktiviert das Laden von Message-Dateien für das Paket.
+:::
+
+**loadcmd**
+: Dieser Rückruf wird aufgerufen, bevor eine Menge von Message-Katalog-Dateien für das Paket geladen wird, das diese Eigenschaft gesetzt hat.
+
+::: {.info -version="TIP 412"}
+Dieser Rückruf kann Vorbereitungsarbeiten für das Laden von Message-Dateien
+leisten oder Message-Daten aus einer anderen Quelle wie einer Datenbank holen.
+In diesem Fall werden keine Message-Dateien verwendet (**mcfolder** ist nicht gesetzt).
+
+Siehe Abschnitt **RÜCKRUF-AUFRUF** unten. Die an diesen Rückruf angehängte Parameterliste ist die Liste der zu ladenden Locales.
+
+Wird dieser Rückruf geändert, wird er mit den für das Paket gültigen Präferenzen aufgerufen.
+:::
+
+**changecmd**
+: Dieser Rückruf wird aufgerufen, wenn eine Standard-Locale-Änderung durchgeführt wurde.
+    Er soll einem Paket erlauben, Abhängigkeiten vom Standard-Locale zu aktualisieren, z. B. die GUI in einer anderen Sprache anzuzeigen.
+
+::: {.info -version="TIP 412"}
+Siehe den Abschnitt **RÜCKRUF-AUFRUF** unten. Die angehängte Parameterliste ist **mcpreferences**. Die registrierten Rückrufe werden
+in beliebiger Reihenfolge aufgerufen.
+:::
+
+**unknowncmd**
+: Verwendet eine paketlocale **mcunknown**-Prozedur statt der von **msgcat** bereitgestellten Standardversion (**msgcat::mcunknown**).
+
+::: {.info -version="TIP 412"}
+Die aufgerufene Prozedur muss die formatierte Meldung zurückgeben, die schließlich von **msgcat::mc** zurückgegeben wird.
+
+Ein generischer Unknown-Handler wird verwendet, wenn auf die leere Zeichenkette gesetzt. Dieser
+gibt den Schlüssel zurück, wenn keine Argumente übergeben werden. Mit Argumenten wird der Befehl **format** zur Verarbeitung verwendet.
+
+Siehe Abschnitt **RÜCKRUF-AUFRUF** unten. Die angehängten Argumente sind
+identisch zu **msgcat::mcunknown**.
+:::
+
+# RÜCKRUF-AUFRUF
+
+::: {.info -version="TIP 412"}
+Ein Paket kann einen oder mehrere Rückrufe registrieren, wie oben beschrieben.
+
+Rückrufe werden aufgerufen, wenn:
+
+1\. der Rückrufbefehl gesetzt ist,
+
+2\. der Befehl nicht die leere Zeichenkette ist,
+
+3\. der registrierende Namespace existiert.
+
+Schlägt eine aufgerufene Routine mit einem Fehler fehl, wird nach Befehlsende die **bgerror**-Routine des
+Interpreters aufgerufen. Ausnahme ist der Rückruf **unknowncmd**, bei dem ein Fehler den aufrufenden
+**mc**-Befehl mit diesem Fehler fehlschlagen lässt.
+:::
+
+# BEISPIELE
+
+::: {.info -version="TIP 412"}
+Pakete mit GUI können ihre Widgets aktualisieren, wenn sich das globale
+Locale ändert. Zur Registrierung eines Rückrufs:
+:::
+
+```
+namespace eval gui {
+    msgcat::mcpackageconfig changecmd updateGUI
+
+    proc updateGUI args {
+        puts "New locale is '[lindex $args 0]'."
+    }
+}
+% msgcat::mclocale fr
+fr
+% New locale is 'fr'.
+```
+
+::: {.info -version="TIP 412"}
+Liegen Locales (oder zusätzliche Locales) in einer anderen Quelle wie einer
+Datenbank, kann ein Paket den Load-Rückruf statt **mcload** verwenden:
+:::
+
+```
+namespace eval db {
+    msgcat::mcpackageconfig loadcmd loadMessages
+
+    proc loadMessages args {
+        foreach locale $args {
+            if {[LocaleInDB $locale]} {
+                msgcat::mcmset $locale [GetLocaleList $locale]
+            }
+        }
+    }
+}
+```
+
+::: {.info -version="TIP 412"}
+Die **clock**-Befehlsimplementierung nutzt **msgcat** mit einem Paket-
+Locale für den Befehlszeilenparameter **-locale**. Skizzen der Implementierung:
+:::
+
+Zuerst wird ein Paket-Locale initialisiert und die generische Unknown-Funktion
+deaktiviert:
+
+```
+msgcat::mcpackagelocale set
+msgcat::mcpackageconfig unknowncmd ""
+```
+
+::: {.info -version="TIP 412"}
+Als Beispiel benötigt der Benutzer den Wochentag in einem bestimmten Locale:
+:::
+
+```
+clock format [clock seconds] -format %A -locale fr
+```
+
+::: {.info -version="TIP 412"}
+
+**clock** setzt das Paket-Locale auf **fr** und sucht den Tagesnamen
+wie folgt:
+:::
+
+```
+msgcat::mcpackagelocale set $locale
+return [lindex [msgcat::mc DAYS_OF_WEEK_FULL] $day]
+# Gibt "mercredi" zurück
+```
+
+::: {.info -version="TIP 412"}
+Innerhalb von **clock** sind einige Message-Katalog-Einträge rechenintensiv
+und werden daher dynamisch gecacht:
+:::
+
+```
+proc ::tcl::clock::LocalizeFormat { locale format } {
+    set key FORMAT_$format
+    if { [::msgcat::mcexists -exactlocale -exactnamespace $key] } {
+        return [mc $key]
+    }
+    # ... aufwendige Berechnung des Formats gekürzt ...
+    mcset $locale $key $format
+    return $format
+}
+```
+
+# DANKSAGUNGEN
+
+Der Message-Katalog-Code wurde von Mark Harrison entwickelt.
