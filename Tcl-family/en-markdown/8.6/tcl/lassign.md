@@ -1,5 +1,6 @@
 ---
 CommandName: lassign
+title: lassign
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -29,7 +30,7 @@ lassign - Assign list elements to variables
 # Synopsis
 
 ::: {.synopsis} :::
-[lassign]{.cmd} [list]{.arg} [varName]{.optdot} 
+[lassign]{.cmd} [list]{.arg} [varName]{.optdot}
 :::
 
 # Description

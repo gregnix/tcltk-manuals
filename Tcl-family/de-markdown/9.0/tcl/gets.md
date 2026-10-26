@@ -1,5 +1,6 @@
 ---
 CommandName: gets
+title: gets
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -11,17 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 gets - Liest eine Zeile aus einem Kanal
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[gets]{.cmd} [channel]{.arg} [varName]{.optarg} 
+[gets]{.cmd} [channel]{.arg} [varName]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **gets** wurde durch den Befehl **chan gets** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Der Befehl **gets** wurde durch den Befehl [chan gets][chan] ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
 
+
+[chan]: chan.md

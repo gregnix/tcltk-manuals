@@ -1,5 +1,6 @@
 ---
 CommandName: ldapx
+title: ldapx
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -24,49 +25,49 @@ ldapx - LDAP extended object interface
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [ldapx]{.lit} [1.3]{.optlit} 
-[e]{.ins} [reset]{.sub} 
-[e]{.ins} [dn]{.sub} [newdn]{.optarg} 
-[e]{.ins} [rdn]{.sub} 
-[e]{.ins} [superior]{.sub} 
-[e]{.ins} [print]{.sub} 
-[se]{.ins} [isempty]{.sub} 
-[se]{.ins} [get]{.sub} [attr]{.arg} 
-[se]{.ins} [get1]{.sub} [attr]{.arg} 
-[se]{.ins} [set]{.sub} [attr]{.arg} [values]{.arg} 
-[se]{.ins} [set1]{.sub} [attr]{.arg} [value]{.arg} 
-[se]{.ins} [add]{.sub} [attr]{.arg} [values]{.arg} 
-[se]{.ins} [add1]{.sub} [attr]{.arg} [value]{.arg} 
-[se]{.ins} [del]{.sub} [attr]{.arg} [values]{.optarg} 
-[se]{.ins} [del1]{.sub} [attr]{.arg} [value]{.arg} 
-[se]{.ins} [getattr]{.sub} 
-[se]{.ins} [getall]{.sub} 
-[se]{.ins} [setall]{.sub} [avpairs]{.arg} 
-[se]{.ins} [backup]{.sub} [other]{.optarg} 
-[se]{.ins} [swap]{.sub} 
-[se]{.ins} [restore]{.sub} [other]{.optarg} 
-[se]{.ins} [apply]{.sub} [centry]{.arg} 
-[ce]{.ins} [change]{.sub} [new]{.optarg} 
-[ce]{.ins} [diff]{.sub} [new]{.arg} [old]{.optarg} 
-[la]{.ins} [error]{.sub} [newmsg]{.optarg} 
-[la]{.ins} [connect]{.sub} [url]{.arg} [binddn]{.optarg} [bindpw]{.optarg} [starttls]{.optarg} 
-[la]{.ins} [disconnect]{.sub} 
-[la]{.ins} [traverse]{.sub} [base]{.arg} [filter]{.arg} [attrs]{.arg} [entry]{.arg} [body]{.arg} 
-[la]{.ins} [search]{.sub} [base]{.arg} [filter]{.arg} [attrs]{.arg} 
-[la]{.ins} [read]{.sub} [base]{.arg} [filter]{.arg} [entry]{.arg} ... [entry]{.arg} 
-[la]{.ins} [commit]{.sub} [entry]{.arg} ... [entry]{.arg} 
-[li]{.ins} [channel]{.sub} [chan]{.arg} 
-[li]{.ins} [error]{.sub} [newmsg]{.optarg} 
-[li]{.ins} [read]{.sub} [entry]{.arg} 
-[li]{.ins} [write]{.sub} [entry]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [ldapx]{.lit} [1.3]{.optlit}
+[e]{.ins} [reset]{.sub}
+[e]{.ins} [dn]{.sub} [newdn]{.optarg}
+[e]{.ins} [rdn]{.sub}
+[e]{.ins} [superior]{.sub}
+[e]{.ins} [print]{.sub}
+[se]{.ins} [isempty]{.sub}
+[se]{.ins} [get]{.sub} [attr]{.arg}
+[se]{.ins} [get1]{.sub} [attr]{.arg}
+[se]{.ins} [set]{.sub} [attr]{.arg} [values]{.arg}
+[se]{.ins} [set1]{.sub} [attr]{.arg} [value]{.arg}
+[se]{.ins} [add]{.sub} [attr]{.arg} [values]{.arg}
+[se]{.ins} [add1]{.sub} [attr]{.arg} [value]{.arg}
+[se]{.ins} [del]{.sub} [attr]{.arg} [values]{.optarg}
+[se]{.ins} [del1]{.sub} [attr]{.arg} [value]{.arg}
+[se]{.ins} [getattr]{.sub}
+[se]{.ins} [getall]{.sub}
+[se]{.ins} [setall]{.sub} [avpairs]{.arg}
+[se]{.ins} [backup]{.sub} [other]{.optarg}
+[se]{.ins} [swap]{.sub}
+[se]{.ins} [restore]{.sub} [other]{.optarg}
+[se]{.ins} [apply]{.sub} [centry]{.arg}
+[ce]{.ins} [change]{.sub} [new]{.optarg}
+[ce]{.ins} [diff]{.sub} [new]{.arg} [old]{.optarg}
+[la]{.ins} [error]{.sub} [newmsg]{.optarg}
+[la]{.ins} [connect]{.sub} [url]{.arg} [binddn]{.optarg} [bindpw]{.optarg} [starttls]{.optarg}
+[la]{.ins} [disconnect]{.sub}
+[la]{.ins} [traverse]{.sub} [base]{.arg} [filter]{.arg} [attrs]{.arg} [entry]{.arg} [body]{.arg}
+[la]{.ins} [search]{.sub} [base]{.arg} [filter]{.arg} [attrs]{.arg}
+[la]{.ins} [read]{.sub} [base]{.arg} [filter]{.arg} [entry]{.arg} ... [entry]{.arg}
+[la]{.ins} [commit]{.sub} [entry]{.arg} ... [entry]{.arg}
+[li]{.ins} [channel]{.sub} [chan]{.arg}
+[li]{.ins} [error]{.sub} [newmsg]{.optarg}
+[li]{.ins} [read]{.sub} [entry]{.arg}
+[li]{.ins} [write]{.sub} [entry]{.arg}
 :::
 
 # Description
 
 The **ldapx** package provides an extended Tcl interface to LDAP directores and LDIF files. The **ldapx** package is built upon the **ldap** package in order to get low level LDAP access.
 
-LDAP access is compatible with RFC 2251 (*http://www.rfc-editor.org/rfc/rfc2251.txt*). LDIF access is compatible with RFC 2849 (*http://www.rfc-editor.org/rfc/rfc2849.txt*).
+LDAP access is compatible with RFC 2251 (<http://www.rfc-editor.org/rfc/rfc2251.txt>). LDIF access is compatible with RFC 2849 (<http://www.rfc-editor.org/rfc/rfc2849.txt>).
 
 # Overview
 
@@ -90,33 +91,39 @@ The last class is the **ldif** class. It provides a method to associate a standa
 
 An instance of the **entry** class keeps the following data:
 
-**dn**
+dn
 : This is the DN of the entry, which includes (in LDAP terminology) the RDN (relative DN) and the Superior parts.
 
-**format**
+format
 : The format may be *uninitialized* (entry not yet used), *standard* or *change*. Most methods check the format of the entry, which can be reset with the **reset** method.
 
-**attrvals**
+attrvals
 : In a *standard* entry, this is where the attributes and associated values are stored. Many methods provide access to these informations. Attribute names are always converted into lower case.
 
-**backup**
+backup
 : In a *standard* entry, the backup may contain a copy of the dn and all attributes and values. Methods **backup** and **restore** manipulate these data, and method **diff** may use this backup.
 
-**change**
-: In a *change* entry, these data represent the modifications. Such modifications are handled by specialized methods such as **apply** or **commit**. Detailed format should not be used directly by programs. Internally, modifications are represented as a list of elements, each element has one of the following formats (which match the corresponding LDAP operations):
+change
+: In a *change* entry, these data represent the modifications. Such modifications are handled by specialized methods such as **apply** or **commit**. Detailed format should not be used directly by programs.
 
+    Internally, modifications are represented as a list of elements, each element has one of the following formats (which match the corresponding LDAP operations):
 
-**\[1\]**
-: {**add** {attr1 {val1...valn} attr2 {...} ...}} Addition of a new entry.
+    1. {**add** {attr1 {val1...valn} attr2 {...} ...}}
 
-**\[2\]**
-: {**mod** {modop {attr1 ?val1...valn?} attr2 ...} {modop ...} ...} Modification of one or more attributes and/or values, where \<modop> can be **modadd**, **moddel** or **modrepl** (see the LDAP modify operation).
+        Addition of a new entry.
 
-**\[3\]**
-: {**del**} Deletion of an old entry.
+    2. {**mod** {modop {attr1 ?val1...valn?} attr2 ...} {modop ...} ...}
 
-**\[4\]**
-: {**modrdn** newrdn deleteoldrdn ?newsuperior?} Renaming of an entry.
+        Modification of one or more attributes and/or values, where <modop> can be **modadd**, **moddel** or **modrepl** (see the LDAP modify operation).
+
+    3. {**del**}
+
+        Deletion of an old entry.
+
+    4. {**modrdn** newrdn deleteoldrdn ?newsuperior?}
+
+        Renaming of an entry.
+
 
 
 ## Entry options
@@ -176,19 +183,19 @@ In all methods, attribute names are converted in lower case.
 : This method returns all attributes names.
 
 *se* **getall**
-: This method returns all attributes and values from the entry, packed in a list of pairs \<attribute, list of values>.
+: This method returns all attributes and values from the entry, packed in a list of pairs <attribute, list of values>.
 
 *se* **setall** *avpairs*
 : This method sets at once all attributes and values. The format of the *avpairs* argument is the same as the one returned by method **getall**.
 
 *se* **backup** ?*other*?
-: This method stores in an *other* standard entry object a copy of the current DN and attributes/values. If the optional *other* argument is not specified, copy is done in the current entry (in a specific place, see section **OVERVIEW**).
+: This method stores in an *other* standard entry object a copy of the current DN and attributes/values. If the optional *other* argument is not specified, copy is done in the current entry (in a specific place, see section [Overview]).
 
 *se* **swap**
 : This method swaps the current and backup contexts of the entry.
 
 *se* **restore** ?*other*?
-: If the optional argument *other* is given, which must then be a *standard* entry, this method restores the current entry into the *other* entry. If the argument *other* argument is not specified, this methods restores the current entry from its internal backup (see section **OVERVIEW**).
+: If the optional argument *other* is given, which must then be a *standard* entry, this method restores the current entry into the *other* entry. If the argument *other* argument is not specified, this methods restores the current entry from its internal backup (see section [Overview]).
 
 *se* **apply** *centry*
 : This method applies changes defined in the *centry* argument, which must be a *change* entry.
@@ -197,10 +204,10 @@ In all methods, attribute names are converted in lower case.
 ## Methods for change entries only
 
 *ce* **change** ?*new*?
-: If the optional argument *new* is specified, this method modifies the change list (see subsection **Entry Instance Data** for the exact format). In both cases, current change list is returned. Warning: values returned by this method should only be used by specialized methods such as **apply** or **commit**.
+: If the optional argument *new* is specified, this method modifies the change list (see subsection [Entry instance data] for the exact format). In both cases, current change list is returned. Warning: values returned by this method should only be used by specialized methods such as **apply** or **commit**.
 
 *ce* **diff** *new* ?*old*?
-: This method computes the differences between the *new* and *old* entries under the form of a change list, and stores this list into the current *change* entry. If the optional argument *old* is not specified, difference is computed from the entry and its internal backup (see section **OVERVIEW**). Return value is the computed change list.
+: This method computes the differences between the *new* and *old* entries under the form of a change list, and stores this list into the current *change* entry. If the optional argument *old* is not specified, difference is computed from the entry and its internal backup (see section [Overview]). Return value is the computed change list.
 
 
 ## Entry example
@@ -269,67 +276,92 @@ In all methods, attribute names are converted in lower case.
     nc destroy
 ```
 
-# Ldap class
+# LDAP class
 
-## Ldap instance data
+## LDAP instance data
 
 An instance of the **ldap** class keeps the following data:
 
-**channel**
+channel
 : This is the channel used by the **ldap** package for communication with the LDAP server.
 
-**lastError**
+lastError
 : This variable contains the error message which appeared in the last method of the **ldap** class (this string is modified in nearly all methods). The **error** method may be used to fetch this message.
 
 
-## Ldap options
+## LDAP options
 
 Options are configured on **ldap** instances using the **configure** method.
 
 The first option is used for TLS parameters:
 
 **-tlsoptions** *list*
-: Specify the set of TLS options to use when connecting to the LDAP server (see the **connect** method). For the list of valid options, see the **LDAP** package documentation. The default is **-request 1 -require 1 -ssl2 no -ssl3 no -tls1 yes -tls1.1 yes -tls1.2 yes**. Example:
+: Specify the set of TLS options to use when connecting to the LDAP server (see the **connect** method). For the list of valid options, see the **LDAP** package documentation.
 
+    The default is **-request 1 -require 1 -ssl2 no -ssl3 no -tls1 yes -tls1.1 yes -tls1.2 yes**.
 
-```
-$l configure -tlsoptions {-request yes -require yes}
-```
+    Example:
+
+    ```
+    $l configure -tlsoptions {-request yes -require yes}
+    ```
+
 
 A set of options of the **ldap** class is used during search operations (methods **traverse**, **search** and **read**, see below).
 
 **-scope** **base**|**one**|**sub**
-: Specify the scope of the LDAP search to be one of **base**, **one** or **sub** to specify a base object, one-level or subtree search. The default is **sub**.
+: Specify the scope of the LDAP search to be one of **base**, **one** or **sub** to specify a base object, one-level or subtree search.
+
+    The default is **sub**.
 
 **-derefaliases** **never**|**seach**|**find**|**always**
-: Specify how aliases dereferencing is handled: **never** is used to specify that aliases are never derefenced, **always** that aliases are always derefenced, **search** that aliases are dereferenced when searching, or **find** that aliases are dereferenced only  when locating  the  base object for the search. The default is **never**.
+: Specify how aliases dereferencing is handled: **never** is used to specify that aliases are never derefenced, **always** that aliases are always derefenced, **search** that aliases are dereferenced when searching, or **find** that aliases are dereferenced only  when locating  the  base object for the search.
+
+    The default is **never**.
 
 **-sizelimit** integer
-: Specify the maximum number of entries to be retreived during a search. A value of **0** means no limit. Default is **0**.
+: Specify the maximum number of entries to be retreived during a search. A value of **0** means no limit.
+
+    Default is **0**.
 
 **-timelimit** integer
-: Specify the time limit for a search to complete. A value of **0** means no limit. Default is **0**.
+: Specify the time limit for a search to complete. A value of **0** means no limit.
+
+    Default is **0**.
 
 **-attrsonly** **0**|**1**
-: Specify if only attribute names are to be retrieved (value **1**). Normally (value **0**), attribute values are also retrieved. Default is **0**. The last option is used when getting entries or committing changes in the directory:
+: Specify if only attribute names are to be retrieved (value **1**). Normally (value **0**), attribute values are also retrieved.
+
+    Default is **0**.
+
+
+The last option is used when getting entries or committing changes in the directory:
 
 **-utf8** pattern-yes pattern-no
-: Specify which attribute values are encoded in UTF-8. This information is specific to the LDAP schema in use by the application, since some attributes such as jpegPhoto, for example, are not encoded in UTF-8. This option takes the form of a list with two regular expressions suitable for the **regexp** command (anchored by ^ and \$). The first specifies which attribute names are to be UTF-8 encoded, and the second selects, among those, the attribute names which will not be UTF-8 encoded.  It is thus possible to say: convert all attributes, except jpegPhoto. Default is {{.\*} {}}, meaning: all attributes are converted, without exception.
+: Specify which attribute values are encoded in UTF-8. This information is specific to the LDAP schema in use by the application, since some attributes such as jpegPhoto, for example, are not encoded in UTF-8. This option takes the form of a list with two regular expressions suitable for the **regexp** command (anchored by ^ and $). The first specifies which attribute names are to be UTF-8 encoded, and the second selects, among those, the attribute names which will not be UTF-8 encoded.  It is thus possible to say: convert all attributes, except jpegPhoto.
+
+    Default is {{.\*} {}}, meaning: all attributes are converted, without exception.
 
 
-## Ldap methods
+## LDAP methods
 
 *la* **error** ?*newmsg*?
 : This method returns the error message that occurred in the last call to a **ldap** class method. If the optional argument *newmsg* is supplied, it becomes the last error message.
 
 *la* **connect** *url* ?*binddn*? ?*bindpw*? ?*starttls*?
-: This method connects to the LDAP server using given URL (which can be of the form *ldap://host:port* or *ldaps://host:port*). If an optional *binddn* argument is given together with the *bindpw* argument, the **connect** binds to the LDAP server using the specified DN and password. If the *starttls* argument is given a true value (**1**, **yes**, etc.) and the URL uses the *ldap://* scheme, a TLS negotiation is initiated with the newly created connection, before LDAP binding. Default value: **no**. This method returns 1 if connection was successful, or 0 if an error occurred (use the **error** method to get the message).
+: This method connects to the LDAP server using given URL (which can be of the form *ldap://host:port* or *ldaps://host:port*). If an optional *binddn* argument is given together with the *bindpw* argument, the **connect** binds to the LDAP server using the specified DN and password.
+
+    If the *starttls* argument is given a true value (**1**, **yes**, etc.) and the URL uses the *ldap://* scheme, a TLS negotiation is initiated with the newly created connection, before LDAP binding. Default value: **no**.
+
+    This method returns 1 if connection was successful, or 0 if an error occurred (use the **error** method to get the message).
 
 *la* **disconnect**
 : This method disconnects (and unbinds, if necessary) from the LDAP server.
 
 *la* **traverse** *base* *filter* *attrs* *entry* *body*
-: This method is a new control structure. It searches the LDAP directory from the specified base DN (given by the *base* argument) and selects entries based on the argument *filter*. For each entry found, this method fetches attributes specified by the *attrs* argument (or all attributes if it is an empty list), stores them in the *entry* instance of class **entry** and executes the script defined by the argument *body*. Options are used to refine the search. Caution: when this method is used, the script *body* cannot perform another LDAP search (methods **traverse**, **search** or **read**).
+: This method is a new control structure. It searches the LDAP directory from the specified base DN (given by the *base* argument) and selects entries based on the argument *filter*. For each entry found, this method fetches attributes specified by the *attrs* argument (or all attributes if it is an empty list), stores them in the *entry* instance of class **entry** and executes the script defined by the argument *body*. Options are used to refine the search.
+
+    Caution: when this method is used, the script *body* cannot perform another LDAP search (methods **traverse**, **search** or **read**).
 
 *la* **search** *base* *filter* *attrs*
 : This method searches the directory using the same way as method **traverse**. All found entries are stored in newly created instances of class **entry**, which are returned in a list. The newly created instances should be destroyed when they are no longer used.
@@ -338,10 +370,12 @@ A set of options of the **ldap** class is used during search operations (methods
 : This method reads one or more entries, using the same search criteria as methods **traverse** and **search**. All attributes are stored in the entries. This method provides a quick way to read some entries. It returns the number of entries found in the directory (which may be more than the number of read entries). If called without any *entry* argument, this method just returns the number of entries found, without returning any data.
 
 *la* **commit** *entry* ... *entry*
-: This method commits the changes stored in the *entry* arguments. Each *entry* may be either a *change* entry, or a *standard* entry with a backup. Note: in the future, this method should use the LDAP transaction extension provided by OpenLDAP 2.3 and later.
+: This method commits the changes stored in the *entry* arguments. Each *entry* may be either a *change* entry, or a *standard* entry with a backup.
+
+    Note: in the future, this method should use the LDAP transaction extension provided by OpenLDAP 2.3 and later.
 
 
-## Ldap example
+## LDAP example
 
 ```
     package require ldapx
@@ -397,37 +431,41 @@ A set of options of the **ldap** class is used during search operations (methods
     l destroy
 ```
 
-# Ldif class
+# LDIF class
 
-## Ldif instance data
+## LDIF instance data
 
 An instance of the **ldif** class keeps the following data:
 
-**channel**
+channel
 : This is the Tcl channel used to retrieve or store LDIF file contents. The association between an instance and a channel is made by the method **channel**. There is no need to disrupt this association when the LDIF file operation has ended.
 
-**format**
+format
 : LDIF files may contain *standard* entries or *change* entries, but not both. This variable contains the detected format of the file (when reading) or the format of entries written to the file (when writing).
 
-**lastError**
+lastError
 : This variable contains the error message which appeared in the last method of the **ldif** class (this string is modified in nearly all methods). The **error** method may be used to fetch this message.
 
-**version**
+version
 : This is the version of the LDIF file. Only version 1 is supported: the method **read** can only read from version 1 files, and method **write** only creates version 1 files.
 
 
-## Ldif options
+## LDIF options
 
 This class defines two options:
 
 **-ignore** list-of-attributes
-: This option is used to ignore certain attribute names on reading. For example, to read OpenLDAP replica files (replog), one must ignore **replica** and **time** attributes since they do not conform to the RFC 2849 standard for LDIF files. Default is empty list: no attribute is ignored.
+: This option is used to ignore certain attribute names on reading. For example, to read OpenLDAP replica files (replog), one must ignore **replica** and **time** attributes since they do not conform to the RFC 2849 standard for LDIF files.
+
+    Default is empty list: no attribute is ignored.
 
 **-utf8** pattern-yes pattern-no
-: Specify which attribute values are encoded in UTF-8. This information is specific to the LDAP schema in use by the application, since some attributes such as jpegPhoto, for example, are not encoded in UTF-8. This option takes the form of a list with two regular expressions suitable for the **regexp** command (anchored by ^ and \$). The first specifies which attribute names are to be UTF-8 encoded, and the second selects, among those, the attribute names which will not be UTF-8 encoded.  It is thus possible to say: convert all attributes, except jpegPhoto. Default is {{.\*} {}}, meaning: all attributes are converted, without exception.
+: Specify which attribute values are encoded in UTF-8. This information is specific to the LDAP schema in use by the application, since some attributes such as jpegPhoto, for example, are not encoded in UTF-8. This option takes the form of a list with two regular expressions suitable for the **regexp** command (anchored by ^ and $). The first specifies which attribute names are to be UTF-8 encoded, and the second selects, among those, the attribute names which will not be UTF-8 encoded.  It is thus possible to say: convert all attributes, except jpegPhoto.
+
+    Default is {{.\*} {}}, meaning: all attributes are converted, without exception.
 
 
-## Ldif methods
+## LDIF methods
 
 *li* **channel** *chan*
 : This method associates the Tcl channel named *chan* with the LDIF instance. It resets the type of LDIF object to *uninitialized*.
@@ -442,7 +480,7 @@ This class defines two options:
 : This method writes the entry given in the argument *entry* to the LDIF file.
 
 
-## Ldif example
+## LDIF example
 
 ```
     package require ldapx

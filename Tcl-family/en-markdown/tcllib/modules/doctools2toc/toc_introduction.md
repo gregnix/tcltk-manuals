@@ -1,5 +1,6 @@
 ---
 CommandName: doctools2toc_introduction
+title: doctools2toc_introduction
 ManualSection: n
 Version: 2.0
 TclPart: tcllib
@@ -29,7 +30,7 @@ Copyright:
 
 # Name
 
-doctools2toc_introduction - DocTools - Tables of Contents
+doctools2toc\_introduction - DocTools - Tables of Contents
 
 # Description
 
@@ -37,43 +38,41 @@ doctools2toc_introduction - DocTools - Tables of Contents
 
 These are
 
-**\[1\]**
-: A tcl based language for the semantic markup of a table of contents. Markup is represented by Tcl commands. Beginners should start with the *doctoc language introduction*. The formal specification is split over two documents, one dealing with the *doctoc language syntax*, the other a *doctoc language command reference*.
+1. A tcl based language for the semantic markup of a table of contents. Markup is represented by Tcl commands. Beginners should start with the *doctoc language introduction*. The formal specification is split over two documents, one dealing with the *doctoc language syntax*, the other a *doctoc language command reference*.
 
-**\[2\]**
-: A set of packages for the programmatic manipulation of tables of contents in memory, and their conversion between various formats, reading and writing. The aforementioned markup language is one of the formats which can be both read from and written to.
+2. A set of packages for the programmatic manipulation of tables of contents in memory, and their conversion between various formats, reading and writing. The aforementioned markup language is one of the formats which can be both read from and written to.
 
-**\[3\]**
-: The system for the conversion of tables of contents is based on a plugin mechanism, for this we have two APIs describing the interface between the packages above and the import/export plugins. Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
-
-**\[1\]**
-: A *writer* of documentation has to understand the markup language itself. A beginner to doctoc should read the more informally written *doctoc language introduction* first. Having digested this the formal *doctoc language syntax* specification should become understandable. A writer experienced with doctoc may only need the *doctoc language command reference* from time to time to refresh her memory. While a document is written the **dtp** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc. The simpler **dtplite** application makes internal use of doctoc when handling directories of documentation, automatically generating a proper table of contents for them.
-
-**\[2\]**
-: A *processor* of documentation written in the *doctoc* markup language has to know which tools are available for use. The main tool is the aforementioned **dtp** application provided by Tcllib. The simpler **dtplite** does not expose doctoc to the user. At the bottom level, common to both applications, however we find the three packages providing the basic facilities to handle tables of contents, i.e. import from textual formats, programmatic manipulation in memory, and export to textual formats. These are
+3. The system for the conversion of tables of contents is based on a plugin mechanism, for this we have two APIs describing the interface between the packages above and the import/export plugins.
 
 
-**doctoools::toc**
-: Programmatic manipulation of tables of contents in memory.
+Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
 
-**doctoools::toc::import**
-: Import of tables of contents from various textual formats. The set of supported formats is extensible through plugin packages.
+1. A *writer* of documentation has to understand the markup language itself. A beginner to doctoc should read the more informally written *doctoc language introduction* first. Having digested this the formal *doctoc language syntax* specification should become understandable. A writer experienced with doctoc may only need the *doctoc language command reference* from time to time to refresh her memory.
 
-**doctoools::toc::export**
-: Export of tables of contents to various textual formats. The set of supported formats is extensible through plugin packages.
+    While a document is written the **dtp** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc. The simpler **dtplite** application makes internal use of doctoc when handling directories of documentation, automatically generating a proper table of contents for them.
+
+2. A *processor* of documentation written in the *doctoc* markup language has to know which tools are available for use.
+
+    The main tool is the aforementioned **dtp** application provided by Tcllib. The simpler **dtplite** does not expose doctoc to the user. At the bottom level, common to both applications, however we find the three packages providing the basic facilities to handle tables of contents, i.e. import from textual formats, programmatic manipulation in memory, and export to textual formats. These are
+
+    **doctoools::toc**
+    : Programmatic manipulation of tables of contents in memory.
+
+    **doctoools::toc::import**
+    : Import of tables of contents from various textual formats. The set of supported formats is extensible through plugin packages.
+
+    **doctoools::toc::export**
+    : Export of tables of contents to various textual formats. The set of supported formats is extensible through plugin packages.
 
 
-: See also section **Package Overview** for an overview of the dependencies between these and other, supporting packages.
+3. See also section [Package overview] for an overview of the dependencies between these and other, supporting packages.
 
-**\[3\]**
-: At last, but not least, *plugin writers* have to understand the interaction between the import and export packages and their plugins. These APIs are described in the documentation for the two relevant packages, i.e.
+4. At last, but not least, *plugin writers* have to understand the interaction between the import and export packages and their plugins. These APIs are described in the documentation for the two relevant packages, i.e.
 
+    - **doctoools::toc::import**
 
-**•**
-: **doctoools::toc::import**
+    - **doctoools::toc::export**
 
-**•**
-: **doctoools::toc::export**
 
 
 # Related formats

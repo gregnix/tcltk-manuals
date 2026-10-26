@@ -1,5 +1,6 @@
 ---
 CommandName: clay
+title: clay
 ManualSection: n
 Version: 0.8.8
 TclPart: tcllib
@@ -18,9 +19,9 @@ clay - A minimalist framework for large scale OO Projects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuid]{.lit} 
-[package]{.cmd} [require]{.sub} [oo::dialect]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuid]{.lit}
+[package]{.cmd} [require]{.sub} [oo::dialect]{.lit}
 :::
 
 proc **clay::PROC** *name* *arglist* *body* ?*ninja* ?
@@ -29,17 +30,17 @@ proc **clay::\_ancestors** *resultvar* *class*
 
 proc **clay::ancestors** ?*args*?
 
-proc **clay::args_to_dict** ?*args*?
+proc **clay::args\_to\_dict** ?*args*?
 
-proc **clay::args_to_options** ?*args*?
+proc **clay::args\_to\_options** ?*args*?
 
-proc **clay::dynamic_arguments** *ensemble* *method* *arglist* ?*args*?
+proc **clay::dynamic\_arguments** *ensemble* *method* *arglist* ?*args*?
 
-proc **clay::dynamic_wrongargs_message** *arglist*
+proc **clay::dynamic\_wrongargs\_message** *arglist*
 
-proc **clay::is_dict** *d*
+proc **clay::is\_dict** *d*
 
-proc **clay::is_null** *value*
+proc **clay::is\_null** *value*
 
 proc **clay::leaf** ?*args*?
 
@@ -49,23 +50,23 @@ proc **clay::noop** ?*args*?
 
 proc **clay::cleanup**
 
-proc **clay::object_create** *objname* ?*class* ?
+proc **clay::object\_create** *objname* ?*class* ?
 
-proc **clay::object_rename** *object* *newname*
+proc **clay::object\_rename** *object* *newname*
 
-proc **clay::object_destroy** ?*args*?
+proc **clay::object\_destroy** ?*args*?
 
 proc **clay::path** ?*args*?
 
 proc **clay::putb** ?*map*? *text*
 
-proc **clay::script_path**
+proc **clay::script\_path**
 
 proc **clay::NSNormalize** *qualname*
 
-proc **clay::uuid_generate** ?*args*?
+proc **clay::uuid\_generate** ?*args*?
 
-proc **clay::uuid::generate_tcl_machinfo**
+proc **clay::uuid::generate\_tcl\_machinfo**
 
 proc **clay::uuid::tostring** *uuid*
 
@@ -111,9 +112,9 @@ proc **clay::dialect::Aliases** *namespace* ?*args*?
 
 proc **clay::dialect::SuperClass** *namespace* ?*args*?
 
-proc **clay::dynamic_methods** *class*
+proc **clay::dynamic\_methods** *class*
 
-proc **clay::dynamic_methods_class** *thisclass*
+proc **clay::dynamic\_methods\_class** *thisclass*
 
 proc **clay::define::Array** *name* ?*values* ?
 
@@ -121,9 +122,9 @@ proc **clay::define::Delegate** *name* *info*
 
 proc **clay::define::constructor** *arglist* *rawbody*
 
-proc **clay::define::Class_Method** *name* *arglist* *body*
+proc **clay::define::Class\_Method** *name* *arglist* *body*
 
-proc **clay::define::class_method** *name* *arglist* *body*
+proc **clay::define::class\_method** *name* *arglist* *body*
 
 proc **clay::define::clay** ?*args*?
 
@@ -135,11 +136,11 @@ proc **clay::define::Option** *name* ?*args*?
 
 proc **clay::define::Method** *name* *argstyle* *argspec* *body*
 
-proc **clay::define::Option_Class** *name* ?*args*?
+proc **clay::define::Option\_Class** *name* ?*args*?
 
 proc **clay::define::Variable** *name* ?*default* ?
 
-proc **clay::ensemble_methodbody** *ensemble* *einfo*
+proc **clay::ensemble\_methodbody** *ensemble* *einfo*
 
 proc **clay::define::Ensemble** *rawmethod* ?*args*?
 
@@ -149,7 +150,7 @@ proc **clay::event::generate** *self* *event* ?*args*?
 
 proc **clay::event::nextid**
 
-proc **clay::event::Notification_list** *self* *event* ?*stackvar* ?
+proc **clay::event::Notification\_list** *self* *event* ?*stackvar* ?
 
 proc **clay::event::notify** *rcpt* *sender* *event* *eventinfo*
 
@@ -191,7 +192,7 @@ method **clay delegate** ?*stub*? ?*object*?
 
 method **clay dump**
 
-method **clay ensemble_map**
+method **clay ensemble\_map**
 
 method **clay eval** *script*
 
@@ -336,34 +337,34 @@ proc **clay::PROC** *name* *arglist* *body* ?*ninja* ?
 : Because many features in this package may be added as commands to future tcl cores, or be provided in binary form by packages, I need a declaritive way of saying *Create this command if there isn't one already*. The *ninja* argument is a script to execute if the command is created by this mechanism.
 
 proc **clay::\_ancestors** *resultvar* *class*
-: ...see next...
+: see below ...
 
 proc **clay::ancestors** ?*args*?
-: ...see next...
+: see below ...
 
-proc **clay::args_to_dict** ?*args*?
-: ...see next...
+proc **clay::args\_to\_dict** ?*args*?
+: see below ...
 
-proc **clay::args_to_options** ?*args*?
-: ...see next...
+proc **clay::args\_to\_options** ?*args*?
+: see below ...
 
-proc **clay::dynamic_arguments** *ensemble* *method* *arglist* ?*args*?
-: ...see next...
+proc **clay::dynamic\_arguments** *ensemble* *method* *arglist* ?*args*?
+: see below ...
 
-proc **clay::dynamic_wrongargs_message** *arglist*
-: ...see next...
+proc **clay::dynamic\_wrongargs\_message** *arglist*
+: see below ...
 
-proc **clay::is_dict** *d*
-: ...see next...
+proc **clay::is\_dict** *d*
+: see below ...
 
-proc **clay::is_null** *value*
-: ...see next...
+proc **clay::is\_null** *value*
+: see below ...
 
 proc **clay::leaf** ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::K** *a* *b*
-: ...see next...
+: see below ...
 
 proc **clay::noop** ?*args*?
 : Perform a noop. Useful in prototyping for commenting out blocks of code without actually having to comment them out. It also makes a handy default for method delegation if a delegate has not been assigned yet.
@@ -371,35 +372,35 @@ proc **clay::noop** ?*args*?
 proc **clay::cleanup**
 : Process the queue of objects to be destroyed
 
-proc **clay::object_create** *objname* ?*class* ?
-: ...see next...
+proc **clay::object\_create** *objname* ?*class* ?
+: see below ...
 
-proc **clay::object_rename** *object* *newname*
-: ...see next...
+proc **clay::object\_rename** *object* *newname*
+: see below ...
 
-proc **clay::object_destroy** ?*args*?
+proc **clay::object\_destroy** ?*args*?
 : Mark an objects for destruction on the next cleanup
 
 proc **clay::path** ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::putb** ?*map*? *text*
 : Append a line of text to a variable. Optionally apply a string mapping.
 
-proc **clay::script_path**
-: ...see next...
+proc **clay::script\_path**
+: see below ...
 
 proc **clay::NSNormalize** *qualname*
-: ...see next...
+: see below ...
 
-proc **clay::uuid_generate** ?*args*?
-: ...see next...
+proc **clay::uuid\_generate** ?*args*?
+: see below ...
 
-proc **clay::uuid::generate_tcl_machinfo**
-: ...see next...
+proc **clay::uuid::generate\_tcl\_machinfo**
+: see below ...
 
 proc **clay::uuid::tostring** *uuid*
-: ...see next...
+: see below ...
 
 proc **clay::uuid::fromstring** *uuid*
 : Convert a string representation of a uuid into its binary format.
@@ -417,84 +418,90 @@ proc **clay::tree::\_sanitizeb** *path* *varname* *dict*
 : Helper function for ::clay::tree::sanitize Formats the string representation for a dictionary element within a human readable stream of lines, and determines if it needs to call itself with further indentation to express a sub-branch
 
 proc **clay::tree::storage** *rawpath*
-: Return the path as a storage path for clay::tree with all branch terminators removed. This command will also break arguments up if they contain /. Example:
+: Return the path as a storage path for clay::tree with all branch terminators removed. This command will also break arguments up if they contain /.
 
+    Example:
 
-```
- > clay::tree::storage {foo bar baz bang}
- foo bar baz bang
- > clay::tree::storage {foo bar baz bang/}
- foo bar baz bang
- > clay::tree::storage {foo bar baz bang:}
- foo bar baz bang:
- > clay::tree::storage {foo/bar/baz bang:}
- foo bar baz bang:
- > clay::tree::storage {foo/bar/baz/bang}
- foo bar baz bang
-```
+    ```
+     > clay::tree::storage {foo bar baz bang}
+     foo bar baz bang
+     > clay::tree::storage {foo bar baz bang/}
+     foo bar baz bang
+     > clay::tree::storage {foo bar baz bang:}
+     foo bar baz bang:
+     > clay::tree::storage {foo/bar/baz bang:}
+     foo bar baz bang:
+     > clay::tree::storage {foo/bar/baz/bang}
+     foo bar baz bang
+    ```
 
 proc **clay::tree::dictset** *varname* ?*args*?
-: Set an element with a recursive dictionary, marking all branches on the way down to the final element. If the value does not exists in the nested dictionary it is added as a leaf. If the value already exists as a branch the value given is merged if the value is a valid dict. If the incoming value is not a valid dict, the value overrides the value stored, and the value is treated as a leaf from then on. Example:
+: Set an element with a recursive dictionary, marking all branches on the way down to the final element. If the value does not exists in the nested dictionary it is added as a leaf. If the value already exists as a branch the value given is merged if the value is a valid dict. If the incoming value is not a valid dict, the value overrides the value stored, and the value is treated as a leaf from then on.
 
+    Example:
 
-```
- > set r {}
- > ::clay::tree::dictset r option color default Green
- . {} option {. {} color {. {} default Green}}
- > ::clay::tree::dictset r option {Something not dictlike}
- . {} option {Something not dictlike}
- # Note that if the value is not a dict, and you try to force it to be
- # an error with be thrown on the merge
- > ::clay::tree::dictset r option color default Blue
- missing value to go with key
-```
+    ```
+     > set r {}
+     > ::clay::tree::dictset r option color default Green
+     . {} option {. {} color {. {} default Green}}
+     > ::clay::tree::dictset r option {Something not dictlike}
+     . {} option {Something not dictlike}
+     # Note that if the value is not a dict, and you try to force it to be
+     # an error with be thrown on the merge
+     > ::clay::tree::dictset r option color default Blue
+     missing value to go with key
+    ```
 
 proc **clay::tree::dictmerge** *varname* ?*args*?
-: A recursive form of dict merge, intended for modifying variables in place. Example:
+: A recursive form of dict merge, intended for modifying variables in place.
 
+    Example:
 
-```
- > set mydict {sub/ {sub/ {description {a block of text}}}}
- > ::clay::tree::dictmerge mydict {sub/ {sub/ {field {another block of text}}}}]
- > clay::tree::print $mydict
- sub/ {
-   sub/ {
-     description {a block of text}
-     field {another block of text}
-   }
- }
-```
+    ```
+     > set mydict {sub/ {sub/ {description {a block of text}}}}
+     > ::clay::tree::dictmerge mydict {sub/ {sub/ {field {another block of text}}}}]
+     > clay::tree::print $mydict
+     sub/ {
+       sub/ {
+         description {a block of text}
+         field {another block of text}
+       }
+     }
+    ```
 
 proc **clay::tree::merge** ?*args*?
-: A recursive form of dict merge A routine to recursively dig through dicts and merge adapted from http://stevehavelka.com/tcl-dict-operation-nested-merge/ Example:
+: A recursive form of dict merge
 
+    A routine to recursively dig through dicts and merge adapted from <http://stevehavelka.com/tcl-dict-operation-nested-merge/>
 
-```
- > set mydict {sub/ {sub/ {description {a block of text}}}}
- > set odict [clay::tree::merge $mydict {sub/ {sub/ {field {another block of text}}}}]
- > clay::tree::print $odict
- sub/ {
-   sub/ {
-     description {a block of text}
-     field {another block of text}
-   }
- }
-```
+    Example:
+
+    ```
+     > set mydict {sub/ {sub/ {description {a block of text}}}}
+     > set odict [clay::tree::merge $mydict {sub/ {sub/ {field {another block of text}}}}]
+     > clay::tree::print $odict
+     sub/ {
+       sub/ {
+         description {a block of text}
+         field {another block of text}
+       }
+     }
+    ```
 
 proc **dictargs::proc** *name* *argspec* *body*
 : Named Procedures as new command
 
 proc **dictargs::method** *name* *argspec* *body*
-: ...see next...
+: see below ...
 
 proc **clay::dialect::Push** *class*
-: ...see next...
+: see below ...
 
 proc **clay::dialect::Peek**
-: ...see next...
+: see below ...
 
 proc **clay::dialect::Pop**
-: ...see next...
+: see below ...
 
 proc **clay::dialect::create** *name* ?*parent* ?
 : This proc will generate a namespace, a "mother of all classes", and a rudimentary set of policies for this dialect.
@@ -503,25 +510,25 @@ proc **clay::dialect::NSNormalize** *namespace* *qualname*
 : Support commands; not intended to be called directly.
 
 proc **clay::dialect::DefineThunk** *target* ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::dialect::Canonical** *namespace* *NSpace* *class*
-: ...see next...
+: see below ...
 
 proc **clay::dialect::Define** *namespace* *class* ?*args*?
 : Implementation of the languages' define command
 
 proc **clay::dialect::Aliases** *namespace* ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::dialect::SuperClass** *namespace* ?*args*?
-: ...see next...
+: see below ...
 
-proc **clay::dynamic_methods** *class*
-: ...see next...
+proc **clay::dynamic\_methods** *class*
+: see below ...
 
-proc **clay::dynamic_methods_class** *thisclass*
-: ...see next...
+proc **clay::dynamic\_methods\_class** *thisclass*
+: see below ...
 
 proc **clay::define::Array** *name* ?*values* ?
 : New OO Keywords for clay
@@ -530,57 +537,57 @@ proc **clay::define::Delegate** *name* *info*
 : An annotation that objects of this class interact with delegated methods. The annotation is intended to be a dictionary, and the only reserved key is *description*, a human readable description.
 
 proc **clay::define::constructor** *arglist* *rawbody*
-: ...see next...
+: see below ...
 
-proc **clay::define::Class_Method** *name* *arglist* *body*
+proc **clay::define::Class\_Method** *name* *arglist* *body*
 : Specify the a method for the class object itself, instead of for objects of the class
 
-proc **clay::define::class_method** *name* *arglist* *body*
-: And alias to the new Class_Method keyword
+proc **clay::define::class\_method** *name* *arglist* *body*
+: And alias to the new Class\_Method keyword
 
 proc **clay::define::clay** ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::define::destructor** *rawbody*
-: ...see next...
+: see below ...
 
 proc **clay::define::Dict** *name* ?*values* ?
-: ...see next...
+: see below ...
 
 proc **clay::define::Option** *name* ?*args*?
 : Define an option for the class
 
 proc **clay::define::Method** *name* *argstyle* *argspec* *body*
-: ...see next...
+: see below ...
 
-proc **clay::define::Option_Class** *name* ?*args*?
+proc **clay::define::Option\_Class** *name* ?*args*?
 : Define a class of options All field / value pairs will be be inherited by an option that specify *name* as it class field.
 
 proc **clay::define::Variable** *name* ?*default* ?
 : This keyword can also be expressed:
 
+    ```
+    property variable NAME {default DEFAULT}
+    ```
 
-```
-property variable NAME {default DEFAULT}
-```
+    Variables registered in the variable property are also initialized (if missing) when the object changes class via the *morph* method.
 
-Variables registered in the variable property are also initialized (if missing) when the object changes class via the *morph* method.
+proc **clay::ensemble\_methodbody** *ensemble* *einfo*
+: Produce the body of an ensemble's public dispatch method ensemble is the name of the the ensemble. einfo is a dictionary of methods for the ensemble, and each value is a script to execute on dispatch
 
-proc **clay::ensemble_methodbody** *ensemble* *einfo*
-: Produce the body of an ensemble's public dispatch method ensemble is the name of the the ensemble. einfo is a dictionary of methods for the ensemble, and each value is a script to execute on dispatch Example:
+    Example:
 
-
-```
- ::clay::ensemble_methodbody foo {
-   bar {tailcall my Foo_bar {*}$args}
-   baz {tailcall my Foo_baz {*}$args}
-   clock {return [clock seconds]}
-   default {puts "You gave me $method"}
- }
-```
+    ```
+     ::clay::ensemble_methodbody foo {
+       bar {tailcall my Foo_bar {*}$args}
+       baz {tailcall my Foo_baz {*}$args}
+       clock {return [clock seconds]}
+       default {puts "You gave me $method"}
+     }
+    ```
 
 proc **clay::define::Ensemble** *rawmethod* ?*args*?
-: ...see next...
+: see below ...
 
 proc **clay::event::cancel** *self* ?*task* **\***?
 : Cancel a scheduled event
@@ -589,9 +596,9 @@ proc **clay::event::generate** *self* *event* ?*args*?
 : Generate an event Adds a subscription mechanism for objects to see who has recieved this event and prevent spamming or infinite recursion
 
 proc **clay::event::nextid**
-: ...see next...
+: see below ...
 
-proc **clay::event::Notification_list** *self* *event* ?*stackvar* ?
+proc **clay::event::Notification\_list** *self* *event* ?*stackvar* ?
 : Called recursively to produce a list of who recieves notifications
 
 proc **clay::event::notify** *rcpt* *sender* *event* *eventinfo*
@@ -660,7 +667,17 @@ method **clay cache** *path* *value*
 : Store VALUE in such a way that request in SEARCH for PATH will always return it until the cache is flushed
 
 method **clay cget** *field*
-: Pull a value from either the object's clay structure or one of its constituent classes that matches the field name. The order of search us: 1. The as a value in local dict variable config 2. The as a value in local dict variable clay 3. As a leaf in any ancestor as a root of the clay tree 4. As a leaf in any ancestor as **const** *field* 5. As a leaf in any ancestor as **option** *field* **default**
+: Pull a value from either the object's clay structure or one of its constituent classes that matches the field name. The order of search us:
+
+    1. The as a value in local dict variable config
+
+    2. The as a value in local dict variable clay
+
+    3. As a leaf in any ancestor as a root of the clay tree
+
+    4. As a leaf in any ancestor as **const** *field*
+
+    5. As a leaf in any ancestor as **option** *field* **default**
 
 method **clay delegate** ?*stub*? ?*object*?
 : Introspect or control method delegation. With no arguments, the method will return a key/value list of stubs and objects. With just the *stub* argument, the method will return the object (if any) attached to the stub. With a *stub* and an *object* this command will forward all calls to the method *stub* to the *object*.
@@ -668,7 +685,7 @@ method **clay delegate** ?*stub*? ?*object*?
 method **clay dump**
 : Return a complete dump of this object's clay data, as well as the data from all constituent classes recursively blended in.
 
-method **clay ensemble_map**
+method **clay ensemble\_map**
 : Return a dictionary describing the method ensembles to be assembled for this object
 
 method **clay eval** *script*
@@ -686,10 +703,9 @@ method **clay flush**
 method **clay forward** *method* *object*
 : A convenience wrapper for
 
-
-```
-oo::objdefine [self] forward {*}$args
-```
+    ```
+    oo::objdefine [self] forward {*}$args
+    ```
 
 method **clay get** *path* ?**path...**?
 : Pull a chunk of data from the clay system. If the last element of *path* is a branch (ends in a slash /), returns a recursive merge of all data from this object and it's constituent classes of the data in that branch. If the last element is a leaf, search this object for a matching leaf, or search all  constituent classes for a matching leaf and return the first value found. If no value is found, returns an empty string.
@@ -727,7 +743,7 @@ method **InitializePublic**
 
 # Authors
 
-Sean Woods *mailto:\<yoda@etoyoc.com>*
+Sean Woods *mailto:<yoda@etoyoc.com>*
 
 # Bugs, ideas, feedback
 

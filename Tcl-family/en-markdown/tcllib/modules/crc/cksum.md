@@ -1,5 +1,6 @@
 ---
 CommandName: cksum
+title: cksum
 ManualSection: n
 Version: 1.1.5
 TclPart: tcllib
@@ -26,12 +27,12 @@ cksum - Calculate a cksum(1) compatible checksum
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [cksum]{.lit} [1.1.5]{.optlit} 
-[::crc::cksum]{.cmd} [-format format]{.optarg} [-chunksize size]{.optarg} \[ [-channel]{.arg} [chan]{.arg} | [-filename]{.arg} [file]{.arg} | [string]{.arg} \] 
-[::crc::CksumInit]{.cmd} 
-[::crc::CksumUpdate]{.cmd} [token]{.arg} [data]{.arg} 
-[::crc::CksumFinal]{.cmd} [token]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [cksum]{.lit} [1.1.5]{.optlit}
+[::crc::cksum]{.cmd} [-format format]{.optarg} [-chunksize size]{.optarg} \[ [-channel]{.arg} [chan]{.arg} | [-filename]{.arg} [file]{.arg} | [string]{.arg} \]
+[::crc::CksumInit]{.cmd}
+[::crc::CksumUpdate]{.cmd} [token]{.arg} [data]{.arg}
+[::crc::CksumFinal]{.cmd} [token]{.arg}
 :::
 
 # Description
@@ -47,7 +48,7 @@ This package provides a Tcl implementation of the cksum(1) algorithm based upon 
 # Options
 
 -channel *name*
-: Return a checksum for the data read from a channel. The command will read data from the channel until the **eof** is true. If you need to be able to process events during this calculation see the **PROGRAMMING INTERFACE** section
+: Return a checksum for the data read from a channel. The command will read data from the channel until the **eof** is true. If you need to be able to process events during this calculation see the [Programming interface] section
 
 -filename *name*
 : This is a convenience option that opens the specified file, sets the encoding to binary and then acts as if the *-channel* option had been used. The file is closed on completion.
@@ -64,7 +65,7 @@ The cksum package implements the checksum using a context variable to which addi
 : Begins a new cksum context. Returns a token ID that must be used for the remaining functions. An optional seed may be specified if required.
 
 **::crc::CksumUpdate** *token* *data*
-: Add data to the checksum identified by token. Calling *CksumUpdate \$token "abcd"* is equivalent to calling *CksumUpdate \$token "ab"* followed by *CksumUpdate \$token "cb"*. See **EXAMPLES**.
+: Add data to the checksum identified by token. Calling *CksumUpdate $token "abcd"* is equivalent to calling *CksumUpdate $token "ab"* followed by *CksumUpdate $token "cb"*. See [Examples].
 
 **::crc::CksumFinal** *token*
 : Returns the checksum value and releases any resources held by this token. Once this command completes the token will be invalid. The result is a 32 bit integer value.

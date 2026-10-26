@@ -1,5 +1,6 @@
 ---
 CommandName: struct::pool
+title: struct::pool
 ManualSection: n
 Version: 1.2.4
 TclPart: tcllib
@@ -20,18 +21,18 @@ struct::pool - Create and manipulate pool objects (of discrete items)
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::pool]{.lit} [1.2.4]{.optlit} 
-[::struct::pool]{.cmd} [poolName]{.optarg} [maxsize]{.optarg} 
-[poolName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[poolName]{.ins} [add]{.sub} [itemName1]{.arg} [itemName2 itemName3]{.optdot} 
-[poolName]{.ins} [clear]{.sub} [-force]{.optlit} 
-[poolName]{.ins} [destroy]{.sub} [-force]{.optlit} 
-[poolName]{.ins} [info]{.sub} [type]{.arg} [arg]{.optarg} 
-[poolName]{.ins} [maxsize]{.sub} [maxsize]{.optarg} 
-[poolName]{.ins} [release]{.sub} [itemName]{.arg} 
-[poolName]{.ins} [remove]{.sub} [itemName]{.arg} [-force]{.optlit} 
-[poolName]{.ins} [request]{.sub} itemVar [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::pool]{.lit} [1.2.4]{.optlit}
+[::struct::pool]{.cmd} [poolName]{.optarg} [maxsize]{.optarg}
+[poolName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[poolName]{.ins} [add]{.sub} [itemName1]{.arg} [itemName2 itemName3]{.optdot}
+[poolName]{.ins} [clear]{.sub} [-force]{.optlit}
+[poolName]{.ins} [destroy]{.sub} [-force]{.optlit}
+[poolName]{.ins} [info]{.sub} [type]{.arg} [arg]{.optarg}
+[poolName]{.ins} [maxsize]{.sub} [maxsize]{.optarg}
+[poolName]{.ins} [release]{.sub} [itemName]{.arg}
+[poolName]{.ins} [remove]{.sub} [itemName]{.arg} [-force]{.optlit}
+[poolName]{.ins} [request]{.sub} itemVar [options]{.optarg}
 :::
 
 # Description
@@ -39,38 +40,39 @@ struct::pool - Create and manipulate pool objects (of discrete items)
 This package provides pool objects which can be used to manage finite collections of discrete items.
 
 **::struct::pool** ?*poolName*? ?*maxsize*?
-: Creates a new pool object. If no *poolName* is supplied, then the new pool will be named pool**X**, where X is a positive integer. The optional second argument *maxsize* has to be a positive integer indicating the maximum size of the pool; this is the maximum number of items the pool may hold. The default for this value is **10**. The pool object has an associated global Tcl command whose name is *poolName*. This command may be used to invoke various configuration operations on the report. It has the following general form:
+: Creates a new pool object. If no *poolName* is supplied, then the new pool will be named pool**X**, where X is a positive integer. The optional second argument *maxsize* has to be a positive integer indicating the maximum size of the pool; this is the maximum number of items the pool may hold. The default for this value is **10**.
 
+    The pool object has an associated global Tcl command whose name is *poolName*. This command may be used to invoke various configuration operations on the report. It has the following general form:
 
-**poolName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. See section **POOL OBJECT COMMAND** for a detailed list of options and their behaviour.
+    **poolName** *option* ?*arg arg ...*?
+    : *Option* and the *arg*s determine the exact behavior of the command. See section [Pool object command] for a detailed list of options and their behaviour.
+
 
 
 # Pools and allocation
 
 The purpose of the pool command and the pool object command that it generates, is to manage pools of discrete items. Examples of a pool of discrete items are:
 
-**•**
-: the seats in a cinema, theatre, train etc.. for which visitors/travelers can  make a reservation;
+- the seats in a cinema, theatre, train etc.. for which visitors/travelers can  make a reservation;
 
-**•**
-: the dynamic IP-addresses that an ISP can dole out  to subscribers;
+- the dynamic IP-addresses that an ISP can dole out  to subscribers;
 
-**•**
-: a car rental's collection of cars, which can be rented by customers;
+- a car rental's collection of cars, which can be rented by customers;
 
-**•**
-: the class rooms in a school building, which need to be scheduled;
+- the class rooms in a school building, which need to be scheduled;
 
-**•**
-: the database connections available to client-threads in a web-server application;
+- the database connections available to client-threads in a web-server application;
 
-**•**
-: the books in a library that customers can borrow;
+- the books in a library that customers can borrow;
 
-**•**
-: etc ... The common denominator in the examples is that there is a more or less fixed number of items (seats, IP-addresses, cars, ...) that are supposed to be allocated on a more or less regular basis. An item can be allocated only once at a time. An item that is allocated, must be released before it can be re-allocated.  While several items in a pool are being allocated and released continuously, the total number of items in the pool remains constant. Keeping track of which items are allocated, and by whom, is the purpose of the pool command and its subordinates. *Pool parlance*: If we say that an item is *allocated*, it means that the item is *busy*, *owned* or *occupied*; it is not available anymore. If an item is *free*, it is *available*. Deallocating an item is equivalent to setting free or releasing an item. The person or entity to which the item has been allotted is said to own the item.
+- etc ...
 
+
+The common denominator in the examples is that there is a more or less fixed number of items (seats, IP-addresses, cars, ...) that are supposed to be allocated on a more or less regular basis. An item can be allocated only once at a time. An item that is allocated, must be released before it can be re-allocated.  While several items in a pool are being allocated and released continuously, the total number of items in the pool remains constant.
+
+Keeping track of which items are allocated, and by whom, is the purpose of the pool command and its subordinates.
+
+*Pool parlance*: If we say that an item is *allocated*, it means that the item is *busy*, *owned* or *occupied*; it is not available anymore. If an item is *free*, it is *available*. Deallocating an item is equivalent to setting free or releasing an item. The person or entity to which the item has been allotted is said to own the item.
 
 # Items
 
@@ -106,28 +108,31 @@ The following subcommands and corresponding arguments are available to any pool 
 *poolName* **info** *type* ?*arg*?
 : Returns various information about the pool for further programmatic use. The *type* argument indicates the type of information requested. Only the type **allocID** uses an additional argument.
 
+    **allocID** *itemName*
+    : returns the allocID of the item whose name is *itemName*. Free items have an allocation id of **-1**.
 
-**allocID** *itemName*
-: returns the allocID of the item whose name is *itemName*. Free items have an allocation id of **-1**.
+    **allitems**
+    : returns a list of all items in the pool.
 
-**allitems**
-: returns a list of all items in the pool.
+    **allocstate**
+    : Returns a list of key-value pairs, where the keys are the items and the values are the corresponding allocation id's. Free items have an allocation id of **-1**.
 
-**allocstate**
-: Returns a list of key-value pairs, where the keys are the items and the values are the corresponding allocation id's. Free items have an allocation id of **-1**.
+    **cursize**
+    : returns the current pool size, i.e. the number of items in the pool.
 
-**cursize**
-: returns the current pool size, i.e. the number of items in the pool.
+    **freeitems**
+    : returns a list of items that currently are not allocated.
 
-**freeitems**
-: returns a list of items that currently are not allocated.
-
-**maxsize**
-: returns the maximum size of the pool.
+    **maxsize**
+    : returns the maximum size of the pool.
 
 
 *poolName* **maxsize** ?*maxsize*?
-: Sets or queries the maximum size of the pool, depending on whether the *maxsize* argument is supplied or not. If *maxsize* is supplied, the maximum size of the pool will be set to that value. If no argument is supplied, the current maximum size of the pool is returned. In this variant, the command is an alias for: **poolName info maxsize**. The *maxsize* argument has to be a positive integer.
+: Sets or queries the maximum size of the pool, depending on whether the *maxsize* argument is supplied or not. If *maxsize* is supplied, the maximum size of the pool will be set to that value. If no argument is supplied, the current maximum size of the pool is returned. In this variant, the command is an alias for:
+
+    **poolName info maxsize**.
+
+    The *maxsize* argument has to be a positive integer.
 
 *poolName* **release** *itemName*
 : Releases the item whose name is *itemName* that was allocated previously. An error is raised if the item was not allocated at the time when the command was issued.
@@ -138,23 +143,21 @@ The following subcommands and corresponding arguments are available to any pool 
 *poolName* **request** itemVar ?options?
 : Handles a request for an item, taking into account a possible preference for a particular item. There are two possible outcomes depending on the availability of items:
 
+    1. The request is honoured, an item is allocated and the variable whose name is passed with the argument *itemVar* will be set to the name of the item that was allocated. The command returns 1.
 
-**\[1\]**
-: The request is honoured, an item is allocated and the variable whose name is passed with the argument *itemVar* will be set to the name of the item that was allocated. The command returns 1.
-
-**\[2\]**
-: The request is denied. No item is allocated. The variable whose name is itemVar is not set.  Attempts to read *itemVar* may raise an error if the variable was not defined before issuing the request. The command returns 0.
+    2. The request is denied. No item is allocated. The variable whose name is itemVar is not set.  Attempts to read *itemVar* may raise an error if the variable was not defined before issuing the request. The command returns 0.
 
 
-The return values from this command are meant to be inspected. The examples below show how to do this. Failure to check the return value may result in erroneous behaviour. If no preference for a particular item is supplied through the option **-prefer** (see below), then all requests are honoured as long as items are available.
+    The return values from this command are meant to be inspected. The examples below show how to do this. Failure to check the return value may result in erroneous behaviour. If no preference for a particular item is supplied through the option **-prefer** (see below), then all requests are honoured as long as items are available.
 
-The following options are supported:
+    The following options are supported:
 
-**-allocID** *allocID*
-: If the request is honoured, an item will be allocated to the entity identified by allocID. If the allocation state of an item is queried, it is this allocation ID that will be returned. If the option **-allocID** is not supplied, the item will be given to and owned by **dummyID**. Allocation id's may be anything except the value -1, which is reserved for free items.
+    **-allocID** *allocID*
+    : If the request is honoured, an item will be allocated to the entity identified by allocID. If the allocation state of an item is queried, it is this allocation ID that will be returned. If the option **-allocID** is not supplied, the item will be given to and owned by **dummyID**. Allocation id's may be anything except the value -1, which is reserved for free items.
 
-**-prefer** *preferredItem*
-: This option modifies the allocation strategy as follows: If the item whose name is *preferredItem* is not allocated at the time when the command is invoked, the request is honoured (return value is 1). If the item was allocated at the time when the command was invoked, the request is denied (return value is 0).
+    **-prefer** *preferredItem*
+    : This option modifies the allocation strategy as follows: If the item whose name is *preferredItem* is not allocated at the time when the command is invoked, the request is honoured (return value is 1). If the item was allocated at the time when the command was invoked, the request is denied (return value is 0).
+
 
 
 # Examples

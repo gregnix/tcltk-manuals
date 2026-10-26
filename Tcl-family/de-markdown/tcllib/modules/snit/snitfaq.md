@@ -1,5 +1,6 @@
 ---
 CommandName: snitfaq
+title: snitfaq
 ManualSection: n
 Version: 2.2
 TclPart: tcllib
@@ -19,13 +20,13 @@ Copyright:
  - Copyright (c) 2003-2006, by William H. Duquette
 ---
 
-# NAME
+# Name
 
 snitfaq – Häufig gestellte Fragen zu Snit
 
-# BESCHREIBUNG
+# Beschreibung
 
-# ÜBERBLICK
+# Überblick
 
 ## Was ist dieses Dokument?
 
@@ -45,57 +46,47 @@ Snit ist weder eine Lebensphilosophie noch ein Wundermittel noch der Jungbrunnen
 
 ## Welche Tcl-Version benötigt snit?
 
-Snit 1.3 benötigt Tcl 8.3 oder höher; Snit 2.2 benötigt Tcl 8.5 oder höher. Die Unterschiede zwischen Snit 1.3 und Snit 2.2 finden Sie im Abschnitt **SNIT-VERSIONEN**.
+Snit 1.3 benötigt Tcl 8.3 oder höher; Snit 2.2 benötigt Tcl 8.5 oder höher. Die Unterschiede zwischen Snit 1.3 und Snit 2.2 finden Sie im Abschnitt [Snit-Versionen].
 
 ## Wo kann ich Snit herunterladen?
 
-Snit ist Teil von Tcllib, der Standardbibliothek von Tcl; möglicherweise verfügen Sie also bereits darüber. Es ist außerdem auf der Snit-Homepage unter *http://www.wjduquette.com/snit* verfügbar.
+Snit ist Teil von Tcllib, der Standardbibliothek von Tcl; möglicherweise verfügen Sie also bereits darüber. Es ist außerdem auf der Snit-Homepage unter <http://www.wjduquette.com/snit> verfügbar.
 
 ## Welche Ziele verfolgt snit?
 
-**•**
-: Ein Snit-Objekt sollte mindestens ebenso effizient sein wie ein manuell programmiertes Tcl-Objekt (siehe *http://www.wjduquette.com/tcl/objects.html*).
+- Ein Snit-Objekt sollte mindestens ebenso effizient sein wie ein manuell programmiertes Tcl-Objekt (siehe <http://www.wjduquette.com/tcl/objects.html>).
 
-**•**
-: Die Tatsache, dass Snit bei der Implementierung eines Objekts verwendet wurde, sollte für die Klienten dieses Objekts nicht erkennbar (und unerheblich) sein.
+- Die Tatsache, dass Snit bei der Implementierung eines Objekts verwendet wurde, sollte für die Klienten dieses Objekts nicht erkennbar (und unerheblich) sein.
 
-**•**
-: Snit sollte in der Lage sein, Objekte aus anderen Quellen, insbesondere Tk-Widgets, zu kapseln.
+- Snit sollte in der Lage sein, Objekte aus anderen Quellen, insbesondere Tk-Widgets, zu kapseln.
 
-**•**
-: Snit-Megawidgets sollten sich in ihrer Schnittstelle (soweit möglich) nicht von Tk-Widgets unterscheiden.
+- Snit-Megawidgets sollten sich in ihrer Schnittstelle (soweit möglich) nicht von Tk-Widgets unterscheiden.
 
-**•**
-: Snit sollte „Tcl-ähnlich“ sein – das heißt, es sollte nicht versuchen, C++, Smalltalk oder irgendetwas anderes nachzuahmen, sondern vielmehr Tcl selbst nachzuahmen.
+- Snit sollte „Tcl-ähnlich“ sein – das heißt, es sollte nicht versuchen, C++, Smalltalk oder irgendetwas anderes nachzuahmen, sondern vielmehr Tcl selbst nachzuahmen.
 
-**•**
-: Es sollte eine einfache, benutzerfreundliche und leicht zu merkende Syntax aufweisen.
+- Es sollte eine einfache, benutzerfreundliche und leicht zu merkende Syntax aufweisen.
 
 
 ## Inwiefern unterscheidet sich snit von anderen OO-Rahmen?
 
 Snit ist unter den Tcl-Objektsystemen insofern einzigartig, als es nicht auf Vererbung, sondern auf Weiterleitung basiert. Objektsysteme, die auf Vererbung beruhen, erlauben es Ihnen lediglich, von Klassen zu erben, die mit demselben System definiert wurden, und das ist bedauerlich. In Tcl ist ein Objekt alles, was sich wie ein Objekt verhält; es sollte keine Rolle spielen, wie das Objekt implementiert wurde.  Ich habe Snit entwickelt, um mir dabei zu helfen, Anwendungen aus den vorhandenen Bausteinen zu erstellen; daher ist Snit so konzipiert, dass es jedes Objekt einbinden und darauf aufbauen kann, sei es ein handcodiertes Objekt, ein Tk-Widget, ein Incr-Tcl-Objekt, ein BWidget oder fast alles andere.
 
-Hinweis: Sie können den Effekt der Vererbung mithilfe von **KOMPONENTEN** und **WEITERLEITUNG** erzielen – und dabei von allem erben, was wie ein Tcl-Objekt aussieht.
+Hinweis: Sie können den Effekt der Vererbung mithilfe von [Komponenten] und [Weiterleitung] erzielen – und dabei von allem erben, was wie ein Tcl-Objekt aussieht.
 
 ## Was kann ich mit snit machen?
 
 Mit Snit kann ein Programmierer:
 
-**•**
-: abstrakte Datentypen und Tk-Megawidgets erstellen.
+- abstrakte Datentypen und Tk-Megawidgets erstellen.
 
-**•**
-: Instanzvariablen, Typvariablen und Optionen im Tk-Stil definieren.
+- Instanzvariablen, Typvariablen und Optionen im Tk-Stil definieren.
 
-**•**
-: Konstruktoren, Destruktoren, Instanzmethoden, Typmethoden und Prozeduren definieren.
+- Konstruktoren, Destruktoren, Instanzmethoden, Typmethoden und Prozeduren definieren.
 
-**•**
-: einen Typ aus Komponententypen zusammensetzen. Instanzmethoden und Optionen können automatisch an die Komponententypen weitergeleitet werden.
+- einen Typ aus Komponententypen zusammensetzen. Instanzmethoden und Optionen können automatisch an die Komponententypen weitergeleitet werden.
 
 
-# SNIT-VERSIONEN
+# Snit-Versionen
 
 ## Welche Version von snit sollte ich verwenden?
 
@@ -135,75 +126,80 @@ Snit 2.2 ist soweit wie möglich als direkter Ersatz für Snit 1.3 gedacht. Leid
 
 Es gibt vier konkrete Inkompatibilitäten zwischen Snit 1.3 und Snit 2.2.
 
-**•**
-: Snit 1.3 unterstützt die implizite Benennung von Objekten. Angenommen, Sie definieren einen neuen **snit::type** mit dem Namen **dog**. Sie können Instanzen von **dog** auf drei verschiedene Arten erstellen:
+- Snit 1.3 unterstützt die implizite Benennung von Objekten. Angenommen, Sie definieren einen neuen [snit::type][snit] mit dem Namen **dog**. Sie können Instanzen von **dog** auf drei verschiedene Arten erstellen:
 
+    ```
+    dog spot               ;# Explicit naming
+    set obj1 [dog %AUTO%]  ;# Automatic naming
+    set obj2 [dog]         ;# Implicit naming
+    ```
 
-```
-dog spot               ;# Explicit naming
-set obj1 [dog %AUTO%]  ;# Automatic naming
-set obj2 [dog]         ;# Implicit naming
-```
+- In Snit 2.2 werden Typbefehle mithilfe des Mechanismus **namespace ensemble** definiert; und **namespace ensemble** erlaubt es nicht, einen Ensemble-Befehl ohne Unterbefehl aufzurufen.  Kurz gesagt: Bei Verwendung von **namespace ensemble** gibt es keine Möglichkeit, implizite Namen zu unterstützen.
 
-: In Snit 2.2 werden Typbefehle mithilfe des Mechanismus **namespace ensemble** definiert; und **namespace ensemble** erlaubt es nicht, einen Ensemble-Befehl ohne Unterbefehl aufzurufen.  Kurz gesagt: Bei Verwendung von **namespace ensemble** gibt es keine Möglichkeit, implizite Namen zu unterstützen. Es ist jedoch noch nicht alles verloren. Wenn der Typ keine Typmethoden besitzt, handelt es sich bei dem Typbefehl um einen einfachen Befehl und nicht um ein Ensemble, sodass **namespace ensemble** nicht verwendet wird. In diesem Fall ist implizite Benennung weiterhin möglich. Kurz gesagt: Sie können implizite Benennung nutzen, wenn Sie bereit sind, auf Typmethoden (einschließlich der Standard-Typmethoden wie **\$type info**) zu verzichten. Verwenden Sie dazu das Pragma **-hastypemethods**:
+    Es ist jedoch noch nicht alles verloren. Wenn der Typ keine Typmethoden besitzt, handelt es sich bei dem Typbefehl um einen einfachen Befehl und nicht um ein Ensemble, sodass **namespace ensemble** nicht verwendet wird. In diesem Fall ist implizite Benennung weiterhin möglich.
 
+    Kurz gesagt: Sie können implizite Benennung nutzen, wenn Sie bereit sind, auf Typmethoden (einschließlich der Standard-Typmethoden wie **$type info**) zu verzichten. Verwenden Sie dazu das Pragma **-hastypemethods**:
 
-```
-pragma -hastypemethods 0
-```
+    ```
+    pragma -hastypemethods 0
+    ```
 
-**•**
-: Hierarchische Methoden und Typmethoden werden in Snit 2.2 unterschiedlich implementiert. Eine hierarchische Methode ist eine Instanzmethode, die Unterbefehle besitzt; diese Unterbefehle sind ihrerseits Methoden. Der Befehl **tag** des Tk-Text-Widgets und seine Unterbefehle sind Beispiele für hierarchische Methoden.  Sie können solche Unterbefehle in Snit einfach implementieren, indem Sie mehrere Wörter in die Namen der Methoden einfügen:
+- Hierarchische Methoden und Typmethoden werden in Snit 2.2 unterschiedlich implementiert.
 
+    Eine hierarchische Methode ist eine Instanzmethode, die Unterbefehle besitzt; diese Unterbefehle sind ihrerseits Methoden. Der Befehl **tag** des Tk-Text-Widgets und seine Unterbefehle sind Beispiele für hierarchische Methoden.  Sie können solche Unterbefehle in Snit einfach implementieren, indem Sie mehrere Wörter in die Namen der Methoden einfügen:
 
-```
-method {tag configure} {tag args} { ... }
+    ```
+    method {tag configure} {tag args} { ... }
 
-method {tag cget} {tag option} {...}
-```
+    method {tag cget} {tag option} {...}
+    ```
 
-: Hier haben wir implizit eine Methode namens „**tag**“ definiert, die zwei Unterbefehle enthält: „**configure**“ und „**cget**“. In Snit 1.3 konnten hierarchische Methoden auf zwei Arten aufgerufen werden:
+- Hier haben wir implizit eine Methode namens „**tag**“ definiert, die zwei Unterbefehle enthält: „**configure**“ und „**cget**“.
 
+    In Snit 1.3 konnten hierarchische Methoden auf zwei Arten aufgerufen werden:
 
-```
-$obj tag cget -myoption      ;# The good way
-$obj {tag cget} -myoption    ;# The weird way
-```
+    ```
+    $obj tag cget -myoption      ;# The good way
+    $obj {tag cget} -myoption    ;# The weird way
+    ```
 
-: Im zweiten Aufruf sehen wir, dass eine hierarchische Methode oder Typmethode schlichtweg eine solche ist, deren Name aus mehreren Wörtern besteht. In Snit 2.2 ist dies nicht mehr der Fall, und die „seltsame“ Art, hierarchische Methoden und Typmethoden aufzurufen, funktioniert nicht mehr.
+- Im zweiten Aufruf sehen wir, dass eine hierarchische Methode oder Typmethode schlichtweg eine solche ist, deren Name aus mehreren Wörtern besteht.
 
-**•**
-: Die dritte Inkompatibilität ergibt sich aus der zweiten. In Snit 1.3 waren hierarchische Methoden ebenfalls einfache Methoden, deren Name aus mehreren Wörtern bestand. Infolgedessen gab **\$obj info methods** die vollständigen Namen aller hierarchischen Methoden zurück.  Im obigen Beispiel würde die von **\$obj info methods** zurückgegebene Liste **tag configure** und **tag cget** enthalten, jedoch nicht **tag**, da **tag** nur implizit definiert ist. In Snit 2.2 sind hierarchische Methoden und Typmethoden nicht mehr einfach solche, deren Name mehrere Wörter enthält; im obigen Beispiel würde die von **\$obj info methods** zurückgegebene Liste **tag** enthalten, jedoch nicht **tag configure** oder **tag cget**.
+    In Snit 2.2 ist dies nicht mehr der Fall, und die „seltsame“ Art, hierarchische Methoden und Typmethoden aufzurufen, funktioniert nicht mehr.
 
-**•**
-: Die vierte Inkompatibilität ist auf eine neue Funktion zurückzuführen. Snit 2.2 verwendet den neuen Befehl **namespace path**, sodass der Code eines Typs jeden im übergeordneten Namespace des Typs definierten Befehl ohne Qualifizierung oder Import aufrufen kann.  Nehmen wir beispielsweise an, Sie haben ein Paket namens **mypackage**, das eine Reihe von Befehlen definiert, darunter einen Typ namens **::mypackage::mytype**.  Dank **namespace path** kann der Code des Typs jeden der anderen Befehle aufrufen, die in **::mypackage::** definiert sind. Dies ist äußerst praktisch. Es bedeutet jedoch auch, dass Befehle, die im übergeordneten Namespace „**::mypackage::**“ definiert sind, den Zugriff des Typs auf gleichnamige Befehle im globalen Namespace blockieren können. Dies kann zu Fehlern führen.  Beispielsweise enthält Tcllib einen Typ namens **::tie::std::file**.  Der Code dieses Typs ruft den Standard-Befehl **file** auf. Bei der Ausführung mit Snit 2.2 kam es zu einem Fehler – der Befehl des Typs, **::tie::std::file**, ist selbst ein Befehl im übergeordneten Namespace des Typs; statt also den Standardbefehl „**file**“ aufzurufen, rief der Typ sich selbst auf.
+- Die dritte Inkompatibilität ergibt sich aus der zweiten. In Snit 1.3 waren hierarchische Methoden ebenfalls einfache Methoden, deren Name aus mehreren Wörtern bestand. Infolgedessen gab **$obj info methods** die vollständigen Namen aller hierarchischen Methoden zurück.  Im obigen Beispiel würde die von **$obj info methods** zurückgegebene Liste **tag configure** und **tag cget** enthalten, jedoch nicht **tag**, da **tag** nur implizit definiert ist.
+
+    In Snit 2.2 sind hierarchische Methoden und Typmethoden nicht mehr einfach solche, deren Name mehrere Wörter enthält; im obigen Beispiel würde die von **$obj info methods** zurückgegebene Liste **tag** enthalten, jedoch nicht **tag configure** oder **tag cget**.
+
+- Die vierte Inkompatibilität ist auf eine neue Funktion zurückzuführen. Snit 2.2 verwendet den neuen Befehl **namespace path**, sodass der Code eines Typs jeden im übergeordneten Namespace des Typs definierten Befehl ohne Qualifizierung oder Import aufrufen kann.  Nehmen wir beispielsweise an, Sie haben ein Paket namens **mypackage**, das eine Reihe von Befehlen definiert, darunter einen Typ namens **::mypackage::mytype**.  Dank **namespace path** kann der Code des Typs jeden der anderen Befehle aufrufen, die in **::mypackage::** definiert sind.
+
+    Dies ist äußerst praktisch. Es bedeutet jedoch auch, dass Befehle, die im übergeordneten Namespace „**::mypackage::**“ definiert sind, den Zugriff des Typs auf gleichnamige Befehle im globalen Namespace blockieren können. Dies kann zu Fehlern führen.  Beispielsweise enthält Tcllib einen Typ namens **::tie::std::file**.  Der Code dieses Typs ruft den Standard-Befehl **file** auf. Bei der Ausführung mit Snit 2.2 kam es zu einem Fehler – der Befehl des Typs, **::tie::std::file**, ist selbst ein Befehl im übergeordneten Namespace des Typs; statt also den Standardbefehl „**file**“ aufzurufen, rief der Typ sich selbst auf.
 
 
 ## Gibt es weitere Unterschiede zwischen snit 1.x und snit 2.2?
 
 Ja.
 
-**•**
-: Der Aufruf von Methoden erfolgt deutlich schneller.
+- Der Aufruf von Methoden erfolgt deutlich schneller.
 
-**•**
-: Viele Fehlermeldungen und Stack-Traces sind übersichtlicher.
+- Viele Fehlermeldungen und Stack-Traces sind übersichtlicher.
 
-**•**
-: Das Pragma **-simpledispatch** ist veraltet und wird, falls angegeben, ignoriert. In Snit 1.x ersetzt **-simpledispatch** den Methodenaufruf durch einen schnelleren Mechanismus, wofür bestimmte Funktionen entfallen. Der Methodenaufruf in Snit 2.2 ist in allen Fällen noch schneller, sodass **-simpledispatch** nicht mehr benötigt wird.
+- Das Pragma **-simpledispatch** ist veraltet und wird, falls angegeben, ignoriert. In Snit 1.x ersetzt **-simpledispatch** den Methodenaufruf durch einen schnelleren Mechanismus, wofür bestimmte Funktionen entfallen. Der Methodenaufruf in Snit 2.2 ist in allen Fällen noch schneller, sodass **-simpledispatch** nicht mehr benötigt wird.
 
-**•**
-: In Snit 2.2 kann der Code eines Typs (Methoden, Typmethoden, usw.) Befehle aus dem übergeordneten Namespace des Typs aufrufen, ohne diese zu qualifizieren oder zu importieren; das heißt, der Code des Typs **::parentns::mytype** kann **::parentns::someproc** einfach als **someproc** aufrufen. Dies ist äußerst nützlich, wenn ein Typ als Teil eines größeren Pakets definiert ist und sich den übergeordneten Namespace mit dem Rest des Pakets teilt; es bedeutet, dass der Typ andere, vom Paket definierte Befehle ohne zusätzlichen Aufwand aufrufen kann. Diese Funktion basiert auf dem neuen Tcl 8.5-Befehl **namespace path**, weshalb sie für V1.x nicht implementiert wurde. In V1.x-Code lässt sich ein ähnliches Ergebnis erzielen, indem man
+- In Snit 2.2 kann der Code eines Typs (Methoden, Typmethoden, usw.) Befehle aus dem übergeordneten Namespace des Typs aufrufen, ohne diese zu qualifizieren oder zu importieren; das heißt, der Code des Typs **::parentns::mytype** kann **::parentns::someproc** einfach als **someproc** aufrufen.
+
+    Dies ist äußerst nützlich, wenn ein Typ als Teil eines größeren Pakets definiert ist und sich den übergeordneten Namespace mit dem Rest des Pakets teilt; es bedeutet, dass der Typ andere, vom Paket definierte Befehle ohne zusätzlichen Aufwand aufrufen kann.
+
+    Diese Funktion basiert auf dem neuen Tcl 8.5-Befehl **namespace path**, weshalb sie für V1.x nicht implementiert wurde. In V1.x-Code lässt sich ein ähnliches Ergebnis erzielen, indem man
+
+    ```
+    namespace import [namespace parent]::*
+    ```
+
+- in einem Typkonstruktor. Dies ist jedoch weniger nützlich, da dabei nur jene Befehle erfasst werden, die zum Zeitpunkt der Typdefinition bereits vom übergeordneten Namespace exportiert wurden.
 
 
-```
-namespace import [namespace parent]::*
-```
-
-: in einem Typkonstruktor. Dies ist jedoch weniger nützlich, da dabei nur jene Befehle erfasst werden, die zum Zeitpunkt der Typdefinition bereits vom übergeordneten Namespace exportiert wurden.
-
-
-# OBJEKTE
+# Objekte
 
 ## Was ist ein Objekt?
 
@@ -213,7 +209,7 @@ Ein Tk-Widget ist ein Objekt; es wird durch einen Tcl-Befehl dargestellt. Die Me
 
 ## Was ist ein abstrakter Datentyp?
 
-In der Informatik ist ein abstrakter Datentyp eine komplexe Datenstruktur zusammen mit einer Reihe von Operationen – ein Stapel, eine Warteschlange, ein binärer Baum usw. –, d. h., in moderner Terminologie ein Objekt.  In Systemen, die eine Form der Vererbung beinhalten, wird üblicherweise das Wort *Klasse* anstelle von *abstraktem Datentyp* verwendet; da Snit jedoch Vererbung nicht im herkömmlichen Sinne implementiert, erscheint das ältere Wort passender. Manchmal wird dies als *objektbasierte* Programmierung im Gegensatz zur objektorientierten Programmierung bezeichnet.  Hinweis: Sie können den Effekt der Vererbung mithilfe von **KOMPONENTEN** und **WEITERLEITUNG** auf einfache Weise erzielen.
+In der Informatik ist ein abstrakter Datentyp eine komplexe Datenstruktur zusammen mit einer Reihe von Operationen – ein Stapel, eine Warteschlange, ein binärer Baum usw. –, d. h., in moderner Terminologie ein Objekt.  In Systemen, die eine Form der Vererbung beinhalten, wird üblicherweise das Wort *Klasse* anstelle von *abstraktem Datentyp* verwendet; da Snit jedoch Vererbung nicht im herkömmlichen Sinne implementiert, erscheint das ältere Wort passender. Manchmal wird dies als *objektbasierte* Programmierung im Gegensatz zur objektorientierten Programmierung bezeichnet.  Hinweis: Sie können den Effekt der Vererbung mithilfe von [Komponenten] und [Weiterleitung] auf einfache Weise erzielen.
 
 In Snit ist ein *Typ* – ebenso wie in Tk – ein Befehl, der Instanzen – also Objekte – erstellt, die zu diesem Typ gehören. Die meisten Typen definieren eine Reihe von *Optionen*, die bei der Erstellung festgelegt werden können und in der Regel später geändert werden können.
 
@@ -227,25 +223,22 @@ Darüber hinaus ist eine *Instanz* ebenfalls ein Tcl-Befehl – ein Befehl, der 
 
 In diesem Beispiel ist „**text**“ der *Typ*-Befehl und „**.mytext**“ der *Instanz*-Befehl.
 
-In Snit werden Objekt-Unterbefehle im Allgemeinen als **INSTANZMETHODEN** bezeichnet.
+In Snit werden Objekt-Unterbefehle im Allgemeinen als [Instanzmethoden] bezeichnet.
 
 ## Welche Arten von abstrakten Datentypen bietet snit an?
 
 Mit Snit können Sie drei Arten von abstrakten Datentypen definieren:
 
-**•**
-: **snit::type**
+- [snit::type][snit]
 
-**•**
-: **snit::widget**
+- [snit::widget][snit]
 
-**•**
-: **snit::widgetadaptor**
+- [snit::widgetadaptor][snit]
 
 
 ## Was ist ein snit::type?
 
-Ein **snit::type** ist ein abstrakter Datentyp ohne grafische Benutzeroberfläche, z. B. ein Stapel oder eine Warteschlange. **snit::type**s werden mit dem Befehl **snit::type** definiert.  Wenn Sie beispielsweise ein Zwingerverwaltungssystem für einen Hundezüchter entwerfen würden, bräuchten Sie einen Typ „Hund“.
+Ein [snit::type][snit] ist ein abstrakter Datentyp ohne grafische Benutzeroberfläche, z. B. ein Stapel oder eine Warteschlange. [snit::type][snit]s werden mit dem Befehl [snit::type][snit] definiert.  Wenn Sie beispielsweise ein Zwingerverwaltungssystem für einen Hundezüchter entwerfen würden, bräuchten Sie einen Typ „Hund“.
 
 ```
 % snit::type dog {
@@ -257,19 +250,19 @@ Ein **snit::type** ist ein abstrakter Datentyp ohne grafische Benutzeroberfläch
 
 Diese Definition legt einen neuen Befehl fest (in diesem Fall **::dog**), mit dem „Hund“-Objekte definiert werden können.
 
-Eine Instanz von **snit::type** kann **INSTANZMETHODEN**, **INSTANZVARIABLEN**, **OPTIONEN** und **KOMPONENTEN** besitzen. Der Typ selbst kann **TYPMETHODEN**, **TYPVARIABLEN**, **TYPKOMPONENTEN** und **PROZEDUREN** besitzen.
+Eine Instanz von [snit::type][snit] kann [Instanzmethoden], [Instanzvariablen], [Optionen] und [Komponenten] besitzen. Der Typ selbst kann [Typmethoden], [Typvariablen], [Typkomponenten] und [Prozeduren] besitzen.
 
 ## Was ist ein snit::widget? Die Kurzfassung
 
-Ein **snit::widget** ist ein mit Snit erstelltes Tk-Megawidget; es ist einem **snit::type** sehr ähnlich.  Siehe **WIDGETS**.
+Ein [snit::widget][snit] ist ein mit Snit erstelltes Tk-Megawidget; es ist einem [snit::type][snit] sehr ähnlich.  Siehe [Widgets].
 
 ## Was ist ein snit::widgetadaptor? Die Kurzfassung
 
-Ein **snit::widgetadaptor** nutzt Snit, um einen bestehenden Widget-Typ (z. B. ein Tk-Label) zu umschließen und dessen Schnittstelle in geringerem oder größerem Umfang anzupassen. Es ist einem **snit::widget** sehr ähnlich. Siehe **WIDGET-ADAPTER**.
+Ein [snit::widgetadaptor][snit] nutzt Snit, um einen bestehenden Widget-Typ (z. B. ein Tk-Label) zu umschließen und dessen Schnittstelle in geringerem oder größerem Umfang anzupassen. Es ist einem [snit::widget][snit] sehr ähnlich. Siehe [Widget-Adapter].
 
 ## Wie erstelle ich eine Instanz von snit::type?
 
-Sie erstellen eine Instanz von „**snit::type**“, indem Sie den Namen der neuen Instanz an die create-Methode des Typs übergeben. Im folgenden Beispiel erstellen wir ein „**dog**“-Objekt mit dem Namen „**spot**“.
+Sie erstellen eine Instanz von „[snit::type][snit]“, indem Sie den Namen der neuen Instanz an die create-Methode des Typs übergeben. Im folgenden Beispiel erstellen wir ein „**dog**“-Objekt mit dem Namen „**spot**“.
 
 ```
 % snit::type dog {
@@ -281,7 +274,7 @@ Sie erstellen eine Instanz von „**snit::type**“, indem Sie den Namen der neu
 %
 ```
 
-Im Allgemeinen kann der Name der Methode „**create**“ weggelassen werden, solange der Name der Instanz nicht mit einer der definierten **TYPMETHODEN** in Konflikt steht. (Siehe **TYPKOMPONENTEN** für den Sonderfall, in dem dies nicht funktioniert.) Das folgende Beispiel ist daher identisch mit dem vorherigen Beispiel:
+Im Allgemeinen kann der Name der Methode „**create**“ weggelassen werden, solange der Name der Instanz nicht mit einer der definierten [Typmethoden] in Konflikt steht. (Siehe [Typkomponenten] für den Sonderfall, in dem dies nicht funktioniert.) Das folgende Beispiel ist daher identisch mit dem vorherigen Beispiel:
 
 ```
 % snit::type dog {
@@ -295,7 +288,7 @@ Im Allgemeinen kann der Name der Methode „**create**“ weggelassen werden, so
 
 In diesem Dokument wird in der Regel die kürzere Form verwendet.
 
-Wenn der Typ **dog** **OPTIONEN** definiert, können diesen in der Regel bei der Erstellung Standardwerte zugewiesen werden:
+Wenn der Typ **dog** [Optionen] definiert, können diesen in der Regel bei der Erstellung Standardwerte zugewiesen werden:
 
 ```
 % snit::type dog {
@@ -368,7 +361,7 @@ Das Schlüsselwort „**%AUTO%**“ kann in eine längere Zeichenfolge eingebett
 
 Der Tcl-Befehl „**rename**“ benennt andere Befehle um. Es ist in Tcl eine gängige Vorgehensweise, einen bestehenden Befehl zu ändern, indem man ihn umbenennt und einen neuen Befehl mit dem ursprünglichen Namen definiert; der neue Befehl ruft in der Regel den umbenannten Befehl auf.
 
-Befehle vom Typ „**snit::type**“ sollten jedoch niemals umbenannt werden; dies würde die Verbindung zwischen dem Typ und seinen Objekten unterbrechen.
+Befehle vom Typ „[snit::type][snit]“ sollten jedoch niemals umbenannt werden; dies würde die Verbindung zwischen dem Typ und seinen Objekten unterbrechen.
 
 ## Können Objekte umbenannt werden?
 
@@ -376,43 +369,36 @@ Der Tcl-Befehl „**rename**“ benennt andere Befehle um. Es ist in Tcl eine g�
 
 Alle Snit-Objekte (einschließlich *Widgets* und *Widgetadapter*) können umbenannt werden, doch diese Flexibilität hat einige Konsequenzen:
 
-**•**
-: In einer Instanzmethode enthält das implizite Argument **self** stets den aktuellen Namen des Objekts, sodass Instanzmethoden andere Instanzmethoden stets über **\$self** aufrufen können.
+- In einer Instanzmethode enthält das implizite Argument **self** stets den aktuellen Namen des Objekts, sodass Instanzmethoden andere Instanzmethoden stets über **$self** aufrufen können.
 
-**•**
-: Wenn das Objekt umbenannt wird, ändert sich der Wert von **\$self**. Verwenden Sie daher **\$self** nicht für etwas, das bei einer Änderung von **\$self** nicht mehr funktionieren würde. Übergeben Sie beispielsweise keinen Rückrufbefehl wie folgt an ein anderes Objekt:
+- Wenn das Objekt umbenannt wird, ändert sich der Wert von **$self**. Verwenden Sie daher **$self** nicht für etwas, das bei einer Änderung von **$self** nicht mehr funktionieren würde. Übergeben Sie beispielsweise keinen Rückrufbefehl wie folgt an ein anderes Objekt:
 
+    ```
+        .btn configure -command [list $self ButtonPress]
+    ```
 
-```
-    .btn configure -command [list $self ButtonPress]
-```
+- Es wird eine Fehlermeldung angezeigt, wenn **.btn** Ihren Befehl aufruft, nachdem Ihr Objekt umbenannt wurde.
 
-: Es wird eine Fehlermeldung angezeigt, wenn **.btn** Ihren Befehl aufruft, nachdem Ihr Objekt umbenannt wurde.
+- Stattdessen sollte Ihr Objekt seinen Rückrufbefehl wie folgt definieren:
 
-**•**
-: Stattdessen sollte Ihr Objekt seinen Rückrufbefehl wie folgt definieren:
+    ```
+        .btn configure -command [mymethod ButtonPress]
+    ```
 
+- Der Befehl [mymethod][snit] gibt einen Code zurück, der die gewünschte Methode sicher aufruft; der Aufrufer der Rückruffunktion kann wie gewohnt zusätzliche Argumente an das Ende des Befehls anhängen.
 
-```
-    .btn configure -command [mymethod ButtonPress]
-```
+- Jedes Objekt verfügt über einen privaten Namespace; der Name dieses Namespaces steht in Methodenkörpern usw. als Wert des impliziten Arguments **selfns** zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant.  Verwenden Sie **$selfns** anstelle von **$self**, wenn Sie ein eindeutiges Kennzeichen zur Identifizierung des Objekts benötigen.
 
-: Der Befehl **mymethod** gibt einen Code zurück, der die gewünschte Methode sicher aufruft; der Aufrufer der Rückruffunktion kann wie gewohnt zusätzliche Argumente an das Ende des Befehls anhängen.
-
-**•**
-: Jedes Objekt verfügt über einen privaten Namespace; der Name dieses Namespaces steht in Methodenkörpern usw. als Wert des impliziten Arguments **selfns** zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant.  Verwenden Sie **\$selfns** anstelle von **\$self**, wenn Sie ein eindeutiges Kennzeichen zur Identifizierung des Objekts benötigen.
-
-**•**
-: Wenn der Befehl einer „**snit::widget**“-Instanz umbenannt wird, bleibt der Name seines Tk-Fensters unverändert – und ist nach wie vor von großer Bedeutung. Folglich steht der Name des Tk-Fensters in Methoden als Wert des impliziten Arguments „**win**“ zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant. Beim Erstellen von untergeordneten Fenstern empfiehlt es sich, **\$win.child** anstelle von **\$self.child** als Namen für das untergeordnete Fenster zu verwenden.
+- Wenn der Befehl einer „[snit::widget][snit]“-Instanz umbenannt wird, bleibt der Name seines Tk-Fensters unverändert – und ist nach wie vor von großer Bedeutung. Folglich steht der Name des Tk-Fensters in Methoden als Wert des impliziten Arguments „**win**“ zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant. Beim Erstellen von untergeordneten Fenstern empfiehlt es sich, **$win.child** anstelle von **$self.child** als Namen für das untergeordnete Fenster zu verwenden.
 
 
 ## Wie kann ich ein Snit-Objekt löschen?
 
 Jedes Snit-Objekt beliebigen Typs kann gelöscht werden, indem man es mithilfe des Tcl-Befehls **rename** in die leere Zeichenfolge umbenennt.
 
-Snit-Megawidgets (d. h. Instanzen von **snit::widget** und **snit::widgetadaptor**) können wie jedes andere Widget zerstört werden: durch Verwendung des Tk-Befehls **destroy** auf das Widget selbst oder auf eines seiner übergeordneten Elemente in der Fensterhierarchie.
+Snit-Megawidgets (d. h. Instanzen von [snit::widget][snit] und [snit::widgetadaptor][snit]) können wie jedes andere Widget zerstört werden: durch Verwendung des Tk-Befehls **destroy** auf das Widget selbst oder auf eines seiner übergeordneten Elemente in der Fensterhierarchie.
 
-Jede Instanz von **snit::type** verfügt über eine Methode namens **destroy**:
+Jede Instanz von [snit::type][snit] verfügt über eine Methode namens **destroy**:
 
 ```
 % snit::type dog { ... }
@@ -444,7 +430,7 @@ invalid command name "dog"
 %
 ```
 
-# INSTANZMETHODEN
+# Instanzmethoden
 
 ## Was ist eine Instanzmethode?
 
@@ -470,7 +456,7 @@ Instanzmethoden werden in der Typdefinition mithilfe der Anweisung **method** de
 
 Ein Hund kann bellen und er kann Dinge jagen.
 
-Die Anweisung „**method**“ sieht genauso aus wie ein normales Tcl-„**proc**“, mit dem Unterschied, dass sie in einer „**snit::type**“-Definition vorkommt.  Beachten Sie, dass jede Instanzmethode ein implizites Argument namens **self** erhält; dieses Argument enthält den Namen des Objekts.  (Weitere Informationen zu impliziten Methodenargumenten finden Sie weiter unten.)
+Die Anweisung „**method**“ sieht genauso aus wie ein normales Tcl-„[proc][snit]“, mit dem Unterschied, dass sie in einer „[snit::type][snit]“-Definition vorkommt.  Beachten Sie, dass jede Instanzmethode ein implizites Argument namens **self** erhält; dieses Argument enthält den Namen des Objekts.  (Weitere Informationen zu impliziten Methodenargumenten finden Sie weiter unten.)
 
 ## Wie ruft ein Client eine Instanzmethode auf?
 
@@ -576,7 +562,7 @@ Nehmen wir beispielsweise an, unsere simulierten Hunde bellen ausschließlich al
 
 ## Gibt es Einschränkungen hinsichtlich der Argumente von Instanzmethoden?
 
-Argumentlisten von Methoden werden genauso definiert wie normale Argumentlisten von Tcl-**proc**s; insbesondere können sie Argumente mit Standardwerten und das Argument **args** enthalten.
+Argumentlisten von Methoden werden genauso definiert wie normale Argumentlisten von Tcl-[proc][snit]s; insbesondere können sie Argumente mit Standardwerten und das Argument **args** enthalten.
 
 Jede Methode verfügt jedoch zusätzlich zu den explizit definierten Argumenten über eine Reihe impliziter Argumente, die von Snit bereitgestellt werden. Die Namen dieser impliziten Argumente dürfen nicht zur Benennung expliziter Argumente verwendet werden.
 
@@ -584,7 +570,7 @@ Jede Methode verfügt jedoch zusätzlich zu den explizit definierten Argumenten 
 
 Die Argumente, die implizit an jede Methode übergeben werden, lauten **type**, **selfns**, **win** und **self**.
 
-## Was ist \$type?
+## Was ist $type?
 
 Das implizite Argument **type** enthält den vollqualifizierten Namen des Objekttyps:
 
@@ -602,11 +588,11 @@ Das implizite Argument **type** enthält den vollqualifizierten Namen des Objekt
 %
 ```
 
-## Was ist \$self?
+## Was ist $self?
 
 Das implizite Argument **self** enthält den vollqualifizierten Namen des Objekts.
 
-Wenn der Befehl des Objekts umbenannt wird, ändert sich „**\$self**“ bei nachfolgenden Aufrufen entsprechend. Daher sollten Sie in Ihrem Code nicht davon ausgehen, dass „**\$self**“ eine Konstante ist, es sei denn, Sie wissen mit Sicherheit, dass das Objekt niemals umbenannt wird.
+Wenn der Befehl des Objekts umbenannt wird, ändert sich „**$self**“ bei nachfolgenden Aufrufen entsprechend. Daher sollten Sie in Ihrem Code nicht davon ausgehen, dass „**$self**“ eine Konstante ist, es sei denn, Sie wissen mit Sicherheit, dass das Objekt niemals umbenannt wird.
 
 ```
 % snit::type thing {
@@ -625,9 +611,9 @@ Wenn der Befehl des Objekts umbenannt wird, ändert sich „**\$self**“ bei na
 %
 ```
 
-## Was ist \$selfns?
+## Was ist $selfns?
 
-Jedes Snit-Objekt verfügt über einen privaten Namespace, in dem seine **INSTANZVARIABLEN** und **OPTIONEN** gespeichert werden.  Das implizite Argument **selfns** enthält den Namen dieses Namespaces; sein Wert ändert sich nie und bleibt während der gesamten Lebensdauer des Objekts konstant, selbst wenn sich der Name des Objekts ändert:
+Jedes Snit-Objekt verfügt über einen privaten Namespace, in dem seine [Instanzvariablen] und [Optionen] gespeichert werden.  Das implizite Argument **selfns** enthält den Namen dieses Namespaces; sein Wert ändert sich nie und bleibt während der gesamten Lebensdauer des Objekts konstant, selbst wenn sich der Name des Objekts ändert:
 
 ```
 % snit::type thing {
@@ -648,13 +634,13 @@ Jedes Snit-Objekt verfügt über einen privaten Namespace, in dem seine **INSTAN
 
 Das obige Beispiel verdeutlicht, wie Snit den privaten Namespace einer Instanz benennt; Sie sollten jedoch keinen Code schreiben, der von dieser spezifischen Namenskonvention abhängt, da sich diese in zukünftigen Versionen ändern könnte.
 
-## Was ist \$win?
+## Was ist $win?
 
-Das implizite Argument **win** ist für alle Snit-Methoden definiert, obwohl es eigentlich nur für die Methoden von Widgets und Widget-Adaptern sinnvoll ist (siehe **WIDGETS** und **WIDGET-ADAPTER**).  **\$win** ist schlichtweg der ursprüngliche Name des Objekts, unabhängig davon, ob es umbenannt wurde oder nicht. Bei Widgets und Widget-Adaptern ist es daher auch der Name eines Tk-Fensters.
+Das implizite Argument **win** ist für alle Snit-Methoden definiert, obwohl es eigentlich nur für die Methoden von Widgets und Widget-Adaptern sinnvoll ist (siehe [Widgets] und [Widget-Adapter]).  **$win** ist schlichtweg der ursprüngliche Name des Objekts, unabhängig davon, ob es umbenannt wurde oder nicht. Bei Widgets und Widget-Adaptern ist es daher auch der Name eines Tk-Fensters.
 
-Wenn ein **snit::widgetadaptor** verwendet wird, um die Schnittstelle eines Widgets oder Megawidgets anzupassen, muss es den ursprünglichen Befehl des Widgets umbenennen und durch einen eigenen ersetzen.
+Wenn ein [snit::widgetadaptor][snit] verwendet wird, um die Schnittstelle eines Widgets oder Megawidgets anzupassen, muss es den ursprünglichen Befehl des Widgets umbenennen und durch einen eigenen ersetzen.
 
-Wenn Sie also **win** verwenden, wann immer der Name des Tk-Fensters benötigt wird, bedeutet dies, dass ein **snit::widget** oder **snit::widgetadaptor** durch einen **snit::widgetadaptor** angepasst werden kann.  Weitere Informationen finden Sie unter **WIDGETS**.
+Wenn Sie also **win** verwenden, wann immer der Name des Tk-Fensters benötigt wird, bedeutet dies, dass ein [snit::widget][snit] oder [snit::widgetadaptor][snit] durch einen [snit::widgetadaptor][snit] angepasst werden kann.  Weitere Informationen finden Sie unter [Widgets].
 
 ## Wie übergebe ich eine Instanzmethode als Rückruffunktion?
 
@@ -680,9 +666,9 @@ Im typischen Tcl-Stil verwenden wir eine Rückruffunktion, um zwei unabhängige 
 %
 ```
 
-(Hinweis: In diesem Beispiel wird aus unserem **dog** ein **snit::widget**, da es über GUI-Funktionen verfügt. Weitere Informationen finden Sie unter **WIDGETS**.)  Wenn wir also ein **dog** mit dem Namen **.spot** erstellen, wird dadurch eine Tk-Schaltfläche mit dem Namen **.spot.barkbtn** erstellt; beim Drücken ruft die Schaltfläche **\$self bark** auf.
+(Hinweis: In diesem Beispiel wird aus unserem **dog** ein [snit::widget][snit], da es über GUI-Funktionen verfügt. Weitere Informationen finden Sie unter [Widgets].)  Wenn wir also ein **dog** mit dem Namen **.spot** erstellen, wird dadurch eine Tk-Schaltfläche mit dem Namen **.spot.barkbtn** erstellt; beim Drücken ruft die Schaltfläche **$self bark** auf.
 
-Nun, das wird funktionieren – vorausgesetzt, **.spot** wird niemals umbenannt.  Aber ist das Umbenennen von Widgets nicht ungewöhnlich? In der Tat – es sei denn, **.spot** ist die Hull-Komponente eines **snit::widgetadaptor**.  Wenn dies der Fall ist, wird es umbenannt, und „**.spot**“ wird zum Namen des Objekts „**snit::widgetadaptor**“.  Wenn die Schaltfläche gedrückt wird, wird der Befehl **\$self bark** von **snit::widgetadaptor** verarbeitet, was möglicherweise das Richtige bewirkt – oder auch nicht.
+Nun, das wird funktionieren – vorausgesetzt, **.spot** wird niemals umbenannt.  Aber ist das Umbenennen von Widgets nicht ungewöhnlich? In der Tat – es sei denn, **.spot** ist die Hull-Komponente eines [snit::widgetadaptor][snit].  Wenn dies der Fall ist, wird es umbenannt, und „**.spot**“ wird zum Namen des Objekts „[snit::widgetadaptor][snit]“.  Wenn die Schaltfläche gedrückt wird, wird der Befehl **$self bark** von [snit::widgetadaptor][snit] verarbeitet, was möglicherweise das Richtige bewirkt – oder auch nicht.
 
 Es gibt eine sicherere Vorgehensweise, und die sieht folgendermaßen aus:
 
@@ -698,15 +684,15 @@ Es gibt eine sicherere Vorgehensweise, und die sieht folgendermaßen aus:
 %
 ```
 
-Der Befehl **mymethod** akzeptiert eine beliebige Anzahl von Argumenten und kann wie **list** zum Erstellen eines Rückrufbefehls verwendet werden; der einzige Unterschied besteht darin, dass **mymethod** eine Form des Befehls zurückgibt, die sich auch dann nicht ändert, wenn sich der Name der Instanz ändert.
+Der Befehl [mymethod][snit] akzeptiert eine beliebige Anzahl von Argumenten und kann wie **list** zum Erstellen eines Rückrufbefehls verwendet werden; der einzige Unterschied besteht darin, dass [mymethod][snit] eine Form des Befehls zurückgibt, die sich auch dann nicht ändert, wenn sich der Name der Instanz ändert.
 
-Andererseits möchten Sie vielleicht lieber zulassen, dass ein Widget-Adapter eine Methode überschreibt, sodass Ihr umbenanntes Widget die Methode des Widget-Adapters anstelle seiner eigenen aufruft.  In diesem Fall wird die Verwendung von **\[list \$self bark\]** das gewünschte Ergebnis erzielen … allerdings handelt es sich hierbei um eine Technik, die nur unter sorgfältig kontrollierten Umständen angewendet werden sollte.
+Andererseits möchten Sie vielleicht lieber zulassen, dass ein Widget-Adapter eine Methode überschreibt, sodass Ihr umbenanntes Widget die Methode des Widget-Adapters anstelle seiner eigenen aufruft.  In diesem Fall wird die Verwendung von **\[list $self bark\]** das gewünschte Ergebnis erzielen … allerdings handelt es sich hierbei um eine Technik, die nur unter sorgfältig kontrollierten Umständen angewendet werden sollte.
 
 ## Wie leite ich Instanzmethoden an eine Komponente weiter?
 
-Siehe **WEITERLEITUNG**.
+Siehe [Weiterleitung].
 
-# INSTANZVARIABLEN
+# Instanzvariablen
 
 ## Was ist eine Instanzvariable?
 
@@ -714,7 +700,7 @@ Eine Instanzvariable ist eine private Variable, die einem bestimmten Snit-Objekt
 
 ## Wie wird eine skalare Instanzvariable definiert?
 
-Skalare Instanzvariablen werden in der Typdefinition mithilfe der Anweisung **variable** definiert. Sie können ihnen einfach einen Namen geben oder sie mit einem Wert initialisieren:
+Skalare Instanzvariablen werden in der Typdefinition mithilfe der Anweisung [variable][snit] definiert. Sie können ihnen einfach einen Namen geben oder sie mit einem Wert initialisieren:
 
 ```
 snit::type mytype {
@@ -725,7 +711,7 @@ snit::type mytype {
 
 ## Wie wird eine Array-Instanzvariable definiert?
 
-Array-Instanzvariablen werden ebenfalls in der Typdefinition mithilfe des Befehls **variable** definiert. Sie können diese gleichzeitig initialisieren, indem Sie die Option **-array** angeben:
+Array-Instanzvariablen werden ebenfalls in der Typdefinition mithilfe des Befehls [variable][snit] definiert. Sie können diese gleichzeitig initialisieren, indem Sie die Option **-array** angeben:
 
 ```
 snit::type mytype {
@@ -789,7 +775,7 @@ Auf diese Weise können Sie sicherstellen, dass in jeder Methode nur die erforde
 
 In Tk ist es üblich, einem Widget einen Namen einer Variablen zu übergeben; beispielsweise verfügen Tk-Label-Widgets über die Option „**-textvariable**“, die den Namen der Variablen angibt, die den Text des Widgets enthält.  Dadurch kann das Programm den Wert des Labels aktualisieren, indem es der Variable einfach einen neuen Wert zuweist.
 
-Wenn Sie den Namen der Instanzvariablen naiv an das Label-Widget übergeben, wird Sie das Ergebnis verwirren; Tk geht davon aus, dass der Name eine globale Variable bezeichnet. Stattdessen müssen Sie einen vollqualifizierten Variablennamen angeben.  Innerhalb einer Instanzmethode oder eines Konstruktors können Sie den Namen der Variablen mithilfe des Befehls **myvar** vollständig qualifizieren:
+Wenn Sie den Namen der Instanzvariablen naiv an das Label-Widget übergeben, wird Sie das Ergebnis verwirren; Tk geht davon aus, dass der Name eine globale Variable bezeichnet. Stattdessen müssen Sie einen vollqualifizierten Variablennamen angeben.  Innerhalb einer Instanzmethode oder eines Konstruktors können Sie den Namen der Variablen mithilfe des Befehls [myvar][snit] vollständig qualifizieren:
 
 ```
 snit::widget mywidget {
@@ -807,15 +793,15 @@ snit::widget mywidget {
 
 ## Wie mache ich eine Instanzvariable öffentlich?
 
-In der Praxis tun Sie das nicht. Stattdessen implementieren Sie öffentliche Variablen als **OPTIONEN**. Alternativ können Sie **INSTANZMETHODEN** schreiben, um den Wert der Variablen festzulegen und abzurufen.
+In der Praxis tun Sie das nicht. Stattdessen implementieren Sie öffentliche Variablen als [Optionen]. Alternativ können Sie [Instanzmethoden] schreiben, um den Wert der Variablen festzulegen und abzurufen.
 
-# OPTIONEN
+# Optionen
 
 ## Was ist eine Option?
 
 Die Optionen eines Typs entsprechen dem, was in anderen objektorientierten Sprachen als öffentliche Membervariablen oder Eigenschaften bezeichnet wird: Es handelt sich um Werte, die von den Clients eines Objekts abgerufen und (in der Regel) gesetzt werden können.
 
-Die Implementierung von Optionen in Snit folgt ziemlich genau dem Tk-Modell, mit der Ausnahme, dass **snit::type**-Objekte in der Regel nicht mit der **TK-OPTIONSDATENBANK** interagieren; Objekte vom Typ **snit::widget** und **snit::widgetadaptor** hingegen tun dies stets.
+Die Implementierung von Optionen in Snit folgt ziemlich genau dem Tk-Modell, mit der Ausnahme, dass [snit::type][snit]-Objekte in der Regel nicht mit der [Tk-Optionsdatenbank] interagieren; Objekte vom Typ [snit::widget][snit] und [snit::widgetadaptor][snit] hingegen tun dies stets.
 
 ## Wie definiere ich eine Option?
 
@@ -843,7 +829,7 @@ snit::type dog {
 }
 ```
 
-Wenn kein Wert für „**-default**“ festgelegt wird, ist der Standardwert der Option eine leere Zeichenkette (siehe jedoch **TK-OPTIONSDATENBANK**).
+Wenn kein Wert für „**-default**“ festgelegt wird, ist der Standardwert der Option eine leere Zeichenkette (siehe jedoch [Tk-Optionsdatenbank]).
 
 In der Snit-Manpage werden Optionen wie diese als „lokal definierte“ Optionen bezeichnet.
 
@@ -861,7 +847,7 @@ Es ist üblich, dass der Client bei der Erstellung eines Objekts nach dem Namen 
 
 **::spot** ist also ein reinrassiger Beagle; **::fido** ist ein typischer Mischling, doch seine Besitzer kümmern sich offensichtlich gut um ihn, da er geimpft ist.
 
-*Hinweis:* Wenn der Typ einen Konstruktor definiert, kann er eine andere Syntax zur Objekterstellung festlegen. Weitere Informationen finden Sie unter **KONSTRUKTOREN**.
+*Hinweis:* Wenn der Typ einen Konstruktor definiert, kann er eine andere Syntax zur Objekterstellung festlegen. Weitere Informationen finden Sie unter [Konstruktoren].
 
 ## Wie kann ein Client den Wert einer Option abrufen?
 
@@ -948,7 +934,7 @@ Alternativ stellt Snit eine integrierte Array-Instanzvariable namens **options**
     }
 ```
 
-Wie Sie sehen können, erfordert die Verwendung der Variablen **options** deutlich weniger Tipparbeit und ist die übliche Vorgehensweise. Sollten Sie jedoch **-configuremethod** oder **-cgetmethod** (in den folgenden Antworten beschrieben) verwenden, möchten Sie möglicherweise dennoch die Methoden **configure** und **cget** verwenden, um sicherzustellen, dass alle von Ihnen implementierten speziellen Verarbeitungsschritte auch tatsächlich ausgeführt werden.  Wenn die Option zudem an eine Komponente weitergeleitet wurde, sind **configure** und **cget** die einzige Möglichkeit, darauf zuzugreifen, ohne direkt auf die Komponente zuzugreifen. Weitere Informationen finden Sie unter **WEITERLEITUNG**.
+Wie Sie sehen können, erfordert die Verwendung der Variablen **options** deutlich weniger Tipparbeit und ist die übliche Vorgehensweise. Sollten Sie jedoch **-configuremethod** oder **-cgetmethod** (in den folgenden Antworten beschrieben) verwenden, möchten Sie möglicherweise dennoch die Methoden **configure** und **cget** verwenden, um sicherzustellen, dass alle von Ihnen implementierten speziellen Verarbeitungsschritte auch tatsächlich ausgeführt werden.  Wenn die Option zudem an eine Komponente weitergeleitet wurde, sind **configure** und **cget** die einzige Möglichkeit, darauf zuzugreifen, ohne direkt auf die Komponente zuzugreifen. Weitere Informationen finden Sie unter [Weiterleitung].
 
 ## Wie kann ich eine Option auf „Nur-Lesen“ setzen?
 
@@ -1048,7 +1034,7 @@ Hinweis: Dieselbe **-validatemethod** kann zur Validierung einer beliebigen Anza
 
 Jede Methode kann als **-validatemethod** fungieren, sofern sie zwei Argumente entgegennimmt: den Namen der Option und den neuen Wert der Option.
 
-# TYPVARIABLEN
+# Typvariablen
 
 ## Was ist eine Typvariable?
 
@@ -1056,7 +1042,7 @@ Eine Typvariable ist eine private Variable, die einem Snit-Typ und nicht einer b
 
 ## Wie wird eine skalare Typvariable definiert?
 
-Skalare Typvariablen werden in der Typdefinition mithilfe der Anweisung **typevariable** definiert. Sie können ihnen einfach einen Namen geben oder sie mit einem Wert initialisieren:
+Skalare Typvariablen werden in der Typdefinition mithilfe der Anweisung [typevariable][snit] definiert. Sie können ihnen einfach einen Namen geben oder sie mit einem Wert initialisieren:
 
 ```
 snit::type mytype {
@@ -1069,7 +1055,7 @@ Jedes Objekt vom Typ **mytype** hat nun Zugriff auf eine einzelne Variable namen
 
 ## Wie wird eine Typvariable mit Array-Wert definiert?
 
-Typvariablen mit Array-Wert werden ebenfalls mit dem Befehl **typevariable** definiert; um sie zu initialisieren, fügen Sie die Option **-array** hinzu:
+Typvariablen mit Array-Wert werden ebenfalls mit dem Befehl [typevariable][snit] definiert; um sie zu initialisieren, fügen Sie die Option **-array** hinzu:
 
 ```
 snit::type mytype {
@@ -1087,19 +1073,19 @@ Variablen existieren erst dann wirklich, wenn ihnen Werte zugewiesen werden. Wen
 
 ## Gibt es Einschränkungen hinsichtlich der Namen von Typvariablen?
 
-Für Namen von Typvariablen gelten dieselben Einschränkungen wie für Namen von **INSTANZVARIABLEN**.
+Für Namen von Typvariablen gelten dieselben Einschränkungen wie für Namen von [Instanzvariablen].
 
 ## Muss ich meine Typvariablen in meinen Methoden deklarieren?
 
-Nein. Sobald Sie eine Typvariable in der Typdefinition definiert haben, kann diese in **INSTANZMETHODEN** oder **TYPMETHODEN** ohne Deklaration verwendet werden. Dies weicht von der üblichen Tcl-Praxis ab, bei der alle nicht-lokalen Variablen in einer Prozedur deklariert werden müssen.
+Nein. Sobald Sie eine Typvariable in der Typdefinition definiert haben, kann diese in [Instanzmethoden] oder [Typmethoden] ohne Deklaration verwendet werden. Dies weicht von der üblichen Tcl-Praxis ab, bei der alle nicht-lokalen Variablen in einer Prozedur deklariert werden müssen.
 
-Typvariablen unterliegen denselben Kompromissen zwischen Geschwindigkeit und Lesbarkeit wie Instanzvariablen; siehe **Muss ich meine Instanzvariablen in meinen Methoden deklarieren?**
+Typvariablen unterliegen denselben Kompromissen zwischen Geschwindigkeit und Lesbarkeit wie Instanzvariablen; siehe [Muss ich meine Instanzvariablen in meinen Methoden deklarieren?]
 
 ## Wie übergebe ich den Namen einer Typvariablen an ein anderes Objekt?
 
 In Tk ist es üblich, einem Widget einen Namen einer Variablen zu übergeben; beispielsweise verfügen Tk-Label-Widgets über die Option „**-textvariable**“, die den Namen der Variablen angibt, die den Text des Widgets enthält.  Dadurch kann das Programm den Wert des Labels aktualisieren, indem es der Variable einfach einen neuen Wert zuweist.
 
-Wenn Sie dem Label-Widget naiv einen Typvariablennamen übergeben, wird Sie das Ergebnis verwirren; Tk geht davon aus, dass der Name eine globale Variable bezeichnet. Stattdessen müssen Sie einen vollständig qualifizierten Variablennamen angeben.  Innerhalb einer Instanzmethode oder eines Konstruktors können Sie den Namen der Typvariablen mithilfe des Befehls **mytypevar** vollständig qualifizieren:
+Wenn Sie dem Label-Widget naiv einen Typvariablennamen übergeben, wird Sie das Ergebnis verwirren; Tk geht davon aus, dass der Name eine globale Variable bezeichnet. Stattdessen müssen Sie einen vollständig qualifizierten Variablennamen angeben.  Innerhalb einer Instanzmethode oder eines Konstruktors können Sie den Namen der Typvariablen mithilfe des Befehls [mytypevar][snit] vollständig qualifizieren:
 
 ```
 snit::widget mywidget {
@@ -1117,7 +1103,7 @@ snit::widget mywidget {
 
 ## Wie mache ich eine Typvariable öffentlich?
 
-Dafür gibt es zwei Möglichkeiten. Die bevorzugte Vorgehensweise besteht darin, zwei **TYPMETHODEN** zu schreiben, um den Wert der Typvariablen festzulegen und abzufragen.
+Dafür gibt es zwei Möglichkeiten. Die bevorzugte Vorgehensweise besteht darin, zwei [Typmethoden] zu schreiben, um den Wert der Typvariablen festzulegen und abzufragen.
 
 Typvariablen werden im Namespace des Typs gespeichert, der denselben Namen wie der Typ selbst trägt. Daher können Sie den Namen der Typvariablen auch in Ihrer Dokumentation veröffentlichen, damit Clients direkt darauf zugreifen können. Zum Beispiel:
 
@@ -1129,7 +1115,7 @@ snit::type mytype {
 set ::mytype::myvariable "New Value"
 ```
 
-# TYPMETHODEN
+# Typmethoden
 
 ## Was ist eine Typmethode?
 
@@ -1152,7 +1138,7 @@ snit::type dog {
 
 Angenommen, der Typ „**dog**“ verwaltet eine Liste mit den Namen der Hunde, die über einen Stammbaum verfügen. Die Typmethode **pedigreedDogs** gibt diese Liste zurück.
 
-Die Anweisung „**typemethod**“ sieht genauso aus wie eine normale Tcl-Anweisung „**proc**“, mit dem Unterschied, dass sie in einer **snit::type**-Definition vorkommt. Beachten Sie, dass jede Typmethode ein implizites Argument namens **type** erhält, das den vollqualifizierten Typnamen enthält.
+Die Anweisung „**typemethod**“ sieht genauso aus wie eine normale Tcl-Anweisung „[proc][snit]“, mit dem Unterschied, dass sie in einer [snit::type][snit]-Definition vorkommt. Beachten Sie, dass jede Typmethode ein implizites Argument namens **type** erhält, das den vollqualifizierten Typnamen enthält.
 
 ## Wie ruft ein Client eine Typmethode auf?
 
@@ -1188,17 +1174,17 @@ Manchmal ist es sinnvoll, private Typmethoden zu definieren, d. h. Typmethoden
 
 Snit sieht keine Zugriffskontrolle für Typmethoden vor; gemäß Konvention beginnen die Namen öffentlicher Methoden mit einem Kleinbuchstaben, während die Namen privater Methoden mit einem Großbuchstaben beginnen.
 
-Alternativ kann ein Snit **proc** als private Typmethode verwendet werden; siehe **PROZEDUREN**.
+Alternativ kann ein Snit [proc][snit] als private Typmethode verwendet werden; siehe [Prozeduren].
 
 ## Gibt es Einschränkungen hinsichtlich der Argumente von Typmethoden?
 
 Argumentlisten für Methoden werden genau wie normale Argumentlisten für Tcl-Prozeduren definiert; insbesondere können sie Argumente mit Standardwerten sowie das Argument **args** enthalten.
 
-Jede Typmethode wird jedoch mit einem impliziten Argument namens **type** aufgerufen, das den Namen des Typbefehls enthält. Darüber hinaus sollten Typmethoden gemäß der Konvention die Verwendung von Namen vermeiden, die implizit für **INSTANZMETHODEN** definiert sind.
+Jede Typmethode wird jedoch mit einem impliziten Argument namens **type** aufgerufen, das den Namen des Typbefehls enthält. Darüber hinaus sollten Typmethoden gemäß der Konvention die Verwendung von Namen vermeiden, die implizit für [Instanzmethoden] definiert sind.
 
 ## Wie ruft eine Instanz- oder Typmethode eine Typmethode auf?
 
-Wenn eine Instanz- oder Typmethode eine Typmethode aufrufen muss, sollte sie hierfür **\$type** verwenden:
+Wenn eine Instanz- oder Typmethode eine Typmethode aufrufen muss, sollte sie hierfür **$type** verwenden:
 
 ```
 snit::type dog {
@@ -1220,21 +1206,21 @@ button .btn -text "Pedigrees" -command [list dog printPedigrees]
 pack .btn
 ```
 
-Alternativ können Sie aus einer Methode oder einer Typmethode den Befehl **mytypemethod** verwenden, genauso wie Sie **mymethod** verwenden würden, um einen Rückrufbefehl für **INSTANZMETHODEN** zu definieren.
+Alternativ können Sie aus einer Methode oder einer Typmethode den Befehl [mytypemethod][snit] verwenden, genauso wie Sie [mymethod][snit] verwenden würden, um einen Rückrufbefehl für [Instanzmethoden] zu definieren.
 
 ## Können Typmethoden hierarchisch sein?
 
-Ja, Sie können hierarchische Typmethoden auf genau dieselbe Weise definieren wie hierarchische Instanzmethoden. Weitere Informationen finden Sie unter **INSTANZMETHODEN**.
+Ja, Sie können hierarchische Typmethoden auf genau dieselbe Weise definieren wie hierarchische Instanzmethoden. Weitere Informationen finden Sie unter [Instanzmethoden].
 
-# PROZEDUREN
+# Prozeduren
 
 ## Was ist eine Prozedur?
 
-Ein „Snit **proc**“ ist im Grunde nichts anderes als eine Tcl-Prozedur, die innerhalb des Namespaces des Typs definiert ist. Sie können Prozeduren für privaten Code verwenden, der nicht mit einer bestimmten Instanz in Verbindung steht.
+Ein „Snit [proc][snit]“ ist im Grunde nichts anderes als eine Tcl-Prozedur, die innerhalb des Namespaces des Typs definiert ist. Sie können Prozeduren für privaten Code verwenden, der nicht mit einer bestimmten Instanz in Verbindung steht.
 
 ## Wie definiere ich eine Prozedur?
 
-Prozeduren werden definiert, indem eine **proc**-Anweisung in die Typdefinition aufgenommen wird:
+Prozeduren werden definiert, indem eine [proc][snit]-Anweisung in die Typdefinition aufgenommen wird:
 
 ```
 snit::type mytype {
@@ -1248,9 +1234,9 @@ snit::type mytype {
 
 ## Gibt es Einschränkungen hinsichtlich der Namen von Prozeduren?
 
-Es kann jeder beliebige Name verwendet werden, solange er nicht mit „**Snit\_**“ beginnt; Namen, die mit „**Snit\_**“ beginnen, sind für die eigene Verwendung durch Snit reserviert. Der umsichtige Programmierer wird jedoch **proc**-Namen (**set**, **list**, **if** usw.) vermeiden, die Standardbefehle von Tcl verdecken würden.
+Es kann jeder beliebige Name verwendet werden, solange er nicht mit „**Snit\_**“ beginnt; Namen, die mit „**Snit\_**“ beginnen, sind für die eigene Verwendung durch Snit reserviert. Der umsichtige Programmierer wird jedoch [proc][snit]-Namen (**set**, **list**, **if** usw.) vermeiden, die Standardbefehle von Tcl verdecken würden.
 
-Da **proc**s privat sind, sollten ihre Namen gemäß der Konvention mit einem Großbuchstaben beginnen; da es jedoch in der Regel keine öffentlichen **proc**s im Namespace des Typs gibt, spielt dies letztlich keine große Rolle.
+Da [proc][snit]s privat sind, sollten ihre Namen gemäß der Konvention mit einem Großbuchstaben beginnen; da es jedoch in der Regel keine öffentlichen [proc][snit]s im Namespace des Typs gibt, spielt dies letztlich keine große Rolle.
 
 ## Wie ruft eine Methode eine Prozedur auf?
 
@@ -1273,9 +1259,9 @@ snit::type mytype {
 
 ## Wie kann ich eine Prozedur als Rückruffunktion an ein anderes Objekt übergeben?
 
-Der Befehl **myproc** gibt einen Rückrufbefehl für die **proc** zurück, genau wie **mymethod** dies für eine Methode tut.
+Der Befehl [myproc][snit] gibt einen Rückrufbefehl für die [proc][snit] zurück, genau wie [mymethod][snit] dies für eine Methode tut.
 
-# TYPKONSTRUKTOREN
+# Typkonstruktoren
 
 ## Was ist ein Typkonstruktor?
 
@@ -1285,7 +1271,7 @@ Ein Typ kann höchstens einen Typkonstruktor haben.
 
 ## Wie definiere ich einen Typkonstruktor?
 
-Ein Typkonstruktor wird durch die Verwendung der Anweisung **typeconstructor** in der Typdefinition definiert. Nehmen wir beispielsweise an, der Typ verwendet eine Typvariable mit Array-Wert als Nachschlagetabelle, und die Werte im Array müssen beim Programmstart berechnet werden.
+Ein Typkonstruktor wird durch die Verwendung der Anweisung [typeconstructor][snit] in der Typdefinition definiert. Nehmen wir beispielsweise an, der Typ verwendet eine Typvariable mit Array-Wert als Nachschlagetabelle, und die Werte im Array müssen beim Programmstart berechnet werden.
 
 ```
 % snit::type mytype {
@@ -1297,17 +1283,17 @@ Ein Typkonstruktor wird durch die Verwendung der Anweisung **typeconstructor** i
 }
 ```
 
-# KONSTRUKTOREN
+# Konstruktoren
 
 ## Was ist ein Konstruktor?
 
-In der objektorientierten Programmierung ist der Konstruktor eines Objekts dafür zuständig, das Objekt bei seiner Erstellung vollständig zu initialisieren. Der Konstruktor erhält die Liste der Optionen, die an die Methode **create** des Befehls **snit::type** übergeben wurden, und kann anschließend beliebige Aktionen ausführen.  Dazu können beispielsweise die Berechnung von Werten für Instanzvariablen, das Einlesen von Daten aus Dateien, das Anlegen weiterer Objekte, die Aktualisierung von Typ- und Instanzvariablen sowie weitere Vorgänge gehören.
+In der objektorientierten Programmierung ist der Konstruktor eines Objekts dafür zuständig, das Objekt bei seiner Erstellung vollständig zu initialisieren. Der Konstruktor erhält die Liste der Optionen, die an die Methode **create** des Befehls [snit::type][snit] übergeben wurden, und kann anschließend beliebige Aktionen ausführen.  Dazu können beispielsweise die Berechnung von Werten für Instanzvariablen, das Einlesen von Daten aus Dateien, das Anlegen weiterer Objekte, die Aktualisierung von Typ- und Instanzvariablen sowie weitere Vorgänge gehören.
 
 Der Rückgabewert des Konstruktors wird ignoriert (es sei denn, es handelt sich natürlich um einen Fehler).
 
 ## Wie definiere ich einen Konstruktor?
 
-Ein Konstruktor wird mithilfe der Anweisung **constructor** in der Typdefinition definiert.  Angenommen, es soll eine Liste aller Rassehunde geführt werden. Diese Liste kann in einer Typvariablen verwaltet und über eine Typmethode abgerufen werden. Immer wenn ein Hund angelegt wird, kann er sich selbst in die Liste eintragen – vorausgesetzt, er ist beim American Kennel Club registriert.
+Ein Konstruktor wird mithilfe der Anweisung [constructor][snit] in der Typdefinition definiert.  Angenommen, es soll eine Liste aller Rassehunde geführt werden. Diese Liste kann in einer Typvariablen verwaltet und über eine Typmethode abgerufen werden. Immer wenn ein Hund angelegt wird, kann er sich selbst in die Liste eintragen – vorausgesetzt, er ist beim American Kennel Club registriert.
 
 ```
 % snit::type dog {
@@ -1376,7 +1362,7 @@ Ja, das ist möglich. Nehmen wir beispielsweise an, wir möchten sicherstellen, 
 dalmatian
 ```
 
-Der Nachteil besteht darin, dass diese Syntax nicht den Standards entspricht und die Kompatibilität Ihres neuen Typs mit dem Code anderer Entwickler einschränken könnte. Snit geht beispielsweise davon aus, dass es **KOMPONENTEN** mithilfe der Standard-Erstellungssyntax erstellen kann.
+Der Nachteil besteht darin, dass diese Syntax nicht den Standards entspricht und die Kompatibilität Ihres neuen Typs mit dem Code anderer Entwickler einschränken könnte. Snit geht beispielsweise davon aus, dass es [Komponenten] mithilfe der Standard-Erstellungssyntax erstellen kann.
 
 ## Gibt es Einschränkungen hinsichtlich der Argumente des Konstruktors?
 
@@ -1384,17 +1370,17 @@ Für Argumentlisten von Konstruktoren gelten dieselben Einschränkungen wie für
 
 ## Gibt es beim Schreiben des Konstruktors etwas Besonderes zu beachten?
 
-Ja. Das Schreiben des Konstruktors kann schwierig sein, wenn Sie Optionen an Komponenten weiterleiten, und es gibt spezifische Probleme im Zusammenhang mit **snit::widget**s und **snit::widgetadaptor**s.  Siehe **WEITERLEITUNG**, **WIDGETS**, **WIDGET-ADAPTER** und **TK-OPTIONSDATENBANK**.
+Ja. Das Schreiben des Konstruktors kann schwierig sein, wenn Sie Optionen an Komponenten weiterleiten, und es gibt spezifische Probleme im Zusammenhang mit [snit::widget][snit]s und [snit::widgetadaptor][snit]s.  Siehe [Weiterleitung], [Widgets], [Widget-Adapter] und [Tk-Optionsdatenbank].
 
-# DESTRUKTOREN
+# Destruktoren
 
 ## Was ist ein Destruktor?
 
-Ein Destruktor ist eine besondere Art von Methode, die aufgerufen wird, wenn ein Objekt zerstört wird. Er ist dafür zuständig, alle notwendigen Aufräumarbeiten durchzuführen, wenn das Objekt entfernt wird: **KOMPONENTEN** zu zerstören, Dateien zu schließen und so weiter.
+Ein Destruktor ist eine besondere Art von Methode, die aufgerufen wird, wenn ein Objekt zerstört wird. Er ist dafür zuständig, alle notwendigen Aufräumarbeiten durchzuführen, wenn das Objekt entfernt wird: [Komponenten] zu zerstören, Dateien zu schließen und so weiter.
 
 ## Wie definiere ich einen Destruktor?
 
-Destruktoren werden mithilfe der Anweisung **destructor** in der Typdefinition definiert.
+Destruktoren werden mithilfe der Anweisung [destructor][snit] in der Typdefinition definiert.
 
 Nehmen wir an, wir führen eine Liste mit Rassehunden; dann möchten wir Hunde aus dieser Liste entfernen, wenn sie zerstört werden.
 
@@ -1438,7 +1424,7 @@ Der Destruktor erhält dieselben impliziten Argumente, die an **INSTANZMETHODEN*
 
 Ja und nein.
 
-Alle Tk-Widgets, die von einem **snit::widget** oder **snit::widgetadaptor** erstellt wurden, werden von Tk automatisch zerstört, wenn das Megawidget zerstört wird – dies entspricht dem üblichen Tk-Verhalten (die Zerstörung eines übergeordneten Widgets führt zur Zerstörung des gesamten Baums).
+Alle Tk-Widgets, die von einem [snit::widget][snit] oder [snit::widgetadaptor][snit] erstellt wurden, werden von Tk automatisch zerstört, wenn das Megawidget zerstört wird – dies entspricht dem üblichen Tk-Verhalten (die Zerstörung eines übergeordneten Widgets führt zur Zerstörung des gesamten Baums).
 
 Komponenten normaler **snit::types** hingegen werden niemals automatisch zerstört, ebenso wenig wie Nicht-Widget-Komponenten von Snit-Megawidgets. Wenn Ihr Objekt diese in seinem Konstruktor erstellt, sollte es sie in der Regel in seinem Destruktor wieder löschen.
 
@@ -1464,17 +1450,17 @@ snit::type dog {
 }
 ```
 
-# KOMPONENTEN
+# Komponenten
 
 ## Was ist eine Komponente?
 
 Häufig erstellt und verwaltet ein Objekt eine Reihe weiterer Objekte. Ein Snit-Megawidget erstellt beispielsweise oft eine Reihe von Tk-Widgets. Diese Objekte sind Teil des Hauptobjekts; es setzt sich aus ihnen zusammen, weshalb sie als Komponenten des Objekts bezeichnet werden.
 
-Snit verwendet **COMPONENT** jedoch auch in einer genaueren Bedeutung. Die Komponenten eines Snit-Objekts sind jene Objekte, an die Methoden oder Optionen weitergeleitet werden können. (Weitere Informationen zur Weiterleitung finden Sie unter **WEITERLEITUNG**.)
+Snit verwendet **COMPONENT** jedoch auch in einer genaueren Bedeutung. Die Komponenten eines Snit-Objekts sind jene Objekte, an die Methoden oder Optionen weitergeleitet werden können. (Weitere Informationen zur Weiterleitung finden Sie unter [Weiterleitung].)
 
 ## Wie deklariere ich eine Komponente?
 
-Zunächst müssen Sie festlegen, welche Rolle eine Komponente innerhalb Ihres Objekts spielt, und dieser Rolle einen Namen geben. Anschließend deklarieren Sie die Komponente unter Verwendung ihres Rollennamens und der Anweisung **component**.  Die Anweisung **component** deklariert eine *Instanzvariable*, in der der Name des Befehls der Komponente gespeichert wird, wenn die Komponente angelegt wird.
+Zunächst müssen Sie festlegen, welche Rolle eine Komponente innerhalb Ihres Objekts spielt, und dieser Rolle einen Namen geben. Anschließend deklarieren Sie die Komponente unter Verwendung ihres Rollennamens und der Anweisung [component][snit].  Die Anweisung [component][snit] deklariert eine *Instanzvariable*, in der der Name des Befehls der Komponente gespeichert wird, wenn die Komponente angelegt wird.
 
 Nehmen wir beispielsweise an, Ihr Objekt „**dog**“ erstellt ein Objekt „**tail**“ (zweifellos, um damit besser herumwedeln zu können):
 
@@ -1496,7 +1482,7 @@ snit::type dog {
 
 Wie hier zu sehen ist, spielt es keine Rolle, wie der tatsächliche Name des Objekts „**tail**“ lautet; das Objekt „**dog**“ verweist über den Komponentennamen darauf.
 
-Das obige Beispiel zeigt eine Möglichkeit, die Methode **wag** an die Komponente **mytail** weiterzuleiten; eine einfachere Vorgehensweise finden Sie unter **WEITERLEITUNG**.
+Das obige Beispiel zeigt eine Möglichkeit, die Methode **wag** an die Komponente **mytail** weiterzuleiten; eine einfachere Vorgehensweise finden Sie unter [Weiterleitung].
 
 ## Wie wird eine Komponente benannt?
 
@@ -1506,13 +1492,13 @@ Im Beispiel der vorherigen Frage lautet der Name der Komponente „**mytail**“
 
 ## Gibt es Einschränkungen hinsichtlich der Namen von Komponenten?
 
-Ja.  **snit::widget**- und **snit::widgetadaptor**-Objekte verfügen über eine spezielle Komponente, die **hull**-Komponente; daher sollte der Name **hull** für keinen anderen Zweck verwendet werden.
+Ja.  [snit::widget][snit]- und [snit::widgetadaptor][snit]-Objekte verfügen über eine spezielle Komponente, die **hull**-Komponente; daher sollte der Name **hull** für keinen anderen Zweck verwendet werden.
 
-Da es sich bei den Namen der Komponenten im Übrigen tatsächlich um Namen von Instanzvariablen handelt, müssen sie den Regeln für **INSTANZVARIABLEN** entsprechen.
+Da es sich bei den Namen der Komponenten im Übrigen tatsächlich um Namen von Instanzvariablen handelt, müssen sie den Regeln für [Instanzvariablen] entsprechen.
 
 ## Was ist eine eigene Komponente?
 
-Eine *eigene* Komponente ist eine Komponente, deren Objektbefehl in seiner Lebensdauer von dem **snit::type** oder **snit::widget** gesteuert wird.
+Eine *eigene* Komponente ist eine Komponente, deren Objektbefehl in seiner Lebensdauer von dem [snit::type][snit] oder [snit::widget][snit] gesteuert wird.
 
 Wie oben bereits erwähnt, ist eine Komponente ein Objekt, an das unser Objekt Methoden oder Optionen weiterleiten kann. Nach dieser Definition erstellt unser Objekt in der Regel seine eigenen Komponentenobjekte, was jedoch nicht zwingend erforderlich ist. Betrachten Sie folgendes Beispiel: Ein Hundeobjekt verfügt über eine Schwanzkomponente; die Schwanzkomponente weiß jedoch, dass sie Teil des Hundes ist:
 
@@ -1559,7 +1545,7 @@ Wenn Sie also einen Hund auffordern, mit dem Schwanz zu wedeln, weist er seinen 
 
 ## Was bewirkt der Befehl „install“?
 
-Der Befehl **install** erstellt mithilfe eines angegebenen Befehls eine eigene Komponente und weist das Ergebnis der Instanzvariablen der Komponente zu. Beispiel:
+Der Befehl [install][snit] erstellt mithilfe eines angegebenen Befehls eine eigene Komponente und weist das Ergebnis der Instanzvariablen der Komponente zu. Beispiel:
 
 ```
 snit::type dog {
@@ -1573,7 +1559,7 @@ snit::type dog {
 }
 ```
 
-Im Code eines **snit::type** entspricht der oben gezeigte Befehl **install** dem Befehl **set mytail**, der auskommentiert ist.  Im Code von „**snit::widget**“ oder „**snit::widgetadaptor**“ hingegen fragt der Befehl **install** zusätzlich die **TK-OPTIONSDATENBANK** ab und initialisiert die Optionen der neuen Komponente entsprechend.  Aus Gründen der Konsistenz empfiehlt es sich, sich anzugewöhnen, für alle eigenen Komponenten den Befehl **install** zu verwenden.
+Im Code eines [snit::type][snit] entspricht der oben gezeigte Befehl [install][snit] dem Befehl **set mytail**, der auskommentiert ist.  Im Code von „[snit::widget][snit]“ oder „[snit::widgetadaptor][snit]“ hingegen fragt der Befehl [install][snit] zusätzlich die [Tk-Optionsdatenbank] ab und initialisiert die Optionen der neuen Komponente entsprechend.  Aus Gründen der Konsistenz empfiehlt es sich, sich anzugewöhnen, für alle eigenen Komponenten den Befehl [install][snit] zu verwenden.
 
 ## Müssen eigene Komponenten im Konstruktor angelegt werden?
 
@@ -1605,13 +1591,13 @@ Dieser Code verwendet den Namen der Komponente „**mytail**“ als Namen des Ob
 
 Nehmen wir nun an, Sie erstellen zwei Hunde. Beide Hunde werden versuchen, einen Schwanz namens **::dog::mytail** zu erstellen. Der erste wird dabei erfolgreich sein, der zweite hingegen nicht, da Snit die Erstellung eines Objekts nicht zulässt, wenn dessen Name bereits ein Befehl ist. Hier sind zwei Möglichkeiten, diese Situation zu vermeiden:
 
-Erstens: Wenn es sich bei dem Komponententyp um „**snit::type**“ handelt, können Sie „**%AUTO%**“ als Namen festlegen und haben so die Gewissheit, einen eindeutigen Namen zu erhalten. Dies ist die sicherste Vorgehensweise:
+Erstens: Wenn es sich bei dem Komponententyp um „[snit::type][snit]“ handelt, können Sie „**%AUTO%**“ als Namen festlegen und haben so die Gewissheit, einen eindeutigen Namen zu erhalten. Dies ist die sicherste Vorgehensweise:
 
 ```
     install mytail using tail %AUTO%
 ```
 
-Wenn der Komponententyp nicht „**snit::type**“ lautet, können Sie die Komponente im Namespace der Instanz des Objekts anlegen:
+Wenn der Komponententyp nicht „[snit::type][snit]“ lautet, können Sie die Komponente im Namespace der Instanz des Objekts anlegen:
 
 ```
     install mytail using tail ${selfns}::mytail
@@ -1621,19 +1607,19 @@ Achten Sie darauf, einen eindeutigen Namen innerhalb des Namespaces der Instanz 
 
 ## Muss ich meine eigenen Komponenten zerstören?
 
-Das hängt davon ab. Wenn ein übergeordnetes Widget zerstört wird, werden alle untergeordneten Widgets automatisch zerstört. Wenn Ihr Objekt also ein **snit::widget** oder **snit::widgetadaptor** ist, müssen Sie keine Komponenten-Widgets löschen, da diese in der Regel Kinder oder Nachkommen Ihres Megawidgets sind.
+Das hängt davon ab. Wenn ein übergeordnetes Widget zerstört wird, werden alle untergeordneten Widgets automatisch zerstört. Wenn Ihr Objekt also ein [snit::widget][snit] oder [snit::widgetadaptor][snit] ist, müssen Sie keine Komponenten-Widgets löschen, da diese in der Regel Kinder oder Nachkommen Ihres Megawidgets sind.
 
-Sollte Ihr Objekt jedoch eine Instanz von **snit::type** sein, wird keine seiner eigenen Komponenten automatisch zerstört; ebenso wenig werden Nicht-Widget-Komponenten eines **snit::widget** automatisch zerstört.  Alle derartigen eigenen Komponenten müssen explizit zerstört werden, andernfalls werden sie überhaupt nicht zerstört.
+Sollte Ihr Objekt jedoch eine Instanz von [snit::type][snit] sein, wird keine seiner eigenen Komponenten automatisch zerstört; ebenso wenig werden Nicht-Widget-Komponenten eines [snit::widget][snit] automatisch zerstört.  Alle derartigen eigenen Komponenten müssen explizit zerstört werden, andernfalls werden sie überhaupt nicht zerstört.
 
 ## Kann ich den Objektbefehl einer Komponente als Teil meiner Schnittstelle verfügbar machen?
 
-Ja, und es gibt zwei Möglichkeiten, dies zu bewerkstelligen. Die geeignetste Vorgehensweise ist in der Regel die Weiterleitung (siehe **WEITERLEITUNG**). Durch Weiterleitung können Sie die von Ihnen festgelegten Optionen und Methoden an bestimmte Komponenten weitergeben. Dadurch werden die Komponenten für die Nutzer Ihres Typs effektiv verborgen, was eine gute Kapselung gewährleistet.
+Ja, und es gibt zwei Möglichkeiten, dies zu bewerkstelligen. Die geeignetste Vorgehensweise ist in der Regel die Weiterleitung (siehe [Weiterleitung]). Durch Weiterleitung können Sie die von Ihnen festgelegten Optionen und Methoden an bestimmte Komponenten weitergeben. Dadurch werden die Komponenten für die Nutzer Ihres Typs effektiv verborgen, was eine gute Kapselung gewährleistet.
 
 Es gibt jedoch Fälle, in denen es angebracht – und obendrein einfacher – ist, die gesamte Komponente einfach zum Teil der öffentlichen Schnittstelle Ihres Typs zu machen.
 
 ## Wie kann ich den Objektbefehl einer Komponente verfügbar machen?
 
-Geben Sie bei der Deklaration der Komponente die Option „**-public**“ der Anweisung „**component**“ an. Der Wert dieser Option ist der Name einer Methode, die an den Objektbefehl Ihrer Komponente weitergeleitet wird.
+Geben Sie bei der Deklaration der Komponente die Option „**-public**“ der Anweisung „[component][snit]“ an. Der Wert dieser Option ist der Name einer Methode, die an den Objektbefehl Ihrer Komponente weitergeleitet wird.
 
 Nehmen wir beispielsweise an, Sie haben ein Combobox-Megawidget erstellt, das ein listbox-Widget enthält, und Sie möchten die gesamte Schnittstelle der Listbox öffentlich machen. Das können Sie wie folgt bewerkstelligen:
 
@@ -1654,17 +1640,17 @@ Ihr Combobox-Widget „**.mycombo**“ verfügt nun über die Methode „**listb
 
 In der Regel wählen Sie als Namen der Methode denselben Namen wie den der Komponente; Sie können die Methode jedoch beliebig benennen.
 
-# TYPKOMPONENTEN
+# Typkomponenten
 
 ## Was ist eine Typkomponente?
 
-Eine Typkomponente ist eine Komponente, die nicht zu einer bestimmten Instanz des Typs, sondern zum Typ selbst gehört. Die Beziehung zwischen Komponenten und Typkomponenten entspricht der Beziehung zwischen **INSTANZVARIABLEN** und **TYPVARIABLEN**.  Sowohl **INSTANZMETHODEN** als auch **TYPMETHODEN** können an Typkomponenten weitergeleitet werden.
+Eine Typkomponente ist eine Komponente, die nicht zu einer bestimmten Instanz des Typs, sondern zum Typ selbst gehört. Die Beziehung zwischen Komponenten und Typkomponenten entspricht der Beziehung zwischen [Instanzvariablen] und [Typvariablen].  Sowohl [Instanzmethoden] als auch [Typmethoden] können an Typkomponenten weitergeleitet werden.
 
-Sobald Sie **KOMPONENTEN** und **WEITERLEITUNG** verstanden haben, sind Typkomponenten im Grunde nichts Neues.
+Sobald Sie [Komponenten] und [Weiterleitung] verstanden haben, sind Typkomponenten im Grunde nichts Neues.
 
 ## Wie deklariere ich eine Typkomponente?
 
-Deklarieren Sie eine Typkomponente mithilfe der Anweisung **typecomponent**.  Sie akzeptiert dieselben Optionen (**-inherit** und **-public**) wie die Anweisung **component** und definiert eine Typvariable, die den Objektbefehl der Typkomponente enthält.
+Deklarieren Sie eine Typkomponente mithilfe der Anweisung [typecomponent][snit].  Sie akzeptiert dieselben Optionen (**-inherit** und **-public**) wie die Anweisung [component][snit] und definiert eine Typvariable, die den Objektbefehl der Typkomponente enthält.
 
 Angenommen, in Ihrem Modell gibt es viele Hunde, aber nur einen Tierarzt. Sie könnten den Tierarzt als Typkomponente definieren.
 
@@ -1680,7 +1666,7 @@ snit::type dog {
 
 ## Wie installiere ich eine Typkomponente?
 
-Verwenden Sie einfach den Befehl **set**, um den Objektbefehl der Komponente der Typkomponente zuzuweisen.  Da Typen (auch **snit::widget**-Typen) keine Widgets sind und ohnehin keine Optionen besitzen, werden die zusätzlichen Funktionen des Befehls **install** nicht benötigt.
+Verwenden Sie einfach den Befehl **set**, um den Objektbefehl der Komponente der Typkomponente zuzuweisen.  Da Typen (auch [snit::widget][snit]-Typen) keine Widgets sind und ohnehin keine Optionen besitzen, werden die zusätzlichen Funktionen des Befehls [install][snit] nicht benötigt.
 
 In der Regel installieren Sie Typkomponenten im Typkonstruktor, wie hier gezeigt:
 
@@ -1698,9 +1684,9 @@ snit::type dog {
 
 ## Gibt es Einschränkungen hinsichtlich der Namen von Typkomponenten?
 
-Ja, genau wie bei **INSTANZVARIABLEN**, **TYPVARIABLEN** und normalen **KOMPONENTEN**.
+Ja, genau wie bei [Instanzvariablen], [Typvariablen] und normalen [Komponenten].
 
-# WEITERLEITUNG
+# Weiterleitung
 
 ## Was ist Weiterleitung?
 
@@ -1738,7 +1724,7 @@ Hinweis: Der Konstruktor ruft die Methode **configurelist** erst auf, **nachdem*
 
 ## Wie leite ich eine Methode an ein Komponentenobjekt weiter?
 
-Da die Weiterleitung so häufig vorkommt, macht Snit sie Ihnen leicht. Jede Methode kann an jede Komponente oder Typkomponente weitergeleitet werden, indem eine einzige **delegate**-Anweisung in die Typdefinition aufgenommen wird. (Weitere Informationen zu Komponentennamen finden Sie unter **KOMPONENTEN** und **TYPKOMPONENTEN**.)
+Da die Weiterleitung so häufig vorkommt, macht Snit sie Ihnen leicht. Jede Methode kann an jede Komponente oder Typkomponente weitergeleitet werden, indem eine einzige [delegate][snit]-Anweisung in die Typdefinition aufgenommen wird. (Weitere Informationen zu Komponentennamen finden Sie unter [Komponenten] und [Typkomponenten].)
 
 Hier ist beispielsweise eine viel bessere Möglichkeit, die Methode „**wag**“ des Objekts „**dog**“ weiterzuleiten:
 
@@ -1763,9 +1749,9 @@ Wag, wag, wag.
 
 Dieser Code hat dieselbe Wirkung wie der unter der vorherigen Frage gezeigte Code: Wenn die Methode **wag** eines **dog** aufgerufen wird, werden der Aufruf und seine Argumente automatisch an das Objekt **tail** weitergeleitet.
 
-Hinweis: Wenn eine Komponente in einer **delegate**-Anweisung erwähnt wird, wird die Instanzvariable der Komponente implizit definiert. Es empfiehlt sich jedoch weiterhin, diese mithilfe der **component**-Anweisung explizit zu deklarieren.
+Hinweis: Wenn eine Komponente in einer [delegate][snit]-Anweisung erwähnt wird, wird die Instanzvariable der Komponente implizit definiert. Es empfiehlt sich jedoch weiterhin, diese mithilfe der [component][snit]-Anweisung explizit zu deklarieren.
 
-Hinweis: Sie können den Namen einer Methode entweder mit der Anweisung **method** oder mit **delegate** definieren; Sie können nicht beides tun.
+Hinweis: Sie können den Namen einer Methode entweder mit der Anweisung **method** oder mit [delegate][snit] definieren; Sie können nicht beides tun.
 
 ## Kann ich an eine Methode mit anderem Namen weiterleiten?
 
@@ -1802,7 +1788,7 @@ snit::type tail {
 
 ## Kann ich eine Methode an etwas anderes als ein Objekt weiterleiten?
 
-Bei der normalen Weiterleitung einer Methode wird davon ausgegangen, dass Sie eine Methode (einen Unterbefehl eines Objektbefehls) an eine Methode eines anderen Objekts (einen Unterbefehl eines anderen Objektbefehls) weiterleiten. Allerdings folgen nicht alle Tcl-Objekte den Tk-Konventionen, und nicht alles, an das Sie eine Methode weiterleiten möchten, ist zwangsläufig ein Objekt.  Daher ermöglicht Snit es Ihnen, mithilfe der Klausel **using** der Anweisung **delegate** eine Methode ganz einfach an nahezu alles weiterzuleiten, was Sie möchten.
+Bei der normalen Weiterleitung einer Methode wird davon ausgegangen, dass Sie eine Methode (einen Unterbefehl eines Objektbefehls) an eine Methode eines anderen Objekts (einen Unterbefehl eines anderen Objektbefehls) weiterleiten. Allerdings folgen nicht alle Tcl-Objekte den Tk-Konventionen, und nicht alles, an das Sie eine Methode weiterleiten möchten, ist zwangsläufig ein Objekt.  Daher ermöglicht Snit es Ihnen, mithilfe der Klausel **using** der Anweisung [delegate][snit] eine Methode ganz einfach an nahezu alles weiterzuleiten, was Sie möchten.
 
 Angenommen, Ihre Hundesimulation speichert Hunde in einer Datenbank, wobei jeder Hund als einzelner Datensatz vorliegt. Die von Ihnen verwendete Datenbank-API stellt eine Reihe von Befehlen zur Verwaltung von Datensätzen bereit; jeder davon nimmt die Datensatz-ID (eine von Ihnen gewählte Zeichenfolge) als erstes Argument entgegen. Beispielsweise speichert der Befehl „**saverec**“ einen Datensatz.  Wenn Sie die Datensatz-ID als Namen des Hundeobjekts verwenden, können Sie die Methode **save** des Hundes wie folgt an den Befehl **saverec** weiterleiten:
 
@@ -1814,21 +1800,21 @@ snit::type dog {
 
 Wenn die Methode „**save**“ aufgerufen wird, wird „**%s**“ durch den Namen der Instanz ersetzt; etwaige zusätzliche Argumente werden dem resultierenden Befehl angehängt.
 
-Die Klausel **using** versteht eine Reihe weiterer %-Ersetzungen; neben dem Namen der Instanz können Sie den Namen der Methode (**%m**), den Namen des Typs (**%t**), den Namespace der Instanz (**%n**), den Tk-Fensternamen (**%w**) sowie – wenn in der Anweisung **delegate** ein Name einer Komponente oder einer Typkomponente angegeben wurde – den Objektbefehl der Komponente (**%c**) einsetzen.
+Die Klausel **using** versteht eine Reihe weiterer %-Ersetzungen; neben dem Namen der Instanz können Sie den Namen der Methode (**%m**), den Namen des Typs (**%t**), den Namespace der Instanz (**%n**), den Tk-Fensternamen (**%w**) sowie – wenn in der Anweisung [delegate][snit] ein Name einer Komponente oder einer Typkomponente angegeben wurde – den Objektbefehl der Komponente (**%c**) einsetzen.
 
 ## Wie leite ich eine Methode an ein Typkomponenten-Objekt weiter?
 
-Genau so, wie Sie es bei einer Komponente tun würden. Die Anweisung **delegate method** akzeptiert in ihrer Klausel **to** sowohl Namen von Komponenten als auch Namen von Typkomponenten.
+Genau so, wie Sie es bei einer Komponente tun würden. Die Anweisung [delegate method][snit] akzeptiert in ihrer Klausel **to** sowohl Namen von Komponenten als auch Namen von Typkomponenten.
 
 ## Wie leite ich eine Typmethode an ein Typkomponenten-Objekt weiter?
 
-Verwenden Sie die Anweisung **delegate typemethod**.  Sie funktioniert wie **delegate method**, weist jedoch folgende Unterschiede auf: Erstens definiert sie eine Typmethode anstelle einer Instanzmethode; zweitens ignoriert die Klausel **using** die %-Ersetzungen **%s**, **%n** und **%w**.
+Verwenden Sie die Anweisung [delegate typemethod][snit].  Sie funktioniert wie [delegate method][snit], weist jedoch folgende Unterschiede auf: Erstens definiert sie eine Typmethode anstelle einer Instanzmethode; zweitens ignoriert die Klausel **using** die %-Ersetzungen **%s**, **%n** und **%w**.
 
 Selbstverständlich können Sie eine Typmethode nicht an eine Instanzkomponente weiterleiten … Snit wüsste nicht, welche Instanz sie erhalten soll.
 
 ## Wie leite ich eine Option an ein Komponentenobjekt weiter?
 
-Die erste Frage in diesem Abschnitt (siehe **WEITERLEITUNG**) zeigt eine Möglichkeit, eine Option an eine Komponente weiterzuleiten; da dieses Muster jedoch häufig vorkommt, erleichtert Snit die Umsetzung.  Beispielsweise verfügt jedes **tail**-Objekt über eine **-length**-Option; wir möchten dem Ersteller eines **dog**-Objekts ermöglichen, die Länge des Schwanzes festzulegen. Dies können wir wie folgt umsetzen:
+Die erste Frage in diesem Abschnitt (siehe [Weiterleitung]) zeigt eine Möglichkeit, eine Option an eine Komponente weiterzuleiten; da dieses Muster jedoch häufig vorkommt, erleichtert Snit die Umsetzung.  Beispielsweise verfügt jedes **tail**-Objekt über eine **-length**-Option; wir möchten dem Ersteller eines **dog**-Objekts ermöglichen, die Länge des Schwanzes festzulegen. Dies können wir wie folgt umsetzen:
 
 ```
 % snit::type dog {
@@ -1853,7 +1839,7 @@ Die erste Frage in diesem Abschnitt (siehe **WEITERLEITUNG**) zeigt eine Möglic
 
 Dies führt zu nahezu demselben Ergebnis wie die unter der ersten Frage in diesem Abschnitt gezeigten Methoden **-configuremethod** und **-cgetmethod**: Immer wenn die Option **-length** eines **dog**-Objekts gesetzt oder abgerufen wird, wird die Option des zugrunde liegenden **tail**-Objekts ebenfalls gesetzt bzw. abgerufen.
 
-Hinweis: Sie können einen Namen für eine Option entweder mit der Anweisung **option** oder mit **delegate** definieren; Sie können nicht beides tun.
+Hinweis: Sie können einen Namen für eine Option entweder mit der Anweisung **option** oder mit [delegate][snit] definieren; Sie können nicht beides tun.
 
 ## Kann ich an eine Option mit anderem Namen weiterleiten?
 
@@ -1872,7 +1858,7 @@ snit::type dog {
 
 ## Wie leite ich jede unbekannte Methode oder Option an ein Komponentenobjekt weiter?
 
-Es kann vorkommen, dass ein Snit-Objekt den Großteil seines Verhaltens von einer seiner Komponenten bezieht. Dies ist beispielsweise häufig bei **snit::widgetadaptors** der Fall, wo wir das Verhalten eines bestehenden Widgets geringfügig anpassen möchten.  Um unser Beispiel mit **dog** fortzusetzen, nehmen wir jedoch an, dass wir einen **snit::type** namens **animal** haben, der eine Vielzahl von Tierverhalten – Fortbewegung, Fressen, Schlafen und so weiter – implementiert. Wir möchten, dass unsere **dog**-Objekte dieselben Verhaltensweisen erben und gleichzeitig eigene, hundeähnliche Verhaltensweisen hinzufügen. So können wir einem **dog** eigene Methoden und Optionen zuweisen und gleichzeitig alle anderen Methoden und Optionen an seine **animal**-Komponente weiterleiten:
+Es kann vorkommen, dass ein Snit-Objekt den Großteil seines Verhaltens von einer seiner Komponenten bezieht. Dies ist beispielsweise häufig bei **snit::widgetadaptors** der Fall, wo wir das Verhalten eines bestehenden Widgets geringfügig anpassen möchten.  Um unser Beispiel mit **dog** fortzusetzen, nehmen wir jedoch an, dass wir einen [snit::type][snit] namens **animal** haben, der eine Vielzahl von Tierverhalten – Fortbewegung, Fressen, Schlafen und so weiter – implementiert. Wir möchten, dass unsere **dog**-Objekte dieselben Verhaltensweisen erben und gleichzeitig eigene, hundeähnliche Verhaltensweisen hinzufügen. So können wir einem **dog** eigene Methoden und Optionen zuweisen und gleichzeitig alle anderen Methoden und Optionen an seine **animal**-Komponente weiterleiten:
 
 ```
 snit::type dog {
@@ -1957,46 +1943,42 @@ snit::type dog {
 }
 ```
 
-# WIDGETS
+# Widgets
 
 ## Was ist ein snit::widget?
 
-Ein **snit::widget** ist die Snit-Version dessen, was Tcl-Programmierer üblicherweise als *Megawidget* bezeichnen: ein widgetähnliches Objekt, das in der Regel aus einem oder mehreren Tk-Widgets besteht, die alle in einem Tk-Frame enthalten sind.
+Ein [snit::widget][snit] ist die Snit-Version dessen, was Tcl-Programmierer üblicherweise als *Megawidget* bezeichnen: ein widgetähnliches Objekt, das in der Regel aus einem oder mehreren Tk-Widgets besteht, die alle in einem Tk-Frame enthalten sind.
 
-Ein **snit::widget** ist ebenfalls eine besondere Art von **snit::type**. Nahezu alle Angaben in dieser FAQ-Liste, die sich auf **snit::types** beziehen, gelten auch für **snit::widgets**.
+Ein [snit::widget][snit] ist ebenfalls eine besondere Art von [snit::type][snit]. Nahezu alle Angaben in dieser FAQ-Liste, die sich auf **snit::types** beziehen, gelten auch für **snit::widgets**.
 
 ## Wie definiere ich ein snit::widget?
 
-**snit::widgets** werden mit dem Befehl **snit::widget** definiert, ebenso wie **snit::types** mit dem Befehl **snit::type** definiert werden.
+**snit::widgets** werden mit dem Befehl [snit::widget][snit] definiert, ebenso wie **snit::types** mit dem Befehl [snit::type][snit] definiert werden.
 
 Der Hauptteil der Definition kann dieselben Arten von Anweisungen enthalten sowie einige weitere, auf die im Folgenden eingegangen wird.
 
 ## Inwiefern unterscheiden sich snit::widgets von snit::types?
 
-**•**
-: Der Name einer Instanz von **snit::type** kann ein beliebiger gültiger Tcl-Befehlsname in einem beliebigen Namespace sein. Der Name einer Instanz von **snit::widget** muss ein gültiger Tk-Widget-Name sein, und das übergeordnete Widget muss bereits vorhanden sein.
+- Der Name einer Instanz von [snit::type][snit] kann ein beliebiger gültiger Tcl-Befehlsname in einem beliebigen Namespace sein. Der Name einer Instanz von [snit::widget][snit] muss ein gültiger Tk-Widget-Name sein, und das übergeordnete Widget muss bereits vorhanden sein.
 
-**•**
-: Eine Instanz von **snit::type** kann durch Aufruf ihrer Methode **destroy** zerstört werden.  Instanzen von **snit::widget** verfügen über keine „destroy“-Methode; verwenden Sie stattdessen den Tk-Befehl **destroy**.
+- Eine Instanz von [snit::type][snit] kann durch Aufruf ihrer Methode **destroy** zerstört werden.  Instanzen von [snit::widget][snit] verfügen über keine „destroy“-Methode; verwenden Sie stattdessen den Tk-Befehl **destroy**.
 
-**•**
-: Jede Instanz eines **snit::widget** verfügt über eine vordefinierte Komponente, die als **hull**-Komponente bezeichnet wird. Der Hull ist in der Regel ein Tk-Widget vom Typ „**frame**“ oder „**toplevel**“; alle anderen Widgets, die als Teil des „**snit::widget**“ erstellt wurden, sind in der Regel im Hull enthalten.
+- Jede Instanz eines [snit::widget][snit] verfügt über eine vordefinierte Komponente, die als **hull**-Komponente bezeichnet wird. Der Hull ist in der Regel ein Tk-Widget vom Typ „**frame**“ oder „**toplevel**“; alle anderen Widgets, die als Teil des „[snit::widget][snit]“ erstellt wurden, sind in der Regel im Hull enthalten.
 
-**•**
-: Bei **snit::widget**s können die Optionen Standardwerte aus der **TK-OPTIONSDATENBANK** erhalten.
+- Bei [snit::widget][snit]s können die Optionen Standardwerte aus der [Tk-Optionsdatenbank] erhalten.
 
 
 ## Was ist die Hull-Komponente?
 
-Snit kann kein Tk-Widget-Objekt erstellen; dies ist nur Tk möglich. Daher muss jede Instanz von **snit::widget** um ein echtes Tk-Widget herumgelegt werden; dieses Tk-Widget wird als *Hull-Komponente* bezeichnet. Snit setzt das von Ihnen definierte Verhalten (Methoden, Optionen usw.) gewissermaßen huckepack auf die Hull-Komponente, sodass sich das Ganze wie ein Standard-Tk-Widget verhält.
+Snit kann kein Tk-Widget-Objekt erstellen; dies ist nur Tk möglich. Daher muss jede Instanz von [snit::widget][snit] um ein echtes Tk-Widget herumgelegt werden; dieses Tk-Widget wird als *Hull-Komponente* bezeichnet. Snit setzt das von Ihnen definierte Verhalten (Methoden, Optionen usw.) gewissermaßen huckepack auf die Hull-Komponente, sodass sich das Ganze wie ein Standard-Tk-Widget verhält.
 
-Bei **snit::widget**s muss die Hull-Komponente ein Tk-Widget sein, das die Option **-class** definiert.
+Bei [snit::widget][snit]s muss die Hull-Komponente ein Tk-Widget sein, das die Option **-class** definiert.
 
-**snit::widgetadaptor**s unterscheiden sich von **snit::widget**s vor allem dadurch, dass jede Art von Widget als Hull-Komponente verwendet werden kann; siehe **WIDGET-ADAPTER**.
+[snit::widgetadaptor][snit]s unterscheiden sich von [snit::widget][snit]s vor allem dadurch, dass jede Art von Widget als Hull-Komponente verwendet werden kann; siehe [Widget-Adapter].
 
 ## Wie lege ich den Hull-Typ eines snit::widget fest?
 
-Die Hull-Komponente eines **snit::widget** ist in der Regel ein Tk-Widget vom Typ **frame**; es kann sich jedoch um jedes beliebige Tk-Widget handeln, das die Option **-class** definiert.  Sie können den gewünschten Hull-Typ explizit festlegen, indem Sie den Befehl **hulltype** in die Widget-Definition aufnehmen:
+Die Hull-Komponente eines [snit::widget][snit] ist in der Regel ein Tk-Widget vom Typ **frame**; es kann sich jedoch um jedes beliebige Tk-Widget handeln, das die Option **-class** definiert.  Sie können den gewünschten Hull-Typ explizit festlegen, indem Sie den Befehl [hulltype][snit] in die Widget-Definition aufnehmen:
 
 ```
 snit::widget mytoplevel {
@@ -2006,7 +1988,7 @@ snit::widget mytoplevel {
 }
 ```
 
-Wenn der Befehl „**hulltype**“ nicht vorkommt, ist der Hull ein „**frame**“.
+Wenn der Befehl „[hulltype][snit]“ nicht vorkommt, ist der Hull ein „**frame**“.
 
 Standardmäßig erkennt Snit die folgenden Hull-Typen: die Tk-Widgets **frame**, **labelframe**, **toplevel** sowie die Tile-Widgets **ttk::frame**, **ttk::labelframe** und **ttk::toplevel**.  Um die Verwendung eines anderen Widget-Typs als Hull-Typ zu ermöglichen, können Sie den Widget-Befehl mit **lappend** an die Variable **snit::hulltypes** anhängen (immer vorausgesetzt, das Widget definiert die Option **-class**.  Nehmen wir beispielsweise an, Tk erhält einen neuen Widget-Typ namens **prettyframe**:
 
@@ -2022,7 +2004,7 @@ snit::widget mywidget {
 
 ## Wie soll ich Widgets benennen, die Komponenten eines snit::widget sind?
 
-Jedes Widget – sei es ein echtes Tk-Widget oder ein Snit-Megawidget – muss über einen gültigen Tk-Fensternamen verfügen. Wenn ein **snit::widget** erstmals erstellt wird, ist sein Instanzname, **self**, ein Tk-Fenstername; wird das **snit::widget** jedoch von einem **snit::widgetadaptor** als Hull-Komponente verwendet, ändert sich sein Instanzname.  Aus diesem Grund wird jeder Methode, jedem Konstruktor, jedem Destruktor usw. von **snit::widget** ein weiteres implizites Argument übergeben, nämlich **win**, der Fenstername des Megawidgets.  Alle Kindfenster sollten mit „**win**“ als Wurzel benannt werden.
+Jedes Widget – sei es ein echtes Tk-Widget oder ein Snit-Megawidget – muss über einen gültigen Tk-Fensternamen verfügen. Wenn ein [snit::widget][snit] erstmals erstellt wird, ist sein Instanzname, **self**, ein Tk-Fenstername; wird das [snit::widget][snit] jedoch von einem [snit::widgetadaptor][snit] als Hull-Komponente verwendet, ändert sich sein Instanzname.  Aus diesem Grund wird jeder Methode, jedem Konstruktor, jedem Destruktor usw. von [snit::widget][snit] ein weiteres implizites Argument übergeben, nämlich **win**, der Fenstername des Megawidgets.  Alle Kindfenster sollten mit „**win**“ als Wurzel benannt werden.
 
 Nehmen wir also an, Sie erstellen ein Toolbar-Widget, einen Frame, der aus mehreren nebeneinander angeordneten Schaltflächen besteht.  Das könnte in etwa so aussehen:
 
@@ -2044,17 +2026,17 @@ snit::widget toolbar {
 
 Siehe auch die Frage zur Umbenennung von Objekten weiter oben in dieser Datei.
 
-# WIDGET-ADAPTER
+# Widget-Adapter
 
 ## Was ist ein snit::widgetadaptor?
 
-Ein **snit::widgetadaptor** ist eine Art von **snit::widget**. Während der Hull eines **snit::widget** automatisch erstellt wird und stets ein Tk-Frame ist, kann ein **snit::widgetadaptor** auf einem beliebigen Tk-Widget – oder auf einem beliebigen Snit-Megawidget oder sogar (mit etwas Glück) auf Megawidgets basieren, die mithilfe eines anderen Pakets definiert wurden.
+Ein [snit::widgetadaptor][snit] ist eine Art von [snit::widget][snit]. Während der Hull eines [snit::widget][snit] automatisch erstellt wird und stets ein Tk-Frame ist, kann ein [snit::widgetadaptor][snit] auf einem beliebigen Tk-Widget – oder auf einem beliebigen Snit-Megawidget oder sogar (mit etwas Glück) auf Megawidgets basieren, die mithilfe eines anderen Pakets definiert wurden.
 
 Es wird als *Widget-Adapter* bezeichnet, da es Ihnen ermöglicht, ein vorhandenes Widget zu übernehmen und dessen Verhalten anzupassen.
 
 ## Wie definiere ich ein snit::widgetadaptor?
 
-Verwenden Sie den Befehl **snit::widgetadaptor**.  Die Definition für **snit::widgetadaptor** entspricht genau der für **snit::type** oder **snit::widget**, mit der Ausnahme, dass der Konstruktor die Hull-Komponente erstellen und installieren muss.
+Verwenden Sie den Befehl [snit::widgetadaptor][snit].  Die Definition für [snit::widgetadaptor][snit] entspricht genau der für [snit::type][snit] oder [snit::widget][snit], mit der Ausnahme, dass der Konstruktor die Hull-Komponente erstellen und installieren muss.
 
 Der folgende Code erstellt beispielsweise ein schreibgeschütztes Text-Widget, indem die Methoden **insert** und **delete** auf einfache Weise in No-Ops umgewandelt werden.  Anschließend definieren wir neue Methoden, **ins** und **del**, die als **insert** und **delete** an die Hull-Komponente weitergeleitet werden.  Auf diese Weise haben wir das Text-Widget angepasst und ihm ein neues Verhalten verliehen, wobei es im Grunde genommen weiterhin ein Text-Widget bleibt.
 
@@ -2086,9 +2068,9 @@ Der folgende Code erstellt beispielsweise ein schreibgeschütztes Text-Widget, i
 }
 ```
 
-Der wichtigste Teil befindet sich im Konstruktor. Während **snit::widget** den Hull für Sie erstellt, ist **snit::widgetadaptor** dazu nicht in der Lage – es weiß nicht, welche Art von Widget Sie wünschen.  Daher erstellt der Konstruktor zunächst die Hull-Komponente (in diesem Fall ein Tk-Text-Widget) und installiert diese anschließend mit dem Befehl **installhull**.
+Der wichtigste Teil befindet sich im Konstruktor. Während [snit::widget][snit] den Hull für Sie erstellt, ist [snit::widgetadaptor][snit] dazu nicht in der Lage – es weiß nicht, welche Art von Widget Sie wünschen.  Daher erstellt der Konstruktor zunächst die Hull-Komponente (in diesem Fall ein Tk-Text-Widget) und installiert diese anschließend mit dem Befehl [installhull][snit].
 
-*Hinweis:* Es gibt keinen Instanzbefehl, bis Sie durch die Installation einer Hull-Komponente einen solchen erstellen. Jeder Versuch, Methoden an **\$self** zu übergeben, bevor **installhull** aufgerufen wird, schlägt fehl.
+*Hinweis:* Es gibt keinen Instanzbefehl, bis Sie durch die Installation einer Hull-Komponente einen solchen erstellen. Jeder Versuch, Methoden an **$self** zu übergeben, bevor [installhull][snit] aufgerufen wird, schlägt fehl.
 
 ## Kann ich ein Widget anpassen, das an anderer Stelle im Programm erstellt wurde?
 
@@ -2096,7 +2078,7 @@ Ja.
 
 Manchmal kann es praktisch sein, ein bereits vorhandenes Widget anzupassen, anstatt ein eigenes zu erstellen. Beispielsweise verwaltet das Bwidget „**PagesManager**“ eine Reihe von „**frame**“-Widgets, von denen jeweils nur eines sichtbar ist. Die Anwendung entscheidet, welches „**frame**“ sichtbar ist.  Alle diese **frame**-Instanzen werden vom **PagesManager** selbst mithilfe seiner **add**-Methode erstellt. Es ist praktisch, diese Frames so anzupassen, dass sie die gewünschten Funktionen erfüllen.
 
-In einem solchen Fall existiert das Tk-Widget bereits, wenn „**snit::widgetadaptor**“ erstellt wird. Snit stellt zu diesem Zweck eine alternative Form des Befehls „**installhull**“ bereit:
+In einem solchen Fall existiert das Tk-Widget bereits, wenn „[snit::widgetadaptor][snit]“ erstellt wird. Snit stellt zu diesem Zweck eine alternative Form des Befehls „[installhull][snit]“ bereit:
 
 ```
 snit::widgetadaptor pageadaptor {
@@ -2111,9 +2093,9 @@ snit::widgetadaptor pageadaptor {
 
 ## Kann ich ein anderes Megawidget anpassen?
 
-Möglicherweise. Wenn es sich bei dem anderen Megawidget um ein **snit::widget** oder **snit::widgetadaptor** handelt, dann ja. Ist dies nicht der Fall, dann wiederum möglicherweise. Sie müssen es ausprobieren und sehen, ob es funktioniert.  Am ehesten werden Sie Probleme mit der Zerstörung von Widgets haben – Sie müssen sicherstellen, dass Ihr Megawidget-Code das Ereignis **\<Destroy>** erhält, bevor das von Ihnen angepasste Megawidget dieses Ereignis erhält.
+Möglicherweise. Wenn es sich bei dem anderen Megawidget um ein [snit::widget][snit] oder [snit::widgetadaptor][snit] handelt, dann ja. Ist dies nicht der Fall, dann wiederum möglicherweise. Sie müssen es ausprobieren und sehen, ob es funktioniert.  Am ehesten werden Sie Probleme mit der Zerstörung von Widgets haben – Sie müssen sicherstellen, dass Ihr Megawidget-Code das Ereignis **<Destroy>** erhält, bevor das von Ihnen angepasste Megawidget dieses Ereignis erhält.
 
-# TK-OPTIONSDATENBANK
+# Tk-Optionsdatenbank
 
 ## Was ist die Tk-Optionsdatenbank?
 
@@ -2123,33 +2105,30 @@ Eine ausführliche Beschreibung der Tk-Optionsdatenbank würde den Rahmen dieses
 
 Snit ist so implementiert, dass es in den meisten Fällen im Hinblick auf die Optionsdatenbank einfach das Richtige tut, vorausgesetzt, der Widget-Entwickler hält sich an die Vorgaben von Snit. Im Hauptteil dieses Abschnitts wird ausführlich darauf eingegangen, welche Anforderungen Snit stellt. Im Folgenden finden Sie zur Orientierung eine kurze Zusammenfassung dieser Anforderungen.
 
-**•**
-: Wenn die Standard-Widget-Klasse des Widgets nicht Ihren Vorstellungen entspricht, legen Sie diese explizit mithilfe der Anweisung **widgetclass** in der Widget-Definition fest.
+- Wenn die Standard-Widget-Klasse des Widgets nicht Ihren Vorstellungen entspricht, legen Sie diese explizit mithilfe der Anweisung [widgetclass][snit] in der Widget-Definition fest.
 
-**•**
-: Wenn Sie Optionen definieren oder weiterleiten, legen Sie die Namen der Ressourcen und Klassen bei Bedarf ausdrücklich fest.
+- Wenn Sie Optionen definieren oder weiterleiten, legen Sie die Namen der Ressourcen und Klassen bei Bedarf ausdrücklich fest.
 
-**•**
-: Verwenden Sie den Befehl **installhull using**, um den Hull für **snit::widgetadaptor**s zu erstellen und zu installieren.
+- Verwenden Sie den Befehl [installhull using][snit], um den Hull für [snit::widgetadaptor][snit]s zu erstellen und zu installieren.
 
-**•**
-: Verwenden Sie den Befehl **install**, um alle Komponenten, bei denen es sich um Widgets handelt, zu erstellen und zu installieren.
+- Verwenden Sie den Befehl [install][snit], um alle Komponenten, bei denen es sich um Widgets handelt, zu erstellen und zu installieren.
 
-**•**
-: Verwenden Sie den Befehl **install**, um Komponenten zu erstellen und zu installieren, bei denen es sich nicht um Widgets handelt, falls Sie möchten, dass diese Optionswerte aus der Optionsdatenbank erhalten. Das Zusammenspiel von Tk-Widgets mit der Optionsdatenbank ist komplex; das Zusammenspiel von Snit mit der Optionsdatenbank ist dies noch mehr und erfordert daher besondere Sorgfalt.
+- Verwenden Sie den Befehl [install][snit], um Komponenten zu erstellen und zu installieren, bei denen es sich nicht um Widgets handelt, falls Sie möchten, dass diese Optionswerte aus der Optionsdatenbank erhalten.
 
+
+Das Zusammenspiel von Tk-Widgets mit der Optionsdatenbank ist komplex; das Zusammenspiel von Snit mit der Optionsdatenbank ist dies noch mehr und erfordert daher besondere Sorgfalt.
 
 ## Verwenden snit::types die Tk-Optionsdatenbank?
 
-Nein, das tun sie nicht; für die Abfrage der Optionsdatenbank ist ein Tk-Fenstername erforderlich, und **snit::type**s verfügen nicht über einen solchen.
+Nein, das tun sie nicht; für die Abfrage der Optionsdatenbank ist ein Tk-Fenstername erforderlich, und [snit::type][snit]s verfügen nicht über einen solchen.
 
-Wenn Sie eine Instanz von **snit::type** als Komponente von **snit::widget** oder **snit::widgetadaptor** anlegen, und wenn Optionen an die Komponente weitergeleitet werden und Sie diese mit **install** erstellen und installieren, dann fragt das Megawidget die Optionsdatenbank im Auftrag von **snit::type** ab.  Dies entspricht möglicherweise Ihren Vorstellungen, möglicherweise aber auch nicht; seien Sie daher bitte vorsichtig.
+Wenn Sie eine Instanz von [snit::type][snit] als Komponente von [snit::widget][snit] oder [snit::widgetadaptor][snit] anlegen, und wenn Optionen an die Komponente weitergeleitet werden und Sie diese mit [install][snit] erstellen und installieren, dann fragt das Megawidget die Optionsdatenbank im Auftrag von [snit::type][snit] ab.  Dies entspricht möglicherweise Ihren Vorstellungen, möglicherweise aber auch nicht; seien Sie daher bitte vorsichtig.
 
 ## Wie lautet die Widget-Klasse meines snit::widget?
 
 Jedes Tk-Widget verfügt über eine „Widget-Klasse“: einen Namen, der beim Hinzufügen von Optionseinstellungen zur Datenbank verwendet wird. Bei Tk-Widgets entspricht die Widget-Klasse dem Namen des Widget-Befehls mit einem Großbuchstaben am Anfang.  Beispielsweise lautet die Widget-Klasse des Tk-Widgets „**button**“ „**Button**“.
 
-Ebenso ist die Widget-Klasse eines **snit::widget** standardmäßig der unqualifizierte Typname mit großem Anfangsbuchstaben. Beispielsweise lautet die Widget-Klasse von
+Ebenso ist die Widget-Klasse eines [snit::widget][snit] standardmäßig der unqualifizierte Typname mit großem Anfangsbuchstaben. Beispielsweise lautet die Widget-Klasse von
 
 ```
 snit::widget ::mylibrary::scrolledText { ... }
@@ -2157,7 +2136,7 @@ snit::widget ::mylibrary::scrolledText { ... }
 
 is **ScrolledText**.
 
-Die Widget-Klasse kann auch explizit mithilfe der Anweisung **widgetclass** innerhalb der Definition von **snit::widget** festgelegt werden:
+Die Widget-Klasse kann auch explizit mithilfe der Anweisung [widgetclass][snit] innerhalb der Definition von [snit::widget][snit] festgelegt werden:
 
 ```
 snit::widget ::mylibrary::scrolledText {
@@ -2171,11 +2150,11 @@ Die obige Definition besagt, dass ein „**scrolledText**“-Megawidget dieselbe
 
 ## Wie lautet die Widget-Klasse meines snit::widgetadaptor?
 
-Die Widget-Klasse eines **snit::widgetadaptor** entspricht lediglich der Widget-Klasse seines Hull-Widgets; Snit hat hierauf keinen Einfluss.
+Die Widget-Klasse eines [snit::widgetadaptor][snit] entspricht lediglich der Widget-Klasse seines Hull-Widgets; Snit hat hierauf keinen Einfluss.
 
-Hinweis: Die Widget-Klasse kann nur für die Widgets **frame** und **toplevel** geändert werden; aus diesem Grund sind dies die zulässigen Hull-Typen für **snit::widget**s.
+Hinweis: Die Widget-Klasse kann nur für die Widgets **frame** und **toplevel** geändert werden; aus diesem Grund sind dies die zulässigen Hull-Typen für [snit::widget][snit]s.
 
-Versuchen Sie, **snit::widgetadaptor**s nur zu verwenden, um geringfügige Änderungen am Verhalten eines anderen Widgets vorzunehmen. In diesem Fall ist es in der Regel ohnehin nicht sinnvoll, die Klasse des Widgets zu ändern.
+Versuchen Sie, [snit::widgetadaptor][snit]s nur zu verwenden, um geringfügige Änderungen am Verhalten eines anderen Widgets vorzunehmen. In diesem Fall ist es in der Regel ohnehin nicht sinnvoll, die Klasse des Widgets zu ändern.
 
 ## Was sind Ressourcen- und Klassennamen von Optionen?
 
@@ -2282,7 +2261,7 @@ Das hängt davon ab, ob die Optionen an den Hull oder an eine andere Komponente 
 
 ## Wie initialisiert snit Optionen, die an den Hull weitergeleitet werden?
 
-Der Hull eines **snit::widget** ist ein Widget, und da seine Klasse festgelegt wurde, wird erwartet, dass er die Optionsdatenbank für sich selbst abfragt. Die einzige Ausnahme betrifft Optionen, die an ihn unter einem anderen Namen weitergeleitet werden. Betrachten Sie den folgenden Code:
+Der Hull eines [snit::widget][snit] ist ein Widget, und da seine Klasse festgelegt wurde, wird erwartet, dass er die Optionsdatenbank für sich selbst abfragt. Die einzige Ausnahme betrifft Optionen, die an ihn unter einem anderen Namen weitergeleitet werden. Betrachten Sie den folgenden Code:
 
 ```
 option add *Mywidget.borderWidth 5
@@ -2319,7 +2298,7 @@ Der Wert von D lautet „5“, jedoch nicht aus dem Grund, den Sie vermuten.  Hi
     delegate option {-borderwidth borderWidth BorderWidth} to hull
 ```
 
-Bei **snit::widgetadaptor**s stellt sich die Situation etwas anders dar.  Widget-Adapter behalten die Widget-Klasse ihres Hulls bei, und der Hull wird nicht automatisch von Snit erstellt. Stattdessen muss **snit::widgetadaptor** in seinem Konstruktor **installhull** aufrufen. Dies geschieht üblicherweise wie folgt:
+Bei [snit::widgetadaptor][snit]s stellt sich die Situation etwas anders dar.  Widget-Adapter behalten die Widget-Klasse ihres Hulls bei, und der Hull wird nicht automatisch von Snit erstellt. Stattdessen muss [snit::widgetadaptor][snit] in seinem Konstruktor [installhull][snit] aufrufen. Dies geschieht üblicherweise wie folgt:
 
 ```
 snit::widgetadaptor mywidget {
@@ -2333,15 +2312,15 @@ snit::widgetadaptor mywidget {
 }
 ```
 
-In diesem Fall erstellt der Befehl **installhull** den Hull mithilfe eines Befehls wie dem folgenden:
+In diesem Fall erstellt der Befehl [installhull][snit] den Hull mithilfe eines Befehls wie dem folgenden:
 
 ```
     set hull [text $win -foreground white]
 ```
 
-Der Hull ist ein **text**-Widget, daher lautet seine Widget-Klasse **Text**.  Genau wie bei **snit::widget**-Hulls geht Snit davon aus, dass er alle normalen Werte für Optionen automatisch übernimmt, ohne dass ein Eingreifen seitens Snit erforderlich ist. Optionen, die unter einem anderen Namen weitergeleitet werden, werden auf dieselbe Weise wie oben beschrieben aus der Optionsdatenbank initialisiert.
+Der Hull ist ein **text**-Widget, daher lautet seine Widget-Klasse **Text**.  Genau wie bei [snit::widget][snit]-Hulls geht Snit davon aus, dass er alle normalen Werte für Optionen automatisch übernimmt, ohne dass ein Eingreifen seitens Snit erforderlich ist. Optionen, die unter einem anderen Namen weitergeleitet werden, werden auf dieselbe Weise wie oben beschrieben aus der Optionsdatenbank initialisiert.
 
-In früheren Versionen von Snit wurde erwartet, dass **snit::widgetadaptor**s den Befehl **installhull** wie folgt aufrufen:
+In früheren Versionen von Snit wurde erwartet, dass [snit::widgetadaptor][snit]s den Befehl [installhull][snit] wie folgt aufrufen:
 
 ```
     installhull [text $win -foreground white]
@@ -2355,7 +2334,7 @@ Bei Hull-Komponenten geht Snit davon aus, dass Tk den Großteil der Arbeit autom
 
 Ein Komponenten-Widget bleibt weiterhin ein Widget und wird daher wie gewohnt aus der Optionsdatenbank initialisiert. Ein **text**-Widget bleibt ein **text**-Widget, unabhängig davon, ob es Bestandteil eines Megawidgets ist oder nicht, und wird als solches erstellt.
 
-Anschließend wird die Optionsdatenbank nach allen an die Komponente weitergeleiteten Optionen abgefragt, und die Komponente wird entsprechend initialisiert – vorausgesetzt, sie wird mit dem Befehl **install** erstellt.
+Anschließend wird die Optionsdatenbank nach allen an die Komponente weitergeleiteten Optionen abgefragt, und die Komponente wird entsprechend initialisiert – vorausgesetzt, sie wird mit dem Befehl [install][snit] erstellt.
 
 Bevor die Unterstützung für die Optionsdatenbank in Snit integriert wurde, bestand die übliche Vorgehensweise beim Erstellen einer Komponente darin, diese einfach im Konstruktor zu erstellen und ihren Befehlsnamen der Komponentenvariablen zuzuweisen:
 
@@ -2381,28 +2360,26 @@ snit::widget mywidget {
 }
 ```
 
-Der Befehl **install** führt Folgendes aus:
+Der Befehl [install][snit] führt Folgendes aus:
 
-**•**
-: Erstellt eine Liste der Optionen, die explizit im Befehl **install** enthalten sind – in diesem Fall **-foreground**.
+- Erstellt eine Liste der Optionen, die explizit im Befehl [install][snit] enthalten sind – in diesem Fall **-foreground**.
 
-**•**
-: Fragt die Optionsdatenbank nach allen Optionen, die explizit an die genannte Komponente weitergeleitet wurden.
+- Fragt die Optionsdatenbank nach allen Optionen, die explizit an die genannte Komponente weitergeleitet wurden.
 
-**•**
-: Erstellt die Komponente mithilfe des angegebenen Befehls, nachdem eine Liste von Optionen und Werten, die aus der Optionsdatenbank ausgelesen wurden, in diesen Befehl eingefügt wurde. Somit haben die explizit angegebenen Optionen (wie **-foreground**) Vorrang vor allen aus der Optionsdatenbank ausgelesenen Werten.
+- Erstellt die Komponente mithilfe des angegebenen Befehls, nachdem eine Liste von Optionen und Werten, die aus der Optionsdatenbank ausgelesen wurden, in diesen Befehl eingefügt wurde. Somit haben die explizit angegebenen Optionen (wie **-foreground**) Vorrang vor allen aus der Optionsdatenbank ausgelesenen Werten.
 
-**•**
-: Wenn die Widget-Definition Optionen implizit mithilfe von **delegate option \*** an die Komponente weiterleitet, ruft Snit die Methode **configure** der neu erstellten Komponente auf, um eine Liste aller Optionen der Komponente zu erhalten.  Daraus erstellt Snit eine Liste der implizit an die Komponente weitergeleiteten Optionen, die nicht explizit im Befehl **install** enthalten waren. Für alle diese Optionen fragt Snit die Optionsdatenbank ab und konfiguriert die Komponente entsprechend. Sie müssen all dies nicht unbedingt wissen; verwenden Sie einfach **install**, um Ihre Komponenten zu installieren, und Snit wird versuchen, das Richtige zu tun.
+- Wenn die Widget-Definition Optionen implizit mithilfe von **delegate option \*** an die Komponente weiterleitet, ruft Snit die Methode **configure** der neu erstellten Komponente auf, um eine Liste aller Optionen der Komponente zu erhalten.  Daraus erstellt Snit eine Liste der implizit an die Komponente weitergeleiteten Optionen, die nicht explizit im Befehl [install][snit] enthalten waren. Für alle diese Optionen fragt Snit die Optionsdatenbank ab und konfiguriert die Komponente entsprechend.
 
+
+Sie müssen all dies nicht unbedingt wissen; verwenden Sie einfach [install][snit], um Ihre Komponenten zu installieren, und Snit wird versuchen, das Richtige zu tun.
 
 ## Was geschieht, wenn ich ein Nicht-Widget als Komponente eines Widgets installiere?
 
-Ein **snit::type** fragt niemals die Optionsdatenbank ab. Ein **snit::widget** kann jedoch Komponenten enthalten, die keine Widgets sind.  Wenn Optionen an diese Komponenten weitergeleitet werden und der Befehl **install** zur Installation dieser Komponenten verwendet wird, werden sie ebenso wie Widget-Komponenten aus der Optionsdatenbank initialisiert.
+Ein [snit::type][snit] fragt niemals die Optionsdatenbank ab. Ein [snit::widget][snit] kann jedoch Komponenten enthalten, die keine Widgets sind.  Wenn Optionen an diese Komponenten weitergeleitet werden und der Befehl [install][snit] zur Installation dieser Komponenten verwendet wird, werden sie ebenso wie Widget-Komponenten aus der Optionsdatenbank initialisiert.
 
-Bei der Verwendung innerhalb eines Megawidgets geht **install** jedoch davon aus, dass die erstellte Komponente eine weitgehend standardmäßige, widgetähnliche Erstellungssyntax verwendet. Wenn dies nicht der Fall ist, verwenden Sie **install** bitte nicht.
+Bei der Verwendung innerhalb eines Megawidgets geht [install][snit] jedoch davon aus, dass die erstellte Komponente eine weitgehend standardmäßige, widgetähnliche Erstellungssyntax verwendet. Wenn dies nicht der Fall ist, verwenden Sie [install][snit] bitte nicht.
 
-# ENSEMBLE-BEFEHLE
+# Ensemble-Befehle
 
 ## Was ist ein Ensemble-Befehl?
 
@@ -2410,13 +2387,13 @@ Ein Ensemble-Befehl ist ein Befehl mit Unterbefehlen.  Snit-Objekte sind allesam
 
 ## Wie kann ich mit snit einen Ensemble-Befehl erstellen?
 
-Es gibt zwei Möglichkeiten – als **snit::type** oder als Instanz eines **snit::type**.
+Es gibt zwei Möglichkeiten – als [snit::type][snit] oder als Instanz eines [snit::type][snit].
 
 ## Wie kann ich einen Ensemble-Befehl unter Verwendung einer Instanz von snit::type erstellen?
 
-Definieren Sie einen Typ, dessen **INSTANZMETHODEN** die Unterbefehle Ihres Ensemble-Befehls sind. Erstellen Sie anschließend eine Instanz dieses Typs mit dem gewünschten Namen.
+Definieren Sie einen Typ, dessen [Instanzmethoden] die Unterbefehle Ihres Ensemble-Befehls sind. Erstellen Sie anschließend eine Instanz dieses Typs mit dem gewünschten Namen.
 
-Der folgende Code nutzt beispielsweise **WEITERLEITUNG**, um eine Entsprechung zum Standardbefehl **string** zu erstellen:
+Der folgende Code nutzt beispielsweise [Weiterleitung], um eine Entsprechung zum Standardbefehl **string** zu erstellen:
 
 ```
 snit::type ::mynamespace::mystringtype {
@@ -2436,9 +2413,9 @@ Diese Methode weist zwei Nachteile auf. Erstens bleibt der Typbefehl ungenutzt h
 
 ## Wie kann ich mithilfe von snit::type einen Ensemble-Befehl erstellen?
 
-Definieren Sie einen Typ, dessen **TYPMETHODEN** die Unterbefehle Ihres Ensemble-Befehls sind.
+Definieren Sie einen Typ, dessen [Typmethoden] die Unterbefehle Ihres Ensemble-Befehls sind.
 
-Der folgende Code nutzt beispielsweise **WEITERLEITUNG**, um eine Entsprechung zum Standardbefehl **string** zu erstellen:
+Der folgende Code nutzt beispielsweise [Weiterleitung], um eine Entsprechung zum Standardbefehl **string** zu erstellen:
 
 ```
 snit::type mystring {
@@ -2454,7 +2431,7 @@ Nun ist der Typbefehl selbst Ihr Ensemble-Befehl.
 
 Diese Methode hat nur einen Nachteil, und obwohl dieser erheblich ist, lässt er sich dennoch überwinden.  Ihr neuer Ensemble-Befehl wird die Unterbefehle **create**, **info** und **destroy** enthalten, die Sie nicht wünschen.  Und was noch schlimmer ist: Da die Methode **create** implizit sein kann, werden Benutzer Ihres Befehls versehentlich Instanzen Ihres Typs **mystring** erstellen, sollten sie einen der Unterbefehle falsch schreiben.  Der Befehl wird erfolgreich sein – beim ersten Mal –, aber nicht das gewünschte Ergebnis liefern. Das ist sehr schlecht.
 
-Die Abhilfe besteht darin, einige **PRAGMAS** festzulegen, wie hier gezeigt:
+Die Abhilfe besteht darin, einige [Pragmas] festzulegen, wie hier gezeigt:
 
 ```
 snit::type mystring {
@@ -2470,9 +2447,9 @@ snit::type mystring {
 }
 ```
 
-Hier haben wir die Anweisung **pragma** verwendet, um Snit mitzuteilen, dass wir weder die Typmethode **info** noch die Typmethode **destroy** wünschen und dass unser Typ keine Instanzen hat; dadurch werden die Typmethode **create** und der gesamte zugehörige Code entfernt.  Infolgedessen verhält sich unser Ensemble-Befehl wie vorgesehen, ohne unerwartete Unterbefehle.
+Hier haben wir die Anweisung [pragma][snit] verwendet, um Snit mitzuteilen, dass wir weder die Typmethode **info** noch die Typmethode **destroy** wünschen und dass unser Typ keine Instanzen hat; dadurch werden die Typmethode **create** und der gesamte zugehörige Code entfernt.  Infolgedessen verhält sich unser Ensemble-Befehl wie vorgesehen, ohne unerwartete Unterbefehle.
 
-# PRAGMAS
+# Pragmas
 
 ## Was ist ein Pragma?
 
@@ -2480,7 +2457,7 @@ Ein Pragma ist eine Option, die Sie in Ihren Typdefinitionen festlegen können u
 
 ## Wie setze ich ein Pragma?
 
-Verwenden Sie die Anweisung **pragma**. Jedes Pragma ist eine Option mit einem Wert; bei jeder Verwendung der Anweisung **pragma** können Sie eine oder mehrere davon festlegen.
+Verwenden Sie die Anweisung [pragma][snit]. Jedes Pragma ist eine Option mit einem Wert; bei jeder Verwendung der Anweisung [pragma][snit] können Sie eine oder mehrere davon festlegen.
 
 ## Wie werde ich die Typmethode „info“ los?
 
@@ -2521,7 +2498,7 @@ snit::type dog {
 
 Snit verzichtet darauf, die Typmethode **create** zu definieren; wenn Sie den Typbefehl mit einem unbekannten Methodennamen aufrufen, erhalten Sie eine Fehlermeldung anstelle einer neuen Instanz des Typs.
 
-Dies ist nützlich, wenn Sie einen **snit::type** verwenden möchten, um einen Ensemble-Befehl zu definieren, anstatt einen Typ mit Instanzen.
+Dies ist nützlich, wenn Sie einen [snit::type][snit] verwenden möchten, um einen Ensemble-Befehl zu definieren, anstatt einen Typ mit Instanzen.
 
 Die Pragmas **-hastypemethods** und **-hasinstances** können nicht beide falsch sein (sonst bliebe nichts mehr übrig).
 
@@ -2546,7 +2523,7 @@ Die Pragmas **-hastypemethods** und **-hasinstances** können nicht beide falsch
 
 ## Warum kann ich kein Objekt erstellen, das ein altes Objekt mit demselben Namen ersetzt?
 
-Bis zur Version 0.95 von Snit konnten Sie für eine Instanz von **snit::type** einen beliebigen Namen verwenden, selbst wenn dieser Name bereits von einem anderen Objekt oder Befehl verwendet wurde. Sie konnten beispielsweise Folgendes tun:
+Bis zur Version 0.95 von Snit konnten Sie für eine Instanz von [snit::type][snit] einen beliebigen Namen verwenden, selbst wenn dieser Name bereits von einem anderen Objekt oder Befehl verwendet wurde. Sie konnten beispielsweise Folgendes tun:
 
 ```
 snit::type dog { ... }
@@ -2569,17 +2546,16 @@ In Snit 1.x können Sie das Pragma **-simpledispatch** auf **yes** setzen.
 
 Der Methodenaufruf in Snit 1.x ist sowohl flexibel als auch schnell, doch diese Flexibilität hat ihren Preis. Wenn Ihr Typ diese Flexibilität nicht benötigt, können Sie mithilfe des Pragmas **-simpledispatch** einen einfacheren Aufrufmechanismus einsetzen, der deutlich schneller läuft. Die Einschränkungen lauten wie folgt:
 
-**•**
-: Methoden können nicht weitergeleitet werden.
+- Methoden können nicht weitergeleitet werden.
 
-**•**
-: **uplevel** und **upvar** funktionieren nicht wie erwartet: Der Geltungsbereich des Aufrufers liegt zwei Ebenen höher statt einer.
+- **uplevel** und **upvar** funktionieren nicht wie erwartet: Der Geltungsbereich des Aufrufers liegt zwei Ebenen höher statt einer.
 
-**•**
-: Die Methoden zur Verarbeitung von Optionen (**cget**, **configure** und **configurelist**) sind geringfügig langsamer. In Snit 2.2 ist das Pragma **-simpledispatch** veraltet und wird ignoriert; jeder Methodenaufruf in Snit 2.2 ist schneller als **-simpledispatch** in Snit 1.x.
+- Die Methoden zur Verarbeitung von Optionen (**cget**, **configure** und **configurelist**) sind geringfügig langsamer.
 
 
-# MAKROS
+In Snit 2.2 ist das Pragma **-simpledispatch** veraltet und wird ignoriert; jeder Methodenaufruf in Snit 2.2 ist schneller als **-simpledispatch** in Snit 1.x.
+
+# Makros
 
 ## Was ist ein Makro?
 
@@ -2622,7 +2598,7 @@ snit::type dog {
 
 ## Wie definiere ich eine neue Syntax für Typdefinitionen?
 
-Verwenden Sie ein Makro.  Beispielsweise soll die Option **-background** Ihres **snit::widget** auf eine Reihe von Komponenten-Widgets übertragen werden.  Sie könnten dies wie folgt umsetzen:
+Verwenden Sie ein Makro.  Beispielsweise soll die Option **-background** Ihres [snit::widget][snit] auf eine Reihe von Komponenten-Widgets übertragen werden.  Sie könnten dies wie folgt umsetzen:
 
 ```
 snit::widget mywidget {
@@ -2670,7 +2646,7 @@ Ja, die gibt es. Sie dürfen keine Standard-Tcl-Befehle oder Snit-Typdefinitions
 
 Wenn Sie Snit-Makros in Ihrer Anwendung verwenden, können Sie diese wie oben gezeigt im globalen Namespace benennen.  Wenn Sie sie jedoch verwenden, um Typen oder Widgets zu definieren, die von anderen genutzt werden sollen, sollten Sie Ihre Makros im selben Namespace wie Ihre Typen oder Widgets definieren. Auf diese Weise kommt es zu keinen Konflikten mit den Makros anderer Entwickler.
 
-Wenn mein raffiniertes **snit::widget** beispielsweise **::mylib::mywidget** heißt, dann sollte ich mein Makro „**propagate**“ als „**::mylib::propagate**“ definieren:
+Wenn mein raffiniertes [snit::widget][snit] beispielsweise **::mylib::mywidget** heißt, dann sollte ich mein Makro „**propagate**“ als „**::mylib::propagate**“ definieren:
 
 ```
 snit::macro mylib::propagate {option "to" components} { ... }
@@ -2684,7 +2660,7 @@ snit::widget ::mylib::mywidget {
 }
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *snit* als Kategorie an.
 
@@ -2692,12 +2668,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Programmierwerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2003-2006, by William H. Duquette
 ```
+
+
+[snit]: snit.md

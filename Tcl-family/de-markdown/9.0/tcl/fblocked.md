@@ -1,5 +1,6 @@
 ---
 CommandName: fblocked
+title: fblocked
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -10,16 +11,19 @@ Copyright:
  - Copyright (c) 1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 fblocked - Prüft, ob die letzte Eingabeoperation alle verfügbaren Eingabedaten verbraucht hat
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[fblocked]{.cmd} [channel]{.arg} 
+[fblocked]{.cmd} [channel]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **fblocked** wurde durch den Befehl **chan blocked** abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+Der Befehl **fblocked** wurde durch den Befehl [chan blocked][chan] abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+
+
+[chan]: chan.md

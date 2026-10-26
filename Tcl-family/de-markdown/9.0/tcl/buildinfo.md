@@ -1,5 +1,6 @@
 ---
 CommandName: build-info
+title: build-info
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -12,97 +13,97 @@ Copyright:
  - Copyright (c) 2025 Jan Nijtmans.
 ---
 
-# NAME
+# Name
 
 buildinfo - Build-Informationen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[::tcl::build-info]{.cmd} [field]{.optarg} 
+[::tcl::build-info]{.cmd} [field]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl liefert Informationen darüber, wie Tcl gebaut wurde. Ohne Argumente: Tcl-Patchlevel, dann „+“, dann die Fossil-Commit-ID, gefolgt von einer Liste punktgetrennter Tags. Ist *field* angegeben, wird das entsprechende Feld extrahiert (siehe unten). Jeder andere *field*-Wert, der unten nicht genannt ist, liefert „0“. Bei offiziellen Tcl-Releases gelten folgende *field*-Werte:
 
-**::tcl::build-info clang**
+[::tcl::build-info]{.cmd} [clang]{.sub}
 : Clang-Versionsnummer (4 Ziffern), wenn Tcl mit Clang kompiliert wurde, sonst 0.
 
-**::tcl::build-info commit**
+[::tcl::build-info]{.cmd} [commit]{.sub}
 : Fossil-Commit-ID, aus der Tcl gebaut wurde.
 
-**::tcl::build-info compiledebug**
-: 1, wenn Tcl mit **-DTCL_COMPILE_DEBUG** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [compiledebug]{.sub}
+: 1, wenn Tcl mit **-DTCL\_COMPILE\_DEBUG** kompiliert wurde, sonst 0.
 
-**::tcl::build-info compiler**
+[::tcl::build-info]{.cmd} [compiler]{.sub}
 : Compilername (clang, gcc, icc oder msvc), Bindestrich, (4-stellige) Versionsnummer.
 
-**::tcl::build-info compilestats**
-: 1, wenn Tcl mit **-DTCL_COMPILE_STATS** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [compilestats]{.sub}
+: 1, wenn Tcl mit **-DTCL\_COMPILE\_STATS** kompiliert wurde, sonst 0.
 
-**::tcl::build-info cplusplus**
+[::tcl::build-info]{.cmd} [cplusplus]{.sub}
 : 1, wenn Tcl mit einem C++-Compiler kompiliert wurde, sonst 0.
 
-**::tcl::build-info debug**
+[::tcl::build-info]{.cmd} [debug]{.sub}
 : 1, wenn Tcl nicht mit **-DNDEBUG** kompiliert wurde, sonst 0.
 
-**::tcl::build-info gcc**
+[::tcl::build-info]{.cmd} [gcc]{.sub}
 : GCC-Versionsnummer (4 Ziffern) bei GCC-Build, sonst 0.
 
-**::tcl::build-info icc**
+[::tcl::build-info]{.cmd} [icc]{.sub}
 : ICC-Versionsnummer (4 Ziffern) bei ICC-Build, sonst 0.
 
-**::tcl::build-info ilp32**
+[::tcl::build-info]{.cmd} [ilp32]{.sub}
 : 1, wenn Integer, Long und Zeiger jeweils 32 Bit sind, sonst 0.
 
-**::tcl::build-info memdebug**
-: 1, wenn Tcl mit **-DTCL_MEM_DEBUG** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [memdebug]{.sub}
+: 1, wenn Tcl mit **-DTCL\_MEM\_DEBUG** kompiliert wurde, sonst 0.
 
-**::tcl::build-info msvc**
+[::tcl::build-info]{.cmd} [msvc]{.sub}
 : MSVC-Versionsnummer (4 Ziffern) bei MSVC-Build, sonst 0.
 
-**::tcl::build-info nmake**
+[::tcl::build-info]{.cmd} [nmake]{.sub}
 : 1, wenn Tcl mit nmake gebaut wurde, sonst 0.
 
-**::tcl::build-info no-deprecate**
-: 1, wenn Tcl mit **-DTCL_NO_DEPRECATED** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [no-deprecate]{.sub}
+: 1, wenn Tcl mit **-DTCL\_NO\_DEPRECATED** kompiliert wurde, sonst 0.
 
-**::tcl::build-info no-thread**
-: 1, wenn Tcl mit **-DTCL_THREADS=0** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [no-thread]{.sub}
+: 1, wenn Tcl mit **-DTCL\_THREADS=0** kompiliert wurde, sonst 0.
 
-**::tcl::build-info no-optimize**
-: 1, wenn Tcl nicht mit **-DTCL_CFG_OPTIMIZED** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [no-optimize]{.sub}
+: 1, wenn Tcl nicht mit **-DTCL\_CFG\_OPTIMIZED** kompiliert wurde, sonst 0.
 
-**::tcl::build-info objective-c**
+[::tcl::build-info]{.cmd} [objective-c]{.sub}
 : 1, wenn Tcl mit einem Objective-C-Compiler kompiliert wurde, sonst 0.
 
-**::tcl::build-info objective-cplusplus**
+[::tcl::build-info]{.cmd} [objective-cplusplus]{.sub}
 : 1, wenn Tcl mit einem Objective-C++-Compiler kompiliert wurde, sonst 0.
 
-**::tcl::build-info patchlevel**
-: Tcl-Patchlevel, wie **info patchlevel**.
+[::tcl::build-info]{.cmd} [patchlevel]{.sub}
+: Tcl-Patchlevel, wie [info patchlevel][info].
 
-**::tcl::build-info profile**
-: 1, wenn Tcl mit **-DTCL_CFG_PROFILED** kompiliert wurde, sonst 0.
+[::tcl::build-info]{.cmd} [profile]{.sub}
+: 1, wenn Tcl mit **-DTCL\_CFG\_PROFILED** kompiliert wurde, sonst 0.
 
-**::tcl::build-info purify**
+[::tcl::build-info]{.cmd} [purify]{.sub}
 : 1, wenn Tcl mit **-DPURIFY** kompiliert wurde, sonst 0.
 
-**::tcl::build-info static**
+[::tcl::build-info]{.cmd} [static]{.sub}
 : 1, wenn Tcl als statische Bibliothek kompiliert wurde, sonst 0.
 
-**::tcl::build-info tommath**
+[::tcl::build-info]{.cmd} [tommath]{.sub}
 : libtommath-Versionsnummer (4 Ziffern), wenn libtommath in Tcl eingebaut ist, sonst 0.
 
-**::tcl::build-info version**
-: Tcl-Version, wie **info tclversion**.
+[::tcl::build-info]{.cmd} [version]{.sub}
+: Tcl-Version, wie [info tclversion][info].
 
-**::tcl::build-info zlib**
+[::tcl::build-info]{.cmd} [zlib]{.sub}
 : zlib-Versionsnummer (4 Ziffern), wenn zlib in Tcl eingebaut ist, sonst 0.
 
 
-# BEISPIELE
+# Beispiele
 
 Verwendung von **::tcl::build-info**:
 
@@ -120,3 +121,6 @@ Verwendung von **::tcl::build-info**:
 ::tcl::build-info patchlevel
      → 9.0.2
 ```
+
+
+[info]: info.md

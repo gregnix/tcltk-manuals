@@ -1,5 +1,6 @@
 ---
 CommandName: control
+title: control
 ManualSection: n
 Version: 0.1.4
 TclPart: tcllib
@@ -31,12 +32,12 @@ control - Procedures for control flow structures.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [control]{.lit} [0.1.4]{.optlit} 
-[control::control]{.cmd} [command]{.arg} [option]{.arg} [arg arg]{.optdot} 
-[control::assert]{.cmd} [expr]{.arg} [arg arg]{.optdot} 
-[control::do]{.cmd} [body]{.arg} [option test]{.optarg} 
-[control::no-op]{.cmd} [arg arg]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [control]{.lit} [0.1.4]{.optlit}
+[control::control]{.cmd} [command]{.arg} [option]{.arg} [arg arg]{.optdot}
+[control::assert]{.cmd} [expr]{.arg} [arg arg]{.optdot}
+[control::do]{.cmd} [body]{.arg} [option test]{.optarg}
+[control::no-op]{.cmd} [arg arg]{.optdot}
 :::
 
 # Description
@@ -49,22 +50,31 @@ The **control** package provides a variety of commands that provide additional f
 : The **control** command is used as a configuration command for customizing the other public commands of the control package.  The *command* argument names the command to be customized.  The set of valid *option* and subsequent arguments are determined by the command being customized, and are documented with the command.
 
 **control::assert** *expr* ?*arg arg ...*?
-: When disabled, the **assert** command behaves exactly like the **no-op** command. When enabled, the **assert** command evaluates *expr* as an expression (in the same way that **expr** evaluates its argument). If evaluation reveals that *expr* is not a valid boolean expression (according to \[**string is boolean -strict**\]), an error is raised.  If *expr* evaluates to a true boolean value (as recognized by **if**), then **assert** returns an empty string.  Otherwise, the remaining arguments to **assert** are used to construct a message string.  If there are no arguments, the message string is "assertion failed: \$expr".  If there are arguments, they are joined by **join** to form the message string.  The message string is then appended as an argument to a callback command, and the completed callback command is evaluated in the global namespace. The **assert** command can be customized by the **control** command in two ways: \[**control::control assert enabled** ?*boolean*?\] queries or sets whether **control::assert** is enabled.  When called without a *boolean* argument, a boolean value is returned indicating whether the **control::assert** command is enabled.  When called with a valid boolean value as the *boolean* argument, the **control::assert** command is enabled or disabled to match the argument, and an empty string is returned. \[**control::control assert callback** ?*command*?\] queries or sets the callback command that will be called by an enabled **assert** on assertion failure.  When called without a *command* argument, the current callback command is returned. When called with a *command* argument, that argument becomes the new assertion failure callback command.  Note that an assertion failure callback command is always defined, even when **assert** is disabled.  The default callback command is \[**return -code error**\]. Note that **control::assert** has been written so that in combination with \[**namespace import**\], it is possible to use enabled **assert** commands in some namespaces and disabled **assert** commands in other namespaces at the same time.  This capability is useful so that debugging efforts can be independently controlled module by module.
+: When disabled, the **assert** command behaves exactly like the **no-op** command.
 
+    When enabled, the **assert** command evaluates *expr* as an expression (in the same way that **expr** evaluates its argument). If evaluation reveals that *expr* is not a valid boolean expression (according to \[**string is boolean -strict**\]), an error is raised.  If *expr* evaluates to a true boolean value (as recognized by **if**), then **assert** returns an empty string.  Otherwise, the remaining arguments to **assert** are used to construct a message string.  If there are no arguments, the message string is "assertion failed: $expr".  If there are arguments, they are joined by **join** to form the message string.  The message string is then appended as an argument to a callback command, and the completed callback command is evaluated in the global namespace.
 
-```
-% package require control
-% control::control assert enabled 1
-% namespace eval one namespace import ::control::assert
-% control::control assert enabled 0
-% namespace eval two namespace import ::control::assert
-% one::assert {1 == 0}
-assertion failed: 1 == 0
-% two::assert {1 == 0}
-```
+    The **assert** command can be customized by the **control** command in two ways:
+
+    \[**control::control assert enabled** ?*boolean*?\] queries or sets whether **control::assert** is enabled.  When called without a *boolean* argument, a boolean value is returned indicating whether the **control::assert** command is enabled.  When called with a valid boolean value as the *boolean* argument, the **control::assert** command is enabled or disabled to match the argument, and an empty string is returned.
+
+    \[**control::control assert callback** ?*command*?\] queries or sets the callback command that will be called by an enabled **assert** on assertion failure.  When called without a *command* argument, the current callback command is returned. When called with a *command* argument, that argument becomes the new assertion failure callback command.  Note that an assertion failure callback command is always defined, even when **assert** is disabled.  The default callback command is \[**return -code error**\].
+
+    Note that **control::assert** has been written so that in combination with \[**namespace import**\], it is possible to use enabled **assert** commands in some namespaces and disabled **assert** commands in other namespaces at the same time.  This capability is useful so that debugging efforts can be independently controlled module by module.
+
+    ```
+    % package require control
+    % control::control assert enabled 1
+    % namespace eval one namespace import ::control::assert
+    % control::control assert enabled 0
+    % namespace eval two namespace import ::control::assert
+    % one::assert {1 == 0}
+    assertion failed: 1 == 0
+    % two::assert {1 == 0}
+    ```
 
 **control::do** *body* ?*option test*?
-: The **do** command evaluates the script *body* repeatedly *until* the expression *test* becomes true or as long as (*while*) *test* is true, depending on the value of *option* being **until** or **while**. If *option* and *test* are omitted the body is evaluated exactly once. After normal completion, **do** returns an empty string. Exceptional return codes (**break**, **continue**, **error**, etc.) during the evaluation of *body* are handled in the same way the **while** command handles them, except as noted in **LIMITATIONS**, below.
+: The **do** command evaluates the script *body* repeatedly *until* the expression *test* becomes true or as long as (*while*) *test* is true, depending on the value of *option* being **until** or **while**. If *option* and *test* are omitted the body is evaluated exactly once. After normal completion, **do** returns an empty string. Exceptional return codes (**break**, **continue**, **error**, etc.) during the evaluation of *body* are handled in the same way the **while** command handles them, except as noted in [Limitations], below.
 
 **control::no-op** ?*arg arg ...*?
 : The **no-op** command takes any number of arguments and does nothing.  It returns an empty string.
@@ -72,7 +82,7 @@ assertion failed: 1 == 0
 
 # Limitations
 
-Several of the commands provided by the **control** package accept arguments that are scripts to be evaluated.  Due to fundamental limitations of Tcl's **catch** and **return** commands, it is not possible for these commands to properly evaluate the command \[**return -code \$code**\] within one of those script arguments for any value of *\$code* other than *ok*.  In this way, the commands of the **control** package are limited as compared to Tcl's built-in control flow commands (such as **if**, **while**, etc.) and those control flow commands that can be provided by packages coded in C.  An example of this difference:
+Several of the commands provided by the **control** package accept arguments that are scripts to be evaluated.  Due to fundamental limitations of Tcl's **catch** and **return** commands, it is not possible for these commands to properly evaluate the command \[**return -code $code**\] within one of those script arguments for any value of *$code* other than *ok*.  In this way, the commands of the **control** package are limited as compared to Tcl's built-in control flow commands (such as **if**, **while**, etc.) and those control flow commands that can be provided by packages coded in C.  An example of this difference:
 
 ```
 % package require control

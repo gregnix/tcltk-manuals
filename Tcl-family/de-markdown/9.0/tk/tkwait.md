@@ -1,5 +1,6 @@
 ---
 CommandName: tkwait
+title: tkwait
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -17,19 +18,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 tkwait - Wartet auf Variablenänderung oder Fensterzerstörung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tkwait]{.cmd} [variable]{.sub} [name]{.arg} 
-[tkwait]{.cmd} [visibility]{.sub} [name]{.arg} 
-[tkwait]{.cmd} [window]{.sub} [name]{.arg} 
+[tkwait]{.cmd} [variable]{.sub} [name]{.arg}
+[tkwait]{.cmd} [visibility]{.sub} [name]{.arg}
+[tkwait]{.cmd} [window]{.sub} [name]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **tkwait** wartet darauf, dass eines von mehreren Ereignissen eintritt, und kehrt dann zurück, ohne weitere Aktionen auszuführen. Der Rückgabewert ist stets eine leere Zeichenkette. Ist das erste Argument **variable** (oder eine Abkürzung davon), ist das zweite Argument der Name einer globalen Variable; der Befehl wartet, bis diese Variable geändert wird. Ist das erste Argument **visibility** (oder eine Abkürzung davon), ist das zweite Argument der Name eines Fensters; der Befehl **tkwait** wartet auf eine Änderung seines Sichtbarkeitszustands (angezeigt durch das Eintreffen eines VisibilityNotify-Ereignisses). Diese Form wird typischerweise verwendet, um zu warten, bis ein neu erstelltes Fenster auf dem Bildschirm erscheint, bevor eine Aktion ausgeführt wird. Ist das erste Argument **window** (oder eine Abkürzung davon), ist das zweite Argument der Name eines Fensters; der Befehl **tkwait** wartet, bis dieses Fenster zerstört wird. Diese Form wird typischerweise verwendet, um zu warten, bis der Benutzer die Interaktion mit einem Dialogfeld beendet hat, bevor das Ergebnis dieser Interaktion verwendet wird.
 

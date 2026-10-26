@@ -1,5 +1,6 @@
 ---
 CommandName: text
+title: text
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -16,98 +17,100 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
-text, tk_textCopy, tk_textCut, tk_textPaste - Erstellt und manipuliert 'text'-Hypertext-Bearbeitungswidgets
+text, tk\_textCopy, tk\_textCut, tk\_textPaste - Erstellt und manipuliert 'text'-Hypertext-Bearbeitungswidgets
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[text]{.cmd} [pathName]{.arg} [options]{.optarg} 
-[tk_textCopy]{.cmd} [pathName]{.arg} 
-[tk_textCut]{.cmd} [pathName]{.arg} 
-[tk_textPaste]{.cmd} [pathName]{.arg} 
+[text]{.cmd} [pathName]{.arg} [options]{.optarg}
+[tk\_textCopy]{.cmd} [pathName]{.arg}
+[tk\_textCut]{.cmd} [pathName]{.arg}
+[tk\_textPaste]{.cmd} [pathName]{.arg}
 :::
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-autoseparators** (autoSeparators/AutoSeparators)
+**-background**, **-highlightthickness**, **-relief**, **-borderwidth**, **-insertbackground**, **-selectbackground**, **-cursor**, **-insertborderwidth**, **-selectborderwidth**, **-exportselection**, **-insertofftime**, **-selectforeground**, **-font**, **-insertontime**, **-setgrid**, **-foreground**, **-insertwidth**, **-takefocus**, **-highlightbackground**, **-padx**, **-xscrollcommand**, **-highlightcolor**, **-pady**, **-yscrollcommand**
+
+Siehe die Manualseite [options] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-autoseparators** (**autoSeparators**/**AutoSeparators**)
 : Legt einen booleschen Wert fest, der angibt, ob automatisch Trennzeichen in den Rückgängig-Stapel eingefügt werden. Nur bedeutsam, wenn die Option **-undo** true ist.
 
-**-blockcursor** (blockCursor/BlockCursor)
-: Legt einen booleschen Wert fest, der angibt, ob der blinkende Einfügecursor als rechteckiger Block in Zeichengröße gezeichnet werden soll. Ist der Wert false (Standard), wird eine dünne vertikale Linie als Einfügecursor verwendet. Weitere Erläuterungen finden sich im Abschnitt **DER EINFÜGECURSOR** unten.
+**-blockcursor** (**blockCursor**/**BlockCursor**)
+: Legt einen booleschen Wert fest, der angibt, ob der blinkende Einfügecursor als rechteckiger Block in Zeichengröße gezeichnet werden soll. Ist der Wert false (Standard), wird eine dünne vertikale Linie als Einfügecursor verwendet.
 
-**-endline** (endLine/EndLine)
+**-endline** (**endLine**/**EndLine**)
 : Legt einen ganzzahligen Zeilenindex fest, der die Zeile des zugrunde liegenden textuellen Datenspeichers angibt, die unmittelbar nach der letzten im Widget enthaltenen Zeile liegen soll. Dadurch kann ein Text-Widget nur einen Teil eines größeren Textes wiedergeben. Statt einer Ganzzahl kann für diese Konfigurationsoption der leere String angegeben werden; das Widget endet dann in der allerletzten Zeile des textuellen Datenspeichers.
 
-**-height** (height/Height)
+**-height** (**height**/**Height**)
 : Legt die gewünschte Höhe des Fensters in Zeichen der mit **-font** angegebenen Schriftart fest. Muss mindestens eins sein.
 
-**-inactiveselectbackground** (inactiveSelectBackground/Foreground)
+**-inactiveselectbackground** (**inactiveSelectBackground**/**Foreground**)
 : Legt die Farbe fest, die für die Auswahl (Tag **sel**) verwendet wird, wenn das Fenster nicht den Eingabefokus hat. Ist der Wert leer (**{}**), wird keine Auswahl angezeigt, wenn das Fenster nicht den Fokus hat.
 
-**-insertunfocussed** (insertUnfocussed/InsertUnfocussed)
-: 
+**-insertunfocussed** (**insertUnfocussed**/**InsertUnfocussed**)
+: [Legt fest, wie der Einfügecursor angezeigt wird, wenn das Widget nicht den Fokus hat. Muss **none** (Standard) sein, d. h. der Cursor wird nicht angezeigt, **hollow** bedeutet eine hohle Box, **solid** eine ausgefüllte Box. **hollow** und **solid** wirken sehr ähnlich, wenn **-blockcursor** false ist.]{version="8.6"}
 
-
-Legt fest, wie der Einfügecursor angezeigt wird, wenn das Widget nicht den Fokus hat. Muss **none** (Standard) sein, d. h. der Cursor wird nicht angezeigt, **hollow** bedeutet eine hohle Box, **solid** eine ausgefüllte Box. **hollow** und **solid** wirken sehr ähnlich, wenn **-blockcursor** false ist.
-
-**-maxundo** (maxUndo/MaxUndo)
+**-maxundo** (**maxUndo**/**MaxUndo**)
 : Legt die maximale Anzahl zusammengesetzter Rückgängig-Aktionen auf dem Rückgängig-Stapel fest. Null oder ein negativer Wert bedeuten einen unbegrenzten Stapel.
 
-**-spacing1** (spacing1/Spacing1)
+**-spacing1** (**spacing1**/**Spacing1**)
 : Fordert zusätzlichen Abstand oberhalb jeder Textzeile im Widget an (beliebige Standardformen für Bildschirmabstände). Bei umbrochenen Zeilen gilt die Option nur für die erste Anzeigezeile. Kann durch **-spacing1** in Tags überschrieben werden.
 
-**-spacing2** (spacing2/Spacing2)
+**-spacing2** (**spacing2**/**Spacing2**)
 : Gibt bei umbrochenen Zeilen den zusätzlichen Abstand zwischen den Anzeigezeilen an, die eine logische Textzeile darstellen. Der Wert kann in beliebigen Standardformen für Bildschirmabstände angegeben werden. Kann durch **-spacing2** in Tags überschrieben werden.
 
-**-spacing3** (spacing3/Spacing3)
+**-spacing3** (**spacing3**/**Spacing3**)
 : Fordert zusätzlichen Abstand unterhalb jeder Textzeile an (beliebige Standardformen für Bildschirmabstände). Bei umbrochenen Zeilen gilt die Option nur für die letzte Anzeigezeile. Kann durch **-spacing3** in Tags überschrieben werden.
 
-**-startline** (startLine/StartLine)
+**-startline** (**startLine**/**StartLine**)
 : Legt einen ganzzahligen Zeilenindex für die erste Zeile des zugrunde liegenden textuellen Datenspeichers fest, die im Widget enthalten sein soll. Dadurch kann ein Text-Widget nur einen Teil eines größeren Textes wiedergeben. Statt einer Ganzzahl kann der leere String angegeben werden; das Widget beginnt dann in der allerersten Zeile des Datenspeichers.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Legt einen von zwei Zuständen für den Text fest: **normal** oder **disabled**. Ist der Text deaktiviert, dürfen keine Zeichen eingefügt oder gelöscht werden und es wird kein Einfügecursor angezeigt, auch wenn der Eingabefokus im Widget liegt.
 
-**-tabs** (tabs/Tabs)
+**-tabs** (**tabs**/**Tabs**)
 : Legt eine Menge von Tabstopps für das Fenster fest. Der Optionswert ist eine Liste von Bildschirmabständen mit den Positionen der Tabstopps, jeweils relativ zum linken Rand des Widgets (ohne Rahmen, Padding usw.). Jeder Position kann im nächsten Listenelement eines der Schlüsselwörter **left**, **right**, **center** oder **numeric** folgen, die die Ausrichtung des Textes am Tabstopp festlegen. **Left** ist Standard: Der Text nach dem Tabulator wird mit seiner linken Kante am Tabstopp positioniert. **Right** positioniert die rechte Kante, **center** zentriert den Text. **Numeric** positioniert den Dezimalpunkt am Tabstopp; fehlt ein Dezimalpunkt, wird die niederwertigste Ziffer knapp links vom Tabstopp gesetzt; fehlt eine Zahl, wird rechtsbündig am Tabstopp ausgerichtet. Beispiel: "**-tabs {2c left 4c 6c center}**" erzeugt drei Tabstopps im Abstand von zwei Zentimetern; die ersten beiden linksbündig, der dritte zentriert.
 
+    Reicht die Tabstopp-Liste nicht für alle Tabs einer Zeile, extrapoliert Tk neue Tabstopps anhand von Abstand und Ausrichtung des letzten Tabstopps. Tab-Abstände müssen strikt positiv und streng wachsend sein (sonst Fehler). Der Wert von **-tabs** kann durch **-tabs** in Tags überschrieben werden.
 
-Reicht die Tabstopp-Liste nicht für alle Tabs einer Zeile, extrapoliert Tk neue Tabstopps anhand von Abstand und Ausrichtung des letzten Tabstopps. Tab-Abstände müssen strikt positiv und streng wachsend sein (sonst Fehler). Der Wert von **-tabs** kann durch **-tabs** in Tags überschrieben werden.
+    Ist **-tabs** nicht gesetzt oder eine leere Liste, verwendet Tk Standard-Tabs im Abstand von acht (durchschnittlich breiten) Zeichen. Für anderen Standardabstand, z. B. alle 4 Zeichen: "**-tabs "\[expr {4 \* \[font measure $font 0\]}\] left" -tabstyle wordprocessor**".
 
-Ist **-tabs** nicht gesetzt oder eine leere Liste, verwendet Tk Standard-Tabs im Abstand von acht (durchschnittlich breiten) Zeichen. Für anderen Standardabstand, z. B. alle 4 Zeichen: "**-tabs "[expr {4 * [font measure \$font 0]}] left" -tabstyle wordprocessor**".
-
-**-tabstyle** (tabStyle/TabStyle)
+**-tabstyle** (**tabStyle**/**TabStyle**)
 : Legt fest, wie der Zusammenhang zwischen Tabstopps einer Zeile und Tabulatoren im Text dieser Zeile interpretiert wird. Der Wert muss **tabular** (Standard) oder **wordprocessor** sein. Tabs werden beim Durchlaufen des Textes ausgewertet. Bei **tabular** wird der *n*. Tabulator der Zeile dem *n*. Tabstopp der Zeile zugeordnet. Liegt die x-Koordinate des Tabulators rechts vom *n*. Tabstopp, wird als Fallback ein einzelnes Leerzeichen eingefügt. Bei **wordprocessor** verwendet jeder Tabulator den ersten Tabstopp rechts der bereits gesetzten Zeichen. **-tabstyle** kann durch Tag-Optionen überschrieben werden.
 
-**-undo** (undo/Undo)
+**-undo** (**undo**/**Undo**)
 : Legt einen booleschen Wert fest, ob der Rückgängig-Mechanismus aktiv ist.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Legt die gewünschte Fensterbreite in Zeichen der mit **-font** angegebenen Schriftart fest. Hat die Schrift keine einheitliche Breite, wird die Breite der Zeichen „0“ für die Umrechnung verwendet.
 
-**-wrap** (wrap/Wrap)
+**-wrap** (**wrap**/**Wrap**)
 : Legt fest, wie mit Zeilen umgegangen wird, die zu lang für eine Anzeigezeile sind. Der Wert muss **none**, **char** oder **word** sein. **none**: Jede Textzeile erscheint als genau eine Bildschirmzeile; überzählige Zeichen werden nicht angezeigt. In den anderen Modi wird bei Bedarf umgebrochen. **char** erlaubt Umbrüche nach jedem Zeichen; **word** nur an Wortgrenzen.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **text** erstellt ein neues Fenster (Argument *pathName*) und macht es zu einem Text-Widget. Weitere Optionen können in der Befehlszeile oder der Optionsdatenbank gesetzt werden (Hintergrundfarbe, Relief usw.). Der Befehl **text** gibt den Pfadnamen des neuen Fensters zurück.
 
-Ein Text-Widget zeigt eine oder mehrere Textzeilen an und erlaubt deren Bearbeitung. Es unterstützt vier Arten von Annotationen: Tags, Marken, eingebettete Fenster und eingebettete Bilder. Tags erlauben unterschiedliche Darstellung (Schrift, Farben). Tcl-Befehle können Tags zugeordnet werden, sodass Skripte bei Tastendrücken oder Mausklicks in bestimmten Bereichen ausgeführt werden. Siehe **TAGS** unten.
+Ein Text-Widget zeigt eine oder mehrere Textzeilen an und erlaubt deren Bearbeitung. Es unterstützt vier Arten von Annotationen: Tags, Marken, eingebettete Fenster und eingebettete Bilder. Tags erlauben unterschiedliche Darstellung (Schrift, Farben). Tcl-Befehle können Tags zugeordnet werden, sodass Skripte bei Tastendrücken oder Mausklicks in bestimmten Bereichen ausgeführt werden. Siehe [Tags] unten.
 
-Die zweite Annotationsform sind schwebende Markierungen im Text, „Marken“. Marken merken sich interessante Positionen während der Bearbeitung. Siehe **MARKEN** unten.
+Die zweite Annotationsform sind schwebende Markierungen im Text, „Marken“. Marken merken sich interessante Positionen während der Bearbeitung. Siehe [Marken] unten.
 
-Die dritte Form erlaubt beliebige eingebettete Fenster. Siehe **EINGEBETTETE FENSTER** unten.
+Die dritte Form erlaubt beliebige eingebettete Fenster. Siehe [Eingebettete Fenster] unten.
 
-Die vierte Form erlaubt eingebettete Tk-Bilder. Siehe **EINGEBETTETE BILDER** unten.
+Die vierte Form erlaubt eingebettete Tk-Bilder. Siehe [Eingebettete Bilder] unten.
 
-Das Text-Widget hat einen eingebauten Rückgängig-/Wiederholen-Mechanismus. Siehe **DER RÜCKGÄNGIG-MECHANISMUS** unten.
+Das Text-Widget hat einen eingebauten Rückgängig-/Wiederholen-Mechanismus. Siehe [Der Rückgängig-Mechanismus] unten.
 
-Peer-Widgets sind weitere Text-Widgets mit denselben zugrunde liegenden Daten (Text, Marken, Tags, Bilder usw.). Siehe **PEER-WIDGETS** unten.
+Peer-Widgets sind weitere Text-Widgets mit denselben zugrunde liegenden Daten (Text, Marken, Tags, Bilder usw.). Siehe [Peer-Widgets] unten.
 
-# INDIZES
+# Indizes
 
 Viele Widget-Befehle für Text-Widgets nehmen einen oder mehrere Indizes als Argumente. Ein Index ist eine Zeichenkette, die eine bestimmte Stelle im Text bezeichnet, z. B. Einfügeposition oder Endpunkt eines zu löschenden Bereichs. Indizes haben die Syntax
 
@@ -129,7 +132,7 @@ Die *base* eines Index muss eine der folgenden Formen haben:
 : Bezeichnet das Textende (das Zeichen unmittelbar nach dem letzten Zeilenumbruch).
 
 *mark*
-: Bezeichnet das Zeichen unmittelbar nach der Marke *mark* (siehe **MARKEN**).
+: Bezeichnet das Zeichen unmittelbar nach der Marke *mark* (siehe [Marken]).
 
 *tag*__.first__
 : Erstes mit *tag* markiertes Zeichen. Fehler, wenn derzeit kein Zeichen dieses Tags hat.
@@ -147,10 +150,10 @@ Die *base* eines Index muss eine der folgenden Formen haben:
 Könnte die *base* mehreren Formen entsprechen (z. B. gleicher Wert für *mark* und *imageName*), hat die frühere Form in der obigen Liste Vorrang. Folgen Modifier der Basis, muss jeder eine der unten genannten Formen haben. Schlüsselwörter wie **chars** und **wordend** dürfen abgekürzt werden, solange die Abkürzung eindeutig ist.
 
 **+** *count* ?*submodifier*? **chars**
-: Verschiebt den Index um *count* Zeichen vorwärts, ggf. auf spätere Zeilen. Gibt es nach dem aktuellen Index weniger als *count* Zeichen, wird der letzte Index im Text gesetzt. Leerzeichen um *count* sind optional. Mit Submodifier **display** werden ausgeblendete Zeichen übersprungen. Mit **any** werden alle gezählt. Aus historischen Gründen zählt ohne Submodifier die Einheit „Indexposition“ (siehe **INDIZES**). Das kann sich in einer künftigen Hauptversion ändern; für Indexzählungen **indices** verwenden, wo möglich.
+: Verschiebt den Index um *count* Zeichen vorwärts, ggf. auf spätere Zeilen. Gibt es nach dem aktuellen Index weniger als *count* Zeichen, wird der letzte Index im Text gesetzt. Leerzeichen um *count* sind optional. Mit Submodifier **display** werden ausgeblendete Zeichen übersprungen. Mit **any** werden alle gezählt. Aus historischen Gründen zählt ohne Submodifier die Einheit „Indexposition“ (siehe [Indizes]). Das kann sich in einer künftigen Hauptversion ändern; für Indexzählungen **indices** verwenden, wo möglich.
 
 **-** *count* ?*submodifier*? **chars**
-: Verschiebt den Index um *count* Zeichen rückwärts, ggf. auf frühere Zeilen. Gibt es vor dem aktuellen Index weniger als *count* Zeichen, wird der erste Index (1.0) gesetzt. Leerzeichen um *count* sind optional. Mit **display** werden ausgeblendete Zeichen übersprungen. Mit **any** werden alle gezählt. Ohne Submodifier zählt aus historischen Gründen die Einheit „Indexposition“ (siehe **INDIZES**); künftig kann sich das ändern — **indices** bevorzugen.
+: Verschiebt den Index um *count* Zeichen rückwärts, ggf. auf frühere Zeilen. Gibt es vor dem aktuellen Index weniger als *count* Zeichen, wird der erste Index (1.0) gesetzt. Leerzeichen um *count* sind optional. Mit **display** werden ausgeblendete Zeichen übersprungen. Mit **any** werden alle gezählt. Ohne Submodifier zählt aus historischen Gründen die Einheit „Indexposition“ (siehe [Indizes]); künftig kann sich das ändern — **indices** bevorzugen.
 
 **+** *count* ?*submodifier*? **indices**
 : Verschiebt den Index um *count* Indexpositionen vorwärts. Eine Indexposition ist ein Zeichen oder ein eingebettetes Bild/Fenster. Gibt es weniger als *count* Positionen danach, wird die letzte gesetzt. Mit **display** werden ausgeblendete Positionen übersprungen. Mit **any** (oder ohne Submodifier) werden alle gezählt.
@@ -181,7 +184,7 @@ Stehen mehrere Modifier aneinander, werden sie von links nach rechts angewendet.
 
 Führen Modifier zu Änderungen über Anzeigezeilen, Anzeigezeichen oder Anzeigeindizes und verweist die *base* auf einen Index innerhalb eines ausgeblendeten Tags, gilt die *base* als äquivalent zum ersten folgenden nicht ausgeblendeten Index.
 
-# TAGS
+# Tags
 
 Die erste Annotationsform in Text-Widgets ist ein Tag. Ein Tag ist eine Zeichenkette, die mit einigen Textzeichen verknüpft ist. Tags dürfen beliebige Zeichen enthalten; am besten vermeidet man Leerzeichen, **+** und **-**, da diese in Indizes Sonderbedeutung haben und solche Tags nicht als Indizes verwendet werden können. Beliebig viele Tags können Zeichen zugeordnet sein. Ein Tag kann ein Zeichen, einen Bereich oder mehrere Bereiche betreffen. Ein Zeichen kann beliebig viele Tags haben.
 
@@ -189,85 +192,85 @@ Unter Tags gilt eine Prioritätsreihenfolge, die bei tag-bezogenen Funktionen un
 
 Tags haben drei Zwecke. Erstens steuern sie die Darstellung. Standardmäßig gelten **-background**, **-font** und **-foreground** des Widgets. Über „*pathName* **tag configure**“ können einzelnen Tags Anzeigeoptionen zugeordnet werden; diese überschreiben den Standard. Für Tags werden derzeit folgende Optionen unterstützt:
 
-**-background** *color*
-: *Color* legt die Hintergrundfarbe für mit dem Tag verknüpfte Zeichen fest (Formen von **Tk_GetColor**).
+[-background]{.lit} [color]{.arg}
+: *Color* legt die Hintergrundfarbe für mit dem Tag verknüpfte Zeichen fest (Formen von [Tk\_GetColor][GetColor]).
 
-**-bgstipple** *bitmap*
-: *Bitmap* ist ein Stippelmuster für den Hintergrund (**Tk_GetBitmap**). Fehlt *bitmap* oder ist es leer, wird vollflächig gefüllt.
+[-bgstipple]{.lit} [bitmap]{.arg}
+: *Bitmap* ist ein Stippelmuster für den Hintergrund ([Tk\_GetBitmap][GetBitmap]). Fehlt *bitmap* oder ist es leer, wird vollflächig gefüllt.
 
-**-borderwidth** *pixels*
-: *Pixels* ist die Rahmenbreite (**Tk_GetPixels**), zusammen mit **-relief** für das gewünschte Erscheinungsbild.
+[-borderwidth]{.lit} [pixels]{.arg}
+: *Pixels* ist die Rahmenbreite ([Tk\_GetPixels][GetPixels]), zusammen mit **-relief** für das gewünschte Erscheinungsbild.
 
-**-elide** *boolean*
+[-elide]{.lit} [boolean]{.arg}
 : *Elide* gibt an, ob Daten ausgeblendet werden. Ausgeblendete Daten (Zeichen, Bilder, Fenster usw.) werden nicht angezeigt und nehmen keinen Platz ein, verhalten sich sonst normal.
 
-**-fgstipple** *bitmap*
+[-fgstipple]{.lit} [bitmap]{.arg}
 : *Bitmap* ist ein Stippelmuster für Vordergrund (Text, Unterstreichungen). Fehlt *bitmap* oder ist es leer, wird vollflächig gefüllt.
 
-**-font** *fontName*
-: *FontName* ist der Schriftname (**Tk_GetFont**).
+[-font]{.lit} [fontName]{.arg}
+: *FontName* ist der Schriftname ([Tk\_GetFont][GetFont]).
 
-**-foreground** *color*
-: *Color* legt die Vordergrundfarbe fest (**Tk_GetColor**).
+[-foreground]{.lit} [color]{.arg}
+: *Color* legt die Vordergrundfarbe fest ([Tk\_GetColor][GetColor]).
 
-**-justify** *justify*
+[-justify]{.lit} [justify]{.arg}
 : Hat das erste nicht ausgeblendete Zeichen einer Anzeigezeile ein Tag mit dieser Option, bestimmt *justify* die Ausrichtung (**left**, **right**, **center**). Bei Umbruch gilt pro Anzeigezeile das erste nicht ausgeblendete Zeichen.
 
-**-lmargin1** *pixels*
+[-lmargin1]{.lit} [pixels]{.arg}
 : Hat das erste nicht ausgeblendete Zeichen einer Textzeile ein Tag mit dieser Option, gibt *pixels* den linken Einzug an (Standardformen für Bildschirmabstände). Bei Umbruch nur für die erste Anzeigezeile; **-lmargin2** für folgende.
 
-**-lmargin2** *pixels*
+[-lmargin2]{.lit} [pixels]{.arg}
 : Gilt für die erste nicht ausgeblendete Zeichen einer Anzeigezeile, die nicht die erste ihrer Textzeile ist (Umbruch), *pixels* als linker Einzug. Nur bei aktiviertem Umbruch für die zweite und weitere Anzeigezeilen.
 
-**-lmargincolor** *color*
+[-lmargincolor]{.lit} [color]{.arg}
 : *Color* ist die Hintergrundfarbe in Bereichen ohne Zeichen wegen **-lmargin1** oder **-lmargin2**. Fehlt *color* oder ist es leer, gilt **-background** des Tags oder des Widgets.
 
-**-offset** *pixels*
+[-offset]{.lit} [pixels]{.arg}
 : *Pixels* verschiebt die Text-Baseline vertikal (z. B. positiv für Hochstellung, negativ für Tiefstellung).
 
-**-overstrike** *boolean*
-: Gibt an, ob ein horizontaler Strich durch die Zeichenmitte gezeichnet wird (**Tcl_GetBoolean**).
+[-overstrike]{.lit} [boolean]{.arg}
+: Gibt an, ob ein horizontaler Strich durch die Zeichenmitte gezeichnet wird ([Tcl\_GetBoolean][GetInt]).
 
-**-overstrikefg** *color*
+[-overstrikefg]{.lit} [color]{.arg}
 : *Color* für die Durchstreichung. Fehlt *color* oder ist es leer, gilt **-foreground** des Tags.
 
-**-relief** *relief*
-: *Relief* für den Rahmen (**Tk_GetRelief**), zusammen mit **-borderwidth**.
+[-relief]{.lit} [relief]{.arg}
+: *Relief* für den Rahmen ([Tk\_GetRelief][GetRelief]), zusammen mit **-borderwidth**.
 
-**-rmargin** *pixels*
+[-rmargin]{.lit} [pixels]{.arg}
 : Hat das erste nicht ausgeblendete Zeichen einer Anzeigezeile ein Tag mit dieser Option, *pixels* als rechter Rand bis zum Fensterrand. Nur bei Umbruch; pro Anzeigezeile das erste nicht ausgeblendete Zeichen.
 
-**-rmargincolor** *color*
+[-rmargincolor]{.lit} [color]{.arg}
 : *Color* für Hintergrund in Bereichen ohne Zeichen wegen **-rmargin**. Fehlt *color* oder ist es leer, gilt **-background** des Tags oder des Widgets.
 
-**-selectbackground** *color*
+[-selectbackground]{.lit} [color]{.arg}
 : *Color* für den Hintergrund ausgewählter Elemente. Fehlt *color* oder ist es leer, gilt **-background** des Tags.
 
-**-selectforeground** *color*
+[-selectforeground]{.lit} [color]{.arg}
 : *Color* für den Vordergrund ausgewählter Elemente. Fehlt *color* oder ist es leer, gilt **-foreground** des Tags.
 
-**-spacing1** *pixels*
+[-spacing1]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand oberhalb jeder Textzeile. Bei Umbruch nur für die erste Anzeigezeile.
 
-**-spacing2** *pixels*
+[-spacing2]{.lit} [pixels]{.arg}
 : Bei Umbruch zusätzlicher Abstand zwischen Anzeigezeilen einer Textzeile.
 
-**-spacing3** *pixels*
+[-spacing3]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand unterhalb jeder Textzeile. Bei Umbruch nur für die letzte Anzeigezeile.
 
-**-tabs** *tabList*
+[-tabs]{.lit} [tabList]{.arg}
 : *TabList* wie **-tabs** des Widgets. Gilt nur, wenn sie für das erste nicht ausgeblendete Zeichen der Anzeigezeile gilt. Leerer String hebt die Option auf. Nicht-leerer String mit leerer Liste (z. B. **-tags\0{\0}**) fordert Standard-Tabs à 8 Zeichen wie bei **-tabs** des Widgets.
 
-**-tabstyle** *style*
+[-tabstyle]{.lit} [style]{.arg}
 : *Style* ist *tabular* oder *wordprocessor*. Gilt nur für das erste nicht ausgeblendete Zeichen der Anzeigezeile. Leerer String hebt die Option auf.
 
-**-underline** *boolean*
-: Unterstreichung ja/nein (**Tcl_GetBoolean**).
+[-underline]{.lit} [boolean]{.arg}
+: Unterstreichung ja/nein ([Tcl\_GetBoolean][GetInt]).
 
-**-underlinefg** *color*
+[-underlinefg]{.lit} [color]{.arg}
 : *Color* für die Unterstreichung. Fehlt *color* oder ist es leer, gilt **-foreground** des Tags.
 
-**-wrap** *mode*
+[-wrap]{.lit} [mode]{.arg}
 : *Mode* für zu breite Zeilen (**none**, **char**, **word** wie beim Widget). Gilt nur für das erste nicht ausgeblendete Zeichen der Anzeigezeile und überschreibt **-wrap** des Widgets.
 
 
@@ -275,9 +278,9 @@ Hat ein Zeichen mehrere Tags mit widersprüchlichen Anzeigeoptionen, gilt der Ta
 
 Zweitens dienen Tags Ereignis-Bindings. Bindings können einem Tag wie einer Widget-Klasse zugeordnet werden: Bei bestimmten X-Ereignissen auf markierten Zeichen wird ein Tcl-Befehl ausgeführt. So lassen sich Hypertext-ähnliche Verhalten realisieren; siehe „*pathName* **tag bind**“ unten. Tag-Bindings werden von allen Peer-Widgets geteilt (einschließlich **sel**).
 
-Drittens verwalten Tags die Auswahl. Siehe **DIE AUSWAHL** unten. Außer **sel** teilen alle Tags alle Peer-Widgets und sind von jedem gleich bearbeitbar. **sel** existiert in jedem Peer separat (Bindings zu **sel** werden geteilt).
+Drittens verwalten Tags die Auswahl. Siehe [Die Auswahl] unten. Außer **sel** teilen alle Tags alle Peer-Widgets und sind von jedem gleich bearbeitbar. **sel** existiert in jedem Peer separat (Bindings zu **sel** werden geteilt).
 
-# MARKEN
+# Marken
 
 Die zweite Annotationsform sind Marken. Marken merken sich bestimmte Stellen im Text. Sie ähneln Tags (Namen, Bezug auf Stellen), sind aber keinem Zeichen zugeordnet, sondern der Lücke zwischen zwei Zeichen. Eine Marke hat jeweils nur eine Position. Werden benachbarte Zeichen gelöscht, bleibt die Marke mit neuen Nachbarn. Werden Zeichen mit einem Tag gelöscht, entfällt die Tag-Zuordnung. Marken werden mit „*pathName* **mark**“ bearbeitet; ihre Position ist als Index mit dem Markennamen abfragbar.
 
@@ -285,9 +288,9 @@ Jede Marke hat eine „Schwerkraft“ (**left** oder **right**), die bestimmt, w
 
 Der Namensraum der Marken ist getrennt von dem der Tags: derselbe Name kann für Marke und Tag verwendet werden, bezeichnet aber Unterschiedliches.
 
-Zwei Marken sind besonders: **insert** gehört zum Einfügecursor (siehe **DER EINFÜGECURSOR**); **current** zum der Maus nächsten Zeichen und folgt Maus und Textänderungen (Ausnahme: bei gedrückter Maustaste keine Aktualisierung bis alle Tasten losgelassen sind). Diese beiden dürfen nicht gelöscht werden. Alle anderen Marken teilen Peer-Widgets und sind von jedem Peer gleich bearbeitbar.
+Zwei Marken sind besonders: **insert** gehört zum Einfügecursor (siehe [Der Einfügecursor]); **current** zum der Maus nächsten Zeichen und folgt Maus und Textänderungen (Ausnahme: bei gedrückter Maustaste keine Aktualisierung bis alle Tasten losgelassen sind). Diese beiden dürfen nicht gelöscht werden. Alle anderen Marken teilen Peer-Widgets und sind von jedem Peer gleich bearbeitbar.
 
-# EINGEBETTETE FENSTER
+# Eingebettete Fenster
 
 Die dritte Annotationsform sind eingebettete Fenster. Jedes eingebettete Fenster wird an einer Textstelle angezeigt. Beliebig viele sind möglich; jedes Widget kann eingebettet werden (Geometrie-Regeln: Textfenster ist Eltern- oder Vorfahren-Widget).
 
@@ -297,26 +300,26 @@ Ausblenden unmittelbar nach Planung via *pathName* **window create** *index* **-
 
 Beim Hinzufügen mit *pathName* **window create** können Optionen gesetzt und später mit *pathName* **window configure** geändert werden. Unterstützt werden:
 
-**-align** *where*
+[-align]{.lit} [where]{.arg}
 : Ist das Fenster niedriger als die Zeile, bestimmt *where* die vertikale Position: **top** (Oberkante an Zeilenoberkante), **center** (zentriert), **bottom** (Unterkante an Zeilenunterkante), **baseline** (Unterkante an Zeilen-Baseline).
 
-**-create** *script*
+[-create]{.lit} [script]{.arg}
 : Tcl-Skript zur Fenstererstellung. Ohne **-window** wird es vor der Anzeige ausgewertet. *Script* muss ein Fenster erzeugen und dessen Namen zurückgeben. Vor der Auswertung: *%W* → Name des Text-Widgets, *%%* → *%*. Wird das Fenster gelöscht, wird *script* bei der nächsten Anzeige erneut ausgewertet.
 
-**-padx** *pixels*
+[-padx]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand links und rechts (übliche Formen für Bildschirmabstände).
 
-**-pady** *pixels*
+[-pady]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand oben und unten.
 
-**-stretch** *boolean*
+[-stretch]{.lit} [boolean]{.arg}
 : Soll ein zu niedriges Fenster vertikal auf Zeilenhöhe gestreckt werden? Mit **-pady** bleibt der gewünschte Abstand erhalten.
 
-**-window** *pathName*
+[-window]{.lit} [pathName]{.arg}
 : Name des anzuzeigenden Fensters. Späterer leerer **-window**-Wert löscht das Widget nicht, sondern hebt nur die Verknüpfung auf. Bei mehreren Peers ist **-create** meist einfacher.
 
 
-# EINGEBETTETE BILDER
+# Eingebettete Bilder
 
 Die vierte Annotationsform sind eingebettete Bilder. Jedes Bild wird an einer Textstelle angezeigt. Beliebig viele sind möglich; dasselbe Bild kann mehrfach eingebettet sein.
 
@@ -328,23 +331,23 @@ Bei *pathName* **image create** wird ein für diese Instanz eindeutiger Name zur
 
 Optionen können bei der Erstellung gesetzt und mit *pathName* **image configure** geändert werden:
 
-**-align** *where*
+[-align]{.lit} [where]{.arg}
 : Ist das Bild niedriger als die Zeile: **top**, **center**, **bottom** oder **baseline** (wie bei eingebetteten Fenstern).
 
-**-image** *image*
+[-image]{.lit} [image]{.arg}
 : Name des Tk-Bildes. Ist *image* ungültig, Fehler.
 
-**-name** *ImageName*
+[-name]{.lit} [ImageName]{.arg}
 : Referenzname im Text-Widget. Fehlt er, gilt der Tk-Bildname. Bei Kollision *#nn* wie oben.
 
-**-padx** *pixels*
+[-padx]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand links und rechts.
 
-**-pady** *pixels*
+[-pady]{.lit} [pixels]{.arg}
 : Zusätzlicher Abstand oben und unten.
 
 
-# DIE AUSWAHL
+# Die Auswahl
 
 Die Auswahl wird über Tags realisiert. Ist **-exportselection** true, wird der **sel**-Tag mit der Auswahl verknüpft:
 
@@ -359,17 +362,15 @@ Die Auswahl wird über Tags realisiert. Ist **-exportselection** true, wird der 
 
 **sel** wird beim Erstellen automatisch definiert und darf nicht mit „*pathName* **tag delete**“ gelöscht werden. **-selectbackground**, **-selectborderwidth** und **-selectforeground** des Widgets sind an **-background**, **-borderwidth** und **-foreground** von **sel** gekoppelt; Änderungen spiegeln sich gegenseitig. Ohne Fokus gilt **-inactiveselectbackground** statt **-selectbackground**. So lässt sich **sel** für Vorder- und Hintergrundfenster steuern oder bei leerem **-inactiveselectbackground** ausblenden. Jedes Peer-Widget hat ein eigenes **sel**.
 
-# DER EINFÜGECURSOR
+# Der Einfügecursor
 
 Die Marke **insert** ist besonders. Sie wird automatisch erzeugt und darf nicht mit „*pathName* **mark unset**“ entfernt werden. **insert** ist die Einfügeposition; der Cursor wird dort gezeichnet, wenn das Widget den Eingabefokus hat.
 
-**-blockcursor** steuert die Darstellung. Ein blinkender Block entspricht nicht exakt Terminals: Das Zeichen an der Cursorposition wird in Vordergrundfarbe gezeichnet, nicht invertiert — das kann störend wirken oder das Zeichen im Ein-Zustand verbergen.
-
-# DIE MODIFIED-FLAGGE
+# Die Modified-Flagge
 
 Das Widget kann Änderungen über die modified-Flagge verfolgen. Einfügen oder Löschen setzt sie. Abfrage, Setzen und Löschen sind programmatisch möglich. Bei Zustandsänderung wird **<\<Modified>>** erzeugt. Siehe *pathName* **edit modified**.
 
-# DER RÜCKGÄNGIG-MECHANISMUS
+# Der Rückgängig-Mechanismus
 
 Bei **-undo** true zeichnet das Widget jede Einfüge- und Löschaktion auf einem Stapel auf (unbegrenzt).
 
@@ -383,7 +384,7 @@ Der Mechanismus ist mit der modified-Flagge gekoppelt: Rückgängig/Wiederholen 
 
 Siehe *pathName* **edit** unten.
 
-# PEER-WIDGETS
+# Peer-Widgets
 
 Das Text-Widget speichert Zeileninhalt, Marken, Tags, Bilder, Fenster und den Rückgängig-Stapel separat.
 
@@ -399,7 +400,7 @@ Peers sind gleichberechtigt: Löschen des „ursprünglichen“ Widgets betrifft
 
 Siehe *pathName* **peer** unten.
 
-# ASYNCHRONE AKTUALISIERUNG DER ZEILENHÖHEN
+# Asynchrone Aktualisierung der Zeilenhöhen
 
 Für Reaktionsfähigkeit berechnet das Widget Zeilenmetriken (Höhen in Pixeln) asynchron. Manche Befehle liefern daher falsche Ergebnisse, wenn die Berechnung noch läuft — u. a. *pathName* **count -ypixels** und *pathName* **yview**.
 
@@ -428,8 +429,8 @@ $w sync -command [list $w yview moveto $fraction]
 # init
 set yud($w) 0
 proc updateaction w {
-\&set ::yud($w) 1
-\&# any other update action here...
+set ::yud($w) 1
+# any other update action here...
 }
 # runtime, synchronously wait for up-to-date line metrics (GUI responsive)
 $w sync -command [list updateaction $w]
@@ -440,8 +441,8 @@ $w yview moveto $fraction
 # init
 set todo($w) {}
 proc updateaction w {
-\&foreach cmd $::todo($w) {uplevel #0 $cmd}
-\&set todo($w) {}
+foreach cmd $::todo($w) {uplevel #0 $cmd}
+set todo($w) {}
 }
 # runtime
 lappend todo($w) [list $w yview moveto $fraction]
@@ -451,20 +452,20 @@ $w sync -command [list updateaction $w]
 # init
 set todo($w) {}
 bind $w <<WidgetViewSync>> {
-\&if {%d} {
-\&\&foreach cmd $todo(%W) {eval $cmd}
-\&\&set todo(%W) {}
-\&}
+if {%d} {
+foreach cmd $todo(%W) {eval $cmd}
+set todo(%W) {}
+}
 }
 # runtime
 if {![$w pendingsync]} {
-\&$w yview moveto $fraction
+$w yview moveto $fraction
 } else {
-\&lappend todo($w) [list $w yview moveto $fraction]
+lappend todo($w) [list $w yview moveto $fraction]
 }
 ```
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
 Der Befehl **text** erstellt einen neuen Tcl-Befehl mit demselben Namen wie der Pfad des Textfensters. Er ruft verschiedene Widget-Operationen auf. Allgemeine Form:
 
@@ -474,341 +475,352 @@ pathName option ?arg ...?
 
 *PathName* ist der Befehlsname, identisch mit dem Widget-Pfad. *Option* und die *arg*s bestimmen das Verhalten. Für Text-Widgets sind folgende Befehle möglich:
 
-*pathName* **bbox** *index*
+[pathName]{.ins} [bbox]{.sub} [index]{.arg}
 : Gibt eine Liste mit vier Elementen zurück, die den Bildschirmbereich des Zeichens bei *index* beschreiben: x- und y-Koordinate der oberen linken Ecke sowie Breite und Höhe. Ist das Zeichen nur teilweise sichtbar, gilt nur der sichtbare Teil. Ist es unsichtbar, leere Liste.
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Aktueller Wert der Konfigurationsoption *option* (alle vom Befehl **text** akzeptierten Werte).
 
-*pathName* **compare** *index1 op index2*
+[pathName]{.ins} [compare]{.sub} [index1]{.arg} [op]{.arg} [index2]{.arg}
 : Vergleicht *index1* und *index2* mit dem Relationoperator *op*; 1 wenn erfüllt, sonst 0. *Op* ist <, <=, ==, >=, > oder !=. Bei == gleiches Zeichen; bei < steht *index1* vor *index2* usw.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfiguration. Ohne *option* Liste aller Optionen (**Tk_ConfigureInfo**). *option* ohne *value*: Beschreibung dieser Option. *option-value*-Paare: setzen und leeren String zurück. *Option* wie beim Befehl **text**.
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+: Abfrage oder Änderung der Konfiguration. Ohne *option* Liste aller Optionen ([Tk\_ConfigureInfo][ConfigWidg]). *option* ohne *value*: Beschreibung dieser Option. *option-value*-Paare: setzen und leeren String zurück. *Option* wie beim Befehl **text**.
 
-*pathName* **count** ?*options*? *index1 index2*
+[pathName]{.ins} [count]{.sub} [options]{.optarg} [index1]{.arg} [index2]{.arg}
 : Zählt relevante Einheiten zwischen zwei Indizes. Liegt *index1* nach *index2*, negatives Ergebnis (für jede Option). Die gezählten Einheiten hängen von den Optionen ab. Ergebnis: Liste von Ganzzahlen, je eine pro Zähloption. Gültig: **-chars**, **-displaychars**, **-displayindices**, **-displaylines**, **-indices**, **-lines**, **-xpixels**, **-ypixels**. Standard: **-indices**. Zusätzlich **-update** als Modifier: bei gesetztem Wert (und Geometrie-Verwaltung) werden veraltete Daten neu berechnet — derzeit vor allem für **-ypixels** (ohne **-update** Cache pro Zeile). **-update** ist veraltet zugunsten von *pathName* **sync**, *pathName* **pendingsync** und **<\<WidgetViewSync>>**. Interpretation:
 
-**-chars**
-: alle Zeichen, ausgeblendet oder nicht; keine eingebetteten Fenster/Bilder.
+    **-chars**
+    : alle Zeichen, ausgeblendet oder nicht; keine eingebetteten Fenster/Bilder.
 
-**-displaychars**
-: alle nicht ausgeblendeten Zeichen.
+    **-displaychars**
+    : alle nicht ausgeblendeten Zeichen.
 
-**-displayindices**
-: alle nicht ausgeblendeten Zeichen, Fenster und Bilder.
+    **-displayindices**
+    : alle nicht ausgeblendeten Zeichen, Fenster und Bilder.
 
-**-displaylines**
-: Anzeigezeilen (je Umbruch +1) von der Zeile des ersten Index bis vor die Anzeigezeile des zweiten; auf derselben Anzeigezeile: 0. Nur sichtbare Abschnitte.
+    **-displaylines**
+    : Anzeigezeilen (je Umbruch +1) von der Zeile des ersten Index bis vor die Anzeigezeile des zweiten; auf derselben Anzeigezeile: 0. Nur sichtbare Abschnitte.
 
-**-indices**
-: Zeichen und eingebettete Fenster/Bilder (alles in Index-Raum), ausgeblendet oder nicht.
+    **-indices**
+    : Zeichen und eingebettete Fenster/Bilder (alles in Index-Raum), ausgeblendet oder nicht.
 
-**-lines**
-: logische Zeilen (ohne Umbruch) von der Zeile des ersten Index bis vor die des zweiten; auf derselben Zeile: 0; auch ausgeblendete Zeilen.
+    **-lines**
+    : logische Zeilen (ohne Umbruch) von der Zeile des ersten Index bis vor die des zweiten; auf derselben Zeile: 0; auch ausgeblendete Zeilen.
 
-**-xpixels**
-: horizontale Pixel vom ersten Pixel des ersten Index bis vor den des zweiten. Gesamtbreite ohne Umbruch: längste Zeile finden, dann „.text count -xpixels "\${line}.0" "\${line}.0 lineend"“.
+    **-xpixels**
+    : horizontale Pixel vom ersten Pixel des ersten Index bis vor den des zweiten. Gesamtbreite ohne Umbruch: längste Zeile finden, dann „.text count -xpixels "\${line}.0" "\${line}.0 lineend"“.
 
-**-ypixels**
-: vertikale Pixel analog; auf derselben Anzeigezeile: 0. Gesamthöhe: „.text count -ypixels 1.0 end“; aktuell: „.text count -update -ypixels 1.0 end“.
+    **-ypixels**
+    : vertikale Pixel analog; auf derselben Anzeigezeile: 0. Gesamthöhe: „.text count -ypixels 1.0 end“; aktuell: „.text count -update -ypixels 1.0 end“.
+
 
     Rückgabe: positive oder negative Ganzzahl pro Option; mehrere Optionen → Liste. „.text count -xpixels -ypixels 1.3 4.5“ ist gültig und liefert zwei Elemente.
 
-*pathName* **debug** ?*boolean*?
-: Ist *boolean* gesetzt, muss es ein von Tcl_GetBoolean akzeptierter Wahrheitswert sein. Bei true werden interne Konsistenzprüfungen im B-Baum-Code aktiviert, bei false deaktiviert. Rückgabe: leerer String. Ohne *boolean*: **on** oder **off**. Ein Schalter gilt für alle Text-Widgets. Bei großen Texten kann es spürbar langsamer werden.
-    Bei aktiviertem Debugging setzen Zeichenroutinen **tk_textRedraw** und **tk_textRelayout** auf die Listen neu gezeichneter Indizes (Tk-Testsuite).
+[pathName]{.ins} [debug]{.sub} [boolean]{.optarg}
+: Ist *boolean* gesetzt, muss es ein von Tcl\_GetBoolean akzeptierter Wahrheitswert sein. Bei true werden interne Konsistenzprüfungen im B-Baum-Code aktiviert, bei false deaktiviert. Rückgabe: leerer String. Ohne *boolean*: **on** oder **off**. Ein Schalter gilt für alle Text-Widgets. Bei großen Texten kann es spürbar langsamer werden.
 
-*pathName* **delete** *index1* ?*index2 ...*?
+    Bei aktiviertem Debugging setzen Zeichenroutinen **tk\_textRedraw** und **tk\_textRelayout** auf die Listen neu gezeichneter Indizes (Tk-Testsuite).
+
+[pathName]{.ins} [delete]{.sub} [index1]{.arg} [index2]{.optdot}
 : Löscht einen Zeichenbereich. Mit *index1* und *index2*: von *index1* bis vor *index2* (Zeichen bei *index2* bleibt). Liegt *index2* nicht nach *index1*, nichts gelöscht. Ohne *index2*: ein Zeichen bei *index1*. Löschungen, die den abschließenden Zeilenumbruch entfernen würden, werden angepasst; beim Löschen bis Textende auch der Zeilenumbruch davor. Leerer String. Mehrere Indexpaare: mehrere Bereiche; zuerst Gültigkeitsprüfung, sortiert, Löschung von hinten nach vorne gegen Indexverschiebung. Gleicher Start: längster Bereich. Überlappung: Zusammenführung ohne Löschen außerhalb der Bereiche.
 
-*pathName* **dlineinfo** *index*
+[pathName]{.ins} [dlineinfo]{.sub} [index]{.arg}
 : Fünf Elemente für die Anzeigezeile mit *index*: x, y, Breite, Höhe, Baseline-Position (Pixel). Bei **none** und überstehender Zeile: gesamte Zeile inkl. unsichtbarer Teile. Kürzere Zeile: nur belegter Teil. Unsichtbare Anzeigezeile: leere Liste.
 
-*pathName* **dump** ?*switches*? *index1* ?*index2*?
-: Inhalt von *index1* bis vor *index2* inkl. Text sowie Marken, Tags und eingebettete Fenster. Ohne *index2*: ein Zeichen nach *index1*. Format: *key1 value1 index1 key2 value2 index2* ... Mögliche *key*: **text**, **mark**, **tagon**, **tagoff**, **image**, **window**; *value* entsprechend; *index* Startposition. Schalter:
+[pathName]{.ins} [dump]{.sub} [switches]{.optarg} [index1]{.arg} [index2]{.optarg}
+: Inhalt von *index1* bis vor *index2* inkl. Text sowie Marken, Tags und eingebettete Fenster. Ohne *index2*: ein Zeichen nach *index1*. Format:
 
-**-all**
-: alles (Standard).
+    *key1 value1 index1 key2 value2 index2* ...
 
-**-command** *command*
-: statt Rückgabe *command* pro Element mit angehängten *key*, *value*, *index*.
+    Mögliche *key*: **text**, **mark**, **tagon**, **tagoff**, **image**, **window**; *value* entsprechend; *index* Startposition. Schalter:
 
-**-image**
-: Bilder einbeziehen.
+    [-all]{.lit}
+    : alles (Standard).
 
-**-mark**
-: Marken einbeziehen.
+    [-command]{.lit} [command]{.arg}
+    : statt Rückgabe *command* pro Element mit angehängten *key*, *value*, *index*.
 
-**-tag**
-: Tag-Übergänge als **tagon**/**tagoff**.
+    [-image]{.lit}
+    : Bilder einbeziehen.
 
-**-text**
-: Text bis zum nächsten Element oder *index2*; kein Textelement über Zeilenumbrüche; mehrzeiliger Block ohne Marken/Tags als Segmente mit Zeilenumbruch im Wert.
+    [-mark]{.lit}
+    : Marken einbeziehen.
 
-**-window**
-: Fenster; Wert ist Tk-Pfadname, oder leer wenn noch nicht erstellt (**-create**); dann Abfrage per Index.
+    [-tag]{.lit}
+    : Tag-Übergänge als **tagon**/**tagoff**.
+
+    [-text]{.lit}
+    : Text bis zum nächsten Element oder *index2*; kein Textelement über Zeilenumbrüche; mehrzeiliger Block ohne Marken/Tags als Segmente mit Zeilenumbruch im Wert.
+
+    [-window]{.lit}
+    : Fenster; Wert ist Tk-Pfadname, oder leer wenn noch nicht erstellt (**-create**); dann Abfrage per Index.
 
 
-*pathName* **edit** *option* ?*arg ...*?
+[pathName]{.ins} [edit]{.sub} [option]{.arg} [arg]{.optdot}
 : Steuert Rückgängig-Mechanismus und modified-Flagge. Verhalten hängt von *option* ab:
 
-*pathName* **edit canredo**
-: true wenn Wiederholen möglich (Wiederholen-Stapel nicht leer), sonst false.
+    [pathName]{.ins} [edit]{.sub} [canredo]{.lit}
+    : true wenn Wiederholen möglich (Wiederholen-Stapel nicht leer), sonst false.
 
-*pathName* **edit canundo**
-: true wenn Rückgängig möglich (Rückgängig-Stapel nicht leer), sonst false.
+    [pathName]{.ins} [edit]{.sub} [canundo]{.lit}
+    : true wenn Rückgängig möglich (Rückgängig-Stapel nicht leer), sonst false.
 
-*pathName* **edit modified** ?*boolean*?
-: Ohne *boolean*: modified-Flagge. insert, delete, edit undo/redo oder der Benutzer setzen/löschen sie. Mit *boolean*: setzen auf *boolean*.
+    [pathName]{.ins} [edit]{.sub} [modified]{.lit} [boolean]{.optarg}
+    : Ohne *boolean*: modified-Flagge. insert, delete, edit undo/redo oder der Benutzer setzen/löschen sie. Mit *boolean*: setzen auf *boolean*.
 
-*pathName* **edit redo**
-: Bei **-undo** true: letzte rückgängig gemachte Bearbeitungen erneut anwenden (wenn seitdem nichts Neues), Liste geänderter Indizes. Fehler bei leerem Stapel. Bei **-undo** false: nichts.
+    [pathName]{.ins} [edit]{.sub} [redo]{.lit}
+    : Bei **-undo** true: letzte rückgängig gemachte Bearbeitungen erneut anwenden (wenn seitdem nichts Neues), Liste geänderter Indizes. Fehler bei leerem Stapel. Bei **-undo** false: nichts.
 
-*pathName* **edit reset**
-: Leert Rückgängig- und Wiederholen-Stapel.
+    [pathName]{.ins} [edit]{.sub} [reset]{.lit}
+    : Leert Rückgängig- und Wiederholen-Stapel.
 
-*pathName* **edit separator**
-: Trennzeichen auf Rückgängig-Stapel. Bei **-undo** false: nichts.
+    [pathName]{.ins} [edit]{.sub} [separator]{.lit}
+    : Trennzeichen auf Rückgängig-Stapel. Bei **-undo** false: nichts.
 
-*pathName* **edit undo**
-: Bei **-undo** true: letzte Bearbeitung rückgängig (alles zwischen zwei Trennzeichen), Liste geänderter Indizes. Fehler bei leerem Stapel. Bei **-undo** false: nichts.
+    [pathName]{.ins} [edit]{.sub} [undo]{.lit}
+    : Bei **-undo** true: letzte Bearbeitung rückgängig (alles zwischen zwei Trennzeichen), Liste geänderter Indizes. Fehler bei leerem Stapel. Bei **-undo** false: nichts.
 
 
-*pathName* **get** ?**-displaychars**? ?**--**? *index1* ?*index2 ...*?
+[pathName]{.ins} [get]{.sub} [-displaychars]{.optlit} [--]{.optlit} [index1]{.arg} [index2]{.optdot}
 : Zeichenbereich aus dem Text. Von *index1* bis vor *index2* (Zeichen bei *index2* nicht enthalten). Ohne *index2*: ein Zeichen. Leerer Bereich → leerer String. Eingebettete Fenster nicht im String. Mehrere Paare → Liste in übergebener Reihenfolge; ungültige Bereiche fehlen in der Liste. Mit **-displaychars** nur nicht ausgeblendete Zeichen — Bereiche können leer sein.
 
-*pathName* **image** *option* ?*arg ...*?
+[pathName]{.ins} [image]{.sub} [option]{.arg} [arg]{.optdot}
 : Eingebettete Bilder. Verhalten hängt von *option* ab:
 
-*pathName* **image cget** *index option*
-: Konfigurationswert; *index* identifiziert das Bild; *option* aus **EINGEBETTETE BILDER**.
+    [pathName]{.ins} [image]{.sub} [cget]{.lit} [index]{.arg} [option]{.arg}
+    : Konfigurationswert; *index* identifiziert das Bild; *option* aus [Eingebettete Bilder].
 
-*pathName* **image configure** *index* ?*option value ...*?
-: Abfrage/Änderung wie **configure**; Optionen siehe **EINGEBETTETE BILDER**.
+    [pathName]{.ins} [image]{.sub} [configure]{.lit} [index]{.arg} [option value]{.optdot}
+    : Abfrage/Änderung wie **configure**; Optionen siehe [Eingebettete Bilder].
 
-*pathName* **image create** *index* ?*option value ...*?
-: Neues Bild bei *index*; eindeutiger Bezeichner als Index; siehe **EINGEBETTETE BILDER**.
+    [pathName]{.ins} [image]{.sub} [create]{.lit} [index]{.arg} [option value]{.optdot}
+    : Neues Bild bei *index*; eindeutiger Bezeichner als Index; siehe [Eingebettete Bilder].
 
-*pathName* **image names**
-: Liste aller eingebetteten Bildinstanzen in *window*.
+    [pathName]{.ins} [image]{.sub} [names]{.lit}
+    : Liste aller eingebetteten Bildinstanzen in *window*.
 
 
-*pathName* **index** *index*
-: Position als *line.char*; *index* gemäß **INDIZES**.
+[pathName]{.ins} [index]{.sub} [index]{.arg}
+: Position als *line.char*; *index* gemäß [Indizes].
 
-*pathName* **insert** *index chars* ?*tagList chars tagList ...*?
+[pathName]{.ins} [insert]{.sub} [index]{.arg} [chars]{.arg} [tagList chars tagList]{.optdot}
 : Fügt *chars* vor *index* ein. Bei Textende vor dem letzten Zeilenumbruch. Ein *chars* ohne *tagList*: Tags, die vor und nach der Einfügestelle gemeinsam sind; nur auf einer Seite → nicht auf neuen Text. Mit *tagList*: nur diese Tags. Mehrere Paare wie mehrfaches **insert**; letztes *tagList* optional.
 
-*pathName* **mark** *option* ?*arg ...*?
+[pathName]{.ins} [mark]{.sub} [option]{.arg} [arg]{.optdot}
 : Marken bearbeiten:
 
-*pathName* **mark gravity** *markName* ?*direction*?
-: Ohne *direction*: **left** oder **right**. Mit *direction* (**left**/**right**): Schwerkraft setzen.
+    [pathName]{.ins} [mark]{.sub} [gravity]{.lit} [markName]{.arg} [direction]{.optarg}
+    : Ohne *direction*: **left** oder **right**. Mit *direction* (**left**/**right**): Schwerkraft setzen.
 
-*pathName* **mark names**
-: Liste aller gesetzten Marken.
+    [pathName]{.ins} [mark]{.sub} [names]{.lit}
+    : Liste aller gesetzten Marken.
 
-*pathName* **mark next** *index*
-: Name der nächsten Marke ab *index* (numerisch ab dieser Position; bei Markenname direkt danach; mehrere Marken am gleichen Index möglich). Reihenfolge wie **dump**. Marke auf **end** wirkt *nach* **end**. Keine Marke danach: leerer String.
+    [pathName]{.ins} [mark]{.sub} [next]{.lit} [index]{.arg}
+    : Name der nächsten Marke ab *index* (numerisch ab dieser Position; bei Markenname direkt danach; mehrere Marken am gleichen Index möglich). Reihenfolge wie **dump**. Marke auf **end** wirkt *nach* **end**. Keine Marke danach: leerer String.
 
-*pathName* **mark previous** *index*
-: Name der vorherigen Marke; numerisch ab Zeichen davor; bei Markenname davor. Umgekehrte **dump**-Reihenfolge. Keine Marke davor: leerer String.
+    [pathName]{.ins} [mark]{.sub} [previous]{.lit} [index]{.arg}
+    : Name der vorherigen Marke; numerisch ab Zeichen davor; bei Markenname davor. Umgekehrte **dump**-Reihenfolge. Keine Marke davor: leerer String.
 
-*pathName* **mark set** *markName index*
-: *markName* vor *index* setzen oder verschieben. Leerer String.
+    [pathName]{.ins} [mark]{.sub} [set]{.lit} [markName]{.arg} [index]{.arg}
+    : *markName* vor *index* setzen oder verschieben. Leerer String.
 
-*pathName* **mark unset** *markName* ?*markName markName ...*?
-: Marken entfernen; nicht mehr in Indizes oder „*pathName* **mark names**“. Leerer String.
+    [pathName]{.ins} [mark]{.sub} [unset]{.lit} [markName]{.arg} [markName markName]{.optdot}
+    : Marken entfernen; nicht mehr in Indizes oder „*pathName* **mark names**“. Leerer String.
 
 
-*pathName* **peer** *option args*
+[pathName]{.ins} [peer]{.sub} [option]{.arg} [args]{.arg}
 : Peer-Widgets:
 
-*pathName* **peer create** *newPathName* ?*options*?
-: Peer mit *newPathName* und optionalen Standardoptionen (wie **text**). Standard: gleiche Start-/Endzeile wie Eltern-Widget.
+    [pathName]{.ins} [peer]{.sub} [create]{.lit} [newPathName]{.arg} [options]{.optarg}
+    : Peer mit *newPathName* und optionalen Standardoptionen (wie **text**). Standard: gleiche Start-/Endzeile wie Eltern-Widget.
 
-*pathName* **peer names**
-: Liste der Peers (ohne sich selbst); Reihenfolge undefiniert.
+    [pathName]{.ins} [peer]{.sub} [names]{.lit}
+    : Liste der Peers (ohne sich selbst); Reihenfolge undefiniert.
 
 
-*pathName* **pendingsync**
+[pathName]{.ins} [pendingsync]{.sub}
 : 1 wenn Zeilenhöhen nicht aktuell, sonst 0.
 
-*pathName* **replace** *index1 index2 chars* ?*tagList chars tagList ...*?
+[pathName]{.ins} [replace]{.sub} [index1]{.arg} [index2]{.arg} [chars]{.arg} [tagList chars tagList]{.optdot}
 : Ersetzt Bereich *index1*–*index2* durch *chars* und Tags; *tagList* wie bei **insert**, Indizes wie bei **delete**. Liegt *index2* vor *index1*, Fehler.
+
     Löschen und Einfügen ohne unnötiges Scrollen oder Cursor-Verschieben; Rückgängig-Stapel korrekt bei aktivem **-undo**. Leerer String.
 
-*pathName* **scan** *option args*
+[pathName]{.ins} [scan]{.sub} [option]{.arg} [args]{.arg}
 : Scanning:
 
-*pathName* **scan mark** *x y*
-: Merkt *x*, *y* und aktuelle Ansicht für **scan dragto**. Leerer String.
+    [pathName]{.ins} [scan]{.sub} [mark]{.lit} [x]{.arg} [y]{.arg}
+    : Merkt *x*, *y* und aktuelle Ansicht für **scan dragto**. Leerer String.
 
-*pathName* **scan dragto** *x y*
-: Verschiebt die Ansicht um das Zehnfache der Differenz zu **scan mark**. Leerer String.
+    [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg} [y]{.arg}
+    : Verschiebt die Ansicht um das Zehnfache der Differenz zu **scan mark**. Leerer String.
 
 
-*pathName* **search** ?*switches*? *pattern index* ?*stopIndex*?
+[pathName]{.ins} [search]{.sub} [switches]{.optarg} [pattern]{.arg} [index]{.arg} [stopIndex]{.optarg}
 : Sucht ab *index* nach *pattern*. Treffer: Index des ersten Zeichens; sonst leerer String. Schalter:
 
-**-forwards**
-: vorwärts ab *index* (Standard).
+    [-forwards]{.lit}
+    : vorwärts ab *index* (Standard).
 
-**-backwards**
-: rückwärts; erstes Zeichen des Treffers vor *index* (nicht bei *index*). Rückwärtssuche oft langsamer (**-regexp**); bei Performance vorwärts suchen.
+    [-backwards]{.lit}
+    : rückwärts; erstes Zeichen des Treffers vor *index* (nicht bei *index*). Rückwärtssuche oft langsamer (**-regexp**); bei Performance vorwärts suchen.
 
-**-exact**
-: exakter Vergleich (Standard).
+    [-exact]{.lit}
+    : exakter Vergleich (Standard).
 
-**-regexp**
-: *pattern* als regulärer Ausdruck (**regexp**, **re_syntax**). Standard übergibt **-lineanchor** und **-linestop** (außer **-nolinestop**): *^\$* Zeilenanfang/-ende; *.* und *[^* nicht *\n*.
+    [-regexp]{.lit}
+    : *pattern* als regulärer Ausdruck ([regexp], [re\_syntax][re_syntax]). Standard übergibt **-lineanchor** und **-linestop** (außer **-nolinestop**): *^\$* Zeilenanfang/-ende; *.* und *[^* nicht *\n*.
+    [-nolinestop]{.lit}
+    : *.* und *[^* dürfen *\n* treffen; nur mit **-regexp**, sonst Fehler. Gesamter Text: „*pathName* **search -nolinestop -regexp** ".*" 1.0“.
 
-**-nolinestop**
-: *.* und *[^* dürfen *\n* treffen; nur mit **-regexp**, sonst Fehler. Gesamter Text: „*pathName* **search -nolinestop -regexp** ".*" 1.0“.
 
-**-nocase**
-: Groß-/Kleinschreibung ignorieren.
+    [-nocase]{.lit}
+    : Groß-/Kleinschreibung ignorieren.
 
-**-count** *varName*
-: Variable für Anzahl Indexpositionen im Treffer; ohne Bilder/Fenster (und ohne **-elide** auch ohne ausgeblendete Zeichen) = Zeichenanzahl. *matchIdx* bis *matchIdx + \$count chars* liefert den Treffer.
+    [-count]{.lit} [varName]{.arg}
+    : Variable für Anzahl Indexpositionen im Treffer; ohne Bilder/Fenster (und ohne **-elide** auch ohne ausgeblendete Zeichen) = Zeichenanzahl. *matchIdx* bis *matchIdx + \$count chars* liefert den Treffer.
 
-**-all**
-: alle Treffer als Indexliste; mit **-count** Liste in *varName*. Wie **regexp -all**: überlappende Treffer normalerweise nicht. „\w+“ in „hello there“: zweimal; „Z[a-z]+Z“ in „ZooZooZoo“: einmal.
+    [-all]{.lit}
+    : alle Treffer als Indexliste; mit **-count** Liste in *varName*. Wie [regexp -all][regexp]: überlappende Treffer normalerweise nicht. „\w+“ in „hello there“: zweimal; „Z[a-z]+Z“ in „ZooZooZoo“: einmal.
 
-**-overlap**
-: bei **-all**: auch Treffer, die einen bereits gefundenen überlappen, wenn sie nicht vollständig eingeschlossen sind. Nur mit **-all**, sonst Fehler.
+    [-overlap]{.lit}
+    : bei **-all**: auch Treffer, die einen bereits gefundenen überlappen, wenn sie nicht vollständig eingeschlossen sind. Nur mit **-all**, sonst Fehler.
 
-**-strictlimits**
-: gesamter Treffer muss innerhalb Start/Stopp liegen (nicht nur Trefferanfang).
+    [-strictlimits]{.lit}
+    : gesamter Treffer muss innerhalb Start/Stopp liegen (nicht nur Trefferanfang).
 
-**-elide**
-: auch ausgeblendeten Text suchen.
+    [-elide]{.lit}
+    : auch ausgeblendeten Text suchen.
 
-**-\|-**
-: beendet Schalterliste; nächstes Argument ist *pattern* auch bei führendem **-**.
+    [--]{.lit}
+    : beendet Schalterliste; nächstes Argument ist *pattern* auch bei führendem **-**.
 
-    Treffer kann eine oder mehrere Zeilen umfassen. Mit *stopIndex*: Suche endet dort (vorwärts: nicht ab *stopIndex*; rückwärts: nicht vor *stopIndex*). Ohne *stopIndex*: Wrap-around am Textende. **-forwards** mit *stopIndex* vor Start: kein Treffer. Siehe **BEKANNTE FEHLER** zu **search**.
 
-*pathName* **see** *index*
+    Treffer kann eine oder mehrere Zeilen umfassen. Mit *stopIndex*: Suche endet dort (vorwärts: nicht ab *stopIndex*; rückwärts: nicht vor *stopIndex*). Ohne *stopIndex*: Wrap-around am Textende. **-forwards** mit *stopIndex* vor Start: kein Treffer. Siehe [Bekannte Fehler] zu **search**.
+
+[pathName]{.ins} [see]{.sub} [index]{.arg}
 : Ansicht so anpassen, dass *index* vollständig sichtbar ist. Bereits sichtbar: nichts. Knapp außerhalb: minimal an Rand bringen. Weit außerhalb: zentrieren.
 
-*pathName* **sync** ?**-command** *command*?
+[pathName]{.ins} [sync]{.sub} [[-command]{.lit} [command]{.arg}]{.optarg}
 : Synchronisation der Ansicht:
 
-*pathName* **sync**
-: Zeilenmetriken sofort aktualisieren; sofort zurück wenn nichts veraltet, sonst nach Berechnung. Leerer String.
+    [pathName]{.ins} [sync]{.sub}
+    : Zeilenmetriken sofort aktualisieren; sofort zurück wenn nichts veraltet, sonst nach Berechnung. Leerer String.
 
-*pathName* **sync -command** *command*
-: *command* einmal nach aktuellen Zeilenhöhen ausführen; bei keiner ausstehenden Berechnung sofort. Leerer String. Bei Fehler **bgerror**.
+    [pathName]{.ins} [sync]{.sub} [-command]{.lit} [command]{.arg}
+    : *command* einmal nach aktuellen Zeilenhöhen ausführen; bei keiner ausstehenden Berechnung sofort. Leerer String. Bei Fehler [bgerror].
 
 
-*pathName* **tag** *option* ?*arg ...*?
+[pathName]{.ins} [tag]{.sub} [option]{.arg} [arg]{.optdot}
 : Tags bearbeiten:
 
-*pathName* **tag add** *tagName index1* ?*index2 index1 index2 ...*?
-: Verknüpft *tagName* mit Zeichen von *index1* bis vor *index2*. Mehrere Paare möglich. Ohne letztes *index2*: ein Zeichen. Leerer Bereich: keine Wirkung.
+    [pathName]{.ins} [tag]{.sub} [add]{.lit} [tagName]{.arg} [index1]{.arg} [index2 index1 index2]{.optdot}
+    : Verknüpft *tagName* mit Zeichen von *index1* bis vor *index2*. Mehrere Paare möglich. Ohne letztes *index2*: ein Zeichen. Leerer Bereich: keine Wirkung.
 
-*pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
-: Ordnet *script* dem Tag zu; bei *sequence* auf markierten Zeichen wird es ausgeführt. Ähnlich **bind**, aber für Zeichen. Siehe **bind** zu *sequence* und Substitutionen. Alle Argumente: neues Binding (ersetzt gleiches *sequence*/*tagName*; führendes „+“ in *script* ergänzt). Ohne *script*: zugehöriges *script*. Ohne beides: Liste aller Sequenzen.
+    [pathName]{.ins} [tag]{.sub} [bind]{.lit} [tagName]{.arg} [sequence]{.optarg} [script]{.optarg}
+    : Ordnet *script* dem Tag zu; bei *sequence* auf markierten Zeichen wird es ausgeführt. Ähnlich **bind**, aber für Zeichen. Siehe **bind** zu *sequence* und Substitutionen. Alle Argumente: neues Binding (ersetzt gleiches *sequence*/*tagName*; führendes „+“ in *script* ergänzt). Ohne *script*: zugehöriges *script*. Ohne beides: Liste aller Sequenzen.
 
-    Bindings nur für Maus/Tastatur (**Enter**, **Leave**, **Button**, **Motion**, **Key**) oder virtuelle Ereignisse. Maus: Marke **current**; Tastatur: **insert** (siehe **MARKEN**). **Enter**/**Leave** beim Betreten/Verlassen des Tags am aktuellen Zeichen (nicht wie Fenster-Enter/Leave). Mehrere Tags: ein Binding pro Tag, niedrigste zu höchster Priorität; bei einem Tag die spezifischste Variante (**bind**). **continue**/**break** wie bei **bind**. Widget-weite **bind**-Bindings ergänzen Tag-Bindings (Tags zuerst).
+        Bindings nur für Maus/Tastatur (**Enter**, **Leave**, **Button**, **Motion**, **Key**) oder virtuelle Ereignisse. Maus: Marke **current**; Tastatur: **insert** (siehe [Marken]). **Enter**/**Leave** beim Betreten/Verlassen des Tags am aktuellen Zeichen (nicht wie Fenster-Enter/Leave).
 
-*pathName* **tag cget** *tagName option*
-: Aktueller Optionswert für *tagName*.
+        Mehrere Tags: ein Binding pro Tag, niedrigste zu höchster Priorität; bei einem Tag die spezifischste Variante (**bind**). [continue]/[break] wie bei **bind**.
 
-*pathName* **tag configure** *tagName* ?*option*? ?*value*? ?*option value ...*?
-: Wie **configure**, aber für Tag-Optionen; siehe **TAGS**.
+        Widget-weite **bind**-Bindings ergänzen Tag-Bindings (Tags zuerst).
 
-*pathName* **tag delete** *tagName* ?*tagName ...*?
-: Löscht Tag-Informationen inkl. Bindings und Anzeige. Leerer String.
+    [pathName]{.ins} [tag]{.sub} [cget]{.lit} [tagName]{.arg} [option]{.arg}
+    : Aktueller Optionswert für *tagName*.
 
-*pathName* **tag lower** *tagName* ?*belowThis*?
-: Priorität knapp unter *belowThis*; ohne *belowThis*: niedrigste Priorität.
+    [pathName]{.ins} [tag]{.sub} [configure]{.lit} [tagName]{.arg} [option]{.optarg} [value]{.optarg} [option value]{.optdot}
+    : Wie **configure**, aber für Tag-Optionen; siehe [Tags].
 
-*pathName* **tag names** ?*index*?
-: Tags an *index* oder alle existierenden (auch ohne markierte Zeichen), sortiert nach Priorität.
+    [pathName]{.ins} [tag]{.sub} [delete]{.lit} [tagName]{.arg} [tagName]{.optdot}
+    : Löscht Tag-Informationen inkl. Bindings und Anzeige. Leerer String.
 
-*pathName* **tag nextrange** *tagName index1* ?*index2*?
-: Nächster *tagName*-Bereich ab *index1* bis vor *index2*; zwei Indizes oder leer. Ohne *index2*: bis Textende.
+    [pathName]{.ins} [tag]{.sub} [lower]{.lit} [tagName]{.arg} [belowThis]{.optarg}
+    : Priorität knapp unter *belowThis*; ohne *belowThis*: niedrigste Priorität.
 
-*pathName* **tag prevrange** *tagName index1* ?*index2*?
-: Vorheriger Bereich vor *index1*, nicht vor *index2*. Ohne *index2*: ab Textanfang.
+    [pathName]{.ins} [tag]{.sub} [names]{.lit} [index]{.optarg}
+    : Tags an *index* oder alle existierenden (auch ohne markierte Zeichen), sortiert nach Priorität.
 
-*pathName* **tag raise** *tagName* ?*aboveThis*?
-: Priorität knapp über *aboveThis*; ohne *aboveThis*: höchste Priorität.
+    [pathName]{.ins} [tag]{.sub} [nextrange]{.lit} [tagName]{.arg} [index1]{.arg} [index2]{.optarg}
+    : Nächster *tagName*-Bereich ab *index1* bis vor *index2*; zwei Indizes oder leer. Ohne *index2*: bis Textende.
 
-*pathName* **tag ranges** *tagName*
-: Alle Bereiche als Indexpaare; ohne markierte Zeichen: leerer String.
+    [pathName]{.ins} [tag]{.sub} [prevrange]{.lit} [tagName]{.arg} [index1]{.arg} [index2]{.optarg}
+    : Vorheriger Bereich vor *index1*, nicht vor *index2*. Ohne *index2*: ab Textanfang.
 
-*pathName* **tag remove** *tagName index1* ?*index2 index1 index2 ...*?
-: Entfernt *tagName* von *index1* bis vor *index2*; wie **tag add**. Leerer String.
+    [pathName]{.ins} [tag]{.sub} [raise]{.lit} [tagName]{.arg} [aboveThis]{.optarg}
+    : Priorität knapp über *aboveThis*; ohne *aboveThis*: höchste Priorität.
 
-*pathName* **window** *option* ?*arg ...*?
+    [pathName]{.ins} [tag]{.sub} [ranges]{.lit} [tagName]{.arg}
+    : Alle Bereiche als Indexpaare; ohne markierte Zeichen: leerer String.
+
+    [pathName]{.ins} [tag]{.sub} [remove]{.lit} [tagName]{.arg} [index1]{.arg} [index2 index1 index2]{.optdot}
+    : Entfernt *tagName* von *index1* bis vor *index2*; wie **tag add**. Leerer String.
+
+
+[pathName]{.ins} [window]{.sub} [option]{.arg} [arg]{.optdot}
 : Eingebettete Fenster:
 
-*pathName* **window cget** *index option*
-: Konfigurationswert; Optionen aus **EINGEBETTETE FENSTER**.
+    [pathName]{.ins} [window]{.sub} [cget]{.lit} [index]{.arg} [option]{.arg}
+    : Konfigurationswert; Optionen aus [Eingebettete Fenster].
 
-*pathName* **window configure** *index* ?*option value ...*?
-: Abfrage/Änderung; siehe **EINGEBETTETE FENSTER**.
+    [pathName]{.ins} [window]{.sub} [configure]{.lit} [index]{.arg} [option value]{.optdot}
+    : Abfrage/Änderung; siehe [Eingebettete Fenster].
 
-*pathName* **window create** *index* ?*option value ...*?
-: Neues Fenster bei *index*; siehe **EINGEBETTETE FENSTER**. Leerer String.
+    [pathName]{.ins} [window]{.sub} [create]{.lit} [index]{.arg} [option value]{.optdot}
+    : Neues Fenster bei *index*; siehe [Eingebettete Fenster]. Leerer String.
 
-*pathName* **window names**
-: Liste aller eingebetteten Fenster in *window*.
+    [pathName]{.ins} [window]{.sub} [names]{.lit}
+    : Liste aller eingebetteten Fenster in *window*.
 
 
-*pathName* **xview** *option args*
+[pathName]{.ins} [xview]{.sub} [option]{.arg} [args]{.arg}
 : Horizontale Position des Textes:
 
-*pathName* **xview**
-: Liste mit zwei Brüchen 0–1: sichtbarer horizontaler Anteil. Beispiel .2 und .6: 20 % links außerhalb, 40 % sichtbar, 40 % rechts. Nur tatsächlich sichtbare Zeilen; kurze sichtbare Zeilen → 0 und 1. Werte für **-xscrollcommand**.
+    [pathName]{.ins} [xview]{.sub}
+    : Liste mit zwei Brüchen 0–1: sichtbarer horizontaler Anteil. Beispiel .2 und .6: 20 % links außerhalb, 40 % sichtbar, 40 % rechts. Nur tatsächlich sichtbare Zeilen; kurze sichtbare Zeilen → 0 und 1. Werte für **-xscrollcommand**.
 
-*pathName* **xview moveto** *fraction*
-: *fraction* des horizontalen Umfangs links außerhalb (0–1).
+    [pathName]{.ins} [xview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : *fraction* des horizontalen Umfangs links außerhalb (0–1).
 
-*pathName* **xview scroll** *number what*
-: Verschiebt die Ansicht; *what* ist **pages**, **pixels** oder **units**. Bei **pages**/**units** ganzzahliges *number*, sonst **Tk_GetPixels** (gerundet; ohne Einheit Pixel). **pages**: Bildschirmseiten; **pixels**: Pixel; **units**: durchschnittlich breite Zeichen. Negatives *number*: weiter links sichtbar; positiv: weiter rechts.
+    [pathName]{.ins} [xview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Verschiebt die Ansicht; *what* ist **pages**, **pixels** oder **units**. Bei **pages**/**units** ganzzahliges *number*, sonst [Tk\_GetPixels][GetPixels] (gerundet; ohne Einheit Pixel). **pages**: Bildschirmseiten; **pixels**: Pixel; **units**: durchschnittlich breite Zeichen. Negatives *number*: weiter links sichtbar; positiv: weiter rechts.
 
 
-*pathName* **yview** ?*args*?
+[pathName]{.ins} [yview]{.sub} [args]{.optarg}
 : Vertikale Position:
 
-*pathName* **yview**
-: Zwei Brüche 0–1: oberes sichtbares Pixel der obersten Zeile und Pixel nach dem letzten sichtbaren der untersten Zeile, relativ zum Gesamttext. Für **-yscrollcommand**.
+    [pathName]{.ins} [yview]{.sub}
+    : Zwei Brüche 0–1: oberes sichtbares Pixel der obersten Zeile und Pixel nach dem letzten sichtbaren der untersten Zeile, relativ zum Gesamttext. Für **-yscrollcommand**.
 
-*pathName* **yview moveto** *fraction*
-: Pixel bei *fraction* an den oberen Rand der obersten Zeile (0 = Textanfang; nahe 1 wird auf maximalen Scroll begrenzt).
+    [pathName]{.ins} [yview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Pixel bei *fraction* an den oberen Rand der obersten Zeile (0 = Textanfang; nahe 1 wird auf maximalen Scroll begrenzt).
 
-*pathName* **yview scroll** *number what*
-: Verschiebt vertikal; *what* **pages**, **pixels** oder **units**; bei **units**/**pages** ganzzahlig, sonst **Tk_GetPixels**. **units**: Zeilen; **pages**: Bildschirmseiten; **pixels**: Pixel. Negativ: frühere Positionen; positiv: spätere.
+    [pathName]{.ins} [yview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Verschiebt vertikal; *what* **pages**, **pixels** oder **units**; bei **units**/**pages** ganzzahlig, sonst [Tk\_GetPixels][GetPixels]. **units**: Zeilen; **pages**: Bildschirmseiten; **pixels**: Pixel. Negativ: frühere Positionen; positiv: spätere.
 
-*pathName* **yview** ?**-pickplace**? *index*
-: *index* sichtbar machen. Ohne **-pickplace**: oben im Fenster. Mit **-pickplace**:
+    [pathName]{.ins} [yview]{.sub} [-pickplace]{.optlit} [index]{.arg}
+    : *index* sichtbar machen. Ohne **-pickplace**: oben im Fenster. Mit **-pickplace**:
 
-[1]
-: Bereits sichtbar: nichts.
+        1. Bereits sichtbar: nichts.
 
-[2]
-: Knapp oberhalb: oben positionieren.
+        2. Knapp oberhalb: oben positionieren.
 
-[3]
-: Knapp unterhalb: unten positionieren.
+        3. Knapp unterhalb: unten positionieren.
 
-[4]
-: Sonst zentrieren.
-
-    **-pickplace** ist veraltet; *pathName* **see** übernimmt x- und y-Bewegung (**-pickplace** nur y).
-
-*pathName* **yview** *number*
-: Erstes Zeichen der Zeile nach *number* oben sichtbar; *number* ganzzahlig. Veraltet.
+        4. Sonst zentrieren.
 
 
-# BINDINGS
+        **-pickplace** ist veraltet; *pathName* **see** übernimmt x- und y-Bewegung (**-pickplace** nur y).
 
-Tk erstellt automatisch Klassen-Bindings für Text-Widgets mit folgendem Standardverhalten. „Wort“ hängt von **tcl_wordchars** ab; siehe **tclvars**(n).
+    [pathName]{.ins} [yview]{.sub} [number]{.arg}
+    : Erstes Zeichen der Zeile nach *number* oben sichtbar; *number* ganzzahlig. Veraltet.
+
+
+
+# Bindings
+
+Tk erstellt automatisch Klassen-Bindings für Text-Widgets mit folgendem Standardverhalten. „Wort“ hängt von **tcl\_wordchars** ab; siehe [tclvars]\(n).
 
 1. Maustaste 1 setzt den Einfügecursor an die nächste Kante des Zeichens unter dem Cursor, setzt den Eingabefokus und löscht die Auswahl. Ziehen mit Taste 1 erweitert die Auswahl zwischen Einfügecursor und Zeichen unter der Maus.
 
@@ -848,11 +860,11 @@ Tk erstellt automatisch Klassen-Bindings für Text-Widgets mit folgendem Standar
 
 19. Strg-\\ löscht die Auswahl.
 
-20. F16 (auf vielen Sun-Workstations „Copy“) oder Meta-w kopiert die Auswahl (**tk_textCopy**), falls vorhanden.
+20. F16 (auf vielen Sun-Workstations „Copy“) oder Meta-w kopiert die Auswahl (**tk\_textCopy**), falls vorhanden.
 
-21. F20 („Cut“) oder Strg-w kopiert und löscht die Auswahl (**tk_textCut**). Ohne Auswahl keine Wirkung.
+21. F20 („Cut“) oder Strg-w kopiert und löscht die Auswahl (**tk\_textCut**). Ohne Auswahl keine Wirkung.
 
-22. F18 („Paste“) oder Strg-y fügt die Zwischenablage am Einfügecursor ein (**tk_textPaste**).
+22. F18 („Paste“) oder Strg-y fügt die Zwischenablage am Einfügecursor ein (**tk\_textPaste**).
 
 23. Entf löscht die Auswahl oder, ohne Auswahl, das Zeichen rechts vom Cursor.
 
@@ -881,7 +893,7 @@ Ist das Widget mit **-state** deaktiviert, lässt sich die Ansicht noch anpassen
 
 Das Verhalten lässt sich durch neue Widget-Bindings oder neu definierte Klassen-Bindings ändern.
 
-# BEKANNTE PROBLEME
+# Bekannte Probleme
 
 ## Probleme bezüglich chars und Indizes
 
@@ -903,8 +915,8 @@ Die Anzeigezeile mit dem Einfügecursor wird bei jedem Blinken neu gezeichnet �
 
 ```
 pack [text .t]
-\&.t insert 1.0 "aaaa\nbbbb\ncccc\nbbbb\naaaa\n"
-\&.t search -regexp -- {(a+|b+\nc+\nb+)+\na+} 1.0
+.t insert 1.0 "aaaa\nbbbb\ncccc\nbbbb\naaaa\n"
+.t search -regexp -- {(a+|b+\nc+\nb+)+\na+} 1.0
 ```
 
 findet keinen Treffer, obwohl ab dem ersten „b“ ein 19-Zeichen-Treffer existiert.
@@ -913,9 +925,24 @@ Umschließt ein möglicher Treffer einen anderen vollständig, soll nur der grö
 
 ```
 pack [text .t]
-\&.t insert 1.0 "aaaa\nbbbb\nbbbb\nbbbb\nbbbb\\n"
-\&.t search -regexp -backward -- {b+\n|a+\n(b+\n)+} end
+.t insert 1.0 "aaaa\nbbbb\nbbbb\nbbbb\nbbbb\n"
+.t search -regexp -backward -- {b+\n|a+\n(b+\n)+} end
 ```
 
 trifft bei „5.0“ zu, ein wirklich gieriger Treffer wäre „1.0“. Mit **-all** trifft es „5.0“, „4.0“, „3.0“ und „1.0“ zu, korrekt wäre nur „1.0“, da dieser alle anderen umschließt.
 
+
+[bgerror]: ../tcl/bgerror.md
+[break]: ../tcl/break.md
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[continue]: ../tcl/continue.md
+[GetBitmap]: ../tk-c/GetBitmap.md
+[GetColor]: ../tk-c/GetColor.md
+[GetFont]: ../tk-c/GetFont.md
+[GetInt]: ../tcl-c/GetInt.md
+[GetPixels]: ../tk-c/GetPixels.md
+[GetRelief]: ../tk-c/GetRelief.md
+[options]: options.md
+[re_syntax]: ../tcl/re_syntax.md
+[regexp]: ../tcl/regexp.md
+[tclvars]: ../tcl/tclvars.md

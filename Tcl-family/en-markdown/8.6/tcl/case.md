@@ -1,5 +1,6 @@
 ---
 CommandName: case
+title: case
 ManualSection: n
 Version: 7.0
 TclPart: Tcl
@@ -22,14 +23,18 @@ case - Evaluate one of several scripts, depending on a given value
 # Synopsis
 
 ::: {.synopsis} :::
-[case]{.cmd} [string]{.arg} [in]{.optlit} [patList]{.arg} [body]{.arg} [patList body]{.optdot} 
-[case]{.cmd} [string]{.arg} [in]{.optlit} { [patList]{.arg} [body]{.arg} [patList body]{.optdot} } 
+[case]{.cmd} [string]{.arg} [in]{.optlit} [patList]{.arg} [body]{.arg} [patList body]{.optdot}
+[case]{.cmd} [string]{.arg} [in]{.optlit} [{patList body ?patList body ...?}]{.arg}
 :::
 
 # Description
 
-*Note: the* **case** *command is obsolete and is supported only for backward compatibility.  At some point in the future it may be removed entirely.  You should use the* **switch** *command instead.*
+*Note: the* **case** *command is obsolete and is supported only for backward compatibility.  At some point in the future it may be removed entirely.  You should use the* [switch] *command instead.*
 
-The **case** command matches *string* against each of the *patList* arguments in order. Each *patList* argument is a list of one or more patterns.  If any of these patterns matches *string* then **case** evaluates the following *body* argument by passing it recursively to the Tcl interpreter and returns the result of that evaluation. Each *patList* argument consists of a single pattern or list of patterns.  Each pattern may contain any of the wild-cards described under **string match**.  If a *patList* argument is **default**, the corresponding body will be evaluated if no *patList* matches *string*.  If no *patList* argument matches *string* and no default is given, then the **case** command returns an empty string.
+The **case** command matches *string* against each of the *patList* arguments in order. Each *patList* argument is a list of one or more patterns.  If any of these patterns matches *string* then **case** evaluates the following *body* argument by passing it recursively to the Tcl interpreter and returns the result of that evaluation. Each *patList* argument consists of a single pattern or list of patterns.  Each pattern may contain any of the wild-cards described under [string match][string].  If a *patList* argument is **default**, the corresponding body will be evaluated if no *patList* matches *string*.  If no *patList* argument matches *string* and no default is given, then the **case** command returns an empty string.
 
 Two syntaxes are provided for the *patList* and *body* arguments. The first uses a separate argument for each of the patterns and commands; this form is convenient if substitutions are desired on some of the patterns or commands. The second form places all of the patterns and commands together into a single argument; the argument must have proper list structure, with the elements of the list being the patterns and commands. The second form makes it easy to construct multi-line case commands, since the braces around the whole list make it unnecessary to include a backslash at the end of each line. Since the *patList* arguments are in braces in the second form, no command or variable substitutions are performed on them;  this makes the behavior of the second form different than the first form in some cases.
+
+
+[string]: string.md
+[switch]: switch.md

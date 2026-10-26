@@ -1,5 +1,6 @@
 ---
 CommandName: pt
+title: pt
 ManualSection: n
 Version: 1
 TclPart: tcllib
@@ -32,46 +33,50 @@ pt - Parser Tools Application
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[pt]{.cmd} [generate]{.sub} [resultformat]{.arg} [options]{.optdot} [resultfile]{.arg} [inputformat]{.arg} [inputfile]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[pt]{.cmd} [generate]{.lit} [resultformat]{.arg} [options...]{.optarg} [resultfile]{.arg} [inputformat]{.arg} [inputfile]{.arg}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-This document describes **pt**, the main application of the module, a *parser generator*. Its intended audience are people who wish to create a parser for some language of theirs. Should you wish to modify the application instead, please see the section about the application's **Internals** for the basic references.
+This document describes **pt**, the main application of the module, a *parser generator*. Its intended audience are people who wish to create a parser for some language of theirs. Should you wish to modify the application instead, please see the section about the application's [Internals] for the basic references.
 
 It resides in the User Application Layer of Parser Tools.
 
-IMAGE: arch_user_app
+IMAGE: arch\_user\_app
 
 # Command line
 
 **pt** **generate** *resultformat* ?*options...*? *resultfile* *inputformat* *inputfile*
-: This sub-command of the application reads the parsing expression grammar stored in the *inputfile* in the format *inputformat*, converts it to the *resultformat* under the direction of the (format-specific) set of options specified by the user and stores the result in the *resultfile*. The *inputfile* has to exist, while the *resultfile* may be created, overwriting any pre-existing content of the file. Any missing directory in the path to the *resultfile* will be created as well. The exact form of the result for, and the set of options supported by the known result-formats, are explained in the upcoming sections of this document, with the list below providing an index mapping between format name and its associated section. In alphabetical order:
+: This sub-command of the application reads the parsing expression grammar stored in the *inputfile* in the format *inputformat*, converts it to the *resultformat* under the direction of the (format-specific) set of options specified by the user and stores the result in the *resultfile*.
 
+    The *inputfile* has to exist, while the *resultfile* may be created, overwriting any pre-existing content of the file. Any missing directory in the path to the *resultfile* will be created as well.
 
-**c**
-: A *resultformat*. See section **C Parser**.
+    The exact form of the result for, and the set of options supported by the known result-formats, are explained in the upcoming sections of this document, with the list below providing an index mapping between format name and its associated section. In alphabetical order:
 
-**container**
-: A *resultformat*. See section **Grammar Container**.
+    **c**
+    : A *resultformat*. See section [C parser].
 
-**critcl**
-: A *resultformat*. See section **C Parser Embedded In Tcl**.
+    **container**
+    : A *resultformat*. See section [Grammar container].
 
-**json**
-: A *input*- and *resultformat*. See section **JSON Grammar Exchange**.
+    **critcl**
+    : A *resultformat*. See section [C parser embedded in Tcl].
 
-**oo**
-: A *resultformat*. See section **TclOO Parser**.
+    **json**
+    : A *input*- and *resultformat*. See section [JSON grammar exchange].
 
-**peg**
-: A *input*- and *resultformat*. See section **PEG Specification Language**.
+    **oo**
+    : A *resultformat*. See section [TclOO parser].
 
-**snit**
-: A *resultformat*. See section **Snit Parser**.
+    **peg**
+    : A *input*- and *resultformat*. See section [Peg specification language].
+
+    **snit**
+    : A *resultformat*. See section [Snit parser].
+
 
 
 Of the seven possible results four are parsers outright (**c**, **critcl**, **oo**, and **snit**), one (**container**) provides code which can be used in conjunction with a generic parser (also known as a grammar interpreter), and the last two (**json** and **peg**) are doing double-duty as input formats, allowing the transformation of grammars for exchange, reformatting, and the like.
@@ -89,14 +94,28 @@ The created parsers fall into three categories:
 ```
 
 **Specialized parsers implemented in C**
-: The fastest parsers are created when using the result formats **c** and **critcl**. The first returns the raw C code for the parser, while the latter wraps it into a Tcl package using *CriTcl*. This makes the latter much easier to use than the former. On the other hand, the former can be adapted to the users' requirements through a multitude of options, allowing for things like usage of the parser outside of a Tcl environment, something the **critcl** format doesn't support. As such the **c** format is meant for more advanced users, or users with special needs. A disadvantage of all the parsers in this section is the need to run them through a C compiler to make them actually executable. This is not something everyone has the necessary tools for. The parsers in the next section are for people under such restrictions.
+: The fastest parsers are created when using the result formats **c** and **critcl**. The first returns the raw C code for the parser, while the latter wraps it into a Tcl package using *CriTcl*.
+
+    This makes the latter much easier to use than the former. On the other hand, the former can be adapted to the users' requirements through a multitude of options, allowing for things like usage of the parser outside of a Tcl environment, something the **critcl** format doesn't support. As such the **c** format is meant for more advanced users, or users with special needs.
+
+    A disadvantage of all the parsers in this section is the need to run them through a C compiler to make them actually executable. This is not something everyone has the necessary tools for. The parsers in the next section are for people under such restrictions.
 
 **Specialized parsers implemented in Tcl**
-: As the parsers in this section are implemented in Tcl they are quite a bit slower than anything from the previous section. On the other hand this allows them to be used in pure-Tcl environments, or in environments which allow only a limited set of binary packages. In the latter case it will be advantageous to lobby for the inclusion of the C-based runtime support (notes below) into the environment to reduce the impact of Tcl's on the speed of these parsers. The relevant formats are **snit** and **oo**. Both place their result into a Tcl package containing a **snit::type**, or TclOO **class** respectively. Of the supporting runtime, which is the package **pt::rde**, the user has to know nothing but that it does exist and that the parsers are dependent on it. Knowledge of the API exported by the runtime for the parsers' consumption is *not* required by the parsers' users.
+: As the parsers in this section are implemented in Tcl they are quite a bit slower than anything from the previous section. On the other hand this allows them to be used in pure-Tcl environments, or in environments which allow only a limited set of binary packages. In the latter case it will be advantageous to lobby for the inclusion of the C-based runtime support (notes below) into the environment to reduce the impact of Tcl's on the speed of these parsers.
+
+    The relevant formats are **snit** and **oo**. Both place their result into a Tcl package containing a **snit::type**, or TclOO **class** respectively.
+
+    Of the supporting runtime, which is the package **pt::rde**, the user has to know nothing but that it does exist and that the parsers are dependent on it. Knowledge of the API exported by the runtime for the parsers' consumption is *not* required by the parsers' users.
 
 **Interpreted parsing implemented in Tcl**
-: The last category, grammar interpretation. This means that an interpreter for parsing expression grammars takes the description of the grammar to parse input for, and uses it guide the parsing process. This is the slowest of the available options, as the interpreter has to continually run through the configured grammar, whereas the specialized parsers of the previous sections have the relevant knowledge about the grammar baked into them. The only places where using interpretation make sense is where the grammar for some input may be changed interactively by the user, as the interpretation allows for quick turnaround after each change, whereas the previous methods require the generation of a whole new parser, which is not as fast. On the other hand, wherever the grammar to use is fixed, the previous methods are much more advantageous as the time to generate the parser is minuscule compared to the time the parser code is in use. The relevant result format is **container**. It (quickly) generates grammar descriptions (instead of a full parser) which match the API expected by ParserTools' grammar interpreter. The latter is provided by the package **pt::peg::interp**. All the parsers generated by **critcl**, **snit**, and **oo**, and the grammar interpreter share a common API for access to the actual parsing functionality, making them all plug-compatible. It is described in the *Parser API* specification document.
+: The last category, grammar interpretation. This means that an interpreter for parsing expression grammars takes the description of the grammar to parse input for, and uses it guide the parsing process. This is the slowest of the available options, as the interpreter has to continually run through the configured grammar, whereas the specialized parsers of the previous sections have the relevant knowledge about the grammar baked into them.
 
+    The only places where using interpretation make sense is where the grammar for some input may be changed interactively by the user, as the interpretation allows for quick turnaround after each change, whereas the previous methods require the generation of a whole new parser, which is not as fast. On the other hand, wherever the grammar to use is fixed, the previous methods are much more advantageous as the time to generate the parser is minuscule compared to the time the parser code is in use.
+
+    The relevant result format is **container**. It (quickly) generates grammar descriptions (instead of a full parser) which match the API expected by ParserTools' grammar interpreter. The latter is provided by the package **pt::peg::interp**.
+
+
+All the parsers generated by **critcl**, **snit**, and **oo**, and the grammar interpreter share a common API for access to the actual parsing functionality, making them all plug-compatible. It is described in the *Parser API* specification document.
 
 # Peg specification language
 
@@ -110,7 +129,7 @@ When used as a result-format this format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -118,24 +137,24 @@ When used as a result-format this format supports the following options:
 **-template** string
 : The value of this option is a string into which to put the generated text and the values of the other options. The various locations for user-data are expected to be specified with the placeholders listed below. The default value is "**@code@**".
 
+    **@user@**
+    : To be replaced with the value of the option **-user**.
 
-**@user@**
-: To be replaced with the value of the option **-user**.
+    **@format@**
+    : To be replaced with the the constant **PEG**.
 
-**@format@**
-: To be replaced with the the constant **PEG**.
+    **@file@**
+    : To be replaced with the value of the option **-file**.
 
-**@file@**
-: To be replaced with the value of the option **-file**.
+    **@name@**
+    : To be replaced with the value of the option **-name**.
 
-**@name@**
-: To be replaced with the value of the option **-name**.
-
-**@code@**
-: To be replaced with the generated text.
+    **@code@**
+    : To be replaced with the generated text.
 
 
-# Json grammar exchange
+
+# JSON grammar exchange
 
 The **json** format for parsing expression grammars was written as a data exchange format not bound to Tcl. It was defined to allow the exchange of grammars with PackRat/PEG based parser generators for other languages.
 
@@ -147,19 +166,23 @@ When used as a result-format this format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
 
 **-indented** boolean
-: If this option is set the system will break the generated JSON across lines and indent it according to its inner structure, with each key of a dictionary on a separate line. If the option is not set (the default), the whole JSON object will be written on a single line, with minimum spacing between all elements.
+: If this option is set the system will break the generated JSON across lines and indent it according to its inner structure, with each key of a dictionary on a separate line.
+
+    If the option is not set (the default), the whole JSON object will be written on a single line, with minimum spacing between all elements.
 
 **-aligned** boolean
-: If this option is set the system will ensure that the values for the keys in a dictionary are vertically aligned with each other, for a nice table effect. To make this work this also implies that **-indented** is set. If the option is not set (the default), the output is formatted as per the value of **indented**, without trying to align the values for dictionary keys.
+: If this option is set the system will ensure that the values for the keys in a dictionary are vertically aligned with each other, for a nice table effect. To make this work this also implies that **-indented** is set.
+
+    If the option is not set (the default), the output is formatted as per the value of **indented**, without trying to align the values for dictionary keys.
 
 
-# C parser embedded in tcl
+# C parser embedded in Tcl
 
 The **critcl** format is executable code, a parser for the grammar. It is a Tcl package with the actual parser implementation written in C and embedded in Tcl via the **critcl** package.
 
@@ -169,13 +192,15 @@ This result-format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
 
 **-class** string
-: The value of this option is the name of the class to generate, without leading colons. The default value is **CLASS**. For a simple value **X** without colons, like CLASS, the parser command will be **X**::**X**. Whereas for a namespaced value **X::Y** the parser command will be **X::Y**.
+: The value of this option is the name of the class to generate, without leading colons. The default value is **CLASS**.
+
+    For a simple value **X** without colons, like CLASS, the parser command will be **X**::**X**. Whereas for a namespaced value **X::Y** the parser command will be **X::Y**.
 
 **-package** string
 : The value of this option is the name of the package to generate. The default value is **PACKAGE**.
@@ -196,7 +221,7 @@ This result-format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -204,53 +229,51 @@ This result-format supports the following options:
 **-template** string
 : The value of this option is a string into which to put the generated text and the other configuration settings. The various locations for user-data are expected to be specified with the placeholders listed below. The default value is "**@code@**".
 
+    **@user@**
+    : To be replaced with the value of the option **-user**.
 
-**@user@**
-: To be replaced with the value of the option **-user**.
+    **@format@**
+    : To be replaced with the the constant **C/PARAM**.
 
-**@format@**
-: To be replaced with the the constant **C/PARAM**.
+    **@file@**
+    : To be replaced with the value of the option **-file**.
 
-**@file@**
-: To be replaced with the value of the option **-file**.
+    **@name@**
+    : To be replaced with the value of the option **-name**.
 
-**@name@**
-: To be replaced with the value of the option **-name**.
-
-**@code@**
-: To be replaced with the generated Tcl code.
-
-
-: The following options are special, in that they will occur within the generated code, and are replaced there as well.
+    **@code@**
+    : To be replaced with the generated Tcl code.
 
 
-**@statedecl@**
-: To be replaced with the value of the option **state-decl**.
+    The following options are special, in that they will occur within the generated code, and are replaced there as well.
 
-**@stateref@**
-: To be replaced with the value of the option **state-ref**.
+    **@statedecl@**
+    : To be replaced with the value of the option **state-decl**.
 
-**@strings@**
-: To be replaced with the value of the option **string-varname**.
+    **@stateref@**
+    : To be replaced with the value of the option **state-ref**.
 
-**@self@**
-: To be replaced with the value of the option **self-command**.
+    **@strings@**
+    : To be replaced with the value of the option **string-varname**.
 
-**@def@**
-: To be replaced with the value of the option **fun-qualifier**.
+    **@self@**
+    : To be replaced with the value of the option **self-command**.
 
-**@ns@**
-: To be replaced with the value of the option **namespace**.
+    **@def@**
+    : To be replaced with the value of the option **fun-qualifier**.
 
-**@main@**
-: To be replaced with the value of the option **main**.
+    **@ns@**
+    : To be replaced with the value of the option **namespace**.
 
-**@prelude@**
-: To be replaced with the value of the option **prelude**.
+    **@main@**
+    : To be replaced with the value of the option **main**.
+
+    **@prelude@**
+    : To be replaced with the value of the option **prelude**.
 
 
 **-state-decl** string
-: A C string representing the argument declaration to use in the generated parsing functions to refer to the parsing state. In essence type and argument name. The default value is the string **RDE_PARAM p**.
+: A C string representing the argument declaration to use in the generated parsing functions to refer to the parsing state. In essence type and argument name. The default value is the string **RDE\_PARAM p**.
 
 **-state-ref** string
 : A C string representing the argument named used in the generated parsing functions to refer to the parsing state. The default value is the string **p**.
@@ -265,10 +288,10 @@ This result-format supports the following options:
 : The name of the C namespace the parser functions (methods, ...) shall reside in, or a general prefix to add to the function names. The default value is the empty string.
 
 **-main** string
-: The name of the main function (method, ...) to be called by the chosen framework (template) to start parsing input. The default value is **\__main**.
+: The name of the main function (method, ...) to be called by the chosen framework (template) to start parsing input. The default value is **\_\_main**.
 
 **-string-varname** string
-: The name of the variable used for the table of strings used by the generated parser, i.e. error messages, symbol names, etc. The default value is **p_string**.
+: The name of the variable used for the table of strings used by the generated parser, i.e. error messages, symbol names, etc. The default value is **p\_string**.
 
 **-prelude** string
 : A snippet of code to be inserted at the head of each generated parsing function. The default value is the empty string.
@@ -290,7 +313,7 @@ This result-format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -305,7 +328,7 @@ This result-format supports the following options:
 : The value of this option is the version of the package to generate. The default value is **1**.
 
 
-# Tcloo parser
+# TclOO parser
 
 The **oo** format is executable code, a parser for the grammar. It is a Tcl package holding a **TclOO** class, whose instances are parsers for the input grammar.
 
@@ -315,7 +338,7 @@ This result-format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -342,7 +365,7 @@ This result-format supports the following options:
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -350,35 +373,36 @@ This result-format supports the following options:
 **-mode** **bulk**|**incremental**
 : The value of this option controls which methods of **pt::peg::container** instances are used to specify the grammar, i.e. preload it into the container. There are two legal values, as listed below. The default is **bulk**.
 
+    **bulk**
+    : In this mode the methods **start**, **add**, **modes**, and **rules** are used to specify the grammar in a bulk manner, i.e. as a set of nonterminal symbols, and two dictionaries mapping from the symbols to their semantic modes and parsing expressions.
 
-**bulk**
-: In this mode the methods **start**, **add**, **modes**, and **rules** are used to specify the grammar in a bulk manner, i.e. as a set of nonterminal symbols, and two dictionaries mapping from the symbols to their semantic modes and parsing expressions. This mode is the default.
+        This mode is the default.
 
-**incremental**
-: In this mode the methods **start**, **add**, **mode**, and **rule** are used to specify the grammar piecemal, with each nonterminal having its own block of defining commands.
+    **incremental**
+    : In this mode the methods **start**, **add**, **mode**, and **rule** are used to specify the grammar piecemal, with each nonterminal having its own block of defining commands.
 
 
 **-template** string
 : The value of this option is a string into which to put the generated code and the other configuration settings. The various locations for user-data are expected to be specified with the placeholders listed below. The default value is "**@code@**".
 
+    **@user@**
+    : To be replaced with the value of the option **-user**.
 
-**@user@**
-: To be replaced with the value of the option **-user**.
+    **@format@**
+    : To be replaced with the the constant **CONTAINER**.
 
-**@format@**
-: To be replaced with the the constant **CONTAINER**.
+    **@file@**
+    : To be replaced with the value of the option **-file**.
 
-**@file@**
-: To be replaced with the value of the option **-file**.
+    **@name@**
+    : To be replaced with the value of the option **-name**.
 
-**@name@**
-: To be replaced with the value of the option **-name**.
+    **@mode@**
+    : To be replaced with the value of the option **-mode**.
 
-**@mode@**
-: To be replaced with the value of the option **-mode**.
+    **@code@**
+    : To be replaced with the generated code.
 
-**@code@**
-: To be replaced with the generated code.
 
 
 # Example

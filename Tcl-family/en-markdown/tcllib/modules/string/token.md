@@ -1,5 +1,6 @@
 ---
 CommandName: string::token
+title: string::token
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -19,47 +20,63 @@ string::token - Regex based iterative lexing
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [string::token]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [fileutil]{.lit} 
-[::string]{.cmd} [token]{.sub} [text]{.lit} [lex]{.arg} [string]{.arg} 
-[::string]{.cmd} [token]{.sub} [file]{.lit} [lex]{.arg} [path]{.arg} 
-[::string]{.cmd} [token]{.sub} [chomp]{.lit} [lex]{.arg} [startVar]{.arg} [string]{.arg} [resultVar]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [string::token]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [fileutil]{.lit}
+[::string]{.cmd} [token]{.sub} [text]{.lit} [lex]{.arg} [string]{.arg}
+[::string]{.cmd} [token]{.sub} [file]{.lit} [lex]{.arg} [path]{.arg}
+[::string]{.cmd} [token]{.sub} [chomp]{.lit} [lex]{.arg} [startVar]{.arg} [string]{.arg} [resultVar]{.arg}
 :::
 
 # Description
 
 This package provides commands for regular expression based lexing (tokenizing) of strings.
 
-# Api
+# API
 
 **::string token text** *lex* *string*
-: This command takes a dictionary, *lex*, which must map regular expressions (“regexps”) to labels, and tokenizes the *string* according to the dictionary. The command tests each regexp in the *lex* dictionary in order. Since Tcl **dict**s are insertion-ordered, it is recommended that the regexps are specified from most specific to most general. The command returns a list of tokens. Each token is a 3-element list containing the label (from the *lex* **dict**), and the start and end indexes of the match in the *string*. The command will throw an error if it is not able to tokenize the entire string. For line-oriented lexers, finer-grained error handling and handling huge files can be achieved by lexing line-by-line.
+: This command takes a dictionary, *lex*, which must map regular expressions (“regexps”) to labels, and tokenizes the *string* according to the dictionary.
+
+    The command tests each regexp in the *lex* dictionary in order. Since Tcl **dict**s are insertion-ordered, it is recommended that the regexps are specified from most specific to most general.
+
+    The command returns a list of tokens. Each token is a 3-element list containing the label (from the *lex* **dict**), and the start and end indexes of the match in the *string*.
+
+    The command will throw an error if it is not able to tokenize the entire string.
+
+    For line-oriented lexers, finer-grained error handling and handling huge files can be achieved by lexing line-by-line.
 
 **::string token file** *lex* *path*
-: This command is a convenience wrapper around **::string token text** that makes it easy to tokenize entire files. *Note* that this command loads the whole file into memory before starting to process it.
+: This command is a convenience wrapper around **::string token text** that makes it easy to tokenize entire files.
+
+    *Note* that this command loads the whole file into memory before starting to process it.
 
 **::string token chomp** *lex* *startVar* *string* *resultVar*
-: This command is exposed to enable users to write their own lexers. For example, to apply different lexing dictionaries depending on internal state as the lex progresses. (The **::string token text** and **::string token file** commands make use of this command behind the scenes.) This command takes a dictionary, *lex*, which must map regexps to labels, a variable *startVar* which contains the index position where the lexing should begin in the input *string*, and a result variable *resultVar* to which each successfuly lexed token will be appended. The command returns a status code indicating the state of the lex These are
+: This command is exposed to enable users to write their own lexers. For example, to apply different lexing dictionaries depending on internal state as the lex progresses.
+
+    (The **::string token text** and **::string token file** commands make use of this command behind the scenes.)
+
+    This command takes a dictionary, *lex*, which must map regexps to labels, a variable *startVar* which contains the index position where the lexing should begin in the input *string*, and a result variable *resultVar* to which each successfuly lexed token will be appended.
+
+    The command returns a status code indicating the state of the lex These are
+
+    **0**
+    : No token found.
+
+    **1**
+    : Token found.
+
+    **2**
+    : End of string reached.
 
 
-**0**
-: No token found.
+    If a token was recognized (status **1**) the command will update the index in *startVar* to the character immediately *following* the lexed token. It will also append to the *resultVar* the lexed token which itself is a 3-element list containing the label (from the *lex* **dict**), and the start and end indexes of the match in the *string*.
 
-**1**
-: Token found.
+    If a token was not recognized (status **0** or **2**), neither *startVar* nor *resultVar* will be updated.
 
-**2**
-: End of string reached.
+    As noted earlier, the command tests each regexp in the *lex* dictionary in order. Since Tcl **dict**s are insertion-ordered, it is recommended that the regexps are specified from most specific to most general.
 
+    Further note that all regex patterns are implicitly prefixed with the constraint escape **\\A** to ensure that a match starts exactly at the character index found in *startVar*.
 
-If a token was recognized (status **1**) the command will update the index in *startVar* to the character immediately *following* the lexed token. It will also append to the *resultVar* the lexed token which itself is a 3-element list containing the label (from the *lex* **dict**), and the start and end indexes of the match in the *string*.
-
-If a token was not recognized (status **0** or **2**), neither *startVar* nor *resultVar* will be updated.
-
-As noted earlier, the command tests each regexp in the *lex* dictionary in order. Since Tcl **dict**s are insertion-ordered, it is recommended that the regexps are specified from most specific to most general.
-
-Further note that all regex patterns are implicitly prefixed with the constraint escape **\\A** to ensure that a match starts exactly at the character index found in *startVar*.
 
 # Examples
 

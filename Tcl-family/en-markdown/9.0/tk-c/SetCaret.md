@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_SetCaretPos
+title: Tk_SetCaretPos
 ManualSection: 3
 Version: 8.4
 TclPart: Tk
@@ -13,32 +14,33 @@ Copyright:
 
 # Name
 
-Tk_SetCaretPos - set the display caret location
+Tk\_SetCaretPos - set the display caret location
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_SetCaretPos]{.cmd}([tkwin]{.arg}, [x]{.arg}, [y]{.arg}, [height]{.arg})
+**#include <tk.h>**
+[int]{.ret} [Tk\_SetCaretPos]{.ccmd} [tkwin, x, y, height]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window.
 
-int *x* (in)
+[x]{.carg .in type="int"}
 : Window-relative x coordinate.
 
-int *y* (in)
+[y]{.carg .in type="int"}
 : Window-relative y coordinate.
 
-int *h* (in)
+[h]{.carg .in type="int"}
 : Height of the caret in the window.
 
+:::
 
 # Description
 
-**Tk_SetCaretPos** sets the caret location for the display of the specified Tk_Window *tkwin*.  The caret is the per-display cursor location used for indicating global focus (e.g. to comply with Microsoft Accessibility guidelines), as well as for location of the over-the-spot XIM (X Input Methods) or Windows IME windows.
+**Tk\_SetCaretPos** sets the caret location for the display of the specified Tk\_Window *tkwin*.  The caret is the per-display cursor location used for indicating global focus (e.g. to comply with Microsoft Accessibility guidelines), as well as for location of the over-the-spot XIM (X Input Methods) or Windows IME windows.

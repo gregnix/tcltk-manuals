@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::expander
+title: textutil::expander
 ManualSection: n
 Version: 1.3.2
 TclPart: tcllib
@@ -24,34 +25,34 @@ textutil::expander - Procedures to process templates and expand text.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::expander]{.lit} [1.3.2]{.optlit} 
-[::textutil::expander]{.cmd} [expanderName]{.arg} 
-[expanderName]{.ins} [cappend]{.sub} [text]{.arg} 
-[expanderName]{.ins} [cget]{.sub} [varname]{.arg} 
-[expanderName]{.ins} [cis]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [cname]{.sub} 
-[expanderName]{.ins} [cpop]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [ctopandclear]{.sub} 
-[expanderName]{.ins} [cpush]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [cset]{.sub} [varname]{.arg} [value]{.arg} 
-[expanderName]{.ins} [cvar]{.sub} [varname]{.arg} 
-[expanderName]{.ins} [errmode]{.sub} [newErrmode]{.arg} 
-[expanderName]{.ins} [evalcmd]{.sub} [newEvalCmd]{.optarg} 
-[expanderName]{.ins} [expand]{.sub} [string]{.arg} [brackets]{.optarg} 
-[expanderName]{.ins} [lb]{.sub} [newbracket]{.optarg} 
-[expanderName]{.ins} [rb]{.sub} [newbracket]{.optarg} 
-[expanderName]{.ins} [reset]{.sub} 
-[expanderName]{.ins} [setbrackets]{.sub} [lbrack]{.arg} [rbrack]{.arg} 
-[expanderName]{.ins} [textcmd]{.sub} [newTextCmd]{.optarg} 
-[expanderName]{.ins} [where]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::expander]{.lit} [1.3.2]{.optlit}
+[::textutil::expander]{.cmd} [expanderName]{.arg}
+[expanderName]{.ins} [cappend]{.sub} [text]{.arg}
+[expanderName]{.ins} [cget]{.sub} [varname]{.arg}
+[expanderName]{.ins} [cis]{.sub} [cname]{.arg}
+[expanderName]{.ins} [cname]{.sub}
+[expanderName]{.ins} [cpop]{.sub} [cname]{.arg}
+[expanderName]{.ins} [ctopandclear]{.sub}
+[expanderName]{.ins} [cpush]{.sub} [cname]{.arg}
+[expanderName]{.ins} [cset]{.sub} [varname]{.arg} [value]{.arg}
+[expanderName]{.ins} [cvar]{.sub} [varname]{.arg}
+[expanderName]{.ins} [errmode]{.sub} [newErrmode]{.arg}
+[expanderName]{.ins} [evalcmd]{.sub} [newEvalCmd]{.optarg}
+[expanderName]{.ins} [expand]{.sub} [string]{.arg} [brackets]{.optarg}
+[expanderName]{.ins} [lb]{.sub} [newbracket]{.optarg}
+[expanderName]{.ins} [rb]{.sub} [newbracket]{.optarg}
+[expanderName]{.ins} [reset]{.sub}
+[expanderName]{.ins} [setbrackets]{.sub} [lbrack]{.arg} [rbrack]{.arg}
+[expanderName]{.ins} [textcmd]{.sub} [newTextCmd]{.optarg}
+[expanderName]{.ins} [where]{.sub}
 :::
 
 # Description
 
 The **textutil::expander** package provides a string templating facility that is more powerful and flexible than using the built-in [subst](https://www.tcl-lang.org/man/tcl/TclCmd/subst.html) command.
 
-See the **Tutorial** section to learn the package, and the **API** section for the complete details.
+See the [Tutorial] section to learn the package, and the [API] section for the complete details.
 
 # Expander vs. subst
 
@@ -70,27 +71,28 @@ By defining a suitable set of Tcl commands, **subst** can be used to implement a
 
 The **subst** command is efficient, but it has three drawbacks for this kind of template processing:
 
-**•**
-: There’s no way to identify and process the plain text between two embedded Tcl commands; that makes it difficult to handle plain text in a context-sensitive way.
+- There’s no way to identify and process the plain text between two embedded Tcl commands; that makes it difficult to handle plain text in a context-sensitive way.
 
-**•**
-: Embedded commands are necessarily bracketed by **\[** and **\]**; it’s convenient to be able to choose different brackets in special cases.  Someone producing web pages that include a large quantity of Tcl code examples might easily prefer to use **<<** and **>>** as the embedded code delimiters instead.
+- Embedded commands are necessarily bracketed by **\[** and **\]**; it’s convenient to be able to choose different brackets in special cases.  Someone producing web pages that include a large quantity of Tcl code examples might easily prefer to use **<<** and **>>** as the embedded code delimiters instead.
 
-**•**
-: There’s no easy way to handle incremental input, as one might wish to do when reading data from a socket. At present, expander solves the first two problems. The following section describes the command API to the expander; this is followed by the tutorial sections, see **Tutorial**.
+- There’s no easy way to handle incremental input, as one might wish to do when reading data from a socket.
 
 
-# Api
+At present, expander solves the first two problems.
+
+The following section describes the command API to the expander; this is followed by the tutorial sections, see [Tutorial].
+
+# API
 
 The **textutil::expander** package provides only one command, described below. The rest of the section is taken by a description of the methods for the expander objects created by this command.
 
 **::textutil::expander** *expanderName*
 : The command creates a new expander object with an associated Tcl command whose name is *expanderName*. This command may be used to invoke various methods. If the *expanderName* is not fully qualified it is interpreted as relative to the current namespace. The method calls have the following general form:
 
+    ```
+    expanderName method ?arg ...?
+    ```
 
-```
-expanderName method ?arg ...?
-```
 
 Expander objects support the following methods:
 
@@ -124,25 +126,28 @@ Expander objects support the following methods:
 *expanderName* **errmode** *newErrmode*
 : Sets the macro expansion error mode to one of **nothing**, **macro**, **error**, or **fail**; the default value is **fail**.  The value determines what the expander does if an error is detected during the expansion of a macro.
 
+    **fail**
+    : The error propagates normally (i.e., is thrown), and can be caught or ignored by the application.
 
-**fail**
-: The error propagates normally (i.e., is thrown), and can be caught or ignored by the application.
+    **error**
+    : The macro expands into a detailed error message, and expansion continues.
 
-**error**
-: The macro expands into a detailed error message, and expansion continues.
+    **macro**
+    : The macro expands to itself; that is, it is passed along to the output unchanged.
 
-**macro**
-: The macro expands to itself; that is, it is passed along to the output unchanged.
-
-**nothing**
-: The macro expands to the empty string, and is effectively ignored.
+    **nothing**
+    : The macro expands to the empty string, and is effectively ignored.
 
 
 *expanderName* **evalcmd** ?*newEvalCmd*?
 : Returns the current evaluation command, which defaults to **uplevel #0**.  If specified, *newEvalCmd* will be saved for future use and then returned; it must be a Tcl command expecting one additional argument: the macro to evaluate.
 
 *expanderName* **expand** *string* ?*brackets*?
-: Expands the input string, replacing embedded macros with their expanded values, and returns the expanded string. Note that this method pushes a new (empty) context on the stack of contexts while it is running, and removes it on return. If *brackets* is given, it must be a list of two strings; the items will be used as the left and right macro expansion bracket sequences for this expansion only.
+: Expands the input string, replacing embedded macros with their expanded values, and returns the expanded string.
+
+    Note that this method pushes a new (empty) context on the stack of contexts while it is running, and removes it on return.
+
+    If *brackets* is given, it must be a list of two strings; the items will be used as the left and right macro expansion bracket sequences for this expansion only.
 
 *expanderName* **lb** ?*newbracket*?
 : Returns the current value of the left macro expansion bracket; this is for use as or within a macro, when the bracket needs to be included in the output text.  If *newbracket* is specified, it becomes the new bracket, and is returned.
@@ -157,7 +162,9 @@ Expander objects support the following methods:
 : Sets the left and right macro expansion brackets.  This command is for use as or within a macro, or to permanently change the bracket definitions.  By default, the brackets are **\[** and **\]**, but any non-empty string can be used; for example, **<** and **>** or **(\*** and **\*)** or even **Hello,** and **World!**.
 
 *expanderName* **textcmd** ?*newTextCmd*?
-: Returns the current command for processing plain text, which defaults to the empty string, meaning *identity*. If specified, *newTextCmd* will be saved for future use and then returned; it must be a Tcl command expecting one additional argument: the text to process. The expander object will use this command for all plain text it encounters, giving the user of the object the ability to process all plain text in some standard way before writing it to the output. The object expects that the command returns the processed plain text. *Note* that the combination of "**textcmd** *plaintext*" is run through the *evalcmd* for the actual evaluation. In other words, the *textcmd* is treated as a special macro implicitly surrounding all plain text in the template.
+: Returns the current command for processing plain text, which defaults to the empty string, meaning *identity*. If specified, *newTextCmd* will be saved for future use and then returned; it must be a Tcl command expecting one additional argument: the text to process. The expander object will use this command for all plain text it encounters, giving the user of the object the ability to process all plain text in some standard way before writing it to the output. The object expects that the command returns the processed plain text.
+
+    *Note* that the combination of "**textcmd** *plaintext*" is run through the *evalcmd* for the actual evaluation. In other words, the *textcmd* is treated as a special macro implicitly surrounding all plain text in the template.
 
 *expanderName* **where**
 : Returns a three-element list containing the current character position, line, and column the expander has reached in the processing of the current input string.

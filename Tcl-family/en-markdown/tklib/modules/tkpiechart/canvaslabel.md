@@ -1,5 +1,6 @@
 ---
 CommandName: canvasLabel
+title: canvasLabel
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -24,13 +25,13 @@ canvasLabel - tkpiechart canvas label class
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit} 
-[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit} 
-[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit} 
-[stooop::new]{.cmd} [canvasLabel]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [canvasLabelObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [canvasLabelObject]{.arg} [option]{.arg} 
-[stooop::delete]{.cmd} [canvasLabelObject]{.arg} 
+[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit}
+[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit}
+[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit}
+[stooop::new]{.cmd} [canvasLabel]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [canvasLabelObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [canvasLabelObject]{.arg} [option]{.arg}
+[stooop::delete]{.cmd} [canvasLabelObject]{.arg}
 :::
 
 # Description
@@ -112,8 +113,7 @@ The label has a specific tag, which can be used to retrieve the coordinates of t
 
 The labeler has the following specific tag (see the **canvas** manual page *ITEM IDS AND TAGS* section for more information):
 
-**•**
-: canvasLabel(canvasLabelObject)
+- canvasLabel(canvasLabelObject)
 
 
 # Bugs, ideas, feedback

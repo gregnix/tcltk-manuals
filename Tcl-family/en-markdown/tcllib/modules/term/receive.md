@@ -1,5 +1,6 @@
 ---
 CommandName: term::receive
+title: term::receive
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -22,13 +23,13 @@ term::receive - General input from terminals
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::receive]{.lit} [0.2]{.optlit} 
-[::term::receive::getch]{.cmd} [chan]{.optarg} 
-[::term::receive::listen]{.cmd} [cmd]{.arg} [chan]{.optarg} 
-[cmd]{.ins} [process]{.sub} [string]{.arg} 
-[cmd]{.ins} [eof]{.sub} 
-[::term::receive::unlisten]{.cmd} [chan]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::receive]{.lit} [0.2]{.optlit}
+[::term::receive::getch]{.cmd} [chan]{.optarg}
+[::term::receive::listen]{.cmd} [cmd]{.arg} [chan]{.optarg}
+[cmd]{.ins} [process]{.sub} [string]{.arg}
+[cmd]{.ins} [eof]{.sub}
+[::term::receive::unlisten]{.cmd} [chan]{.optarg}
 :::
 
 # Description
@@ -36,21 +37,30 @@ term::receive - General input from terminals
 This package provides the most primitive commands for receiving characters to a terminal. They are in essence convenient wrappers around the builtin commands **read** and **fileevent**.
 
 **::term::receive::getch** ?*chan*?
-: This command reads a single character from the channel with handle *chan* and returns it as the result of the command. If not specified *chan* defaults to **stdin**. It is the responsibility of the caller to make sure that the channel can provide single characters. On unix this can be done, for example, by using the command of package **term::ansi::ctrl::unix**.
+: This command reads a single character from the channel with handle *chan* and returns it as the result of the command.
+
+    If not specified *chan* defaults to **stdin**.
+
+    It is the responsibility of the caller to make sure that the channel can provide single characters. On unix this can be done, for example, by using the command of package **term::ansi::ctrl::unix**.
 
 **::term::receive::listen** *cmd* ?*chan*?
-: This command sets up a filevent listener for the channel with handle *chan* and invokes the command prefix *cmd* whenever characters have been received, or EOF was reached. If not specified *chan* defaults to **stdin**. The signature of the command prefix is
+: This command sets up a filevent listener for the channel with handle *chan* and invokes the command prefix *cmd* whenever characters have been received, or EOF was reached.
 
+    If not specified *chan* defaults to **stdin**.
 
-*cmd* **process** *string*
-: This method is invoked when characters were received, and *string* holds them for processing.
+    The signature of the command prefix is
 
-*cmd* **eof**
-: This method is invoked when EOF was reached on the channel we listen on.  It will be the last call to be received by the callback.
+    *cmd* **process** *string*
+    : This method is invoked when characters were received, and *string* holds them for processing.
+
+    *cmd* **eof**
+    : This method is invoked when EOF was reached on the channel we listen on.  It will be the last call to be received by the callback.
 
 
 **::term::receive::unlisten** ?*chan*?
-: This command disables the filevent listener for the channel with handle *chan*. If not specified *chan* defaults to **stdin**.
+: This command disables the filevent listener for the channel with handle *chan*.
+
+    If not specified *chan* defaults to **stdin**.
 
 
 # Bugs, ideas, feedback

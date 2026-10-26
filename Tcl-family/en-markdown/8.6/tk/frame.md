@@ -1,5 +1,6 @@
 ---
 CommandName: frame
+title: frame
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -23,18 +24,14 @@ frame - Create and manipulate 'frame' simple container widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[frame]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[frame]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-borderwidth** | **-highlightcolor** | **-pady** |
-| **-cursor** | **-highlightthickness** | **-relief** |
-| **-highlightbackground** | **-padx** | **-takefocus** |
+**-borderwidth**, **-highlightcolor**, **-pady**, **-cursor**, **-highlightthickness**, **-relief**, **-highlightbackground**, **-padx**, **-takefocus**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -51,13 +48,13 @@ See the options manual entry for details on the standard options.
 : The value must be a boolean.  If true, it means that this window will be used as a container in which some other application will be embedded (for example, a Tk toplevel can be embedded using the **-use** option). The window will support the appropriate window manager protocols for things like geometry requests.  The window should not have any children of its own in this application. This option may not be changed with the **configure** widget command. Note that **-borderwidth**, **-padx** and **-pady** are ignored when configured as a container since a container has no border.
 
 **-height** (**height**/**Height**)
-: Specifies the desired height for the window in any of the forms acceptable to **Tk_GetPixels**.  If this option is less than or equal to zero then the window will not request any size at all.  Note that this sets the total height of the frame, any **-borderwidth** or similar is not added.  Normally **-height** should not be used if a propagating geometry manager, such as **grid** or **pack**, is used within the frame since the geometry manager will override the height of the frame.
+: Specifies the desired height for the window in any of the forms acceptable to [Tk\_GetPixels][GetPixels].  If this option is less than or equal to zero then the window will not request any size at all.  Note that this sets the total height of the frame, any **-borderwidth** or similar is not added.  Normally **-height** should not be used if a propagating geometry manager, such as [grid] or [pack], is used within the frame since the geometry manager will override the height of the frame.
 
 **-visual** (**visual**/**Visual**)
-: Specifies visual information for the new window in any of the forms accepted by **Tk_GetVisual**. If this option is not specified, the new window will use the same visual as its parent. The **-visual** option may not be modified with the **configure** widget command.
+: Specifies visual information for the new window in any of the forms accepted by [Tk\_GetVisual][GetVisual]. If this option is not specified, the new window will use the same visual as its parent. The **-visual** option may not be modified with the **configure** widget command.
 
 **-width** (**width**/**Width**)
-: Specifies the desired width for the window in any of the forms acceptable to **Tk_GetPixels**.  If this option is less than or equal to zero then the window will not request any size at all.  Note that this sets the total width of the frame, any **-borderwidth** or similar is not added.  Normally **-width** should not be used if a propagating geometry manager, such as **grid** or **pack**, is used within the frame since the geometry manager will override the width of the frame.
+: Specifies the desired width for the window in any of the forms acceptable to [Tk\_GetPixels][GetPixels].  If this option is less than or equal to zero then the window will not request any size at all.  Note that this sets the total width of the frame, any **-borderwidth** or similar is not added.  Normally **-width** should not be used if a propagating geometry manager, such as [grid] or [pack], is used within the frame since the geometry manager will override the width of the frame.
 
 
 # Description
@@ -80,9 +77,17 @@ pathName option ?arg arg ...?
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **frame** command.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **frame** command.
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **frame** command.
 
 
 # Bindings
 
 When a new frame is created, it has no default event bindings: frames are not intended to be interactive.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetPixels]: ../tk-c/GetPixels.md
+[GetVisual]: ../tk-c/GetVisual.md
+[grid]: grid.md
+[options]: options.md
+[pack]: pack.md

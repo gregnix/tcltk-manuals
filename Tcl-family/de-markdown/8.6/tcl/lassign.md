@@ -1,5 +1,6 @@
 ---
 CommandName: lassign
+title: lassign
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -22,21 +23,21 @@ Copyright:
  - Copyright (c) 2004 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 lassign - Weist Listenelemente Variablen zu
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lassign]{.cmd} [list]{.arg} [varName]{.optdot} 
+[lassign]{.cmd} [list]{.arg} [varName]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl behandelt *list* als Liste und weist aufeinanderfolgende Elemente der *varName*-Argumente in Reihenfolge zu. Gibt es mehr Variablen als Elemente, erhalten die übrigen Variablen eine leere Zeichenkette. Gibt es mehr Elemente als Variablen, wird eine Liste der nicht zugewiesenen Elemente zurückgegeben.
 
-# BEISPIELE
+# Beispiele
 
 Mehrfachzuweisung; zu wenige oder zu viele Elemente:
 

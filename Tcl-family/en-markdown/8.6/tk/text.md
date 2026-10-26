@@ -1,5 +1,6 @@
 ---
 CommandName: text
+title: text
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -18,31 +19,22 @@ Copyright:
 
 # Name
 
-text, tk_textCopy, tk_textCut, tk_textPaste - Create and manipulate 'text' hypertext editing widgets
+text, tk\_textCopy, tk\_textCut, tk\_textPaste - Create and manipulate 'text' hypertext editing widgets
 
 # Synopsis
 
 ::: {.synopsis} :::
-[text]{.cmd} [pathName]{.arg} [options]{.optarg} 
-[tk_textCopy]{.cmd} [pathName]{.arg} 
-[tk_textCut]{.cmd} [pathName]{.arg} 
-[tk_textPaste]{.cmd} [pathName]{.arg} 
+[text]{.cmd} [pathName]{.arg} [options]{.optarg}
+[tk\_textCopy]{.cmd} [pathName]{.arg}
+[tk\_textCut]{.cmd} [pathName]{.arg}
+[tk\_textPaste]{.cmd} [pathName]{.arg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-background** | **-highlightthickness** | **-relief** |
-| **-borderwidth** | **-insertbackground** | **-selectbackground** |
-| **-cursor** | **-insertborderwidth** | **-selectborderwidth** |
-| **-exportselection** | **-insertofftime** | **-selectforeground** |
-| **-font** | **-insertontime** | **-setgrid** |
-| **-foreground** | **-insertwidth** | **-takefocus** |
-| **-highlightbackground** | **-padx** | **-xscrollcommand** |
-| **-highlightcolor** | **-pady** | **-yscrollcommand** |
+**-background**, **-highlightthickness**, **-relief**, **-borderwidth**, **-insertbackground**, **-selectbackground**, **-cursor**, **-insertborderwidth**, **-selectborderwidth**, **-exportselection**, **-insertofftime**, **-selectforeground**, **-font**, **-insertontime**, **-setgrid**, **-foreground**, **-insertwidth**, **-takefocus**, **-highlightbackground**, **-padx**, **-xscrollcommand**, **-highlightcolor**, **-pady**, **-yscrollcommand**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -62,7 +54,7 @@ See the options manual entry for details on the standard options.
 : Specifies the colour to use for the selection (the **sel** tag) when the window does not have the input focus. If empty, **{}**, then no selection is shown when the window does not have the focus.
 
 **-insertunfocussed** (**insertUnfocussed**/**InsertUnfocussed**)
-: Specifies how to display the insertion cursor when the widget does not have the focus. Must be **none** (the default) which means to not display the cursor, **hollow** which means to display a hollow box, or **solid** which means to display a solid box. Note that **hollow** and **solid** will appear very similar when the **-blockcursor** option is false.
+: [Specifies how to display the insertion cursor when the widget does not have the focus. Must be **none** (the default) which means to not display the cursor, **hollow** which means to display a hollow box, or **solid** which means to display a solid box. Note that **hollow** and **solid** will appear very similar when the **-blockcursor** option is false.]{version="8.6"}
 
 **-maxundo** (**maxUndo**/**MaxUndo**)
 : Specifies the maximum number of compound undo actions on the undo stack. A zero or a negative value imply an unlimited undo stack.
@@ -85,10 +77,9 @@ See the options manual entry for details on the standard options.
 **-tabs** (**tabs**/**Tabs**)
 : Specifies a set of tab stops for the window. The option's value consists of a list of screen distances giving the positions of the tab stops, each of which is a distance relative to the left edge of the widget (excluding borders, padding, etc). Each position may optionally be followed in the next list element by one of the keywords **left**, **right**, **center**, or **numeric**, which specifies how to justify text relative to the tab stop. **Left** is the default; it causes the text following the tab character to be positioned with its left edge at the tab position. **Right** means that the right edge of the text following the tab character is positioned at the tab position, and **center** means that the text is centered at the tab position. **Numeric** means that the decimal point in the text is positioned at the tab position; if there is no decimal point then the least significant digit of the number is positioned just to the left of the tab position; if there is no number in the text then the text is right-justified at the tab position. For example, "**-tabs {2c left 4c 6c center}**" creates three tab stops at two-centimeter intervals; the first two use left justification and the third uses center justification.
 
+    If the list of tab stops does not have enough elements to cover all of the tabs in a text line, then Tk extrapolates new tab stops using the spacing and alignment from the last tab stop in the list. Tab distances must be strictly positive, and must always increase from one tab stop to the next (if not, an error is thrown). The value of the **-tabs** option may be overridden by **-tabs** options in tags.
 
-If the list of tab stops does not have enough elements to cover all of the tabs in a text line, then Tk extrapolates new tab stops using the spacing and alignment from the last tab stop in the list. Tab distances must be strictly positive, and must always increase from one tab stop to the next (if not, an error is thrown). The value of the **-tabs** option may be overridden by **-tabs** options in tags.
-
-If no **-tabs** option is specified, or if it is specified as an empty list, then Tk uses default tabs spaced every eight (average size) characters. To achieve a different standard spacing, for example every 4 characters, simply configure the widget with "**-tabs** "**\[expr {4 \* \[font measure \$font 0\]}\] left**" **-tabstyle wordprocessor**".
+    If no **-tabs** option is specified, or if it is specified as an empty list, then Tk uses default tabs spaced every eight (average size) characters. To achieve a different standard spacing, for example every 4 characters, simply configure the widget with "**-tabs "\[expr {4 \* \[font measure $font 0\]}\] left" -tabstyle wordprocessor**".
 
 **-tabstyle** (**tabStyle**/**TabStyle**)
 : Specifies how to interpret the relationship between tab stops on a line and tabs in the text of that line. The value must be **tabular** (the default) or **wordprocessor**. Note that tabs are interpreted as they are encountered in the text. If the tab style is **tabular** then the *n*'th tab character in the line's text will be associated with the *n*'th tab stop defined for that line. If the tab character's x coordinate falls to the right of the *n*'th tab stop, then a gap of a single space will be inserted as a fallback. If the tab style is **wordprocessor** then any tab character being laid out will use (and be defined by) the first tab stop to the right of the preceding characters already laid out on that line. The value of the **-tabstyle** option may be overridden by **-tabstyle** options in tags.
@@ -107,17 +98,17 @@ If no **-tabs** option is specified, or if it is specified as an empty list, the
 
 The **text** command creates a new window (given by the *pathName* argument) and makes it into a text widget. Additional options, described above, may be specified on the command line or in the option database to configure aspects of the text such as its default background color and relief. The **text** command returns the path name of the new window.
 
-A text widget displays one or more lines of text and allows that text to be edited. Text widgets support four different kinds of annotations on the text, called tags, marks, embedded windows or embedded images. Tags allow different portions of the text to be displayed with different fonts and colors. In addition, Tcl commands can be associated with tags so that scripts are invoked when particular actions such as keystrokes and mouse button presses occur in particular ranges of the text. See **TAGS** below for more details.
+A text widget displays one or more lines of text and allows that text to be edited. Text widgets support four different kinds of annotations on the text, called tags, marks, embedded windows or embedded images. Tags allow different portions of the text to be displayed with different fonts and colors. In addition, Tcl commands can be associated with tags so that scripts are invoked when particular actions such as keystrokes and mouse button presses occur in particular ranges of the text. See [Tags] below for more details.
 
-The second form of annotation consists of floating markers in the text called "marks". Marks are used to keep track of various interesting positions in the text as it is edited. See **MARKS** below for more details.
+The second form of annotation consists of floating markers in the text called "marks". Marks are used to keep track of various interesting positions in the text as it is edited. See [Marks] below for more details.
 
-The third form of annotation allows arbitrary windows to be embedded in a text widget. See **EMBEDDED WINDOWS** below for more details.
+The third form of annotation allows arbitrary windows to be embedded in a text widget. See [Embedded windows] below for more details.
 
-The fourth form of annotation allows Tk images to be embedded in a text widget. See **EMBEDDED IMAGES** below for more details.
+The fourth form of annotation allows Tk images to be embedded in a text widget. See [Embedded images] below for more details.
 
-The text widget also has a built-in undo/redo mechanism. See **THE UNDO MECHANISM** below for more details.
+The text widget also has a built-in undo/redo mechanism. See [The undo mechanism] below for more details.
 
-The text widget allows for the creation of peer widgets. These are other text widgets which share the same underlying data (text, marks, tags, images, etc). See **PEER WIDGETS** below for more details.
+The text widget allows for the creation of peer widgets. These are other text widgets which share the same underlying data (text, marks, tags, images, etc). See [Peer widgets] below for more details.
 
 # Indices
 
@@ -131,35 +122,38 @@ Where *base* gives a starting point and the *modifier*s adjust the index from th
 
 The *base* for an index must have one of the following forms:
 
-*line*__.__*char*
+*line***.***char*
 : Indicates *char*'th character on line *line*. Lines are numbered from 1 for consistency with other UNIX programs that use this numbering scheme. Within a line, characters are numbered from 0. If *char* is **end** then it refers to the newline character that ends the line.
 
-**@**_x_**,**_y_
+**@***x***,***y*
 : Indicates the character that covers the pixel whose x and y coordinates within the text's window are *x* and *y*.
 
 **end**
 : Indicates the end of the text (the character just after the last newline).
 
 *mark*
-: Indicates the character just after the mark whose name is *mark* (see **MARKS** for details).
+: Indicates the character just after the mark whose name is *mark* (see [Marks] for details).
 
-*tag*__.first__
+*tag***.first**
 : Indicates the first character in the text that has been tagged with *tag*. This form generates an error if no characters are currently tagged with *tag*.
 
-*tag*__.last__
+*tag***.last**
 : Indicates the character just after the last one in the text that has been tagged with *tag*. This form generates an error if no characters are currently tagged with *tag*.
 
 *pathName*
 : Indicates the position of the embedded window whose name is *pathName*. This form generates an error if there is no embedded window by the given name.
 
 *imageName*
-: Indicates the position of the embedded image whose name is *imageName*. This form generates an error if there is no embedded image by the given name. If the *base* could match more than one of the above forms, such as a *mark* and *imageName* both having the same value, then the form earlier in the above list takes precedence. If modifiers follow the base index, each one of them must have one of the forms listed below. Keywords such as **chars** and **wordend** may be abbreviated as long as the abbreviation is unambiguous.
+: Indicates the position of the embedded image whose name is *imageName*. This form generates an error if there is no embedded image by the given name.
+
+
+If the *base* could match more than one of the above forms, such as a *mark* and *imageName* both having the same value, then the form earlier in the above list takes precedence. If modifiers follow the base index, each one of them must have one of the forms listed below. Keywords such as **chars** and **wordend** may be abbreviated as long as the abbreviation is unambiguous.
 
 **+** *count* ?*submodifier*? **chars**
-: Adjust the index forward by *count* characters, moving to later lines in the text if necessary. If there are fewer than *count* characters in the text after the current index, then set the index to the last index in the text. Spaces on either side of *count* are optional. If the **display** submodifier is given, elided characters are skipped over without being counted. If **any** is given, then all characters are counted. For historical reasons, if neither modifier is given then the count actually takes place in units of index positions (see **INDICES** for details). This behaviour may be changed in a future major release, so if you need an index count, you are encouraged to use **indices** instead wherever possible.
+: Adjust the index forward by *count* characters, moving to later lines in the text if necessary. If there are fewer than *count* characters in the text after the current index, then set the index to the last index in the text. Spaces on either side of *count* are optional. If the **display** submodifier is given, elided characters are skipped over without being counted. If **any** is given, then all characters are counted. For historical reasons, if neither modifier is given then the count actually takes place in units of index positions (see [Indices] for details). This behaviour may be changed in a future major release, so if you need an index count, you are encouraged to use **indices** instead wherever possible.
 
 **-** *count* ?*submodifier*? **chars**
-: Adjust the index backward by *count* characters, moving to earlier lines in the text if necessary. If there are fewer than *count* characters in the text before the current index, then set the index to the first index in the text (1.0). Spaces on either side of *count* are optional. If the **display** submodifier is given, elided characters are skipped over without being counted. If **any** is given, then all characters are counted. For historical reasons, if neither modifier is given then the count actually takes place in units of index positions (see **INDICES** for details). This behavior may be changed in a future major release, so if you need an index count, you are encouraged to use **indices** instead wherever possible.
+: Adjust the index backward by *count* characters, moving to earlier lines in the text if necessary. If there are fewer than *count* characters in the text before the current index, then set the index to the first index in the text (1.0). Spaces on either side of *count* are optional. If the **display** submodifier is given, elided characters are skipped over without being counted. If **any** is given, then all characters are counted. For historical reasons, if neither modifier is given then the count actually takes place in units of index positions (see [Indices] for details). This behavior may be changed in a future major release, so if you need an index count, you are encouraged to use **indices** instead wherever possible.
 
 **+** *count* ?*submodifier*? **indices**
 : Adjust the index forward by *count* index positions, moving to later lines in the text if necessary. If there are fewer than *count* index positions in the text after the current index, then set the index to the last index position in the text. Spaces on either side of *count* are optional. Note that an index position is either a single character or a single embedded image or embedded window. If the **display** submodifier is given, elided indices are skipped over without being counted. If **any** is given, then all indices are counted; this is also the default behaviour if no modifier is given.
@@ -183,8 +177,12 @@ The *base* for an index must have one of the following forms:
 : Adjust the index to refer to the first character of the word containing the current index. A word consists of any number of adjacent characters that are letters, digits, or underscores, or a single character that is not one of these. If the **display** submodifier is given, this only examines non-elided characters, otherwise all characters (elided or not) are examined.
 
 ?*submodifier*? **wordend**
-: Adjust the index to refer to the character just after the last one of the word containing the current index. If the current index refers to the last character of the text then it is not modified. If the **display** submodifier is given, this only examines non-elided characters, otherwise all characters (elided or not) are examined. If more than one modifier is present then they are applied in left-to-right order. For example, the index "**end - 1 chars**" refers to the next-to-last character in the text and "**insert wordstart - 1 c**" refers to the character just before the first one in the word containing the insertion cursor. Modifiers are applied one by one in this left to right order, and after each step the resulting index is constrained to be a valid index in the text widget. So, for example, the index "**1.0 -1c +1c**" refers to the index "**2.0**". Where modifiers result in index changes by display lines, display chars or display indices, and the *base* refers to an index inside an elided tag, that base index is considered to be equivalent to the first following non-elided index.
+: Adjust the index to refer to the character just after the last one of the word containing the current index. If the current index refers to the last character of the text then it is not modified. If the **display** submodifier is given, this only examines non-elided characters, otherwise all characters (elided or not) are examined.
 
+
+If more than one modifier is present then they are applied in left-to-right order. For example, the index "**end - 1 chars**" refers to the next-to-last character in the text and "**insert wordstart - 1 c**" refers to the character just before the first one in the word containing the insertion cursor. Modifiers are applied one by one in this left to right order, and after each step the resulting index is constrained to be a valid index in the text widget. So, for example, the index "**1.0 -1c +1c**" refers to the index "**2.0**".
+
+Where modifiers result in index changes by display lines, display chars or display indices, and the *base* refers to an index inside an elided tag, that base index is considered to be equivalent to the first following non-elided index.
 
 # Tags
 
@@ -195,25 +193,25 @@ A priority order is defined among tags, and this order is used in implementing s
 Tags serve three purposes in text widgets. First, they control the way information is displayed on the screen. By default, characters are displayed as determined by the **-background**, **-font**, and **-foreground** options for the text widget. However, display options may be associated with individual tags using the "*pathName* **tag configure**" widget command. If a character has been tagged, then the display options associated with the tag override the default display style. The following options are currently supported for tags:
 
 **-background** *color*
-: *Color* specifies the background color to use for characters associated with the tag. It may have any of the forms accepted by **Tk_GetColor**.
+: *Color* specifies the background color to use for characters associated with the tag. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
 **-bgstipple** *bitmap*
-: *Bitmap* specifies a bitmap that is used as a stipple pattern for the background. It may have any of the forms accepted by **Tk_GetBitmap**. If *bitmap* has not been specified, or if it is specified as an empty string, then a solid fill will be used for the background.
+: *Bitmap* specifies a bitmap that is used as a stipple pattern for the background. It may have any of the forms accepted by [Tk\_GetBitmap][GetBitmap]. If *bitmap* has not been specified, or if it is specified as an empty string, then a solid fill will be used for the background.
 
 **-borderwidth** *pixels*
-: *Pixels* specifies the width of a border to draw around the tag using any of the forms accepted by **Tk_GetPixels**. This option should be used in conjunction with the **-relief** option to provide the desired border.
+: *Pixels* specifies the width of a border to draw around the tag using any of the forms accepted by [Tk\_GetPixels][GetPixels]. This option should be used in conjunction with the **-relief** option to provide the desired border.
 
 **-elide** *boolean*
 : *Elide* specifies whether the data should be elided. Elided data (characters, images, embedded windows, etc.) is not displayed and takes no space on screen, but further on behaves just as normal data.
 
 **-fgstipple** *bitmap*
-: *Bitmap* specifies a bitmap that is used as a stipple pattern when drawing text and other foreground information such as underlines. It may have any of the forms accepted by **Tk_GetBitmap**. If *bitmap* has not been specified, or if it is specified as an empty string, then a solid fill will be used.
+: *Bitmap* specifies a bitmap that is used as a stipple pattern when drawing text and other foreground information such as underlines. It may have any of the forms accepted by [Tk\_GetBitmap][GetBitmap]. If *bitmap* has not been specified, or if it is specified as an empty string, then a solid fill will be used.
 
 **-font** *fontName*
-: *FontName* is the name of a font to use for drawing characters. It may have any of the forms accepted by **Tk_GetFont**.
+: *FontName* is the name of a font to use for drawing characters. It may have any of the forms accepted by [Tk\_GetFont][GetFont].
 
 **-foreground** *color*
-: *Color* specifies the color to use when drawing text and other foreground information such as underlines. It may have any of the forms accepted by **Tk_GetColor**.
+: *Color* specifies the color to use when drawing text and other foreground information such as underlines. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
 **-justify** *justify*
 : If the first non-elided character of a display line has a tag for which this option has been specified, then *justify* determines how to justify the line. It must be one of **left**, **right**, or **center**. If a line wraps, then the justification for each line on the display is determined by the first non-elided character of that display line.
@@ -225,31 +223,31 @@ Tags serve three purposes in text widgets. First, they control the way informati
 : If the first non-elided character of a display line has a tag for which this option has been specified, and if the display line is not the first for its text line (i.e., the text line has wrapped), then *pixels* specifies how much the line should be indented from the left edge of the window. *Pixels* may have any of the standard forms for screen distances. This option is only used when wrapping is enabled, and it only applies to the second and later display lines for a text line.
 
 **-lmargincolor** *color*
-: *Color* specifies the background color to use in regions that do not contain characters because they are indented by **-lmargin1** or **-lmargin2**. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color used is specified by the **-background** tag option (or, if this is also unspecified, by the **-background** widget option).
+: *Color* specifies the background color to use in regions that do not contain characters because they are indented by **-lmargin1** or **-lmargin2**. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color used is specified by the **-background** tag option (or, if this is also unspecified, by the **-background** widget option).
 
 **-offset** *pixels*
 : *Pixels* specifies an amount by which the text's baseline should be offset vertically from the baseline of the overall line, in pixels. For example, a positive offset can be used for superscripts and a negative offset can be used for subscripts. *Pixels* may have any of the standard forms for screen distances.
 
 **-overstrike** *boolean*
-: Specifies whether or not to draw a horizontal rule through the middle of characters. *Boolean* may have any of the forms accepted by **Tcl_GetBoolean**.
+: Specifies whether or not to draw a horizontal rule through the middle of characters. *Boolean* may have any of the forms accepted by [Tcl\_GetBoolean][GetInt].
 
 **-overstrikefg** *color*
-: *Color* specifies the color to use when displaying the overstrike. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
+: *Color* specifies the color to use when displaying the overstrike. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
 
 **-relief** *relief*
-: *Relief* specifies the relief style to use for drawing the border, in any of the forms accepted by **Tk_GetRelief**. This option is used in conjunction with the **-borderwidth** option to enable to the desired border appearance.
+: *Relief* specifies the relief style to use for drawing the border, in any of the forms accepted by [Tk\_GetRelief][GetRelief]. This option is used in conjunction with the **-borderwidth** option to enable to the desired border appearance.
 
 **-rmargin** *pixels*
 : If the first non-elided character of a display line has a tag for which this option has been specified, then *pixels* specifies how wide a margin to leave between the end of the line and the right edge of the window. *Pixels* may have any of the standard forms for screen distances. This option is only used when wrapping is enabled. If a text line wraps, the right margin for each line on the display is determined by the first non-elided character of that display line.
 
 **-rmargincolor** *color*
-: *Color* specifies the background color to use in regions that do not contain characters because they are indented by **-rmargin**. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color used is specified by the **-background** tag option (or, if this is also unspecified, by the **-background** widget option).
+: *Color* specifies the background color to use in regions that do not contain characters because they are indented by **-rmargin**. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color used is specified by the **-background** tag option (or, if this is also unspecified, by the **-background** widget option).
 
 **-selectbackground** *color*
-: *Color* specifies the background color to use when displaying selected items. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-background** tag option is used.
+: *Color* specifies the background color to use when displaying selected items. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-background** tag option is used.
 
 **-selectforeground** *color*
-: *Color* specifies the foreground color to use when displaying selected items. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
+: *Color* specifies the foreground color to use when displaying selected items. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
 
 **-spacing1** *pixels*
 : *Pixels* specifies how much additional space should be left above each text line, using any of the standard forms for screen distances. If a line wraps, this option only applies to the first line on the display.
@@ -261,20 +259,26 @@ Tags serve three purposes in text widgets. First, they control the way informati
 : *Pixels* specifies how much additional space should be left below each text line, using any of the standard forms for screen distances. If a line wraps, this option only applies to the last line on the display.
 
 **-tabs** *tabList*
-: *TabList* specifies a set of tab stops in the same form as for the **-tabs** option for the text widget. This option only applies to a display line if it applies to the first non-elided character on that display line. If this option is specified as an empty string, it cancels the option, leaving it unspecified for the tag (the default). If the option is specified as a non-empty string that is an empty list, such as **-tags**\\**0{**\\**0}**, then it requests default 8-character tabs as described for the **-tags** widget option.
+: *TabList* specifies a set of tab stops in the same form as for the **-tabs** option for the text widget. This option only applies to a display line if it applies to the first non-elided character on that display line. If this option is specified as an empty string, it cancels the option, leaving it unspecified for the tag (the default). If the option is specified as a non-empty string that is an empty list, such as **-tags { }**, then it requests default 8-character tabs as described for the **-tags** widget option.
 
 **-tabstyle** *style*
 : *Style* specifies either the *tabular* or *wordprocessor* style of tabbing to use for the text widget. This option only applies to a display line if it applies to the first non-elided character on that display line. If this option is specified as an empty string, it cancels the option, leaving it unspecified for the tag (the default).
 
 **-underline** *boolean*
-: *Boolean* specifies whether or not to draw an underline underneath characters. It may have any of the forms accepted by **Tcl_GetBoolean**.
+: *Boolean* specifies whether or not to draw an underline underneath characters. It may have any of the forms accepted by [Tcl\_GetBoolean][GetInt].
 
 **-underlinefg** *color*
-: *Color* specifies the color to use when displaying the underline. It may have any of the forms accepted by **Tk_GetColor**. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
+: *Color* specifies the color to use when displaying the underline. It may have any of the forms accepted by [Tk\_GetColor][GetColor]. If *color* has not been specified, or if it is specified as an empty string, then the color specified by the **-foreground** tag option is used.
 
 **-wrap** *mode*
-: *Mode* specifies how to handle lines that are wider than the text's window. This option only applies to a display line if it applies to the first non-elided character on that display line. It has the same legal values as the **-wrap** option for the text widget: **none**, **char**, or **word**. If this tag option is specified, it overrides the **-wrap** option for the text widget. If a character has several tags associated with it, and if their display options conflict, then the options of the highest priority tag are used. If a particular display option has not been specified for a particular tag, or if it is specified as an empty string, then that option will never be used; the next-highest-priority tag's option will used instead. If no tag specifies a particular display option, then the default style for the widget will be used. The second purpose for tags is event bindings. You can associate bindings with a tag in much the same way you can associate bindings with a widget class: whenever particular X events occur on characters with the given tag, a given Tcl command will be executed. Tag bindings can be used to give behaviors to ranges of characters; among other things, this allows hypertext-like features to be implemented. For details, see the description of the "*pathName* **tag bind**" widget command below. Tag bindings are shared between all peer widgets (including any bindings for the special **sel** tag). The third use for tags is in managing the selection. See **THE SELECTION** below. With the exception of the special **sel** tag, all tags are shared between peer text widgets, and may be manipulated on an equal basis from any such widget. The **sel** tag exists separately and independently in each peer text widget (but any tag bindings to **sel** are shared).
+: *Mode* specifies how to handle lines that are wider than the text's window. This option only applies to a display line if it applies to the first non-elided character on that display line. It has the same legal values as the **-wrap** option for the text widget: **none**, **char**, or **word**. If this tag option is specified, it overrides the **-wrap** option for the text widget.
 
+
+If a character has several tags associated with it, and if their display options conflict, then the options of the highest priority tag are used. If a particular display option has not been specified for a particular tag, or if it is specified as an empty string, then that option will never be used; the next-highest-priority tag's option will used instead. If no tag specifies a particular display option, then the default style for the widget will be used.
+
+The second purpose for tags is event bindings. You can associate bindings with a tag in much the same way you can associate bindings with a widget class: whenever particular X events occur on characters with the given tag, a given Tcl command will be executed. Tag bindings can be used to give behaviors to ranges of characters; among other things, this allows hypertext-like features to be implemented. For details, see the description of the "*pathName* **tag bind**" widget command below. Tag bindings are shared between all peer widgets (including any bindings for the special **sel** tag).
+
+The third use for tags is in managing the selection. See [The selection] below. With the exception of the special **sel** tag, all tags are shared between peer text widgets, and may be manipulated on an equal basis from any such widget. The **sel** tag exists separately and independently in each peer text widget (but any tag bindings to **sel** are shared).
 
 # Marks
 
@@ -284,7 +288,7 @@ Each mark also has a "gravity", which is either **left** or **right**. The gravi
 
 The name space for marks is different from that for tags: the same name may be used for both a mark and a tag, but they will refer to different things.
 
-Two marks have special significance. First, the mark **insert** is associated with the insertion cursor, as described under **THE INSERTION CURSOR** below. Second, the mark **current** is associated with the character closest to the mouse and is adjusted automatically to track the mouse position and any changes to the text in the widget (one exception: **current** is not updated in response to mouse motions if a mouse button is down; the update will be deferred until all mouse buttons have been released). Neither of these special marks may be deleted. With the exception of these two special marks, all marks are shared between peer text widgets, and may be manipulated on an equal basis from any peer.
+Two marks have special significance. First, the mark **insert** is associated with the insertion cursor, as described under [The insertion cursor] below. Second, the mark **current** is associated with the character closest to the mouse and is adjusted automatically to track the mouse position and any changes to the text in the widget (one exception: **current** is not updated in response to mouse motions if a mouse button is down; the update will be deferred until all mouse buttons have been released). Neither of these special marks may be deleted. With the exception of these two special marks, all marks are shared between peer text widgets, and may be manipulated on an equal basis from any peer.
 
 # Embedded windows
 
@@ -323,7 +327,7 @@ The embedded image's position on the screen will be updated as the text is modif
 
 Eliding an embedded image immediately after scheduling it for creation via *pathName* **image create** *index* **-create** will prevent it from being effectively created. Uneliding an elided embedded image scheduled for creation via *pathName* **image create** *index* **-create** will automatically trigger the associated creation script. After destroying an elided embedded image, the latter won't get automatically recreated.
 
-When an embedded image is added to a text widget with the *pathName* **image create** widget command, a name unique to this instance of the image is returned. This name may then be used to refer to this image instance. The name is taken to be the value of the **-name** option (described below). If the **-name** option is not provided, the **-image** name is used instead. If the *imageName* is already in use in the text widget, then **#**_nn_ is added to the end of the *imageName*, where *nn* is an arbitrary integer. This insures the *imageName* is unique. Once this name is assigned to this instance of the image, it does not change, even though the **-image** or **-name** values can be changed with *pathName* **image configure**.
+When an embedded image is added to a text widget with the *pathName* **image create** widget command, a name unique to this instance of the image is returned. This name may then be used to refer to this image instance. The name is taken to be the value of the **-name** option (described below). If the **-name** option is not provided, the **-image** name is used instead. If the *imageName* is already in use in the text widget, then **#***nn* is added to the end of the *imageName*, where *nn* is an arbitrary integer. This insures the *imageName* is unique. Once this name is assigned to this instance of the image, it does not change, even though the **-image** or **-name** values can be changed with *pathName* **image configure**.
 
 When an embedded image is added to a text widget with the *pathName* **image create** widget command, several configuration options may be associated with it. These options may be modified later with the *pathName* **image configure** widget command. The following options are currently supported:
 
@@ -347,18 +351,16 @@ When an embedded image is added to a text widget with the *pathName* **image cre
 
 Selection support is implemented via tags. If the **-exportselection** option for the text widget is true then the **sel** tag will be associated with the selection:
 
-**\[1\]**
-: Whenever characters are tagged with **sel** the text widget will claim ownership of the selection.
+1. Whenever characters are tagged with **sel** the text widget will claim ownership of the selection.
 
-**\[2\]**
-: Attempts to retrieve the selection will be serviced by the text widget, returning all the characters with the **sel** tag.
+2. Attempts to retrieve the selection will be serviced by the text widget, returning all the characters with the **sel** tag.
 
-**\[3\]**
-: If the selection is claimed away by another application or by another window within this application, then the **sel** tag will be removed from all characters in the text.
+3. If the selection is claimed away by another application or by another window within this application, then the **sel** tag will be removed from all characters in the text.
 
-**\[4\]**
-: Whenever the **sel** tag range changes a virtual event **<\<Selection>>** is generated. It might also be generated when selection is affected but not actually changed. Further, multiple selection changes could happen before events can be processed leading to multiple events with the same visible selection. The **sel** tag is automatically defined when a text widget is created, and it may not be deleted with the "*pathName* **tag delete**" widget command. Furthermore, the **-selectbackground**, **-selectborderwidth**, and **-selectforeground** options for the text widget are tied to the **-background**, **-borderwidth**, and **-foreground** options for the **sel** tag: changes in either will automatically be reflected in the other. Also the **-inactiveselectbackground** option for the text widget is used instead of **-selectbackground** when the text widget does not have the focus. This allows programmatic control over the visualization of the **sel** tag for foreground and background windows, or to have **sel** not shown at all (when **-inactiveselectbackground** is empty) for background windows. Each peer text widget has its own **sel** tag which can be separately configured and set.
+4. Whenever the **sel** tag range changes a virtual event **<<Selection>>** is generated. It might also be generated when selection is affected but not actually changed. Further, multiple selection changes could happen before events can be processed leading to multiple events with the same visible selection.
 
+
+The **sel** tag is automatically defined when a text widget is created, and it may not be deleted with the "*pathName* **tag delete**" widget command. Furthermore, the **-selectbackground**, **-selectborderwidth**, and **-selectforeground** options for the text widget are tied to the **-background**, **-borderwidth**, and **-foreground** options for the **sel** tag: changes in either will automatically be reflected in the other. Also the **-inactiveselectbackground** option for the text widget is used instead of **-selectbackground** when the text widget does not have the focus. This allows programmatic control over the visualization of the **sel** tag for foreground and background windows, or to have **sel** not shown at all (when **-inactiveselectbackground** is empty) for background windows. Each peer text widget has its own **sel** tag which can be separately configured and set.
 
 # The insertion cursor
 
@@ -366,7 +368,7 @@ The mark named **insert** has special significance in text widgets. It is define
 
 # The modified flag
 
-The text widget can keep track of changes to the content of the widget by means of the modified flag. Inserting or deleting text will set this flag. The flag can be queried, set and cleared programmatically as well. Whenever the flag changes state a **<\<Modified>>** virtual event is generated. See the *pathName* **edit modified** widget command for more details.
+The text widget can keep track of changes to the content of the widget by means of the modified flag. Inserting or deleting text will set this flag. The flag can be queried, set and cleared programmatically as well. Whenever the flag changes state a **<<Modified>>** virtual event is generated. See the *pathName* **edit modified** widget command for more details.
 
 # The undo mechanism
 
@@ -376,7 +378,7 @@ Boundaries (called "separators") are inserted between edit actions. The purpose 
 
 Separators are inserted automatically when the **-autoseparators** widget option is true. You can insert separators programmatically as well. If a separator is already present at the top of the undo stack no other will be inserted. That means that two separators on the undo stack are always separated by at least one insert or delete action.
 
-The **<\<UndoStack>>** virtual event is generated every time the undo stack or the redo stack becomes empty or unempty.
+The **<<UndoStack>>** virtual event is generated every time the undo stack or the redo stack becomes empty or unempty.
 
 The undo mechanism is also linked to the modified flag. This means that undoing or redoing changes can take a modified text widget back to the unmodified state or vice versa. The modified flag will be set automatically to the appropriate state. This automatic coupling does not work when the modified flag has been set by the user, until the flag has been reset again.
 
@@ -406,9 +408,9 @@ Again for performance reasons, it would not be appropriate to let these commands
 
 In case accurate result is needed (and if the text widget is managed by a geometry manager), one can resort to *pathName* **sync** and *pathName* **pendingsync** to control the synchronization of the view of text widgets.
 
-The **<\<WidgetViewSync>>** virtual event fires when the line heights of the text widget become obsolete (due to some editing command or configuration change), and again when the internal data of the text widget are back in sync with the widget view. The detail field (%d substitution) is either true (when the widget is in sync) or false (when it is not).
+The **<<WidgetViewSync>>** virtual event fires when the line heights of the text widget become obsolete (due to some editing command or configuration change), and again when the internal data of the text widget are back in sync with the widget view. The detail field (%d substitution) is either true (when the widget is in sync) or false (when it is not).
 
-*pathName* **sync**, *pathName* **pendingsync** and **<\<WidgetViewSync>>** apply to each text widget independently of its peers.
+*pathName* **sync**, *pathName* **pendingsync** and **<<WidgetViewSync>>** apply to each text widget independently of its peers.
 
 Examples of use:
 
@@ -483,42 +485,42 @@ pathName option ?arg arg ...?
 : Compares the indices given by *index1* and *index2* according to the relational operator given by *op*, and returns 1 if the relationship is satisfied and 0 if it is not. *Op* must be one of the operators <, <=, ==, >=, >, or !=. If *op* is == then 1 is returned if the two indices refer to the same character, if *op* is < then 1 is returned if *index1* refers to an earlier character in the text than *index2*, and so on.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s); in this case the command returns an empty string. *Option* may have any of the values accepted by the **text** command.
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s); in this case the command returns an empty string. *Option* may have any of the values accepted by the **text** command.
 
 *pathName* **count** ?*options*? *index1 index2*
-: Counts the number of relevant things between the two indices. If *index1* is after *index2*, the result will be a negative number (and this holds for each of the possible options). The actual items which are counted depend on the options given. The result is a list of integers, one for the result of each counting option given. Valid counting options are **-chars**, **-displaychars**, **-displayindices**, **-displaylines**, **-indices**, **-lines**, **-xpixels** and **-ypixels**. The default value, if no option is specified, is **-indices**. There is an additional possible option **-update** which is a modifier. If given (and if the text widget is managed by a geometry manager), then all subsequent options ensure that any possible out of date information is recalculated. This currently only has any effect for the **-ypixels** count (which, if **-update** is not given, will use the text widget's current cached value for each line). This **-update** option is obsoleted by *pathName* **sync**, *pathName* **pendingsync** and **<\<WidgetViewSync>>**.  The count options are interpreted as follows:
+: Counts the number of relevant things between the two indices. If *index1* is after *index2*, the result will be a negative number (and this holds for each of the possible options). The actual items which are counted depend on the options given. The result is a list of integers, one for the result of each counting option given. Valid counting options are **-chars**, **-displaychars**, **-displayindices**, **-displaylines**, **-indices**, **-lines**, **-xpixels** and **-ypixels**. The default value, if no option is specified, is **-indices**. There is an additional possible option **-update** which is a modifier. If given (and if the text widget is managed by a geometry manager), then all subsequent options ensure that any possible out of date information is recalculated. This currently only has any effect for the **-ypixels** count (which, if **-update** is not given, will use the text widget's current cached value for each line). This **-update** option is obsoleted by *pathName* **sync**, *pathName* **pendingsync** and **<<WidgetViewSync>>**.  The count options are interpreted as follows:
+
+    **-chars**
+    : count all characters, whether elided or not. Do not count embedded windows or images.
+
+    **-displaychars**
+    : count all non-elided characters.
+
+    **-displayindices**
+    : count all non-elided characters, windows and images.
+
+    **-displaylines**
+    : count all display lines (i.e. counting one for each time a line wraps) from the line of the first index up to, but not including the display line of the second index. Therefore if they are both on the same display line, zero will be returned. By definition displaylines are visible and therefore this only counts portions of actual visible lines.
+
+    **-indices**
+    : count all characters and embedded windows or images (i.e. everything which counts in text-widget index space), whether they are elided or not.
+
+    **-lines**
+    : count all logical lines (irrespective of wrapping) from the line of the first index up to, but not including the line of the second index. Therefore if they are both on the same line, zero will be returned. Logical lines are counted whether they are currently visible (non-elided) or not.
+
+    **-xpixels**
+    : count the number of horizontal pixels from the first pixel of the first index to (but not including) the first pixel of the second index. To count the total desired width of the text widget (assuming wrapping is not enabled), first find the longest line and then use ".text count -xpixels "${line}.0" "${line}.0 lineend"".
+
+    **-ypixels**
+    : count the number of vertical pixels from the first pixel of the first index to (but not including) the first pixel of the second index. If both indices are on the same display line, zero will be returned. To count the total number of vertical pixels in the text widget, use ".text count -ypixels 1.0 end", and to ensure this is up to date, use ".text count -update -ypixels 1.0 end".
 
 
-**-chars**
-: count all characters, whether elided or not. Do not count embedded windows or images.
-
-**-displaychars**
-: count all non-elided characters.
-
-**-displayindices**
-: count all non-elided characters, windows and images.
-
-**-displaylines**
-: count all display lines (i.e. counting one for each time a line wraps) from the line of the first index up to, but not including the display line of the second index. Therefore if they are both on the same display line, zero will be returned. By definition displaylines are visible and therefore this only counts portions of actual visible lines.
-
-**-indices**
-: count all characters and embedded windows or images (i.e. everything which counts in text-widget index space), whether they are elided or not.
-
-**-lines**
-: count all logical lines (irrespective of wrapping) from the line of the first index up to, but not including the line of the second index. Therefore if they are both on the same line, zero will be returned. Logical lines are counted whether they are currently visible (non-elided) or not.
-
-**-xpixels**
-: count the number of horizontal pixels from the first pixel of the first index to (but not including) the first pixel of the second index. To count the total desired width of the text widget (assuming wrapping is not enabled), first find the longest line and then use ".text count -xpixels "\${line}.0" "\${line}.0 lineend"".
-
-**-ypixels**
-: count the number of vertical pixels from the first pixel of the first index to (but not including) the first pixel of the second index. If both indices are on the same display line, zero will be returned. To count the total number of vertical pixels in the text widget, use ".text count -ypixels 1.0 end", and to ensure this is up to date, use ".text count -update -ypixels 1.0 end". The command returns a positive or negative integer corresponding to the number of items counted between the two indices. One such integer is returned for each counting option given, so a list is returned if more than one option was supplied. For example ".text count -xpixels -ypixels 1.3 4.5" is perfectly valid and will return a list of two elements.
-
+    The command returns a positive or negative integer corresponding to the number of items counted between the two indices. One such integer is returned for each counting option given, so a list is returned if more than one option was supplied. For example ".text count -xpixels -ypixels 1.3 4.5" is perfectly valid and will return a list of two elements.
 
 *pathName* **debug** ?*boolean*?
-: If *boolean* is specified, then it must have one of the true or false values accepted by Tcl_GetBoolean. If the value is a true one then internal consistency checks will be turned on in the B-tree code associated with text widgets. If *boolean* has a false value then the debugging checks will be turned off. In either case the command returns an empty string. If *boolean* is not specified then the command returns **on** or **off** to indicate whether or not debugging is turned on. There is a single debugging switch shared by all text widgets: turning debugging on or off in any widget turns it on or off for all widgets. For widgets with large amounts of text, the consistency checks may cause a noticeable slow-down.
+: If *boolean* is specified, then it must have one of the true or false values accepted by [Tcl\_GetBoolean][GetInt]. If the value is a true one then internal consistency checks will be turned on in the B-tree code associated with text widgets. If *boolean* has a false value then the debugging checks will be turned off. In either case the command returns an empty string. If *boolean* is not specified then the command returns **on** or **off** to indicate whether or not debugging is turned on. There is a single debugging switch shared by all text widgets: turning debugging on or off in any widget turns it on or off for all widgets. For widgets with large amounts of text, the consistency checks may cause a noticeable slow-down.
 
-
-When debugging is turned on, the drawing routines of the text widget set the global variables **tk_textRedraw** and **tk_textRelayout** to the lists of indices that are redrawn. The values of these variables are tested by Tk's test suite.
+    When debugging is turned on, the drawing routines of the text widget set the global variables **tk\_textRedraw** and **tk\_textRelayout** to the lists of indices that are redrawn. The values of these variables are tested by Tk's test suite.
 
 *pathName* **delete** *index1* ?*index2 ...*?
 : Delete a range of characters from the text. If both *index1* and *index2* are specified, then delete all the characters starting with the one given by *index1* and stopping just before *index2* (i.e. the character at *index2* is not deleted). If *index2* does not specify a position later in the text than *index1* then no characters are deleted. If *index2* is not specified then the single character at *index1* is deleted. Attempts to delete characters in a way that would leave the text without a newline as the last character will be tweaked by the text widget to avoid this. In particular, deletion of complete lines of text up to the end of the text will also delete the newline character just before the deleted block so that it is replaced by the new final newline of the text widget. The command returns an empty string. If more indices are given, multiple ranges of text will be deleted. All indices are first checked for validity before any deletions are made. They are sorted and the text is removed from the last range to the first range so deleted text does not cause an undesired index shifting side-effects.  If multiple ranges with the same start index are given, then the longest range is used.  If overlapping ranges are given, then they will be merged into spans that do not cause deletion of text outside the given ranges due to text shifted during deletion.
@@ -529,57 +531,55 @@ When debugging is turned on, the drawing routines of the text widget set the glo
 *pathName* **dump** ?*switches*? *index1* ?*index2*?
 : Return the contents of the text widget from *index1* up to, but not including *index2*, including the text and information about marks, tags, and embedded windows. If *index2* is not specified, then it defaults to one character past *index1*. The information is returned in the following format:
 
+    *key1 value1 index1 key2 value2 index2* ...
 
-*key1 value1 index1 key2 value2 index2* ...
+    The possible *key* values are **text**, **mark**, **tagon**, **tagoff**, **image**, and **window**. The corresponding *value* is the text, mark name, tag name, image name, or window name. The *index* information is the index of the start of the text, mark, tag transition, image or window. One or more of the following switches (or abbreviations thereof) may be specified to control the dump:
 
-The possible *key* values are **text**, **mark**, **tagon**, **tagoff**, **image**, and **window**. The corresponding *value* is the text, mark name, tag name, image name, or window name. The *index* information is the index of the start of the text, mark, tag transition, image or window. One or more of the following switches (or abbreviations thereof) may be specified to control the dump:
+    **-all**
+    : Return information about all elements: text, marks, tags, images and windows. This is the default.
 
-**-all**
-: Return information about all elements: text, marks, tags, images and windows. This is the default.
+    **-command** *command*
+    : Instead of returning the information as the result of the dump operation, invoke the *command* on each element of the text widget within the range. The command has three arguments appended to it before it is evaluated: the *key*, *value*, and *index*.
 
-**-command** *command*
-: Instead of returning the information as the result of the dump operation, invoke the *command* on each element of the text widget within the range. The command has three arguments appended to it before it is evaluated: the *key*, *value*, and *index*.
+    **-image**
+    : Include information about images in the dump results.
 
-**-image**
-: Include information about images in the dump results.
+    **-mark**
+    : Include information about marks in the dump results.
 
-**-mark**
-: Include information about marks in the dump results.
+    **-tag**
+    : Include information about tag transitions in the dump results. Tag information is returned as **tagon** and **tagoff** elements that indicate the begin and end of each range of each tag, respectively.
 
-**-tag**
-: Include information about tag transitions in the dump results. Tag information is returned as **tagon** and **tagoff** elements that indicate the begin and end of each range of each tag, respectively.
+    **-text**
+    : Include information about text in the dump results. The value is the text up to the next element or the end of range indicated by *index2*. A text element does not span newlines. A multi-line block of text that contains no marks or tag transitions will still be dumped as a set of text segments that each end with a newline. The newline is part of the value.
 
-**-text**
-: Include information about text in the dump results. The value is the text up to the next element or the end of range indicated by *index2*. A text element does not span newlines. A multi-line block of text that contains no marks or tag transitions will still be dumped as a set of text segments that each end with a newline. The newline is part of the value.
-
-**-window**
-: Include information about embedded windows in the dump results. The value of a window is its Tk pathname, unless the window has not been created yet. (It must have a create script.) In this case an empty string is returned, and you must query the window by its index position to get more information.
+    **-window**
+    : Include information about embedded windows in the dump results. The value of a window is its Tk pathname, unless the window has not been created yet. (It must have a create script.) In this case an empty string is returned, and you must query the window by its index position to get more information.
 
 
 *pathName* **edit** *option* ?*arg arg ...*?
 : This command controls the undo mechanism and the modified flag. The exact behavior of the command depends on the *option* argument that follows the **edit** argument. The following forms of the command are currently supported:
 
+    *pathName* **edit canredo**
+    : Returns a boolean true if redo is possible, i.e. when the redo stack is not empty. Otherwise returns false.
 
-*pathName* **edit canredo**
-: Returns a boolean true if redo is possible, i.e. when the redo stack is not empty. Otherwise returns false.
+    *pathName* **edit canundo**
+    : Returns a boolean true if undo is possible, i.e. when the undo stack is not empty. Otherwise returns false.
 
-*pathName* **edit canundo**
-: Returns a boolean true if undo is possible, i.e. when the undo stack is not empty. Otherwise returns false.
+    *pathName* **edit modified** ?*boolean*?
+    : If *boolean* is not specified, returns the modified flag of the widget. The insert, delete, edit undo and edit redo commands or the user can set or clear the modified flag. If *boolean* is specified, sets the modified flag of the widget to *boolean*.
 
-*pathName* **edit modified** ?*boolean*?
-: If *boolean* is not specified, returns the modified flag of the widget. The insert, delete, edit undo and edit redo commands or the user can set or clear the modified flag. If *boolean* is specified, sets the modified flag of the widget to *boolean*.
+    *pathName* **edit redo**
+    : When the **-undo** option is true, reapplies the last undone edits provided no other edits were done since then. Generates an error when the redo stack is empty. Does nothing when the **-undo** option is false.
 
-*pathName* **edit redo**
-: When the **-undo** option is true, reapplies the last undone edits provided no other edits were done since then. Generates an error when the redo stack is empty. Does nothing when the **-undo** option is false.
+    *pathName* **edit reset**
+    : Clears the undo and redo stacks.
 
-*pathName* **edit reset**
-: Clears the undo and redo stacks.
+    *pathName* **edit separator**
+    : Inserts a separator (boundary) on the undo stack. Does nothing when the **-undo** option is false.
 
-*pathName* **edit separator**
-: Inserts a separator (boundary) on the undo stack. Does nothing when the **-undo** option is false.
-
-*pathName* **edit undo**
-: Undoes the last edit action when the **-undo** option is true. An edit action is defined as all the insert and delete commands that are recorded on the undo stack in between two separators. Generates an error when the undo stack is empty. Does nothing when the **-undo** option is false.
+    *pathName* **edit undo**
+    : Undoes the last edit action when the **-undo** option is true. An edit action is defined as all the insert and delete commands that are recorded on the undo stack in between two separators. Generates an error when the undo stack is empty. Does nothing when the **-undo** option is false.
 
 
 *pathName* **get** ?**-displaychars**? ?**--**? *index1* ?*index2 ...*?
@@ -588,22 +588,21 @@ The possible *key* values are **text**, **mark**, **tagon**, **tagoff**, **image
 *pathName* **image** *option* ?*arg arg ...*?
 : This command is used to manipulate embedded images. The behavior of the command depends on the *option* argument that follows the **image** argument. The following forms of the command are currently supported:
 
+    *pathName* **image cget** *index option*
+    : Returns the value of a configuration option for an embedded image. *Index* identifies the embedded image, and *option* specifies a particular configuration option, which must be one of the ones listed in the section [Embedded images].
 
-*pathName* **image cget** *index option*
-: Returns the value of a configuration option for an embedded image. *Index* identifies the embedded image, and *option* specifies a particular configuration option, which must be one of the ones listed in the section **EMBEDDED IMAGES**.
+    *pathName* **image configure** *index* ?*option value ...*?
+    : Query or modify the configuration options for an embedded image. If no *option* is specified, returns a list describing all of the available options for the embedded image at *index* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string. See [Embedded images] for information on the options that are supported.
 
-*pathName* **image configure** *index* ?*option value ...*?
-: Query or modify the configuration options for an embedded image. If no *option* is specified, returns a list describing all of the available options for the embedded image at *index* (see **Tk_ConfigureInfo** for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string. See **EMBEDDED IMAGES** for information on the options that are supported.
+    *pathName* **image create** *index* ?*option value ...*?
+    : This command creates a new image annotation, which will appear in the text at the position given by *index*. Any number of *option-value* pairs may be specified to configure the annotation. Returns a unique identifier that may be used as an index to refer to this image. See [Embedded images] for information on the options that are supported, and a description of the identifier returned.
 
-*pathName* **image create** *index* ?*option value ...*?
-: This command creates a new image annotation, which will appear in the text at the position given by *index*. Any number of *option-value* pairs may be specified to configure the annotation. Returns a unique identifier that may be used as an index to refer to this image. See **EMBEDDED IMAGES** for information on the options that are supported, and a description of the identifier returned.
-
-*pathName* **image names**
-: Returns a list whose elements are the names of all image instances currently embedded in *window*.
+    *pathName* **image names**
+    : Returns a list whose elements are the names of all image instances currently embedded in *window*.
 
 
 *pathName* **index** *index*
-: Returns the position corresponding to *index* in the form *line.char* where *line* is the line number and *char* is the character number. *Index* may have any of the forms described under **INDICES** above.
+: Returns the position corresponding to *index* in the form *line.char* where *line* is the line number and *char* is the character number. *Index* may have any of the forms described under [Indices] above.
 
 *pathName* **insert** *index chars* ?*tagList chars tagList ...*?
 : Inserts all of the *chars* arguments just before the character at *index*. If *index* refers to the end of the text (the character after the last newline) then the new text is inserted just before the last newline instead. If there is a single *chars* argument and no *tagList*, then the new text will receive any tags that are present on both the character before and the character after the insertion point; if a tag is present on only one of these characters then it will not be applied to the new text. If *tagList* is specified then it consists of a list of tag names; the new characters will receive all of the tags in this list and no others, regardless of the tags present around the insertion point. If multiple *chars*-*tagList* argument pairs are present, they produce the same effect as if a separate *pathName* **insert** widget command had been issued for each pair, in order. The last *tagList* argument may be omitted.
@@ -611,35 +610,33 @@ The possible *key* values are **text**, **mark**, **tagon**, **tagoff**, **image
 *pathName* **mark** *option* ?*arg arg ...*?
 : This command is used to manipulate marks. The exact behavior of the command depends on the *option* argument that follows the **mark** argument. The following forms of the command are currently supported:
 
+    *pathName* **mark gravity** *markName* ?*direction*?
+    : If *direction* is not specified, returns **left** or **right** to indicate which of its adjacent characters *markName* is attached to. If *direction* is specified, it must be **left** or **right**; the gravity of *markName* is set to the given value.
 
-*pathName* **mark gravity** *markName* ?*direction*?
-: If *direction* is not specified, returns **left** or **right** to indicate which of its adjacent characters *markName* is attached to. If *direction* is specified, it must be **left** or **right**; the gravity of *markName* is set to the given value.
+    *pathName* **mark names**
+    : Returns a list whose elements are the names of all the marks that are currently set.
 
-*pathName* **mark names**
-: Returns a list whose elements are the names of all the marks that are currently set.
+    *pathName* **mark next** *index*
+    : Returns the name of the next mark at or after *index*. If *index* is specified in numerical form, then the search for the next mark begins at that index. If *index* is the name of a mark, then the search for the next mark begins immediately after that mark. This can still return a mark at the same position if there are multiple marks at the same index. These semantics mean that the **mark next** operation can be used to step through all the marks in a text widget in the same order as the mark information returned by the *pathName* **dump** operation. If a mark has been set to the special **end** index, then it appears to be *after* **end** with respect to the *pathName* **mark next** operation. An empty string is returned if there are no marks after *index*.
 
-*pathName* **mark next** *index*
-: Returns the name of the next mark at or after *index*. If *index* is specified in numerical form, then the search for the next mark begins at that index. If *index* is the name of a mark, then the search for the next mark begins immediately after that mark. This can still return a mark at the same position if there are multiple marks at the same index. These semantics mean that the **mark next** operation can be used to step through all the marks in a text widget in the same order as the mark information returned by the *pathName* **dump** operation. If a mark has been set to the special **end** index, then it appears to be *after* **end** with respect to the *pathName* **mark next** operation. An empty string is returned if there are no marks after *index*.
+    *pathName* **mark previous** *index*
+    : Returns the name of the mark at or before *index*. If *index* is specified in numerical form, then the search for the previous mark begins with the character just before that index. If *index* is the name of a mark, then the search for the next mark begins immediately before that mark. This can still return a mark at the same position if there are multiple marks at the same index. These semantics mean that the *pathName* **mark previous** operation can be used to step through all the marks in a text widget in the reverse order as the mark information returned by the *pathName* **dump** operation. An empty string is returned if there are no marks before *index*.
 
-*pathName* **mark previous** *index*
-: Returns the name of the mark at or before *index*. If *index* is specified in numerical form, then the search for the previous mark begins with the character just before that index. If *index* is the name of a mark, then the search for the next mark begins immediately before that mark. This can still return a mark at the same position if there are multiple marks at the same index. These semantics mean that the *pathName* **mark previous** operation can be used to step through all the marks in a text widget in the reverse order as the mark information returned by the *pathName* **dump** operation. An empty string is returned if there are no marks before *index*.
+    *pathName* **mark set** *markName index*
+    : Sets the mark named *markName* to a position just before the character at *index*. If *markName* already exists, it is moved from its old position; if it does not exist, a new mark is created. This command returns an empty string.
 
-*pathName* **mark set** *markName index*
-: Sets the mark named *markName* to a position just before the character at *index*. If *markName* already exists, it is moved from its old position; if it does not exist, a new mark is created. This command returns an empty string.
-
-*pathName* **mark unset** *markName* ?*markName markName ...*?
-: Remove the mark corresponding to each of the *markName* arguments. The removed marks will not be usable in indices and will not be returned by future calls to "*pathName* **mark names**". This command returns an empty string.
+    *pathName* **mark unset** *markName* ?*markName markName ...*?
+    : Remove the mark corresponding to each of the *markName* arguments. The removed marks will not be usable in indices and will not be returned by future calls to "*pathName* **mark names**". This command returns an empty string.
 
 
 *pathName* **peer** *option args*
 : This command is used to create and query widget peers. It has two forms, depending on *option*:
 
+    *pathName* **peer create** *newPathName* ?*options*?
+    : Creates a peer text widget with the given *newPathName*, and any optional standard configuration options (as for the *text* command). By default the peer will have the same start and end line as the parent widget, but these can be overridden with the standard configuration options.
 
-*pathName* **peer create** *newPathName* ?*options*?
-: Creates a peer text widget with the given *newPathName*, and any optional standard configuration options (as for the *text* command). By default the peer will have the same start and end line as the parent widget, but these can be overridden with the standard configuration options.
-
-*pathName* **peer names**
-: Returns a list of peers of this widget (this does not include the widget itself). The order within this list is undefined.
+    *pathName* **peer names**
+    : Returns a list of peers of this widget (this does not include the widget itself). The order within this list is undefined.
 
 
 *pathName* **pendingsync**
@@ -648,60 +645,59 @@ The possible *key* values are **text**, **mark**, **tagon**, **tagoff**, **image
 *pathName* **replace** *index1 index2 chars* ?*tagList chars tagList ...*?
 : Replaces the range of characters between *index1* and *index2* with the given characters and tags.  See the section on *pathName* **insert** for an explanation of the handling of the *tagList...* arguments, and the section on *pathName* **delete** for an explanation of the handling of the indices.  If *index2* corresponds to an index earlier in the text than *index1*, an error will be generated.
 
-
-The deletion and insertion are arranged so that no unnecessary scrolling of the window or movement of insertion cursor occurs. In addition the undo/redo stack are correctly modified, if undo operations are active in the text widget. The command returns an empty string.
+    The deletion and insertion are arranged so that no unnecessary scrolling of the window or movement of insertion cursor occurs. In addition the undo/redo stack are correctly modified, if undo operations are active in the text widget. The command returns an empty string.
 
 *pathName* **scan** *option args*
 : This command is used to implement scanning on texts. It has two forms, depending on *option*:
 
+    *pathName* **scan mark** *x y*
+    : Records *x* and *y* and the current view in the text window, for use in conjunction with later *pathName* **scan dragto** commands. Typically this command is associated with a mouse button press in the widget. It returns an empty string.
 
-*pathName* **scan mark** *x y*
-: Records *x* and *y* and the current view in the text window, for use in conjunction with later *pathName* **scan dragto** commands. Typically this command is associated with a mouse button press in the widget. It returns an empty string.
-
-*pathName* **scan dragto** *x y*
-: This command computes the difference between its *x* and *y* arguments and the *x* and *y* arguments to the last *pathName* **scan mark** command for the widget. It then adjusts the view by 10 times the difference in coordinates. This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the text at high speed through the window. The return value is an empty string.
+    *pathName* **scan dragto** *x y*
+    : This command computes the difference between its *x* and *y* arguments and the *x* and *y* arguments to the last *pathName* **scan mark** command for the widget. It then adjusts the view by 10 times the difference in coordinates. This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the text at high speed through the window. The return value is an empty string.
 
 
 *pathName* **search** ?*switches*? *pattern index* ?*stopIndex*?
 : Searches the text in *pathName* starting at *index* for a range of characters that matches *pattern*. If a match is found, the index of the first character in the match is returned as result; otherwise an empty string is returned. One or more of the following switches (or abbreviations thereof) may be specified to control the search:
 
+    **-forwards**
+    : The search will proceed forward through the text, finding the first matching range starting at or after the position given by *index*. This is the default.
 
-**-forwards**
-: The search will proceed forward through the text, finding the first matching range starting at or after the position given by *index*. This is the default.
+    **-backwards**
+    : The search will proceed backward through the text, finding the matching range closest to *index* whose first character is before *index* (it is not allowed to be at *index*). Note that, for a variety of reasons, backwards searches can be substantially slower than forwards searches (particularly when using **-regexp**), so it is recommended that performance-critical code use forward searches.
 
-**-backwards**
-: The search will proceed backward through the text, finding the matching range closest to *index* whose first character is before *index* (it is not allowed to be at *index*). Note that, for a variety of reasons, backwards searches can be substantially slower than forwards searches (particularly when using **-regexp**), so it is recommended that performance-critical code use forward searches.
+    **-exact**
+    : Use exact matching: the characters in the matching range must be identical to those in *pattern*. This is the default.
 
-**-exact**
-: Use exact matching: the characters in the matching range must be identical to those in *pattern*. This is the default.
+    **-regexp**
+    : Treat *pattern* as a regular expression and match it against the text using the rules for regular expressions (see the [regexp] command and the [re\_syntax][re_syntax] page for details). The default matching automatically passes both the **-lineanchor** and **-linestop** options to the regexp engine (unless **-nolinestop** is used), so that *^$* match beginning and end of line, and *.*, *\[^* sequences will never match the newline character *\\n*.
 
-**-regexp**
-: Treat *pattern* as a regular expression and match it against the text using the rules for regular expressions (see the **regexp** command and the **re_syntax** page for details). The default matching automatically passes both the **-lineanchor** and **-linestop** options to the regexp engine (unless **-nolinestop** is used), so that *^\$* match beginning and end of line, and *.*, *\[^* sequences will never match the newline character *\\n*.
+    **-nolinestop**
+    : This allows *.* and *\[^* sequences to match the newline character *\\n*, which they will otherwise not do (see the [regexp] command for details). This option is only meaningful if **-regexp** is also given, and an error will be thrown otherwise. For example, to match the entire text, use "*pathName* **search -nolinestop -regexp** ".\*" 1.0".
 
-**-nolinestop**
-: This allows *.* and *\[^* sequences to match the newline character *\\n*, which they will otherwise not do (see the **regexp** command for details). This option is only meaningful if **-regexp** is also given, and an error will be thrown otherwise. For example, to match the entire text, use "*pathName* **search -nolinestop -regexp** ".\*" 1.0".
+    **-nocase**
+    : Ignore case differences between the pattern and the text.
 
-**-nocase**
-: Ignore case differences between the pattern and the text.
+    **-count** *varName*
+    : The argument following **-count** gives the name of a variable; if a match is found, the number of index positions between beginning and end of the matching range will be stored in the variable. If there are no embedded images or windows in the matching range (and there are no elided characters if **-elide** is not given), this is equivalent to the number of characters matched. In either case, the range *matchIdx* to *matchIdx + $count chars* will return the entire matched text.
 
-**-count** *varName*
-: The argument following **-count** gives the name of a variable; if a match is found, the number of index positions between beginning and end of the matching range will be stored in the variable. If there are no embedded images or windows in the matching range (and there are no elided characters if **-elide** is not given), this is equivalent to the number of characters matched. In either case, the range *matchIdx* to *matchIdx + \$count chars* will return the entire matched text.
+    **-all**
+    : Find all matches in the given range and return a list of the indices of the first character of each match. If a **-count** *varName* switch is given, then *varName* is also set to a list containing one element for each successful match. Note that, even for exact searches, the elements of this list may be different, if there are embedded images, windows or hidden text. Searches with **-all** behave very similarly to the Tcl command [regexp -all][regexp], in that overlapping matches are not normally returned. For example, applying an **-all** search of the pattern "\\w+" against "hello there" will just match twice, once for each word, and matching "Z\[a-z\]+Z" against "ZooZooZoo" will just match once.
 
-**-all**
-: Find all matches in the given range and return a list of the indices of the first character of each match. If a **-count** *varName* switch is given, then *varName* is also set to a list containing one element for each successful match. Note that, even for exact searches, the elements of this list may be different, if there are embedded images, windows or hidden text. Searches with **-all** behave very similarly to the Tcl command **regexp -all**, in that overlapping matches are not normally returned. For example, applying an **-all** search of the pattern "\\w+" against "hello there" will just match twice, once for each word, and matching "Z\[a-z\]+Z" against "ZooZooZoo" will just match once.
+    **-overlap**
+    : When performing **-all** searches, the normal behaviour is that matches which overlap an already-found match will not be returned. This switch changes that behaviour so that all matches which are not totally enclosed within another match are returned. For example, applying an **-overlap** search of the pattern "\\w+" against "hello there" will just match twice (i.e. no different to just **-all**), but matching "Z\[a-z\]+Z" against "ZooZooZoo" will now match twice. An error will be thrown if this switch is used without **-all**.
 
-**-overlap**
-: When performing **-all** searches, the normal behaviour is that matches which overlap an already-found match will not be returned. This switch changes that behaviour so that all matches which are not totally enclosed within another match are returned. For example, applying an **-overlap** search of the pattern "\\w+" against "hello there" will just match twice (i.e. no different to just **-all**), but matching "Z\[a-z\]+Z" against "ZooZooZoo" will now match twice. An error will be thrown if this switch is used without **-all**.
+    **-strictlimits**
+    : When performing any search, the normal behaviour is that the start and stop limits are checked with respect to the start of the matching text. With the **-strictlimits** flag, the entire matching range must lie inside the start and stop limits specified for the match to be valid.
 
-**-strictlimits**
-: When performing any search, the normal behaviour is that the start and stop limits are checked with respect to the start of the matching text. With the **-strictlimits** flag, the entire matching range must lie inside the start and stop limits specified for the match to be valid.
+    **-elide**
+    : Find elided (hidden) text as well. By default only displayed text is searched.
 
-**-elide**
-: Find elided (hidden) text as well. By default only displayed text is searched.
+    **--**
+    : This switch has no effect except to terminate the list of switches: the next argument will be treated as *pattern* even if it starts with **-**.
 
-**-**\\**|-**
-: This switch has no effect except to terminate the list of switches: the next argument will be treated as *pattern* even if it starts with **-**. The matching range may be within a single line of text, or run across multiple lines (if parts of the pattern can match a new-line). For regular expression matching one can use the various newline-matching features such as **\$** to match the end of a line, **^** to match the beginning of a line, and to control whether **.** is allowed to match a new-line. If *stopIndex* is specified, the search stops at that index: for forward searches, no match at or after *stopIndex* will be considered; for backward searches, no match earlier in the text than *stopIndex* will be considered. If *stopIndex* is omitted, the entire text will be searched: when the beginning or end of the text is reached, the search continues at the other end until the starting location is reached again; if *stopIndex* is specified, no wrap-around will occur. This means that, for example, if the search is **-forwards** but *stopIndex* is earlier in the text than *startIndex*, nothing will ever be found. See **KNOWN BUGS** below for a number of minor limitations of the *pathName* **search** command.
 
+    The matching range may be within a single line of text, or run across multiple lines (if parts of the pattern can match a new-line). For regular expression matching one can use the various newline-matching features such as **$** to match the end of a line, **^** to match the beginning of a line, and to control whether **.** is allowed to match a new-line. If *stopIndex* is specified, the search stops at that index: for forward searches, no match at or after *stopIndex* will be considered; for backward searches, no match earlier in the text than *stopIndex* will be considered. If *stopIndex* is omitted, the entire text will be searched: when the beginning or end of the text is reached, the search continues at the other end until the starting location is reached again; if *stopIndex* is specified, no wrap-around will occur. This means that, for example, if the search is **-forwards** but *stopIndex* is earlier in the text than *startIndex*, nothing will ever be found. See [Known bugs] below for a number of minor limitations of the *pathName* **search** command.
 
 *pathName* **see** *index*
 : Adjusts the view in the window so that the character given by *index* is completely visible. If *index* is already visible then the command does nothing. If *index* is a short distance out of view, the command adjusts the view just enough to make *index* visible at the edge of the window. If *index* is far out of view, then the command centers *index* in the window.
@@ -709,230 +705,193 @@ The deletion and insertion are arranged so that no unnecessary scrolling of the 
 *pathName* **sync** ?**-command** *command*?
 : Controls the synchronization of the view of the text widget.
 
+    *pathName* **sync**
+    : Immediately brings the line metrics up-to-date by forcing computation of any outdated line heights. The command returns immediately if there is no such outdated line heights, otherwise it returns only at the end of the computation. The command returns an empty string.
 
-*pathName* **sync**
-: Immediately brings the line metrics up-to-date by forcing computation of any outdated line heights. The command returns immediately if there is no such outdated line heights, otherwise it returns only at the end of the computation. The command returns an empty string.
-
-*pathName* **sync -command** *command*
-: Schedules *command* to be executed (by the event loop) exactly once as soon as all line heights are up-to-date. If there are no pending line metrics calculations, the scheduling is immediate. The command returns the empty string. **bgerror** is called on *command* failure.
+    *pathName* **sync -command** *command*
+    : Schedules *command* to be executed (by the event loop) exactly once as soon as all line heights are up-to-date. If there are no pending line metrics calculations, the scheduling is immediate. The command returns the empty string. [bgerror] is called on *command* failure.
 
 
 *pathName* **tag** *option* ?*arg arg ...*?
 : This command is used to manipulate tags. The exact behavior of the command depends on the *option* argument that follows the **tag** argument. The following forms of the command are currently supported:
 
+    *pathName* **tag add** *tagName index1* ?*index2 index1 index2 ...*?
+    : Associate the tag *tagName* with all of the characters starting with *index1* and ending just before *index2* (the character at *index2* is not tagged). A single command may contain any number of *index1*-*index2* pairs. If the last *index2* is omitted then the single character at *index1* is tagged. If there are no characters in the specified range (e.g. *index1* is past the end of the file or *index2* is less than or equal to *index1*) then the command has no effect.
 
-*pathName* **tag add** *tagName index1* ?*index2 index1 index2 ...*?
-: Associate the tag *tagName* with all of the characters starting with *index1* and ending just before *index2* (the character at *index2* is not tagged). A single command may contain any number of *index1*-*index2* pairs. If the last *index2* is omitted then the single character at *index1* is tagged. If there are no characters in the specified range (e.g. *index1* is past the end of the file or *index2* is less than or equal to *index1*) then the command has no effect.
+    *pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
+    : This command associates *script* with the tag given by *tagName*. Whenever the event sequence given by *sequence* occurs for a character that has been tagged with *tagName*, the script will be invoked. This widget command is similar to the **bind** command except that it operates on characters in a text rather than entire widgets. See the **bind** manual entry for complete details on the syntax of *sequence* and the substitutions performed on *script* before invoking it. If all arguments are specified then a new binding is created, replacing any existing binding for the same *sequence* and *tagName* (if the first character of *script* is "+" then *script* augments an existing binding rather than replacing it). In this case the return value is an empty string. If *script* is omitted then the command returns the *script* associated with *tagName* and *sequence* (an error occurs if there is no such binding). If both *script* and *sequence* are omitted then the command returns a list of all the sequences for which bindings have been defined for *tagName*.
 
-*pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
-: This command associates *script* with the tag given by *tagName*. Whenever the event sequence given by *sequence* occurs for a character that has been tagged with *tagName*, the script will be invoked. This widget command is similar to the **bind** command except that it operates on characters in a text rather than entire widgets. See the **bind** manual entry for complete details on the syntax of *sequence* and the substitutions performed on *script* before invoking it. If all arguments are specified then a new binding is created, replacing any existing binding for the same *sequence* and *tagName* (if the first character of *script* is "+" then *script* augments an existing binding rather than replacing it). In this case the return value is an empty string. If *script* is omitted then the command returns the *script* associated with *tagName* and *sequence* (an error occurs if there is no such binding). If both *script* and *sequence* are omitted then the command returns a list of all the sequences for which bindings have been defined for *tagName*.
+        The only events for which bindings may be specified are those related to the mouse and keyboard (such as **Enter**, **Leave**, **ButtonPress**, **Motion**, and **KeyPress**) or virtual events. Mouse and keyboard event bindings for a text widget respectively use the **current** and **insert** marks described under [Marks] above. An **Enter** event triggers for a tag when the tag first becomes present on the current character, and a **Leave** event triggers for a tag when it ceases to be present on the current character. **Enter** and **Leave** events can happen either because the **current** mark moved or because the character at that position changed. Note that these events are different than **Enter** and **Leave** events for windows. Mouse events are directed to the current character, while keyboard events are directed to the insert character. If a virtual event is used in a binding, that binding can trigger only if the virtual event is defined by an underlying mouse-related or keyboard-related event.
 
+        It is possible for the current character to have multiple tags, and for each of them to have a binding for a particular event sequence. When this occurs, one binding is invoked for each tag, in order from lowest-priority to highest priority. If there are multiple matching bindings for a single tag, then the most specific binding is chosen (see the manual entry for the **bind** command for details). [continue] and [break] commands within binding scripts are processed in the same way as for bindings created with the **bind** command.
 
-The only events for which bindings may be specified are those related to the mouse and keyboard (such as **Enter**, **Leave**, **ButtonPress**, **Motion**, and **KeyPress**) or virtual events. Mouse and keyboard event bindings for a text widget respectively use the **current** and **insert** marks described under **MARKS** above. An **Enter** event triggers for a tag when the tag first becomes present on the current character, and a **Leave** event triggers for a tag when it ceases to be present on the current character. **Enter** and **Leave** events can happen either because the **current** mark moved or because the character at that position changed. Note that these events are different than **Enter** and **Leave** events for windows. Mouse events are directed to the current character, while keyboard events are directed to the insert character. If a virtual event is used in a binding, that binding can trigger only if the virtual event is defined by an underlying mouse-related or keyboard-related event.
+        If bindings are created for the widget as a whole using the **bind** command, then those bindings will supplement the tag bindings. The tag bindings will be invoked first, followed by bindings for the window as a whole.
 
-It is possible for the current character to have multiple tags, and for each of them to have a binding for a particular event sequence. When this occurs, one binding is invoked for each tag, in order from lowest-priority to highest priority. If there are multiple matching bindings for a single tag, then the most specific binding is chosen (see the manual entry for the **bind** command for details). **continue** and **break** commands within binding scripts are processed in the same way as for bindings created with the **bind** command.
+    *pathName* **tag cget** *tagName option*
+    : This command returns the current value of the option named *option* associated with the tag given by *tagName*. *Option* may have any of the values accepted by the *pathName* **tag configure** widget command.
 
-If bindings are created for the widget as a whole using the **bind** command, then those bindings will supplement the tag bindings. The tag bindings will be invoked first, followed by bindings for the window as a whole.
+    *pathName* **tag configure** *tagName* ?*option*? ?*value*? ?*option value ...*?
+    : This command is similar to the *pathName* **configure** widget command except that it modifies options associated with the tag given by *tagName* instead of modifying options for the overall text widget. If no *option* is specified, the command returns a list describing all of the available options for *tagName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s) in *tagName*; in this case the command returns an empty string. See [Tags] above for details on the options available for tags.
 
-*pathName* **tag cget** *tagName option*
-: This command returns the current value of the option named *option* associated with the tag given by *tagName*. *Option* may have any of the values accepted by the *pathName* **tag configure** widget command.
+    *pathName* **tag delete** *tagName* ?*tagName ...*?
+    : Deletes all tag information for each of the *tagName* arguments. The command removes the tags from all characters in the file and also deletes any other information associated with the tags, such as bindings and display information. The command returns an empty string.
 
-*pathName* **tag configure** *tagName* ?*option*? ?*value*? ?*option value ...*?
-: This command is similar to the *pathName* **configure** widget command except that it modifies options associated with the tag given by *tagName* instead of modifying options for the overall text widget. If no *option* is specified, the command returns a list describing all of the available options for *tagName* (see **Tk_ConfigureInfo** for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s) in *tagName*; in this case the command returns an empty string. See **TAGS** above for details on the options available for tags.
+    *pathName* **tag lower** *tagName* ?*belowThis*?
+    : Changes the priority of tag *tagName* so that it is just lower in priority than the tag whose name is *belowThis*. If *belowThis* is omitted, then *tagName*'s priority is changed to make it lowest priority of all tags.
 
-*pathName* **tag delete** *tagName* ?*tagName ...*?
-: Deletes all tag information for each of the *tagName* arguments. The command removes the tags from all characters in the file and also deletes any other information associated with the tags, such as bindings and display information. The command returns an empty string.
+    *pathName* **tag names** ?*index*?
+    : Returns a list whose elements are the names of all the tags that are active at the character position given by *index*. If *index* is omitted, then the return value will describe all of the tags that exist for the text (this includes all tags that have been named in a "*pathName* **tag**" widget command but have not been deleted by a "*pathName* **tag delete**" widget command, even if no characters are currently marked with the tag). The list will be sorted in order from lowest priority to highest priority.
 
-*pathName* **tag lower** *tagName* ?*belowThis*?
-: Changes the priority of tag *tagName* so that it is just lower in priority than the tag whose name is *belowThis*. If *belowThis* is omitted, then *tagName*'s priority is changed to make it lowest priority of all tags.
+    *pathName* **tag nextrange** *tagName index1* ?*index2*?
+    : This command searches the text for a range of characters tagged with *tagName* where the first character of the range is no earlier than the character at *index1* and no later than the character just before *index2* (a range starting at *index2* will not be considered). If several matching ranges exist, the first one is chosen. The command's return value is a list containing two elements, which are the index of the first character of the range and the index of the character just after the last one in the range. If no matching range is found then the return value is an empty string. If *index2* is not given then it defaults to the end of the text.
 
-*pathName* **tag names** ?*index*?
-: Returns a list whose elements are the names of all the tags that are active at the character position given by *index*. If *index* is omitted, then the return value will describe all of the tags that exist for the text (this includes all tags that have been named in a "*pathName* **tag**" widget command but have not been deleted by a "*pathName* **tag delete**" widget command, even if no characters are currently marked with the tag). The list will be sorted in order from lowest priority to highest priority.
+    *pathName* **tag prevrange** *tagName index1* ?*index2*?
+    : This command searches the text for a range of characters tagged with *tagName* where the first character of the range is before the character at *index1* and no earlier than the character at *index2* (a range starting at *index2* will be considered). If several matching ranges exist, the one closest to *index1* is chosen. The command's return value is a list containing two elements, which are the index of the first character of the range and the index of the character just after the last one in the range. If no matching range is found then the return value is an empty string. If *index2* is not given then it defaults to the beginning of the text.
 
-*pathName* **tag nextrange** *tagName index1* ?*index2*?
-: This command searches the text for a range of characters tagged with *tagName* where the first character of the range is no earlier than the character at *index1* and no later than the character just before *index2* (a range starting at *index2* will not be considered). If several matching ranges exist, the first one is chosen. The command's return value is a list containing two elements, which are the index of the first character of the range and the index of the character just after the last one in the range. If no matching range is found then the return value is an empty string. If *index2* is not given then it defaults to the end of the text.
+    *pathName* **tag raise** *tagName* ?*aboveThis*?
+    : Changes the priority of tag *tagName* so that it is just higher in priority than the tag whose name is *aboveThis*. If *aboveThis* is omitted, then *tagName*'s priority is changed to make it highest priority of all tags.
 
-*pathName* **tag prevrange** *tagName index1* ?*index2*?
-: This command searches the text for a range of characters tagged with *tagName* where the first character of the range is before the character at *index1* and no earlier than the character at *index2* (a range starting at *index2* will be considered). If several matching ranges exist, the one closest to *index1* is chosen. The command's return value is a list containing two elements, which are the index of the first character of the range and the index of the character just after the last one in the range. If no matching range is found then the return value is an empty string. If *index2* is not given then it defaults to the beginning of the text.
+    *pathName* **tag ranges** *tagName*
+    : Returns a list describing all of the ranges of text that have been tagged with *tagName*. The first two elements of the list describe the first tagged range in the text, the next two elements describe the second range, and so on. The first element of each pair contains the index of the first character of the range, and the second element of the pair contains the index of the character just after the last one in the range. If there are no characters tagged with *tag* then an empty string is returned.
 
-*pathName* **tag raise** *tagName* ?*aboveThis*?
-: Changes the priority of tag *tagName* so that it is just higher in priority than the tag whose name is *aboveThis*. If *aboveThis* is omitted, then *tagName*'s priority is changed to make it highest priority of all tags.
-
-*pathName* **tag ranges** *tagName*
-: Returns a list describing all of the ranges of text that have been tagged with *tagName*. The first two elements of the list describe the first tagged range in the text, the next two elements describe the second range, and so on. The first element of each pair contains the index of the first character of the range, and the second element of the pair contains the index of the character just after the last one in the range. If there are no characters tagged with *tag* then an empty string is returned.
-
-*pathName* **tag remove** *tagName index1* ?*index2 index1 index2 ...*?
-: Remove the tag *tagName* from all of the characters starting at *index1* and ending just before *index2* (the character at *index2* is not affected). A single command may contain any number of *index1*-*index2* pairs. If the last *index2* is omitted then the tag is removed from the single character at *index1*. If there are no characters in the specified range (e.g. *index1* is past the end of the file or *index2* is less than or equal to *index1*) then the command has no effect. This command returns an empty string.
+    *pathName* **tag remove** *tagName index1* ?*index2 index1 index2 ...*?
+    : Remove the tag *tagName* from all of the characters starting at *index1* and ending just before *index2* (the character at *index2* is not affected). A single command may contain any number of *index1*-*index2* pairs. If the last *index2* is omitted then the tag is removed from the single character at *index1*. If there are no characters in the specified range (e.g. *index1* is past the end of the file or *index2* is less than or equal to *index1*) then the command has no effect. This command returns an empty string.
 
 
 *pathName* **window** *option* ?*arg arg ...*?
 : This command is used to manipulate embedded windows. The behavior of the command depends on the *option* argument that follows the **window** argument. The following forms of the command are currently supported:
 
+    *pathName* **window cget** *index option*
+    : Returns the value of a configuration option for an embedded window. *Index* identifies the embedded window, and *option* specifies a particular configuration option, which must be one of the ones listed in the section [Embedded windows].
 
-*pathName* **window cget** *index option*
-: Returns the value of a configuration option for an embedded window. *Index* identifies the embedded window, and *option* specifies a particular configuration option, which must be one of the ones listed in the section **EMBEDDED WINDOWS**.
+    *pathName* **window configure** *index* ?*option value ...*?
+    : Query or modify the configuration options for an embedded window. If no *option* is specified, returns a list describing all of the available options for the embedded window at *index* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string. See [Embedded windows] for information on the options that are supported.
 
-*pathName* **window configure** *index* ?*option value ...*?
-: Query or modify the configuration options for an embedded window. If no *option* is specified, returns a list describing all of the available options for the embedded window at *index* (see **Tk_ConfigureInfo** for information on the format of this list). If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified). If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string. See **EMBEDDED WINDOWS** for information on the options that are supported.
+    *pathName* **window create** *index* ?*option value ...*?
+    : This command creates a new window annotation, which will appear in the text at the position given by *index*. Any number of *option-value* pairs may be specified to configure the annotation. See [Embedded windows] for information on the options that are supported. Returns an empty string.
 
-*pathName* **window create** *index* ?*option value ...*?
-: This command creates a new window annotation, which will appear in the text at the position given by *index*. Any number of *option-value* pairs may be specified to configure the annotation. See **EMBEDDED WINDOWS** for information on the options that are supported. Returns an empty string.
-
-*pathName* **window names**
-: Returns a list whose elements are the names of all windows currently embedded in *window*.
+    *pathName* **window names**
+    : Returns a list whose elements are the names of all windows currently embedded in *window*.
 
 
 *pathName* **xview** *option args*
 : This command is used to query and change the horizontal position of the text in the widget's window. It can take any of the following forms:
 
+    *pathName* **xview**
+    : Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the portion of the document's horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. The fractions refer only to the lines that are actually visible in the window: if the lines in the window are all very short, so that they are entirely visible, the returned fractions will be 0 and 1, even if there are other lines in the text that are much wider than the window. These are the same values passed to scrollbars via the **-xscrollcommand** option.
 
-*pathName* **xview**
-: Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the portion of the document's horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. The fractions refer only to the lines that are actually visible in the window: if the lines in the window are all very short, so that they are entirely visible, the returned fractions will be 0 and 1, even if there are other lines in the text that are much wider than the window. These are the same values passed to scrollbars via the **-xscrollcommand** option.
+    *pathName* **xview moveto** *fraction*
+    : Adjusts the view in the window so that *fraction* of the horizontal span of the text is off-screen to the left. *Fraction* is a fraction between 0 and 1.
 
-*pathName* **xview moveto** *fraction*
-: Adjusts the view in the window so that *fraction* of the horizontal span of the text is off-screen to the left. *Fraction* is a fraction between 0 and 1.
-
-*pathName* **xview scroll** *number what*
-: This command shifts the view in the window left or right according to *number* and *what*. *What* must be **units**, **pages** or **pixels**. If *what* is **units** or **pages** then *number* must be an integer, otherwise number may be specified in any of the forms acceptable to **Tk_GetPixels**, such as "2.0c" or "1i" (the result is rounded to the nearest integer value. If no units are given, pixels are assumed). If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display; if it is **pages** then the view adjusts by *number* screenfuls; if it is **pixels** then the view adjusts by *number* pixels. If *number* is negative then characters farther to the left become visible; if it is positive then characters farther to the right become visible.
+    *pathName* **xview scroll** *number what*
+    : This command shifts the view in the window left or right according to *number* and *what*. *What* must be **units**, **pages** or **pixels**. If *what* is **units** or **pages** then *number* must be an integer, otherwise number may be specified in any of the forms acceptable to [Tk\_GetPixels][GetPixels], such as "2.0c" or "1i" (the result is rounded to the nearest integer value. If no units are given, pixels are assumed). If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display; if it is **pages** then the view adjusts by *number* screenfuls; if it is **pixels** then the view adjusts by *number* pixels. If *number* is negative then characters farther to the left become visible; if it is positive then characters farther to the right become visible.
 
 
 *pathName* **yview** ?*args*?
 : This command is used to query and change the vertical position of the text in the widget's window. It can take any of the following forms:
 
+    *pathName* **yview**
+    : Returns a list containing two elements, both of which are real fractions between 0 and 1. The first element gives the position of the first visible pixel of the first character (or image, etc) in the top line in the window, relative to the text as a whole (0.5 means it is halfway through the text, for example). The second element gives the position of the first pixel just after the last visible one in the bottom line of the window, relative to the text as a whole. These are the same values passed to scrollbars via the **-yscrollcommand** option.
 
-*pathName* **yview**
-: Returns a list containing two elements, both of which are real fractions between 0 and 1. The first element gives the position of the first visible pixel of the first character (or image, etc) in the top line in the window, relative to the text as a whole (0.5 means it is halfway through the text, for example). The second element gives the position of the first pixel just after the last visible one in the bottom line of the window, relative to the text as a whole. These are the same values passed to scrollbars via the **-yscrollcommand** option.
+    *pathName* **yview moveto** *fraction*
+    : Adjusts the view in the window so that the pixel given by *fraction* appears at the top of the top line of the window. *Fraction* is a fraction between 0 and 1; 0 indicates the first pixel of the first character in the text, 0.33 indicates the pixel that is one-third the way through the text; and so on. Values close to 1 will indicate values close to the last pixel in the text (1 actually refers to one pixel beyond the last pixel), but in such cases the widget will never scroll beyond the last pixel, and so a value of 1 will effectively be rounded back to whatever fraction ensures the last pixel is at the bottom of the window, and some other pixel is at the top.
 
-*pathName* **yview moveto** *fraction*
-: Adjusts the view in the window so that the pixel given by *fraction* appears at the top of the top line of the window. *Fraction* is a fraction between 0 and 1; 0 indicates the first pixel of the first character in the text, 0.33 indicates the pixel that is one-third the way through the text; and so on. Values close to 1 will indicate values close to the last pixel in the text (1 actually refers to one pixel beyond the last pixel), but in such cases the widget will never scroll beyond the last pixel, and so a value of 1 will effectively be rounded back to whatever fraction ensures the last pixel is at the bottom of the window, and some other pixel is at the top.
+    *pathName* **yview scroll** *number what*
+    : This command adjust the view in the window up or down according to *number* and *what*. *What* must be **units**, **pages** or **pixels**. If *what* is **units** or **pages** then *number* must be an integer, otherwise number may be specified in any of the forms acceptable to [Tk\_GetPixels][GetPixels], such as "2.0c" or "1i" (the result is rounded to the nearest integer value. If no units are given, pixels are assumed). If *what* is **units**, the view adjusts up or down by *number* lines on the display; if it is **pages** then the view adjusts by *number* screenfuls; if it is **pixels** then the view adjusts by *number* pixels. If *number* is negative then earlier positions in the text become visible; if it is positive then later positions in the text become visible.
 
-*pathName* **yview scroll** *number what*
-: This command adjust the view in the window up or down according to *number* and *what*. *What* must be **units**, **pages** or **pixels**. If *what* is **units** or **pages** then *number* must be an integer, otherwise number may be specified in any of the forms acceptable to **Tk_GetPixels**, such as "2.0c" or "1i" (the result is rounded to the nearest integer value. If no units are given, pixels are assumed). If *what* is **units**, the view adjusts up or down by *number* lines on the display; if it is **pages** then the view adjusts by *number* screenfuls; if it is **pixels** then the view adjusts by *number* pixels. If *number* is negative then earlier positions in the text become visible; if it is positive then later positions in the text become visible.
+    *pathName* **yview** ?**-pickplace**? *index*
+    : Changes the view in the widget's window to make *index* visible. If the **-pickplace** option is not specified then *index* will appear at the top of the window. If **-pickplace** is specified then the widget chooses where *index* appears in the window:
 
-*pathName* **yview** ?**-pickplace**? *index*
-: Changes the view in the widget's window to make *index* visible. If the **-pickplace** option is not specified then *index* will appear at the top of the window. If **-pickplace** is specified then the widget chooses where *index* appears in the window:
+        1. If *index* is already visible somewhere in the window then the command does nothing.
 
+        2. If *index* is only a few lines off-screen above the window then it will be positioned at the top of the window.
 
-**\[1\]**
-: If *index* is already visible somewhere in the window then the command does nothing.
+        3. If *index* is only a few lines off-screen below the window then it will be positioned at the bottom of the window.
 
-**\[2\]**
-: If *index* is only a few lines off-screen above the window then it will be positioned at the top of the window.
-
-**\[3\]**
-: If *index* is only a few lines off-screen below the window then it will be positioned at the bottom of the window.
-
-**\[4\]**
-: Otherwise, *index* will be centered in the window. The **-pickplace** option has been obsoleted by the *pathName* **see** widget command (*pathName* **see** handles both x- and y-motion to make a location visible, whereas the **-pickplace** mode only handles motion in y).
+        4. Otherwise, *index* will be centered in the window.
 
 
-*pathName* **yview** *number*
-: This command makes the first character on the line after the one given by *number* visible at the top of the window. *Number* must be an integer. This command used to be used for scrolling, but now it is obsolete.
+        The **-pickplace** option has been obsoleted by the *pathName* **see** widget command (*pathName* **see** handles both x- and y-motion to make a location visible, whereas the **-pickplace** mode only handles motion in y).
+
+    *pathName* **yview** *number*
+    : This command makes the first character on the line after the one given by *number* visible at the top of the window. *Number* must be an integer. This command used to be used for scrolling, but now it is obsolete.
+
 
 
 # Bindings
 
-Tk automatically creates class bindings for texts that give them the following default behavior. In the descriptions below, "word" is dependent on the value of the **tcl_wordchars** variable.  See **tclvars**(n).
+Tk automatically creates class bindings for texts that give them the following default behavior. In the descriptions below, "word" is dependent on the value of the **tcl\_wordchars** variable.  See [tclvars]\(n).
 
-**\[1\]**
-: Clicking mouse button 1 positions the insertion cursor at the closest edge of the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 strokes out a selection between the insertion cursor and the character under the mouse.
+1. Clicking mouse button 1 positions the insertion cursor at the closest edge of the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 strokes out a selection between the insertion cursor and the character under the mouse.
 
-**\[2\]**
-: Double-clicking with mouse button 1 selects the word under the mouse and positions the insertion cursor at the start of the word. Dragging after a double click will stroke out a selection consisting of whole words.
+2. Double-clicking with mouse button 1 selects the word under the mouse and positions the insertion cursor at the start of the word. Dragging after a double click will stroke out a selection consisting of whole words.
 
-**\[3\]**
-: Triple-clicking with mouse button 1 selects the line under the mouse and positions the insertion cursor at the start of the line. Dragging after a triple click will stroke out a selection consisting of whole lines.
+3. Triple-clicking with mouse button 1 selects the line under the mouse and positions the insertion cursor at the start of the line. Dragging after a triple click will stroke out a selection consisting of whole lines.
 
-**\[4\]**
-: The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down; this will adjust the end of the selection that was nearest to the mouse cursor when button 1 was pressed. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words; if it is triple-clicked then the selection will be adjusted in units of whole lines.
+4. The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down; this will adjust the end of the selection that was nearest to the mouse cursor when button 1 was pressed. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words; if it is triple-clicked then the selection will be adjusted in units of whole lines.
 
-**\[5\]**
-: Clicking mouse button 1 with the Control key down will reposition the insertion cursor without affecting the selection.
+5. Clicking mouse button 1 with the Control key down will reposition the insertion cursor without affecting the selection.
 
-**\[6\]**
-: If any normal printing characters are typed, they are inserted at the point of the insertion cursor.
+6. If any normal printing characters are typed, they are inserted at the point of the insertion cursor.
 
-**\[7\]**
-: The view in the widget can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the text at the position of the mouse cursor. The Insert key also inserts the selection, but at the position of the insertion cursor.
+7. The view in the widget can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the text at the position of the mouse cursor. The Insert key also inserts the selection, but at the position of the insertion cursor.
 
-**\[8\]**
-: If the mouse is dragged out of the widget while button 1 is pressed, the entry will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
+8. If the mouse is dragged out of the widget while button 1 is pressed, the entry will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
 
-**\[9\]**
-: The Left and Right keys move the insertion cursor one character to the left or right; they also clear any selection in the text. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insertion cursor by words, and Control-Shift-Left and Control-Shift-Right move the insertion cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively. Meta-b and Meta-f behave the same as Control-Left and Control-Right, respectively.
+9. The Left and Right keys move the insertion cursor one character to the left or right; they also clear any selection in the text. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insertion cursor by words, and Control-Shift-Left and Control-Shift-Right move the insertion cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively. Meta-b and Meta-f behave the same as Control-Left and Control-Right, respectively.
 
-**\[10\]**
-: The Up and Down keys move the insertion cursor one line up or down and clear any selection in the text. If Up or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Up and Control-Down move the insertion cursor by paragraphs (groups of lines separated by blank lines), and Control-Shift-Up and Control-Shift-Down move the insertion cursor by paragraphs and also extend the selection. Control-p and Control-n behave the same as Up and Down, respectively.
+10. The Up and Down keys move the insertion cursor one line up or down and clear any selection in the text. If Up or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Up and Control-Down move the insertion cursor by paragraphs (groups of lines separated by blank lines), and Control-Shift-Up and Control-Shift-Down move the insertion cursor by paragraphs and also extend the selection. Control-p and Control-n behave the same as Up and Down, respectively.
 
-**\[11\]**
-: The Next and Prior keys move the insertion cursor forward or backwards by one screenful and clear any selection in the text. If the Shift key is held down while Next or Prior is typed, then the selection is extended to include the new character.
+11. The Next and Prior keys move the insertion cursor forward or backwards by one screenful and clear any selection in the text. If the Shift key is held down while Next or Prior is typed, then the selection is extended to include the new character.
 
-**\[12\]**
-: Control-Next and Control-Prior scroll the view right or left by one page without moving the insertion cursor or affecting the selection.
+12. Control-Next and Control-Prior scroll the view right or left by one page without moving the insertion cursor or affecting the selection.
 
-**\[13\]**
-: Home and Control-a move the insertion cursor to the beginning of its display line and clear any selection in the widget. Shift-Home moves the insertion cursor to the beginning of the display line and also extends the selection to that point.
+13. Home and Control-a move the insertion cursor to the beginning of its display line and clear any selection in the widget. Shift-Home moves the insertion cursor to the beginning of the display line and also extends the selection to that point.
 
-**\[14\]**
-: End and Control-e move the insertion cursor to the end of the display line and clear any selection in the widget. Shift-End moves the cursor to the end of the display line and extends the selection to that point.
+14. End and Control-e move the insertion cursor to the end of the display line and clear any selection in the widget. Shift-End moves the cursor to the end of the display line and extends the selection to that point.
 
-**\[15\]**
-: Control-Home and Meta-< move the insertion cursor to the beginning of the text and clear any selection in the widget. Control-Shift-Home moves the insertion cursor to the beginning of the text and also extends the selection to that point.
+15. Control-Home and Meta-< move the insertion cursor to the beginning of the text and clear any selection in the widget. Control-Shift-Home moves the insertion cursor to the beginning of the text and also extends the selection to that point.
 
-**\[16\]**
-: Control-End and Meta-> move the insertion cursor to the end of the text and clear any selection in the widget. Control-Shift-End moves the cursor to the end of the text and extends the selection to that point.
+16. Control-End and Meta-> move the insertion cursor to the end of the text and clear any selection in the widget. Control-Shift-End moves the cursor to the end of the text and extends the selection to that point.
 
-**\[17\]**
-: The Select key and Control-Space set the selection anchor to the position of the insertion cursor. They do not affect the current selection. Shift-Select and Control-Shift-Space adjust the selection to the current position of the insertion cursor, selecting from the anchor to the insertion cursor if there was not any selection previously.
+17. The Select key and Control-Space set the selection anchor to the position of the insertion cursor. They do not affect the current selection. Shift-Select and Control-Shift-Space adjust the selection to the current position of the insertion cursor, selecting from the anchor to the insertion cursor if there was not any selection previously.
 
-**\[18\]**
-: Control-/ selects the entire contents of the widget.
+18. Control-/ selects the entire contents of the widget.
 
-**\[19\]**
-: Control-\\ clears any selection in the widget.
+19. Control-\\ clears any selection in the widget.
 
-**\[20\]**
-: The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection. This action is carried out by the command **tk_textCopy**.
+20. The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection. This action is carried out by the command **tk\_textCopy**.
 
-**\[21\]**
-: The F20 key (labelled Cut on many Sun workstations) or Control-w copies the selection in the widget to the clipboard and deletes the selection. This action is carried out by the command **tk_textCut**. If there is no selection in the widget then these keys have no effect.
+21. The F20 key (labelled Cut on many Sun workstations) or Control-w copies the selection in the widget to the clipboard and deletes the selection. This action is carried out by the command **tk\_textCut**. If there is no selection in the widget then these keys have no effect.
 
-**\[22\]**
-: The F18 key (labelled Paste on many Sun workstations) or Control-y inserts the contents of the clipboard at the position of the insertion cursor. This action is carried out by the command **tk_textPaste**.
+22. The F18 key (labelled Paste on many Sun workstations) or Control-y inserts the contents of the clipboard at the position of the insertion cursor. This action is carried out by the command **tk\_textPaste**.
 
-**\[23\]**
-: The Delete key deletes the selection, if there is one in the widget. If there is no selection, it deletes the character to the right of the insertion cursor.
+23. The Delete key deletes the selection, if there is one in the widget. If there is no selection, it deletes the character to the right of the insertion cursor.
 
-**\[24\]**
-: Backspace and Control-h delete the selection, if there is one in the widget. If there is no selection, they delete the character to the left of the insertion cursor.
+24. Backspace and Control-h delete the selection, if there is one in the widget. If there is no selection, they delete the character to the left of the insertion cursor.
 
-**\[25\]**
-: Control-d deletes the character to the right of the insertion cursor.
+25. Control-d deletes the character to the right of the insertion cursor.
 
-**\[26\]**
-: Meta-d deletes the word to the right of the insertion cursor.
+26. Meta-d deletes the word to the right of the insertion cursor.
 
-**\[27\]**
-: Control-k deletes from the insertion cursor to the end of its line; if the insertion cursor is already at the end of a line, then Control-k deletes the newline character.
+27. Control-k deletes from the insertion cursor to the end of its line; if the insertion cursor is already at the end of a line, then Control-k deletes the newline character.
 
-**\[28\]**
-: Control-o opens a new line by inserting a newline character in front of the insertion cursor without moving the insertion cursor.
+28. Control-o opens a new line by inserting a newline character in front of the insertion cursor without moving the insertion cursor.
 
-**\[29\]**
-: Meta-backspace and Meta-Delete delete the word to the left of the insertion cursor.
+29. Meta-backspace and Meta-Delete delete the word to the left of the insertion cursor.
 
-**\[30\]**
-: Control-x deletes whatever is selected in the text widget after copying it to the clipboard.
+30. Control-x deletes whatever is selected in the text widget after copying it to the clipboard.
 
-**\[31\]**
-: Control-t reverses the order of the two characters to the right of the insertion cursor.
+31. Control-t reverses the order of the two characters to the right of the insertion cursor.
 
-**\[32\]**
-: Control-z undoes the last edit action if the **-undo** option is true. Does nothing otherwise.
+32. Control-z undoes the last edit action if the **-undo** option is true. Does nothing otherwise.
 
-**\[33\]**
-: Control-Z (or Control-y on Windows) reapplies the last undone edit action if the **-undo** option is true. Does nothing otherwise. If the widget is disabled using the **-state** option, then its view can still be adjusted and text can still be selected, but no insertion cursor will be displayed and no text modifications will take place. The behavior of texts can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+33. Control-Z (or Control-y on Windows) reapplies the last undone edit action if the **-undo** option is true. Does nothing otherwise.
 
+
+If the widget is disabled using the **-state** option, then its view can still be adjusted and text can still be selected, but no insertion cursor will be displayed and no text modifications will take place.
+
+The behavior of texts can be changed by defining new bindings for individual widgets or by redefining the class bindings.
 
 # Known issues
 
@@ -971,3 +930,19 @@ pack [text .t]
 ```
 
 matches at "5.0" when a true greedy match would match at "1.0". Similarly if we add **-all** to this case, it matches at all of "5.0", "4.0", "3.0" and "1.0", when really it should only match at "1.0" since that match encloses all the others.
+
+
+[bgerror]: ../tcl/bgerror.md
+[break]: ../tcl/break.md
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[continue]: ../tcl/continue.md
+[GetBitmap]: ../tk-c/GetBitmap.md
+[GetColor]: ../tk-c/GetColor.md
+[GetFont]: ../tk-c/GetFont.md
+[GetInt]: ../tcl-c/GetInt.md
+[GetPixels]: ../tk-c/GetPixels.md
+[GetRelief]: ../tk-c/GetRelief.md
+[options]: options.md
+[re_syntax]: ../tcl/re_syntax.md
+[regexp]: ../tcl/regexp.md
+[tclvars]: ../tcl/tclvars.md

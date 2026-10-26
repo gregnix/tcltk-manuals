@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_GetEncoding
+title: Tcl_GetEncoding
 ManualSection: 3
 Version: 8.1
 TclPart: Tcl
@@ -16,132 +17,103 @@ Copyright:
 
 # Name
 
-Tcl_GetEncoding, Tcl_FreeEncoding, Tcl_GetEncodingFromObj, Tcl_ExternalToUtfDString, Tcl_ExternalToUtfDStringEx, Tcl_ExternalToUtf, Tcl_UtfToExternalDString, Tcl_UtfToExternalDStringEx, Tcl_UtfToExternal, Tcl_GetEncodingName, Tcl_SetSystemEncoding, Tcl_GetEncodingNameFromEnvironment, Tcl_GetEncodingNames, Tcl_CreateEncoding, Tcl_GetEncodingSearchPath, Tcl_SetEncodingSearchPath - procedures for creating and using encodings
+Tcl\_GetEncoding, Tcl\_FreeEncoding, Tcl\_GetEncodingFromObj, Tcl\_ExternalToUtfDString, Tcl\_ExternalToUtfDStringEx, Tcl\_ExternalToUtf, Tcl\_UtfToExternalDString, Tcl\_UtfToExternalDStringEx, Tcl\_UtfToExternal, Tcl\_GetEncodingName, Tcl\_SetSystemEncoding, Tcl\_GetEncodingNameFromEnvironment, Tcl\_GetEncodingNames, Tcl\_CreateEncoding, Tcl\_GetEncodingSearchPath, Tcl\_SetEncodingSearchPath - procedures for creating and using encodings
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-Tcl_Encoding
-[Tcl_GetEncoding]{.cmd}([interp]{.arg}, [name]{.arg})
-
-[Tcl_FreeEncoding]{.cmd}([encoding]{.arg})
-
-int
-[Tcl_GetEncodingFromObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [encodingPtr]{.arg})
-
-char \*
-[Tcl_ExternalToUtfDString]{.cmd}([encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [dstPtr]{.arg})
-
-int
-[Tcl_ExternalToUtfDStringEx]{.cmd}([interp]{.arg}, [encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [flags]{.arg}, [dstPtr]{.arg}, [errorIdxPtr]{.arg})
-
-char \*
-[Tcl_UtfToExternalDString]{.cmd}([encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [dstPtr]{.arg})
-
-int
-[Tcl_UtfToExternalDStringEx]{.cmd}([interp]{.arg}, [encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [flags]{.arg}, [dstPtr]{.arg}, [errorIdxPtr]{.arg})
-
-int
-[Tcl_ExternalToUtf]{.cmd}([interp]{.arg}, [encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [flags]{.arg}, [statePtr]{.arg}, [dst]{.arg}, [dstLen]{.arg}, [srcReadPtr]{.arg}, [dstWrotePtr]{.arg}, [dstCharsPtr]{.arg})
-
-int
-[Tcl_UtfToExternal]{.cmd}([interp]{.arg}, [encoding]{.arg}, [src]{.arg}, [srcLen]{.arg}, [flags]{.arg}, [statePtr]{.arg}, [dst]{.arg}, [dstLen]{.arg}, [srcReadPtr]{.arg}, [dstWrotePtr]{.arg}, [dstCharsPtr]{.arg})
-
-const char \*
-[Tcl_GetEncodingName]{.cmd}([encoding]{.arg})
-
-Tcl_Size
-[Tcl_GetEncodingNulLength]{.cmd}([encoding]{.arg})
-
-int
-[Tcl_SetSystemEncoding]{.cmd}([interp]{.arg}, [name]{.arg})
-
-const char \*
-[Tcl_GetEncodingNameFromEnvironment]{.cmd}([bufPtr]{.arg})
-
-[Tcl_GetEncodingNames]{.cmd}([interp]{.arg})
-
-Tcl_Encoding
-[Tcl_CreateEncoding]{.cmd}([typePtr]{.arg})
-
-Tcl_Obj \*
-[Tcl_GetEncodingSearchPath]{.cmd}()
-
-int
-[Tcl_SetEncodingSearchPath]{.cmd}([searchPath]{.arg})
+**#include <tcl.h>**
+[Tcl\_Encoding]{.ret} [Tcl\_GetEncoding]{.ccmd} [interp, name]{.cargs}
+[Tcl\_FreeEncoding]{.ccmd} [encoding]{.cargs}
+[int]{.ret} [Tcl\_GetEncodingFromObj]{.ccmd} [interp, objPtr, encodingPtr]{.cargs}
+[char \*]{.ret} [Tcl\_ExternalToUtfDString]{.ccmd} [encoding, src, srcLen, dstPtr]{.cargs}
+[int]{.ret} [Tcl\_ExternalToUtfDStringEx]{.ccmd} [interp, encoding, src, srcLen, flags, dstPtr, errorIdxPtr]{.cargs}
+[char \*]{.ret} [Tcl\_UtfToExternalDString]{.ccmd} [encoding, src, srcLen, dstPtr]{.cargs}
+[int]{.ret} [Tcl\_UtfToExternalDStringEx]{.ccmd} [interp, encoding, src, srcLen, flags, dstPtr, errorIdxPtr]{.cargs}
+[int]{.ret} [Tcl\_ExternalToUtf]{.ccmd} [interp, encoding, src, srcLen, flags, statePtr, dst, dstLen, srcReadPtr, dstWrotePtr, dstCharsPtr]{.cargs}
+[int]{.ret} [Tcl\_UtfToExternal]{.ccmd} [interp, encoding, src, srcLen, flags, statePtr, dst, dstLen, srcReadPtr, dstWrotePtr, dstCharsPtr]{.cargs}
+[const char \*]{.ret} [Tcl\_GetEncodingName]{.ccmd} [encoding]{.cargs}
+[Tcl\_Size]{.ret} [Tcl\_GetEncodingNulLength]{.ccmd} [encoding]{.cargs}
+[int]{.ret} [Tcl\_SetSystemEncoding]{.ccmd} [interp, name]{.cargs}
+[const char \*]{.ret} [Tcl\_GetEncodingNameFromEnvironment]{.ccmd} [bufPtr]{.cargs}
+[Tcl\_GetEncodingNames]{.ccmd} [interp]{.cargs}
+[Tcl\_Encoding]{.ret} [Tcl\_CreateEncoding]{.ccmd} [typePtr]{.cargs}
+[Tcl\_Obj \*]{.ret} [Tcl\_GetEncodingSearchPath]{.ccmd} []{.cargs}
+[int]{.ret} [Tcl\_SetEncodingSearchPath]{.ccmd} [searchPath]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting, or NULL if no error reporting is desired.
 
-const char *\*name* (in)
+[\*name]{.carg .in type="const char"}
 : Name of encoding to load.
 
-Tcl_Encoding *encoding* (in)
+[encoding]{.carg .in type="Tcl_Encoding"}
 : The encoding to query, free, or use for converting text.  If *encoding* is NULL, the current system encoding is used.
 
-Tcl_Obj *\*objPtr* (in)
+[\*objPtr]{.carg .in type="Tcl_Obj"}
 : Name of encoding to get token for.
 
-Tcl_Encoding *\*encodingPtr* (out)
+[\*encodingPtr]{.carg .out type="Tcl_Encoding"}
 : Points to storage where encoding token is to be written.
 
-const char *\*src* (in)
-: For the **Tcl_ExternalToUtf** functions, an array of bytes in the specified encoding that are to be converted to TUTF-8.  For the **Tcl_UtfToExternal** function, a TUTF-8 byte sequence to be converted to the specified encoding.
+[\*src]{.carg .in type="const char"}
+: For the **Tcl\_ExternalToUtf** functions, an array of bytes in the specified encoding that are to be converted to TUTF-8.  For the **Tcl\_UtfToExternal** function, a TUTF-8 byte sequence to be converted to the specified encoding.
 
-const TCHAR *\*tsrc* (in)
+[\*tsrc]{.carg .in type="const TCHAR"}
 : An array of Windows TCHAR characters to convert to TUTF-8.
 
-Tcl_Size *srcLen* (in)
+[srcLen]{.carg .in type="Tcl_Size"}
 : Length of *src* or *tsrc* in bytes.  If the length is negative, the encoding-specific length of the string is used.
 
-Tcl_DString *\*dstPtr* (out)
-: Pointer to an uninitialized or free **Tcl_DString** in which the converted result will be stored.
+[\*dstPtr]{.carg .out type="Tcl_DString"}
+: Pointer to an uninitialized or free [Tcl\_DString][DString] in which the converted result will be stored.
 
-int *flags* (in)
-: This is a bit mask passed in to control the operation of the encoding functions. **TCL_ENCODING_START** signifies that the source buffer is the first block in a (potentially multi-block) input stream, telling the conversion routine to reset to an initial state and perform any initialization that needs to occur before the first byte is converted. **TCL_ENCODING_END** signifies that the source buffer is the last block in a (potentially multi-block) input stream, telling the conversion routine to perform any finalization that needs to occur after the last byte is converted and then to reset to an initial state. The **TCL_PROFILE\_\*** bits defined in the **PROFILES** section below control the encoding profile to be used for dealing with invalid data or other errors in the encoding transform. The flag **TCL_ENCODING_STOPONERROR** has no effect, it only has meaning in Tcl 8.x. Some flags bits may not be usable with some functions as noted in the function descriptions below.
+[flags]{.carg .in type="int"}
+: This is a bit mask passed in to control the operation of the encoding functions. **TCL\_ENCODING\_START** signifies that the source buffer is the first block in a (potentially multi-block) input stream, telling the conversion routine to reset to an initial state and perform any initialization that needs to occur before the first byte is converted. **TCL\_ENCODING\_END** signifies that the source buffer is the last block in a (potentially multi-block) input stream, telling the conversion routine to perform any finalization that needs to occur after the last byte is converted and then to reset to an initial state. The **TCL\_PROFILE\_\*** bits defined in the [Profiles] section below control the encoding profile to be used for dealing with invalid data or other errors in the encoding transform. The flag **TCL\_ENCODING\_STOPONERROR** has no effect, it only has meaning in Tcl 8.x. Some flags bits may not be usable with some functions as noted in the function descriptions below.
 
-Tcl_EncodingState *\*statePtr* (in/out)
+[\*statePtr]{.carg .in/out type="Tcl_EncodingState"}
 : Used when converting a (generally long or indefinite length) byte stream in a piece-by-piece fashion.  The conversion routine stores its current state in *\*statePtr* after *src* (the buffer containing the current piece) has been converted; that state information must be passed back when converting the next piece of the stream so the conversion routine knows what state it was in when it left off at the end of the last piece.  May be NULL, in which case the value specified for *flags* is ignored and the source buffer is assumed to contain the complete string to convert.
 
-char *\*dst* (out)
+[\*dst]{.carg .out type="char"}
 : Buffer in which the converted result will be stored.  No more than *dstLen* bytes will be stored in *dst*.
 
-Tcl_Size *dstLen* (in)
+[dstLen]{.carg .in type="Tcl_Size"}
 : The maximum length of the output buffer *dst* in bytes.
 
-int *\*srcReadPtr* (out)
+[\*srcReadPtr]{.carg .out type="int"}
 : Filled with the number of bytes from *src* that were actually converted.  This may be less than the original source length if there was a problem converting some source characters.  May be NULL.
 
-int *\*dstWrotePtr* (out)
+[\*dstWrotePtr]{.carg .out type="int"}
 : Filled with the number of bytes that were actually stored in the output buffer as a result of the conversion.  May be NULL.
 
-int *\*dstCharsPtr* (out)
+[\*dstCharsPtr]{.carg .out type="int"}
 : Filled with the number of characters that correspond to the number of bytes stored in the output buffer.  May be NULL.
 
-Tcl_Size *\*errorIdxPtr* (out)
+[\*errorIdxPtr]{.carg .out type="Tcl_Size"}
 : Filled with the index of the byte or character that caused the encoding transform to fail. May be NULL.
 
-Tcl_DString *\*bufPtr* (out)
+[\*bufPtr]{.carg .out type="Tcl_DString"}
 : Storage for the prescribed system encoding name.
 
-const Tcl_EncodingType *\*typePtr* (in)
+[\*typePtr]{.carg .in type="const Tcl_EncodingType"}
 : Structure that defines a new type of encoding.
 
-Tcl_Obj *\*searchPath* (in)
+[\*searchPath]{.carg .in type="Tcl_Obj"}
 : List of filesystem directories in which to search for encoding data files.
 
-const char *\*path* (in)
+[\*path]{.carg .in type="const char"}
 : A path to the location of the encoding file.
 
+:::
 
 # Introduction
 
-N.B. Refer to the **Tcl_UniChar** documentation page for a description of the *TUTF-8* encoding and related terms referenced here.
+N.B. Refer to the [Tcl\_UniChar][Utf] documentation page for a description of the *TUTF-8* encoding and related terms referenced here.
 
 These routines convert between TUTF-8 and character representations using encodings such as standard UTF-8, UTF-16, ASCII, or Shift-JIS that might be expected by system interfaces or other software components. For instance, on a Japanese Unix workstation, a user might obtain a filename represented in the EUC-JP file encoding and then translate the characters to the jisx0208 font encoding in order to display the filename in a Tk widget. The purpose of the encoding package is to help bridge the translation gap. TUTF-8 provides an intermediate staging ground for all the various encodings. In the example above, text would be translated into TUTF-8 from whatever file encoding the operating system is using. Then it would be translated from TUTF-8 into whatever font encoding the display routines require.
 
@@ -149,59 +121,59 @@ Some basic encodings are compiled into Tcl. Others can be defined by the user or
 
 # Description
 
-**Tcl_GetEncoding** finds an encoding given its *name*.  The name may refer to a built-in Tcl encoding, a user-defined encoding registered by calling **Tcl_CreateEncoding**, or a dynamically-loadable encoding file.  The return value is a token that represents the encoding and can be used in subsequent calls to procedures such as **Tcl_GetEncodingName**, **Tcl_FreeEncoding**, and **Tcl_UtfToExternal**.  If the name did not refer to any known or loadable encoding, NULL is returned and an error message is returned in *interp*.
+**Tcl\_GetEncoding** finds an encoding given its *name*.  The name may refer to a built-in Tcl encoding, a user-defined encoding registered by calling **Tcl\_CreateEncoding**, or a dynamically-loadable encoding file.  The return value is a token that represents the encoding and can be used in subsequent calls to procedures such as **Tcl\_GetEncodingName**, **Tcl\_FreeEncoding**, and **Tcl\_UtfToExternal**.  If the name did not refer to any known or loadable encoding, NULL is returned and an error message is returned in *interp*.
 
-The encoding package maintains a database of all encodings currently in use. The first time *name* is seen, **Tcl_GetEncoding** returns an encoding with a reference count of 1.  If the same *name* is requested further times, then the reference count for that encoding is incremented without the overhead of allocating a new encoding and all its associated data structures.
+The encoding package maintains a database of all encodings currently in use. The first time *name* is seen, **Tcl\_GetEncoding** returns an encoding with a reference count of 1.  If the same *name* is requested further times, then the reference count for that encoding is incremented without the overhead of allocating a new encoding and all its associated data structures.
 
-When an *encoding* is no longer needed, **Tcl_FreeEncoding** should be called to release it.  When an *encoding* is no longer in use anywhere (i.e., it has been freed as many times as it has been gotten) **Tcl_FreeEncoding** will release all storage the encoding was using and delete it from the database.
+When an *encoding* is no longer needed, **Tcl\_FreeEncoding** should be called to release it.  When an *encoding* is no longer in use anywhere (i.e., it has been freed as many times as it has been gotten) **Tcl\_FreeEncoding** will release all storage the encoding was using and delete it from the database.
 
-**Tcl_GetEncodingFromObj** treats the string representation of *objPtr* as an encoding name, and finds an encoding with that name, just as **Tcl_GetEncoding** does. When an encoding is found, it is cached within the **objPtr** value for future reference, the **Tcl_Encoding** token is written to the storage pointed to by *encodingPtr*, and the value **TCL_OK** is returned. If no such encoding is found, the value **TCL_ERROR** is returned, and no writing to **\***_encodingPtr_ takes place. Just as with **Tcl_GetEncoding**, the caller should call **Tcl_FreeEncoding** on the resulting encoding token when that token will no longer be used.
+**Tcl\_GetEncodingFromObj** treats the string representation of *objPtr* as an encoding name, and finds an encoding with that name, just as **Tcl\_GetEncoding** does. When an encoding is found, it is cached within the **objPtr** value for future reference, the **Tcl\_Encoding** token is written to the storage pointed to by *encodingPtr*, and the value [TCL\_OK][catch] is returned. If no such encoding is found, the value [TCL\_ERROR][catch] is returned, and no writing to **\****encodingPtr* takes place. Just as with **Tcl\_GetEncoding**, the caller should call **Tcl\_FreeEncoding** on the resulting encoding token when that token will no longer be used.
 
-**Tcl_ExternalToUtfDString** converts a source buffer *src* from the specified *encoding* into TUTF-8.  The converted bytes are stored in *dstPtr*, which is then null-terminated.  The caller should eventually call **Tcl_DStringFree** to free any information stored in *dstPtr*. When converting, if any of the characters in the source buffer cannot be represented in the target encoding, a default fallback character will be used.  The return value is a pointer to the value stored in the DString.
+**Tcl\_ExternalToUtfDString** converts a source buffer *src* from the specified *encoding* into TUTF-8.  The converted bytes are stored in *dstPtr*, which is then null-terminated.  The caller should eventually call [Tcl\_DStringFree][DString] to free any information stored in *dstPtr*. When converting, if any of the characters in the source buffer cannot be represented in the target encoding, a default fallback character will be used.  The return value is a pointer to the value stored in the DString.
 
-**Tcl_ExternalToUtfDStringEx** is a more flexible version of older **Tcl_ExternalToUtfDString** function. It takes three additional parameters, **interp**, **flags** and **errorIdxPtr**. The **flags** parameter may be used to specify the profile to be used for the transform. The **TCL_ENCODING_START** and **TCL_ENCODING_END** bits in **flags** are ignored as the function assumes the entire source string to be decoded is passed into the function. On success, the function returns **TCL_OK** with the converted string stored in **\*dstPtr**. For errors *other than conversion errors*, such as invalid flags, the function returns **TCL_ERROR** with an error message in **interp** if it is not NULL. For conversion errors, **Tcl_ExternalToUtfDStringEx** returns one of the **TCL_CONVERT\_\*** errors listed below for **Tcl_ExternalToUtf**. When one of these conversion errors is returned, an error message is stored in **interp** only if **errorIdxPtr** is NULL. Otherwise, no error message is stored as the function expects the caller is interested the decoded data up to that point and not treating this as an immediate error condition. The index of the error location is stored in **\*errorIdxPtr**.
+**Tcl\_ExternalToUtfDStringEx** is a more flexible version of older **Tcl\_ExternalToUtfDString** function. It takes three additional parameters, **interp**, **flags** and **errorIdxPtr**. The **flags** parameter may be used to specify the profile to be used for the transform. The **TCL\_ENCODING\_START** and **TCL\_ENCODING\_END** bits in **flags** are ignored as the function assumes the entire source string to be decoded is passed into the function. On success, the function returns [TCL\_OK][catch] with the converted string stored in **\*dstPtr**. For errors *other than conversion errors*, such as invalid flags, the function returns [TCL\_ERROR][catch] with an error message in **interp** if it is not NULL. For conversion errors, **Tcl\_ExternalToUtfDStringEx** returns one of the **TCL\_CONVERT\_\*** errors listed below for **Tcl\_ExternalToUtf**. When one of these conversion errors is returned, an error message is stored in **interp** only if **errorIdxPtr** is NULL. Otherwise, no error message is stored as the function expects the caller is interested the decoded data up to that point and not treating this as an immediate error condition. The index of the error location is stored in **\*errorIdxPtr**.
 
-The caller must call **Tcl_DStringFree** to free up the **\*dstPtr** resources irrespective of the return value from the function.
+The caller must call [Tcl\_DStringFree][DString] to free up the **\*dstPtr** resources irrespective of the return value from the function.
 
-**Tcl_ExternalToUtf** converts a source buffer *src* from the specified *encoding* into TUTF-8.  Up to *srcLen* bytes are converted from the source buffer and up to *dstLen* converted bytes are stored in *dst*. In all cases, *\*srcReadPtr* is filled with the number of bytes that were successfully converted from *src* and *\*dstWrotePtr* is filled with the corresponding number of bytes that were stored in *dst*.  The return value is one of the following:
+**Tcl\_ExternalToUtf** converts a source buffer *src* from the specified *encoding* into TUTF-8.  Up to *srcLen* bytes are converted from the source buffer and up to *dstLen* converted bytes are stored in *dst*. In all cases, *\*srcReadPtr* is filled with the number of bytes that were successfully converted from *src* and *\*dstWrotePtr* is filled with the corresponding number of bytes that were stored in *dst*.  The return value is one of the following:
 
-**TCL_OK**
+[TCL\_OK][catch]
 : All bytes of *src* were converted.
 
-**TCL_CONVERT_NOSPACE**
+**TCL\_CONVERT\_NOSPACE**
 : The destination buffer was not large enough for all of the converted data; as many characters as could fit were converted though.
 
-**TCL_CONVERT_MULTIBYTE**
+**TCL\_CONVERT\_MULTIBYTE**
 : The last few bytes in the source buffer were the beginning of a multibyte sequence, but more bytes were needed to complete this sequence.  A subsequent call to the conversion routine should pass a buffer containing the unconverted bytes that remained in *src* plus some further bytes from the source stream to properly convert the formerly split-up multibyte sequence.
 
-**TCL_CONVERT_SYNTAX**
+**TCL\_CONVERT\_SYNTAX**
 : The source buffer contained an invalid byte or character sequence.  This may occur if the input stream has been damaged or if the input encoding method was misidentified.
 
-**TCL_CONVERT_UNKNOWN**
+**TCL\_CONVERT\_UNKNOWN**
 : The source buffer contained a character that could not be represented in the target encoding.
 
 
-**Tcl_UtfToExternalDString** converts a source buffer *src* from TUTF-8 into the specified *encoding*.  The converted bytes are stored in *dstPtr*, which is then terminated with the appropriate encoding-specific null.  The caller should eventually call **Tcl_DStringFree** to free any information stored in *dstPtr*.  When converting, if any of the characters in the source buffer cannot be represented in the target encoding, a default fallback character will be used.  The return value is a pointer to the value stored in the DString.
+**Tcl\_UtfToExternalDString** converts a source buffer *src* from TUTF-8 into the specified *encoding*.  The converted bytes are stored in *dstPtr*, which is then terminated with the appropriate encoding-specific null.  The caller should eventually call [Tcl\_DStringFree][DString] to free any information stored in *dstPtr*.  When converting, if any of the characters in the source buffer cannot be represented in the target encoding, a default fallback character will be used.  The return value is a pointer to the value stored in the DString.
 
-**Tcl_UtfToExternalDStringEx** is an enhanced version of **Tcl_UtfToExternalDString** that transforms TUTF-8 encoded source data to a specified *encoding*. Except for the direction of the transform, the parameters and return values are identical to those of **Tcl_ExternalToUtfDStringEx**. See that function above for details about the same.
+**Tcl\_UtfToExternalDStringEx** is an enhanced version of **Tcl\_UtfToExternalDString** that transforms TUTF-8 encoded source data to a specified *encoding*. Except for the direction of the transform, the parameters and return values are identical to those of **Tcl\_ExternalToUtfDStringEx**. See that function above for details about the same.
 
 Irrespective of the return code from the function, the caller must free resources associated with **\*dstPtr** when the function returns.
 
-**Tcl_UtfToExternal** converts a source buffer *src* from TUTF-8 into the specified *encoding*.  Up to *srcLen* bytes are converted from the source buffer and up to *dstLen* converted bytes are stored in *dst*.  In all cases, *\*srcReadPtr* is filled with the number of bytes that were successfully converted from *src* and *\*dstWrotePtr* is filled with the corresponding number of bytes that were stored in *dst*.  The return values are the same as the return values for **Tcl_ExternalToUtf**.
+**Tcl\_UtfToExternal** converts a source buffer *src* from TUTF-8 into the specified *encoding*.  Up to *srcLen* bytes are converted from the source buffer and up to *dstLen* converted bytes are stored in *dst*.  In all cases, *\*srcReadPtr* is filled with the number of bytes that were successfully converted from *src* and *\*dstWrotePtr* is filled with the corresponding number of bytes that were stored in *dst*.  The return values are the same as the return values for **Tcl\_ExternalToUtf**.
 
-**Tcl_GetEncodingName** is roughly the inverse of **Tcl_GetEncoding**. Given an *encoding*, the return value is the *name* argument that was used to create the encoding.  The string returned by **Tcl_GetEncodingName** is only guaranteed to persist until the *encoding* is deleted.  The caller must not modify this string.
+**Tcl\_GetEncodingName** is roughly the inverse of **Tcl\_GetEncoding**. Given an *encoding*, the return value is the *name* argument that was used to create the encoding.  The string returned by **Tcl\_GetEncodingName** is only guaranteed to persist until the *encoding* is deleted.  The caller must not modify this string.
 
-**Tcl_GetEncodingNulLength** returns the length of the terminating nul byte sequence for strings in the specified encoding.
+**Tcl\_GetEncodingNulLength** returns the length of the terminating nul byte sequence for strings in the specified encoding.
 
-**Tcl_SetSystemEncoding** sets the default encoding that should be used whenever the user passes a NULL value for the *encoding* argument to any of the other encoding functions.  If *name* is NULL, the system encoding is reset to the default system encoding, **binary**.  If the name did not refer to any known or loadable encoding, **TCL_ERROR** is returned and an error message is left in *interp*.  Otherwise, this procedure increments the reference count of the new system encoding, decrements the reference count of the old system encoding, and returns **TCL_OK**.
+**Tcl\_SetSystemEncoding** sets the default encoding that should be used whenever the user passes a NULL value for the *encoding* argument to any of the other encoding functions.  If *name* is NULL, the system encoding is reset to the default system encoding, [binary].  If the name did not refer to any known or loadable encoding, [TCL\_ERROR][catch] is returned and an error message is left in *interp*.  Otherwise, this procedure increments the reference count of the new system encoding, decrements the reference count of the old system encoding, and returns [TCL\_OK][catch].
 
-**Tcl_GetEncodingNameFromEnvironment** provides a means for the Tcl library to report the encoding name it believes to be the correct one to use as the system encoding, based on system calls and examination of the environment suitable for the platform.  It accepts *bufPtr*, a pointer to an uninitialized or freed **Tcl_DString** and writes the encoding name to it.  The **Tcl_DStringValue** is returned.
+**Tcl\_GetEncodingNameFromEnvironment** provides a means for the Tcl library to report the encoding name it believes to be the correct one to use as the system encoding, based on system calls and examination of the environment suitable for the platform.  It accepts *bufPtr*, a pointer to an uninitialized or freed [Tcl\_DString][DString] and writes the encoding name to it.  The [Tcl\_DStringValue][DString] is returned.
 
-**Tcl_GetEncodingNames** sets the *interp* result to a list consisting of the names of all the encodings that are currently defined or can be dynamically loaded, searching the encoding path specified by **Tcl_SetEncodingSearchPath**.  This procedure does not ensure that the dynamically-loadable encoding files contain valid data, but merely that they exist.
+**Tcl\_GetEncodingNames** sets the *interp* result to a list consisting of the names of all the encodings that are currently defined or can be dynamically loaded, searching the encoding path specified by **Tcl\_SetEncodingSearchPath**.  This procedure does not ensure that the dynamically-loadable encoding files contain valid data, but merely that they exist.
 
-**Tcl_CreateEncoding** defines a new encoding and registers the C procedures that are called back to convert between the encoding and TUTF-8.  Encodings created by **Tcl_CreateEncoding** are thereafter visible in the database used by **Tcl_GetEncoding**.  Just as with the **Tcl_GetEncoding** procedure, the return value is a token that represents the encoding and can be used in subsequent calls to other encoding functions.  **Tcl_CreateEncoding** returns an encoding with a reference count of 1. If an encoding with the specified *name* already exists, then its entry in the database is replaced with the new encoding; the token for the old encoding will remain valid and continue to behave as before, but users of the new token will now call the new encoding procedures.
+**Tcl\_CreateEncoding** defines a new encoding and registers the C procedures that are called back to convert between the encoding and TUTF-8.  Encodings created by **Tcl\_CreateEncoding** are thereafter visible in the database used by **Tcl\_GetEncoding**.  Just as with the **Tcl\_GetEncoding** procedure, the return value is a token that represents the encoding and can be used in subsequent calls to other encoding functions.  **Tcl\_CreateEncoding** returns an encoding with a reference count of 1. If an encoding with the specified *name* already exists, then its entry in the database is replaced with the new encoding; the token for the old encoding will remain valid and continue to behave as before, but users of the new token will now call the new encoding procedures.
 
-The *typePtr* argument to **Tcl_CreateEncoding** contains information about the name of the encoding and the procedures that will be called to convert between this encoding and TUTF-8.  It is defined as follows:
+The *typePtr* argument to **Tcl\_CreateEncoding** contains information about the name of the encoding and the procedures that will be called to convert between this encoding and TUTF-8.  It is defined as follows:
 
 ```
 typedef struct {
@@ -214,9 +186,9 @@ typedef struct {
 } Tcl_EncodingType;
 ```
 
-The *encodingName* provides a string name for the encoding, by which it can be referred in other procedures such as **Tcl_GetEncoding**.  The *toUtfProc* refers to a callback procedure to invoke to convert text from this encoding into TUTF-8. The *fromUtfProc* refers to a callback procedure to invoke to convert text from TUTF-8 into this encoding.  The *freeProc* refers to a callback procedure to invoke when this encoding is deleted.  The *freeProc* field may be NULL.  The *clientData* contains an arbitrary one-word value passed to *toUtfProc*, *fromUtfProc*, and *freeProc* whenever they are called.  Typically, this is a pointer to a data structure containing encoding-specific information that can be used by the callback procedures.  For instance, two very similar encodings such as **ascii** and **macRoman** may use the same callback procedure, but use different values of *clientData* to control its behavior.  The *nullSize* specifies the number of zero bytes that signify end-of-string in this encoding.  It must be **1** (for single-byte or multi-byte encodings like ASCII or Shift-JIS) or **2** (for double-byte encodings like Unicode). Constant-sized encodings with 3 or more bytes per character (such as CNS11643) are not accepted.
+The *encodingName* provides a string name for the encoding, by which it can be referred in other procedures such as **Tcl\_GetEncoding**.  The *toUtfProc* refers to a callback procedure to invoke to convert text from this encoding into TUTF-8. The *fromUtfProc* refers to a callback procedure to invoke to convert text from TUTF-8 into this encoding.  The *freeProc* refers to a callback procedure to invoke when this encoding is deleted.  The *freeProc* field may be NULL.  The *clientData* contains an arbitrary one-word value passed to *toUtfProc*, *fromUtfProc*, and *freeProc* whenever they are called.  Typically, this is a pointer to a data structure containing encoding-specific information that can be used by the callback procedures.  For instance, two very similar encodings such as **ascii** and **macRoman** may use the same callback procedure, but use different values of *clientData* to control its behavior.  The *nullSize* specifies the number of zero bytes that signify end-of-string in this encoding.  It must be **1** (for single-byte or multi-byte encodings like ASCII or Shift-JIS) or **2** (for double-byte encodings like Unicode). Constant-sized encodings with 3 or more bytes per character (such as CNS11643) are not accepted.
 
-The callback procedures *toUtfProc* and *fromUtfProc* should match the type **Tcl_EncodingConvertProc**:
+The callback procedures *toUtfProc* and *fromUtfProc* should match the type **Tcl\_EncodingConvertProc**:
 
 ```
 typedef int Tcl_EncodingConvertProc(
@@ -232,22 +204,22 @@ typedef int Tcl_EncodingConvertProc(
         int *dstCharsPtr);
 ```
 
-The *toUtfProc* and *fromUtfProc* procedures are called by the **Tcl_ExternalToUtf** or **Tcl_UtfToExternal** family of functions to perform the actual conversion.  The *clientData* parameter to these procedures is the same as the *clientData* field specified to **Tcl_CreateEncoding** when the encoding was created.  The remaining arguments to the callback procedures are the same as the arguments, documented at the top, to **Tcl_ExternalToUtf** or **Tcl_UtfToExternal**, with the following exceptions.  If the *srcLen* argument to one of those high-level functions is negative, the value passed to the callback procedure will be the appropriate encoding-specific string length of *src*.  If any of the *srcReadPtr*, *dstWrotePtr*, or *dstCharsPtr* arguments to one of the high-level functions is NULL, the corresponding value passed to the callback procedure will be a non-NULL location.
+The *toUtfProc* and *fromUtfProc* procedures are called by the **Tcl\_ExternalToUtf** or **Tcl\_UtfToExternal** family of functions to perform the actual conversion.  The *clientData* parameter to these procedures is the same as the *clientData* field specified to **Tcl\_CreateEncoding** when the encoding was created.  The remaining arguments to the callback procedures are the same as the arguments, documented at the top, to **Tcl\_ExternalToUtf** or **Tcl\_UtfToExternal**, with the following exceptions.  If the *srcLen* argument to one of those high-level functions is negative, the value passed to the callback procedure will be the appropriate encoding-specific string length of *src*.  If any of the *srcReadPtr*, *dstWrotePtr*, or *dstCharsPtr* arguments to one of the high-level functions is NULL, the corresponding value passed to the callback procedure will be a non-NULL location.
 
-The callback procedure *freeProc*, if non-NULL, should match the type **Tcl_EncodingFreeProc**:
+The callback procedure *freeProc*, if non-NULL, should match the type **Tcl\_EncodingFreeProc**:
 
 ```
 typedef void Tcl_EncodingFreeProc(
         void *clientData);
 ```
 
-This *freeProc* function is called when the encoding is deleted.  The *clientData* parameter is the same as the *clientData* field specified to **Tcl_CreateEncoding** when the encoding was created.
+This *freeProc* function is called when the encoding is deleted.  The *clientData* parameter is the same as the *clientData* field specified to **Tcl\_CreateEncoding** when the encoding was created.
 
-**Tcl_GetEncodingSearchPath** and **Tcl_SetEncodingSearchPath** are called to access and set the list of filesystem directories searched for encoding data files.
+**Tcl\_GetEncodingSearchPath** and **Tcl\_SetEncodingSearchPath** are called to access and set the list of filesystem directories searched for encoding data files.
 
-The value returned by **Tcl_GetEncodingSearchPath** is the value stored by the last successful call to **Tcl_SetEncodingSearchPath**.  If no calls to **Tcl_SetEncodingSearchPath** have occurred, Tcl will compute an initial value based on the environment.  There is one encoding search path for the entire process, shared by all threads in the process.
+The value returned by **Tcl\_GetEncodingSearchPath** is the value stored by the last successful call to **Tcl\_SetEncodingSearchPath**.  If no calls to **Tcl\_SetEncodingSearchPath** have occurred, Tcl will compute an initial value based on the environment.  There is one encoding search path for the entire process, shared by all threads in the process.
 
-**Tcl_SetEncodingSearchPath** stores *searchPath* and returns **TCL_OK**, unless *searchPath* is not a valid Tcl list, which causes **TCL_ERROR** to be returned.  The elements of *searchPath* are not verified as existing readable filesystem directories.  When searching for encoding data files takes place, and non-existent or non-readable filesystem directories on the *searchPath* are silently ignored.
+**Tcl\_SetEncodingSearchPath** stores *searchPath* and returns [TCL\_OK][catch], unless *searchPath* is not a valid Tcl list, which causes [TCL\_ERROR][catch] to be returned.  The elements of *searchPath* are not verified as existing readable filesystem directories.  When searching for encoding data files takes place, and non-existent or non-readable filesystem directories on the *searchPath* are silently ignored.
 
 # Encoding files
 
@@ -265,8 +237,12 @@ Each dynamically-loadable encoding is represented as a text file.  The initial l
 : A multi-byte encoding, where one character may be either one or two bytes long. Certain bytes are lead bytes, indicating that another byte must follow and that together the two bytes represent one character.  Other bytes are not lead bytes and represent themselves.  An example is **shiftjis**, used by many Japanese computers.
 
 \[4\] **E**
-: An escape-sequence encoding, specifying that certain sequences of bytes do not represent characters, but commands that describe how following bytes should be interpreted. The rest of the lines in the file depend on the type. Cases \[1\], \[2\], and \[3\] are collectively referred to as table-based encoding files.  The lines in a table-based encoding file are in the same format as this example taken from the **shiftjis** encoding (this is not the complete file):
+: An escape-sequence encoding, specifying that certain sequences of bytes do not represent characters, but commands that describe how following bytes should be interpreted.
 
+
+The rest of the lines in the file depend on the type.
+
+Cases \[1\], \[2\], and \[3\] are collectively referred to as table-based encoding files.  The lines in a table-based encoding file are in the same format as this example taken from the **shiftjis** encoding (this is not the complete file):
 
 ```
 # Encoding file: shiftjis, multi-byte
@@ -319,29 +295,35 @@ Case \[4\] is the escape-sequence encoding file.  The lines in an this type of f
 ```
 # Encoding file: iso2022-jp, escape-driven
 E
-init                   {}
-final                  {}
-iso8859-1      \x1B(B
-jis0201                \x1B(J
-jis0208                \x1B$@
-jis0208                \x1B$B
-jis0212                \x1B$(D
-gb2312                 \x1B$A
-ksc5601                \x1B$(C
+init		{}
+final		{}
+iso8859-1	\x1B(B
+jis0201		\x1B(J
+jis0208		\x1B$@
+jis0208		\x1B$B
+jis0212		\x1B$(D
+gb2312		\x1B$A
+ksc5601		\x1B$(C
 ```
 
 In the file, the first column represents an option and the second column is the associated value.  **init** is a string to emit or expect before the first character is converted, while **final** is a string to emit or expect after the last character.  All other options are names of table-based encodings; the associated value is the escape-sequence that marks that encoding.  Tcl syntax is used for the values; in the above example, for instance, "**{}**" represents the empty string and "**\\x1B**" represents character 27.
 
-When **Tcl_GetEncoding** encounters an encoding *name* that has not been loaded, it attempts to load an encoding file called *name*__.enc__ from the **encoding** subdirectory of each directory that Tcl searches for its script library.  If the encoding file exists, but is malformed, an error message will be left in *interp*.
+When **Tcl\_GetEncoding** encounters an encoding *name* that has not been loaded, it attempts to load an encoding file called *name***.enc** from the **encoding** subdirectory of each directory that Tcl searches for its script library.  If the encoding file exists, but is malformed, an error message will be left in *interp*.
 
 # Reference count management
 
-**Tcl_GetEncodingFromObj** does not modify the reference count of its *objPtr* argument; it only reads. Note however that this function may set the interpreter result; if that is the only place that is holding a reference to the object, it will be deleted.
+**Tcl\_GetEncodingFromObj** does not modify the reference count of its *objPtr* argument; it only reads. Note however that this function may set the interpreter result; if that is the only place that is holding a reference to the object, it will be deleted.
 
-**Tcl_GetEncodingSearchPath** returns an object with a reference count of at least 1.
+**Tcl\_GetEncodingSearchPath** returns an object with a reference count of at least 1.
 
 # Profiles
 
-Encoding profiles define the manner in which errors in the encoding transforms are handled by the encoding functions. An application can specify the profile to be used by OR-ing the **flags** parameter passed to the function with at most one of **TCL_ENCODING_PROFILE_TCL8**, **TCL_ENCODING_PROFILE_STRICT** or **TCL_ENCODING_PROFILE_REPLACE**. These correspond to the **tcl8**, **strict** and **replace** profiles respectively. If none are specified, a version-dependent default profile is used. For Tcl 9.0, the default profile is **strict**.
+Encoding profiles define the manner in which errors in the encoding transforms are handled by the encoding functions. An application can specify the profile to be used by OR-ing the **flags** parameter passed to the function with at most one of **TCL\_ENCODING\_PROFILE\_TCL8**, **TCL\_ENCODING\_PROFILE\_STRICT** or **TCL\_ENCODING\_PROFILE\_REPLACE**. These correspond to the **tcl8**, **strict** and **replace** profiles respectively. If none are specified, a version-dependent default profile is used. For Tcl 9.0, the default profile is **strict**.
 
 For details about profiles, see the **PROFILES** section in the documentation of the **encoding** command.
+
+
+[binary]: ../tcl/binary.md
+[catch]: ../tcl/catch.md
+[DString]: DString.md
+[Utf]: Utf.md

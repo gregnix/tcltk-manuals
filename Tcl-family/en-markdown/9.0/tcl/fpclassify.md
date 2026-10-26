@@ -1,5 +1,6 @@
 ---
 CommandName: fpclassify
+title: fpclassify
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -21,8 +22,8 @@ fpclassify - Floating point number classification of Tcl values
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl]{.lit} [9.0]{.lit} 
-[fpclassify]{.cmd} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [tcl]{.lit} [9.0]{.lit}
+[fpclassify]{.cmd} [value]{.arg}
 :::
 
 # Description
@@ -42,8 +43,10 @@ The **fpclassify** command takes a floating point number, *value*, and returns o
 : *value* is a floating-point infinity.
 
 **nan**
-: *value* is Not-a-Number. The **fpclassify** command throws an error if value is not a floating-point value and cannot be converted to one.
+: *value* is Not-a-Number.
 
+
+The **fpclassify** command throws an error if value is not a floating-point value and cannot be converted to one.
 
 # Example
 

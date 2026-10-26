@@ -1,5 +1,6 @@
 ---
 CommandName: transfer::data::destination
+title: transfer::data::destination
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -20,26 +21,28 @@ transfer::data::destination - Data destination
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::data::destination]{.lit} [0.3]{.optlit} 
-[transfer::data::destination]{.cmd} [objectName]{.arg} [options]{.optdot} 
-[objectName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [put]{.sub} [chunk]{.arg} 
-[objectName]{.ins} [done]{.sub} 
-[objectName]{.ins} [valid]{.sub} [msgvar]{.arg} 
-[objectName]{.ins} [receive]{.sub} [channel]{.arg} [done]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::data::destination]{.lit} [0.3]{.optlit}
+[transfer::data::destination]{.cmd} [objectName]{.arg} [options...]{.optarg}
+[objectName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [put]{.sub} [chunk]{.arg}
+[objectName]{.ins} [done]{.sub}
+[objectName]{.ins} [valid]{.sub} [msgvar]{.arg}
+[objectName]{.ins} [receive]{.sub} [channel]{.arg} [done]{.arg}
 :::
 
 # Description
 
 This package provides objects mainly describing the destination of a data transfer. They are also able to initiate the reception of information from a channel into the described destination.
 
-# Api
+# API
 
 **transfer::data::destination** *objectName* ?*options*...?
-: This command creates a new data destination object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The set of supported *options* is explained in section **Options**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
+: This command creates a new data destination object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The set of supported *options* is explained in section [Options].
+
+    The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
 
 
 ## Object command
@@ -47,7 +50,7 @@ This package provides objects mainly describing the destination of a data transf
 All objects created by the **::transfer::data::destination** command have the following general form:
 
 *objectName* **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods

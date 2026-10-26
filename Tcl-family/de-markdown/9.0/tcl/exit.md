@@ -1,5 +1,6 @@
 ---
 CommandName: exit
+title: exit
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -15,21 +16,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 exit - Beendet die Anwendung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[exit]{.cmd} [returnCode]{.optarg} 
+[exit]{.cmd} [returnCode]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Beendet den Prozess und übergibt *returnCode* dem System als Exit-Status. Ist *returnCode* nicht angegeben, ist der Standardwert 0.
 
-# BEISPIELE
+# Beispiele
 
 Da der aufrufende Prozess Exit-Codes ungleich null meist als Fehler interpretiert, ist **exit** wichtig, um schwerwiegende Probleme zu signalisieren. Dieses Codefragment eignet sich in Skripten als allgemeine Fehlerfalle:
 

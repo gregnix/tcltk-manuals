@@ -1,5 +1,6 @@
 ---
 CommandName: update
+title: update
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -19,17 +20,17 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 update - Verarbeitet anstehende Events und Idle-Callbacks
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[update]{.cmd} [idletasks]{.optlit} 
+[update]{.cmd} [idletasks]{.optlit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl bringt die Anwendung „auf den neuesten Stand“, indem er wiederholt die Event-Schleife betritt, bis alle anstehenden Events (einschließlich Idle-Callbacks) verarbeitet wurden.
 
@@ -39,7 +40,7 @@ Der Befehl **update idletasks** ist in Skripten nützlich, in denen der Zustand 
 
 Der Befehl **update** ohne Optionen ist in Skripten nützlich, die lange Berechnungen ausführen, bei denen die Anwendung dennoch auf Events wie Benutzerinteraktionen reagieren soll; ruft man gelegentlich **update** auf, wird Benutzereingabe beim nächsten Aufruf von **update** verarbeitet.
 
-# BEISPIEL
+# Beispiel
 
 Berechnungen etwa eine Sekunde lang ausführen und dann beenden:
 

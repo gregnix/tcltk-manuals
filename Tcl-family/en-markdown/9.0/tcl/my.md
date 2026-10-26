@@ -1,5 +1,6 @@
 ---
 CommandName: my
+title: my
 ManualSection: n
 Version: 0.1
 TclPart: TclOO
@@ -25,37 +26,23 @@ my, myclass - Invoke any method of current object or its class
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[my]{.cmd} [methodName]{.arg} [arg]{.optdot} 
-[myclass]{.cmd} [methodName]{.arg} [arg]{.optdot} 
+[my]{.cmd} [methodName]{.arg} [arg]{.optdot}
+[myclass]{.cmd} [methodName]{.arg} [arg]{.optdot}
 :::
 
 # Description
 
-The **my** command is used to allow methods of objects to invoke methods of the object (or its class),
+The **my** command is used to allow methods of objects to invoke methods of the object (or its class), [and the **myclass** command is used to allow methods of objects to invoke methods of the current class of the object *as an object*.]{version="TIP478"} In particular, the set of valid values for *methodName* is the set of all methods supported by an object and its superclasses, including those that are not exported [and private methods of the object or class when used within another method defined by that object or class.]{version="TIP500"}
 
-::: {.info -version="TIP478"}
-and the **myclass** command is used to allow methods of objects to invoke methods of the current class of the object *as an object*.
-:::
-
-In particular, the set of valid values for *methodName* is the set of all methods supported by an object and its superclasses, including those that are not exported
-
-::: {.info -version="TIP500"}
-and private methods of the object or class when used within another method defined by that object or class.
-:::
-
-The object upon which the method is invoked via **my** is the one that owns the namespace that the **my** command is contained in initially (**NB:** the link remains if the command is renamed), which is the currently invoked object by default.
-
-::: {.info -version="TIP478"}
-Similarly, the object on which the method is invoked via **myclass** is the object that is the current class of the object that owns the namespace that the **myclass** command is contained in initially. As with **my**, the link remains even if the command is renamed into another namespace, and defaults to being the manufacturing class of the current object.
-:::
+The object upon which the method is invoked via **my** is the one that owns the namespace that the **my** command is contained in initially (**NB:** the link remains if the command is renamed), which is the currently invoked object by default. [Similarly, the object on which the method is invoked via **myclass** is the object that is the current class of the object that owns the namespace that the **myclass** command is contained in initially. As with **my**, the link remains even if the command is renamed into another namespace, and defaults to being the manufacturing class of the current object.]{version="TIP478"}
 
 Each object has its own **my** and **myclass** commands, contained in its instance namespace.
 
 # Examples
 
-This example shows basic use of **my** to use the **variables** method of the **oo::object** class, which is not publicly visible by default:
+This example shows basic use of **my** to use the **variables** method of the [oo::object][object] class, which is not publicly visible by default:
 
 ```
 oo::class create c {
@@ -71,7 +58,7 @@ o count              → prints "2"
 o count              → prints "3"
 ```
 
-This example shows how you can use **my** to make callbacks to private methods from outside the object (from a **trace**), using **namespace code** to enter the correct context. (See the **callback** command for the recommended way of doing this.)
+This example shows how you can use **my** to make callbacks to private methods from outside the object (from a [trace]), using [namespace code][namespace] to enter the correct context. (See the [callback] command for the recommended way of doing this.)
 
 ```
 oo::class create HasCallback {
@@ -91,9 +78,7 @@ trace add variable xyz write [$o makeCallback]
 set xyz "called"     → prints "callback: xyz {} write"
 ```
 
-::: {.info -version="TIP478"}
-This example shows how to access a private method of a class from an instance of that class. (See the **classmethod** declaration in **oo::define** for a higher level interface for doing this.)
-:::
+[This example shows how to access a private method of a class from an instance of that class. (See the **classmethod** declaration in [oo::define][define] for a higher level interface for doing this.)]{version="TIP478"}
 
 ```
 oo::class create CountedSteps {
@@ -120,3 +105,10 @@ x advanceTwice       → prints "in ::x step A: 5"
 y advanceTwice       → prints "in ::y step A: 7"
                      → prints "in ::y step B: 8"
 ```
+
+
+[callback]: callback.md
+[define]: define.md
+[namespace]: namespace.md
+[object]: object.md
+[trace]: trace.md

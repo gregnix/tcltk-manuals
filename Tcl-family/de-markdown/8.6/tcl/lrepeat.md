@@ -1,5 +1,6 @@
 ---
 CommandName: lrepeat
+title: lrepeat
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -18,23 +19,21 @@ Copyright:
  - Copyright (c) 2003 Simon Geard. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lrepeat - Erzeugt eine Liste durch Wiederholen von Elementen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lrepeat]{.cmd} [count]{.arg} [element]{.optdot} 
+[lrepeat]{.cmd} [count]{.arg} [element]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **lrepeat** erzeugt eine Liste der Größe *count × Anzahl der Elemente*, indem die Elementfolge *element ...* *count*-mal wiederholt wird. *count* muss eine nicht-negative Ganzzahl sein; *element* kann ein beliebiger Tcl-Wert sein.
+Der Befehl **lrepeat** erzeugt eine Liste der Größe *count × Anzahl der Elemente*, indem die Elementfolge *element ...* *count*-mal wiederholt wird. *count* muss eine nicht-negative Ganzzahl sein; *element* kann ein beliebiger Tcl-Wert sein. Beachten Sie, dass **lrepeat 1 element ...** identisch zu **list element ...** ist.
 
-Beachten Sie, dass **lrepeat 1 element ...** identisch zu **list element ...** ist.
-
-# BEISPIELE
+# Beispiele
 
 ```
 lrepeat 3 a

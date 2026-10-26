@@ -1,5 +1,6 @@
 ---
 CommandName: defer
+title: defer
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -18,12 +19,12 @@ defer - Defered execution
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [defer]{.lit} [1.1]{.optlit} 
-[::defer::defer]{.cmd} [command]{.optarg} [arg1]{.optarg} [arg2]{.optarg} [argN]{.optdot} 
-[::defer::with]{.cmd} [variableList]{.arg} [script]{.arg} 
-[::defer::autowith]{.cmd} [script]{.arg} 
-[::defer::cancel]{.cmd} [id]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [defer]{.lit} [1.1]{.optlit}
+[::defer::defer]{.cmd} [command]{.optarg} [arg1]{.optarg} [arg2]{.optarg} [argN...]{.optarg}
+[::defer::with]{.cmd} [variableList]{.arg} [script]{.arg}
+[::defer::autowith]{.cmd} [script]{.arg}
+[::defer::cancel]{.cmd} [id...]{.optarg}
 :::
 
 # Description
@@ -57,8 +58,7 @@ The **defer** commands allow a developer to schedule actions to happen as part o
 
 # References
 
-**\[1\]**
-: 
+1. see below ...
 
 
 # Authors

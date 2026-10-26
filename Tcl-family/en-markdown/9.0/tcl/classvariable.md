@@ -1,5 +1,6 @@
 ---
 CommandName: classvariable
+title: classvariable
 ManualSection: n
 Version: 0.3
 TclPart: TclOO
@@ -27,16 +28,16 @@ classvariable - Create link from local variable to variable in class
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[classvariable]{.cmd} [variableName]{.arg} [...]{.optdot} 
+[classvariable]{.cmd} [variableName]{.arg} [...]{.optarg}
 :::
 
 # Description
 
 The **classvariable** command is available within methods. It takes a series of one or more variable names and makes them available in the method's scope; those variable names must not be qualified and must not refer to array elements. The originating scope for the variables is the namespace of the class that the method was defined by. In other words, the referenced variables are shared between all instances of that class.
 
-Note that this command is equivalent to the command **typevariable** provided by the snit package in tcllib for approximately the same purpose. If used in a method defined directly on a class instance (e.g., through the **oo::objdefine** **method** definition) this is very much like just using:
+Note that this command is equivalent to the command **typevariable** provided by the snit package in tcllib for approximately the same purpose. If used in a method defined directly on a class instance (e.g., through the [oo::objdefine][define] **method** definition) this is very much like just using:
 
 ```
 namespace upvar [namespace current] $var $var
@@ -76,3 +77,6 @@ $b report
 $c report
         → This is instance 3 of 3
 ```
+
+
+[define]: define.md

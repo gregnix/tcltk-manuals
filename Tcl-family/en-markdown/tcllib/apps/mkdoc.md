@@ -1,5 +1,6 @@
 ---
 CommandName: mkdoc
+title: mkdoc
 ManualSection: n
 Version: 0.7.0
 TclPart: tcllib
@@ -15,10 +16,10 @@ mkdoc - Source code documentation extractor/converter application
 # Synopsis
 
 ::: {.synopsis} :::
-[mkdoc]{.cmd} [--help]{.sub} 
-[mkdoc]{.cmd} [--version]{.sub} 
-[mkdoc]{.cmd} [--license]{.sub} 
-[mkdoc]{.cmd} [input]{.arg} [output]{.arg} [--css cssfile]{.optarg} 
+[mkdoc]{.cmd} [--help]{.lit}
+[mkdoc]{.cmd} [--version]{.lit}
+[mkdoc]{.cmd} [--license]{.lit}
+[mkdoc]{.cmd} [input]{.arg} [output]{.arg} [[--css]{.lit} [cssfile]{.arg}]{.optarg}
 :::
 
 # Description
@@ -37,7 +38,15 @@ This document describes **mkdoc**, an application to extract documentation embed
 : The application prints its license to standard output and exits.
 
 **mkdoc** *input* *output* ?**--css** *cssfile*?
-: The application reads the *input* file, extracts the embedded documentation, and writes it to the *output* file. If the output file is not a "*.md*" file the extracted documentation is converted to HTML before being written. When generating and writing HTML the default CSS stylesheet can be overridden by specifying the path to a custom stylesheet via option **--css**. If the input file is a "*.md*" file it is expected to contain Markdown as-is, instead of Markdown embedded into code. On the other side, when the file is considered code then the documentation is expected to be contained in all lines starting with the marker **#'**. For script languages like Tcl the **#** character of this marker means that the documentation is contained in the so-flagged comments. For other languages the marker and documentation may have to be embedded into multi-line comments.
+: The application reads the *input* file, extracts the embedded documentation, and writes it to the *output* file.
+
+    If the output file is not a "*.md*" file the extracted documentation is converted to HTML before being written.
+
+    When generating and writing HTML the default CSS stylesheet can be overridden by specifying the path to a custom stylesheet via option **--css**.
+
+    If the input file is a "*.md*" file it is expected to contain Markdown as-is, instead of Markdown embedded into code.
+
+    On the other side, when the file is considered code then the documentation is expected to be contained in all lines starting with the marker **#'**. For script languages like Tcl the **#** character of this marker means that the documentation is contained in the so-flagged comments. For other languages the marker and documentation may have to be embedded into multi-line comments.
 
 
 # Examples

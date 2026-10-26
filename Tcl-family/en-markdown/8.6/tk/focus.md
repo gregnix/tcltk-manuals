@@ -1,5 +1,6 @@
 ---
 CommandName: focus
+title: focus
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -22,9 +23,9 @@ focus - Manage the input focus
 # Synopsis
 
 ::: {.synopsis} :::
-[focus]{.cmd} 
-[focus]{.cmd} [window]{.arg} 
-[focus]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[focus]{.cmd}
+[focus]{.cmd} [window]{.arg}
+[focus]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -33,7 +34,7 @@ The **focus** command is used to manage the Tk input focus. At any given time, o
 
 Tk remembers one focus window for each top-level (the most recent descendant of that top-level to receive the focus);  when the window manager gives the focus to a top-level, Tk automatically redirects it to the remembered window.  Within a top-level Tk uses an *explicit* focus model by default.  Moving the mouse within a top-level does not normally change the focus;  the focus changes only when a widget decides explicitly to claim the focus (e.g., because of a button click), or when the user types a key such as Tab that moves the focus.
 
-The Tcl procedure **tk_focusFollowsMouse** may be invoked to create an *implicit* focus model:  it reconfigures Tk so that the focus is set to a window whenever the mouse enters it. The Tcl procedures **tk_focusNext** and **tk_focusPrev** implement a focus order among the windows of a top-level;  they are used in the default bindings for Tab and Shift-Tab, among other things.
+The Tcl procedure [tk\_focusFollowsMouse][focusNext] may be invoked to create an *implicit* focus model:  it reconfigures Tk so that the focus is set to a window whenever the mouse enters it. The Tcl procedures [tk\_focusNext][focusNext] and [tk\_focusPrev][focusNext] implement a focus order among the windows of a top-level;  they are used in the default bindings for Tab and Shift-Tab, among other things.
 
 The **focus** command can take any of the following forms:
 
@@ -82,3 +83,6 @@ bind .after <Shift-Tab> {
 }
 focus .before
 ```
+
+
+[focusNext]: focusNext.md

@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::otp
+title: tcl::transform::otp
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -27,10 +28,10 @@ tcl::transform::otp - Encryption via one-time pad
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::otp]{.lit} [1.1]{.optlit} 
-[::tcl::transform::otp]{.cmd} [chan]{.arg} [keychanw]{.arg} [keychanr]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::otp]{.lit} [1.1]{.optlit}
+[::tcl::transform::otp]{.cmd} [chan]{.arg} [keychanw]{.arg} [keychanr]{.arg}
 :::
 
 # Description
@@ -41,10 +42,12 @@ A related transformations in this module is **tcl::transform::rot**.
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::otp** *chan* *keychanw* *keychanr*
-: This command creates a one-time pad based encryption transformation on top of the channel *chan* and returns its handle. The two channels *keychanw* and *keychanr* contain the one-time pads for the write and read directions, respectively. Their contents are reads and xored with the bytes written to and read from the channel.
+: This command creates a one-time pad based encryption transformation on top of the channel *chan* and returns its handle.
+
+    The two channels *keychanw* and *keychanr* contain the one-time pads for the write and read directions, respectively. Their contents are reads and xored with the bytes written to and read from the channel.
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: asn
+title: asn
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -26,57 +27,57 @@ asn - ASN.1 BER encoder/decoder
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [asn]{.lit} [0.8.5]{.optlit} 
-[::asn::asnSequence]{.cmd} [evalue]{.optdot} 
-[::asn::asnSequenceFromList]{.cmd} [elist]{.arg} 
-[::asn::asnSet]{.cmd} [evalue]{.optdot} 
-[::asn::asnSetFromList]{.cmd} [elist]{.arg} 
-[::asn::asnApplicationConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnApplication]{.cmd} [appNumber]{.arg} [data]{.arg} 
-[::asn::asnChoice]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnChoiceConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnInteger]{.cmd} [number]{.arg} 
-[::asn::asnEnumeration]{.cmd} [number]{.arg} 
-[::asn::asnBoolean]{.cmd} [bool]{.arg} 
-[::asn::asnContext]{.cmd} [context]{.arg} [data]{.arg} 
-[::asn::asnContextConstr]{.cmd} [context]{.arg} [evalue]{.optdot} 
-[::asn::asnObjectIdentifier]{.cmd} [idlist]{.arg} 
-[::asn::asnUTCTime]{.cmd} [utcstring]{.arg} 
-[::asn::asnNull]{.cmd} 
-[::asn::asnBitString]{.cmd} [string]{.arg} 
-[::asn::asnOctetString]{.cmd} [string]{.arg} 
-[::asn::asnNumericString]{.cmd} [string]{.arg} 
-[::asn::asnPrintableString]{.cmd} [string]{.arg} 
-[::asn::asnIA5String]{.cmd} [string]{.arg} 
-[::asn::asnBMPString]{.cmd} [string]{.arg} 
-[::asn::asnUTF8String]{.cmd} [string]{.arg} 
-[::asn::asnString]{.cmd} [string]{.arg} 
-[::asn::defaultStringType]{.cmd} [type]{.optarg} 
-[::asn::asnPeekByte]{.cmd} [dataVar]{.arg} [byteVar]{.arg} 
-[::asn::asnGetLength]{.cmd} [dataVar]{.arg} [lengthVar]{.arg} 
-[::asn::asnGetResponse]{.cmd} [chan]{.arg} [dataVar]{.arg} 
-[::asn::asnGetInteger]{.cmd} [dataVar]{.arg} [intVar]{.arg} 
-[::asn::asnGetEnumeration]{.cmd} [dataVar]{.arg} [enumVar]{.arg} 
-[::asn::asnGetOctetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} [typeVar]{.optarg} 
-[::asn::asnGetNumericString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetPrintableString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetIA5String]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetBMPString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetUTF8String]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetUTCTime]{.cmd} [dataVar]{.arg} [utcVar]{.arg} 
-[::asn::asnGetBitString]{.cmd} [dataVar]{.arg} [bitsVar]{.arg} 
-[::asn::asnGetObjectIdentifier]{.cmd} [dataVar]{.arg} [oidVar]{.arg} 
-[::asn::asnGetBoolean]{.cmd} [dataVar]{.arg} [boolVar]{.arg} 
-[::asn::asnGetNull]{.cmd} [dataVar]{.arg} 
-[::asn::asnGetSequence]{.cmd} [dataVar]{.arg} [sequenceVar]{.arg} 
-[::asn::asnGetSet]{.cmd} [dataVar]{.arg} [setVar]{.arg} 
-[::asn::asnGetApplication]{.cmd} [dataVar]{.arg} [appNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg} 
-[::asn::asnGetContext]{.cmd} [dataVar]{.arg} [contextNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg} 
-[::asn::asnPeekTag]{.cmd} [dataVar]{.arg} [tagVar]{.arg} [tagtypeVar]{.arg} [constrVar]{.arg} 
-[::asn::asnTag]{.cmd} [tagnumber]{.arg} [class]{.optarg} [tagstyle]{.optarg} 
-[::asn::asnRetag]{.cmd} [dataVar]{.arg} [newTag]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [asn]{.lit} [0.8.5]{.optlit}
+[::asn::asnSequence]{.cmd} [evalue]{.optdot}
+[::asn::asnSequenceFromList]{.cmd} [elist]{.arg}
+[::asn::asnSet]{.cmd} [evalue]{.optdot}
+[::asn::asnSetFromList]{.cmd} [elist]{.arg}
+[::asn::asnApplicationConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnApplication]{.cmd} [appNumber]{.arg} [data]{.arg}
+[::asn::asnChoice]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnChoiceConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnInteger]{.cmd} [number]{.arg}
+[::asn::asnEnumeration]{.cmd} [number]{.arg}
+[::asn::asnBoolean]{.cmd} [bool]{.arg}
+[::asn::asnContext]{.cmd} [context]{.arg} [data]{.arg}
+[::asn::asnContextConstr]{.cmd} [context]{.arg} [evalue]{.optdot}
+[::asn::asnObjectIdentifier]{.cmd} [idlist]{.arg}
+[::asn::asnUTCTime]{.cmd} [utcstring]{.arg}
+[::asn::asnNull]{.cmd}
+[::asn::asnBitString]{.cmd} [string]{.arg}
+[::asn::asnOctetString]{.cmd} [string]{.arg}
+[::asn::asnNumericString]{.cmd} [string]{.arg}
+[::asn::asnPrintableString]{.cmd} [string]{.arg}
+[::asn::asnIA5String]{.cmd} [string]{.arg}
+[::asn::asnBMPString]{.cmd} [string]{.arg}
+[::asn::asnUTF8String]{.cmd} [string]{.arg}
+[::asn::asnString]{.cmd} [string]{.arg}
+[::asn::defaultStringType]{.cmd} [type]{.optarg}
+[::asn::asnPeekByte]{.cmd} [dataVar]{.arg} [byteVar]{.arg}
+[::asn::asnGetLength]{.cmd} [dataVar]{.arg} [lengthVar]{.arg}
+[::asn::asnGetResponse]{.cmd} [chan]{.arg} [dataVar]{.arg}
+[::asn::asnGetInteger]{.cmd} [dataVar]{.arg} [intVar]{.arg}
+[::asn::asnGetEnumeration]{.cmd} [dataVar]{.arg} [enumVar]{.arg}
+[::asn::asnGetOctetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} [typeVar]{.optarg}
+[::asn::asnGetNumericString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetPrintableString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetIA5String]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetBMPString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetUTF8String]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetUTCTime]{.cmd} [dataVar]{.arg} [utcVar]{.arg}
+[::asn::asnGetBitString]{.cmd} [dataVar]{.arg} [bitsVar]{.arg}
+[::asn::asnGetObjectIdentifier]{.cmd} [dataVar]{.arg} [oidVar]{.arg}
+[::asn::asnGetBoolean]{.cmd} [dataVar]{.arg} [boolVar]{.arg}
+[::asn::asnGetNull]{.cmd} [dataVar]{.arg}
+[::asn::asnGetSequence]{.cmd} [dataVar]{.arg} [sequenceVar]{.arg}
+[::asn::asnGetSet]{.cmd} [dataVar]{.arg} [setVar]{.arg}
+[::asn::asnGetApplication]{.cmd} [dataVar]{.arg} [appNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg}
+[::asn::asnGetContext]{.cmd} [dataVar]{.arg} [contextNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg}
+[::asn::asnPeekTag]{.cmd} [dataVar]{.arg} [tagVar]{.arg} [tagtypeVar]{.arg} [constrVar]{.arg}
+[::asn::asnTag]{.cmd} [tagnumber]{.arg} [class]{.optarg} [tagstyle]{.optarg}
+[::asn::asnRetag]{.cmd} [dataVar]{.arg} [newTag]{.arg}
 :::
 
 # Description
@@ -85,11 +86,11 @@ The **asn** package provides *partial* de- and encoder commands for BER encoded 
 
 ASN.1 is a standard *Abstract Syntax Notation*, and BER are its *Basic Encoding Rules*.
 
-See *http://asn1.elibel.tm.fr/en/standards/index.htm* for more information about the standard.
+See <http://asn1.elibel.tm.fr/en/standards/index.htm> for more information about the standard.
 
-Also see *http://luca.ntop.org/Teaching/Appunti/asn1.html* for *A Layman's Guide to a Subset of ASN.1, BER, and DER*, an RSA Laboratories Technical Note by Burton S. Kaliski Jr. (Revised November 1, 1993). A text version of this note is part of the module sources and should be read by any implementor.
+Also see <http://luca.ntop.org/Teaching/Appunti/asn1.html> for *A Layman's Guide to a Subset of ASN.1, BER, and DER*, an RSA Laboratories Technical Note by Burton S. Kaliski Jr. (Revised November 1, 1993). A text version of this note is part of the module sources and should be read by any implementor.
 
-# Api
+# API
 
 ## Encoder
 
@@ -173,11 +174,9 @@ Also see *http://luca.ntop.org/Teaching/Appunti/asn1.html* for *A Layman's Guide
 
 General notes:
 
-**\[1\]**
-: Nearly all getter (decoder) commands take two arguments. These arguments are variable names, *except* for **::asn::asnGetResponse**. The *dataVar* variable contains the encoded ASN values to decode. When a value getter (decoder) is called, the value is stored in the second variable, and the remaining input is stored back in the first *dataVar* variable.
+1. Nearly all getter (decoder) commands take two arguments. These arguments are variable names, *except* for **::asn::asnGetResponse**. The *dataVar* variable contains the encoded ASN values to decode. When a value getter (decoder) is called, the value is stored in the second variable, and the remaining input is stored back in the first *dataVar* variable.
 
-**\[2\]**
-: When getting (decoding), the *dataVar* variable is modified first, before the decoded value is stored in the second variable. This means that if both arguments refer to the same variable, it will always contain the decoded value after the call, and not the remainder of the input.
+2. When getting (decoding), the *dataVar* variable is modified first, before the decoded value is stored in the second variable. This means that if both arguments refer to the same variable, it will always contain the decoded value after the call, and not the remainder of the input.
 
 
 **::asn::asnPeekByte** *dataVar* *byteVar*
@@ -199,7 +198,15 @@ General notes:
 : Decodes the string value encoded at the start of the data stored in the variable called *dataVar*. The string is stored in the variable called *stringVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded string an error is thrown.
 
 **::asn::asnGetString** *dataVar* *stringVar* ?*typeVar*?
-: Decodes the user-readable string value encoded at the start of the data stored in the variable called *dataVar*. The string is stored in the variable called *stringVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded string an error is thrown. This is a convenience function which is able to automatically distinguish all supported ASN.1 string types and convert the input value appropriately. See **::asn::asnGetPrintableString**, **::asnGetIA5String**, etc., below for the type-specific conversion commands. If the optional third argument *typeVar* is supplied, then the incoming string’s type is stored in the variable it names. The function throws the error "Invalid command name asnGetSome**UnsupportedString**" if the unsupported string type **Unsupported** is encountered. You can create the appropriate function "asn::asnGetSome**UnsupportedString**" in your application if neccessary.
+: Decodes the user-readable string value encoded at the start of the data stored in the variable called *dataVar*. The string is stored in the variable called *stringVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded string an error is thrown.
+
+    This is a convenience function which is able to automatically distinguish all supported ASN.1 string types and convert the input value appropriately.
+
+    See **::asn::asnGetPrintableString**, **::asnGetIA5String**, etc., below for the type-specific conversion commands.
+
+    If the optional third argument *typeVar* is supplied, then the incoming string’s type is stored in the variable it names.
+
+    The function throws the error "Invalid command name asnGetSome**UnsupportedString**" if the unsupported string type **Unsupported** is encountered. You can create the appropriate function "asn::asnGetSome**UnsupportedString**" in your application if neccessary.
 
 **::asn::asnGetNumericString** *dataVar* *stringVar*
 : Decodes the numeric string value encoded at the start of the data stored in the variable called *dataVar*. The numeric string is stored in the variable called *stringVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded numeric string an error is thrown.
@@ -232,16 +239,32 @@ General notes:
 : Decodes the NULL value encoded at the start of the data stored in the variable called *dataVar* and removes the decoded bytes from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded NULL value an error is thrown.
 
 **::asn::asnGetSequence** *dataVar* *sequenceVar*
-: Decodes the ASN sequence value encoded at the start of the data stored in the variable called *dataVar*. The ASN sequence is stored in the variable called *sequenceVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN sequence an error is thrown. The value in *sequenceVar* is encoded binary and must be further decoded according to the definition of the sequence, using the other decoder “asnGet…” commands.
+: Decodes the ASN sequence value encoded at the start of the data stored in the variable called *dataVar*. The ASN sequence is stored in the variable called *sequenceVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN sequence an error is thrown.
+
+    The value in *sequenceVar* is encoded binary and must be further decoded according to the definition of the sequence, using the other decoder “asnGet…” commands.
 
 **::asn::asnGetSet** *dataVar* *setVar*
-: Decodes the ASN set value encoded at the start of the data stored in the variable called *dataVar*. The ASN set is stored in the variable called *setVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN set an error is thrown. The value in *setVar* is encoded binary and must be further decoded according to the definition of the sequence, using the other decoder “asnGet…” commands.
+: Decodes the ASN set value encoded at the start of the data stored in the variable called *dataVar*. The ASN set is stored in the variable called *setVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN set an error is thrown.
+
+    The value in *setVar* is encoded binary and must be further decoded according to the definition of the sequence, using the other decoder “asnGet…” commands.
 
 **::asn::asnGetApplication** *dataVar* *appNumberVar* ?*contentVar*? ?*encodingTypeVar*?
-: Decodes the ASN application construct value encoded at the start of the data stored in the variable called *dataVar*. The ASN application construct’s ID is stored in the variable called *appNumberVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN application construct an error is thrown. If a *contentVar* is specified, then the command places all data associated with the ASN application construct into the named variable, in the binary form which can be processed using the this package’s decoder commands. If a *encodingTypeVar* is specified, then that variable is set to **1** if the encoding is constructed and **0** if it is primitive. Without the optional arguments, it is the responsibility of the caller to decode the remainder of the ASN application construct based on the ID retrieved by this command, using the package’s decoder commands.
+: Decodes the ASN application construct value encoded at the start of the data stored in the variable called *dataVar*. The ASN application construct’s ID is stored in the variable called *appNumberVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN application construct an error is thrown.
+
+    If a *contentVar* is specified, then the command places all data associated with the ASN application construct into the named variable, in the binary form which can be processed using the this package’s decoder commands.
+
+    If a *encodingTypeVar* is specified, then that variable is set to **1** if the encoding is constructed and **0** if it is primitive.
+
+    Without the optional arguments, it is the responsibility of the caller to decode the remainder of the ASN application construct based on the ID retrieved by this command, using the package’s decoder commands.
 
 **::asn::asnGetContext** *dataVar* *contextNumberVar* ?*contentVar*? ?*encodingTypeVar*?
-: Decodes the ASN context tag construct encoded at the start of the data stored in the variable called *dataVar*. The ASN context tag construct’s ID is stored in the variable called *contextNumberVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN context tag construct an error is thrown. If a *contentVar* is specified, then the command places all data associated with the ASN context tag construct into the named variable, in the binary form which can be processed using the this package’s decoder commands. If a *encodingTypeVar* is specified, then that variable is set to **1** if the encoding is constructed and **0** if it is primitive. Without the optional arguments, it is the responsibility of the caller to decode the remainder of the ASN context tag construct based on the ID retrieved by this command, using the package’s decoder commands.
+: Decodes the ASN context tag construct encoded at the start of the data stored in the variable called *dataVar*. The ASN context tag construct’s ID is stored in the variable called *contextNumberVar*, and the decoded bytes are removed from the start of the data in *dataVar*, ready for the next value to be decoded. If the value at the start is not an encoded ASN context tag construct an error is thrown.
+
+    If a *contentVar* is specified, then the command places all data associated with the ASN context tag construct into the named variable, in the binary form which can be processed using the this package’s decoder commands.
+
+    If a *encodingTypeVar* is specified, then that variable is set to **1** if the encoding is constructed and **0** if it is primitive.
+
+    Without the optional arguments, it is the responsibility of the caller to decode the remainder of the ASN context tag construct based on the ID retrieved by this command, using the package’s decoder commands.
 
 
 ## Handling tags

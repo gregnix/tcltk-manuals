@@ -1,5 +1,6 @@
 ---
 CommandName: shtmlview_mkdoc
+title: shtmlview_mkdoc
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -16,13 +17,13 @@ Copyright:
 
 # Name
 
-shtmlview_mkdoc - shtmlview extension adding support for mkdoc markup
+shtmlview\_mkdoc - shtmlview extension adding support for mkdoc markup
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [mkdoc::mkdoc]{.lit} 
-[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} 
+[package]{.cmd} [require]{.sub} [mkdoc::mkdoc]{.lit}
+[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit}
 :::
 
 # Description
@@ -35,12 +36,9 @@ The package does not export any kind of command, class, etc.
 
 # Changelog
 
-**2022-04-07 version 0.1**
-: 
+2022-04-07 version 0.1
+: - Initial implementation
 
-
-**•**
-: Initial implementation
 
 
 # Bugs, ideas, feedback

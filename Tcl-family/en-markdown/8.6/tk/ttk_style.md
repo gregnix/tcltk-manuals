@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::style
+title: ttk::style
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -24,12 +25,12 @@ ttk::style - Manipulate style database
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::style]{.cmd} [option]{.arg} [args]{.optarg} 
+[ttk::style]{.cmd} [option]{.arg} [args]{.optarg}
 :::
 
 # Notes
 
-See also the Tcl'2004 conference presentation, available at https://tktable.sourceforge.net/tile/tile-tcl2004.pdf
+See also the Tcl'2004 conference presentation, available at <https://tktable.sourceforge.net/tile/tile-tcl2004.pdf>
 
 # Definitions
 
@@ -45,21 +46,20 @@ The **ttk::style** command takes the following arguments:
 : Sets the default value of the specified option(s) in *style*.
 
 **ttk::style element** *args*
-: 
+: see below ...
 
+    **ttk::style element create** *elementName* *type* ?*args...*?
+    : Creates a new element in the current theme of type *type*. The only cross-platform built-in element type is *image* (see [ttk\_image][ttk_image](n)) but themes may define other element types (see **Ttk\_RegisterElementFactory**). On suitable versions of Windows an element factory is registered to create Windows theme elements (see [ttk\_vsapi][ttk_vsapi](n)).
 
-**ttk::style element create** *elementName* *type* ?*args...*?
-: Creates a new element in the current theme of type *type*. The only cross-platform built-in element type is *image* (see **ttk_image**(n)) but themes may define other element types (see **Ttk_RegisterElementFactory**). On suitable versions of Windows an element factory is registered to create Windows theme elements (see **ttk_vsapi**(n)).
+    **ttk::style element names**
+    : Returns the list of elements defined in the current theme.
 
-**ttk::style element names**
-: Returns the list of elements defined in the current theme.
-
-**ttk::style element options** *element*
-: Returns the list of *element*'s options.
+    **ttk::style element options** *element*
+    : Returns the list of *element*'s options.
 
 
 **ttk::style layout** *style* ?*layoutSpec*?
-: Define the widget layout for style *style*. See **LAYOUTS** below for the format of *layoutSpec*. If *layoutSpec* is omitted, return the layout specification for style *style*.
+: Define the widget layout for style *style*. See [Layouts] below for the format of *layoutSpec*. If *layoutSpec* is omitted, return the layout specification for style *style*.
 
 **ttk::style lookup** *style* *-option* ?*state* ?*default*??
 : Returns the value specified for *-option* in style *style* in state *state*, using the standard lookup rules for element options. *state* is a list of state names; if omitted, it defaults to all bits off (the "normal" state). If the *default* argument is present, it is used as a fallback value in case no specification for *-option* is found.
@@ -68,25 +68,25 @@ The **ttk::style** command takes the following arguments:
 : Sets dynamic values of the specified option(s) in *style*. Each *statespec / value* pair is examined in order; the value corresponding to the first matching *statespec* is used.
 
 **ttk::style theme** *args*
-: 
+: see below ...
 
+    **ttk::style theme create** *themeName* ?**-parent** *basedon*? ?**-settings** *script...* ?
+    : Creates a new theme.  It is an error if *themeName* already exists. If **-parent** is specified, the new theme will inherit styles, elements, and layouts from the parent theme *basedon*. If **-settings** is present, *script* is evaluated in the context of the new theme as per **ttk::style theme settings**.
 
-**ttk::style theme create** *themeName* ?**-parent** *basedon*? ?**-settings** *script...* ?
-: Creates a new theme.  It is an error if *themeName* already exists. If **-parent** is specified, the new theme will inherit styles, elements, and layouts from the parent theme *basedon*. If **-settings** is present, *script* is evaluated in the context of the new theme as per **ttk::style theme settings**.
+    **ttk::style theme names**
+    : Returns a list of all known themes.
 
-**ttk::style theme names**
-: Returns a list of all known themes.
+    **ttk::style theme settings** *themeName* *script*
+    : Temporarily sets the current theme to *themeName*, evaluate *script*, then restore the previous theme. Typically *script* simply defines styles and elements, though arbitrary Tcl code may appear.
 
-**ttk::style theme settings** *themeName* *script*
-: Temporarily sets the current theme to *themeName*, evaluate *script*, then restore the previous theme. Typically *script* simply defines styles and elements, though arbitrary Tcl code may appear.
+    **ttk::style theme use** ?*themeName*?
+    : Without an argument the result is the name of the current theme. Otherwise this command sets the current theme to *themeName*, and refreshes all widgets.
 
-**ttk::style theme use** ?*themeName*?
-: Without an argument the result is the name of the current theme. Otherwise this command sets the current theme to *themeName*, and refreshes all widgets.
 
 
 # Layouts
 
-A *layout* specifies a list of elements, each followed by one or more options specifying how to arrange the element. The layout mechanism uses a simplified version of the **pack** geometry manager: given an initial cavity, each element is allocated a parcel. Then the parcel actually used by the element is adjusted within the allocated parcel. Valid options are:
+A *layout* specifies a list of elements, each followed by one or more options specifying how to arrange the element. The layout mechanism uses a simplified version of the [pack] geometry manager: given an initial cavity, each element is allocated a parcel. Then the parcel actually used by the element is adjusted within the allocated parcel. Valid options are:
 
 **-children {** *sublayout...* **}**
 : Specifies a list of elements to place inside the element.
@@ -97,9 +97,11 @@ A *layout* specifies a list of elements, each followed by one or more options sp
 **-side** *side*
 : Specifies which side of the cavity to place the element; one of **left**, **right**, **top**, or **bottom**. For instance, **-side top** allocates the parcel along the top of the cavity having width and height respectively the width of the cavity and the height of the element. If omitted, the allocated parcel is the entire cavity (same effect as **-expand** 1).
 
-**-sticky** **\[**_nswe_**\]**
-: Specifies the actual parcel position and size inside the allocated parcel. If specified as an empty string then the actual parcel is centered in the allocated parcel. Default is **nswe**. For example:
+**-sticky** **\[***nswe***\]**
+: Specifies the actual parcel position and size inside the allocated parcel. If specified as an empty string then the actual parcel is centered in the allocated parcel. Default is **nswe**.
 
+
+For example:
 
 ```
 ttk::style layout Horizontal.TScrollbar {
@@ -110,3 +112,8 @@ ttk::style layout Horizontal.TScrollbar {
     }
 }
 ```
+
+
+[pack]: pack.md
+[ttk_image]: ttk_image.md
+[ttk_vsapi]: ttk_vsapi.md

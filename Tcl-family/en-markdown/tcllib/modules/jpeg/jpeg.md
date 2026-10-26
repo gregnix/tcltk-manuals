@@ -1,5 +1,6 @@
 ---
 CommandName: jpeg
+title: jpeg
 ManualSection: n
 Version: 0.7
 TclPart: tcllib
@@ -25,29 +26,29 @@ jpeg - JPEG querying and manipulation of meta data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [jpeg]{.lit} [0.7]{.optlit} 
-[::jpeg::isJPEG]{.cmd} [file]{.arg} 
-[::jpeg::imageInfo]{.cmd} [file]{.arg} 
-[::jpeg::dimensions]{.cmd} [file]{.arg} 
-[::jpeg::getThumbnail]{.cmd} [file]{.arg} 
-[::jpeg::getExif]{.cmd} [file]{.arg} [section]{.optarg} 
-[::jpeg::getExifFromChannel]{.cmd} [channel]{.arg} [section]{.optarg} 
-[::jpeg::formatExif]{.cmd} [keys]{.arg} 
-[::jpeg::exifKeys]{.cmd} 
-[::jpeg::removeExif]{.cmd} [file]{.arg} 
-[::jpeg::stripJPEG]{.cmd} [file]{.arg} 
-[::jpeg::getComments]{.cmd} [file]{.arg} 
-[::jpeg::addComment]{.cmd} [file]{.arg} [text...]{.arg} 
-[::jpeg::removeComments]{.cmd} [file]{.arg} 
-[::jpeg::replaceComment]{.cmd} [file]{.arg} [text]{.arg} 
-[::jpeg::debug]{.cmd} [file]{.arg} 
-[::jpeg::markers]{.cmd} [channel]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [jpeg]{.lit} [0.7]{.optlit}
+[::jpeg::isJPEG]{.cmd} [file]{.arg}
+[::jpeg::imageInfo]{.cmd} [file]{.arg}
+[::jpeg::dimensions]{.cmd} [file]{.arg}
+[::jpeg::getThumbnail]{.cmd} [file]{.arg}
+[::jpeg::getExif]{.cmd} [file]{.arg} [section]{.optarg}
+[::jpeg::getExifFromChannel]{.cmd} [channel]{.arg} [section]{.optarg}
+[::jpeg::formatExif]{.cmd} [keys]{.arg}
+[::jpeg::exifKeys]{.cmd}
+[::jpeg::removeExif]{.cmd} [file]{.arg}
+[::jpeg::stripJPEG]{.cmd} [file]{.arg}
+[::jpeg::getComments]{.cmd} [file]{.arg}
+[::jpeg::addComment]{.cmd} [file]{.arg} [text...]{.arg}
+[::jpeg::removeComments]{.cmd} [file]{.arg}
+[::jpeg::replaceComment]{.cmd} [file]{.arg} [text]{.arg}
+[::jpeg::debug]{.cmd} [file]{.arg}
+[::jpeg::markers]{.cmd} [channel]{.arg}
 :::
 
 # Description
 
-This package provides commands to query and modify JPEG images. JPEG stands for *Joint Photography Experts Group* and is a standard for the lossy compression of photographical images. It is specified at *LINK_HERE*.
+This package provides commands to query and modify JPEG images. JPEG stands for *Joint Photography Experts Group* and is a standard for the lossy compression of photographical images. It is specified at *LINK\_HERE*.
 
 # Commands
 
@@ -63,46 +64,46 @@ This package provides commands to query and modify JPEG images. JPEG stands for 
 **::jpeg::getThumbnail** *file*
 : This procedure will return the binary thumbnail image data, if a JPEG thumbnail is included in *file*, and the empty string otherwise. Note that it is possible to include thumbnails in formats other than JPEG although that is not common. The command finds thumbnails that are encoded in either the JFXX or EXIF segments of the JPEG information. If both are present the EXIF thumbnail will take precedence. Throws an error if *file* is not a JPEG image.
 
-
-```
-    set fh [open thumbnail.jpg w+]
-    fconfigure $fh -translation binary -encoding binary
-    puts -nonewline $fh [::jpeg::getThumbnail photo.jpg]
-    close $fh
-```
+    ```
+        set fh [open thumbnail.jpg w+]
+        fconfigure $fh -translation binary -encoding binary
+        puts -nonewline $fh [::jpeg::getThumbnail photo.jpg]
+        close $fh
+    ```
 
 **::jpeg::getExif** *file* ?*section*?
 : *section* must be one of **main** or **thumbnail**. The default is **main**. Returns a dictionary containing the EXIF information for the specified section. For example:
 
+    ```
+        set exif {
+    	Make     Canon
+    	Model    {Canon DIGITAL IXUS}
+    	DateTime {2001:06:09 15:17:32}
+        }
+    ```
 
-```
-    set exif {
-	Make     Canon
-	Model    {Canon DIGITAL IXUS}
-	DateTime {2001:06:09 15:17:32}
-    }
-```
-
-: Throws an error if *file* is not a JPEG image.
-
+    Throws an error if *file* is not a JPEG image.
 
 **::jpeg::getExifFromChannel** *channel* ?*section*?
-: This command is as per **::jpeg::getExif** except that it uses a previously opened channel.  *channel* should be a seekable channel and *section* is as described in the documentation of **::jpeg::getExif**. *Note*: The jpeg parser expects that the start of the channel is the start of the image data. If working with an image embedded in a container file format it may be necessary to read the jpeg data into a temporary container: either a temporary file or a memory channel. *Attention*: It is the resonsibility of the caller to close the channel after its use.
+: This command is as per **::jpeg::getExif** except that it uses a previously opened channel.  *channel* should be a seekable channel and *section* is as described in the documentation of **::jpeg::getExif**.
+
+    *Note*: The jpeg parser expects that the start of the channel is the start of the image data. If working with an image embedded in a container file format it may be necessary to read the jpeg data into a temporary container: either a temporary file or a memory channel.
+
+    *Attention*: It is the resonsibility of the caller to close the channel after its use.
 
 **::jpeg::formatExif** *keys*
 : Takes a list of key-value pairs as returned by **getExif** and formats many of the values into a more human readable form. As few as one key-value may be passed in, the entire exif is not required.
 
+    ```
+        foreach {key val} [::jpeg::formatExif [::jpeg::getExif photo.jpg]] {
+            puts "$key: $val"
+        }
+    ```
 
-```
-    foreach {key val} [::jpeg::formatExif [::jpeg::getExif photo.jpg]] {
-        puts "$key: $val"
-    }
-```
-
-```
-    array set exif [::jpeg::getExif photo.jpg]
-    puts "max f-stop: [::jpeg::formatExif [list MaxAperture $exif(MaxAperture)]]
-```
+    ```
+        array set exif [::jpeg::getExif photo.jpg]
+        puts "max f-stop: [::jpeg::formatExif [list MaxAperture $exif(MaxAperture)]]
+    ```
 
 **::jpeg::exifKeys**
 : Returns a list of the EXIF keys which are currently understood. There may be keys present in **getExif** data that are not understood. Those keys will appear in a 4 digit hexadecimal format.

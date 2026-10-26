@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_ConfigureWindow
+title: Tk_ConfigureWindow
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -26,100 +27,96 @@ Copyright:
 
 # Name
 
-Tk_ConfigureWindow, Tk_MoveWindow, Tk_ResizeWindow, Tk_MoveResizeWindow, Tk_SetWindowBorderWidth, Tk_ChangeWindowAttributes, Tk_SetWindowBackground, Tk_SetWindowBackgroundPixmap, Tk_SetWindowBorder, Tk_SetWindowBorderPixmap, Tk_SetWindowColormap, Tk_DefineCursor, Tk_UndefineCursor - change window configuration or attributes
+Tk\_ConfigureWindow, Tk\_MoveWindow, Tk\_ResizeWindow, Tk\_MoveResizeWindow, Tk\_SetWindowBorderWidth, Tk\_ChangeWindowAttributes, Tk\_SetWindowBackground, Tk\_SetWindowBackgroundPixmap, Tk\_SetWindowBorder, Tk\_SetWindowBorderPixmap, Tk\_SetWindowColormap, Tk\_DefineCursor, Tk\_UndefineCursor - change window configuration or attributes
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_ConfigureWindow]{.cmd}([tkwin]{.arg}, [valueMask]{.arg}, [valuePtr]{.arg})
-
-[Tk_MoveWindow]{.cmd}([tkwin]{.arg}, [x]{.arg}, [y]{.arg})
-
-[Tk_ResizeWindow]{.cmd}([tkwin]{.arg}, [width]{.arg}, [height]{.arg})
-
-[Tk_MoveResizeWindow]{.cmd}([tkwin]{.arg}, [x]{.arg},  [y]{.arg}, [width]{.arg}, [height]{.arg})
-
-[Tk_SetWindowBorderWidth]{.cmd}([tkwin]{.arg}, [borderWidth]{.arg})
-
-[Tk_ChangeWindowAttributes]{.cmd}([tkwin]{.arg}, [valueMask]{.arg}, [attsPtr]{.arg})
-
-[Tk_SetWindowBackground]{.cmd}([tkwin]{.arg}, [pixel]{.arg})
-
-[Tk_SetWindowBackgroundPixmap]{.cmd}([tkwin]{.arg}, [pixmap]{.arg})
-
-[Tk_SetWindowBorder]{.cmd}([tkwin]{.arg}, [pixel]{.arg})
-
-[Tk_SetWindowBorderPixmap]{.cmd}([tkwin]{.arg}, [pixmap]{.arg})
-
-[Tk_SetWindowColormap]{.cmd}([tkwin]{.arg}, [colormap]{.arg})
-
-[Tk_DefineCursor]{.cmd}([tkwin]{.arg}, [cursor]{.arg})
-
-[Tk_UndefineCursor]{.cmd}([tkwin]{.arg})
+**#include <tk.h>**
+[Tk\_ConfigureWindow]{.ccmd} [tkwin, valueMask, valuePtr]{.cargs}
+[Tk\_MoveWindow]{.ccmd} [tkwin, x, y]{.cargs}
+[Tk\_ResizeWindow]{.ccmd} [tkwin, width, height]{.cargs}
+[Tk\_MoveResizeWindow]{.ccmd} [tkwin, x,  y, width, height]{.cargs}
+[Tk\_SetWindowBorderWidth]{.ccmd} [tkwin, borderWidth]{.cargs}
+[Tk\_ChangeWindowAttributes]{.ccmd} [tkwin, valueMask, attsPtr]{.cargs}
+[Tk\_SetWindowBackground]{.ccmd} [tkwin, pixel]{.cargs}
+[Tk\_SetWindowBackgroundPixmap]{.ccmd} [tkwin, pixmap]{.cargs}
+[Tk\_SetWindowBorder]{.ccmd} [tkwin, pixel]{.cargs}
+[Tk\_SetWindowBorderPixmap]{.ccmd} [tkwin, pixmap]{.cargs}
+[Tk\_SetWindowColormap]{.ccmd} [tkwin, colormap]{.cargs}
+[Tk\_DefineCursor]{.ccmd} [tkwin, cursor]{.cargs}
+[Tk\_UndefineCursor]{.ccmd} [tkwin]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window.
 
-unsigned int *valueMask* (in)
+[valueMask]{.carg .in type="unsigned int"}
 : OR-ed mask of values like **CWX** or **CWBorderPixel**, indicating which fields of *\*valuePtr* or *\*attsPtr* to use.
 
-XWindowChanges *\*valuePtr* (in)
+[\*valuePtr]{.carg .in type="XWindowChanges"}
 : Points to a structure containing new values for the configuration parameters selected by *valueMask*.  Fields not selected by *valueMask* are ignored.
 
-int *x* (in)
+[x]{.carg .in type="int"}
 : New x-coordinate for *tkwin*'s top left pixel (including border, if any) within tkwin's parent.
 
-int *y* (in)
+[y]{.carg .in type="int"}
 : New y-coordinate for *tkwin*'s top left pixel (including border, if any) within tkwin's parent.
 
-int *width* (in)
+[width]{.carg .in type="int"}
 : New width for *tkwin* (interior, not including border).
 
-int *height* (in)
+[height]{.carg .in type="int"}
 : New height for *tkwin* (interior, not including border).
 
-int *borderWidth* (in)
+[borderWidth]{.carg .in type="int"}
 : New width for *tkwin*'s border.
 
-XSetWindowAttributes *\*attsPtr* (in)
+[\*attsPtr]{.carg .in type="XSetWindowAttributes"}
 : Points to a structure containing new values for the attributes given by the *valueMask* argument.  Attributes not selected by *valueMask* are ignored.
 
-unsigned long *pixel* (in)
+[pixel]{.carg .in type="unsigned long"}
 : New background or border color for window.
 
-Pixmap *pixmap* (in)
+[pixmap]{.carg .in type="Pixmap"}
 : New pixmap to use for background or border of *tkwin*.  WARNING: cannot necessarily be deleted immediately, as for Xlib calls.  See note below.
 
-Colormap *colormap* (in)
+[colormap]{.carg .in type="Colormap"}
 : New colormap to use for *tkwin*.
 
-Tk_Cursor *cursor* (in)
+[cursor]{.carg .in type="Tk_Cursor"}
 : New cursor to use for *tkwin*.  If **None** is specified, then *tkwin* will not have its own cursor;  it will use the cursor of its parent.
 
+:::
 
 # Description
 
-These procedures are analogous to the X library procedures with similar names, such as **XConfigureWindow**.  Each one of the above procedures calls the corresponding X procedure and also saves the configuration information in Tk's local structure for the window.  This allows the information to be retrieved quickly by the application (using macros such as **Tk_X** and **Tk_Height**) without having to contact the X server.  In addition, if no X window has actually been created for *tkwin* yet, these procedures do not issue X operations or cause event handlers to be invoked;  they save the information in Tk's local structure for the window;  when the window is created later, the saved information will be used to configure the window.
+These procedures are analogous to the X library procedures with similar names, such as **XConfigureWindow**.  Each one of the above procedures calls the corresponding X procedure and also saves the configuration information in Tk's local structure for the window.  This allows the information to be retrieved quickly by the application (using macros such as [Tk\_X][WindowId] and [Tk\_Height][WindowId]) without having to contact the X server.  In addition, if no X window has actually been created for *tkwin* yet, these procedures do not issue X operations or cause event handlers to be invoked;  they save the information in Tk's local structure for the window;  when the window is created later, the saved information will be used to configure the window.
 
 See the X library documentation for details on what these procedures do and how they use their arguments.
 
-In the procedures **Tk_ConfigureWindow**, **Tk_MoveWindow**, **Tk_ResizeWindow**, **Tk_MoveResizeWindow**, and **Tk_SetWindowBorderWidth**, if *tkwin* is an internal window then event handlers interested in configure events are invoked immediately, before the procedure returns.  If *tkwin* is a top-level window then the event handlers will be invoked later, after X has seen the request and returned an event for it.
+In the procedures **Tk\_ConfigureWindow**, **Tk\_MoveWindow**, **Tk\_ResizeWindow**, **Tk\_MoveResizeWindow**, and **Tk\_SetWindowBorderWidth**, if *tkwin* is an internal window then event handlers interested in configure events are invoked immediately, before the procedure returns.  If *tkwin* is a top-level window then the event handlers will be invoked later, after X has seen the request and returned an event for it.
 
 Applications using Tk should never call procedures like **XConfigureWindow** directly;  they should always use the corresponding Tk procedures.
 
-The size and location of a window should only be modified by the appropriate geometry manager for that window and never by a window itself (but see **Tk_MoveToplevelWindow** for moving a top-level window).
+The size and location of a window should only be modified by the appropriate geometry manager for that window and never by a window itself (but see [Tk\_MoveToplevelWindow][MoveToplev] for moving a top-level window).
 
-You may not use **Tk_ConfigureWindow** to change the stacking order of a window (*valueMask* may not contain the **CWSibling** or **CWStackMode** bits). To change the stacking order, use the procedure **Tk_RestackWindow**.
+You may not use **Tk\_ConfigureWindow** to change the stacking order of a window (*valueMask* may not contain the **CWSibling** or **CWStackMode** bits). To change the stacking order, use the procedure [Tk\_RestackWindow][Restack].
 
-The procedure **Tk_SetWindowColormap** will automatically add *tkwin* to the **TK_COLORMAP_WINDOWS** property of its nearest top-level ancestor if the new colormap is different from that of *tkwin*'s parent and *tkwin* is not already in the **TK_COLORMAP_WINDOWS** property.
+The procedure **Tk\_SetWindowColormap** will automatically add *tkwin* to the **TK\_COLORMAP\_WINDOWS** property of its nearest top-level ancestor if the new colormap is different from that of *tkwin*'s parent and *tkwin* is not already in the **TK\_COLORMAP\_WINDOWS** property.
 
 # Bugs
 
-**Tk_SetWindowBackgroundPixmap** and **Tk_SetWindowBorderPixmap** differ slightly from their Xlib counterparts in that the *pixmap* argument may not necessarily be deleted immediately after calling one of these procedures.  This is because *tkwin*'s window may not exist yet at the time of the call, in which case *pixmap* is merely saved and used later when *tkwin*'s window is actually created.  If you wish to delete *pixmap*, then call **Tk_MakeWindowExist** first to be sure that *tkwin*'s window exists and *pixmap* has been passed to the X server.
+**Tk\_SetWindowBackgroundPixmap** and **Tk\_SetWindowBorderPixmap** differ slightly from their Xlib counterparts in that the *pixmap* argument may not necessarily be deleted immediately after calling one of these procedures.  This is because *tkwin*'s window may not exist yet at the time of the call, in which case *pixmap* is merely saved and used later when *tkwin*'s window is actually created.  If you wish to delete *pixmap*, then call [Tk\_MakeWindowExist][CrtWindow] first to be sure that *tkwin*'s window exists and *pixmap* has been passed to the X server.
 
-A similar problem occurs for the *cursor* argument passed to **Tk_DefineCursor**.  The solution is the same as for pixmaps above: call **Tk_MakeWindowExist** before freeing the cursor.
+A similar problem occurs for the *cursor* argument passed to **Tk\_DefineCursor**.  The solution is the same as for pixmaps above: call [Tk\_MakeWindowExist][CrtWindow] before freeing the cursor.
+
+
+[CrtWindow]: CrtWindow.md
+[MoveToplev]: MoveToplev.md
+[Restack]: Restack.md
+[WindowId]: WindowId.md

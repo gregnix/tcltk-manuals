@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_lang_syntax
+title: docidx_lang_syntax
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,7 +23,7 @@ Copyright:
 
 # Name
 
-docidx_lang_syntax - docidx language syntax
+docidx\_lang\_syntax - docidx language syntax
 
 # Description
 
@@ -40,14 +41,11 @@ In this document we specify first the lexeme, and then the syntax, i.e. how we c
 
 In the syntax rules listed in the next section
 
-**\[1\]**
-: \<TEXT> stands for all text except markup commands.
+1. <TEXT> stands for all text except markup commands.
 
-**\[2\]**
-: Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
+2. Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
 
-**\[3\]**
-: \<WHITE> stands for all text consisting only of spaces, newlines, tabulators and the **comment** markup command.
+3. <WHITE> stands for all text consisting only of spaces, newlines, tabulators and the [comment][docidx_lang_cmdref] markup command.
 
 
 # Syntax
@@ -56,12 +54,12 @@ The rules listed here specify only the syntax of docidx documents. The lexical l
 
 Regarding the syntax of the (E)BNF itself
 
-**\[1\]**
-: The construct { X } stands for zero or more occurrences of X.
+1. The construct { X } stands for zero or more occurrences of X.
 
-**\[2\]**
-: The construct \[ X \] stands for zero or one occurrence of X. The syntax:
+2. The construct \[ X \] stands for zero or one occurrence of X.
 
+
+The syntax:
 
 ```
 index     = defs
@@ -79,18 +77,14 @@ ref       = MANPAGE | URL | defs
 
 At last a rule we were unable to capture in the EBNF syntax, as it is about the arguments of the markup commands, something which is not modeled here.
 
-**\[1\]**
-: The arguments of all markup commands have to be plain text, and/or text markup commands, i.e. one of
+1. The arguments of all markup commands have to be plain text, and/or text markup commands, i.e. one of
 
+    1. [lb][docidx_lang_cmdref],
 
-**\[1\]**
-: **lb**,
+    2. [rb][docidx_lang_cmdref], or
 
-**\[2\]**
-: **rb**, or
+    3. [vset][docidx_lang_cmdref] (1-argument form).
 
-**\[3\]**
-: **vset** (1-argument form).
 
 
 # Bugs, ideas, feedback
@@ -110,3 +104,6 @@ Documentation tools
 ```
 Copyright (c) 2007-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md

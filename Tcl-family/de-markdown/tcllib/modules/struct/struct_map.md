@@ -1,29 +1,30 @@
 ---
 CommandName: struct::map
+title: struct::map
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
-# NAME
+# Name
 
 struct::map – Schlüssel-Wert-Zuordnungen verwalten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [struct::map]{.lit} [1]{.optlit} 
-[::struct::map]{.cmd} [mapName]{.arg} 
-[mapName]{.cmd} [method]{.sub} [arg arg]{.optdot} 
-[mapName]{.ins} [get]{.sub} 
-[mapName]{.ins} [names]{.sub} 
-[mapName]{.ins} [set]{.sub} [name]{.arg} [value]{.optarg} 
-[mapName]{.ins} [unset]{.sub} [pattern]{.optdot} 
+[package]{.cmd} [require]{.sub} [struct::map]{.lit} [1]{.optlit}
+[::struct::map]{.cmd} [mapName]{.arg}
+[mapName]{.cmd} [method]{.lit} [arg arg]{.optdot}
+[mapName]{.ins} [get]{.sub}
+[mapName]{.ins} [names]{.sub}
+[mapName]{.ins} [set]{.sub} [name]{.arg} [value]{.optarg}
+[mapName]{.ins} [unset]{.sub} [pattern...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Stellt eine snit-Klasse bereit, deren Instanzen eine Schlüssel-Wert-Map verwalten. Mit anderen Worten: eine Objekthülle um Tcl-Arrays.
 
@@ -34,13 +35,14 @@ Der Hauptbefehl erzeugt Maps:
 **::struct::map** *mapName*
 : Erzeugt eine neue, leere Map mit einem zugehörigen globalen Tcl-Befehl, dessen Name *mapName* lautet. Mit ihm lassen sich verschiedene Operationen auf der Map aufrufen. Er hat die folgende allgemeine Form:
 
+    **mapName** **method** ?*arg arg ...*?
+    : **method** und *arg*umente bestimmen das genaue Verhalten des Befehls.
 
-**mapName** **method** ?*arg arg ...*?
-: **method** und *arg*umente bestimmen das genaue Verhalten des Befehls.
+
+    Wird als *mapName* **%AUTO%** angegeben, erzeugt das Paket selbst einen eindeutigen Namen. Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
 
-: Wird als *mapName* **%AUTO%** angegeben, erzeugt das Paket selbst einen eindeutigen Namen. Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls. Für Map-Objekte sind folgende Befehle möglich:
-
+Für Map-Objekte sind folgende Befehle möglich:
 
 *mapName* **get**
 : Gibt die gesamte Map als Tcl-Dictionary zurück.
@@ -55,7 +57,7 @@ Der Hauptbefehl erzeugt Maps:
 : Entfernt alle Schlüssel aus der Map, die auf mindestens eines der glob-Muster *pattern* passen. Wird kein Muster angegeben, werden alle Schlüssel entfernt. Mit anderen Worten: Das Standardmuster lautet **\***. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: list* als Kategorie an.
 

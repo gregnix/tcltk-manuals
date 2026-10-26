@@ -1,5 +1,6 @@
 ---
 CommandName: ledit
+title: ledit
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -38,14 +39,14 @@ ledit - Replace elements of a list stored in variable
 # Synopsis
 
 ::: {.synopsis} :::
-[ledit]{.cmd} [listVar]{.arg} [first]{.arg} [last]{.arg} [value value]{.optdot} 
+[ledit]{.cmd} [listVar]{.arg} [first]{.arg} [last]{.arg} [value value]{.optdot}
 :::
 
 # Description
 
 The command fetches the list value in variable *listVar* and replaces the elements in the range given by indices *first* to *last* (inclusive) with the *value* arguments. The resulting list is then stored back in *listVar* and returned as the result of the command.
 
-Arguments *first* and *last* are index values specifying the first and last elements of the range to replace. They are interpreted the same as index values for the command **string index**, supporting simple index arithmetic and indices relative to the end of the list. The index **0** refers to the first element of the list, and **end** refers to the last element of the list. (Unlike with **lpop**, **lset**, and **lindex**, indices into sublists are not supported.)
+Arguments *first* and *last* are index values specifying the first and last elements of the range to replace. They are interpreted the same as index values for the command [string index][string], supporting simple index arithmetic and indices relative to the end of the list. The index **0** refers to the first element of the list, and **end** refers to the last element of the list. (Unlike with [lpop], [lset], and [lindex], indices into sublists are not supported.)
 
 If either *first* or *last* is less than zero, it is considered to refer to the position before the first element of the list. This allows elements to be prepended.
 
@@ -88,3 +89,9 @@ ledit lst 2 3 x y z
 set lst
       → a b x y z g h i
 ```
+
+
+[lindex]: lindex.md
+[lpop]: lpop.md
+[lset]: lset.md
+[string]: string.md

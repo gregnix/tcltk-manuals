@@ -1,5 +1,6 @@
 ---
 CommandName: uuencode
+title: uuencode
 ManualSection: n
 Version: 1.1.6
 TclPart: tcllib
@@ -18,28 +19,34 @@ uuencode - UU-encode/decode binary data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuencode]{.lit} [1.1.6]{.optlit} 
-[::uuencode::encode]{.cmd} [bstring]{.arg} 
-[::uuencode::decode]{.cmd} [estring]{.arg} 
-[::uuencode::uuencode]{.cmd} [-name string]{.optarg} [-mode octal]{.optarg} (-file [filename]{.arg} | [--]{.optlit} [bstring)]{.arg} 
-[::uuencode::uudecode]{.cmd} (-file [filename]{.arg} | [--]{.optlit} [estring)]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuencode]{.lit} [1.1.6]{.optlit}
+[::uuencode::encode]{.cmd} [bstring]{.arg}
+[::uuencode::decode]{.cmd} [estring]{.arg}
+[::uuencode::uuencode]{.cmd} [[-name]{.lit} [string]{.arg}]{.optarg} [[-mode]{.lit} [octal]{.arg}]{.optarg} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [bstring]{.arg})
+[::uuencode::uudecode]{.cmd} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [estring]{.arg})
 :::
 
 # Description
 
 This package provides a Tcl-only implementation of the **uuencode(1p)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html> and **uudecode(1p)** <https://www.man7.org/linux/man-pages/man1/uudecode.1p.html> commands. This encoding packs binary data into printable 7-bit ASCII characters.
 
-# Api
+# API
 
 **::uuencode::encode** *bstring*
-: Returns a uuencoded version of the binary string *bstring* as its result. All the given bytes are encoded even if they exceed the uuencode maximum line length. If the number of input bytes is not a multiple of 3 then the string is padded with additional **\\x00** NUL bytes. The command will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns a uuencoded version of the binary string *bstring* as its result.
+
+    All the given bytes are encoded even if they exceed the uuencode maximum line length. If the number of input bytes is not a multiple of 3 then the string is padded with additional **\\x00** NUL bytes.
+
+    The command will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::uuencode::decode** *estring*
 : Returns a binary string that has been uuencode-decoded from the *estring*, including any padding **\\x00** NUL bytes at the end.
 
 **::uuencode::uuencode** ?**-name** *string*? ?**-mode** *octal*? (**-file** *filename* |  ?**--**? *bstring*)
-: Returns a wrapped uuencoded version of the data in the file specified by **-file** *filename* or by the binary string *bstring* as its result. Each wrapped uuencoded result consists of a header, body, and footer. The header is a line starting with **begin** followed by a suggested file mode and suggested filename. The body consists of lines of uuencoded data, each prefixed with a line length character. The footer is **end** on its own line. See **uuencode(1)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html>.
+: Returns a wrapped uuencoded version of the data in the file specified by **-file** *filename* or by the binary string *bstring* as its result.
+
+    Each wrapped uuencoded result consists of a header, body, and footer. The header is a line starting with **begin** followed by a suggested file mode and suggested filename. The body consists of lines of uuencoded data, each prefixed with a line length character. The footer is **end** on its own line. See **uuencode(1)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html>.
 
 **::uuencode::uudecode** (**-file** *filename* |  ?**--**? *estring*)
 : Returns a list of 3-element lists of filename, file mode, uuencode-decoded bytes, from the file specified by **-file** *filename* or from the *estring*.

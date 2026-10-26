@@ -1,5 +1,6 @@
 ---
 CommandName: map::point::store::fs
+title: map::point::store::fs
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -7,8 +8,11 @@ TclDescription: Map display support
 Keywords:
  - filesystem store
  - geo/point
+ - geo/point
+ - filesystem store
  - map
  - store
+ - geo/point
  - filesystem
 Copyright:
 ---
@@ -20,19 +24,19 @@ map::point::store::fs - Filesystem-based store of geo/point definitions
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::caller]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [map::point::store::fs]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [debug]{.lit}
+[package]{.cmd} [require]{.sub} [debug::caller]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [map::point::store::fs]{.lit} [0.1]{.optlit}
 :::
 
 # Description
 
 This package provides a store loading *geo/point* definitions from a directory in the filesystem.
 
-# Api
+# API
 
 # Example
 

@@ -1,5 +1,6 @@
 ---
 CommandName: vwait
+title: vwait
 ManualSection: n
 Version: 8.0
 TclPart: Tcl
@@ -16,54 +17,54 @@ Copyright:
  - Copyright (c) 1995-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 vwait - Verarbeitet Events bis eine Variable geschrieben wird
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[vwait]{.cmd} [varName]{.arg} 
-[vwait]{.cmd} [options]{.optarg} [varName]{.optdot} 
+[vwait]{.cmd} [varName]{.arg}
+[vwait]{.cmd} [options]{.optarg} [varName]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl betritt die Tcl-Event-Schleife zur Verarbeitung von Events und blockiert die Anwendung, wenn keine Events bereitstehen. Er verarbeitet Events weiter, bis ein Event-Handler den Wert der globalen Variable *varName* setzt. Sobald *varName* gesetzt wurde, kehrt der Befehl **vwait** zurück, sobald der Event-Handler, der *varName* geändert hat, abgeschlossen ist. Das Argument *varName* wird stets als Variablenname bezogen auf den globalen Namespace interpretiert, kann aber auf Variablen beliebiger Namespaces verweisen, wenn der vollqualifizierte Name angegeben ist.
 
 In der zweiten, komplexeren Befehlsform ermöglichen *options* feinere Steuerung der Warteoperation und den Umgang mit mehreren Event-Quellen. *Options* können bestehen aus:
 
-**--**
+[--]{.lit}
 : Markiert das Ende der Optionen. Alle folgenden Argumente werden als Variablennamen behandelt.
 
-**-all**
+[-all]{.lit}
 : Alle Bedingungen der Warteoperation müssen erfüllt sein, damit die Warteoperation endet. Andernfalls (Standard) beendet das erste Ereignis das Warten.
 
-**-extended**
+[-extended]{.lit}
 : Es wird ein erweitertes Ergebnis in Listenform zurückgegeben; siehe unten.
 
-**-nofileevents**
+[-nofileevents]{.lit}
 : Datei-Events werden in der Warteoperation nicht bearbeitet.
 
-**-noidleevents**
+[-noidleevents]{.lit}
 : Idle-Handler werden während der Warteoperation nicht aufgerufen.
 
-**-notimerevents**
+[-notimerevents]{.lit}
 : Timer-Handler werden während der Warteoperation nicht bedient.
 
-**-nowindowevents**
+[-nowindowevents]{.lit}
 : Events des Fenstersystems werden während der Warteoperation nicht bearbeitet.
 
-**-readable** *channel*
+[-readable]{.lit} [channel]{.arg}
 : *Channel* muss einen Tcl-Kanal benennen, der zum Lesen geöffnet ist. Ist *channel* lesbar oder wird lesbar, endet die Warteoperation.
 
-**-timeout** *milliseconds*
+[-timeout]{.lit} [milliseconds]{.arg}
 : Die Warteoperation ist auf *milliseconds* begrenzt.
 
-**-variable** *varName*
+[-variable]{.lit} [varName]{.arg}
 : *VarName* muss der Name einer globalen Variable sein. Schreiben oder Entfernen dieser Variable beendet die Warteoperation.
 
-**-writable** *channel*
+[-writable]{.lit} [channel]{.arg}
 : *Channel* muss einen Tcl-Kanal benennen, der zum Schreiben geöffnet ist. Ist *channel* beschreibbar oder wird beschreibbar, endet die Warteoperation.
 
 
@@ -71,13 +72,13 @@ Der Rückgabewert von **vwait** ist bei der einfachen Form eine leere Zeichenket
 
 Ist die Option **-extended** angegeben, besteht das Ergebnis aus einer Tcl-Liste mit gerader Elementanzahl. Ungerade Elemente haben die Werte **readable**, **timeleft**, **variable** und **writable**. Gerade Elemente sind die zugehörigen Variablen- und Kanalnamen bzw. die verbleibende Anzahl Millisekunden. Die Liste ist nach dem Auftreten der Event(s) geordnet, mit Ausnahme von **timeleft**, das stets zuletzt steht.
 
-In manchen Fällen kehrt **vwait** nicht sofort zurück, nachdem *varName* usw. gesetzt wurden. Das passiert, wenn der Event-Handler, der *varName* setzt, nicht sofort abgeschlossen wird. Setzt etwa ein Event-Handler *varName* und ruft anschließend selbst **vwait** auf, um auf eine andere Variable zu warten, kann er lange nicht zurückkehren. In dieser Zeit ist der oberste **vwait** blockiert und wartet auf den Abschluss des Event-Handlers, er kann also ebenfalls nicht zurückkehren. (Siehe **VERSCHACHTELTE VWAITS ANHAND EINES BEISPIELS** unten.)
+In manchen Fällen kehrt **vwait** nicht sofort zurück, nachdem *varName* usw. gesetzt wurden. Das passiert, wenn der Event-Handler, der *varName* setzt, nicht sofort abgeschlossen wird. Setzt etwa ein Event-Handler *varName* und ruft anschließend selbst **vwait** auf, um auf eine andere Variable zu warten, kann er lange nicht zurückkehren. In dieser Zeit ist der oberste **vwait** blockiert und wartet auf den Abschluss des Event-Handlers, er kann also ebenfalls nicht zurückkehren. (Siehe [Verschachtelte vwaits anhand eines Beispiels] unten.)
 
 Zur Klarstellung: *mehrere* **vwait**-*Aufrufe verschachteln sich und laufen nicht parallel*. Der äußerste Aufruf von **vwait** kehrt erst zurück, wenn alle inneren zurückgekehrt sind. Es wird empfohlen, **vwait**-Aufrufe nie zu verschachteln (indem man sie nicht in Event-Callbacks platziert); wenn das nicht möglich ist, sollte man Sperrvariablen einbauen, um alle nicht *strikt* notwendigen reentranten **vwait**-Aufrufe zu verhindern. Beachten Sie, dass synchrone Betriebsarten einiger Tcl-Pakete (z. B. **http**) **vwait** intern verwenden; bei Nutzung der Event-Schleife sind nach Möglichkeit die asynchronen, callback-basierten Betriebsarten dieser Pakete zu bevorzugen.
 
-# BEISPIELE
+# Beispiele
 
-Die Event-Schleife dauerhaft laufen lassen, bis ein Event **exit** aufruft. (Sie können jede Variable verwenden, die sonst nicht vorkommt; der Name *forever* erinnert auf den ersten Blick an die Absicht.)
+Die Event-Schleife dauerhaft laufen lassen, bis ein Event [exit] aufruft. (Sie können jede Variable verwenden, die sonst nicht vorkommt; der Name *forever* erinnert auf den ersten Blick an die Absicht.)
 
 ```
 vwait forever
@@ -131,7 +132,7 @@ namespace eval example {
 }
 ```
 
-Läuft der Code in einer **coroutine**, ist eine Alternative zu **vwait**, mit **yield** an eine äußere Event-Schleife zu übergeben und fortgesetzt zu werden, wenn die Variable gesetzt wird oder danach in einem Idle-Moment.
+Läuft der Code in einer [coroutine], ist eine Alternative zu **vwait**, mit [yield][coroutine] an eine äußere Event-Schleife zu übergeben und fortgesetzt zu werden, wenn die Variable gesetzt wird oder danach in einem Idle-Moment.
 
 ```
 coroutine task apply {{} {
@@ -154,7 +155,7 @@ coroutine task apply {{} {
 
 ## Verschachtelte vwaits anhand eines Beispiels
 
-Dieses Beispiel zeigt, was bei verschachtelten **vwait**-Befehlen passieren kann. Das Skript wird nie enden, weil das Warten auf die Variable *a* nie abgeschlossen wird; dieser **vwait** wartet noch darauf, dass ein mit **after** geplantes Skript endet, das zufällig einen inneren **vwait** (für *b*) ausführt, obwohl das Ereignis, auf das der äußere **vwait** wartete (das Setzen von *a*), bereits eingetreten ist.
+Dieses Beispiel zeigt, was bei verschachtelten **vwait**-Befehlen passieren kann. Das Skript wird nie enden, weil das Warten auf die Variable *a* nie abgeschlossen wird; dieser **vwait** wartet noch darauf, dass ein mit [after] geplantes Skript endet, das zufällig einen inneren **vwait** (für *b*) ausführt, obwohl das Ereignis, auf das der äußere **vwait** wartete (das Setzen von *a*), bereits eingetreten ist.
 
 ```
 after 500 {
@@ -181,7 +182,7 @@ waiting for b
 setting a
 ```
 
-Das Skript gibt „a was set“ erst aus, nachdem „b was set“ gedruckt wurde, wegen der Verschachtelung der **vwait**-Befehle; *b* wird jedoch erst gesetzt, nachdem der äußere **vwait** zurückkehrt — das Skript ist verklemmt. Vermeiden lässt sich das nur, indem man das Gesamtprogramm im Continuation-Passing-Stil strukturiert oder **coroutine** nutzt, um die Fortsetzungen implizit zu machen. Die erste Option sieht so aus:
+Das Skript gibt „a was set“ erst aus, nachdem „b was set“ gedruckt wurde, wegen der Verschachtelung der **vwait**-Befehle; *b* wird jedoch erst gesetzt, nachdem der äußere **vwait** zurückkehrt — das Skript ist verklemmt. Vermeiden lässt sich das nur, indem man das Gesamtprogramm im Continuation-Passing-Stil strukturiert oder [coroutine] nutzt, um die Fortsetzungen implizit zu machen. Die erste Option sieht so aus:
 
 ```
 after 500 {
@@ -209,7 +210,7 @@ trace add variable a write {apply {args {
 vwait done
 ```
 
-Die zweite Option mit **coroutine** und einigen Hilfsprozeduren:
+Die zweite Option mit [coroutine] und einigen Hilfsprozeduren:
 
 ```
 # Koroutine-basierter Befehl: auf Variable warten
@@ -249,3 +250,8 @@ coroutine task-3 eval {
 }
 vwait done
 ```
+
+
+[after]: after.md
+[coroutine]: coroutine.md
+[exit]: exit.md

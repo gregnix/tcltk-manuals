@@ -1,5 +1,6 @@
 ---
 CommandName: lset
+title: lset
 ManualSection: n
 Version: 8.4
 TclPart: Tcl
@@ -32,7 +33,7 @@ lset - Change an element in a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lset]{.cmd} [varName]{.arg} [index]{.optdot} [newValue]{.arg} 
+[lset]{.cmd} [varName]{.arg} ?index ...? newValue
 :::
 
 # Description
@@ -55,11 +56,11 @@ In this case, *newValue* replaces the old value of the variable *varName*.
 
 When presented with a single index, the **lset** command treats the content of the *varName* variable as a Tcl list. It addresses the *index*'th element in it (0 refers to the first element of the list). When interpreting the list, **lset** observes the same rules concerning braces and quotes and backslashes as the Tcl command interpreter; however, variable substitution and command substitution do not occur. The command constructs a new list in which the designated element is replaced with *newValue*.  This new list is stored in the variable *varName*, and is also the return value from the **lset** command.
 
-If *index* is negative or greater than the number of elements in *\$varName*, then an error occurs.
+If *index* is negative or greater than the number of elements in *$varName*, then an error occurs.
 
-If *index* is equal to the number of elements in *\$varName*, then the given element is appended to the list.
+If *index* is equal to the number of elements in *$varName*, then the given element is appended to the list.
 
-The interpretation of each simple *index* value is the same as for the command **string index**, supporting simple index arithmetic and indices relative to the end of the list.
+The interpretation of each simple *index* value is the same as for the command [string index][string], supporting simple index arithmetic and indices relative to the end of the list.
 
 If additional *index* arguments are supplied, then each argument is used in turn to address an element within a sublist designated by the previous indexing operation, allowing the script to alter elements in sublists (or append elements to sublists).  The command,
 
@@ -125,3 +126,6 @@ lset x 1 1 0 j
 lset x {1 1 0} j
       → {{a b} {c d}} {{e f} {j h}}
 ```
+
+
+[string]: string.md

@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::intro
+title: ttk::intro
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -17,29 +18,23 @@ ttk::intro - Introduction to the Tk theme engine
 
 # Overview
 
-The Tk themed widget set is based on a revised and enhanced version of TIP #48 (https://tip.tcl-lang.org/48) specified style engine. The main concepts are described below. The basic idea is to separate, to the extent possible, the code implementing a widget's behavior from the code implementing its appearance. Widget class bindings are primarily responsible for maintaining the widget state and invoking callbacks; all aspects of the widget's appearance are controlled by the style of the widget (i.e. the style of the elements of the widget).
+The Tk themed widget set is based on a revised and enhanced version of TIP #48 (<https://tip.tcl-lang.org/48>) specified style engine. The main concepts are described below. The basic idea is to separate, to the extent possible, the code implementing a widget's behavior from the code implementing its appearance. Widget class bindings are primarily responsible for maintaining the widget state and invoking callbacks; all aspects of the widget's appearance are controlled by the style of the widget (i.e. the style of the elements of the widget).
 
 # Themes
 
 A *theme* is a collection of elements and styles that determine the look and feel of the widget set. Themes can be used to:
 
-**•**
-: isolate platform differences (X11 vs. classic Windows vs. XP vs. Aqua ...)
+- isolate platform differences (X11 vs. classic Windows vs. XP vs. Aqua ...)
 
-**•**
-: adapt to display limitations (low-color, grayscale, monochrome, tiny screens)
+- adapt to display limitations (low-color, grayscale, monochrome, tiny screens)
 
-**•**
-: accessibility (high contrast, large type)
+- accessibility (high contrast, large type)
 
-**•**
-: application suite branding
+- application suite branding
 
-**•**
-: blend in with the rest of the desktop (Gnome, KDE, Java)
+- blend in with the rest of the desktop (Gnome, KDE, Java)
 
-**•**
-: and, of course: eye candy.
+- and, of course: eye candy.
 
 
 # Elements
@@ -50,22 +45,18 @@ Element names use a recursive dotted notation. For example, **uparrow** identifi
 
 Like widgets, elements have *options* which specify what to display and how to display it. For example, the **text** element (which displays a text string) has **-text**, **-font**, **-foreground**, **-background**, **-underline**, and **-width** options. The value of an element option is taken from (in precedence order):
 
-**•**
-: an option of the same name and type in the widget containing the element;
+- an option of the same name and type in the widget containing the element;
 
-**•**
-: a dynamic setting specified by **style map** and the current state;
+- a dynamic setting specified by **style map** and the current state;
 
-**•**
-: the default setting specified by **style configure**; or
+- the default setting specified by **style configure**; or
 
-**•**
-: the element's built-in default value for the option.
+- the element's built-in default value for the option.
 
 
 # Layouts
 
-A *layout* specifies which elements make up a widget and how they are arranged. The layout engine uses a simplified version of the **pack** algorithm: starting with an initial cavity equal to the size of the widget, elements are allocated a parcel within the cavity along the side specified by the **-side** option, and placed within the parcel according to the **-sticky** option. For example, the layout for a horizontal scrollbar is:
+A *layout* specifies which elements make up a widget and how they are arranged. The layout engine uses a simplified version of the [pack] algorithm: starting with an initial cavity equal to the size of the widget, elements are allocated a parcel within the cavity along the side specified by the **-side** option, and placed within the parcel according to the **-sticky** option. For example, the layout for a horizontal scrollbar is:
 
 ```
 ttk::style layout Horizontal.TScrollbar {
@@ -77,17 +68,17 @@ ttk::style layout Horizontal.TScrollbar {
 }
 ```
 
-By default, the layout for a widget is the same as its class name. Some widgets may override this (for example, the **ttk::scrollbar** widget chooses different layouts based on the **-orient** option).
+By default, the layout for a widget is the same as its class name. Some widgets may override this (for example, the [ttk::scrollbar][ttk_scrollbar] widget chooses different layouts based on the **-orient** option).
 
 # States
 
-In standard Tk, many widgets have a **-state** option which (in most cases) is either **normal** or **disabled**. Some widgets support additional states, such as the **entry** widget which has a **readonly** state and the various flavors of buttons which have **active** state.
+In standard Tk, many widgets have a **-state** option which (in most cases) is either **normal** or **disabled**. Some widgets support additional states, such as the [entry] widget which has a **readonly** state and the various flavors of buttons which have **active** state.
 
 The themed Tk widgets generalizes this idea: every widget has a bitmap of independent state flags. Widget state flags include **active**, **disabled**, **pressed**, **focus**, etc., (see *ttk::widget(n)* for the full list of state flags).
 
 Instead of a **-state** option, every widget now has a **state** widget command which is used to set or query the state. A *state specification* is a list of symbolic state names indicating which bits are set, each optionally prefixed with an exclamation point indicating that the bit is cleared instead.
 
-For example, the class bindings for the **ttk::button** widget are:
+For example, the class bindings for the [ttk::button][ttk_button] widget are:
 
 ```
 bind TButton <Enter>		{ %W state active }
@@ -122,3 +113,9 @@ ttk::style map TButton \
 	-relief [list {pressed !disabled} sunken] \
 	;
 ```
+
+
+[entry]: entry.md
+[pack]: pack.md
+[ttk_button]: ttk_button.md
+[ttk_scrollbar]: ttk_scrollbar.md

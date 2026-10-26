@@ -1,80 +1,98 @@
 # tcltk-manuals
 
-Handbuchseiten zu Tcl/Tk, Tcllib, Tklib und weiteren Erweiterungen als
-Markdown und PDF, englisch (Original) und deutsch (Übersetzung), dazu
-Bücher zu Tcl-Bibliotheken.
+*English · [Deutsch](README.de.md)*
 
 Manual pages for Tcl/Tk, Tcllib, Tklib and further extensions as Markdown
 and PDF, in English (original) and German (translation), plus books on Tcl
 libraries.
 
-> **Inoffiziell / Unofficial.** Eine unabhängige Sammlung, keine
-> Veröffentlichung der jeweiligen Projekte. Die Originaltexte stammen von
-> deren Autoren und stehen unter deren Lizenzen; die englischen Seiten sind
-> nur ins Markdown-Format umgewandelt. Fehler der Umwandlung oder der
-> Übersetzung bitte hier melden, nicht bei den Projekten.
->
-> An independent collection, not a publication of the projects. The
-> original texts are by their authors and under their licenses; the English
-> pages are only converted to Markdown. Please report conversion or
-> translation errors here, not to the projects.
+> **Unofficial.** An independent collection, not a publication of the
+> projects. The original texts are by their authors and under their
+> licenses; the English pages are only converted to Markdown. Please report
+> conversion or translation errors here, not to the projects.
 
-## Inhalt / Contents
+## Contents
 
-Drei Gruppen, jede mit `en-markdown/`, `de-markdown/`, `en-pdf/` und
-`de-pdf/`. Three groups, each with `en-markdown/`, `de-markdown/`,
-`en-pdf/` and `de-pdf/`.
+Three groups, each with `en-markdown/`, `de-markdown/`, `en-pdf/` and
+`de-pdf/`.
 
-| Gruppe / group | Ordner / folders | PDFs |
+| Group | Folders | PDFs |
 |---|---|---|
-| `Tcl-family/` — **Tcl-Familie** / *Tcl family* | `9.0/`, `8.6/` (Tcl und Tk; englisch auch die C-API in `tcl-c/`, `tk-c/`), `tcllib/`, `tklib/`, `pakete/` (Csaba Nemethi: tablelist, mentry, scrollutil, wcb, tsw) | `tcltk-9.0`, `tcltk-8.6`, `tcltk-*-capi` (en), `tcllib`, `tklib`, `tablelist`, `mentry`, `scrollutil`, `wcb`, `tsw`; **`tcl-family-index`** |
-| `Extensions/` — **Erweiterungen** / *Extensions* | TDBC, Thread, [incr Tcl], BWidget, tDOM, tcltls, tclvfs, tcludp, tclhttpd, expect, mpexpr, mclistbox, tclws | `erweiterungen` |
-| `Books/` — **Bücher** / *Books* | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcl-en`, `pdf4tcllib-de`, `pdf4tcllib-en` | gleichnamig / same names |
+| `Tcl-family/` | `9.0/`, `8.6/` (Tcl and Tk; in English also the C API in `tcl-c/`, `tk-c/`), `tcllib/`, `tklib/`, `pakete/` (Csaba Nemethi: tablelist, mentry, scrollutil, wcb, tsw) | `tcltk-9.0`, `tcltk-8.6`, `tcltk-*-capi` (en), `tcllib`, `tklib`, `tablelist`, `mentry`, `scrollutil`, `wcb`, `tsw`; **`tcl-family-index`** |
+| `Extensions/` | TDBC, Thread, [incr Tcl], BWidget, tDOM, tcltls, tclvfs, tcludp, tclhttpd, expect, mpexpr, mclistbox, tclws | `erweiterungen` |
+| `Books/` | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcl-en`, `pdf4tcllib-de`, `pdf4tcllib-en` | same names |
 
-**Gesamtindex / combined index:** `Tcl-family/de-pdf/tcl-family-index-de.pdf`
-und `Tcl-family/en-pdf/tcl-family-index-en.pdf` führen die Stichwörter
-aller PDFs der Tcl-Familie in einem Verzeichnis zusammen; jede Seitenzahl
-springt in das jeweilige PDF. Dafür müssen die PDFs im selben Ordner
-liegen (wie im Repository); Acrobat, Okular und Evince folgen den
-Sprüngen, manche Betrachter im Browser nicht. / The keywords of all Tcl
-family PDFs in one index; every page number jumps into that PDF. Keep the
-PDFs in one folder, as in the repository.
+**Combined index:** `Tcl-family/en-pdf/tcl-family-index-en.pdf` and
+`Tcl-family/de-pdf/tcl-family-index-de.pdf` gather the keywords of all
+Tcl family PDFs in one index; every page number jumps into that PDF. Keep
+the PDFs in one folder, as in the repository. Acrobat, Okular and Evince
+follow the jumps; some viewers in the browser do not.
 
-`scripts/` enthält die Werkzeuge / holds the tools: `createpdf/`
-(mit `index-gesamt.tcl`), `build-pdfs.sh`, `hole-lizenzen.sh`.
+`scripts/` holds the tools: `createpdf/` (with `index-gesamt.tcl`),
+`build-pdfs.sh`, `hole-lizenzen.sh` and the GUI `pdfgui.tcl`.
 
-Die Seiten im Format TIP 700 tragen im YAML-Kopf Befehlsname, Abschnitt,
-Stichwörter und die Copyright-Angaben des Originals.
+The pages in TIP 700 format carry the command name, section, keywords and
+the copyright lines of the original in their YAML head.
 
-## Lizenzen / Licenses
-
-Jeder Teil steht unter der Lizenz seines Originals; die deutschen
-Übersetzungen unter denselben Bedingungen wie ihr Original. Übersicht:
-[LICENSES.md](LICENSES.md).
+## Licenses
 
 Each part is under the license of its original; the German translations
 under the same terms as their original. Overview: [LICENSES.md](LICENSES.md).
 
-## PDFs bauen / Building the PDFs
+## Building the PDFs
 
 ```bash
-# Lizenztexte aus den Fossil-Klonen holen (einmal, und nach neuen Quellen)
-bash scripts/hole-lizenzen.sh /pfad/zu/fossil /pfad/zu/nemethi
+# fetch the license texts from the Fossil clones (once, and after new sources)
+bash scripts/hole-lizenzen.sh /path/to/fossil /path/to/nemethi
 
-# alle PDFs, oder nur eine Sprache / einzelne PDFs
+# all PDFs, or one language / single PDFs
 bash scripts/build-pdfs.sh
-bash scripts/build-pdfs.sh -de tcltk-9.0 erweiterungen
+bash scripts/build-pdfs.sh -en tcltk-9.0 erweiterungen
 
-# nach einzelnen PDFs der Tcl-Familie den Gesamtindex neu bauen
-bash scripts/build-pdfs.sh -de tcllib tcl-family-index
+# after single Tcl family PDFs, rebuild the combined index
+bash scripts/build-pdfs.sh -en tcllib tcl-family-index
 
-# die Bücher brauchen bookkit / the books need bookkit
-BOOKKIT=/pfad/zu/bookkit bash scripts/build-pdfs.sh Tclutils-de pdf4tcllib-de
+# the books need bookkit
+BOOKKIT=/path/to/bookkit bash scripts/build-pdfs.sh Tclutils-en pdf4tcllib-en
 ```
 
-Gebraucht werden Tcl 8.6 oder 9.x und die Pakete docir, mdstack, pdf4tcl
-und pdf4tcllib; wo sie liegen, steht in
+Requires Tcl 8.6 or 9.x and the packages docir, mdstack, pdf4tcl and
+pdf4tcllib; where they go is described in
 [scripts/createpdf/README.md](scripts/createpdf/README.md).
 
-Requires Tcl 8.6 or 9.x and the packages docir, mdstack, pdf4tcl and
-pdf4tcllib; see [scripts/createpdf/README.md](scripts/createpdf/README.md).
+## GUI
+
+```bash
+wish scripts/pdfgui.tcl
+```
+
+`pdfgui.tcl` does what `build-pdfs.sh` does, with a GUI: pick manuals and
+languages, set title, subtitle, note and the parts of the PDF, build,
+cancel. "Copy pages" copies the selected manuals from the `de-markdown`
+and `en-markdown` folders of the translation (tcltk-manual-de) into the
+collection; license files stay. Settings can be saved under a name
+(`~/.config/tcltk-manuals/pdfgui/`). The interface speaks German or
+English.
+
+Besides the packages for createpdf, the GUI needs Tk and the packages
+**tkutils** (tkuform, tkuballoon, tkustatus, tkufiledialog, tkudialog)
+and **tclutils** (tutask). These, the translation and bookkit are looked
+up in root folders: first the folder that holds the collection, then the
+folders in `PDFGUI_ROOTS` (separated like `PATH`: `:` on Unix, `;` on
+Windows). In each root folder:
+
+| Folder | for |
+|---|---|
+| `tkutils/lib/tm`, `tclutils/lib/tm` | the packages of the GUI |
+| `translation/tcltk-manual-de` or `tcltk-manual-de` | `de-markdown`, `en-markdown` |
+| `bibliothek/books/bookkit` or `bookkit` | the books |
+
+Each item is looked up on its own, so they may sit in different root
+folders. `TCLTK_MANUAL_DE` and `BOOKKIT` take precedence; packages Tcl
+already finds (`TCL8_6_TM_PATH`, `TCL9_0_TM_PATH`, installed) need no
+entry. The paths can also be chosen by hand in the GUI.
+
+```bash
+cd /path/to/tcltk-manuals
+PDFGUI_ROOTS=$HOME/src wish scripts/pdfgui.tcl
+```

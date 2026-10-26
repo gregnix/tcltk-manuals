@@ -1,5 +1,6 @@
 ---
 CommandName: nnslog
+title: nnslog
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,7 +23,7 @@ nnslog - Name service facility, Commandline Logging Client Application
 # Synopsis
 
 ::: {.synopsis} :::
-[nnslog]{.cmd} [-host host]{.optarg} [-port port]{.optarg} 
+[nnslog]{.cmd} [[-host]{.lit} [host]{.arg}]{.optarg} [[-port]{.lit} [port]{.arg}]{.optarg}
 :::
 
 # Description
@@ -31,7 +32,7 @@ Please read *Name service facility, introduction* first.
 
 The application described by this document, **nnslog**, is a simple command line client for the nano name service facility provided by the Tcllib packages **nameserv**, and **nameserv::server**.
 
-It essentially implements "**nns** search -continuous \*", but uses a different output formatting. Instead of continuously showing the current contents of the server in the terminal it simply logs all received add/remove events to **stdout**.
+It essentially implements "[nns] search -continuous \*", but uses a different output formatting. Instead of continuously showing the current contents of the server in the terminal it simply logs all received add/remove events to **stdout**.
 
 This name service facility has nothing to do with the Internet's *Domain Name System*, otherwise known as *DNS*. If the reader is looking for a package dealing with that please see either of the packages **dns** and **resolv**, both found in Tcllib too.
 
@@ -39,14 +40,15 @@ This name service facility has nothing to do with the Internet's *Domain Name Sy
 
 **nnslog** was written with the following main use case in mind.
 
-**\[1\]**
-: Monitoring the name service for all changes and logging them in a text terminal.
+1. Monitoring the name service for all changes and logging them in a text terminal.
 
 
 ## Command line
 
 **nnslog** ?**-host** *host*? ?**-port** *port*?
-: The command connects to the specified name service, sets up a search for all changes and then prints all received events to stdout, with each events on its own line. The command will not exit until it is explicitly terminated by the user. It will especially survive the loss of the connection to the name service and reestablish the search and log when the connection is restored. The options to specify the name service will be explained later, in section **OPTIONS**.
+: The command connects to the specified name service, sets up a search for all changes and then prints all received events to stdout, with each events on its own line. The command will not exit until it is explicitly terminated by the user. It will especially survive the loss of the connection to the name service and reestablish the search and log when the connection is restored.
+
+    The options to specify the name service will be explained later, in section [Options].
 
 
 ## Options
@@ -77,3 +79,6 @@ Networking
 ```
 Copyright (c) 2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[nns]: nns.md

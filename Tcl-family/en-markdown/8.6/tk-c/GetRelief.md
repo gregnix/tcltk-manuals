@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetReliefFromObj
+title: Tk_GetReliefFromObj
 ManualSection: 3
 Version: 8.1
 TclPart: Tk
@@ -15,45 +16,45 @@ Copyright:
 
 # Name
 
-Tk_GetReliefFromObj, Tk_GetRelief, Tk_NameOfRelief - translate between strings and relief values
+Tk\_GetReliefFromObj, Tk\_GetRelief, Tk\_NameOfRelief - translate between strings and relief values
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_GetReliefFromObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [reliefPtr]{.arg})
-
-int
-[Tk_GetRelief]{.cmd}([interp]{.arg}, [name]{.arg}, [reliefPtr]{.arg})
-
-const char \*
-[Tk_NameOfRelief]{.cmd}([relief]{.arg})
+**#include <tk.h>**
+[int]{.ret} [Tk\_GetReliefFromObj]{.ccmd} [interp, objPtr, reliefPtr]{.cargs}
+[int]{.ret} [Tk\_GetRelief]{.ccmd} [interp, name, reliefPtr]{.cargs}
+[const char \*]{.ret} [Tk\_NameOfRelief]{.ccmd} [relief]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting.
 
-Tcl_Obj *\*objPtr* (in/out)
+[\*objPtr]{.carg .in/out type="Tcl_Obj"}
 : String value contains name of relief, one of "**flat**", "**groove**", "**raised**", "**ridge**", "**solid**", or "**sunken**" (or any unique abbreviation thereof on input); the internal rep will be modified to cache corresponding relief value.
 
-const char *\*name* (in)
+[\*name]{.carg .in type="const char"}
 : Same as *objPtr* except description of relief is passed as a string.
 
-int *\*reliefPtr* (out)
+[\*reliefPtr]{.carg .out type="int"}
 : Pointer to location in which to store relief value corresponding to *objPtr* or *name*.
 
-int *relief* (in)
-: Relief value (one of **TK_RELIEF_FLAT**, **TK_RELIEF_RAISED**, **TK_RELIEF_SUNKEN**, **TK_RELIEF_GROOVE**, **TK_RELIEF_SOLID**, or **TK_RELIEF_RIDGE**).
+[relief]{.carg .in type="int"}
+: Relief value (one of **TK\_RELIEF\_FLAT**, **TK\_RELIEF\_RAISED**, **TK\_RELIEF\_SUNKEN**, **TK\_RELIEF\_GROOVE**, **TK\_RELIEF\_SOLID**, or **TK\_RELIEF\_RIDGE**).
 
+:::
 
 # Description
 
-**Tk_GetReliefFromObj** places in *\*reliefPtr* the relief value corresponding to the value of *objPtr*.  This value will be one of **TK_RELIEF_FLAT**, **TK_RELIEF_RAISED**, **TK_RELIEF_SUNKEN**, **TK_RELIEF_GROOVE**, **TK_RELIEF_SOLID**, or **TK_RELIEF_RIDGE**. Under normal circumstances the return value is **TCL_OK** and *interp* is unused. If *objPtr* does not contain one of the valid relief names or an abbreviation of one of them, then **TCL_ERROR** is returned, *\*reliefPtr* is unmodified, and an error message is stored in *interp*'s result if *interp* is not NULL. **Tk_GetReliefFromObj** caches information about the return value in *objPtr*, which speeds up future calls to **Tk_GetReliefFromObj** with the same *objPtr*.
+**Tk\_GetReliefFromObj** places in *\*reliefPtr* the relief value corresponding to the value of *objPtr*.  This value will be one of **TK\_RELIEF\_FLAT**, **TK\_RELIEF\_RAISED**, **TK\_RELIEF\_SUNKEN**, **TK\_RELIEF\_GROOVE**, **TK\_RELIEF\_SOLID**, or **TK\_RELIEF\_RIDGE**. Under normal circumstances the return value is [TCL\_OK][catch] and *interp* is unused. If *objPtr* does not contain one of the valid relief names or an abbreviation of one of them, then [TCL\_ERROR][catch] is returned, *\*reliefPtr* is unmodified, and an error message is stored in *interp*'s result if *interp* is not NULL. **Tk\_GetReliefFromObj** caches information about the return value in *objPtr*, which speeds up future calls to **Tk\_GetReliefFromObj** with the same *objPtr*.
 
-**Tk_GetRelief** is identical to **Tk_GetReliefFromObj** except that the description of the relief is specified with a string instead of an object.  This prevents **Tk_GetRelief** from caching the return value, so **Tk_GetRelief** is less efficient than **Tk_GetReliefFromObj**.
+**Tk\_GetRelief** is identical to **Tk\_GetReliefFromObj** except that the description of the relief is specified with a string instead of an object.  This prevents **Tk\_GetRelief** from caching the return value, so **Tk\_GetRelief** is less efficient than **Tk\_GetReliefFromObj**.
 
-**Tk_NameOfRelief** is the logical inverse of **Tk_GetRelief**. Given a relief value it returns the corresponding string (**flat**, **raised**, **sunken**, **groove**, **solid**, or **ridge**). If *relief* is not a legal relief value, then "unknown relief" is returned.
+**Tk\_NameOfRelief** is the logical inverse of **Tk\_GetRelief**. Given a relief value it returns the corresponding string (**flat**, **raised**, **sunken**, **groove**, **solid**, or **ridge**). If *relief* is not a legal relief value, then "unknown relief" is returned.
+
+
+[catch]: ../tcl/catch.md

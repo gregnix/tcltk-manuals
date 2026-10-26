@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_DumpActiveMemory
+title: Tcl_DumpActiveMemory
 ManualSection: 3
 Version: 8.1
 TclPart: Tcl
@@ -13,44 +14,48 @@ Keywords:
 Copyright:
  - Copyright (c) 1992-1999 Karl Lehenbauer & Mark Diekhans.
  - Copyright (c) 2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tcl_DumpActiveMemory, Tcl_InitMemory, Tcl_ValidateAllMemory - Validated memory allocation interface
+Tcl\_DumpActiveMemory, Tcl\_InitMemory, Tcl\_ValidateAllMemory - Validated memory allocation interface
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_DumpActiveMemory]{.cmd}([fileName]{.arg})
-
-[Tcl_InitMemory]{.cmd}([interp]{.arg})
-
-[Tcl_ValidateAllMemory]{.cmd}([fileName]{.arg}, [line]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_DumpActiveMemory]{.ccmd} [fileName]{.cargs}
+[Tcl\_InitMemory]{.ccmd} [interp]{.cargs}
+[Tcl\_ValidateAllMemory]{.ccmd} [fileName, line]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Tcl interpreter in which to add commands.
 
-const char *\*fileName* (in)
-: For **Tcl_DumpActiveMemory**, name of the file to which memory information will be written.  For **Tcl_ValidateAllMemory**, name of the file from which the call is being made (normally **\__FILE_\_**).
+[\*fileName]{.carg .in type="const char"}
+: For **Tcl\_DumpActiveMemory**, name of the file to which memory information will be written.  For **Tcl\_ValidateAllMemory**, name of the file from which the call is being made (normally **\_\_FILE\_\_**).
 
-int *line* (in)
-: Line number at which the call to **Tcl_ValidateAllMemory** is made (normally **\__LINE_\_**).
+[line]{.carg .in type="int"}
+: Line number at which the call to **Tcl\_ValidateAllMemory** is made (normally **\_\_LINE\_\_**).
 
+:::
 
 # Description
 
-These functions provide access to Tcl memory debugging information. They are only functional when Tcl has been compiled with **TCL_MEM_DEBUG** defined at compile-time.  When **TCL_MEM_DEBUG** is not defined, these functions are all no-ops.
+These functions provide access to Tcl memory debugging information. They are only functional when Tcl has been compiled with [TCL\_MEM\_DEBUG][TCL_MEM_DEBUG] defined at compile-time.  When [TCL\_MEM\_DEBUG][TCL_MEM_DEBUG] is not defined, these functions are all no-ops.
 
-**Tcl_DumpActiveMemory** will output a list of all currently allocated memory to the specified file.  The information output for each allocated block of memory is:  starting and ending addresses (excluding guard zone), size, source file where **Tcl_Alloc** was called to allocate the block and line number in that file.  It is especially useful to call **Tcl_DumpActiveMemory** after the Tcl interpreter has been deleted.
+**Tcl\_DumpActiveMemory** will output a list of all currently allocated memory to the specified file.  The information output for each allocated block of memory is:  starting and ending addresses (excluding guard zone), size, source file where [Tcl\_Alloc][Alloc] was called to allocate the block and line number in that file.  It is especially useful to call **Tcl\_DumpActiveMemory** after the Tcl interpreter has been deleted.
 
-**Tcl_InitMemory** adds the Tcl **memory** command to the interpreter given by *interp*.  **Tcl_InitMemory** is called by **Tcl_Main**.
+**Tcl\_InitMemory** adds the Tcl [memory] command to the interpreter given by *interp*.  **Tcl\_InitMemory** is called by [Tcl\_Main][Tcl_Main].
 
-**Tcl_ValidateAllMemory** forces a validation of the guard zones of all currently allocated blocks of memory.  Normally validation of a block occurs when its freed, unless full validation is enabled, in which case validation of all blocks occurs when **Tcl_Alloc** and **Tcl_Free** are called.  This function forces the validation to occur at any point.
+**Tcl\_ValidateAllMemory** forces a validation of the guard zones of all currently allocated blocks of memory.  Normally validation of a block occurs when its freed, unless full validation is enabled, in which case validation of all blocks occurs when [Tcl\_Alloc][Alloc] and [Tcl\_Free][Alloc] are called.  This function forces the validation to occur at any point.
+
+
+[Alloc]: Alloc.md
+[memory]: ../tcl/memory.md
+[Tcl_Main]: Tcl_Main.md
+[TCL_MEM_DEBUG]: TCL_MEM_DEBUG.md

@@ -1,5 +1,6 @@
 ---
 CommandName: NRE
+title: NRE
 ManualSection: 3
 Version: 8.6
 TclPart: Tcl
@@ -26,109 +27,99 @@ Copyright:
 
 # Name
 
-Tcl_NRCreateCommand, Tcl_NRCallObjProc, Tcl_NREvalObj, Tcl_NREvalObjv, Tcl_NRCmdSwap, Tcl_NRExprObj, Tcl_NRAddCallback - Non-Recursive (stackless) evaluation of Tcl scripts.
+Tcl\_NRCreateCommand, Tcl\_NRCallObjProc, Tcl\_NREvalObj, Tcl\_NREvalObjv, Tcl\_NRCmdSwap, Tcl\_NRExprObj, Tcl\_NRAddCallback - Non-Recursive (stackless) evaluation of Tcl scripts.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-Tcl_Command
-[Tcl_NRCreateCommand]{.cmd}([interp]{.arg}, [cmdName]{.arg}, [proc]{.arg}, [nreProc]{.arg}, [clientData]{.arg},
-[deleteProc]{.arg})
-
-int
-[Tcl_NRCallObjProc]{.cmd}([interp]{.arg}, [nreProc]{.arg}, [clientData]{.arg}, [objc]{.arg}, [objv]{.arg})
-
-int
-[Tcl_NREvalObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [flags]{.arg})
-
-int
-[Tcl_NREvalObjv]{.cmd}([interp]{.arg}, [objc]{.arg}, [objv]{.arg}, [flags]{.arg})
-
-int
-[Tcl_NRCmdSwap]{.cmd}([interp]{.arg}, [cmd]{.arg}, [objc]{.arg}, [objv]{.arg}, [flags]{.arg})
-
-int
-[Tcl_NRExprObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [resultPtr]{.arg})
-
-void
-[Tcl_NRAddCallback]{.cmd}([interp]{.arg}, [postProcPtr]{.arg}, [data0]{.arg}, [data1]{.arg}, [data2]{.arg}, [data3]{.arg})
+**#include <tcl.h>**
+Tcl\_Command Tcl\_NRCreateCommand(interp, cmdName, proc, nreProc, clientData,
+[int]{.ret} [Tcl\_NRCallObjProc]{.ccmd} [interp, nreProc, clientData, objc, objv]{.cargs}
+[int]{.ret} [Tcl\_NREvalObj]{.ccmd} [interp, objPtr, flags]{.cargs}
+[int]{.ret} [Tcl\_NREvalObjv]{.ccmd} [interp, objc, objv, flags]{.cargs}
+[int]{.ret} [Tcl\_NRCmdSwap]{.ccmd} [interp, cmd, objc, objv, flags]{.cargs}
+[int]{.ret} [Tcl\_NRExprObj]{.ccmd} [interp, objPtr, resultPtr]{.cargs}
+[void]{.ret} [Tcl\_NRAddCallback]{.ccmd} [interp, postProcPtr, data0, data1, data2, data3]{.cargs}
 :::
+
+deleteProc)
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : The relevant Interpreter.
 
-const char *\*cmdName* (in)
+[\*cmdName]{.carg .in type="const char"}
 : Name of the command to create.
 
-Tcl_ObjCmdProc *\*proc* (in)
-: Called in order to evaluate a command.  Is often just a small wrapper that uses **Tcl_NRCallObjProc** to call *nreProc* using a new trampoline.  Behaves in the same way as the *proc* argument to **Tcl_CreateObjCommand**(3) (*q.v.*).
+[\*proc]{.carg .in type="Tcl_ObjCmdProc"}
+: Called in order to evaluate a command.  Is often just a small wrapper that uses **Tcl\_NRCallObjProc** to call *nreProc* using a new trampoline.  Behaves in the same way as the *proc* argument to [Tcl\_CreateObjCommand][CrtObjCmd](3) (*q.v.*).
 
-Tcl_ObjCmdProc *\*nreProc* (in)
+[\*nreProc]{.carg .in type="Tcl_ObjCmdProc"}
 : Called instead of *proc* when a trampoline is already in use.
 
-ClientData *clientData* (in)
+[clientData]{.carg .in type="ClientData"}
 : Arbitrary one-word value passed to *proc*, *nreProc*, *deleteProc* and *objProc*.
 
-Tcl_CmdDeleteProc *\*deleteProc* (in/out)
+[\*deleteProc]{.carg .in/out type="Tcl_CmdDeleteProc"}
 : Called before *cmdName* is deleted from the interpreter, allowing for command-specific cleanup. May be NULL.
 
-int *objc* (in)
+[objc]{.carg .in type="int"}
 : Number of items in *objv*.
 
-Tcl_Obj *\*\*objv* (in)
+[\*\*objv]{.carg .in type="Tcl_Obj"}
 : Words in the command.
 
-Tcl_Obj *\*objPtr* (in)
+[\*objPtr]{.carg .in type="Tcl_Obj"}
 : A script or expression to evaluate.
 
-int *flags* (in)
-: As described for *Tcl_EvalObjv*.
+[flags]{.carg .in type="int"}
+: As described for *[Tcl\_EvalObjv][Eval]*.
 
-Tcl_Command *cmd* (in)
+[cmd]{.carg .in type="Tcl_Command"}
 : Token to use instead of one derived from the first word of *objv* in order to evaluate a command.
 
-Tcl_Obj *\*resultPtr* (out)
-: Pointer to an unshared Tcl_Obj where the result of the evaluation is stored if the return code is TCL_OK.
+[\*resultPtr]{.carg .out type="Tcl_Obj"}
+: Pointer to an unshared [Tcl\_Obj][Object] where the result of the evaluation is stored if the return code is [TCL\_OK][catch].
 
-Tcl_NRPostProc *\*postProcPtr* (in)
+[\*postProcPtr]{.carg .in type="Tcl_NRPostProc"}
 : A function to push.
 
-ClientData *data0* (in)
-: ...see next...
+[data0]{.carg .in type="ClientData"}
+:
 
-ClientData *data1* (in)
-: ...see next...
+[data1]{.carg .in type="ClientData"}
+:
 
-ClientData *data2* (in)
-: ...see next...
+[data2]{.carg .in type="ClientData"}
+:
 
-ClientData *data3* (in)
+[data3]{.carg .in type="ClientData"}
 : *data0* through *data3* are four one-word values that will be passed to the function designated by *postProcPtr* when it is invoked.
 
+:::
 
 # Description
 
 These functions provide an interface to the function stack that an interpreter iterates through to evaluate commands.  The routine behind a command is implemented by an initial function and any additional functions that the routine pushes onto the stack as it progresses.  The interpreter itself pushes functions onto the stack to react to the end of a routine and to exercise other forms of control such as switching between in-progress stacks and the evaluation of other scripts at additional levels without adding frames to the C stack.  To execute a routine, the initial function for the routine is called and then a small bit of code called a *trampoline* iteratively takes functions off the stack and calls them, using the value of the last call as the value of the routine.
 
-**Tcl_NRCallObjProc** calls *nreProc* using a new trampoline.
+**Tcl\_NRCallObjProc** calls *nreProc* using a new trampoline.
 
-**Tcl_NRCreateCommand**, an alternative to **Tcl_CreateObjCommand**, resolves *cmdName*, which may contain namespace qualifiers, relative to the current namespace, creates a command by that name, and returns a token for the command which may be used in subsequent calls to **Tcl_GetCommandName**. Except for a few cases noted below any existing command by the same name is first deleted.  If *interp* is in the process of being deleted **Tcl_NRCreateCommand** does not create any command, does not delete any command, and returns NULL.
+**Tcl\_NRCreateCommand**, an alternative to [Tcl\_CreateObjCommand][CrtObjCmd], resolves *cmdName*, which may contain namespace qualifiers, relative to the current namespace, creates a command by that name, and returns a token for the command which may be used in subsequent calls to [Tcl\_GetCommandName][CrtObjCmd]. Except for a few cases noted below any existing command by the same name is first deleted.  If *interp* is in the process of being deleted **Tcl\_NRCreateCommand** does not create any command, does not delete any command, and returns NULL.
 
-**Tcl_NREvalObj** pushes a function that is like **Tcl_EvalObjEx** but consumes no space on the C stack.
+**Tcl\_NREvalObj** pushes a function that is like [Tcl\_EvalObjEx][Eval] but consumes no space on the C stack.
 
-**Tcl_NREvalObjv** pushes a function that is like **Tcl_EvalObjv** but consumes no space on the C stack.
+**Tcl\_NREvalObjv** pushes a function that is like [Tcl\_EvalObjv][Eval] but consumes no space on the C stack.
 
-**Tcl_NRCmdSwap** is like **Tcl_NREvalObjv**, but uses *cmd*, a token previously returned by **Tcl_CreateObjCommand** or **Tcl_GetCommandFromObj**, instead of resolving the first word of *objv*. .
+**Tcl\_NRCmdSwap** is like **Tcl\_NREvalObjv**, but uses *cmd*, a token previously returned by [Tcl\_CreateObjCommand][CrtObjCmd] or [Tcl\_GetCommandFromObj][CrtObjCmd], instead of resolving the first word of *objv*. .  The name of this command must be the same as *objv\[0\]*.
 
-**Tcl_NRExprObj** pushes a function that evaluates *objPtr* as an expression in the same manner as **Tcl_ExprObj** but without consuming space on the C stack.
+**Tcl\_NRExprObj** pushes a function that evaluates *objPtr* as an expression in the same manner as [Tcl\_ExprObj][ExprLongObj] but without consuming space on the C stack.
 
-All of the functions return **TCL_OK** if the evaluation of the script, command, or expression has been scheduled successfully.  Otherwise (for example if the command name cannot be resolved), they return **TCL_ERROR** and store a message as the interpreter's result.
+All of the functions return [TCL\_OK][catch] if the evaluation of the script, command, or expression has been scheduled successfully.  Otherwise (for example if the command name cannot be resolved), they return [TCL\_ERROR][catch] and store a message as the interpreter's result.
 
-**Tcl_NRAddCallback** pushes *postProcPtr*.  The signature for **Tcl_NRPostProc** is:
+**Tcl\_NRAddCallback** pushes *postProcPtr*.  The signature for **Tcl\_NRPostProc** is:
 
 ```
 typedef int
@@ -142,7 +133,7 @@ Tcl_NRPostProc(
 
 # Example
 
-The following command uses **Tcl_EvalObjEx**, which consumes space on the C stack, to evalute a script:
+The following command uses [Tcl\_EvalObjEx][Eval], which consumes space on the C stack, to evalute a script:
 
 ```
 int
@@ -167,7 +158,7 @@ Tcl_CreateObjCommand(interp, "theCommand",
         TheCmdOldObjProc, clientData, TheCmdDeleteProc);
 ```
 
-To avoid consuming space on the C stack, *TheCmdOldObjProc* is renamed to *TheCmdNRObjProc* and the postprocessing step is split into a separate function, *TheCmdPostProc*, which is pushed onto the function stack. *Tcl_EvalObjEx* is replaced with *Tcl_NREvalObj*, which uses a trampoline instead of consuming space on the C stack.  A new version of *TheCmdOldObjProc* is just a a wrapper that uses **Tcl_NRCallObjProc** to call *TheCmdNRObjProc*:
+To avoid consuming space on the C stack, *TheCmdOldObjProc* is renamed to *TheCmdNRObjProc* and the postprocessing step is split into a separate function, *TheCmdPostProc*, which is pushed onto the function stack. *[Tcl\_EvalObjEx][Eval]* is replaced with *Tcl\_NREvalObj*, which uses a trampoline instead of consuming space on the C stack.  A new version of *TheCmdOldObjProc* is just a a wrapper that uses **Tcl\_NRCallObjProc** to call *TheCmdNRObjProc*:
 
 ```
 int
@@ -224,3 +215,10 @@ Any function comprising a routine can push other functions, making it possible i
 # Copyright
 
 Copyright © 2008 Kevin B. Kenny. Copyright © 2018 Nathan Coulter.
+
+
+[catch]: ../tcl/catch.md
+[CrtObjCmd]: CrtObjCmd.md
+[Eval]: Eval.md
+[ExprLongObj]: ExprLongObj.md
+[Object]: Object.md

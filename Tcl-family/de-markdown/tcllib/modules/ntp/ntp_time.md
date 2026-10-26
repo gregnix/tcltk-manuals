@@ -1,5 +1,6 @@
 ---
 CommandName: ntp_time
+title: ntp_time
 ManualSection: n
 Version: 1.2.2
 TclPart: tcllib
@@ -16,57 +17,58 @@ Copyright:
  - Copyright (c) 2002, Pat Thoyts <patthoyts@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-ntp_time – Tcl-Zeitdienst-Client
+ntp\_time – Tcl-Zeitdienst-Client
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [time]{.lit} [1.2.2]{.optlit} 
-[::time::gettime]{.cmd} [options]{.optarg} [timeserver]{.arg} [port]{.optarg} 
-[::time::getsntp]{.cmd} [options]{.optarg} [timeserver]{.arg} [port]{.optarg} 
-[::time::configure]{.cmd} [options]{.optarg} 
-[::time::cget]{.cmd} [name]{.arg} 
-[::time::unixtime]{.cmd} [token]{.arg} 
-[::time::status]{.cmd} [token]{.arg} 
-[::time::error]{.cmd} [token]{.arg} 
-[::time::reset]{.cmd} [token]{.arg} [reason]{.optarg} 
-[::time::wait]{.cmd} [token]{.arg} 
-[::time::cleanup]{.cmd} [token]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [time]{.lit} [1.2.2]{.optlit}
+[::time::gettime]{.cmd} [options]{.optarg} [timeserver]{.arg} [port]{.optarg}
+[::time::getsntp]{.cmd} [options]{.optarg} [timeserver]{.arg} [port]{.optarg}
+[::time::configure]{.cmd} [options]{.optarg}
+[::time::cget]{.cmd} [name]{.arg}
+[::time::unixtime]{.cmd} [token]{.arg}
+[::time::status]{.cmd} [token]{.arg}
+[::time::error]{.cmd} [token]{.arg}
+[::time::reset]{.cmd} [token]{.arg} [reason]{.optarg}
+[::time::wait]{.cmd} [token]{.arg}
+[::time::cleanup]{.cmd} [token]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieses Paket implementiert einen Client für das RFC 868 TIME-Protokoll (*http://www.rfc-editor.org/rfc/rfc868.txt*) sowie einen Minimal-Client für das RFC 2030 Simple Network Time Protocol (*http://www.rfc-editor.org/rfc/rfc2030.txt*). RFC 868 gibt die Zeit in Sekunden seit dem 1. Januar 1900 entweder an TCP- oder an UDP-Clients zurück. RFC 2030 liefert ebenfalls diese Zeit, dazu einen Bruchteil, den dieser Client nicht verwendet.
+Dieses Paket implementiert einen Client für das RFC 868 TIME-Protokoll (<http://www.rfc-editor.org/rfc/rfc868.txt>) sowie einen Minimal-Client für das RFC 2030 Simple Network Time Protocol (<http://www.rfc-editor.org/rfc/rfc2030.txt>). RFC 868 gibt die Zeit in Sekunden seit dem 1. Januar 1900 entweder an TCP- oder an UDP-Clients zurück. RFC 2030 liefert ebenfalls diese Zeit, dazu einen Bruchteil, den dieser Client nicht verwendet.
 
-# BEFEHLE
+# Befehle
 
 **::time::gettime** ?*options*? *timeserver* ?*port*?
 : Holt die Zeit von *timeserver*. Hier dürfen die Optionen stehen, die der Befehl **configure** kennt. Der Befehl gibt ein Token zurück; die übrigen Befehle dieses Pakets brauchen es. Danach gibt **cleanup** alle Ressourcen frei. Der voreingestellte Port ist **37**.
 
 **::time::getsntp** ?*options*? *timeserver* ?*port*?
-: Holt die Zeit von einem SNTP-Server. Dieser Befehl akzeptiert genau dieselben Argumente wie **::time::gettime**, nur ist der voreingestellte Port **123**. Das Ergebnis ist ein Token wie bei **::time::gettime** und wird genauso verwendet. Es ist unwahrscheinlich, dass ein SNTP-Server über tcp antwortet; Sie brauchen dafür das Paket **tcludp** oder **ceptcl**. Lässt sich ein passendes Paket laden, wird standardmäßig udp verwendet.
+: Holt die Zeit von einem SNTP-Server. Dieser Befehl akzeptiert genau dieselben Argumente wie **::time::gettime**, nur ist der voreingestellte Port **123**. Das Ergebnis ist ein Token wie bei **::time::gettime** und wird genauso verwendet.
+
+    Es ist unwahrscheinlich, dass ein SNTP-Server über tcp antwortet; Sie brauchen dafür das Paket **tcludp** oder **ceptcl**. Lässt sich ein passendes Paket laden, wird standardmäßig udp verwendet.
 
 **::time::configure** ?*options*?
 : Ohne Argumente gibt dieser Befehl alle aktuellen Konfigurationsoptionen und ihre Werte zurück. Sonst ist er mit Paaren aus Optionsname und Wert aufzurufen.
 
+    **-protocol** *number*
+    : Legt das voreingestellte Netzwerkprotokoll fest. Voreingestellt ist udp, wenn das Paket tcludp verfügbar ist. Sonst wird tcp verwendet.
 
-**-protocol** *number*
-: Legt das voreingestellte Netzwerkprotokoll fest. Voreingestellt ist udp, wenn das Paket tcludp verfügbar ist. Sonst wird tcp verwendet.
+    **-port** *number*
+    : Legt den voreingestellten Port fest. RFC 868 verwendet Port **37**, RFC 2030 Port **123**.
 
-**-port** *number*
-: Legt den voreingestellten Port fest. RFC 868 verwendet Port **37**, RFC 2030 Port **123**.
+    **-timeout** *number*
+    : Legt den voreingestellten Timeout in Millisekunden fest. Die Vorgabe ist 10 Sekunden.
 
-**-timeout** *number*
-: Legt den voreingestellten Timeout in Millisekunden fest. Die Vorgabe ist 10 Sekunden.
+    **-command** *number*
+    : Legt eine Befehlsprozedur fest, die bei einer Antwort läuft. Die Prozedur wird aufgerufen, das Zeit-Token hängt an der Argumentliste.
 
-**-command** *number*
-: Legt eine Befehlsprozedur fest, die bei einer Antwort läuft. Die Prozedur wird aufgerufen, das Zeit-Token hängt an der Argumentliste.
-
-**-loglevel** *number*
-: Legt die Protokollierungsstufe fest. Die Vorgabe ist 'warning'.
+    **-loglevel** *number*
+    : Legt die Protokollierungsstufe fest. Die Vorgabe ist 'warning'.
 
 
 **::time::cget** *name*
@@ -115,11 +117,11 @@ proc on_time {token} {
 time::getsntp -command on_time pool.ntp.org
 ```
 
-# AUTOREN
+# Autoren
 
 Pat Thoyts
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *ntp* als Kategorie an.
 
@@ -127,11 +129,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Pat Thoyts <patthoyts@users.sourceforge.net>

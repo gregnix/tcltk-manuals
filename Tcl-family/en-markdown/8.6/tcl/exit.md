@@ -1,5 +1,6 @@
 ---
 CommandName: exit
+title: exit
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -22,7 +23,7 @@ exit - End the application
 # Synopsis
 
 ::: {.synopsis} :::
-[exit]{.cmd} [returnCode]{.optarg} 
+[exit]{.cmd} [returnCode]{.optarg}
 :::
 
 # Description

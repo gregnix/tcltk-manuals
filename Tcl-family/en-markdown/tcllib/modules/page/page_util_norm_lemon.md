@@ -1,5 +1,6 @@
 ---
 CommandName: page_util_norm_lemon
+title: page_util_norm_lemon
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -18,14 +19,14 @@ Copyright:
 
 # Name
 
-page_util_norm_lemon - page AST normalization, LEMON
+page\_util\_norm\_lemon - page AST normalization, LEMON
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [page::util::norm_lemon]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[::page::util::norm::lemon]{.cmd} [tree]{.arg} 
+[package]{.cmd} [require]{.sub} [page::util::norm\_lemon]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[::page::util::norm::lemon]{.cmd} [tree]{.arg}
 :::
 
 # Description
@@ -34,10 +35,12 @@ This package provides a single utility command which takes an AST for a lemon  g
 
 *Note* that this package can only be used from within a plugin managed by the package **page::pluginmgr**.
 
-# Api
+# API
 
 **::page::util::norm::lemon** *tree*
-: This command assumes the *tree* object contains for a lemon grammar. It normalizes this tree in place. The result is called a *Normalized Lemon Grammar Tree*. The exact operations performed are left undocumented for the moment.
+: This command assumes the *tree* object contains for a lemon grammar. It normalizes this tree in place. The result is called a *Normalized Lemon Grammar Tree*.
+
+    The exact operations performed are left undocumented for the moment.
 
 
 # Bugs, ideas, feedback

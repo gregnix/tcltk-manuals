@@ -1,5 +1,6 @@
 ---
 CommandName: while
+title: while
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -19,19 +20,19 @@ Copyright:
  - Copyright (c) 1994-1997 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 while - Führt ein Script wiederholt aus, solange eine Bedingung erfüllt ist
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[while]{.cmd} [test]{.arg} [body]{.arg} 
+[while]{.cmd} [test]{.arg} [body]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **while** wertet *test* als Ausdruck aus (auf dieselbe Weise wie **expr** sein Argument auswertet). Der Wert des Ausdrucks muss ein gültiger Boolean-Wert sein; wenn er wahr ist, wird *body* ausgeführt, indem es an den Tcl-Interpreter übergeben wird. Sobald *body* ausgeführt wurde, wird *test* erneut ausgewertet, und der Prozess wiederholt sich, bis *test* schließlich zu einem falschen Boolean-Wert ausgewertet wird. **continue**-Befehle können innerhalb von *body* ausgeführt werden, um die aktuelle Iteration der Schleife zu beenden, und **break**-Befehle können innerhalb von *body* ausgeführt werden, um den **while**-Befehl sofort zu beenden. Der **while**-Befehl gibt immer einen leeren String zurück.
+Der Befehl **while** wertet *test* als Ausdruck aus (auf dieselbe Weise wie [expr] sein Argument auswertet). Der Wert des Ausdrucks muss ein gültiger Boolean-Wert sein; wenn er wahr ist, wird *body* ausgeführt, indem es an den Tcl-Interpreter übergeben wird. Sobald *body* ausgeführt wurde, wird *test* erneut ausgewertet, und der Prozess wiederholt sich, bis *test* schließlich zu einem falschen Boolean-Wert ausgewertet wird. **continue**-Befehle können innerhalb von *body* ausgeführt werden, um die aktuelle Iteration der Schleife zu beenden, und [break]-Befehle können innerhalb von *body* ausgeführt werden, um den **while**-Befehl sofort zu beenden. Der **while**-Befehl gibt immer einen leeren String zurück.
 
 Hinweis: *test* sollte fast immer in geschweifte Klammern eingeschlossen werden. Wenn nicht, werden Variablenersetzungen vorgenommen, bevor der **while**-Befehl mit der Ausführung beginnt, was bedeutet, dass Variablenänderungen durch den Schleifenkörper nicht im Ausdruck berücksichtigt werden. Dies führt wahrscheinlich zu einer Endlosschleife. Wenn *test* in geschweifte Klammern eingeschlossen ist, werden Variablenersetzungen verzögert, bis der Ausdruck ausgewertet wird (vor jeder Schleifeniteration), sodass Änderungen an den Variablen sichtbar werden. Probieren Sie als Beispiel das folgende Script mit und ohne die geschweiften Klammern um **$x<10**:
 
@@ -43,7 +44,7 @@ while {$x<10} {
 }
 ```
 
-# BEISPIEL
+# Beispiel
 
 Liest Zeilen aus einem Kanal bis zum Ende des Streams und gibt sie mit vorangestellter Zeilennummer aus:
 
@@ -54,3 +55,6 @@ while {[gets $chan line] >= 0} {
 }
 ```
 
+
+[break]: break.md
+[expr]: expr.md

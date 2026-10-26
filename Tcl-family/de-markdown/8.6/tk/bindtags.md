@@ -1,5 +1,6 @@
 ---
 CommandName: bindtags
+title: bindtags
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -15,19 +16,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 bindtags - Legt anwendbare Bindings und ihre Auswertungsreihenfolge fest
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[bindtags]{.cmd} [window]{.arg} [tagList]{.optarg} 
+[bindtags]{.cmd} [window]{.arg} [tagList]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Wird ein Binding mit dem Befehl **bind** erzeugt, wird es entweder einem bestimmten Fenster wie **.a.b.c**, einem Klassennamen wie **Button**, dem Schlüsselwort **all** oder einer anderen Zeichenkette zugeordnet. All diese Formen heißen *Binding-Tags*. Jedes Fenster enthält eine Liste von Binding-Tags, die bestimmen, wie Ereignisse für das Fenster verarbeitet werden. Tritt ein Ereignis in einem Fenster ein, wird es nacheinander auf jedes Tag des Fensters angewendet: Für jedes Tag wird das spezifischste Binding ausgeführt, das zum Tag und Ereignis passt. Details zum Abgleich siehe Befehl **bind**.
+Wird ein Binding mit dem Befehl [bind] erzeugt, wird es entweder einem bestimmten Fenster wie **.a.b.c**, einem Klassennamen wie **Button**, dem Schlüsselwort **all** oder einer anderen Zeichenkette zugeordnet. All diese Formen heißen *Binding-Tags*. Jedes Fenster enthält eine Liste von Binding-Tags, die bestimmen, wie Ereignisse für das Fenster verarbeitet werden. Tritt ein Ereignis in einem Fenster ein, wird es nacheinander auf jedes Tag des Fensters angewendet: Für jedes Tag wird das spezifischste Binding ausgeführt, das zum Tag und Ereignis passt. Details zum Abgleich siehe Befehl [bind].
 
 Standardmäßig hat jedes Fenster vier Binding-Tags in dieser Reihenfolge: Fenstername, Klassenname des Fensters, Name des nächsten **toplevel**-Vorfahren und **all**. **toplevel**-Fenster haben standardmäßig nur drei Tags, da der Toplevel-Name mit dem Fensternamen übereinstimmt. Mit **bindtags** können die Binding-Tags eines Fensters gelesen und geändert werden.
 
@@ -47,9 +48,9 @@ bindtags .b {.b TrickyButton . all}
 
 ersetzt den **Button**-Tag von **.b** durch **TrickyButton**. Die Standard-Widget-Bindings für Buttons (Tag **Button**) gelten dann nicht mehr für **.b**; Bindings für **TrickyButton** (z. B. neues Button-Verhalten) schon.
 
-# BEISPIELE
+# Beispiele
 
-Bei verschachtelten **frame**-Widgets sollen Ereignisse eines **button**-Widgets auch an alle Widgets bis zum aktuellen **toplevel** weitergegeben werden (im Gegensatz zum Tk-Standard, der Zwischenfenster auslässt) — praktisch für Beschleuniger, die nur für einen Teil des Fensters aktiv sind. Hilfsprozedur:
+Bei verschachtelten [frame]-Widgets sollen Ereignisse eines [button]-Widgets auch an alle Widgets bis zum aktuellen [toplevel] weitergegeben werden (im Gegensatz zum Tk-Standard, der Zwischenfenster auslässt) — praktisch für Beschleuniger, die nur für einen Teil des Fensters aktiv sind. Hilfsprozedur:
 
 ```
 proc setupBindtagsForTreeDelivery {widget} {
@@ -64,3 +65,9 @@ proc setupBindtagsForTreeDelivery {widget} {
     bindtags $widget $tags
 }
 ```
+
+
+[bind]: bind.md
+[button]: button.md
+[frame]: frame.md
+[toplevel]: toplevel.md

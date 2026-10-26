@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::pdf
+title: canvas::pdf
 ManualSection: n
 Version: 1
 TclPart: tklib
@@ -25,18 +26,18 @@ canvas::pdf - Canvas to PDF
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::pdf]{.lit} [1]{.optlit} 
-[package]{.cmd} [require]{.sub} [pdf4tcl]{.lit} 
-[::canvas::pdf]{.cmd} [pathName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::pdf]{.lit} [1]{.optlit}
+[package]{.cmd} [require]{.sub} [pdf4tcl]{.lit}
+[::canvas::pdf]{.cmd} [pathName]{.arg}
 :::
 
 # Description
 
 This package provides a command to convert a canvas' contents to Adobe's PDF vector format.
 
-# Api
+# API
 
 **::canvas::pdf** *pathName*
 : Dump the contents of the canvas *pathName*. The result is a string in Adobe's PDF.

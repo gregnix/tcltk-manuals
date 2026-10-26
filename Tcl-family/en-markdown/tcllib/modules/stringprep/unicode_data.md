@@ -1,5 +1,6 @@
 ---
 CommandName: unicode::data
+title: unicode::data
 ManualSection: n
 Version: 1.1.1
 TclPart: tcllib
@@ -18,8 +19,8 @@ unicode::data - unicode data tables, generated, internal
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [unicode::data]{.lit} [1.1.1]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [unicode::data]{.lit} [1.1.1]{.lit}
 :::
 
 # Description

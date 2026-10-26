@@ -1,5 +1,6 @@
 ---
 CommandName: pt_parser_api
+title: pt_parser_api
 ManualSection: i
 Version: 1.1
 TclPart: tcllib
@@ -27,16 +28,16 @@ Copyright:
 
 # Name
 
-pt_parser_api - Parser API
+pt\_parser\_api - Parser API
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[className]{.cmd} [objectName]{.optarg} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [parse]{.sub} [chan]{.arg} 
-[objectName]{.ins} [parset]{.sub} [text]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[className]{.cmd} [objectName]{.optarg}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [parse]{.sub} [chan]{.arg}
+[objectName]{.ins} [parset]{.sub} [text]{.arg}
 :::
 
 # Description
@@ -49,36 +50,43 @@ Its intended audience are people who wish to create a parser for some language o
 
 It resides in the User Layer of Parser Tools.
 
-IMAGE: arch_user_pkg
+IMAGE: arch\_user\_pkg
 
-# Class api
+# Class API
 
 **className** ?*objectName*?
-: The class command constructs parser instances, i.e. objects. The result of the command is the fully-qualified name of the instance command. If no *objectName* is specified the class will generate and use an automatic name. If the *objectName* was specified, but is not fully qualified the command will be created in the current namespace.
+: The class command constructs parser instances, i.e. objects. The result of the command is the fully-qualified name of the instance command.
+
+    If no *objectName* is specified the class will generate and use an automatic name. If the *objectName* was specified, but is not fully qualified the command will be created in the current namespace.
 
 
-# Instance api
+# Instance API
 
 All parser instances provide at least the methods shown below:
 
 *objectName* **destroy**
-: This method destroys the parser instance, releasing all claimed memory and other resources, and deleting the instance command. The result of the command is the empty string.
+: This method destroys the parser instance, releasing all claimed memory and other resources, and deleting the instance command.
+
+    The result of the command is the empty string.
 
 *objectName* **parse** *chan*
-: This method runs the parser using the contents of *chan* as input (starting at the current location in the channel), until parsing is not possible anymore, either because parsing has completed, or run into a syntax error. Note here that the Parser Tools are based on Tcl 8.5+. In other words, the channel argument is not restricted to files, sockets, etc. We have the full power of *reflected channels* available. It should also be noted that the parser pulls the characters from the input stream as it needs them. If a parser created by this package has to be operated in a push aka event-driven manner it will be necessary to go to Tcl 8.6+ and use the **coroutine::auto** to wrap it into a coroutine where **read** is properly changed for push-operation. Upon successful completion the command returns an abstract syntax tree as its result. This AST is in the form specified in section **AST serialization format**. As a plain nested Tcl-list it can then be processed with any Tcl commands the user likes, doing transformations, semantic checks, etc. To help in this the package **pt::ast** provides a set of convenience commands for validation of the tree's basic structure, printing it for debugging, and walking it either from the bottom up, or top down. When encountering a syntax error the command will throw an error instead. This error will be a 4-element Tcl-list, containing, in the order listed below:
+: This method runs the parser using the contents of *chan* as input (starting at the current location in the channel), until parsing is not possible anymore, either because parsing has completed, or run into a syntax error.
 
+    Note here that the Parser Tools are based on Tcl 8.5+. In other words, the channel argument is not restricted to files, sockets, etc. We have the full power of *reflected channels* available.
 
-**\[1\]**
-: The string **pt::rde** identifying it as parser runtime error.
+    It should also be noted that the parser pulls the characters from the input stream as it needs them. If a parser created by this package has to be operated in a push aka event-driven manner it will be necessary to go to Tcl 8.6+ and use the **coroutine::auto** to wrap it into a coroutine where **read** is properly changed for push-operation.
 
-**\[2\]**
-: The location of the parse error, as character offset from the beginning of the parsed input.
+    Upon successful completion the command returns an abstract syntax tree as its result. This AST is in the form specified in section [Ast serialization format]. As a plain nested Tcl-list it can then be processed with any Tcl commands the user likes, doing transformations, semantic checks, etc. To help in this the package **pt::ast** provides a set of convenience commands for validation of the tree's basic structure, printing it for debugging, and walking it either from the bottom up, or top down.
 
-**\[3\]**
-: The location of parse error, now as a 2-element list containing line-number and column in the line.
+    When encountering a syntax error the command will throw an error instead. This error will be a 4-element Tcl-list, containing, in the order listed below:
 
-**\[4\]**
-: A set of atomic parsing expressions indicating encoding the characters and/or nonterminal symbols the parser expected to see at the location of the parse error, but did not get. For the specification of atomic parsing expressions please see the section **PE serialization format**.
+    1. The string **pt::rde** identifying it as parser runtime error.
+
+    2. The location of the parse error, as character offset from the beginning of the parsed input.
+
+    3. The location of parse error, now as a 2-element list containing line-number and column in the line.
+
+    4. A set of atomic parsing expressions indicating encoding the characters and/or nonterminal symbols the parser expected to see at the location of the parse error, but did not get. For the specification of atomic parsing expressions please see the section [PE serialization format].
 
 
 *objectName* **parset** *text*
@@ -122,41 +130,29 @@ Each node in an AST represents a nonterminal symbol of a grammar, and the range 
 
 We distinguish between *regular* and *canonical* serializations. While a tree may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**Regular serialization**
-: 
+Regular serialization
+: 1. The serialization of any AST is the serialization of its root node.
+
+    2. The serialization of any node is a Tcl list containing at least three elements.
+
+        1. The first element is the name of the nonterminal symbol stored in the node.
+
+        2. The second and third element are the locations of the first and last token in the token stream the node represents (covers).
+
+            1. Locations are provided as non-negative integer offsets from the beginning of the token stream, with the first token found in the stream located at offset 0 (zero).
+
+            2. The end location has to be equal to or larger than the start location.
 
 
-**\[1\]**
-: The serialization of any AST is the serialization of its root node.
-
-**\[2\]**
-: The serialization of any node is a Tcl list containing at least three elements.
+        3. All elements after the first three represent the children of the node, which are themselves nodes. This means that the serializations of nodes without children, i.e. leaf nodes, have exactly three elements. The children are stored in the list with the leftmost child first, and the rightmost child last.
 
 
-**\[1\]**
-: The first element is the name of the nonterminal symbol stored in the node.
 
-**\[2\]**
-: The second and third element are the locations of the first and last token in the token stream the node represents (covers).
-
-
-**\[1\]**
-: Locations are provided as non-negative integer offsets from the beginning of the token stream, with the first token found in the stream located at offset 0 (zero).
-
-**\[2\]**
-: The end location has to be equal to or larger than the start location.
-
-
-**\[3\]**
-: All elements after the first three represent the children of the node, which are themselves nodes. This means that the serializations of nodes without children, i.e. leaf nodes, have exactly three elements. The children are stored in the list with the leftmost child first, and the rightmost child last.
-
-
-**Canonical serialization**
+Canonical serialization
 : The canonical serialization of an abstract syntax tree has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this tree.
 
+    1. The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
-**\[1\]**
-: The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
 
 ## Example
@@ -218,110 +214,77 @@ Expression 0 4 --- Factor 0 4 -+----------------------------- AddOp 3 3 | +
 +- Term 4 4 --- Number 4 4 --- Digit 4 4 | 5
 ```
 
-# Pe serialization format
+# PE serialization format
 
 Here we specify the format used by the Parser Tools to serialize Parsing Expressions as immutable values for transport, comparison, etc.
 
 We distinguish between *regular* and *canonical* serializations. While a parsing expression may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**Regular serialization**
-: 
+Regular serialization
+: see below ...
+
+    **Atomic Parsing Expressions**
+    : 1. The string **epsilon** is an atomic parsing expression. It matches the empty string.
+
+        2. The string **dot** is an atomic parsing expression. It matches any character.
+
+        3. The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        4. The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        5. The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        6. The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        7. The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        8. The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        9. The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        10. The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        11. The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        12. The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        13. The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        14. The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        15. The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        16. The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
+
+        17. The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
+
+        18. The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
 
 
-**Atomic Parsing Expressions**
-: 
+    **Combined Parsing Expressions**
+    : 1. For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
+
+        2. For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
+
+        3. For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
+
+        4. For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
+
+        5. For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
+
+        6. For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
+
+        7. For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
 
 
-**\[1\]**
-: The string **epsilon** is an atomic parsing expression. It matches the empty string.
 
-**\[2\]**
-: The string **dot** is an atomic parsing expression. It matches any character.
-
-**\[3\]**
-: The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[4\]**
-: The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[5\]**
-: The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[6\]**
-: The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[7\]**
-: The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[8\]**
-: The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[9\]**
-: The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[10\]**
-: The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[11\]**
-: The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[12\]**
-: The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[13\]**
-: The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[14\]**
-: The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[15\]**
-: The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[16\]**
-: The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
-
-**\[17\]**
-: The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
-
-**\[18\]**
-: The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
-
-
-**Combined Parsing Expressions**
-: 
-
-
-**\[1\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
-
-**\[2\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
-
-**\[3\]**
-: For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
-
-**\[4\]**
-: For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
-
-**\[5\]**
-: For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
-
-**\[6\]**
-: For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
-
-**\[7\]**
-: For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
-
-
-**Canonical serialization**
+Canonical serialization
 : The canonical serialization of a parsing expression has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this parsing expression.
 
+    1. The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
-**\[1\]**
-: The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
+    2. Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
-**\[2\]**
-: Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
 
 ## Example

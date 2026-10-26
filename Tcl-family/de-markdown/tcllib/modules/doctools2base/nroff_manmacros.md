@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::nroff::man_macros
+title: doctools::nroff::man_macros
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -15,19 +16,19 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-doctools::nroff::man_macros – Definition des nroff-man-Makrosatzes für NROFF-Export-Plugins
+doctools::nroff::man\_macros – Definition des nroff-man-Makrosatzes für NROFF-Export-Plugins
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::nroff::man_macros]{.lit} [0.2]{.optlit} 
-[::doctools::nroff::man_macros::contents]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::nroff::man\_macros]{.lit} [0.2]{.optlit}
+[::doctools::nroff::man\_macros::contents]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt einen einzigen Befehl bereit, der Zugriff auf die Definition des nroff-*man*-Makrosatzes gewährt, der für das von den verschiedenen NROFF-Export-Plugins generierte NROFF-Markup verwendet werden soll.
 
@@ -35,11 +36,11 @@ Hierbei handelt es sich um ein internes Paket von doctools, das für *Export*-Pl
 
 # API
 
-**::doctools::nroff::man_macros::contents**
+**::doctools::nroff::man\_macros::contents**
 : Dieser Befehl gibt den Text der Definition des nroff-*man*-Makrosatzes zurück, der für das von den verschiedenen NROFF-Export-Plugins erzeugte NROFF-Markup verwendet werden soll.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *doctools* als Kategorie an.
 
@@ -47,11 +48,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

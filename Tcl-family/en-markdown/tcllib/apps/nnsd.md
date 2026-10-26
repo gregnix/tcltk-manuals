@@ -1,5 +1,6 @@
 ---
 CommandName: nnsd
+title: nnsd
 ManualSection: n
 Version: 1.0.1
 TclPart: tcllib
@@ -22,14 +23,14 @@ nnsd - Name service facility, Commandline Server Application
 # Synopsis
 
 ::: {.synopsis} :::
-[nnsd]{.cmd} [-localonly flag]{.optarg} [-port port]{.optarg} 
+[nnsd]{.cmd} [[-localonly]{.lit} [flag]{.arg}]{.optarg} [[-port]{.lit} [port]{.arg}]{.optarg}
 :::
 
 # Description
 
 Please read *Name service facility, introduction* first.
 
-The application described by this document, **nns**, is a simple command line server for the nano name service facility provided by the Tcllib packages **nameserv**, and **nameserv::server**. Beyond that the application's sources also serve as an example of how to use the server package **nameserv::server**.
+The application described by this document, [nns], is a simple command line server for the nano name service facility provided by the Tcllib packages **nameserv**, and **nameserv::server**. Beyond that the application's sources also serve as an example of how to use the server package **nameserv::server**.
 
 This name service facility has nothing to do with the Internet's *Domain Name System*, otherwise known as *DNS*. If the reader is looking for a package dealing with that please see either of the packages **dns** and **resolv**, both found in Tcllib too.
 
@@ -37,14 +38,15 @@ This name service facility has nothing to do with the Internet's *Domain Name Sy
 
 **nnsd** was written with the following main use case in mind.
 
-**\[1\]**
-: Run a nano name service on some host.
+1. Run a nano name service on some host.
 
 
 ## Command line
 
 **nnsd** ?**-localonly** *flag*? ?**-port** *port*?
-: The command configures a server per the specified options and starts it. The command will not exit on its own, as it keeps the name service database wholly in memory. The user has to kill it explicitly, either by sending a a signal, or through the job-control facilities of the shell in use. The options to configure the name service are explained in section **OPTIONS**.
+: The command configures a server per the specified options and starts it. The command will not exit on its own, as it keeps the name service database wholly in memory. The user has to kill it explicitly, either by sending a a signal, or through the job-control facilities of the shell in use.
+
+    The options to configure the name service are explained in section [Options].
 
 
 ## Options
@@ -75,3 +77,6 @@ Networking
 ```
 Copyright (c) 2007-2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[nns]: nns.md

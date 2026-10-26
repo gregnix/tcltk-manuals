@@ -1,5 +1,6 @@
 ---
 CommandName: piePeripheralLabeler
+title: piePeripheralLabeler
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -24,9 +25,9 @@ piePeripheralLabeler - tkpiechart pie peripheral style labeler class
 # Synopsis
 
 ::: {.synopsis} :::
-[stooop::new]{.cmd} [piePeripheralLabeler]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [piePeripheralLabelerObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [piePeripheralLabelerObject]{.arg} [option]{.arg} 
+[stooop::new]{.cmd} [piePeripheralLabeler]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [piePeripheralLabelerObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [piePeripheralLabelerObject]{.arg} [option]{.arg}
 :::
 
 # Description
@@ -69,8 +70,7 @@ There is no need to delete a **piePeripheralLabeler** object as it is automatica
 
 The labeler has the following specific tag (see the **canvas** manual page *ITEM IDS AND TAGS* section for more information):
 
-**•**
-: piePeripheralLabeler(piePeripheralLabelerObject)
+- piePeripheralLabeler(piePeripheralLabelerObject)
 
 
 # Bugs, ideas, feedback

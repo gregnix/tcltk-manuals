@@ -1,5 +1,6 @@
 ---
 CommandName: shtmlview
+title: shtmlview
 ManualSection: n
 Version: 1.1.2
 TclPart: tklib
@@ -24,30 +25,30 @@ shtmlview - Extended Tcl/Tk text widget with basic support for rendering of HTML
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} [;#]{.lit} [optional]{.lit} [Markdown]{.lit} [support]{.lit} 
-[package]{.cmd} [require]{.sub} [img::jpeg]{.lit} [;#]{.lit} [optional]{.lit} [jpeg]{.lit} [image]{.lit} [support]{.lit} 
-[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} [1.1.2]{.optlit} 
-[::shtmlview::converter]{.cmd} [extension]{.arg} [description]{.arg} [cmdprefix]{.arg} 
-[::shtmlview::shtmlview]{.cmd} [pathName]{.arg} [options]{.optarg} 
-[pathName]{.ins} [back]{.sub} 
-[pathName]{.ins} [browse]{.sub} [filename]{.arg} [args]{.optarg} 
-[pathName]{.ins} [dosearch]{.sub} [string]{.arg} [direction]{.arg} 
-[pathName]{.ins} [edittext]{.sub} [cmd]{.arg} [options]{.optarg} 
-[pathName]{.ins} [editView]{.sub} 
-[pathName]{.ins} [forward]{.sub} 
-[pathName]{.ins} [getFiles]{.sub} 
-[pathName]{.ins} [getHistory]{.sub} 
-[pathName]{.ins} [getEditWidget]{.sub} 
-[pathName]{.ins} [getTextWidget]{.sub} 
-[pathName]{.ins} [helptext]{.sub} [cmd]{.arg} [options]{.optarg} 
-[pathName]{.ins} [home]{.sub} 
-[pathName]{.ins} [open]{.sub} 
-[pathName]{.ins} [reload]{.sub} 
-[pathName]{.ins} [render]{.sub} [text]{.arg} [ext]{.optarg} 
-[pathName]{.ins} [sourceView]{.sub} 
-[pathName]{.ins} [url]{.sub} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit} [;#]{.lit} [optional]{.lit} [Markdown]{.lit} [support]{.lit}
+[package]{.cmd} [require]{.sub} [img::jpeg]{.lit} [;#]{.lit} [optional]{.lit} [jpeg]{.lit} [image]{.lit} [support]{.lit}
+[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} [1.1.2]{.optlit}
+[::shtmlview::converter]{.cmd} [extension]{.arg} [description]{.arg} [cmdprefix]{.arg}
+[::shtmlview::shtmlview]{.cmd} [pathName]{.arg} [options]{.optarg}
+[pathName]{.ins} [back]{.sub}
+[pathName]{.ins} [browse]{.sub} [filename]{.arg} [args]{.optarg}
+[pathName]{.ins} [dosearch]{.sub} [string]{.arg} [direction]{.arg}
+[pathName]{.ins} [edittext]{.sub} [cmd]{.arg} [options]{.optarg}
+[pathName]{.ins} [editView]{.sub}
+[pathName]{.ins} [forward]{.sub}
+[pathName]{.ins} [getFiles]{.sub}
+[pathName]{.ins} [getHistory]{.sub}
+[pathName]{.ins} [getEditWidget]{.sub}
+[pathName]{.ins} [getTextWidget]{.sub}
+[pathName]{.ins} [helptext]{.sub} [cmd]{.arg} [options]{.optarg}
+[pathName]{.ins} [home]{.sub}
+[pathName]{.ins} [open]{.sub}
+[pathName]{.ins} [reload]{.sub}
+[pathName]{.ins} [render]{.sub} [text]{.arg} [ext]{.optarg}
+[pathName]{.ins} [sourceView]{.sub}
+[pathName]{.ins} [url]{.sub}
 :::
 
 # Description
@@ -62,7 +63,7 @@ Use cases are as a help viewer and wherever the developer has control about the 
 
 Comments and feedbacks are welcome.
 
-The **shtmlview::shtmlview** widget overloads the text widget and provides new commands and options. These are explained in the sections **WIDGET COMMANDS** and **WIDGET OPTIONS**.
+The **shtmlview::shtmlview** widget overloads the text widget and provides new commands and options. These are explained in the sections [Widget commands] and [Widget options].
 
 Note that the file "*shtmlview.tcl*" is not only a package but also a standalone application for the direct viewing of Markdown and HTML files. Invoke it as
 
@@ -77,10 +78,26 @@ The API described in this document is not the whole API offered by the snit obje
 # Commands
 
 **::shtmlview::converter** *extension* *description* *cmdprefix*
-: Registers a conversion command prefix (*cmdprefix*) for files having the *extension*. The *description* is a short summary of the kind of files expected to have that extension. The result of the command is the empty string. Whenever an shtmlview widget encounters a file with the specified *extension* it will invoke the registered command prefix with one argument, the path to the file to convert. The result of the invokation is expected to be the HTML to render and display. See section **EXTENSIONS** for an example.
+: Registers a conversion command prefix (*cmdprefix*) for files having the *extension*. The *description* is a short summary of the kind of files expected to have that extension.
+
+    The result of the command is the empty string.
+
+    Whenever an shtmlview widget encounters a file with the specified *extension* it will invoke the registered command prefix with one argument, the path to the file to convert. The result of the invokation is expected to be the HTML to render and display.
+
+    See section [Extensions] for an example.
 
 **::shtmlview::shtmlview** *pathName* ?*options*?
-: Creates and configures the shtmlview widget *pathName*. The result of the command is the *pathName*. An error is thrown if a widget for *pathName* already exists. An error is also thrown if the parent for *pathName* does not exist. The recognized options are explained in section **WIDGET OPTIONS**. The methods of the new widget are explained in section **WIDGET COMMANDS**.
+: Creates and configures the shtmlview widget *pathName*.
+
+    The result of the command is the *pathName*.
+
+    An error is thrown if a widget for *pathName* already exists.
+
+    An error is also thrown if the parent for *pathName* does not exist.
+
+    The recognized options are explained in section [Widget options].
+
+    The methods of the new widget are explained in section [Widget commands].
 
 
 # Widget options
@@ -122,23 +139,21 @@ Each shtmlview widget created with the above command supports the following comm
 *pathName* **edittext** *cmd* ?*options*?
 : This command exposes the internal text editor widget for configuration. See the following example:
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help editView
-    .help edittext configure -background salmon
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help editView
+        .help edittext configure -background salmon
+    ```
 
 *pathName* **editView**
 : This command switches the widget from viewing to editing.  In this mode the user is able to edit and change the currently loaded file. To switch to a non-editable source display instead see **sourceView** below.
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help editView
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help editView
+    ```
 
 *pathName* **forward**
 : Displays the next HTML or Markdown page in the browsing history if any.
@@ -158,12 +173,11 @@ Each shtmlview widget created with the above command supports the following comm
 *pathName* **helptext** *cmd* ?*options*?
 : This command exposes the internal viewer text widget for configuration. See the following example:
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.html
-    .help helptext configure -background yellow
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.html
+        .help helptext configure -background yellow
+    ```
 
 *pathName* **home**
 : Displays either the page set by option **-home**, or the first page **browse** was called for.
@@ -180,12 +194,11 @@ Each shtmlview widget created with the above command supports the following comm
 *pathName* **sourceView**
 : This command switches the widget from viewing the current document itself to viewing the source of that document. To switch to a editable source display see **editView** above.
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help sourceView
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help sourceView
+    ```
 
 *pathName* **url**
 : Returns the currently shown URL.
@@ -195,46 +208,46 @@ Each shtmlview widget created with the above command supports the following comm
 
 The following keys are bound to the widget for navigation and other actions:
 
-**\<cursor>**
+<cursor>
 : Standard cursor movement in the view
 
-**b**
+b
 : Back - display previous page in history
 
-**f**
+f
 : Forward - display next page in history
 
-**p**
+p
 : Previous - Move cursor to previous search match
 
-**n**
+n
 : Next - Move cursor to next search match
 
-**q**
+q
 : Remove current page from history. Implies **f**.
 
-**r**
+r
 : Start search backward
 
-**s**
+s
 : Start search forward
 
-**Ctrl-E**
+Ctrl-E
 : Toggle edit mode
 
-**Ctrl-s**
+Ctrl-s
 : In edit mode, save page
 
-**Ctrl-r**
+Ctrl-r
 : Reload current page
 
-**Ctrl-u**
+Ctrl-u
 : Toggle source vs rendered views
 
-**Return**
+Return
 : Follow link under cursor
 
-**TAB**
+TAB
 : Move cursor to next link on current page
 
 
@@ -298,141 +311,92 @@ And it is of course also possible to register conversion commands directly from 
 
 # Changelog
 
-**2022-02-25 version 0.9.2**
-: 
+2022-02-25 version 0.9.2
+: - Fix for **tk\_textCopy** and documentation update
 
 
-**•**
-: Fix for **tk_textCopy** and documentation update
+2022-03-06 version 0.9.3
+: - Support for MouseWheel bindings
+
+    - Fixing hyperlinks to http(s) links
+
+    - Support for file-anchor links like **file.html#anchor**
+
+    - Support for **#** as link to the top
+
+    - Thanks to aplsimple for suggestions and bug reports
 
 
-**2022-03-06 version 0.9.3**
-: 
+2022-03-26 version 1.0.0
+: - HTML 3.2 tags div, sub, sup, small, big
+
+    - Initial support for Markdown files
+
+    - Initial support for base64 encoded inline image files
+
+    - Support for JPEG images if the **img::jpeg** package is available
+
+    - Support for SVG images if either **critcl** and *librsvg-dev(el)* or terminal application **rsvg-convert** or **cairosvg** are available
+
+    - Back and forward as well for anchors
+
+    - First and last browse entry buttons for history
+
+    - History with full file path to allow directory changes
+
+    - Improved usage line and install option
+
+    - Keyboard bindings for next and previous search
+
+    - Return and tab for links
+
+    - Historycombo option
+
+    - Toolbar fix
+
+    - Browse fix for non-existing files
+
+    - Removed unused css/stylesheet and web forms code
+
+    - Thanks to pepdiz for bug-reports and suggestions
 
 
-**•**
-: Support for MouseWheel bindings
+2022-04-XX version 1.1.0
+: - Keybinding Ctrl-u to source view for HTML and Markdown files
 
-**•**
-: Fixing hyperlinks to http(s) links
+    - Keybinding Ctrl-Shift-e to use a simple text editor for file editing
 
-**•**
-: Support for file-anchor links like **file.html#anchor**
+    - File open dialog now remembers the last directory and the last file extension
 
-**•**
-: Support for **#** as link to the top
+    - File close button added with option -closebutton, useful for toplevel windows
 
-**•**
-: Thanks to aplsimple for suggestions and bug reports
+    - Some backslash fixes for Markdown links
 
+    - Adding span tag for styling
 
-**2022-03-26 version 1.0.0**
-: 
+    - Adding render method to read HTML directly without filename
 
+    - Adding plugin structure for additional file types like Tcllib doctools, or mkdoc
 
-**•**
-: HTML 3.2 tags div, sub, sup, small, big
+    - Tcl doctools support resides in its own package
 
-**•**
-: Initial support for Markdown files
+    - Tcl mkdoc supports resides in its own package
 
-**•**
-: Initial support for base64 encoded inline image files
-
-**•**
-: Support for JPEG images if the **img::jpeg** package is available
-
-**•**
-: Support for SVG images if either **critcl** and *librsvg-dev(el)* or terminal application **rsvg-convert** or **cairosvg** are available
-
-**•**
-: Back and forward as well for anchors
-
-**•**
-: First and last browse entry buttons for history
-
-**•**
-: History with full file path to allow directory changes
-
-**•**
-: Improved usage line and install option
-
-**•**
-: Keyboard bindings for next and previous search
-
-**•**
-: Return and tab for links
-
-**•**
-: Historycombo option
-
-**•**
-: Toolbar fix
-
-**•**
-: Browse fix for non-existing files
-
-**•**
-: Removed unused css/stylesheet and web forms code
-
-**•**
-: Thanks to pepdiz for bug-reports and suggestions
-
-
-**2022-04-XX version 1.1.0**
-: 
-
-
-**•**
-: Keybinding Ctrl-u to source view for HTML and Markdown files
-
-**•**
-: Keybinding Ctrl-Shift-e to use a simple text editor for file editing
-
-**•**
-: File open dialog now remembers the last directory and the last file extension
-
-**•**
-: File close button added with option -closebutton, useful for toplevel windows
-
-**•**
-: Some backslash fixes for Markdown links
-
-**•**
-: Adding span tag for styling
-
-**•**
-: Adding render method to read HTML directly without filename
-
-**•**
-: Adding plugin structure for additional file types like Tcllib doctools, or mkdoc
-
-**•**
-: Tcl doctools support resides in its own package
-
-**•**
-: Tcl mkdoc supports resides in its own package
 
 
 # Todo
 
-**•**
-: Markdown rendering using tcllib package **Markdown** in case an URL ends with "*.md*" (done)
+- Markdown rendering using tcllib package **Markdown** in case an URL ends with "*.md*" (done)
 
-**•**
-: Support for SVG images for instance using [svgconvert](https://wiki.tcl-lang.org/page/svgconvert), at least on Linux/Windows
+- Support for SVG images for instance using [svgconvert](https://wiki.tcl-lang.org/page/svgconvert), at least on Linux/Windows
 
-**•**
-: More tags, see tag history add 3.2 tags: *http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html* (done)
+- More tags, see tag history add 3.2 tags: <http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html> (done)
 
-**•**
-: Source view using Ctrl-u (done)
+- Source view using Ctrl-u (done)
 
-**•**
-: Edit view using Ctrl-Shift-e
+- Edit view using Ctrl-Shift-e
 
-**•**
-: Fixing mouse wheel issues
+- Fixing mouse wheel issues
 
 
 # Thanks

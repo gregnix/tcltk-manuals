@@ -1,5 +1,6 @@
 ---
 CommandName: info
+title: info
 ManualSection: n
 Version: 8.4
 TclPart: Tcl
@@ -32,186 +33,193 @@ Copyright:
  - Copyright (c) 2007-2012 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 info - Informationen über den Zustand des Tcl-Interpreters
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[info]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[info]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Verfügbare Befehle:
 
-**info args** *procname*
+[info]{.cmd} [args]{.sub} [procname]{.arg}
 : Gibt die Namen der Parameter der Prozedur *procname* zurück.
 
-**info body** *procname*
+[info]{.cmd} [body]{.sub} [procname]{.arg}
 : Gibt den Rumpf der Prozedur *procname* zurück.
 
-**info class** *subcommand class* ?*arg ...*
-: Gibt Informationen über die Klasse *class* zurück. Siehe **KLASSEN-INTROSPECTION** unten.
+[info]{.cmd} [class]{.sub} [subcommand]{.arg} [class]{.arg} [arg ...]{.optarg}
+: Gibt Informationen über die Klasse *class* zurück. Siehe [Klassen-Introspection] unten.
 
-**info cmdcount**
+[info]{.cmd} [cmdcount]{.sub}
 : Gibt die Gesamtzahl der in diesem Interpreter ausgewerteten Befehle zurück.
 
-**info cmdtype** *commandName*
-: Gibt den Typ des Befehls *commandName* zurück. Eingebaute Typen sind:
+[info]{.cmd} [cmdtype]{.sub} [commandName]{.arg}
+: [Gibt den Typ des Befehls *commandName* zurück. Eingebaute Typen sind:]{version="TIP426"}
 
-**alias**
-: *commandName* wurde mit **interp alias** erzeugt. In einem Safe-Interpreter ist ein Alias nur sichtbar, wenn sowohl der Alias als auch das Ziel sichtbar sind.
+    [**alias**]{version="TIP426"}
+    : [*commandName* wurde mit [interp alias][interp] erzeugt. In einem Safe-Interpreter ist ein Alias nur sichtbar, wenn sowohl der Alias als auch das Ziel sichtbar sind.]{version="TIP426"}
 
-**coroutine**
-: *commandName* wurde mit **coroutine** erzeugt.
+    [**coroutine**]{version="TIP426"}
+    : [*commandName* wurde mit **coroutine** erzeugt.]{version="TIP426"}
 
-**ensemble**
-: *commandName* wurde mit **namespace ensemble** erzeugt.
+    [**ensemble**]{version="TIP426"}
+    : [*commandName* wurde mit [namespace ensemble][namespace] erzeugt.]{version="TIP426"}
 
-**import**
-: *commandName* wurde mit **namespace import** erzeugt.
+    [**import**]{version="TIP426"}
+    : [*commandName* wurde mit [namespace import][namespace] erzeugt.]{version="TIP426"}
 
-**native**
-: *commandName* wurde direkt über die Schnittstelle **Tcl_CreateObjCommand** erzeugt, ohne weitere Registrierung des Befehlstyps.
+    [**native**]{version="TIP426"}
+    : [*commandName* wurde direkt über die Schnittstelle [Tcl\_CreateObjCommand][CrtObjCmd] erzeugt, ohne weitere Registrierung des Befehlstyps.]{version="TIP426"}
 
-**object**
-: *commandName* ist der öffentliche Befehl, der eine Instanz von **oo::object** oder einer seiner Unterklassen repräsentiert.
+    [**object**]{version="TIP426"}
+    : [*commandName* ist der öffentliche Befehl, der eine Instanz von [oo::object][object] oder einer seiner Unterklassen repräsentiert.]{version="TIP426"}
 
-**privateObject**
-: *commandName* ist der private Befehl (standardmäßig **my**), der eine Instanz von **oo::object** oder einer seiner Unterklassen repräsentiert.
+    [**privateObject**]{version="TIP426"}
+    : [*commandName* ist der private Befehl (standardmäßig [my]), der eine Instanz von [oo::object][object] oder einer seiner Unterklassen repräsentiert.]{version="TIP426"}
 
-**proc**
-: *commandName* wurde mit **proc** erzeugt.
+    [**proc**]{version="TIP426"}
+    : [*commandName* wurde mit **proc** erzeugt.]{version="TIP426"}
 
-**interp**
-: *commandName* wurde mit **interp create** erzeugt.
+    [**interp**]{version="TIP426"}
+    : [*commandName* wurde mit [interp create][interp] erzeugt.]{version="TIP426"}
 
-**zlibStream**
-: *commandName* wurde mit **zlib stream** erzeugt.
+    [**zlibStream**]{version="TIP426"}
+    : [*commandName* wurde mit [zlib stream][zlib] erzeugt.]{version="TIP426"}
 
 
-**info commands** ?*pattern*?
-: Gibt die Namen aller im aktuellen Namespace sichtbaren Befehle zurück. Ist *pattern* angegeben, nur die Namen, die gemäß **string match** passen. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten bezeichnen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in der Dokumentation zu **namespace**(n).
+[info]{.cmd} [commands]{.sub} [pattern]{.optarg}
+: Gibt die Namen aller im aktuellen Namespace sichtbaren Befehle zurück. Ist *pattern* angegeben, nur die Namen, die gemäß [string match][string] passen. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten bezeichnen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in der Dokumentation zu [namespace]\(n).
 
-**info complete** *command*
+[info]{.cmd} [complete]{.sub} [command]{.arg}
 : Gibt **1** zurück, wenn *command* ein vollständiger Befehl ist, sonst **0**. Typischerweise in zeilenorientierten Eingabeumgebungen, damit Benutzer Befehle über mehrere Zeilen eingeben können.
 
-**info constant** *varName*
-: Gibt **1** zurück, wenn *varName* eine Konstantenvariable ist (siehe **const**), sonst **0**.
+[info]{.cmd} [constant]{.sub} [varName]{.arg}
+: [Gibt **1** zurück, wenn *varName* eine Konstantenvariable ist (siehe [const]), sonst **0**.]{version="TIP677"}
 
-**info consts** ?*pattern*?
-: Gibt die Liste der Konstantenvariablen (siehe **const**) im aktuellen Gültigkeitsbereich zurück, oder — ist *pattern* angegeben — die Liste der Konstantenvariablen, die *pattern* entsprechen, analog zu **info vars**.
+[info]{.cmd} [consts]{.sub} [pattern]{.optarg}
+: [Gibt die Liste der Konstantenvariablen (siehe [const]) im aktuellen Gültigkeitsbereich zurück, oder — ist *pattern* angegeben — die Liste der Konstantenvariablen, die *pattern* entsprechen, analog zu **info vars**.]{version="TIP677"}
 
-**info coroutine**
+[info]{.cmd} [coroutine]{.sub}
 : Gibt den Namen der aktuellen **coroutine** zurück oder die leere Zeichenkette, wenn keine aktuelle Coroutine existiert oder die aktuelle Coroutine gelöscht wurde.
 
-**info default** *procname parameter varname*
+[info]{.cmd} [default]{.sub} [procname]{.arg} [parameter]{.arg} [varname]{.arg}
 : Hat der Parameter *parameter* der Prozedur *procname* einen Standardwert, wird dieser in *varname* gespeichert und **1** zurückgegeben. Andernfalls **0**.
 
-**info errorstack** ?*interp*?
+[info]{.cmd} [errorstack]{.sub} [interp]{.optarg}
 : Gibt eine Beschreibung des aktiven Befehls auf jeder Ebene für den letzten Fehler im aktuellen Interpreter zurück, oder im Interpreter *interp*, falls angegeben.
-    Die Beschreibung ist ein Dictionary aus Token und Parametern. Token sind derzeit **CALL**, **UP** oder **INNER**; weitere Werte können künftig eingeführt werden. **CALL** kennzeichnet einen Befehlsaufruf; der Parameter ist das entsprechende **info level** **0**. **UP** kennzeichnet einen durch **uplevel** oder Ähnliches erzeugten Wechsel der Variablenframes und bezieht sich auf das vorherige **CALL**-Element; der Parameter ist der Ebenenversatz. **INNER** bezeichnet den „inneren Kontext“ — den innersten atomaren Befehl oder Bytecode-Befehl, der den Fehler auslöste, samt Argumenten, sofern verfügbar. Während **CALL** und **UP** den Aufrufpfad abbilden, liefert **INNER** Details der fehlerhaften Operation im innersten Prozeduraufruf, bis auf Subausdruck-Ebene.
-    Diese Information steht auch im Eintrag **-errorstack** des Options-Dictionarys von **catch** mit drei Argumenten; **info errorstack** ist eine bequeme Möglichkeit, sie für nicht abgefangene Fehler auf oberster Ebene in einem interaktiven **interpreter** abzurufen.
 
-**info exists** *varName*
+    Die Beschreibung ist ein Dictionary aus Token und Parametern. Token sind derzeit **CALL**, **UP** oder **INNER**; weitere Werte können künftig eingeführt werden. **CALL** kennzeichnet einen Befehlsaufruf; der Parameter ist das entsprechende **info level** **0**. **UP** kennzeichnet einen durch [uplevel] oder Ähnliches erzeugten Wechsel der Variablenframes und bezieht sich auf das vorherige **CALL**-Element; der Parameter ist der Ebenenversatz. **INNER** bezeichnet den „inneren Kontext“ — den innersten atomaren Befehl oder Bytecode-Befehl, der den Fehler auslöste, samt Argumenten, sofern verfügbar. Während **CALL** und **UP** den Aufrufpfad abbilden, liefert **INNER** Details der fehlerhaften Operation im innersten Prozeduraufruf, bis auf Subausdruck-Ebene.
+
+    Diese Information steht auch im Eintrag **-errorstack** des Options-Dictionarys von [catch] mit drei Argumenten; **info errorstack** ist eine bequeme Möglichkeit, sie für nicht abgefangene Fehler auf oberster Ebene in einem interaktiven **interpreter** abzurufen.
+
+[info]{.cmd} [exists]{.sub} [varName]{.arg}
 : Gibt **1** zurück, wenn eine Variable *varName* sichtbar und definiert ist, sonst **0**.
 
-**info frame** ?*depth*?
-: Gibt die Tiefe des Aufrufs von **info frame** selbst zurück. Andernfalls ein Dictionary, das den aktiven Befehl auf der *depth*-ten Ebene beschreibt; gezählt werden alle für **info level** sichtbaren Befehle plus Befehle ohne neue Ebene, z. B. **eval**, **source** oder *uplevel*. Die Frame-Tiefe ist stets größer als die aktuelle Ebene.
+[info]{.cmd} [frame]{.sub} [depth]{.optarg}
+: Gibt die Tiefe des Aufrufs von **info frame** selbst zurück. Andernfalls ein Dictionary, das den aktiven Befehl auf der *depth*-ten Ebene beschreibt; gezählt werden alle für **info level** sichtbaren Befehle plus Befehle ohne neue Ebene, z. B. [eval], [source] oder *uplevel*. Die Frame-Tiefe ist stets größer als die aktuelle Ebene.
+
     Ist *depth* größer als **0**, bezeichnet sie den Frame in dieser Tiefe. Andernfalls die Anzahl Frames oberhalb des aktuellen Frames.
-    Wie bei **info level** und Fehler-Traces sieht **info frame** bei verschachtelten Befehlen wie „foo [bar [x]]“ nur „x“, wenn es innerhalb von „x“ aufgerufen wird.
+
+    Wie bei **info level** und Fehler-Traces sieht **info frame** bei verschachtelten Befehlen wie „foo \[bar \[x\]\]“ nur „x“, wenn es innerhalb von „x“ aufgerufen wird.
+
     Das Dictionary kann folgende Schlüssel enthalten:
 
-**type**
-: Immer vorhanden. Mögliche Werte: **source**, **proc**, **eval** und **precompiled**.
+    **type**
+    : Immer vorhanden. Mögliche Werte: [source], **proc**, **eval** und **precompiled**.
 
-**source**
-: Ein per **source** geladenes Skript.
+        [source]
+        : Ein per [source] geladenes Skript.
 
-**proc**
-: Der Rumpf einer Prozedur, der nicht auf eine Zeile in einem bestimmten Skript zurückverfolgt werden konnte.
+        **proc**
+        : Der Rumpf einer Prozedur, der nicht auf eine Zeile in einem bestimmten Skript zurückverfolgt werden konnte.
 
-**eval**
-: Der Rumpf eines an **eval** oder **uplevel** übergebenen Skripts.
+        [eval]
+        : Der Rumpf eines an [eval] oder [uplevel] übergebenen Skripts.
 
-**precompiled**
-: Ein vorkompiliertes Skript (ladbar mit dem Paket **tbcload**); weitere Informationen sind nicht verfügbar.
-
-
-**line**
-: Die Zeilennummer des Befehls innerhalb seines Skripts. Nicht verfügbar für **precompiled**. Bei Typ **source** relativ zum Dateianfang, bei den letzten beiden Typen relativ zum Skriptanfang.
-
-**file**
-: Bei Typ **source** der normalisierte Pfad der Datei, die den Befehl enthält.
-
-**cmd**
-: Der Befehl vor durchgeführten Substitutionen.
-
-**proc**
-: Bei Typ **proc** der Name der Prozedur, die den Befehl enthält.
-
-**lambda**
-: Für einen Befehl in einem per **apply** als Rumpf einer unbenannten Routine ausgewerteten Skript die Definition dieser Routine.
-
-**level**
-: Für einen Frame, der einer Ebene entspricht (noch festzulegen).
+        **precompiled**
+        : Ein vorkompiliertes Skript (ladbar mit dem Paket **tbcload**); weitere Informationen sind nicht verfügbar.
 
 
-Wenn ein Befehl bis zu seiner wörtlichen Definition in einem Skript zurückverfolgt werden kann — z. B. in statisch definierten Prozeduren verschachtelte Prozeduren oder wörtliche **eval**-Skripte in Dateien oder statischen Prozeduren — ist sein Typ **source** und die Position die absolute Zeilennummer im Skript. Andernfalls ist der Typ **proc** und die Position die Zeilennummer im Prozedurrumpf.
+    **line**
+    : Die Zeilennummer des Befehls innerhalb seines Skripts. Nicht verfügbar für **precompiled**. Bei Typ [source] relativ zum Dateianfang, bei den letzten beiden Typen relativ zum Skriptanfang.
 
-Prozedurdefinitionen und **eval** in einer dynamisch **eval**uierten Umgebung zählen Zeilennummern relativ zum Skriptanfang, auch wenn sie relativ zum äußeren dynamischen Skript zählen könnten. Diese Art von Nummer ist meist aussagekräftiger.
+    [file]
+    : Bei Typ [source] der normalisierte Pfad der Datei, die den Befehl enthält.
 
-Anders formuliert: dateibasierte Positionen werden so tief wie möglich verfolgt; wo das nicht möglich ist, werden Zeilen relativ zum kleinstmöglichen **eval**- oder Prozedurrumpf gezählt — dieser Gültigkeitsbereich ist meist leichter zu finden als ein dynamischer äußerer.
+    **cmd**
+    : Der Befehl vor durchgeführten Substitutionen.
 
-Die syntaktische Form **{*}** wird wie **eval** behandelt: Bei wörtlichem Listenargument verfolgt das System die Zeilennummer innerhalb der Listenelemente; andernfalls werden alle Zeilennummern relativ zum Anfang jedes Worts gezählt (kleinster Gültigkeitsbereich).
+    **proc**
+    : Bei Typ **proc** der Name der Prozedur, die den Befehl enthält.
 
-**info functions** ?*pattern*?
-: Ohne *pattern* eine Liste aller derzeit definierten mathematischen Funktionen. Mit *pattern* nur Namen, die *pattern* gemäß **string match** entsprechen.
+    **lambda**
+    : Für einen Befehl in einem per [apply] als Rumpf einer unbenannten Routine ausgewerteten Skript die Definition dieser Routine.
 
-**info globals** ?*pattern*?
-: Ohne *pattern* alle Namen derzeit definierter globaler Variablen (Variablen im globalen Namespace). Mit *pattern* nur passende Namen; Abgleich wie bei **string match**.
+    **level**
+    : Für einen Frame, der einer Ebene entspricht (noch festzulegen).
 
-**info hostname**
+
+    Wenn ein Befehl bis zu seiner wörtlichen Definition in einem Skript zurückverfolgt werden kann — z. B. in statisch definierten Prozeduren verschachtelte Prozeduren oder wörtliche **eval**-Skripte in Dateien oder statischen Prozeduren — ist sein Typ [source] und die Position die absolute Zeilennummer im Skript. Andernfalls ist der Typ **proc** und die Position die Zeilennummer im Prozedurrumpf.
+
+    Prozedurdefinitionen und [eval] in einer dynamisch [eval]uierten Umgebung zählen Zeilennummern relativ zum Skriptanfang, auch wenn sie relativ zum äußeren dynamischen Skript zählen könnten. Diese Art von Nummer ist meist aussagekräftiger.
+
+    Anders formuliert: dateibasierte Positionen werden so tief wie möglich verfolgt; wo das nicht möglich ist, werden Zeilen relativ zum kleinstmöglichen [eval]- oder Prozedurrumpf gezählt — dieser Gültigkeitsbereich ist meist leichter zu finden als ein dynamischer äußerer.
+
+    Die syntaktische Form **{\*}** wird wie [eval] behandelt: Bei wörtlichem Listenargument verfolgt das System die Zeilennummer innerhalb der Listenelemente; andernfalls werden alle Zeilennummern relativ zum Anfang jedes Worts gezählt (kleinster Gültigkeitsbereich).
+
+[info]{.cmd} [functions]{.sub} [pattern]{.optarg}
+: Ohne *pattern* eine Liste aller derzeit definierten mathematischen Funktionen. Mit *pattern* nur Namen, die *pattern* gemäß [string match][string] entsprechen.
+
+[info]{.cmd} [globals]{.sub} [pattern]{.optarg}
+: Ohne *pattern* alle Namen derzeit definierter globaler Variablen (Variablen im globalen Namespace). Mit *pattern* nur passende Namen; Abgleich wie bei [string match][string].
+
+[info]{.cmd} [hostname]{.sub}
 : Gibt den Namen des aktuellen Rechners zurück.
+
     Dieser Name ist nicht garantiert der vollqualifizierte Domainname. Haben Rechner mehrere Namen (häufig bei TCP/IP (DNS) und NetBIOS), wird der für TCP/IP-Netzwerke geeignete Name zurückgegeben.
 
-**info level** ?*level*?
-: Ohne *number* die Ebene, von der diese Routine aufgerufen wurde. Andernfalls den vollständigen aktiven Befehl auf der angegebenen Ebene. Ist *number* größer als **0**, die gewünschte Ebene; andernfalls *number* Ebenen oberhalb der aktuellen. Ein vollständiger Befehl sind die Wörter des Befehls nach allen Substitutionen, also eine Liste. Siehe **uplevel** zu Ebenen.
+[info]{.cmd} [level]{.sub} [level]{.optarg}
+: Ohne *number* die Ebene, von der diese Routine aufgerufen wurde. Andernfalls den vollständigen aktiven Befehl auf der angegebenen Ebene. Ist *number* größer als **0**, die gewünschte Ebene; andernfalls *number* Ebenen oberhalb der aktuellen. Ein vollständiger Befehl sind die Wörter des Befehls nach allen Substitutionen, also eine Liste. Siehe [uplevel] zu Ebenen.
 
-**info library**
-: Gibt den Wert von **tcl_library** zurück — das Verzeichnis, in dem die mit Tcl verteilten Skripte liegen.
+[info]{.cmd} [library]{.sub}
+: Gibt den Wert von [tcl\_library][tclvars] zurück — das Verzeichnis, in dem die mit Tcl verteilten Skripte liegen.
 
-**info loaded** ?*interp*? ?*prefix*?
-: Gibt den Namen jeder Datei zurück, die in *interp* mit **load** und Präfix *prefix* geladen wurde. Ohne *prefix* eine Liste, deren Elemente je Dateiname und verwendetes Präfix sind. Bei statisch geladenen Paketen ist der Dateiname die leere Zeichenkette. Für *interp* bezeichnet die leere Zeichenkette den aktuellen Interpreter.
+[info]{.cmd} [loaded]{.sub} [interp]{.optarg} [prefix]{.optarg}
+: Gibt den Namen jeder Datei zurück, die in *interp* mit [load] und Präfix *prefix* geladen wurde. Ohne *prefix* eine Liste, deren Elemente je Dateiname und verwendetes Präfix sind. Bei statisch geladenen Paketen ist der Dateiname die leere Zeichenkette. Für *interp* bezeichnet die leere Zeichenkette den aktuellen Interpreter.
 
-**info locals** ?*pattern*?
-: Mit *pattern* die Namen lokaler Variablen, die *pattern* gemäß **string match** entsprechen. Andernfalls alle lokalen Variablen. Mit **global**, **upvar** oder **variable** definierte Variablen sind nicht lokal.
+[info]{.cmd} [locals]{.sub} [pattern]{.optarg}
+: Mit *pattern* die Namen lokaler Variablen, die *pattern* gemäß [string match][string] entsprechen. Andernfalls alle lokalen Variablen. Mit [global], [upvar] oder [variable] definierte Variablen sind nicht lokal.
 
-**info nameofexecutable**
+[info]{.cmd} [nameofexecutable]{.sub}
 : Gibt den absoluten Pfadnamen des Programms für den aktuellen Interpreter zurück. Kann keine Datei identifiziert werden, die leere Zeichenkette.
 
-**info object** *subcommand object* ?*arg ...*
-: Gibt Informationen über das Objekt *object* zurück. *subcommand* siehe **OBJEKT-INTROSPECTION** unten.
+[info]{.cmd} [object]{.sub} [subcommand]{.arg} [object]{.arg} [arg ...]{.optarg}
+: Gibt Informationen über das Objekt *object* zurück. *subcommand* siehe [Objekt-Introspection] unten.
 
-**info patchlevel**
-: Gibt den Wert der globalen Variable **tcl_patchLevel** zurück — die exakte Version der Tcl-Bibliothek bei der Initialisierung.
+[info]{.cmd} [patchlevel]{.sub}
+: Gibt den Wert der globalen Variable [tcl\_patchLevel][tclvars] zurück — die exakte Version der Tcl-Bibliothek bei der Initialisierung.
 
-**info procs** ?*pattern*?
-: Gibt die Namen aller sichtbaren Prozeduren zurück. Mit *pattern* nur passende Namen gemäß **string match**. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten wählen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in **namespace**(n).
+[info]{.cmd} [procs]{.sub} [pattern]{.optarg}
+: Gibt die Namen aller sichtbaren Prozeduren zurück. Mit *pattern* nur passende Namen gemäß [string match][string]. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten wählen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in [namespace]\(n).
 
-**info script** ?*filename*?
+[info]{.cmd} [script]{.sub} [filename]{.optarg}
 : Gibt den Pfadnamen des innersten gerade ausgewerteten Skripts zurück oder die leere Zeichenkette, wenn keiner bestimmt werden kann. Mit *filename* wird der Rückgabewert künftiger **info script**-Aufrufe für die Dauer des innersten aktiven Skripts gesetzt — nützlich in virtuellen Dateisystemen.
 
-**info sharedlibextension**
+[info]{.cmd} [sharedlibextension]{.sub}
 : Gibt die Erweiterung für Shared-Library-Dateinamen auf dieser Plattform zurück, z. B. **.so** unter Solaris. Leere Zeichenkette, wenn Shared Libraries nicht unterstützt werden.
 
-**info tclversion**
-: Gibt den Wert der globalen Variable **tcl_version** zurück (Haupt- und Nebenversion der Tcl-Bibliothek).
+[info]{.cmd} [tclversion]{.sub}
+: Gibt den Wert der globalen Variable [tcl\_version][tclvars] zurück (Haupt- und Nebenversion der Tcl-Bibliothek).
 
-**info vars** ?*pattern*?
-: Ohne *pattern* alle sichtbaren Variablennamen. Mit *pattern* nur passende gemäß **string match**. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten bezeichnen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in **namespace**(n). Bei qualifiziertem *pattern* sind die Ergebnisse vollqualifiziert.
+[info]{.cmd} [vars]{.sub} [pattern]{.optarg}
+: Ohne *pattern* alle sichtbaren Variablennamen. Mit *pattern* nur passende gemäß [string match][string]. Nur die letzte Komponente von *pattern* ist ein Muster; andere Komponenten bezeichnen einen Namespace. Siehe **NAMENSAUFLÖSUNG** in [namespace]\(n). Bei qualifiziertem *pattern* sind die Ergebnisse vollqualifiziert.
+
     Deklarierte, aber noch nicht bewertete Variablen sind in den Ergebnissen enthalten.
 
 
@@ -219,186 +227,184 @@ Die syntaktische Form **{*}** wird wie **eval** behandelt: Bei wörtlichem Liste
 
 Folgende *subcommand*-Werte unterstützt **info class**:
 
-**info class call** *class method*
-: Gibt eine Beschreibung der Methodenimplementierungen zurück, die eine stereotype Instanz der Implementierung von *method* in *class* liefern (stereotype Instanzen: vom Klasse erzeugte Objekte ohne objektspezifische Definitionen). Das Ergebnis ist eine Liste von Viererlisten; jedes Element besteht aus einem Wort für den Implementierungstyp (**method** für eine normale Methode, **filter** für einen angewendeten Filter, **private** für eine private Methode, **unknown** für unbekannte Methodenbehandlung), dem aufgerufenen Methodennamen (bei **method** stets *method*, bei **unknown** „**unknown**“), dem vollqualifizierten Klassennamen der Definition und einem Wort zum Implementierungstyp (siehe **info class methodtype**).
+[info]{.cmd} [class]{.sub} [call]{.lit} [class]{.arg} [method]{.arg}
+: Gibt eine Beschreibung der Methodenimplementierungen zurück, die eine stereotype Instanz der Implementierung von *method* in *class* liefern (stereotype Instanzen: vom Klasse erzeugte Objekte ohne objektspezifische Definitionen). Das Ergebnis ist eine Liste von Viererlisten; jedes Element besteht aus einem Wort für den Implementierungstyp (**method** für eine normale Methode, **filter** für einen angewendeten Filter, [**private** für eine private Methode,]{version="TIP500"} [unknown] für unbekannte Methodenbehandlung), dem aufgerufenen Methodennamen (bei **method** stets *method*, bei [unknown] „[unknown]“), dem vollqualifizierten Klassennamen der Definition und einem Wort zum Implementierungstyp (siehe **info class methodtype**).
 
-::: {.info -version="TIP500"}
-Es wird nicht geprüft, ob die Implementierungen **next** zur Weitergabe entlang der Aufrufkette nutzen; die von diesem Befehl gelieferten Aufrufketten enthalten private Methoden nicht.
-:::
-**info class constructor** *class*
+    Es wird nicht geprüft, ob die Implementierungen [next] zur Weitergabe entlang der Aufrufkette nutzen; [die von diesem Befehl gelieferten Aufrufketten enthalten private Methoden nicht.]{version="TIP500"}
+
+[info]{.cmd} [class]{.sub} [constructor]{.lit} [class]{.arg}
 : Beschreibung der Konstruktordefinition von *class* als Zweierliste: erstes Element die Argumentliste (geeignet für **proc** oder Methodendefinition), zweites der Konstruktorrumpf. Ohne Konstruktor die leere Liste.
 
-**info class definition** *class method*
+[info]{.cmd} [class]{.sub} [definition]{.lit} [class]{.arg} [method]{.arg}
 : Beschreibung der Definition der Methode *method* von *class* als Zweierliste (Argumentliste und Methodenrumpf).
 
-**info class definitionnamespace** *class* ?*kind*?
-: Gibt den Definitions-Namespace für Definitionen des Typs *kind* der Klasse *class* zurück; er betrifft nur Instanzen von *class*, nicht *class* selbst. *kind* kann **-class** (Namespace für **oo::define**) oder **-instance** (für **oo::objdefine**) sein; Standard ist **-class** (nur bei Unterklassen von **oo::class** wirklich nützlich).
+[info]{.cmd} [class]{.sub} [definitionnamespace]{.lit} [class]{.arg} [kind]{.optarg}
+: [Gibt den Definitions-Namespace für Definitionen des Typs *kind* der Klasse *class* zurück; er betrifft nur Instanzen von *class*, nicht *class* selbst. *kind* kann **-class** (Namespace für [oo::define][define]) oder **-instance** (für [oo::objdefine][define]) sein; Standard ist **-class** (nur bei Unterklassen von [oo::class][class] wirklich nützlich).]{version="TIP524"}
 
-::: {.info -version="TIP524"}
-Liefert *class* keinen Definitions-Namespace des Typs, die leere Zeichenkette. Dann ermitteln **oo::define** und **oo::objdefine** den Namespace über die Vererbungshierarchie.
-:::
-**info class destructor** *class*
+    Liefert *class* keinen Definitions-Namespace des Typs, die leere Zeichenkette. Dann ermitteln [oo::define][define] und [oo::objdefine][define] den Namespace über die Vererbungshierarchie.
+
+[info]{.cmd} [class]{.sub} [destructor]{.lit} [class]{.arg}
 : Rumpf des Destruktors von *class*. Ohne Destruktor die leere Zeichenkette.
 
-**info class filters** *class*
+[info]{.cmd} [class]{.sub} [filters]{.lit} [class]{.arg}
 : Liste der auf der Klasse gesetzten Filtermethoden.
 
-**info class forward** *class method*
+[info]{.cmd} [class]{.sub} [forward]{.lit} [class]{.arg} [method]{.arg}
 : Argumentliste der Methodenweiterleitung *method* auf der Klasse *class*.
 
-**info class instances** *class* ?*pattern*?
-: Liste der Instanzen von *class*. Mit optionalem *pattern* nur passende Instanzen gemäß **string match**.
+[info]{.cmd} [class]{.sub} [instances]{.lit} [class]{.arg} [pattern]{.optarg}
+: Liste der Instanzen von *class*. Mit optionalem *pattern* nur passende Instanzen gemäß [string match][string].
 
-**info class methods** *class* ?*options...*?
+[info]{.cmd} [class]{.sub} [methods]{.lit} [class]{.arg} [options...]{.optarg}
 : Liste aller öffentlichen (exportierten) Methoden von *class*. Folgende *option*s steuern die Auswahl:
 
-**-all**
-: Mit **-all** und ohne **-scope** Methoden der Klasse sowie ihrer Superklassen und Mixins.
+    [-all]{.lit}
+    : Mit **-all** [und ohne **-scope**]{version="TIP500"} Methoden der Klasse sowie ihrer Superklassen und Mixins.
 
-**-private**
-: Mit **-private** und ohne **-scope** auch nicht exportierte Methoden (und bei **-all** von Superklassen und Mixins). Hinweis: unglückliche Namenskollision mit echten privaten Methoden; der Optionsname bleibt aus Kompatibilitätsgründen.
+    [-private]{.lit}
+    : Mit **-private** [und ohne **-scope**]{version="TIP500"} auch nicht exportierte Methoden (und bei **-all** von Superklassen und Mixins). [Hinweis: unglückliche Namenskollision mit echten privaten Methoden; der Optionsname bleibt aus Kompatibilitätsgründen.]{version="TIP500"}
 
-**-scope** *scope*
-: Alle Methoden von *class* mit Sichtbarkeit *scope*. Bei dieser Option werden **-all** und **-private** ignoriert. Gültige *scope*-Werte:
+    [-scope]{.lit} [scope]{.arg}
+    : [Alle Methoden von *class* mit Sichtbarkeit *scope*. Bei dieser Option werden **-all** und **-private** ignoriert. Gültige *scope*-Werte:]{version="TIP500"}
 
-**public**
-: Nur Methoden mit *public*-Sichtbarkeit (von überall und jeder Instanz dieser Klasse aufrufbar).
+        [**public**]{version="TIP500"}
+        : [Nur Methoden mit *public*-Sichtbarkeit (von überall und jeder Instanz dieser Klasse aufrufbar).]{version="TIP500"}
 
-**unexported**
-: Nur Methoden mit *unexported*-Sichtbarkeit (nur über **my** aufrufbar).
+        [**unexported**]{version="TIP500"}
+        : [Nur Methoden mit *unexported*-Sichtbarkeit (nur über [my] aufrufbar).]{version="TIP500"}
 
-**private**
-: Nur Methoden mit *private*-Sichtbarkeit (nur innerhalb der Methoden dieser Klasse aufrufbar).
+        [**private**]{version="TIP500"}
+        : [Nur Methoden mit *private*-Sichtbarkeit (nur innerhalb der Methoden dieser Klasse aufrufbar).]{version="TIP500"}
 
 
-**info class methodtype** *class method*
+
+[info]{.cmd} [class]{.sub} [methodtype]{.lit} [class]{.arg} [method]{.arg}
 : Beschreibung des Implementierungstyps der Methode *method* von *class*. Bei Ergebnis **method** weitere Infos mit **info class definition**, bei **forward** mit **info class forward**.
 
-**info class mixins** *class*
+[info]{.cmd} [class]{.sub} [mixins]{.lit} [class]{.arg}
 : Liste aller in *class* gemischten Klassen.
 
-**info class properties** *class* ?*options...*
-: Sortierte Liste der Eigenschaften von *class*. *options* steuern die Auswahl:
+[info]{.cmd} [class]{.sub} [properties]{.lit} [class]{.arg} [options...]{.optarg}
+: [Sortierte Liste der Eigenschaften von *class*. *options* steuern die Auswahl:]{version="TIP558"}
 
-**-all**
-: Mit dieser Option auch Eigenschaften von Superklassen und Mixins.
+    [-all]{.lit}
+    : [Mit dieser Option auch Eigenschaften von Superklassen und Mixins.]{version="TIP558"}
 
-**-readable**
-: Diese Option (Standard) liefert lesbare Eigenschaften. Es werden nur lesbare oder schreibbare Eigenschaften zurückgegeben, nicht beides.
+    [-readable]{.lit}
+    : [Diese Option (Standard) liefert lesbare Eigenschaften. Es werden nur lesbare oder schreibbare Eigenschaften zurückgegeben, nicht beides.]{version="TIP558"}
 
-**-writable**
-: Liefert schreibbare Eigenschaften. Es werden nur lesbare oder schreibbare Eigenschaften zurückgegeben, nicht beides.
+    [-writable]{.lit}
+    : [Liefert schreibbare Eigenschaften. Es werden nur lesbare oder schreibbare Eigenschaften zurückgegeben, nicht beides.]{version="TIP558"}
 
 
-**info class subclasses** *class* ?*pattern*?
-: Liste direkter Unterklassen von *class*. Mit *pattern* nur passende Klassen gemäß **string match**.
+[info]{.cmd} [class]{.sub} [subclasses]{.lit} [class]{.arg} [pattern]{.optarg}
+: Liste direkter Unterklassen von *class*. Mit *pattern* nur passende Klassen gemäß [string match][string].
 
-**info class superclasses** *class*
+[info]{.cmd} [class]{.sub} [superclasses]{.lit} [class]{.arg}
 : Liste direkter Superklassen von *class* in Vererbungsreihenfolge.
 
-**info class variables** *class* ?**-private**?
-: Liste aller für *class* deklarierten Variablen (automatisch in Methoden, Konstruktor und Destruktor vorhanden). Mit **-private** die deklarierten privaten Variablen.
+[info]{.cmd} [class]{.sub} [variables]{.lit} [class]{.arg} [-private]{.optlit}
+: Liste aller für *class* deklarierten Variablen (automatisch in Methoden, Konstruktor und Destruktor vorhanden). [Mit **-private** die deklarierten privaten Variablen.]{version="TIP500"}
 
 
 ## Objekt-Introspection
 
 Folgende *subcommand*-Werte unterstützt **info object**:
 
-**info object call** *object method*
+[info]{.cmd} [object]{.sub} [call]{.lit} [object]{.arg} [method]{.arg}
 : Beschreibung der Methodenimplementierungen für *object*'s Implementierung von *method*. Viererlisten wie bei **info class call**; das dritte Wort gibt an, was die Methode definierte (vollqualifizierter Klassenname oder **object** bei Instanzimplementierung), das vierte den Implementierungstyp (siehe **info object methodtype**).
 
-::: {.info -version="TIP500"}
-Es wird nicht geprüft, ob die Implementierungen **next** zur Weitergabe entlang der Aufrufkette nutzen; die von diesem Befehl gelieferten Aufrufketten enthalten private Methoden nicht.
-:::
-**info object class** *object* ?*className*?
+    Es wird nicht geprüft, ob die Implementierungen [next] zur Weitergabe entlang der Aufrufkette nutzen; [die von diesem Befehl gelieferten Aufrufketten enthalten private Methoden nicht.]{version="TIP500"}
+
+[info]{.cmd} [object]{.sub} [class]{.lit} [object]{.arg} [className]{.optarg}
 : Ohne *className* die Klasse von *object*. Mit *className* ein boolescher Wert, ob *object* von dieser Klasse ist.
 
-**info object creationid** *object*
-: Eindeutige Erstellungskennung von *object*. Sie ist pro Objekt (innerhalb eines Tcl-Interpreters) eindeutig und kann weder bei der Erstellung gesetzt noch später geändert werden.
+[info]{.cmd} [object]{.sub} [creationid]{.lit} [object]{.arg}
+: [Eindeutige Erstellungskennung von *object*. Sie ist pro Objekt (innerhalb eines Tcl-Interpreters) eindeutig und kann weder bei der Erstellung gesetzt noch später geändert werden.]{version="TIP500"}
 
-::: {.info -version="TIP500"}
-*Implementierungshinweis:* Die Erstellungskennung erzeugt eindeutige Bezeichner für das Objekt, insbesondere für private Variablen.
-:::
-**info object definition** *object method*
+    *Implementierungshinweis:* Die Erstellungskennung erzeugt eindeutige Bezeichner für das Objekt, insbesondere für private Variablen.
+
+[info]{.cmd} [object]{.sub} [definition]{.lit} [object]{.arg} [method]{.arg}
 : Beschreibung der Definition der Methode *method* von *object* als Zweierliste (Argumentliste und Methodenrumpf).
 
-**info object filters** *object*
+[info]{.cmd} [object]{.sub} [filters]{.lit} [object]{.arg}
 : Liste der auf dem Objekt gesetzten Filtermethoden.
 
-**info object forward** *object method*
+[info]{.cmd} [object]{.sub} [forward]{.lit} [object]{.arg} [method]{.arg}
 : Argumentliste der Methodenweiterleitung *method* auf *object*.
 
-**info object isa** *category object* ?*arg*?
+[info]{.cmd} [object]{.sub} [isa]{.lit} [category]{.arg} [object]{.arg} [arg]{.optarg}
 : Prüft, ob ein Objekt zu einer Kategorie gehört; boolescher Wert. Unterstützte Kategorien:
 
-**info object isa class** *object*
-: Ob *object* eine Klasse ist (Instanz von **oo::class** oder Unterklasse).
+    [info]{.cmd} [object]{.sub} [isa]{.lit} [class]{.lit} [object]{.arg}
+    : Ob *object* eine Klasse ist (Instanz von [oo::class][class] oder Unterklasse).
 
-**info object isa metaclass** *object*
-: Ob *object* eine Klasse ist, die Klassen erzeugen kann (**oo::class** oder Unterklasse).
+    [info]{.cmd} [object]{.sub} [isa]{.lit} [metaclass]{.lit} [object]{.arg}
+    : Ob *object* eine Klasse ist, die Klassen erzeugen kann ([oo::class][class] oder Unterklasse).
 
-**info object isa mixin** *object class*
-: Ob *class* direkt in *object* gemischt ist.
+    [info]{.cmd} [object]{.sub} [isa]{.lit} [mixin]{.lit} [object]{.arg} [class]{.arg}
+    : Ob *class* direkt in *object* gemischt ist.
 
-**info object isa object** *object*
-: Ob *object* wirklich ein Objekt ist.
+    [info]{.cmd} [object]{.sub} [isa]{.lit} [object]{.lit} [object]{.arg}
+    : Ob *object* wirklich ein Objekt ist.
 
-**info object isa typeof** *object class*
-: Ob *class* der Typ von *object* ist (*object* Instanz von *class* oder Unterklasse, direkt oder indirekt).
+    [info]{.cmd} [object]{.sub} [isa]{.lit} [typeof]{.lit} [object]{.arg} [class]{.arg}
+    : Ob *class* der Typ von *object* ist (*object* Instanz von *class* oder Unterklasse, direkt oder indirekt).
 
 
-**info object methods** *object* ?*option...*?
+[info]{.cmd} [object]{.sub} [methods]{.lit} [object]{.arg} [option...]{.optarg}
 : Liste aller öffentlichen Methoden von *object*. *option*s wie bei **info class methods**:
 
-**-all**
-: Mit **-all** und ohne **-scope** auch Methoden von Klasse, Mixins und deren Superklassen.
+    [-all]{.lit}
+    : Mit **-all** [und ohne **-scope**]{version="TIP500"} auch Methoden von Klasse, Mixins und deren Superklassen.
 
-**-private**
-: Mit **-private** und ohne **-scope** auch nicht exportierte Methoden (und bei **-all** von Klassen). Namenskollision mit echten privaten Methoden; Optionsname aus Kompatibilität.
+    [-private]{.lit}
+    : Mit **-private** [und ohne **-scope**]{version="TIP500"} auch nicht exportierte Methoden (und bei **-all** von Klassen). [Namenskollision mit echten privaten Methoden; Optionsname aus Kompatibilität.]{version="TIP500"}
 
-**-scope** *scope*
-: Methoden von *object* mit Sichtbarkeit *scope*; **-all** und **-private** werden ignoriert. Gültige Werte:
+    [-scope]{.lit} [scope]{.arg}
+    : [Methoden von *object* mit Sichtbarkeit *scope*; **-all** und **-private** werden ignoriert. Gültige Werte:]{version="TIP500"}
 
-**public**
-: Nur *public* (von überall aufrufbar).
+        [**public**]{version="TIP500"}
+        : [Nur *public* (von überall aufrufbar).]{version="TIP500"}
 
-**unexported**
-: Nur *unexported* (nur über **my**).
+        [**unexported**]{version="TIP500"}
+        : [Nur *unexported* (nur über [my]).]{version="TIP500"}
 
-**private**
-: Nur *private* (nur innerhalb der Instanzmethoden dieses Objekts).
+        [**private**]{version="TIP500"}
+        : [Nur *private* (nur innerhalb der Instanzmethoden dieses Objekts).]{version="TIP500"}
 
 
-**info object methodtype** *object method*
+
+[info]{.cmd} [object]{.sub} [methodtype]{.lit} [object]{.arg} [method]{.arg}
 : Implementierungstyp der Methode *method* von *object*. Bei **method** → **info object definition**, bei **forward** → **info object forward**.
 
-**info object mixins** *object*
+[info]{.cmd} [object]{.sub} [mixins]{.lit} [object]{.arg}
 : Liste aller in *object* gemischten Klassen.
 
-**info object namespace** *object*
+[info]{.cmd} [object]{.sub} [namespace]{.lit} [object]{.arg}
 : Name des internen Namespace von *object*.
 
-**info object properties** *object* ?*options...*
-: Sortierte Liste der Eigenschaften von *object*. *options* wie bei **info class properties**:
+[info]{.cmd} [object]{.sub} [properties]{.lit} [object]{.arg} [options...]{.optarg}
+: [Sortierte Liste der Eigenschaften von *object*. *options* wie bei **info class properties**:]{version="TIP558"}
 
-**-all**
-: Auch Eigenschaften von Klasse, Superklassen und Mixins.
+    [-all]{.lit}
+    : [Auch Eigenschaften von Klasse, Superklassen und Mixins.]{version="TIP558"}
 
-**-readable**
-: Standard: lesbare Eigenschaften. Nur lesbare oder schreibbare, nicht beides.
+    [-readable]{.lit}
+    : [Standard: lesbare Eigenschaften. Nur lesbare oder schreibbare, nicht beides.]{version="TIP558"}
 
-**-writable**
-: Schreibbare Eigenschaften. Nur lesbare oder schreibbare, nicht beides.
-
-
-**info object variables** *object* ?**-private**?
-: Liste aller für *object* deklarierten Variablen (automatisch in den Methoden des Objekts). Mit **-private** die privaten Variablen.
-
-**info object vars** *object* ?*pattern*?
-: Liste aller Variablen im privaten Namespace von *object*. Mit *pattern* ein Filter (**string match**-Glob). Anders als **info object variables**: jene kann noch nicht gesetzte Variablen enthalten; dieser Befehl Variablen, die von keiner Methode von *object* (oder Klasse, Superklassen, Mixins) automatisch eingebunden werden.
+    [-writable]{.lit}
+    : [Schreibbare Eigenschaften. Nur lesbare oder schreibbare, nicht beides.]{version="TIP558"}
 
 
-# BEISPIELE
+[info]{.cmd} [object]{.sub} [variables]{.lit} [object]{.arg} [-private]{.optlit}
+: Liste aller für *object* deklarierten Variablen (automatisch in den Methoden des Objekts). [Mit **-private** die privaten Variablen.]{version="TIP500"}
+
+[info]{.cmd} [object]{.sub} [vars]{.lit} [object]{.arg} [pattern]{.optarg}
+: Liste aller Variablen im privaten Namespace von *object*. Mit *pattern* ein Filter ([string match][string]-Glob). Anders als **info object variables**: jene kann noch nicht gesetzte Variablen enthalten; dieser Befehl Variablen, die von keiner Methode von *object* (oder Klasse, Superklassen, Mixins) automatisch eingebunden werden.
+
+
+# Beispiele
 
 Dieser Befehl gibt eine zum Speichern in einem Tcl-Skript geeignete Prozedur aus:
 
@@ -410,7 +416,8 @@ proc printProc {procName} {
         if {[info default $procName $var def]} {
             lappend formals [list $var $def]
         } else {
-            # Listenquotierung nötig, da Variablennamen Leerzeichen enthalten dürfen.
+            # Still need the list-quoting because variable
+            # names may properly contain spaces.
             lappend formals [list $var]
         }
     }
@@ -474,3 +481,28 @@ proc getDef {obj method} {
     return [info class definition $cls $method]
 }
 ```
+
+
+[apply]: apply.md
+[catch]: catch.md
+[class]: class.md
+[const]: const.md
+[CrtObjCmd]: ../tcl-c/CrtObjCmd.md
+[define]: define.md
+[eval]: eval.md
+[file]: file.md
+[global]: global.md
+[interp]: interp.md
+[load]: load.md
+[my]: my.md
+[namespace]: namespace.md
+[next]: next.md
+[object]: object.md
+[source]: source.md
+[string]: string.md
+[tclvars]: tclvars.md
+[unknown]: unknown.md
+[uplevel]: uplevel.md
+[upvar]: upvar.md
+[variable]: variable.md
+[zlib]: zlib.md

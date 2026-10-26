@@ -1,5 +1,6 @@
 ---
 CommandName: lsort
+title: lsort
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -34,59 +35,61 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lsort - Sortiert die Elemente einer Liste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lsort]{.cmd} [options]{.optarg} [list]{.arg} 
+[lsort]{.cmd} [options]{.optarg} [list]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl sortiert die Elemente von *list* und gibt eine neue, sortierte Liste zurück. Die Implementierung nutzt Merge-Sort — stabil, O(n log n).
 
 Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können Optionen stehen (Abkürzungen erlaubt):
 
-**-ascii**
+[-ascii]{.lit}
 : Zeichenkettenvergleich in Unicode-Codepoint-Reihenfolge (Name aus Kompatibilitätsgründen). Standard.
 
-**-dictionary**
+[-dictionary]{.lit}
 : Wörterbuch-Vergleich. Wie **-ascii**, aber (a) Groß-/Klein nur als Tie-Breaker und (b) eingebettete Zahlen vergleichen als Ganzzahlen. Beispiel: **bigBoy** zwischen **bigbang** und **bigboy**; **x10y** zwischen **x9y** und **x11y**. Überschreibt **-nocase**.
 
-**-integer**
+[-integer]{.lit}
 : Elemente als Ganzzahlen vergleichen.
 
-**-real**
+[-real]{.lit}
 : Elemente als Fließkommazahlen vergleichen.
 
-**-command** *command*
+[-command]{.lit} [command]{.arg}
 : *command* als Vergleichsbefehl. Zwei Elemente werden verglichen, indem ein Tcl-Skript aus *command* mit den beiden Elementen als zusätzliche Argumente ausgewertet wird. Rückgabe: Ganzzahl < 0, = 0 oder > 0, wenn das erste Element kleiner, gleich oder größer sein soll.
 
-**-increasing**
+[-increasing]{.lit}
 : Aufsteigend sortieren („kleinste“ zuerst). Standard.
 
-**-decreasing**
+[-decreasing]{.lit}
 : Absteigend sortieren („größte“ zuerst).
 
-**-indices**
+[-indices]{.lit}
 : Liste der Indizes in *list* in sortierter Reihenfolge statt der Werte.
 
-**-index** *indexList*
-: Jedes Element von *list* muss eine Tcl-Unterliste sein (außer mit **-stride**). Sortierung nach dem *indexList*-ten Element jeder Unterliste (wie **lindex**). Beispiel:
+[-index]{.lit} [indexList]{.arg}
+: Jedes Element von *list* muss eine Tcl-Unterliste sein (außer mit **-stride**). Sortierung nach dem *indexList*-ten Element jeder Unterliste (wie [lindex]). Beispiel:
 
     ```
     lsort -integer -index 1 \
           {{First 24} {Second 18} {Third 30}}
     ```
+
     liefert **{Second 18} {First 24} {Third 30}**,
 
     ```
     lsort -index end-1 \
             {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
     ```
+
     liefert **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}**, und
 
     ```
@@ -96,35 +99,42 @@ Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können O
         {{c o d e} 54321}
     }
     ```
+
     liefert **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** (weil **e** vor **i** vor **o**). Effizienter als **-command** für denselben Effekt.
 
-**-stride** *strideLength*
+[-stride]{.lit} [strideLength]{.arg}
 : Die Liste gilt als Gruppen zu je *strideLength* Elementen; Gruppen werden am ersten Element oder (mit **-index**) am durch den ersten **-index** bezeichneten Element der Gruppe sortiert (**-index** ignoriert diesen Teil). Elemente bleiben innerhalb der Gruppe an ihrer Position.
-    Listenlänge muss Vielfaches von *strideLength* sein (mindestens 2). Beispiel:
+
+    Listenlänge muss Vielfaches von *strideLength* sein (mindestens 2).
+
+    Beispiel:
 
     ```
     lsort -stride 2 {carrot 10 apple 50 banana 25}
     ```
+
     liefert „apple 50 banana 25 carrot 10“, und
 
     ```
     lsort -stride 2 -index 1 -integer {carrot 10 apple 50 banana 25}
     ```
+
     liefert „carrot 10 banana 25 apple 50“.
 
-**-nocase**
+[-nocase]{.lit}
 : Vergleich ohne Groß-/Kleinschreibung. Keine Wirkung mit **-dictionary**, **-integer** oder **-real**.
 
-**-unique**
+[-unique]{.lit}
 : Nur die letzte Gruppe doppelter Elemente bleibt. Duplikate relativ zum verwendeten Vergleich; mit **-index 0** gelten **{1 a}** und **{1 b}** als Duplikat — nur **{1 b}** bleibt.
 
-# HINWEISE
+
+# Hinweise
 
 Die **lsort**-Optionen steuern nur die Vergleichsart, nicht zwingend den tatsächlichen Typ der Werte. Das fällt nur bei Listen mit weniger als zwei Elementen auf.
 
 **lsort** ist reentrant — sicher als Implementierung eines in **-command** verwendeten Befehls.
 
-# BEISPIELE
+# Beispiele
 
 ASCII-Sortierung:
 
@@ -212,3 +222,6 @@ Vergleichsfunktion:
         {{3 apple} {0x2 carrot} {1 dingo} {2 banana}}
 {1 dingo} {2 banana} {0x2 carrot} {3 apple}
 ```
+
+
+[lindex]: lindex.md

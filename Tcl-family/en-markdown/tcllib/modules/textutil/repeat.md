@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::repeat
+title: textutil::repeat
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -22,23 +23,29 @@ textutil::repeat - Procedures to repeat strings.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::repeat]{.lit} [0.8]{.optlit} 
-[::textutil::repeat::strRepeat]{.cmd} [text]{.arg} [count]{.arg} 
-[::textutil::repeat::blank]{.cmd} [count]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::repeat]{.lit} [0.8]{.optlit}
+[::textutil::repeat::strRepeat]{.cmd} [text]{.arg} [count]{.arg}
+[::textutil::repeat::blank]{.cmd} [count]{.arg}
 :::
 
 # Description
 
 The **textutil::repeat** package provides commands to generate strings by repeating a string multiple times.
 
-# Api
+# API
 
 **::textutil::repeat::strRepeat** *text* *count*
-: Returns a string containing the *text* repeated *count* times. The repetitions are joined with no separators between them. A value of *count* *<= 0* causes the command to return an empty string. *Note*: If the Tcl core this package is loaded in provides the **string repeat** command, then this command will be implemented in its terms, for maximum speed. Otherwise a fast Tcl implementation is used.
+: Returns a string containing the *text* repeated *count* times.
+
+    The repetitions are joined with no separators between them. A value of *count* *<= 0* causes the command to return an empty string.
+
+    *Note*: If the Tcl core this package is loaded in provides the **string repeat** command, then this command will be implemented in its terms, for maximum speed. Otherwise a fast Tcl implementation is used.
 
 **::textutil::repeat::blank** *count*
-: Returns a string containing *count* spaces. This is a convenience for calling **::textutil::repeat::strRepeat** with **" "** as its first argument.
+: Returns a string containing *count* spaces.
+
+    This is a convenience for calling **::textutil::repeat::strRepeat** with **" "** as its first argument.
 
 
 # Examples

@@ -1,5 +1,6 @@
 ---
 CommandName: tepam
+title: tepam
 ManualSection: n
 Version: 0.5.4
 TclPart: tcllib
@@ -25,7 +26,7 @@ tepam - An introduction into TEPAM, Tcl's Enhanced Procedure and Argument Manage
 
 # Description
 
-This document is an informal introduction into TEPAM, the Tcl's Enhanced Procedure and Argument Manager. Detailed information to the TEPAM package is provided in the *tepam::procedure* and *tepam::argument_dialogbox* reference manuals.
+This document is an informal introduction into TEPAM, the Tcl's Enhanced Procedure and Argument Manager. Detailed information to the TEPAM package is provided in the *tepam::procedure* and *tepam::argument\_dialogbox* reference manuals.
 
 # Overview
 
@@ -37,41 +38,29 @@ The graphical form generator that creates the necessary argument specification f
 
 Here is a short overview about all major TEPAM features:
 
-**•**
-: New self-documenting procedure declaration syntax: The additional information to declare properly a procedure has not to be provided with additional statements, but can be added in a natural syntax directly into the procedure header.
+- New self-documenting procedure declaration syntax: The additional information to declare properly a procedure has not to be provided with additional statements, but can be added in a natural syntax directly into the procedure header.
 
-**•**
-: Easy way to specify subcommands: A subcommand is declared like a procedure, simply with a procedure name composed by a base name followed by a subcommand name. Sub-subcommands are created identically using simply procedure names composed by 3 words.
+- Easy way to specify subcommands: A subcommand is declared like a procedure, simply with a procedure name composed by a base name followed by a subcommand name. Sub-subcommands are created identically using simply procedure names composed by 3 words.
 
-**•**
-: Flexible usage of flags (switches), options (named arguments) and unnamed arguments. Option names are optionally automatically completed.
+- Flexible usage of flags (switches), options (named arguments) and unnamed arguments. Option names are optionally automatically completed.
 
-**•**
-: Support for default values, mandatory/optional options and arguments, choice lists, value ranges, multiple usable options/arguments.
+- Support for default values, mandatory/optional options and arguments, choice lists, value ranges, multiple usable options/arguments.
 
-**•**
-: Choice of a *named arguments first, unnamed arguments later* procedure calling style (typical for Tcl commands) or of an *unnamed arguments first, named arguments later* procedure calling style (typical for Tk commands).
+- Choice of a *named arguments first, unnamed arguments later* procedure calling style (typical for Tcl commands) or of an *unnamed arguments first, named arguments later* procedure calling style (typical for Tk commands).
 
-**•**
-: In case the *named arguments first, unnamed arguments later* style (Tcl) is selected:  Clear separation between options and arguments via the "--" flag. The unnamed arguments can optionally be accessed as options (named arguments).
+- In case the *named arguments first, unnamed arguments later* style (Tcl) is selected:  Clear separation between options and arguments via the "--" flag. The unnamed arguments can optionally be accessed as options (named arguments).
 
-**•**
-: Automatic type and value check before the procedure body is executed, taking into account validation ranges, choice lists and custom validation commands. Generation of clear error message if necessary.
+- Automatic type and value check before the procedure body is executed, taking into account validation ranges, choice lists and custom validation commands. Generation of clear error message if necessary.
 
-**•**
-: Many predefined types exist (integer, boolean, double, color, file, font, ...). Other application specific types can easily be added.
+- Many predefined types exist (integer, boolean, double, color, file, font, ...). Other application specific types can easily be added.
 
-**•**
-: Automatic help and usage text generation if a procedure is called with the *-help* flag.
+- Automatic help and usage text generation if a procedure is called with the *-help* flag.
 
-**•**
-: Automatic generation of an interactive argument definition form, in case a procedure is called with the *-interactive* flag.
+- Automatic generation of an interactive argument definition form, in case a procedure is called with the *-interactive* flag.
 
-**•**
-: Procedure calls can be logged which is useful to get for interactively called procedures the command call lines.
+- Procedure calls can be logged which is useful to get for interactively called procedures the command call lines.
 
-**•**
-: Powerful and code efficient generation of complex parameter definition forms.
+- Powerful and code efficient generation of complex parameter definition forms.
 
 
 # Procedure declaration
@@ -253,9 +242,9 @@ tepam::argument_dialogbox \
    -checkbutton {-label "Overwrite existing file" -variable Overwrite}
 ```
 
-The **argument_dialogbox** returns **ok** if the entered data are validated. It will return **cancel** if the data entry has been canceled. After the validation of the entered data, the **argument_dialogbox** defines all the specified variables with the entered data inside the calling context.
+The **argument\_dialogbox** returns **ok** if the entered data are validated. It will return **cancel** if the data entry has been canceled. After the validation of the entered data, the **argument\_dialogbox** defines all the specified variables with the entered data inside the calling context.
 
-An **argument_dialogbox** requires a pair of arguments for each variable that it has to handle. The first argument defines the entry widget type used to select the variable's value and the second one is a lists of attributes related to the variable and the entry widget.
+An **argument\_dialogbox** requires a pair of arguments for each variable that it has to handle. The first argument defines the entry widget type used to select the variable's value and the second one is a lists of attributes related to the variable and the entry widget.
 
 Many entry widget types are available: Beside the simple generic entries, there are different kinds of list and combo boxes available, browsers for existing and new files and directories, check and radio boxes and buttons, as well as color and font pickers. If necessary, additional entry widgets can be defined.
 
@@ -303,7 +292,7 @@ set Result [tepam::argument_dialogbox \
       -font {-label "Font" -variable Font -default {Courier 12 italic}}]
 ```
 
-The **argument_dialogbox** defines all the specified variables with the entered data and returns **ok** if the data have been validated via the Ok button. If the data entry is cancelled by activating the Cancel button, the **argument_dialogbox** returns **cancel**.
+The **argument\_dialogbox** defines all the specified variables with the entered data and returns **ok** if the data have been validated via the Ok button. If the data entry is cancelled by activating the Cancel button, the **argument\_dialogbox** returns **cancel**.
 
 ```
 if {$Result=="cancel"} {

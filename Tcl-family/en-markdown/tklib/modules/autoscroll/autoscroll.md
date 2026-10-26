@@ -1,5 +1,6 @@
 ---
 CommandName: autoscroll
+title: autoscroll
 ManualSection: n
 Version: 1.1
 TclPart: tklib
@@ -17,12 +18,12 @@ autoscroll - Provides for a scrollbar to automatically mapped and unmapped as ne
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-[package]{.cmd} [require]{.sub} [autoscroll]{.lit} [1.1]{.optlit} 
-[::autoscroll::autoscroll]{.cmd} [scrollbar]{.arg} 
-[::autoscroll::unautoscroll]{.cmd} [scrollbar]{.arg} 
-[::autoscroll::wrap]{.cmd} 
-[::autoscroll::unwrap]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [autoscroll]{.lit} [1.1]{.optlit}
+[::autoscroll::autoscroll]{.cmd} [scrollbar]{.arg}
+[::autoscroll::unautoscroll]{.cmd} [scrollbar]{.arg}
+[::autoscroll::wrap]{.cmd}
+[::autoscroll::unwrap]{.cmd}
 :::
 
 # Description

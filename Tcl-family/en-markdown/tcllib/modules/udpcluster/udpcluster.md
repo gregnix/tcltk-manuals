@@ -1,5 +1,6 @@
 ---
 CommandName: udpcluster
+title: udpcluster
 ManualSection: n
 Version: 0.3.4
 TclPart: tcllib
@@ -18,14 +19,14 @@ udpcluster - UDP Peer-to-Peer cluster
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [udpcluster]{.lit} [0.3.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [ip]{.lit} 
-[package]{.cmd} [require]{.sub} [nettool]{.lit} 
-[package]{.cmd} [require]{.sub} [comm]{.lit} 
-[package]{.cmd} [require]{.sub} [interp]{.lit} 
-[package]{.cmd} [require]{.sub} [dicttool]{.lit} 
-[package]{.cmd} [require]{.sub} [cron]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [udpcluster]{.lit} [0.3.4]{.optlit}
+[package]{.cmd} [require]{.sub} [ip]{.lit}
+[package]{.cmd} [require]{.sub} [nettool]{.lit}
+[package]{.cmd} [require]{.sub} [comm]{.lit}
+[package]{.cmd} [require]{.sub} [interp]{.lit}
+[package]{.cmd} [require]{.sub} [dicttool]{.lit}
+[package]{.cmd} [require]{.sub} [cron]{.lit}
 :::
 
 # Description

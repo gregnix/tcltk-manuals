@@ -1,5 +1,6 @@
 ---
 CommandName: HWND
+title: HWND
 ManualSection: 3
 Version: 8.0
 TclPart: Tk
@@ -9,39 +10,37 @@ Keywords:
  - window
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tk_GetHWND, Tk_AttachHWND - manage interactions between the Windows handle and an X window
+Tk\_GetHWND, Tk\_AttachHWND - manage interactions between the Windows handle and an X window
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tkPlatDecls.h>]{.lit}
-
-HWND
-[Tk_GetHWND]{.cmd}([window]{.arg})
-
-Window
-[Tk_AttachHWND]{.cmd}([tkwin]{.arg}, [hwnd]{.arg})
+**#include <tkPlatDecls.h>**
+[HWND]{.ret} [Tk\_GetHWND]{.ccmd} [window]{.cargs}
+[Window]{.ret} [Tk\_AttachHWND]{.ccmd} [tkwin, hwnd]{.cargs}
 :::
 
 # Arguments
 
-Window *window* (in)
+::: {.arguments} :::
+
+[window]{.carg .in type="Window"}
 : X token for window.
 
-Tk_Window *tkwin* (in)
+[tkwin]{.carg .in type="Tk_Window"}
 : Tk window for window.
 
-HWND *hwnd* (in)
+[hwnd]{.carg .in type="HWND"}
 : Windows HWND for window.
 
+:::
 
 # Description
 
-**Tk_GetHWND** returns the Windows HWND identifier for X Windows window given by *window*.
+**Tk\_GetHWND** returns the Windows HWND identifier for X Windows window given by *window*.
 
-**Tk_AttachHWND** binds the Windows HWND identifier to the specified Tk_Window given by *tkwin*. It returns an X Windows window that encapsulates the HWND.
+**Tk\_AttachHWND** binds the Windows HWND identifier to the specified Tk\_Window given by *tkwin*. It returns an X Windows window that encapsulates the HWND.

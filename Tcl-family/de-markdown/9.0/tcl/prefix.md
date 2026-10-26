@@ -1,5 +1,6 @@
 ---
 CommandName: prefix
+title: prefix
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -16,48 +17,48 @@ Copyright:
  - Copyright (c) 2008 Peter Spjuth <pspjuth@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::prefix - Hilfsmittel für Präfixabgleich
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg} 
+[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument beschreibt Befehle zum Nachschlagen eines Präfixes in einer Liste von Zeichenketten. Folgende Befehle werden unterstützt:
 
-**::tcl::prefix all** *table string*
+[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg}
 : Gibt eine Liste aller Elemente in *table* zurück, die mit dem Präfix *string* beginnen.
 
-**::tcl::prefix longest** *table string*
+[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg}
 : Gibt das längste gemeinsame Präfix aller Elemente in *table* zurück, die mit dem Präfix *string* beginnen.
 
-**::tcl::prefix match** ?*option ...*? *table string*
+[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg}
 : Wenn *string* einem Element in *table* entspricht oder das Präfix genau eines Elements ist, wird das gefundene Element zurückgegeben. Andernfalls hängt das Ergebnis von der Option **-error** ab. (Es wird empfohlen, *table* vor der Verwendung mit diesem Unterbefehl zu sortieren, damit die Liste der Übereinstimmungen in der Fehlermeldung ebenfalls sortiert ist; dies ist für die Funktion des Unterbefehls selbst jedoch nicht zwingend erforderlich.) Folgende Optionen werden unterstützt:
 
-**-exact**
-: Nur exakte Übereinstimmungen akzeptieren.
+    [-exact]{.lit}
+    : Nur exakte Übereinstimmungen akzeptieren.
 
-**-message**\\**0**_string_
-: *string* in der Fehlermeldung bei Nichtübereinstimmung verwenden. Standard ist „option“.
+    [-message]{.lit} [string]{.arg}
+    : *string* in der Fehlermeldung bei Nichtübereinstimmung verwenden. Standard ist „option“.
 
-**-error**\\**0**_options_
-: Die *options* werden verwendet, wenn keine Übereinstimmung gefunden wird. Ist *options* leer, wird kein Fehler erzeugt und eine leere Zeichenkette zurückgegeben. Andernfalls werden die *options* als **return**-Optionen bei der Erzeugung der Fehlermeldung verwendet. Der Standard entspricht dem Setzen von „-level 0“. Beispiel: Wird „**-error** {-errorcode MyError -level 1}“ verwendet, würde ein Fehler wie folgt erzeugt:
+    [-error]{.lit} [options]{.arg}
+    : Die *options* werden verwendet, wenn keine Übereinstimmung gefunden wird. Ist *options* leer, wird kein Fehler erzeugt und eine leere Zeichenkette zurückgegeben. Andernfalls werden die *options* als [return]-Optionen bei der Erzeugung der Fehlermeldung verwendet. Der Standard entspricht dem Setzen von „-level 0“. Beispiel: Wird „**-error** {-errorcode MyError -level 1}“ verwendet, würde ein Fehler wie folgt erzeugt:
+
+        ```
+        return -errorcode MyError -level 1 -code error \
+               "ambiguous option ..."
+        ```
 
 
-    ```
-    return -errorcode MyError -level 1 -code error \
-           "ambiguous option ..."
-    ```
 
-
-# BEISPIELE
+# Beispiele
 
 Grundlegende Verwendung:
 
@@ -86,7 +87,7 @@ foreach {arg val} $args {
 }
 ```
 
-Erzeugen eines **switch**, der Präfixe unterstützt:
+Erzeugen eines [switch], der Präfixe unterstützt:
 
 ```
 switch [prefix match {apa bepa cepa} $arg] {
@@ -95,3 +96,7 @@ switch [prefix match {apa bepa cepa} $arg] {
     cepa { }
 }
 ```
+
+
+[return]: return.md
+[switch]: switch.md

@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_RestackWindow
+title: Tk_RestackWindow
 ManualSection: 3
 Version: unknown
 TclPart: Tk
@@ -16,31 +17,32 @@ Copyright:
 
 # Name
 
-Tk_RestackWindow - Change a window's position in the stacking order
+Tk\_RestackWindow - Change a window's position in the stacking order
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_RestackWindow]{.cmd}([tkwin]{.arg}, [aboveBelow]{.arg}, [other]{.arg})
+**#include <tk.h>**
+[int]{.ret} [Tk\_RestackWindow]{.ccmd} [tkwin, aboveBelow, other]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window to restack.
 
-int *aboveBelow* (in)
+[aboveBelow]{.carg .in type="int"}
 : Indicates new position of *tkwin* relative to *other*; must be **Above** or **Below**.
 
-Tk_Window *other* (in)
+[other]{.carg .in type="Tk_Window"}
 : *Tkwin* will be repositioned just above or below this window. Must be a sibling of *tkwin* or a descendant of a sibling. If NULL then *tkwin* is restacked above or below all siblings.
 
+:::
 
 # Description
 
-**Tk_RestackWindow** changes the stacking order of *window* relative to its siblings. If *other* is specified as NULL then *window* is repositioned at the top or bottom of its stacking order, depending on whether *aboveBelow* is **Above** or **Below**. If *other* has a non-NULL value then *window* is repositioned just above or below *other*.
+**Tk\_RestackWindow** changes the stacking order of *window* relative to its siblings. If *other* is specified as NULL then *window* is repositioned at the top or bottom of its stacking order, depending on whether *aboveBelow* is **Above** or **Below**. If *other* has a non-NULL value then *window* is repositioned just above or below *other*.
 
-The *aboveBelow* argument must have one of the symbolic values **Above** or **Below**. Both of these values are defined by the include file \<X11/Xlib.h>.
+The *aboveBelow* argument must have one of the symbolic values **Above** or **Below**. Both of these values are defined by the include file <X11/Xlib.h>.

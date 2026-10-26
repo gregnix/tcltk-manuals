@@ -1,5 +1,6 @@
 ---
 CommandName: bitmap
+title: bitmap
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -19,10 +20,10 @@ bitmap - Images that display two colors
 # Synopsis
 
 ::: {.synopsis} :::
-[image]{.cmd} [create]{.sub} [bitmap]{.lit} [name]{.optarg} [options]{.optarg} 
+[image]{.cmd} [create]{.sub} [bitmap]{.lit} [name]{.optarg} [options]{.optarg}
 
-[imageName]{.ins} [cget]{.sub} [option]{.arg} 
-[imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot} 
+[imageName]{.ins} [cget]{.sub} [option]{.arg}
+[imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
 :::
 
 # Description
@@ -31,7 +32,7 @@ A bitmap is an image whose pixels can display either of two colors or be transpa
 
 # Creating bitmaps
 
-Like all images, bitmaps are created using the **image create** command. Bitmaps support the following *options*:
+Like all images, bitmaps are created using the [image create][image] command. Bitmaps support the following *options*:
 
 **-background** *color*
 : Specifies a background color for the image in any of the standard ways accepted by Tk.  If this option is set to an empty string then the background pixels will be transparent.  This effect is achieved by using the source bitmap as the mask bitmap, ignoring any **-maskdata** or **-maskfile** options.
@@ -63,7 +64,11 @@ imageName option ?arg arg ...?
 *Option* and the *arg*s determine the exact behavior of the command.  The following commands are possible for bitmap images:
 
 *imageName* **cget** *option*
-: Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **image create** **bitmap** command.
+: Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the [image create][image] **bitmap** command.
 
 *imageName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options for the image. If no *option* is specified, returns a list describing all of the available options for *imageName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **image create** **bitmap** command.
+: Query or modify the configuration options for the image. If no *option* is specified, returns a list describing all of the available options for *imageName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the [image create][image] **bitmap** command.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[image]: image.md

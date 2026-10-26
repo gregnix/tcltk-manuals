@@ -1,5 +1,6 @@
 ---
 CommandName: try
+title: try
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -19,17 +20,17 @@ Copyright:
  - Copyright (c) 2008 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 try - Fehler und Ausnahmen abfangen und verarbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[try]{.cmd} [body]{.arg} [handler]{.optdot} [finally script]{.optarg} 
+[try]{.cmd} [body]{.arg} [handler...]{.optarg} [[finally]{.lit} [script]{.arg}]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl führt das Skript *body* aus und startet je nach Ergebnis dieses Skripts (normales Ende, Fehler oder ein anderes Ausnahmeergebnis) ein Handler-Skript für diesen Fall. Danach, wenn eine Klausel **finally** vorhanden ist, läuft das darin enthaltene *script*, und das Ergebnis des Handlers (oder von *body*, wenn kein Handler gepasst hat) darf sich weiter ausbreiten. Die Klausel **finally** wird auch bei einem Fehler verarbeitet, unabhängig davon, welcher *handler* verwendet wird, falls überhaupt einer.
 
@@ -39,9 +40,18 @@ Jede *handler*-Klausel besteht aus mehreren Wörtern und muss eine der folgenden
 : Diese Klausel passt, wenn die Auswertung von *body* mit dem Ausnahmecode *code* endete. *code* darf eine Ganzzahl sein oder eines der Wörter **ok**, **error**, **return**, **break** oder **continue**. Diese Wörter entsprechen den Ganzzahlen 0 bis 4.
 
 **trap** *pattern variableList script*
-: Diese Klausel passt, wenn die Auswertung von *body* einen Fehler ergab und das Präfix von **-errorcode** aus dem Status-Dictionary des Interpreters gleich *pattern* ist. Die Anzahl der Präfixwörter aus **-errorcode** ist die Listenlänge von *pattern*; Leerzeichen zwischen den Wörtern werden in **-errorcode** und *pattern* vor dem Vergleich vereinheitlicht. Das Wort *variableList* jedes *handler* gilt immer als Liste von Variablennamen. Ist das erste Wort der Liste vorhanden und nicht leer, nennt es eine Variable, in die das Ergebnis der Auswertung von *body* (aus dem umgebenden **try**) kommt; das enthält die lesbare Form von Fehlern. Ist das zweite Wort vorhanden und nicht leer, nennt es eine Variable für das Options-Dictionary des Interpreters zum Zeitpunkt, an dem *body* endete. Das Wort *script* jedes *handler* gilt immer gleich: als Tcl-Skript, das ausgewertet wird, wenn die Klausel passt. Ist *script* das Literal „-“ und der *handler* nicht der letzte, wird stattdessen das *script* des folgenden *handler* aufgerufen (wie beim Befehl **switch**). Die *handler*-Klauseln werden der Reihe nach geprüft, und die erste passende wird gewählt. Höchstens eine *handler*-Klausel wird gewählt. Deshalb verdeckt ein **on error** jedes nachfolgende **trap** im **try**. **on error** ist gleichwertig zu **trap {}**. Tritt bei der Auswertung des *handler* oder der Klausel **finally** eine Ausnahme auf (jedes Ergebnis außer **ok**), wird das Status-Dictionary der ursprünglichen Ausnahme dem Status-Dictionary der neuen Ausnahme unter dem Schlüssel **-during** hinzugefügt.
+: Diese Klausel passt, wenn die Auswertung von *body* einen Fehler ergab und das Präfix von **-errorcode** aus dem Status-Dictionary des Interpreters gleich *pattern* ist. Die Anzahl der Präfixwörter aus **-errorcode** ist die Listenlänge von *pattern*; Leerzeichen zwischen den Wörtern werden in **-errorcode** und *pattern* vor dem Vergleich vereinheitlicht.
 
-# BEISPIELE
+
+Das Wort *variableList* jedes *handler* gilt immer als Liste von Variablennamen. Ist das erste Wort der Liste vorhanden und nicht leer, nennt es eine Variable, in die das Ergebnis der Auswertung von *body* (aus dem umgebenden **try**) kommt; das enthält die lesbare Form von Fehlern. Ist das zweite Wort vorhanden und nicht leer, nennt es eine Variable für das Options-Dictionary des Interpreters zum Zeitpunkt, an dem *body* endete.
+
+Das Wort *script* jedes *handler* gilt immer gleich: als Tcl-Skript, das ausgewertet wird, wenn die Klausel passt. Ist *script* das Literal „-“ und der *handler* nicht der letzte, wird stattdessen das *script* des folgenden *handler* aufgerufen (wie beim Befehl [switch]).
+
+Die *handler*-Klauseln werden der Reihe nach geprüft, und die erste passende wird gewählt. Höchstens eine *handler*-Klausel wird gewählt. Deshalb verdeckt ein **on error** jedes nachfolgende **trap** im **try**. **on error** ist gleichwertig zu **trap {}**.
+
+Tritt bei der Auswertung des *handler* oder der Klausel **finally** eine Ausnahme auf (jedes Ergebnis außer **ok**), wird das Status-Dictionary der ursprünglichen Ausnahme dem Status-Dictionary der neuen Ausnahme unter dem Schlüssel **-during** hinzugefügt.
+
+# Beispiele
 
 Eine Datei in jedem Fall schließen:
 
@@ -80,3 +90,6 @@ proc readfile {filename} {
     }
 }
 ```
+
+
+[switch]: switch.md

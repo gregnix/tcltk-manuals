@@ -1,5 +1,6 @@
 ---
 CommandName: widget_calendar
+title: widget_calendar
 ManualSection: n
 Version: 1.0.2
 TclPart: tklib
@@ -15,24 +16,23 @@ Copyright:
 
 # Name
 
-widget_calendar - Calendar Megawidget
+widget\_calendar - Calendar Megawidget
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [widget]{.lit} [3.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [widget::calendar]{.lit} [1.0.2]{.optlit} 
-[widget::calendar]{.cmd} [pathname]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [widget]{.lit} [3.0]{.optlit}
+[package]{.cmd} [require]{.sub} [widget::calendar]{.lit} [1.0.2]{.optlit}
+[widget::calendar]{.cmd} [pathname]{.arg} [options]{.optarg}
 :::
 
 # Description
 
 This package provides a calendar megawidget (snidget).
 
-**widget::calendar** *pathname* ?options?
-: 
+- **widget::calendar** *pathname* ?options?
 
 
 # Widget options
@@ -53,7 +53,9 @@ This package provides a calendar megawidget (snidget).
 : Selects the background color for the day that has been selected. Default: #FFCC00
 
 **-language**
-: Specify language of the calendar contents. The language is specified by abbreviations of the languge, for example: en - english, de - german ... It defaults to en. Supported languages: de en es fr gr he it ja sv pl pt zh fi tr nl ru crk crx-nak crx-lhe
+: Specify language of the calendar contents. The language is specified by abbreviations of the languge, for example: en - english, de - german ... It defaults to en.
+
+    Supported languages: de en es fr gr he it ja sv pl pt zh fi tr nl ru crk crx-nak crx-lhe
 
 **-shadecolor**
 : Selects the color of the parts that have a shaded background. Default: #888888
@@ -69,38 +71,29 @@ This package provides a calendar megawidget (snidget).
 
 *pathname* **get** ?*what*?
 
-Returns a part of the selected date or 'all'. The argument *what* selects the part. Valid values for *what* are: day, month, year and all. \\'all' is the default and returns the complete date in the format given with -dateformat.
+Returns a part of the selected date or 'all'. The argument *what* selects the part. Valid values for *what* are: day, month, year and all. 'all' is the default and returns the complete date in the format given with -dateformat.
 
 # Default bindings
 
 On creation of the calendar widget the following bindings are installed. When pressing a key the command is invoked and the textvariable is updated. updated.
 
-**•**
-: Home - Move to the current date
+- Home - Move to the current date
 
-**•**
-: Up - Move to week before current date
+- Up - Move to week before current date
 
-**•**
-: Down - Move to week after current date
+- Down - Move to week after current date
 
-**•**
-: Left - Move to day before current date
+- Left - Move to day before current date
 
-**•**
-: Right - Move to day after current date
+- Right - Move to day after current date
 
-**•**
-: Control-Left - Move to month before current date
+- Control-Left - Move to month before current date
 
-**•**
-: Control-Right - Move to month after current date
+- Control-Right - Move to month after current date
 
-**•**
-: Control-Up - Move to year before current date
+- Control-Up - Move to year before current date
 
-**•**
-: Control-Down - Move to year after current date
+- Control-Down - Move to year after current date
 
 
 # Example

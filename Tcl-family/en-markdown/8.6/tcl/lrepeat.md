@@ -1,5 +1,6 @@
 ---
 CommandName: lrepeat
+title: lrepeat
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -25,7 +26,7 @@ lrepeat - Build a list by repeating elements
 # Synopsis
 
 ::: {.synopsis} :::
-[lrepeat]{.cmd} [count]{.arg} [element]{.optdot} 
+[lrepeat]{.cmd} [count]{.arg} [element]{.optdot}
 :::
 
 # Description

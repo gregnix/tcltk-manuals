@@ -1,5 +1,6 @@
 ---
 CommandName: expr
+title: expr
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -34,7 +35,7 @@ expr - Evaluate an expression
 # Synopsis
 
 ::: {.synopsis} :::
-[expr]{.cmd} [arg]{.arg} [arg arg]{.optdot} 
+[expr]{.cmd} [arg]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -53,67 +54,63 @@ A Tcl expression consists of a combination of operands, operators, parentheses a
 
 Operands may be specified in any of the following ways:
 
-**\[1\]**
-: As a numeric value, either integer or floating-point.
+1. As a numeric value, either integer or floating-point.
 
-**\[2\]**
-: As a boolean value, using any form understood by **string is** **boolean**.
+2. As a boolean value, using any form understood by [string is][string] **boolean**.
 
-**\[3\]**
-: As a Tcl variable, using standard **\$** notation. The variable's value will be used as the operand.
+3. As a Tcl variable, using standard **$** notation. The variable's value will be used as the operand.
 
-**\[4\]**
-: As a string enclosed in double-quotes. The expression parser will perform backslash, variable, and command substitutions on the information between the quotes, and use the resulting value as the operand
+4. As a string enclosed in double-quotes. The expression parser will perform backslash, variable, and command substitutions on the information between the quotes, and use the resulting value as the operand
 
-**\[5\]**
-: As a string enclosed in braces. The characters between the open brace and matching close brace will be used as the operand without any substitutions.
+5. As a string enclosed in braces. The characters between the open brace and matching close brace will be used as the operand without any substitutions.
 
-**\[6\]**
-: As a Tcl command enclosed in brackets. The command will be executed and its result will be used as the operand.
+6. As a Tcl command enclosed in brackets. The command will be executed and its result will be used as the operand.
 
-**\[7\]**
-: As a mathematical function whose arguments have any of the above forms for operands, such as **sin(\$x)**.  See **MATH FUNCTIONS** below for a discussion of how mathematical functions are handled. Where the above substitutions occur (e.g. inside quoted strings), they are performed by the expression's instructions. However, the command parser may already have performed one round of substitution before the expression processor was called. As discussed below, it is usually best to enclose expressions in braces to prevent the command parser from performing substitutions on the contents. For some examples of simple expressions, suppose the variable **a** has the value 3 and the variable **b** has the value 6. Then the command on the left side of each of the lines below will produce the value on the right side of the line:
+7. As a mathematical function whose arguments have any of the above forms for operands, such as **sin($x)**.  See [Math functions] below for a discussion of how mathematical functions are handled.
 
+
+Where the above substitutions occur (e.g. inside quoted strings), they are performed by the expression's instructions. However, the command parser may already have performed one round of substitution before the expression processor was called. As discussed below, it is usually best to enclose expressions in braces to prevent the command parser from performing substitutions on the contents.
+
+For some examples of simple expressions, suppose the variable **a** has the value 3 and the variable **b** has the value 6. Then the command on the left side of each of the lines below will produce the value on the right side of the line:
 
 ```
-expr {3.1 + $a}               6.1
-expr {2 + "$a.$b"}            5.6
-expr {4*[llength "6 2"]}      8
-expr {{word one} < "word $a"} 0
+expr {3.1 + $a}	6.1
+expr {2 + "$a.$b"}	5.6
+expr {4*[llength "6 2"]}	8
+expr {{word one} < "word $a"}	0
 ```
 
 ## Operators
 
-The valid operators (most of which are also available as commands in the **tcl::mathop** namespace; see the **mathop**(n) manual page for details) are listed below, grouped in decreasing order of precedence:
+The valid operators (most of which are also available as commands in the **tcl::mathop** namespace; see the [mathop]\(n) manual page for details) are listed below, grouped in decreasing order of precedence:
 
-**-**\\**0**\\**0+**\\**0**\\**0~**\\**0**\\**0!**
+**-  +  ~  !**
 : Unary minus, unary plus, bit-wise NOT, logical NOT.  None of these operators may be applied to string operands, and bit-wise NOT may be applied only to integers.
 
 **\*\***
 : Exponentiation.  Valid for any numeric operands.  The maximum exponent value that Tcl can handle if the first number is an integer > 1 is 268435455.
 
-**\***\\**0**\\**0/**\\**0**\\**0%**
+**\*  /  %**
 : Multiply, divide, remainder.  None of these operators may be applied to string operands, and remainder may be applied only to integers. The remainder will always have the same sign as the divisor and an absolute value smaller than the absolute value of the divisor.
 
+    When applied to integers, the division and remainder operators can be considered to partition the number line into a sequence of equal-sized adjacent non-overlapping pieces where each piece is the size of the divisor; the division result identifies which piece the divisor lay within, and the remainder result identifies where within that piece the divisor lay. A consequence of this is that the result of "-57 **/** 10" is always -6, and the result of "-57 **%** 10" is always 3.
 
-When applied to integers, the division and remainder operators can be considered to partition the number line into a sequence of equal-sized adjacent non-overlapping pieces where each piece is the size of the divisor; the division result identifies which piece the divisor lay within, and the remainder result identifies where within that piece the divisor lay. A consequence of this is that the result of "-57 **/** 10" is always -6, and the result of "-57 **%** 10" is always 3.
-
-**+**\\**0**\\**0-**
+**+  -**
 : Add and subtract.  Valid for any numeric operands.
 
-**<<**\\**0**\\**0>>**
+**<<  >>**
 : Left and right shift.  Valid for integer operands only. A right shift always propagates the sign bit.
 
-**<**\\**0**\\**0>**\\**0**\\**0<=**\\**0**\\**0>=**
+**<  >  <=  >=**
 : Boolean less, greater, less than or equal, and greater than or equal. Each operator produces 1 if the condition is true, 0 otherwise. These operators may be applied to strings as well as numeric operands, in which case string comparison is used.
 
-**==**\\**0**\\**0!=**
+**==  !=**
 : Boolean equal and not equal.  Each operator produces a zero/one result. Valid for all operand types.
 
-**eq**\\**0**\\**0ne**
+**eq  ne**
 : Boolean string equal and string not equal.  Each operator produces a zero/one result.  The operand types are interpreted only as strings.
 
-**in**\\**0**\\**0ni**
+**in  ni**
 : List containment and negated list containment.  Each operator produces a zero/one result and treats its first argument as a string and its second argument as a Tcl list.  The **in** operator indicates whether the first argument is a member of the second argument list; the **ni** operator inverts the sense of the result.
 
 **&**
@@ -132,8 +129,10 @@ When applied to integers, the division and remainder operators can be considered
 : Logical OR.  Produces a 0 result if both operands are zero, 1 otherwise. Valid for boolean and numeric (integers or floating-point) operands only. This operator evaluates lazily; it only evaluates its second operand if it must in order to determine its result.
 
 *x* **?** *y* **:** *z*
-: If-then-else, as in C.  If *x* evaluates to non-zero, then the result is the value of *y*. Otherwise the result is the value of *z*. The *x* operand must have a boolean or numeric value. This operator evaluates lazily; it evaluates only one of *y* or *z*. See the C manual for more details on the results produced by each operator. The exponentiation operator promotes types like the multiply and divide operators, and produces a result that is the same as the output of the **pow** function (after any type conversions.) All of the binary operators but exponentiation group left-to-right within the same precedence level; exponentiation groups right-to-left.  For example, the command
+: If-then-else, as in C.  If *x* evaluates to non-zero, then the result is the value of *y*. Otherwise the result is the value of *z*. The *x* operand must have a boolean or numeric value. This operator evaluates lazily; it evaluates only one of *y* or *z*.
 
+
+See the C manual for more details on the results produced by each operator. The exponentiation operator promotes types like the multiply and divide operators, and produces a result that is the same as the output of the **pow** function (after any type conversions.) All of the binary operators but exponentiation group left-to-right within the same precedence level; exponentiation groups right-to-left.  For example, the command
 
 ```
 expr {4*2 < 7}
@@ -153,11 +152,11 @@ The **&&**, **||**, and **?:** operators have "lazy evaluation", just as in C, w
 expr {$v?[a]:[b]}
 ```
 
-only one of "**\[a\]**" or "**\[b\]**" will actually be evaluated, depending on the value of **\$v**.  Note, however, that this is only true if the entire expression is enclosed in braces;  otherwise the Tcl parser will evaluate both "**\[a\]**" and "**\[b\]**" before invoking the **expr** command.
+only one of "**\[a\]**" or "**\[b\]**" will actually be evaluated, depending on the value of **$v**.  Note, however, that this is only true if the entire expression is enclosed in braces;  otherwise the Tcl parser will evaluate both "**\[a\]**" and "**\[b\]**" before invoking the **expr** command.
 
 ## Math functions
 
-When the expression parser encounters a mathematical function such as **sin(\$x)**, it replaces it with a call to an ordinary Tcl command in the **tcl::mathfunc** namespace.  The processing of an expression such as:
+When the expression parser encounters a mathematical function such as **sin($x)**, it replaces it with a call to an ordinary Tcl command in the **tcl::mathfunc** namespace.  The processing of an expression such as:
 
 ```
 expr {sin($x+$y)}
@@ -175,7 +174,7 @@ which in turn is the same as the processing of:
 tcl::mathfunc::sin [expr {$x+$y}]
 ```
 
-The executor will search for **tcl::mathfunc::sin** using the usual rules for resolving functions in namespaces. Either **::tcl::mathfunc::sin** or **\[namespace current\]::tcl::mathfunc::sin** will satisfy the request, and others may as well (depending on the current **namespace path** setting).
+The executor will search for **tcl::mathfunc::sin** using the usual rules for resolving functions in namespaces. Either [::tcl::mathfunc::sin][mathfunc] or **\[namespace current\]::tcl::mathfunc::sin** will satisfy the request, and others may as well (depending on the current [namespace path][namespace] setting).
 
 Some mathematical functions have several arguments, separated by commas like in C. Thus:
 
@@ -189,11 +188,11 @@ ends up as
 tcl::mathfunc::hypot $x $y
 ```
 
-See the **mathfunc**(n) manual page for the math functions that are available by default.
+See the [mathfunc]\(n) manual page for the math functions that are available by default.
 
 ## Types, overflow, and precision
 
-All internal computations involving integers are done calling on the LibTomMath multiple precision integer library as required so that all integer calculations are performed exactly.  Note that in Tcl releases prior to 8.5, integer calculations were performed with one of the C types *long int* or *Tcl_WideInt*, causing implicit range truncation in those calculations where values overflowed the range of those types. Any code that relied on these implicit truncations will need to explicitly add **int()** or **wide()** function calls to expressions at the points where such truncation is required to take place.
+All internal computations involving integers are done calling on the LibTomMath multiple precision integer library as required so that all integer calculations are performed exactly.  Note that in Tcl releases prior to 8.5, integer calculations were performed with one of the C types *long int* or *Tcl\_WideInt*, causing implicit range truncation in those calculations where values overflowed the range of those types. Any code that relied on these implicit truncations will need to explicitly add **int()** or **wide()** function calls to expressions at the points where such truncation is required to take place.
 
 All internal computations involving floating-point are done with the C type *double*. When converting a string to floating-point, exponent overflow is detected and results in the *double* value of **Inf** or **-Inf** as appropriate.  Floating-point overflow and underflow are detected to the degree supported by the hardware, which is generally pretty reliable.
 
@@ -220,14 +219,14 @@ returns **4.0**, not **4**.
 
 ## String operations
 
-String values may be used as operands of the comparison operators, although the expression evaluator tries to do comparisons as integer or floating-point when it can, i.e., when all arguments to the operator allow numeric interpretations, except in the case of the **eq** and **ne** operators. If one of the operands of a comparison is a string and the other has a numeric value, a canonical string representation of the numeric operand value is generated to compare with the string operand. Canonical string representation for integer values is a decimal string format.  Canonical string representation for floating-point values is that produced by the **%g** format specifier of Tcl's **format** command.  For example, the commands
+String values may be used as operands of the comparison operators, although the expression evaluator tries to do comparisons as integer or floating-point when it can, i.e., when all arguments to the operator allow numeric interpretations, except in the case of the **eq** and **ne** operators. If one of the operands of a comparison is a string and the other has a numeric value, a canonical string representation of the numeric operand value is generated to compare with the string operand. Canonical string representation for integer values is a decimal string format.  Canonical string representation for floating-point values is that produced by the **%g** format specifier of Tcl's [format] command.  For example, the commands
 
 ```
 expr {"0x03" > "2"}
 expr {"0y" > "0x12"}
 ```
 
-both return 1.  The first comparison is done using integer comparison, and the second is done using string comparison. Because of Tcl's tendency to treat values as numbers whenever possible, it is not generally a good idea to use operators like **==** when you really want string comparison and the values of the operands could be arbitrary;  it is better in these cases to use the **eq** or **ne** operators, or the **string** command instead.
+both return 1.  The first comparison is done using integer comparison, and the second is done using string comparison. Because of Tcl's tendency to treat values as numbers whenever possible, it is not generally a good idea to use operators like **==** when you really want string comparison and the values of the operands could be arbitrary;  it is better in these cases to use the **eq** or **ne** operators, or the [string] command instead.
 
 # Performance considerations
 
@@ -241,7 +240,7 @@ set b {$a + 2}
 expr $b*4
 ```
 
-return 11, not a multiple of 4. This is because the Tcl parser will first substitute "**\$a + 2**" for the variable **b**, then the **expr** command will evaluate the expression "**\$a + 2\*4**".
+return 11, not a multiple of 4. This is because the Tcl parser will first substitute "**$a + 2**" for the variable **b**, then the **expr** command will evaluate the expression "**$a + 2\*4**".
 
 Most expressions do not require a second round of substitutions. Either they are enclosed in braces or, if not, their variable and command substitutions yield numbers or strings that do not themselves require substitutions. However, because a few unbraced expressions need two rounds of substitutions, the bytecode compiler must emit additional instructions to handle this situation. The most expensive code is required for unbraced expressions that contain command substitutions. These expressions must be implemented by generating new code each time the expression is executed.
 
@@ -253,7 +252,7 @@ set b {$a + 2}
 expr {[expr $b] * 4}
 ```
 
-When the expression is unbraced to allow the substitution of a function or operator, consider using the commands documented in the **mathfunc**(n) or **mathop**(n) manual pages directly instead.
+When the expression is unbraced to allow the substitution of a function or operator, consider using the commands documented in the [mathfunc]\(n) or [mathop]\(n) manual pages directly instead.
 
 # Examples
 
@@ -309,3 +308,10 @@ Copyright © 1993 The Regents of the University of California.
 Copyright © 1994-2000 Sun Microsystems Incorporated.
 Copyright © 2005 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ```
+
+
+[format]: format.md
+[mathfunc]: mathfunc.md
+[mathop]: mathop.md
+[namespace]: namespace.md
+[string]: string.md

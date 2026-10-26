@@ -1,5 +1,6 @@
 ---
 CommandName: abstract
+title: abstract
 ManualSection: n
 Version: 0.3
 TclPart: TclOO
@@ -23,28 +24,31 @@ oo::abstract - A class that does not allow direct instances of itself
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[oo::abstract]{.cmd} [method]{.arg} [arg]{.optdot} 
+[oo::abstract]{.cmd} [method]{.arg} [arg]{.optdot}
 :::
 
 # Class hierarchy
+
+::: {.classhierarchy} :::
 
 ```
 oo::object
    → oo::class
        → oo::abstract
 ```
+:::
 
 # Description
 
-Abstract classes are classes that can contain definitions, but which cannot be directly manufactured; they are intended to only ever be inherited from and instantiated indirectly. The characteristic methods of **oo::class** (**create** and **new**) are not exported by an instance of **oo::abstract**.
+Abstract classes are classes that can contain definitions, but which cannot be directly manufactured; they are intended to only ever be inherited from and instantiated indirectly. The characteristic methods of [oo::class][class] (**create** and **new**) are not exported by an instance of **oo::abstract**.
 
 Note that **oo::abstract** is not itself an instance of **oo::abstract**.
 
 ## Constructor
 
-The **oo::abstract** class does not define an explicit constructor; this means that it is effectively the same as the constructor of the **oo::class** class.
+The **oo::abstract** class does not define an explicit constructor; this means that it is effectively the same as the constructor of the [oo::class][class] class.
 
 ## Destructor
 
@@ -79,3 +83,6 @@ $b peel              → prints 'skin now off'
 $b eat               → prints 'yummy!'
 set f [fruit new]    → error 'unknown method "new"...'
 ```
+
+
+[class]: class.md

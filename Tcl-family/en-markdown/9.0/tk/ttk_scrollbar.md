@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::scrollbar
+title: ttk::scrollbar
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -22,7 +23,7 @@ ttk::scrollbar - Control the viewport of a scrollable widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::scrollbar]{.cmd} [pathName]{.arg} [options]{.optdot} 
+[ttk::scrollbar]{.cmd} [pathName]{.arg} [options...]{.optarg}
 :::
 
 # Description
@@ -31,20 +32,16 @@ ttk::scrollbar - Control the viewport of a scrollable widget
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-style** |
-| **-takefocus** |  |  |
+**-class**, **-cursor**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
 **-command** (**command**/**Command**)
-: A Tcl script prefix to evaluate to change the view in the widget associated with the scrollbar. Additional arguments are appended to the value of this option, as described in **SCROLLING COMMANDS** below, whenever the user requests a view change by manipulating the scrollbar.
+: A Tcl script prefix to evaluate to change the view in the widget associated with the scrollbar. Additional arguments are appended to the value of this option, as described in [Scrolling commands] below, whenever the user requests a view change by manipulating the scrollbar.
 
-
-This option typically consists of a two-element list, containing the name of a scrollable widget followed by either **xview** (for horizontal scrollbars) or **yview** (for vertical scrollbars).
+    This option typically consists of a two-element list, containing the name of a scrollable widget followed by either **xview** (for horizontal scrollbars) or **yview** (for vertical scrollbars).
 
 **-orient** (**orient**/**Orient**)
 : One of **horizontal** or **vertical**. Specifies the orientation of the scrollbar.
@@ -52,12 +49,12 @@ This option typically consists of a two-element list, containing the name of a s
 
 # Widget command
 
-In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see **ttk::widget**), scrollbar widgets support the following additional commands:
+In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see [ttk::widget][ttk_widget]), scrollbar widgets support the following additional commands:
 
-*pathName* **get**
+[pathName]{.ins} [get]{.sub}
 : Returns the scrollbar settings in the form of a list whose elements are the arguments to the most recent **set** widget command.
 
-*pathName* **set** *first last*
+[pathName]{.ins} [set]{.sub} [first]{.arg} [last]{.arg}
 : This command is normally invoked by the scrollbar's associated widget from an **-xscrollcommand** or **-yscrollcommand** callback. Specifies the visible range to be displayed. *first* and *last* are real fractions between 0 and 1.
 
 
@@ -65,10 +62,10 @@ In addition to the standard **cget**, **configure**, **identify element**, **ins
 
 The following widget commands are used internally by the **TScrollbar** widget class bindings.
 
-*pathName* **delta** *deltaX deltaY*
+[pathName]{.ins} [delta]{.sub} [deltaX]{.arg} [deltaY]{.arg}
 : Returns a real number indicating the fractional change in the scrollbar setting that corresponds to a given change in thumb position.  For example, if the scrollbar is horizontal, the result indicates how much the scrollbar setting must change to move the thumb *deltaX* pixels to the right (*deltaY* is ignored in this case). If the scrollbar is vertical, the result indicates how much the scrollbar setting must change to move the thumb *deltaY* pixels down.  The arguments and the result may be zero or negative.
 
-*pathName* **fraction** *x y*
+[pathName]{.ins} [fraction]{.sub} [x]{.arg} [y]{.arg}
 : Returns a real number between 0 and 1 indicating where the point given by *x* and *y* lies in the trough area of the scrollbar, where 0.0 corresponds to the top or left of the trough and 1.0 corresponds to the bottom or right. *X* and *y* are pixel coordinates relative to the scrollbar widget. If *x* and *y* refer to a point outside the trough, the closest point in the trough is used.
 
 
@@ -111,7 +108,7 @@ The class name for a **ttk::scrollbar** is **TScrollbar**.
 
 Dynamic states: **active**, **disabled**.
 
-**TScrollbar** (or more specifically **Vertical.TScrollbar** and **Horizontal.TScrollbar**) styling options that are configurable with **ttk::style** are:
+**TScrollbar** (or more specifically **Vertical.TScrollbar** and **Horizontal.TScrollbar**) styling options that are configurable with [ttk::style][ttk_style] are:
 
 **-arrowcolor** *color*
 
@@ -133,4 +130,8 @@ Dynamic states: **active**, **disabled**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

@@ -1,15 +1,16 @@
 ---
 CommandName: tcllib_license
+title: tcllib_license
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
 # Name
 
-tcllib_license - Tcllib - License
+tcllib\_license - Tcllib - License
 
 # Description
 

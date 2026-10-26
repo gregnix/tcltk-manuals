@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_DrawFocusHighlight
+title: Tk_DrawFocusHighlight
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -13,31 +14,33 @@ Copyright:
 
 # Name
 
-Tk_DrawFocusHighlight - draw the traversal highlight ring for a widget
+Tk\_DrawFocusHighlight - draw the traversal highlight ring for a widget
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_DrawFocusHighlight]{.cmd}([tkwin]{.arg}, [gc]{.arg}, [width]{.arg}, [drawable]{.arg})
+**#include <tk.h>**
+Tk\_DrawFocusHighlight(tkwin, gc, width, drawable)
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Window for which the highlight is being drawn.  Used to retrieve the window's dimensions, among other things.
 
-GC *gc* (in)
+[gc]{.carg .in type="GC"}
 : Graphics context to use for drawing the highlight.
 
-int *width* (in)
+[width]{.carg .in type="int"}
 : Width of the highlight ring, in pixels.
 
-Drawable *drawable* (in)
+[drawable]{.carg .in type="Drawable"}
 : Drawable in which to draw the highlight;  usually an offscreen pixmap for double buffering.
 
+:::
 
 # Description
 
-**Tk_DrawFocusHighlight** is a utility procedure that draws the traversal highlight ring for a widget. It is typically invoked by widgets during redisplay.
+**Tk\_DrawFocusHighlight** is a utility procedure that draws the traversal highlight ring for a widget. It is typically invoked by widgets during redisplay.

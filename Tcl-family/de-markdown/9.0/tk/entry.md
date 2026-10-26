@@ -1,5 +1,6 @@
 ---
 CommandName: entry
+title: entry
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -15,47 +16,53 @@ Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
 ---
 
-# NAME
+# Name
 
 entry - Erstellt und manipuliert 'Entry'-Einzeilige-Text-Eingabe-Widgets
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[entry]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[entry]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-disabledbackground** (disabledBackground/DisabledBackground)
+**-background**, **-highlightthickness**, **-selectbackground**, **-borderwidth**, **-insertbackground**, **-selectborderwidth**, **-cursor**, **-insertborderwidth**, **-selectforeground**, **-exportselection**, **-insertofftime**, **-takefocus**, **-font**, **-insertontime**, **-textvariable**, **-foreground**, **-insertwidth**, **-xscrollcommand**, **-highlightbackground**, **-justify**, **-highlightcolor**, **-relief**, **-placeholder**, **-placeholderforeground**
+
+Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-disabledbackground** (**disabledBackground**/**DisabledBackground**)
 : Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option der leere String ist, wird die normale Hintergrundfarbe verwendet.
 
-**-disabledforeground** (disabledForeground/DisabledForeground)
+**-disabledforeground** (**disabledForeground**/**DisabledForeground**)
 : Legt die Vordergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option der leere String ist, wird die normale Vordergrundfarbe verwendet.
 
 **-invalidcommand**, **-invcmd** (invalidCommand/InvalidCommand)
-: Legt ein Script fest, das ausgeführt wird, wenn **-validatecommand** 0 zurückgibt. Das Setzen auf {} deaktiviert diese Funktion (Standard). Die beste Verwendung dieser Option ist, sie auf *bell* zu setzen. Siehe **VALIDIERUNG** unten für weitere Informationen.
+: Legt ein Script fest, das ausgeführt wird, wenn **-validatecommand** 0 zurückgibt. Das Setzen auf {} deaktiviert diese Funktion (Standard). Die beste Verwendung dieser Option ist, sie auf *bell* zu setzen. Siehe [Validierung] unten für weitere Informationen.
 
-**-readonlybackground** (readonlyBackground/ReadonlyBackground)
+**-readonlybackground** (**readonlyBackground**/**ReadonlyBackground**)
 : Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry schreibgeschützt ist. Wenn diese Option der leere String ist, wird die normale Hintergrundfarbe verwendet.
 
-**-show** (show/Show)
-: Wenn diese Option angegeben ist, wird der wahre Inhalt des Entrys nicht im Fenster angezeigt. Stattdessen wird jedes Zeichen im Wert des Entrys als das erste Zeichen im Wert dieser Option angezeigt, wie z.B. "*". Dies ist nützlich, wenn das Entry beispielsweise zur Eingabe eines Passworts verwendet werden soll. Wenn Zeichen im Entry ausgewählt und anderswo kopiert werden, werden die angezeigten Informationen kopiert, nicht der wahre Inhalt des Entrys.
+**-show** (**show**/**Show**)
+: Wenn diese Option angegeben ist, wird der wahre Inhalt des Entrys nicht im Fenster angezeigt. Stattdessen wird jedes Zeichen im Wert des Entrys als das erste Zeichen im Wert dieser Option angezeigt, wie z.B. "\*". Dies ist nützlich, wenn das Entry beispielsweise zur Eingabe eines Passworts verwendet werden soll. Wenn Zeichen im Entry ausgewählt und anderswo kopiert werden, werden die angezeigten Informationen kopiert, nicht der wahre Inhalt des Entrys.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Legt einen von drei Zuständen für das Entry fest: **normal**, **disabled** oder **readonly**. Wenn das Entry schreibgeschützt ist, kann der Wert nicht mit Widget-Befehlen geändert werden und es wird kein Einfügecursor angezeigt, auch wenn der Eingabefokus im Widget ist; der Inhalt des Widgets kann weiterhin ausgewählt werden. Wenn das Entry deaktiviert ist, kann der Wert nicht geändert werden, es wird kein Einfügecursor angezeigt, der Inhalt ist nicht auswählbar, und das Entry kann in einer anderen Farbe angezeigt werden, abhängig von den Werten der Optionen **-disabledforeground** und **-disabledbackground**.
 
-**-validate** (validate/Validate)
-: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe **VALIDIERUNG** unten für weitere Informationen.
+**-validate** (**validate**/**Validate**)
+: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe [Validierung] unten für weitere Informationen.
 
 **-validatecommand**, **-vcmd** (validateCommand/ValidateCommand)
-: Legt ein Script fest, das ausgeführt wird, wenn Sie die Eingabe in das Entry-Widget validieren möchten. Das Setzen auf {} deaktiviert diese Funktion (Standard). Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Wenn er 0 zurückgibt (oder das gültige Tcl-Boolean-Äquivalent), bedeutet dies, dass Sie die neue Bearbeitung ablehnen und sie nicht erfolgt und das **-invalidcommand** ausgewertet wird, falls gesetzt. Wenn er 1 zurückgibt, erfolgt die neue Bearbeitung. Siehe **VALIDIERUNG** unten für weitere Informationen.
+: Legt ein Script fest, das ausgeführt wird, wenn Sie die Eingabe in das Entry-Widget validieren möchten. Das Setzen auf {} deaktiviert diese Funktion (Standard). Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Wenn er 0 zurückgibt (oder das gültige Tcl-Boolean-Äquivalent), bedeutet dies, dass Sie die neue Bearbeitung ablehnen und sie nicht erfolgt und das **-invalidcommand** ausgewertet wird, falls gesetzt. Wenn er 1 zurückgibt, erfolgt die neue Bearbeitung. Siehe [Validierung] unten für weitere Informationen.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Legt einen ganzzahligen Wert fest, der die gewünschte Breite des Entry-Fensters angibt, in Zeichen durchschnittlicher Größe der Schriftart des Widgets. Wenn der Wert negativ oder null ist, wählt das Widget eine Größe, die gerade groß genug ist, um seinen aktuellen Text zu halten.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **entry** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Entry-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte des Entrys wie Farben, Schriftart und Relief zu konfigurieren. Der Befehl **entry** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
@@ -63,14 +70,14 @@ Ein Entry ist ein Widget, das einen einzeiligen Text-String anzeigt und es erlau
 
 Entrys können Strings anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil des Strings angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details). Sie unterstützen auch das Scannen, wie unten beschrieben.
 
-# VALIDIERUNG
+# Validierung
 
 Die Validierung funktioniert, indem die Option **-validatecommand** auf ein Script (*validateCommand*) gesetzt wird, das gemäß der Option **-validate** wie folgt ausgewertet wird:
 
 **none**
 : Standard. Es findet keine Validierung statt.
 
-**focus**
+[focus]
 : *validateCommand* wird aufgerufen, wenn das Entry den Fokus erhält oder verliert.
 
 **focusin**
@@ -86,7 +93,7 @@ Die Validierung funktioniert, indem die Option **-validatecommand** auf ein Scri
 : *validateCommand* wird bei allen obigen Bedingungen aufgerufen.
 
 
-Es ist möglich, Prozent-Substitutionen auf den Werten der Optionen **-validatecommand** und **-invalidcommand** durchzuführen, genau wie in einem **bind**-Script. Folgende Substitutionen werden erkannt:
+Es ist möglich, Prozent-Substitutionen auf den Werten der Optionen **-validatecommand** und **-invalidcommand** durchzuführen, genau wie in einem [bind]-Script. Folgende Substitutionen werden erkannt:
 
 **%d**
 : Art der Aktion: 1 für **insert**, 0 für **delete** oder -1 für Fokus-, erzwungene oder **textvariable**-Validierung.
@@ -123,7 +130,7 @@ after idle {%W config -validate %v}
 
 in **-validatecommand** oder **-invalidcommand** (je nachdem, von welchem aus Sie das Entry bearbeitet haben) aufnehmen. Es wird auch empfohlen, während der Validierung keine zugehörige **-textvariable** zu setzen, da das Entry-Widget sonst aus dem Takt mit **-textvariable** geraten kann.
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
 Der Befehl **entry** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist. Dieser Befehl kann verwendet werden, um verschiedene Operationen auf dem Widget aufzurufen. Er hat folgende allgemeine Form:
 
@@ -133,7 +140,7 @@ pathName subcommand ?arg ...?
 
 *Subcommand* und die *arg*s bestimmen das genaue Verhalten des Befehls.
 
-## INDIZES
+## Indizes
 
 Viele Widget-Befehle für Entrys nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im String des Entrys, auf eine der folgenden Arten:
 
@@ -156,92 +163,94 @@ Viele Widget-Befehle für Entrys nehmen einen oder mehrere Indizes als Argumente
 : Bezeichnet das Zeichen unmittelbar nach dem letzten in der Auswahl. Die Verwendung dieser Form ist ein Fehler, wenn die Auswahl nicht im Entry-Fenster liegt.
 
 **@**_number_
-: In dieser Form wird *number* als x-Koordinate im Fenster des Entrys behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet "**@0**" das Zeichen ganz links im Fenster. Abkürzungen sind für alle obigen Formen möglich, z. B. "**e**" oder "**sel.f**". Im Allgemeinen werden außerhalb des gültigen Bereichs liegende Indizes automatisch auf den nächsten zulässigen Wert gerundet. Indizes unterstützen dieselbe einfache Interpretation wie beim Befehl **string index**, mit einfacher ganzzahliger Indexarithmetik und Indexierung relativ zu **end**.
+: In dieser Form wird *number* als x-Koordinate im Fenster des Entrys behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet "**@0**" das Zeichen ganz links im Fenster.
 
+
+Abkürzungen sind für alle obigen Formen möglich, z. B. "**e**" oder "**sel.f**". Im Allgemeinen werden außerhalb des gültigen Bereichs liegende Indizes automatisch auf den nächsten zulässigen Wert gerundet. Indizes unterstützen dieselbe einfache Interpretation wie beim Befehl **string index**, mit einfacher ganzzahliger Indexarithmetik und Indexierung relativ zu **end**.
 
 ## Unterbefehle
 
 Folgende Befehle sind für Entry-Widgets möglich:
 
-*pathName* **bbox** *index*
+[pathName]{.ins} [bbox]{.sub} [index]{.arg}
 : Gibt eine Liste von vier Zahlen zurück, die die Begrenzungsbox des durch *index* angegebenen Zeichens beschreiben. Die ersten beiden Elemente der Liste geben die x- und y-Koordinaten der oberen linken Ecke des vom Zeichen bedeckten Bildschirmbereichs an (in Pixeln relativ zum Widget), die letzten beiden geben Breite und Höhe des Zeichens in Pixeln an. Die Begrenzungsbox kann sich auf einen Bereich außerhalb des sichtbaren Fensterbereichs beziehen.
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe **Tk_ConfigureInfo** für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
-*pathName* **delete** *first* ?*last*?
+[pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
 : Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Wenn *last* nicht angegeben ist, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt einen leeren String zurück.
 
-*pathName* **get**
+[pathName]{.ins} [get]{.sub}
 : Gibt den String des Entrys zurück.
 
-*pathName* **icursor** *index*
+[pathName]{.ins} [icursor]{.sub} [index]{.arg}
 : Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* gegebenen Zeichen angezeigt wird. Gibt einen leeren String zurück.
 
-*pathName* **index** *index*
+[pathName]{.ins} [index]{.sub} [index]{.arg}
 : Gibt den numerischen Index zurück, der *index* entspricht.
 
-*pathName* **insert** *index string*
+[pathName]{.ins} [insert]{.sub} [index]{.arg} [string]{.arg}
 : Fügt die Zeichen von *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt einen leeren String zurück.
 
-*pathName* **scan** *option args*
+[pathName]{.ins} [scan]{.sub} [option]{.arg} [args]{.arg}
 : Dieser Befehl implementiert das Scannen auf Entrys. Er hat zwei Formen, abhängig von *option*:
 
-*pathName* **scan mark** *x*
-: Speichert *x* und die aktuelle Ansicht im Entry-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Maustastendruck im Widget verknüpft. Er gibt einen leeren String zurück.
+    [pathName]{.ins} [scan]{.sub} [mark]{.lit} [x]{.arg}
+    : Speichert *x* und die aktuelle Ansicht im Entry-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Maustastendruck im Widget verknüpft. Er gibt einen leeren String zurück.
 
-*pathName* **scan dragto** *x*
-: Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
+    [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg}
+    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
 
 
-*pathName* **selection** *option arg*
+[pathName]{.ins} [selection]{.sub} [option]{.arg} [arg]{.arg}
 : Dieser Befehl passt die Auswahl innerhalb eines Entrys an. Er hat mehrere Formen, abhängig von *option*:
 
-*pathName* **selection adjust** *index*
-: Findet das Ende der Auswahl, das dem durch *index* gegebenen Zeichen am nächsten liegt, und passt dieses Ende der Auswahl auf *index* an (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für zukünftige **select to**-Befehle. Befindet sich die Auswahl derzeit nicht im Entry, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [adjust]{.lit} [index]{.arg}
+    : Findet das Ende der Auswahl, das dem durch *index* gegebenen Zeichen am nächsten liegt, und passt dieses Ende der Auswahl auf *index* an (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für zukünftige **select to**-Befehle. Befindet sich die Auswahl derzeit nicht im Entry, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt einen leeren String zurück.
 
-*pathName* **selection clear**
-: Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [clear]{.lit}
+    : Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt einen leeren String zurück.
 
-*pathName* **selection from** *index*
-: Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [from]{.lit} [index]{.arg}
+    : Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt einen leeren String zurück.
 
-*pathName* **selection present**
-: Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
+    [pathName]{.ins} [selection]{.sub} [present]{.lit}
+    : Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
 
-*pathName* **selection range** *start end*
-: Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis vor dem durch *end* indizierten einschließt. Verweist *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl des Entrys gelöscht.
+    [pathName]{.ins} [selection]{.sub} [range]{.lit} [start]{.arg} [end]{.arg}
+    : Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis vor dem durch *end* indizierten einschließt. Verweist *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl des Entrys gelöscht.
 
-*pathName* **selection to** *index*
-: Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [to]{.lit} [index]{.arg}
+    : Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt einen leeren String zurück.
 
 
-*pathName* **validate**
+[pathName]{.ins} [validate]{.sub}
 : Dieser Befehl erzwingt eine Auswertung von **-validatecommand** unabhängig von den durch die Option **-validate** festgelegten Bedingungen. Dazu wird **-validate** vorübergehend auf **all** gesetzt. Er gibt 0 oder 1 zurück.
 
-*pathName* **xview** *args*
+[pathName]{.ins} [xview]{.sub} [args]{.arg}
 : Dieser Befehl fragt die horizontale Position des Texts im Fenster des Widgets ab und ändert sie. Er kann eine der folgenden Formen haben:
 
-*pathName* **xview**
-: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruchteil zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Beispielsweise bedeuten die Elemente .2 und .6, dass 20 % des Entry-Texts links außerhalb des Bildschirms liegen, die mittleren 40 % im Fenster sichtbar sind und 40 % rechts außerhalb. Dies sind dieselben Werte, die Scrollbars über die Option **-xscrollcommand** übergeben werden.
+    [pathName]{.ins} [xview]{.sub}
+    : Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruchteil zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Beispielsweise bedeuten die Elemente .2 und .6, dass 20 % des Entry-Texts links außerhalb des Bildschirms liegen, die mittleren 40 % im Fenster sichtbar sind und 40 % rechts außerhalb. Dies sind dieselben Werte, die Scrollbars über die Option **-xscrollcommand** übergeben werden.
 
-*pathName* **xview** *index*
-: Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Zeichen am linken Rand des Fensters angezeigt wird.
+    [pathName]{.ins} [xview]{.sub} [index]{.arg}
+    : Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Zeichen am linken Rand des Fensters angezeigt wird.
 
-*pathName* **xview moveto** *fraction*
-: Passt die Ansicht im Fenster so an, dass das Zeichen *fraction* des Weges durch den Text am linken Rand des Fensters erscheint. *Fraction* muss ein Bruchteil zwischen 0 und 1 sein.
+    [pathName]{.ins} [xview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Passt die Ansicht im Fenster so an, dass das Zeichen *fraction* des Weges durch den Text am linken Rand des Fensters erscheint. *Fraction* muss ein Bruchteil zwischen 0 und 1 sein.
 
-*pathName* **xview scroll** *number what*
-: Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl oder eine Fließkommazahl sein; ist es eine Fließkommazahl, wird sie in eine Ganzzahl umgewandelt, von 0 weg gerundet. *What* muss **pages** oder **units** oder eine Abkürzung davon sein. Ist *what* **pages**, passt sich die Ansicht um *number* Bildschirmseiten an. Ist *number* negativ, werden Zeichen weiter links sichtbar; ist es positiv, werden Zeichen weiter rechts sichtbar. Ist *what* **units**, verschiebt sich die Ansicht um *number* Zeichen durchschnittlicher Breite auf der Anzeige nach links oder rechts.
+    [pathName]{.ins} [xview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl oder eine Fließkommazahl sein; ist es eine Fließkommazahl, wird sie in eine Ganzzahl umgewandelt, von 0 weg gerundet. *What* muss **pages** oder **units** oder eine Abkürzung davon sein. Ist *what* **pages**, passt sich die Ansicht um *number* Bildschirmseiten an. Ist *number* negativ, werden Zeichen weiter links sichtbar; ist es positiv, werden Zeichen weiter rechts sichtbar. Ist *what* **units**, verschiebt sich die Ansicht um *number* Zeichen durchschnittlicher Breite auf der Anzeige nach links oder rechts.
 
 
 
-# STANDARD-BINDINGS
+# Standard-Bindings
 
-Tk erstellt automatisch Klassen-Bindings für Entrys, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „_“-Zeichen oder ein einzelnes anderes Zeichen.
+Tk erstellt automatisch Klassen-Bindings für Entrys, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
 1. Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
@@ -294,3 +303,8 @@ Ist das Entry mit der Option **-state** deaktiviert, kann die Ansicht des Entrys
 
 Das Verhalten von Entrys kann geändert werden, indem neue Bindings für einzelne Widgets definiert oder die Klassen-Bindings neu definiert werden.
 
+
+[bind]: bind.md
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[focus]: focus.md
+[options]: options.md

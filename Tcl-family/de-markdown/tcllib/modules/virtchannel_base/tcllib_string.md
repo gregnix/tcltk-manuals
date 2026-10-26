@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::string
+title: tcl::chan::string
 ManualSection: n
 Version: 1.0.4
 TclPart: tcllib
@@ -13,21 +14,21 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::chan::string – Schreibgeschützter In-Memory-Kanal
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::string]{.lit} [1.0.4]{.optlit} 
-[::tcl::chan::string]{.cmd} [content]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::string]{.lit} [1.0.4]{.optlit}
+[::tcl::chan::string]{.cmd} [content]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **tcl::chan::string** stellt einen Befehl zur Verfügung, mit dem Kanäle erstellt werden können, die ausschließlich im Arbeitsspeicher existieren. Diese ermöglichen einen Direktzugriff, d. h., sie sind durchsuchbar. Im Gegensatz zu den von **tcl::chan::memchan** erstellten Kanälen sind sie jedoch schreibgeschützt; ihr Inhalt wird zum Zeitpunkt der Erstellung bereitgestellt und ist danach unveränderlich.
 
@@ -41,7 +42,7 @@ Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist ein
 : Dieser Befehl erstellt einen neuen Zeichenfolgenkanal und gibt dessen Handle zurück. Der Kanal ermöglicht einen zufälligen, schreibgeschützten Zugriff auf die Zeichenfolge *content*.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *virtchannel* als Kategorie an.
 
@@ -49,11 +50,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Kanäle
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

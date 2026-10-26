@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetJoinStyle
+title: Tk_GetJoinStyle
 ManualSection: 3
 Version: unknown
 TclPart: Tk
@@ -16,39 +17,41 @@ Copyright:
 
 # Name
 
-Tk_GetJoinStyle, Tk_NameOfJoinStyle - translate between strings and join styles
+Tk\_GetJoinStyle, Tk\_NameOfJoinStyle - translate between strings and join styles
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_GetJoinStyle]{.cmd}([interp]{.arg}, [string]{.arg}, [joinPtr]{.arg})
-
-const char \*
-[Tk_NameOfJoinStyle]{.cmd}([join]{.arg})
+**#include <tk.h>**
+int Tk\_GetJoinStyle(interp, string, joinPtr)
+const char \* Tk\_NameOfJoinStyle(join)
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting.
 
-const char *\*string* (in)
+[\*string]{.carg .in type="const char"}
 : String containing name of join style - one of "**bevel**", "**miter**", or "**round**" - or a unique abbreviation of one.
 
-int *\*joinPtr* (out)
+[\*joinPtr]{.carg .out type="int"}
 : Pointer to location in which to store X join style corresponding to *string*.
 
-int *join* (in)
+[join]{.carg .in type="int"}
 : Join style: one of **JoinBevel**, **JoinMiter**, **JoinRound**.
 
+:::
 
 # Description
 
-**Tk_GetJoinStyle** places in *\*joinPtr* the X join style corresponding to *string*, which will be one of **JoinBevel**, **JoinMiter**, or **JoinRound**. Join styles are typically used in X graphics contexts to indicate how adjacent line segments should be joined together. See the X documentation for information on what each style implies.
+**Tk\_GetJoinStyle** places in *\*joinPtr* the X join style corresponding to *string*, which will be one of **JoinBevel**, **JoinMiter**, or **JoinRound**. Join styles are typically used in X graphics contexts to indicate how adjacent line segments should be joined together. See the X documentation for information on what each style implies.
 
-Under normal circumstances the return value is **TCL_OK** and *interp* is unused. If *string* does not contain a valid join style or an abbreviation of one of these names, then an error message is stored in interpreter *interp*'s result, **TCL_ERROR** is returned, and *\*joinPtr* is unmodified.
+Under normal circumstances the return value is [TCL\_OK][catch] and *interp* is unused. If *string* does not contain a valid join style or an abbreviation of one of these names, then an error message is stored in interpreter *interp*'s result, [TCL\_ERROR][catch] is returned, and *\*joinPtr* is unmodified.
 
-**Tk_NameOfJoinStyle** is the logical inverse of **Tk_GetJoinStyle**. Given a join style such as **JoinBevel** it returns a statically-allocated string corresponding to *join*. If *join* is not a legal join style, then "unknown join style" is returned.
+**Tk\_NameOfJoinStyle** is the logical inverse of **Tk\_GetJoinStyle**. Given a join style such as **JoinBevel** it returns a statically-allocated string corresponding to *join*. If *join* is not a legal join style, then "unknown join style" is returned.
+
+
+[catch]: ../tcl/catch.md

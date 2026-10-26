@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg::to::cparam
+title: pt::peg::to::cparam
 ManualSection: n
 Version: 1.1.3
 TclPart: tcllib
@@ -36,13 +37,13 @@ pt::peg::to::cparam - PEG Conversion. Write CPARAM format
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::peg::to::cparam]{.lit} [1.1.3]{.optlit} 
-[pt::peg::to::cparam]{.cmd} [reset]{.sub} 
-[pt::peg::to::cparam]{.cmd} [configure]{.sub} 
-[pt::peg::to::cparam]{.cmd} [configure]{.sub} [option]{.arg} 
-[pt::peg::to::cparam]{.cmd} [configure]{.sub} [option]{.arg} [value...]{.arg} 
-[pt::peg::to::cparam]{.cmd} [convert]{.sub} [serial]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::peg::to::cparam]{.lit} [1.1.3]{.optlit}
+[pt::peg::to::cparam]{.cmd} [reset]{.lit}
+[pt::peg::to::cparam]{.cmd} [configure]{.lit}
+[pt::peg::to::cparam]{.cmd} [configure]{.lit} [option]{.arg}
+[pt::peg::to::cparam]{.cmd} [configure]{.lit} [option]{.arg} [value...]{.arg}
+[pt::peg::to::cparam]{.cmd} [convert]{.lit} [serial]{.arg}
 :::
 
 # Description
@@ -53,9 +54,9 @@ This package implements the converter from parsing expression grammars to CPARAM
 
 It resides in the Export section of the Core Layer of Parser Tools, and can be used either directly with the other packages of this layer, or indirectly through the export manager provided by **pt::peg::export**. The latter is intented for use in untrusted environments and done through the corresponding export plugin **pt::peg::export::cparam** sitting between converter and export manager.
 
-IMAGE: arch_core_eplugins
+IMAGE: arch\_core\_eplugins
 
-# Api
+# API
 
 The API provided by this package satisfies the specification of the Converter API found in the *Parser Tools Export API* specification.
 
@@ -66,13 +67,13 @@ The API provided by this package satisfies the specification of the Converter AP
 : This command returns a dictionary containing the current configuration of the package.
 
 **pt::peg::to::cparam** **configure** *option*
-: This command returns the current value of the specified configuration *option* of the package. For the set of legal options, please read the section **Options**.
+: This command returns the current value of the specified configuration *option* of the package. For the set of legal options, please read the section [Options].
 
 **pt::peg::to::cparam** **configure** *option* *value*...
-: This command sets the given configuration *option*s of the package, to the specified *value*s. For the set of legal options, please read the section **Options**.
+: This command sets the given configuration *option*s of the package, to the specified *value*s. For the set of legal options, please read the section [Options].
 
 **pt::peg::to::cparam** **convert** *serial*
-: This command takes the canonical serialization of a parsing expression grammar, as specified in section **PEG serialization format**, and contained in *serial*, and generates CPARAM markup encoding the grammar, per the current package configuration. The created string is then returned as the result of the command.
+: This command takes the canonical serialization of a parsing expression grammar, as specified in section [Peg serialization format], and contained in *serial*, and generates CPARAM markup encoding the grammar, per the current package configuration. The created string is then returned as the result of the command.
 
 
 # Options
@@ -83,7 +84,7 @@ The converter to C code recognizes the following configuration variables and cha
 : The value of this option is the name of the file or other entity from which the grammar came, for which the command is run. The default value is **unknown**.
 
 **-name** string
-: The value of this option is the name of the grammar we are processing. The default value is **a_pe_grammar**.
+: The value of this option is the name of the grammar we are processing. The default value is **a\_pe\_grammar**.
 
 **-user** string
 : The value of this option is the name of the user for which the command is run. The default value is **unknown**.
@@ -91,53 +92,51 @@ The converter to C code recognizes the following configuration variables and cha
 **-template** string
 : The value of this option is a string into which to put the generated text and the other configuration settings. The various locations for user-data are expected to be specified with the placeholders listed below. The default value is "**@code@**".
 
+    **@user@**
+    : To be replaced with the value of the option **-user**.
 
-**@user@**
-: To be replaced with the value of the option **-user**.
+    **@format@**
+    : To be replaced with the the constant **C/PARAM**.
 
-**@format@**
-: To be replaced with the the constant **C/PARAM**.
+    **@file@**
+    : To be replaced with the value of the option **-file**.
 
-**@file@**
-: To be replaced with the value of the option **-file**.
+    **@name@**
+    : To be replaced with the value of the option **-name**.
 
-**@name@**
-: To be replaced with the value of the option **-name**.
-
-**@code@**
-: To be replaced with the generated Tcl code.
-
-
-: The following options are special, in that they will occur within the generated code, and are replaced there as well.
+    **@code@**
+    : To be replaced with the generated Tcl code.
 
 
-**@statedecl@**
-: To be replaced with the value of the option **state-decl**.
+    The following options are special, in that they will occur within the generated code, and are replaced there as well.
 
-**@stateref@**
-: To be replaced with the value of the option **state-ref**.
+    **@statedecl@**
+    : To be replaced with the value of the option **state-decl**.
 
-**@strings@**
-: To be replaced with the value of the option **string-varname**.
+    **@stateref@**
+    : To be replaced with the value of the option **state-ref**.
 
-**@self@**
-: To be replaced with the value of the option **self-command**.
+    **@strings@**
+    : To be replaced with the value of the option **string-varname**.
 
-**@def@**
-: To be replaced with the value of the option **fun-qualifier**.
+    **@self@**
+    : To be replaced with the value of the option **self-command**.
 
-**@ns@**
-: To be replaced with the value of the option **namespace**.
+    **@def@**
+    : To be replaced with the value of the option **fun-qualifier**.
 
-**@main@**
-: To be replaced with the value of the option **main**.
+    **@ns@**
+    : To be replaced with the value of the option **namespace**.
 
-**@prelude@**
-: To be replaced with the value of the option **prelude**.
+    **@main@**
+    : To be replaced with the value of the option **main**.
+
+    **@prelude@**
+    : To be replaced with the value of the option **prelude**.
 
 
 **-state-decl** string
-: A C string representing the argument declaration to use in the generated parsing functions to refer to the parsing state. In essence type and argument name. The default value is the string **RDE_PARAM p**.
+: A C string representing the argument declaration to use in the generated parsing functions to refer to the parsing state. In essence type and argument name. The default value is the string **RDE\_PARAM p**.
 
 **-state-ref** string
 : A C string representing the argument named used in the generated parsing functions to refer to the parsing state. The default value is the string **p**.
@@ -152,10 +151,10 @@ The converter to C code recognizes the following configuration variables and cha
 : The name of the C namespace the parser functions (methods, ...) shall reside in, or a general prefix to add to the function names. The default value is the empty string.
 
 **-main** string
-: The name of the main function (method, ...) to be called by the chosen framework (template) to start parsing input. The default value is **\__main**.
+: The name of the main function (method, ...) to be called by the chosen framework (template) to start parsing input. The default value is **\_\_main**.
 
 **-string-varname** string
-: The name of the variable used for the table of strings used by the generated parser, i.e. error messages, symbol names, etc. The default value is **p_string**.
+: The name of the variable used for the table of strings used by the generated parser, i.e. error messages, symbol names, etc. The default value is **p\_string**.
 
 **-prelude** string
 : A snippet of code to be inserted at the head of each generated parsing function. The default value is the empty string.
@@ -164,13 +163,18 @@ The converter to C code recognizes the following configuration variables and cha
 : The number of characters to indent each line of the generated code by. The default value is **0**.
 
 **-comments** boolean
-: A flag controlling the generation of code comments containing the original parsing expression a parsing function is for. The default value is **on**. While the high parameterizability of this converter, as shown by the multitude of options it supports, is an advantage to the advanced user, allowing her to customize the output of the converter as needed, a novice user will likely not see the forest for the trees. To help these latter users an adjunct package is provided, containing a canned configuration which will generate immediately useful full parsers. It is
+: A flag controlling the generation of code comments containing the original parsing expression a parsing function is for. The default value is **on**.
+
+
+While the high parameterizability of this converter, as shown by the multitude of options it supports, is an advantage to the advanced user, allowing her to customize the output of the converter as needed, a novice user will likely not see the forest for the trees.
+
+To help these latter users an adjunct package is provided, containing a canned configuration which will generate immediately useful full parsers. It is
 
 **pt::cparam::configuration::critcl**
 : Generated parsers are embedded into a **Critcl**-based framework.
 
 
-# C/param code representation of parsing expression grammars
+# C/PARAM code representation of parsing expression Grammars
 
 The **c** format is executable code, a parser for the grammar. The parser implementation is written in C and can be tweaked to the users' needs through a multitude of options.
 
@@ -178,36 +182,23 @@ The **critcl** format, for example, is implemented as a canned configuration of 
 
 The bulk of such a framework has to be specified through the option **-template**. The additional options
 
-**-fun-qualifier** string
-: ...see next...
+- **-fun-qualifier** string
+- **-main** string
+- **-namespace** string
+- **-prelude** string
+- **-self-command** string
+- **-state-decl** string
+- **-state-ref** string
+- **-string-varname** string
 
-**-main** string
-: ...see next...
 
-**-namespace** string
-: ...see next...
+provide code snippets which help to glue framework and generated code together. Their placeholders are in the *generated* code. Further the options
 
-**-prelude** string
-: ...see next...
+- **-indent** integer
+- **-comments** boolean
 
-**-self-command** string
-: ...see next...
 
-**-state-decl** string
-: ...see next...
-
-**-state-ref** string
-: ...see next...
-
-**-string-varname** string
-: provide code snippets which help to glue framework and generated code together. Their placeholders are in the *generated* code. Further the options
-
-**-indent** integer
-: ...see next...
-
-**-comments** boolean
-: allow for the customization of the code indent (default none), and whether to generate comments showing the parsing expressions a function is for (default on).
-
+allow for the customization of the code indent (default none), and whether to generate comments showing the parsing expressions a function is for (default on).
 
 ## Example
 
@@ -219,68 +210,54 @@ Here we specify the format used by the Parser Tools to serialize Parsing Express
 
 We distinguish between *regular* and *canonical* serializations. While a PEG may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. The serialization of any PEG is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **pt::grammar::peg**, and its value. This value holds the contents of the grammar.
+
+    3. The contents of the grammar are a Tcl dictionary holding the set of nonterminal symbols and the starting expression. The relevant keys and their values are
+
+        **rules**
+        : The value is a Tcl dictionary whose keys are the names of the nonterminal symbols known to the grammar.
+
+            1. Each nonterminal symbol may occur only once.
+
+            2. The empty string is not a legal nonterminal symbol.
+
+            3. The value for each symbol is a Tcl dictionary itself. The relevant keys and their values in this dictionary are
+
+                **is**
+                : The value is the serialization of the parsing expression describing the symbols sentennial structure, as specified in the section [PE serialization format].
+
+                **mode**
+                : The value can be one of three values specifying how a parser should handle the semantic value produced by the symbol.
+
+                    **value**
+                    : The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal itself, which has the ASTs of the symbol's right hand side as its children.
+
+                    **leaf**
+                    : The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal, without any children. Any ASTs generated by the symbol's right hand side are discarded.
+
+                    **void**
+                    : The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well).
 
 
-**\[1\]**
-: The serialization of any PEG is a nested Tcl dictionary.
-
-**\[2\]**
-: This dictionary holds a single key, **pt::grammar::peg**, and its value. This value holds the contents of the grammar.
-
-**\[3\]**
-: The contents of the grammar are a Tcl dictionary holding the set of nonterminal symbols and the starting expression. The relevant keys and their values are
 
 
-**rules**
-: The value is a Tcl dictionary whose keys are the names of the nonterminal symbols known to the grammar.
+        **start**
+        : The value is the serialization of the start parsing expression of the grammar, as specified in the section [PE serialization format].
 
 
-**\[1\]**
-: Each nonterminal symbol may occur only once.
-
-**\[2\]**
-: The empty string is not a legal nonterminal symbol.
-
-**\[3\]**
-: The value for each symbol is a Tcl dictionary itself. The relevant keys and their values in this dictionary are
+    4. The terminal symbols of the grammar are specified implicitly as the set of all terminal symbols used in the start expression and on the RHS of the grammar rules.
 
 
-**is**
-: The value is the serialization of the parsing expression describing the symbols sentennial structure, as specified in the section **PE serialization format**.
-
-**mode**
-: The value can be one of three values specifying how a parser should handle the semantic value produced by the symbol.
-
-
-**value**
-: The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal itself, which has the ASTs of the symbol's right hand side as its children.
-
-**leaf**
-: The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal, without any children. Any ASTs generated by the symbol's right hand side are discarded.
-
-**void**
-: The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well).
-
-
-**start**
-: The value is the serialization of the start parsing expression of the grammar, as specified in the section **PE serialization format**.
-
-
-**\[4\]**
-: The terminal symbols of the grammar are specified implicitly as the set of all terminal symbols used in the start expression and on the RHS of the grammar rules.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a grammar has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this grammar.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
+    2. The string representation of the value is the canonical representation of a Tcl dictionary. I.e. it does not contain superfluous whitespace.
 
-**\[2\]**
-: The string representation of the value is the canonical representation of a Tcl dictionary. I.e. it does not contain superfluous whitespace.
 
 
 ## Example
@@ -318,110 +295,77 @@ pt::grammar::peg {
 }
 ```
 
-# Pe serialization format
+# PE serialization format
 
 Here we specify the format used by the Parser Tools to serialize Parsing Expressions as immutable values for transport, comparison, etc.
 
 We distinguish between *regular* and *canonical* serializations. While a parsing expression may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**Regular serialization**
-: 
+Regular serialization
+: see below ...
+
+    **Atomic Parsing Expressions**
+    : 1. The string **epsilon** is an atomic parsing expression. It matches the empty string.
+
+        2. The string **dot** is an atomic parsing expression. It matches any character.
+
+        3. The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        4. The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        5. The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        6. The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        7. The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        8. The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        9. The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        10. The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        11. The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        12. The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        13. The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        14. The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        15. The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        16. The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
+
+        17. The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
+
+        18. The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
 
 
-**Atomic Parsing Expressions**
-: 
+    **Combined Parsing Expressions**
+    : 1. For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
+
+        2. For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
+
+        3. For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
+
+        4. For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
+
+        5. For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
+
+        6. For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
+
+        7. For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
 
 
-**\[1\]**
-: The string **epsilon** is an atomic parsing expression. It matches the empty string.
 
-**\[2\]**
-: The string **dot** is an atomic parsing expression. It matches any character.
-
-**\[3\]**
-: The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[4\]**
-: The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[5\]**
-: The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[6\]**
-: The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[7\]**
-: The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[8\]**
-: The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[9\]**
-: The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[10\]**
-: The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[11\]**
-: The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[12\]**
-: The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[13\]**
-: The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[14\]**
-: The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[15\]**
-: The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[16\]**
-: The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
-
-**\[17\]**
-: The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
-
-**\[18\]**
-: The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
-
-
-**Combined Parsing Expressions**
-: 
-
-
-**\[1\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
-
-**\[2\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
-
-**\[3\]**
-: For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
-
-**\[4\]**
-: For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
-
-**\[5\]**
-: For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
-
-**\[6\]**
-: For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
-
-**\[7\]**
-: For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
-
-
-**Canonical serialization**
+Canonical serialization
 : The canonical serialization of a parsing expression has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this parsing expression.
 
+    1. The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
-**\[1\]**
-: The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
+    2. Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
-**\[2\]**
-: Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
 
 ## Example

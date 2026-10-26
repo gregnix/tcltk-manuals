@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_lang_intro
+title: docidx_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -21,7 +22,7 @@ Copyright:
 
 # Name
 
-docidx_lang_intro - docidx language introduction
+docidx\_lang\_intro - docidx language introduction
 
 # Description
 
@@ -65,7 +66,7 @@ A more useful index will contain at least keywords, or short 'keys', i.e. the ph
 [index_end]
 ```
 
-In the above example the command **key** is used to declare the keyword phrases we wish to be part of the index.
+In the above example the command [key][docidx_lang_cmdref] is used to declare the keyword phrases we wish to be part of the index.
 
 However a truly useful index does not only list the keyword phrases, but will also contain references to documents associated with the keywords. Here is a made-up index for all the manpages in the module *base64*:
 
@@ -88,15 +89,15 @@ However a truly useful index does not only list the keyword phrases, but will al
 [index_end]
 ```
 
-In the above example the command **manpage** is used to insert references to documents, using symbolic file names, with each command belonging to the last **key** command coming before it.
+In the above example the command [manpage][docidx_lang_cmdref] is used to insert references to documents, using symbolic file names, with each command belonging to the last [key][docidx_lang_cmdref] command coming before it.
 
-The other command to insert references is **url**. In contrast to **manpage** it uses explicit (possibly format-specific) urls to describe the location of the referenced document. As such this command is intended for the creation of references to external documents which could not be handled in any other way.
+The other command to insert references is **url**. In contrast to [manpage][docidx_lang_cmdref] it uses explicit (possibly format-specific) urls to describe the location of the referenced document. As such this command is intended for the creation of references to external documents which could not be handled in any other way.
 
 ## Advanced structure
 
-In all previous examples we fudged a bit regarding the markup actually allowed to be used before the **index_begin** command opening the document.
+In all previous examples we fudged a bit regarding the markup actually allowed to be used before the [index\_begin][docidx_lang_cmdref] command opening the document.
 
-Instead of only whitespace the two templating commands **include** and **vset** are also allowed, to enable the writer to either set and/or import configuration settings relevant to the table of contents. I.e. it is possible to write
+Instead of only whitespace the two templating commands [include][docidx_lang_cmdref] and [vset][docidx_lang_cmdref] are also allowed, to enable the writer to either set and/or import configuration settings relevant to the table of contents. I.e. it is possible to write
 
 ```
 [include FILE]
@@ -116,11 +117,11 @@ Even more important, these two commands are allowed anywhere where a markup comm
 [index_end]
 ```
 
-The only restriction **include** has to obey is that the contents of the included file must be valid at the place of the inclusion. I.e. a file included before **index_begin** may contain only the templating commands **vset** and **include**, a file included after a key may contain only manape or url references, and other keys, etc.
+The only restriction [include][docidx_lang_cmdref] has to obey is that the contents of the included file must be valid at the place of the inclusion. I.e. a file included before [index\_begin][docidx_lang_cmdref] may contain only the templating commands [vset][docidx_lang_cmdref] and [include][docidx_lang_cmdref], a file included after a key may contain only manape or url references, and other keys, etc.
 
 ## Escapes
 
-Beyond the 6 commands shown so far we have two more available. However their function is not the marking up of index structure, but the insertion of characters, namely **\[** and **\]**. These commands, **lb** and **rb** respectively, are required because our use of \[ and \] to bracket markup commands makes it impossible to directly use \[ and \] within the text.
+Beyond the 6 commands shown so far we have two more available. However their function is not the marking up of index structure, but the insertion of characters, namely **\[** and **\]**. These commands, [lb][docidx_lang_cmdref] and [rb][docidx_lang_cmdref] respectively, are required because our use of \[ and \] to bracket markup commands makes it impossible to directly use \[ and \] within the text.
 
 Our example of their use are the sources of the last sentence in the previous paragraph, with some highlighting added.
 
@@ -157,3 +158,6 @@ Documentation tools
 ```
 Copyright (c) 2007-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md

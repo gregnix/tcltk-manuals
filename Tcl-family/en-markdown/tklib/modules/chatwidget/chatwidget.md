@@ -1,5 +1,6 @@
 ---
 CommandName: chatwidget
+title: chatwidget
 ManualSection: n
 Version: 1.1.4
 TclPart: tklib
@@ -23,16 +24,16 @@ chatwidget - Provides a multi-paned view suitable for display of chat room or ir
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [chatwidget]{.lit} [1.1.4]{.optlit} 
-[::chatwidget::chatwidget]{.cmd} [path]{.arg} [options]{.optarg} 
-[\$widget]{.cmd} topic [command]{.arg} [args]{.arg} 
-[\$widget]{.cmd} name [nick]{.arg} [args]{.arg} 
-[\$widget]{.cmd} message [text]{.arg} [args]{.arg} 
-[\$widget]{.cmd} hook [command]{.arg} [args]{.arg} 
-[\$widget]{.cmd} names [args]{.arg} 
-[\$widget]{.cmd} entry [args]{.arg} 
-[\$widget]{.cmd} chat [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [chatwidget]{.lit} [1.1.4]{.optlit}
+[::chatwidget::chatwidget]{.cmd} [path]{.arg} [options]{.optarg}
+[$widget]{.cmd} [topic]{.lit} [command]{.arg} [args]{.arg}
+[$widget]{.cmd} [name]{.lit} [nick]{.arg} [args]{.arg}
+[$widget]{.cmd} [message]{.lit} [text]{.arg} [args]{.arg}
+[$widget]{.cmd} [hook]{.lit} [command]{.arg} [args]{.arg}
+[$widget]{.cmd} [names]{.lit} [args]{.arg}
+[$widget]{.cmd} [entry]{.lit} [args]{.arg}
+[$widget]{.cmd} [chat]{.lit} [args]{.arg}
 :::
 
 # Description
@@ -49,47 +50,43 @@ The widget is made up of a number of text widget and panedwindow widgets so that
 
 # Widget commands
 
-**\$widget** topic *command* *args*
+**$widget** topic *command* *args*
 : The chat widget can display a topic string, for instance the topic or name given to a multi-user chatroom or irc channel.
 
+    **show**
+    : Enable display of the topic.
 
-**show**
-: Enable display of the topic.
+    **hide**
+    : Disable display of the topic
 
-**hide**
-: Disable display of the topic
-
-**set** *topic*
-: Set the topic text to *topic*.
+    **set** *topic*
+    : Set the topic text to *topic*.
 
 
-**\$widget** name *nick* *args*
+**$widget** name *nick* *args*
 : Control the names and tags associated with names.
 
-
-**list ?**_-full_?
-: Returns a list of all the user names from the names view. If ?-full? is given then the list returned is a list of lists where each sublist is made up of the nick followed by any options that have been set on this nick entry. This may be used to examine any application specific options that may be applied to a nick when using the **add** command.
-
-**add** *nick* ?*options*?
-: ...see next...
-
-**delete** *nick*
-: 
+    **list** ?*-full*?
+    : Returns a list of all the user names from the names view. If ?-full? is given then the list returned is a list of lists where each sublist is made up of the nick followed by any options that have been set on this nick entry. This may be used to examine any application specific options that may be applied to a nick when using the **add** command.
 
 
-**\$widget** message *text* *args*
+    - **add** *nick* ?*options*?
+    - **delete** *nick*
+
+
+**$widget** message *text* *args*
 : Add messages to the display. options are -nick, -time, -type, -mark -tags
 
-**\$widget** hook *command* *args*
-: Manage hooks. add (message, post names_group, names_nick, chatstate), remove, run
+**$widget** hook *command* *args*
+: Manage hooks. add (message, post names\_group, names\_nick, chatstate), remove, run
 
-**\$widget** names *args*
+**$widget** names *args*
 : Passthrough to the name display text widget. See the **text** widget manual for all available commands. The chatwidget provides two additional commands **show** and **hide** which are used to control the display of this element in the widget.
 
-**\$widget** entry *args*
+**$widget** entry *args*
 : Passthrough to the entry text widget. See the **text** widget manual for all available commands.
 
-**\$widget** chat *args*
+**$widget** chat *args*
 : Passthrough to the chat text widget. See the **text** widget manual for all available commands.
 
 

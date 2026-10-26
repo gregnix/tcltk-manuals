@@ -1,5 +1,6 @@
 ---
 CommandName: math::bigfloat
+title: math::bigfloat
 ManualSection: n
 Version: 2.0.6
 TclPart: tcllib
@@ -22,116 +23,113 @@ math::bigfloat - Arbitrary precision floating-point numbers
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [math::bigfloat]{.lit} [2.0.6]{.optlit} 
-[fromstr]{.cmd} [number]{.arg} [trailingZeros]{.optarg} 
-[tostr]{.cmd} [-nosci]{.optlit} [number]{.arg} 
-[fromdouble]{.cmd} [double]{.arg} [decimals]{.optarg} 
-[todouble]{.cmd} [number]{.arg} 
-[isInt]{.cmd} [number]{.arg} 
-[isFloat]{.cmd} [number]{.arg} 
-[int2float]{.cmd} [integer]{.arg} [decimals]{.optarg} 
-[add]{.cmd} [x]{.arg} [y]{.arg} 
-[sub]{.cmd} [x]{.arg} [y]{.arg} 
-[mul]{.cmd} [x]{.arg} [y]{.arg} 
-[div]{.cmd} [x]{.arg} [y]{.arg} 
-[mod]{.cmd} [x]{.arg} [y]{.arg} 
-[abs]{.cmd} [x]{.arg} 
-[opp]{.cmd} [x]{.arg} 
-[pow]{.cmd} [x]{.arg} [n]{.arg} 
-[iszero]{.cmd} [x]{.arg} 
-[equal]{.cmd} [x]{.arg} [y]{.arg} 
-[compare]{.cmd} [x]{.arg} [y]{.arg} 
-[sqrt]{.cmd} [x]{.arg} 
-[log]{.cmd} [x]{.arg} 
-[exp]{.cmd} [x]{.arg} 
-[cos]{.cmd} [x]{.arg} 
-[sin]{.cmd} [x]{.arg} 
-[tan]{.cmd} [x]{.arg} 
-[cotan]{.cmd} [x]{.arg} 
-[acos]{.cmd} [x]{.arg} 
-[asin]{.cmd} [x]{.arg} 
-[atan]{.cmd} [x]{.arg} 
-[cosh]{.cmd} [x]{.arg} 
-[sinh]{.cmd} [x]{.arg} 
-[tanh]{.cmd} [x]{.arg} 
-[pi]{.cmd} [n]{.arg} 
-[rad2deg]{.cmd} [radians]{.arg} 
-[deg2rad]{.cmd} [degrees]{.arg} 
-[round]{.cmd} [x]{.arg} 
-[ceil]{.cmd} [x]{.arg} 
-[floor]{.cmd} [x]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [math::bigfloat]{.lit} [2.0.6]{.optlit}
+[fromstr]{.cmd} [number]{.arg} [trailingZeros]{.optarg}
+[tostr]{.cmd} [-nosci]{.optlit} [number]{.arg}
+[fromdouble]{.cmd} [double]{.arg} [decimals]{.optarg}
+[todouble]{.cmd} [number]{.arg}
+[isInt]{.cmd} [number]{.arg}
+[isFloat]{.cmd} [number]{.arg}
+[int2float]{.cmd} [integer]{.arg} [decimals]{.optarg}
+[add]{.cmd} [x]{.arg} [y]{.arg}
+[sub]{.cmd} [x]{.arg} [y]{.arg}
+[mul]{.cmd} [x]{.arg} [y]{.arg}
+[div]{.cmd} [x]{.arg} [y]{.arg}
+[mod]{.cmd} [x]{.arg} [y]{.arg}
+[abs]{.cmd} [x]{.arg}
+[opp]{.cmd} [x]{.arg}
+[pow]{.cmd} [x]{.arg} [n]{.arg}
+[iszero]{.cmd} [x]{.arg}
+[equal]{.cmd} [x]{.arg} [y]{.arg}
+[compare]{.cmd} [x]{.arg} [y]{.arg}
+[sqrt]{.cmd} [x]{.arg}
+[log]{.cmd} [x]{.arg}
+[exp]{.cmd} [x]{.arg}
+[cos]{.cmd} [x]{.arg}
+[sin]{.cmd} [x]{.arg}
+[tan]{.cmd} [x]{.arg}
+[cotan]{.cmd} [x]{.arg}
+[acos]{.cmd} [x]{.arg}
+[asin]{.cmd} [x]{.arg}
+[atan]{.cmd} [x]{.arg}
+[cosh]{.cmd} [x]{.arg}
+[sinh]{.cmd} [x]{.arg}
+[tanh]{.cmd} [x]{.arg}
+[pi]{.cmd} [n]{.arg}
+[rad2deg]{.cmd} [radians]{.arg}
+[deg2rad]{.cmd} [degrees]{.arg}
+[round]{.cmd} [x]{.arg}
+[ceil]{.cmd} [x]{.arg}
+[floor]{.cmd} [x]{.arg}
 :::
 
 # Description
 
-The bigfloat package provides arbitrary precision floating-point math capabilities to the Tcl language. It is designed to work with Tcl 8.5, but for Tcl 8.4 is provided an earlier version of this package. See **WHAT ABOUT TCL 8.4 ?** for more explanations. By convention, we will talk about the numbers treated in this library as :
+The bigfloat package provides arbitrary precision floating-point math capabilities to the Tcl language. It is designed to work with Tcl 8.5, but for Tcl 8.4 is provided an earlier version of this package. See [What about Tcl 8.4 ?] for more explanations. By convention, we will talk about the numbers treated in this library as :
 
-**•**
-: BigFloat for floating-point numbers of arbitrary length.
+- BigFloat for floating-point numbers of arbitrary length.
 
-**•**
-: integers for arbitrary length signed integers, just as basic integers since Tcl 8.5. Each BigFloat is an interval, namely \[*m-d, m+d*\], where *m* is the mantissa and *d* the uncertainty, representing the limitation of that number's precision. This is why we call such mathematics *interval computations*. Just take an example in physics : when you measure a temperature, not all digits you read are *significant*. Sometimes you just cannot trust all digits - not to mention if doubles (f.p. numbers) can handle all these digits. BigFloat can handle this problem - trusting the digits you get - plus the ability to store numbers with an arbitrary precision. BigFloats are internally represented at Tcl lists: this package provides a set of procedures operating against the internal representation in order to :
+- integers for arbitrary length signed integers, just as basic integers since Tcl 8.5.
 
-**•**
-: perform math operations on BigFloats and (optionnaly) with integers.
 
-**•**
-: convert BigFloats from their internal representations to strings, and vice versa.
+Each BigFloat is an interval, namely \[*m-d, m+d*\], where *m* is the mantissa and *d* the uncertainty, representing the limitation of that number's precision. This is why we call such mathematics *interval computations*. Just take an example in physics : when you measure a temperature, not all digits you read are *significant*. Sometimes you just cannot trust all digits - not to mention if doubles (f.p. numbers) can handle all these digits. BigFloat can handle this problem - trusting the digits you get - plus the ability to store numbers with an arbitrary precision. BigFloats are internally represented at Tcl lists: this package provides a set of procedures operating against the internal representation in order to :
+
+- perform math operations on BigFloats and (optionnaly) with integers.
+
+- convert BigFloats from their internal representations to strings, and vice versa.
 
 
 # Introduction
 
 **fromstr** *number* ?*trailingZeros*?
-: Converts *number* into a BigFloat. Its precision is at least the number of digits provided by *number*. If the *number* contains only digits and eventually a minus sign, it is considered as an integer. Subsequently, no conversion is done at all. *trailingZeros* - the number of zeros to append at the end of the floating-point number to get more precision. It cannot be applied to an integer.
+: Converts *number* into a BigFloat. Its precision is at least the number of digits provided by *number*. If the *number* contains only digits and eventually a minus sign, it is considered as an integer. Subsequently, no conversion is done at all.
 
+    *trailingZeros* - the number of zeros to append at the end of the floating-point number to get more precision. It cannot be applied to an integer.
 
-```
-# x and y are BigFloats : the first string contained a dot, and the second an e sign
-set x [fromstr -1.000000]
-set y [fromstr 2000e30]
-# let's see how we get integers
-set t 20000000000000
-# the old way (package 1.2) is still supported for backwards compatibility :
-set m [fromstr 10000000000]
-# but we do not need fromstr for integers anymore
-set n -39
-# t, m and n are integers
-```
+    ```
+    # x and y are BigFloats : the first string contained a dot, and the second an e sign
+    set x [fromstr -1.000000]
+    set y [fromstr 2000e30]
+    # let's see how we get integers
+    set t 20000000000000
+    # the old way (package 1.2) is still supported for backwards compatibility :
+    set m [fromstr 10000000000]
+    # but we do not need fromstr for integers anymore
+    set n -39
+    # t, m and n are integers
+    ```
 
-The *number*'s last digit is considered by the procedure to be true at +/-1, For example, 1.00 is the interval \[0.99, 1.01\], and 0.43 the interval \[0.42, 0.44\]. The Pi constant may be approximated by the number "3.1415". This string could be considered as the interval \[3.1414 , 3.1416\] by **fromstr**. So, when you mean 1.0 as a double, you may have to write 1.000000 to get enough precision. To learn more about this subject, see **PRECISION**.
+    The *number*'s last digit is considered by the procedure to be true at +/-1, For example, 1.00 is the interval \[0.99, 1.01\], and 0.43 the interval \[0.42, 0.44\]. The Pi constant may be approximated by the number "3.1415". This string could be considered as the interval \[3.1414 , 3.1416\] by **fromstr**. So, when you mean 1.0 as a double, you may have to write 1.000000 to get enough precision. To learn more about this subject, see [Precision].
 
-For example :
+    For example :
 
-```
-set x [fromstr 1.0000000000]
-# the next line does the same, but smarter
-set y [fromstr 1. 10]
-```
+    ```
+    set x [fromstr 1.0000000000]
+    # the next line does the same, but smarter
+    set y [fromstr 1. 10]
+    ```
 
 **tostr** ?**-nosci**? *number*
 : Returns a string form of a BigFloat, in which all digits are exacts. *All exact digits* means a rounding may occur, for example to zero, if the uncertainty interval does not clearly show the true digits. *number* may be an integer, causing the command to return exactly the input argument. With the **-nosci** option, the number returned is never shown in scientific notation, i.e. not like '3.4523e+5' but like '345230.'.
 
+    ```
+    puts [tostr [fromstr 0.99999]] ;# 1.0000
+    puts [tostr [fromstr 1.00001]] ;# 1.0000
+    puts [tostr [fromstr 0.002]] ;# 0.e-2
+    ```
 
-```
-puts [tostr [fromstr 0.99999]] ;# 1.0000
-puts [tostr [fromstr 1.00001]] ;# 1.0000
-puts [tostr [fromstr 0.002]] ;# 0.e-2
-```
-
-: See **PRECISION** for that matter. See also **iszero** for how to detect zeros, which is useful when performing a division.
-
+    See [Precision] for that matter. See also **iszero** for how to detect zeros, which is useful when performing a division.
 
 **fromdouble** *double* ?*decimals*?
 : Converts a double (a simple floating-point value) to a BigFloat, with exactly *decimals* digits.  Without the *decimals* argument, it behaves like **fromstr**. Here, the only important feature you might care of is the ability to create BigFloats with a fixed number of *decimals*.
 
-
-```
-tostr [fromstr 1.111 4]
-# returns : 1.111000 (3 zeros)
-tostr [fromdouble 1.111 4]
-# returns : 1.111
-```
+    ```
+    tostr [fromstr 1.111 4]
+    # returns : 1.111000 (3 zeros)
+    tostr [fromdouble 1.111 4]
+    # returns : 1.111
+    ```
 
 **todouble** *number*
 : Returns a double, that may be used in *expr*, from a BigFloat.
@@ -145,28 +143,28 @@ tostr [fromdouble 1.111 4]
 **int2float** *integer* ?*decimals*?
 : Converts an integer to a BigFloat with *decimals* trailing zeros. The default, and minimal, number of *decimals* is 1. When converting back to string, one decimal is lost:
 
+    ```
+    set n 10
+    set x [int2float $n]; # like fromstr 10.0
+    puts [tostr $x]; # prints "10."
+    set x [int2float $n 3]; # like fromstr 10.000
+    puts [tostr $x]; # prints "10.00"
+    ```
 
-```
-set n 10
-set x [int2float $n]; # like fromstr 10.0
-puts [tostr $x]; # prints "10."
-set x [int2float $n 3]; # like fromstr 10.000
-puts [tostr $x]; # prints "10.00"
-```
 
 # Arithmetics
 
 **add** *x* *y*
-: ...see next...
+: see below ...
 
 **sub** *x* *y*
-: ...see next...
+: see below ...
 
 **mul** *x* *y*
 : Return the sum, difference and product of *x* by *y*. *x* - may be either a BigFloat or an integer *y* - may be either a BigFloat or an integer When both are integers, these commands behave like **expr**.
 
 **div** *x* *y*
-: ...see next...
+: see below ...
 
 **mod** *x* *y*
 : Return the quotient and the rest of *x* divided by *y*. Each argument (*x* and *y*) can be either a BigFloat or an integer, but you cannot divide an integer by a BigFloat Divide by zero throws an error.
@@ -186,32 +184,28 @@ puts [tostr $x]; # prints "10.00"
 **iszero** *x*
 : Returns 1 if *x* is :
 
+    - a BigFloat close enough to zero to raise "divide by zero".
 
-**•**
-: a BigFloat close enough to zero to raise "divide by zero".
-
-**•**
-: the integer 0.
+    - the integer 0.
 
 
-: See here how numbers that are close to zero are converted to strings:
+    See here how numbers that are close to zero are converted to strings:
 
+    ```
+    tostr [fromstr 0.001] ; # -> 0.e-2
+    tostr [fromstr 0.000000] ; # -> 0.e-5
+    tostr [fromstr -0.000001] ; # -> 0.e-5
+    tostr [fromstr 0.0] ; # -> 0.
+    tostr [fromstr 0.002] ; # -> 0.e-2
 
-```
-tostr [fromstr 0.001] ; # -> 0.e-2
-tostr [fromstr 0.000000] ; # -> 0.e-5
-tostr [fromstr -0.000001] ; # -> 0.e-5
-tostr [fromstr 0.0] ; # -> 0.
-tostr [fromstr 0.002] ; # -> 0.e-2
+    set a [fromstr 0.002] ; # uncertainty interval : 0.001, 0.003
+    tostr  $a ; # 0.e-2
+    iszero $a ; # false
 
-set a [fromstr 0.002] ; # uncertainty interval : 0.001, 0.003
-tostr  $a ; # 0.e-2
-iszero $a ; # false
-
-set a [fromstr 0.001] ; # uncertainty interval : 0.000, 0.002
-tostr  $a ; # 0.e-2
-iszero $a ; # true
-```
+    set a [fromstr 0.001] ; # uncertainty interval : 0.000, 0.002
+    tostr  $a ; # 0.e-2
+    iszero $a ; # true
+    ```
 
 **equal** *x* *y*
 : Returns 1 if *x* and *y* are equal, 0 elsewhere.
@@ -223,40 +217,40 @@ iszero $a ; # true
 # Analysis
 
 **sqrt** *x*
-: ...see next...
+: see below ...
 
 **log** *x*
-: ...see next...
+: see below ...
 
 **exp** *x*
-: ...see next...
+: see below ...
 
 **cos** *x*
-: ...see next...
+: see below ...
 
 **sin** *x*
-: ...see next...
+: see below ...
 
 **tan** *x*
-: ...see next...
+: see below ...
 
 **cotan** *x*
-: ...see next...
+: see below ...
 
 **acos** *x*
-: ...see next...
+: see below ...
 
 **asin** *x*
-: ...see next...
+: see below ...
 
 **atan** *x*
-: ...see next...
+: see below ...
 
 **cosh** *x*
-: ...see next...
+: see below ...
 
 **sinh** *x*
-: ...see next...
+: see below ...
 
 **tanh** *x*
 : The above functions return, respectively, the following : square root, logarithm, exponential, cosine, sine, tangent, cotangent, arc cosine, arc sine, arc tangent, hyperbolic cosine, hyperbolic sine, hyperbolic tangent, of a BigFloat named *x*.
@@ -265,19 +259,23 @@ iszero $a ; # true
 : Returns a BigFloat representing the Pi constant with *n* digits after the dot. *n* is a positive integer.
 
 **rad2deg** *radians*
-: ...see next...
+: see below ...
 
 **deg2rad** *degrees*
-: *radians* - angle expressed in radians (BigFloat) *degrees* - angle expressed in degrees (BigFloat) Convert an angle from radians to degrees, and *vice versa*.
+: *radians* - angle expressed in radians (BigFloat)
+
+    *degrees* - angle expressed in degrees (BigFloat)
+
+    Convert an angle from radians to degrees, and *vice versa*.
 
 
 # Rounding
 
 **round** *x*
-: ...see next...
+: see below ...
 
 **ceil** *x*
-: ...see next...
+: see below ...
 
 **floor** *x*
 : The above functions return the *x* BigFloat, rounded like with the same mathematical function in *expr*, and returns it as an integer.
@@ -287,15 +285,16 @@ iszero $a ; # true
 
 How do conversions work with precision ?
 
-**•**
-: When a BigFloat is converted from string, the internal representation holds its uncertainty as 1 at the level of the last digit.
+- When a BigFloat is converted from string, the internal representation holds its uncertainty as 1 at the level of the last digit.
 
-**•**
-: During computations, the uncertainty of each result is internally computed the closest to the reality, thus saving the memory used.
+- During computations, the uncertainty of each result is internally computed the closest to the reality, thus saving the memory used.
 
-**•**
-: When converting back to string, the digits that are printed are not subject to uncertainty. However, some rounding is done, as not doing so causes severe problems. Uncertainties are kept in the internal representation of the number ; it is recommended to use **tostr** only for outputting data (on the screen or in a file), and NEVER call **fromstr** with the result of **tostr**. It is better to always keep operands in their internal representation. Due to the internals of this library, the uncertainty interval may be slightly wider than expected, but this should not cause false digits. Now you may ask this question : What precision am I going to get after calling add, sub, mul or div? First you set a number from the string representation and, by the way, its uncertainty is set:
+- When converting back to string, the digits that are printed are not subject to uncertainty. However, some rounding is done, as not doing so causes severe problems.
 
+
+Uncertainties are kept in the internal representation of the number ; it is recommended to use **tostr** only for outputting data (on the screen or in a file), and NEVER call **fromstr** with the result of **tostr**. It is better to always keep operands in their internal representation. Due to the internals of this library, the uncertainty interval may be slightly wider than expected, but this should not cause false digits.
+
+Now you may ask this question : What precision am I going to get after calling add, sub, mul or div? First you set a number from the string representation and, by the way, its uncertainty is set:
 
 ```
 set a [fromstr 1.230]
@@ -362,7 +361,7 @@ tostr [exp [fromstr 100.0 10]]
 # has 14 digits of precision.
 ```
 
-# What about tcl 8.4 ?
+# What about Tcl 8.4 ?
 
 If your setup do not provide Tcl 8.5 but supports 8.4, the package can still be loaded, switching back to *math::bigfloat* 1.2. Indeed, an important function introduced in Tcl 8.5 is required - the ability to handle bignums, that we can do with **expr**. Before 8.5, this ability was provided by several packages, including the pure-Tcl *math::bignum* package provided by *tcllib*. In this case, all you need to know, is that arguments to the commands explained here, are expected to be in their internal representation. So even with integers, you will need to call **fromstr** and **tostr** in order to convert them between string and internal representations.
 

@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::split
+title: textutil::split
 ManualSection: n
 Version: 0.9
 TclPart: tcllib
@@ -22,10 +23,10 @@ textutil::split - Procedures to split texts
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::split]{.lit} [0.9]{.optlit} 
-[::textutil::split::splitn]{.cmd} [string]{.arg} [size]{.optarg} 
-[::textutil::split::splitx]{.cmd} [string]{.arg} [regexp]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::split]{.lit} [0.9]{.optlit}
+[::textutil::split::splitn]{.cmd} [string]{.arg} [size]{.optarg}
+[::textutil::split::splitx]{.cmd} [string]{.arg} [regexp]{.optarg}
 :::
 
 # Description
@@ -34,13 +35,19 @@ The **textutil::split** package provides commands that split strings into substr
 
 To split on a particular character or set of characters, use the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command. To split a string into its individual characters, use the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command with a second argument of **""**.
 
-# Api
+# API
 
 **::textutil::split::splitn** *string* ?*size*?
-: Returns a list of strings containing consecutive substrings of *string*, each *size* long—except for the last which will be shorter if *string*’s length is not an exact multiple of *size*. The *size* defaults to **1**, i.e., return a list of *string*’s characters; this is the same as calling the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command with a second argument of **""**. If *string* is empty, an empty list is returned. If *size* *<= 0*, an error will be thrown.
+: Returns a list of strings containing consecutive substrings of *string*, each *size* long—except for the last which will be shorter if *string*’s length is not an exact multiple of *size*. The *size* defaults to **1**, i.e., return a list of *string*’s characters; this is the same as calling the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command with a second argument of **""**.
+
+    If *string* is empty, an empty list is returned. If *size* *<= 0*, an error will be thrown.
 
 **::textutil::split::splitx** *string* ?*regexp*?
-: Returns a list of strings containing consecutive substrings of *string* split according to the *regexp* regular expression which defaults to *\[\\t \\r\\n\]+* (tabs, spaces, newlines). *Note*: If *regexp* contains capturing parentheses, then the captured groups will be included in the result list as additional elements. If *string* is empty, an empty list is returned. If *regexp* is empty, the *string* is split at every character; this is the same as calling the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command with a second argument of **""**.
+: Returns a list of strings containing consecutive substrings of *string* split according to the *regexp* regular expression which defaults to *\[\\t \\r\\n\]+* (tabs, spaces, newlines).
+
+    *Note*: If *regexp* contains capturing parentheses, then the captured groups will be included in the result list as additional elements.
+
+    If *string* is empty, an empty list is returned. If *regexp* is empty, the *string* is split at every character; this is the same as calling the built-in [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) command with a second argument of **""**.
 
 
 # Examples

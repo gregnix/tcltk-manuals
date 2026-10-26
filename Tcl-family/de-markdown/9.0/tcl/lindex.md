@@ -1,5 +1,6 @@
 ---
 CommandName: lindex
+title: lindex
 ManualSection: n
 Version: 8.4
 TclPart: Tcl
@@ -33,17 +34,17 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lindex - Liest ein Element aus einer Liste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lindex]{.cmd} [list]{.arg} [index]{.optdot} 
+[lindex]{.cmd} [list]{.arg} [index]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **lindex** nimmt den Parameter *list*, den er als Tcl-Liste behandelt, und null oder mehr *index*-Angaben in die Liste. Die Indizes können nacheinander auf der Befehlszeile stehen oder in einer Tcl-Liste gruppiert als ein einziges Argument übergeben werden.
 
@@ -61,7 +62,7 @@ lindex list {}
 
 In diesem Fall ist der Rückgabewert von **lindex** einfach der Wert des Parameters *list*.
 
-Bei einem einzelnen Index behandelt **lindex** *list* als Tcl-Liste und gibt das *index*-te Element zurück (0 bezeichnet das erste Element). Beim Extrahieren gelten dieselben Regeln für geschweifte Klammern, Anführungszeichen und Backslashes wie beim Tcl-Befehlsinterpreter; Variablen- und Befehlssubstitution finden jedoch nicht statt. Ist *index* negativ oder größer oder gleich der Elementanzahl in *list*, wird eine leere Zeichenkette zurückgegeben. Die Auslegung jedes einfachen *index*-Werts entspricht **string index**, einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende.
+Bei einem einzelnen Index behandelt **lindex** *list* als Tcl-Liste und gibt das *index*-te Element zurück (0 bezeichnet das erste Element). Beim Extrahieren gelten dieselben Regeln für geschweifte Klammern, Anführungszeichen und Backslashes wie beim Tcl-Befehlsinterpreter; Variablen- und Befehlssubstitution finden jedoch nicht statt. Ist *index* negativ oder größer oder gleich der Elementanzahl in *list*, wird eine leere Zeichenkette zurückgegeben. Die Auslegung jedes einfachen *index*-Werts entspricht [string index][string], einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende.
 
 Weitere *index*-Argumente wählen nacheinander aus dem Ergebnis der vorherigen Indexoperation ein Element — damit lassen sich Elemente aus Unterlisten wählen. Der Befehl
 
@@ -81,7 +82,7 @@ ist gleichbedeutend mit
 lindex [lindex [lindex $a 1] 2] 3
 ```
 
-# BEISPIELE
+# Beispiele
 
 Listen können von beiden Enden indiziert werden:
 
@@ -123,3 +124,6 @@ set idx 3
 lindex {a b c d e f} $idx+2
       → f
 ```
+
+
+[string]: string.md

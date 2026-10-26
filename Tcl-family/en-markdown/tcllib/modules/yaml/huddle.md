@@ -1,5 +1,6 @@
 ---
 CommandName: huddle
+title: huddle
 ManualSection: n
 Version: 0.5
 TclPart: tcllib
@@ -26,42 +27,42 @@ huddle - Create and manipulate huddle object
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [huddle]{.lit} [0.5]{.optlit} 
-[huddle]{.cmd} [create]{.sub} [key]{.arg} [value]{.arg} [key value]{.optdot} 
-[huddle]{.cmd} [list]{.sub} [value value]{.optdot} 
-[huddle]{.cmd} [number]{.sub} [number]{.arg} 
-[huddle]{.cmd} [string]{.sub} [string]{.arg} 
-[huddle]{.cmd} [boolean]{.sub} [expression]{.arg} [to]{.arg} [evaluate]{.arg} [as]{.arg} [true]{.arg} [or]{.arg} [false]{.arg} 
-[huddle]{.cmd} [true]{.sub} 
-[huddle]{.cmd} [false]{.sub} 
-[huddle]{.cmd} [null]{.sub} 
-[huddle]{.cmd} [get]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [gets]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [set]{.sub} [objectVar]{.arg} [key]{.arg} [key]{.optdot} [value]{.arg} 
-[huddle]{.cmd} [remove]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [combine]{.sub} [object1]{.arg} [object2]{.arg} [object3]{.optdot} 
-[huddle]{.cmd} [equal]{.sub} [object1]{.arg} [object2]{.arg} 
-[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [key]{.arg} [value]{.arg} [key value]{.optdot} 
-[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [value]{.arg} [value]{.optdot} 
-[huddle]{.cmd} [keys]{.sub} [object]{.arg} 
-[huddle]{.cmd} [llength]{.sub} [object]{.arg} 
-[huddle]{.cmd} [type]{.sub} [object]{.arg} [key key]{.optdot} 
-[huddle]{.cmd} [strip]{.sub} [object]{.arg} 
-[huddle]{.cmd} [jsondump]{.sub} [object]{.arg} [offset]{.optarg} [newline]{.optarg} [begin_offset]{.optarg} 
-[huddle]{.cmd} [compile]{.sub} [spec]{.arg} [data]{.arg} 
-[huddle]{.cmd} [isHuddle]{.sub} [object]{.arg} 
-[huddle]{.cmd} [checkHuddle]{.sub} [object]{.arg} 
-[huddle]{.cmd} [to_node]{.sub} [object]{.arg} [tag]{.optarg} 
-[huddle]{.cmd} [wrap]{.sub} [tag]{.arg} [src]{.arg} 
-[huddle]{.cmd} [call]{.sub} [tag]{.arg} [command]{.arg} [args]{.arg} 
-[huddle]{.cmd} [addType]{.sub} [callback]{.arg} 
-[callback]{.cmd} [command]{.arg} [args]{.optarg} 
-[setting]{.cmd} 
-[get_sub]{.cmd} [src]{.arg} [key]{.arg} 
-[strip]{.cmd} [src]{.arg} 
-[set]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg} 
-[remove]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [huddle]{.lit} [0.5]{.optlit}
+[huddle]{.cmd} [create]{.sub} [key]{.arg} [value]{.arg} [key value]{.optdot}
+[huddle]{.cmd} [list]{.sub} [value value]{.optdot}
+[huddle]{.cmd} [number]{.sub} [number]{.arg}
+[huddle]{.cmd} [string]{.sub} [string]{.arg}
+[huddle]{.cmd} [boolean]{.sub} [expression]{.arg} [to]{.arg} [evaluate]{.arg} [as]{.arg} [true]{.arg} [or]{.arg} [false]{.arg}
+[huddle]{.cmd} [true]{.sub}
+[huddle]{.cmd} [false]{.sub}
+[huddle]{.cmd} [null]{.sub}
+[huddle]{.cmd} [get]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [gets]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [set]{.sub} [objectVar]{.arg} [key]{.arg} [key]{.optdot} [value]{.arg}
+[huddle]{.cmd} [remove]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [combine]{.sub} [object1]{.arg} [object2]{.arg} [object3]{.optdot}
+[huddle]{.cmd} [equal]{.sub} [object1]{.arg} [object2]{.arg}
+[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [key]{.arg} [value]{.arg} [key value]{.optdot}
+[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [value]{.arg} [value]{.optdot}
+[huddle]{.cmd} [keys]{.sub} [object]{.arg}
+[huddle]{.cmd} [llength]{.sub} [object]{.arg}
+[huddle]{.cmd} [type]{.sub} [object]{.arg} [key key...]{.optarg}
+[huddle]{.cmd} [strip]{.sub} [object]{.arg}
+[huddle]{.cmd} [jsondump]{.sub} [object]{.arg} [offset]{.optarg} [newline]{.optarg} [begin\_offset]{.optarg}
+[huddle]{.cmd} [compile]{.sub} [spec]{.arg} [data]{.arg}
+[huddle]{.cmd} [isHuddle]{.sub} [object]{.arg}
+[huddle]{.cmd} [checkHuddle]{.sub} [object]{.arg}
+[huddle]{.cmd} [to\_node]{.sub} [object]{.arg} [tag]{.optarg}
+[huddle]{.cmd} [wrap]{.sub} [tag]{.arg} [src]{.arg}
+[huddle]{.cmd} [call]{.sub} [tag]{.arg} [command]{.arg} [args]{.arg}
+[huddle]{.cmd} [addType]{.sub} [callback]{.arg}
+[callback]{.cmd} [command]{.arg} [args]{.optarg}
+[setting]{.cmd}
+[get\_sub]{.cmd} [src]{.arg} [key]{.arg}
+[strip]{.cmd} [src]{.arg}
+[set]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg}
+[remove]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg}
 :::
 
 # Description
@@ -131,46 +132,43 @@ The **huddle** package returns data as a Tcl **dict**.  Either the **dict** pack
 **huddle combine** *object1* *object2* ?*object3 ...*?
 : Merging huddle objects given.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% set bb [huddle create a k l m]
-HUDDLE {D {a {s k} l {s m}}}
-% huddle combine $aa $bb
-HUDDLE {D {a {s k} c {s d} l {s m}}}
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % set bb [huddle create a k l m]
+    HUDDLE {D {a {s k} l {s m}}}
+    % huddle combine $aa $bb
+    HUDDLE {D {a {s k} c {s d} l {s m}}}
+    ```
 
 **huddle equal** *object1* *object2*
 : Comparing two huddle objects recursively. When to equal, returns 1, otherwise 0.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% set bb [huddle create c d a b]
-HUDDLE {D {c {s d} a {s b}}}
-% huddle equal $aa $bb
-1
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % set bb [huddle create c d a b]
+    HUDDLE {D {c {s d} a {s b}}}
+    % huddle equal $aa $bb
+    1
+    ```
 
 **huddle append** *objectVar* *key* *value* ?*key value ...*?
-: ...see next...
+: see below ...
 
 **huddle append** *objectVar* *value* ?*value ...*?
 : Appending child elements. When for dicts, giving key/value. When for lists, giving values.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% huddle append aa a k l m
-HUDDLE {D {a {s k} c {s d} l {s m}}}
-% set bb [huddle list i j k l]
-HUDDLE {L {{s i} {s j} {s k} {s l}}}
-% huddle append bb g h i
-HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % huddle append aa a k l m
+    HUDDLE {D {a {s k} c {s d} l {s m}}}
+    % set bb [huddle list i j k l]
+    HUDDLE {L {{s i} {s j} {s k} {s l}}}
+    % huddle append bb g h i
+    HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
+    ```
 
 **huddle keys** *object*
 : The same as **dict keys**.
@@ -181,102 +179,99 @@ HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
 **huddle type** *object* ?*key key...*?
 : Return the element type of specified by keys. if ?key? is not given, returns the type of root node.
 
+    **string**
+    : the node is a tcl's string.
 
-**string**
-: the node is a tcl's string.
+    **dict**
+    : the node is a dict.
 
-**dict**
-: the node is a dict.
+    **list**
+    : the node is a list.
 
-**list**
-: the node is a list.
+    **number**
+    : the node is a number.
 
-**number**
-: the node is a number.
+    **boolean**
+    : the node is a boolean.
 
-**boolean**
-: the node is a boolean.
-
-**null**
-: the node is a null.
+    **null**
+    : the node is a null.
 
 
-```
-% huddle type {HUDDLE {s str}}
-string
-% huddle type {HUDDLE {L {{s a} {s b} {s c}}}}
-list
-% huddle type {HUDDLE {D {aa {s b} cc {s d}}}} cc
-string
-```
+    ```
+    % huddle type {HUDDLE {s str}}
+    string
+    % huddle type {HUDDLE {L {{s a} {s b} {s c}}}}
+    list
+    % huddle type {HUDDLE {D {aa {s b} cc {s d}}}} cc
+    string
+    ```
 
 **huddle strip** *object*
 : Stripped all tags. Converted to normal Tcl's list/dict.
 
-**huddle jsondump** *object* ?*offset*? ?*newline*? ?*begin_offset*?
+**huddle jsondump** *object* ?*offset*? ?*newline*? ?*begin\_offset*?
 : dump a json-stream from the huddle-object.
 
+    **offset** ""
+    : begin offset as spaces "  ".
 
-**offset** ""
-: begin offset as spaces "  ".
 
-
-```
-# normal output has some indents. some strings are escaped.
-% huddle jsondump {HUDDLE {L {{L {{s i} {s baa} {s \\k} {L {{s 1.0} {s true} {s /g} {s h}}} {L {{s g}}}}} {s t}}}}
-[
-  [
-    "i",
-    "baa",
-    "\\k",
+    ```
+    # normal output has some indents. some strings are escaped.
+    % huddle jsondump {HUDDLE {L {{L {{s i} {s baa} {s \\k} {L {{s 1.0} {s true} {s /g} {s h}}} {L {{s g}}}}} {s t}}}}
     [
-      1.0,
-      true,
-      "\/g",
-      "h"
-    ],
-    ["g"]
-  ],
-  "t"
-]
-# stripped output
-% huddle jsondump {HUDDLE {D {dd {D {bb {D {a {s baa} c {s {d
-a}}}} cc {D {g {s h}}}}} ee {D {i {s j} k {s 1} j {s { m\a}}}}}}} "" ""
-{"dd": {"bb": {"a": "baa","c": "d\na"},"cc": {"g": "h"}},"ee": {"i": "j","k": 1,"j": " m\\a"}}
-```
+      [
+        "i",
+        "baa",
+        "\\k",
+        [
+          1.0,
+          true,
+          "\/g",
+          "h"
+        ],
+        ["g"]
+      ],
+      "t"
+    ]
+    # stripped output
+    % huddle jsondump {HUDDLE {D {dd {D {bb {D {a {s baa} c {s {d
+    a}}}} cc {D {g {s h}}}}} ee {D {i {s j} k {s 1} j {s { m\a}}}}}}} "" ""
+    {"dd": {"bb": {"a": "baa","c": "d\na"},"cc": {"g": "h"}},"ee": {"i": "j","k": 1,"j": " m\\a"}}
+    ```
 
 **huddle compile** *spec* *data*
 : construct a huddle object from plain old tcl values. *spec* is defined as follows:
 
+    **string**
+    : data is simply a string
 
-**string**
-: data is simply a string
+    **list**
+    : data is a tcl list of strings
 
-**list**
-: data is a tcl list of strings
+    **dict**
+    : data is a tcl dict of strings
 
-**dict**
-: data is a tcl dict of strings
+    list list
+    : data is a tcl list of lists
 
-**list list**
-: data is a tcl list of lists
+    list dict
+    : data is a tcl list of dicts
 
-**list dict**
-: data is a tcl list of dicts
+    dict xx list
+    : data is a tcl dict where the value of key xx is a tcl list
 
-**dict xx list**
-: data is a tcl dict where the value of key xx is a tcl list
-
-**dict \* list**
-: data is a tcl dict of lists *data* is plain old tcl values
+    dict \* list
+    : data is a tcl dict of lists *data* is plain old tcl values
 
 
-```
-% huddle compile {dict * list} {a {1 2 3} b {4 5}}
-HUDDLE {D {a {L {{s 1} {s 2} {s 3}}} b {L {{s 4} {s 5}}}}}
-% huddle compile {dict * {list {dict d list}}} {a {{c 1} {d {2 2 2} e 3}} b {{f 4 g 5}}}
-HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{D {f {s 4} g {s 5}}}}}}}
-```
+    ```
+    % huddle compile {dict * list} {a {1 2 3} b {4 5}}
+    HUDDLE {D {a {L {{s 1} {s 2} {s 3}}} b {L {{s 4} {s 5}}}}}
+    % huddle compile {dict * {list {dict d list}}} {a {{c 1} {d {2 2 2} e 3}} b {{f 4 g 5}}}
+    HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{D {f {s 4} g {s 5}}}}}}}
+    ```
 
 **huddle isHuddle** *object*
 : if *object* is a huddle, returns 1. the other, returns 0.
@@ -284,41 +279,45 @@ HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{
 **huddle checkHuddle** *object*
 : if *object* is not a huddle, rises an error.
 
-**huddle to_node** *object* ?*tag*?
-: for type-callbacks. if *object* is a huddle, returns root-node. the other, returns **\[list s \$object\]**.
+**huddle to\_node** *object* ?*tag*?
+: for type-callbacks.
 
+    if *object* is a huddle, returns root-node. the other, returns **\[list s $object\]**.
 
-```
-% huddle to_node str
-s str
-% huddle to_node str !!str
-!!str str
-% huddle to_node {HUDDLE {s str}}
-s str
-% huddle to_node {HUDDLE {l {a b c}}}
-l {a b c}
-```
+    ```
+    % huddle to_node str
+    s str
+    % huddle to_node str !!str
+    !!str str
+    % huddle to_node {HUDDLE {s str}}
+    s str
+    % huddle to_node {HUDDLE {l {a b c}}}
+    l {a b c}
+    ```
 
 **huddle wrap** *tag* *src*
-: for type-callbacks. Create a huddle object from *src* with specified *tag*.
+: for type-callbacks.
 
+    Create a huddle object from *src* with specified *tag*.
 
-```
-% huddle wrap "" str
-HUDDLE str
-% huddle wrap s str
-HUDDLE {s str}
-```
+    ```
+    % huddle wrap "" str
+    HUDDLE str
+    % huddle wrap s str
+    HUDDLE {s str}
+    ```
 
 **huddle call** *tag* *command* *args*
-: for type-callbacks. devolving *command* to default *tag*-callback
+: for type-callbacks.
+
+    devolving *command* to default *tag*-callback
 
 **huddle addType** *callback*
 : add a user-specified-type/tag to the huddle library. To see "Additional Type".
 
+    **callback**
+    : callback function name for additional type.
 
-**callback**
-: callback function name for additional type.
 
 
 # Type callback
@@ -326,14 +325,14 @@ HUDDLE {s str}
 The definition of callback for user-type.
 
 **callback** *command* ?*args*?
-: 
+: see below ...
 
+    **command**
+    : huddle subcomand which is needed to reply by the callback.
 
-**command**
-: huddle subcomand which is needed to reply by the callback.
+    **args**
+    : arguments of subcommand. The number of list of arguments is different for each subcommand.
 
-**args**
-: arguments of subcommand. The number of list of arguments is different for each subcommand.
 
 
 The callback procedure shuould reply the following subcommands.
@@ -341,23 +340,21 @@ The callback procedure shuould reply the following subcommands.
 **setting**
 : only returns a fixed dict of the type infomation for setting the user-tag.
 
+    **type** typename
+    : typename of the type
 
-**type** typename
-: typename of the type
+    **method** {method1 method2 method3 ...}
+    : method list as huddle subcommand. Then, you can call **\[huddle method1 ...\]**
 
-**method** {method1 method2 method3 ...}
-: method list as huddle subcommand. Then, you can call **\[huddle method1 ...\]**
-
-**tag** {tag1 child/parent tag2 child/parent ...}
-: tag list for huddle-node as a dict. if the type has child-nodes, use "parent", otherwise use "child".
+    **tag** {tag1 child/parent tag2 child/parent ...}
+    : tag list for huddle-node as a dict. if the type has child-nodes, use "parent", otherwise use "child".
 
 
-**get_sub** *src* *key*
+**get\_sub** *src* *key*
 : returns a sub node specified by *key*.
 
-
-**src**
-: a node content in huddle object.
+    **src**
+    : a node content in huddle object.
 
 
 **strip** *src*
@@ -367,8 +364,10 @@ The callback procedure shuould reply the following subcommands.
 : sets a sub-node from the tagged-content, and returns self.
 
 **remove** *src* *key* *value*
-: removes a sub-node from the tagged-content, and returns self. **strip** must be defined at all types. **get_sub** must be defined at container types. **set/remove** shuould be defined, if you call them.
+: removes a sub-node from the tagged-content, and returns self.
 
+
+**strip** must be defined at all types. **get\_sub** must be defined at container types. **set/remove** shuould be defined, if you call them.
 
 ```
 # callback sample for my-dict

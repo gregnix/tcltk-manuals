@@ -1,5 +1,6 @@
 ---
 CommandName: deleg_proc
+title: deleg_proc
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -15,24 +16,28 @@ Copyright:
 
 # Name
 
-deleg_proc - Creation of comm delegates (procedures)
+deleg\_proc - Creation of comm delegates (procedures)
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [interp::delegate::proc]{.lit} [0.3]{.optlit} 
-[::interp::delegate::proc]{.cmd} [-async]{.optlit} [name]{.arg} [arguments]{.arg} [comm]{.arg} [id]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [interp::delegate::proc]{.lit} [0.3]{.optlit}
+[::interp::delegate::proc]{.cmd} [-async]{.optlit} [name]{.arg} [arguments]{.arg} [comm]{.arg} [id]{.arg}
 :::
 
 # Description
 
 This package provides a single command for the convenient creation of procedures which delegate the actual work to a remote location via a "channel" created by the package **comm**.
 
-# Api
+# API
 
 **::interp::delegate::proc** ?**-async**? *name* *arguments* *comm* *id*
-: This commands creates a procedure which is named by *name* and returns its fully-qualified name. All invokations of this procedure will delegate the actual work to the remote location identified by the comm channel *comm* and the endpoint *id*. The name of the remote procedure invoked by the delegator is \[namespace tail *name*\]. I.e., namespace information is stripped from the call. Normally the generated procedure marshalls the *arguments*, and returns the result from the remote procedure as its own result. If however the option **-async** was specified then the generated procedure will not wait for a result and return immediately.
+: This commands creates a procedure which is named by *name* and returns its fully-qualified name. All invokations of this procedure will delegate the actual work to the remote location identified by the comm channel *comm* and the endpoint *id*.
+
+    The name of the remote procedure invoked by the delegator is \[namespace tail *name*\]. I.e., namespace information is stripped from the call.
+
+    Normally the generated procedure marshalls the *arguments*, and returns the result from the remote procedure as its own result. If however the option **-async** was specified then the generated procedure will not wait for a result and return immediately.
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_ExprLongObj
+title: Tcl_ExprLongObj
 ManualSection: 3
 Version: 8.0
 TclPart: Tcl
@@ -24,59 +25,61 @@ Copyright:
 
 # Name
 
-Tcl_ExprLongObj, Tcl_ExprDoubleObj, Tcl_ExprBooleanObj, Tcl_ExprObj - evaluate an expression
+Tcl\_ExprLongObj, Tcl\_ExprDoubleObj, Tcl\_ExprBooleanObj, Tcl\_ExprObj - evaluate an expression
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_ExprLongObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [longPtr]{.arg})
-
-int
-[Tcl_ExprDoubleObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [doublePtr]{.arg})
-
-int
-[Tcl_ExprBooleanObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [booleanPtr]{.arg})
-
-int
-[Tcl_ExprObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [resultPtrPtr]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_ExprLongObj]{.ccmd} [interp, objPtr, longPtr]{.cargs}
+[int]{.ret} [Tcl\_ExprDoubleObj]{.ccmd} [interp, objPtr, doublePtr]{.cargs}
+[int]{.ret} [Tcl\_ExprBooleanObj]{.ccmd} [interp, objPtr, booleanPtr]{.cargs}
+[int]{.ret} [Tcl\_ExprObj]{.ccmd} [interp, objPtr, resultPtrPtr]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter in whose context to evaluate *objPtr*.
 
-Tcl_Obj *\*objPtr* (in)
+[\*objPtr]{.carg .in type="Tcl_Obj"}
 : Pointer to a value containing the expression to evaluate.
 
-long *\*longPtr* (out)
+[\*longPtr]{.carg .out type="long"}
 : Pointer to location in which to store the integer value of the expression.
 
-int *\*doublePtr* (out)
+[\*doublePtr]{.carg .out type="int"}
 : Pointer to location in which to store the floating-point value of the expression.
 
-int *\*booleanPtr* (out)
+[\*booleanPtr]{.carg .out type="int"}
 : Pointer to location in which to store the 0/1 boolean value of the expression.
 
-Tcl_Obj *\*\*resultPtrPtr* (out)
+[\*\*resultPtrPtr]{.carg .out type="Tcl_Obj"}
 : Pointer to location in which to store a pointer to the value that is the result of the expression.
 
+:::
 
 # Description
 
-These four procedures all evaluate an expression, returning the result in one of four different forms. The expression is given by the *objPtr* argument, and it can have any of the forms accepted by the **expr** command.
+These four procedures all evaluate an expression, returning the result in one of four different forms. The expression is given by the *objPtr* argument, and it can have any of the forms accepted by the [expr] command.
 
 The *interp* argument refers to an interpreter used to evaluate the expression (e.g. for variables and nested Tcl commands) and to return error information.
 
-For all of these procedures the return value is a standard Tcl result: **TCL_OK** means the expression was successfully evaluated, and **TCL_ERROR** means that an error occurred while evaluating the expression. If **TCL_ERROR** is returned, then a message describing the error can be retrieved using **Tcl_GetObjResult**. If an error occurs while executing a Tcl command embedded in the expression then that error will be returned.
+For all of these procedures the return value is a standard Tcl result: [TCL\_OK][catch] means the expression was successfully evaluated, and [TCL\_ERROR][catch] means that an error occurred while evaluating the expression. If [TCL\_ERROR][catch] is returned, then a message describing the error can be retrieved using [Tcl\_GetObjResult][SetResult]. If an error occurs while executing a Tcl command embedded in the expression then that error will be returned.
 
-If the expression is successfully evaluated, then its value is returned in one of four forms, depending on which procedure is invoked. **Tcl_ExprLongObj** stores an integer value at *\*longPtr*. If the expression's actual value is a floating-point number, then it is truncated to an integer. If the expression's actual value is a non-numeric string then an error is returned.
+If the expression is successfully evaluated, then its value is returned in one of four forms, depending on which procedure is invoked. **Tcl\_ExprLongObj** stores an integer value at *\*longPtr*. If the expression's actual value is a floating-point number, then it is truncated to an integer. If the expression's actual value is a non-numeric string then an error is returned.
 
-**Tcl_ExprDoubleObj** stores a floating-point value at *\*doublePtr*. If the expression's actual value is an integer, it is converted to floating-point. If the expression's actual value is a non-numeric string then an error is returned.
+**Tcl\_ExprDoubleObj** stores a floating-point value at *\*doublePtr*. If the expression's actual value is an integer, it is converted to floating-point. If the expression's actual value is a non-numeric string then an error is returned.
 
-**Tcl_ExprBooleanObj** stores a 0/1 integer value at *\*booleanPtr*. If the expression's actual value is an integer or floating-point number, then they store 0 at *\*booleanPtr* if the value was zero and 1 otherwise. If the expression's actual value is a non-numeric string then it must be one of the values accepted by **Tcl_GetBoolean** such as "yes" or "no", or else an error occurs.
+**Tcl\_ExprBooleanObj** stores a 0/1 integer value at *\*booleanPtr*. If the expression's actual value is an integer or floating-point number, then they store 0 at *\*booleanPtr* if the value was zero and 1 otherwise. If the expression's actual value is a non-numeric string then it must be one of the values accepted by [Tcl\_GetBoolean][GetInt] such as "yes" or "no", or else an error occurs.
 
-If **Tcl_ExprObj** successfully evaluates the expression, it stores a pointer to the Tcl value containing the expression's value at *\*resultPtrPtr*. In this case, the caller is responsible for calling **Tcl_DecrRefCount** to decrement the value's reference count when it is finished with the value.
+If **Tcl\_ExprObj** successfully evaluates the expression, it stores a pointer to the Tcl value containing the expression's value at *\*resultPtrPtr*. In this case, the caller is responsible for calling [Tcl\_DecrRefCount][Object] to decrement the value's reference count when it is finished with the value.
+
+
+[catch]: ../tcl/catch.md
+[expr]: ../tcl/expr.md
+[GetInt]: GetInt.md
+[Object]: Object.md
+[SetResult]: SetResult.md

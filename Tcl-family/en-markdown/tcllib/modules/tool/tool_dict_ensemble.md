@@ -1,5 +1,6 @@
 ---
 CommandName: tool::dict_ensemble
+title: tool::dict_ensemble
 ManualSection: n
 Version: 0.4.2
 TclPart: tcllib
@@ -13,19 +14,18 @@ Copyright:
 
 # Name
 
-tool::dict_ensemble - Dictionary Tools
+tool::dict\_ensemble - Dictionary Tools
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tool]{.lit} [0.4.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [tool]{.lit} [0.4.2]{.optlit}
+[object]{.ins} [ensemble]{.sub} [add]{.lit} [field]{.arg}
 :::
-
-*object* *ensemble* **add** *field*
 
 # Description
 
-The **dict_ensemble** command is a keyword added by **tool**. It defines a public variable (stored as a dict), and an access function to manipulated and access the values stored in that dict.
+The **dict\_ensemble** command is a keyword added by [tool]. It defines a public variable (stored as a dict), and an access function to manipulated and access the values stored in that dict.
 
 *object* *ensemble* **add** *field*
 : \] *value* *value ...*\] Adds elements to a list maintained with the *field* leaf of the dict maintained my this ensemble. Declares a variable *name* which will be initialized as an array, populated with *contents* for objects of this class, as well as any objects for classes which are descendents of this class.
@@ -52,3 +52,6 @@ Utility
 ```
 Copyright (c) 2015 Sean Woods <yoda@etoyoc.com>
 ```
+
+
+[tool]: tool.md

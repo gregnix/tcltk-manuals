@@ -1,5 +1,6 @@
 ---
 CommandName: pt::pgen
+title: pt::pgen
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -25,19 +26,19 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 pt::pgen – Parser-Generator
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::pgen]{.lit} [1.2]{.optlit} 
-[::pt::pgen]{.cmd} [inputformat]{.arg} [text]{.arg} [resultformat]{.arg} [options]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::pgen]{.lit} [1.2]{.optlit}
+[::pt::pgen]{.cmd} [inputformat]{.arg} [text]{.arg} [resultformat]{.arg} [options...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
@@ -49,49 +50,50 @@ Daher richtet sich dieses Dokument an Personen, die diesen Teil der Funktionalit
 
 Es liegt in der Schicht der Benutzerpakete der Parser-Tools.
 
-Bild: arch_user_pkg
+Bild: arch\_user\_pkg
 
 # API
 
 **::pt::pgen** *inputformat* *text* *resultformat* ?*options...*?
-: Dieser Befehl nimmt die Parsing Expression Grammar in *text* (in dem durch *inputformat* festgelegten Format) entgegen und gibt dieselbe Grammatik im Format *resultformat* als Ergebnis des Befehls zurück. Die beiden bekannten Eingabeformate sind **peg** und **json**. Eine Einleitung in diese Formate, einschließlich ihrer formalen Spezifikationen, finden Sie im *PEG Language Tutorial* und in *The JSON Grammar Exchange Format*. Die zur Analyse dieser Formate verwendeten Pakete sind
+: Dieser Befehl nimmt die Parsing Expression Grammar in *text* (in dem durch *inputformat* festgelegten Format) entgegen und gibt dieselbe Grammatik im Format *resultformat* als Ergebnis des Befehls zurück.
+
+    Die beiden bekannten Eingabeformate sind **peg** und **json**. Eine Einleitung in diese Formate, einschließlich ihrer formalen Spezifikationen, finden Sie im *PEG Language Tutorial* und in *The JSON Grammar Exchange Format*. Die zur Analyse dieser Formate verwendeten Pakete sind
+
+    **peg**
+    : [pt::peg::from::peg][pt_peg_from_peg]
+
+    **json**
+    : [pt::peg::from::json][pt_peg_from_json]
 
 
-**peg**
-: **pt::peg::from::peg**
+    Auf der Ausgabeseite sind die bekannten Formate und die Pakete, die sie erzeugen:
 
-**json**
-: **pt::peg::from::json**
+    **c**
+    : [pt::peg::to::cparam][pt_peg_to_cparam]
 
+    **container**
+    : [pt::peg::to::container][pt_peg_to_container]
 
-Auf der Ausgabeseite sind die bekannten Formate und die Pakete, die sie erzeugen:
+    **critcl**
+    : [pt::peg::to::cparam][pt_peg_to_cparam] + **pt::cparam::configuration::critcl**
 
-**c**
-: **pt::peg::to::cparam**
+    **json**
+    : [pt::peg::to::json][pt_peg_to_json]
 
-**container**
-: **pt::peg::to::container**
+    **oo**
+    : [pt::peg::to::tclparam][pt_peg_to_tclparam] + **pt::tclparam::configuration::tcloo**
 
-**critcl**
-: **pt::peg::to::cparam** + **pt::cparam::configuration::critcl**
+    **peg**
+    : [pt::peg::to::peg][pt_peg_to_peg]
 
-**json**
-: **pt::peg::to::json**
-
-**oo**
-: **pt::peg::to::tclparam** + **pt::tclparam::configuration::tcloo**
-
-**peg**
-: **pt::peg::to::peg**
-
-**snit**
-: **pt::peg::to::tclparam** + **pt::tclparam::configuration::snit**
+    **snit**
+    : [pt::peg::to::tclparam][pt_peg_to_tclparam] + **pt::tclparam::configuration::snit**
 
 
-: Die von den einzelnen Formaten unterstützten Optionen sind in den jeweiligen Paketen dokumentiert.
+    Die von den einzelnen Formaten unterstützten Optionen sind in den jeweiligen Paketen dokumentiert.
 
 
-# BEISPIEL
+# Beispiel
 
 In diesem Abschnitt arbeiten wir ein vollständiges Beispiel durch, beginnend mit einer PEG-Grammatik und endend mit der Ausführung des daraus generierten Parsers auf einer Eingabe, wobei wir der in der folgenden Abbildung dargestellten Gliederung folgen:
 
@@ -196,7 +198,7 @@ Zu beachten ist, dass die hier verwendeten Parser eine Datenstruktur zurückgebe
 
 Kehren wir zum letzten Codeausschnitt zurück, in dem der Parser für eine bestimmte Eingabe ausgeführt wird: Beachten Sie, wie die Parser-Instanz der festgelegten *Parser-API* folgt.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pt* als Kategorie an.
 
@@ -204,12 +206,21 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Parser und Grammatiken
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_from_json]: pt_peg_from_json.md
+[pt_peg_from_peg]: pt_peg_from_peg.md
+[pt_peg_to_container]: pt_peg_to_container.md
+[pt_peg_to_cparam]: pt_peg_to_cparam.md
+[pt_peg_to_json]: pt_peg_to_json.md
+[pt_peg_to_peg]: pt_peg_to_peg.md
+[pt_peg_to_tclparam]: pt_peg_to_tclparam.md

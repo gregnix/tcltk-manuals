@@ -1,5 +1,6 @@
 ---
 CommandName: tailcall
+title: tailcall
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -17,27 +18,27 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 tailcall - Ersetzt die aktuelle Prozedur durch einen anderen Befehl
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tailcall]{.cmd} [command]{.arg} [arg]{.optdot} 
+[tailcall]{.cmd} [command]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **tailcall** ersetzt die gerade ausgeführte Prozedur, Lambda-Anwendung oder Methode durch einen anderen Befehl. *command* wird mit den Argumenten *arg ...* (falls angegeben) aufgerufen und im aktuellen Namespace-Kontext aufgelöst, nicht im des Aufrufers. Abgesehen von dieser Auflösungsdifferenz ist er äquivalent zu:
+Der Befehl **tailcall** ersetzt die gerade ausgeführte Prozedur, Lambda-Anwendung oder Methode durch einen anderen Befehl. *command* wird mit den Argumenten *arg ...* (falls angegeben) aufgerufen und im aktuellen Namespace-Kontext aufgelöst, nicht in dem des Aufrufers. Abgesehen von dieser Auflösungsdifferenz ist er äquivalent zu:
 
 ```
 return [uplevel 1 [list command ?arg ...?]]
 ```
 
-Dieser Befehl darf nicht aus einem **uplevel** in eine Prozedur oder aus einem **catch** innerhalb einer Prozedur oder eines Lambdas aufgerufen werden.
+Dieser Befehl darf nicht aus einem [uplevel] in eine Prozedur oder aus einem [catch] innerhalb einer Prozedur oder eines Lambdas aufgerufen werden.
 
-# BEISPIELE
+# Beispiele
 
 Berechnet die Fakultät einer Zahl.
 
@@ -66,3 +67,7 @@ proc printList2 {theList} {
     }
 }
 ```
+
+
+[catch]: catch.md
+[uplevel]: uplevel.md

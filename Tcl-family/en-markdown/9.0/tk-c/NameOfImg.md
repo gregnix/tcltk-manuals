@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_NameOfImage
+title: Tk_NameOfImage
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -13,22 +14,23 @@ Copyright:
 
 # Name
 
-Tk_NameOfImage - Return name of image.
+Tk\_NameOfImage - Return name of image.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-const char \*
-[Tk_NameOfImage]{.cmd}([imageModel]{.arg})
+**#include <tk.h>**
+[const char \*]{.ret} [Tk\_NameOfImage]{.ccmd} [imageModel]{.cargs}
 :::
 
 # Arguments
 
-Tk_ImageModel *imageModel* (in)
+::: {.arguments} :::
+
+[imageModel]{.carg .in type="Tk_ImageModel"}
 : Token for image, which was passed to image manager's *createProc* when the image was created.
 
+:::
 
 # Description
 

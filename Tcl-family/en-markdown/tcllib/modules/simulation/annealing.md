@@ -1,5 +1,6 @@
 ---
 CommandName: simulation::annealing
+title: simulation::annealing
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -19,28 +20,29 @@ simulation::annealing - Simulated annealing
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [simulation::annealing]{.lit} [0.3]{.lit} 
-[::simulation::annealing::getOption]{.cmd} [keyword]{.arg} 
-[::simulation::annealing::hasOption]{.cmd} [keyword]{.arg} 
-[::simulation::annealing::setOption]{.cmd} [keyword]{.arg} [value]{.arg} 
-[::simulation::annealing::findMinimum]{.cmd} [args]{.arg} 
-[::simulation::annealing::findCombinatorialMinimum]{.cmd} [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [simulation::annealing]{.lit} [0.3]{.lit}
+[::simulation::annealing::getOption]{.cmd} [keyword]{.arg}
+[::simulation::annealing::hasOption]{.cmd} [keyword]{.arg}
+[::simulation::annealing::setOption]{.cmd} [keyword]{.arg} [value]{.arg}
+[::simulation::annealing::findMinimum]{.cmd} [args]{.arg}
+[::simulation::annealing::findCombinatorialMinimum]{.cmd} [args]{.arg}
 :::
 
 # Description
 
-The technique of *simulated annealing* provides methods to estimate the global optimum of a function. It is described in some detail on the Wiki *http://wiki.tcl.tk/...*. The idea is simple:
+The technique of *simulated annealing* provides methods to estimate the global optimum of a function. It is described in some detail on the Wiki <http://wiki.tcl.tk/>.... The idea is simple:
 
-**•**
-: randomly select points within a given search space
+- randomly select points within a given search space
 
-**•**
-: evaluate the function to be optimised for each of these points and select the point that has the lowest (or highest) function value or - sometimes - accept a point that has a less optimal value. The chance by which such a non-optimal point is accepted diminishes over time.
+- evaluate the function to be optimised for each of these points and select the point that has the lowest (or highest) function value or - sometimes - accept a point that has a less optimal value. The chance by which such a non-optimal point is accepted diminishes over time.
 
-**•**
-: Accepting less optimal points means the method does not necessarily get stuck in a local optimum and theoretically it is capable of finding the global optimum within the search space. The method resembles the cooling of material, hence the name. The package *simulation::annealing* offers the command *findMinimum*:
+- Accepting less optimal points means the method does not necessarily get stuck in a local optimum and theoretically it is capable of finding the global optimum within the search space.
 
+
+The method resembles the cooling of material, hence the name.
+
+The package *simulation::annealing* offers the command *findMinimum*:
 
 ```
     puts [::simulation::annealing::findMinimum  -trials 300  -parameters {x -5.0 5.0 y -5.0 5.0}  -function {$x*$x+$y*$y+sin(10.0*$x)+4.0*cos(20.0*$y)}]
@@ -59,28 +61,26 @@ The package defines the following auxiliary procedures:
 **::simulation::annealing::getOption** *keyword*
 : Get the value of an option given as part of the *findMinimum* command.
 
-
-string *keyword*
-: Given keyword (without leading minus)
+    string *keyword*
+    : Given keyword (without leading minus)
 
 
 **::simulation::annealing::hasOption** *keyword*
 : Returns 1 if the option is available, 0 if not.
 
-
-string *keyword*
-: Given keyword (without leading minus)
+    string *keyword*
+    : Given keyword (without leading minus)
 
 
 **::simulation::annealing::setOption** *keyword* *value*
 : Set the value of the given option.
 
+    string *keyword*
+    : Given keyword (without leading minus)
 
-string *keyword*
-: Given keyword (without leading minus)
+    string *value*
+    : (New) value for the option
 
-string *value*
-: (New) value for the option
 
 
 The main procedures are *findMinimum* and *findCombinatorialMinimum*:
@@ -88,39 +88,37 @@ The main procedures are *findMinimum* and *findCombinatorialMinimum*:
 **::simulation::annealing::findMinimum** *args*
 : Find the minimum of a function using simulated annealing. The function and the method's parameters is given via a list of keyword-value pairs.
 
-
-int *n*
-: List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
+    int *n*
+    : List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
 
 
 **::simulation::annealing::findCombinatorialMinimum** *args*
 : Find the minimum of a function of discrete variables using simulated annealing. The function and the method's parameters is given via a list of keyword-value pairs.
 
+    int *n*
+    : List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
 
-int *n*
-: List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
 
 
 The *findMinimum* command predefines the following options:
 
-**•**
-: *-parameters list*: triples defining parameters and ranges
+- *-parameters list*: triples defining parameters and ranges
 
-**•**
-: *-function expr*: expression defining the function
+- *-function expr*: expression defining the function
 
-**•**
-: *-code body*: body of code to define the function (takes precedence over *-function*). The code should set the variable "result"
+- *-code body*: body of code to define the function (takes precedence over *-function*). The code should set the variable "result"
 
-**•**
-: *-init code*: code to be run at start up *-final code*: code to be run at the end *-trials n*: number of trials before reducing the temperature *-reduce factor*: reduce the temperature by this factor (between 0 and 1) *-initial-temp t*: initial temperature *-scale s*: scale of the function (order of magnitude of the values) *-estimate-scale y/n*: estimate the scale (only if *-scale* is not present) *-verbose y/n*: print detailed information on progress to the report file (1) or not (0) *-reportfile file*: opened file to print to (defaults to stdout) Any other options can be used via the getOption procedure in the body. The *findCombinatorialMinimum* command predefines the following options:
+- *-init code*: code to be run at start up *-final code*: code to be run at the end *-trials n*: number of trials before reducing the temperature *-reduce factor*: reduce the temperature by this factor (between 0 and 1) *-initial-temp t*: initial temperature *-scale s*: scale of the function (order of magnitude of the values) *-estimate-scale y/n*: estimate the scale (only if *-scale* is not present) *-verbose y/n*: print detailed information on progress to the report file (1) or not (0) *-reportfile file*: opened file to print to (defaults to stdout)
 
-**•**
-: *-number-params n*: number of binary parameters (the solution space consists of lists of 1s and 0s). This is a required option.
 
-**•**
-: *-initial-values*: list of 1s and 0s constituting the start of the search. The other predefined options are identical to those of *findMinimum*.
+Any other options can be used via the getOption procedure in the body. The *findCombinatorialMinimum* command predefines the following options:
 
+- *-number-params n*: number of binary parameters (the solution space consists of lists of 1s and 0s). This is a required option.
+
+- *-initial-values*: list of 1s and 0s constituting the start of the search.
+
+
+The other predefined options are identical to those of *findMinimum*.
 
 # Tips
 
@@ -128,12 +126,12 @@ The procedure *findMinimum* works by constructing a temporary procedure that doe
 
 It is possible to optimise over a non-rectangular region, but some care must be taken:
 
-**•**
-: If the point is outside the region of interest, you can specify a very high value.
+- If the point is outside the region of interest, you can specify a very high value.
 
-**•**
-: This does mean that the automatic determination of a scale factor is out of the question - the high function values that force the point inside the region would distort the estimation. Here is an example of finding an optimum inside a circle:
+- This does mean that the automatic determination of a scale factor is out of the question - the high function values that force the point inside the region would distort the estimation.
 
+
+Here is an example of finding an optimum inside a circle:
 
 ```
     puts [::simulation::annealing::findMinimum  -trials 3000  -reduce 0.98  -parameters {x -5.0 5.0 y -5.0 5.0}  -code {
@@ -151,41 +149,36 @@ You can use the *-final* option to use a deterministic optimization method, once
 
 The *findCombinatorialMinimum* procedure is suited for situations where the parameters have the values 0 or 1 (and there can be many of them). Here is an example:
 
-**•**
-: We have a function that attains an absolute minimum if the first ten numbers are 1 and the rest is 0:
+- We have a function that attains an absolute minimum if the first ten numbers are 1 and the rest is 0:
 
-
-```
-proc cost {params} {
-    set cost 0
-    foreach p [lrange $params 0 9] {
-        if { $p == 0 } {
-            incr cost
+    ```
+    proc cost {params} {
+        set cost 0
+        foreach p [lrange $params 0 9] {
+            if { $p == 0 } {
+                incr cost
+            }
         }
-    }
-    foreach p [lrange $params 10 end] {
-        if { $p == 1 } {
-            incr cost
+        foreach p [lrange $params 10 end] {
+            if { $p == 1 } {
+                incr cost
+            }
         }
+        return $cost
     }
-    return $cost
-}
-```
+    ```
 
-**•**
-: We want to find the solution that gives this minimum for various lengths of the solution vector *params*:
+- We want to find the solution that gives this minimum for various lengths of the solution vector *params*:
 
+    ```
+    foreach n {100 1000 10000} {
+        break
+        puts "Problem size: $n"
+        puts [::simulation::annealing::findCombinatorialMinimum  -trials 300  -verbose 0  -number-params $n  -code {set result [cost $params]}]
+    }
+    ```
 
-```
-foreach n {100 1000 10000} {
-    break
-    puts "Problem size: $n"
-    puts [::simulation::annealing::findCombinatorialMinimum  -trials 300  -verbose 0  -number-params $n  -code {set result [cost $params]}]
-}
-```
-
-**•**
-: As the vector grows, the computation time increases, but the procedure will stop if some kind of equilibrium is reached. To achieve a useful solution you may want to try different values of the trials parameter for instance. Also ensure that the function to be minimized depends on all or most parameters - see the source code for a counter example and run that.
+- As the vector grows, the computation time increases, but the procedure will stop if some kind of equilibrium is reached. To achieve a useful solution you may want to try different values of the trials parameter for instance. Also ensure that the function to be minimized depends on all or most parameters - see the source code for a counter example and run that.
 
 
 # Category

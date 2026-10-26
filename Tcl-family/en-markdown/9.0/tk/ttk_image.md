@@ -1,5 +1,6 @@
 ---
 CommandName: ttk_image
+title: ttk_image
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -22,12 +23,12 @@ Copyright:
 
 # Name
 
-ttk_image - Define an element based on an image
+ttk\_image - Define an element based on an image
 
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [image]{.lit} [imageSpec]{.arg} [options]{.optarg} 
+[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [image]{.lit} [imageSpec]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -38,19 +39,19 @@ The *image* element factory creates a new element in the current theme whose vis
 
 Valid *options* are:
 
-**-border** *padding*
-: *padding* is a list of up to four integers, specifying the left, top, right, and bottom borders, respectively. If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. In other words, a list of three numbers specify the left, vertical, and right border; a list of two numbers specify the horizontal and the vertical border; a single number specifies the same border all the way around the element. See **IMAGE STRETCHING**, below.
+[-border]{.lit} [padding]{.arg}
+: *padding* is a list of up to four integers, specifying the left, top, right, and bottom borders, respectively. If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. In other words, a list of three numbers specify the left, vertical, and right border; a list of two numbers specify the horizontal and the vertical border; a single number specifies the same border all the way around the element. See [Image stretching], below.
 
-**-height** *height*
+[-height]{.lit} [height]{.arg}
 : Specifies a minimum height for the element. If negative, the base image's height is used as a default.
 
-**-padding** *padding*
+[-padding]{.lit} [padding]{.arg}
 : Specifies the element's interior padding. The padding is a list of up to four length specifications *left top right bottom*. If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. In other words, a list of three numbers specify the left, vertical, and right padding; a list of two numbers specify the horizontal and the vertical padding; a single number specifies the same padding all the way around the widget. Defaults to **-border** if not specified.
 
-**-sticky** *spec*
+[-sticky]{.lit} [spec]{.arg}
 : Specifies how the image is placed within the final parcel. *spec* contains zero or more characters "n", "s", "w", or "e".
 
-**-width** *width*
+[-width]{.lit} [width]{.arg}
 : Specifies a minimum width for the element. If negative, the base image's width is used as a default.
 
 

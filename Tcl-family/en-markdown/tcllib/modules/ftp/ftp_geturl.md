@@ -1,5 +1,6 @@
 ---
 CommandName: ftp::geturl
+title: ftp::geturl
 ManualSection: n
 Version: 0.2.3
 TclPart: tcllib
@@ -24,29 +25,31 @@ ftp::geturl - Uri handler for ftp urls
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [ftp::geturl]{.lit} [0.2.3]{.optlit} 
-[::ftp::geturl]{.cmd} [url]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [ftp::geturl]{.lit} [0.2.3]{.optlit}
+[::ftp::geturl]{.cmd} [url]{.arg}
 :::
 
 # Description
 
 This package provides a command which wraps around the client side of the *ftp* protocol provided by package **ftp** to allow the retrieval of urls using the *ftp* schema.
 
-# Api
+# API
 
 **::ftp::geturl** *url*
-: This command can be used by the generic command **::uri::geturl** (See package **uri**) to retrieve the contents of ftp urls. Internally it uses the commands of the package **ftp** to fulfill the request. The contents of a *ftp* url are defined as follows:
+: This command can be used by the generic command **::uri::geturl** (See package **uri**) to retrieve the contents of ftp urls. Internally it uses the commands of the package **ftp** to fulfill the request.
 
+    The contents of a *ftp* url are defined as follows:
 
-*file*
-: The contents of the specified file itself.
+    *file*
+    : The contents of the specified file itself.
 
-*directory*
-: A listing of the contents of the directory in key value notation where the file name is the key and its attributes the associated value.
+    *directory*
+    : A listing of the contents of the directory in key value notation where the file name is the key and its attributes the associated value.
 
-*link*
-: The attributes of the link, including the path it refers to.
+    *link*
+    : The attributes of the link, including the path it refers to.
+
 
 
 # Bugs, ideas, feedback

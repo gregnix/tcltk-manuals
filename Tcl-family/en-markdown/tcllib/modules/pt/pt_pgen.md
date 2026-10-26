@@ -1,5 +1,6 @@
 ---
 CommandName: pt::pgen
+title: pt::pgen
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -32,9 +33,9 @@ pt::pgen - Parser Generator
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::pgen]{.lit} [1.2]{.optlit} 
-[::pt::pgen]{.cmd} [inputformat]{.arg} [text]{.arg} [resultformat]{.arg} [options]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::pgen]{.lit} [1.2]{.optlit}
+[::pt::pgen]{.cmd} [inputformat]{.arg} [text]{.arg} [resultformat]{.arg} [options...]{.optarg}
 :::
 
 # Description
@@ -49,46 +50,47 @@ As such the intended audience of this document are people wishing to modify and/
 
 It resides in the User Package Layer of Parser Tools.
 
-IMAGE: arch_user_pkg
+IMAGE: arch\_user\_pkg
 
-# Api
+# API
 
 **::pt::pgen** *inputformat* *text* *resultformat* ?*options...*?
-: This command takes the parsing expression grammar in *text* (in the format specified by *inputformat*), and returns the same grammar in the format *resultformat* as the result of the command. The two known input formats are **peg** and **json**. Introductions to them, including their formal specifications, can be found in the *PEG Language Tutorial* and *The JSON Grammar Exchange Format*. The packages used to parse these formats are
+: This command takes the parsing expression grammar in *text* (in the format specified by *inputformat*), and returns the same grammar in the format *resultformat* as the result of the command.
+
+    The two known input formats are **peg** and **json**. Introductions to them, including their formal specifications, can be found in the *PEG Language Tutorial* and *The JSON Grammar Exchange Format*. The packages used to parse these formats are
+
+    **peg**
+    : [pt::peg::from::peg][pt_peg_from_peg]
+
+    **json**
+    : [pt::peg::from::json][pt_peg_from_json]
 
 
-**peg**
-: **pt::peg::from::peg**
+    On the output side the known formats, and the packages used to generate them are
 
-**json**
-: **pt::peg::from::json**
+    **c**
+    : [pt::peg::to::cparam][pt_peg_to_cparam]
 
+    **container**
+    : [pt::peg::to::container][pt_peg_to_container]
 
-On the output side the known formats, and the packages used to generate them are
+    **critcl**
+    : [pt::peg::to::cparam][pt_peg_to_cparam] + **pt::cparam::configuration::critcl**
 
-**c**
-: **pt::peg::to::cparam**
+    **json**
+    : [pt::peg::to::json][pt_peg_to_json]
 
-**container**
-: **pt::peg::to::container**
+    **oo**
+    : [pt::peg::to::tclparam][pt_peg_to_tclparam] + **pt::tclparam::configuration::tcloo**
 
-**critcl**
-: **pt::peg::to::cparam** + **pt::cparam::configuration::critcl**
+    **peg**
+    : [pt::peg::to::peg][pt_peg_to_peg]
 
-**json**
-: **pt::peg::to::json**
-
-**oo**
-: **pt::peg::to::tclparam** + **pt::tclparam::configuration::tcloo**
-
-**peg**
-: **pt::peg::to::peg**
-
-**snit**
-: **pt::peg::to::tclparam** + **pt::tclparam::configuration::snit**
+    **snit**
+    : [pt::peg::to::tclparam][pt_peg_to_tclparam] + **pt::tclparam::configuration::snit**
 
 
-: The options supported by each of these formats are documented with their respective packages.
+    The options supported by each of these formats are documented with their respective packages.
 
 
 # Example
@@ -213,3 +215,12 @@ Parsing and Grammars
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_from_json]: pt_peg_from_json.md
+[pt_peg_from_peg]: pt_peg_from_peg.md
+[pt_peg_to_container]: pt_peg_to_container.md
+[pt_peg_to_cparam]: pt_peg_to_cparam.md
+[pt_peg_to_json]: pt_peg_to_json.md
+[pt_peg_to_peg]: pt_peg_to_peg.md
+[pt_peg_to_tclparam]: pt_peg_to_tclparam.md

@@ -1,5 +1,6 @@
 ---
 CommandName: math::constants
+title: math::constants
 ManualSection: n
 Version: 1.0.4
 TclPart: tcllib
@@ -15,31 +16,31 @@ Copyright:
  - Copyright (c) 2004 Arjen Markus <arjenmarkus@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 math::constants – Mathematische und numerische Konstanten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [math::constants]{.lit} [1.0.4]{.optlit} 
-[::math::constants::constants]{.cmd} [args]{.arg} 
-[::math::constants::print-constants]{.cmd} [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.3]{.optlit}
+[package]{.cmd} [require]{.sub} [math::constants]{.lit} [1.0.4]{.optlit}
+[::math::constants::constants]{.cmd} [args]{.arg}
+[::math::constants::print-constants]{.cmd} [args]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket definiert einige gängige mathematische und numerische Konstanten. Durch die Verwendung des Pakets erhalten Sie einheitliche Werte für Zahlen wie Pi und ln(10).
 
 Es definiert zwei Befehle:
 
-**•**
-: einen zum Importieren der Konstanten
+- einen zum Importieren der Konstanten
 
-**•**
-: einen, der anzeigt, welche Konstanten definiert sind und welche Werte sie tatsächlich haben. Der Grund für dieses Paket liegt darin, dass Sie bei (mathematischen) Berechnungen häufig eine gute Näherung benötigen, beispielsweise für das Verhältnis von Grad zu Radiant. Sie können dies natürlich wie folgt definieren:
+- einen, der anzeigt, welche Konstanten definiert sind und welche Werte sie tatsächlich haben.
 
+
+Der Grund für dieses Paket liegt darin, dass Sie bei (mathematischen) Berechnungen häufig eine gute Näherung benötigen, beispielsweise für das Verhältnis von Grad zu Radiant. Sie können dies natürlich wie folgt definieren:
 
 ```
     variable radtodeg [expr {180.0/(4.0*atan(1.0))}]
@@ -49,12 +50,12 @@ und die Variable radtodeg verwenden, wann immer Sie die Umrechnung benötigen.
 
 Dies hat zwei Nachteile:
 
-**•**
-: Sie müssen sich die richtige Formel oder den richtigen Wert merken, und das birgt die Gefahr von Fehlern.
+- Sie müssen sich die richtige Formel oder den richtigen Wert merken, und das birgt die Gefahr von Fehlern.
 
-**•**
-: Insbesondere bei der Verwendung mathematischer Funktionen wie *atan* gehen Sie davon aus, dass diese korrekt implementiert wurden. Dies ist jedoch selten oder gar nicht der Fall, und je nach Plattform können geringfügige Unterschiede auftreten. So können Sie dies mit dem Paket *math::constants* umsetzen:
+- Insbesondere bei der Verwendung mathematischer Funktionen wie *atan* gehen Sie davon aus, dass diese korrekt implementiert wurden. Dies ist jedoch selten oder gar nicht der Fall, und je nach Plattform können geringfügige Unterschiede auftreten.
 
+
+So können Sie dies mit dem Paket *math::constants* umsetzen:
 
 ```
     package require math::constants
@@ -65,24 +66,22 @@ wodurch im aufrufenden Namespace zwei Variablen erstellt werden: radtodeg und (d
 
 Zu den definierten Konstanten (deren Werte größtenteils aus mathematischen Tabellen stammen, deren Genauigkeit die üblicherweise verarbeitbare Genauigkeit übersteigt) gehören:
 
-**•**
-: Grundkonstanten wie Pi, e, Gamma (Eulersche Konstante)
+- Grundkonstanten wie Pi, e, Gamma (Eulersche Konstante)
 
-**•**
-: abgeleitete Werte wie ln(10) und sqrt(2)
+- abgeleitete Werte wie ln(10) und sqrt(2)
 
-**•**
-: rein numerische Werte wie 1/3, die der Einfachheit halber und aufgrund der Tatsache aufgenommen wurden, dass bestimmte, scheinbar triviale Berechnungen wie:
+- rein numerische Werte wie 1/3, die der Einfachheit halber und aufgrund der Tatsache aufgenommen wurden, dass bestimmte, scheinbar triviale Berechnungen wie:
 
+    ```
+        set value [expr {3.0*$onethird}]
+    ```
 
-```
-    set value [expr {3.0*$onethird}]
-```
-
-: liefern *genau* den Wert, den Sie erwarten (sofern IEEE-Arithmetik verfügbar ist). Die vollständige Liste der benannten Konstanten finden Sie im Abschnitt **KONSTANTEN**.
+- liefern *genau* den Wert, den Sie erwarten (sofern IEEE-Arithmetik verfügbar ist).
 
 
-# PROZEDUREN
+Die vollständige Liste der benannten Konstanten finden Sie im Abschnitt [Konstanten].
+
+# Prozeduren
 
 Das Paket definiert die folgenden öffentlichen Prozeduren:
 
@@ -93,9 +92,9 @@ Das Paket definiert die folgenden öffentlichen Prozeduren:
 : Gibt die Konstanten, deren Namen als Argumente angegeben wurden, auf dem Bildschirm aus (Name, Wert und Beschreibung) oder, falls keine Argumente angegeben wurden, alle definierten Konstanten. Hierbei handelt es sich in erster Linie um eine Hilfsprozedur.
 
 
-# KONSTANTEN
+# Konstanten
 
-**pi**
+[pi][bigfloat]
 : Verhältnis von Kreisumfang zu Durchmesser
 
 **e**
@@ -144,7 +143,7 @@ Das Paket definiert die folgenden öffentlichen Prozeduren:
 : Die kleinste Zahl, für die gilt: 1+eps != 1
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *math :: constants* als Kategorie an.
 
@@ -152,12 +151,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2004 Arjen Markus <arjenmarkus@users.sourceforge.net>
 ```
+
+
+[bigfloat]: bigfloat.md

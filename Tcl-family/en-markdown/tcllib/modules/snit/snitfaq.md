@@ -1,5 +1,6 @@
 ---
 CommandName: snitfaq
+title: snitfaq
 ManualSection: n
 Version: 2.2
 TclPart: tcllib
@@ -43,61 +44,51 @@ Snit isn't about implementing thousands of nearly identical carefully-specified 
 
 Snit isn't a way of life, a silver bullet, or the Fountain of Youth. It's just a way of managing complexity--and of managing some of the complexity of managing complexity--so that you can concentrate on building your application.
 
-## What version of tcl does snit require?
+## What version of Tcl does snit require?
 
-Snit 1.3 requires Tcl 8.3 or later; Snit 2.2 requires Tcl 8.5 or later.  See **SNIT VERSIONS** for the differences between Snit 1.3 and Snit 2.2.
+Snit 1.3 requires Tcl 8.3 or later; Snit 2.2 requires Tcl 8.5 or later.  See [Snit versions] for the differences between Snit 1.3 and Snit 2.2.
 
-## Where can i download snit?
+## Where can I download snit?
 
-Snit is part of Tcllib, the standard Tcl library, so you might already have it.  It's also available at the Snit Home Page, *http://www.wjduquette.com/snit*.
+Snit is part of Tcllib, the standard Tcl library, so you might already have it.  It's also available at the Snit Home Page, <http://www.wjduquette.com/snit>.
 
 ## What are snit's goals?
 
-**•**
-: A Snit object should be at least as efficient as a hand-coded Tcl object (see *http://www.wjduquette.com/tcl/objects.html*).
+- A Snit object should be at least as efficient as a hand-coded Tcl object (see <http://www.wjduquette.com/tcl/objects.html>).
 
-**•**
-: The fact that Snit was used in an object's implementation should be transparent (and irrelevant) to clients of that object.
+- The fact that Snit was used in an object's implementation should be transparent (and irrelevant) to clients of that object.
 
-**•**
-: Snit should be able to encapsulate objects from other sources, particularly Tk widgets.
+- Snit should be able to encapsulate objects from other sources, particularly Tk widgets.
 
-**•**
-: Snit megawidgets should be (to the extent possible) indistinguishable in interface from Tk widgets.
+- Snit megawidgets should be (to the extent possible) indistinguishable in interface from Tk widgets.
 
-**•**
-: Snit should be Tclish--that is, rather than trying to emulate C++, Smalltalk, or anything else, it should try to emulate Tcl itself.
+- Snit should be Tclish--that is, rather than trying to emulate C++, Smalltalk, or anything else, it should try to emulate Tcl itself.
 
-**•**
-: It should have a simple, easy-to-use, easy-to-remember syntax.
+- It should have a simple, easy-to-use, easy-to-remember syntax.
 
 
 ## How is snit different from other oo frameworks?
 
 Snit is unique among Tcl object systems in that it is based not on inheritance but on delegation.  Object systems based on inheritance only allow you to inherit from classes defined using the same system, and that's a shame.  In Tcl, an object is anything that acts like an object; it shouldn't matter how the object was implemented.  I designed Snit to help me build applications out of the materials at hand; thus, Snit is designed to be able to incorporate and build on any object, whether it's a hand-coded object, a Tk widget, an Incr Tcl object, a BWidget or almost anything else.
 
-Note that you can achieve the effect of inheritance using **COMPONENTS** and **DELEGATION**--and you can inherit from anything that looks like a Tcl object.
+Note that you can achieve the effect of inheritance using [Components] and [Delegation]--and you can inherit from anything that looks like a Tcl object.
 
-## What can i do with snit?
+## What can I do with snit?
 
 Using Snit, a programmer can:
 
-**•**
-: Create abstract data types and Tk megawidgets.
+- Create abstract data types and Tk megawidgets.
 
-**•**
-: Define instance variables, type variables, and Tk-style options.
+- Define instance variables, type variables, and Tk-style options.
 
-**•**
-: Define constructors, destructors, instance methods, type methods, procs.
+- Define constructors, destructors, instance methods, type methods, procs.
 
-**•**
-: Assemble a type out of component types.  Instance methods and options can be delegated to the component types automatically.
+- Assemble a type out of component types.  Instance methods and options can be delegated to the component types automatically.
 
 
 # Snit versions
 
-## Which version of snit should i use?
+## Which version of snit should I use?
 
 The current Snit distribution includes two versions, Snit 1.3 and Snit 2.2.  The reason that both are included is that Snit 2.2 takes advantage of a number of new features of Tcl 8.5 to improve run-time efficiency; as a side-effect, the ugliness of Snit's error messages and stack traces has been reduced considerably.  The cost of using Snit 2.2, of course, is that you must target Tcl 8.5.
 
@@ -105,7 +96,7 @@ Snit 1.3, on the other hand, lacks Snit 2.2's optimizations, but requires only T
 
 In short, if you're targetting Tcl 8.3 or 8.4 you should use Snit 1.3.  If you can afford to target Tcl 8.5, you should definitely use Snit 2.2. If you will be targetting both, you can use Snit 1.3 exclusively, or (if your code is unaffected by the minor incompatibilities between the two versions) you can use Snit 1.3 for Tcl 8.4 and Snit 2.2 for Tcl 8.5.
 
-## How do i select the version of snit i want to use?
+## How do I select the version of snit I want to use?
 
 To always use Snit 1.3 (or a later version of Snit 1.x), invoke Snit as follows:
 
@@ -135,72 +126,77 @@ To the extent possible, Snit 2.2 is intended to be a drop-in replacement for Sni
 
 There are four specific incompatibilities between Snit 1.3 and Snit 2.2.
 
-**•**
-: Snit 1.3 supports implicit naming of objects.  Suppose you define a new **snit::type** called **dog**.  You can create instances of **dog** in three ways:
+- Snit 1.3 supports implicit naming of objects.  Suppose you define a new [snit::type][snit] called **dog**.  You can create instances of **dog** in three ways:
 
+    ```
+    dog spot               ;# Explicit naming
+    set obj1 [dog %AUTO%]  ;# Automatic naming
+    set obj2 [dog]         ;# Implicit naming
+    ```
 
-```
-dog spot               ;# Explicit naming
-set obj1 [dog %AUTO%]  ;# Automatic naming
-set obj2 [dog]         ;# Implicit naming
-```
+- In Snit 2.2, type commands are defined using the **namespace ensemble** mechanism; and **namespace ensemble** doesn't allow an ensemble command to be called without a subcommand.  In short, using **namespace ensemble** there's no way to support implicit naming.
 
-: In Snit 2.2, type commands are defined using the **namespace ensemble** mechanism; and **namespace ensemble** doesn't allow an ensemble command to be called without a subcommand.  In short, using **namespace ensemble** there's no way to support implicit naming. All is not lost, however.  If the type has no type methods, then the type command is a simple command rather than an ensemble, and **namespace ensemble** is not used.  In this case, implicit naming is still possible. In short, you can have implicit naming if you're willing to do without type methods (including the standard type methods, like **\$type info**).  To do so, use the **-hastypemethods** pragma:
+    All is not lost, however.  If the type has no type methods, then the type command is a simple command rather than an ensemble, and **namespace ensemble** is not used.  In this case, implicit naming is still possible.
 
+    In short, you can have implicit naming if you're willing to do without type methods (including the standard type methods, like **$type info**).  To do so, use the **-hastypemethods** pragma:
 
-```
-pragma -hastypemethods 0
-```
+    ```
+    pragma -hastypemethods 0
+    ```
 
-**•**
-: Hierarchical methods and type methods are implemented differently in Snit 2.2. A hierarchical method is an instance method which has subcommands; these subcommands are themselves methods.  The Tk text widget's **tag** command and its subcommands are examples of hierarchical methods.  You can implement such subcommands in Snit simply by including multiple words in the method names:
+- Hierarchical methods and type methods are implemented differently in Snit 2.2.
 
+    A hierarchical method is an instance method which has subcommands; these subcommands are themselves methods.  The Tk text widget's **tag** command and its subcommands are examples of hierarchical methods.  You can implement such subcommands in Snit simply by including multiple words in the method names:
 
-```
-method {tag configure} {tag args} { ... }
+    ```
+    method {tag configure} {tag args} { ... }
 
-method {tag cget} {tag option} {...}
-```
+    method {tag cget} {tag option} {...}
+    ```
 
-: Here we've implicitly defined a **tag** method which has two subcommands, **configure** and **cget**. In Snit 1.3, hierarchical methods could be called in two ways:
+- Here we've implicitly defined a **tag** method which has two subcommands, **configure** and **cget**.
 
+    In Snit 1.3, hierarchical methods could be called in two ways:
 
-```
-$obj tag cget -myoption      ;# The good way
-$obj {tag cget} -myoption    ;# The weird way
-```
+    ```
+    $obj tag cget -myoption      ;# The good way
+    $obj {tag cget} -myoption    ;# The weird way
+    ```
 
-: In the second call, we see that a hierarchical method or type method is simply one whose name contains multiple words. In Snit 2.2 this is no longer the case, and the "weird" way of calling hierarchical methods and type methods no longer works.
+- In the second call, we see that a hierarchical method or type method is simply one whose name contains multiple words.
 
-**•**
-: The third incompatibility derives from the second.  In Snit 1.3, hierarchical methods were also simply methods whose name contains multiple words.  As a result, **\$obj info methods** returned the full names of all hierarchical methods.  In the example above, the list returned by **\$obj info methods** would include **tag configure** and **tag cget** but not **tag**, since **tag** is defined only implicitly. In Snit 2.2, hierarchical methods and type methods are no longer simply ones whose name contains multiple words; in the above example, the list returned by **\$obj info methods** would include **tag** but not **tag configure** or **tag cget**.
+    In Snit 2.2 this is no longer the case, and the "weird" way of calling hierarchical methods and type methods no longer works.
 
-**•**
-: The fourth incompatibility is due to a new feature.  Snit 2.2 uses the new **namespace path** command so that a type's code can call any command defined in the type's parent namespace without qualification or importation.  For example, suppose you have a package called **mypackage** which defines a number of commands including a type, **::mypackage::mytype**.  Thanks to **namespace path**, the type's code can call any of the other commands defined in **::mypackage::**. This is extremely convenient.  However, it also means that commands defined in the parent namespace, **::mypackage::** can block the type's access to identically named commands in the global namespace. This can lead to bugs.  For example, Tcllib includes a type called **::tie::std::file**.  This type's code calls the standard **file** command.  When run with Snit 2.2, the code broke-- the type's command, **::tie::std::file**, is itself a command in the type's parent namespace, and so instead of calling the standard **file** command, the type found itself calling itself.
+- The third incompatibility derives from the second.  In Snit 1.3, hierarchical methods were also simply methods whose name contains multiple words.  As a result, **$obj info methods** returned the full names of all hierarchical methods.  In the example above, the list returned by **$obj info methods** would include **tag configure** and **tag cget** but not **tag**, since **tag** is defined only implicitly.
+
+    In Snit 2.2, hierarchical methods and type methods are no longer simply ones whose name contains multiple words; in the above example, the list returned by **$obj info methods** would include **tag** but not **tag configure** or **tag cget**.
+
+- The fourth incompatibility is due to a new feature.  Snit 2.2 uses the new **namespace path** command so that a type's code can call any command defined in the type's parent namespace without qualification or importation.  For example, suppose you have a package called **mypackage** which defines a number of commands including a type, **::mypackage::mytype**.  Thanks to **namespace path**, the type's code can call any of the other commands defined in **::mypackage::**.
+
+    This is extremely convenient.  However, it also means that commands defined in the parent namespace, **::mypackage::** can block the type's access to identically named commands in the global namespace. This can lead to bugs.  For example, Tcllib includes a type called **::tie::std::file**.  This type's code calls the standard **file** command.  When run with Snit 2.2, the code broke-- the type's command, **::tie::std::file**, is itself a command in the type's parent namespace, and so instead of calling the standard **file** command, the type found itself calling itself.
 
 
 ## Are there other differences between snit 1.x and snit 2.2?
 
 Yes.
 
-**•**
-: Method dispatch is considerably faster.
+- Method dispatch is considerably faster.
 
-**•**
-: Many error messages and stack traces are cleaner.
+- Many error messages and stack traces are cleaner.
 
-**•**
-: The **-simpledispatch** pragma is obsolete, and ignored if present. In Snit 1.x, **-simpledispatch** substitutes a faster mechanism for method dispatch, at the cost of losing certain features. Snit 2.2 method dispatch is faster still in all cases, so **-simpledispatch** is no longer needed.
+- The **-simpledispatch** pragma is obsolete, and ignored if present. In Snit 1.x, **-simpledispatch** substitutes a faster mechanism for method dispatch, at the cost of losing certain features. Snit 2.2 method dispatch is faster still in all cases, so **-simpledispatch** is no longer needed.
 
-**•**
-: In Snit 2.2, a type's code (methods, type methods, etc.) can call commands from the type's parent namespace without qualifying or importing them, i.e., type **::parentns::mytype**'s code can call **::parentns::someproc** as just **someproc**. This is extremely useful when a type is defined as part of a larger package, and shares a parent namespace with the rest of the package; it means that the type can call other commands defined by the package without any extra work. This feature depends on the new Tcl 8.5 **namespace path** command, which is why it hasn't been implemented for V1.x.  V1.x code can achieve something similar by placing
+- In Snit 2.2, a type's code (methods, type methods, etc.) can call commands from the type's parent namespace without qualifying or importing them, i.e., type **::parentns::mytype**'s code can call **::parentns::someproc** as just **someproc**.
 
+    This is extremely useful when a type is defined as part of a larger package, and shares a parent namespace with the rest of the package; it means that the type can call other commands defined by the package without any extra work.
 
-```
-namespace import [namespace parent]::*
-```
+    This feature depends on the new Tcl 8.5 **namespace path** command, which is why it hasn't been implemented for V1.x.  V1.x code can achieve something similar by placing
 
-: in a type constructor.  This is less useful, however, as it picks up only those commands which have already been exported by the parent namespace at the time the type is defined.
+    ```
+    namespace import [namespace parent]::*
+    ```
+
+- in a type constructor.  This is less useful, however, as it picks up only those commands which have already been exported by the parent namespace at the time the type is defined.
 
 
 # Objects
@@ -213,7 +209,7 @@ A Tk widget is an object; it is represented by a Tcl command. The object's metho
 
 ## What is an abstract data type?
 
-In computer science terms, an abstract data type is a complex data structure along with a set of operations--a stack, a queue, a binary tree, etc--that is to say, in modern terms, an object.  In systems that include some form of inheritance the word *class* is usually used instead of *abstract data type*, but as Snit doesn't implement inheritance as it's ordinarily understood the older term seems more appropriate.  Sometimes this is called *object-based* programming as opposed to object-oriented programming.  Note that you can easily create the effect of inheritance using **COMPONENTS** and **DELEGATION**.
+In computer science terms, an abstract data type is a complex data structure along with a set of operations--a stack, a queue, a binary tree, etc--that is to say, in modern terms, an object.  In systems that include some form of inheritance the word *class* is usually used instead of *abstract data type*, but as Snit doesn't implement inheritance as it's ordinarily understood the older term seems more appropriate.  Sometimes this is called *object-based* programming as opposed to object-oriented programming.  Note that you can easily create the effect of inheritance using [Components] and [Delegation].
 
 In Snit, as in Tk, a *type* is a command that creates instances -- objects -- which belong to the type.  Most types define some number of *options* which can be set at creation time, and usually can be changed later.
 
@@ -227,25 +223,22 @@ Further, an *instance* is also a Tcl command--a command that gives access to the
 
 In this example, **text** is the *type* command and **.mytext** is the *instance* command.
 
-In Snit, object subcommands are generally called **INSTANCE METHODS**.
+In Snit, object subcommands are generally called [Instance methods].
 
 ## What kinds of abstract data types does snit provide?
 
 Snit allows you to define three kinds of abstract data type:
 
-**•**
-: **snit::type**
+- [snit::type][snit]
 
-**•**
-: **snit::widget**
+- [snit::widget][snit]
 
-**•**
-: **snit::widgetadaptor**
+- [snit::widgetadaptor][snit]
 
 
 ## What is a snit::type?
 
-A **snit::type** is a non-GUI abstract data type, e.g., a stack or a queue.  **snit::type**s are defined using the **snit::type** command.  For example, if you were designing a kennel management system for a dog breeder, you'd need a dog type.
+A [snit::type][snit] is a non-GUI abstract data type, e.g., a stack or a queue.  [snit::type][snit]s are defined using the [snit::type][snit] command.  For example, if you were designing a kennel management system for a dog breeder, you'd need a dog type.
 
 ```
 % snit::type dog {
@@ -257,19 +250,19 @@ A **snit::type** is a non-GUI abstract data type, e.g., a stack or a queue.  **s
 
 This definition defines a new command (**::dog**, in this case) that can be used to define dog objects.
 
-An instance of a **snit::type** can have **INSTANCE METHODS**, **INSTANCE VARIABLES**, **OPTIONS**, and **COMPONENTS**. The type itself can have **TYPE METHODS**, **TYPE VARIABLES**, **TYPE COMPONENTS**, and **PROCS**.
+An instance of a [snit::type][snit] can have [Instance methods], [Instance variables], [Options], and [Components]. The type itself can have [Type methods], [Type variables], [Type components], and [Procs].
 
 ## What is a snit::widget?, the short story
 
-A **snit::widget** is a Tk megawidget built using Snit; it is very similar to a **snit::type**.  See **WIDGETS**.
+A [snit::widget][snit] is a Tk megawidget built using Snit; it is very similar to a [snit::type][snit].  See [Widgets].
 
 ## What is a snit::widgetadaptor?, the short story
 
-A **snit::widgetadaptor** uses Snit to wrap an existing widget type (e.g., a Tk label), modifying its interface to a lesser or greater extent.  It is very similar to a **snit::widget**. See **WIDGET ADAPTORS**.
+A [snit::widgetadaptor][snit] uses Snit to wrap an existing widget type (e.g., a Tk label), modifying its interface to a lesser or greater extent.  It is very similar to a [snit::widget][snit]. See [Widget adaptors].
 
-## How do i create an instance of a snit::type?
+## How do I create an instance of a snit::type?
 
-You create an instance of a **snit::type** by passing the new instance's name to the type's create method.  In the following example, we create a **dog** object called **spot**.
+You create an instance of a [snit::type][snit] by passing the new instance's name to the type's create method.  In the following example, we create a **dog** object called **spot**.
 
 ```
 % snit::type dog {
@@ -281,7 +274,7 @@ You create an instance of a **snit::type** by passing the new instance's name to
 %
 ```
 
-In general, the **create** method name can be omitted so long as the instance name doesn't conflict with any defined **TYPE METHODS**. (See **TYPE COMPONENTS** for the special case in which this doesn't work.) So the following example is identical to the previous example:
+In general, the **create** method name can be omitted so long as the instance name doesn't conflict with any defined [Type methods]. (See [Type components] for the special case in which this doesn't work.) So the following example is identical to the previous example:
 
 ```
 % snit::type dog {
@@ -295,7 +288,7 @@ In general, the **create** method name can be omitted so long as the instance na
 
 This document generally uses the shorter form.
 
-If the **dog** type defines **OPTIONS**, these can usually be given defaults at creation time:
+If the **dog** type defines [Options], these can usually be given defaults at creation time:
 
 ```
 % snit::type dog {
@@ -322,7 +315,7 @@ Once created, the instance name now names a new Tcl command that is used to mani
 %
 ```
 
-## How do i refer to an object indirectly?
+## How do I refer to an object indirectly?
 
 Some programmers prefer to save the object name in a variable, and reference it that way.  For example,
 
@@ -340,7 +333,7 @@ dalmation
 
 If you prefer this style, you might prefer to have Snit generate the instance's name automatically.
 
-## How can i generate the object name automatically?
+## How can I generate the object name automatically?
 
 If you'd like Snit to generate an object name for you, use the **%AUTO%** keyword as the requested name:
 
@@ -368,7 +361,7 @@ The **%AUTO%** keyword can be embedded in a longer string:
 
 Tcl's **rename** command renames other commands.  It's a common technique in Tcl to modify an existing command by renaming it and defining a new command with the original name; the new command usually calls the renamed command.
 
-**snit::type** commands, however, should never be renamed; to do so breaks the connection between the type and its objects.
+[snit::type][snit] commands, however, should never be renamed; to do so breaks the connection between the type and its objects.
 
 ## Can objects be renamed?
 
@@ -376,43 +369,36 @@ Tcl's **rename** command renames other commands.  It's a common technique in Tcl
 
 All Snit objects (including *widgets* and *widgetadaptors*) can be renamed, though this flexibility has some consequences:
 
-**•**
-: In an instance method, the implicit argument **self** will always contain the object's current name, so instance methods can always call other instance methods using **\$self**.
+- In an instance method, the implicit argument **self** will always contain the object's current name, so instance methods can always call other instance methods using **$self**.
 
-**•**
-: If the object is renamed, however, then **\$self**'s value will change. Therefore, don't use **\$self** for anything that will break if **\$self** changes. For example, don't pass a callback command to another object like this:
+- If the object is renamed, however, then **$self**'s value will change. Therefore, don't use **$self** for anything that will break if **$self** changes. For example, don't pass a callback command to another object like this:
 
+    ```
+        .btn configure -command [list $self ButtonPress]
+    ```
 
-```
-    .btn configure -command [list $self ButtonPress]
-```
+- You'll get an error if **.btn** calls your command after your object is renamed.
 
-: You'll get an error if **.btn** calls your command after your object is renamed.
+- Instead, your object should define its callback command like this:
 
-**•**
-: Instead, your object should define its callback command like this:
+    ```
+        .btn configure -command [mymethod ButtonPress]
+    ```
 
+- The [mymethod][snit] command returns code that will call the desired method safely; the caller of the callback can add additional arguments to the end of the command as usual.
 
-```
-    .btn configure -command [mymethod ButtonPress]
-```
+- Every object has a private namespace; the name of this namespace is available in method bodies, etc., as the value of the implicit argument **selfns**.  This value is constant for the life of the object.  Use **$selfns** instead of **$self** if you need a unique token to identify the object.
 
-: The **mymethod** command returns code that will call the desired method safely; the caller of the callback can add additional arguments to the end of the command as usual.
-
-**•**
-: Every object has a private namespace; the name of this namespace is available in method bodies, etc., as the value of the implicit argument **selfns**.  This value is constant for the life of the object.  Use **\$selfns** instead of **\$self** if you need a unique token to identify the object.
-
-**•**
-: When a **snit::widget**'s instance command is renamed, its Tk window name remains the same -- and is still extremely important. Consequently, the Tk window name is available in method bodies as the value of the implicit argument **win**. This value is constant for the life of the object.  When creating child windows, it's best to use **\$win.child** rather than **\$self.child** as the name of the child window.
+- When a [snit::widget][snit]'s instance command is renamed, its Tk window name remains the same -- and is still extremely important. Consequently, the Tk window name is available in method bodies as the value of the implicit argument **win**. This value is constant for the life of the object.  When creating child windows, it's best to use **$win.child** rather than **$self.child** as the name of the child window.
 
 
-## How do i destroy a snit object?
+## How do I destroy a snit object?
 
 Any Snit object of any type can be destroyed by renaming it to the empty string using the Tcl **rename** command.
 
-Snit megawidgets (i.e., instances of **snit::widget** and **snit::widgetadaptor**) can be destroyed like any other widget: by using the Tk **destroy** command on the widget or on one of its ancestors in the window hierarchy.
+Snit megawidgets (i.e., instances of [snit::widget][snit] and [snit::widgetadaptor][snit]) can be destroyed like any other widget: by using the Tk **destroy** command on the widget or on one of its ancestors in the window hierarchy.
 
-Every instance of a **snit::type** has a **destroy** method:
+Every instance of a [snit::type][snit] has a **destroy** method:
 
 ```
 % snit::type dog { ... }
@@ -450,7 +436,7 @@ invalid command name "dog"
 
 An instance method is a procedure associated with a specific object and called as a subcommand of the object's command.  It is given free access to all of the object's type variables, instance variables, and so forth.
 
-## How do i define an instance method?
+## How do I define an instance method?
 
 Instance methods are defined in the type definition using the **method** statement.  Consider the following code that might be used to add dogs to a computer simulation:
 
@@ -470,7 +456,7 @@ Instance methods are defined in the type definition using the **method** stateme
 
 A dog can bark, and it can chase things.
 
-The **method** statement looks just like a normal Tcl **proc**, except that it appears in a **snit::type** definition.  Notice that every instance method gets an implicit argument called **self**; this argument contains the object's name.  (There's more on implicit method arguments below.)
+The **method** statement looks just like a normal Tcl [proc][snit], except that it appears in a [snit::type][snit] definition.  Notice that every instance method gets an implicit argument called **self**; this argument contains the object's name.  (There's more on implicit method arguments below.)
 
 ## How does a client call an instance method?
 
@@ -520,7 +506,7 @@ Not really, so long as you avoid the standard instance method names: **configure
 
 An object's methods are subcommands of the object's instance command. Hierarchical methods allow an object's methods to have subcommands of their own; and these can in turn have subcommands, and so on.  This allows the programmer to define a tree-shaped command structure, such as is used by many of the Tk widgets--the subcommands of the Tk **text** widget's **tag** method are hierarchical methods.
 
-## How do i define a hierarchical method?
+## How do I define a hierarchical method?
 
 Define methods whose names consist of multiple words.  These words define the hierarchy implicitly.  For example, the following code defines a **tag** method with subcommands **cget** and **configure**:
 
@@ -534,7 +520,7 @@ snit::widget mytext {
 
 Note that there is no explicit definition for the **tag** method; it is implicit in the definition of **tag configure** and **tag cget**.  If you tried to define **tag** explicitly in this example, you'd get an error.
 
-## How do i call hierarchical methods?
+## How do I call hierarchical methods?
 
 As subcommands of subcommands.
 
@@ -547,7 +533,7 @@ red
 %
 ```
 
-## How do i make an instance method private?
+## How do I make an instance method private?
 
 It's often useful to define private methods, that is, instance methods intended to be called only by other methods of the same object.
 
@@ -576,7 +562,7 @@ For example, suppose our simulated dogs only bark in response to other stimuli; 
 
 ## Are there any limitations on instance method arguments?
 
-Method argument lists are defined just like normal Tcl **proc** argument lists; in particular, they can include arguments with default values and the **args** argument.
+Method argument lists are defined just like normal Tcl [proc][snit] argument lists; in particular, they can include arguments with default values and the **args** argument.
 
 However, every method also has a number of implicit arguments provided by Snit in addition to those explicitly defined.  The names of these implicit arguments may not used to name explicit arguments.
 
@@ -584,7 +570,7 @@ However, every method also has a number of implicit arguments provided by Snit i
 
 The arguments implicitly passed to every method are **type**, **selfns**, **win**, and **self**.
 
-## What is \$type?
+## What is $type?
 
 The implicit argument **type** contains the fully qualified name of the object's type:
 
@@ -602,11 +588,11 @@ The implicit argument **type** contains the fully qualified name of the object's
 %
 ```
 
-## What is \$self?
+## What is $self?
 
 The implicit argument **self** contains the object's fully qualified name.
 
-If the object's command is renamed, then **\$self** will change to match in subsequent calls.  Thus, your code should not assume that **\$self** is constant unless you know for sure that the object will never be renamed.
+If the object's command is renamed, then **$self** will change to match in subsequent calls.  Thus, your code should not assume that **$self** is constant unless you know for sure that the object will never be renamed.
 
 ```
 % snit::type thing {
@@ -625,9 +611,9 @@ If the object's command is renamed, then **\$self** will change to match in subs
 %
 ```
 
-## What is \$selfns?
+## What is $selfns?
 
-Each Snit object has a private namespace in which to store its **INSTANCE VARIABLES** and **OPTIONS**.  The implicit argument **selfns** contains the name of this namespace; its value never changes, and is constant for the life of the object, even if the object's name changes:
+Each Snit object has a private namespace in which to store its [Instance variables] and [Options].  The implicit argument **selfns** contains the name of this namespace; its value never changes, and is constant for the life of the object, even if the object's name changes:
 
 ```
 % snit::type thing {
@@ -648,15 +634,15 @@ Each Snit object has a private namespace in which to store its **INSTANCE VARIAB
 
 The above example reveals how Snit names an instance's private namespace; however, you should not write code that depends on the specific naming convention, as it might change in future releases.
 
-## What is \$win?
+## What is $win?
 
-The implicit argument **win** is defined for all Snit methods, though it really makes sense only for those of **WIDGETS** and **WIDGET ADAPTORS**.  **\$win** is simply the original name of the object, whether it's been renamed or not. For widgets and widgetadaptors, it is also therefore the name of a Tk window.
+The implicit argument **win** is defined for all Snit methods, though it really makes sense only for those of [Widgets] and [Widget adaptors].  **$win** is simply the original name of the object, whether it's been renamed or not. For widgets and widgetadaptors, it is also therefore the name of a Tk window.
 
-When a **snit::widgetadaptor** is used to modify the interface of a widget or megawidget, it must rename the widget's original command and replace it with its own.
+When a [snit::widgetadaptor][snit] is used to modify the interface of a widget or megawidget, it must rename the widget's original command and replace it with its own.
 
-Thus, using **win** whenever the Tk window name is called for means that a **snit::widget** or **snit::widgetadaptor** can be adapted by a **snit::widgetadaptor**.  See **WIDGETS** for more information.
+Thus, using **win** whenever the Tk window name is called for means that a [snit::widget][snit] or [snit::widgetadaptor][snit] can be adapted by a [snit::widgetadaptor][snit].  See [Widgets] for more information.
 
-## How do i pass an instance method as a callback?
+## How do I pass an instance method as a callback?
 
 It depends on the context.
 
@@ -680,9 +666,9 @@ In typical Tcl style, we use a callback to hook two independent components toget
 %
 ```
 
-(Note that in this example, our **dog** becomes a **snit::widget**, because it has GUI behavior.  See **WIDGETS** for more.)  Thus, if we create a **dog** called **.spot**, it will create a Tk button called **.spot.barkbtn**; when pressed, the button will call **\$self bark**.
+(Note that in this example, our **dog** becomes a [snit::widget][snit], because it has GUI behavior.  See [Widgets] for more.)  Thus, if we create a **dog** called **.spot**, it will create a Tk button called **.spot.barkbtn**; when pressed, the button will call **$self bark**.
 
-Now, this will work--provided that **.spot** is never renamed to something else.  But surely renaming widgets is abnormal?  And so it is--unless **.spot** is the hull component of a **snit::widgetadaptor**.  If it is, then it will be renamed, and **.spot** will become the name of the **snit::widgetadaptor** object.  When the button is pressed, the command **\$self bark** will be handled by the **snit::widgetadaptor**, which might or might not do the right thing.
+Now, this will work--provided that **.spot** is never renamed to something else.  But surely renaming widgets is abnormal?  And so it is--unless **.spot** is the hull component of a [snit::widgetadaptor][snit].  If it is, then it will be renamed, and **.spot** will become the name of the [snit::widgetadaptor][snit] object.  When the button is pressed, the command **$self bark** will be handled by the [snit::widgetadaptor][snit], which might or might not do the right thing.
 
 There's a safer way to do it, and it looks like this:
 
@@ -698,13 +684,13 @@ There's a safer way to do it, and it looks like this:
 %
 ```
 
-The command **mymethod** takes any number of arguments, and can be used like **list** to build up a callback command; the only difference is that **mymethod** returns a form of the command that won't change even if the instance's name changes.
+The command [mymethod][snit] takes any number of arguments, and can be used like **list** to build up a callback command; the only difference is that [mymethod][snit] returns a form of the command that won't change even if the instance's name changes.
 
-On the other hand, you might prefer to allow a widgetadaptor to override a method such that your renamed widget will call the widgetadaptor's method instead of its own.  In this case, using **\[list \$self bark\]** will do what you want...but this is a technique which should be used only in carefully controlled circumstances.
+On the other hand, you might prefer to allow a widgetadaptor to override a method such that your renamed widget will call the widgetadaptor's method instead of its own.  In this case, using **\[list $self bark\]** will do what you want...but this is a technique which should be used only in carefully controlled circumstances.
 
-## How do i delegate instance methods to a component?
+## How do I delegate instance methods to a component?
 
-See **DELEGATION**.
+See [Delegation].
 
 # Instance variables
 
@@ -714,7 +700,7 @@ An instance variable is a private variable associated with some particular Snit 
 
 ## How is a scalar instance variable defined?
 
-Scalar instance variables are defined in the type definition using the **variable** statement.  You can simply name it, or you can initialize it with a value:
+Scalar instance variables are defined in the type definition using the [variable][snit] statement.  You can simply name it, or you can initialize it with a value:
 
 ```
 snit::type mytype {
@@ -725,7 +711,7 @@ snit::type mytype {
 
 ## How is an array instance variable defined?
 
-Array instance variables are also defined in the type definition using the **variable** command.  You can initialize them at the same time by specifying the **-array** option:
+Array instance variables are also defined in the type definition using the [variable][snit] command.  You can initialize them at the same time by specifying the **-array** option:
 
 ```
 snit::type mytype {
@@ -737,7 +723,7 @@ snit::type mytype {
 }
 ```
 
-## What happens if i don't initialize an instance variable?
+## What happens if I don't initialize an instance variable?
 
 Variables do not really exist until they are given values.  If you do not initialize a variable when you define it, then you must be sure to assign a value to it (in the constructor, say, or in some method) before you reference it.
 
@@ -751,7 +737,7 @@ Second, all names beginning with "Snit\_" are reserved for use by Snit internal 
 
 Third, instance variable names containing the namespace delimiter (**::**) are likely to cause great confusion.
 
-## Do i need to declare my instance variables in my methods?
+## Do I need to declare my instance variables in my methods?
 
 No. Once you've defined an instance variable in the type definition, it can be used in any instance code (instance methods, the constructor, and the destructor) without declaration.  This differs from normal Tcl practice, in which all non-local variables in a proc need to be declared.
 
@@ -785,11 +771,11 @@ snit::type dog {
 
 This allows you to ensure that only the required variables are included in each method, at the cost of longer code and run-time errors when you forget to declare a variable you need.
 
-## How do i pass an instance variable's name to another object?
+## How do I pass an instance variable's name to another object?
 
 In Tk, it's common to pass a widget a variable name; for example, Tk label widgets have a **-textvariable** option which names the variable which will contain the widget's text.  This allows the program to update the label's value just by assigning a new value to the variable.
 
-If you naively pass the instance variable name to the label widget, you'll be confused by the result; Tk will assume that the name names a global variable.  Instead, you need to provide a fully-qualified variable name.  From within an instance method or a constructor, you can fully qualify the variable's name using the **myvar** command:
+If you naively pass the instance variable name to the label widget, you'll be confused by the result; Tk will assume that the name names a global variable.  Instead, you need to provide a fully-qualified variable name.  From within an instance method or a constructor, you can fully qualify the variable's name using the [myvar][snit] command:
 
 ```
 snit::widget mywidget {
@@ -805,9 +791,9 @@ snit::widget mywidget {
 }
 ```
 
-## How do i make an instance variable public?
+## How do I make an instance variable public?
 
-Practically speaking, you don't.  Instead, you'll implement public variables as **OPTIONS**. Alternatively, you can write **INSTANCE METHODS** to set and get the variable's value.
+Practically speaking, you don't.  Instead, you'll implement public variables as [Options]. Alternatively, you can write [Instance methods] to set and get the variable's value.
 
 # Options
 
@@ -815,9 +801,9 @@ Practically speaking, you don't.  Instead, you'll implement public variables as 
 
 A type's options are the equivalent of what other object-oriented languages would call public member variables or properties: they are data values which can be retrieved and (usually) set by the clients of an object.
 
-Snit's implementation of options follows the Tk model fairly exactly, except that **snit::type** objects usually don't interact with **THE TK OPTION DATABASE**; **snit::widget** and **snit::widgetadaptor** objects, on the other hand, always do.
+Snit's implementation of options follows the Tk model fairly exactly, except that [snit::type][snit] objects usually don't interact with [The Tk option database]; [snit::widget][snit] and [snit::widgetadaptor][snit] objects, on the other hand, always do.
 
-## How do i define an option?
+## How do I define an option?
 
 Options are defined in the type definition using the **option** statement.  Consider the following type, to be used in an application that manages a list of dogs for a pet store:
 
@@ -843,7 +829,7 @@ snit::type dog {
 }
 ```
 
-If no **-default** value is specified, the option's default value will be the empty string (but see **THE TK OPTION DATABASE**).
+If no **-default** value is specified, the option's default value will be the empty string (but see [The Tk option database]).
 
 The Snit man page refers to options like these as "locally defined" options.
 
@@ -861,7 +847,7 @@ The normal convention is that the client may pass any number of options and thei
 
 So **::spot** is a pedigreed beagle; **::fido** is a typical mutt, but his owners evidently take care of him, because he's had his shots.
 
-*Note:* If the type defines a constructor, it can specify a different object-creation syntax.  See **CONSTRUCTORS** for more information.
+*Note:* If the type defines a constructor, it can specify a different object-creation syntax.  See [Constructors] for more information.
 
 ## How can a client retrieve an option's value?
 
@@ -948,9 +934,9 @@ Alternatively, Snit provides a built-in array instance variable called **options
     }
 ```
 
-As you can see, using the **options** variable involves considerably less typing and is the usual way to do it.  But if you use **-configuremethod** or **-cgetmethod** (described in the following answers), you might wish to use the **configure** and **cget** methods anyway, just so that any special processing you've implemented is sure to get done.  Also, if the option is delegated to a component then **configure** and **cget** are the only way to access it without accessing the component directly.  See **DELEGATION** for more information.
+As you can see, using the **options** variable involves considerably less typing and is the usual way to do it.  But if you use **-configuremethod** or **-cgetmethod** (described in the following answers), you might wish to use the **configure** and **cget** methods anyway, just so that any special processing you've implemented is sure to get done.  Also, if the option is delegated to a component then **configure** and **cget** are the only way to access it without accessing the component directly.  See [Delegation] for more information.
 
-## How can i make an option read-only?
+## How can I make an option read-only?
 
 Define the option with **-readonly yes**.
 
@@ -970,7 +956,7 @@ option -breed can only be set at instance creation
 %
 ```
 
-## How can i catch accesses to an option's value?
+## How can I catch accesses to an option's value?
 
 Define a **-cgetmethod** for the option.
 
@@ -992,7 +978,7 @@ snit::type dog {
 
 Any instance method can be used, provided that it takes one argument, the name of the option whose value is to be retrieved.
 
-## How can i catch changes to an option's value?
+## How can I catch changes to an option's value?
 
 Define a **-configuremethod** for the option.
 
@@ -1016,7 +1002,7 @@ Any instance method can be used, provided that it takes two arguments, the name 
 
 Note that if your method doesn't store the value in the **options** array, the **options** array won't get updated.
 
-## How can i validate an option's value?
+## How can I validate an option's value?
 
 Define a **-validatemethod**.
 
@@ -1056,7 +1042,7 @@ A type variable is a private variable associated with a Snit type rather than wi
 
 ## How is a scalar type variable defined?
 
-Scalar type variables are defined in the type definition using the **typevariable** statement.  You can simply name it, or you can initialize it with a value:
+Scalar type variables are defined in the type definition using the [typevariable][snit] statement.  You can simply name it, or you can initialize it with a value:
 
 ```
 snit::type mytype {
@@ -1069,7 +1055,7 @@ Every object of type **mytype** now has access to a single variable called **gre
 
 ## How is an array-valued type variable defined?
 
-Array-valued type variables are also defined using the **typevariable** command; to initialize them, include the **-array** option:
+Array-valued type variables are also defined using the [typevariable][snit] command; to initialize them, include the **-array** option:
 
 ```
 snit::type mytype {
@@ -1081,25 +1067,25 @@ snit::type mytype {
 }
 ```
 
-## What happens if i don't initialize a type variable?
+## What happens if I don't initialize a type variable?
 
 Variables do not really exist until they are given values.  If you do not initialize a variable when you define it, then you must be sure to assign a value to it (in the type constructor, say) before you reference it.
 
 ## Are there any limitations on type variable names?
 
-Type variable names have the same restrictions as the names of **INSTANCE VARIABLES** do.
+Type variable names have the same restrictions as the names of [Instance variables] do.
 
-## Do i need to declare my type variables in my methods?
+## Do I need to declare my type variables in my methods?
 
-No. Once you've defined a type variable in the type definition, it can be used in **INSTANCE METHODS** or **TYPE METHODS** without declaration.  This differs from normal Tcl practice, in which all non-local variables in a proc need to be declared.
+No. Once you've defined a type variable in the type definition, it can be used in [Instance methods] or [Type methods] without declaration.  This differs from normal Tcl practice, in which all non-local variables in a proc need to be declared.
 
-Type variables are subject to the same speed/readability tradeoffs as instance variables; see **Do I need to declare my instance variables in my methods?**
+Type variables are subject to the same speed/readability tradeoffs as instance variables; see [Do I need to declare my instance variables in my methods?]
 
-## How do i pass a type variable's name to another object?
+## How do I pass a type variable's name to another object?
 
 In Tk, it's common to pass a widget a variable name; for example, Tk label widgets have a **-textvariable** option which names the variable which will contain the widget's text.  This allows the program to update the label's value just by assigning a new value to the variable.
 
-If you naively pass a type variable name to the label widget, you'll be confused by the result; Tk will assume that the name names a global variable.  Instead, you need to provide a fully-qualified variable name.  From within an instance method or a constructor, you can fully qualify the type variable's name using the **mytypevar** command:
+If you naively pass a type variable name to the label widget, you'll be confused by the result; Tk will assume that the name names a global variable.  Instead, you need to provide a fully-qualified variable name.  From within an instance method or a constructor, you can fully qualify the type variable's name using the [mytypevar][snit] command:
 
 ```
 snit::widget mywidget {
@@ -1115,9 +1101,9 @@ snit::widget mywidget {
 }
 ```
 
-## How do i make a type variable public?
+## How do I make a type variable public?
 
-There are two ways to do this.  The preferred way is to write a pair of **TYPE METHODS** to set and query the type variable's value.
+There are two ways to do this.  The preferred way is to write a pair of [Type methods] to set and query the type variable's value.
 
 Type variables are stored in the type's namespace, which has the same name as the type itself.  Thus, you can also publicize the type variable's name in your documentation so that clients can access it directly.  For example,
 
@@ -1135,7 +1121,7 @@ set ::mytype::myvariable "New Value"
 
 A type method is a procedure associated with the type itself rather than with any specific instance of the type, and called as a subcommand of the type command.
 
-## How do i define a type method?
+## How do I define a type method?
 
 Type methods are defined in the type definition using the **typemethod** statement:
 
@@ -1152,7 +1138,7 @@ snit::type dog {
 
 Suppose the **dog** type maintains a list of the names of the dogs that have pedigrees.  The **pedigreedDogs** type method returns this list.
 
-The **typemethod** statement looks just like a normal Tcl **proc**, except that it appears in a **snit::type** definition. Notice that every type method gets an implicit argument called **type**, which contains the fully-qualified type name.
+The **typemethod** statement looks just like a normal Tcl [proc][snit], except that it appears in a [snit::type][snit] definition. Notice that every type method gets an implicit argument called **type**, which contains the fully-qualified type name.
 
 ## How does a client call a type method?
 
@@ -1182,23 +1168,23 @@ foreach dog [dog pedigreedDogs] { ... }
 
 Not really, so long as you avoid the standard type method names: **create**, **destroy**, and **info**.
 
-## How do i make a type method private?
+## How do I make a type method private?
 
 It's sometimes useful to define private type methods, that is, type methods intended to be called only by other type or instance methods of the same object.
 
 Snit doesn't implement any access control on type methods; by convention, the names of public methods begin with a lower-case letter, and the names of private methods begin with an upper-case letter.
 
-Alternatively, a Snit **proc** can be used as a private type method; see **PROCS**.
+Alternatively, a Snit [proc][snit] can be used as a private type method; see [Procs].
 
 ## Are there any limitations on type method arguments?
 
 Method argument lists are defined just like normal Tcl proc argument lists; in particular, they can include arguments with default values and the **args** argument.
 
-However, every type method is called with an implicit argument called **type** that contains the name of the type command.  In addition, type methods should by convention avoid using the names of the arguments implicitly defined for **INSTANCE METHODS**.
+However, every type method is called with an implicit argument called **type** that contains the name of the type command.  In addition, type methods should by convention avoid using the names of the arguments implicitly defined for [Instance methods].
 
 ## How does an instance or type method call a type method?
 
-If an instance or type method needs to call a type method, it should use **\$type** to do so:
+If an instance or type method needs to call a type method, it should use **$type** to do so:
 
 ```
 snit::type dog {
@@ -1211,7 +1197,7 @@ snit::type dog {
 }
 ```
 
-## How do i pass a type method as a callback?
+## How do I pass a type method as a callback?
 
 It's common in Tcl to pass a snippet of code to another object, for it to call later.  Because types cannot be renamed, you can just use the type name, or, if the callback is registered from within a type method, **type**.  For example, suppose we want to print a list of pedigreed dogs when a Tk button is pushed:
 
@@ -1220,21 +1206,21 @@ button .btn -text "Pedigrees" -command [list dog printPedigrees]
 pack .btn
 ```
 
-Alternatively, from a method or type method you can use the **mytypemethod** command, just as you would use **mymethod** to define a callback command for **INSTANCE METHODS**.
+Alternatively, from a method or type method you can use the [mytypemethod][snit] command, just as you would use [mymethod][snit] to define a callback command for [Instance methods].
 
 ## Can type methods be hierarchical?
 
-Yes, you can define hierarchical type methods in just the same way as you can define hierarchical instance methods.  See **INSTANCE METHODS** for more.
+Yes, you can define hierarchical type methods in just the same way as you can define hierarchical instance methods.  See [Instance methods] for more.
 
 # Procs
 
 ## What is a proc?
 
-A Snit **proc** is really just a Tcl proc defined within the type's namespace.  You can use procs for private code that isn't related to any particular instance.
+A Snit [proc][snit] is really just a Tcl proc defined within the type's namespace.  You can use procs for private code that isn't related to any particular instance.
 
-## How do i define a proc?
+## How do I define a proc?
 
-Procs are defined by including a **proc** statement in the type definition:
+Procs are defined by including a [proc][snit] statement in the type definition:
 
 ```
 snit::type mytype {
@@ -1248,9 +1234,9 @@ snit::type mytype {
 
 ## Are there any limitations on proc names?
 
-Any name can be used, so long as it does not begin with **Snit\_**; names beginning with **Snit\_** are reserved for Snit's own use. However, the wise programmer will avoid **proc** names (**set**, **list**, **if**, etc.) that would shadow standard Tcl command names.
+Any name can be used, so long as it does not begin with **Snit\_**; names beginning with **Snit\_** are reserved for Snit's own use. However, the wise programmer will avoid [proc][snit] names (**set**, **list**, **if**, etc.) that would shadow standard Tcl command names.
 
-**proc** names, being private, should begin with a capital letter according to convention; however, as there are typically no public **proc**s in the type's namespace it doesn't matter much either way.
+[proc][snit] names, being private, should begin with a capital letter according to convention; however, as there are typically no public [proc][snit]s in the type's namespace it doesn't matter much either way.
 
 ## How does a method call a proc?
 
@@ -1271,9 +1257,9 @@ snit::type mytype {
 }
 ```
 
-## How can i pass a proc to another object as a callback?
+## How can I pass a proc to another object as a callback?
 
-The **myproc** command returns a callback command for the **proc**, just as **mymethod** does for a method.
+The [myproc][snit] command returns a callback command for the [proc][snit], just as [mymethod][snit] does for a method.
 
 # Type constructors
 
@@ -1283,9 +1269,9 @@ A type constructor is a body of code that initializes the type as a whole, rathe
 
 A type can have at most one type constructor.
 
-## How do i define a type constructor?
+## How do I define a type constructor?
 
-A type constructor is defined by using the **typeconstructor** statement in the type definition.  For example, suppose the type uses an array-valued type variable as a look-up table, and the values in the array have to be computed at start-up.
+A type constructor is defined by using the [typeconstructor][snit] statement in the type definition.  For example, suppose the type uses an array-valued type variable as a look-up table, and the values in the array have to be computed at start-up.
 
 ```
 % snit::type mytype {
@@ -1301,13 +1287,13 @@ A type constructor is defined by using the **typeconstructor** statement in the 
 
 ## What is a constructor?
 
-In object-oriented programming, an object's constructor is responsible for initializing the object completely at creation time. The constructor receives the list of options passed to the **snit::type** command's **create** method and can then do whatever it likes.  That might include computing instance variable values, reading data from files, creating other objects, updating type and instance variables, and so forth.
+In object-oriented programming, an object's constructor is responsible for initializing the object completely at creation time. The constructor receives the list of options passed to the [snit::type][snit] command's **create** method and can then do whatever it likes.  That might include computing instance variable values, reading data from files, creating other objects, updating type and instance variables, and so forth.
 
 The constructor's return value is ignored (unless it's an error, of course).
 
-## How do i define a constructor?
+## How do I define a constructor?
 
-A constructor is defined by using the **constructor** statement in the type definition.  Suppose that it's desired to keep a list of all pedigreed dogs.  The list can be maintained in a type variable and retrieved by a type method.  Whenever a dog is created, it can add itself to the list--provided that it's registered with the American Kennel Club.
+A constructor is defined by using the [constructor][snit] statement in the type definition.  Suppose that it's desired to keep a list of all pedigreed dogs.  The list can be maintained in a type variable and retrieved by a type method.  Whenever a dog is created, it can add itself to the list--provided that it's registered with the American Kennel Club.
 
 ```
 % snit::type dog {
@@ -1351,7 +1337,7 @@ snit::type dog {
 
 When the constructor is called, **args** will be set to the list of arguments that follow the object's name.  The constructor is allowed to interpret this list any way it chooses; the normal convention is to assume that it's a list of option names and values, as shown in the example above.  If you simply want to save the option values, you should use the **configurelist** method, as shown.
 
-## Can i choose a different set of arguments for the constructor?
+## Can I choose a different set of arguments for the constructor?
 
 Yes, you can.  For example, suppose we wanted to be sure that the breed was explicitly stated for every dog at creation time, and couldn't be changed thereafter.  One way to do that is as follows:
 
@@ -1376,7 +1362,7 @@ Yes, you can.  For example, suppose we wanted to be sure that the breed was expl
 dalmatian
 ```
 
-The drawback is that this syntax is non-standard, and may limit the compatibility of your new type with other people's code. For example, Snit assumes that it can create **COMPONENTS** using the standard creation syntax.
+The drawback is that this syntax is non-standard, and may limit the compatibility of your new type with other people's code. For example, Snit assumes that it can create [Components] using the standard creation syntax.
 
 ## Are there any limitations on constructor arguments?
 
@@ -1384,17 +1370,17 @@ Constructor argument lists are subject to the same limitations as those on insta
 
 ## Is there anything special about writing the constructor?
 
-Yes.  Writing the constructor can be tricky if you're delegating options to components, and there are specific issues relating to **snit::widget**s and **snit::widgetadaptor**s.  See **DELEGATION**, **WIDGETS**, **WIDGET ADAPTORS**, and **THE TK OPTION DATABASE**.
+Yes.  Writing the constructor can be tricky if you're delegating options to components, and there are specific issues relating to [snit::widget][snit]s and [snit::widgetadaptor][snit]s.  See [Delegation], [Widgets], [Widget adaptors], and [The Tk option database].
 
 # Destructors
 
 ## What is a destructor?
 
-A destructor is a special kind of method that's called when an object is destroyed.  It's responsible for doing any necessary clean-up when the object goes away: destroying **COMPONENTS**, closing files, and so forth.
+A destructor is a special kind of method that's called when an object is destroyed.  It's responsible for doing any necessary clean-up when the object goes away: destroying [Components], closing files, and so forth.
 
-## How do i define a destructor?
+## How do I define a destructor?
 
-Destructors are defined by using the **destructor** statement in the type definition.
+Destructors are defined by using the [destructor][snit] statement in the type definition.
 
 Suppose we're maintaining a list of pedigreed dogs; then we'll want to remove dogs from it when they are destroyed.
 
@@ -1432,13 +1418,13 @@ Yes; a destructor has no explicit arguments.
 
 ## What implicit arguments are passed to the destructor?
 
-The destructor gets the same implicit arguments that are passed to **INSTANCE METHODS**: **type**, **selfns**, **win**, and **self**.
+The destructor gets the same implicit arguments that are passed to [Instance methods]: **type**, **selfns**, **win**, and **self**.
 
 ## Must components be destroyed explicitly?
 
 Yes and no.
 
-Any Tk widgets created by a **snit::widget** or **snit::widgetadaptor** will be destroyed automatically by Tk when the megawidget is destroyed, in keeping with normal Tk behavior (destroying a parent widget destroys the whole tree).
+Any Tk widgets created by a [snit::widget][snit] or [snit::widgetadaptor][snit] will be destroyed automatically by Tk when the megawidget is destroyed, in keeping with normal Tk behavior (destroying a parent widget destroys the whole tree).
 
 Components of normal **snit::types**, on the other hand, are never destroyed automatically, nor are non-widget components of Snit megawidgets.  If your object creates them in its constructor, then it should generally destroy them in its destructor.
 
@@ -1470,11 +1456,11 @@ snit::type dog {
 
 Often an object will create and manage a number of other objects.  A Snit megawidget, for example, will often create a number of Tk widgets.  These objects are part of the main object; it is composed of them, so they are called components of the object.
 
-But Snit also has a more precise meaning for **COMPONENT**.  The components of a Snit object are those objects to which methods or options can be delegated. (See **DELEGATION** for more information about delegation.)
+But Snit also has a more precise meaning for **COMPONENT**.  The components of a Snit object are those objects to which methods or options can be delegated. (See [Delegation] for more information about delegation.)
 
-## How do i declare a component?
+## How do I declare a component?
 
-First, you must decide what role a component plays within your object, and give the role a name.  Then, you declare the component using its role name and the **component** statement.  The **component** statement declares an *instance variable* which is used to store the component's command name when the component is created.
+First, you must decide what role a component plays within your object, and give the role a name.  Then, you declare the component using its role name and the [component][snit] statement.  The [component][snit] statement declares an *instance variable* which is used to store the component's command name when the component is created.
 
 For example, suppose your **dog** object creates a **tail** object (the better to wag with, no doubt):
 
@@ -1496,7 +1482,7 @@ snit::type dog {
 
 As shown here, it doesn't matter what the **tail** object's real name is; the **dog** object refers to it by its component name.
 
-The above example shows one way to delegate the **wag** method to the **mytail** component; see **DELEGATION** for an easier way.
+The above example shows one way to delegate the **wag** method to the **mytail** component; see [Delegation] for an easier way.
 
 ## How is a component named?
 
@@ -1506,13 +1492,13 @@ In the example in the previous question, the component name is **mytail**; the *
 
 ## Are there any limitations on component names?
 
-Yes.  **snit::widget** and **snit::widgetadaptor** objects have a special component called the **hull** component; thus, the name **hull** should be used for no other purpose.
+Yes.  [snit::widget][snit] and [snit::widgetadaptor][snit] objects have a special component called the **hull** component; thus, the name **hull** should be used for no other purpose.
 
-Otherwise, since component names are in fact instance variable names they must follow the rules for **INSTANCE VARIABLES**.
+Otherwise, since component names are in fact instance variable names they must follow the rules for [Instance variables].
 
 ## What is an owned component?
 
-An *owned* component is a component whose object command's lifetime is controlled by the **snit::type** or **snit::widget**.
+An *owned* component is a component whose object command's lifetime is controlled by the [snit::type][snit] or [snit::widget][snit].
 
 As stated above, a component is an object to which our object can delegate methods or options.  Under this definition, our object will usually create its component objects, but not necessarily.  Consider the following: a dog object has a tail component; but tail knows that it's part of the dog:
 
@@ -1559,7 +1545,7 @@ Thus, if you ask a dog to wag its tail, it tells its tail to wag; and if you pul
 
 ## What does the install command do?
 
-The **install** command creates an owned component using a specified command, and assigns the result to the component's instance variable. For example:
+The [install][snit] command creates an owned component using a specified command, and assigns the result to the component's instance variable. For example:
 
 ```
 snit::type dog {
@@ -1573,7 +1559,7 @@ snit::type dog {
 }
 ```
 
-In a **snit::type**'s code, the **install** command shown above is equivalent to the **set mytail** command that's commented out.  In a **snit::widget**'s or **snit::widgetadaptor**'s, code, however, the **install** command also queries **THE TK OPTION DATABASE** and initializes the new component's options accordingly.  For consistency, it's a good idea to get in the habit of using **install** for all owned components.
+In a [snit::type][snit]'s code, the [install][snit] command shown above is equivalent to the **set mytail** command that's commented out.  In a [snit::widget][snit]'s or [snit::widgetadaptor][snit]'s, code, however, the [install][snit] command also queries [The Tk option database] and initializes the new component's options accordingly.  For consistency, it's a good idea to get in the habit of using [install][snit] for all owned components.
 
 ## Must owned components be created in the constructor?
 
@@ -1605,13 +1591,13 @@ This code uses the component name, **mytail**, as the component object name.  Th
 
 Now, suppose you create two dogs.  Both dogs will attempt to create a tail called **::dog::mytail**.  The first will succeed, and the second will fail, since Snit won't let you create an object if its name is already a command.  Here are two ways to avoid this situation:
 
-First, if the component type is a **snit::type** you can specify **%AUTO%** as its name, and be guaranteed to get a unique name. This is the safest thing to do:
+First, if the component type is a [snit::type][snit] you can specify **%AUTO%** as its name, and be guaranteed to get a unique name. This is the safest thing to do:
 
 ```
     install mytail using tail %AUTO%
 ```
 
-If the component type isn't a **snit::type** you can create the component in the object's instance namespace:
+If the component type isn't a [snit::type][snit] you can create the component in the object's instance namespace:
 
 ```
     install mytail using tail ${selfns}::mytail
@@ -1619,21 +1605,21 @@ If the component type isn't a **snit::type** you can create the component in the
 
 Make sure you pick a unique name within the instance namespace.
 
-## Must i destroy the components i own?
+## Must I destroy the components I own?
 
-That depends.  When a parent widget is destroyed, all child widgets are destroyed automatically. Thus, if your object is a **snit::widget** or **snit::widgetadaptor** you don't need to destroy any components that are widgets, because they will generally be children or descendants of your megawidget.
+That depends.  When a parent widget is destroyed, all child widgets are destroyed automatically. Thus, if your object is a [snit::widget][snit] or [snit::widgetadaptor][snit] you don't need to destroy any components that are widgets, because they will generally be children or descendants of your megawidget.
 
-If your object is an instance of **snit::type**, though, none of its owned components will be destroyed automatically, nor will be non-widget components of a **snit::widget** be destroyed automatically.  All such owned components must be destroyed explicitly, or they won't be destroyed at all.
+If your object is an instance of [snit::type][snit], though, none of its owned components will be destroyed automatically, nor will be non-widget components of a [snit::widget][snit] be destroyed automatically.  All such owned components must be destroyed explicitly, or they won't be destroyed at all.
 
-## Can i expose a component's object command as part of my interface?
+## Can I expose a component's object command as part of my interface?
 
-Yes, and there are two ways to do it.  The most appropriate way is usually to use **DELEGATION**.  Delegation allows you to pass the options and methods you specify along to particular components. This effectively hides the components from the users of your type, and ensures good encapsulation.
+Yes, and there are two ways to do it.  The most appropriate way is usually to use [Delegation].  Delegation allows you to pass the options and methods you specify along to particular components. This effectively hides the components from the users of your type, and ensures good encapsulation.
 
 However, there are times when it's appropriate, not to mention simpler, just to make the entire component part of your type's public interface.
 
-## How do i expose a component's object command?
+## How do I expose a component's object command?
 
-When you declare the component, specify the **component** statement's **-public** option.  The value of this option is the name of a method which will be delegated to your component's object command.
+When you declare the component, specify the [component][snit] statement's **-public** option.  The value of this option is the name of a method which will be delegated to your component's object command.
 
 For example, supposed you've written a combobox megawidget which owns a listbox widget, and you want to make the listbox's entire interface public.  You can do it like this:
 
@@ -1658,13 +1644,13 @@ Usually you'll let the method name be the same as the component name; however, y
 
 ## What is a type component?
 
-A type component is a component that belongs to the type itself instead of to a particular instance of the type.  The relationship between components and type components is the same as the relationship between **INSTANCE VARIABLES** and **TYPE VARIABLES**.  Both **INSTANCE METHODS** and **TYPE METHODS** can be delegated to type components.
+A type component is a component that belongs to the type itself instead of to a particular instance of the type.  The relationship between components and type components is the same as the relationship between [Instance variables] and [Type variables].  Both [Instance methods] and [Type methods] can be delegated to type components.
 
-Once you understand **COMPONENTS** and **DELEGATION**, type components are just more of the same.
+Once you understand [Components] and [Delegation], type components are just more of the same.
 
-## How do i declare a type component?
+## How do I declare a type component?
 
-Declare a type component using the **typecomponent** statement.  It takes the same options (**-inherit** and **-public**) as the **component** statement does, and defines a type variable to hold the type component's object command.
+Declare a type component using the [typecomponent][snit] statement.  It takes the same options (**-inherit** and **-public**) as the [component][snit] statement does, and defines a type variable to hold the type component's object command.
 
 Suppose in your model you've got many dogs, but only one veterinarian.  You might make the veterinarian a type component.
 
@@ -1678,9 +1664,9 @@ snit::type dog {
 }
 ```
 
-## How do i install a type component?
+## How do I install a type component?
 
-Just use the **set** command to assign the component's object command to the type component.  Because types (even **snit::widget** types) are not widgets, and do not have options anyway, the extra features of the **install** command are not needed.
+Just use the **set** command to assign the component's object command to the type component.  Because types (even [snit::widget][snit] types) are not widgets, and do not have options anyway, the extra features of the [install][snit] command are not needed.
 
 You'll usually install type components in the type constructor, as shown here:
 
@@ -1698,7 +1684,7 @@ snit::type dog {
 
 ## Are there any limitations on type component names?
 
-Yes, the same as on **INSTANCE VARIABLES**, **TYPE VARIABLES**, and normal **COMPONENTS**.
+Yes, the same as on [Instance variables], [Type variables], and normal [Components].
 
 # Delegation
 
@@ -1736,9 +1722,9 @@ This is the hard way to do it, by it demonstrates what delegation is all about. 
 
 Note that the constructor calls the **configurelist** method **after** it creates its **tail**; otherwise, if **-taillength** appeared in the list of **args** we'd get an error.
 
-## How can i delegate a method to a component object?
+## How can I delegate a method to a component object?
 
-Delegation occurs frequently enough that Snit makes it easy. Any method can be delegated to any component or type component by placing a single **delegate** statement in the type definition. (See **COMPONENTS** and **TYPE COMPONENTS** for more information about component names.)
+Delegation occurs frequently enough that Snit makes it easy. Any method can be delegated to any component or type component by placing a single [delegate][snit] statement in the type definition. (See [Components] and [Type components] for more information about component names.)
 
 For example, here's a much better way to delegate the **dog** object's **wag** method:
 
@@ -1763,11 +1749,11 @@ Wag, wag, wag.
 
 This code has the same effect as the code shown under the previous question: when a **dog**'s **wag** method is called, the call and its arguments are passed along automatically to the **tail** object.
 
-Note that when a component is mentioned in a **delegate** statement, the component's instance variable is defined implicitly.  However, it's still good practice to declare it explicitly using the **component** statement.
+Note that when a component is mentioned in a [delegate][snit] statement, the component's instance variable is defined implicitly.  However, it's still good practice to declare it explicitly using the [component][snit] statement.
 
-Note also that you can define a method name using the **method** statement, or you can define it using **delegate**; you can't do both.
+Note also that you can define a method name using the **method** statement, or you can define it using [delegate][snit]; you can't do both.
 
-## Can i delegate to a method with a different name?
+## Can I delegate to a method with a different name?
 
 Suppose you wanted to delegate the **dog**'s **wagtail** method to the **tail**'s **wag** method.  After all you wag the tail, not the dog.  It's easily done:
 
@@ -1782,7 +1768,7 @@ snit::type dog {
 }
 ```
 
-## Can i delegate to a method with additional arguments?
+## Can I delegate to a method with additional arguments?
 
 Suppose the **tail**'s **wag** method takes as an argument the number of times the tail should be wagged.  You want to delegate the **dog**'s **wagtail** method to the **tail**'s **wag** method, specifying that the tail should be wagged exactly three times. This is easily done, too:
 
@@ -1800,9 +1786,9 @@ snit::type tail {
 }
 ```
 
-## Can i delegate a method to something other than an object?
+## Can I delegate a method to something other than an object?
 
-Normal method delegation assumes that you're delegating a method (a subcommand of an object command) to a method of another object (a subcommand of a different object command).  But not all Tcl objects follow Tk conventions, and not everything you'd to which you'd like to delegate a method is necessary an object.  Consequently, Snit makes it easy to delegate a method to pretty much anything you like using the **delegate** statement's **using** clause.
+Normal method delegation assumes that you're delegating a method (a subcommand of an object command) to a method of another object (a subcommand of a different object command).  But not all Tcl objects follow Tk conventions, and not everything you'd to which you'd like to delegate a method is necessary an object.  Consequently, Snit makes it easy to delegate a method to pretty much anything you like using the [delegate][snit] statement's **using** clause.
 
 Suppose your dog simulation stores dogs in a database, each dog as a single record.  The database API you're using provides a number of commands to manage records; each takes the record ID (a string you choose) as its first argument.  For example, **saverec** saves a record.  If you let the record ID be the name of the dog object, you can delegate the dog's **save** method to the **saverec** command as follows:
 
@@ -1814,21 +1800,21 @@ snit::type dog {
 
 The **%s** is replaced with the instance name when the **save** method is called; any additional arguments are the appended to the resulting command.
 
-The **using** clause understands a number of other %-conversions; in addition to the instance name, you can substitute in the method name (**%m**), the type name (**%t**), the instance namespace (**%n**), the Tk window name (**%w**), and, if a component or typecomponent name was given in the **delegate** statement, the component's object command (**%c**).
+The **using** clause understands a number of other %-conversions; in addition to the instance name, you can substitute in the method name (**%m**), the type name (**%t**), the instance namespace (**%n**), the Tk window name (**%w**), and, if a component or typecomponent name was given in the [delegate][snit] statement, the component's object command (**%c**).
 
-## How can i delegate a method to a type component object?
+## How can I delegate a method to a type component object?
 
-Just exactly as you would to a component object.  The **delegate method** statement accepts both component and type component names in its **to** clause.
+Just exactly as you would to a component object.  The [delegate method][snit] statement accepts both component and type component names in its **to** clause.
 
-## How can i delegate a type method to a type component object?
+## How can I delegate a type method to a type component object?
 
-Use the **delegate typemethod** statement.  It works like **delegate method**, with these differences: first, it defines a type method instead of an instance method; second, the **using** clause ignores the **%s**, **%n**, and **%w** %-conversions.
+Use the [delegate typemethod][snit] statement.  It works like [delegate method][snit], with these differences: first, it defines a type method instead of an instance method; second, the **using** clause ignores the **%s**, **%n**, and **%w** %-conversions.
 
 Naturally, you can't delegate a type method to an instance component...Snit wouldn't know which instance should receive it.
 
-## How can i delegate an option to a component object?
+## How can I delegate an option to a component object?
 
-The first question in this section (see **DELEGATION**) shows one way to delegate an option to a component; but this pattern occurs often enough that Snit makes it easy.  For example, every **tail** object has a **-length** option; we want to allow the creator of a **dog** object to set the tail's length.  We can do this:
+The first question in this section (see [Delegation]) shows one way to delegate an option to a component; but this pattern occurs often enough that Snit makes it easy.  For example, every **tail** object has a **-length** option; we want to allow the creator of a **dog** object to set the tail's length.  We can do this:
 
 ```
 % snit::type dog {
@@ -1853,9 +1839,9 @@ The first question in this section (see **DELEGATION**) shows one way to delegat
 
 This produces nearly the same result as the **-configuremethod** and **-cgetmethod** shown under the first question in this section: whenever a **dog** object's **-length** option is set or retrieved, the underlying **tail** object's option is set or retrieved in turn.
 
-Note that you can define an option name using the **option** statement, or you can define it using **delegate**; you can't do both.
+Note that you can define an option name using the **option** statement, or you can define it using [delegate][snit]; you can't do both.
 
-## Can i delegate to an option with a different name?
+## Can I delegate to an option with a different name?
 
 In the previous answer we delegated the **dog**'s **-length** option down to its **tail**.  This is, of course, wrong.  The dog has a length, and the tail has a length, and they are different.  What we'd really like to do is give the **dog** a **-taillength** option, but delegate it to the **tail**'s **-length** option:
 
@@ -1870,9 +1856,9 @@ snit::type dog {
 }
 ```
 
-## How can i delegate any unrecognized method or option to a component object?
+## How can I delegate any unrecognized method or option to a component object?
 
-It may happen that a Snit object gets most of its behavior from one of its components.  This often happens with **snit::widgetadaptors**, for example, where we wish to slightly the modify the behavior of an existing widget.  To carry on with our **dog** example, however, suppose that we have a **snit::type** called **animal** that implements a variety of animal behaviors--moving, eating, sleeping, and so forth. We want our **dog** objects to inherit these same behaviors, while adding dog-like behaviors of its own. Here's how we can give a **dog** methods and options of its own while delegating all other methods and options to its **animal** component:
+It may happen that a Snit object gets most of its behavior from one of its components.  This often happens with **snit::widgetadaptors**, for example, where we wish to slightly the modify the behavior of an existing widget.  To carry on with our **dog** example, however, suppose that we have a [snit::type][snit] called **animal** that implements a variety of animal behaviors--moving, eating, sleeping, and so forth. We want our **dog** objects to inherit these same behaviors, while adding dog-like behaviors of its own. Here's how we can give a **dog** methods and options of its own while delegating all other methods and options to its **animal** component:
 
 ```
 snit::type dog {
@@ -1898,7 +1884,7 @@ Note that we don't need to specify the full list of method names or option names
 
 You can also delegate all unknown type methods to a type component using **delegate typemethod \***.
 
-## How can i delegate all but certain methods or options to a component?
+## How can I delegate all but certain methods or options to a component?
 
 In the previous answer, we said that every **dog** is an **animal** by delegating all unknown methods and options to the **animal** component. But what if the **animal** type has some methods or options that we'd like to suppress?
 
@@ -1961,42 +1947,38 @@ snit::type dog {
 
 ## What is a snit::widget?
 
-A **snit::widget** is the Snit version of what Tcl programmers usually call a *megawidget*: a widget-like object usually consisting of one or more Tk widgets all contained within a Tk frame.
+A [snit::widget][snit] is the Snit version of what Tcl programmers usually call a *megawidget*: a widget-like object usually consisting of one or more Tk widgets all contained within a Tk frame.
 
-A **snit::widget** is also a special kind of **snit::type**.  Just about everything in this FAQ list that relates to **snit::types** also applies to **snit::widgets**.
+A [snit::widget][snit] is also a special kind of [snit::type][snit].  Just about everything in this FAQ list that relates to **snit::types** also applies to **snit::widgets**.
 
-## How do i define a snit::widget?
+## How do I define a snit::widget?
 
-**snit::widgets** are defined using the **snit::widget** command, just as **snit::types** are defined by the **snit::type** command.
+**snit::widgets** are defined using the [snit::widget][snit] command, just as **snit::types** are defined by the [snit::type][snit] command.
 
 The body of the definition can contain all of the same kinds of statements, plus a couple of others which will be mentioned below.
 
 ## How do snit::widgets differ from snit::types?
 
-**•**
-: The name of an instance of a **snit::type** can be any valid Tcl command name, in any namespace. The name of an instance of a **snit::widget** must be a valid Tk widget name, and its parent widget must already exist.
+- The name of an instance of a [snit::type][snit] can be any valid Tcl command name, in any namespace. The name of an instance of a [snit::widget][snit] must be a valid Tk widget name, and its parent widget must already exist.
 
-**•**
-: An instance of a **snit::type** can be destroyed by calling its **destroy** method.  Instances of a **snit::widget** have no destroy method; use the Tk **destroy** command instead.
+- An instance of a [snit::type][snit] can be destroyed by calling its **destroy** method.  Instances of a [snit::widget][snit] have no destroy method; use the Tk **destroy** command instead.
 
-**•**
-: Every instance of a **snit::widget** has one predefined component called its **hull** component. The hull is usually a Tk **frame** or **toplevel** widget; any other widgets created as part of the **snit::widget** will usually be contained within the hull.
+- Every instance of a [snit::widget][snit] has one predefined component called its **hull** component. The hull is usually a Tk **frame** or **toplevel** widget; any other widgets created as part of the [snit::widget][snit] will usually be contained within the hull.
 
-**•**
-: **snit::widget**s can have their options receive default values from **THE TK OPTION DATABASE**.
+- [snit::widget][snit]s can have their options receive default values from [The Tk option database].
 
 
 ## What is a hull component?
 
-Snit can't create a Tk widget object; only Tk can do that. Thus, every instance of a **snit::widget** must be wrapped around a genuine Tk widget; this Tk widget is called the *hull component*. Snit effectively piggybacks the behavior you define (methods, options, and so forth) on top of the hull component so that the whole thing behaves like a standard Tk widget.
+Snit can't create a Tk widget object; only Tk can do that. Thus, every instance of a [snit::widget][snit] must be wrapped around a genuine Tk widget; this Tk widget is called the *hull component*. Snit effectively piggybacks the behavior you define (methods, options, and so forth) on top of the hull component so that the whole thing behaves like a standard Tk widget.
 
-For **snit::widget**s the hull component must be a Tk widget that defines the **-class** option.
+For [snit::widget][snit]s the hull component must be a Tk widget that defines the **-class** option.
 
-**snit::widgetadaptor**s differ from **snit::widget**s chiefly in that any kind of widget can be used as the hull component; see **WIDGET ADAPTORS**.
+[snit::widgetadaptor][snit]s differ from [snit::widget][snit]s chiefly in that any kind of widget can be used as the hull component; see [Widget adaptors].
 
-## How can i set the hull type for a snit::widget?
+## How can I set the hull type for a snit::widget?
 
-A **snit::widget**'s hull component will usually be a Tk **frame** widget; however, it may be any Tk widget that defines the **-class** option.  You can explicitly choose the hull type you prefer by including the **hulltype** command in the widget definition:
+A [snit::widget][snit]'s hull component will usually be a Tk **frame** widget; however, it may be any Tk widget that defines the **-class** option.  You can explicitly choose the hull type you prefer by including the [hulltype][snit] command in the widget definition:
 
 ```
 snit::widget mytoplevel {
@@ -2006,7 +1988,7 @@ snit::widget mytoplevel {
 }
 ```
 
-If no **hulltype** command appears, the hull will be a **frame**.
+If no [hulltype][snit] command appears, the hull will be a **frame**.
 
 By default, Snit recognizes the following hull types: the Tk widgets **frame**, **labelframe**, **toplevel**, and the Tile widgets **ttk::frame**, **ttk::labelframe**, and **ttk::toplevel**.  To enable the use of some other kind of widget as the hull type, you can **lappend** the widget command to the variable **snit::hulltypes** (always provided the widget defines the **-class** option.  For example, suppose Tk gets a new widget type called a **prettyframe**:
 
@@ -2020,9 +2002,9 @@ snit::widget mywidget {
 }
 ```
 
-## How should i name widgets which are components of a snit::widget?
+## How should I name widgets which are components of a snit::widget?
 
-Every widget, whether a genuine Tk widget or a Snit megawidget, has to have a valid Tk window name.  When a **snit::widget** is first created, its instance name, **self**, is a Tk window name; however, if the **snit::widget** is used as the hull component by a **snit::widgetadaptor** its instance name will be changed to something else.  For this reason, every **snit::widget** method, constructor, destructor, and so forth is passed another implicit argument, **win**, which is the window name of the megawidget.  Any children should be named using **win** as the root.
+Every widget, whether a genuine Tk widget or a Snit megawidget, has to have a valid Tk window name.  When a [snit::widget][snit] is first created, its instance name, **self**, is a Tk window name; however, if the [snit::widget][snit] is used as the hull component by a [snit::widgetadaptor][snit] its instance name will be changed to something else.  For this reason, every **snit::widget** method, constructor, destructor, and so forth is passed another implicit argument, **win**, which is the window name of the megawidget.  Any children should be named using **win** as the root.
 
 Thus, suppose you're writing a toolbar widget, a frame consisting of a number of buttons placed side-by-side.  It might look something like this:
 
@@ -2048,13 +2030,13 @@ See also the question on renaming objects, toward the top of this file.
 
 ## What is a snit::widgetadaptor?
 
-A **snit::widgetadaptor** is a kind of **snit::widget**.  Whereas a **snit::widget**'s hull is automatically created and is always a Tk frame, a **snit::widgetadaptor** can be based on any Tk widget--or on any Snit megawidget, or even (with luck) on megawidgets defined using some other package.
+A [snit::widgetadaptor][snit] is a kind of [snit::widget][snit].  Whereas a [snit::widget][snit]'s hull is automatically created and is always a Tk frame, a [snit::widgetadaptor][snit] can be based on any Tk widget--or on any Snit megawidget, or even (with luck) on megawidgets defined using some other package.
 
 It's called a *widget adaptor* because it allows you to take an existing widget and customize its behavior.
 
-## How do i define a snit::widgetadaptor?
+## How do I define a snit::widgetadaptor?
 
-Use the **snit::widgetadaptor** command.  The definition for a **snit::widgetadaptor** looks just like that for a **snit::type** or **snit::widget**, except that the constructor must create and install the hull component.
+Use the [snit::widgetadaptor][snit] command.  The definition for a [snit::widgetadaptor][snit] looks just like that for a [snit::type][snit] or [snit::widget][snit], except that the constructor must create and install the hull component.
 
 For example, the following code creates a read-only text widget by the simple device of turning its **insert** and **delete** methods into no-ops.  Then, we define new methods, **ins** and **del**, which get delegated to the hull component as **insert** and **delete**.  Thus, we've adapted the text widget and given it new behavior while still leaving it fundamentally a text widget.
 
@@ -2086,17 +2068,17 @@ For example, the following code creates a read-only text widget by the simple de
 }
 ```
 
-The most important part is in the constructor. Whereas **snit::widget** creates the hull for you, **snit::widgetadaptor** cannot -- it doesn't know what kind of widget you want.  So the first thing the constructor does is create the hull component (a Tk text widget in this case), and then installs it using the **installhull** command.
+The most important part is in the constructor. Whereas [snit::widget][snit] creates the hull for you, [snit::widgetadaptor][snit] cannot -- it doesn't know what kind of widget you want.  So the first thing the constructor does is create the hull component (a Tk text widget in this case), and then installs it using the [installhull][snit] command.
 
-*Note:* There is no instance command until you create one by installing a hull component.  Any attempt to pass methods to **\$self** prior to calling **installhull** will fail.
+*Note:* There is no instance command until you create one by installing a hull component.  Any attempt to pass methods to **$self** prior to calling [installhull][snit] will fail.
 
-## Can i adapt a widget created elsewhere in the program?
+## Can I adapt a widget created elsewhere in the program?
 
 Yes.
 
 At times, it can be convenient to adapt a pre-existing widget instead of creating your own. For example, the Bwidget **PagesManager** widget manages a set of **frame** widgets, only one of which is visible at a time. The application chooses which **frame** is visible.  All of the These **frame**s are created by the **PagesManager** itself, using its **add** method.  It's convenient to adapt these frames to do what we'd like them to do.
 
-In a case like this, the Tk widget will already exist when the **snit::widgetadaptor** is created.  Snit provides an alternate form of the **installhull** command for this purpose:
+In a case like this, the Tk widget will already exist when the [snit::widgetadaptor][snit] is created.  Snit provides an alternate form of the [installhull][snit] command for this purpose:
 
 ```
 snit::widgetadaptor pageadaptor {
@@ -2109,13 +2091,13 @@ snit::widgetadaptor pageadaptor {
 }
 ```
 
-## Can i adapt another megawidget?
+## Can I adapt another megawidget?
 
-Maybe. If the other megawidget is a **snit::widget** or **snit::widgetadaptor**, then yes.  If it isn't then, again, maybe. You'll have to try it and see.  You're most likely to have trouble with widget destruction--you have to make sure that your megawidget code receives the **\<Destroy>** event before the megawidget you're adapting does.
+Maybe. If the other megawidget is a [snit::widget][snit] or [snit::widgetadaptor][snit], then yes.  If it isn't then, again, maybe. You'll have to try it and see.  You're most likely to have trouble with widget destruction--you have to make sure that your megawidget code receives the **<Destroy>** event before the megawidget you're adapting does.
 
-# The tk option database
+# The Tk option database
 
-## What is the tk option database?
+## What is the Tk option database?
 
 The Tk option database is a database of default option values maintained by Tk itself; every Tk application has one.  The concept of the option database derives from something called the X Windows resource database; however, the option database is available in every Tk implementation, including those which do not use the X Windows system (e.g., Microsoft Windows).
 
@@ -2123,33 +2105,30 @@ Full details about the Tk option database are beyond the scope of this document;
 
 Snit is implemented so that most of the time it will simply do the right thing with respect to the option database, provided that the widget developer does the right thing by Snit.  The body of this section goes into great deal about what Snit requires.  The following is a brief statement of the requirements, for reference.
 
-**•**
-: If the widget's default widget class is not what is desired, set it explicitly using the **widgetclass** statement in the widget definition.
+- If the widget's default widget class is not what is desired, set it explicitly using the [widgetclass][snit] statement in the widget definition.
 
-**•**
-: When defining or delegating options, specify the resource and class names explicitly when necessary.
+- When defining or delegating options, specify the resource and class names explicitly when necessary.
 
-**•**
-: Use the **installhull using** command to create and install the hull for **snit::widgetadaptor**s.
+- Use the [installhull using][snit] command to create and install the hull for [snit::widgetadaptor][snit]s.
 
-**•**
-: Use the **install** command to create and install all components which are widgets.
+- Use the [install][snit] command to create and install all components which are widgets.
 
-**•**
-: Use the **install** command to create and install components which aren't widgets if you'd like them to receive option values from the option database. The interaction of Tk widgets with the option database is a complex thing; the interaction of Snit with the option database is even more so, and repays attention to detail.
+- Use the [install][snit] command to create and install components which aren't widgets if you'd like them to receive option values from the option database.
 
 
-## Do snit::types use the tk option database?
+The interaction of Tk widgets with the option database is a complex thing; the interaction of Snit with the option database is even more so, and repays attention to detail.
 
-No, they don't; querying the option database requires a Tk window name, and **snit::type**s don't have one.
+## Do snit::types use the Tk option database?
 
-If you create an instance of a **snit::type** as a component of a **snit::widget** or **snit::widgetadaptor**, on the other hand, and if any options are delegated to the component, and if you use **install** to create and install it, then the megawidget will query the option database on the **snit::type**'s behalf.  This might or might not be what you want, so take care.
+No, they don't; querying the option database requires a Tk window name, and [snit::type][snit]s don't have one.
+
+If you create an instance of a [snit::type][snit] as a component of a [snit::widget][snit] or [snit::widgetadaptor][snit], on the other hand, and if any options are delegated to the component, and if you use [install][snit] to create and install it, then the megawidget will query the option database on the [snit::type][snit]'s behalf.  This might or might not be what you want, so take care.
 
 ## What is my snit::widget's widget class?
 
 Every Tk widget has a "widget class": a name that is used when adding option settings to the database.  For Tk widgets, the widget class is the same as the widget command name with an initial capital.  For example, the widget class of the Tk **button** widget is **Button**.
 
-Similarly, the widget class of a **snit::widget** defaults to the unqualified type name with the first letter capitalized.  For example, the widget class of
+Similarly, the widget class of a [snit::widget][snit] defaults to the unqualified type name with the first letter capitalized.  For example, the widget class of
 
 ```
 snit::widget ::mylibrary::scrolledText { ... }
@@ -2157,7 +2136,7 @@ snit::widget ::mylibrary::scrolledText { ... }
 
 is **ScrolledText**.
 
-The widget class can also be set explicitly using the **widgetclass** statement within the **snit::widget** definition:
+The widget class can also be set explicitly using the [widgetclass][snit] statement within the [snit::widget][snit] definition:
 
 ```
 snit::widget ::mylibrary::scrolledText {
@@ -2171,11 +2150,11 @@ The above definition says that a **scrolledText** megawidget has the same widget
 
 ## What is my snit::widgetadaptor's widget class?
 
-The widget class of a **snit::widgetadaptor** is just the widget class of its hull widget; Snit has no control over this.
+The widget class of a [snit::widgetadaptor][snit] is just the widget class of its hull widget; Snit has no control over this.
 
-Note that the widget class can be changed only for **frame** and **toplevel** widgets, which is why these are the valid hull types for **snit::widget**s.
+Note that the widget class can be changed only for **frame** and **toplevel** widgets, which is why these are the valid hull types for [snit::widget][snit]s.
 
-Try to use **snit::widgetadaptor**s only to make small modifications to another widget's behavior.  Then, it will usually not make sense to change the widget's widget class anyway.
+Try to use [snit::widgetadaptor][snit]s only to make small modifications to another widget's behavior.  Then, it will usually not make sense to change the widget's widget class anyway.
 
 ## What are option resource and class names?
 
@@ -2282,7 +2261,7 @@ That depends on whether the options are delegated to the hull, or to some other 
 
 ## How does snit initialize options delegated to the hull?
 
-A **snit::widget**'s hull is a widget, and given that its class has been set it is expected to query the option database for itself.  The only exception concerns options that are delegated to it with a different name.  Consider the following code:
+A [snit::widget][snit]'s hull is a widget, and given that its class has been set it is expected to query the option database for itself.  The only exception concerns options that are delegated to it with a different name.  Consider the following code:
 
 ```
 option add *Mywidget.borderWidth 5
@@ -2319,7 +2298,7 @@ The value of D is "5", but not for the reason you think.  Note that as it is def
     delegate option {-borderwidth borderWidth BorderWidth} to hull
 ```
 
-For **snit::widgetadaptor**s, the case is somewhat altered.  Widget adaptors retain the widget class of their hull, and the hull is not created automatically by Snit.  Instead, the **snit::widgetadaptor** must call **installhull** in its constructor.  The normal way to do this is as follows:
+For [snit::widgetadaptor][snit]s, the case is somewhat altered.  Widget adaptors retain the widget class of their hull, and the hull is not created automatically by Snit.  Instead, the [snit::widgetadaptor][snit] must call [installhull][snit] in its constructor.  The normal way to do this is as follows:
 
 ```
 snit::widgetadaptor mywidget {
@@ -2333,15 +2312,15 @@ snit::widgetadaptor mywidget {
 }
 ```
 
-In this case, the **installhull** command will create the hull using a command like this:
+In this case, the [installhull][snit] command will create the hull using a command like this:
 
 ```
     set hull [text $win -foreground white]
 ```
 
-The hull is a **text** widget, so its widget class is **Text**.  Just as with **snit::widget** hulls, Snit assumes that it will pick up all of its normal option values automatically, without help from Snit. Options delegated from a different name are initialized from the option database in the same way as described above.
+The hull is a **text** widget, so its widget class is **Text**.  Just as with [snit::widget][snit] hulls, Snit assumes that it will pick up all of its normal option values automatically, without help from Snit. Options delegated from a different name are initialized from the option database in the same way as described above.
 
-In earlier versions of Snit, **snit::widgetadaptor**s were expected to call **installhull** like this:
+In earlier versions of Snit, [snit::widgetadaptor][snit]s were expected to call [installhull][snit] like this:
 
 ```
     installhull [text $win -foreground white]
@@ -2355,7 +2334,7 @@ For hull components, Snit assumes that Tk will do most of the work automatically
 
 A component widget remains a widget still, and is therefore initialized from the option database in the usual way.  A **text** widget remains a **text** widget whether it is a component of a megawidget or not, and will be created as such.
 
-But then, the option database is queried for all options delegated to the component, and the component is initialized accordingly--provided that the **install** command is used to create it.
+But then, the option database is queried for all options delegated to the component, and the component is initialized accordingly--provided that the [install][snit] command is used to create it.
 
 Before option database support was added to Snit, the usual way to create a component was to simply create it in the constructor and assign its command name to the component variable:
 
@@ -2381,26 +2360,24 @@ snit::widget mywidget {
 }
 ```
 
-The **install** command does the following:
+The [install][snit] command does the following:
 
-**•**
-: Builds a list of the options explicitly included in the **install** command--in this case, **-foreground**.
+- Builds a list of the options explicitly included in the [install][snit] command--in this case, **-foreground**.
 
-**•**
-: Queries the option database for all options delegated explicitly to the named component.
+- Queries the option database for all options delegated explicitly to the named component.
 
-**•**
-: Creates the component using the specified command, after inserting into it a list of options and values read from the option database. Thus, the explicitly included options (like **-foreground**) will override anything read from the option database.
+- Creates the component using the specified command, after inserting into it a list of options and values read from the option database. Thus, the explicitly included options (like **-foreground**) will override anything read from the option database.
 
-**•**
-: If the widget definition implicitly delegated options to the component using **delegate option \***, then Snit calls the newly created component's **configure** method to receive a list of all of the component's options.  From this Snit builds a list of options implicitly delegated to the component which were not explicitly included in the **install** command.  For all such options, Snit queries the option database and configures the component accordingly. You don't really need to know all of this; just use **install** to install your components, and Snit will try to do the right thing.
+- If the widget definition implicitly delegated options to the component using **delegate option \***, then Snit calls the newly created component's **configure** method to receive a list of all of the component's options.  From this Snit builds a list of options implicitly delegated to the component which were not explicitly included in the [install][snit] command.  For all such options, Snit queries the option database and configures the component accordingly.
 
 
-## What happens if i install a non-widget as a component of widget?
+You don't really need to know all of this; just use [install][snit] to install your components, and Snit will try to do the right thing.
 
-A **snit::type** never queries the option database. However, a **snit::widget** can have non-widget components.  And if options are delegated to those components, and if the **install** command is used to install those components, then they will be initialized from the option database just as widget components are.
+## What happens if I install a non-widget as a component of widget?
 
-However, when used within a megawidget, **install** assumes that the created component uses a reasonably standard widget-like creation syntax.  If it doesn't, don't use **install**.
+A [snit::type][snit] never queries the option database. However, a [snit::widget][snit] can have non-widget components.  And if options are delegated to those components, and if the [install][snit] command is used to install those components, then they will be initialized from the option database just as widget components are.
+
+However, when used within a megawidget, [install][snit] assumes that the created component uses a reasonably standard widget-like creation syntax.  If it doesn't, don't use [install][snit].
 
 # Ensemble commands
 
@@ -2408,15 +2385,15 @@ However, when used within a megawidget, **install** assumes that the created com
 
 An ensemble command is a command with subcommands.  Snit objects are all ensemble commands; however, the term more usually refers to commands like the standard Tcl commands **string**, **file**, and **clock**.  In a sense, these are singleton objects--there's only one instance of them.
 
-## How can i create an ensemble command using snit?
+## How can I create an ensemble command using snit?
 
-There are two ways--as a **snit::type**, or as an instance of a **snit::type**.
+There are two ways--as a [snit::type][snit], or as an instance of a [snit::type][snit].
 
-## How can i create an ensemble command using an instance of a snit::type?
+## How can I create an ensemble command using an instance of a snit::type?
 
-Define a type whose **INSTANCE METHODS** are the subcommands of your ensemble command.  Then, create an instance of the type with the desired name.
+Define a type whose [Instance methods] are the subcommands of your ensemble command.  Then, create an instance of the type with the desired name.
 
-For example, the following code uses **DELEGATION** to create a work-alike for the standard **string** command:
+For example, the following code uses [Delegation] to create a work-alike for the standard **string** command:
 
 ```
 snit::type ::mynamespace::mystringtype {
@@ -2434,11 +2411,11 @@ We create the type in a namespace, so that the type command is hidden; then we c
 
 This method has two drawbacks.  First, it leaves the type command floating about.  More seriously, your shiny new ensemble command will have **info** and **destroy** subcommands that you probably have no use for.  But read on.
 
-## How can i create an ensemble command using a snit::type?
+## How can I create an ensemble command using a snit::type?
 
-Define a type whose **TYPE METHODS** are the subcommands of your ensemble command.
+Define a type whose [Type methods] are the subcommands of your ensemble command.
 
-For example, the following code uses **DELEGATION** to create a work-alike for the standard **string** command:
+For example, the following code uses [Delegation] to create a work-alike for the standard **string** command:
 
 ```
 snit::type mystring {
@@ -2454,7 +2431,7 @@ Now the type command itself is your ensemble command.
 
 This method has only one drawback, and though it's major, it's also surmountable.  Your new ensemble command will have **create**, **info** and **destroy** subcommands you don't want.  And worse yet, since the **create** method can be implicit, users of your command will accidentally be creating instances of your **mystring** type if they should mispell one of the subcommands.  The command will succeed--the first time--but won't do what's wanted.  This is very bad.
 
-The work around is to set some **PRAGMAS**, as shown here:
+The work around is to set some [Pragmas], as shown here:
 
 ```
 snit::type mystring {
@@ -2470,7 +2447,7 @@ snit::type mystring {
 }
 ```
 
-Here we've used the **pragma** statement to tell Snit that we don't want the **info** typemethod or the **destroy** typemethod, and that our type has no instances; this eliminates the **create** typemethod and all related code.  As a result, our ensemble command will be well-behaved, with no unexpected subcommands.
+Here we've used the [pragma][snit] statement to tell Snit that we don't want the **info** typemethod or the **destroy** typemethod, and that our type has no instances; this eliminates the **create** typemethod and all related code.  As a result, our ensemble command will be well-behaved, with no unexpected subcommands.
 
 # Pragmas
 
@@ -2478,11 +2455,11 @@ Here we've used the **pragma** statement to tell Snit that we don't want the **i
 
 A pragma is an option you can set in your type definitions that affects how the type is defined and how it works once it is defined.
 
-## How do i set a pragma?
+## How do I set a pragma?
 
-Use the **pragma** statement.  Each pragma is an option with a value; each time you use the **pragma** statement you can set one or more of them.
+Use the [pragma][snit] statement.  Each pragma is an option with a value; each time you use the [pragma][snit] statement you can set one or more of them.
 
-## How can i get rid of the "info" type method?
+## How can I get rid of the "info" type method?
 
 Set the **-hastypeinfo** pragma to **no**:
 
@@ -2495,7 +2472,7 @@ snit::type dog {
 
 Snit will refrain from defining the **info** type method.
 
-## How can i get rid of the "destroy" type method?
+## How can I get rid of the "destroy" type method?
 
 Set the **-hastypedestroy** pragma to **no**:
 
@@ -2508,7 +2485,7 @@ snit::type dog {
 
 Snit will refrain from defining the **destroy** type method.
 
-## How can i get rid of the "create" type method?
+## How can I get rid of the "create" type method?
 
 Set the **-hasinstances** pragma to **no**:
 
@@ -2521,11 +2498,11 @@ snit::type dog {
 
 Snit will refrain from defining the **create** type method; if you call the type command with an unknown method name, you'll get an error instead of a new instance of the type.
 
-This is useful if you wish to use a **snit::type** to define an ensemble command rather than a type with instances.
+This is useful if you wish to use a [snit::type][snit] to define an ensemble command rather than a type with instances.
 
 Pragmas **-hastypemethods** and **-hasinstances** cannot both be false (or there'd be nothing left).
 
-## How can i get rid of type methods altogether?
+## How can I get rid of type methods altogether?
 
 Normal Tk widget type commands don't have subcommands; all they do is create widgets--in Snit terms, the type command calls the **create** type method directly.  To get the same behavior from Snit, set the **-hastypemethods** pragma to **no**:
 
@@ -2544,9 +2521,9 @@ dog create spot
 
 Pragmas **-hastypemethods** and **-hasinstances** cannot both be false (or there'd be nothing left).
 
-## Why can't i create an object that replaces an old object with the same name?
+## Why can't I create an object that replaces an old object with the same name?
 
-Up until Snit 0.95, you could use any name for an instance of a **snit::type**, even if the name was already in use by some other object or command.  You could do the following, for example:
+Up until Snit 0.95, you could use any name for an instance of a [snit::type][snit], even if the name was already in use by some other object or command.  You could do the following, for example:
 
 ```
 snit::type dog { ... }
@@ -2563,21 +2540,20 @@ snit::type dog {
 }
 ```
 
-## How can i make my simple type run faster?
+## How can I make my simple type run faster?
 
 In Snit 1.x, you can set the **-simpledispatch** pragma to **yes**.
 
 Snit 1.x method dispatch is both flexible and fast, but the flexibility comes with a price.  If your type doesn't require the flexibility, the **-simpledispatch** pragma allows you to substitute a simpler dispatch mechanism that runs quite a bit faster.  The limitations are these:
 
-**•**
-: Methods cannot be delegated.
+- Methods cannot be delegated.
 
-**•**
-: **uplevel** and **upvar** do not work as expected: the caller's scope is two levels up rather than one.
+- **uplevel** and **upvar** do not work as expected: the caller's scope is two levels up rather than one.
 
-**•**
-: The option-handling methods (**cget**, **configure**, and **configurelist**) are very slightly slower. In Snit 2.2, the **-simpledispatch** macro is obsolete, and ignored; all Snit 2.2 method dispatch is faster than Snit 1.x's **-simpledispatch**.
+- The option-handling methods (**cget**, **configure**, and **configurelist**) are very slightly slower.
 
+
+In Snit 2.2, the **-simpledispatch** macro is obsolete, and ignored; all Snit 2.2 method dispatch is faster than Snit 1.x's **-simpledispatch**.
 
 # Macros
 
@@ -2589,7 +2565,7 @@ A Snit macro is nothing more than a Tcl proc that's defined in the Tcl interpret
 
 You can use Snit macros to define new type definition syntax, and to support conditional compilation.
 
-## How do i do conditional compilation?
+## How do I do conditional compilation?
 
 Suppose you want your type to use a fast C extension if it's available; otherwise, you'll fallback to a slower Tcl implementation. You want to define one set of methods in the first case, and another set in the second case.  But how can your type definition know whether the fast C extension is available or not?
 
@@ -2620,9 +2596,9 @@ snit::type dog {
 }
 ```
 
-## How do i define new type definition syntax?
+## How do I define new type definition syntax?
 
-Use a macro.  For example, your **snit::widget**'s **-background** option should be propagated to a number of component widgets.  You could implement that like this:
+Use a macro.  For example, your [snit::widget][snit]'s **-background** option should be propagated to a number of component widgets.  You could implement that like this:
 
 ```
 snit::widget mywidget {
@@ -2670,7 +2646,7 @@ Yes, there are.  You can't redefine any standard Tcl commands or Snit type defin
 
 If you're using Snit macros in your application, go ahead and name them in the global namespace, as shown above.  But if you're using them to define types or widgets for use by others, you should define your macros in the same namespace as your types or widgets.  That way, they won't conflict with other people's macros.
 
-If my fancy **snit::widget** is called **::mylib::mywidget**, for example, then I should define my **propagate** macro as **::mylib::propagate**:
+If my fancy [snit::widget][snit] is called **::mylib::mywidget**, for example, then I should define my **propagate** macro as **::mylib::propagate**:
 
 ```
 snit::macro mylib::propagate {option "to" components} { ... }
@@ -2701,3 +2677,6 @@ Programming tools
 ```
 Copyright (c) 2003-2006, by William H. Duquette
 ```
+
+
+[snit]: snit.md

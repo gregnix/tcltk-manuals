@@ -1,5 +1,6 @@
 ---
 CommandName: map::area::store::memory
+title: map::area::store::memory
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -8,16 +9,33 @@ Keywords:
  - center
  - geo/area
  - diameter
+ - geo/area
  - geo/area pixels
  - zoom
+ - geo/area
+ - center
+ - geo/area
+ - diameter
+ - geo/area
  - memory store
+ - geo/area
  - perimeter length
  - length
+ - geo/area
  - perimeter
  - map
+ - memory store
+ - geo/area
+ - perimeter length
+ - geo/area
  - pixels
+ - zoom
+ - geo/area
  - store
+ - geo/area
  - memory
+ - zoom
+ - geo/area pixels
 Copyright:
 ---
 
@@ -28,21 +46,21 @@ map::area::store::memory - In-memory store for geo/area definitions
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::caller]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [map::area::store::memory]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [debug]{.lit}
+[package]{.cmd} [require]{.sub} [debug::caller]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [map::area::store::memory]{.lit} [0.1]{.optlit}
 :::
 
 # Description
 
 This package provides an in-memory store for *geo/area* definitions, with memoized calculation of extended attributes.
 
-The base data is pulled from a backing store. A **map::area::store::fs** or anything API-compatible to it.
+The base data is pulled from a backing store. A [map::area::store::fs][area-store-fs] or anything API-compatible to it.
 
-# Api
+# API
 
 # Example
 
@@ -53,3 +71,6 @@ This document, and the package it describes, will undoubtedly contain bugs and o
 # Category
 
 Map Display and Supporting Utilities
+
+
+[area-store-fs]: area-store-fs.md

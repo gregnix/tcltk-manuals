@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::progressbar
+title: ttk::progressbar
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -17,7 +18,7 @@ ttk::progressbar - Provide progress feedback
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::progressbar]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::progressbar]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -26,12 +27,9 @@ A **ttk::progressbar** widget shows the status of a long-running operation.  The
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-takefocus** |
-| **-style** |  |  |
+**-class**, **-cursor**, **-takefocus**, **-style**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -88,7 +86,7 @@ See the ttk_widget manual entry for details on the standard options.
 
 The class name for a **ttk::progressbar** is **TProgressbar**.
 
-**TProgressbar** styling options configurable with **ttk::style** are:
+**TProgressbar** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -99,15 +97,19 @@ The class name for a **ttk::progressbar** is **TProgressbar**.
 **-lightcolor** *color*
 
 **-maxphase**
+: For the aqua theme.
 
-For the aqua theme.
 
 **-period**
+: For the aqua theme.
 
-For the aqua theme.
 
 **-troughcolor** *color*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

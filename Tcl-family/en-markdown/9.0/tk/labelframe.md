@@ -1,5 +1,6 @@
 ---
 CommandName: labelframe
+title: labelframe
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -23,19 +24,14 @@ labelframe - Create and manipulate 'labelframe' labelled container widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[labelframe]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[labelframe]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-borderwidth** | **-highlightbackground** | **-pady** |
-| **-cursor** | **-highlightcolor** | **-relief** |
-| **-font** | **-highlightthickness** | **-takefocus** |
-| **-foreground** | **-padx** | **-text** |
+**-borderwidth**, **-highlightbackground**, **-pady**, **-cursor**, **-highlightcolor**, **-relief**, **-font**, **-highlightthickness**, **-takefocus**, **-foreground**, **-padx**, **-text**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -49,7 +45,7 @@ See the options manual entry for details on the standard options.
 : Specifies a colormap to use for the window. The value may be either **new**, in which case a new colormap is created for the window and its children, or the name of another window (which must be on the same screen and have the same visual as *pathName*), in which case the new window will use the colormap from the specified window. If the **-colormap** option is not specified, the new window uses the same colormap as its parent. This option may not be changed with the **configure** widget command.
 
 **-height** (**height**/**Height**)
-: Specifies the desired height for the window in any of the forms acceptable to **Tk_GetPixels**. If this option is negative or zero then the window will not request any size at all.
+: Specifies the desired height for the window in any of the forms acceptable to [Tk\_GetPixels][GetPixels]. If this option is negative or zero then the window will not request any size at all.
 
 **-labelanchor** (**labelAnchor**/**LabelAnchor**)
 : Specifies where to place the label. A label is only displayed if the **-text** option is not the empty string. Valid values for this option are (listing them clockwise) **nw**, **n**, **ne**, **en**, **e**, **es**, **se**, **s**,**sw**, **ws**, **w** and **wn**. The default value is **nw**.
@@ -58,17 +54,17 @@ See the options manual entry for details on the standard options.
 : Specifies a widget to use as label. This overrides any **-text** option. The widget must exist before being used as **-labelwidget** and if it is not a descendant of this window, it will be raised above it in the stacking order.
 
 **-visual** (**visual**/**Visual**)
-: Specifies visual information for the new window in any of the forms accepted by **Tk_GetVisual**. If this option is not specified, the new window will use the same visual as its parent. The **-visual** option may not be modified with the **configure** widget command.
+: Specifies visual information for the new window in any of the forms accepted by [Tk\_GetVisual][GetVisual]. If this option is not specified, the new window will use the same visual as its parent. The **-visual** option may not be modified with the **configure** widget command.
 
 **-width** (**width**/**Width**)
-: Specifies the desired width for the window in any of the forms acceptable to **Tk_GetPixels**. If this option is negative or zero then the window will not request any size at all.
+: Specifies the desired width for the window in any of the forms acceptable to [Tk\_GetPixels][GetPixels]. If this option is negative or zero then the window will not request any size at all.
 
 
 # Description
 
 The **labelframe** command creates a new window (given by the *pathName* argument) and makes it into a labelframe widget. Additional options, described above, may be specified on the command line or in the option database to configure aspects of the labelframe such as its background color and relief.  The **labelframe** command returns the path name of the new window.
 
-A labelframe is a simple widget.  Its primary purpose is to act as a spacer or container for complex window layouts.  It has the features of a **frame** plus the ability to display a label.
+A labelframe is a simple widget.  Its primary purpose is to act as a spacer or container for complex window layouts.  It has the features of a [frame] plus the ability to display a label.
 
 # Widget command
 
@@ -80,11 +76,11 @@ pathName option ?arg ...?
 
 *PathName* is the name of the command, which is the same as the labelframe widget's path name.  *Option* and the *arg*s determine the exact behavior of the command.  The following commands are possible for frame widgets:
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **labelframe** command.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **labelframe** command.
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **labelframe** command.
 
 
 # Bindings
@@ -130,3 +126,10 @@ set bun    white
 set cheese none
 set pickle none
 ```
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[frame]: frame.md
+[GetPixels]: ../tk-c/GetPixels.md
+[GetVisual]: ../tk-c/GetVisual.md
+[options]: options.md

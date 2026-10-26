@@ -1,5 +1,6 @@
 ---
 CommandName: pt::cparam::configuration::tea
+title: pt::cparam::configuration::tea
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -25,35 +26,39 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 pt::cparam::configuration::tea – C/PARAM, vorgefertigte Konfiguration, TEA
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::cparam::configuration::tea]{.lit} [0.2]{.optlit} 
-[::pt::cparam::configuration::tea]{.cmd} [def]{.sub} [name]{.arg} [pkg]{.arg} [version]{.arg} [cmdprefix]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::cparam::configuration::tea]{.lit} [0.2]{.optlit}
+[::pt::cparam::configuration::tea]{.cmd} [def]{.lit} [name]{.arg} [pkg]{.arg} [version]{.arg} [cmdprefix]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
-Dieses Paket dient als Ergänzung zu **pt::peg::to::cparam** und soll die Verwendung dieses in hohem Maße konfigurierbaren Pakets durch die Bereitstellung einer vorgefertigten Konfiguration vereinfachen. Wenn diese Konfiguration angewendet wird, generiert das Paket **pt::peg::to::cparam** bloßen Parser-Code, der zur Einbindung in eine auf *TEA* basierende C-Erweiterung bereit ist.
+Dieses Paket dient als Ergänzung zu [pt::peg::to::cparam][pt_peg_to_cparam] und soll die Verwendung dieses in hohem Maße konfigurierbaren Pakets durch die Bereitstellung einer vorgefertigten Konfiguration vereinfachen. Wenn diese Konfiguration angewendet wird, generiert das Paket [pt::peg::to::cparam][pt_peg_to_cparam] bloßen Parser-Code, der zur Einbindung in eine auf *TEA* basierende C-Erweiterung bereit ist.
 
 Es handelt sich um ein unterstützendes Paket in der Kernschicht der Parser-Tools.
 
-IMAGE: arch_core_support
+IMAGE: arch\_core\_support
 
 # API
 
 **::pt::cparam::configuration::tea** **def** *name* *pkg* *version* *cmdprefix*
-: Der Befehl wendet die in diesem Paket bereitgestellte Konfiguration auf *cmdprefix* an, wodurch Parser auf Basis von **tea** erstellt werden, deren Klasse *name* lautet, im Paket *pkg* mit *version*. Die Verwendung eines Befehlspräfixes als API ermöglicht die Anwendung der Konfiguration nicht nur auf **pt::peg::to::cparam** (**pt::peg::to::cparam configure**), sondern auch auf Export-Manager-Instanzen und PEG-Container (**\$export configuration set** bzw. **\[\$container exporter\] configuration set**). Oder auf jedes andere Befehlspräfix, das zwei Argumente – Option und Wert – akzeptiert.
+: Der Befehl wendet die in diesem Paket bereitgestellte Konfiguration auf *cmdprefix* an, wodurch Parser auf Basis von **tea** erstellt werden, deren Klasse *name* lautet, im Paket *pkg* mit *version*.
+
+    Die Verwendung eines Befehlspräfixes als API ermöglicht die Anwendung der Konfiguration nicht nur auf [pt::peg::to::cparam][pt_peg_to_cparam] ([pt::peg::to::cparam configure][pt_peg_to_cparam]), sondern auch auf Export-Manager-Instanzen und PEG-Container (**$export configuration set** bzw. **\[$container exporter\] configuration set**).
+
+    Oder auf jedes andere Befehlspräfix, das zwei Argumente – Option und Wert – akzeptiert.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pt* als Kategorie an.
 
@@ -61,12 +66,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Parser und Grammatiken
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_to_cparam]: pt_peg_to_cparam.md

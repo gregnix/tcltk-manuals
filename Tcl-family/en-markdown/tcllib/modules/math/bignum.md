@@ -1,5 +1,6 @@
 ---
 CommandName: math::bignum
+title: math::bignum
 ManualSection: n
 Version: 3.1.2
 TclPart: tcllib
@@ -21,54 +22,56 @@ math::bignum - Arbitrary precision integer numbers
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [math::bignum]{.lit} [3.1.2]{.optlit} 
-[::math::bignum::fromstr]{.cmd} [string]{.arg} [radix]{.optarg} 
-[::math::bignum::tostr]{.cmd} [bignum]{.arg} [radix]{.optarg} 
-[::math::bignum::sign]{.cmd} [bignum]{.arg} 
-[::math::bignum::abs]{.cmd} [bignum]{.arg} 
-[::math::bignum::cmp]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::iszero]{.cmd} [bignum]{.arg} 
-[::math::bignum::lt]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::le]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::gt]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::ge]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::eq]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::ne]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::isodd]{.cmd} [bignum]{.arg} 
-[::math::bignum::iseven]{.cmd} [bignum]{.arg} 
-[::math::bignum::add]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::sub]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::mul]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::divqr]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::div]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::rem]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::mod]{.cmd} [n]{.arg} [m]{.arg} 
-[::math::bignum::pow]{.cmd} [base]{.arg} [exp]{.arg} 
-[::math::bignum::powm]{.cmd} [base]{.arg} [exp]{.arg} [m]{.arg} 
-[::math::bignum::sqrt]{.cmd} [bignum]{.arg} 
-[::math::bignum::rand]{.cmd} [bits]{.arg} 
-[::math::bignum::lshift]{.cmd} [bignum]{.arg} [bits]{.arg} 
-[::math::bignum::rshift]{.cmd} [bignum]{.arg} [bits]{.arg} 
-[::math::bignum::bitand]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::bitor]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::bitxor]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::setbit]{.cmd} [bignumVar]{.arg} [bit]{.arg} 
-[::math::bignum::clearbit]{.cmd} [bignumVar]{.arg} [bit]{.arg} 
-[::math::bignum::testbit]{.cmd} [bignum]{.arg} [bit]{.arg} 
-[::math::bignum::bits]{.cmd} [bignum]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [math::bignum]{.lit} [3.1.2]{.optlit}
+[::math::bignum::fromstr]{.cmd} [string]{.arg} [radix]{.optarg}
+[::math::bignum::tostr]{.cmd} [bignum]{.arg} [radix]{.optarg}
+[::math::bignum::sign]{.cmd} [bignum]{.arg}
+[::math::bignum::abs]{.cmd} [bignum]{.arg}
+[::math::bignum::cmp]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::iszero]{.cmd} [bignum]{.arg}
+[::math::bignum::lt]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::le]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::gt]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::ge]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::eq]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::ne]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::isodd]{.cmd} [bignum]{.arg}
+[::math::bignum::iseven]{.cmd} [bignum]{.arg}
+[::math::bignum::add]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::sub]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::mul]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::divqr]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::div]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::rem]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::mod]{.cmd} [n]{.arg} [m]{.arg}
+[::math::bignum::pow]{.cmd} [base]{.arg} [exp]{.arg}
+[::math::bignum::powm]{.cmd} [base]{.arg} [exp]{.arg} [m]{.arg}
+[::math::bignum::sqrt]{.cmd} [bignum]{.arg}
+[::math::bignum::rand]{.cmd} [bits]{.arg}
+[::math::bignum::lshift]{.cmd} [bignum]{.arg} [bits]{.arg}
+[::math::bignum::rshift]{.cmd} [bignum]{.arg} [bits]{.arg}
+[::math::bignum::bitand]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::bitor]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::bitxor]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::setbit]{.cmd} [bignumVar]{.arg} [bit]{.arg}
+[::math::bignum::clearbit]{.cmd} [bignumVar]{.arg} [bit]{.arg}
+[::math::bignum::testbit]{.cmd} [bignum]{.arg} [bit]{.arg}
+[::math::bignum::bits]{.cmd} [bignum]{.arg}
 :::
 
 # Description
 
 The bignum package provides arbitrary precision integer math (also known as "big numbers") capabilities to the Tcl language. Big numbers are internally represented at Tcl lists: this package provides a set of procedures operating against the internal representation in order to:
 
-**•**
-: perform math operations
+- perform math operations
 
-**•**
-: convert bignums from the internal representation to a string in the desired radix and vice versa. But the two constants "0" and "1" are automatically converted to the internal representation, in order to easily compare a number to zero, or increment a big number. The bignum interface is opaque, so operations on bignums that are not returned by procedures in this package (but created by hand) may lead to unspecified behaviours. It's safe to treat bignums as pure values, so there is no need to free a bignum, or to duplicate it via a special operation.
+- convert bignums from the internal representation to a string in the desired radix and vice versa.
 
+
+But the two constants "0" and "1" are automatically converted to the internal representation, in order to easily compare a number to zero, or increment a big number.
+
+The bignum interface is opaque, so operations on bignums that are not returned by procedures in this package (but created by hand) may lead to unspecified behaviours. It's safe to treat bignums as pure values, so there is no need to free a bignum, or to duplicate it via a special operation.
 
 # Examples
 
@@ -102,7 +105,7 @@ This section shows some simple example. This library being just a way to perform
     puts [::math::bignum::tostr [fact 100]]
 ```
 
-# Api
+# API
 
 **::math::bignum::fromstr** *string* ?*radix*?
 : Convert *string* into a bignum. If *radix* is omitted or zero, the string is interpreted in hex if prefixed with *0x*, in octal if prefixed with *ox*, in binary if it's pefixed with *bx*, as a number in radix 10 otherwise. If instead the *radix* argument is specified in the range 2-36, the *string* is interpreted in the given radix. Please note that this conversion is not needed for two constants : *0* and *1*. (see the example)

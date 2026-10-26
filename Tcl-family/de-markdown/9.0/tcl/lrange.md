@@ -1,5 +1,6 @@
 ---
 CommandName: lrange
+title: lrange
 ManualSection: n
 Version: 7.4
 TclPart: Tcl
@@ -34,23 +35,23 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lrange - Gibt ein oder mehrere benachbarte Listenelemente zurück
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lrange]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} 
+[lrange]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-*list* muss eine gültige Tcl-Liste sein. Der Befehl gibt eine neue Liste aus den Elementen *first* bis *last* einschließlich zurück. *first* und *last* werden wie Indizes bei **string index** ausgelegt, einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende. Ist *first* kleiner als null, gilt es als 0. Ist *last* größer oder gleich der Elementanzahl, gilt es als **end**. Ist *first* größer als *last*, wird eine leere Zeichenkette zurückgegeben.
+*list* muss eine gültige Tcl-Liste sein. Der Befehl gibt eine neue Liste aus den Elementen *first* bis *last* einschließlich zurück. *first* und *last* werden wie Indizes bei [string index][string] ausgelegt, einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende. Ist *first* kleiner als null, gilt es als 0. Ist *last* größer oder gleich der Elementanzahl, gilt es als **end**. Ist *first* größer als *last*, wird eine leere Zeichenkette zurückgegeben.
 
-„**lrange** *list first first*“ liefert nicht immer dasselbe wie „**lindex** *list first*“ (bei einfachen, nicht in Klammern stehenden Feldern oft schon); es entspricht aber genau „**list [lindex** *list first*__]__“.
+„**lrange** *list first first*“ liefert nicht immer dasselbe wie „[lindex] *list first*“ (bei einfachen, nicht in Klammern stehenden Feldern oft schon); es entspricht aber genau „[list \[lindex][list] *list first***\]**“.
 
-# BEISPIELE
+# Beispiele
 
 Die ersten zwei Elemente:
 
@@ -73,7 +74,7 @@ Alles außer erstem und letztem Element:
 b c d
 ```
 
-Ein Element mit **lrange** statt **lindex**:
+Ein Element mit **lrange** statt [lindex]:
 
 ```
 % set var {some {elements to} select}
@@ -83,3 +84,8 @@ elements to
 % lrange $var 1 1
 {elements to}
 ```
+
+
+[lindex]: lindex.md
+[list]: list.md
+[string]: string.md

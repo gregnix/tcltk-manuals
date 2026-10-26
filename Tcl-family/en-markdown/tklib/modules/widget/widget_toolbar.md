@@ -1,5 +1,6 @@
 ---
 CommandName: widget_toolbar
+title: widget_toolbar
 ManualSection: n
 Version: 3.0
 TclPart: tklib
@@ -14,16 +15,16 @@ Copyright:
 
 # Name
 
-widget_toolbar - Toolbar Megawidget
+widget\_toolbar - Toolbar Megawidget
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [widget]{.lit} [3.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [widget::toolbar]{.lit} [1.0]{.optlit} 
-[widget::toolbar]{.cmd} [pathname]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [widget]{.lit} [3.0]{.optlit}
+[package]{.cmd} [require]{.sub} [widget::toolbar]{.lit} [1.0]{.optlit}
+[widget::toolbar]{.cmd} [pathname]{.arg} [options]{.optarg}
 :::
 
 getframe
@@ -44,56 +45,29 @@ remove ?-destroy? item1 ?item2? ?...?
 
 This package provides a toolbar megawidget (snidget). It makes use of the Tile/Ttk themed widget set.
 
-**widget::toolbar** *pathname* ?options?
-: ...see next...
-
-**getframe**
-: ...see next...
-
-**add ?item? ?args?**
-: ...see next...
-
-**delete item1 ?item2? ?...?**
-: ...see next...
-
-**itemcget symbol option**
-: ...see next...
-
-**itemconfigure symbol ?args?**
-: ...see next...
-
-**items ?pattern?**
-: ...see next...
-
-**remove ?-destroy? item1 ?item2? ?...?**
-: 
+- **widget::toolbar** *pathname* ?options?
+- getframe
+- add ?item? ?args?
+- delete item1 ?item2? ?...?
+- itemcget symbol option
+- itemconfigure symbol ?args?
+- items ?pattern?
+- remove ?-destroy? item1 ?item2? ?...?
 
 
 # Widget options
 
-**-ipad**
-: ...see next...
-
-**-pad**
-: ...see next...
-
-**-separator**
-: 
+- **-ipad**
+- **-pad**
+- **-separator**
 
 
 # Item options
 
-**-pad**
-: ...see next...
-
-**-separator**
-: ...see next...
-
-**-sticky**
-: ...see next...
-
-**-weight**
-: 
+- **-pad**
+- **-separator**
+- **-sticky**
+- **-weight**
 
 
 # Example

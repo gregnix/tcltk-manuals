@@ -1,5 +1,6 @@
 ---
 CommandName: gpx
+title: gpx
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -11,33 +12,33 @@ Copyright:
  - Copyright (c) 2010, Keith Vetter <kvetter@gmail.com>
 ---
 
-# NAME
+# Name
 
 gpx – Extrahiert Wegpunkte, Tracks und Routen aus GPX-Dateien
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [gpx]{.lit} [1.1]{.optlit} 
-[::gpx::Create]{.cmd} [gpxFilename]{.arg} [rawXML]{.optarg} 
-[::gpx::Cleanup]{.cmd} [token]{.arg} 
-[::gpx::GetGPXMetadata]{.cmd} [token]{.arg} 
-[::gpx::GetWaypointCount]{.cmd} [token]{.arg} 
-[::gpx::GetAllWaypoints]{.cmd} [token]{.arg} 
-[::gpx::GetTrackCount]{.cmd} [token]{.arg} 
-[::gpx::GetTrackMetadata]{.cmd} [token]{.arg} [whichTrack]{.arg} 
-[::gpx::GetTrackPoints]{.cmd} [token]{.arg} [whichTrack]{.arg} 
-[::gpx::GetRouteCount]{.cmd} [token]{.arg} 
-[::gpx::GetRouteMetadata]{.cmd} [token]{.arg} [whichRoute]{.arg} 
-[::gpx::GetRoutePoints]{.cmd} [token]{.arg} [whichRoute]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [gpx]{.lit} [1.1]{.optlit}
+[::gpx::Create]{.cmd} [gpxFilename]{.arg} [rawXML]{.optarg}
+[::gpx::Cleanup]{.cmd} [token]{.arg}
+[::gpx::GetGPXMetadata]{.cmd} [token]{.arg}
+[::gpx::GetWaypointCount]{.cmd} [token]{.arg}
+[::gpx::GetAllWaypoints]{.cmd} [token]{.arg}
+[::gpx::GetTrackCount]{.cmd} [token]{.arg}
+[::gpx::GetTrackMetadata]{.cmd} [token]{.arg} [whichTrack]{.arg}
+[::gpx::GetTrackPoints]{.cmd} [token]{.arg} [whichTrack]{.arg}
+[::gpx::GetRouteCount]{.cmd} [token]{.arg}
+[::gpx::GetRouteMetadata]{.cmd} [token]{.arg} [whichRoute]{.arg}
+[::gpx::GetRoutePoints]{.cmd} [token]{.arg} [whichRoute]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Modul parst eine GPX-Datei (GPS eXchange) und extrahiert daraus Wegpunkte, Tracks, Routen und Metadaten. Unterstützt werden die GPX-Versionen 1.0 und 1.1.
 
-# BEFEHLE
+# Befehle
 
 **::gpx::Create** *gpxFilename* ?*rawXML*?
 : Der Befehl **::gpx::Create** ist der erste Befehl, der zur Verarbeitung von GPX-Daten aufgerufen wird. Er entnimmt die GPX-Daten dem Parameter *rawXML*, sofern vorhanden, sonst dem Inhalt von *gpxFilename*, und parst sie mit *tdom*. Er gibt einen Token-Wert zurück, den alle anderen Befehle verwenden.
@@ -73,16 +74,16 @@ Dieses Modul parst eine GPX-Datei (GPS eXchange) und extrahiert daraus Wegpunkte
 : Die Prozedur gibt eine Liste der Routenpunkte zurück, aus denen die Route mit der Nummer *whichRoute* (ab 1) in den durch *token* identifizierten GPX-Daten besteht. Das Format des Metadaten-Dictionaries wird im Folgenden beschrieben.
 
 
-# DATENSTRUKTUREN
+# Datenstrukturen
 
-**metadata dictionary**
+metadata dictionary
 : Die Metadaten des GPX-Dokuments, eines Tracks, einer Route, eines Wegpunkts, eines Trackpunkts oder eines Routenpunkts werden in einem Dictionary zurückgegeben. Die Schlüssel dieses Dictionarys sind die jeweils vorhandenen optionalen GPX-Elemente. Der Wert jedes Schlüssels hängt vom GPX-Schema des jeweiligen Elements ab. So ist der Wert eines version-Schlüssels eine Zeichenkette, der eines link-Schlüssels ein untergeordnetes Dictionary mit den Schlüsseln *href* sowie optional *text* und *type*.
 
-**point item**
+point item
 : Jeder Eintrag in einer Liste von Track- oder Routenpunkten besteht aus einer Liste mit drei Elementen: *latitude*, *longitude* und *metadata dictionary*. *latitude* und *longitude* sind Dezimalzahlen. Das Format des *metadata dictionary* ist oben beschrieben. Bei Punkten in einem Track sind in der Regel immer die Metadatenschlüssel ele (Höhe) und time (Zeit) vorhanden.
 
 
-# BEISPIEL
+# Beispiel
 
 ```
 % set token [::gpx::Create myGpxFile.gpx]
@@ -97,23 +98,20 @@ Dieses Modul parst eine GPX-Datei (GPS eXchange) und extrahiert daraus Wegpunkte
 % ::gpx::Cleanup $token
 ```
 
-# LITERATUR
+# Literatur
 
-**\[1\]**
-: GPX: the GPS Exchange Format (*http://www.topografix.com/gpx.asp*)
+1. GPX: the GPS Exchange Format (<http://www.topografix.com/gpx.asp>)
 
-**\[2\]**
-: GPX 1.1 Schema Documentation (*http://www.topografix.com/GPX/1/1/*)
+2. GPX 1.1 Schema Documentation (<http://www.topografix.com/GPX/1/1/>)
 
-**\[3\]**
-: GPX 1.0 Developer's Manual (*http://www.topografix.com/gpx_manual.asp*)
+3. GPX 1.0 Developer's Manual (<http://www.topografix.com/gpx_manual.asp>)
 
 
-# AUTOREN
+# Autoren
 
 Keith Vetter
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *gpx* als Kategorie an.
 
@@ -121,11 +119,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dateiformate
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2010, Keith Vetter <kvetter@gmail.com>

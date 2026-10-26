@@ -1,5 +1,6 @@
 ---
 CommandName: pt_introduction
+title: pt_introduction
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -25,33 +26,36 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-pt_introduction – Einleitung in die Parser-Tools
+pt\_introduction – Einleitung in die Parser-Tools
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Willkommen bei den Parser-Tools, einem System zur Erstellung und Bearbeitung von Parsern und den ihnen zugrunde liegenden Grammatiken.
 
 Welche Ziele haben Sie dazu bewegt, hierher zu kommen?
 
-**\[1\]**
-: Möchten Sie einfach nur einen Parser für eine bestimmte Sprache erstellen? In diesem Fall werfen Sie doch einen Blick auf unsere Parser-Generator-Anwendung **pt** oder, wenn Sie etwas tiefer in die Materie einsteigen möchten, auf das zugrunde liegende Paket **pt::pgen**.
+1. Möchten Sie einfach nur einen Parser für eine bestimmte Sprache erstellen?
 
-**\[2\]**
-: Möchten Sie mehr über die Architektur des Systems erfahren? Diese wird im folgenden Abschnitt **ARCHITEKTUR VON PARSER-TOOLS** beschrieben.
+    In diesem Fall werfen Sie doch einen Blick auf unsere Parser-Generator-Anwendung **pt** oder, wenn Sie etwas tiefer in die Materie einsteigen möchten, auf das zugrunde liegende Paket **pt::pgen**.
 
-**\[3\]**
-: Interessieren Sie sich für die theoretischen Grundlagen, auf denen die Pakete und Werkzeuge basieren? Lesen Sie dazu die *Introduction to Parsing Expression Grammars*.
+2. Möchten Sie mehr über die Architektur des Systems erfahren?
+
+    Diese wird im folgenden Abschnitt [Architektur von Parser-Tools] beschrieben.
+
+3. Interessieren Sie sich für die theoretischen Grundlagen, auf denen die Pakete und Werkzeuge basieren?
+
+    Lesen Sie dazu die *Introduction to Parsing Expression Grammars*.
 
 
-# ARCHITEKTUR VON PARSER-TOOLS
+# Architektur von Parser-Tools
 
 Das System lässt sich grob in drei Schichten unterteilen, wie in der folgenden Abbildung dargestellt
 
@@ -59,151 +63,93 @@ IMAGE: architecture
 
 Diese Schichten sind, von oben nach unten:
 
-**\[1\]**
-: An oberster Stelle befinden sich die Anwendung und die Pakete, die die Pakete der darunterliegenden Schicht nutzen, um gängige Anwendungsfälle umzusetzen. Ein Beispiel ist das bereits erwähnte **pt::pgen**, das einen Parser-Generator bereitstellt. Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt **Benutzerpakete**.
+1. An oberster Stelle befinden sich die Anwendung und die Pakete, die die Pakete der darunterliegenden Schicht nutzen, um gängige Anwendungsfälle umzusetzen. Ein Beispiel ist das bereits erwähnte **pt::pgen**, das einen Parser-Generator bereitstellt.
 
-**\[2\]**
-: In dieser Schicht befinden sich die Pakete, die den Kern der Funktionalität für das gesamte System bilden. Im Wesentlichen handelt es sich dabei um eine Reihe von Bausteinen, die sich auf unzählige Arten kombinieren lassen, ähnlich wie bei Lego (tm). Die Pakete der vorherigen Schicht sind „lediglich“ vorgefertigte Kombinationen, um die wichtigsten Anwendungsfälle abzudecken. Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt **Kernpakete**
+    Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt [Benutzerpakete].
 
-**\[3\]**
-: Zu guter Letzt gibt es die Schicht mit den Unterstützungspaketen, die allgemeine Funktionen bereitstellen, die nicht unbedingt in das Modul gehören. Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt **Unterstützungspakete**
+2. In dieser Schicht befinden sich die Pakete, die den Kern der Funktionalität für das gesamte System bilden. Im Wesentlichen handelt es sich dabei um eine Reihe von Bausteinen, die sich auf unzählige Arten kombinieren lassen, ähnlich wie bei Lego (tm). Die Pakete der vorherigen Schicht sind „lediglich“ vorgefertigte Kombinationen, um die wichtigsten Anwendungsfälle abzudecken.
+
+    Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt [Kernpakete]
+
+3. Zu guter Letzt gibt es die Schicht mit den Unterstützungspaketen, die allgemeine Funktionen bereitstellen, die nicht unbedingt in das Modul gehören.
+
+    Die Liste der zu dieser Schicht gehörenden Pakete steht im Abschnitt [Unterstützungspakete]
 
 
 ## Benutzerpakete
 
-**pt::pgen**
-: 
+- **pt::pgen**
 
 
 ## Kernpakete
 
 Diese Schicht ist weiter in sechs Bereiche unterteilt: Speicherung, Import, Export, Transformation und Ausführung von Grammatiken sowie grammatikspezifische Unterstützungspakete.
 
-**Speicher**
-: 
+Speicher
+: siehe unten ...
+
+    - **pt::peg::container**
 
 
-**pt::peg::container**
-: 
+Export
+: siehe unten ...
+
+    - **pt::peg::export**
+    - **pt::peg::export::container**
+    - **pt::peg::export::json**
+    - **pt::peg::export::peg**
+    - [pt::peg::to::container][pt_peg_to_container]
+    - [pt::peg::to::json][pt_peg_to_json]
+    - [pt::peg::to::peg][pt_peg_to_peg]
+    - [pt::peg::to::param][pt_peg_to_param]
+    - [pt::peg::to::tclparam][pt_peg_to_tclparam]
+    - [pt::peg::to::cparam][pt_peg_to_cparam]
 
 
-**Export**
-: 
+Import
+: siehe unten ...
+
+    - **pt::peg::import**
+    - [pt::peg::import::container][pt_peg_import_container]
+    - **pt::peg::import::json**
+    - **pt::peg::import::peg**
+    - [pt::peg::from::container][pt_peg_from_container]
+    - [pt::peg::from::json][pt_peg_from_json]
+    - [pt::peg::from::peg][pt_peg_from_peg]
 
 
-**pt::peg::export**
-: ...siehe nächstes...
+Transformation
+: siehe unten ...
 
-**pt::peg::export::container**
-: ...siehe nächstes...
+Ausführung
+: siehe unten ...
 
-**pt::peg::export::json**
-: ...siehe nächstes...
-
-**pt::peg::export::peg**
-: ...siehe nächstes...
-
-**pt::peg::to::container**
-: ...siehe nächstes...
-
-**pt::peg::to::json**
-: ...siehe nächstes...
-
-**pt::peg::to::peg**
-: ...siehe nächstes...
-
-**pt::peg::to::param**
-: ...siehe nächstes...
-
-**pt::peg::to::tclparam**
-: ...siehe nächstes...
-
-**pt::peg::to::cparam**
-: 
+    - **pt::peg::interp**
+    - **pt::rde**
 
 
-**Import**
-: 
+Unterstützung
+: siehe unten ...
 
+    - **pt::tclparam::configuration::snit**
+    - **pt::tclparam::configuration::tcloo**
+    - **pt::cparam::configuration::critcl**
+    - **pt::ast**
+    - **pt::pe**
+    - **pt::peg**
 
-**pt::peg::import**
-: ...siehe nächstes...
-
-**pt::peg::import::container**
-: ...siehe nächstes...
-
-**pt::peg::import::json**
-: ...siehe nächstes...
-
-**pt::peg::import::peg**
-: ...siehe nächstes...
-
-**pt::peg::from::container**
-: ...siehe nächstes...
-
-**pt::peg::from::json**
-: ...siehe nächstes...
-
-**pt::peg::from::peg**
-: 
-
-
-**Transformation**
-: ...siehe nächstes...
-
-**Ausführung**
-: 
-
-
-**pt::peg::interp**
-: ...siehe nächstes...
-
-**pt::rde**
-: 
-
-
-**Unterstützung**
-: 
-
-
-**pt::tclparam::configuration::snit**
-: ...siehe nächstes...
-
-**pt::tclparam::configuration::tcloo**
-: ...siehe nächstes...
-
-**pt::cparam::configuration::critcl**
-: ...siehe nächstes...
-
-**pt::ast**
-: ...siehe nächstes...
-
-**pt::pe**
-: ...siehe nächstes...
-
-**pt::peg**
-: 
 
 
 ## Unterstützungspakete
 
-**pt::peg::container::peg**
-: ...siehe nächstes...
-
-**text::write**
-: ...siehe nächstes...
-
-**configuration**
-: ...siehe nächstes...
-
-**paths**
-: ...siehe nächstes...
-
-**char**
-: 
+- [pt::peg::container::peg][pt_peg_container_peg]
+- **text::write**
+- **configuration**
+- **paths**
+- **char**
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pt* als Kategorie an.
 
@@ -211,12 +157,25 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Parser und Grammatiken
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_container_peg]: pt_peg_container_peg.md
+[pt_peg_from_container]: pt_peg_from_container.md
+[pt_peg_from_json]: pt_peg_from_json.md
+[pt_peg_from_peg]: pt_peg_from_peg.md
+[pt_peg_import_container]: pt_peg_import_container.md
+[pt_peg_to_container]: pt_peg_to_container.md
+[pt_peg_to_cparam]: pt_peg_to_cparam.md
+[pt_peg_to_json]: pt_peg_to_json.md
+[pt_peg_to_param]: pt_peg_to_param.md
+[pt_peg_to_peg]: pt_peg_to_peg.md
+[pt_peg_to_tclparam]: pt_peg_to_tclparam.md

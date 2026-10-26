@@ -1,5 +1,6 @@
 ---
 CommandName: pieBoxLabeler
+title: pieBoxLabeler
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -24,9 +25,9 @@ pieBoxLabeler - tkpiechart pie box style labeler class
 # Synopsis
 
 ::: {.synopsis} :::
-[stooop::new]{.cmd} [pieBoxLabeler]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [pieBoxLabelerObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [pieBoxLabelerObject]{.arg} [option]{.arg} 
+[stooop::new]{.cmd} [pieBoxLabeler]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [pieBoxLabelerObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [pieBoxLabelerObject]{.arg} [option]{.arg}
 :::
 
 # Description
@@ -63,8 +64,7 @@ There is no need to delete a **pieBoxLabeler** object as it is automatically han
 
 The labeler has the following specific tag (see the **canvas** manual page *ITEM IDS AND TAGS* section for more information):
 
-**•**
-: pieBoxLabeler(pieBoxLabelerObject)
+- pieBoxLabeler(pieBoxLabelerObject)
 
 
 # Bugs, ideas, feedback

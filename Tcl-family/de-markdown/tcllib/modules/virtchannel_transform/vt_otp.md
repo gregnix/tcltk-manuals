@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::otp
+title: tcl::transform::otp
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -20,20 +21,20 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::transform::otp – Verschlüsselung mittels Einmal-Pad
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::otp]{.lit} [1.1]{.optlit} 
-[::tcl::transform::otp]{.cmd} [chan]{.arg} [keychanw]{.arg} [keychanr]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::otp]{.lit} [1.1]{.optlit}
+[::tcl::transform::otp]{.cmd} [chan]{.arg} [keychanw]{.arg} [keychanr]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **tcl::transform::otp** enthält einen Befehl zum Erstellen einer Kanal-Transformation, die extern bereitgestellte Einmal-Chiffrierschlüssel verwendet, um die Verschlüsselung (beim Schreiben) und die Entschlüsselung (beim Lesen) durchzuführen.
 
@@ -44,10 +45,12 @@ Die interne Klasse „**TclOO**“, die den Handler für Transformationen implem
 # API
 
 **::tcl::transform::otp** *chan* *keychanw* *keychanr*
-: Dieser Befehl erstellt eine auf dem Kanal *chan* basierende Verschlüsselungstransformation nach dem One-Time-Pad-Prinzip und gibt deren Handle zurück. Die beiden Kanäle *keychanw* und *keychanr* enthalten die One-Time-Pads für die Schreib- bzw. Leserichtung. Ihre Inhalte werden gelesen und mit den Bytes, die in den Kanal geschrieben bzw. aus ihm gelesen werden, XOR-verknüpft.
+: Dieser Befehl erstellt eine auf dem Kanal *chan* basierende Verschlüsselungstransformation nach dem One-Time-Pad-Prinzip und gibt deren Handle zurück.
+
+    Die beiden Kanäle *keychanw* und *keychanr* enthalten die One-Time-Pads für die Schreib- bzw. Leserichtung. Ihre Inhalte werden gelesen und mit den Bytes, die in den Kanal geschrieben bzw. aus ihm gelesen werden, XOR-verknüpft.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *virtchannel* als Kategorie an.
 
@@ -55,11 +58,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Kanäle
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

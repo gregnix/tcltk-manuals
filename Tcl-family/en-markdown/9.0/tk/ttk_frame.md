@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::frame
+title: ttk::frame
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -23,7 +24,7 @@ ttk::frame - Simple container widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::frame]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::frame]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -32,12 +33,9 @@ A **ttk::frame** widget is a container, used to group other widgets together.
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-padding** |
-| **-style** | **-takefocus** |  |
+**-class**, **-cursor**, **-padding**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -56,17 +54,17 @@ See the ttk_widget manual entry for details on the standard options.
 
 # Widget command
 
-Frame widgets support the standard commands **cget**, **configure**, **identify element**, **instate**, **state** and **style** (see **ttk::widget**).
+Frame widgets support the standard commands **cget**, **configure**, **identify element**, **instate**, **state** and **style** (see [ttk::widget][ttk_widget]).
 
 # Notes
 
-Note that if the **pack**, **grid**, or other geometry managers are used to manage the children of the **frame**, by the GM's requested size will normally take precedence over the **frame** widget's **-width** and **-height** options. **pack propagate** and **grid propagate** can be used to change this.
+Note that if the [pack], [grid], or other geometry managers are used to manage the children of the [frame], by the GM's requested size will normally take precedence over the [frame] widget's **-width** and **-height** options. [pack propagate][pack] and [grid propagate][grid] can be used to change this.
 
 # Styling options
 
 The class name for a **ttk::frame** is **TFrame**.
 
-**TFrame** styling options configurable with **ttk::style** are:
+**TFrame** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -74,8 +72,15 @@ The class name for a **ttk::frame** is **TFrame**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
 
 # Bindings
 
 When a new **ttk::frame** is created, it has no default event bindings; **ttk::frame**s are not intended to be interactive.
+
+
+[frame]: frame.md
+[grid]: grid.md
+[pack]: pack.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

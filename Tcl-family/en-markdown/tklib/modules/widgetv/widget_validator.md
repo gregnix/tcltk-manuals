@@ -1,5 +1,6 @@
 ---
 CommandName: widget_validator
+title: widget_validator
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -16,17 +17,17 @@ Copyright:
 
 # Name
 
-widget_validator - widget::validator behaviour
+widget\_validator - widget::validator behaviour
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [widget::validator]{.lit} [0.1]{.optlit} 
-[widget::validator]{.cmd} [attach]{.sub} [w]{.arg} [color]{.arg} [cmdprefix]{.arg} 
-[widget::validator]{.cmd} [detach]{.sub} [w]{.arg} 
-[widget::validator]{.cmd} [validate]{.sub} [w]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [widget::validator]{.lit} [0.1]{.optlit}
+[widget::validator]{.cmd} [attach]{.lit} [w]{.arg} [color]{.arg} [cmdprefix]{.arg}
+[widget::validator]{.cmd} [detach]{.lit} [w]{.arg}
+[widget::validator]{.cmd} [validate]{.lit} [w]{.arg}
 :::
 
 # Description
@@ -38,13 +39,31 @@ Please note that the validation behaviour defined in this package will not rejec
 It is the responsibility of the using package or application to decide how and when to actually reject such invalid content.
 
 **widget::validator** **attach** *w* *color* *cmdprefix*
-: This method adds a validating behaviour to the widget *w*. Whenever the content of the widget's entry field changes the specified *cmdprefix* is invoked and has to return a boolean value, where **true** means that content is ok, and **false** that the content is invalid. For more information on the command prefix see section **Validation**. In case of the latter the background color of the entry field is changed to *color* to indicate the invalidity. The system does not support nesting of validators on a widget, nor the attachment of multiple validators. To change validating conditions **detach** the current validator first before attaching the new. An error is thrown if the widget has already validating behaviour attached to it. The result of the method is the empty string. To achieve its aims the package overrides various configuration options of the widget the behaviour is attached to. These options are restored to their previous values on **detach**. If other behaviours are attached the validator may be rendered temporarily (partially) non-functional. Similarly, if the validator is detached while a different behaviour is also attached its restoration of configuration settings may render the other non-functional
+: This method adds a validating behaviour to the widget *w*.
+
+    Whenever the content of the widget's entry field changes the specified *cmdprefix* is invoked and has to return a boolean value, where **true** means that content is ok, and **false** that the content is invalid. For more information on the command prefix see section [Validation]. In case of the latter the background color of the entry field is changed to *color* to indicate the invalidity.
+
+    The system does not support nesting of validators on a widget, nor the attachment of multiple validators. To change validating conditions **detach** the current validator first before attaching the new.
+
+    An error is thrown if the widget has already validating behaviour attached to it.
+
+    The result of the method is the empty string.
+
+    To achieve its aims the package overrides various configuration options of the widget the behaviour is attached to. These options are restored to their previous values on **detach**.
+
+    If other behaviours are attached the validator may be rendered temporarily (partially) non-functional. Similarly, if the validator is detached while a different behaviour is also attached its restoration of configuration settings may render the other non-functional
 
 **widget::validator** **detach** *w*
-: This method removes the validating behaviour from the widget *w* and restores it to its original state. An error is thrown if the widget has no validating behaviour attached to it. The result of the method is the empty string.
+: This method removes the validating behaviour from the widget *w* and restores it to its original state.
+
+    An error is thrown if the widget has no validating behaviour attached to it.
+
+    The result of the method is the empty string.
 
 **widget::validator** **validate** *w*
-: Invoking this method forces a validation of the widget *w*, assuming that it has a validator behaviour attached to it. The result of the method is the empty string.
+: Invoking this method forces a validation of the widget *w*, assuming that it has a validator behaviour attached to it.
+
+    The result of the method is the empty string.
 
 
 # Validation
@@ -52,7 +71,9 @@ It is the responsibility of the using package or application to decide how and w
 The command prefix for used for validation has to have the following signature:
 
 {\*}*cmdprefix* *text*
-: The argument is the text to validate. The result of the callback has to be a boolean value where **true** means that *text* is ok, and **false** that *text* is invalid.
+: The argument is the text to validate.
+
+    The result of the callback has to be a boolean value where **true** means that *text* is ok, and **false** that *text* is invalid.
 
 
 # Example

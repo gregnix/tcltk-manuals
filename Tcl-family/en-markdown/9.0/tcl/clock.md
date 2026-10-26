@@ -1,5 +1,6 @@
 ---
 CommandName: clock
+title: clock
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -21,58 +22,61 @@ clock - Obtain and manipulate dates and times
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5-]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5-]{.lit}
 
-[clock]{.cmd} [add]{.sub} [timeVal]{.arg} [count unit]{.optdot} [-option value]{.optarg} 
-[clock]{.cmd} [clicks]{.sub} [-option]{.optarg} 
-[clock]{.cmd} [format]{.sub} [timeVal]{.arg} [-option value]{.optdot} 
-[clock]{.cmd} [microseconds]{.sub} 
-[clock]{.cmd} [milliseconds]{.sub} 
-[clock]{.cmd} [scan]{.sub} [inputString]{.arg} [-option value]{.optdot} 
-[clock]{.cmd} [seconds]{.sub} 
+[clock]{.cmd} [add]{.sub} [timeVal]{.arg} [count unit]{.optdot} [-option value]{.optarg}
+[clock]{.cmd} [clicks]{.sub} [-option]{.optarg}
+[clock]{.cmd} [format]{.sub} [timeVal]{.arg} [-option value]{.optdot}
+[clock]{.cmd} [microseconds]{.sub}
+[clock]{.cmd} [milliseconds]{.sub}
+[clock]{.cmd} [scan]{.sub} [inputString]{.arg} [-option value]{.optdot}
+[clock]{.cmd} [seconds]{.sub}
 :::
 
 # Description
 
 The **clock** command performs several operations that obtain and manipulate values that represent times.  The command supports several subcommands that determine what action is carried out by the command.
 
-**clock add** *timeVal* ?*count unit...*? ?*-option value*?
-: Adds a (possibly negative) offset to a time that is expressed as an integer number of seconds.  See **CLOCK ARITHMETIC** for a full description.
+[clock]{.cmd} [add]{.sub} [timeVal]{.arg} [count unit...]{.optarg} [-option value]{.optarg}
+: Adds a (possibly negative) offset to a time that is expressed as an integer number of seconds.  See [Clock arithmetic] for a full description.
 
-**clock clicks** ?*-option*?
-: If no *-option* argument is supplied, returns a high-resolution time value as a system-dependent integer value.  The unit of the value is system-dependent but should be the highest resolution clock available on the system such as a CPU cycle counter. See **HIGH RESOLUTION TIMERS** for a full description.
+[clock]{.cmd} [clicks]{.sub} [-option]{.optarg}
+: If no *-option* argument is supplied, returns a high-resolution time value as a system-dependent integer value.  The unit of the value is system-dependent but should be the highest resolution clock available on the system such as a CPU cycle counter. See [High resolution timers] for a full description.
 
+    If the *-option* argument is **-milliseconds**, then the command is synonymous with **clock milliseconds** (see below).  This usage is obsolete, and **clock milliseconds** is to be considered the preferred way of obtaining a count of milliseconds.
 
-If the *-option* argument is **-milliseconds**, then the command is synonymous with **clock milliseconds** (see below).  This usage is obsolete, and **clock milliseconds** is to be considered the preferred way of obtaining a count of milliseconds.
+    If the *-option* argument is **-microseconds**, then the command is synonymous with **clock microseconds** (see below).  This usage is obsolete, and **clock microseconds** is to be considered the preferred way of obtaining a count of microseconds.
 
-If the *-option* argument is **-microseconds**, then the command is synonymous with **clock microseconds** (see below).  This usage is obsolete, and **clock microseconds** is to be considered the preferred way of obtaining a count of microseconds.
+[clock]{.cmd} [format]{.sub} [timeVal]{.arg} [-option value]{.optdot}
+: Formats a time that is expressed as an integer number of seconds into a format intended for consumption by users or external programs. See [Formatting times] for a full description.
 
-**clock format** *timeVal* ?*-option value ...*?
-: Formats a time that is expressed as an integer number of seconds into a format intended for consumption by users or external programs. See **FORMATTING TIMES** for a full description.
+[clock]{.cmd} [microseconds]{.sub}
+: Returns the current time as an integer number of microseconds. See [High resolution timers] for a full description.
 
-**clock microseconds**
-: Returns the current time as an integer number of microseconds. See **HIGH RESOLUTION TIMERS** for a full description.
+[clock]{.cmd} [milliseconds]{.sub}
+: Returns the current time as an integer number of milliseconds. See [High resolution timers] for a full description.
 
-**clock milliseconds**
-: Returns the current time as an integer number of milliseconds. See **HIGH RESOLUTION TIMERS** for a full description.
+[clock]{.cmd} [scan]{.sub} [inputString]{.arg} [-option value]{.optdot}
+: Scans a time that is expressed as a character string and produces an integer number of seconds. See [Scanning times] for a full description.
 
-**clock scan** *inputString* ?*-option value ...*?
-: Scans a time that is expressed as a character string and produces an integer number of seconds. See **SCANNING TIMES** for a full description.
-
-**clock seconds**
+[clock]{.cmd} [seconds]{.sub}
 : Returns the current time as an integer number of seconds.
 
 
 ## Parameters
 
 *count*
-: An integer representing a count of some unit of time.  See **CLOCK ARITHMETIC** for the details.
+: An integer representing a count of some unit of time.  See [Clock arithmetic] for the details.
 
 *timeVal*
 : An integer value passed to the **clock** command that represents an absolute time as a number of seconds from the *epoch time* of 1 January 1970, 00:00 UTC.  Note that the count of seconds does not include any leap seconds; seconds are counted as if each UTC day has exactly 86400 seconds.  Tcl responds to leap seconds by speeding or slowing its clock by a tiny fraction for some minutes until it is back in sync with UTC; its data model does not represent minutes that have 59 or 61 seconds.
 
 *now*
-: Instead of *timeVal* a non-integer value **now** can be used as replacement for today, which is simply interpolated to the run-time as value of **clock seconds**. For example: **clock format now -f %a; # current day of the week** **clock add now 1 month; # next month**
+: Instead of *timeVal* a non-integer value **now** can be used as replacement for today, which is simply interpolated to the run-time as value of **clock seconds**. For example:
+
+    **clock format now -f %a; # current day of the week**
+
+    **clock add now 1 month; # next month**
 
 *unit*
 : One of the words, **seconds**, **minutes**, **hours**, **days**, **weekdays**, **weeks**, **months**, or **years**. Used in conjunction with *count* to identify an interval of time, for example, *3 seconds* or *1 year*.
@@ -80,47 +84,43 @@ If the *-option* argument is **-microseconds**, then the command is synonymous w
 
 ## Options
 
-**-base** time
+[-base]{.lit} time
 : Specifies that any relative times present in a **clock scan** command are to be given relative to *time*.  *time* must be expressed as a count of nominal seconds from the epoch time of 1 January 1970, 00:00 UTC.
 
-**-format** format
-: Specifies the desired output format for **clock format** or the expected input format for **clock scan**.  The *format* string consists of any number of characters other than the per-cent sign ("**%**") interspersed with any number of *format groups*, which are two- or three-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under **FORMAT GROUPS**.
+[-format]{.lit} format
+: Specifies the desired output format for **clock format** or the expected input format for **clock scan**.  The *format* string consists of any number of characters other than the per-cent sign ("**%**") interspersed with any number of *format groups*, which are two- or three-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under [Format groups].
 
+    On **clock format**, the default format is
 
-On **clock format**, the default format is
+    ```
+    %a %b %d %H:%M:%S %Z %Y
+    ```
 
-```
-%a %b %d %H:%M:%S %Z %Y
-```
+    On **clock scan**, the lack of a **-format** option indicates that a "free format scan" is requested; see [Free form scan] for a description of what happens.
 
-On **clock scan**, the lack of a **-format** option indicates that a "free format scan" is requested; see **FREE FORM SCAN** for a description of what happens.
-
-**-gmt** boolean
+[-gmt]{.lit} boolean
 : If *boolean* is true, specifies that a time specified to **clock add**, **clock format** or **clock scan** should be processed in UTC.  If *boolean* is false, the processing defaults to the local time zone.  This usage is obsolete; the correct current usage is to specify the UTC time zone with "**-timezone** *:UTC*" or any of the equivalent ways to specify it.
 
-**-locale** localeName
-: Specifies that locale-dependent scanning and formatting (and date arithmetic for dates preceding the adoption of the Gregorian calendar) is to be done in the locale identified by *localeName*.  The locale name may be any of the locales acceptable to the **msgcat** package, or it may be the special name *system*, which represents the current locale of the process, or the null string, which represents Tcl's default locale.
+[-locale]{.lit} localeName
+: Specifies that locale-dependent scanning and formatting (and date arithmetic for dates preceding the adoption of the Gregorian calendar) is to be done in the locale identified by *localeName*.  The locale name may be any of the locales acceptable to the [msgcat] package, or it may be the special name *system*, which represents the current locale of the process, or the null string, which represents Tcl's default locale.
+
+    The effect of locale on scanning and formatting is discussed in the descriptions of the individual format groups under [Format groups]. The effect of locale on clock arithmetic is discussed under [Clock arithmetic].
+
+[-timezone]{.lit} zoneName
+: Specifies that clock arithmetic, formatting, and scanning are to be done according to the rules for the time zone specified by *zoneName*. The permissible values, and their interpretation, are discussed under [Time zones]. On subcommands that expect a **-timezone** argument, the default is to use the *current time zone*.  The current time zone is determined, in order of preference, by:
+
+    1. the environment variable **TCL\_TZ**.
+
+    2. the environment variable **TZ**.
+
+    3. on Windows systems, the time zone settings from the Control Panel.
 
 
-The effect of locale on scanning and formatting is discussed in the descriptions of the individual format groups under **FORMAT GROUPS**. The effect of locale on clock arithmetic is discussed under **CLOCK ARITHMETIC**.
-
-**-timezone** zoneName
-: Specifies that clock arithmetic, formatting, and scanning are to be done according to the rules for the time zone specified by *zoneName*. The permissible values, and their interpretation, are discussed under **TIME ZONES**. On subcommands that expect a **-timezone** argument, the default is to use the *current time zone*.  The current time zone is determined, in order of preference, by:
+[-validate]{.lit} boolean
+: If *boolean* is true (default), **clock scan** will raise an error if the input contains invalid values, e.g. day of month greater than number of days in the month. If specified as false, the command makes an adjustment to bring values within acceptable range. See [Scanning times] for details.
 
 
-**\[1\]**
-: the environment variable **TCL_TZ**.
-
-**\[2\]**
-: the environment variable **TZ**.
-
-**\[3\]**
-: on Windows systems, the time zone settings from the Control Panel.
-
-
-**-validate** boolean
-: If *boolean* is true (default), **clock scan** will raise an error if the input contains invalid values, e.g. day of month greater than number of days in the month. If specified as false, the command makes an adjustment to bring values within acceptable range. See **SCANNING TIMES** for details. If none of these is present, the C **localtime** and **mktime** functions are used to attempt to convert times between local and Greenwich.  On 32-bit systems, this approach is likely to have bugs, particularly for times that lie outside the window (approximately the years 1902 to 2037) that can be represented in a 32-bit integer.
-
+If none of these is present, the C **localtime** and **mktime** functions are used to attempt to convert times between local and Greenwich.  On 32-bit systems, this approach is likely to have bugs, particularly for times that lie outside the window (approximately the years 1902 to 2037) that can be represented in a 32-bit integer.
 
 # Clock arithmetic
 
@@ -189,60 +189,59 @@ Most of the subcommands supported by the **clock** command deal with times repre
 
 # Formatting times
 
-The **clock format** command produces times for display to a user or writing to an external medium.  The command accepts times that are expressed in seconds from the epoch time of 1 January 1970, 00:00 UTC, as returned by **clock seconds**, **clock scan**, **clock add**, **file atime** or **file mtime**.
+The **clock format** command produces times for display to a user or writing to an external medium.  The command accepts times that are expressed in seconds from the epoch time of 1 January 1970, 00:00 UTC, as returned by **clock seconds**, **clock scan**, **clock add**, [file atime][file] or [file mtime][file].
 
-If a **-format** option is present, the following argument is a string that specifies how the date and time are to be formatted. The string consists of any number of characters other than the per-cent sign ("**%**") interspersed with any number of *format groups*, which are two-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under **FORMAT GROUPS**.
+If a **-format** option is present, the following argument is a string that specifies how the date and time are to be formatted. The string consists of any number of characters other than the per-cent sign ("**%**") interspersed with any number of *format groups*, which are two-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under [Format groups].
 
-If a **-timezone** option is present, the following argument is a string that specifies the time zone in which the date and time are to be formatted.  As an alternative to "**-timezone** *:UTC*", the obsolete usage "**-gmt** *true*" may be used.  See **TIME ZONES** for the permissible variants for the time zone.
+If a **-timezone** option is present, the following argument is a string that specifies the time zone in which the date and time are to be formatted.  As an alternative to "**-timezone** *:UTC*", the obsolete usage "**-gmt** *true*" may be used.  See [Time zones] for the permissible variants for the time zone.
 
-If a **-locale** option is present, the following argument is a string that specifies the locale in which the time is to be formatted, in the same format that is used for the **msgcat** package.  Note that the default, if **-locale** is not specified, is the root locale **{}** rather than the current locale.  The current locale may be obtained by using **-locale current**. In addition, some platforms support a **system** locale that reflects the user's current choices.  For instance, on Windows, the format that the user has selected from dates and times in the Control Panel can be obtained by using the **system** locale.  On platforms that do not define a user selection of date and time formats separate from **LC_TIME**, **-locale system** is synonymous with **-locale current**.
+If a **-locale** option is present, the following argument is a string that specifies the locale in which the time is to be formatted, in the same format that is used for the [msgcat] package.  Note that the default, if **-locale** is not specified, is the root locale **{}** rather than the current locale.  The current locale may be obtained by using **-locale current**. In addition, some platforms support a **system** locale that reflects the user's current choices.  For instance, on Windows, the format that the user has selected from dates and times in the Control Panel can be obtained by using the **system** locale.  On platforms that do not define a user selection of date and time formats separate from **LC\_TIME**, **-locale system** is synonymous with **-locale current**.
 
 # Scanning times
 
-The **clock scan** command accepts times that are formatted as strings and converts them to counts of seconds from the epoch time of 1 January 1970, 00:00 UTC.  It normally takes a **-format** option that is followed by a string describing the expected format of the input.  (See **FREE FORM SCAN** for the effect of **clock scan** without such an argument.)  The string consists of any number of characters other than the per-cent sign ("**%**"), interspersed with any number of *format groups*, which are two-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under **FORMAT GROUPS**.
+The **clock scan** command accepts times that are formatted as strings and converts them to counts of seconds from the epoch time of 1 January 1970, 00:00 UTC.  It normally takes a **-format** option that is followed by a string describing the expected format of the input.  (See [Free form scan] for the effect of **clock scan** without such an argument.)  The string consists of any number of characters other than the per-cent sign ("**%**"), interspersed with any number of *format groups*, which are two-character sequences beginning with the per-cent sign.  The permissible format groups, and their interpretation, are described under [Format groups].
 
-If a **-timezone** option is present, the following argument is a string that specifies the time zone in which the date and time are to be interpreted.  As an alternative to **-timezone** *:UTC*, the obsolete usage **-gmt** *true* may be used.  See **TIME ZONES** for the permissible variants for the time zone.
+If a **-timezone** option is present, the following argument is a string that specifies the time zone in which the date and time are to be interpreted.  As an alternative to **-timezone** *:UTC*, the obsolete usage **-gmt** *true* may be used.  See [Time zones] for the permissible variants for the time zone.
 
-If a **-locale** option is present, the following argument is a string that specifies the locale in which the time is to be interpreted, in the same format that is used for the **msgcat** package.  Note that the default, if **-locale** is not specified, is the root locale **{}** rather than the current locale.  The current locale may be obtained by using **-locale current**. In addition, some platforms support a **system** locale that reflects the user's current choices.  For instance, on Windows, the format that the user has selected from dates and times in the Control Panel can be obtained by using the **system** locale.  On platforms that do not define a user selection of date and time formats separate from **LC_TIME**, **-locale system** is synonymous with **-locale current**.
+If a **-locale** option is present, the following argument is a string that specifies the locale in which the time is to be interpreted, in the same format that is used for the [msgcat] package.  Note that the default, if **-locale** is not specified, is the root locale **{}** rather than the current locale.  The current locale may be obtained by using **-locale current**. In addition, some platforms support a **system** locale that reflects the user's current choices.  For instance, on Windows, the format that the user has selected from dates and times in the Control Panel can be obtained by using the **system** locale.  On platforms that do not define a user selection of date and time formats separate from **LC\_TIME**, **-locale system** is synonymous with **-locale current**.
 
 If a **-base** option is present, the following argument is a time (expressed in seconds from the epoch time) that is used as a *base time* for interpreting relative times.  If no **-base** option is present, the base time is the current time.
 
 Scanning of times in fixed format works by determining three things: the date, the time of day, and the time zone.  These three are then combined into a point in time, which is returned as the number of seconds from the epoch.
 
-Before scanning begins, the format string is preprocessed to replace **%c**, **%Ec**, **%x**, **%Ex**, **%X**. **%Ex**, **%r**, **%R**, **%T**, **%D**, **%EY** and **%+** format groups with counterparts that are appropriate to the current locale and contain none of the above groups.  For instance, **%D** will (in the **en_US** locale) be replaced with **%m/%d/%Y**.
+Before scanning begins, the format string is preprocessed to replace **%c**, **%Ec**, **%x**, **%Ex**, **%X**. **%Ex**, **%r**, **%R**, **%T**, **%D**, **%EY** and **%+** format groups with counterparts that are appropriate to the current locale and contain none of the above groups.  For instance, **%D** will (in the **en\_US** locale) be replaced with **%m/%d/%Y**.
 
 The date is determined according to the fields that are present in the preprocessed format string.  In order of preference:
 
-**\[1\]**
-: If the string contains a **%s** format group, representing seconds from the epoch, that group is used to determine the date.
+1. If the string contains a **%s** format group, representing seconds from the epoch, that group is used to determine the date.
 
-**\[2\]**
-: If the string contains a **%J**, **%EJ** or **%Ej** format groups, representing the Calendar or Astronomical Julian Day Number, that groups are used to determine the date. Note that in case of **%EJ** or **%Ej** format groups, representing the Julian Date with time fraction, this groups may be used to determine the date and time.
+2. If the string contains a **%J**, **%EJ** or **%Ej** format groups, representing the Calendar or Astronomical Julian Day Number, that groups are used to determine the date. Note that in case of **%EJ** or **%Ej** format groups, representing the Julian Date with time fraction, this groups may be used to determine the date and time.
 
-**\[3\]**
-: If the string contains a complete set of format groups specifying century, year, month, and day of month; century, year, and day of year; or ISO8601 fiscal year, week of year, and day of week; those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.
+3. If the string contains a complete set of format groups specifying century, year, month, and day of month; century, year, and day of year; or ISO8601 fiscal year, week of year, and day of week; those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.
 
-**\[4\]**
-: If the string lacks a century but contains a set of format groups specifying year of century, month and day of month; year of century and day of year; or two-digit ISO8601 fiscal year, week of year, and day of week; those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.  The year is presumed to lie in the range 1938 to 2037 inclusive.
+4. If the string lacks a century but contains a set of format groups specifying year of century, month and day of month; year of century and day of year; or two-digit ISO8601 fiscal year, week of year, and day of week; those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.  The year is presumed to lie in the range 1938 to 2037 inclusive.
 
-**\[5\]**
-: If the string entirely lacks any specification for the year (or contains the year only on the locale's alternative calendar) and contains a set of format groups specifying month and day of month, day of year, or week of year and day of week, those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.  The year is determined by interpreting the base time in the given time zone.
+5. If the string entirely lacks any specification for the year (or contains the year only on the locale's alternative calendar) and contains a set of format groups specifying month and day of month, day of year, or week of year and day of week, those groups are combined and used to determine the date.  If more than one complete set is present, the one at the rightmost position in the string is used.  The year is determined by interpreting the base time in the given time zone.
 
-**\[6\]**
-: If the string contains none of the above sets, but has a day of the month or day of the week, the day of the month or day of the week are used to determine the date by interpreting the base time in the given time zone and returning the given day of the current week or month. (The week runs from Monday to Sunday, ISO8601-fashion.)  If both day of month and day of week are present, the day of the month takes priority.
+6. If the string contains none of the above sets, but has a day of the month or day of the week, the day of the month or day of the week are used to determine the date by interpreting the base time in the given time zone and returning the given day of the current week or month. (The week runs from Monday to Sunday, ISO8601-fashion.)  If both day of month and day of week are present, the day of the month takes priority.
 
-**\[7\]**
-: If none of the above rules results in a usable date, the date of the base time in the given time zone is used. The time is also determined according to the fields that are present in the preprocessed format string.  In order of preference:
+7. If none of the above rules results in a usable date, the date of the base time in the given time zone is used.
 
-**\[1\]**
-: If the string contains a **%s** format group, representing seconds from the epoch, that group determines the time of day.
 
-**\[2\]**
-: If the string contains either an hour on the 24-hour clock or an hour on the 12-hour clock plus an AM/PM indicator, that hour determines the hour of the day.  If the string further contains a group specifying the minute of the hour, that group combines with the hour.  If the string further contains a group specifying the second of the minute, that group combines with the hour and minute.
+The time is also determined according to the fields that are present in the preprocessed format string.  In order of preference:
 
-**\[3\]**
-: If the string contains neither a **%s** format group nor a group specifying the hour of the day, then midnight (**00:00**, the start of the given date) is used. The time zone is determined by either the **-timezone** or **-gmt** options, or by using the current time zone. If a format string lacks a **%z** or **%Z** format group, it is possible for the time to be ambiguous because it appears twice in the same day, once without and once with Daylight Saving Time. If this situation occurs, the first occurrence of the time is chosen. (For this reason, it is wise to have the input string contain the time zone when converting local times.  This caveat does not apply to UTC times.) If the interpretation of the groups yields an impossible time because a field is out of range, an exception is raised if the **-validate** option is not present or passed as true. If passed as false, enough of that field's unit will be added to or subtracted from the time to bring it in range. Thus, if attempting to scan or format day 0 of the month, one day will be subtracted from day 1 of the month, yielding the last day of the previous month. If the interpretation of the groups yields an impossible time because a Daylight Saving Time change skips over that time, or an ambiguous time because a Daylight Saving Time change skips back so that the clock observes the given time twice, and no time zone specifier (**%z** or **%Z**) is present in the format, the time is interpreted as if the clock had not changed.
+1. If the string contains a **%s** format group, representing seconds from the epoch, that group determines the time of day.
 
+2. If the string contains either an hour on the 24-hour clock or an hour on the 12-hour clock plus an AM/PM indicator, that hour determines the hour of the day.  If the string further contains a group specifying the minute of the hour, that group combines with the hour.  If the string further contains a group specifying the second of the minute, that group combines with the hour and minute.
+
+3. If the string contains neither a **%s** format group nor a group specifying the hour of the day, then midnight (**00:00**, the start of the given date) is used. The time zone is determined by either the **-timezone** or **-gmt** options, or by using the current time zone.
+
+
+If a format string lacks a **%z** or **%Z** format group, it is possible for the time to be ambiguous because it appears twice in the same day, once without and once with Daylight Saving Time. If this situation occurs, the first occurrence of the time is chosen. (For this reason, it is wise to have the input string contain the time zone when converting local times.  This caveat does not apply to UTC times.)
+
+If the interpretation of the groups yields an impossible time because a field is out of range, an exception is raised if the **-validate** option is not present or passed as true. If passed as false, enough of that field's unit will be added to or subtracted from the time to bring it in range. Thus, if attempting to scan or format day 0 of the month, one day will be subtracted from day 1 of the month, yielding the last day of the previous month.
+
+If the interpretation of the groups yields an impossible time because a Daylight Saving Time change skips over that time, or an ambiguous time because a Daylight Saving Time change skips back so that the clock observes the given time twice, and no time zone specifier (**%z** or **%Z**) is present in the format, the time is interpreted as if the clock had not changed.
 
 # Format groups
 
@@ -270,7 +269,7 @@ The following format groups are recognized by the **clock scan** and **clock for
 : On output, produces the number of the day of the month, as two decimal digits.  On input, matches one or two digits, possibly with leading whitespace, that are expected to be the number of the day of the month.
 
 **%D**
-: This format group is synonymous with **%m/%d/%Y**.  It should be used only in exchanging data within the **en_US** locale, since other locales typically do not use this order for the fields of the date.
+: This format group is synonymous with **%m/%d/%Y**.  It should be used only in exchanging data within the **en\_US** locale, since other locales typically do not use this order for the fields of the date.
 
 **%e**
 : On output, produces the number of the day of the month, as one or two decimal digits (with a leading blank for one-digit dates). On input, matches one or two digits, possibly with leading whitespace, that are expected to be the number of the day of the month.
@@ -399,10 +398,10 @@ The following format groups are recognized by the **clock scan** and **clock for
 : On output, produces the four-digit calendar year. On input, accepts four digits and may be used to determine calendar date. Note that **%Y** does not yield a year appropriate for use with the ISO8601 week number **%V**; programs should use **%G** for that purpose.
 
 **%z**
-: On output, produces the current time zone, expressed in hours and minutes east (+hhmm) or west (-hhmm) of Greenwich. On input, accepts a time zone specifier (see **TIME ZONES** below) that will be used to determine the time zone (this token is optionally applicable on input, so the value is not mandatory and can be missing in input).
+: On output, produces the current time zone, expressed in hours and minutes east (+hhmm) or west (-hhmm) of Greenwich. On input, accepts a time zone specifier (see [Time zones] below) that will be used to determine the time zone (this token is optionally applicable on input, so the value is not mandatory and can be missing in input).
 
 **%Z**
-: On output, produces the current time zone's name, possibly translated to the given locale. On input, accepts a time zone specifier (see **TIME ZONES** below) that will be used to determine the time zone (token is also like **%z** optionally applicable on input). This option should, in general, be used on input only when parsing RFC822 dates. Other uses are fraught with ambiguity; for instance, the string **BST** may represent British Summer Time or Brazilian Standard Time. It is recommended that date/time strings for use by computers use numeric time zones instead.
+: On output, produces the current time zone's name, possibly translated to the given locale. On input, accepts a time zone specifier (see [Time zones] below) that will be used to determine the time zone (token is also like **%z** optionally applicable on input). This option should, in general, be used on input only when parsing RFC822 dates. Other uses are fraught with ambiguity; for instance, the string **BST** may represent British Summer Time or Brazilian Standard Time. It is recommended that date/time strings for use by computers use numeric time zones instead.
 
 **%%**
 : On output, produces a literal "**%**" character. On input, matches a literal "**%**" character.
@@ -415,24 +414,20 @@ The following format groups are recognized by the **clock scan** and **clock for
 
 When the **clock** command is processing a local time, it has several possible sources for the time zone to use.  In order of preference, they are:
 
-**\[1\]**
-: A time zone specified inside a string being parsed and matched by a **%z** or **%Z** format group.
+1. A time zone specified inside a string being parsed and matched by a **%z** or **%Z** format group.
 
-**\[2\]**
-: A time zone specified with the **-timezone** option to the **clock** command (or, equivalently, by **-gmt 1**).
+2. A time zone specified with the **-timezone** option to the **clock** command (or, equivalently, by **-gmt 1**).
 
-**\[3\]**
-: A time zone specified in an environment variable **TCL_TZ**.
+3. A time zone specified in an environment variable **TCL\_TZ**.
 
-**\[4\]**
-: A time zone specified in an environment variable **TZ**.
+4. A time zone specified in an environment variable **TZ**.
 
-**\[5\]**
-: The local time zone from the Control Panel on Windows systems.
+5. The local time zone from the Control Panel on Windows systems.
 
-**\[6\]**
-: The C library's idea of the local time zone, as defined by the **mktime** and **localtime** functions. In case \[1\] *only,* the string is tested to see if it is one of the strings:
+6. The C library's idea of the local time zone, as defined by the **mktime** and **localtime** functions.
 
+
+In case \[1\] *only,* the string is tested to see if it is one of the strings:
 
 ```
  gmt     ut      utc     bst     wet     wat     at
@@ -450,11 +445,11 @@ If it is a string in the above list, it designates a known time zone, and is int
 
 For time zones in case \[1\] that do not match any of the above strings, and always for cases \[2\]-\[6\], the following rules apply.
 
-If the time zone begins with a colon, it is one of a standardized list of names like **:America/New_York** that give the rules for various locales.  A complete list of the location names is too lengthy to be listed here. On most Tcl installations, the definitions of the locations are to be found in named files in the directory "*/no_backup/tools/lib/tcl9.0/clock/tzdata*". On some Unix systems, these files are omitted, and the definitions are instead obtained from system files in "*/usr/share/zoneinfo*", "*/usr/share/lib/zoneinfo*" or "*/usr/local/etc/zoneinfo*". As a special case, the name **:localtime** refers to the local time zone as defined by the C library.
+If the time zone begins with a colon, it is one of a standardized list of names like **:America/New\_York** that give the rules for various locales.  A complete list of the location names is too lengthy to be listed here. On most Tcl installations, the definitions of the locations are to be found in named files in the directory "*/no\_backup/tools/lib/tcl9.0/clock/tzdata*". On some Unix systems, these files are omitted, and the definitions are instead obtained from system files in "*/usr/share/zoneinfo*", "*/usr/share/lib/zoneinfo*" or "*/usr/local/etc/zoneinfo*". As a special case, the name **:localtime** refers to the local time zone as defined by the C library.
 
 A time zone string consisting of a plus or minus sign followed by four or six decimal digits is interpreted as an offset in hours, minutes, and seconds (if six digits are present) from UTC.  The plus sign denotes a sign east of Greenwich; the minus sign one west of Greenwich.
 
-A time zone string conforming to the Posix specification of the **TZ** environment variable will be recognized.  The specification may be found at *https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html*.
+A time zone string conforming to the Posix specification of the **TZ** environment variable will be recognized.  The specification may be found at <https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html>.
 
 If the Posix time zone string contains a DST (Daylight Savings Time) part, but doesn't contain a rule stating when DST starts or ends, then default rules are used. For Timezones with an offset between 0 and +12, the current European/Russian rules are used, otherwise the current US rules are used. In Europe (offset +0 to +2) the switch to summertime is done each last Sunday in March at 1:00 GMT, and the switch back is each last Sunday in October at 2:00 GMT. In Russia (offset +3 to +12), the switch dates are the same, only the switch to summertime is at 2:00 local time, and the switch back is at 3:00 local time in all time zones. The US switch to summertime takes place each second Sunday in March at 2:00 local time, and the switch back is each first Sunday in November at 3:00 local time. These default rules mean that in all European, Russian and US (or compatible) time zones, DST calculations will be correct for dates in 2007 and later, unless in the future the rules change again.
 
@@ -462,7 +457,7 @@ Any other time zone string is processed by prefixing a colon and attempting to u
 
 # Localization
 
-Developers wishing to localize the date and time formatting and parsing are referred to *https://tip.tcl-lang.org/173* for a specification.
+Developers wishing to localize the date and time formatting and parsing are referred to <https://tip.tcl-lang.org/173> for a specification.
 
 # Free form scan
 
@@ -479,17 +474,23 @@ If the **-base** flag is specified, the next argument should contain an integer 
 The *inputString* argument consists of zero or more specifications of the following form:
 
 *time*
-: A time of day, which is of the form: "*hh*?**:**_mm_?**:**_ss_?? ?*meridian*? ?*zone*?" or "**hhmm** ?**meridian**? ?**zone**?". If no *meridian* is specified, *hh* is interpreted on a 24-hour clock. The "24:00" and "24:00:00" formats (with or without colon) are supported only if no *meridian* is specified.
+: A time of day, which is of the form: "*hh*?**:***mm*?**:***ss*?? ?*meridian*? ?*zone*?" or "**hhmm** ?**meridian**? ?**zone**?". If no *meridian* is specified, *hh* is interpreted on a 24-hour clock. The "24:00" and "24:00:00" formats (with or without colon) are supported only if no *meridian* is specified.
 
 *date*
-: A specific month and day with optional year.  The acceptable formats are "*mm*__/__*dd*?**/**_yy_?", "*monthname dd*?**,** *yy*?", "*day*__,__ *dd monthname* ?*yy*?", "*dd monthname yy*", "?*CC*?*yymmdd*", and "*dd*__-__*monthname*__-__?*CC*?*yy*". The default year is the current year.  If the year is less than 100, we treat the years 00-68 as 2000-2068 and the years 69-99 as 1969-1999.  Not all platforms can represent the years 38-70, so an error may result if these years are used.
+: A specific month and day with optional year.  The acceptable formats are "*mm***/***dd*?**/***yy*?", "*monthname dd*?**,** *yy*?", "*day***,** *dd monthname* ?*yy*?", "*dd monthname yy*", "?*CC*?*yymmdd*", and "*dd***-***monthname***-**?*CC*?*yy*". The default year is the current year.  If the year is less than 100, we treat the years 00-68 as 2000-2068 and the years 69-99 as 1969-1999.  Not all platforms can represent the years 38-70, so an error may result if these years are used.
 
 *ISO 8601 point-in-time*
-: An ISO 8601 point-in-time specification, such as "*CCyymmdd*__T__*hhmmss*", where **T** is the literal "T", "*CCyymmdd hhmmss*", "*CCyymmdd*__T__*hh:mm:ss*", or "*CCyy-mm-dd*__T__*hh:mm:ss*". Note that only these four formats are accepted. The command does *not* accept the full range of point-in-time specifications specified in ISO8601.  For example, leap seconds are not supported. The "24:00" and "24:00:00" formats (with or without colon) are supported.  Other formats can be recognized by giving an explicit **-format** option to the **clock scan** command.
+: An ISO 8601 point-in-time specification, such as "*CCyymmdd***T***hhmmss*", where **T** is the literal "T", "*CCyymmdd hhmmss*", "*CCyymmdd***T***hh:mm:ss*", or "*CCyy-mm-dd***T***hh:mm:ss*". Note that only these four formats are accepted. The command does *not* accept the full range of point-in-time specifications specified in ISO8601.  For example, leap seconds are not supported. The "24:00" and "24:00:00" formats (with or without colon) are supported.  Other formats can be recognized by giving an explicit **-format** option to the **clock scan** command.
 
 *relative time*
-: A specification relative to the current time.  The format is **number unit**. Acceptable units are **year**, **fortnight**, **month**, **week**, **day**, **hour**, **minute** (or **min**), and **second** (or **sec**).  The unit can be specified as a singular or plural, as in **3 weeks**. These modifiers may also be specified: **tomorrow**, **yesterday**, **today**, **now**, **last**, **this**, **next**, **ago**. The actual date is calculated according to the following steps. First, any absolute date and/or time is processed and converted. Using that time as the base, day-of-week specifications are added. Next, relative specifications are used.  If a date or day is specified, and no absolute or relative time is given, midnight is used.  Finally, a correction is applied so that the correct hour of the day is produced after allowing for daylight savings time differences and the correct date is given when going from the end of a long month to a short month. The precedence of the applying of single tokens resp. which sequence will be used by calculating of the time is complex, e. g. heavily dependent on the precision of type of the token. In example below the second date-string contains "next January", therefore it results in next year but in January. And third date-string besides "January" contains also additionally "Fri", so it results in the nearest Friday. Thus both win before "385 days" resp. make it more precise, because of higher precision of this token types.
+: A specification relative to the current time.  The format is **number unit**. Acceptable units are **year**, **fortnight**, **month**, **week**, **day**, **hour**, **minute** (or **min**), and **second** (or **sec**).  The unit can be specified as a singular or plural, as in **3 weeks**. These modifiers may also be specified: **tomorrow**, **yesterday**, **today**, **now**, **last**, **this**, **next**, **ago**.
 
+
+The actual date is calculated according to the following steps.
+
+First, any absolute date and/or time is processed and converted. Using that time as the base, day-of-week specifications are added. Next, relative specifications are used.  If a date or day is specified, and no absolute or relative time is given, midnight is used.  Finally, a correction is applied so that the correct hour of the day is produced after allowing for daylight savings time differences and the correct date is given when going from the end of a long month to a short month.
+
+The precedence of the applying of single tokens resp. which sequence will be used by calculating of the time is complex, e. g. heavily dependent on the precision of type of the token. In example below the second date-string contains "next January", therefore it results in next year but in January. And third date-string besides "January" contains also additionally "Fri", so it results in the nearest Friday. Thus both win before "385 days" resp. make it more precise, because of higher precision of this token types.
 
 ```
 % clock format [clock scan "5 years 18 months 385 days" -base 0 -gmt 1] -gmt 1
@@ -502,4 +503,8 @@ Fri Jan 27 00:00:00 GMT 1978
 
 # Copyright
 
-Copyright © 2004 Kevin B. Kenny \<kennykb@acm.org>. All rights reserved.
+Copyright © 2004 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
+
+
+[file]: file.md
+[msgcat]: msgcat.md

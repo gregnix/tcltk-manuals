@@ -1,5 +1,6 @@
 ---
 CommandName: checkbutton
+title: checkbutton
 ManualSection: n
 Version: 4.4
 TclPart: Tk
@@ -24,23 +25,14 @@ checkbutton - Create and manipulate 'checkbutton' boolean selection widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[checkbutton]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[checkbutton]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-activebackground** | **-disabledforeground** | **-padx** |
-| **-activeforeground** | **-font** | **-pady** |
-| **-anchor** | **-foreground** | **-relief** |
-| **-background** | **-highlightbackground** | **-takefocus** |
-| **-bitmap** | **-highlightcolor** | **-text** |
-| **-borderwidth** | **-highlightthickness** | **-textvariable** |
-| **-compound** | **-image** | **-underline** |
-| **-cursor** | **-justify** | **-wraplength** |
+**-activebackground**, **-disabledforeground**, **-padx**, **-activeforeground**, **-font**, **-pady**, **-anchor**, **-foreground**, **-relief**, **-background**, **-highlightbackground**, **-takefocus**, **-bitmap**, **-highlightcolor**, **-text**, **-borderwidth**, **-highlightthickness**, **-textvariable**, **-compound**, **-image**, **-underline**, **-cursor**, **-justify**, **-wraplength**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -48,7 +40,7 @@ See the options manual entry for details on the standard options.
 : Specifies a Tcl command to associate with the button.  This command is typically invoked when mouse button 1 is released over the button window.  The button's global variable (**-variable** option) will be updated before the command is invoked.
 
 **-height** (**height**/**Height**)
-: Specifies a desired height for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to **Tk_GetPixels**); for text it is in lines of text. If this option is not specified, the button's desired height is computed from the size of the image or bitmap or text being displayed in it.
+: Specifies a desired height for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to [Tk\_GetPixels][GetPixels]); for text it is in lines of text. If this option is not specified, the button's desired height is computed from the size of the image or bitmap or text being displayed in it.
 
 **-indicatoron** (**indicatorOn**/**IndicatorOn**)
 : Specifies whether or not the indicator should be drawn.  Must be a proper boolean value.  If false, the **-relief** option is ignored and the widget's relief is always sunken if the widget is selected and raised otherwise.
@@ -80,11 +72,11 @@ See the options manual entry for details on the standard options.
 **-tristatevalue** (**tristateValue**/**Value**)
 : Specifies the value that causes the checkbutton to display the multi-value selection, also known as the tri-state mode.  Defaults to "".
 
-**-variable** (**variable**/**Variable**)
+**-variable** ([variable]/**Variable**)
 : Specifies the name of a global variable to set to indicate whether or not this button is selected.  Defaults to the name of the button within its parent (i.e. the last element of the button window's path name).
 
 **-width** (**width**/**Width**)
-: Specifies a desired width for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to **Tk_GetPixels**); for text it is in characters. If this option is not specified, the button's desired width is computed from the size of the image or bitmap or text being displayed in it.
+: Specifies a desired width for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to [Tk\_GetPixels][GetPixels]); for text it is in characters. If this option is not specified, the button's desired width is computed from the size of the image or bitmap or text being displayed in it.
 
 
 # Description
@@ -109,7 +101,7 @@ pathName option ?arg arg ...?
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **checkbutton** command.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **checkbutton** command.
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **checkbutton** command.
 
 *pathName* **deselect**
 : Deselects the checkbutton and sets the associated variable to its "off" value.
@@ -131,15 +123,16 @@ pathName option ?arg arg ...?
 
 Tk automatically creates class bindings for checkbuttons that give them the following default behavior:
 
-**\[1\]**
-: On Unix systems, a checkbutton activates whenever the mouse passes over it and deactivates whenever the mouse leaves the checkbutton.  On Mac and Windows systems, when mouse button 1 is pressed over a checkbutton, the button activates whenever the mouse pointer is inside the button, and deactivates whenever the mouse pointer leaves the button.
+1. On Unix systems, a checkbutton activates whenever the mouse passes over it and deactivates whenever the mouse leaves the checkbutton.  On Mac and Windows systems, when mouse button 1 is pressed over a checkbutton, the button activates whenever the mouse pointer is inside the button, and deactivates whenever the mouse pointer leaves the button.
 
-**\[2\]**
-: When mouse button 1 is pressed over a checkbutton, it is invoked (its selection state toggles and the command associated with the button is invoked, if there is one).
+2. When mouse button 1 is pressed over a checkbutton, it is invoked (its selection state toggles and the command associated with the button is invoked, if there is one).
 
-**\[3\]**
-: When a checkbutton has the input focus, the space key causes the checkbutton to be invoked.  Under Windows, there are additional key bindings; plus (**+**) and equal (**=**) select the button, and minus (**-**) deselects the button. If the checkbutton's state is **disabled** then none of the above actions occur:  the checkbutton is completely non-responsive. The behavior of checkbuttons can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+3. When a checkbutton has the input focus, the space key causes the checkbutton to be invoked.  Under Windows, there are additional key bindings; plus (**+**) and equal (**=**) select the button, and minus (**-**) deselects the button.
 
+
+If the checkbutton's state is **disabled** then none of the above actions occur:  the checkbutton is completely non-responsive.
+
+The behavior of checkbuttons can be changed by defining new bindings for individual widgets or by redefining the class bindings.
 
 # Example
 
@@ -153,3 +146,9 @@ checkbutton .c3 -text Action! -variable action
 pack .c1 .c2 .c3 -in .lbl
 pack .lbl
 ```
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetPixels]: ../tk-c/GetPixels.md
+[options]: options.md
+[variable]: ../tcl/variable.md

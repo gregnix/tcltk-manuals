@@ -1,5 +1,6 @@
 ---
 CommandName: tclDES
+title: tclDES
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -24,8 +25,8 @@ tclDES - Implementation of the DES and triple-DES ciphers
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tclDES]{.lit} [1.1]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tclDES]{.lit} [1.1]{.lit}
 :::
 
 # Description

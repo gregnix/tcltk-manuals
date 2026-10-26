@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::widget
+title: ttk::widget
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -31,7 +32,7 @@ The following options are supported by all Tk themed widgets:
 : Specifies the window class. The class is used when querying the option database for the window's other options, to determine the default bindtags for the window, and to select the widget's default layout and style. This is a read-only option: it may only be specified when the window is created, and may not be changed with the **configure** widget command.
 
 **-cursor** (**cursor**/**Cursor**)
-: Specifies the mouse cursor to be used for the widget. See **Tk_GetCursor** and *cursors(n)* in the Tk reference manual for the legal values. If set to the empty string (the default), the cursor is inherited from the parent widget.
+: Specifies the mouse cursor to be used for the widget. See [Tk\_GetCursor][GetCursor] and *cursors(n)* in the Tk reference manual for the legal values. If set to the empty string (the default), the cursor is inherited from the parent widget.
 
 **-takefocus** (**takeFocus**/**TakeFocus**)
 : Determines whether the window accepts the focus during keyboard traversal. Either **0**, **1**, a command prefix (to which the widget path is appended, and which should return **0** or **1**), or the empty string. See *options(n)* in the Tk reference manual for the full description.
@@ -45,14 +46,11 @@ The following options are supported by all Tk themed widgets:
 The following options are supported by widgets that are controllable by a scrollbar. See *scrollbar(n)* for more information
 
 **-xscrollcommand** (**xScrollCommand**/**ScrollCommand**)
-: A command prefix, used to communicate with horizontal scrollbars.
+: A command prefix, used to communicate with horizontal scrollbars. When the view in the widget's window changes, the widget will generate a Tcl command by concatenating the scroll command and two numbers. Each of the numbers is a fraction between 0 and 1 indicating a position in the document; 0 indicates the beginning, and 1 indicates the end. The first fraction indicates the first information in the widget that is visible in the window, and the second fraction indicates the information just after the last portion that is visible.
 
+    Typically the **-xscrollcommand** option consists of the path name of a [scrollbar] widget followed by "set", e.g. ".x.scrollbar set". This will cause the scrollbar to be updated whenever the view in the window changes.
 
-When the view in the widget's window changes, the widget will generate a Tcl command by concatenating the scroll command and two numbers. Each of the numbers is a fraction between 0 and 1 indicating a position in the document; 0 indicates the beginning, and 1 indicates the end. The first fraction indicates the first information in the widget that is visible in the window, and the second fraction indicates the information just after the last portion that is visible.
-
-Typically the **-xscrollcommand** option consists of the path name of a **scrollbar** widget followed by "set", e.g. ".x.scrollbar set". This will cause the scrollbar to be updated whenever the view in the window changes.
-
-If this option is set to the empty string (the default), then no command will be executed.
+    If this option is set to the empty string (the default), then no command will be executed.
 
 **-yscrollcommand** (**yScrollCommand**/**ScrollCommand**)
 : A command prefix, used to communicate with vertical scrollbars. See the description of **-xscrollcommand** above for details.
@@ -65,33 +63,32 @@ The following options are supported by labels, buttons, and other button-like wi
 **-compound** (**compound**/**Compound**)
 : Specifies how to display the image relative to the text, in the case both **-text** and **-image** are present. If set to the empty string (the default), the rules described in the "Elements" section of *ttk::intro(n)* explain which value is actually used. The other valid values are:
 
+    text
+    : Display text only.
 
-**text**
-: Display text only.
+    image
+    : Display image only.
 
-**image**
-: Display image only.
+    center
+    : Display text centered on top of image.
 
-**center**
-: Display text centered on top of image.
+    top
+    : see below ...
 
-**top**
-: ...see next...
+    bottom
+    : see below ...
 
-**bottom**
-: ...see next...
+    left
+    : see below ...
 
-**left**
-: ...see next...
+    right
+    : Display image above, below, left of, or right of the text, respectively.
 
-**right**
-: Display image above, below, left of, or right of the text, respectively.
-
-**none**
-: Display the image if present, otherwise the text.
+    none
+    : Display the image if present, otherwise the text.
 
 
-**-font** (**font**/**Font**)
+**-font** ([font]/**Font**)
 : Font to use for the text displayed by the widget.
 
 **-foreground** (**textColor**/**TextColor**)
@@ -126,68 +123,63 @@ This option is only available for themed widgets that have "corresponding" tradi
 
 # Commands
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Returns the current value of the configuration option given by *option*.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
 : Query or modify the configuration options of the widget. If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s); in this case the command returns an empty string. If *option* is specified with no *value*, then the command returns a list describing the named option: the elements of the list are the option name, database name, database class, default value, and current value. If no *option* is specified, returns a list describing all of the available options for *pathName*.
 
-*pathName* **identify element** *x y*
+[pathName]{.ins} [identify]{.sub} [element]{.lit} [x]{.arg} [y]{.arg}
 : Returns the name of the element under the point given by *x* and *y*, or an empty string if the point does not lie within any element. *x* and *y* are pixel coordinates relative to the widget. Some widgets accept other **identify** subcommands described in these widgets documentation.
 
-*pathName* **instate** *statespec* ?*script*?
+[pathName]{.ins} [instate]{.sub} [statespec]{.arg} [script]{.optarg}
 : Test the widget's state. If *script* is not specified, returns 1 if the widget state matches *statespec* and 0 otherwise. If *script* is specified, equivalent to
 
+    ```
+    if {[pathName instate stateSpec]} script
+    ```
 
-```
-if {[pathName instate stateSpec]} script
-```
+[pathName]{.ins} [state]{.sub} [stateSpec]{.optarg}
+: Modify or inquire widget state. If *stateSpec* is present, sets the widget state: for each flag in *stateSpec*, sets the corresponding flag or clears it if prefixed by an exclamation point. Returns a new state spec indicating which flags were changed:
 
-*pathName* **state** ?*stateSpec*?
-: Modify or inquire widget state. If *stateSpec* is present, sets the widget state: for each flag in *stateSpec*, sets the corresponding flag or clears it if prefixed by an exclamation point.
+    ```
+    set changes [pathName state spec]
+    pathName state $changes
+    ```
 
+    will restore *pathName* to the original state. If *stateSpec* is not specified, returns a list of the currently-enabled state flags.
 
-Returns a new state spec indicating which flags were changed:
-
-```
-set changes [pathName state spec]
-pathName state $changes
-```
-
-will restore *pathName* to the original state. If *stateSpec* is not specified, returns a list of the currently-enabled state flags.
-
-*pathName* **xview** *args*
+[pathName]{.ins} [xview]{.sub} [args]{.arg}
 : This command is used to query and change the horizontal position of the content in the widget's window.  It can take any of the following forms:
 
+    [pathName]{.ins} [xview]{.sub}
+    : Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the widget's content is off-screen to the left, the middle 40% is visible in the window, and 40% of the content is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
 
-*pathName* **xview**
-: Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the widget's content is off-screen to the left, the middle 40% is visible in the window, and 40% of the content is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
+    [pathName]{.ins} [xview]{.sub} [index]{.arg}
+    : Adjusts the view in the window so that the content given by *index* is displayed at the left edge of the window.
 
-*pathName* **xview** *index*
-: Adjusts the view in the window so that the content given by *index* is displayed at the left edge of the window.
+    [pathName]{.ins} [xview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Adjusts the view in the window so that the character *fraction* of the way through the content appears at the left edge of the window. *Fraction* must be a fraction between 0 and 1.
 
-*pathName* **xview moveto** *fraction*
-: Adjusts the view in the window so that the character *fraction* of the way through the content appears at the left edge of the window. *Fraction* must be a fraction between 0 and 1.
-
-*pathName* **xview scroll** *number what*
-: This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
+    [pathName]{.ins} [xview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
 
 
-*pathName* **yview** *args*
+[pathName]{.ins} [yview]{.sub} [args]{.arg}
 : This command is used to query and change the vertical position of the content in the widget's window.  It can take any of the following forms:
 
+    [pathName]{.ins} [yview]{.sub}
+    : Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the vertical span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the widget's content is off-screen to the top, the middle 40% is visible in the window, and 40% of the content is off-screen to the bottom. These are the same values passed to scrollbars via the **-yscrollcommand** option.
 
-*pathName* **yview**
-: Returns a list containing two elements. Each element is a real fraction between 0 and 1; together they describe the vertical span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the widget's content is off-screen to the top, the middle 40% is visible in the window, and 40% of the content is off-screen to the bottom. These are the same values passed to scrollbars via the **-yscrollcommand** option.
+    [pathName]{.ins} [yview]{.sub} [index]{.arg}
+    : Adjusts the view in the window so that the content given by *index* is displayed at the top edge of the window.
 
-*pathName* **yview** *index*
-: Adjusts the view in the window so that the content given by *index* is displayed at the top edge of the window.
+    [pathName]{.ins} [yview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Adjusts the view in the window so that the item *fraction* of the way through the content appears at the top edge of the window. *Fraction* must be a fraction between 0 and 1.
 
-*pathName* **yview moveto** *fraction*
-: Adjusts the view in the window so that the item *fraction* of the way through the content appears at the top edge of the window. *Fraction* must be a fraction between 0 and 1.
+    [pathName]{.ins} [yview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : This command shifts the view in the window up or down according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts up or down by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then items farther to the top become visible;  if it is positive then items farther to the bottom become visible.
 
-*pathName* **yview scroll** *number what*
-: This command shifts the view in the window up or down according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts up or down by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then items farther to the top become visible;  if it is positive then items farther to the bottom become visible.
 
 
 # Widget states
@@ -200,7 +192,7 @@ The widget state is a bitmap of independent state flags. Widget state flags incl
 **disabled**
 : Widget is disabled under program control (aka "unavailable", "inactive").
 
-**focus**
+[focus]
 : Widget has keyboard focus.
 
 **pressed**
@@ -225,8 +217,10 @@ The widget state is a bitmap of independent state flags. Widget state flags incl
 : The mouse cursor is within the widget. This is similar to the **active** state; it is used in some themes for widgets that provide distinct visual feedback for the active widget in addition to the active element within the widget.
 
 **user1**-**user3**
-: Freely usable for other purposes A *state specification* or *stateSpec* is a list of state names, optionally prefixed with an exclamation point (!) indicating that the bit is off.
+: Freely usable for other purposes
 
+
+A *state specification* or *stateSpec* is a list of state names, optionally prefixed with an exclamation point (!) indicating that the bit is off.
 
 # Examples
 
@@ -242,3 +236,9 @@ $b instate {pressed !disabled} { .b invoke }
 # Reenable widget:
 $b state !disabled
 ```
+
+
+[focus]: focus.md
+[font]: font.md
+[GetCursor]: ../tk-c/GetCursor.md
+[scrollbar]: scrollbar.md

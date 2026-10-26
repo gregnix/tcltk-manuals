@@ -1,5 +1,6 @@
 ---
 CommandName: diagram-viewer
+title: diagram-viewer
 ManualSection: n
 Version: 1.0
 TclPart: tklib
@@ -20,8 +21,8 @@ diagram-viewer - Lightweight Diagram Processor
 # Synopsis
 
 ::: {.synopsis} :::
-[diagram-viewer]{.cmd} [show]{.sub} [inputfile...]{.arg} 
-[diagram-viewer]{.cmd} [convert]{.sub} [-o]{.lit} [output]{.arg} [format]{.arg} [inputfile...]{.arg} 
+[diagram-viewer]{.cmd} [show]{.lit} [inputfile...]{.arg}
+[diagram-viewer]{.cmd} [convert]{.lit} [-o]{.lit} [output]{.arg} [format]{.arg} [inputfile...]{.arg}
 :::
 
 # Description
@@ -34,11 +35,9 @@ The application described by this document, **diagram-viewer**, is a lightweight
 
 **diagram-viewer** was written with the following two use cases in mind.
 
-**\[1\]**
-: Processing and display of one or more diagram files.
+1. Processing and display of one or more diagram files.
 
-**\[2\]**
-: Batch conversion of one or more diagram files into raster image files.
+2. Batch conversion of one or more diagram files into raster image files.
 
 
 ## Command line
@@ -49,15 +48,21 @@ The application described by this document, **diagram-viewer**, is a lightweight
 **diagram-viewer** **convert** **-o** *output* *format* *inputfile*...
 : This is the form for use case \[2\]. The application converts the input files into raster image of the specified *format*.
 
+    path *output* (in)
+    : This argument specifies where to write the generated image. It can be the path to a file or directory.
 
-path *output* (in)
-: This argument specifies where to write the generated image. It can be the path to a file or directory. If the *output* does not exist then \[file dirname \$output\] has to exist and must be a writable directory. In case of multiple input files the generated image will be written to a file in the directory, and the name of that file will be derived from the *inputfile*, and *format*. In case of a single input file the generated image will be written to the file.
+        If the *output* does not exist then \[file dirname $output\] has to exist and must be a writable directory.
 
-(handle) *format* (in)
-: This argument specifies the image format to convert the diagrams into when processing the input. The application recognizes all formats supported by the **Img** package, i.e. for which it can load a package **img::format** (together with **canvas::snap**), and all formats for which it can load a package **canvas::format**. These are (currently) **mvg**, and **pdf**.
+        In case of multiple input files the generated image will be written to a file in the directory, and the name of that file will be derived from the *inputfile*, and *format*.
 
-path *inputfile* (in)
-: This argument specifies the path to the diagram file to process. It has to exist, must be readable, and written in *diagram* format.
+        In case of a single input file the generated image will be written to the file.
+
+    (handle) *format* (in)
+    : This argument specifies the image format to convert the diagrams into when processing the input. The application recognizes all formats supported by the **Img** package, i.e. for which it can load a package **img::format** (together with **canvas::snap**), and all formats for which it can load a package **canvas::format**. These are (currently) **mvg**, and **pdf**.
+
+    path *inputfile* (in)
+    : This argument specifies the path to the diagram file to process. It has to exist, must be readable, and written in *diagram* format.
+
 
 
 # Bugs, ideas, feedback

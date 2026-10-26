@@ -1,5 +1,6 @@
 ---
 CommandName: transfer::connect
+title: transfer::connect
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -24,13 +25,13 @@ transfer::connect - Connection setup
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::connect]{.lit} [0.3]{.optlit} 
-[transfer::connect]{.cmd} [objectName]{.arg} [options]{.optdot} 
-[objectName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [connect]{.sub} [command]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::connect]{.lit} [0.3]{.optlit}
+[transfer::connect]{.cmd} [objectName]{.arg} [options...]{.optarg}
+[objectName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [connect]{.sub} [command]{.arg}
 :::
 
 # Description
@@ -39,12 +40,14 @@ This package provides objects holding enough information to enable them to eithe
 
 Of the two objects in a connecting pair one has to be configured for *active* mode, and the other then has to be configured for *passive* mode. This establishes which of the two partners connects to whom (the *active* to the other), or, who is waiting on whom (the *passive* on the other). Note that this is completely independent of the direction of any data transmission using the connection after it has been established. An active object can, after establishing the connection, either transmit or receive data. Equivalently the passive object can do the same after the waiting for its partner has ended.
 
-# Api
+# API
 
 ## Package commands
 
 **transfer::connect** *objectName* ?*options*...?
-: This command creates a new connection object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The set of supported *options* is explained in section **Options**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
+: This command creates a new connection object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The set of supported *options* is explained in section [Options].
+
+    The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
 
 
 ## Object command
@@ -52,7 +55,7 @@ Of the two objects in a connecting pair one has to be configured for *active* mo
 All objects created by the **::transfer::connect** command have the following general form:
 
 *objectName* **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -61,14 +64,20 @@ All objects created by the **::transfer::connect** command have the following ge
 : This method destroys the object. This is safe to do for an *active* object when a connection has been started, as the completion callback is synchronous. For a *passive* object currently waiting for its partner to establish the connection however this is not safe and will cause errors later on, when the connection setup completes and tries to access the now missing data structures of the destroyed object.
 
 *objectName* **connect** *command*
-: This method starts the connection setup per the configuration of the object. When the connection is established the callback *command* will be invoked with one additional argument, the channel handle of the socket over which data can be transfered. The detailed behaviour of the method depends on the configured mode.
+: This method starts the connection setup per the configuration of the object. When the connection is established the callback *command* will be invoked with one additional argument, the channel handle of the socket over which data can be transfered.
 
+    The detailed behaviour of the method depends on the configured mode.
 
-*active*
-: The connection setup is done synchronously. The object waits until the connection is established. The method returns the empty string as its result.
+    *active*
+    : The connection setup is done synchronously. The object waits until the connection is established. The method returns the empty string as its result.
 
-*passive*
-: The connection setup is done asynchronously. The method returns immediately after a listening socket has been set up. The connection will be established in the background. The method returns the port number of the listening socket, for use by the caller. One important use is the transfer of this information to the counterpart so that it knows where it has to connect to. This is necessary as the object might have been configured for port **0**, allowing the operating system to choose the actual port it will listen on. The listening port is closed immediately when the connection was established by the partner, to keep the time interval small within which a third party can connect to the port too. Even so it is recommended to use additional measures in the protocol outside of the connect and transfer object to ensure that a connection is not used with an unidentified/unauthorized partner One possibility for this is the use of SSL/TLS. See the option **-socketcmd** and section **Secure connections** for information on how to do this.
+    *passive*
+    : The connection setup is done asynchronously. The method returns immediately after a listening socket has been set up. The connection will be established in the background. The method returns the port number of the listening socket, for use by the caller. One important use is the transfer of this information to the counterpart so that it knows where it has to connect to.
+
+        This is necessary as the object might have been configured for port **0**, allowing the operating system to choose the actual port it will listen on.
+
+        The listening port is closed immediately when the connection was established by the partner, to keep the time interval small within which a third party can connect to the port too. Even so it is recommended to use additional measures in the protocol outside of the connect and transfer object to ensure that a connection is not used with an unidentified/unauthorized partner One possibility for this is the use of SSL/TLS. See the option **-socketcmd** and section [Secure connections] for information on how to do this.
+
 
 
 ## Options
@@ -78,12 +87,11 @@ Connection objects support the set of options listed below.
 **-mode** *mode*
 : This option specifies the mode the object is in. It is optional and defaults to **active** mode. The two possible modes are:
 
+    **active**
+    : In this mode the two options **-host** and **-port** are relevant and specify the host and TCP port the object has to connect to. The host is given by either name or IP address.
 
-**active**
-: In this mode the two options **-host** and **-port** are relevant and specify the host and TCP port the object has to connect to. The host is given by either name or IP address.
-
-**passive**
-: In this mode the option **-host** has no relevance and is ignored should it be configured. The only option the object needs is **-port**, and it specifies the TCP port on which the listening socket is opened to await the connection from the partner.
+    **passive**
+    : In this mode the option **-host** has no relevance and is ignored should it be configured. The only option the object needs is **-port**, and it specifies the TCP port on which the listening socket is opened to await the connection from the partner.
 
 
 **-host** *hostname-or-ipaddr*
@@ -93,13 +101,17 @@ Connection objects support the set of options listed below.
 : For *active* mode this option specifies the port the object is expected to connect to. For *passive* mode however it is the port where the object creates the listening socket waiting for a connection. It defaults to **0**, which allows the OS to choose the actual port to listen on.
 
 **-socketcmd** *command*
-: This option allows the user to specify which command to use to open a socket. The default is to use the builtin **::socket**. Any compatible with that command is allowed. The envisioned main use is the specfication of **tls::socket**. I.e. this option allows the creation of secure transfer channels, without making this package explicitly dependent on the **tls** package. See also section **Secure connections**.
+: This option allows the user to specify which command to use to open a socket. The default is to use the builtin **::socket**. Any compatible with that command is allowed.
+
+    The envisioned main use is the specfication of **tls::socket**. I.e. this option allows the creation of secure transfer channels, without making this package explicitly dependent on the **tls** package.
+
+    See also section [Secure connections].
 
 **-encoding** encodingname
-: ...see next...
+: see below ...
 
 **-eofchar** eofspec
-: ...see next...
+: see below ...
 
 **-translation** transspec
 : These options are the same as are recognized by the builtin command **fconfigure**. They provide the configuration to be set for the channel between the two partners after it has been established, but before the callback is invoked (See method **connect**).

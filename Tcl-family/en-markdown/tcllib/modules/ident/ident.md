@@ -1,5 +1,6 @@
 ---
 CommandName: ident
+title: ident
 ManualSection: n
 Version: 0.44
 TclPart: tcllib
@@ -19,27 +20,27 @@ ident - Ident protocol client
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [ident]{.lit} [0.44]{.optlit} 
-[::ident::query]{.cmd} [socket]{.arg} [callback]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [ident]{.lit} [0.44]{.optlit}
+[::ident::query]{.cmd} [socket]{.arg} [callback]{.optarg}
 :::
 
 # Description
 
-The **ident** package provides a client implementation of the ident protocol as defined in RFC 1413 (*http://www.rfc-editor.org/rfc/rfc1413.txt*).
+The **ident** package provides a client implementation of the ident protocol as defined in RFC 1413 (<http://www.rfc-editor.org/rfc/rfc1413.txt>).
 
 **::ident::query** *socket* ?*callback*?
 : This command queries the ident daemon on the remote side of the given socket, and returns the result of the query as a dictionary. Interpreting the dictionary as list the first key will always be **resp-type**, and can have one of the values **USERID**, **ERROR**, and **FATAL**.  These *response types* have the following meanings:
 
+    USERID
+    : This indicates a successful response. Two more keys and associated values are returned, **opsys**, and **user-id**.
 
-**USERID**
-: This indicates a successful response. Two more keys and associated values are returned, **opsys**, and **user-id**.
+    ERROR
+    : This means the ident server has returned an error.  A second key named **error** is present whose value contains the **error-type** field from the server response.
 
-**ERROR**
-: This means the ident server has returned an error.  A second key named **error** is present whose value contains the **error-type** field from the server response.
+    FATAL
+    : Fatal errors happen when no ident server is listening on the remote side, or when the ident server gives a response that does not conform to the RFC. A detailed error message is returned under the **error** key.
 
-**FATAL**
-: Fatal errors happen when no ident server is listening on the remote side, or when the ident server gives a response that does not conform to the RFC. A detailed error message is returned under the **error** key.
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: units
+title: units
 ManualSection: n
 Version: 2.2.3
 TclPart: tcllib
@@ -22,11 +23,11 @@ units - unit conversion
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [units]{.lit} [2.2.3]{.optlit} 
-[::units::convert]{.cmd} [value]{.arg} [targetUnits]{.arg} 
-[::units::reduce]{.cmd} [unitString]{.arg} 
-[::units::new]{.cmd} [name]{.arg} [baseUnits]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [units]{.lit} [2.2.3]{.optlit}
+[::units::convert]{.cmd} [value]{.arg} [targetUnits]{.arg}
+[::units::reduce]{.cmd} [unitString]{.arg}
+[::units::new]{.cmd} [name]{.arg} [baseUnits]{.arg}
 :::
 
 # Description
@@ -44,56 +45,49 @@ New units and new unit abbreviations can be defined in terms of existing units a
 **::units::convert** *value* *targetUnits*
 : Converts the *value* string into a floating point number, scaled to the specified *targetUnits*.  The *value* string may contain a number and units.  If units are specified, then they must be compatible with the *targetUnits*.  If units are not specified for the *value*, then it will be scaled to the target units.  For example,
 
-
-```
-% ::units::convert "2.3 miles" km
-3.7014912
-% ::units::convert 300m/s miles/hour
-671.080887616
-% ::units::convert "1.0 m kg/s^2" newton
-1.0
-% ::units::convert 1.0 millimeter
-1000.0
-```
+    ```
+    % ::units::convert "2.3 miles" km
+    3.7014912
+    % ::units::convert 300m/s miles/hour
+    671.080887616
+    % ::units::convert "1.0 m kg/s^2" newton
+    1.0
+    % ::units::convert 1.0 millimeter
+    1000.0
+    ```
 
 **::units::reduce** *unitString*
 : Returns a unit string consisting of a scale factor followed by a space separated list of sorted and reduced primitive units.  The reduced unit string may include a forward-slash (separated from the surrounding primitive subunits by spaces) indicating that the remaining subunits are in the denominator.  Generates an error if the *unitString* is invalid.
 
-
-```
-% ::units::reduce pascal
-1000.0 gram / meter second second
-```
+    ```
+    % ::units::reduce pascal
+    1000.0 gram / meter second second
+    ```
 
 **::units::new** *name* *baseUnits*
 : Creates a new unit conversion with the specified name.  The new unit *name* must be only alphabetic (upper or lower case) letters. The *baseUnits* string can consist of any valid units conversion string, including constant factors, numerator and denominator parts, units with prefixes, and exponents.  The baseUnits may contain any number of subunits, but it must reduce to primitive units.  BaseUnits could also be the string *-primitive* to represent a new kind of quantity which cannot be derived from other units.  But you probably would not do that unless you have discovered some kind of new universal property.
 
+    ```
+    % ::units::new furlong "220 yards"
+    % ::units::new fortnight "14 days"
+    % ::units::convert 100m/s furlongs/fortnight
+    601288.475303
+    ```
 
-```
-% ::units::new furlong "220 yards"
-% ::units::new fortnight "14 days"
-% ::units::convert 100m/s furlongs/fortnight
-601288.475303
-```
 
 # Unit string format
 
 Value and unit string format is quite flexible.  It is possible to define virtually any combination of units, prefixes, and powers. Valid unit strings must conform to these rules.
 
-**•**
-: A unit string consists of an optional scale factor followed by zero or more subunits.  The scale factor must be a valid floating point number, and may or may not be separated from the subunits.  The scale factor could be negative.
+- A unit string consists of an optional scale factor followed by zero or more subunits.  The scale factor must be a valid floating point number, and may or may not be separated from the subunits.  The scale factor could be negative.
 
-**•**
-: Subunits are separated form each other by one or more separator characters, which are space (" "), hyphen ("-"), asterisk ("\*"), and forward-slash ("/").  Sure, go ahead and complain about using a minus sign ("-") to represent multiplication.  It just isn't sound mathematics, and, by rights, we should require everyone to use the asterisk ("\*") to separate all units.  But the bottom line is that complex unit strings like *m-kg/s^2* are pleasantly readable.
+- Subunits are separated form each other by one or more separator characters, which are space (" "), hyphen ("-"), asterisk ("\*"), and forward-slash ("/").  Sure, go ahead and complain about using a minus sign ("-") to represent multiplication.  It just isn't sound mathematics, and, by rights, we should require everyone to use the asterisk ("\*") to separate all units.  But the bottom line is that complex unit strings like *m-kg/s^2* are pleasantly readable.
 
-**•**
-: The forward-slash seperator ("/") indicates that following subunits are in the denominator.  There can be at most one forward-slash separator.
+- The forward-slash seperator ("/") indicates that following subunits are in the denominator.  There can be at most one forward-slash separator.
 
-**•**
-: Subunits can be floating point scale factors, but with the exception of the leading scale factor, they must be surrounded by valid separators.  Subunit scale factors cannot be negative. (Remember that the hyphen is a unit separator.)
+- Subunits can be floating point scale factors, but with the exception of the leading scale factor, they must be surrounded by valid separators.  Subunit scale factors cannot be negative. (Remember that the hyphen is a unit separator.)
 
-**•**
-: Subunits can be valid units or abbreviations.  They may include a prefix.  They may include a plural suffix "s" or "es".  They may also include a power string denoted by a circumflex ("^"), followed by a integer, after the unit name (or plural suffix, if there is one). Negative exponents are not allowed.  (Remember that the hyphen is a unit separator.)
+- Subunits can be valid units or abbreviations.  They may include a prefix.  They may include a plural suffix "s" or "es".  They may also include a power string denoted by a circumflex ("^"), followed by a integer, after the unit name (or plural suffix, if there is one). Negative exponents are not allowed.  (Remember that the hyphen is a unit separator.)
 
 
 ## Example valid unit strings
@@ -114,11 +108,11 @@ kg-m/s^2                 1000.0 gram meter / second second
 200*meter/20.5*second    9.75609756098 meter / second
 ```
 
-# Si units
+# SI units
 
 The standard SI units are predefined according to *NIST Special Publication 330*.  Standard units for both SI Base Units (Table 1) and SI Derived Units with Special Names (Tables 3a and 3b) are included here for reference.  Each standard unit name and abbreviation are included in this package.
 
-## Si base units
+## SI Base units
 
 ```
 Quantity                Unit Name    Abbr.
@@ -132,7 +126,7 @@ Amount                  mole         mol
 Luminous Intensity      candela      cd
 ```
 
-## Si derived units with special names
+## SI derived units with Special names
 
 ```
 Quantity                Unit Name    Abbr.   Units     Base Units
@@ -166,7 +160,7 @@ Also note that there is no support for Celsius or Farenheit temperature.  The un
 
 SI Units can have a multiple or sub-multiple prefix.  The prefix or its abbreviation should appear before the unit, without spaces.  Compound prefixes are not allowed, and a prefix should never be used alone. These prefixes are defined in Table 5 of *Special Publication 330*.
 
-## Si prefixes
+## SI prefixes
 
 ```
 Prefix Name     Abbr.   Factor
@@ -199,7 +193,7 @@ Note that we define the same prefix with both the USA ("deka") and non-USA ("dec
 
 Many non-SI units are commonly used in applications.  Appendix B.8 of *NIST Special Publication 811* lists many non-SI conversion factors.  It is not possible to include all possible unit definitions in this package.  In some cases, many different conversion factors exist for a given unit, depending on the context. (The appendix lists over 40 conversions for British thermal units!)  Application specific conversions can always be added using the **new** command, but some well known and often used conversions are included in this package.
 
-## Non-si units
+## Non-SI units
 
 ```
 Unit Name            Abbr.    Base Units
@@ -239,19 +233,19 @@ yard                 yd       9.144E-1 m
 year                          3.1536E7 s
 ```
 
-## Quantities and derived units with special names
+## Quantities and derived units with Special names
 
 This units conversion package is limited specifically to unit reduction, comparison, and scaling.  This package does not consider any of the quantity names for either base or derived units.  A similar implementation or an extension in a typed or object-oriented language might introduce user defined types for the quantities.  Quantity type checking could be used, for example, to ensure that all *length* values properly reduced to *meters*, or that all *velocity* values properly reduced to *meters/second*.
 
-A C implementation of this package has been created to work in conjunction with the Simplified Wrapper Interface Generator (*http://www.swig.org/*).  That package (units.i) exploits SWIG's typemap system to automatically convert script quantity strings into floating point quantities.  Function arguments are specified as quantity types (e.g., *typedef float Length*), and target units (expected by the C application code) are specified in an associative array. Default units are also defined for each quantity type, and are applied to any unit-less quantity strings.
+A C implementation of this package has been created to work in conjunction with the Simplified Wrapper Interface Generator (<http://www.swig.org/>).  That package (units.i) exploits SWIG's typemap system to automatically convert script quantity strings into floating point quantities.  Function arguments are specified as quantity types (e.g., *typedef float Length*), and target units (expected by the C application code) are specified in an associative array. Default units are also defined for each quantity type, and are applied to any unit-less quantity strings.
 
 A units system enhanced with quantity type checking might benefit from inclusion of other derived types which are expressed in terms of special units, as illustrated in Table 2 of *NIST Publication 330*.  The quantity *area*, for example, could be defined as units properly reducing to *meter^2*, although the utility of defining a unit named *square meter* is arguable.
 
 # References
 
-The unit names, abbreviations, and conversion values are derived from those published by the United States Department of Commerce Technology Administration, National Institute of Standards and Technology (NIST) in *NIST Special Publication 330: The International System of Units (SI)* and *NIST Special Publication 811: Guide for the Use of the International System of Units (SI)*.  Both of these publications are available (as of December 2000) from *http://physics.nist.gov/cuu/Reference/contents.html*
+The unit names, abbreviations, and conversion values are derived from those published by the United States Department of Commerce Technology Administration, National Institute of Standards and Technology (NIST) in *NIST Special Publication 330: The International System of Units (SI)* and *NIST Special Publication 811: Guide for the Use of the International System of Units (SI)*.  Both of these publications are available (as of December 2000) from <http://physics.nist.gov/cuu/Reference/contents.html>
 
-The ideas behind implementation of this package is based in part on code written in 1993 by Adrian Mariano which performed dimensional analysis of unit strings using fixed size tables of C structs.  After going missing in the late 1990's, Adrian's code has reappeared in the GNU Units program at *http://www.gnu.org/software/units/*
+The ideas behind implementation of this package is based in part on code written in 1993 by Adrian Mariano which performed dimensional analysis of unit strings using fixed size tables of C structs.  After going missing in the late 1990's, Adrian's code has reappeared in the GNU Units program at <http://www.gnu.org/software/units/>
 
 # Authors
 

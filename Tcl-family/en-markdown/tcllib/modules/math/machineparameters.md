@@ -1,5 +1,6 @@
 ---
 CommandName: math::machineparameters
+title: math::machineparameters
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -15,17 +16,17 @@ math::machineparameters - Compute double precision machine parameters.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [math::machineparameters]{.lit} [0.2]{.lit} 
-[machineparameters]{.cmd} create [objectname]{.arg} [options]{.optdot} 
-[objectname]{.ins} [configure]{.sub} [options]{.optdot} 
-[objectname]{.ins} [cget]{.sub} [opt]{.arg} 
-[objectname]{.ins} [destroy]{.sub} 
-[objectname]{.ins} [compute]{.sub} 
-[objectname]{.ins} [get]{.sub} [key]{.arg} 
-[objectname]{.ins} [tostring]{.sub} 
-[objectname]{.ins} [print]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [math::machineparameters]{.lit} [0.2]{.lit}
+[machineparameters]{.cmd} [create]{.lit} [objectname]{.arg} [options...]{.optarg}
+[objectname]{.ins} [configure]{.sub} [options...]{.optarg}
+[objectname]{.ins} [cget]{.sub} [opt]{.arg}
+[objectname]{.ins} [destroy]{.sub}
+[objectname]{.ins} [compute]{.sub}
+[objectname]{.ins} [get]{.sub} [key]{.arg}
+[objectname]{.ins} [tostring]{.sub}
+[objectname]{.ins} [print]{.sub}
 :::
 
 # Description
@@ -44,12 +45,12 @@ where digits satisfy
 
 with the convention :
 
-**•**
-: t is the size of the mantissa
+- t is the size of the mantissa
 
-**•**
-: basis is the basis (the "radix") The **compute** method computes all machine parameters. Then, the **get** method can be used to get each parameter. The **print** method prints a report on standard output.
+- basis is the basis (the "radix")
 
+
+The **compute** method computes all machine parameters. Then, the **get** method can be used to get each parameter. The **print** method prints a report on standard output.
 
 # Example
 
@@ -118,24 +119,22 @@ The following example creates a machineparameters object, computes the propertie
 
 # References
 
-**•**
-: "Algorithms to Reveal Properties of Floating-Point Arithmetic", Michael A. Malcolm, Stanford University, Communications of the ACM, Volume 15 ,  Issue 11  (November 1972), Pages: 949 - 951
+- "Algorithms to Reveal Properties of Floating-Point Arithmetic", Michael A. Malcolm, Stanford University, Communications of the ACM, Volume 15 ,  Issue 11  (November 1972), Pages: 949 - 951
 
-**•**
-: "More on Algorithms that Reveal Properties of Floating, Point Arithmetic Units", W. Morven Gentleman, University of Waterloo, Scott B. Marovich, Purdue University, Communications of the ACM, Volume 17 ,  Issue 5  (May 1974), Pages: 276 - 277
+- "More on Algorithms that Reveal Properties of Floating, Point Arithmetic Units", W. Morven Gentleman, University of Waterloo, Scott B. Marovich, Purdue University, Communications of the ACM, Volume 17 ,  Issue 5  (May 1974), Pages: 276 - 277
 
 
-# Class api
+# Class API
 
 **machineparameters** create *objectname* ?*options*...?
 : The command creates a new machineparameters object and returns the fully qualified name of the object command as its result.
 
+    **-verbose** *verbose*
+    : Set this option to 1 to enable verbose logging. This option is mainly for debug purposes. The default value of *verbose* is 0.
 
-**-verbose** *verbose*
-: Set this option to 1 to enable verbose logging. This option is mainly for debug purposes. The default value of *verbose* is 0.
 
 
-# Object api
+# Object API
 
 *objectname* **configure** ?*options*...?
 : The command configure the options of the object *objectname*. The options are the same as the static method **create**.
@@ -152,30 +151,21 @@ The following example creates a machineparameters object, computes the propertie
 *objectname* **get** *key*
 : Returns the value corresponding with given key. The following is the list of available keys.
 
+    - -epsilon : smallest value so that 1+epsilon>1 is false
 
-**•**
-: -epsilon : smallest value so that 1+epsilon>1 is false
+    - -rounding : The rounding mode used on the machine. The rounding occurs when more than t digits would be required to represent the number. Two modes can be determined with the current system : "chop" means than only t digits are kept, no matter the value of the number "proper" means that another rounding mode is used, be it "round to nearest", "round up", "round down".
 
-**•**
-: -rounding : The rounding mode used on the machine. The rounding occurs when more than t digits would be required to represent the number. Two modes can be determined with the current system : "chop" means than only t digits are kept, no matter the value of the number "proper" means that another rounding mode is used, be it "round to nearest", "round up", "round down".
+    - -basis : the basis of the floating-point representation. The basis is usually 2, i.e. binary representation (for example IEEE 754 machines), but some machines (like HP calculators for example) uses 10, or 16, etc...
 
-**•**
-: -basis : the basis of the floating-point representation. The basis is usually 2, i.e. binary representation (for example IEEE 754 machines), but some machines (like HP calculators for example) uses 10, or 16, etc...
+    - -mantissa : the number of bits in the mantissa
 
-**•**
-: -mantissa : the number of bits in the mantissa
+    - -exponentmax :  the largest positive exponent before overflow occurs
 
-**•**
-: -exponentmax :  the largest positive exponent before overflow occurs
+    - -exponentmin : the largest negative exponent before (gradual) underflow occurs
 
-**•**
-: -exponentmin : the largest negative exponent before (gradual) underflow occurs
+    - -vmax : largest positive value before overflow occurs
 
-**•**
-: -vmax : largest positive value before overflow occurs
-
-**•**
-: -vmin : largest negative value before (gradual) underflow occurs
+    - -vmin : largest negative value before (gradual) underflow occurs
 
 
 *objectname* **tostring**

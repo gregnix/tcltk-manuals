@@ -1,5 +1,6 @@
 ---
 CommandName: page_util_flow
+title: page_util_flow
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -17,30 +18,40 @@ Copyright:
 
 # Name
 
-page_util_flow - page dataflow/treewalker utility
+page\_util\_flow - page dataflow/treewalker utility
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [page::util::flow]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[::page::util::flow]{.cmd} [start]{.arg} [flowvar]{.arg} [nodevar]{.arg} [script]{.arg} 
-[flow]{.ins} [visit]{.sub} [node]{.arg} 
-[flow]{.ins} [visitl]{.sub} [nodelist]{.arg} 
-[flow]{.ins} [visita]{.sub} [node...]{.arg} 
+[package]{.cmd} [require]{.sub} [page::util::flow]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[::page::util::flow]{.cmd} [start]{.arg} [flowvar]{.arg} [nodevar]{.arg} [script]{.arg}
+[flow]{.ins} [visit]{.sub} [node]{.arg}
+[flow]{.ins} [visitl]{.sub} [nodelist]{.arg}
+[flow]{.ins} [visita]{.sub} [node...]{.arg}
 :::
 
 # Description
 
 This package provides a single utility command for easy dataflow based manipulation of arbitrary data structures, especially abstract syntax trees.
 
-# Api
+# API
 
 **::page::util::flow** *start* *flowvar* *nodevar* *script*
-: This command contains the core logic to drive the walking of an arbitrary data structure which can partitioned into separate parts. Examples of such structures are trees and graphs. The command makes no assumptions at all about the API of the structure to be walked, except that that its parts, here called *nodes*, are identified by strings. These strings are taken as is, from the arguments, and the body, and handed back to the body, without modification. Access to the actual data structure, and all decisions regarding which nodes to visit in what order are delegated to the body of the loop, i.e. the *script*. The body is invoked first for the nodes in the start-set specified via *start*), and from then on for the nodes the body has requested to be visited. The command stops when the set of nodes to visit becomes empty. Note that a node can be visited more than once. The body has complete control about this. The body is invoked in the context of the caller. The variable named by *nodevar* will be set to the current node, and the variable named by *flowvar* will be set to the command of the flow object through which the body can request the nodes to visit next. The API provided by this object is described in the next section, **FLOW API**. Note that the command makes no promises regarding the order in which nodes are visited, excpt that the nodes requested to be visited by the current iteration will be visited afterward, in some order.
+: This command contains the core logic to drive the walking of an arbitrary data structure which can partitioned into separate parts. Examples of such structures are trees and graphs.
+
+    The command makes no assumptions at all about the API of the structure to be walked, except that that its parts, here called *nodes*, are identified by strings. These strings are taken as is, from the arguments, and the body, and handed back to the body, without modification.
+
+    Access to the actual data structure, and all decisions regarding which nodes to visit in what order are delegated to the body of the loop, i.e. the *script*.
+
+    The body is invoked first for the nodes in the start-set specified via *start*), and from then on for the nodes the body has requested to be visited. The command stops when the set of nodes to visit becomes empty. Note that a node can be visited more than once. The body has complete control about this.
+
+    The body is invoked in the context of the caller. The variable named by *nodevar* will be set to the current node, and the variable named by *flowvar* will be set to the command of the flow object through which the body can request the nodes to visit next. The API provided by this object is described in the next section, [Flow API].
+
+    Note that the command makes no promises regarding the order in which nodes are visited, excpt that the nodes requested to be visited by the current iteration will be visited afterward, in some order.
 
 
-# Flow api
+# Flow API
 
 This section describes the API provided by the flow object made accessible to the body script of **::page::util::flow**.
 

@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::zoom
+title: canvas::zoom
 ManualSection: n
 Version: 0.2.1
 TclPart: tklib
@@ -9,29 +10,31 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 canvas::zoom – Zoom-Steuerung für canvas::sqmap
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::zoom]{.lit} [0.2.1]{.optlit} 
-[::canvas::zoom]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::zoom]{.lit} [0.2.1]{.optlit}
+[::canvas::zoom]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält ein Widget, mit dem der Benutzer einer Kartenanzeige den Zoomfaktor steuern kann.
 
 # API
 
 **::canvas::zoom** *pathName* ?options?
-: Erstellt das Zoom-Steuerelement *pathName* und konfiguriert es. Die vom neuen Widget unterstützten Methoden und Optionen werden in den folgenden Abschnitten beschrieben. Das Ergebnis des Befehls ist *pathName*.
+: Erstellt das Zoom-Steuerelement *pathName* und konfiguriert es. Die vom neuen Widget unterstützten Methoden und Optionen werden in den folgenden Abschnitten beschrieben.
+
+    Das Ergebnis des Befehls ist *pathName*.
 
 
 ## Optionen
@@ -53,6 +56,6 @@ Dieses Paket enthält ein Widget, mit dem der Benutzer einer Kartenanzeige den Z
 
 Das Widget unterstützt keine Methoden, die über die Standardmethoden (**configure**, **cget** usw.) hinausgehen.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *canvas* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.

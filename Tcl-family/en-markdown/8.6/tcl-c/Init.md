@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_Init
+title: Tcl_Init
 ManualSection: 3
 Version: 8.0
 TclPart: Tcl
@@ -13,30 +14,34 @@ Keywords:
  - interpreter
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tcl_Init - find and source initialization script
+Tcl\_Init - find and source initialization script
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_Init]{.cmd}([interp]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_Init]{.ccmd} [interp]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to initialize.
 
+:::
 
 # Description
 
-**Tcl_Init** is a helper procedure that finds and **source**s the **init.tcl** script, which should exist somewhere on the Tcl library path.
+**Tcl\_Init** is a helper procedure that finds and [source]s the **init.tcl** script, which should exist somewhere on the Tcl library path.
 
-**Tcl_Init** is typically called from **Tcl_AppInit** procedures.
+**Tcl\_Init** is typically called from [Tcl\_AppInit][AppInit] procedures.
+
+
+[AppInit]: AppInit.md
+[source]: ../tcl/source.md

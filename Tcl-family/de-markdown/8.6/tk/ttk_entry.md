@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::entry
+title: ttk::entry
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -17,64 +18,70 @@ Copyright:
  - Copyright (c) 2004 Joe English
 ---
 
-# NAME
+# Name
 
 ttk::entry - Bearbeitbares Einzeilen-Textfeld-Widget
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[ttk::entry]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::entry]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Ein **ttk::entry**-Widget zeigt einen einzeiligen Text-String an und erlaubt dem Benutzer, diesen String zu bearbeiten. Der Wert des Strings kann mit der Option **-textvariable** an eine Tcl-Variable gebunden werden. Entry-Widgets unterstützen horizontales Scrollen mit der Standardoption **-xscrollcommand** und dem Widget-Befehl **xview**. Standardoptionen (siehe **ttk_widget**): **-class**, **-cursor**, **-font**, **-foreground**, **-style**, **-takefocus**, **-xscrollcommand**.
+Ein **ttk::entry**-Widget zeigt einen einzeiligen Text-String an und erlaubt dem Benutzer, diesen String zu bearbeiten. Der Wert des Strings kann mit der Option **-textvariable** an eine Tcl-Variable gebunden werden. Entry-Widgets unterstützen horizontales Scrollen mit der Standardoption **-xscrollcommand** und dem Widget-Befehl **xview**.
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-exportselection** (exportSelection/ExportSelection)
+**-class**, **-cursor**, **-font**, **-foreground**, **-style**, **-takefocus**, **-xscrollcommand**
+
+Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-exportselection** (**exportSelection**/**ExportSelection**)
 : Ein boolescher Wert, der angibt, ob eine Auswahl im Widget mit der X-Selection verknüpft werden soll. Wird die Auswahl exportiert, hebt die Auswahl im Widget die aktuelle X-Selection auf, hebt die Auswahl außerhalb des Widgets jede Widget-Auswahl auf, und das Widget reagiert auf Anfragen zur Abfrage der Selection, wenn es eine Auswahl hat.
 
-**-invalidcommand** (invalidCommand/InvalidCommand)
-: Eine Skript-Vorlage, die ausgewertet wird, wann immer **-validatecommand** 0 zurückgibt. Siehe **VALIDIERUNG** unten für weitere Informationen.
+**-invalidcommand** (**invalidCommand**/**InvalidCommand**)
+: Eine Skript-Vorlage, die ausgewertet wird, wann immer **-validatecommand** 0 zurückgibt. Siehe [Validierung] unten für weitere Informationen.
 
-**-justify** (justify/Justify)
+**-justify** (**justify**/**Justify**)
 : Legt fest, wie der Text im Entry-Widget ausgerichtet ist. Einer von **left**, **center** oder **right**.
 
-**-show** (show/Show)
-: Wenn diese Option angegeben ist, wird der wahre Inhalt des Entrys nicht im Fenster angezeigt. Stattdessen wird jedes Zeichen im Wert des Entrys als das erste Zeichen im Wert dieser Option angezeigt, z. B. „*“ oder ein Aufzählungszeichen. Dies ist nützlich, wenn das Entry beispielsweise zur Eingabe eines Passworts verwendet werden soll. Werden Zeichen im Entry ausgewählt und anderswo kopiert, werden die angezeigten Informationen kopiert, nicht der wahre Inhalt des Entrys.
+**-show** (**show**/**Show**)
+: Wenn diese Option angegeben ist, wird der wahre Inhalt des Entrys nicht im Fenster angezeigt. Stattdessen wird jedes Zeichen im Wert des Entrys als das erste Zeichen im Wert dieser Option angezeigt, z. B. „\*“ oder ein Aufzählungszeichen. Dies ist nützlich, wenn das Entry beispielsweise zur Eingabe eines Passworts verwendet werden soll. Werden Zeichen im Entry ausgewählt und anderswo kopiert, werden die angezeigten Informationen kopiert, nicht der wahre Inhalt des Entrys.
 
-**-state** (state/State)
-: Kompatibilitätsoption; siehe *ttk::widget(n)* für Details. Legt einen von drei Zuständen für das Entry fest: **normal**, **disabled** oder **readonly**. Siehe **WIDGET-ZUSTÄNDE** unten.
+**-state** (**state**/**State**)
+: Kompatibilitätsoption; siehe *ttk::widget(n)* für Details. Legt einen von drei Zuständen für das Entry fest: **normal**, **disabled** oder **readonly**. Siehe [Widget-Zustände] unten.
 
-**-textvariable** (textVariable/Variable)
+**-textvariable** (**textVariable**/**Variable**)
 : Gibt den Namen einer globalen Variable an, deren Wert mit dem Inhalt des Entry-Widgets verknüpft ist. Wann immer sich der Variablenwert ändert, wird der Widget-Inhalt aktualisiert und umgekehrt.
 
-**-validate** (validate/Validate)
-: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Standard ist **none**, d. h. die Validierung ist deaktiviert. Siehe **VALIDIERUNG** unten.
+**-validate** (**validate**/**Validate**)
+: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Standard ist **none**, d. h. die Validierung ist deaktiviert. Siehe [Validierung] unten.
 
-**-validatecommand** (validateCommand/ValidateCommand)
-: Eine Skript-Vorlage, die ausgewertet wird, wann immer eine Validierung ausgelöst wird. Ist sie auf den leeren String gesetzt (Standard), ist die Validierung deaktiviert. Das Skript muss einen booleschen Wert zurückgeben. Siehe **VALIDIERUNG** unten.
+**-validatecommand** (**validateCommand**/**ValidateCommand**)
+: Eine Skript-Vorlage, die ausgewertet wird, wann immer eine Validierung ausgelöst wird. Ist sie auf den leeren String gesetzt (Standard), ist die Validierung deaktiviert. Das Skript muss einen booleschen Wert zurückgeben. Siehe [Validierung] unten.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Ganzzahl für die gewünschte Breite des Eingabefensters in Zeichen durchschnittlicher Größe der Widget-Schriftart.
 
 
-# HINWEISE
+# Hinweise
 
 Ein Teil des Entrys kann wie unten beschrieben ausgewählt werden. Exportiert ein Entry seine Auswahl (siehe die Option **-exportselection**), beachtet es die Standard-X11-Protokolle für die Behandlung der Selection; Entry-Auswahlen sind als Typ **STRING** verfügbar. Entrys beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat ein Entry den Eingabefokus, zeigt es einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
 
 Entrys können Strings anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil des Strings angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details).
 
-# INDIZES
+# Indizes
 
-Viele der **entry**-Widget-Befehle nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im String des Entrys, auf eine der folgenden Arten:
+Viele der [entry]-Widget-Befehle nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im String des Entrys, auf eine der folgenden Arten:
 
 *number*
 : Bezeichnet das Zeichen als numerischen Index, wobei 0 dem ersten Zeichen im String entspricht.
 
-**@**_number_
+**@***number*
 : In dieser Form wird *number* als x-Koordinate im Fenster des Entrys behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet „**@0**“ das linkeste Zeichen im Fenster.
 
 **end**
@@ -87,10 +94,12 @@ Viele der **entry**-Widget-Befehle nehmen einen oder mehrere Indizes als Argumen
 : Bezeichnet das erste Zeichen in der Auswahl. Die Verwendung dieser Form ist ein Fehler, wenn die Auswahl nicht im Entry-Fenster liegt.
 
 **sel.last**
-: Bezeichnet das Zeichen unmittelbar nach dem letzten in der Auswahl. Es ist ein Fehler, diese Form zu verwenden, wenn die Auswahl nicht im Entry-Fenster liegt. Abkürzungen können für jede der obigen Formen verwendet werden, z. B.\| „**e**“ oder „**sel.l**“. Im Allgemeinen werden Indizes außerhalb des gültigen Bereichs automatisch auf den nächsten zulässigen Wert gerundet.
+: Bezeichnet das Zeichen unmittelbar nach dem letzten in der Auswahl. Es ist ein Fehler, diese Form zu verwenden, wenn die Auswahl nicht im Entry-Fenster liegt.
 
 
-# WIDGET-BEFEHL
+Abkürzungen können für jede der obigen Formen verwendet werden, z. B. „**e**“ oder „**sel.l**“. Im Allgemeinen werden Indizes außerhalb des gültigen Bereichs automatisch auf den nächsten zulässigen Wert gerundet.
+
+# Widget-Befehl
 
 Folgende Unterbefehle sind für Entry-Widgets möglich:
 
@@ -115,28 +124,28 @@ Folgende Unterbefehle sind für Entry-Widgets möglich:
 *pathName* **selection** *option arg*
 : Dieser Befehl passt die Auswahl innerhalb eines Entrys an. Er hat mehrere Formen, abhängig von *option*:
 
-*pathName* **selection clear**
-: Löscht die Auswahl, falls sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt den leeren String zurück.
+    *pathName* **selection clear**
+    : Löscht die Auswahl, falls sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt den leeren String zurück.
 
-*pathName* **selection present**
-: Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
+    *pathName* **selection present**
+    : Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
 
-*pathName* **selection range** *start* *end*
-: Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis vor dem durch *end* indizierten einschließt. Verweist *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl des Entrys gelöscht.
+    *pathName* **selection range** *start* *end*
+    : Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis vor dem durch *end* indizierten einschließt. Verweist *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl des Entrys gelöscht.
 
 
 *pathName* **validate**
-: Erzwingt eine erneute Validierung, unabhängig von den durch die Option **-validate** festgelegten Bedingungen. Gibt 0 zurück, wenn die Validierung fehlschlägt, 1 bei Erfolg. Setzt oder löscht den Zustand **invalid** entsprechend. Siehe **VALIDIERUNG** unten für weitere Details.
+: Erzwingt eine erneute Validierung, unabhängig von den durch die Option **-validate** festgelegten Bedingungen. Gibt 0 zurück, wenn die Validierung fehlschlägt, 1 bei Erfolg. Setzt oder löscht den Zustand **invalid** entsprechend. Siehe [Validierung] unten für weitere Details.
 
 
-Das Entry-Widget unterstützt außerdem die folgenden generischen **ttk::widget**-Unterbefehle (siehe *ttk::widget(n)* für Details):
+Das Entry-Widget unterstützt außerdem die folgenden generischen [ttk::widget][ttk_widget]-Unterbefehle (siehe *ttk::widget(n)* für Details):
 
-```
-cget            configure       identify
-instate         state           xview
-```
+::: {.info DISPLAY="yes"}
+**cget**	**configure**	**identify**\
+**instate**	**state**	**xview**
+:::
 
-# VALIDIERUNG
+# Validierung
 
 Die Optionen **-validate**, **-validatecommand** und **-invalidcommand** aktivieren die Validierung des Entry-Widgets.
 
@@ -173,7 +182,7 @@ Ist **-validatecommand** leer (Standard), ist die Validierung immer erfolgreich.
 
 ## Prozent-Substitutionen in Validierungsskripten
 
-Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen möglich, wie in einem **bind**-Skript. Folgende Substitutionen werden erkannt:
+Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen möglich, wie in einem [bind]-Skript. Folgende Substitutionen werden erkannt:
 
 **%d**
 : Art der Aktion: 1 für Prävalidierung bei **insert**, 0 für Prävalidierung bei **delete**, oder -1 für Revalidierung.
@@ -206,66 +215,48 @@ Das Standard-Tk-Entry-Widget deaktiviert die Validierung automatisch (durch Setz
 
 Außerdem ruft das Standard-Entry-Widget die Validierung auf, wann immer die verknüpfte **-textvariable** geändert wird; das Tk-Themen-Entry-Widget tut dies nicht.
 
-# BINDINGS
+# Bindings
 
-Die Standard-Bindings des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „_“-Zeichen oder ein einzelnes anderes Zeichen.
+Die Standard-Bindings des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
-•
-: Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit gedrückter Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
+- Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit gedrückter Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
-•
-: Doppelklick mit Maustaste 1 wählt das Wort unter der Maus aus und positioniert den Einfügecursor am Ende des Worts. Ziehen nach einem Doppelklick erzeugt eine Auswahl aus ganzen Wörtern.
+- Doppelklick mit Maustaste 1 wählt das Wort unter der Maus aus und positioniert den Einfügecursor am Ende des Worts. Ziehen nach einem Doppelklick erzeugt eine Auswahl aus ganzen Wörtern.
 
-•
-: Dreifachklick mit Maustaste 1 wählt den gesamten Text im Entry aus und positioniert den Einfügecursor am Zeilenende.
+- Dreifachklick mit Maustaste 1 wählt den gesamten Text im Entry aus und positioniert den Einfügecursor am Zeilenende.
 
-•
-: Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
+- Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
 
-•
-: Klick mit Maustaste 1 bei gedrückter Steuerung positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
+- Klick mit Maustaste 1 bei gedrückter Steuerung positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
 
-•
-: Werden normale druckbare Zeichen in einem Entry eingegeben, werden sie an der Position des Einfügecursors eingefügt.
+- Werden normale druckbare Zeichen in einem Entry eingegeben, werden sie an der Position des Einfügecursors eingefügt.
 
-•
-: Die Ansicht im Entry kann durch Ziehen mit der mittleren Maustaste (Taste 2, oder Taste 3 unter TkAqua) angepasst werden. Wird die mittlere Maustaste ohne Mausbewegung geklickt, wird die Auswahl an der Mausposition in das Entry kopiert.
+- Die Ansicht im Entry kann durch Ziehen mit der mittleren Maustaste (Taste 2, oder Taste 3 unter TkAqua) angepasst werden. Wird die mittlere Maustaste ohne Mausbewegung geklickt, wird die Auswahl an der Mausposition in das Entry kopiert.
 
-•
-: Wird die Maus beim Gedrückthalten von Taste 1 links oder rechts aus dem Entry gezogen, scrollt das Entry automatisch, um mehr Text sichtbar zu machen (falls auf der Seite, auf der die Maus das Fenster verließ, noch Text außerhalb des Bildschirms liegt).
+- Wird die Maus beim Gedrückthalten von Taste 1 links oder rechts aus dem Entry gezogen, scrollt das Entry automatisch, um mehr Text sichtbar zu machen (falls auf der Seite, auf der die Maus das Fenster verließ, noch Text außerhalb des Bildschirms liegt).
 
-•
-: Die Tasten Links und Rechts bewegen den Einfügecursor um ein Zeichen nach links oder rechts; sie löschen außerdem jede Auswahl im Entry. Wird Links oder Rechts mit gedrückter Umschalttaste eingegeben, bewegt sich der Einfügecursor und die Auswahl wird um das neue Zeichen erweitert. Steuerung-Links und Steuerung-Rechts bewegen den Einfügecursor wortweise; Steuerung-Umschalt-Links und Steuerung-Umschalt-Rechts bewegen ihn wortweise und erweitern die Auswahl. Steuerung-b und Steuerung-f verhalten sich wie Links bzw. Rechts.
+- Die Tasten Links und Rechts bewegen den Einfügecursor um ein Zeichen nach links oder rechts; sie löschen außerdem jede Auswahl im Entry. Wird Links oder Rechts mit gedrückter Umschalttaste eingegeben, bewegt sich der Einfügecursor und die Auswahl wird um das neue Zeichen erweitert. Steuerung-Links und Steuerung-Rechts bewegen den Einfügecursor wortweise; Steuerung-Umschalt-Links und Steuerung-Umschalt-Rechts bewegen ihn wortweise und erweitern die Auswahl. Steuerung-b und Steuerung-f verhalten sich wie Links bzw. Rechts.
 
-•
-: Die Pos1-Taste und Steuerung-a bewegen den Einfügecursor an den Anfang des Entrys und löschen jede Auswahl. Umschalt-Pos1 bewegt den Einfügecursor an den Anfang und erweitert die Auswahl bis dorthin.
+- Die Pos1-Taste und Steuerung-a bewegen den Einfügecursor an den Anfang des Entrys und löschen jede Auswahl. Umschalt-Pos1 bewegt den Einfügecursor an den Anfang und erweitert die Auswahl bis dorthin.
 
-•
-: Die Ende-Taste und Steuerung-e bewegen den Einfügecursor ans Ende des Entrys und löschen jede Auswahl. Umschalt-Ende bewegt den Cursor ans Ende und erweitert die Auswahl bis dorthin.
+- Die Ende-Taste und Steuerung-e bewegen den Einfügecursor ans Ende des Entrys und löschen jede Auswahl. Umschalt-Ende bewegt den Cursor ans Ende und erweitert die Auswahl bis dorthin.
 
-•
-: Steuerung-/ wählt den gesamten Text im Entry aus.
+- Steuerung-/ wählt den gesamten Text im Entry aus.
 
-•
-: Steuerung-\ löscht jede Auswahl im Entry.
+- Steuerung-\\ löscht jede Auswahl im Entry.
 
-•
-: Die virtuellen Ereignisse <\<Cut>>, <\<Copy>>, <\<Paste>> und <\<Clear>> von Tk wirken auf die Auswahl wie erwartet.
+- Die virtuellen Ereignisse <<Cut>>, <<Copy>>, <<Paste>> und <<Clear>> von Tk wirken auf die Auswahl wie erwartet.
 
-•
-: Die Entf-Taste löscht die Auswahl, falls eine im Entry besteht. Gibt es keine Auswahl, löscht sie das Zeichen rechts vom Einfügecursor.
+- Die Entf-Taste löscht die Auswahl, falls eine im Entry besteht. Gibt es keine Auswahl, löscht sie das Zeichen rechts vom Einfügecursor.
 
-•
-: Die Rücktaste und Steuerung-h löschen die Auswahl, falls eine im Entry besteht. Gibt es keine Auswahl, löschen sie das Zeichen links vom Einfügecursor.
+- Die Rücktaste und Steuerung-h löschen die Auswahl, falls eine im Entry besteht. Gibt es keine Auswahl, löschen sie das Zeichen links vom Einfügecursor.
 
-•
-: Steuerung-d löscht das Zeichen rechts vom Einfügecursor.
+- Steuerung-d löscht das Zeichen rechts vom Einfügecursor.
 
-•
-: Steuerung-k löscht alle Zeichen rechts vom Einfügecursor.
+- Steuerung-k löscht alle Zeichen rechts vom Einfügecursor.
 
 
-# WIDGET-ZUSTÄNDE
+# Widget-Zustände
 
 Im Zustand **disabled** kann das Entry nicht bearbeitet und der Text nicht ausgewählt werden. Im Zustand **readonly** wird kein Einfügecursor angezeigt und das Entry kann nicht bearbeitet werden (insbesondere: die Befehle **insert** und **delete** haben keine Wirkung). Der Zustand **disabled** entspricht **readonly**, zusätzlich kann der Text nicht ausgewählt werden.
 
@@ -275,14 +266,48 @@ Typischerweise wird der Text im Zustand **disabled** „ausgegraut“ dargestell
 
 Das Entry-Widget setzt den Zustand **invalid**, wenn die Revalidierung fehlschlägt, und löscht ihn, wann immer die Validierung erfolgreich ist.
 
-# STIL-OPTIONEN
+# Stil-Optionen
 
 Der Klassenname für **ttk::entry** ist **TEntry**.
 
 Dynamische Zustände: **disabled**, **focus**, **readonly**.
 
-Mit **ttk::style** konfigurierbare **TEntry**-Stiloptionen:
+Mit [ttk::style][ttk_style] konfigurierbare **TEntry**-Stiloptionen:
 
-**-background** *color* Zur Abwärtskompatibilität verhält sich diese Option beim aqua-Theme (für macOS) als Alias für **-fieldbackground**, sofern für **-fieldbackground** kein Wert angegeben ist. Andernfalls wird sie ignoriert. **-bordercolor** *color* .br **-darkcolor** *color* .br **-fieldbackground** *color* Einige Themes verwenden einen grafischen Hintergrund; deren Feld-Hintergrundfarben können nicht geändert werden. **-foreground** *color* .br **-insertcolor** *color* .br **-insertwidth** *amount* .br **-lightcolor** *color* .br **-padding** *padding* .br **-relief** *relief* .br **-selectbackground** *color* .br **-selectborderwidth** *amount* .br **-selectforeground** *color*
+**-background** *color*
+: Zur Abwärtskompatibilität verhält sich diese Option beim aqua-Theme (für macOS) als Alias für **-fieldbackground**, sofern für **-fieldbackground** kein Wert angegeben ist. Andernfalls wird sie ignoriert.
 
-Siehe die Handbuch-Seite **ttk::style** für Informationen zur Konfiguration von ttk-Stilen.
+
+**-bordercolor** *color*
+
+**-darkcolor** *color*
+
+**-fieldbackground** *color*
+: Einige Themes verwenden einen grafischen Hintergrund; deren Feld-Hintergrundfarben können nicht geändert werden.
+
+
+**-foreground** *color*
+
+**-insertcolor** *color*
+
+**-insertwidth** *amount*
+
+**-lightcolor** *color*
+
+**-padding** *padding*
+
+**-relief** *relief*
+
+**-selectbackground** *color*
+
+**-selectborderwidth** *amount*
+
+**-selectforeground** *color*
+
+Siehe die Handbuch-Seite [ttk::style][ttk_style] für Informationen zur Konfiguration von ttk-Stilen.
+
+
+[bind]: bind.md
+[entry]: entry.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

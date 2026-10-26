@@ -1,5 +1,6 @@
 ---
 CommandName: read
+title: read
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -11,17 +12,20 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 read - Aus einem Kanal lesen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[read]{.cmd} [-nonewline]{.optlit} [channel]{.arg} 
-[read]{.cmd} [channel]{.arg} [numChars]{.arg} 
+[read]{.cmd} [-nonewline]{.optlit} [channel]{.arg}
+[read]{.cmd} [channel]{.arg} [numChars]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **read** wurde durch **chan read** abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+Der Befehl **read** wurde durch [chan read][chan] abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+
+
+[chan]: chan.md

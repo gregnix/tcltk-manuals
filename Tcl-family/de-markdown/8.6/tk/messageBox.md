@@ -1,5 +1,6 @@
 ---
 CommandName: tk_messageBox
+title: tk_messageBox
 ManualSection: n
 Version: 4.2
 TclPart: Tk
@@ -10,19 +11,19 @@ Copyright:
  - Copyright (c) 1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
-tk_messageBox - Blendet ein Meldungsfenster ein und wartet auf die Benutzerantwort
+tk\_messageBox - Blendet ein Meldungsfenster ein und wartet auf die Benutzerantwort
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tk_messageBox]{.cmd} [option value]{.optdot} 
+[tk\_messageBox]{.cmd} [option value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Diese Prozedur erstellt und zeigt ein Meldungsfenster mit einer anwendungsspezifischen Nachricht, einem Symbol und einer Menge von Buttons. Jeder Button im Meldungsfenster wird durch einen eindeutigen symbolischen Namen identifiziert (siehe die Option **-type**). Nach dem Einblenden wartet **tk_messageBox**, bis der Benutzer einen der Buttons wählt. Anschließend gibt sie den symbolischen Namen des gewählten Buttons zurück.
+Diese Prozedur erstellt und zeigt ein Meldungsfenster mit einer anwendungsspezifischen Nachricht, einem Symbol und einer Menge von Buttons. Jeder Button im Meldungsfenster wird durch einen eindeutigen symbolischen Namen identifiziert (siehe die Option **-type**). Nach dem Einblenden wartet **tk\_messageBox**, bis der Benutzer einen der Buttons wählt. Anschließend gibt sie den symbolischen Namen des gewählten Buttons zurück.
 
 Die folgenden Option-Wert-Paare werden unterstützt:
 
@@ -50,35 +51,35 @@ Die folgenden Option-Wert-Paare werden unterstützt:
 **-type** *predefinedType*
 : Ordnet eine vordefinierte Menge von Buttons an. Folgende Werte sind für *predefinedType* möglich:
 
-**abortretryignore**
-: Zeigt drei Buttons mit den symbolischen Namen **abort**, **retry** und **ignore**.
+    **abortretryignore**
+    : Zeigt drei Buttons mit den symbolischen Namen **abort**, **retry** und **ignore**.
 
-**ok**
-: Zeigt einen Button mit dem symbolischen Namen **ok**. Das ist der Standard.
+    **ok**
+    : Zeigt einen Button mit dem symbolischen Namen **ok**. Das ist der Standard.
 
-**okcancel**
-: Zeigt zwei Buttons mit den symbolischen Namen **ok** und **cancel**.
+    **okcancel**
+    : Zeigt zwei Buttons mit den symbolischen Namen **ok** und **cancel**.
 
-**retrycancel**
-: Zeigt zwei Buttons mit den symbolischen Namen **retry** und **cancel**.
+    **retrycancel**
+    : Zeigt zwei Buttons mit den symbolischen Namen **retry** und **cancel**.
 
-**yesno**
-: Zeigt zwei Buttons mit den symbolischen Namen **yes** und **no**.
+    **yesno**
+    : Zeigt zwei Buttons mit den symbolischen Namen **yes** und **no**.
 
-**yesnocancel**
-: Zeigt drei Buttons mit den symbolischen Namen **yes**, **no** und **cancel**.
+    **yesnocancel**
+    : Zeigt drei Buttons mit den symbolischen Namen **yes**, **no** und **cancel**.
 
 
 
-# BEISPIEL
+# Beispiel
 
 ```
-set answer [tk_messageBox \-message "Really quit?" \
-        \-icon question \-type yesno \
-        \-detail "Select \"Yes\" to make the application exit"]
-switch \-\- $answer {
+set answer [tk_messageBox -message "Really quit?" \
+        -icon question -type yesno \
+        -detail "Select \"Yes\" to make the application exit"]
+switch -- $answer {
     yes exit
-    no {tk_messageBox \-message "I know you like this application!" \
-            \-type ok}
+    no {tk_messageBox -message "I know you like this application!" \
+            -type ok}
 }
 ```

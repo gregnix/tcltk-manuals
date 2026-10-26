@@ -1,5 +1,6 @@
 ---
 CommandName: math::fourier
+title: math::fourier
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -12,37 +13,41 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 math::fourier – Diskrete und schnelle Fourier-Transformationen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [math::fourier]{.lit} [1.0.3]{.lit} 
-[::math::fourier::dft]{.cmd} [in_data]{.arg} 
-[::math::fourier::inverse_dft]{.cmd} [in_data]{.arg} 
-[::math::fourier::lowpass]{.cmd} [cutoff]{.arg} [in_data]{.arg} 
-[::math::fourier::highpass]{.cmd} [cutoff]{.arg} [in_data]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [math::fourier]{.lit} [1.0.3]{.lit}
+[::math::fourier::dft]{.cmd} [in\_data]{.arg}
+[::math::fourier::inverse\_dft]{.cmd} [in\_data]{.arg}
+[::math::fourier::lowpass]{.cmd} [cutoff]{.arg} [in\_data]{.arg}
+[::math::fourier::highpass]{.cmd} [cutoff]{.arg} [in\_data]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **math::fourier** verwendet zur Implementierung der diskreten Fourier-Transformation gegebenenfalls die schnelle Fourier-Transformation oder die gewöhnliche Transformation. Es enthält zudem einige einfache Filter-Prozeduren, die veranschaulichen, wie solche Filter implementiert werden können.
 
 Ziel dieses Dokuments ist es, die implementierten Prozeduren zu beschreiben und einige Beispiele für ihre Verwendung zu geben. Da es zu den betreffenden Algorithmen umfangreiche Fachliteratur gibt, verweisen wir für weitere Erläuterungen auf einschlägige Lehrbücher. Wir verweisen zudem auf die ursprüngliche Wiki-Seite zu diesem Thema, auf der einige der Überlegungen hinter der aktuellen Implementierung beschrieben werden.
 
-# ALLGEMEINE INFORMATIONEN
+# Allgemeine Informationen
 
 Die beiden definierten Prozeduren der obersten Ebene lauten
 
-**•**
-: dft data-list
+- dft data-list
 
-**•**
-: inverse_dft data-list Beide nehmen eine Liste von *komplexen Zahlen* entgegen und wenden auf diese Zahlenlisten jeweils eine diskrete Fourier-Transformation (DFT) bzw. deren Umkehrung an. Eine „komplexe Zahl“ ist in diesem Fall entweder (i) ein Paar (eine Liste mit zwei Elementen) von Zahlen, das als Real- und Imaginärteil der komplexen Zahl interpretiert wird, oder (ii) eine einzelne Zahl, die als Realteil einer komplexen Zahl interpretiert wird, deren Imaginärteil Null ist. Der Rückgabewert hat stets das erste Format. (Die DFT liefert im Allgemeinen komplexe Ergebnisse, selbst wenn die Eingabe rein real ist.) Werden nacheinander erst die eine und dann die andere dieser Prozeduren auf eine Liste komplexer Zahlen angewendet, ergibt sich (abgesehen von Rundungsfehlern aufgrund der Gleitkommaarithmetik) wieder die ursprüngliche Zahlenliste. Wenn die Eingabelänge N eine Zweierpotenz ist, verwenden diese Prozeduren den O(N log N)-Algorithmus der schnellen Fourier-Transformation. Wenn die Eingabelänge keine Zweierpotenz ist, wird die DFT stattdessen unter Verwendung des naiven quadratischen Algorithmus berechnet. Einige Beispiele:
+- inverse\_dft data-list
 
+
+Beide nehmen eine Liste von *komplexen Zahlen* entgegen und wenden auf diese Zahlenlisten jeweils eine diskrete Fourier-Transformation (DFT) bzw. deren Umkehrung an. Eine „komplexe Zahl“ ist in diesem Fall entweder (i) ein Paar (eine Liste mit zwei Elementen) von Zahlen, das als Real- und Imaginärteil der komplexen Zahl interpretiert wird, oder (ii) eine einzelne Zahl, die als Realteil einer komplexen Zahl interpretiert wird, deren Imaginärteil Null ist. Der Rückgabewert hat stets das erste Format. (Die DFT liefert im Allgemeinen komplexe Ergebnisse, selbst wenn die Eingabe rein real ist.) Werden nacheinander erst die eine und dann die andere dieser Prozeduren auf eine Liste komplexer Zahlen angewendet, ergibt sich (abgesehen von Rundungsfehlern aufgrund der Gleitkommaarithmetik) wieder die ursprüngliche Zahlenliste.
+
+Wenn die Eingabelänge N eine Zweierpotenz ist, verwenden diese Prozeduren den O(N log N)-Algorithmus der schnellen Fourier-Transformation. Wenn die Eingabelänge keine Zweierpotenz ist, wird die DFT stattdessen unter Verwendung des naiven quadratischen Algorithmus berechnet.
+
+Einige Beispiele:
 
 ```
     % dft {1 2 3 4}
@@ -61,49 +66,46 @@ Intern verwenden die Prozeduren ein flaches Listenformat, bei dem jedes Element 
 
 Das Paket enthält zwei einfache Filter. Sie haben ein analoges Gegenstück in einer einfachen elektronischen Schaltung, einem Widerstand und einem Kondensator in Reihe. Für die Verwendung dieser Filter ist das Paket **math::complexnumbers** erforderlich.
 
-# PROZEDUREN
+# Prozeduren
 
 Die öffentlichen Prozeduren zur Fourier-Transformation sind:
 
-**::math::fourier::dft** *in_data*
+**::math::fourier::dft** *in\_data*
 : Berechnet die *Fourier-Transformation* der angegebenen Liste komplexer Zahlen. Das Ergebnis ist eine Liste komplexer Zahlen, die die (komplexen) Amplituden der Fourier-Komponenten darstellen.
 
+    list *in\_data*
+    : Liste der Daten
 
-list *in_data*
-: Liste der Daten
 
-
-**::math::fourier::inverse_dft** *in_data*
+**::math::fourier::inverse\_dft** *in\_data*
 : Ermittelt die *inverse Fourier-Transformation* der angegebenen Liste komplexer Zahlen (die als Amplituden interpretiert werden). Das Ergebnis ist eine Liste komplexer Zahlen, die die ursprünglichen (komplexen) Daten darstellen.
 
+    list *in\_data*
+    : Liste der Daten (Amplituden)
 
-list *in_data*
-: Liste der Daten (Amplituden)
 
-
-**::math::fourier::lowpass** *cutoff* *in_data*
+**::math::fourier::lowpass** *cutoff* *in\_data*
 : Filtert die (komplexen) Amplituden so, dass hochfrequente Komponenten unterdrückt werden. Bei dem implementierten Filter handelt es sich um einen Tiefpassfilter erster Ordnung, das diskrete Äquivalent einer einfachen elektronischen Schaltung mit einem Widerstand und einem Kondensator.
 
+    float *cutoff*
+    : Grenzfrequenz
 
-float *cutoff*
-: Grenzfrequenz
-
-list *in_data*
-: Liste der Daten (Amplituden)
+    list *in\_data*
+    : Liste der Daten (Amplituden)
 
 
-**::math::fourier::highpass** *cutoff* *in_data*
+**::math::fourier::highpass** *cutoff* *in\_data*
 : Filtert die (komplexen) Amplituden so, dass niederfrequente Komponenten unterdrückt werden. Bei dem implementierten Filter handelt es sich um einen Tiefpassfilter erster Ordnung, das diskrete Äquivalent einer einfachen elektronischen Schaltung mit einem Widerstand und einem Kondensator.
 
+    float *cutoff*
+    : Grenzfrequenz
 
-float *cutoff*
-: Grenzfrequenz
-
-list *in_data*
-: Liste der Daten (Amplituden)
+    list *in\_data*
+    : Liste der Daten (Amplituden)
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *math :: fourier* als Kategorie an.
 
@@ -111,6 +113,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik

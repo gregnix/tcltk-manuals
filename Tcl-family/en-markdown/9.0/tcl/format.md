@@ -1,5 +1,6 @@
 ---
 CommandName: format
+title: format
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -26,7 +27,7 @@ format - Format a string in the style of sprintf
 # Synopsis
 
 ::: {.synopsis} :::
-[format]{.cmd} [formatString]{.arg} [arg arg]{.optdot} 
+[format]{.cmd} [formatString]{.arg} [arg arg]{.optdot}
 :::
 
 # Introduction
@@ -41,7 +42,7 @@ Each conversion specifier may contain up to six different parts: an XPG3 positio
 
 ## Optional positional specifier
 
-If the **%** is followed by a decimal number and a **\$**, as in "**%2\$d**", then the value to convert is not taken from the next sequential argument. Instead, it is taken from the argument indicated by the number, where 1 corresponds to the first *arg*. If the conversion specifier requires multiple arguments because of **\*** characters in the specifier then successive arguments are used, starting with the argument given by the number. This follows the XPG3 conventions for positional specifiers. If there are any positional specifiers in *formatString* then all of the specifiers must be positional.
+If the **%** is followed by a decimal number and a **$**, as in "**%2$d**", then the value to convert is not taken from the next sequential argument. Instead, it is taken from the argument indicated by the number, where 1 corresponds to the first *arg*. If the conversion specifier requires multiple arguments because of **\*** characters in the specifier then successive arguments are used, starting with the argument given by the number. This follows the XPG3 conventions for positional specifiers. If there are any positional specifiers in *formatString* then all of the specifiers must be positional.
 
 ## Optional flags
 
@@ -73,7 +74,7 @@ The fourth portion of a conversion specifier is a precision, which consists of a
 
 ## Optional size modifier
 
-The fifth part of a conversion specifier is a size modifier, which must be **ll**, **h**, **l**, **z**, **t**, or **L**. If it is **ll** it specifies that an integer value is taken without truncation for conversion to a formatted substring. If it is **h** it specifies that an integer value is truncated to a 16-bit range before converting.  This option is rarely useful. If it is **l** (or **j** or **q**) it specifies that the integer value is truncated to the same range as that produced by the **wide()** function of the **expr** command (at least a 64-bit range). If it is **z** or **t** it specifies that the integer value is truncated to the range determined by the value of the **pointerSize** element of the **tcl_platform** array. If it is **L** it specifies that an integer or double value is taken without truncation for conversion to a formatted substring. If neither of those are present, the integer value is truncated to a 32-bit range.
+The fifth part of a conversion specifier is a size modifier, which must be **ll**, **h**, **l**, **z**, **t**, or **L**. If it is **ll** it specifies that an integer value is taken without truncation for conversion to a formatted substring. If it is **h** it specifies that an integer value is truncated to a 16-bit range before converting.  This option is rarely useful. If it is **l** (or **j** or **q**) it specifies that the integer value is truncated to the same range as that produced by the **wide()** function of the [expr] command (at least a 64-bit range). If it is **z** or **t** it specifies that the integer value is truncated to the range determined by the value of the **pointerSize** element of the [tcl\_platform][tclvars] array. If it is **L** it specifies that an integer or double value is taken without truncation for conversion to a formatted substring. If neither of those are present, the integer value is truncated to a 32-bit range.
 
 ## Mandatory conversion type
 
@@ -107,13 +108,13 @@ The last thing in a conversion specifier is an alphabetic character that determi
 : Convert number to signed decimal string of the form *xx.yyy*, where the number of *y*'s is determined by the precision (default: 6). If the precision is 0 then no decimal point is output.
 
 **e** or **E**
-: Convert number to scientific notation in the form *x.yyy*__e\[+-\]__*zz*, where the number of *y*'s is determined by the precision (default: 6). If the precision is 0 then no decimal point is output. If the **E** form is used then **E** is printed instead of **e**.
+: Convert number to scientific notation in the form *x.yyy***e±***zz*, where the number of *y*'s is determined by the precision (default: 6). If the precision is 0 then no decimal point is output. If the **E** form is used then **E** is printed instead of **e**.
 
 **g** or **G**
 : If the exponent is less than -4 or greater than or equal to the precision, then convert number as for **%e** or **%E**. Otherwise convert as for **%f**. Trailing zeroes and a trailing decimal point are omitted.
 
 **a** or **A**
-: Convert double to hexadecimal notation in the form *0x1.yyy*__p\[+-\]__*zz*, where the number of *y*'s is determined by the precision (default: 13). If the **A** form is used then the hex characters are printed in uppercase.
+: Convert double to hexadecimal notation in the form *0x1.yyy***p±***zz*, where the number of *y*'s is determined by the precision (default: 13). If the **A** form is used then the hex characters are printed in uppercase.
 
 **%**
 : No conversion: just insert **%**.
@@ -122,21 +123,17 @@ The last thing in a conversion specifier is an alphabetic character that determi
 : Shorthand form for **0x%zx**, so it outputs the integer in hexadecimal form with **0x** prefix.
 
 
-# Differences from ansi sprintf
+# Differences from ANSI sprintf
 
 The behavior of the format command is the same as the ANSI C **sprintf** procedure except for the following differences:
 
-**\[1\]**
-: Tcl guarantees that it will be working with UNICODE characters.
+1. Tcl guarantees that it will be working with UNICODE characters.
 
-**\[2\]**
-: **%n** specifier is not supported.
+2. **%n** specifier is not supported.
 
-**\[3\]**
-: For **%c** conversions the argument must be an integer value, which will then be converted to the corresponding character value.
+3. For **%c** conversions the argument must be an integer value, which will then be converted to the corresponding character value.
 
-**\[4\]**
-: The size modifiers are ignored when formatting floating-point values. The **b** specifier has no **sprintf** counterpart.
+4. The size modifiers are ignored when formatting floating-point values. The **b** specifier has no **sprintf** counterpart.
 
 
 # Examples
@@ -148,7 +145,7 @@ set value 120
 set char [format %c $value]
 ```
 
-Convert the output of **time** into seconds to an accuracy of hundredths of a second:
+Convert the output of [time] into seconds to an accuracy of hundredths of a second:
 
 ```
 set us [lindex [time $someTclCode] 0]
@@ -162,7 +159,7 @@ Create a packed X11 literal color specification:
 set color [format "#%02x%02x%02x" $r $g $b]
 ```
 
-Use XPG3 format codes to allow reordering of fields (a technique that is often used in localized message catalogs; see **msgcat**) without reordering the data values passed to **format**:
+Use XPG3 format codes to allow reordering of fields (a technique that is often used in localized message catalogs; see [msgcat]) without reordering the data values passed to **format**:
 
 ```
 set fmt1 "Today, %d shares in %s were bought at $%.2f each"
@@ -195,3 +192,9 @@ for {set i 0} {$i<=20} {incr i} {
 # Finish off by printing the separator again
 puts $sep
 ```
+
+
+[expr]: expr.md
+[msgcat]: msgcat.md
+[tclvars]: tclvars.md
+[time]: time.md

@@ -1,5 +1,6 @@
 ---
 CommandName: pt::util
+title: pt::util
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -32,11 +33,11 @@ pt::util - General utilities
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::ast]{.lit} [1.2]{.optlit} 
-[::pt::util]{.cmd} [error2readable]{.sub} [error]{.arg} [text]{.arg} 
-[::pt::util]{.cmd} [error2position]{.sub} [error]{.arg} [text]{.arg} 
-[::pt::util]{.cmd} [error2text]{.sub} [error]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::ast]{.lit} [1.2]{.optlit}
+[::pt::util]{.cmd} [error2readable]{.lit} [error]{.arg} [text]{.arg}
+[::pt::util]{.cmd} [error2position]{.lit} [error]{.arg} [text]{.arg}
+[::pt::util]{.cmd} [error2text]{.lit} [error]{.arg}
 :::
 
 # Description
@@ -47,12 +48,14 @@ This package provides general utility commands.
 
 This is a supporting package in the Core Layer of Parser Tools.
 
-IMAGE: arch_core_support
+IMAGE: arch\_core\_support
 
-# Api
+# API
 
 **::pt::util** **error2readable** *error* *text*
-: This command takes the structured form of a syntax *error* as thrown by parser runtimes and the input *text* to the parser which caused that error and returns a string describing the error in a human-readable form. The input *text* is required to convert the character position of the error into a more readable line/column format, and to provide excerpts of the input around the error position.
+: This command takes the structured form of a syntax *error* as thrown by parser runtimes and the input *text* to the parser which caused that error and returns a string describing the error in a human-readable form.
+
+    The input *text* is required to convert the character position of the error into a more readable line/column format, and to provide excerpts of the input around the error position.
 
 **::pt::util** **error2position** *error* *text*
 : This command takes the structured form of a syntax *error* as thrown by parser runtimes and the input *text* to the parser which caused that error and returns a 2-element list containing the line number and column index for the error's character position in the input, in this order.

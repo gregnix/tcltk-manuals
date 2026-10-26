@@ -1,5 +1,6 @@
 ---
 CommandName: report
+title: report
 ManualSection: n
 Version: 0.5
 TclPart: tcllib
@@ -19,49 +20,44 @@ report - Create and manipulate report objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [report]{.lit} [0.5]{.optlit} 
-[::report::report]{.cmd} [reportName]{.arg} [columns]{.arg} [style style arg]{.optdot} 
-[reportName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[::report::defstyle]{.cmd} [styleName]{.arg} [arguments]{.arg} [script]{.arg} 
-[::report::rmstyle]{.cmd} [styleName]{.arg} 
-[::report::stylearguments]{.cmd} [styleName]{.arg} 
-[::report::stylebody]{.cmd} [styleName]{.arg} 
-[::report::styles]{.cmd} 
-[reportName]{.ins} [destroy]{.sub} 
-[reportName]{.ins} [tcaption]{.sub} [size]{.optarg} 
-[reportName]{.ins} [bcaption]{.sub} [size]{.arg} 
-[reportName]{.ins} [size]{.sub} [column]{.arg} [number|dyn]{.optarg} 
-[reportName]{.ins} [sizes]{.sub} [size-list]{.optarg} 
-[reportName]{.ins} [pad]{.sub} [column]{.arg} [left|right|both ?padstring]{.optarg} 
-[reportName]{.ins} [justify]{.sub} [column]{.arg} [left|right|center]{.optlit} 
-[reportName]{.ins} [printmatrix]{.sub} [matrix]{.arg} 
-[reportName]{.ins} [printmatrix2channel]{.sub} [matrix]{.arg} [chan]{.arg} 
-[reportName]{.ins} [columns]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [report]{.lit} [0.5]{.optlit}
+[::report::report]{.cmd} [reportName]{.arg} [columns]{.arg} [[style]{.lit} [style]{.arg} arg...]{.optarg}
+[reportName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[::report::defstyle]{.cmd} [styleName]{.arg} [arguments]{.arg} [script]{.arg}
+[::report::rmstyle]{.cmd} [styleName]{.arg}
+[::report::stylearguments]{.cmd} [styleName]{.arg}
+[::report::stylebody]{.cmd} [styleName]{.arg}
+[::report::styles]{.cmd}
+[reportName]{.ins} [destroy]{.sub}
+[reportName]{.ins} [templatecode]{.sub} [disable|enable]{.lit}
+[reportName]{.ins} [templatecode]{.sub} [enabled]{.lit}
+[reportName]{.ins} [templatecode]{.sub} [get]{.lit}
+[reportName]{.ins} [templatecode]{.sub} [set]{.lit} [templatedata]{.arg}
+[reportName]{.ins} [tcaption]{.sub} [size]{.optarg}
+[reportName]{.ins} [bcaption]{.sub} [size]{.arg}
+[reportName]{.ins} [size]{.sub} [column]{.arg} [number|dyn]{.optarg}
+[reportName]{.ins} [sizes]{.sub} [size-list]{.optarg}
+[reportName]{.ins} [pad]{.sub} [column]{.arg} [[left|right|both]{.lit} [padstring]{.optarg}]{.optarg}
+[reportName]{.ins} [justify]{.sub} [column]{.arg} [left|right|center]{.optlit}
+[reportName]{.ins} [printmatrix]{.sub} [matrix]{.arg}
+[reportName]{.ins} [printmatrix2channel]{.sub} [matrix]{.arg} [chan]{.arg}
+[reportName]{.ins} [columns]{.sub}
 :::
-
-*reportName* *templatecode* **disable**|**enable**
-
-*reportName* *templatecode* **enabled**
-
-*reportName* *templatecode* **get**
-
-*reportName* *templatecode* **set** *templatedata*
 
 # Description
 
-This package provides report objects which can be used by the formatting methods of matrix objects to generate tabular reports of the matrix in various forms. The report objects defined here break each report down into three **REGIONS** and ten classes of *lines* (various separator- and data-lines). See the following section for more detailed explanations.
+This package provides report objects which can be used by the formatting methods of matrix objects to generate tabular reports of the matrix in various forms. The report objects defined here break each report down into three [Regions] and ten classes of *lines* (various separator- and data-lines). See the following section for more detailed explanations.
 
 **::report::report** *reportName* *columns* ?**style** *style arg...*?
 : Creates a new report object for a report having *columns* columns with an associated global Tcl command whose name is *reportName*. This command may be used to invoke various configuration operations on the report. It has the following general form:
 
-
-**reportName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. See section **REPORT METHODS** for more explanations. If no **style** is specified the report will use the builtin style **plain** as its default configuration.
+    **reportName** *option* ?*arg arg ...*?
+    : *Option* and the *arg*s determine the exact behavior of the command. See section [Report methods] for more explanations. If no **style** is specified the report will use the builtin style **plain** as its default configuration.
 
 
 **::report::defstyle** *styleName arguments script*
-: Defines the new style *styleName*. See section **STYLES** for more information.
+: Defines the new style *styleName*. See section [Styles] for more information.
 
 **::report::rmstyle** *styleName*
 : Deletes the style *styleName*. Trying to delete an unknown or builtin style will result in an error. Beware, this command will not check that there are no other styles depending on the deleted one. Deleting a style which is still used by another style FOO will result in a runtime error when FOO is applied to a newly instantiated report.
@@ -82,7 +78,7 @@ The three regions are the *top caption*, *data area* and *bottom caption*. These
 
 # Lines
 
-**TEMPLATES** are associated with each of the ten line classes, defining the formatting for this kind of line. The user is able to enable and disable the separator lines at will, but not the data lines. Their usage is solely determined by the number of rows contained in the three regions. Data lines and all enabled separators must have a template associated with them.
+[Templates] are associated with each of the ten line classes, defining the formatting for this kind of line. The user is able to enable and disable the separator lines at will, but not the data lines. Their usage is solely determined by the number of rows contained in the three regions. Data lines and all enabled separators must have a template associated with them.
 
 Note that the data-lines in a report and the rows in the matrix the report was generated from are *not* in a 1:1 relationship if any row in the matrix has a height greater than one.
 
@@ -147,7 +143,9 @@ The following commands are possible for report objects:
 : Destroys the report, including its storage space and associated command.
 
 *reportName* *templatecode* **disable**|**enable**
-: Enables or disables the usage of the template addressed by the *templatecode*. Only the codes for separator lines are allowed here. It is not possible to enable or disable data lines. Enabling a template causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section **TEMPLATES**).
+: Enables or disables the usage of the template addressed by the *templatecode*. Only the codes for separator lines are allowed here. It is not possible to enable or disable data lines.
+
+    Enabling a template causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section [Templates]).
 
 *reportName* *templatecode* **enabled**
 : Returns the whether the template addressed by the *templatecode* is currently enabled or not.
@@ -156,25 +154,41 @@ The following commands are possible for report objects:
 : Returns the template currently associated with the kind of line addressed by the *templatecode*. All known templatecodes are allowed here.
 
 *reportName* *templatecode* **set** *templatedata*
-: Sets the template associated with the kind of line addressed by the *templatecode* to the new value in *templatedata*. See section **TEMPLATES** for constraints on the length of templates.
+: Sets the template associated with the kind of line addressed by the *templatecode* to the new value in *templatedata*. See section [Templates] for constraints on the length of templates.
 
 *reportName* **tcaption** ?*size*?
-: Specifies the *size* of the top caption region as the number rows it occupies in the matrix to be formatted. Only numbers greater than or equal to zero are allowed. If no *size* is specified the command will return the current size instead. Setting the size of the top caption to a value greater than zero enables the corresponding data template and causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section **TEMPLATES**).
+: Specifies the *size* of the top caption region as the number rows it occupies in the matrix to be formatted. Only numbers greater than or equal to zero are allowed. If no *size* is specified the command will return the current size instead.
+
+    Setting the size of the top caption to a value greater than zero enables the corresponding data template and causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section [Templates]).
 
 *reportName* **bcaption** *size*
-: Specifies the *size* of the bottom caption region as the number rows it occupies in the matrix to be formatted. Only numbers greater than or equal to zero are allowed. If no *size* is specified the command will return the current size instead. Setting the size of the bottom caption to a value greater than zero enables the corresponding data template and causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section **TEMPLATES**).
+: Specifies the *size* of the bottom caption region as the number rows it occupies in the matrix to be formatted. Only numbers greater than or equal to zero are allowed. If no *size* is specified the command will return the current size instead.
+
+    Setting the size of the bottom caption to a value greater than zero enables the corresponding data template and causes the report to check all used templates for inconsistencies in the definition of the vertical lines (See section [Templates]).
 
 *reportName* **size** *column* ?*number*|**dyn**?
-: Specifies the size of the *column* in the output. The value **dyn** means that the columnwidth returned by the matrix to be formatted for the specified column shall be used. The formatting of the column is dynamic. If a fixed *number* is used instead of **dyn** it means that the column has a width of that many characters (padding excluded). Only numbers greater than zero are allowed here. If no size specification is given the command will return the current size of the *column* instead.
+: Specifies the size of the *column* in the output. The value **dyn** means that the columnwidth returned by the matrix to be formatted for the specified column shall be used. The formatting of the column is dynamic. If a fixed *number* is used instead of **dyn** it means that the column has a width of that many characters (padding excluded). Only numbers greater than zero are allowed here.
+
+    If no size specification is given the command will return the current size of the *column* instead.
 
 *reportName* **sizes** ?*size-list*?
-: This method allows the user to specify the sizes of all columns in one call. Its argument is a list containing the sizes to associate with the columns. The first item is associated with column 0, the next with column 1, and so on. If no *size-list* is specified the command will return a list containing the currently set sizes instead.
+: This method allows the user to specify the sizes of all columns in one call. Its argument is a list containing the sizes to associate with the columns. The first item is associated with column 0, the next with column 1, and so on.
+
+    If no *size-list* is specified the command will return a list containing the currently set sizes instead.
 
 *reportName* **pad** *column* ?**left**|**right**|**both** ?*padstring*??
-: This method allows the user to specify padding on the left, right or both sides of a *column*. If the *padstring* is not specified it defaults to a single space character. *Note*: An alternative way of specifying the padding is to use vertical separator strings longer than one character in the templates (See section **TEMPLATES**). If no pad specification is given at all the command will return the current state of padding for the column instead. This will be a list containing two elements, the first element the left padding, the second describing the right padding.
+: This method allows the user to specify padding on the left, right or both sides of a *column*. If the *padstring* is not specified it defaults to a single space character. *Note*: An alternative way of specifying the padding is to use vertical separator strings longer than one character in the templates (See section [Templates]).
+
+    If no pad specification is given at all the command will return the current state of padding for the column instead. This will be a list containing two elements, the first element the left padding, the second describing the right padding.
 
 *reportName* **justify** *column* ?**left**|**right**|**center**?
-: Declares how the cell values for a *column* are filled into the report given the specified size of a column in the report. For **left** and **right** justification a cell value shorter than the width of the column is bound with its named edge to the same edge of the column. The other side is filled with spaces. In the case of **center** the spaces are placed to both sides of the value and the left number of spaces is at most one higher than the right number of spaces. For a value longer than the width of the column the value is cut at the named edge. This means for **left** justification that the *tail* (i.e. the **right** part) of the value is made visible in the output. For **center** the value is cut at both sides to fit into the column and the number of characters cut at the left side of the value is at most one less than the number of characters cut from the right side. If no justification was specified the command will return the current justification for the column instead.
+: Declares how the cell values for a *column* are filled into the report given the specified size of a column in the report.
+
+    For **left** and **right** justification a cell value shorter than the width of the column is bound with its named edge to the same edge of the column. The other side is filled with spaces. In the case of **center** the spaces are placed to both sides of the value and the left number of spaces is at most one higher than the right number of spaces.
+
+    For a value longer than the width of the column the value is cut at the named edge. This means for **left** justification that the *tail* (i.e. the **right** part) of the value is made visible in the output. For **center** the value is cut at both sides to fit into the column and the number of characters cut at the left side of the value is at most one less than the number of characters cut from the right side.
+
+    If no justification was specified the command will return the current justification for the column instead.
 
 *reportName* **printmatrix** *matrix*
 : Formats the *matrix* according to the configuration of the report and returns the resulting string. The matrix has to have the same number of columns as the report. The matrix also has to have enough rows so that the top and bottom caption regions do not overlap. The data region is allowed to be empty.
@@ -183,8 +197,10 @@ The following commands are possible for report objects:
 : Formats the *matrix* according to the configuration of the report and writes the result into the channel *chan*. The matrix has to have the same number of columns as the report. The matrix also has to have enough rows so that the top and bottom caption regions do not overlap. The data region is allowed to be empty.
 
 *reportName* **columns**
-: Returns the number of columns in the report. The methods **size**, **pad** and **justify** all take a column index as their first argument. This index is allowed to use all the forms of an index as accepted by the **lindex** command. The allowed range for indices is "0,...,\[**reportName** columns\]-1".
+: Returns the number of columns in the report.
 
+
+The methods **size**, **pad** and **justify** all take a column index as their first argument. This index is allowed to use all the forms of an index as accepted by the **lindex** command. The allowed range for indices is "0,...,\[**reportName** columns\]-1".
 
 # Examples
 

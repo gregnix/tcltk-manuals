@@ -1,5 +1,6 @@
 ---
 CommandName: processman
+title: processman
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -18,19 +19,19 @@ processman - Tool for automating the period callback of commands
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [twapi]{.lit} [3.1]{.lit} 
-[package]{.cmd} [require]{.sub} [cron]{.lit} [1.1]{.lit} 
-[package]{.cmd} [require]{.sub} [processman]{.lit} [0.8]{.optlit} 
-[::processman::find_exe]{.cmd} [name]{.arg} 
-[::processman::kill]{.cmd} [id]{.arg} 
-[::processman::kill_all]{.cmd} 
-[::processman::killexe]{.cmd} [name]{.arg} 
-[::processman::onexit]{.cmd} [id]{.arg} [cmd]{.arg} 
-[::processman::priority]{.cmd} [id]{.arg} [level]{.arg} 
-[::processman::process_list]{.cmd} 
-[::processman::process_list]{.cmd} [id]{.arg} 
-[::processman::spawn]{.cmd} [id]{.arg} [cmd]{.arg} [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [twapi]{.lit} [3.1]{.lit}
+[package]{.cmd} [require]{.sub} [cron]{.lit} [1.1]{.lit}
+[package]{.cmd} [require]{.sub} [processman]{.lit} [0.8]{.optlit}
+[::processman::find\_exe]{.cmd} [name]{.arg}
+[::processman::kill]{.cmd} [id]{.arg}
+[::processman::kill\_all]{.cmd}
+[::processman::killexe]{.cmd} [name]{.arg}
+[::processman::onexit]{.cmd} [id]{.arg} [cmd]{.arg}
+[::processman::priority]{.cmd} [id]{.arg} [level]{.arg}
+[::processman::process\_list]{.cmd}
+[::processman::process\_list]{.cmd} [id]{.arg}
+[::processman::spawn]{.cmd} [id]{.arg} [cmd]{.arg} [args]{.arg}
 :::
 
 # Description
@@ -39,28 +40,32 @@ The **processman** package provides a Pure-tcl set of utilities to manage child 
 
 # Commands
 
-**::processman::find_exe** *name*
+**::processman::find\_exe** *name*
 : Locate an executable by the name of *name* in the system path. On windows, also add the .exe extention if not given.
 
 **::processman::kill** *id*
 : Kill a child process *id*.
 
-**::processman::kill_all**
+**::processman::kill\_all**
 : Kill all processes spawned by this program
 
 **::processman::killexe** *name*
-: Kill a process identified by the executable. On Unix, this triggers a killall. On windows, **twapi::get_process_ids** is used to map a name one or more IDs, which are then killed.
+: Kill a process identified by the executable. On Unix, this triggers a killall. On windows, **twapi::get\_process\_ids** is used to map a name one or more IDs, which are then killed.
 
 **::processman::onexit** *id* *cmd*
 : Arrange to execute the script *cmd* when this programe detects that process *id* as terminated.
 
 **::processman::priority** *id* *level*
-: Mark process *id* with the priorty *level*. Valid levels: low, high, default. On Unix, the process is tagged using the **nice** command. On Windows, the process is modifed via the **twapi::set_priority_class**
+: Mark process *id* with the priorty *level*. Valid levels: low, high, default.
 
-**::processman::process_list**
+    On Unix, the process is tagged using the **nice** command.
+
+    On Windows, the process is modifed via the **twapi::set\_priority\_class**
+
+**::processman::process\_list**
 : Return a list of processes that have been triggered by this program, as well as a boolean flag to indicate if the process is still running.
 
-**::processman::process_list** *id*
+**::processman::process\_list** *id*
 : Return true if process *id* is still running, false otherwise.
 
 **::processman::spawn** *id* *cmd* *args*

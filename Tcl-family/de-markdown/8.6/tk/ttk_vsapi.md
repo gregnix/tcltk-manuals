@@ -1,5 +1,6 @@
 ---
 CommandName: ttk_vsapi
+title: ttk_vsapi
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -18,23 +19,23 @@ Copyright:
  - Copyright (c) 2008 Pat Thoyts
 ---
 
-# NAME
+# Name
 
-ttk_vsapi - Microsoft-Visual-Styles-Element definieren
+ttk\_vsapi - Microsoft-Visual-Styles-Element definieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [vsapi]{.lit} [className]{.arg} [partId]{.arg} [stateMap]{.optarg} [options]{.optarg} 
+[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [vsapi]{.lit} [className]{.arg} [partId]{.arg} [stateMap]{.optarg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Die **vsapi**-Elementfabrik erstellt im aktuellen Theme ein neues Element, dessen visuelle Darstellung mit der Microsoft Visual Styles API gezeichnet wird, die ttk für die nativen Stile unter MS-Windows verwendet. Diese Fabrik erlaubt, beliebige Visual-Styles-Teile als Ttk-Elemente zu deklarieren, die dann in ein Style-Layout eingebunden werden können, um das Erscheinungsbild von Ttk-Widgets zu ändern.
 
-*className* und *partId* sind erforderliche Parameter und legen die Visual-Styles-Klasse und den Teil gemäß der Microsoft-Dokumentation fest. *stateMap* kann angegeben werden, um Ttk-Zustände auf Visual-Styles-API-Zustände abzubilden (siehe **ZUSTANDSZUORDNUNG**).
+Die Parameter *className* und *partId* sind erforderlich und legen die Visual-Styles-Klasse und den Teil gemäß der Microsoft-Dokumentation fest. *stateMap* kann angegeben werden, um Ttk-Zustände auf Visual-Styles-API-Zustände abzubilden (siehe [Zustandszuordnung]).
 
-# OPTIONEN
+# Optionen
 
 Gültige *options* sind:
 
@@ -51,24 +52,24 @@ Gültige *options* sind:
 : Legt die Höhe des Elements fest. Siehe die Hinweise zu **-width**.
 
 
-# ZUSTANDSZUORDNUNG
+# Zustandszuordnung
 
-Der Parameter *stateMap* ist eine Liste von ttk-Zuständen und dem zugehörigen Visual-Styles-API-Zustandswert. Damit kann sich das Erscheinungsbild des Elements bei Widget-Zustandsänderungen anpassen (z. B. aktiv oder gedrückt). Die Liste sollte wie beim Befehl **ttk::style map** beschrieben aufgebaut sein; das letzte Paar in der Liste sollte der Standardzustand sein und ist typischerweise eine leere Liste und 1. Leider haben alle Visual-Styles-Teile unterschiedliche Zustandswerte; diese müssen in der Microsoft-Dokumentation oder eher in den Header-Dateien nachgeschlagen werden. Ursprünglich war *tmschema.h* zu verwenden; in neueren Versionen des Windows Development Kit ist es *vssym32.h*.
+Der Parameter *stateMap* ist eine Liste von ttk-Zuständen und dem zugehörigen Visual-Styles-API-Zustandswert. Damit kann sich das Erscheinungsbild des Elements bei Widget-Zustandsänderungen anpassen (z. B. aktiv oder gedrückt). Die Liste sollte wie beim Befehl [ttk::style map][ttk_style] beschrieben aufgebaut sein; das letzte Paar in der Liste sollte der Standardzustand sein und ist typischerweise eine leere Liste und 1. Leider haben alle Visual-Styles-Teile unterschiedliche Zustandswerte; diese müssen in der Microsoft-Dokumentation oder eher in den Header-Dateien nachgeschlagen werden. Ursprünglich war *tmschema.h* zu verwenden; in neueren Versionen des Windows Development Kit ist es *vssym32.h*.
 
 Wenn kein Parameter *stateMap* angegeben wird, gilt implizit die Standardzuordnung {{} 1}
 
-# BEISPIELE
+# Beispiele
 
-Erstellen eines korrekt thematisierten Schließen-Buttons durch Änderung des Layouts eines **ttk::button**(n). Verwendet den WINDOW-Teil WP_SMALLCLOSEBUTTON; wie dokumentiert werden die Zustände CBS_DISABLED, CBS_HOT, CBS_NORMAL und CBS_PUSHED von ttk-Zuständen abgebildet.
+Erstellen eines korrekt thematisierten Schließen-Buttons durch Änderung des Layouts eines [ttk::button][ttk_button](n). Verwendet den WINDOW-Teil WP\_SMALLCLOSEBUTTON; wie dokumentiert werden die Zustände CBS\_DISABLED, CBS\_HOT, CBS\_NORMAL und CBS\_PUSHED von ttk-Zuständen abgebildet.
 
 ```
-ttk::style element create smallclose vsapi WINDOW 19 \\
+ttk::style element create smallclose vsapi WINDOW 19 \
     {disabled 4 pressed 3 active 2 {} 1}
 ttk::style layout CloseButton {CloseButton.smallclose -sticky news}
 pack [ttk::button .close -style CloseButton]
 ```
 
-Ändern des Erscheinungsbilds eines **ttk::checkbutton**(n), um den Explorer-Pin-Teil EBP_HEADERPIN zu verwenden.
+Ändern des Erscheinungsbilds eines [ttk::checkbutton][ttk_checkbutton](n), um den Explorer-Pin-Teil EBP\_HEADERPIN zu verwenden.
 
 ```
 ttk::style element create pin vsapi EXPLORERBAR 3 {
@@ -83,3 +84,7 @@ ttk::style layout Explorer.Pin {Explorer.Pin.pin -sticky news}
 pack [ttk::checkbutton .pin -style Explorer.Pin]
 ```
 
+
+[ttk_button]: ttk_button.md
+[ttk_checkbutton]: ttk_checkbutton.md
+[ttk_style]: ttk_style.md

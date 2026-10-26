@@ -1,5 +1,6 @@
 ---
 CommandName: lreverse
+title: lreverse
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -30,21 +31,21 @@ Copyright:
  - Copyright (c) 2006 Donal K. Fellows. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lreverse - Kehrt die Reihenfolge einer Liste um
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lreverse]{.cmd} [list]{.arg} 
+[lreverse]{.cmd} [list]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 **lreverse** gibt eine Liste mit denselben Elementen wie *list* zurück, jedoch in umgekehrter Reihenfolge.
 
-# BEISPIELE
+# Beispiele
 
 ```
 lreverse {a a b c}

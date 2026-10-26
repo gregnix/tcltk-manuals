@@ -1,5 +1,6 @@
 ---
 CommandName: spinbox
+title: spinbox
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -22,24 +23,14 @@ spinbox - Create and manipulate 'spinbox' value spinner widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[spinbox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[spinbox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-activebackground** | **-highlightthickness** | **-repeatinterval** |
-| **-background** | **-insertbackground** | **-selectbackground** |
-| **-borderwidth** | **-insertborderwidth** | **-selectborderwidth** |
-| **-cursor** | **-insertontime** | **-selectforeground** |
-| **-exportselection** | **-insertwidth** | **-takefocus** |
-| **-font** | **-insertofftime** | **-textvariable** |
-| **-foreground** | **-justify** | **-xscrollcommand** |
-| **-highlightbackground** | **-relief** |  |
-| **-highlightcolor** | **-repeatdelay** |  |
+**-activebackground**, **-highlightthickness**, **-repeatinterval**, **-background**, **-insertbackground**, **-selectbackground**, **-borderwidth**, **-insertborderwidth**, **-selectborderwidth**, **-cursor**, **-insertontime**, **-selectforeground**, **-exportselection**, **-insertwidth**, **-takefocus**, **-font**, **-insertofftime**, **-textvariable**, **-foreground**, **-justify**, **-xscrollcommand**, **-highlightbackground**, **-relief**, **-highlightcolor**, **-repeatdelay**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -64,14 +55,14 @@ See the options manual entry for details on the standard options.
 **-disabledforeground** (**disabledForeground**/**DisabledForeground**)
 : Specifies the foreground color to use when the spinbox is disabled.  If this option is the empty string, the normal foreground color is used.
 
-**-format** (**format**/**Format**)
-: Specifies an alternate format to use when setting the string value when using the **-from** and **-to** range. This must be a format specifier of the form **%\<pad>.\<pad>f**, as it will format a floating-point number.
+**-format** ([format]/**Format**)
+: Specifies an alternate format to use when setting the string value when using the **-from** and **-to** range. This must be a format specifier of the form **%<pad>.<pad>f**, as it will format a floating-point number.
 
 **-from** (**from**/**From**)
 : A floating-point value corresponding to the lowest value for a spinbox, to be used in conjunction with **-to** and **-increment**.  When all are specified correctly, the spinbox will use these values to control its contents.  This value must be less than the **-to** option. If **-values** is specified, it supersedes this option.
 
 **-invalidcommand or -invcmd** (**invalidCommand**/**InvalidCommand**)
-: Specifies a script to eval when **-validatecommand** returns 0.  Setting it to an empty string disables this feature (the default).  The best use of this option is to set it to *bell*.  See **VALIDATION** below for more information.
+: Specifies a script to eval when **-validatecommand** returns 0.  Setting it to an empty string disables this feature (the default).  The best use of this option is to set it to *bell*.  See [Validation] below for more information.
 
 **-increment** (**increment**/**Increment**)
 : A floating-point value specifying the increment.  When used with **-from** and **-to**, the value in the widget will be adjusted by **-increment** when a spin button is pressed (up adds the value, down subtracts the value).
@@ -86,10 +77,10 @@ See the options manual entry for details on the standard options.
 : A floating-point value corresponding to the highest value for the spinbox, to be used in conjunction with **-from** and **-increment**.  When all are specified correctly, the spinbox will use these values to control its contents.  This value must be greater than the **-from** option. If **-values** is specified, it supersedes this option.
 
 **-validate** (**validate**/**Validate**)
-: Specifies the mode in which validation should operate: **none**, **focus**, **focusin**, **focusout**, **key**, or **all**. It defaults to **none**.  When you want validation, you must explicitly state which mode you wish to use.  See **VALIDATION** below for more.
+: Specifies the mode in which validation should operate: **none**, **focus**, **focusin**, **focusout**, **key**, or **all**. It defaults to **none**.  When you want validation, you must explicitly state which mode you wish to use.  See [Validation] below for more.
 
 **-validatecommand or -vcmd** (**validateCommand**/**ValidateCommand**)
-: Specifies a script to evaluate when you want to validate the input in the widget.  Setting it to an empty string disables this feature (the default). Validation occurs according to the value of **-validate**. This command must return a valid Tcl boolean value.  If it returns 0 (or the valid Tcl boolean equivalent) then the value of the widget will not change and the **-invalidcommand** will be evaluated if it is set.  If it returns 1, then value will be changed. See **VALIDATION** below for more information.
+: Specifies a script to evaluate when you want to validate the input in the widget.  Setting it to an empty string disables this feature (the default). Validation occurs according to the value of **-validate**. This command must return a valid Tcl boolean value.  If it returns 0 (or the valid Tcl boolean equivalent) then the value of the widget will not change and the **-invalidcommand** will be evaluated if it is set.  If it returns 1, then value will be changed. See [Validation] below for more information.
 
 **-values** (**values**/**Values**)
 : Must be a proper list value.  If specified, the spinbox will use these values as to control its contents, starting with the first value.  This option has precedence over the **-from** and **-to** range.
@@ -105,7 +96,7 @@ See the options manual entry for details on the standard options.
 
 The **spinbox** command creates a new window (given by the *pathName* argument) and makes it into a spinbox widget. Additional options, described above, may be specified on the command line or in the option database to configure aspects of the spinbox such as its colors, font, and relief.  The **spinbox** command returns its *pathName* argument.  At the time this command is invoked, there must not exist a window named *pathName*, but *pathName*'s parent must exist.
 
-A **spinbox** is an extended **entry** widget that allows he user to move, or spin, through a fixed set of ascending or descending values such as times or dates in addition to editing the value as in an **entry**.  When first created, a spinbox's string is empty. A portion of the spinbox may be selected as described below. If a spinbox is exporting its selection (see the **-exportselection** option), then it will observe the standard protocols for handling the selection;  spinbox selections are available as type **STRING**. Spinboxes also observe the standard Tk rules for dealing with the input focus.  When a spinbox has the input focus it displays an *insertion cursor* to indicate where new characters will be inserted.
+A **spinbox** is an extended [entry] widget that allows he user to move, or spin, through a fixed set of ascending or descending values such as times or dates in addition to editing the value as in an [entry].  When first created, a spinbox's string is empty. A portion of the spinbox may be selected as described below. If a spinbox is exporting its selection (see the **-exportselection** option), then it will observe the standard protocols for handling the selection;  spinbox selections are available as type **STRING**. Spinboxes also observe the standard Tk rules for dealing with the input focus.  When a spinbox has the input focus it displays an *insertion cursor* to indicate where new characters will be inserted.
 
 Spinboxes are capable of displaying strings that are too long to fit entirely within the widget's window.  In this case, only a portion of the string will be displayed; commands described below may be used to change the view in the window.  Spinboxes use the standard **-xscrollcommand** mechanism for interacting with scrollbars (see the description of the **-xscrollcommand** option for details).  They also support scanning, as described below.
 
@@ -116,7 +107,7 @@ Validation works by setting the **-validatecommand** option to a script which wi
 **none**
 : Default.  This means no validation will occur.
 
-**focus**
+[focus]
 : The **-validatecommand** will be called when the spinbox receives or loses focus.
 
 **focusin**
@@ -129,7 +120,10 @@ Validation works by setting the **-validatecommand** option to a script which wi
 : The **-validatecommand** will be called when the spinbox is edited.
 
 **all**
-: The **-validatecommand** will be called for all above conditions. It is possible to perform percent substitutions on the **-validatecommand** and **-invalidcommand** scripts, just as you would in a **bind** script.  The following substitutions are recognized:
+: The **-validatecommand** will be called for all above conditions.
+
+
+It is possible to perform percent substitutions on the **-validatecommand** and **-invalidcommand** scripts, just as you would in a [bind] script.  The following substitutions are recognized:
 
 **%d**
 : Type of action: 1 for **insert**, 0 for **delete**, or -1 for focus, forced or textvariable validation.
@@ -153,8 +147,12 @@ Validation works by setting the **-validatecommand** option to a script which wi
 : The type of validation that triggered the callback (key, focusin, focusout, forced).
 
 **%W**
-: The name of the spinbox widget. In general, the **-textvariable** and **-validatecommand** can be dangerous to mix.  Any problems have been overcome so that using the **-validatecommand** will not interfere with the traditional behavior of the spinbox widget.  Using the **-textvariable** for read-only purposes will never cause problems.  The danger comes when you try set the **-textvariable** to something that the **-validatecommand** would not accept, which causes **-validate** to become **none** (the **-invalidcommand** will not be triggered).  The same happens when an error occurs evaluating the **-validatecommand**. Primarily, an error will occur when the **-validatecommand** or **-invalidcommand** encounters an error in its script while evaluating or **-validatecommand** does not return a valid Tcl boolean value.  The **-validate** option will also set itself to **none** when you edit the spinbox widget from within either the **-validatecommand** or the **-invalidcommand**.  Such editions will override the one that was being validated.  If you wish to edit the value of the widget during validation and still have the **-validate** option set, you should include the command
+: The name of the spinbox widget.
 
+
+In general, the **-textvariable** and **-validatecommand** can be dangerous to mix.  Any problems have been overcome so that using the **-validatecommand** will not interfere with the traditional behavior of the spinbox widget.  Using the **-textvariable** for read-only purposes will never cause problems.  The danger comes when you try set the **-textvariable** to something that the **-validatecommand** would not accept, which causes **-validate** to become **none** (the **-invalidcommand** will not be triggered).  The same happens when an error occurs evaluating the **-validatecommand**.
+
+Primarily, an error will occur when the **-validatecommand** or **-invalidcommand** encounters an error in its script while evaluating or **-validatecommand** does not return a valid Tcl boolean value.  The **-validate** option will also set itself to **none** when you edit the spinbox widget from within either the **-validatecommand** or the **-invalidcommand**.  Such editions will override the one that was being validated.  If you wish to edit the value of the widget during validation and still have the **-validate** option set, you should include the command
 
 ```
      %W config -validate %v
@@ -204,9 +202,11 @@ Many of the widget commands for spinboxes take one or more indices as arguments.
 **sel.last**
 : Indicates the character just after the last one in the selection. It is an error to use this form if the selection is not in the spinbox window.
 
-**@**_number_
-: In this form, *number* is treated as an x-coordinate in the spinbox's window;  the character spanning that x-coordinate is used. For example, "**@0**" indicates the left-most character in the window. Abbreviations may be used for any of the forms above, e.g. "**e**" or "**sel.f**". In general, out-of-range indices are automatically rounded to the nearest legal value.
+**@***number*
+: In this form, *number* is treated as an x-coordinate in the spinbox's window;  the character spanning that x-coordinate is used. For example, "**@0**" indicates the left-most character in the window.
 
+
+Abbreviations may be used for any of the forms above, e.g. "**e**" or "**sel.f**". In general, out-of-range indices are automatically rounded to the nearest legal value.
 
 ## Subcommands
 
@@ -219,7 +219,7 @@ The following commands are possible for spinbox widgets:
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **spinbox** command.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **spinbox** command.
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **spinbox** command.
 
 *pathName* **delete** *first* ?*last*?
 : Delete one or more elements of the spinbox. *First* is the index of the first character to delete, and *last* is the index of the character just after the last one to delete. If *last* is not specified it defaults to *first*+1, i.e. a single character is deleted. This command returns an empty string.
@@ -231,7 +231,7 @@ The following commands are possible for spinbox widgets:
 : Arrange for the insertion cursor to be displayed just before the character given by *index*.  Returns an empty string.
 
 *pathName* **identify** *x y*
-: Returns the name of the window element corresponding to coordinates *x* and *y* in the spinbox.  Return value is one of: **none**, **buttondown**, **buttonup**, **entry**.
+: Returns the name of the window element corresponding to coordinates *x* and *y* in the spinbox.  Return value is one of: **none**, **buttondown**, **buttonup**, [entry].
 
 *pathName* **index** *index*
 : Returns the numerical index corresponding to *index*.
@@ -245,38 +245,36 @@ The following commands are possible for spinbox widgets:
 *pathName* **scan** *option args*
 : This command is used to implement scanning on spinboxes.  It has two forms, depending on *option*:
 
+    *pathName* **scan mark** *x*
+    : Records *x* and the current view in the spinbox window;  used in conjunction with later **scan dragto** commands.  Typically this command is associated with a mouse button press in the widget.  It returns an empty string.
 
-*pathName* **scan mark** *x*
-: Records *x* and the current view in the spinbox window;  used in conjunction with later **scan dragto** commands.  Typically this command is associated with a mouse button press in the widget.  It returns an empty string.
-
-*pathName* **scan dragto** *x*
-: This command computes the difference between its *x* argument and the *x* argument to the last **scan mark** command for the widget.  It then adjusts the view left or right by 10 times the difference in x-coordinates.  This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the spinbox at high speed through the window.  The return value is an empty string.
+    *pathName* **scan dragto** *x*
+    : This command computes the difference between its *x* argument and the *x* argument to the last **scan mark** command for the widget.  It then adjusts the view left or right by 10 times the difference in x-coordinates.  This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the spinbox at high speed through the window.  The return value is an empty string.
 
 
 *pathName* **selection** *option arg*
 : This command is used to adjust the selection within a spinbox.  It has several forms, depending on *option*:
 
+    *pathName* **selection adjust** *index*
+    : Locate the end of the selection nearest to the character given by *index*, and adjust that end of the selection to be at *index* (i.e. including but not going beyond *index*).  The other end of the selection is made the anchor point for future **select to** commands.  If the selection is not currently in the spinbox, then a new selection is created to include the characters between *index* and the most recent selection anchor point, inclusive. Returns an empty string.
 
-*pathName* **selection adjust** *index*
-: Locate the end of the selection nearest to the character given by *index*, and adjust that end of the selection to be at *index* (i.e. including but not going beyond *index*).  The other end of the selection is made the anchor point for future **select to** commands.  If the selection is not currently in the spinbox, then a new selection is created to include the characters between *index* and the most recent selection anchor point, inclusive. Returns an empty string.
+    *pathName* **selection clear**
+    : Clear the selection if it is currently in this widget.  If the selection is not in this widget then the command has no effect. Returns an empty string.
 
-*pathName* **selection clear**
-: Clear the selection if it is currently in this widget.  If the selection is not in this widget then the command has no effect. Returns an empty string.
+    *pathName* **selection element** ?*element*?
+    : Sets or gets the currently selected element.  If a spinbutton element is specified, it will be displayed depressed.
 
-*pathName* **selection element** ?*element*?
-: Sets or gets the currently selected element.  If a spinbutton element is specified, it will be displayed depressed.
+    *pathName* **selection from** *index*
+    : Set the selection anchor point to just before the character given by *index*.  Does not change the selection. Returns an empty string.
 
-*pathName* **selection from** *index*
-: Set the selection anchor point to just before the character given by *index*.  Does not change the selection. Returns an empty string.
+    *pathName* **selection present**
+    : Returns 1 if there is are characters selected in the spinbox, 0 if nothing is selected.
 
-*pathName* **selection present**
-: Returns 1 if there is are characters selected in the spinbox, 0 if nothing is selected.
+    *pathName* **selection range** *start end*
+    : Sets the selection to include the characters starting with the one indexed by *start* and ending with the one just before *end*. If *end* refers to the same character as *start* or an earlier one, then the spinbox's selection is cleared.
 
-*pathName* **selection range** *start end*
-: Sets the selection to include the characters starting with the one indexed by *start* and ending with the one just before *end*. If *end* refers to the same character as *start* or an earlier one, then the spinbox's selection is cleared.
-
-*pathName* **selection to** *index*
-: If *index* is before the anchor point, set the selection to the characters from *index* up to but not including the anchor point. If *index* is the same as the anchor point, do nothing. If *index* is after the anchor point, set the selection to the characters from the anchor point up to but not including *index*. The anchor point is determined by the most recent **select from** or **select adjust** command in this widget. If the selection is not in this widget then a new selection is created using the most recent anchor point specified for the widget. Returns an empty string.
+    *pathName* **selection to** *index*
+    : If *index* is before the anchor point, set the selection to the characters from *index* up to but not including the anchor point. If *index* is the same as the anchor point, do nothing. If *index* is after the anchor point, set the selection to the characters from the anchor point up to but not including *index*. The anchor point is determined by the most recent **select from** or **select adjust** command in this widget. If the selection is not in this widget then a new selection is created using the most recent anchor point specified for the widget. Returns an empty string.
 
 
 *pathName* **set** ?*string*?
@@ -288,89 +286,79 @@ The following commands are possible for spinbox widgets:
 *pathName* **xview** *args*
 : This command is used to query and change the horizontal position of the text in the widget's window.  It can take any of the following forms:
 
+    *pathName* **xview**
+    : Returns a list containing two elements. Each element is a real fraction between 0 and 1;  together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the spinbox's text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
 
-*pathName* **xview**
-: Returns a list containing two elements. Each element is a real fraction between 0 and 1;  together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the spinbox's text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
+    *pathName* **xview** *index*
+    : Adjusts the view in the window so that the character given by *index* is displayed at the left edge of the window.
 
-*pathName* **xview** *index*
-: Adjusts the view in the window so that the character given by *index* is displayed at the left edge of the window.
+    *pathName* **xview moveto** *fraction*
+    : Adjusts the view in the window so that the character *fraction* of the way through the text appears at the left edge of the window. *Fraction* must be a fraction between 0 and 1.
 
-*pathName* **xview moveto** *fraction*
-: Adjusts the view in the window so that the character *fraction* of the way through the text appears at the left edge of the window. *Fraction* must be a fraction between 0 and 1.
+    *pathName* **xview scroll** *number what*
+    : This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages** or an abbreviation of one of these. If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
 
-*pathName* **xview scroll** *number what*
-: This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages** or an abbreviation of one of these. If *what* is **units**, the view adjusts left or right by *number* average-width characters on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
 
 
 # Default bindings
 
 Tk automatically creates class bindings for spinboxes that give them the following default behavior. In the descriptions below, "word" refers to a contiguous group of letters, digits, or "\_" characters, or any single character other than these.
 
-**\[1\]**
-: Clicking mouse button 1 positions the insertion cursor just before the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 strokes out a selection between the insertion cursor and the character under the mouse.
+1. Clicking mouse button 1 positions the insertion cursor just before the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 strokes out a selection between the insertion cursor and the character under the mouse.
 
-**\[2\]**
-: Double-clicking with mouse button 1 selects the word under the mouse and positions the insertion cursor at the beginning of the word. Dragging after a double click will stroke out a selection consisting of whole words.
+2. Double-clicking with mouse button 1 selects the word under the mouse and positions the insertion cursor at the beginning of the word. Dragging after a double click will stroke out a selection consisting of whole words.
 
-**\[3\]**
-: Triple-clicking with mouse button 1 selects all of the text in the spinbox and positions the insertion cursor before the first character.
+3. Triple-clicking with mouse button 1 selects all of the text in the spinbox and positions the insertion cursor before the first character.
 
-**\[4\]**
-: The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down;  this will adjust the end of the selection that was nearest to the mouse cursor when button 1 was pressed. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words.
+4. The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down;  this will adjust the end of the selection that was nearest to the mouse cursor when button 1 was pressed. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words.
 
-**\[5\]**
-: Clicking mouse button 1 with the Control key down will position the insertion cursor in the spinbox without affecting the selection.
+5. Clicking mouse button 1 with the Control key down will position the insertion cursor in the spinbox without affecting the selection.
 
-**\[6\]**
-: If any normal printing characters are typed in a spinbox, they are inserted at the point of the insertion cursor.
+6. If any normal printing characters are typed in a spinbox, they are inserted at the point of the insertion cursor.
 
-**\[7\]**
-: The view in the spinbox can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the spinbox at the position of the mouse cursor.
+7. The view in the spinbox can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the spinbox at the position of the mouse cursor.
 
-**\[8\]**
-: If the mouse is dragged out of the spinbox on the left or right sides while button 1 is pressed, the spinbox will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
+8. If the mouse is dragged out of the spinbox on the left or right sides while button 1 is pressed, the spinbox will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
 
-**\[9\]**
-: The Left and Right keys move the insertion cursor one character to the left or right;  they also clear any selection in the spinbox and set the selection anchor. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insertion cursor by words, and Control-Shift-Left and Control-Shift-Right move the insertion cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively. Meta-b and Meta-f behave the same as Control-Left and Control-Right, respectively.
+9. The Left and Right keys move the insertion cursor one character to the left or right;  they also clear any selection in the spinbox and set the selection anchor. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insertion cursor by words, and Control-Shift-Left and Control-Shift-Right move the insertion cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively. Meta-b and Meta-f behave the same as Control-Left and Control-Right, respectively.
 
-**\[10\]**
-: The Home key, or Control-a, will move the insertion cursor to the beginning of the spinbox and clear any selection in the spinbox. Shift-Home moves the insertion cursor to the beginning of the spinbox and also extends the selection to that point.
+10. The Home key, or Control-a, will move the insertion cursor to the beginning of the spinbox and clear any selection in the spinbox. Shift-Home moves the insertion cursor to the beginning of the spinbox and also extends the selection to that point.
 
-**\[11\]**
-: The End key, or Control-e, will move the insertion cursor to the end of the spinbox and clear any selection in the spinbox. Shift-End moves the cursor to the end and extends the selection to that point.
+11. The End key, or Control-e, will move the insertion cursor to the end of the spinbox and clear any selection in the spinbox. Shift-End moves the cursor to the end and extends the selection to that point.
 
-**\[12\]**
-: The Select key and Control-Space set the selection anchor to the position of the insertion cursor.  They do not affect the current selection. Shift-Select and Control-Shift-Space adjust the selection to the current position of the insertion cursor, selecting from the anchor to the insertion cursor if there was not any selection previously.
+12. The Select key and Control-Space set the selection anchor to the position of the insertion cursor.  They do not affect the current selection. Shift-Select and Control-Shift-Space adjust the selection to the current position of the insertion cursor, selecting from the anchor to the insertion cursor if there was not any selection previously.
 
-**\[13\]**
-: Control-/ selects all the text in the spinbox.
+13. Control-/ selects all the text in the spinbox.
 
-**\[14\]**
-: Control-\\ clears any selection in the spinbox.
+14. Control-\\ clears any selection in the spinbox.
 
-**\[15\]**
-: The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection.
+15. The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection.
 
-**\[16\]**
-: The F20 key (labelled Cut on many Sun workstations) or Control-w copies the selection in the widget to the clipboard and deletes the selection. If there is no selection in the widget then these keys have no effect.
+16. The F20 key (labelled Cut on many Sun workstations) or Control-w copies the selection in the widget to the clipboard and deletes the selection. If there is no selection in the widget then these keys have no effect.
 
-**\[17\]**
-: The F18 key (labelled Paste on many Sun workstations) or Control-y inserts the contents of the clipboard at the position of the insertion cursor.
+17. The F18 key (labelled Paste on many Sun workstations) or Control-y inserts the contents of the clipboard at the position of the insertion cursor.
 
-**\[18\]**
-: The Delete key deletes the selection, if there is one in the spinbox. If there is no selection, it deletes the character to the right of the insertion cursor.
+18. The Delete key deletes the selection, if there is one in the spinbox. If there is no selection, it deletes the character to the right of the insertion cursor.
 
-**\[19\]**
-: The BackSpace key and Control-h delete the selection, if there is one in the spinbox. If there is no selection, it deletes the character to the left of the insertion cursor.
+19. The BackSpace key and Control-h delete the selection, if there is one in the spinbox. If there is no selection, it deletes the character to the left of the insertion cursor.
 
-**\[20\]**
-: Control-d deletes the character to the right of the insertion cursor.
+20. Control-d deletes the character to the right of the insertion cursor.
 
-**\[21\]**
-: Meta-d deletes the word to the right of the insertion cursor.
+21. Meta-d deletes the word to the right of the insertion cursor.
 
-**\[22\]**
-: Control-k deletes all the characters to the right of the insertion cursor.
+22. Control-k deletes all the characters to the right of the insertion cursor.
 
-**\[23\]**
-: Control-t reverses the order of the two characters to the right of the insertion cursor. If the spinbox is disabled using the **-state** option, then the spinbox's view can still be adjusted and text in the spinbox can still be selected, but no insertion cursor will be displayed and no text modifications will take place. The behavior of spinboxes can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+23. Control-t reverses the order of the two characters to the right of the insertion cursor.
+
+
+If the spinbox is disabled using the **-state** option, then the spinbox's view can still be adjusted and text in the spinbox can still be selected, but no insertion cursor will be displayed and no text modifications will take place.
+
+The behavior of spinboxes can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+
+
+[bind]: bind.md
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[entry]: entry.md
+[focus]: focus.md
+[format]: ../tcl/format.md
+[options]: options.md

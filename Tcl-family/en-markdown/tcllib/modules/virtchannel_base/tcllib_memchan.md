@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::memchan
+title: tcl::chan::memchan
 ManualSection: n
 Version: 1.0.5
 TclPart: tcllib
@@ -20,11 +21,11 @@ tcl::chan::memchan - In-memory channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::memchan]{.lit} [1.0.5]{.optlit} 
-[::tcl::chan::memchan]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::memchan]{.lit} [1.0.5]{.optlit}
+[::tcl::chan::memchan]{.cmd}
 :::
 
 # Description
@@ -35,7 +36,7 @@ Packages related to this are **tcl::chan::string** and **tcl::chan::variable**.
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::memchan**
 : This command creates a new memchan channel and returns its handle.

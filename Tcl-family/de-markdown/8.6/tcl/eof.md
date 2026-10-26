@@ -1,5 +1,6 @@
 ---
 CommandName: eof
+title: eof
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -18,23 +19,23 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 eof - Prüft auf Dateiende-Bedingung eines Kanals
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[eof]{.cmd} [channelId]{.arg} 
+[eof]{.cmd} [channelId]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Gibt 1 zurück, wenn während der letzten Eingabeoperation auf *channelId* (z. B. **gets**) eine Dateiende-Bedingung aufgetreten ist, sonst 0.
+Gibt 1 zurück, wenn während der letzten Eingabeoperation auf *channelId* (z. B. [gets]) eine Dateiende-Bedingung aufgetreten ist, sonst 0.
 
-*channelId* muss eine Kennung für einen geöffneten Kanal sein, z. B. einen Tcl-Standardkanal (**stdin**, **stdout** oder **stderr**), den Rückgabewert von **open** oder **socket** oder das Ergebnis eines Kanalerzeugungsbefehls einer Tcl-Erweiterung.
+*channelId* muss eine Kennung für einen geöffneten Kanal sein, z. B. einen Tcl-Standardkanal (**stdin**, **stdout** oder **stderr**), den Rückgabewert von [open] oder [socket] oder das Ergebnis eines Kanalerzeugungsbefehls einer Tcl-Erweiterung.
 
-# BEISPIELE
+# Beispiele
 
 Liest den Inhalt einer Datei zeilenweise und gibt ihn aus:
 
@@ -65,3 +66,8 @@ while {1} {
     puts "Read record: $record"
 }
 ```
+
+
+[gets]: gets.md
+[open]: open.md
+[socket]: socket.md

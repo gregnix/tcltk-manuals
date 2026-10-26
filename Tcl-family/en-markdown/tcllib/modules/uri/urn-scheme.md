@@ -1,5 +1,6 @@
 ---
 CommandName: uri_urn
+title: uri_urn
 ManualSection: n
 Version: 1.0.4
 TclPart: tcllib
@@ -14,20 +15,20 @@ Copyright:
 
 # Name
 
-uri_urn - URI utilities, URN scheme
+uri\_urn - URI utilities, URN scheme
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uri::urn]{.lit} [1.0.4]{.optlit} 
-[uri::urn::quote]{.cmd} [url]{.arg} 
-[uri::urn::unquote]{.cmd} [url]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uri::urn]{.lit} [1.0.4]{.optlit}
+[uri::urn::quote]{.cmd} [url]{.arg}
+[uri::urn::unquote]{.cmd} [url]{.arg}
 :::
 
 # Description
 
-This package provides two commands to quote and unquote the disallowed characters for url using the *urn* scheme, registers the scheme with the package **uri**, and provides internal helpers which will be automatically used by the commands **uri::split** and **uri::join** of package **uri** to handle urls using the *urn* scheme.
+This package provides two commands to quote and unquote the disallowed characters for url using the *urn* scheme, registers the scheme with the package **uri**, and provides internal helpers which will be automatically used by the commands [uri::split][uri] and [uri::join][uri] of package **uri** to handle urls using the *urn* scheme.
 
 # Commands
 
@@ -49,3 +50,6 @@ Note further that *attachments* are strongly preferred over inlined patches. Att
 # Category
 
 Networking
+
+
+[uri]: uri.md

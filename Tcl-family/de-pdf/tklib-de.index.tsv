@@ -1,266 +1,266 @@
 # pdf	tklib-de.pdf
 # label	Tklib
 # title	Tklib
-2D geometry	62
-addon	118,121,122,129,133,134
-alert	148
-append tag	39
-arc	62
-area display	116,118,120
-area-display	116
-area-file	117
-area-map-display	118
-area-store-fs	118
-area-store-mem	119
-area-table-display	120
-arrow	62
+2D geometry	68
+addon	124,128,129,135,139,140
+alert	154
+append tag	45
+arc	68
+area display	123,124,126
+area-display	123
+area-file	124
+area-map-display	124
+area-store-fs	125
+area-store-mem	126
+area-table-display	126
+arrow	68
 autoscroll	9
-background	31
-balloon	262,264
-bindtags	149,154,158,162
+background	38
+balloon	263,265
+bindtags	155,159,162,166
 bitmap	5
 bitmap-editor	5
-box	62
-box display	120,122,124
-box entry	121
-box-display	120
-box-entry	121
-box-file	122
-box-map-display	122
-box-store-fs	123
-box-store-mem	123
-box-table-display	124
-bundle	267
-calendar	267,269
-canvas	5,10,12,16,21,25,28,31,33,34,35,36,37,39,40,53,62,254,256,260,261
+box	68
+box display	127,129,131
+box entry	128
+box-display	127
+box-entry	128
+box-file	128
+box-map-display	129
+box-store-fs	130
+box-store-mem	130
+box-table-display	131
+bundle	268
+calendar	268,270
+canvas	5,10,12,17,23,29,33,38,39,41,42,43,45,47,59,68,255,257,261,262
 canvas_drag	10
 canvas_ecircle	12
-canvas_epoints	16
-canvas_epolyline	21
-canvas_equad	25
-canvas_erectangle	28
-canvas_gradient	31
-canvas_highlight	33
-canvas_mvg	34
-canvas_pdf	35
-canvas_snap	36
-canvas_sqmap	37
-canvas_tags	39
-canvas_trlines	40
-canvas_zoom	41
-canvaslabel	254
-cell	37
-center	119,123,130,136
-character	113
-chat	42
-chatwidget	42
-circle	12,62
-clock	61
-color gradient	31
-composite widget	42
-concave	25
-controlling	44
-controlwidget	44
+canvas_epoints	17
+canvas_epolyline	23
+canvas_equad	29
+canvas_erectangle	33
+canvas_gradient	38
+canvas_highlight	39
+canvas_mvg	41
+canvas_pdf	42
+canvas_snap	42
+canvas_sqmap	43
+canvas_tags	45
+canvas_trlines	47
+canvas_zoom	48
+canvaslabel	255
+cell	43
+center	126,130,137,142
+character	120
+chat	49
+chatwidget	49
+circle	12,68
+clock	67
+color gradient	38
+composite widget	49
+concave	29
+controlling	51
+controlwidget	51
 conversion	5
-convex	25
-cross-hairs	53
-crosshair	40,53
-ctext	55
-cursor	60
-data entry lists	282,286
-data entry ordered list	282
-data entry set of strings	282,286
-data entry unordered list	282,286
-date	61,269,271
-dateentry	61,267,271
-datefield	61
-diagram	5,62
+convex	29
+cross-hairs	59
+crosshair	47,59
+ctext	62
+cursor	66
+data entry lists	281,287
+data entry ordered list	281
+data entry set of strings	281,287
+data entry unordered list	281,287
+date	67,270,271
+dateentry	67,268,271
+datefield	67
+diagram	5,68
 diagram-viewer	5
-dialog	105,252,267
-diameter	119,123,130,136
-diamond	62
-disjointlistbox	252
-display	125
-displaying	44
-dll	107
-doctools	7,241
+dialog	113,253,268
+diameter	126,130,137,142
+diamond	68
+disjointlistbox	253
+display	132
+displaying	51
+dll	115
+doctools	7,243
 dragging	10
-drawing	62
-drum	62
-editing	12,16,21,25,28
+drawing	68
+drum	68
+editing	12,17,23,29,33
 editor	5
-ellipse	62
-enter callback	33
-entry	61,105,106,107,110
-exe	107
-file	117,122,128,134
-filesystem	118,123,130,135
-filesystem store	118,123,130,135
-geo/area	117,118,119
-geo/area pixels	119
-geo/box	122,123
-geo/box pixels	123
-geo/point	128,130
-geo/point pixels	130
-geo/track	134,135,136
-geo/track pixels	136
-geobox	123
-gradients	31
-graphics	34,35
-grid	37
-help	262,264
-highlighting	33
-history	106
-hover	262,264
-html	7,241,242,243
-i18n	113
-ico	107
-icon	107
-image	5,31,36,37,62
-imagemagick	34,35
-input	113
-insert tag	39
-international	113
-interpolation	62
-intersection	62
+ellipse	68
+enter callback	39
+entry	67,113,115,118
+exe	115
+file	124,128,135,140
+filesystem	125,130,136,141
+filesystem store	125,130,136,141
+geo/area	124,125,126
+geo/area pixels	126
+geo/box	128,130
+geo/box pixels	130
+geo/point	135,136,137
+geo/point pixels	137
+geo/track	140,141,142
+geo/track pixels	142
+geobox	130
+gradients	38
+graphics	41,42
+grid	43
+help	263,265
+highlighting	39
+history	113
+hover	263,265
+html	7,243,244,245
+i18n	120
+ico	115
+icon	115
+image	5,38,42,43,68
+imagemagick	41,42
+input	120
+insert tag	45
+international	120
+interpolation	68
+intersection	68
 invalid	290
-ip address	110
-ipentry	110
-irc	42
-khim	113
-labeler	254,256,260,261
-leave callback	33
-length	119,123,130,136
-line	62
-list entry panel	282,286
-listbox	252
-location	53
-location marking	128
-magick vector graphics	34
-map	37,116,117,118,119,120,121,122,123,124,125,126,128,129,130,131,132,133,134,135,136
-map display	118,121,122,125,129,133,134
-map_overview	126
-mapnik	132
-mark	128
-mark location	128
+ip address	118
+ipentry	118
+irc	49
+khim	120
+labeler	255,257,261,262
+leave callback	39
+length	126,130,137,142
+line	68
+list entry panel	281,287
+listbox	253
+location	59
+location marking	134
+magick vector graphics	41
+map	43,123,124,125,126,127,128,129,130,131,132,134,135,136,137,138,139,140,141,142
+map display	124,128,129,132,135,139,140
+map_overview	132
+mapnik	138
+mark	134
+mark location	134
 markdown	7
-mega-widget	42
-megawidget	267,269,271,272
-memory	119,123,130,136
-memory store	119,123,130,136
-menu	267
-menubar	137
-method	113
-mkdoc	7,242
-move	62
-mvg	34
-network	110
-non-convex	25
-notification	148
-notifywindow	148
-ntext	149
-ntextBindings	154
-ntextIndent	158
-ntextWordBreak	162
-numerical values	44
-openstreetmap	132
-panelframe	267
-pdf	35
-perimeter	119,123,130,136
-perimeter length	119,123,130,136
-persistentSelection	165
-photo	36
-picture	62
-pie	254,256,260,261
-pieboxlabeler	260
-pieperipherallabeler	261
+mega-widget	49
+megawidget	268,270,271,273
+memory	126,130,137,142
+memory store	126,130,137,142
+menu	268
+menubar	143
+method	120
+mkdoc	7,244
+move	68
+mvg	41
+network	118
+non-convex	29
+notification	154
+notifywindow	154
+ntext	155
+ntextBindings	159
+ntextIndent	162
+ntextWordBreak	166
+numerical values	51
+openstreetmap	138
+panelframe	268
+pdf	42
+perimeter	126,130,137,142
+perimeter length	126,130,137,142
+persistentSelection	169
+photo	42
+picture	68
+pie	255,257,261,262
+pieboxlabeler	261
+pieperipherallabeler	262
 pixel	5
-pixels	119,123,130,136
-plane geometry	62
-plotchart	170
-plotting	62
-point	62
-point cloud	16
-point display	129,131
-point-file	128
-point-map-display	129
-point-store-fs	130
-point-store-mem	130
-point-table-display	131
-points	16
-polyline	21
-portable document format	35
-print screen	34,35,36
-provider	132
-provider-osm	132
-quadrilateral	25
-raster image	62
-re_syntax	149,158,162
-rectangle	28
-regexp	149,158,162
-remove tag	39
-rubberband	40
-ruler	267
-scale widget	44
-screenruler	267
+pixels	126,130,137,142
+plane geometry	68
+plotchart	173
+plotting	68
+point	68
+point cloud	17
+point display	135,137
+point-file	135
+point-map-display	135
+point-store-fs	136
+point-store-mem	137
+point-table-display	137
+points	17
+polyline	23
+portable document format	42
+print screen	41,42
+provider	138
+provider-osm	138
+quadrilateral	29
+raster image	68
+re_syntax	155,162,166
+rectangle	33
+regexp	155,162,166
+remove tag	45
+rubberband	47
+ruler	268
+scale widget	51
+screenruler	268
 scroll	9
 scrollbar	9
-scrolledwindow	267
-serialization	34,35
-set entry panel	282,286
-shtmlview	7,243
-shtmlview-doctools	241
-shtmlview-mkdoc	242
-slice	254,256,260,261
-snapshot	36
-snit	267,269,271,272
-spline	62
-square map	37
+scrolledwindow	268
+serialization	41,42
+set entry panel	281,287
+shtmlview	7,245
+shtmlview-doctools	243
+shtmlview-mkdoc	244
+slice	255,257,261,262
+snapshot	42
+snit	268,270,271,273
+spline	68
+square map	43
 state management	290
-statusbar	267
-store	118,119,123,130,135,136
-string	105
-superframe	267
-swaplist	252
-syntax highlighting	55
-tabular	116,120,124,131,132,136
-tags	39
-text	55,62,149,154,158,162,243
-tile	37
-tile provider	132
-tiles	132
-tipstack	262
-tk	148
-tk_getString	105
-tklib_history	106
-toolbar	267,272
-tooltip	264
-track display	132,134,136
-track entry	133
-track-display	132
-track-entry	133
-track-file	134
-track-map-display	134
-track-store-fs	135
-track-store-mem	136
-track-table-display	136
-tracking	40,53
+statusbar	268
+store	125,126,130,136,137,141,142
+string	113
+superframe	268
+swaplist	253
+syntax highlighting	62
+tabular	123,126,127,131,137,139,142
+tags	45
+text	62,68,155,159,162,166,245
+tile	43
+tile provider	138
+tiles	138
+tipstack	263
+tk	154
+tk_getString	113
+tklib_history	113
+toolbar	268,273
+tooltip	265
+track display	139,140,142
+track entry	139
+track-display	139
+track-entry	139
+track-file	140
+track-map-display	140
+track-store-fs	141
+track-store-mem	142
+track-table-display	142
+tracking	47,59
 ttk::combobox	290
 ttk::entry	290
 validation	290
-vector	5,62
-vector graphics	34,35
+vector	5,68
+vector graphics	41,42
 viewer	7
-viewport	53
-widget	42,55,61,243,267,269,271,272,282,286
-widget background	31
-widget validation	290
-widget_calendar	269
+viewport	59
+widget	49,62,67,245,268,270,271,273,281,287
+widget background	38
+widget validation	291
+widget_calendar	270
 widget_dateentry	271
-widget_listentry	282
-widget_listsimple	286
-widget_toolbar	272
+widget_listentry	281
+widget_listsimple	287
+widget_toolbar	273
 widget_validator	290
 widgetPlus	274
 xbm	5
-zoom	41,119,123,130,136
+zoom	48,126,130,137,142

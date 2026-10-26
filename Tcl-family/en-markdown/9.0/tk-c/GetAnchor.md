@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetAnchorFromObj
+title: Tk_GetAnchorFromObj
 ManualSection: 3
 Version: 8.1
 TclPart: Tk
@@ -13,47 +14,47 @@ Copyright:
 
 # Name
 
-Tk_GetAnchorFromObj, Tk_GetAnchor, Tk_NameOfAnchor - translate between strings and anchor positions
+Tk\_GetAnchorFromObj, Tk\_GetAnchor, Tk\_NameOfAnchor - translate between strings and anchor positions
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_GetAnchorFromObj]{.cmd}([interp]{.arg}, [objPtr]{.arg}, [anchorPtr]{.arg})
-
-int
-[Tk_GetAnchor]{.cmd}([interp]{.arg}, [string]{.arg}, [anchorPtr]{.arg})
-
-const char \*
-[Tk_NameOfAnchor]{.cmd}([anchor]{.arg})
+**#include <tk.h>**
+[int]{.ret} [Tk\_GetAnchorFromObj]{.ccmd} [interp, objPtr, anchorPtr]{.cargs}
+[int]{.ret} [Tk\_GetAnchor]{.ccmd} [interp, string, anchorPtr]{.cargs}
+[const char \*]{.ret} [Tk\_NameOfAnchor]{.ccmd} [anchor]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting, or NULL.
 
-Tcl_Obj *\*objPtr* (in/out)
-: String value contains name of anchor point: "**n**", "**ne**", "**e**", "**se**", "**s**", "**sw**", "**w**", "**nw**", or "**center**"; internal rep will be modified to cache corresponding Tk_Anchor. In the case of "**center**" on input, a non-empty abbreviation of it may also be used on input.
+[\*objPtr]{.carg .in/out type="Tcl_Obj"}
+: String value contains name of anchor point: "**n**", "**ne**", "**e**", "**se**", "**s**", "**sw**", "**w**", "**nw**", or "**center**"; internal rep will be modified to cache corresponding Tk\_Anchor. In the case of "**center**" on input, a non-empty abbreviation of it may also be used on input.
 
-const char *\*string* (in)
+[\*string]{.carg .in type="const char"}
 : Same as *objPtr* except description of anchor point is passed as a string.
 
-int *\*anchorPtr* (out)
+[\*anchorPtr]{.carg .out type="int"}
 : Pointer to location in which to store anchor position corresponding to *objPtr* or *string*.
 
-Tk_Anchor *anchor* (in)
-: Anchor position, e.g. **TCL_ANCHOR_CENTER**.
+[anchor]{.carg .in type="Tk_Anchor"}
+: Anchor position, e.g. **TCL\_ANCHOR\_CENTER**.
 
+:::
 
 # Description
 
-**Tk_GetAnchorFromObj** places in *\*anchorPtr* an anchor position (enumerated type **Tk_Anchor**) corresponding to *objPtr*'s value.  The result will be one of **TK_ANCHOR_N**, **TK_ANCHOR_NE**, **TK_ANCHOR_E**, **TK_ANCHOR_SE**, **TK_ANCHOR_S**, **TK_ANCHOR_SW**, **TK_ANCHOR_W**, **TK_ANCHOR_NW**, or **TK_ANCHOR_CENTER**. Anchor positions are typically used for indicating a point on an object that will be used to position the object, e.g. **TK_ANCHOR_N** means position the top center point of the object at a particular place.
+**Tk\_GetAnchorFromObj** places in *\*anchorPtr* an anchor position (enumerated type **Tk\_Anchor**) corresponding to *objPtr*'s value.  The result will be one of **TK\_ANCHOR\_N**, **TK\_ANCHOR\_NE**, **TK\_ANCHOR\_E**, **TK\_ANCHOR\_SE**, **TK\_ANCHOR\_S**, **TK\_ANCHOR\_SW**, **TK\_ANCHOR\_W**, **TK\_ANCHOR\_NW**, or **TK\_ANCHOR\_CENTER**. Anchor positions are typically used for indicating a point on an object that will be used to position the object, e.g. **TK\_ANCHOR\_N** means position the top center point of the object at a particular place.
 
-Under normal circumstances the return value is **TCL_OK** and *interp* is unused. If *string* does not contain a valid anchor position or an abbreviation of one of these names, **TCL_ERROR** is returned, *\*anchorPtr* is unmodified, and an error message is stored in *interp*'s result if *interp* is not NULL. **Tk_GetAnchorFromObj** caches information about the return value in *objPtr*, which speeds up future calls to **Tk_GetAnchorFromObj** with the same *objPtr*.
+Under normal circumstances the return value is [TCL\_OK][catch] and *interp* is unused. If *string* does not contain a valid anchor position or an abbreviation of one of these names, [TCL\_ERROR][catch] is returned, *\*anchorPtr* is unmodified, and an error message is stored in *interp*'s result if *interp* is not NULL. **Tk\_GetAnchorFromObj** caches information about the return value in *objPtr*, which speeds up future calls to **Tk\_GetAnchorFromObj** with the same *objPtr*.
 
-**Tk_GetAnchor** is identical to **Tk_GetAnchorFromObj** except that the description of the anchor is specified with a string instead of an object.  This prevents **Tk_GetAnchor** from caching the return value, so **Tk_GetAnchor** is less efficient than **Tk_GetAnchorFromObj**.
+**Tk\_GetAnchor** is identical to **Tk\_GetAnchorFromObj** except that the description of the anchor is specified with a string instead of an object.  This prevents **Tk\_GetAnchor** from caching the return value, so **Tk\_GetAnchor** is less efficient than **Tk\_GetAnchorFromObj**.
 
-**Tk_NameOfAnchor** is the logical inverse of **Tk_GetAnchor**. Given an anchor position such as **TK_ANCHOR_N** it returns a statically-allocated string corresponding to *anchor*. If *anchor* is not a legal anchor value, then "unknown anchor position" is returned.
+**Tk\_NameOfAnchor** is the logical inverse of **Tk\_GetAnchor**. Given an anchor position such as **TK\_ANCHOR\_N** it returns a statically-allocated string corresponding to *anchor*. If *anchor* is not a legal anchor value, then "unknown anchor position" is returned.
+
+
+[catch]: ../tcl/catch.md

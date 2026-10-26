@@ -1,5 +1,6 @@
 ---
 CommandName: split
+title: split
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -24,7 +25,7 @@ split - Split a string into a proper Tcl list
 # Synopsis
 
 ::: {.synopsis} :::
-[split]{.cmd} [string]{.arg} [splitChars]{.optarg} 
+[split]{.cmd} [string]{.arg} [splitChars]{.optarg}
 :::
 
 # Description

@@ -1,5 +1,6 @@
 ---
 CommandName: log
+title: log
 ManualSection: n
 Version: 1.5
 TclPart: tcllib
@@ -13,41 +14,41 @@ Copyright:
  - Copyright (c) 2001-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 log – Prozeduren zur Protokollierung von Meldungen aus Bibliotheken und Anwendungen.
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [log]{.lit} [1.5]{.optlit} 
-[::log::levels]{.cmd} 
-[::log::lv2longform]{.cmd} [level]{.arg} 
-[::log::lv2color]{.cmd} [level]{.arg} 
-[::log::lv2priority]{.cmd} [level]{.arg} 
-[::log::lv2cmd]{.cmd} [level]{.arg} 
-[::log::lv2channel]{.cmd} [level]{.arg} 
-[::log::lvCompare]{.cmd} [level1]{.arg} [level2]{.arg} 
-[::log::lvSuppress]{.cmd} [level]{.arg} { [suppress]{.arg} 1 } 
-[::log::lvSuppressLE]{.cmd} [level]{.arg} { [suppress]{.arg} 1 } 
-[::log::lvIsSuppressed]{.cmd} [level]{.arg} 
-[::log::lvCmd]{.cmd} [level]{.arg} [cmd]{.arg} 
-[::log::lvCmdForall]{.cmd} [cmd]{.arg} 
-[::log::lvChannel]{.cmd} [level]{.arg} [chan]{.arg} 
-[::log::lvChannelForall]{.cmd} [chan]{.arg} 
-[::log::lvColor]{.cmd} [level]{.arg} [color]{.arg} 
-[::log::lvColorForall]{.cmd} [color]{.arg} 
-[::log::log]{.cmd} [level]{.arg} [text]{.arg} 
-[::log::logarray]{.cmd} [level]{.arg} [arrayvar]{.arg} [pattern]{.optarg} 
-[::log::loghex]{.cmd} [level]{.arg} [text]{.arg} [data]{.arg} 
-[::log::logsubst]{.cmd} [level]{.arg} [msg]{.arg} 
-[::log::logMsg]{.cmd} [text]{.arg} 
-[::log::logError]{.cmd} [text]{.arg} 
-[::log::Puts]{.cmd} [level]{.arg} [text]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [log]{.lit} [1.5]{.optlit}
+[::log::levels]{.cmd}
+[::log::lv2longform]{.cmd} [level]{.arg}
+[::log::lv2color]{.cmd} [level]{.arg}
+[::log::lv2priority]{.cmd} [level]{.arg}
+[::log::lv2cmd]{.cmd} [level]{.arg}
+[::log::lv2channel]{.cmd} [level]{.arg}
+[::log::lvCompare]{.cmd} [level1]{.arg} [level2]{.arg}
+[::log::lvSuppress]{.cmd} [level]{.arg} [{suppress 1}]{.arg}
+[::log::lvSuppressLE]{.cmd} [level]{.arg} [{suppress 1}]{.arg}
+[::log::lvIsSuppressed]{.cmd} [level]{.arg}
+[::log::lvCmd]{.cmd} [level]{.arg} [cmd]{.arg}
+[::log::lvCmdForall]{.cmd} [cmd]{.arg}
+[::log::lvChannel]{.cmd} [level]{.arg} [chan]{.arg}
+[::log::lvChannelForall]{.cmd} [chan]{.arg}
+[::log::lvColor]{.cmd} [level]{.arg} [color]{.arg}
+[::log::lvColorForall]{.cmd} [color]{.arg}
+[::log::log]{.cmd} [level]{.arg} [text]{.arg}
+[::log::logarray]{.cmd} [level]{.arg} [arrayvar]{.arg} [pattern]{.optarg}
+[::log::loghex]{.cmd} [level]{.arg} [text]{.arg} [data]{.arg}
+[::log::logsubst]{.cmd} [level]{.arg} [msg]{.arg}
+[::log::logMsg]{.cmd} [text]{.arg}
+[::log::logError]{.cmd} [text]{.arg}
+[::log::Puts]{.cmd} [level]{.arg} [text]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das **log**-Paket enthält Befehle, mit denen Bibliotheken und Anwendungen Informationen über ihren internen Ablauf und ihren Status gezielt protokollieren können.
 
@@ -148,10 +149,9 @@ Folgende Befehle stehen zur Verfügung:
 **::log::logsubst** *level* *msg*
 : Ähnlich wie **::log::log**, jedoch kann *msg* Ersetzungen und Variablenverweise enthalten, die zunächst im Aufrufer-Gültigkeitsbereich ausgewertet werden. Der Zweck dieses Befehls besteht darin, im Fall ohne Protokollierung Overhead zu vermeiden, wenn die Erstellung der Protokollmeldung aufwendig ist. Etwaige Fehler bei der Ersetzung lösen bei der Befehlsausführung einen Fehler aus. Das folgende Beispiel zeigt eine XML-Textdarstellung, die nur im Debug-Modus generiert wird:
 
-
-```
-    log::logsubst debug {XML of node $node is '[$node toXml]'}
-```
+    ```
+        log::logsubst debug {XML of node $node is '[$node toXml]'}
+    ```
 
 **::log::logMsg** *text*
 : Komfort-Wrapper für **::log::log**. Entspricht dem **::log::log info text**.
@@ -163,36 +163,30 @@ Folgende Befehle stehen zur Verfügung:
 : Der Standard-Log-Befehl schreibt Meldungen und deren Schweregrade in vom Benutzer festgelegte Kanäle. Es wird davon ausgegangen, dass die Unterdrückungsprüfungen vom Aufrufer durchgeführt wurden. Es werden vollständige Schweregraddesignationen erwartet; Abkürzungen sind *nicht zulässig*.
 
 
-# STUFEN
+# Stufen
 
 Das Paket definiert derzeit die folgenden Protokollstufen, wobei die Stufe mit der höchsten Priorität an erster Stelle steht.
 
-**•**
-: Notfall
+- Notfall
 
-**•**
-: Warnung
+- Warnung
 
-**•**
-: kritisch
+- kritisch
 
-**•**
-: Fehler
+- Fehler
 
-**•**
-: Fehler
+- Fehler
 
-**•**
-: Hinweis
+- Hinweis
 
-**•**
-: Info
+- Info
 
-**•**
-: debug *Hinweis*: Standardmäßig werden alle Meldungen der Stufen **warning** bis hinunter zu **debug** unterdrückt. Dies geschieht bewusst, da (unserer Meinung nach) die Debugging-Ausgabe in den meisten Situationen unerwünscht ist. Die meisten Nutzer möchten eine solche Ausgabe nur dann sehen, wenn sie tatsächlich eine Anwendung debuggen.
+- debug
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+*Hinweis*: Standardmäßig werden alle Meldungen der Stufen **warning** bis hinunter zu **debug** unterdrückt. Dies geschieht bewusst, da (unserer Meinung nach) die Debugging-Ausgabe in den meisten Situationen unerwünscht ist. Die meisten Nutzer möchten eine solche Ausgabe nur dann sehen, wenn sie tatsächlich eine Anwendung debuggen.
+
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *log* als Kategorie an.
 
@@ -200,11 +194,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Programmierwerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2001-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

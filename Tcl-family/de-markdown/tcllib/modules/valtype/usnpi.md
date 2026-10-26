@@ -1,5 +1,6 @@
 ---
 CommandName: valtype::usnpi
+title: valtype::usnpi
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -19,23 +20,23 @@ Copyright:
  - Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 valtype::usnpi – Validierung für USNPI
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::common]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::luhn]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::usnpi]{.lit} [1.1]{.optlit} 
-[valtype::usnpi]{.cmd} [validate]{.sub} [value]{.arg} 
-[valtype::usnpi]{.cmd} [checkdigit]{.sub} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::common]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::luhn]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::usnpi]{.lit} [1.1]{.optlit}
+[valtype::usnpi]{.cmd} [validate]{.lit} [value]{.arg}
+[valtype::usnpi]{.cmd} [checkdigit]{.lit} [value]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket implementiert einen Snit-Validierungstyp für eine USNPI.
 
@@ -61,23 +62,23 @@ Die von diesem Paket bereitgestellte API entspricht der Spezifikation der Snit-V
 : Diese Methode berechnet eine Prüfziffer für den *value*. Zuvor wird dieser – mit Ausnahme der Prüfziffer – einer Validierung unterzogen. Wenn der Wert die Validierung nicht besteht, wird keine Prüfziffer berechnet, sondern stattdessen ein Fehler ausgelöst.
 
 
-# FEHLERCODES
+# Fehlercodes
 
 Wie in der Paketbeschreibung angegeben, verwenden die Fehler, die von den Befehlen dieses Pakets als Reaktion auf Fehler bei der Eingabevalidierung ausgelöst werden, den Code **-errorcode** INVALID, um sich von paketinternen Fehlern zu unterscheiden.
 
 Um detailliertere Informationen darüber zu liefern, warum die Validierung fehlgeschlagen ist, geht der Fehlercode **-errorCode** tatsächlich noch einen Schritt weiter. Zunächst enthält er einen Code, der die Art des Fehlers selbst angibt. In diesem Fall lautet dieser **USNPI**. Darauf folgen Werte, die den Grund für den Fehler näher erläutern. Die vollständige Liste der **-errorCode**-Fehler, die von diesem Paket ausgelöst werden können, lautet wie folgt:
 
-**INVALID USNPI CHARACTER**
+INVALID USNPI CHARACTER
 : Der Eingabewert enthielt ein oder mehrere unzulässige Zeichen, d. h. Zeichen, die in der Eingabe nicht vorkommen dürfen, damit es sich um eine USNPI handelt.
 
-**INVALID USNPI CHECK-DIGIT**
+INVALID USNPI CHECK-DIGIT
 : Die Prüfziffer des eingegebenen Werts ist falsch. Dies deutet in der Regel auf einen Eingabefehler hin, beispielsweise vertauschte oder fehlende Ziffern usw. Selbstverständlich kann es sich bei der Eingabe auch um eine regelrechte Fälschung handeln.
 
-**INVALID USNPI LENGTH**
+INVALID USNPI LENGTH
 : Der Wert hat eine falsche Länge, um eine USNPI zu sein.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *valtype* als Kategorie an.
 
@@ -85,11 +86,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Validierung, Typprüfung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>

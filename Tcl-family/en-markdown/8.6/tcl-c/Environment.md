@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_PutEnv
+title: Tcl_PutEnv
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -15,23 +16,24 @@ Copyright:
 
 # Name
 
-Tcl_PutEnv - procedures to manipulate the environment
+Tcl\_PutEnv - procedures to manipulate the environment
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_PutEnv]{.cmd}([assignment]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_PutEnv]{.ccmd} [assignment]{.cargs}
 :::
 
 # Arguments
 
-const char *\*assignment* (in)
-: Info about environment variable in the format "*NAME*__=__*value*". The *assignment* argument is in the system encoding.
+::: {.arguments} :::
 
+[\*assignment]{.carg .in type="const char"}
+: Info about environment variable in the format "*NAME***=***value*". The *assignment* argument is in the system encoding.
+
+:::
 
 # Description
 
-**Tcl_PutEnv** sets an environment variable. The information is passed in a single string of the form "*NAME*__=__*value*". This procedure is intended to be a stand-in for the UNIX **putenv** system call. All Tcl-based applications using **putenv** should redefine it to **Tcl_PutEnv** so that they will interface properly to the Tcl runtime.
+**Tcl\_PutEnv** sets an environment variable. The information is passed in a single string of the form "*NAME***=***value*". This procedure is intended to be a stand-in for the UNIX **putenv** system call. All Tcl-based applications using **putenv** should redefine it to **Tcl\_PutEnv** so that they will interface properly to the Tcl runtime.

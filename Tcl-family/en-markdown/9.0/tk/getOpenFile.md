@@ -1,5 +1,6 @@
 ---
 CommandName: tk_getOpenFile
+title: tk_getOpenFile
 ManualSection: n
 Version: 4.2
 TclPart: Tk
@@ -14,56 +15,58 @@ Copyright:
 
 # Name
 
-tk_getOpenFile, tk_getSaveFile - pop up a dialog box for the user to select a file to open or save.
+tk\_getOpenFile, tk\_getSaveFile - pop up a dialog box for the user to select a file to open or save.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[tk_getOpenFile]{.cmd} [option value]{.optdot} 
-[tk_getSaveFile]{.cmd} [option value]{.optdot} 
+[tk\_getOpenFile]{.cmd} [option value]{.optdot}
+[tk\_getSaveFile]{.cmd} [option value]{.optdot}
 :::
 
 # Description
 
-The procedures **tk_getOpenFile** and **tk_getSaveFile** pop up a dialog box for the user to select a file to open or save. The **tk_getOpenFile** command is usually associated with the **Open** command in the **File** menu. Its purpose is for the user to select an existing file *only*. If the user enters a non-existent file, the dialog box gives the user an error prompt and requires the user to give an alternative selection. If an application allows the user to create new files, it should do so by providing a separate **New** menu command.
+The procedures **tk\_getOpenFile** and **tk\_getSaveFile** pop up a dialog box for the user to select a file to open or save. The **tk\_getOpenFile** command is usually associated with the **Open** command in the **File** menu. Its purpose is for the user to select an existing file *only*. If the user enters a non-existent file, the dialog box gives the user an error prompt and requires the user to give an alternative selection. If an application allows the user to create new files, it should do so by providing a separate **New** menu command.
 
-The **tk_getSaveFile** command is usually associated with the **Save as** command in the **File** menu. If the user enters a file that already exists, the dialog box prompts the user for confirmation whether the existing file should be overwritten or not.
+The **tk\_getSaveFile** command is usually associated with the **Save as** command in the **File** menu. If the user enters a file that already exists, the dialog box prompts the user for confirmation whether the existing file should be overwritten or not.
 
 The following *option-value* pairs are possible as command line arguments to these two commands:
 
-**-command** *string*
+[-command]{.lit} [string]{.arg}
 : Specifies the prefix of a Tcl command to invoke when the user closes the dialog after having selected an item. This callback is not called if the user cancelled the dialog. The actual command consists of *string* followed by a space and the value selected by the user in the dialog. This is only available on macOS.
 
-**-confirmoverwrite** *boolean*
+[-confirmoverwrite]{.lit} [boolean]{.arg}
 : Configures how the Save dialog reacts when the selected file already exists, and saving would overwrite it.  A true value requests a confirmation dialog be presented to the user.  A false value requests that the overwrite take place without confirmation.  Default value is true.
 
-**-defaultextension** *extension*
+[-defaultextension]{.lit} [extension]{.arg}
 : Specifies a string that will be appended to the filename if the user enters a filename without an extension. The default value is the empty string, which means no extension will be appended to the filename in any case. This option is ignored on macOS, which does not require extensions to filenames, and the UNIX implementation guesses reasonable values for this from the **-filetypes** option when this is not supplied.
 
-**-filetypes** *filePatternList*
-: If a **File types** listbox exists in the file dialog on the particular platform, this option gives the *filetype*s in this listbox. When the user choose a filetype in the listbox, only the files of that type are listed. If this option is unspecified, or if it is set to the empty list, or if the **File types** listbox is not supported by the particular platform then all files are listed regardless of their types. See the section **SPECIFYING FILE PATTERNS** below for a discussion on the contents of *filePatternList*.
+[-filetypes]{.lit} [filePatternList]{.arg}
+: If a **File types** listbox exists in the file dialog on the particular platform, this option gives the *filetype*s in this listbox. When the user choose a filetype in the listbox, only the files of that type are listed. If this option is unspecified, or if it is set to the empty list, or if the **File types** listbox is not supported by the particular platform then all files are listed regardless of their types. See the section [Specifying file patterns] below for a discussion on the contents of *filePatternList*.
 
-**-initialdir** *directory*
+[-initialdir]{.lit} [directory]{.arg}
 : Specifies that the files in *directory* should be displayed when the dialog pops up. If this parameter is not specified, the initial directory defaults to the current working directory on non-Windows systems and on Windows systems prior to Vista. On Vista and later systems, the initial directory defaults to the last user-selected directory for the application. If the parameter specifies a relative path, the return value will convert the relative path to an absolute path.
 
-**-initialfile** *filename*
+[-initialfile]{.lit} [filename]{.arg}
 : Specifies a filename to be displayed in the dialog when it pops up.
 
-**-message** *string*
+[-message]{.lit} [string]{.arg}
 : Specifies a message to include in the client area of the dialog. This is only available on macOS.
 
-**-multiple** *boolean*
+[-multiple]{.lit} [boolean]{.arg}
 : Allows the user to choose multiple files from the Open dialog.
 
-**-parent** *window*
+[-parent]{.lit} [window]{.arg}
 : Makes *window* the logical parent of the file dialog. The file dialog is displayed on top of its parent window. On macOS, this turns the file dialog into a sheet attached to the parent window.
 
-**-title** *titleString*
+[-title]{.lit} [titleString]{.arg}
 : Specifies a string to display as the title of the dialog box. If this option is not specified, then a default title is displayed.
 
-**-typevariable** *variableName*
-: The global variable *variableName* is used to preselect which filter is used from *filterList* when the dialog box is opened and is updated when the dialog box is closed, to the last selected filter. The variable is read once at the beginning to select the appropriate filter. If the variable does not exist, or its value does not match any filter typename, or is empty (**{}**), the dialog box will revert to the default behavior of selecting the first filter in the list. If the dialog is canceled, the variable is not modified. If the user selects a file, both **tk_getOpenFile** and **tk_getSaveFile** return the full pathname of this file. If the user cancels the operation, both commands return the empty string.
+[-typevariable]{.lit} [variableName]{.arg}
+: The global variable *variableName* is used to preselect which filter is used from *filterList* when the dialog box is opened and is updated when the dialog box is closed, to the last selected filter. The variable is read once at the beginning to select the appropriate filter. If the variable does not exist, or its value does not match any filter typename, or is empty (**{}**), the dialog box will revert to the default behavior of selecting the first filter in the list. If the dialog is canceled, the variable is not modified.
 
+
+If the user selects a file, both **tk\_getOpenFile** and **tk\_getSaveFile** return the full pathname of this file. If the user cancels the operation, both commands return the empty string.
 
 # Specifying file patterns
 
@@ -85,15 +88,14 @@ On the Unix and Windows platforms, a file matches a file pattern if its name mat
 
 On the Unix and Macintosh platforms, extensions are matched using glob-style pattern matching. On the Windows platform, extensions are matched by the underlying operating system. The types of possible extensions are:
 
-**(1)**
-: the special extension "\*" matches any file;
+1. the special extension "\*" matches any file;
 
-**(2)**
-: the special extension "" matches any files that do not have an extension (i.e., the filename contains no full stop character);
+2. the special extension "" matches any files that do not have an extension (i.e., the filename contains no full stop character);
 
-**(3)**
-: any character string that does not contain any wild card characters (\* and ?). Due to the different pattern matching rules on the various platforms, to ensure portability, wild card characters are not allowed in the extensions, except as in the special extension "\*". Extensions without a full stop character (e.g. "~") are allowed but may not work on all platforms.
+3. any character string that does not contain any wild card characters (\* and ?).
 
+
+Due to the different pattern matching rules on the various platforms, to ensure portability, wild card characters are not allowed in the extensions, except as in the special extension "\*". Extensions without a full stop character (e.g. "~") are allowed but may not work on all platforms.
 
 # Example
 

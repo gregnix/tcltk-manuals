@@ -1,5 +1,6 @@
 ---
 CommandName: gets
+title: gets
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -29,18 +30,18 @@ gets - Read a line from a channel
 # Synopsis
 
 ::: {.synopsis} :::
-[gets]{.cmd} [channelId]{.arg} [varName]{.optarg} 
+[gets]{.cmd} [channelId]{.arg} [varName]{.optarg}
 :::
 
 # Description
 
 This command reads the next line from *channelId*, returns everything in the line up to (but not including) the end-of-line character(s), and discards the end-of-line character(s).
 
-*ChannelId* must be an identifier for an open channel such as the Tcl standard input channel (**stdin**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension. The channel must have been opened for input.
+*ChannelId* must be an identifier for an open channel such as the Tcl standard input channel (**stdin**), the return value from an invocation of [open] or [socket], or the result of a channel creation command provided by a Tcl extension. The channel must have been opened for input.
 
 If *varName* is omitted the line is returned as the result of the command. If *varName* is specified then the line is placed in the variable by that name and the return value is a count of the number of characters returned.
 
-If end of file occurs while scanning for an end of line, the command returns whatever input is available up to the end of file. If *channelId* is in non-blocking mode and there is not a full line of input available, the command returns an empty string and does not consume any input. If *varName* is specified and an empty string is returned in *varName* because of end-of-file or because of insufficient data in non-blocking mode, then the return count is -1. Note that if *varName* is not specified then the end-of-file and no-full-line-available cases can produce the same results as if there were an input line consisting only of the end-of-line character(s). The **eof** and **fblocked** commands can be used to distinguish these three cases.
+If end of file occurs while scanning for an end of line, the command returns whatever input is available up to the end of file. If *channelId* is in non-blocking mode and there is not a full line of input available, the command returns an empty string and does not consume any input. If *varName* is specified and an empty string is returned in *varName* because of end-of-file or because of insufficient data in non-blocking mode, then the return count is -1. Note that if *varName* is not specified then the end-of-file and no-full-line-available cases can produce the same results as if there were an input line consisting only of the end-of-line character(s). The [eof] and [fblocked] commands can be used to distinguish these three cases.
 
 # Example
 
@@ -54,3 +55,9 @@ while {[gets $chan line] >= 0} {
 }
 close $chan
 ```
+
+
+[eof]: eof.md
+[fblocked]: fblocked.md
+[open]: open.md
+[socket]: socket.md

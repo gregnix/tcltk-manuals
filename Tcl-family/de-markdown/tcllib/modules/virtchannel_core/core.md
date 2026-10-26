@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::core
+title: tcl::chan::core
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -12,40 +13,42 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::chan::core – Grundlegende Unterstützung für reflektierte/virtuelle Kanäle
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit} 
-[::tcl::chan::core]{.cmd} [objectName]{.arg} 
-[objectName]{.ins} [initialize]{.sub} [thechannel]{.arg} [mode]{.arg} 
-[objectName]{.ins} [finalize]{.sub} [thechannel]{.arg} 
-[objectName]{.ins} [destroy]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit}
+[::tcl::chan::core]{.cmd} [objectName]{.arg}
+[objectName]{.ins} [initialize]{.sub} [thechannel]{.arg} [mode]{.arg}
+[objectName]{.ins} [finalize]{.sub} [thechannel]{.arg}
+[objectName]{.ins} [destroy]{.sub}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket „**tcl::chan::core**“ enthält die Klasse „**TclOO**“, die allgemeine Funktionen bereitstellt, die praktisch jeder reflektierte oder virtuelle Kanal benötigt (Initialisierung, Finalisierung).
 
 Diese Klasse ist dafür vorgesehen, entweder als Oberklasse einer konkreten Kanal-Klasse verwendet oder in eine solche Klasse eingemischt zu werden.
 
-# API FÜR KLASSEN
+# API für Klassen
 
 **::tcl::chan::core** *objectName*
-: Dieser Befehl erstellt ein neues Channel-Core-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *objectName* lautet. Mit diesem Befehl können verschiedene Operationen auf dem Objekt aufgerufen werden, wie im Abschnitt zur **INSTANZ-API** beschrieben.
+: Dieser Befehl erstellt ein neues Channel-Core-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *objectName* lautet. Mit diesem Befehl können verschiedene Operationen auf dem Objekt aufgerufen werden, wie im Abschnitt zur [Instanz-API] beschrieben.
 
 
-# INSTANZ-API
+# Instanz-API
 
-Die API der Channel-Core-Instanzen stellt lediglich zwei Methoden bereit, die beide den Befehlen des Channel-Handlers entsprechen (siehe dazu [TIP 219](http:/tip.tcl.tk/219)]). Sie sind dafür vorgesehen, von der Objektinstanz aus aufgerufen zu werden, in die der Channel-Core integriert wurde.
+Die API der Channel-Core-Instanzen stellt lediglich zwei Methoden bereit, die beide den Befehlen des Channel-Handlers entsprechen (siehe dazu [TIP 219](http:/tip.tcl.tk/219)). Sie sind dafür vorgesehen, von der Objektinstanz aus aufgerufen zu werden, in die der Channel-Core integriert wurde.
 
 *objectName* **initialize** *thechannel* *mode*
-: Diese Methode implementiert das Standardverhalten für die Methode **initialize** von Kanal-Handlern. Mithilfe von Introspektion ermittelt sie die von der Instanz unterstützten Handler-Methoden und gibt eine Liste mit deren Namen zurück, wie es die Unterstützung für reflektierte Kanäle im Tcl-Kern erwartet. Zudem speichert sie das Kanal-Handle in einer Instanzvariablen, damit Unterklassen darauf zugreifen können.
+: Diese Methode implementiert das Standardverhalten für die Methode **initialize** von Kanal-Handlern. Mithilfe von Introspektion ermittelt sie die von der Instanz unterstützten Handler-Methoden und gibt eine Liste mit deren Namen zurück, wie es die Unterstützung für reflektierte Kanäle im Tcl-Kern erwartet.
+
+    Zudem speichert sie das Kanal-Handle in einer Instanzvariablen, damit Unterklassen darauf zugreifen können.
 
 *objectName* **finalize** *thechannel*
 : Diese Methode implementiert das Standardverhalten für die Methode **finalize** der Kanalhandler. Sie löscht sich lediglich selbst.
@@ -54,7 +57,7 @@ Die API der Channel-Core-Instanzen stellt lediglich zwei Methoden bereit, die be
 : Durch das Löschen der Kanal-Kerninstanz wird der Kanal geschlossen, für den sie initialisiert wurde; siehe die Methode **initialize**. Wird die Instanz im Rahmen eines Aufrufs von **finalize** gelöscht, geschieht dies nicht, da davon ausgegangen wird, dass der Kanal von Tcl gelöscht wird.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *virtchannel* als Kategorie an.
 
@@ -62,11 +65,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Kanäle
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

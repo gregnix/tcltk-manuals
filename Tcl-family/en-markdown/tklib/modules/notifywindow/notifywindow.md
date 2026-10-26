@@ -1,5 +1,6 @@
 ---
 CommandName: notifywindow
+title: notifywindow
 ManualSection: n
 Version: 1.0.2
 TclPart: tklib
@@ -19,10 +20,10 @@ notifywindow - Provides unobtrusive window for alerts/notifications from Tk appl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tk]{.lit} 
-[package]{.cmd} [require]{.sub} [notifywindow]{.lit} [1.0.2]{.optlit} 
-[::notifywindow::notifywindow]{.cmd} [msg]{.arg} [img]{.arg} 
-[::notifywindow::demo]{.cmd} 
+[package]{.cmd} [require]{.sub} [tk]{.lit}
+[package]{.cmd} [require]{.sub} [notifywindow]{.lit} [1.0.2]{.optlit}
+[::notifywindow::notifywindow]{.cmd} [msg]{.arg} [img]{.arg}
+[::notifywindow::demo]{.cmd}
 :::
 
 # Description

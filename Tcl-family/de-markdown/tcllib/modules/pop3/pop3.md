@@ -1,5 +1,6 @@
 ---
 CommandName: pop3
+title: pop3
 ManualSection: n
 Version: 1.11
 TclPart: tcllib
@@ -16,33 +17,33 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 pop3 – Tcl-Client für das POP3-E-Mail-Protokoll
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3]{.lit} [1.11]{.optlit} 
-[::pop3::open]{.cmd} [-msex 0|1]{.optarg} [-retr-mode retr|list|slow]{.optarg} [-socketcmd cmdprefix]{.optarg} [-stls 0|1]{.optarg} [-tls-callback stls-callback-command]{.optarg} [host]{.arg} [username]{.arg} [password]{.arg} [port]{.optarg} 
-[::pop3::config]{.cmd} [chan]{.arg} 
-[::pop3::status]{.cmd} [chan]{.arg} 
-[::pop3::last]{.cmd} [chan]{.arg} 
-[::pop3::retrieve]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg} 
-[::pop3::delete]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg} 
-[::pop3::list]{.cmd} [chan]{.arg} [msg]{.optarg} 
-[::pop3::top]{.cmd} [chan]{.arg} [msg]{.arg} [n]{.arg} 
-[::pop3::uidl]{.cmd} [chan]{.arg} [msg]{.optarg} 
-[::pop3::capa]{.cmd} [chan]{.arg} 
-[::pop3::close]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3]{.lit} [1.11]{.optlit}
+[::pop3::open]{.cmd} [[-msex]{.lit} 0|1]{.optarg} [[-retr-mode]{.lit} retr|list|slow]{.optarg} [[-socketcmd]{.lit} cmdprefix]{.optarg} [[-stls]{.lit} 0|1]{.optarg} [[-tls-callback]{.lit} stls-callback-command]{.optarg} [host]{.arg} [username]{.arg} [password]{.arg} [port]{.optarg}
+[::pop3::config]{.cmd} [chan]{.arg}
+[::pop3::status]{.cmd} [chan]{.arg}
+[::pop3::last]{.cmd} [chan]{.arg}
+[::pop3::retrieve]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg}
+[::pop3::delete]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg}
+[::pop3::list]{.cmd} [chan]{.arg} [msg]{.optarg}
+[::pop3::top]{.cmd} [chan]{.arg} [msg]{.arg} [n]{.arg}
+[::pop3::uidl]{.cmd} [chan]{.arg} [msg]{.optarg}
+[::pop3::capa]{.cmd} [chan]{.arg}
+[::pop3::close]{.cmd} [chan]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **pop3** stellt eine einfache, ausschließlich auf Tcl basierende Client-Bibliothek für das POP3-E-Mail-Protokoll bereit, wie es in [RFC 1939](http://www.rfc-editor.org/rfc/rfc1939.txt) festgelegt ist. Es öffnet den üblichen POP3-Socket auf dem Server, übermittelt Benutzername und Passwort und stellt dann eine Tcl-API für die POP3-Protokollbefehle bereit. Alle Serverfehler werden als Tcl-Fehler zurückgegeben (ausgelöst) und müssen mit dem Tcl-Befehl **catch** abgefangen werden.
 
-# TLS-SICHERHEITSHINWEISE
+# TLS-Sicherheitshinweise
 
 Dieses Paket nutzt das **TLS**-Paket, um die Sicherheit für **https**-URLs und andere Socket-Verbindungen zu gewährleisten.
 
@@ -60,23 +61,24 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 # API
 
 **::pop3::open** ?**-msex** 0|1? ?**-retr-mode** retr|list|slow? ?**-socketcmd** cmdprefix? ?**-stls** 0|1? ?**-tls-callback** stls-callback-command? *host username password* ?*port*?
-: Öffnet eine Socket-Verbindung zu dem durch *host* angegebenen Server und übermittelt *username* und *password* als Anmeldedaten an den Server. Die vorgegebene Portnummer ist **110** und lässt sich mit dem optionalen Argument *port* ändern. Der Rückgabewert ist ein Kanal, den alle anderen ::pop3-Funktionen verwenden. Der Befehl erkennt fünf Optionen
+: Öffnet eine Socket-Verbindung zu dem durch *host* angegebenen Server und übermittelt *username* und *password* als Anmeldedaten an den Server. Die vorgegebene Portnummer ist **110** und lässt sich mit dem optionalen Argument *port* ändern. Der Rückgabewert ist ein Kanal, den alle anderen ::pop3-Funktionen verwenden.
 
+    Der Befehl erkennt fünf Optionen
 
-**-msex** boolean
-: Diese Option teilt dem Paket mit, dass der Server ein MS-Exchange-Server ist (mit einigen Eigenheiten, die zu umgehen sind). Die Vorgabe ist **False**.
+    **-msex** boolean
+    : Diese Option teilt dem Paket mit, dass der Server ein MS-Exchange-Server ist (mit einigen Eigenheiten, die zu umgehen sind). Die Vorgabe ist **False**.
 
-**-retr-mode** retr|list|slow
-: Der Abrufmodus legt fest, wie genau Nachrichten vom Server gelesen werden. Die zulässigen Werte sind **retr**, **list** und **slow**. Die Standardeinstellung ist **retr**. Weitere Informationen finden Sie unter **::pop3::retrieve**.
+    **-retr-mode** retr|list|slow
+    : Der Abrufmodus legt fest, wie genau Nachrichten vom Server gelesen werden. Die zulässigen Werte sind **retr**, **list** und **slow**. Die Standardeinstellung ist **retr**. Weitere Informationen finden Sie unter **::pop3::retrieve**.
 
-**-socketcmd** cmdprefix
-: Diese Option ermöglicht es dem Benutzer, die Verwendung des integrierten Befehls **socket** durch einen beliebigen API-kompatiblen Befehl zu überschreiben. Der vorgesehene Hauptzweck besteht darin, die neue Verbindung über SSL zu sichern, indem der Befehl **tls::socket** angegeben wird. Dieser Befehl wird ebenfalls speziell erkannt und ändert den Standardport der Verbindung auf **995**.
+    **-socketcmd** cmdprefix
+    : Diese Option ermöglicht es dem Benutzer, die Verwendung des integrierten Befehls **socket** durch einen beliebigen API-kompatiblen Befehl zu überschreiben. Der vorgesehene Hauptzweck besteht darin, die neue Verbindung über SSL zu sichern, indem der Befehl **tls::socket** angegeben wird. Dieser Befehl wird ebenfalls speziell erkannt und ändert den Standardport der Verbindung auf **995**.
 
-**-stls** boolean
-: Diese Option weist das Paket an, die Verbindung mit SSL oder TLS zu sichern. Sie führt STARTTLS aus, wie in IETF RFC 2595 beschrieben: zuerst eine normale, unverschlüsselte Verbindung, dann die Aushandlung einer SSLv3- oder TLSv1-Verbindung. Lässt sich die Verbindung nicht sichern, wird sie geschlossen und ein Fehler zurückgegeben.
+    **-stls** boolean
+    : Diese Option weist das Paket an, die Verbindung mit SSL oder TLS zu sichern. Sie führt STARTTLS aus, wie in IETF RFC 2595 beschrieben: zuerst eine normale, unverschlüsselte Verbindung, dann die Aushandlung einer SSLv3- oder TLSv1-Verbindung. Lässt sich die Verbindung nicht sichern, wird sie geschlossen und ein Fehler zurückgegeben.
 
-**-tls-callback** stls-callback-command
-: Mit dieser Option lässt sich der **tls::callback** überschreiben, der beim SSL/TLS-Handshake von **-stls** verwendet wird. Zur Umsetzung dieser Rückruffunktion siehe das TLS-Handbuch.
+    **-tls-callback** stls-callback-command
+    : Mit dieser Option lässt sich der **tls::callback** überschreiben, der beim SSL/TLS-Handshake von **-stls** verwendet wird. Zur Umsetzung dieser Rückruffunktion siehe das TLS-Handbuch.
 
 
 **::pop3::config** *chan*
@@ -89,35 +91,37 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 : Fragt den Server nach der zuletzt aus dem Spool gelesenen E-Mail. Der Wert umfasst alle Nachrichten, die irgendein Client des Anmeldekontos gelesen hat. Der E-Mail-Server muss den Befehl nicht unterstützen; dann gibt er möglicherweise 0 oder einen Fehler zurück.
 
 **::pop3::retrieve** *chan startIndex* ?*endIndex*?
-: Ruft einen Bereich von Nachrichten vom Server ab. Ist *endIndex* nicht angegeben, wird nur eine Nachricht abgerufen. Der Rückgabewert ist eine Liste, die jede Nachricht als eigenes Element enthält. Zu *startIndex* und *endIndex* siehe unten. Der Abrufmodus legt fest, wie die Nachrichten vom Server gelesen werden. Der Modus **retr** nimmt an, dass der Befehl RETR die Größe der Nachricht als Teil des Befehlsstatus liefert, und nutzt das, um die Nachricht effizient zu lesen. Im Modus **list** liefert RETR die Größe nicht, der Befehl LIST aber schon; damit wird die Nachrichtengröße vor dem eigentlichen Abruf geholt, der dann effizient erfolgen kann. Im letzten Modus, **slow**, lässt sich die Größe der Nachricht auf keine Weise ermitteln, und die Nachricht wird Zeile für Zeile vom Server gelesen. Das System prüft den konfigurierten Modus und fällt auf die langsameren Modi zurück, wenn die genannten Annahmen nicht zutreffen.
+: Ruft einen Bereich von Nachrichten vom Server ab. Ist *endIndex* nicht angegeben, wird nur eine Nachricht abgerufen. Der Rückgabewert ist eine Liste, die jede Nachricht als eigenes Element enthält. Zu *startIndex* und *endIndex* siehe unten.
+
+    Der Abrufmodus legt fest, wie die Nachrichten vom Server gelesen werden. Der Modus **retr** nimmt an, dass der Befehl RETR die Größe der Nachricht als Teil des Befehlsstatus liefert, und nutzt das, um die Nachricht effizient zu lesen. Im Modus **list** liefert RETR die Größe nicht, der Befehl LIST aber schon; damit wird die Nachrichtengröße vor dem eigentlichen Abruf geholt, der dann effizient erfolgen kann. Im letzten Modus, **slow**, lässt sich die Größe der Nachricht auf keine Weise ermitteln, und die Nachricht wird Zeile für Zeile vom Server gelesen.
+
+    Das System prüft den konfigurierten Modus und fällt auf die langsameren Modi zurück, wenn die genannten Annahmen nicht zutreffen.
 
 **::pop3::delete** *chan startIndex* ?*endIndex*?
 : Löscht einen Bereich von Nachrichten auf dem Server. Ist *endIndex* nicht angegeben, wird nur eine Nachricht gelöscht. Die Indizes werden auf dem Server nicht neu geordnet. Wird Nachricht 1 gelöscht, ist die erste Nachricht in der Warteschlange Nachricht 2 (der Nachrichtenindex 1 ist nicht mehr gültig). Zu *startIndex* und *endIndex* siehe unten.
 
+    *startIndex*
+    : Der *startIndex* kann entweder ein Index einer bestimmten Nachricht sein, beginnend mit dem Index 1, oder einen der folgenden Werte annehmen:
 
-*startIndex*
-: Der *startIndex* kann entweder ein Index einer bestimmten Nachricht sein, beginnend mit dem Index 1, oder einen der folgenden Werte annehmen:
+        **start**
+        : Dies ist ein logischer Wert für die erste Nachricht im Spool, der dem Wert 1 entspricht.
 
+        **next**
+        : Die Nachricht unmittelbar nach der zuletzt gelesenen Nachricht, siehe **::pop3::last**.
 
-**start**
-: Dies ist ein logischer Wert für die erste Nachricht im Spool, der dem Wert 1 entspricht.
-
-**next**
-: Die Nachricht unmittelbar nach der zuletzt gelesenen Nachricht, siehe **::pop3::last**.
-
-**end**
-: Die neueste Nachricht im Spool (das Ende des Spools). Damit lässt sich nur die neueste Nachricht abrufen.
+        **end**
+        : Die neueste Nachricht im Spool (das Ende des Spools). Damit lässt sich nur die neueste Nachricht abrufen.
 
 
-*endIndex*
-: Der Parameter *endIndex* ist optional und hat standardmäßig den Wert „-1“, was bedeutet, dass nur die durch *startIndex* angegebene Nachricht abgerufen wird. Sofern er angegeben wird, kann es sich um den Index einer bestimmten Nachricht handeln, beginnend mit dem Index „1“, oder er kann einen der folgenden Werte annehmen:
+    *endIndex*
+    : Der Parameter *endIndex* ist optional und hat standardmäßig den Wert „-1“, was bedeutet, dass nur die durch *startIndex* angegebene Nachricht abgerufen wird. Sofern er angegeben wird, kann es sich um den Index einer bestimmten Nachricht handeln, beginnend mit dem Index „1“, oder er kann einen der folgenden Werte annehmen:
 
+        **last**
+        : Bei dieser Nachricht handelt es sich um die zuletzt von einem POP3-Client gelesene Nachricht; siehe **::pop3::last**.
 
-**last**
-: Bei dieser Nachricht handelt es sich um die zuletzt von einem POP3-Client gelesene Nachricht; siehe **::pop3::last**.
+        **end**
+        : Die neueste Nachricht im Spool (das Ende des Spools).
 
-**end**
-: Die neueste Nachricht im Spool (das Ende des Spools).
 
 
 **::pop3::list** *chan* ?*msg*?
@@ -136,7 +140,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 : Schließt die Verbindung geordnet, nachdem ein POP3-Befehl QUIT über den Socket gesendet wurde.
 
 
-# SICHERE MAIL-ÜBERTRAGUNG
+# Sichere Mail-Übertragung
 
 Eine POP3-Verbindung lässt sich mit SSL/TLS sichern, indem das Paket **TLS** vorausgesetzt wird und dann entweder die Option **-socketcmd** oder die Option **-stls** des Befehls **pop3::open** zum Einsatz kommt. Die erste Methode, die Option **-socketcmd**, erzwingt beim Öffnen der Verbindung den Befehl **tls::socket**. Das passt zu POP3-Servern, die nur SSL-Verbindungen erwarten. Sie lauschen in der Regel auf Port 995.
 
@@ -164,7 +168,7 @@ Die zweite Methode, die Option **-stls**, verbindet sich mit dem üblichen POP3-
 	...
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pop3* als Kategorie an.
 
@@ -172,6 +176,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk

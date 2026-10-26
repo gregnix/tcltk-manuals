@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_Sleep
+title: Tcl_Sleep
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -15,22 +16,27 @@ Copyright:
 
 # Name
 
-Tcl_Sleep - delay execution for a given number of milliseconds
+Tcl\_Sleep - delay execution for a given number of milliseconds
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-[Tcl_Sleep]{.cmd}([ms]{.arg})
+**#include <tcl.h>**
+[Tcl\_Sleep]{.ccmd} [ms]{.cargs}
 :::
 
 # Arguments
 
-int *ms* (in)
+::: {.arguments} :::
+
+[ms]{.carg .in type="int"}
 : Number of milliseconds to sleep.
 
+:::
 
 # Description
 
-This procedure delays the calling process by the number of milliseconds given by the *ms* parameter and returns after that time has elapsed.  It is typically used for things like flashing a button, where the delay is short and the application need not do anything while it waits.  For longer delays where the application needs to respond to other events during the delay, the procedure **Tcl_CreateTimerHandler** should be used instead of **Tcl_Sleep**.
+This procedure delays the calling process by the number of milliseconds given by the *ms* parameter and returns after that time has elapsed.  It is typically used for things like flashing a button, where the delay is short and the application need not do anything while it waits.  For longer delays where the application needs to respond to other events during the delay, the procedure [Tcl\_CreateTimerHandler][CrtTimerHdlr] should be used instead of **Tcl\_Sleep**.
+
+
+[CrtTimerHdlr]: CrtTimerHdlr.md

@@ -1,5 +1,6 @@
 ---
 CommandName: zipfile::decode
+title: zipfile::decode
 ManualSection: n
 Version: 0.11.0
 TclPart: tcllib
@@ -11,36 +12,36 @@ Copyright:
  - Copyright (c) 2008-2022 Andreas Kupries
 ---
 
-# NAME
+# Name
 
 zipfile::decode – Zugriff auf ZIP-Archive
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil::decode]{.lit} [0.2.1]{.lit} 
-[package]{.cmd} [require]{.sub} [Trf]{.lit} 
-[package]{.cmd} [require]{.sub} [zlibtcl]{.lit} 
-[package]{.cmd} [require]{.sub} [zipfile::decode]{.lit} [0.11.0]{.optlit} 
-[::zipfile::decode::archive]{.cmd} 
-[::zipfile::decode::close]{.cmd} 
-[::zipfile::decode::comment]{.cmd} [adict]{.arg} 
-[::zipfile::decode::content]{.cmd} [archive]{.arg} 
-[::zipfile::decode::copyfile]{.cmd} [adict]{.arg} [path]{.arg} [dst]{.arg} 
-[::zipfile::decode::files]{.cmd} [adict]{.arg} 
-[::zipfile::decode::filetime]{.cmd} [adict]{.arg} [path]{.arg} 
-[::zipfile::decode::getfile]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::hasfile]{.cmd} [adict]{.arg} [path]{.arg} 
-[::zipfile::decode::filesize]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::filecomment]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::iszip]{.cmd} [archive]{.arg} 
-[::zipfile::decode::open]{.cmd} [archive]{.arg} 
-[::zipfile::decode::unzip]{.cmd} [adict]{.arg} [dstdir]{.arg} 
-[::zipfile::decode::unzipfile]{.cmd} [archive]{.arg} [dstdir]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil::decode]{.lit} [0.2.1]{.lit}
+[package]{.cmd} [require]{.sub} [Trf]{.lit}
+[package]{.cmd} [require]{.sub} [zlibtcl]{.lit}
+[package]{.cmd} [require]{.sub} [zipfile::decode]{.lit} [0.11.0]{.optlit}
+[::zipfile::decode::archive]{.cmd}
+[::zipfile::decode::close]{.cmd}
+[::zipfile::decode::comment]{.cmd} [adict]{.arg}
+[::zipfile::decode::content]{.cmd} [archive]{.arg}
+[::zipfile::decode::copyfile]{.cmd} [adict]{.arg} [path]{.arg} [dst]{.arg}
+[::zipfile::decode::files]{.cmd} [adict]{.arg}
+[::zipfile::decode::filetime]{.cmd} [adict]{.arg} [path]{.arg}
+[::zipfile::decode::getfile]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::hasfile]{.cmd} [adict]{.arg} [path]{.arg}
+[::zipfile::decode::filesize]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::filecomment]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::iszip]{.cmd} [archive]{.arg}
+[::zipfile::decode::open]{.cmd} [archive]{.arg}
+[::zipfile::decode::unzip]{.cmd} [adict]{.arg} [dstdir]{.arg}
+[::zipfile::decode::unzipfile]{.cmd} [archive]{.arg} [dstdir]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind nicht erforderlich, wenn TCL 8.6 verfügbar ist. Dieses Paket enthält Befehle zum Entpacken von ZIP-Archiven und zum Zugriff auf deren Inhalt.
 
@@ -89,10 +90,12 @@ Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind nicht erforderlich, wenn TC
 : Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie es **::zipfile::decode::archive** zurückgibt, und entpackt das Archiv in das angegebene Zielverzeichnis *dstdir*. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::zipfile::decode::unzipfile** *archive* *dstdir*
-: Dies ist ein Komfort-Befehl, der die angegebene ZIP-*Archiv*-Datei in das angegebene Ziel-Verzeichnis *dstdir* entpackt. Das Ergebnis des Befehls ist die leere Zeichenkette.
+: Dies ist ein Komfort-Befehl, der die angegebene ZIP-*Archiv*-Datei in das angegebene Ziel-Verzeichnis *dstdir* entpackt.
+
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *zipfile* als Kategorie an.
 
@@ -100,11 +103,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dateien
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2008-2022 Andreas Kupries

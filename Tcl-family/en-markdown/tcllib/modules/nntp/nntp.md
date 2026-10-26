@@ -1,5 +1,6 @@
 ---
 CommandName: nntp
+title: nntp
 ManualSection: n
 Version: 0.2.3
 TclPart: tcllib
@@ -20,38 +21,38 @@ nntp - Tcl client for the NNTP protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nntp]{.lit} [0.2.3]{.optlit} 
-[::nntp::nntp]{.cmd} [host]{.optarg} [port]{.optarg} [nntpName]{.optarg} 
-[nntpName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[nntpName]{.ins} [article]{.sub} [msgid]{.optarg} 
-[nntpName]{.ins} [authinfo]{.sub} [user]{.optarg} [pass]{.optarg} 
-[nntpName]{.ins} [body]{.sub} [msgid]{.optarg} 
-[nntpName]{.ins} [configure]{.sub} 
-[nntpName]{.ins} [configure]{.sub} [option]{.arg} 
-[nntpName]{.ins} [configure]{.sub} [option]{.arg} [value]{.arg} ... 
-[nntpName]{.ins} [cget]{.sub} [option]{.arg} 
-[nntpName]{.ins} [date]{.sub} 
-[nntpName]{.ins} [group]{.sub} [group]{.optarg} 
-[nntpName]{.ins} [head]{.sub} [msgid]{.optarg} 
-[nntpName]{.ins} [help]{.sub} 
-[nntpName]{.ins} [last]{.sub} 
-[nntpName]{.ins} [list]{.sub} 
-[nntpName]{.ins} [listgroup]{.sub} [group]{.optarg} 
-[nntpName]{.ins} [mode_reader]{.sub} 
-[nntpName]{.ins} [newgroups]{.sub} [since]{.arg} 
-[nntpName]{.ins} [newnews]{.sub} 
-[nntpName]{.ins} [newnews]{.sub} [since]{.arg} 
-[nntpName]{.ins} [newnews]{.sub} [group]{.arg} [since]{.optarg} 
-[nntpName]{.ins} [next]{.sub} 
-[nntpName]{.ins} [post]{.sub} [article]{.arg} 
-[nntpName]{.ins} [slave]{.sub} 
-[nntpName]{.ins} [stat]{.sub} [msgid]{.optarg} 
-[nntpName]{.ins} [quit]{.sub} 
-[nntpName]{.ins} [xgtitle]{.sub} [group_pattern]{.optarg} 
-[nntpName]{.ins} [xhdr]{.sub} [field]{.arg} [range]{.optarg} 
-[nntpName]{.ins} [xover]{.sub} [range]{.optarg} 
-[nntpName]{.ins} [xpat]{.sub} [field]{.arg} [range]{.arg} [pattern_list]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nntp]{.lit} [0.2.3]{.optlit}
+[::nntp::nntp]{.cmd} [host]{.optarg} [port]{.optarg} [nntpName]{.optarg}
+[nntpName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[nntpName]{.ins} [article]{.sub} [msgid]{.optarg}
+[nntpName]{.ins} [authinfo]{.sub} [user]{.optarg} [pass]{.optarg}
+[nntpName]{.ins} [body]{.sub} [msgid]{.optarg}
+[nntpName]{.ins} [configure]{.sub}
+[nntpName]{.ins} [configure]{.sub} [option]{.arg}
+[nntpName]{.ins} [configure]{.sub} [option]{.arg} [value]{.arg} ...
+[nntpName]{.ins} [cget]{.sub} [option]{.arg}
+[nntpName]{.ins} [date]{.sub}
+[nntpName]{.ins} [group]{.sub} [group]{.optarg}
+[nntpName]{.ins} [head]{.sub} [msgid]{.optarg}
+[nntpName]{.ins} [help]{.sub}
+[nntpName]{.ins} [last]{.sub}
+[nntpName]{.ins} [list]{.sub}
+[nntpName]{.ins} [listgroup]{.sub} [group]{.optarg}
+[nntpName]{.ins} [mode\_reader]{.sub}
+[nntpName]{.ins} [newgroups]{.sub} [since]{.arg}
+[nntpName]{.ins} [newnews]{.sub}
+[nntpName]{.ins} [newnews]{.sub} [since]{.arg}
+[nntpName]{.ins} [newnews]{.sub} [group]{.arg} [since]{.optarg}
+[nntpName]{.ins} [next]{.sub}
+[nntpName]{.ins} [post]{.sub} [article]{.arg}
+[nntpName]{.ins} [slave]{.sub}
+[nntpName]{.ins} [stat]{.sub} [msgid]{.optarg}
+[nntpName]{.ins} [quit]{.sub}
+[nntpName]{.ins} [xgtitle]{.sub} [group\_pattern]{.optarg}
+[nntpName]{.ins} [xhdr]{.sub} [field]{.arg} [range]{.optarg}
+[nntpName]{.ins} [xover]{.sub} [range]{.optarg}
+[nntpName]{.ins} [xpat]{.sub} [field]{.arg} [range]{.arg} [pattern\_list]{.optarg}
 :::
 
 # Description
@@ -61,11 +62,14 @@ The package **nntp** provides a simple Tcl-only client library for the NNTP prot
 # Commands
 
 **::nntp::nntp** ?*host*? ?*port*? ?*nntpName*?
-: The command opens a socket connection to the specified NNTP server and creates a new nntp object with an associated global Tcl command whose name is *nntpName*. This command may be used to access the various NNTP protocol commands for the new connection. The default *port* number is "119" and the default *host* is "news". These defaults can be overridden with the environment variables **NNTPPORT** and **NNTPHOST** respectively. Some of the commands supported by this package are not part of the nntp rfc 977 (*http://www.rfc-editor.org/rfc/rfc977.txt*) and will not be available (or implemented) on all nntp servers. The access command *nntpName* has the following general form:
+: The command opens a socket connection to the specified NNTP server and creates a new nntp object with an associated global Tcl command whose name is *nntpName*. This command may be used to access the various NNTP protocol commands for the new connection. The default *port* number is "119" and the default *host* is "news". These defaults can be overridden with the environment variables **NNTPPORT** and **NNTPHOST** respectively.
 
+    Some of the commands supported by this package are not part of the nntp rfc 977 (<http://www.rfc-editor.org/rfc/rfc977.txt>) and will not be available (or implemented) on all nntp servers.
 
-*nntpName* **method** ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command.
+    The access command *nntpName* has the following general form:
+
+    *nntpName* **method** ?*arg arg ...*?
+    : *Option* and the *arg*s determine the exact behavior of the command.
 
 
 *nntpName* **article** ?*msgid*?
@@ -78,16 +82,20 @@ The package **nntp** provides a simple Tcl-only client library for the NNTP prot
 : Query the server for the body of the article *msgid* from the current group.  The body of the article is returned as a valid tcl list. Each element in the list is one line of the body of the article.
 
 *nntpName* **configure**
-: ...see next...
+: see below ...
 
 *nntpName* **configure** *option*
-: ...see next...
+: see below ...
 
 *nntpName* **configure** *option* *value* ...
-: ...see next...
+: see below ...
 
 *nntpName* **cget** *option*
-: Query and configure options of the nntp connection object. Currently only one option is supported, **-binary**. When set articles are retrieved as binary data instead of text. The only methods affected by this are **article** and **body**. One application of this option would be the download of articles containing yEnc encoded images. Although encoded the data is still mostly binary and retrieving it as text will corrupt the information. See package **yencode** for both encoder and decoder of such data.
+: Query and configure options of the nntp connection object. Currently only one option is supported, **-binary**. When set articles are retrieved as binary data instead of text. The only methods affected by this are **article** and **body**.
+
+    One application of this option would be the download of articles containing yEnc encoded images. Although encoded the data is still mostly binary and retrieving it as text will corrupt the information.
+
+    See package **yencode** for both encoder and decoder of such data.
 
 *nntpName* **date**
 : Query the server for the servers current date.  The date is returned in the format *YYYYMMDDHHMMSS*.
@@ -107,30 +115,28 @@ The package **nntp** provides a simple Tcl-only client library for the NNTP prot
 *nntpName* **list**
 : Returns a tcl list of valid newsgroups and associated information.  Each newsgroup is returned as an element in the tcl list with the following format:
 
+    ```
+          group last first p
+    ```
 
-```
-      group last first p
-```
+    where <group> is the name of the newsgroup, <last> is the number of the last known article currently in that newsgroup, <first> is the number of the first article currently in the newsgroup, and <p> is either 'y' or 'n' indicating whether posting to this newsgroup is allowed ('y') or prohibited ('n').
 
-: where \<group> is the name of the newsgroup, \<last> is the number of the last known article currently in that newsgroup, \<first> is the number of the first article currently in the newsgroup, and \<p> is either 'y' or 'n' indicating whether posting to this newsgroup is allowed ('y') or prohibited ('n'). The \<first> and \<last> fields will always be numeric.  They may have leading zeros.  If the \<last> field evaluates to less than the \<first> field, there are no articles currently on file in the newsgroup.
-
+    The <first> and <last> fields will always be numeric.  They may have leading zeros.  If the <last> field evaluates to less than the <first> field, there are no articles currently on file in the newsgroup.
 
 *nntpName* **listgroup** ?*group*?
 : Query the server for a list of all the messages (message numbers) in the group specified by the argument *group* or by the current group if the *group* argument was not passed.
 
-*nntpName* **mode_reader**
+*nntpName* **mode\_reader**
 : Query the server for its nntp 'MODE READER' response string.
 
 *nntpName* **newgroups** *since*
 : Query the server for a list of all the new newsgroups created since the time specified by the argument *since*.  The argument *since* can be any time string that is understood by **clock scan**. The tcl list of newsgroups is returned in a similar form to the list of groups returned by the **nntpName list** command.  Each element of the list has the form:
 
+    ```
+          group last first p
+    ```
 
-```
-      group last first p
-```
-
-: where \<group> is the name of the newsgroup, \<last> is the number of the last known article currently in that newsgroup, \<first> is the number of the first article currently in the newsgroup, and \<p> is either 'y' or 'n' indicating whether posting to this newsgroup is allowed ('y') or prohibited ('n').
-
+    where <group> is the name of the newsgroup, <last> is the number of the last known article currently in that newsgroup, <first> is the number of the first article currently in the newsgroup, and <p> is either 'y' or 'n' indicating whether posting to this newsgroup is allowed ('y') or prohibited ('n').
 
 *nntpName* **newnews**
 : Query the server for a list of new articles posted to the current group in the last day.
@@ -145,7 +151,7 @@ The package **nntp** provides a simple Tcl-only client library for the NNTP prot
 : Sets the current article pointer to point to the next message (if there is one) and returns the msgid of that message.
 
 *nntpName* **post** *article*
-: Posts an article of the form specified in RFC 1036 (*http://www.rfc-editor.org/rfc/rfc1036.txt*, successor to RFC 850) to the current news group.
+: Posts an article of the form specified in RFC 1036 (<http://www.rfc-editor.org/rfc/rfc1036.txt>, successor to RFC 850) to the current news group.
 
 *nntpName* **slave**
 : Identifies a connection as being made from a slave nntp server. This might be used to indicate that the connection is serving multiple people and should be given priority.  Actual use is entirely implementation dependent and may vary from server to server.
@@ -156,78 +162,71 @@ The package **nntp** provides a simple Tcl-only client library for the NNTP prot
 *nntpName* **quit**
 : Gracefully close the connection after sending a NNTP QUIT command down the socket.
 
-*nntpName* **xgtitle** ?*group_pattern*?
+*nntpName* **xgtitle** ?*group\_pattern*?
 : Returns a tcl list where each element is of the form:
 
+    ```
+    newsgroup description
+    ```
 
-```
-newsgroup description
-```
-
-: If a *group_pattern* is specified then only newsgroups that match the pattern will have their name and description returned.
-
+    If a *group\_pattern* is specified then only newsgroups that match the pattern will have their name and description returned.
 
 *nntpName* **xhdr** *field* ?*range*?
 : Returns the specified header field value for the current message or for a list of messages from the current group.  *field* is the title of a field in the header such as from, subject, date, etc.  If *range* is not specified or is "" then the current message is queried.  The command returns a list of elements where each element has the form of:
 
+    ```
+        msgid value
+    ```
 
-```
-    msgid value
-```
+    Where msgid is the number of the message and value is the value set for the queried field.  The *range* argument can be in any of the following forms:
 
-: Where msgid is the number of the message and value is the value set for the queried field.  The *range* argument can be in any of the following forms:
+    **""**
+    : The current message is queried.
 
+    *msgid1*-*msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
-**""**
-: The current message is queried.
-
-*msgid1*-*msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
-
-*msgid1* *msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
+    *msgid1* *msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
 
 *nntpName* **xover** ?*range*?
 : Returns header information for the current message or for a range of messages from the current group.  The information is returned in a tcl list where each element is of the form:
 
+    ```
+        msgid subject from date idstring bodysize headersize xref
+    ```
 
-```
-    msgid subject from date idstring bodysize headersize xref
-```
+    If *range* is not specified or is "" then the current message is queried. The *range* argument can be in any of the following forms:
 
-: If *range* is not specified or is "" then the current message is queried. The *range* argument can be in any of the following forms:
+    **""**
+    : The current message is queried.
 
+    *msgid1*-*msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
-**""**
-: The current message is queried.
-
-*msgid1*-*msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
-
-*msgid1* *msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
+    *msgid1* *msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
 
-*nntpName* **xpat** *field* *range* ?*pattern_list*?
-: Returns the specified header field value for a specified message or for a list of messages from the current group where the messages match the pattern(s) given in the pattern_list.  *field* is the title of a field in the header such as from, subject, date, etc.  The information is returned in a tcl list where each element is of the form:
+*nntpName* **xpat** *field* *range* ?*pattern\_list*?
+: Returns the specified header field value for a specified message or for a list of messages from the current group where the messages match the pattern(s) given in the pattern\_list.  *field* is the title of a field in the header such as from, subject, date, etc.  The information is returned in a tcl list where each element is of the form:
 
+    ```
+        msgid value
+    ```
 
-```
-    msgid value
-```
+    Where msgid is the number of the message and value is the value set for the queried field.  The *range* argument can be in any of the following forms:
 
-: Where msgid is the number of the message and value is the value set for the queried field.  The *range* argument can be in any of the following forms:
+    *msgid*
+    : The message specified by *msgid* is queried.
 
+    *msgid1*-*msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
-*msgid*
-: The message specified by *msgid* is queried.
+    *msgid1* *msgid2*
+    : All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
-*msgid1*-*msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
-
-*msgid1* *msgid2*
-: All messages between *msgid1* and *msgid2* (including *msgid1* and *msgid2*) are queried.
 
 
 # Example

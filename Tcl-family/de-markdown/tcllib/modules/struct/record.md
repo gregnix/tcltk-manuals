@@ -1,5 +1,6 @@
 ---
 CommandName: struct::record
+title: struct::record
 ManualSection: n
 Version: 1.2.4
 TclPart: tcllib
@@ -12,39 +13,37 @@ Copyright:
  - Copyright (c) 2002, Brett Schwarz <brett_schwarz@yahoo.com>
 ---
 
-# NAME
+# Name
 
 struct::record – Datensätze definieren und anlegen (ähnlich wie „C“-Strukturen)
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::record]{.lit} [1.2.4]{.optlit} 
-[record]{.cmd} [define]{.sub} [recordName]{.arg} [recordMembers]{.arg} [instanceName1 instanceName2]{.optdot} 
-[record]{.cmd} [show]{.sub} [record]{.arg} 
-[record]{.cmd} [show]{.sub} [instances]{.arg} [recordName]{.arg} 
-[record]{.cmd} [show]{.sub} [members]{.arg} [recordName]{.arg} 
-[record]{.cmd} [show]{.sub} [values]{.arg} [instanceName]{.arg} 
-[record]{.cmd} [exists]{.sub} [record]{.arg} [recordName]{.arg} 
-[record]{.cmd} [exists]{.sub} [instance]{.arg} [instanceName]{.arg} 
-[record]{.cmd} [delete]{.sub} [record]{.arg} [recordName]{.arg} 
-[record]{.cmd} [delete]{.sub} [instance]{.arg} [instanceName]{.arg} 
-[instanceName]{.ins} [cget]{.sub} -member 
-[instanceName]{.ins} [cget]{.sub} -member1 -member2 
-[instanceName]{.ins} [cget]{.sub} 
-[instanceName]{.ins} [configure]{.sub} 
-[instanceName]{.ins} [configure]{.sub} -member [value]{.arg} 
-[instanceName]{.ins} [configure]{.sub} -member1 [value1]{.arg} -member2 [value2]{.arg} 
-[instanceName]{.ins} [cget]{.sub} [-member1 -member2]{.optdot} 
-[instanceName]{.ins} [configure]{.sub} [-member1 value1 -member2 value2]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::record]{.lit} [1.2.4]{.optlit}
+[record]{.cmd} [define]{.sub} [recordName]{.arg} [recordMembers]{.arg} [instanceName1 instanceName2]{.optdot}
+[record]{.cmd} [show]{.sub} [record]{.arg}
+[record]{.cmd} [show]{.sub} [instances]{.arg} [recordName]{.arg}
+[record]{.cmd} [show]{.sub} [members]{.arg} [recordName]{.arg}
+[record]{.cmd} [show]{.sub} [values]{.arg} [instanceName]{.arg}
+[record]{.cmd} [exists]{.sub} [record]{.arg} [recordName]{.arg}
+[record]{.cmd} [exists]{.sub} [instance]{.arg} [instanceName]{.arg}
+[record]{.cmd} [delete]{.sub} [record]{.arg} [recordName]{.arg}
+[record]{.cmd} [delete]{.sub} [instance]{.arg} [instanceName]{.arg}
+[instanceName]{.ins} [cget]{.sub} -member
+[instanceName]{.ins} [cget]{.sub} -member1 -member2
+[instanceName]{.ins} [cget]{.sub}
+[instanceName]{.ins} [configure]{.sub}
+[instanceName]{.ins}
+[instanceName]{.ins} [configure]{.sub} -member [value]{.arg}
+[instanceName]{.ins} [configure]{.sub} -member1 [value1]{.arg} -member2 [value2]{.arg}
+[recordName]{.ins} [instanceName|#auto]{.sub} [-member1 value1 -member2 value2]{.optdot}
+[instanceName]{.ins} [cget]{.sub} [-member1 -member2]{.optdot}
+[instanceName]{.ins} [configure]{.sub} [-member1 value1 -member2 value2]{.optdot}
 :::
 
-*instanceName*
-
-*recordName* *instanceName*|**#auto** ?*-member1 value1 -member2 value2 ...*?
-
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **::struct::record** bietet eine Möglichkeit, Variablen zu einer einzigen Datenstruktur zusammenzufassen, ähnlich einer *C*-Struktur. Die Elemente eines Datensatzes können Variablen oder andere Datensätze sein. Ein Datensatz darf jedoch keine zirkulären Datensätze enthalten, d. h. Datensätze, die denselben Datensatz als Element enthalten.
 
@@ -82,7 +81,7 @@ Das Paket enthält nur einen Befehl auf oberster Ebene, jedoch mehrere Unterbefe
 : Löscht die *instance* mit dem Namen *instanceName*. Existiert die Instanz nicht, wird ein Fehler zurückgegeben. Beachten Sie, dass dabei auch alle verschachtelten Instanzen rekursiv gelöscht werden.
 
 
-# DATENSATZELEMENTE
+# Datensatzelemente
 
 Die Elemente eines Datensatzes können entweder Variablen oder andere Datensätze sein. Ein und derselbe Datensatz darf jedoch nicht in sich selbst verschachtelt werden (zyklisch). Um einen verschachtelten Datensatz zu definieren, müssen Sie das Schlüsselwort **record** zusammen mit dem Namen des Datensatzes und dem Namen der Instanz dieses verschachtelten Datensatzes (innerhalb des Containers) angeben. Das sieht zum Beispiel so aus:
 
@@ -117,21 +116,22 @@ Alle Instanzen, die anhand dieser Datensatzdefinition angelegt werden, haben anf
 Um den Wert eines Elements abzurufen, gibt es mehrere Möglichkeiten.
 
 *instanceName* **cget** -*member*
-: In dieser Form gibt die eingebaute Instanzmethode **cget** den Wert des angegebenen *member* zurück. Beachten Sie den führenden Bindestrich. Um auf ein verschachteltes Element zuzugreifen, verwenden Sie die *Punktnotation*:
+: In dieser Form gibt die eingebaute Instanzmethode **cget** den Wert des angegebenen *member* zurück. Beachten Sie den führenden Bindestrich.
 
+    Um auf ein verschachteltes Element zuzugreifen, verwenden Sie die *Punktnotation*:
 
-```
-instanceName cget -mem3.nest1
-```
+    ```
+    instanceName cget -mem3.nest1
+    ```
 
 *instanceName* **cget** -*member1* -*member2*
 : In dieser Form gibt die eingebaute Instanzmethode **cget** eine Liste zurück, die die Werte beider angegebener Elemente in der Reihenfolge ihrer Angabe enthält.
 
 *instanceName* **cget**
-: ...siehe nächstes...
+: siehe unten ...
 
 *instanceName* **configure**
-: ...siehe nächstes...
+: siehe unten ...
 
 *instanceName*
 : Diese Formen sind alle gleichwertig. Sie geben ein Dictionary zurück, das alle Elemente und die zugehörigen Werte enthält.
@@ -142,12 +142,13 @@ instanceName cget -mem3.nest1
 Um den Wert eines Elements festzulegen, gibt es mehrere Möglichkeiten.
 
 *instanceName* **configure** -*member* *value*
-: In dieser Form setzt die eingebaute Instanzmethode **configure** das angegebene *member* auf den angegebenen *value*. Beachten Sie den führenden Bindestrich. Um auf ein verschachteltes Element zuzugreifen, verwenden Sie die *Punktnotation*:
+: In dieser Form setzt die eingebaute Instanzmethode **configure** das angegebene *member* auf den angegebenen *value*. Beachten Sie den führenden Bindestrich.
 
+    Um auf ein verschachteltes Element zuzugreifen, verwenden Sie die *Punktnotation*:
 
-```
-instanceName configure -mem3.nest1 value
-```
+    ```
+    instanceName configure -mem3.nest1 value
+    ```
 
 *instanceName* **configure** -*member1* *value1* -*member2* *value2*
 : In dieser Form setzt die eingebaute Instanzmethode **configure** alle angegebenen Elemente auf die zugehörigen Werte.
@@ -194,15 +195,19 @@ Grundsätzlich wird für jedes Element jeder Instanz ein Alias erstellt. Dieser 
 -nest1 10 -nest2 {}
 ```
 
-# DER BEFEHL RECORD
+# Der Befehl record
 
 Für jeden Datensatzbefehl stehen die folgenden Unterbefehle und die zugehörigen Argumente zur Verfügung:
 
 *recordName* *instanceName*|**#auto** ?*-member1 value1 -member2 value2 ...*?
-: Mithilfe des Objektbefehls *recordName*, der aus der Datensatzdefinition erstellt wurde, können Instanzen der Datensatzdefinition angelegt werden. Sobald eine Instanz angelegt ist, erbt sie die Elemente der Datensatzdefinition – ganz ähnlich wie bei Objekten. Beim Anlegen der Instanz wird außerdem ein Objektbefehl für die Instanz mit dem Namen *instanceName* erzeugt. Dieser Objektbefehl dient dem Zugriff auf die Datenelemente der Instanz. Während der Instanziierung können zwar Werte für diese Instanz angegeben werden; am Ende müssen jedoch *alle* Werte angegeben werden, und zwar als Schlüssel-Wert-Paare, wie bei der Methode **configure**. Verschachtelte Datensätze müssen im Listenformat vorliegen. Anstelle von *instanceName* kann auch **#auto** angegeben werden. Wird **#auto** verwendet, wird der Name der Instanz automatisch erzeugt und hat die Form **recordNameN**, wobei **N** eine erzeugte eindeutige ganze Zahl ist (beginnend bei 0).
+: Mithilfe des Objektbefehls *recordName*, der aus der Datensatzdefinition erstellt wurde, können Instanzen der Datensatzdefinition angelegt werden. Sobald eine Instanz angelegt ist, erbt sie die Elemente der Datensatzdefinition – ganz ähnlich wie bei Objekten. Beim Anlegen der Instanz wird außerdem ein Objektbefehl für die Instanz mit dem Namen *instanceName* erzeugt.
+
+    Dieser Objektbefehl dient dem Zugriff auf die Datenelemente der Instanz. Während der Instanziierung können zwar Werte für diese Instanz angegeben werden; am Ende müssen jedoch *alle* Werte angegeben werden, und zwar als Schlüssel-Wert-Paare, wie bei der Methode **configure**. Verschachtelte Datensätze müssen im Listenformat vorliegen.
+
+    Anstelle von *instanceName* kann auch **#auto** angegeben werden. Wird **#auto** verwendet, wird der Name der Instanz automatisch erzeugt und hat die Form **recordNameN**, wobei **N** eine erzeugte eindeutige ganze Zahl ist (beginnend bei 0).
 
 
-# INSTANZBEFEHL
+# Instanzbefehl
 
 Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden Instanzbefehl eines Datensatzes zur Verfügung:
 
@@ -213,7 +218,7 @@ Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden In
 : Jede Instanz verfügt über die Methode **configure**. Sie funktioniert sehr ähnlich wie der Befehl **configure** von Tk-Widgets. Sie setzt die Werte der angegebenen Elemente dieser Instanz. Werden keine Argumente angegeben, gibt sie eine Dictionary-Liste zurück.
 
 
-# BEISPIELE
+# Beispiele
 
 Zwei Beispiele zeigen anschaulich, wie dieses Paket verwendet wird.
 
@@ -311,7 +316,7 @@ lstart
 %
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: record* als Kategorie an.
 
@@ -319,11 +324,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Datenstrukturen
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Brett Schwarz <brett_schwarz@yahoo.com>

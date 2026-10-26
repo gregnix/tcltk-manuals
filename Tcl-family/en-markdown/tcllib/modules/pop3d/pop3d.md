@@ -1,5 +1,6 @@
 ---
 CommandName: pop3d
+title: pop3d
 ManualSection: n
 Version: 1.2.0
 TclPart: tcllib
@@ -25,36 +26,46 @@ pop3d - Tcl POP3 server implementation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3d]{.lit} [1.2.0]{.optlit} 
-[::pop3d::new]{.cmd} [serverName]{.optarg} 
-[serverName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[serverName]{.ins} [up]{.sub} 
-[serverName]{.ins} [down]{.sub} 
-[serverName]{.ins} [destroy]{.sub} [mode]{.optarg} 
-[serverName]{.ins} [configure]{.sub} 
-[serverName]{.ins} [configure]{.sub} [-option]{.arg} 
-[serverName]{.ins} [configure]{.sub} [-option]{.arg} [value...]{.arg} 
-[serverName]{.ins} [cget]{.sub} [-option]{.arg} 
-[serverName]{.ins} [conn]{.sub} list 
-[serverName]{.ins} [conn]{.sub} state [id]{.arg} 
-[authCmd]{.ins} [exists]{.sub} [name]{.arg} 
-[authCmd]{.ins} [lookup]{.sub} [name]{.arg} 
-[storageCmd]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg} 
-[storageCmd]{.ins} [lock]{.sub} [mbox]{.arg} 
-[storageCmd]{.ins} [unlock]{.sub} [mbox]{.arg} 
-[storageCmd]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg} 
-[storageCmd]{.ins} [stat]{.sub} [mbox]{.arg} 
-[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3d]{.lit} [1.2.0]{.optlit}
+[::pop3d::new]{.cmd} [serverName]{.optarg}
+[serverName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[serverName]{.ins} [up]{.sub}
+[serverName]{.ins} [down]{.sub}
+[serverName]{.ins} [destroy]{.sub} [mode]{.optarg}
+[serverName]{.ins} [configure]{.sub}
+[serverName]{.ins} [configure]{.sub} [-option]{.arg}
+[serverName]{.ins} [configure]{.sub} [-option]{.arg} [value]{.arg}...
+[serverName]{.ins} [cget]{.sub} [-option]{.arg}
+[serverName]{.ins} [conn]{.sub} list
+[serverName]{.ins} [conn]{.sub} state [id]{.arg}
+[authCmd]{.ins} [exists]{.sub} [name]{.arg}
+[authCmd]{.ins} [lookup]{.sub} [name]{.arg}
+[storageCmd]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg}
+[storageCmd]{.ins} [lock]{.sub} [mbox]{.arg}
+[storageCmd]{.ins} [unlock]{.sub} [mbox]{.arg}
+[storageCmd]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg}
+[storageCmd]{.ins} [stat]{.sub} [mbox]{.arg}
+[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg}
 :::
 
 # Description
 
 **::pop3d::new** ?*serverName*?
-: This command creates a new server object with an associated global Tcl command whose name is *serverName*. The command **serverName** may be used to invoke various operations on the server.  It has the following general form:
+: This command creates a new server object with an associated global Tcl command whose name is *serverName*.
+
+
+The command **serverName** may be used to invoke various operations on the server.  It has the following general form:
 
 **serverName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. A pop3 server can be started on any port the caller has permission for from the operating system. The default port will be 110, which is the port defined by the standard specified in RFC 1939 (*http://www.rfc-editor.org/rfc/rfc1939.txt*). After creating, configuring and starting a the server object will listen for and accept connections on that port and handle them according to the POP3 protocol. *Note:* The server provided by this module will handle only the basic protocol by itself. For the higher levels of user authentication and handling of the actual mailbox contents callbacks will be invoked. The following commands are possible for server objects:
+: *Option* and the *arg*s determine the exact behavior of the command.
+
+
+A pop3 server can be started on any port the caller has permission for from the operating system. The default port will be 110, which is the port defined by the standard specified in RFC 1939 (<http://www.rfc-editor.org/rfc/rfc1939.txt>). After creating, configuring and starting a the server object will listen for and accept connections on that port and handle them according to the POP3 protocol.
+
+*Note:* The server provided by this module will handle only the basic protocol by itself. For the higher levels of user authentication and handling of the actual mailbox contents callbacks will be invoked.
+
+The following commands are possible for server objects:
 
 *serverName* **up**
 : After this call the server will listen for connections on its configured port.
@@ -65,25 +76,24 @@ pop3d - Tcl POP3 server implementation
 *serverName* **destroy** ?*mode*?
 : Destroys the server object. Currently open connections are handled depending on the chosen mode. The provided *mode*s are:
 
+    **kill**
+    : Destroys the server immediately, and forcefully closes all currently open connections. This is the default mode.
 
-**kill**
-: Destroys the server immediately, and forcefully closes all currently open connections. This is the default mode.
-
-**defer**
-: Stops the server from accepting new connections and will actually destroy it only after the last of the currently open connections for the server is closed.
+    **defer**
+    : Stops the server from accepting new connections and will actually destroy it only after the last of the currently open connections for the server is closed.
 
 
 *serverName* **configure**
-: Returns a list containing all options and their current values in a format suitable for use by the command **array set**. The options themselves are described in section **Options**.
+: Returns a list containing all options and their current values in a format suitable for use by the command **array set**. The options themselves are described in section [Options].
 
 *serverName* **configure** *-option*
-: Returns the current value of the specified option. This is an alias for the method **cget**. The options themselves are described in section **Options**.
+: Returns the current value of the specified option. This is an alias for the method **cget**. The options themselves are described in section [Options].
 
 *serverName* **configure** *-option value*...
-: Sets the specified option to the provided value. The options themselves are described in section **Options**.
+: Sets the specified option to the provided value. The options themselves are described in section [Options].
 
 *serverName* **cget** *-option*
-: Returns the current value of the specified option. The options themselves are described in section **Options**.
+: Returns the current value of the specified option. The options themselves are described in section [Options].
 
 *serverName* **conn** list
 : Returns a list containing the ids of all connections currently open.
@@ -100,10 +110,10 @@ The following options are available to pop3 server objects.
 : Defines the *port* to listen on for new connections. Default is 110. This option is a bit special. If *port* is set to "0" the server, or rather the operating system, will select a free port on its own. When querying **-port** the id of this chosen port will be returned. Changing the port while the server is up will neither change the returned value, nor will it change on which port the server is listening on. Only after resetting the server via a call to **down** followed by a call to **up** will the new port take effect. It is at that time that the value returned when querying **-port** will change too.
 
 **-auth** *command*
-: Defines a *command* prefix to call whenever the authentication of a user is required. If no such command is specified the server will reject all users. The interface which has to be provided by the command prefix is described in section **Authentication**.
+: Defines a *command* prefix to call whenever the authentication of a user is required. If no such command is specified the server will reject all users. The interface which has to be provided by the command prefix is described in section [Authentication].
 
 **-storage** *command*
-: Defines a *command* prefix to call whenever the handling of mailbox contents is required. If no such command is specified the server will claim that all mailboxes are empty. The interface which has to be provided by the command prefix is described in section **Mailboxes**.
+: Defines a *command* prefix to call whenever the handling of mailbox contents is required. If no such command is specified the server will claim that all mailboxes are empty. The interface which has to be provided by the command prefix is described in section [Mailboxes].
 
 **-socket** *command*
 : Defines a *command* prefix to call for opening the listening socket. This can be used to make the pop3 server listen on a SSL socket as provided by the **tls** package, see the command **tls::socket**.
@@ -117,12 +127,14 @@ Here we describe the interface which has to be provided by the authentication ca
 : This method is given a user*name* and has to return a boolean value telling whether or not the specified user exists.
 
 *authCmd* **lookup** *name*
-: This method is given a user*name* and has to return a two-element list containing the password for this user and a storage reference, in this order. The storage reference is passed unchanged to the storage callback, see sections **Options** and **Mailboxes** for either the option defining it and or the interface to provide, respectively.
+: This method is given a user*name* and has to return a two-element list containing the password for this user and a storage reference, in this order.
+
+    The storage reference is passed unchanged to the storage callback, see sections [Options] and [Mailboxes] for either the option defining it and or the interface to provide, respectively.
 
 
 # Mailboxes
 
-Here we describe the interface which has to be provided by the storage callback so that pop3 servers following the interface of this module are able to use it. The *mbox* argument is the storage reference as returned by the **lookup** method of the authentication command, see section **Authentication**.
+Here we describe the interface which has to be provided by the storage callback so that pop3 servers following the interface of this module are able to use it. The *mbox* argument is the storage reference as returned by the **lookup** method of the authentication command, see section [Authentication].
 
 *storageCmd* **dele** *mbox* *msgList*
 : Deletes the messages whose numeric ids are contained in the *msgList* from the mailbox specified via *mbox*.
@@ -145,7 +157,7 @@ Here we describe the interface which has to be provided by the storage callback 
 
 # Secure mail transfer
 
-The option **-socket** (see **Options**) enables users of the package to override how the server opens its listening socket. The envisioned main use is the specification of the **tls::socket** command, see package **tls**, to secure the communication.
+The option **-socket** (see [Options]) enables users of the package to override how the server opens its listening socket. The envisioned main use is the specification of the **tls::socket** command, see package **tls**, to secure the communication.
 
 ```
 	package require tls
@@ -158,11 +170,9 @@ The option **-socket** (see **Options**) enables users of the package to overrid
 
 # References
 
-**\[1\]**
-: [RFC 1939](http://www.rfc-editor.org/rfc/rfc1939.txt)
+1. [RFC 1939](http://www.rfc-editor.org/rfc/rfc1939.txt)
 
-**\[2\]**
-: [RFC 2449](http://www.rfc-editor.org/rfc/rfc2449.txt)
+2. [RFC 2449](http://www.rfc-editor.org/rfc/rfc2449.txt)
 
 
 # Bugs, ideas, feedback

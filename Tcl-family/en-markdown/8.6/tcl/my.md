@@ -1,5 +1,6 @@
 ---
 CommandName: my
+title: my
 ManualSection: n
 Version: 0.1
 TclPart: TclOO
@@ -25,20 +26,20 @@ my - invoke any method of current object
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
 
-[my]{.cmd} [methodName]{.arg} [arg]{.optdot} 
+[my]{.cmd} [methodName]{.arg} [arg]{.optdot}
 :::
 
 # Description
 
-The **my** command is used to allow methods of objects to invoke any method of the object (or its class). In particular, the set of valid values for *methodName* is the set of all methods supported by an object and its superclasses, including those that are not exported. The object upon which the method is invoked is always the one that is the current context of the method (i.e. the object that is returned by **self object**) from which the **my** command is invoked.
+The **my** command is used to allow methods of objects to invoke any method of the object (or its class). In particular, the set of valid values for *methodName* is the set of all methods supported by an object and its superclasses, including those that are not exported. The object upon which the method is invoked is always the one that is the current context of the method (i.e. the object that is returned by [self object][self]) from which the **my** command is invoked.
 
 Each object has its own **my** command, contained in its instance namespace.
 
 # Examples
 
-This example shows basic use of **my** to use the **variables** method of the **oo::object** class, which is not publicly visible by default:
+This example shows basic use of **my** to use the **variables** method of the [oo::object][object] class, which is not publicly visible by default:
 
 ```
 oo::class create c {
@@ -52,3 +53,7 @@ o count              → prints "1"
 o count              → prints "2"
 o count              → prints "3"
 ```
+
+
+[object]: object.md
+[self]: self.md

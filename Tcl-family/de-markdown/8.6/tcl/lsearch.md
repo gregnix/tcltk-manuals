@@ -1,5 +1,6 @@
 ---
 CommandName: lsearch
+title: lsearch
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -32,17 +33,17 @@ Copyright:
  - Copyright (c) 2003-2004 Donal K. Fellows.
 ---
 
-# NAME
+# Name
 
 lsearch - Prüft, ob eine Liste ein bestimmtes Element enthält
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lsearch]{.cmd} [options]{.optarg} [list]{.arg} [pattern]{.arg} 
+[lsearch]{.cmd} [options]{.optarg} [list]{.arg} [pattern]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl durchsucht die Elemente von *list*, ob eines zu *pattern* passt. Dann gibt er den Index des ersten Treffers zurück (außer bei **-all** oder **-inline**). Sonst **-1** oder bei **-all**/**-inline** eine leere Zeichenkette. Die *option*-Argumente legen fest, wie verglichen wird; es muss einer der unten genannten Werte sein:
 
@@ -50,83 +51,82 @@ Der Befehl durchsucht die Elemente von *list*, ob eines zu *pattern* passt. Dann
 
 Fehlen alle Abgleichstil-Optionen, ist der Standard **-glob**. Mehrere Abgleichstile: der zuletzt angegebene gilt.
 
-**-exact**
+[-exact]{.lit}
 : *pattern* ist eine Literalzeichenkette; exakter Vergleich mit jedem Listenelement.
 
-**-glob**
-: *pattern* ist ein Glob-Muster; Abgleich wie bei **string match**.
+[-glob]{.lit}
+: *pattern* ist ein Glob-Muster; Abgleich wie bei [string match][string].
 
-**-regexp**
-: *pattern* ist ein regulärer Ausdruck; Regeln siehe **re_syntax**.
+[-regexp]{.lit}
+: *pattern* ist ein regulärer Ausdruck; Regeln siehe [re\_syntax][re_syntax].
 
-**-sorted**
+[-sorted]{.lit}
 : Die Listenelemente sind sortiert. Dann nutzt **lsearch** einen effizienteren Suchalgorithmus. Ohne weitere Optionen gilt: sortiert aufsteigend, ASCII-Zeichenketten. Schließt **-glob** und **-regexp** aus; bei **-all** oder **-not** wie **-exact**.
+
 
 ## Allgemeine Modifikatoren
 
 Gelten für alle Abgleichstile.
 
-**-all**
+[-all]{.lit}
 : Ergebnis ist die Liste aller passenden Indizes (oder aller passenden Werte mit **-inline**). Indizes in aufsteigender numerischer Reihenfolge; Werte in der Reihenfolge innerhalb von *list*.
 
-**-inline**
+[-inline]{.lit}
 : Der passende Wert statt seines Index (leere Zeichenkette ohne Treffer). Mit **-all**: Liste aller passenden Werte.
 
-**-not**
+[-not]{.lit}
 : Negiert den Treffer; Index des ersten Nicht-Treffers.
 
-**-start** *index*
-: Suche ab Position *index*; Auslegung wie bei **string index** (Arithmetik, end-relativ).
+[-start]{.lit} [index]{.arg}
+: Suche ab Position *index*; Auslegung wie bei [string index][string] (Arithmetik, end-relativ).
+
 
 ## Optionen zur Inhaltsauslegung
 
 Bedeuten nur mit **-exact** und **-sorted**. Mehrere: der letzte gilt. Standard: **-ascii**.
 
-**-ascii**
+[-ascii]{.lit}
 : Elemente als Unicode-Zeichenketten (Name aus Kompatibilitätsgründen).
 
-**-dictionary**
-: Wörterbuch-Vergleich (siehe **lsort**). Nur mit **-sorted** sinnvoll anders als **-ascii**, da dictionary-gleich nur bei exakter Gleichheit.
+[-dictionary]{.lit}
+: Wörterbuch-Vergleich (siehe [lsort]). Nur mit **-sorted** sinnvoll anders als **-ascii**, da dictionary-gleich nur bei exakter Gleichheit.
 
-**-integer**
+[-integer]{.lit}
 : Vergleich als Ganzzahlen.
 
-**-nocase**
+[-nocase]{.lit}
 : Vergleich ohne Groß-/Kleinschreibung. Keine Wirkung mit **-dictionary**, **-integer** oder **-real**.
 
-**-real**
+[-real]{.lit}
 : Vergleich als Fließkommazahlen.
+
 
 ## Optionen für sortierte Listen
 
 Nur mit **-sorted**; mehrere: der letzte gilt. Standard: **-increasing**.
 
-**-decreasing**
+[-decreasing]{.lit}
 : Liste absteigend sortiert. Nur mit **-sorted**.
 
-**-increasing**
+[-increasing]{.lit}
 : Liste aufsteigend sortiert. Nur mit **-sorted**.
 
-**-bisect**
-: Ungenauer Suchtreffer bei sortierter Liste. Aufsteigend: letzter Index, an dem das Element kleiner oder gleich *pattern* ist. Absteigend: größer oder gleich. Liegt *pattern* vor dem ersten Element oder ist die Liste leer: **-1**. Impliziert **-sorted**; nicht mit **-all** oder **-not**.
+[-bisect]{.lit}
+: [Ungenauer Suchtreffer bei sortierter Liste. Aufsteigend: letzter Index, an dem das Element kleiner oder gleich *pattern* ist. Absteigend: größer oder gleich. Liegt *pattern* vor dem ersten Element oder ist die Liste leer: **-1**. Impliziert **-sorted**; nicht mit **-all** oder **-not**.]{version="8.6"}
+
 
 ## Optionen für verschachtelte Listen
 
 Für Listen von Listen; kombinierbar mit anderen Optionen.
 
-**-stride** *strideLength*
-: Die Liste gilt als Gruppen zu je *strideLength* Elementen; Gruppen werden am ersten Element oder (mit **-index**) am Element der Gruppe gesucht, das der erste **-index**-Wert angibt (**-index** ignoriert diesen Teil dann). Der Index zeigt stets auf das erste Element einer Gruppe.
+[-index]{.lit} [indexList]{.arg}
+: Für verschachtelte Listen: Pfad von Indizes (wie bei [lindex]/[lset]) innerhalb jedes Elements zum Vergleichswert.
 
-Die Listenlänge muss ein ganzzahliges Vielfaches von *strideLength* sein (mindestens 1). Standard 1 = keine Gruppierung.
-
-**-index** *indexList*
-: Für verschachtelte Listen: Pfad von Indizes (wie bei **lindex**/**lset**) innerhalb jedes Elements zum Vergleichswert.
-
-**-subindices**
-: Der Index (oder jeder bei **-all**) ist ein vollständiger Pfad im Gesamtlistensinn für **lindex**/**lset**. Nur sinnvoll mit **-index**; Kurzform.
+[-subindices]{.lit}
+: Der Index (oder jeder bei **-all**) ist ein vollständiger Pfad im Gesamtlistensinn für [lindex]/[lset]. Nur sinnvoll mit **-index**; Kurzform.
 
 
-# BEISPIELE
+# Beispiele
 
 Einfache Suche:
 
@@ -171,7 +171,9 @@ lsearch -index 1 -all -inline {{abc abc} {abc bcd} {abc cde}} *bc*
       → {abc abc} {abc bcd}
 ```
 
-Dasselbe mit flacher Liste:
 
-lsearch -stride 2 -index 1 -all -inline {abc abc abc bcd abc cde} *bc*
-      → abc abc abc bcd
+[lindex]: lindex.md
+[lset]: lset.md
+[lsort]: lsort.md
+[re_syntax]: re_syntax.md
+[string]: string.md

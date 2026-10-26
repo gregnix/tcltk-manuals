@@ -1,5 +1,6 @@
 ---
 CommandName: doctoc_lang_intro
+title: doctoc_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -19,11 +20,11 @@ Copyright:
  - Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-doctoc_lang_intro – Einleitung in die Sprache „doctoc“
+doctoc\_lang\_intro – Einleitung in die Sprache „doctoc“
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument bietet anhand zahlreicher Beispiele eine informelle Einleitung in die Version 1.1 der Markup-Sprache „doctoc“. Nach der Lektüre dieses Dokuments sollten Autoren in der Lage sein, die beiden Teile der formalen Spezifikation zu verstehen, nämlich die Spezifikation der *doctoc-Sprachsyntax* und die *doctoc-Befehlsreferenz*.
 
@@ -59,7 +60,7 @@ In den folgenden Abschnitten werden wir die Befehle für jede dieser beiden Mög
 
 ## Einträge
 
-Der Befehl **item** nimmt einen *Eintrag* in ein Inhaltsverzeichnis auf. Dabei handelt es sich im Wesentlichen um einen Verweis auf einen Abschnitt, Unterabschnitt usw. in dem Dokument oder der Dokumentensammlung, für die das Inhaltsverzeichnis bestimmt ist. Der Befehl benötigt drei Argumente: einen symbolischen Namen für die Datei, auf die sich der Eintrag bezieht, sowie zwei Textangaben zur Beschriftung des Eintrags und zur Beschreibung des referenzierten Abschnitts.
+Der Befehl [item][doctoc_lang_cmdref] nimmt einen *Eintrag* in ein Inhaltsverzeichnis auf. Dabei handelt es sich im Wesentlichen um einen Verweis auf einen Abschnitt, Unterabschnitt usw. in dem Dokument oder der Dokumentensammlung, für die das Inhaltsverzeichnis bestimmt ist. Der Befehl benötigt drei Argumente: einen symbolischen Namen für die Datei, auf die sich der Eintrag bezieht, sowie zwei Textangaben zur Beschriftung des Eintrags und zur Beschreibung des referenzierten Abschnitts.
 
 Es werden symbolische Namen verwendet, um die Konvertierbarkeit dieses Formats in jedes beliebige Ausgabeformat zu gewährleisten. Der tatsächliche Name einer Datei wird bei der Konvertierung der Eingabe von der gewählten Formatierungs-Engine eingefügt, basierend auf einer Zuordnung von symbolischen zu tatsächlichen Namen, die der Engine bereitgestellt werden.
 
@@ -85,12 +86,14 @@ Selbstverständlich können wir anstelle der verschachtelten Einträge auch wied
 
 Ein Abschnitt wird durch zwei Befehle anstelle von einem gekennzeichnet: einen zum Starten des Abschnitts und einen zum Schließen des zuletzt geöffneten Abschnitts. Diese lauten:
 
-**division_start**
+[division\_start][doctoc_lang_cmdref]
 : Dieser Befehl eröffnet einen neuen Abschnitt. Er erwartet ein oder zwei Argumente: den Titel des Abschnitts und den symbolischen Namen der Datei, auf die er verweist. Letzteres ist optional. Wenn der symbolische Dateiname angegeben ist, sollte der Abschnittstitel auf das referenzierte Dokument verweisen, sofern das Ausgabeformat Verweise unterstützt.
 
-**division_end**
-: Dieser Befehl schließt den zuletzt geöffneten und noch nicht geschlossenen Abschnitt. Auf diese Weise können wir das letzte Beispiel wie folgt umformulieren:
+[division\_end][doctoc_lang_cmdref]
+: Dieser Befehl schließt den zuletzt geöffneten und noch nicht geschlossenen Abschnitt.
 
+
+Auf diese Weise können wir das letzte Beispiel wie folgt umformulieren:
 
 ```
 [toc_begin Doctoc {Language Introduction}]
@@ -152,9 +155,9 @@ Es ist möglich, Einträge und Abschnitte beliebig zu kombinieren und leere Absc
 
 ## Erweiterte Struktur
 
-In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **toc_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
+In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **toc\_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
 
-Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle **include** und **vset** zulässig, damit der Verfasser für das Inhaltsverzeichnis relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
+Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für das Inhaltsverzeichnis relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
 
 ```
 [include FILE]
@@ -174,11 +177,11 @@ Noch wichtiger ist, dass diese beiden Befehle überall dort zulässig sind, wo e
 [toc_end]
 ```
 
-Die einzige Einschränkung, die **include** beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **toc_begin** eingebunden wird, darf nur die Vorlagenbefehle **vset** und **include** enthalten; eine Datei, die in einen Abschnitt eingebunden wird, darf nur Befehle für Elemente oder Abschnitte enthalten usw.
+Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **toc\_begin** eingebunden wird, darf nur die Vorlagenbefehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine Datei, die in einen Abschnitt eingebunden wird, darf nur Befehle für Elemente oder Abschnitte enthalten usw.
 
 ## Escapes
 
-Neben den bisher gezeigten sechs Befehlen stehen uns zwei weitere zur Verfügung. Ihre Funktion besteht jedoch nicht in der Markierung der Inhaltsverzeichnisstruktur, sondern im Einfügen von Zeichen, nämlich **\[** und **\]**. Diese Befehle, nämlich **lb** bzw. **rb**, sind erforderlich, da unsere Verwendung von \[ und \] zur Einfassung von Markup-Befehlen die direkte Verwendung von \[ und \] innerhalb des Textes unmöglich macht.
+Neben den bisher gezeigten sechs Befehlen stehen uns zwei weitere zur Verfügung. Ihre Funktion besteht jedoch nicht in der Markierung der Inhaltsverzeichnisstruktur, sondern im Einfügen von Zeichen, nämlich **\[** und **\]**. Diese Befehle, nämlich [lb][docidx_lang_cmdref] bzw. [rb][docidx_lang_cmdref], sind erforderlich, da unsere Verwendung von \[ und \] zur Einfassung von Markup-Befehlen die direkte Verwendung von \[ und \] innerhalb des Textes unmöglich macht.
 
 Als Beispiel für ihre Verwendung dient der Quelltext des letzten Satzes im vorangegangenen Absatz, wobei einige Stellen hervorgehoben wurden.
 
@@ -190,7 +193,7 @@ Als Beispiel für ihre Verwendung dient der Quelltext des letzten Satzes im vora
   ...
 ```
 
-# WEITERFÜHRENDE LITERATUR
+# Weiterführende Literatur
 
 Nachdem der Leser dieses Dokument verinnerlicht hat – wobei davon ausgegangen wird, dass es sich um einen *Verfasser* von Dokumentationen handelt –, sollte er nun ausreichend gerüstet sein, um auch die formale *Syntaxspezifikation der Sprache doctoc* zu verstehen. Von nun an dient die *Befehlsreferenz der Sprache doctoc* zudem als detaillierte Spezifikation und Spickzettel für alle verfügbaren Befehle und deren Syntax.
 
@@ -198,7 +201,7 @@ Um ein Dokument bereits während der Erstellung validieren zu können, empfiehlt
 
 Andererseits eignet sich doctoc hervorragend für die automatische Generierung aus doctools-Dokumenten, und genau diesen Weg beschreitet das benutzerfreundliche und einfache **dtplite** von Tcllib, das hinter den Kulissen ein Inhaltsverzeichnis für eine Reihe von Dokumenten erstellt, ohne dass der Verfasser dies selbst tun muss.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *doctools* als Kategorie an.
 
@@ -206,12 +209,16 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md
+[doctoc_lang_cmdref]: doctoc_lang_cmdref.md

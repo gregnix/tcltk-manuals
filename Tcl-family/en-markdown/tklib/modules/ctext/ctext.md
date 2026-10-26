@@ -1,5 +1,6 @@
 ---
 CommandName: ctext
+title: ctext
 ManualSection: n
 Version: 3.3
 TclPart: tklib
@@ -22,26 +23,26 @@ ctext - Ctext a text widget with highlighting support
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [ctext]{.lit} [3.3]{.optlit} 
-[ctext]{.cmd} [pathName]{.arg} [options]{.optarg} 
-[::ctext::addHighlightClass]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [keywordlist]{.arg} 
-[::ctext::addHighlightClassWithOnlyCharStart]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [char]{.arg} 
-[::ctext::addHighlightClassForSpecialChars]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [charstring]{.arg} 
-[::ctext::addHighlightClassForRegexp]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [pattern]{.arg} 
-[::ctext::clearHighlightClasses]{.cmd} [pathName]{.arg} 
-[::ctext::getHighlightClasses]{.cmd} [pathName]{.arg} 
-[::ctext::deleteHighlightClass]{.cmd} [pathName]{.arg} [class]{.arg} 
-[::ctext::enableComments]{.cmd} [enable]{.arg} 
-[::ctext::disableComments]{.cmd} [enable]{.arg} 
-[pathName]{.ins} [highlight]{.sub} [startIndex]{.arg} [endIndex]{.arg} 
-[pathName]{.ins} [fastdelete]{.sub} [index1]{.arg} [index2]{.optarg} 
-[pathName]{.ins} [fastinsert]{.sub} 
-[pathName]{.ins} [copy]{.sub} 
-[pathName]{.ins} [cut]{.sub} 
-[pathName]{.ins} [paste]{.sub} 
-[pathName]{.ins} [append]{.sub} 
-[pathName]{.ins} [configure]{.sub} [option]{.arg} [value]{.arg} [...]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [ctext]{.lit} [3.3]{.optlit}
+[ctext]{.cmd} [pathName]{.arg} [options]{.optarg}
+[::ctext::addHighlightClass]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [keywordlist]{.arg}
+[::ctext::addHighlightClassWithOnlyCharStart]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [char]{.arg}
+[::ctext::addHighlightClassForSpecialChars]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [charstring]{.arg}
+[::ctext::addHighlightClassForRegexp]{.cmd} [pathName]{.arg} [class]{.arg} [color]{.arg} [pattern]{.arg}
+[::ctext::clearHighlightClasses]{.cmd} [pathName]{.arg}
+[::ctext::getHighlightClasses]{.cmd} [pathName]{.arg}
+[::ctext::deleteHighlightClass]{.cmd} [pathName]{.arg} [class]{.arg}
+[::ctext::enableComments]{.cmd} [enable]{.arg}
+[::ctext::disableComments]{.cmd} [enable]{.arg}
+[pathName]{.ins} [highlight]{.sub} [startIndex]{.arg} [endIndex]{.arg}
+[pathName]{.ins} [fastdelete]{.sub} [index1]{.arg} [index2]{.optarg}
+[pathName]{.ins} [fastinsert]{.sub}
+[pathName]{.ins} [copy]{.sub}
+[pathName]{.ins} [cut]{.sub}
+[pathName]{.ins} [paste]{.sub}
+[pathName]{.ins} [append]{.sub}
+[pathName]{.ins} [configure]{.sub} [option]{.arg} [value]{.arg} [...]{.optarg}
 :::
 
 # Description
@@ -63,19 +64,17 @@ Highlighting is controlled with text widget tags, that are called highlight clas
 **::ctext::addHighlightClass** *pathName* *class* *color* *keywordlist*
 : Add a highlighting class *class* to the ctext widget *pathName*. The highlighting will be done with the color *color*. All words in the *keywordlist* will be highlighted.
 
-
-```
-	# highlight some tcl keywords
-	::ctext::addHighlightClass .t tclkeywords red [list set info interp uplevel upvar]
-```
+    ```
+    	# highlight some tcl keywords
+    	::ctext::addHighlightClass .t tclkeywords red [list set info interp uplevel upvar]
+    ```
 
 **::ctext::addHighlightClassWithOnlyCharStart** *pathName* *class* *color* *char*
 : Add a highlighting class *class* to the ctext widget *pathName*. The highlighting will be done with the color *color*. All words starting with *char* will be highlighted.
 
-
-```
-	::ctext::addHighlightClassWithOnlyCharStart .t vars blue \$
-```
+    ```
+    	::ctext::addHighlightClassWithOnlyCharStart .t vars blue \$
+    ```
 
 **::ctext::addHighlightClassForSpecialChars** *pathName* *class* *color* *charstring*
 : Add a highlighting class *class* to the ctext widget *pathName*. The highlighting will be done with the color *color*. All chars in *charstring* will be highlighted.
@@ -113,13 +112,13 @@ Each ctext widget created with the above command supports the following commands
 : Insert text without updating the highlighting. Arguments are identical to the *pathName* **insert** command inherited from the standard text widget.
 
 *pathName* **copy**
-: Call **tk_textCopy** for the ctext instance.
+: Call **tk\_textCopy** for the ctext instance.
 
 *pathName* **cut**
-: Call **tk_textCut** for the ctext instance.
+: Call **tk\_textCut** for the ctext instance.
 
 *pathName* **paste**
-: Call **tk_textPaste** for the ctext instance.
+: Call **tk\_textPaste** for the ctext instance.
 
 *pathName* **append**
 : Append the current selection to the clipboard.
@@ -130,120 +129,72 @@ Each ctext widget created with the above command supports the following commands
 
 # Widget options
 
-```
-Command-Line Switch:    -linemap
-Database Name:          
-Database Class:         
-```
-
+**-linemap**
 : Creates (-linemap 1) or deletes (-linemap 0) a line number list on the left of the widget. The default is to have a linemap displayed.
 
-
-```
-Command-Line Switch:    -linemapfg
-Database Name:          
-Database Class:         
-```
-
+**-linemapfg**
 : Changes the foreground of the linemap. The default is the same color as the main text widget.
 
-
-```
-Command-Line Switch:    -linemapbg
-Database Name:          
-Database Class:         
-```
-
+**-linemapbg**
 : Changes the background of the linemap. The default is the same color as the main text widget.
 
-
-```
-Command-Line Switch:    -linemap_select_fg
-Database Name:          
-Database Class:         
-```
-
+**-linemap\_select\_fg**
 : Changes the selected line foreground.  The default is black.
 
-
-```
-Command-Line Switch:    -linemap_select_bg
-Database Name:          
-Database Class:         
-```
-
+**-linemap\_select\_bg**
 : Changes the selected line background.  The default is yellow.
 
-
-```
-Command-Line Switch:    -linemap_mark_command
-Database Name:          
-Database Class:         
-```
-
+**-linemap\_mark\_command**
 : Calls a procedure or command with the *pathName* of the ctext window, the *type* which is either **marked** or **unmarked**, and finally the line number selected. The proc prototype is:
 
+    ```
+    proc linemark_cmd {win type line}.
+    ```
 
-```
-proc linemark_cmd {win type line}.
-```
+    See also ctext\_test\_interactive.tcl
 
-: See also ctext_test_interactive.tcl
-
-
-```
-Command-Line Switch:    -highlight
-Database Name:          
-Database Class:         
-```
-
+**-highlight**
 : Takes a boolean value which defines whether or not to highlight text which is inserted or deleted.  The default is 1.
 
-
-```
-Command-Line Switch:    -linemap_markable
-Database Name:          
-Database Class:         
-```
-
+**-linemap\_markable**
 : Takes a boolean value which specifies whether or not lines in the linemap are markable with the mouse.  The default is 1.
 
 
 # Example
 
 ```
-                        package require Tk
-                        package require ctext
+	package require Tk
+	package require ctext
 
-                        proc main {} {
-                        pack [frame .f] -fill both -expand 1
-                        pack [scrollbar .f.s -command {.f.t yview}] -side right -fill y
+	proc main {} {
+	pack [frame .f] -fill both -expand 1
+	pack [scrollbar .f.s -command {.f.t yview}] -side right -fill y
 
-                        pack [ctext .f.t -bg black -fg white -insertbackground yellow  -yscrollcommand {.f.s set}] -fill both -expand 1
+	pack [ctext .f.t -bg black -fg white -insertbackground yellow  -yscrollcommand {.f.s set}] -fill both -expand 1
 
-                        ctext::addHighlightClass .f.t widgets purple  [list ctext button label text frame toplevel  scrollbar checkbutton canvas listbox menu menubar menubutton  radiobutton scale entry message tk_chooseDir tk_getSaveFile  tk_getOpenFile tk_chooseColor tk_optionMenu]
+	ctext::addHighlightClass .f.t widgets purple  [list ctext button label text frame toplevel  scrollbar checkbutton canvas listbox menu menubar menubutton  radiobutton scale entry message tk_chooseDir tk_getSaveFile  tk_getOpenFile tk_chooseColor tk_optionMenu]
 
-                        ctext::addHighlightClass .f.t flags orange  [list -text -command -yscrollcommand  -xscrollcommand -background -foreground -fg -bg  -highlightbackground -y -x -highlightcolor -relief -width  -height -wrap -font -fill -side -outline -style -insertwidth  -textvariable -activebackground -activeforeground -insertbackground  -anchor -orient -troughcolor -nonewline -expand -type -message  -title -offset -in -after -yscroll -xscroll -forward -regexp -count  -exact -padx -ipadx -filetypes -all -from -to -label -value -variable  -regexp -backwards -forwards -bd -pady -ipady -state -row -column  -cursor -highlightcolors -linemap -menu -tearoff -displayof -cursor  -underline -tags -tag]
+	ctext::addHighlightClass .f.t flags orange  [list -text -command -yscrollcommand  -xscrollcommand -background -foreground -fg -bg  -highlightbackground -y -x -highlightcolor -relief -width  -height -wrap -font -fill -side -outline -style -insertwidth  -textvariable -activebackground -activeforeground -insertbackground  -anchor -orient -troughcolor -nonewline -expand -type -message  -title -offset -in -after -yscroll -xscroll -forward -regexp -count  -exact -padx -ipadx -filetypes -all -from -to -label -value -variable  -regexp -backwards -forwards -bd -pady -ipady -state -row -column  -cursor -highlightcolors -linemap -menu -tearoff -displayof -cursor  -underline -tags -tag]
 
-                        ctext::addHighlightClass .f.t stackControl red  {proc uplevel namespace while for foreach if else}
-                        ctext::addHighlightClassWithOnlyCharStart .f.t vars mediumspringgreen "\$"
-                        ctext::addHighlightClass .f.t variable_funcs gold {set global variable unset}
-                        ctext::addHighlightClassForSpecialChars .f.t brackets green {[]{}}
-                        ctext::addHighlightClassForRegexp .f.t paths lightblue {\.[a-zA-Z0-9\_\-]+}
-                        ctext::addHighlightClassForRegexp .f.t comments khaki {#[^\n\r]*}
-                        .f.t fastinsert end [info body main]
+	ctext::addHighlightClass .f.t stackControl red  {proc uplevel namespace while for foreach if else}
+	ctext::addHighlightClassWithOnlyCharStart .f.t vars mediumspringgreen "\$"
+	ctext::addHighlightClass .f.t variable_funcs gold {set global variable unset}
+	ctext::addHighlightClassForSpecialChars .f.t brackets green {[]{}}
+	ctext::addHighlightClassForRegexp .f.t paths lightblue {\.[a-zA-Z0-9\_\-]+}
+	ctext::addHighlightClassForRegexp .f.t comments khaki {#[^\n\r]*}
+	.f.t fastinsert end [info body main]
 
-                        pack [frame .f1] -fill x
+	pack [frame .f1] -fill x
 
-                        .f.t highlight 1.0 end
+	.f.t highlight 1.0 end
 
-                        pack [button .f1.exit -text Exit -command exit] -side left
+	pack [button .f1.exit -text Exit -command exit] -side left
 
-                        pack [entry .e] -side bottom -fill x
-                        .e insert end "ctext::deleteHighlightClass .f.t "
-                        bind .e <Return> {eval [.e get]}
-                        }
-                        main
+	pack [entry .e] -side bottom -fill x
+	.e insert end "ctext::deleteHighlightClass .f.t "
+	bind .e <Return> {eval [.e get]}
+	}
+	main
 ```
 
 Further examples are in the source package for ctext.

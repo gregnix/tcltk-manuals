@@ -1,5 +1,6 @@
 ---
 CommandName: lambda
+title: lambda
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -19,20 +20,20 @@ Copyright:
  - Copyright (c) 2011 Andreas Kupries, BSD licensed
 ---
 
-# NAME
+# Name
 
 lambda – Hilfskommandos für anonyme Prozeduren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [lambda]{.lit} [1.1]{.optlit} 
-[::lambda]{.cmd} [arguments]{.arg} [body]{.arg} [arg]{.optdot} 
-[::lambda@]{.cmd} [namespace]{.arg} [arguments]{.arg} [body]{.arg} [arg]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [lambda]{.lit} [1.1]{.optlit}
+[::lambda]{.cmd} [arguments]{.arg} [body]{.arg} [arg]{.optdot}
+[::lambda@]{.cmd} [namespace]{.arg} [arguments]{.arg} [body]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket bietet zwei Komfortbefehle, die die Erstellung anonymer Befehle, d. h. Lambda-Ausdrücke, **proc**-like. Anstatt beispielsweise zu schreiben
 
@@ -71,13 +72,17 @@ Lambdas sind besonders nützlich für Befehle, die die Option **-command** akzep
 # API
 
 **::lambda** *arguments* *body* ?*arg ...*?
-: Gibt einen anonymen Befehl zurück, der auf der Liste *arguments*, dem Skript *body* und etwaigen (optionalen) vordefinierten Argumentwerten *arg ...* basiert. Bei der Ausführung wird der *body* in einem neuen Bereich der Prozedur direkt unterhalb des globalen Bereichs ausgeführt, wobei die Argumente auf die Werte gesetzt werden, die sowohl bei der Erstellung (alle *arg ...*-Argumente) als auch zum Zeitpunkt der Ausführung übergeben wurden.
+: Gibt einen anonymen Befehl zurück, der auf der Liste *arguments*, dem Skript *body* und etwaigen (optionalen) vordefinierten Argumentwerten *arg ...* basiert.
+
+    Bei der Ausführung wird der *body* in einem neuen Bereich der Prozedur direkt unterhalb des globalen Bereichs ausgeführt, wobei die Argumente auf die Werte gesetzt werden, die sowohl bei der Erstellung (alle *arg ...*-Argumente) als auch zum Zeitpunkt der Ausführung übergeben wurden.
 
 **::lambda@** *namespace* *arguments* *body* ?*arg ...*?
-: Gibt einen anonymen Befehl im Namespace *namespace* zurück, der auf der Liste *arguments*, dem Skript *body* und etwaigen (optionalen) vordefinierten Argumentwerten *arg ...* basiert. Bei der Ausführung wird der *body* in einem neuen Prozedurbereich im Namespace *namespace* ausgeführt, wobei die Argumente auf die Werte gesetzt werden, die sowohl bei der Erstellung (alle *arg ...*-Argumente) als auch zum Zeitpunkt der Ausführung übergeben wurden.
+: Gibt einen anonymen Befehl im Namespace *namespace* zurück, der auf der Liste *arguments*, dem Skript *body* und etwaigen (optionalen) vordefinierten Argumentwerten *arg ...* basiert.
+
+    Bei der Ausführung wird der *body* in einem neuen Prozedurbereich im Namespace *namespace* ausgeführt, wobei die Argumente auf die Werte gesetzt werden, die sowohl bei der Erstellung (alle *arg ...*-Argumente) als auch zum Zeitpunkt der Ausführung übergeben wurden.
 
 
-# BEISPIELE
+# Beispiele
 
 ## Partielle Funktionsanwendung
 
@@ -91,11 +96,11 @@ puts "[{*}$add5 92] [{*}$add5 17]"
 97 22
 ```
 
-Mit dem Befehl **make_adder** wurde ein anonymer Befehl, d. h. ein Lambda, erstellt, der anschließend der Variable **add5** zugewiesen wurde. Um eine Variable als Befehl aufzurufen, muss ihr der Expansionsoperator **{\*}** („Splat“) vorangestellt werden. Beachten Sie, dass diese Aufrufe nur *ein* Argument benötigen; das erste Argument wurde bei der Erstellung des Lambda festgelegt.
+Mit dem Befehl **make\_adder** wurde ein anonymer Befehl, d. h. ein Lambda, erstellt, der anschließend der Variable **add5** zugewiesen wurde. Um eine Variable als Befehl aufzurufen, muss ihr der Expansionsoperator **{\*}** („Splat“) vorangestellt werden. Beachten Sie, dass diese Aufrufe nur *ein* Argument benötigen; das erste Argument wurde bei der Erstellung des Lambda festgelegt.
 
 ## Verwendung von „regusb“ mit „lambda“
 
-Dieses Beispiel zeigt, wie Sie ein Lambda mit der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html)] verwenden.
+Dieses Beispiel zeigt, wie Sie ein Lambda mit der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html) verwenden.
 
 ```
 # Simple URL-decoding: + → space; %XX → char
@@ -110,11 +115,11 @@ puts $url
 www.tcl-lang.org/Set or $ usage?
 ```
 
-Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html)] der Befehl selbst *hinter* der zu suchenden Zeichenfolge steht (an der Position des Arguments *subSpec*).
+Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html) der Befehl selbst *hinter* der zu suchenden Zeichenfolge steht (an der Position des Arguments *subSpec*).
 
 ## Verwendung von „lsort“ mit Lambda
 
-Dieses Beispiel zeigt, wie Sie mithilfe von Lambda-Ausdrücken Objekte sortieren, indem Sie die Option **-command** des integrierten Befehls [lsort](https://www.tcl-lang.org/man/tcl/TclCmd/lsort.html)] verwenden.
+Dieses Beispiel zeigt, wie Sie mithilfe von Lambda-Ausdrücken Objekte sortieren, indem Sie die Option **-command** des integrierten Befehls [lsort](https://www.tcl-lang.org/man/tcl/TclCmd/lsort.html) verwenden.
 
 Zunächst eine minimale Definition einer Klasse **Id**, deren Objekte sortiert werden sollen.
 
@@ -162,13 +167,13 @@ Name,Id order:      1'Bill' 3'Jane' 5'Nell' 4'Sam'
 Id desc,Name order: 5'Nell' 4'Sam' 3'Jane' 1'Bill'
 ```
 
-Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [lsort](https://www.tcl-lang.org/man/tcl/TclCmd/lsort.html)] der Befehl selbst *vor* der zu sortierenden Liste steht.
+Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [lsort](https://www.tcl-lang.org/man/tcl/TclCmd/lsort.html) der Befehl selbst *vor* der zu sortierenden Liste steht.
 
-# AUTOREN
+# Autoren
 
 Andreas Kupries
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *lambda* als Kategorie an.
 
@@ -176,11 +181,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Hilfsprogramme
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2011 Andreas Kupries, BSD licensed

@@ -1,5 +1,6 @@
 ---
 CommandName: lmap
+title: lmap
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -37,28 +38,28 @@ Copyright:
  - Copyright (c) 2012 Trevor Davel
 ---
 
-# NAME
+# Name
 
 lmap - Iteriert über alle Elemente einer oder mehrerer Listen und sammelt Ergebnisse
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lmap]{.cmd} [varname]{.arg} [list]{.arg} [body]{.arg} 
-[lmap]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg} 
+[lmap]{.cmd} [varname]{.arg} [list]{.arg} [body]{.arg}
+[lmap]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **lmap** implementiert eine Schleife, in der die Schleifenvariable(n) Werte aus einer oder mehreren Listen annehmen und die Schleife eine Liste der bei jeder Iteration gesammelten Ergebnisse zurückgibt.
 
-Im einfachsten Fall gibt es eine Schleifenvariable *varname* und eine Liste *list* mit Werten, die *varname* zugewiesen werden. Das Argument *body* ist ein Tcl-Skript. Für jedes Element von *list* (in Reihenfolge von erstem zu letztem) weist **lmap** den Inhalt des Elements *varname* zu, als ob **lindex** zum Extrahieren verwendet worden wäre, und ruft dann den Tcl-Interpreter auf, um *body* auszuführen. Schließt die Ausführung von *body* normal ab, wird das Ergebnis von *body* an eine Akkumulatorliste angehängt. **lmap** gibt die Akkumulatorliste zurück.
+Im einfachsten Fall gibt es eine Schleifenvariable *varname* und eine Liste *list* mit Werten, die *varname* zugewiesen werden. Das Argument *body* ist ein Tcl-Skript. Für jedes Element von *list* (in Reihenfolge von erstem zu letztem) weist **lmap** den Inhalt des Elements *varname* zu, als ob [lindex] zum Extrahieren verwendet worden wäre, und ruft dann den Tcl-Interpreter auf, um *body* auszuführen. Schließt die Ausführung von *body* normal ab, wird das Ergebnis von *body* an eine Akkumulatorliste angehängt. **lmap** gibt die Akkumulatorliste zurück.
 
 Im allgemeinen Fall kann es mehr als eine Werteliste geben (z. B. *list1* und *list2*), und jeder Werteliste kann eine Liste von Schleifenvariablen zugeordnet sein (z. B. *varlist1* und *varlist2*). In jeder Iteration werden den Variablen jeder *varlist* aufeinanderfolgende Werte aus der zugehörigen *list* zugewiesen. Werte in jeder *list* werden in Reihenfolge von erstem zu letztem verwendet, und jeder Wert genau einmal. Die Gesamtzahl der Schleifeniterationen ist groß genug, um alle Werte aus allen Wertelisten aufzubrauchen. Enthält eine Werteliste nicht genug Elemente für alle ihre Schleifenvariablen in einer Iteration, werden leere Werte für die fehlenden Elemente verwendet.
 
-**break** und **continue** können innerhalb von *body* aufgerufen werden, mit derselben Wirkung wie bei **for** und **foreach**. In diesen Fällen schließt *body* nicht normal ab, und das Ergebnis wird nicht an die Akkumulatorliste angehängt.
+[break] und [continue] können innerhalb von *body* aufgerufen werden, mit derselben Wirkung wie bei [for] und [foreach]. In diesen Fällen schließt *body* nicht normal ab, und das Ergebnis wird nicht an die Akkumulatorliste angehängt.
 
-# BEISPIELE
+# Beispiele
 
 Listen zusammenführen:
 
@@ -90,3 +91,10 @@ set prefix [lmap x $values {expr {
 }}]
 # Der Wert von prefix ist "8 7 6 5 4"
 ```
+
+
+[break]: break.md
+[continue]: continue.md
+[for]: for.md
+[foreach]: foreach.md
+[lindex]: lindex.md

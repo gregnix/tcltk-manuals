@@ -1,5 +1,6 @@
 ---
 CommandName: hook
+title: hook
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -27,13 +28,13 @@ hook - Hooks
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [hook]{.lit} [0.3]{.optlit} 
-[hook]{.cmd} [bind]{.sub} [subject]{.optarg} [hook]{.optarg} [observer]{.optarg} [cmdPrefix]{.optarg} 
-[hook]{.cmd} [call]{.sub} [subject]{.arg} [hook]{.arg} [args]{.optdot} 
-[hook]{.cmd} [forget]{.sub} [object]{.arg} 
-[hook]{.cmd} [cget]{.sub} [option]{.arg} 
-[hook]{.cmd} [configure]{.sub} [option]{.lit} [value]{.arg} ... 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [hook]{.lit} [0.3]{.optlit}
+[hook]{.cmd} [bind]{.lit} [subject]{.optarg} [hook]{.optarg} [observer]{.optarg} [cmdPrefix]{.optarg}
+[hook]{.cmd} [call]{.lit} [subject]{.arg} [hook]{.arg} [args...]{.optarg}
+[hook]{.cmd} [forget]{.lit} [object]{.arg}
+[hook]{.cmd} [cget]{.lit} [option]{.arg}
+[hook]{.cmd} [configure]{.lit} [option]{.lit} [value]{.arg} ...
 :::
 
 # Description
@@ -54,17 +55,13 @@ Loose coupling between sender and receiver is often desirable, however.  In Mode
 
 The **hook** command manages a collection of hook bindings. A hook binding has four elements:
 
-**\[1\]**
-: A *subject*: the name of the entity that will be calling the hook.
+1. A *subject*: the name of the entity that will be calling the hook.
 
-**\[2\]**
-: The *hook* itself. A hook usually reflects some occurrence in the life of the *subject* that other entities might care to know about. A *hook* has a name, and may also have arguments. Hook names are arbitrary strings. Each *subject* must document the names and arguments of the hooks it can call.
+2. The *hook* itself. A hook usually reflects some occurrence in the life of the *subject* that other entities might care to know about. A *hook* has a name, and may also have arguments. Hook names are arbitrary strings. Each *subject* must document the names and arguments of the hooks it can call.
 
-**\[3\]**
-: The name of the *observer* that wishes to receive the *hook* from the *subject*.
+3. The name of the *observer* that wishes to receive the *hook* from the *subject*.
 
-**\[4\]**
-: A command prefix to which the *hook* arguments will be appended when the binding is executed.
+4. A command prefix to which the *hook* arguments will be appended when the binding is executed.
 
 
 ## Subjects and observers
@@ -82,94 +79,92 @@ Because object names are arbitrary strings, application code can use whatever ad
 Hook provides the following commands:
 
 **hook** **bind** ?*subject*? ?*hook*? ?*observer*? ?*cmdPrefix*?
-: This subcommand is used to create, update, delete, and query hook bindings. Called with no arguments it returns a list of the subjects with hooks to which observers are currently bound. Called with one argument, a *subject*, it returns a list of the subject's hooks to which observers are currently bound. Called with two arguments, a *subject* and a *hook*, it returns a list of the observers which are currently bound to this *subject* and *hook*. Called with three arguments, a *subject*, a *hook*, and an *observer*, it returns the binding proper, the command prefix to be called when the hook is called, or the empty string if there is no such binding. Called with four arguments, it creates, updates, or deletes a binding. If *cmdPrefix* is the empty string, it deletes any existing binding for the *subject*, *hook*, and *observer*; nothing is returned. Otherwise, *cmdPrefix* must be a command prefix taking as many additional arguments as are documented for the *subject* and *hook*. The binding is added or updated, and the observer is returned. If the *observer* is the empty string, "", it will create a new binding using an automatically generated observer name of the form **::hook::ob**<**number**>. The automatically generated name will be returned, and can be used to query, update, and delete the binding as usual. If automated observer names are always used, the observer name effectively becomes a unique binding ID. It is possible to call **hook bind** to create or delete a binding to a *subject* and *hook* while in an observer binding for that same *subject* and *hook*. The following rules determine what happens when
+: This subcommand is used to create, update, delete, and query hook bindings.
+
+    Called with no arguments it returns a list of the subjects with hooks to which observers are currently bound.
+
+    Called with one argument, a *subject*, it returns a list of the subject's hooks to which observers are currently bound.
+
+    Called with two arguments, a *subject* and a *hook*, it returns a list of the observers which are currently bound to this *subject* and *hook*.
+
+    Called with three arguments, a *subject*, a *hook*, and an *observer*, it returns the binding proper, the command prefix to be called when the hook is called, or the empty string if there is no such binding.
+
+    Called with four arguments, it creates, updates, or deletes a binding. If *cmdPrefix* is the empty string, it deletes any existing binding for the *subject*, *hook*, and *observer*; nothing is returned. Otherwise, *cmdPrefix* must be a command prefix taking as many additional arguments as are documented for the *subject* and *hook*. The binding is added or updated, and the observer is returned.
+
+    If the *observer* is the empty string, "", it will create a new binding using an automatically generated observer name of the form **::hook::ob**<**number**>. The automatically generated name will be returned, and can be used to query, update, and delete the binding as usual. If automated observer names are always used, the observer name effectively becomes a unique binding ID.
+
+    It is possible to call **hook bind** to create or delete a binding to a *subject* and *hook* while in an observer binding for that same *subject* and *hook*. The following rules determine what happens when
+
+    ```
+        hook bind $s $h $o $binding
+    ```
+
+    is called during the execution of
+
+    ```
+        hook call $s $h
+    ```
+
+    1. No binding is ever called after it is deleted.
+
+    2. When a binding is called, the most recently given command prefix is always used.
+
+    3. The set of observers whose bindings are to be called is determined when this method begins to execute, and does not change thereafter, except that deleted bindings are not called.
 
 
-```
-    hook bind $s $h $o $binding
-```
+    In particular:
 
-: is called during the execution of
+    1. If **$o**s binding to **$s** and **$h** is deleted, and **$o**s binding has not yet been called during this execution of
 
+        ```
+            hook call $s $h
+        ```
 
-```
-    hook call $s $h
-```
+    2. it will not be called. (Note that it might already have been called; and in all likelihood, it is probably deleting itself.)
 
-**\[1\]**
-: No binding is ever called after it is deleted.
+    3. If **$o** changes the command prefix that's bound to **$s** and **$h**, and if **$o**s binding has not yet been called during this execution of
 
-**\[2\]**
-: When a binding is called, the most recently given command prefix is always used.
+        ```
+            hook call $s $h
+        ```
 
-**\[3\]**
-: The set of observers whose bindings are to be called is determined when this method begins to execute, and does not change thereafter, except that deleted bindings are not called.
+    4. the new binding will be called when the time comes. (But again, it is probably **$o**s binding that is is making the change.)
 
+    5. If a new observer is bound to **$s** and **$h**, its binding will not be called until the next invocation of
 
-: In particular:
+        ```
+            hook call $s $h
+        ```
 
-
-**\[1\]**
-: If **\$o**s binding to **\$s** and **\$h** is deleted, and **\$o**s binding has not yet been called during this execution of
-
-
-```
-    hook call $s $h
-```
-
-: it will not be called. (Note that it might already have been called; and in all likelihood, it is probably deleting itself.)
-
-**\[2\]**
-: If **\$o** changes the command prefix that's bound to **\$s** and **\$h**, and if **\$o**s binding has not yet been called during this execution of
-
-
-```
-    hook call $s $h
-```
-
-: the new binding will be called when the time comes. (But again, it is probably **\$o**s binding that is is making the change.)
-
-**\[3\]**
-: If a new observer is bound to **\$s** and **\$h**, its binding will not be called until the next invocation of
-
-
-```
-    hook call $s $h
-```
 
 **hook** **call** *subject* *hook* ?*args*...?
-: This command is called when the named *subject* wishes to call the named *hook*. All relevant bindings are called with the specified arguments in the global namespace. Note that the bindings are called synchronously, before the command returns; this allows the *args* to include references to entities that will be cleaned up as soon as the hook has been called. The order in which the bindings are called is not guaranteed. If sequence among observers must be preserved, define one observer and have its bindings call the other callbacks directly in the proper sequence. Because the **hook** mechanism is intended to support loose coupling, it is presumed that the *subject* has no knowledge of the observers, nor any expectation regarding return values. This has a number of implications:
+: This command is called when the named *subject* wishes to call the named *hook*. All relevant bindings are called with the specified arguments in the global namespace. Note that the bindings are called synchronously, before the command returns; this allows the *args* to include references to entities that will be cleaned up as soon as the hook has been called.
+
+    The order in which the bindings are called is not guaranteed. If sequence among observers must be preserved, define one observer and have its bindings call the other callbacks directly in the proper sequence.
+
+    Because the **hook** mechanism is intended to support loose coupling, it is presumed that the *subject* has no knowledge of the observers, nor any expectation regarding return values. This has a number of implications:
+
+    1. **hook call** returns the empty string.
+
+    2. Normal return values from observer bindings are ignored.
+
+    3. Errors and other exceptional returns propagate normally by default. This will rarely be what is wanted, because the subjects usually have no knowledge of the observers and will therefore have no particular competence at handling their errors. That makes it an application issue, and so applications will usually want to define an **-errorcommand**.
 
 
-**\[1\]**
-: **hook call** returns the empty string.
-
-**\[2\]**
-: Normal return values from observer bindings are ignored.
-
-**\[3\]**
-: Errors and other exceptional returns propagate normally by default. This will rarely be what is wanted, because the subjects usually have no knowledge of the observers and will therefore have no particular competence at handling their errors. That makes it an application issue, and so applications will usually want to define an **-errorcommand**.
-
-
-: If the **-errorcommand** configuration option has a non-empty value, its value will be invoked for all errors and other exceptional returns in observer bindings. See **hook configure**, below, for more information on configuration options.
-
+    If the **-errorcommand** configuration option has a non-empty value, its value will be invoked for all errors and other exceptional returns in observer bindings. See **hook configure**, below, for more information on configuration options.
 
 **hook** **forget** *object*
 : This command deletes any existing bindings in which the named *object* appears as either the *subject* or the *observer*. Bindings deleted by this method will never be called again. In particular,
 
+    1. If an observer is forgotten during a call to **hook call**, any uncalled binding it might have had to the relevant subject and hook will *not* be called subsequently.
 
-**\[1\]**
-: If an observer is forgotten during a call to **hook call**, any uncalled binding it might have had to the relevant subject and hook will *not* be called subsequently.
+    2. If a subject **$s** is forgotten during a call to
 
-**\[2\]**
-: If a subject **\$s** is forgotten during a call to
+        ```
+        hook call $s $h
+        ```
 
-
-```
-hook call $s $h
-```
-
-: then **hook call** will return as soon as the current binding returns.  No further bindings will be called.
+    3. then **hook call** will return as soon as the current binding returns.  No further bindings will be called.
 
 
 **hook** **cget** *option*
@@ -178,53 +173,43 @@ hook call $s $h
 **hook** **configure** **option** *value* ...
 : This command sets the value of one or more of the **hook** command's configuration options:
 
+    **-errorcommand** *cmdPrefix*
+    : If the value of this option is the empty string, "", then errors and other exception returns in binding scripts are propagated normally. Otherwise, it must be a command prefix taking three additional arguments:
 
-**-errorcommand** *cmdPrefix*
-: If the value of this option is the empty string, "", then errors and other exception returns in binding scripts are propagated normally. Otherwise, it must be a command prefix taking three additional arguments:
+        1. a 4-element list {subject hook arglist observer},
 
+        2. the result string, and
 
-**\[1\]**
-: a 4-element list {subject hook arglist observer},
-
-**\[2\]**
-: the result string, and
-
-**\[3\]**
-: the return options dictionary.
+        3. the return options dictionary.
 
 
-: Given this information, the **-errorcommand** can choose to log the error, call **interp bgerror**, delete the errant binding (thus preventing the error from arising a second time) and so forth.
+        Given this information, the **-errorcommand** can choose to log the error, call **interp bgerror**, delete the errant binding (thus preventing the error from arising a second time) and so forth.
+
+    **-tracecommand** *cmdPrefix*
+    : The option's value should be a command prefix taking four arguments:
+
+        1. a *subject*,
+
+        2. a *hook*,
+
+        3. a list of the hook's argument values, and
+
+        4. a list of *objects* the hook was called for.
 
 
-**-tracecommand** *cmdPrefix*
-: The option's value should be a command prefix taking four arguments:
+        The command will be called for each hook that is called. This allows the application to trace hook execution for debugging purposes.
 
-
-**\[1\]**
-: a *subject*,
-
-**\[2\]**
-: a *hook*,
-
-**\[3\]**
-: a list of the hook's argument values, and
-
-**\[4\]**
-: a list of *objects* the hook was called for.
-
-
-: The command will be called for each hook that is called. This allows the application to trace hook execution for debugging purposes.
 
 
 # Example
 
-The **::model** module calls the \<Update> hook in response to commands that change the model's data:
+The **::model** module calls the <Update> hook in response to commands that change the model's data:
 
 ```
      hook call ::model <Update>
 ```
 
-The **.view** megawidget displays the model state, and needs to know about model updates. Consequently, it subscribes to the ::model's \<Update> hook.
+The **.view** megawidget displays the model state, and needs to know about model updates. Consequently, it subscribes to the ::model's <Update> hook.
 
 ```
      hook bind ::model <Update> .view [list .view ModelUpdate]

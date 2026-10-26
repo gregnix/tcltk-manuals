@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_lang_cmdref
+title: docidx_lang_cmdref
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -21,22 +22,22 @@ Copyright:
 
 # Name
 
-docidx_lang_cmdref - docidx language command reference
+docidx\_lang\_cmdref - docidx language command reference
 
 # Synopsis
 
 ::: {.synopsis} :::
-[comment]{.cmd} [plaintext]{.arg} 
-[include]{.cmd} [filename]{.arg} 
-[index_begin]{.cmd} [text]{.arg} [title]{.arg} 
-[index_end]{.cmd} 
-[key]{.cmd} [text]{.arg} 
-[lb]{.cmd} 
-[manpage]{.cmd} [file]{.arg} [text]{.arg} 
-[rb]{.cmd} 
-[url]{.cmd} [url]{.arg} [label]{.arg} 
-[vset]{.cmd} [varname]{.arg} [value]{.arg} 
-[vset]{.cmd} [varname]{.arg} 
+[comment]{.cmd} [plaintext]{.arg}
+[include]{.cmd} [filename]{.arg}
+[index\_begin]{.cmd} [text]{.arg} [title]{.arg}
+[index\_end]{.cmd}
+[key]{.cmd} [text]{.arg}
+[lb]{.cmd}
+[manpage]{.cmd} [file]{.arg} [text]{.arg}
+[rb]{.cmd}
+[url]{.cmd} [url]{.arg} [label]{.arg}
+[vset]{.cmd} [varname]{.arg} [value]{.arg}
+[vset]{.cmd} [varname]{.arg}
 :::
 
 # Description
@@ -51,10 +52,12 @@ This document specifies both names and syntax of all the commands which together
 **include** *filename*
 : Templating. The contents of the named file are interpreted as text written in the docidx markup and processed in the place of the include command. The markup in the file has to be self-contained. It is not possible for a markup command to cross the file boundaries.
 
-**index_begin** *text* *title*
-: Document structure. The command to start an index. The arguments are a label for the whole group of documents the index refers to (*text*) and the overall title text for the index (*title*), without markup. The label often is the name of the package (or extension) the documents belong to.
+**index\_begin** *text* *title*
+: Document structure. The command to start an index. The arguments are a label for the whole group of documents the index refers to (*text*) and the overall title text for the index (*title*), without markup.
 
-**index_end**
+    The label often is the name of the package (or extension) the documents belong to.
+
+**index\_end**
 : Document structure. Command to end an index. Anything in the document coming after this command is in error.
 
 **key** *text*
@@ -64,7 +67,9 @@ This document specifies both names and syntax of all the commands which together
 : Text. The command is replaced with a left bracket. Use in free-form text. Required to avoid interpretation of a left bracket as the start of a markup command. Its usage is restricted to the arguments of other markup commands.
 
 **manpage** *file* *text*
-: Index structure. This command adds an element to the index which refers to a document. The document is specified through the symbolic name *file*. The *text* argument is used to label the reference. Symbolic names are used to preserve the convertibility of this format to any output format. The actual name of the file will be inserted by the chosen formatting engine when converting the input. This will be based on a mapping from symbolic to actual names given to the engine.
+: Index structure. This command adds an element to the index which refers to a document. The document is specified through the symbolic name *file*. The *text* argument is used to label the reference.
+
+    Symbolic names are used to preserve the convertibility of this format to any output format. The actual name of the file will be inserted by the chosen formatting engine when converting the input. This will be based on a mapping from symbolic to actual names given to the engine.
 
 **rb**
 : Text. The command is replaced with a right bracket. Use in free-form text. Required to avoid interpretation of a right bracket as the end of a markup command. Its usage is restricted to the arguments of other commands.

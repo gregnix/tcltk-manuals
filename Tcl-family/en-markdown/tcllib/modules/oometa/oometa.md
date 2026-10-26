@@ -1,5 +1,6 @@
 ---
 CommandName: oometa
+title: oometa
 ManualSection: n
 Version: 0.7.2
 TclPart: tcllib
@@ -18,18 +19,18 @@ oometa - oo::meta A data registry for classess
 # Synopsis
 
 ::: {.synopsis} :::
-[oo::meta::info]{.cmd} 
-[oo::meta::info]{.cmd} [branchget]{.sub} [key]{.optarg} [...]{.optdot} 
-[oo::meta::info]{.cmd} [branchset]{.sub} [key]{.optdot} [key]{.arg} [value]{.arg} 
-[oo::meta::info]{.cmd} [dump]{.sub} [class]{.arg} 
-[oo::meta::info]{.cmd} [class]{.arg} [is]{.lit} [type]{.arg} [args]{.optarg} 
-[oo::meta::info]{.cmd} [class]{.arg} [merge]{.lit} [dict]{.optarg} [dict]{.optarg} [...]{.optdot} 
-[oo::meta::info]{.cmd} [class]{.arg} [rebuild]{.lit} 
-[oo::meta::metadata]{.cmd} [class]{.arg} 
-[oo::define]{.cmd} [meta]{.sub} 
-[oo::class]{.cmd} [method]{.sub} [meta]{.lit} 
-[oo::object]{.cmd} [method]{.sub} [meta]{.lit} 
-[oo::object]{.cmd} [method]{.sub} [meta]{.lit} [cget]{.lit} [field]{.optarg} [...]{.optdot} [field]{.arg} 
+[oo::meta::info]{.cmd}
+[oo::meta::info]{.cmd} [branchget]{.sub} [key]{.optarg} [...]{.optarg}
+[oo::meta::info]{.cmd} [branchset]{.sub} [key...]{.optarg} [key]{.arg} [value]{.arg}
+[oo::meta::info]{.cmd} [dump]{.sub} [class]{.arg}
+[oo::meta::info]{.cmd} [class]{.arg} [is]{.lit} [type]{.arg} [args]{.optarg}
+[oo::meta::info]{.cmd} [class]{.arg} [merge]{.lit} [dict]{.optarg} [dict]{.optarg} [...]{.optarg}
+[oo::meta::info]{.cmd} [class]{.arg} [rebuild]{.lit}
+[oo::meta::metadata]{.cmd} [class]{.arg}
+[oo::define]{.cmd} [meta]{.sub}
+[oo::class]{.cmd} [method]{.sub} [meta]{.lit}
+[oo::object]{.cmd} [method]{.sub} [meta]{.lit}
+[oo::object]{.cmd} [method]{.sub} [meta]{.lit} [cget]{.lit} [field]{.optarg} [...]{.optarg} [field]{.arg}
 :::
 
 # Description
@@ -82,24 +83,22 @@ The concept behind **oo::meta** is that each class contributes a snippet of *loc
 **oo::meta::info branchget** ?*key*? ?...?
 : Returns a dict representation of the element at *args*, but with any trailing : removed from field names.
 
-
-```
-::oo::meta::info $myclass set option color {default: green widget: colorselect}
-puts [::oo::meta::info $myclass get option color]
-> {default: green widget: color}
-puts [::oo::meta::info $myclass branchget option color]
-> {default green widget color}
-```
+    ```
+    ::oo::meta::info $myclass set option color {default: green widget: colorselect}
+    puts [::oo::meta::info $myclass get option color]
+    > {default: green widget: color}
+    puts [::oo::meta::info $myclass branchget option color]
+    > {default green widget color}
+    ```
 
 **oo::meta::info branchset** ?*key...*? *key* *value*
 : Merges *dict* with any other information contaned at node ?*key...*?, and adding a trailing : to all field names.
 
-
-```
-::oo::meta::info $myclass branchset option color {default green widget colorselect}
-puts [::oo::meta::info $myclass get option color]
-> {default: green widget: color}
-```
+    ```
+    ::oo::meta::info $myclass branchset option color {default green widget colorselect}
+    puts [::oo::meta::info $myclass get option color]
+    > {default: green widget: color}
+    ```
 
 **oo::meta::info dump** *class*
 : Returns the complete snapshot of a class metadata, as producted by **oo::meta::metadata**
@@ -107,12 +106,11 @@ puts [::oo::meta::info $myclass get option color]
 **oo::meta::info** *class* **is** *type* ?*args*?
 : Returns a boolean true or false if the element ?*args*? would match **string is** *type* *value*
 
-
-```
-::oo::meta::info $myclass set constant mammal 1
-puts [::oo::meta::info $myclass is true constant mammal]
-> 1
-```
+    ```
+    ::oo::meta::info $myclass set constant mammal 1
+    puts [::oo::meta::info $myclass is true constant mammal]
+    > 1
+    ```
 
 **oo::meta::info** *class* **merge** ?*dict*? ?*dict*? ?*...*?
 : Combines all of the arguments into a single dict, which is then stored as the new local representation for this class.
@@ -126,12 +124,11 @@ puts [::oo::meta::info $myclass is true constant mammal]
 **oo::define meta**
 : The package injects a command **oo::define::meta** which works to provide a class in the process of definition access to **oo::meta::info**, but without having to look the name up.
 
-
-```
-oo::define myclass {
-  meta set foo bar: baz
-}
-```
+    ```
+    oo::define myclass {
+      meta set foo bar: baz
+    }
+    ```
 
 **oo::class method meta**
 : The package injects a new method **meta** into **oo::class** which works to provide a class instance access to **oo::meta::info**.

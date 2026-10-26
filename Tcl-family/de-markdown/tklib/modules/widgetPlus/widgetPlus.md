@@ -1,5 +1,6 @@
 ---
 CommandName: widgetPlus
+title: widgetPlus
 ManualSection: n
 Version: 1.0
 TclPart: tklib
@@ -18,42 +19,42 @@ Links:
 Copyright:
 ---
 
-# NAME
+# Name
 
 widgetPlus – Erweiterte Widgets Entry, Spinbox und Combobox mit Undo/Redo und weiteren Funktionen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [widgetPlus]{.lit} [1.0]{.optlit} 
-[widgetPlus::entryPlus]{.cmd} [create]{.optarg} [pathName]{.arg} 
-[widgetPlus::spinboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg} 
-[widgetPlus::ttkEntryPlus]{.cmd} [create]{.optarg} [pathName]{.arg} 
-[widgetPlus::ttkSpinboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg} 
-[widgetPlus::ttkComboboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg} 
-[widgetPlus::EnableBWidget]{.cmd} 
-[pathName]{.ins} [edit]{.sub} [arg arg]{.optdot} 
-[pathName]{.ins} [edit]{.sub} [canredo]{.lit} 
-[pathName]{.ins} [edit]{.sub} [canundo]{.lit} 
-[pathName]{.ins} [edit]{.sub} [modified]{.lit} [boolean]{.optarg} 
-[pathName]{.ins} [edit]{.sub} [redo]{.lit} 
-[pathName]{.ins} [edit]{.sub} [reset]{.lit} 
-[pathName]{.ins} [edit]{.sub} [separator]{.lit} 
-[pathName]{.ins} [edit]{.sub} [undo]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [widgetPlus]{.lit} [1.0]{.optlit}
+[widgetPlus::entryPlus]{.cmd} [create]{.optarg} [pathName]{.arg}
+[widgetPlus::spinboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg}
+[widgetPlus::ttkEntryPlus]{.cmd} [create]{.optarg} [pathName]{.arg}
+[widgetPlus::ttkSpinboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg}
+[widgetPlus::ttkComboboxPlus]{.cmd} [create]{.optarg} [pathName]{.arg}
+[widgetPlus::EnableBWidget]{.cmd}
+[pathName]{.ins} [edit]{.sub} [arg arg]{.optdot}
+[pathName]{.ins} [edit]{.sub} [canredo]{.lit}
+[pathName]{.ins} [edit]{.sub} [canundo]{.lit}
+[pathName]{.ins} [edit]{.sub} [modified]{.lit} [boolean]{.optarg}
+[pathName]{.ins} [edit]{.sub} [redo]{.lit}
+[pathName]{.ins} [edit]{.sub} [reset]{.lit}
+[pathName]{.ins} [edit]{.sub} [separator]{.lit}
+[pathName]{.ins} [edit]{.sub} [undo]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket „**widgetPlus**“ erweitert die Widgets „**entry**“, **spinbox**, **ttk::entry**, **ttk::spinbox** und **ttk::combobox**.
 
-Neu sind Undo und Redo, ein Ereignis **<\<Selection>>** und für die nicht thematisierten **Tk**-Widgets die Option **-inactiveselectbackground**, dazu kleinere Korrekturen an den Bindings.  Die neuen Funktionen orientieren sich eng an denen des **text**-Widgets.
+Neu sind Undo und Redo, ein Ereignis **<<Selection>>** und für die nicht thematisierten **Tk**-Widgets die Option **-inactiveselectbackground**, dazu kleinere Korrekturen an den Bindings.  Die neuen Funktionen orientieren sich eng an denen des **text**-Widgets.
 
 Die überarbeiteten Widgets **entry**, **spinbox**, **ttk::entry**, **ttk::spinbox** sowie **ttk::combobox** werden durch die Befehle **widgetPlus::entryPlus**, **widgetPlus::spinboxPlus**, **widgetPlus::ttkEntryPlus**, **widgetPlus::ttkSpinboxPlus** bzw. **widgetPlus::ttkComboboxPlus** erstellt.
 
-Zum Beispiel ist **widgetPlus::entryPlus** ein *Snit*-**snit::widgetadaptor**, der ein **Tk**-Widget **entry** umhüllt. Seine **winfo class** ist **Entry**, und der Bindtag **EntryPlus** ersetzt den Bindtag **Entry**. Die anderen Widgets sind auf ähnliche Weise implementiert.
+Zum Beispiel ist **widgetPlus::entryPlus** ein *Snit*-**snit::widgetadaptor**, der ein **Tk**-Widget **entry** umhüllt. Seine **winfo class** ist **Entry**, und der Bindtag [entryPlus] ersetzt den Bindtag **Entry**. Die anderen Widgets sind auf ähnliche Weise implementiert.
 
 Das Paket verwendet den Namespace **::widgetPlus**, der (ausschließlich) die fünf unten definierten Befehle exportiert, die mit einem Kleinbuchstaben beginnen (**EnableBWidget** wird nicht exportiert).  Diese Befehle können in den globalen Namespace importiert werden; der Einfachheit halber wird in der Beschreibung dieses Handbuchs fortan auf die Angabe des Namespace-Qualifizierers verzichtet.
 
@@ -61,38 +62,21 @@ Das Paket verwendet den Namespace **::widgetPlus**, der (ausschließlich) die f�
 namespace import ::widgetPlus::*
 ```
 
-# WIDGET-OPTIONEN
+# Widget-Optionen
 
 Zusätzlich zu den üblichen Optionen der Widgets **entry**, **spinbox**, **ttk::entry**, **ttk::spinbox** und **ttk::combobox** bieten die Wrapper **entryPlus**, **spinboxPlus**, **ttkEntryPlus**, **ttkSpinboxPlus** und **ttkComboboxPlus** die folgenden Optionen.
 
-```
-Command-Line Switch:    -inactiveselectbackground
-Database Name:          inactiveSelectBackground
-Database Class:         Foreground
-```
-
+**-inactiveselectbackground** (**inactiveSelectBackground**/**Foreground**)
 : Farbe der Auswahl, wenn das Fenster nicht den Eingabe-**focus** hat. Ist der Wert leer, **{}**, wird ohne **focus** keine Auswahl gezeigt. Die Option **-inactiveselectbackground** wirkt nicht auf die thematisierten Widgets **ttkEntryPlus**, **ttkSpinboxPlus** und **ttkComboboxPlus**.
 
-
-```
-Command-Line Switch:    -maxundo
-Database Name:          maxUndo
-Database Class:         MaxUndo
-```
-
+**-maxundo** (**maxUndo**/**MaxUndo**)
 : Maximale Zahl zusammengesetzter Undo-Aktionen auf dem *Undo-Stapel*. Null oder ein negativer Wert bedeuten einen unbegrenzten *Undo-Stapel*.
 
-
-```
-Command-Line Switch:    -undo
-Database Name:          undo
-Database Class:         Undo
-```
-
+**-undo** (**undo**/**Undo**)
 : Ein *boolean*. Legt fest, ob der Undo-Mechanismus aktiv ist.
 
 
-# BEFEHLE
+# Befehle
 
 **widgetPlus::entryPlus** ?*create*? *pathName*
 : Erzeugt ein Widget **entryPlus** oder wandelt ein vorhandenes Widget **entry** in ein **entryPlus** um.
@@ -113,7 +97,7 @@ Database Class:         Undo
 : Erlaubt **widgetPlus**, **BWidget**-Widgets **Entry** und ihre Zusammensetzungen zu ändern, etwa die **BWidget**-**ComboBox**. Der Befehl legt den Bindtag **BwEntryPlus** an, der den voreingestellten Bindtag **BwEntry** ersetzt. Das geschieht beim Laden des Pakets nicht, weil **BWidget** vorher geladen sein muss. Der Befehl wird aus dem Namespace **::widgetPlus** nicht exportiert.
 
 
-# WIDGET-BEFEHLE
+# Widget-Befehle
 
 Zusätzlich zu den üblichen Befehlen der Widgets **entry**, **spinbox**, **ttk::entry**, **ttk::spinbox** und **ttk::combobox** bieten die Wrapper **entryPlus**, **ttkEntryPlus**, **spinboxPlus**, **ttkSpinboxPlus** und **ttkComboboxPlus**:
 
@@ -136,145 +120,119 @@ Zusätzlich zu den üblichen Befehlen der Widgets **entry**, **spinbox**, **ttk:
 : Leert den *Undo-Stapel* und den *Redo-Stapel*.
 
 *pathName* **edit separator**
-: Wird der Vollständigkeit halber aufgenommen, hat jedoch keine Auswirkung. (Anmerkung: Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird dem *Undo-Stapel* ein implizites Trennzeichen hinzugefügt.  Sie trennen damit das Eintippen oder Löschen einzelner Zeichen, außer dass *cut* und *paste* jeweils ein eigener Schritt sind.)
+: Wird der Vollständigkeit halber aufgenommen, hat jedoch keine Auswirkung.
+
+    (Anmerkung: Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird dem *Undo-Stapel* ein implizites Trennzeichen hinzugefügt.  Sie trennen damit das Eintippen oder Löschen einzelner Zeichen, außer dass *cut* und *paste* jeweils ein eigener Schritt sind.)
 
 *pathName* **edit undo**
 : Macht die letzte Änderung rückgängig, wenn **-undo** **true** ist. Eine Änderung ist ein einzelner Befehl **insert** oder **delete** auf dem *Undo-Stapel*. Ist der *Undo-Stapel* leer, entsteht ein Fehler. Ist **-undo** **false**, geschieht nichts.
 
 
-# BINDINGS
+# Bindings
 
 ## Klassenbindungen
 
 Das Klassen-Binding-Tag für verschiedene Widgets weist folgende Standardwerte auf:
 
-**•**
-: **entry** verwendet **Entry**
+- **entry** verwendet **Entry**
 
-**•**
-: **spinbox** verwendet **Spinbox**
+- **spinbox** verwendet **Spinbox**
 
-**•**
-: **ttk::entry** verwendet **TEntry**
+- **ttk::entry** verwendet **TEntry**
 
-**•**
-: **ttk::spinbox**    verwendet **TSpinbox**
+- **ttk::spinbox**    verwendet **TSpinbox**
 
-**•**
-: **ttk::combobox**   verwendet **TCombobox**
+- **ttk::combobox**   verwendet **TCombobox**
 
-**•**
-: **entryPlus** verwendet **EntryPlus**
+- [entryPlus] verwendet **EntryPlus**
 
-**•**
-: **spinboxPlus**     verwendet **SpinboxPlus**
+- [spinboxPlus]     verwendet **SpinboxPlus**
 
-**•**
-: **ttkEntryPlus**    verwendet **TEntryPlus**
+- **ttkEntryPlus**    verwendet [TEntryPlus]
 
-**•**
-: **ttkSpinboxPlus**  verwendet **TSpinboxPlus**
+- **ttkSpinboxPlus**  verwendet [TSpinboxPlus]
 
-**•**
-: **ttkComboboxPlus** verwendet **TComboboxPlus**
+- **ttkComboboxPlus** verwendet [TComboboxPlus]
 
 
 ## Rückgängig und Wiederherstellen
 
-Die virtuellen Ereignisse „**<\<Undo>>**“ und „**<\<Redo>>**“ werden diesen Tastaturereignissen zugeordnet:
+Die virtuellen Ereignisse „**<<Undo>>**“ und „**<<Redo>>**“ werden diesen Tastaturereignissen zugeordnet:
 
-**•**
-: Auf X11-Systemen (Linux®, BSD®, Solaris® usw.):
+- Auf X11-Systemen (Linux®, BSD®, Solaris® usw.):
 
-
-**•**
-: **<\<Undo>>** ist **\<Control-z>** zugeordnet
+    - **<<Undo>>** ist **<Control-z>** zugeordnet
 
 
-**•**
-: **<\<Redo>>** ist **\<Control-Shift-z>** zugeordnet
+    - **<<Redo>>** ist **<Control-Shift-z>** zugeordnet
 
 
-**•**
-: Auf Windows®-Systemen:
+- Auf Windows®-Systemen:
+
+    - **<<Undo>>** ist **<Control-z>** zugeordnet
 
 
-**•**
-: **<\<Undo>>** ist **\<Control-z>** zugeordnet
+    - **<<Redo>>** ist **<Control-y>** zugeordnet
 
 
-**•**
-: **<\<Redo>>** ist **\<Control-y>** zugeordnet
+- Auf Aqua®-Systemen (d. h. Apple® macOS® oder OS X®):
+
+    - **<<Undo>>** ist **<Command-z>** zugeordnet
 
 
-**•**
-: Auf Aqua®-Systemen (d. h. Apple® macOS® oder OS X®):
+    - **<<Redo>>** ist **<Command-Shift-z>** zugeordnet
 
 
-**•**
-: **<\<Undo>>** ist **\<Command-z>** zugeordnet
+
+## entryPlus
+
+Die [entryPlus]-Bindings basieren auf denen des Bindtags **Entry**, wobei folgende Änderungen vorgenommen wurden:
+
+- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
+
+- Eine Anpassung der Bindung **<<Paste>>**, damit diese sich unter X11 genauso verhält wie unter anderen Fenstersystemen (d. h., sie löscht die vorhandene Auswahl, sofern eine solche vorhanden ist).
+
+- Die Entfernung der veralteten Bindung „**<Insert>**“.
+
+- Neue Bindings zu **<FocusIn>** und **<FocusOut>**, um die Implementierung der Option **-inactiveselectbackground** zu erleichtern.
 
 
-**•**
-: **<\<Redo>>** ist **\<Command-Shift-z>** zugeordnet
+## spinboxPlus
+
+Die [spinboxPlus]-Bindings basieren auf denen des Bindtags **Spinbox**, wobei dieselben Änderungen vorgenommen wurden wie bei der Konvertierung von **Entry** in [entryPlus].
+
+## TEntryPlus
+
+Die [TEntryPlus]-Bindings basieren auf denen des Bindtags **TEntry**, wobei folgende Änderungen vorgenommen wurden:
+
+- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
 
 
-## Entryplus
+## TSpinboxPlus
 
-Die **EntryPlus**-Bindings basieren auf denen des Bindtags **Entry**, wobei folgende Änderungen vorgenommen wurden:
+Die [TSpinboxPlus]-Bindings basieren auf denen des Bindtags **TSpinbox**, wobei folgende Änderungen vorgenommen wurden:
 
-**•**
-: Neue Bindings zu **<\<Undo>>** und **<\<Redo>>**.
-
-**•**
-: Eine Anpassung der Bindung **<\<Paste>>**, damit diese sich unter X11 genauso verhält wie unter anderen Fenstersystemen (d. h., sie löscht die vorhandene Auswahl, sofern eine solche vorhanden ist).
-
-**•**
-: Die Entfernung der veralteten Bindung „**\<Insert>**“.
-
-**•**
-: Neue Bindings zu **\<FocusIn>** und **\<FocusOut>**, um die Implementierung der Option **-inactiveselectbackground** zu erleichtern.
+- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
 
 
-## Spinboxplus
+## TComboboxPlus
 
-Die **SpinboxPlus**-Bindings basieren auf denen des Bindtags **Spinbox**, wobei dieselben Änderungen vorgenommen wurden wie bei der Konvertierung von **Entry** in **EntryPlus**.
+Die [TComboboxPlus]-Bindings basieren auf denen des Bindtags **TCombobox**, wobei folgende Änderungen vorgenommen wurden:
 
-## Tentryplus
-
-Die **TEntryPlus**-Bindings basieren auf denen des Bindtags **TEntry**, wobei folgende Änderungen vorgenommen wurden:
-
-**•**
-: Neue Bindings zu **<\<Undo>>** und **<\<Redo>>**.
+- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
 
 
-## Tspinboxplus
+# Virtuelles Ereignis <<selection>>
 
-Die **TSpinboxPlus**-Bindings basieren auf denen des Bindtags **TSpinbox**, wobei folgende Änderungen vorgenommen wurden:
+Jedes **widgetPlus**-Widget generiert ein virtuelles Ereignis **<<Selection>>**, sobald sich der Wert seiner Auswahl ändert.  Anderer **Tcl**-Code, zum Beispiel das Paket **persistentSelection**, kann die Auswahl in diesen Widgets verfolgen.
 
-**•**
-: Neue Bindings zu **<\<Undo>>** und **<\<Redo>>**.
-
-
-## Tcomboboxplus
-
-Die **TComboboxPlus**-Bindings basieren auf denen des Bindtags **TCombobox**, wobei folgende Änderungen vorgenommen wurden:
-
-**•**
-: Neue Bindings zu **<\<Undo>>** und **<\<Redo>>**.
-
-
-# VIRTUELLES EREIGNIS <\<selection>>
-
-Jedes **widgetPlus**-Widget generiert ein virtuelles Ereignis **<\<Selection>>**, sobald sich der Wert seiner Auswahl ändert.  Anderer **Tcl**-Code, zum Beispiel das Paket **persistentSelection**, kann die Auswahl in diesen Widgets verfolgen.
-
-# VERWENDUNG MIT MEGAWIDGETS
+# Verwendung mit Megawidgets
 
 Wenn ein **entry**, **spinbox**, **ttk::entry**, **ttk::spinbox** oder **ttk::combobox** Komponente eines Megawidgets ist, ist es häufig möglich, **widgetPlus** auf diese Komponente anzuwenden, ohne den Code des Megawidgets zu ändern.
 
 ## Combobox (von Bryan Oakley)
 
-Ein **combobox** mit dem Pfad **\$w** enthält ein Widget **entry** **\$w.entry**, das den Bindtag **Entry** benutzt. **widgetPlus** lässt sich nach dem Erzeugen auf das **combobox** anwenden, mit diesem Befehl (siehe **BEISPIELE**)
+Ein **combobox** mit dem Pfad **$w** enthält ein Widget **entry** **$w.entry**, das den Bindtag **Entry** benutzt. **widgetPlus** lässt sich nach dem Erzeugen auf das **combobox** anwenden, mit diesem Befehl (siehe [Beispiele])
 
 ```
 entryPlus $w.entry -undo 1 -maxundo 0
@@ -282,38 +240,33 @@ entryPlus $w.entry -undo 1 -maxundo 0
 
 ## Combobox (BWidget)
 
-Eine **BWidget**-**ComboBox** mit dem Pfad **\$w** enthält ein Widget **entry** **\$w.e**, das statt des voreingestellten Tags **Entry** den Bindtag **BwEntry** benutzt.
+Eine **BWidget**-**ComboBox** mit dem Pfad **$w** enthält ein Widget **entry** **$w.e**, das statt des voreingestellten Tags **Entry** den Bindtag **BwEntry** benutzt.
 
-Das Paket **widgetPlus** stellt ein Ersatz-Bindtag **BwEntryPlus** bereit; berechnet wird er beim Laden des Pakets nicht, weil **BWidget** vorher geladen sein muss. **::widgetPlus::EnableBWidget** muss aufgerufen werden, damit **BwEntryPlus** existiert. Danach lässt sich die **BWidget**-**ComboBox** ändern (siehe **BEISPIELE**)
+Das Paket **widgetPlus** stellt ein Ersatz-Bindtag **BwEntryPlus** bereit; berechnet wird er beim Laden des Pakets nicht, weil **BWidget** vorher geladen sein muss. **::widgetPlus::EnableBWidget** muss aufgerufen werden, damit **BwEntryPlus** existiert. Danach lässt sich die **BWidget**-**ComboBox** ändern (siehe [Beispiele])
 
 ```
 ::widgetPlus::EnableBWidget
 entryPlus $w.e -undo 1 -maxundo 0
 ```
 
-# NOCH ZU TUN
+# Noch zu tun
 
-**•**
-: Undo und Redo gleichen das *Änderungsflag* nicht ab. Sie setzen den Wert immer auf *boolean* **true**.
+- Undo und Redo gleichen das *Änderungsflag* nicht ab. Sie setzen den Wert immer auf *boolean* **true**.
 
-**•**
-: Undo und Redo gleichen die Position des Einfügecursors nicht ab.
+- Undo und Redo gleichen die Position des Einfügecursors nicht ab.
 
-**•**
-: Das Ereignis „**<\<Modified>>**“ wird nicht generiert.
+- Das Ereignis „**<<Modified>>**“ wird nicht generiert.
 
-**•**
-: Trennzeichen für Undo und Redo und die Option **-autoseparators**, wie sie im Widget **text** zu finden sind, sind nicht implementiert. Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird ein implizites Trennzeichen hinzugefügt. Der Befehl **edit separator** hat keine Wirkung.  Die Trennzeichen-Funktionalität wäre für Widgets wie **entryPlus** weniger nützlich als für ein **text**-Widget.
+- Trennzeichen für Undo und Redo und die Option **-autoseparators**, wie sie im Widget **text** zu finden sind, sind nicht implementiert. Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird ein implizites Trennzeichen hinzugefügt. Der Befehl **edit separator** hat keine Wirkung.  Die Trennzeichen-Funktionalität wäre für Widgets wie **entryPlus** weniger nützlich als für ein **text**-Widget.
 
-**•**
-: Ein Modus *overwrite*, umgeschaltet mit **\<Insert>** auf Systemen, die nicht macOS® sind.
+- Ein Modus *overwrite*, umgeschaltet mit **<Insert>** auf Systemen, die nicht macOS® sind.
 
 
-# BUGS
+# Bugs
 
 Diese Version von **widgetPlus** bietet Kompatibilität mit allen Releases von **Tk** 8.5 und 8.6 sowie mit den Zweigen *core-8-5-branch*, *core-8-6-branch* sowie *trunk* im Quellcode-Repository für **Tk**.  Jede Inkompatibilität mit einer dieser Versionen, unabhängig vom verwendeten **Tk**-Fenstersystem, sollte als Fehler gemeldet werden. Bitte melden Sie solche Fehler in der Kategorie *widgetPlus* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist).
 
-# BEISPIELE
+# Beispiele
 
 Ein Widget **entryPlus** .ep mit unbegrenztem Undo/Redo-Stapel erzeugen und zuordnen:
 
@@ -391,6 +344,6 @@ namespace import widgetPlus::*
 entryPlus .cb.e -undo 1 -maxundo 0
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *widgetPlus* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.

@@ -1,5 +1,6 @@
 ---
 CommandName: uevent::onidle
+title: uevent::onidle
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -22,23 +23,28 @@ uevent::onidle - Request merging and deferal to idle time
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[::uevent::onidle]{.cmd} [objectName]{.arg} [commandprefix]{.arg} 
-[objectName]{.ins} [request]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[::uevent::onidle]{.cmd} [objectName]{.arg} [commandprefix]{.arg}
+[objectName]{.ins} [request]{.sub}
 :::
 
 # Description
 
 This package provides objects which can merge multiple requestes for an action and execute the action the moment the system (event loop) becomes idle. The action to be run is configured during object construction.
 
-# Api
+# API
 
 The package exports a class, **uevent::onidle**, as specified below.
 
 **::uevent::onidle** *objectName* *commandprefix*
-: The command creates a new *onidle* object with an associated global Tcl command whose name is *objectName*.  This command may be used to invoke various operations on the object. The *commandprefix* is the action to perform when the event loop is idle and the user asked for it using the method **request** (See below). The object commands created by the class commands above have the form:
+: The command creates a new *onidle* object with an associated global Tcl command whose name is *objectName*.  This command may be used to invoke various operations on the object.
+
+    The *commandprefix* is the action to perform when the event loop is idle and the user asked for it using the method **request** (See below).
+
+
+The object commands created by the class commands above have the form:
 
 *objectName* **request**
 : This method requests the execution of the command prefix specified during the construction of *objectName* the next time the event loop is idle. Multiple requests are merged and cause only one execution of the command prefix.

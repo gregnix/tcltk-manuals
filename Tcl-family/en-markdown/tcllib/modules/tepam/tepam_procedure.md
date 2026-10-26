@@ -1,5 +1,6 @@
 ---
 CommandName: tepam::procedure
+title: tepam::procedure
 ManualSection: n
 Version: 0.5.0
 TclPart: tcllib
@@ -24,9 +25,9 @@ tepam::procedure - TEPAM procedure, reference manual
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tepam]{.lit} [0.5]{.optlit} 
-[tepam::procedure]{.cmd} [name]{.arg} [attributes]{.arg} [body]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tepam]{.lit} [0.5]{.optlit}
+[tepam::procedure]{.cmd} [name]{.arg} [attributes]{.arg} [body]{.arg}
 :::
 
 # Description
@@ -42,44 +43,49 @@ An informal overview of all the TEPAM procedure declaration and calling features
 The exact meaning of several terms that are used in this document will be shortly explained to avoid any ambiguities and misunderstandings.
 
 *Subcommand*
-: The usage of subcommands is heavily used in the Tcl language. Several commands are incorporated into a single main command and are selectable via the first argument. The **string** command is an example of such a command that implements for example subcommands to check a character string length, to compare strings, to extract substrings, etc:
+: The usage of subcommands is heavily used in the Tcl language. Several commands are incorporated into a single main command and are selectable via the first argument.
 
+    The **string** command is an example of such a command that implements for example subcommands to check a character string length, to compare strings, to extract substrings, etc:
 
-```
-string length string
-string compare string string
-string range string first last
-...
-```
+    ```
+    string length string
+    string compare string string
+    string range string first last
+    ...
+    ```
 
-TEPAM provides a framework that allows implementing easily such subcommands in form of Tcl procedures. It allows not only defining a first level of subcommands, but also a higher level of subcommands. The **string** command class check could be implemented as independent sub-sub-commands of the **string** command:
+    TEPAM provides a framework that allows implementing easily such subcommands in form of Tcl procedures. It allows not only defining a first level of subcommands, but also a higher level of subcommands. The **string** command class check could be implemented as independent sub-sub-commands of the **string** command:
 
-```
-string is alnum string
-string is integer string
-string is double string
-...
-```
+    ```
+    string is alnum string
+    string is integer string
+    string is double string
+    ...
+    ```
 
 *Procedure attribute*
 : TEPAM allows attaching to a declared procedure different kind of attributes. Some of these attributes are *just* used for documentation purposes, but other attributes specify the way how the procedure has to be called. Also the procedure arguments are defined in form of a procedure attribute.
 
 *Argument*
-: TEPAM uses the term *argument* for the parameters of a procedure. The following example calls the subcommand **string compare** with several arguments:
+: TEPAM uses the term *argument* for the parameters of a procedure.
 
+    The following example calls the subcommand **string compare** with several arguments:
 
-```
-string compare -nocase -length 3 "emphasized" "emphasised"
-```
+    ```
+    string compare -nocase -length 3 "emphasized" "emphasised"
+    ```
 
-: The following paragraphs discuss these different argument types.
-
+    The following paragraphs discuss these different argument types.
 
 *Named argument*
-: Some parameters, as *-length 3* of the subcommand **string compare** have to be provided as pairs of argument names and argument values. This parameter type is often also called *option*. TEPAM uses the term *named argument* for such options as well as for the flags (see next item).
+: Some parameters, as *-length 3* of the subcommand **string compare** have to be provided as pairs of argument names and argument values. This parameter type is often also called *option*.
+
+    TEPAM uses the term *named argument* for such options as well as for the flags (see next item).
 
 *Flag, switch*
-: Another parameter type is the *flag* or the *switch*. Flags are provided simply by naming the flag leading with the '-' character. The *-nocase* of the previous **string compare** example is such a flag. *Flags* are considered by TEPAM like a special form of *named arguments*.
+: Another parameter type is the *flag* or the *switch*. Flags are provided simply by naming the flag leading with the '-' character. The *-nocase* of the previous **string compare** example is such a flag.
+
+    *Flags* are considered by TEPAM like a special form of *named arguments*.
 
 *Unnamed argument*
 : For the other parameters, e.g. the ones for which the argument name has not to be mentioned, TEPAM uses the term *unnamed argument*. The previous **string compare** example uses for the two provided character strings two *unnamed arguments*.
@@ -90,23 +96,20 @@ string compare -nocase -length 3 "emphasized" "emphasised"
 *Named arguments first, unnamed arguments later*
 : The **string compare** command of the previous example requires that the *named arguments* (options, flags) are provided first. The two mandatory (unnamed) arguments have to be provided as last argument.
 
+    ```
+    string compare -nocase -length 3 Water $Text
+    ```
 
-```
-string compare -nocase -length 3 Water $Text
-```
-
-: This is the usual Tcl style (exceptions exist) which is referred in the TEPAM documentation as *named arguments first, unnamed arguments later style*.
-
+    This is the usual Tcl style (exceptions exist) which is referred in the TEPAM documentation as *named arguments first, unnamed arguments later style*.
 
 *Unnamed arguments first, named arguments later*
 : In contrast to most Tcl commands, Tk uses generally (exceptions exist also here) a different calling style where the *unnamed arguments* have to be provided first, before the *named arguments* have to be provided:
 
+    ```
+    pack .ent1 .ent2 -fill x -expand yes -side left
+    ```
 
-```
-pack .ent1 .ent2 -fill x -expand yes -side left
-```
-
-: This style is referred in the TEPAM documentation as *unnamed arguments first, named arguments later style*.
+    This style is referred in the TEPAM documentation as *unnamed arguments first, named arguments later style*.
 
 
 # Procedure declaration
@@ -114,8 +117,10 @@ pack .ent1 .ent2 -fill x -expand yes -side left
 TEPAM allows declaring new Tcl procedures with the command **tepam::procedure** that has similar to the standard Tcl command **proc** also 3 arguments:
 
 **tepam::procedure** *name* *attributes* *body*
-: The TEPAM procedure declaration syntax is demonstrated by the following example:
+: see below ...
 
+
+The TEPAM procedure declaration syntax is demonstrated by the following example:
 
 ```
 tepam::procedure {display message} {
@@ -144,43 +149,50 @@ tepam::procedure {display message} {
 The 3 arguments of **procedure** are:
 
 *name*
-: The procedure name can be used in very flexible ways. Procedure names can have namespace qualifiers. By providing a two element name list as procedure name, a subcommand of a procedure will be declared. It is even possible to declare sub-sub-commands of a procedure by providing name lists with three elements. Here are some valid procedure declarations using different procedure names (the attribute and body arguments are empty for simplicity):
+: The procedure name can be used in very flexible ways. Procedure names can have namespace qualifiers. By providing a two element name list as procedure name, a subcommand of a procedure will be declared. It is even possible to declare sub-sub-commands of a procedure by providing name lists with three elements.
 
+    Here are some valid procedure declarations using different procedure names (the attribute and body arguments are empty for simplicity):
 
-```
-# Simple procedure name:
-tepam::procedure display_message {} {}
+    ```
+    # Simple procedure name:
+    tepam::procedure display_message {} {}
 
-# Procedure declared in the main namespace:
-tepam::procedure ::display_message {} {}
+    # Procedure declared in the main namespace:
+    tepam::procedure ::display_message {} {}
 
-# Procedure in the namespace ::ns:
-tepam::procedure ::ns::display_message {} {}
+    # Procedure in the namespace ::ns:
+    tepam::procedure ::ns::display_message {} {}
 
-# Declaration of the subcommand message of the procedure display:
-tepam::procedure {display message} {} {}
-```
+    # Declaration of the subcommand message of the procedure display:
+    tepam::procedure {display message} {} {}
+    ```
 
 *attributes*
-: All procedure attributes are provided in form of an option list that contains pairs of option names and option values. The example above has as procedure attribute a short and a normal description, but also the procedure arguments are defined in form of a procedure attribute. Most procedure attributes are providing information for documentation purposes. But some of them affect also the way how the procedure can be called. The section **Procedure Attributes** discusses in detail the available procedure attributes. The procedure arguments are defined in form of a special procedure attribute. Most of the information provided in the argument definition is not just used for documentation purposes. This information is in fact used by the TEPAM argument manager to handle and validate the various forms of arguments that are provided during the procedure calls. The section **Argument Declaration** discusses in detail all the argument definition attributes.
+: All procedure attributes are provided in form of an option list that contains pairs of option names and option values. The example above has as procedure attribute a short and a normal description, but also the procedure arguments are defined in form of a procedure attribute.
+
+    Most procedure attributes are providing information for documentation purposes. But some of them affect also the way how the procedure can be called. The section [Procedure attributes] discusses in detail the available procedure attributes.
+
+    The procedure arguments are defined in form of a special procedure attribute. Most of the information provided in the argument definition is not just used for documentation purposes. This information is in fact used by the TEPAM argument manager to handle and validate the various forms of arguments that are provided during the procedure calls. The section [Argument declaration] discusses in detail all the argument definition attributes.
 
 *body*
-: This is the normal procedure body. The declared arguments will be available to the procedure body in form of variables. The procedure body will only be executed if the provided set of arguments could be validated by the TEPAM argument manager.
+: This is the normal procedure body. The declared arguments will be available to the procedure body in form of variables.
+
+    The procedure body will only be executed if the provided set of arguments could be validated by the TEPAM argument manager.
+
+    ```
+    tepam::procedure {display_message} {
+       -args {
+          {-mtype -default Warning -choices {Warning Error}}
+          {text -type string}
+       }
+    } {
+       puts "Message type: $mtype"
+       puts "Message: $text"
+    }
+    ```
 
 
-```
-tepam::procedure {display_message} {
-   -args {
-      {-mtype -default Warning -choices {Warning Error}}
-      {text -type string}
-   }
-} {
-   puts "Message type: $mtype"
-   puts "Message: $text"
-}
-```
-
-The commands **procedure** as well as **argument_dialogbox** are exported from the namespace **tepam**. To use these commands without the **tepam::** namespace prefix, it is sufficient to import them into the main namespace:
+The commands **procedure** as well as **argument\_dialogbox** are exported from the namespace [tepam][tepam_introduction]. To use these commands without the **tepam::** namespace prefix, it is sufficient to import them into the main namespace:
 
 ```
 namespace import tepam::*
@@ -194,44 +206,61 @@ procedure {display_message} {
 
 The first group of attributes affect the behavior of the declared procedure:
 
--named_arguments_first **0**|**1**
-: This attribute defines the calling style of a procedure. TEPAM uses by default the *named arguments first, unnamed arguments later* style (Tcl). This default behavior can globally be changed by setting the variable **tepam::named_arguments_first** to **0**. This global calling style can be changed individually for a procedure with the *-named_arguments_first* attribute.
+-named\_arguments\_first **0**|**1**
+: This attribute defines the calling style of a procedure. TEPAM uses by default the *named arguments first, unnamed arguments later* style (Tcl). This default behavior can globally be changed by setting the variable **tepam::named\_arguments\_first** to **0**. This global calling style can be changed individually for a procedure with the *-named\_arguments\_first* attribute.
 
--auto_argument_name_completion **0**|**1**
-: The declared procedures will by default automatically try to match eventually abbreviated argument names to the defined arguments names. This default behavior can globally be changed by setting the variable **tepam::auto_argument_name_completion** to **0**. This global setting of the automatic argument name completion can be changed individually for a procedure with the *-auto_argument_name_completion* procedure attribute.
+-auto\_argument\_name\_completion **0**|**1**
+: The declared procedures will by default automatically try to match eventually abbreviated argument names to the defined arguments names. This default behavior can globally be changed by setting the variable **tepam::auto\_argument\_name\_completion** to **0**. This global setting of the automatic argument name completion can be changed individually for a procedure with the *-auto\_argument\_name\_completion* procedure attribute.
 
--interactive_display_format **extended**|**short**
-: A procedure declared with the TEPAM **procedure** command can always be called with the **-interactive** option. By doing so, a graphical form will be generated that allows specifying all procedure argument values. There are two display modes for these interactive forms. While the *extended* mode is more adapted for small procedure argument sets, the **short** form is more adequate for huge procedure argument sets. The choice to use short or extended forms can be globally configured via the variable **tepam::interactive_display_format**. This global setting can then be changed individually for a procedure with the *-interactive_display_format* procedure attribute.
+-interactive\_display\_format **extended**|**short**
+: A procedure declared with the TEPAM **procedure** command can always be called with the **-interactive** option. By doing so, a graphical form will be generated that allows specifying all procedure argument values. There are two display modes for these interactive forms. While the *extended* mode is more adapted for small procedure argument sets, the **short** form is more adequate for huge procedure argument sets.
+
+    The choice to use short or extended forms can be globally configured via the variable **tepam::interactive\_display\_format**. This global setting can then be changed individually for a procedure with the *-interactive\_display\_format* procedure attribute.
 
 -args *list*
-: The procedure arguments are declared via the *-args* attribute. An argument is defined via a list having as first element the argument name, followed by eventual argument attributes. All these argument definition lists are packaged themselves into a global list that is assigned to the *-args* attribute. The argument definition syntax will be described more in detail in the following sub section. The next attributes allow specifying custom argument checks as well as custom error messages in case these checks are failing:
+: The procedure arguments are declared via the *-args* attribute. An argument is defined via a list having as first element the argument name, followed by eventual argument attributes. All these argument definition lists are packaged themselves into a global list that is assigned to the *-args* attribute.
+
+    The argument definition syntax will be described more in detail in the following sub section.
+
+
+The next attributes allow specifying custom argument checks as well as custom error messages in case these checks are failing:
 
 -validatecommand *script*
-: Custom argument validations can be performed via specific validation commands that are defined with the *-validatecommand* attribute. Validation command declaration example:
+: Custom argument validations can be performed via specific validation commands that are defined with the *-validatecommand* attribute.
+
+    Validation command declaration example:
+
+    ```
+    tepam::procedure {display_message} {
+       -args {
+          {text -type string -description "Message text"} }
+       -validatecommand {IllegalWordDetector $text}
+    } {
+    }
+    ```
+
+    The validation command is executed in the context of the declared procedure body. The different argument values are accessed via the argument names. Note there is also an argument attribute *-validatecommand* that allows declaring custom checks for specific arguments.
+
+    The attribute *-validatecommand* can be repeated to declare multiple custom checks.
+
+-validatecommand\_error\_text *string*
+: This attribute allows overriding the default error message for a custom argument validation (defined by *-validatecommand*). Also this attribute can be repeated in case multiple argument checks are declared.
 
 
-```
-tepam::procedure {display_message} {
-   -args {
-      {text -type string -description "Message text"} }
-   -validatecommand {IllegalWordDetector $text}
-} {
-}
-```
+The following attribute allows controlling the logging settings for an individual procedure:
 
-: The validation command is executed in the context of the declared procedure body. The different argument values are accessed via the argument names. Note there is also an argument attribute *-validatecommand* that allows declaring custom checks for specific arguments. The attribute *-validatecommand* can be repeated to declare multiple custom checks.
+-command\_log **0**|**1**|**"interactive"**
+: This argument configures the logging of the procedure calls into the list variable **tepam::ProcedureCallLogList**. The default configuration defined by the variable **tepam::command\_log** will be used if this argument is not defined in a procedure declaration.
+
+    Setting this argument to **0** will disable any procedure call loggings, setting it to **1** will log any procedure calls and setting it to **interactive** will log just the procedures that are called interactively (procedures called with the **-interactive** flag).
 
 
--validatecommand_error_text *string*
-: This attribute allows overriding the default error message for a custom argument validation (defined by *-validatecommand*). Also this attribute can be repeated in case multiple argument checks are declared. The following attribute allows controlling the logging settings for an individual procedure:
-
--command_log **0**|**1**|**"interactive"**
-: This argument configures the logging of the procedure calls into the list variable **tepam::ProcedureCallLogList**. The default configuration defined by the variable **tepam::command_log** will be used if this argument is not defined in a procedure declaration. Setting this argument to **0** will disable any procedure call loggings, setting it to **1** will log any procedure calls and setting it to **interactive** will log just the procedures that are called interactively (procedures called with the **-interactive** flag). The next group of procedure attributes is just used for the purpose of documentation and help text generation:
+The next group of procedure attributes is just used for the purpose of documentation and help text generation:
 
 -category *string*
 : A category can be assigned to a procedure for documentation purposes. Any string is accepted as category.
 
--short_description *string*
+-short\_description *string*
 : The short description of a procedure is used in the documentation summary of a generated procedure list as well as in the NAME section of a generated procedure manual page.
 
 -description *string*
@@ -276,236 +305,240 @@ tepam::procedure <name> {
 
 The argument names and attributes have to be used in the following way:
 
-Argument name (*\<argument_name\_\<n>>*)
+Argument name (*<argument\_name\_<n>>*)
 : The provided argument name specifies whether the argument is an *unnamed argument* or a *named argument*. In addition to this, an argument name can also be blank to indicate an argument comment, or it can start with # to indicate a section comment.
 
+    *"<Name>"*
+    : This is the simplest form of an argument name: An argument whose name is not starting with '-' is an *unnamed argument*. The parameter provided during a procedure call will be assigned to a variable with the name *<Name>*.
 
-*"\<Name>"*
-: This is the simplest form of an argument name: An argument whose name is not starting with '-' is an *unnamed argument*. The parameter provided during a procedure call will be assigned to a variable with the name *\<Name>*.
+        ```
+        tepam::procedure {print_string} {
+           -args {
+              {text -type string -description "This is an unnamed argument"}
+           }
+        } {
+           puts $text
+        }
+
+        print_string "Hello"
+         -> Hello
+        ```
+
+    *"-<Name>"*
+    : An argument whose name starts with '-' is a *named argument* (also called *option*). The parameter provided during a procedure call will be assigned to a variable with the name *<Name>* (not *-<Name>*).
+
+        ```
+        tepam::procedure {print_string} {
+           -args {
+              {-text -type string -description "This is a named argument"}
+           }
+        } {
+           puts $text
+        }
+
+        print_string -text "Hello"
+         -> Hello
+        ```
+
+    *"--"*
+    : This flag allows clearly specifying the end of the named arguments and the beginning of the unnamed arguments, in case the *named arguments first, unnamed arguments later style (Tcl)* has been selected.
+
+        If the *unnamed arguments first, named arguments later style (Tk)* style is selected, this flag is ignored if the unnamed arguments have already been parsed. Otherwise it will be assigned to the corresponding unnamed argument.
+
+    *"-"* or *""*
+    : A blank argument name (either '-' or *''*) starts a comment for the following arguments.
+
+        ```
+        tepam::procedure {print_time} {
+           -interactive_display_format short
+           -args {
+              {hours -type integer -description "Hour"}
+              {minutes -type integer -description "Minute"}
+
+              {- The following arguments are optional:}
+              {seconds -type integer -default 0 -description "Seconds"}
+              {milliseconds -type integer -default 0 -description "Milliseconds"}
+           }
+        } {
+           puts "${hour}h${minutes}:[expr $seconds+0.001*$milliseconds]"
+        }
+        ```
+
+        Argument comments are basically used in the graphical argument definition forms that are created if a procedure is called interactively.
+
+    *"#\*"*
+    : An argument definition list that starts with '#' is considered as a section comment. The argument definition list will be trimmed from the '#' characters and the remaining string will be used as section comment.
+
+        Section comments can be used to structure visually the argument definition code. Section comments are also used to structure the generated help texts and the interactive argument definition forms.
+
+        ```
+        tepam::procedure {complex_multiply} {
+           -description "This function perform a complex multiplication"
+           -args {
+              {#### First complex number ####}
+              {-r0 -type double -description "First number real part"}
+              {-i0 -type double -description "First number imaginary part"}
+
+              {#### Second complex number ####}
+              {-r1 -type double -description "Second number real part"}
+              {-i1 -type double -description "Second number imaginary part"}
+           }
+        } {
+           return [expr $r0*$r1 - $i0*$i1]
+        }
+        ```
 
 
-```
-tepam::procedure {print_string} {
-   -args {
-      {text -type string -description "This is an unnamed argument"}
-   }
-} {
-   puts $text
-}
-
-print_string "Hello"
- -> Hello
-```
-
-*"-\<Name>"*
-: An argument whose name starts with '-' is a *named argument* (also called *option*). The parameter provided during a procedure call will be assigned to a variable with the name *\<Name>* (not *-\<Name>*).
-
-
-```
-tepam::procedure {print_string} {
-   -args {
-      {-text -type string -description "This is a named argument"}
-   }
-} {
-   puts $text
-}
-
-print_string -text "Hello"
- -> Hello
-```
-
-*"--"*
-: This flag allows clearly specifying the end of the named arguments and the beginning of the unnamed arguments, in case the *named arguments first, unnamed arguments later style (Tcl)* has been selected. If the *unnamed arguments first, named arguments later style (Tk)* style is selected, this flag is ignored if the unnamed arguments have already been parsed. Otherwise it will be assigned to the corresponding unnamed argument.
-
-*"-"* or *""*
-: A blank argument name (either '-' or *''*) starts a comment for the following arguments.
-
-
-```
-tepam::procedure {print_time} {
-   -interactive_display_format short
-   -args {
-      {hours -type integer -description "Hour"}
-      {minutes -type integer -description "Minute"}
-
-      {- The following arguments are optional:}
-      {seconds -type integer -default 0 -description "Seconds"}
-      {milliseconds -type integer -default 0 -description "Milliseconds"}
-   }
-} {
-   puts "${hour}h${minutes}:[expr $seconds+0.001*$milliseconds]"
-}
-```
-
-: Argument comments are basically used in the graphical argument definition forms that are created if a procedure is called interactively.
-
-
-*"#\*"*
-: An argument definition list that starts with '#' is considered as a section comment. The argument definition list will be trimmed from the '#' characters and the remaining string will be used as section comment. Section comments can be used to structure visually the argument definition code. Section comments are also used to structure the generated help texts and the interactive argument definition forms.
-
-
-```
-tepam::procedure {complex_multiply} {
-   -description "This function perform a complex multiplication"
-   -args {
-      {#### First complex number ####}
-      {-r0 -type double -description "First number real part"}
-      {-i0 -type double -description "First number imaginary part"}
-
-      {#### Second complex number ####}
-      {-r1 -type double -description "Second number real part"}
-      {-i1 -type double -description "Second number imaginary part"}
-   }
-} {
-   return [expr $r0*$r1 - $i0*$i1]
-}
-```
-
-Argument attributes (*\<arg_attr_name\_\<mn>> \<arg_attr_value\_\<mn>>*)
+Argument attributes (*<arg\_attr\_name\_<mn>> <arg\_attr\_value\_<mn>>*)
 : The following argument attributes are supported:
 
+    -description *string*
+    : The description argument attribute is used for documentation purpose. Interactive argument definition forms use this attribute to provide explanations for an argument.
 
--description *string*
-: The description argument attribute is used for documentation purpose. Interactive argument definition forms use this attribute to provide explanations for an argument.
+    -type *type*
+    : The type argument attribute allows assigning the argument either to a predefined data type, or to an application specific data type. The argument values that are provided during a procedure call are automatically checked with respect to the defined argument type.
 
--type *type*
-: The type argument attribute allows assigning the argument either to a predefined data type, or to an application specific data type. The argument values that are provided during a procedure call are automatically checked with respect to the defined argument type. The section **ARGUMENT TYPES** provides a list of predefined data types and explains how application specific types can be specified. The argument type *none* has a special meaning. An argument that has the type *none* is handled as a *flag*. A flag is always optional and its related variable contains the logical value **1** if the flag has been defined during the procedure call, or otherwise **0**.
+        The section [Argument types] provides a list of predefined data types and explains how application specific types can be specified.
 
--default *value*
-: Eventual default values can be defined with the -default argument attribute. Arguments with default values are automatically optional arguments.
+        The argument type *none* has a special meaning. An argument that has the type *none* is handled as a *flag*. A flag is always optional and its related variable contains the logical value **1** if the flag has been defined during the procedure call, or otherwise **0**.
 
-**-optional|-mandatory**
-: Arguments are by default mandatory, unless a default value is defined. The flag *-optional* transforms an argument into an optional argument. In case an optional argument is not defined during a procedure call, the corresponding variable will not be defined. The flag *-mandatory* is the opposite to *-optional*. This flag exists only for completion reason, since an argument is anyway mandatory by default.
+    -default *value*
+    : Eventual default values can be defined with the -default argument attribute. Arguments with default values are automatically optional arguments.
 
-**-multiple**
-: Arguments that have the *-multiple* attribute can be defined multiple times during a procedure call. The values that are provided during a procedure call for such an argument are stored in a list variable. This is even the case if such an argument is only defined once during a procedure call. The *-multiple* attribute can be attributed to unnamed arguments and to named arguments. The pair of argument name/argument value has to be repeated for each provided value in case of a named argument. In case the argument with the *-multiple* attribute is an unnamed argument, this one has to be the absolute last one of all unnamed arguments.
+    -optional|-mandatory
+    : Arguments are by default mandatory, unless a default value is defined. The flag *-optional* transforms an argument into an optional argument.
 
--choices *list*
-: A possible set of valid argument values can be attributed to an argument via the *-choices* attribute. The argument value provided during a procedure call will be checked against the provided choice values.
+        In case an optional argument is not defined during a procedure call, the corresponding variable will not be defined. The flag *-mandatory* is the opposite to *-optional*. This flag exists only for completion reason, since an argument is anyway mandatory by default.
 
--choicelabels *list*
-: An eventual short description can be attributed to each choice option with the *-choicelabels* attribute. These descriptions will be used in the generated help texts and as radio and check box labels for the interactive calls. The *-choicelabels* attribute is optional, but if it is defined, its list needs to have the identical size as the *-choices* argument list.
+    -multiple
+    : Arguments that have the *-multiple* attribute can be defined multiple times during a procedure call. The values that are provided during a procedure call for such an argument are stored in a list variable. This is even the case if such an argument is only defined once during a procedure call.
 
--range *{double double}*
-: Another argument constraint can be defined with the *-range* attribute. The valid range is defined with a list containing the minimum valid value and a maximum valid value. The *-range* attribute has to be used only for numerical arguments, like integers and doubles.
+        The *-multiple* attribute can be attributed to unnamed arguments and to named arguments. The pair of argument name/argument value has to be repeated for each provided value in case of a named argument. In case the argument with the *-multiple* attribute is an unnamed argument, this one has to be the absolute last one of all unnamed arguments.
 
--validatecommand *script*
-: Custom argument value validations can be performed via specific validation commands that are defined with the *-validatecommand* attribute. The provided validation command can be a complete script in which the pattern *%P* is replaced by the argument value that has to be validated. Validation command declaration example:
+    -choices *list*
+    : A possible set of valid argument values can be attributed to an argument via the *-choices* attribute. The argument value provided during a procedure call will be checked against the provided choice values.
+
+    -choicelabels *list*
+    : An eventual short description can be attributed to each choice option with the *-choicelabels* attribute. These descriptions will be used in the generated help texts and as radio and check box labels for the interactive calls.
+
+        The *-choicelabels* attribute is optional, but if it is defined, its list needs to have the identical size as the *-choices* argument list.
+
+    -range *{double double}*
+    : Another argument constraint can be defined with the *-range* attribute. The valid range is defined with a list containing the minimum valid value and a maximum valid value. The *-range* attribute has to be used only for numerical arguments, like integers and doubles.
+
+    -validatecommand *script*
+    : Custom argument value validations can be performed via specific validation commands that are defined with the *-validatecommand* attribute. The provided validation command can be a complete script in which the pattern *%P* is replaced by the argument value that has to be validated.
+
+        Validation command declaration example:
+
+        ```
+        tepam::procedure {display_message} {
+           -args {
+              {text -type string -description "Message text" \
+                    -validatecommand {IllegalWordDetector %P}}
+        } {
+        }
+        ```
+
+        While the purpose of this custom argument validation attribute is the validation of a specific argument, there is also a global attribute *-validatecommand* that allows performing validation that involves multiple arguments.
+
+    -validatecommand\_error\_text *string*
+    : This attribute allows overriding the default error message for a custom argument validation (defined by *-validatecommand*).
+
+    -widget *string*
+    : The widgets that allow defining the different arguments in case of an interactive procedure call are normally selected automatically in function of the argument type. The *-widget* attribute allows specifying explicitly a certain widget type for an argument.
+
+    -auxargs *list*
+    : In case a procedure is called interactively, additional argument attributes can be provided to the interactive argument definition form via the *-auxargs* attribute that is itself a list of attribute name/attribute value pairs:
+
+        ```
+        -auxargs {-<arg_attr_name_1a> <arg_attr_value_1a> \
+                  -<arg_attr_name_1b> <arg_attr_value_1b>
+                  ...
+        }
+        ```
+
+        For example, if a procedure takes as argument a file name it may be beneficial to specify the required file type for the interactive argument definition form. This information can be provided via the *-auxargs* attribute to the argument definition form:
+
+        ```
+        tepam::procedure LoadPicture {
+           -args {
+              {FileName -type existingfile -description "Picture file" \
+                         -auxargs {-filetypes {{"GIF" {*.gif}} {"JPG" {*.jpg}} }}}
+           }
+        } {
+        }
+        ```
+
+    -auxargs\_commands *script*
+    : If the auxiliary argument attributes are not static but have to be dynamically adaptable, the *-auxargs\_commands* allows defining them via commands that are executed during a procedure call. A list of pairs of auxiliary attribute names and commands has to be provided to the *-auxargs\_commands* attribute. The provided commands are executed in the context of the calling procedure.
+
+        ```
+        -auxargs_commands {-<arg_attr_name_1a> <arg_attr_command_1a> \
+                           -<arg_attr_name_1b> <arg_attr_command_1b>
+                           ...
+        }
+        ```
 
 
-```
-tepam::procedure {display_message} {
-   -args {
-      {text -type string -description "Message text" \
-            -validatecommand {IllegalWordDetector %P}}
-} {
-}
-```
-
-: While the purpose of this custom argument validation attribute is the validation of a specific argument, there is also a global attribute *-validatecommand* that allows performing validation that involves multiple arguments.
-
-
--validatecommand_error_text *string*
-: This attribute allows overriding the default error message for a custom argument validation (defined by *-validatecommand*).
-
--widget *string*
-: The widgets that allow defining the different arguments in case of an interactive procedure call are normally selected automatically in function of the argument type. The *-widget* attribute allows specifying explicitly a certain widget type for an argument.
-
--auxargs *list*
-: In case a procedure is called interactively, additional argument attributes can be provided to the interactive argument definition form via the *-auxargs* attribute that is itself a list of attribute name/attribute value pairs:
-
-
-```
--auxargs {-<arg_attr_name_1a> <arg_attr_value_1a> \
-          -<arg_attr_name_1b> <arg_attr_value_1b>
-          ...
-}
-```
-
-: For example, if a procedure takes as argument a file name it may be beneficial to specify the required file type for the interactive argument definition form. This information can be provided via the *-auxargs* attribute to the argument definition form:
-
-
-```
-tepam::procedure LoadPicture {
-   -args {
-      {FileName -type existingfile -description "Picture file" \
-                 -auxargs {-filetypes {{"GIF" {*.gif}} {"JPG" {*.jpg}} }}}
-   }
-} {
-}
-```
-
--auxargs_commands *script*
-: If the auxiliary argument attributes are not static but have to be dynamically adaptable, the *-auxargs_commands* allows defining them via commands that are executed during a procedure call. A list of pairs of auxiliary attribute names and commands has to be provided to the *-auxargs_commands* attribute. The provided commands are executed in the context of the calling procedure.
-
-
-```
--auxargs_commands {-<arg_attr_name_1a> <arg_attr_command_1a> \
-                   -<arg_attr_name_1b> <arg_attr_command_1b>
-                   ...
-}
-```
 
 # Variables
 
 Several variables defined inside the **::tepam** namespace impact the mode of operation of the procedures that have been declared with the TEPAM **procedure** command.
 
-**named_arguments_first**
-: This variable defines the general calling style of the procedures. It is by default set to **1** which selects the *named arguments first, unnamed arguments later* style (Tcl style). By setting this variable to **0**, the *named arguments first, unnamed arguments later* style is globally selected (Tk style):
+**named\_arguments\_first**
+: This variable defines the general calling style of the procedures. It is by default set to **1** which selects the *named arguments first, unnamed arguments later* style (Tcl style).
 
+    By setting this variable to **0**, the *named arguments first, unnamed arguments later* style is globally selected (Tk style):
 
-```
-set tepam::named_arguments_first 0
-```
+    ```
+    set tepam::named_arguments_first 0
+    ```
 
-While this variable defines the general calling style, the procedure attribute *-named_arguments_first* can adapt this style individually for each declared procedure.
+    While this variable defines the general calling style, the procedure attribute *-named\_arguments\_first* can adapt this style individually for each declared procedure.
 
-**auto_argument_name_completion**
-: This variable controls the general automatic argument name matching mode. By default it is set to **1**, meaning that the called procedures are trying to match eventually abbreviated argument names with the declared argument names. By setting this variable to **0** the automatic argument name matching mode is disabled:
+**auto\_argument\_name\_completion**
+: This variable controls the general automatic argument name matching mode. By default it is set to **1**, meaning that the called procedures are trying to match eventually abbreviated argument names with the declared argument names.
 
+    By setting this variable to **0** the automatic argument name matching mode is disabled:
 
-```
-set tepam::auto_argument_name_completion 0
-```
+    ```
+    set tepam::auto_argument_name_completion 0
+    ```
 
-While this variable defines the general matching mode, the procedure attribute *-auto_argument_name_completion* can adapt this mode individually for each declared procedure.
+    While this variable defines the general matching mode, the procedure attribute *-auto\_argument\_name\_completion* can adapt this mode individually for each declared procedure.
 
-**interactive_display_format**
-: A procedure declared via the TEPAM **procedure** command can always be called with the **-interactive** switch. By doing so, a graphical form will be generated that allows entering interactively all procedure arguments. There are two display modes for these interactive forms. The *extended* mode which is the default mode is more adapted for small procedure argument sets. The **short** form is more adequate for huge procedure argument sets:
+**interactive\_display\_format**
+: A procedure declared via the TEPAM **procedure** command can always be called with the **-interactive** switch. By doing so, a graphical form will be generated that allows entering interactively all procedure arguments.
 
+    There are two display modes for these interactive forms. The *extended* mode which is the default mode is more adapted for small procedure argument sets. The **short** form is more adequate for huge procedure argument sets:
 
-```
-set tepam::interactive_display_format "short"
-```
+    ```
+    set tepam::interactive_display_format "short"
+    ```
 
-The choice to use short or extended forms can be globally configured via the variable **interactive_display_format**. This global setting can be changed individually for a procedure with the procedure attribute *-interactive_display_format*.
+    The choice to use short or extended forms can be globally configured via the variable **interactive\_display\_format**. This global setting can be changed individually for a procedure with the procedure attribute *-interactive\_display\_format*.
 
-**help_line_length**
+**help\_line\_length**
 : The maximum line length used by the procedure help text generator can be specified with this variable. The default length which is set to 80 (characters) can easily be adapted to the need of an application:
 
+    ```
+    set tepam::help_line_length 120
+    ```
 
-```
-set tepam::help_line_length 120
-```
+    Since this variable is applied directly during the help text generation, its value can continuously be adapted to the current need.
 
-: Since this variable is applied directly during the help text generation, its value can continuously be adapted to the current need.
+**command\_log**
+: Procedure calls can be logged inside the list variable **tepam::ProcedureCallLogList**. The variable **tepam::command\_log** controls the default logging settings for any procedures. The following configurations are supported:
 
+    - *0*: Disables any procedure call loggings
 
-**command_log**
-: Procedure calls can be logged inside the list variable **tepam::ProcedureCallLogList**. The variable **tepam::command_log** controls the default logging settings for any procedures. The following configurations are supported:
+    - *1*: Enables any procedure call loggings
 
-
-**•**
-: *0*: Disables any procedure call loggings
-
-**•**
-: *1*: Enables any procedure call loggings
-
-**•**
-: *"interactive"*: Will log any procedures called interactively (e.g. procedures called with the -interactive flag). This is the default configuration.
+    - *"interactive"*: Will log any procedures called interactively (e.g. procedures called with the -interactive flag). This is the default configuration.
 
 
-: This default logging configuration can be changed individually for each procedure with the *-command_log* attribute.
+    This default logging configuration can be changed individually for each procedure with the *-command\_log* attribute.
 
 
 # Argument types
@@ -531,149 +564,147 @@ tepam::procedure {warning} {
 
 There are some *special purpose types* that are building the first category of predefined argument types:
 
-**•**
-: **none** A *flag*, also called *switch*, is defined as a named argument that has the type **none**. Flags are always optional and the default value of the assigned variable is set to **0**. In contrast to the (normal) named arguments, no argument value has to be provided to a flag.
+- **none**
+
+    A *flag*, also called *switch*, is defined as a named argument that has the type **none**. Flags are always optional and the default value of the assigned variable is set to **0**. In contrast to the (normal) named arguments, no argument value has to be provided to a flag.
+
+    ```
+    tepam::procedure flag_test {
+       -args {
+          {-flag -type none -description "This is a flag"}
+       }
+    } {
+       puts $flag
+    }
+
+    flag_test
+    -> 0
+
+    flag_test -flag
+    -> 1
+    ```
+
+    Since no argument value has to be provided to a flag, also no data check is performed for this argument type.
+
+- **string**
+
+    **String** is a generic argument data type. Any data string can be provided to a string type argument and no data type checks are therefore performed. The string type allows defining single line strings during the interactive procedure calls.
+
+- **text**
+
+    **Text** is identical to **string** with the only difference that it allows entering multi line strings during interactive procedure calls.
+
+- **{}**
+
+    A **blank** argument type signifies an undefined argument type. This is the default argument type that will be used if no type has been explicitly specified. An argument that has a **blank** type behaves identically than an argument that has a **string** type, e.g. no argument data checks are performed. The only difference is that the data type **string** is mentioned in the generated help documentation, while this is not the case for the **blank** type.
 
 
-```
-tepam::procedure flag_test {
-   -args {
-      {-flag -type none -description "This is a flag"}
-   }
-} {
-   puts $flag
-}
-
-flag_test
--> 0
-
-flag_test -flag
--> 1
-```
-
-Since no argument value has to be provided to a flag, also no data check is performed for this argument type.
-
-**•**
-: **string** **String** is a generic argument data type. Any data string can be provided to a string type argument and no data type checks are therefore performed. The string type allows defining single line strings during the interactive procedure calls.
-
-**•**
-: **text** **Text** is identical to **string** with the only difference that it allows entering multi line strings during interactive procedure calls.
-
-**•**
-: **{}** A **blank** argument type signifies an undefined argument type. This is the default argument type that will be used if no type has been explicitly specified. An argument that has a **blank** type behaves identically than an argument that has a **string** type, e.g. no argument data checks are performed. The only difference is that the data type **string** is mentioned in the generated help documentation, while this is not the case for the **blank** type. Several *numerical types* are defined by TEPAM. The type validation procedures are using the **string is \<type> -strict** commands to check the validity of the provided arguments, which assures that no empty strings are accepted as argument value. The type validation expression for the numerical types and the argument types to which this expression is applied are:
-
+Several *numerical types* are defined by TEPAM. The type validation procedures are using the **string is <type> -strict** commands to check the validity of the provided arguments, which assures that no empty strings are accepted as argument value. The type validation expression for the numerical types and the argument types to which this expression is applied are:
 
 ```
 string is <type_to_check> -strict <argument_value>
 ```
 
-**•**
-: *boolean*
+- *boolean*
 
-**•**
-: *integer*
+- *integer*
 
-**•**
-: *double* Empty strings are accepted as argument value for all the alpha numeric argument types. The argument types that are falling into this category and validation expression used for them are:
+- *double*
 
+
+Empty strings are accepted as argument value for all the alpha numeric argument types. The argument types that are falling into this category and validation expression used for them are:
 
 ```
 string is <type_to_check> <argument_value>
 ```
 
-**•**
-: *alnum*
+- *alnum*
 
-**•**
-: *alpha*
+- *alpha*
 
-**•**
-: *ascii*
+- *ascii*
 
-**•**
-: *control*
+- *control*
 
-**•**
-: *digit*
+- *digit*
 
-**•**
-: *graph*
+- *graph*
 
-**•**
-: *lower*
+- *lower*
 
-**•**
-: *print*
+- *print*
 
-**•**
-: *punct*
+- *punct*
 
-**•**
-: *space*
+- *space*
 
-**•**
-: *upper*
+- *upper*
 
-**•**
-: *wordchar*
+- *wordchar*
 
-**•**
-: *xdigit* In addition to the data types checked with the **string is \<type>** commands, TEPAM specifies some other useful data types:
-
-**•**
-: *char* Each string that has a length of 1 character meets the *character* type. The type check is made with the following expression:
+- *xdigit*
 
 
-```
-expr [string length <argument_value>]==1
-```
+In addition to the data types checked with the **string is <type>** commands, TEPAM specifies some other useful data types:
 
-**•**
-: *color* Any character strings that are accepted by Tk as a color are considered as valid color argument. Please note that the Tk package has to be loaded to use the type *color*. TEPAM is using the following command to validate the color type:
+- *char*
 
+    Each string that has a length of 1 character meets the *character* type. The type check is made with the following expression:
 
-```
-expr ![catch {winfo rgb . <argument_value>}]
-```
+    ```
+    expr [string length <argument_value>]==1
+    ```
 
-**•**
-: *font* Any character strings that are accepted by Tk as a font are considered as valid font argument. Please note that the Tk package has to be loaded to use the *font* type. TEPAM is using the following command to validate the color type:
+- *color*
 
+    Any character strings that are accepted by Tk as a color are considered as valid color argument. Please note that the Tk package has to be loaded to use the type *color*. TEPAM is using the following command to validate the color type:
 
-```
-expr ![catch {font measure <argument_value> ""}]
-```
+    ```
+    expr ![catch {winfo rgb . <argument_value>}]
+    ```
 
-**•**
-: *file* Any strings that are not containing one of the following characters are considered as valid file names: \* ? " < >. It is not necessary that the file and its containing directory exist. Zero-length strings are not considered as valid file names. The following expression is used to validate the file names:
+- *font*
 
+    Any character strings that are accepted by Tk as a font are considered as valid font argument. Please note that the Tk package has to be loaded to use the *font* type. TEPAM is using the following command to validate the color type:
 
-```
-expr [string length <argument_value>]>0 && ![regexp {[\"*?<>:]} <argument_value>]
-```
+    ```
+    expr ![catch {font measure <argument_value> ""}]
+    ```
 
-**•**
-: *existingfile* The argument is valid if it matches with an existing file. The following check is performed to validate the arguments of this type:
+- *file*
 
+    Any strings that are not containing one of the following characters are considered as valid file names: \* ? " < >. It is not necessary that the file and its containing directory exist. Zero-length strings are not considered as valid file names.
 
-```
-file exists <argument_value>
-```
+    The following expression is used to validate the file names:
 
-**•**
-: *directory* The directory argument is validated exactly in the same way as the file arguments.
+    ```
+    expr [string length <argument_value>]>0 && ![regexp {[\"*?<>:]} <argument_value>]
+    ```
 
-**•**
-: *existingdirectory* The argument is valid if it matches with an existing directory. The following check is performed to validate the arguments of this type:
+- *existingfile*
 
+    The argument is valid if it matches with an existing file. The following check is performed to validate the arguments of this type:
 
-```
-file isdirectory <argument_value>
-```
+    ```
+    file exists <argument_value>
+    ```
+
+- *directory*
+
+    The directory argument is validated exactly in the same way as the file arguments.
+
+- *existingdirectory*
+
+    The argument is valid if it matches with an existing directory. The following check is performed to validate the arguments of this type:
+
+    ```
+    file isdirectory <argument_value>
+    ```
+
 
 ## Defining application specific argument types
 
-To add support for a new application specific argument type it is just necessary to add into the namespace **tepam** a validation function **Validation(\<type>)**. This function requires one argument. It has to returns **1** if the provided argument matches with the relevant data type. The function has to return otherwise **0**.
+To add support for a new application specific argument type it is just necessary to add into the namespace [tepam][tepam_introduction] a validation function **Validation(<type>)**. This function requires one argument. It has to returns **1** if the provided argument matches with the relevant data type. The function has to return otherwise **0**.
 
 The validation command section of the "*tepam.tcl*" package provides sufficient examples of validation functions, since it implements the ones for the standard TEPAM types.
 
@@ -689,7 +720,7 @@ proc tepam::Validate(two_char) {v} {expr {[string length $v]==2}}
 
 Each procedure can be called with the *-help* flag. The procedure will then print a generated help text to *stdout* and will then return without performing any additional actions.
 
-Taking the first procedure declared in **PROCEDURE CALLS**, the help request and the printed help text would be:
+Taking the first procedure declared in [Procedure calls], the help request and the printed help text would be:
 
 ```
 display message -help
@@ -727,7 +758,7 @@ display message: Argument '-help' not known
 
 ## Interactive procedure call
 
-If Tk has been loaded a procedure can be called with the *-interactive* flag to open a graphical form that allows specifying interactively all procedure arguments. The following example assures that the Tk library is loaded and shows the command line to call interactively the procedure declared in **PROCEDURE CALLS**:
+If Tk has been loaded a procedure can be called with the *-interactive* flag to open a graphical form that allows specifying interactively all procedure arguments. The following example assures that the Tk library is loaded and shows the command line to call interactively the procedure declared in [Procedure calls]:
 
 ```
 package require Tk
@@ -821,9 +852,9 @@ display_message -mtype Info -text "It is PM 7:00." -mtype Warning
 -> Warning: It is PM 7:00.
 ```
 
-## Unnamed arguments first, named arguments later (tk style)
+## Unnamed arguments first, named arguments later (Tk style)
 
-A procedure that has been defined while the variable **tepam::named_arguments_first** was set to 1, or with the procedure attribute *-named_arguments_first* set to 1 has to be called in the Tcl style. The following procedure declaration will be used in this section to illustrate the meaning of this calling style:
+A procedure that has been defined while the variable **tepam::named\_arguments\_first** was set to 1, or with the procedure attribute *-named\_arguments\_first* set to 1 has to be called in the Tcl style. The following procedure declaration will be used in this section to illustrate the meaning of this calling style:
 
 ```
 set tepam::named_arguments_first 1
@@ -882,9 +913,9 @@ my_proc -n1 N1 -n2 N2 -- $U1 U2
 -> n1:'N1', n2:'N2', u1:'->', u2:'<-'
 ```
 
-## Named arguments first, unnamed arguments later (tcl style)
+## Named arguments first, unnamed arguments later (Tcl style)
 
-The Tk calling style will be chosen if a procedure is defined while the variable **tepam::named_arguments_first** is set to 0, or if the procedure attribute *-named_arguments_first* has been set to 0. The following procedure will be used in this section to illustrate this calling style:
+The Tk calling style will be chosen if a procedure is defined while the variable **tepam::named\_arguments\_first** is set to 0, or if the procedure attribute *-named\_arguments\_first* has been set to 0. The following procedure will be used in this section to illustrate this calling style:
 
 ```
 set tepam::named_arguments_first 0
@@ -1008,3 +1039,6 @@ Procedures, arguments, parameters, options
 ```
 Copyright (c) 2009-2013, Andreas Drollinger
 ```
+
+
+[tepam_introduction]: tepam_introduction.md

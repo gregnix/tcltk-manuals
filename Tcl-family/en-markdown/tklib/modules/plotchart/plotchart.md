@@ -1,5 +1,6 @@
 ---
 CommandName: Plotchart
+title: Plotchart
 ManualSection: n
 Version: 2.6.2
 TclPart: tklib
@@ -15,179 +16,179 @@ Plotchart - Simple plotting and charting package
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.optlit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.optlit} 
-[package]{.cmd} [require]{.sub} [Plotchart]{.lit} [2.6.2]{.optlit} 
-[::Plotchart::createXYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::createStripchart]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::createTXPlot]{.cmd} [w]{.arg} [timeaxis]{.arg} [xaxis]{.arg} [args]{.arg} 
-[::Plotchart::createXLogYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::createLogXYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::createLogXLogYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::createPolarPlot]{.cmd} [w]{.arg} [radius_data]{.arg} [args]{.arg} 
-[::Plotchart::createWindrose]{.cmd} [w]{.arg} [radius_data]{.arg} [sectors]{.arg} 
-[::Plotchart::createIsometricPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [stepsize]{.arg} 
-[::Plotchart::createHistogram]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg} 
-[::Plotchart::create3DPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [zaxis]{.arg} [args]{.arg} 
-[::Plotchart::create3DRibbonPlot]{.cmd} [w]{.arg} [yaxis]{.arg} [zaxis]{.arg} 
-[::Plotchart::createPiechart]{.cmd} [w]{.arg} 
-[::Plotchart::createSpiralPie]{.cmd} [w]{.arg} 
-[::Plotchart::createRadialchart]{.cmd} [w]{.arg} [names]{.arg} [scale]{.arg} [style]{.arg} 
-[::Plotchart::createBarchart]{.cmd} [w]{.arg} [xlabels]{.arg} [yaxis]{.arg} [noseries]{.arg} [args]{.arg} 
-[::Plotchart::createHorizontalBarchart]{.cmd} [w]{.arg} [xaxis]{.arg} [ylabel]{.arg} [noseries]{.arg} 
-[::Plotchart::create3DBarchart]{.cmd} [w]{.arg} [yaxis]{.arg} [nobars]{.arg} 
-[::Plotchart::create3DRibbonChart]{.cmd} [w]{.arg} [names]{.arg} [yaxis]{.arg} [zaxis]{.arg} 
-[::Plotchart::createBoxplot]{.cmd} [w]{.arg} [xdata]{.arg} [ydata]{.arg} [orientation]{.arg} 
-[::Plotchart::createTimechart]{.cmd} [w]{.arg} [time_begin]{.arg} [time_end]{.arg} [args]{.arg} 
-[::Plotchart::createGanttchart]{.cmd} [w]{.arg} [time_begin]{.arg} [time_end]{.arg} [args]{.arg} 
-[::Plotchart::createRightAxis]{.cmd} [w_or_plot]{.arg} [yaxis]{.arg} 
-[::Plotchart::createTableChart]{.cmd} [w]{.arg} [columns]{.arg} [widths]{.optarg} 
-[::Plotchart::createTernaryDiagram]{.cmd} [w]{.arg} [args]{.arg} 
-[::Plotchart::createNormalPlot]{.cmd} [w]{.arg} [xscale]{.arg} [args]{.arg} 
-[::Plotchart::createStatusTimeline]{.cmd} [w]{.arg} [xaxis]{.arg} [ylabel]{.arg} [args]{.arg} 
-[::Plotchart::createDendrogram]{.cmd} [w]{.arg} [args]{.arg} 
-[\$anyplot]{.cmd} title [text]{.arg} [position]{.arg} 
-[\$anyplot]{.cmd} subtitle [text]{.arg} 
-[\$anyplot]{.cmd} canvas 
-[\$anyplot]{.cmd} saveplot [filename]{.arg} [args]{.arg} 
-[\$anyplot]{.cmd} xtext [text]{.arg} 
-[\$anyplot]{.cmd} ytext [text]{.arg} 
-[\$anyplot]{.cmd} vtext [text]{.arg} 
-[\$anyplot]{.cmd} xsubtext [text]{.arg} 
-[\$anyplot]{.cmd} ysubtext [text]{.arg} 
-[\$anyplot]{.cmd} vsubtext [text]{.arg} 
-[\$anyplot]{.cmd} xconfig [-option]{.lit} [value]{.arg} ... 
-[\$anyplot]{.cmd} yconfig [-option]{.lit} [value]{.arg} ... 
-[\$anyplot]{.cmd} background [part]{.arg} [colour_or_image]{.arg} [dir]{.arg} [brightness]{.optarg} 
-[\$anyplot]{.cmd} xticklines [colour]{.arg} [dash]{.optarg} 
-[\$anyplot]{.cmd} yticklines [colour]{.arg} [dash]{.optarg} 
-[\$anyplot]{.cmd} legend [series]{.arg} [text]{.arg} [spacing]{.optarg} 
-[\$anyplot]{.cmd} removefromlegend [series]{.arg} 
-[\$anyplot]{.cmd} legendconfig [-option]{.lit} [value]{.arg} ... 
-[\$anyplot]{.cmd} balloon [x]{.arg} [y]{.arg} [text]{.arg} [dir]{.arg} 
-[\$anyplot]{.cmd} balloonconfig [args]{.arg} 
-[\$anyplot]{.cmd} plaintext [x]{.arg} [y]{.arg} [text]{.arg} [dir]{.arg} 
-[\$anyplot]{.cmd} plaintextconfig [args]{.arg} 
-[\$anyplot]{.cmd} object [itemtype]{.arg} [series]{.arg} [args]{.arg} 
-[\$anyplot]{.cmd} deletedata 
-[\$xyplot]{.cmd} plot [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$normalplot]{.cmd} plot [series]{.arg} [mean]{.arg} [stdev]{.arg} [data]{.arg} 
-[\$normalplot]{.cmd} diagonal 
-[\$xyplot]{.cmd} plotlist [series]{.arg} [xlist]{.arg} [ylist]{.arg} [every]{.arg} 
-[\$xyplot]{.cmd} region [series]{.arg} [xlist]{.arg} [ylist]{.arg} 
-[\$xyplot]{.cmd} minmax [series]{.arg} [xcrd]{.arg} [ymin]{.arg} [ymax]{.arg} 
-[\$histogram]{.cmd} plotcumulative [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} trend [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} rchart [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} interval [series]{.arg} [xcrd]{.arg} [ymin]{.arg} [ymax]{.arg} [ycentr]{.optarg} 
-[\$xyplot]{.cmd} box-and-whiskers [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} violin [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} vector [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [ucmp]{.arg} [vcmp]{.arg} 
-[\$xyplot]{.cmd} vectorconfig [series]{.arg} [-option]{.lit} [value]{.arg} ... 
-[\$xyplot]{.cmd} dot [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [value]{.arg} 
-[\$xyplot]{.cmd} dotconfig [series]{.arg} [-option]{.lit} [value]{.arg} ... 
-[\$xyplot]{.cmd} contourlines [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg} 
-[\$xyplot]{.cmd} contourlinesfunctionvalues [xvec]{.arg} [yvec]{.arg} [valuesmat]{.arg} [classes]{.optarg} 
-[\$xyplot]{.cmd} contourfill [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg} 
-[\$xyplot]{.cmd} contourbox [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg} 
-[\$xyplot]{.cmd} colorMap [colours]{.arg} 
-[\$xyplot]{.cmd} legendisolines [values]{.arg} [classes]{.arg} 
-[\$xyplot]{.cmd} legendshades [values]{.arg} [classes]{.arg} 
-[\$xyplot]{.cmd} grid [xcrd]{.arg} [ycrd]{.arg} 
-[\$xyplot]{.cmd} xband [ymin]{.arg} [ymax]{.arg} 
-[\$xyplot]{.cmd} yband [xmin]{.arg} [xmax]{.arg} 
-[\$xyplot]{.cmd} labeldot [x]{.arg} [y]{.arg} [text]{.arg} [orient]{.arg} 
-[\$polarplot]{.cmd} plot [series]{.arg} [radius]{.arg} [angle]{.arg} 
-[\$windrose]{.cmd} plot [data]{.arg} [colour]{.arg} 
-[\$plot3d]{.cmd} plotfunc [function]{.arg} 
-[\$plot3d]{.cmd} plotfuncont [function]{.arg} [contours]{.arg} 
-[\$plot3d]{.cmd} gridsize [nxcells]{.arg} [nycells]{.arg} 
-[\$plot3d]{.cmd} plotdata [data]{.arg} 
-[\$plot3d]{.cmd} interpolatedata [data]{.arg} [contours]{.arg} 
-[\$plot3d]{.cmd} colour [fill]{.arg} [border]{.arg} 
-[\$plot3d]{.cmd} ribbon [yzpairs]{.arg} 
-[\$plot3d]{.cmd} plot [yzpairs]{.arg} 
-[\$xyplot]{.cmd} dataconfig [series]{.arg} [-option]{.lit} [value]{.arg} ... 
-[\$pie]{.cmd} plot [data]{.arg} 
-[\$pie]{.cmd} colours [colour1]{.arg} [colour2]{.arg} ... 
-[\$pie]{.cmd} explode [segment]{.arg} 
-[\$radial]{.cmd} plot [data]{.arg} [colour]{.arg} [thickness]{.arg} 
-[\$pie]{.cmd} colours [colour1]{.arg} [colour2]{.arg} ... 
-[\$barchart]{.cmd} plot [series]{.arg} [ydata]{.arg} [colour]{.arg} [dir]{.optarg} [brightness]{.optarg} 
-[\$barchart]{.cmd} config [-option]{.lit} [value]{.arg} ... 
-[\$barchart]{.cmd} plot [series]{.arg} [xdata]{.arg} [colour]{.arg} [dir]{.optarg} [brightness]{.optarg} 
-[\$barchart]{.cmd} config [-option]{.lit} [value]{.arg} ... 
-[\$barchart]{.cmd} plot [label]{.arg} [yvalue]{.arg} [colour]{.arg} 
-[\$barchart]{.cmd} config [-option]{.lit} [value]{.arg} ... 
-[\$ribbon]{.cmd} line [xypairs]{.arg} [colour]{.arg} 
-[\$ribbon]{.cmd} area [xypairs]{.arg} [colour]{.arg} 
-[\$boxplot]{.cmd} plot [series]{.arg} [label]{.arg} [values]{.arg} 
-[\$boxplot]{.cmd} violin [series]{.arg} [label]{.arg} [values]{.arg} 
-[\$timechart]{.cmd} period [text]{.arg} [time_begin]{.arg} [time_end]{.arg} [colour]{.arg} 
-[\$timechart]{.cmd} addperiod [time_begin]{.arg} [time_end]{.arg} [colour]{.arg} 
-[\$timechart]{.cmd} milestone [text]{.arg} [time]{.arg} [colour]{.arg} 
-[\$timechart]{.cmd} addmilestone [time]{.arg} [colour]{.arg} 
-[\$timechart]{.cmd} vertline [text]{.arg} [time]{.arg} [colour]{.arg} 
-[\$timechart]{.cmd} hscroll [scrollbar]{.arg} 
-[\$timechart]{.cmd} vscroll [scrollbar]{.arg} 
-[\$ganttchart]{.cmd} task [text]{.arg} [time_begin]{.arg} [time_end]{.arg} [completed]{.arg} 
-[\$ganttchart]{.cmd} milestone [text]{.arg} [time]{.arg} [colour]{.arg} 
-[\$ganttchart]{.cmd} vertline [text]{.arg} [time]{.arg} 
-[\$ganttchart]{.cmd} connect [from]{.arg} [to]{.arg} 
-[\$ganttchart]{.cmd} summary [text]{.arg} [args]{.arg} 
-[\$ganttchart]{.cmd} color [keyword]{.arg} [newcolor]{.arg} 
-[\$ganttchart]{.cmd} font [keyword]{.arg} [newfont]{.arg} 
-[\$ganttchart]{.cmd} hscroll [scrollbar]{.arg} 
-[\$ganttchart]{.cmd} vscroll [scrollbar]{.arg} 
-[\$isoplot]{.cmd} plot rectangle [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg} [colour]{.arg} 
-[\$isoplot]{.cmd} plot filled-rectangle [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg} [colour]{.arg} 
-[\$isoplot]{.cmd} plot circle [xc]{.arg} [yc]{.arg} [radius]{.arg} [colour]{.arg} 
-[\$isoplot]{.cmd} plot filled-circle [xc]{.arg} [yc]{.arg} [radius]{.arg} [colour]{.arg} 
-[\$table]{.cmd} row [items]{.arg} 
-[\$table]{.cmd} separator 
-[\$table]{.cmd} formatcommand [procname]{.arg} 
-[\$table]{.cmd} cellconfigure [args]{.arg} 
-[\$ternary]{.cmd} plot [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [zcrd]{.arg} [text]{.arg} [dir]{.arg} 
-[\$ternary]{.cmd} line [series]{.arg} [coords]{.arg} 
-[\$ternary]{.cmd} fill [series]{.arg} [coords]{.arg} 
-[\$ternary]{.cmd} text [xtext]{.arg} [ytext]{.arg} [ztext]{.arg} 
-[\$ternary]{.cmd} ticklines [colour]{.arg} 
-[\$timeline]{.cmd} plot [series]{.arg} [item]{.arg} [start]{.arg} [stop]{.arg} [color]{.arg} 
-[\$timeline]{.cmd} vertline [text]{.arg} [time]{.arg} [args]{.arg} 
-[\$dendrogram]{.cmd} plot [series]{.arg} [data]{.arg} 
-[::Plotchart::viewPort]{.cmd} [w]{.arg} [pxmin]{.arg} [pymin]{.arg} [pxmax]{.arg} [pymax]{.arg} 
-[::Plotchart::worldCoordinates]{.cmd} [w]{.arg} [xmin]{.arg} [ymin]{.arg} [xmax]{.arg} [ymax]{.arg} 
-[::Plotchart::world3DCoordinates]{.cmd} [w]{.arg} [xmin]{.arg} [ymin]{.arg} [zmin]{.arg} [xmax]{.arg} [ymax]{.arg} [zmax]{.arg} 
-[::Plotchart::coordsToPixel]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg} 
-[::Plotchart::coords3DToPixel]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg} [z]{.arg} 
-[::Plotchart::polarCoordinates]{.cmd} [w]{.arg} [radmax]{.arg} 
-[::Plotchart::polarToPixel]{.cmd} [w]{.arg} [rad]{.arg} [phi]{.arg} 
-[::Plotchart::pixelToCoords]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg} 
-[::Plotchart::pixelToIndex]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg} 
-[::Plotchart::determineScale]{.cmd} [xmin]{.arg} [xmax]{.arg} [inverted]{.arg} 
-[::Plotchart::determineScaleFromList]{.cmd} [values]{.arg} [inverted]{.arg} 
-[::Plotchart::plotconfig]{.cmd} [charttype]{.arg} [component]{.arg} [property]{.arg} [value]{.arg} 
-[::Plotchart::plotstyle]{.cmd} [subcmd]{.arg} [style]{.arg} [args]{.arg} 
-[::Plotchart::eraseplot]{.cmd} [anyplot]{.arg} 
-[::Plotchart::createTargetDiagram]{.cmd} [w]{.arg} [limits]{.arg} [scale]{.arg} 
-[\$target]{.cmd} plot [series]{.arg} [xvalues]{.arg} [yvalues]{.arg} 
-[::Plotchart::createPerformanceProfile]{.cmd} [w]{.arg} [max]{.arg} 
-[\$performance]{.cmd} plot [series_and_data_pairs]{.arg} 
-[::Plotchart::createTaylorDiagram]{.cmd} [w]{.arg} [radius_data]{.arg} [args]{.arg} 
-[\$taylor]{.cmd} plot [series]{.arg} [stdev]{.arg} [corr]{.arg} 
-[::Plotchart::createHeatmap]{.cmd} [w]{.arg} [rowlabels]{.arg} [columnlabels]{.arg} [args]{.arg} 
-[\$heatmap]{.cmd} plot row [label]{.arg} [data]{.arg} 
-[\$heatmap]{.cmd} plot column [label]{.arg} [data]{.arg} 
-[\$heatmap]{.cmd} plot cell [rowlabel]{.arg} [columnlabel]{.arg} [value]{.arg} 
-[\$heatmap]{.cmd} scale values [min]{.arg} [max]{.arg} 
-[\$heatmap]{.cmd} scale colours [mincolour]{.arg} [maxcolour]{.arg} 
-[::Plotchart::createCircleplot]{.cmd} [w]{.arg} [labels]{.arg} [args]{.arg} 
-[\$circleplot]{.cmd} connect [label1]{.arg} [label2]{.arg} [colour]{.arg} [width]{.arg} 
-[\$circleplot]{.cmd} modify [label]{.arg} [args]{.arg} 
-[::Plotchart::plotmethod]{.cmd} [charttype]{.arg} [methodname]{.arg} [plotproc]{.arg} 
-[::Plotchart::plotpack]{.cmd} [w]{.arg} [dir]{.arg} [args]{.arg} 
-[\$anyplot]{.cmd} bindplot [event]{.arg} [command]{.arg} [args]{.arg} 
-[\$anyplot]{.cmd} bindlast [series]{.arg} [event]{.arg} [command]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.optlit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.optlit}
+[package]{.cmd} [require]{.sub} [Plotchart]{.lit} [2.6.2]{.optlit}
+[::Plotchart::createXYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::createStripchart]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::createTXPlot]{.cmd} [w]{.arg} [timeaxis]{.arg} [xaxis]{.arg} [args]{.arg}
+[::Plotchart::createXLogYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::createLogXYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::createLogXLogYPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::createPolarPlot]{.cmd} [w]{.arg} [radius\_data]{.arg} [args]{.arg}
+[::Plotchart::createWindrose]{.cmd} [w]{.arg} [radius\_data]{.arg} [sectors]{.arg}
+[::Plotchart::createIsometricPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [stepsize]{.arg}
+[::Plotchart::createHistogram]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [args]{.arg}
+[::Plotchart::create3DPlot]{.cmd} [w]{.arg} [xaxis]{.arg} [yaxis]{.arg} [zaxis]{.arg} [args]{.arg}
+[::Plotchart::create3DRibbonPlot]{.cmd} [w]{.arg} [yaxis]{.arg} [zaxis]{.arg}
+[::Plotchart::createPiechart]{.cmd} [w]{.arg}
+[::Plotchart::createSpiralPie]{.cmd} [w]{.arg}
+[::Plotchart::createRadialchart]{.cmd} [w]{.arg} [names]{.arg} [scale]{.arg} [style]{.arg}
+[::Plotchart::createBarchart]{.cmd} [w]{.arg} [xlabels]{.arg} [yaxis]{.arg} [noseries]{.arg} [args]{.arg}
+[::Plotchart::createHorizontalBarchart]{.cmd} [w]{.arg} [xaxis]{.arg} [ylabel]{.arg} [noseries]{.arg}
+[::Plotchart::create3DBarchart]{.cmd} [w]{.arg} [yaxis]{.arg} [nobars]{.arg}
+[::Plotchart::create3DRibbonChart]{.cmd} [w]{.arg} [names]{.arg} [yaxis]{.arg} [zaxis]{.arg}
+[::Plotchart::createBoxplot]{.cmd} [w]{.arg} [xdata]{.arg} [ydata]{.arg} [orientation]{.arg}
+[::Plotchart::createTimechart]{.cmd} [w]{.arg} [time\_begin]{.arg} [time\_end]{.arg} [args]{.arg}
+[::Plotchart::createGanttchart]{.cmd} [w]{.arg} [time\_begin]{.arg} [time\_end]{.arg} [args]{.arg}
+[::Plotchart::createRightAxis]{.cmd} [w\_or\_plot]{.arg} [yaxis]{.arg}
+[::Plotchart::createTableChart]{.cmd} [w]{.arg} [columns]{.arg} [widths]{.optarg}
+[::Plotchart::createTernaryDiagram]{.cmd} [w]{.arg} [args]{.arg}
+[::Plotchart::createNormalPlot]{.cmd} [w]{.arg} [xscale]{.arg} [args]{.arg}
+[::Plotchart::createStatusTimeline]{.cmd} [w]{.arg} [xaxis]{.arg} [ylabel]{.arg} [args]{.arg}
+[::Plotchart::createDendrogram]{.cmd} [w]{.arg} [args]{.arg}
+[$anyplot]{.cmd} [title]{.lit} [text]{.arg} [position]{.arg}
+[$anyplot]{.cmd} [subtitle]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [canvas]{.lit}
+[$anyplot]{.cmd} [saveplot]{.lit} [filename]{.arg} [args]{.arg}
+[$anyplot]{.cmd} [xtext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [ytext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [vtext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [xsubtext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [ysubtext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [vsubtext]{.lit} [text]{.arg}
+[$anyplot]{.cmd} [xconfig]{.lit} [-option]{.lit} [value]{.arg} ...
+[$anyplot]{.cmd} [yconfig]{.lit} [-option]{.lit} [value]{.arg} ...
+[$anyplot]{.cmd} [background]{.lit} [part]{.arg} [colour\_or\_image]{.arg} [dir]{.arg} [brightness]{.optarg}
+[$anyplot]{.cmd} [xticklines]{.lit} [colour]{.arg} [dash]{.optarg}
+[$anyplot]{.cmd} [yticklines]{.lit} [colour]{.arg} [dash]{.optarg}
+[$anyplot]{.cmd} [legend]{.lit} [series]{.arg} [text]{.arg} [spacing]{.optarg}
+[$anyplot]{.cmd} [removefromlegend]{.lit} [series]{.arg}
+[$anyplot]{.cmd} [legendconfig]{.lit} [-option]{.lit} [value]{.arg} ...
+[$anyplot]{.cmd} [balloon]{.lit} [x]{.arg} [y]{.arg} [text]{.arg} [dir]{.arg}
+[$anyplot]{.cmd} [balloonconfig]{.lit} [args]{.arg}
+[$anyplot]{.cmd} [plaintext]{.lit} [x]{.arg} [y]{.arg} [text]{.arg} [dir]{.arg}
+[$anyplot]{.cmd} [plaintextconfig]{.lit} [args]{.arg}
+[$anyplot]{.cmd} [object]{.lit} [itemtype]{.arg} [series]{.arg} [args]{.arg}
+[$anyplot]{.cmd} [deletedata]{.lit}
+[$xyplot]{.cmd} [plot]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$normalplot]{.cmd} [plot]{.lit} [series]{.arg} [mean]{.arg} [stdev]{.arg} [data]{.arg}
+[$normalplot]{.cmd} [diagonal]{.lit}
+[$xyplot]{.cmd} [plotlist]{.lit} [series]{.arg} [xlist]{.arg} [ylist]{.arg} [every]{.arg}
+[$xyplot]{.cmd} [region]{.lit} [series]{.arg} [xlist]{.arg} [ylist]{.arg}
+[$xyplot]{.cmd} [minmax]{.lit} [series]{.arg} [xcrd]{.arg} [ymin]{.arg} [ymax]{.arg}
+[$histogram]{.cmd} [plotcumulative]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [trend]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [rchart]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [interval]{.lit} [series]{.arg} [xcrd]{.arg} [ymin]{.arg} [ymax]{.arg} [ycentr]{.optarg}
+[$xyplot]{.cmd} [box-and-whiskers]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [violin]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [vector]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [ucmp]{.arg} [vcmp]{.arg}
+[$xyplot]{.cmd} [vectorconfig]{.lit} [series]{.arg} [-option]{.lit} [value]{.arg} ...
+[$xyplot]{.cmd} [dot]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [value]{.arg}
+[$xyplot]{.cmd} [dotconfig]{.lit} [series]{.arg} [-option]{.lit} [value]{.arg} ...
+[$xyplot]{.cmd} [contourlines]{.lit} [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg}
+[$xyplot]{.cmd} [contourlinesfunctionvalues]{.lit} [xvec]{.arg} [yvec]{.arg} [valuesmat]{.arg} [classes]{.optarg}
+[$xyplot]{.cmd} [contourfill]{.lit} [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg}
+[$xyplot]{.cmd} [contourbox]{.lit} [xcrd]{.arg} [ycrd]{.arg} [values]{.arg} [classes]{.optarg}
+[$xyplot]{.cmd} [colorMap]{.lit} [colours]{.arg}
+[$xyplot]{.cmd} [legendisolines]{.lit} [values]{.arg} [classes]{.arg}
+[$xyplot]{.cmd} [legendshades]{.lit} [values]{.arg} [classes]{.arg}
+[$xyplot]{.cmd} [grid]{.lit} [xcrd]{.arg} [ycrd]{.arg}
+[$xyplot]{.cmd} [xband]{.lit} [ymin]{.arg} [ymax]{.arg}
+[$xyplot]{.cmd} [yband]{.lit} [xmin]{.arg} [xmax]{.arg}
+[$xyplot]{.cmd} [labeldot]{.lit} [x]{.arg} [y]{.arg} [text]{.arg} [orient]{.arg}
+[$polarplot]{.cmd} [plot]{.lit} [series]{.arg} [radius]{.arg} [angle]{.arg}
+[$windrose]{.cmd} [plot]{.lit} [data]{.arg} [colour]{.arg}
+[$plot3d]{.cmd} [plotfunc]{.lit} [function]{.arg}
+[$plot3d]{.cmd} [plotfuncont]{.lit} [function]{.arg} [contours]{.arg}
+[$plot3d]{.cmd} [gridsize]{.lit} [nxcells]{.arg} [nycells]{.arg}
+[$plot3d]{.cmd} [plotdata]{.lit} [data]{.arg}
+[$plot3d]{.cmd} [interpolatedata]{.lit} [data]{.arg} [contours]{.arg}
+[$plot3d]{.cmd} [colour]{.lit} [fill]{.arg} [border]{.arg}
+[$plot3d]{.cmd} [ribbon]{.lit} [yzpairs]{.arg}
+[$plot3d]{.cmd} [plot]{.lit} [yzpairs]{.arg}
+[$xyplot]{.cmd} [dataconfig]{.lit} [series]{.arg} [-option]{.lit} [value]{.arg} ...
+[$pie]{.cmd} [plot]{.lit} [data]{.arg}
+[$pie]{.cmd} [colours]{.lit} [colour1]{.arg} [colour2]{.arg} ...
+[$pie]{.cmd} [explode]{.lit} [segment]{.arg}
+[$radial]{.cmd} [plot]{.lit} [data]{.arg} [colour]{.arg} [thickness]{.arg}
+[$pie]{.cmd} [colours]{.lit} [colour1]{.arg} [colour2]{.arg} ...
+[$barchart]{.cmd} [plot]{.lit} [series]{.arg} [ydata]{.arg} [colour]{.arg} [dir]{.optarg} [brightness]{.optarg}
+[$barchart]{.cmd} [config]{.lit} [-option]{.lit} [value]{.arg} ...
+[$barchart]{.cmd} [plot]{.lit} [series]{.arg} [xdata]{.arg} [colour]{.arg} [dir]{.optarg} [brightness]{.optarg}
+[$barchart]{.cmd} [config]{.lit} [-option]{.lit} [value]{.arg} ...
+[$barchart]{.cmd} [plot]{.lit} [label]{.arg} [yvalue]{.arg} [colour]{.arg}
+[$barchart]{.cmd} [config]{.lit} [-option]{.lit} [value]{.arg} ...
+[$ribbon]{.cmd} [line]{.lit} [xypairs]{.arg} [colour]{.arg}
+[$ribbon]{.cmd} [area]{.lit} [xypairs]{.arg} [colour]{.arg}
+[$boxplot]{.cmd} [plot]{.lit} [series]{.arg} [label]{.arg} [values]{.arg}
+[$boxplot]{.cmd} [violin]{.lit} [series]{.arg} [label]{.arg} [values]{.arg}
+[$timechart]{.cmd} [period]{.lit} [text]{.arg} [time\_begin]{.arg} [time\_end]{.arg} [colour]{.arg}
+[$timechart]{.cmd} [addperiod]{.lit} [time\_begin]{.arg} [time\_end]{.arg} [colour]{.arg}
+[$timechart]{.cmd} [milestone]{.lit} [text]{.arg} [time]{.arg} [colour]{.arg}
+[$timechart]{.cmd} [addmilestone]{.lit} [time]{.arg} [colour]{.arg}
+[$timechart]{.cmd} [vertline]{.lit} [text]{.arg} [time]{.arg} [colour]{.arg}
+[$timechart]{.cmd} [hscroll]{.lit} [scrollbar]{.arg}
+[$timechart]{.cmd} [vscroll]{.lit} [scrollbar]{.arg}
+[$ganttchart]{.cmd} [task]{.lit} [text]{.arg} [time\_begin]{.arg} [time\_end]{.arg} [completed]{.arg}
+[$ganttchart]{.cmd} [milestone]{.lit} [text]{.arg} [time]{.arg} [colour]{.arg}
+[$ganttchart]{.cmd} [vertline]{.lit} [text]{.arg} [time]{.arg}
+[$ganttchart]{.cmd} [connect]{.lit} [from]{.arg} [to]{.arg}
+[$ganttchart]{.cmd} [summary]{.lit} [text]{.arg} [args]{.arg}
+[$ganttchart]{.cmd} [color]{.lit} [keyword]{.arg} [newcolor]{.arg}
+[$ganttchart]{.cmd} [font]{.lit} [keyword]{.arg} [newfont]{.arg}
+[$ganttchart]{.cmd} [hscroll]{.lit} [scrollbar]{.arg}
+[$ganttchart]{.cmd} [vscroll]{.lit} [scrollbar]{.arg}
+[$isoplot]{.cmd} [plot]{.lit} [rectangle]{.lit} [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg} [colour]{.arg}
+[$isoplot]{.cmd} [plot]{.lit} [filled-rectangle]{.lit} [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg} [colour]{.arg}
+[$isoplot]{.cmd} [plot]{.lit} [circle]{.lit} [xc]{.arg} [yc]{.arg} [radius]{.arg} [colour]{.arg}
+[$isoplot]{.cmd} [plot]{.lit} [filled-circle]{.lit} [xc]{.arg} [yc]{.arg} [radius]{.arg} [colour]{.arg}
+[$table]{.cmd} [row]{.lit} [items]{.arg}
+[$table]{.cmd} [separator]{.lit}
+[$table]{.cmd} [formatcommand]{.lit} [procname]{.arg}
+[$table]{.cmd} [cellconfigure]{.lit} [args]{.arg}
+[$ternary]{.cmd} [plot]{.lit} [series]{.arg} [xcrd]{.arg} [ycrd]{.arg} [zcrd]{.arg} [text]{.arg} [dir]{.arg}
+[$ternary]{.cmd} [line]{.lit} [series]{.arg} [coords]{.arg}
+[$ternary]{.cmd} [fill]{.lit} [series]{.arg} [coords]{.arg}
+[$ternary]{.cmd} [text]{.lit} [xtext]{.arg} [ytext]{.arg} [ztext]{.arg}
+[$ternary]{.cmd} [ticklines]{.lit} [colour]{.arg}
+[$timeline]{.cmd} [plot]{.lit} [series]{.arg} [item]{.arg} [start]{.arg} [stop]{.arg} [color]{.arg}
+[$timeline]{.cmd} [vertline]{.lit} [text]{.arg} [time]{.arg} [args]{.arg}
+[$dendrogram]{.cmd} [plot]{.lit} [series]{.arg} [data]{.arg}
+[::Plotchart::viewPort]{.cmd} [w]{.arg} [pxmin]{.arg} [pymin]{.arg} [pxmax]{.arg} [pymax]{.arg}
+[::Plotchart::worldCoordinates]{.cmd} [w]{.arg} [xmin]{.arg} [ymin]{.arg} [xmax]{.arg} [ymax]{.arg}
+[::Plotchart::world3DCoordinates]{.cmd} [w]{.arg} [xmin]{.arg} [ymin]{.arg} [zmin]{.arg} [xmax]{.arg} [ymax]{.arg} [zmax]{.arg}
+[::Plotchart::coordsToPixel]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg}
+[::Plotchart::coords3DToPixel]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg} [z]{.arg}
+[::Plotchart::polarCoordinates]{.cmd} [w]{.arg} [radmax]{.arg}
+[::Plotchart::polarToPixel]{.cmd} [w]{.arg} [rad]{.arg} [phi]{.arg}
+[::Plotchart::pixelToCoords]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg}
+[::Plotchart::pixelToIndex]{.cmd} [w]{.arg} [x]{.arg} [y]{.arg}
+[::Plotchart::determineScale]{.cmd} [xmin]{.arg} [xmax]{.arg} [inverted]{.arg}
+[::Plotchart::determineScaleFromList]{.cmd} [values]{.arg} [inverted]{.arg}
+[::Plotchart::plotconfig]{.cmd} [charttype]{.arg} [component]{.arg} [property]{.arg} [value]{.arg}
+[::Plotchart::plotstyle]{.cmd} [subcmd]{.arg} [style]{.arg} [args]{.arg}
+[::Plotchart::eraseplot]{.cmd} [anyplot]{.arg}
+[::Plotchart::createTargetDiagram]{.cmd} [w]{.arg} [limits]{.arg} [scale]{.arg}
+[$target]{.cmd} [plot]{.lit} [series]{.arg} [xvalues]{.arg} [yvalues]{.arg}
+[::Plotchart::createPerformanceProfile]{.cmd} [w]{.arg} [max]{.arg}
+[$performance]{.cmd} [plot]{.lit} [series\_and\_data\_pairs]{.arg}
+[::Plotchart::createTaylorDiagram]{.cmd} [w]{.arg} [radius\_data]{.arg} [args]{.arg}
+[$taylor]{.cmd} [plot]{.lit} [series]{.arg} [stdev]{.arg} [corr]{.arg}
+[::Plotchart::createHeatmap]{.cmd} [w]{.arg} [rowlabels]{.arg} [columnlabels]{.arg} [args]{.arg}
+[$heatmap]{.cmd} [plot]{.lit} [row]{.lit} [label]{.arg} [data]{.arg}
+[$heatmap]{.cmd} [plot]{.lit} [column]{.lit} [label]{.arg} [data]{.arg}
+[$heatmap]{.cmd} [plot]{.lit} [cell]{.lit} [rowlabel]{.arg} [columnlabel]{.arg} [value]{.arg}
+[$heatmap]{.cmd} [scale]{.lit} [values]{.lit} [min]{.arg} [max]{.arg}
+[$heatmap]{.cmd} [scale]{.lit} [colours]{.lit} [mincolour]{.arg} [maxcolour]{.arg}
+[::Plotchart::createCircleplot]{.cmd} [w]{.arg} [labels]{.arg} [args]{.arg}
+[$circleplot]{.cmd} [connect]{.lit} [label1]{.arg} [label2]{.arg} [colour]{.arg} [width]{.arg}
+[$circleplot]{.cmd} [modify]{.lit} [label]{.arg} [args]{.arg}
+[::Plotchart::plotmethod]{.cmd} [charttype]{.arg} [methodname]{.arg} [plotproc]{.arg}
+[::Plotchart::plotpack]{.cmd} [w]{.arg} [dir]{.arg} [args]{.arg}
+[$anyplot]{.cmd} [bindplot]{.lit} [event]{.arg} [command]{.arg} [args]{.arg}
+[$anyplot]{.cmd} [bindlast]{.lit} [series]{.arg} [event]{.arg} [command]{.arg}
 :::
 
 # Description
@@ -216,36 +217,30 @@ This results in the creation of an xy-plot in, say, ten lines of code:
 
 A drawback of the package might be that it does not do any data management. So if the canvas that holds the plot is to be resized, the whole plot must be redrawn. The advantage, though, is that it offers a number of plot and chart types:
 
-**•**
-: XY-plots like the one shown above with any number of data series.
+- XY-plots like the one shown above with any number of data series.
 
-**•**
-: Stripcharts, a kind of XY-plots where the horizontal axis is adjusted automatically. The result is a kind of sliding window on the data series.
+- Stripcharts, a kind of XY-plots where the horizontal axis is adjusted automatically. The result is a kind of sliding window on the data series.
 
-**•**
-: Polar plots, where the coordinates are polar instead of cartesian.
+- Polar plots, where the coordinates are polar instead of cartesian.
 
-**•**
-: Histograms, for plotting statistical information.
+- Histograms, for plotting statistical information.
 
-**•**
-: Barcharts, piecharts, Gantt charts, time charts.
+- Barcharts, piecharts, Gantt charts, time charts.
 
-**•**
-: Isometric plots, where the scale of the coordinates in the two directions is always the same, i.e. a circle in world coordinates appears as a circle on the screen. You can zoom in and out, as well as pan with these plots (*Note:* this works best if no axes are drawn, the zooming and panning routines do not distinguish the axes), using the mouse buttons with the control key and the arrow keys with the control key.
+- Isometric plots, where the scale of the coordinates in the two directions is always the same, i.e. a circle in world coordinates appears as a circle on the screen.
 
-**•**
-: Piecharts, with automatic scaling to indicate the proportions.
+    You can zoom in and out, as well as pan with these plots (*Note:* this works best if no axes are drawn, the zooming and panning routines do not distinguish the axes), using the mouse buttons with the control key and the arrow keys with the control key.
 
-**•**
-: Barcharts, with either vertical or horizontal bars, stacked bars or bars side by side.
+- Piecharts, with automatic scaling to indicate the proportions.
 
-**•**
-: Timecharts, where bars indicate a time period and milestones or other important moments in time are represented by triangles.
+- Barcharts, with either vertical or horizontal bars, stacked bars or bars side by side.
 
-**•**
-: 3D plots (both for displaying surfaces and 3D bars) With version 1.5 a new command has been introduced: plotconfig, which can be used to configure the plot options for particular types of plots and charts (cf. **CONFIGURATION OPTIONS AND OTHER COMMANDS**) With version 1.8.3 several new features were introduced, which allow more interactivity (cf. **INTERACTIVE USE**) With version 2.0 it has become possible to put several plots or charts in one canvas.
+- Timecharts, where bars indicate a time period and milestones or other important moments in time are represented by triangles.
 
+- 3D plots (both for displaying surfaces and 3D bars)
+
+
+With version 1.5 a new command has been introduced: plotconfig, which can be used to configure the plot options for particular types of plots and charts (cf. [Configuration options and other commands]) With version 1.8.3 several new features were introduced, which allow more interactivity (cf. [Interactive use]) With version 2.0 it has become possible to put several plots or charts in one canvas.
 
 # Plot creation commands
 
@@ -254,893 +249,875 @@ You create the plot or chart with one single command and then fill the plot with
 **::Plotchart::createXYPlot** *w* *xaxis* *yaxis* *args*
 : Create a new xy-plot (configuration type: xyplot).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
+    list *args* (in)
+    : Zero or more options that influence the appearance of the plot:
 
-list *args* (in)
-: Zero or more options that influence the appearance of the plot:
+        - *-xlabels {labels}:* Custom labels for the x-axis. If the labels are numeric, they are positioned according to the given scale, otherwise they are positioned with equal distance, based on the number of labels. Note: this only works if the stepsize of the xaxis argument is the empty string.
 
+        - *-ylabels {labels}:* Similarly, custom labels for the y-axis.
 
-**•**
-: *-xlabels {labels}:* Custom labels for the x-axis. If the labels are numeric, they are positioned according to the given scale, otherwise they are positioned with equal distance, based on the number of labels. Note: this only works if the stepsize of the xaxis argument is the empty string.
+        - *-box {measures}:* See [Arranging multiple plots in a canvas]
 
-**•**
-: *-ylabels {labels}:* Similarly, custom labels for the y-axis.
+        - *-axesbox {measures}:* See [Arranging multiple plots in a canvas]
 
-**•**
-: *-box {measures}:* See **ARRANGING MULTIPLE PLOTS IN A CANVAS**
+        - *-timeformat format:* See [Using date/time labels]
 
-**•**
-: *-axesbox {measures}:* See **ARRANGING MULTIPLE PLOTS IN A CANVAS**
+        - *-gmt 0/1:* See [Using date/time labels]
 
-**•**
-: *-timeformat format:* See **USING DATE/TIME LABELS**
+        - *-axestozero:* Draw the axes at the origin (1), or at the sides of the plot area (0, default). This option is implemented for XY plots only.
 
-**•**
-: *-gmt 0/1:* See **USING DATE/TIME LABELS**
+        - *-isometric:* Rescale the axes, so that a square in the coordinates appears as a square on the screen (1), or use the given extremes (0, default). This option is implemented for XY plots only.
 
-**•**
-: *-axestozero:* Draw the axes at the origin (1), or at the sides of the plot area (0, default). This option is implemented for XY plots only.
-
-**•**
-: *-isometric:* Rescale the axes, so that a square in the coordinates appears as a square on the screen (1), or use the given extremes (0, default). This option is implemented for XY plots only.
 
 
 **::Plotchart::createStripchart** *w* *xaxis* *yaxis* *args*
 : Create a new strip chart (configuration type: stripchart). The only difference to a regular XY plot is that the x-axis will be automatically adjusted when the x-coordinate of a new point exceeds the maximum.
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. Note that an inverted x-axis is *not* supported for this type of plot.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. Note that an inverted x-axis is *not* supported for this type of plot.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
-
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
 **::Plotchart::createTXPlot** *w* *timeaxis* *xaxis* *args*
 : Create a new time-x-plot (configuration type: txplot). The horizontal axis represents the date/time of the data and the vertical axis the values themselves.
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *timeaxis* (in)
+    : A 3-element list containing the minimum and maximum date/time to be shown and the stepsize (*in days*) for the time-axis, in this order. Note that an inverted time-axis is *not* supported.
 
-list *timeaxis* (in)
-: A 3-element list containing the minimum and maximum date/time to be shown and the stepsize (*in days*) for the time-axis, in this order. Note that an inverted time-axis is *not* supported.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the vertical axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the vertical axis, in this order. For an inverted axis, where the maximum appears at the bottom, use: maximum, minimum and a *negative* stepsize.
-
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
 **::Plotchart::createXLogYPlot** *w* *xaxis* *yaxis* *args*
-: Create a new xy-plot where the y-axis has a logarithmic scale (configuration type: xlogyplot). The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
+: Create a new xy-plot where the y-axis has a logarithmic scale (configuration type: xlogyplot).
 
+    The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
 
-list *yaxis* (in)
-: A 2-element list containing minimum and maximum for the y-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
+    list *yaxis* (in)
+    : A 2-element list containing minimum and maximum for the y-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
 
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
 **::Plotchart::createLogXYPlot** *w* *xaxis* *yaxis* *args*
-: Create a new xy-plot where the x-axis has a logarithmic scale (configuration type: logxyplot). The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
+: Create a new xy-plot where the x-axis has a logarithmic scale (configuration type: logxyplot).
 
+    The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-list *xaxis* (in)
-: A 2-element list containing minimum and maximum for the x-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
+    list *xaxis* (in)
+    : A 2-element list containing minimum and maximum for the x-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order. For an inverted axis, where the maximum appears on the left-hand side, use: maximum, minimum and a *negative* stepsize.
 
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
 **::Plotchart::createLogXLogYPlot** *w* *xaxis* *yaxis* *args*
-: Create a new xy-plot where both the x-axis and the y-axis have a logarithmic scale (configuration type: logxlogyplot). The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
+: Create a new xy-plot where both the x-axis and the y-axis have a logarithmic scale (configuration type: logxlogyplot).
+
+    The data should be given as for a linear scale, as the logarithmic transformation is taken of internally.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
+
+    list *xaxis* (in)
+    : A 2-element list containing minimum and maximum for the x-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
+
+    list *yaxis* (in)
+    : A 2-element list containing minimum and maximum for the y-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
+
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
-
-list *xaxis* (in)
-: A 2-element list containing minimum and maximum for the x-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
-
-list *yaxis* (in)
-: A 2-element list containing minimum and maximum for the y-axis, in this order. Note that an inverted logarithmic axis is *not* supported.
-
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
-
-
-**::Plotchart::createPolarPlot** *w* *radius_data* *args*
+**::Plotchart::createPolarPlot** *w* *radius\_data* *args*
 : Create a new polar plot (configuration type: polarplot).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *radius\_data* (in)
+    : A 2-element list containing maximum radius and stepsize for the radial axis, in this order.
 
-list *radius_data* (in)
-: A 2-element list containing maximum radius and stepsize for the radial axis, in this order.
-
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
-
-
-**::Plotchart::createWindrose** *w* *radius_data* *sectors*
-: Create a new windrose diagram. The diagram will consist of concentric circles as defined by the *radius_data* argument and a number of sectors (given by the *sectors* argument). The sectors are drawn in the "nautical" convention, that is: the first is located at the positive y-axis, the second is to the right and so on in a clockwise direction.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the diagram
+**::Plotchart::createWindrose** *w* *radius\_data* *sectors*
+: Create a new windrose diagram. The diagram will consist of concentric circles as defined by the *radius\_data* argument and a number of sectors (given by the *sectors* argument). The sectors are drawn in the "nautical" convention, that is: the first is located at the positive y-axis, the second is to the right and so on in a clockwise direction.
 
-list *radius_data* (in)
-: A 2-element list, the first element is the maximum radius, the second is the step to be used for the circles.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the diagram
 
-int *sectors*
-: Number of sectors to use (defaults to 16).
+    list *radius\_data* (in)
+    : A 2-element list, the first element is the maximum radius, the second is the step to be used for the circles.
+
+    int *sectors*
+    : Number of sectors to use (defaults to 16).
 
 
 **::Plotchart::createIsometricPlot** *w* *xaxis* *yaxis* *stepsize*
 : Create a new isometric plot, where the vertical and the horizontal coordinates are scaled so that a circle will truly appear as a circle (configuration type: isometric).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xaxis* (in)
+    : A 2-element list containing minimum, and maximum for the x-axis, in this order.
 
-list *xaxis* (in)
-: A 2-element list containing minimum, and maximum for the x-axis, in this order.
+    list *yaxis* (in)
+    : A 2-element list containing minimum, and maximum for the y-axis, in this order.
 
-list *yaxis* (in)
-: A 2-element list containing minimum, and maximum for the y-axis, in this order.
-
-float|**noaxes** *stepsize* (in)
-: Either the stepsize used by both axes or the keyword **noaxes** to signal the plot that it should use the full area of the widget, to not draw any of the axes.
+    float|**noaxes** *stepsize* (in)
+    : Either the stepsize used by both axes or the keyword **noaxes** to signal the plot that it should use the full area of the widget, to not draw any of the axes.
 
 
 **::Plotchart::createHistogram** *w* *xaxis* *yaxis* *args*
 : Create a new histogram (configuration type: histogram).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
-
-list *args* (in)
-: Zero or more options - see the XY-plot for more information.
+    list *args* (in)
+    : Zero or more options - see the XY-plot for more information.
 
 
 **::Plotchart::create3DPlot** *w* *xaxis* *yaxis* *zaxis* *args*
 : Create a new 3D plot.
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
+    list *zaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the z-axis, in this order.
 
-list *zaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the z-axis, in this order.
-
-list *args* (in)
-: Optional list of options (keyword-value pairs). Currently supported: -xlabels to set the labels for the x-axis.
+    list *args* (in)
+    : Optional list of options (keyword-value pairs). Currently supported: -xlabels to set the labels for the x-axis.
 
 
 **::Plotchart::create3DRibbonPlot** *w* *yaxis* *zaxis*
 : Create a new 3D ribbon plot. It is a simplification of the full 3D plot and allows for the drawing of a ribbon only (the x-axis is dropped).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
-
-list *zaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the z-axis, in this order.
+    list *zaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the z-axis, in this order.
 
 
 **::Plotchart::createPiechart** *w*
 : Create a new piechart (configuration type: piechart).
 
-
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
 
 **::Plotchart::createSpiralPie** *w*
 : Create a new "spiral pie" (configuration type: spiralpie), a variation on the ordinary piechart. The value is used to scale the radius, rather than the angle. By default the data are sorted.
 
-
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
 
 **::Plotchart::createRadialchart** *w* *names* *scale* *style*
 : Create a new radial chart (the data are drawn as a line connecting the spokes of the diagram) (configuration type: radialchart).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *names* (in)
+    : Names for the spokes.
 
-list *names* (in)
-: Names for the spokes.
+    float *scale* (in)
+    : Scale value to determine the position of the data along the spokes.
 
-float *scale* (in)
-: Scale value to determine the position of the data along the spokes.
+    string *style* (in)
+    : Style of the chart (optional). One of:
 
-string *style* (in)
-: Style of the chart (optional). One of:
+        - *lines* - the default: draw the data as independent polylines.
 
+        - *cumulative* - draw the data as polylines where the data are accumulated.
 
-**•**
-: *lines* - the default: draw the data as independent polylines.
+        - *filled* - draw the data as filled polygons where the data are accumulated
 
-**•**
-: *cumulative* - draw the data as polylines where the data are accumulated.
-
-**•**
-: *filled* - draw the data as filled polygons where the data are accumulated
 
 
 **::Plotchart::createBarchart** *w* *xlabels* *yaxis* *noseries* *args*
-: Create a new barchart with vertical bars (configuration type: vertbars). The horizontal axis will display the labels contained in the argument *xlabels*. The number of series given by *noseries* determines both the width of the bars, and the way the series will be drawn. If the keyword **stacked** was specified the series will be drawn stacked on top of each other. Otherwise each series that is drawn will be drawn shifted to the right. The number of series determines the width of the bars, so that there is space of that number of bars. If you use a floating-point number, like 2.2, instead of an integer, like 2, a small gap between the sets of bars will be drawn - the width depends on the fractional part.
+: Create a new barchart with vertical bars (configuration type: vertbars). The horizontal axis will display the labels contained in the argument *xlabels*. The number of series given by *noseries* determines both the width of the bars, and the way the series will be drawn.
 
+    If the keyword **stacked** was specified the series will be drawn stacked on top of each other. Otherwise each series that is drawn will be drawn shifted to the right.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    The number of series determines the width of the bars, so that there is space of that number of bars. If you use a floating-point number, like 2.2, instead of an integer, like 2, a small gap between the sets of bars will be drawn - the width depends on the fractional part.
 
-list *xlabels* (in)
-: List of labels for the x-axis. Its length also determines the number of bars that will be plotted per series.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
+    list *xlabels* (in)
+    : List of labels for the x-axis. Its length also determines the number of bars that will be plotted per series.
 
-int|**stacked** *noseries* (in)
-: The number of data series that will be plotted. This has to be an integer number greater than zero (if **stacked** is not used).
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
-string *args* (in)
-: One or more key-value pairs defining the options. Specific to barcharts: **-xlabelangle** value, the angle under which the labels should be drawn. This defaults to 0 - horizontal text. This option is especially useful if you have fairly long labels.
+    int|**stacked** *noseries* (in)
+    : The number of data series that will be plotted. This has to be an integer number greater than zero (if **stacked** is not used).
+
+    string *args* (in)
+    : One or more key-value pairs defining the options. Specific to barcharts: **-xlabelangle** value, the angle under which the labels should be drawn. This defaults to 0 - horizontal text. This option is especially useful if you have fairly long labels.
 
 
 **::Plotchart::createHorizontalBarchart** *w* *xaxis* *ylabel* *noseries*
-: Create a new barchart with horizontal bars (configuration type: horizbars). The vertical axis will display the labels contained in the argument *ylabels*. The number of series given by *noseries* determines both the width of the bars, and the way the series will be drawn. If the keyword **stacked** was specified the series will be drawn stacked from left to right. Otherwise each series that is drawn will be drawn shifted upward.
+: Create a new barchart with horizontal bars (configuration type: horizbars). The vertical axis will display the labels contained in the argument *ylabels*. The number of series given by *noseries* determines both the width of the bars, and the way the series will be drawn.
 
+    If the keyword **stacked** was specified the series will be drawn stacked from left to right. Otherwise each series that is drawn will be drawn shifted upward.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
 
-list *ylabels* (in)
-: List of labels for the y-axis. Its length also determines the number of bars that will be plotted per series.
+    list *ylabels* (in)
+    : List of labels for the y-axis. Its length also determines the number of bars that will be plotted per series.
 
-int|**stacked** *noseries* (in)
-: The number of data series that will be plotted. This has to be an integer number greater than zero (if **stacked** is not used).
+    int|**stacked** *noseries* (in)
+    : The number of data series that will be plotted. This has to be an integer number greater than zero (if **stacked** is not used).
 
 
 **::Plotchart::create3DBarchart** *w* *yaxis* *nobars*
 : Create a new barchart with 3D vertical bars (configuration type: 3dbars). The horizontal axis will display the labels per bar. The number of bars given by *nobars* determines the position and the width of the bars. The colours can be varied per bar. (This type of chart was inspired by the Wiki page on 3D bars by Richard Suchenwirth.)
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
-
-int *nobars* (in)
-: The number of bars that will be plotted.
+    int *nobars* (in)
+    : The number of bars that will be plotted.
 
 
 **::Plotchart::create3DRibbonChart** *w* *names* *yaxis* *zaxis*
 : Create a new "ribbon chart" (configuration type: 3dribbon). This is a chart where the data series are represented as ribbons in a three-dimensional axis system. Along the x-axis (which is "into" the screen) the names are plotted, each representing a single series. The first plot command draws the furthest series, the second draws the series in front of that and so on.
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    widget *w* (in)
+    : Names of the series, plotted as labels along the x-axis
 
-widget *w* (in)
-: Names of the series, plotted as labels along the x-axis
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis (drawn horizontally!), in this order.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis (drawn horizontally!), in this order.
+    list *zaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the z-axis (drawn vertically), in this order.
 
-list *zaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the z-axis (drawn vertically), in this order.
-
-int *nobars* (in)
-: The number of bars that will be plotted.
+    int *nobars* (in)
+    : The number of bars that will be plotted.
 
 
 **::Plotchart::createBoxplot** *w* *xdata* *ydata* *orientation*
 : Create a new boxplot with horizontal or vertical boxes (box-and-whiskers) (configuration type: boxplot). Depending on the orientation the x- or y-axis is drawn with labels. The boxes are drawn based on the raw data (see the plot subcommand for this type of plot).
 
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+    list *xdata* (in)
+    : This is either a 3-element list containing minimum, maximum and stepsize for the x-axis, in this order (when orientation is horizontal), or a list of labels for the x-axis (when orientation is vertical). The length of the label list also determines the number of boxes that can be plotted. The labels are also used in the plot subcommand.
 
-list *xdata* (in)
-: This is either a 3-element list containing minimum, maximum and stepsize for the x-axis, in this order (when orientation is horizontal), or a list of labels for the x-axis (when orientation is vertical). The length of the label list also determines the number of boxes that can be plotted. The labels are also used in the plot subcommand.
+    list *ydata* (in)
+    : This is either a 3-element list containing minimum, maximum and stepsize for the y-axis, in this order (when orientation is vertical), or a list of labels for the y-axis (when orientation is horizontal). The length of the label list also determines the number of boxes that can be plotted. The labels are also used in the plot subcommand.
 
-list *ydata* (in)
-: This is either a 3-element list containing minimum, maximum and stepsize for the y-axis, in this order (when orientation is vertical), or a list of labels for the y-axis (when orientation is horizontal). The length of the label list also determines the number of boxes that can be plotted. The labels are also used in the plot subcommand.
-
-string *orientation* (in)
-: If given, "horizontal" or "vertical" determines the orientation of the boxes. This optional value (default: horizontal) also determines the interpretation of the xdata and ydata arguments.
-
-
-**::Plotchart::createTimechart** *w* *time_begin* *time_end* *args*
-: Create a new timechart (configuration type: timechart). The time axis (= x-axis) goes from *time_begin* to *time_end*, and the vertical spacing is determined by the number of items to plot.
+    string *orientation* (in)
+    : If given, "horizontal" or "vertical" determines the orientation of the boxes. This optional value (default: horizontal) also determines the interpretation of the xdata and ydata arguments.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+**::Plotchart::createTimechart** *w* *time\_begin* *time\_end* *args*
+: Create a new timechart (configuration type: timechart). The time axis (= x-axis) goes from *time\_begin* to *time\_end*, and the vertical spacing is determined by the number of items to plot.
 
-string *time_begin* (in)
-: The start time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-string *time_end* (in)
-: The end time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
+    string *time\_begin* (in)
+    : The start time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
 
-arguments *args* (in)
-: The remaining arguments can be:
+    string *time\_end* (in)
+    : The end time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
 
+    arguments *args* (in)
+    : The remaining arguments can be:
 
-**•**
-: The expected/maximum number of items. This determines the vertical spacing. (If given, it must be the first argument after "time_end"
+        - The expected/maximum number of items. This determines the vertical spacing. (If given, it must be the first argument after "time\_end"
 
-**•**
-: The keyword -barheight and the number of pixels per bar. This is an alternative method to determine the vertical spacing.
+        - The keyword -barheight and the number of pixels per bar. This is an alternative method to determine the vertical spacing.
 
-**•**
-: The keyword -ylabelwidth and the number of pixels to reserve for the labels at the y-axis.
-
-
-**::Plotchart::createGanttchart** *w* *time_begin* *time_end* *args*
-: Create a new Gantt chart (configuration type: ganttchart). The time axis (= x-axis) goes from *time_begin* to *time_end*, and the vertical spacing is determined by the number of items to plot. Via the specific commands you can then add tasks and connections between the tasks.
+        - The keyword -ylabelwidth and the number of pixels to reserve for the labels at the y-axis.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
 
-string *time_begin* (in)
-: The start time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
+**::Plotchart::createGanttchart** *w* *time\_begin* *time\_end* *args*
+: Create a new Gantt chart (configuration type: ganttchart). The time axis (= x-axis) goes from *time\_begin* to *time\_end*, and the vertical spacing is determined by the number of items to plot. Via the specific commands you can then add tasks and connections between the tasks.
 
-string *time_end* (in)
-: The end time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
 
-arguments *args* (in)
-: The remaining arguments can be:
+    string *time\_begin* (in)
+    : The start time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
 
+    string *time\_end* (in)
+    : The end time given in a form that is recognised by the **clock scan** command (e.g. "1 january 2004").
 
-**•**
-: The expected/maximum number of items. This determines the vertical spacing. (If given this way, it must be the first argument after "time_end")
+    arguments *args* (in)
+    : The remaining arguments can be:
 
-**•**
-: The expected/maximum width of the descriptive text (roughly in characters, for the actual space reserved for the text, it is assumed that a character is about ten pixels wide). Defaults to 20. (If given this way, it must be the second argument after "time_end").
+        - The expected/maximum number of items. This determines the vertical spacing. (If given this way, it must be the first argument after "time\_end")
 
-**•**
-: The keyword -barheight and the number of pixels per bar. This is an alternative method to determine the vertical spacing.
+        - The expected/maximum width of the descriptive text (roughly in characters, for the actual space reserved for the text, it is assumed that a character is about ten pixels wide). Defaults to 20. (If given this way, it must be the second argument after "time\_end").
 
-**•**
-: The keyword -ylabelwidth and the number of pixels to reserve for the labels at the y-axis.
+        - The keyword -barheight and the number of pixels per bar. This is an alternative method to determine the vertical spacing.
 
-
-**::Plotchart::createRightAxis** *w_or_plot* *yaxis*
-: Create a plot command that will use a right axis instead of the left axis (configuration type: inherited from the existing plot). The canvas widget must already contain an ordinary plot, as the horizontal axis and other properties are reused. Preferably use the plot command, as with multiple plots in a canvas (also when redefining an existing plot!), the wrong geometry might be used. To plot data using the right axis, use this new command, to plot data using the *left* axis, use the original plot command.
+        - The keyword -ylabelwidth and the number of pixels to reserve for the labels at the y-axis.
 
 
-widget *w_or_plot* (in)
-: Name of the *existing* canvas widget to hold the plot or preferably the plot command for the plot with the left axis.
 
-list *yaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
+**::Plotchart::createRightAxis** *w\_or\_plot* *yaxis*
+: Create a plot command that will use a right axis instead of the left axis (configuration type: inherited from the existing plot). The canvas widget must already contain an ordinary plot, as the horizontal axis and other properties are reused. Preferably use the plot command, as with multiple plots in a canvas (also when redefining an existing plot!), the wrong geometry might be used.
+
+    To plot data using the right axis, use this new command, to plot data using the *left* axis, use the original plot command.
+
+    widget *w\_or\_plot* (in)
+    : Name of the *existing* canvas widget to hold the plot or preferably the plot command for the plot with the left axis.
+
+    list *yaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the y-axis, in this order.
 
 
 **::Plotchart::createTableChart** *w* *columns* ?widths?
-: Create a command to draw a table. You can use a variety of commands to draw the actual rows of the table, but the number of columns is fixed. (See **TABLE CHARTS** for an example)
+: Create a command to draw a table. You can use a variety of commands to draw the actual rows of the table, but the number of columns is fixed. (See [Table charts] for an example)
 
+    widget *w* (in)
+    : Name of the canvas widget to hold the table.
 
-widget *w* (in)
-: Name of the canvas widget to hold the table.
+    list *columns* (in)
+    : The headers of the columns in the table. The number of elements determines the number of columns.
 
-list *columns* (in)
-: The headers of the columns in the table. The number of elements determines the number of columns.
-
-list *widths* (in)
-: If given, either a single value, the width in pixels for all columns or for each column the width of that column. If not given, the table is spread out over the width of the canvas (minus the margins).
+    list *widths* (in)
+    : If given, either a single value, the width in pixels for all columns or for each column the width of that column. If not given, the table is spread out over the width of the canvas (minus the margins).
 
 
 **::Plotchart::createTernaryDiagram** *w* *args*
 : Create a command to draw a ternary diagram (configuration type: ternary). You can draw individual (labelled) data points in the diagram, lines and filled polygons.
 
+    widget *w* (in)
+    : Name of the canvas widget to hold the ternary diagram.
 
-widget *w* (in)
-: Name of the canvas widget to hold the ternary diagram.
-
-list *args* (in)
-: Zero or more option-value pairs to influence the position and the appearance of the diagram. In addition to the positioning options (-box and -axesbox) the diagram supports: *-fractions yes/no*, to display numbers 0 to 1 instead of 0 to 100% and *-steps number* to influence the number of labels along the three sides.
+    list *args* (in)
+    : Zero or more option-value pairs to influence the position and the appearance of the diagram. In addition to the positioning options (-box and -axesbox) the diagram supports: *-fractions yes/no*, to display numbers 0 to 1 instead of 0 to 100% and *-steps number* to influence the number of labels along the three sides.
 
 
 **::Plotchart::createNormalPlot** *w* *xscale* *args*
-: Create a command to draw a normal plot - useful to investigate whether a data set is normally distributed or not. In that case the data will fall on or near the diagonal. As such, it is a specialised plotting procedure. The details of the plotting procedure have been adopted from the *qqnorm* in the "R" *stats* package and described on Wikipedia. As the implementation of this plot type relies on the *math::statistics* package, it is only available if that package can be loaded.
+: Create a command to draw a normal plot - useful to investigate whether a data set is normally distributed or not. In that case the data will fall on or near the diagonal. As such, it is a specialised plotting procedure.
 
+    The details of the plotting procedure have been adopted from the *qqnorm* in the "R" *stats* package and described on Wikipedia.
 
-widget *w* (in)
-: Name of the canvas widget to hold the normal plot.
+    As the implementation of this plot type relies on the *math::statistics* package, it is only available if that package can be loaded.
 
-list *xscale* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis in this order. The scaling of the y-axis is determined from that. *Important:* the scale is to be given in terms of the normalised data, that is: 0 represents the mean of the data, 1 one standard deviation away from the mean etc.
+    widget *w* (in)
+    : Name of the canvas widget to hold the normal plot.
 
-list *args* (in)
-: Zero or more option-value pairs to influence the position and the appearance of the plot - see the XY-plot for more details.
+    list *xscale* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis in this order. The scaling of the y-axis is determined from that. *Important:* the scale is to be given in terms of the normalised data, that is: 0 represents the mean of the data, 1 one standard deviation away from the mean etc.
+
+    list *args* (in)
+    : Zero or more option-value pairs to influence the position and the appearance of the plot - see the XY-plot for more details.
 
 
 **::Plotchart::createStatusTimeline** *w* *xaxis* *ylabel* *args*
 : Create a command to draw a so-called status timeline. Its layout is similar to a horizontal barchart, but the bars are drawn in different colours, each representing the status of the item as it varies over time (the horizontal axis).
 
+    widget *w* (in)
+    : Name of the canvas widget to hold the ternary diagram.
 
-widget *w* (in)
-: Name of the canvas widget to hold the ternary diagram.
+    list *xaxis* (in)
+    : A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
 
-list *xaxis* (in)
-: A 3-element list containing minimum, maximum and stepsize for the x-axis, in this order.
+    list *ylabels* (in)
+    : List of labels for the y-axis. Its length also determines the number of bars that will be plotted per series.
 
-list *ylabels* (in)
-: List of labels for the y-axis. Its length also determines the number of bars that will be plotted per series.
-
-list *args* (in)
-: Zero or more option-value pairs to influence the position and the appearance of the diagram. In addition to the positioning options (-box and -axesbox) the diagram supports: *-xaxis yes/no*, to turn displaying the numeric labels on or off.
+    list *args* (in)
+    : Zero or more option-value pairs to influence the position and the appearance of the diagram. In addition to the positioning options (-box and -axesbox) the diagram supports: *-xaxis yes/no*, to turn displaying the numeric labels on or off.
 
 
 **::Plotchart::createDendrogram** *w* *args*
-: Create a dendrogram to plot hierarchically organised data. The labels that identify the endpoints of the hierarchy can all be drawn on the same level or where their branch ends. This is controlled by the option "-extend". The data are organised as nested lists, like:
+: Create a dendrogram to plot hierarchically organised data. The labels that identify the endpoints of the hierarchy can all be drawn on the same level or where their branch ends. This is controlled by the option "-extend".
+
+    The data are organised as nested lists, like:
+
+    ```
+         \$dendrogram plot data { {"Label1"  "Label2"} {F {A B} {C {D E}}} }
+    ```
+
+    Sublists with more than one element are considered a branching and are drawn in that way. Sublists with only one element are considered a leaf and are drawn as text. Because a string with two or more words can not be distinguished from a list with two or more elements, a provision is made for this situation: if the first element is "LEAF", then the list is considered to consist of leafs only and all elements (even if they are actually nested lists themselves are drawn as text:
+
+    ```
+         \$dendrogram plot data { {LEAF "Label 1"  "Label 2"} {F {A B} {C {D E}}} }
+    ```
+
+    widget *w* (in)
+    : Name of the canvas widget to hold the dendrogram.
+
+    list *args* (in)
+    : Zero or more option-value pairs:
+
+        - The option "-direction" takes one of the following values: left-right, right-left, top-bottom, bottom-top, with "top-bottom" as the default. The tree will be drawn according to this option, the labels appear either horizontally or vertically at the end of the tree.
+
+        - The option "-extend" with value 1 (default) or 0 (no extension) to indicate that the labels should all appear at the same level.
 
 
-```
-     \$dendrogram plot data { {"Label1"  "Label2"} {F {A B} {C {D E}}} }
-```
-
-: Sublists with more than one element are considered a branching and are drawn in that way. Sublists with only one element are considered a leaf and are drawn as text. Because a string with two or more words can not be distinguished from a list with two or more elements, a provision is made for this situation: if the first element is "LEAF", then the list is considered to consist of leafs only and all elements (even if they are actually nested lists themselves are drawn as text:
-
-
-```
-     \$dendrogram plot data { {LEAF "Label 1"  "Label 2"} {F {A B} {C {D E}}} }
-```
-
-widget *w* (in)
-: Name of the canvas widget to hold the dendrogram.
-
-list *args* (in)
-: Zero or more option-value pairs:
-
-
-**•**
-: The option "-direction" takes one of the following values: left-right, right-left, top-bottom, bottom-top, with "top-bottom" as the default. The tree will be drawn according to this option, the labels appear either horizontally or vertically at the end of the tree.
-
-**•**
-: The option "-extend" with value 1 (default) or 0 (no extension) to indicate that the labels should all appear at the same level.
 
 
 # Plot methods
 
 Each of the creation commands explained in the last section returns the name of a new object command that can be used to manipulate the plot or chart. The subcommands available to a chart command depend on the type of the chart.
 
-General subcommands for all types of charts. \\\$anyplot is the command returned by the creation command:
+General subcommands for all types of charts. \\$anyplot is the command returned by the creation command:
 
-**\$anyplot** title *text* *position*
+**$anyplot** title *text* *position*
 : Specify the title of the whole chart.
 
+    string *text* (in)
+    : The text of the title to be drawn.
 
-string *text* (in)
-: The text of the title to be drawn.
-
-string *position* (in)
-: The position of the title. The default position is "center", but you can alternatively use "left" or "right". You can use multiple titles with different positions.
+    string *position* (in)
+    : The position of the title. The default position is "center", but you can alternatively use "left" or "right". You can use multiple titles with different positions.
 
 
-**\$anyplot** subtitle *text*
+**$anyplot** subtitle *text*
 : Specify the subtitle of the whole chart.
 
+    string *text* (in)
+    : The text of the subtitle to be drawn.
 
-string *text* (in)
-: The text of the subtitle to be drawn.
 
-
-**\$anyplot** canvas
+**$anyplot** canvas
 : Return the name of the canvas (or the alias if you use more than one plot within a canvas). Use this value for the coordinate transformations.
 
-**\$anyplot** saveplot *filename* *args*
+**$anyplot** saveplot *filename* *args*
 : Draws the plot into a file, using PostScript.
 
+    string *filename* (in)
+    : Contain the path name of the file to write the plot to.
 
-string *filename* (in)
-: Contain the path name of the file to write the plot to.
+    list *args* (in)
+    : If the standard PostScript output is used, the option -plotregion can be specifed to save the whole plot (value: bbox) regardless of what is visible in the window. The default (value: window) is to only plot the visible part of the plot.
 
-list *args* (in)
-: If the standard PostScript output is used, the option -plotregion can be specifed to save the whole plot (value: bbox) regardless of what is visible in the window. The default (value: window) is to only plot the visible part of the plot. Optionally you can specify the option -format "some picture format" to store the plot in a different file than a PostScript file. This, however, relies on the Img package to do the actual job. *Note:* Because the window holding the plot must be fully visible before Img can successfully grab it, it is raised first. On some systems, for instance Linux with KDE, raising a window is not done automatically, but instead you need to click on the window in the task bar. Similar things happen on Windows XP. There seems to be something wrong under some circumstances, so instead of waiting for the visibility of the window, the procedure simply waits two seconds. It is not ideal, but it seems to work better.
+        Optionally you can specify the option -format "some picture format" to store the plot in a different file than a PostScript file. This, however, relies on the Img package to do the actual job.
+
+        *Note:* Because the window holding the plot must be fully visible before Img can successfully grab it, it is raised first. On some systems, for instance Linux with KDE, raising a window is not done automatically, but instead you need to click on the window in the task bar. Similar things happen on Windows XP.
+
+        There seems to be something wrong under some circumstances, so instead of waiting for the visibility of the window, the procedure simply waits two seconds. It is not ideal, but it seems to work better.
 
 
-**\$anyplot** xtext *text*
+**$anyplot** xtext *text*
 : Specify the title of the (horizontal) x-axis, for those plots that have a straight x-axis.
 
+    string *text* (in)
+    : The text of the x-axis label to be drawn.
 
-string *text* (in)
-: The text of the x-axis label to be drawn.
 
-
-**\$anyplot** ytext *text*
+**$anyplot** ytext *text*
 : Specify the title of the (horizontal) y-axis, for those plots that have a straight y-axis.
 
+    string *text* (in)
+    : The text of the y-axis label to be drawn.
 
-string *text* (in)
-: The text of the y-axis label to be drawn.
 
-
-**\$anyplot** vtext *text*
+**$anyplot** vtext *text*
 : Draw a *vertical* label to the y-axis. Note: this requires Tk 8.6 or later, for older versions it does nothing.
 
-
-string *text* (in)
-: Text to drawn to the y-axis
-
-
-**\$anyplot** xsubtext *text*
-: Specify the subtext of the (horizontal) x-axis, for those plots that have a straight x-axis. This text is drawn below the primary text. Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the bottom axis via the plotstyle command. The relevant options are: usesubtext, subtextcolor and subtextfont.
+    string *text* (in)
+    : Text to drawn to the y-axis
 
 
-string *text* (in)
-: The secondary text of the x-axis label to be drawn.
+**$anyplot** xsubtext *text*
+: Specify the subtext of the (horizontal) x-axis, for those plots that have a straight x-axis. This text is drawn below the primary text.
+
+    Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the bottom axis via the plotstyle command. The relevant options are: usesubtext, subtextcolor and subtextfont.
+
+    string *text* (in)
+    : The secondary text of the x-axis label to be drawn.
 
 
-**\$anyplot** ysubtext *text*
-: Specify the subtext of the (vertical) y-axis, for those plots that have a straight y-axis. This text is drawn below the primary text, for both axes on the left and the right. Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the left or right axis via the plotstyle command. The relevant options are: usesubtext, subtextcolor and subtextfont.
+**$anyplot** ysubtext *text*
+: Specify the subtext of the (vertical) y-axis, for those plots that have a straight y-axis. This text is drawn below the primary text, for both axes on the left and the right.
+
+    Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the left or right axis via the plotstyle command. The relevant options are: usesubtext, subtextcolor and subtextfont.
+
+    string *text* (in)
+    : The secondary text of the y-axis label to be drawn.
 
 
-string *text* (in)
-: The secondary text of the y-axis label to be drawn.
+**$anyplot** vsubtext *text*
+: Specify the subtext of the (vertical) y-axis, for those plots that have a straight y-axis. This text is drawn to the *right* of the primary text, for both axes on the left and the right.
+
+    Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the left or right axis via the plotstyle command. The relevant options are: usevsubtext, vsubtextcolor and vsubtextfont. (Note the "v" to distinguish this option from the text at the top of a vertical axis that is drawn via *$anyplot ytext* or *$anyplot ysubtext*.)
+
+    string *text* (in)
+    : The secondary (vertical) text of the y-axis label to be drawn.
 
 
-**\$anyplot** vsubtext *text*
-: Specify the subtext of the (vertical) y-axis, for those plots that have a straight y-axis. This text is drawn to the *right* of the primary text, for both axes on the left and the right. Since this involves positioning the primary text and setting margins, you need to set the option "usesubtext" for the left or right axis via the plotstyle command. The relevant options are: usevsubtext, vsubtextcolor and vsubtextfont. (Note the "v" to distinguish this option from the text at the top of a vertical axis that is drawn via *\$anyplot ytext* or *\$anyplot ysubtext*.)
-
-
-string *text* (in)
-: The secondary (vertical) text of the y-axis label to be drawn.
-
-
-**\$anyplot** xconfig **-option** *value* ...
+**$anyplot** xconfig **-option** *value* ...
 : Set one or more configuration parameters for the x-axis. The following options are supported:
 
+    **format** fmt
+    : The format for the numbers along the axis.
 
-**format** fmt
-: The format for the numbers along the axis.
+    **ticklength** length
+    : The length of the tickmarks (in pixels).
 
-**ticklength** length
-: The length of the tickmarks (in pixels).
+    **ticklines** boolean
+    : Whether to draw ticklines (**true**) or not (**false**).
 
-**ticklines** boolean
-: Whether to draw ticklines (**true**) or not (**false**).
+    **scale** scale\_data
+    : New scale data for the axis, i.e. a 3-element list containing minimum, maximum and stepsize for the axis, in this order.
 
-**scale** scale_data
-: New scale data for the axis, i.e. a 3-element list containing minimum, maximum and stepsize for the axis, in this order. *Beware:* Setting this option will clear all data from the plot.
+        *Beware:* Setting this option will clear all data from the plot.
 
 
-**\$anyplot** yconfig **-option** *value* ...
+**$anyplot** yconfig **-option** *value* ...
 : Set one or more configuration parameters for the y-axis. This method accepts the same options and values as the method **xconfig**.
 
-**\$anyplot** background *part* *colour_or_image* *dir* ?brightness?
+**$anyplot** background *part* *colour\_or\_image* *dir* ?brightness?
 : Set the background of a part of the plot
 
+    string *part*
+    : Which part of the plot: "axes" for the axes area and "plot" for the inner part. The interpretation depends on the type of plot. Two further possibilities are:
 
-string *part*
-: Which part of the plot: "axes" for the axes area and "plot" for the inner part. The interpretation depends on the type of plot. Two further possibilities are:
+        - *image*, in which case a predefined image is loaded into the background of the plot.
 
-
-**•**
-: *image*, in which case a predefined image is loaded into the background of the plot.
-
-**•**
-: *gradient*, in which case the background is coloured in different shades of the given colour. The "dir" argument specifies the direction in which the colour gets whiter.
+        - *gradient*, in which case the background is coloured in different shades of the given colour. The "dir" argument specifies the direction in which the colour gets whiter.
 
 
-string *colour_or_image*
-: Colour for that part or the name of the image if "part" is "image"
+    string *colour\_or\_image*
+    : Colour for that part or the name of the image if "part" is "image"
 
-string *dir*
-: The direction of the gradient. One of: top-down, bottom-up, left-right or right-left.
+    string *dir*
+    : The direction of the gradient. One of: top-down, bottom-up, left-right or right-left.
 
-string *brightness*
-: Indicates whether the colour should become brighter (bright) or darker (dark). Defaults to bright
+    string *brightness*
+    : Indicates whether the colour should become brighter (bright) or darker (dark). Defaults to bright
 
 
-**\$anyplot** xticklines *colour* ?dash?
+**$anyplot** xticklines *colour* ?dash?
 : Draw vertical ticklines at each tick location
 
+    string *colour*
+    : Colour of the lines. Specifying an empty colour ("") removes them again. Defaults to "black"
 
-string *colour*
-: Colour of the lines. Specifying an empty colour ("") removes them again. Defaults to "black"
-
-string *dash*
-: Optional argument to specify the dash pattern for the lines. Defaults to "lines" Possible values: lines, dots1, dots2, dots3, dots4, dots5. The actual effect depends on the platform.
+    string *dash*
+    : Optional argument to specify the dash pattern for the lines. Defaults to "lines" Possible values: lines, dots1, dots2, dots3, dots4, dots5. The actual effect depends on the platform.
 
 
-**\$anyplot** yticklines *colour* ?dash?
+**$anyplot** yticklines *colour* ?dash?
 : Draw horizontal ticklines at each tick location
 
+    string *colour*
+    : Colour of the lines. Specifying an empty colour ("") removes them again Defaults to "black"
 
-string *colour*
-: Colour of the lines. Specifying an empty colour ("") removes them again Defaults to "black"
-
-string *dash*
-: Optional argument to specify the dash pattern for the lines. Defaults to "lines" Possible values: lines, dots1, dots2, dots3, dots4, dots5. The actual effect depends on the platform.
+    string *dash*
+    : Optional argument to specify the dash pattern for the lines. Defaults to "lines" Possible values: lines, dots1, dots2, dots3, dots4, dots5. The actual effect depends on the platform.
 
 
-**\$anyplot** legend *series* *text* ?spacing?
+**$anyplot** legend *series* *text* ?spacing?
 : Add an entry to the legend. The series determines which graphical symbol is to be used. (As a side effect the legend is actually drawn.)
 
+    string *series*
+    : Name of the data series. This determines the colour of the line and the symbol (if any) that will be drawn.
 
-string *series*
-: Name of the data series. This determines the colour of the line and the symbol (if any) that will be drawn.
+    string *text*
+    : Text to be drawn next to the line/symbol.
 
-string *text*
-: Text to be drawn next to the line/symbol.
-
-integer *spacing*
-: Optional argument to specify the vertical spacing between the entries (in pixels). (Note that this spacing will be reused later.)
+    integer *spacing*
+    : Optional argument to specify the vertical spacing between the entries (in pixels). (Note that this spacing will be reused later.)
 
 
-**\$anyplot** removefromlegend *series*
+**$anyplot** removefromlegend *series*
 : Remove an entry for a series from the legend and redraw it.
 
+    string *series*
+    : Name of the data series to be removed.
 
-string *series*
-: Name of the data series to be removed.
 
-
-**\$anyplot** legendconfig **-option** *value* ...
+**$anyplot** legendconfig **-option** *value* ...
 : Set one or more options for the legend. The legend is drawn as a rectangle with text and graphics inside.
 
+    **background** colour
+    : Set the colour of the background (the default colour is white). Set to the empty string for a transparant legend.
 
-**background** colour
-: Set the colour of the background (the default colour is white). Set to the empty string for a transparant legend.
+    **border** colour
+    : Set the colour of the border (the default colour is black). Set to the empty string if you do not want a border.
 
-**border** colour
-: Set the colour of the border (the default colour is black). Set to the empty string if you do not want a border.
+    **canvas** c
+    : Draw the legend in a different canvas widget. This gives you the freedom to position the legend outside the actual plot.
 
-**canvas** c
-: Draw the legend in a different canvas widget. This gives you the freedom to position the legend outside the actual plot.
+    **font** font
+    : Set the font used to draw the text next to the symbol.
 
-**font** font
-: Set the font used to draw the text next to the symbol.
+    **legendtype** type
+    : Override the type of the legend, that is pre-defined for the current type of plot. May be one of: rectangle or line.
 
-**legendtype** type
-: Override the type of the legend, that is pre-defined for the current type of plot. May be one of: rectangle or line.
+    **position** corner
+    : Set the position of the legend. May be one of: top-left, top-right, bottom-left or bottom-right. (Default value is top-right.)
 
-**position** corner
-: Set the position of the legend. May be one of: top-left, top-right, bottom-left or bottom-right. (Default value is top-right.)
+    **spacing** pixels
+    : Set the vertical spacing between entries in the legend (in pixels). bottom-left or bottom-right. (Default value is 10 pixels.)
 
-**spacing** pixels
-: Set the vertical spacing between entries in the legend (in pixels). bottom-left or bottom-right. (Default value is 10 pixels.)
-
-**order** string
-: Determine the ordering of the legend entries - "normal" means the order in which the entries are defined, "reverse" exactly the opposite. (Default: normal)
+    **order** string
+    : Determine the ordering of the legend entries - "normal" means the order in which the entries are defined, "reverse" exactly the opposite. (Default: normal)
 
 
-**\$anyplot** balloon *x* *y* *text* *dir*
+**$anyplot** balloon *x* *y* *text* *dir*
 : Add balloon text to the plot (except for 3D plots). The arrow will point to the given x- and y-coordinates. For xy-graphs and such, the coordinates are directly related to the axes; for vertical barcharts the x-coordinate is measured as the number of bars minus 1 and similar for horizontal barcharts.
 
+    float *x*
+    : X-coordinate of the point that the arrow of the balloon will point to.
 
-float *x*
-: X-coordinate of the point that the arrow of the balloon will point to.
+    float *y*
+    : Y-coordinate of the point that the arrow of the balloon will point to.
 
-float *y*
-: Y-coordinate of the point that the arrow of the balloon will point to.
+    string *text*
+    : Text to be drawn in the balloon.
 
-string *text*
-: Text to be drawn in the balloon.
-
-string *dir*
-: Direction of the arrow, one of: north, north-east, east, south-east, south, south-west, west or north-west.
+    string *dir*
+    : Direction of the arrow, one of: north, north-east, east, south-east, south, south-west, west or north-west.
 
 
-**\$anyplot** balloonconfig *args*
+**$anyplot** balloonconfig *args*
 : Configure the balloon text for the plot. The new settings will be used for the next balloon text.
 
+    **font** fontname
+    : Font to be used for the text
 
-**font** fontname
-: Font to be used for the text
+    **justify** left|center|right
+    : Way to justify multiline text
 
-**justify** left|center|right
-: Way to justify multiline text
+    **textcolour** colour
+    : Colour for the text (synonym: textcolor)
 
-**textcolour** colour
-: Colour for the text (synonym: textcolor)
+    **background** colour
+    : Background colour for the balloon
 
-**background** colour
-: Background colour for the balloon
+    **outline** colour
+    : Colour of the outline of the balloon
 
-**outline** colour
-: Colour of the outline of the balloon
+    **margin** value
+    : Margin around the text (in pixels)
 
-**margin** value
-: Margin around the text (in pixels)
+    **rimwidth** value
+    : Width of the outline of the balloon (in pixels)
 
-**rimwidth** value
-: Width of the outline of the balloon (in pixels)
-
-**arrowsize** value
-: Length factor for the arrow (in pixels)
+    **arrowsize** value
+    : Length factor for the arrow (in pixels)
 
 
-**\$anyplot** plaintext *x* *y* *text* *dir*
+**$anyplot** plaintext *x* *y* *text* *dir*
 : Add plain text to the plot (except for 3D plots). The text is positioned at the given x- and y-coordinates. For xy-graphs and such, the coordinates are directly related to the axes; for vertical barcharts the x-coordinate is measured as the number of bars minus 1 and similar for horizontal barcharts.
 
+    float *x*
+    : X-coordinate of the text position
 
-float *x*
-: X-coordinate of the text position
+    float *y*
+    : Y-coordinate of the text position
 
-float *y*
-: Y-coordinate of the text position
+    string *text*
+    : Text to be drawn.
 
-string *text*
-: Text to be drawn.
-
-string *dir*
-: Anchor for the text, one of: north, north-east, east, south-east, south, south-west, west or north-west.
+    string *dir*
+    : Anchor for the text, one of: north, north-east, east, south-east, south, south-west, west or north-west.
 
 
-**\$anyplot** plaintextconfig *args*
+**$anyplot** plaintextconfig *args*
 : Configure the plain text annotation for the plot. The new settings will be used for the next plain text.
 
+    **font** fontname
+    : Font to be used for the text
 
-**font** fontname
-: Font to be used for the text
+    **justify** left|center|right
+    : Way to justify multiline text
 
-**justify** left|center|right
-: Way to justify multiline text
-
-**textcolour** colour
-: Colour for the text (synonym: textcolor)
-
-
-**\$anyplot** object *itemtype* *series* *args*
-: Draw a canvas item in the plot where the coordinates are scaled using the coordinate system of the plot. In addition to the standard canvas types, it also supports circles, dots and crosses. *Note:* Currently implemented for xy-plots, (vertical and horizontal) barcharts, and piecharts. *Note:* To add an entry in the legend for the object, you can use the *dataconfig* subcommand with a type "rectangle". This will cause a rectangle to be shown.
+    **textcolour** colour
+    : Colour for the text (synonym: textcolor)
 
 
-string *itemtype* (in)
-: Name of a standard canvas item or "circle", "dot" or "cross"
+**$anyplot** object *itemtype* *series* *args*
+: Draw a canvas item in the plot where the coordinates are scaled using the coordinate system of the plot. In addition to the standard canvas types, it also supports circles, dots and crosses.
 
-string *series* (in)
-: The data series it belongs to, used for setting the default drawing options
+    *Note:* Currently implemented for xy-plots, (vertical and horizontal) barcharts, and piecharts.
 
-list *args* (in)
-: List of coordinates and drawing options
+    *Note:* To add an entry in the legend for the object, you can use the *dataconfig* subcommand with a type "rectangle". This will cause a rectangle to be shown.
+
+    string *itemtype* (in)
+    : Name of a standard canvas item or "circle", "dot" or "cross"
+
+    string *series* (in)
+    : The data series it belongs to, used for setting the default drawing options
+
+    list *args* (in)
+    : List of coordinates and drawing options
 
 
-**\$anyplot** deletedata
-: Remove the lines, symbols and other graphical object associated with the actual data from the plot. *Note:* Currently implemented for xy-plots only *Note:* The existing options for data series and the legend entry are kept as they were. *Note:* Currently there are side effects if the canvas contains more than one plot. *Note:* The commands **xconfig** and **yconfig** are currently implemented only for XY-plots and only the option **-format** has any effect. For *xy plots*, *stripcharts*, *histograms* and *time-x-plots*:
+**$anyplot** deletedata
+: Remove the lines, symbols and other graphical object associated with the actual data from the plot.
 
-**\$xyplot** plot *series* *xcrd* *ycrd*
+    *Note:* Currently implemented for xy-plots only
+
+    *Note:* The existing options for data series and the legend entry are kept as they were.
+
+    *Note:* Currently there are side effects if the canvas contains more than one plot.
+
+
+*Note:* The commands **xconfig** and **yconfig** are currently implemented only for XY-plots and only the option **-format** has any effect.
+
+For *xy plots*, *stripcharts*, *histograms* and *time-x-plots*:
+
+**$xyplot** plot *series* *xcrd* *ycrd*
 : Add a data point to the plot.
 
+    string *series* (in)
+    : Name of the data series the new point belongs to.
 
-string *series* (in)
-: Name of the data series the new point belongs to.
+    float *xcrd* (in)
+    : X-coordinate of the new point. (For time-x plots this must be valid date/time that can be read with the *clock scan* command).
 
-float *xcrd* (in)
-: X-coordinate of the new point. (For time-x plots this must be valid date/time that can be read with the *clock scan* command).
+    float *ycrd* (in)
+    : Y-coordinate of the new point.
 
-float *ycrd* (in)
-: Y-coordinate of the new point.
 
 
 For *normal plots*:
 
-**\$normalplot** plot *series* *mean* *stdev* *data*
-: Plot the data set using the given mean and stanard deviation. As you give the mean and standard deviation separately, the plot can be used for several data series or for adding to an existing data series.
+**$normalplot** plot *series* *mean* *stdev* *data*
+: Plot the data set using the given mean and stanard deviation.
+
+    As you give the mean and standard deviation separately, the plot can be used for several data series or for adding to an existing data series.
+
+    string *series* (in)
+    : Name of the data series - used to determine the appearance
+
+    float *mean* (in)
+    : Assumed mean of the data set.
+
+    float *stdev* (in)
+    : Assumed standard deviation of the data set.
+
+    list *data* (in)
+    : List of the data comprising the data set
 
 
-string *series* (in)
-: Name of the data series - used to determine the appearance
-
-float *mean* (in)
-: Assumed mean of the data set.
-
-float *stdev* (in)
-: Assumed standard deviation of the data set.
-
-list *data* (in)
-: List of the data comprising the data set
+**$normalplot** diagonal
+: Draw a diagonal line, indicating the ideal normally distributed data set.
 
 
-**\$normalplot** diagonal
-: Draw a diagonal line, indicating the ideal normally distributed data set. For *xy, x-log y, log-x-y, log-x-log-y plots* there is the additional command *plotlist*, which is useful for plotting a large amount of data:
+For *xy, x-log y, log-x-y, log-x-log-y plots* there is the additional command *plotlist*, which is useful for plotting a large amount of data:
 
-**\$xyplot** plotlist *series* *xlist* *ylist* *every*
+**$xyplot** plotlist *series* *xlist* *ylist* *every*
 : Draw a series of data as a whole. If symbols are asked for, draw them only for every Nth data point.
 
+    string *series* (in)
+    : Name of the data series the new line belongs to.
 
-string *series* (in)
-: Name of the data series the new line belongs to.
+    float *xlist* (in)
+    : List of X-coordinates for the data series.
 
-float *xlist* (in)
-: List of X-coordinates for the data series.
+    float *ycrd* (in)
+    : List of Y-coordinates for the data series.
 
-float *ycrd* (in)
-: List of Y-coordinates for the data series.
+    int *every* (in)
+    : Optional argument stating how often a symbol (if any) should be drawn. If left out, use a simple heuristic: N = sqrt(number of data points).
 
-int *every* (in)
-: Optional argument stating how often a symbol (if any) should be drawn. If left out, use a simple heuristic: N = sqrt(number of data points).
 
 
 Other commands for *xy, x-log y, log-x-y, log-x-log-y plots* are *region* and *minmax* to draw filled polygons:
 
-**\$xyplot** region *series* *xlist* *ylist*
+**$xyplot** region *series* *xlist* *ylist*
 : Draw a filled polygon (region). The configuration of the series influences the polygon as follows: *-fillcolour* is used to fill the polygon, *-colour* is used for the boundary (set it to {} if no boundary is required and *-width* determines the width of the boundary.
 
+    string *series* (in)
+    : Name of the data series the new region belongs to.
 
-string *series* (in)
-: Name of the data series the new region belongs to.
+    float *xlist* (in)
+    : List of X-coordinates for the region.
 
-float *xlist* (in)
-: List of X-coordinates for the region.
-
-float *ycrd* (in)
-: List of Y-coordinates for the region.
-
-
-**\$xyplot** minmax *series* *xcrd* *ymin* *ymax*
-: Draw a filled strip representing a minimum and a maximum. The configuration of the series influences the polygon as follows: *-fillcolour* is used to fill the polygon, *-colour* is used for the boundary (set it to {} if no boundary is required and *-width* determines the width of the boundary. The arguments *ymin* and *ymax* may be empty to get an extra vertex in the strip. If both are empty, a new strip is started. For best results, the x-coordinate should be specified in ascending order.
+    float *ycrd* (in)
+    : List of Y-coordinates for the region.
 
 
-string *series* (in)
-: Name of the data series the new min/max strip belongs to.
+**$xyplot** minmax *series* *xcrd* *ymin* *ymax*
+: Draw a filled strip representing a minimum and a maximum. The configuration of the series influences the polygon as follows: *-fillcolour* is used to fill the polygon, *-colour* is used for the boundary (set it to {} if no boundary is required and *-width* determines the width of the boundary.
 
-float *xcrd* (in)
-: X-coordinate for the strip.
+    The arguments *ymin* and *ymax* may be empty to get an extra vertex in the strip. If both are empty, a new strip is started. For best results, the x-coordinate should be specified in ascending order.
 
-float *ymin* (in)
-: The minimum y-coordinate for the strip.
+    string *series* (in)
+    : Name of the data series the new min/max strip belongs to.
 
-float *ymax* (in)
-: The maximum y-coordinate for the strip.
+    float *xcrd* (in)
+    : X-coordinate for the strip.
+
+    float *ymin* (in)
+    : The minimum y-coordinate for the strip.
+
+    float *ymax* (in)
+    : The maximum y-coordinate for the strip.
+
 
 
 *Note on histograms:*
@@ -1149,1179 +1126,1140 @@ For histograms the x-coordinate that is given is interpreted to be the x-coordin
 
 For histograms you can also use the **plotcumulative** command:
 
-**\$histogram** plotcumulative *series* *xcrd* *ycrd*
-: The arguments mean exactly the same as for the **plot** command, but the data are accumulated to the previous values. For *xy plots*:
+**$histogram** plotcumulative *series* *xcrd* *ycrd*
+: see below ...
 
-**\$xyplot** trend *series* *xcrd* *ycrd*
+
+The arguments mean exactly the same as for the **plot** command, but the data are accumulated to the previous values.
+
+For *xy plots*:
+
+**$xyplot** trend *series* *xcrd* *ycrd*
 : Draw or update a trend line using the data given sofar.
 
+    string *series* (in)
+    : Name of the data series the trend line belongs to.
 
-string *series* (in)
-: Name of the data series the trend line belongs to.
+    float *xcrd* (in)
+    : X-coordinate of the new data point
 
-float *xcrd* (in)
-: X-coordinate of the new data point
-
-float *ycrd* (in)
-: Y-coordinate of the new data point
+    float *ycrd* (in)
+    : Y-coordinate of the new data point
 
 
-**\$xyplot** rchart *series* *xcrd* *ycrd*
+**$xyplot** rchart *series* *xcrd* *ycrd*
 : Draw data in the same way as the plot method, but with two lines added that indicate the expected range (+/- 3\*standard deviation) of the data.
 
+    string *series* (in)
+    : Name of the data series the data point belongs to.
 
-string *series* (in)
-: Name of the data series the data point belongs to.
+    float *xcrd* (in)
+    : X-coordinate of the new data point
 
-float *xcrd* (in)
-: X-coordinate of the new data point
-
-float *ycrd* (in)
-: Y-coordinate of the new data point
+    float *ycrd* (in)
+    : Y-coordinate of the new data point
 
 
-**\$xyplot** interval *series* *xcrd* *ymin* *ymax* ?ycentr?
+**$xyplot** interval *series* *xcrd* *ymin* *ymax* ?ycentr?
 : Add a vertical error interval to the plot. The interval is drawn from ymin to ymax. If the ycentr argument is given, a symbol is drawn at that position.
 
+    string *series* (in)
+    : Name of the data series the interval belongs to.
 
-string *series* (in)
-: Name of the data series the interval belongs to.
+    float *xcrd* (in)
+    : X-coordinate of the interval
 
-float *xcrd* (in)
-: X-coordinate of the interval
+    float *ymin* (in)
+    : Minimum y-coordinate of the interval.
 
-float *ymin* (in)
-: Minimum y-coordinate of the interval.
+    float *ymax* (in)
+    : Maximum y-coordinate of the interval.
 
-float *ymax* (in)
-: Maximum y-coordinate of the interval.
-
-float *ycentr* (in)
-: Y-coordinate to draw the symbol at (optional)
-
-
-**\$xyplot** box-and-whiskers *series* *xcrd* *ycrd*
-: Draw a box and whiskers in the plot. If the argument *xcrd* is a list of several values and the argument *ycrd* is a single value, a horizontal box is drawn with the quartiles determined from the list of values contained in *xcrd*. If, instead, the argument *ycrd* contains a list of several values and the argument *xcrd* a single value, then a vertical box is drawn and the quartiles are determined from *ycrd*. (There must be exactly one list of several values. Otherwise an error is reported.) The option -boxwidth to the dataconfig command determines the width (or height) of the box (default: 10 pixels). The option -whiskers to the dataconfig command determines whether the whiskers are drawn to the extreme values (value: extremes), to 1.5 times the interquartile range (value: IQR or iqr), or not at all (value: none). If the value is 'IQR' (uppercase), then also extreme values will be shown (from 1.5 to 3 times the IQR as dots, above 3 times IQR as stars). If the value is 'iqr' (lowercase) no extreme values will be shown (default value: IQR). The option -whiskerwidth to the dataconfig command determines the thickness of the line that draws the whiskers (default: 1 pixel). The option -mediancolour to the dataconfig command determines the colour of the line used to draw the median within the box (default: same as -colour). The option -medianwidth to the dataconfig command determines the thickness of the line that draws the median within the box (default: 1 pixel).
+    float *ycentr* (in)
+    : Y-coordinate to draw the symbol at (optional)
 
 
-string *series* (in)
-: Name of the data series the box-and-whiskers belongs to.
+**$xyplot** box-and-whiskers *series* *xcrd* *ycrd*
+: Draw a box and whiskers in the plot. If the argument *xcrd* is a list of several values and the argument *ycrd* is a single value, a horizontal box is drawn with the quartiles determined from the list of values contained in *xcrd*.
 
-float *xcrd* (in)
-: X-coordinate of the box or a list of values.
+    If, instead, the argument *ycrd* contains a list of several values and the argument *xcrd* a single value, then a vertical box is drawn and the quartiles are determined from *ycrd*. (There must be exactly one list of several values. Otherwise an error is reported.)
 
-float *ymin* (in)
-: Y-coordinate of the box or a list of values.
+    The option -boxwidth to the dataconfig command determines the width (or height) of the box (default: 10 pixels).
+
+    The option -whiskers to the dataconfig command determines whether the whiskers are drawn to the extreme values (value: extremes), to 1.5 times the interquartile range (value: IQR or iqr), or not at all (value: none). If the value is 'IQR' (uppercase), then also extreme values will be shown (from 1.5 to 3 times the IQR as dots, above 3 times IQR as stars). If the value is 'iqr' (lowercase) no extreme values will be shown (default value: IQR).
+
+    The option -whiskerwidth to the dataconfig command determines the thickness of the line that draws the whiskers (default: 1 pixel).
+
+    The option -mediancolour to the dataconfig command determines the colour of the line used to draw the median within the box (default: same as -colour).
+
+    The option -medianwidth to the dataconfig command determines the thickness of the line that draws the median within the box (default: 1 pixel).
+
+    string *series* (in)
+    : Name of the data series the box-and-whiskers belongs to.
+
+    float *xcrd* (in)
+    : X-coordinate of the box or a list of values.
+
+    float *ymin* (in)
+    : Y-coordinate of the box or a list of values.
 
 
-The box ends at the 1st and 3rd quartile, while the whiskers by default are plotted to span 1.5 IQR (interquartile range) from the 1st and 3rd quartile.
+    The box ends at the 1st and 3rd quartile, while the whiskers by default are plotted to span 1.5 IQR (interquartile range) from the 1st and 3rd quartile.
 
-**\$xyplot** violin *series* *xcrd* *ycrd*
-: Draw a violin plot based on the given data set. It is an alternative to the box and whiskers presentation. Just as with the box-and-whiskers subcommand, if the argument *xcrd* is a list of several values and the argument *ycrd* is a single value, a horizontal "violin" is drawn. If, instead, the argument *ycrd* contains a list of several values and the argument *xcrd* a single value, then a vertical "violin" is drawn. The option -violinwidth to the dataconfig command determines the width (or height) of the violin (default: 50 pixels). The option -colour (-color) determines the outline colour and the option -fillcolour (-fillcolor) determines the colour by which the violin is filled (defaults: black and not filled).
+**$xyplot** violin *series* *xcrd* *ycrd*
+: Draw a violin plot based on the given data set. It is an alternative to the box and whiskers presentation. Just as with the box-and-whiskers subcommand, if the argument *xcrd* is a list of several values and the argument *ycrd* is a single value, a horizontal "violin" is drawn.
+
+    If, instead, the argument *ycrd* contains a list of several values and the argument *xcrd* a single value, then a vertical "violin" is drawn.
+
+    The option -violinwidth to the dataconfig command determines the width (or height) of the violin (default: 50 pixels).
+
+    The option -colour (-color) determines the outline colour and the option -fillcolour (-fillcolor) determines the colour by which the violin is filled (defaults: black and not filled).
+
+    string *series* (in)
+    : Name of the data series to use.
+
+    float *xcrd* (in)
+    : X-coordinate of the violin or a list of values.
+
+    float *ymin* (in)
+    : Y-coordinate of the violin or a list of values.
 
 
-string *series* (in)
-: Name of the data series to use.
-
-float *xcrd* (in)
-: X-coordinate of the violin or a list of values.
-
-float *ymin* (in)
-: Y-coordinate of the violin or a list of values.
-
-
-**\$xyplot** vector *series* *xcrd* *ycrd* *ucmp* *vcmp*
+**$xyplot** vector *series* *xcrd* *ycrd* *ucmp* *vcmp*
 : Draw a vector in the plot. The vector can be given as either cartesian coordinates or as length/angle, where the angle is in degrees and is interpreted according to the mathematical convention or the nautical. (See the vectorconfig subcommand)
 
+    string *series* (in)
+    : Name of the series the vector belongs to. Determines the appearance and interpretation.
 
-string *series* (in)
-: Name of the series the vector belongs to. Determines the appearance and interpretation.
+    float *xcrd* (in)
+    : X-coordinate of the point where the arrow appears
 
-float *xcrd* (in)
-: X-coordinate of the point where the arrow appears
+    float *ycrd* (in)
+    : Y-coordinate of the point where the arrow appears
 
-float *ycrd* (in)
-: Y-coordinate of the point where the arrow appears
+    float *ucmp* (in)
+    : X-component or the length of the vector
 
-float *ucmp* (in)
-: X-component or the length of the vector
-
-float *ycentr* (in)
-: Y-component or the angle of the vector
+    float *ycentr* (in)
+    : Y-component or the angle of the vector
 
 
-**\$xyplot** vectorconfig *series* **-option** *value* ...
+**$xyplot** vectorconfig *series* **-option** *value* ...
 : \] Set the vector drawing options for a particular series
 
-
-string *series* (in)
-: Name of the series the vector belongs to.
-
-
-: The options can be one of the following:
+    string *series* (in)
+    : Name of the series the vector belongs to.
 
 
-**colour**
-: The colour of the arrow (default: black; synonym: color)
+    The options can be one of the following:
 
-**scale** value
-: The scale factor used to convert the length of the arrow into a number of pixels (default: 1.0)
+    **colour**
+    : The colour of the arrow (default: black; synonym: color)
 
-**centred** onoff
-: Logical value indicating that the xy-coordinates are to be used as the start of the arrow or as the centre (default: 0; synonym: centered)
+    **scale** value
+    : The scale factor used to convert the length of the arrow into a number of pixels (default: 1.0)
 
-**type** keyword
-: Interpretation of the vector components. Can be "cartesian" (default), in which case the x- and y-components are expected, "polar" (the angle 0 coincides with the positive x-axis, 90 coincides with the positive y-axis) or "nautical" (0 is "north" and 90 is "east").
+    **centred** onoff
+    : Logical value indicating that the xy-coordinates are to be used as the start of the arrow or as the centre (default: 0; synonym: centered)
+
+    **type** keyword
+    : Interpretation of the vector components. Can be "cartesian" (default), in which case the x- and y-components are expected, "polar" (the angle 0 coincides with the positive x-axis, 90 coincides with the positive y-axis) or "nautical" (0 is "north" and 90 is "east").
 
 
-**\$xyplot** dot *series* *xcrd* *ycrd* *value*
+**$xyplot** dot *series* *xcrd* *ycrd* *value*
 : Draw a dot in the plot. The size and colour is determined by the value and by the options set for the series it belongs to. (See the dotconfig subcommand)
 
+    string *series* (in)
+    : Name of the series the dot belongs to. Determines size and colour
 
-string *series* (in)
-: Name of the series the dot belongs to. Determines size and colour
+    float *xcrd* (in)
+    : X-coordinate of the point where the arrow appears
 
-float *xcrd* (in)
-: X-coordinate of the point where the arrow appears
+    float *ycrd* (in)
+    : Y-coordinate of the point where the arrow appears
 
-float *ycrd* (in)
-: Y-coordinate of the point where the arrow appears
-
-float *value* (in)
-: Value determining size and colour
+    float *value* (in)
+    : Value determining size and colour
 
 
-**\$xyplot** dotconfig *series* **-option** *value* ...
+**$xyplot** dotconfig *series* **-option** *value* ...
 : \] Set the dot drawing options for a particular series
 
-
-string *series* (in)
-: Name of the series the dot belongs to.
-
-
-: The options can be one of the following:
+    string *series* (in)
+    : Name of the series the dot belongs to.
 
 
-**colour**
-: The colour of the dot if no scaling is used or the value exceeds the last limit of the classes.
+    The options can be one of the following:
 
-**scale** value
-: The scale factor used to convert the value into the radius of the dot in pixels (default: 1.0)
+    **colour**
+    : The colour of the dot if no scaling is used or the value exceeds the last limit of the classes.
 
-**radius** value
-: The default radius of the dots, used if there is no scaling by value (in pixels; default: 3)
+    **scale** value
+    : The scale factor used to convert the value into the radius of the dot in pixels (default: 1.0)
 
-**scalebyvalue** onoff
-: Determines whether the dots all have the same size or a size depending on the given value (default: on).
+    **radius** value
+    : The default radius of the dots, used if there is no scaling by value (in pixels; default: 3)
 
-**outline** onoff
-: Draw a black circle around the dot or not (default: on)
+    **scalebyvalue** onoff
+    : Determines whether the dots all have the same size or a size depending on the given value (default: on).
 
-**classes** list
-: Set the limits and the corresponding colours. For instance:
+    **outline** onoff
+    : Draw a black circle around the dot or not (default: on)
 
+    **classes** list
+    : Set the limits and the corresponding colours. For instance:
 
-```
-    $xyplot series1 -classes {0 blue 1 green} -colour red
-```
+        ```
+            $xyplot series1 -classes {0 blue 1 green} -colour red
+        ```
 
-: will cause a blue dot to be drawn for values smaller than 0, a green dot for values larger/equal 0 but lower than 1 and a red dot for values larger/equal 1.
+        will cause a blue dot to be drawn for values smaller than 0, a green dot for values larger/equal 0 but lower than 1 and a red dot for values larger/equal 1.
 
+    **3deffect** onoff
+    : Show a highlight in the dots, to mimick a 3D effect (default: off)
 
-**3deffect** onoff
-: Show a highlight in the dots, to mimick a 3D effect (default: off) If there is no list of classes for the particular series, the dots are scaled by the value. You can combine the colouring by value and the scaling by value by setting a list of classes and setting the *scalebyvalue* option on.
+        If there is no list of classes for the particular series, the dots are scaled by the value.
 
-
-**\$xyplot** contourlines *xcrd* *ycrd* *values* ?classes?
-: Draw contour lines for the values given on the grid. The grid is defined by the xcrd and ycrd arguments. The xcrd argument (resp. ycrd) is expected to be a matrix, implemented as a list of lists which gives the x-coordinates (resp. y-coordinates) of the grid cell corners. The function values are given at these corners. The number of rows in xcrd (resp. ycrd) is ny and each row contains nx values so that the total number of values in xcrd (resp. ycrd) is nx \* ny. The classes determine which contour lines are drawn. If a value on one of the corners is missing, the contour lines in that cell will not be drawn. Entries in the legend are drawn via the *legendisolines* subcommand.
-
-
-list *xcrd* (in)
-: List of lists, each value is an x-coordinate for a grid cell corner
-
-list *ycrd* (in)
-: List of lists, each value is an y-coordinate for a grid cell corner
-
-list *values* (in)
-: List of lists, each value is the value at a grid cell corner
-
-list *classes* (in)
-: List of class values or a list of lists of two elements (each inner list the class value and the colour to be used). If empty or missing, the classes are determined automatically. *Note:* The class values must enclose the whole range of values. *Note:* The xcrd argument is generally made of nypoints identical rows, while each row of ycrd is made with one single value.
+        You can combine the colouring by value and the scaling by value by setting a list of classes and setting the *scalebyvalue* option on.
 
 
-**\$xyplot** contourlinesfunctionvalues *xvec* *yvec* *valuesmat* ?classes?
-: Draw contour lines for the values given on the grid. The grid is defined by the xvec and yvec arguments. Here, xvec (resp. yvec) is a list of x-coordinates (resp. y-coordinates). The number of values in xvec (resp. yvec) is the number of points in the x-coordinate (resp. y-coordinate). The function values are given at these corners. The classes determine which contour lines are drawn. If a value on one of the corners is missing, the contour lines in that cell will not be drawn. Entries in the legend are drawn via the *legendisolines* subcommand.
+**$xyplot** contourlines *xcrd* *ycrd* *values* ?classes?
+: Draw contour lines for the values given on the grid. The grid is defined by the xcrd and ycrd arguments. The xcrd argument (resp. ycrd) is expected to be a matrix, implemented as a list of lists which gives the x-coordinates (resp. y-coordinates) of the grid cell corners. The function values are given at these corners. The number of rows in xcrd (resp. ycrd) is ny and each row contains nx values so that the total number of values in xcrd (resp. ycrd) is nx \* ny. The classes determine which contour lines are drawn. If a value on one of the corners is missing, the contour lines in that cell will not be drawn.
+
+    Entries in the legend are drawn via the *legendisolines* subcommand.
+
+    list *xcrd* (in)
+    : List of lists, each value is an x-coordinate for a grid cell corner
+
+    list *ycrd* (in)
+    : List of lists, each value is an y-coordinate for a grid cell corner
+
+    list *values* (in)
+    : List of lists, each value is the value at a grid cell corner
+
+    list *classes* (in)
+    : List of class values or a list of lists of two elements (each inner list the class value and the colour to be used). If empty or missing, the classes are determined automatically.
+
+        *Note:* The class values must enclose the whole range of values. *Note:* The xcrd argument is generally made of nypoints identical rows, while each row of ycrd is made with one single value.
 
 
-list *xvec* (in)
-: List of x-coordinates in increasing order.
+**$xyplot** contourlinesfunctionvalues *xvec* *yvec* *valuesmat* ?classes?
+: Draw contour lines for the values given on the grid. The grid is defined by the xvec and yvec arguments. Here, xvec (resp. yvec) is a list of x-coordinates (resp. y-coordinates). The number of values in xvec (resp. yvec) is the number of points in the x-coordinate (resp. y-coordinate). The function values are given at these corners. The classes determine which contour lines are drawn. If a value on one of the corners is missing, the contour lines in that cell will not be drawn.
 
-list *yvec* (in)
-: List y-coordinates in increasing order.
+    Entries in the legend are drawn via the *legendisolines* subcommand.
 
-list *valuesmat* (in)
-: List of ny lists of nx values, each value is the value at a grid cell corner. The total number of values is valuesmat is nx \* ny.
+    list *xvec* (in)
+    : List of x-coordinates in increasing order.
 
-list *classes* (in)
-: List of class values or a list of lists of two elements (each inner list the class value and the colour to be used). If empty or missing, the classes are determined automatically. *Note:* The class values must enclose the whole range of values.
+    list *yvec* (in)
+    : List y-coordinates in increasing order.
+
+    list *valuesmat* (in)
+    : List of ny lists of nx values, each value is the value at a grid cell corner. The total number of values is valuesmat is nx \* ny.
+
+    list *classes* (in)
+    : List of class values or a list of lists of two elements (each inner list the class value and the colour to be used). If empty or missing, the classes are determined automatically.
+
+        *Note:* The class values must enclose the whole range of values.
 
 
-**\$xyplot** contourfill *xcrd* *ycrd* *values* ?classes?
-: Draw filled contours for the values given on the grid. (The use of this method is identical to the "contourlines" method). Entries in the legend are drawn via the *legendshades* subcommand.
+**$xyplot** contourfill *xcrd* *ycrd* *values* ?classes?
+: Draw filled contours for the values given on the grid. (The use of this method is identical to the "contourlines" method).
 
-**\$xyplot** contourbox *xcrd* *ycrd* *values* ?classes?
-: Draw the cells as filled quadrangles. The colour is determined from the average of the values on all four corners. Entries in the legend are drawn via the *legendshades* subcommand.
+    Entries in the legend are drawn via the *legendshades* subcommand.
 
-**\$xyplot** colorMap *colours*
+**$xyplot** contourbox *xcrd* *ycrd* *values* ?classes?
+: Draw the cells as filled quadrangles. The colour is determined from the average of the values on all four corners.
+
+    Entries in the legend are drawn via the *legendshades* subcommand.
+
+**$xyplot** colorMap *colours*
 : Set the colours to be used with the contour methods. The argument is either a predefined colourmap (grey/gray, jet, hot or cool) or a list of colours. When selecting the colours for actually drawing the contours, the given colours will be interpolated (based on the HLS scheme).
 
+    list *colours* (in)
+    : List of colour names or colour values or one of the predefined maps:
 
-list *colours* (in)
-: List of colour names or colour values or one of the predefined maps:
+        - grey or gray: gray colours from dark to light
 
+        - jet: rainbow colours
 
-**•**
-: grey or gray: gray colours from dark to light
+        - hot: colours from yellow via red to darkred
 
-**•**
-: jet: rainbow colours
-
-**•**
-: hot: colours from yellow via red to darkred
-
-**•**
-: cool: colours from cyan via blue to magenta
+        - cool: colours from cyan via blue to magenta
 
 
-**\$xyplot** legendisolines *values* *classes*
+
+**$xyplot** legendisolines *values* *classes*
 : Add the contour classes to the legend as coloured lines. The text indicates the values.
 
+    list *values* (in)
+    : The list of values as used for the actual drawing. This argument is used only if the list of classes is empty.
 
-list *values* (in)
-: The list of values as used for the actual drawing. This argument is used only if the list of classes is empty.
-
-list *values* (in)
-: The list of classes as used for the actual drawing.
+    list *values* (in)
+    : The list of classes as used for the actual drawing.
 
 
-**\$xyplot** legendshades *values* *classes*
+**$xyplot** legendshades *values* *classes*
 : Add the contour classes to the legend as coloured rectangles. The text indicates the values.
 
+    list *values* (in)
+    : The list of values as used for the actual drawing. This argument is used only if the list of classes is empty.
 
-list *values* (in)
-: The list of values as used for the actual drawing. This argument is used only if the list of classes is empty.
-
-list *values* (in)
-: The list of classes as used for the actual drawing.
+    list *values* (in)
+    : The list of classes as used for the actual drawing.
 
 
-**\$xyplot** grid *xcrd* *ycrd*
+**$xyplot** grid *xcrd* *ycrd*
 : Draw the grid cells as lines connecting the (valid) grid points.
 
+    list *xcrd* (in)
+    : List of lists, each value is an x-coordinate for a grid cell corner
 
-list *xcrd* (in)
-: List of lists, each value is an x-coordinate for a grid cell corner
-
-list *ycrd* (in)
-: List of lists, each value is an y-coordinate for a grid cell corner
+    list *ycrd* (in)
+    : List of lists, each value is an y-coordinate for a grid cell corner
 
 
-**\$xyplot** xband *ymin* *ymax*
+**$xyplot** xband *ymin* *ymax*
 : Draw a light grey band in the plot, ranging over the full x-axis. This can be used to indicate a "typical" range for the data.
 
+    float *ymin* (in)
+    : Lower bound for the band
 
-float *ymin* (in)
-: Lower bound for the band
-
-float *ymax* (in)
-: Upper bound for the band
+    float *ymax* (in)
+    : Upper bound for the band
 
 
-**\$xyplot** yband *xmin* *xmax*
+**$xyplot** yband *xmin* *xmax*
 : Draw a light grey band in the plot, ranging over the full y-axis. This can be used to indicate a "typical" range for the data.
 
+    float *xmin* (in)
+    : Lower bound for the band
 
-float *xmin* (in)
-: Lower bound for the band
-
-float *xmax* (in)
-: Upper bound for the band
-
-
-**\$xyplot** labeldot *x* *y* *text* *orient*
-: Draw a label and a symbol in the plot. The label will appear near the symbol. The label will be drawn in grey, so as not to be too conspicuous. You can configure the appearance of the symbol by using the data series name "labeldot": *\$w dataconfig labeldot -colour red -type symbol -symbol dot*
+    float *xmax* (in)
+    : Upper bound for the band
 
 
-float *x* (in)
-: X-coordinate of the symbol to be drawn
+**$xyplot** labeldot *x* *y* *text* *orient*
+: Draw a label and a symbol in the plot. The label will appear near the symbol. The label will be drawn in grey, so as not to be too conspicuous.
 
-float *y* (in)
-: Y-coordinate of the symbol to be drawn
+    You can configure the appearance of the symbol by using the data series name "labeldot": *$w dataconfig labeldot -colour red -type symbol -symbol dot*
 
-string *text* (in)
-: Text for the label
+    float *x* (in)
+    : X-coordinate of the symbol to be drawn
 
-string *orient* (in)
-: Optional orientation (one of w, e, n, s) defining the position of the label with respect to the symbol. It defaults to w (so the label appears left of the symbol).
+    float *y* (in)
+    : Y-coordinate of the symbol to be drawn
+
+    string *text* (in)
+    : Text for the label
+
+    string *orient* (in)
+    : Optional orientation (one of w, e, n, s) defining the position of the label with respect to the symbol. It defaults to w (so the label appears left of the symbol).
+
 
 
 For *polar plots*:
 
-**\$polarplot** plot *series* *radius* *angle*
+**$polarplot** plot *series* *radius* *angle*
 : Add a data point to the polar plot.
 
+    string *series* (in)
+    : Name of the data series the new point belongs to.
 
-string *series* (in)
-: Name of the data series the new point belongs to.
+    float *radius* (in)
+    : Radial coordinate of the new point.
 
-float *radius* (in)
-: Radial coordinate of the new point.
+    float *angle* (in)
+    : Angular coordinate of the new point (in degrees).
 
-float *angle* (in)
-: Angular coordinate of the new point (in degrees).
 
 
 For *wind rose diagrams*:
 
-**\$windrose** plot *data* *colour*
+**$windrose** plot *data* *colour*
 : Draw the data contained in the *data* argument. The data are added to the existing spokes towards the outer circle.
 
+    list *data* (in)
+    : List of data (the length should correspond to the number of sectors)
 
-list *data* (in)
-: List of data (the length should correspond to the number of sectors)
+    string *colour*
+    : Colour in which the new segments will be drawn
 
-string *colour*
-: Colour in which the new segments will be drawn
 
 
 For *3D plots*:
 
-**\$plot3d** plotfunc *function*
+**$plot3d** plotfunc *function*
 : Plot a function defined over two variables **x** and **y**. The resolution is determined by the set grid sizes (see the method **gridsize** for more information).
 
+    string *function* (in)
+    : Name of the procedure that calculates the z-value for the given x and y coordinates. The procedure has to accept two float arguments (x is first argument, y is second) and return a floating-point value.
 
-string *function* (in)
-: Name of the procedure that calculates the z-value for the given x and y coordinates. The procedure has to accept two float arguments (x is first argument, y is second) and return a floating-point value.
 
-
-**\$plot3d** plotfuncont *function* *contours*
+**$plot3d** plotfuncont *function* *contours*
 : Plot a function defined over two variables **x** and **y** using the contour levels in **contours** to colour the surface. The resolution is determined by the set grid sizes (see the method **gridsize** for more information).
 
+    string *function* (in)
+    : Name of the procedure that calculates the z-value for the given x and y coordinates. The procedure has to accept two float arguments (x is first argument, y is second) and return a floating-point value.
 
-string *function* (in)
-: Name of the procedure that calculates the z-value for the given x and y coordinates. The procedure has to accept two float arguments (x is first argument, y is second) and return a floating-point value.
-
-list *contours* (in)
-: List of values in ascending order that represent the contour levels (the boundaries between the colours in the contour map).
+    list *contours* (in)
+    : List of values in ascending order that represent the contour levels (the boundaries between the colours in the contour map).
 
 
-**\$plot3d** gridsize *nxcells* *nycells*
+**$plot3d** gridsize *nxcells* *nycells*
 : Set the grid size in the two directions. Together they determine how many polygons will be drawn for a function plot.
 
+    int *nxcells* (in)
+    : Number of grid cells in x direction. Has to be an integer number greater than zero.
 
-int *nxcells* (in)
-: Number of grid cells in x direction. Has to be an integer number greater than zero.
-
-int *nycells* (in)
-: Number of grid cells in y direction. Has to be an integer number greater than zero.
+    int *nycells* (in)
+    : Number of grid cells in y direction. Has to be an integer number greater than zero.
 
 
-**\$plot3d** plotdata *data*
+**$plot3d** plotdata *data*
 : Plot a matrix of data.
 
+    list *data* (in)
+    : The data to be plotted. The data has to be provided as a nested list with 2 levels. The outer list contains rows, drawn in y-direction, and each row is a list whose elements are drawn in x-direction, for the columns. Example:
 
-list *data* (in)
-: The data to be plotted. The data has to be provided as a nested list with 2 levels. The outer list contains rows, drawn in y-direction, and each row is a list whose elements are drawn in x-direction, for the columns. Example:
+        ```
+            set data {
+            {1.0 2.0 3.0}
+            {4.0 5.0 6.0}
+            }
+        ```
 
 
-```
-    set data {
-    {1.0 2.0 3.0}
-    {4.0 5.0 6.0}
-    }
-```
-
-**\$plot3d** interpolatedata *data* *contours*
+**$plot3d** interpolatedata *data* *contours*
 : Plot the data using bilinear interpolation with the contour levels in **contours** to colour the surface. The resolution is determined by the set grid sizes (see the method **gridsize** for more information).
 
+    list *data* (in)
+    : The data to be plotted, just as for the plotdata subcommand.
 
-list *data* (in)
-: The data to be plotted, just as for the plotdata subcommand.
-
-list *contours* (in)
-: List of values in ascending order that represent the contour levels (the boundaries between the colours in the contour map).
+    list *contours* (in)
+    : List of values in ascending order that represent the contour levels (the boundaries between the colours in the contour map).
 
 
-**\$plot3d** colour *fill* *border*
+**$plot3d** colour *fill* *border*
 : Configure the colour to use for polygon borders and inner area. *Note:* The "color" subcommand is a synonym.
 
+    color *fill* (in)
+    : The colour to use for filling the polygons.
 
-color *fill* (in)
-: The colour to use for filling the polygons.
-
-color *border* (in)
-: The colour to use for the border of the polygons.
+    color *border* (in)
+    : The colour to use for the border of the polygons.
 
 
-**\$plot3d** ribbon *yzpairs*
+**$plot3d** ribbon *yzpairs*
 : Plot a ribbon based on the pairs of yz-coordinates. The colours for the ribbon itself and the edge are taken from the colours option.
 
+    list *yzpairs* (in)
+    : List of pairs of yz-coordinates
 
-list *yzpairs* (in)
-: List of pairs of yz-coordinates
 
 
 For 3D ribbon plots:
 
-**\$plot3d** plot *yzpairs*
+**$plot3d** plot *yzpairs*
 : Plot a ribbon based on the pairs of yz-coordinates. The colours for the ribbon itself and the edge are taken from the colours option.
 
+    list *yzpairs* (in)
+    : List of pairs of yz-coordinates
 
-list *yzpairs* (in)
-: List of pairs of yz-coordinates
 
 
 For *xy plots*, *stripcharts*, *histograms*, *polar plots* and *ternary diagrams*:
 
-**\$xyplot** dataconfig *series* **-option** *value* ...
+**$xyplot** dataconfig *series* **-option** *value* ...
 : Set the value for one or more options regarding the drawing of data of a specific series.
 
-
-string *series* (in)
-: Name of the data series whose configuration we are changing.
-
-
-The following options are allowed:
-
-**colour** c
-: ...see next...
-
-**color** c
-: The colour to be used when drawing the data series.
-
-**type** enum
-: The drawing mode chosen for the series. This can be one of **line**, **symbol**, or **both**.
-
-**symbol** enum
-: What kind of symbol to draw. The value of this option is ignored when the drawing mode **line** was chosen. This can be one of **plus**, **cross**, **circle**, **up** (triangle pointing up), **down** (triangle pointing down), **dot** (filled circle), **upfilled** or **downfilled** (filled triangles).
-
-**radius** integer
-: The size of the radius of the symbol. The total width of the symbol will be 2 times the radius size. The default radius is 4.
-
-**width** integer
-: The width of the line (if drawn) or the width of the polygon outline (if -filled).
-
-**filled** enum
-: Whether to fill the area above or below the data line or not. Can be one of: **no**, **up** or **down** (**SPECIAL EFFECTS**)
-
-**fillcolour** colour
-: Colour to use when filling the area associated with the data line.
-
-**style** enum
-: The style to be used for histograms:
+    string *series* (in)
+    : Name of the data series whose configuration we are changing.
 
 
-**•**
-: **filled**: Fill the area under the data points with bars (default)
+    The following options are allowed:
 
-**•**
-: **spike**: Draw vertical lines from the y-axis (lower boundary) to the data point
+    **colour** c
+    : see below ...
 
-**•**
-: **symbol**: Draw a symbol at the data point
+    **color** c
+    : The colour to be used when drawing the data series.
 
-**•**
-: **plateau**: Draw a horizontal line at the height of the data point
+    **type** enum
+    : The drawing mode chosen for the series. This can be one of **line**, **symbol**, or **both**.
 
-**•**
-: **stair**: Draw a continuous stair-like line connecting the data points
+    **symbol** enum
+    : What kind of symbol to draw. The value of this option is ignored when the drawing mode **line** was chosen. This can be one of **plus**, **cross**, **circle**, **up** (triangle pointing up), **down** (triangle pointing down), **dot** (filled circle), **upfilled** or **downfilled** (filled triangles).
+
+    **radius** integer
+    : The size of the radius of the symbol. The total width of the symbol will be 2 times the radius size. The default radius is 4.
+
+    **width** integer
+    : The width of the line (if drawn) or the width of the polygon outline (if -filled).
+
+    **filled** enum
+    : Whether to fill the area above or below the data line or not. Can be one of: **no**, **up** or **down** ([Special effects])
+
+    **fillcolour** colour
+    : Colour to use when filling the area associated with the data line.
+
+    **style** enum
+    : The style to be used for histograms:
+
+        - **filled**: Fill the area under the data points with bars (default)
+
+        - **spike**: Draw vertical lines from the y-axis (lower boundary) to the data point
+
+        - **symbol**: Draw a symbol at the data point
+
+        - **plateau**: Draw a horizontal line at the height of the data point
+
+        - **stair**: Draw a continuous stair-like line connecting the data points
 
 
-**smooth** boolean
-: (Used with ternary diagrams) Whether to draw the lines and filled polygons with the smooth option on (rounded corners) or not.
+    **smooth** boolean
+    : (Used with ternary diagrams) Whether to draw the lines and filled polygons with the smooth option on (rounded corners) or not.
+
 
 
 For *piecharts* and *spiral pies*:
 
-**\$pie** plot *data*
+**$pie** plot *data*
 : Fill a piechart.
 
+    list *data* (in)
+    : A list of pairs (labels and values). The values determine the relative size of the circle segments. The labels are drawn beside the circle.
 
-list *data* (in)
-: A list of pairs (labels and values). The values determine the relative size of the circle segments. The labels are drawn beside the circle.
 
-
-**\$pie** colours *colour1* *colour2* ...
+**$pie** colours *colour1* *colour2* ...
 : Set the colours to be used.
 
+    color *colour1* (in)
+    : The first colour.
 
-color *colour1* (in)
-: The first colour.
-
-color *colour2* (in)
-: The second colour, and so on.
+    color *colour2* (in)
+    : The second colour, and so on.
 
 
-**\$pie** explode *segment*
+**$pie** explode *segment*
 : Explode a segment (that is: move one segment out of the circle). If the segment is indicated as "auto", then you can click on a segment. This will be exploded instead of any previously exploded segment.
 
+    int *segment*
+    : The segment to be exploded or "auto" if you want to do this interactively.
 
-int *segment*
-: The segment to be exploded or "auto" if you want to do this interactively.
 
 
 For *radial charts*:
 
-**\$radial** plot *data* *colour* *thickness*
+**$radial** plot *data* *colour* *thickness*
 : Draw a new line in the radial chart
 
+    list *data* (in)
+    : A list of data (one for each spoke). The values determine the distance from the centre of the line connecting the spokes.
 
-list *data* (in)
-: A list of data (one for each spoke). The values determine the distance from the centre of the line connecting the spokes.
+    color *colour* (in)
+    : The colour for the line.
 
-color *colour* (in)
-: The colour for the line.
-
-int *thickness* (in)
-: An optional argument for the thickness of the line.
+    int *thickness* (in)
+    : An optional argument for the thickness of the line.
 
 
-**\$pie** colours *colour1* *colour2* ...
+**$pie** colours *colour1* *colour2* ...
 : Set the colours to be used.
 
+    color *colour1* (in)
+    : The first colour.
 
-color *colour1* (in)
-: The first colour.
+    color *colour2* (in)
+    : The second colour, and so on.
 
-color *colour2* (in)
-: The second colour, and so on.
 
 
 For *vertical barcharts*:
 
-**\$barchart** plot *series* *ydata* *colour* ?dir? ?brightness?
-: Add a data series to a barchart. The bars are tagged with a tag "data\_\\\$series" to identify them.
+**$barchart** plot *series* *ydata* *colour* ?dir? ?brightness?
+: Add a data series to a barchart. The bars are tagged with a tag "data\_\\$series" to identify them.
+
+    string *series* (in)
+    : Name of the series the values belong to.
+
+    list *ydata* (in)
+    : A list of values, one for each x-axis label.
+
+    color *colour* (in)
+    : The colour of the bars.
+
+    string *dir* (in)
+    : If given, "top-down" or "bottom-up", to indicate the direction in which the colour changes. (If not given, a uniform colour is used).
+
+    string *brightness* (in)
+    : If given, "bright" or "dark" (defaulting to "bright"). The colour will change to respectively white or black, depending on the direction.
 
 
-string *series* (in)
-: Name of the series the values belong to.
-
-list *ydata* (in)
-: A list of values, one for each x-axis label.
-
-color *colour* (in)
-: The colour of the bars.
-
-string *dir* (in)
-: If given, "top-down" or "bottom-up", to indicate the direction in which the colour changes. (If not given, a uniform colour is used).
-
-string *brightness* (in)
-: If given, "bright" or "dark" (defaulting to "bright"). The colour will change to respectively white or black, depending on the direction.
-
-
-**\$barchart** config **-option** *value* ...
+**$barchart** config **-option** *value* ...
 : Set options for drawing the bars.
 
+    **showvalues** boolean
+    : Whether to show the values or not (above the bars)
 
-**showvalues** boolean
-: Whether to show the values or not (above the bars)
+    **valuefont** newfont
+    : Name of the font to use for the values
 
-**valuefont** newfont
-: Name of the font to use for the values
+    **valuecolour** colour
+    : Colour for the values
 
-**valuecolour** colour
-: Colour for the values
+    **valueformat** format
+    : Format string to use for formatting the values
 
-**valueformat** format
-: Format string to use for formatting the values
 
 
 For *horizontal barcharts*:
 
-**\$barchart** plot *series* *xdata* *colour* ?dir? ?brightness?
-: Add a data series to a barchart. The bars are tagged with a tag "data\_\\\$series" to identify them.
+**$barchart** plot *series* *xdata* *colour* ?dir? ?brightness?
+: Add a data series to a barchart. The bars are tagged with a tag "data\_\\$series" to identify them.
+
+    string *series* (in)
+    : Name of the series the values belong to.
+
+    list *xdata* (in)
+    : A list of values, one for each y-axis label.
+
+    color *colour* (in)
+    : The colour of the bars.
+
+    string *dir* (in)
+    : If given, "left-right" or "right-left", to indicate the direction in which the colour changes. (If not given, a uniform colour is used).
+
+    string *brightness* (in)
+    : If given, "bright" or "dark" (defaulting to "bright"). The colour will change to respectively white or black, depending on the direction.
 
 
-string *series* (in)
-: Name of the series the values belong to.
-
-list *xdata* (in)
-: A list of values, one for each y-axis label.
-
-color *colour* (in)
-: The colour of the bars.
-
-string *dir* (in)
-: If given, "left-right" or "right-left", to indicate the direction in which the colour changes. (If not given, a uniform colour is used).
-
-string *brightness* (in)
-: If given, "bright" or "dark" (defaulting to "bright"). The colour will change to respectively white or black, depending on the direction.
-
-
-**\$barchart** config **-option** *value* ...
+**$barchart** config **-option** *value* ...
 : Set options for drawing the bars.
 
+    **showvalues** boolean
+    : Whether to show the values or not (to the right of the bars)
 
-**showvalues** boolean
-: Whether to show the values or not (to the right of the bars)
+    **valuefont** newfont
+    : Name of the font to use for the values
 
-**valuefont** newfont
-: Name of the font to use for the values
+    **valuecolour** colour
+    : Colour for the values
 
-**valuecolour** colour
-: Colour for the values
+    **valueformat** format
+    : Format string to use for formatting the values
 
-**valueformat** format
-: Format string to use for formatting the values
 
 
 For *3D barcharts*:
 
-**\$barchart** plot *label* *yvalue* *colour*
+**$barchart** plot *label* *yvalue* *colour*
 : Add the next bar to the barchart.
 
+    string *label* (in)
+    : The label to be shown below the column.
 
-string *label* (in)
-: The label to be shown below the column.
+    float *yvalue* (in)
+    : The value that determines the height of the column
 
-float *yvalue* (in)
-: The value that determines the height of the column
-
-color *colour* (in)
-: The colour of the column.
+    color *colour* (in)
+    : The colour of the column.
 
 
-**\$barchart** config **-option** *value* ...
+**$barchart** config **-option** *value* ...
 : Set one or more configuration parameters. The following options are supported:
 
+    **usebackground** boolean
+    : Whether to draw walls to the left and to the back of the columns or not
 
-**usebackground** boolean
-: Whether to draw walls to the left and to the back of the columns or not
+    **useticklines** boolean
+    : Whether to draw ticklines on the walls or not
 
-**useticklines** boolean
-: Whether to draw ticklines on the walls or not
+    **showvalues** boolean
+    : Whether to show the values or not
 
-**showvalues** boolean
-: Whether to show the values or not
+    **labelfont** newfont
+    : Name of the font to use for labels
 
-**labelfont** newfont
-: Name of the font to use for labels
+    **labelcolour** colour
+    : Colour for the labels
 
-**labelcolour** colour
-: Colour for the labels
+    **valuefont** newfont
+    : Name of the font to use for the values
 
-**valuefont** newfont
-: Name of the font to use for the values
+    **valuecolour** colour
+    : Colour for the values
 
-**valuecolour** colour
-: Colour for the values
 
 
 For *3D ribbon charts*:
 
-**\$ribbon** line *xypairs* *colour*
+**$ribbon** line *xypairs* *colour*
 : Plot the given xy-pairs as a ribbon in the chart
 
+    list *xypairs* (in)
+    : The pairs of x/y values to be drawn (the series is drawn as a whole)
 
-list *xypairs* (in)
-: The pairs of x/y values to be drawn (the series is drawn as a whole)
-
-color *colour* (in)
-: The colour of the ribbon.
+    color *colour* (in)
+    : The colour of the ribbon.
 
 
-**\$ribbon** area *xypairs* *colour*
+**$ribbon** area *xypairs* *colour*
 : Plot the given xy-pairs as a ribbon with a filled area in front. The effect is that of a box with the data as its upper surface.
 
+    list *xypairs* (in)
+    : The pairs of x/y values to be drawn (the series is drawn as a whole)
 
-list *xypairs* (in)
-: The pairs of x/y values to be drawn (the series is drawn as a whole)
+    color *colour* (in)
+    : The colour of the ribbon/area.
 
-color *colour* (in)
-: The colour of the ribbon/area.
 
 
 For *boxplots*:
 
-**\$boxplot** plot *series* *label* *values*
+**$boxplot** plot *series* *label* *values*
 : Add a box-and-whisker to the plot. The dataconfig command can be used to customize the box-and-whisker (see the box-and-whiskers command for the xyplot for details).
 
+    string *series* (in)
+    : Name of the data series the box belongs to
 
-string *series* (in)
-: Name of the data series the box belongs to
+    string *label* (in)
+    : The label along the x- or y-axis to which the data belong
 
-string *label* (in)
-: The label along the x- or y-axis to which the data belong
-
-list *values* (in)
-: List of raw values, the extent of the box and the whiskers will be determined from this list.
+    list *values* (in)
+    : List of raw values, the extent of the box and the whiskers will be determined from this list.
 
 
-**\$boxplot** violin *series* *label* *values*
+**$boxplot** violin *series* *label* *values*
 : Add a "violin" to the plot. The dataconfig command can be used to customize the appearance (see the violin command for the xyplot for details).
 
+    string *series* (in)
+    : Name of the data series to be used for settings
 
-string *series* (in)
-: Name of the data series to be used for settings
+    string *label* (in)
+    : The label along the x- or y-axis to which the data belong
 
-string *label* (in)
-: The label along the x- or y-axis to which the data belong
+    list *values* (in)
+    : List of raw values, the extent of the box and the whiskers will be determined from this list.
 
-list *values* (in)
-: List of raw values, the extent of the box and the whiskers will be determined from this list.
 
 
 For *timecharts*:
 
-**\$timechart** period *text* *time_begin* *time_end* *colour*
+**$timechart** period *text* *time\_begin* *time\_end* *colour*
 : Add a time period to the chart.
 
+    string *text* (in)
+    : The text describing the period.
 
-string *text* (in)
-: The text describing the period.
+    string *time\_begin* (in)
+    : Start time of the period.
 
-string *time_begin* (in)
-: Start time of the period.
+    string *time\_end* (in)
+    : Stop time of the period.
 
-string *time_end* (in)
-: Stop time of the period.
-
-color *colour* (in)
-: The colour of the bar (defaults to black).
+    color *colour* (in)
+    : The colour of the bar (defaults to black).
 
 
-**\$timechart** addperiod *time_begin* *time_end* *colour*
+**$timechart** addperiod *time\_begin* *time\_end* *colour*
 : Add a new period to the current row in the chart. This allows you to highlight several periods in the same row. No new text is drawn.
 
+    string *time\_begin* (in)
+    : Start time of the period.
 
-string *time_begin* (in)
-: Start time of the period.
+    string *time\_end* (in)
+    : Stop time of the period.
 
-string *time_end* (in)
-: Stop time of the period.
-
-color *colour* (in)
-: The colour of the bar (defaults to black).
+    color *colour* (in)
+    : The colour of the bar (defaults to black).
 
 
-**\$timechart** milestone *text* *time* *colour*
+**$timechart** milestone *text* *time* *colour*
 : Add a *milestone* (represented as an point-down triangle) to the chart.
 
+    string *text* (in)
+    : The text describing the milestone.
 
-string *text* (in)
-: The text describing the milestone.
+    string *time* (in)
+    : Time at which the milestone must be positioned.
 
-string *time* (in)
-: Time at which the milestone must be positioned.
-
-color *colour* (in)
-: The colour of the triangle (defaults to black).
+    color *colour* (in)
+    : The colour of the triangle (defaults to black).
 
 
-**\$timechart** addmilestone *time* *colour*
+**$timechart** addmilestone *time* *colour*
 : Add another *milestone* to the current row in the chart.
 
+    string *time* (in)
+    : Time at which the milestone must be positioned.
 
-string *time* (in)
-: Time at which the milestone must be positioned.
-
-color *colour* (in)
-: The colour of the triangle (defaults to black).
+    color *colour* (in)
+    : The colour of the triangle (defaults to black).
 
 
-**\$timechart** vertline *text* *time* *colour*
+**$timechart** vertline *text* *time* *colour*
 : Add a vertical line (to indicate the start of the month for instance) to the chart in the specified colour.
 
+    string *text* (in)
+    : The text appearing at the top (an abbreviation of the date/time for instance).
 
-string *text* (in)
-: The text appearing at the top (an abbreviation of the date/time for instance).
+    string *time* (in)
+    : Time at which the line must be positioned.
 
-string *time* (in)
-: Time at which the line must be positioned.
-
-color *colour* (in)
-: The colour of the line to be drawn (defaults to black)
+    color *colour* (in)
+    : The colour of the line to be drawn (defaults to black)
 
 
-**\$timechart** hscroll *scrollbar*
+**$timechart** hscroll *scrollbar*
 : Connect a horizontal scrollbar to the chart. See also the section on scrolling.
 
+    widget *scrollbar* (in)
+    : The horizontal scrollbar that is to be connected to the chart
 
-widget *scrollbar* (in)
-: The horizontal scrollbar that is to be connected to the chart
 
-
-**\$timechart** vscroll *scrollbar*
+**$timechart** vscroll *scrollbar*
 : Connect a vertical scrollbar to the chart. See also the section on scrolling.
 
+    widget *scrollbar* (in)
+    : The vertical scrollbar that is to be connected to the chart
 
-widget *scrollbar* (in)
-: The vertical scrollbar that is to be connected to the chart
 
 
 For *Gantt charts*:
 
-**\$ganttchart** task *text* *time_begin* *time_end* *completed*
+**$ganttchart** task *text* *time\_begin* *time\_end* *completed*
 : Add a task with its period and level of completion to the chart. Returns a list of canvas items that can be used for further manipulations, like connecting two tasks.
 
+    string *text* (in)
+    : The text describing the task.
 
-string *text* (in)
-: The text describing the task.
+    string *time\_begin* (in)
+    : Start time of the task.
 
-string *time_begin* (in)
-: Start time of the task.
+    string *time\_end* (in)
+    : Stop time of the task.
 
-string *time_end* (in)
-: Stop time of the task.
-
-float *completed* (in)
-: The percentage of the task that is completed.
+    float *completed* (in)
+    : The percentage of the task that is completed.
 
 
-**\$ganttchart** milestone *text* *time* *colour*
+**$ganttchart** milestone *text* *time* *colour*
 : Add a *milestone* (represented as an point-down triangle) to the chart.
 
+    string *text* (in)
+    : The text describing the milestone.
 
-string *text* (in)
-: The text describing the milestone.
+    string *time* (in)
+    : Time at which the milestone must be positioned.
 
-string *time* (in)
-: Time at which the milestone must be positioned.
-
-color *colour* (in)
-: The colour of the triangle (defaults to black).
+    color *colour* (in)
+    : The colour of the triangle (defaults to black).
 
 
-**\$ganttchart** vertline *text* *time*
+**$ganttchart** vertline *text* *time*
 : Add a vertical line (to indicate the start of the month for instance) to the chart.
 
+    string *text* (in)
+    : The text appearing at the top (an abbreviation of the date/time for instance).
 
-string *text* (in)
-: The text appearing at the top (an abbreviation of the date/time for instance).
-
-string *time* (in)
-: Time at which the line must be positioned.
+    string *time* (in)
+    : Time at which the line must be positioned.
 
 
-**\$ganttchart** connect *from* *to*
+**$ganttchart** connect *from* *to*
 : Add an arrow that connects the *from* task with the *to* task.
 
+    list *from* (in)
+    : The list of items returned by the "task" command that represents the task from which the arrow starts.
 
-list *from* (in)
-: The list of items returned by the "task" command that represents the task from which the arrow starts.
+    string *text* (in)
+    : The text summarising the tasks
 
-string *text* (in)
-: The text summarising the tasks
+    list *args* (in)
+    : One or more tasks (the lists returned by the "task" command). They are shifted down to make room for the summary.
 
-list *args* (in)
-: One or more tasks (the lists returned by the "task" command). They are shifted down to make room for the summary.
-
-list *to* (in)
-: The list of items returned by the "task" command that represents the task at which the arrow ends.
-
-
-**\$ganttchart** summary *text* *args*
-: Add a summary item that spans all the tasks listed. The graphical representation is a thick bar running from the leftmost task to the rightmost. Use this command before connecting the tasks, as the arrow would not be shifted down!
+    list *to* (in)
+    : The list of items returned by the "task" command that represents the task at which the arrow ends.
 
 
-string *text* (in)
-: The text summarising the tasks
+**$ganttchart** summary *text* *args*
+: Add a summary item that spans all the tasks listed. The graphical representation is a thick bar running from the leftmost task to the rightmost.
 
-list *args* (in)
-: One or more tasks (the lists returned by the "task" command). They are shifted down to make room for the summary.
+    Use this command before connecting the tasks, as the arrow would not be shifted down!
+
+    string *text* (in)
+    : The text summarising the tasks
+
+    list *args* (in)
+    : One or more tasks (the lists returned by the "task" command). They are shifted down to make room for the summary.
 
 
-**\$ganttchart** color *keyword* *newcolor*
+**$ganttchart** color *keyword* *newcolor*
 : Set the colour of a part of the Gantt chart. These colours hold for all items of that type.
 
+    string *keyword* (in)
+    : The keyword indicates which part of the Gantt chart to change:
 
-string *keyword* (in)
-: The keyword indicates which part of the Gantt chart to change:
+        - description - the colour of the descriptive text
 
+        - completed - the colour of the filled bar representing the completed part of a task
 
-**•**
-: description - the colour of the descriptive text
+        - left - the colour for the part that is not yet completed
 
-**•**
-: completed - the colour of the filled bar representing the completed part of a task
+        - odd - the background colour for the odd entries
 
-**•**
-: left - the colour for the part that is not yet completed
+        - even - the background colour for the even entries
 
-**•**
-: odd - the background colour for the odd entries
+        - summary - the colour for the summary text
 
-**•**
-: even - the background colour for the even entries
-
-**•**
-: summary - the colour for the summary text
-
-**•**
-: summarybar - the colour for the bar for a summary
+        - summarybar - the colour for the bar for a summary
 
 
-string *newcolor* (in)
-: The new colour for the chosen items.
+    string *newcolor* (in)
+    : The new colour for the chosen items.
 
 
-**\$ganttchart** font *keyword* *newfont*
+**$ganttchart** font *keyword* *newfont*
 : Set the font of a part of the Gantt chart. These fonts hold for all items of that type.
 
+    string *keyword* (in)
+    : The keyword indicates which part of the Gantt chart to change:
 
-string *keyword* (in)
-: The keyword indicates which part of the Gantt chart to change:
+        - description - the font used for descriptive text
 
+        - summary - the font used for summaries
 
-**•**
-: description - the font used for descriptive text
-
-**•**
-: summary - the font used for summaries
-
-**•**
-: scale - the font used for the time scale
+        - scale - the font used for the time scale
 
 
-string *newfont* (in)
-: The new font for the chosen items.
+    string *newfont* (in)
+    : The new font for the chosen items.
 
 
-**\$ganttchart** hscroll *scrollbar*
+**$ganttchart** hscroll *scrollbar*
 : Connect a horizontal scrollbar to the chart. See also the section on scrolling.
 
+    widget *scrollbar* (in)
+    : The horizontal scrollbar that is to be connected to the chart
 
-widget *scrollbar* (in)
-: The horizontal scrollbar that is to be connected to the chart
 
-
-**\$ganttchart** vscroll *scrollbar*
+**$ganttchart** vscroll *scrollbar*
 : Connect a vertical scrollbar to the chart. See also the section on scrolling.
 
+    widget *scrollbar* (in)
+    : The vertical scrollbar that is to be connected to the chart
 
-widget *scrollbar* (in)
-: The vertical scrollbar that is to be connected to the chart
 
 
 For *isometric plots* (to be extended):
 
-**\$isoplot** plot rectangle *x1* *y1* *x2* *y2* *colour*
+**$isoplot** plot rectangle *x1* *y1* *x2* *y2* *colour*
 : Plot the outlines of a rectangle.
 
+    float *x1* (in)
+    : Minimum x coordinate of the rectangle to be drawn.
 
-float *x1* (in)
-: Minimum x coordinate of the rectangle to be drawn.
+    float *y1* (in)
+    : Minimum y coordinate of the rectangle.
 
-float *y1* (in)
-: Minimum y coordinate of the rectangle.
+    float *x2* (in)
+    : Maximum x coordinate of the rectangle to be drawn.
 
-float *x2* (in)
-: Maximum x coordinate of the rectangle to be drawn.
+    float *y2* (in)
+    : Maximum y coordinate of the rectangle.
 
-float *y2* (in)
-: Maximum y coordinate of the rectangle.
-
-color *colour* (in)
-: The colour of the rectangle.
+    color *colour* (in)
+    : The colour of the rectangle.
 
 
-**\$isoplot** plot filled-rectangle *x1* *y1* *x2* *y2* *colour*
+**$isoplot** plot filled-rectangle *x1* *y1* *x2* *y2* *colour*
 : Plot a rectangle filled with the given colour.
 
+    float *x1* (in)
+    : Minimum x coordinate of the rectangle to be drawn.
 
-float *x1* (in)
-: Minimum x coordinate of the rectangle to be drawn.
+    float *y1* (in)
+    : Minimum y coordinate of the rectangle.
 
-float *y1* (in)
-: Minimum y coordinate of the rectangle.
+    float *x2* (in)
+    : Maximum x coordinate of the rectangle to be drawn.
 
-float *x2* (in)
-: Maximum x coordinate of the rectangle to be drawn.
+    float *y2* (in)
+    : Maximum y coordinate of the rectangle.
 
-float *y2* (in)
-: Maximum y coordinate of the rectangle.
-
-color *colour* (in)
-: The colour of the rectangle.
+    color *colour* (in)
+    : The colour of the rectangle.
 
 
-**\$isoplot** plot circle *xc* *yc* *radius* *colour*
+**$isoplot** plot circle *xc* *yc* *radius* *colour*
 : Plot the outline of a circle.
 
+    float *xc* (in)
+    : X coordinate of the circle's centre.
 
-float *xc* (in)
-: X coordinate of the circle's centre.
+    float *yc* (in)
+    : Y coordinate of the circle's centre.
 
-float *yc* (in)
-: Y coordinate of the circle's centre.
-
-color *colour* (in)
-: The colour of the circle.
+    color *colour* (in)
+    : The colour of the circle.
 
 
-**\$isoplot** plot filled-circle *xc* *yc* *radius* *colour*
+**$isoplot** plot filled-circle *xc* *yc* *radius* *colour*
 : Plot a circle filled with the given colour.
 
+    float *xc* (in)
+    : X coordinate of the circle's centre.
 
-float *xc* (in)
-: X coordinate of the circle's centre.
+    float *yc* (in)
+    : Y coordinate of the circle's centre.
 
-float *yc* (in)
-: Y coordinate of the circle's centre.
+    color *colour* (in)
+    : The colour of the circle.
 
-color *colour* (in)
-: The colour of the circle.
 
 
 For *tables* you can use the following subcommands:
 
-**\$table** row *items*
+**$table** row *items*
 : Draw a single row of items. The appearance of the items can be controlled explicitly via the format command.
 
+    list *items* (in)
+    : List of text items to be drawn, one per column
 
-list *items* (in)
-: List of text items to be drawn, one per column
 
-
-**\$table** separator
+**$table** separator
 : Draw a horizontal line to separate two rows
 
-**\$table** formatcommand *procname*
+**$table** formatcommand *procname*
 : Set the procedure that controls the formatting of items. By default items are simply drawn as centered text.
 
+    string *procname* (in)
+    : Name of the procedure to be used. Its signature is:
 
-string *procname* (in)
-: Name of the procedure to be used. Its signature is:
+        ```
+        proc procname {table widget row column value} {...}
+        ```
 
-
-```
-proc procname {table widget row column value} {...}
-```
-
-: Use the cellconfigure subcommand to set the attributes per cell.
+        Use the cellconfigure subcommand to set the attributes per cell.
 
 
-**\$table** cellconfigure *args*
+**$table** cellconfigure *args*
 : Set the attributes for the next cell(s) to be drawn.
 
+    list *args* (in)
+    : Key-value pairs: -background sets the background colour of the cells, -cell sets the foreground colour, -font sets the text font, -anchor sets the position of the text within the cell and -justify controls the layout of multiline text.
 
-list *args* (in)
-: Key-value pairs: -background sets the background colour of the cells, -cell sets the foreground colour, -font sets the text font, -anchor sets the position of the text within the cell and -justify controls the layout of multiline text.
 
 
 For *ternary diagrams* you can use the following subcommands:
 
-**\$ternary** plot *series* *xcrd* *ycrd* *zcrd* *text* *dir*
+**$ternary** plot *series* *xcrd* *ycrd* *zcrd* *text* *dir*
 : Draw a single data point with a label. The three coordinates are scaled so that a unique point in the triangle results. A label is drawn next to it.
 
+    string *series* (in)
+    : Name of the data series the point belongs to (used to determine colour and symbol)
 
-string *series* (in)
-: Name of the data series the point belongs to (used to determine colour and symbol)
+    float *xcrd* (in)
+    : X-coordinate of the data point (refers to the lower-left corner).
 
-float *xcrd* (in)
-: X-coordinate of the data point (refers to the lower-left corner).
+    float *ycrd* (in)
+    : Y-coordinate of the data point (refers to the lower-right corner).
 
-float *ycrd* (in)
-: Y-coordinate of the data point (refers to the lower-right corner).
+    float *zcrd* (in)
+    : Z-coordinate of the data point (refers to the top corner).
 
-float *zcrd* (in)
-: Z-coordinate of the data point (refers to the top corner).
+    string *text* (in)
+    : Label describing the data point.
 
-string *text* (in)
-: Label describing the data point.
-
-string *dir* (in)
-: Optional string indicating the direction in which to plot the label (e, n, etc.)
+    string *dir* (in)
+    : Optional string indicating the direction in which to plot the label (e, n, etc.)
 
 
-**\$ternary** line *series* *coords*
+**$ternary** line *series* *coords*
 : Draw a continuous line based on the given coordinates (triplets).
 
+    string *series* (in)
+    : Name of the data series the line belongs to (used to determine colour and smoothness)
 
-string *series* (in)
-: Name of the data series the line belongs to (used to determine colour and smoothness)
-
-list *coords* (in)
-: The coordinates of the points that determine the line (note that a point is defined by three coordinates).
+    list *coords* (in)
+    : The coordinates of the points that determine the line (note that a point is defined by three coordinates).
 
 
-**\$ternary** fill *series* *coords*
+**$ternary** fill *series* *coords*
 : Draw a filled polygon based on the given coordinates (triplets).
 
+    string *series* (in)
+    : Name of the data series the polygon belongs to (used to determine colour and smoothness)
 
-string *series* (in)
-: Name of the data series the polygon belongs to (used to determine colour and smoothness)
-
-list *coords* (in)
-: The coordinates of the points that determine the polygon (note that a point is defined by three coordinates).
+    list *coords* (in)
+    : The coordinates of the points that determine the polygon (note that a point is defined by three coordinates).
 
 
-**\$ternary** text *xtext* *ytext* *ztext*
+**$ternary** text *xtext* *ytext* *ztext*
 : Draw text at the three corners of the diagram to identify the components.
 
+    string *xtext* (in)
+    : Text to be plotted at the lower-left corner
 
-string *xtext* (in)
-: Text to be plotted at the lower-left corner
+    string *ytext* (in)
+    : Text to be plotted at the lower-right corner
 
-string *ytext* (in)
-: Text to be plotted at the lower-right corner
-
-string *ztext* (in)
-: Text to be plotted at the top corner
+    string *ztext* (in)
+    : Text to be plotted at the top corner
 
 
-**\$ternary** ticklines *colour*
+**$ternary** ticklines *colour*
 : Draw ticklines to facilitate reading off the diagram.
 
+    string *colour* (in)
+    : Optional argument used as the colour of the ticklines. Defaults to grey.
 
-string *colour* (in)
-: Optional argument used as the colour of the ticklines. Defaults to grey.
 
 
 For *status timeline plots* you can use the following subcommands:
 
-**\$timeline** plot *series* *item* *start* *stop* *color*
+**$timeline** plot *series* *item* *start* *stop* *color*
 : Draw a bar in the given colour from *start* to *stop* for the item *item*. The item is a convenient label - there is no relation to the labels along the axis. The items are drawn from bottom to top.
 
+    string *item* (in)
+    : Name to identify the bar. See remark above.
 
-string *item* (in)
-: Name to identify the bar. See remark above.
+    float *start* (in)
+    : X-coordinate (or time) at which the bar starts
 
-float *start* (in)
-: X-coordinate (or time) at which the bar starts
+    float *stop* (in)
+    : X-coordinate (or time) at which the bar stops
 
-float *stop* (in)
-: X-coordinate (or time) at which the bar stops
-
-string *color* (in)
-: Colour to use for the bar. Defaults to black.
+    string *color* (in)
+    : Colour to use for the bar. Defaults to black.
 
 
-**\$timeline** vertline *text* *time* *args*
+**$timeline** vertline *text* *time* *args*
 : Draw a vertical line to indicate a significant moment.
 
+    string *text* (in)
+    : Text to identify the moment.
 
-string *text* (in)
-: Text to identify the moment.
+    float *time* (in)
+    : X-coordinate (or time) at which the line is to be drawn
 
-float *time* (in)
-: X-coordinate (or time) at which the line is to be drawn
+    list *args* (in)
+    : Individual optional arguments that will be passed to the *create line* subcommand of the underlying canvas. This way you can set the colour or the line width of the vertical line.
 
-list *args* (in)
-: Individual optional arguments that will be passed to the *create line* subcommand of the underlying canvas. This way you can set the colour or the line width of the vertical line.
 
 
 For *dendrograms* there is one specific subcommand:
 
-**\$dendrogram** plot *series* *data*
+**$dendrogram** plot *series* *data*
 : Draw a dendrogram according to the options given or implied when the dendrogram command was created. The "series" name allows you to select the colour of the branches (-colour/-color) as well as the colour and font of the labels (-labelcolour/-labelcolor and -labelfont).
 
+    string *series* (in)
+    : Name of the set of options to draw the dendrogram with.
 
-string *series* (in)
-: Name of the set of options to draw the dendrogram with.
+    list *data* (in)
+    : Nested list, describing the tree structure. See the *createDendrogram* command.
 
-list *data* (in)
-: Nested list, describing the tree structure. See the *createDendrogram* command.
 
 
 # Coordinate transformations
@@ -2331,151 +2269,143 @@ Besides the commands that deal with the plots and charts directly, there are a n
 **::Plotchart::viewPort** *w* *pxmin* *pymin* *pxmax* *pymax*
 : Set the viewport for window *w*. Should be used in cooperation with **::Plotchart::worldCoordinates**.
 
+    widget *w* (in)
+    : Name of the window (canvas widget) in question.
 
-widget *w* (in)
-: Name of the window (canvas widget) in question.
+    float *pxmin* (in)
+    : Left-most pixel coordinate.
 
-float *pxmin* (in)
-: Left-most pixel coordinate.
+    float *pymin* (in)
+    : Top-most pixel coordinate (remember: the vertical pixel coordinate starts with 0 at the top!).
 
-float *pymin* (in)
-: Top-most pixel coordinate (remember: the vertical pixel coordinate starts with 0 at the top!).
+    float *pxmax* (in)
+    : Right-most pixel coordinate.
 
-float *pxmax* (in)
-: Right-most pixel coordinate.
-
-float *pymax* (in)
-: Bottom-most pixel coordinate.
+    float *pymax* (in)
+    : Bottom-most pixel coordinate.
 
 
 **::Plotchart::worldCoordinates** *w* *xmin* *ymin* *xmax* *ymax*
 : Set the extreme world coordinates for window *w*. The world coordinates need not be in ascending order (i.e. xmin can be larger than xmax, so that a reversal of the x-axis is achieved).
 
+    widget *w* (in)
+    : Name of the window (canvas widget) in question.
 
-widget *w* (in)
-: Name of the window (canvas widget) in question.
+    float *xmin* (in)
+    : X-coordinate to be mapped to left side of viewport.
 
-float *xmin* (in)
-: X-coordinate to be mapped to left side of viewport.
+    float *ymin* (in)
+    : Y-coordinate to be mapped to bottom of viewport.
 
-float *ymin* (in)
-: Y-coordinate to be mapped to bottom of viewport.
+    float *xmax* (in)
+    : X-coordinate to be mapped to right side of viewport.
 
-float *xmax* (in)
-: X-coordinate to be mapped to right side of viewport.
-
-float *ymax* (in)
-: Y-coordinate to be mapped to top side of viewport.
+    float *ymax* (in)
+    : Y-coordinate to be mapped to top side of viewport.
 
 
 **::Plotchart::world3DCoordinates** *w* *xmin* *ymin* *zmin* *xmax* *ymax* *zmax*
 : Set the extreme three-dimensional world coordinates for window *w*. The world coordinates need not be in ascending order (i.e. xmin can be larger than xmax, so that a reversal of the x-axis is achieved).
 
+    widget *w* (in)
+    : Name of the window (canvas widget) in question.
 
-widget *w* (in)
-: Name of the window (canvas widget) in question.
+    float *xmin* (in)
+    : X-coordinate to be mapped to front side of the 3D viewport.
 
-float *xmin* (in)
-: X-coordinate to be mapped to front side of the 3D viewport.
+    float *ymin* (in)
+    : Y-coordinate to be mapped to left side of the viewport.
 
-float *ymin* (in)
-: Y-coordinate to be mapped to left side of the viewport.
+    float *zmin* (in)
+    : Z-coordinate to be mapped to bottom of viewport.
 
-float *zmin* (in)
-: Z-coordinate to be mapped to bottom of viewport.
+    float *xmax* (in)
+    : X-coordinate to be mapped to back side of viewport.
 
-float *xmax* (in)
-: X-coordinate to be mapped to back side of viewport.
+    float *ymax* (in)
+    : Y-coordinate to be mapped to right side of viewport.
 
-float *ymax* (in)
-: Y-coordinate to be mapped to right side of viewport.
-
-float *zmax* (in)
-: Z-coordinate to be mapped to top side of viewport.
+    float *zmax* (in)
+    : Z-coordinate to be mapped to top side of viewport.
 
 
 **::Plotchart::coordsToPixel** *w* *x* *y*
 : Return a list of pixel coordinates valid for the given window.
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question.
+    float *x* (in)
+    : X-coordinate to be mapped.
 
-float *x* (in)
-: X-coordinate to be mapped.
-
-float *y* (in)
-: Y-coordinate to be mapped.
+    float *y* (in)
+    : Y-coordinate to be mapped.
 
 
 **::Plotchart::coords3DToPixel** *w* *x* *y* *z*
 : Return a list of pixel coordinates valid for the given window.
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question.
+    float *x* (in)
+    : X-coordinate to be mapped.
 
-float *x* (in)
-: X-coordinate to be mapped.
+    float *y* (in)
+    : Y-coordinate to be mapped.
 
-float *y* (in)
-: Y-coordinate to be mapped.
-
-float *y* (in)
-: Z-coordinate to be mapped.
+    float *y* (in)
+    : Z-coordinate to be mapped.
 
 
 **::Plotchart::polarCoordinates** *w* *radmax*
 : Set the extreme polar coordinates for window *w*. The angle always runs from 0 to 360 degrees and the radius starts at 0. Hence you only need to give the maximum radius. *Note:* If the viewport is not square, this procedure will not adjust the extremes, so that would result in an elliptical plot. The creation routine for a polar plot always determines a square viewport.
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question.
-
-float *radmax* (in)
-: Maximum radius.
+    float *radmax* (in)
+    : Maximum radius.
 
 
 **::Plotchart::polarToPixel** *w* *rad* *phi*
 : Wrapper for a call to **::Plotchart::coordsToPixel**. *Note:* This procedure has been deprecated - you should use the procedure **::Plotchart::coordsToPixel** instead.
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question.
+    float *rad* (in)
+    : Radius of the point.
 
-float *rad* (in)
-: Radius of the point.
-
-float *phi* (in)
-: Angle to the positive x-axis.
+    float *phi* (in)
+    : Angle to the positive x-axis.
 
 
 **::Plotchart::pixelToCoords** *w* *x* *y*
 : Return a list of world coordinates valid for the given window.
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question.
+    float *x* (in)
+    : X-pixel to be mapped.
 
-float *x* (in)
-: X-pixel to be mapped.
-
-float *y* (in)
-: Y-pixel to be mapped.
+    float *y* (in)
+    : Y-pixel to be mapped.
 
 
 **::Plotchart::pixelToIndex** *w* *x* *y*
 : Return the index of the pie segment containing the pixel coordinates (x,y)
 
+    widget *w* (in)
+    : Name of the canvas alias (as returned by \[\\$anyplot canvas\]) in question, holding a piechart.
 
-widget *w* (in)
-: Name of the canvas alias (as returned by \[\\\$anyplot canvas\]) in question, holding a piechart.
+    float *x* (in)
+    : X-pixel to be mapped.
 
-float *x* (in)
-: X-pixel to be mapped.
+    float *y* (in)
+    : Y-pixel to be mapped.
 
-float *y* (in)
-: Y-pixel to be mapped.
 
 
 Furthermore there is a routine to determine "pretty" numbers for use with an axis:
@@ -2483,26 +2413,25 @@ Furthermore there is a routine to determine "pretty" numbers for use with an axi
 **::Plotchart::determineScale** *xmin* *xmax* *inverted*
 : Determine "pretty" numbers from the given range and return a list containing the minimum, maximum and stepsize that can be used for a (linear) axis.
 
+    float *xmin* (in)
+    : Rough minimum value for the scaling
 
-float *xmin* (in)
-: Rough minimum value for the scaling
+    float *xmax* (in)
+    : Rough maximum value for the scaling.
 
-float *xmax* (in)
-: Rough maximum value for the scaling.
-
-boolean *inverted* (in)
-: Optional argument: if 1, then the returned list produces an inverted axis. Defaults to 0 (the axis will be from minimum to maximum)
+    boolean *inverted* (in)
+    : Optional argument: if 1, then the returned list produces an inverted axis. Defaults to 0 (the axis will be from minimum to maximum)
 
 
 **::Plotchart::determineScaleFromList** *values* *inverted*
 : Determine "pretty" numbers from the given list of values and return a list containing the minimum, maximum and stepsize that can be used for a (linear) axis.
 
+    float *values* (in)
+    : List of values that will be examined. May contain missing values (empty strings)
 
-float *values* (in)
-: List of values that will be examined. May contain missing values (empty strings)
+    boolean *inverted* (in)
+    : Optional argument: if 1, then the returned list produces an inverted axis. Defaults to 0 (the axis will be from minimum to maximum)
 
-boolean *inverted* (in)
-: Optional argument: if 1, then the returned list produces an inverted axis. Defaults to 0 (the axis will be from minimum to maximum)
 
 
 # Missing values
@@ -2522,14 +2451,11 @@ Often data that need to be plotted contain gaps - in a series of measurement dat
 
 The effect varies according to the type of plot:
 
-**•**
-: For xy-plots, radial plots and strip charts the missing data point causes a gap in the line through the points.
+- For xy-plots, radial plots and strip charts the missing data point causes a gap in the line through the points.
 
-**•**
-: For barchats, missing values are treated as if a value of zero was given.
+- For barchats, missing values are treated as if a value of zero was given.
 
-**•**
-: For time charts and Gantt charts missing values cause errors - there is no use for them there.
+- For time charts and Gantt charts missing values cause errors - there is no use for them there.
 
 
 # Other output formats
@@ -2546,17 +2472,13 @@ Furthermore, the module uses the *cget* subcommand to find out the sizes of the 
 
 In summary:
 
-**•**
-: Emulate the *create* subcommand to create all the items in the correct format
+- Emulate the *create* subcommand to create all the items in the correct format
 
-**•**
-: Emulate the *cget* subcommand for the options -width and -height to allow the correct calculation of the rectangle's position and size
+- Emulate the *cget* subcommand for the options -width and -height to allow the correct calculation of the rectangle's position and size
 
-**•**
-: Solve the problem of *raising* and *lowering* the items so that they are properly clipped, for instance by redefining the routine DrawMask.
+- Solve the problem of *raising* and *lowering* the items so that they are properly clipped, for instance by redefining the routine DrawMask.
 
-**•**
-: Take care of the currently fixed text size properties
+- Take care of the currently fixed text size properties
 
 
 # Special effects
@@ -2590,15 +2512,12 @@ The trick is to fill the background with a colour that changes from green at the
 
 In this version there are a lot of things that still need to be implemented:
 
-**•**
-: More robust handling of incorrect calls (right now the procedures may fail when called incorrectly):
+- More robust handling of incorrect calls (right now the procedures may fail when called incorrectly):
 
+    - The axis drawing routines can not handle inverse axes right now.
 
-**•**
-: The axis drawing routines can not handle inverse axes right now.
+    - If the user provides an invalid date/time string, the routines simply throw an error.
 
-**•**
-: If the user provides an invalid date/time string, the routines simply throw an error.
 
 
 # Resizing
@@ -2703,207 +2622,162 @@ The method works very simply:
 The commands **plotconfig** and **plotstyle** can be used to set all manner of options. The command **eraseplot** can be used to completely erase a plot or chart. The syntax of these commands is:
 
 **::Plotchart::plotconfig** *charttype* *component* *property* *value*
-: Set a new value for the property of a component in a particular chart or plot type or query its current value. Changed properties only have effect for the consecutive plots, not for the ones already created. Each argument is optional. *Note:* The **plotstyle** command offers a more flexible way to control the configuration options.
+: Set a new value for the property of a component in a particular chart or plot type or query its current value. Changed properties only have effect for the consecutive plots, not for the ones already created. Each argument is optional.
 
+    *Note:* The **plotstyle** command offers a more flexible way to control the configuration options.
 
-string *charttype* (in)
-: The type of chart or plot (see the configuration type that is mentioned for each create command). If not given or empty, a list of chart types is returned. If it is given, the properties for that particular type are used.
+    string *charttype* (in)
+    : The type of chart or plot (see the configuration type that is mentioned for each create command). If not given or empty, a list of chart types is returned. If it is given, the properties for that particular type are used.
 
-string *component* (in)
-: The component of the plot/chart: leftaxis, rightaxis, background, margin and so on. If not given or empty, a list of components is returned. If it is given, the properties for that particular component will be set for that particular type of chart.
+    string *component* (in)
+    : The component of the plot/chart: leftaxis, rightaxis, background, margin and so on. If not given or empty, a list of components is returned. If it is given, the properties for that particular component will be set for that particular type of chart.
 
-string *property* (in)
-: The property of the component of the plot/chart: textcolor, thickness of the axis line, etc. If not given or empty, a list of properties is returned. If it is given, that particular property for that particular component will be set for that particular type of chart.
+    string *property* (in)
+    : The property of the component of the plot/chart: textcolor, thickness of the axis line, etc. If not given or empty, a list of properties is returned. If it is given, that particular property for that particular component will be set for that particular type of chart.
 
-string *value* (in)
-: The new value for the property. If empty, the current value is returned. If the value is "default", the default value will be restored. Note, that in some cases an empty value is useful. Use "none" in this case - it can be useful for colours and for formats.
+    string *value* (in)
+    : The new value for the property. If empty, the current value is returned. If the value is "default", the default value will be restored.
+
+        Note, that in some cases an empty value is useful. Use "none" in this case - it can be useful for colours and for formats.
 
 
 **::Plotchart::plotstyle** *subcmd* *style* *args*
 : Manipulate the *style* in which subsequent plots will be drawn. The default style is "default", but you can define and load any number of other styles.
 
+    string *subcmd* (in)
+    : The subcommand to be executed:
 
-string *subcmd* (in)
-: The subcommand to be executed:
+        - *configure* - this subcommand allows you to set the options per chart type. It takes the same options as the **plotconfig** command.
 
+        - *current* - return the current style
 
-**•**
-: *configure* - this subcommand allows you to set the options per chart type. It takes the same options as the **plotconfig** command.
+        - *load* - make the given style the active style for subsequent plots and charts
 
-**•**
-: *current* - return the current style
-
-**•**
-: *load* - make the given style the active style for subsequent plots and charts
-
-**•**
-: *names* - return the list of currently defined styles
+        - *names* - return the list of currently defined styles
 
 
-string *style* (in)
-: The name of the plot style to manipulate
+    string *style* (in)
+    : The name of the plot style to manipulate
 
-list *args* (in)
-: The new options for the style. Each option is described by: chart type, component of the chart, property of the component and the new value for the property - see the **plotconfig** command for details.
+    list *args* (in)
+    : The new options for the style. Each option is described by: chart type, component of the chart, property of the component and the new value for the property - see the **plotconfig** command for details.
+
 
 
 Below is a detailed list of the components and properties:
 
-**•**
-: Axes come in a wide variety:
+- Axes come in a wide variety:
+
+    - leftaxis, rightaxis, topaxis, bottomaxis for the plots with a rectangular shape.
+
+    - xaxis, yaxis and zaxis are used for the 3D plots
+
+    - axis, this represents the radial and tangential axes of a polar plot
 
 
-**•**
-: leftaxis, rightaxis, topaxis, bottomaxis for the plots with a rectangular shape.
+- All axes have the following properties:
 
-**•**
-: xaxis, yaxis and zaxis are used for the 3D plots
+    - color - the colour of the line and the tickmarks
 
-**•**
-: axis, this represents the radial and tangential axes of a polar plot
+    - thickness - the width of the line of the axis itself, not the tickmarks
 
+    - ticklength - the length of the tickmarks in pixels. A positive value is outward, a negative value is inward.
 
-: All axes have the following properties:
+    - font - the font for the labels and the text at the axis
 
+    - format - the format for rendering the (numerical) labels. For the time axis it is the format for a date and time.
 
-**•**
-: color - the colour of the line and the tickmarks
+    - textcolor - the colour for the labels and the text.
 
-**•**
-: thickness - the width of the line of the axis itself, not the tickmarks
+    - labeloffset - space (in pixels) between the tickmark and the actual label
 
-**•**
-: ticklength - the length of the tickmarks in pixels. A positive value is outward, a negative value is inward.
+    - minorticks - number of minor tickmarks between the major tickmarks
 
-**•**
-: font - the font for the labels and the text at the axis
+    - shownumbers - show the numbers/labels or not.
 
-**•**
-: format - the format for rendering the (numerical) labels. For the time axis it is the format for a date and time.
-
-**•**
-: textcolor - the colour for the labels and the text.
-
-**•**
-: labeloffset - space (in pixels) between the tickmark and the actual label
-
-**•**
-: minorticks - number of minor tickmarks between the major tickmarks
-
-**•**
-: shownumbers - show the numbers/labels or not.
-
-**•**
-: showaxle - show the axis line or not.
+    - showaxle - show the axis line or not.
 
 
-**•**
-: The *margin* is important for the layout. Currently only the rectangular plots allow the margins to be set: left, right, top and bottom. The values are in pixels.
+- The *margin* is important for the layout. Currently only the rectangular plots allow the margins to be set: left, right, top and bottom. The values are in pixels.
 
-**•**
-: The *text* component is meant for any text appearing via the plaintext subcommand. The properties are: textcolor, font and anchor (positioning of the text relative to the given coordinates).
+- The *text* component is meant for any text appearing via the plaintext subcommand. The properties are: textcolor, font and anchor (positioning of the text relative to the given coordinates).
 
-**•**
-: The *background* has two properties: outercolor, the colour outside of the actual plot, and innercolor, the colour inside the plot. (Note: only "outercolor" has now been implemented).
+- The *background* has two properties: outercolor, the colour outside of the actual plot, and innercolor, the colour inside the plot. (Note: only "outercolor" has now been implemented).
 
-**•**
-: The *mask* has one property only: draw. If set to 1, the default, white rectangles are drawn to mimick the effects of clipping - excess data are made invisible this way. Otherwise these rectangles are not drawn. This is useful to control the layout more tightly, for instance with multiple plots in one canvas.
+- The *mask* has one property only: draw. If set to 1, the default, white rectangles are drawn to mimick the effects of clipping - excess data are made invisible this way. Otherwise these rectangles are not drawn. This is useful to control the layout more tightly, for instance with multiple plots in one canvas.
 
-**•**
-: The *title* component has the same properties as the *text* component (but it is independent of that component). It also has a *background* property: If not set (or set to the empty string) this is the same as the outercolor property of the *background* component, otherwise it is a separate colour.
+- The *title* component has the same properties as the *text* component (but it is independent of that component). It also has a *background* property: If not set (or set to the empty string) this is the same as the outercolor property of the *background* component, otherwise it is a separate colour.
 
-**•**
-: The *legend* has three properties: background, border and position. See the legend subcommand for the meaning.
+- The *legend* has three properties: background, border and position. See the legend subcommand for the meaning.
 
-**•**
-: The *bar* components is used for all barchart-like plots and has three properties: *barwidth* (relative width of the bars in relation to the items along the axis), *innermargin* (the relative width of the gaps between bars or groups of bars) and the *outline* colour.
+- The *bar* components is used for all barchart-like plots and has three properties: *barwidth* (relative width of the bars in relation to the items along the axis), *innermargin* (the relative width of the gaps between bars or groups of bars) and the *outline* colour.
 
-**•**
-: The *labels* component is used to describe the appearance of the labels of piecharts and "spiral" piecharts. The properties are:
+- The *labels* component is used to describe the appearance of the labels of piecharts and "spiral" piecharts. The properties are:
 
+    - textcolor - colour of the label text
 
-**•**
-: textcolor - colour of the label text
+    - font - font to be used for the label text
 
-**•**
-: font - font to be used for the label text
+    - placement - *out* of the circle or *in* the circle
 
-**•**
-: placement - *out* of the circle or *in* the circle
+    - sorted - the data are sorted in ascending order first
 
-**•**
-: sorted - the data are sorted in ascending order first
+    - shownumbers - the labels are combined with the numbers according to the format
 
-**•**
-: shownumbers - the labels are combined with the numbers according to the format
+    - format - the format to be used (defaults to: "%s (%g)") if the numbers are to shown. The format command gets the label first, then the number)
 
-**•**
-: format - the format to be used (defaults to: "%s (%g)") if the numbers are to shown. The format command gets the label first, then the number)
-
-**•**
-: formatright - if given, the format to be used for labels and numbers appearing to the right of the pie. The format command gets the number first, then the label. (Defaults to "")
+    - formatright - if given, the format to be used for labels and numbers appearing to the right of the pie. The format command gets the number first, then the label. (Defaults to "")
 
 
-**•**
-: The *slice* component has properties to control the appearance of the sections in the pie diagram:
+- The *slice* component has properties to control the appearance of the sections in the pie diagram:
+
+    - outline - the colour of the line around the slices (default: black)
+
+    - outlinewidth - width of the line around the slices (default: 1 pixel)
+
+    - startangle - the angle w.r.t. positive x-axis where the first slice starts
+
+    - direction - the direction in which to draw the slices (default: +, that is clockwise)
 
 
-**•**
-: outline - the colour of the line around the slices (default: black)
+- The table charts use the general components *title* and *margin* and further more the specific components *header*, *oddrow*, *evenrow*, *cell* and *frame*:
 
-**•**
-: outlinewidth - width of the line around the slices (default: 1 pixel)
+    - *header*, *oddrow* and *evenrow* have the properties: *background*, *font*, *color*, *height* and *anchor* with obvious meanings.
 
-**•**
-: startangle - the angle w.r.t. positive x-axis where the first slice starts
+    - The *cell* component defines in addition *leftspace*, *rightspace* and *topspace* for fine-grained control of the spacing inside the cell. These are not set via the *cellconfigure* subcommand however.
 
-**•**
-: direction - the direction in which to draw the slices (default: +, that is clockwise)
+    - Finally the *frame* component uses *color*, *outerwidth* (for the width of the line surrounding the whole table) and *innerwidth* (for the width of lines separating columns and rows).
 
 
-**•**
-: The table charts use the general components *title* and *margin* and further more the specific components *header*, *oddrow*, *evenrow*, *cell* and *frame*:
+- The target diagram and the Taylor diagram use the *limits* components in addition to the various general components. The limits component has one property: the color of the circles and circle segments.
 
-
-**•**
-: *header*, *oddrow* and *evenrow* have the properties: *background*, *font*, *color*, *height* and *anchor* with obvious meanings.
-
-**•**
-: The *cell* component defines in addition *leftspace*, *rightspace* and *topspace* for fine-grained control of the spacing inside the cell. These are not set via the *cellconfigure* subcommand however.
-
-**•**
-: Finally the *frame* component uses *color*, *outerwidth* (for the width of the line surrounding the whole table) and *innerwidth* (for the width of lines separating columns and rows).
-
-
-**•**
-: The target diagram and the Taylor diagram use the *limits* components in addition to the various general components. The limits component has one property: the color of the circles and circle segments. For the Taylor diagram you can specify the color of the reference circles via the *reference* component.
+    For the Taylor diagram you can specify the color of the reference circles via the *reference* component.
 
 
 **::Plotchart::eraseplot** *anyplot*
 : Erase the plot/chart with all resources connected to it.
 
+    string *anyplot* (in)
+    : The plot/chart command. All canvas items associated with this command and all internal resources will be removed, including the plot/chart command itself.
 
-string *anyplot* (in)
-: The plot/chart command. All canvas items associated with this command and all internal resources will be removed, including the plot/chart command itself.
 
 
 See the examples in plotdemos7.tcl for its use.
 
-# Scrolling for timecharts and gantt charts
+# Scrolling for timecharts and Gantt charts
 
 For two types of plots automatic scrolling management has been implemented: timecharts and Gantt charts. The subcommands *hscroll* and *vscroll* associate (existing) scrollbars to the plot, in much the same way as for text and canvas widgets.
 
 Once the association is made, the scrollbars are automatically updated if:
 
-**•**
-: You add an item with a period wider than the current one.
+- You add an item with a period wider than the current one.
 
-**•**
-: You add a vertical line for a time beyond the current bounds.
+- You add a vertical line for a time beyond the current bounds.
 
-**•**
-: You add an extra item beyond the number that was used to create the chart. For instance:
+- You add an extra item beyond the number that was used to create the chart.
 
+
+For instance:
 
 ```
 package require Plotchart
@@ -2948,234 +2822,224 @@ Most of the plot and chart types described above have a fairly general use and y
 
 Currently there are the following types:
 
-**•**
-: Target diagrams are used to assess the capacity of numerical models to reproduce measurement data. They are described in detail in:
+- Target diagrams are used to assess the capacity of numerical models to reproduce measurement data. They are described in detail in:
+
+    ```
+    Jason K. Joliff et al.
+        Summary diagrams for coupled hydrodynamic-ecosystem model skill assessment
+        Journal of Marine Systems 76 (2009) 64-82
+        DOI: 10.1016/j.jmarsys.2008.05.014
+    ```
+
+- Performance profiles are used for comparing the performance of numerical methods or implementations thereof with each other. For more information:
+
+    ```
+    Desmond Higham and Nicholas Higham
+        Matlab Guide
+        SIAM, 2005, Philadephia
+    ```
+
+- Taylor diagrams are another graphical representation of how numerical models reproduce measurement data. A detailed description appears in <https://en.wikipedia.org/wiki/Taylor_diagram>
 
 
-```
-Jason K. Joliff et al.
-    Summary diagrams for coupled hydrodynamic-ecosystem model skill assessment
-    Journal of Marine Systems 76 (2009) 64-82
-    DOI: 10.1016/j.jmarsys.2008.05.014
-```
-
-**•**
-: Performance profiles are used for comparing the performance of numerical methods or implementations thereof with each other. For more information:
-
-
-```
-Desmond Higham and Nicholas Higham
-    Matlab Guide
-    SIAM, 2005, Philadephia
-```
-
-**•**
-: Taylor diagrams are another graphical representation of how numerical models reproduce measurement data. A detailed description appears in *https://en.wikipedia.org/wiki/Taylor_diagram* Most of the general methods for XY-plots work for these plots as well, but their creation and the methods to plot the data are very specific.
-
+Most of the general methods for XY-plots work for these plots as well, but their creation and the methods to plot the data are very specific.
 
 **::Plotchart::createTargetDiagram** *w* *limits* *scale*
-: Create a new target diagram with circles indicating specific limits. The x-axis represents the unbiased "root-mean-square difference" (typically varying between -1 and 1) and the y-axis represents the normalised bias. Data points closer to the origin represent better results than data points further away.
+: Create a new target diagram with circles indicating specific limits. The x-axis represents the unbiased "root-mean-square difference" (typically varying between -1 and 1) and the y-axis represents the normalised bias.
+
+    Data points closer to the origin represent better results than data points further away.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
+
+    list *limits* (in)
+    : List of radii for the circles that represent the limits (for instance: 0.5 and 0.7)
+
+    double *scale* (in)
+    : Scale for the axes - defaults to 1, but if the model results are a poor fit, then that may be too small a value. Both axes are scaled in the same way.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
-
-list *limits* (in)
-: List of radii for the circles that represent the limits (for instance: 0.5 and 0.7)
-
-double *scale* (in)
-: Scale for the axes - defaults to 1, but if the model results are a poor fit, then that may be too small a value. Both axes are scaled in the same way.
-
-
-**\$target** plot *series* *xvalues* *yvalues*
+**$target** plot *series* *xvalues* *yvalues*
 : The plot method takes two series of data of the same length, the first one representing the model results, the second one represent the measurements or, more general, the data that need to be reproduced.
 
+    string *series* (in)
+    : Name of the series (it will be plotted as a symbol that is configured via the *$target dataconfig* command (see the XY-plot equivalent for an explanation)
 
-string *series* (in)
-: Name of the series (it will be plotted as a symbol that is configured via the *\$target dataconfig* command (see the XY-plot equivalent for an explanation)
+    list *xvalues* (in)
+    : List of model results (missing values are represented as empty strings)
 
-list *xvalues* (in)
-: List of model results (missing values are represented as empty strings)
-
-list *yvalues* (in)
-: List of measured values (missing values are represented as empty strings; only if both the x and the y values are given, is the pair used in the computations)
+    list *yvalues* (in)
+    : List of measured values (missing values are represented as empty strings; only if both the x and the y values are given, is the pair used in the computations)
 
 
 **::Plotchart::createPerformanceProfile** *w* *max*
-: Create a diagram to show the performance of various numerical methods (or solvers). The idea is to first run these methods on a set of problems and measure their performance. The smaller the number the better. Then these methods are compared via a so-called performance profile: the data are scaled and ordered, such that the best method ends up highest. Because of the nature of the plot all data must be given at once.
+: Create a diagram to show the performance of various numerical methods (or solvers). The idea is to first run these methods on a set of problems and measure their performance. The smaller the number the better. Then these methods are compared via a so-called performance profile: the data are scaled and ordered, such that the best method ends up highest.
+
+    Because of the nature of the plot all data must be given at once.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
+
+    float *max* (in)
+    : Maximum value for the x-axis (the x-axis is the scaled performance of the series).
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
-
-float *max* (in)
-: Maximum value for the x-axis (the x-axis is the scaled performance of the series).
-
-
-**\$performance** plot *series_and_data_pairs*
+**$performance** plot *series\_and\_data\_pairs*
 : Plot the data for each given method. The data are identified by the series name and the appearance is controlled via prior dataconfig subcommand.
 
-
-list *series_and_data_pairs* (in)
-: List of series names and data. All data must be given at once.
-
-
-**::Plotchart::createTaylorDiagram** *w* *radius_data* *args*
-: Create a new Taylor diagram (one quadrant) with circles indicating the distance to the reference point. The data points are given as the standard deviation and the correlation to the reference.
+    list *series\_and\_data\_pairs* (in)
+    : List of series names and data. All data must be given at once.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the plot.
+**::Plotchart::createTaylorDiagram** *w* *radius\_data* *args*
+: Create a new Taylor diagram (one quadrant) with circles indicating the distance to the reference point.
 
-list *radius_data* (in)
-: A list of the maximum radius for the standard deviation and the step size. Quarter circles are drawn with the axis labels.
+    The data points are given as the standard deviation and the correlation to the reference.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the plot.
+
+    list *radius\_data* (in)
+    : A list of the maximum radius for the standard deviation and the step size. Quarter circles are drawn with the axis labels.
 
 
-Currently one option is supported:
+    Currently one option is supported:
 
-**reference** value
-: Reference value for the data points to be compared with. It appears as a dot at the x-axis. Along with this dot circle segments are drawn at the same spacing as the axis labels to indicate the distance of the data points from the reference.
+    **reference** value
+    : Reference value for the data points to be compared with. It appears as a dot at the x-axis. Along with this dot circle segments are drawn at the same spacing as the axis labels to indicate the distance of the data points from the reference.
 
 
-**\$taylor** plot *series* *stdev* *corr*
+**$taylor** plot *series* *stdev* *corr*
 : The plot method takes the standard deviation and the correlation to the reference as input and draws a symbol as a representation. The standard deviation serves as the distance from the origin and the correlation determines the angle.
 
+    string *series* (in)
+    : Name of the series (it will be plotted as a symbol that is configured via the *$target dataconfig* command (see the XY-plot equivalent for an explanation)
 
-string *series* (in)
-: Name of the series (it will be plotted as a symbol that is configured via the *\$target dataconfig* command (see the XY-plot equivalent for an explanation)
+    float *stdev* (in)
+    : Standard deviation of the data point
 
-float *stdev* (in)
-: Standard deviation of the data point
-
-list *corr* (in)
-: Correlation coefficient with the reference dataset
+    list *corr* (in)
+    : Correlation coefficient with the reference dataset
 
 
 **::Plotchart::createHeatmap** *w* *rowlabels* *columnlabels* *args*
-: Create a heatmap, i.e. a tableau of rectangles whose colours depend on some data. The row and column labels are used as identifiers when filling in the data. The number of them determines the size of the tableau. The data are passed by row, by column or per individual cell.
+: Create a heatmap, i.e. a tableau of rectangles whose colours depend on some data. The row and column labels are used as identifiers when filling in the data. The number of them determines the size of the tableau.
+
+    The data are passed by row, by column or per individual cell.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the heatmap.
+
+    list *rowlabels* (in)
+    : List of labels to display at each row. The labels also serve as identifiers.
+
+    list *columnlabels* (in)
+    : List of labels to display at each column. The labels also serve as identifiers.
+
+    list *args* (in)
+    : Zero or more arguments to influence the size of the heatmap. See XY plot for more information.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the heatmap.
-
-list *rowlabels* (in)
-: List of labels to display at each row. The labels also serve as identifiers.
-
-list *columnlabels* (in)
-: List of labels to display at each column. The labels also serve as identifiers.
-
-list *args* (in)
-: Zero or more arguments to influence the size of the heatmap. See XY plot for more information.
-
-
-**\$heatmap** plot row *label* *data*
+**$heatmap** plot row *label* *data*
 : Use the given data to fill the rectangles belonging to the row "label".
 
+    string *label* (in)
+    : String indicating which row to use.
 
-string *label* (in)
-: String indicating which row to use.
-
-list *data* (in)
-: List of numerical data to be used for the colouring of the rectangles.
+    list *data* (in)
+    : List of numerical data to be used for the colouring of the rectangles.
 
 
-**\$heatmap** plot column *label* *data*
+**$heatmap** plot column *label* *data*
 : Use the given data to fill the rectangles belonging to the column "label".
 
+    string *label* (in)
+    : String indicating which column to use.
 
-string *label* (in)
-: String indicating which column to use.
-
-list *data* (in)
-: List of numerical data to be used for the colouring of the rectangles.
+    list *data* (in)
+    : List of numerical data to be used for the colouring of the rectangles.
 
 
-**\$heatmap** plot cell *rowlabel* *columnlabel* *value*
+**$heatmap** plot cell *rowlabel* *columnlabel* *value*
 : Use the given value to fill the rectangle belonging to the cell with the given row and column labels.
 
+    string *rowlabel* (in)
+    : String indicating which row to use.
 
-string *rowlabel* (in)
-: String indicating which row to use.
+    string *columnlabel* (in)
+    : String indicating which column to use.
 
-string *columnlabel* (in)
-: String indicating which column to use.
-
-float *value* (in)
-: Value to be used for the colouring of the cell.
+    float *value* (in)
+    : Value to be used for the colouring of the cell.
 
 
-**\$heatmap** scale values *min* *max*
+**$heatmap** scale values *min* *max*
 : Set the range for the values - they are mapped to a colour via linear interpolation.
 
+    float *min* (in)
+    : Minimum value to be used.
 
-float *min* (in)
-: Minimum value to be used.
-
-float *max* (in)
-: Maximum value to be used.
+    float *max* (in)
+    : Maximum value to be used.
 
 
-**\$heatmap** scale colours *mincolour* *maxcolour*
+**$heatmap** scale colours *mincolour* *maxcolour*
 : Set the colours to be used for the minimum and the maximum values. The actual colour is determined via linear interpolation of the RGB values.
 
+    string *mincolour* (in)
+    : Colour to be used at the minimum value.
 
-string *mincolour* (in)
-: Colour to be used at the minimum value.
-
-string *maxcolour* (in)
-: Colour to be used at the maximum value.
+    string *maxcolour* (in)
+    : Colour to be used at the maximum value.
 
 
 **::Plotchart::createCircleplot** *w* *labels* *args*
-: Create a circle plot, i.e. a circle with labels that can be connected by coloured arcs. Typical use: present the relationship between the items on the circle in a graphical way. The connections can be drawn pair by pair.
+: Create a circle plot, i.e. a circle with labels that can be connected by coloured arcs. Typical use: present the relationship between the items on the circle in a graphical way.
+
+    The connections can be drawn pair by pair.
+
+    widget *w* (in)
+    : Name of the *existing* canvas widget to hold the circle plot.
+
+    list *rowlabels* (in)
+    : List of labels to display along the circle. Each label is accompanied by a filled dot.
+
+    list *args* (in)
+    : Zero or more arguments to influence the size of the circle plot. See XY plot for more information.
 
 
-widget *w* (in)
-: Name of the *existing* canvas widget to hold the circle plot.
-
-list *rowlabels* (in)
-: List of labels to display along the circle. Each label is accompanied by a filled dot.
-
-list *args* (in)
-: Zero or more arguments to influence the size of the circle plot. See XY plot for more information.
-
-
-**\$circleplot** connect *label1* *label2* *colour* *width*
+**$circleplot** connect *label1* *label2* *colour* *width*
 : Connect the two labels via a coloured arc of given width (the arc is actually a parabola).
 
+    string *label1* (in)
+    : String indicating the first label to connect.
 
-string *label1* (in)
-: String indicating the first label to connect.
+    string *label2* (in)
+    : String indicating the second label to connect.
 
-string *label2* (in)
-: String indicating the second label to connect.
+    string *colour* (in)
+    : Colour to use for the connected arc.
 
-string *colour* (in)
-: Colour to use for the connected arc.
-
-string *width* (in)
-: Width for the connected arc.
+    string *width* (in)
+    : Width for the connected arc.
 
 
-**\$circleplot** modify *label* *args*
+**$circleplot** modify *label* *args*
 : Modify the appearance of the label and the accompanying dot.
 
+    string *label* (in)
+    : String indicating which label to modify.
 
-string *label* (in)
-: String indicating which label to modify.
+    list *args* (in)
+    : List of key-value pairs:
 
-list *args* (in)
-: List of key-value pairs:
+        - *-textcolour colour* - colour of the text to be used (alternative: "-textcolor")
+
+        - *-font font* - font for the text
+
+        - *-dotcolour colour* - colour for the dot (alternative: "-dotcolor")
 
 
-**•**
-: *-textcolour colour* - colour of the text to be used (alternative: "-textcolor")
-
-**•**
-: *-font font* - font for the text
-
-**•**
-: *-dotcolour colour* - colour for the dot (alternative: "-dotcolor")
 
 
 # Adding specific plot methods
@@ -3185,15 +3049,15 @@ The command *plotmethod* can be used to add new methods for a particular plot or
 **::Plotchart::plotmethod** *charttype* *methodname* *plotproc*
 : Adds a new method for the given plot or chart type. The method is implemented by the command or procedure given in the plotproc argument. The procedure will be called with two extra arguments, the name of the created plot and the canvas widget that contains (see the example below).
 
+    string *charttype* (in)
+    : The type of plot or chart that the new method should be added to.
 
-string *charttype* (in)
-: The type of plot or chart that the new method should be added to.
+    string *methodname* (in)
+    : Name of the method to be used.
 
-string *methodname* (in)
-: Name of the method to be used.
+    string *plotproc* (in)
+    : Name of the command or procedure that implements the method.
 
-string *plotproc* (in)
-: Name of the command or procedure that implements the method.
 
 
 Here is a trivial example of how to use this:
@@ -3303,15 +3167,15 @@ The command *plotpack* allows you to copy the contents of a plot into another ca
 **::Plotchart::plotpack** *w* *dir* *args*
 : Copy the contents of the plots/charts into another widget, in a manner similar to the *pack* geometry manager.
 
+    widget *w* (in)
+    : The name of the canvas widget to copy the plots/charts into
 
-widget *w* (in)
-: The name of the canvas widget to copy the plots/charts into
+    string *dir* (in)
+    : The direction of the arrangement - top, left, bottom or right
 
-string *dir* (in)
-: The direction of the arrangement - top, left, bottom or right
+    list *args* (in)
+    : List of plots/charts to be copied.
 
-list *args* (in)
-: List of plots/charts to be copied.
 
 
 For example:
@@ -3335,91 +3199,88 @@ A different method is to use the *-box* and *-axesbox* options when creating the
 
 The *-box* option takes as its value a list of four numbers:
 
-**•**
-: X-coordinate of the upper-left corner of the area that will contain the plot or chart (simply a canvas coordinate)
+- X-coordinate of the upper-left corner of the area that will contain the plot or chart (simply a canvas coordinate)
 
-**•**
-: Y-coordinate of the upper-left corner
+- Y-coordinate of the upper-left corner
 
-**•**
-: Width of the area
+- Width of the area
 
-**•**
-: Height of the area Specifying the width and height makes it easier to reposition the area with respect to other plots. The *-axesbox* option is meant to make aligning the axes of a plot with those of other plots easier. The option takes a list of six arguments:
+- Height of the area
 
-**•**
-: Identification of the plot with respect to which it should be positioned (the command returned by the creation command).
 
-**•**
-: The anchor position that should be used (n, nw, ...)
+Specifying the width and height makes it easier to reposition the area with respect to other plots.
 
-**•**
-: X-coordinate of the upper-left corner of the area that will contain the plot or chart. This coordinates is taken relative to the *anchor position*
+The *-axesbox* option is meant to make aligning the axes of a plot with those of other plots easier. The option takes a list of six arguments:
 
-**•**
-: Y-coordinate of the upper-left corner
+- Identification of the plot with respect to which it should be positioned (the command returned by the creation command).
 
-**•**
-: Width of the axis area
+- The anchor position that should be used (n, nw, ...)
 
-**•**
-: Height of the axis area With this option the area the axes occupy is first determined and the complete area is derived from the margins. For example:
+- X-coordinate of the upper-left corner of the area that will contain the plot or chart. This coordinates is taken relative to the *anchor position*
 
+- Y-coordinate of the upper-left corner
+
+- Width of the axis area
+
+- Height of the axis area
+
+
+With this option the area the axes occupy is first determined and the complete area is derived from the margins.
+
+For example:
 
 ```
     set p2 [::Plotchart::createXYPlot .c {0 10 1} {-5 5 2.5} -axesbox [list $p1 ne 0 0 200 200]]
 ```
 
-will create a second plot whose left axis coincides with the right axis of plot "\\\$p1" and the top of the axis is at the same heigt as well - because the axes are positioned at a point 0 pixels to the left and 0 pixels below the north-east corner.
+will create a second plot whose left axis coincides with the right axis of plot "\\$p1" and the top of the axis is at the same heigt as well - because the axes are positioned at a point 0 pixels to the left and 0 pixels below the north-east corner.
 
 # Interactive use
 
-*Plotchart* has several features for interactive use (cf. **NOTES ON TAGS**):
+*Plotchart* has several features for interactive use (cf. [Notes on tags]):
 
-**•**
-: The legend can be moved around by pressing mouse button 1 in the legend's box and keeping it down.
+- The legend can be moved around by pressing mouse button 1 in the legend's box and keeping it down.
 
-**•**
-: You can use the *bindplot* and *bindlast* commands to define actions that are to be taken when the user clicks on an element of the plot or chart. (see below, see also the sample code in plotdemos12.tcl)
+- You can use the *bindplot* and *bindlast* commands to define actions that are to be taken when the user clicks on an element of the plot or chart. (see below, see also the sample code in plotdemos12.tcl)
 
-**•**
-: *Piecharts* can show an "exploded" segment that you can select with mouse button 1. If you require different forms of interaction, not covered by *Plotchart* itself, you can use the tags on the various canvas elements to define other bindings. The *bindplot* and *bindlast* are defined as follows:
+- *Piecharts* can show an "exploded" segment that you can select with mouse button 1.
 
 
-**\$anyplot** bindplot *event* *command* *args*
+If you require different forms of interaction, not covered by *Plotchart* itself, you can use the tags on the various canvas elements to define other bindings.
+
+The *bindplot* and *bindlast* are defined as follows:
+
+**$anyplot** bindplot *event* *command* *args*
 : Register a command that will be run whenever the given event occurs in the plot.
 
+    string *event*
+    : The event that you want to bind the command to
 
-string *event*
-: The event that you want to bind the command to
+    string *command*
+    : Name of the command/procedure that you want to run. The following arguments are prefixed: the x- and y-coordinates of the point in the plot (the world coordinates!), so that the procedure has the signature:
 
-string *command*
-: Name of the command/procedure that you want to run. The following arguments are prefixed: the x- and y-coordinates of the point in the plot (the world coordinates!), so that the procedure has the signature:
+        ```
+            cmd $xworld $yworld $string1 $string2 $string3
+        ```
 
-
-```
-    cmd $xworld $yworld $string1 $string2 $string3
-```
-
-: assuming the argument "command" is: {cmd A B C}
+        assuming the argument "command" is: {cmd A B C}
 
 
-**\$anyplot** bindlast *series* *event* *command*
+**$anyplot** bindlast *series* *event* *command*
 : Register a command that will be run when the event occurs within the neighbourhood of the last point added to the given series. (You can use directly after inserting a data point. All such commands will remain active).
 
+    string *event*
+    : The event that you want to bind the command to
 
-string *event*
-: The event that you want to bind the command to
+    list *command*
+    : Name of the command/procedure that you want to run. The following arguments are prefixed: the x- and y-coordinates of the point in the plot (the world coordinates!), so that the procedure has the signature:
 
-list *command*
-: Name of the command/procedure that you want to run. The following arguments are prefixed: the x- and y-coordinates of the point in the plot (the world coordinates!), so that the procedure has the signature:
+        ```
+            cmd $xworld $yworld $string1 $string2 $string3
+        ```
 
+        assuming the argument "command" is: {cmd A B C}
 
-```
-    cmd $xworld $yworld $string1 $string2 $string3
-```
-
-: assuming the argument "command" is: {cmd A B C}
 
 
 Here is an example - show the values of the data points in an annotation (from the sample code in plotdemos12.tcl):
@@ -3472,80 +3333,112 @@ The implementation of *Plotchart* relies heavily on the canvas's ability to iden
 
 *General graphical objects:*
 
-**•**
-: *mask* - Used to manipulate the opaque rectangles that ensure data outside the viewport are not shown.
+- *mask* - Used to manipulate the opaque rectangles that ensure data outside the viewport are not shown.
 
-**•**
-: *topmask, horizmask, vertmask* - specialised tags, used for scrollable plots.
+- *topmask, horizmask, vertmask* - specialised tags, used for scrollable plots.
 
-**•**
-: *title* - Used for title strings.
+- *title* - Used for title strings.
 
-**•**
-: *BalloonText, BalloonFrame* - Used to manipulate balloon text.
+- *BalloonText, BalloonFrame* - Used to manipulate balloon text.
 
-**•**
-: *PlainText* - Used to manipulate ordinary text without any decoration.
+- *PlainText* - Used to manipulate ordinary text without any decoration.
 
-**•**
-: *background* - Tag used for gradient and image backgrounds (and for gradient-filled bars).
+- *background* - Tag used for gradient and image backgrounds (and for gradient-filled bars).
 
-**•**
-: *xaxis, yaxis* - Tags used for all objects related to horizontal or vertical axes. (also: both for numerical axes and axes with labels as in barcharts). Note, however, that the *text* along the axes has no particular tag.
+- *xaxis, yaxis* - Tags used for all objects related to horizontal or vertical axes. (also: both for numerical axes and axes with labels as in barcharts). Note, however, that the *text* along the axes has no particular tag.
 
-**•**
-: *raxis* - Tag used for all objects related to a *right* axis.
+- *raxis* - Tag used for all objects related to a *right* axis.
 
-**•**
-: *taxis* - Tag used for all objects related to a *time* axis.
+- *taxis* - Tag used for all objects related to a *time* axis.
 
-**•**
-: *axis3d* - Tag used for 3D axes
+- *axis3d* - Tag used for 3D axes
 
-**•**
-: *xtickline, ytickline* - Tags used for ticklines.
+- *xtickline, ytickline* - Tags used for ticklines.
 
-**•**
-: *legend, legengb, legendobj* - Tags used for the legend. The latter is used to manipulate the legend as a whole.
+- *legend, legengb, legendobj* - Tags used for the legend. The latter is used to manipulate the legend as a whole.
 
-**•**
-: *legend_series* - Tag used to control the appearance of the legend entry ("series" should be replaced by the series name).
+- *legend\_series* - Tag used to control the appearance of the legend entry ("series" should be replaced by the series name).
 
-**•**
-: *object* - used as standard tag for all objects drawn with the **::Plotchart::drawobject** procedure. Tags given at object creation time are added to this tag. *XY-plots (all types of axes):*
-
-**•**
-: *data* - The general tag to identify graphical objects associated with data. *data_seriesname* - The tag specific to a data series ("seriesname" should be replaced). *band* - The horizontal or vertical band drawn with the xband otr yband subcommands have this tag by the actual name). *xtext* - The text labelling the xaxis. *ytext* - The text labelling hte yaxis horizontically. *vtext* - The text labelling the yaxis vertically. Items such as labelled dots only have the "data" tag. *Piecharts and spiral pies:*
-
-**•**
-: *segment_segmentnumber* - The tag identifying the segment, the string "segmentnumber" should be replaced by the actual number. This tag is used to explode the segments. *Barcharts:* Barcharts use the same tags as xy-plots (but for gradient-filled bars the data_seriesname is not used). *Histograms and isometric plots:* Currently the only tag used is "data". *Time-charts:* As these plots are scrollable, several tags are used specific to the scrolling: vertscroll, horizscroll, below, lowest, above, timeline, tline. Each item also has a tag of the form "item_number", where "number" is to be replaced by the actual sequence number of the item. *Gantt charts:* In addition to the tags described for the time-charts, the following tags are used: description, completed, summary and summarybar. *Radial charts and polar plots:* Currently the radial lines indicating the grid have no tags. The graphical objects associated with data only have the "data" tag. *Windroses:* Only the tag *data_number* is currently used ("number" should be replaced by the sequence number of the data, starting at 0. *Contour and isoline plots:* No tags are used. *3D plots and 3D ribbon plots:* Tags are used for the axes and for the data objects:
-
-**•**
-: *data* - The general tag to identify graphical objects associated with data. *line* - The tag used for lines created with the plotline subcommand. *Charts decorated with 3D effects:* The following tags are used to identify various types of graphical objects: platform, background, d, u, ticklines. The text associated with the bars has no tags. The ribbon lines and areas have no tags either. *Tables:* Tags used are: frame, cellbg and celltext *Special plot types (target diagrams, Taylor diagrams:* Tags used are: limits, limit_labels, reference *In addition:* To implement multiple plots and charts in a single canvas, all items also get as a tag the plot/chart they belong to. This enables Plotchart to manipulate only those items.
+- *object* - used as standard tag for all objects drawn with the **::Plotchart::drawobject** procedure. Tags given at object creation time are added to this tag.
 
 
-# Todo - some private notes
+*XY-plots (all types of axes):*
+
+- *data* - The general tag to identify graphical objects associated with data. *data\_seriesname* - The tag specific to a data series ("seriesname" should be replaced). *band* - The horizontal or vertical band drawn with the xband otr yband subcommands have this tag by the actual name). *xtext* - The text labelling the xaxis. *ytext* - The text labelling hte yaxis horizontically. *vtext* - The text labelling the yaxis vertically.
+
+
+Items such as labelled dots only have the "data" tag.
+
+*Piecharts and spiral pies:*
+
+- *segment\_segmentnumber* - The tag identifying the segment, the string "segmentnumber" should be replaced by the actual number. This tag is used to explode the segments.
+
+
+*Barcharts:*
+
+Barcharts use the same tags as xy-plots (but for gradient-filled bars the data\_seriesname is not used).
+
+*Histograms and isometric plots:*
+
+Currently the only tag used is "data".
+
+*Time-charts:*
+
+As these plots are scrollable, several tags are used specific to the scrolling: vertscroll, horizscroll, below, lowest, above, timeline, tline. Each item also has a tag of the form "item\_number", where "number" is to be replaced by the actual sequence number of the item.
+
+*Gantt charts:*
+
+In addition to the tags described for the time-charts, the following tags are used: description, completed, summary and summarybar.
+
+*Radial charts and polar plots:*
+
+Currently the radial lines indicating the grid have no tags. The graphical objects associated with data only have the "data" tag.
+
+*Windroses:*
+
+Only the tag *data\_number* is currently used ("number" should be replaced by the sequence number of the data, starting at 0.
+
+*Contour and isoline plots:*
+
+No tags are used.
+
+*3D plots and 3D ribbon plots:*
+
+Tags are used for the axes and for the data objects:
+
+- *data* - The general tag to identify graphical objects associated with data. *line* - The tag used for lines created with the plotline subcommand.
+
+
+*Charts decorated with 3D effects:*
+
+The following tags are used to identify various types of graphical objects: platform, background, d, u, ticklines.
+
+The text associated with the bars has no tags. The ribbon lines and areas have no tags either.
+
+*Tables:*
+
+Tags used are: frame, cellbg and celltext
+
+*Special plot types (target diagrams, Taylor diagrams:*
+
+Tags used are: limits, limit\_labels, reference *In addition:* To implement multiple plots and charts in a single canvas, all items also get as a tag the plot/chart they belong to. This enables Plotchart to manipulate only those items.
+
+# TODO - some private notes
 
 I have the following wishlist:
 
-**•**
-: Isometric plots - allow new items to be implemented easily.
+- Isometric plots - allow new items to be implemented easily.
 
-**•**
-: A general 3D viewer - emphasis on geometry, not a ray-tracer.
+- A general 3D viewer - emphasis on geometry, not a ray-tracer.
 
-**•**
-: Several improvements for boxplots:
+- Several improvements for boxplots:
 
+    - Height of the box scales with the logarithm of the number of points
 
-**•**
-: Height of the box scales with the logarithm of the number of points
+    - Marker line to indicate a "current" value
 
-**•**
-: Marker line to indicate a "current" value
+    - Box drawn from quantiles
 
-**•**
-: Box drawn from quantiles
 
 
 <

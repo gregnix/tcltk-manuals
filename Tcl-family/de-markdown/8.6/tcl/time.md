@@ -1,5 +1,6 @@
 ---
 CommandName: time
+title: time
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -14,17 +15,17 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 time - Misst die Ausführungszeit eines Skripts
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[time]{.cmd} [script]{.arg} [count]{.optarg} 
+[time]{.cmd} [script]{.arg} [count]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl wertet *script* *count*-mal aus (oder einmal, wenn *count* fehlt) und gibt eine Zeichenkette der Form
 
@@ -34,9 +35,9 @@ Der Befehl wertet *script* *count*-mal aus (oder einmal, wenn *count* fehlt) und
 
 zurück — die durchschnittliche Dauer pro Durchlauf in Mikrosekunden. Gemessen wird verstrichene Zeit, nicht CPU-Zeit.
 
-# BEISPIELE
+# Beispiele
 
-Schätzt, wie lange eine einfache **for**-Schleife bis 1000 braucht:
+Schätzt, wie lange eine einfache [for]-Schleife bis 1000 braucht:
 
 ```
 time {
@@ -45,3 +46,6 @@ time {
     }
 }
 ```
+
+
+[for]: for.md

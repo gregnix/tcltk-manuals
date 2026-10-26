@@ -1,5 +1,6 @@
 ---
 CommandName: struct::matrix
+title: struct::matrix
 ManualSection: n
 Version: 2.2
 TclPart: tcllib
@@ -17,53 +18,53 @@ struct::matrix - Create and manipulate matrix objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::matrix]{.lit} [2.2]{.optlit} 
-[::struct::matrix]{.cmd} [aMatrix]{.optarg} [=|:=|as|deserialize source]{.optarg} 
-[aMatrix]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[aMatrix]{.ins} [=]{.sub} [sourceMatrix]{.arg} 
-[aMatrix]{.ins} [-->]{.sub} [destMatrix]{.arg} 
-[aMatrix]{.ins} [add]{.sub} [column]{.lit} [values]{.optarg} 
-[aMatrix]{.ins} [add]{.sub} [columns]{.lit} [n]{.arg} 
-[aMatrix]{.ins} [add]{.sub} [row]{.lit} [values]{.optarg} 
-[aMatrix]{.ins} [add]{.sub} [rows]{.lit} [n]{.arg} 
-[aMatrix]{.ins} [cells]{.sub} 
-[aMatrix]{.ins} [cellsize]{.sub} [column]{.arg} [row]{.arg} 
-[aMatrix]{.ins} [columns]{.sub} 
-[aMatrix]{.ins} [columnwidth]{.sub} [column]{.arg} 
-[aMatrix]{.ins} [delete]{.sub} [column]{.lit} [column]{.arg} 
-[aMatrix]{.ins} [delete]{.sub} [columns]{.lit} [n]{.arg} 
-[aMatrix]{.ins} [delete]{.sub} [row]{.lit} [row]{.arg} 
-[aMatrix]{.ins} [delete]{.sub} [rows]{.lit} [n]{.arg} 
-[aMatrix]{.ins} [deserialize]{.sub} [serialization]{.arg} 
-[aMatrix]{.ins} [destroy]{.sub} 
-[aMatrix]{.ins} [format]{.sub} [2string]{.lit} [report]{.optarg} 
-[aMatrix]{.ins} [format]{.sub} [2chan]{.lit} [?report]{.optarg} [channel?]{.arg} 
-[aMatrix]{.ins} [get]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg} 
-[aMatrix]{.ins} [get]{.sub} [column]{.lit} [column]{.arg} 
-[aMatrix]{.ins} [get]{.sub} [rect]{.lit} [column_tl]{.arg} [row_tl]{.arg} [column_br]{.arg} [row_br]{.arg} 
-[aMatrix]{.ins} [get]{.sub} [row]{.lit} [row]{.arg} 
-[aMatrix]{.ins} [insert]{.sub} [column]{.lit} [column]{.arg} [values]{.optarg} 
-[aMatrix]{.ins} [insert]{.sub} [row]{.lit} [row]{.arg} [values]{.optarg} 
-[aMatrix]{.ins} [link]{.sub} [-transpose]{.optarg} [arrayvar]{.arg} 
-[aMatrix]{.ins} [links]{.sub} 
-[aMatrix]{.ins} [rowheight]{.sub} [row]{.arg} 
-[aMatrix]{.ins} [rows]{.sub} 
-[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [all]{.lit} [pattern]{.arg} 
-[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [column]{.lit} [column]{.arg} [pattern]{.arg} 
-[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [row]{.lit} [row]{.arg} [pattern]{.arg} 
-[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [rect]{.lit} [column_tl]{.arg} [row_tl]{.arg} [column_br]{.arg} [row_br]{.arg} [pattern]{.arg} 
-[aMatrix]{.ins} [serialize]{.sub} [column_tl row_tl column_br row_br]{.optarg} 
-[aMatrix]{.ins} [set]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg} [value]{.arg} 
-[aMatrix]{.ins} [set]{.sub} [column]{.lit} [column]{.arg} [values]{.arg} 
-[aMatrix]{.ins} [set]{.sub} [rect]{.lit} [column]{.arg} [row]{.arg} [values]{.arg} 
-[aMatrix]{.ins} [set]{.sub} [row]{.lit} [row]{.arg} [values]{.arg} 
-[aMatrix]{.ins} [sort]{.sub} [columns]{.lit} [-increasing|-decreasing]{.optlit} [row]{.arg} 
-[aMatrix]{.ins} [sort]{.sub} [rows]{.lit} [-increasing|-decreasing]{.optlit} [column]{.arg} 
-[aMatrix]{.ins} [swap]{.sub} [columns]{.lit} [column_a]{.arg} [column_b]{.arg} 
-[aMatrix]{.ins} [swap]{.sub} [rows]{.lit} [row_a]{.arg} [row_b]{.arg} 
-[aMatrix]{.ins} [transpose]{.sub} 
-[aMatrix]{.ins} [unlink]{.sub} [arrayvar]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::matrix]{.lit} [2.2]{.optlit}
+[::struct::matrix]{.cmd} [aMatrix]{.optarg} [[=|:=|as|deserialize]{.lit} [source]{.arg}]{.optarg}
+[aMatrix]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[aMatrix]{.ins} [=]{.sub} [sourceMatrix]{.arg}
+[aMatrix]{.ins} [-->]{.sub} [destMatrix]{.arg}
+[aMatrix]{.ins} [add]{.sub} [column]{.lit} [values]{.optarg}
+[aMatrix]{.ins} [add]{.sub} [columns]{.lit} [n]{.arg}
+[aMatrix]{.ins} [add]{.sub} [row]{.lit} [values]{.optarg}
+[aMatrix]{.ins} [add]{.sub} [rows]{.lit} [n]{.arg}
+[aMatrix]{.ins} [cells]{.sub}
+[aMatrix]{.ins} [cellsize]{.sub} [column]{.arg} [row]{.arg}
+[aMatrix]{.ins} [columns]{.sub}
+[aMatrix]{.ins} [columnwidth]{.sub} [column]{.arg}
+[aMatrix]{.ins} [delete]{.sub} [column]{.lit} [column]{.arg}
+[aMatrix]{.ins} [delete]{.sub} [columns]{.lit} [n]{.arg}
+[aMatrix]{.ins} [delete]{.sub} [row]{.lit} [row]{.arg}
+[aMatrix]{.ins} [delete]{.sub} [rows]{.lit} [n]{.arg}
+[aMatrix]{.ins} [deserialize]{.sub} [serialization]{.arg}
+[aMatrix]{.ins} [destroy]{.sub}
+[aMatrix]{.ins} [format]{.sub} [2string]{.lit} [report]{.optarg}
+[aMatrix]{.ins} [format]{.sub} [2chan]{.lit} [?report]{.optarg} [channel?]{.arg}
+[aMatrix]{.ins} [get]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg}
+[aMatrix]{.ins} [get]{.sub} [column]{.lit} [column]{.arg}
+[aMatrix]{.ins} [get]{.sub} [rect]{.lit} [column\_tl]{.arg} [row\_tl]{.arg} [column\_br]{.arg} [row\_br]{.arg}
+[aMatrix]{.ins} [get]{.sub} [row]{.lit} [row]{.arg}
+[aMatrix]{.ins} [insert]{.sub} [column]{.lit} [column]{.arg} [values]{.optarg}
+[aMatrix]{.ins} [insert]{.sub} [row]{.lit} [row]{.arg} [values]{.optarg}
+[aMatrix]{.ins} [link]{.sub} [-transpose]{.optarg} [arrayvar]{.arg}
+[aMatrix]{.ins} [links]{.sub}
+[aMatrix]{.ins} [rowheight]{.sub} [row]{.arg}
+[aMatrix]{.ins} [rows]{.sub}
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [all]{.lit} [pattern]{.arg}
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [column]{.lit} [column]{.arg} [pattern]{.arg}
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [row]{.lit} [row]{.arg} [pattern]{.arg}
+[aMatrix]{.ins} [search]{.sub} [-nocase]{.optarg} [-exact|-glob|-regexp]{.optarg} [rect]{.lit} [column\_tl]{.arg} [row\_tl]{.arg} [column\_br]{.arg} [row\_br]{.arg} [pattern]{.arg}
+[aMatrix]{.ins} [serialize]{.sub} [column\_tl row\_tl column\_br row\_br]{.optarg}
+[aMatrix]{.ins} [set]{.sub} [cell]{.lit} [column]{.arg} [row]{.arg} [value]{.arg}
+[aMatrix]{.ins} [set]{.sub} [column]{.lit} [column]{.arg} [values]{.arg}
+[aMatrix]{.ins} [set]{.sub} [rect]{.lit} [column]{.arg} [row]{.arg} [values]{.arg}
+[aMatrix]{.ins} [set]{.sub} [row]{.lit} [row]{.arg} [values]{.arg}
+[aMatrix]{.ins} [sort]{.sub} [columns]{.lit} [-increasing|-decreasing]{.optlit} [row]{.arg}
+[aMatrix]{.ins} [sort]{.sub} [rows]{.lit} [-increasing|-decreasing]{.optlit} [column]{.arg}
+[aMatrix]{.ins} [swap]{.sub} [columns]{.lit} [column\_a]{.arg} [column\_b]{.arg}
+[aMatrix]{.ins} [swap]{.sub} [rows]{.lit} [row\_a]{.arg} [row\_b]{.arg}
+[aMatrix]{.ins} [transpose]{.sub}
+[aMatrix]{.ins} [unlink]{.sub} [arrayvar]{.arg}
 :::
 
 # Description
@@ -85,68 +86,78 @@ This package’s main command is:
 **::struct::matrix** ?*aMatrix*? ?**=**|**:=**|**as**|**deserialize** *source*?
 : This command creates a new matrix object with an associated global Tcl command whose name is *aMatrix*. This command may be used to invoke various operations on the matrix. It has the following general form:
 
+    **aMatrix** *option* ?*arg arg ...*?
+    : The *option* and the *arg*s determine what the command does.
 
-**aMatrix** *option* ?*arg arg ...*?
-: The *option* and the *arg*s determine what the command does.
 
+    If *aMatrix* is not specified a unique name will be generated by the package itself. If a *source* is specified the new matrix will be initialized to it. For the operators **=**, **:=**, and **as** the argument *source* is interpreted as the name of another matrix object, and the assignment operator **=** will be executed. For **deserialize** the *source* is a serialized matrix object and **deserialize** will be executed.
 
-If *aMatrix* is not specified a unique name will be generated by the package itself. If a *source* is specified the new matrix will be initialized to it. For the operators **=**, **:=**, and **as** the argument *source* is interpreted as the name of another matrix object, and the assignment operator **=** will be executed. For **deserialize** the *source* is a serialized matrix object and **deserialize** will be executed.
+    In other words
 
-In other words
+    ```
+        ::struct::matrix mymatrix = b
+    ```
 
-```
-    ::struct::matrix mymatrix = b
-```
+    is equivalent to
 
-is equivalent to
+    ```
+        ::struct::matrix mymatrix
+        mymatrix = b
+    ```
 
-```
-    ::struct::matrix mymatrix
-    mymatrix = b
-```
+    and
 
-and
+    ```
+        ::struct::matrix mymatrix deserialize $b
+    ```
 
-```
-    ::struct::matrix mymatrix deserialize $b
-```
+    is equivalent to
 
-is equivalent to
+    ```
+        ::struct::matrix mymatrix
+        mymatrix deserialize $b
+    ```
 
-```
-    ::struct::matrix mymatrix
-    mymatrix deserialize $b
-```
 
 Matrix objects provide the following commands:
 
 *aMatrix* **=** *sourceMatrix*
-: The **=** operator is the matrix object *assignment* operator. (This operator may be written as **=** or **:=** or **as**.) It copies the matrix contained in the matrix object *sourceMatrix* over the matrix data in *aMatrix*. The old contents of *aMatrix* are deleted by this operation. This operation is in effect equivalent to
+: The **=** operator is the matrix object *assignment* operator. (This operator may be written as **=** or **:=** or **as**.) It copies the matrix contained in the matrix object *sourceMatrix* over the matrix data in *aMatrix*. The old contents of *aMatrix* are deleted by this operation.
 
+    This operation is in effect equivalent to
 
-```
-    aMatrix deserialize [sourceMatrix serialize]
-```
+    ```
+        aMatrix deserialize [sourceMatrix serialize]
+    ```
 
 *aMatrix* **-->** *destMatrix*
-: The **-->** operator is the matrix object *reverse assignment* operator. It copies the matrix contained in the matrix object *aMatrix* over the matrix data in the object *destMatrix*. The old contents of *destMatrix* are deleted by this operation. This operation is in effect equivalent to
+: The **-->** operator is the matrix object *reverse assignment* operator. It copies the matrix contained in the matrix object *aMatrix* over the matrix data in the object *destMatrix*. The old contents of *destMatrix* are deleted by this operation.
 
+    This operation is in effect equivalent to
 
-```
-    destMatrix deserialize [aMatrix serialize]
-```
+    ```
+        destMatrix deserialize [aMatrix serialize]
+    ```
 
 *aMatrix* **add column** ?*values*?
-: Extends the matrix by one column after the last column. If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set column** (see below) on the newly added column.
+: Extends the matrix by one column after the last column.
+
+    If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set column** (see below) on the newly added column.
 
 *aMatrix* **add columns** *n*
-: Extends the matrix by *n* columns after the last column and sets all the new cells to the empty string. If *n* *<= 0* an error is raised.
+: Extends the matrix by *n* columns after the last column and sets all the new cells to the empty string.
+
+    If *n* *<= 0* an error is raised.
 
 *aMatrix* **add row** ?*values*?
-: Extends the matrix by one row after the last row. If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set row** (see below) on the newly added row.
+: Extends the matrix by one row after the last row.
+
+    If no *values* is given the new cells are set to the empty string. If *values* *are* given, then this method in effect applies **set row** (see below) on the newly added row.
 
 *aMatrix* **add rows** *n*
-: Extends the matrix by *n* rows after the last row and sets all the new cells to the empty string. If *n* *<= 0* an error is raised.
+: Extends the matrix by *n* rows after the last row and sets all the new cells to the empty string.
+
+    If *n* *<= 0* an error is raised.
 
 *aMatrix* **cells**
 : Returns the number of cells currently managed by the matrix. This is the product of **rows** and **columns**.
@@ -158,7 +169,13 @@ Matrix objects provide the following commands:
 : Returns the number of columns currently managed by the matrix.
 
 *aMatrix* **columnwidth** *column*
-: Returns the length of the longest string representation of all the values currently contained in the cells of the addressed column if these are all spanning only one line. For cell values spanning multiple lines the length of their longest line goes into the computation. *Note:* The command recognizes ANSI color control sequences and excludes them from the width of a line, as they are logically of zero width. *Note:* The command properly recognizes and accounts for Asian double-wide characters. *In other words*, the returned length is the number of terminal columns taken by the string, and not the number of characters.
+: Returns the length of the longest string representation of all the values currently contained in the cells of the addressed column if these are all spanning only one line. For cell values spanning multiple lines the length of their longest line goes into the computation.
+
+    *Note:* The command recognizes ANSI color control sequences and excludes them from the width of a line, as they are logically of zero width.
+
+    *Note:* The command properly recognizes and accounts for Asian double-wide characters.
+
+    *In other words*, the returned length is the number of terminal columns taken by the string, and not the number of characters.
 
 *aMatrix* **delete column** *column*
 : Deletes the specified column from the matrix and shifts all columns with higher indices one index down.
@@ -190,8 +207,8 @@ Matrix objects provide the following commands:
 *aMatrix* **get column** *column*
 : Returns a list containing the values from all cells in the column identified by the index. The contents of the cell in row 0 are stored as the first element of this list.
 
-*aMatrix* **get rect** *column_tl row_tl column_br row_br*
-: Returns a list of lists of cell values. The values stored in the result come from the sub-matrix whose top-left and bottom-right cells are specified by *column_tl, row_tl* and *column_br, row_br* resp. Note that the following equations have to be true: "*column_tl* <= *column_br*" and "*row_tl* <= *row_br*". The result is organized as follows: The outer list is the list of rows, its elements are lists representing a single row. The row with the smallest index is the first element of the outer list. The elements of the row lists represent the selected cell values. The cell with the smallest index is the first element in each row list.
+*aMatrix* **get rect** *column\_tl row\_tl column\_br row\_br*
+: Returns a list of lists of cell values. The values stored in the result come from the sub-matrix whose top-left and bottom-right cells are specified by *column\_tl, row\_tl* and *column\_br, row\_br* resp. Note that the following equations have to be true: "*column\_tl* <= *column\_br*" and "*row\_tl* <= *row\_br*". The result is organized as follows: The outer list is the list of rows, its elements are lists representing a single row. The row with the smallest index is the first element of the outer list. The elements of the row lists represent the selected cell values. The cell with the smallest index is the first element in each row list.
 
 *aMatrix* **get row** *row*
 : Returns a list containing the values from all cells in the row identified by the index. The contents of the cell in column 0 are stored as the first element of this list.
@@ -215,7 +232,11 @@ Matrix objects provide the following commands:
 : Returns the number of rows currently managed by the matrix.
 
 *aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **all** *pattern*
-: Searches the whole matrix for cells matching the *pattern* and returns a list with all matches. Each item in the aforementioned list is a list itself and contains the column and row index of the matching cell, in this order. The results are ordered by column first and row second, both times in ascending order. This means that matches to the left and the top of the matrix come before matches to the right and down. The type of the pattern (string, glob, regular expression) is determined by the option after the **search** keyword. If no option is given it defaults to **-exact**. If the option **-nocase** is specified the search will be case-insensitive.
+: Searches the whole matrix for cells matching the *pattern* and returns a list with all matches. Each item in the aforementioned list is a list itself and contains the column and row index of the matching cell, in this order. The results are ordered by column first and row second, both times in ascending order. This means that matches to the left and the top of the matrix come before matches to the right and down.
+
+    The type of the pattern (string, glob, regular expression) is determined by the option after the **search** keyword. If no option is given it defaults to **-exact**.
+
+    If the option **-nocase** is specified the search will be case-insensitive.
 
 *aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **column** *column pattern*
 : Like **search all**, but the search is restricted to the specified column.
@@ -223,24 +244,31 @@ Matrix objects provide the following commands:
 *aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **row** *row pattern*
 : Like **search all**, but the search is restricted to the specified row.
 
-*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **rect** *column_tl row_tl column_br row_br pattern*
+*aMatrix* **search** ?-nocase? ?-exact|-glob|-regexp? **rect** *column\_tl row\_tl column\_br row\_br pattern*
 : Like **search all**, but the search is restricted to the specified rectangular area of the matrix.
 
-*aMatrix* **serialize** ?*column_tl row_tl column_br row_br*?
-: This method serializes the sub-matrix spanned up by the rectangle specification. In other words it returns a tcl *value* completely describing that matrix. If no rectangle is specified the whole matrix will be serialized. This allows, for example, the transfer of matrix objects (or parts thereof) over arbitrary channels, persistence, etc. This method is also the basis for both the copy constructor and the assignment operator. The result of this method has to be semantically identical over all implementations of the matrix interface. This is what will enable us to copy matrix data between different implementations of the same interface. The result is a list containing exactly three items. The first two elements of the list specify the number of rows and columns of the matrix, in that order. The values integer numbers greater than or equal to zero. The last element of the list contains the values of the matrix cells we have serialized, in the form of a value like it is returned by the **get rect**. However empty cells to the right and bottom of the matrix can be left out of that value as the size information in the serialization allows the receiver the creation of a matrix with the proper size despite the missing values.
+*aMatrix* **serialize** ?*column\_tl row\_tl column\_br row\_br*?
+: This method serializes the sub-matrix spanned up by the rectangle specification. In other words it returns a tcl *value* completely describing that matrix. If no rectangle is specified the whole matrix will be serialized. This allows, for example, the transfer of matrix objects (or parts thereof) over arbitrary channels, persistence, etc. This method is also the basis for both the copy constructor and the assignment operator.
 
+    The result of this method has to be semantically identical over all implementations of the matrix interface. This is what will enable us to copy matrix data between different implementations of the same interface.
 
-```
-    # A possible serialization for the matrix structure
-    #
-    # | a b d g |
-    # | c e     |
-    # | f       |
-    #
-    # is
-    #
-    # 3 4 {{a b d g} {c e} {f}}
-```
+    The result is a list containing exactly three items.
+
+    The first two elements of the list specify the number of rows and columns of the matrix, in that order. The values integer numbers greater than or equal to zero.
+
+    The last element of the list contains the values of the matrix cells we have serialized, in the form of a value like it is returned by the **get rect**. However empty cells to the right and bottom of the matrix can be left out of that value as the size information in the serialization allows the receiver the creation of a matrix with the proper size despite the missing values.
+
+    ```
+        # A possible serialization for the matrix structure
+        #
+        # | a b d g |
+        # | c e     |
+        # | f       |
+        #
+        # is
+        #
+        # 3 4 {{a b d g} {c e} {f}}
+    ```
 
 *aMatrix* **set cell** *column row value*
 : Sets the value in the cell identified by row and column index to the data in the third argument.
@@ -260,10 +288,10 @@ Matrix objects provide the following commands:
 *aMatrix* **sort rows** ?**-increasing**|**-decreasing**? *column*
 : Sorts the rows in the matrix using the data in the specified *column* as the key to sort by. The options **-increasing** and **-decreasing** have the same meaning as for **lsort**. If no option is specified **-increasing** is assumed.
 
-*aMatrix* **swap columns** *column_a column_b*
+*aMatrix* **swap columns** *column\_a column\_b*
 : Swaps the contents of the two specified columns.
 
-*aMatrix* **swap rows** *row_a row_b*
+*aMatrix* **swap rows** *row\_a row\_b*
 : Swaps the contents of the two specified rows.
 
 *aMatrix* **transpose**

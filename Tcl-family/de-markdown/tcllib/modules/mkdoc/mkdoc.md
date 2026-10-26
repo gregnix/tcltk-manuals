@@ -1,5 +1,6 @@
 ---
 CommandName: mkdoc
+title: mkdoc
 ManualSection: n
 Version: 0.7.2
 TclPart: tcllib
@@ -8,47 +9,55 @@ Copyright:
  - Copyright (c) 2019-2024, Detlef Groth <detlef(at)dgroth(dot)de>
 ---
 
-# NAME
+# Name
 
 mkdoc – Extrahiert Markdown-Kommentare aus dem Quellcode und konvertiert diese optional in HTML
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} [1.2.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [mkdoc]{.lit} [0.7.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [hook]{.lit} 
-[::mkdoc::mkdoc]{.cmd} [infile]{.arg} [outfile]{.arg} [-css cssfile]{.optarg} 
-[::mkdoc::run]{.cmd} [infile]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit} [1.2.2]{.optlit}
+[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit}
+[package]{.cmd} [require]{.sub} [mkdoc]{.lit} [0.7.2]{.optlit}
+[package]{.cmd} [require]{.sub} [hook]{.lit}
+[::mkdoc::mkdoc]{.cmd} [infile]{.arg} [outfile]{.arg} [[-css]{.lit} [cssfile]{.arg}]{.optarg}
+[::mkdoc::run]{.cmd} [infile]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **mkdoc** stellt einen Befehl bereit, mit dem in den Code eingebettete Dokumentation extrahiert und diese Kommentare optional in HTML konvertiert werden können. Letzteres erfolgt unter Verwendung des Tcllib-Pakets **Markdown**. Jede Zeile der eingebetteten Dokumentation beginnt mit dem speziellen Kommentar-Marker **#'**.
 
 **::mkdoc::mkdoc** *infile* *outfile* ?**-css** *cssfile*?
-: Der Befehl liest die angegebene *infile* und extrahiert die Codekommentare, die der Marker **#'** einleitet.  Ist *outfile* eine Datei „*.html*“ oder „*.htm*“, wird das Markdown mit einem Vorgabestil oder mit dem angegebenen Stylesheet *cssfile* nach HTML umgewandelt. Alle Argumente sind Pfade der Dateien, aus denen gelesen oder in die geschrieben wird. Das Ergebnis des Befehls ist die leere Zeichenkette. Die unterstützte Markdown-Syntax und ihre Erweiterungen stehen im Abschnitt **FORMATIERUNG**.
+: Der Befehl liest die angegebene *infile* und extrahiert die Codekommentare, die der Marker **#'** einleitet.  Ist *outfile* eine Datei „*.html*“ oder „*.htm*“, wird das Markdown mit einem Vorgabestil oder mit dem angegebenen Stylesheet *cssfile* nach HTML umgewandelt.
+
+    Alle Argumente sind Pfade der Dateien, aus denen gelesen oder in die geschrieben wird.
+
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
+
+    Die unterstützte Markdown-Syntax und ihre Erweiterungen stehen im Abschnitt [Formatierung].
 
 **::mkdoc::run** *infile*
-: Der Befehl liest die angegebene *infile*, extrahiert die eingebettete Dokumentation und führt dann den Inhalt des ersten Beispiels aus, also des in **\`\`\`** gesetzten Blocks im Abschnitt **Example**. Hier ist ein solches Beispiel, das der Tcl-Interpreter ausführt
+: Der Befehl liest die angegebene *infile*, extrahiert die eingebettete Dokumentation und führt dann den Inhalt des ersten Beispiels aus, also des in **```** gesetzten Blocks im Abschnitt **Example**.
+
+    Hier ist ein solches Beispiel, das der Tcl-Interpreter ausführt
+
+    ```
+        #' ## <a name="example">Example</a>
+        #'
+        #' ```
+        #' puts "Hello mkdoc package"
+        #' puts "I am in the example section"
+        #' ```
+    ```
+
+    *GEFAHR, VORSICHT*. Lässt sich die *infile* nicht öffnen, *beendet* der Befehl den ganzen Prozess.
+
+    Von der Verwendung dieses Befehls im allgemeinen Kontext wird abgeraten.
 
 
-```
-    #' ## <a name="example">Example</a>
-    #'
-    #' ```
-    #' puts "Hello mkdoc package"
-    #' puts "I am in the example section"
-    #' ```
-```
-
-*GEFAHR, VORSICHT*. Lässt sich die *infile* nicht öffnen, *beendet* der Befehl den ganzen Prozess.
-
-Von der Verwendung dieses Befehls im allgemeinen Kontext wird abgeraten.
-
-# BEISPIELE
+# Beispiele
 
 Das folgende Beispiel veranschaulicht die Konvertierung der Dokumentation, die in der Datei „*mkdoc.tcl*“ selbst eingebettet ist:
 
@@ -62,7 +71,7 @@ Das folgende Beispiel veranschaulicht die Konvertierung der Dokumentation, die i
     mkdoc::mkdoc mkdoc.tcl mkdoc.html
 ```
 
-# FORMATIERUNG
+# Formatierung
 
 Das Paket unterstützt die Syntax, die das Tcllib-Paket **Markdown** unterstützt.
 
@@ -78,8 +87,12 @@ Darüber hinaus unterstützt es eine Reihe einfacher YAML-Header, deren Informat
 : Setzt das Dokumentdatum. Die Vorgabe ist der aktuelle Tag.
 
 **css**
-: Setzt ein eigenes CSS-Stylesheet. Die Vorgabe ist das interne Stylesheet von mkdoc. *Hinweis*: Im Ausgabemodus Markdown werden diese Kopfzeilen einfach in das Ergebnis durchgereicht. Das ist richtig, denn Verarbeiter wie **pandoc** können sie ebenfalls nutzen. Die Syntax zeigt das Beispiel unten:
+: Setzt ein eigenes CSS-Stylesheet. Die Vorgabe ist das interne Stylesheet von mkdoc.
 
+
+*Hinweis*: Im Ausgabemodus Markdown werden diese Kopfzeilen einfach in das Ergebnis durchgereicht. Das ist richtig, denn Verarbeiter wie **pandoc** können sie ebenfalls nutzen.
+
+Die Syntax zeigt das Beispiel unten:
 
 ```
     #' ---
@@ -103,11 +116,11 @@ Die Syntax zeigt das Beispiel unten:
 
 *Vorsicht* außerdem, dass relative Pfade relativ zum aktuellen Arbeitsverzeichnis aufgelöst werden und *nicht* relativ zum Ort der einbindenden Datei.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese dem Autor des Pakets. Bitte teilen Sie ihm auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation mit.
 
-# COPYRIGHT AM CODE
+# Copyright am Code
 
 Art der BSD-Lizenz:
 
@@ -121,11 +134,11 @@ Die Autoren und Vertreiber schließen ausdrücklich jegliche Gewährleistung aus
 
 *EINGESCHRÄNKTE RECHTE*: Die Nutzung, Vervielfältigung oder Offenlegung durch die Regierung unterliegt den Einschränkungen, die in Unterabsatz (c) (1) (ii) der Klausel über Rechte an technischen Daten und Computersoftware gemäß DFARS 252.227-7013 und FAR 52.227-19 festgelegt sind.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2019-2024, Detlef Groth <detlef(at)dgroth(dot)de>

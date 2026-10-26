@@ -1,5 +1,6 @@
 ---
 CommandName: lseq
+title: lseq
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -36,9 +37,9 @@ lseq - Build a numeric sequence returned as a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [?by]{.optlit} [step?]{.arg} 
-[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [?by]{.optlit} [step?]{.arg} 
-[lseq]{.cmd} [count]{.arg} [by step]{.optarg} 
+[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [?by]{.optarg} [step?]{.arg}
+[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [?by]{.optarg} [step?]{.arg}
+[lseq]{.cmd} [count]{.arg} [[by]{.lit} [step]{.arg}]{.optarg}
 :::
 
 # Description

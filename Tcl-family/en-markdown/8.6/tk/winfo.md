@@ -1,5 +1,6 @@
 ---
 CommandName: winfo
+title: winfo
 ManualSection: n
 Version: 4.3
 TclPart: Tk
@@ -32,7 +33,7 @@ winfo - Return window-related information
 # Synopsis
 
 ::: {.synopsis} :::
-[winfo]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[winfo]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -49,7 +50,7 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns a decimal string giving the number of cells in the color map for *window*.
 
 **winfo children** *window*
-: Returns a list containing the path names of all the children of *window*. Top-level windows are returned as children of their logical parents. The list is in stacking order, with the lowest window first, except for Top-level windows which are not returned in stacking order. Use the **wm stackorder** command to query the stacking order of Top-level windows.
+: Returns a list containing the path names of all the children of *window*. Top-level windows are returned as children of their logical parents. The list is in stacking order, with the lowest window first, except for Top-level windows which are not returned in stacking order. Use the [wm stackorder][wm] command to query the stacking order of Top-level windows.
 
 **winfo class** *window*
 : Returns the class name for *window*.
@@ -58,7 +59,7 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns 1 if the colormap for *window* is known to be full, 0 otherwise.  The colormap for a window is "known" to be full if the last attempt to allocate a new color on that window failed and this application has not freed any colors in the colormap since the failed allocation.
 
 **winfo containing** ?**-displayof** *window*? *rootX rootY*
-: Returns the path name for the window containing the point given by *rootX* and *rootY*. *RootX* and *rootY* are specified in screen units (i.e. any form acceptable to **Tk_GetPixels**) in the coordinate system of the root window (if a virtual-root window manager is in use then the coordinate system of the virtual root window is used). If the **-displayof** option is given then the coordinates refer to the screen containing *window*;  otherwise they refer to the screen of the application's main window. If no window in this application contains the point then an empty string is returned. An empty string is also returned if the point lies in the title bar or border of its highest containing toplevel in this application. (Note that with some window managers the borders may be invisible.) In selecting the containing window, children are given higher priority than parents and among siblings the highest one in the stacking order is chosen.
+: Returns the path name for the window containing the point given by *rootX* and *rootY*. *RootX* and *rootY* are specified in screen units (i.e. any form acceptable to [Tk\_GetPixels][GetPixels]) in the coordinate system of the root window (if a virtual-root window manager is in use then the coordinate system of the virtual root window is used). If the **-displayof** option is given then the coordinates refer to the screen containing *window*;  otherwise they refer to the screen of the application's main window. If no window in this application contains the point then an empty string is returned. An empty string is also returned if the point lies in the title bar or border of its highest containing toplevel in this application. (Note that with some window managers the borders may be invisible.) In selecting the containing window, children are given higher priority than parents and among siblings the highest one in the stacking order is chosen.
 
 **winfo depth** *window*
 : Returns a decimal string giving the depth of *window* (number of bits per pixel).
@@ -67,13 +68,13 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns 1 if there exists a window named *window*, 0 if no such window exists.
 
 **winfo fpixels** *window* *number*
-: Returns a floating-point value giving the number of pixels in *window* corresponding to the distance given by *number*. *Number* may be specified in any of the forms acceptable to **Tk_GetScreenMM**, such as "2.0c" or "1i". The return value may be fractional;  for an integer value, use **winfo pixels**.
+: Returns a floating-point value giving the number of pixels in *window* corresponding to the distance given by *number*. *Number* may be specified in any of the forms acceptable to [Tk\_GetScreenMM][GetPixels], such as "2.0c" or "1i". The return value may be fractional;  for an integer value, use **winfo pixels**.
 
 **winfo geometry** *window*
-: Returns the geometry for *window*, in the form *width*__x__*height*__+__*x*__+__*y*.  All dimensions are in pixels.
+: Returns the geometry for *window*, in the form *width***x***height***+***x***+***y*.  All dimensions are in pixels.
 
 **winfo height** *window*
-: Returns a decimal string giving *window*'s height in pixels. When a window is first created its height will be 1 pixel;  the height will eventually be changed by a geometry manager to fulfil the window's needs. If you need the true height immediately after creating a widget, invoke **update** to force the geometry manager to arrange it, or use **winfo reqheight** to get the window's requested height instead of its actual height.
+: Returns a decimal string giving *window*'s height in pixels. When a window is first created its height will be 1 pixel;  the height will eventually be changed by a geometry manager to fulfil the window's needs. If you need the true height immediately after creating a widget, invoke [update] to force the geometry manager to arrange it, or use **winfo reqheight** to get the window's requested height instead of its actual height.
 
 **winfo id** *window*
 : Returns a hexadecimal string giving a low-level platform-specific identifier for *window*.  On Unix platforms, this is the X window identifier.  Under Windows, this is the Windows HWND.  On the Macintosh the value has no meaning outside Tk.
@@ -85,7 +86,7 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns **1** if *window* is currently mapped, **0** otherwise.
 
 **winfo manager** *window*
-: Returns the name of the geometry manager currently responsible for *window*, or an empty string if *window* is not managed by any geometry manager. The name is usually the name of the Tcl command for the geometry manager, such as **pack** or **place**. If the geometry manager is a widget, such as canvases or text, the name is the widget's class command, such as **canvas**.
+: Returns the name of the geometry manager currently responsible for *window*, or an empty string if *window* is not managed by any geometry manager. The name is usually the name of the Tcl command for the geometry manager, such as [pack] or [place]. If the geometry manager is a widget, such as canvases or text, the name is the widget's class command, such as [canvas].
 
 **winfo name** *window*
 : Returns *window*'s name (i.e. its name within its parent, as opposed to its full path name). The command **winfo name .** will return the name of the application.
@@ -97,7 +98,7 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns the path name of the window whose X identifier is *id*. *Id* must be a decimal, hexadecimal, or octal integer and must correspond to a window in the invoking application. If the **-displayof** option is given then the identifier is looked up on the display of *window*;  otherwise it is looked up on the display of the application's main window.
 
 **winfo pixels** *window* *number*
-: Returns the number of pixels in *window* corresponding to the distance given by *number*. *Number* may be specified in any of the forms acceptable to **Tk_GetPixels**, such as "2.0c" or "1i". The result is rounded to the nearest integer value;  for a fractional result, use **winfo fpixels**.
+: Returns the number of pixels in *window* corresponding to the distance given by *number*. *Number* may be specified in any of the forms acceptable to [Tk\_GetPixels][GetPixels], such as "2.0c" or "1i". The result is rounded to the nearest integer value;  for a fractional result, use **winfo fpixels**.
 
 **winfo pointerx** *window*
 : If the mouse pointer is on the same screen as *window*, returns the pointer's x coordinate, measured in pixels in the screen's root window. If a virtual root window is in use on the screen, the position is measured in the virtual root. If the mouse pointer is not on the same screen as *window* then -1 is returned.
@@ -148,10 +149,10 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns a decimal string giving the width of *window*'s screen, in pixels.
 
 **winfo server** *window*
-: Returns a string containing information about the server for *window*'s display.  The exact format of this string may vary from platform to platform.  For X servers the string has the form "**X**_major_**R**_minor vendor vendorVersion_" where *major* and *minor* are the version and revision numbers provided by the server (e.g., **X11R5**), *vendor* is the name of the vendor for the server, and *vendorRelease* is an integer release number provided by the server.
+: Returns a string containing information about the server for *window*'s display.  The exact format of this string may vary from platform to platform.  For X servers the string has the form "**X***major***R***minor vendor vendorVersion*" where *major* and *minor* are the version and revision numbers provided by the server (e.g., **X11R5**), *vendor* is the name of the vendor for the server, and *vendorRelease* is an integer release number provided by the server.
 
 **winfo toplevel** *window*
-: Returns the path name of the top-of-hierarchy window containing *window*. In standard Tk this will always be a **toplevel** widget, but extensions may create other kinds of top-of-hierarchy widgets.
+: Returns the path name of the top-of-hierarchy window containing *window*. In standard Tk this will always be a [toplevel] widget, but extensions may create other kinds of top-of-hierarchy widgets.
 
 **winfo viewable** *window*
 : Returns 1 if *window* and all of its ancestors up through the nearest toplevel window are mapped.  Returns 0 if any of these windows are not mapped.
@@ -178,7 +179,7 @@ The **winfo** command is used to retrieve information about windows managed by T
 : Returns the y-offset of the virtual root window associated with *window*, relative to the root window of its screen. This is normally either zero or negative. Returns 0 if there is no virtual root window for *window*.
 
 **winfo width** *window*
-: Returns a decimal string giving *window*'s width in pixels. When a window is first created its width will be 1 pixel;  the width will eventually be changed by a geometry manager to fulfil the window's needs. If you need the true width immediately after creating a widget, invoke **update** to force the geometry manager to arrange it, or use **winfo reqwidth** to get the window's requested width instead of its actual width.
+: Returns a decimal string giving *window*'s width in pixels. When a window is first created its width will be 1 pixel;  the width will eventually be changed by a geometry manager to fulfil the window's needs. If you need the true width immediately after creating a widget, invoke [update] to force the geometry manager to arrange it, or use **winfo reqwidth** to get the window's requested width instead of its actual width.
 
 **winfo x** *window*
 : Returns a decimal string giving the x-coordinate, in *window*'s parent, of the upper-left corner of *window*'s border (or *window* if it has no border).
@@ -201,3 +202,12 @@ if {$win eq ""} {
     puts "over $win"
 }
 ```
+
+
+[canvas]: canvas.md
+[GetPixels]: ../tk-c/GetPixels.md
+[pack]: pack.md
+[place]: place.md
+[toplevel]: toplevel.md
+[update]: ../tcl/update.md
+[wm]: wm.md

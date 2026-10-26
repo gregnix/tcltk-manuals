@@ -1,96 +1,90 @@
 ---
 CommandName: Tcl_PkgRequire
+title: Tcl_PkgRequire
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
 TclDescription: Tcl Library Procedures
-Links:
- - package(n)
- - Tcl_StaticLibrary(3)
 Keywords:
  - package
  - present
  - provide
  - require
  - version
+Links:
+ - package(n)
+ - Tcl_StaticLibrary(3)
 Copyright:
  - Copyright (c) 1996 Sun Microsystems, Inc.
 ---
 
 # Name
 
-Tcl_PkgRequire, Tcl_PkgRequireEx, Tcl_PkgRequireProc, Tcl_PkgPresent, Tcl_PkgPresentEx, Tcl_PkgProvide, Tcl_PkgProvideEx - package version control
+Tcl\_PkgRequire, Tcl\_PkgRequireEx, Tcl\_PkgRequireProc, Tcl\_PkgPresent, Tcl\_PkgPresentEx, Tcl\_PkgProvide, Tcl\_PkgProvideEx - package version control
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-const char \*
-[Tcl_PkgRequire]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg}, [exact]{.arg})
-
-const char \*
-[Tcl_PkgRequireEx]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg}, [exact]{.arg}, [clientDataPtr]{.arg})
-
-int
-[Tcl_PkgRequireProc]{.cmd}([interp]{.arg}, [name]{.arg}, [objc]{.arg}, [objv]{.arg}, [clientDataPtr]{.arg})
-
-const char \*
-[Tcl_PkgPresent]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg}, [exact]{.arg})
-
-const char \*
-[Tcl_PkgPresentEx]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg}, [exact]{.arg}, [clientDataPtr]{.arg})
-
-int
-[Tcl_PkgProvide]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg})
-
-int
-[Tcl_PkgProvideEx]{.cmd}([interp]{.arg}, [name]{.arg}, [version]{.arg}, [clientData]{.arg})
+**#include <tcl.h>**
+[const char \*]{.ret} [Tcl\_PkgRequire]{.ccmd} [interp, name, version, exact]{.cargs}
+[const char \*]{.ret} [Tcl\_PkgRequireEx]{.ccmd} [interp, name, version, exact, clientDataPtr]{.cargs}
+[int]{.ret} [Tcl\_PkgRequireProc]{.ccmd} [interp, name, objc, objv, clientDataPtr]{.cargs}
+[const char \*]{.ret} [Tcl\_PkgPresent]{.ccmd} [interp, name, version, exact]{.cargs}
+[const char \*]{.ret} [Tcl\_PkgPresentEx]{.ccmd} [interp, name, version, exact, clientDataPtr]{.cargs}
+[int]{.ret} [Tcl\_PkgProvide]{.ccmd} [interp, name, version]{.cargs}
+[int]{.ret} [Tcl\_PkgProvideEx]{.ccmd} [interp, name, version, clientData]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter where package is needed or available.
 
-const char *\*name* (in)
+[\*name]{.carg .in type="const char"}
 : Name of package.
 
-const char *\*version* (in)
-: A version specification string as described for **package require**.
+[\*version]{.carg .in type="const char"}
+: A version specification string as described for [package require][package].
 
-int *exact* (in)
+[exact]{.carg .in type="int"}
 : Non-zero means that only the particular version specified by *version* is acceptable. Zero means that newer versions than *version* are also acceptable as long as they have the same major version number as *version*.
 
-const void *\*clientData* (in)
+[\*clientData]{.carg .in type="const void"}
 : Arbitrary value to be associated with the package.
 
-void *\*clientDataPtr* (out)
+[\*clientDataPtr]{.carg .out type="void"}
 : Pointer to place to store the value associated with the matching package. It is only changed if the pointer is not NULL and the function completed successfully. The storage can be any pointer type with the same size as a void pointer.
 
-Tcl_Size *objc* (in)
+[objc]{.carg .in type="Tcl_Size"}
 : Number of requirements.
 
-Tcl_Obj\* *objv\[\]* (in)
+[objv\[\]]{.carg .in type="Tcl_Obj*"}
 : Array of requirements.
 
+:::
 
 # Description
 
 These procedures provide C-level interfaces to Tcl's package and version management facilities.
 
-**Tcl_PkgRequire** is equivalent to the **package require** command, **Tcl_PkgPresent** is equivalent to the **package present** command, and **Tcl_PkgProvide** is equivalent to the **package provide** command.
+**Tcl\_PkgRequire** is equivalent to the [package require][package] command, **Tcl\_PkgPresent** is equivalent to the [package present][package] command, and **Tcl\_PkgProvide** is equivalent to the [package provide][package] command.
 
 See the documentation for the Tcl commands for details on what these procedures do.
 
-If **Tcl_PkgPresent** or **Tcl_PkgRequire** complete successfully they return a pointer to the version string for the version of the package that is provided in the interpreter (which may be different than *version*); if an error occurs they return NULL and leave an error message in the interpreter's result.
+If **Tcl\_PkgPresent** or **Tcl\_PkgRequire** complete successfully they return a pointer to the version string for the version of the package that is provided in the interpreter (which may be different than *version*); if an error occurs they return NULL and leave an error message in the interpreter's result.
 
-**Tcl_PkgProvide** returns **TCL_OK** if it completes successfully; if an error occurs it returns **TCL_ERROR** and leaves an error message in the interpreter's result.
+**Tcl\_PkgProvide** returns [TCL\_OK][catch] if it completes successfully; if an error occurs it returns [TCL\_ERROR][catch] and leaves an error message in the interpreter's result.
 
-**Tcl_PkgProvideEx**, **Tcl_PkgPresentEx** and **Tcl_PkgRequireEx** allow the setting and retrieving of the client data associated with the package. In all other respects they are equivalent to the matching functions.
+**Tcl\_PkgProvideEx**, **Tcl\_PkgPresentEx** and **Tcl\_PkgRequireEx** allow the setting and retrieving of the client data associated with the package. In all other respects they are equivalent to the matching functions.
 
-**Tcl_PkgRequireProc** is the form of **package require** handling multiple requirements. The other forms are present for backward compatibility and translate their invocations to this form.
+**Tcl\_PkgRequireProc** is the form of [package require][package] handling multiple requirements. The other forms are present for backward compatibility and translate their invocations to this form.
 
 # Reference count management
 
-The requirements values given (in the *objv* argument) to **Tcl_PkgRequireProc** must have non-zero reference counts.
+The requirements values given (in the *objv* argument) to **Tcl\_PkgRequireProc** must have non-zero reference counts.
+
+
+[catch]: ../tcl/catch.md
+[package]: ../tcl/package.md

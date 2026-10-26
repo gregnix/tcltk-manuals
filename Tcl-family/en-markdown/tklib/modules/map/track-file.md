@@ -1,5 +1,6 @@
 ---
 CommandName: map::track::file
+title: map::track::file
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -7,6 +8,8 @@ TclDescription: Map display support
 Keywords:
  - file
  - geo/track
+ - geo/track
+ - file
  - map
 Copyright:
 ---
@@ -18,20 +21,20 @@ map::track::file - Reading/writing tklib geo/track files
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::caller]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [map::track::file]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [debug]{.lit}
+[package]{.cmd} [require]{.sub} [debug::caller]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [map::track::file]{.lit} [0.1]{.optlit}
 :::
 
 # Description
 
 This package provides read/write functions for Tklib *geo/track* files.
 
-# Api
+# API
 
 # Example
 

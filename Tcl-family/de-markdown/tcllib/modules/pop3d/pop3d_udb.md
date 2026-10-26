@@ -1,5 +1,6 @@
 ---
 CommandName: pop3d::udb
+title: pop3d::udb
 ManualSection: n
 Version: 1.0.1
 TclPart: tcllib
@@ -13,39 +14,45 @@ Copyright:
  - Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 pop3d::udb – Einfache Benutzerdatenbank für pop3d
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3d::udb]{.lit} [1.0.1]{.optlit} 
-[::pop3d::udb::new]{.cmd} [dbName]{.optarg} 
-[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[dbName]{.ins} [destroy]{.sub} 
-[dbName]{.ins} [add]{.sub} [user]{.arg} [pwd]{.arg} [storage]{.arg} 
-[dbName]{.ins} [remove]{.sub} [user]{.arg} 
-[dbName]{.ins} [rename]{.sub} [user]{.arg} [newName]{.arg} 
-[dbName]{.ins} [lookup]{.sub} [user]{.arg} 
-[dbName]{.ins} [exists]{.sub} [user]{.arg} 
-[dbName]{.ins} [who]{.sub} 
-[dbName]{.ins} [save]{.sub} [file]{.optarg} 
-[dbName]{.ins} [read]{.sub} [file]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3d::udb]{.lit} [1.0.1]{.optlit}
+[::pop3d::udb::new]{.cmd} [dbName]{.optarg}
+[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[dbName]{.ins} [destroy]{.sub}
+[dbName]{.ins} [add]{.sub} [user]{.arg} [pwd]{.arg} [storage]{.arg}
+[dbName]{.ins} [remove]{.sub} [user]{.arg}
+[dbName]{.ins} [rename]{.sub} [user]{.arg} [newName]{.arg}
+[dbName]{.ins} [lookup]{.sub} [user]{.arg}
+[dbName]{.ins} [exists]{.sub} [user]{.arg}
+[dbName]{.ins} [who]{.sub}
+[dbName]{.ins} [save]{.sub} [file]{.optarg}
+[dbName]{.ins} [read]{.sub} [file]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **pop3d::udb** stellt einfache Datenbanken im Arbeitsspeicher bereit, die zusammen mit dem POP3-Server-Kern aus dem Paket **pop3d** verwendet werden können. Die Datenbanken verwenden die Namen der Benutzer als Schlüssel und ordnen ihnen Passwörter und Speicherreferenzen zu.
 
 Die von diesem Paket erzeugten Objekte können direkt in der Authentifizierungs-Rückruffunktion von POP3-Servern verwendet werden, die derselben Schnittstelle folgen wie die vom Paket **pop3d** erzeugten Server.
 
 **::pop3d::udb::new** ?*dbName*?
-: Dieser Befehl erstellt ein neues Datenbankobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *dbName* lautet. Mit dem Befehl **dbName** können verschiedene Operationen auf der Datenbank ausgeführt werden. Er hat die folgende allgemeine Form:
+: Dieser Befehl erstellt ein neues Datenbankobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *dbName* lautet.
+
+
+Mit dem Befehl **dbName** können verschiedene Operationen auf der Datenbank ausgeführt werden. Er hat die folgende allgemeine Form:
 
 **dbName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest. Für Datenbankobjekte sind folgende Befehle möglich:
+: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+
+
+Für Datenbankobjekte sind folgende Befehle möglich:
 
 *dbName* **destroy**
 : Löscht das Datenbankobjekt.
@@ -75,7 +82,7 @@ Die von diesem Paket erzeugten Objekte können direkt in der Authentifizierungs-
 : Liest die angegebene *file* und fügt die darin enthaltenen Benutzerdefinitionen zur Datenbank hinzu. Da die Datei tatsächlich per **source** ausgeführt wird, schützt ein sicherer Interpreter vor bösartigem Code. Dieser Interpreter kennt den Befehl **add**, mit dem Benutzer und die zugehörigen Daten in diese Datenbank aufgenommen werden. Der Befehl hat dieselbe Argumentsignatur wie die Methode **add**. Der Pfad der *file* wird intern gemerkt, damit er beim nächsten Aufruf von *dbName* **save** ohne Argument verwendet werden kann.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pop3d* als Kategorie an.
 
@@ -83,11 +90,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>

@@ -1,22 +1,23 @@
 ---
 CommandName: tcllib_devguide
+title: tcllib_devguide
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
 # Name
 
-tcllib_devguide - Tcllib - The Developer's Guide
+tcllib\_devguide - Tcllib - The Developer's Guide
 
 # Synopsis
 
 ::: {.synopsis} :::
-[Module]{.cmd} [name]{.arg} [code-action]{.arg} [doc-action]{.arg} [example-action]{.arg} 
-[Application]{.cmd} [name]{.arg} 
-[Exclude]{.cmd} [name]{.arg} 
+[Module]{.cmd} [name]{.arg} [code-action]{.arg} [doc-action]{.arg} [example-action]{.arg}
+[Application]{.cmd} [name]{.arg}
+[Exclude]{.cmd} [name]{.arg}
 :::
 
 # Description
@@ -27,12 +28,14 @@ This document is a guide for developers working on Tcllib, i.e. maintainers fixi
 
 Please read
 
-**\[1\]**
-: *Tcllib - How To Get The Sources* and
+1. *Tcllib - How To Get The Sources* and
 
-**\[2\]**
-: *Tcllib - The Installer's Guide* first, if that was not done already. Here we assume that the sources are already available in a directory of your choice, and that you not only know how to build and install them, but also have all the necessary requisites to actually do so. The guide to the sources in particular also explains which source code management system is used, where to find it, how to set it up, etc.
+2. *Tcllib - The Installer's Guide*
 
+
+first, if that was not done already.
+
+Here we assume that the sources are already available in a directory of your choice, and that you not only know how to build and install them, but also have all the necessary requisites to actually do so. The guide to the sources in particular also explains which source code management system is used, where to find it, how to set it up, etc.
 
 # Commitments
 
@@ -40,74 +43,74 @@ Please read
 
 As a contributor to Tcllib you are committing yourself to:
 
-**\[1\]**
-: keep the guidelines written down in *Tcl Community - Kind Communication* in your mind. The main point to take away from there is *to be kind to each other*.
+1. keep the guidelines written down in *Tcl Community - Kind Communication* in your mind. The main point to take away from there is *to be kind to each other*.
 
-**\[2\]**
-: Your contributions getting distributed under a BSD/MIT license. For the details see *Tcllib - License* Contributions are made by entering tickets into our tracker, providing patches, bundles or branches of code for inclusion, or posting to the Tcllib related mailing lists.
+2. Your contributions getting distributed under a BSD/MIT license. For the details see *Tcllib - License*
 
+
+Contributions are made by entering tickets into our tracker, providing patches, bundles or branches of code for inclusion, or posting to the Tcllib related mailing lists.
 
 ## Maintainer
 
 When contributing one or more packages for full inclusion into Tcllib you are committing yourself to
 
-**\[1\]**
-: Keep the guidelines written down in *Tcl Community - Kind Communication* (as any contributor) in your mind. The main point to take away from there is *to be kind to each other*.
+1. Keep the guidelines written down in *Tcl Community - Kind Communication* (as any contributor) in your mind. The main point to take away from there is *to be kind to each other*.
 
-**\[2\]**
-: Your packages getting distributed under a BSD/MIT license.  For the details see *Tcllib - License*
+2. Your packages getting distributed under a BSD/MIT license.  For the details see *Tcllib - License*
 
-**\[3\]**
-: Maintenance of the new packages for a period of two years under the following rules, and responsibilities:
+3. Maintenance of the new packages for a period of two years under the following rules, and responsibilities:
 
+    1. A maintainer may step down after the mandatory period as they see fit.
 
-**\[1\]**
-: A maintainer may step down after the mandatory period as they see fit.
+    2. A maintainer may step down before the end of the mandatory period, under the condition that a replacement maintainer is immediately available and has agreed to serve the remainder of the period, plus their own mandatory period (see below).
 
-**\[2\]**
-: A maintainer may step down before the end of the mandatory period, under the condition that a replacement maintainer is immediately available and has agreed to serve the remainder of the period, plus their own mandatory period (see below).
+    3. When stepping down without a replacement maintainer taking over the relevant packages have to be flagged as **unmaintained**.
 
-**\[3\]**
-: When stepping down without a replacement maintainer taking over the relevant packages have to be flagged as **unmaintained**.
+    4. When a replacement mantainer is brought in for a package it is (kept) marked as **maintained** (again).
 
-**\[4\]**
-: When a replacement mantainer is brought in for a package it is (kept) marked as **maintained** (again). A replacement maintainer is bound by the same rules as the original maintainer, except that the mandatory period of maintenance is shortened to one year.
+        A replacement maintainer is bound by the same rules as the original maintainer, except that the mandatory period of maintenance is shortened to one year.
 
-**\[5\]**
-: For any **unmaintained** package a contributor interested in becoming its maintainer can become so by flagging them as **maintained** with their name and contact information, committing themselves to the rules of a replacement maintainer (see previous point).
+    5. For any **unmaintained** package a contributor interested in becoming its maintainer can become so by flagging them as **maintained** with their name and contact information, committing themselves to the rules of a replacement maintainer (see previous point).
 
-**\[6\]**
-: For any already **maintained** package a contributor interested in becoming a co-maintainer can become so with the agreement of the existing maintainer(s), committing themselves to the rules of a replacement maintainer (see two points previous).
+    6. For any already **maintained** package a contributor interested in becoming a co-maintainer can become so with the agreement of the existing maintainer(s), committing themselves to the rules of a replacement maintainer (see two points previous).
 
 
-The responsibilities as a maintainer include:
+    The responsibilities as a maintainer include:
 
-**\[1\]**
-: Watching Tcllib's ticket tracker for bugs, bug fixes, and feature requests related to the new packages.
+    1. Watching Tcllib's ticket tracker for bugs, bug fixes, and feature requests related to the new packages.
 
-**\[2\]**
-: Reviewing the aforementioned tickets, rejecting or applying them
+    2. Reviewing the aforementioned tickets, rejecting or applying them
 
-**\[3\]**
-: Coordination and discussion with ticket submitter during the development and/or application of bug fixes.
+    3. Coordination and discussion with ticket submitter during the development and/or application of bug fixes.
 
 
-**\[4\]**
-: Follow the **Branching and Workflow** of this guide.
+4. Follow the [Branching and Workflow] of this guide.
 
 
-# Branching and workflow
+# Branching and Workflow
 
 ## Package dependencies
 
 Regarding packages and dependencies between them Tcllib occupies a middle position between two extremes:
 
-**\[1\]**
-: On one side a strongly interdependent set of packages, usually by a single author, for a single project. Looking at my (Andreas Kupries) own work examples of such are [Marpa](https://core.tcl.tk/akupries/marpa/index), [CRIMP](https://core.tcl.tk/akupries/crimp/index), [Kinetcl](https://core.tcl.tk/akupries/kinetcl/index), etc. For every change the author of the project handles all the modifications cascading from any incompatibilities it introduced to the system.
+1. On one side a strongly interdependent set of packages, usually by a single author, for a single project. Looking at my (Andreas Kupries) own work examples of such are [Marpa](https://core.tcl.tk/akupries/marpa/index), [CRIMP](https://core.tcl.tk/akupries/crimp/index), [Kinetcl](https://core.tcl.tk/akupries/kinetcl/index), etc.
 
-**\[2\]**
-: On the other side, the world of semi-independent projects by many different authors where authors know what packages their own creations depend on, yet usually do not know who else depends on them. The best thing an author making an (incompatible) change to their project can do is to for one announce such changes in some way, and for two use versioning to distinguish the code before and after the change. The world is then responsible for adapting, be it by updating their own projects to the new version, or by sticking to the old. As mentioned already, Tcllib lives in the middle of that. While we as maintainers cannot be aware of all users of Tcllib's packages, and thus have to rely on the mechanisms touched on in point 2 above for that, the dependencies between the packages contained in Tcllib are a different matter. As we are collectively responsible for the usability of Tcllib in toto to the outside world, it behooves us to be individually mindful even of Tcllib packages we are not directly maintaining, when they depend on packages under our maintainership. This may be as simple as coordinating with the maintainers of the affected packages. It may also require us to choose how to adapt affected packages which do not have maintainers, i.e. modify them to use our changed package properly, or modify them to properly depend on the unchanged version of our package. Note that the above is not only a chore but an opportunity as well. Additional insight can be had by forcing ourselves to look at our package and the planned change(s) from an outside perspective, to consider the ramifications of our actions on others in general, and on dependent packages in particular.
+    For every change the author of the project handles all the modifications cascading from any incompatibilities it introduced to the system.
 
+2. On the other side, the world of semi-independent projects by many different authors where authors know what packages their own creations depend on, yet usually do not know who else depends on them.
+
+    The best thing an author making an (incompatible) change to their project can do is to for one announce such changes in some way, and for two use versioning to distinguish the code before and after the change.
+
+    The world is then responsible for adapting, be it by updating their own projects to the new version, or by sticking to the old.
+
+
+As mentioned already, Tcllib lives in the middle of that.
+
+While we as maintainers cannot be aware of all users of Tcllib's packages, and thus have to rely on the mechanisms touched on in point 2 above for that, the dependencies between the packages contained in Tcllib are a different matter.
+
+As we are collectively responsible for the usability of Tcllib in toto to the outside world, it behooves us to be individually mindful even of Tcllib packages we are not directly maintaining, when they depend on packages under our maintainership. This may be as simple as coordinating with the maintainers of the affected packages. It may also require us to choose how to adapt affected packages which do not have maintainers, i.e. modify them to use our changed package properly, or modify them to properly depend on the unchanged version of our package.
+
+Note that the above is not only a chore but an opportunity as well. Additional insight can be had by forcing ourselves to look at our package and the planned change(s) from an outside perspective, to consider the ramifications of our actions on others in general, and on dependent packages in particular.
 
 ## Trunk
 
@@ -133,170 +136,182 @@ Note that while a review from a second developer is not a required condition for
 
 It also recommended to give any new branch a name which aids in determining additional details about it. Examples of good things to stick into a branch name would be
 
-**•**
-: Developer (nick)name
+- Developer (nick)name
 
-**•**
-: Ticket hash/reference
+- Ticket hash/reference
 
-**•**
-: One or two keywords applicable to the work
+- One or two keywords applicable to the work
 
-**•**
-: ... Further, while most development branches are likely quite short-lived, no prohibitions exist against making longer-lived branches. Creators should however be mindful that the longer such a branch exists without merges the more divergent they will tend to be, with an associated increase in the effort which will have to be spent on either merging from and merging to trunk.
+- ...
 
+
+Further, while most development branches are likely quite short-lived, no prohibitions exist against making longer-lived branches. Creators should however be mindful that the longer such a branch exists without merges the more divergent they will tend to be, with an associated increase in the effort which will have to be spent on either merging from and merging to trunk.
 
 ## Working with branches
 
 In the hope of engendering good work practices now a few example operations which will come up with branches, and their associated fossil command (sequences).
 
 *Awareness*
-: When developing we have to keep ourselves aware of the context of our work. On what branch are we ? What files have we changed ? What new files are not yet known to the repository ? What has happened remotely since we used our checkout ? The answers to these questions become especially important when using a long-lived checkout and coming back to it after some time away. Commands to answer questions like the above are:
+: When developing we have to keep ourselves aware of the context of our work. On what branch are we ? What files have we changed ? What new files are not yet known to the repository ? What has happened remotely since we used our checkout ? The answers to these questions become especially important when using a long-lived checkout and coming back to it after some time away.
 
+    Commands to answer questions like the above are:
 
-**fossil pull**
-: Get all changes done on the remote since the last pull or sync from it. This has to be done first, before any of the commands below. Even if the commit in our checkout refers to the branch we want right now control operations committed to the remote may have changed that from underneath us.
+    **fossil pull**
+    : Get all changes done on the remote since the last pull or sync from it. This has to be done first, before any of the commands below.
 
-**fossil info | grep tags**
-: ...see next...
+        Even if the commit in our checkout refers to the branch we want right now control operations committed to the remote may have changed that from underneath us.
 
-**fossil branch list | grep '\\\*'**
-: Two different ways of determining the branch our checkout is on.
+    **fossil info | grep tags**
+    : see below ...
 
-**fossil timeline**
-: What have we (and others) done recently ? *Attention*, this information is very likely outdated, the more the longer we did not use this checkout. Run **fossil pull** first to get latest information from the remote repository of the project.
+    **fossil branch list | grep '\\\*'**
+    : Two different ways of determining the branch our checkout is on.
 
-**fossil timeline current**
-: Place the commit our checkout is based on at the top of the timeline.
+    **fossil timeline**
+    : What have we (and others) done recently ?
 
-**fossil changes**
-: Lists the files we have changed compared to the commit the checkout is based on.
+        *Attention*, this information is very likely outdated, the more the longer we did not use this checkout. Run **fossil pull** first to get latest information from the remote repository of the project.
 
-**fossil extra**
-: Lists the files we have in the checkout the repository does not know about. This may be leftover chaff from our work, or something we have forgotten to **fossil add** to the repository yet.
+    **fossil timeline current**
+    : Place the commit our checkout is based on at the top of the timeline.
+
+    **fossil changes**
+    : Lists the files we have changed compared to the commit the checkout is based on.
+
+    **fossil extra**
+    : Lists the files we have in the checkout the repository does not know about. This may be leftover chaff from our work, or something we have forgotten to **fossil add** to the repository yet.
 
 
 *Clean checkouts*
-: Be aware of where you are (see first definition). For pretty much all the operation recipes below a clean checkout is at least desired, often required. To check that a checkout is clean invoke
+: Be aware of where you are (see first definition).
 
+    For pretty much all the operation recipes below a clean checkout is at least desired, often required. To check that a checkout is clean invoke
 
-```
-    fossil changes
-    fossil extra
-```
+    ```
+        fossil changes
+        fossil extra
+    ```
 
-: How to clean up when uncommitted changes of all sorts are found is context-specific and outside of the scope of this guide.
-
+    How to clean up when uncommitted changes of all sorts are found is context-specific and outside of the scope of this guide.
 
 *Starting a new branch*
-: Be aware of where you are (see first definition). Ensure that you have clean checkout (see second definition). It is *required*. In most situations you want to be on branch *trunk*, and you want to be on the latest commit for it. To get there use
+: Be aware of where you are (see first definition).
 
+    Ensure that you have clean checkout (see second definition). It is *required*.
 
-```
-    fossil pull
-    fossil update trunk
-```
+    In most situations you want to be on branch *trunk*, and you want to be on the latest commit for it. To get there use
 
-: If some other branch is desired as the starting point for the coming work replace *trunk* in the commands above with the name of that branch. With the base line established we now have two ways of creating the new branch, with differing (dis)advantages. The simpler way is to
+    ```
+        fossil pull
+        fossil update trunk
+    ```
 
+    If some other branch is desired as the starting point for the coming work replace *trunk* in the commands above with the name of that branch.
 
-```
-    fossil branch new NAME_OF_NEW_BRANCH
-```
+    With the base line established we now have two ways of creating the new branch, with differing (dis)advantages. The simpler way is to
 
-: and start developing. The advantage here is that you cannot forget to create the branch. The disadvantages are that we have a branch commit unchanged from where we branched from, and that we have to use high-handed techniques like hiding or shunning to get rid of the commit should we decide to abandon the work before the first actual commit on the branch. The other way of creating the branch is to start developing, and then on the first commit use the option **--branch** to tell **fossil** that we are starting a branch now. I.e. run
+    ```
+        fossil branch new NAME_OF_NEW_BRANCH
+    ```
 
+    and start developing. The advantage here is that you cannot forget to create the branch. The disadvantages are that we have a branch commit unchanged from where we branched from, and that we have to use high-handed techniques like hiding or shunning to get rid of the commit should we decide to abandon the work before the first actual commit on the branch.
 
-```
-    fossil commit --branch NAME_OF_NEW_BRANCH ...
-```
+    The other way of creating the branch is to start developing, and then on the first commit use the option **--branch** to tell **fossil** that we are starting a branch now. I.e. run
 
-: where *...* are any other options used to supply the commit message, files to commit, etc. The (dis)advantages are now reversed. We have no superflous commit, only what is actually developed. The work is hidden until we commit to make our first commit. We may forget to use **--branch NAME_OF_NEW_BRANCH** and then have to correct that oversight via the fossil web interface (I am currently unaware of ways of doing such from the command line, although some magic incantantion of **fossil tag create** may work). It helps to keep awareness, like checking before any commit that we are on the desired branch.
+    ```
+        fossil commit --branch NAME_OF_NEW_BRANCH ...
+    ```
 
+    where *...* are any other options used to supply the commit message, files to commit, etc.
+
+    The (dis)advantages are now reversed.
+
+    We have no superflous commit, only what is actually developed. The work is hidden until we commit to make our first commit.
+
+    We may forget to use **--branch NAME\_OF\_NEW\_BRANCH** and then have to correct that oversight via the fossil web interface (I am currently unaware of ways of doing such from the command line, although some magic incantantion of **fossil tag create** may work).
+
+    It helps to keep awareness, like checking before any commit that we are on the desired branch.
 
 *Merging a branch into trunk*
-: Be aware of where you are (see first definition). Ensure that you have clean checkout (see second definition). In the full-blown sequence (zig-zag) it is *required*, due to the merging from trunk. In the shorter sequence it is only desired. That said, keeping the checkout clean before any major operations is a good habit to have, in my opinion. The full-blown sequencing with checks all the way is to
+: Be aware of where you are (see first definition).
+
+    Ensure that you have clean checkout (see second definition). In the full-blown sequence (zig-zag) it is *required*, due to the merging from trunk. In the shorter sequence it is only desired. That said, keeping the checkout clean before any major operations is a good habit to have, in my opinion.
+
+    The full-blown sequencing with checks all the way is to
+
+    1. Validate the checkout, i.e. last commit on your branch. Run the full test suite and other validations, fix all the issues which have cropped up.
+
+    2. Merge the latest state of the *trunk* (see next definition).
+
+    3. Validate the checkout again. The incoming trunk changes may have broken something now. Do any required fixes.
+
+    4. Now merge to the trunk using
+
+        ```
+            fossil update trunk
+            fossil merge --integrate YOUR_BRANCH
+        ```
+
+    5. At this point the checkout should be in the same state as at the end of point (3) above, because we resolved any issues with the trunk already. Thus a simple
+
+        ```
+            fossil commit ...
+        ```
+
+    6. should be sufficient now to commit the merge back and close the branch (due to the **--integrate** we used on the merge).
+
+        The more paranoid may validate the checkout a third time before commiting.
 
 
-**\[1\]**
-: Validate the checkout, i.e. last commit on your branch. Run the full test suite and other validations, fix all the issues which have cropped up.
+    I call this a *zig-zag merge* because of how the arrows look in the timeline, from trunk to feature branch for the first merge, and then back for the final merge.
 
-**\[2\]**
-: Merge the latest state of the *trunk* (see next definition).
+    A less paranoid can do what I call a *simple merge*, which moves step (2) after step (4) and skips step (3) entirely. The resulting shorter sequence is
 
-**\[3\]**
-: Validate the checkout again. The incoming trunk changes may have broken something now. Do any required fixes.
+    1. Validate
 
-**\[4\]**
-: Now merge to the trunk using
+    2. Merge to trunk
 
+    3. Validate again
 
-```
-    fossil update trunk
-    fossil merge --integrate YOUR_BRANCH
-```
-
-**\[5\]**
-: At this point the checkout should be in the same state as at the end of point (3) above, because we resolved any issues with the trunk already. Thus a simple
+    4. Commit to trunk
 
 
-```
-    fossil commit ...
-```
+    The last step after either zig-zag or plain merge is to
 
-: should be sufficient now to commit the merge back and close the branch (due to the **--integrate** we used on the merge). The more paranoid may validate the checkout a third time before commiting.
+    ```
+        fossil sync
+    ```
 
+    This saves our work to the remote side, and further gives us any other work done while we were doing our merge. It especially allows us to check if we raced somebody else, resulting in a split trunk.
 
-I call this a *zig-zag merge* because of how the arrows look in the timeline, from trunk to feature branch for the first merge, and then back for the final merge.
-
-A less paranoid can do what I call a *simple merge*, which moves step (2) after step (4) and skips step (3) entirely. The resulting shorter sequence is
-
-**\[1\]**
-: Validate
-
-**\[2\]**
-: Merge to trunk
-
-**\[3\]**
-: Validate again
-
-**\[4\]**
-: Commit to trunk
-
-
-: The last step after either zig-zag or plain merge is to
-
-
-```
-    fossil sync
-```
-
-: This saves our work to the remote side, and further gives us any other work done while we were doing our merge. It especially allows us to check if we raced somebody else, resulting in a split trunk. When that happens we should coordinate with the other developer on who fixes the split, to ensure that we do not race each other again.
-
+    When that happens we should coordinate with the other developer on who fixes the split, to ensure that we do not race each other again.
 
 *Merging from trunk*
-: Be aware of where you are (see first definition). Ensure that you have clean checkout (see second definition). It is *required*. In most situations you want to import the latest commit of branch *trunk* (or other origin). To get it use
+: Be aware of where you are (see first definition).
 
+    Ensure that you have clean checkout (see second definition). It is *required*.
 
-```
-    fossil pull
-```
+    In most situations you want to import the latest commit of branch *trunk* (or other origin). To get it use
 
-With that done we can now import this commit into our current branch with
+    ```
+        fossil pull
+    ```
 
-```
-    fossil merge trunk
-```
+    With that done we can now import this commit into our current branch with
 
-Even if **fossil** does not report any conflicts it is a good idea to check that the operation has not broken the new and/or changed functionality we are working on.
+    ```
+        fossil merge trunk
+    ```
 
-With the establishment of a good merge we then save the state with
+    Even if **fossil** does not report any conflicts it is a good idea to check that the operation has not broken the new and/or changed functionality we are working on.
 
-```
-    fossil commit ...
-```
+    With the establishment of a good merge we then save the state with
 
-: before continuing development.
+    ```
+        fossil commit ...
+    ```
+
+    before continuing development.
 
 
 ## Version numbers
@@ -326,18 +341,21 @@ Below a list of the kinds of changes and their associated version increments:
 : Minor
 
 *API - incompatible change*
-: Major Note that a commit containing a version increment has to mention the new version number in its commit message, as well as the kind of change which caused it. Note further that the version number of a package currently exists in three places. An increment has to update all of them:
+: Major
 
 
-**\[1\]**
-: The package implementation.
+Note that a commit containing a version increment has to mention the new version number in its commit message, as well as the kind of change which caused it.
 
-**\[2\]**
-: The package index ("*pkgIndex.tcl*")
+Note further that the version number of a package currently exists in three places. An increment has to update all of them:
 
-**\[3\]**
-: The package documentation. The "*sak.tcl*" command **validate version** helps finding discrepancies between the first two. All the other **validate** methods are also of interest to any developer. Invoke it with
+1. The package implementation.
 
+2. The package index ("*pkgIndex.tcl*")
+
+3. The package documentation.
+
+
+The "*sak.tcl*" command **validate version** helps finding discrepancies between the first two. All the other **validate** methods are also of interest to any developer. Invoke it with
 
 ```
  sak.tcl help validate
@@ -370,7 +388,9 @@ The main directories in the Tcllib toplevel directory and of interest to a devel
 : This directories contains the doctools sources for the global documentation, like this document and its sibling guides.
 
 "*embedded*"
-: This directory contains the entire documentation formatted for *HTML* and styled to properly mix into the web site generated by fossil for the repository. This is the documentation accessible from the Tcllib home directory, represented in the repository as "*embedded/index.md*".
+: This directory contains the entire documentation formatted for *HTML* and styled to properly mix into the web site generated by fossil for the repository.
+
+    This is the documentation accessible from the Tcllib home directory, represented in the repository as "*embedded/index.md*".
 
 "*idoc*"
 : This directory contains the entire documentation formatted for *nroff* and *HTML*, the latter without any styling. This is the documentation which will be installed.
@@ -382,13 +402,13 @@ The main directories in the Tcllib toplevel directory and of interest to a devel
 ## Top files
 
 "*aclocal.m4*"
-: ...see next...
+: see below ...
 
 "*configure*"
-: ...see next...
+: see below ...
 
 "*configure.in*"
-: ...see next...
+: see below ...
 
 "*Makefile.in*"
 : These four files comprise the Unix build system layered on top of the "*installer.tcl*" script.
@@ -409,28 +429,28 @@ The main directories in the Tcllib toplevel directory and of interest to a devel
 : The license in plain ASCII. See also *Tcllib - License* for the nicely formatted form. The text is identical.
 
 "*README.md*"
-: ...see next...
+: see below ...
 
 "*.github/CONTRIBUTING.md*"
-: ...see next...
+: see below ...
 
-"*.github/ISSUE_TEMPLATE.md*"
-: ...see next...
+"*.github/ISSUE\_TEMPLATE.md*"
+: see below ...
 
-"*.github/PULL_REQUEST_TEMPLATE.md*"
+"*.github/PULL\_REQUEST\_TEMPLATE.md*"
 : These markdown-formatted documents are used and shown by the github mirror of these sources, pointing people back to the official location and issue trackers.
 
 "*DESCRIPTION.txt*"
-: ...see next...
+: see below ...
 
 "*STATUS*"
-: ...see next...
+: see below ...
 
 "*tcllib.spec*"
-: ...see next...
+: see below ...
 
 "*tcllib.tap*"
-: ...see next...
+: see below ...
 
 "*tcllib.yml*"
 : ????
@@ -610,40 +630,37 @@ For example for a command FOO taking two arguments, three tests calling it with 
 
 After that come the tests checking things based on our knowledge of the command, about its properties and assumptions. Some examples based on the graph operations added during Google's Summer of Code 2009 are:
 
-**•**
-: The BellmanFord command in struct::graph::ops takes a *startnode* as argument, and this node should be a node of the graph. This equals one test case checking the behavior when the specified node is not a node of the graph. This often gives rise to code in the implementation which explicitly checks the assumption and throws an understandable error, instead of letting the algorithm fail later in some weird non-deterministic way. It is not always possible to do such checks. The graph argument for example is just a command in itself, and while we expect it to exhibit a certain interface, i.e. a set of sub-commands aka methods, we cannot check that it has them, except by actually trying to use them. That is done by the algorithm anyway, so an explicit check is just overhead we can get by without.
+- The BellmanFord command in struct::graph::ops takes a *startnode* as argument, and this node should be a node of the graph. This equals one test case checking the behavior when the specified node is not a node of the graph.
 
-**•**
-: IIRC one of the distinguishing characteristic of either BellmanFord and/or Johnson is that they are able to handle negative weights. Whereas Dijkstra requires positive weights. This induces (at least) three testcases ... Graph with all positive weights, all negative, and a mix of positive and negative weights. Thinking further does the algorithm handle the weight **0** as well ? Another test case, or several, if we mix zero with positive and negative weights.
+    This often gives rise to code in the implementation which explicitly checks the assumption and throws an understandable error, instead of letting the algorithm fail later in some weird non-deterministic way.
 
-**•**
-: The two algorithms we are currently thinking about are about distances between nodes, and distance can be 'Inf'inity, i.e. nodes may not be connected. This means that good test cases are
+    It is not always possible to do such checks. The graph argument for example is just a command in itself, and while we expect it to exhibit a certain interface, i.e. a set of sub-commands aka methods, we cannot check that it has them, except by actually trying to use them. That is done by the algorithm anyway, so an explicit check is just overhead we can get by without.
 
+- IIRC one of the distinguishing characteristic of either BellmanFord and/or Johnson is that they are able to handle negative weights. Whereas Dijkstra requires positive weights.
 
-**\[1\]**
-: Strongly connected graph
+    This induces (at least) three testcases ... Graph with all positive weights, all negative, and a mix of positive and negative weights. Thinking further does the algorithm handle the weight **0** as well ? Another test case, or several, if we mix zero with positive and negative weights.
 
-**\[2\]**
-: Connected graph
+- The two algorithms we are currently thinking about are about distances between nodes, and distance can be 'Inf'inity, i.e. nodes may not be connected. This means that good test cases are
 
-**\[3\]**
-: Disconnected graph.
+    1. Strongly connected graph
 
+    2. Connected graph
 
-At the extremes of strongly connected and disconnected we have the fully connected graphs and graphs without edges, only nodes, i.e. completely disconnected.
-
-**•**
-: IIRC both of the algorithms take weighted arcs, and fill in a default if arcs are left unweighted in the input graph. This also induces three test cases:
+    3. Disconnected graph.
 
 
-**\[1\]**
-: Graph will all arcs with explicit weights.
+    At the extremes of strongly connected and disconnected we have the fully connected graphs and graphs without edges, only nodes, i.e. completely disconnected.
 
-**\[2\]**
-: Graph without weights at all.
+- IIRC both of the algorithms take weighted arcs, and fill in a default if arcs are left unweighted in the input graph.
 
-**\[3\]**
-: Graph with mixture of weighted and unweighted graphs.
+    This also induces three test cases:
+
+    1. Graph will all arcs with explicit weights.
+
+    2. Graph without weights at all.
+
+    3. Graph with mixture of weighted and unweighted graphs.
+
 
 
 What was described above via examples is called *black-box* testing. Test cases are designed and written based on the developer's knowledge of the properties of the algorithm and its inputs, without referencing a particular implementation.
@@ -652,7 +669,7 @@ Going further, a complement to *black-box* testing is *white-box*. For this we k
 
 In practice I often hope that the black-box tests I have made are enough to cover all the paths, obviating the need for white-box tests.
 
-The above should be enough to make it clear that writing tests for an algorithm takes at least as much time as coding the algorithm, and often more time. Much more time. See for example also *http://sqlite.org/testing.html*, a writeup on how the Sqlite database engine is tested. Another article of interest might be *https://www.researchgate.net/publication/298896236*. While geared to a particular numerical algorithm it still shows that even a simple-looking algorithm can lead to an incredible number of test cases.
+The above should be enough to make it clear that writing tests for an algorithm takes at least as much time as coding the algorithm, and often more time. Much more time. See for example also <http://sqlite.org/testing.html>, a writeup on how the Sqlite database engine is tested. Another article of interest might be <https://www.researchgate.net/publication/298896236>. While geared to a particular numerical algorithm it still shows that even a simple-looking algorithm can lead to an incredible number of test cases.
 
 An interesting connection is to documentation. In one direction, the properties checked with black-box testing are exactly the properties which should be documented in the algorithm's man page. And conversely, the documentation of the properties of an algorithm makes a good reference to base the black-box tests on.
 
@@ -671,48 +688,56 @@ In most cases only a single file has to be modified, the "*support/installation/
 The relevant commands are:
 
 **Module** *name* *code-action* *doc-action* *example-action*
-: Install the packages of module *name*, found in "*modules/name*". The *code-action* is responsible for installing the packages and their index. The system currently provides
+: Install the packages of module *name*, found in "*modules/name*".
+
+    The *code-action* is responsible for installing the packages and their index. The system currently provides
+
+    **\_tcl**
+    : Copy all "*.tcl*" files found in "*modules/name*" into the installation.
+
+    **\_tcr**
+    : As **\_tcl**, copy the "*.tcl*" files found in the subdirectories of "*modules/name*" as well.
+
+    **\_tci**
+    : As **\_tcl**, and copy the "*tclIndex.tcl*" file as well.
+
+    **\_msg**
+    : As **\_tcl**, and copy the subdirectory "*msgs*" as well.
+
+    **\_doc**
+    : As **\_tcl**, and copy the subdirectory "*mpformats*" as well.
+
+    **\_tex**
+    : As **\_tcl**, and copy "*.tex*" files as well.
 
 
-**\_tcl**
-: Copy all "*.tcl*" files found in "*modules/name*" into the installation.
+    The *doc-action* is responsible for installing the package documentation. The system currently provides
 
-**\_tcr**
-: As **\_tcl**, copy the "*.tcl*" files found in the subdirectories of "*modules/name*" as well.
+    **\_null**
+    : No documentation available, do nothing.
 
-**\_tci**
-: As **\_tcl**, and copy the "*tclIndex.tcl*" file as well.
+    **\_man**
+    : Process the "*.man*" files found in "*modules/name*" and install the results (nroff and/or HTML) in the proper location, as given to the installer.
 
-**\_msg**
-: As **\_tcl**, and copy the subdirectory "*msgs*" as well.
-
-**\_doc**
-: As **\_tcl**, and copy the subdirectory "*mpformats*" as well.
-
-**\_tex**
-: As **\_tcl**, and copy "*.tex*" files as well.
+        This is actually a fallback, normally the installer uses the pre-made formatted documentation found under "*idoc*".
 
 
-The *doc-action* is responsible for installing the package documentation. The system currently provides
+    The *example-action* is responsible for installing the examples. The system currently provides
 
-**\_null**
-: No documentation available, do nothing.
+    **\_null**
+    : No examples available, do nothing.
 
-**\_man**
-: Process the "*.man*" files found in "*modules/name*" and install the results (nroff and/or HTML) in the proper location, as given to the installer. This is actually a fallback, normally the installer uses the pre-made formatted documentation found under "*idoc*".
-
-
-The *example-action* is responsible for installing the examples. The system currently provides
-
-**\_null**
-: No examples available, do nothing.
-
-**\_exa**
-: Copy the the directory "*examples/name*" recursively to the install location for examples.
+    **\_exa**
+    : Copy the the directory "*examples/name*" recursively to the install location for examples.
 
 
 **Application** *name*
 : Install the application with *name*, found in "*apps*".
 
 **Exclude** *name*
-: This command signals to the installer which of the listed modules to *not* install. I.e. they name the deprecated modules of Tcllib. If, and only if the above actions are not suitable for the new module then a second file has to be modified, "*support/installation/actions.tcl*". This file contains the implementations of the available actions, and is the place where any custom action needed to handle the special circumstances of module has to be added.
+: This command signals to the installer which of the listed modules to *not* install. I.e. they name the deprecated modules of Tcllib.
+
+
+If, and only if the above actions are not suitable for the new module then a second file has to be modified, "*support/installation/actions.tcl*".
+
+This file contains the implementations of the available actions, and is the place where any custom action needed to handle the special circumstances of module has to be added.

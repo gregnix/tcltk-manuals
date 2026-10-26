@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_Backslash
+title: Tcl_Backslash
 ManualSection: 3
 Version: 8.1
 TclPart: Tcl
@@ -17,30 +18,34 @@ Copyright:
 
 # Name
 
-Tcl_Backslash - parse a backslash sequence
+Tcl\_Backslash - parse a backslash sequence
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-char
-[Tcl_Backslash]{.cmd}([src]{.arg}, [countPtr]{.arg})
+**#include <tcl.h>**
+[char]{.ret} [Tcl\_Backslash]{.ccmd} [src, countPtr]{.cargs}
 :::
 
 # Arguments
 
-const char *\*src* (in)
+::: {.arguments} :::
+
+[\*src]{.carg .in type="const char"}
 : Pointer to a string starting with a backslash.
 
-int *\*countPtr* (out)
+[\*countPtr]{.carg .out type="int"}
 : If *countPtr* is not NULL, *\*countPtr* gets filled in with number of characters in the backslash sequence, including the backslash character.
 
+:::
 
 # Description
 
-The use of **Tcl_Backslash** is deprecated in favor of **Tcl_UtfBackslash**.
+The use of **Tcl\_Backslash** is deprecated in favor of [Tcl\_UtfBackslash][Utf].
 
-This is a utility procedure provided for backwards compatibility with non-internationalized Tcl extensions.  It parses a backslash sequence and returns the low byte of the Unicode character corresponding to the sequence. **Tcl_Backslash** modifies *\*countPtr* to contain the number of characters in the backslash sequence.
+This is a utility procedure provided for backwards compatibility with non-internationalized Tcl extensions.  It parses a backslash sequence and returns the low byte of the Unicode character corresponding to the sequence. **Tcl\_Backslash** modifies *\*countPtr* to contain the number of characters in the backslash sequence.
 
-See the Tcl manual entry for information on the valid backslash sequences. All of the sequences described in the Tcl manual entry are supported by **Tcl_Backslash**.
+See the Tcl manual entry for information on the valid backslash sequences. All of the sequences described in the Tcl manual entry are supported by **Tcl\_Backslash**.
+
+
+[Utf]: Utf.md

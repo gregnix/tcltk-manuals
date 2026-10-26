@@ -1,5 +1,6 @@
 ---
 CommandName: cd
+title: cd
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -15,23 +16,23 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 cd - Wechselt das Arbeitsverzeichnis
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[cd]{.cmd} [dirName]{.optarg} 
+[cd]{.cmd} [dirName]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Wechselt das aktuelle Arbeitsverzeichnis zu *dirName* oder, wenn *dirName* nicht angegeben ist, zum Home-Verzeichnis (wie in der Umgebungsvariable HOME festgelegt). Gibt eine leere Zeichenkette zurück.
 
 Das aktuelle Arbeitsverzeichnis ist eine ressourcenbezogene Größe pro Prozess; der Befehl **cd** ändert das Arbeitsverzeichnis für alle Interpreter und alle Threads.
 
-# BEISPIELE
+# Beispiele
 
 Wechselt ins Home-Verzeichnis des Benutzers **fred**:
 

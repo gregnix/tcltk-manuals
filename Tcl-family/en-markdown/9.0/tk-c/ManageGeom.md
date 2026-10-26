@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_ManageGeometry
+title: Tk_ManageGeometry
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -17,31 +18,33 @@ Copyright:
 
 # Name
 
-Tk_ManageGeometry - arrange to handle geometry requests for a window
+Tk\_ManageGeometry - arrange to handle geometry requests for a window
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_ManageGeometry]{.cmd}([tkwin]{.arg}, [mgrPtr]{.arg}, [clientData]{.arg})
+**#include <tk.h>**
+[Tk\_ManageGeometry]{.ccmd} [tkwin, mgrPtr, clientData]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window to be managed.
 
-const Tk_GeomMgr *\*mgrPtr* (in)
+[\*mgrPtr]{.carg .in type="const Tk_GeomMgr"}
 : Pointer to data structure containing information about the geometry manager, or NULL to indicate that *tkwin*'s geometry should not be managed anymore. The data structure pointed to by *mgrPtr* must be static: Tk keeps a reference to it as long as the window is managed.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value to pass to geometry manager callbacks.
 
+:::
 
 # Description
 
-**Tk_ManageGeometry** arranges for a particular geometry manager, described by the *mgrPtr* argument, to control the geometry of a particular content window, given by *tkwin*. If *tkwin* was previously managed by some other geometry manager, the previous manager loses control in favor of the new one. If *mgrPtr* is NULL, geometry management is cancelled for *tkwin*.
+**Tk\_ManageGeometry** arranges for a particular geometry manager, described by the *mgrPtr* argument, to control the geometry of a particular content window, given by *tkwin*. If *tkwin* was previously managed by some other geometry manager, the previous manager loses control in favor of the new one. If *mgrPtr* is NULL, geometry management is cancelled for *tkwin*.
 
 The structure pointed to by *mgrPtr* contains information about the geometry manager:
 
@@ -53,9 +56,9 @@ typedef struct {
 } Tk_GeomMgr;
 ```
 
-The *name* field is the textual name for the geometry manager, such as **pack** or **place**;  this value will be returned by the command **winfo manager**.
+The *name* field is the textual name for the geometry manager, such as [pack] or [place];  this value will be returned by the command [winfo manager][winfo].
 
-*requestProc* is a procedure in the geometry manager that will be invoked whenever **Tk_GeometryRequest** is called by the content window to change its desired geometry. *requestProc* should have arguments and results that match the type **Tk_GeomRequestProc**:
+*requestProc* is a procedure in the geometry manager that will be invoked whenever [Tk\_GeometryRequest][GeomReq] is called by the content window to change its desired geometry. *requestProc* should have arguments and results that match the type **Tk\_GeomRequestProc**:
 
 ```
 typedef void Tk_GeomRequestProc(
@@ -63,9 +66,9 @@ typedef void Tk_GeomRequestProc(
         Tk_Window tkwin);
 ```
 
-The parameters to *requestProc* will be identical to the corresponding parameters passed to **Tk_ManageGeometry**. *clientData* usually points to a data structure containing application-specific information about how to manage *tkwin*'s geometry.
+The parameters to *requestProc* will be identical to the corresponding parameters passed to **Tk\_ManageGeometry**. *clientData* usually points to a data structure containing application-specific information about how to manage *tkwin*'s geometry.
 
-The *lostContentProc* field of *mgrPtr* points to another procedure in the geometry manager. Tk will invoke *lostContentProc* if some other manager calls **Tk_ManageGeometry** to claim *tkwin* away from the current geometry manager. *lostContentProc* is not invoked if **Tk_ManageGeometry** is called with a NULL value for *mgrPtr* (presumably the current geometry manager has made this call, so it already knows that the window is no longer managed), nor is it called if *mgrPtr* is the same as the window's current geometry manager. *lostContentProc* should have arguments and results that match the following prototype:
+The *lostContentProc* field of *mgrPtr* points to another procedure in the geometry manager. Tk will invoke *lostContentProc* if some other manager calls **Tk\_ManageGeometry** to claim *tkwin* away from the current geometry manager. *lostContentProc* is not invoked if **Tk\_ManageGeometry** is called with a NULL value for *mgrPtr* (presumably the current geometry manager has made this call, so it already knows that the window is no longer managed), nor is it called if *mgrPtr* is the same as the window's current geometry manager. *lostContentProc* should have arguments and results that match the following prototype:
 
 ```
 typedef void Tk_GeomLostContentProc(
@@ -73,4 +76,10 @@ typedef void Tk_GeomLostContentProc(
         Tk_Window tkwin);
 ```
 
-The parameters to *lostContentProc* will be identical to the corresponding parameters passed to **Tk_ManageGeometry**.
+The parameters to *lostContentProc* will be identical to the corresponding parameters passed to **Tk\_ManageGeometry**.
+
+
+[GeomReq]: GeomReq.md
+[pack]: ../tk/pack.md
+[place]: ../tk/place.md
+[winfo]: ../tk/winfo.md

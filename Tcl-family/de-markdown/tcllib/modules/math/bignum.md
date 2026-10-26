@@ -1,5 +1,6 @@
 ---
 CommandName: math::bignum
+title: math::bignum
 ManualSection: n
 Version: 3.1.2
 TclPart: tcllib
@@ -14,63 +15,65 @@ Copyright:
  - Copyright (c) 2004 Arjen Markus <arjenmarkus at users dot sourceforge dot net>
 ---
 
-# NAME
+# Name
 
 math::bignum – Ganzzahlen mit beliebiger Genauigkeit
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [math::bignum]{.lit} [3.1.2]{.optlit} 
-[::math::bignum::fromstr]{.cmd} [string]{.arg} [radix]{.optarg} 
-[::math::bignum::tostr]{.cmd} [bignum]{.arg} [radix]{.optarg} 
-[::math::bignum::sign]{.cmd} [bignum]{.arg} 
-[::math::bignum::abs]{.cmd} [bignum]{.arg} 
-[::math::bignum::cmp]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::iszero]{.cmd} [bignum]{.arg} 
-[::math::bignum::lt]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::le]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::gt]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::ge]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::eq]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::ne]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::isodd]{.cmd} [bignum]{.arg} 
-[::math::bignum::iseven]{.cmd} [bignum]{.arg} 
-[::math::bignum::add]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::sub]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::mul]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::divqr]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::div]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::rem]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::mod]{.cmd} [n]{.arg} [m]{.arg} 
-[::math::bignum::pow]{.cmd} [base]{.arg} [exp]{.arg} 
-[::math::bignum::powm]{.cmd} [base]{.arg} [exp]{.arg} [m]{.arg} 
-[::math::bignum::sqrt]{.cmd} [bignum]{.arg} 
-[::math::bignum::rand]{.cmd} [bits]{.arg} 
-[::math::bignum::lshift]{.cmd} [bignum]{.arg} [bits]{.arg} 
-[::math::bignum::rshift]{.cmd} [bignum]{.arg} [bits]{.arg} 
-[::math::bignum::bitand]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::bitor]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::bitxor]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::bignum::setbit]{.cmd} [bignumVar]{.arg} [bit]{.arg} 
-[::math::bignum::clearbit]{.cmd} [bignumVar]{.arg} [bit]{.arg} 
-[::math::bignum::testbit]{.cmd} [bignum]{.arg} [bit]{.arg} 
-[::math::bignum::bits]{.cmd} [bignum]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [math::bignum]{.lit} [3.1.2]{.optlit}
+[::math::bignum::fromstr]{.cmd} [string]{.arg} [radix]{.optarg}
+[::math::bignum::tostr]{.cmd} [bignum]{.arg} [radix]{.optarg}
+[::math::bignum::sign]{.cmd} [bignum]{.arg}
+[::math::bignum::abs]{.cmd} [bignum]{.arg}
+[::math::bignum::cmp]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::iszero]{.cmd} [bignum]{.arg}
+[::math::bignum::lt]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::le]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::gt]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::ge]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::eq]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::ne]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::isodd]{.cmd} [bignum]{.arg}
+[::math::bignum::iseven]{.cmd} [bignum]{.arg}
+[::math::bignum::add]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::sub]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::mul]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::divqr]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::div]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::rem]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::mod]{.cmd} [n]{.arg} [m]{.arg}
+[::math::bignum::pow]{.cmd} [base]{.arg} [exp]{.arg}
+[::math::bignum::powm]{.cmd} [base]{.arg} [exp]{.arg} [m]{.arg}
+[::math::bignum::sqrt]{.cmd} [bignum]{.arg}
+[::math::bignum::rand]{.cmd} [bits]{.arg}
+[::math::bignum::lshift]{.cmd} [bignum]{.arg} [bits]{.arg}
+[::math::bignum::rshift]{.cmd} [bignum]{.arg} [bits]{.arg}
+[::math::bignum::bitand]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::bitor]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::bitxor]{.cmd} [a]{.arg} [b]{.arg}
+[::math::bignum::setbit]{.cmd} [bignumVar]{.arg} [bit]{.arg}
+[::math::bignum::clearbit]{.cmd} [bignumVar]{.arg} [bit]{.arg}
+[::math::bignum::testbit]{.cmd} [bignum]{.arg} [bit]{.arg}
+[::math::bignum::bits]{.cmd} [bignum]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket „bignum“ erweitert die Programmiersprache Tcl um Funktionen für die Ganzzahlberechnung mit beliebiger Genauigkeit (auch als „Big Numbers“ bezeichnet). „Big Numbers“ werden intern als Tcl-Listen dargestellt: Dieses Paket bietet eine Reihe von Prozeduren, die auf diese interne Darstellung zugreifen, um:
 
-**•**
-: mathematische Operationen durchführen
+- mathematische Operationen durchführen
 
-**•**
-: Bignums von der internen Darstellung in eine Zeichenkette mit der gewünschten Basis umwandeln und umgekehrt. Die beiden Konstanten „0“ und „1“ werden jedoch automatisch in die interne Darstellung umgewandelt, um den Vergleich einer Zahl mit Null oder die Inkrementierung einer großen Zahl zu vereinfachen. Die Bignum-Schnittstelle ist undurchsichtig, sodass Operationen mit Bignums, die nicht von Prozeduren dieses Pakets zurückgegeben (sondern manuell erstellt) werden, zu nicht spezifiziertem Verhalten führen können. Es ist unbedenklich, Bignums als reine Werte zu behandeln; daher besteht keine Notwendigkeit, ein Bignum freizugeben oder es über eine spezielle Operation zu duplizieren.
+- Bignums von der internen Darstellung in eine Zeichenkette mit der gewünschten Basis umwandeln und umgekehrt.
 
 
-# BEISPIELE
+Die beiden Konstanten „0“ und „1“ werden jedoch automatisch in die interne Darstellung umgewandelt, um den Vergleich einer Zahl mit Null oder die Inkrementierung einer großen Zahl zu vereinfachen.
+
+Die Bignum-Schnittstelle ist undurchsichtig, sodass Operationen mit Bignums, die nicht von Prozeduren dieses Pakets zurückgegeben (sondern manuell erstellt) werden, zu nicht spezifiziertem Verhalten führen können. Es ist unbedenklich, Bignums als reine Werte zu behandeln; daher besteht keine Notwendigkeit, ein Bignum freizugeben oder es über eine spezielle Operation zu duplizieren.
+
+# Beispiele
 
 In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da diese Bibliothek lediglich dazu dient, mathematische Operationen durchzuführen, sind Beispiele möglicherweise der einfachste Weg, um den Umgang damit zu erlernen. Informationen zu den einzelnen Prozeduren finden Sie im Abschnitt „API“ dieser Manpage.
 
@@ -207,7 +210,7 @@ In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da diese Bibli
 : Gibt die Anzahl der Bits zurück, die zur Darstellung von bignum zur Basis 2 erforderlich sind.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *math :: bignum* als Kategorie an.
 
@@ -215,11 +218,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2004 Salvatore Sanfilippo <antirez at invece dot org>

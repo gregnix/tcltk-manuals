@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::label
+title: ttk::label
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -18,7 +19,7 @@ ttk::label - Display a text string and/or image
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::label]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::label]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -27,14 +28,9 @@ A **ttk::label** widget displays a textual label and/or image. The label may be 
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-compound** | **-cursor** |
-| **-image** | **-padding** | **-state** |
-| **-style** | **-takefocus** | **-text** |
-| **-textvariable** | **-underline** | **-width** |
+**-class**, **-compound**, **-cursor**, **-image**, **-padding**, **-state**, **-style**, **-takefocus**, **-text**, **-textvariable**, **-underline**, **-width**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -70,7 +66,7 @@ The class name for a **ttk::label** is **TLabel**.
 
 Dynamic states: **disabled**, **readonly**.
 
-**TLabel** styling options configurable with **ttk::style** are:
+**TLabel** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -82,4 +78,8 @@ Dynamic states: **disabled**, **readonly**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

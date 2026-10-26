@@ -1,5 +1,6 @@
 ---
 CommandName: doctools_intro
+title: doctools_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,29 +23,30 @@ Copyright:
 
 # Name
 
-doctools_intro - doctools introduction
+doctools\_intro - doctools introduction
 
 # Description
 
 *doctools* (short for *documentation tools*) stands for a set of related, yet different, entities which are working together for the easy creation and transformation of documentation. These are
 
-**\[1\]**
-: A tcl based language for the semantic markup of text. Markup is represented by Tcl commands interspersed with the actual text.
+1. A tcl based language for the semantic markup of text. Markup is represented by Tcl commands interspersed with the actual text.
 
-**\[2\]**
-: A package providing the ability to read and transform texts written in that markup language. It is important to note that the actual transformation of the input text is delegated to plugins.
+2. A package providing the ability to read and transform texts written in that markup language. It is important to note that the actual transformation of the input text is delegated to plugins.
 
-**\[3\]**
-: An API describing the interface between the package above and a plugin. Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
+3. An API describing the interface between the package above and a plugin.
 
-**\[1\]**
-: A *writer* of documentation has to understand the markup language itself. A beginner to doctools should read the more informally written *doctools language introduction* first. Having digested this the formal *doctools language syntax* specification should become understandable. A writer experienced with doctools may only need the *doctools language command reference* from time to time to refresh her memory. While a document is written the **dtplite** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc.
 
-**\[2\]**
-: A *processor* of documentation written in the *doctools* markup language has to know which tools are available for use. The main tool is the aforementioned **dtplite** application provided by Tcllib. A more powerful one (in terms of options and ability to configure it) is the **dtp** application, provided by Tclapps. At the bottom level, common to both applications, however sits the package **doctools**, providing the basic facilities to read and process files containing text in the doctools format.
+Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
 
-**\[3\]**
-: At last, but not least, *plugin writers* have to understand the interaction between the **doctools** package and its plugins, as described in the *doctools plugin API reference*.
+1. A *writer* of documentation has to understand the markup language itself. A beginner to doctools should read the more informally written *doctools language introduction* first. Having digested this the formal *doctools language syntax* specification should become understandable. A writer experienced with doctools may only need the *doctools language command reference* from time to time to refresh her memory.
+
+    While a document is written the **dtplite** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc.
+
+2. A *processor* of documentation written in the *doctools* markup language has to know which tools are available for use.
+
+    The main tool is the aforementioned **dtplite** application provided by Tcllib. A more powerful one (in terms of options and ability to configure it) is the **dtp** application, provided by Tclapps. At the bottom level, common to both applications, however sits the package **doctools**, providing the basic facilities to read and process files containing text in the doctools format.
+
+3. At last, but not least, *plugin writers* have to understand the interaction between the **doctools** package and its plugins, as described in the *doctools plugin API reference*.
 
 
 # Related formats

@@ -1,5 +1,6 @@
 ---
 CommandName: fileevent
+title: fileevent
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -19,10 +20,13 @@ fileevent - Execute a script when a channel becomes readable or writable
 # Synopsis
 
 ::: {.synopsis} :::
-[fileevent]{.cmd} [channel]{.arg} [readable]{.lit} [script]{.optarg} 
-[fileevent]{.cmd} [channel]{.arg} [writable]{.lit} [script]{.optarg} 
+[fileevent]{.cmd} [channel]{.arg} [readable]{.lit} [script]{.optarg}
+[fileevent]{.cmd} [channel]{.arg} [writable]{.lit} [script]{.optarg}
 :::
 
 # Description
 
-The **fileevent** command has been superceded by the **chan event** command which supports the same syntax and options.
+The **fileevent** command has been superceded by the [chan event][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

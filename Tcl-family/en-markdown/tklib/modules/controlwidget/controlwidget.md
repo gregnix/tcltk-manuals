@@ -1,5 +1,6 @@
 ---
 CommandName: controlwidget
+title: controlwidget
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -23,26 +24,26 @@ controlwidget - Collection of widgets for displaying and controlling numerical v
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.optlit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.optlit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [controlwidget]{.lit} [0.1]{.optlit} 
-[::controlwidget::meter]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::slider]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::equalizerBar]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::thermometer]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::voltmeter]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::tachometer]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::rdial]{.cmd} [w]{.arg} [args]{.arg} 
-[\$widget]{.cmd} get 
-[\$widget]{.cmd} set [value]{.arg} 
-[::controlwidget::led]{.cmd} [w]{.arg} [args]{.arg} 
-[::controlwidget::radioMatrix]{.cmd} [w]{.arg} [args]{.arg} 
-[\$led]{.cmd} on 
-[\$led]{.cmd} off 
-[\$led]{.cmd} setstate [state]{.arg} 
-[\$matrix]{.cmd} get 
-[\$matrix]{.cmd} set [index]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.optlit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.optlit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2.0]{.optlit}
+[package]{.cmd} [require]{.sub} [controlwidget]{.lit} [0.1]{.optlit}
+[::controlwidget::meter]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::slider]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::equalizerBar]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::thermometer]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::voltmeter]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::tachometer]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::rdial]{.cmd} [w]{.arg} [args]{.arg}
+[$widget]{.cmd} [get]{.lit}
+[$widget]{.cmd} [set]{.lit} [value]{.arg}
+[::controlwidget::led]{.cmd} [w]{.arg} [args]{.arg}
+[::controlwidget::radioMatrix]{.cmd} [w]{.arg} [args]{.arg}
+[$led]{.cmd} [on]{.lit}
+[$led]{.cmd} [off]{.lit}
+[$led]{.cmd} [setstate]{.lit} [state]{.arg}
+[$matrix]{.cmd} [get]{.lit}
+[$matrix]{.cmd} [set]{.lit} [index]{.arg}
 :::
 
 # Description
@@ -57,21 +58,20 @@ A last note: some parts have not been included in any option, most notably the c
 
 The package distinguishes several typed of widgets:
 
-**•**
-: Vertical meters: the value of the variable is translated into a vertical position, like with the coloured bars you find on your stereo installation.
+- Vertical meters: the value of the variable is translated into a vertical position, like with the coloured bars you find on your stereo installation.
 
-**•**
-: Angle displays: the value of the variable is related to the angle of a needle, like with tachometers.
+- Angle displays: the value of the variable is related to the angle of a needle, like with tachometers.
 
-**•**
-: Interactive widgets: most widgets allow you to change the value of the variable by pressing the mouse button on the needle and shifting it up and down or left and right.
+- Interactive widgets: most widgets allow you to change the value of the variable by pressing the mouse button on the needle and shifting it up and down or left and right.
 
-**•**
-: Non-interactive widgets: some widgets, like the thermometer widget, do not allow such interaction.
+- Non-interactive widgets: some widgets, like the thermometer widget, do not allow such interaction.
 
-**•**
-: Logical or choice widgets: some widgets display the values as either on/off (or true/false) or as one of a set of discrete choices. All widgets have in common, however, that you can connect them to a variable and that changing the variable changes the display. Forthermore, all widgets have the set and get methods to interact with the value that the widget displays (whether that is stored in a global variable or not). They also have in common that their appearance and behaviour is determined by one or more options that you can set at creation time and often later on as well. The widgets are all based on the *snit* package, so that the methods **configure** and **cget** are available to set and get these options.
+- Logical or choice widgets: some widgets display the values as either on/off (or true/false) or as one of a set of discrete choices.
 
+
+All widgets have in common, however, that you can connect them to a variable and that changing the variable changes the display. Forthermore, all widgets have the set and get methods to interact with the value that the widget displays (whether that is stored in a global variable or not).
+
+They also have in common that their appearance and behaviour is determined by one or more options that you can set at creation time and often later on as well. The widgets are all based on the *snit* package, so that the methods **configure** and **cget** are available to set and get these options.
 
 # Commands
 
@@ -80,142 +80,139 @@ Currently the package contains these widgets of the *vertical meter* type:
 **::controlwidget::meter** *w* *args*
 : Create a vertical meter consisting of an axis and a moveable arrow.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the variable to be associated with the meter
 
+        **background** color
+        : Background color for the widget
 
-**variable** name
-: Name of the variable to be associated with the meter
+        **height** pixels
+        : Height of the widget
 
-**background** color
-: Background color for the widget
+        **width** pixels
+        : Width of the widget
 
-**height** pixels
-: Height of the widget
+        **arrowthickness** pixels
+        : Thickness of the displayed arrow in pixels
 
-**width** pixels
-: Width of the widget
+        **arrowcolor** color
+        : Color of the displayed arrow
 
-**arrowthickness** pixels
-: Thickness of the displayed arrow in pixels
+        **readonly** boolean
+        : Whether the arrow can be moved interactively or not
 
-**arrowcolor** color
-: Color of the displayed arrow
-
-**readonly** boolean
-: Whether the arrow can be moved interactively or not
 
 
 **::controlwidget::slider** *w* *args*
 : Create a widget containing one or more vertical sliders and an axis. You can shift the slider handles interactively via the mouse.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the (list) variable to be associated with the widget
 
+        **number** integer
+        : Number of sliders in the widget
 
-**variable** name
-: Name of the (list) variable to be associated with the widget
+        **background** color
+        : Background color for the widget
 
-**number** integer
-: Number of sliders in the widget
+        **height** pixels
+        : Height of the widget
 
-**background** color
-: Background color for the widget
+        **width** pixels
+        : Width of the widget
 
-**height** pixels
-: Height of the widget
+        **sliderthickness** pixels
+        : Thickness of the slider handles
 
-**width** pixels
-: Width of the widget
+        **sliderwidth** color
+        : Width of the slider handles
 
-**sliderthickness** pixels
-: Thickness of the slider handles
+        **troughwidth** color
+        : Width of the troughs holding the sliders
 
-**sliderwidth** color
-: Width of the slider handles
-
-**troughwidth** color
-: Width of the troughs holding the sliders
 
 
 **::controlwidget::equalizerBar** *w* *args*
 : Create a widget containing one or more vertical bars resembling those found on hifi graphical equalizers. Note that it is a read-only widget.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the (list) variable to be associated with the widget
 
+        **number** integer
+        : Number of bars in the widget
 
-**variable** name
-: Name of the (list) variable to be associated with the widget
+        **background** color
+        : Background color for the widget
 
-**number** integer
-: Number of bars in the widget
+        **height** pixels
+        : Height of the widget
 
-**background** color
-: Background color for the widget
+        **width** pixels
+        : Width of the widget
 
-**height** pixels
-: Height of the widget
+        **barwidth** pixels
+        : Width of the bars
 
-**width** pixels
-: Width of the widget
+        **segments** integer
+        : Number of segments the bars are divided in
 
-**barwidth** pixels
-: Width of the bars
+        **safecolor** color
+        : Color for values lower than the warning level
 
-**segments** integer
-: Number of segments the bars are divided in
+        **warningcolor** color
+        : Color for values greater than the warning level
 
-**safecolor** color
-: Color for values lower than the warning level
+        **warninglevel** double
+        : Threshold value, determines at what level the color changes
 
-**warningcolor** color
-: Color for values greater than the warning level
-
-**warninglevel** double
-: Threshold value, determines at what level the color changes
 
 
 **::controlwidget::thermometer** *w* *args*
 : Create a thermometer widget (read-only)
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the (list) variable to be associated with the widget
+
+        **background** color
+        : Background color for the widget
+
+        **height** pixels
+        : Height of the widget
+
+        **width** pixels
+        : Width of the widget
+
+        **linethickness** pixels
+        : Thickness of the line representing the "temperature"
+
+        **linecolor** color
+        : Color of the line
 
 
-**variable** name
-: Name of the (list) variable to be associated with the widget
-
-**background** color
-: Background color for the widget
-
-**height** pixels
-: Height of the widget
-
-**width** pixels
-: Width of the widget
-
-**linethickness** pixels
-: Thickness of the line representing the "temperature"
-
-**linecolor** color
-: Color of the line
 
 
 These widgets all use a vertical axis and have the following options in common for configuring the axis:
@@ -242,166 +239,167 @@ These widgets all use a vertical axis and have the following options in common f
 : Number of minor tickmarks to draw between two major tickmarks
 
 **log** boolean
-: Use a logarithmic axis (true) or a linear axis (false) The package contains the following widget based on angle displays:
+: Use a logarithmic axis (true) or a linear axis (false)
+
+
+The package contains the following widget based on angle displays:
 
 **::controlwidget::voltmeter** *w* *args*
 : Create a voltmeter-like widget.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the variable to be associated with the meter
 
+        **value** value
+        : Value for the meter (if not associated with a variable)
 
-**variable** name
-: Name of the variable to be associated with the meter
+        **min** value
+        : The minimum value for data in the display
 
-**value** value
-: Value for the meter (if not associated with a variable)
+        **max** value
+        : The maximum value for data in the display
 
-**min** value
-: The minimum value for data in the display
+        **labels** list
+        : The labels to be shown along the scale. (These are simply considered texts, so no relation with the minimum and maximum perse)
 
-**max** value
-: The maximum value for data in the display
+        **title** string
+        : String to be shown below the dial
 
-**labels** list
-: The labels to be shown along the scale. (These are simply considered texts, so no relation with the minimum and maximum perse)
+        **width** pixels
+        : The width of the widget
 
-**title** string
-: String to be shown below the dial
+        **height** pixels
+        : The height of the widget
 
-**width** pixels
-: The width of the widget
+        **borderwidth** pixels
+        : The width of the border surrounding the entire widget
 
-**height** pixels
-: The height of the widget
+        **relief** string
+        : The relief of the border surrounding the entire widget
 
-**borderwidth** pixels
-: The width of the border surrounding the entire widget
+        **highlightthickness** pixels
+        : The width of the border to indicate the widget has keyboard focus
 
-**relief** string
-: The relief of the border surrounding the entire widget
+        **labelfont** fontname
+        : Font of the labels to the scale
 
-**highlightthickness** pixels
-: The width of the border to indicate the widget has keyboard focus
+        **titlefont** fontname
+        : Font of the title below the dial
 
-**labelfont** fontname
-: Font of the labels to the scale
+        **dialcolor** color
+        : Color of the dial holding the needle
 
-**titlefont** fontname
-: Font of the title below the dial
+        **needlecolor** color
+        : Color of the needle
 
-**dialcolor** color
-: Color of the dial holding the needle
+        **scalecolor** color
+        : Color of the scale (arc and tickmarks)
 
-**needlecolor** color
-: Color of the needle
+        **labelcolor** color
+        : Color of the labels to the scale
 
-**scalecolor** color
-: Color of the scale (arc and tickmarks)
+        **titlecolor** color
+        : Color of the title below the dial
 
-**labelcolor** color
-: Color of the labels to the scale
-
-**titlecolor** color
-: Color of the title below the dial
 
 
 **::controlwidget::tachometer** *w* *args*
 : Create a tachometer-like widget.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
+        **variable** name
+        : Name of the variable to be associated with the meter
 
+        **value** value
+        : Value for the meter (if not associated with a variable)
 
-**variable** name
-: Name of the variable to be associated with the meter
+        **dangerlevel** value
+        : Level above which values are indicated with a different color
 
-**value** value
-: Value for the meter (if not associated with a variable)
+        **dangercolor** color
+        : Color for the values above the "danger level"
 
-**dangerlevel** value
-: Level above which values are indicated with a different color
+        **dangerwidth** pixels
+        : Width for the colored band indicating the "danger level"
 
-**dangercolor** color
-: Color for the values above the "danger level"
+        **pincolor** color
+        : Color for the needle and the pin
 
-**dangerwidth** pixels
-: Width for the colored band indicating the "danger level"
-
-**pincolor** color
-: Color for the needle and the pin
 
 
 **::controlwidget::rdial** *w* *args*
 : Create a rotating dial. You can drag the dial to change the value. With the shift button depressed the value changes slowly, with the control button depressed it changes fast. Similarly, you can control the dial via the mouse wheel, with the shift and control button working in the same way as with the mouse pointer. *Note:* The shift and control buttons currently have no effect on Windows.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget:
+        **variable** name
+        : Name of the variable to be associated with the dial
+
+        **value** value
+        : Value for the dial (if not associated with a variable)
+
+        **orient** string
+        : Whether a horizontal disk/dial is required ("horizontal") or a vertical one ("vertical")
+
+        **step** value
+        : Initial step for incrementing or decrementing the value
+
+        **bindwheel** value
+        : Step size for controlling the dial's value via the mouse wheel
+
+        **slow** value
+        : Factor on the step size for incrementing or decrementing the value slowly
+
+        **fast** value
+        : Factor on the step size for incrementing or decrementing the value fast
+
+        **scale** value
+        : Scale value to be applied to the actual value
+
+        **callback** command
+        : Command to be called when the value changes
+
+        **width** pixels
+        : The width of the widget
+
+        **height** pixels
+        : The height of the widget
+
+        **background** color
+        : The background color of the widget (coloring of the disk/dial)
+
+        **foreground** color
+        : The foreground color of the widget (the marker lines)
 
 
-**variable** name
-: Name of the variable to be associated with the dial
-
-**value** value
-: Value for the dial (if not associated with a variable)
-
-**orient** string
-: Whether a horizontal disk/dial is required ("horizontal") or a vertical one ("vertical")
-
-**step** value
-: Initial step for incrementing or decrementing the value
-
-**bindwheel** value
-: Step size for controlling the dial's value via the mouse wheel
-
-**slow** value
-: Factor on the step size for incrementing or decrementing the value slowly
-
-**fast** value
-: Factor on the step size for incrementing or decrementing the value fast
-
-**scale** value
-: Scale value to be applied to the actual value
-
-**callback** command
-: Command to be called when the value changes
-
-**width** pixels
-: The width of the widget
-
-**height** pixels
-: The height of the widget
-
-**background** color
-: The background color of the widget (coloring of the disk/dial)
-
-**foreground** color
-: The foreground color of the widget (the marker lines)
 
 
 All these widgets have the following methods:
 
-**\$widget** get
+**$widget** get
 : Return the current value or values shown in the widget
 
-**\$widget** set *value*
+**$widget** set *value*
 : Reset the value or values shown in the widget. If the widget is associated with a variable, that variable is set as well.
 
+    value *double/list*
+    : New value or values for the widget
 
-value *double/list*
-: New value or values for the widget
 
 
 Two further widgets are available, meant to display logical values:
@@ -409,98 +407,93 @@ Two further widgets are available, meant to display logical values:
 **::controlwidget::led** *w* *args*
 : Create a LED-like widget.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
+        **variable** name
+        : Name of the variable to be associated with the LED
 
+        **size** pixels
+        : Diameter of the LED widget
 
-**variable** name
-: Name of the variable to be associated with the LED
+        **on** color
+        : Color to use for the "on" state
 
-**size** pixels
-: Diameter of the LED widget
+        **off** color
+        : Color to use for the "off" state
 
-**on** color
-: Color to use for the "on" state
-
-**off** color
-: Color to use for the "off" state
 
 
 **::controlwidget::radioMatrix** *w* *args*
 : Create a matrix of radio buttons that behaves as a single widget.
 
+    widget *w* (in)
+    : Name of the widget to be created.
 
-widget *w* (in)
-: Name of the widget to be created.
+    arguments *args* (in)
+    : List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
 
-arguments *args* (in)
-: List of key-value pairs, controlling the appearance and behaviour of the widget. In addition to the ones given for the voltmeter widget:
+        **variable** name
+        : Name of the variable to be associated with the matrix
+
+        **orient** string
+        : The way the radio buttons are to be arranged (horizontal or vertical first)
+
+        **rows** integer
+        : Number of rows in the matrix
+
+        **columns** integer
+        : Number of columns in the matrix
+
+        **command** list
+        : Command associated with the radio buttons. Invoked when the active radio button changes.
 
 
-**variable** name
-: Name of the variable to be associated with the matrix
-
-**orient** string
-: The way the radio buttons are to be arranged (horizontal or vertical first)
-
-**rows** integer
-: Number of rows in the matrix
-
-**columns** integer
-: Number of columns in the matrix
-
-**command** list
-: Command associated with the radio buttons. Invoked when the active radio button changes.
 
 
 The LED widget has the following public methods:
 
-**\$led** on
+**$led** on
 : Set the state to "on"
 
-**\$led** off
+**$led** off
 : Set the state to "off"
 
-**\$led** setstate *state*
+**$led** setstate *state*
 : Set the state according to the value of "state"
 
+    state *boolean* (in)
+    : New state for the LED widget
 
-state *boolean* (in)
-: New state for the LED widget
 
 
 The radioMatrix widget has two public methods:
 
-**\$matrix** get
+**$matrix** get
 : Return the index of the currently selected radio button
 
-**\$matrix** set *index*
+**$matrix** set *index*
 : Select the radio button with index "index"
 
+    index *integer*
+    : Index of the radio button to be set
 
-index *integer*
-: Index of the radio button to be set
 
 
 # Acknowledgments
 
 The code for most of these widgets first appeared on the Wiki. In many cases, Arjen Markus merely refactored the code a bit and "snitified" some of them. The original code was developed by the following people:
 
-**•**
-: Vertical meter, LED display, radio matrix: Ron Fox
+- Vertical meter, LED display, radio matrix: Ron Fox
 
-**•**
-: Rotating dials: Gerhard Reithofer
+- Rotating dials: Gerhard Reithofer
 
-**•**
-: Voltmeter and tachometer: Marco Maggi
+- Voltmeter and tachometer: Marco Maggi
 
-**•**
-: Code for moving the needle: ?
+- Code for moving the needle: ?
 
 
 # Bugs, ideas, feedback

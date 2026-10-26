@@ -1,5 +1,6 @@
 ---
 CommandName: append
+title: append
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -15,23 +16,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 append - Hängt an eine Variable an
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[append]{.cmd} [varName]{.arg} [value value value]{.optdot} 
+[append]{.cmd} [varName]{.arg} [value value value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Hängt alle *value*-Argumente an den aktuellen Wert der Variable *varName* an. Existiert *varName* noch nicht, erhält sie einen Wert, der der Verkettung aller *value*-Argumente entspricht.
+Hängt alle *value*-Argumente an den aktuellen Wert der Variable *varName* an. Existiert *varName* noch nicht, erhält sie einen Wert, der der Verkettung aller *value*-Argumente entspricht. Das Ergebnis des Befehls ist der neue in *varName* gespeicherte Wert. Der Befehl eignet sich effizient zum schrittweisen Aufbau langer Variablen. Beispielsweise ist „**append a \$b**“ deutlich effizienter als „**set a \$a\$b**“, wenn **\$a** lang ist.
 
-Das Ergebnis des Befehls ist der neue in *varName* gespeicherte Wert. Der Befehl eignet sich effizient zum schrittweisen Aufbau langer Variablen. Beispielsweise ist „**append a \$b**“ deutlich effizienter als „**set a \$a\$b**“, wenn **\$a** lang ist.
-
-# BEISPIELE
+# Beispiel
 
 Baut in einer Schleife schrittweise eine Zeichenkette kommagetrennter Zahlen auf:
 

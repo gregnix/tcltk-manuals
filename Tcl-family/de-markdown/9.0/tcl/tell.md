@@ -1,5 +1,6 @@
 ---
 CommandName: tell
+title: tell
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -11,16 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 tell - Gibt die aktuelle Zugriffsposition eines offenen Kanals zurück
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tell]{.cmd} [channel]{.arg} 
+[tell]{.cmd} [channel]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **tell** wurde durch den Befehl **chan tell** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Der Befehl **tell** wurde durch den Befehl [chan tell][chan] ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+
+
+[chan]: chan.md

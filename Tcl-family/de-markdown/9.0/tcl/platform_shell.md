@@ -1,5 +1,6 @@
 ---
 CommandName: platform::shell
+title: platform::shell
 ManualSection: n
 Version: 1.1.4
 TclPart: platform::shell
@@ -13,21 +14,21 @@ Copyright:
  - Copyright (c) 2006-2008 ActiveState Software Inc
 ---
 
-# NAME
+# Name
 
 platform::shell - Unterstützungscode und Hilfsmittel zur Systemidentifikation
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [1.1.4]{.optlit} 
+[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [1.1.4]{.optlit}
 
-[platform::shell::generic]{.cmd} [shell]{.arg} 
-[platform::shell::identify]{.cmd} [shell]{.arg} 
-[platform::shell::platform]{.cmd} [shell]{.arg} 
+[platform::shell::generic]{.cmd} [shell]{.arg}
+[platform::shell::identify]{.cmd} [shell]{.arg}
+[platform::shell::platform]{.cmd} [shell]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **platform::shell** stellt mehrere Hilfsbefehle bereit, die zur Identifikation der Architektur einer bestimmten Tcl-Shell nützlich sind.
 
@@ -37,14 +38,16 @@ Auf den meisten Plattformen ist die Architektur der abgefragten Shell mit der de
 
 Für Anwendungen wie ein Code-Repository ist es wichtig, die Architektur der Shell zu kennen, die installierte Pakete tatsächlich ausführt — nicht nur die Architektur der Shell, die die Repository-Software betreibt.
 
-# BEFEHLE
+# Befehle
 
-**platform::shell::identify** *shell*
-: Führt dieselbe Identifikation wie **platform::identify** durch, jedoch für die angegebene Tcl-Shell statt für die laufende Shell.
+[platform::shell::identify]{.cmd} [shell]{.arg}
+: Führt dieselbe Identifikation wie [platform::identify][platform] durch, jedoch für die angegebene Tcl-Shell statt für die laufende Shell.
 
-**platform::shell::generic** *shell*
-: Führt dieselbe Identifikation wie **platform::generic** durch, jedoch für die angegebene Tcl-Shell statt für die laufende Shell.
+[platform::shell::generic]{.cmd} [shell]{.arg}
+: Führt dieselbe Identifikation wie [platform::generic][platform] durch, jedoch für die angegebene Tcl-Shell statt für die laufende Shell.
 
-**platform::shell::platform** *shell*
-: Gibt den Inhalt von **tcl_platform(platform)** für die angegebene Tcl-Shell zurück.
+[platform::shell::platform]{.cmd} [shell]{.arg}
+: Gibt den Inhalt von **tcl\_platform(platform)** für die angegebene Tcl-Shell zurück.
 
+
+[platform]: platform.md

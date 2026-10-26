@@ -1,5 +1,6 @@
 ---
 CommandName: bench_lang_intro
+title: bench_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -17,11 +18,11 @@ Copyright:
  - Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-bench_lang_intro – Einleitung in die Bench-Sprache
+bench\_lang\_intro – Einleitung in die Bench-Sprache
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument bietet anhand zahlreicher Beispiele eine informelle Einleitung in Version 1 der Bench-Sprache. Nach der Lektüre dieses Dokuments sollte ein Benchmark-Entwickler in der Lage sein, die formale *Spezifikation der Bench-Sprache* zu verstehen.
 
@@ -65,7 +66,7 @@ Anstatt den **-body** nur einmal auszuführen, führt das System den **-body** t
 
 Der Nachteil dieser Vorgehensweise besteht darin, dass wir bei der Messung von Operationen, die nicht idempotent sind, höchstwahrscheinlich nicht die Zeit für die gewünschte Operation messen, sondern die Zeit für den Zustand bzw. die Zustände, in denen sich das System nach der ersten Iteration befindet – eine Mischung aus Faktoren, die für uns nicht von Interesse sind.
 
-Sollten wir beispielsweise die Zeit messen wollen, die benötigt wird, um ein Element in eine Menge aufzunehmen, wobei sich das Element noch nicht in der Menge befindet und die Menge bestimmte Eigenschaften aufweist – wie beispielsweise, dass es sich um ein gemeinsam genutztes Tcl_Obj handelt –, dann wird in der ersten Iteration die dafür benötigte Zeit gemessen. *Allerdings* messen alle nachfolgenden Iterationen die Zeit für die Aufnahme eines Elements, das sich bereits in der Menge befindet, und das Tcl_Obj, das die Menge enthält, wird ebenfalls nicht mehr gemeinsam genutzt. Letztendlich werden die für die mehreren hundert Iterationen in diesem Zustand gemessenen Zeiten die Zeit aus der ersten Iteration bei weitem überwiegen – der einzigen, die tatsächlich das gemessen hat, was wir wollten.
+Sollten wir beispielsweise die Zeit messen wollen, die benötigt wird, um ein Element in eine Menge aufzunehmen, wobei sich das Element noch nicht in der Menge befindet und die Menge bestimmte Eigenschaften aufweist – wie beispielsweise, dass es sich um ein gemeinsam genutztes Tcl\_Obj handelt –, dann wird in der ersten Iteration die dafür benötigte Zeit gemessen. *Allerdings* messen alle nachfolgenden Iterationen die Zeit für die Aufnahme eines Elements, das sich bereits in der Menge befindet, und das Tcl\_Obj, das die Menge enthält, wird ebenfalls nicht mehr gemeinsam genutzt. Letztendlich werden die für die mehreren hundert Iterationen in diesem Zustand gemessenen Zeiten die Zeit aus der ersten Iteration bei weitem überwiegen – der einzigen, die tatsächlich das gemessen hat, was wir wollten.
 
 Die erweiterten Initialisierungs- und Bereinigungscodes, nämlich der **-ipre**- bzw. der **-ipost**-Rumpf, dienen genau der Lösung dieses Problems. Während die regulären Initialisierungs- und Bereinigungscodes vor und nach der gesamten Iterationsreihe ausgeführt werden, werden die erweiterten Codes vor und nach jeder einzelnen Iteration des Rumpfes ausgeführt, ohne selbst gemessen zu werden. Dadurch können sie das System genau in den Zustand versetzen, den der Rumpf messen möchte.
 
@@ -82,11 +83,11 @@ bench -desc "set include, missing <SC> x$times $n" -ipre {
 }
 ```
 
-# WEITERFÜHRENDE LITERATUR
+# Weiterführende Literatur
 
 Nachdem der Leser – von dem angenommen wird, dass er ein *Entwickler* von Benchmarks ist – dieses Dokument verinnerlicht hat, sollte er ausreichend gerüstet sein, um die formale *Spezifikation der Bench-Sprache* zu verstehen. Diese dient zudem als detaillierte Spezifikation und Spickzettel für alle verfügbaren Befehle und deren Syntax.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *bench* als Kategorie an.
 
@@ -94,11 +95,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Benchmark-Werkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>

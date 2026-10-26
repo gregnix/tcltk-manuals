@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg::export::json
+title: pt::peg::export::json
 ManualSection: n
 Version: 1
 TclPart: tcllib
@@ -29,36 +30,34 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 pt::peg::export::json – PEG-Export-Plugin. JSON-Format schreiben
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::peg::export::json]{.lit} [1]{.optlit} 
-[package]{.cmd} [require]{.sub} [pt::peg::to::json]{.lit} 
-[export]{.cmd} [serial]{.arg} [configuration]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::peg::export::json]{.lit} [1]{.optlit}
+[package]{.cmd} [require]{.sub} [pt::peg::to::json]{.lit}
+[export]{.cmd} [serial]{.arg} [configuration]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
 Dieses Paket implementiert das Export-Plugin für Parsing Expression Grammars zur Erzeugung von JSON-Markup.
 
-Es befindet sich im Abschnitt „Export“ der Kernschicht der Parser-Tools und ist für die Verwendung durch **pt::peg::export**, den Exportmanager, vorgesehen, der zwischen diesem und der entsprechenden Kernkonvertierungsfunktionalität, die von **pt::peg::to::json** bereitgestellt wird, angesiedelt ist.
+Es befindet sich im Abschnitt „Export“ der Kernschicht der Parser-Tools und ist für die Verwendung durch **pt::peg::export**, den Exportmanager, vorgesehen, der zwischen diesem und der entsprechenden Kernkonvertierungsfunktionalität, die von [pt::peg::to::json][pt_peg_to_json] bereitgestellt wird, angesiedelt ist.
 
-IMAGE: arch_core_eplugins
+IMAGE: arch\_core\_eplugins
 
 Zwar ist die direkte Verwendung dieses Pakets mit einem herkömmlichen Interpreter möglich, doch wird davon dringend abgeraten, da hierfür eine Reihe von Umwegen erforderlich ist, um die erwartete Umgebung bereitzustellen. Die richtige Vorgehensweise bei der Nutzung dieser Funktionalität hängt von der jeweiligen Situation ab:
 
-**\[1\]**
-: In einer nicht vertrauenswürdigen Umgebung erfolgt der ordnungsgemäße Zugriff über das Paket **pt::peg::export** und die darin bereitgestellten Exportmanager-Objekte.
+1. In einer nicht vertrauenswürdigen Umgebung erfolgt der ordnungsgemäße Zugriff über das Paket **pt::peg::export** und die darin bereitgestellten Exportmanager-Objekte.
 
-**\[2\]**
-: In einer vertrauenswürdigen Umgebung wird einfach das Paket **pt::peg::to::json** verwendet und direkt auf die zentralen Konvertierungsfunktionen zugegriffen.
+2. In einer vertrauenswürdigen Umgebung wird einfach das Paket [pt::peg::to::json][pt_peg_to_json] verwendet und direkt auf die zentralen Konvertierungsfunktionen zugegriffen.
 
 
 # API
@@ -66,74 +65,73 @@ Zwar ist die direkte Verwendung dieses Pakets mit einem herkömmlichen Interpret
 Die von diesem Paket bereitgestellte API entspricht der Spezifikation der Plugin-API, die in der Spezifikation *Parser Tools Export API* zu finden ist.
 
 **export** *serial* *configuration*
-: Dieser Befehl nimmt die kanonische Serialisierung einer Parsing Expression Grammar entgegen, wie sie im Abschnitt **PEG-SERIALISIERUNGSFORMAT** festgelegt ist und in *serial* enthalten ist, sowie die *configuration*, ein Dictionary, und generiert eine JSON-Kodierung, die die Grammatik kodiert. Die erzeugte Zeichenkette wird anschließend als Ergebnis des Befehls zurückgegeben.
+: Dieser Befehl nimmt die kanonische Serialisierung einer Parsing Expression Grammar entgegen, wie sie im Abschnitt [PEG-Serialisierungsformat] festgelegt ist und in *serial* enthalten ist, sowie die *configuration*, ein Dictionary, und generiert eine JSON-Kodierung, die die Grammatik kodiert. Die erzeugte Zeichenkette wird anschließend als Ergebnis des Befehls zurückgegeben.
 
 
-# KONFIGURATION
+# Konfiguration
 
 Das JSON-Export-Plugin erkennt die folgenden Konfigurationsvariablen und ändert sein Verhalten so, wie sie es vorgeben.
 
 boolean *indented*
-: Ist dieses Flag gesetzt, bricht das Plugin den erzeugten JSON-Code auf mehrere Zeilen um und rückt ihn entsprechend seinem inneren Aufbau ein, mit jedem Schlüssel eines Dictionarys in einer eigenen Zeile. Ist dieses Flag nicht gesetzt (die Vorgabe), wird das ganze JSON-Objekt in eine einzige Zeile geschrieben, mit möglichst wenig Abstand zwischen allen Elementen.
+: Ist dieses Flag gesetzt, bricht das Plugin den erzeugten JSON-Code auf mehrere Zeilen um und rückt ihn entsprechend seinem inneren Aufbau ein, mit jedem Schlüssel eines Dictionarys in einer eigenen Zeile.
+
+    Ist dieses Flag nicht gesetzt (die Vorgabe), wird das ganze JSON-Objekt in eine einzige Zeile geschrieben, mit möglichst wenig Abstand zwischen allen Elementen.
 
 boolean *aligned*
-: Ist dieses Flag gesetzt, sorgt der Generator dafür, dass die Werte der Schlüssel in einem Dictionary vertikal zueinander ausgerichtet sind, um einen ansprechenden Tabelleneffekt zu erzielen. Damit dies funktioniert, muss außerdem das Flag **indented** gesetzt sein. Wenn dieses Flag nicht gesetzt ist (Standardeinstellung), wird die Ausgabe gemäß dem Wert von **indented** formatiert, ohne dass versucht wird, die Werte der Dictionary-Schlüssel auszurichten. *Hinweis*: Dieses Plugin ignoriert die Standard-Konfigurationsvariablen **user**, **format**, **file** und **name** sowie deren Werte.
+: Ist dieses Flag gesetzt, sorgt der Generator dafür, dass die Werte der Schlüssel in einem Dictionary vertikal zueinander ausgerichtet sind, um einen ansprechenden Tabelleneffekt zu erzielen. Damit dies funktioniert, muss außerdem das Flag **indented** gesetzt sein.
+
+    Wenn dieses Flag nicht gesetzt ist (Standardeinstellung), wird die Ausgabe gemäß dem Wert von **indented** formatiert, ohne dass versucht wird, die Werte der Dictionary-Schlüssel auszurichten.
 
 
-# JSON-AUSTAUSCHFORMAT FÜR GRAMMATIKEN
+*Hinweis*: Dieses Plugin ignoriert die Standard-Konfigurationsvariablen **user**, **format**, **file** und **name** sowie deren Werte.
+
+# JSON-Austauschformat für Grammatiken
 
 Das Format **json** für Parsing Expression Grammars wurde als Datenaustauschformat geschrieben, das nicht an Tcl gebunden ist. Es wurde definiert, um den Austausch von Grammatiken mit PackRat/PEG-basierten Parsergeneratoren für andere Sprachen zu ermöglichen.
 
 Dies wird durch die folgenden Regeln formal festgelegt:
 
-**\[1\]**
-: Das JSON-Format eines jeden PEG ist ein JSON-Objekt.
+1. Das JSON-Format eines jeden PEG ist ein JSON-Objekt.
 
-**\[2\]**
-: Dieses Objekt enthält einen einzigen Schlüssel, **pt::grammar::peg**, sowie dessen Wert. Dieser Wert enthält den Inhalt der Grammatik.
+2. Dieses Objekt enthält einen einzigen Schlüssel, **pt::grammar::peg**, sowie dessen Wert. Dieser Wert enthält den Inhalt der Grammatik.
 
-**\[3\]**
-: Der Inhalt der Grammatik ist ein JSON-Objekt, das die Menge der nichtterminalen Symbole und den Startausdruck enthält. Die relevanten Schlüssel und ihre Werte lauten
+3. Der Inhalt der Grammatik ist ein JSON-Objekt, das die Menge der nichtterminalen Symbole und den Startausdruck enthält. Die relevanten Schlüssel und ihre Werte lauten
 
+    **rules**
+    : Der Wert ist ein JSON-Objekt, dessen Schlüssel die Namen der in der Grammatik bekannten nichtterminalen Symbole sind.
 
-**rules**
-: Der Wert ist ein JSON-Objekt, dessen Schlüssel die Namen der in der Grammatik bekannten nichtterminalen Symbole sind.
+        1. Jedes nichtterminale Symbol darf nur einmal vorkommen.
 
+        2. Die leere Zeichenkette ist kein zulässiges nichtterminales Symbol.
 
-**\[1\]**
-: Jedes nichtterminale Symbol darf nur einmal vorkommen.
+        3. Der Wert für jedes Symbol ist selbst ein JSON-Objekt. Die relevanten Schlüssel und ihre Werte in diesem Dictionary lauten
 
-**\[2\]**
-: Die leere Zeichenkette ist kein zulässiges nichtterminales Symbol.
+            **is**
+            : Der Wert ist eine JSON-Zeichenkette, die die Tcl-Serialisierung des Parsing-Ausdrucks enthält, der die Satzstruktur des Symbols beschreibt, wie im Abschnitt [PE-Serialisierungsformat] festgelegt.
 
-**\[3\]**
-: Der Wert für jedes Symbol ist selbst ein JSON-Objekt. Die relevanten Schlüssel und ihre Werte in diesem Dictionary lauten
+            **mode**
+            : Der Wert ist ein JSON-Wert mit einem von drei Werten, die festlegen, wie ein Parser den durch das Symbol erzeugten semantischen Wert verarbeiten soll.
 
+                **value**
+                : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
 
-**is**
-: Der Wert ist eine JSON-Zeichenkette, die die Tcl-Serialisierung des Parsing-Ausdrucks enthält, der die Satzstruktur des Symbols beschreibt, wie im Abschnitt **PE-SERIALISIERUNGSFORMAT** festgelegt.
+                **leaf**
+                : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
 
-**mode**
-: Der Wert ist ein JSON-Wert mit einem von drei Werten, die festlegen, wie ein Parser den durch das Symbol erzeugten semantischen Wert verarbeiten soll.
-
-
-**value**
-: Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
-
-**leaf**
-: Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
-
-**void**
-: Das Nichtterminal hat keinen semantischen Wert. Alle ASTs, die durch die rechte Seite des Symbols erzeugt werden, werden (ebenfalls) verworfen.
+                **void**
+                : Das Nichtterminal hat keinen semantischen Wert. Alle ASTs, die durch die rechte Seite des Symbols erzeugt werden, werden (ebenfalls) verworfen.
 
 
-**start**
-: Der Wert ist eine JSON-Zeichenkette, die die Tcl-Serialisierung des Start-Parsing-Ausdrucks der Grammatik enthält, wie im Abschnitt **PE-SERIALISIERUNGSFORMAT** beschrieben.
 
 
-**\[4\]**
-: Die Terminalsymbole der Grammatik werden implizit als die Menge aller Terminalsymbole festgelegt, die im Startausdruck und auf der rechten Seite der Grammatikregeln verwendet werden. Als Anmerkung für den fortgeschrittenen Leser: Dies entspricht im Wesentlichen der Tcl-Serialisierung von PE-Grammatiken, wie sie im Abschnitt **PEG-SERIALISIERUNGSFORMAT** festgelegt ist, mit dem Unterschied, dass die Tcl-Dictionaries und -Listen dieses Formats auf JSON-Objekte und -Arrays abgebildet werden. Lediglich die Parsing-Ausdrücke selbst werden nicht weiter übersetzt, sondern als JSON-Zeichenketten beibehalten, die eine verschachtelte Tcl-Liste enthalten, und auch für das JSON gibt es kein Konzept der Kanonizität.
+    **start**
+    : Der Wert ist eine JSON-Zeichenkette, die die Tcl-Serialisierung des Start-Parsing-Ausdrucks der Grammatik enthält, wie im Abschnitt [PE-Serialisierungsformat] beschrieben.
 
+
+4. Die Terminalsymbole der Grammatik werden implizit als die Menge aller Terminalsymbole festgelegt, die im Startausdruck und auf der rechten Seite der Grammatikregeln verwendet werden.
+
+
+Als Anmerkung für den fortgeschrittenen Leser: Dies entspricht im Wesentlichen der Tcl-Serialisierung von PE-Grammatiken, wie sie im Abschnitt [PEG-Serialisierungsformat] festgelegt ist, mit dem Unterschied, dass die Tcl-Dictionaries und -Listen dieses Formats auf JSON-Objekte und -Arrays abgebildet werden. Lediglich die Parsing-Ausdrücke selbst werden nicht weiter übersetzt, sondern als JSON-Zeichenketten beibehalten, die eine verschachtelte Tcl-Liste enthalten, und auch für das JSON gibt es kein Konzept der Kanonizität.
 
 ## Beispiel
 
@@ -216,74 +214,60 @@ pt::grammar::peg {
 
 Die Ähnlichkeit des Letzteren mit JSON dürfte ziemlich offensichtlich sein.
 
-# PEG-SERIALISIERUNGSFORMAT
+# PEG-Serialisierungsformat
 
 Hier legen wir das Format fest, das von den Parser-Tools verwendet wird, um Parsing Expression Grammars als unveränderliche Werte für die Übertragung, den Vergleich usw. zu serialisieren.
 
 Wir unterscheiden zwischen *regulären* und *kanonischen* Serialisierungen. Auch wenn ein PEG mehr als eine reguläre Serialisierung haben kann, ist jeweils genau eine davon *kanonisch*.
 
-**Reguläre Serialisierung**
-: 
+Reguläre Serialisierung
+: 1. Die Serialisierung eines beliebigen PEG ist ein verschachteltes Tcl-Dictionary.
+
+    2. Dieses Dictionary enthält einen einzigen Schlüssel, **pt::grammar::peg**, sowie dessen Wert. Dieser Wert enthält den Inhalt der Grammatik.
+
+    3. Der Inhalt der Grammatik besteht aus einem Tcl-Dictionary, das die Menge der nichtterminalen Symbole und den Startausdruck enthält. Die relevanten Schlüssel und ihre Werte lauten
+
+        **rules**
+        : Der Wert ist ein Tcl-Dictionary, dessen Schlüssel die Namen der in der Grammatik bekannten nichtterminalen Symbole sind.
+
+            1. Jedes nichtterminale Symbol darf nur einmal vorkommen.
+
+            2. Die leere Zeichenkette ist kein zulässiges nichtterminales Symbol.
+
+            3. Der Wert für jedes Symbol ist selbst ein Tcl-Dictionary. Die entsprechenden Schlüssel und ihre Werte in diesem Dictionary lauten
+
+                **is**
+                : Der Wert entspricht der Serialisierung des Parsing-Ausdrucks, der die Satzstruktur des Symbols beschreibt, wie im Abschnitt [PE-Serialisierungsformat] festgelegt.
+
+                **mode**
+                : Der Wert kann einer von drei Werten sein, die festlegen, wie ein Parser mit dem durch das Symbol erzeugten semantischen Wert umgehen soll.
+
+                    **value**
+                    : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
+
+                    **leaf**
+                    : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
+
+                    **void**
+                    : Das Nichtterminal hat keinen semantischen Wert. Alle ASTs, die durch die rechte Seite des Symbols erzeugt werden, werden (ebenfalls) verworfen.
 
 
-**\[1\]**
-: Die Serialisierung eines beliebigen PEG ist ein verschachteltes Tcl-Dictionary.
-
-**\[2\]**
-: Dieses Dictionary enthält einen einzigen Schlüssel, **pt::grammar::peg**, sowie dessen Wert. Dieser Wert enthält den Inhalt der Grammatik.
-
-**\[3\]**
-: Der Inhalt der Grammatik besteht aus einem Tcl-Dictionary, das die Menge der nichtterminalen Symbole und den Startausdruck enthält. Die relevanten Schlüssel und ihre Werte lauten
 
 
-**rules**
-: Der Wert ist ein Tcl-Dictionary, dessen Schlüssel die Namen der in der Grammatik bekannten nichtterminalen Symbole sind.
+        **start**
+        : Der Wert entspricht der Serialisierung des Start-Parsing-Ausdrucks der Grammatik, wie im Abschnitt [PE-Serialisierungsformat] beschrieben.
 
 
-**\[1\]**
-: Jedes nichtterminale Symbol darf nur einmal vorkommen.
-
-**\[2\]**
-: Die leere Zeichenkette ist kein zulässiges nichtterminales Symbol.
-
-**\[3\]**
-: Der Wert für jedes Symbol ist selbst ein Tcl-Dictionary. Die entsprechenden Schlüssel und ihre Werte in diesem Dictionary lauten
+    4. Die Terminalsymbole der Grammatik werden implizit als die Menge aller Terminalsymbole festgelegt, die im Startausdruck und auf der rechten Seite der Grammatikregeln verwendet werden.
 
 
-**is**
-: Der Wert entspricht der Serialisierung des Parsing-Ausdrucks, der die Satzstruktur des Symbols beschreibt, wie im Abschnitt **PE-SERIALISIERUNGSFORMAT** festgelegt.
-
-**mode**
-: Der Wert kann einer von drei Werten sein, die festlegen, wie ein Parser mit dem durch das Symbol erzeugten semantischen Wert umgehen soll.
-
-
-**value**
-: Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
-
-**leaf**
-: Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
-
-**void**
-: Das Nichtterminal hat keinen semantischen Wert. Alle ASTs, die durch die rechte Seite des Symbols erzeugt werden, werden (ebenfalls) verworfen.
-
-
-**start**
-: Der Wert entspricht der Serialisierung des Start-Parsing-Ausdrucks der Grammatik, wie im Abschnitt **PE-SERIALISIERUNGSFORMAT** beschrieben.
-
-
-**\[4\]**
-: Die Terminalsymbole der Grammatik werden implizit als die Menge aller Terminalsymbole festgelegt, die im Startausdruck und auf der rechten Seite der Grammatikregeln verwendet werden.
-
-
-**Kanonische Serialisierung**
+Kanonische Serialisierung
 : Die kanonische Serialisierung einer Grammatik hat das im vorherigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieser Grammatik eindeutig ist.
 
+    1. Die Schlüssel in allen verschachtelten Tcl-Dictionaries sind in aufsteigender Wörterbuchreihenfolge sortiert, wie sie der eingebaute Tcl-Befehl **lsort -increasing -dict** erzeugt.
 
-**\[1\]**
-: Die Schlüssel in allen verschachtelten Tcl-Dictionaries sind in aufsteigender Wörterbuchreihenfolge sortiert, wie sie der eingebaute Tcl-Befehl **lsort -increasing -dict** erzeugt.
+    2. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
-**\[2\]**
-: Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
 
 ## Beispiel
@@ -321,110 +305,77 @@ pt::grammar::peg {
 }
 ```
 
-# PE-SERIALISIERUNGSFORMAT
+# PE-Serialisierungsformat
 
 Hier legen wir das Format fest, das von den Parser-Tools verwendet wird, um Parsing-Ausdrücke als unveränderliche Werte für die Übertragung, den Vergleich usw. zu serialisieren.
 
 Wir unterscheiden zwischen *regulären* und *kanonischen* Serialisierungen. Auch wenn ein Parsing-Ausdruck mehr als eine reguläre Serialisierung aufweisen kann, ist jeweils genau eine davon *kanonisch*.
 
-**Reguläre Serialisierung**
-: 
+Reguläre Serialisierung
+: siehe unten ...
+
+    **Atomare Parsing-Ausdrücke**
+    : 1. Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
+
+        2. Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
+
+        3. Die Zeichenfolge **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        4. Die Zeichenfolge **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        5. Die Zeichenfolge **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        6. Die Zeichenfolge **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        7. Die Zeichenfolge **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        8. Die Zeichenfolge **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        9. Die Zeichenfolge **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        10. Die Zeichenfolge **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        11. Die Zeichenfolge **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        12. Die Zeichenfolge **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        13. Die Zeichenfolge **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        14. Die Zeichenfolge **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        15. Die Zeichenfolge **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+
+        16. Die Zeichenfolge **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
+
+        17. Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
+
+        18. Der Ausdruck \[list n **A**\] ist ein atomarer Parsing-Ausdruck. Er passt auf das Nichtterminal **A**.
 
 
-**Atomare Parsing-Ausdrücke**
-: 
+    **Zusammengesetzte Parsing-Ausdrücke**
+    : 1. Für die Parsing-Ausdrücke **e1**, **e2**, … ist das Ergebnis von \[list / **e1** **e2** … \] ebenfalls ein Parsing-Ausdruck. Hierbei handelt es sich um die *geordnete Auswahl*, auch bekannt als *priorisierte Auswahl*.
+
+        2. Für die Parsing-Ausdrücke **e1**, **e2**, … ist das Ergebnis von \[list x **e1** **e2** … \] ebenfalls ein Parsing-Ausdruck. Dies ist die *Sequenz*.
+
+        3. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list \* **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist der *Kleene-Abschluss*, der null oder mehr Wiederholungen beschreibt.
+
+        4. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list + **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist der *positive Kleene-Abschluss*, der eine oder mehrere Wiederholungen beschreibt.
+
+        5. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list & **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *And-Lookahead-Prädikat*.
+
+        6. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ! **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *Not-Lookahead-Prädikat*.
+
+        7. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ? **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist die *optionale Eingabe*.
 
 
-**\[1\]**
-: Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
 
-**\[2\]**
-: Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
-
-**\[3\]**
-: Die Zeichenfolge **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[4\]**
-: Die Zeichenfolge **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[5\]**
-: Die Zeichenfolge **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[6\]**
-: Die Zeichenfolge **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[7\]**
-: Die Zeichenfolge **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[8\]**
-: Die Zeichenfolge **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[9\]**
-: Die Zeichenfolge **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[10\]**
-: Die Zeichenfolge **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[11\]**
-: Die Zeichenfolge **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[12\]**
-: Die Zeichenfolge **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[13\]**
-: Die Zeichenfolge **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[14\]**
-: Die Zeichenfolge **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[15\]**
-: Die Zeichenfolge **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
-
-**\[16\]**
-: Die Zeichenfolge **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
-
-**\[17\]**
-: Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
-
-**\[18\]**
-: Der Ausdruck \[list n **A**\] ist ein atomarer Parsing-Ausdruck. Er passt auf das Nichtterminal **A**.
-
-
-**Zusammengesetzte Parsing-Ausdrücke**
-: 
-
-
-**\[1\]**
-: Für die Parsing-Ausdrücke **e1**, **e2**, … ist das Ergebnis von \[list / **e1** **e2** … \] ebenfalls ein Parsing-Ausdruck. Hierbei handelt es sich um die *geordnete Auswahl*, auch bekannt als *priorisierte Auswahl*.
-
-**\[2\]**
-: Für die Parsing-Ausdrücke **e1**, **e2**, … ist das Ergebnis von \[list x **e1** **e2** … \] ebenfalls ein Parsing-Ausdruck. Dies ist die *Sequenz*.
-
-**\[3\]**
-: Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list \* **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist der *Kleene-Abschluss*, der null oder mehr Wiederholungen beschreibt.
-
-**\[4\]**
-: Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list + **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist der *positive Kleene-Abschluss*, der eine oder mehrere Wiederholungen beschreibt.
-
-**\[5\]**
-: Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list & **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *And-Lookahead-Prädikat*.
-
-**\[6\]**
-: Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ! **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *Not-Lookahead-Prädikat*.
-
-**\[7\]**
-: Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ? **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist die *optionale Eingabe*.
-
-
-**Kanonische Serialisierung**
+Kanonische Serialisierung
 : Die kanonische Serialisierung eines Parsing-Ausdrucks hat das im vorherigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Parsing-Ausdrucks eindeutig ist.
 
+    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
-**\[1\]**
-: Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    2. Terminale werden *nicht* als Bereiche kodiert (bei denen Anfang und Ende des Bereichs identisch sind).
 
-**\[2\]**
-: Terminale werden *nicht* als Bereiche kodiert (bei denen Anfang und Ende des Bereichs identisch sind).
 
 
 ## Beispiel
@@ -441,7 +392,7 @@ dann lautet seine kanonische Serialisierung (mit Ausnahme von Leerzeichen)
     {x {n Term} {* {x {n AddOp} {n Term}}}}
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pt* als Kategorie an.
 
@@ -449,12 +400,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Parser und Grammatiken
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_to_json]: pt_peg_to_json.md

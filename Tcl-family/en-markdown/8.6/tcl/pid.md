@@ -1,5 +1,6 @@
 ---
 CommandName: pid
+title: pid
 ManualSection: n
 Version: 7.0
 TclPart: Tcl
@@ -23,12 +24,12 @@ pid - Retrieve process identifiers
 # Synopsis
 
 ::: {.synopsis} :::
-[pid]{.cmd} [fileId]{.optarg} 
+[pid]{.cmd} [fileId]{.optarg}
 :::
 
 # Description
 
-If the *fileId* argument is given then it should normally refer to a process pipeline created with the **open** command. In this case the **pid** command will return a list whose elements are the process identifiers of all the processes in the pipeline, in order. The list will be empty if *fileId* refers to an open file that is not a process pipeline. If no *fileId* argument is given then **pid** returns the process identifier of the current process. All process identifiers are returned as decimal strings.
+If the *fileId* argument is given then it should normally refer to a process pipeline created with the [open] command. In this case the **pid** command will return a list whose elements are the process identifiers of all the processes in the pipeline, in order. The list will be empty if *fileId* refers to an open file that is not a process pipeline. If no *fileId* argument is given then **pid** returns the process identifier of the current process. All process identifiers are returned as decimal strings.
 
 # Example
 
@@ -43,3 +44,6 @@ puts [string repeat - 70]
 puts [read $pipeline]
 close $pipeline
 ```
+
+
+[open]: open.md

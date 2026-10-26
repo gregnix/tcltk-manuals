@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::string
+title: tcl::chan::string
 ManualSection: n
 Version: 1.0.4
 TclPart: tcllib
@@ -20,11 +21,11 @@ tcl::chan::string - Read-only in-memory channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::string]{.lit} [1.0.4]{.optlit} 
-[::tcl::chan::string]{.cmd} [content]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::string]{.lit} [1.0.4]{.optlit}
+[::tcl::chan::string]{.cmd} [content]{.arg}
 :::
 
 # Description
@@ -35,7 +36,7 @@ Packages related to this are **tcl::chan::memchan** and **tcl::chan::variable**.
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::string** *content*
 : This command creates a new string channel and returns its handle. The channel provides random read-only access to the *content* string.

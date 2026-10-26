@@ -1,5 +1,6 @@
 ---
 CommandName: menubar
+title: menubar
 ManualSection: n
 Version: 0.5.1
 TclPart: tklib
@@ -15,36 +16,38 @@ menubar - Creates an instance of the *menubar* Class.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6]{.lit} 
-[package]{.cmd} [require]{.sub} [menubar]{.lit} [0.5.1]{.optlit} 
-[menubar]{.cmd} [new]{.sub} [options]{.optarg} 
-[mBarInst]{.ins} [define]{.sub} [body]{.arg} 
-[mBarInst]{.ins} [install]{.sub} [pathName]{.arg} [body]{.arg} 
-[mBarInst]{.ins} [menu.configure]{.sub} [option]{.arg} [tag-settings]{.arg} [option tag-settings]{.optdot} 
-[mBarInst]{.ins} [menu.namespace]{.sub} [tag]{.arg} [namespace]{.arg} 
-[mBarInst]{.ins} [menu.hide]{.sub} [tag]{.arg} 
-[mBarInst]{.ins} [menu.show]{.sub} [tag]{.arg} 
-[mBarInst]{.ins} [tag.add]{.sub} [tag]{.arg} [value]{.arg} 
-[mBarInst]{.ins} [tag.configure]{.sub} [pathName]{.arg} [tag]{.arg} [option value ...option value]{.optarg} 
-[mBarInst]{.ins} [tag.cget]{.sub} [pathName]{.arg} [tag]{.arg} [option]{.optarg} 
-[mBarInst]{.ins} [group.add]{.sub} [tag]{.arg} [label]{.arg} [cmd]{.optarg} [accel]{.optarg} [sequence]{.optarg} [state]{.optarg} 
-[mBarInst]{.ins} [group.delete]{.sub} [tag]{.arg} [label]{.arg} 
-[mBarInst]{.ins} [group.move]{.sub} [direction]{.arg} [tag]{.arg} [label]{.arg} 
-[mBarInst]{.ins} [group.configure]{.sub} [tag]{.arg} [label]{.arg} [option value ...option value]{.optarg} 
-[mBarInst]{.ins} [group.serialize]{.sub} [tag]{.arg} 
-[mBarInst]{.ins} [group.deserialize]{.sub} [tag]{.arg} [stream]{.arg} 
-[mBarInst]{.ins} [notebook.addTabStore]{.sub} [pathname]{.arg} 
-[mBarInst]{.ins} [notebook.deleteTabStore]{.sub} [pathname]{.arg} 
-[mBarInst]{.ins} [notebook.setTabValue]{.sub} [pathname]{.arg} [tag]{.arg} 
-[mBarInst]{.ins} [notebook.restoreTabValues]{.sub} [pathname]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6]{.lit}
+[package]{.cmd} [require]{.sub} [menubar]{.lit} [0.5.1]{.optlit}
+[menubar]{.cmd} [new]{.sub} [options]{.optarg}
+[mBarInst]{.ins} [define]{.sub} [body]{.arg}
+[mBarInst]{.ins} [install]{.sub} [pathName]{.arg} [body]{.arg}
+[mBarInst]{.ins} [menu.configure]{.sub} [option]{.arg} [tag-settings]{.arg} ?option tag-settings ...?
+[mBarInst]{.ins} [menu.namespace]{.sub} [tag]{.arg} [namespace]{.arg}
+[mBarInst]{.ins} [menu.hide]{.sub} [tag]{.arg}
+[mBarInst]{.ins} [menu.show]{.sub} [tag]{.arg}
+[mBarInst]{.ins} [tag.add]{.sub} [tag]{.arg} [value]{.arg}
+[mBarInst]{.ins} [tag.configure]{.sub} [pathName]{.arg} [tag]{.arg} ?option value ...option value?
+[mBarInst]{.ins} [tag.cget]{.sub} [pathName]{.arg} [tag]{.arg} ?option?
+[mBarInst]{.ins} [group.add]{.sub} [tag]{.arg} [label]{.arg} [cmd]{.optarg} [accel]{.optarg} [sequence]{.optarg} ?state?
+[mBarInst]{.ins} [group.delete]{.sub} [tag]{.arg} [label]{.arg}
+[mBarInst]{.ins} [group.move]{.sub} [direction]{.arg} [tag]{.arg} [label]{.arg}
+[mBarInst]{.ins} [group.configure]{.sub} [tag]{.arg} [label]{.arg} ?option value ...option value?
+[mBarInst]{.ins} [group.serialize]{.sub} [tag]{.arg}
+[mBarInst]{.ins} [group.deserialize]{.sub} [tag]{.arg} [stream]{.arg}
+[mBarInst]{.ins} [notebook.addTabStore]{.sub} [pathname]{.arg}
+[mBarInst]{.ins} [notebook.deleteTabStore]{.sub} [pathname]{.arg}
+[mBarInst]{.ins} [notebook.setTabValue]{.sub} [pathname]{.arg} [tag]{.arg}
+[mBarInst]{.ins} [notebook.restoreTabValues]{.sub} [pathname]{.arg}
 :::
 
 # Description
 
 **menubar new** ?options?
-: Create and return a new instance of the menubar class. The menubar class encapsulates the definition, installation and dynamic behavior of a menubar. The class doesn't depend on a widget framework and therefore can be used with or without a framework (e.g. Bwidget, IWidget, Snit, etc.). Unlike other Tk widget commands, the menubar command doesn't have a *pathName* argument because menubars are handled by the window manager (i.e. wm) and not the application.
+: see below ...
 
+
+Create and return a new instance of the menubar class. The menubar class encapsulates the definition, installation and dynamic behavior of a menubar. The class doesn't depend on a widget framework and therefore can be used with or without a framework (e.g. Bwidget, IWidget, Snit, etc.). Unlike other Tk widget commands, the menubar command doesn't have a *pathName* argument because menubars are handled by the window manager (i.e. wm) and not the application.
 
 # Options
 
@@ -52,35 +55,16 @@ The following options can be passed to the *menubar new* command.
 
 These options are inherited from the Tk menu command, their effect is platform specific.
 
-[-activebackground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activebackground)
-: ...see next...
-
-[-activeborderwidth](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activeborderwidth)
-: ...see next...
-
-[-activeforeground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activeforeground)
-: ...see next...
-
-[-background](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-background)
-: ...see next...
-
-[-borderwidth](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-borderwidth)
-: ...see next...
-
-[-cursor](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-cursor)
-: ...see next...
-
-[-disabledforeground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-disabledforeground)
-: ...see next...
-
-[-font](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-font)
-: ...see next...
-
-[-foreground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-foreground)
-: ...see next...
-
-[-relief](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-relief)
-: 
+- [-activebackground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activebackground)
+- [-activeborderwidth](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activeborderwidth)
+- [-activeforeground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-activeforeground)
+- [-background](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-background)
+- [-borderwidth](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-borderwidth)
+- [-cursor](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-cursor)
+- [-disabledforeground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-disabledforeground)
+- [-font](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-font)
+- [-foreground](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-foreground)
+- [-relief](http://docs.activestate.com/activetcl/8.5/tcl/TkCmd/options.htm#M-relief)
 
 
 # Introduction
@@ -91,98 +75,88 @@ A menubar can be thought of as a tree of cascading menus. Users define a menubar
 
 The menubar class provides many unique capabilities that are not found in other tcl/tk menubar implementation. Some of these are:
 
-**•**
-: A tagging system that simplifies access to menu entries in the menu tree.
+- A tagging system that simplifies access to menu entries in the menu tree.
 
-**•**
-: Support for user defined tags that depend on the toplevel window context.
+- Support for user defined tags that depend on the toplevel window context.
 
-**•**
-: A simplified and uniform interface for all callback commands.
+- A simplified and uniform interface for all callback commands.
 
-**•**
-: Namespace support for all callback commands so callback commands can be easily grouped into namespaces.
+- Namespace support for all callback commands so callback commands can be easily grouped into namespaces.
 
-**•**
-: Support for hiding and exposing menus on the menubar.
+- Support for hiding and exposing menus on the menubar.
 
-**•**
-: A simplified method for creating radiobutton groups.
+- A simplified method for creating radiobutton groups.
 
-**•**
-: Automatic management of state variables for checkbuttons and radiobuttons.
+- Automatic management of state variables for checkbuttons and radiobuttons.
 
-**•**
-: Scope control for the state variables of checkbuttons and radiobuttons.
+- Scope control for the state variables of checkbuttons and radiobuttons.
 
-**•**
-: Tear-off menu management that ensures only one tearoff menu is created.
+- Tear-off menu management that ensures only one tearoff menu is created.
 
-**•**
-: Support for dynamic menu extension to simplify the creation of recent document menus.
+- Support for dynamic menu extension to simplify the creation of recent document menus.
 
-**•**
-: Support for saving and restoring dynamic menu extensions.
+- Support for saving and restoring dynamic menu extensions.
 
 
 # Terminology
 
-**MENUBAR**
+MENUBAR
 : The visible rendering of a menubar in a toplevel window is a horizontally group of cascading Tk menus.
 
-**MENU**
-: A menu is an ordered list of items that is rendered vertically. Menus are not visible until a user preforms some action (normally a \<ButtonPress-1> event). A menu may contain any number of child menus that are rendered as cascading menus. Cascading menus are rendered next to the parent menu when they are activated.
+MENU
+: A menu is an ordered list of items that is rendered vertically. Menus are not visible until a user preforms some action (normally a <ButtonPress-1> event). A menu may contain any number of child menus that are rendered as cascading menus. Cascading menus are rendered next to the parent menu when they are activated.
 
-**MENU ENTRY**
+MENU ENTRY
 : A menu contains an ordered list of items called entries. Menu entries have a type and the menubar class supports the following 6 entry types: *Command*, *Checkbutton*, *Radiobutton*, *Separator*, *Group* and *Menu*.
 
-**ENTRY LABEL**
+ENTRY LABEL
 : Each menu entry has a visible string that is called the entry label.
 
-**TAG**
+TAG
 : A tag is name that is normally used to referr to an item in a menu tree. A tag name is an alphanumeric character string that may include the underscore character. Menu tree tags are defined for all nodes and leafs in a menu tree. This provides a flat abstraction of the tree and simplifies item referencing in menubar methods. Without this abstraction it would be necessary to reference menu elements using a tree path which could change at run-time. The menubar class also has a method that can create a user defined tag. User defined tags store values that change based on the currently active toplevel window. User defined tags can be used to store widget pathnames use by callback code so that output can be routed to the appropriate toplevel window.
 
 
 # Methods
 
 *mBarInst* **define** *body*
-: Compiles *body* into a tree of menu entries which define the visual layout of the menubar. The *body* argument describes the layout using the following syntax, where the elements of the syntax are described below. *body == definitions*
+: Compiles *body* into a tree of menu entries which define the visual layout of the menubar. The *body* argument describes the layout using the following syntax, where the elements of the syntax are described below.
+
+    *body == definitions*
+
+    ```
+    definitions    ::= { <ignore> | <definition> | <definition> <definitions> }
+    ignore         ::= { <nl> | <white-space> <nl> | # <comment> <nl> }
+    definition     ::= { <command> | <checkbutton> | <radiobutton> | <separator> | <group> | <menu> }
+    command        ::= <label> C <tag> <nl>
+    checkbutton    ::= <label> X<scope> { <tag> | <tag>+ } <nl>
+    radiobutton    ::= <label> R<scope> { <tag> | <tag>+ } <nl>
+    separator      ::= <stext> S <tag> <nl>
+    group          ::= <dummy> G <tag> <nl>
+    menu           ::= <label> { M:<tag> | M:<tag>+ } <nl> <definitions>
+    stext          ::= '--' | <label>
+    scope          ::= '' | '@' | '='
+    ```
 
 
-```
-definitions    ::= { <ignore> | <definition> | <definition> <definitions> }
-ignore         ::= { <nl> | <white-space> <nl> | # <comment> <nl> }
-definition     ::= { <command> | <checkbutton> | <radiobutton> | <separator> | <group> | <menu> }
-command        ::= <label> C <tag> <nl>
-checkbutton    ::= <label> X<scope> { <tag> | <tag>+ } <nl>
-radiobutton    ::= <label> R<scope> { <tag> | <tag>+ } <nl>
-separator      ::= <stext> S <tag> <nl>
-group          ::= <dummy> G <tag> <nl>
-menu           ::= <label> { M:<tag> | M:<tag>+ } <nl> <definitions>
-stext          ::= '--' | <label>
-scope          ::= '' | '@' | '='
-```
 
-:  
+    C - Command
+    : The C type entry is the most common type of entry. This entry executes a command when it is invoked.
 
+    X - Checkbutton
+    : A X type entry behaves much like a Tk checkbutton widget. When it is invoked it toggles back and forth between a selected and deselected states. The value of a checkbutton is a boolean (i.e. 1 or 0). By default all checkbuttons are deselected. If you want the checkbutton to be initially selected then include a trailing plus (+) with the tag name. See SCOPE CONTROL below for a description of the scope indicator.
 
-**C - Command**
-: The C type entry is the most common type of entry. This entry executes a command when it is invoked.
+    R - Radiobutton
+    : A R type menu entry behaves much like a Tk radiobutton widget. Each radiobutton entry is a member of a radiobutton group that controls the behavior of the radiobuttons in the group. All radiobuttons in a group are given the same tag name. In the example below Red, Green and Blue all have the same tag and are therefore all in the same radiobutton group. A trailing plus (+) on the tag name of a radiobutton entry will cause the entry to be the initially selected entry. See SCOPE CONTROL below for a description of the scope indicator.
 
-**X - Checkbutton**
-: A X type entry behaves much like a Tk checkbutton widget. When it is invoked it toggles back and forth between a selected and deselected states. The value of a checkbutton is a boolean (i.e. 1 or 0). By default all checkbuttons are deselected. If you want the checkbutton to be initially selected then include a trailing plus (+) with the tag name. See SCOPE CONTROL below for a description of the scope indicator.
+    S - Separator
+    : A S type menu entry is an entry that is displayed either as a horizontal dividing line or a label. Separators are not active elements of a menu and have no associated behavior if they are invoked. If <stext> is two dashes (i.e. '--') then the separator will be displayed as a horizontal line otherwise <stext> will be displayed as a bold label surrounded by double dashes (e.g. "-- <stext> --") with a lightgray background.
 
-**R - Radiobutton**
-: A R type menu entry behaves much like a Tk radiobutton widget. Each radiobutton entry is a member of a radiobutton group that controls the behavior of the radiobuttons in the group. All radiobuttons in a group are given the same tag name. In the example below Red, Green and Blue all have the same tag and are therefore all in the same radiobutton group. A trailing plus (+) on the tag name of a radiobutton entry will cause the entry to be the initially selected entry. See SCOPE CONTROL below for a description of the scope indicator.
+    G - Command Group
+    : The G type menu entry marks a location in the menu tree where entries can be dynamically added and removed. Menu extension can only occur at the end of a menu so G type entries must be the last item on a menu. A G	type entry is rendered as a separator line. The *group.<xxx>* sub-commands are used to manipulate command group entries.
 
-**S - Separator**
-: A S type menu entry is an entry that is displayed either as a horizontal dividing line or a label. Separators are not active elements of a menu and have no associated behavior if they are invoked. If \<stext> is two dashes (i.e. '--') then the separator will be displayed as a horizontal line otherwise \<stext> will be displayed as a bold label surrounded by double dashes (e.g. "-- \<stext> --") with a lightgray background.
+    M - Menu
+    : An M type entry is used to define both menubar menus and cascading menus. Menu entries are the most complicated of the 6 menu types. A menu entry is composed of three list elements. The first element of the list is its label. The second element of the list is a composite string consisting of a type identifier (M) followed by an optional tag (beginning with a ':' separator) and finally an optional plus (+) which indicates that the menu is a tear-off menu. The final element of the list is a LIST VALUE.
 
-**G - Command Group**
-: The G type menu entry marks a location in the menu tree where entries can be dynamically added and removed. Menu extension can only occur at the end of a menu so G type entries must be the last item on a menu. A G	type entry is rendered as a separator line. The *group.\<xxx>* sub-commands are used to manipulate command group entries.
-
-**M - Menu**
-: An M type entry is used to define both menubar menus and cascading menus. Menu entries are the most complicated of the 6 menu types. A menu entry is composed of three list elements. The first element of the list is its label. The second element of the list is a composite string consisting of a type identifier (M) followed by an optional tag (beginning with a ':' separator) and finally an optional plus (+) which indicates that the menu is a tear-off menu. The final element of the list is a LIST VALUE.
 
 
 *mBarInst* **install** *pathName body*
@@ -194,22 +168,25 @@ scope          ::= '' | '@' | '='
 *mBarInst* **menu.configure** *option tag-settings ?option tag-settings ...?*
 : Configures the tags of a menubar and returns an empty string. This method provides a convenient way to configure a larger number of tags without the verbosity of using the *tag.configure* method.
 
+    *option*
+    : *Option* may have any of the values accepted by the *tag.configure* method.
 
-*option*
-: *Option* may have any of the values accepted by the *tag.configure* method.
+    *tag-settings*
+    : The *tag-settings* argument is a string that is converted to a list of tag-value pairs using the following syntax.
 
-*tag-settings*
-: The *tag-settings* argument is a string that is converted to a list of tag-value pairs using the following syntax. Syntax for *tag-settings*.
+        Syntax for *tag-settings*.
+
+        ```
+        tag-settings ::= { <ignore> | <value> | <value> <tag-settings> }
+        ignore       ::= { <nl> | <white-space> <nl> | # <comment> <nl> }
+        value        ::= <tag> <option-value> <nl>
+        ```
 
 
-```
-tag-settings ::= { <ignore> | <value> | <value> <tag-settings> }
-ignore       ::= { <nl> | <white-space> <nl> | # <comment> <nl> }
-value        ::= <tag> <option-value> <nl>
-```
 
 *mBarInst* **menu.namespace** *tag namespace*
 : Change the namespace for a sub-tree of the menubar starting at entry *tag*. The new value will be *namespace*. Each entry in the menubar tree has an associated namespace which will be used for its callback procedure. The default namespace is the namespace where the *install*  method was executed. The *namespace* method can be used to change the namespace that will be used for callbacks in a sub-tree of the menubar. This method can only be used in the context of an *install* script.
+
 
 *mBarInst* **menu.hide** *tag*
 : Remove (hide) a menubar entry. When a menubar tree is defined all entries are visible by default. This method can be used to hide a menubar entry. The *hide* methods can be used in the context of an *install* script so that a menu will be initially hidden at application start up. The *tag* argument is the tag name of the menu to be hidden.
@@ -223,96 +200,73 @@ value        ::= <tag> <option-value> <nl>
 *mBarInst* **tag.add** *tag value*
 : Add a user defined *tag* value. The *tag.add* method adds a new tag-value pair to the the tags defined for a menubar. User defined tags are different from the tags created by the *define* method. The *tag.add* method can only be used in an *install* script and its value is associated with the toplevel where the menubar is installed. This makes the tag context sensitive so callback code that queries the tag value will receive a value that is associated with the window that performed the callback.
 
+
 *mBarInst* **tag.configure** *pathName tag ?option value ...option value?*
 : Given the *pathName* of a toplevel window and a *tag* this method configures the menu entry associated with the tag and return an empty string.
 
+    *Standard Options*
+    : These option are the same as those described for menu entries in the Tk *menu* documentation.
 
-*Standard Options*
-: These option are the same as those described for menu entries in the Tk *menu* documentation.
-
-
-**-activebackground**
-: ...see next...
-
-**-activeforeground**
-: ...see next...
-
-**-background**
-: ...see next...
-
-**-bitmap**
-: ...see next...
-
-**-columnbreak**
-: ...see next...
-
-**-compound**
-: ...see next...
-
-**-font**
-: ...see next...
-
-**-foreground**
-: ...see next...
-
-**-hidemargin**
-: ...see next...
-
-**-image**
-: ...see next...
-
-**-indicatoron**
-: ...see next...
-
-**-label**
-: ...see next...
-
-**-selectcolor**
-: ...see next...
-
-**-selectimage**
-: ...see next...
-
-**-state**
-: 
+        - **-activebackground**
+        - **-activeforeground**
+        - **-background**
+        - **-bitmap**
+        - **-columnbreak**
+        - **-compound**
+        - **-font**
+        - **-foreground**
+        - **-hidemargin**
+        - **-image**
+        - **-indicatoron**
+        - **-label**
+        - **-selectcolor**
+        - **-selectimage**
+        - **-state**
 
 
-:  
 
 
-**Class Specific Options**
-: 
+    Class Specific Options
+    : see below ...
+
+        **-bind** {uline accel sequence}
+        : The value of the *-bind* option is three element list where the values are as follows.
+
+            uline
+            : An integer index of a character to underline in the entry. This value performs the same function as the Tk *menu* -underline option. If this value is an empty string then no underlining is performed.
+
+            accel
+            : A string to display at the right side of the menu entry. The string normally describes an accelerator keystroke sequence that may be typed to invoke the same function as the menu entry. This value performs the same function as the Tk *menu* -accelerator option. If this value is an empty string then no accelerator is displayed.
+
+            sequence
+            : A bind sequence that will cause the entries associated command to fire.
 
 
-**-bind** {uline accel sequence}
-: The value of the *-bind* option is three element list where the values are as follows.
+        **-command** cmdprefix
+        : The value of the *-command* option a command prefix that is evaluated when the menu entry is invoked. By default the callback is evaluate in the namespace where the *install* method was executed. Additional values are appended to the *cmdprefix* and are thus passed to the callback command as argument. These additional arguments are described in the list below.
+
+            command entry
+            : 1) The pathname of the toplevel window that invoked the callback.
+
+            checkbutton entry
+            : 1) The pathname of the toplevel window that invoked the callback.
+
+                2) The checkbutton's tag name
+
+                3) The new value for the checkbutton
+
+            radiobutton entry
+            : 1) The pathname of the toplevel window that invoked the callback.
+
+                2) The radiobutton's tag name
+
+                3) The label of the button that was selected
+
+            group entry
+            : 1) The pathname of the toplevel window that invoked the callback.
 
 
-**uline**
-: An integer index of a character to underline in the entry. This value performs the same function as the Tk *menu* -underline option. If this value is an empty string then no underlining is performed.
 
-**accel**
-: A string to display at the right side of the menu entry. The string normally describes an accelerator keystroke sequence that may be typed to invoke the same function as the menu entry. This value performs the same function as the Tk *menu* -accelerator option. If this value is an empty string then no accelerator is displayed.
-
-**sequence**
-: A bind sequence that will cause the entries associated command to fire.
-
-
-**-command** cmdprefix
-: The value of the *-command* option a command prefix that is evaluated when the menu entry is invoked. By default the callback is evaluate in the namespace where the *install* method was executed. Additional values are appended to the *cmdprefix* and are thus passed to the callback command as argument. These additional arguments are described in the list below.
-
-
-**command entry**
-: 1) The pathname of the toplevel window that invoked the callback.
-
-**checkbutton entry**
-: 1) The pathname of the toplevel window that invoked the callback. 2) The checkbutton's tag name 3) The new value for the checkbutton
-
-**radiobutton entry**
-: 1) The pathname of the toplevel window that invoked the callback. 2) The radiobutton's tag name 3) The label of the button that was selected
-
-**group entry**
-: 1) The pathname of the toplevel window that invoked the callback.
 
 
 *mBarInst* **tag.cget** *pathName tag ?option?*
@@ -324,37 +278,41 @@ value        ::= <tag> <option-value> <nl>
 *mBarInst* **group.add** *tag label ?cmd? ?accel? ?sequence? ?state?*
 : Add a command to the group with tag name *tag*. This method appends a new command entry to the end of a command group. The order of the arguments is fixed but arguments to the right can be ignored. Arguments to this method have the following meaning.
 
+    tag *(string)*
+    : The tag name of the command group.
 
-tag *(string)*
-: The tag name of the command group.
+    label *(string)*
+    : The displayed label for the menu entry.
 
-label *(string)*
-: The displayed label for the menu entry.
+    cmd *(string)*
+    : A command prefix that will be used for callback command.
 
-cmd *(string)*
-: A command prefix that will be used for callback command.
+    accel *(string)*
+    : An accelerator string that will be displayed next to the entry label.
 
-accel *(string)*
-: An accelerator string that will be displayed next to the entry label.
+    sequence *(string)*
+    : A bind sequence that will be bound to the callback command.
 
-sequence *(string)*
-: A bind sequence that will be bound to the callback command.
+    state *(enum)*
+    : Sets the active state of the command. One of:  normal, disabled, active
 
-state *(enum)*
-: Sets the active state of the command. One of:  normal, disabled, active
 
 
 *mBarInst* **group.delete** *tag label*
 : Delete a command from a group with tag name *tag*. This method deletes command *label* from a command group.
 
+
 *mBarInst* **group.move** *direction tag label*
 : Change the position of an entry in a group with tag name *tag*. The *direction* argument is the direction ('up' or 'down') the entry will be moved. The entry that is moved has the name *label*.
+
 
 *mBarInst* **group.configure** *tag label ?option value ...option value?*
 : Configure the options of an entry in the command group with tag name *tag*. This method is similar to the *tag.configure* method except that it works on entries in a command group. Set documentation for the *tag.configure* method (above) for more details on command entry options.
 
+
 *mBarInst* **group.serialize** *tag*
 : Return a string serialization of the entries in a command group. The argument *tag* is the tag name for the group that is to be serialized. The resulting serialization is a list containing three element  (1) the tag name of the group  (2) a dictionary containing group level options (3) a list of zero or more similar three element lists that describe the entries in the group.
+
 
 *mBarInst* **group.deserialize** *tag stream*
 : Replace the contents of group tag *tag* with the commands defined in the serialization *stream*. The original contents of the group are lost.
@@ -365,17 +323,20 @@ state *(enum)*
 *mBarInst* **notebook.addTabStore** *pathname*
 : This method should be used in code that creates a new notebook tab. Execution of this method will cause state storage to be allocated for the new notebook tab. The pathname for the notebook tab is passed as an argument to the method.
 
+
 *mBarInst* **notebook.deleteTabStore** *pathname*
 : This command deallocates the state store for a notebook tab. The pathname for the notebook tab is passed as an argument to the method.
+
 
 *mBarInst* **notebook.setTabValue** *pathname tag*
 : This method should be used in the callback for menubar checkbuttons or radiobuttons that have notebook tab scope control. When this method is executed it will move the value associated with tag into the tab store for the tab identified by pathname.
 
+
 *mBarInst* **notebook.restoreTabValues** *pathname*
-: This method should be place in a bind script that is triggered by a notebooks <\<NotebookTabChanged>> event.
+: This method should be place in a bind script that is triggered by a notebooks <<NotebookTabChanged>> event.
 
 
-# Scope control
+# Scope Control
 
 By default a menubar instance looks the same in all installed toplevel windows. As changes are made to one instance of a menubar all the other instances are immediately updated. This means the internal state of all the menu entries for the instances are synchronized. This behavior is called global scope control of the menubar state.
 
@@ -495,11 +456,9 @@ This implementation uses TclOO so it requires 8.6. The code has been tested on W
 
 See also
 
-**\[1\]**
-: [menu](http://www.tcl-lang.org/man/tcl8.6/TkCmd/menu.htm)
+1. [menu](http://www.tcl-lang.org/man/tcl8.6/TkCmd/menu.htm)
 
-**\[2\]**
-: [A command that creates menubar objects](http://wiki.tcl-lang.org/25231)
+2. [A command that creates menubar objects](http://wiki.tcl-lang.org/25231)
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: nmea
+title: nmea
 ManualSection: n
 Version: 1.1.0
 TclPart: tcllib
@@ -18,20 +19,20 @@ nmea - Process NMEA data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nmea]{.lit} [1.1.0]{.optlit} 
-[::nmea::input]{.cmd} [sentence]{.arg} 
-[::nmea::open_port]{.cmd} [port]{.arg} [speed]{.optarg} 
-[::nmea::close_port]{.cmd} 
-[::nmea::configure_port]{.cmd} [settings]{.arg} 
-[::nmea::open_file]{.cmd} [file]{.arg} [rate]{.optarg} 
-[::nmea::close_file]{.cmd} 
-[::nmea::do_line]{.cmd} 
-[::nmea::rate]{.cmd} 
-[::nmea::log]{.cmd} [file]{.optarg} 
-[::nmea::checksum]{.cmd} [data]{.arg} 
-[::nmea::write]{.cmd} [sentence]{.arg} [data]{.arg} 
-[::nmea::event]{.cmd} [setence]{.arg} [command]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nmea]{.lit} [1.1.0]{.optlit}
+[::nmea::input]{.cmd} [sentence]{.arg}
+[::nmea::open\_port]{.cmd} [port]{.arg} [speed]{.optarg}
+[::nmea::close\_port]{.cmd}
+[::nmea::configure\_port]{.cmd} [settings]{.arg}
+[::nmea::open\_file]{.cmd} [file]{.arg} [rate]{.optarg}
+[::nmea::close\_file]{.cmd}
+[::nmea::do\_line]{.cmd}
+[::nmea::rate]{.cmd}
+[::nmea::log]{.cmd} [file]{.optarg}
+[::nmea::checksum]{.cmd} [data]{.arg}
+[::nmea::write]{.cmd} [sentence]{.arg} [data]{.arg}
+[::nmea::event]{.cmd} [setence]{.arg} [command]{.optarg}
 :::
 
 # Description
@@ -41,30 +42,29 @@ This package provides a standard interface for writing software which recieves N
 # Commands
 
 **::nmea::input** *sentence*
-: Processes and dispatches the supplied sentence. If *sentence* contains no commas it is treated as a Tcl list, otherwise it must be standard comma delimited NMEA data, with an optional checksum and leading **\$**.
+: Processes and dispatches the supplied sentence. If *sentence* contains no commas it is treated as a Tcl list, otherwise it must be standard comma delimited NMEA data, with an optional checksum and leading **$**.
 
+    ```
+    nmea::input {$GPGSA,A,3,04,05,,09,12,,,24,,,,,2.5,1.3,2.1*39}
+    nmea::input [list GPGSA A 3 04 05  09 12 "" "" 24 "" "" ""  2.5 1.3 2.1]
+    ```
 
-```
-nmea::input {$GPGSA,A,3,04,05,,09,12,,,24,,,,,2.5,1.3,2.1*39}
-nmea::input [list GPGSA A 3 04 05  09 12 "" "" 24 "" "" ""  2.5 1.3 2.1]
-```
-
-**::nmea::open_port** *port* ?speed?
+**::nmea::open\_port** *port* ?speed?
 : Open the specified COM port and read NMEA sentences when available. Port speed is set to 4800bps by default or to *speed*.
 
-**::nmea::close_port**
+**::nmea::close\_port**
 : Close the com port connection if one is open.
 
-**::nmea::configure_port** *settings*
+**::nmea::configure\_port** *settings*
 : Changes the current port settings. *settings* has the same format as fconfigure -mode.
 
-**::nmea::open_file** *file* ?rate?
-: Open file *file* and read NMEA sentences, one per line, at the rate specified by ?rate? in milliseconds. The file format may omit the leading **\$** and/or the checksum. If rate is <= 0 (the default) then lines will only be processed when a call to **do_line** is made.
+**::nmea::open\_file** *file* ?rate?
+: Open file *file* and read NMEA sentences, one per line, at the rate specified by ?rate? in milliseconds. The file format may omit the leading **$** and/or the checksum. If rate is <= 0 (the default) then lines will only be processed when a call to **do\_line** is made.
 
-**::nmea::close_file**
+**::nmea::close\_file**
 : Close the open file if one exists.
 
-**::nmea::do_line**
+**::nmea::do\_line**
 : If there is a currently open file, this command will read and process a single line from it. Returns the number of lines read.
 
 **::nmea::rate**
@@ -80,21 +80,23 @@ nmea::input [list GPGSA A 3 04 05  09 12 "" "" 24 "" "" ""  2.5 1.3 2.1]
 : If there is a currently open port, this command will write the specified sentence and data to the port in proper NMEA checksummed format.
 
 **::nmea::event** *setence* ?command?
-: Registers a handler proc for a given NMEA *sentence*. There may be at most one handler per sentence, any existing handler is replaced. If no command is specified, returns the name of the current handler for the given *setence* or an empty string if none exists. In addition to the incoming sentences there are 2 builtin types, EOF and DEFAULT. The handler for the DEFAULT setence is invoked if there is not a specific handler for that sentence. The EOF handler is invoked when End Of File is reached on the open file or port. The handler procedures, with the exception of the builtin types,must take exactly one argument, which is a list of the data values. The DEFAULT handler should have two arguments, the sentence type and the data values. The EOF handler has no arguments.
+: Registers a handler proc for a given NMEA *sentence*. There may be at most one handler per sentence, any existing handler is replaced. If no command is specified, returns the name of the current handler for the given *setence* or an empty string if none exists. In addition to the incoming sentences there are 2 builtin types, EOF and DEFAULT. The handler for the DEFAULT setence is invoked if there is not a specific handler for that sentence. The EOF handler is invoked when End Of File is reached on the open file or port.
 
+    The handler procedures, with the exception of the builtin types,must take exactly one argument, which is a list of the data values. The DEFAULT handler should have two arguments, the sentence type and the data values. The EOF handler has no arguments.
 
-```
-nmea::event gpgsa parse_sat_detail
-nmea::event default handle_unknown
+    ```
+    nmea::event gpgsa parse_sat_detail
+    nmea::event default handle_unknown
 
-proc parse_sat_detail {data} {
-    puts [lindex $data 1]
-}
+    proc parse_sat_detail {data} {
+        puts [lindex $data 1]
+    }
 
-proc handle_unknown {name data} {
-    puts "unknown data type $name"
-}
-```
+    proc handle_unknown {name data} {
+        puts "unknown data type $name"
+    }
+    ```
+
 
 # Bugs, ideas, feedback
 

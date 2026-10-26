@@ -1,5 +1,6 @@
 ---
 CommandName: lsort
+title: lsort
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -26,17 +27,17 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lsort - Sortiert die Elemente einer Liste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lsort]{.cmd} [options]{.optarg} [list]{.arg} 
+[lsort]{.cmd} [options]{.optarg} [list]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl sortiert die Elemente von *list* und gibt eine neue, sortierte Liste zurück. Die Implementierung nutzt Merge-Sort — stabil, O(n log n).
 
@@ -67,18 +68,20 @@ Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können O
 : Liste der Indizes in *list* in sortierter Reihenfolge statt der Werte.
 
 **-index** *indexList*
-: Jedes Element von *list* muss eine Tcl-Unterliste sein (außer mit **-stride**). Sortierung nach dem *indexList*-ten Element jeder Unterliste (wie **lindex**). Beispiel:
+: Jedes Element von *list* muss eine Tcl-Unterliste sein (außer mit **-stride**). Sortierung nach dem *indexList*-ten Element jeder Unterliste (wie [lindex]). Beispiel:
 
     ```
     lsort -integer -index 1 \
           {{First 24} {Second 18} {Third 30}}
     ```
+
     liefert **{Second 18} {First 24} {Third 30}**,
 
     ```
     lsort -index end-1 \
             {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
     ```
+
     liefert **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}**, und
 
     ```
@@ -88,20 +91,26 @@ Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können O
         {{c o d e} 54321}
     }
     ```
+
     liefert **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** (weil **e** vor **i** vor **o**). Effizienter als **-command** für denselben Effekt.
 
 **-stride** *strideLength*
 : Die Liste gilt als Gruppen zu je *strideLength* Elementen; Gruppen werden am ersten Element oder (mit **-index**) am durch den ersten **-index** bezeichneten Element der Gruppe sortiert (**-index** ignoriert diesen Teil). Elemente bleiben innerhalb der Gruppe an ihrer Position.
-    Listenlänge muss Vielfaches von *strideLength* sein (mindestens 2). Beispiel:
+
+    Listenlänge muss Vielfaches von *strideLength* sein (mindestens 2).
+
+    Beispiel:
 
     ```
     lsort -stride 2 {carrot 10 apple 50 banana 25}
     ```
+
     liefert „apple 50 banana 25 carrot 10“, und
 
     ```
     lsort -stride 2 -index 1 -integer {carrot 10 apple 50 banana 25}
     ```
+
     liefert „carrot 10 banana 25 apple 50“.
 
 **-nocase**
@@ -110,13 +119,14 @@ Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können O
 **-unique**
 : Nur die letzte Gruppe doppelter Elemente bleibt. Duplikate relativ zum verwendeten Vergleich; mit **-index 0** gelten **{1 a}** und **{1 b}** als Duplikat — nur **{1 b}** bleibt.
 
-# HINWEISE
+
+# Hinweise
 
 Die **lsort**-Optionen steuern nur die Vergleichsart, nicht zwingend den tatsächlichen Typ der Werte. Das fällt nur bei Listen mit weniger als zwei Elementen auf.
 
 **lsort** ist reentrant — sicher als Implementierung eines in **-command** verwendeten Befehls.
 
-# BEISPIELE
+# Beispiele
 
 ASCII-Sortierung:
 
@@ -162,10 +172,7 @@ Sortieren mit Indizes:
 {e 1} {d 2} { c 3} {b 4} {a 5}
 ```
 
-
-::: {.info -version="8.6"}
-Dictionary sortieren:
-:::
+[Dictionary sortieren:]{version="8.6"}
 
 ```
 % set d [dict create c d a b h i f g c e]
@@ -174,10 +181,7 @@ c e a b h i f g
 a b c e f g h i
 ```
 
-
-::: {.info -version="8.6"}
 Stride und mehrere Indizes:
-:::
 
 ```
 % # Erster Indexwert ist relativ zur Gruppe
@@ -210,3 +214,6 @@ Vergleichsfunktion:
         {{3 apple} {0x2 carrot} {1 dingo} {2 banana}}
 {1 dingo} {2 banana} {0x2 carrot} {3 apple}
 ```
+
+
+[lindex]: lindex.md

@@ -1,5 +1,6 @@
 ---
 CommandName: lsort
+title: lsort
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -33,7 +34,7 @@ lsort - Sort the elements of a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lsort]{.cmd} [options]{.optarg} [list]{.arg} 
+[lsort]{.cmd} [options]{.optarg} [list]{.arg}
 :::
 
 # Description
@@ -54,7 +55,7 @@ By default ASCII sorting is used with the result returned in increasing order.  
 **-real**
 : Convert list elements to floating-point values and use floating comparison.
 
-**-command**\\**0**_command_
+**-command** *command*
 : Use *command* as a comparison command. To compare two elements, evaluate a Tcl script consisting of *command* with the two elements appended as additional arguments.  The script should return an integer less than, equal to, or greater than zero if the first element is to be considered less than, equal to, or greater than the second, respectively.
 
 **-increasing**
@@ -66,53 +67,51 @@ By default ASCII sorting is used with the result returned in increasing order.  
 **-indices**
 : Return a list of indices into *list* in sorted order instead of the values themselves.
 
-**-index**\\**0**_indexList_
-: If this option is specified, each of the elements of *list* must itself be a proper Tcl sublist (unless **-stride** is used). Instead of sorting based on whole sublists, **lsort** will extract the *indexList*'th element from each sublist (as if the overall element and the *indexList* were passed to **lindex**) and sort based on the given element. For example,
+**-index** *indexList*
+: If this option is specified, each of the elements of *list* must itself be a proper Tcl sublist (unless **-stride** is used). Instead of sorting based on whole sublists, **lsort** will extract the *indexList*'th element from each sublist (as if the overall element and the *indexList* were passed to [lindex]) and sort based on the given element. For example,
 
+    ```
+    lsort -integer -index 1 \
+          {{First 24} {Second 18} {Third 30}}
+    ```
 
-```
-lsort -integer -index 1 \
-      {{First 24} {Second 18} {Third 30}}
-```
+    returns **{Second 18} {First 24} {Third 30}**,
 
-returns **{Second 18} {First 24} {Third 30}**,
+    ```
+    lsort -index end-1 \
+            {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
+    ```
 
-```
-lsort -index end-1 \
-        {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
-```
+    returns **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}**, and
 
-returns **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}**, and
+    ```
+    lsort -index {0 1} {
+        {{b i g} 12345}
+        {{d e m o} 34512}
+        {{c o d e} 54321}
+    }
+    ```
 
-```
-lsort -index {0 1} {
-    {{b i g} 12345}
-    {{d e m o} 34512}
-    {{c o d e} 54321}
-}
-```
+    returns **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** (because **e** sorts before **i** which sorts before **o**.) This option is much more efficient than using **-command** to achieve the same effect.
 
-returns **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** (because **e** sorts before **i** which sorts before **o**.) This option is much more efficient than using **-command** to achieve the same effect.
-
-**-stride**\\**0**_strideLength_
+**-stride** *strideLength*
 : If this option is specified, the list is treated as consisting of groups of *strideLength* elements and the groups are sorted by either their first element or, if the **-index** option is used, by the element within each group given by the first index passed to **-index** (which is then ignored by **-index**). Elements always remain in the same position within their group.
 
+    The list length must be an integer multiple of *strideLength*, which in turn must be at least 2.
 
-The list length must be an integer multiple of *strideLength*, which in turn must be at least 2.
+    For example,
 
-For example,
+    ```
+    lsort -stride 2 {carrot 10 apple 50 banana 25}
+    ```
 
-```
-lsort -stride 2 {carrot 10 apple 50 banana 25}
-```
+    returns "apple 50 banana 25 carrot 10", and
 
-returns "apple 50 banana 25 carrot 10", and
+    ```
+    lsort -stride 2 -index 1 -integer {carrot 10 apple 50 banana 25}
+    ```
 
-```
-lsort -stride 2 -index 1 -integer {carrot 10 apple 50 banana 25}
-```
-
-returns "carrot 10 banana 25 apple 50".
+    returns "carrot 10 banana 25 apple 50".
 
 **-nocase**
 : Causes comparisons to be handled in a case-insensitive manner.  Has no effect if combined with the **-dictionary**, **-integer**, or **-real** options.
@@ -173,9 +172,7 @@ Sorting using indices:
 {e 1} {d 2} { c 3} {b 4} {a 5}
 ```
 
-::: {.info -version="8.6"}
-Sorting a dictionary:
-:::
+[Sorting a dictionary:]{version="8.6"}
 
 ```
 % set d [dict create c d a b h i f g c e]
@@ -184,9 +181,7 @@ c e a b h i f g
 a b c e f g h i
 ```
 
-::: {.info -version="8.6"}
 Sorting using striding and multiple indices:
-:::
 
 ```
 % # Note the first index value is relative to the group
@@ -219,3 +214,6 @@ More complex sorting using a comparison function:
         {{3 apple} {0x2 carrot} {1 dingo} {2 banana}}
 {1 dingo} {2 banana} {0x2 carrot} {3 apple}
 ```
+
+
+[lindex]: lindex.md

@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_ParseArgsObjv
+title: Tcl_ParseArgsObjv
 ManualSection: 3
 Version: 8.6
 TclPart: Tcl
@@ -17,56 +18,57 @@ Copyright:
 
 # Name
 
-Tcl_ParseArgsObjv - parse arguments according to a tabular description
+Tcl\_ParseArgsObjv - parse arguments according to a tabular description
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_ParseArgsObjv]{.cmd}([interp]{.arg}, [argTable]{.arg}, [objcPtr]{.arg}, [objv]{.arg}, [remObjv]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_ParseArgsObjv]{.ccmd} [interp, argTable, objcPtr, objv, remObjv]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (out)
+::: {.arguments} :::
+
+[\*interp]{.carg .out type="Tcl_Interp"}
 : Where to store error messages.
 
-const Tcl_ArgvInfo *\*argTable* (in)
+[\*argTable]{.carg .in type="const Tcl_ArgvInfo"}
 : Pointer to array of option descriptors.
 
-int *\*objcPtr* (in/out)
+[\*objcPtr]{.carg .in/out type="int"}
 : A pointer to variable holding number of arguments in *objv*. Will be modified to hold number of arguments left in the unprocessed argument list stored in *remObjv*.
 
-Tcl_Obj \*const *\*objv* (in)
+[\*objv]{.carg .in type="Tcl_Obj *const"}
 : The array of arguments to be parsed.
 
-Tcl_Obj *\*\*\*remObjv* (out)
-: Pointer to a variable that will hold the array of unprocessed arguments. Should be NULL if no return of unprocessed arguments is required. If *objcPtr* is updated to a non-zero value, the array returned through this must be deallocated using **ckfree**.
+[\*\*\*remObjv]{.carg .out type="Tcl_Obj"}
+: Pointer to a variable that will hold the array of unprocessed arguments. Should be NULL if no return of unprocessed arguments is required. If *objcPtr* is updated to a non-zero value, the array returned through this must be deallocated using [ckfree][Alloc].
 
+:::
 
 # Description
 
-The **Tcl_ParseArgsObjv** function provides a system for parsing argument lists of the form "**-someName** *someValue* ...". Such argument lists are commonly found both in the arguments to a program and in the arguments to an individual Tcl command. This parser assumes that the order of the arguments does not matter, other than in so far as later copies of a duplicated option overriding earlier ones.
+The **Tcl\_ParseArgsObjv** function provides a system for parsing argument lists of the form "**-someName** *someValue* ...". Such argument lists are commonly found both in the arguments to a program and in the arguments to an individual Tcl command. This parser assumes that the order of the arguments does not matter, other than in so far as later copies of a duplicated option overriding earlier ones.
 
-The argument array is described by the *objcPtr* and *objv* parameters, and an array of unprocessed arguments is returned through the *objcPtr* and *remObjv* parameters; if no return of unprocessed arguments is desired, the *remObjv* parameter should be NULL. If any problems happen, including if the "generate help" option is selected, an error message is left in the interpreter result and TCL_ERROR is returned. Otherwise, the interpreter result is left unchanged and TCL_OK is returned.
+The argument array is described by the *objcPtr* and *objv* parameters, and an array of unprocessed arguments is returned through the *objcPtr* and *remObjv* parameters; if no return of unprocessed arguments is desired, the *remObjv* parameter should be NULL. If any problems happen, including if the "generate help" option is selected, an error message is left in the interpreter result and [TCL\_ERROR][catch] is returned. Otherwise, the interpreter result is left unchanged and [TCL\_OK][catch] is returned.
 
-The collection of arguments to be parsed is described by the *argTable* parameter. This points to a table of descriptor structures that is terminated by an entry with the *type* field set to TCL_ARGV_END. As convenience, the following prototypical entries are provided:
+The collection of arguments to be parsed is described by the *argTable* parameter. This points to a table of descriptor structures that is terminated by an entry with the *type* field set to TCL\_ARGV\_END. As convenience, the following prototypical entries are provided:
 
-**TCL_ARGV_AUTO_HELP**
+**TCL\_ARGV\_AUTO\_HELP**
 : Enables the argument processor to provide help when passed the argument "**-help**".
 
-**TCL_ARGV_AUTO_REST**
+**TCL\_ARGV\_AUTO\_REST**
 : Instructs the argument processor that arguments after "**--**" are to be unprocessed.
 
-**TCL_ARGV_TABLE_END**
+**TCL\_ARGV\_TABLE\_END**
 : Marks the end of the table of argument descriptors.
 
 
 ## Argument descriptor entries
 
-Each entry of the argument descriptor table must be a structure of type **Tcl_ArgvInfo**. The structure is defined as this:
+Each entry of the argument descriptor table must be a structure of type **Tcl\_ArgvInfo**. The structure is defined as this:
 
 ```
 typedef struct {
@@ -83,51 +85,55 @@ The *keyStr* field contains the name of the option; by convention, this will nor
 
 As noted above, the *type* field is used to describe the interpretation of the argument's value. The following values are acceptable values for *type*:
 
-**TCL_ARGV_CONSTANT**
+**TCL\_ARGV\_CONSTANT**
 : The argument does not take any following value argument. If this argument is present, the (integer) value of the *srcPtr* field is copied to the variable pointed to by the *dstPtr* field. The *clientData* field is ignored.
 
-**TCL_ARGV_END**
+**TCL\_ARGV\_END**
 : This value marks the end of all option descriptors in the table. All other fields are ignored.
 
-**TCL_ARGV_FLOAT**
-: This argument takes a following floating point value argument. The value (once parsed by **Tcl_GetDoubleFromObj**) will be stored as a double-precision value in the variable pointed to by the *dstPtr* field. The *srcPtr* and *clientData* fields are ignored.
+**TCL\_ARGV\_FLOAT**
+: This argument takes a following floating point value argument. The value (once parsed by [Tcl\_GetDoubleFromObj][DoubleObj]) will be stored as a double-precision value in the variable pointed to by the *dstPtr* field. The *srcPtr* and *clientData* fields are ignored.
 
-**TCL_ARGV_FUNC**
+**TCL\_ARGV\_FUNC**
 : This argument optionally takes a following value argument; it is up to the handler callback function passed in *srcPtr* to decide. That function will have the following signature:
 
+    ```
+    typedef int (Tcl_ArgvFuncProc)(
+            ClientData clientData,
+            Tcl_Obj *objPtr,
+            void *dstPtr);
+    ```
 
-```
-typedef int (Tcl_ArgvFuncProc)(
-        ClientData clientData,
-        Tcl_Obj *objPtr,
-        void *dstPtr);
-```
+    The result is a boolean value indicating whether to consume the following argument. The *clientData* is the value from the table entry, the *objPtr* is the value that represents the following argument or NULL if there are no following arguments at all, and the *dstPtr* argument to the **Tcl\_ArgvFuncProc** is the location to write the parsed value to.
 
-The result is a boolean value indicating whether to consume the following argument. The *clientData* is the value from the table entry, the *objPtr* is the value that represents the following argument or NULL if there are no following arguments at all, and the *dstPtr* argument to the **Tcl_ArgvFuncProc** is the location to write the parsed value to.
-
-**TCL_ARGV_GENFUNC**
+**TCL\_ARGV\_GENFUNC**
 : This argument takes zero or more following arguments; the handler callback function passed in *srcPtr* returns how many (or a negative number to signal an error, in which case it should also set the interpreter result). The function will have the following signature:
 
+    ```
+    typedef int (Tcl_ArgvGenFuncProc)(
+            ClientData clientData,
+            Tcl_Interp *interp,
+            int objc,
+            Tcl_Obj *const *objv,
+            void *dstPtr);
+    ```
 
-```
-typedef int (Tcl_ArgvGenFuncProc)(
-        ClientData clientData,
-        Tcl_Interp *interp,
-        int objc,
-        Tcl_Obj *const *objv,
-        void *dstPtr);
-```
+    The *clientData* is the value from the table entry, the *interp* is where to store any error messages, *objc* and *objv* describe an array of all the remaining arguments, and *dstPtr* argument to the **Tcl\_ArgvGenFuncProc** is the location to write the parsed value (or values) to.
 
-The *clientData* is the value from the table entry, the *interp* is where to store any error messages, *objc* and *objv* describe an array of all the remaining arguments, and *dstPtr* argument to the **Tcl_ArgvGenFuncProc** is the location to write the parsed value (or values) to.
+**TCL\_ARGV\_HELP**
+: This special argument does not take any following value argument, but instead causes **Tcl\_ParseArgsObjv** to generate an error message describing the arguments supported. All other fields except the *helpStr* field are ignored.
 
-**TCL_ARGV_HELP**
-: This special argument does not take any following value argument, but instead causes **Tcl_ParseArgsObjv** to generate an error message describing the arguments supported. All other fields except the *helpStr* field are ignored.
+**TCL\_ARGV\_INT**
+: This argument takes a following integer value argument. The value (once parsed by [Tcl\_GetIntFromObj][IntObj]) will be stored as an int in the variable pointed to by the *dstPtr* field. The *srcPtr* field is ignored.
 
-**TCL_ARGV_INT**
-: This argument takes a following integer value argument. The value (once parsed by **Tcl_GetIntFromObj**) will be stored as an int in the variable pointed to by the *dstPtr* field. The *srcPtr* field is ignored.
-
-**TCL_ARGV_REST**
+**TCL\_ARGV\_REST**
 : This special argument does not take any following value argument, but instead marks all following arguments to be left unprocessed. The *srcPtr*, *dstPtr* and *clientData* fields are ignored.
 
-**TCL_ARGV_STRING**
+**TCL\_ARGV\_STRING**
 : This argument takes a following string value argument. A pointer to the string will be stored at *dstPtr*; the string inside will have a lifetime linked to the lifetime of the string representation of the argument value that it came from, and so should be copied if it needs to be retained. The *srcPtr* and *clientData* fields are ignored.
+
+
+[Alloc]: Alloc.md
+[catch]: ../tcl/catch.md
+[DoubleObj]: DoubleObj.md
+[IntObj]: IntObj.md

@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::string
+title: textutil::string
 ManualSection: n
 Version: 0.9
 TclPart: tcllib
@@ -26,24 +27,24 @@ textutil::string - Procedures to manipulate texts and strings.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::string]{.lit} [0.9]{.optlit} 
-[::textutil::string::chop]{.cmd} [string]{.arg} 
-[::textutil::string::tail]{.cmd} [string]{.arg} 
-[::textutil::string::cap]{.cmd} [string]{.arg} 
-[::textutil::string::capEachWord]{.cmd} [string]{.arg} 
-[::textutil::string::uncap]{.cmd} [string]{.arg} 
-[::textutil::string::longestCommonPrefixList]{.cmd} [list]{.arg} 
-[::textutil::string::longestCommonPrefix]{.cmd} [string]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::string]{.lit} [0.9]{.optlit}
+[::textutil::string::chop]{.cmd} [string]{.arg}
+[::textutil::string::tail]{.cmd} [string]{.arg}
+[::textutil::string::cap]{.cmd} [string]{.arg}
+[::textutil::string::capEachWord]{.cmd} [string]{.arg}
+[::textutil::string::uncap]{.cmd} [string]{.arg}
+[::textutil::string::longestCommonPrefixList]{.cmd} [list]{.arg}
+[::textutil::string::longestCommonPrefix]{.cmd} [string...]{.optarg}
 :::
 
 # Description
 
 The **textutil::string** package provides miscellaneous string manipulation commands.
 
-To see how to find a common path from a list of paths, see the last of the **Examples**.
+To see how to find a common path from a list of paths, see the last of the [Examples].
 
-# Api
+# API
 
 **::textutil::string::chop** *string*
 : Returns a copy of *string* with the last character removed.
@@ -61,10 +62,14 @@ To see how to find a common path from a list of paths, see the last of the **Exa
 : Returns a copy of *string* with the first character lowercased.
 
 **::textutil::string::longestCommonPrefixList** *list*
-: Returns the longest common prefix of the strings in the given *list*. If no argument is given, the empty string is returned.
+: Returns the longest common prefix of the strings in the given *list*.
+
+    If no argument is given, the empty string is returned.
 
 **::textutil::string::longestCommonPrefix** ?*string*...?
-: Returns the longest common prefix of the string arguments, *string*, …. If a single string is given, it is returned since it is its own longest common prefix. If no argument is given, the empty string is returned.
+: Returns the longest common prefix of the string arguments, *string*, ….
+
+    If a single string is given, it is returned since it is its own longest common prefix. If no argument is given, the empty string is returned.
 
 
 # Examples

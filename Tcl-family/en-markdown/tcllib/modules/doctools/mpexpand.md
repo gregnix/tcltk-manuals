@@ -1,5 +1,6 @@
 ---
 CommandName: mpexpand
+title: mpexpand
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -27,42 +28,47 @@ mpexpand - Markup processor
 # Synopsis
 
 ::: {.synopsis} :::
-[mpexpand]{.cmd} [-module module]{.optarg} [format]{.arg} [infile|-]{.arg} [outfile|-]{.arg} 
-[mpexpand.all]{.cmd} [-verbose]{.optarg} [module]{.optarg} 
+[mpexpand]{.cmd} [[-module]{.lit} [module]{.arg}]{.optarg} [format]{.arg} [infile|-]{.arg} [outfile|-]{.arg}
+[mpexpand.all]{.cmd} [-verbose]{.optarg} [module]{.optarg}
 :::
 
 # Description
 
-This manpage describes a processor / converter for manpages in the doctools format as specified in **doctools_fmt**. The processor is based upon the package **doctools**.
+This manpage describes a processor / converter for manpages in the doctools format as specified in **doctools\_fmt**. The processor is based upon the package **doctools**.
 
 **mpexpand** ?-module *module*? *format* *infile*|- *outfile*|-
-: The processor takes three arguments, namely the code describing which formatting to generate as the output, the file to read the markup from, and the file to write the generated output into. If the *infile* is "**-**" the processor will read from **stdin**. If *outfile* is "**-**" the processor will write to **stdout**. If the option *-module* is present its value overrides the internal definition of the module name. The currently known output formats are
+: The processor takes three arguments, namely the code describing which formatting to generate as the output, the file to read the markup from, and the file to write the generated output into. If the *infile* is "**-**" the processor will read from **stdin**. If *outfile* is "**-**" the processor will write to **stdout**.
 
+    If the option *-module* is present its value overrides the internal definition of the module name.
 
-**nroff**
-: The processor generates \*roff output, the standard format for unix manpages.
+    The currently known output formats are
 
-**html**
-: The processor generates HTML output, for usage in and display by web browsers.
+    **nroff**
+    : The processor generates \*roff output, the standard format for unix manpages.
 
-**tmml**
-: The processor generates TMML output, the Tcl Manpage Markup Language, a derivative of XML.
+    **html**
+    : The processor generates HTML output, for usage in and display by web browsers.
 
-**latex**
-: The processor generates LaTeX output.
+    **tmml**
+    : The processor generates TMML output, the Tcl Manpage Markup Language, a derivative of XML.
 
-**wiki**
-: The processor generates Wiki markup as understood by **wikit**.
+    **latex**
+    : The processor generates LaTeX output.
 
-**list**
-: The processor extracts the information provided by **manpage_begin**.
+    **wiki**
+    : The processor generates Wiki markup as understood by **wikit**.
 
-**null**
-: The processor does not generate any output.
+    **list**
+    : The processor extracts the information provided by [manpage\_begin][doctools_lang_cmdref].
+
+    **null**
+    : The processor does not generate any output.
 
 
 **mpexpand.all** ?*-verbose*? ?*module*?
-: This command uses **mpexpand** to generate all possible output formats for all manpages in the current directory. The manpages are recognized through the extension "*.man*". If *-verbose* is specified the command will list its actions before executing them. The *module* information is passed to **mpexpand**.
+: This command uses **mpexpand** to generate all possible output formats for all manpages in the current directory. The manpages are recognized through the extension "*.man*". If *-verbose* is specified the command will list its actions before executing them.
+
+    The *module* information is passed to **mpexpand**.
 
 
 # Notes
@@ -87,3 +93,6 @@ Documentation tools
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 Copyright (c) 2003 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[doctools_lang_cmdref]: doctools_lang_cmdref.md

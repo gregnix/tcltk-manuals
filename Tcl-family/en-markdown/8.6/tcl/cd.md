@@ -1,5 +1,6 @@
 ---
 CommandName: cd
+title: cd
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -22,7 +23,7 @@ cd - Change working directory
 # Synopsis
 
 ::: {.synopsis} :::
-[cd]{.cmd} [dirName]{.optarg} 
+[cd]{.cmd} [dirName]{.optarg}
 :::
 
 # Description

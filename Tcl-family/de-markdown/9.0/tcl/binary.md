@@ -1,5 +1,6 @@
 ---
 CommandName: binary
+title: binary
 ManualSection: n
 Version: 8.0
 TclPart: Tcl
@@ -19,67 +20,73 @@ Copyright:
  - Copyright (c) 2008 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 binary - Felder in Binärzeichenketten einfügen und extrahieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[binary]{.cmd} [decode]{.sub} [format]{.arg} [-option value]{.optdot} [data]{.arg} 
-[binary]{.cmd} [encode]{.sub} [format]{.arg} [-option value]{.optdot} [data]{.arg} 
-[binary]{.cmd} [format]{.sub} [formatString]{.arg} [arg arg]{.optdot} 
-[binary]{.cmd} [scan]{.sub} [string]{.arg} [formatString]{.arg} [varName varName]{.optdot} 
+[binary]{.cmd} [decode]{.sub} [format]{.arg} [-option value]{.optdot} [data]{.arg}
+[binary]{.cmd} [encode]{.sub} [format]{.arg} [-option value]{.optdot} [data]{.arg}
+[binary]{.cmd} [format]{.sub} [formatString]{.arg} [arg arg]{.optdot}
+[binary]{.cmd} [scan]{.sub} [string]{.arg} [formatString]{.arg} [varName varName]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl stellt Hilfsmittel zur Verarbeitung binärer Daten bereit. Der Unterbefehl **binary format** erzeugt aus normalen Tcl-Werten eine Binärzeichenkette. Gegeben beispielsweise die Werte 16 und 22, kann er auf einer 32-Bit-Architektur eine 8-Byte-Binärzeichenkette aus zwei 4-Byte-Ganzzahlen erzeugen — je eine für jede Zahl. Der Unterbefehl **binary scan** macht das Gegenteil: Er extrahiert Daten aus einer Binärzeichenkette und gibt sie als gewöhnliche Tcl-Zeichenkettenwerte zurück. Die Unterbefehle **binary encode** und **binary decode** wandeln binäre Daten in Zeichenkettenkodierungen um bzw. umgekehrt, z. B. base64 (wie in MIME-Nachrichten).
 
-Andere Operationen auf binären Daten — etwa eine Teilfolge bilden, die Länge ermitteln oder die Daten mit einer bestimmten Kodierung als Zeichenkette interpretieren — erledigen andere Tcl-Befehle (in den genannten Fällen **string range**, **string length** und **encoding convertfrom**). Eine Binärzeichenkette in Tcl ist schlicht eine Zeichenkette, deren Zeichen alle im Bereich \u0000-\u00FF liegen.
+Andere Operationen auf binären Daten — etwa eine Teilfolge bilden, die Länge ermitteln oder die Daten mit einer bestimmten Kodierung als Zeichenkette interpretieren — erledigen andere Tcl-Befehle (in den genannten Fällen [string range][string], [string length][string] und [encoding convertfrom][encoding]). Eine Binärzeichenkette in Tcl ist schlicht eine Zeichenkette, deren Zeichen alle im Bereich \u0000-\u00FF liegen.
 
 # Kodierung und Dekodierung
 
 Zum Kodieren binärer Daten als lesbare Zeichenkette werden die Ausgangsdaten zusammen mit dem Namen der zu verwendenden Kodierung und gewünschten kodierungsspezifischen Optionen an **binary encode** übergeben. Kodierte Daten lassen sich mit **binary decode** wieder in binäre Form zurückwandeln. **binary encode** löst einen Fehler aus, wenn das Argument *data* keine Binärdaten sind. Folgende Formate und Optionen werden unterstützt.
 
-**base64**
+[base64]{.cmd}
 : Die Binärkodierung **base64** wird häufig in E-Mail-Nachrichten und XML-Dokumenten verwendet und nutzt vor allem Groß- und Kleinbuchstaben sowie Ziffern. Sie kann beliebig umbrochen werden, ohne Information zu verlieren.
+
     Beim Kodieren werden folgende Optionen unterstützt:
 
-**-maxlen** *length*
-: Die Ausgabe soll in Zeilen von höchstens *length* Zeichen aufgeteilt werden. Standardmäßig erfolgt kein Zeilenumbruch.
+    [-maxlen]{.lit} [length]{.arg}
+    : Die Ausgabe soll in Zeilen von höchstens *length* Zeichen aufgeteilt werden. Standardmäßig erfolgt kein Zeilenumbruch.
 
-**-wrapchar** *character*
-: Gibt an, welches Zeichen beim Umbrechen wegen **-maxlen** die Zeilen trennt. Standard ist das Zeilenumbruchzeichen „\n“.
+    [-wrapchar]{.lit} [character]{.arg}
+    : Gibt an, welches Zeichen beim Umbrechen wegen **-maxlen** die Zeilen trennt. Standard ist das Zeilenumbruchzeichen „\n“.
+
 
     Beim Dekodieren werden folgende Optionen unterstützt:
 
-**-strict**
-: Der Dekodierer soll einen Fehler auslösen, wenn Zeichen angetroffen werden, die nicht strikt Teil der Kodierung sind. Andernfalls werden sie ignoriert. RFC 2045 verlangt nicht-strikte base64-Dekodierer.
+    [-strict]{.lit}
+    : Der Dekodierer soll einen Fehler auslösen, wenn Zeichen angetroffen werden, die nicht strikt Teil der Kodierung sind. Andernfalls werden sie ignoriert. RFC 2045 verlangt nicht-strikte base64-Dekodierer.
 
 
 **hex**
 : Die Binärkodierung **hex** wandelt jedes Byte in ein Paar hexadezimaler Ziffern um, die den Byte-Wert als hexadezimale Ganzzahl darstellen. Beim Kodieren werden Kleinbuchstaben verwendet. Beim Dekodieren werden Groß- und Kleinbuchstaben akzeptiert.
+
     Beim Kodieren werden keine Optionen unterstützt. Beim Dekodieren:
 
-**-strict**
-: Der Dekodierer soll einen Fehler auslösen, wenn Leerzeichen angetroffen werden. Andernfalls werden sie ignoriert.
+    [-strict]{.lit}
+    : Der Dekodierer soll einen Fehler auslösen, wenn Leerzeichen angetroffen werden. Andernfalls werden sie ignoriert.
 
 
 **uuencode**
 : Die Binärkodierung **uuencode** war früher beim Datentransfer zwischen Unix-Systemen und in USENET verbreitet, ist heute seltener und wurde weitgehend von **base64** abgelöst.
+
     Beim Kodieren werden folgende Optionen unterstützt (Änderungen können Dateien erzeugen, die andere Dekodierer nicht verarbeiten):
 
-**-maxlen** *length*
-: Maximale Zeichenanzahl pro kodierte Zeile. Gültiger Bereich: 5 bis 85. Außerhalb dieses Bereichs ist das Format nicht darstellbar. Standard: 61.
+    [-maxlen]{.lit} [length]{.arg}
+    : Maximale Zeichenanzahl pro kodierte Zeile. Gültiger Bereich: 5 bis 85. Außerhalb dieses Bereichs ist das Format nicht darstellbar. Standard: 61.
 
-**-wrapchar** *character*
-: Zeichen, die das Ende jeder kodierten Zeile markieren. Zulässig: eine Folge von null oder mehr Zeichen aus { \\x09 (TAB), \\x0B (VT), \\x0C (FF), \\x0D (CR) } gefolgt von null oder einem Zeilenumbruch \\x0A (LF). Andere Werte werden abgelehnt, weil die kodierte Ausgabe nicht dekodierbar wäre. Standard: ein einzelner Zeilenumbruch.
+    [-wrapchar]{.lit} [character]{.arg}
+    : Zeichen, die das Ende jeder kodierten Zeile markieren. Zulässig: eine Folge von null oder mehr Zeichen aus { \\x09 (TAB), \\x0B (VT), \\x0C (FF), \\x0D (CR) } gefolgt von null oder einem Zeilenumbruch \\x0A (LF). Andere Werte werden abgelehnt, weil die kodierte Ausgabe nicht dekodierbar wäre. Standard: ein einzelner Zeilenumbruch.
+
 
     Beim Dekodieren:
 
-**-strict**
-: Der Dekodierer soll einen Fehler auslösen, wenn etwas außerhalb des Standardformats angetroffen wird. Ohne diese Option toleriert er einige Abweichungen, vor allem um Zeilenumbrüche zwischen Kodierer und Dekodierer zu verzeihen.
+    [-strict]{.lit}
+    : Der Dekodierer soll einen Fehler auslösen, wenn etwas außerhalb des Standardformats angetroffen wird. Ohne diese Option toleriert er einige Abweichungen, vor allem um Zeilenumbrüche zwischen Kodierer und Dekodierer zu verzeihen.
+
 
     Weder Kodierer noch Dekodierer verarbeiten Kopf- und Fußzeile des uuencode-Formats.
 
@@ -101,47 +108,55 @@ Das erste Argument ist eine Liste mit vier Zahlen; wegen *count* 3 beim zugehör
 Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, speichert Bytes an der aktuellen Position und setzt den Cursor unmittelbar hinter das zuletzt gespeicherte Byte. Anfangs steht der Cursor bei Position 0. Der Typ kann eines der folgenden Zeichen sein:
 
 **a**
-: Speichert eine Byte-Zeichenkette der Länge *count* in der Ausgabezeichenkette. Jedes Zeichen wird modulo 256 genommen (nur das niedrige Byte; das hohe Byte entfällt). Für Zeichenketten, die nicht vollständig mit \u0000-\u00ff darstellbar sind, sollte vorher **encoding convertto** die externe Darstellung erzeugen, wenn diese Kürzung unerwünscht ist (d. h. wenn die Zeichen nicht zu ISO 8859-1 gehören). Hat *arg* weniger als *count* Bytes, wird mit Null-Bytes aufgefüllt. Ist *arg* länger, werden überzählige Zeichen ignoriert. Bei *count* „**\***“ werden alle Bytes von *arg* formatiert. Fehlt *count*, wird ein Zeichen formatiert. Beispiel:
+: Speichert eine Byte-Zeichenkette der Länge *count* in der Ausgabezeichenkette. Jedes Zeichen wird modulo 256 genommen (nur das niedrige Byte; das hohe Byte entfällt). Für Zeichenketten, die nicht vollständig mit \u0000-\u00ff darstellbar sind, sollte vorher [encoding convertto][encoding] die externe Darstellung erzeugen, wenn diese Kürzung unerwünscht ist (d. h. wenn die Zeichen nicht zu ISO 8859-1 gehören). Hat *arg* weniger als *count* Bytes, wird mit Null-Bytes aufgefüllt. Ist *arg* länger, werden überzählige Zeichen ignoriert. Bei *count* „**\***“ werden alle Bytes von *arg* formatiert. Fehlt *count*, wird ein Zeichen formatiert. Beispiel:
 
     ```
     binary format a7a*a alpha bravo charlie
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
     alpha\000\000bravoc
     ```
+
     der Befehl:
 
     ```
     binary format a* [encoding convertto utf-8 \u20ac]
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
     \342\202\254
     ```
+
     (UTF-8-Bytefolge für das Euro-Zeichen), und:
 
     ```
     binary format a* [encoding convertto iso8859-15 \u20ac]
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
     \244
     ```
+
     (ISO 8859-15-Bytefolge für das Euro-Zeichen). Im Gegensatz dazu:
 
     ```
     binary format a* \u20ac
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
     \254
     ```
-    (d. h. **\xAC**) durch Abschneiden der hohen Bits — vermutlich nicht gewünscht.
+
+    (d. h. **\\xAC**) durch Abschneiden der hohen Bits — vermutlich nicht gewünscht.
 
 **A**
 : Wie **a**, aber Auffüllung mit Leerzeichen statt Nullen. Beispiel:
@@ -149,6 +164,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format A6A*A alpha bravo charlie
     ```
+
     liefert
 
     ```
@@ -161,6 +177,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format b5b* 11100 111000011010
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -173,6 +190,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format B5B* 11100 111000011010
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -185,6 +203,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format H3H*H2 ab DEF 987
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -197,6 +216,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format h3h*h2 AB def 987
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -209,16 +229,19 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format c3cc* {3 -3 128 1} 260 {2 5}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
     \x03\xFD\x80\x04\x02\x05
     ```
+
     während:
 
     ```
     binary format c {2 5}
     ```
+
     einen Fehler erzeugt.
 
 **s**
@@ -227,6 +250,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format s3 {3 -3 258 1}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -239,6 +263,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format S3 {3 -3 258 1}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -246,7 +271,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
 
 **t**
-: (mnemonisch *tiny*) Wie **s** und **S**, speichert 16-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Rechners, auf dem das Tcl-Skript läuft. Die native Byte-Reihenfolge steht im Element **byteOrder** des Arrays **tcl_platform**.
+: (mnemonisch *tiny*) Wie **s** und **S**, speichert 16-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Rechners, auf dem das Tcl-Skript läuft. Die native Byte-Reihenfolge steht im Element **byteOrder** des Arrays [tcl\_platform][tclvars].
 
 **i**
 : Wie **c**, speichert aber einen oder mehrere 32-Bit-Ganzzahlen in Little-Endian-Byte-Reihenfolge. Die unteren 32 Bits jeder Ganzzahl als Vier-Byte-Wert, niederwertiges Byte zuerst. Beispiel:
@@ -254,6 +279,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format i3 {3 -3 65536 1}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -266,6 +292,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format I3 {3 -3 65536 1}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -273,7 +300,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
 
 **n**
-: (mnemonisch *number* oder *normal*) Wie **i** und **I**, speichert 32-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Rechners. Siehe **byteOrder** in **tcl_platform**.
+: (mnemonisch *number* oder *normal*) Wie **i** und **I**, speichert 32-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Rechners. Siehe **byteOrder** in [tcl\_platform][tclvars].
 
 **w**
 : Wie **c**, speichert aber einen oder mehrere 64-Bit-Ganzzahlen in Little-Endian-Byte-Reihenfolge. Die unteren 64 Bits jeder Ganzzahl als Acht-Byte-Wert, niederwertiges Byte zuerst. Beispiel:
@@ -281,6 +308,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format w 7810179016327718216
     ```
+
     liefert die Binärzeichenkette **HelloTcl**.
 
 **W**
@@ -289,17 +317,19 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format Wc 4785469626960341345 110
     ```
+
     liefert die Binärzeichenkette **BigEndian**
 
 **m**
-: (mnemonisch Spiegel von **w**) Wie **w** und **W**, speichert 64-Bit-Ganzzahlen in der nativen Byte-Reihenfolge. Siehe **byteOrder** in **tcl_platform**.
+: (mnemonisch Spiegel von **w**) Wie **w** und **W**, speichert 64-Bit-Ganzzahlen in der nativen Byte-Reihenfolge. Siehe **byteOrder** in [tcl\_platform][tclvars].
 
 **f**
-: Wie **c**, speichert aber einen oder mehrere Gleitkommazahlen einfacher Genauigkeit in der nativen Darstellung des Rechners. Diese Darstellung ist architekturabhängig und sollte nicht zum Netzwerktransport von Gleitkommazahlen dienen. Die Byteanzahl kann variieren. Bei Überlauf wird FLT_MAX des Systems verwendet. Tcl arbeitet intern mit doppelter Genauigkeit; beim Umwandeln in einfache Genauigkeit kann Genauigkeit verloren gehen. Beispiel auf Windows mit Intel Pentium:
+: Wie **c**, speichert aber einen oder mehrere Gleitkommazahlen einfacher Genauigkeit in der nativen Darstellung des Rechners. Diese Darstellung ist architekturabhängig und sollte nicht zum Netzwerktransport von Gleitkommazahlen dienen. Die Byteanzahl kann variieren. Bei Überlauf wird FLT\_MAX des Systems verwendet. Tcl arbeitet intern mit doppelter Genauigkeit; beim Umwandeln in einfache Genauigkeit kann Genauigkeit verloren gehen. Beispiel auf Windows mit Intel Pentium:
 
     ```
     binary format f2 {1.6 3.4}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -318,6 +348,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format d1 {1.6}
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -336,6 +367,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format a3xa3x2a3 abc def ghi
     ```
+
     liefert eine Binärzeichenkette äquivalent zu:
 
     ```
@@ -348,6 +380,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format a3X*a3X2a3 abc def ghi
     ```
+
     liefert **dghi**.
 
 **@**
@@ -356,6 +389,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor durch die Binärdaten, sp
     ```
     binary format a5@2a1@*a3@10a1 abcde f ghi j
     ```
+
     liefert
 
     ```
@@ -408,17 +442,19 @@ binary scan $signShort su1 val; # val == 0x00008000
 Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuellen Position. Anfangsposition: 0. Mögliche Typzeichen:
 
 **a**
-: Die Daten sind eine Byte-Zeichenkette der Länge *count*. Bei *count* „**\***“ alle verbleibenden Bytes von *string* in die Variable. Fehlt *count*, ein Byte. Alle Bytes gelten als Zeichen \u0000-\u00ff; für andere Kodierungen ist **encoding convertfrom** nötig. Beispiel:
+: Die Daten sind eine Byte-Zeichenkette der Länge *count*. Bei *count* „**\***“ alle verbleibenden Bytes von *string* in die Variable. Fehlt *count*, ein Byte. Alle Bytes gelten als Zeichen \u0000-\u00ff; für andere Kodierungen ist [encoding convertfrom][encoding] nötig. Beispiel:
 
     ```
     binary scan abcde\000fghi a6a10 var1 var2
     ```
-    gibt **1** zurück, *var1* enthält die Zeichenkette äquivalent zu **abcde\000**, *var2* unverändert, und
+
+    gibt **1** zurück, *var1* enthält die Zeichenkette äquivalent zu **abcde\\000**, *var2* unverändert, und
 
     ```
     binary scan \342\202\254 a* var1
     set var2 [encoding convertfrom utf-8 $var1]
     ```
+
     speichert ein Euro-Zeichen in *var2*.
 
 **A**
@@ -427,6 +463,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan "abc efghi  \000" A* var1
     ```
+
     gibt **1** zurück, in *var1* steht **abc efghi**.
 
 **b**
@@ -435,6 +472,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x07\x87\x05 b5b* var1 var2
     ```
+
     gibt **2** zurück, *var1* **11100**, *var2* **1110000110100000**.
 
 **B**
@@ -443,6 +481,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x70\x87\x05 B5B* var1 var2
     ```
+
     gibt **2** zurück, *var1* **01110**, *var2* **1000011100000101**.
 
 **C**
@@ -451,6 +490,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan "abc\000efghi" C* var1
     ```
+
     gibt **1** zurück, in *var1* steht **abc**.
 
 **H**
@@ -459,6 +499,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x07\xC6\x05\x1F\x34 H3H* var1 var2
     ```
+
     gibt **2** zurück, *var1* **07c**, *var2* **051f34**.
 
 **h**
@@ -467,7 +508,9 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x07\x86\x05\x12\x34 h3h* var1 var2
     ```
+
     gibt **2** zurück, *var1* **706**, *var2* **502143**.
+
     Code, der Hex-Ziffern mehrerer Bytes in Reihenfolge parsen soll, sollte meist **H** verwenden.
 
 **c**
@@ -476,6 +519,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x07\x86\x05 c2c* var1 var2
     ```
+
     gibt **2** zurück, *var1* **7 -122**, *var2* **5**. Die Ganzzahlen sind vorzeichenbehaftet, außer bei **cu** statt **c**.
 
 **s**
@@ -484,6 +528,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x05\x00\x07\x00\xF0\xFF s2s* var1 var2
     ```
+
     gibt **2** zurück, *var1* **5 7**, *var2* **-16**. Vorzeichenbehaftet, außer bei **su** statt **s**.
 
 **S**
@@ -492,10 +537,11 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x00\x05\x00\x07\xFF\xF0 S2S* var1 var2
     ```
+
     gibt **2** zurück, *var1* **5 7**, *var2* **-16**.
 
 **t**
-: Die Daten werden als *count* vorzeichenbehaftete 16-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Tcl-Rechners interpretiert, oder vorzeichenlos bei **u** nach **t**. Ansonsten wie **s** und **S**. Siehe **byteOrder** in **tcl_platform**.
+: Die Daten werden als *count* vorzeichenbehaftete 16-Bit-Ganzzahlen in der nativen Byte-Reihenfolge des Tcl-Rechners interpretiert, oder vorzeichenlos bei **u** nach **t**. Ansonsten wie **s** und **S**. Siehe **byteOrder** in [tcl\_platform][tclvars].
 
 **i**
 : Die Daten werden als *count* vorzeichenbehaftete 32-Bit-Ganzzahlen in Little-Endian-Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **i**. Speicherung als Liste. *count* „**\***“: alle verbleibenden Bytes. Fehlt *count*: eine 32-Bit-Ganzzahl. Beispiel:
@@ -504,6 +550,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     set str \x05\x00\x00\x00\x07\x00\x00\x00\xF0\xFF\xFF\xFF
     binary scan $str i2i* var1 var2
     ```
+
     gibt **2** zurück, *var1* **5 7**, *var2* **-16**. Vorzeichenbehaftet, außer bei **iu** statt **i**.
 
 **I**
@@ -513,10 +560,11 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     set str \x00\x00\x00\x05\x00\x00\x00\x07\xFF\xFF\xFF\xF0
     binary scan $str I2I* var1 var2
     ```
+
     gibt **2** zurück, *var1* **5 7**, *var2* **-16**.
 
 **n**
-: Die Daten werden als *count* vorzeichenbehaftete 32-Bit-Ganzzahlen in der nativen Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **n**. Ansonsten wie **i** und **I**. Siehe **byteOrder** in **tcl_platform**.
+: Die Daten werden als *count* vorzeichenbehaftete 32-Bit-Ganzzahlen in der nativen Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **n**. Ansonsten wie **i** und **I**. Siehe **byteOrder** in [tcl\_platform][tclvars].
 
 **w**
 : Die Daten werden als *count* vorzeichenbehaftete 64-Bit-Ganzzahlen in Little-Endian-Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **w**. Speicherung als Liste. *count* „**\***“: alle verbleibenden Bytes. Fehlt *count*: eine 64-Bit-Ganzzahl. Beispiel:
@@ -525,6 +573,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     set str \x05\x00\x00\x00\x07\x00\x00\x00\xF0\xFF\xFF\xFF
     binary scan $str wi* var1 var2
     ```
+
     gibt **2** zurück, *var1* **30064771077**, *var2* **-16**.
 
 **W**
@@ -534,10 +583,11 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     set str \x00\x00\x00\x05\x00\x00\x00\x07\xFF\xFF\xFF\xF0
     binary scan $str WI* var1 var2
     ```
+
     gibt **2** zurück, *var1* **21474836487**, *var2* **-16**.
 
 **m**
-: Die Daten werden als *count* vorzeichenbehaftete 64-Bit-Ganzzahlen in der nativen Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **m**. Ansonsten wie **w** und **W**. Siehe **byteOrder** in **tcl_platform**.
+: Die Daten werden als *count* vorzeichenbehaftete 64-Bit-Ganzzahlen in der nativen Byte-Reihenfolge interpretiert, oder vorzeichenlos bei **u** nach **m**. Ansonsten wie **w** und **W**. Siehe **byteOrder** in [tcl\_platform][tclvars].
 
 **f**
 : Die Daten werden als *count* Gleitkommazahlen einfacher Genauigkeit in der nativen Darstellung interpretiert und als Liste gespeichert. *count* „**\***“: alle verbleibenden Bytes. Fehlt *count*: eine Zahl einfacher Genauigkeit. Die Byteanzahl kann variieren. Ungültige Gleitkommadaten: Ergebnis undefiniert und compilerabhängig. Beispiel auf MS-Windows mit einem x86/x64-Prozessor:
@@ -545,6 +595,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \xCD\xCC\xCC\x3F f var1
     ```
+
     gibt **1** zurück, in *var1* steht **1.6000000238418579**.
 
 **r**
@@ -559,6 +610,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x9A\x99\x99\x99\x99\x99\xF9\x3F d var1
     ```
+
     gibt **1** zurück, in *var1* steht **1.6000000000000001**.
 
 **q**
@@ -573,6 +625,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x01\x02\x03\x04 x2H* var1
     ```
+
     gibt **1** zurück, in *var1* steht **0304**.
 
 **X**
@@ -581,6 +634,7 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x01\x02\x03\x04 c2XH* var1 var2
     ```
+
     gibt **2** zurück, *var1* **1 2**, *var2* **020304**.
 
 **@**
@@ -589,14 +643,15 @@ Jedes Paar Typ-*count* bewegt einen imaginären Cursor und liest ab der aktuelle
     ```
     binary scan \x01\x02\x03\x04 c2@1H* var1 var2
     ```
+
     gibt **2** zurück, *var1* **1 2**, *var2* **020304**.
 
 
-# PORTABILITÄTSFRAGEN
+# Portabilitätsfragen
 
-Die Konvertierungen **r**, **R**, **q** und **Q** funktionieren beim Datentransfer zwischen Rechnern zuverlässig nur, wenn alle IEEE-Gleitkommadarstellung verwenden — sehr verbreitet, aber nicht universell. Für portablen Gleitkommatransport zwischen allen Architekturen die Textdarstellung (wie von **format** erzeugt) verwenden.
+Die Konvertierungen **r**, **R**, **q** und **Q** funktionieren beim Datentransfer zwischen Rechnern zuverlässig nur, wenn alle IEEE-Gleitkommadarstellung verwenden — sehr verbreitet, aber nicht universell. Für portablen Gleitkommatransport zwischen allen Architekturen die Textdarstellung (wie von [format] erzeugt) verwenden.
 
-# BEISPIELE
+# Beispiele
 
 Prozedur zum Schreiben einer Tcl-Zeichenkette als UTF-8-Daten mit vorangestelltem Längenwort auf einen binär kodierten Kanal:
 
@@ -628,3 +683,9 @@ set data [read $f]
 close $f
 puts [binary encode base64 -maxlen 64 $data]
 ```
+
+
+[encoding]: encoding.md
+[format]: format.md
+[string]: string.md
+[tclvars]: tclvars.md

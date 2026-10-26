@@ -1,5 +1,6 @@
 ---
 CommandName: grammar::peg
+title: grammar::peg
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -29,26 +30,26 @@ grammar::peg - Create and manipulate parsing expression grammars
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::peg]{.lit} [0.3]{.optlit} 
-[::grammar::peg]{.cmd} [pegName]{.arg} [=|:=|<--|as|deserialize src]{.optarg} 
-[pegName]{.ins} [destroy]{.sub} 
-[pegName]{.ins} [clear]{.sub} 
-[pegName]{.ins} [=]{.sub} [srcPEG]{.arg} 
-[pegName]{.ins} [-->]{.sub} [dstPEG]{.arg} 
-[pegName]{.ins} [serialize]{.sub} 
-[pegName]{.ins} [deserialize]{.sub} [serialization]{.arg} 
-[pegName]{.ins} [is]{.sub} [valid]{.lit} 
-[pegName]{.ins} [start]{.sub} [pe]{.optarg} 
-[pegName]{.ins} [nonterminals]{.sub} 
-[pegName]{.ins} [nonterminal]{.sub} [add]{.lit} [nt]{.arg} [pe]{.arg} 
-[pegName]{.ins} [nonterminal]{.sub} [delete]{.lit} [nt1]{.arg} [nt2]{.optdot} 
-[pegName]{.ins} [nonterminal]{.sub} [exists]{.lit} [nt]{.arg} 
-[pegName]{.ins} [nonterminal]{.sub} [rename]{.lit} [nt]{.arg} [ntnew]{.arg} 
-[pegName]{.ins} [nonterminal]{.sub} [mode]{.lit} [nt]{.arg} [mode]{.optarg} 
-[pegName]{.ins} [nonterminal]{.sub} [rule]{.lit} [nt]{.arg} 
-[pegName]{.ins} [unknown]{.sub} [nonterminals]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::peg]{.lit} [0.3]{.optlit}
+[::grammar::peg]{.cmd} [pegName]{.arg} [[=|:=|<--|as|deserialize]{.lit} [src]{.arg}]{.optarg}
+[pegName]{.ins} [destroy]{.sub}
+[pegName]{.ins} [clear]{.sub}
+[pegName]{.ins} [=]{.sub} [srcPEG]{.arg}
+[pegName]{.ins} [-->]{.sub} [dstPEG]{.arg}
+[pegName]{.ins} [serialize]{.sub}
+[pegName]{.ins} [deserialize]{.sub} [serialization]{.arg}
+[pegName]{.ins} [is]{.sub} [valid]{.lit}
+[pegName]{.ins} [start]{.sub} [pe]{.optarg}
+[pegName]{.ins} [nonterminals]{.sub}
+[pegName]{.ins} [nonterminal]{.sub} [add]{.lit} [nt]{.arg} [pe]{.arg}
+[pegName]{.ins} [nonterminal]{.sub} [delete]{.lit} [nt1]{.arg} [nt2]{.optdot}
+[pegName]{.ins} [nonterminal]{.sub} [exists]{.lit} [nt]{.arg}
+[pegName]{.ins} [nonterminal]{.sub} [rename]{.lit} [nt]{.arg} [ntnew]{.arg}
+[pegName]{.ins} [nonterminal]{.sub} [mode]{.lit} [nt]{.arg} [mode]{.optarg}
+[pegName]{.ins} [nonterminal]{.sub} [rule]{.lit} [nt]{.arg}
+[pegName]{.ins} [unknown]{.sub} [nonterminals]{.lit}
 :::
 
 # Description
@@ -57,7 +58,7 @@ This package provides a container class for *parsing expression grammars* (Short
 
 ## Terms & concepts
 
-PEGs are similar to context-free grammars, but not equivalent; in some cases PEGs are strictly more powerful than context-free grammars (there exist PEGs for some non-context-free languages). The formal mathematical definition of parsing expressions and parsing expression grammars can be found in section **PARSING EXPRESSION GRAMMARS**.
+PEGs are similar to context-free grammars, but not equivalent; in some cases PEGs are strictly more powerful than context-free grammars (there exist PEGs for some non-context-free languages). The formal mathematical definition of parsing expressions and parsing expression grammars can be found in section [Parsing expression grammars].
 
 In short, we have *terminal symbols*, which are the most basic building blocks for *sentences*, and *nonterminal symbols* with associated *parsing expressions*, defining the grammatical structure of the sentences. The two sets of symbols are distinctive, and do not overlap. When speaking about symbols the word "symbol" is often left out. The union of the sets of terminal and nonterminal symbols is called the set of *symbols*.
 
@@ -82,49 +83,45 @@ A derived expression containing only terminal symbols is a *sentence*. The set o
 
 Some definitions for nonterminals and expressions:
 
-**\[1\]**
-: A nonterminal A is called *reachable* if it is possible to derive a parsing expression from the start expression which contains A.
+1. A nonterminal A is called *reachable* if it is possible to derive a parsing expression from the start expression which contains A.
 
-**\[2\]**
-: A nonterminal A is called *useful* if it is possible to derive a sentence from it.
+2. A nonterminal A is called *useful* if it is possible to derive a sentence from it.
 
-**\[3\]**
-: A nonterminal A is called *recursive* if it is possible to derive a parsing expression from it which contains A, again.
+3. A nonterminal A is called *recursive* if it is possible to derive a parsing expression from it which contains A, again.
 
-**\[4\]**
-: The *FIRST set* of a nonterminal A contains all the symbols which can occur of as the leftmost symbol in a parsing expression derived from A. If the FIRST set contains A itself then that nonterminal is called *left-recursive*.
+4. The *FIRST set* of a nonterminal A contains all the symbols which can occur of as the leftmost symbol in a parsing expression derived from A. If the FIRST set contains A itself then that nonterminal is called *left-recursive*.
 
-**\[5\]**
-: The *LAST set* of a nonterminal A contains all the symbols which can occur of as the rightmost symbol in a parsing expression derived from A. If the LAST set contains A itself then that nonterminal is called *right-recursive*.
+5. The *LAST set* of a nonterminal A contains all the symbols which can occur of as the rightmost symbol in a parsing expression derived from A. If the LAST set contains A itself then that nonterminal is called *right-recursive*.
 
-**\[6\]**
-: The *FOLLOW set* of a nonterminal A contains all the symbols which can occur after A in a parsing expression derived from the start expression.
+6. The *FOLLOW set* of a nonterminal A contains all the symbols which can occur after A in a parsing expression derived from the start expression.
 
-**\[7\]**
-: A nonterminal (or parsing expression) is called *nullable* if the empty sentence can be derived from it. And based on the above definitions for grammars:
-
-**\[1\]**
-: A grammar G is *recursive* if and only if it contains a nonterminal A which is recursive. The terms *left-* and *right-recursive*, and *useful* are analogously defined.
-
-**\[2\]**
-: A grammar is *minimal* if it contains only *reachable* and *useful* nonterminals.
-
-**\[3\]**
-: A grammar is *wellformed* if it is not left-recursive. Such grammars are also *complete*, which means that they always succeed or fail on all input sentences. For an incomplete grammar on the other hand input sentences exist for which an attempt to match them against the grammar will not terminate.
-
-**\[4\]**
-: As we wish to allow ourselves to build a grammar incrementally in a container object we will encounter stages where the RHS of one or more rules reference symbols which are not yet known to the container. Such a grammar we call *invalid*. We cannot use the term *incomplete* as this term is already taken, see the last item.
+7. A nonterminal (or parsing expression) is called *nullable* if the empty sentence can be derived from it.
 
 
-## Container class api
+And based on the above definitions for grammars:
+
+1. A grammar G is *recursive* if and only if it contains a nonterminal A which is recursive. The terms *left-* and *right-recursive*, and *useful* are analogously defined.
+
+2. A grammar is *minimal* if it contains only *reachable* and *useful* nonterminals.
+
+3. A grammar is *wellformed* if it is not left-recursive. Such grammars are also *complete*, which means that they always succeed or fail on all input sentences. For an incomplete grammar on the other hand input sentences exist for which an attempt to match them against the grammar will not terminate.
+
+4. As we wish to allow ourselves to build a grammar incrementally in a container object we will encounter stages where the RHS of one or more rules reference symbols which are not yet known to the container. Such a grammar we call *invalid*. We cannot use the term *incomplete* as this term is already taken, see the last item.
+
+
+## Container class API
 
 The package exports the API described here.
 
 **::grammar::peg** *pegName* ?**=**|**:=**|**<--**|**as**|**deserialize** *src*?
-: The command creates a new container object for a parsing expression grammar and returns the fully qualified name of the object command as its result. The API the returned command is following is described in the section **CONTAINER OBJECT API**. It may be used to invoke various operations on the container and the grammar within. The new container, i.e. grammar will be empty if no *src* is specified. Otherwise it will contain a copy of the grammar contained in the *src*. The *src* has to be a container object reference for all operators except **deserialize**. The **deserialize** operator requires *src* to be the serialization of a parsing expression grammar instead. An empty grammar has no nonterminal symbols, and the start expression is the empty expression, i.e. epsilon. It is *valid*, but not *useful*.
+: The command creates a new container object for a parsing expression grammar and returns the fully qualified name of the object command as its result. The API the returned command is following is described in the section [Container object API]. It may be used to invoke various operations on the container and the grammar within.
+
+    The new container, i.e. grammar will be empty if no *src* is specified. Otherwise it will contain a copy of the grammar contained in the *src*. The *src* has to be a container object reference for all operators except **deserialize**. The **deserialize** operator requires *src* to be the serialization of a parsing expression grammar instead.
+
+    An empty grammar has no nonterminal symbols, and the start expression is the empty expression, i.e. epsilon. It is *valid*, but not *useful*.
 
 
-## Container object api
+## Container object API
 
 All grammar container objects provide the following methods for the manipulation of their contents:
 
@@ -135,91 +132,96 @@ All grammar container objects provide the following methods for the manipulation
 : Clears out the definition of the grammar contained in *pegName*, but does *not* destroy the object.
 
 *pegName* **=** *srcPEG*
-: Assigns the contents of the grammar contained in *srcPEG* to *pegName*, overwriting any existing definition. This is the assignment operator for grammars. It copies the grammar contained in the grammar object *srcPEG* over the grammar definition in *pegName*. The old contents of *pegName* are deleted by this operation. This operation is in effect equivalent to
+: Assigns the contents of the grammar contained in *srcPEG* to *pegName*, overwriting any existing definition. This is the assignment operator for grammars. It copies the grammar contained in the grammar object *srcPEG* over the grammar definition in *pegName*. The old contents of *pegName* are deleted by this operation.
 
+    This operation is in effect equivalent to
 
-```
-    pegName deserialize [srcPEG serialize]
-```
+    ```
+        pegName deserialize [srcPEG serialize]
+    ```
 
 *pegName* **-->** *dstPEG*
-: This is the reverse assignment operator for grammars. It copies the automation contained in the object *pegName* over the grammar definition in the object *dstPEG*. The old contents of *dstPEG* are deleted by this operation. This operation is in effect equivalent to
+: This is the reverse assignment operator for grammars. It copies the automation contained in the object *pegName* over the grammar definition in the object *dstPEG*. The old contents of *dstPEG* are deleted by this operation.
 
+    This operation is in effect equivalent to
 
-```
-    dstPEG deserialize [pegName serialize]
-```
+    ```
+        dstPEG deserialize [pegName serialize]
+    ```
 
 *pegName* **serialize**
-: This method serializes the grammar stored in *pegName*. In other words it returns a tcl *value* completely describing that grammar. This allows, for example, the transfer of grammars over arbitrary channels, persistence, etc. This method is also the basis for both the copy constructor and the assignment operator. The result of this method has to be semantically identical over all implementations of the **grammar::peg** interface. This is what will enable us to copy grammars between different implementations of the same interface. The result is a list of four elements with the following structure:
+: This method serializes the grammar stored in *pegName*. In other words it returns a tcl *value* completely describing that grammar. This allows, for example, the transfer of grammars over arbitrary channels, persistence, etc. This method is also the basis for both the copy constructor and the assignment operator.
+
+    The result of this method has to be semantically identical over all implementations of the **grammar::peg** interface. This is what will enable us to copy grammars between different implementations of the same interface.
+
+    The result is a list of four elements with the following structure:
+
+    1. The constant string **grammar::peg**.
+
+    2. A dictionary. Its keys are the names of all known nonterminal symbols, and their associated values are the parsing expressions describing their sentennial structure.
+
+    3. A dictionary. Its keys are the names of all known nonterminal symbols, and their associated values hints to a matcher regarding the semantic values produced by the symbol.
+
+    4. The last item is a parsing expression, the *start expression* of the grammar.
 
 
-**\[1\]**
-: The constant string **grammar::peg**.
+    Assuming the following PEG for simple mathematical expressions
 
-**\[2\]**
-: A dictionary. Its keys are the names of all known nonterminal symbols, and their associated values are the parsing expressions describing their sentennial structure.
+    ```
+        Digit      <- '0'/'1'/'2'/'3'/'4'/'5'/'6'/'7'/'8'/'9'
+        Sign       <- '+' / '-'
+        Number     <- Sign? Digit+
+        Expression <- '(' Expression ')' / (Factor (MulOp Factor)*)
+        MulOp      <- '*' / '/'
+        Factor     <- Term (AddOp Term)*
+        AddOp      <- '+'/'-'
+        Term       <- Number
+    ```
 
-**\[3\]**
-: A dictionary. Its keys are the names of all known nonterminal symbols, and their associated values hints to a matcher regarding the semantic values produced by the symbol.
+    a possible serialization is
 
-**\[4\]**
-: The last item is a parsing expression, the *start expression* of the grammar.
+    ```
+        grammar::peg \
+        {Expression {/ {x ( Expression )} {x Factor {* {x MulOp Factor}}}} \
+         Factor     {x Term {* {x AddOp Term}}} \
+         Term       Number \
+         MulOp      {/ * /} \
+         AddOp      {/ + -} \
+         Number     {x {? Sign} {+ Digit}} \
+         Sign       {/ + -} \
+         Digit      {/ 0 1 2 3 4 5 6 7 8 9} \
+        } \
+        {Expression value     Factor     value \
+         Term       value     MulOp      value \
+         AddOp      value     Number     value \
+         Sign       value     Digit      value \
+        }
+        Expression
+    ```
 
-
-Assuming the following PEG for simple mathematical expressions
-
-```
-    Digit      <- '0'/'1'/'2'/'3'/'4'/'5'/'6'/'7'/'8'/'9'
-    Sign       <- '+' / '-'
-    Number     <- Sign? Digit+
-    Expression <- '(' Expression ')' / (Factor (MulOp Factor)*)
-    MulOp      <- '*' / '/'
-    Factor     <- Term (AddOp Term)*
-    AddOp      <- '+'/'-'
-    Term       <- Number
-```
-
-a possible serialization is
-
-```
-    grammar::peg \
-    {Expression {/ {x ( Expression )} {x Factor {* {x MulOp Factor}}}} \
-     Factor     {x Term {* {x AddOp Term}}} \
-     Term       Number \
-     MulOp      {/ * /} \
-     AddOp      {/ + -} \
-     Number     {x {? Sign} {+ Digit}} \
-     Sign       {/ + -} \
-     Digit      {/ 0 1 2 3 4 5 6 7 8 9} \
-    } \
-    {Expression value     Factor     value \
-     Term       value     MulOp      value \
-     AddOp      value     Number     value \
-     Sign       value     Digit      value \
-    }
-    Expression
-```
-
-A possible one, because the order of the nonterminals in the dictionary is not relevant.
+    A possible one, because the order of the nonterminals in the dictionary is not relevant.
 
 *pegName* **deserialize** *serialization*
 : This is the complement to **serialize**. It replaces the grammar definition in *pegName* with the grammar described by the *serialization* value. The old contents of *pegName* are deleted by this operation.
 
 *pegName* **is valid**
-: A predicate. It tests whether the PEG in *pegName* is *valid*. See section **TERMS & CONCEPTS** for the definition of this grammar property. The result is a boolean value. It will be set to **true** if the PEG has the tested property, and **false** otherwise.
+: A predicate. It tests whether the PEG in *pegName* is *valid*. See section [Terms & concepts] for the definition of this grammar property. The result is a boolean value. It will be set to **true** if the PEG has the tested property, and **false** otherwise.
 
 *pegName* **start** ?*pe*?
-: This method defines the *start expression* of the grammar. It replaces the previously defined start expression with the parsing expression *pe*. The method fails and throws an error if *pe* does not contain a valid parsing expression as specified in the section **PARSING EXPRESSIONS**. In that case the existing start expression is not changed. The method returns the empty string as its result. If the method is called without an argument it will return the currently defined start expression.
+: This method defines the *start expression* of the grammar. It replaces the previously defined start expression with the parsing expression *pe*. The method fails and throws an error if *pe* does not contain a valid parsing expression as specified in the section [Parsing expressions]. In that case the existing start expression is not changed. The method returns the empty string as its result.
+
+    If the method is called without an argument it will return the currently defined start expression.
 
 *pegName* **nonterminals**
 : Returns the set of all nonterminal symbols known to the grammar.
 
 *pegName* **nonterminal add** *nt* *pe*
-: This method adds the nonterminal *nt* and its associated parsing expression *pe* to the set of nonterminal symbols and rules of the PEG contained in the object *pegName*. The method fails and throws an error if either the string *nt* is already known as a symbol of the grammar, or if *pe* does not contain a valid parsing expression as specified in the section **PARSING EXPRESSIONS**. In that case the current set of nonterminal symbols and rules is not changed. The method returns the empty string as its result.
+: This method adds the nonterminal *nt* and its associated parsing expression *pe* to the set of nonterminal symbols and rules of the PEG contained in the object *pegName*. The method fails and throws an error if either the string *nt* is already known as a symbol of the grammar, or if *pe* does not contain a valid parsing expression as specified in the section [Parsing expressions]. In that case the current set of nonterminal symbols and rules is not changed. The method returns the empty string as its result.
 
 *pegName* **nonterminal delete** *nt1* ?*nt2* ...?
-: This method removes the named symbols *nt1*, *nt2* from the set of nonterminal symbols of the PEG contained in the object *pegName*. The method fails and throws an error if any of the strings is not known as a nonterminal symbol. In that case the current set of nonterminal symbols is not changed. The method returns the empty string as its result. The stored grammar becomes invalid if the deleted nonterminals are referenced by the RHS of still-known rules.
+: This method removes the named symbols *nt1*, *nt2* from the set of nonterminal symbols of the PEG contained in the object *pegName*. The method fails and throws an error if any of the strings is not known as a nonterminal symbol. In that case the current set of nonterminal symbols is not changed. The method returns the empty string as its result.
+
+    The stored grammar becomes invalid if the deleted nonterminals are referenced by the RHS of still-known rules.
 
 *pegName* **nonterminal exists** *nt*
 : A predicate. It tests whether the nonterminal symbol *nt* is known to the PEG in *pegName*. The result is a boolean value. It will be set to **true** if the symbol *nt* is known, and **false** otherwise.
@@ -230,18 +232,17 @@ A possible one, because the order of the nonterminals in the dictionary is not r
 *pegName* **nonterminal mode** *nt* ?*mode*?
 : This mode returns or sets the semantic mode associated with the nonterminal symbol *nt*. If no *mode* is specified the current mode of the nonterminal is returned. Otherwise the current mode is set to *mode*. The method fails and throws an error if *nt* is not known as a nonterminal. The grammar interpreter implemented by the package **grammar::peg::interpreter** recognizes the following modes:
 
+    value
+    : The semantic value of the nonterminal is the abstract syntax tree created from the AST's of the RHS and a node for the nonterminal itself.
 
-**value**
-: The semantic value of the nonterminal is the abstract syntax tree created from the AST's of the RHS and a node for the nonterminal itself.
+    match
+    : The semantic value of the nonterminal is an the abstract syntax tree consisting of single a node for the string matched by the RHS. The ASTs generated by the RHS are discarded.
 
-**match**
-: The semantic value of the nonterminal is an the abstract syntax tree consisting of single a node for the string matched by the RHS. The ASTs generated by the RHS are discarded.
+    leaf
+    : The semantic value of the nonterminal is an the abstract syntax tree consisting of single a node for the nonterminal itself. The ASTs generated by the RHS are discarded.
 
-**leaf**
-: The semantic value of the nonterminal is an the abstract syntax tree consisting of single a node for the nonterminal itself. The ASTs generated by the RHS are discarded.
-
-**discard**
-: The nonterminal has no semantic value. The ASTs generated by the RHS are discarded (as well).
+    discard
+    : The nonterminal has no semantic value. The ASTs generated by the RHS are discarded (as well).
 
 
 *pegName* **nonterminal rule** *nt*
@@ -255,111 +256,92 @@ A possible one, because the order of the nonterminals in the dictionary is not r
 
 Various methods of PEG container objects expect a parsing expression as their argument, or will return such. This section specifies the format such parsing expressions are in.
 
-**\[1\]**
-: The string **epsilon** is an atomic parsing expression. It matches the empty string.
+1. The string **epsilon** is an atomic parsing expression. It matches the empty string.
 
-**\[2\]**
-: The string **alnum** is an atomic parsing expression. It matches any alphanumeric character.
+2. The string **alnum** is an atomic parsing expression. It matches any alphanumeric character.
 
-**\[3\]**
-: The string **alpha** is an atomic parsing expression. It matches any alphabetical character.
+3. The string **alpha** is an atomic parsing expression. It matches any alphabetical character.
 
-**\[4\]**
-: The string **dot** is an atomic parsing expression. It matches any character.
+4. The string **dot** is an atomic parsing expression. It matches any character.
 
-**\[5\]**
-: The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
+5. The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
 
-**\[6\]**
-: The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
+6. The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
 
-**\[7\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
+7. For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
 
-**\[8\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
+8. For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
 
-**\[9\]**
-: For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
+9. For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
 
-**\[10\]**
-: For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
+10. For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
 
-**\[11\]**
-: For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
+11. For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
 
-**\[12\]**
-: For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
+12. For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
 
-**\[13\]**
-: For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*. Examples of parsing expressions where already shown, in the description of the method **serialize**.
+13. For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
 
+
+Examples of parsing expressions where already shown, in the description of the method **serialize**.
 
 # Parsing expression grammars
 
 For the mathematically inclined, a PEG is a 4-tuple (VN,VT,R,eS) where
 
-**•**
-: VN is a set of *nonterminal symbols*,
+- VN is a set of *nonterminal symbols*,
 
-**•**
-: VT is a set of *terminal symbols*,
+- VT is a set of *terminal symbols*,
 
-**•**
-: R is a finite set of rules, where each rule is a pair (A,e), A in VN, and *e* a *parsing expression*.
+- R is a finite set of rules, where each rule is a pair (A,e), A in VN, and *e* a *parsing expression*.
 
-**•**
-: eS is a parsing expression, the *start expression*. Further constraints are
+- eS is a parsing expression, the *start expression*.
 
-**•**
-: The intersection of VN and VT is empty.
 
-**•**
-: For all A in VT exists exactly one pair (A,e) in R. In other words, R is a function from nonterminal symbols to parsing expressions. Parsing expression are inductively defined via
+Further constraints are
 
-**•**
-: The empty string (epsilon) is a parsing expression.
+- The intersection of VN and VT is empty.
 
-**•**
-: A terminal symbol *a* is a parsing expression.
+- For all A in VT exists exactly one pair (A,e) in R. In other words, R is a function from nonterminal symbols to parsing expressions.
 
-**•**
-: A nonterminal symbol *A* is a parsing expression.
 
-**•**
-: *e1e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *sequence*.
+Parsing expression are inductively defined via
 
-**•**
-: *e1*/*e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *ordered choice*.
+- The empty string (epsilon) is a parsing expression.
 
-**•**
-: *e*\* is a parsing expression for parsing expression *e*. This is called *zero-or-more repetitions*, also known as *kleene closure*.
+- A terminal symbol *a* is a parsing expression.
 
-**•**
-: *e*+ is a parsing expression for parsing expression *e*. This is called *one-or-more repetitions*, also known as *positive kleene closure*.
+- A nonterminal symbol *A* is a parsing expression.
 
-**•**
-: !*e* is a parsing expression for parsing expression *e1*. This is called a *not lookahead predicate*.
+- *e1e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *sequence*.
 
-**•**
-: &*e* is a parsing expression for parsing expression *e1*. This is called an *and lookahead predicate*. PEGs are used to define a grammatical structure for streams of symbols over VT. They are a modern phrasing of older formalisms invented by Alexander Birham. These formalisms were called TS (TMG recognition scheme), and gTS (generalized TS). Later they were renamed to TPDL (Top-Down Parsing Languages) and gTPDL (generalized TPDL). They can be easily implemented by recursive descent parsers with backtracking. This makes them relatives of LL(k) Context-Free Grammars.
+- *e1*/*e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *ordered choice*.
 
+- *e*\* is a parsing expression for parsing expression *e*. This is called *zero-or-more repetitions*, also known as *kleene closure*.
+
+- *e*+ is a parsing expression for parsing expression *e*. This is called *one-or-more repetitions*, also known as *positive kleene closure*.
+
+- !*e* is a parsing expression for parsing expression *e1*. This is called a *not lookahead predicate*.
+
+- &*e* is a parsing expression for parsing expression *e1*. This is called an *and lookahead predicate*.
+
+
+PEGs are used to define a grammatical structure for streams of symbols over VT. They are a modern phrasing of older formalisms invented by Alexander Birham. These formalisms were called TS (TMG recognition scheme), and gTS (generalized TS). Later they were renamed to TPDL (Top-Down Parsing Languages) and gTPDL (generalized TPDL).
+
+They can be easily implemented by recursive descent parsers with backtracking. This makes them relatives of LL(k) Context-Free Grammars.
 
 # References
 
-**\[1\]**
-: [The Packrat Parsing and Parsing Expression Grammars Page](http://www.pdos.lcs.mit.edu/~baford/packrat/), by Bryan Ford, Massachusetts Institute of Technology. This is the main entry page to PEGs, and their realization through Packrat Parsers.
+1. [The Packrat Parsing and Parsing Expression Grammars Page](http://www.pdos.lcs.mit.edu/~baford/packrat/), by Bryan Ford, Massachusetts Institute of Technology. This is the main entry page to PEGs, and their realization through Packrat Parsers.
 
-**\[2\]**
-: *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, an online book offering a clear, accessible, and thorough discussion of many different parsing techniques with their interrelations and applicabilities, including error recovery techniques.
+2. *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, an online book offering a clear, accessible, and thorough discussion of many different parsing techniques with their interrelations and applicabilities, including error recovery techniques.
 
-**\[3\]**
-: [Compilers and Compiler Generators](http://scifac.ru.ac.za/compilers/), an online book using CoCo/R, a generator for recursive descent parsers.
+3. [Compilers and Compiler Generators](http://scifac.ru.ac.za/compilers/), an online book using CoCo/R, a generator for recursive descent parsers.
 
 
 # Bugs, ideas, feedback
 
-If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar_peg* as the category.
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar\_peg* as the category.
 
 When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
 

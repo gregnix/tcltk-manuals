@@ -1,5 +1,6 @@
 ---
 CommandName: comm_wire
+title: comm_wire
 ManualSection: n
 Version: 3
 TclPart: tcllib
@@ -21,12 +22,12 @@ Copyright:
 
 # Name
 
-comm_wire - The comm wire protocol
+comm\_wire - The comm wire protocol
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [comm]{.lit} 
+[package]{.cmd} [require]{.sub} [comm]{.lit}
 :::
 
 # Description
@@ -37,13 +38,13 @@ This document contains a specification of the various versions of the wire proto
 
 # Wire protocol version 3
 
-## Basic layer
+## Basic Layer
 
 The basic encoding for *all* data is UTF-8. Because of this binary data, including the NULL character, can be sent over the wire as is, without the need for armoring it.
 
-## Basic message layer
+## Basic message Layer
 
-On top of the **Basic Layer** we have a *message oriented* exchange of data. The totality of all characters written to the channel is a Tcl list, with each element a separate *message*, each itself a list. The messages in the overall list are separated by EOL. Note that EOL characters can occur within the list as well. They can be distinguished from the message-separating EOL by the fact that the data from the beginning up to their location is not a valid Tcl list.
+On top of the [Basic Layer] we have a *message oriented* exchange of data. The totality of all characters written to the channel is a Tcl list, with each element a separate *message*, each itself a list. The messages in the overall list are separated by EOL. Note that EOL characters can occur within the list as well. They can be distinguished from the message-separating EOL by the fact that the data from the beginning up to their location is not a valid Tcl list.
 
 EOL is signaled through the linefeed character, i.e **LF**, or, hex **0x0a**. This is following the unix convention for line-endings.
 
@@ -53,11 +54,9 @@ As a list each message is composed of *words*. Their meaning depends on when the
 
 The command protocol is defined like this:
 
-**•**
-: The first message send by a client to a server, when opening the connection, contains two words. The first word is a list as well, and contains the versions of the wire protocol the client is willing to accept, with the most preferred version first. The second word is the TCP port the client is listening on for connections to itself. The value **0** is used here to signal that the client will not listen for connections, i.e. that it is purely for sending commands, and not receiving them.
+- The first message send by a client to a server, when opening the connection, contains two words. The first word is a list as well, and contains the versions of the wire protocol the client is willing to accept, with the most preferred version first. The second word is the TCP port the client is listening on for connections to itself. The value **0** is used here to signal that the client will not listen for connections, i.e. that it is purely for sending commands, and not receiving them.
 
-**•**
-: The first message sent by the server to the client, in response to the message above contains only one word. This word is a list, containing the string **vers** as its first element, and the version of the wire protocol the server has selected from the offered versions as the second.
+- The first message sent by the server to the client, in response to the message above contains only one word. This word is a list, containing the string **vers** as its first element, and the version of the wire protocol the server has selected from the offered versions as the second.
 
 
 ## Script/command messages
@@ -65,56 +64,59 @@ The command protocol is defined like this:
 All messages coming after the **initial handshake** consist of three words. These are an instruction, a transaction id, and the payload. The valid instructions are shown below. The transaction ids are used by the client to match any incoming replies to the command messages it sent. This means that a server has to copy the transaction id from a command message to the reply it sends for that message.
 
 **send**
-: ...see next...
+: see below ...
 
 **async**
-: ...see next...
+: see below ...
 
 **command**
-: The payload is the Tcl script to execute on the server. It is actually a list containing the script fragments. These fragment are **concat**enated together by the server to form the full script to execute on the server side. This emulates the Tcl "eval" semantics. In most cases it is best to have only one word in the list, a list containing the exact command. Examples:
+: The payload is the Tcl script to execute on the server. It is actually a list containing the script fragments. These fragment are **concat**enated together by the server to form the full script to execute on the server side. This emulates the Tcl "eval" semantics. In most cases it is best to have only one word in the list, a list containing the exact command.
 
+    Examples:
 
-```
-    (a)     {send 1 {{array get tcl_platform}}}
-    (b)     {send 1 {array get tcl_platform}}
-    (c)     {send 1 {array {get tcl_platform}}}
+    ```
+        (a)     {send 1 {{array get tcl_platform}}}
+        (b)     {send 1 {array get tcl_platform}}
+        (c)     {send 1 {array {get tcl_platform}}}
 
-    are all valid representations of the same command. They are
-    generated via
+        are all valid representations of the same command. They are
+        generated via
 
-    (a')    send {array get tcl_platform}
-    (b')    send array get tcl_platform
-    (c')    send array {get tcl_platform}
+        (a')    send {array get tcl_platform}
+        (b')    send array get tcl_platform
+        (c')    send array {get tcl_platform}
 
-    respectively
-```
+        respectively
+    ```
 
-Note that (a), generated by (a'), is the usual form, if only single commands are sent by the client. For example constructed using **list**, if the command contains variable arguments. Like
+    Note that (a), generated by (a'), is the usual form, if only single commands are sent by the client. For example constructed using **list**, if the command contains variable arguments. Like
 
-```
-    send [list array get $the_variable]
-```
+    ```
+        send [list array get $the_variable]
+    ```
 
-These three instructions all invoke the script on the server side. Their difference is in the treatment of result values, and thus determines if a reply is expected.
+    These three instructions all invoke the script on the server side. Their difference is in the treatment of result values, and thus determines if a reply is expected.
 
-**send**
-: A reply is expected. The sender is waiting for the result.
+    **send**
+    : A reply is expected. The sender is waiting for the result.
 
-**async**
-: No reply is expected, the sender has no interest in the result and is not waiting for any.
+    **async**
+    : No reply is expected, the sender has no interest in the result and is not waiting for any.
 
-**command**
-: A reply is expected, but the sender is not waiting for it. It has arranged to get a process-internal notification when the result arrives.
+    **command**
+    : A reply is expected, but the sender is not waiting for it. It has arranged to get a process-internal notification when the result arrives.
 
 
 **reply**
-: Like the previous three command, however the tcl script in the payload is highly restricted. It has to be a syntactically valid Tcl **return** command. This contains result code, value, error code, and error info. Examples:
+: Like the previous three command, however the tcl script in the payload is highly restricted. It has to be a syntactically valid Tcl **return** command. This contains result code, value, error code, and error info.
 
+    Examples:
 
-```
-    {reply 1 {return -code 0 {}}}
-    {reply 1 {return -code 0 {osVersion 2.4.21-99-default byteOrder littleEndian machine i686 platform unix os Linux user andreask wordSize 4}}}
-```
+    ```
+        {reply 1 {return -code 0 {}}}
+        {reply 1 {return -code 0 {osVersion 2.4.21-99-default byteOrder littleEndian machine i686 platform unix os Linux user andreask wordSize 4}}}
+    ```
+
 
 # Bugs, ideas, feedback
 

@@ -1,5 +1,6 @@
 ---
 CommandName: base32
+title: base32
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -20,37 +21,41 @@ base32 - base32 standard encoding
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [base32]{.lit} [0.2]{.optlit} 
-[::base32::encode]{.cmd} [bstring]{.arg} 
-[::base32::decode]{.cmd} [estring]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [base32]{.lit} [0.2]{.optlit}
+[::base32::encode]{.cmd} [bstring]{.arg}
+[::base32::decode]{.cmd} [estring]{.arg}
 :::
 
 # Description
 
 This package provides commands for encoding and decoding binary strings to and from the standard base32 encoding as specified in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) *(and also the older* [RFC 3548](https://datatracker.ietf.org/doc/html/rfc3548))*.*
 
-# Api
+# API
 
 **::base32::encode** *bstring*
-: Returns a base32-encoded version of the binary string *bstring* as its result. The result may be padded at the end with **=** characters to ensure that the result’s length is a multiple of eight. The encoder will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns a base32-encoded version of the binary string *bstring* as its result.
+
+    The result may be padded at the end with **=** characters to ensure that the result’s length is a multiple of eight.
+
+    The encoder will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::base32::decode** *estring*
-: Returns a binary string that has been base32-decoded from the *estring*. Note that while the encoder produces only uppercase characters, this decoder is case-insensitive, i.e., more permissive. The decoder may throw an error on invalid input. For example, if:
+: Returns a binary string that has been base32-decoded from the *estring*.
 
+    Note that while the encoder produces only uppercase characters, this decoder is case-insensitive, i.e., more permissive.
 
-**•**
-: the input contains characters which are not valid for base32-encoded data;
+    The decoder may throw an error on invalid input. For example, if:
 
-**•**
-: the length of the input is not a multiple of eight;
+    - the input contains characters which are not valid for base32-encoded data;
 
-**•**
-: padding appears in the middle rather than at the end of the input;
+    - the length of the input is not a multiple of eight;
 
-**•**
-: the padding’s length is not exactly one, three, four, or six characters.
+    - padding appears in the middle rather than at the end of the input;
+
+    - the padding’s length is not exactly one, three, four, or six characters.
+
 
 
 It is also possible to have invalid input that does *not* throw an error—for example, plain text that doesn’t do any of the things listed above.

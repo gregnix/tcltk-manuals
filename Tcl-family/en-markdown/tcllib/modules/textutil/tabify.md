@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::tabify
+title: textutil::tabify
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -22,31 +23,37 @@ textutil::tabify - Procedures to (un)tabify strings
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::tabify]{.lit} [0.8]{.optlit} 
-[::textutil::tabify::tabify]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::tabify2]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::untabify]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::untabify2]{.cmd} [string]{.arg} [count]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::tabify]{.lit} [0.8]{.optlit}
+[::textutil::tabify::tabify]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::tabify2]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::untabify]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::untabify2]{.cmd} [string]{.arg} [count]{.optarg}
 :::
 
 # Description
 
 The **textutil::tabify** package provides commands for converting tabs to spaces or spaces to tabs in strings.
 
-# Api
+# API
 
 **::textutil::tabify::tabify** *string* ?*count*?
 : Returns a copy of *string* with any substring of *count* space characters replaced by a horizontal tab. The *count* defaults to 8.
 
 **::textutil::tabify::tabify2** *string* ?*count*?
-: Returns a copy of *string* with substrings of *count* *or fewer* space characters replaced by a horizontal tab using a text editor like algorithm. The *count* defaults to 8. The algorithm used by this command treats each line in *string* as if it had notional tabstops every *count* columns. (So, if *count* is **8**, at columns **8**, **16**, **24**, ….) Only sequences of *two or more* space characters that occur immediately before a notional tabstop are replaced with a tab.
+: Returns a copy of *string* with substrings of *count* *or fewer* space characters replaced by a horizontal tab using a text editor like algorithm. The *count* defaults to 8.
+
+    The algorithm used by this command treats each line in *string* as if it had notional tabstops every *count* columns. (So, if *count* is **8**, at columns **8**, **16**, **24**, ….) Only sequences of *two or more* space characters that occur immediately before a notional tabstop are replaced with a tab.
 
 **::textutil::tabify::untabify** *string* ?*count*?
 : Returns a copy of *string* with every horizontal tab replaced by *count* spaces. The *count* defaults to 8.
 
 **::textutil::tabify::untabify2** *string* ?*count*?
-: Returns a copy of *string* with horizontal tabs replaced by *count* *or fewer* space characters using a text editor like algorithm. The *count* defaults to 8. This command is the counterpart to **::textutil::tabify::tabify2**. The algorithm used by this command treats each line in *string* as if it had notional tabstops every *count* columns. (So, if *count* is **8**, at columns **8**, **16**, **24**, ….) Instead of blindly replacing each horizontal tab with *count* spaces, each horizontal tab at a notional tabstop is replaced by enough spaces to reach the next notional tabstop. There is one asymmetry though: A tab may be replaced by a single space, but not the other way around.
+: Returns a copy of *string* with horizontal tabs replaced by *count* *or fewer* space characters using a text editor like algorithm. The *count* defaults to 8.
+
+    This command is the counterpart to **::textutil::tabify::tabify2**. The algorithm used by this command treats each line in *string* as if it had notional tabstops every *count* columns. (So, if *count* is **8**, at columns **8**, **16**, **24**, ….) Instead of blindly replacing each horizontal tab with *count* spaces, each horizontal tab at a notional tabstop is replaced by enough spaces to reach the next notional tabstop.
+
+    There is one asymmetry though: A tab may be replaced by a single space, but not the other way around.
 
 
 # Examples

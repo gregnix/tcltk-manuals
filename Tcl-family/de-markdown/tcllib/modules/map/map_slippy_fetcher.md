@@ -1,5 +1,6 @@
 ---
 CommandName: map::slippy::fetcher
+title: map::slippy::fetcher
 ManualSection: n
 Version: 0.7
 TclPart: tcllib
@@ -16,25 +17,25 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 map::slippy::fetcher – Zugriff auf einen Server, der Kacheln für auf Slippy basierende Karten bereitstellt
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy::fetcher]{.lit} [0.7]{.optlit} 
-[::map::slippy::fetcher]{.cmd} [fetcherName]{.arg} [levels]{.arg} [url]{.arg} 
-[fetcherName]{.ins} [levels]{.sub} 
-[fetcherName]{.ins} [tileheight]{.sub} 
-[fetcherName]{.ins} [tilewidth]{.sub} 
-[fetcherName]{.ins} [get]{.sub} [tile]{.arg} [donecmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy::fetcher]{.lit} [0.7]{.optlit}
+[::map::slippy::fetcher]{.cmd} [fetcherName]{.arg} [levels]{.arg} [url]{.arg}
+[fetcherName]{.ins} [levels]{.sub}
+[fetcherName]{.ins} [tileheight]{.sub}
+[fetcherName]{.ins} [tilewidth]{.sub}
+[fetcherName]{.ins} [get]{.sub} [tile]{.arg} [donecmd]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält eine Klasse für den Zugriff auf HTTP-Server, die Kacheln für Slippy-basierte Karten bereitstellen.
 
@@ -43,7 +44,9 @@ Dieses Paket enthält eine Klasse für den Zugriff auf HTTP-Server, die Kacheln 
 # API
 
 **::map::slippy::fetcher** *fetcherName* *levels* *url*
-: Erstellt den Fetcher *fetcherName* und konfiguriert ihn mit der Anzahl der vom Kachelserver unterstützten Zoomstufen *levels* sowie der *url*, unter der er auf Kachelanfragen wartet. Das Ergebnis des Befehls lautet *fetcherName*.
+: Erstellt den Fetcher *fetcherName* und konfiguriert ihn mit der Anzahl der vom Kachelserver unterstützten Zoomstufen *levels* sowie der *url*, unter der er auf Kachelanfragen wartet.
+
+    Das Ergebnis des Befehls lautet *fetcherName*.
 
 
 ## Methoden
@@ -58,20 +61,18 @@ Dieses Paket enthält eine Klasse für den Zugriff auf HTTP-Server, die Kacheln 
 : Diese Methode gibt die Breite der bereitgestellten Kacheln in Pixeln zurück.
 
 *fetcherName* **get** *tile* *donecmd*
-: Dies ist die Hauptmethode des Fetchers, die das Bild für die angegebene *tile* abruft. Die Kachel-Kennung ist eine Liste mit drei Elementen: der Zoomstufe sowie den Zeilen- und Spaltennummern der Kachel, in dieser Reihenfolge. Der Befehl „refix *donecmd*“ wird aufgerufen, wenn der Fetcher entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild mehr bereitgestellt wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
+: Dies ist die Hauptmethode des Fetchers, die das Bild für die angegebene *tile* abruft. Die Kachel-Kennung ist eine Liste mit drei Elementen: der Zoomstufe sowie den Zeilen- und Spaltennummern der Kachel, in dieser Reihenfolge.
+
+    Der Befehl „refix *donecmd*“ wird aufgerufen, wenn der Fetcher entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild mehr bereitgestellt wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
+
+    1. Die Zeichenfolge „**set**“, die *tile* und das Bild.
+
+    2. Die Zeichenfolge „**unset**“ und die *tile*.
 
 
-**\[1\]**
-: Die Zeichenfolge „**set**“, die *tile* und das Bild.
-
-**\[2\]**
-: Die Zeichenfolge „**unset**“ und die *tile*.
+    Diese beiden Möglichkeiten dienen dazu, entweder das Bild für die *tile* anzugeben oder zu signalisieren, dass für die *tile* kein Bild definiert ist.
 
 
-: Diese beiden Möglichkeiten dienen dazu, entweder das Bild für die *tile* anzugeben oder zu signalisieren, dass für die *tile* kein Bild definiert ist.
+# Literatur
 
-
-# LITERATUR
-
-**\[1\]**
-: *http://wiki.openstreetmap.org/wiki/Main_Page*
+1. <http://wiki.openstreetmap.org/wiki/Main_Page>

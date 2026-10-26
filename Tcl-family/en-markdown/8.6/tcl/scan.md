@@ -1,5 +1,6 @@
 ---
 CommandName: scan
+title: scan
 ManualSection: n
 Version: 8.4
 TclPart: Tcl
@@ -24,7 +25,7 @@ scan - Parse string using conversion specifiers in the style of sscanf
 # Synopsis
 
 ::: {.synopsis} :::
-[scan]{.cmd} [string]{.arg} [format]{.arg} [varName varName]{.optdot} 
+[scan]{.cmd} [string]{.arg} [format]{.arg} [varName varName]{.optdot}
 :::
 
 # Introduction
@@ -39,11 +40,11 @@ When **scan** finds a conversion specifier in *format*, it first skips any white
 
 ## Optional positional specifier
 
-If the **%** is followed by a decimal number and a **\$**, as in "**%2\$d**", then the variable to use is not taken from the next sequential argument.  Instead, it is taken from the argument indicated by the number, where 1 corresponds to the first *varName*.  If there are any positional specifiers in *format* then all of the specifiers must be positional.  Every *varName* on the argument list must correspond to exactly one conversion specifier or an error is generated, or in the inline case, any position can be specified at most once and the empty positions will be filled in with empty strings.
+If the **%** is followed by a decimal number and a **$**, as in "**%2$d**", then the variable to use is not taken from the next sequential argument.  Instead, it is taken from the argument indicated by the number, where 1 corresponds to the first *varName*.  If there are any positional specifiers in *format* then all of the specifiers must be positional.  Every *varName* on the argument list must correspond to exactly one conversion specifier or an error is generated, or in the inline case, any position can be specified at most once and the empty positions will be filled in with empty strings.
 
 ## Optional size modifier
 
-The size modifier field is used only when scanning a substring into one of Tcl's integer values.  The size modifier field dictates the integer range acceptable to be stored in a variable, or, for the inline case, in a position in the result list. The syntactically valid values for the size modifier are **h**, **L**, **l**, and **ll**.  The **h** size modifier value is equivalent to the absence of a size modifier in the the conversion specifier. Either one indicates the integer range to be stored is limited to the same range produced by the **int()** function of the **expr** command.  The **L** size modifier is equivalent to the **l** size modifier. Either one indicates the integer range to be stored is limited to the same range produced by the **wide()** function of the **expr** command.  The **ll** size modifier indicates that the integer range to be stored is unlimited.
+The size modifier field is used only when scanning a substring into one of Tcl's integer values.  The size modifier field dictates the integer range acceptable to be stored in a variable, or, for the inline case, in a position in the result list. The syntactically valid values for the size modifier are **h**, **L**, **l**, and **ll**.  The **h** size modifier value is equivalent to the absence of a size modifier in the the conversion specifier. Either one indicates the integer range to be stored is limited to the same range produced by the **int()** function of the [expr] command.  The **L** size modifier is equivalent to the **l** size modifier. Either one indicates the integer range to be stored is limited to the same range produced by the **wide()** function of the [expr] command.  The **ll** size modifier indicates that the integer range to be stored is unlimited.
 
 ## Mandatory conversion character
 
@@ -76,31 +77,29 @@ The following conversion characters are supported:
 **e** or **f** or **g** or **E** or **G**
 : The input substring must be a floating-point number consisting of an optional sign, a string of decimal digits possibly containing a decimal point, and an optional exponent consisting of an **e** or **E** followed by an optional sign and a string of decimal digits. It is read in and stored in the variable as a floating-point value.
 
-**\[**_chars_**\]**
-: The input substring consists of one or more characters in *chars*. The matching string is stored in the variable. If the first character between the brackets is a **\]** then it is treated as part of *chars* rather than the closing bracket for the set. If *chars* contains a sequence of the form *a*__-__*b* then any character between *a* and *b* (inclusive) will match. If the first or last character between the brackets is a **-**, then it is treated as part of *chars* rather than indicating a range.
+**\[***chars***\]**
+: The input substring consists of one or more characters in *chars*. The matching string is stored in the variable. If the first character between the brackets is a **\]** then it is treated as part of *chars* rather than the closing bracket for the set. If *chars* contains a sequence of the form *a***-***b* then any character between *a* and *b* (inclusive) will match. If the first or last character between the brackets is a **-**, then it is treated as part of *chars* rather than indicating a range.
 
-**\[^**_chars_**\]**
-: The input substring consists of one or more characters not in *chars*. The matching string is stored in the variable. If the character immediately following the **^** is a **\]** then it is treated as part of the set rather than the closing bracket for the set. If *chars* contains a sequence of the form *a*__-__*b* then any character between *a* and *b* (inclusive) will be excluded from the set. If the first or last character between the brackets is a **-**, then it is treated as part of *chars* rather than indicating a range value.
+**\[^***chars***\]**
+: The input substring consists of one or more characters not in *chars*. The matching string is stored in the variable. If the character immediately following the **^** is a **\]** then it is treated as part of the set rather than the closing bracket for the set. If *chars* contains a sequence of the form *a***-***b* then any character between *a* and *b* (inclusive) will be excluded from the set. If the first or last character between the brackets is a **-**, then it is treated as part of *chars* rather than indicating a range value.
 
 **n**
-: No input is consumed from the input string.  Instead, the total number of characters scanned from the input string so far is stored in the variable. The number of characters read from the input for a conversion is the largest number that makes sense for that particular conversion (e.g. as many decimal digits as possible for **%d**, as many octal digits as possible for **%o**, and so on). The input substring for a given conversion terminates either when a white-space character is encountered or when the maximum substring width has been reached, whichever comes first. If a **\*** is present in the conversion specifier then no variable is assigned and the next scan argument is not consumed.
+: No input is consumed from the input string.  Instead, the total number of characters scanned from the input string so far is stored in the variable.
 
 
-# Differences from ansi sscanf
+The number of characters read from the input for a conversion is the largest number that makes sense for that particular conversion (e.g. as many decimal digits as possible for **%d**, as many octal digits as possible for **%o**, and so on). The input substring for a given conversion terminates either when a white-space character is encountered or when the maximum substring width has been reached, whichever comes first. If a **\*** is present in the conversion specifier then no variable is assigned and the next scan argument is not consumed.
+
+# Differences from ANSI sscanf
 
 The behavior of the **scan** command is the same as the behavior of the ANSI C **sscanf** procedure except for the following differences:
 
-**\[1\]**
-: **%p** conversion specifier is not supported.
+1. **%p** conversion specifier is not supported.
 
-**\[2\]**
-: For **%c** conversions a single character value is converted to a decimal string, which is then assigned to the corresponding *varName*; no substring width may be specified for this conversion.
+2. For **%c** conversions a single character value is converted to a decimal string, which is then assigned to the corresponding *varName*; no substring width may be specified for this conversion.
 
-**\[3\]**
-: The **h** modifier is always ignored and the **l** and **L** modifiers are ignored when converting real values (i.e. type **double** is used for the internal representation).  The **ll** modifier has no **sscanf** counterpart.
+3. The **h** modifier is always ignored and the **l** and **L** modifiers are ignored when converting real values (i.e. type **double** is used for the internal representation).  The **ll** modifier has no **sscanf** counterpart.
 
-**\[4\]**
-: If the end of the input string is reached before any conversions have been performed and no variables are given, an empty string is returned.
+4. If the end of the input string is reached before any conversions have been performed and no variables are given, an empty string is returned.
 
 
 # Examples
@@ -171,3 +170,6 @@ An interactive session demonstrating the truncation of integer values determined
 % scan 20000000000000000000 %lld
 20000000000000000000
 ```
+
+
+[expr]: expr.md

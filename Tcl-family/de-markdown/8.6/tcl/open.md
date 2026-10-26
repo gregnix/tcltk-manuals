@@ -1,5 +1,6 @@
 ---
 CommandName: open
+title: open
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -31,21 +32,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 open - Öffnet einen dateibasierten Kanal oder einen Befehlspipeline-Kanal
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[open]{.cmd} [fileName]{.arg} 
-[open]{.cmd} [fileName]{.arg} [access]{.arg} 
-[open]{.cmd} [fileName]{.arg} [access]{.arg} [permissions]{.arg} 
+[open]{.cmd} [fileName]{.arg}
+[open]{.cmd} [fileName]{.arg} [access]{.arg}
+[open]{.cmd} [fileName]{.arg} [access]{.arg} [permissions]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieser Befehl öffnet eine Datei, einen seriellen Port oder eine Befehlspipeline und gibt einen Kanalbezeichner zurück, der in späteren Aufrufen von Befehlen wie **read**, **puts** und **close** verwendet werden kann. Ist das erste Zeichen von *fileName* nicht **|**, öffnet der Befehl eine Datei: *fileName* gibt den Namen der zu öffnenden Datei an, und er muss den in der Manpage **filename** beschriebenen Konventionen entsprechen.
+Dieser Befehl öffnet eine Datei, einen seriellen Port oder eine Befehlspipeline und gibt einen Kanalbezeichner zurück, der in späteren Aufrufen von Befehlen wie [read], [puts] und [close] verwendet werden kann. Ist das erste Zeichen von *fileName* nicht **|**, öffnet der Befehl eine Datei: *fileName* gibt den Namen der zu öffnenden Datei an, und er muss den in der Manpage [filename] beschriebenen Konventionen entsprechen.
 
 Das Argument *access*, falls angegeben, gibt an, wie auf die Datei (oder Befehlspipeline) zugegriffen werden soll. In der ersten Form kann *access* einen der folgenden Werte haben:
 
@@ -68,7 +69,7 @@ Das Argument *access*, falls angegeben, gibt an, wie auf die Datei (oder Befehls
 : Die Datei zum Lesen und Schreiben öffnen. Existiert die Datei nicht, wird eine neue leere Datei erstellt. Die anfängliche Zugriffsposition wird auf das Dateiende gesetzt.
 
 
-Alle oben genannten zulässigen *access*-Werte können das Zeichen **b** als zweites oder drittes Zeichen im Wert erhalten, um anzugeben, dass der geöffnete Kanal so konfiguriert werden soll, als wäre die Option **fconfigure** **-translation binary** gesetzt, sodass der Kanal zum Lesen oder Schreiben binärer Daten geeignet ist.
+Alle oben genannten zulässigen *access*-Werte können das Zeichen **b** als zweites oder drittes Zeichen im Wert erhalten, um anzugeben, dass der geöffnete Kanal so konfiguriert werden soll, als wäre die Option [fconfigure] **-translation binary** gesetzt, sodass der Kanal zum Lesen oder Schreiben binärer Daten geeignet ist.
 
 In der zweiten Form besteht *access* aus einer Liste beliebiger der folgenden Flags, von denen die meisten die übliche POSIX-Bedeutung haben. Eines der Flags muss **RDONLY**, **WRONLY** oder **RDWR** sein.
 
@@ -97,7 +98,7 @@ In der zweiten Form besteht *access* aus einer Liste beliebiger der folgenden Fl
 : Ist die Datei ein Terminalgerät, verhindert dieses Flag, dass die Datei zum steuernden Terminal des Prozesses wird.
 
 **NONBLOCK**
-: Verhindert, dass der Prozess beim Öffnen der Datei und möglicherweise bei nachfolgenden E/A-Operationen blockiert. Das genaue Verhalten dieses Flags ist system- und geräteabhängig; seine Verwendung wird nicht empfohlen (besser ist es, den Befehl **fconfigure** zu verwenden, um eine Datei in den nicht blockierenden Modus zu versetzen). Einzelheiten finden sich in der Systemdokumentation zum Flag **O_NONBLOCK** des Systemaufrufs **open**.
+: Verhindert, dass der Prozess beim Öffnen der Datei und möglicherweise bei nachfolgenden E/A-Operationen blockiert. Das genaue Verhalten dieses Flags ist system- und geräteabhängig; seine Verwendung wird nicht empfohlen (besser ist es, den Befehl [fconfigure] zu verwenden, um eine Datei in den nicht blockierenden Modus zu versetzen). Einzelheiten finden sich in der Systemdokumentation zum Flag **O\_NONBLOCK** des Systemaufrufs **open**.
 
 **TRUNC**
 : Existiert die Datei, wird sie auf die Länge null gekürzt.
@@ -105,25 +106,26 @@ In der zweiten Form besteht *access* aus einer Liste beliebiger der folgenden Fl
 
 Wird beim Öffnen eine neue Datei erstellt, wird *permissions* (eine Ganzzahl) zusammen mit der Dateimodus-Erstellungsmaske des Prozesses verwendet, um die Berechtigungen für die neue Datei festzulegen. *Permissions* hat standardmäßig den Wert 0666.
 
-# BEFEHLSPIPELINES
+# Befehlspipelines
 
-Ist das erste Zeichen von *fileName* „**|**“, werden die übrigen Zeichen von *fileName* als Liste von Argumenten behandelt, die eine Befehlspipeline beschreiben, im gleichen Stil wie die Argumente für **exec**. In diesem Fall kann der von **open** zurückgegebene Kanalbezeichner verwendet werden, um in die Eingabepipeline des Befehls zu schreiben oder aus seiner Ausgabepipeline zu lesen, abhängig vom Wert von *access*. Wird nur Schreibzugriff verwendet (z. B. *access* ist „**w**“), wird die Standardausgabe der Pipeline auf die aktuelle Standardausgabe geleitet, sofern der Befehl nichts anderes vorgibt. Wird nur Lesezugriff verwendet (z. B. *access* ist „**r**“), stammt die Standardeingabe der Pipeline von der aktuellen Standardeingabe, sofern der Befehl nichts anderes vorgibt. Die ID des gestarteten Prozesses ist über den Befehl **pid** zugänglich, wobei der von **open** zurückgegebene Kanalbezeichner als Argument verwendet wird.
+Ist das erste Zeichen von *fileName* „**|**“, werden die übrigen Zeichen von *fileName* als Liste von Argumenten behandelt, die eine Befehlspipeline beschreiben, im gleichen Stil wie die Argumente für [exec]. In diesem Fall kann der von **open** zurückgegebene Kanalbezeichner verwendet werden, um in die Eingabepipeline des Befehls zu schreiben oder aus seiner Ausgabepipeline zu lesen, abhängig vom Wert von *access*. Wird nur Schreibzugriff verwendet (z. B. *access* ist „**w**“), wird die Standardausgabe der Pipeline auf die aktuelle Standardausgabe geleitet, sofern der Befehl nichts anderes vorgibt. Wird nur Lesezugriff verwendet (z. B. *access* ist „**r**“), stammt die Standardeingabe der Pipeline von der aktuellen Standardeingabe, sofern der Befehl nichts anderes vorgibt. Die ID des gestarteten Prozesses ist über den Befehl [pid] zugänglich, wobei der von **open** zurückgegebene Kanalbezeichner als Argument verwendet wird.
 
-Gibt der Befehl (oder einer der Befehle) in der Befehlspipeline einen Fehler zurück (gemäß der Definition in **exec**), wird beim Aufruf von **close** auf dem Kanal ein Tcl-Fehler erzeugt, es sei denn, die Pipeline befindet sich im nicht blockierenden Modus; dann wird kein Exit-Status zurückgegeben (ein stilles **close** mit -blocking 0).
+Gibt der Befehl (oder einer der Befehle) in der Befehlspipeline einen Fehler zurück (gemäß der Definition in [exec]), wird beim Aufruf von [close] auf dem Kanal ein Tcl-Fehler erzeugt, es sei denn, die Pipeline befindet sich im nicht blockierenden Modus; dann wird kein Exit-Status zurückgegeben (ein stilles [close] mit -blocking 0).
 
-Es ist oft sinnvoll, den Befehl **fileevent** mit Pipelines zu verwenden, damit andere Verarbeitung parallel zum Ausführen des Befehls im Hintergrund ablaufen kann.
+Es ist oft sinnvoll, den Befehl [fileevent] mit Pipelines zu verwenden, damit andere Verarbeitung parallel zum Ausführen des Befehls im Hintergrund ablaufen kann.
 
-# SERIELLE KOMMUNIKATION
+# Serielle Kommunikation
 
-Bezieht sich *fileName* auf einen seriellen Port, wird der angegebene serielle Port plattformabhängig geöffnet und initialisiert. Zulässige Werte für *fileName* zum Öffnen eines seriellen Ports sind im Abschnitt **PORTABILITÄTSFRAGEN** beschrieben.
+Bezieht sich *fileName* auf einen seriellen Port, wird der angegebene serielle Port plattformabhängig geöffnet und initialisiert. Zulässige Werte für *fileName* zum Öffnen eines seriellen Ports sind im Abschnitt PORTABILITÄTSFRAGEN beschrieben.
 
-Der Befehl **fconfigure** kann verwendet werden, um zusätzliche, serielle Ports betreffende Konfigurationsoptionen abzufragen und zu setzen (wo unterstützt):
+Der Befehl [fconfigure] kann verwendet werden, um zusätzliche, serielle Ports betreffende Konfigurationsoptionen abzufragen und zu setzen (wo unterstützt):
 
-**-mode** *baud*__,__*parity*__,__*data*__,__*stop*
+**-mode** *baud***,***parity***,***data***,***stop*
 : Diese Option ist ein Satz aus vier durch Kommas getrennten Werten: Baudrate, Parität, Anzahl der Datenbits und Anzahl der Stoppbits für diesen seriellen Port. Die *baud*-Rate ist eine einfache Ganzzahl, die die Verbindungsgeschwindigkeit angibt. *Parity* ist einer der Buchstaben **n**, **o**, **e**, **m**, **s**; sie stehen für die Paritätsoptionen „none“, „odd“, „even“, „mark“ bzw. „space“. *Data* ist die Anzahl der Datenbits und sollte eine Ganzzahl von 5 bis 8 sein, *stop* ist die Anzahl der Stoppbits und sollte die Ganzzahl 1 oder 2 sein.
 
 **-handshake** *type*
 : (Windows und Unix). Diese Option dient zur Einrichtung der automatischen Handshake-Steuerung. Beachten Sie, dass nicht alle Handshake-Typen von Ihrem Betriebssystem unterstützt werden. Der Parameter *type* ist unabhängig von der Groß-/Kleinschreibung.
+
     Ist *type* **none**, ist jeder Handshake ausgeschaltet. **rtscts** aktiviert den Hardware-Handshake. Die Hardware-Handshake-Signale sind unten beschrieben. Für den Software-Handshake **xonxoff** können die Handshake-Zeichen mit **-xchar** neu definiert werden. Ein zusätzlicher Hardware-Handshake **dtrdsr** ist nur unter Windows verfügbar. Es gibt keine Standard-Handshake-Konfiguration; der Anfangswert hängt von den Betriebssystemeinstellungen ab. Die Option **-handshake** kann nicht abgefragt werden.
 
 **-queue**
@@ -145,16 +147,16 @@ Der Befehl **fconfigure** kann verwendet werden, um zusätzliche, serielle Ports
 : (nur Windows). Diese Option legt die maximale Zeit zwischen Abfragen auf Datei-Events fest. Das betrifft das Intervall zwischen Ereignisprüfungen im gesamten Tcl-Interpreter (der kleinste Wert gewinnt immer). Verwenden Sie diese Option nur, wenn Sie den seriellen Port häufiger oder seltener als alle 10 ms (Standard) abfragen möchten.
 
 **-sysbuffer** *inSize*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-sysbuffer** *{inSize outSize}*
 : (nur Windows). Diese Option dient zur Änderung der Größe der Windows-Systempuffer für einen seriellen Kanal. Besonders bei höheren Übertragungsraten kann der Standard-Eingabepuffer von 4096 Bytes auf trägen Systemen überlaufen. Die erste Form legt nur die Größe des Eingabepuffers fest, in der zweiten Form werden Eingabe- und Ausgabepuffer definiert.
 
 **-lasterror**
-: (nur Windows). Diese Option ist nur abfragbar. Tritt bei der seriellen Kommunikation ein Fehler auf, liefern **read** oder **puts** einen allgemeinen Tcl-Datei-E/A-Fehler. **fconfigure** **-lasterror** kann aufgerufen werden, um eine Liste mit Fehlerdetails zu erhalten. Die verschiedenen Fehlercodes werden unten erläutert.
+: (nur Windows). Diese Option ist nur abfragbar. Tritt bei der seriellen Kommunikation ein Fehler auf, liefern [read] oder [puts] einen allgemeinen Tcl-Datei-E/A-Fehler. [fconfigure] **-lasterror** kann aufgerufen werden, um eine Liste mit Fehlerdetails zu erhalten. Die verschiedenen Fehlercodes werden unten erläutert.
 
 
-# SIGNALE DER SERIELLEN SCHNITTSTELLE
+# Signale der seriellen Schnittstelle
 
 RS-232 ist die am häufigsten verwendete standardisierte elektrische Schnittstelle für serielle Kommunikation. Eine negative Spannung (−3 V bis −12 V) definiert ein Mark-Bit (on=1), eine positive Spannung (+3 V bis +12 V) ein Space-Bit (off=0) (RS-232C). Für eingehende und ausgehende Daten, Statusleitungen und Handshake gelten die folgenden Signale. Hier verwenden wir die Begriffe *Workstation* für Ihren Computer und *Modem* für das externe Gerät, weil einige Signalnamen (DCD, RI) von Modems stammen. Natürlich kann Ihr externes Gerät diese Signalleitungen auch für andere Zwecke nutzen.
 
@@ -186,12 +188,12 @@ RS-232 ist die am häufigsten verwendete standardisierte elektrische Schnittstel
 : Eine BREAK-Bedingung ist keine Hardware-Signalleitung, sondern logische Null auf den Leitungen TXD oder RXD über einen längeren Zeitraum, üblicherweise 250 bis 500 Millisekunden. Normalerweise bleibt ein Empfangs- oder Sende-Datensignal bis zur Übertragung des nächsten Zeichens auf Mark-Spannung (on=1). Ein BREAK wird manchmal verwendet, um die Kommunikationsleitung zurückzusetzen oder den Betriebsmodus der Kommunikationshardware zu ändern.
 
 
-# FEHLERCODES (NUR WINDOWS)
+# Fehlercodes (nur Windows)
 
-Bei seriellen Leseoperationen oder bei der Ereignisabfrage im Hintergrund können viele verschiedene Fehler auftreten. Das externe Gerät kann ausgeschaltet sein, die Datenleitungen können verrauscht sein, Systempuffer können überlaufen oder Ihre Moduseinstellungen können falsch sein. Deshalb sollte zuverlässige Software serielle Leseoperationen immer **catch**en. Im Fehlerfall gibt Tcl einen allgemeinen Datei-E/A-Fehler zurück. Dann kann **fconfigure** **-lasterror** helfen, das Problem einzugrenzen. Folgende Fehlercodes können zurückgegeben werden.
+Bei seriellen Leseoperationen oder bei der Ereignisabfrage im Hintergrund können viele verschiedene Fehler auftreten. Das externe Gerät kann ausgeschaltet sein, die Datenleitungen können verrauscht sein, Systempuffer können überlaufen oder Ihre Moduseinstellungen können falsch sein. Deshalb sollte zuverlässige Software serielle Leseoperationen immer [catch]en. Im Fehlerfall gibt Tcl einen allgemeinen Datei-E/A-Fehler zurück. Dann kann [fconfigure] **-lasterror** helfen, das Problem einzugrenzen. Folgende Fehlercodes können zurückgegeben werden.
 
 **RXOVER**
-: Überlauf des Windows-Eingabepuffers. Die Daten kommen schneller an, als Ihr Skript sie liest, oder Ihr System ist überlastet. Verwenden Sie **fconfigure** **-sysbuffer**, um einen temporären Engpass zu vermeiden und/oder beschleunigen Sie Ihr Skript.
+: Überlauf des Windows-Eingabepuffers. Die Daten kommen schneller an, als Ihr Skript sie liest, oder Ihr System ist überlastet. Verwenden Sie [fconfigure] **-sysbuffer**, um einen temporären Engpass zu vermeiden und/oder beschleunigen Sie Ihr Skript.
 
 **TXFULL**
 : Überlauf des Windows-Ausgabepuffers. Gegenstück zu RXOVER. Dieser Fehler sollte praktisch nicht auftreten, weil Tcl den Status des Ausgabepuffers überwacht.
@@ -200,33 +202,33 @@ Bei seriellen Leseoperationen oder bei der Ereignisabfrage im Hintergrund könne
 : UART-Pufferüberlauf (Hardware) mit Datenverlust. Die Daten kommen schneller an, als der Systemtreiber sie empfängt. Prüfen Sie die erweiterten seriellen Port-Einstellungen, um den FIFO-Puffer (16550) zu aktivieren und/oder einen niedrigeren(1) Interrupt-Schwellenwert zu setzen.
 
 **RXPARITY**
-: Ihr UART hat einen Paritätsfehler erkannt. Falsche Paritätseinstellungen mit **fconfigure** **-mode** oder eine verrauschte Datenleitung (RXD) können diesen Fehler verursachen.
+: Ihr UART hat einen Paritätsfehler erkannt. Falsche Paritätseinstellungen mit [fconfigure] **-mode** oder eine verrauschte Datenleitung (RXD) können diesen Fehler verursachen.
 
 **FRAME**
-: Ihr UART hat einen Stoppbit-Fehler erkannt. Falsche Moduseinstellungen mit **fconfigure** **-mode** oder eine verrauschte Datenleitung (RXD) können diesen Fehler verursachen.
+: Ihr UART hat einen Stoppbit-Fehler erkannt. Falsche Moduseinstellungen mit [fconfigure] **-mode** oder eine verrauschte Datenleitung (RXD) können diesen Fehler verursachen.
 
 **BREAK**
 : Ihr UART hat eine BREAK-Bedingung erkannt (siehe oben).
 
 
-# PORTABILITÄTSFRAGEN
+# Portabilitätsfragen
 
-**Windows** 
-: Zulässige Werte für *fileName* zum Öffnen eines seriellen Ports haben die Form **com**_X_, wobei *X* eine Zahl ist, in der Regel von 1 bis 9. Eine ältere, ebenfalls akzeptierte Form ist **com**_X_**:**. Diese Notation funktioniert nur für serielle Ports von 1 bis 9. Der Versuch, einen nicht existierenden seriellen Port oder einen mit einer Nummer größer als 9 zu öffnen, schlägt fehl. Eine alternative Form zum Öffnen serieller Ports ist der Dateiname **//./comX**, wobei *X* eine beliebige Nummer ist, die einem seriellen Port entspricht.
+**Windows**
+: Zulässige Werte für *fileName* zum Öffnen eines seriellen Ports haben die Form **com***X*, wobei *X* eine Zahl ist, in der Regel von 1 bis 9. Eine ältere, ebenfalls akzeptierte Form ist **com***X***:**. Diese Notation funktioniert nur für serielle Ports von 1 bis 9. Der Versuch, einen nicht existierenden seriellen Port oder einen mit einer Nummer größer als 9 zu öffnen, schlägt fehl. Eine alternative Form zum Öffnen serieller Ports ist der Dateiname **//./comX**, wobei *X* eine beliebige Nummer ist, die einem seriellen Port entspricht.
 
+    Wird Tcl interaktiv ausgeführt, kann es zu seltsamen Wechselwirkungen zwischen der echten Konsole, falls vorhanden, und einer Befehlspipeline kommen, die Standardeingabe oder -ausgabe nutzt. Wird eine Befehlspipeline zum Lesen geöffnet, gehen einige an der Konsole eingegebene Zeilen in die Befehlspipeline, andere an den Tcl-Interpreter. Wird eine Befehlspipeline zum Schreiben geöffnet, sind Tastatureingaben an der Konsole erst sichtbar, wenn die Pipeline geschlossen wird. Diese Probleme treten nur auf, weil Tcl und die Kindanwendung gleichzeitig um die Konsole konkurrieren. Wird die Befehlspipeline aus einem Skript gestartet, sodass Tcl die Konsole nicht nutzt, oder verwendet die Befehlspipeline weder Standardeingabe noch -ausgabe, sondern ist von einer Datei umgeleitet oder dorthin umgeleitet, treten die genannten Probleme nicht auf.
 
-Wird Tcl interaktiv ausgeführt, kann es zu seltsamen Wechselwirkungen zwischen der echten Konsole, falls vorhanden, und einer Befehlspipeline kommen, die Standardeingabe oder -ausgabe nutzt. Wird eine Befehlspipeline zum Lesen geöffnet, gehen einige an der Konsole eingegebene Zeilen in die Befehlspipeline, andere an den Tcl-Interpreter. Wird eine Befehlspipeline zum Schreiben geöffnet, sind Tastatureingaben an der Konsole erst sichtbar, wenn die Pipeline geschlossen wird. Diese Probleme treten nur auf, weil Tcl und die Kindanwendung gleichzeitig um die Konsole konkurrieren. Wird die Befehlspipeline aus einem Skript gestartet, sodass Tcl die Konsole nicht nutzt, oder verwendet die Befehlspipeline weder Standardeingabe noch -ausgabe, sondern ist von einer Datei umgeleitet oder dorthin umgeleitet, treten die genannten Probleme nicht auf.
-
-Dateien, die im Modus „**a**“ oder mit gesetztem Flag **APPEND** geöffnet werden, werden implementiert, indem unmittelbar vor jedem Schreibvorgang gesucht wird; das ist keine atomare Operation und bietet nicht die auf POSIX-Plattformen vorhandene Garantie des strikten Anhängens.
+    Dateien, die im Modus „**a**“ oder mit gesetztem Flag **APPEND** geöffnet werden, werden implementiert, indem unmittelbar vor jedem Schreibvorgang gesucht wird; das ist keine atomare Operation und bietet nicht die auf POSIX-Plattformen vorhandene Garantie des strikten Anhängens.
 
 **Unix**
 : Zulässige Werte für *fileName* zum Öffnen eines seriellen Ports haben in der Regel die Form **/dev/tty***X*, wobei *X* **a** oder **b** ist; es kann jedoch jeder Pseudodateiname verwendet werden, der einem seriellen Port zugeordnet ist. Erweiterte Konfigurationsoptionen werden für serielle Ports nur unterstützt, wenn Tcl mit der POSIX-Schnittstelle für serielle Ports gebaut wurde.
+
     Wird Tcl interaktiv ausgeführt, kann es zu seltsamen Wechselwirkungen zwischen der Konsole, falls vorhanden, und einer Befehlspipeline kommen, die die Standardeingabe nutzt. Wird eine Befehlspipeline zum Lesen geöffnet, gehen einige an der Konsole eingegebene Zeilen in die Befehlspipeline, andere an den Tcl-Interpreter. Dieses Problem tritt nur auf, weil Tcl und die Kindanwendung gleichzeitig um die Konsole konkurrieren. Wird die Befehlspipeline aus einem Skript gestartet, sodass Tcl die Konsole nicht nutzt, oder verwendet die Befehlspipeline keine Standardeingabe, sondern ist von einer Datei umgeleitet, tritt das genannte Problem nicht auf.
 
 
-Siehe den Abschnitt **PORTABILITÄTSFRAGEN** des Befehls **exec** für weitere Informationen zum Ausführen von Anwendungen auf den verschiedenen Plattformen, die nicht spezifisch für Befehlspipelines sind.
+Siehe den Abschnitt **PORTABILITÄTSFRAGEN** des Befehls [exec] für weitere Informationen zum Ausführen von Anwendungen auf den verschiedenen Plattformen, die nicht spezifisch für Befehlspipelines sind.
 
-# BEISPIELE
+# Beispiele
 
 Eine Datei zum Schreiben öffnen, Erstellung erzwingen und einen Fehler auslösen, falls sie bereits existiert.
 
@@ -251,7 +253,7 @@ if {[catch {close $fl} err]} {
 }
 ```
 
-Eine Befehlspipeline öffnen und binäre Daten daraus lesen. Beachten Sie die ungewöhnliche Form mit „|[list“, die nicht triviale Randfälle mit Argumenten behandelt, die möglicherweise Leerzeichen enthalten.
+Eine Befehlspipeline öffnen und binäre Daten daraus lesen. Beachten Sie die ungewöhnliche Form mit „|\[list“, die nicht triviale Randfälle mit Argumenten behandelt, die möglicherweise Leerzeichen enthalten.
 
 ```
 set fl [open |[list create_image_data $input] "rb"]
@@ -259,3 +261,13 @@ set binData [read $fl]
 close $fl
 ```
 
+
+[catch]: catch.md
+[close]: close.md
+[exec]: exec.md
+[fconfigure]: fconfigure.md
+[fileevent]: fileevent.md
+[filename]: filename.md
+[pid]: pid.md
+[puts]: puts.md
+[read]: read.md

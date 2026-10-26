@@ -1,5 +1,6 @@
 ---
 CommandName: read
+title: read
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -18,10 +19,13 @@ read - Read from a channel
 # Synopsis
 
 ::: {.synopsis} :::
-[read]{.cmd} [-nonewline]{.optlit} [channel]{.arg} 
-[read]{.cmd} [channel]{.arg} [numChars]{.arg} 
+[read]{.cmd} [-nonewline]{.optlit} [channel]{.arg}
+[read]{.cmd} [channel]{.arg} [numChars]{.arg}
 :::
 
 # Description
 
-The **read** command has been superceded by the **chan read** command which supports the same syntax and options.
+The **read** command has been superceded by the [chan read][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

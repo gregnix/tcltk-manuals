@@ -1,5 +1,6 @@
 ---
 CommandName: rc4
+title: rc4
 ManualSection: n
 Version: 1.2.0
 TclPart: tcllib
@@ -26,12 +27,12 @@ rc4 - Implementation of the RC4 stream cipher
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [rc4]{.lit} [1.2.0]{.optlit} 
-[::rc4::rc4]{.cmd} [-hex]{.optarg} [-key]{.arg} [keyvalue]{.arg} [-command lst]{.optarg} [-out channel]{.optarg} \[ [-in]{.arg} [channel]{.arg} | [-infile]{.arg} [filename]{.arg} | [string]{.arg} \] 
-[::rc4::RC4Init]{.cmd} [keydata]{.arg} 
-[::rc4::RC4]{.cmd} [Key]{.arg} [data]{.arg} 
-[::rc4::RC4Final]{.cmd} [Key]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [rc4]{.lit} [1.2.0]{.optlit}
+[::rc4::rc4]{.cmd} [-hex]{.optarg} [-key]{.arg} [keyvalue]{.arg} [-command lst]{.optarg} [-out channel]{.optarg} \[ [-in]{.arg} [channel]{.arg} | [-infile]{.arg} [filename]{.arg} | [string]{.arg} \]
+[::rc4::RC4Init]{.cmd} [keydata]{.arg}
+[::rc4::RC4]{.cmd} [Key]{.arg} [data]{.arg}
+[::rc4::RC4Final]{.cmd} [Key]{.arg}
 :::
 
 # Description
@@ -41,7 +42,13 @@ This package is an implementation in Tcl of the RC4 stream cipher developed by R
 # Commands
 
 **::rc4::rc4** ?*-hex*? *-key keyvalue* ?*-command lst*? ?*-out channel*? \[ *-in channel* | *-infile filename* | *string* \]
-: Perform the RC4 algorithm on either the data provided by the argument or on the data read from the *-in* channel. If an *-out* channel is given then the result will be written to this channel. Giving the *-hex* option will return a hexadecimal encoded version of the result if not using an *-out* channel. The data to be processes can be specified either as a string argument to the rc4 command, or as a filename or a pre-opened channel. If the *-infile* argument is given then the file is opened, the data read and processed and the file is closed. If the *-in* argument is given then data is read from the channel until the end of file. The channel is not closed. If the *-out* argument is given then the processing result is written to this channel. If *-command* is provided then the rc4 command does not return anything. Instead the command provided is called with the rc4 result data appended as the final parameter. This is most useful when reading from Tcl channels as a fileevent is setup on the channel and the data processed in chunks Only one of *-infile*, *-in* or *string* should be given.
+: Perform the RC4 algorithm on either the data provided by the argument or on the data read from the *-in* channel. If an *-out* channel is given then the result will be written to this channel. Giving the *-hex* option will return a hexadecimal encoded version of the result if not using an *-out* channel.
+
+    The data to be processes can be specified either as a string argument to the rc4 command, or as a filename or a pre-opened channel. If the *-infile* argument is given then the file is opened, the data read and processed and the file is closed. If the *-in* argument is given then data is read from the channel until the end of file. The channel is not closed. If the *-out* argument is given then the processing result is written to this channel.
+
+    If *-command* is provided then the rc4 command does not return anything. Instead the command provided is called with the rc4 result data appended as the final parameter. This is most useful when reading from Tcl channels as a fileevent is setup on the channel and the data processed in chunks
+
+    Only one of *-infile*, *-in* or *string* should be given.
 
 
 # Programming interface

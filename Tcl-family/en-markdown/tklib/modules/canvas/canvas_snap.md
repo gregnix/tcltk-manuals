@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::snap
+title: canvas::snap
 ManualSection: n
 Version: 1.0.1
 TclPart: tklib
@@ -22,21 +23,23 @@ canvas::snap - Canvas snapshot to Tk photo image
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::snap]{.lit} [1.0.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [img::window]{.lit} 
-[::canvas::snap]{.cmd} [pathName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::snap]{.lit} [1.0.1]{.optlit}
+[package]{.cmd} [require]{.sub} [img::window]{.lit}
+[::canvas::snap]{.cmd} [pathName]{.arg}
 :::
 
 # Description
 
 This package provides a command to take snapshots of arbitrary canvases.
 
-# Api
+# API
 
 **::canvas::snap** *pathName*
-: Takes a snapshot of the canvas *pathName*. The result is the name of a new Tk photo image containing the snapshot. *Note* that this command has a side-effect. To avoid having white rectangles where other windows may overlap the canvas this command forces the toplevel window the canvas is in to the top of the stacking order.
+: Takes a snapshot of the canvas *pathName*. The result is the name of a new Tk photo image containing the snapshot.
+
+    *Note* that this command has a side-effect. To avoid having white rectangles where other windows may overlap the canvas this command forces the toplevel window the canvas is in to the top of the stacking order.
 
 
 # Bugs, ideas, feedback

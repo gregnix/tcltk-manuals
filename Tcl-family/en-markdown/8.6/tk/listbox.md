@@ -1,5 +1,6 @@
 ---
 CommandName: listbox
+title: listbox
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -21,22 +22,14 @@ listbox - Create and manipulate 'listbox' item list widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[listbox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[listbox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-background** | **-borderwidth** | **-cursor** |
-| **-disabledforeground** | **-exportselection** | **-font** |
-| **-foreground** | **-highlightbackground** | **-highlightcolor** |
-| **-highlightthickness** | **-justify** | **-relief** |
-| **-selectbackground** | **-selectborderwidth** | **-selectforeground** |
-| **-setgrid** | **-takefocus** | **-xscrollcommand** |
-| **-yscrollcommand** |  |  |
+**-background**, **-borderwidth**, **-cursor**, **-disabledforeground**, **-exportselection**, **-font**, **-foreground**, **-highlightbackground**, **-highlightcolor**, **-highlightthickness**, **-justify**, **-relief**, **-selectbackground**, **-selectborderwidth**, **-selectforeground**, **-setgrid**, **-takefocus**, **-xscrollcommand**, **-yscrollcommand**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -83,9 +76,11 @@ Many of the widget commands for listboxes take one or more indices as arguments.
 **end**
 : Indicates the end of the listbox. For most commands this refers to the last element in the listbox, but for a few commands such as **index** and **insert** it refers to the element just after the last one.
 
-**@**_x_**,**_y_
-: Indicates the element that covers the point in the listbox window specified by *x* and *y* (in pixel coordinates).  If no element covers that point, then the closest element to that point is used. In the widget command descriptions below, arguments named *index*, *first*, and *last* always contain text indices in one of the above forms.
+**@***x***,***y*
+: Indicates the element that covers the point in the listbox window specified by *x* and *y* (in pixel coordinates).  If no element covers that point, then the closest element to that point is used.
 
+
+In the widget command descriptions below, arguments named *index*, *first*, and *last* always contain text indices in one of the above forms.
 
 # Widget command
 
@@ -107,7 +102,7 @@ pathName option ?arg arg ...?
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **listbox** command.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **listbox** command.
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **listbox** command.
 
 *pathName* **curselection**
 : Returns a list containing the numerical indices of all of the elements in the listbox that are currently selected. If there are no elements selected in the listbox then an empty string is returned.
@@ -128,20 +123,19 @@ pathName option ?arg arg ...?
 : Returns the current value of the item configuration option given by *option*. *Option* may have any of the values accepted by the **itemconfigure** command.
 
 *pathName* **itemconfigure** *index* ?*option*? ?*value*? ?*option value ...*?
-: Query or modify the configuration options of an item in the listbox. If no *option* is specified, returns a list describing all of the available options for the item (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. The following options are currently supported for items:
+: Query or modify the configuration options of an item in the listbox. If no *option* is specified, returns a list describing all of the available options for the item (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. The following options are currently supported for items:
 
+    **-background** *color*
+    : *Color* specifies the background color to use when displaying the item. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
-**-background** *color*
-: *Color* specifies the background color to use when displaying the item. It may have any of the forms accepted by **Tk_GetColor**.
+    **-foreground** *color*
+    : *Color* specifies the foreground color to use when displaying the item. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
-**-foreground** *color*
-: *Color* specifies the foreground color to use when displaying the item. It may have any of the forms accepted by **Tk_GetColor**.
+    **-selectbackground** *color*
+    : *color* specifies the background color to use when displaying the item while it is selected. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
-**-selectbackground** *color*
-: *color* specifies the background color to use when displaying the item while it is selected. It may have any of the forms accepted by **Tk_GetColor**.
-
-**-selectforeground** *color*
-: *color* specifies the foreground color to use when displaying the item while it is selected. It may have any of the forms accepted by **Tk_GetColor**.
+    **-selectforeground** *color*
+    : *color* specifies the foreground color to use when displaying the item while it is selected. It may have any of the forms accepted by [Tk\_GetColor][GetColor].
 
 
 *pathName* **nearest** *y*
@@ -150,12 +144,11 @@ pathName option ?arg arg ...?
 *pathName* **scan** *option args*
 : This command is used to implement scanning on listboxes.  It has two forms, depending on *option*:
 
+    *pathName* **scan mark** *x y*
+    : Records *x* and *y* and the current view in the listbox window;  used in conjunction with later **scan dragto** commands. Typically this command is associated with a mouse button press in the widget.  It returns an empty string.
 
-*pathName* **scan mark** *x y*
-: Records *x* and *y* and the current view in the listbox window;  used in conjunction with later **scan dragto** commands. Typically this command is associated with a mouse button press in the widget.  It returns an empty string.
-
-*pathName* **scan dragto** *x y*.
-: This command computes the difference between its *x* and *y* arguments and the *x* and *y* arguments to the last **scan mark** command for the widget. It then adjusts the view by 10 times the difference in coordinates.  This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the list at high speed through the window.  The return value is an empty string.
+    *pathName* **scan dragto** *x y*.
+    : This command computes the difference between its *x* and *y* arguments and the *x* and *y* arguments to the last **scan mark** command for the widget. It then adjusts the view by 10 times the difference in coordinates.  This command is typically associated with mouse motion events in the widget, to produce the effect of dragging the list at high speed through the window.  The return value is an empty string.
 
 
 *pathName* **see** *index*
@@ -164,18 +157,17 @@ pathName option ?arg arg ...?
 *pathName* **selection** *option arg*
 : This command is used to adjust the selection within a listbox.  It has several forms, depending on *option*:
 
+    *pathName* **selection anchor** *index*
+    : Sets the selection anchor to the element given by *index*. If *index* refers to a non-existent element, then the closest element is used. The selection anchor is the end of the selection that is fixed while dragging out a selection with the mouse. The index **anchor** may be used to refer to the anchor element.
 
-*pathName* **selection anchor** *index*
-: Sets the selection anchor to the element given by *index*. If *index* refers to a non-existent element, then the closest element is used. The selection anchor is the end of the selection that is fixed while dragging out a selection with the mouse. The index **anchor** may be used to refer to the anchor element.
+    *pathName* **selection clear** *first* ?*last*?
+    : If any of the elements between *first* and *last* (inclusive) are selected, they are deselected. The selection state is not changed for elements outside this range.
 
-*pathName* **selection clear** *first* ?*last*?
-: If any of the elements between *first* and *last* (inclusive) are selected, they are deselected. The selection state is not changed for elements outside this range.
+    *pathName* **selection includes** *index*
+    : Returns 1 if the element indicated by *index* is currently selected, 0 if it is not.
 
-*pathName* **selection includes** *index*
-: Returns 1 if the element indicated by *index* is currently selected, 0 if it is not.
-
-*pathName* **selection set** *first* ?*last*?
-: Selects all of the elements in the range between *first* and *last*, inclusive, without affecting the selection state of elements outside that range.
+    *pathName* **selection set** *first* ?*last*?
+    : Selects all of the elements in the range between *first* and *last*, inclusive, without affecting the selection state of elements outside that range.
 
 
 *pathName* **size**
@@ -184,35 +176,34 @@ pathName option ?arg arg ...?
 *pathName* **xview** ?*args*
 : This command is used to query and change the horizontal position of the information in the widget's window.  It can take any of the following forms:
 
+    *pathName* **xview**
+    : Returns a list containing two elements. Each element is a real fraction between 0 and 1;  together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the listbox's text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
 
-*pathName* **xview**
-: Returns a list containing two elements. Each element is a real fraction between 0 and 1;  together they describe the horizontal span that is visible in the window. For example, if the first element is .2 and the second element is .6, 20% of the listbox's text is off-screen to the left, the middle 40% is visible in the window, and 40% of the text is off-screen to the right. These are the same values passed to scrollbars via the **-xscrollcommand** option.
+    *pathName* **xview** *index*
+    : Adjusts the view in the window so that the character position given by *index* is displayed at the left edge of the window. Character positions are defined by the width of the character **0**.
 
-*pathName* **xview** *index*
-: Adjusts the view in the window so that the character position given by *index* is displayed at the left edge of the window. Character positions are defined by the width of the character **0**.
+    *pathName* **xview moveto** *fraction*
+    : Adjusts the view in the window so that *fraction* of the total width of the listbox text is off-screen to the left. *fraction* must be a fraction between 0 and 1.
 
-*pathName* **xview moveto** *fraction*
-: Adjusts the view in the window so that *fraction* of the total width of the listbox text is off-screen to the left. *fraction* must be a fraction between 0 and 1.
-
-*pathName* **xview scroll** *number what*
-: This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages** or an abbreviation of one of these. If *what* is **units**, the view adjusts left or right by *number* character units (the width of the **0** character) on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
+    *pathName* **xview scroll** *number what*
+    : This command shifts the view in the window left or right according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages** or an abbreviation of one of these. If *what* is **units**, the view adjusts left or right by *number* character units (the width of the **0** character) on the display;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then characters farther to the left become visible;  if it is positive then characters farther to the right become visible.
 
 
 *pathName* **yview** ?*args*?
 : This command is used to query and change the vertical position of the text in the widget's window. It can take any of the following forms:
 
+    *pathName* **yview**
+    : Returns a list containing two elements, both of which are real fractions between 0 and 1. The first element gives the position of the listbox element at the top of the window, relative to the listbox as a whole (0.5 means it is halfway through the listbox, for example). The second element gives the position of the listbox element just after the last one in the window, relative to the listbox as a whole. These are the same values passed to scrollbars via the **-yscrollcommand** option.
 
-*pathName* **yview**
-: Returns a list containing two elements, both of which are real fractions between 0 and 1. The first element gives the position of the listbox element at the top of the window, relative to the listbox as a whole (0.5 means it is halfway through the listbox, for example). The second element gives the position of the listbox element just after the last one in the window, relative to the listbox as a whole. These are the same values passed to scrollbars via the **-yscrollcommand** option.
+    *pathName* **yview** *index*
+    : Adjusts the view in the window so that the element given by *index* is displayed at the top of the window.
 
-*pathName* **yview** *index*
-: Adjusts the view in the window so that the element given by *index* is displayed at the top of the window.
+    *pathName* **yview moveto** *fraction*
+    : Adjusts the view in the window so that the element given by *fraction* appears at the top of the window. *Fraction* is a fraction between 0 and 1;  0 indicates the first element in the listbox, 0.33 indicates the element one-third the way through the listbox, and so on.
 
-*pathName* **yview moveto** *fraction*
-: Adjusts the view in the window so that the element given by *fraction* appears at the top of the window. *Fraction* is a fraction between 0 and 1;  0 indicates the first element in the listbox, 0.33 indicates the element one-third the way through the listbox, and so on.
+    *pathName* **yview scroll** *number what*
+    : This command adjusts the view in the window up or down according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts up or down by *number* lines;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then earlier elements become visible;  if it is positive then later elements become visible.
 
-*pathName* **yview scroll** *number what*
-: This command adjusts the view in the window up or down according to *number* and *what*. *Number* must be an integer. *What* must be either **units** or **pages**. If *what* is **units**, the view adjusts up or down by *number* lines;  if it is **pages** then the view adjusts by *number* screenfuls. If *number* is negative then earlier elements become visible;  if it is positive then later elements become visible.
 
 
 # Default bindings
@@ -225,63 +216,53 @@ If the selection mode is **multiple** or **extended**, any number of elements ma
 
 Most people will probably want to use **browse** mode for single selections and **extended** mode for multiple selections; the other modes appear to be useful only in special situations.
 
-Any time the set of selected item(s) in the listbox is updated by the user through the keyboard or mouse, the virtual event **<\<ListboxSelect>>** will be generated. This virtual event will not be generated when adjusting the selection with the *pathName* **selection**  command. It is easiest to bind to this event to be made aware of any user changes to listbox selection.
+Any time the set of selected item(s) in the listbox is updated by the user through the keyboard or mouse, the virtual event **<<ListboxSelect>>** will be generated. This virtual event will not be generated when adjusting the selection with the *pathName* [selection]  command. It is easiest to bind to this event to be made aware of any user changes to listbox selection.
 
 In addition to the above behavior, the following additional behavior is defined by the default bindings:
 
-**\[1\]**
-: In **extended** mode, the selected range can be adjusted by pressing button 1 with the Shift key down:  this modifies the selection to consist of the elements between the anchor and the element under the mouse, inclusive. The un-anchored end of this new selection can also be dragged with the button down.
+1. In **extended** mode, the selected range can be adjusted by pressing button 1 with the Shift key down:  this modifies the selection to consist of the elements between the anchor and the element under the mouse, inclusive. The un-anchored end of this new selection can also be dragged with the button down.
 
-**\[2\]**
-: In **extended** mode, pressing button 1 with the Control key down starts a toggle operation: the anchor is set to the element under the mouse, and its selection state is reversed.  The selection state of other elements is not changed. If the mouse is dragged with button 1 down, then the selection state of all elements between the anchor and the element under the mouse is set to match that of the anchor element;  the selection state of all other elements remains what it was before the toggle operation began.
+2. In **extended** mode, pressing button 1 with the Control key down starts a toggle operation: the anchor is set to the element under the mouse, and its selection state is reversed.  The selection state of other elements is not changed. If the mouse is dragged with button 1 down, then the selection state of all elements between the anchor and the element under the mouse is set to match that of the anchor element;  the selection state of all other elements remains what it was before the toggle operation began.
 
-**\[3\]**
-: If the mouse leaves the listbox window with button 1 down, the window scrolls away from the mouse, making information visible that used to be off-screen on the side of the mouse. The scrolling continues until the mouse re-enters the window, the button is released, or the end of the listbox is reached.
+3. If the mouse leaves the listbox window with button 1 down, the window scrolls away from the mouse, making information visible that used to be off-screen on the side of the mouse. The scrolling continues until the mouse re-enters the window, the button is released, or the end of the listbox is reached.
 
-**\[4\]**
-: Mouse button 2 may be used for scanning. If it is pressed and dragged over the listbox, the contents of the listbox drag at high speed in the direction the mouse moves.
+4. Mouse button 2 may be used for scanning. If it is pressed and dragged over the listbox, the contents of the listbox drag at high speed in the direction the mouse moves.
 
-**\[5\]**
-: If the Up or Down key is pressed, the location cursor (active element) moves up or down one element. If the selection mode is **browse** or **extended** then the new active element is also selected and all other elements are deselected. In **extended** mode the new active element becomes the selection anchor.
+5. If the Up or Down key is pressed, the location cursor (active element) moves up or down one element. If the selection mode is **browse** or **extended** then the new active element is also selected and all other elements are deselected. In **extended** mode the new active element becomes the selection anchor.
 
-**\[6\]**
-: In **extended** mode, Shift-Up and Shift-Down move the location cursor (active element) up or down one element and also extend the selection to that element in a fashion similar to dragging with mouse button 1.
+6. In **extended** mode, Shift-Up and Shift-Down move the location cursor (active element) up or down one element and also extend the selection to that element in a fashion similar to dragging with mouse button 1.
 
-**\[7\]**
-: The Left and Right keys scroll the listbox view left and right by the width of the character **0**. Control-Left and Control-Right scroll the listbox view left and right by the width of the window. Control-Prior and Control-Next also scroll left and right by the width of the window.
+7. The Left and Right keys scroll the listbox view left and right by the width of the character **0**. Control-Left and Control-Right scroll the listbox view left and right by the width of the window. Control-Prior and Control-Next also scroll left and right by the width of the window.
 
-**\[8\]**
-: The Prior and Next keys scroll the listbox view up and down by one page (the height of the window).
+8. The Prior and Next keys scroll the listbox view up and down by one page (the height of the window).
 
-**\[9\]**
-: The Home and End keys scroll the listbox horizontally to the left and right edges, respectively.
+9. The Home and End keys scroll the listbox horizontally to the left and right edges, respectively.
 
-**\[10\]**
-: Control-Home sets the location cursor to the first element in the listbox, selects that element, and deselects everything else in the listbox.
+10. Control-Home sets the location cursor to the first element in the listbox, selects that element, and deselects everything else in the listbox.
 
-**\[11\]**
-: Control-End sets the location cursor to the last element in the listbox, selects that element, and deselects everything else in the listbox.
+11. Control-End sets the location cursor to the last element in the listbox, selects that element, and deselects everything else in the listbox.
 
-**\[12\]**
-: In **extended** mode, Control-Shift-Home extends the selection to the first element in the listbox and Control-Shift-End extends the selection to the last element.
+12. In **extended** mode, Control-Shift-Home extends the selection to the first element in the listbox and Control-Shift-End extends the selection to the last element.
 
-**\[13\]**
-: In **multiple** mode, Control-Shift-Home moves the location cursor to the first element in the listbox and Control-Shift-End moves the location cursor to the last element.
+13. In **multiple** mode, Control-Shift-Home moves the location cursor to the first element in the listbox and Control-Shift-End moves the location cursor to the last element.
 
-**\[14\]**
-: The space and Select keys make a selection at the location cursor (active element) just as if mouse button 1 had been pressed over this element.
+14. The space and Select keys make a selection at the location cursor (active element) just as if mouse button 1 had been pressed over this element.
 
-**\[15\]**
-: In **extended** mode, Control-Shift-space and Shift-Select extend the selection to the active element just as if button 1 had been pressed with the Shift key down.
+15. In **extended** mode, Control-Shift-space and Shift-Select extend the selection to the active element just as if button 1 had been pressed with the Shift key down.
 
-**\[16\]**
-: In **extended** mode, the Escape key cancels the most recent selection and restores all the elements in the selected range to their previous selection state.
+16. In **extended** mode, the Escape key cancels the most recent selection and restores all the elements in the selected range to their previous selection state.
 
-**\[17\]**
-: Control-slash selects everything in the widget, except in **single** and **browse** modes, in which case it selects the active element and deselects everything else.
+17. Control-slash selects everything in the widget, except in **single** and **browse** modes, in which case it selects the active element and deselects everything else.
 
-**\[18\]**
-: Control-backslash deselects everything in the widget, except in **browse** mode where it has no effect.
+18. Control-backslash deselects everything in the widget, except in **browse** mode where it has no effect.
 
-**\[19\]**
-: The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection. The behavior of listboxes can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+19. The F16 key (labelled Copy on many Sun workstations) or Meta-w copies the selection in the widget to the clipboard, if there is a selection.
+
+
+The behavior of listboxes can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetColor]: ../tk-c/GetColor.md
+[options]: options.md
+[selection]: selection.md

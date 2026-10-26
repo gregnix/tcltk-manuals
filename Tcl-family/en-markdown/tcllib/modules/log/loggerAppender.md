@@ -1,5 +1,6 @@
 ---
 CommandName: logger::appender
+title: logger::appender
 ManualSection: n
 Version: 1.4
 TclPart: tcllib
@@ -18,10 +19,10 @@ logger::appender - Collection of predefined appenders for logger
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [logger::appender]{.lit} [1.4]{.optlit} 
-[::logger::appender::console]{.cmd} [-level]{.sub} [level]{.arg} [-service]{.lit} [service]{.arg} [options]{.optdot} 
-[::logger::appender::colorConsole]{.cmd} [-level]{.sub} [level]{.arg} [-service]{.lit} [service]{.arg} [options]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [logger::appender]{.lit} [1.4]{.optlit}
+[::logger::appender::console]{.cmd} [-level]{.lit} [level]{.arg} [-service]{.lit} [service]{.arg} [options...]{.optarg}
+[::logger::appender::colorConsole]{.cmd} [-level]{.lit} [level]{.arg} [-service]{.lit} [service]{.arg} [options...]{.optarg}
 :::
 
 # Description
@@ -29,26 +30,25 @@ logger::appender - Collection of predefined appenders for logger
 This package provides a predefined set of logger templates.
 
 **::logger::appender::console** **-level** *level* **-service** *service* ?*options*...?
-: 
+: see below ...
 
+    **-level** level
+    : Name of the level to fill in as "priority" in the log procedure.
 
-**-level** level
-: Name of the level to fill in as "priority" in the log procedure.
+    **-service** service
+    : Name of the service to fill in as "category" in the log procedure.
 
-**-service** service
-: Name of the service to fill in as "category" in the log procedure.
+    **-appenderArgs** appenderArgs
+    : Any additional arguments for the log procedure in list form
 
-**-appenderArgs** appenderArgs
-: Any additional arguments for the log procedure in list form
+    **-conversionPattern** conversionPattern
+    : The log pattern to use (see **logger::utils::createLogProc** for the allowed substitutions).
 
-**-conversionPattern** conversionPattern
-: The log pattern to use (see **logger::utils::createLogProc** for the allowed substitutions).
+    **-procName** procName
+    : Explicitly set the name of the created procedure.
 
-**-procName** procName
-: Explicitly set the name of the created procedure.
-
-**-procNameVar** procNameVar
-: Name of the variable to set in the calling context. This variable will contain the name of the procedure.
+    **-procNameVar** procNameVar
+    : Name of the variable to set in the calling context. This variable will contain the name of the procedure.
 
 
 **::logger::appender::colorConsole** **-level** *level* **-service** *service* ?*options*...?

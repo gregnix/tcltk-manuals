@@ -1,5 +1,6 @@
 ---
 CommandName: base32::hex
+title: base32::hex
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -14,51 +15,55 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 base32::hex – Base32-Kodierung mit erweiterter Hexadezimaldarstellung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [base32::hex]{.lit} [0.2]{.optlit} 
-[::base32::hex::encode]{.cmd} [bstring]{.arg} 
-[::base32::hex::decode]{.cmd} [estring]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [base32::hex]{.lit} [0.2]{.optlit}
+[::base32::hex::encode]{.cmd} [bstring]{.arg}
+[::base32::hex::decode]{.cmd} [estring]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenfolgen in die bzw. aus der erweiterten Hex-Base32-Kodierung, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648)] festgelegt.
+Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenfolgen in die bzw. aus der erweiterten Hex-Base32-Kodierung, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) festgelegt.
 
-(Beachten Sie, dass der in Tcl integrierte Befehl [binary](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html)] eine einfache Kodierung und Dekodierung von Bytes in und aus Hexadezimalziffernpaaren ermöglicht.)
+(Beachten Sie, dass der in Tcl integrierte Befehl [binary](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) eine einfache Kodierung und Dekodierung von Bytes in und aus Hexadezimalziffernpaaren ermöglicht.)
 
 # API
 
 **::base32::hex::encode** *bstring*
-: Gibt als Ergebnis eine erweiterte, in der Hexadezimalbasis 32 kodierte Version der Binärzeichenfolge *bstring* zurück. Das Ergebnis wird möglicherweise am Ende mit den Zeichen **=** durch Padding aufgefüllt, um sicherzustellen, dass die Länge des Ergebnisses ein Vielfaches von acht ist. Der Encoder löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+: Gibt als Ergebnis eine erweiterte, in der Hexadezimalbasis 32 kodierte Version der Binärzeichenfolge *bstring* zurück.
+
+    Das Ergebnis wird möglicherweise am Ende mit den Zeichen **=** durch Padding aufgefüllt, um sicherzustellen, dass die Länge des Ergebnisses ein Vielfaches von acht ist.
+
+    Der Encoder löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::base32::hex::decode** *estring*
-: Gibt eine binäre Zeichenkette zurück, die aus dem *estring* in der erweiterten Hex-Base32-Kodierung dekodiert wurde. Hinweis: Der Encoder erzeugt zwar ausschließlich Großbuchstaben, dieser Decoder unterscheidet jedoch nicht zwischen Groß- und Kleinschreibung, d. h., er ist toleranter. Der Decoder kann bei ungültiger Eingabe einen Fehler auslösen. Beispielsweise wenn:
+: Gibt eine binäre Zeichenkette zurück, die aus dem *estring* in der erweiterten Hex-Base32-Kodierung dekodiert wurde.
 
+    Hinweis: Der Encoder erzeugt zwar ausschließlich Großbuchstaben, dieser Decoder unterscheidet jedoch nicht zwischen Groß- und Kleinschreibung, d. h., er ist toleranter.
 
-**•**
-: Die Eingabe enthält Zeichen, die für erweiterte, in der Base-32-Kodierung kodierte Daten nicht zulässig sind;
+    Der Decoder kann bei ungültiger Eingabe einen Fehler auslösen. Beispielsweise wenn:
 
-**•**
-: Die Länge der Eingabe ist kein Vielfaches von acht;
+    - Die Eingabe enthält Zeichen, die für erweiterte, in der Base-32-Kodierung kodierte Daten nicht zulässig sind;
 
-**•**
-: Der Innenabstand erscheint in der Mitte und nicht am Ende der Eingabe;
+    - Die Länge der Eingabe ist kein Vielfaches von acht;
 
-**•**
-: Die Länge des Innenabstands beträgt nicht genau ein, drei, vier oder sechs Zeichen.
+    - Der Innenabstand erscheint in der Mitte und nicht am Ende der Eingabe;
+
+    - Die Länge des Innenabstands beträgt nicht genau ein, drei, vier oder sechs Zeichen.
+
 
 
 Es ist auch möglich, dass eine ungültige Eingabe *keinen* Fehler auslöst – beispielsweise reiner Text, der keine der oben aufgeführten Eigenschaften aufweist.
 
-# CODETABELLE
+# Codetabelle
 
 Die Codetabelle zur Umwandlung von 5-Bit-Sequenzen ist nachstehend aufgeführt, wobei links die numerische Kennung der Bitsequenzen und rechts das zur Kodierung verwendete Zeichen angegeben ist. Das wesentliche Merkmal der erweiterten Hexadezimal-Zuordnung besteht darin, dass die ersten 16 Codes den Ziffern und Hexadezimalzeichen zugeordnet sind.
 
@@ -74,7 +79,7 @@ Die Codetabelle zur Umwandlung von 5-Bit-Sequenzen ist nachstehend aufgeführt, 
 	8 8        17 H   26 Q
 ```
 
-# BEISPIELE
+# Beispiele
 
 Dieses Beispiel veranschaulicht, wie eine Tcl-Zeichenkette in das erweiterte Hex-Base32-Format kodiert und wieder daraus dekodiert wird, wobei zu berücksichtigen ist, dass die Befehle für das erweiterte Hex-Base32-Format mit binären Zeichenketten arbeiten.
 
@@ -101,7 +106,7 @@ puts "base32::hex='$enc32' [expr {$ASCII_LINE eq $line}]"
 base32::hex='44G3EBB2D5Q20GAJ8D4KI83RFPF7Q===' 1
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *base32* als Kategorie an.
 
@@ -109,11 +114,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Public domain

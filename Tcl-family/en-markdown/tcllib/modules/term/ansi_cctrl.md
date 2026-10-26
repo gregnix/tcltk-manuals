@@ -1,5 +1,6 @@
 ---
 CommandName: term::ansi::code::ctrl
+title: term::ansi::code::ctrl
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -21,104 +22,104 @@ term::ansi::code::ctrl - ANSI control sequences
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::ansi::code]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [term::ansi::code::ctrl]{.lit} [0.3]{.optlit} 
-[::term::ansi::code::ctrl::names]{.cmd} 
-[::term::ansi::code::ctrl::import]{.cmd} [ns]{.optarg} [arg]{.optdot} 
-[::term::ansi::code::ctrl::eeol]{.cmd} 
-[::term::ansi::code::ctrl::esol]{.cmd} 
-[::term::ansi::code::ctrl::el]{.cmd} 
-[::term::ansi::code::ctrl::ed]{.cmd} 
-[::term::ansi::code::ctrl::eu]{.cmd} 
-[::term::ansi::code::ctrl::es]{.cmd} 
-[::term::ansi::code::ctrl::sd]{.cmd} 
-[::term::ansi::code::ctrl::su]{.cmd} 
-[::term::ansi::code::ctrl::ch]{.cmd} 
-[::term::ansi::code::ctrl::sc]{.cmd} 
-[::term::ansi::code::ctrl::rc]{.cmd} 
-[::term::ansi::code::ctrl::sca]{.cmd} 
-[::term::ansi::code::ctrl::rca]{.cmd} 
-[::term::ansi::code::ctrl::st]{.cmd} 
-[::term::ansi::code::ctrl::ct]{.cmd} 
-[::term::ansi::code::ctrl::cat]{.cmd} 
-[::term::ansi::code::ctrl::qdc]{.cmd} 
-[::term::ansi::code::ctrl::qds]{.cmd} 
-[::term::ansi::code::ctrl::qcp]{.cmd} 
-[::term::ansi::code::ctrl::rd]{.cmd} 
-[::term::ansi::code::ctrl::elw]{.cmd} 
-[::term::ansi::code::ctrl::dlw]{.cmd} 
-[::term::ansi::code::ctrl::eg]{.cmd} 
-[::term::ansi::code::ctrl::lg]{.cmd} 
-[::term::ansi::code::ctrl::scs0]{.cmd} [tag]{.arg} 
-[::term::ansi::code::ctrl::scs1]{.cmd} [tag]{.arg} 
-[::term::ansi::code::ctrl::sda]{.cmd} [arg...]{.arg} 
-[::term::ansi::code::ctrl::sda_fgblack]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgred]{.cmd} 
-[::term::ansi::code::ctrl::sda_fggreen]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgyellow]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgblue]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgmagenta]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgcyan]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgwhite]{.cmd} 
-[::term::ansi::code::ctrl::sda_fgdefault]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgblack]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgred]{.cmd} 
-[::term::ansi::code::ctrl::sda_bggreen]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgyellow]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgblue]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgmagenta]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgcyan]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgwhite]{.cmd} 
-[::term::ansi::code::ctrl::sda_bgdefault]{.cmd} 
-[::term::ansi::code::ctrl::sda_bold]{.cmd} 
-[::term::ansi::code::ctrl::sda_dim]{.cmd} 
-[::term::ansi::code::ctrl::sda_italic]{.cmd} 
-[::term::ansi::code::ctrl::sda_underline]{.cmd} 
-[::term::ansi::code::ctrl::sda_blink]{.cmd} 
-[::term::ansi::code::ctrl::sda_revers]{.cmd} 
-[::term::ansi::code::ctrl::sda_hidden]{.cmd} 
-[::term::ansi::code::ctrl::sda_strike]{.cmd} 
-[::term::ansi::code::ctrl::sda_nobold]{.cmd} 
-[::term::ansi::code::ctrl::sda_noitalic]{.cmd} 
-[::term::ansi::code::ctrl::sda_nounderline]{.cmd} 
-[::term::ansi::code::ctrl::sda_noblink]{.cmd} 
-[::term::ansi::code::ctrl::sda_norevers]{.cmd} 
-[::term::ansi::code::ctrl::sda_nohidden]{.cmd} 
-[::term::ansi::code::ctrl::sda_nostrike]{.cmd} 
-[::term::ansi::code::ctrl::sda_reset]{.cmd} 
-[::term::ansi::send::fcp]{.cmd} [row]{.arg} [col]{.arg} 
-[::term::ansi::code::ctrl::cu]{.cmd} [n]{.optarg} 
-[::term::ansi::code::ctrl::cd]{.cmd} [n]{.optarg} 
-[::term::ansi::code::ctrl::cf]{.cmd} [n]{.optarg} 
-[::term::ansi::code::ctrl::cb]{.cmd} [n]{.optarg} 
-[::term::ansi::code::ctrl::ss]{.cmd} [s e]{.optarg} 
-[::term::ansi::code::ctrl::skd]{.cmd} [code]{.arg} [str]{.arg} 
-[::term::ansi::code::ctrl::title]{.cmd} [str]{.arg} 
-[::term::ansi::code::ctrl::gron]{.cmd} 
-[::term::ansi::code::ctrl::groff]{.cmd} 
-[::term::ansi::code::ctrl::tlc]{.cmd} 
-[::term::ansi::code::ctrl::trc]{.cmd} 
-[::term::ansi::code::ctrl::brc]{.cmd} 
-[::term::ansi::code::ctrl::blc]{.cmd} 
-[::term::ansi::code::ctrl::ltj]{.cmd} 
-[::term::ansi::code::ctrl::ttj]{.cmd} 
-[::term::ansi::code::ctrl::rtj]{.cmd} 
-[::term::ansi::code::ctrl::btj]{.cmd} 
-[::term::ansi::code::ctrl::fwj]{.cmd} 
-[::term::ansi::code::ctrl::hl]{.cmd} 
-[::term::ansi::code::ctrl::vl]{.cmd} 
-[::term::ansi::code::ctrl::groptim]{.cmd} [str]{.arg} 
-[::term::ansi::code::ctrl::clear]{.cmd} 
-[::term::ansi::code::ctrl::init]{.cmd} 
-[::term::ansi::code::ctrl::showat]{.cmd} [row]{.arg} [col]{.arg} [text]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::ansi::code]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [term::ansi::code::ctrl]{.lit} [0.3]{.optlit}
+[::term::ansi::code::ctrl::names]{.cmd}
+[::term::ansi::code::ctrl::import]{.cmd} [ns]{.optarg} [arg...]{.optarg}
+[::term::ansi::code::ctrl::eeol]{.cmd}
+[::term::ansi::code::ctrl::esol]{.cmd}
+[::term::ansi::code::ctrl::el]{.cmd}
+[::term::ansi::code::ctrl::ed]{.cmd}
+[::term::ansi::code::ctrl::eu]{.cmd}
+[::term::ansi::code::ctrl::es]{.cmd}
+[::term::ansi::code::ctrl::sd]{.cmd}
+[::term::ansi::code::ctrl::su]{.cmd}
+[::term::ansi::code::ctrl::ch]{.cmd}
+[::term::ansi::code::ctrl::sc]{.cmd}
+[::term::ansi::code::ctrl::rc]{.cmd}
+[::term::ansi::code::ctrl::sca]{.cmd}
+[::term::ansi::code::ctrl::rca]{.cmd}
+[::term::ansi::code::ctrl::st]{.cmd}
+[::term::ansi::code::ctrl::ct]{.cmd}
+[::term::ansi::code::ctrl::cat]{.cmd}
+[::term::ansi::code::ctrl::qdc]{.cmd}
+[::term::ansi::code::ctrl::qds]{.cmd}
+[::term::ansi::code::ctrl::qcp]{.cmd}
+[::term::ansi::code::ctrl::rd]{.cmd}
+[::term::ansi::code::ctrl::elw]{.cmd}
+[::term::ansi::code::ctrl::dlw]{.cmd}
+[::term::ansi::code::ctrl::eg]{.cmd}
+[::term::ansi::code::ctrl::lg]{.cmd}
+[::term::ansi::code::ctrl::scs0]{.cmd} [tag]{.arg}
+[::term::ansi::code::ctrl::scs1]{.cmd} [tag]{.arg}
+[::term::ansi::code::ctrl::sda]{.cmd} [arg...]{.arg}
+[::term::ansi::code::ctrl::sda\_fgblack]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgred]{.cmd}
+[::term::ansi::code::ctrl::sda\_fggreen]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgyellow]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgblue]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgmagenta]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgcyan]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgwhite]{.cmd}
+[::term::ansi::code::ctrl::sda\_fgdefault]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgblack]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgred]{.cmd}
+[::term::ansi::code::ctrl::sda\_bggreen]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgyellow]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgblue]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgmagenta]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgcyan]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgwhite]{.cmd}
+[::term::ansi::code::ctrl::sda\_bgdefault]{.cmd}
+[::term::ansi::code::ctrl::sda\_bold]{.cmd}
+[::term::ansi::code::ctrl::sda\_dim]{.cmd}
+[::term::ansi::code::ctrl::sda\_italic]{.cmd}
+[::term::ansi::code::ctrl::sda\_underline]{.cmd}
+[::term::ansi::code::ctrl::sda\_blink]{.cmd}
+[::term::ansi::code::ctrl::sda\_revers]{.cmd}
+[::term::ansi::code::ctrl::sda\_hidden]{.cmd}
+[::term::ansi::code::ctrl::sda\_strike]{.cmd}
+[::term::ansi::code::ctrl::sda\_nobold]{.cmd}
+[::term::ansi::code::ctrl::sda\_noitalic]{.cmd}
+[::term::ansi::code::ctrl::sda\_nounderline]{.cmd}
+[::term::ansi::code::ctrl::sda\_noblink]{.cmd}
+[::term::ansi::code::ctrl::sda\_norevers]{.cmd}
+[::term::ansi::code::ctrl::sda\_nohidden]{.cmd}
+[::term::ansi::code::ctrl::sda\_nostrike]{.cmd}
+[::term::ansi::code::ctrl::sda\_reset]{.cmd}
+[::term::ansi::send::fcp]{.cmd} [row]{.arg} [col]{.arg}
+[::term::ansi::code::ctrl::cu]{.cmd} [n]{.optarg}
+[::term::ansi::code::ctrl::cd]{.cmd} [n]{.optarg}
+[::term::ansi::code::ctrl::cf]{.cmd} [n]{.optarg}
+[::term::ansi::code::ctrl::cb]{.cmd} [n]{.optarg}
+[::term::ansi::code::ctrl::ss]{.cmd} [s e]{.optarg}
+[::term::ansi::code::ctrl::skd]{.cmd} [code]{.arg} [str]{.arg}
+[::term::ansi::code::ctrl::title]{.cmd} [str]{.arg}
+[::term::ansi::code::ctrl::gron]{.cmd}
+[::term::ansi::code::ctrl::groff]{.cmd}
+[::term::ansi::code::ctrl::tlc]{.cmd}
+[::term::ansi::code::ctrl::trc]{.cmd}
+[::term::ansi::code::ctrl::brc]{.cmd}
+[::term::ansi::code::ctrl::blc]{.cmd}
+[::term::ansi::code::ctrl::ltj]{.cmd}
+[::term::ansi::code::ctrl::ttj]{.cmd}
+[::term::ansi::code::ctrl::rtj]{.cmd}
+[::term::ansi::code::ctrl::btj]{.cmd}
+[::term::ansi::code::ctrl::fwj]{.cmd}
+[::term::ansi::code::ctrl::hl]{.cmd}
+[::term::ansi::code::ctrl::vl]{.cmd}
+[::term::ansi::code::ctrl::groptim]{.cmd} [str]{.arg}
+[::term::ansi::code::ctrl::clear]{.cmd}
+[::term::ansi::code::ctrl::init]{.cmd}
+[::term::ansi::code::ctrl::showat]{.cmd} [row]{.arg} [col]{.arg} [text]{.arg}
 :::
 
 # Description
 
 This package provides symbolic names for the ANSI control sequences. For each sequence a single command is provided which returns the sequence as its result. None of the commands of this package write to a channel; that is handled by higher level packages, like **term::ansi::send**.
 
-# Api
+# API
 
 ## Introspection
 
@@ -207,128 +208,131 @@ This package provides symbolic names for the ANSI control sequences. For each se
 : Set default character set
 
 **::term::ansi::code::ctrl::scs1** *tag*
-: Set alternate character set Select Character Set. Choose which character set is used for either default (scs0) or alternate font (scs1). This does not change whether default or alternate font are used, only their definition. The legal tags, and their meanings, are:
+: Set alternate character set Select Character Set.
 
+    Choose which character set is used for either default (scs0) or alternate font (scs1). This does not change whether default or alternate font are used, only their definition.
 
-**A**
-: United Kingdom Set
+    The legal tags, and their meanings, are:
 
-**B**
-: ASCII Set
+    A
+    : United Kingdom Set
 
-**0**
-: Special Graphics
+    B
+    : ASCII Set
 
-**1**
-: Alternate Character ROM Standard Character Set
+    0
+    : Special Graphics
 
-**2**
-: Alternate Character ROM Special Graphics
+    1
+    : Alternate Character ROM Standard Character Set
+
+    2
+    : Alternate Character ROM Special Graphics
 
 
 **::term::ansi::code::ctrl::sda** *arg*...
 : Set Display Attributes. The arguments are the code sequences for the possible attributes, as provided by the package **term::ansi::code::attr**. For convenience this package also provides additional commands each setting a single specific attribute.
 
-**::term::ansi::code::ctrl::sda_fgblack**
+**::term::ansi::code::ctrl::sda\_fgblack**
 : Set text color to *Black*.
 
-**::term::ansi::code::ctrl::sda_fgred**
+**::term::ansi::code::ctrl::sda\_fgred**
 : Set text color to *Red*.
 
-**::term::ansi::code::ctrl::sda_fggreen**
+**::term::ansi::code::ctrl::sda\_fggreen**
 : Set text color to *Green*.
 
-**::term::ansi::code::ctrl::sda_fgyellow**
+**::term::ansi::code::ctrl::sda\_fgyellow**
 : Set text color to *Yellow*.
 
-**::term::ansi::code::ctrl::sda_fgblue**
+**::term::ansi::code::ctrl::sda\_fgblue**
 : Set text color to *Blue*.
 
-**::term::ansi::code::ctrl::sda_fgmagenta**
+**::term::ansi::code::ctrl::sda\_fgmagenta**
 : Set text color to *Magenta*.
 
-**::term::ansi::code::ctrl::sda_fgcyan**
+**::term::ansi::code::ctrl::sda\_fgcyan**
 : Set text color to *Cyan*.
 
-**::term::ansi::code::ctrl::sda_fgwhite**
+**::term::ansi::code::ctrl::sda\_fgwhite**
 : Set text color to *White*.
 
-**::term::ansi::code::ctrl::sda_fgdefault**
+**::term::ansi::code::ctrl::sda\_fgdefault**
 : Set default text color (*Black*).
 
-**::term::ansi::code::ctrl::sda_bgblack**
+**::term::ansi::code::ctrl::sda\_bgblack**
 : Set background to *Black*.
 
-**::term::ansi::code::ctrl::sda_bgred**
+**::term::ansi::code::ctrl::sda\_bgred**
 : Set background to *Red*.
 
-**::term::ansi::code::ctrl::sda_bggreen**
+**::term::ansi::code::ctrl::sda\_bggreen**
 : Set background to *Green*.
 
-**::term::ansi::code::ctrl::sda_bgyellow**
+**::term::ansi::code::ctrl::sda\_bgyellow**
 : Set background to *Yellow*.
 
-**::term::ansi::code::ctrl::sda_bgblue**
+**::term::ansi::code::ctrl::sda\_bgblue**
 : Set background to *Blue*.
 
-**::term::ansi::code::ctrl::sda_bgmagenta**
+**::term::ansi::code::ctrl::sda\_bgmagenta**
 : Set background to *Magenta*.
 
-**::term::ansi::code::ctrl::sda_bgcyan**
+**::term::ansi::code::ctrl::sda\_bgcyan**
 : Set background to *Cyan*.
 
-**::term::ansi::code::ctrl::sda_bgwhite**
+**::term::ansi::code::ctrl::sda\_bgwhite**
 : Set background to *White*.
 
-**::term::ansi::code::ctrl::sda_bgdefault**
+**::term::ansi::code::ctrl::sda\_bgdefault**
 : Set default background (Transparent).
 
-**::term::ansi::code::ctrl::sda_bold**
+**::term::ansi::code::ctrl::sda\_bold**
 : Bold on.
 
-**::term::ansi::code::ctrl::sda_dim**
+**::term::ansi::code::ctrl::sda\_dim**
 : Dim on.
 
-**::term::ansi::code::ctrl::sda_italic**
+**::term::ansi::code::ctrl::sda\_italic**
 : Italics on.
 
-**::term::ansi::code::ctrl::sda_underline**
+**::term::ansi::code::ctrl::sda\_underline**
 : Underscore on.
 
-**::term::ansi::code::ctrl::sda_blink**
+**::term::ansi::code::ctrl::sda\_blink**
 : Blink on.
 
-**::term::ansi::code::ctrl::sda_revers**
+**::term::ansi::code::ctrl::sda\_revers**
 : Reverse on.
 
-**::term::ansi::code::ctrl::sda_hidden**
+**::term::ansi::code::ctrl::sda\_hidden**
 : Hidden on.
 
-**::term::ansi::code::ctrl::sda_strike**
+**::term::ansi::code::ctrl::sda\_strike**
 : Strike-through on.
 
-**::term::ansi::code::ctrl::sda_nobold**
+**::term::ansi::code::ctrl::sda\_nobold**
 : Bold off.
 
-**::term::ansi::code::ctrl::sda_noitalic**
+**::term::ansi::code::ctrl::sda\_noitalic**
 : Italics off.
 
-**::term::ansi::code::ctrl::sda_nounderline**
+**::term::ansi::code::ctrl::sda\_nounderline**
 : Underscore off.
 
-**::term::ansi::code::ctrl::sda_noblink**
+**::term::ansi::code::ctrl::sda\_noblink**
 : Blink off.
 
-**::term::ansi::code::ctrl::sda_norevers**
+**::term::ansi::code::ctrl::sda\_norevers**
 : Reverse off.
 
-**::term::ansi::code::ctrl::sda_nohidden**
+**::term::ansi::code::ctrl::sda\_nohidden**
 : Hidden off.
 
-**::term::ansi::code::ctrl::sda_nostrike**
+**::term::ansi::code::ctrl::sda\_nostrike**
 : Strike-through off.
 
-**::term::ansi::code::ctrl::sda_reset**
+**::term::ansi::code::ctrl::sda\_reset**
 : Reset all attributes to their default values.
 
 **::term::ansi::send::fcp** *row* *col*

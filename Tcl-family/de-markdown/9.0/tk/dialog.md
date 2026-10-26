@@ -1,5 +1,6 @@
 ---
 CommandName: tk_dialog
+title: tk_dialog
 ManualSection: n
 Version: 4.1
 TclPart: Tk
@@ -15,19 +16,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
-tk_dialog - Erstellt einen modalen Dialog und wartet auf die Antwort
+tk\_dialog - Erstellt einen modalen Dialog und wartet auf die Antwort
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tk_dialog]{.cmd} [window]{.arg} [title]{.arg} [text]{.arg} [bitmap]{.arg} [default]{.arg} [string]{.arg} [string]{.arg} [...]{.arg} 
+[tk\_dialog]{.cmd} [window]{.arg} [title]{.arg} [text]{.arg} [bitmap]{.arg} [default]{.arg} [string]{.arg} [string]{.arg} [...]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Diese Prozedur gehört zur Tk-Skriptbibliothek. Sie ist weitgehend durch **tk_messageBox** *veraltet*. Ihre Argumente beschreiben ein Dialogfeld:
+Diese Prozedur gehört zur Tk-Skriptbibliothek. Sie ist weitgehend durch [tk\_messageBox][messageBox] *veraltet*. Ihre Argumente beschreiben ein Dialogfeld:
 
 *window*
 : Name des Toplevel-Fensters für den Dialog. Ein bereits vorhandenes Fenster mit diesem Namen wird zerstört.
@@ -39,7 +40,7 @@ Diese Prozedur gehört zur Tk-Skriptbibliothek. Sie ist weitgehend durch **tk_me
 : Meldung im oberen Bereich des Dialogfelds.
 
 *bitmap*
-: Wenn nicht leer, legt dies ein Bitmap fest (in einer für **Tk_GetBitmap** geeigneten Form), das im oberen Bereich des Dialogs links neben dem Text angezeigt wird. Bei einer leeren Zeichenkette wird kein Bitmap angezeigt.
+: Wenn nicht leer, legt dies ein Bitmap fest (in einer für [Tk\_GetBitmap][GetBitmap] geeigneten Form), das im oberen Bereich des Dialogs links neben dem Text angezeigt wird. Bei einer leeren Zeichenkette wird kein Bitmap angezeigt.
 
 *default*
 : Ist dies eine ganze Zahl größer oder gleich null, gibt sie den Index des Standard-Buttons für den Dialog an (0 für den linken Button usw.). Ist der Wert negativ oder eine leere Zeichenkette, gibt es keinen Standard-Button.
@@ -48,13 +49,17 @@ Diese Prozedur gehört zur Tk-Skriptbibliothek. Sie ist weitgehend durch **tk_me
 : Für jedes dieser Argumente gibt es einen Button. Jede *string*-Angabe legt den auf dem Button anzuzeigenden Text fest, von links nach rechts.
 
 
-Nach dem Erzeugen des Dialogfelds wartet **tk_dialog**, bis der Benutzer einen der Buttons wählt — per Mausklick oder durch Drücken von Return für den Standard-Button (falls vorhanden). Anschließend gibt der Befehl den Index des gewählten Buttons zurück: 0 für den linken, 1 für den nächsten usw. Wird das Dialogfenster zerstört, bevor der Benutzer einen Button wählt, wird -1 zurückgegeben.
+Nach dem Erzeugen des Dialogfelds wartet **tk\_dialog**, bis der Benutzer einen der Buttons wählt — per Mausklick oder durch Drücken von Return für den Standard-Button (falls vorhanden). Anschließend gibt der Befehl den Index des gewählten Buttons zurück: 0 für den linken, 1 für den nächsten usw. Wird das Dialogfenster zerstört, bevor der Benutzer einen Button wählt, wird -1 zurückgegeben.
 
-Während des Wartens setzt **tk_dialog** einen lokalen Grab. Der Benutzer kann die Anwendung dann nur noch über das Dialogfeld bedienen.
+Während des Wartens setzt **tk\_dialog** einen lokalen Grab. Der Benutzer kann die Anwendung dann nur noch über das Dialogfeld bedienen.
 
-# BEISPIEL
+# Beispiel
 
 ```
 set reply [tk_dialog .foo "The Title" "Do you want to say yes?" \
         questhead 0 Yes No "I'm not sure"]
 ```
+
+
+[GetBitmap]: ../tk-c/GetBitmap.md
+[messageBox]: messageBox.md

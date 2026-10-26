@@ -1,5 +1,6 @@
 ---
 CommandName: grammar::me::cpu::core
+title: grammar::me::cpu::core
 ManualSection: n
 Version: 0.4
 TclPart: tcllib
@@ -19,62 +20,74 @@ grammar::me::cpu::core - ME virtual machine state manipulation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::me::cpu::core]{.lit} [0.4]{.optlit} 
-[::grammar::me::cpu::core]{.cmd} [disasm]{.sub} [asm]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [asm]{.sub} [asm]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [new]{.sub} [asm]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [lc]{.sub} [state]{.arg} [location]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [tok]{.sub} [state]{.arg} [from ?to]{.optarg} 
-[::grammar::me::cpu::core]{.cmd} [pc]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [iseof]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [at]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [cc]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [sv]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [ok]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [error]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [lstk]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [astk]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [mstk]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [estk]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [rstk]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [nc]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [ast]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [halted]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [code]{.sub} [state]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [eof]{.sub} [statevar]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [put]{.sub} [statevar]{.arg} [tok]{.arg} [lex]{.arg} [line]{.arg} [col]{.arg} 
-[::grammar::me::cpu::core]{.cmd} [run]{.sub} [statevar]{.arg} [n]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::me::cpu::core]{.lit} [0.4]{.optlit}
+[::grammar::me::cpu::core]{.cmd} [disasm]{.lit} [asm]{.arg}
+[::grammar::me::cpu::core]{.cmd} [asm]{.lit} [asm]{.arg}
+[::grammar::me::cpu::core]{.cmd} [new]{.lit} [asm]{.arg}
+[::grammar::me::cpu::core]{.cmd} [lc]{.lit} [state]{.arg} [location]{.arg}
+[::grammar::me::cpu::core]{.cmd} [tok]{.lit} [state]{.arg} [from ?to]{.optarg}
+[::grammar::me::cpu::core]{.cmd} [pc]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [iseof]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [at]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [cc]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [sv]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [ok]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [error]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [lstk]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [astk]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [mstk]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [estk]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [rstk]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [nc]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [ast]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [halted]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [code]{.lit} [state]{.arg}
+[::grammar::me::cpu::core]{.cmd} [eof]{.lit} [statevar]{.arg}
+[::grammar::me::cpu::core]{.cmd} [put]{.lit} [statevar]{.arg} [tok]{.arg} [lex]{.arg} [line]{.arg} [col]{.arg}
+[::grammar::me::cpu::core]{.cmd} [run]{.lit} [statevar]{.arg} [n]{.optarg}
 :::
 
 # Description
 
-This package provides an implementation of the ME virtual machine. Please go and read the document **grammar::me_intro** first if you do not know what a ME virtual machine is.
+This package provides an implementation of the ME virtual machine. Please go and read the document [grammar::me\_intro][me_intro] first if you do not know what a ME virtual machine is.
 
 This implementation represents each ME virtual machine as a Tcl value and provides commands to manipulate and query such values to show the effects of executing instructions, adding tokens, retrieving state, etc.
 
-The values fully follow the paradigm of Tcl that every value is a string and while also allowing C implementations for a proper Tcl_ObjType to keep all the important data in native data structures. Because of the latter it is recommended to access the state values *only* through the commands of this package to ensure that internal representation is not shimmered away.
+The values fully follow the paradigm of Tcl that every value is a string and while also allowing C implementations for a proper Tcl\_ObjType to keep all the important data in native data structures. Because of the latter it is recommended to access the state values *only* through the commands of this package to ensure that internal representation is not shimmered away.
 
-The actual structure used by all state values is described in section **CPU STATE**.
+The actual structure used by all state values is described in section [Cpu state].
 
-# Api
+# API
 
 The package directly provides only a single command, and all the functionality is made available through its methods.
 
 **::grammar::me::cpu::core** **disasm** *asm*
-: This method returns a list containing a disassembly of the match instructions in *asm*. The format of *asm* is specified in the section **MATCH PROGRAM REPRESENTATION**. Each element of the result contains instruction label, instruction name, and the instruction arguments, in this order. The label can be the empty string. Jump destinations are shown as labels, strings and tokens unencoded. Token names are prefixed with their numeric id, if, and only if a tokmap is defined. The two components are separated by a colon.
+: This method returns a list containing a disassembly of the match instructions in *asm*. The format of *asm* is specified in the section [Match program representation].
+
+    Each element of the result contains instruction label, instruction name, and the instruction arguments, in this order. The label can be the empty string. Jump destinations are shown as labels, strings and tokens unencoded. Token names are prefixed with their numeric id, if, and only if a tokmap is defined. The two components are separated by a colon.
 
 **::grammar::me::cpu::core** **asm** *asm*
-: This method returns code in the format as specified in section **MATCH PROGRAM REPRESENTATION** generated from ME assembly code *asm*, which is in the format as returned by the method **disasm**.
+: This method returns code in the format as specified in section [Match program representation] generated from ME assembly code *asm*, which is in the format as returned by the method **disasm**.
 
 **::grammar::me::cpu::core** **new** *asm*
-: This method creates state value for a ME virtual machine in its initial state and returns it as its result. The argument *matchcode* contains a Tcl representation of the match instructions the machine has to execute while parsing the input stream. Its format is specified in the section **MATCH PROGRAM REPRESENTATION**. The *tokmap* argument taken by the implementation provided by the package **grammar::me::tcl** is here hidden inside of the match instructions and therefore not needed.
+: This method creates state value for a ME virtual machine in its initial state and returns it as its result.
+
+    The argument *matchcode* contains a Tcl representation of the match instructions the machine has to execute while parsing the input stream. Its format is specified in the section [Match program representation].
+
+    The *tokmap* argument taken by the implementation provided by the package **grammar::me::tcl** is here hidden inside of the match instructions and therefore not needed.
 
 **::grammar::me::cpu::core** **lc** *state* *location*
-: This method takes the state value of a ME virtual machine and uses it to convert a location in the input stream (as offset) into a line number and column index. The result of the method is a 2-element list containing the two pieces in the order mentioned in the previous sentence. *Note* that the method cannot convert locations which the machine has not yet read from the input stream. In other words, if the machine has read 7 characters so far it is possible to convert the offsets **0** to **6**, but nothing beyond that. This also shows that it is not possible to convert offsets which refer to locations before the beginning of the stream. This utility allows higher levels to convert the location offsets found in the error status and the AST into more human readable data.
+: This method takes the state value of a ME virtual machine and uses it to convert a location in the input stream (as offset) into a line number and column index. The result of the method is a 2-element list containing the two pieces in the order mentioned in the previous sentence.
+
+    *Note* that the method cannot convert locations which the machine has not yet read from the input stream. In other words, if the machine has read 7 characters so far it is possible to convert the offsets **0** to **6**, but nothing beyond that. This also shows that it is not possible to convert offsets which refer to locations before the beginning of the stream.
+
+    This utility allows higher levels to convert the location offsets found in the error status and the AST into more human readable data.
 
 **::grammar::me::cpu::core** **tok** *state* ?*from* ?*to*??
-: This method takes the state value of a ME virtual machine and returns a Tcl list containing the part of the input stream between the locations *from* and *to* (both inclusive). If *to* is not specified it will default to the value of *from*. If *from* is not specified either the whole input stream is returned. This method places the same restrictions on its location arguments as the method **lc**.
+: This method takes the state value of a ME virtual machine and returns a Tcl list containing the part of the input stream between the locations *from* and *to* (both inclusive). If *to* is not specified it will default to the value of *from*. If *from* is not specified either the whole input stream is returned.
+
+    This method places the same restrictions on its location arguments as the method **lc**.
 
 **::grammar::me::cpu::core** **pc** *state*
 : This method takes the state value of a ME virtual machine and returns the current value of the stored program counter.
@@ -89,7 +102,7 @@ The package directly provides only a single command, and all the functionality i
 : This method takes the state value of a ME virtual machine and returns the current token.
 
 **::grammar::me::cpu::core** **sv** *state*
-: This method takes the state value of a ME virtual machine and returns the current semantic value stored in it. This is an abstract syntax tree as specified in the document **grammar::me_ast**, section **AST VALUES**.
+: This method takes the state value of a ME virtual machine and returns the current semantic value stored in it. This is an abstract syntax tree as specified in the document [grammar::me\_ast][me_ast], section **AST VALUES**.
 
 **::grammar::me::cpu::core** **ok** *state*
 : This method takes the state value of a ME virtual machine and returns the match status stored in it.
@@ -116,7 +129,7 @@ The package directly provides only a single command, and all the functionality i
 : This method takes the state value of a ME virtual machine and returns the nonterminal match cache as a dictionary.
 
 **::grammar::me::cpu::core** **ast** *state*
-: This method takes the state value of a ME virtual machine and returns the abstract syntax tree currently at the top of the AST stack stored in it. This is an abstract syntax tree as specified in the document **grammar::me_ast**, section **AST VALUES**.
+: This method takes the state value of a ME virtual machine and returns the abstract syntax tree currently at the top of the AST stack stored in it. This is an abstract syntax tree as specified in the document [grammar::me\_ast][me_ast], section **AST VALUES**.
 
 **::grammar::me::cpu::core** **halted** *state*
 : This method takes the state value of a ME virtual machine and returns the current halt status stored in it, i.e. if the machine has stopped or not.
@@ -128,23 +141,24 @@ The package directly provides only a single command, and all the functionality i
 : This method takes the state value of a ME virtual machine as stored in the variable named by *statevar* and modifies it so that the eof flag inside is set. This signals to the machine that whatever token are in the input queue are the last to be processed. There will be no more.
 
 **::grammar::me::cpu::core** **put** *statevar* *tok* *lex* *line* *col*
-: This method takes the state value of a ME virtual machine as stored in the variable named by *statevar* and modifies it so that the token *tok* is added to the end of the input queue, with associated lexeme data *lex* and *line*/*col*umn information. The operation will fail with an error if the eof flag of the machine has been set through the method **eof**.
+: This method takes the state value of a ME virtual machine as stored in the variable named by *statevar* and modifies it so that the token *tok* is added to the end of the input queue, with associated lexeme data *lex* and *line*/*col*umn information.
+
+    The operation will fail with an error if the eof flag of the machine has been set through the method **eof**.
 
 **::grammar::me::cpu::core** **run** *statevar* ?*n*?
-: This method takes the state value of a ME virtual machine as stored in the variable named by *statevar*, executes a number of instructions and stores the state resulting from their modifications back into the variable. The execution loop will run until either
+: This method takes the state value of a ME virtual machine as stored in the variable named by *statevar*, executes a number of instructions and stores the state resulting from their modifications back into the variable.
+
+    The execution loop will run until either
+
+    - *n* instructions have been executed, or
+
+    - a halt instruction was executed, or
+
+    - the input queue is empty and the code is asking for more tokens to process.
 
 
-**•**
-: *n* instructions have been executed, or
+    If no limit *n* was set only the last two conditions are checked for.
 
-**•**
-: a halt instruction was executed, or
-
-**•**
-: the input queue is empty and the code is asking for more tokens to process.
-
-
-If no limit *n* was set only the last two conditions are checked for.
 
 ## Match program representation
 
@@ -154,156 +168,117 @@ All ME instructions are encoded as integer numbers, with the mapping given below
 
 Jump destination arguments are absolute indices into the *asm* element, refering to the instruction to jump to. Any string arguments are absolute indices into the *pool* element. Tokens, characters, messages, and token (actually character) classes to match are coded as references into the *pool* as well.
 
-**\[1\]**
-: "**ict_advance** *message*"
+1. "**ict\_advance** *message*"
 
-**\[2\]**
-: "**ict_match_token** *tok* *message*"
+2. "**ict\_match\_token** *tok* *message*"
 
-**\[3\]**
-: "**ict_match_tokrange** *tokbegin* *tokend* *message*"
+3. "**ict\_match\_tokrange** *tokbegin* *tokend* *message*"
 
-**\[4\]**
-: "**ict_match_tokclass** *code* *message*"
+4. "**ict\_match\_tokclass** *code* *message*"
 
-**\[5\]**
-: "**inc_restore** *branchlabel* *nt*"
+5. "**inc\_restore** *branchlabel* *nt*"
 
-**\[6\]**
-: "**inc_save** *nt*"
+6. "**inc\_save** *nt*"
 
-**\[7\]**
-: "**icf_ntcall** *branchlabel*"
+7. "**icf\_ntcall** *branchlabel*"
 
-**\[8\]**
-: "**icf_ntreturn**"
+8. "**icf\_ntreturn**"
 
-**\[9\]**
-: "**iok_ok**"
+9. "**iok\_ok**"
 
-**\[10\]**
-: "**iok_fail**"
+10. "**iok\_fail**"
 
-**\[11\]**
-: "**iok_negate**"
+11. "**iok\_negate**"
 
-**\[12\]**
-: "**icf_jalways** *branchlabel*"
+12. "**icf\_jalways** *branchlabel*"
 
-**\[13\]**
-: "**icf_jok** *branchlabel*"
+13. "**icf\_jok** *branchlabel*"
 
-**\[14\]**
-: "**icf_jfail** *branchlabel*"
+14. "**icf\_jfail** *branchlabel*"
 
-**\[15\]**
-: "**icf_halt**"
+15. "**icf\_halt**"
 
-**\[16\]**
-: "**icl_push**"
+16. "**icl\_push**"
 
-**\[17\]**
-: "**icl_rewind**"
+17. "**icl\_rewind**"
 
-**\[18\]**
-: "**icl_pop**"
+18. "**icl\_pop**"
 
-**\[19\]**
-: "**ier_push**"
+19. "**ier\_push**"
 
-**\[20\]**
-: "**ier_clear**"
+20. "**ier\_clear**"
 
-**\[21\]**
-: "**ier_nonterminal** *message*"
+21. "**ier\_nonterminal** *message*"
 
-**\[22\]**
-: "**ier_merge**"
+22. "**ier\_merge**"
 
-**\[23\]**
-: "**isv_clear**"
+23. "**isv\_clear**"
 
-**\[24\]**
-: "**isv_terminal**"
+24. "**isv\_terminal**"
 
-**\[25\]**
-: "**isv_nonterminal_leaf** *nt*"
+25. "**isv\_nonterminal\_leaf** *nt*"
 
-**\[26\]**
-: "**isv_nonterminal_range** *nt*"
+26. "**isv\_nonterminal\_range** *nt*"
 
-**\[27\]**
-: "**isv_nonterminal_reduce** *nt*"
+27. "**isv\_nonterminal\_reduce** *nt*"
 
-**\[28\]**
-: "**ias_push**"
+28. "**ias\_push**"
 
-**\[29\]**
-: "**ias_mark**"
+29. "**ias\_mark**"
 
-**\[30\]**
-: "**ias_mrewind**"
+30. "**ias\_mrewind**"
 
-**\[31\]**
-: "**ias_mpop**"
+31. "**ias\_mpop**"
 
 
 # Cpu state
 
 A state value is a list containing the following elements, in the order listed below:
 
-**\[1\]**
-: *code*: Match instructions, see **MATCH PROGRAM REPRESENTATION**.
+1. *code*: Match instructions, see [Match program representation].
 
-**\[2\]**
-: *pc*:   Program counter, *int*.
+2. *pc*:   Program counter, *int*.
 
-**\[3\]**
-: *halt*: Halt flag, *boolean*.
+3. *halt*: Halt flag, *boolean*.
 
-**\[4\]**
-: *eof*:  Eof flag, *boolean*
+4. *eof*:  Eof flag, *boolean*
 
-**\[5\]**
-: *tc*:   Terminal cache, and input queue. Structure see below.
+5. *tc*:   Terminal cache, and input queue. Structure see below.
 
-**\[6\]**
-: *cl*:   Current location, *int*.
+6. *cl*:   Current location, *int*.
 
-**\[7\]**
-: *ct*:   Current token, *string*.
+7. *ct*:   Current token, *string*.
 
-**\[8\]**
-: *ok*:   Match status, *boolean*.
+8. *ok*:   Match status, *boolean*.
 
-**\[9\]**
-: *sv*:   Semantic value, *list*.
+9. *sv*:   Semantic value, *list*.
 
-**\[10\]**
-: *er*:   Error status, *list*.
+10. *er*:   Error status, *list*.
 
-**\[11\]**
-: *ls*:   Location stack, *list*.
+11. *ls*:   Location stack, *list*.
 
-**\[12\]**
-: *as*:   AST stack, *list*.
+12. *as*:   AST stack, *list*.
 
-**\[13\]**
-: *ms*:   AST marker stack, *list*.
+13. *ms*:   AST marker stack, *list*.
 
-**\[14\]**
-: *es*:   Error stack, *list*.
+14. *es*:   Error stack, *list*.
 
-**\[15\]**
-: *rs*:   Return stack, *list*.
+15. *rs*:   Return stack, *list*.
 
-**\[16\]**
-: *nc*:   Nonterminal cache, *dictionary*. *tc*, the input queue of tokens waiting for processing and the terminal cache containing the tokens already processing are one unified data structure simply holding all tokens and their information, with the current location separating that which has been processed from that which is waiting. Each element of the queue/cache is a list containing the token, its lexeme information, line number, and column index, in this order. All stacks have their top element aat the end, i.e. pushing an item is equivalent to appending to the list representing the stack, and popping it removes the last element. *er*, the error status is either empty or a list of two elements, a location in the input, and a list of messages, encoded as references into the *pool* element of the *code*. *nc*, the nonterminal cache is keyed by nonterminal name and location, each value a four-element list containing current location, match status, semantic value, and error status, in this order.
+16. *nc*:   Nonterminal cache, *dictionary*.
 
+
+*tc*, the input queue of tokens waiting for processing and the terminal cache containing the tokens already processing are one unified data structure simply holding all tokens and their information, with the current location separating that which has been processed from that which is waiting. Each element of the queue/cache is a list containing the token, its lexeme information, line number, and column index, in this order.
+
+All stacks have their top element aat the end, i.e. pushing an item is equivalent to appending to the list representing the stack, and popping it removes the last element.
+
+*er*, the error status is either empty or a list of two elements, a location in the input, and a list of messages, encoded as references into the *pool* element of the *code*.
+
+*nc*, the nonterminal cache is keyed by nonterminal name and location, each value a four-element list containing current location, match status, semantic value, and error status, in this order.
 
 # Bugs, ideas, feedback
 
-If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar_me* as the category.
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar\_me* as the category.
 
 When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
 
@@ -318,3 +293,7 @@ Grammars and finite automata
 ```
 Copyright (c) 2005-2006 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[me_ast]: me_ast.md
+[me_intro]: me_intro.md

@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_CreateChannelHandler
+title: Tcl_CreateChannelHandler
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -22,36 +23,37 @@ Copyright:
 
 # Name
 
-Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler - call a procedure when a channel becomes readable or writable
+Tcl\_CreateChannelHandler, Tcl\_DeleteChannelHandler - call a procedure when a channel becomes readable or writable
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-[Tcl_CreateChannelHandler]{.cmd}([channel]{.arg}, [mask]{.arg}, [proc]{.arg}, [clientData]{.arg})
-
-[Tcl_DeleteChannelHandler]{.cmd}([channel]{.arg}, [proc]{.arg}, [clientData]{.arg})
+**#include <tcl.h>**
+[Tcl\_CreateChannelHandler]{.ccmd} [channel, mask, proc, clientData]{.cargs}
+[Tcl\_DeleteChannelHandler]{.ccmd} [channel, proc, clientData]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Channel *channel* (in)
-: Tcl channel such as returned by **Tcl_CreateChannel**.
+::: {.arguments} :::
 
-int *mask* (in)
-: Conditions under which *proc* should be called: OR-ed combination of **TCL_READABLE**, **TCL_WRITABLE** and **TCL_EXCEPTION**. Specify a zero value to temporarily disable an existing handler.
+[channel]{.carg .in type="Tcl_Channel"}
+: Tcl channel such as returned by [Tcl\_CreateChannel][CrtChannel].
 
-Tcl_ChannelProc *\*proc* (in)
+[mask]{.carg .in type="int"}
+: Conditions under which *proc* should be called: OR-ed combination of **TCL\_READABLE**, **TCL\_WRITABLE** and **TCL\_EXCEPTION**. Specify a zero value to temporarily disable an existing handler.
+
+[\*proc]{.carg .in type="Tcl_ChannelProc"}
 : Procedure to invoke whenever the channel indicated by *channel* meets the conditions specified by *mask*.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value to pass to *proc*.
 
+:::
 
 # Description
 
-**Tcl_CreateChannelHandler** arranges for *proc* to be called in the future whenever input or output becomes possible on the channel identified by *channel*, or whenever an exceptional condition exists for *channel*. The conditions of interest under which *proc* will be invoked are specified by the *mask* argument. See the manual entry for **fileevent** for a precise description of what it means for a channel to be readable or writable. *Proc* must conform to the following prototype:
+**Tcl\_CreateChannelHandler** arranges for *proc* to be called in the future whenever input or output becomes possible on the channel identified by *channel*, or whenever an exceptional condition exists for *channel*. The conditions of interest under which *proc* will be invoked are specified by the *mask* argument. See the manual entry for [fileevent] for a precise description of what it means for a channel to be readable or writable. *Proc* must conform to the following prototype:
 
 ```
 typedef void Tcl_ChannelProc(
@@ -59,10 +61,14 @@ typedef void Tcl_ChannelProc(
         int mask);
 ```
 
-The *clientData* argument is the same as the value passed to **Tcl_CreateChannelHandler** when the handler was created. Typically, *clientData* points to a data structure containing application-specific information about the channel. *Mask* is an integer mask indicating which of the requested conditions actually exists for the channel; it will contain a subset of the bits from the *mask* argument to **Tcl_CreateChannelHandler** when the handler was created.
+The *clientData* argument is the same as the value passed to **Tcl\_CreateChannelHandler** when the handler was created. Typically, *clientData* points to a data structure containing application-specific information about the channel. *Mask* is an integer mask indicating which of the requested conditions actually exists for the channel; it will contain a subset of the bits from the *mask* argument to **Tcl\_CreateChannelHandler** when the handler was created.
 
-Each channel handler is identified by a unique combination of *channel*, *proc* and *clientData*. There may be many handlers for a given channel as long as they do not have the same *channel*, *proc*, and *clientData*. If **Tcl_CreateChannelHandler** is invoked when there is already a handler for *channel*, *proc*, and *clientData*, then no new handler is created;  instead, the *mask* is changed for the existing handler.
+Each channel handler is identified by a unique combination of *channel*, *proc* and *clientData*. There may be many handlers for a given channel as long as they do not have the same *channel*, *proc*, and *clientData*. If **Tcl\_CreateChannelHandler** is invoked when there is already a handler for *channel*, *proc*, and *clientData*, then no new handler is created;  instead, the *mask* is changed for the existing handler.
 
-**Tcl_DeleteChannelHandler** deletes a channel handler identified by *channel*, *proc* and *clientData*; if no such handler exists, the call has no effect.
+**Tcl\_DeleteChannelHandler** deletes a channel handler identified by *channel*, *proc* and *clientData*; if no such handler exists, the call has no effect.
 
-Channel handlers are invoked via the Tcl event mechanism, so they are only useful in applications that are event-driven. Note also that the conditions specified in the *mask* argument to *proc* may no longer exist when *proc* is invoked:  for example, if there are two handlers for **TCL_READABLE** on the same channel, the first handler could consume all of the available input so that the channel is no longer readable when the second handler is invoked. For this reason it may be useful to use nonblocking I/O on channels for which there are event handlers.
+Channel handlers are invoked via the Tcl event mechanism, so they are only useful in applications that are event-driven. Note also that the conditions specified in the *mask* argument to *proc* may no longer exist when *proc* is invoked:  for example, if there are two handlers for **TCL\_READABLE** on the same channel, the first handler could consume all of the available input so that the channel is no longer readable when the second handler is invoked. For this reason it may be useful to use nonblocking I/O on channels for which there are event handlers.
+
+
+[CrtChannel]: CrtChannel.md
+[fileevent]: ../tcl/fileevent.md

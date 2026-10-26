@@ -1,5 +1,6 @@
 ---
 CommandName: tkwait
+title: tkwait
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -24,9 +25,9 @@ tkwait - Wait for variable to change or window to be destroyed
 # Synopsis
 
 ::: {.synopsis} :::
-[tkwait]{.cmd} [variable]{.sub} [name]{.arg} 
-[tkwait]{.cmd} [visibility]{.sub} [name]{.arg} 
-[tkwait]{.cmd} [window]{.sub} [name]{.arg} 
+[tkwait]{.cmd} [variable]{.sub} [name]{.arg}
+[tkwait]{.cmd} [visibility]{.sub} [name]{.arg}
+[tkwait]{.cmd} [window]{.sub} [name]{.arg}
 :::
 
 # Description

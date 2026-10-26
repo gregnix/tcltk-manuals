@@ -1,5 +1,6 @@
 ---
 CommandName: incr
+title: incr
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -24,7 +25,7 @@ incr - Increment the value of a variable
 # Synopsis
 
 ::: {.synopsis} :::
-[incr]{.cmd} [varName]{.arg} [increment]{.optarg} 
+[incr]{.cmd} [varName]{.arg} [increment]{.optarg}
 :::
 
 # Description

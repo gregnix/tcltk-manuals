@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::button
+title: ttk::button
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -23,7 +24,7 @@ ttk::button - Widget that issues a command when pressed
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::button]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::button]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -32,14 +33,9 @@ A **ttk::button** widget displays a textual label and/or image, and evaluates a 
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-compound** | **-cursor** |
-| **-image** | **-state** | **-style** |
-| **-takefocus** | **-text** | **-textvariable** |
-| **-underline** | **-width** |  |
+**-class**, **-compound**, **-cursor**, **-image**, **-state**, **-style**, **-takefocus**, **-text**, **-textvariable**, **-underline**, **-width**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -47,10 +43,10 @@ See the ttk_widget manual entry for details on the standard options.
 : A script to evaluate when the widget is invoked.
 
 **-default** (**default**/**Default**)
-: May be set to one of  **normal**, **active**, or **disabled**. In a dialog box, one button may be designated the "default" button (meaning, roughly, "the one that gets invoked when the user presses \<Enter>"). **active** indicates that this is currently the default button; **normal** means that it may become the default button, and **disabled** means that it is not defaultable. The default is **normal**.
+: May be set to one of  **normal**, **active**, or **disabled**. In a dialog box, one button may be designated the "default" button (meaning, roughly, "the one that gets invoked when the user presses <Enter>"). **active** indicates that this is currently the default button; **normal** means that it may become the default button, and **disabled** means that it is not defaultable. The default is **normal**.
 
+    Depending on the theme, the default button may be displayed with an extra highlight ring, or with a different border color.
 
-Depending on the theme, the default button may be displayed with an extra highlight ring, or with a different border color.
 
 # Widget command
 
@@ -70,7 +66,7 @@ The class name for a **ttk::button** is **TButton**.
 
 Dynamic states: **active**, **disabled**, **pressed**, **readonly**.
 
-**TButton** styling options configurable with **ttk::style** are:
+**TButton** styling options configurable with [ttk::style][ttk_style] are:
 
 **-anchor** *anchor*
 
@@ -97,11 +93,15 @@ Dynamic states: **active**, **disabled**, **pressed**, **readonly**.
 **-relief** *relief*
 
 **-shiftrelief** *amount*
+: **-shiftrelief** specifies how far the button contents are shifted down and right in the *pressed* state. This action provides additional skeumorphic feedback.
 
-**-shiftrelief** specifies how far the button contents are shifted down and right in the *pressed* state. This action provides additional skeumorphic feedback.
 
 **-width** *amount*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

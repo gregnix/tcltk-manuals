@@ -1,5 +1,6 @@
 ---
 CommandName: log
+title: log
 ManualSection: n
 Version: 1.5
 TclPart: tcllib
@@ -20,31 +21,31 @@ log - Procedures to log messages of libraries and applications.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [log]{.lit} [1.5]{.optlit} 
-[::log::levels]{.cmd} 
-[::log::lv2longform]{.cmd} [level]{.arg} 
-[::log::lv2color]{.cmd} [level]{.arg} 
-[::log::lv2priority]{.cmd} [level]{.arg} 
-[::log::lv2cmd]{.cmd} [level]{.arg} 
-[::log::lv2channel]{.cmd} [level]{.arg} 
-[::log::lvCompare]{.cmd} [level1]{.arg} [level2]{.arg} 
-[::log::lvSuppress]{.cmd} [level]{.arg} { [suppress]{.arg} 1 } 
-[::log::lvSuppressLE]{.cmd} [level]{.arg} { [suppress]{.arg} 1 } 
-[::log::lvIsSuppressed]{.cmd} [level]{.arg} 
-[::log::lvCmd]{.cmd} [level]{.arg} [cmd]{.arg} 
-[::log::lvCmdForall]{.cmd} [cmd]{.arg} 
-[::log::lvChannel]{.cmd} [level]{.arg} [chan]{.arg} 
-[::log::lvChannelForall]{.cmd} [chan]{.arg} 
-[::log::lvColor]{.cmd} [level]{.arg} [color]{.arg} 
-[::log::lvColorForall]{.cmd} [color]{.arg} 
-[::log::log]{.cmd} [level]{.arg} [text]{.arg} 
-[::log::logarray]{.cmd} [level]{.arg} [arrayvar]{.arg} [pattern]{.optarg} 
-[::log::loghex]{.cmd} [level]{.arg} [text]{.arg} [data]{.arg} 
-[::log::logsubst]{.cmd} [level]{.arg} [msg]{.arg} 
-[::log::logMsg]{.cmd} [text]{.arg} 
-[::log::logError]{.cmd} [text]{.arg} 
-[::log::Puts]{.cmd} [level]{.arg} [text]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [log]{.lit} [1.5]{.optlit}
+[::log::levels]{.cmd}
+[::log::lv2longform]{.cmd} [level]{.arg}
+[::log::lv2color]{.cmd} [level]{.arg}
+[::log::lv2priority]{.cmd} [level]{.arg}
+[::log::lv2cmd]{.cmd} [level]{.arg}
+[::log::lv2channel]{.cmd} [level]{.arg}
+[::log::lvCompare]{.cmd} [level1]{.arg} [level2]{.arg}
+[::log::lvSuppress]{.cmd} [level]{.arg} [{suppress 1}]{.arg}
+[::log::lvSuppressLE]{.cmd} [level]{.arg} [{suppress 1}]{.arg}
+[::log::lvIsSuppressed]{.cmd} [level]{.arg}
+[::log::lvCmd]{.cmd} [level]{.arg} [cmd]{.arg}
+[::log::lvCmdForall]{.cmd} [cmd]{.arg}
+[::log::lvChannel]{.cmd} [level]{.arg} [chan]{.arg}
+[::log::lvChannelForall]{.cmd} [chan]{.arg}
+[::log::lvColor]{.cmd} [level]{.arg} [color]{.arg}
+[::log::lvColorForall]{.cmd} [color]{.arg}
+[::log::log]{.cmd} [level]{.arg} [text]{.arg}
+[::log::logarray]{.cmd} [level]{.arg} [arrayvar]{.arg} [pattern]{.optarg}
+[::log::loghex]{.cmd} [level]{.arg} [text]{.arg} [data]{.arg}
+[::log::logsubst]{.cmd} [level]{.arg} [msg]{.arg}
+[::log::logMsg]{.cmd} [text]{.arg}
+[::log::logError]{.cmd} [text]{.arg}
+[::log::Puts]{.cmd} [level]{.arg} [text]{.arg}
 :::
 
 # Description
@@ -84,7 +85,7 @@ Each message level is also associated with a command to use when logging a messa
 
 Another database maintained by this facility is a map from message levels to colors. The information in this database has *no* influence on the behaviour of the module. It is merely provided as a convenience and in anticipation of the usage of this facility in **tk**-based application which may want to colorize message logs.
 
-# Api
+# API
 
 The following commands are available:
 
@@ -148,10 +149,9 @@ The following commands are available:
 **::log::logsubst** *level* *msg*
 : Like **::log::log**, but *msg* may contain substitutions and variable references, which are evaluated in the caller scope first. The purpose of this command is to avoid overhead in the non-logging case, if the log message building is expensive. Any substitution errors raise an error in the command execution. The following example shows an xml text representation, which is only generated in debug mode:
 
-
-```
-    log::logsubst debug {XML of node $node is '[$node toXml]'}
-```
+    ```
+        log::logsubst debug {XML of node $node is '[$node toXml]'}
+    ```
 
 **::log::logMsg** *text*
 : Convenience wrapper around **::log::log**. Equivalent to **::log::log info text**.
@@ -167,30 +167,24 @@ The following commands are available:
 
 The package currently defines the following log levels, the level of highest importance listed first.
 
-**•**
-: emergency
+- emergency
 
-**•**
-: alert
+- alert
 
-**•**
-: critical
+- critical
 
-**•**
-: error
+- error
 
-**•**
-: warning
+- warning
 
-**•**
-: notice
+- notice
 
-**•**
-: info
+- info
 
-**•**
-: debug *Note* that by default all messages with levels **warning** down to **debug** are suppressed. This is done intentionally, because (we believe that) in most situations debugging output is not wanted. Most people wish to have such output only when actually debugging an application.
+- debug
 
+
+*Note* that by default all messages with levels **warning** down to **debug** are suppressed. This is done intentionally, because (we believe that) in most situations debugging output is not wanted. Most people wish to have such output only when actually debugging an application.
 
 # Bugs, ideas, feedback
 

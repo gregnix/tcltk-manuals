@@ -1,5 +1,6 @@
 ---
 CommandName: option
+title: option
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -24,17 +25,17 @@ option - Add/retrieve window options to/from the option database
 # Synopsis
 
 ::: {.synopsis} :::
-[option]{.cmd} [add]{.sub} [pattern]{.arg} [value]{.arg} [priority]{.optarg} 
-[option]{.cmd} [clear]{.sub} 
-[option]{.cmd} [get]{.sub} [window]{.arg} [name]{.arg} [class]{.arg} 
-[option]{.cmd} [readfile]{.sub} [fileName]{.arg} [priority]{.optarg} 
+[option]{.cmd} [add]{.sub} [pattern]{.arg} [value]{.arg} [priority]{.optarg}
+[option]{.cmd} [clear]{.sub}
+[option]{.cmd} [get]{.sub} [window]{.arg} [name]{.arg} [class]{.arg}
+[option]{.cmd} [readfile]{.sub} [fileName]{.arg} [priority]{.optarg}
 :::
 
 # Description
 
-The **option** command allows you to add entries to the Tk option database or to retrieve options from the database.  The **add** form of the command adds a new option to the database. *Pattern* contains the option being specified, and consists of names and/or classes separated by asterisks or dots, in the usual X format (see **PATTERN FORMAT**).  *Value* contains a text string to associate with *pattern*;  this is the value that will be returned in calls to **Tk_GetOption** or by invocations of the **option get** command.  If *priority* is specified, it indicates the priority level for this option (see below for legal values);  it defaults to **interactive**. This command always returns an empty string.
+The **option** command allows you to add entries to the Tk option database or to retrieve options from the database.  The **add** form of the command adds a new option to the database. *Pattern* contains the option being specified, and consists of names and/or classes separated by asterisks or dots, in the usual X format (see [Pattern format]).  *Value* contains a text string to associate with *pattern*;  this is the value that will be returned in calls to [Tk\_GetOption][GetOption] or by invocations of the **option get** command.  If *priority* is specified, it indicates the priority level for this option (see below for legal values);  it defaults to **interactive**. This command always returns an empty string.
 
-The **option clear** command clears the option database.  Default options (from the **RESOURCE_MANAGER** property or the **.Xdefaults** file) will be reloaded automatically the next time an option is added to the database or removed from it.  This command always returns an empty string.
+The **option clear** command clears the option database.  Default options (from the **RESOURCE\_MANAGER** property or the **.Xdefaults** file) will be reloaded automatically the next time an option is added to the database or removed from it.  This command always returns an empty string.
 
 The **option get** command returns the value of the option specified for *window* under *name* and *class*.  If several entries in the option database match *window*, *name*, and *class*, then the command returns whichever was created with highest *priority* level.  If there are several matching entries at the same priority level, then it returns whichever entry was most recently entered into the option database.  If there are no matching entries, then the empty string is returned.
 
@@ -54,8 +55,10 @@ The *priority* arguments to the **option** command are normally specified symbol
 : Level 60.  Used for options specified in user-specific defaults files, such as **.Xdefaults**, resource databases loaded into the X server, or user-specific startup files.
 
 **interactive**
-: Level 80.  Used for options specified interactively after the application starts running.  If *priority* is not specified, it defaults to this level. Any of the above keywords may be abbreviated.  In addition, priorities may be specified numerically using integers between 0 and 100, inclusive.  The numeric form is probably a bad idea except for new priority levels other than the ones given above.
+: Level 80.  Used for options specified interactively after the application starts running.  If *priority* is not specified, it defaults to this level.
 
+
+Any of the above keywords may be abbreviated.  In addition, priorities may be specified numerically using integers between 0 and 100, inclusive.  The numeric form is probably a bad idea except for new priority levels other than the ones given above.
 
 # Pattern format
 
@@ -65,7 +68,7 @@ Each word in the pattern conventionally starts with either an upper-case letter 
 
 When two words are separated by a period, the latter widget must be a direct child of the former (or the option must apply to only the indicated widgets). When two words are separated by an asterisk, any depth of widgets may lie between the former and latter widgets (and the option applies to all widgets that are children of the former widget).
 
-If the overall pattern is preceded by an asterisk, then the overall pattern applies anywhere it can throughout the whole widget hierarchy. Otherwise the first word of the pattern is matched against the name and class of the "**.**" **toplevel**, which are usually set by options to **wish**.
+If the overall pattern is preceded by an asterisk, then the overall pattern applies anywhere it can throughout the whole widget hierarchy. Otherwise the first word of the pattern is matched against the name and class of the "**.**" [toplevel], which are usually set by options to [wish].
 
 # Examples
 
@@ -82,3 +85,8 @@ entry .e
 bind .e <Return> [option get .e returnCommand Command]
 option add *.e.returnCommand bell widgetDefault
 ```
+
+
+[GetOption]: ../tk-c/GetOption.md
+[toplevel]: toplevel.md
+[wish]: wish.md

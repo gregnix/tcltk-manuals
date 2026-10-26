@@ -129,6 +129,11 @@ foreach pkg {mdstack::parser docir::mdSource docir::md docir::pdf} {
         exit 1
     }
 }
+# Manual pages are full of "$var": no $...$ math (mdstack::parser 0.9.1;
+# older versions ignore the variable)
+set ::mdstack::parser::inlineMath 0
+# TIP-700 pages indent further paragraphs of "1." items by 4 spaces
+set ::mdstack::parser::listContinuation 1
 
 # ------------------------------------------------------------------
 # Pages

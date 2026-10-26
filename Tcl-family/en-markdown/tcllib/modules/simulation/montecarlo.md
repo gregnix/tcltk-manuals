@@ -1,5 +1,6 @@
 ---
 CommandName: simulation::montecarlo
+title: simulation::montecarlo
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -19,35 +20,36 @@ simulation::montecarlo - Monte Carlo simulations
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [simulation::montecarlo]{.lit} [0.2]{.lit} 
-[package]{.cmd} [require]{.sub} [simulation::random]{.lit} 
-[package]{.cmd} [require]{.sub} [math::statistics]{.lit} 
-[::simulation::montecarlo::getOption]{.cmd} [keyword]{.arg} 
-[::simulation::montecarlo::hasOption]{.cmd} [keyword]{.arg} 
-[::simulation::montecarlo::setOption]{.cmd} [keyword]{.arg} [value]{.arg} 
-[::simulation::montecarlo::setTrialResult]{.cmd} [values]{.arg} 
-[::simulation::montecarlo::setExpResult]{.cmd} [values]{.arg} 
-[::simulation::montecarlo::getTrialResults]{.cmd} 
-[::simulation::montecarlo::getExpResult]{.cmd} 
-[::simulation::montecarlo::transposeData]{.cmd} [values]{.arg} 
-[::simulation::montecarlo::integral2D]{.cmd} [...]{.arg} 
-[::simulation::montecarlo::singleExperiment]{.cmd} [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [simulation::montecarlo]{.lit} [0.2]{.lit}
+[package]{.cmd} [require]{.sub} [simulation::random]{.lit}
+[package]{.cmd} [require]{.sub} [math::statistics]{.lit}
+[::simulation::montecarlo::getOption]{.cmd} [keyword]{.arg}
+[::simulation::montecarlo::hasOption]{.cmd} [keyword]{.arg}
+[::simulation::montecarlo::setOption]{.cmd} [keyword]{.arg} [value]{.arg}
+[::simulation::montecarlo::setTrialResult]{.cmd} [values]{.arg}
+[::simulation::montecarlo::setExpResult]{.cmd} [values]{.arg}
+[::simulation::montecarlo::getTrialResults]{.cmd}
+[::simulation::montecarlo::getExpResult]{.cmd}
+[::simulation::montecarlo::transposeData]{.cmd} [values]{.arg}
+[::simulation::montecarlo::integral2D]{.cmd} [...]{.arg}
+[::simulation::montecarlo::singleExperiment]{.cmd} [args]{.arg}
 :::
 
 # Description
 
 The technique of *Monte Carlo simulations* is basically simple:
 
-**•**
-: generate random values for one or more parameters.
+- generate random values for one or more parameters.
 
-**•**
-: evaluate the model of some system you are interested in and record the interesting results for each realisation of these parameters.
+- evaluate the model of some system you are interested in and record the interesting results for each realisation of these parameters.
 
-**•**
-: after a suitable number of such trials, deduce an overall characteristic of the model. You can think of a model of a network of computers, an ecosystem of some kind or in fact anything that can be quantitatively described and has some stochastic element in it. The package *simulation::montecarlo* offers a basic framework for such a modelling technique:
+- after a suitable number of such trials, deduce an overall characteristic of the model.
 
+
+You can think of a model of a network of computers, an ecosystem of some kind or in fact anything that can be quantitatively described and has some stochastic element in it.
+
+The package *simulation::montecarlo* offers a basic framework for such a modelling technique:
 
 ```
 #
@@ -89,44 +91,39 @@ The package defines the following auxiliary procedures:
 **::simulation::montecarlo::getOption** *keyword*
 : Get the value of an option given as part of the *singleExperiment* command.
 
-
-string *keyword*
-: Given keyword (without leading minus)
+    string *keyword*
+    : Given keyword (without leading minus)
 
 
 **::simulation::montecarlo::hasOption** *keyword*
 : Returns 1 if the option is available, 0 if not.
 
-
-string *keyword*
-: Given keyword (without leading minus)
+    string *keyword*
+    : Given keyword (without leading minus)
 
 
 **::simulation::montecarlo::setOption** *keyword* *value*
 : Set the value of the given option.
 
+    string *keyword*
+    : Given keyword (without leading minus)
 
-string *keyword*
-: Given keyword (without leading minus)
-
-string *value*
-: (New) value for the option
+    string *value*
+    : (New) value for the option
 
 
 **::simulation::montecarlo::setTrialResult** *values*
 : Store the results of the trial for later analysis
 
-
-list *values*
-: List of values to be stored
+    list *values*
+    : List of values to be stored
 
 
 **::simulation::montecarlo::setExpResult** *values*
 : Set the results of the entire experiment (typically used in the final phase).
 
-
-list *values*
-: List of values to be stored
+    list *values*
+    : List of values to be stored
 
 
 **::simulation::montecarlo::getTrialResults**
@@ -138,50 +135,46 @@ list *values*
 **::simulation::montecarlo::transposeData** *values*
 : Interchange columns and rows of a list of lists and return the result.
 
+    list *values*
+    : List of lists of values
 
-list *values*
-: List of lists of values
 
 
 There are two main procedures: *integral2D* and *singleExperiment*.
 
 **::simulation::montecarlo::integral2D** *...*
-: Integrate a function over a two-dimensional region using a Monte Carlo approach. Arguments PM
+: Integrate a function over a two-dimensional region using a Monte Carlo approach.
+
+    Arguments PM
 
 **::simulation::montecarlo::singleExperiment** *args*
 : Iterate code over a number of trials and store the results. The iteration is gouverned by parameters given via a list of keyword-value pairs.
 
+    int *n*
+    : List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
 
-int *n*
-: List of keyword-value pairs, all of which are available during the execution via the *getOption* command.
 
 
 The *singleExperiment* command predefines the following options:
 
-**•**
-: *-init code*: code to be run at start up
+- *-init code*: code to be run at start up
 
-**•**
-: *-loop body*: body of code that defines the computation to be run time and again. The code should use *setTrialResult* to store the results of each trial (typically a list of numbers, but the interpretation is up to the implementation). Note: Required keyword.
+- *-loop body*: body of code that defines the computation to be run time and again. The code should use *setTrialResult* to store the results of each trial (typically a list of numbers, but the interpretation is up to the implementation). Note: Required keyword.
 
-**•**
-: *-final code*: code to be run at the end
+- *-final code*: code to be run at the end
 
-**•**
-: *-trials n*: number of trials in the experiment (required)
+- *-trials n*: number of trials in the experiment (required)
 
-**•**
-: *-reportfile file*: opened file to send the output to (default: stdout)
+- *-reportfile file*: opened file to send the output to (default: stdout)
 
-**•**
-: *-verbose*: write the intermediate results (1) or not (0) (default: 0)
+- *-verbose*: write the intermediate results (1) or not (0) (default: 0)
 
-**•**
-: *-analysis proc*: either "none" (no automatic analysis), standard (basic statistics of the trial results and a correlation matrix) or the name of a procedure that will take care of the analysis.
+- *-analysis proc*: either "none" (no automatic analysis), standard (basic statistics of the trial results and a correlation matrix) or the name of a procedure that will take care of the analysis.
 
-**•**
-: *-columns list*: list of column names, useful for verbose output and the analysis Any other options can be used via the getOption procedure in the body.
+- *-columns list*: list of column names, useful for verbose output and the analysis
 
+
+Any other options can be used via the getOption procedure in the body.
 
 # Tips
 

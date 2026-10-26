@@ -1,5 +1,6 @@
 ---
 CommandName: struct::stack
+title: struct::stack
 ManualSection: n
 Version: 1.5.4
 TclPart: tcllib
@@ -19,20 +20,20 @@ struct::stack - Create and manipulate stack objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::stack]{.lit} [1.5.4]{.optlit} 
-[stackName]{.ins} [option]{.sub} [arg arg]{.optdot} 
-[stackName]{.ins} [clear]{.sub} 
-[stackName]{.ins} [destroy]{.sub} 
-[stackName]{.ins} [get]{.sub} 
-[stackName]{.ins} [getr]{.sub} 
-[stackName]{.ins} [peek]{.sub} [count]{.optarg} 
-[stackName]{.ins} [peekr]{.sub} [count]{.optarg} 
-[stackName]{.ins} [trim]{.sub} [newsize]{.optarg} 
-[stackName]{.ins} [trim\*]{.sub} [newsize]{.optarg} 
-[stackName]{.ins} [pop]{.sub} [count]{.optarg} 
-[stackName]{.ins} [push]{.sub} [item]{.arg} [item]{.optdot} 
-[stackName]{.ins} [size]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::stack]{.lit} [1.5.4]{.optlit}
+[stackName]{.ins} [option]{.sub} [arg arg]{.optdot}
+[stackName]{.ins} [clear]{.sub}
+[stackName]{.ins} [destroy]{.sub}
+[stackName]{.ins} [get]{.sub}
+[stackName]{.ins} [getr]{.sub}
+[stackName]{.ins} [peek]{.sub} [count]{.optarg}
+[stackName]{.ins} [peekr]{.sub} [count]{.optarg}
+[stackName]{.ins} [trim]{.sub} [newsize]{.optarg}
+[stackName]{.ins} [trim\*]{.sub} [newsize]{.optarg}
+[stackName]{.ins} [pop]{.sub} [count]{.optarg}
+[stackName]{.ins} [push]{.sub} [item]{.arg} [item...]{.optarg}
+[stackName]{.ins} [size]{.sub}
 :::
 
 # Description

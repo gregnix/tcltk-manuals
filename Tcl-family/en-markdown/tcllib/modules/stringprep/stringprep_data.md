@@ -1,5 +1,6 @@
 ---
 CommandName: stringprep::data
+title: stringprep::data
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -18,8 +19,8 @@ stringprep::data - stringprep data tables, generated, internal
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [stringprep::data]{.lit} [1.0.3]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [stringprep::data]{.lit} [1.0.3]{.lit}
 :::
 
 # Description

@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine
+title: coroutine
 ManualSection: n
 Version: 1.4
 TclPart: tcllib
@@ -21,39 +22,39 @@ Copyright:
  - Copyright (c) 2010-2015 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 Coroutine – Coroutinen-basierte Ereignis- und E/A-Verarbeitung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit} 
-[coroutine::util]{.cmd} [after]{.sub} [delay]{.arg} 
-[coroutine::util]{.cmd} [await]{.sub} [varname...]{.arg} 
-[coroutine::util]{.cmd} [create]{.sub} [arg...]{.arg} 
-[coroutine::util]{.cmd} [exit]{.sub} [status]{.optarg} 
-[coroutine::util]{.cmd} [gets]{.sub} [chan]{.arg} [varname]{.optarg} 
-[coroutine::util]{.cmd} [gets_safety]{.sub} [chan]{.arg} [limit]{.arg} [varname]{.arg} 
-[coroutine::util]{.cmd} [global]{.sub} [varname...]{.arg} 
-[coroutine::util]{.cmd} [puts]{.sub} [-nonewline]{.optlit} [channel]{.arg} [string]{.arg} 
-[coroutine::util]{.cmd} [read]{.sub} [-nonewline]{.lit} [chan]{.arg} [n]{.optarg} 
-[coroutine::util]{.cmd} [socket]{.sub} [options]{.optdot} [host]{.arg} [port]{.arg} 
-[coroutine::util]{.cmd} [update]{.sub} [idletasks]{.optlit} 
-[coroutine::util]{.cmd} [vwait]{.sub} [varname]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit}
+[coroutine::util]{.cmd} [after]{.sub} [delay]{.arg}
+[coroutine::util]{.cmd} [await]{.sub} [varname...]{.arg}
+[coroutine::util]{.cmd} [create]{.sub} [arg...]{.arg}
+[coroutine::util]{.cmd} [exit]{.sub} [status]{.optarg}
+[coroutine::util]{.cmd} [gets]{.sub} [chan]{.arg} [varname]{.optarg}
+[coroutine::util]{.cmd} [gets\_safety]{.sub} [chan]{.arg} [limit]{.arg} [varname]{.arg}
+[coroutine::util]{.cmd} [global]{.sub} [varname...]{.arg}
+[coroutine::util]{.cmd} [puts]{.sub} [-nonewline]{.optlit} [channel]{.arg} [string]{.arg}
+[coroutine::util]{.cmd} [read]{.sub} [-nonewline]{.lit} [chan]{.arg} [n]{.optarg}
+[coroutine::util]{.cmd} [socket]{.sub} [options...]{.optarg} [host]{.arg} [port]{.arg}
+[coroutine::util]{.cmd} [update]{.sub} [idletasks]{.optlit}
+[coroutine::util]{.cmd} [vwait]{.sub} [varname]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das **coroutine**-Paket bietet Coroutinen-fähige Implementierungen verschiedener ereignis- und kanalbezogener Befehle. Es kann in verschiedenen Modi ausgeführt werden:
 
-**\[1\]**
-: Rufen Sie die Befehle über ihr Ensemble auf – in Code, der ausdrücklich für die Verwendung innerhalb von Coroutinen geschrieben wurde.
+1. Rufen Sie die Befehle über ihr Ensemble auf – in Code, der ausdrücklich für die Verwendung innerhalb von Coroutinen geschrieben wurde.
 
-**\[2\]**
-: Importieren Sie die Befehle in einen Namespace, entweder direkt oder über **namespace path**. Dies ermöglicht die Verwendung innerhalb von Code, der an sich nicht coroutinenfähig ist und auf bestimmte Namespaces beschränkt ist. Eine noch weitergehende Möglichkeit, Code „coroutinenunabhängig“ zu gestalten als in Punkt 2 oben beschrieben, bietet das Paket **coroutine::auto**. Dieses fängt die entsprechenden integrierten Befehle ab und ändert deren Implementierung je nach Ausführungsumgebung, d. h. je nachdem, ob sie innerhalb oder außerhalb einer Coroutine ausgeführt werden.
+2. Importieren Sie die Befehle in einen Namespace, entweder direkt oder über **namespace path**. Dies ermöglicht die Verwendung innerhalb von Code, der an sich nicht coroutinenfähig ist und auf bestimmte Namespaces beschränkt ist.
 
+
+Eine noch weitergehende Möglichkeit, Code „coroutinenunabhängig“ zu gestalten als in Punkt 2 oben beschrieben, bietet das Paket [coroutine::auto][coro_auto]. Dieses fängt die entsprechenden integrierten Befehle ab und ändert deren Implementierung je nach Ausführungsumgebung, d. h. je nachdem, ob sie innerhalb oder außerhalb einer Coroutine ausgeführt werden.
 
 # API
 
@@ -74,7 +75,7 @@ Alle unten aufgeführten Befehle laufen synchron zur Coroutine ab, die sie aufru
 **coroutine::util gets** *chan* ?*varname*?
 : Dieser Befehl liest eine Zeile aus dem Kanal *chan* und gibt sie entweder als Ergebnis zurück oder schreibt sie – wenn ein *varname* festgelegt wurde – in die angegebene Variable und gibt die Anzahl der gelesenen Zeichen zurück.
 
-**coroutine::util gets_safety** *chan* *limit* *varname*
+**coroutine::util gets\_safety** *chan* *limit* *varname*
 : Dieser Befehl liest eine Zeile aus dem Kanal *chan* bis zur Größe *limit* und speichert das Ergebnis in *varname*. Wird *limit* erreicht, bevor die festgelegte erste Zeilenumbruchstelle erreicht ist, wird ein Fehler ausgelöst. Der Befehl gibt die Anzahl der gelesenen Zeichen zurück.
 
 **coroutine::util global** *varname*...
@@ -96,7 +97,7 @@ Alle unten aufgeführten Befehle laufen synchron zur Coroutine ab, die sie aufru
 : Dieser Befehl bewirkt, dass die Coroutine, die ihn aufruft, auf einen Schreibvorgang in die benannte Namespace-Variable *varname* wartet.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *coroutine* als Kategorie an.
 
@@ -104,12 +105,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Coroutine
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2010-2015 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[coro_auto]: coro_auto.md

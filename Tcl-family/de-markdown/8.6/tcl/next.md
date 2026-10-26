@@ -1,5 +1,6 @@
 ---
 CommandName: next
+title: next
 ManualSection: n
 Version: 0.1
 TclPart: TclOO
@@ -17,24 +18,24 @@ Copyright:
  - Copyright (c) 2007 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 next, nextto - Implementierungen von Oberklassenmethoden aufrufen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
 
-[next]{.cmd} [arg]{.optdot} 
-[nextto]{.cmd} [class]{.arg} [arg]{.optdot} 
+[next]{.cmd} [arg]{.optdot}
+[nextto]{.cmd} [class]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **next** wird verwendet, um Implementierungen einer Methode durch eine Klasse, Oberklasse oder Mixin aufzurufen, die von der aktuellen Methode überschrieben wurden. Er kann nur innerhalb einer Methode verwendet werden. Er wird auch innerhalb von Filtern verwendet, um die Stelle anzugeben, an der ein Filter die eigentliche Implementierung aufruft (der Filter kann entscheiden, die Kette nicht fortzusetzen, und kann die Ergebnisse der Methodenkette nach Belieben verarbeiten). Das Ergebnis des Befehls **next** ist das Ergebnis der nächsten Methode in der Methodenkette; gibt es keine weiteren Methoden in der Methodenkette, ist das Ergebnis von **next** ein Fehler. Die Argumente *arg* von **next** sind die Argumente, die an die nächste Methode in der Kette übergeben werden.
 
-Der Befehl **nextto** entspricht dem Befehl **next**, nimmt jedoch ein zusätzliches Argument *class* entgegen, das eine Klasse identifiziert, deren Implementierung der aktuellen Methodenkette (siehe **info object** **call**) verwendet werden soll; die ausgewählte Methodenimplementierung ist die von der angegebenen Klasse bereitgestellte, und sie muss sich auf einen existierenden Nicht-Filter-Aufruf beziehen, der weiter entlang der Kette liegt als die aktuelle Implementierung.
+Der Befehl **nextto** entspricht dem Befehl **next**, nimmt jedoch ein zusätzliches Argument *class* entgegen, das eine Klasse identifiziert, deren Implementierung der aktuellen Methodenkette (siehe [info object][info] **call**) verwendet werden soll; die ausgewählte Methodenimplementierung ist die von der angegebenen Klasse bereitgestellte, und sie muss sich auf einen existierenden Nicht-Filter-Aufruf beziehen, der weiter entlang der Kette liegt als die aktuelle Implementierung.
 
 # Die Methodenkette
 
@@ -76,7 +77,7 @@ Jeder Filter sollte selbst entscheiden, ob die Ausführung zur eigentlichen Impl
 
 Filter werden bei der Verarbeitung eines Aufrufs der Methode **unknown** aufgerufen, weil keine Methodenimplementierung gefunden werden konnte, aber *nicht* beim Aufruf von Konstruktoren oder Destruktoren. (Beachten Sie jedoch, dass die Methode **destroy** eine konventionelle Methode ist und Filter bei ihrem Aufruf normal verarbeitet werden.)
 
-# BEISPIELE
+# Beispiele
 
 Dieses Beispiel zeigt, wie der Befehl **next** verwendet wird, um die Implementierung einer Methode der (Ober-)Klasse aufzurufen. Das Skript:
 
@@ -124,25 +125,25 @@ Dieses Beispiel zeigt, wie eine einfache Cache-Klasse erstellt wird, die Memoiza
 oo::class create cache {
     filter Memoize
     method Memoize args {
-        # Kernmethodenimplementierungen nicht filtern
+        # Do not filter the core method implementations
         if {[lindex [self target] 0] eq "::oo::object"} {
             return [next {*}$args]
         }
 
-        # Prüfen, ob der Wert bereits im Cache liegt
+        # Check if the value is already in the cache
         my variable ValueCache
         set key [self target],$args
         if {[info exist ValueCache($key)]} {
             return $ValueCache($key)
         }
 
-        # Wert berechnen, in Cache einfügen und zurückgeben
+        # Compute value, insert into cache, and return it
         return [set ValueCache($key) [next {*}$args]]
     }
     method flushCache {} {
         my variable ValueCache
         unset ValueCache
-        # Caching überspringen
+        # Skip the caching
         return -level 2 ""
     }
 }
@@ -151,11 +152,11 @@ oo::object create demo
 oo::objdefine demo {
     mixin cache
     method compute {a b c} {
-        after 3000 ;# Tiefes Nachdenken simulieren
+        after 3000 ;# Simulate deep thought
         return [expr {$a + $b * $c}]
     }
     method compute2 {a b c} {
-        after 3000 ;# Tiefes Nachdenken simulieren
+        after 3000 ;# Simulate deep thought
         return [expr {$a * $b + $c}]
     }
 }
@@ -170,3 +171,6 @@ puts [demo compute  1 2 3]      → prints "7" instantly
 demo flushCache
 puts [demo compute  1 2 3]      → prints "7" after delay
 ```
+
+
+[info]: info.md

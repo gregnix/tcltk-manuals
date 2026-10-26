@@ -1,5 +1,6 @@
 ---
 CommandName: page_intro
+title: page_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -14,7 +15,7 @@ Copyright:
 
 # Name
 
-page_intro - page introduction
+page\_intro - page introduction
 
 # Description
 

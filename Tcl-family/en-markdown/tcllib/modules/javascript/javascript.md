@@ -1,5 +1,6 @@
 ---
 CommandName: javascript
+title: javascript
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -23,14 +24,14 @@ javascript - Procedures to generate HTML and Java Script structures.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [javascript]{.lit} [1.0.3]{.optlit} 
-[::javascript::makeSelectorWidget]{.cmd} [id]{.arg} [leftLabel]{.arg} [leftValueList]{.arg} [rightLabel]{.arg} [rightValueList]{.arg} [rightNameList]{.arg} [length]{.optarg} [minWidth]{.optarg} 
-[::javascript::makeSubmitButton]{.cmd} [name]{.arg} [value]{.arg} 
-[::javascript::makeProtectedSubmitButton]{.cmd} [name]{.arg} [value]{.arg} [msg]{.arg} 
-[::javascript::makeMasterButton]{.cmd} [master]{.arg} [value]{.arg} [slavePattern]{.arg} [boolean]{.arg} 
-[::javascript::makeParentCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg} 
-[::javascript::makeChildCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [javascript]{.lit} [1.0.3]{.optlit}
+[::javascript::makeSelectorWidget]{.cmd} [id]{.arg} [leftLabel]{.arg} [leftValueList]{.arg} [rightLabel]{.arg} [rightValueList]{.arg} [rightNameList]{.arg} [length]{.optarg} [minWidth]{.optarg}
+[::javascript::makeSubmitButton]{.cmd} [name]{.arg} [value]{.arg}
+[::javascript::makeProtectedSubmitButton]{.cmd} [name]{.arg} [value]{.arg} [msg]{.arg}
+[::javascript::makeMasterButton]{.cmd} [master]{.arg} [value]{.arg} [slavePattern]{.arg} [boolean]{.arg}
+[::javascript::makeParentCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg}
+[::javascript::makeChildCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg}
 :::
 
 # Description

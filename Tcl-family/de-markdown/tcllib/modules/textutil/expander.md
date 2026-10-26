@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::expander
+title: textutil::expander
 ManualSection: n
 Version: 1.3.2
 TclPart: tcllib
@@ -17,43 +18,43 @@ Copyright:
  - Copyright (c) William H. Duquette https://github.com/wjduquette
 ---
 
-# NAME
+# Name
 
 textutil::expander – Prozeduren zur Bearbeitung von Vorlagen und zum Erweitern von Text.
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::expander]{.lit} [1.3.2]{.optlit} 
-[::textutil::expander]{.cmd} [expanderName]{.arg} 
-[expanderName]{.ins} [cappend]{.sub} [text]{.arg} 
-[expanderName]{.ins} [cget]{.sub} [varname]{.arg} 
-[expanderName]{.ins} [cis]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [cname]{.sub} 
-[expanderName]{.ins} [cpop]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [ctopandclear]{.sub} 
-[expanderName]{.ins} [cpush]{.sub} [cname]{.arg} 
-[expanderName]{.ins} [cset]{.sub} [varname]{.arg} [value]{.arg} 
-[expanderName]{.ins} [cvar]{.sub} [varname]{.arg} 
-[expanderName]{.ins} [errmode]{.sub} [newErrmode]{.arg} 
-[expanderName]{.ins} [evalcmd]{.sub} [newEvalCmd]{.optarg} 
-[expanderName]{.ins} [expand]{.sub} [string]{.arg} [brackets]{.optarg} 
-[expanderName]{.ins} [lb]{.sub} [newbracket]{.optarg} 
-[expanderName]{.ins} [rb]{.sub} [newbracket]{.optarg} 
-[expanderName]{.ins} [reset]{.sub} 
-[expanderName]{.ins} [setbrackets]{.sub} [lbrack]{.arg} [rbrack]{.arg} 
-[expanderName]{.ins} [textcmd]{.sub} [newTextCmd]{.optarg} 
-[expanderName]{.ins} [where]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::expander]{.lit} [1.3.2]{.optlit}
+[::textutil::expander]{.cmd} [expanderName]{.arg}
+[expanderName]{.ins} [cappend]{.sub} [text]{.arg}
+[expanderName]{.ins} [cget]{.sub} [varname]{.arg}
+[expanderName]{.ins} [cis]{.sub} [cname]{.arg}
+[expanderName]{.ins} [cname]{.sub}
+[expanderName]{.ins} [cpop]{.sub} [cname]{.arg}
+[expanderName]{.ins} [ctopandclear]{.sub}
+[expanderName]{.ins} [cpush]{.sub} [cname]{.arg}
+[expanderName]{.ins} [cset]{.sub} [varname]{.arg} [value]{.arg}
+[expanderName]{.ins} [cvar]{.sub} [varname]{.arg}
+[expanderName]{.ins} [errmode]{.sub} [newErrmode]{.arg}
+[expanderName]{.ins} [evalcmd]{.sub} [newEvalCmd]{.optarg}
+[expanderName]{.ins} [expand]{.sub} [string]{.arg} [brackets]{.optarg}
+[expanderName]{.ins} [lb]{.sub} [newbracket]{.optarg}
+[expanderName]{.ins} [rb]{.sub} [newbracket]{.optarg}
+[expanderName]{.ins} [reset]{.sub}
+[expanderName]{.ins} [setbrackets]{.sub} [lbrack]{.arg} [rbrack]{.arg}
+[expanderName]{.ins} [textcmd]{.sub} [newTextCmd]{.optarg}
+[expanderName]{.ins} [where]{.sub}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Das Paket **textutil::expander** bietet eine Funktion zur Erstellung von Zeichenfolgenvorlagen, die leistungsfähiger und flexibler ist als der integrierte Befehl [subst](https://www.tcl-lang.org/man/tcl/TclCmd/subst.html)].
+Das Paket **textutil::expander** bietet eine Funktion zur Erstellung von Zeichenfolgenvorlagen, die leistungsfähiger und flexibler ist als der integrierte Befehl [subst](https://www.tcl-lang.org/man/tcl/TclCmd/subst.html).
 
-Im Abschnitt **Tutorial** erfahren Sie mehr über das Paket, und im Abschnitt **API** finden Sie alle Einzelheiten.
+Im Abschnitt [Anleitung] erfahren Sie mehr über das Paket, und im Abschnitt [API] finden Sie alle Einzelheiten.
 
-# EXPANDER VS. SUBST
+# Expander vs. subst
 
 Der Tcl-Befehl **subst** wird häufig zur Unterstützung einer Art von Vorlagenverarbeitung verwendet. Bei einer Zeichenkette mit eingebetteten Variablen oder Funktionsaufrufen fügt **subst** die Werte der Variablen und Funktionen ein und gibt die neue Zeichenkette zurück:
 
@@ -70,15 +71,16 @@ Durch die Definition einer geeigneten Reihe von Tcl-Befehlen lässt sich mit **s
 
 Der Befehl **subst** ist zwar effizient, weist jedoch bei dieser Art der Vorlagenverarbeitung drei Nachteile auf:
 
-**•**
-: Es gibt keine Möglichkeit, den Klartext zwischen zwei eingebetteten Tcl-Befehlen zu identifizieren und zu verarbeiten; das erschwert den kontextsensitiven Umgang mit Klartext.
+- Es gibt keine Möglichkeit, den Klartext zwischen zwei eingebetteten Tcl-Befehlen zu identifizieren und zu verarbeiten; das erschwert den kontextsensitiven Umgang mit Klartext.
 
-**•**
-: Eingebettete Befehle müssen zwingend zwischen **\[** und **\]** stehen; in besonderen Fällen ist es praktisch, verschiedene Klammern wählen zu können.  Wer Seiten erstellt, die eine große Menge an Tcl-Code-Beispielen enthalten, wird möglicherweise lieber **<<** und **>>** als Begrenzer für den eingebetteten Code verwenden.
+- Eingebettete Befehle müssen zwingend zwischen **\[** und **\]** stehen; in besonderen Fällen ist es praktisch, verschiedene Klammern wählen zu können.  Wer Seiten erstellt, die eine große Menge an Tcl-Code-Beispielen enthalten, wird möglicherweise lieber **<<** und **>>** als Begrenzer für den eingebetteten Code verwenden.
 
-**•**
-: Es gibt keine einfache Möglichkeit, inkrementelle Eingaben zu verarbeiten, wie Sie es beispielsweise beim Einlesen von Daten aus einem Socket tun möchten. Derzeit löst „expander“ die ersten beiden Probleme. Im folgenden Abschnitt wird die API von „expander“ beschrieben; darauf folgen die Abschnitte zum Tutorial, siehe **Tutorial**.
+- Es gibt keine einfache Möglichkeit, inkrementelle Eingaben zu verarbeiten, wie Sie es beispielsweise beim Einlesen von Daten aus einem Socket tun möchten.
 
+
+Derzeit löst „expander“ die ersten beiden Probleme.
+
+Im folgenden Abschnitt wird die API von „expander“ beschrieben; darauf folgen die Abschnitte zum Tutorial, siehe [Anleitung].
 
 # API
 
@@ -87,10 +89,10 @@ Das Paket **textutil::expander** enthält nur einen Befehl, der im Folgenden bes
 **::textutil::expander** *expanderName*
 : Der Befehl erstellt ein neues Expander-Objekt mit einem zugehörigen Tcl-Befehl, dessen Name *expanderName* lautet. Mit diesem Befehl können verschiedene Methoden aufgerufen werden. Wenn *expanderName* nicht vollständig qualifiziert ist, wird er als relativ zum aktuellen Namespace interpretiert. Die Methodenaufrufe haben die folgende allgemeine Form:
 
+    ```
+    expanderName method ?arg ...?
+    ```
 
-```
-expanderName method ?arg ...?
-```
 
 Expander-Objekte unterstützen die folgenden Methoden:
 
@@ -124,25 +126,28 @@ Expander-Objekte unterstützen die folgenden Methoden:
 *expanderName* **errmode** *newErrmode*
 : Legt den Fehlermodus für die Makroauswertung auf einen der Werte **nothing**, **macro**, **error** oder **fail** fest; der Standardwert ist **fail**. Der Wert bestimmt, wie der Expander reagiert, wenn bei der Auswertung eines Makros ein Fehler festgestellt wird.
 
+    **fail**
+    : Der Fehler wird wie üblich weitergeleitet (d. h., er wird ausgelöst) und kann von der Anwendung abgefangen oder ignoriert werden.
 
-**fail**
-: Der Fehler wird wie üblich weitergeleitet (d. h., er wird ausgelöst) und kann von der Anwendung abgefangen oder ignoriert werden.
+    **error**
+    : Das Makro wird zu einer detaillierten Fehlermeldung erweitert, und die Erweiterung wird fortgesetzt.
 
-**error**
-: Das Makro wird zu einer detaillierten Fehlermeldung erweitert, und die Erweiterung wird fortgesetzt.
+    **macro**
+    : Das Makro wird zu sich selbst erweitert; das heißt, es wird unverändert an die Ausgabe weitergegeben.
 
-**macro**
-: Das Makro wird zu sich selbst erweitert; das heißt, es wird unverändert an die Ausgabe weitergegeben.
-
-**nothing**
-: Das Makro wird zu einer leeren Zeichenkette erweitert und somit praktisch ignoriert.
+    **nothing**
+    : Das Makro wird zu einer leeren Zeichenkette erweitert und somit praktisch ignoriert.
 
 
 *expanderName* **evalcmd** ?*newEvalCmd*?
 : Gibt den aktuellen Befehl für die Auswertung zurück, der standardmäßig **uplevel #0** lautet. Wenn festgelegt, wird *newEvalCmd* für die spätere Verwendung gespeichert und anschließend zurückgegeben; es muss sich um einen Tcl-Befehl handeln, der ein zusätzliches Argument erwartet: das auszuwertende Makro.
 
 *expanderName* **expand** *string* ?*brackets*?
-: Erweitert die Eingabezeichenkette, ersetzt darin enthaltene Makros durch ihre expandierten Werte und gibt die expandierte Zeichenkette zurück. Hinweis: Diese Methode während ihrer Ausführung einen neuen (leeren) Kontext auf den Kontextstapel schiebt und ihn bei der Rückkehr wieder entfernt. Wenn *brackets* angegeben wird, muss es sich um eine Liste aus zwei Zeichenketten handeln; die Elemente werden ausschließlich für diese Erweiterung als linke und rechte Klammersequenz für die Makroerweiterung verwendet.
+: Erweitert die Eingabezeichenkette, ersetzt darin enthaltene Makros durch ihre expandierten Werte und gibt die expandierte Zeichenkette zurück.
+
+    Hinweis: Diese Methode während ihrer Ausführung einen neuen (leeren) Kontext auf den Kontextstapel schiebt und ihn bei der Rückkehr wieder entfernt.
+
+    Wenn *brackets* angegeben wird, muss es sich um eine Liste aus zwei Zeichenketten handeln; die Elemente werden ausschließlich für diese Erweiterung als linke und rechte Klammersequenz für die Makroerweiterung verwendet.
 
 *expanderName* **lb** ?*newbracket*?
 : Gibt den aktuellen Wert der linken Makroauswertungsklammer zurück; dies dient zur Verwendung als oder innerhalb eines Makros, wenn die Klammer in den Ausgabetext aufgenommen werden soll. Wenn *newbracket* festgelegt wird, wird dies zur neuen Klammer und zurückgegeben.
@@ -157,13 +162,15 @@ Expander-Objekte unterstützen die folgenden Methoden:
 : Legt die linken und rechten Klammern für die Makroauswertung fest. Dieser Befehl ist zur Verwendung als oder innerhalb eines Makros vorgesehen oder dient dazu, die Klammerdefinitionen dauerhaft zu ändern.  Standardmäßig lauten die Klammern **\[** und **\]**, es kann jedoch jede nicht leere Zeichenkette verwendet werden; zum Beispiel **<** und **>** oder **(\*** und **\*)** oder sogar **Hello,** und **World!**.
 
 *expanderName* **textcmd** ?*newTextCmd*?
-: Gibt den aktuellen Befehl zur Verarbeitung von Klartext zurück, der standardmäßig die leere Zeichenkette ist, was *identity* bedeutet. Wenn angegeben, wird *newTextCmd* für die spätere Verwendung gespeichert und anschließend zurückgegeben; es muss sich um einen Tcl-Befehl handeln, der ein zusätzliches Argument erwartet: den zu verarbeitenden Text. Das Expander-Objekt verwendet diesen Befehl für jeden antreffenden Klartext, wodurch der Benutzer des Objekts die Möglichkeit erhält, den gesamten Klartext auf eine einheitliche Weise zu verarbeiten, bevor er in die Ausgabe geschrieben wird. Das Objekt erwartet, dass der Befehl den verarbeiteten Klartext gibt. *Hinweis*: Die Kombination „**textcmd** *plaintext*“ wird zur tatsächlichen Auswertung durch den *evalcmd* geleitet. Mit anderen Worten: Der *textcmd* wird als spezielles Makro behandelt, das implizit den gesamten Klartext in der Vorlage umschließt.
+: Gibt den aktuellen Befehl zur Verarbeitung von Klartext zurück, der standardmäßig die leere Zeichenkette ist, was *identity* bedeutet. Wenn angegeben, wird *newTextCmd* für die spätere Verwendung gespeichert und anschließend zurückgegeben; es muss sich um einen Tcl-Befehl handeln, der ein zusätzliches Argument erwartet: den zu verarbeitenden Text. Das Expander-Objekt verwendet diesen Befehl für jeden antreffenden Klartext, wodurch der Benutzer des Objekts die Möglichkeit erhält, den gesamten Klartext auf eine einheitliche Weise zu verarbeiten, bevor er in die Ausgabe geschrieben wird. Das Objekt erwartet, dass der Befehl den verarbeiteten Klartext gibt.
+
+    *Hinweis*: Die Kombination „**textcmd** *plaintext*“ wird zur tatsächlichen Auswertung durch den *evalcmd* geleitet. Mit anderen Worten: Der *textcmd* wird als spezielles Makro behandelt, das implizit den gesamten Klartext in der Vorlage umschließt.
 
 *expanderName* **where**
 : Gibt eine Liste mit drei Elementen zurück, die die aktuelle Zeichenposition, Zeile und Spalte enthält, die der Expander bei der Verarbeitung der aktuellen Eingabezeichenfolge erreicht hat.
 
 
-# ANLEITUNG
+# Anleitung
 
 ## Grundlagen
 
@@ -313,11 +320,11 @@ Expand bietet mehrere weitere Werkzeuge im Zusammenhang mit dem Kontextstapel. A
 
 Manchmal kann es wünschenswert sein, Makros zu definieren, die nur innerhalb eines bestimmten Kontextpaares gültig sind; solche Makros sollten mithilfe von **cis** oder **cname** überprüfen, ob sie nur im richtigen Kontext aufgerufen werden.
 
-# GESCHICHTE
+# Geschichte
 
 Das **expander**-Paket wurde von William H. Duquette geschrieben; es handelt sich um eine Neuauflage des zentralen Algorithmus des Makroverarbeitungsprogramms „expand“.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *textutil* als Kategorie an.
 
@@ -325,11 +332,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) William H. Duquette https://github.com/wjduquette

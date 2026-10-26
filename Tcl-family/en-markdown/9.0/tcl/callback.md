@@ -1,5 +1,6 @@
 ---
 CommandName: callback
+title: callback
 ManualSection: n
 Version: 0.3
 TclPart: TclOO
@@ -25,15 +26,15 @@ callback, mymethod - Generate callbacks to methods
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[callback]{.cmd} [methodName]{.arg} [arg]{.optdot} 
-[mymethod]{.cmd} [methodName]{.arg} [arg]{.optdot} 
+[callback]{.cmd} [methodName]{.arg} [arg]{.optdot}
+[mymethod]{.cmd} [methodName]{.arg} [arg]{.optdot}
 :::
 
 # Description
 
-The **callback** command, also called **mymethod** for compatibility with the ooutil and snit packages of Tcllib, and which should only be used from within the context of a call to a method (i.e. inside a method, constructor or destructor body) is used to generate a script fragment that will invoke the method, *methodName*, on the current object (as reported by **self**) when executed. Any additional arguments provided will be provided as leading arguments to the callback. The resulting script fragment shall be a proper list.
+The **callback** command, also called **mymethod** for compatibility with the ooutil and snit packages of Tcllib, and which should only be used from within the context of a call to a method (i.e. inside a method, constructor or destructor body) is used to generate a script fragment that will invoke the method, *methodName*, on the current object (as reported by [self]) when executed. Any additional arguments provided will be provided as leading arguments to the callback. The resulting script fragment shall be a proper list.
 
 Note that it is up to the caller to ensure that the current object is able to handle the call of *methodName*; this command does not check that. *methodName* may refer to any exported or unexported method, but may not refer to a private method as those can only be invoked directly from within methods. If there is no such method present at the point when the callback is invoked, the standard **unknown** method handler will be called.
 
@@ -77,3 +78,6 @@ oo::class create EchoServer {
     }
 }
 ```
+
+
+[self]: self.md

@@ -1,5 +1,6 @@
 ---
 CommandName: mapproj
+title: mapproj
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -19,62 +20,62 @@ mapproj - Map projection routines
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [math::interpolate]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [math::special]{.lit} [0.2.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [mapproj]{.lit} [1.1]{.optlit} 
-[::mapproj::toPlateCarree]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromPlateCarree]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toCylindricalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromCylindricalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toMercator]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromMercator]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toMillerCylindrical]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromMillerCylindrical]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toSinusoidal]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromSinusoidal]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toMollweide]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromMollweide]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toEckertIV]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromEckertIV]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toEckertVI]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromEckertVI]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toRobinson]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromRobinson]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toCassini]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromCassini]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toPeirceQuincuncial]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromPeirceQuincuncial]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toOrthographic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromOrthographic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toStereographic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromStereographic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toGnomonic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromGnomonic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toAzimuthalEquidistant]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromAzimuthalEquidistant]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toLambertAzimuthalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromLambertAzimuthalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toHammer]{.cmd} [lambda_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromHammer]{.cmd} [lambda_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toConicEquidistant]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromConicEquidistant]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toAlbersEqualAreaConic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromAlbersEqualAreaConic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toLambertConformalConic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromLambertConformalConic]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [phi_1]{.arg} [phi_2]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toLambertCylindricalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromLambertCylindricalEqualArea]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toBehrmann]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromBehrmann]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toTrystanEdwards]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromTrystanEdwards]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toHoboDyer]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromHoboDyer]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toGallPeters]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromGallPeters]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
-[::mapproj::toBalthasart]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [lambda]{.arg} [phi]{.arg} 
-[::mapproj::fromBalthasart]{.cmd} [lambda_0]{.arg} [phi_0]{.arg} [x]{.arg} [y]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [math::interpolate]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [math::special]{.lit} [0.2.2]{.optlit}
+[package]{.cmd} [require]{.sub} [mapproj]{.lit} [1.1]{.optlit}
+[::mapproj::toPlateCarree]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromPlateCarree]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toCylindricalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromCylindricalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toMercator]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromMercator]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toMillerCylindrical]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromMillerCylindrical]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toSinusoidal]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromSinusoidal]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toMollweide]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromMollweide]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toEckertIV]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromEckertIV]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toEckertVI]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromEckertVI]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toRobinson]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromRobinson]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toCassini]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromCassini]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toPeirceQuincuncial]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromPeirceQuincuncial]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toOrthographic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromOrthographic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toStereographic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromStereographic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toGnomonic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromGnomonic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toAzimuthalEquidistant]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromAzimuthalEquidistant]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toLambertAzimuthalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromLambertAzimuthalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toHammer]{.cmd} [lambda\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromHammer]{.cmd} [lambda\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toConicEquidistant]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromConicEquidistant]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toAlbersEqualAreaConic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromAlbersEqualAreaConic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toLambertConformalConic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromLambertConformalConic]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [phi\_1]{.arg} [phi\_2]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toLambertCylindricalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromLambertCylindricalEqualArea]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toBehrmann]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromBehrmann]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toTrystanEdwards]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromTrystanEdwards]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toHoboDyer]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromHoboDyer]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toGallPeters]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromGallPeters]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
+[::mapproj::toBalthasart]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [lambda]{.arg} [phi]{.arg}
+[::mapproj::fromBalthasart]{.cmd} [lambda\_0]{.arg} [phi\_0]{.arg} [x]{.arg} [y]{.arg}
 :::
 
 # Description
@@ -85,160 +86,163 @@ The **mapproj** package provides a set of procedures for converting between worl
 
 The following commands convert between world co-ordinates and map co-ordinates:
 
-**::mapproj::toPlateCarree** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toPlateCarree** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the *plate carrée* (cylindrical equidistant) projection.
 
-**::mapproj::fromPlateCarree** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromPlateCarree** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the *plate carrée* (cylindrical equidistant) projection.
 
-**::mapproj::toCylindricalEqualArea** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toCylindricalEqualArea** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the cylindrical equal-area projection.
 
-**::mapproj::fromCylindricalEqualArea** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromCylindricalEqualArea** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the cylindrical equal-area projection.
 
-**::mapproj::toMercator** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toMercator** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Mercator (cylindrical conformal) projection.
 
-**::mapproj::fromMercator** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromMercator** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Mercator (cylindrical conformal) projection.
 
-**::mapproj::toMillerCylindrical** *lambda_0* *lambda* *phi*
+**::mapproj::toMillerCylindrical** *lambda\_0* *lambda* *phi*
 : Converts to the Miller Cylindrical projection.
 
-**::mapproj::fromMillerCylindrical** *lambda_0* *x* *y*
+**::mapproj::fromMillerCylindrical** *lambda\_0* *x* *y*
 : Converts from the Miller Cylindrical projection.
 
-**::mapproj::toSinusoidal** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toSinusoidal** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the sinusoidal (Sanson-Flamsteed) projection. projection.
 
-**::mapproj::fromSinusoidal** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromSinusoidal** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the sinusoidal (Sanson-Flamsteed) projection. projection.
 
-**::mapproj::toMollweide** *lambda_0* *lambda* *phi*
+**::mapproj::toMollweide** *lambda\_0* *lambda* *phi*
 : Converts to the Mollweide projection.
 
-**::mapproj::fromMollweide** *lambda_0* *x* *y*
+**::mapproj::fromMollweide** *lambda\_0* *x* *y*
 : Converts from the Mollweide projection.
 
-**::mapproj::toEckertIV** *lambda_0* *lambda* *phi*
+**::mapproj::toEckertIV** *lambda\_0* *lambda* *phi*
 : Converts to the Eckert IV projection.
 
-**::mapproj::fromEckertIV** *lambda_0* *x* *y*
+**::mapproj::fromEckertIV** *lambda\_0* *x* *y*
 : Converts from the Eckert IV projection.
 
-**::mapproj::toEckertVI** *lambda_0* *lambda* *phi*
+**::mapproj::toEckertVI** *lambda\_0* *lambda* *phi*
 : Converts to the Eckert VI projection.
 
-**::mapproj::fromEckertVI** *lambda_0* *x* *y*
+**::mapproj::fromEckertVI** *lambda\_0* *x* *y*
 : Converts from the Eckert VI projection.
 
-**::mapproj::toRobinson** *lambda_0* *lambda* *phi*
+**::mapproj::toRobinson** *lambda\_0* *lambda* *phi*
 : Converts to the Robinson projection.
 
-**::mapproj::fromRobinson** *lambda_0* *x* *y*
+**::mapproj::fromRobinson** *lambda\_0* *x* *y*
 : Converts from the Robinson projection.
 
-**::mapproj::toCassini** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toCassini** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Cassini (transverse cylindrical equidistant) projection.
 
-**::mapproj::fromCassini** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromCassini** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Cassini (transverse cylindrical equidistant) projection.
 
-**::mapproj::toPeirceQuincuncial** *lambda_0* *lambda* *phi*
+**::mapproj::toPeirceQuincuncial** *lambda\_0* *lambda* *phi*
 : Converts to the Peirce Quincuncial Projection.
 
-**::mapproj::fromPeirceQuincuncial** *lambda_0* *x* *y*
+**::mapproj::fromPeirceQuincuncial** *lambda\_0* *x* *y*
 : Converts from the Peirce Quincuncial Projection.
 
-**::mapproj::toOrthographic** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toOrthographic** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the orthographic projection.
 
-**::mapproj::fromOrthographic** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromOrthographic** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the orthographic projection.
 
-**::mapproj::toStereographic** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toStereographic** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the stereographic (azimuthal conformal) projection.
 
-**::mapproj::fromStereographic** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromStereographic** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the stereographic (azimuthal conformal) projection.
 
-**::mapproj::toGnomonic** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toGnomonic** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the gnomonic projection.
 
-**::mapproj::fromGnomonic** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromGnomonic** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the gnomonic projection.
 
-**::mapproj::toAzimuthalEquidistant** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toAzimuthalEquidistant** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the azimuthal equidistant projection.
 
-**::mapproj::fromAzimuthalEquidistant** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromAzimuthalEquidistant** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the azimuthal equidistant projection.
 
-**::mapproj::toLambertAzimuthalEqualArea** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toLambertAzimuthalEqualArea** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Lambert azimuthal equal-area projection.
 
-**::mapproj::fromLambertAzimuthalEqualArea** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromLambertAzimuthalEqualArea** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Lambert azimuthal equal-area projection.
 
-**::mapproj::toHammer** *lambda_0* *lambda* *phi*
+**::mapproj::toHammer** *lambda\_0* *lambda* *phi*
 : Converts to the Hammer projection.
 
-**::mapproj::fromHammer** *lambda_0* *x* *y*
+**::mapproj::fromHammer** *lambda\_0* *x* *y*
 : Converts from the Hammer projection.
 
-**::mapproj::toConicEquidistant** *lambda_0* *phi_0* *phi_1* *phi_2* *lambda* *phi*
+**::mapproj::toConicEquidistant** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *lambda* *phi*
 : Converts to the conic equidistant projection.
 
-**::mapproj::fromConicEquidistant** *lambda_0* *phi_0* *phi_1* *phi_2* *x* *y*
+**::mapproj::fromConicEquidistant** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *x* *y*
 : Converts from the conic equidistant projection.
 
-**::mapproj::toAlbersEqualAreaConic** *lambda_0* *phi_0* *phi_1* *phi_2* *lambda* *phi*
+**::mapproj::toAlbersEqualAreaConic** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *lambda* *phi*
 : Converts to the Albers equal-area conic projection.
 
-**::mapproj::fromAlbersEqualAreaConic** *lambda_0* *phi_0* *phi_1* *phi_2* *x* *y*
+**::mapproj::fromAlbersEqualAreaConic** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *x* *y*
 : Converts from the Albers equal-area conic projection.
 
-**::mapproj::toLambertConformalConic** *lambda_0* *phi_0* *phi_1* *phi_2* *lambda* *phi*
+**::mapproj::toLambertConformalConic** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *lambda* *phi*
 : Converts to the Lambert conformal conic projection.
 
-**::mapproj::fromLambertConformalConic** *lambda_0* *phi_0* *phi_1* *phi_2* *x* *y*
-: Converts from the Lambert conformal conic projection. Among the cylindrical equal-area projections, there are a number of choices of standard parallels that have names:
+**::mapproj::fromLambertConformalConic** *lambda\_0* *phi\_0* *phi\_1* *phi\_2* *x* *y*
+: Converts from the Lambert conformal conic projection.
 
-**::mapproj::toLambertCylindricalEqualArea** *lambda_0* *phi_0* *lambda* *phi*
+
+Among the cylindrical equal-area projections, there are a number of choices of standard parallels that have names:
+
+**::mapproj::toLambertCylindricalEqualArea** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Lambert cylindrical equal area projection. (standard parallel is the Equator.)
 
-**::mapproj::fromLambertCylindricalEqualArea** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromLambertCylindricalEqualArea** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Lambert cylindrical equal area projection. (standard parallel is the Equator.)
 
-**::mapproj::toBehrmann** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toBehrmann** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Behrmann cylindrical equal area projection. (standard parallels are 30 degrees North and South)
 
-**::mapproj::fromBehrmann** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromBehrmann** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Behrmann cylindrical equal area projection. (standard parallels are 30 degrees North and South.)
 
-**::mapproj::toTrystanEdwards** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toTrystanEdwards** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Trystan Edwards cylindrical equal area projection. (standard parallels are 37.4 degrees North and South)
 
-**::mapproj::fromTrystanEdwards** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromTrystanEdwards** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Trystan Edwards cylindrical equal area projection. (standard parallels are 37.4 degrees North and South.)
 
-**::mapproj::toHoboDyer** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toHoboDyer** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Hobo-Dyer cylindrical equal area projection. (standard parallels are 37.5 degrees North and South)
 
-**::mapproj::fromHoboDyer** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromHoboDyer** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Hobo-Dyer cylindrical equal area projection. (standard parallels are 37.5 degrees North and South.)
 
-**::mapproj::toGallPeters** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toGallPeters** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Gall-Peters cylindrical equal area projection. (standard parallels are 45 degrees North and South)
 
-**::mapproj::fromGallPeters** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromGallPeters** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Gall-Peters cylindrical equal area projection. (standard parallels are 45 degrees North and South.)
 
-**::mapproj::toBalthasart** *lambda_0* *phi_0* *lambda* *phi*
+**::mapproj::toBalthasart** *lambda\_0* *phi\_0* *lambda* *phi*
 : Converts to the Balthasart cylindrical equal area projection. (standard parallels are 50 degrees North and South)
 
-**::mapproj::fromBalthasart** *lambda_0* *phi_0* *x* *y*
+**::mapproj::fromBalthasart** *lambda\_0* *phi\_0* *x* *y*
 : Converts from the Balthasart cylindrical equal area projection. (standard parallels are 50 degrees North and South.)
 
 
@@ -252,16 +256,16 @@ The following arguments are accepted by the projection commands:
 *phi*
 : Latitude of the point to be projected, in degrees.
 
-*lambda_0*
+*lambda\_0*
 : Longitude of the center of the sheet, in degrees.  For many projections, this figure is also the reference meridian of the projection.
 
-*phi_0*
+*phi\_0*
 : Latitude of the center of the sheet, in degrees.  For the azimuthal projections, this figure is also the latitude of the center of the projection.
 
-*phi_1*
+*phi\_1*
 : Latitude of the first reference parallel, for projections that use reference parallels.
 
-*phi_2*
+*phi\_2*
 : Latitude of the second reference parallel, for projections that use reference parallels.
 
 *x*

@@ -1,5 +1,6 @@
 ---
 CommandName: bell
+title: bell
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -21,7 +22,7 @@ bell - Ring a display's bell
 # Synopsis
 
 ::: {.synopsis} :::
-[bell]{.cmd} [-displayof window]{.optarg} [-nice]{.optlit} 
+[bell]{.cmd} [[-displayof]{.lit} [window]{.arg}]{.optarg} [-nice]{.optlit}
 :::
 
 # Description

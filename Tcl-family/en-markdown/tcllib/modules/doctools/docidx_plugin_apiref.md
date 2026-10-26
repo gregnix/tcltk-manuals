@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_plugin_apiref
+title: docidx_plugin_apiref
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -25,32 +26,32 @@ Copyright:
 
 # Name
 
-docidx_plugin_apiref - docidx plugin API reference
+docidx\_plugin\_apiref - docidx plugin API reference
 
 # Synopsis
 
 ::: {.synopsis} :::
-[dt_fmap]{.cmd} [symfname]{.arg} 
-[dt_format]{.cmd} 
-[dt_read]{.cmd} [file]{.arg} 
-[dt_source]{.cmd} [file]{.arg} 
-[ex_cappend]{.cmd} [text]{.arg} 
-[ex_cget]{.cmd} [varname]{.arg} 
-[ex_cis]{.cmd} [cname]{.arg} 
-[ex_cname]{.cmd} 
-[ex_cpop]{.cmd} [cname]{.arg} 
-[ex_cpush]{.cmd} [cname]{.arg} 
-[ex_cset]{.cmd} [varname]{.arg} [value]{.arg} 
-[ex_lb]{.cmd} [newbracket]{.optarg} 
-[ex_rb]{.cmd} [newbracket]{.optarg} 
-[idx_initialize]{.cmd} 
-[idx_listvariables]{.cmd} 
-[idx_numpasses]{.cmd} 
-[idx_postprocess]{.cmd} [text]{.arg} 
-[idx_setup]{.cmd} [n]{.arg} 
-[idx_shutdown]{.cmd} 
-[idx_varset]{.cmd} [varname]{.arg} [text]{.arg} 
-[fmt_plain_text]{.cmd} [text]{.arg} 
+[dt\_fmap]{.cmd} [symfname]{.arg}
+[dt\_format]{.cmd}
+[dt\_read]{.cmd} [file]{.arg}
+[dt\_source]{.cmd} [file]{.arg}
+[ex\_cappend]{.cmd} [text]{.arg}
+[ex\_cget]{.cmd} [varname]{.arg}
+[ex\_cis]{.cmd} [cname]{.arg}
+[ex\_cname]{.cmd}
+[ex\_cpop]{.cmd} [cname]{.arg}
+[ex\_cpush]{.cmd} [cname]{.arg}
+[ex\_cset]{.cmd} [varname]{.arg} [value]{.arg}
+[ex\_lb]{.cmd} [newbracket]{.optarg}
+[ex\_rb]{.cmd} [newbracket]{.optarg}
+[idx\_initialize]{.cmd}
+[idx\_listvariables]{.cmd}
+[idx\_numpasses]{.cmd}
+[idx\_postprocess]{.cmd} [text]{.arg}
+[idx\_setup]{.cmd} [n]{.arg}
+[idx\_shutdown]{.cmd}
+[idx\_varset]{.cmd} [varname]{.arg} [text]{.arg}
+[fmt\_plain\_text]{.cmd} [text]{.arg}
 :::
 
 # Description
@@ -67,57 +68,59 @@ A reader who is on the other hand more interested in the markup language itself 
 
 The API for an index formatting engine consists of two major sections.
 
-On the one side we have a set of commands through which the plugin is able to query the frontend. These commands are provided by the frontend and linked into the plugin interpreter. Please see section **FRONTEND COMMANDS** for their detailed specification.
+On the one side we have a set of commands through which the plugin is able to query the frontend. These commands are provided by the frontend and linked into the plugin interpreter. Please see section [Frontend commands] for their detailed specification.
 
-And on the other side the plugin has to provide its own set of commands which will then be called by the frontend in a specific sequence while processing input. They, again, fall into two categories, management and formatting. Please see section **PLUGIN COMMANDS** and its subsections for their detailed specification.
+And on the other side the plugin has to provide its own set of commands which will then be called by the frontend in a specific sequence while processing input. They, again, fall into two categories, management and formatting. Please see section [Plugin commands] and its subsections for their detailed specification.
 
 # Frontend commands
 
 This section specifies the set of commands through which a plugin, also known as an index formatting engine, is able to query the frontend. These commands are provided by the frontend and linked into the plugin interpreter.
 
-I.e. an index formatting engine can assume that all of the following commands are present when any of its own commands (as specified in section **PLUGIN COMMANDS**) are executed.
+I.e. an index formatting engine can assume that all of the following commands are present when any of its own commands (as specified in section [Plugin commands]) are executed.
 
 Beyond that it can also assume that it has full access to its own safe interpreter and thus is not able to damage the other parts of the processor, nor can it damage the filesystem. It is however able to either kill or hang the whole process, by exiting, or running an infinite loop.
 
 Coming back to the imported commands, all the commands with prefix *dt\_* provide limited access to specific parts of the frontend, whereas the commands with prefix *ex\_* provide access to the state of the **textutil::expander** object which does the main parsing of the input within the frontend. These commands should not be except under very special circumstances.
 
-**dt_fmap** *symfname*
-: Query command. It returns the actual pathname to use in the output in place of the symbolic filename *symfname*. It will return the unchanged input if no mapping was established for *symfname*. The required mappings are established with the method **map** of a frontend, as explained in section **OBJECT METHODS** of the documentation for the package **doctools::idx**.
+**dt\_fmap** *symfname*
+: Query command. It returns the actual pathname to use in the output in place of the symbolic filename *symfname*. It will return the unchanged input if no mapping was established for *symfname*.
 
-**dt_format**
+    The required mappings are established with the method **map** of a frontend, as explained in section **OBJECT METHODS** of the documentation for the package **doctools::idx**.
+
+**dt\_format**
 : Query command. It returns the name of the format associated with the index formatting engine.
 
-**dt_read** *file*
+**dt\_read** *file*
 : Controlled filesystem access. Returns contents of *file* for whatever use desired by the plugin. Only files which are either in the same directory as the file containing the engine, or below it, can be loaded. Trying to load a file outside of this directory causes an error.
 
-**dt_source** *file*
+**dt\_source** *file*
 : Controlled filesystem access. This command allows the index formatting engine to load additional Tcl code it may need. Only files which are either in the same directory as the file containing the engine, or below it, can be loaded. Trying to load a file outside of this directory causes an error.
 
-**ex_cappend** *text*
+**ex\_cappend** *text*
 : Appends a string to the output in the current context.  This command should rarely be used by macros or application code.
 
-**ex_cget** *varname*
+**ex\_cget** *varname*
 : Retrieves the value of variable *varname*, defined in the current context.
 
-**ex_cis** *cname*
+**ex\_cis** *cname*
 : Determines whether or not the name of the current context is *cname*.
 
-**ex_cname**
+**ex\_cname**
 : Returns the name of the current context.
 
-**ex_cpop** *cname*
+**ex\_cpop** *cname*
 : Pops a context from the context stack, returning all accumulated output in that context.  The context must be named *cname*, or an error results.
 
-**ex_cpush** *cname*
+**ex\_cpush** *cname*
 : Pushes a context named *cname* onto the context stack.  The context must be popped by **cpop** before expansion ends or an error results.
 
-**ex_cset** *varname* *value*
+**ex\_cset** *varname* *value*
 : Sets variable *varname* to *value* in the current context.
 
-**ex_lb** ?*newbracket*?
+**ex\_lb** ?*newbracket*?
 : Returns the current value of the left macro expansion bracket; this is for use as or within a macro, when the bracket needs to be included in the output text.  If *newbracket* is specified, it becomes the new bracket, and is returned.
 
-**ex_rb** ?*newbracket*?
+**ex\_rb** ?*newbracket*?
 : Returns the current value of the right macro expansion bracket; this is for use as or within a macro, when the bracket needs to be included in the output text.  If *newbracket* is specified, it becomes the new bracket, and is returned.
 
 
@@ -129,18 +132,16 @@ The plugin has to provide its own set of commands which will then be called by t
 
 The management commands a plugin has to provide are used by the frontend to
 
-**\[1\]**
-: initialize and shutdown the plugin
+1. initialize and shutdown the plugin
 
-**\[2\]**
-: determine the number of passes it has to make over the input
+2. determine the number of passes it has to make over the input
 
-**\[3\]**
-: initialize and shutdown each pass
+3. initialize and shutdown each pass
 
-**\[4\]**
-: query and initialize engine parameters After the plugin has been loaded and the frontend commands are established the commands will be called in the following sequence:
+4. query and initialize engine parameters
 
+
+After the plugin has been loaded and the frontend commands are established the commands will be called in the following sequence:
 
 ```
     idx_numpasses -> n
@@ -165,47 +166,54 @@ The management commands a plugin has to provide are used by the frontend to
 
 I.e. first the number of passes and the set of available engine parameters is established, followed by calls setting the parameters. That second part is optional.
 
-After that the plugin is initialized, the specified number of passes executed, the final result run through a global post processing step and at last the plugin is shutdown again. This can be followed by more conversions, restarting the sequence at **idx_varset**.
+After that the plugin is initialized, the specified number of passes executed, the final result run through a global post processing step and at last the plugin is shutdown again. This can be followed by more conversions, restarting the sequence at **idx\_varset**.
 
-In each of the passes, i.e. after the calls of **idx_setup** the frontend will process the input and call the formatting commands as markup is encountered. This means that the sequence of formatting commands is determined by the grammar of the docidx markup language, as specified in the *docidx language syntax* specification.
+In each of the passes, i.e. after the calls of **idx\_setup** the frontend will process the input and call the formatting commands as markup is encountered. This means that the sequence of formatting commands is determined by the grammar of the docidx markup language, as specified in the *docidx language syntax* specification.
 
 A different way of looking at the sequence is:
 
-**•**
-: First some basic parameters are determined.
+- First some basic parameters are determined.
 
-**•**
-: Then everything starting at the first **idx_varset** to **idx_shutdown** forms a *run*, the formatting of a single input. Each run can be followed by more.
+- Then everything starting at the first **idx\_varset** to **idx\_shutdown** forms a *run*, the formatting of a single input. Each run can be followed by more.
 
-**•**
-: Embedded within each run we have one or more *passes*, each starting with **idx_setup** and going until either the next **idx_setup** or **idx_postprocess** is reached. If more than one pass is required to perform the formatting only the output of the last pass is relevant. The output of all the previous, preparatory passes is ignored. The commands, their names, signatures, and responsibilities are, in detail:
+- Embedded within each run we have one or more *passes*, each starting with **idx\_setup** and going until either the next **idx\_setup** or **idx\_postprocess** is reached.
+
+    If more than one pass is required to perform the formatting only the output of the last pass is relevant. The output of all the previous, preparatory passes is ignored.
 
 
-**idx_initialize**
+The commands, their names, signatures, and responsibilities are, in detail:
+
+**idx\_initialize**
 : *Initialization/Shutdown*. This command is called at the beginning of every conversion run, as the first command of that run. Note that a run is not a pass, but may consist of multiple passes. It has to initialize the general state of the plugin, beyond the initialization done during the load. No return value is expected, and any returned value is ignored.
 
-**idx_listvariables**
-: *Initialization/Shutdown* and *Engine parameters*. Second command is called after the plugin code has been loaded, i.e. immediately after **idx_numpasses**. It has to return a list containing the names of the parameters the frontend can set to configure the engine. This list can be empty.
+**idx\_listvariables**
+: *Initialization/Shutdown* and *Engine parameters*. Second command is called after the plugin code has been loaded, i.e. immediately after **idx\_numpasses**. It has to return a list containing the names of the parameters the frontend can set to configure the engine. This list can be empty.
 
-**idx_numpasses**
+**idx\_numpasses**
 : *Initialization/Shutdown* and *Pass management*. First command called after the plugin code has been loaded. No other command of the engine will be called before it. It has to return the number of passes this engine requires to fully process the input document. This value has to be an integer number greater or equal to one.
 
-**idx_postprocess** *text*
-: *Initialization/Shutdown*. This command is called immediately after the last pass in a run. Its argument is the result of the conversion generated by that pass. It is provided to allow the engine to perform any global modifications of the generated document. If no post-processing is required for a specific format the command has to just return the argument. Expected to return a value, the final result of formatting the input.
+**idx\_postprocess** *text*
+: *Initialization/Shutdown*. This command is called immediately after the last pass in a run. Its argument is the result of the conversion generated by that pass. It is provided to allow the engine to perform any global modifications of the generated document. If no post-processing is required for a specific format the command has to just return the argument.
 
-**idx_setup** *n*
+    Expected to return a value, the final result of formatting the input.
+
+**idx\_setup** *n*
 : *Initialization/Shutdown* and *Pass management*. This command is called at the beginning of each pass over the input in a run. Its argument is the number of the pass which has begun. Passes are counted from **1** upward. The command has to set up the internal state of the plugin for this particular pass. No return value is expected, and any returned value is ignored.
 
-**idx_shutdown**
+**idx\_shutdown**
 : *Initialization/Shutdown*. This command is called at the end of every conversion run. It is the last command called in a run. It has to clean up of all the run-specific state in the plugin. After the call the engine has to be in a state which allows the initiation of another run without fear that information from the last run is leaked into this new run. No return value is expected, and any returned value is ignored.
 
-**idx_varset** *varname* *text*
-: *Engine parameters*. This command is called by the frontend to set an engine parameter to a particular value. The parameter to change is specified by *varname*, the value to set in *text*. The command has to throw an error if an unknown *varname* is used. Only the names returned by **idx_listvariables** have to be considered as known. The values of all engine parameters have to persist between passes and runs.
+**idx\_varset** *varname* *text*
+: *Engine parameters*. This command is called by the frontend to set an engine parameter to a particular value. The parameter to change is specified by *varname*, the value to set in *text*.
+
+    The command has to throw an error if an unknown *varname* is used. Only the names returned by **idx\_listvariables** have to be considered as known.
+
+    The values of all engine parameters have to persist between passes and runs.
 
 
 ## Formatting commands
 
-The formatting commands have to implement the formatting for the output format, for all the markup commands of the docidx markup language, except **lb**, **rb**, **vset**, **include**, and **comment**. These exceptions are processed by the frontend and are never seen by the plugin. In return a command for the formatting of plain text has to be provided, something which has no markup in the input at all.
+The formatting commands have to implement the formatting for the output format, for all the markup commands of the docidx markup language, except [lb][docidx_lang_cmdref], [rb][docidx_lang_cmdref], [vset][docidx_lang_cmdref], [include][docidx_lang_cmdref], and [comment][docidx_lang_cmdref]. These exceptions are processed by the frontend and are never seen by the plugin. In return a command for the formatting of plain text has to be provided, something which has no markup in the input at all.
 
 This means, that each of the five markup commands specified in the *docidx language command reference* and outside of the set of exceptions listed above has an equivalent formatting command which takes the same arguments as the markup command and whose name is the name of markup command with the prefix *fmt\_* added to it.
 
@@ -215,8 +223,12 @@ To avoid essentially duplicating the command reference we do not list any of the
 
 The calling sequence of formatting commands is not as rigid as for the management commands, but determined by the grammar of the docidx markup language, as specified in the *docidx language syntax* specification.
 
-**fmt_plain_text** *text*
-: *No associated markup command*. Called by the frontend for any plain text encountered in the input. It has to perform any and all special processing required for plain text. The formatted text is expected as the result of the command, and added to the output. If no special processing is required it has to simply return its argument without change.
+**fmt\_plain\_text** *text*
+: *No associated markup command*.
+
+    Called by the frontend for any plain text encountered in the input. It has to perform any and all special processing required for plain text.
+
+    The formatted text is expected as the result of the command, and added to the output. If no special processing is required it has to simply return its argument without change.
 
 
 # Bugs, ideas, feedback
@@ -236,3 +248,6 @@ Documentation tools
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md

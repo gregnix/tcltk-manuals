@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::spinbox
+title: ttk::spinbox
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -24,29 +25,22 @@ ttk::spinbox - Selecting text field widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::spinbox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::spinbox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
 
-A **ttk::spinbox** widget is a **ttk::entry** widget with built-in up and down buttons that are used to either modify a numeric value or to select among a set of values. The widget implements all the features of the **ttk::entry** widget including support of the **-textvariable** option to link the value displayed by the widget to a Tcl variable.
+A **ttk::spinbox** widget is a [ttk::entry][ttk_entry] widget with built-in up and down buttons that are used to either modify a numeric value or to select among a set of values. The widget implements all the features of the [ttk::entry][ttk_entry] widget including support of the **-textvariable** option to link the value displayed by the widget to a Tcl variable.
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-state** |
-| **-style** | **-takefocus** | **-xscrollcommand** |
+**-class**, **-cursor**, **-state**, **-style**, **-takefocus**, **-xscrollcommand**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
-# Standard options
+**-validate**, **-validatecommand**
 
-|   |   |
-| --- | --- |
-| **-validate** | **-validatecommand** |
-
-See the ttk_entry manual entry for details on the standard options.
+See the [ttk\_entry][ttk_entry] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -54,7 +48,7 @@ See the ttk_entry manual entry for details on the standard options.
 : Specifies a Tcl command to be invoked whenever a spinbutton is invoked.
 
 **-format** (**format**/**Format**)
-: Specifies an alternate format to use when setting the string value when using the **-from** and **-to** range. This must be a format specifier of the form **%\<pad>.\<pad>f**, as it will format a floating-point number.
+: Specifies an alternate format to use when setting the string value when using the **-from** and **-to** range. This must be a format specifier of the form **%<pad>.<pad>f**, as it will format a floating-point number.
 
 **-from** (**from**/**From**)
 : A floating-point value specifying the lowest value for the spinbox. This is used in conjunction with **-to** and **-increment** to set a numerical range.
@@ -74,15 +68,15 @@ See the ttk_entry manual entry for details on the standard options.
 
 # Indices
 
-See the **ttk::entry** manual for information about indexing characters.
+See the [ttk::entry][ttk_entry] manual for information about indexing characters.
 
 # Validation
 
-See the **ttk::entry** manual for information about using the **-validate** and **-validatecommand** options.
+See the [ttk::entry][ttk_entry] manual for information about using the **-validate** and **-validatecommand** options.
 
 # Widget command
 
-The following subcommands are possible for spinbox widgets in addition to the commands described for the **ttk::entry** widget:
+The following subcommands are possible for spinbox widgets in addition to the commands described for the [ttk::entry][ttk_entry] widget:
 
 *pathName* **get**
 : Returns the spinbox's current value.
@@ -93,7 +87,7 @@ The following subcommands are possible for spinbox widgets in addition to the co
 
 # Virtual events
 
-The spinbox widget generates a **<\<Increment>>** virtual event when the user presses \<Up>, and a **<\<Decrement>>** virtual event when the user presses \<Down>.
+The spinbox widget generates a **<<Increment>>** virtual event when the user presses <Up>, and a **<<Decrement>>** virtual event when the user presses <Down>.
 
 # Styling options
 
@@ -101,15 +95,15 @@ The class name for a **ttk::spinbox** is **TSpinbox**.
 
 Dynamic states: **active**, **disabled**, **focus**, **readonly**.
 
-**TSpinbox** styling options configurable with **ttk::style** are:
+**TSpinbox** styling options configurable with [ttk::style][ttk_style] are:
 
 **-arrowcolor** *color*
 
 **-arrowsize** *amount*
 
 **-background** *color*
+: For backwards compatibility, when using the aqua theme (for macOS), this option behaves as an alias for the **-fieldbackground** provided that no value is specified for **-fieldbackground**. Otherwise it is ignored.
 
-For backwards compatibility, when using the aqua theme (for macOS), this option behaves as an alias for the **-fieldbackground** provided that no value is specified for **-fieldbackground**. Otherwise it is ignored.
 
 **-bordercolor** *color*
 
@@ -133,4 +127,9 @@ For backwards compatibility, when using the aqua theme (for macOS), this option 
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_entry]: ttk_entry.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

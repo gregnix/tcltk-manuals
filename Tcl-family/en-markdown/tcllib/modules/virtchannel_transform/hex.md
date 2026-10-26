@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::hex
+title: tcl::transform::hex
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,10 +23,10 @@ tcl::transform::hex - Hexadecimal encoding transformation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::hex]{.lit} [1.1]{.optlit} 
-[::tcl::transform::hex]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::hex]{.lit} [1.1]{.optlit}
+[::tcl::transform::hex]{.cmd} [chan]{.arg}
 :::
 
 # Description
@@ -36,7 +37,7 @@ A related transformations in this module is **tcl::transform::base64**.
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::hex** *chan*
 : This command creates a hex transformation on top of the channel *chan* and returns its handle.

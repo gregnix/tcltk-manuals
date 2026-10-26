@@ -1,5 +1,6 @@
 ---
 CommandName: pack
+title: pack
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -26,7 +27,7 @@ pack - Geometry manager that packs around edges of cavity
 # Synopsis
 
 ::: {.synopsis} :::
-[pack]{.cmd} [option]{.arg} [arg]{.arg} [arg]{.optdot} 
+[pack]{.cmd} [option]{.arg} [arg]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -36,76 +37,73 @@ The **pack** command is used to communicate with the packer, a geometry manager 
 **pack** *window* ?*window ...*? ?*options*?
 : If the first argument to **pack** is a window name (any value starting with "."), then the command is processed in the same way as **pack configure**.
 
-**pack configure** *window* ?*window ...*? ?*options*?
-: The arguments consist of the names of one or more content windows followed by pairs of arguments that specify how to manage the content. See **THE PACKER ALGORITHM** below for details on how the options are used by the packer. The following options are supported:
+[pack]{.cmd} [configure]{.sub} [window]{.arg} [window]{.optdot} [options]{.optarg}
+: The arguments consist of the names of one or more content windows followed by pairs of arguments that specify how to manage the content. See [The packer algorithm] below for details on how the options are used by the packer. The following options are supported:
+
+    [-after]{.lit} [other]{.arg}
+    : *Other* must the name of another window. Use its container as the container for the content, and insert the content just after *other* in the packing order.
+
+    [-anchor]{.lit} [anchor]{.arg}
+    : *Anchor* must be a valid anchor position such as **n** or **sw**; it specifies where to position each content in its parcel. Defaults to **center**.
+
+    [-before]{.lit} [other]{.arg}
+    : *Other* must the name of another window. Use its container as the container for the content, and insert the content just before *other* in the packing order.
+
+    [-expand]{.lit} [boolean]{.arg}
+    : Specifies whether the content should be expanded to consume extra space in their container. *Boolean* may have any proper boolean value, such as **1** or **no**. Defaults to 0.
+
+    [-fill]{.lit} [style]{.arg}
+    : If a content's parcel is larger than its requested dimensions, this option may be used to stretch the content. *Style* must have one of the following values:
+
+        **none**
+        : Give the content its requested dimensions plus any internal padding requested with **-ipadx** or **-ipady**.  This is the default.
+
+        **x**
+        : Stretch the content horizontally to fill the entire width of its parcel (except leave external padding as specified by **-padx**).
+
+        **y**
+        : Stretch the content vertically to fill the entire height of its parcel (except leave external padding as specified by **-pady**).
+
+        **both**
+        : Stretch the content both horizontally and vertically.
 
 
-**-after** *other*
-: *Other* must the name of another window. Use its container as the container for the content, and insert the content just after *other* in the packing order.
+    [-in]{.lit} [container]{.arg}
+    : Insert the window at the end of the packing order for the container window given by *container*.
 
-**-anchor** *anchor*
-: *Anchor* must be a valid anchor position such as **n** or **sw**; it specifies where to position each content in its parcel. Defaults to **center**.
+    [-ipadx]{.lit} [amount]{.arg}
+    : *Amount* specifies how much horizontal internal padding to leave on each side of the content. *Amount* must be a valid screen distance, such as **2** or **.5c**. It defaults to 0.
 
-**-before** *other*
-: *Other* must the name of another window. Use its container as the container for the content, and insert the content just before *other* in the packing order.
+    [-ipady]{.lit} [amount]{.arg}
+    : *Amount* specifies how much vertical internal padding to leave on each side of the content. *Amount*  defaults to 0.
 
-**-expand** *boolean*
-: Specifies whether the content should be expanded to consume extra space in their container. *Boolean* may have any proper boolean value, such as **1** or **no**. Defaults to 0.
+    [-padx]{.lit} [amount]{.arg}
+    : *Amount* specifies how much horizontal external padding to leave on each side of the content.  *Amount* may be a list of two values to specify padding for left and right separately. *Amount* defaults to 0.
 
-**-fill** *style*
-: If a content's parcel is larger than its requested dimensions, this option may be used to stretch the content. *Style* must have one of the following values:
+    [-pady]{.lit} [amount]{.arg}
+    : *Amount* specifies how much vertical external padding to leave on each side of the content.  *Amount* may be a list of two values to specify padding for top and bottom separately. *Amount* defaults to 0.
 
-
-**none**
-: Give the content its requested dimensions plus any internal padding requested with **-ipadx** or **-ipady**.  This is the default.
-
-**x**
-: Stretch the content horizontally to fill the entire width of its parcel (except leave external padding as specified by **-padx**).
-
-**y**
-: Stretch the content vertically to fill the entire height of its parcel (except leave external padding as specified by **-pady**).
-
-**both**
-: Stretch the content both horizontally and vertically.
+    [-side]{.lit} [side]{.arg}
+    : Specifies which side of the container the content will be packed against. Must be **left**, **right**, **top**, or **bottom**. Defaults to **top**.
 
 
-**-in** *container*
-: Insert the window at the end of the packing order for the container window given by *container*.
+    If no **-in**, **-after** or **-before** option is specified then each of the content will be inserted at the end of the packing list for its parent unless it is already managed by the packer (in which case it will be left where it is). If one of these options is specified then all the content will be inserted at the specified point. If any of the content are already managed by the geometry manager then any unspecified options for them retain their previous values rather than receiving default values.
 
-**-ipadx** *amount*
-: *Amount* specifies how much horizontal internal padding to leave on each side of the content. *Amount* must be a valid screen distance, such as **2** or **.5c**. It defaults to 0.
-
-**-ipady** *amount*
-: *Amount* specifies how much vertical internal padding to leave on each side of the content. *Amount*  defaults to 0.
-
-**-padx** *amount*
-: *Amount* specifies how much horizontal external padding to leave on each side of the content.  *Amount* may be a list of two values to specify padding for left and right separately. *Amount* defaults to 0.
-
-**-pady** *amount*
-: *Amount* specifies how much vertical external padding to leave on each side of the content.  *Amount* may be a list of two values to specify padding for top and bottom separately. *Amount* defaults to 0.
-
-**-side** *side*
-: Specifies which side of the container the content will be packed against. Must be **left**, **right**, **top**, or **bottom**. Defaults to **top**. If no **-in**, **-after** or **-before** option is specified then each of the content will be inserted at the end of the packing list for its parent unless it is already managed by the packer (in which case it will be left where it is). If one of these options is specified then all the content will be inserted at the specified point. If any of the content are already managed by the geometry manager then any unspecified options for them retain their previous values rather than receiving default values.
-
-
-**pack content** *window*
+[pack]{.cmd} [content]{.sub} [window]{.arg}
 : Returns a list of all of the content windows in the packing order for *window*. The order of the content windows in the list is the same as their order in the packing order. If *window* has no content then an empty string is returned.
 
-**pack forget** *window* ?*window ...*?
+[pack]{.cmd} [forget]{.sub} [window]{.arg} [window]{.optdot}
 : Removes each of the *window*s from the packing order for its container and unmaps their windows. The content will no longer be managed by the packer.
 
+    [If the last content window of the container becomes unmanaged, this will also send the virtual event **<<NoManagedChild>>** to the container; the container may choose to resize itself (or otherwise respond) to such a change.]{version="TIP 518"}
 
-::: {.info -version="TIP 518"}
-If the last content window of the container becomes unmanaged, this will also send the virtual event **<\<NoManagedChild>>** to the container; the container may choose to resize itself (or otherwise respond) to such a change.
-:::
-
-**pack info** *window*
+[pack]{.cmd} [info]{.sub} [window]{.arg}
 : Returns a list whose elements are the current configuration state of the window given by *window* in the same option-value form that might be specified to **pack configure**. The first two elements of the list are "**-in** *container*" where *container* is the window's container.
 
-**pack propagate** *container* ?*boolean*?
-: If *boolean* has a true boolean value such as **1** or **on** then propagation is enabled for *container*, which must be a window name (see **GEOMETRY PROPAGATION** below). If *boolean* has a false boolean value then propagation is disabled for *container*. In either of these cases an empty string is returned. If *boolean* is omitted then the command returns **0** or **1** to indicate whether propagation is currently enabled for *container*. Propagation is enabled by default.
+[pack]{.cmd} [propagate]{.sub} [container]{.arg} [boolean]{.optarg}
+: If *boolean* has a true boolean value such as **1** or **on** then propagation is enabled for *container*, which must be a window name (see [Geometry propagation] below). If *boolean* has a false boolean value then propagation is disabled for *container*. In either of these cases an empty string is returned. If *boolean* is omitted then the command returns **0** or **1** to indicate whether propagation is currently enabled for *container*. Propagation is enabled by default.
 
-**pack slaves** *window*
+[pack]{.cmd} [slaves]{.sub} [window]{.arg}
 : Synonym for **pack content** *window*.
 
 
@@ -117,15 +115,14 @@ The packer arranges the content windows for a container by scanning the packing 
 
 For each content the packer carries out the following steps:
 
-**\[1\]**
-: The packer allocates a rectangular *parcel* for the content along the side of the cavity given by the content's **-side** option. If the side is top or bottom then the width of the parcel is the width of the cavity and its height is the requested height of the content plus the **-ipady** and **-pady** options. For the left or right side the height of the parcel is the height of the cavity and the width is the requested width of the content plus the **-ipadx** and **-padx** options. The parcel may be enlarged further because of the **-expand** option (see **EXPANSION** below)
+1. The packer allocates a rectangular *parcel* for the content along the side of the cavity given by the content's **-side** option. If the side is top or bottom then the width of the parcel is the width of the cavity and its height is the requested height of the content plus the **-ipady** and **-pady** options. For the left or right side the height of the parcel is the height of the cavity and the width is the requested width of the content plus the **-ipadx** and **-padx** options. The parcel may be enlarged further because of the **-expand** option (see [Expansion] below)
 
-**\[2\]**
-: The packer chooses the dimensions of the content. The width will normally be the content's requested width plus twice its **-ipadx** option and the height will normally be the content's requested height plus twice its **-ipady** option. However, if the **-fill** option is **x** or **both** then the width of the content is expanded to fill the width of the parcel, minus twice the **-padx** option. If the **-fill** option is **y** or **both** then the height of the content is expanded to fill the height of the parcel, minus twice the **-pady** option.
+2. The packer chooses the dimensions of the content. The width will normally be the content's requested width plus twice its **-ipadx** option and the height will normally be the content's requested height plus twice its **-ipady** option. However, if the **-fill** option is **x** or **both** then the width of the content is expanded to fill the width of the parcel, minus twice the **-padx** option. If the **-fill** option is **y** or **both** then the height of the content is expanded to fill the height of the parcel, minus twice the **-pady** option.
 
-**\[3\]**
-: The packer positions the content over its parcel. If the content is smaller than the parcel then the **-anchor** option determines where in the parcel the content will be placed. If **-padx** or **-pady** is non-zero, then the given amount of external padding will always be left between the content and the edges of the parcel. Once a given content has been packed, the area of its parcel is subtracted from the cavity, leaving a smaller rectangular cavity for the next content. If a content does not use all of its parcel, the unused space in the parcel will not be used by subsequent content. If the cavity should become too small to meet the needs of a content then the content will be given whatever space is left in the cavity. If the cavity shrinks to zero size, then all remaining content on the packing list will be unmapped from the screen until the container window becomes large enough to hold them again.
+3. The packer positions the content over its parcel. If the content is smaller than the parcel then the **-anchor** option determines where in the parcel the content will be placed. If **-padx** or **-pady** is non-zero, then the given amount of external padding will always be left between the content and the edges of the parcel.
 
+
+Once a given content has been packed, the area of its parcel is subtracted from the cavity, leaving a smaller rectangular cavity for the next content. If a content does not use all of its parcel, the unused space in the parcel will not be used by subsequent content. If the cavity should become too small to meet the needs of a content then the content will be given whatever space is left in the cavity. If the cavity shrinks to zero size, then all remaining content on the packing list will be unmapped from the screen until the container window becomes large enough to hold them again.
 
 ## Expansion
 
@@ -141,7 +138,7 @@ The container for each content must either be the content's parent (the default)
 
 # Packing order
 
-If the container for a content is not its parent then you must make sure that the content is higher in the stacking order than the container. Otherwise the container will obscure the content and it will appear as if the content has not been packed correctly. The easiest way to make sure the content is higher than the container is to create the container window first:  the most recently created window will be highest in the stacking order. Or, you can use the **raise** and **lower** commands to change the stacking order of either the container or the content.
+If the container for a content is not its parent then you must make sure that the content is higher in the stacking order than the container. Otherwise the container will obscure the content and it will appear as if the content has not been packed correctly. The easiest way to make sure the content is higher than the container is to create the container window first:  the most recently created window will be highest in the stacking order. Or, you can use the [raise] and [lower] commands to change the stacking order of either the container or the content.
 
 # Example
 
@@ -160,3 +157,7 @@ pack .l   -side left   -fill y
 pack .r   -side right  -fill y
 pack .mid -expand 1    -fill both
 ```
+
+
+[lower]: lower.md
+[raise]: raise.md

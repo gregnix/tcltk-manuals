@@ -1,5 +1,6 @@
 ---
 CommandName: append
+title: append
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -22,12 +23,12 @@ append - Append to variable
 # Synopsis
 
 ::: {.synopsis} :::
-[append]{.cmd} [varName]{.arg} [value value value]{.optdot} 
+[append]{.cmd} [varName]{.arg} [value value value]{.optdot}
 :::
 
 # Description
 
-Append all of the *value* arguments to the current value of variable *varName*.  If *varName* does not exist, it is given a value equal to the concatenation of all the *value* arguments. The result of this command is the new value stored in variable *varName*. This command provides an efficient way to build up long variables incrementally. For example, "**append a \$b**" is much more efficient than "**set a \$a\$b**" if **\$a** is long.
+Append all of the *value* arguments to the current value of variable *varName*.  If *varName* does not exist, it is given a value equal to the concatenation of all the *value* arguments. The result of this command is the new value stored in variable *varName*. This command provides an efficient way to build up long variables incrementally. For example, "**append a $b**" is much more efficient than "**set a $a$b**" if **$a** is long.
 
 # Example
 

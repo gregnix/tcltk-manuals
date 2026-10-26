@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_SplitPath
+title: Tcl_SplitPath
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -17,50 +18,48 @@ Copyright:
 
 # Name
 
-Tcl_SplitPath, Tcl_JoinPath, Tcl_GetPathType - manipulate platform-dependent file paths
+Tcl\_SplitPath, Tcl\_JoinPath, Tcl\_GetPathType - manipulate platform-dependent file paths
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-[Tcl_SplitPath]{.cmd}([path]{.arg}, [argcPtr]{.arg}, [argvPtr]{.arg})
-
-char \*
-[Tcl_JoinPath]{.cmd}([argc]{.arg}, [argv]{.arg}, [resultPtr]{.arg})
-
-Tcl_PathType
-[Tcl_GetPathType]{.cmd}([path]{.arg})
+**#include <tcl.h>**
+[Tcl\_SplitPath]{.ccmd} [path, argcPtr, argvPtr]{.cargs}
+[char \*]{.ret} [Tcl\_JoinPath]{.ccmd} [argc, argv, resultPtr]{.cargs}
+[Tcl\_PathType]{.ret} [Tcl\_GetPathType]{.ccmd} [path]{.cargs}
 :::
 
 # Arguments
 
-const char *\*path* (in)
-: File path in a form appropriate for the current platform (see the **filename** manual entry for acceptable forms for path names).
+::: {.arguments} :::
 
-int *\*argcPtr* (out)
+[\*path]{.carg .in type="const char"}
+: File path in a form appropriate for the current platform (see the [filename] manual entry for acceptable forms for path names).
+
+[\*argcPtr]{.carg .out type="int"}
 : Filled in with number of path elements in *path*.
 
-const char *\*\*\*argvPtr* (out)
+[\*\*\*argvPtr]{.carg .out type="const char"}
 : *\*argvPtr* will be filled in with the address of an array of pointers to the strings that are the extracted elements of *path*. There will be *\*argcPtr* valid entries in the array, followed by a NULL entry.
 
-int *argc* (in)
+[argc]{.carg .in type="int"}
 : Number of elements in *argv*.
 
-const char \*const *\*argv* (in)
+[\*argv]{.carg .in type="const char *const"}
 : Array of path elements to merge together into a single path.
 
-Tcl_DString *\*resultPtr* (in/out)
-: A pointer to an initialized **Tcl_DString** to which the result of **Tcl_JoinPath** will be appended.
+[\*resultPtr]{.carg .in/out type="Tcl_DString"}
+: A pointer to an initialized [Tcl\_DString][DString] to which the result of **Tcl\_JoinPath** will be appended.
 
+:::
 
 # Description
 
 These procedures have been superseded by the Tcl-value-aware procedures in the **FileSystem** man page, which are more efficient.
 
-These procedures may be used to disassemble and reassemble file paths in a platform independent manner: they provide C-level access to the same functionality as the **file split**, **file join**, and **file pathtype** commands.
+These procedures may be used to disassemble and reassemble file paths in a platform independent manner: they provide C-level access to the same functionality as the [file split][file], [file join][file], and [file pathtype][file] commands.
 
-**Tcl_SplitPath** breaks a path into its constituent elements, returning an array of pointers to the elements using *argcPtr* and *argvPtr*.  The area of memory pointed to by *\*argvPtr* is dynamically allocated; in addition to the array of pointers, it also holds copies of all the path elements.  It is the caller's responsibility to free all of this storage. For example, suppose that you have called **Tcl_SplitPath** with the following code:
+**Tcl\_SplitPath** breaks a path into its constituent elements, returning an array of pointers to the elements using *argcPtr* and *argvPtr*.  The area of memory pointed to by *\*argvPtr* is dynamically allocated; in addition to the array of pointers, it also holds copies of all the path elements.  It is the caller's responsibility to free all of this storage. For example, suppose that you have called **Tcl\_SplitPath** with the following code:
 
 ```
 int argc;
@@ -76,8 +75,13 @@ Then you should eventually free the storage with a call like the following:
 Tcl_Free((char *) argv);
 ```
 
-**Tcl_JoinPath** is the inverse of **Tcl_SplitPath**: it takes a collection of path elements given by *argc* and *argv* and generates a result string that is a properly constructed path. The result string is appended to *resultPtr*.  *ResultPtr* must refer to an initialized **Tcl_DString**.
+**Tcl\_JoinPath** is the inverse of **Tcl\_SplitPath**: it takes a collection of path elements given by *argc* and *argv* and generates a result string that is a properly constructed path. The result string is appended to *resultPtr*.  *ResultPtr* must refer to an initialized [Tcl\_DString][DString].
 
-If the result of **Tcl_SplitPath** is passed to **Tcl_JoinPath**, the result will refer to the same location, but may not be in the same form.  This is because **Tcl_SplitPath** and **Tcl_JoinPath** eliminate duplicate path separators and return a normalized form for each platform.
+If the result of **Tcl\_SplitPath** is passed to **Tcl\_JoinPath**, the result will refer to the same location, but may not be in the same form.  This is because **Tcl\_SplitPath** and **Tcl\_JoinPath** eliminate duplicate path separators and return a normalized form for each platform.
 
-**Tcl_GetPathType** returns the type of the specified *path*, where **Tcl_PathType** is one of **TCL_PATH_ABSOLUTE**, **TCL_PATH_RELATIVE**, or **TCL_PATH_VOLUME_RELATIVE**.  See the **filename** manual entry for a description of the path types for each platform.
+**Tcl\_GetPathType** returns the type of the specified *path*, where **Tcl\_PathType** is one of **TCL\_PATH\_ABSOLUTE**, **TCL\_PATH\_RELATIVE**, or **TCL\_PATH\_VOLUME\_RELATIVE**.  See the [filename] manual entry for a description of the path types for each platform.
+
+
+[DString]: DString.md
+[file]: ../tcl/file.md
+[filename]: ../tcl/filename.md

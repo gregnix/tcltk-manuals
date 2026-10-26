@@ -1,5 +1,6 @@
 ---
 CommandName: lambda
+title: lambda
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -26,10 +27,10 @@ lambda - Utility commands for anonymous procedures
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [lambda]{.lit} [1.1]{.optlit} 
-[::lambda]{.cmd} [arguments]{.arg} [body]{.arg} [arg]{.optdot} 
-[::lambda@]{.cmd} [namespace]{.arg} [arguments]{.arg} [body]{.arg} [arg]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [lambda]{.lit} [1.1]{.optlit}
+[::lambda]{.cmd} [arguments]{.arg} [body]{.arg} [arg]{.optdot}
+[::lambda@]{.cmd} [namespace]{.arg} [arguments]{.arg} [body]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -68,13 +69,17 @@ or
 
 Lambdas are particularly useful for commands that accept a **-command** option.
 
-# Api
+# API
 
 **::lambda** *arguments* *body* ?*arg ...*?
-: Returns an anonymous command based on the *arguments* list, the *body* script, and any (optional) predefined argument values, *arg ...*. When invoked, the *body* is run in a new procedure scope just below the global scope, with the arguments set to the values supplied at both construction (any *arg ...* arguments), and invocation time.
+: Returns an anonymous command based on the *arguments* list, the *body* script, and any (optional) predefined argument values, *arg ...*.
+
+    When invoked, the *body* is run in a new procedure scope just below the global scope, with the arguments set to the values supplied at both construction (any *arg ...* arguments), and invocation time.
 
 **::lambda@** *namespace* *arguments* *body* ?*arg ...*?
-: Returns an anonymous command in namespace *namespace*, and based on the *arguments* list, the *body* script, and any (optional) predefined argument values, *arg ...*. When invoked, the *body* is run in a new procedure scope in the *namespace* namespace, with the arguments set to the values supplied at both construction (any *arg ...* arguments), and invocation time.
+: Returns an anonymous command in namespace *namespace*, and based on the *arguments* list, the *body* script, and any (optional) predefined argument values, *arg ...*.
+
+    When invoked, the *body* is run in a new procedure scope in the *namespace* namespace, with the arguments set to the values supplied at both construction (any *arg ...* arguments), and invocation time.
 
 
 # Examples
@@ -91,7 +96,7 @@ puts "[{*}$add5 92] [{*}$add5 17]"
 97 22
 ```
 
-The **make_adder** command has been used to create an anonymous command, i.e., a lambda, which has then been assigned to the **add5** variable. To call a variable as a command, it is necessary to prefix it with the **{\*}** expansion (“splat”) operator. Notice that these calls need only *one* argument; the first argument was set when the lambda was created.
+The **make\_adder** command has been used to create an anonymous command, i.e., a lambda, which has then been assigned to the **add5** variable. To call a variable as a command, it is necessary to prefix it with the **{\*}** expansion (“splat”) operator. Notice that these calls need only *one* argument; the first argument was set when the lambda was created.
 
 ## Using regusb with lambda
 

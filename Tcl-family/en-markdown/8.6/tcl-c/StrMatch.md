@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_StringMatch
+title: Tcl_StringMatch
 ManualSection: 3
 Version: 8.5
 TclPart: Tcl
@@ -15,34 +16,36 @@ Copyright:
 
 # Name
 
-Tcl_StringMatch, Tcl_StringCaseMatch - test whether a string matches a pattern
+Tcl\_StringMatch, Tcl\_StringCaseMatch - test whether a string matches a pattern
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_StringMatch]{.cmd}([str]{.arg}, [pattern]{.arg})
-
-int
-[Tcl_StringCaseMatch]{.cmd}([str]{.arg}, [pattern]{.arg}, [flags]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_StringMatch]{.ccmd} [str, pattern]{.cargs}
+[int]{.ret} [Tcl\_StringCaseMatch]{.ccmd} [str, pattern, flags]{.cargs}
 :::
 
 # Arguments
 
-const char *\*str* (in)
+::: {.arguments} :::
+
+[\*str]{.carg .in type="const char"}
 : String to test.
 
-const char *\*pattern* (in)
+[\*pattern]{.carg .in type="const char"}
 : Pattern to match against string.  May contain special characters from the set \*?\\\[\].
 
-int *flags* (in)
-: OR-ed combination of match flags, currently only **TCL_MATCH_NOCASE**. 0 specifies a case-sensitive search.
+[flags]{.carg .in type="int"}
+: OR-ed combination of match flags, currently only **TCL\_MATCH\_NOCASE**. 0 specifies a case-sensitive search.
 
+:::
 
 # Description
 
-This utility procedure determines whether a string matches a given pattern.  If it does, then **Tcl_StringMatch** returns 1.  Otherwise **Tcl_StringMatch** returns 0.  The algorithm used for matching is the same algorithm used in the **string match** Tcl command and is similar to the algorithm used by the C-shell for file name matching;  see the Tcl manual entry for details.
+This utility procedure determines whether a string matches a given pattern.  If it does, then **Tcl\_StringMatch** returns 1.  Otherwise **Tcl\_StringMatch** returns 0.  The algorithm used for matching is the same algorithm used in the [string match][string] Tcl command and is similar to the algorithm used by the C-shell for file name matching;  see the Tcl manual entry for details.
 
-In **Tcl_StringCaseMatch**, the algorithm is the same, but you have the option to make the matching case-insensitive. If you choose this (by passing **TCL_MATCH_NOCASE**), then the string and pattern are essentially matched in the lower case.
+In **Tcl\_StringCaseMatch**, the algorithm is the same, but you have the option to make the matching case-insensitive. If you choose this (by passing **TCL\_MATCH\_NOCASE**), then the string and pattern are essentially matched in the lower case.
+
+
+[string]: ../tcl/string.md

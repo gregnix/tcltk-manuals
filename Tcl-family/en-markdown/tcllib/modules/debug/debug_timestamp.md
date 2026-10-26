@@ -1,5 +1,6 @@
 ---
 CommandName: debug::timestamp
+title: debug::timestamp
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,17 +23,17 @@ debug::timestamp - debug narrative - timestamping
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::timestamp]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} [1.0.7]{.optlit} 
-[debug]{.cmd} [timestamp]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [debug::timestamp]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [debug]{.lit} [1.0.7]{.optlit}
+[debug]{.cmd} [timestamp]{.lit}
 :::
 
 # Description
 
-# Api
+# API
 
-**debug** **timestamp**
+[debug] **timestamp**
 : This method returns millisecond timing information since a baseline or last call, making it useful in a tag-specific prefix to automatically provide caller information for all uses of the tag. Or in a message, when only specific places need such detail.
 
 
@@ -54,3 +55,6 @@ debugging, tracing, and logging
 Copyright (c) 200?, Colin McCormack, Wub Server Utilities
 Copyright (c) 2012, Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[debug]: debug.md

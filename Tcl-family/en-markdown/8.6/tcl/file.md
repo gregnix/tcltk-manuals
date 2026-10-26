@@ -1,5 +1,6 @@
 ---
 CommandName: file
+title: file
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -37,67 +38,65 @@ file - Manipulate file names and attributes
 # Synopsis
 
 ::: {.synopsis} :::
-[file]{.cmd} [option]{.arg} [name]{.arg} [arg arg]{.optdot} 
+[file]{.cmd} [option]{.arg} [name]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
 
-This command provides several operations on a file's name or attributes. *Name* is the name of a file; if it starts with a tilde, then tilde substitution is done before executing the command (see the manual entry for **filename** for details).  *Option* indicates what to do with the file name.  Any unique abbreviation for *option* is acceptable.  The valid options are:
+This command provides several operations on a file's name or attributes. *Name* is the name of a file; if it starts with a tilde, then tilde substitution is done before executing the command (see the manual entry for [filename] for details).  *Option* indicates what to do with the file name.  Any unique abbreviation for *option* is acceptable.  The valid options are:
 
 **file atime** *name* ?*time*?
 : Returns a decimal string giving the time at which file *name* was last accessed.  If *time* is specified, it is an access time to set for the file.  The time is measured in the standard POSIX fashion as seconds from a fixed starting time (often January 1, 1970).  If the file does not exist or its access time cannot be queried or set then an error is generated.  On Windows, FAT file systems do not support access time.
 
 **file attributes** *name*
-: ...see next...
+: see below ...
 
 **file attributes** *name* ?*option*?
-: ...see next...
+: see below ...
 
 **file attributes** *name* ?*option value option value...*?
 : This subcommand returns or sets platform-specific values associated with a file. The first form returns a list of the platform-specific options and their values. The second form returns the value for the given option. The third form sets one or more of the values. The values are as follows:
 
+    On Unix, **-group** gets or sets the group name for the file. A group id can be given to the command, but it returns a group name. **-owner** gets or sets the user name of the owner of the file. The command returns the owner name, but the numerical id can be passed when setting the owner. **-permissions** retrieves or sets a file's access permissions, using octal notation by default. This option also provides limited support for setting permissions using the symbolic notation accepted by the **chmod** command, following the form \[**ugo**\]?\[\[**+-=**\]\[**rwxst**\]**,**\[...\]\]. Multiple permission specifications may be given, separated by commas. E.g., **u+s,go-rw** would set the setuid bit for a file's owner as well as remove read and write permission for the file's group and other users. An **ls**-style string of the form **rwxrwxrwx** is also accepted but must always be 9 characters long. E.g., **rwxr-xr-t** is equivalent to **01755**. On versions of Unix supporting file flags, **-readonly** returns the value of, or sets, or clears the readonly attribute of a file, i.e., the user immutable flag (**uchg**) to the **chflags** command.
 
-On Unix, **-group** gets or sets the group name for the file. A group id can be given to the command, but it returns a group name. **-owner** gets or sets the user name of the owner of the file. The command returns the owner name, but the numerical id can be passed when setting the owner. **-permissions** retrieves or sets a file's access permissions, using octal notation by default. This option also provides limited support for setting permissions using the symbolic notation accepted by the **chmod** command, following the form \[**ugo**\]?\[\[**+-=**\]\[**rwxst**\]**,**\[...\]\]. Multiple permission specifications may be given, separated by commas. E.g., **u+s,go-rw** would set the setuid bit for a file's owner as well as remove read and write permission for the file's group and other users. An **ls**-style string of the form **rwxrwxrwx** is also accepted but must always be 9 characters long. E.g., **rwxr-xr-t** is equivalent to **01755**. On versions of Unix supporting file flags, **-readonly** returns the value of, or sets, or clears the readonly attribute of a file, i.e., the user immutable flag (**uchg**) to the **chflags** command.
+    On Windows, **-archive** gives the value or sets or clears the archive attribute of the file. **-hidden** gives the value or sets or clears the hidden attribute of the file. **-longname** will expand each path element to its long version. This attribute cannot be set. **-readonly** gives the value or sets or clears the readonly attribute of the file. **-shortname** gives a string where every path element is replaced with its short (8.3) version of the name if possible. For path elements that cannot be mapped to short names, the long name is retained. This attribute cannot be set. **-system** gives or sets or clears the value of the system attribute of the file.
 
-On Windows, **-archive** gives the value or sets or clears the archive attribute of the file. **-hidden** gives the value or sets or clears the hidden attribute of the file. **-longname** will expand each path element to its long version. This attribute cannot be set. **-readonly** gives the value or sets or clears the readonly attribute of the file. **-shortname** gives a string where every path element is replaced with its short (8.3) version of the name if possible. For path elements that cannot be mapped to short names, the long name is retained. This attribute cannot be set. **-system** gives or sets or clears the value of the system attribute of the file.
-
-On macOS and Darwin, **-creator** gives or sets the Finder creator type of the file. **-hidden** gives or sets or clears the hidden attribute of the file. **-readonly** gives or sets or clears the readonly attribute of the file. **-rsrclength** gives the length of the resource fork of the file, this attribute can only be set to the value 0, which results in the resource fork being stripped off the file.
+    On macOS and Darwin, **-creator** gives or sets the Finder creator type of the file. **-hidden** gives or sets or clears the hidden attribute of the file. **-readonly** gives or sets or clears the readonly attribute of the file. **-rsrclength** gives the length of the resource fork of the file, this attribute can only be set to the value 0, which results in the resource fork being stripped off the file.
 
 **file channels** ?*pattern*?
-: If *pattern* is not specified, returns a list of names of all registered open channels in this interpreter.  If *pattern* is specified, only those names matching *pattern* are returned.  Matching is determined using the same rules as for **string match**.
+: If *pattern* is not specified, returns a list of names of all registered open channels in this interpreter.  If *pattern* is specified, only those names matching *pattern* are returned.  Matching is determined using the same rules as for [string match][string].
 
-**file copy** ?**-force**? ?**-**\\**|-**? *source* *target*
-: ...see next...
+**file copy** ?**-force**? ?**--**? *source* *target*
+: see below ...
 
-**file copy** ?**-force**? ?**-**\\**|-**? *source* ?*source* ...? *targetDir*
-: The first form makes a copy of the file or directory *source* under the pathname *target*. If *target* is an existing directory, then the second form is used.  The second form makes a copy inside *targetDir* of each *source* file listed.  If a directory is specified as a *source*, then the contents of the directory will be recursively copied into *targetDir*. Existing files will not be overwritten unless the **-force** option is specified (when Tcl will also attempt to adjust permissions on the destination file or directory if that is necessary to allow the copy to proceed).  When copying within a single filesystem, *file copy* will copy soft links (i.e. the links themselves are copied, not the things they point to).  Trying to overwrite a non-empty directory, overwrite a directory with a file, or overwrite a file with a directory will all result in errors even if **-force** was specified.  Arguments are processed in the order specified, halting at the first error, if any.  A **-**\\**|-** marks the end of switches; the argument following the **-**\\**|-** will be treated as a *source* even if it starts with a **-**.
+**file copy** ?**-force**? ?**--**? *source* ?*source* ...? *targetDir*
+: The first form makes a copy of the file or directory *source* under the pathname *target*. If *target* is an existing directory, then the second form is used.  The second form makes a copy inside *targetDir* of each *source* file listed.  If a directory is specified as a *source*, then the contents of the directory will be recursively copied into *targetDir*. Existing files will not be overwritten unless the **-force** option is specified (when Tcl will also attempt to adjust permissions on the destination file or directory if that is necessary to allow the copy to proceed).  When copying within a single filesystem, *file copy* will copy soft links (i.e. the links themselves are copied, not the things they point to).  Trying to overwrite a non-empty directory, overwrite a directory with a file, or overwrite a file with a directory will all result in errors even if **-force** was specified.  Arguments are processed in the order specified, halting at the first error, if any.  A **--** marks the end of switches; the argument following the **--** will be treated as a *source* even if it starts with a **-**.
 
-**file delete** ?**-force**? ?**-**\\**|-**? ?*pathname* ... ?
-: Removes the file or directory specified by each *pathname* argument.  Non-empty directories will be removed only if the **-force** option is specified.  When operating on symbolic links, the links themselves will be deleted, not the objects they point to. Trying to delete a non-existent file is not considered an error. Trying to delete a read-only file will cause the file to be deleted, even if the **-force** flags is not specified.  If the **-force** option is specified on a directory, Tcl will attempt both to change permissions and move the current directory "pwd" out of the given path if that is necessary to allow the deletion to proceed.  Arguments are processed in the order specified, halting at the first error, if any. A **-**\\**|-** marks the end of switches; the argument following the **-**\\**|-** will be treated as a *pathname* even if it starts with a **-**.
+**file delete** ?**-force**? ?**--**? ?*pathname* ... ?
+: Removes the file or directory specified by each *pathname* argument.  Non-empty directories will be removed only if the **-force** option is specified.  When operating on symbolic links, the links themselves will be deleted, not the objects they point to. Trying to delete a non-existent file is not considered an error. Trying to delete a read-only file will cause the file to be deleted, even if the **-force** flags is not specified.  If the **-force** option is specified on a directory, Tcl will attempt both to change permissions and move the current directory "pwd" out of the given path if that is necessary to allow the deletion to proceed.  Arguments are processed in the order specified, halting at the first error, if any. A **--** marks the end of switches; the argument following the **--** will be treated as a *pathname* even if it starts with a **-**.
 
 **file dirname** *name*
 : Returns a name comprised of all of the path components in *name* excluding the last element.  If *name* is a relative file name and only contains one path element, then returns "**.**". If *name* refers to a root directory, then the root directory is returned.  For example,
 
+    ```
+    file dirname c:/
+    ```
 
-```
-file dirname c:/
-```
+    returns **c:/**.
 
-returns **c:/**.
+    Note that tilde substitution will only be performed if it is necessary to complete the command. For example,
 
-Note that tilde substitution will only be performed if it is necessary to complete the command. For example,
+    ```
+    file dirname ~/src/foo.c
+    ```
 
-```
-file dirname ~/src/foo.c
-```
+    returns **~/src**, whereas
 
-returns **~/src**, whereas
+    ```
+    file dirname ~
+    ```
 
-```
-file dirname ~
-```
-
-returns **/home** (or something similar).
+    returns **/home** (or something similar).
 
 **file executable** *name*
 : Returns **1** if file *name* is executable by the current user, **0** otherwise. On Windows, which does not have an executable attribute, the command treats all directories and any files with extensions **exe**, **com**, **cmd** or **bat** as executable.
@@ -117,24 +116,22 @@ returns **/home** (or something similar).
 **file join** *name* ?*name ...*?
 : Takes one or more file names and combines them, using the correct path separator for the current platform.  If a particular *name* is relative, then it will be joined to the previous file name argument. Otherwise, any earlier arguments will be discarded, and joining will proceed from the current argument.  For example,
 
+    ```
+    file join a b /foo bar
+    ```
 
-```
-file join a b /foo bar
-```
+    returns **/foo/bar**.
 
-returns **/foo/bar**.
-
-Note that any of the names can contain separators, and that the result is always canonical for the current platform: **/** for Unix and Windows.
+    Note that any of the names can contain separators, and that the result is always canonical for the current platform: **/** for Unix and Windows.
 
 **file link** ?*-linktype*? *linkName* ?*target*?
 : If only one argument is given, that argument is assumed to be *linkName*, and this command returns the value of the link given by *linkName* (i.e. the name of the file it points to).  If *linkName* is not a link or its value cannot be read (as, for example, seems to be the case with hard links, which look just like ordinary files), then an error is returned.
 
+    If 2 arguments are given, then these are assumed to be *linkName* and *target*. If *linkName* already exists, or if *target* does not exist, an error will be returned.  Otherwise, Tcl creates a new link called *linkName* which points to the existing filesystem object at *target* (which is also the returned value), where the type of the link is platform-specific (on Unix a symbolic link will be the default).  This is useful for the case where the user wishes to create a link in a cross-platform way, and does not care what type of link is created.
 
-If 2 arguments are given, then these are assumed to be *linkName* and *target*. If *linkName* already exists, or if *target* does not exist, an error will be returned.  Otherwise, Tcl creates a new link called *linkName* which points to the existing filesystem object at *target* (which is also the returned value), where the type of the link is platform-specific (on Unix a symbolic link will be the default).  This is useful for the case where the user wishes to create a link in a cross-platform way, and does not care what type of link is created.
+    If the user wishes to make a link of a specific type only, (and signal an error if for some reason that is not possible), then the optional *-linktype* argument should be given.  Accepted values for *-linktype* are "**-symbolic**" and "**-hard**".
 
-If the user wishes to make a link of a specific type only, (and signal an error if for some reason that is not possible), then the optional *-linktype* argument should be given.  Accepted values for *-linktype* are "**-symbolic**" and "**-hard**".
-
-On Unix, symbolic links can be made to relative paths, and those paths must be relative to the actual *linkName*'s location (not to the cwd), but on all other platforms where relative links are not supported, target paths will always be converted to absolute, normalized form before the link is created (and therefore relative paths are interpreted as relative to the cwd).  Furthermore, "~user" paths are always expanded to absolute form.  When creating links on filesystems that either do not support any links, or do not support the specific type requested, an error message will be returned.  Most Unix platforms support both symbolic and hard links (the latter for files only). Windows supports symbolic directory links and hard file links on NTFS drives.
+    On Unix, symbolic links can be made to relative paths, and those paths must be relative to the actual *linkName*'s location (not to the cwd), but on all other platforms where relative links are not supported, target paths will always be converted to absolute, normalized form before the link is created (and therefore relative paths are interpreted as relative to the cwd).  Furthermore, "~user" paths are always expanded to absolute form.  When creating links on filesystems that either do not support any links, or do not support the specific type requested, an error message will be returned.  Most Unix platforms support both symbolic and hard links (the latter for files only). Windows supports symbolic directory links and hard file links on NTFS drives.
 
 **file lstat** *name varName*
 : Same as **stat** option (see below) except uses the *lstat* kernel call instead of *stat*.  This means that if *name* refers to a symbolic link the information returned in *varName* is for the link rather than the file it refers to.  On systems that do not support symbolic links this option behaves exactly the same as the **stat** option.
@@ -146,7 +143,7 @@ On Unix, symbolic links can be made to relative paths, and those paths must be r
 : Returns a decimal string giving the time at which file *name* was last modified.  If *time* is specified, it is a modification time to set for the file (equivalent to Unix **touch**).  The time is measured in the standard POSIX fashion as seconds from a fixed starting time (often January 1, 1970).  If the file does not exist or its modified time cannot be queried or set then an error is generated.
 
 **file nativename** *name*
-: Returns the platform-specific name of the file. This is useful if the filename is needed to pass to a platform-specific call, such as to a subprocess via **exec** under Windows (see **EXAMPLES** below).
+: Returns the platform-specific name of the file. This is useful if the filename is needed to pass to a platform-specific call, such as to a subprocess via [exec] under Windows (see [Examples] below).
 
 **file normalize** *name*
 : Returns a unique normalized path representation for the file-system object (file, directory, link, etc), whose string value can be used as a unique identifier for it.  A normalized path is an absolute path which has all "../" and "./" removed.  Also it is one which is in the "standard" format for the native platform.  On Unix, this means the segments leading up to the path must be free of symbolic links/aliases (but the very last path component may be a symbolic link), and on Windows it also means we want the long form with that form's case-dependence (which gives us a unique, case-dependent path).  The one exception concerning the last link in the path is necessary, because Tcl or the user may wish to operate on the actual symbolic link itself (for example **file delete**, **file rename**, **file copy** are defined to operate on symbolic links, not on the things that they point to).
@@ -163,11 +160,11 @@ On Unix, symbolic links can be made to relative paths, and those paths must be r
 **file readlink** *name*
 : Returns the value of the symbolic link given by *name* (i.e. the name of the file it points to).  If *name* is not a symbolic link or its value cannot be read, then an error is returned.  On systems that do not support symbolic links this option is undefined.
 
-**file rename** ?**-force**? ?**-**\\**|-**? *source* *target*
-: ...see next...
+**file rename** ?**-force**? ?**--**? *source* *target*
+: see below ...
 
-**file rename** ?**-force**? ?**-**\\**|-**? *source* ?*source* ...? *targetDir*
-: The first form takes the file or directory specified by pathname *source* and renames it to *target*, moving the file if the pathname *target* specifies a name in a different directory.  If *target* is an existing directory, then the second form is used. The second form moves each *source* file or directory into the directory *targetDir*. Existing files will not be overwritten unless the **-force** option is specified.  When operating inside a single filesystem, Tcl will rename symbolic links rather than the things that they point to.  Trying to overwrite a non-empty directory, overwrite a directory with a file, or a file with a directory will all result in errors.  Arguments are processed in the order specified, halting at the first error, if any.  A **-**\\**|-** marks the end of switches; the argument following the **-**\\**|-** will be treated as a *source* even if it starts with a **-**.
+**file rename** ?**-force**? ?**--**? *source* ?*source* ...? *targetDir*
+: The first form takes the file or directory specified by pathname *source* and renames it to *target*, moving the file if the pathname *target* specifies a name in a different directory.  If *target* is an existing directory, then the second form is used. The second form moves each *source* file or directory into the directory *targetDir*. Existing files will not be overwritten unless the **-force** option is specified.  When operating inside a single filesystem, Tcl will rename symbolic links rather than the things that they point to.  Trying to overwrite a non-empty directory, overwrite a directory with a file, or a file with a directory will all result in errors.  Arguments are processed in the order specified, halting at the first error, if any.  A **--** marks the end of switches; the argument following the **--** will be treated as a *source* even if it starts with a **-**.
 
 **file rootname** *name*
 : Returns all of the characters in *name* up to but not including the last "." character in the last component of name.  If the last component of *name* does not contain a dot, then returns *name*.
@@ -181,12 +178,11 @@ On Unix, symbolic links can be made to relative paths, and those paths must be r
 **file split** *name*
 : Returns a list whose elements are the path components in *name*.  The first element of the list will have the same path type as *name*. All other elements will be relative.  Path separators will be discarded unless they are needed to ensure that an element is unambiguously relative. For example, under Unix
 
+    ```
+    file split /foo/~bar/baz
+    ```
 
-```
-file split /foo/~bar/baz
-```
-
-returns "**/**\\**0**\\**0foo**\\**0**\\**0./~bar**\\**0**\\**0baz**" to ensure that later commands that use the third component do not attempt to perform tilde substitution.
+    returns "**/  foo  ./~bar  baz**" to ensure that later commands that use the third component do not attempt to perform tilde substitution.
 
 **file stat**  *name varName*
 : Invokes the **stat** kernel call on *name*, and uses the variable given by *varName* to hold information returned from the kernel call. *VarName* is treated as an array variable, and the following elements of that variable are set: **atime**, **ctime**, **dev**, **gid**, **ino**, **mode**, **mtime**, **nlink**, **size**, **type**, **uid**.  Each element except **type** is a decimal string with the value of the corresponding field from the **stat** return structure; see the manual entry for **stat** for details on the meanings of the values.  The **type** element gives the type of the file in the same form returned by the command **file type**.  This command returns an empty string.
@@ -198,12 +194,9 @@ returns "**/**\\**0**\\**0foo**\\**0**\\**0./~bar**\\**0**\\**0baz**" to ensure 
 : Returns all of the characters in the last filesystem component of *name*.  Any trailing directory separator in *name* is ignored. If *name* contains no separators then returns *name*.  So, **file tail a/b**, **file tail a/b/** and **file tail b** all return **b**.
 
 **file tempfile** ?*nameVar*? ?*template*?
-: Creates a temporary file and returns a read-write channel opened on that file. If the *nameVar* is given, it specifies a variable that the name of the temporary file will be written into; if absent, Tcl will attempt to arrange for the temporary file to be deleted once it is no longer required. If the *template* is present, it specifies parts of the template of the filename to use when creating it (such as the directory, base-name or extension) though some platforms may ignore some or all of these parts and use a built-in default instead.
+: [Creates a temporary file and returns a read-write channel opened on that file. If the *nameVar* is given, it specifies a variable that the name of the temporary file will be written into; if absent, Tcl will attempt to arrange for the temporary file to be deleted once it is no longer required. If the *template* is present, it specifies parts of the template of the filename to use when creating it (such as the directory, base-name or extension) though some platforms may ignore some or all of these parts and use a built-in default instead.]{version="8.6"}
 
-
-::: {.info -version="8.6"}
-Note that temporary files are *only* ever created on the native filesystem. As such, they can be relied upon to be used with operating-system native APIs and external programs that require a filename.
-:::
+    Note that temporary files are *only* ever created on the native filesystem. As such, they can be relied upon to be used with operating-system native APIs and external programs that require a filename.
 
 **file type** *name*
 : Returns a string giving the type of file *name*, which will be one of **file**, **directory**, **characterSpecial**, **blockSpecial**, **fifo**, **link**, or **socket**.
@@ -217,10 +210,10 @@ Note that temporary files are *only* ever created on the native filesystem. As s
 
 # Portability issues
 
-**Unix**\\0\\0\\0\\0\\0\\0\\0
+**Unix**
 : These commands always operate using the real user and group identifiers, not the effective ones.
 
-**Windows**\\0\\0\\0\\0
+**Windows**
 : The **file owned** subcommand uses the user identifier (SID) of the process token, not the thread token which may be impersonating some other user.
 
 
@@ -267,3 +260,8 @@ On Windows, a file can be "started" easily enough (equivalent to double-clicking
 ```
 exec {*}[auto_execok start] {} [file nativename ~/example.txt]
 ```
+
+
+[exec]: exec.md
+[filename]: filename.md
+[string]: string.md

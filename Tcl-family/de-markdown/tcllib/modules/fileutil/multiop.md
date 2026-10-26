@@ -1,5 +1,6 @@
 ---
 CommandName: fileutil::multi::op
+title: fileutil::multi::op
 ManualSection: n
 Version: 0.5.4
 TclPart: tcllib
@@ -13,96 +14,98 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 fileutil::multi::op – Bearbeitung mehrerer Dateien, Scatter/Gather
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil::multi::op]{.lit} [0.5.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [wip]{.lit} [1.0]{.optlit} 
-[::fileutil::multi::op]{.cmd} [opName]{.optarg} [word]{.optdot} 
-[opName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[\$opName]{.cmd} [do]{.sub} [word]{.optdot} 
-[into]{.cmd} [directory]{.arg} 
-[in]{.cmd} [directory]{.arg} 
-[to]{.cmd} [directory]{.arg} 
-[from]{.cmd} [directory]{.arg} 
-[not]{.cmd} [pattern]{.arg} 
-[for]{.cmd} [pattern]{.arg} 
-[exclude]{.cmd} [pattern]{.arg} 
-[but]{.cmd} 
-[except]{.cmd} 
-[as]{.cmd} [name]{.arg} 
-[recursive]{.cmd} 
-[recursively]{.cmd} 
-[copy]{.cmd} 
-[move]{.cmd} 
-[remove]{.cmd} 
-[expand]{.cmd} 
-[invoke]{.cmd} [cmdprefix]{.arg} 
-[reset]{.cmd} 
-[(]{.cmd} 
-[)]{.cmd} 
-[cd]{.cmd} [directory]{.arg} 
-[up]{.cmd} 
-[for-windows]{.cmd} 
-[for-win]{.cmd} 
-[for-unix]{.cmd} 
-[the]{.cmd} [pattern]{.arg} 
-[the-set]{.cmd} [varname]{.arg} 
-[->]{.cmd} [varname]{.arg} 
-[strict]{.cmd} 
-[!strict]{.cmd} 
-[files]{.cmd} 
-[links]{.cmd} 
-[directories]{.cmd} 
-[dirs]{.cmd} 
-[all]{.cmd} 
-[state?]{.cmd} 
-[as?]{.cmd} 
-[excluded?]{.cmd} 
-[from?]{.cmd} 
-[into?]{.cmd} 
-[operation?]{.cmd} 
-[recursive?]{.cmd} 
-[strict?]{.cmd} 
-[type?]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil::multi::op]{.lit} [0.5.4]{.optlit}
+[package]{.cmd} [require]{.sub} [wip]{.lit} [1.0]{.optlit}
+[::fileutil::multi::op]{.cmd} [opName]{.optarg} [word...]{.optarg}
+[opName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[$opName]{.cmd} [do]{.lit} [word...]{.optarg}
+[into]{.cmd} [directory]{.arg}
+[in]{.cmd} [directory]{.arg}
+[to]{.cmd} [directory]{.arg}
+[from]{.cmd} [directory]{.arg}
+[not]{.cmd} [pattern]{.arg}
+[for]{.cmd} [pattern]{.arg}
+[exclude]{.cmd} [pattern]{.arg}
+[but]{.cmd}
+[except]{.cmd}
+[as]{.cmd} [name]{.arg}
+[recursive]{.cmd}
+[recursively]{.cmd}
+[copy]{.cmd}
+[move]{.cmd}
+[remove]{.cmd}
+[expand]{.cmd}
+[invoke]{.cmd} [cmdprefix]{.arg}
+[reset]{.cmd}
+[(]{.cmd}
+[)]{.cmd}
+[cd]{.cmd} [directory]{.arg}
+[up]{.cmd}
+[for-windows]{.cmd}
+[for-win]{.cmd}
+[for-unix]{.cmd}
+[the]{.cmd} [pattern]{.arg}
+[the-set]{.cmd} [varname]{.arg}
+[->]{.lit} [varname]{.arg}
+[strict]{.cmd}
+[!strict]{.cmd}
+[files]{.cmd}
+[links]{.cmd}
+[directories]{.cmd}
+[dirs]{.cmd}
+[all]{.cmd}
+[state?]{.cmd}
+[as?]{.cmd}
+[excluded?]{.cmd}
+[from?]{.cmd}
+[into?]{.cmd}
+[operation?]{.cmd}
+[recursive?]{.cmd}
+[strict?]{.cmd}
+[type?]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt Objekte bereit, mit denen sich Aktionen auf mehrere Dateien ausführen lassen, die anhand von Glob-Mustern ausgewählt wurden.
 
 Im Mittelpunkt steht eine domänenspezifische Sprache, die die einfache Spezifizierung von Operationen zum Kopieren und/oder Verschieben und/oder Löschen mehrerer Dateien ermöglicht. Alternative Namen wären „Scatter/Gather-Prozessor“ oder vielleicht sogar „Assembler“.
 
-# API FÜR KLASSEN
+# API für Klassen
 
 Der Hauptbefehl des Pakets lautet:
 
 **::fileutil::multi::op** ?*opName*? ?*word*...?
 : Der Befehl erstellt ein neues Objekt für eine Operation mit mehreren Dateien, dem ein globaler Tcl-Befehl mit dem Namen *opName* zugeordnet ist. Mit diesem Befehl lassen sich die verschiedenen möglichen Dateioperationen aufrufen. Er hat die folgende allgemeine Form:
 
+    **opName** *option* ?*arg arg ...*?
+    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
 
-**opName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+
+    Wenn die Zeichenfolge **%AUTO%** als *opName* verwendet wird, generiert das Paket selbstständig einen eindeutigen Name.
+
+    Wenn ein oder mehrere *Wörter* angegeben werden, werden diese als anfängliche Reihe von auszuführenden Dateibefehlen interpretiert. Das heißt, die Methode **do** des neu erstellten Objekts wird implizit aufgerufen, wobei die Wörter als Argumente verwendet werden.
 
 
-Wenn die Zeichenfolge **%AUTO%** als *opName* verwendet wird, generiert das Paket selbstständig einen eindeutigen Name.
-
-Wenn ein oder mehrere *Wörter* angegeben werden, werden diese als anfängliche Reihe von auszuführenden Dateibefehlen interpretiert. Das heißt, die Methode **do** des neu erstellten Objekts wird implizit aufgerufen, wobei die Wörter als Argumente verwendet werden.
-
-# OBJEKT-API
+# Objekt-API
 
 Für Objekte mit Mehrdateienbetrieb sind folgende Methoden möglich:
 
-**\$opName** **do** ?*word*...?
-: Diese Methode interpretiert die angegebenen Wörter als auszuführende Dateibefehle. Informationen zu den zulässigen Befehlen, ihrer Syntax und Semantik finden Sie im Abschnitt **FILE API**. Das Ergebnis der Methode ist das Ergebnis des zuletzt ausgeführten Dateibefehls.
+**$opName** **do** ?*word*...?
+: Diese Methode interpretiert die angegebenen Wörter als auszuführende Dateibefehle. Informationen zu den zulässigen Befehlen, ihrer Syntax und Semantik finden Sie im Abschnitt [Datei-API].
+
+    Das Ergebnis der Methode ist das Ergebnis des zuletzt ausgeführten Dateibefehls.
 
 
-# DATEI-API
+# Datei-API
 
 Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern und interpretieren diese als auszuführende Dateibefehle. Die Namen wurden so gewählt, dass Operationen als Sätze in einer nahezu natürlichen Sprache gebildet werden können. Die meisten Befehle beeinflussen lediglich den Zustand des Objekts, d. h., sie liefern lediglich die Konfiguration, die von dem Befehl verwendet wird, der die eigentliche Aktion auslöst.
 
@@ -182,7 +185,11 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Prüft, ob Unix die aktuelle Plattform ist. Bricht den Prozess ab, wenn dies nicht der Fall ist.
 
 **the** *pattern*
-: Dieser Befehl legt die zu bearbeitenden Dateien anhand eines Glob-Musters fest und ist zugleich das aktive Element, d. h. der Befehl, der die angegebene Operation tatsächlich ausführt. Alle anderen Befehle ändern lediglich den Objektzustand, um die Operation vorzubereiten, führen aber keine weiteren Aktionen aus. Um eine natürlichere Syntax zu ermöglichen, blickt dieser Befehl auch in die Liste der nachfolgenden Wörter vor und führt mehrere unmittelbar darauf folgende Befehle aus, bevor er seine eigenen Aktionen ausführt. Diese Befehle sind **as**, **but**, **exclude**, **except**, **from** und **into** (sowie Aliase). Auf diese Weise fungieren diese Befehle wie Qualifizierer und werden dennoch so wirksam, als wären sie vor diesem Befehl geschrieben worden. Nachdem die Operation ausgeführt wurde, werden der Objektzustand, die Ausschlussmuster und der Aliasname, wenn sie festgelegt wurden, auf ihre Standardwerte (d. h. leer) zurückgesetzt, aber sonst nichts.
+: Dieser Befehl legt die zu bearbeitenden Dateien anhand eines Glob-Musters fest und ist zugleich das aktive Element, d. h. der Befehl, der die angegebene Operation tatsächlich ausführt. Alle anderen Befehle ändern lediglich den Objektzustand, um die Operation vorzubereiten, führen aber keine weiteren Aktionen aus.
+
+    Um eine natürlichere Syntax zu ermöglichen, blickt dieser Befehl auch in die Liste der nachfolgenden Wörter vor und führt mehrere unmittelbar darauf folgende Befehle aus, bevor er seine eigenen Aktionen ausführt. Diese Befehle sind **as**, **but**, **exclude**, **except**, **from** und **into** (sowie Aliase). Auf diese Weise fungieren diese Befehle wie Qualifizierer und werden dennoch so wirksam, als wären sie vor diesem Befehl geschrieben worden.
+
+    Nachdem die Operation ausgeführt wurde, werden der Objektzustand, die Ausschlussmuster und der Aliasname, wenn sie festgelegt wurden, auf ihre Standardwerte (d. h. leer) zurückgesetzt, aber sonst nichts.
 
 **the-set** *varname*
 : Ähnlich wie bei **the** wird die zu verwendende Dateimenge jedoch nicht implizit über ein Glob-Muster angegeben, sondern ist in der angegebenen Variable enthalten und wird von dort geladen. Die Operation **expand** steht bei Verwendung dieses Befehls nicht zur Verfügung.
@@ -214,30 +221,29 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 **state?**
 : Gibt den aktuellen Zustand des Objekts als Dictionary zurück. Die Schlüssel des Dictionary und ihre Bedeutungen lauten:
 
+    **as**
+    : Letzte Einstellung vorgenommen von **as**.
 
-**as**
-: Letzte Einstellung vorgenommen von **as**.
+    **excluded**
+    : Liste der derzeit bekannten Ausschlussmuster.
 
-**excluded**
-: Liste der derzeit bekannten Ausschlussmuster.
+    **from**
+    : Aktuelles Verzeichnis für die Quellcodes, festgelegt durch **from**.
 
-**from**
-: Aktuelles Verzeichnis für die Quellcodes, festgelegt durch **from**.
+    **into**
+    : Aktuelles Verzeichnis für das Ziel, festgelegt durch **into** (und Aliase).
 
-**into**
-: Aktuelles Verzeichnis für das Ziel, festgelegt durch **into** (und Aliase).
+    **operation**
+    : Derzeit auszuführende Operation, festgelegt durch **copy**, **move**, **remove**, **expand** oder **invoke**.
 
-**operation**
-: Derzeit auszuführende Operation, festgelegt durch **copy**, **move**, **remove**, **expand** oder **invoke**.
+    **recursive**
+    : Aktueller Rekursionsstatus. Wird durch **recursive** und **!recursive** gesetzt bzw. zurückgesetzt.
 
-**recursive**
-: Aktueller Rekursionsstatus. Wird durch **recursive** und **!recursive** gesetzt bzw. zurückgesetzt.
+    **strict**
+    : Aktuelle Strenge. Wird mit **strict** und **!strict** gesetzt bzw. aufgehoben.
 
-**strict**
-: Aktuelle Strenge. Wird mit **strict** und **!strict** gesetzt bzw. aufgehoben.
-
-**type**
-: Begrenzer für den aktuellen PFADTYP. Einstellbar auf **files**, **directories**, **links** oder **all**.
+    **type**
+    : Begrenzer für den aktuellen PFADTYP. Einstellbar auf **files**, **directories**, **links** oder **all**.
 
 
 **as?**
@@ -265,7 +271,7 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Gibt den aktuellen Pfadtyp-Begrenzer zurück.
 
 
-# BEISPIELE
+# Beispiele
 
 In den folgenden Beispielen wird davon ausgegangen, dass die Variable **F** einen Verweis auf ein Objekt für eine Operation mit mehreren Dateien enthält.
 
@@ -328,7 +334,7 @@ $F do                   \
     as   pkgIndex.tcl
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *fileutil* als Kategorie an.
 
@@ -336,6 +342,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Programmierwerkzeuge

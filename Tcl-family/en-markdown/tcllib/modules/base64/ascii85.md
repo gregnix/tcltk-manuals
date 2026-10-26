@@ -1,5 +1,6 @@
 ---
 CommandName: ascii85
+title: ascii85
 ManualSection: n
 Version: 1.1.1
 TclPart: tcllib
@@ -18,20 +19,24 @@ ascii85 - ascii85-encode/decode binary data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [ascii85]{.lit} [1.1]{.optlit} 
-[::ascii85::encode]{.cmd} [-maxlen maxlen]{.optarg} [-wrapchar wrapchar]{.optarg} [bstring]{.arg} 
-[::ascii85::decode]{.cmd} [estring]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [ascii85]{.lit} [1.1]{.optlit}
+[::ascii85::encode]{.cmd} [[-maxlen]{.lit} [maxlen]{.arg}]{.optarg} [[-wrapchar]{.lit} [wrapchar]{.arg}]{.optarg} [bstring]{.arg}
+[::ascii85::decode]{.cmd} [estring]{.arg}
 :::
 
 # Description
 
 This package provides commands for encoding and decoding binary strings to and from the ascii85 encoding. (This encoding is also known as base85.)
 
-# Api
+# API
 
 **::ascii85::encode** ?**-maxlen** *maxlen*? ?**-wrapchar** *wrapchar*? *bstring*
-: Returns an ascii85-encoded version of the binary string *bstring* as its result. The result string contains the *wrapchar* character after every *maxlen* characters of output. The *wrapchar* defaults to newline and *maxlen* defaults to 76. To prevent wrapping, set *maxlen* to **0**. The command will throw an error if *maxlen* is not an integer or is negative, or if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns an ascii85-encoded version of the binary string *bstring* as its result.
+
+    The result string contains the *wrapchar* character after every *maxlen* characters of output. The *wrapchar* defaults to newline and *maxlen* defaults to 76. To prevent wrapping, set *maxlen* to **0**.
+
+    The command will throw an error if *maxlen* is not an integer or is negative, or if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::ascii85::decode** *estring*
 : Returns a binary string that has been ascii85-decoded from the *estring*. Any whitespace (spaces, tabs, newlines) in *estring* is ignored.
@@ -78,11 +83,9 @@ G^4U[H$X^\H?a^]G^4U[H$X^\H?a^]G^4U[H$X^\H?a^]G^4U[H$X^\H?a^]G^4U[H$X^\H?a^]G^4U[
 
 # References
 
-**\[1\]**
-: *http://en.wikipedia.org/wiki/Ascii85*
+1. <http://en.wikipedia.org/wiki/Ascii85>
 
-**\[2\]**
-: Postscript Language Reference Manual, 3rd Edition, page 131. *http://www.adobe.com/devnet/postscript/pdfs/PLRM.pdf*
+2. Postscript Language Reference Manual, 3rd Edition, page 131. <http://www.adobe.com/devnet/postscript/pdfs/PLRM.pdf>
 
 
 # Bugs, ideas, feedback

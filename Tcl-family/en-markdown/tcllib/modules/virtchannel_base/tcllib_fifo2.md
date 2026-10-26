@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::fifo2
+title: tcl::chan::fifo2
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,12 +24,12 @@ tcl::chan::fifo2 - In-memory interconnected fifo channels
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::halfpipe]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::fifo2]{.lit} [1.1]{.optlit} 
-[::tcl::chan::fifo2]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::halfpipe]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::fifo2]{.lit} [1.1]{.optlit}
+[::tcl::chan::fifo2]{.cmd}
 :::
 
 # Description
@@ -37,7 +38,7 @@ The **tcl::chan::fifo2** package provides a command creating pairs of channels w
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::fifo2**
 : This command creates a new connected pair of fifo channels and returns their handles, as a list containing two elements.

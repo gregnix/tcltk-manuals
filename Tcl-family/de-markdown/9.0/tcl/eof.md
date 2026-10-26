@@ -1,5 +1,6 @@
 ---
 CommandName: eof
+title: eof
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -11,17 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 eof - Prüft auf Dateiende-Bedingung eines Kanals
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[eof]{.cmd} [channel]{.arg} 
+[eof]{.cmd} [channel]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **eof** wurde durch den Befehl **chan eof** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Der Befehl **eof** wurde durch den Befehl [chan eof][chan] ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
 
+
+[chan]: chan.md

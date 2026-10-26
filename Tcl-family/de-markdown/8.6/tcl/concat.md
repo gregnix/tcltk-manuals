@@ -1,5 +1,6 @@
 ---
 CommandName: concat
+title: concat
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -17,21 +18,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 concat - Verbindet Listen miteinander
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[concat]{.cmd} [arg arg]{.optdot} 
+[concat]{.cmd} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl verbindet die Argumente mit Leerzeichen, nachdem führende und nachfolgende Leerraumzeichen an jedem Argument entfernt wurden. Sind alle Argumente Listen, entspricht das dem Zusammenfügen zu einer Liste. Leere Argumente (nach dem Trimmen) werden ignoriert. Beliebig viele Argumente; ohne *arg*s: leere Zeichenkette.
 
-# BEISPIELE
+# Beispiele
 
 **concat** verkettet Listen und flacht sie dabei ab:
 
@@ -55,8 +56,3 @@ a   b   c d e f
 ```
 
 (drei Leerzeichen zwischen **a**, **b** und **c**).
-
-Für echte Listenverkettung **list** mit Expansion:
-
-% list {*}"a   b   c" {*}{ d e f }
-a b c d e f

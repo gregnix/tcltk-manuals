@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::widget
+title: ttk::widget
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -15,196 +16,196 @@ Copyright:
  - Copyright (c) 2004 Joe English
 ---
 
-# NAME
+# Name
 
 ttk::widget - Standardoptionen und -befehle der Tk-Themed-Widgets
 
-# BESCHREIBUNG
+# Beschreibung
 
 Diese Handbuchseite beschreibt gemeinsame Widget-Optionen und -befehle.
 
-# STANDARD-OPTIONEN
+# Standardoptionen
 
 Die folgenden Optionen werden von allen Tk-Themed-Widgets unterstützt:
 
-**-class** (undefined/undefined)
+**-class** (**undefined**/**undefined**)
 : Legt die Fensterklasse fest. Die Klasse wird beim Abfragen der Optionendatenbank für die übrigen Optionen des Fensters, zur Bestimmung der Standard-Bindtags und zur Auswahl des Standard-Layouts und -Stils verwendet. Dies ist eine schreibgeschützte Option: sie darf nur bei der Fenstererzeugung angegeben werden und kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
-**-cursor** (cursor/Cursor)
-: Legt den für das Widget zu verwendenden Mauszeiger fest. Siehe **Tk_GetCursor** und *cursors(n)* im Tk-Referenzhandbuch für die zulässigen Werte. Ist er die leere Zeichenkette (Standard), wird der Zeiger vom Eltern-Widget geerbt.
+**-cursor** (**cursor**/**Cursor**)
+: Legt den für das Widget zu verwendenden Mauszeiger fest. Siehe [Tk\_GetCursor][GetCursor] und *cursors(n)* im Tk-Referenzhandbuch für die zulässigen Werte. Ist er die leere Zeichenkette (Standard), wird der Zeiger vom Eltern-Widget geerbt.
 
-**-takefocus** (takeFocus/TakeFocus)
+**-takefocus** (**takeFocus**/**TakeFocus**)
 : Legt fest, ob das Fenster den Fokus bei Tastaturtraversierung annimmt. Entweder **0**, **1**, ein Befehlspräfix (dem der Widget-Pfad angehängt wird und der **0** oder **1** zurückgeben soll) oder die leere Zeichenkette. Siehe *options(n)* im Tk-Referenzhandbuch für die vollständige Beschreibung.
 
-**-style** (style/Style)
+**-style** (**style**/**Style**)
 : Kann verwendet werden, um einen benutzerdefinierten Widget-Stil anzugeben.
 
 
-# OPTIONEN FÜR SCROLLBARE WIDGETS
+# Optionen für scrollbare Widgets
 
 Die folgenden Optionen werden von Widgets unterstützt, die mit einer Scrollbar gesteuert werden können. Siehe *scrollbar(n)* für Details.
 
-**-xscrollcommand** (xScrollCommand/ScrollCommand)
+**-xscrollcommand** (**xScrollCommand**/**ScrollCommand**)
 : Ein Befehlspräfix zur Kommunikation mit horizontalen Scrollbars. Ändert sich die Ansicht im Widget-Fenster, erzeugt das Widget einen Tcl-Befehl durch Anhängen des Scroll-Befehls und zweier Zahlen. Jede Zahl ist ein Bruchteil zwischen 0 und 1 und gibt eine Position im Dokument an; 0 ist der Anfang, 1 das Ende. Der erste Bruchteil ist die erste im Fenster sichtbare Information, der zweite die Information unmittelbar nach dem letzten sichtbaren Teil.
 
+    Typischerweise besteht **-xscrollcommand** aus dem Pfadnamen einer [scrollbar] gefolgt von „set“, z. B. „.x.scrollbar set“. Die Scrollbar wird dann bei jeder Ansichtsänderung aktualisiert.
 
-Typischerweise besteht **-xscrollcommand** aus dem Pfadnamen einer **scrollbar** gefolgt von „set“, z. B. „.x.scrollbar set“. Die Scrollbar wird dann bei jeder Ansichtsänderung aktualisiert.
+    Ist diese Option die leere Zeichenkette (Standard), wird kein Befehl ausgeführt.
 
-Ist diese Option die leere Zeichenkette (Standard), wird kein Befehl ausgeführt.
-
-**-yscrollcommand** (yScrollCommand/ScrollCommand)
+**-yscrollcommand** (**yScrollCommand**/**ScrollCommand**)
 : Ein Befehlspräfix zur Kommunikation mit vertikalen Scrollbars. Siehe die Beschreibung von **-xscrollcommand** oben.
 
 
-# LABEL-OPTIONEN
+# Label-Optionen
 
 Die folgenden Optionen werden von Labels, Buttons und anderen button-ähnlichen Widgets unterstützt:
 
-**-anchor** (anchor/Anchor)
+**-anchor** (**anchor**/**Anchor**)
 : Legt fest, wie die Information im Widget relativ zu den inneren Rändern positioniert ist. Zulässige Werte: **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw** und **center**. Ist sie nicht angegeben, gilt der Theme-Standard. Siehe auch **-justify** (bei Widgets mit dieser Option).
 
-**-compound** (compound/Compound)
+**-compound** (**compound**/**Compound**)
 : Legt fest, wie Bild und Text zueinander stehen, wenn sowohl **-text** als auch **-image** gesetzt sind. Ist die Option die leere Zeichenkette (Standard), gelten die Regeln im Abschnitt „Elements“ von *ttk::intro(n)*. Weitere gültige Werte:
 
+    text
+    : Nur Text anzeigen.
 
-text
-: Nur Text anzeigen.
+    image
+    : Nur Bild anzeigen.
 
-image
-: Nur Bild anzeigen.
+    center
+    : Text zentriert über dem Bild anzeigen.
 
-center
-: Text zentriert über dem Bild anzeigen.
+    top
+    : Bild oberhalb des Textes anzeigen.
 
-top
-: Bild oberhalb des Textes anzeigen.
+    bottom
+    : Bild unterhalb des Textes anzeigen.
 
-bottom
-: Bild unterhalb des Textes anzeigen.
+    left
+    : Bild links vom Text anzeigen.
 
-left
-: Bild links vom Text anzeigen.
+    right
+    : Bild rechts vom Text anzeigen.
 
-right
-: Bild rechts vom Text anzeigen.
+    none
+    : Bild anzeigen, falls vorhanden, sonst Text.
 
-none
-: Bild anzeigen, falls vorhanden, sonst Text.
 
-**-font** (font/Font)
+**-font** ([font]/**Font**)
 : Schriftart für den vom Widget angezeigten Text.
 
-**-foreground** (textColor/TextColor)
+**-foreground** (**textColor**/**TextColor**)
 : Vordergrundfarbe des Widgets. Ohne Angabe gilt der Theme-Standard.
 
-**-image** (image/Image)
+**-image** (**image**/**Image**)
 : Legt ein anzuzeigendes Bild fest. Liste mit mindestens einem Element; das erste ist der Standard-Bildname. Der Rest ist eine Folge von *statespec / value*-Paaren wie bei **style map**, die verschiedene Bilder für bestimmte Widget-Zustände festlegen. Alle Bilder in der Liste sollten dieselbe Größe haben.
 
-**-justify** (justify/Justify)
+**-justify** (**justify**/**Justify**)
 : Gibt es mehrere Textzeilen, legt dies fest, wie die Zeilen zueinander angeordnet werden. Einer von **left**, **center** oder **right**. Ist die Option nicht angegeben, gilt der Theme-Standard. Siehe auch **-anchor** (bei Widgets mit dieser Option).
 
-**-padding** (padding/Padding)
+**-padding** (**padding**/**Padding**)
 : Legt den inneren Abstand des Widgets fest. Die Liste enthält bis zu vier Längenangaben *left top right bottom*. Bei weniger als vier Elementen gilt: *bottom* = *top*, *right* = *left*, *top* = *left*. Drei Zahlen: links, vertikal, rechts; zwei Zahlen: horizontal und vertikal; eine Zahl: gleicher Abstand ringsum.
 
-**-text** (text/Text)
+**-text** (**text**/**Text**)
 : Zeichenkette im Widget (sofern nicht durch **-textvariable** überschrieben, bei Widgets mit dieser Option).
 
-**-textvariable** (textVariable/Variable)
+**-textvariable** (**textVariable**/**Variable**)
 : Name einer globalen Variable, deren Wert anstelle der **-text**-Resource verwendet wird.
 
-**-underline** (underline/Underline)
+**-underline** (**underline**/**Underline**)
 : Wenn gesetzt, Index (0-basiert) des zu unterstreichenden Zeichens in der Textzeichenkette. **end** entspricht dem letzten Zeichen, **end**-1 dem vorletzten usw. Das unterstrichene Zeichen dient der Mnemonik-Aktivierung.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Ist der Wert größer als null, legt er den Platz in Zeichenbreiten für die Textbeschriftung fest. Ist er kleiner als null, eine Mindestbreite. Bei null oder ohne Angabe wird die natürliche Textbreite verwendet. Manche Themes setzen im Stil eine von Null verschiedene **-width**.
 
-**-wraplength** (wrapLength/WrapLength)
-: Maximale Zeilenlänge. Der Wert kann jede von **Tk_GetPixels** akzeptierte Form haben. Ist die Option kleiner oder gleich null, erfolgt kein automatischer Umbruch; sonst wird der Text so geteilt, dass keine Zeile länger ist.
+**-wraplength** (**wrapLength**/**WrapLength**)
+: Maximale Zeilenlänge. Der Wert kann jede von [Tk\_GetPixels][GetPixels] akzeptierte Form haben. Ist die Option kleiner oder gleich null, erfolgt kein automatischer Umbruch; sonst wird der Text so geteilt, dass keine Zeile länger ist.
 
 
-
-# ENTRY-OPTIONEN
+# Entry-Optionen
 
 Die folgenden Optionen werden von entry, spinbox und combobox unterstützt:
 
-**-placeholder** (placeHolder/PlaceHolder)
+**-placeholder** (**placeHolder**/**PlaceHolder**)
 : Hilfetext, der angezeigt wird, wenn sonst kein Text sichtbar ist, d. h. wenn das Widget leer ist. Der Platzhaltertext wird mit **-font**, **-justify** und **-placeholderforeground** dargestellt.
 
-**-placeholderforeground** (placeHolderForeground/PlaceHolderForeground)
+**-placeholderforeground** (**placeHolderForeground**/**PlaceHolderForeground**)
 : Vordergrundfarbe des Platzhaltertexts.
 
 
-# KOMPATIBILITÄTS-OPTIONEN
+# Kompatibilitätsoptionen
 
 Diese Option ist nur bei Themed-Widgets mit „entsprechenden“ klassischen Tk-Widgets verfügbar.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Kann auf **normal** oder **disabled** gesetzt werden, um das **disabled**-Zustandsbit zu steuern. Schreiboption: das Setzen ändert den Widget-Zustand; der Widget-Befehl **state** beeinflusst **-state** nicht.
 
 
-# BEFEHLE
+# Befehle
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
 : Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Bei *option-value*-Paaren werden die Optionen gesetzt; der Befehl gibt dann eine leere Zeichenkette zurück. Ist nur *option* ohne *value* angegeben, gibt er eine Liste zur benannten Option zurück: Optionsname, Datenbankname, Datenbankklasse, Standardwert und aktueller Wert. Ohne *option* eine Liste aller verfügbaren Optionen für *pathName*.
 
-*pathName* **identify element** *x y*
+[pathName]{.ins} [identify]{.sub} [element]{.lit} [x]{.arg} [y]{.arg}
 : Gibt den Namen des Elements unter dem Punkt *x*, *y* zurück, oder eine leere Zeichenkette, wenn kein Element getroffen wird. *x* und *y* sind Pixelkoordinaten relativ zum Widget. Manche Widgets akzeptieren weitere **identify**-Unterbefehle in ihrer eigenen Dokumentation.
 
-*pathName* **instate** *statespec* ?*script*?
+[pathName]{.ins} [instate]{.sub} [statespec]{.arg} [script]{.optarg}
 : Prüft den Widget-Zustand. Ohne *script*: 1, wenn der Zustand *statespec* entspricht, sonst 0. Mit *script* äquivalent zu
 
     ```
     if {[pathName instate stateSpec]} script
     ```
 
-*pathName* **state** ?*stateSpec*?
+[pathName]{.ins} [state]{.sub} [stateSpec]{.optarg}
 : Ändert oder fragt den Widget-Zustand ab. Mit *stateSpec* werden die Flags gesetzt; ein führendes Ausrufezeichen löscht das Flag. Rückgabe: neue Zustandsspezifikation der geänderten Flags:
 
     ```
     set changes [pathName state spec]
     pathName state $changes
     ```
+
     stellt den ursprünglichen Zustand wieder her. Ohne *stateSpec*: Liste der aktuell aktiven Zustandsflags.
 
-*pathName* **style**
+[pathName]{.ins} [style]{.sub}
 : Gibt den vom Widget verwendeten Stil zurück.
 
-*pathName* **xview** *args*
+[pathName]{.ins} [xview]{.sub} [args]{.arg}
 : Fragt die horizontale Position des Inhalts im Widget-Fenster ab oder ändert sie. Mögliche Formen:
 
-*pathName* **xview**
-: Liste mit zwei Elementen, je ein Bruchteil zwischen 0 und 1; beschreibt den sichtbaren horizontalen Bereich. Z. B. .2 und .6: 20 % links außerhalb, 40 % sichtbar, 40 % rechts außerhalb — dieselben Werte wie an Scrollbars über **-xscrollcommand**.
+    [pathName]{.ins} [xview]{.sub}
+    : Liste mit zwei Elementen, je ein Bruchteil zwischen 0 und 1; beschreibt den sichtbaren horizontalen Bereich. Z. B. .2 und .6: 20 % links außerhalb, 40 % sichtbar, 40 % rechts außerhalb — dieselben Werte wie an Scrollbars über **-xscrollcommand**.
 
-*pathName* **xview** *index*
-: Passt die Ansicht so an, dass der Inhalt *index* am linken Fensterrand liegt.
+    [pathName]{.ins} [xview]{.sub} [index]{.arg}
+    : Passt die Ansicht so an, dass der Inhalt *index* am linken Fensterrand liegt.
 
-*pathName* **xview moveto** *fraction*
-: Passt die Ansicht so an, dass der Inhalt an Position *fraction* am linken Rand erscheint. *fraction* zwischen 0 und 1.
+    [pathName]{.ins} [xview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Passt die Ansicht so an, dass der Inhalt an Position *fraction* am linken Rand erscheint. *fraction* zwischen 0 und 1.
 
-*pathName* **xview scroll** *number what*
-: Verschiebt die Ansicht horizontal gemäß *number* und *what*. *number* muss Ganzzahl oder Gleitkommazahl sein; bei Gleitkommazahl wird auf Ganzzahl gerundet (weg von 0). *what* ist **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter links sichtbar, positiv: weiter rechts. Bei **units** um *number* durchschnittliche Zeichenbreiten.
+    [pathName]{.ins} [xview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Verschiebt die Ansicht horizontal gemäß *number* und *what*. *number* muss Ganzzahl oder Gleitkommazahl sein; bei Gleitkommazahl wird auf Ganzzahl gerundet (weg von 0). *what* ist **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter links sichtbar, positiv: weiter rechts. Bei **units** um *number* durchschnittliche Zeichenbreiten.
 
-*pathName* **yview** *args*
+
+[pathName]{.ins} [yview]{.sub} [args]{.arg}
 : Wie **xview**, aber vertikal. Mögliche Formen:
 
-*pathName* **yview**
-: Zwei Bruchteile für den vertikal sichtbaren Bereich; dieselben Werte wie über **-yscrollcommand**.
+    [pathName]{.ins} [yview]{.sub}
+    : Zwei Bruchteile für den vertikal sichtbaren Bereich; dieselben Werte wie über **-yscrollcommand**.
 
-*pathName* **yview** *index*
-: Inhalt *index* am oberen Fensterrand.
+    [pathName]{.ins} [yview]{.sub} [index]{.arg}
+    : Inhalt *index* am oberen Fensterrand.
 
-*pathName* **yview moveto** *fraction*
-: Element an Position *fraction* am oberen Rand. *fraction* zwischen 0 und 1.
+    [pathName]{.ins} [yview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Element an Position *fraction* am oberen Rand. *fraction* zwischen 0 und 1.
 
-*pathName* **yview scroll** *number what*
-: Verschiebt vertikal. *number* Ganzzahl oder Gleitkommazahl (bei Gleitkomma gerundet). *what* **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter oben, positiv: weiter unten. Bei **units** um *number* durchschnittliche Zeichenbreiten.
+    [pathName]{.ins} [yview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Verschiebt vertikal. *number* Ganzzahl oder Gleitkommazahl (bei Gleitkomma gerundet). *what* **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter oben, positiv: weiter unten. Bei **units** um *number* durchschnittliche Zeichenbreiten.
 
 
 
-# WIDGET-ZUSTÄNDE
+# Widget-Zustände
 
 Der Widget-Zustand ist eine Bitmap-Menge unabhängiger Zustandsflags. Dazu gehören:
 
@@ -214,7 +215,7 @@ Der Widget-Zustand ist eine Bitmap-Menge unabhängiger Zustandsflags. Dazu gehö
 **disabled**
 : Widget ist programmgesteuert deaktiviert (auch „unavailable“, „inactive“).
 
-**focus**
+[focus]
 : Widget hat Tastaturfokus.
 
 **pressed**
@@ -244,7 +245,7 @@ Der Widget-Zustand ist eine Bitmap-Menge unabhängiger Zustandsflags. Dazu gehö
 
 Eine *Zustandsspezifikation* oder *stateSpec* ist eine Liste von Zustandsnamen, optional mit Ausrufezeichen (!) für „aus“.
 
-# BEISPIELE
+# Beispiele
 
 ```
 set b [ttk::button .b]
@@ -259,3 +260,9 @@ $b instate {pressed !disabled} { .b invoke }
 $b state !disabled
 ```
 
+
+[focus]: focus.md
+[font]: font.md
+[GetCursor]: ../tk-c/GetCursor.md
+[GetPixels]: ../tk-c/GetPixels.md
+[scrollbar]: scrollbar.md

@@ -1,5 +1,6 @@
 ---
 CommandName: ttk_image
+title: ttk_image
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -22,12 +23,12 @@ Copyright:
 
 # Name
 
-ttk_image - Define an element based on an image
+ttk\_image - Define an element based on an image
 
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [image]{.lit} [imageSpec]{.arg} [options]{.optarg} 
+[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [image]{.lit} [imageSpec]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -39,7 +40,7 @@ The *image* element factory creates a new element in the current theme whose vis
 Valid *options* are:
 
 **-border** *padding*
-: *padding* is a list of up to four integers, specifying the left, top, right, and bottom borders, respectively. If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. In other words, a list of three numbers specify the left, vertical, and right border; a list of two numbers specify the horizontal and the vertical border; a single number specifies the same border all the way around the element. See **IMAGE STRETCHING**, below.
+: *padding* is a list of up to four integers, specifying the left, top, right, and bottom borders, respectively. If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. In other words, a list of three numbers specify the left, vertical, and right border; a list of two numbers specify the horizontal and the vertical border; a single number specifies the same border all the way around the element. See [Image stretching], below.
 
 **-height** *height*
 : Specifies a minimum height for the element. If less than zero, the base image's height is used as a default.

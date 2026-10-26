@@ -1,5 +1,6 @@
 ---
 CommandName: struct::prioqueue
+title: struct::prioqueue
 ManualSection: n
 Version: 1.5
 TclPart: tcllib
@@ -19,18 +20,18 @@ struct::prioqueue - Create and manipulate prioqueue objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::prioqueue]{.lit} [1.5]{.optlit} 
-[::struct::prioqueue]{.cmd} [-ascii|-dictionary|-integer|-real]{.optlit} [prioqueueName]{.optarg} 
-[prioqueueName]{.ins} [option]{.sub} [arg arg]{.optdot} 
-[prioqueueName]{.ins} [clear]{.sub} 
-[prioqueueName]{.ins} [remove]{.sub} [item]{.arg} 
-[prioqueueName]{.ins} [destroy]{.sub} 
-[prioqueueName]{.ins} [get]{.sub} [count]{.optarg} 
-[prioqueueName]{.ins} [peek]{.sub} [count]{.optarg} 
-[prioqueueName]{.ins} [peekpriority]{.sub} [count]{.optarg} 
-[prioqueueName]{.ins} [put]{.sub} [item]{.arg} [prio]{.arg} [item prio]{.optdot} 
-[prioqueueName]{.ins} [size]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::prioqueue]{.lit} [1.5]{.optlit}
+[::struct::prioqueue]{.cmd} [-ascii|-dictionary|-integer|-real]{.optlit} [prioqueueName]{.optarg}
+[prioqueueName]{.ins} [option]{.sub} [arg arg]{.optdot}
+[prioqueueName]{.ins} [clear]{.sub}
+[prioqueueName]{.ins} [remove]{.sub} [item]{.arg}
+[prioqueueName]{.ins} [destroy]{.sub}
+[prioqueueName]{.ins} [get]{.sub} [count]{.optarg}
+[prioqueueName]{.ins} [peek]{.sub} [count]{.optarg}
+[prioqueueName]{.ins} [peekpriority]{.sub} [count]{.optarg}
+[prioqueueName]{.ins} [put]{.sub} [item]{.arg} [prio]{.arg} [item prio]{.optdot}
+[prioqueueName]{.ins} [size]{.sub}
 :::
 
 # Description

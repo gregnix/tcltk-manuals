@@ -1,5 +1,6 @@
 ---
 CommandName: doctoc_lang_cmdref
+title: doctoc_lang_cmdref
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -21,22 +22,22 @@ Copyright:
 
 # Name
 
-doctoc_lang_cmdref - doctoc language command reference
+doctoc\_lang\_cmdref - doctoc language command reference
 
 # Synopsis
 
 ::: {.synopsis} :::
-[comment]{.cmd} [plaintext]{.arg} 
-[division_end]{.cmd} 
-[division_start]{.cmd} [text]{.arg} [symfile]{.optarg} 
-[include]{.cmd} [filename]{.arg} 
-[item]{.cmd} [file]{.arg} [text]{.arg} [desc]{.arg} 
-[lb]{.cmd} 
-[rb]{.cmd} 
-[toc_begin]{.cmd} [text]{.arg} [title]{.arg} 
-[toc_end]{.cmd} 
-[vset]{.cmd} [varname]{.arg} [value]{.arg} 
-[vset]{.cmd} [varname]{.arg} 
+[comment]{.cmd} [plaintext]{.arg}
+[division\_end]{.cmd}
+[division\_start]{.cmd} [text]{.arg} [symfile]{.optarg}
+[include]{.cmd} [filename]{.arg}
+[item]{.cmd} [file]{.arg} [text]{.arg} [desc]{.arg}
+[lb]{.cmd}
+[rb]{.cmd}
+[toc\_begin]{.cmd} [text]{.arg} [title]{.arg}
+[toc\_end]{.cmd}
+[vset]{.cmd} [varname]{.arg} [value]{.arg}
+[vset]{.cmd} [varname]{.arg}
 :::
 
 # Description
@@ -48,17 +49,23 @@ This document specifies both names and syntax of all the commands which together
 **comment** *plaintext*
 : Toc markup. The argument text is marked up as a comment standing outside of the actual text of the document. Main use is in free-form text.
 
-**division_end**
-: Toc structure. This command closes the division opened by the last **division_begin** command coming before it, and not yet closed.
+**division\_end**
+: Toc structure. This command closes the division opened by the last **division\_begin** command coming before it, and not yet closed.
 
-**division_start** *text* ?*symfile*?
-: Toc structure. This command opens a division in the table of contents. Its counterpart is **division_end**. Together they allow a user to give a table of contents additional structure. The title of the new division is provided by the argument *text*. If the symbolic filename *symfile* is present then the section title should link to the referenced document, if links are supported by the output format.
+**division\_start** *text* ?*symfile*?
+: Toc structure. This command opens a division in the table of contents. Its counterpart is **division\_end**. Together they allow a user to give a table of contents additional structure.
+
+    The title of the new division is provided by the argument *text*.
+
+    If the symbolic filename *symfile* is present then the section title should link to the referenced document, if links are supported by the output format.
 
 **include** *filename*
 : Templating. The contents of the named file are interpreted as text written in the doctoc markup and processed in the place of the include command. The markup in the file has to be self-contained. It is not possible for a markup command to cross the file boundaries.
 
 **item** *file* *text* *desc*
-: Toc structure. This command adds an individual element to the table of contents. Each such element refers to a document. The document is specified through the symbolic name *file*. The *text* argument is used to label the reference, whereas the *desc* provides a short descriptive text of that document. The symbolic names are used to preserve the convertibility of this format to any output format. The actual name of the file will be inserted by the chosen formatting engine when converting the input. This will be based on a mapping from symbolic to actual names given to the engine.
+: Toc structure. This command adds an individual element to the table of contents. Each such element refers to a document. The document is specified through the symbolic name *file*. The *text* argument is used to label the reference, whereas the *desc* provides a short descriptive text of that document.
+
+    The symbolic names are used to preserve the convertibility of this format to any output format. The actual name of the file will be inserted by the chosen formatting engine when converting the input. This will be based on a mapping from symbolic to actual names given to the engine.
 
 **lb**
 : Text. The command is replaced with a left bracket. Use in free-form text. Required to avoid interpretation of a left bracket as the start of a markup command. Its usage is restricted to the arguments of other markup commands.
@@ -66,10 +73,12 @@ This document specifies both names and syntax of all the commands which together
 **rb**
 : Text. The command is replaced with a right bracket. Use in free-form text. Required to avoid interpretation of a right bracket as the end of a markup command. Its usage is restricted to the arguments of other commands.
 
-**toc_begin** *text* *title*
-: Document structure. The command to start a table of contents. The arguments are a label for the whole group of documents the index refers to (*text*) and the overall title text for the index (*title*), without markup. The label often is the name of the package (or extension) the documents belong to.
+**toc\_begin** *text* *title*
+: Document structure. The command to start a table of contents. The arguments are a label for the whole group of documents the index refers to (*text*) and the overall title text for the index (*title*), without markup.
 
-**toc_end**
+    The label often is the name of the package (or extension) the documents belong to.
+
+**toc\_end**
 : Document structure. Command to end a table of contents. Anything in the document coming after this command is in error.
 
 **vset** *varname* *value*

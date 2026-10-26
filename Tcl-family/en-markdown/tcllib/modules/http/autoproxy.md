@@ -1,5 +1,6 @@
 ---
 CommandName: autoproxy
+title: autoproxy
 ManualSection: n
 Version: 1.8.1
 TclPart: tcllib
@@ -20,28 +21,28 @@ autoproxy - Automatic HTTP proxy usage and authentication
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [http]{.lit} [2.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [autoproxy]{.lit} [1.8.1]{.optlit} 
-[::autoproxy::init]{.cmd} 
-[::autoproxy::cget]{.cmd} [-option]{.arg} 
-[::autoproxy::configure]{.cmd} [-option value]{.optarg} 
-[::autoproxy::tls_connect]{.cmd} [args]{.arg} 
-[::autoproxy::tunnel_connect]{.cmd} [args]{.arg} 
-[::autoproxy::tls_socket]{.cmd} [args]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [http]{.lit} [2.0]{.optlit}
+[package]{.cmd} [require]{.sub} [autoproxy]{.lit} [1.8.1]{.optlit}
+[::autoproxy::init]{.cmd}
+[::autoproxy::cget]{.cmd} [-option]{.arg}
+[::autoproxy::configure]{.cmd} [[-option]{.lit} [value]{.arg}]{.optarg}
+[::autoproxy::tls\_connect]{.cmd} [args]{.arg}
+[::autoproxy::tunnel\_connect]{.cmd} [args]{.arg}
+[::autoproxy::tls\_socket]{.cmd} [args]{.arg}
 :::
 
 # Description
 
 This package attempts to automate the use of HTTP proxy servers in Tcl HTTP client code. It tries to initialize the web access settings from system standard locations and can be configured to negotiate authentication with the proxy if required.
 
-On Unix the standard for identifying the local HTTP proxy server seems to be to use the environment variable http_proxy or ftp_proxy and no_proxy to list those domains to be excluded from proxying. On Windows we can retrieve the Internet Settings values from the registry to obtain pretty much the same information. With this information we can setup a suitable filter procedure for the Tcl http package and arrange for automatic use of the proxy.
+On Unix the standard for identifying the local HTTP proxy server seems to be to use the environment variable http\_proxy or ftp\_proxy and no\_proxy to list those domains to be excluded from proxying. On Windows we can retrieve the Internet Settings values from the registry to obtain pretty much the same information. With this information we can setup a suitable filter procedure for the Tcl http package and arrange for automatic use of the proxy.
 
-There seem to be a number of ways that the http_proxy environment variable may be set up. Either a plain host:port or more commonly a URL and sometimes the URL may contain authentication parameters or these may be requested from the user or provided via http_proxy_user and http_proxy_pass. This package attempts to deal with all these schemes. It will do it's best to get the required parameters from the environment or registry and if it fails can be reconfigured.
+There seem to be a number of ways that the http\_proxy environment variable may be set up. Either a plain host:port or more commonly a URL and sometimes the URL may contain authentication parameters or these may be requested from the user or provided via http\_proxy\_user and http\_proxy\_pass. This package attempts to deal with all these schemes. It will do it's best to get the required parameters from the environment or registry and if it fails can be reconfigured.
 
-# Tls security considerations
+# TLS security considerations
 
-*Note* This section only applies if TLS support is provided by the **TLS** package. It does not apply when **autoproxy** was configured to use some other package which can provide the same (i.e **twapi**), via the **-tls_package** configuration option.
+*Note* This section only applies if TLS support is provided by the **TLS** package. It does not apply when **autoproxy** was configured to use some other package which can provide the same (i.e **twapi**), via the **-tls\_package** configuration option.
 
 This package uses the **TLS** package to handle the security for **https** urls and other socket connections.
 
@@ -62,45 +63,51 @@ For example, in light of the recent [POODLE attack](http://googleonlinesecurity.
 : Initialize the autoproxy package from system resources. Under unix this means we look for environment variables. Under windows we look for the same environment variables but also look at the registry settings used by Internet Explorer.
 
 **::autoproxy::cget** *-option*
-: Retrieve individual package configuration options. See **OPTIONS**.
+: Retrieve individual package configuration options. See [Options].
 
 **::autoproxy::configure** ?-option *value*?
-: Configure the autoproxy package. Calling **configure** with no options will return a list of all option names and values. See **OPTIONS**.
+: Configure the autoproxy package. Calling **configure** with no options will return a list of all option names and values. See [Options].
 
-**::autoproxy::tls_connect** *args*
-: Connect to a secure socket through a proxy. HTTP proxy servers permit the use of the CONNECT HTTP command to open a link through the proxy to the target machine. This function hides the details. For use with the http package see **tls_socket**. The *args* list may contain any of the options supported by the specific TLS package that is in use but must end with the host and port as the last two items.
+**::autoproxy::tls\_connect** *args*
+: Connect to a secure socket through a proxy. HTTP proxy servers permit the use of the CONNECT HTTP command to open a link through the proxy to the target machine. This function hides the details. For use with the http package see **tls\_socket**.
 
-**::autoproxy::tunnel_connect** *args*
-: Connect to a target host throught a proxy. This uses the same CONNECT HTTP command as the **tls_connect** but does not promote the link security once the connection is established. The *args* list may contain any of the options supported by the specific TLS package that is in use but must end with the host and port as the last two items. Note that many proxy servers will permit CONNECT calls to a limited set of ports - typically only port 443 (the secure HTTP port).
+    The *args* list may contain any of the options supported by the specific TLS package that is in use but must end with the host and port as the last two items.
 
-**::autoproxy::tls_socket** *args*
-: This function is to be used to register a proxy-aware secure socket handler for the https protocol. It may only be used with the Tcl http package and should be registered using the http::register command (see the examples below). The job of actually creating the tunnelled connection is done by the tls_connect command and this may be used when not registering with the http package.
+**::autoproxy::tunnel\_connect** *args*
+: Connect to a target host throught a proxy. This uses the same CONNECT HTTP command as the **tls\_connect** but does not promote the link security once the connection is established.
+
+    The *args* list may contain any of the options supported by the specific TLS package that is in use but must end with the host and port as the last two items.
+
+    Note that many proxy servers will permit CONNECT calls to a limited set of ports - typically only port 443 (the secure HTTP port).
+
+**::autoproxy::tls\_socket** *args*
+: This function is to be used to register a proxy-aware secure socket handler for the https protocol. It may only be used with the Tcl http package and should be registered using the http::register command (see the examples below). The job of actually creating the tunnelled connection is done by the tls\_connect command and this may be used when not registering with the http package.
 
 
 # Options
 
 **-host** hostname
-: ...see next...
+: see below ...
 
-**-proxy_host** hostname
+**-proxy\_host** hostname
 : Set the proxy hostname. This is normally set up by **init** but may be configured here as well.
 
 **-port** number
-: ...see next...
+: see below ...
 
-**-proxy_port** number
+**-proxy\_port** number
 : Set the proxy port number. This is normally set up by **init**. e.g. **configure** **-port** *3128*
 
-**-no_proxy** list
-: You may manipulate the **no_proxy** list that was setup by **init**. The value of this option is a tcl list of strings that are matched against the http request host using the tcl **string match** command. Therefore glob patterns are permitted. For instance, **configure** **-no_proxy** *\*.localdomain*
+**-no\_proxy** list
+: You may manipulate the **no\_proxy** list that was setup by **init**. The value of this option is a tcl list of strings that are matched against the http request host using the tcl **string match** command. Therefore glob patterns are permitted. For instance, **configure** **-no\_proxy** *\*.localdomain*
 
 **-authProc** procedure
 : This option may be used to set an application defined procedure to be called when **configure** **-basic** is called with either no or insufficient authentication details. This can be used to present a dialog to the user to request the additional information.
 
 **-basic**
-: Following options are for configuring the Basic authentication scheme parameters. See **Basic Authentication**. To unset the proxy authentication information retained from a previous call of this function either "--" or no additional parameters can be supplied. This will remove the existing authentication information.
+: Following options are for configuring the Basic authentication scheme parameters. See [Basic authentication]. To unset the proxy authentication information retained from a previous call of this function either "--" or no additional parameters can be supplied. This will remove the existing authentication information.
 
-**-tls_package** packagename
+**-tls\_package** packagename
 : This option may be used to configure the Tcl package to use for TLS support. Valid package names are **tls** (default) and **twapi**.
 
 
@@ -144,11 +151,9 @@ set tok [http::geturl https://www.example.com/]
 
 # References
 
-**\[1\]**
-: Berners-Lee, T., Fielding R. and Frystyk, H. "Hypertext Transfer Protocol -- HTTP/1.0", RFC 1945, May 1996, (*http://www.rfc-editor.org/rfc/rfc1945.txt*)
+1. Berners-Lee, T., Fielding R. and Frystyk, H. "Hypertext Transfer Protocol -- HTTP/1.0", RFC 1945, May 1996, (<http://www.rfc-editor.org/rfc/rfc1945.txt>)
 
-**\[2\]**
-: Franks, J. et al. "HTTP Authentication: Basic and Digest Access Authentication", RFC 2617, June 1999 (*http://www.rfc-editor.org/rfc/rfc2617.txt*)
+2. Franks, J. et al. "HTTP Authentication: Basic and Digest Access Authentication", RFC 2617, June 1999 (<http://www.rfc-editor.org/rfc/rfc2617.txt>)
 
 
 # Bugs

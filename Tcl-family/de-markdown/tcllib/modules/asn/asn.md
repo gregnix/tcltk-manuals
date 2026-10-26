@@ -1,5 +1,6 @@
 ---
 CommandName: asn
+title: asn
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -19,75 +20,75 @@ Copyright:
  - Copyright (c) 2004-2011 Michael Schlenker <mic42@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 asn – ASN.1-BER-Kodierer/Dekodierer für die Kodierung und Dekodierung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [asn]{.lit} [0.8.5]{.optlit} 
-[::asn::asnSequence]{.cmd} [evalue]{.optdot} 
-[::asn::asnSequenceFromList]{.cmd} [elist]{.arg} 
-[::asn::asnSet]{.cmd} [evalue]{.optdot} 
-[::asn::asnSetFromList]{.cmd} [elist]{.arg} 
-[::asn::asnApplicationConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnApplication]{.cmd} [appNumber]{.arg} [data]{.arg} 
-[::asn::asnChoice]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnChoiceConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot} 
-[::asn::asnInteger]{.cmd} [number]{.arg} 
-[::asn::asnEnumeration]{.cmd} [number]{.arg} 
-[::asn::asnBoolean]{.cmd} [bool]{.arg} 
-[::asn::asnContext]{.cmd} [context]{.arg} [data]{.arg} 
-[::asn::asnContextConstr]{.cmd} [context]{.arg} [evalue]{.optdot} 
-[::asn::asnObjectIdentifier]{.cmd} [idlist]{.arg} 
-[::asn::asnUTCTime]{.cmd} [utcstring]{.arg} 
-[::asn::asnNull]{.cmd} 
-[::asn::asnBitString]{.cmd} [string]{.arg} 
-[::asn::asnOctetString]{.cmd} [string]{.arg} 
-[::asn::asnNumericString]{.cmd} [string]{.arg} 
-[::asn::asnPrintableString]{.cmd} [string]{.arg} 
-[::asn::asnIA5String]{.cmd} [string]{.arg} 
-[::asn::asnBMPString]{.cmd} [string]{.arg} 
-[::asn::asnUTF8String]{.cmd} [string]{.arg} 
-[::asn::asnString]{.cmd} [string]{.arg} 
-[::asn::defaultStringType]{.cmd} [type]{.optarg} 
-[::asn::asnPeekByte]{.cmd} [dataVar]{.arg} [byteVar]{.arg} 
-[::asn::asnGetLength]{.cmd} [dataVar]{.arg} [lengthVar]{.arg} 
-[::asn::asnGetResponse]{.cmd} [chan]{.arg} [dataVar]{.arg} 
-[::asn::asnGetInteger]{.cmd} [dataVar]{.arg} [intVar]{.arg} 
-[::asn::asnGetEnumeration]{.cmd} [dataVar]{.arg} [enumVar]{.arg} 
-[::asn::asnGetOctetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} [typeVar]{.optarg} 
-[::asn::asnGetNumericString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetPrintableString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetIA5String]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetBMPString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetUTF8String]{.cmd} [dataVar]{.arg} [stringVar]{.arg} 
-[::asn::asnGetUTCTime]{.cmd} [dataVar]{.arg} [utcVar]{.arg} 
-[::asn::asnGetBitString]{.cmd} [dataVar]{.arg} [bitsVar]{.arg} 
-[::asn::asnGetObjectIdentifier]{.cmd} [dataVar]{.arg} [oidVar]{.arg} 
-[::asn::asnGetBoolean]{.cmd} [dataVar]{.arg} [boolVar]{.arg} 
-[::asn::asnGetNull]{.cmd} [dataVar]{.arg} 
-[::asn::asnGetSequence]{.cmd} [dataVar]{.arg} [sequenceVar]{.arg} 
-[::asn::asnGetSet]{.cmd} [dataVar]{.arg} [setVar]{.arg} 
-[::asn::asnGetApplication]{.cmd} [dataVar]{.arg} [appNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg} 
-[::asn::asnGetContext]{.cmd} [dataVar]{.arg} [contextNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg} 
-[::asn::asnPeekTag]{.cmd} [dataVar]{.arg} [tagVar]{.arg} [tagtypeVar]{.arg} [constrVar]{.arg} 
-[::asn::asnTag]{.cmd} [tagnumber]{.arg} [class]{.optarg} [tagstyle]{.optarg} 
-[::asn::asnRetag]{.cmd} [dataVar]{.arg} [newTag]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [asn]{.lit} [0.8.5]{.optlit}
+[::asn::asnSequence]{.cmd} [evalue]{.optdot}
+[::asn::asnSequenceFromList]{.cmd} [elist]{.arg}
+[::asn::asnSet]{.cmd} [evalue]{.optdot}
+[::asn::asnSetFromList]{.cmd} [elist]{.arg}
+[::asn::asnApplicationConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnApplication]{.cmd} [appNumber]{.arg} [data]{.arg}
+[::asn::asnChoice]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnChoiceConstr]{.cmd} [appNumber]{.arg} [evalue]{.optdot}
+[::asn::asnInteger]{.cmd} [number]{.arg}
+[::asn::asnEnumeration]{.cmd} [number]{.arg}
+[::asn::asnBoolean]{.cmd} [bool]{.arg}
+[::asn::asnContext]{.cmd} [context]{.arg} [data]{.arg}
+[::asn::asnContextConstr]{.cmd} [context]{.arg} [evalue]{.optdot}
+[::asn::asnObjectIdentifier]{.cmd} [idlist]{.arg}
+[::asn::asnUTCTime]{.cmd} [utcstring]{.arg}
+[::asn::asnNull]{.cmd}
+[::asn::asnBitString]{.cmd} [string]{.arg}
+[::asn::asnOctetString]{.cmd} [string]{.arg}
+[::asn::asnNumericString]{.cmd} [string]{.arg}
+[::asn::asnPrintableString]{.cmd} [string]{.arg}
+[::asn::asnIA5String]{.cmd} [string]{.arg}
+[::asn::asnBMPString]{.cmd} [string]{.arg}
+[::asn::asnUTF8String]{.cmd} [string]{.arg}
+[::asn::asnString]{.cmd} [string]{.arg}
+[::asn::defaultStringType]{.cmd} [type]{.optarg}
+[::asn::asnPeekByte]{.cmd} [dataVar]{.arg} [byteVar]{.arg}
+[::asn::asnGetLength]{.cmd} [dataVar]{.arg} [lengthVar]{.arg}
+[::asn::asnGetResponse]{.cmd} [chan]{.arg} [dataVar]{.arg}
+[::asn::asnGetInteger]{.cmd} [dataVar]{.arg} [intVar]{.arg}
+[::asn::asnGetEnumeration]{.cmd} [dataVar]{.arg} [enumVar]{.arg}
+[::asn::asnGetOctetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetString]{.cmd} [dataVar]{.arg} [stringVar]{.arg} [typeVar]{.optarg}
+[::asn::asnGetNumericString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetPrintableString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetIA5String]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetBMPString]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetUTF8String]{.cmd} [dataVar]{.arg} [stringVar]{.arg}
+[::asn::asnGetUTCTime]{.cmd} [dataVar]{.arg} [utcVar]{.arg}
+[::asn::asnGetBitString]{.cmd} [dataVar]{.arg} [bitsVar]{.arg}
+[::asn::asnGetObjectIdentifier]{.cmd} [dataVar]{.arg} [oidVar]{.arg}
+[::asn::asnGetBoolean]{.cmd} [dataVar]{.arg} [boolVar]{.arg}
+[::asn::asnGetNull]{.cmd} [dataVar]{.arg}
+[::asn::asnGetSequence]{.cmd} [dataVar]{.arg} [sequenceVar]{.arg}
+[::asn::asnGetSet]{.cmd} [dataVar]{.arg} [setVar]{.arg}
+[::asn::asnGetApplication]{.cmd} [dataVar]{.arg} [appNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg}
+[::asn::asnGetContext]{.cmd} [dataVar]{.arg} [contextNumberVar]{.arg} [contentVar]{.optarg} [encodingTypeVar]{.optarg}
+[::asn::asnPeekTag]{.cmd} [dataVar]{.arg} [tagVar]{.arg} [tagtypeVar]{.arg} [constrVar]{.arg}
+[::asn::asnTag]{.cmd} [tagnumber]{.arg} [class]{.optarg} [tagstyle]{.optarg}
+[::asn::asnRetag]{.cmd} [dataVar]{.arg} [newTag]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **asn** stellt *teilweise* Dekodier- und Kodierbefehle für BER-kodierte ASN.1-Daten bereit. Es kann auch zur Dekodierung von DER verwendet werden, bei dem es sich um eine eingeschränkte Teilmenge von BER handelt.
 
 ASN.1 ist ein Standard für die *Abstract Syntax Notation*, und BER sind die dazugehörigen *Basic Kodierungen*.
 
-Weitere Informationen zu dieser Norm finden Sie unter *http://asn1.elibel.tm.fr/en/standards/index.htm*.
+Weitere Informationen zu dieser Norm finden Sie unter <http://asn1.elibel.tm.fr/en/standards/index.htm>.
 
-Siehe auch *http://luca.ntop.org/Teaching/Appunti/asn1.html* für *A Layman’s Guide to a Subset of ASN.1, BER, and DER*, einen technischen Hinweis der RSA Laboratories von Burton S. Kaliski Jr. (Überarbeitet am 1. November 1993). Eine Textversion dieses Hinweises ist Teil der Modulquellen und sollte von jedem Implementierer gelesen werden.
+Siehe auch <http://luca.ntop.org/Teaching/Appunti/asn1.html> für *A Layman’s Guide to a Subset of ASN.1, BER, and DER*, einen technischen Hinweis der RSA Laboratories von Burton S. Kaliski Jr. (Überarbeitet am 1. November 1993). Eine Textversion dieses Hinweises ist Teil der Modulquellen und sollte von jedem Implementierer gelesen werden.
 
 # API
 
@@ -173,11 +174,9 @@ Siehe auch *http://luca.ntop.org/Teaching/Appunti/asn1.html* für *A Layman’s 
 
 Allgemeine Hinweise:
 
-**\[1\]**
-: Nahezu alle Getter-Befehle (Decoder) nehmen zwei Argumente entgegen. Bei diesen Argumenten handelt es sich um Namen von Variablen, *mit Ausnahme* von **::asn::asnGetResponse**. Die Variable *dataVar* enthält die zu dekodierenden, kodierten ASN-Werte. Wenn ein Wert-Getter (Dekoder) aufgerufen wird, wird der Wert in der zweiten Variablen gespeichert, und die verbleibende Eingabe wird wieder in der ersten Variable *dataVar* gespeichert.
+1. Nahezu alle Getter-Befehle (Decoder) nehmen zwei Argumente entgegen. Bei diesen Argumenten handelt es sich um Namen von Variablen, *mit Ausnahme* von **::asn::asnGetResponse**. Die Variable *dataVar* enthält die zu dekodierenden, kodierten ASN-Werte. Wenn ein Wert-Getter (Dekoder) aufgerufen wird, wird der Wert in der zweiten Variablen gespeichert, und die verbleibende Eingabe wird wieder in der ersten Variable *dataVar* gespeichert.
 
-**\[2\]**
-: Beim Abrufen (Dekodieren) wird zunächst die Variable *dataVar* geändert, bevor der dekodierte Wert in der zweiten Variablen gespeichert wird. Das bedeutet: Wenn sich beide Argumente auf dieselbe Variable beziehen, enthält diese nach dem Aufruf stets den dekodierten Wert und nicht den Rest der Eingabe.
+2. Beim Abrufen (Dekodieren) wird zunächst die Variable *dataVar* geändert, bevor der dekodierte Wert in der zweiten Variablen gespeichert wird. Das bedeutet: Wenn sich beide Argumente auf dieselbe Variable beziehen, enthält diese nach dem Aufruf stets den dekodierten Wert und nicht den Rest der Eingabe.
 
 
 **::asn::asnPeekByte** *dataVar* *byteVar*
@@ -199,7 +198,15 @@ Allgemeine Hinweise:
 : Dekodiert den Wert der Zeichenfolge, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetString** *dataVar* *stringVar* ?*typeVar*?
-: Dekodiert den lesbaren Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst. Hierbei handelt es sich um eine Komfortfunktion, die in der Lage ist, alle unterstützten ASN.1-Zeichenkettentypen automatisch zu unterscheiden und den Eingabewert entsprechend zu konvertieren. Die typspezifischen Konvertierungsbefehle finden Sie weiter unten unter **::asn::asnGetPrintableString**, **::asnGetIA5String** usw. Wenn das optionale dritte Argument *typeVar* angegeben wird, wird der Typ der eingehenden Zeichenkette in der damit benannten Variable gespeichert. Die Funktion löst den Fehler „Ungültiger Name des Befehls asnGetSome**UnsupportedString**“ aus, wenn auf den nicht unterstützten Zeichenfolgen-Typ **Unsupported** gestoßen wird. Wenn es nötig ist, können Sie die entsprechende Funktion „asn::asnGetSome**UnsupportedString**“ in Ihrer Anwendung erstellen.
+: Dekodiert den lesbaren Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
+
+    Hierbei handelt es sich um eine Komfortfunktion, die in der Lage ist, alle unterstützten ASN.1-Zeichenkettentypen automatisch zu unterscheiden und den Eingabewert entsprechend zu konvertieren.
+
+    Die typspezifischen Konvertierungsbefehle finden Sie weiter unten unter **::asn::asnGetPrintableString**, **::asnGetIA5String** usw.
+
+    Wenn das optionale dritte Argument *typeVar* angegeben wird, wird der Typ der eingehenden Zeichenkette in der damit benannten Variable gespeichert.
+
+    Die Funktion löst den Fehler „Ungültiger Name des Befehls asnGetSome**UnsupportedString**“ aus, wenn auf den nicht unterstützten Zeichenfolgen-Typ **Unsupported** gestoßen wird. Wenn es nötig ist, können Sie die entsprechende Funktion „asn::asnGetSome**UnsupportedString**“ in Ihrer Anwendung erstellen.
 
 **::asn::asnGetNumericString** *dataVar* *stringVar*
 : Dekodiert den numerischen Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die numerische Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte numerische Zeichenkette ist, wird ein Fehler ausgelöst.
@@ -232,16 +239,32 @@ Allgemeine Hinweise:
 : Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten kodierten NULL-Wert und entfernt die dekodierten Bytes vom Anfang der Daten in *dataVar*, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodierter NULL-Wert ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetSequence** *dataVar* *sequenceVar*
-: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung erzeugte ASN-Sequenzwert. Die ASN-Sequenz wird in der Variable *sequenceVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang keine kodierte ASN-Sequenz ist, wird ein Fehler ausgelöst. Der Wert in *sequenceVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
+: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung erzeugte ASN-Sequenzwert. Die ASN-Sequenz wird in der Variable *sequenceVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang keine kodierte ASN-Sequenz ist, wird ein Fehler ausgelöst.
+
+    Der Wert in *sequenceVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
 
 **::asn::asnGetSet** *dataVar* *setVar*
-: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durchführenden Prozess der Kodierung des ASN-Sets. Das ASN-Set wird in der Variable *setVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodierter ASN-Satz ist, wird ein Fehler ausgelöst. Der Wert in *setVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
+: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durchführenden Prozess der Kodierung des ASN-Sets. Das ASN-Set wird in der Variable *setVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodierter ASN-Satz ist, wird ein Fehler ausgelöst.
+
+    Der Wert in *setVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
 
 **::asn::asnGetApplication** *dataVar* *appNumberVar* ?*contentVar*? ?*encodingTypeVar*?
-: Dekodiert den Wert des ASN-Anwendungskonstrukts, der am Anfang der in der Variablen *dataVar* gespeicherten Daten kodiert ist. Die ID des ASN-Anwendungskonstrukts wird in der Variablen *appNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang kein kodiertes ASN-Anwendungskonstrukt ist, wird ein Fehler ausgelöst. Wenn eine *contentVar* festgelegt ist, place alle mit dem ASN-Anwendungskonstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Dekodierbefehlen dieses Pakets verarbeitet werden kann. Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt. Ohne die optionalen Argumente obliegt es dem Aufrufer, den Rest des ASN-Anwendungskonstrukts auf der Grundlage der von diesem Befehl abgerufenen ID mithilfe der Decodierbefehle des Pakets zu decodieren.
+: Dekodiert den Wert des ASN-Anwendungskonstrukts, der am Anfang der in der Variablen *dataVar* gespeicherten Daten kodiert ist. Die ID des ASN-Anwendungskonstrukts wird in der Variablen *appNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang kein kodiertes ASN-Anwendungskonstrukt ist, wird ein Fehler ausgelöst.
+
+    Wenn eine *contentVar* festgelegt ist, place alle mit dem ASN-Anwendungskonstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Dekodierbefehlen dieses Pakets verarbeitet werden kann.
+
+    Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt.
+
+    Ohne die optionalen Argumente obliegt es dem Aufrufer, den Rest des ASN-Anwendungskonstrukts auf der Grundlage der von diesem Befehl abgerufenen ID mithilfe der Decodierbefehle des Pakets zu decodieren.
 
 **::asn::asnGetContext** *dataVar* *contextNumberVar* ?*contentVar*? ?*encodingTypeVar*?
-: Dekodiert das ASN-Kontext-Tag-Konstrukt, das am Anfang der in der Variable *dataVar* gespeicherten Daten durchgeführt wird. Die ID des ASN-Kontext-Tag-Konstrukts wird in der Variable *contextNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodiertes ASN-Kontext-Tag-Konstrukt ist, wird ein Fehler ausgelöst. Wenn eine *contentVar* festgelegt wird, so place alle mit dem ASN-Kontext-Tag-Konstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Paketbefehlen verarbeitet werden kann. Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt. Ohne die optionalen Argumente obliegt es dem Aufrufer, den Rest des ASN-Kontext-Tag-Konstrukts auf der Grundlage der von diesem Befehl abgerufenen ID mithilfe der Decoder-Befehle des Pakets zu dekodieren.
+: Dekodiert das ASN-Kontext-Tag-Konstrukt, das am Anfang der in der Variable *dataVar* gespeicherten Daten durchgeführt wird. Die ID des ASN-Kontext-Tag-Konstrukts wird in der Variable *contextNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodiertes ASN-Kontext-Tag-Konstrukt ist, wird ein Fehler ausgelöst.
+
+    Wenn eine *contentVar* festgelegt wird, so place alle mit dem ASN-Kontext-Tag-Konstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Paketbefehlen verarbeitet werden kann.
+
+    Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt.
+
+    Ohne die optionalen Argumente obliegt es dem Aufrufer, den Rest des ASN-Kontext-Tag-Konstrukts auf der Grundlage der von diesem Befehl abgerufenen ID mithilfe der Decoder-Befehle des Pakets zu dekodieren.
 
 
 ## Umgang mit Tags
@@ -258,7 +281,7 @@ Wenn Sie mit ASN.1 arbeiten, müssen Sie häufig getaggte Werte dekodieren, dere
 : Ersetzt das Tag am Anfang der Daten in *dataVar* durch *newTag*. Das neue Tag kann mit dem Befehl **::asn::asnTag** erstellt werden.
 
 
-# BEISPIELE
+# Beispiele
 
 Beispiele für die Verwendung dieses Pakets finden Sie in der Implementierung des Pakets **ldap**.
 
@@ -284,7 +307,7 @@ puts "flag=$flag total=$total line='$line' note='$note'"
 flag=1 total=734 line='€2 ÷ 3 → €⅔ ✔' note='7-bit ASCII ~^'
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *asn* als Kategorie an.
 
@@ -292,11 +315,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2004 Andreas Kupries <andreas_kupries@users.sourceforge.net>

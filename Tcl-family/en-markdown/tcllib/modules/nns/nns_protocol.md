@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::protocol
+title: nameserv::protocol
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -23,14 +24,14 @@ nameserv::protocol - Name service facility, client/server protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[Bind]{.cmd} [name]{.arg} [data]{.arg} 
-[Release]{.cmd} 
-[Search]{.cmd} [pattern]{.arg} 
-[ProtocolVersion]{.cmd} 
-[ProtocolFeatures]{.cmd} 
-[Search/Continuous/Start]{.cmd} [tag]{.arg} [pattern]{.arg} 
-[Search/Continuous/Stop]{.cmd} [tag]{.arg} 
-[Search/Continuous/Change]{.cmd} [tag]{.arg} [add|remove]{.lit} [response]{.arg} 
+[Bind]{.cmd} [name]{.arg} [data]{.arg}
+[Release]{.cmd}
+[Search]{.cmd} [pattern]{.arg}
+[ProtocolVersion]{.cmd}
+[ProtocolFeatures]{.cmd}
+[Search/Continuous/Start]{.cmd} [tag]{.arg} [pattern]{.arg}
+[Search/Continuous/Stop]{.cmd} [tag]{.arg}
+[Search/Continuous/Change]{.cmd} [tag]{.arg} [add|remove]{.lit} [response]{.arg}
 :::
 
 # Description
@@ -47,7 +48,7 @@ This protocol defines the basic set of messages to be supported by a name servic
 
 ## Basic layer
 
-The basic communication between client and server is done using the remote-execution protocol specified by the Tcl package **comm**. The relevant document specifying its on-the-wire protocol can be found in *comm_wire*.
+The basic communication between client and server is done using the remote-execution protocol specified by the Tcl package **comm**. The relevant document specifying its on-the-wire protocol can be found in *comm\_wire*.
 
 All the scripts exchanged via this protocol are single commands in list form and thus can be interpreted as plain messages instead of as Tcl commands. The commands/messages specified in the next section are the only commands understood by the server-side. Command and variable substitutions are not allowed within the messages, i.e. arguments have to be literal values.
 
@@ -56,7 +57,9 @@ The protocol is synchronous. I.e. for each message sent a response is expected, 
 ## Message layer
 
 **Bind** *name* *data*
-: The client sends this message when it registers itself at the service with a *name* and some associated *data*. The server has to send an error response if the *name* is already in use. Otherwise the response has to be an empty string. The server has to accept multiple names for the same client.
+: The client sends this message when it registers itself at the service with a *name* and some associated *data*. The server has to send an error response if the *name* is already in use. Otherwise the response has to be an empty string.
+
+    The server has to accept multiple names for the same client.
 
 **Release**
 : The client sends this message to unregister all names it is known under at the service. The response has to be an empty string, always.
@@ -65,13 +68,17 @@ The protocol is synchronous. I.e. for each message sent a response is expected, 
 : The client sends this message to search the service for names matching the glob-*pattern*. The response has to be a dictionary containing the matching names as keys, and mapping them to the data associated with it at **Bind**-time.
 
 **ProtocolVersion**
-: The client sends this message to query the service for the highest version of the name service protocol it supports. The response has to be a positive integer number. Servers supporting only *Nano Name Service Protocol Version 1* have to return **1**.
+: The client sends this message to query the service for the highest version of the name service protocol it supports. The response has to be a positive integer number.
+
+    Servers supporting only *Nano Name Service Protocol Version 1* have to return **1**.
 
 **ProtocolFeatures**
-: The client sends this message to query the service for the features of the name service protocol it supports. The response has to be a list containing feature names. Servers supporting only *Nano Name Service Protocol Version 1* have to return **{Core}**.
+: The client sends this message to query the service for the features of the name service protocol it supports. The response has to be a list containing feature names.
+
+    Servers supporting only *Nano Name Service Protocol Version 1* have to return **{Core}**.
 
 
-# Nano name service protocol extension: continuous search
+# Nano name service protocol extension: Continuous search
 
 This protocol defines an extended set of messages to be supported by a name service, also called the *Search/Continuous* feature. This feature defines additional messages between client and server, and is otherwise identical to version 1 of the protocol. See the last section for the details of our foundation.
 
@@ -80,13 +87,21 @@ A service supporting this feature has to put the feature name **Search/Continuou
 For this extension the protocol is asynchronous. No direct response is expected for any of the messages in the extension. Furthermore the server will start sending messages on its own, instead of only responses to messages, and the client has to be able to handle these notifications.
 
 **Search/Continuous/Start** *tag* *pattern*
-: The client sends this message to start searching the service for names matching the glob-*pattern*. In contrast to the regular *Search* request this one asks the server to continuously monitor the database for the addition and removal of matching entries and to notify the client of all such changes. The particular search is identified by the *tag*. No direct response is expected, rather the clients expect to be notified of changes via explicit *Search/Continuous/Result* messages generated by the service. It is further expected that the *tag* information is passed unchanged to the *Search/Continuous/Result* messages. This tagging of the results enables clients to start multiple searches and distinguish between the different results.
+: The client sends this message to start searching the service for names matching the glob-*pattern*. In contrast to the regular *Search* request this one asks the server to continuously monitor the database for the addition and removal of matching entries and to notify the client of all such changes. The particular search is identified by the *tag*.
+
+    No direct response is expected, rather the clients expect to be notified of changes via explicit *Search/Continuous/Result* messages generated by the service.
+
+    It is further expected that the *tag* information is passed unchanged to the *Search/Continuous/Result* messages. This tagging of the results enables clients to start multiple searches and distinguish between the different results.
 
 **Search/Continuous/Stop** *tag*
 : The client sends this message to stop the continuous search identified by the *tag*.
 
 **Search/Continuous/Change** *tag* **add**|**remove** *response*
-: This message is sent by the service to clients with active continuous searches to transfer found changes. The first such message for a new continuous search has to contains the current set of matching entries. To ensure this a service has to generate an **add**-message with an empty *response* if there were no matching entries at the time. The *response* has to be a dictionary containing the matching names as keys, and mapping them to the data associated with it at **Bind**-time. The argument coming before the response tells the client whether the names in the response were added or removed from the service.
+: This message is sent by the service to clients with active continuous searches to transfer found changes. The first such message for a new continuous search has to contains the current set of matching entries.
+
+    To ensure this a service has to generate an **add**-message with an empty *response* if there were no matching entries at the time.
+
+    The *response* has to be a dictionary containing the matching names as keys, and mapping them to the data associated with it at **Bind**-time. The argument coming before the response tells the client whether the names in the response were added or removed from the service.
 
 
 # Bugs, ideas, feedback

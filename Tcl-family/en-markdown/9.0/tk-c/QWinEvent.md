@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_QueueWindowEvent
+title: Tk_QueueWindowEvent
 ManualSection: 3
 Version: 7.5
 TclPart: Tk
@@ -16,38 +17,41 @@ Copyright:
 
 # Name
 
-Tk_CollapseMotionEvents, Tk_QueueWindowEvent - Add a window event to the Tcl event queue
+Tk\_CollapseMotionEvents, Tk\_QueueWindowEvent - Add a window event to the Tcl event queue
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_CollapseMotionEvents]{.cmd}([display]{.arg}, [collapse]{.arg})
-
-[Tk_QueueWindowEvent]{.cmd}([eventPtr]{.arg}, [position]{.arg})
+**#include <tk.h>**
+[int]{.ret} [Tk\_CollapseMotionEvents]{.ccmd} [display, collapse]{.cargs}
+[Tk\_QueueWindowEvent]{.ccmd} [eventPtr, position]{.cargs}
 :::
 
 # Arguments
 
-Display *\*display* (in)
+::: {.arguments} :::
+
+[\*display]{.carg .in type="Display"}
 : Display for which to control motion event collapsing.
 
-int *collapse* (in)
+[collapse]{.carg .in type="int"}
 : Indicates whether motion events should be collapsed or not.
 
-XEvent *\*eventPtr* (in)
+[\*eventPtr]{.carg .in type="XEvent"}
 : An event to add to the event queue. It is important that all unused fields of the structure be set to zero.
 
-Tcl_QueuePosition *position* (in)
-: Where to add the new event in the queue:  **TCL_QUEUE_TAIL**, **TCL_QUEUE_HEAD**, or **TCL_QUEUE_MARK**.
+[position]{.carg .in type="Tcl_QueuePosition"}
+: Where to add the new event in the queue:  **TCL\_QUEUE\_TAIL**, **TCL\_QUEUE\_HEAD**, or **TCL\_QUEUE\_MARK**.
 
+:::
 
 # Description
 
-**Tk_QueueWindowEvent** places a window event on Tcl's internal event queue for eventual servicing.  It creates a Tcl_Event structure, copies the event into that structure, and calls **Tcl_QueueEvent** to add the event to the queue.  When the event is eventually removed from the queue it is processed just like all window events.
+**Tk\_QueueWindowEvent** places a window event on Tcl's internal event queue for eventual servicing.  It creates a Tcl\_Event structure, copies the event into that structure, and calls [Tcl\_QueueEvent][Notifier] to add the event to the queue.  When the event is eventually removed from the queue it is processed just like all window events.
 
-When multiple motion events are received for the same window in rapid succession, they are collapsed by default.  This behavior can be controlled with **Tk_CollapseMotionEvents**.  **Tk_CollapseMotionEvents** always returns the previous value for collapse behavior on the *display*.
+When multiple motion events are received for the same window in rapid succession, they are collapsed by default.  This behavior can be controlled with **Tk\_CollapseMotionEvents**.  **Tk\_CollapseMotionEvents** always returns the previous value for collapse behavior on the *display*.
 
-The *position* argument to **Tk_QueueWindowEvent** has the same significance as for **Tcl_QueueEvent**;  see the documentation for **Tcl_QueueEvent** for details.
+The *position* argument to **Tk\_QueueWindowEvent** has the same significance as for [Tcl\_QueueEvent][Notifier];  see the documentation for [Tcl\_QueueEvent][Notifier] for details.
+
+
+[Notifier]: ../tcl-c/Notifier.md

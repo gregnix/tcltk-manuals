@@ -1,5 +1,6 @@
 ---
 CommandName: SASL
+title: SASL
 ManualSection: n
 Version: 1.3.4
 TclPart: tcllib
@@ -18,31 +19,31 @@ SASL - Implementation of SASL mechanisms for Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [SASL]{.lit} [1.3.4]{.optlit} 
-[::SASL::new]{.cmd} [option]{.arg} [value]{.arg} [...]{.optdot} 
-[::SASL::configure]{.cmd} [option]{.arg} [value]{.arg} [...]{.optdot} 
-[::SASL::step]{.cmd} [context]{.arg} [challenge]{.arg} [...]{.optdot} 
-[::SASL::response]{.cmd} [context]{.arg} 
-[::SASL::reset]{.cmd} [context]{.arg} 
-[::SASL::cleanup]{.cmd} [context]{.arg} 
-[::SASL::mechanisms]{.cmd} [type]{.optarg} [minimum]{.optarg} 
-[::SASL::register]{.cmd} [mechanism]{.arg} [preference]{.arg} [clientproc]{.arg} [serverproc]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [SASL]{.lit} [1.3.4]{.optlit}
+[::SASL::new]{.cmd} [option]{.arg} [value]{.arg} ?...?
+[::SASL::configure]{.cmd} [option]{.arg} [value]{.arg} [...]{.optarg}
+[::SASL::step]{.cmd} [context]{.arg} [challenge]{.arg} [...]{.optarg}
+[::SASL::response]{.cmd} [context]{.arg}
+[::SASL::reset]{.cmd} [context]{.arg}
+[::SASL::cleanup]{.cmd} [context]{.arg}
+[::SASL::mechanisms]{.cmd} [type]{.optarg} [minimum]{.optarg}
+[::SASL::register]{.cmd} [mechanism]{.arg} [preference]{.arg} [clientproc]{.arg} [serverproc]{.optarg}
 :::
 
 # Description
 
-The Simple Authentication and Security Layer (SASL) is a framework for providing authentication and authorization to comunications protocols. The SASL framework is structured to permit negotiation among a number of authentication mechanisms. SASL may be used in SMTP, IMAP and HTTP authentication. It is also in use in XMPP, LDAP and BEEP. See **MECHANISMS** for the set of available SASL mechanisms provided with tcllib.
+The Simple Authentication and Security Layer (SASL) is a framework for providing authentication and authorization to comunications protocols. The SASL framework is structured to permit negotiation among a number of authentication mechanisms. SASL may be used in SMTP, IMAP and HTTP authentication. It is also in use in XMPP, LDAP and BEEP. See [Mechanisms] for the set of available SASL mechanisms provided with tcllib.
 
-The SASL framework operates using a simple multi-step challenge response mechanism. All the mechanisms work the same way although the number of steps may vary. In this implementation a callback procedure must be provided from which the SASL framework will obtain users details. See **CALLBACK PROCEDURE** for details of this procedure.
+The SASL framework operates using a simple multi-step challenge response mechanism. All the mechanisms work the same way although the number of steps may vary. In this implementation a callback procedure must be provided from which the SASL framework will obtain users details. See [Callback procedure] for details of this procedure.
 
 # Commands
 
 **::SASL::new** *option value ?...?*
-: Contruct a new SASL context. See **OPTIONS** for details of the possible options to this command. A context token is required for most of the SASL procedures.
+: Contruct a new SASL context. See [Options] for details of the possible options to this command. A context token is required for most of the SASL procedures.
 
 **::SASL::configure** *option value* ?*...*?
-: Modify and inspect the SASL context option. See **OPTIONS** for further details.
+: Modify and inspect the SASL context option. See [Options] for further details.
 
 **::SASL::step** *context* *challenge* ?*...*?
 : This is the core procedure for using the SASL framework. The **step** procedure should be called until it returns 0. Each step takes a server challenge string and the response is calculated and stored in the context. Each mechanism may require one or more steps. For some steps there may be no server challenge required in which case an empty string should be provided for this parameter. All mechanisms should accept an initial empty challenge.
@@ -57,7 +58,9 @@ The SASL framework operates using a simple multi-step challenge response mechani
 : Release all resources associated with the SASL context. The context token may not be used again after this procedure has been called.
 
 **::SASL::mechanisms** ?*type*? ?*minimum*?
-: Returns a list of all the available SASL mechanisms. The list is sorted by the mechanism preference value (see **register**) with the preferred mechanisms and the head of the list. Any mechanism with a preference value less than the*minimum* (which defaults to 0) is removed from the returned list. This permits a security threshold to be set. Mechanisms with a preference less that 25 transmit authentication are particularly susceptible to eavesdropping and should not be provided unless a secure channel is in use (eg: tls). The *type* parameter may be one of *client* or *server* and defaults to *client*. Only mechanisms that have an implementation matching the *type* are returned (this permits servers to correctly declare support only for mechanisms that actually provide a server implementation).
+: Returns a list of all the available SASL mechanisms. The list is sorted by the mechanism preference value (see **register**) with the preferred mechanisms and the head of the list. Any mechanism with a preference value less than the*minimum* (which defaults to 0) is removed from the returned list. This permits a security threshold to be set. Mechanisms with a preference less that 25 transmit authentication are particularly susceptible to eavesdropping and should not be provided unless a secure channel is in use (eg: tls).
+
+    The *type* parameter may be one of *client* or *server* and defaults to *client*. Only mechanisms that have an implementation matching the *type* are returned (this permits servers to correctly declare support only for mechanisms that actually provide a server implementation).
 
 **::SASL::register** *mechanism* *preference* *clientproc* ?*serverproc*?
 : New mechanisms can be added to the package by registering the mechanism name and the implementing procedures. The server procedure is optional. The preference value is an integer that is used to order the list returned by the **mechanisms** command. Higher values indicate a preferred mechanism. If the mechanism is already registered then the recorded values are updated.
@@ -66,7 +69,7 @@ The SASL framework operates using a simple multi-step challenge response mechani
 # Options
 
 **-callback**
-: Specify a command to be evaluated when the SASL mechanism requires information about the user. The command is called with the current SASL context and a name specifying the information desired. See **EXAMPLES**.
+: Specify a command to be evaluated when the SASL mechanism requires information about the user. The command is called with the current SASL context and a name specifying the information desired. See [Examples].
 
 **-mechanism**
 : Set the SASL mechanism to be used. See **mechanisms** for a list of supported authentication mechanisms.
@@ -87,50 +90,52 @@ When the SASL framework requires any user details it will call the procedure pro
 
 In all cases a single response string should be returned.
 
-**login**
+login
 : The callback procedure should return the users authorization identity. Return an empty string unless this is to be different to the authentication identity. Read \[1\] for a discussion about the specific meaning of authorization and authentication identities within SASL.
 
-**username**
+username
 : The callback procedure should return the users authentication identity. Read \[1\] for a discussion about the specific meaning of authorization and authentication identities within SASL.
 
-**password**
-: The callback procedure should return the password that matches the authentication identity as used within the current realm. For server mechanisms the password callback should always be called with the authentication identity and the realm as the first two parameters.
+password
+: The callback procedure should return the password that matches the authentication identity as used within the current realm.
 
-**realm**
+    For server mechanisms the password callback should always be called with the authentication identity and the realm as the first two parameters.
+
+realm
 : Some SASL mechanisms use realms to partition authentication identities. The realm string is protocol dependent and is often the current DNS domain or in the case of the NTLM mechanism it is the Windows NT domain name.
 
-**hostname**
+hostname
 : Returns the client host name - typically \[info host\].
 
 
 # Mechanisms
 
-**ANONYMOUS**
+ANONYMOUS
 : As used in FTP this mechanism only passes an email address for authentication. The ANONYMOUS mechanism is specified in \[2\].
 
-**PLAIN**
+PLAIN
 : This is the simplest mechanism. The users authentication details are transmitted in plain text. This mechanism should not be provided unless an encrypted link is in use - typically after SSL or TLS has been negotiated.
 
-**LOGIN**
+LOGIN
 : The LOGIN \[1\] mechanism transmits the users details with base64 encoding. This is no more secure than PLAIN and likewise should not be used without a secure link.
 
-**CRAM-MD5**
+CRAM-MD5
 : This mechanism avoids sending the users password over the network in plain text by hashing the password with a server provided random value (known as a nonce). A disadvantage of this mechanism is that the server must maintain a database of plaintext passwords for comparison. CRAM-MD5 was defined in \[4\].
 
-**DIGEST-MD5**
+DIGEST-MD5
 : This mechanism improves upon the CRAM-MD5 mechanism by avoiding the need for the server to store plaintext passwords. With digest authentication the server needs to store the MD5 digest of the users password which helps to make the system more secure. As in CRAM-MD5 the password is hashed with a server nonce and other data before being transmitted across the network. Specified in \[3\].
 
-**OTP**
+OTP
 : OTP is the One-Time Password system described in RFC 2289 \[6\]. This mechanism is secure against replay attacks and also avoids storing password or password equivalents on the server. Only a digest of a seed and a passphrase is ever transmitted across the network. Requires the **otp** package from tcllib and one or more of the cryptographic digest packages (md5 or sha-1 are the most commonly used).
 
-**NTLM**
-: This is a proprietary protocol developed by Microsoft \[5\] and is in common use for authenticating users in a Windows network environment. NTLM uses DES encryption and MD4 digests of the users password to authenticate a connection. Certain weaknesses have been found in NTLM and thus there are a number of versions of the protocol. As this mechanism has additional dependencies it is made available as a separate sub-package. To enable this mechanism your application must load the **SASL::NTLM** package.
+NTLM
+: This is a proprietary protocol developed by Microsoft \[5\] and is in common use for authenticating users in a Windows network environment. NTLM uses DES encryption and MD4 digests of the users password to authenticate a connection. Certain weaknesses have been found in NTLM and thus there are a number of versions of the protocol. As this mechanism has additional dependencies it is made available as a separate sub-package. To enable this mechanism your application must load the [SASL::NTLM][ntlm] package.
 
-**X-GOOGLE-TOKEN**
-: This is a proprietary protocol developed by Google and used for authenticating users for the Google Talk service. This mechanism makes a pair of HTTP requests over an SSL channel and so this mechanism depends upon the availability of the tls and http packages. To enable this mechanism your application must load the **SASL::XGoogleToken** package. In addition you are recommended to make use of the autoproxy package to handle HTTP proxies reasonably transparently.
+X-GOOGLE-TOKEN
+: This is a proprietary protocol developed by Google and used for authenticating users for the Google Talk service. This mechanism makes a pair of HTTP requests over an SSL channel and so this mechanism depends upon the availability of the tls and http packages. To enable this mechanism your application must load the [SASL::XGoogleToken][gtoken] package. In addition you are recommended to make use of the autoproxy package to handle HTTP proxies reasonably transparently.
 
-**SCRAM**
-: This is a protocol specified in RFC 5802 \[7\]. To enable this mechanism your application must load the **SASL::SCRAM** package.
+SCRAM
+: This is a protocol specified in RFC 5802 \[7\]. To enable this mechanism your application must load the [SASL::SCRAM][scram] package.
 
 
 # Examples
@@ -164,26 +169,19 @@ proc Demo {{mech PLAIN}} {
 
 # References
 
-**\[1\]**
-: Myers, J. "Simple Authentication and Security Layer (SASL)", RFC 2222, October 1997. (*http://www.ietf.org/rfc/rfc2222.txt*)
+1. Myers, J. "Simple Authentication and Security Layer (SASL)", RFC 2222, October 1997. (<http://www.ietf.org/rfc/rfc2222.txt>)
 
-**\[2\]**
-: Newman, C. "Anonymous SASL Mechanism", RFC 2245, November 1997. (*http://www.ietf.org/rfc/rfc2245.txt*)
+2. Newman, C. "Anonymous SASL Mechanism", RFC 2245, November 1997. (<http://www.ietf.org/rfc/rfc2245.txt>)
 
-**\[3\]**
-: Leach, P., Newman, C. "Using Digest Authentication as a SASL Mechanism", RFC 2831, May 2000, (*http://www.ietf.org/rfc/rfc2831.txt*)
+3. Leach, P., Newman, C. "Using Digest Authentication as a SASL Mechanism", RFC 2831, May 2000, (<http://www.ietf.org/rfc/rfc2831.txt>)
 
-**\[4\]**
-: Klensin, J., Catoe, R. and Krumviede, P., "IMAP/POP AUTHorize Extension for Simple Challenge/Response" RFC 2195, September 1997. (*http://www.ietf.org/rfc/rfc2195.txt*)
+4. Klensin, J., Catoe, R. and Krumviede, P., "IMAP/POP AUTHorize Extension for Simple Challenge/Response" RFC 2195, September 1997. (<http://www.ietf.org/rfc/rfc2195.txt>)
 
-**\[5\]**
-: No official specification is available. However, *http://davenport.sourceforge.net/ntlm.html* provides a good description.
+5. No official specification is available. However, <http://davenport.sourceforge.net/ntlm.html> provides a good description.
 
-**\[6\]**
-: Haller, N. et al., "A One-Time Password System", RFC 2289, February 1998, (*http://www.ieft.org/rfc/rfc2289.txt*)
+6. Haller, N. et al., "A One-Time Password System", RFC 2289, February 1998, (<http://www.ieft.org/rfc/rfc2289.txt>)
 
-**\[7\]**
-: Newman, C. et al., "Salted Challenge Response Authentication Mechanism (SCRAM) SASL and GSS-API Mechanisms", RFC 5802, July 2010, (*http://www.ieft.org/rfc/rfc5802.txt*)
+7. Newman, C. et al., "Salted Challenge Response Authentication Mechanism (SCRAM) SASL and GSS-API Mechanisms", RFC 5802, July 2010, (<http://www.ieft.org/rfc/rfc5802.txt>)
 
 
 # Authors
@@ -207,3 +205,8 @@ Networking
 ```
 Copyright (c) 2005-2006, Pat Thoyts <patthoyts@users.sourceforge.net>
 ```
+
+
+[gtoken]: gtoken.md
+[ntlm]: ntlm.md
+[scram]: scram.md

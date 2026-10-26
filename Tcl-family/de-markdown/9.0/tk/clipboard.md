@@ -1,5 +1,6 @@
 ---
 CommandName: clipboard
+title: clipboard
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -19,38 +20,43 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 clipboard - Tk-Zwischenablage steuern
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[clipboard]{.cmd} [option]{.arg} [arg]{.optdot} 
+[clipboard]{.cmd} [option]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl bietet eine Tcl-Schnittstelle zur Tk-Zwischenablage, die Daten für spätere Abfrage über die Selection-Mechanismen speichert (Option **-selection CLIPBOARD**). Zum Kopieren: zuerst **clipboard clear**, dann eine oder mehrere **clipboard append**-Aufrufe. Für atomare Updates alle Appends vor der Rückkehr in die Ereignisschleife abschließen.
 
 Das erste Argument von **clipboard** legt Format der weiteren Argumente und Verhalten fest. Unterstützt werden:
 
-**clipboard append** ?**-displayof** *window*? ?**-format** *format*? ?**-type** *type*? ?**-\|-**? *data*
+[clipboard]{.cmd} [append]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-format]{.lit} [format]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [--]{.optlit} [data]{.arg}
 : Hängt *data* an die Zwischenablage auf dem Display von *window* an, in der Form *type* mit Darstellung *format*, und beansprucht die Zwischenablage auf diesem Display.
-    *Type* ist die Rückgabeform der Selection (ICCCM-„target“), z. B. **STRING** oder **FILE_NAME**; Details im Inter-Client Communication Conventions Manual. Standard **STRING**.
-    *format* ist die Übertragungsdarstellung (ICCCM Tabelle 2, Spalte 2), Standard **STRING**. Bei **STRING**: 8-Bit-ASCII. Bei **ATOM**: *data* in felder durch Leerzeichen geteilt, jedes Feld zum Atom-Wert, 32-Bit-Atom-Wert statt Name. Sonst: Felder zu 32-Bit-Integer, Array an den Anforderer. Strings an **clipboard append** werden vor der Konvertierung verkettet — passende Trennung beachten. Gleicher *type* erfordert gleichen *format*.
-    *format* nur für Nicht-Tk-Anforderer nötig; bei Tk-Abfrage der **CLIPBOARD**-Selection wird am Ende wieder ein String geliefert — *format* irrelevant.
-    **-\|-** markiert Optionenende: nächstes Argument ist immer *data* (z. B. wenn *data* mit **-** beginnt).
 
-**clipboard clear** ?**-displayof** *window*?
+    *Type* ist die Rückgabeform der Selection (ICCCM-„target“), z. B. **STRING** oder **FILE\_NAME**; Details im Inter-Client Communication Conventions Manual. Standard **STRING**.
+
+    *format* ist die Übertragungsdarstellung (ICCCM Tabelle 2, Spalte 2), Standard **STRING**. Bei **STRING**: 8-Bit-ASCII. Bei **ATOM**: *data* in Felder durch Leerzeichen geteilt, jedes Feld zum Atom-Wert, 32-Bit-Atom-Wert statt Name. Sonst: Felder zu 32-Bit-Integer, Array an den Anforderer. Strings an **clipboard append** werden vor der Konvertierung verkettet — passende Trennung beachten. Gleicher *type* erfordert gleichen *format*.
+
+    *format* nur für Nicht-Tk-Anforderer nötig; bei Tk-Abfrage der **CLIPBOARD**-Selection wird am Ende wieder ein String geliefert — *format* irrelevant.
+
+    **--** markiert Optionenende: nächstes Argument ist immer *data* (z. B. wenn *data* mit **-** beginnt).
+
+[clipboard]{.cmd} [clear]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg}
 : Beansprucht die Zwischenablage auf dem Display von *window* und entfernt frühere Inhalte. *window* standardmäßig „.“. Leerer String als Rückgabe.
 
-**clipboard get** ?**-displayof** *window*? ?**-type** *type*?
-: Daten aus der Zwischenablage auf dem Display von *window*. *window* standardmäßig „.“. *type* z. B. **STRING** oder **FILE_NAME**, Standard **STRING**. Entspricht „**selection get** **-selection CLIPBOARD**“.
-    Auf modernen X11-Systemen für Text oft **UTF8_STRING** statt **STRING** sinnvoller.
+[clipboard]{.cmd} [get]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg}
+: Daten aus der Zwischenablage auf dem Display von *window*. *window* standardmäßig „.“. *type* z. B. **STRING** oder **FILE\_NAME**, Standard **STRING**. Entspricht „[selection get][selection] **-selection CLIPBOARD**“.
+
+    Auf modernen X11-Systemen für Text oft **UTF8\_STRING** statt **STRING** sinnvoller.
 
 
-# BEISPIELE
+# Beispiele
 
 Aktuellen Zwischenablage-Inhalt lesen:
 
@@ -104,3 +110,6 @@ bind $c <<Paste>> {
    }
 }
 ```
+
+
+[selection]: selection.md

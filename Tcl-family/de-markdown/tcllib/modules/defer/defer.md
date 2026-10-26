@@ -1,5 +1,6 @@
 ---
 CommandName: defer
+title: defer
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -11,26 +12,26 @@ Copyright:
  - Copyright (c) 2017, Roy Keene
 ---
 
-# NAME
+# Name
 
 defer – Aufgeschobene Ausführung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [defer]{.lit} [1.1]{.optlit} 
-[::defer::defer]{.cmd} [command]{.optarg} [arg1]{.optarg} [arg2]{.optarg} [argN]{.optdot} 
-[::defer::with]{.cmd} [variableList]{.arg} [script]{.arg} 
-[::defer::autowith]{.cmd} [script]{.arg} 
-[::defer::cancel]{.cmd} [id]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [defer]{.lit} [1.1]{.optlit}
+[::defer::defer]{.cmd} [command]{.optarg} [arg1]{.optarg} [arg2]{.optarg} [argN...]{.optarg}
+[::defer::with]{.cmd} [variableList]{.arg} [script]{.arg}
+[::defer::autowith]{.cmd} [script]{.arg}
+[::defer::cancel]{.cmd} [id...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Mit den **defer**-Befehlen kann ein Entwickler Aktionen so planen, dass sie im Rahmen der Beendigung des aktuellen Variablenbereichs ausgeführt werden. Dies ist besonders nützlich für Aufräumvorgänge.  Da die aufgeschobenen Aktionen stets ausgeführt werden – und zwar immer in umgekehrter Reihenfolge zu der, in der die „defer“-Anweisungen selbst ausgeführt werden –, kann der Programmierer die Bereinigung einer Ressource (beispielsweise eines Kanals) planen, sobald diese Ressource angefordert wird.  Wenn die Prozedur oder das Lambda später beendet wird – sei es aufgrund eines Fehlers oder einer expliziten Rückkehr –, erfolgt die Bereinigung dieser Ressource stets.
 
-# BEFEHLE
+# Befehle
 
 **::defer::defer** ?*command*? ?*arg1*? ?*arg2*? ?*argN...*?
 : Verschiebt die Ausführung eines Teils des Codes bis zum Ende des aktuellen Variablenbereichs. Jedes Argument wird mit den anderen verkettet, um das Skript zu bilden, das zum Zeitpunkt der Verschiebung ausgeführt wird. Es können mehrere defer-Anweisungen verwendet werden; diese werden in der Reihenfolge „Last-In, First-Out“ ausgeführt. Der Wert ist ein Bezeichner, der später mit **defer::cancel** verwendet werden kann.
@@ -45,7 +46,7 @@ Mit den **defer**-Befehlen kann ein Entwickler Aktionen so planen, dass sie im R
 : Bricht die Ausführung einer zurückgestellten Aktion ab. Das Argument *id* ist die Kennung, die von den Funktionen **::defer::defer**, **::defer::with** oder **::defer::autowith** gegeben wird. Es können beliebig viele Argumente angegeben werden; alle angegebenen IDs werden dabei abgebrochen.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
 	package require defer 1
@@ -55,17 +56,16 @@ Mit den **defer**-Befehlen kann ein Entwickler Aktionen so planen, dass sie im R
 	}}
 ```
 
-# LITERATUR
+# Literatur
 
-**\[1\]**
-: 
+1. siehe unten ...
 
 
-# AUTOREN
+# Autoren
 
 Roy Keane
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *defer* als Kategorie an.
 
@@ -73,11 +73,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Hilfsprogramme
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2017, Roy Keene

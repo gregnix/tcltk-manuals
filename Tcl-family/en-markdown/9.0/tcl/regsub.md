@@ -1,5 +1,6 @@
 ---
 CommandName: regsub
+title: regsub
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -28,49 +29,48 @@ regsub - Perform substitutions based on regular expression pattern matching
 # Synopsis
 
 ::: {.synopsis} :::
-[regsub]{.cmd} [switches]{.optarg} [exp]{.arg} [string]{.arg} [subSpec]{.arg} [varName]{.optarg} 
+[regsub]{.cmd} [switches]{.optarg} [exp]{.arg} [string]{.arg} [subSpec]{.arg} [varName]{.optarg}
 :::
 
 # Description
 
-This command matches the regular expression *exp* against *string*, and either copies *string* to the variable whose name is given by *varName* or returns *string* if *varName* is not present. (Regular expression matching is described in the **re_syntax** reference page.) If there is a match, then while copying *string* to *varName* (or to the result of this command if *varName* is not present) the portion of *string* that matched *exp* is replaced with *subSpec*. If *subSpec* contains a "&" or "\\0", then it is replaced in the substitution with the portion of *string* that matched *exp*. If *subSpec* contains a "\\*n*", where *n* is a digit between 1 and 9, then it is replaced in the substitution with the portion of *string* that matched the *n*'th parenthesized subexpression of *exp*. Additional backslashes may be used in *subSpec* to prevent special interpretation of "&", "\\0", "\\*n*" and backslashes. The use of backslashes in *subSpec* tends to interact badly with the Tcl parser's use of backslashes, so it is generally safest to enclose *subSpec* in braces if it includes backslashes.
+This command matches the regular expression *exp* against *string*, and either copies *string* to the variable whose name is given by *varName* or returns *string* if *varName* is not present. (Regular expression matching is described in the [re\_syntax][re_syntax] reference page.) If there is a match, then while copying *string* to *varName* (or to the result of this command if *varName* is not present) the portion of *string* that matched *exp* is replaced with *subSpec*. If *subSpec* contains a "&" or "\\0", then it is replaced in the substitution with the portion of *string* that matched *exp*. If *subSpec* contains a "\\*n*", where *n* is a digit between 1 and 9, then it is replaced in the substitution with the portion of *string* that matched the *n*'th parenthesized subexpression of *exp*. Additional backslashes may be used in *subSpec* to prevent special interpretation of "&", "\\0", "\\*n*" and backslashes. The use of backslashes in *subSpec* tends to interact badly with the Tcl parser's use of backslashes, so it is generally safest to enclose *subSpec* in braces if it includes backslashes.
 
 If the initial arguments to **regsub** start with **-** then they are treated as switches.  The following switches are currently supported:
 
-**-all**
+[-all]{.lit}
 : All ranges in *string* that match *exp* are found and substitution is performed for each of these ranges. Without this switch only the first matching range is found and substituted. If **-all** is specified, then "&" and "\\*n*" sequences are handled for each substitution using the information from the corresponding match.
 
-**-command**
-: Changes the handling of *subSpec* so that it is not treated as a template for a substitution string and the substrings "&" and "\\*n*" no longer have special meaning. Instead *subSpec* must be a command prefix, that is, a non-empty list.  The substring of *string* that matches *exp*, and then each substring that matches each capturing sub-RE within *exp* are appended as additional elements to that list. (The items appended to the list are much like what **regexp** **-inline** would return).  The completed list is then evaluated as a Tcl command, and the result of that command is the substitution string.  Any error or exception from command evaluation becomes an error or exception from the **regsub** command.
+[-command]{.lit}
+: [Changes the handling of *subSpec* so that it is not treated as a template for a substitution string and the substrings "&" and "\\*n*" no longer have special meaning. Instead *subSpec* must be a command prefix, that is, a non-empty list.  The substring of *string* that matches *exp*, and then each substring that matches each capturing sub-RE within *exp* are appended as additional elements to that list. (The items appended to the list are much like what [regexp] **-inline** would return).  The completed list is then evaluated as a Tcl command, and the result of that command is the substitution string.  Any error or exception from command evaluation becomes an error or exception from the **regsub** command.]{version="TIP463"}
 
+    If **-all** is not also given, the command callback will be invoked at most once (exactly when the regular expression matches). If **-all** is given, the command callback will be invoked for each matched location, in sequence. The exact location indices that matched are not made available to the script.
 
-::: {.info -version="TIP463"}
-If **-all** is not also given, the command callback will be invoked at most once (exactly when the regular expression matches). If **-all** is given, the command callback will be invoked for each matched location, in sequence. The exact location indices that matched are not made available to the script.
+    See [Examples] below for illustrative cases.
 
-See **EXAMPLES** below for illustrative cases.
-:::
+[-expanded]{.lit}
+: Enables use of the expanded regular expression syntax where whitespace and comments are ignored.  This is the same as specifying the **(?x)** embedded option (see the [re\_syntax][re_syntax] manual page).
 
-**-expanded**
-: Enables use of the expanded regular expression syntax where whitespace and comments are ignored.  This is the same as specifying the **(?x)** embedded option (see the **re_syntax** manual page).
+[-line]{.lit}
+: Enables newline-sensitive matching.  By default, newline is a completely ordinary character with no special meaning.  With this flag, "\[^" bracket expressions and "." never match newline, "^" matches an empty string after any newline in addition to its normal function, and "$" matches an empty string before any newline in addition to its normal function.  This flag is equivalent to specifying both **-linestop** and **-lineanchor**, or the **(?n)** embedded option (see the [re\_syntax][re_syntax] manual page).
 
-**-line**
-: Enables newline-sensitive matching.  By default, newline is a completely ordinary character with no special meaning.  With this flag, "\[^" bracket expressions and "." never match newline, "^" matches an empty string after any newline in addition to its normal function, and "\$" matches an empty string before any newline in addition to its normal function.  This flag is equivalent to specifying both **-linestop** and **-lineanchor**, or the **(?n)** embedded option (see the **re_syntax** manual page).
+[-linestop]{.lit}
+: Changes the behavior of "\[^" bracket expressions and "." so that they stop at newlines.  This is the same as specifying the **(?p)** embedded option (see the [re\_syntax][re_syntax] manual page).
 
-**-linestop**
-: Changes the behavior of "\[^" bracket expressions and "." so that they stop at newlines.  This is the same as specifying the **(?p)** embedded option (see the **re_syntax** manual page).
+[-lineanchor]{.lit}
+: Changes the behavior of "^" and "$" (the "anchors") so they match the beginning and end of a line respectively.  This is the same as specifying the **(?w)** embedded option (see the [re\_syntax][re_syntax] manual page).
 
-**-lineanchor**
-: Changes the behavior of "^" and "\$" (the "anchors") so they match the beginning and end of a line respectively.  This is the same as specifying the **(?w)** embedded option (see the **re_syntax** manual page).
-
-**-nocase**
+[-nocase]{.lit}
 : Upper-case characters in *string* will be converted to lower-case before matching against *exp*;  however, substitutions specified by *subSpec* use the original unconverted form of *string*.
 
-**-start** *index*
-: Specifies a character index offset into the string to start matching the regular expression at. The *index* value is interpreted in the same manner as the *index* argument to **string index**. When using this switch, "^" will not match the beginning of the line, and \\A will still match the start of the string at *index*. *index* will be constrained to the bounds of the input string.
+[-start]{.lit} [index]{.arg}
+: Specifies a character index offset into the string to start matching the regular expression at. The *index* value is interpreted in the same manner as the *index* argument to [string index][string]. When using this switch, "^" will not match the beginning of the line, and \\A will still match the start of the string at *index*. *index* will be constrained to the bounds of the input string.
 
-**-**\\**|-**
-: Marks the end of switches.  The argument following this one will be treated as *exp* even if it starts with a **-**. If *varName* is supplied, the command returns a count of the number of matching ranges that were found and replaced, otherwise the string after replacement is returned. See the manual entry for **regexp** for details on the interpretation of regular expressions.
+[--]{.lit}
+: Marks the end of switches.  The argument following this one will be treated as *exp* even if it starts with a **-**.
 
+
+If *varName* is supplied, the command returns a count of the number of matching ranges that were found and replaced, otherwise the string after replacement is returned. See the manual entry for [regexp] for details on the interpretation of regular expressions.
 
 # Examples
 
@@ -92,7 +92,7 @@ Insert double-quotes around the first instance of the word **interesting**, howe
 regsub -nocase {\yinteresting\y} $string {"&"} string
 ```
 
-Convert all non-ASCII and Tcl-significant characters into \\u escape sequences by using **regsub** and **subst** in combination:
+Convert all non-ASCII and Tcl-significant characters into \\u escape sequences by using **regsub** and [subst] in combination:
 
 ```
 # This RE is just a character class for almost everything "bad"
@@ -109,9 +109,7 @@ set quoted [subst [string map {\n {\\u000a}} \
         [regsub -all $RE $string $substitution]]]
 ```
 
-::: {.info -version="TIP463"}
-The above operation can be done using **regsub -command** instead, which is often faster. (A full pre-computed **string map** would be faster still, but the cost of computing the map for a transformation as complex as this can be quite large.)
-:::
+[The above operation can be done using **regsub -command** instead, which is often faster. (A full pre-computed [string map][string] would be faster still, but the cost of computing the map for a transformation as complex as this can be quite large.)]{version="TIP463"}
 
 ```
 # This RE is just a character class for everything "bad"
@@ -132,9 +130,7 @@ proc encodeChar {ch} {
 set quoted [regsub -all -command $RE $string encodeChar]
 ```
 
-::: {.info -version="TIP463"}
-Decoding a URL-encoded string using **regsub -command**, a lambda term and the **apply** command.
-:::
+Decoding a URL-encoded string using **regsub -command**, a lambda term and the [apply] command.
 
 ```
 # Match one of the sequences in a URL-encoded string that needs
@@ -154,12 +150,17 @@ set decoded [regsub -all -command $RE $string {apply {{- p h} {
 }}}]
 ```
 
-::: {.info -version="TIP463"}
-The **-command** option can also be useful for restricting the range of commands such as **string totitle**:
-:::
+The **-command** option can also be useful for restricting the range of commands such as [string totitle][string]:
 
 ```
 set message "the quIck broWn fOX JUmped oVer the laZy dogS..."
 puts [regsub -all -command {\w+} $message {string totitle}]
 # → The Quick Brown Fox Jumped Over The Lazy Dogs..
 ```
+
+
+[apply]: apply.md
+[re_syntax]: re_syntax.md
+[regexp]: regexp.md
+[string]: string.md
+[subst]: subst.md

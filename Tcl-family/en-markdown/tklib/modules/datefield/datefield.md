@@ -1,5 +1,6 @@
 ---
 CommandName: datefield
+title: datefield
 ManualSection: n
 Version: 0.3
 TclPart: tklib
@@ -25,26 +26,24 @@ datefield - Tk datefield widget
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [datefield]{.lit} [0.3]{.optlit} 
-[::datefield::datefield]{.cmd} [widgetpath]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [datefield]{.lit} [0.3]{.optlit}
+[::datefield::datefield]{.cmd} [widgetpath]{.arg} [options]{.optarg}
+[-format]{.ins}
 :::
-
-*-format*
 
 # Description
 
 The **datefield** package provides the datefield widget which is an enhanced text entry widget for the purpose of date entry. There are three valid formats for the dates which can be entered:
 
-**\[1\]**
-: English form MM/DD/YYYY using *-format "%m/%d/%Y"* (default)
+1. English form MM/DD/YYYY using *-format "%m/%d/%Y"* (default)
 
-**\[2\]**
-: German form DD.MM.YYYY using *-format "%d.%m.%Y"*
+2. German form DD.MM.YYYY using *-format "%d.%m.%Y"*
 
-**\[3\]**
-: ISO form YYYY-MM-DD using *-format "%Y-%m-%d"* The datefield widget is, in fact, just an entry widget with specialized bindings. This means all the command and options for an entry widget apply equally here.
+3. ISO form YYYY-MM-DD using *-format "%Y-%m-%d"*
 
+
+The datefield widget is, in fact, just an entry widget with specialized bindings. This means all the command and options for an entry widget apply equally here.
 
 # Commands
 
@@ -55,8 +54,10 @@ The **datefield** package provides the datefield widget which is an enhanced tex
 # Options
 
 *-format*
-: One of "%m/%d/%Y" (English, default if option left), "%d.%m.%Y" (German), or "%Y-%m-%d" (ISO). See the **entry** manual entry for details on all remaining/available options.
+: One of "%m/%d/%Y" (English, default if option left), "%d.%m.%Y" (German), or "%Y-%m-%d" (ISO).
 
+
+See the **entry** manual entry for details on all remaining/available options.
 
 # Example
 

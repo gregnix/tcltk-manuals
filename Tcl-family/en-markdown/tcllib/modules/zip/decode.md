@@ -1,5 +1,6 @@
 ---
 CommandName: zipfile::decode
+title: zipfile::decode
 ManualSection: n
 Version: 0.11.0
 TclPart: tcllib
@@ -18,33 +19,33 @@ zipfile::decode - Access to zip archives
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil::decode]{.lit} [0.2.1]{.lit} 
-[package]{.cmd} [require]{.sub} [Trf]{.lit} 
-[package]{.cmd} [require]{.sub} [zlibtcl]{.lit} 
-[package]{.cmd} [require]{.sub} [zipfile::decode]{.lit} [0.11.0]{.optlit} 
-[::zipfile::decode::archive]{.cmd} 
-[::zipfile::decode::close]{.cmd} 
-[::zipfile::decode::comment]{.cmd} [adict]{.arg} 
-[::zipfile::decode::content]{.cmd} [archive]{.arg} 
-[::zipfile::decode::copyfile]{.cmd} [adict]{.arg} [path]{.arg} [dst]{.arg} 
-[::zipfile::decode::files]{.cmd} [adict]{.arg} 
-[::zipfile::decode::filetime]{.cmd} [adict]{.arg} [path]{.arg} 
-[::zipfile::decode::getfile]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::hasfile]{.cmd} [adict]{.arg} [path]{.arg} 
-[::zipfile::decode::filesize]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::filecomment]{.cmd} [zdict]{.arg} [path]{.arg} 
-[::zipfile::decode::iszip]{.cmd} [archive]{.arg} 
-[::zipfile::decode::open]{.cmd} [archive]{.arg} 
-[::zipfile::decode::unzip]{.cmd} [adict]{.arg} [dstdir]{.arg} 
-[::zipfile::decode::unzipfile]{.cmd} [archive]{.arg} [dstdir]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil::decode]{.lit} [0.2.1]{.lit}
+[package]{.cmd} [require]{.sub} [Trf]{.lit}
+[package]{.cmd} [require]{.sub} [zlibtcl]{.lit}
+[package]{.cmd} [require]{.sub} [zipfile::decode]{.lit} [0.11.0]{.optlit}
+[::zipfile::decode::archive]{.cmd}
+[::zipfile::decode::close]{.cmd}
+[::zipfile::decode::comment]{.cmd} [adict]{.arg}
+[::zipfile::decode::content]{.cmd} [archive]{.arg}
+[::zipfile::decode::copyfile]{.cmd} [adict]{.arg} [path]{.arg} [dst]{.arg}
+[::zipfile::decode::files]{.cmd} [adict]{.arg}
+[::zipfile::decode::filetime]{.cmd} [adict]{.arg} [path]{.arg}
+[::zipfile::decode::getfile]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::hasfile]{.cmd} [adict]{.arg} [path]{.arg}
+[::zipfile::decode::filesize]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::filecomment]{.cmd} [zdict]{.arg} [path]{.arg}
+[::zipfile::decode::iszip]{.cmd} [archive]{.arg}
+[::zipfile::decode::open]{.cmd} [archive]{.arg}
+[::zipfile::decode::unzip]{.cmd} [adict]{.arg} [dstdir]{.arg}
+[::zipfile::decode::unzipfile]{.cmd} [archive]{.arg} [dstdir]{.arg}
 :::
 
 # Description
 
 Note: packages Trf and zlibtcl are not required if TCL 8.6 is available. This package provides commands to decompress and access the contents of zip archives.
 
-# Api
+# API
 
 **::zipfile::decode::archive**
 : This command decodes the last opened (and not yet closed) zip archive file. The result of the command is a dictionary describing the contents of the archive. The structure of this dictionary is not public. Proper access should be made through the provided accessor commands of this package.
@@ -89,7 +90,9 @@ Note: packages Trf and zlibtcl are not required if TCL 8.6 is available. This pa
 : This command takes a dictionary describing the currently open zip archive file, as returned by **::zipfile::decode::archive**, and unpacks the archive in the given destination directory *dstdir*. The result of the command is the empty string.
 
 **::zipfile::decode::unzipfile** *archive* *dstdir*
-: This is a convenience command which unpacks the specified zip *archive* file in the given destination directory *dstdir*. The result of the command is the empty string.
+: This is a convenience command which unpacks the specified zip *archive* file in the given destination directory *dstdir*.
+
+    The result of the command is the empty string.
 
 
 # Bugs, ideas, feedback

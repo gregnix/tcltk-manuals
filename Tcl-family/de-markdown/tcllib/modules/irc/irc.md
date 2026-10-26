@@ -1,5 +1,6 @@
 ---
 CommandName: irc
+title: irc
 ManualSection: n
 Version: 0.8.0
 TclPart: tcllib
@@ -12,54 +13,54 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 irc – IRC-Verbindung und -Schnittstelle erstellen.
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [irc]{.lit} [0.8.0]{.optlit} 
-[::irc::config]{.cmd} [key]{.optarg} [value]{.optarg} 
-[::irc::connection]{.cmd} 
-[::irc::connections]{.cmd} 
-[net]{.ins} [registerevent]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [getevent]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [eventexists]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [connect]{.sub} [hostname]{.arg} [port]{.optarg} 
-[net]{.ins} [config]{.sub} [key]{.optarg} [value]{.optarg} 
-[net]{.ins} [log]{.sub} [level]{.arg} [message]{.arg} 
-[net]{.ins} [logname]{.sub} 
-[net]{.ins} [connected]{.sub} 
-[net]{.ins} [sockname]{.sub} 
-[net]{.ins} [peername]{.sub} 
-[net]{.ins} [socket]{.sub} 
-[net]{.ins} [user]{.sub} [username]{.arg} [localhostname]{.arg} [localdomainname]{.arg} [userinfo]{.arg} 
-[net]{.ins} [nick]{.sub} [nick]{.arg} 
-[net]{.ins} [ping]{.sub} [target]{.arg} 
-[net]{.ins} [serverping]{.sub} 
-[net]{.ins} [join]{.sub} [channel]{.arg} [key]{.optarg} 
-[net]{.ins} [part]{.sub} [channel]{.arg} [message]{.optarg} 
-[net]{.ins} [quit]{.sub} [message]{.optarg} 
-[net]{.ins} [privmsg]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [notice]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [ctcp]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [kick]{.sub} [channel]{.arg} [target]{.arg} [message]{.optarg} 
-[net]{.ins} [mode]{.sub} [target]{.arg} [args]{.arg} 
-[net]{.ins} [topic]{.sub} [channel]{.arg} [message]{.arg} 
-[net]{.ins} [invite]{.sub} [channel]{.arg} [target]{.arg} 
-[net]{.ins} [send]{.sub} [text]{.arg} 
-[net]{.ins} [destroy]{.sub} 
-[who]{.cmd} [address]{.optlit} 
-[action]{.cmd} 
-[target]{.cmd} 
-[additional]{.cmd} 
-[header]{.cmd} 
-[msg]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [irc]{.lit} [0.8.0]{.optlit}
+[::irc::config]{.cmd} [key]{.optarg} [value]{.optarg}
+[::irc::connection]{.cmd}
+[::irc::connections]{.cmd}
+[net]{.ins} [registerevent]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [getevent]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [eventexists]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [connect]{.sub} [hostname]{.arg} [port]{.optarg}
+[net]{.ins} [config]{.sub} [key]{.optarg} [value]{.optarg}
+[net]{.ins} [log]{.sub} [level]{.arg} [message]{.arg}
+[net]{.ins} [logname]{.sub}
+[net]{.ins} [connected]{.sub}
+[net]{.ins} [sockname]{.sub}
+[net]{.ins} [peername]{.sub}
+[net]{.ins} [socket]{.sub}
+[net]{.ins} [user]{.sub} [username]{.arg} [localhostname]{.arg} [localdomainname]{.arg} [userinfo]{.arg}
+[net]{.ins} [nick]{.sub} [nick]{.arg}
+[net]{.ins} [ping]{.sub} [target]{.arg}
+[net]{.ins} [serverping]{.sub}
+[net]{.ins} [join]{.sub} [channel]{.arg} [key]{.optarg}
+[net]{.ins} [part]{.sub} [channel]{.arg} [message]{.optarg}
+[net]{.ins} [quit]{.sub} [message]{.optarg}
+[net]{.ins} [privmsg]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [notice]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [ctcp]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [kick]{.sub} [channel]{.arg} [target]{.arg} [message]{.optarg}
+[net]{.ins} [mode]{.sub} [target]{.arg} [args]{.arg}
+[net]{.ins} [topic]{.sub} [channel]{.arg} [message]{.arg}
+[net]{.ins} [invite]{.sub} [channel]{.arg} [target]{.arg}
+[net]{.ins} [send]{.sub} [text]{.arg}
+[net]{.ins} [destroy]{.sub}
+[who]{.cmd} [address]{.optlit}
+[action]{.cmd}
+[target]{.cmd}
+[additional]{.cmd}
+[header]{.cmd}
+[msg]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt Low-Level-Befehle zur Verfügung, die das IRC-Protokoll (Internet Relay Chat) für die unmittelbare und interaktive Mehrbenutzer-Kommunikation nutzen.
 
@@ -73,12 +74,12 @@ Dieses Paket stellt Low-Level-Befehle zur Verfügung, die das IRC-Protokoll (Int
 : Gibt eine Liste aller aktuellen Verbindungen zurück, die mit **connection** erstellt wurden
 
 
-# BEFEHLE PRO VERBINDUNG
+# Befehle pro Verbindung
 
 In der folgenden Liste der verfügbaren Verbindungsmethoden steht *net* für einen Verbindungsbefehl, wie er von **::irc::connection** zurückgegeben wird.
 
 *net* **registerevent** *event* *script*
-: Registriert einen Rückruf-Handler für das jeweilige Ereignis. Verfügbar sind die in RFC 1459 *http://www.rfc-editor.org/rfc/rfc1459.txt* beschriebenen Ereignisse. Darüber hinaus sind mehrere weitere Ereignisse definiert. **defaultcmd** fügt einen Befehl hinzu, der aufgerufen wird, wenn keine andere Rückruffunktion vorhanden ist. **EOF** wird aufgerufen, wenn die Verbindung ein Dateiende signalisiert. Die Ereignisse **defaultcmd**, **defaultnumeric**, **defaultevent** und **EOF** sind erforderlich. *script* wird im Namespace der Verbindung ausgeführt und kann dabei verschiedene Befehle nutzen (siehe **CALLBACK-BEFEHLE** weiter unten), die beim Parsen der Daten helfen.
+: Registriert einen Rückruf-Handler für das jeweilige Ereignis. Verfügbar sind die in RFC 1459 <http://www.rfc-editor.org/rfc/rfc1459.txt> beschriebenen Ereignisse. Darüber hinaus sind mehrere weitere Ereignisse definiert. **defaultcmd** fügt einen Befehl hinzu, der aufgerufen wird, wenn keine andere Rückruffunktion vorhanden ist. **EOF** wird aufgerufen, wenn die Verbindung ein Dateiende signalisiert. Die Ereignisse **defaultcmd**, **defaultnumeric**, **defaultevent** und **EOF** sind erforderlich. *script* wird im Namespace der Verbindung ausgeführt und kann dabei verschiedene Befehle nutzen (siehe [Callback-Befehle] weiter unten), die beim Parsen der Daten helfen.
 
 *net* **getevent** *event* *script*
 : Gibt den aktuellen Ereignisbehandler zurück, sofern einer vorhanden ist. Andernfalls wird eine leere Zeichenkette zurückgegeben.
@@ -159,7 +160,7 @@ In der folgenden Liste der verfügbaren Verbindungsmethoden steht *net* für ein
 : Löscht die Verbindung sowie den zugehörigen Namespace und die zugehörigen Informationen.
 
 
-# CALLBACK-BEFEHLE
+# Callback-Befehle
 
 Diese Befehle können innerhalb von Rückruffunktionen verwendet werden
 
@@ -182,7 +183,7 @@ Diese Befehle können innerhalb von Rückruffunktionen verwendet werden
 : Gibt den Meldungsteil des Befehls zurück (den Teil nach dem :).
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *irc* als Kategorie an.
 
@@ -190,6 +191,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk

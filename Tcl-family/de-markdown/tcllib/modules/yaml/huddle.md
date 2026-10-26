@@ -1,5 +1,6 @@
 ---
 CommandName: huddle
+title: huddle
 ManualSection: n
 Version: 0.5
 TclPart: tcllib
@@ -19,52 +20,52 @@ Copyright:
  - Copyright (c) 2015 Miguel Martínez López <aplicacionamedida@gmail.com>
 ---
 
-# NAME
+# Name
 
 huddle – Erstellen und Bearbeiten eines „huddle“-Objekts
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [huddle]{.lit} [0.5]{.optlit} 
-[huddle]{.cmd} [create]{.sub} [key]{.arg} [value]{.arg} [key value]{.optdot} 
-[huddle]{.cmd} [list]{.sub} [value value]{.optdot} 
-[huddle]{.cmd} [number]{.sub} [number]{.arg} 
-[huddle]{.cmd} [string]{.sub} [string]{.arg} 
-[huddle]{.cmd} [boolean]{.sub} [expression]{.arg} [to]{.arg} [evaluate]{.arg} [as]{.arg} [true]{.arg} [or]{.arg} [false]{.arg} 
-[huddle]{.cmd} [true]{.sub} 
-[huddle]{.cmd} [false]{.sub} 
-[huddle]{.cmd} [null]{.sub} 
-[huddle]{.cmd} [get]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [gets]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [set]{.sub} [objectVar]{.arg} [key]{.arg} [key]{.optdot} [value]{.arg} 
-[huddle]{.cmd} [remove]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot} 
-[huddle]{.cmd} [combine]{.sub} [object1]{.arg} [object2]{.arg} [object3]{.optdot} 
-[huddle]{.cmd} [equal]{.sub} [object1]{.arg} [object2]{.arg} 
-[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [key]{.arg} [value]{.arg} [key value]{.optdot} 
-[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [value]{.arg} [value]{.optdot} 
-[huddle]{.cmd} [keys]{.sub} [object]{.arg} 
-[huddle]{.cmd} [llength]{.sub} [object]{.arg} 
-[huddle]{.cmd} [type]{.sub} [object]{.arg} [key key]{.optdot} 
-[huddle]{.cmd} [strip]{.sub} [object]{.arg} 
-[huddle]{.cmd} [jsondump]{.sub} [object]{.arg} [offset]{.optarg} [newline]{.optarg} [begin_offset]{.optarg} 
-[huddle]{.cmd} [compile]{.sub} [spec]{.arg} [data]{.arg} 
-[huddle]{.cmd} [isHuddle]{.sub} [object]{.arg} 
-[huddle]{.cmd} [checkHuddle]{.sub} [object]{.arg} 
-[huddle]{.cmd} [to_node]{.sub} [object]{.arg} [tag]{.optarg} 
-[huddle]{.cmd} [wrap]{.sub} [tag]{.arg} [src]{.arg} 
-[huddle]{.cmd} [call]{.sub} [tag]{.arg} [command]{.arg} [args]{.arg} 
-[huddle]{.cmd} [addType]{.sub} [callback]{.arg} 
-[callback]{.cmd} [command]{.arg} [args]{.optarg} 
-[setting]{.cmd} 
-[get_sub]{.cmd} [src]{.arg} [key]{.arg} 
-[strip]{.cmd} [src]{.arg} 
-[set]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg} 
-[remove]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [huddle]{.lit} [0.5]{.optlit}
+[huddle]{.cmd} [create]{.sub} [key]{.arg} [value]{.arg} [key value]{.optdot}
+[huddle]{.cmd} [list]{.sub} [value value]{.optdot}
+[huddle]{.cmd} [number]{.sub} [number]{.arg}
+[huddle]{.cmd} [string]{.sub} [string]{.arg}
+[huddle]{.cmd} [boolean]{.sub} [expression]{.arg} [to]{.arg} [evaluate]{.arg} [as]{.arg} [true]{.arg} [or]{.arg} [false]{.arg}
+[huddle]{.cmd} [true]{.sub}
+[huddle]{.cmd} [false]{.sub}
+[huddle]{.cmd} [null]{.sub}
+[huddle]{.cmd} [get]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [gets]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [set]{.sub} [objectVar]{.arg} [key]{.arg} [key]{.optdot} [value]{.arg}
+[huddle]{.cmd} [remove]{.sub} [object]{.arg} [key]{.arg} [key]{.optdot}
+[huddle]{.cmd} [combine]{.sub} [object1]{.arg} [object2]{.arg} [object3]{.optdot}
+[huddle]{.cmd} [equal]{.sub} [object1]{.arg} [object2]{.arg}
+[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [key]{.arg} [value]{.arg} [key value]{.optdot}
+[huddle]{.cmd} [append]{.sub} [objectVar]{.arg} [value]{.arg} [value]{.optdot}
+[huddle]{.cmd} [keys]{.sub} [object]{.arg}
+[huddle]{.cmd} [llength]{.sub} [object]{.arg}
+[huddle]{.cmd} [type]{.sub} [object]{.arg} [key key...]{.optarg}
+[huddle]{.cmd} [strip]{.sub} [object]{.arg}
+[huddle]{.cmd} [jsondump]{.sub} [object]{.arg} [offset]{.optarg} [newline]{.optarg} [begin\_offset]{.optarg}
+[huddle]{.cmd} [compile]{.sub} [spec]{.arg} [data]{.arg}
+[huddle]{.cmd} [isHuddle]{.sub} [object]{.arg}
+[huddle]{.cmd} [checkHuddle]{.sub} [object]{.arg}
+[huddle]{.cmd} [to\_node]{.sub} [object]{.arg} [tag]{.optarg}
+[huddle]{.cmd} [wrap]{.sub} [tag]{.arg} [src]{.arg}
+[huddle]{.cmd} [call]{.sub} [tag]{.arg} [command]{.arg} [args]{.arg}
+[huddle]{.cmd} [addType]{.sub} [callback]{.arg}
+[callback]{.cmd} [command]{.arg} [args]{.optarg}
+[setting]{.cmd}
+[get\_sub]{.cmd} [src]{.arg} [key]{.arg}
+[strip]{.cmd} [src]{.arg}
+[set]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg}
+[remove]{.cmd} [src]{.arg} [key]{.arg} [value]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Huddle stellt ein generisches, Tcl-basiertes Serialisierungs- bzw. Zwischenformat bereit. Derzeit wird jeder Knoten in ein Tag mit einfachen Typinformationen eingeschlossen.
 
@@ -90,7 +91,7 @@ limitation:
 
 Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung ist entweder das **dict**-Paket oder Tcl 8.5 erforderlich.
 
-# BEFEHLE
+# Befehle
 
 **huddle create** *key* *value* ?*key value ...*?
 : Erstellt ein „Huddle“-Objekt als Dict. Es kann weitere „Huddle“-Objekte enthalten.
@@ -131,46 +132,43 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
 **huddle combine** *object1* *object2* ?*object3 ...*?
 : Zusammenführen der angegebenen Huddle-Objekte.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% set bb [huddle create a k l m]
-HUDDLE {D {a {s k} l {s m}}}
-% huddle combine $aa $bb
-HUDDLE {D {a {s k} c {s d} l {s m}}}
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % set bb [huddle create a k l m]
+    HUDDLE {D {a {s k} l {s m}}}
+    % huddle combine $aa $bb
+    HUDDLE {D {a {s k} c {s d} l {s m}}}
+    ```
 
 **huddle equal** *object1* *object2*
 : Vergleicht zwei Huddle-Objekte rekursiv. Gibt 1 zurück, wenn sie gleich sind, andernfalls 0.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% set bb [huddle create c d a b]
-HUDDLE {D {c {s d} a {s b}}}
-% huddle equal $aa $bb
-1
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % set bb [huddle create c d a b]
+    HUDDLE {D {c {s d} a {s b}}}
+    % huddle equal $aa $bb
+    1
+    ```
 
 **huddle append** *objectVar* *key* *value* ?*key value ...*?
-: ...siehe nächstes...
+: siehe unten ...
 
 **huddle append** *objectVar* *value* ?*value ...*?
 : Unterelemente anhängen. Bei Dictionaries werden Schlüssel und Wert angegeben, bei Listen die Werte.
 
-
-```
-% set aa [huddle create a b c d]
-HUDDLE {D {a {s b} c {s d}}}
-% huddle append aa a k l m
-HUDDLE {D {a {s k} c {s d} l {s m}}}
-% set bb [huddle list i j k l]
-HUDDLE {L {{s i} {s j} {s k} {s l}}}
-% huddle append bb g h i
-HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
-```
+    ```
+    % set aa [huddle create a b c d]
+    HUDDLE {D {a {s b} c {s d}}}
+    % huddle append aa a k l m
+    HUDDLE {D {a {s k} c {s d} l {s m}}}
+    % set bb [huddle list i j k l]
+    HUDDLE {L {{s i} {s j} {s k} {s l}}}
+    % huddle append bb g h i
+    HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
+    ```
 
 **huddle keys** *object*
 : Genau wie bei **dict keys**.
@@ -181,102 +179,99 @@ HUDDLE {L {{s i} {s j} {s k} {s l} {s g} {s h} {s i}}}
 **huddle type** *object* ?*key key...*?
 : Gibt den Elementtyp zurück, der durch die Schlüssel festgelegt ist. Wenn „key“ nicht angegeben ist, gibt es den Typ des Wurzelknotens zurück.
 
+    **string**
+    : Der Knoten ist eine TCL-Zeichenkette.
 
-**string**
-: Der Knoten ist eine TCL-Zeichenkette.
+    **dict**
+    : Der Knoten ist ein Dict.
 
-**dict**
-: Der Knoten ist ein Dict.
+    **list**
+    : Der Knoten ist eine Liste.
 
-**list**
-: Der Knoten ist eine Liste.
+    **number**
+    : Der Knoten ist eine Zahl.
 
-**number**
-: Der Knoten ist eine Zahl.
+    **boolean**
+    : Der Knoten ist ein boolescher Wert.
 
-**boolean**
-: Der Knoten ist ein boolescher Wert.
-
-**null**
-: Der Knoten ist ein Nullwert.
+    **null**
+    : Der Knoten ist ein Nullwert.
 
 
-```
-% huddle type {HUDDLE {s str}}
-string
-% huddle type {HUDDLE {L {{s a} {s b} {s c}}}}
-list
-% huddle type {HUDDLE {D {aa {s b} cc {s d}}}} cc
-string
-```
+    ```
+    % huddle type {HUDDLE {s str}}
+    string
+    % huddle type {HUDDLE {L {{s a} {s b} {s c}}}}
+    list
+    % huddle type {HUDDLE {D {aa {s b} cc {s d}}}} cc
+    string
+    ```
 
 **huddle strip** *object*
 : Alle Tags wurden entfernt. In normale Tcl-Listen/Dictionaries konvertiert.
 
-**huddle jsondump** *object* ?*offset*? ?*newline*? ?*begin_offset*?
+**huddle jsondump** *object* ?*offset*? ?*newline*? ?*begin\_offset*?
 : Einen JSON-Stream aus dem Huddle-Objekt ausgeben.
 
+    **offset** ""
+    : Beginn-Offset als Leerzeichen „  “.
 
-**offset** ""
-: Beginn-Offset als Leerzeichen „  “.
 
-
-```
-# normal output has some indents. some strings are escaped.
-% huddle jsondump {HUDDLE {L {{L {{s i} {s baa} {s \\k} {L {{s 1.0} {s true} {s /g} {s h}}} {L {{s g}}}}} {s t}}}}
-[
-  [
-    "i",
-    "baa",
-    "\\k",
+    ```
+    # normal output has some indents. some strings are escaped.
+    % huddle jsondump {HUDDLE {L {{L {{s i} {s baa} {s \\k} {L {{s 1.0} {s true} {s /g} {s h}}} {L {{s g}}}}} {s t}}}}
     [
-      1.0,
-      true,
-      "\/g",
-      "h"
-    ],
-    ["g"]
-  ],
-  "t"
-]
-# stripped output
-% huddle jsondump {HUDDLE {D {dd {D {bb {D {a {s baa} c {s {d
-a}}}} cc {D {g {s h}}}}} ee {D {i {s j} k {s 1} j {s { m\a}}}}}}} "" ""
-{"dd": {"bb": {"a": "baa","c": "d\na"},"cc": {"g": "h"}},"ee": {"i": "j","k": 1,"j": " m\\a"}}
-```
+      [
+        "i",
+        "baa",
+        "\\k",
+        [
+          1.0,
+          true,
+          "\/g",
+          "h"
+        ],
+        ["g"]
+      ],
+      "t"
+    ]
+    # stripped output
+    % huddle jsondump {HUDDLE {D {dd {D {bb {D {a {s baa} c {s {d
+    a}}}} cc {D {g {s h}}}}} ee {D {i {s j} k {s 1} j {s { m\a}}}}}}} "" ""
+    {"dd": {"bb": {"a": "baa","c": "d\na"},"cc": {"g": "h"}},"ee": {"i": "j","k": 1,"j": " m\\a"}}
+    ```
 
 **huddle compile** *spec* *data*
 : Erstellt ein „Huddle“-Objekt aus einfachen Tcl-Werten. *spec* ist wie folgt definiert:
 
+    **string**
+    : Die Daten sind einfach eine Zeichenkette.
 
-**string**
-: Die Daten sind einfach eine Zeichenkette.
+    **list**
+    : „data“ ist eine TCL-Liste aus Zeichenketten
 
-**list**
-: „data“ ist eine TCL-Liste aus Zeichenketten
+    **dict**
+    : „data“ ist ein TCL-Dict aus Zeichenketten
 
-**dict**
-: „data“ ist ein TCL-Dict aus Zeichenketten
+    list list
+    : „data“ ist eine TCL-Liste von Listen
 
-**list list**
-: „data“ ist eine TCL-Liste von Listen
+    list dict
+    : „data“ ist eine TCL-Liste aus Dictionaries
 
-**list dict**
-: „data“ ist eine TCL-Liste aus Dictionaries
+    dict xx list
+    : „data“ ist ein TCL-Dict, bei dem der Wert des Schlüssels „xx“ eine TCL-Liste ist.
 
-**dict xx list**
-: „data“ ist ein TCL-Dict, bei dem der Wert des Schlüssels „xx“ eine TCL-Liste ist.
-
-**Wörterbuch \* Liste**
-: „data“ ist ein TCL-Dict aus Listen; „*data*“ sind einfache TCL-Werte.
+    dict \* list
+    : „data“ ist ein TCL-Dict aus Listen; „*data*“ sind einfache TCL-Werte.
 
 
-```
-% huddle compile {dict * list} {a {1 2 3} b {4 5}}
-HUDDLE {D {a {L {{s 1} {s 2} {s 3}}} b {L {{s 4} {s 5}}}}}
-% huddle compile {dict * {list {dict d list}}} {a {{c 1} {d {2 2 2} e 3}} b {{f 4 g 5}}}
-HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{D {f {s 4} g {s 5}}}}}}}
-```
+    ```
+    % huddle compile {dict * list} {a {1 2 3} b {4 5}}
+    HUDDLE {D {a {L {{s 1} {s 2} {s 3}}} b {L {{s 4} {s 5}}}}}
+    % huddle compile {dict * {list {dict d list}}} {a {{c 1} {d {2 2 2} e 3}} b {{f 4 g 5}}}
+    HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{D {f {s 4} g {s 5}}}}}}}
+    ```
 
 **huddle isHuddle** *object*
 : Wenn *Objekt* ein „Huddle“ ist, gibt es 1 zurück. Andernfalls gibt es 0 zurück.
@@ -284,56 +279,60 @@ HUDDLE {D {a {L {{D {c {s 1}}} {D {d {L {{s 2} {s 2} {s 2}}} e {s 3}}}}} b {L {{
 **huddle checkHuddle** *object*
 : Wenn *Objekt* kein Huddle ist, wird ein Fehler ausgelöst.
 
-**huddle to_node** *object* ?*tag*?
-: Für Typ-Callbacks. Wenn *object* ein „Huddle“ ist, gibt es den Stammknoten zurück. Andernfalls gibt es **\[list s \$object\]** zurück.
+**huddle to\_node** *object* ?*tag*?
+: Für Typ-Callbacks.
 
+    Wenn *object* ein „Huddle“ ist, gibt es den Stammknoten zurück. Andernfalls gibt es **\[list s $object\]** zurück.
 
-```
-% huddle to_node str
-s str
-% huddle to_node str !!str
-!!str str
-% huddle to_node {HUDDLE {s str}}
-s str
-% huddle to_node {HUDDLE {l {a b c}}}
-l {a b c}
-```
+    ```
+    % huddle to_node str
+    s str
+    % huddle to_node str !!str
+    !!str str
+    % huddle to_node {HUDDLE {s str}}
+    s str
+    % huddle to_node {HUDDLE {l {a b c}}}
+    l {a b c}
+    ```
 
 **huddle wrap** *tag* *src*
-: für Typ-Callbacks. Erstellt ein Huddle-Objekt aus *src* mit dem angegebenen *Tag*.
+: für Typ-Callbacks.
 
+    Erstellt ein Huddle-Objekt aus *src* mit dem angegebenen *Tag*.
 
-```
-% huddle wrap "" str
-HUDDLE str
-% huddle wrap s str
-HUDDLE {s str}
-```
+    ```
+    % huddle wrap "" str
+    HUDDLE str
+    % huddle wrap s str
+    HUDDLE {s str}
+    ```
 
 **huddle call** *tag* *command* *args*
-: für Typ-Callbacks. *Befehl* wird an das Standard-*Tag* -callback weitergeleitet
+: für Typ-Callbacks.
+
+    *Befehl* wird an das Standard-*Tag* -callback weitergeleitet
 
 **huddle addType** *callback*
 : Fügt der Huddle-Bibliothek einen benutzerdefinierten Typ/Tag hinzu. Siehe „Zusätzlicher Typ“.
 
+    **callback**
+    : Name der Rückruffunktion für den zusätzlichen Typ.
 
-**callback**
-: Name der Rückruffunktion für den zusätzlichen Typ.
 
 
-# RÜCKRUFFUNKTION EINGEBEN
+# Rückruffunktion eingeben
 
 Die Definition von „Callback“ für den Typ „user“.
 
 **callback** *command* ?*args*?
-: 
+: siehe unten ...
 
+    **command**
+    : huddle-Unterbefehl, der für die Antwort über die Rückruffunktion benötigt wird.
 
-**command**
-: huddle-Unterbefehl, der für die Antwort über die Rückruffunktion benötigt wird.
+    **args**
+    : Argumente des Unterbefehls. Die Anzahl der Argumente ist je nach Unterbefehl unterschiedlich.
 
-**args**
-: Argumente des Unterbefehls. Die Anzahl der Argumente ist je nach Unterbefehl unterschiedlich.
 
 
 Die Rückruffunktion sollte die folgenden Unterbefehle zurückgeben.
@@ -341,23 +340,21 @@ Die Rückruffunktion sollte die folgenden Unterbefehle zurückgeben.
 **setting**
 : gibt lediglich ein festes Wörterbuch mit den Typinformationen zum Setzen des Benutzer-Tags zurück.
 
+    **type** typename
+    : Typname des Typs
 
-**type** Typname
-: Typname des Typs
+    **method** {method1 method2 method3 ...}
+    : Methodenliste als „huddle“-Unterbefehl. Anschließend können Sie **\[huddle method1 ...\]** aufrufen
 
-**method** {method1 method2 method3 ...}
-: Methodenliste als „huddle“-Unterbefehl. Anschließend können Sie **\[huddle method1 ...\]** aufrufen
-
-**tag** {tag1 child/parent tag2 child/parent ...}
-: Tag-Liste für „huddle-node“ als Wörterbuch. Wenn der Typ untergeordnete Knoten hat, verwende „parent“, andernfalls „child“.
+    **tag** {tag1 child/parent tag2 child/parent ...}
+    : Tag-Liste für „huddle-node“ als Wörterbuch. Wenn der Typ untergeordnete Knoten hat, verwende „parent“, andernfalls „child“.
 
 
-**get_sub** *src* *key*
+**get\_sub** *src* *key*
 : gibt einen durch *key* festgelegten Unterknoten zurück.
 
-
-**src**
-: Ein Knoteninhalt in einem Huddle-Objekt.
+    **src**
+    : Ein Knoteninhalt in einem Huddle-Objekt.
 
 
 **strip** *src*
@@ -367,8 +364,10 @@ Die Rückruffunktion sollte die folgenden Unterbefehle zurückgeben.
 : Legt einen Unterknoten aus dem markierten Inhalt fest und gibt „self“ zurück.
 
 **remove** *src* *key* *value*
-: Entfernt einen Unterknoten aus dem „tagged-content“ und gibt „self“ zurück. **strip** muss für alle Typen definiert sein. **get_sub** muss für Container-Typen definiert sein. **set/remove** sollten definiert sein, falls Sie sie aufrufen.
+: Entfernt einen Unterknoten aus dem „tagged-content“ und gibt „self“ zurück.
 
+
+**strip** muss für alle Typen definiert sein. **get\_sub** muss für Container-Typen definiert sein. **set/remove** sollten definiert sein, falls Sie sie aufrufen.
 
 ```
 # callback sample for my-dict
@@ -479,7 +478,7 @@ proc ::yaml::_huddle_mapping {command args} {
 }
 ```
 
-# SO FÜGEN SIE EINEN TYP HINZU
+# So fügen Sie einen Typ hinzu
 
 Sie können Huddle-Knotentypen hinzufügen, z. B. ::struct::tree. Definieren Sie dazu zunächst eine Callback-Prozedur für einen zusätzlichen getaggten Typ. Die Prozedur erhält die Argumente *command* und ?*args*?. Sie enthält einige Switch-Abschnitte.
 
@@ -489,7 +488,7 @@ Außerdem wird der Unterbefehl „addType“ aufgerufen.
 huddle addType my_dict_setting
 ```
 
-# ARBEITSBEISPIEL
+# Arbeitsbeispiel
 
 ```
 # create as a dict
@@ -548,11 +547,11 @@ HUDDLE {L {{D {bb {D {a {s b} c {s kkk}}} cc {L {{s e} {s f} {s g} {s h}}}}} {s 
 ]
 ```
 
-# EINSCHRÄNKUNGEN
+# Einschränkungen
 
 Wird gerade gedruckt.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *huddle* als Kategorie an.
 
@@ -560,7 +559,7 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2008-2011 KATO Kanryu <kanryu6@users.sourceforge.net>

@@ -1,5 +1,6 @@
 ---
 CommandName: sha1
+title: sha1
 ManualSection: n
 Version: 2.0.5
 TclPart: tcllib
@@ -27,17 +28,17 @@ sha1 - SHA1 Message-Digest Algorithm
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [sha1]{.lit} [2.0.5]{.optlit} 
-[::sha1::sha1]{.cmd} [-hex|-bin]{.optlit} \[ [-channel]{.lit} [channel]{.lit} | [-file]{.lit} [filename]{.lit} | [--]{.optlit} [string]{.arg} \] 
-[::sha1::hmac]{.cmd} [key]{.arg} [string]{.arg} 
-[::sha1::hmac]{.cmd} [-hex|-bin]{.optlit} [-key]{.lit} [key]{.lit} \[ [-channel]{.lit} [channel]{.lit} | [-file]{.lit} [filename]{.lit} | [--]{.optlit} [string]{.arg} \] 
-[::sha1::SHA1Init]{.cmd} 
-[::sha1::SHA1Update]{.cmd} [token]{.arg} [data]{.arg} 
-[::sha1::SHA1Final]{.cmd} [token]{.arg} 
-[::sha1::HMACInit]{.cmd} [key]{.arg} 
-[::sha1::HMACUpdate]{.cmd} [token]{.arg} [data]{.arg} 
-[::sha1::HMACFinal]{.cmd} [token]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [sha1]{.lit} [2.0.5]{.optlit}
+[::sha1::sha1]{.cmd} [-hex|-bin]{.optlit} \[ [-channel]{.lit} [channel]{.lit} | [-file]{.lit} [filename]{.lit} | [--]{.optlit} [string]{.arg} \]
+[::sha1::hmac]{.cmd} [key]{.arg} [string]{.arg}
+[::sha1::hmac]{.cmd} [-hex|-bin]{.optlit} [-key]{.lit} [key]{.lit} \[ [-channel]{.lit} [channel]{.lit} | [-file]{.lit} [filename]{.lit} | [--]{.optlit} [string]{.arg} \]
+[::sha1::SHA1Init]{.cmd}
+[::sha1::SHA1Update]{.cmd} [token]{.arg} [data]{.arg}
+[::sha1::SHA1Final]{.cmd} [token]{.arg}
+[::sha1::HMACInit]{.cmd} [key]{.arg}
+[::sha1::HMACUpdate]{.cmd} [token]{.arg} [data]{.arg}
+[::sha1::HMACFinal]{.cmd} [token]{.arg}
 :::
 
 # Description
@@ -46,7 +47,7 @@ This package provides an implementation in Tcl of the SHA1 message-digest algori
 
 This package also includes support for creating keyed message-digests using the HMAC algorithm from RFC 2104 (3) with SHA1 as the message-digest.
 
-*BEWARE* The commands in this package expect binary data as their input. When a **-file** is provided then this is ensured by the commands themselves, as they open the referenced file in binary mode. When literal data, or a **-channel** are provided instead, then the command's *caller is responsible* for ensuring this fact. The necessary conversion command is **encoding convertto utf-8 \$string**.
+*BEWARE* The commands in this package expect binary data as their input. When a **-file** is provided then this is ensured by the commands themselves, as they open the referenced file in binary mode. When literal data, or a **-channel** are provided instead, then the command's *caller is responsible* for ensuring this fact. The necessary conversion command is **encoding convertto utf-8 $string**.
 
 *ATTENTION*, there is a *Tcl 9 COMPATIBILITY ISSUE* here.
 
@@ -61,13 +62,21 @@ expected byte sequence but character <location> was ...
 # Commands
 
 **::sha1::sha1** ?**-hex|-bin**? \[ **-channel channel** | **-file filename** | ?**--**? *string* \]
-: The command takes a message and returns the SHA1 digest of this message as a hexadecimal string. You may request the result as binary data by giving *-bin*. The data to be hashed can be specified either as a string argument to the **sha1** command, or as a filename or a pre-opened channel. If the *-filename* argument is given then the file is opened, the data read and hashed and the file is closed. If the *-channel* argument is given then data is read from the channel until the end of file. The channel is not closed. *NOTE* use of the channel or filename options results in the internal use of **vwait**. To avoid nested event loops in Tk or tclhttpd applications you should use the incremental programming API (see below). Only one of *-file*, *-channel* or *string* should be given. If the *string* to hash can be mistaken for an option (leading dash "-"), use the option **--** before it to terminate option processing and force interpretation as a string.
+: The command takes a message and returns the SHA1 digest of this message as a hexadecimal string. You may request the result as binary data by giving *-bin*.
+
+    The data to be hashed can be specified either as a string argument to the **sha1** command, or as a filename or a pre-opened channel. If the *-filename* argument is given then the file is opened, the data read and hashed and the file is closed. If the *-channel* argument is given then data is read from the channel until the end of file. The channel is not closed. *NOTE* use of the channel or filename options results in the internal use of **vwait**. To avoid nested event loops in Tk or tclhttpd applications you should use the incremental programming API (see below).
+
+    Only one of *-file*, *-channel* or *string* should be given.
+
+    If the *string* to hash can be mistaken for an option (leading dash "-"), use the option **--** before it to terminate option processing and force interpretation as a string.
 
 **::sha1::hmac** *key* *string*
-: ...see next...
+: see below ...
 
 **::sha1::hmac** ?**-hex|-bin**? **-key key** \[ **-channel channel** | **-file filename** | ?**--**? *string* \]
-: Calculate an Hashed Message Authentication digest (HMAC) using the SHA1 digest algorithm. HMACs are described in RFC 2104 (3) and provide an SHA1 digest that includes a key. All options other than *-key* are as for the **::sha1::sha1** command. If the *string* to hash can be mistaken for an option (leading dash "-"), use the option **--** before it to terminate option processing and force interpretation as a string.
+: Calculate an Hashed Message Authentication digest (HMAC) using the SHA1 digest algorithm. HMACs are described in RFC 2104 (3) and provide an SHA1 digest that includes a key. All options other than *-key* are as for the **::sha1::sha1** command.
+
+    If the *string* to hash can be mistaken for an option (leading dash "-"), use the option **--** before it to terminate option processing and force interpretation as a string.
 
 
 # Programming interface
@@ -80,7 +89,7 @@ If you have **critcl** and have built the **tcllibc** package then the implement
 : Begins a new SHA1 hash. Returns a token ID that must be used for the remaining functions.
 
 **::sha1::SHA1Update** *token* *data*
-: Add data to the hash identified by token. Calling *SHA1Update \$token "abcd"* is equivalent to calling *SHA1Update \$token "ab"* followed by *SHA1Update \$token "cb"*. See **EXAMPLES**.
+: Add data to the hash identified by token. Calling *SHA1Update $token "abcd"* is equivalent to calling *SHA1Update $token "ab"* followed by *SHA1Update $token "cb"*. See [Examples].
 
 **::sha1::SHA1Final** *token*
 : Returns the hash value and releases any resources held by this token. Once this command completes the token will be invalid. The result is a binary string of 20 bytes representing the 160 bit SHA1 digest value.
@@ -89,7 +98,7 @@ If you have **critcl** and have built the **tcllibc** package then the implement
 : This is equivalent to the **::sha1::SHA1Init** command except that it requires the key that will be included in the HMAC.
 
 **::sha1::HMACUpdate** *token* *data*
-: ...see next...
+: see below ...
 
 **::sha1::HMACFinal** *token*
 : These commands are identical to the SHA1 equivalent commands.
@@ -119,14 +128,11 @@ ae6251fa51b95b18cba2be95eb031d07475ff03c
 
 # References
 
-**\[1\]**
-: "Secure Hash Standard", National Institute of Standards and Technology, U.S. Department Of Commerce, April 1995. (*http://www.itl.nist.gov/fipspubs/fip180-1.htm*)
+1. "Secure Hash Standard", National Institute of Standards and Technology, U.S. Department Of Commerce, April 1995. (<http://www.itl.nist.gov/fipspubs/fip180-1.htm>)
 
-**\[2\]**
-: Rivest, R., "The MD4 Message Digest Algorithm", RFC 1320, MIT, April 1992. (*http://www.rfc-editor.org/rfc/rfc1320.txt*)
+2. Rivest, R., "The MD4 Message Digest Algorithm", RFC 1320, MIT, April 1992. (<http://www.rfc-editor.org/rfc/rfc1320.txt>)
 
-**\[3\]**
-: Krawczyk, H., Bellare, M. and Canetti, R. "HMAC: Keyed-Hashing for Message Authentication", RFC 2104, February 1997. (*http://www.rfc-editor.org/rfc/rfc2104.txt*)
+3. Krawczyk, H., Bellare, M. and Canetti, R. "HMAC: Keyed-Hashing for Message Authentication", RFC 2104, February 1997. (<http://www.rfc-editor.org/rfc/rfc2104.txt>)
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: json
+title: json
 ManualSection: n
 Version: 1.3.6
 TclPart: tcllib
@@ -21,10 +22,10 @@ json - JSON parser
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [json]{.lit} [1.3.6]{.optlit} 
-[::json::json2dict]{.cmd} [json_txt]{.arg} 
-[::json::many-json2dict]{.cmd} [json_txt]{.arg} [max]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [json]{.lit} [1.3.6]{.optlit}
+[::json::json2dict]{.cmd} [json\_txt]{.arg}
+[::json::many-json2dict]{.cmd} [json\_txt]{.arg} [max]{.optarg}
 :::
 
 # Description
@@ -35,12 +36,18 @@ For an alternative Tcl-only type-preserving implementation, see the [typed-json]
 
 # Commands
 
-**::json::json2dict** *json_txt*
-: Returns a **dict** or **list** (which itself may contain nested **dict**s and/or **list**s) which is the result of parsing the JSON formatted text passed in *json_txt*. If *json_txt* contains more than one JSON entity only the first one is returned.
+**::json::json2dict** *json\_txt*
+: Returns a **dict** or **list** (which itself may contain nested **dict**s and/or **list**s) which is the result of parsing the JSON formatted text passed in *json\_txt*.
 
-**::json::many-json2dict** *json_txt* ?*max*?
-: Returns a **list** (which itself will contain nested **dict**s and/or **list**s) which is the result of parsing all the JSON entities (or if *max* is specified, the first *max* entities), in the JSON formatted text passed in *json_txt*. If *max* is specified it must be a positive integer **> 0** or the command will throw and error. If the JSON formatted text contains nested lists and dicts then so will the returned dict. In such cases accessing a data value may require a *mixture* of using dict get and lindex. (See the second example.)
+    If *json\_txt* contains more than one JSON entity only the first one is returned.
 
+**::json::many-json2dict** *json\_txt* ?*max*?
+: Returns a **list** (which itself will contain nested **dict**s and/or **list**s) which is the result of parsing all the JSON entities (or if *max* is specified, the first *max* entities), in the JSON formatted text passed in *json\_txt*.
+
+    If *max* is specified it must be a positive integer **> 0** or the command will throw and error.
+
+
+If the JSON formatted text contains nested lists and dicts then so will the returned dict. In such cases accessing a data value may require a *mixture* of using dict get and lindex. (See the second example.)
 
 # Examples
 

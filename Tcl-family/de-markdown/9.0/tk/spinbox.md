@@ -1,5 +1,6 @@
 ---
 CommandName: spinbox
+title: spinbox
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -15,92 +16,98 @@ Copyright:
  - Copyright (c) 2000 Ajuba Solutions.
 ---
 
-# NAME
+# Name
 
 spinbox - Erstellt und manipuliert 'Spinbox'-Wert-Dreh-Widgets
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[spinbox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[spinbox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-buttonbackground** (buttonBackground/Background)
+**-activebackground**, **-highlightthickness**, **-repeatinterval**, **-background**, **-insertbackground**, **-selectbackground**, **-borderwidth**, **-insertborderwidth**, **-selectborderwidth**, **-cursor**, **-insertontime**, **-selectforeground**, **-exportselection**, **-insertwidth**, **-takefocus**, **-font**, **-insertofftime**, **-textvariable**, **-foreground**, **-justify**, **-xscrollcommand**, **-highlightbackground**, **-relief**, **-highlightcolor**, **-repeatdelay**, **-placeholder**, **-placeholderforeground**
+
+Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-buttonbackground** (**buttonBackground**/**Background**)
 : Die Hintergrundfarbe für die Spin-Buttons.
 
-**-buttoncursor** (buttonCursor/Cursor)
+**-buttoncursor** (**buttonCursor**/**Cursor**)
 : Der Cursor, der über den Spin-Buttons verwendet wird. Ist dies leer (Standard), wird ein Standard-Cursor verwendet.
 
-**-buttondownrelief** (buttonDownRelief/Relief)
+**-buttondownrelief** (**buttonDownRelief**/**Relief**)
 : Das Relief für den oberen Spin-Button.
 
-**-buttonuprelief** (buttonUpRelief/Relief)
+**-buttonuprelief** (**buttonUpRelief**/**Relief**)
 : Das Relief für den unteren Spin-Button.
 
-**-command** (command/Command)
+**-command** (**command**/**Command**)
 : Legt einen Tcl-Befehl fest, der aufgerufen wird, wann immer ein Spin-Button betätigt wird. Der Befehl erkennt mehrere Prozent-Substitutionen: **%W** für den Widget-Pfad, **%s** für den aktuellen Wert des Widgets und **%d** für die Richtung des gedrückten Buttons (**up** oder **down**).
 
-**-disabledbackground** (disabledBackground/DisabledBackground)
+**-disabledbackground** (**disabledBackground**/**DisabledBackground**)
 : Legt die Hintergrundfarbe fest, die verwendet wird, wenn die Spinbox deaktiviert ist. Ist diese Option der leere String, wird die normale Hintergrundfarbe verwendet.
 
-**-disabledforeground** (disabledForeground/DisabledForeground)
+**-disabledforeground** (**disabledForeground**/**DisabledForeground**)
 : Legt die Vordergrundfarbe fest, die verwendet wird, wenn die Spinbox deaktiviert ist. Ist diese Option der leere String, wird die normale Vordergrundfarbe verwendet.
 
-**-format** (format/Format)
+**-format** ([format]/**Format**)
 : Legt ein alternatives Format fest, das beim Setzen des String-Werts bei Verwendung des Bereichs **-from** und **-to** verwendet wird. Dies muss ein Format-Spezifizierer der Form **%<pad>.<pad>f** sein, da er eine Fließkommazahl formatiert.
 
-**-from** (from/From)
+**-from** (**from**/**From**)
 : Ein Fließkommawert entsprechend dem niedrigsten Wert einer Spinbox, verwendet zusammen mit **-to** und **-increment**. Sind alle korrekt angegeben, steuert die Spinbox ihren Inhalt damit. Ist dieser Wert größer als die Option **-to**, werden **-from** und **-to** automatisch vertauscht. Ist **-values** angegeben, hat diese Option Vorrang.
 
 **-invalidcommand**, **-invcmd** (invalidCommand/InvalidCommand)
-: Legt ein Skript fest, das ausgewertet wird, wenn **-validatecommand** 0 zurückgibt. Setzen auf den leeren String deaktiviert diese Funktion (Standard). Die beste Verwendung ist *bell*. Siehe **VALIDIERUNG** unten.
+: Legt ein Skript fest, das ausgewertet wird, wenn **-validatecommand** 0 zurückgibt. Setzen auf den leeren String deaktiviert diese Funktion (Standard). Die beste Verwendung ist *bell*. Siehe [Validierung] unten.
 
-**-increment** (increment/Increment)
+**-increment** (**increment**/**Increment**)
 : Ein Fließkommawert für die Schrittweite. Zusammen mit **-from** und **-to** wird der Wert im Widget bei Betätigung eines Spin-Buttons um **-increment** angepasst (nach oben addiert, nach unten subtrahiert).
 
-**-readonlybackground** (readonlyBackground/ReadonlyBackground)
+**-readonlybackground** (**readonlyBackground**/**ReadonlyBackground**)
 : Legt die Hintergrundfarbe fest, die verwendet wird, wenn die Spinbox schreibgeschützt ist. Ist diese Option der leere String, wird die normale Hintergrundfarbe verwendet.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Legt einen von drei Zuständen für die Spinbox fest: **normal**, **disabled** oder **readonly**. Ist die Spinbox schreibgeschützt, kann der Wert nicht mit Widget-Befehlen geändert werden und es wird kein Einfügecursor angezeigt, auch wenn der Eingabefokus im Widget liegt; der Inhalt kann weiterhin ausgewählt werden. Ist die Spinbox deaktiviert, kann der Wert nicht geändert werden, es wird kein Einfügecursor angezeigt, der Inhalt ist nicht auswählbar, und die Spinbox kann je nach **-disabledforeground** und **-disabledbackground** in einer anderen Farbe dargestellt werden.
 
-**-to** (to/To)
+**-to** (**to**/**To**)
 : Ein Fließkommawert entsprechend dem höchsten Wert der Spinbox, verwendet zusammen mit **-from** und **-increment**. Sind alle korrekt angegeben, steuert die Spinbox ihren Inhalt damit. Ist dieser Wert kleiner als die Option **-from**, werden **-from** und **-to** automatisch vertauscht. Ist **-values** angegeben, hat diese Option Vorrang.
 
-**-validate** (validate/Validate)
-: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe **VALIDIERUNG** unten für weitere Informationen.
+**-validate** (**validate**/**Validate**)
+: Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe [Validierung] unten für weitere Informationen.
 
 **-validatecommand**, **-vcmd** (validateCommand/ValidateCommand)
-: Legt ein Skript fest, das ausgewertet wird, wenn die Eingabe im Widget validiert werden soll. Setzen auf den leeren String deaktiviert diese Funktion (Standard). Die Validierung erfolgt gemäß **-validate**. Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Gibt er 0 zurück (oder das gültige Tcl-Boolean-Äquivalent), ändert sich der Widget-Wert nicht und **-invalidcommand** wird ausgewertet, falls gesetzt. Gibt er 1 zurück, wird der Wert geändert. Siehe **VALIDIERUNG** unten.
+: Legt ein Skript fest, das ausgewertet wird, wenn die Eingabe im Widget validiert werden soll. Setzen auf den leeren String deaktiviert diese Funktion (Standard). Die Validierung erfolgt gemäß **-validate**. Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Gibt er 0 zurück (oder das gültige Tcl-Boolean-Äquivalent), ändert sich der Widget-Wert nicht und **-invalidcommand** wird ausgewertet, falls gesetzt. Gibt er 1 zurück, wird der Wert geändert. Siehe [Validierung] unten.
 
-**-values** (values/Values)
+**-values** (**values**/**Values**)
 : Muss ein gültiger Listenwert sein. Ist dies angegeben, verwendet die Spinbox diese Werte zur Steuerung des Inhalts, beginnend mit dem ersten Wert. Diese Option hat Vorrang vor dem Bereich **-from** und **-to**.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Gibt einen ganzzahligen Wert an, der die gewünschte Breite des Spinbox-Fensters in Zeichen durchschnittlicher Größe der Widget-Schriftart angibt. Ist der Wert negativ oder null, wählt das Widget eine Größe, die gerade groß genug für den aktuellen Text ist.
 
-**-wrap** (wrap/wrap)
+**-wrap** (**wrap**/**wrap**)
 : Muss ein gültiger boolescher Wert sein. Ist er an, springt die Spinbox an den Enden der Daten im Widget um.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **spinbox** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Spinbox-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte der Spinbox wie Farben, Schriftart und Relief zu konfigurieren. Der Befehl **spinbox** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Eine **spinbox** ist ein erweitertes **entry**-Widget, mit dem der Benutzer durch eine feste Menge auf- oder absteigender Werte (z. B. Zeiten oder Daten) „drehen“ kann, zusätzlich zur Bearbeitung des Werts wie in einem **entry**. Bei der Erstellung ist der String der Spinbox leer. Ein Teil der Spinbox kann wie unten beschrieben ausgewählt werden. Exportiert eine Spinbox ihre Auswahl (siehe die Option **-exportselection**), beachtet sie die Standard-Protokolle für die Behandlung der Selection; Spinbox-Auswahlen sind als Typ **STRING** verfügbar. Spinboxen beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat eine Spinbox den Eingabefokus, zeigt sie einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
+Eine **spinbox** ist ein erweitertes [entry]-Widget, mit dem der Benutzer durch eine feste Menge auf- oder absteigender Werte (z. B. Zeiten oder Daten) „drehen“ kann, zusätzlich zur Bearbeitung des Werts wie in einem [entry]. Bei der Erstellung ist der String der Spinbox leer. Ein Teil der Spinbox kann wie unten beschrieben ausgewählt werden. Exportiert eine Spinbox ihre Auswahl (siehe die Option **-exportselection**), beachtet sie die Standard-Protokolle für die Behandlung der Selection; Spinbox-Auswahlen sind als Typ **STRING** verfügbar. Spinboxen beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat eine Spinbox den Eingabefokus, zeigt sie einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
 
 Spinboxen können Strings anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil des Strings angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Spinboxen verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details). Sie unterstützen außerdem Scannen, wie unten beschrieben.
 
-# VALIDIERUNG
+# Validierung
 
 Die Validierung funktioniert, indem **-validatecommand** auf ein Skript gesetzt wird, das gemäß **-validate** wie folgt ausgewertet wird:
 
 **none**
 : Standard. Es findet keine Validierung statt.
 
-**focus**
+[focus]
 : **-validatecommand** wird aufgerufen, wenn die Spinbox den Fokus erhält oder verliert.
 
 **focusin**
@@ -116,7 +123,7 @@ Die Validierung funktioniert, indem **-validatecommand** auf ein Skript gesetzt 
 : **-validatecommand** wird bei allen obigen Bedingungen aufgerufen.
 
 
-Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen möglich, wie in einem **bind**-Skript. Folgende Substitutionen werden erkannt:
+Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen möglich, wie in einem [bind]-Skript. Folgende Substitutionen werden erkannt:
 
 **%d**
 : Art der Aktion: 1 für **insert**, 0 für **delete**, oder -1 für Fokus-, erzwungene oder **textvariable**-Validierung.
@@ -163,7 +170,7 @@ setzt **-validate** tatsächlich auf **none**, weil sich der Standardwert der Sp
 
 Außerdem wird bei Betätigung eines Spin-Buttons erzwungene Validierung durchgeführt. Gibt das Validierungsskript in dieser Situation false zurück, wird **-validate** automatisch **none**.
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
 Der Befehl **spinbox** erstellt einen neuen Tcl-Befehl mit dem Namen *pathName*. Dieser Befehl kann verschiedene Operationen am Widget aufrufen. Er hat die folgende allgemeine Form:
 
@@ -196,104 +203,106 @@ Viele Widget-Befehle für Spinboxen nehmen einen oder mehrere Indizes als Argume
 : Bezeichnet das Zeichen unmittelbar nach dem letzten in der Auswahl. Es ist ein Fehler, diese Form zu verwenden, wenn die Auswahl nicht im Spinbox-Fenster liegt.
 
 **@**_number_
-: In dieser Form wird *number* als x-Koordinate im Fenster der Spinbox behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet „**@0**“ das linkeste Zeichen im Fenster. Abkürzungen können für jede der obigen Formen verwendet werden, z. B. „**e**“ oder „**sel.f**“. Im Allgemeinen werden Indizes außerhalb des gültigen Bereichs automatisch auf den nächsten zulässigen Wert gerundet. Indizes unterstützen dieselbe einfache Interpretation wie beim Befehl **string index**, mit einfacher ganzzahliger Index-Arithmetik und Indizierung relativ zu **end**.
+: In dieser Form wird *number* als x-Koordinate im Fenster der Spinbox behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet „**@0**“ das linkeste Zeichen im Fenster.
 
+
+Abkürzungen können für jede der obigen Formen verwendet werden, z. B. „**e**“ oder „**sel.f**“. Im Allgemeinen werden Indizes außerhalb des gültigen Bereichs automatisch auf den nächsten zulässigen Wert gerundet. Indizes unterstützen dieselbe einfache Interpretation wie beim Befehl [string index][string], mit einfacher ganzzahliger Index-Arithmetik und Indizierung relativ zu **end**.
 
 ## Unterbefehle
 
 Folgende Befehle sind für Spinbox-Widgets möglich:
 
-*pathName* **bbox** *index*
+[pathName]{.ins} [bbox]{.sub} [index]{.arg}
 : Gibt eine Liste von vier Zahlen zurück, die die Begrenzungsbox des durch *index* angegebenen Zeichens beschreiben. Die ersten beiden Elemente der Liste geben die x- und y-Koordinaten der oberen linken Ecke des vom Zeichen bedeckten Bildschirmbereichs an (in Pixeln relativ zum Widget), die letzten beiden geben Breite und Höhe des Zeichens in Pixeln an. Die Begrenzungsbox kann sich auf einen Bereich außerhalb des sichtbaren Fensterbereichs beziehen.
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
-: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (Format siehe **Tk_ConfigureInfo**). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (identisch mit dem entsprechenden Teilliste der Rückgabe ohne *option*). Sind ein oder mehr *option-value*-Paare angegeben, setzt der Befehl die angegebenen Widget-Optionen auf die angegebenen Werte; in diesem Fall gibt er den leeren String zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (identisch mit dem entsprechenden Teilliste der Rückgabe ohne *option*). Sind ein oder mehr *option-value*-Paare angegeben, setzt der Befehl die angegebenen Widget-Optionen auf die angegebenen Werte; in diesem Fall gibt er den leeren String zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
 
-*pathName* **delete** *first* ?*last*?
+[pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
 : Löscht ein oder mehrere Elemente der Spinbox. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Ist *last* nicht angegeben, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt den leeren String zurück.
 
-*pathName* **get**
+[pathName]{.ins} [get]{.sub}
 : Gibt den String der Spinbox zurück.
 
-*pathName* **icursor** *index*
+[pathName]{.ins} [icursor]{.sub} [index]{.arg}
 : Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* gegebenen Zeichen angezeigt wird. Gibt einen leeren String zurück.
 
-*pathName* **identify** *x y*
-: Gibt den Namen des Fensterelements zurück, das den Koordinaten *x* und *y* in der Spinbox entspricht. Rückgabewert ist einer von: **none**, **buttondown**, **buttonup**, **entry**.
+[pathName]{.ins} [identify]{.sub} [x]{.arg} [y]{.arg}
+: Gibt den Namen des Fensterelements zurück, das den Koordinaten *x* und *y* in der Spinbox entspricht. Rückgabewert ist einer von: **none**, **buttondown**, **buttonup**, [entry].
 
-*pathName* **index** *index*
+[pathName]{.ins} [index]{.sub} [index]{.arg}
 : Gibt den numerischen Index zurück, der *index* entspricht.
 
-*pathName* **insert** *index string*
+[pathName]{.ins} [insert]{.sub} [index]{.arg} [string]{.arg}
 : Fügt die Zeichen von *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt einen leeren String zurück.
 
-*pathName* **invoke** *element*
+[pathName]{.ins} [invoke]{.sub} [element]{.arg}
 : Löst das angegebene Element, entweder **buttondown** oder **buttonup**, aus und löst die damit verbundene Aktion aus.
 
-*pathName* **scan** *option args*
+[pathName]{.ins} [scan]{.sub} [option]{.arg} [args]{.arg}
 : Dieser Befehl implementiert Scannen auf Spinboxen. Er hat zwei Formen, abhängig von *option*:
 
-*pathName* **scan mark** *x*
-: Merkt sich *x* und die aktuelle Ansicht im Spinbox-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Mausklick im Widget verknüpft. Gibt den leeren String zurück.
+    [pathName]{.ins} [scan]{.sub} [mark]{.lit} [x]{.arg}
+    : Merkt sich *x* und die aktuelle Ansicht im Spinbox-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Mausklick im Widget verknüpft. Gibt den leeren String zurück.
 
-*pathName* **scan dragto** *x*
-: Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das 10-fache der x-Koordinatendifferenz nach links oder rechts an. Dieser Befehl ist typischerweise mit Mausbewegungsereignissen im Widget verknüpft, um den Effekt zu erzeugen, die Spinbox mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
+    [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg}
+    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das 10-fache der x-Koordinatendifferenz nach links oder rechts an. Dieser Befehl ist typischerweise mit Mausbewegungsereignissen im Widget verknüpft, um den Effekt zu erzeugen, die Spinbox mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
 
 
-*pathName* **selection** *option arg*
+[pathName]{.ins} [selection]{.sub} [option]{.arg} [arg]{.arg}
 : Dieser Befehl passt die Auswahl innerhalb einer Spinbox an. Er hat mehrere Formen, abhängig von *option*:
 
-*pathName* **selection adjust** *index*
-: Findet das Ende der Auswahl, das *index* am nächsten liegt, und passt dieses Ende so an, dass es bei *index* liegt (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für künftige **select to**-Befehle. Liegt die Auswahl derzeit nicht in der Spinbox, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt den leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [adjust]{.lit} [index]{.arg}
+    : Findet das Ende der Auswahl, das *index* am nächsten liegt, und passt dieses Ende so an, dass es bei *index* liegt (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für künftige **select to**-Befehle. Liegt die Auswahl derzeit nicht in der Spinbox, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt den leeren String zurück.
 
-*pathName* **selection clear**
-: Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [clear]{.lit}
+    : Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt einen leeren String zurück.
 
-*pathName* **selection element** ?*element*?
-: Setzt oder fragt das aktuell ausgewählte Element ab. Ist ein Spin-Button-Element angegeben, wird es gedrückt dargestellt.
+    [pathName]{.ins} [selection]{.sub} [element]{.lit} [element]{.optarg}
+    : Setzt oder fragt das aktuell ausgewählte Element ab. Ist ein Spin-Button-Element angegeben, wird es gedrückt dargestellt.
 
-*pathName* **selection from** *index*
-: Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [from]{.lit} [index]{.arg}
+    : Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt einen leeren String zurück.
 
-*pathName* **selection present**
-: Gibt 1 zurück, wenn in der Spinbox Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
+    [pathName]{.ins} [selection]{.sub} [present]{.lit}
+    : Gibt 1 zurück, wenn in der Spinbox Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
 
-*pathName* **selection range** *start end*
-: Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis einschließlich dem unmittelbar vor *end* umfasst. Bezieht sich *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl in der Spinbox gelöscht.
+    [pathName]{.ins} [selection]{.sub} [range]{.lit} [start]{.arg} [end]{.arg}
+    : Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis einschließlich dem unmittelbar vor *end* umfasst. Bezieht sich *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl in der Spinbox gelöscht.
 
-*pathName* **selection to** *index*
-: Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt einen leeren String zurück.
+    [pathName]{.ins} [selection]{.sub} [to]{.lit} [index]{.arg}
+    : Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt einen leeren String zurück.
 
 
-*pathName* **set** ?*string*?
+[pathName]{.ins} [set]{.sub} [string]{.optarg}
 : Ist *string* angegeben, versucht die Spinbox, diesen Wert zu setzen, andernfalls gibt sie einfach den String der Spinbox zurück. Ist die Validierung aktiv, erfolgt sie beim Setzen des Strings.
 
-*pathName* **validate**
+[pathName]{.ins} [validate]{.sub}
 : Dieser Befehl erzwingt eine Auswertung von **-validatecommand** unabhängig von den durch die Option **-validate** festgelegten Bedingungen. Dazu wird **-validate** vorübergehend auf **all** gesetzt. Er gibt 0 oder 1 zurück.
 
-*pathName* **xview** *args*
+[pathName]{.ins} [xview]{.sub} [args]{.arg}
 : Dieser Befehl fragt die horizontale Position des Texts im Fenster des Widgets ab und ändert sie. Er kann eine der folgenden Formen haben:
 
-*pathName* **xview**
-: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruchteil zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Beispielsweise bedeuten die Elemente .2 und .6, dass 20 % des Spinbox-Texts links außerhalb des Bildschirms liegen, die mittleren 40 % im Fenster sichtbar sind und 40 % rechts außerhalb. Dies sind dieselben Werte, die Scrollbars über die Option **-xscrollcommand** übergeben werden.
+    [pathName]{.ins} [xview]{.sub}
+    : Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruchteil zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Beispielsweise bedeuten die Elemente .2 und .6, dass 20 % des Spinbox-Texts links außerhalb des Bildschirms liegen, die mittleren 40 % im Fenster sichtbar sind und 40 % rechts außerhalb. Dies sind dieselben Werte, die Scrollbars über die Option **-xscrollcommand** übergeben werden.
 
-*pathName* **xview** *index*
-: Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Zeichen am linken Rand des Fensters angezeigt wird.
+    [pathName]{.ins} [xview]{.sub} [index]{.arg}
+    : Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Zeichen am linken Rand des Fensters angezeigt wird.
 
-*pathName* **xview moveto** *fraction*
-: Passt die Ansicht im Fenster so an, dass das Zeichen *fraction* des Weges durch den Text am linken Rand des Fensters erscheint. *Fraction* muss ein Bruchteil zwischen 0 und 1 sein.
+    [pathName]{.ins} [xview]{.sub} [moveto]{.lit} [fraction]{.arg}
+    : Passt die Ansicht im Fenster so an, dass das Zeichen *fraction* des Weges durch den Text am linken Rand des Fensters erscheint. *Fraction* muss ein Bruchteil zwischen 0 und 1 sein.
 
-*pathName* **xview scroll** *number what*
-: Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl oder eine Fließkommazahl sein; ist es eine Fließkommazahl, wird sie in eine Ganzzahl umgewandelt, von 0 weg gerundet. *What* muss **pages** oder **units** oder eine Abkürzung davon sein. Ist *what* **pages**, passt sich die Ansicht um *number* Bildschirmseiten an. Ist *number* negativ, werden Zeichen weiter links sichtbar; ist es positiv, werden Zeichen weiter rechts sichtbar. Ist *what* **units**, verschiebt sich die Ansicht um *number* Zeichen durchschnittlicher Breite auf der Anzeige nach links oder rechts.
+    [pathName]{.ins} [xview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
+    : Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl oder eine Fließkommazahl sein; ist es eine Fließkommazahl, wird sie in eine Ganzzahl umgewandelt, von 0 weg gerundet. *What* muss **pages** oder **units** oder eine Abkürzung davon sein. Ist *what* **pages**, passt sich die Ansicht um *number* Bildschirmseiten an. Ist *number* negativ, werden Zeichen weiter links sichtbar; ist es positiv, werden Zeichen weiter rechts sichtbar. Ist *what* **units**, verschiebt sich die Ansicht um *number* Zeichen durchschnittlicher Breite auf der Anzeige nach links oder rechts.
 
 
 
-# BINDINGS
+# Bindings
 
-Tk erstellt automatisch Klassen-Bindings für Spinboxen, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „_“-Zeichen oder ein einzelnes anderes Zeichen.
+Tk erstellt automatisch Klassen-Bindings für Spinboxen, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
 1. Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
@@ -321,7 +330,7 @@ Tk erstellt automatisch Klassen-Bindings für Spinboxen, die ihnen folgendes Sta
 
 13. Steuerung-/ wählt den gesamten Text in der Spinbox aus.
 
-14. Steuerung-\ löscht jede Auswahl in der Spinbox.
+14. Steuerung-\\ löscht jede Auswahl in der Spinbox.
 
 15. Die F16-Taste (auf vielen Sun-Arbeitsplätzen mit Copy beschriftet) oder Meta-w kopiert die Auswahl im Widget in die Zwischenablage, falls eine Auswahl besteht.
 
@@ -345,3 +354,12 @@ Tk erstellt automatisch Klassen-Bindings für Spinboxen, die ihnen folgendes Sta
 Ist die Spinbox mit der Option **-state** deaktiviert, kann die Ansicht der Spinbox weiterhin angepasst und Text in der Spinbox weiterhin ausgewählt werden, aber es wird kein Einfügecursor angezeigt und es finden keine Textänderungen statt.
 
 Das Verhalten von Spinboxen kann geändert werden, indem neue Bindings für einzelne Widgets definiert oder die Klassen-Bindings neu definiert werden.
+
+
+[bind]: bind.md
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[entry]: entry.md
+[focus]: focus.md
+[format]: ../tcl/format.md
+[options]: options.md
+[string]: ../tcl/string.md

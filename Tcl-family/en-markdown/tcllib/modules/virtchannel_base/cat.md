@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::cat
+title: tcl::chan::cat
 ManualSection: n
 Version: 1.0.4
 TclPart: tcllib
@@ -20,11 +21,11 @@ tcl::chan::cat - Concatenation channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::cat]{.lit} [1.0.4]{.optlit} 
-[::tcl::chan::cat]{.cmd} [chan...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::cat]{.lit} [1.0.4]{.optlit}
+[::tcl::chan::cat]{.cmd} [chan...]{.arg}
 :::
 
 # Description
@@ -37,7 +38,7 @@ The internal **TclOO** class implementing the channel handler is a sub-class of 
 
 Event handling is delegated to the currently active sub-channel.
 
-# Api
+# API
 
 **::tcl::chan::cat** *chan*...
 : This command creates the concatenation channel using all the provided channels, and returns its handle.

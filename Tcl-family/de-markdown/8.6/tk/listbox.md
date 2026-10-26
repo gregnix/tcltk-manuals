@@ -1,5 +1,6 @@
 ---
 CommandName: listbox
+title: listbox
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -14,38 +15,44 @@ Copyright:
  - Copyright (c) 1994-1997 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 listbox - Erstellt und manipuliert 'Listbox'-Elementlisten-Widgets
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[listbox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[listbox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-activestyle** (activeStyle/ActiveStyle)
+**-background**, **-borderwidth**, **-cursor**, **-disabledforeground**, **-exportselection**, **-font**, **-foreground**, **-highlightbackground**, **-highlightcolor**, **-highlightthickness**, **-justify**, **-relief**, **-selectbackground**, **-selectborderwidth**, **-selectforeground**, **-setgrid**, **-takefocus**, **-xscrollcommand**, **-yscrollcommand**
+
+Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-activestyle** (**activeStyle**/**ActiveStyle**)
 : Legt den Stil fest, in dem das aktive Element gezeichnet wird. Dies muss einer von **dotbox** (zeigt einen Fokusring um das aktive Element), **none** (keine besondere Kennzeichnung des aktiven Elements) oder **underline** (unterstreicht das aktive Element) sein. Der Standardwert ist **underline** unter Windows und **dotbox** anderswo.
 
-**-height** (height/Height)
+**-height** (**height**/**Height**)
 : Legt die gewünschte Höhe für das Fenster in Zeilen fest. Wenn der Wert null oder kleiner ist, wird die gewünschte Höhe des Fensters gerade groß genug gemacht, um alle Elemente in der Listbox aufzunehmen.
 
-**-listvariable** (listVariable/Variable)
+**-listvariable** (**listVariable**/**Variable**)
 : Legt den Namen einer globalen Variable fest. Der Wert der Variable ist eine Liste, die innerhalb des Widgets angezeigt werden soll; wenn sich der Variablenwert ändert, aktualisiert sich das Widget automatisch, um den neuen Wert widerzuspiegeln. Versuche, einer Variable mit einem ungültigen Listenwert **-listvariable** zuzuweisen, führen zu einem Fehler. Versuche, eine als **-listvariable** verwendete Variable zu entfernen, schlagen fehl, erzeugen aber keinen Fehler.
 
-**-selectmode** (selectMode/SelectMode)
+**-selectmode** (**selectMode**/**SelectMode**)
 : Legt einen von mehreren Stilen für die Manipulation der Auswahl fest. Der Wert der Option kann beliebig sein, aber die Standard-Bindings erwarten **single**, **browse**, **multiple** oder **extended**; der Standardwert ist **browse**.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Legt einen von zwei Zuständen für die Listbox fest: **normal** oder **disabled**. Wenn die Listbox deaktiviert ist, können keine Elemente eingefügt oder gelöscht werden, Elemente werden in der Farbe **-disabledforeground** gezeichnet, und die Auswahl kann nicht geändert werden und wird nicht angezeigt (Auswahlinformationen bleiben jedoch erhalten).
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Legt die gewünschte Breite für das Fenster in Zeichen fest. Wenn die Schriftart keine einheitliche Breite hat, wird die Breite des Zeichens „0“ bei der Umrechnung von Zeicheneinheiten in Bildschirmeinheiten verwendet. Wenn der Wert null oder kleiner ist, wird die gewünschte Breite des Fensters gerade groß genug gemacht, um alle Elemente in der Listbox aufzunehmen.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **listbox** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Listbox-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte der Listbox wie Farben, Schriftart, Text und Relief zu konfigurieren. Der Befehl **listbox** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
@@ -53,7 +60,7 @@ Eine Listbox ist ein Widget, das eine Liste von Zeichenketten anzeigt, eine pro 
 
 Es ist nicht erforderlich, dass alle Elemente gleichzeitig im Listbox-Fenster angezeigt werden; die unten beschriebenen Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Listboxes erlauben das Scrollen in beide Richtungen mit den Standardoptionen **-xscrollcommand** und **-yscrollcommand**. Sie unterstützen auch Scanning, wie unten beschrieben.
 
-# INDIZES
+# Indizes
 
 Viele der Widget-Befehle für Listboxes nehmen ein oder mehrere Indizes als Argumente. Ein Index gibt ein bestimmtes Element der Listbox an, auf eine der folgenden Arten:
 
@@ -69,11 +76,13 @@ Viele der Widget-Befehle für Listboxes nehmen ein oder mehrere Indizes als Argu
 **end**
 : Bezeichnet das Ende der Listbox. Für die meisten Befehle bezieht sich dies auf das letzte Element in der Listbox, aber für einige Befehle wie **index** und **insert** bezieht es sich auf das Element direkt nach dem letzten.
 
-**@**_x_**,**_y_
-: Bezeichnet das Element, das den Punkt im Listbox-Fenster abdeckt, der durch *x* und *y* (in Pixelkoordinaten) angegeben ist. Wenn kein Element diesen Punkt abdeckt, wird das dem Punkt am nächsten liegende Element verwendet. In den unten stehenden Widget-Befehlsbeschreibungen enthalten Argumente mit den Namen *index*, *first* und *last* immer Textindizes in einer der obigen Formen.
+**@***x***,***y*
+: Bezeichnet das Element, das den Punkt im Listbox-Fenster abdeckt, der durch *x* und *y* (in Pixelkoordinaten) angegeben ist. Wenn kein Element diesen Punkt abdeckt, wird das dem Punkt am nächsten liegende Element verwendet.
 
 
-# WIDGET-BEFEHL
+In den unten stehenden Widget-Befehlsbeschreibungen enthalten Argumente mit den Namen *index*, *first* und *last* immer Textindizes in einer der obigen Formen.
+
+# Widget-Befehl
 
 Der Befehl **listbox** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist. Dieser Befehl kann verwendet werden, um verschiedene Operationen auf dem Widget aufzurufen. Er hat folgende allgemeine Form:
 
@@ -93,7 +102,7 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe **Tk_ConfigureInfo** für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
 
 *pathName* **curselection**
 : Gibt eine Liste zurück, die die numerischen Indizes aller Elemente in der Listbox enthält, die derzeit ausgewählt sind. Wenn in der Listbox keine Elemente ausgewählt sind, wird eine leere Zeichenkette zurückgegeben.
@@ -114,19 +123,19 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Item-Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **itemconfigure** akzeptierten Werte haben.
 
 *pathName* **itemconfigure** *index* ?*option*? ?*value*? ?*option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen eines Items in der Listbox. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für das Item beschreibt (siehe **Tk_ConfigureInfo** für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. Die folgenden Optionen werden derzeit für Items unterstützt:
+: Abfrage oder Änderung der Konfigurationsoptionen eines Items in der Listbox. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für das Item beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. Die folgenden Optionen werden derzeit für Items unterstützt:
 
-**-background** *color*
-: *Color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von **Tk_GetColor** akzeptierten Formen haben.
+    **-background** *color*
+    : *Color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
-**-foreground** *color*
-: *Color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von **Tk_GetColor** akzeptierten Formen haben.
+    **-foreground** *color*
+    : *Color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
-**-selectbackground** *color*
-: *color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von **Tk_GetColor** akzeptierten Formen haben.
+    **-selectbackground** *color*
+    : *color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
-**-selectforeground** *color*
-: *color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von **Tk_GetColor** akzeptierten Formen haben.
+    **-selectforeground** *color*
+    : *color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
 
 *pathName* **nearest** *y*
@@ -135,11 +144,11 @@ pathName option ?arg arg ...?
 *pathName* **scan** *option args*
 : Dieser Befehl wird verwendet, um Scanning auf Listboxes zu implementieren. Er hat zwei Formen, abhängig von *option*:
 
-*pathName* **scan mark** *x y*
-: Speichert *x* und *y* sowie die aktuelle Ansicht im Listbox-Fenster; wird in Verbindung mit späteren **scan dragto**-Befehlen verwendet. Typischerweise wird dieser Befehl mit einem Maustastendruck im Widget verknüpft. Gibt einen leeren String zurück.
+    *pathName* **scan mark** *x y*
+    : Speichert *x* und *y* sowie die aktuelle Ansicht im Listbox-Fenster; wird in Verbindung mit späteren **scan dragto**-Befehlen verwendet. Typischerweise wird dieser Befehl mit einem Maustastendruck im Widget verknüpft. Gibt einen leeren String zurück.
 
-*pathName* **scan dragto** *x y*.
-: Dieser Befehl berechnet die Differenz zwischen seinen *x*- und *y*-Argumenten und den *x*- und *y*-Argumenten des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das Zehnfache der Koordinatendifferenz an. Dieser Befehl wird typischerweise mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, die Liste mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
+    *pathName* **scan dragto** *x y*.
+    : Dieser Befehl berechnet die Differenz zwischen seinen *x*- und *y*-Argumenten und den *x*- und *y*-Argumenten des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das Zehnfache der Koordinatendifferenz an. Dieser Befehl wird typischerweise mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, die Liste mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
 
 
 *pathName* **see** *index*
@@ -148,17 +157,17 @@ pathName option ?arg arg ...?
 *pathName* **selection** *option arg*
 : Dieser Befehl wird verwendet, um die Auswahl innerhalb einer Listbox anzupassen. Er hat mehrere Formen, abhängig von *option*:
 
-*pathName* **selection anchor** *index*
-: Setzt den Auswahlanker auf das durch *index* gegebene Element. Wenn *index* auf ein nicht existierendes Element verweist, wird das nächstgelegene Element verwendet. Der Auswahlanker ist das Ende der Auswahl, das beim Ziehen einer Auswahl mit der Maus fest bleibt. Der Index **anchor** kann verwendet werden, um auf das Ankerelement zu verweisen.
+    *pathName* **selection anchor** *index*
+    : Setzt den Auswahlanker auf das durch *index* gegebene Element. Wenn *index* auf ein nicht existierendes Element verweist, wird das nächstgelegene Element verwendet. Der Auswahlanker ist das Ende der Auswahl, das beim Ziehen einer Auswahl mit der Maus fest bleibt. Der Index **anchor** kann verwendet werden, um auf das Ankerelement zu verweisen.
 
-*pathName* **selection clear** *first* ?*last*?
-: Wenn eines der Elemente zwischen *first* und *last* (einschließlich) ausgewählt ist, wird die Auswahl aufgehoben. Der Auswahlzustand wird für Elemente außerhalb dieses Bereichs nicht geändert.
+    *pathName* **selection clear** *first* ?*last*?
+    : Wenn eines der Elemente zwischen *first* und *last* (einschließlich) ausgewählt ist, wird die Auswahl aufgehoben. Der Auswahlzustand wird für Elemente außerhalb dieses Bereichs nicht geändert.
 
-*pathName* **selection includes** *index*
-: Gibt 1 zurück, wenn das durch *index* angegebene Element derzeit ausgewählt ist, 0 wenn nicht.
+    *pathName* **selection includes** *index*
+    : Gibt 1 zurück, wenn das durch *index* angegebene Element derzeit ausgewählt ist, 0 wenn nicht.
 
-*pathName* **selection set** *first* ?*last*?
-: Wählt alle Elemente im Bereich zwischen *first* und *last* einschließlich aus, ohne den Auswahlzustand von Elementen außerhalb dieses Bereichs zu beeinflussen.
+    *pathName* **selection set** *first* ?*last*?
+    : Wählt alle Elemente im Bereich zwischen *first* und *last* einschließlich aus, ohne den Auswahlzustand von Elementen außerhalb dieses Bereichs zu beeinflussen.
 
 
 *pathName* **size**
@@ -167,37 +176,37 @@ pathName option ?arg arg ...?
 *pathName* **xview** ?*args*
 : Dieser Befehl wird verwendet, um die horizontale Position der Informationen im Fenster des Widgets abzufragen und zu ändern. Er kann eine der folgenden Formen annehmen:
 
-*pathName* **xview**
-: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Wenn beispielsweise das erste Element .2 und das zweite Element .6 ist, sind 20 % des Listbox-Textes links außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar und 40 % des Textes sind rechts außerhalb des Bildschirms. Dies sind dieselben Werte, die über die Option **-xscrollcommand** an Scrollbars übergeben werden.
+    *pathName* **xview**
+    : Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen 0 und 1; zusammen beschreiben sie den horizontal sichtbaren Bereich im Fenster. Wenn beispielsweise das erste Element .2 und das zweite Element .6 ist, sind 20 % des Listbox-Textes links außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar und 40 % des Textes sind rechts außerhalb des Bildschirms. Dies sind dieselben Werte, die über die Option **-xscrollcommand** an Scrollbars übergeben werden.
 
-*pathName* **xview** *index*
-: Passt die Ansicht im Fenster so an, dass die durch *index* gegebene Zeichenposition am linken Rand des Fensters angezeigt wird. Zeichenpositionen werden durch die Breite des Zeichens **0** definiert.
+    *pathName* **xview** *index*
+    : Passt die Ansicht im Fenster so an, dass die durch *index* gegebene Zeichenposition am linken Rand des Fensters angezeigt wird. Zeichenpositionen werden durch die Breite des Zeichens **0** definiert.
 
-*pathName* **xview moveto** *fraction*
-: Passt die Ansicht im Fenster so an, dass *fraction* der Gesamtbreite des Listbox-Textes links außerhalb des Bildschirms ist. *fraction* muss ein Bruch zwischen 0 und 1 sein.
+    *pathName* **xview moveto** *fraction*
+    : Passt die Ansicht im Fenster so an, dass *fraction* der Gesamtbreite des Listbox-Textes links außerhalb des Bildschirms ist. *fraction* muss ein Bruch zwischen 0 und 1 sein.
 
-*pathName* **xview scroll** *number what*
-: Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl sein. *What* muss entweder **units** oder **pages** oder eine Abkürzung davon sein. Wenn *what* **units** ist, passt sich die Ansicht nach links oder rechts um *number* Zeicheneinheiten (die Breite des Zeichens **0**) auf der Anzeige an; wenn es **pages** ist, passt sich die Ansicht um *number* Bildschirmfüllungen an. Wenn *number* negativ ist, werden Zeichen weiter links sichtbar; wenn es positiv ist, werden Zeichen weiter rechts sichtbar.
+    *pathName* **xview scroll** *number what*
+    : Dieser Befehl verschiebt die Ansicht im Fenster nach links oder rechts gemäß *number* und *what*. *Number* muss eine Ganzzahl sein. *What* muss entweder **units** oder **pages** oder eine Abkürzung davon sein. Wenn *what* **units** ist, passt sich die Ansicht nach links oder rechts um *number* Zeicheneinheiten (die Breite des Zeichens **0**) auf der Anzeige an; wenn es **pages** ist, passt sich die Ansicht um *number* Bildschirmfüllungen an. Wenn *number* negativ ist, werden Zeichen weiter links sichtbar; wenn es positiv ist, werden Zeichen weiter rechts sichtbar.
 
 
 *pathName* **yview** ?*args*?
 : Dieser Befehl wird verwendet, um die vertikale Position des Textes im Fenster des Widgets abzufragen und zu ändern. Er kann eine der folgenden Formen annehmen:
 
-*pathName* **yview**
-: Gibt eine Liste mit zwei Elementen zurück, die beide reelle Brüche zwischen 0 und 1 sind. Das erste Element gibt die Position des Listbox-Elements am oberen Rand des Fensters relativ zur Listbox als Ganzes an (0,5 bedeutet beispielsweise, dass es auf halber Strecke durch die Listbox ist). Das zweite Element gibt die Position des Listbox-Elements direkt nach dem letzten im Fenster relativ zur Listbox als Ganzes an. Dies sind dieselben Werte, die über die Option **-yscrollcommand** an Scrollbars übergeben werden.
+    *pathName* **yview**
+    : Gibt eine Liste mit zwei Elementen zurück, die beide reelle Brüche zwischen 0 und 1 sind. Das erste Element gibt die Position des Listbox-Elements am oberen Rand des Fensters relativ zur Listbox als Ganzes an (0,5 bedeutet beispielsweise, dass es auf halber Strecke durch die Listbox ist). Das zweite Element gibt die Position des Listbox-Elements direkt nach dem letzten im Fenster relativ zur Listbox als Ganzes an. Dies sind dieselben Werte, die über die Option **-yscrollcommand** an Scrollbars übergeben werden.
 
-*pathName* **yview** *index*
-: Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Element am oberen Rand des Fensters angezeigt wird.
+    *pathName* **yview** *index*
+    : Passt die Ansicht im Fenster so an, dass das durch *index* gegebene Element am oberen Rand des Fensters angezeigt wird.
 
-*pathName* **yview moveto** *fraction*
-: Passt die Ansicht im Fenster so an, dass das durch *fraction* gegebene Element am oberen Rand des Fensters erscheint. *Fraction* ist ein Bruch zwischen 0 und 1; 0 bezeichnet das erste Element in der Listbox, 0,33 bezeichnet das Element ein Drittel des Weges durch die Listbox und so weiter.
+    *pathName* **yview moveto** *fraction*
+    : Passt die Ansicht im Fenster so an, dass das durch *fraction* gegebene Element am oberen Rand des Fensters erscheint. *Fraction* ist ein Bruch zwischen 0 und 1; 0 bezeichnet das erste Element in der Listbox, 0,33 bezeichnet das Element ein Drittel des Weges durch die Listbox und so weiter.
 
-*pathName* **yview scroll** *number what*
-: Dieser Befehl passt die Ansicht im Fenster nach oben oder unten gemäß *number* und *what* an. *Number* muss eine Ganzzahl sein. *What* muss entweder **units** oder **pages** sein. Wenn *what* **units** ist, passt sich die Ansicht nach oben oder unten um *number* Zeilen an; wenn es **pages** ist, passt sich die Ansicht um *number* Bildschirmfüllungen an. Wenn *number* negativ ist, werden frühere Elemente sichtbar; wenn es positiv ist, werden spätere Elemente sichtbar.
+    *pathName* **yview scroll** *number what*
+    : Dieser Befehl passt die Ansicht im Fenster nach oben oder unten gemäß *number* und *what* an. *Number* muss eine Ganzzahl sein. *What* muss entweder **units** oder **pages** sein. Wenn *what* **units** ist, passt sich die Ansicht nach oben oder unten um *number* Zeilen an; wenn es **pages** ist, passt sich die Ansicht um *number* Bildschirmfüllungen an. Wenn *number* negativ ist, werden frühere Elemente sichtbar; wenn es positiv ist, werden spätere Elemente sichtbar.
 
 
 
-# STANDARD-BINDINGS
+# Standard-Bindings
 
 Tk erstellt automatisch Klassen-Bindings für Listboxes, die ihnen Motif-ähnliches Verhalten geben. Ein Großteil des Verhaltens einer Listbox wird durch ihre Option **-selectmode** bestimmt, die eine von vier Arten der Behandlung der Auswahl auswählt.
 
@@ -207,7 +216,7 @@ Wenn der Auswahlmodus **multiple** oder **extended** ist, können beliebig viele
 
 Die meisten Benutzer werden wahrscheinlich den Modus **browse** für Einzelauswahlen und den Modus **extended** für Mehrfachauswahlen verwenden wollen; die anderen Modi scheinen nur in besonderen Situationen nützlich zu sein.
 
-Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Event **<\<ListboxSelect>>** erzeugt. Dieses virtuelle Event wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* **selection** angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
+Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Event **<\<ListboxSelect>>** erzeugt. Dieses virtuelle Event wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* [selection] angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
 
 Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindings folgendes weiteres Verhalten definiert:
 
@@ -251,3 +260,9 @@ Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindings folgendes w
 
 
 Das Verhalten von Listboxes kann geändert werden, indem neue Bindings für einzelne Widgets definiert werden oder indem die Klassen-Bindings neu definiert werden.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetColor]: ../tk-c/GetColor.md
+[options]: options.md
+[selection]: selection.md

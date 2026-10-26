@@ -1,5 +1,6 @@
 ---
 CommandName: bench::out::csv
+title: bench::out::csv
 ManualSection: n
 Version: 0.1.3
 TclPart: tcllib
@@ -24,9 +25,9 @@ bench::out::csv - bench::out::csv - Formatting benchmark results as CSV
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [bench::out::csv]{.lit} [0.1.3]{.optlit} 
-[::bench::out::csv]{.cmd} [bench_result]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [bench::out::csv]{.lit} [0.1.3]{.optlit}
+[::bench::out::csv]{.cmd} [bench\_result]{.arg}
 :::
 
 # Description
@@ -37,10 +38,12 @@ A reader interested in the generation or processing of such results should go an
 
 If the bench language itself is the actual interest please start with the *bench language introduction* and then proceed from there to the formal *bench language specification*.
 
-# Public api
+# Public API
 
-**::bench::out::csv** *bench_result*
-: This command formats the specified benchmark result for output to a file, socket, etc. This specific command generates CSV data importable by spread sheets. For other formatting styles see the packages **bench** and **bench::out::text** which provide commands to format benchmark results in raw form, or for human consumption, respectively.
+**::bench::out::csv** *bench\_result*
+: This command formats the specified benchmark result for output to a file, socket, etc. This specific command generates CSV data importable by spread sheets.
+
+    For other formatting styles see the packages **bench** and **bench::out::text** which provide commands to format benchmark results in raw form, or for human consumption, respectively.
 
 
 # Bugs, ideas, feedback

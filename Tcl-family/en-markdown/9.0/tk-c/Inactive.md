@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetUserInactiveTime
+title: Tk_GetUserInactiveTime
 ManualSection: 3
 Version: 8.5
 TclPart: Tk
@@ -9,30 +10,29 @@ Keywords:
  - inactive
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tk_GetUserInactiveTime, Tk_ResetUserInactiveTime - discover user inactivity time
+Tk\_GetUserInactiveTime, Tk\_ResetUserInactiveTime - discover user inactivity time
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-long
-[Tk_GetUserInactiveTime]{.cmd}([display]{.arg})
-
-[Tk_ResetUserInactiveTime]{.cmd}([display]{.arg})
+**#include <tk.h>**
+[long]{.ret} [Tk\_GetUserInactiveTime]{.ccmd} [display]{.cargs}
+[Tk\_ResetUserInactiveTime]{.ccmd} [display]{.cargs}
 :::
 
 # Arguments
 
-Display *\*display* (in)
+::: {.arguments} :::
+
+[\*display]{.carg .in type="Display"}
 : The display on which the user inactivity timer is to be queried or reset.
 
+:::
 
 # Description
 
-**Tk_GetUserInactiveTime** returns the number of milliseconds that have passed since the last user interaction (usually via keyboard or mouse) with the respective display. On systems and displays that do not support querying the user inactivity time, **-1** is returned. **Tk_ResetUserInactiveTime** resets the user inactivity timer of the given display to zero.  On windowing systems that do not support multiple displays *display* can be passed as **NULL**.
+**Tk\_GetUserInactiveTime** returns the number of milliseconds that have passed since the last user interaction (usually via keyboard or mouse) with the respective display. On systems and displays that do not support querying the user inactivity time, **-1** is returned. **Tk\_ResetUserInactiveTime** resets the user inactivity timer of the given display to zero.  On windowing systems that do not support multiple displays *display* can be passed as **NULL**.

@@ -1,5 +1,6 @@
 ---
 CommandName: yencode
+title: yencode
 ManualSection: n
 Version: 1.1.4
 TclPart: tcllib
@@ -13,35 +14,39 @@ Copyright:
  - Copyright (c) 2002, Pat Thoyts
 ---
 
-# NAME
+# Name
 
 yencode – Binäre Daten im Y-Format kodieren/dekodieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [yencode]{.lit} [1.1.4]{.optlit} 
-[::yencode::encode]{.cmd} [bstring]{.arg} 
-[::yencode::decode]{.cmd} [estring]{.arg} 
-[::yencode::yencode]{.cmd} [-name string]{.optarg} [-line integer]{.optarg} [-crc32 boolean]{.optarg} (-file [filename]{.arg} | [--]{.optlit} [bstring)]{.arg} 
-[::yencode::ydecode]{.cmd} (-file [filename]{.arg} | [--]{.optlit} [estring)]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [yencode]{.lit} [1.1.4]{.optlit}
+[::yencode::encode]{.cmd} [bstring]{.arg}
+[::yencode::decode]{.cmd} [estring]{.arg}
+[::yencode::yencode]{.cmd} [[-name]{.lit} [string]{.arg}]{.optarg} [[-line]{.lit} [integer]{.arg}]{.optarg} [[-crc32]{.lit} [boolean]{.arg}]{.optarg} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [bstring]{.arg})
+[::yencode::ydecode]{.cmd} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [estring]{.arg})
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-Dateikodierung, die für Usenet-Nachrichten verwendet wird. Diese Kodierung packt Binärdaten in ein Format, das eine 8-Bit-kompatible Übertragungsschicht erfordert, dabei jedoch Sonderzeichen der *NNTP*-Posting-Protokolle escapt. Einzelheiten zur Kodierung finden Sie unter *http://www.yenc.org*.
+Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-Dateikodierung, die für Usenet-Nachrichten verwendet wird. Diese Kodierung packt Binärdaten in ein Format, das eine 8-Bit-kompatible Übertragungsschicht erfordert, dabei jedoch Sonderzeichen der *NNTP*-Posting-Protokolle escapt. Einzelheiten zur Kodierung finden Sie unter <http://www.yenc.org>.
 
 # API
 
 **::yencode::encode** *bstring*
-: Gibt als Ergebnis eine yEncoded-Version der Binärzeichenfolge *bstring* zurück. Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+: Gibt als Ergebnis eine yEncoded-Version der Binärzeichenfolge *bstring* zurück.
+
+    Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::yencode::decode** *estring*
 : Gibt eine Binärzeichenfolge zurück, die aus dem *estring* mittels yEncode-Dekodierung dekodiert wurde.
 
 **::yencode::yencode** ?**-name** *string*? ?**-line** *integer*? ?**-crc32** *boolean*? (**-file** *filename* | ?**--**? *bstring*)
-: Gibt als Ergebnis eine „wrapped“ yEncoded-Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück. Jedes „wrapped“ yEncoded-Ergebnis besteht aus einem Header, einem Body und einem Trailer. Der Header ist eine Zeile, die mit **=ybegin** beginnt, gefolgt von einer Zeilenlänge in der Form **line=**_length_, der Größe der Originaldaten (in Byte) in der Form **size=**_size_ sowie dem Name der Originaldatei in der Form **name=**_filename_, alles durch Leerzeichen getrennt. Der Hauptteil besteht aus den yEncoded-Daten. Der Trailer ist eine Zeile, die mit **=yend** beginnt, gefolgt von der Größe der Originaldaten in der Form **size=**_size_ und optional (aber empfohlen) einem CRC32-Prüfsummenwert in der Form **crc32=**_checksum_, alles durch Leerzeichen getrennt.
+: Gibt als Ergebnis eine „wrapped“ yEncoded-Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück.
+
+    Jedes „wrapped“ yEncoded-Ergebnis besteht aus einem Header, einem Body und einem Trailer. Der Header ist eine Zeile, die mit **=ybegin** beginnt, gefolgt von einer Zeilenlänge in der Form **line=**_length_, der Größe der Originaldaten (in Byte) in der Form **size=**_size_ sowie dem Name der Originaldatei in der Form **name=**_filename_, alles durch Leerzeichen getrennt. Der Hauptteil besteht aus den yEncoded-Daten. Der Trailer ist eine Zeile, die mit **=yend** beginnt, gefolgt von der Größe der Originaldaten in der Form **size=**_size_ und optional (aber empfohlen) einem CRC32-Prüfsummenwert in der Form **crc32=**_checksum_, alles durch Leerzeichen getrennt.
 
 **::yencode::ydecode** (**-file** *filename* | ?**--**? *estring*)
 : Gibt eine Liste aus Listen mit jeweils drei Elementen zurück, bestehend aus Dateiname, Dateigröße und yEncode-dekodierten Bytes, entweder aus der durch **-file** angegebenen Datei *filename* oder aus dem *estring*.
@@ -62,7 +67,7 @@ Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-D
 : Wenn die Kodierung dieses Pakets durchgeführt wird, fügt es gemäß der yEncode-Spezifikation einen CRC-Wert (Cyclic Redundancy Check) in den Trailer ein. Dies lässt sich verhindern, indem Sie diese Option verwendet und für *boolean* einen falschen Wert übergibt, z. B. **0**.
 
 
-# BEISPIELE
+# Beispiele
 
 *Die yEncode-Daten werden in den Beispielen nicht gezeigt, weil es nur Rohbytes sind.*
 
@@ -116,13 +121,12 @@ foreach lst [::yencode::ydecode $ency] {
 name=test.y size=23 line='Δ÷ “Utf-8” ♞ℤ'
 ```
 
-# LITERATUR
+# Literatur
 
-**\[1\]**
-: *http://www.yenc.org/yenc-draft.1.3.txt*
+1. <http://www.yenc.org/yenc-draft.1.3.txt>
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *base64* als Kategorie an.
 
@@ -130,11 +134,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Pat Thoyts

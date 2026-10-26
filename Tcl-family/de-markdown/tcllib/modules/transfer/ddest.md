@@ -1,5 +1,6 @@
 ---
 CommandName: transfer::data::destination
+title: transfer::data::destination
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -13,33 +14,35 @@ Copyright:
  - Copyright (c) 2006-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 transfer::data::destination – Datenziel
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::data::destination]{.lit} [0.3]{.optlit} 
-[transfer::data::destination]{.cmd} [objectName]{.arg} [options]{.optdot} 
-[objectName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [put]{.sub} [chunk]{.arg} 
-[objectName]{.ins} [done]{.sub} 
-[objectName]{.ins} [valid]{.sub} [msgvar]{.arg} 
-[objectName]{.ins} [receive]{.sub} [channel]{.arg} [done]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::data::destination]{.lit} [0.3]{.optlit}
+[transfer::data::destination]{.cmd} [objectName]{.arg} [options...]{.optarg}
+[objectName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [put]{.sub} [chunk]{.arg}
+[objectName]{.ins} [done]{.sub}
+[objectName]{.ins} [valid]{.sub} [msgvar]{.arg}
+[objectName]{.ins} [receive]{.sub} [channel]{.arg} [done]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält Objekte, die in erster Linie das Ziel einer Datenübertragung beschreiben. Sie sind zudem in der Lage, den Empfang von Informationen aus einem Kanal an das beschriebene Ziel zu initiieren.
 
 # API
 
 **transfer::data::destination** *objectName* ?*options*...?
-: Dieser Befehl erstellt ein neues Datenzielobjekt mit einem zugehörigen Tcl-Befehl, dessen Name *objectName* lautet. Dieser *object*-Befehl wird in den Abschnitten **Objektbefehl** und **Objektmethoden** ausführlich erläutert. Die unterstützten *options* werden im Abschnitt **Optionen** erläutert. Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace. Der vollständig qualifizierte Name des Objektbefehls wird als Ergebnis des Befehls zurückgegeben.
+: Dieser Befehl erstellt ein neues Datenzielobjekt mit einem zugehörigen Tcl-Befehl, dessen Name *objectName* lautet. Dieser *object*-Befehl wird in den Abschnitten [Objektbefehl] und [Objektmethoden] ausführlich erläutert. Die unterstützten *options* werden im Abschnitt [Optionen] erläutert.
+
+    Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace. Der vollständig qualifizierte Name des Objektbefehls wird als Ergebnis des Befehls zurückgegeben.
 
 
 ## Objektbefehl
@@ -47,7 +50,7 @@ Dieses Paket enthält Objekte, die in erster Linie das Ziel einer Datenübertrag
 Alle mit dem Befehl **::transfer::data::destination** erstellten Objekte haben die folgende allgemeine Form:
 
 *objectName* **method** ?*arg arg ...*?
-: Die Methode **method** und ihre *arg*umente bestimmen das genaue Verhalten des Befehls. Detaillierte Angaben finden Sie im Abschnitt **Objektmethoden**.
+: Die Methode **method** und ihre *arg*umente bestimmen das genaue Verhalten des Befehls. Detaillierte Angaben finden Sie im Abschnitt [Objektmethoden].
 
 
 ## Objektmethoden
@@ -85,7 +88,7 @@ Alle Datenziele unterstützen die unten aufgeführten Optionen. Zu beachten ist,
 : Wenn diese Option festgelegt ist, wird damit ein Befehl definiert, der für jeden empfangenen Byte-Block aufgerufen wird, sodass der Benutzer den Fortschritt des Datenempfangs überwachen kann. Die Rückruffunktion wird stets mit einem zusätzlichen Argument aufgerufen, nämlich der Anzahl der bisher empfangenen Bytes.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *transfer* als Kategorie an.
 
@@ -93,11 +96,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Transfermodul
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2006-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

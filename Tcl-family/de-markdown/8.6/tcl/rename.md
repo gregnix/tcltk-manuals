@@ -1,5 +1,6 @@
 ---
 CommandName: rename
+title: rename
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -17,23 +18,23 @@ Copyright:
  - Copyright (c) 1994-1997 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 rename - Benennt einen Befehl um oder löscht ihn
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[rename]{.cmd} [oldName]{.arg} [newName]{.arg} 
+[rename]{.cmd} [oldName]{.arg} [newName]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Benennt den Befehl *oldName* in *newName* um. Ist *newName* eine leere Zeichenkette, wird *oldName* gelöscht. *oldName* und *newName* dürfen Namespace-Qualifizierer enthalten. Wird ein Befehl in einen anderen Namespace umbenannt, laufen künftige Aufrufe in diesem Namespace. **rename** gibt eine leere Zeichenkette zurück.
 
-# BEISPIELE
+# Beispiele
 
-**rename** kann Standardbefehle mit eigener Überwachung umschließen — z. B. zählen, wie oft **source** aufgerufen wird:
+**rename** kann Standardbefehle mit eigener Überwachung umschließen — z. B. zählen, wie oft [source] aufgerufen wird:
 
 ```
 rename ::source ::theRealSource
@@ -44,3 +45,6 @@ proc ::source args {
     uplevel 1 ::theRealSource $args
 }
 ```
+
+
+[source]: source.md

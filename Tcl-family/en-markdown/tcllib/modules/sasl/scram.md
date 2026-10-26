@@ -1,5 +1,6 @@
 ---
 CommandName: SASL::SCRAM
+title: SASL::SCRAM
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -19,8 +20,8 @@ SASL::SCRAM - Implementation of SASL SCRAM mechanism for Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [SASL::SCRAM]{.lit} [0.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [SASL::SCRAM]{.lit} [0.2]{.optlit}
 :::
 
 # Description
@@ -31,8 +32,7 @@ Please read the documentation for package **sasl** for details.
 
 # References
 
-**\[1\]**
-: Newman, C. et al., "Salted Challenge Response Authentication Mechanism (SCRAM) SASL and GSS-API Mechanisms", RFC 5802, July 2010, (*http://www.ieft.org/rfc/rfc5802.txt*)
+1. Newman, C. et al., "Salted Challenge Response Authentication Mechanism (SCRAM) SASL and GSS-API Mechanisms", RFC 5802, July 2010, (<http://www.ieft.org/rfc/rfc5802.txt>)
 
 
 # Authors

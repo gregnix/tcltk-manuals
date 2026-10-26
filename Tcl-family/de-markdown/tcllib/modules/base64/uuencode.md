@@ -1,5 +1,6 @@
 ---
 CommandName: uuencode
+title: uuencode
 ManualSection: n
 Version: 1.1.6
 TclPart: tcllib
@@ -11,35 +12,41 @@ Copyright:
  - Copyright (c) 2002, Pat Thoyts
 ---
 
-# NAME
+# Name
 
 uuencode – Binäre Daten im UU-Format kodieren/dekodieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuencode]{.lit} [1.1.6]{.optlit} 
-[::uuencode::encode]{.cmd} [bstring]{.arg} 
-[::uuencode::decode]{.cmd} [estring]{.arg} 
-[::uuencode::uuencode]{.cmd} [-name string]{.optarg} [-mode octal]{.optarg} (-file [filename]{.arg} | [--]{.optlit} [bstring)]{.arg} 
-[::uuencode::uudecode]{.cmd} (-file [filename]{.arg} | [--]{.optlit} [estring)]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuencode]{.lit} [1.1.6]{.optlit}
+[::uuencode::encode]{.cmd} [bstring]{.arg}
+[::uuencode::decode]{.cmd} [estring]{.arg}
+[::uuencode::uuencode]{.cmd} [[-name]{.lit} [string]{.arg}]{.optarg} [[-mode]{.lit} [octal]{.arg}]{.optarg} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [bstring]{.arg})
+[::uuencode::uudecode]{.cmd} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [estring]{.arg})
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält eine reine Tcl-Implementierung der Befehle **uuencode(1p)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html> und **uudecode(1p)** <https://www.man7.org/linux/man-pages/man1/uudecode.1p.html>. Bei dieser Kodierung werden Binärdaten in druckbare 7-Bit-ASCII-Zeichen gepackt.
 
 # API
 
 **::uuencode::encode** *bstring*
-: Gibt als Ergebnis eine uuencode-kodierte Version der Binärzeichenkette *bstring* zurück. Alle übergebenen Bytes werden kodiert, auch wenn sie die maximale Zeilenlänge von uuencode überschreiten. Wenn die Anzahl der Eingabebytes kein Vielfaches von 3 ist, wird die Zeichenkette mit zusätzlichen **\\x00**-NUL-Bytes aufgefüllt. Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+: Gibt als Ergebnis eine uuencode-kodierte Version der Binärzeichenkette *bstring* zurück.
+
+    Alle übergebenen Bytes werden kodiert, auch wenn sie die maximale Zeilenlänge von uuencode überschreiten. Wenn die Anzahl der Eingabebytes kein Vielfaches von 3 ist, wird die Zeichenkette mit zusätzlichen **\\x00**-NUL-Bytes aufgefüllt.
+
+    Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::uuencode::decode** *estring*
 : Gibt eine Binärzeichenkette zurück, die aus dem *estring* mit uuencode-Decodierung entschlüsselt wurde, einschließlich etwaiger Padding-NUL-Bytes **\\x00** am Ende.
 
 **::uuencode::uuencode** ?**-name** *string*? ?**-mode** *octal*? (**-file** *filename* |  ?**--**? *bstring*)
-: Gibt als Ergebnis eine umgeschlossene, uuencodierte Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück. Jedes umgeschlossene, uuencodierte Ergebnis besteht aus einem Header, einem Hauptteil und einem Footer. Der Header ist eine Zeile, die mit **begin** beginnt, gefolgt von einem vorgeschlagenen Dateimodus und einem vorgeschlagenen Dateinamen. Der Hauptteil besteht aus Zeilen mit uuencodierten Daten, denen jeweils ein Zeichen für die Zeilenlänge vorangestellt ist. Der Footer ist **end** in einer eigenen Zeile. Siehe **uuencode(1)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html>.
+: Gibt als Ergebnis eine umgeschlossene, uuencodierte Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück.
+
+    Jedes umgeschlossene, uuencodierte Ergebnis besteht aus einem Header, einem Hauptteil und einem Footer. Der Header ist eine Zeile, die mit **begin** beginnt, gefolgt von einem vorgeschlagenen Dateimodus und einem vorgeschlagenen Dateinamen. Der Hauptteil besteht aus Zeilen mit uuencodierten Daten, denen jeweils ein Zeichen für die Zeilenlänge vorangestellt ist. Der Footer ist **end** in einer eigenen Zeile. Siehe **uuencode(1)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html>.
 
 **::uuencode::uudecode** (**-file** *filename* |  ?**--**? *estring*)
 : Gibt eine Liste aus Listen mit jeweils drei Elementen zurück, bestehend aus Dateiname, Dateimodus und uuencode-dekodierten Bytes, und zwar aus der durch **-file** angegebenen Datei *filename* oder aus dem *estring*.
@@ -57,7 +64,7 @@ Dieses Paket enthält eine reine Tcl-Implementierung der Befehle **uuencode(1p)*
 : Die uuencodierte Datenkopfzeile enthält ein empfohlenes Bitmuster für die Zugriffsrechte, das als Oktalzahl ausgedrückt wird. Um die Standardeinstellung 0644 zu ändern, können Sie diese Option festlegen. Beispielsweise wäre 0755 für eine ausführbare Datei geeignet. Siehe **chmod(1)** <https://www.man7.org/linux/man-pages/man1/chmod.1.html>.
 
 
-# BEISPIELE
+# Beispiele
 
 In den Beispielen wird der Unterbefehl **string trimright** verwendet, um etwaige **\\x00**-NUL-Bytes zu entfernen, die möglicherweise während der Kodierung hinzugefügt wurden. *Hinweis: Wenn die ursprünglichen Binärzeichenfolgen möglicherweise mit* **\\x00**-NUL-Bytes *enden, ist ein ausgefeilterer Ansatz erforderlich.*
 
@@ -114,7 +121,7 @@ foreach lst [::uuencode::uudecode -file test.uu] {
 name=test.uu mode=644 line='Δ÷ “Utf-8” ♞ℤ'
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *base64* als Kategorie an.
 
@@ -122,11 +129,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Pat Thoyts

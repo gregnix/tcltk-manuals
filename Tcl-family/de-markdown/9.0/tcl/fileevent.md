@@ -1,5 +1,6 @@
 ---
 CommandName: fileevent
+title: fileevent
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -12,17 +13,20 @@ Copyright:
  - Copyright (c) 2008 Pat Thoyts
 ---
 
-# NAME
+# Name
 
 fileevent - Führt ein Skript aus, wenn ein Kanal lesbar oder beschreibbar wird
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[fileevent]{.cmd} [channel]{.arg} [readable]{.lit} [script]{.optarg} 
-[fileevent]{.cmd} [channel]{.arg} [writable]{.lit} [script]{.optarg} 
+[fileevent]{.cmd} [channel]{.arg} [readable]{.lit} [script]{.optarg}
+[fileevent]{.cmd} [channel]{.arg} [writable]{.lit} [script]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **fileevent** wurde durch den Befehl **chan event** abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+Der Befehl **fileevent** wurde durch den Befehl [chan event][chan] abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+
+
+[chan]: chan.md

@@ -1,5 +1,6 @@
 ---
 CommandName: pop3d::dbox
+title: pop3d::dbox
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -14,44 +15,50 @@ Copyright:
  - Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 pop3d::dbox – Einfache Postfachdatenbank für POP3D
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3d::dbox]{.lit} [1.0.3]{.optlit} 
-[::pop3d::dbox::new]{.cmd} [dbName]{.optarg} 
-[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[dbName]{.ins} [destroy]{.sub} 
-[dbName]{.ins} [base]{.sub} [base]{.arg} 
-[dbName]{.ins} [add]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [remove]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [move]{.sub} [old]{.arg} [new]{.arg} 
-[dbName]{.ins} [list]{.sub} 
-[dbName]{.ins} [exists]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [locked]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [lock]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [unlock]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [stat]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg} 
-[dbName]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg} 
-[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3d::dbox]{.lit} [1.0.3]{.optlit}
+[::pop3d::dbox::new]{.cmd} [dbName]{.optarg}
+[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[dbName]{.ins} [destroy]{.sub}
+[dbName]{.ins} [base]{.sub} [base]{.arg}
+[dbName]{.ins} [add]{.sub} [mbox]{.arg}
+[dbName]{.ins} [remove]{.sub} [mbox]{.arg}
+[dbName]{.ins} [move]{.sub} [old]{.arg} [new]{.arg}
+[dbName]{.ins} [list]{.sub}
+[dbName]{.ins} [exists]{.sub} [mbox]{.arg}
+[dbName]{.ins} [locked]{.sub} [mbox]{.arg}
+[dbName]{.ins} [lock]{.sub} [mbox]{.arg}
+[dbName]{.ins} [unlock]{.sub} [mbox]{.arg}
+[dbName]{.ins} [stat]{.sub} [mbox]{.arg}
+[dbName]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg}
+[dbName]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg}
+[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Das Paket **pop3d::dbox** bietet einfache, grundlegende Funktionen zur Verwaltung von Postfächern. Jedes Postfach-Objekt verwaltet ein einzelnes Basisverzeichnis, dessen Unterverzeichnisse die verwalteten Postfächer sind. E-Mails in einem Postfach sind Dateien im Postfachverzeichnis; jede dieser Dateien enthält eine einzelne E-Mail, Header und Body, in einem zu RFC 822 (*http://www.rfc-editor.org/rfc/rfc822.txt*) konformen Format.
+Das Paket **pop3d::dbox** bietet einfache, grundlegende Funktionen zur Verwaltung von Postfächern. Jedes Postfach-Objekt verwaltet ein einzelnes Basisverzeichnis, dessen Unterverzeichnisse die verwalteten Postfächer sind. E-Mails in einem Postfach sind Dateien im Postfachverzeichnis; jede dieser Dateien enthält eine einzelne E-Mail, Header und Body, in einem zu RFC 822 (<http://www.rfc-editor.org/rfc/rfc822.txt>) konformen Format.
 
 Jedes Postfach-Objekt, das der unten beschriebenen Schnittstelle folgt, kann zusammen mit dem POP3-Server-Kern aus dem Paket **pop3d** verwendet werden. Insbesondere lassen sich die von diesem Paket erzeugten Objekte direkt in der Speicher-Rückruffunktion von POP3-Servern verwenden, die derselben Schnittstelle folgen wie die vom Paket **pop3d** erzeugten Server.
 
 **::pop3d::dbox::new** ?*dbName*?
-: Dieser Befehl erstellt ein neues Datenbankobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *dbName* lautet. Mit dem Befehl **dbName** können verschiedene Operationen auf der Datenbank ausgeführt werden. Er hat die folgende allgemeine Form:
+: Dieser Befehl erstellt ein neues Datenbankobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *dbName* lautet.
+
+
+Mit dem Befehl **dbName** können verschiedene Operationen auf der Datenbank ausgeführt werden. Er hat die folgende allgemeine Form:
 
 **dbName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest. Für Datenbankobjekte sind folgende Befehle möglich:
+: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+
+
+Für Datenbankobjekte sind folgende Befehle möglich:
 
 *dbName* **destroy**
 : Löscht die Postfachdatenbank und alle temporären Daten. Das mit dem Objekt verknüpfte Verzeichnis wird nicht gelöscht.
@@ -96,7 +103,7 @@ Jedes Postfach-Objekt, das der unten beschriebenen Schnittstelle folgt, kann zus
 : Gibt ein Handle für die angegebene Nachricht zurück. Dieses Handle ist ein MIME-Token, das der in der Dokumentation des Pakets **mime** beschriebenen Schnittstelle entspricht. Das Token ist *schreibgeschützt*. Mit anderen Worten: Der Aufrufer darf mit dem Token alles tun, außer es zu ändern. Die *msgId* muss im Bereich „1 … \[*dbName* **stat**\]“ liegen, andernfalls schlägt dieser Aufruf fehl. Wenn **stat** vor diesem Aufruf nicht aufgerufen wurde, geht **get** davon aus, dass sich keine Nachrichten im Postfach befinden.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pop3d* als Kategorie an.
 
@@ -104,11 +111,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>

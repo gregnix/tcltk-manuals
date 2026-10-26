@@ -1,5 +1,6 @@
 ---
 CommandName: practcl
+title: practcl
 ManualSection: n
 Version: 0.16.6
 TclPart: tcllib
@@ -10,14 +11,14 @@ Copyright:
  - Copyright (c) 2016-2018 Sean Woods <yoda@etoyoc.com>
 ---
 
-# NAME
+# Name
 
 practcl – Das Practcl-Modul
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} [1.0]{.lit} 
+[package]{.cmd} [require]{.sub} [TclOO]{.lit} [1.0]{.lit}
 :::
 
 proc **practcl::cat** *fname*
@@ -34,7 +35,7 @@ proc **practcl::debug** ?*args*?
 
 proc **practcl::doexec** ?*args*?
 
-proc **practcl::doexec_in** *path* ?*args*?
+proc **practcl::doexec\_in** *path* ?*args*?
 
 proc **practcl::dotclexec** ?*args*?
 
@@ -44,61 +45,61 @@ proc **practcl::domake.tcl** *path* ?*args*?
 
 proc **practcl::fossil** *path* ?*args*?
 
-proc **practcl::fossil_status** *dir*
+proc **practcl::fossil\_status** *dir*
 
 proc **practcl::os**
 
 proc **practcl::mkzip** *exename* *barekit* *vfspath*
 
-proc **practcl::sort_dict** *list*
+proc **practcl::sort\_dict** *list*
 
-proc **practcl::local_os**
+proc **practcl::local\_os**
 
 proc **practcl::config.tcl** *path*
 
-proc **practcl::read_configuration** *path*
+proc **practcl::read\_configuration** *path*
 
-proc **practcl::tcllib_require** *pkg* ?*args*?
+proc **practcl::tcllib\_require** *pkg* ?*args*?
 
-proc **practcl::platform::tcl_core_options** *os*
+proc **practcl::platform::tcl\_core\_options** *os*
 
-proc **practcl::platform::tk_core_options** *os*
+proc **practcl::platform::tk\_core\_options** *os*
 
-proc **practcl::read_rc_file** *filename* ?*localdat* ?
+proc **practcl::read\_rc\_file** *filename* ?*localdat* ?
 
-proc **practcl::read_sh_subst** *line* *info*
+proc **practcl::read\_sh\_subst** *line* *info*
 
-proc **practcl::read_sh_file** *filename* ?*localdat* ?
+proc **practcl::read\_sh\_file** *filename* ?*localdat* ?
 
-proc **practcl::read_Config.sh** *filename*
+proc **practcl::read\_Config.sh** *filename*
 
-proc **practcl::read_Makefile** *filename*
+proc **practcl::read\_Makefile** *filename*
 
 proc **practcl::cputs** *varname* ?*args*?
 
-proc **practcl::tcl_to_c** *body*
+proc **practcl::tcl\_to\_c** *body*
 
 proc **practcl::\_tagblock** *text* ?*style* **tcl**? ?*note* ?
 
-proc **practcl::de_shell** *data*
+proc **practcl::de\_shell** *data*
 
 proc **practcl::grep** *pattern* ?*files* ?
 
-proc **practcl::file_lexnormalize** *sp*
+proc **practcl::file\_lexnormalize** *sp*
 
-proc **practcl::file_relative** *base* *dst*
+proc **practcl::file\_relative** *base* *dst*
 
 proc **practcl::findByPattern** *basedir* *patterns*
 
 proc **practcl::log** *fname* *comment*
 
-proc **practcl::\_pkgindex_simpleIndex** *path*
+proc **practcl::\_pkgindex\_simpleIndex** *path*
 
-proc **practcl::\_pkgindex_directory** *path*
+proc **practcl::\_pkgindex\_directory** *path*
 
-proc **practcl::\_pkgindex_path_subdir** *path*
+proc **practcl::\_pkgindex\_path\_subdir** *path*
 
-proc **practcl::pkgindex_path** ?*args*?
+proc **practcl::pkgindex\_path** ?*args*?
 
 proc **practcl::installDir** *d1* *d2*
 
@@ -114,521 +115,521 @@ proc **practcl::depends** ?*args*?
 
 proc **practcl::target** *name* *info* ?*action* ?
 
-Methode **constructor**
+method **constructor**
 
-Methode **argspec** *argspec*
+method **argspec** *argspec*
 
-Methode **comment** *block*
+method **comment** *block*
 
-Methode **keyword.Annotation** *resultvar* *commentblock* *type* *name* *body*
+method **keyword.Annotation** *resultvar* *commentblock* *type* *name* *body*
 
-Methode **keyword.Class** *resultvar* *commentblock* *name* *body*
+method **keyword.Class** *resultvar* *commentblock* *name* *body*
 
-Methode **keyword.class** *resultvar* *commentblock* *name* *body*
+method **keyword.class** *resultvar* *commentblock* *name* *body*
 
-Methode **keyword.Class_Method** *resultvar* *commentblock* *name* ?*args*?
+method **keyword.Class\_Method** *resultvar* *commentblock* *name* ?*args*?
 
-Methode **keyword.method** *resultvar* *commentblock* *name* ?*args*?
+method **keyword.method** *resultvar* *commentblock* *name* ?*args*?
 
-Methode **keyword.proc** *commentblock* *name* *argspec*
+method **keyword.proc** *commentblock* *name* *argspec*
 
-Methode **reset**
+method **reset**
 
-Methode **Main**
+method **Main**
 
-Methode **section.method** *keyword* *method* *minfo*
+method **section.method** *keyword* *method* *minfo*
 
-Methode **section.annotation** *type* *name* *iinfo*
+method **section.annotation** *type* *name* *iinfo*
 
-Methode **section.class** *class_name* *class_info*
+method **section.class** *class\_name* *class\_info*
 
-Methode **section.command** *procinfo*
+method **section.command** *procinfo*
 
-Methode **manpage** ?**header** *value*? ?**footer** *value*? ?**authors** *list*?
+method **manpage** ?**header** *value*? ?**footer** *value*? ?**authors** *list*?
 
-Methode **scan_text** *text*
+method **scan\_text** *text*
 
-Methode **scan_file** *filename*
+method **scan\_file** *filename*
 
-Methode **\_MorphPatterns**
+method **\_MorphPatterns**
 
-Methode **define** *submethod* ?*args*?
+method **define** *submethod* ?*args*?
 
-Methode **graft** ?*args*?
+method **graft** ?*args*?
 
-Methode **initialize**
+method **initialize**
 
-Methode **link** *command* ?*args*?
+method **link** *command* ?*args*?
 
-Methode **morph** *classname*
+method **morph** *classname*
 
-Methode **script** *script*
+method **script** *script*
 
-Methode **select**
+method **select**
 
-Methode **source** *filename*
+method **source** *filename*
 
 classmethod **select** *object*
 
-Methode **config.sh**
+method **config.sh**
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 
-Methode **read_configuration**
+method **read\_configuration**
 
-Methode **build-cflags** *PROJECT* *DEFS* *namevar* *versionvar* *defsvar*
+method **build-cflags** *PROJECT* *DEFS* *namevar* *versionvar* *defsvar*
 
-Methode **critcl** ?*args*?
+method **critcl** ?*args*?
 
-Methode **Autoconf**
+method **Autoconf**
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 
-Methode **ConfigureOpts**
+method **ConfigureOpts**
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 
-Methode **make {} autodetect**
+method **make {} autodetect**
 
-Methode **make {} clean**
+method **make {} clean**
 
-Methode **make {} compile**
+method **make {} compile**
 
-Methode **make {} install** *DEST*
+method **make {} install** *DEST*
 
-Methode **build-compile-sources** *PROJECT* *COMPILE* *CPPCOMPILE* *INCLUDES*
+method **build-compile-sources** *PROJECT* *COMPILE* *CPPCOMPILE* *INCLUDES*
 
-Methode **build-Makefile** *path* *PROJECT*
+method **build-Makefile** *path* *PROJECT*
 
-Methode **build-library** *outfile* *PROJECT*
+method **build-library** *outfile* *PROJECT*
 
-Methode **build-tclsh** *outfile* *PROJECT* ?*path* **auto**?
+method **build-tclsh** *outfile* *PROJECT* ?*path* **auto**?
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 
-Methode **make {} autodetect**
+method **make {} autodetect**
 
-Methode **make {} clean**
+method **make {} clean**
 
-Methode **make {} compile**
+method **make {} compile**
 
-Methode **make {} install** *DEST*
+method **make {} install** *DEST*
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 
-Methode **NmakeOpts**
+method **NmakeOpts**
 
-Methode **constructor** *module_object* *name* *info* ?*action_body* ?
+method **constructor** *module\_object* *name* *info* ?*action\_body* ?
 
-Methode **do**
+method **do**
 
-Methode **check**
+method **check**
 
-Methode **output**
+method **output**
 
-Methode **reset**
+method **reset**
 
-Methode **triggers**
+method **triggers**
 
-Methode **constructor** *parent* ?*args*?
+method **constructor** *parent* ?*args*?
 
-Methode **child** *method*
+method **child** *method*
 
-Methode **go**
+method **go**
 
-Methode **cstructure** *name* *definition* ?*argdat* ?
+method **cstructure** *name* *definition* ?*argdat* ?
 
-Methode **include** *header*
+method **include** *header*
 
-Methode **include_dir** ?*args*?
+method **include\_dir** ?*args*?
 
-Methode **include_directory** ?*args*?
+method **include\_directory** ?*args*?
 
-Methode **c_header** *body*
+method **c\_header** *body*
 
-Methode **c_code** *body*
+method **c\_code** *body*
 
-Methode **c_function** *header* *body* ?*info* ?
+method **c\_function** *header* *body* ?*info* ?
 
-Methode **c_tcloomethod** *name* *body* ?*arginfo* ?
+method **c\_tcloomethod** *name* *body* ?*arginfo* ?
 
-Methode **cmethod** *name* *body* ?*arginfo* ?
+method **cmethod** *name* *body* ?*arginfo* ?
 
-Methode **c_tclproc_nspace** *nspace*
+method **c\_tclproc\_nspace** *nspace*
 
-Methode **c_tclcmd** *name* *body* ?*arginfo* ?
+method **c\_tclcmd** *name* *body* ?*arginfo* ?
 
-Methode **c_tclproc_raw** *name* *body* ?*arginfo* ?
+method **c\_tclproc\_raw** *name* *body* ?*arginfo* ?
 
-Methode **tcltype** *name* *argdat*
+method **tcltype** *name* *argdat*
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **implement** *path*
+method **implement** *path*
 
-Methode **initialize**
+method **initialize**
 
-Methode **linktype**
+method **linktype**
 
-Methode **generate-cfile-constant**
+method **generate-cfile-constant**
 
-Methode **generate-cfile-header**
+method **generate-cfile-header**
 
-Methode **generate-cfile-tclapi**
+method **generate-cfile-tclapi**
 
-Methode **generate-loader-module**
+method **generate-loader-module**
 
-Methode **Collate_Source** *CWD*
+method **Collate\_Source** *CWD*
 
-Methode **select**
+method **select**
 
 classmethod **select** *object*
 
-Methode **code** *section* *body*
+method **code** *section* *body*
 
-Methode **Collate_Source** *CWD*
+method **Collate\_Source** *CWD*
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **generate-debug** ?*spaces* ?
+method **generate-debug** ?*spaces* ?
 
-Methode **generate-cfile-constant**
+method **generate-cfile-constant**
 
-Methode **generate-cfile-public-structure**
+method **generate-cfile-public-structure**
 
-Methode **generate-cfile-header**
+method **generate-cfile-header**
 
-Methode **generate-cfile-global**
+method **generate-cfile-global**
 
-Methode **generate-cfile-private-typedef**
+method **generate-cfile-private-typedef**
 
-Methode **generate-cfile-private-structure**
+method **generate-cfile-private-structure**
 
-Methode **generate-cfile-functions**
+method **generate-cfile-functions**
 
-Methode **generate-cfile-tclapi**
+method **generate-cfile-tclapi**
 
-Methode **generate-hfile-public-define**
+method **generate-hfile-public-define**
 
-Methode **generate-hfile-public-macro**
+method **generate-hfile-public-macro**
 
-Methode **generate-hfile-public-typedef**
+method **generate-hfile-public-typedef**
 
-Methode **generate-hfile-public-structure**
+method **generate-hfile-public-structure**
 
-Methode **generate-hfile-public-headers**
+method **generate-hfile-public-headers**
 
-Methode **generate-hfile-public-function**
+method **generate-hfile-public-function**
 
-Methode **generate-hfile-public-includes**
+method **generate-hfile-public-includes**
 
-Methode **generate-hfile-public-verbatim**
+method **generate-hfile-public-verbatim**
 
-Methode **generate-loader-external**
+method **generate-loader-external**
 
-Methode **generate-loader-module**
+method **generate-loader-module**
 
-Methode **generate-stub-function**
+method **generate-stub-function**
 
-Methode **IncludeAdd** *headervar* ?*args*?
+method **IncludeAdd** *headervar* ?*args*?
 
-Methode **generate-tcl-loader**
+method **generate-tcl-loader**
 
-Methode **generate-tcl-pre**
+method **generate-tcl-pre**
 
-Methode **generate-tcl-post**
+method **generate-tcl-post**
 
-Methode **linktype**
+method **linktype**
 
-Methode **Ofile** *filename*
+method **Ofile** *filename*
 
-Methode **project-static-packages**
+method **project-static-packages**
 
-Methode **toolset-include-directory**
+method **toolset-include-directory**
 
-Methode **target** *method* ?*args*?
+method **target** *method* ?*args*?
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **generate-loader-module**
+method **generate-loader-module**
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **linker-products** *configdict*
+method **linker-products** *configdict*
 
-Methode **initialize**
+method **initialize**
 
-Variable **make_object**
+variable **make\_object**
 
-Methode **\_MorphPatterns**
+method **\_MorphPatterns**
 
-Methode **add** ?*args*?
+method **add** ?*args*?
 
-Methode **install-headers** ?*args*?
+method **install-headers** ?*args*?
 
-Methode **make {} \_preamble**
+method **make {} \_preamble**
 
-Methode **make {} pkginfo**
+method **make {} pkginfo**
 
-Methode **make {} objects**
+method **make {} objects**
 
-Methode **make {} object** *name*
+method **make {} object** *name*
 
-Methode **make {} reset**
+method **make {} reset**
 
-Methode **make {} trigger** ?*args*?
+method **make {} trigger** ?*args*?
 
-Methode **make {} depends** ?*args*?
+method **make {} depends** ?*args*?
 
-Methode **make {} filename** *name*
+method **make {} filename** *name*
 
-Methode **make {} target** *name* *Info* *body*
+method **make {} target** *name* *Info* *body*
 
-Methode **make {} todo**
+method **make {} todo**
 
-Methode **make {} do**
+method **make {} do**
 
-Methode **child** *which*
+method **child** *which*
 
-Methode **generate-c**
+method **generate-c**
 
-Methode **generate-h**
+method **generate-h**
 
-Methode **generate-loader**
+method **generate-loader**
 
-Methode **initialize**
+method **initialize**
 
-Methode **implement** *path*
+method **implement** *path*
 
-Methode **linktype**
+method **linktype**
 
-Methode **\_MorphPatterns**
+method **\_MorphPatterns**
 
-Methode **constructor** ?*args*?
+method **constructor** ?*args*?
 
-Methode **add_object** *object*
+method **add\_object** *object*
 
-Methode **add_project** *pkg* *info* ?*oodefine* ?
+method **add\_project** *pkg* *info* ?*oodefine* ?
 
-Methode **add_tool** *pkg* *info* ?*oodefine* ?
+method **add\_tool** *pkg* *info* ?*oodefine* ?
 
-Methode **build-tclcore**
+method **build-tclcore**
 
-Methode **child** *which*
+method **child** *which*
 
-Methode **linktype**
+method **linktype**
 
-Methode **project** *pkg* ?*args*?
+method **project** *pkg* ?*args*?
 
-Methode **tclcore**
+method **tclcore**
 
-Methode **tkcore**
+method **tkcore**
 
-Methode **tool** *pkg* ?*args*?
+method **tool** *pkg* ?*args*?
 
-Methode **clean** *PATH*
+method **clean** *PATH*
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **go**
+method **go**
 
-Methode **generate-decls** *pkgname* *path*
+method **generate-decls** *pkgname* *path*
 
-Methode **implement** *path*
+method **implement** *path*
 
-Methode **generate-make** *path*
+method **generate-make** *path*
 
-Methode **linktype**
+method **linktype**
 
-Methode **package-ifneeded** ?*args*?
+method **package-ifneeded** ?*args*?
 
-Methode **shared_library** ?*filename* ?
+method **shared\_library** ?*filename* ?
 
-Methode **static_library** ?*filename* ?
+method **static\_library** ?*filename* ?
 
-Methode **build-tclkit_main** *PROJECT* *PKG_OBJS*
+method **build-tclkit\_main** *PROJECT* *PKG\_OBJS*
 
-Methode **Collate_Source** *CWD*
+method **Collate\_Source** *CWD*
 
-Methode **wrap** *PWD* *exename* *vfspath* ?*args*?
+method **wrap** *PWD* *exename* *vfspath* ?*args*?
 
-Klassenmethode **Sandbox** *object*
+classmethod **Sandbox** *object*
 
 classmethod **select** *object*
 
-Klassenmethode **claim_option**
+classmethod **claim\_option**
 
-Klassenmethode **claim_object** *object*
+classmethod **claim\_object** *object*
 
-classmethod **claim_path** *path*
+classmethod **claim\_path** *path*
 
-Methode **scm_info**
+method **scm\_info**
 
-Methode **DistroMixIn**
+method **DistroMixIn**
 
-Methode **Sandbox**
+method **Sandbox**
 
-Methode **SrcDir**
+method **SrcDir**
 
-Methode **ScmTag**
+method **ScmTag**
 
-Methode **ScmClone**
+method **ScmClone**
 
-Methode **ScmUnpack**
+method **ScmUnpack**
 
-Methode **ScmUpdate**
+method **ScmUpdate**
 
-Methode **Unpack**
+method **Unpack**
 
-classmethod **claim_object** *object*
+classmethod **claim\_object** *object*
 
-Klassenmethode **claim_option**
+classmethod **claim\_option**
 
-classmethod **claim_path** *path*
+classmethod **claim\_path** *path*
 
-Methode **ScmUnpack**
+method **ScmUnpack**
 
-classmethod **claim_object** *obj*
+classmethod **claim\_object** *obj*
 
-Klassenmethode **claim_option**
+classmethod **claim\_option**
 
-classmethod **claim_path** *path*
+classmethod **claim\_path** *path*
 
-Methode **scm_info**
+method **scm\_info**
 
-Methode **ScmClone**
+method **ScmClone**
 
-Methode **ScmTag**
+method **ScmTag**
 
-Methode **ScmUnpack**
+method **ScmUnpack**
 
-Methode **ScmUpdate**
+method **ScmUpdate**
 
-classmethod **claim_object** *obj*
+classmethod **claim\_object** *obj*
 
-Klassenmethode **claim_option**
+classmethod **claim\_option**
 
-classmethod **claim_path** *path*
+classmethod **claim\_path** *path*
 
-Methode **ScmTag**
+method **ScmTag**
 
-Methode **ScmUnpack**
+method **ScmUnpack**
 
-Methode **ScmUpdate**
+method **ScmUpdate**
 
-Methode **\_MorphPatterns**
+method **\_MorphPatterns**
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 
-Methode **child** *which*
+method **child** *which*
 
-Methode **compile**
+method **compile**
 
-Methode **go**
+method **go**
 
-Methode **install** ?*args*?
+method **install** ?*args*?
 
-Methode **linktype**
+method **linktype**
 
-Methode **linker-products** *configdict*
+method **linker-products** *configdict*
 
-Methode **linker-external** *configdict*
+method **linker-external** *configdict*
 
-Methode **linker-extra** *configdict*
+method **linker-extra** *configdict*
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-exec**
+method **env-exec**
 
-Methode **env-install**
+method **env-install**
 
-Methode **env-load**
+method **env-load**
 
-Methode **env-present**
+method **env-present**
 
-Methode **sources**
+method **sources**
 
-Methode **update**
+method **update**
 
-Methode **unpack**
+method **unpack**
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-present**
+method **env-present**
 
-Methode **linktype**
+method **linktype**
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-install**
+method **env-install**
 
-Methode **env-present**
+method **env-present**
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **kettle** *path* ?*args*?
+method **kettle** *path* ?*args*?
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-install**
+method **env-install**
 
-Methode **env-present**
+method **env-present**
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **install-module** *DEST* ?*args*?
+method **install-module** *DEST* ?*args*?
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-install**
+method **env-install**
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **install-module** *DEST* ?*args*?
+method **install-module** *DEST* ?*args*?
 
-Methode **clean**
+method **clean**
 
-Methode **env-install**
+method **env-install**
 
-Methode **project-compile-products**
+method **project-compile-products**
 
-Methode **ComputeInstall**
+method **ComputeInstall**
 
-Methode **go**
+method **go**
 
-Methode **linker-products** *configdict*
+method **linker-products** *configdict*
 
-Methode **project-static-packages**
+method **project-static-packages**
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 
-Methode **compile**
+method **compile**
 
-Methode **Configure**
+method **Configure**
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **install** *DEST*
+method **install** *DEST*
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 
-Methode **env-present**
+method **env-present**
 
-Methode **env-install**
+method **env-install**
 
-Methode **go**
+method **go**
 
-Methode **linktype**
+method **linktype**
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Modul „Practcl“ ist ein Werkzeug zur Integration umfangreicher Module für C-API-Tcl-Code, der benutzerdefinierte Tcl-Typen und TclOO-Objekte erfordert.
 
@@ -638,7 +639,7 @@ Practcl wird als einzelne Datei ausgeliefert und weist, abgesehen von einem Tcl 
 
 Ein praxisorientiertes Projekt erstellen
 
-# BEFEHLE
+# Befehle
 
 proc **practcl::cat** *fname*
 : Eine Datei zusammenfügen
@@ -656,192 +657,169 @@ proc **noop** ?*args*?
 : Ein Befehl, der nichts bewirkt. Eine praktische Möglichkeit, eine Anweisung zu negieren, ohne sie vollständig auskommentieren zu müssen. Außerdem ist er ein praktischer Anknüpfungspunkt für ein Objekt, das später benannt werden soll.
 
 proc **practcl::debug** ?*args*?
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::doexec** ?*args*?
 : Fügt eine statische Kopie von Tcl ein
 
-proc **practcl::doexec_in** *path* ?*args*?
-: ...siehe nächstes...
+proc **practcl::doexec\_in** *path* ?*args*?
+: siehe unten ...
 
 proc **practcl::dotclexec** ?*args*?
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::domake** *path* ?*args*?
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::domake.tcl** *path* ?*args*?
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::fossil** *path* ?*args*?
-: ...siehe nächstes...
+: siehe unten ...
 
-proc **practcl::fossil_status** *dir*
-: ...siehe nächstes...
+proc **practcl::fossil\_status** *dir*
+: siehe unten ...
 
 proc **practcl::os**
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::mkzip** *exename* *barekit* *vfspath*
 : Erstellt eine ZIP-Datei. Unter Tcl 8.6 wird dabei die native ZIP-Implementierung aufgerufen; bei älteren Interpretern wird ZIP über „exec“ aufgerufen.
 
-proc **practcl::sort_dict** *list*
+proc **practcl::sort\_dict** *list*
 : Sortieren einer Schlüssel-Wert-Liste nach Dictionary-Reihenfolge. Dies ist erforderlich, da Tcl-Versionen vor 8.6 nicht über *lsort -stride 2*
 
-proc **practcl::local_os**
+proc **practcl::local\_os**
 : Gibt ein Dictionary zurück, das das lokale Betriebssystem beschreibt. Zu den zurückgegebenen Feldern gehören:
 
+    - download – Dateisystempfad, in den Fossil-Repositorys und Quellcode-Tarballs für den aktuellen Benutzer heruntergeladen werden
 
-**•**
-: download – Dateisystempfad, in den Fossil-Repositorys und Quellcode-Tarballs für den aktuellen Benutzer heruntergeladen werden
+    - EXEEXT – Die Erweiterung, die ausführbaren Dateien zuweisen soll. (z. B. .exe unter Windows)
 
-**•**
-: EXEEXT – Die Erweiterung, die ausführbaren Dateien zuweisen soll. (z. B. .exe unter Windows)
+    - fossil\_mirror – Eine URI für einen Webserver im lokalen Netzwerk, der als Spiegel eines Fossil-Repositorys fungiert
 
-**•**
-: fossil_mirror – Eine URI für einen Webserver im lokalen Netzwerk, der als Spiegel eines Fossil-Repositorys fungiert
+    - local\_install – Pfad zum Dateisystem, in dem Pakete für die lokale Nutzung durch den aktuellen Benutzer installiert werden
 
-**•**
-: local_install – Pfad zum Dateisystem, in dem Pakete für die lokale Nutzung durch den aktuellen Benutzer installiert werden
+    - Präfix – Das Präfix, das dem Tcl-Kern/TEA bei der Installation in „local\_install“ in „./configure“ angegeben wurde
 
-**•**
-: Präfix – Das Präfix, das dem Tcl-Kern/TEA bei der Installation in „local_install“ in „./configure“ angegeben wurde
+    - Sandbox – Der Speicherort, an dem dieses Projekt externe Projekte entpackt
 
-**•**
-: Sandbox – Der Speicherort, an dem dieses Projekt externe Projekte entpackt
+    - TEACUP\_PROFILE – Der kanonische Name von ActiveState/Teacup für diese Plattform (d. h. win32-ix86 macosx10.5-i386-x86\_84)
 
-**•**
-: TEACUP_PROFILE – Der kanonische Name von ActiveState/Teacup für diese Plattform (d. h. win32-ix86 macosx10.5-i386-x86_84)
+    - TEACUP\_OS – Das lokale Betriebssystem (Windows, macOS, OpenBSD usw.). Liefert dieselbe Antwort wie „tcl.m4“, mit der Ausnahme, dass „macOS“ anstelle von „Darwin“ angegeben wird.
 
-**•**
-: TEACUP_OS – Das lokale Betriebssystem (Windows, macOS, OpenBSD usw.). Liefert dieselbe Antwort wie „tcl.m4“, mit der Ausnahme, dass „macOS“ anstelle von „Darwin“ angegeben wird.
+    - TEA\_PLATFORM – Die von „uname“ zurückgegebene Plattform: -s-uname, -r (unter Unix) oder „windows“ unter Windows
 
-**•**
-: TEA_PLATFORM – Die von „uname“ zurückgegebene Plattform: -s-uname, -r (unter Unix) oder „windows“ unter Windows
+    - TEACUP\_ARCH – Die Prozessorarchitektur für das lokale Betriebssystem (d. h. ix86, x86\_64)
 
-**•**
-: TEACUP_ARCH – Die Prozessorarchitektur für das lokale Betriebssystem (d. h. ix86, x86_64)
+    - TEACUP\_ARCH – Die Prozessorarchitektur für das lokale Betriebssystem (d. h. ix86, x86\_64)
 
-**•**
-: TEACUP_ARCH – Die Prozessorarchitektur für das lokale Betriebssystem (d. h. ix86, x86_64)
+    - teapot – Dateisystempfad, in den die Dateien des teapot-Pakets für den aktuellen Benutzer heruntergeladen werden
 
-**•**
-: teapot – Dateisystempfad, in den die Dateien des teapot-Pakets für den aktuellen Benutzer heruntergeladen werden
-
-**•**
-: userhome – Pfad zum Speichern lokalisierter Einstellungen, von Cache-Dateien aus Downloads usw. für den aktuellen Benutzer
+    - userhome – Pfad zum Speichern lokalisierter Einstellungen, von Cache-Dateien aus Downloads usw. für den aktuellen Benutzer
 
 
-: Dieser Befehl nutzt eine Kombination aus lokalen Prüfungen mit „Exec“, allen vorhandenen „tclConfig.sh“-Dateien, bereits berechneten autoconf-Daten sowie Daten, die aus einer Datei namens „practcl.rc“ im Benutzerverzeichnis stammen. Der Speicherort des Benutzerverzeichnisses variiert je nach Plattform und Betriebssystem:
+    Dieser Befehl nutzt eine Kombination aus lokalen Prüfungen mit „Exec“, allen vorhandenen „tclConfig.sh“-Dateien, bereits berechneten autoconf-Daten sowie Daten, die aus einer Datei namens „practcl.rc“ im Benutzerverzeichnis stammen. Der Speicherort des Benutzerverzeichnisses variiert je nach Plattform und Betriebssystem:
 
+    - Windows: ::env(LOCALAPPDATA)/Tcl
 
-**•**
-: Windows: ::env(LOCALAPPDATA)/Tcl
+    - MacOS: ~/Library/Application Support/Tcl
 
-**•**
-: MacOS: ~/Library/Application Support/Tcl
-
-**•**
-: Sonstiges: ~/tcl
+    - Sonstiges: ~/tcl
 
 
 proc **practcl::config.tcl** *path*
-: Ein transparenter Aufruf von ::practcl::read_configuration zur Wahrung der Abwärtskompatibilität mit älteren Versionen von Practcl
+: Ein transparenter Aufruf von ::practcl::read\_configuration zur Wahrung der Abwärtskompatibilität mit älteren Versionen von Practcl
 
-proc **practcl::read_configuration** *path*
-: Lokale Plattform ermitteln. Dieser Befehl sucht in dem angegebenen Pfad nach Daten, die von „autoconf“ oder „autosetup“ erfasst wurden, oder führt eigene Logiktests durch, falls keines der beiden Programme ausgeführt wurde. Das Vorhandensein einer Datei namens „config.site“ an diesem Speicherort weist darauf hin, dass es sich bei diesem Projekt um eine Cross-Kompilierung handelt, und die in dieser Datei gespeicherten Daten werden für den Compiler und den Linker verwendet. Dieser Befehl sucht in der folgenden Reihenfolge nach Informationen aus den folgenden Dateien:
+proc **practcl::read\_configuration** *path*
+: Lokale Plattform ermitteln. Dieser Befehl sucht in dem angegebenen Pfad nach Daten, die von „autoconf“ oder „autosetup“ erfasst wurden, oder führt eigene Logiktests durch, falls keines der beiden Programme ausgeführt wurde. Das Vorhandensein einer Datei namens „config.site“ an diesem Speicherort weist darauf hin, dass es sich bei diesem Projekt um eine Cross-Kompilierung handelt, und die in dieser Datei gespeicherten Daten werden für den Compiler und den Linker verwendet.
 
+    Dieser Befehl sucht in der folgenden Reihenfolge nach Informationen aus den folgenden Dateien:
 
-**•**
-: config.tcl – Eine Datei, die von autoconf/configure in neueren Versionen von TEA generiert wird und durch Kodierung als Tcl-Skript dargestellt ist.
+    - config.tcl – Eine Datei, die von autoconf/configure in neueren Versionen von TEA generiert wird und durch Kodierung als Tcl-Skript dargestellt ist.
 
-**•**
-: config.site – Eine Datei, die Informationen zum Cross-Compiler enthält und durch Kodierung als SH-Skript dargestellt wird
+    - config.site – Eine Datei, die Informationen zum Cross-Compiler enthält und durch Kodierung als SH-Skript dargestellt wird
 
-**•**
-: ::env(VisualStudioVersion) – Unter Windows ein Wert der Umgebungsvariablen, der angibt, dass MS Visual Studio installiert ist
+    - ::env(VisualStudioVersion) – Unter Windows ein Wert der Umgebungsvariablen, der angibt, dass MS Visual Studio installiert ist
 
 
-Dieser Befehl gibt ein Dictionary zurück, das alle aus den oben genannten Quellen bereinigten Daten enthält. Sofern keine weiteren Angaben gemacht werden, liefert dieser Befehl dieselbe Ausgabe wie ::practcl::local_os. In diesem Modus stellt dieser Befehl, wenn die Umgebungsvariable „VisualStudioVersion“ vorhanden ist, eine Vorlage mit Feldern bereit, die für die Kompilierung unter Windows mit Microsoft Visual Studio geeignet sind. Das USEMSVC-Flag im Dictionary ist ein boolesches Flag, das angibt, ob dies tatsächlich der Fall ist.
+    Dieser Befehl gibt ein Dictionary zurück, das alle aus den oben genannten Quellen bereinigten Daten enthält. Sofern keine weiteren Angaben gemacht werden, liefert dieser Befehl dieselbe Ausgabe wie ::practcl::local\_os. In diesem Modus stellt dieser Befehl, wenn die Umgebungsvariable „VisualStudioVersion“ vorhanden ist, eine Vorlage mit Feldern bereit, die für die Kompilierung unter Windows mit Microsoft Visual Studio geeignet sind. Das USEMSVC-Flag im Dictionary ist ein boolesches Flag, das angibt, ob dies tatsächlich der Fall ist.
 
-proc **practcl::tcllib_require** *pkg* ?*args*?
+proc **practcl::tcllib\_require** *pkg* ?*args*?
 : Versucht, ein Paket zu laden, und ruft bei einem Fehlschlag „tcllib“ ab.
 
-proc **practcl::platform::tcl_core_options** *os*
+proc **practcl::platform::tcl\_core\_options** *os*
 : Gibt die Zeichenkette zurück, die an ./configure übergeben werden soll, um den Tcl-Kern für das angegebene Betriebssystem zu kompilieren.
 
+    - Windows: --with-tzdata --with-encoding utf-8
 
-**•**
-: Windows: --with-tzdata --with-encoding utf-8
+    - macosx: --enable-corefoundation=yes  --enable-framework=no --with-tzdata --with-encoding utf-8
 
-**•**
-: macosx: --enable-corefoundation=yes  --enable-framework=no --with-tzdata --with-encoding utf-8
-
-**•**
-: Sonstiges: --with-tzdata --with-encoding utf-8
+    - Sonstiges: --with-tzdata --with-encoding utf-8
 
 
-proc **practcl::platform::tk_core_options** *os*
-: ...siehe nächstes...
+proc **practcl::platform::tk\_core\_options** *os*
+: siehe unten ...
 
-proc **practcl::read_rc_file** *filename* ?*localdat* ?
+proc **practcl::read\_rc\_file** *filename* ?*localdat* ?
 : Liest eine in einer Datei gespeicherte, stilisierte Schlüssel-Wert-Liste ein
 
-proc **practcl::read_sh_subst** *line* *info*
+proc **practcl::read\_sh\_subst** *line* *info*
 : Wandelt eine XXX.sh-Datei in eine Reihe von Tcl-Variablen um
 
-proc **practcl::read_sh_file** *filename* ?*localdat* ?
-: ...siehe nächstes...
+proc **practcl::read\_sh\_file** *filename* ?*localdat* ?
+: siehe unten ...
 
-proc **practcl::read_Config.sh** *filename*
-: Eine vereinfachte Version von „read_sh_file“, die speziell auf das Abrufen von Daten aus der Datei „(tcl|tk)Config.sh“ zugeschnitten ist
+proc **practcl::read\_Config.sh** *filename*
+: Eine vereinfachte Version von „read\_sh\_file“, die speziell auf das Abrufen von Daten aus der Datei „(tcl|tk)Config.sh“ zugeschnitten ist
 
-proc **practcl::read_Makefile** *filename*
-: Eine vereinfachte Version von „read_sh_file“, die speziell auf das Abrufen von Daten aus einer Makefile-Datei zugeschnitten ist
+proc **practcl::read\_Makefile** *filename*
+: Eine vereinfachte Version von „read\_sh\_file“, die speziell auf das Abrufen von Daten aus einer Makefile-Datei zugeschnitten ist
 
 proc **practcl::cputs** *varname* ?*args*?
 : Argumente an einen Puffer anhängen. Der Befehl funktioniert ähnlich wie „puts“, da bei jedem Aufruf zusätzlich ein Zeilenvorschub eingefügt wird. Im Gegensatz zu „puts“ werden jedoch Leerzeichen im Zwischentext unterdrückt.
 
-proc **practcl::tcl_to_c** *body*
-: ...siehe nächstes...
+proc **practcl::tcl\_to\_c** *body*
+: siehe unten ...
 
 proc **practcl::\_tagblock** *text* ?*style* **tcl**? ?*note* ?
-: ...siehe nächstes...
+: siehe unten ...
 
-proc **practcl::de_shell** *data*
-: ...siehe nächstes...
+proc **practcl::de\_shell** *data*
+: siehe unten ...
 
 proc **practcl::grep** *pattern* ?*files* ?
-: Sucht nach dem Muster *pattern* in \$files
+: Sucht nach dem Muster *pattern* in $files
 
-proc **practcl::file_lexnormalize** *sp*
-: ...siehe nächstes...
+proc **practcl::file\_lexnormalize** *sp*
+: siehe unten ...
 
-proc **practcl::file_relative** *base* *dst*
-: Berechnet einen relativen Pfad zwischen „base“ und „dst“. Beispiele:
+proc **practcl::file\_relative** *base* *dst*
+: Berechnet einen relativen Pfad zwischen „base“ und „dst“.
 
+    Beispiele:
 
-```
-  ::practcl::file_relative ~/build/tcl/unix ~/build/tcl/library
-  > ../library
-```
+    ```
+      ::practcl::file_relative ~/build/tcl/unix ~/build/tcl/library
+      > ../library
+    ```
 
 proc **practcl::findByPattern** *basedir* *patterns*
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::log** *fname* *comment*
 : Ein Ereignis im Praxisprotokoll eintragen
 
-proc **practcl::\_pkgindex_simpleIndex** *path*
-: ...siehe nächstes...
+proc **practcl::\_pkgindex\_simpleIndex** *path*
+: siehe unten ...
 
-proc **practcl::\_pkgindex_directory** *path*
+proc **practcl::\_pkgindex\_directory** *path*
 : Gibt „true“ zurück, wenn die pkgindex-Datei eine andere Anweisung als „package ifneeded“ enthält und/oder wenn ein „package ifneeded“ eine DLL lädt
 
-proc **practcl::\_pkgindex_path_subdir** *path*
-: Hilfsfunktion für ::practcl::pkgindex_path
+proc **practcl::\_pkgindex\_path\_subdir** *path*
+: Hilfsfunktion für ::practcl::pkgindex\_path
 
-proc **practcl::pkgindex_path** ?*args*?
+proc **practcl::pkgindex\_path** ?*args*?
 : Alle angegebenen Pfade so indizieren, als würden sie im selben virtuellen Dateisystem enden
 
 proc **practcl::installDir** *d1* *d2*
@@ -851,44 +829,50 @@ proc **practcl::copyDir** *d1* *d2* ?*toplevel* **1**?
 : Kopiert den Inhalt von *d1* rekursiv nach *d2*
 
 proc **practcl::buildModule** *modpath*
-: ...siehe nächstes...
+: siehe unten ...
 
 proc **practcl::installModule** *modpath* *DEST*
 : Installiert ein Modul aus MODPATH in das angegebene Verzeichnis. Es wird davon ausgegangen, dass *dpath* der vollständig qualifizierte Pfad ist, in dem das Modul platziert werden soll. Alle bereits vorhandenen Dateien unter diesem Pfad werden gelöscht. Wenn es sich bei dem Pfad um einen symbolischen Link handelt, gibt der Prozess ohne Fehlermeldung und ohne weitere Aktion zurück. Enthält das Modul im Verzeichnis build/ Inhalte, die neuer sind als die .tcl-Dateien im Quellverzeichnis des Moduls, und existiert eine Datei build/build.tcl, wird diese Datei ausgeführt. Wenn das Quellverzeichnis eine Datei mit dem Namen „index.tcl“ enthält, wird davon ausgegangen, dass es sich um ein Modul im TAO-Stil handelt, und das gesamte Verzeichnis (sowie alle Unterverzeichnisse) wird unverändert kopiert. Wenn keine Datei „index.tcl“ vorhanden ist, werden alle .tcl-Dateien aus dem Modul-Quellverzeichnis kopiert, und es wird eine Datei „pkgIndex.tcl“ generiert, sofern diese noch nicht existiert. Existiert im Quellverzeichnis ein Verzeichnis namens „htdocs“, wird dieses Verzeichnis unverändert in das Zielverzeichnis kopiert.
 
 proc **practcl::trigger** ?*args*?
-: Build-Ziele auslösen und Abhängigkeiten neu berechnen – Interne Abläufe:
+: Build-Ziele auslösen und Abhängigkeiten neu berechnen
 
+    Interne Abläufe:
 
-```
-  ::practcl::LOCAL make trigger {*}$args
-  foreach {name obj} [::practcl::LOCAL make objects] {
-    set ::make($name) [$obj do]
-  }
-```
+    ```
+      ::practcl::LOCAL make trigger {*}$args
+      foreach {name obj} [::practcl::LOCAL make objects] {
+        set ::make($name) [$obj do]
+      }
+    ```
 
 proc **practcl::depends** ?*args*?
-: Berechnet, ob eine Abhängigkeit für eines der Argumente erfüllt oder neu erstellt werden muss. Interne Abläufe:
+: Berechnet, ob eine Abhängigkeit für eines der Argumente erfüllt oder neu erstellt werden muss.
 
+    Interne Abläufe:
 
-```
-  ::practcl::LOCAL make depends {*}$args
-```
+    ```
+      ::practcl::LOCAL make depends {*}$args
+    ```
 
 proc **practcl::target** *name* *info* ?*action* ?
-: Ein Build-Produkt deklarieren. Diese Prozedur ist lediglich eine Kurzform für *::practcl::LOCAL make task \$name \$info \$action* Durch die Registrierung eines Build-Produkts mit diesem Befehl wird ein Eintrag im globalen Array erstellt und ein Wert in das globale Array eingetragen. Interne Details:
+: Ein Build-Produkt deklarieren. Diese Prozedur ist lediglich eine Kurzform für *::practcl::LOCAL make task $name $info $action*
+
+    Durch die Registrierung eines Build-Produkts mit diesem Befehl wird ein Eintrag im globalen Array erstellt und ein Wert in das globale Array eingetragen.
+
+    Interne Details:
+
+    ```
+      set obj [::practcl::LOCAL make task $name $info $action]
+      set ::make($name) 0
+      set filename [$obj define get filename]
+      if {$filename ne {}} {
+        set ::target($name) $filename
+      }
+    ```
 
 
-```
-  set obj [::practcl::LOCAL make task $name $info $action]
-  set ::make($name) 0
-  set filename [$obj define get filename]
-  if {$filename ne {}} {
-    set ::target($name) $filename
-  }
-```
-
-# KLASSEN
+# Klassen
 
 ## Klasse practcl::doctool
 
@@ -921,85 +905,89 @@ proc **practcl::target** *name* *info* ?*action* ?
 
 Tool für Build-Skripte zur dynamischen Generierung von Dokumentationsdateien aus Kommentaren in Quellcode-Dateien
 
-**Methods**
+**Methoden**
 
-Methode **constructor**
-: ...siehe nächstes...
+method **constructor**
+: siehe unten ...
 
-Methode **argspec** *argspec*
-: Verarbeitet eine Argumentliste zu einem Informationswörterbuch. Diese Methode versteht auch nicht-positionale Argumente, die in der Notation von Tipp 471 *https://core.tcl-lang.org/tips/doc/trunk/tip/479.md* ausgedrückt werden. Die Ausgabe ist ein Dictionary, das alle Felder enthält und angibt, ob es sich bei den Feldern um **positional**, **mandatory**, and whether they have a **default** aufweisen. Beispiele:
+method **argspec** *argspec*
+: Verarbeitet eine Argumentliste zu einem Informationswörterbuch. Diese Methode versteht auch nicht-positionale Argumente, die in der Notation von Tipp 471 <https://core.tcl-lang.org/tips/doc/trunk/tip/479.md> ausgedrückt werden.
 
+    Die Ausgabe ist ein Dictionary, das alle Felder enthält und angibt, ob es sich bei den Feldern um **positional**, **mandatory**, and whether they have a **default** aufweisen.
 
-```
-   my argspec {a b {c 10}}
+    Beispiele:
 
-   > a {positional 1 mandatory 1} b {positional 1 mandatory 1} c {positional 1 mandatory 0 default 10}
-```
+    ```
+       my argspec {a b {c 10}}
 
-Methode **comment** *block*
-: Wandelt einen Kommentarblock in ein InformationsDictionary um. Wenn Zeilen im Kommentar mit einem einzelnen Wort beginnen, das mit einem Doppelpunkt endet, werden alle nachfolgenden Zeilen an ein Dictionary-Feld mit diesem Namen angehängt. Wenn keine Felder angegeben sind, wird der gesamte Text an das Feld **description** angehängt. Beispiel:
+       > a {positional 1 mandatory 1} b {positional 1 mandatory 1} c {positional 1 mandatory 0 default 10}
+    ```
 
+method **comment** *block*
+: Wandelt einen Kommentarblock in ein InformationsDictionary um. Wenn Zeilen im Kommentar mit einem einzelnen Wort beginnen, das mit einem Doppelpunkt endet, werden alle nachfolgenden Zeilen an ein Dictionary-Feld mit diesem Namen angehängt. Wenn keine Felder angegeben sind, wird der gesamte Text an das Feld **description** angehängt.
 
-```
- my comment {Does something cool}
- > description {Does something cool}
+    Beispiel:
 
- my comment {
- title : Something really cool
- author : Sean Woods
- author : John Doe
- description :
- This does something really cool!
- }
- > description {This does something really cool!}
-   title {Something really cool}
-   author {Sean Woods
-   John Doe}
-```
+    ```
+     my comment {Does something cool}
+     > description {Does something cool}
 
-Methode **keyword.Annotation** *resultvar* *commentblock* *type* *name* *body*
-: ...siehe nächstes...
+     my comment {
+     title : Something really cool
+     author : Sean Woods
+     author : John Doe
+     description :
+     This does something really cool!
+     }
+     > description {This does something really cool!}
+       title {Something really cool}
+       author {Sean Woods
+       John Doe}
+    ```
 
-Methode **keyword.Class** *resultvar* *commentblock* *name* *body*
+method **keyword.Annotation** *resultvar* *commentblock* *type* *name* *body*
+: siehe unten ...
+
+method **keyword.Class** *resultvar* *commentblock* *name* *body*
 : Verarbeitet einen oo::objdefine-Aufruf, der das Objekt der Klasse selbst ändert
 
-Methode **keyword.class** *resultvar* *commentblock* *name* *body*
+method **keyword.class** *resultvar* *commentblock* *name* *body*
 : Verarbeitet die Anweisungen oo::define, clay::define usw.
 
-Methode **keyword.Class_Method** *resultvar* *commentblock* *name* ?*args*?
+method **keyword.Class\_Method** *resultvar* *commentblock* *name* ?*args*?
 : Eine Anweisung für eine Methode der Klasse im Clay-Stil verarbeiten
 
-Methode **keyword.method** *resultvar* *commentblock* *name* ?*args*?
+method **keyword.method** *resultvar* *commentblock* *name* ?*args*?
 : Den Prozess für eine Anweisung für eine Objektmethode im TCLOO-Stil durchführen
 
-Methode **keyword.proc** *commentblock* *name* *argspec*
+method **keyword.proc** *commentblock* *name* *argspec*
 : Eine PROC-Anweisung ausführen
 
-Methode **reset**
+method **reset**
 : Den Zustand des Objekts und seiner eingebetteten Coroutine zurücksetzen
 
-Methode **Main**
+method **Main**
 : Hauptteil der eingebetteten Coroutine für das Objekt
 
-Methode **section.method** *keyword* *method* *minfo*
+method **section.method** *keyword* *method* *minfo*
 : Den Text der Handbuchseite für eine Methode oder Prozedur generieren
 
-Methode **section.annotation** *type* *name* *iinfo*
-: ...siehe nächstes...
+method **section.annotation** *type* *name* *iinfo*
+: siehe unten ...
 
-Methode **section.class** *class_name* *class_info*
+method **section.class** *class\_name* *class\_info*
 : Den Text der Handbuchseite für eine Klasse generieren
 
-Methode **section.command** *procinfo*
+method **section.command** *procinfo*
 : Erstellt den Text für die Handbuchseite im Abschnitt „Befehle“
 
-Methode **manpage** ?**header** *value*? ?**footer** *value*? ?**authors** *list*?
+method **manpage** ?**header** *value*? ?**footer** *value*? ?**authors** *list*?
 : Erstellt die Handbuchseite. Gibt den fertigen Text zurück, der zum Speichern in einer .man-Datei geeignet ist. Das Argument „header“ ist ein Block aus Doctools-Text, der vor dem maschinell generierten Abschnitt eingefügt werden soll. „footer“ ist ein Block aus Doctools-Text, der nach dem maschinell generierten Abschnitt eingefügt werden soll. „authors“ ist eine Liste einzelner Autoren und E-Mail-Adressen im Format AUTOR E-MAIL ?AUTOR E-MAIL?...
 
-Methode **scan_text** *text*
+method **scan\_text** *text*
 : Einen Textblock scannen
 
-Methode **scan_file** *filename*
+method **scan\_file** *filename*
 : Eine Textdatei einscannen
 
 
@@ -1007,61 +995,49 @@ Methode **scan_file** *filename*
 
 Die Metaklasse für alle „practcl“-Objekte
 
-**Methods**
+**Methoden**
 
-Methode **\_MorphPatterns**
-: ...siehe nächstes...
-
-Methode **define** *submethod* ?*args*?
-: ...siehe nächstes...
-
-Methode **graft** ?*args*?
-: ...siehe nächstes...
-
-Methode **initialize**
-: ...siehe nächstes...
-
-Methode **link** *command* ?*args*?
-: ...siehe nächstes...
-
-Methode **morph** *classname*
-: ...siehe nächstes...
-
-Methode **script** *script*
-: ...siehe nächstes...
-
-Methode **select**
-: ...siehe nächstes...
-
-Methode **source** *filename*
-: 
+- Methode **\_MorphPatterns**
+- Methode **define** *submethod* ?*args*?
+- Methode **graft** ?*args*?
+- Methode **initialize**
+- Methode **link** *command* ?*args*?
+- Methode **morph** *classname*
+- Methode **script** *script*
+- Methode **select**
+- Methode **source** *filename*
 
 
 ## Klasse practcl::toolset
 
 Eine Klasse ohne übergeordnete Klasse, die als Mixin konzipiert ist und eine Reihe von Verhaltensweisen im Zusammenhang mit dem Build definiert, die angepasst werden, je nachdem, ob gcc oder msvc als Zielkompilierer ausgewählt wird.
 
-**Class Methods**
+**Klassenmethoden**
 
 classmethod **select** *object*
-: Führt die Auswahl für das Toolset-Mixin **Methods** durch
+: Führt die Auswahl für das Toolset-Mixin
 
-Methode **config.sh**
+
+**Methods** durch
+
+method **config.sh**
 : Sucht eine Schlüssel-Wert-Liste, die dieses Projekt beschreibt, oder erstellt eine solche.
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 : Ermittelt den Standort, an dem das Produkt hergestellt werden soll
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 : Gibt den Pfad zurück, an dem sich das Makefile relativ zu *srcdir* befindet. Bei dieser Implementierung ist MakeDir immer srcdir.
 
-Methode **read_configuration**
-: Liest die Informationen zum Erstellungs-Prozess für dieses Paket. Bei dieser Implementierung werden Daten an den folgenden Speicherorten in der folgenden Reihenfolge gesucht: config.tcl (von practcl generiert), PKGConfig.sh und das Makefile. Wenn das Makefile herangezogen werden muss, aber nicht vorhanden ist, wird die Methode „Configure“ aufgerufen.
+method **read\_configuration**
+: Liest die Informationen zum Erstellungs-Prozess für dieses Paket. Bei dieser Implementierung werden Daten an den folgenden Speicherorten in der folgenden Reihenfolge gesucht: config.tcl (von practcl generiert), PKGConfig.sh und das Makefile.
 
-Methode **build-cflags** *PROJECT* *DEFS* *namevar* *versionvar* *defsvar*
+    Wenn das Makefile herangezogen werden muss, aber nicht vorhanden ist, wird die Methode „Configure“ aufgerufen.
+
+method **build-cflags** *PROJECT* *DEFS* *namevar* *versionvar* *defsvar*
 : Methode DEFS Diese Methode füllt vier Variablen: name – Der Name des Pakets version – Die Version des Pakets defs – An den Compiler übergebene C-Flags includedir – Eine Liste von Pfaden, die dem Compiler zum Auffinden von Header-Dateien übergeben werden sollen
 
-Methode **critcl** ?*args*?
+method **critcl** ?*args*?
 : Aufruf von „critcl“ in einem externen Prozess
 
 
@@ -1069,42 +1045,42 @@ Methode **critcl** ?*args*?
 
 *ancestors*: **practcl::toolset**
 
-**Methods**
+**Methoden**
 
-Methode **Autoconf**
-: ...siehe nächstes...
+method **Autoconf**
+: siehe unten ...
 
-Methode **BuildDir** *PWD*
-: ...siehe nächstes...
+method **BuildDir** *PWD*
+: siehe unten ...
 
-Methode **ConfigureOpts**
-: ...siehe nächstes...
+method **ConfigureOpts**
+: siehe unten ...
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 : Ermittelt, in welchem Verzeichnis sich die Makefile-Vorlage befindet
 
-Methode **make {} autodetect**
-: ...siehe nächstes...
+method **make {} autodetect**
+: siehe unten ...
 
-Methode **make {} clean**
-: ...siehe nächstes...
+method **make {} clean**
+: siehe unten ...
 
-Methode **make {} compile**
-: ...siehe nächstes...
+method **make {} compile**
+: siehe unten ...
 
-Methode **make {} install** *DEST*
-: ...siehe nächstes...
+method **make {} install** *DEST*
+: siehe unten ...
 
-Methode **build-compile-sources** *PROJECT* *COMPILE* *CPPCOMPILE* *INCLUDES*
-: ...siehe nächstes...
+method **build-compile-sources** *PROJECT* *COMPILE* *CPPCOMPILE* *INCLUDES*
+: siehe unten ...
 
-Methode **build-Makefile** *path* *PROJECT*
-: ...siehe nächstes...
+method **build-Makefile** *path* *PROJECT*
+: siehe unten ...
 
-Methode **build-library** *outfile* *PROJECT*
+method **build-library** *outfile* *PROJECT*
 : Erstellt eine statische oder dynamische Bibliothek
 
-Methode **build-tclsh** *outfile* *PROJECT* ?*path* **auto**?
+method **build-tclsh** *outfile* *PROJECT* ?*path* **auto**?
 : Erstellt eine statische ausführbare Datei
 
 
@@ -1112,28 +1088,28 @@ Methode **build-tclsh** *outfile* *PROJECT* ?*path* **auto**?
 
 *ancestors*: **practcl::toolset**
 
-**Methods**
+**Methoden**
 
-Methode **BuildDir** *PWD*
+method **BuildDir** *PWD*
 : MSVC führt die Kompilierung stets im Quellverzeichnis durch
 
-Methode **make {} autodetect**
+method **make {} autodetect**
 : Nichts tun
 
-Methode **make {} clean**
-: ...siehe nächstes...
+method **make {} clean**
+: siehe unten ...
 
-Methode **make {} compile**
-: ...siehe nächstes...
+method **make {} compile**
+: siehe unten ...
 
-Methode **make {} install** *DEST*
-: ...siehe nächstes...
+method **make {} install** *DEST*
+: siehe unten ...
 
-Methode **MakeDir** *srcdir*
+method **MakeDir** *srcdir*
 : Ermittelt, in welchem Verzeichnis sich die Makefile-Vorlage befindet
 
-Methode **NmakeOpts**
-: 
+
+- Methode **NmakeOpts**
 
 
 ## Klasse practcl::make_obj
@@ -1142,25 +1118,14 @@ Methode **NmakeOpts**
 
 Ein Objekt, das im Rahmen des Build-Prozesses bereitgestellt wird. In der Regel handelt es sich dabei um eine Objektdatei, eine Header-Datei oder ein TCL-Skript, das auf irgendeine Weise kompiliert oder generiert werden muss.
 
-**Methods**
+**Methoden**
 
-Methode **constructor** *module_object* *name* *info* ?*action_body* ?
-: ...siehe nächstes...
-
-Methode **do**
-: ...siehe nächstes...
-
-Methode **check**
-: ...siehe nächstes...
-
-Methode **output**
-: ...siehe nächstes...
-
-Methode **reset**
-: ...siehe nächstes...
-
-Methode **triggers**
-: 
+- Methode **constructor** *module\_object* *name* *info* ?*action\_body* ?
+- Methode **do**
+- Methode **check**
+- Methode **output**
+- Methode **reset**
+- Methode **triggers**
 
 
 ## Klasse practcl::object
@@ -1169,91 +1134,86 @@ Methode **triggers**
 
 Ein generisches „Practcl“-Objekt
 
-**Methods**
+**Methoden**
 
-Methode **constructor** *parent* ?*args*?
-: ...siehe nächstes...
-
-Methode **child** *method*
-: ...siehe nächstes...
-
-Methode **go**
-: 
+- Methode **constructor** *parent* ?*args*?
+- Methode **child** *method*
+- Methode **go**
 
 
 ## Klasse practcl::dynamic
 
 Dynamische Blöcke erzeugen keine eigenen .c-Dateien, sondern tragen zur Zusammenführung der Datei der Hauptbibliothek bei.
 
-**Methods**
+**Methoden**
 
-Methode **cstructure** *name* *definition* ?*argdat* ?
+method **cstructure** *name* *definition* ?*argdat* ?
 : Parser-Funktionen
 
-Methode **include** *header*
-: ...siehe nächstes...
+method **include** *header*
+: siehe unten ...
 
-Methode **include_dir** ?*args*?
-: ...siehe nächstes...
+method **include\_dir** ?*args*?
+: siehe unten ...
 
-Methode **include_directory** ?*args*?
-: ...siehe nächstes...
+method **include\_directory** ?*args*?
+: siehe unten ...
 
-Methode **c_header** *body*
-: ...siehe nächstes...
+method **c\_header** *body*
+: siehe unten ...
 
-Methode **c_code** *body*
-: ...siehe nächstes...
+method **c\_code** *body*
+: siehe unten ...
 
-Methode **c_function** *header* *body* ?*info* ?
-: ...siehe nächstes...
+method **c\_function** *header* *body* ?*info* ?
+: siehe unten ...
 
-Methode **c_tcloomethod** *name* *body* ?*arginfo* ?
-: ...siehe nächstes...
+method **c\_tcloomethod** *name* *body* ?*arginfo* ?
+: siehe unten ...
 
-Methode **cmethod** *name* *body* ?*arginfo* ?
+method **cmethod** *name* *body* ?*arginfo* ?
 : Alias für den klassischen Namen
 
-Methode **c_tclproc_nspace** *nspace*
-: ...siehe nächstes...
+method **c\_tclproc\_nspace** *nspace*
+: siehe unten ...
 
-Methode **c_tclcmd** *name* *body* ?*arginfo* ?
-: ...siehe nächstes...
+method **c\_tclcmd** *name* *body* ?*arginfo* ?
+: siehe unten ...
 
-Methode **c_tclproc_raw** *name* *body* ?*arginfo* ?
+method **c\_tclproc\_raw** *name* *body* ?*arginfo* ?
 : Alias für den klassischen Namen
 
-Methode **tcltype** *name* *argdat*
-: ...siehe nächstes...
+method **tcltype** *name* *argdat*
+: siehe unten ...
 
-Methode **project-compile-products**
+method **project-compile-products**
 : Wechselwirkungen zwischen Modulen
 
-Methode **implement** *path*
-: ...siehe nächstes...
+method **implement** *path*
+: siehe unten ...
 
-Methode **initialize**
+method **initialize**
 : Praktische Grundlagen
 
-Methode **linktype**
-: ...siehe nächstes...
+method **linktype**
+: siehe unten ...
 
-Methode **generate-cfile-constant**
-: ...siehe nächstes...
+method **generate-cfile-constant**
+: siehe unten ...
 
-Methode **generate-cfile-header**
-: ...siehe nächstes...
+method **generate-cfile-header**
+: siehe unten ...
 
-Methode **generate-cfile-tclapi**
+method **generate-cfile-tclapi**
 : Erstellt Code, der Tcl-API-Aufrufe implementiert
 
-Methode **generate-loader-module**
+method **generate-loader-module**
 : Erstellt Code, der ausgeführt wird, wenn das Paket/Modul im Interpreter initialisiert wird
 
-Methode **Collate_Source** *CWD*
-: ...siehe nächstes...
+method **Collate\_Source** *CWD*
+: siehe unten ...
 
-Methode **select**
+method **select**
 : Sobald sich ein Objekt als eine Form von „dynamisch“ kennzeichnet, sollten Sie nicht länger versuchen, es in etwas anderes umzuwandeln.
 
 
@@ -1261,106 +1221,108 @@ Methode **select**
 
 Ein Ergebnis für das Build-System
 
-**Class Methods**
+**Klassenmethoden**
 
-classmethod **select** *object*
-: **Methods**
+- classmethod **select** *object*
 
-Methode **code** *section* *body*
-: ...siehe nächstes...
 
-Methode **Collate_Source** *CWD*
-: ...siehe nächstes...
+**Methoden**
 
-Methode **project-compile-products**
-: ...siehe nächstes...
+method **code** *section* *body*
+: siehe unten ...
 
-Methode **generate-debug** ?*spaces* ?
-: ...siehe nächstes...
+method **Collate\_Source** *CWD*
+: siehe unten ...
 
-Methode **generate-cfile-constant**
-: ...siehe nächstes...
+method **project-compile-products**
+: siehe unten ...
 
-Methode **generate-cfile-public-structure**
+method **generate-debug** ?*spaces* ?
+: siehe unten ...
+
+method **generate-cfile-constant**
+: siehe unten ...
+
+method **generate-cfile-public-structure**
 : Konstante statische Datenstrukturen mit Werten füllen
 
-Methode **generate-cfile-header**
-: ...siehe nächstes...
+method **generate-cfile-header**
+: siehe unten ...
 
-Methode **generate-cfile-global**
-: ...siehe nächstes...
+method **generate-cfile-global**
+: siehe unten ...
 
-Methode **generate-cfile-private-typedef**
-: ...siehe nächstes...
+method **generate-cfile-private-typedef**
+: siehe unten ...
 
-Methode **generate-cfile-private-structure**
-: ...siehe nächstes...
+method **generate-cfile-private-structure**
+: siehe unten ...
 
-Methode **generate-cfile-functions**
+method **generate-cfile-functions**
 : Erstellt Code, der Unterprogramme bereitstellt, die von Tcl-API-Methoden aufgerufen werden
 
-Methode **generate-cfile-tclapi**
+method **generate-cfile-tclapi**
 : Erstellt Code, der Tcl-API-Aufrufe implementiert
 
-Methode **generate-hfile-public-define**
-: ...siehe nächstes...
+method **generate-hfile-public-define**
+: siehe unten ...
 
-Methode **generate-hfile-public-macro**
-: ...siehe nächstes...
+method **generate-hfile-public-macro**
+: siehe unten ...
 
-Methode **generate-hfile-public-typedef**
-: ...siehe nächstes...
+method **generate-hfile-public-typedef**
+: siehe unten ...
 
-Methode **generate-hfile-public-structure**
-: ...siehe nächstes...
+method **generate-hfile-public-structure**
+: siehe unten ...
 
-Methode **generate-hfile-public-headers**
-: ...siehe nächstes...
+method **generate-hfile-public-headers**
+: siehe unten ...
 
-Methode **generate-hfile-public-function**
-: ...siehe nächstes...
+method **generate-hfile-public-function**
+: siehe unten ...
 
-Methode **generate-hfile-public-includes**
-: ...siehe nächstes...
+method **generate-hfile-public-includes**
+: siehe unten ...
 
-Methode **generate-hfile-public-verbatim**
-: ...siehe nächstes...
+method **generate-hfile-public-verbatim**
+: siehe unten ...
 
-Methode **generate-loader-external**
-: ...siehe nächstes...
+method **generate-loader-external**
+: siehe unten ...
 
-Methode **generate-loader-module**
-: ...siehe nächstes...
+method **generate-loader-module**
+: siehe unten ...
 
-Methode **generate-stub-function**
-: ...siehe nächstes...
+method **generate-stub-function**
+: siehe unten ...
 
-Methode **IncludeAdd** *headervar* ?*args*?
-: ...siehe nächstes...
+method **IncludeAdd** *headervar* ?*args*?
+: siehe unten ...
 
-Methode **generate-tcl-loader**
-: ...siehe nächstes...
+method **generate-tcl-loader**
+: siehe unten ...
 
-Methode **generate-tcl-pre**
+method **generate-tcl-pre**
 : Diese Methode generiert eine beliebige Tcl-Skriptdatei, die zur Vorinitialisierung der C-Bibliothek erforderlich ist.
 
-Methode **generate-tcl-post**
-: ...siehe nächstes...
+method **generate-tcl-post**
+: siehe unten ...
 
-Methode **linktype**
-: ...siehe nächstes...
+method **linktype**
+: siehe unten ...
 
-Methode **Ofile** *filename*
-: ...siehe nächstes...
+method **Ofile** *filename*
+: siehe unten ...
 
-Methode **project-static-packages**
+method **project-static-packages**
 : Vom Hauptprojekt aufgerufene Methoden
 
-Methode **toolset-include-directory**
+method **toolset-include-directory**
 : Vom Toolset aufgerufene Methoden
 
-Methode **target** *method* ?*args*?
-: 
+
+- Methode **target** *method* ?*args*?
 
 
 ## Klasse practcl::product.cheader
@@ -1369,13 +1331,10 @@ Methode **target** *method* ?*args*?
 
 Ein Produkt, das aus einer C-Header-Datei generiert wurde. Das heißt: gar nichts.
 
-**Methods**
+**Methoden**
 
-Methode **project-compile-products**
-: ...siehe nächstes...
-
-Methode **generate-loader-module**
-: 
+- Methode **project-compile-products**
+- Methode **generate-loader-module**
 
 
 ## Klasse practcl::product.csource
@@ -1384,10 +1343,9 @@ Methode **generate-loader-module**
 
 Ein Produkt, das aus einer C-Quelldatei generiert wurde. In der Regel handelt es sich dabei um eine Objektdatei (.o).
 
-**Methods**
+**Methoden**
 
-Methode **project-compile-products**
-: 
+- Methode **project-compile-products**
 
 
 ## Klasse practcl::product.clibrary
@@ -1396,10 +1354,9 @@ Methode **project-compile-products**
 
 Ein Produkt, das aus einer kompilierten C-Bibliothek generiert wird. In der Regel handelt es sich dabei um eine .a- oder eine .dylib-Datei; in komplexen Fällen kann es sich jedoch lediglich um ein Mittel handeln, mit dem ein Projekt den Quellcode eines anderen Projekts integriert.
 
-**Methods**
+**Methoden**
 
-Methode **linker-products** *configdict*
-: 
+- Methode **linker-products** *configdict*
 
 
 ## Klasse practcl::product.dynamic
@@ -1408,10 +1365,9 @@ Methode **linker-products** *configdict*
 
 Ein Produkt, das aus C-Code generiert wird, der wiederum von „practcl“ oder auf andere Weise erzeugt wurde. Diese C-Datei erzeugt möglicherweise eine eigene .o-Datei, möglicherweise aber auch nicht – je nachdem, ob sie für die Einbindung in eine Zusammenführung in Frage kommt.
 
-**Methods**
+**Methoden**
 
-Methode **initialize**
-: 
+- Methode **initialize**
 
 
 ## Klasse practcl::product.critcl
@@ -1428,71 +1384,67 @@ Letztendlich muss der gesamte C-Code in ein Modul geladen werden. Dabei handelt 
 
 **Variable**
 
-Variable **make_object**
-: **Methods**
+- Variable **make\_object**
 
-Methode **\_MorphPatterns**
-: ...siehe nächstes...
 
-Methode **add** ?*args*?
-: ...siehe nächstes...
+**Methoden**
 
-Methode **install-headers** ?*args*?
-: ...siehe nächstes...
+method **\_MorphPatterns**
+: siehe unten ...
 
-Methode **make {} \_preamble**
-: ...siehe nächstes...
+method **add** ?*args*?
+: siehe unten ...
 
-Methode **make {} pkginfo**
-: ...siehe nächstes...
+method **install-headers** ?*args*?
+: siehe unten ...
 
-Methode **make {} objects**
+method **make {} \_preamble**
+: siehe unten ...
+
+method **make {} pkginfo**
+: siehe unten ...
+
+method **make {} objects**
 : Gibt ein Dictionary mit allen Handles und den zugehörigen Objekten zurück
 
-Methode **make {} object** *name*
+method **make {} object** *name*
 : Gibt das Objekt zurück, das mit dem Handle *name* verknüpft ist.
 
-Methode **make {} reset**
+method **make {} reset**
 : Alle untergeordneten Objekte zurücksetzen
 
-Methode **make {} trigger** ?*args*?
+method **make {} trigger** ?*args*?
 : Wendet die „triggers“-Methode auf alle aufgeführten Handles an
 
-Methode **make {} depends** ?*args*?
+method **make {} depends** ?*args*?
 : Führt die Prüfmethode für alle aufgeführten Handles durch
 
-Methode **make {} filename** *name*
+method **make {} filename** *name*
 : Gibt den Namen des Build-Produkts für das angegebene Handle zurück
 
-Methode **make {} target** *name* *Info* *body*
-: ...siehe nächstes...
+method **make {} target** *name* *Info* *body*
+: siehe unten ...
 
-Methode **make {} todo**
+method **make {} todo**
 : Gibt eine Liste von Handles für Objekte zurück, die bei der Methode „do“ den Wert „true“ zurückgeben
 
-Methode **make {} do**
+method **make {} do**
 : Für jede Zielübung wird die in der *action*-Definition angegebene Aktion ausgeführt, wenn die *do*-Methode den Wert „true“ gibt.
 
-Methode **child** *which*
-: ...siehe nächstes...
+method **child** *which*
+: siehe unten ...
 
-Methode **generate-c**
+method **generate-c**
 : Diese Methode generiert den Inhalt einer zusammengeführten .c-Datei, die den Loader für eine Reihe von Tools implementiert
 
-Methode **generate-h**
+method **generate-h**
 : Diese Methode generiert den Inhalt einer zusammengeführten .h-Datei, die die öffentliche API dieses Moduls beschreibt
 
-Methode **generate-loader**
-: ...siehe nächstes...
 
-Methode **initialize**
-: ...siehe nächstes...
-
-Methode **implement** *path*
-: ...siehe nächstes...
-
-Methode **linktype**
-: 
+- Methode **generate-loader**
+- Methode **initialize**
+- Methode **implement** *path*
+- Methode **linktype**
 
 
 ## Klasse practcl::project
@@ -1501,43 +1453,39 @@ Methode **linktype**
 
 Ein Toplevel-Projekt, das eine Sammlung anderer Projekte darstellt
 
-**Methods**
+**Methoden**
 
-Methode **\_MorphPatterns**
-: ...siehe nächstes...
+method **\_MorphPatterns**
+: siehe unten ...
 
-Methode **constructor** ?*args*?
-: ...siehe nächstes...
+method **constructor** ?*args*?
+: siehe unten ...
 
-Methode **add_object** *object*
-: ...siehe nächstes...
+method **add\_object** *object*
+: siehe unten ...
 
-Methode **add_project** *pkg* *info* ?*oodefine* ?
-: ...siehe nächstes...
+method **add\_project** *pkg* *info* ?*oodefine* ?
+: siehe unten ...
 
-Methode **add_tool** *pkg* *info* ?*oodefine* ?
-: ...siehe nächstes...
+method **add\_tool** *pkg* *info* ?*oodefine* ?
+: siehe unten ...
 
-Methode **build-tclcore**
+method **build-tclcore**
 : Kompiliert den Tcl-Kern. Wenn die Definition *tk* wahr ist, wird auch der Tk-Kern kompiliert.
 
-Methode **child** *which*
-: ...siehe nächstes...
+method **child** *which*
+: siehe unten ...
 
-Methode **linktype**
-: ...siehe nächstes...
+method **linktype**
+: siehe unten ...
 
-Methode **project** *pkg* ?*args*?
+method **project** *pkg* ?*args*?
 : Die Methoden eines Unterobjekts aufrufen
 
-Methode **tclcore**
-: ...siehe nächstes...
 
-Methode **tkcore**
-: ...siehe nächstes...
-
-Methode **tool** *pkg* ?*args*?
-: 
+- Methode **tclcore**
+- Methode **tkcore**
+- Methode **tool** *pkg* ?*args*?
 
 
 ## Klasse practcl::library
@@ -1546,37 +1494,35 @@ Methode **tool** *pkg* ?*args*?
 
 Ein Toplevel-Projekt, das eine Bibliothek erstellt
 
-**Methods**
+**Methoden**
 
-Methode **clean** *PATH*
-: ...siehe nächstes...
+method **clean** *PATH*
+: siehe unten ...
 
-Methode **project-compile-products**
-: ...siehe nächstes...
+method **project-compile-products**
+: siehe unten ...
 
-Methode **go**
-: ...siehe nächstes...
+method **go**
+: siehe unten ...
 
-Methode **generate-decls** *pkgname* *path*
-: ...siehe nächstes...
+method **generate-decls** *pkgname* *path*
+: siehe unten ...
 
-Methode **implement** *path*
-: ...siehe nächstes...
+method **implement** *path*
+: siehe unten ...
 
-Methode **generate-make** *path*
+method **generate-make** *path*
 : Abwärtskompatibler Aufruf
 
-Methode **linktype**
-: ...siehe nächstes...
+method **linktype**
+: siehe unten ...
 
-Methode **package-ifneeded** ?*args*?
+method **package-ifneeded** ?*args*?
 : Erstellt ein „Paket ifneeded“. Die Argumente sind eine Liste von Aliasen, auf die dieses Paket reagieren soll.
 
-Methode **shared_library** ?*filename* ?
-: ...siehe nächstes...
 
-Methode **static_library** ?*filename* ?
-: 
+- Methode **shared\_library** ?*filename* ?
+- Methode **static\_library** ?*filename* ?
 
 
 ## Klasse practcl::tclkit
@@ -1585,15 +1531,15 @@ Methode **static_library** ?*filename* ?
 
 Ein Toplevel-Projekt, das eine eigenständige ausführbare Datei erzeugt
 
-**Methods**
+**Methoden**
 
-Methode **build-tclkit_main** *PROJECT* *PKG_OBJS*
-: ...siehe nächstes...
+method **build-tclkit\_main** *PROJECT* *PKG\_OBJS*
+: siehe unten ...
 
-Methode **Collate_Source** *CWD*
-: ...siehe nächstes...
+method **Collate\_Source** *CWD*
+: siehe unten ...
 
-Methode **wrap** *PWD* *exename* *vfspath* ?*args*?
+method **wrap** *PWD* *exename* *vfspath* ?*args*?
 : Eine ausführbare Datei verpacken
 
 
@@ -1601,49 +1547,26 @@ Methode **wrap** *PWD* *exename* *vfspath* ?*args*?
 
 Eigenständige Klasse zur Verwaltung der Code-Verteilung. Diese Klasse ist dafür vorgesehen, in eine andere Klasse eingebunden zu werden (daher das Fehlen von Oberklassen).
 
-**Class Methods**
+**Klassenmethoden**
 
-classmethod **Sandbox** *object*
-: ...siehe nächstes...
+- classmethod **Sandbox** *object*
+- classmethod **select** *object*
+- Klassenmethode **claim\_option**
+- classmethod **claim\_object** *object*
+- classmethod **claim\_path** *path*
 
-classmethod **select** *object*
-: ...siehe nächstes...
 
-Klassenmethode **claim_option**
-: ...siehe nächstes...
+**Methoden**
 
-classmethod **claim_object** *object*
-: ...siehe nächstes...
-
-classmethod **claim_path** *path*
-: **Methods**
-
-Methode **scm_info**
-: ...siehe nächstes...
-
-Methode **DistroMixIn**
-: ...siehe nächstes...
-
-Methode **Sandbox**
-: ...siehe nächstes...
-
-Methode **SrcDir**
-: ...siehe nächstes...
-
-Methode **ScmTag**
-: ...siehe nächstes...
-
-Methode **ScmClone**
-: ...siehe nächstes...
-
-Methode **ScmUnpack**
-: ...siehe nächstes...
-
-Methode **ScmUpdate**
-: ...siehe nächstes...
-
-Methode **Unpack**
-: 
+- Methode **scm\_info**
+- Methode **DistroMixIn**
+- Methode **Sandbox**
+- Methode **SrcDir**
+- Methode **ScmTag**
+- Methode **ScmClone**
+- Methode **ScmUnpack**
+- Methode **ScmUpdate**
+- Methode **Unpack**
 
 
 ## Klasse practcl::distribution.snapshot
@@ -1652,19 +1575,16 @@ Methode **Unpack**
 
 Eine Dateiverteilung aus einem ZIP-Archiv, einem Tarball oder einem anderen, nicht auf SCM basierenden Archivformat
 
-**Class Methods**
+**Klassenmethoden**
 
-classmethod **claim_object** *object*
-: ...siehe nächstes...
+- classmethod **claim\_object** *object*
+- Klassenmethode **claim\_option**
+- classmethod **claim\_path** *path*
 
-Klassenmethode **claim_option**
-: ...siehe nächstes...
 
-classmethod **claim_path** *path*
-: **Methods**
+**Methoden**
 
-Methode **ScmUnpack**
-: 
+- Methode **ScmUnpack**
 
 
 ## Klasse practcl::distribution.fossil
@@ -1673,31 +1593,30 @@ Methode **ScmUnpack**
 
 Eine auf Fossil basierende Dateiverteilung
 
-**Class Methods**
+**Klassenmethoden**
 
-classmethod **claim_object** *obj*
+classmethod **claim\_object** *obj*
 : Überprüft die Metadaten auf Markierungen
 
-Klassenmethode **claim_option**
-: ...siehe nächstes...
+classmethod **claim\_option**
+: siehe unten ...
 
-classmethod **claim_path** *path*
-: Überprüft, ob im Quellstamm „**Methods**“ Markierungen vorhanden sind
+classmethod **claim\_path** *path*
+: Überprüft, ob im Quellstamm Markierungen vorhanden sind
 
-Methode **scm_info**
-: ...siehe nächstes...
 
-Methode **ScmClone**
+**Methoden**
+
+method **scm\_info**
+: siehe unten ...
+
+method **ScmClone**
 : Den Quellcode klonen
 
-Methode **ScmTag**
-: ...siehe nächstes...
 
-Methode **ScmUnpack**
-: ...siehe nächstes...
-
-Methode **ScmUpdate**
-: 
+- Methode **ScmTag**
+- Methode **ScmUnpack**
+- Methode **ScmUpdate**
 
 
 ## Klasse practcl::distribution.git
@@ -1706,25 +1625,18 @@ Methode **ScmUpdate**
 
 Eine auf Git basierende Dateiverteilung
 
-**Class Methods**
+**Klassenmethoden**
 
-classmethod **claim_object** *obj*
-: ...siehe nächstes...
+- classmethod **claim\_object** *obj*
+- Klassenmethode **claim\_option**
+- classmethod **claim\_path** *path*
 
-Klassenmethode **claim_option**
-: ...siehe nächstes...
 
-classmethod **claim_path** *path*
-: **Methods**
+**Methoden**
 
-Methode **ScmTag**
-: ...siehe nächstes...
-
-Methode **ScmUnpack**
-: ...siehe nächstes...
-
-Methode **ScmUpdate**
-: 
+- Methode **ScmTag**
+- Methode **ScmUnpack**
+- Methode **ScmUpdate**
 
 
 ## Klasse practcl::subproject
@@ -1733,61 +1645,57 @@ Methode **ScmUpdate**
 
 Ein Teilprojekt
 
-**Methods**
+**Methoden**
 
-Methode **\_MorphPatterns**
-: ...siehe nächstes...
+method **\_MorphPatterns**
+: siehe unten ...
 
-Methode **BuildDir** *PWD*
-: ...siehe nächstes...
+method **BuildDir** *PWD*
+: siehe unten ...
 
-Methode **child** *which*
-: ...siehe nächstes...
+method **child** *which*
+: siehe unten ...
 
-Methode **compile**
-: ...siehe nächstes...
+method **compile**
+: siehe unten ...
 
-Methode **go**
-: ...siehe nächstes...
+method **go**
+: siehe unten ...
 
-Methode **install** ?*args*?
+method **install** ?*args*?
 : Projekt in das lokale Build-System integrieren
 
-Methode **linktype**
-: ...siehe nächstes...
+method **linktype**
+: siehe unten ...
 
-Methode **linker-products** *configdict*
-: ...siehe nächstes...
+method **linker-products** *configdict*
+: siehe unten ...
 
-Methode **linker-external** *configdict*
-: ...siehe nächstes...
+method **linker-external** *configdict*
+: siehe unten ...
 
-Methode **linker-extra** *configdict*
-: ...siehe nächstes...
+method **linker-extra** *configdict*
+: siehe unten ...
 
-Methode **env-bootstrap**
+method **env-bootstrap**
 : Methoden für Pakete/Tools, die heruntergeladen, gegebenenfalls kompiliert und intern von diesem Practcl-Prozess verwendet werden können. Laden Sie die Funktion in den Interpreter.
 
-Methode **env-exec**
+method **env-exec**
 : Gibt einen Dateipfad zurück, den „exec“ aufrufen kann
 
-Methode **env-install**
+method **env-install**
 : Installiert das Tool in der lokalen Umgebung
 
-Methode **env-load**
+method **env-load**
 : Tun Sie alles Notwendige, um das Tool in die lokale Umgebung zu integrieren
 
-Methode **env-present**
+method **env-present**
 : Prüft, ob das Werkzeug zum Laden verfügbar ist bzw. bereits geladen wurde
 
-Methode **sources**
-: ...siehe nächstes...
 
-Methode **update**
-: ...siehe nächstes...
-
-Methode **unpack**
-: 
+- Methode **sources**
+- Methode **update**
+- Methode **unpack**
 
 
 ## Klasse practcl::subproject.source
@@ -1796,16 +1704,11 @@ Methode **unpack**
 
 Ein Projekt, bei dem das Kit den Quellcode selbst kompiliert und integriert
 
-**Methods**
+**Methoden**
 
-Methode **env-bootstrap**
-: ...siehe nächstes...
-
-Methode **env-present**
-: ...siehe nächstes...
-
-Methode **linktype**
-: 
+- Methode **env-bootstrap**
+- Methode **env-present**
+- Methode **linktype**
 
 
 ## Klasse practcl::subproject.teapot
@@ -1814,83 +1717,56 @@ Methode **linktype**
 
 ein Schluck aus der Teekanne
 
-**Methods**
+**Methoden**
 
-Methode **env-bootstrap**
-: ...siehe nächstes...
-
-Methode **env-install**
-: ...siehe nächstes...
-
-Methode **env-present**
-: ...siehe nächstes...
-
-Methode **install** *DEST*
-: 
+- Methode **env-bootstrap**
+- Methode **env-install**
+- Methode **env-present**
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.kettle
 
 *ancestors*: **practcl::subproject**
 
-**Methods**
+**Methoden**
 
-Methode **kettle** *path* ?*args*?
-: ...siehe nächstes...
-
-Methode **install** *DEST*
-: 
+- Methode **kettle** *path* ?*args*?
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.critcl
 
 *ancestors*: **practcl::subproject**
 
-**Methods**
+**Methoden**
 
-Methode **install** *DEST*
-: 
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.sak
 
 *ancestors*: **practcl::subproject**
 
-**Methods**
+**Methoden**
 
-Methode **env-bootstrap**
-: ...siehe nächstes...
-
-Methode **env-install**
-: ...siehe nächstes...
-
-Methode **env-present**
-: ...siehe nächstes...
-
-Methode **install** *DEST*
-: ...siehe nächstes...
-
-Methode **install-module** *DEST* ?*args*?
-: 
+- Methode **env-bootstrap**
+- Methode **env-install**
+- Methode **env-present**
+- Methode **install** *DEST*
+- Methode **install-module** *DEST* ?*args*?
 
 
 ## Klasse practcl::subproject.practcl
 
 *ancestors*: **practcl::subproject**
 
-**Methods**
+**Methoden**
 
-Methode **env-bootstrap**
-: ...siehe nächstes...
-
-Methode **env-install**
-: ...siehe nächstes...
-
-Methode **install** *DEST*
-: ...siehe nächstes...
-
-Methode **install-module** *DEST* ?*args*?
-: 
+- Methode **env-bootstrap**
+- Methode **env-install**
+- Methode **install** *DEST*
+- Methode **install-module** *DEST* ?*args*?
 
 
 ## Klasse practcl::subproject.binary
@@ -1899,40 +1775,19 @@ Methode **install-module** *DEST* ?*args*?
 
 Ein untergeordnetes Paket
 
-**Methods**
+**Methoden**
 
-Methode **clean**
-: ...siehe nächstes...
-
-Methode **env-install**
-: ...siehe nächstes...
-
-Methode **project-compile-products**
-: ...siehe nächstes...
-
-Methode **ComputeInstall**
-: ...siehe nächstes...
-
-Methode **go**
-: ...siehe nächstes...
-
-Methode **linker-products** *configdict*
-: ...siehe nächstes...
-
-Methode **project-static-packages**
-: ...siehe nächstes...
-
-Methode **BuildDir** *PWD*
-: ...siehe nächstes...
-
-Methode **compile**
-: ...siehe nächstes...
-
-Methode **Configure**
-: ...siehe nächstes...
-
-Methode **install** *DEST*
-: 
+- Methode **clean**
+- Methode **env-install**
+- Methode **project-compile-products**
+- Methode **ComputeInstall**
+- Methode **go**
+- Methode **linker-products** *configdict*
+- Methode **project-static-packages**
+- Methode **BuildDir** *PWD*
+- Methode **compile**
+- Methode **Configure**
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.tea
@@ -1947,10 +1802,9 @@ Ein untergeordnetes TEA-basiertes Paket
 
 Eine von diesem Projekt erstellte untergeordnete C-Bibliothek
 
-**Methods**
+**Methoden**
 
-Methode **install** *DEST*
-: 
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.external
@@ -1959,35 +1813,25 @@ Methode **install** *DEST*
 
 Eine untergeordnete externe C-Bibliothek
 
-**Methods**
+**Methoden**
 
-Methode **install** *DEST*
-: 
+- Methode **install** *DEST*
 
 
 ## Klasse practcl::subproject.core
 
 *ancestors*: **practcl::subproject.binary**
 
-**Methods**
+**Methoden**
 
-Methode **env-bootstrap**
-: ...siehe nächstes...
-
-Methode **env-present**
-: ...siehe nächstes...
-
-Methode **env-install**
-: ...siehe nächstes...
-
-Methode **go**
-: ...siehe nächstes...
-
-Methode **linktype**
-: 
+- Methode **env-bootstrap**
+- Methode **env-present**
+- Methode **env-install**
+- Methode **go**
+- Methode **linktype**
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *practcl* als Kategorie an.
 
@@ -1995,11 +1839,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 TclOO
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2016-2018 Sean Woods <yoda@etoyoc.com>

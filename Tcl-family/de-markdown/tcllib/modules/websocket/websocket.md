@@ -1,5 +1,6 @@
 ---
 CommandName: websocket
+title: websocket
 ManualSection: n
 Version: 1.6
 TclPart: tcllib
@@ -14,34 +15,34 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 websocket – Tcl-Implementierung des WebSocket-Protokolls
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [http]{.lit} [2.7]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[package]{.cmd} [require]{.sub} [sha1]{.lit} 
-[package]{.cmd} [require]{.sub} [base64]{.lit} 
-[package]{.cmd} [require]{.sub} [websocket]{.lit} [1.6]{.optlit} 
-[::websocket::open]{.cmd} [url]{.arg} [handler]{.arg} [options]{.optarg} 
-[::websocket::send]{.cmd} [sock]{.arg} [type]{.arg} [msg]{.optarg} [final]{.optarg} 
-[::websocket::server]{.cmd} [sock]{.arg} 
-[::websocket::live]{.cmd} [sock]{.arg} [path]{.arg} [cb]{.arg} [proto]{.optarg} 
-[::websocket::test]{.cmd} [srvSock]{.arg} [cliSock]{.arg} [path]{.arg} [hdrs]{.optarg} [qry]{.optarg} 
-[::websocket::upgrade]{.cmd} [sock]{.arg} 
-[::websocket::takeover]{.cmd} [sock]{.arg} [handler]{.arg} [server]{.optarg} 
-[::websocket::conninfo]{.cmd} [sock]{.arg} [what]{.arg} 
-[::websocket::find]{.cmd} [host]{.optarg} [port]{.optarg} 
-[::websocket::configure]{.cmd} [sock]{.arg} [args]{.arg} 
-[::websocket::loglevel]{.cmd} [loglvl]{.optarg} 
-[::websocket::close]{.cmd} [sock]{.arg} [code]{.optarg} [reason]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [http]{.lit} [2.7]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[package]{.cmd} [require]{.sub} [sha1]{.lit}
+[package]{.cmd} [require]{.sub} [base64]{.lit}
+[package]{.cmd} [require]{.sub} [websocket]{.lit} [1.6]{.optlit}
+[::websocket::open]{.cmd} [url]{.arg} [handler]{.arg} [options]{.optarg}
+[::websocket::send]{.cmd} [sock]{.arg} [type]{.arg} [msg]{.optarg} [final]{.optarg}
+[::websocket::server]{.cmd} [sock]{.arg}
+[::websocket::live]{.cmd} [sock]{.arg} [path]{.arg} [cb]{.arg} [proto]{.optarg}
+[::websocket::test]{.cmd} [srvSock]{.arg} [cliSock]{.arg} [path]{.arg} [hdrs]{.optarg} [qry]{.optarg}
+[::websocket::upgrade]{.cmd} [sock]{.arg}
+[::websocket::takeover]{.cmd} [sock]{.arg} [handler]{.arg} [server]{.optarg}
+[::websocket::conninfo]{.cmd} [sock]{.arg} [what]{.arg}
+[::websocket::find]{.cmd} [host]{.optarg} [port]{.optarg}
+[::websocket::configure]{.cmd} [sock]{.arg} [args]{.arg}
+[::websocket::loglevel]{.cmd} [loglvl]{.optarg}
+[::websocket::close]{.cmd} [sock]{.arg} [code]{.optarg} [reason]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 HINWEIS: DIESE DOKUMENTATION BEFINDET SICH NOCH IN DER ENTWICKLUNG...
 
@@ -55,7 +56,7 @@ Die Server registrieren sich zunächst mithilfe des Befehls **::websocket::serve
 
 Neben diesen Hauptbefehlen bietet das Paket eine Reihe von Befehlen zur Introspektion und für grundlegende Operationen an den WebSockets, die es verwaltet.  Da WebSocket-Verbindungen von langer Dauer sind, erfolgt der Großteil der weiteren Kommunikation mit der Bibliothek über Rückruffunktionen, d. h. Befehle, die immer dann ausgelöst werden, wenn wichtige Ereignisse innerhalb der Bibliothek eintreten, vor allem jedoch, wenn Daten über einen WebSocket empfangen wurden.
 
-# CALLBACKS
+# Callbacks
 
 Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argument entgegen; dabei handelt es sich um einen Befehl, der bei Empfang von Daten, aber auch bei wichtigen Ereignissen innerhalb der Bibliothek oder bei Ereignissen, die durch vom Gegenüber gesendete Steuermeldungen ausgelöst werden, aufgerufen wird. Bei jeder ausgeführten Rückruffunktion werden die folgenden Argumente angehängt:
 
@@ -65,33 +66,32 @@ Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argume
 *type*
 : Ein Textfeld, das den Inhalt des Ereignisses oder der Meldung beschreibt, kann einen der folgenden Werte annehmen
 
+    **text**
+    : Vollständiger SMS-Text
 
-**text**
-: Vollständiger SMS-Text
+    **binary**
+    : Vollständige Binärnachricht
 
-**binary**
-: Vollständige Binärnachricht
+    **ping**
+    : Eingehende Ping-Nachricht
 
-**ping**
-: Eingehende Ping-Nachricht
+    **pong**
+    : Antwort auf eine eingehende Ping-Nachricht
 
-**pong**
-: Antwort auf eine eingehende Ping-Nachricht
+    **connect**
+    : Benachrichtigung über eine erfolgreiche Verbindung zum Server
 
-**connect**
-: Benachrichtigung über eine erfolgreiche Verbindung zum Server
+    **disconnect**
+    : Trennung von der Gegenstelle
 
-**disconnect**
-: Trennung von der Gegenstelle
+    **close**
+    : Verbindung wird geschlossen
 
-**close**
-: Verbindung wird geschlossen
+    **timeout**
+    : Meldung über ein Zeitlimit bei der Verbindung
 
-**timeout**
-: Meldung über ein Zeitlimit bei der Verbindung
-
-**error**
-: Meldung eines Fehlerzustands
+    **error**
+    : Meldung eines Fehlerzustands
 
 
 *msg*
@@ -103,24 +103,23 @@ Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argume
 **::websocket::open** *url* *handler* ?*options*?
 : Dieser Befehl wird in Clients verwendet, um eine WebSocket-Verbindung zu einem entfernten, WebSocket-fähigen HTTP-Server herzustellen. Die als Argument in *url* angegebene URL sollte mit „ws:“ oder „wss:“ beginnen, da dies die WebSocket-Entsprechungen von „http:“ und „https:“ sind. Der *handler* ist ein Befehl, der bei Datenempfang oder bei wichtigen Ereignissen während der Lebensdauer des WebSockets aufgerufen wird. **::websocket::open** gibt einen Socket zurück, der sowohl als Kennung des WebSockets als auch des physischen Low-Level-Sockets zum Server dient.  Dieser Socket kann in einer Reihe weiterer Befehle zur Introspektion oder zur Steuerung des Verhaltens der Bibliothek verwendet werden. Da es sich im Wesentlichen um einen Wrapper um den Befehl **::http::geturl** handelt, bietet dieser Befehl größtenteils denselben Satz von durch Bindestriche getrennten Optionen wie **::http::geturl**.  Im Folgenden sind die Optionen dokumentiert, die sich von **::http::geturl** unterscheiden und spezifisch für die WebSocket-Bibliothek sind.
 
+    -headers
+    : Diese Option wird unterstützt, wobei zu beachten ist, dass in der Bibliothek intern eine Reihe von Headern automatisch hinzugefügt wird, um mit dem Server den Handshake für die Umwandlung des Sockets von einem regulären HTTP-Socket in einen WebSocket durchführen zu können.
 
-**-headers**
-: Diese Option wird unterstützt, wobei zu beachten ist, dass in der Bibliothek intern eine Reihe von Headern automatisch hinzugefügt wird, um mit dem Server den Handshake für die Umwandlung des Sockets von einem regulären HTTP-Socket in einen WebSocket durchführen zu können.
+    -validate
+    : Diese Option wird nicht unterstützt, da sie für WebSockets keinen wirklichen Sinn ergibt.
 
-**-validate**
-: Diese Option wird nicht unterstützt, da sie für WebSockets keinen wirklichen Sinn ergibt.
+    -handler
+    : Diese Option wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
 
-**-handler**
-: Diese Option wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
+    -command
+    : Diese Option wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
 
-**-command**
-: Diese Option wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
+    -protocol
+    : Diese Option legt eine Liste von Anwendungsprotokollen fest, über die ein Handshake mit dem Server hergestellt werden soll. Diese Protokolle können dem Server dabei helfen, anwendungsspezifische Funktionen auszulösen. Die Option http::geturl -protocol wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
 
-**-protocol**
-: Diese Option legt eine Liste von Anwendungsprotokollen fest, über die ein Handshake mit dem Server hergestellt werden soll. Diese Protokolle können dem Server dabei helfen, anwendungsspezifische Funktionen auszulösen. Die Option http::geturl -protocol wird intern von der WebSocket-Bibliothek verwendet und kann nicht genutzt werden.
-
-**-timeout**
-: Diese Option wird unterstützt, wird jedoch als Teil der Bibliothek implementiert, um eine Reihe abschließender Bereinigungen zu ermöglichen.
+    -timeout
+    : Diese Option wird unterstützt, wird jedoch als Teil der Bibliothek implementiert, um eine Reihe abschließender Bereinigungen zu ermöglichen.
 
 
 **::websocket::send** *sock* *type* ?*msg*? ?*final*?
@@ -144,40 +143,39 @@ Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argume
 **::websocket::conninfo** *sock* *what*
 : Bietet Aufrufern einige Funktionen zur Selbstauswertung, um bestimmte halbinterne Informationen über eine bestehende WebSocket-Verbindung abzurufen. Je nach Wert des Arguments *what* gibt die Prozedur die folgenden Informationen zurück:
 
+    **peername**
+    : Name (bevorzugt) oder IP-Adresse der Gegenstelle.
 
-**peername**
-: Name (bevorzugt) oder IP-Adresse der Gegenstelle.
+    **sockname**
+    : oder **name** Name oder IP-Adresse des lokalen Endgeräts.
 
-**sockname**
-: oder **name** Name oder IP-Adresse des lokalen Endgeräts.
+    **closed**
+    : **1**, wenn die Verbindung geschlossen ist, andernfalls **0**
 
-**closed**
-: **1**, wenn die Verbindung geschlossen ist, andernfalls **0**
+    **client**
+    : **1**, wenn es sich um eine Client-WebSocket-Verbindung handelt, andernfalls **0**
 
-**client**
-: **1**, wenn es sich um eine Client-WebSocket-Verbindung handelt, andernfalls **0**
+    **server**
+    : **1**, wenn es sich um eine Server-WebSocket-Verbindung handelt, andernfalls **0**
 
-**server**
-: **1**, wenn es sich um eine Server-WebSocket-Verbindung handelt, andernfalls **0**
+    **type**
+    : **server**, wenn es sich bei der Verbindung um einen Server-WebSocket handelt, andernfalls **client**.
 
-**type**
-: **server**, wenn es sich bei der Verbindung um einen Server-WebSocket handelt, andernfalls **client**.
+    **handler**
+    : Der dem WebSocket zugeordnete Handler-Befehl
 
-**handler**
-: Der dem WebSocket zugeordnete Handler-Befehl
+    **state**
+    : Der Status des WebSockets, der einer der folgenden sein kann:
 
-**state**
-: Der Status des WebSockets, der einer der folgenden sein kann:
+        **CONNECTING**
+        : Die Verbindung zur Gegenstelle wird gerade hergestellt.
 
+        **CONNECTED**
+        : Die Verbindung zum Gegenüber ist hergestellt.
 
-**CONNECTING**
-: Die Verbindung zur Gegenstelle wird gerade hergestellt.
+        **CLOSED**
+        : Die Verbindung wurde geschlossen.
 
-**CONNECTED**
-: Die Verbindung zum Gegenüber ist hergestellt.
-
-**CLOSED**
-: Die Verbindung wurde geschlossen.
 
 
 **::websocket::find** ?*host*? ?*port*?
@@ -186,12 +184,11 @@ Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argume
 **::websocket::configure** *sock* *args*
 : Dieser Befehl akzeptiert eine Reihe von durch Bindestriche eingeleiteten Optionen (sowie deren Werte), um das Verhalten einer bestehenden WebSocket-Verbindung zu konfigurieren. Die folgenden Optionen werden erkannt (sie können auf den kleinsten gemeinsamen Nenner verkürzt werden):
 
+    **-keepalive**
+    : Dies ist die Anzahl der Sekunden zwischen den einzelnen Keepalive-Pings, die über die Verbindung gesendet werden. Eine Null oder eine negative Zahl deaktiviert diese Funktion effektiv. Auf Servern ist der Standardwert für **-keepalive** auf 30 Sekunden festgelegt, während auf Clients keine Pings initiiert werden.
 
-**-keepalive**
-: Dies ist die Anzahl der Sekunden zwischen den einzelnen Keepalive-Pings, die über die Verbindung gesendet werden. Eine Null oder eine negative Zahl deaktiviert diese Funktion effektiv. Auf Servern ist der Standardwert für **-keepalive** auf 30 Sekunden festgelegt, während auf Clients keine Pings initiiert werden.
-
-**-ping**
-: Dies ist der Text, der bei den automatisierten Pings verwendet wird. Standardmäßig ist dieser Text eine leere Zeichenkette, was zu einem leeren Ping führt.
+    **-ping**
+    : Dies ist der Text, der bei den automatisierten Pings verwendet wird. Standardmäßig ist dieser Text eine leere Zeichenkette, was zu einem leeren Ping führt.
 
 
 **::websocket::loglevel** ?*loglvl*?
@@ -200,42 +197,42 @@ Eine Reihe von Befehlen der Bibliothek nimmt den Befehl „handler“ als Argume
 **::websocket::close** *sock* ?*code*? ?*reason*?
 : Schließt eine WebSocket-Verbindung, die direkt oder indirekt an **::websocket::takeover** übergeben wurde, ordnungsgemäß. Die Prozedur sendet optional den *code* und den beschreibenden *reason* als Teil des Schließungs-Handshakes. Es stehen geeignete Standardwerte zur Verfügung, sodass für eine Reihe bekannter Codes entsprechende Gründe zurückgesendet werden. Es werden nur die ersten 125 Zeichen einer Begründungszeichenfolge beibehalten und als Teil des Handshakes gesendet. Die bekannten Codes lauten:
 
+    **1000**
+    : Normalerweise geschlossen (der Standard-*code*, wenn kein Code angegeben wurde).
 
-**1000**
-: Normalerweise geschlossen (der Standard-*code*, wenn kein Code angegeben wurde).
+    **1001**
+    : Endpunkt wird abgeschafft
 
-**1001**
-: Endpunkt wird abgeschafft
+    **1002**
+    : Protokollfehler
 
-**1002**
-: Protokollfehler
+    **1003**
+    : Inkompatibler Datentyp empfangen
 
-**1003**
-: Inkompatibler Datentyp empfangen
+    **1006**
+    : Fehlverschluss
 
-**1006**
-: Fehlverschluss
+    **1007**
+    : Die empfangenen Daten stimmen nicht mit dem Typ überein
 
-**1007**
-: Die empfangenen Daten stimmen nicht mit dem Typ überein
+    **1008**
+    : Verstoß gegen die Richtlinien
 
-**1008**
-: Verstoß gegen die Richtlinien
+    **1009**
+    : Die empfangene Nachricht ist zu groß
 
-**1009**
-: Die empfangene Nachricht ist zu groß
+    **1010**
+    : Fehlende Erweiterung
 
-**1010**
-: Fehlende Erweiterung
+    **1011**
+    : Unerwarteter Zustand
 
-**1011**
-: Unerwarteter Zustand
-
-**1015**
-: TLS-Handshake-Fehler
+    **1015**
+    : TLS-Handshake-Fehler
 
 
-# BEISPIELE
+
+# Beispiele
 
 Das folgende Skript stellt einen Client dar, der eine WebSocket-Verbindung zu einem Echo-Dienst herstellt, 400 ms wartet, um sicherzustellen, dass die Verbindung tatsächlich hergestellt wurde, und eine einzelne Textnachricht sendet, die vom Echo-Dienst zurückgesendet werden soll.  In einem realen Beispiel würde wahrscheinlich die Rückruffunktion „**connect**“ verwendet werden, um festzustellen, wann die Verbindung zum Remote-Server hergestellt wurde, und erst zu diesem Zeitpunkt würden Daten gesendet werden. Abschließend schließt das Skript die Verbindung.
 
@@ -269,7 +266,7 @@ vwait forever
 
 Beispiele für Code für einen WebSocket-Server finden Sie im Tcllib-Verzeichnis „examples/websocket“.
 
-# TLS-SICHERHEITSHINWEISE
+# TLS-Sicherheitshinweise
 
 Dieses Paket nutzt das **TLS**-Paket, um die Sicherheit für **https**-URLs und andere Socket-Verbindungen zu gewährleisten.
 
@@ -284,7 +281,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
     ... your own application code ...
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *websocket* als Kategorie an.
 
@@ -292,6 +289,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk

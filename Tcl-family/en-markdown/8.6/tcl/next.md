@@ -1,5 +1,6 @@
 ---
 CommandName: next
+title: next
 ManualSection: n
 Version: 0.1
 TclPart: TclOO
@@ -24,57 +25,49 @@ next, nextto - invoke superclass method implementations
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
 
-[next]{.cmd} [arg]{.optdot} 
-[nextto]{.cmd} [class]{.arg} [arg]{.optdot} 
+[next]{.cmd} [arg]{.optdot}
+[nextto]{.cmd} [class]{.arg} [arg]{.optdot}
 :::
 
 # Description
 
 The **next** command is used to call implementations of a method by a class, superclass or mixin that are overridden by the current method. It can only be used from within a method. It is also used within filters to indicate the point where a filter calls the actual implementation (the filter may decide to not go along the chain, and may process the results of going along the chain of methods as it chooses). The result of the **next** command is the result of the next method in the method chain; if there are no further methods in the method chain, the result of **next** will be an error. The arguments, *arg*, to **next** are the arguments to pass to the next method in the chain.
 
-The **nextto** command is the same as the **next** command, except that it takes an additional *class* argument that identifies a class whose implementation of the current method chain (see **info object** **call**) should be used; the method implementation selected will be the one provided by the given class, and it must refer to an existing non-filter invocation that lies further along the chain than the current implementation.
+The **nextto** command is the same as the **next** command, except that it takes an additional *class* argument that identifies a class whose implementation of the current method chain (see [info object][info] **call**) should be used; the method implementation selected will be the one provided by the given class, and it must refer to an existing non-filter invocation that lies further along the chain than the current implementation.
 
 # The method chain
 
 When a method of an object is invoked, things happen in several stages:
 
-**\[1\]**
-: The structure of the object, its class, superclasses, filters, and mixins, are examined to build a *method chain*, which contains a list of method implementations to invoke.
+1. The structure of the object, its class, superclasses, filters, and mixins, are examined to build a *method chain*, which contains a list of method implementations to invoke.
 
-**\[2\]**
-: The first method implementation on the chain is invoked.
+2. The first method implementation on the chain is invoked.
 
-**\[3\]**
-: If that method implementation invokes the **next** command, the next method implementation is invoked (with its arguments being those that were passed to **next**).
+3. If that method implementation invokes the **next** command, the next method implementation is invoked (with its arguments being those that were passed to **next**).
 
-**\[4\]**
-: The result from the overall method call is the result from the outermost method implementation; inner method implementations return their results through **next**.
+4. The result from the overall method call is the result from the outermost method implementation; inner method implementations return their results through **next**.
 
-**\[5\]**
-: The method chain is cached for future use.
+5. The method chain is cached for future use.
 
 
 ## Method search order
 
 When constructing the method chain, method implementations are searched for in the following order:
 
-**\[1\]**
-: In the classes mixed into the object, in class traversal order. The list of mixins is checked in natural order.
+1. In the classes mixed into the object, in class traversal order. The list of mixins is checked in natural order.
 
-**\[2\]**
-: In the classes mixed into the classes of the object, with sources of mixing in being searched in class traversal order. Within each class, the list of mixins is processed in natural order.
+2. In the classes mixed into the classes of the object, with sources of mixing in being searched in class traversal order. Within each class, the list of mixins is processed in natural order.
 
-**\[3\]**
-: In the object itself.
+3. In the object itself.
 
-**\[4\]**
-: In the object's class.
+4. In the object's class.
 
-**\[5\]**
-: In the superclasses of the class, following each superclass in a depth-first fashion in the natural order of the superclass list. Any particular method implementation always comes as *late* in the resulting list of implementations as possible; this means that if some class, A, is both mixed into a class, B, and is also a superclass of B, the instances of B will always treat A as a superclass from the perspective of inheritance. This is true even when the multiple inheritance is processed indirectly.
+5. In the superclasses of the class, following each superclass in a depth-first fashion in the natural order of the superclass list.
 
+
+Any particular method implementation always comes as *late* in the resulting list of implementations as possible; this means that if some class, A, is both mixed into a class, B, and is also a superclass of B, the instances of B will always treat A as a superclass from the perspective of inheritance. This is true even when the multiple inheritance is processed indirectly.
 
 ## Filters
 
@@ -178,3 +171,6 @@ puts [demo compute  1 2 3]      → prints "7" instantly
 demo flushCache
 puts [demo compute  1 2 3]      → prints "7" after delay
 ```
+
+
+[info]: info.md

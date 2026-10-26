@@ -1,5 +1,6 @@
 ---
 CommandName: pkg_dtplite
+title: pkg_dtplite
 ManualSection: n
 Version: 1.3.2
 TclPart: tcllib
@@ -24,14 +25,14 @@ Copyright:
 
 # Name
 
-pkg_dtplite - Lightweight DocTools Markup Processor
+pkg\_dtplite - Lightweight DocTools Markup Processor
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [dtplite]{.lit} [1.3.2]{.optlit} 
-[dtplite::print-via]{.cmd} [cmd]{.arg} 
-[dtplite::do]{.cmd} [arguments]{.arg} 
+[package]{.cmd} [require]{.sub} [dtplite]{.lit} [1.3.2]{.optlit}
+[dtplite::print-via]{.cmd} [cmd]{.arg}
+[dtplite::do]{.cmd} [arguments]{.arg}
 :::
 
 # Description
@@ -41,10 +42,16 @@ The package provided by this document, **dtplite**, is the foundation for the **
 # Commands
 
 **dtplite::print-via** *cmd*
-: Redirect print operations of the package to the specified *cmd*. The result of the command is the empty string.
+: Redirect print operations of the package to the specified *cmd*.
+
+    The result of the command is the empty string.
 
 **dtplite::do** *arguments*
-: The main command it takes a *single list* of *arguments*, processes them, and performs the specified action. The result of the command is the empty string. The details of the syntax inside of the *arguments* list are explained in section *COMMAND LINE* of the documentation for the **dtplite** application.
+: The main command it takes a *single list* of *arguments*, processes them, and performs the specified action.
+
+    The result of the command is the empty string.
+
+    The details of the syntax inside of the *arguments* list are explained in section *COMMAND LINE* of the documentation for the **dtplite** application.
 
 
 # Bugs, ideas, feedback

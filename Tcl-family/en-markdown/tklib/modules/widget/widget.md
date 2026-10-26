@@ -1,5 +1,6 @@
 ---
 CommandName: widget
+title: widget
 ManualSection: n
 Version: 3.2
 TclPart: tklib
@@ -30,22 +31,22 @@ widget - Megawidget bundle
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [widget]{.lit} [3.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[widget::validate]{.cmd} [as]{.arg} [options]{.optarg} 
-[widget::calendar]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::dateentry]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::dialog]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::menuentry]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::panelframe]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::ruler]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::screenruler]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::scrolledwindow]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::statusbar]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::superframe]{.cmd} [pathname]{.arg} [options]{.optarg} 
-[widget::toolbar]{.cmd} [pathname]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [widget]{.lit} [3.2]{.optlit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[widget::validate]{.cmd} [as]{.arg} [options]{.optarg}
+[widget::calendar]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::dateentry]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::dialog]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::menuentry]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::panelframe]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::ruler]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::screenruler]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::scrolledwindow]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::statusbar]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::superframe]{.cmd} [pathname]{.arg} [options]{.optarg}
+[widget::toolbar]{.cmd} [pathname]{.arg} [options]{.optarg}
 :::
 
 # Description

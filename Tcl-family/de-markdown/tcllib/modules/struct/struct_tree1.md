@@ -1,5 +1,6 @@
 ---
 CommandName: struct::tree_v1
+title: struct::tree_v1
 ManualSection: n
 Version: 1.2.3
 TclPart: tcllib
@@ -10,61 +11,66 @@ Copyright:
  - Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-struct::tree_v1 – Baumobjekte anlegen und bearbeiten
+struct::tree\_v1 – Baumobjekte anlegen und bearbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::tree]{.lit} [1.2.3]{.optlit} 
-[treeName]{.cmd} [option]{.sub} [arg arg]{.optdot} 
-[treeName]{.ins} [append]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[treeName]{.ins} [children]{.sub} [node]{.arg} 
-[treeName]{.ins} [cut]{.sub} [node]{.arg} 
-[treeName]{.ins} [delete]{.sub} [node]{.arg} [node]{.optdot} 
-[treeName]{.ins} [depth]{.sub} [node]{.arg} 
-[treeName]{.ins} [destroy]{.sub} 
-[treeName]{.ins} [exists]{.sub} [node]{.arg} 
-[treeName]{.ins} [get]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [getall]{.sub} [node]{.arg} 
-[treeName]{.ins} [keys]{.sub} [node]{.arg} 
-[treeName]{.ins} [keyexists]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [index]{.sub} [node]{.arg} 
-[treeName]{.ins} [insert]{.sub} [parent]{.arg} [index]{.arg} [child ?child]{.optdot} 
-[treeName]{.ins} [isleaf]{.sub} [node]{.arg} 
-[treeName]{.ins} [lappend]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[treeName]{.ins} [move]{.sub} [parent]{.arg} [index]{.arg} [node]{.arg} [node]{.optdot} 
-[treeName]{.ins} [next]{.sub} [node]{.arg} 
-[treeName]{.ins} [numchildren]{.sub} [node]{.arg} 
-[treeName]{.ins} [parent]{.sub} [node]{.arg} 
-[treeName]{.ins} [previous]{.sub} [node]{.arg} 
-[treeName]{.ins} [set]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[treeName]{.ins} [size]{.sub} [node]{.optarg} 
-[treeName]{.ins} [splice]{.sub} [parent]{.arg} [from]{.arg} [to]{.optarg} [child]{.optarg} 
-[treeName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg} 
-[treeName]{.ins} [unset]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [walk]{.sub} [node]{.arg} [-order order]{.optarg} [-type type]{.optarg} [-command]{.lit} [cmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::tree]{.lit} [1.2.3]{.optlit}
+[treeName]{.cmd} [option]{.lit} [arg arg]{.optdot}
+[treeName]{.ins} [append]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[treeName]{.ins} [children]{.sub} [node]{.arg}
+[treeName]{.ins} [cut]{.sub} [node]{.arg}
+[treeName]{.ins} [delete]{.sub} [node]{.arg} [node]{.optdot}
+[treeName]{.ins} [depth]{.sub} [node]{.arg}
+[treeName]{.ins} [destroy]{.sub}
+[treeName]{.ins} [exists]{.sub} [node]{.arg}
+[treeName]{.ins} [get]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [getall]{.sub} [node]{.arg}
+[treeName]{.ins} [keys]{.sub} [node]{.arg}
+[treeName]{.ins} [keyexists]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [index]{.sub} [node]{.arg}
+[treeName]{.ins} [insert]{.sub} [parent]{.arg} [index]{.arg} [child ?child]{.optdot}
+[treeName]{.ins} [isleaf]{.sub} [node]{.arg}
+[treeName]{.ins} [lappend]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[treeName]{.ins} [move]{.sub} [parent]{.arg} [index]{.arg} [node]{.arg} [node]{.optdot}
+[treeName]{.ins} [next]{.sub} [node]{.arg}
+[treeName]{.ins} [numchildren]{.sub} [node]{.arg}
+[treeName]{.ins} [parent]{.sub} [node]{.arg}
+[treeName]{.ins} [previous]{.sub} [node]{.arg}
+[treeName]{.ins} [set]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[treeName]{.ins} [size]{.sub} [node]{.optarg}
+[treeName]{.ins} [splice]{.sub} [parent]{.arg} [from]{.arg} [to]{.optarg} [child]{.optarg}
+[treeName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg}
+[treeName]{.ins} [unset]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [walk]{.sub} [node]{.arg} [[-order]{.lit} [order]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [-command]{.lit} [cmd]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **::struct::tree** erzeugt ein neues Baumobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *treeName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Baum aufrufen. Er hat die folgende allgemeine Form:
+Der Befehl [::struct::tree][struct_tree] erzeugt ein neues Baumobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *treeName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Baum aufrufen. Er hat die folgende allgemeine Form:
 
 **treeName** **option** ?*arg arg ...*?
-: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Ein Baum ist eine Sammlung benannter Elemente, Knoten genannt, von denen einer als Wurzel ausgezeichnet ist, zusammen mit einer Beziehung („Elternschaft“), die den Knoten eine hierarchische Struktur gibt. (Data Structures and Algorithms; Aho, Hopcroft und Ullman; Addison-Wesley, 1987).  Neben der Verwaltung der Knotenbeziehungen erlaubt diese Baumimplementierung, jedem Knoten beliebig viele Werte unter Schlüsseln zuzuordnen. Die Namen der Elemente können beliebige Zeichenketten sein. Ein Baum ähnelt somit einem Array, weist jedoch drei wesentliche Unterschiede auf:
+: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
 
 
-**\[1\]**
-: Der Zugriff auf Bäume erfolgt über einen Objektbefehl, während der Zugriff auf Arrays über Variablen erfolgt. (Das bedeutet, dass Bäume nicht lokal zu einer Prozedur sein können.)
+Ein Baum ist eine Sammlung benannter Elemente, Knoten genannt, von denen einer als Wurzel ausgezeichnet ist, zusammen mit einer Beziehung („Elternschaft“), die den Knoten eine hierarchische Struktur gibt. (Data Structures and Algorithms; Aho, Hopcroft und Ullman; Addison-Wesley, 1987).  Neben der Verwaltung der Knotenbeziehungen erlaubt diese Baumimplementierung, jedem Knoten beliebig viele Werte unter Schlüsseln zuzuordnen.
 
-**\[2\]**
-: Bäume weisen eine hierarchische Struktur auf, während ein Array lediglich eine ungeordnete Sammlung ist.
+Die Namen der Elemente können beliebige Zeichenketten sein.
 
-**\[3\]**
-: Jeder Knoten eines Baums verfügt über eine eigene Sammlung von Attributen und Werten. Dies entspricht einem Array, bei dem jeder Wert ein Dictionary ist. Für Baumobjekte sind folgende Befehle möglich:
+Ein Baum ähnelt somit einem Array, weist jedoch drei wesentliche Unterschiede auf:
 
+1. Der Zugriff auf Bäume erfolgt über einen Objektbefehl, während der Zugriff auf Arrays über Variablen erfolgt. (Das bedeutet, dass Bäume nicht lokal zu einer Prozedur sein können.)
+
+2. Bäume weisen eine hierarchische Struktur auf, während ein Array lediglich eine ungeordnete Sammlung ist.
+
+3. Jeder Knoten eines Baums verfügt über eine eigene Sammlung von Attributen und Werten. Dies entspricht einem Array, bei dem jeder Wert ein Dictionary ist.
+
+
+Für Baumobjekte sind folgende Befehle möglich:
 
 *treeName* **append** *node* ?-key *key*? *value*
 : Hängt *value* an einen der Werte an, die einem Knoten unter einem Schlüssel zugeordnet sind. Ist kein *key* angegeben, wird der Schlüssel **data** angenommen.
@@ -103,7 +109,13 @@ Der Befehl **::struct::tree** erzeugt ein neues Baumobjekt mit einem zugehörige
 : Gibt den Index von *node* in der Kinderliste seines Elternknotens zurück. Hat ein Knoten beispielsweise *nodeFoo*, *nodeBar* und *nodeBaz* in dieser Reihenfolge als Kinder, beträgt der Index von *nodeBar* 1.
 
 *treeName* **insert** *parent* *index* ?*child* ?*child* ...??
-: Fügt einen oder mehrere Knoten als Kinder des Knotens *parent* in den Baum ein. Die Knoten werden in der Reihenfolge hinzugefügt, in der sie angegeben werden. Ist *parent* gleich **root**, bezieht sich dies auf die Wurzel des Baums. Die neuen Knoten werden an dem durch *index* angegebenen Index in die Kinderliste des Knotens *parent* eingefügt. *index* kann **end** sein; dann werden die neuen Knoten hinter dem derzeit letzten Kind eingefügt. Existieren angegebene Kinder bereits in *treeName*, werden diese Knoten von ihrer bisherigen Stelle an die von diesem Befehl angegebene neue Stelle verschoben. Wird kein *child* angegeben, wird ein einzelner Knoten hinzugefügt, und für den neuen Knoten wird ein Name generiert. Der generierte Name hat die Form *node*__x__, wobei **x** eine Zahl ist. Angegebene Namen dürfen weder Leerraum noch Doppelpunkte („:“) enthalten. Das Ergebnis dieses Befehls ist eine Liste der hinzugefügten Knoten.
+: Fügt einen oder mehrere Knoten als Kinder des Knotens *parent* in den Baum ein. Die Knoten werden in der Reihenfolge hinzugefügt, in der sie angegeben werden. Ist *parent* gleich **root**, bezieht sich dies auf die Wurzel des Baums. Die neuen Knoten werden an dem durch *index* angegebenen Index in die Kinderliste des Knotens *parent* eingefügt. *index* kann **end** sein; dann werden die neuen Knoten hinter dem derzeit letzten Kind eingefügt.
+
+    Existieren angegebene Kinder bereits in *treeName*, werden diese Knoten von ihrer bisherigen Stelle an die von diesem Befehl angegebene neue Stelle verschoben.
+
+    Wird kein *child* angegeben, wird ein einzelner Knoten hinzugefügt, und für den neuen Knoten wird ein Name generiert. Der generierte Name hat die Form *node*__x__, wobei **x** eine Zahl ist. Angegebene Namen dürfen weder Leerraum noch Doppelpunkte („:“) enthalten.
+
+    Das Ergebnis dieses Befehls ist eine Liste der hinzugefügten Knoten.
 
 *treeName* **isleaf** *node*
 : Gibt true zurück, wenn *node* ein Blatt des Baums ist (d. h., wenn *node* keine Kinder hat), sonst false.
@@ -142,23 +154,27 @@ Der Befehl **::struct::tree** erzeugt ein neues Baumobjekt mit einem zugehörige
 : Entfernt einen Wert unter einem Schlüssel vom Knoten *node*. Ist kein Schlüssel angegeben, wird der Schlüssel **data** angenommen.
 
 *treeName* **walk** *node* ?**-order** *order*? ?**-type** *type*? **-command** *cmd*
-: Durchläuft den Baum in Breiten- oder Tiefensuche, beginnend am Knoten *node*. Die Art des Durchlaufs – Breitensuche oder Tiefensuche – wird durch den Wert von *type* bestimmt; **bfs** steht für die Breitensuche, **dfs** für die Tiefensuche.  Die Tiefensuche ist die Standardeinstellung. Die Reihenfolge der Durchquerung – Pre-Order, Post-Order, Both-Order oder In-Order – wird durch den Wert von *order* bestimmt; **pre** steht für „Pre-Order“, **post** für „Post-Order“, **both** für „Both-Order“ und **in** für „In-Order“. „Pre-Order“ ist die Standardeinstellung. „Pre-Order“-Durchlauf bedeutet, dass ein Elternknoten vor allen seinen Kindern besucht wird.  Beispielsweise besucht eine Breitensuche, die an der Wurzel beginnt, zunächst die Wurzel, dann alle Kinder der Wurzel und anschließend alle Enkel der Wurzel. „Post-Order“-Durchlauf bedeutet, dass ein Elternknoten nach allen seinen Kindern besucht wird. „Both-Order“-Durchlauf bedeutet, dass ein Elternknoten sowohl vor *als auch* nach allen seinen Kindern besucht wird. Bei der In-Order-Durchquerung wird ein Elternknoten nach seinem ersten Kind und vor dem zweiten besucht. Dies ist eine Verallgemeinerung der In-Order-Durchquerung für Binärbäume und führt zu dem gewünschten Ergebnis, wenn ein Binärbaum durchlaufen wird. Die Kombination einer Breitensuche mit der In-Order-Durchquerung ist unzulässig. Im Verlauf der Durchquerung wird der Befehl *cmd* an jedem Knoten ausgewertet. Vor der Auswertung wird in *cmd* eine Prozentersetzung vorgenommen, genau wie in einem **bind**-Skript. Die folgenden Ersetzungen werden erkannt:
+: Durchläuft den Baum in Breiten- oder Tiefensuche, beginnend am Knoten *node*. Die Art des Durchlaufs – Breitensuche oder Tiefensuche – wird durch den Wert von *type* bestimmt; **bfs** steht für die Breitensuche, **dfs** für die Tiefensuche.  Die Tiefensuche ist die Standardeinstellung. Die Reihenfolge der Durchquerung – Pre-Order, Post-Order, Both-Order oder In-Order – wird durch den Wert von *order* bestimmt; **pre** steht für „Pre-Order“, **post** für „Post-Order“, **both** für „Both-Order“ und **in** für „In-Order“. „Pre-Order“ ist die Standardeinstellung.
+
+    „Pre-Order“-Durchlauf bedeutet, dass ein Elternknoten vor allen seinen Kindern besucht wird.  Beispielsweise besucht eine Breitensuche, die an der Wurzel beginnt, zunächst die Wurzel, dann alle Kinder der Wurzel und anschließend alle Enkel der Wurzel. „Post-Order“-Durchlauf bedeutet, dass ein Elternknoten nach allen seinen Kindern besucht wird. „Both-Order“-Durchlauf bedeutet, dass ein Elternknoten sowohl vor *als auch* nach allen seinen Kindern besucht wird. Bei der In-Order-Durchquerung wird ein Elternknoten nach seinem ersten Kind und vor dem zweiten besucht. Dies ist eine Verallgemeinerung der In-Order-Durchquerung für Binärbäume und führt zu dem gewünschten Ergebnis, wenn ein Binärbaum durchlaufen wird. Die Kombination einer Breitensuche mit der In-Order-Durchquerung ist unzulässig.
+
+    Im Verlauf der Durchquerung wird der Befehl *cmd* an jedem Knoten ausgewertet. Vor der Auswertung wird in *cmd* eine Prozentersetzung vorgenommen, genau wie in einem **bind**-Skript. Die folgenden Ersetzungen werden erkannt:
+
+    **%%**
+    : Fügt ein wörtliches Zeichen % ein.
+
+    **%t**
+    : Name des Baumobjekts.
+
+    **%n**
+    : Name des aktuellen Knotens.
+
+    **%a**
+    : Name der stattfindenden Aktion; entweder **enter**, **leave** oder **visit**.  **enter**-Aktionen finden bei Pre-Order-Durchläufen statt; **leave**-Aktionen bei Post-Order-Durchläufen; **visit**-Aktionen bei In-Order-Durchläufen.  Bei einem „Both-Order“-Durchlauf wird der Befehl für jeden Knoten zweimal ausgewertet; die Aktion lautet **enter** für die erste Auswertung und **leave** für die zweite.
 
 
-**%%**
-: Fügt ein wörtliches Zeichen % ein.
 
-**%t**
-: Name des Baumobjekts.
-
-**%n**
-: Name des aktuellen Knotens.
-
-**%a**
-: Name der stattfindenden Aktion; entweder **enter**, **leave** oder **visit**.  **enter**-Aktionen finden bei Pre-Order-Durchläufen statt; **leave**-Aktionen bei Post-Order-Durchläufen; **visit**-Aktionen bei In-Order-Durchläufen.  Bei einem „Both-Order“-Durchlauf wird der Befehl für jeden Knoten zweimal ausgewertet; die Aktion lautet **enter** für die erste Auswertung und **leave** für die zweite.
-
-
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: tree* als Kategorie an.
 
@@ -166,12 +182,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Datenstrukturen
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[struct_tree]: struct_tree.md

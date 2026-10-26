@@ -1,5 +1,6 @@
 ---
 CommandName: platform::shell
+title: platform::shell
 ManualSection: n
 Version: 1.1.4
 TclPart: platform::shell
@@ -20,11 +21,11 @@ platform::shell - System identification support code and utilities
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [1.1.4]{.optlit} 
+[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [1.1.4]{.optlit}
 
-[platform::shell::generic]{.cmd} [shell]{.arg} 
-[platform::shell::identify]{.cmd} [shell]{.arg} 
-[platform::shell::platform]{.cmd} [shell]{.arg} 
+[platform::shell::generic]{.cmd} [shell]{.arg}
+[platform::shell::identify]{.cmd} [shell]{.arg}
+[platform::shell::platform]{.cmd} [shell]{.arg}
 :::
 
 # Description
@@ -39,11 +40,14 @@ For applications like a code repository it is important to identify the architec
 
 # Commands
 
-**platform::shell::identify** *shell*
-: This command does the same identification as **platform::identify**, for the specified Tcl shell, in contrast to the running shell.
+[platform::shell::identify]{.cmd} [shell]{.arg}
+: This command does the same identification as [platform::identify][platform], for the specified Tcl shell, in contrast to the running shell.
 
-**platform::shell::generic** *shell*
-: This command does the same identification as **platform::generic**, for the specified Tcl shell, in contrast to the running shell.
+[platform::shell::generic]{.cmd} [shell]{.arg}
+: This command does the same identification as [platform::generic][platform], for the specified Tcl shell, in contrast to the running shell.
 
-**platform::shell::platform** *shell*
-: This command returns the contents of **tcl_platform(platform)** for the specified Tcl shell.
+[platform::shell::platform]{.cmd} [shell]{.arg}
+: This command returns the contents of **tcl\_platform(platform)** for the specified Tcl shell.
+
+
+[platform]: platform.md

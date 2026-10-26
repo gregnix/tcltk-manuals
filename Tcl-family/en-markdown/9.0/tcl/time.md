@@ -1,5 +1,6 @@
 ---
 CommandName: time
+title: time
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -21,7 +22,7 @@ time - Time the execution of a script
 # Synopsis
 
 ::: {.synopsis} :::
-[time]{.cmd} [script]{.arg} [count]{.optarg} 
+[time]{.cmd} [script]{.arg} [count]{.optarg}
 :::
 
 # Description
@@ -36,7 +37,7 @@ which indicates the average amount of time required per iteration, in microsecon
 
 # Example
 
-Estimate how long it takes for a simple Tcl **for** loop to count to a thousand:
+Estimate how long it takes for a simple Tcl [for] loop to count to a thousand:
 
 ```
 time {
@@ -45,3 +46,6 @@ time {
     }
 }
 ```
+
+
+[for]: for.md

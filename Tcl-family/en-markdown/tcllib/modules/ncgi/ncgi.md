@@ -1,5 +1,6 @@
 ---
 CommandName: ncgi
+title: ncgi
 ManualSection: n
 Version: 1.4.6
 TclPart: tcllib
@@ -21,35 +22,35 @@ ncgi - Procedures to manipulate CGI values.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [ncgi]{.lit} [1.4.6]{.optlit} 
-[::ncgi::cookie]{.cmd} [cookie]{.arg} 
-[::ncgi::decode]{.cmd} [str]{.arg} 
-[::ncgi::empty]{.cmd} [name]{.arg} 
-[::ncgi::exists]{.cmd} [name]{.arg} 
-[::ncgi::encode]{.cmd} [string]{.arg} 
-[::ncgi::header]{.cmd} [type]{.optarg} [args]{.arg} 
-[::ncgi::import]{.cmd} [cginame]{.arg} [tclname]{.optarg} 
-[::ncgi::importAll]{.cmd} [args]{.arg} 
-[::ncgi::importFile]{.cmd} [cmd]{.arg} [cginame]{.arg} [filename]{.optarg} 
-[::ncgi::input]{.cmd} [fakeinput]{.optarg} [fakecookie]{.optarg} 
-[::ncgi::multipart]{.cmd} [type]{.arg} [query]{.arg} 
-[::ncgi::nvlist]{.cmd} 
-[::ncgi::names]{.cmd} 
-[::ncgi::parse]{.cmd} 
-[::ncgi::parseMimeValue]{.cmd} [value]{.arg} 
-[::ncgi::query]{.cmd} 
-[::ncgi::redirect]{.cmd} [url]{.arg} 
-[::ncgi::reset]{.cmd} [query]{.arg} [type]{.arg} 
-[::ncgi::setCookie]{.cmd} [args]{.arg} 
-[::ncgi::setDefaultValue]{.cmd} [key]{.arg} [defvalue]{.arg} 
-[::ncgi::setDefaultValueList]{.cmd} [key]{.arg} [defvaluelist]{.arg} 
-[::ncgi::setValue]{.cmd} [key]{.arg} [value]{.arg} 
-[::ncgi::setValueList]{.cmd} [key]{.arg} [valuelist]{.arg} 
-[::ncgi::type]{.cmd} 
-[::ncgi::urlStub]{.cmd} [url]{.optarg} 
-[::ncgi::value]{.cmd} [key]{.arg} [default]{.optarg} 
-[::ncgi::valueList]{.cmd} [key]{.arg} [default]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [ncgi]{.lit} [1.4.6]{.optlit}
+[::ncgi::cookie]{.cmd} [cookie]{.arg}
+[::ncgi::decode]{.cmd} [str]{.arg}
+[::ncgi::empty]{.cmd} [name]{.arg}
+[::ncgi::exists]{.cmd} [name]{.arg}
+[::ncgi::encode]{.cmd} [string]{.arg}
+[::ncgi::header]{.cmd} [type]{.optarg} [args]{.arg}
+[::ncgi::import]{.cmd} [cginame]{.arg} [tclname]{.optarg}
+[::ncgi::importAll]{.cmd} [args]{.arg}
+[::ncgi::importFile]{.cmd} [cmd]{.arg} [cginame]{.arg} [filename]{.optarg}
+[::ncgi::input]{.cmd} [fakeinput]{.optarg} [fakecookie]{.optarg}
+[::ncgi::multipart]{.cmd} [type]{.arg} [query]{.arg}
+[::ncgi::nvlist]{.cmd}
+[::ncgi::names]{.cmd}
+[::ncgi::parse]{.cmd}
+[::ncgi::parseMimeValue]{.cmd} [value]{.arg}
+[::ncgi::query]{.cmd}
+[::ncgi::redirect]{.cmd} [url]{.arg}
+[::ncgi::reset]{.cmd} [query]{.arg} [type]{.arg}
+[::ncgi::setCookie]{.cmd} [args]{.arg}
+[::ncgi::setDefaultValue]{.cmd} [key]{.arg} [defvalue]{.arg}
+[::ncgi::setDefaultValueList]{.cmd} [key]{.arg} [defvaluelist]{.arg}
+[::ncgi::setValue]{.cmd} [key]{.arg} [value]{.arg}
+[::ncgi::setValueList]{.cmd} [key]{.arg} [valuelist]{.arg}
+[::ncgi::type]{.cmd}
+[::ncgi::urlStub]{.cmd} [url]{.optarg}
+[::ncgi::value]{.cmd} [key]{.arg} [default]{.optarg}
+[::ncgi::valueList]{.cmd} [key]{.arg} [default]{.optarg}
 :::
 
 # Description
@@ -58,7 +59,7 @@ The **ncgi** package provides commands that manipulate CGI values.  These are va
 
 In the simplest case, a CGI script first calls **::ncgi::parse** and then calls **::ncgi::value** to get different form values.  If a CGI value is repeated, you should use **::ncgi::valueList** to get back the complete list of values.
 
-An alternative to **::ncgi::parse** is **::ncgi::input**, which has semantics similar to Don Libes' **cgi_input** procedure. **::ncgi::input** restricts repeated CGI values to have names that end with "List".  In this case, **::ncgi::value** will return the complete list of values, and **::ncgi::input** will raise errors if it find repeated form elements without the right name.
+An alternative to **::ncgi::parse** is **::ncgi::input**, which has semantics similar to Don Libes' **cgi\_input** procedure. **::ncgi::input** restricts repeated CGI values to have names that end with "List".  In this case, **::ncgi::value** will return the complete list of values, and **::ncgi::input** will raise errors if it find repeated form elements without the right name.
 
 The **::ncgi::reset** procedure can be used in test suites and Web servers to initialize the source of the CGI values.  Otherwise the values are read in from the CGI environment.
 
@@ -91,25 +92,26 @@ The complete set of procedures is described below.
 **::ncgi::importFile** *cmd* *cginame* ?*filename*?
 : This provides information about an uploaded file from a form input field of type **file** with name *cginame*.  *cmd* can be one of **-server** **-client**, **-type** or **-data**.
 
+    **-client** *cginame*
+    : returns the filename as sent by the client.
 
-**-client** *cginame*
-: returns the filename as sent by the client.
+    **-type** *cginame*
+    : returns the mime type of the uploaded file.
 
-**-type** *cginame*
-: returns the mime type of the uploaded file.
+    **-data** *cginame*
+    : returns the contents of the file.
 
-**-data** *cginame*
-: returns the contents of the file.
-
-**-server** *cginame* *filename*
-: writes the file contents to a local temporary file (or *filename* if supplied) and returns the name of the file. The caller is responsible for deleting this file after use.
+    **-server** *cginame* *filename*
+    : writes the file contents to a local temporary file (or *filename* if supplied) and returns the name of the file. The caller is responsible for deleting this file after use.
 
 
 **::ncgi::input** ?*fakeinput*? ?*fakecookie*?
 : This reads and decodes the CGI values from the environment.  It restricts repeated form values to have a trailing "List" in their name.  The CGI values are obtained later with the **::ncgi::value** procedure.
 
 **::ncgi::multipart** *type query*
-: This procedure parses a multipart/form-data *query*.  This is used by **::ncgi::nvlist** and not normally called directly.  It returns an alternating list of names and structured values.  Each structure value is in turn a list of two elements.  The first element is meta-data from the multipart/form-data structure.  The second element is the form value.  If you use **::ncgi::value** you just get the form value.  If you use **::ncgi::valueList** you get the structured value with meta data and the value. The *type* is the whole Content-Type, including the parameters like *boundary*.  This returns a list of names and values that describe the multipart data.  The values are a nested list structure that has some descriptive information first, and the actual form value second.  The descriptive information is list of header names and values that describe the content.
+: This procedure parses a multipart/form-data *query*.  This is used by **::ncgi::nvlist** and not normally called directly.  It returns an alternating list of names and structured values.  Each structure value is in turn a list of two elements.  The first element is meta-data from the multipart/form-data structure.  The second element is the form value.  If you use **::ncgi::value** you just get the form value.  If you use **::ncgi::valueList** you get the structured value with meta data and the value.
+
+    The *type* is the whole Content-Type, including the parameters like *boundary*.  This returns a list of names and values that describe the multipart data.  The values are a nested list structure that has some descriptive information first, and the actual form value second.  The descriptive information is list of header names and values that describe the content.
 
 **::ncgi::nvlist**
 : This returns all the query data as a name, value list.  In the case of multipart/form-data, the values are structured as described in **::ncgi::multipart**.
@@ -135,21 +137,11 @@ The complete set of procedures is described below.
 **::ncgi::setCookie** *args*
 : Set a cookie value that will be returned as part of the reply.  This must be done before **::ncgi::header** or **::ncgi::redirect** is called in order for the cookie to be returned properly.  The *args* are a set of flags and values:
 
-
-**-name** *name*
-: ...see next...
-
-**-value** *value*
-: ...see next...
-
-**-expires** *date*
-: ...see next...
-
-**-path** *path restriction*
-: ...see next...
-
-**-domain** *domain restriction*
-: 
+    - **-name** *name*
+    - **-value** *value*
+    - **-expires** *date*
+    - **-path** *path restriction*
+    - **-domain** *domain restriction*
 
 
 **::ncgi::setDefaultValue** *key defvalue*
@@ -171,7 +163,9 @@ The complete set of procedures is described below.
 : Returns the current URL, but without the protocol, server, and port. If *url* is specified, then it defines the URL for the current session.  That value will be returned by future calls to **::ncgi::urlStub**
 
 **::ncgi::value** *key* ?*default*?
-: Return the CGI value identified by *key*.  If the CGI value is not present, then the *default* value is returned instead. This value defaults to the empty string. If the form value *key* is repeated, then there are two cases: if **::ncgi::parse** was called, then **::ncgi::value** only returns the first value associated with *key*.  If **::ncgi::input** was called, then **::ncgi::value** returns a Tcl list value and *key* must end in "List" (e.g., "skuList").  In the case of multipart/form-data, this procedure just returns the value of the form element.  If you want the meta-data associated with each form value, then use **::ncgi::valueList**.
+: Return the CGI value identified by *key*.  If the CGI value is not present, then the *default* value is returned instead. This value defaults to the empty string.
+
+    If the form value *key* is repeated, then there are two cases: if **::ncgi::parse** was called, then **::ncgi::value** only returns the first value associated with *key*.  If **::ncgi::input** was called, then **::ncgi::value** returns a Tcl list value and *key* must end in "List" (e.g., "skuList").  In the case of multipart/form-data, this procedure just returns the value of the form element.  If you want the meta-data associated with each form value, then use **::ncgi::valueList**.
 
 **::ncgi::valueList** *key* ?*default*?
 : Like **::ncgi::value**, but this always returns a list of values (even if there is only one value).  In the case of multipart/form-data, this procedure returns a list of two elements. The first element is meta-data in the form of a parameter, value list. The second element is the form value.

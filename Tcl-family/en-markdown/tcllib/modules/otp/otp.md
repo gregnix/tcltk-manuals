@@ -1,5 +1,6 @@
 ---
 CommandName: otp
+title: otp
 ManualSection: n
 Version: 1.1.0
 TclPart: tcllib
@@ -27,12 +28,12 @@ otp - One-Time Passwords
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [otp]{.lit} [1.1.0]{.optlit} 
-[::otp::otp-md4]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg} 
-[::otp::otp-md5]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg} 
-[::otp::otp-sha1]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg} 
-[::otp::otp-rmd160]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [otp]{.lit} [1.1.0]{.optlit}
+[::otp::otp-md4]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg}
+[::otp::otp-md5]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg}
+[::otp::otp-sha1]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg}
+[::otp::otp-rmd160]{.cmd} [-hex]{.optarg} [-words]{.optarg} [-seed]{.arg} [seed]{.arg} [-count]{.arg} [count]{.arg} [data]{.arg}
 :::
 
 # Description
@@ -43,17 +44,10 @@ In this implementation we provide support for four algorithms that are included 
 
 # Commands
 
-**::otp::otp-md4** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
-: ...see next...
-
-**::otp::otp-md5** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
-: ...see next...
-
-**::otp::otp-sha1** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
-: ...see next...
-
-**::otp::otp-rmd160** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
-: 
+- **::otp::otp-md4** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
+- **::otp::otp-md5** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
+- **::otp::otp-sha1** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
+- **::otp::otp-rmd160** ?*-hex*? ?*-words*? *-seed seed* *-count count* *data*
 
 
 # Examples
@@ -69,20 +63,15 @@ e249b58257c80087
 
 # References
 
-**\[1\]**
-: Haller, N. et al., "A One-Time Password System", RFC 2289, February 1998. *http://www.rfc-editor.org/rfc/rfc2289.txt*
+1. Haller, N. et al., "A One-Time Password System", RFC 2289, February 1998. <http://www.rfc-editor.org/rfc/rfc2289.txt>
 
-**\[2\]**
-: Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, MIT and RSA Data Security, Inc, April 1992. (*http://www.rfc-editor.org/rfc/rfc1321.txt*)
+2. Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, MIT and RSA Data Security, Inc, April 1992. (<http://www.rfc-editor.org/rfc/rfc1321.txt>)
 
-**\[3\]**
-: Rivest, R., "The MD4 Message Digest Algorithm", RFC 1320, MIT, April 1992. (*http://www.rfc-editor.org/rfc/rfc1320.txt*)
+3. Rivest, R., "The MD4 Message Digest Algorithm", RFC 1320, MIT, April 1992. (<http://www.rfc-editor.org/rfc/rfc1320.txt>)
 
-**\[4\]**
-: H. Dobbertin, A. Bosselaers, B. Preneel, "RIPEMD-160, a strengthened version of RIPEMD" *http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf*
+4. H. Dobbertin, A. Bosselaers, B. Preneel, "RIPEMD-160, a strengthened version of RIPEMD" <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
 
-**\[5\]**
-: "Secure Hash Standard", National Institute of Standards and Technology, U.S. Department Of Commerce, April 1995. (*http://www.itl.nist.gov/fipspubs/fip180-1.htm*)
+5. "Secure Hash Standard", National Institute of Standards and Technology, U.S. Department Of Commerce, April 1995. (<http://www.itl.nist.gov/fipspubs/fip180-1.htm>)
 
 
 # Bugs, ideas, feedback

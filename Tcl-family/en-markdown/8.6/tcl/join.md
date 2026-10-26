@@ -1,5 +1,6 @@
 ---
 CommandName: join
+title: join
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -25,7 +26,7 @@ join - Create a string by joining together list elements
 # Synopsis
 
 ::: {.synopsis} :::
-[join]{.cmd} [list]{.arg} [joinString]{.optarg} 
+[join]{.cmd} [list]{.arg} [joinString]{.optarg}
 :::
 
 # Description

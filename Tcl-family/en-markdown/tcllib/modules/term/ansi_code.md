@@ -1,5 +1,6 @@
 ---
 CommandName: term::ansi::code
+title: term::ansi::code
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -20,12 +21,12 @@ term::ansi::code - Helper for control sequences
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::ansi::code]{.lit} [0.2]{.optlit} 
-[::term::ansi::code::esc]{.cmd} [str]{.arg} 
-[::term::ansi::code::escb]{.cmd} [str]{.arg} 
-[::term::ansi::code::define]{.cmd} [name]{.arg} [escape]{.arg} [code]{.arg} 
-[::term::ansi::code::const]{.cmd} [name]{.arg} [code]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::ansi::code]{.lit} [0.2]{.optlit}
+[::term::ansi::code::esc]{.cmd} [str]{.arg}
+[::term::ansi::code::escb]{.cmd} [str]{.arg}
+[::term::ansi::code::define]{.cmd} [name]{.arg} [escape]{.arg} [code]{.arg}
+[::term::ansi::code::const]{.cmd} [name]{.arg} [code]{.arg}
 :::
 
 # Description

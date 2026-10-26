@@ -1,5 +1,6 @@
 ---
 CommandName: tie
+title: tie
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -23,13 +24,13 @@ tie - Array persistence, standard data sources
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tie::std::log]{.lit} [1.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [tie::std::array]{.lit} [1.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [tie::std::rarray]{.lit} [1.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [tie::std::file]{.lit} [1.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [tie::std::growfile]{.lit} [1.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [tie::std::dsource]{.lit} [1.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tie::std::log]{.lit} [1.2]{.optlit}
+[package]{.cmd} [require]{.sub} [tie::std::array]{.lit} [1.2]{.optlit}
+[package]{.cmd} [require]{.sub} [tie::std::rarray]{.lit} [1.2]{.optlit}
+[package]{.cmd} [require]{.sub} [tie::std::file]{.lit} [1.2]{.optlit}
+[package]{.cmd} [require]{.sub} [tie::std::growfile]{.lit} [1.2]{.optlit}
+[package]{.cmd} [require]{.sub} [tie::std::dsource]{.lit} [1.2]{.optlit}
 :::
 
 # Description

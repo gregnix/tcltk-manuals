@@ -1,5 +1,6 @@
 ---
 CommandName: crc16
+title: crc16
 ManualSection: n
 Version: 1.1.5
 TclPart: tcllib
@@ -28,159 +29,163 @@ crc16 - Perform a 16bit Cyclic Redundancy Check
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [crc16]{.lit} [1.1.5]{.optlit} 
-[::crc::crc16]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::crc16]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::crc-ccitt]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::crc-ccitt]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::xmodem]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::xmodem]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::kermit]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::kermit]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::modbus]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::modbus]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::mcrf4xx]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::mcrf4xx]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::genibus]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::genibus]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::crc-x25]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::crc-x25]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::crc-sdlc]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::crc-sdlc]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::crc-usb]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::crc-usb]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::buypass]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::buypass]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::umts]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::umts]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::gsm]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::gsm]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::unknown2]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::unknown2]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::maxim]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::maxim]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::unknown3]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::unknown3]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::unknown4]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::unknown4]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
-[::crc::cms]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} [--]{.lit} [message]{.arg} 
-[::crc::cms]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} [-implementation procname]{.optarg} -filename [file]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [crc16]{.lit} [1.1.5]{.optlit}
+[::crc::crc16]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::crc16]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::crc-ccitt]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::crc-ccitt]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::xmodem]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::xmodem]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::kermit]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::kermit]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::modbus]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::modbus]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::mcrf4xx]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::mcrf4xx]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::genibus]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::genibus]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::crc-x25]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::crc-x25]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::crc-sdlc]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::crc-sdlc]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::crc-usb]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::crc-usb]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::buypass]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::buypass]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::umts]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::umts]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::gsm]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::gsm]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::unknown2]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::unknown2]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::maxim]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::maxim]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::unknown3]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::unknown3]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::unknown4]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::unknown4]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
+[::crc::cms]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} [--]{.lit} [message]{.arg}
+[::crc::cms]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} [[-implementation]{.lit} [procname]{.arg}]{.optarg} -filename [file]{.arg}
 :::
 
 # Description
 
-This package provides a Tcl-only implementation of the CRC algorithms based upon information provided at http://www.microconsultants.com/tips/crc/crc.txt There are a number of permutations available for calculating CRC checksums and this package can handle all of them. Defaults are set up for the most common cases.
+This package provides a Tcl-only implementation of the CRC algorithms based upon information provided at <http://www.microconsultants.com/tips/crc/crc.txt> There are a number of permutations available for calculating CRC checksums and this package can handle all of them. Defaults are set up for the most common cases.
 
 # Commands
 
 **::crc::crc16** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::crc16** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::crc-ccitt** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::crc-ccitt** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::xmodem** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::xmodem** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::kermit** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::kermit** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::modbus** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::modbus** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::mcrf4xx** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::mcrf4xx** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::genibus** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::genibus** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::crc-x25** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::crc-x25** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::crc-sdlc** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::crc-sdlc** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::crc-usb** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::crc-usb** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::buypass** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::buypass** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::umts** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::umts** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::gsm** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::gsm** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::unknown2** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::unknown2** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::maxim** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::maxim** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::unknown3** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::unknown3** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::unknown4** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::unknown4** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: ...see next...
+: see below ...
 
 **::crc::cms** ?-format *format*? ?-seed *value*? ?-implementation *procname*? **--** *message*
-: ...see next...
+: see below ...
 
 **::crc::cms** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: The command takes either string data or a file name and returns a checksum value calculated using the CRC algorithm. The command used sets up the CRC polynomial, initial value and bit ordering for the desired standard checksum calculation. The result is formatted using the *format*(n) specifier provided or as an unsigned integer (%u) by default. A number of common polynomials are in use with the CRC algorithm and the most commonly used of these are included in this package. For convenience each of these has a command alias in the crc namespace. It is possible to implement the CRC-32 checksum using this crc16 package as the implementation is sufficiently generic to extend to 32 bit checksums. As an example this has been done already - however this is not the fastest method to implement this algorithm in Tcl and a separate **crc32** package is available.
+: The command takes either string data or a file name and returns a checksum value calculated using the CRC algorithm. The command used sets up the CRC polynomial, initial value and bit ordering for the desired standard checksum calculation. The result is formatted using the *format*(n) specifier provided or as an unsigned integer (%u) by default.
+
+    A number of common polynomials are in use with the CRC algorithm and the most commonly used of these are included in this package. For convenience each of these has a command alias in the crc namespace.
+
+    It is possible to implement the CRC-32 checksum using this crc16 package as the implementation is sufficiently generic to extend to 32 bit checksums. As an example this has been done already - however this is not the fastest method to implement this algorithm in Tcl and a separate **crc32** package is available.
 
 
 # Options
@@ -195,9 +200,11 @@ This package provides a Tcl-only implementation of the CRC algorithms based upon
 : Select an alternative seed value for the CRC calculation. The default is 0 for the CRC16 calculation and 0xFFFF for the CCITT version. This can be useful for calculating the CRC for data structures without first converting the whole structure into a string. The CRC of the previous member can be used as the seed for calculating the CRC of the next member. It is also used for accumulating a checksum from fragments of a large message (or file)
 
 -implementation *procname*
-: This hook is provided to allow users to provide their own implementation (perhaps a C compiled extension). The procedure specfied is called with two parameters. The first is the data to be checksummed and the second is the seed value. An integer is expected as the result. The package provides some implementations of standard CRC polynomials for the XMODEM, CCITT and the usual CRC-16 checksum. For convenience, additional commands have been provided that make use of these implementations.
+: This hook is provided to allow users to provide their own implementation (perhaps a C compiled extension). The procedure specfied is called with two parameters. The first is the data to be checksummed and the second is the seed value. An integer is expected as the result.
 
-**--**
+    The package provides some implementations of standard CRC polynomials for the XMODEM, CCITT and the usual CRC-16 checksum. For convenience, additional commands have been provided that make use of these implementations.
+
+--
 : Terminate option processing. Please note that using the option termination flag is important when processing data from parameters. If the binary data looks like one of the options given above then the data will be read as an option if this marker is not included. Always use the *--* option termination flag before giving the data argument.
 
 

@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine
+title: coroutine
 ManualSection: n
 Version: 1.4
 TclPart: tcllib
@@ -28,34 +29,34 @@ coroutine - Coroutine based event and IO handling
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit} 
-[coroutine::util]{.cmd} [after]{.sub} [delay]{.arg} 
-[coroutine::util]{.cmd} [await]{.sub} [varname...]{.arg} 
-[coroutine::util]{.cmd} [create]{.sub} [arg...]{.arg} 
-[coroutine::util]{.cmd} [exit]{.sub} [status]{.optarg} 
-[coroutine::util]{.cmd} [gets]{.sub} [chan]{.arg} [varname]{.optarg} 
-[coroutine::util]{.cmd} [gets_safety]{.sub} [chan]{.arg} [limit]{.arg} [varname]{.arg} 
-[coroutine::util]{.cmd} [global]{.sub} [varname...]{.arg} 
-[coroutine::util]{.cmd} [puts]{.sub} [-nonewline]{.optlit} [channel]{.arg} [string]{.arg} 
-[coroutine::util]{.cmd} [read]{.sub} [-nonewline]{.lit} [chan]{.arg} [n]{.optarg} 
-[coroutine::util]{.cmd} [socket]{.sub} [options]{.optdot} [host]{.arg} [port]{.arg} 
-[coroutine::util]{.cmd} [update]{.sub} [idletasks]{.optlit} 
-[coroutine::util]{.cmd} [vwait]{.sub} [varname]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit}
+[coroutine::util]{.cmd} [after]{.sub} [delay]{.arg}
+[coroutine::util]{.cmd} [await]{.sub} [varname...]{.arg}
+[coroutine::util]{.cmd} [create]{.sub} [arg...]{.arg}
+[coroutine::util]{.cmd} [exit]{.sub} [status]{.optarg}
+[coroutine::util]{.cmd} [gets]{.sub} [chan]{.arg} [varname]{.optarg}
+[coroutine::util]{.cmd} [gets\_safety]{.sub} [chan]{.arg} [limit]{.arg} [varname]{.arg}
+[coroutine::util]{.cmd} [global]{.sub} [varname...]{.arg}
+[coroutine::util]{.cmd} [puts]{.sub} [-nonewline]{.optlit} [channel]{.arg} [string]{.arg}
+[coroutine::util]{.cmd} [read]{.sub} [-nonewline]{.lit} [chan]{.arg} [n]{.optarg}
+[coroutine::util]{.cmd} [socket]{.sub} [options...]{.optarg} [host]{.arg} [port]{.arg}
+[coroutine::util]{.cmd} [update]{.sub} [idletasks]{.optlit}
+[coroutine::util]{.cmd} [vwait]{.sub} [varname]{.arg}
 :::
 
 # Description
 
 The **coroutine** package provides coroutine-aware implementations of various event- and channel related commands. It can be in multiple modes:
 
-**\[1\]**
-: Call the commands through their ensemble, in code which is explicitly written for use within coroutines.
+1. Call the commands through their ensemble, in code which is explicitly written for use within coroutines.
 
-**\[2\]**
-: Import the commands into a namespace, either directly, or through **namespace path**. This allows the use from within code which is not coroutine-aware per se and restricted to specific namespaces. A more agressive form of making code coroutine-oblivious than point 2 above is available through the package **coroutine::auto**, which intercepts the relevant builtin commands and changes their implementation dependending on the context they are run in, i.e. inside or outside of a coroutine.
+2. Import the commands into a namespace, either directly, or through **namespace path**. This allows the use from within code which is not coroutine-aware per se and restricted to specific namespaces.
 
 
-# Api
+A more agressive form of making code coroutine-oblivious than point 2 above is available through the package [coroutine::auto][coro_auto], which intercepts the relevant builtin commands and changes their implementation dependending on the context they are run in, i.e. inside or outside of a coroutine.
+
+# API
 
 All the commands listed below are synchronous with respect to the coroutine invoking them, i.e. this coroutine blocks until the result is available. The overall eventloop is not blocked however.
 
@@ -74,7 +75,7 @@ All the commands listed below are synchronous with respect to the coroutine invo
 **coroutine::util gets** *chan* ?*varname*?
 : This command reads a line from the channel *chan* and returns it either as its result, or, if a *varname* was specified, writes it to the named variable and returns the number of characters read.
 
-**coroutine::util gets_safety** *chan* *limit* *varname*
+**coroutine::util gets\_safety** *chan* *limit* *varname*
 : This command reads a line from the channel *chan* up to size *limit* and stores the result in *varname*. Of *limit* is reached before the set first newline, an error is thrown. The command returns the number of characters read.
 
 **coroutine::util global** *varname*...
@@ -113,3 +114,6 @@ Coroutine
 ```
 Copyright (c) 2010-2015 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[coro_auto]: coro_auto.md

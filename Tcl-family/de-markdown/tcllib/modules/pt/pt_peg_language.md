@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg_language
+title: pt::peg_language
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -25,27 +26,27 @@ Copyright:
  - Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-pt::peg_language – Tutorium zur PEG-Sprache
+pt::peg\_language – Tutorium zur PEG-Sprache
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
-Willkommen zum Tutorial bzw. zur Einleitung in die **PEG-SPEZIFIKATIONSSPRACHE**. Wenn Sie bereits mit der Sprache, die wir im Folgenden behandeln werden, vertraut sind und lediglich Ihr Gedächtnis auffrischen möchten, können Sie natürlich direkt zum oben genannten Abschnitt springen und dort die vollständige formale Spezifikation lesen.
+Willkommen zum Tutorial bzw. zur Einleitung in die [PEG-Spezifikationssprache]. Wenn Sie bereits mit der Sprache, die wir im Folgenden behandeln werden, vertraut sind und lediglich Ihr Gedächtnis auffrischen möchten, können Sie natürlich direkt zum oben genannten Abschnitt springen und dort die vollständige formale Spezifikation lesen.
 
-# WAS IST DAS?
+# Was ist das?
 
 **peg**, eine Sprache zur Spezifikation von Parsing-Expression-Grammatiken, soll sowohl für Menschen lesbar als auch schreibbar sein, dabei jedoch streng genug, um eine maschinelle Verarbeitung zu ermöglichen. Wie jede Computersprache. Sie wurde definiert, um das Verfassen einer Grammatik-Spezifikation zu vereinfachen – etwas, wofür sich die anderen in den Parser-Tools vorhandenen Formate nicht eignen.
 
-# DIE ELEMENTE DER SPRACHE
+# Die Elemente der Sprache
 
 ## Grundlegender Aufbau
 
@@ -61,16 +62,16 @@ END;
 
 ## Namen
 
-Namen werden hauptsächlich zur Identifizierung der nichtterminalen Symbole der Grammatik verwendet, d. h. der Elemente, die auf der linken Seite eines \<rule> stehen. Eine Ausnahme bildet der Name, der nach dem Schlüsselwort **PEG** angegeben wird (siehe vorherigen Abschnitt); dabei handelt es sich um den Namen der gesamten Grammatik selbst.
+Namen werden hauptsächlich zur Identifizierung der nichtterminalen Symbole der Grammatik verwendet, d. h. der Elemente, die auf der linken Seite eines <rule> stehen. Eine Ausnahme bildet der Name, der nach dem Schlüsselwort **PEG** angegeben wird (siehe vorherigen Abschnitt); dabei handelt es sich um den Namen der gesamten Grammatik selbst.
 
 Der Aufbau eines Namens ist einfach:
 
-**\[1\]**
-: Es beginnt mit einem Buchstaben, einem Unterstrich oder einem Doppelpunkt, gefolgt von
+1. Es beginnt mit einem Buchstaben, einem Unterstrich oder einem Doppelpunkt, gefolgt von
 
-**\[2\]**
-: null oder mehr Buchstaben, Ziffern, Unterstriche oder Doppelpunkte. Oder, in der formalen Textnotation:
+2. null oder mehr Buchstaben, Ziffern, Unterstriche oder Doppelpunkte.
 
+
+Oder, in der formalen Textnotation:
 
 ```
     ([_:] / <alpha>) ([_:] / <alnum>)*
@@ -101,7 +102,7 @@ Den Hauptteil des Textes einer Grammatikbeschreibung bilden die Regeln. Jede Reg
      <<name>>  <-  <<expression>> ;
 ```
 
-Mit \<name> wird das zu definierende nichtterminale Symbol festgelegt, während \<expression> nach dem Pfeil (<-) dessen Struktur deklariert.
+Mit <name> wird das zu definierende nichtterminale Symbol festgelegt, während <expression> nach dem Pfeil (<-) dessen Struktur deklariert.
 
 Hinweis: Jede Regel endet mit einem einzelnen Semikolon, auch die letzte. Das heißt, das Semikolon dient als *Regelabschluss*, nicht als Trennzeichen.
 
@@ -109,7 +110,7 @@ Wir können so viele Regeln haben, wie wir möchten, solange wir jedes nichtterm
 
 ## Ausdrücke
 
-Die *Parsing*-Ausdrücke bilden den Kern jeder Spezifikation. Sie legen die Struktur des gesamten Dokuments (<\<start-expression>>) sowie aller nichtterminalen Symbole fest.
+Die *Parsing*-Ausdrücke bilden den Kern jeder Spezifikation. Sie legen die Struktur des gesamten Dokuments (<<start-expression>>) sowie aller nichtterminalen Symbole fest.
 
 Alle Ausdrücke setzen sich aus *atomaren Ausdrücken* und *Operatoren* zusammen, die diese miteinander verbinden. Es gibt Operatoren zur Auswahl zwischen Alternativen, zur Wiederholung von Teilen und für Vorausschau-Bedingungen. Es gibt jedoch keinen expliziten Operator für die Aneinanderreihung (auch als *Verkettung* bezeichnet) von Teilen. Diese wird durch die einfache Platzierung der Teile nebeneinander festgelegt.
 
@@ -165,15 +166,16 @@ Die Klammern um die Teile hielten deren innere Alternativen trotz der normalerwe
 
 Und *atomare Ausdrücke* sind unser nächstes Thema. Sie lassen sich in drei Klassen einteilen:
 
-**\[1\]**
-: Namen, d. h. nichtterminale Symbole,
+1. Namen, d. h. nichtterminale Symbole,
 
-**\[2\]**
-: Zeichenfolgenliterale und
+2. Zeichenfolgenliterale und
 
-**\[3\]**
-: Zeichenklassen. Die Namen sind Ihnen bereits bekannt; falls nicht, lesen Sie bitte den Abschnitt **Namen** zur Auffrischung. Zeichenfolgenliterale sind einfach. Sie werden entweder durch ein einfaches oder ein doppeltes Apostroph begrenzt (d. h., sie beginnen und enden damit), und zwischen den Begrenzungszeichen können beliebige Zeichen stehen, mit Ausnahme des Begrenzungszeichens selbst. Sie können auch leer sein. Beispiele für Zeichenfolgen sind
+3. Zeichenklassen.
 
+
+Die Namen sind Ihnen bereits bekannt; falls nicht, lesen Sie bitte den Abschnitt [Namen] zur Auffrischung.
+
+Zeichenfolgenliterale sind einfach. Sie werden entweder durch ein einfaches oder ein doppeltes Apostroph begrenzt (d. h., sie beginnen und enden damit), und zwischen den Begrenzungszeichen können beliebige Zeichen stehen, mit Ausnahme des Begrenzungszeichens selbst. Sie können auch leer sein. Beispiele für Zeichenfolgen sind
 
 ```
     ''
@@ -243,13 +245,13 @@ Alle Escape-Sequenzen beginnen mit einem Backslash-Zeichen („\\“, Unicode-Co
 
 Ein Thema, das bisher noch nicht angesprochen wurde, sind Leerzeichen und Kommentare.
 
-Als Leerzeichen gelten alle Unicode-Leerzeichen, d. h. alle Zeichen der Klasse \<space> sowie Kommentare. Letztere sind Zeichenfolgen, die mit einem „#“ (Hash, Unicode-Codepunkt 0x23) beginnen und am nächsten Zeilenende enden.
+Als Leerzeichen gelten alle Unicode-Leerzeichen, d. h. alle Zeichen der Klasse <space> sowie Kommentare. Letztere sind Zeichenfolgen, die mit einem „#“ (Hash, Unicode-Codepunkt 0x23) beginnen und am nächsten Zeilenende enden.
 
 Zwischen allen syntaktischen Elementen einer Grammatikbeschreibung können Leerzeichen beliebig verwendet werden. Innerhalb von syntaktischen Elementen, wie Namen, Zeichenfolgenliteralen, vordefinierten Zeichenklassen usw., dürfen sie nicht verwendet werden.
 
 ## Attribute von Nichtterminalen
 
-Zum Schluss noch ein etwas fortgeschritteneres Thema. Im Abschnitt **Regeln** haben wir die Struktur einer Regel wie folgt dargestellt:
+Zum Schluss noch ein etwas fortgeschritteneres Thema. Im Abschnitt [Regeln] haben wir die Struktur einer Regel wie folgt dargestellt:
 
 ```
      <<name>>  <-  <<expression>> ;
@@ -270,10 +272,14 @@ Diese Schreibweise ist ebenfalls zulässig. Dieser Modus ist optional. Die bekan
 : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
 
 **void**
-: Das Nichtterminal hat keinen semantischen Wert. Alle durch die rechte Seite des Symbols generierten ASTs werden (ebenfalls) verworfen. Von diesen drei Modi können nur **leaf** und **void** direkt angegeben werden. **value** wird implizit durch das Fehlen eines Modus vor dem Nichtterminal festgelegt. Mit all diesen Kenntnissen sollte es nun möglich sein, die formale Spezifikation der im nächsten Abschnitt dargestellten Textdarstellung – die in dieser Sprache verfasst ist – nicht nur zu lesen, sondern auch zu verstehen.
+: Das Nichtterminal hat keinen semantischen Wert. Alle durch die rechte Seite des Symbols generierten ASTs werden (ebenfalls) verworfen.
 
 
-# PEG-SPEZIFIKATIONSSPRACHE
+Von diesen drei Modi können nur **leaf** und **void** direkt angegeben werden. **value** wird implizit durch das Fehlen eines Modus vor dem Nichtterminal festgelegt.
+
+Mit all diesen Kenntnissen sollte es nun möglich sein, die formale Spezifikation der im nächsten Abschnitt dargestellten Textdarstellung – die in dieser Sprache verfasst ist – nicht nur zu lesen, sondern auch zu verstehen.
+
+# PEG-Spezifikationssprache
 
 **peg**, eine Sprache zur Spezifikation von Parsing-Expression-Grammatiken, soll sowohl für Menschen lesbar als auch schreibbar sein, dabei jedoch streng genug, um eine maschinelle Verarbeitung zu ermöglichen. Wie jede Computersprache. Sie wurde definiert, um das Verfassen einer Grammatik-Spezifikation zu vereinfachen – etwas, wofür sich die anderen in den Parser-Tools vorhandenen Formate nicht eignen.
 
@@ -404,7 +410,7 @@ PEG calculator (Expression)
 END;
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *pt* als Kategorie an.
 
@@ -412,11 +418,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Parser und Grammatiken
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>

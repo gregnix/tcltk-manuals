@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg_language
+title: pt::peg_language
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -27,19 +28,19 @@ Copyright:
 
 # Name
 
-pt::peg_language - PEG Language Tutorial
+pt::peg\_language - PEG Language Tutorial
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-Welcome to the tutorial / introduction for the **PEG Specification Language**. If you are already familiar with the language we are about to discuss, and only wish to refresh your memory you can, of course, skip ahead to the aforementioned section and just read the full formal specification.
+Welcome to the tutorial / introduction for the [PEG specification language]. If you are already familiar with the language we are about to discuss, and only wish to refresh your memory you can, of course, skip ahead to the aforementioned section and just read the full formal specification.
 
 # What is it?
 
@@ -61,16 +62,16 @@ END;
 
 ## Names
 
-Names are mostly used to identify the nonterminal symbols of the grammar, i.e. that which occurs on the left-hand side of a \<rule>. The exception to that is the name given after the keyword **PEG** (see previous section), which is the name of the whole grammar itself.
+Names are mostly used to identify the nonterminal symbols of the grammar, i.e. that which occurs on the left-hand side of a <rule>. The exception to that is the name given after the keyword **PEG** (see previous section), which is the name of the whole grammar itself.
 
 The structure of a name is simple:
 
-**\[1\]**
-: It begins with a letter, underscore, or colon, followed by
+1. It begins with a letter, underscore, or colon, followed by
 
-**\[2\]**
-: zero or more letters, digits, underscores, or colons. Or, in formal textual notation:
+2. zero or more letters, digits, underscores, or colons.
 
+
+Or, in formal textual notation:
 
 ```
     ([_:] / <alpha>) ([_:] / <alnum>)*
@@ -101,7 +102,7 @@ The main body of the text of a grammar specification is taken up by the rules. E
      <<name>>  <-  <<expression>> ;
 ```
 
-The \<name> specifies the nonterminal symbol to be defined, the \<expression> after the arrow (<-) then declares its structure.
+The <name> specifies the nonterminal symbol to be defined, the <expression> after the arrow (<-) then declares its structure.
 
 Note that each rule ends in a single semicolon, even the last. I.e. the semicolon is a rule *terminator*, not a separator.
 
@@ -109,7 +110,7 @@ We can have as many rules as we like, as long as we define each nonterminal symb
 
 ## Expressions
 
-The *parsing* expressions are the meat of any specification. They declare the structure of the whole document (<\<start-expression>>), and of all nonterminal symbols.
+The *parsing* expressions are the meat of any specification. They declare the structure of the whole document (<<start-expression>>), and of all nonterminal symbols.
 
 All expressions are made up out of *atomic expressions* and *operators* combining them. We have operators for choosing between alternatives, repetition of parts, and for look-ahead constraints. There is no explicit operator for the sequencing (also known as *concatenation*) of parts however. This is specified by simply placing the parts adjacent to each other.
 
@@ -137,7 +138,7 @@ Here are the operators, from highest to lowest priority (i.e. strength of bindin
     ( <<expression>> ) # Put an expression in parens to change its priority.
 ```
 
-With this we can now deconstruct the formal expression for names given in section **Names**:
+With this we can now deconstruct the formal expression for names given in section [Names]:
 
 ```
     ([_:] / <alpha>) ([_:] / <alnum>)*
@@ -165,15 +166,16 @@ The parentheses around the parts kept their inner alternatives bound together ag
 
 And *atomic expressions* are our next topic. They fall into three classes:
 
-**\[1\]**
-: names, i.e. nonterminal symbols,
+1. names, i.e. nonterminal symbols,
 
-**\[2\]**
-: string literals, and
+2. string literals, and
 
-**\[3\]**
-: character classes. Names we know about already, or see section **Names** for a refresher. String literals are simple. They are delimited by (i.e. start and end with) either a single or double-apostroph, and in between the delimiters we can have any character but the delimiter itself. They can be empty as well. Examples of strings are
+3. character classes.
 
+
+Names we know about already, or see section [Names] for a refresher.
+
+String literals are simple. They are delimited by (i.e. start and end with) either a single or double-apostroph, and in between the delimiters we can have any character but the delimiter itself. They can be empty as well. Examples of strings are
 
 ```
     ''
@@ -239,17 +241,17 @@ All the escaped forms are started with a backslash character ('\\', unicode code
     #                       # Here 2ca7 <=> Koptic Small Letter Tau
 ```
 
-## Whitespace and comments
+## WHITESPACE and comments
 
 One issue not touched upon so far is whitespace and comments.
 
-Whitespace is any unicode space character, i.e. anything in the character class \<space>, and comments. The latter are sequences of characters starting with a '#' (hash, unicode codepoint 0x23) and ending at the next end-of-line.
+Whitespace is any unicode space character, i.e. anything in the character class <space>, and comments. The latter are sequences of characters starting with a '#' (hash, unicode codepoint 0x23) and ending at the next end-of-line.
 
 Whitespace can be freely used between all syntactical elements of a grammar specification. It cannot be used inside of syntactical elements, like names, string literals, predefined character classes, etc.
 
 ## Nonterminal attributes
 
-Lastly, a more advanced topic. In the section **Rules** we gave the structure of a rule as
+Lastly, a more advanced topic. In the section [Rules] we gave the structure of a rule as
 
 ```
      <<name>>  <-  <<expression>> ;
@@ -270,10 +272,14 @@ is also allowed. This mode is optional. The known modes and their meanings are:
 : The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal, without any children. Any ASTs generated by the symbol's right hand side are discarded.
 
 **void**
-: The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well). Of these three modes only **leaf** and **void** can be specified directly. **value** is implicitly specified by the absence of a mode before the nonterminal. Now, with all the above under our belt it should be possible to not only read, but understand the formal specification of the text representation shown in the next section, written in itself.
+: The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well).
 
 
-# Peg specification language
+Of these three modes only **leaf** and **void** can be specified directly. **value** is implicitly specified by the absence of a mode before the nonterminal.
+
+Now, with all the above under our belt it should be possible to not only read, but understand the formal specification of the text representation shown in the next section, written in itself.
+
+# PEG specification language
 
 **peg**, a language for the specification of parsing expression grammars is meant to be human readable, and writable as well, yet strict enough to allow its processing by machine. Like any computer language. It was defined to make writing the specification of a grammar easy, something the other formats found in the Parser Tools do not lend themselves too.
 

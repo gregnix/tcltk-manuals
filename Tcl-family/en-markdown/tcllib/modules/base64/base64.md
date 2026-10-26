@@ -1,5 +1,6 @@
 ---
 CommandName: base64
+title: base64
 ManualSection: n
 Version: 2.6.1
 TclPart: tcllib
@@ -19,10 +20,10 @@ base64 - base64-encode/decode binary data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [base64]{.lit} [2.6.1]{.optlit} 
-[::base64::encode]{.cmd} [-maxlen maxlen]{.optarg} [-wrapchar wrapchar]{.optarg} [bstring]{.arg} 
-[::base64::decode]{.cmd} [estring]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [base64]{.lit} [2.6.1]{.optlit}
+[::base64::encode]{.cmd} [[-maxlen]{.lit} [maxlen]{.arg}]{.optarg} [[-wrapchar]{.lit} [wrapchar]{.arg}]{.optarg} [bstring]{.arg}
+[::base64::decode]{.cmd} [estring]{.arg}
 :::
 
 # Description
@@ -48,10 +49,14 @@ The implementations provided by this package do not offer control over strictnes
 
 By default this package’s encoder wraps using newlines after every 76 characters of output. The built-in [binary encode base64](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) subcommand defaults to not wrapping, but does support wrapping using a **-maxlen** option.
 
-# Api
+# API
 
 **::base64::encode** ?**-maxlen** *maxlen*? ?**-wrapchar** *wrapchar*? *bstring*
-: Returns a base64-encoded version of the binary string *bstring* as its result. The result string contains the *wrapchar* character after every *maxlen* characters of output. The *wrapchar* defaults to newline and *maxlen* defaults to 76. To prevent wrapping, set *maxlen* to **0**. The command will throw an error if *maxlen* is not an integer or is negative, or if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns a base64-encoded version of the binary string *bstring* as its result.
+
+    The result string contains the *wrapchar* character after every *maxlen* characters of output. The *wrapchar* defaults to newline and *maxlen* defaults to 76. To prevent wrapping, set *maxlen* to **0**.
+
+    The command will throw an error if *maxlen* is not an integer or is negative, or if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::base64::decode** *estring*
 : Returns a binary string that has been base64-decoded from the *estring*. Any invalid characters or whitespace (spaces, tabs, newlines) in *estring* are ignored.
@@ -61,16 +66,13 @@ By default this package’s encoder wraps using newlines after every 76 characte
 
 This package contains three different implementations for base64 encoding and decoding, and chooses among them based on the environment it finds itself in.
 
-All three implementations have the same behaviour. See also **Beware: Variations in decoding behaviour** at the beginning of this document.
+All three implementations have the same behaviour. See also [Beware: variations in decoding behaviour] at the beginning of this document.
 
-**\[1\]**
-: If Tcl 8.6 or higher is found the commands are implemented in terms of the then-available built-in commands.
+1. If Tcl 8.6 or higher is found the commands are implemented in terms of the then-available built-in commands.
 
-**\[2\]**
-: If the [Trf](https://wiki.tcl-lang.org/page/Trf) extension can be loaded the commands are implemented in terms of its commands.
+2. If the [Trf](https://wiki.tcl-lang.org/page/Trf) extension can be loaded the commands are implemented in terms of its commands.
 
-**\[3\]**
-: If neither of the above are possible a Tcl-only implementation is used. This is much slower.
+3. If neither of the above are possible a Tcl-only implementation is used. This is much slower.
 
 
 # Examples

@@ -1,5 +1,6 @@
 ---
 CommandName: join
+title: join
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -18,21 +19,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 join - Erzeugt eine Zeichenkette durch Verbinden von Listenelementen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[join]{.cmd} [list]{.arg} [joinString]{.optarg} 
+[join]{.cmd} [list]{.arg} [joinString]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Argument *list* muss eine gültige Tcl-Liste sein. Der Befehl gibt die Zeichenkette zurück, die entsteht, wenn alle Elemente von *list* mit *joinString* zwischen jeweils benachbarten Elementen verbunden werden. *joinString* ist standardmäßig ein Leerzeichen.
 
-# BEISPIELE
+# Beispiele
 
 Erzeugt eine kommagetrennte Liste:
 

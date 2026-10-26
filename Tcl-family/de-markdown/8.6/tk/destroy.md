@@ -1,5 +1,6 @@
 ---
 CommandName: destroy
+title: destroy
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -13,21 +14,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 destroy - Zerstört ein oder mehrere Fenster
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[destroy]{.cmd} [window window]{.optdot} 
+[destroy]{.cmd} [window window]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieser Befehl löscht die durch die *window*-Argumente angegebenen Fenster sowie alle ihre Nachkommen. Wird das Fenster „.“ gelöscht, werden alle Fenster zerstört und die Anwendung beendet (normalerweise) sich. Die Fenster werden in der angegebenen Reihenfolge zerstört; tritt beim Zerstören eines Fensters ein Fehler auf, bricht der Befehl ab, ohne die verbleibenden Fenster zu zerstören. Existiert *window* nicht, wird kein Fehler zurückgegeben.
 
-# BEISPIELE
+# Beispiele
 
 Zerstört alle Checkbuttons, die direkte Kinder des angegebenen Widgets sind:
 

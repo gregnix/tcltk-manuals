@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::entry
+title: ttk::entry
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -24,7 +25,7 @@ ttk::entry - Editable text field widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::entry]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::entry]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -33,14 +34,9 @@ An **ttk::entry** widget displays a one-line text string and allows that string 
 
 # Standard options
 
-|   |   |
-| --- | --- |
-| **-class** | **-cursor** |
-| **-font** | **-foreground** |
-| **-style** |  |
-| **-takefocus** | **-xscrollcommand** |
+**-class**, **-cursor**, **-font**, **-foreground**, **-style**, **-takefocus**, **-xscrollcommand**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -48,7 +44,7 @@ See the ttk_widget manual entry for details on the standard options.
 : A boolean value specifying whether or not a selection in the widget should be linked to the X selection. If the selection is exported, then selecting in the widget deselects the current X selection, selecting outside the widget deselects any widget selection, and the widget will respond to selection retrieval requests when it has a selection.
 
 **-invalidcommand** (**invalidCommand**/**InvalidCommand**)
-: A script template to evaluate whenever the **-validatecommand** returns 0. See **VALIDATION** below for more information.
+: A script template to evaluate whenever the **-validatecommand** returns 0. See [Validation] below for more information.
 
 **-justify** (**justify**/**Justify**)
 : Specifies how the text is aligned within the entry widget. One of **left**, **center**, or **right**.
@@ -57,16 +53,16 @@ See the ttk_widget manual entry for details on the standard options.
 : If this option is specified, then the true contents of the entry are not displayed in the window. Instead, each character in the entry's value will be displayed as the first character in the value of this option, such as "\*" or a bullet. This is useful, for example, if the entry is to be used to enter a password. If characters in the entry are selected and copied elsewhere, the information copied will be what is displayed, not the true contents of the entry.
 
 **-state** (**state**/**State**)
-: Compatibility option; see *ttk::widget(n)* for details. Specifies one of three states for the entry, **normal**, **disabled**, or **readonly**. See **WIDGET STATES**, below.
+: Compatibility option; see *ttk::widget(n)* for details. Specifies one of three states for the entry, **normal**, **disabled**, or **readonly**. See [Widget states], below.
 
 **-textvariable** (**textVariable**/**Variable**)
 : Specifies the name of a global variable whose value is linked to the entry widget's contents. Whenever the variable changes value, the widget's contents are updated, and vice versa.
 
 **-validate** (**validate**/**Validate**)
-: Specifies the mode in which validation should operate: **none**, **focus**, **focusin**, **focusout**, **key**, or **all**. Default is **none**, meaning that validation is disabled. See **VALIDATION** below.
+: Specifies the mode in which validation should operate: **none**, **focus**, **focusin**, **focusout**, **key**, or **all**. Default is **none**, meaning that validation is disabled. See [Validation] below.
 
 **-validatecommand** (**validateCommand**/**ValidateCommand**)
-: A script template to evaluate whenever validation is triggered. If set to the empty string (the default), validation is disabled. The script must return a boolean value. See **VALIDATION** below.
+: A script template to evaluate whenever validation is triggered. If set to the empty string (the default), validation is disabled. The script must return a boolean value. See [Validation] below.
 
 **-width** (**width**/**Width**)
 : Specifies an integer value indicating the desired width of the entry window, in average-size characters of the widget's font.
@@ -80,12 +76,12 @@ Entries are capable of displaying strings that are too long to fit entirely with
 
 # Indices
 
-Many of the **entry** widget commands take one or more indices as arguments.  An index specifies a particular character in the entry's string, in any of the following ways:
+Many of the [entry] widget commands take one or more indices as arguments.  An index specifies a particular character in the entry's string, in any of the following ways:
 
 *number*
 : Specifies the character as a numerical index, where 0 corresponds to the first character in the string.
 
-**@**_number_
+**@***number*
 : In this form, *number* is treated as an x-coordinate in the entry's window;  the character spanning that x-coordinate is used. For example, "**@0**" indicates the left-most character in the window.
 
 **end**
@@ -98,8 +94,10 @@ Many of the **entry** widget commands take one or more indices as arguments.  An
 : Indicates the first character in the selection.  It is an error to use this form if the selection is not in the entry window.
 
 **sel.last**
-: Indicates the character just after the last one in the selection. It is an error to use this form if the selection is not in the entry window. Abbreviations may be used for any of the forms above, e.g.\\| "**e**" or "**sel.l**". In general, out-of-range indices are automatically rounded to the nearest legal value.
+: Indicates the character just after the last one in the selection. It is an error to use this form if the selection is not in the entry window.
 
+
+Abbreviations may be used for any of the forms above, e.g. "**e**" or "**sel.l**". In general, out-of-range indices are automatically rounded to the nearest legal value.
 
 # Widget command
 
@@ -126,25 +124,26 @@ The following subcommands are possible for entry widgets:
 *pathName* **selection** *option arg*
 : This command is used to adjust the selection within an entry.  It has several forms, depending on *option*:
 
+    *pathName* **selection clear**
+    : Clear the selection if it is currently in this widget. If the selection is not in this widget then the command has no effect. Returns the empty string.
 
-*pathName* **selection clear**
-: Clear the selection if it is currently in this widget. If the selection is not in this widget then the command has no effect. Returns the empty string.
+    *pathName* **selection present**
+    : Returns 1 if there is are characters selected in the entry, 0 if nothing is selected.
 
-*pathName* **selection present**
-: Returns 1 if there is are characters selected in the entry, 0 if nothing is selected.
-
-*pathName* **selection range** *start* *end*
-: Sets the selection to include the characters starting with the one indexed by *start* and ending with the one just before *end*. If *end* refers to the same character as *start* or an earlier one, then the entry's selection is cleared.
+    *pathName* **selection range** *start* *end*
+    : Sets the selection to include the characters starting with the one indexed by *start* and ending with the one just before *end*. If *end* refers to the same character as *start* or an earlier one, then the entry's selection is cleared.
 
 
 *pathName* **validate**
-: Force revalidation, independent of the conditions specified by the **-validate** option. Returns 0 if validation fails, 1 if it succeeds. Sets or clears the **invalid** state accordingly. See **VALIDATION** below for more details. The entry widget also supports the following generic **ttk::widget** widget subcommands (see *ttk::widget(n)* for details):
+: Force revalidation, independent of the conditions specified by the **-validate** option. Returns 0 if validation fails, 1 if it succeeds. Sets or clears the **invalid** state accordingly. See [Validation] below for more details.
 
 
-```
-cget            configure       identify
-instate         state           xview
-```
+The entry widget also supports the following generic [ttk::widget][ttk_widget] widget subcommands (see *ttk::widget(n)* for details):
+
+::: {.info DISPLAY="yes"}
+**cget**	**configure**	**identify**\
+**instate**	**state**	**xview**
+:::
 
 # Validation
 
@@ -183,7 +182,7 @@ If **-validatecommand** is empty (the default), validation always succeeds.
 
 ## Validation script substitutions
 
-It is possible to perform percent substitutions on the **-validatecommand** and **-invalidcommand**, just as in a **bind** script. The following substitutions are recognized:
+It is possible to perform percent substitutions on the **-validatecommand** and **-invalidcommand**, just as in a [bind] script. The following substitutions are recognized:
 
 **%d**
 : Type of action: 1 for **insert** prevalidation, 0 for **delete** prevalidation, or -1 for revalidation.
@@ -210,7 +209,7 @@ It is possible to perform percent substitutions on the **-validatecommand** and 
 : The name of the entry widget.
 
 
-## Differences from tk entry widget validation
+## Differences from Tk entry widget validation
 
 The standard Tk entry widget automatically disables validation (by setting **-validate** to **none**) if the **-validatecommand** or **-invalidcommand** modifies the entry's value. The Tk themed entry widget only disables validation if one of the validation scripts raises an error, or if **-validatecommand** does not return a valid boolean value. (Thus, it is not necessary to re-enable validation after modifying the entry value in a validation script).
 
@@ -220,59 +219,41 @@ In addition, the standard entry widget invokes validation whenever the linked **
 
 The entry widget's default bindings enable the following behavior. In the descriptions below, "word" refers to a contiguous group of letters, digits, or "\_" characters, or any single character other than these.
 
-**\\0•**
-: Clicking mouse button 1 positions the insert cursor just before the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 down strokes out a selection between the insert cursor and the character under the mouse.
+- Clicking mouse button 1 positions the insert cursor just before the character underneath the mouse cursor, sets the input focus to this widget, and clears any selection in the widget. Dragging with mouse button 1 down strokes out a selection between the insert cursor and the character under the mouse.
 
-**\\0•**
-: Double-clicking with mouse button 1 selects the word under the mouse and positions the insert cursor at the end of the word. Dragging after a double click strokes out a selection consisting of whole words.
+- Double-clicking with mouse button 1 selects the word under the mouse and positions the insert cursor at the end of the word. Dragging after a double click strokes out a selection consisting of whole words.
 
-**\\0•**
-: Triple-clicking with mouse button 1 selects all of the text in the entry and positions the insert cursor at the end of the line.
+- Triple-clicking with mouse button 1 selects all of the text in the entry and positions the insert cursor at the end of the line.
 
-**\\0•**
-: The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words.
+- The ends of the selection can be adjusted by dragging with mouse button 1 while the Shift key is down. If the button is double-clicked before dragging then the selection will be adjusted in units of whole words.
 
-**\\0•**
-: Clicking mouse button 1 with the Control key down will position the insert cursor in the entry without affecting the selection.
+- Clicking mouse button 1 with the Control key down will position the insert cursor in the entry without affecting the selection.
 
-**\\0•**
-: If any normal printing characters are typed in an entry, they are inserted at the point of the insert cursor.
+- If any normal printing characters are typed in an entry, they are inserted at the point of the insert cursor.
 
-**\\0•**
-: The view in the entry can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the entry at the position of the mouse cursor.
+- The view in the entry can be adjusted by dragging with the middle mouse button (button 2, or button 3 in TkAqua). If the middle mouse button is clicked without moving the mouse, the selection is copied into the entry at the position of the mouse cursor.
 
-**\\0•**
-: If the mouse is dragged out of the entry on the left or right sides while button 1 is pressed, the entry will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
+- If the mouse is dragged out of the entry on the left or right sides while button 1 is pressed, the entry will automatically scroll to make more text visible (if there is more text off-screen on the side where the mouse left the window).
 
-**\\0•**
-: The Left and Right keys move the insert cursor one character to the left or right;  they also clear any selection in the entry. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insert cursor by words, and Control-Shift-Left and Control-Shift-Right move the insert cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively.
+- The Left and Right keys move the insert cursor one character to the left or right;  they also clear any selection in the entry. If Left or Right is typed with the Shift key down, then the insertion cursor moves and the selection is extended to include the new character. Control-Left and Control-Right move the insert cursor by words, and Control-Shift-Left and Control-Shift-Right move the insert cursor by words and also extend the selection. Control-b and Control-f behave the same as Left and Right, respectively.
 
-**\\0•**
-: The Home key and Control-a move the insert cursor to the beginning of the entry and clear any selection in the entry. Shift-Home moves the insert cursor to the beginning of the entry and extends the selection to that point.
+- The Home key and Control-a move the insert cursor to the beginning of the entry and clear any selection in the entry. Shift-Home moves the insert cursor to the beginning of the entry and extends the selection to that point.
 
-**\\0•**
-: The End key and Control-e move the insert cursor to the end of the entry and clear any selection in the entry. Shift-End moves the cursor to the end and extends the selection to that point.
+- The End key and Control-e move the insert cursor to the end of the entry and clear any selection in the entry. Shift-End moves the cursor to the end and extends the selection to that point.
 
-**\\0•**
-: Control-/ selects all the text in the entry.
+- Control-/ selects all the text in the entry.
 
-**\\0•**
-: Control-\\ clears any selection in the entry.
+- Control-\\ clears any selection in the entry.
 
-**\\0•**
-: The standard Tk <\<Cut>>, <\<Copy>>, <\<Paste>>, and <\<Clear>> virtual events operate on the selection in the expected manner.
+- The standard Tk <<Cut>>, <<Copy>>, <<Paste>>, and <<Clear>> virtual events operate on the selection in the expected manner.
 
-**\\0•**
-: The Delete key deletes the selection, if there is one in the entry. If there is no selection, it deletes the character to the right of the insert cursor.
+- The Delete key deletes the selection, if there is one in the entry. If there is no selection, it deletes the character to the right of the insert cursor.
 
-**\\0•**
-: The BackSpace key and Control-h delete the selection, if there is one in the entry. If there is no selection, it deletes the character to the left of the insert cursor.
+- The BackSpace key and Control-h delete the selection, if there is one in the entry. If there is no selection, it deletes the character to the left of the insert cursor.
 
-**\\0•**
-: Control-d deletes the character to the right of the insert cursor.
+- Control-d deletes the character to the right of the insert cursor.
 
-**\\0•**
-: Control-k deletes all the characters to the right of the insertion cursor.
+- Control-k deletes all the characters to the right of the insertion cursor.
 
 
 # Widget states
@@ -291,19 +272,19 @@ The class name for a **ttk::entry** is **TEntry**.
 
 Dynamic states: **disabled**, **focus**, **readonly**.
 
-**TEntry** styling options configurable with **ttk::style** are:
+**TEntry** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
+: For backwards compatibility, when using the aqua theme (for macOS), this option behaves as an alias for the **-fieldbackground** provided that no value is specified for **-fieldbackground**. Otherwise it is ignored.
 
-For backwards compatibility, when using the aqua theme (for macOS), this option behaves as an alias for the **-fieldbackground** provided that no value is specified for **-fieldbackground**. Otherwise it is ignored.
 
 **-bordercolor** *color*
 
 **-darkcolor** *color*
 
 **-fieldbackground** *color*
+: Some themes use a graphical background and their field background colors cannot be changed.
 
-Some themes use a graphical background and their field background colors cannot be changed.
 
 **-foreground** *color*
 
@@ -323,4 +304,10 @@ Some themes use a graphical background and their field background colors cannot 
 
 **-selectforeground** *color*
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[bind]: bind.md
+[entry]: entry.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

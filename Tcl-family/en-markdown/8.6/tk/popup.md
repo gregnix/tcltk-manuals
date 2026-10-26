@@ -1,5 +1,6 @@
 ---
 CommandName: tk_popup
+title: tk_popup
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -17,12 +18,12 @@ Copyright:
 
 # Name
 
-tk_popup - Post a popup menu
+tk\_popup - Post a popup menu
 
 # Synopsis
 
 ::: {.synopsis} :::
-[tk_popup]{.cmd} [menu]{.arg} [x]{.arg} [y]{.arg} [entry]{.optarg} 
+[tk\_popup]{.cmd} [menu]{.arg} [x]{.arg} [y]{.arg} [entry]{.optarg}
 :::
 
 # Description

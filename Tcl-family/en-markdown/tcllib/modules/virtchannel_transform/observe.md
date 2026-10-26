@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::observe
+title: tcl::transform::observe
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,10 +24,10 @@ tcl::transform::observe - Observer transformation, stream copy
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::observe]{.lit} [1.1]{.optlit} 
-[::tcl::transform::observe]{.cmd} [chan]{.arg} [logw]{.arg} [logr]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::observe]{.lit} [1.1]{.optlit}
+[::tcl::transform::observe]{.cmd} [chan]{.arg} [logw]{.arg} [logr]{.arg}
 :::
 
 # Description
@@ -37,7 +38,7 @@ Related transformations in this module are **tcl::transform::adler32**, **tcl::t
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::observe** *chan* *logw* *logr*
 : This command creates an observer transformation on top of the channel *chan* and returns its handle. The channel handles *logr* and *logw* are there the data is copied to.

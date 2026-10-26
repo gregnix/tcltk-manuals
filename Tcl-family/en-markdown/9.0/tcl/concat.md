@@ -1,5 +1,6 @@
 ---
 CommandName: concat
+title: concat
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -25,7 +26,7 @@ concat - Join lists together
 # Synopsis
 
 ::: {.synopsis} :::
-[concat]{.cmd} [arg arg]{.optdot} 
+[concat]{.cmd} [arg arg]{.optdot}
 :::
 
 # Description
@@ -57,9 +58,12 @@ a   b   c d e f
 
 (i.e., there are three spaces between each of the **a**, the **b** and the **c**).
 
-For *true* list concatenation, the **list** command should be used with expansion of each input list:
+For *true* list concatenation, the [list] command should be used with expansion of each input list:
 
 ```
 % list {*}"a   b   c" {*}{ d e f }
 a b c d e f
 ```
+
+
+[list]: list.md

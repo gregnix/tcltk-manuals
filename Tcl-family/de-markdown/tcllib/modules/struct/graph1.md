@@ -1,5 +1,6 @@
 ---
 CommandName: struct::graph_v1
+title: struct::graph_v1
 ManualSection: n
 Version: 1.2.2
 TclPart: tcllib
@@ -11,63 +12,74 @@ Copyright:
  - Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-struct::graph_v1 – Gerichtete Graphobjekte erzeugen und bearbeiten
+struct::graph\_v1 – Gerichtete Graphobjekte erzeugen und bearbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::graph]{.lit} [1.2.2]{.optlit} 
-[graphName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[graphName]{.ins} [destroy]{.sub} 
-[graphName]{.ins} [arc]{.sub} [append]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [arc]{.sub} [delete]{.lit} [arc]{.arg} [arc]{.optdot} 
-[graphName]{.ins} [arc]{.sub} [exists]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [get]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [getall]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [keys]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [keyexists]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [insert]{.lit} [start]{.arg} [end]{.arg} [child]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [lappend]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [arc]{.sub} [set]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [source]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [target]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [unset]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arcs]{.sub} [-key key]{.optarg} [-value value]{.optarg} [-in|-out|-adj|-inner|-embedding nodelist]{.optarg} 
-[graphName]{.ins} [node]{.sub} [append]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [node]{.sub} [degree]{.lit} [-in|-out]{.optarg} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [delete]{.lit} [node]{.arg} [node]{.optdot} 
-[graphName]{.ins} [node]{.sub} [exists]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [get]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [node]{.sub} [getall]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [keys]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [keyexists]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [node]{.sub} [insert]{.lit} [child]{.optarg} 
-[graphName]{.ins} [node]{.sub} [lappend]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [node]{.sub} [opposite]{.lit} [node]{.arg} [arc]{.arg} 
-[graphName]{.ins} [node]{.sub} [set]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [node]{.sub} [unset]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [nodes]{.sub} [-key key]{.optarg} [-value value]{.optarg} [-in|-out|-adj|-inner|-embedding nodelist]{.optarg} 
-[graphName]{.ins} [get]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [getall]{.sub} 
-[graphName]{.ins} [keys]{.sub} 
-[graphName]{.ins} [keyexists]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [set]{.sub} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg} 
-[graphName]{.ins} [unset]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [walk]{.sub} [node]{.arg} [-order order]{.optarg} [-type type]{.optarg} [-dir direction]{.optarg} -command [cmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::graph]{.lit} [1.2.2]{.optlit}
+[graphName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[graphName]{.ins} [destroy]{.sub}
+[graphName]{.ins} [arc]{.sub} [append]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [arc]{.sub} [delete]{.lit} [arc]{.arg} [arc]{.optdot}
+[graphName]{.ins} [arc]{.sub} [exists]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [get]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arc]{.sub} [getall]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [keys]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [keyexists]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arc]{.sub} [insert]{.lit} [start]{.arg} [end]{.arg} [child]{.optarg}
+[graphName]{.ins} [arc]{.sub} [lappend]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [arc]{.sub} [set]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [arc]{.sub} [source]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [target]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [unset]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arcs]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [[-value]{.lit} [value]{.arg}]{.optarg} [[-in|-out|-adj|-inner|-embedding]{.lit} [nodelist]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [append]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [node]{.sub} [degree]{.lit} [-in|-out]{.optarg} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [delete]{.lit} [node]{.arg} [node]{.optdot}
+[graphName]{.ins} [node]{.sub} [exists]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [get]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [getall]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [keys]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [keyexists]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [insert]{.lit} [child]{.optarg}
+[graphName]{.ins} [node]{.sub} [lappend]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [node]{.sub} [opposite]{.lit} [node]{.arg} [arc]{.arg}
+[graphName]{.ins} [node]{.sub} [set]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [node]{.sub} [unset]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [nodes]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [[-value]{.lit} [value]{.arg}]{.optarg} [[-in|-out|-adj|-inner|-embedding]{.lit} [nodelist]{.arg}]{.optarg}
+[graphName]{.ins} [get]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [getall]{.sub}
+[graphName]{.ins} [keys]{.sub}
+[graphName]{.ins} [keyexists]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [set]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg}
+[graphName]{.ins} [unset]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [walk]{.sub} [node]{.arg} [[-order]{.lit} [order]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [[-dir]{.lit} [direction]{.arg}]{.optarg} -command [cmd]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 *Dieses Paket ist abgelöst durch* **struct::graph** *Version 2.*
 
-Der Befehl **::struct::graph** erzeugt ein neues Graphobjekt mit einem zugehörigen globalen Tcl-Befehl namens *graphName*. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Graphen ausführen. Er hat die folgende allgemeine Form:
+Der Befehl [::struct::graph][graph] erzeugt ein neues Graphobjekt mit einem zugehörigen globalen Tcl-Befehl namens *graphName*. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Graphen ausführen. Er hat die folgende allgemeine Form:
 
 **graphName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest. Ein gerichteter Graph ist eine Struktur mit zwei Mengen von Elementen, *Knoten* und *Bögen*, zusammen mit einer Beziehung („Verbundenheit“), die Knoten und Bögen eine allgemeine Struktur gibt. Jeder Bogen verbindet zwei Knoten. Einer heißt *Quelle*, der andere *Ziel*. Das gibt dem Bogen eine Richtung: Er führt von der Quelle zum Ziel. Quelle und Ziel eines Bogens dürfen derselbe Knoten sein. Ein solcher Bogen heißt *Schleife*. Ist ein Knoten Quelle oder Ziel eines Bogens, heißen beide *benachbart*. Das setzt sich in eine Beziehung zwischen Knoten fort: Sind zwei Knoten über mindestens einen Bogen verbunden, heißen auch sie *benachbart*. Jeder Knoten kann Quelle und Ziel beliebig vieler Bögen sein. Die ersten heißen die *ausgehenden Bögen* des Knotens, die zweiten die *eingehenden Bögen* des Knotens. Die Zahl der Kanten in der jeweiligen Menge heißt der *Eingangs-* beziehungsweise der *Ausgangsgrad* des Knotens. Neben den Beziehungen zwischen Knoten und Bögen erlaubt diese Graphimplementierung, jedem Knoten und jedem Bogen beliebig viele Schlüsselwerte zuzuordnen. Für Graphobjekte sind die folgenden Befehle möglich:
+: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+
+
+Ein gerichteter Graph ist eine Struktur mit zwei Mengen von Elementen, *Knoten* und *Bögen*, zusammen mit einer Beziehung („Verbundenheit“), die Knoten und Bögen eine allgemeine Struktur gibt.
+
+Jeder Bogen verbindet zwei Knoten. Einer heißt *Quelle*, der andere *Ziel*. Das gibt dem Bogen eine Richtung: Er führt von der Quelle zum Ziel. Quelle und Ziel eines Bogens dürfen derselbe Knoten sein. Ein solcher Bogen heißt *Schleife*. Ist ein Knoten Quelle oder Ziel eines Bogens, heißen beide *benachbart*. Das setzt sich in eine Beziehung zwischen Knoten fort: Sind zwei Knoten über mindestens einen Bogen verbunden, heißen auch sie *benachbart*.
+
+Jeder Knoten kann Quelle und Ziel beliebig vieler Bögen sein. Die ersten heißen die *ausgehenden Bögen* des Knotens, die zweiten die *eingehenden Bögen* des Knotens. Die Zahl der Kanten in der jeweiligen Menge heißt der *Eingangs-* beziehungsweise der *Ausgangsgrad* des Knotens.
+
+Neben den Beziehungen zwischen Knoten und Bögen erlaubt diese Graphimplementierung, jedem Knoten und jedem Bogen beliebig viele Schlüsselwerte zuzuordnen.
+
+Für Graphobjekte sind die folgenden Befehle möglich:
 
 *graphName* **destroy**
 : Zerstört den Graphen, einschließlich seines Speichers und des zugehörigen Befehls.
@@ -114,30 +126,29 @@ Der Befehl **::struct::graph** erzeugt ein neues Graphobjekt mit einem zugehöri
 *graphName* **arcs** ?-key *key*? ?-value *value*? ?-in|-out|-adj|-inner|-embedding *nodelist*?
 : Gibt eine Liste der Bögen im Graphen zurück. Ist keine Einschränkung angegeben, enthält die Liste alle Bögen. Einschränkungen können die Liste der zurückgegebenen Bögen anhand der Knoten begrenzen, die der Bogen verbindet, anhand der dem Bogen zugeordneten Schlüsselwerte oder anhand von beidem. Einschränkungen, die verbundene Knoten betreffen, haben eine Liste von Knoten als Argument, angegeben nach dem Namen der Einschränkung selbst.
 
+    **-in**
+    : Gibt eine Liste aller Bögen zurück, deren Ziel einer der Knoten in *nodelist* ist.
 
-**-in**
-: Gibt eine Liste aller Bögen zurück, deren Ziel einer der Knoten in *nodelist* ist.
+    **-out**
+    : Gibt eine Liste aller Bögen zurück, deren Quelle einer der Knoten in *nodelist* ist.
 
-**-out**
-: Gibt eine Liste aller Bögen zurück, deren Quelle einer der Knoten in *nodelist* ist.
+    **-adj**
+    : Gibt eine Liste aller Bögen zurück, die zu mindestens einem der Knoten in *nodelist* benachbart sind. Das ist die Vereinigung der von **-in** und **-out** zurückgegebenen Knoten.
 
-**-adj**
-: Gibt eine Liste aller Bögen zurück, die zu mindestens einem der Knoten in *nodelist* benachbart sind. Das ist die Vereinigung der von **-in** und **-out** zurückgegebenen Knoten.
+    **-inner**
+    : Gibt eine Liste aller Bögen zurück, die zu zwei der Knoten in *nodelist* benachbart sind. Das ist die Menge der Bögen im Teilgraphen, den die angegebenen Knoten aufspannen.
 
-**-inner**
-: Gibt eine Liste aller Bögen zurück, die zu zwei der Knoten in *nodelist* benachbart sind. Das ist die Menge der Bögen im Teilgraphen, den die angegebenen Knoten aufspannen.
+    **-embedding**
+    : Gibt eine Liste aller Bögen zurück, die zu genau einem der Knoten in *nodelist* benachbart sind. Das ist die Menge der Bögen, die den von den angegebenen Knoten aufgespannten Teilgraphen mit dem Rest des Graphen verbinden.
 
-**-embedding**
-: Gibt eine Liste aller Bögen zurück, die zu genau einem der Knoten in *nodelist* benachbart sind. Das ist die Menge der Bögen, die den von den angegebenen Knoten aufgespannten Teilgraphen mit dem Rest des Graphen verbinden.
+    **-key** *key*
+    : Beschränkt die Liste der zurückgegebenen Bögen auf die Bögen, die einen zugeordneten Schlüssel *key* haben.
 
-**-key** *key*
-: Beschränkt die Liste der zurückgegebenen Bögen auf die Bögen, die einen zugeordneten Schlüssel *key* haben.
-
-**-value** *value*
-: Diese Einschränkung ist nur zusammen mit **-key** verwendbar. Sie beschränkt die Liste der zurückgegebenen Bögen auf die Bögen, deren zugehöriger Schlüssel *key* den Wert *value* hat.
+    **-value** *value*
+    : Diese Einschränkung ist nur zusammen mit **-key** verwendbar. Sie beschränkt die Liste der zurückgegebenen Bögen auf die Bögen, deren zugehöriger Schlüssel *key* den Wert *value* hat.
 
 
-Die Einschränkungen durch **-in**, **-out**, **-adj**, **-inner** oder **-embedded** werden zuerst angewandt. Mehr als eine davon anzugeben, ist unzulässig. Zuletzt werden die Einschränkungen über **-key** (und **-value**) angewandt. Mehr als einen **-key** (und **-value**) anzugeben, ist unzulässig.
+    Die Einschränkungen durch **-in**, **-out**, **-adj**, **-inner** oder **-embedded** werden zuerst angewandt. Mehr als eine davon anzugeben, ist unzulässig. Zuletzt werden die Einschränkungen über **-key** (und **-value**) angewandt. Mehr als einen **-key** (und **-value**) anzugeben, ist unzulässig.
 
 *graphName* **node append** *node* ?-key *key*? *value*
 : Hängt einen *value* an einen der *node* zugeordneten Schlüsselwerte an. Ist kein *key* angegeben, gilt der Schlüssel **data**.
@@ -179,7 +190,9 @@ Die Einschränkungen durch **-in**, **-out**, **-adj**, **-inner** oder **-embed
 : Entfernt einen Schlüsselwert vom Knoten *node*. Ist kein Schlüssel angegeben, gilt der Schlüssel **data**.
 
 *graphName* **nodes** ?-key *key*? ?-value *value*? ?-in|-out|-adj|-inner|-embedding *nodelist*?
-: Gibt eine Liste der Knoten im Graphen zurück. Einschränkungen können die Liste der zurückgegebenen Knoten anhand benachbarter Knoten oder anhand der dem Knoten zugeordneten Schlüsselwerte begrenzen. Einschränkungen, die benachbarte Knoten betreffen, haben eine Liste von Knoten als Argument, angegeben nach dem Namen der Einschränkung selbst. Die möglichen Einschränkungen sind dieselben wie bei der Methode **arcs**. Die zurückzugebende Knotenmenge wird als Vereinigung aller Quell- und Zielknoten aller Bögen berechnet, die die für **arcs** festgelegte Einschränkung erfüllen.
+: Gibt eine Liste der Knoten im Graphen zurück. Einschränkungen können die Liste der zurückgegebenen Knoten anhand benachbarter Knoten oder anhand der dem Knoten zugeordneten Schlüsselwerte begrenzen. Einschränkungen, die benachbarte Knoten betreffen, haben eine Liste von Knoten als Argument, angegeben nach dem Namen der Einschränkung selbst.
+
+    Die möglichen Einschränkungen sind dieselben wie bei der Methode **arcs**. Die zurückzugebende Knotenmenge wird als Vereinigung aller Quell- und Zielknoten aller Bögen berechnet, die die für **arcs** festgelegte Einschränkung erfüllen.
 
 *graphName* **get** ?-key *key*?
 : Gibt den Wert zum Schlüssel *key* für den Graphen zurück. Ist kein Schlüssel angegeben, gilt der Schlüssel **data**.
@@ -203,10 +216,18 @@ Die Einschränkungen durch **-in**, **-out**, **-adj**, **-inner** oder **-embed
 : Entfernt einen Schlüsselwert vom Graphen. Ist kein Schlüssel angegeben, gilt der Schlüssel **data**.
 
 *graphName* **walk** *node* ?-order *order*? ?-type *type*? ?-dir *direction*? -command *cmd*
-: Führt einen Breiten- oder Tiefendurchlauf des Graphen aus, beginnend beim Knoten *node*, entweder in Richtung der ausgehenden Bögen oder entgegengesetzt zu den eingehenden Bögen. Den Typ des Durchlaufs, Breite zuerst oder Tiefe zuerst, legt der Wert von *type* fest; **bfs** bedeutet Breite zuerst, **dfs** bedeutet Tiefe zuerst. Tiefe zuerst ist die Vorgabe. Die Ordnung des Durchlaufs, Vorordnung, Nachordnung oder beide Ordnungen, legt der Wert von *order* fest; **pre** bedeutet Vorordnung, **post** bedeutet Nachordnung, **both** bedeutet beide Ordnungen. Vorordnung ist die Vorgabe. Vorordnung heißt, ein Knoten wird besucht, bevor einer seiner Nachbarn besucht wird (festgelegt durch *direction*, siehe unten). Nachordnung heißt, ein Elternknoten wird besucht, nachdem seine Nachbarn besucht wurden. Bei beiden Ordnungen wird ein Knoten vor *und* nach seinen Nachbarn besucht. Die Kombination eines Breitendurchlaufs mit Nachordnung oder beiden Ordnungen ist unzulässig. Die Richtung des Durchlaufs legt der Wert von *dir* fest; **backward** bedeutet die Gegenrichtung der eingehenden Bögen, **forward** die Richtung der ausgehenden Bögen. Im Verlauf des Durchlaufs wird der Befehl *cmd* an jedem Knoten ausgewertet, und der Modus des Aufrufs (**enter** oder **leave**) sowie die Werte *graphName* und der Name des aktuellen Knotens werden angehängt. Bei einem Durchlauf in Vorordnung werden alle Knoten betreten (**enter**), bei einem Durchlauf in Nachordnung werden alle Knoten verlassen. Bei beiden Ordnungen wird der Knoten beim ersten Besuch betreten (**enter**) und beim zweiten Besuch verlassen (**leave**).
+: Führt einen Breiten- oder Tiefendurchlauf des Graphen aus, beginnend beim Knoten *node*, entweder in Richtung der ausgehenden Bögen oder entgegengesetzt zu den eingehenden Bögen.
+
+    Den Typ des Durchlaufs, Breite zuerst oder Tiefe zuerst, legt der Wert von *type* fest; **bfs** bedeutet Breite zuerst, **dfs** bedeutet Tiefe zuerst. Tiefe zuerst ist die Vorgabe.
+
+    Die Ordnung des Durchlaufs, Vorordnung, Nachordnung oder beide Ordnungen, legt der Wert von *order* fest; **pre** bedeutet Vorordnung, **post** bedeutet Nachordnung, **both** bedeutet beide Ordnungen. Vorordnung ist die Vorgabe. Vorordnung heißt, ein Knoten wird besucht, bevor einer seiner Nachbarn besucht wird (festgelegt durch *direction*, siehe unten). Nachordnung heißt, ein Elternknoten wird besucht, nachdem seine Nachbarn besucht wurden. Bei beiden Ordnungen wird ein Knoten vor *und* nach seinen Nachbarn besucht. Die Kombination eines Breitendurchlaufs mit Nachordnung oder beiden Ordnungen ist unzulässig.
+
+    Die Richtung des Durchlaufs legt der Wert von *dir* fest; **backward** bedeutet die Gegenrichtung der eingehenden Bögen, **forward** die Richtung der ausgehenden Bögen.
+
+    Im Verlauf des Durchlaufs wird der Befehl *cmd* an jedem Knoten ausgewertet, und der Modus des Aufrufs (**enter** oder **leave**) sowie die Werte *graphName* und der Name des aktuellen Knotens werden angehängt. Bei einem Durchlauf in Vorordnung werden alle Knoten betreten (**enter**), bei einem Durchlauf in Nachordnung werden alle Knoten verlassen. Bei beiden Ordnungen wird der Knoten beim ersten Besuch betreten (**enter**) und beim zweiten Besuch verlassen (**leave**).
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: graph* als Kategorie an.
 
@@ -214,12 +235,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Datenstrukturen
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[graph]: graph.md

@@ -1,5 +1,6 @@
 ---
 CommandName: process
+title: process
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -21,53 +22,55 @@ Copyright:
  - Copyright (c) 2017 Frederic Bonnet.
 ---
 
-# NAME
+# Name
 
 tcl::process - Verwaltung von Unterprozessen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[::tcl::process]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[::tcl::process]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieser Befehl bietet eine Möglichkeit, Unterprozesse zu verwalten, die von den Befehlen **open** und **exec** erstellt wurden, identifiziert anhand der Prozess-IDs (PIDs) dieser Unterprozesse. Die zulässigen *options* (können abgekürzt werden) sind:
+Dieser Befehl bietet eine Möglichkeit, Unterprozesse zu verwalten, die von den Befehlen [open] und [exec] erstellt wurden, identifiziert anhand der Prozess-IDs (PIDs) dieser Unterprozesse. Die zulässigen *options* (können abgekürzt werden) sind:
 
-**::tcl::process autopurge** ?*flag*?
-: Automatische Bereinigungsfunktion. Wird *flag* als boolescher Wert angegeben, aktiviert oder deaktiviert er autopurge. In allen Fällen gibt er den aktuellen Status als booleschen Wert zurück. Ist autopurge aktiv, wird **Tcl_ReapDetachedProcs** bei jedem Aufruf von **exec** oder beim Schließen eines von **open** erzeugten Pipe-Kanals aufgerufen. Ist autopurge inaktiv, muss **::tcl::process** purge explizit aufgerufen werden. Standardmäßig ist autopurge aktiv.
+[::tcl::process]{.cmd} [autopurge]{.sub} [flag]{.optarg}
+: Automatische Bereinigungsfunktion. Wird *flag* als boolescher Wert angegeben, aktiviert oder deaktiviert er autopurge. In allen Fällen gibt er den aktuellen Status als booleschen Wert zurück. Ist autopurge aktiv, wird [Tcl\_ReapDetachedProcs][DetachPids] bei jedem Aufruf von [exec] oder beim Schließen eines von [open] erzeugten Pipe-Kanals aufgerufen. Ist autopurge inaktiv, muss **::tcl::process** purge explizit aufgerufen werden. Standardmäßig ist autopurge aktiv.
 
-**::tcl::process list**
+[::tcl::process]{.cmd} [list]{.sub}
 : Gibt die Liste der Unterprozess-PIDs zurück. Dazu gehören alle derzeit laufenden Unterprozesse sowie alle beendeten Unterprozesse, deren zugehörige Prozesstabelleneinträge noch nicht bereinigt wurden.
 
-**::tcl::process purge** ?*pids*?
+[::tcl::process]{.cmd} [purge]{.sub} [pids]{.optarg}
 : Bereinigt alle Daten zu beendeten Unterprozessen. Wird *pids* als Liste von PIDs angegeben, bereinigt der Befehl nur Daten der passenden Unterprozesse, sofern sie existieren. Ist ein gelisteter Prozess noch aktiv, tut der Befehl für diesen Prozess nichts. Jede PID, die keinem Unterprozess entspricht, wird ignoriert.
 
-**::tcl::process status** ?*switches*? ?*pids*?
+[::tcl::process]{.cmd} [status]{.sub} [switches]{.optarg} [pids]{.optarg}
 : Gibt ein Dictionary zurück, das Unterprozess-PIDs ihren jeweiligen Status zuordnet. Wird *pids* als Liste von PIDs angegeben, liefert der Befehl nur den Status der passenden Unterprozesse, sofern sie existieren. Jede PID, die keinem Unterprozess entspricht, wird ignoriert. Für aktive Prozesse ist der Status ein leerer Wert. Für beendete Prozesse ist der Status eine Liste im folgenden Format: „**{***code* ?*msg errorCode*?**}**“, wobei:
 
-*code*
-: ein standardmäßiger Tcl-Rückgabecode ist, d. h. **0** für TCL_OK und **1** für TCL_ERROR,
+    *code*
+    : ein standardmäßiger Tcl-Rückgabecode ist, d. h. **0** für [TCL\_OK][catch] und **1** für [TCL\_ERROR][catch],
 
-*msg*
-: die menschenlesbare Fehlermeldung ist,
+    *msg*
+    : die menschenlesbare Fehlermeldung ist,
 
-*errorCode*
-: verwendet dasselbe Format wie die globale Variable **errorCode**
+    *errorCode*
+    : verwendet dasselbe Format wie die globale Variable [errorCode][tclvars]
 
-    **msg** und **errorCode** sind nur bei abnormal beendeten Prozessen vorhanden (d. h. wenn *code* ungleich null ist). Intern ruft dieser Befehl **Tcl_WaitPid** mit gesetztem Flag **WNOHANG** für nicht-blockierendes Verhalten auf, sofern der Schalter **-wait** nicht gesetzt ist (siehe unten).
+
+    **msg** und [errorCode][tclvars] sind nur bei abnormal beendeten Prozessen vorhanden (d. h. wenn *code* ungleich null ist). Intern ruft dieser Befehl [Tcl\_WaitPid][DetachPids] mit gesetztem Flag **WNOHANG** für nicht-blockierendes Verhalten auf, sofern der Schalter **-wait** nicht gesetzt ist (siehe unten).
+
     Zusätzlich akzeptiert **::tcl::process status** folgende Schalter:
 
-**-wait**
-: Standardmäßig kehrt der Befehl sofort zurück (der zugrunde liegende **Tcl_WaitPid** wird mit gesetztem Flag **WNOHANG** aufgerufen), sofern dieser Schalter nicht gesetzt ist. Wird *pids* als Liste von PIDs angegeben, wartet der Befehl, bis der Status der passenden Unterprozesse verfügbar ist. Wurde *pids* nicht angegeben, wartet dieser Befehl auf alle bekannten Unterprozesse.
+    [-wait]{.lit}
+    : Standardmäßig kehrt der Befehl sofort zurück (der zugrunde liegende [Tcl\_WaitPid][DetachPids] wird mit gesetztem Flag **WNOHANG** aufgerufen), sofern dieser Schalter nicht gesetzt ist. Wird *pids* als Liste von PIDs angegeben, wartet der Befehl, bis der Status der passenden Unterprozesse verfügbar ist. Wurde *pids* nicht angegeben, wartet dieser Befehl auf alle bekannten Unterprozesse.
 
-**-\|-**
-: Markiert das Ende der Schalter. Das folgende Argument wird als erstes *arg* behandelt, auch wenn es mit **-** beginnt.
+    [--]{.lit}
+    : Markiert das Ende der Schalter. Das folgende Argument wird als erstes *arg* behandelt, auch wenn es mit **-** beginnt.
 
 
 
-# BEISPIELE
+# Beispiele
 
 Die folgenden Beispiele zeigen die Verwendung von **::tcl::process**. Einige Ergebnisse von **::tcl::process status** sind zur Lesbarkeit über mehrere Zeilen verteilt.
 
@@ -121,3 +124,9 @@ exec command1 1 2 3 &
      → 1213
 ```
 
+
+[catch]: catch.md
+[DetachPids]: ../tcl-c/DetachPids.md
+[exec]: exec.md
+[open]: open.md
+[tclvars]: tclvars.md

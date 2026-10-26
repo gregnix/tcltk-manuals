@@ -1,5 +1,6 @@
 ---
 CommandName: close
+title: close
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -11,17 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 close - Schließt einen offenen Kanal
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[close]{.cmd} [channel]{.arg} [r(ead)|w(rite)]{.optlit} 
+[close]{.cmd} [channel]{.arg} [r(ead)|w(rite)]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **close** wurde durch den Befehl **chan close** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Der Befehl **close** wurde durch den Befehl [chan close][chan] ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
 
+
+[chan]: chan.md

@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_NameOfImage
+title: Tk_NameOfImage
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -13,27 +14,26 @@ Copyright:
 
 # Name
 
-Tk_NameOfImage - Return name of image.
+Tk\_NameOfImage - Return name of image.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-const char \*
-[Tk_NameOfImage]{.cmd}([imageMaster]{.arg})
+**#include <tk.h>**
+[const char \*]{.ret} [Tk\_NameOfImage]{.ccmd} [imageMaster]{.cargs}
 :::
 
 # Arguments
 
-Tk_ImageMaster *imageMaster* (in)
+::: {.arguments} :::
+
+[imageMaster]{.carg .in type="Tk_ImageMaster"}
 : Token for image, which was passed to image manager's *createProc* when the image was created.
 
+:::
 
 # Description
 
 This procedure is invoked by image managers to find out the name of an image.  Given the token for the image, it returns the string name for the image.
 
-::: {.info -version="TIP 581"}
-*Tk_ImageModel* is synonym for *Tk_ImageMaster*
-:::
+[*Tk\_ImageModel* is synonym for *Tk\_ImageMaster*]{version="TIP 581"}

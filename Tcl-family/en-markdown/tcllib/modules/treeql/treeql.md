@@ -1,5 +1,6 @@
 ---
 CommandName: treeql
+title: treeql
 ManualSection: n
 Version: 1.3.2
 TclPart: tcllib
@@ -25,80 +26,92 @@ treeql - Query tree objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::list]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::set]{.lit} 
-[package]{.cmd} [require]{.sub} [treeql]{.lit} [1.3.2]{.optlit} 
-[treeql]{.cmd} [objectname]{.arg} [-tree]{.lit} [tree]{.arg} [-query query]{.optarg} [-nodes nodes]{.optarg} [args]{.optdot} 
-[qo]{.ins} [query]{.sub} [args...]{.arg} 
-[qo]{.ins} [result]{.sub} 
-[qo]{.ins} [discard]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [struct::list]{.lit}
+[package]{.cmd} [require]{.sub} [struct::set]{.lit}
+[package]{.cmd} [require]{.sub} [treeql]{.lit} [1.3.2]{.optlit}
+[treeql]{.cmd} [objectname]{.arg} [-tree]{.lit} [tree]{.arg} [[-query]{.lit} [query]{.arg}]{.optarg} [[-nodes]{.lit} [nodes]{.arg}]{.optarg} [args...]{.optarg}
+[qo]{.ins} [query]{.sub} [args...]{.arg}
+[qo]{.ins} [result]{.sub}
+[qo]{.ins} [discard]{.sub}
 :::
 
 # Description
 
 This package provides objects which can be used to query and transform tree objects following the API of tree objects created by the package **struct::tree**.
 
-The tree query and manipulation language used here, TreeQL, is inspired by Cost (See section **References** for more information).
+The tree query and manipulation language used here, TreeQL, is inspired by Cost (See section [References] for more information).
 
 **treeql**, the package, is a fairly thin query facility over tree-structured data types.  It implements an ordered set of nodes (really a list) which are generated and filtered through the application of TreeQL operators to each node in turn.
 
-# Api
+# API
 
-## Treeql class api
+## TreeQL class API
 
 The command **treeql** is a **snit**::type which implements the Treeql Query Language. This means that it follows the API for class commands as specified by the package **snit**. Its general syntax is
 
 **treeql** *objectname* **-tree** *tree* ?**-query** *query*? ?**-nodes** *nodes*? ?*args*...?
-: The command creates a new tree query object and returns the fully qualified name of the object command as its result. The API the returned command is following is described in the section **TreeQL OBJECT API** Each query object is associated with a single *tree* object. This is the object all queries will be run against. If the option **-nodes** was specified then its argument is treated as a list of nodes. This list is used to initialize the node set. It defaults to the empty list. If the option **-query** was specified then its argument will be interpreted as an object, the *parent query* of this query. It defaults to the object itself. All queries will be interpreted in the environment of this object. Any arguments coming after the options are treated as a query and run immediately, after the *node set* has been initialized. This uses the same syntax for the query as the method **query**. The operations of the TreeQL available for this are explained in the section about **The Tree Query Language**. This section also explains the term *node set* used above.
+: The command creates a new tree query object and returns the fully qualified name of the object command as its result. The API the returned command is following is described in the section [TreeQL object API]
+
+    Each query object is associated with a single *tree* object. This is the object all queries will be run against.
+
+    If the option **-nodes** was specified then its argument is treated as a list of nodes. This list is used to initialize the node set. It defaults to the empty list.
+
+    If the option **-query** was specified then its argument will be interpreted as an object, the *parent query* of this query. It defaults to the object itself. All queries will be interpreted in the environment of this object.
+
+    Any arguments coming after the options are treated as a query and run immediately, after the *node set* has been initialized. This uses the same syntax for the query as the method **query**.
+
+    The operations of the TreeQL available for this are explained in the section about [The tree query language]. This section also explains the term *node set* used above.
 
 
-## Treeql object api
+## TreeQL object API
 
 As **treeql** has been implemented in **snit** all the standard methods of **snit**-based classes are available to the user and therefore not listed here. Please read the documentation for **snit** for what they are and what functionality they provide
 
 The methods provided by the package **treeql** itself are listed and explained below.
 
 *qo* **query** *args*...
-: This method interprets its arguments as a series of TreeQL operators and interpretes them from the left to right (i.e. first to last). Note that the first operator uses the *node set* currently known to the object to perform its actions. In other words, the *node set* is *not* cleared, or modified in other ways, before the query is run. This allows the user to run several queries one after the other and have each use the results of the last. Any initialization has to be done by any query itself, using TreeQL operators. The result of the method is the *node set* after the last operator of the query has been executed. *Note* that uncaught errors will leave the *node set* of the object in an intermediate state, per the TreeQL operators which were executed successfully before the error occurred. The above means in detail that:
+: This method interprets its arguments as a series of TreeQL operators and interpretes them from the left to right (i.e. first to last). Note that the first operator uses the *node set* currently known to the object to perform its actions. In other words, the *node set* is *not* cleared, or modified in other ways, before the query is run. This allows the user to run several queries one after the other and have each use the results of the last. Any initialization has to be done by any query itself, using TreeQL operators. The result of the method is the *node set* after the last operator of the query has been executed.
+
+    *Note* that uncaught errors will leave the *node set* of the object in an intermediate state, per the TreeQL operators which were executed successfully before the error occurred.
+
+    The above means in detail that:
+
+    1. The first argument is interpreted as the name of a query operator, the number of arguments required by that operator is then determined, and taken from the immediately following arguments.
+
+        Because of this operators cannot have optional arguments, all arguments have to be present as defined.  Failure to do this will, at least, confuse the query interpreter, but more likely cause errors.
+
+    2. The operator is applied to the current node set, yielding a new node set, and/or manipulating the tree object the query object is connected to.
+
+    3. The arguments used (i.e. operator name and arguments) are removed from the list of method arguments, and then the whole process is repeated from step \[1\], until the list of arguments is empty or an error occurred.
 
 
-**\[1\]**
-: The first argument is interpreted as the name of a query operator, the number of arguments required by that operator is then determined, and taken from the immediately following arguments. Because of this operators cannot have optional arguments, all arguments have to be present as defined.  Failure to do this will, at least, confuse the query interpreter, but more likely cause errors.
+    ```
+        # q is the query object.
 
-**\[2\]**
-: The operator is applied to the current node set, yielding a new node set, and/or manipulating the tree object the query object is connected to.
+        q query root children get data
 
-**\[3\]**
-: The arguments used (i.e. operator name and arguments) are removed from the list of method arguments, and then the whole process is repeated from step \[1\], until the list of arguments is empty or an error occurred.
+        # The above query
+        # - Resets the node set to the root node - root
+        # - Adds the children of root to the set - children
+        # - Replaces the node set with the       - get data
+        #   values for the attribute 'data',
+        #   for all nodes in the set which
+        #   have such an attribute.
+        # - And returns this information.
 
+        # Below we can see the same query, but rewritten
+        # to show the structure as it is seen by the query
+        # interpreter.
 
-```
-    # q is the query object.
+        q query \
+    	    root \
+    	    children \
+    	    get data
+    ```
 
-    q query root children get data
-
-    # The above query
-    # - Resets the node set to the root node - root
-    # - Adds the children of root to the set - children
-    # - Replaces the node set with the       - get data
-    #   values for the attribute 'data',
-    #   for all nodes in the set which
-    #   have such an attribute.
-    # - And returns this information.
-
-    # Below we can see the same query, but rewritten
-    # to show the structure as it is seen by the query
-    # interpreter.
-
-    q query \
-	    root \
-	    children \
-	    get data
-```
-
-The operators of the TreeQL language available for this are explained in the section about **The Tree Query Language**. This section also explains the term *node set* used above.
+    The operators of the TreeQL language available for this are explained in the section about [The tree query language]. This section also explains the term *node set* used above.
 
 *qo* **result**
 : This method returns a list containing the current node set.
@@ -113,44 +126,35 @@ This and the following sections specify the Tree Query Language used by the quer
 
 First we explain the general concepts underneath the language which are required to comprehend it. This is followed by the specifications for all the available query operators. They fall into eight categories, and each category has its own section.
 
-**\[1\]**
-: **TreeQL Concepts**
+1. [TreeQL concepts]
 
-**\[2\]**
-: **Structural generators**
+2. [Structural generators]
 
-**\[3\]**
-: **Attribute Filters**
+3. [Attribute filters]
 
-**\[4\]**
-: **Attribute Mutators**
+4. [Attribute Mutators]
 
-**\[5\]**
-: **Attribute String Accessors**
+5. [Attribute string accessors]
 
-**\[6\]**
-: **Sub-queries**
+6. [Sub-queries]
 
-**\[7\]**
-: **Node Set Operators**
+7. [Node set operators]
 
-**\[8\]**
-: **Node Set Iterators**
+8. [Node set Iterators]
 
-**\[9\]**
-: **Typed node support**
+9. [Typed node support]
 
 
-## Treeql concepts
+## TreeQL concepts
 
 The main concept which has to be understood is that of the *node set*. Each query object maintains exactly one such *node set*, and essentially all operators use it and input argument and for their result. This structure simply contains the handles of all nodes which are currently of interest to the query object. To name it a *set* is a bit of a misnomer, because
 
-**\[1\]**
-: A node (handle) can occur in the structure more than once, and
+1. A node (handle) can occur in the structure more than once, and
 
-**\[2\]**
-: the order of nodes in the structure is important as well. Whenever an operator processes all nodes in the node set it will do so in the order they occur in the structure. Regarding the possible multiple occurrence of a node, consider a node set containing two nodes A and B, both having node P as their immediate parent. Application of the TreeQL operator "parent" will then add P to the new node set twice, once per node it was parent of. I.e. the new node set will then be {P P}.
+2. the order of nodes in the structure is important as well. Whenever an operator processes all nodes in the node set it will do so in the order they occur in the structure.
 
+
+Regarding the possible multiple occurrence of a node, consider a node set containing two nodes A and B, both having node P as their immediate parent. Application of the TreeQL operator "parent" will then add P to the new node set twice, once per node it was parent of. I.e. the new node set will then be {P P}.
 
 ## Structural generators
 
@@ -182,7 +186,9 @@ When describing an operator the variable **N** will be used to refer to any node
 : Replaces the current node set with all previous/left siblings of node **N**, for all nodes **N** in the node set, should **N** have siblings to the left. In other words, nodes without left siblings are ignored. The left sibling adjacent to the node is added first, and the leftmost sibling last (reverse tree order).
 
 **esib**
-: Replaces the current node set with all previous/left siblings of node **N**, for all nodes **N** in the node set, should **N** have siblings to the left. In other words, nodes without left siblings are ignored. The leftmost sibling is added first, and the left sibling adjacent to the node last (tree order). The method name is a shorthand for *Earlier SIBling*.
+: Replaces the current node set with all previous/left siblings of node **N**, for all nodes **N** in the node set, should **N** have siblings to the left. In other words, nodes without left siblings are ignored. The leftmost sibling is added first, and the left sibling adjacent to the node last (tree order).
+
+    The method name is a shorthand for *Earlier SIBling*.
 
 **next**
 : Replaces the current node set with all next/right siblings of node **N**, for all nodes **N** in the node set, should **N** have siblings to the right. In other words, nodes without right siblings do not contribute to the new node set. The right sibling adjacent to the node is added first, and the rightmost sibling last (tree order).
@@ -194,40 +200,47 @@ When describing an operator the variable **N** will be used to refer to any node
 : Replaces the current node set with a node set containing all nodes found in the tree. The nodes are added in pre-order (parent first, then children, the latter from left to right, first to last).
 
 **descendants**
-: Replaces the current node set with the nodes in all subtrees rooted at node **N**, for all nodes **N** in the node set, should **N** have children. In other words, nodes without children do not contribute to the new node set. This is like the operator **children**, but covers the children of children as well, i.e. all the *proper descendants*. "Rooted at **N**" means that **N** itself is not added to the new set, which is also implied by *proper descendants*.
+: Replaces the current node set with the nodes in all subtrees rooted at node **N**, for all nodes **N** in the node set, should **N** have children. In other words, nodes without children do not contribute to the new node set.
+
+    This is like the operator **children**, but covers the children of children as well, i.e. all the *proper descendants*. "Rooted at **N**" means that **N** itself is not added to the new set, which is also implied by *proper descendants*.
 
 **subtree**
-: Like operator **descendants**, but includes the node **N**. In other words: Replaces the current node set with the nodes of the subtree of node **N**, for all nodes **N** in the node set, should **N** have children. In other words, nodes without children do not contribute to the new node set. I.e this is like the operator **children**, but covers the children of children, etc. as well. "Of **N**" means that **N** itself is added to the new set.
+: Like operator **descendants**, but includes the node **N**. In other words:
+
+    Replaces the current node set with the nodes of the subtree of node **N**, for all nodes **N** in the node set, should **N** have children. In other words, nodes without children do not contribute to the new node set. I.e this is like the operator **children**, but covers the children of children, etc. as well. "Of **N**" means that **N** itself is added to the new set.
 
 **forward**
-: Replaces the current node set with the nodes in the subtrees rooted at the right siblings of node **N**, for all nodes **N** in the node set, should **N** have right siblings, and they children. In other words, nodes without right siblings, and them without children are ignored. This is equivalent to the operator sequence
+: Replaces the current node set with the nodes in the subtrees rooted at the right siblings of node **N**, for all nodes **N** in the node set, should **N** have right siblings, and they children. In other words, nodes without right siblings, and them without children are ignored.
 
+    This is equivalent to the operator sequence
 
-```
-next descendants
-```
+    ```
+    next descendants
+    ```
 
 **later**
 : This is an alias for the operator **forward**.
 
 **backward**
-: Replaces the current node set with the nodes in the flattened previous subtrees, in reverse tree order. This is nearly equivalent to the operator sequence
+: Replaces the current node set with the nodes in the flattened previous subtrees, in reverse tree order.
 
+    This is nearly equivalent to the operator sequence
 
-```
-prev descendants
-```
+    ```
+    prev descendants
+    ```
 
-: The only difference is that this uses the nodes in reverse order.
-
+    The only difference is that this uses the nodes in reverse order.
 
 **earlier**
-: Replaces the current node set with the nodes in the flattened previous subtrees, in tree order. This is equivalent to the operator sequence
+: Replaces the current node set with the nodes in the flattened previous subtrees, in tree order.
 
+    This is equivalent to the operator sequence
 
-```
-prev subtree
-```
+    ```
+    prev subtree
+    ```
+
 
 ## Attribute filters
 
@@ -246,10 +259,12 @@ These operators filter the node set by reference to attributes of nodes and thei
 : Reduces the node set to nodes which which have an attribute named *attr* and where the value of that attribute is contained in the list *vals* of legal values. The contained-in operator used here does glob matching (using the attribute value as pattern) and ignores the case of the attribute value, *but not* for the elements of *vals*.
 
 **attmatch** *attr* *match*
-: Same as **withatt**, but **string match** is used as the "==" operator, and *match* is the pattern checked for. *Note* that *match* is a interpreted as a partial argument *list* for **string match**. This means that it is interpreted as a list containing the pattern, and the pattern element can be preceded by options understand by **string match**, like **-nocase**. This is especially important should the pattern contain spaces. It has to be wrapped into a list for correct interpretation by this operator
+: Same as **withatt**, but **string match** is used as the "==" operator, and *match* is the pattern checked for.
+
+    *Note* that *match* is a interpreted as a partial argument *list* for **string match**. This means that it is interpreted as a list containing the pattern, and the pattern element can be preceded by options understand by **string match**, like **-nocase**. This is especially important should the pattern contain spaces. It has to be wrapped into a list for correct interpretation by this operator
 
 
-## Attribute mutators
+## Attribute Mutators
 
 These operators change node attributes within the underlying tree. In other words, all these operators have *side effects*.
 
@@ -269,7 +284,11 @@ In other words, they redefine the semantics of the node set stored by the query 
 The query interpreter will terminate after it has finished processing one of these operators, silently discarding any later query elements. It also means that our talk about maintenance of a node set is not quite true. It is a node set while the interpreter is processing commands, but can be left as an attribute value set at the end of query processing.
 
 **string** *op* *attr*
-: Applies the string operator *op* to the attribute named *attr*, for all nodes **N** in the node set, collects the results of that application and places them into the node set. The operator will fail if a node does not have an attribute named *attr*. The argument *op* is interpreted as partial argument list for the builtin command **string**.  Its first word has to be any of the sub-commands understood by **string**.  This has to be followed by all arguments required for the subcommand, except the last.  that last argument is supplied by the attribute value.
+: Applies the string operator *op* to the attribute named *attr*, for all nodes **N** in the node set, collects the results of that application and places them into the node set.
+
+    The operator will fail if a node does not have an attribute named *attr*.
+
+    The argument *op* is interpreted as partial argument list for the builtin command **string**.  Its first word has to be any of the sub-commands understood by **string**.  This has to be followed by all arguments required for the subcommand, except the last.  that last argument is supplied by the attribute value.
 
 **get** *pattern*
 : For all nodes **N** in the node set it determines all their attributes with names matching the glob *pattern*, then the values of these attributes, at last it replaces the node set with the list of these attribute values.
@@ -289,13 +308,19 @@ The query interpreter will terminate after it has finished processing one of the
 Sub-queries yield node sets which are then used to augment, reduce or replace the current node set.
 
 **andq** *query*
-: Replaces the node set with the set-intersection of the node set generated by the sub-query *query* and itself. The execution of the sub-query uses the current node set as its own initial node set.
+: Replaces the node set with the set-intersection of the node set generated by the sub-query *query* and itself.
+
+    The execution of the sub-query uses the current node set as its own initial node set.
 
 **orq** *query*
-: Replaces the node set with the set-union of the node set generated by the sub-query *query* and itself. Duplicate nodes are removed. The execution of the sub-query uses the current node set as its own initial node set.
+: Replaces the node set with the set-union of the node set generated by the sub-query *query* and itself. Duplicate nodes are removed.
+
+    The execution of the sub-query uses the current node set as its own initial node set.
 
 **notq** *query*
-: Replaces the node set with the set of nodes generated by the sub-query *query* which are also not in the current node set. In other word the set difference of itself and the node set generated by the sub-query. The execution of the sub-query uses the current node set as its own initial node set.
+: Replaces the node set with the set of nodes generated by the sub-query *query* which are also not in the current node set. In other word the set difference of itself and the node set generated by the sub-query.
+
+    The execution of the sub-query uses the current node set as its own initial node set.
 
 
 ## Node set operators
@@ -309,10 +334,14 @@ These operators change the node set directly, without referring to the tree.
 : Replaces the current node set with a node set containing only the first node from the current node set
 
 **transform** *query* *var* *body*
-: First it interprets the sub-query *query*, using the current node set as its initial node set. Then it iterates over the result of that query, binding the handle of each node to the variable named in *var*, and executing the script *body*. The collected results of these executions is made the new node set, replacing the current one. The script *body* is executed in the context of the caller.
+: First it interprets the sub-query *query*, using the current node set as its initial node set. Then it iterates over the result of that query, binding the handle of each node to the variable named in *var*, and executing the script *body*. The collected results of these executions is made the new node set, replacing the current one.
+
+    The script *body* is executed in the context of the caller.
 
 **map** *var* *body*
-: Iterates over the current node set, binding the handle of each node to the variable named in *var*, and executing the script *body*. The collected results of these executions is made the new node set, replacing the current one. The script *body* is executed in the context of the caller.
+: Iterates over the current node set, binding the handle of each node to the variable named in *var*, and executing the script *body*. The collected results of these executions is made the new node set, replacing the current one.
+
+    The script *body* is executed in the context of the caller.
 
 **quote** *val*
 : Appends the literal value *val* to the current node set.
@@ -321,16 +350,24 @@ These operators change the node set directly, without referring to the tree.
 : Replaces the current node set with the literal list value *val*.
 
 
-## Node set iterators
+## Node set Iterators
 
 **foreach** *query* *var* *body*
-: Interprets the sub-query *query*, then performs the equivalent of operator **over** on the nodes in the node set created by that query. The current node set is not changed, except through side effects from the script *body*. The script *body* is executed in the context of the caller.
+: Interprets the sub-query *query*, then performs the equivalent of operator **over** on the nodes in the node set created by that query. The current node set is not changed, except through side effects from the script *body*.
+
+    The script *body* is executed in the context of the caller.
 
 **with** *query* *body*
-: Interprets the *query*, then runs the script *body* on the node set generated by the query. At last it restores the current node set as it was before the execution of the query. The script *body* is executed in the context of the caller.
+: Interprets the *query*, then runs the script *body* on the node set generated by the query. At last it restores the current node set as it was before the execution of the query.
+
+    The script *body* is executed in the context of the caller.
 
 **over** *var* *body*
-: Executes the script *body* for each node in the node set, with the variable named by *var* bound to the name of the current node. The script *body* is executed in the context of the caller. This is like the builtin **foreach**, with the node set as the source of the list to iterate over. The results of executing the *body* are ignored.
+: Executes the script *body* for each node in the node set, with the variable named by *var* bound to the name of the current node. The script *body* is executed in the context of the caller.
+
+    This is like the builtin **foreach**, with the node set as the source of the list to iterate over.
+
+    The results of executing the *body* are ignored.
 
 **delete**
 : Deletes all the nodes contained in the current node set from the tree.
@@ -343,10 +380,9 @@ These filters and accessors assume the existence of an attribute called **@type*
 **nodetype**
 : Returns the node type of nodes. Attribute string accessor. This is equivalent to
 
-
-```
-get @type
-```
+    ```
+    get @type
+    ```
 
 **oftype** *t*
 : Reduces the node set to nodes whose type is equal to *t*, with letter case ignored.
@@ -364,11 +400,9 @@ get @type
 
 # References
 
-**\[1\]**
-: [COST](http://wiki.tcl.tk/COST) on the Tcler's Wiki.
+1. [COST](http://wiki.tcl.tk/COST) on the Tcler's Wiki.
 
-**\[2\]**
-: [TreeQL](http://wiki.tcl.tk/treeql) on the Tcler's Wiki. Discuss this package there.
+2. [TreeQL](http://wiki.tcl.tk/treeql) on the Tcler's Wiki. Discuss this package there.
 
 
 # Bugs, ideas, feedback

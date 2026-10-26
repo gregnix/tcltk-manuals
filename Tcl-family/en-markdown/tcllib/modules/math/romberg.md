@@ -1,5 +1,6 @@
 ---
 CommandName: math::calculus::romberg
+title: math::calculus::romberg
 ManualSection: n
 Version: 0.6
 TclPart: tcllib
@@ -18,16 +19,16 @@ math::calculus::romberg - Romberg integration
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [math::calculus]{.lit} [0.6]{.lit} 
-[::math::calculus::romberg]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_infinity]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_sqrtSingLower]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_sqrtSingUpper]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_powerLawLower]{.cmd} [gamma]{.arg} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_powerLawUpper]{.cmd} [gamma]{.arg} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_expLower]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
-[::math::calculus::romberg_expUpper]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [math::calculus]{.lit} [0.6]{.lit}
+[::math::calculus::romberg]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_infinity]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_sqrtSingLower]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_sqrtSingUpper]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_powerLawLower]{.cmd} [gamma]{.arg} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_powerLawUpper]{.cmd} [gamma]{.arg} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_expLower]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
+[::math::calculus::romberg\_expUpper]{.cmd} [f]{.arg} [a]{.arg} [b]{.arg} [-option value...]{.optarg}
 :::
 
 # Description
@@ -41,25 +42,25 @@ The following procedures are available for Romberg integration:
 **::math::calculus::romberg** *f* *a* *b* ?*-option value*...?
 : Integrates an analytic function over a given interval.
 
-**::math::calculus::romberg_infinity** *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_infinity** *f* *a* *b* ?*-option value*...?
 : Integrates an analytic function over a half-infinite interval.
 
-**::math::calculus::romberg_sqrtSingLower** *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_sqrtSingLower** *f* *a* *b* ?*-option value*...?
 : Integrates a function that is expected to be analytic over an interval except for the presence of an inverse square root singularity at the lower limit.
 
-**::math::calculus::romberg_sqrtSingUpper** *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_sqrtSingUpper** *f* *a* *b* ?*-option value*...?
 : Integrates a function that is expected to be analytic over an interval except for the presence of an inverse square root singularity at the upper limit.
 
-**::math::calculus::romberg_powerLawLower** *gamma* *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_powerLawLower** *gamma* *f* *a* *b* ?*-option value*...?
 : Integrates a function that is expected to be analytic over an interval except for the presence of a power law singularity at the lower limit.
 
-**::math::calculus::romberg_powerLawUpper** *gamma* *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_powerLawUpper** *gamma* *f* *a* *b* ?*-option value*...?
 : Integrates a function that is expected to be analytic over an interval except for the presence of a power law singularity at the upper limit.
 
-**::math::calculus::romberg_expLower** *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_expLower** *f* *a* *b* ?*-option value*...?
 : Integrates an exponentially growing function; the lower limit of the region of integration may be arbitrarily large and negative.
 
-**::math::calculus::romberg_expUpper** *f* *a* *b* ?*-option value*...?
+**::math::calculus::romberg\_expUpper** *f* *a* *b* ?*-option value*...?
 : Integrates an exponentially decaying function; the upper limit of the region of integration may be arbitrarily large.
 
 
@@ -72,25 +73,25 @@ The following procedures are available for Romberg integration:
 : Lower limit of the region of integration.
 
 *b*
-: Upper limit of the region of integration.  For the **romberg_sqrtSingLower**, **romberg_sqrtSingUpper**, **romberg_powerLawLower**, **romberg_powerLawUpper**, **romberg_expLower**, and **romberg_expUpper** procedures, the lower limit must be strictly less than the upper.  For the other procedures, the limits may appear in either order.
+: Upper limit of the region of integration.  For the **romberg\_sqrtSingLower**, **romberg\_sqrtSingUpper**, **romberg\_powerLawLower**, **romberg\_powerLawUpper**, **romberg\_expLower**, and **romberg\_expUpper** procedures, the lower limit must be strictly less than the upper.  For the other procedures, the limits may appear in either order.
 
 *gamma*
-: Power to use for a power law singularity; see section **IMPROPER INTEGRALS** for details.
+: Power to use for a power law singularity; see section [Improper integrals] for details.
 
 
 # Options
 
 **-abserror** *epsilon*
-: Requests that the integration machinery proceed at most until the estimated absolute error of the integral is less than *epsilon*. The error may be seriously over- or underestimated if the function (or any of its derivatives) contains singularities; see section **IMPROPER INTEGRALS** for details. Default is 1.0e-08.
+: Requests that the integration machinery proceed at most until the estimated absolute error of the integral is less than *epsilon*. The error may be seriously over- or underestimated if the function (or any of its derivatives) contains singularities; see section [Improper integrals] for details. Default is 1.0e-08.
 
 **-relerror** *epsilon*
-: Requests that the integration machinery proceed at most until the estimated relative error of the integral is less than *epsilon*. The error may be seriously over- or underestimated if the function (or any of its derivatives) contains singularities; see section **IMPROPER INTEGRALS** for details.  Default is 1.0e-06.
+: Requests that the integration machinery proceed at most until the estimated relative error of the integral is less than *epsilon*. The error may be seriously over- or underestimated if the function (or any of its derivatives) contains singularities; see section [Improper integrals] for details.  Default is 1.0e-06.
 
 **-maxiter** *m*
 : Requests that integration terminate after at most *n* triplings of the number of evaluations performed.  In other words, given *n* for **-maxiter**, the integration machinery will make at most 3\*\**n* evaluations of the function.  Default is 14, corresponding to a limit approximately 4.8 million evaluations. (Well-behaved functions will seldom require more than a few hundred evaluations.)
 
 **-degree** *d*
-: Requests that an extrapolating polynomial of degree *d* be used in Romberg integration; see section **DESCRIPTION** for details. Default is 4.  Can be at most *m*-1.
+: Requests that an extrapolating polynomial of degree *d* be used in Romberg integration; see section [Description] for details. Default is 4.  Can be at most *m*-1.
 
 
 # Description
@@ -107,25 +108,28 @@ Note that **romberg** will either fail to converge or else return incorrect erro
 
 Romberg integration is also useful for integrating functions over half-infinite intervals or functions that have singularities. The trick is to make a change of variable to eliminate the singularity, and to put the singularity at one end or the other of the region of integration.  The **math::calculus** package supplies a number of **romberg** procedures to deal with the commoner cases.
 
-**romberg_infinity**
-: Integrates a function over a half-infinite interval; either *a* or *b* may be infinite.  *a* and *b* must be of the same sign; if you need to integrate across the axis, say, from a negative value to positive infinity, use **romberg** to integrate from the negative value to a small positive value, and then **romberg_infinity** to integrate from the positive value to positive infinity.  The **romberg_infinity** procedure works by making the change of variable u=1/x, so that the integral from a to b of f(x) is evaluated as the integral from 1/a to 1/b of f(1/u)/u\*\*2.
+**romberg\_infinity**
+: Integrates a function over a half-infinite interval; either *a* or *b* may be infinite.  *a* and *b* must be of the same sign; if you need to integrate across the axis, say, from a negative value to positive infinity, use **romberg** to integrate from the negative value to a small positive value, and then **romberg\_infinity** to integrate from the positive value to positive infinity.  The **romberg\_infinity** procedure works by making the change of variable u=1/x, so that the integral from a to b of f(x) is evaluated as the integral from 1/a to 1/b of f(1/u)/u\*\*2.
 
-**romberg_powerLawLower** and **romberg_powerLawUpper**
-: Integrate a function that has an integrable power law singularity at either the lower or upper bound of the region of integration (or has a derivative with a power law singularity there). These procedures take a first parameter, *gamma*, which gives the power law.  The function or its first derivative are presumed to diverge as (x-*a*)\*\*(-*gamma*) or (*b*-x)\*\*(-*gamma*).  *gamma* must be greater than zero and less than 1. These procedures are useful not only in integrating functions that go to infinity at one end of the region of integration, but also functions whose derivatives do not exist at the end of the region.  For instance, integrating f(x)=pow(x,0.25) with the origin as one end of the region will result in the **romberg** procedure greatly underestimating the error in the integral. The problem can be fixed by observing that the first derivative of f(x), f'(x)=x\*\*(-3/4)/4, goes to infinity at the origin.  Integrating using **romberg_powerLawLower** with *gamma* set to 0.75 gives much more orderly convergence. These procedures operate by making the change of variable u=(x-a)\*\*(1-gamma) (**romberg_powerLawLower**) or u=(b-x)\*\*(1-gamma) (**romberg_powerLawUpper**). To summarize the meaning of gamma:
+**romberg\_powerLawLower** and **romberg\_powerLawUpper**
+: Integrate a function that has an integrable power law singularity at either the lower or upper bound of the region of integration (or has a derivative with a power law singularity there). These procedures take a first parameter, *gamma*, which gives the power law.  The function or its first derivative are presumed to diverge as (x-*a*)\*\*(-*gamma*) or (*b*-x)\*\*(-*gamma*).  *gamma* must be greater than zero and less than 1.
+
+    These procedures are useful not only in integrating functions that go to infinity at one end of the region of integration, but also functions whose derivatives do not exist at the end of the region.  For instance, integrating f(x)=pow(x,0.25) with the origin as one end of the region will result in the **romberg** procedure greatly underestimating the error in the integral. The problem can be fixed by observing that the first derivative of f(x), f'(x)=x\*\*(-3/4)/4, goes to infinity at the origin.  Integrating using **romberg\_powerLawLower** with *gamma* set to 0.75 gives much more orderly convergence.
+
+    These procedures operate by making the change of variable u=(x-a)\*\*(1-gamma) (**romberg\_powerLawLower**) or u=(b-x)\*\*(1-gamma) (**romberg\_powerLawUpper**).
+
+    To summarize the meaning of gamma:
+
+    - If f(x) ~ x\*\*(-a) (0 < a < 1), use gamma = a
+
+    - If f'(x) ~ x\*\*(-b) (0 < b < 1), use gamma = b
 
 
-**•**
-: If f(x) ~ x\*\*(-a) (0 < a < 1), use gamma = a
+**romberg\_sqrtSingLower** and **romberg\_sqrtSingUpper**
+: These procedures behave identically to **romberg\_powerLawLower** and **romberg\_powerLawUpper** for the common case of *gamma*=0.5; that is, they integrate a function with an inverse square root singularity at one end of the interval.  They have a simpler implementation involving square roots rather than arbitrary powers.
 
-**•**
-: If f'(x) ~ x\*\*(-b) (0 < b < 1), use gamma = b
-
-
-**romberg_sqrtSingLower** and **romberg_sqrtSingUpper**
-: These procedures behave identically to **romberg_powerLawLower** and **romberg_powerLawUpper** for the common case of *gamma*=0.5; that is, they integrate a function with an inverse square root singularity at one end of the interval.  They have a simpler implementation involving square roots rather than arbitrary powers.
-
-**romberg_expLower** and **romberg_expUpper**
-: These procedures are for integrating a function that grows or decreases exponentially over a half-infinite interval. **romberg_expLower** handles exponentially growing functions, and allows the lower limit of integration to be an arbitrarily large negative number.  **romberg_expUpper** handles exponentially decaying functions and allows the upper limit of integration to be an arbitrary large positive number.  The functions make the change of variable u=exp(-x) and u=exp(x) respectively.
+**romberg\_expLower** and **romberg\_expUpper**
+: These procedures are for integrating a function that grows or decreases exponentially over a half-infinite interval. **romberg\_expLower** handles exponentially growing functions, and allows the lower limit of integration to be an arbitrarily large negative number.  **romberg\_expUpper** handles exponentially decaying functions and allows the upper limit of integration to be an arbitrary large positive number.  The functions make the change of variable u=exp(-x) and u=exp(x) respectively.
 
 
 # Other changes of variable
@@ -154,7 +158,7 @@ proc romberg_sine { f a b args } {
 }
 ```
 
-This **romberg_sine** procedure will do any function with sqrt(1-x\*x) in the denominator. Our sample function is f(x)=exp(x)/sqrt(1-x\*x):
+This **romberg\_sine** procedure will do any function with sqrt(1-x\*x) in the denominator. Our sample function is f(x)=exp(x)/sqrt(1-x\*x):
 
 ```
 proc f { x } {
@@ -162,7 +166,7 @@ proc f { x } {
 }
 ```
 
-Integrating it is a matter of applying **romberg_sine** as we would any of the other **romberg** procedures:
+Integrating it is a matter of applying **romberg\_sine** as we would any of the other **romberg** procedures:
 
 ```
 foreach { value error } [romberg_sine f -1.0 1.0] break

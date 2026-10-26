@@ -1,5 +1,6 @@
 ---
 CommandName: httpd
+title: httpd
 ManualSection: n
 Version: 4.3.6
 TclPart: tcllib
@@ -22,38 +23,38 @@ httpd - A TclOO and coroutine based web server
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuid]{.lit} 
-[package]{.cmd} [require]{.sub} [clay]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil::magic::filetype]{.lit} 
-[package]{.cmd} [require]{.sub} [websocket]{.lit} 
-[package]{.cmd} [require]{.sub} [mime]{.lit} 
-[package]{.cmd} [require]{.sub} [cron]{.lit} 
-[package]{.cmd} [require]{.sub} [uri]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuid]{.lit}
+[package]{.cmd} [require]{.sub} [clay]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil::magic::filetype]{.lit}
+[package]{.cmd} [require]{.sub} [websocket]{.lit}
+[package]{.cmd} [require]{.sub} [mime]{.lit}
+[package]{.cmd} [require]{.sub} [cron]{.lit}
+[package]{.cmd} [require]{.sub} [uri]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit}
 :::
 
 method **ChannelCopy** *in* *out* ?*args*?
 
-method **html_header** ?*title* ? ?*args*?
+method **html\_header** ?*title* ? ?*args*?
 
-method **html_footer** ?*args*?
+method **html\_footer** ?*args*?
 
-method **http_code_string** *code*
+method **http\_code\_string** *code*
 
 method **HttpHeaders** *sock* ?*debug* ?
 
-method **HttpHeaders_Default**
+method **HttpHeaders\_Default**
 
 method **HttpServerHeaders**
 
 method **MimeParse** *mimetext*
 
-method **Url_Decode** *data*
+method **Url\_Decode** *data*
 
-method **Url_PathCheck** *urlsuffix*
+method **Url\_PathCheck** *urlsuffix*
 
 method **wait** *mode* *sock*
 
@@ -63,7 +64,7 @@ variable **reply**
 
 variable **request**
 
-delegate **\<server>**
+delegate **<server>**
 
 method **constructor** *ServerObj* ?*args*?
 
@@ -73,15 +74,15 @@ method **ChannelRegister** ?*args*?
 
 method **close**
 
-method **Log_Dispatched**
+method **Log\_Dispatched**
 
 method **dispatch** *newsock* *datastate*
 
 method **Dispatch**
 
-method **html_header** *title* ?*args*?
+method **html\_header** *title* ?*args*?
 
-method **html_footer** ?*args*?
+method **html\_footer** ?*args*?
 
 method **error** *code* ?*msg* ? ?*errorInfo* ?
 
@@ -99,7 +100,7 @@ method **FormData**
 
 method **PostData** *length*
 
-method **Session_Load**
+method **Session\_Load**
 
 method **puts** *line*
 
@@ -117,15 +118,15 @@ method **timestamp**
 
 variable **template**
 
-variable **url_patterns**
+variable **url\_patterns**
 
-method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc_root* ? ?*reverse_dns* **0**? ?*configuration_file* ? ?*protocol* **HTTP/1.1**?
+method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc\_root* ? ?*reverse\_dns* **0**? ?*configuration\_file* ? ?*protocol* **HTTP/1.1**?
 
 method **destructor** ?*dictargs*?
 
 method **connect** *sock* *ip* *port*
 
-method **ServerHeaders** *ip* *http_request* *mimetxt*
+method **ServerHeaders** *ip* *http\_request* *mimetxt*
 
 method **Connect** *uuid* *sock* *ip*
 
@@ -137,13 +138,13 @@ method **debug** ?*args*?
 
 method **dispatch** *data*
 
-method **Dispatch_Default** *reply*
+method **Dispatch\_Default** *reply*
 
-method **Dispatch_Local** *data*
+method **Dispatch\_Local** *data*
 
-method **Headers_Local** *varname*
+method **Headers\_Local** *varname*
 
-method **Headers_Process** *varname*
+method **Headers\_Process** *varname*
 
 method **HostName** *ipaddr*
 
@@ -151,7 +152,7 @@ method **log** ?*args*?
 
 method **plugin** *slot* ?*class* ?
 
-method **port_listening**
+method **port\_listening**
 
 method **PrefixNormalize** *prefix*
 
@@ -169,11 +170,11 @@ method **template** *page*
 
 method **TemplateSearch** *page*
 
-method **Thread_start**
+method **Thread\_start**
 
-method **Uuid_Generate**
+method **Uuid\_Generate**
 
-method **Validate_Connection** *sock* *ip*
+method **Validate\_Connection** *sock* *ip*
 
 method **reset**
 
@@ -185,7 +186,7 @@ method **content**
 
 method **FileName**
 
-method **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 
 method **content**
 
@@ -195,11 +196,11 @@ variable **exename**
 
 method **CgiExec** *execname* *script* *arglist*
 
-method **Cgi_Executable** *script*
+method **Cgi\_Executable** *script*
 
-method **proxy_channel**
+method **proxy\_channel**
 
-method **proxy_path**
+method **proxy\_path**
 
 method **ProxyRequest** *chana* *chanb*
 
@@ -209,19 +210,19 @@ method **Dispatch**
 
 method **FileName**
 
-method **proxy_channel**
+method **proxy\_channel**
 
 method **ProxyRequest** *chana* *chanb*
 
 method **ProxyReply** *chana* *chanb* ?*args*?
 
-method **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 
 method **EncodeStatus** *status*
 
-method **scgi_info**
+method **scgi\_info**
 
-method **proxy_channel**
+method **proxy\_channel**
 
 method **ProxyRequest** *chana* *chanb*
 
@@ -231,7 +232,7 @@ method **debug** ?*args*?
 
 method **Connect** *uuid* *sock* *ip*
 
-method **Dispatch_Dict** *data*
+method **Dispatch\_Dict** *data*
 
 method **uri {} add** *vhosts* *patterns* *info*
 
@@ -243,9 +244,9 @@ method **DoOutput**
 
 method **close**
 
-method **local_memchan** *command* ?*args*?
+method **local\_memchan** *command* ?*args*?
 
-method **Connect_Local** *uuid* *sock* ?*args*?
+method **Connect\_Local** *uuid* *sock* ?*args*?
 
 # Description
 
@@ -298,37 +299,35 @@ A metaclass for MIME handling behavior across a live socket
 **Methods**
 
 method **ChannelCopy** *in* *out* ?*args*?
-: ...see next...
+: see below ...
 
-method **html_header** ?*title* ? ?*args*?
+method **html\_header** ?*title* ? ?*args*?
 : Returns a block of HTML
 
-method **html_footer** ?*args*?
-: ...see next...
+method **html\_footer** ?*args*?
+: see below ...
 
-method **http_code_string** *code*
-: ...see next...
+method **http\_code\_string** *code*
+: see below ...
 
 method **HttpHeaders** *sock* ?*debug* ?
-: ...see next...
+: see below ...
 
-method **HttpHeaders_Default**
-: ...see next...
+method **HttpHeaders\_Default**
+: see below ...
 
 method **HttpServerHeaders**
-: ...see next...
+: see below ...
 
 method **MimeParse** *mimetext*
 : Converts a block of mime encoded text to a key/value list. If an exception is encountered, the method will generate its own call to the **error** method, and immediately invoke the **output** method to produce an error code and close the connection.
 
-method **Url_Decode** *data*
+method **Url\_Decode** *data*
 : De-httpizes a string.
 
-method **Url_PathCheck** *urlsuffix*
-: ...see next...
 
-method **wait** *mode* *sock*
-: 
+- method **Url\_PathCheck** *urlsuffix*
+- method **wait** *mode* *sock*
 
 
 ## Class  httpd::reply
@@ -337,24 +336,20 @@ method **wait** *mode* *sock*
 
 A class which shephards a request through the process of generating a reply. The socket associated with the reply is available at all times as the *chan* variable. The process of generating a reply begins with an **httpd::server** generating a **http::class** object, mixing in a set of behaviors and then invoking the reply object's **dispatch** method. In normal operations the **dispatch** method:
 
-**\[1\]**
-: Invokes the **reset** method for the object to populate default headers.
+1. Invokes the **reset** method for the object to populate default headers.
 
-**\[2\]**
-: Invokes the **HttpHeaders** method to stream the MIME headers out of the socket
+2. Invokes the **HttpHeaders** method to stream the MIME headers out of the socket
 
-**\[3\]**
-: Invokes the **request parse** method to convert the stream of MIME headers into a dict that can be read via the **request** method.
+3. Invokes the **request parse** method to convert the stream of MIME headers into a dict that can be read via the **request** method.
 
-**\[4\]**
-: Stores the raw stream of MIME headers in the *rawrequest* variable of the object.
+4. Stores the raw stream of MIME headers in the *rawrequest* variable of the object.
 
-**\[5\]**
-: Invokes the **content** method for the object, generating an call to the **error** method if an exception is raised.
+5. Invokes the **content** method for the object, generating an call to the **error** method if an exception is raised.
 
-**\[6\]**
-: Invokes the **output** method for the object Developers have the option of streaming output to a buffer via the **puts** method of the reply, or simply populating the *reply_body* variable of the object. The information returned by the **content** method is not interpreted in any way. If an exception is thrown (via the **error** command in Tcl, for example) the caller will auto-generate a 500 {Internal Error} message. A typical implementation of **content** look like:
+6. Invokes the **output** method for the object
 
+
+Developers have the option of streaming output to a buffer via the **puts** method of the reply, or simply populating the *reply\_body* variable of the object. The information returned by the **content** method is not interpreted in any way. If an exception is thrown (via the **error** command in Tcl, for example) the caller will auto-generate a 500 {Internal Error} message. A typical implementation of **content** look like:
 
 ```
  clay::define ::test::content.file {
@@ -416,19 +411,25 @@ A class which shephards a request through the process of generating a reply. The
 **Variable**
 
 variable **ChannelRegister**
-: ...see next...
+: see below ...
 
 variable **reply**
 : A dictionary which will converted into the MIME headers of the reply
 
 variable **request**
-: A dictionary containing the SCGI transformed HTTP headers for the request **Delegate**
+: A dictionary containing the SCGI transformed HTTP headers for the request
 
-delegate **\<server>**
-: The server object which spawned this reply **Methods**
+
+**Delegate**
+
+delegate **<server>**
+: The server object which spawned this reply
+
+
+**Methods**
 
 method **constructor** *ServerObj* ?*args*?
-: ...see next...
+: see below ...
 
 method **destructor** ?*dictargs*?
 : clean up on exit
@@ -439,62 +440,68 @@ method **ChannelRegister** ?*args*?
 method **close**
 : Close channels opened by this object
 
-method **Log_Dispatched**
+method **Log\_Dispatched**
 : Record a dispatch event
 
 method **dispatch** *newsock* *datastate*
-: Accept the handoff from the server object of the socket *newsock* and feed it the state *datastate*. Fields the *datastate* are looking for in particular are: \* **mixin** - A key/value list of slots and classes to be mixed into the object prior to invoking **Dispatch**. \* **http** - A key/value list of values to populate the object's *request* ensemble All other fields are passed along to the **clay** structure of the object.
+: Accept the handoff from the server object of the socket *newsock* and feed it the state *datastate*. Fields the *datastate* are looking for in particular are:
+
+    \* **mixin** - A key/value list of slots and classes to be mixed into the object prior to invoking **Dispatch**.
+
+    \* **http** - A key/value list of values to populate the object's *request* ensemble
+
+    All other fields are passed along to the **clay** structure of the object.
 
 method **Dispatch**
-: ...see next...
+: see below ...
 
-method **html_header** *title* ?*args*?
-: ...see next...
+method **html\_header** *title* ?*args*?
+: see below ...
 
-method **html_footer** ?*args*?
-: ...see next...
+method **html\_footer** ?*args*?
+: see below ...
 
 method **error** *code* ?*msg* ? ?*errorInfo* ?
-: ...see next...
+: see below ...
 
 method **content**
-: REPLACE ME: This method is the "meat" of your application. It writes to the result buffer via the "puts" method and can tweak the headers via "clay put header_reply"
+: REPLACE ME: This method is the "meat" of your application. It writes to the result buffer via the "puts" method and can tweak the headers via "clay put header\_reply"
 
 method **EncodeStatus** *status*
 : Formulate a standard HTTP status header from he string provided.
 
 method **log** *type* ?*info* ?
-: ...see next...
+: see below ...
 
 method **CoroName**
-: ...see next...
+: see below ...
 
 method **DoOutput**
 : Generates the the HTTP reply, streams that reply back across *chan*, and destroys the object.
 
 method **FormData**
-: For GET requests, converts the QUERY_DATA header into a key/value list. For POST requests, reads the Post data and converts that information to a key/value list for application/x-www-form-urlencoded posts. For multipart posts, it composites all of the MIME headers of the post to a singular key/value list, and provides MIME\_\* information as computed by the **mime** package, including the MIME_TOKEN, which can be fed back into the mime package to read out the contents.
+: For GET requests, converts the QUERY\_DATA header into a key/value list. For POST requests, reads the Post data and converts that information to a key/value list for application/x-www-form-urlencoded posts. For multipart posts, it composites all of the MIME headers of the post to a singular key/value list, and provides MIME\_\* information as computed by the **mime** package, including the MIME\_TOKEN, which can be fed back into the mime package to read out the contents.
 
 method **PostData** *length*
 : Stream *length* bytes from the *chan* socket, but only of the request is a POST or PUSH. Returns an empty string otherwise.
 
-method **Session_Load**
+method **Session\_Load**
 : Manage session data
 
 method **puts** *line*
-: Appends the value of *string* to the end of *reply_body*, as well as a trailing newline character.
+: Appends the value of *string* to the end of *reply\_body*, as well as a trailing newline character.
 
 method **RequestFind** *field*
-: ...see next...
+: see below ...
 
 method **request** *subcommand* ?*args*?
-: ...see next...
+: see below ...
 
 method **reply** *subcommand* ?*args*?
-: ...see next...
+: see below ...
 
 method **reset**
-: Clear the contents of the *reply_body* variable, and reset all headers in the **reply** structure back to the defaults for this object.
+: Clear the contents of the *reply\_body* variable, and reset all headers in the **reply** structure back to the defaults for this object.
 
 method **timeOutCheck**
 : Called from the **http::server** object which spawned this reply. Checks to see if too much time has elapsed while waiting for data or generating a reply, and issues a timeout error to the request if it has, as well as destroy the object and close the *chan* socket.
@@ -502,10 +509,10 @@ method **timeOutCheck**
 method **timestamp**
 : Return the current system time in the format:
 
+    ```
+    %a, %d %b %Y %T %Z
+    ```
 
-```
-%a, %d %b %Y %T %Z
-```
 
 ## Class  httpd::server
 
@@ -513,23 +520,23 @@ method **timestamp**
 
 **Variable**
 
-variable **template**
-: ...see next...
+- variable **template**
+- variable **url\_patterns**
 
-variable **url_patterns**
-: **Methods**
 
-method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc_root* ? ?*reverse_dns* **0**? ?*configuration_file* ? ?*protocol* **HTTP/1.1**?
-: ...see next...
+**Methods**
+
+method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc\_root* ? ?*reverse\_dns* **0**? ?*configuration\_file* ? ?*protocol* **HTTP/1.1**?
+: see below ...
 
 method **destructor** ?*dictargs*?
-: ...see next...
+: see below ...
 
 method **connect** *sock* *ip* *port*
 : Reply to an open socket. This method builds a coroutine to manage the remainder of the connection. The coroutine's operations are driven by the **Connect** method.
 
-method **ServerHeaders** *ip* *http_request* *mimetxt*
-: ...see next...
+method **ServerHeaders** *ip* *http\_request* *mimetxt*
+: see below ...
 
 method **Connect** *uuid* *sock* *ip*
 : This method reads HTTP headers, and then consults the **dispatch** method to determine if the request is valid, and/or what kind of reply to generate. Under normal cases, an object of class **::http::reply** is created, and that class's **dispatch** method. This action passes control of the socket to the reply object. The reply object manages the rest of the transaction, including closing the socket.
@@ -541,40 +548,48 @@ method **CheckTimeout**
 : Check open connections for a time out event.
 
 method **debug** ?*args*?
-: ...see next...
+: see below ...
 
 method **dispatch** *data*
 : Given a key/value list of information, return a data structure describing how the server should reply.
 
-method **Dispatch_Default** *reply*
-: Method dispatch method of last resort before returning a 404 NOT FOUND error. The default behavior is to look for a file in *DOCUMENT_ROOT* which matches the query.
+method **Dispatch\_Default** *reply*
+: Method dispatch method of last resort before returning a 404 NOT FOUND error. The default behavior is to look for a file in *DOCUMENT\_ROOT* which matches the query.
 
-method **Dispatch_Local** *data*
+method **Dispatch\_Local** *data*
 : Method dispatch method invoked prior to invoking methods implemented by plugins. If this method returns a non-empty dictionary, that structure will be passed to the reply. The default is an empty implementation.
 
-method **Headers_Local** *varname*
+method **Headers\_Local** *varname*
 : Introspect and possibly modify a data structure destined for a reply. This method is invoked before invoking Header methods implemented by plugins. The default implementation is empty.
 
-method **Headers_Process** *varname*
+method **Headers\_Process** *varname*
 : Introspect and possibly modify a data structure destined for a reply. This method is built dynamically by the **plugin** method.
 
 method **HostName** *ipaddr*
-: Convert an ip address to a host name. If the server/ reverse_dns flag is false, this method simply returns the IP address back. Internally, this method uses the *dns* module from tcllib.
+: Convert an ip address to a host name. If the server/ reverse\_dns flag is false, this method simply returns the IP address back. Internally, this method uses the *dns* module from tcllib.
 
 method **log** ?*args*?
 : Log an event. The input for args is free form. This method is intended to be replaced by the user, and is a noop for a stock http::server object.
 
 method **plugin** *slot* ?*class* ?
-: Incorporate behaviors from a plugin. This method dynamically rebuilds the **Dispatch** and **Headers** method. For every plugin, the server looks for the following entries in *clay plugin/*: *load* - A script to invoke in the server's namespace during the **plugin** method invokation. *dispatch* - A script to stitch into the server's **Dispatch** method. *headers* - A script to stitch into the server's **Headers** method. *thread* - A script to stitch into the server's **Thread_start** method.
+: Incorporate behaviors from a plugin. This method dynamically rebuilds the **Dispatch** and **Headers** method. For every plugin, the server looks for the following entries in *clay plugin/*:
 
-method **port_listening**
+    *load* - A script to invoke in the server's namespace during the **plugin** method invokation.
+
+    *dispatch* - A script to stitch into the server's **Dispatch** method.
+
+    *headers* - A script to stitch into the server's **Headers** method.
+
+    *thread* - A script to stitch into the server's **Thread\_start** method.
+
+method **port\_listening**
 : Return the actual port that httpd is listening on.
 
 method **PrefixNormalize** *prefix*
 : For the stock version, trim trailing /'s and \*'s from a prefix. This method can be replaced by the end user to perform any other transformations needed for the application.
 
 method **source** *filename*
-: ...see next...
+: see below ...
 
 method **start**
 : Open the socket listener.
@@ -583,29 +598,28 @@ method **stop**
 : Shut off the socket listener, and destroy any pending replies.
 
 method **SubObject {} db**
-: ...see next...
+: see below ...
 
 method **SubObject {} default**
-: ...see next...
+: see below ...
 
 method **template** *page*
 : Return a template for the string *page*
 
 method **TemplateSearch** *page*
-: Perform a search for the template that best matches *page*. This can include local file searches, in-memory structures, or even database lookups. The stock implementation simply looks for files with a .tml or .html extension in the ?doc_root? directory.
+: Perform a search for the template that best matches *page*. This can include local file searches, in-memory structures, or even database lookups. The stock implementation simply looks for files with a .tml or .html extension in the ?doc\_root? directory.
 
-method **Thread_start**
+method **Thread\_start**
 : Built by the **plugin** method. Called by the **start** method. Intended to allow plugins to spawn worker threads.
 
-method **Uuid_Generate**
+method **Uuid\_Generate**
 : Generate a GUUID. Used to ensure every request has a unique ID. The default implementation is:
 
+    ```
+       return [::clay::uuid generate]
+    ```
 
-```
-   return [::clay::uuid generate]
-```
-
-method **Validate_Connection** *sock* *ip*
+method **Validate\_Connection** *sock* *ip*
 : Given a socket and an ip address, return true if this connection should be terminated, or false if it should be allowed to continue. The stock implementation always returns 0. This is intended for applications to be able to implement black lists and/or provide security based on IP address.
 
 
@@ -619,27 +633,22 @@ Provide a backward compadible alias
 
 **Methods**
 
-method **reset**
-: ...see next...
-
-method **content**
-: 
+- method **reset**
+- method **content**
 
 
 ## Class  httpd::content.cache
 
 **Methods**
 
-method **Dispatch**
-: 
+- method **Dispatch**
 
 
 ## Class  httpd::content.template
 
 **Methods**
 
-method **content**
-: 
+- method **content**
 
 
 ## Class  httpd::content.file
@@ -648,31 +657,23 @@ Class to deliver Static content When utilized, this class is fed a local filenam
 
 **Methods**
 
-method **FileName**
-: ...see next...
-
-method **DirectoryListing** *local_file*
-: ...see next...
-
-method **content**
-: ...see next...
-
-method **Dispatch**
-: 
+- method **FileName**
+- method **DirectoryListing** *local\_file*
+- method **content**
+- method **Dispatch**
 
 
 ## Class  httpd::content.exec
 
 **Variable**
 
-variable **exename**
-: **Methods**
+- variable **exename**
 
-method **CgiExec** *execname* *script* *arglist*
-: ...see next...
 
-method **Cgi_Executable** *script*
-: 
+**Methods**
+
+- method **CgiExec** *execname* *script* *arglist*
+- method **Cgi\_Executable** *script*
 
 
 ## Class  httpd::content.proxy
@@ -683,74 +684,57 @@ Return data from an proxy process
 
 **Methods**
 
-method **proxy_channel**
-: ...see next...
-
-method **proxy_path**
-: ...see next...
-
-method **ProxyRequest** *chana* *chanb*
-: ...see next...
-
-method **ProxyReply** *chana* *chanb* ?*args*?
-: ...see next...
-
-method **Dispatch**
-: 
+- method **proxy\_channel**
+- method **proxy\_path**
+- method **ProxyRequest** *chana* *chanb*
+- method **ProxyReply** *chana* *chanb* ?*args*?
+- method **Dispatch**
 
 
-## Class  httpd::content.cgi
+## Class  httpd::content.CGI
 
 *ancestors*: **httpd::content.proxy**
 
 **Methods**
 
 method **FileName**
-: ...see next...
+: see below ...
 
-method **proxy_channel**
-: ...see next...
+method **proxy\_channel**
+: see below ...
 
 method **ProxyRequest** *chana* *chanb*
-: ...see next...
+: see below ...
 
 method **ProxyReply** *chana* *chanb* ?*args*?
-: ...see next...
+: see below ...
 
-method **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 : For most CGI applications a directory list is vorboten
 
 
-## Class  httpd::protocol.scgi
+## Class  httpd::protocol.SCGI
 
 Return data from an SCGI process
 
 **Methods**
 
-method **EncodeStatus** *status*
-: 
+- method **EncodeStatus** *status*
 
 
-## Class  httpd::content.scgi
+## Class  httpd::content.SCGI
 
 *ancestors*: **httpd::content.proxy**
 
 **Methods**
 
-method **scgi_info**
-: ...see next...
-
-method **proxy_channel**
-: ...see next...
-
-method **ProxyRequest** *chana* *chanb*
-: ...see next...
-
-method **ProxyReply** *chana* *chanb* ?*args*?
-: 
+- method **scgi\_info**
+- method **proxy\_channel**
+- method **ProxyRequest** *chana* *chanb*
+- method **ProxyReply** *chana* *chanb* ?*args*?
 
 
-## Class  httpd::server.scgi
+## Class  httpd::server.SCGI
 
 *ancestors*: **httpd::server**
 
@@ -758,11 +742,8 @@ Act as an  SCGI Server
 
 **Methods**
 
-method **debug** ?*args*?
-: ...see next...
-
-method **Connect** *uuid* *sock* *ip*
-: 
+- method **debug** ?*args*?
+- method **Connect** *uuid* *sock* *ip*
 
 
 ## Class  httpd::content.websocket
@@ -773,20 +754,18 @@ Upgrade a connection to a websocket
 
 httpd plugin template
 
-## Class  httpd::plugin.dict_dispatch
+## Class  httpd::plugin.dict\_dispatch
 
 A rudimentary plugin that dispatches URLs from a dict data structure
 
 **Methods**
 
-method **Dispatch_Dict** *data*
+method **Dispatch\_Dict** *data*
 : Implementation of the dispatcher
 
-method **uri {} add** *vhosts* *patterns* *info*
-: ...see next...
 
-method **uri {} direct** *vhosts* *patterns* *info* *body*
-: 
+- method **uri {} add** *vhosts* *patterns* *info*
+- method **uri {} direct** *vhosts* *patterns* *info* *body*
 
 
 ## Class  httpd::reply.memchan
@@ -795,25 +774,20 @@ method **uri {} direct** *vhosts* *patterns* *info* *body*
 
 **Methods**
 
-method **output**
-: ...see next...
-
-method **DoOutput**
-: ...see next...
-
-method **close**
-: 
+- method **output**
+- method **DoOutput**
+- method **close**
 
 
-## Class  httpd::plugin.local_memchan
+## Class  httpd::plugin.local\_memchan
 
 **Methods**
 
-method **local_memchan** *command* ?*args*?
-: ...see next...
+method **local\_memchan** *command* ?*args*?
+: see below ...
 
-method **Connect_Local** *uuid* *sock* ?*args*?
-: A modified connection method that passes simple GET request to an object and pulls data directly from the reply_body data variable in the object Needed because memchan is bidirectional, and we can't seem to communicate that the server is one side of the link and the reply is another
+method **Connect\_Local** *uuid* *sock* ?*args*?
+: A modified connection method that passes simple GET request to an object and pulls data directly from the reply\_body data variable in the object Needed because memchan is bidirectional, and we can't seem to communicate that the server is one side of the link and the reply is another
 
 
 # Authors

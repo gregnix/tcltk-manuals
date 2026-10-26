@@ -1,5 +1,6 @@
 ---
 CommandName: math
+title: math
 ManualSection: n
 Version: 1.2.6
 TclPart: tcllib
@@ -17,19 +18,19 @@ math - Tcl Math Library
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [math]{.lit} [1.2.6]{.optlit} 
-[::math::cov]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot} 
-[::math::integrate]{.cmd} [list]{.arg} [of]{.arg} [xy]{.arg} [value]{.arg} [pairs]{.arg} 
-[::math::fibonacci]{.cmd} [n]{.arg} 
-[::math::max]{.cmd} [value]{.arg} [value]{.optdot} 
-[::math::mean]{.cmd} [value]{.arg} [value]{.optdot} 
-[::math::min]{.cmd} [value]{.arg} [value]{.optdot} 
-[::math::product]{.cmd} [value]{.arg} [value]{.optdot} 
-[::math::random]{.cmd} [value1]{.optarg} [value2]{.optarg} 
-[::math::sigma]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot} 
-[::math::stats]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot} 
-[::math::sum]{.cmd} [value]{.arg} [value]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [math]{.lit} [1.2.6]{.optlit}
+[::math::cov]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot}
+[::math::integrate]{.cmd} [list]{.arg} [of]{.arg} [xy]{.arg} [value]{.arg} [pairs]{.arg}
+[::math::fibonacci]{.cmd} [n]{.arg}
+[::math::max]{.cmd} [value]{.arg} [value]{.optdot}
+[::math::mean]{.cmd} [value]{.arg} [value]{.optdot}
+[::math::min]{.cmd} [value]{.arg} [value]{.optdot}
+[::math::product]{.cmd} [value]{.arg} [value]{.optdot}
+[::math::random]{.cmd} [value1]{.optarg} [value2]{.optarg}
+[::math::sigma]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot}
+[::math::stats]{.cmd} [value]{.arg} [value]{.arg} [value]{.optdot}
+[::math::sum]{.cmd} [value]{.arg} [value]{.optdot}
 :::
 
 # Description
@@ -38,59 +39,41 @@ The **math** package provides utility math functions.
 
 Besides a set of basic commands, available via the package *math*, there are more specialised packages:
 
-**•**
-: **math::bigfloat** - Arbitrary-precision floating-point arithmetic
+- **math::bigfloat** - Arbitrary-precision floating-point arithmetic
 
-**•**
-: **math::bignum** - Arbitrary-precision integer arithmetic
+- **math::bignum** - Arbitrary-precision integer arithmetic
 
-**•**
-: **math::calculus::romberg** - Robust integration methods for functions of one variable, using Romberg integration
+- **math::calculus::romberg** - Robust integration methods for functions of one variable, using Romberg integration
 
-**•**
-: **math::calculus** - Integration of functions, solving ordinary differential equations
+- **math::calculus** - Integration of functions, solving ordinary differential equations
 
-**•**
-: **math::combinatorics** - Procedures for various combinatorial functions (for instance the Gamma function and "k out of n")
+- **math::combinatorics** - Procedures for various combinatorial functions (for instance the Gamma function and "k out of n")
 
-**•**
-: **math::complexnumbers** - Complex number arithmetic
+- **math::complexnumbers** - Complex number arithmetic
 
-**•**
-: **math::constants** - A set of well-known mathematical constants, such as Pi, E, and the golden ratio
+- **math::constants** - A set of well-known mathematical constants, such as Pi, E, and the golden ratio
 
-**•**
-: **math::fourier** - Discrete Fourier transforms
+- **math::fourier** - Discrete Fourier transforms
 
-**•**
-: **math::fuzzy** - Fuzzy comparisons of floating-point numbers
+- **math::fuzzy** - Fuzzy comparisons of floating-point numbers
 
-**•**
-: **math::geometry** - 2D geometrical computations
+- **math::geometry** - 2D geometrical computations
 
-**•**
-: **math::interpolate** - Various interpolation methods
+- **math::interpolate** - Various interpolation methods
 
-**•**
-: **math::linearalgebra** - Linear algebra package
+- **math::linearalgebra** - Linear algebra package
 
-**•**
-: **math::optimize** - Optimization methods
+- **math::optimize** - Optimization methods
 
-**•**
-: **math::polynomials** - Polynomial arithmetic (includes families of classical polynomials)
+- **math::polynomials** - Polynomial arithmetic (includes families of classical polynomials)
 
-**•**
-: **math::rationalfunctions** - Arithmetic of rational functions
+- **math::rationalfunctions** - Arithmetic of rational functions
 
-**•**
-: **math::roman** - Manipulation (including arithmetic) of Roman numerals
+- **math::roman** - Manipulation (including arithmetic) of Roman numerals
 
-**•**
-: **math::special** - Approximations of special functions from mathematical physics
+- **math::special** - Approximations of special functions from mathematical physics
 
-**•**
-: **math::statistics** - Statistical operations and tests
+- **math::statistics** - Statistical operations and tests
 
 
 # Basic commands

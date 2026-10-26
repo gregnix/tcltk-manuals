@@ -1,5 +1,6 @@
 ---
 CommandName: grammar::aycock
+title: grammar::aycock
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -9,16 +10,18 @@ Keywords:
  - Earley
  - Horspool
  - parser
- - compiler ambiguous
+ - compiler
+Keywords:
+ - ambiguous
  - aycock
  - earley
  - grammar
  - horspool
+ - parser
  - parsing
  - transducer
 Copyright:
  - Copyright (c) 2006 by Kevin B. Kenny <kennykb@acm.org>
- - Redistribution permitted under the terms of the Open Publication License <http://www.opencontent.org/openpub/>
 ---
 
 # Name
@@ -28,26 +31,26 @@ grammar::aycock - Aycock-Horspool-Earley parser generator for Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.1]{.optlit} 
-[::aycock::parser]{.cmd} [grammar]{.arg} [-verbose]{.optlit} 
-[parserName]{.ins} [parse]{.sub} [symList]{.arg} [valList]{.arg} [clientData]{.optarg} 
-[parserName]{.ins} [destroy]{.sub} 
-[parserName]{.ins} [terminals]{.sub} 
-[parserName]{.ins} [nonterminals]{.sub} 
-[parserName]{.ins} [save]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.1]{.optlit}
+[::aycock::parser]{.cmd} [grammar]{.arg} [-verbose]{.optlit}
+[parserName]{.ins} [parse]{.sub} [symList]{.arg} [valList]{.arg} [clientData]{.optarg}
+[parserName]{.ins} [destroy]{.sub}
+[parserName]{.ins} [terminals]{.sub}
+[parserName]{.ins} [nonterminals]{.sub}
+[parserName]{.ins} [save]{.sub}
 :::
 
 # Description
 
-The **grammar::aycock** package implements a parser generator for the class of parsers described in John Aycock and R. Nigel Horspool. Practical Earley Parsing. *The Computer Journal,* *45*(6):620-630, 2002. *http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.12.4254*
+The **grammar::aycock** package implements a parser generator for the class of parsers described in John Aycock and R. Nigel Horspool. Practical Earley Parsing. *The Computer Journal,* *45*(6):620-630, 2002. <http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.12.4254>
 
 # Procedures
 
 The **grammar::aycock** package exports the single procedure:
 
 **::aycock::parser** *grammar* ?**-verbose**?
-: Generates a parser for the given *grammar*, and returns its name.  If the optional **-verbose** flag is given, dumps verbose information relating to the generated parser to the standard output. The returned parser is an object that accepts commands as shown in **OBJECT COMMAND** below.
+: Generates a parser for the given *grammar*, and returns its name.  If the optional **-verbose** flag is given, dumps verbose information relating to the generated parser to the standard output. The returned parser is an object that accepts commands as shown in [Object command] below.
 
 
 # Object command
@@ -72,18 +75,16 @@ The **grammar::aycock** package exports the single procedure:
 
 The **grammar::aycock::parser** command accepts a grammar expressed as a Tcl list.  The list must be structured as the concatenation of a set of *rule*s. Each *rule* comprises a variable number of elements in the list:
 
-**•**
-: The name of the nonterminal symbol that the rule reduces.
+- The name of the nonterminal symbol that the rule reduces.
 
-**•**
-: The literal string, **::=**
+- The literal string, **::=**
 
-**•**
-: Zero or more names of terminal or nonterminal symbols that comprise the right-hand-side of the rule.
+- Zero or more names of terminal or nonterminal symbols that comprise the right-hand-side of the rule.
 
-**•**
-: Finally, a Tcl script to execute when the rule is reduced. Within the given script, a variable called **\_** contains a list of the semantic values of the symbols on the right-hand side. The value returned by the script is expected to be the semantic value of the left-hand side.  If the *clientData* parameter was passed to the **parse** method, it is available in a variable called **clientData**.  It is permissible for the script to be the empty string.  In this case, the semantic value of the rule will be the same as the semantic value of the first symbol on the right-hand side.  If the right-hand side is also empty, the semantic value will be the empty string. Parsing is done with an Earley parser, which is not terribly efficient in speed or memory consumption, but which deals effectively with ambiguous grammars.  For this reason, the **grammar::aycock** package is perhaps best adapted to natural-language processing or the parsing of extraordinarily complex languages in which ambiguity can be tolerated.
+- Finally, a Tcl script to execute when the rule is reduced. Within the given script, a variable called **\_** contains a list of the semantic values of the symbols on the right-hand side. The value returned by the script is expected to be the semantic value of the left-hand side.  If the *clientData* parameter was passed to the **parse** method, it is available in a variable called **clientData**.  It is permissible for the script to be the empty string.  In this case, the semantic value of the rule will be the same as the semantic value of the first symbol on the right-hand side.  If the right-hand side is also empty, the semantic value will be the empty string.
 
+
+Parsing is done with an Earley parser, which is not terribly efficient in speed or memory consumption, but which deals effectively with ambiguous grammars.  For this reason, the **grammar::aycock** package is perhaps best adapted to natural-language processing or the parsing of extraordinarily complex languages in which ambiguity can be tolerated.
 
 # Example
 

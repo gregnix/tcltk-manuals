@@ -1,5 +1,6 @@
 ---
 CommandName: mathop
+title: mathop
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -23,45 +24,45 @@ mathop - Mathematical operators as Tcl commands
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[::tcl::mathop::!]{.cmd} [number]{.arg} 
-[::tcl::mathop::~]{.cmd} [number]{.arg} 
-[::tcl::mathop::+]{.cmd} [number]{.optdot} 
-[::tcl::mathop::-]{.cmd} [number]{.arg} [number]{.optdot} 
-[::tcl::mathop::\*]{.cmd} [number]{.optdot} 
-[::tcl::mathop::/]{.cmd} [number]{.arg} [number]{.optdot} 
-[::tcl::mathop::%]{.cmd} [number]{.arg} [number]{.arg} 
-[::tcl::mathop::\*\*]{.cmd} [number]{.optdot} 
-[::tcl::mathop::&]{.cmd} [number]{.optdot} 
-[::tcl::mathop::|]{.cmd} [number]{.optdot} 
-[::tcl::mathop::^]{.cmd} [number]{.optdot} 
-[::tcl::mathop::<<]{.cmd} [number]{.arg} [number]{.arg} 
-[::tcl::mathop::>>]{.cmd} [number]{.arg} [number]{.arg} 
-[::tcl::mathop::==]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::!=]{.cmd} [arg]{.arg} [arg]{.arg} 
-[::tcl::mathop::<]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::<=]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::>=]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::>]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::eq]{.cmd} [arg]{.optdot} 
-[::tcl::mathop::ne]{.cmd} [arg]{.arg} [arg]{.arg} 
-[::tcl::mathop::in]{.cmd} [arg]{.arg} [list]{.arg} 
-[::tcl::mathop::ni]{.cmd} [arg]{.arg} [list]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[::tcl::mathop::!]{.cmd} [number]{.arg}
+[::tcl::mathop::~]{.cmd} [number]{.arg}
+[::tcl::mathop::+]{.cmd} [number]{.optdot}
+[::tcl::mathop::-]{.cmd} [number]{.arg} [number]{.optdot}
+[::tcl::mathop::\*]{.cmd} [number]{.optdot}
+[::tcl::mathop::/]{.cmd} [number]{.arg} [number]{.optdot}
+[::tcl::mathop::%]{.cmd} [number]{.arg} [number]{.arg}
+[::tcl::mathop::\*\*]{.cmd} [number]{.optdot}
+[::tcl::mathop::&]{.cmd} [number]{.optdot}
+[::tcl::mathop::|]{.cmd} [number]{.optdot}
+[::tcl::mathop::^]{.cmd} [number]{.optdot}
+[::tcl::mathop::<<]{.cmd} [number]{.arg} [number]{.arg}
+[::tcl::mathop::>>]{.cmd} [number]{.arg} [number]{.arg}
+[::tcl::mathop::==]{.cmd} [arg]{.optdot}
+[::tcl::mathop::!=]{.cmd} [arg]{.arg} [arg]{.arg}
+[::tcl::mathop::<]{.cmd} [arg]{.optdot}
+[::tcl::mathop::<=]{.cmd} [arg]{.optdot}
+[::tcl::mathop::>=]{.cmd} [arg]{.optdot}
+[::tcl::mathop::>]{.cmd} [arg]{.optdot}
+[::tcl::mathop::eq]{.cmd} [arg]{.optdot}
+[::tcl::mathop::ne]{.cmd} [arg]{.arg} [arg]{.arg}
+[::tcl::mathop::in]{.cmd} [arg]{.arg} [list]{.arg}
+[::tcl::mathop::ni]{.cmd} [arg]{.arg} [list]{.arg}
 :::
 
 # Description
 
-The commands in the **::tcl::mathop** namespace implement the same set of operations as supported by the **expr** command. All are exported from the namespace, but are not imported into any other namespace by default. Note that renaming, reimplementing or deleting any of the commands in the namespace does *not* alter the way that the **expr** command behaves, and nor does defining any new commands in the **::tcl::mathop** namespace.
+The commands in the **::tcl::mathop** namespace implement the same set of operations as supported by the [expr] command. All are exported from the namespace, but are not imported into any other namespace by default. Note that renaming, reimplementing or deleting any of the commands in the namespace does *not* alter the way that the [expr] command behaves, and nor does defining any new commands in the **::tcl::mathop** namespace.
 
 The following operator commands are supported:
 
-```
-~ ! + - *
-/ % ** & |
-^ >> << == eq
-!= ne < <= >
->= in ni
-```
+::: {.info DISPLAY="yes"}
+**~**	**!**	**+**	**-**	**\***\
+**/**	**%**	**\*\***	**&**	**|**\
+**^**	**>>**	**<<**	**==**	**eq**\
+**!=**	**ne**	**<**	**<=**	**>**\
+**>=**	**in**	**ni**
+:::
 
 ## Mathematical operators
 
@@ -82,18 +83,16 @@ The behaviors of the mathematical operator commands are as follows:
 **/** *number* ?*number* ...?
 : If only a single *number* argument is given, returns the reciprocal of that numeric value (i.e. the value obtained by dividing 1.0 by that value). Otherwise returns the number that results when the first numeric argument is divided by all subsequent numeric arguments. All *number* arguments must be numeric values. At least one argument must be given.
 
-
-Note that when the leading values in the list of arguments are integers, integer division will be used for those initial steps (i.e. the intermediate results will be as if the functions *floor* and *int* are applied to them, in that order). If all values in the operation are integers, the result will be an integer.
+    Note that when the leading values in the list of arguments are integers, integer division will be used for those initial steps (i.e. the intermediate results will be as if the functions *floor* and *int* are applied to them, in that order). If all values in the operation are integers, the result will be an integer.
 
 **%** *number number*
 : Returns the integral modulus (i.e., remainder) of the first argument with respect to the second. Each *number* must have an integral value. Also, the sign of the result will be the same as the sign of the second *number*, which must not be zero.
 
+    Note that Tcl defines this operation exactly even for negative numbers, so that the following command returns a true value (omitting the namespace for clarity):
 
-Note that Tcl defines this operation exactly even for negative numbers, so that the following command returns a true value (omitting the namespace for clarity):
-
-```
-== [* [/ x y] y] [- x [% x y]]
-```
+    ```
+    == [* [/ x y] y] [- x [% x y]]
+    ```
 
 **\*\*** ?*number* ...?
 : Returns the result of raising each value to the power of the result of recursively operating on the result of processing the following arguments, so "**\*\* 2 3 4**" is the same as "**\*\* 2 \[\*\* 3 4\]**". Each *number* may be any numeric value, though the second number must not be fractional if the first is negative.  The maximum exponent value that Tcl can handle if the first number is an integer > 1 is 268435455. If no arguments are given, the result will be one, and if only one argument is given, the result will be that argument. The result will have an integral value only when all arguments are integral values.
@@ -104,28 +103,28 @@ Note that Tcl defines this operation exactly even for negative numbers, so that 
 The behaviors of the comparison operator commands (most of which operate preferentially on numeric arguments) are as follows:
 
 **==** ?*arg* ...?
-: Returns whether each argument is equal to the arguments on each side of it in the sense of the **expr** == operator (*i.e.*, numeric comparison if possible, exact string comparison otherwise). If fewer than two arguments are given, this operation always returns a true value.
+: Returns whether each argument is equal to the arguments on each side of it in the sense of the [expr] == operator (*i.e.*, numeric comparison if possible, exact string comparison otherwise). If fewer than two arguments are given, this operation always returns a true value.
 
 **eq** ?*arg* ...?
 : Returns whether each argument is equal to the arguments on each side of it using exact string comparison. If fewer than two arguments are given, this operation always returns a true value.
 
 **!=** *arg arg*
-: Returns whether the two arguments are not equal to each other, in the sense of the **expr** != operator (*i.e.*, numeric comparison if possible, exact string comparison otherwise).
+: Returns whether the two arguments are not equal to each other, in the sense of the [expr] != operator (*i.e.*, numeric comparison if possible, exact string comparison otherwise).
 
 **ne** *arg arg*
 : Returns whether the two arguments are not equal to each other using exact string comparison.
 
 **<** ?*arg* ...?
-: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be strictly more than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the **string compare** command should be used instead.
+: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be strictly more than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the [string compare][string] command should be used instead.
 
 **<=** ?*arg* ...?
-: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be equal to or more than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the **string compare** command should be used instead.
+: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be equal to or more than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the [string compare][string] command should be used instead.
 
 **>** ?*arg* ...?
-: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be strictly less than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the **string compare** command should be used instead.
+: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be strictly less than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the [string compare][string] command should be used instead.
 
 **>=** ?*arg* ...?
-: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be equal to or less than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the **string compare** command should be used instead.
+: Returns whether the arbitrarily-many arguments are ordered, with each argument after the first having to be equal to or less than the one preceding it. Comparisons are performed preferentially on the numeric values, and are otherwise performed using UNICODE string comparison. If fewer than two arguments are present, this operation always returns a true value. When the arguments are numeric but should be compared as strings, the [string compare][string] command should be used instead.
 
 
 ## Bit-wise operators
@@ -164,7 +163,7 @@ The behaviors of the list-oriented operator commands are as follows:
 
 # Examples
 
-The simplest way to use the operators is often by using **namespace path** to make the commands available. This has the advantage of not affecting the set of commands defined by the current namespace.
+The simplest way to use the operators is often by using [namespace path][namespace] to make the commands available. This has the advantage of not affecting the set of commands defined by the current namespace.
 
 ```
 namespace path {::tcl::mathop ::tcl::mathfunc}
@@ -185,3 +184,8 @@ set inRange [<= 1 $x 5]
 # Test to see if a list is sorted
 set sorted [<= {*}$list]
 ```
+
+
+[expr]: expr.md
+[namespace]: namespace.md
+[string]: string.md

@@ -1,5 +1,6 @@
 ---
 CommandName: doctoc_lang_intro
+title: doctoc_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -21,7 +22,7 @@ Copyright:
 
 # Name
 
-doctoc_lang_intro - doctoc language introduction
+doctoc\_lang\_intro - doctoc language introduction
 
 # Description
 
@@ -59,7 +60,7 @@ We will discuss the commands for each of these two possibilities in the next sec
 
 ## Items
 
-Use the command **item** to put an *item* into a table of contents. This is essentially a reference to a section, subsection, etc. in the document, or set of documents, the table of contents is for. The command takes three arguments, a symbolic name for the file the item is for and two text to label the item and describe the referenced section.
+Use the command [item][doctoc_lang_cmdref] to put an *item* into a table of contents. This is essentially a reference to a section, subsection, etc. in the document, or set of documents, the table of contents is for. The command takes three arguments, a symbolic name for the file the item is for and two text to label the item and describe the referenced section.
 
 Symbolic names are used to preserve the convertibility of this format to any output format. The actual name of any file will be inserted by the chosen formatting engine when converting the input, based on a mapping from symbolic to actual names given to the engine.
 
@@ -85,12 +86,14 @@ Of course, instead of the nested items we can again use divisions and thus nest 
 
 A division is marked by two commands instead of one, one to start it, the other to close the last opened division. They are:
 
-**division_start**
+[division\_start][doctoc_lang_cmdref]
 : This command opens a new division. It takes one or two arguments, the title of the division, and the symbolic name of the file it refers to. The latter is optional. If the symbolic filename is present then the section title should link to the referenced document, if links are supported by the output format.
 
-**division_end**
-: This command closes the last opened and not yet closed division. Using this we can recast the last example like this
+[division\_end][doctoc_lang_cmdref]
+: This command closes the last opened and not yet closed division.
 
+
+Using this we can recast the last example like this
 
 ```
 [toc_begin Doctoc {Language Introduction}]
@@ -152,9 +155,9 @@ And do not forget, it is possible to freely mix items and divisions, and to have
 
 ## Advanced structure
 
-In all previous examples we fudged a bit regarding the markup actually allowed to be used before the **toc_begin** command opening the document.
+In all previous examples we fudged a bit regarding the markup actually allowed to be used before the [toc\_begin][doctoc_lang_cmdref] command opening the document.
 
-Instead of only whitespace the two templating commands **include** and **vset** are also allowed, to enable the writer to either set and/or import configuration settings relevant to the table of contents. I.e. it is possible to write
+Instead of only whitespace the two templating commands [include][docidx_lang_cmdref] and [vset][docidx_lang_cmdref] are also allowed, to enable the writer to either set and/or import configuration settings relevant to the table of contents. I.e. it is possible to write
 
 ```
 [include FILE]
@@ -174,11 +177,11 @@ Even more important, these two commands are allowed anywhere where a markup comm
 [toc_end]
 ```
 
-The only restriction **include** has to obey is that the contents of the included file must be valid at the place of the inclusion. I.e. a file included before **toc_begin** may contain only the templating commands **vset** and **include**, a file included in a division may contain only items or divisions commands, etc.
+The only restriction [include][docidx_lang_cmdref] has to obey is that the contents of the included file must be valid at the place of the inclusion. I.e. a file included before [toc\_begin][doctoc_lang_cmdref] may contain only the templating commands [vset][docidx_lang_cmdref] and [include][docidx_lang_cmdref], a file included in a division may contain only items or divisions commands, etc.
 
 ## Escapes
 
-Beyond the 6 commands shown so far we have two more available. However their function is not the marking up of toc structure, but the insertion of characters, namely **\[** and **\]**. These commands, **lb** and **rb** respectively, are required because our use of \[ and \] to bracket markup commands makes it impossible to directly use \[ and \] within the text.
+Beyond the 6 commands shown so far we have two more available. However their function is not the marking up of toc structure, but the insertion of characters, namely **\[** and **\]**. These commands, [lb][docidx_lang_cmdref] and [rb][docidx_lang_cmdref] respectively, are required because our use of \[ and \] to bracket markup commands makes it impossible to directly use \[ and \] within the text.
 
 Our example of their use are the sources of the last sentence in the previous paragraph, with some highlighting added.
 
@@ -215,3 +218,7 @@ Documentation tools
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md
+[doctoc_lang_cmdref]: doctoc_lang_cmdref.md

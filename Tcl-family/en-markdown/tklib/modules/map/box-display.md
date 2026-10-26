@@ -1,5 +1,6 @@
 ---
 CommandName: map::box::display
+title: map::box::display
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -8,6 +9,8 @@ Keywords:
  - box display
  - tabular
  - map
+ - tabular
+ - box display
 Copyright:
 ---
 
@@ -18,22 +21,22 @@ map::box::display - Widget to display a single box definition
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::caller]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit} 
-[package]{.cmd} [require]{.sub} [scrollutil]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [tablelist]{.lit} 
-[package]{.cmd} [require]{.sub} [map::box::display]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [debug]{.lit}
+[package]{.cmd} [require]{.sub} [debug::caller]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit}
+[package]{.cmd} [require]{.sub} [scrollutil]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [tablelist]{.lit}
+[package]{.cmd} [require]{.sub} [map::box::display]{.lit} [0.1]{.optlit}
 :::
 
 # Description
 
 This package provides a widget to show the information of a single *geo/box* definition.
 
-# Api
+# API
 
 # Example
 

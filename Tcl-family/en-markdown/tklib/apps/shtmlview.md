@@ -1,5 +1,6 @@
 ---
 CommandName: shtmlview
+title: shtmlview
 ManualSection: n
 Version: 1.1.0
 TclPart: tklib
@@ -21,22 +22,22 @@ shtmlview - Basic HTML and Markdown viewer application
 # Synopsis
 
 ::: {.synopsis} :::
-[shtmlview]{.cmd} 
-[shtmlview]{.cmd} [--help]{.sub} 
-[shtmlview]{.cmd} [--version]{.sub} 
-[shtmlview]{.cmd} [--render]{.sub} [text]{.arg} 
-[shtmlview]{.cmd} [--render]{.sub} [-]{.lit} 
-[shtmlview]{.cmd} [filename]{.arg} 
+[shtmlview]{.cmd}
+[shtmlview]{.cmd} [--help]{.lit}
+[shtmlview]{.cmd} [--version]{.lit}
+[shtmlview]{.cmd} [--render]{.lit} [text]{.arg}
+[shtmlview]{.cmd} [--render]{.lit} [-]{.lit}
+[shtmlview]{.cmd} [filename]{.arg}
 :::
 
 # Description
 
-The application described by this document, **shtmlview**, is a simple viewer for HTML files. Further supported are documents written in *Markdown*, *doctools*, or *mkdoc* format, if various supporting packages are available. See section **Beyond HTML**.
+The application described by this document, **shtmlview**, is a simple viewer for HTML files. Further supported are documents written in *Markdown*, *doctools*, or *mkdoc* format, if various supporting packages are available. See section [Beyond HTML].
 
 ## Command line
 
 **shtmlview**
-: ...see next...
+: see below ...
 
 **shtmlview** **--help**
 : Prints usage information to standard error.
@@ -54,38 +55,25 @@ The application described by this document, **shtmlview**, is a simple viewer fo
 : Reads and renders the named file in a viewer widget.
 
 
-# Beyond html
+# Beyond HTML
 
 Documents in any other format than HTML require the presence of various supporting packages to enable the application to display them.
 
-**Markdown**
-: 
+Markdown
+: - **Markdown**
 
 
-**•**
-: **Markdown**
+doctools
+: - **shtmlview::doctools**
+
+    - **dtplite**
 
 
-**doctools**
-: 
+mkdoc
+: - **shtmlview::mkdoc**
 
+    - **mkdoc::mkdoc**
 
-**•**
-: **shtmlview::doctools**
-
-**•**
-: **dtplite**
-
-
-**mkdoc**
-: 
-
-
-**•**
-: **shtmlview::mkdoc**
-
-**•**
-: **mkdoc::mkdoc**
 
 
 # Bugs, ideas, feedback

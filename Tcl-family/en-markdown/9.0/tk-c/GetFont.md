@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_AllocFontFromObj
+title: Tk_AllocFontFromObj
 ManualSection: 3
 Version: 8.1
 TclPart: Tk
@@ -15,64 +16,59 @@ Copyright:
 
 # Name
 
-Tk_AllocFontFromObj, Tk_GetFont, Tk_GetFontFromObj, Tk_NameOfFont, Tk_FontGetDescription, Tk_FreeFontFromObj, Tk_FreeFont - maintain database of fonts
+Tk\_AllocFontFromObj, Tk\_GetFont, Tk\_GetFontFromObj, Tk\_NameOfFont, Tk\_FontGetDescription, Tk\_FreeFontFromObj, Tk\_FreeFont - maintain database of fonts
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-Tk_Font
-[Tk_AllocFontFromObj]{.cmd}([interp]{.arg}, [tkwin]{.arg}, [objPtr]{.arg})
-
-Tk_Font
-[Tk_GetFont]{.cmd}([interp]{.arg}, [tkwin]{.arg}, [string]{.arg})
-
-Tk_Font
-[Tk_GetFontFromObj]{.cmd}([tkwin]{.arg}, [objPtr]{.arg})
-
-Tcl_Obj \*
-[Tk_FontGetDescription]{.cmd}([tkfont]{.arg})
-
-const char \*
-[Tk_NameOfFont]{.cmd}([tkfont]{.arg})
-
-Tk_Font
-[Tk_FreeFontFromObj]{.cmd}([tkwin]{.arg}, [objPtr]{.arg})
-
-[Tk_FreeFont]{.cmd}([tkfont]{.arg})
+**#include <tk.h>**
+[Tk\_Font]{.ret} [Tk\_AllocFontFromObj]{.ccmd} [interp, tkwin, objPtr]{.cargs}
+[Tk\_Font]{.ret} [Tk\_GetFont]{.ccmd} [interp, tkwin, string]{.cargs}
+[Tk\_Font]{.ret} [Tk\_GetFontFromObj]{.ccmd} [tkwin, objPtr]{.cargs}
+[Tcl\_Obj \*]{.ret} [Tk\_FontGetDescription]{.ccmd} [tkfont]{.cargs}
+[const char \*]{.ret} [Tk\_NameOfFont]{.ccmd} [tkfont]{.cargs}
+[Tk\_Font]{.ret} [Tk\_FreeFontFromObj]{.ccmd} [tkwin, objPtr]{.cargs}
+[Tk\_FreeFont]{.ccmd} [tkfont]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting.  If **NULL**, then no error messages are left after errors.
 
-Tk_Window *tkwin* (in)
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window in which font will be used.
 
-Tcl_Obj *\*objPtr* (in/out)
-: Gives name or description of font.  See documentation for the **font** command for details on acceptable formats. Internal rep will be modified to cache corresponding Tk_Font.
+[\*objPtr]{.carg .in/out type="Tcl_Obj"}
+: Gives name or description of font.  See documentation for the [font] command for details on acceptable formats. Internal rep will be modified to cache corresponding Tk\_Font.
 
-const char *\*string* (in)
-: Same as *objPtr* except description of font is passed as a string and resulting Tk_Font is not cached.
+[\*string]{.carg .in type="const char"}
+: Same as *objPtr* except description of font is passed as a string and resulting Tk\_Font is not cached.
 
-Tk_Font *tkfont* (in)
+[tkfont]{.carg .in type="Tk_Font"}
 : Opaque font token.
 
+:::
 
 # Description
 
-**Tk_AllocFontFromObj** finds the font indicated by *objPtr* and returns a token that represents the font.  The return value can be used in subsequent calls to procedures such as **Tk_GetFontMetrics**, **Tk_MeasureChars**, and **Tk_FreeFont**.  The Tk_Font token will remain valid until **Tk_FreeFontFromObj** or **Tk_FreeFont** is called to release it. *ObjPtr* can contain either a symbolic name or a font description; see the documentation for the **font** command for a description of the valid formats.  If **Tk_AllocFontFromObj** is unsuccessful (because, for example, *objPtr* did not contain a valid font specification) then it returns **NULL** and leaves an error message in *interp*'s result if *interp* is not **NULL**.  **Tk_AllocFontFromObj** caches information about the return value in *objPtr*, which speeds up future calls to procedures such as **Tk_AllocFontFromObj** and **Tk_GetFontFromObj**.
+**Tk\_AllocFontFromObj** finds the font indicated by *objPtr* and returns a token that represents the font.  The return value can be used in subsequent calls to procedures such as [Tk\_GetFontMetrics][FontId], [Tk\_MeasureChars][MeasureChar], and **Tk\_FreeFont**.  The Tk\_Font token will remain valid until **Tk\_FreeFontFromObj** or **Tk\_FreeFont** is called to release it. *ObjPtr* can contain either a symbolic name or a font description; see the documentation for the [font] command for a description of the valid formats.  If **Tk\_AllocFontFromObj** is unsuccessful (because, for example, *objPtr* did not contain a valid font specification) then it returns **NULL** and leaves an error message in *interp*'s result if *interp* is not **NULL**.  **Tk\_AllocFontFromObj** caches information about the return value in *objPtr*, which speeds up future calls to procedures such as **Tk\_AllocFontFromObj** and **Tk\_GetFontFromObj**.
 
-**Tk_GetFont** is identical to **Tk_AllocFontFromObj** except that the description of the font is specified with a string instead of an object.  This prevents **Tk_GetFont** from caching the matching Tk_Font, so **Tk_GetFont** is less efficient than **Tk_AllocFontFromObj**.
+**Tk\_GetFont** is identical to **Tk\_AllocFontFromObj** except that the description of the font is specified with a string instead of an object.  This prevents **Tk\_GetFont** from caching the matching Tk\_Font, so **Tk\_GetFont** is less efficient than **Tk\_AllocFontFromObj**.
 
-**Tk_GetFontFromObj** returns the token for an existing font, given the window and description used to create the font. **Tk_GetFontFromObj** does not actually create the font; the font must already have been created with a previous call to **Tk_AllocFontFromObj** or **Tk_GetFont**.  The return value is cached in *objPtr*, which speeds up future calls to **Tk_GetFontFromObj** with the same *objPtr* and *tkwin*.
+**Tk\_GetFontFromObj** returns the token for an existing font, given the window and description used to create the font. **Tk\_GetFontFromObj** does not actually create the font; the font must already have been created with a previous call to **Tk\_AllocFontFromObj** or **Tk\_GetFont**.  The return value is cached in *objPtr*, which speeds up future calls to **Tk\_GetFontFromObj** with the same *objPtr* and *tkwin*.
 
-**Tk_AllocFontFromObj** and **Tk_GetFont** maintain a database of all fonts they have allocated.  If the same font is requested multiple times (e.g. by different windows or for different purposes), then a single Tk_Font will be shared for all uses.  The underlying resources will be freed automatically when no-one is using the font anymore.
+**Tk\_AllocFontFromObj** and **Tk\_GetFont** maintain a database of all fonts they have allocated.  If the same font is requested multiple times (e.g. by different windows or for different purposes), then a single Tk\_Font will be shared for all uses.  The underlying resources will be freed automatically when no-one is using the font anymore.
 
-The procedure **Tk_FontGetDescription** returns information about the font description as a Tcl list. One possible result is "{{DejaVu Sans} -16 bold underline}".
+The procedure **Tk\_FontGetDescription** returns information about the font description as a Tcl list. One possible result is "{{DejaVu Sans} -16 bold underline}".
 
-The procedure **Tk_NameOfFont** is roughly the inverse of **Tk_GetFont**.  Given a *tkfont* that was created by **Tk_GetFont** (or **Tk_AllocFontFromObj**), the return value is the *string* argument that was passed to **Tk_GetFont** to create the font.  The string returned by **Tk_NameOfFont** is only guaranteed to persist until the *tkfont* is deleted.  The caller must not modify this string.
+The procedure **Tk\_NameOfFont** is roughly the inverse of **Tk\_GetFont**.  Given a *tkfont* that was created by **Tk\_GetFont** (or **Tk\_AllocFontFromObj**), the return value is the *string* argument that was passed to **Tk\_GetFont** to create the font.  The string returned by **Tk\_NameOfFont** is only guaranteed to persist until the *tkfont* is deleted.  The caller must not modify this string.
 
-When a font is no longer needed, **Tk_FreeFontFromObj** or **Tk_FreeFont** should be called to release it.  For **Tk_FreeFontFromObj** the font to release is specified with the same information used to create it; for **Tk_FreeFont** the font to release is specified with its Tk_Font token.  There should be exactly one call to **Tk_FreeFontFromObj** or **Tk_FreeFont** for each call to **Tk_AllocFontFromObj** or **Tk_GetFont**.
+When a font is no longer needed, **Tk\_FreeFontFromObj** or **Tk\_FreeFont** should be called to release it.  For **Tk\_FreeFontFromObj** the font to release is specified with the same information used to create it; for **Tk\_FreeFont** the font to release is specified with its Tk\_Font token.  There should be exactly one call to **Tk\_FreeFontFromObj** or **Tk\_FreeFont** for each call to **Tk\_AllocFontFromObj** or **Tk\_GetFont**.
+
+
+[font]: ../tk/font.md
+[FontId]: FontId.md
+[MeasureChar]: MeasureChar.md

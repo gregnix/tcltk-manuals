@@ -1,5 +1,6 @@
 ---
 CommandName: lappend
+title: lappend
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -23,23 +24,21 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lappend - Hängt Listenelemente an eine Variable an
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lappend]{.cmd} [varName]{.arg} [value value value]{.optdot} 
+[lappend]{.cmd} [varName]{.arg} [value value value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl behandelt die Variable *varName* als Liste und hängt jedes *value*-Argument als separates Element mit Leerzeichen dazwischen an. Existiert *varName* nicht, wird sie als Liste mit den *value*-Argumenten als Elementen angelegt.
+Der Befehl behandelt die Variable *varName* als Liste und hängt jedes *value*-Argument als separates Element mit Leerzeichen dazwischen an. Existiert *varName* nicht, wird sie als Liste mit den *value*-Argumenten als Elementen angelegt. **lappend** ähnelt [append], hängt die *value*s aber als Listenelemente an, nicht als Rohtext. Der Befehl eignet sich relativ effizient zum Aufbau großer Listen. Beispielsweise ist „**lappend a \$b**“ deutlich effizienter als „**set a \[concat \$a \[list \$b\]\]**“, wenn **\$a** lang ist.
 
-**lappend** ähnelt **append**, hängt die *value*s aber als Listenelemente an, nicht als Rohtext. Der Befehl eignet sich relativ effizient zum Aufbau großer Listen. Beispielsweise ist „**lappend a \$b**“ deutlich effizienter als „**set a [concat \$a [list \$b]]**“, wenn **\$a** lang ist.
-
-# BEISPIELE
+# Beispiele
 
 **lappend** zum Aufbau einer Zahlenliste:
 
@@ -51,3 +50,6 @@ Der Befehl behandelt die Variable *varName* als Liste und hängt jedes *value*-A
 % lappend var 3 4 5
 1 2 3 4 5
 ```
+
+
+[append]: append.md

@@ -1,5 +1,6 @@
 ---
 CommandName: if
+title: if
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -20,21 +21,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 if - Führt Scripte bedingt aus
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[if]{.cmd} [expr1]{.arg} [then]{.optlit} [body1]{.arg} [elseif]{.lit} [expr2]{.arg} [then]{.optlit} [body2]{.arg} [elseif]{.lit} ... [else]{.optlit} [bodyN]{.optarg} 
+[if]{.cmd} [expr1]{.arg} [then]{.optlit} [body1]{.arg} [elseif]{.lit} [expr2]{.arg} [then]{.optlit} [body2]{.arg} [elseif]{.lit} ... [else]{.optlit} [bodyN]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl *if* wertet *expr1* als Ausdruck aus (auf dieselbe Weise wie **expr** sein Argument auswertet). Der Wert des Ausdrucks muss ein Boolean sein (ein numerischer Wert, wobei 0 falsch und alles andere wahr ist, oder ein String-Wert wie **true** oder **yes** für wahr und **false** oder **no** für falsch); wenn er wahr ist, wird *body1* ausgeführt, indem es an den Tcl-Interpreter übergeben wird. Andernfalls wird *expr2* als Ausdruck ausgewertet, und wenn dieser wahr ist, wird **body2** ausgeführt, und so weiter. Wenn keiner der Ausdrücke zu wahr ausgewertet wird, wird *bodyN* ausgeführt. Die Argumente **then** und **else** sind optionale „Füllwörter“, um den Befehl leichter lesbar zu machen. Es kann eine beliebige Anzahl von **elseif**-Klauseln geben, einschließlich null. *BodyN* kann auch weggelassen werden, solange **else** ebenfalls weggelassen wird. Der Rückgabewert des Befehls ist das Ergebnis des Body-Scripts, das ausgeführt wurde, oder ein leerer String, wenn keiner der Ausdrücke nicht null war und es kein *bodyN* gab.
+Der Befehl *if* wertet *expr1* als Ausdruck aus (auf dieselbe Weise wie [expr] sein Argument auswertet). Der Wert des Ausdrucks muss ein Boolean sein (ein numerischer Wert, wobei 0 falsch und alles andere wahr ist, oder ein String-Wert wie **true** oder **yes** für wahr und **false** oder **no** für falsch); wenn er wahr ist, wird *body1* ausgeführt, indem es an den Tcl-Interpreter übergeben wird. Andernfalls wird *expr2* als Ausdruck ausgewertet, und wenn dieser wahr ist, wird **body2** ausgeführt, und so weiter. Wenn keiner der Ausdrücke zu wahr ausgewertet wird, wird *bodyN* ausgeführt. Die Argumente **then** und **else** sind optionale „Füllwörter“, um den Befehl leichter lesbar zu machen. Es kann eine beliebige Anzahl von **elseif**-Klauseln geben, einschließlich null. *BodyN* kann auch weggelassen werden, solange **else** ebenfalls weggelassen wird. Der Rückgabewert des Befehls ist das Ergebnis des Body-Scripts, das ausgeführt wurde, oder ein leerer String, wenn keiner der Ausdrücke nicht null war und es kein *bodyN* gab.
 
-# BEISPIELE
+# Beispiele
 
 Eine einfache Bedingung:
 
@@ -76,3 +77,5 @@ if {
 }
 ```
 
+
+[expr]: expr.md

@@ -1,5 +1,6 @@
 ---
 CommandName: math::decimal
+title: math::decimal
 ManualSection: n
 Version: 1.0.5
 TclPart: tcllib
@@ -12,68 +13,70 @@ Copyright:
  - Copyright (c) 2011 Mark Alston <mark at beernut dot com>
 ---
 
-# NAME
+# Name
 
 math::decimal – Allgemeine Dezimalarithmetik
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [math::decimal]{.lit} [1.0.3]{.lit} 
-[::math::decimal::fromstr]{.cmd} [string]{.arg} 
-[::math::decimal::tostr]{.cmd} [decimal]{.arg} 
-[::math::decimal::setVariable]{.cmd} [variable]{.arg} [setting]{.arg} 
-[::math::decimal::add]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::+]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::subtract]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::-]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::multiply]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::\*]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::divide]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::/]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::divideint]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::remainder]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::abs]{.cmd} [decimal]{.arg} 
-[::math::decimal::compare]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::max]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::maxmag]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::min]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::minmag]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::plus]{.cmd} [a]{.arg} 
-[::math::decimal::minus]{.cmd} [a]{.arg} 
-[::math::decimal::copynegate]{.cmd} [a]{.arg} 
-[::math::decimal::copysign]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::is-signed]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-zero]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-NaN]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-infinite]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-finite]{.cmd} [decimal]{.arg} 
-[::math::decimal::fma]{.cmd} [a]{.arg} [b]{.arg} [c]{.arg} 
-[::math::decimal::round_half_even]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_half_up]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_half_down]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_down]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_up]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_floor]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_ceiling]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_05up]{.cmd} [decimal]{.arg} [digits]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [math::decimal]{.lit} [1.0.3]{.lit}
+[::math::decimal::fromstr]{.cmd} [string]{.arg}
+[::math::decimal::tostr]{.cmd} [decimal]{.arg}
+[::math::decimal::setVariable]{.cmd} [variable]{.arg} [setting]{.arg}
+[::math::decimal::add]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::+]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::subtract]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::-]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::multiply]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::\*]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::divide]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::/]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::divideint]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::remainder]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::abs]{.cmd} [decimal]{.arg}
+[::math::decimal::compare]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::max]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::maxmag]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::min]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::minmag]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::plus]{.cmd} [a]{.arg}
+[::math::decimal::minus]{.cmd} [a]{.arg}
+[::math::decimal::copynegate]{.cmd} [a]{.arg}
+[::math::decimal::copysign]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::is-signed]{.cmd} [decimal]{.arg}
+[::math::decimal::is-zero]{.cmd} [decimal]{.arg}
+[::math::decimal::is-NaN]{.cmd} [decimal]{.arg}
+[::math::decimal::is-infinite]{.cmd} [decimal]{.arg}
+[::math::decimal::is-finite]{.cmd} [decimal]{.arg}
+[::math::decimal::fma]{.cmd} [a]{.arg} [b]{.arg} [c]{.arg}
+[::math::decimal::round\_half\_even]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_half\_up]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_half\_down]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_down]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_up]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_floor]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_ceiling]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_05up]{.cmd} [decimal]{.arg} [digits]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das „decimal“-Paket bietet Unterstützung für die Dezimalarithmetik sowohl für Gleitkommazahlen mit begrenzter Genauigkeit als auch für Gleitkommazahlen mit beliebiger Genauigkeit. Darüber hinaus wird die Ganzzahl-Arithmetik unterstützt.
 
 Weitere Informationen sowie die Spezifikationen, von denen dieses Paket abhängt, finden Sie auf der allgemeinen Seite zur Dezimalarithmetik unter http://speleotrove.com/decimal. Dieses Paket bietet folgende Funktionen:
 
-**•**
-: Ein neuer Datentyp „decimal“, der als Liste dargestellt wird, die Vorzeichen, Mantisse und Exponent enthält.
+- Ein neuer Datentyp „decimal“, der als Liste dargestellt wird, die Vorzeichen, Mantisse und Exponent enthält.
 
-**•**
-: Arithmetische Operationen mit diesen Dezimalzahlen, wie beispielsweise Addition, Subtraktion, Multiplikation usw. Die Zahlen werden mithilfe der Operation ::math::decimal::fromstr in das Dezimalformat konvertiert. Die Zahlen werden mithilfe der Operation ::math::decimal::tostr wieder in eine Zeichenkette zurückkonvertiert.
+- Arithmetische Operationen mit diesen Dezimalzahlen, wie beispielsweise Addition, Subtraktion, Multiplikation usw.
 
 
-# BEISPIELE
+Die Zahlen werden mithilfe der Operation ::math::decimal::fromstr in das Dezimalformat konvertiert.
+
+Die Zahlen werden mithilfe der Operation ::math::decimal::tostr wieder in eine Zeichenkette zurückkonvertiert.
+
+# Beispiele
 
 In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da der Zweck dieser Bibliothek darin besteht, dezimale Rechenoperationen durchzuführen, sind Beispiele möglicherweise der einfachste Weg, um den Umgang mit ihr zu erlernen und den Unterschied zwischen der Verwendung dieses Pakets und der weiteren Nutzung von expr zu erkennen. Informationen zu den einzelnen Prozeduren finden Sie im Abschnitt „API“ dieser Man-Seite.
 
@@ -114,43 +117,37 @@ In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da der Zweck d
 **::math::decimal::setVariable** *variable* *setting*
 : Setzt *variable* auf *setting*. Gültige Variablen sind:
 
+    - *rounding* – Beim Umskalieren zu verwendende Rundungsmethode. Zulässige Methoden sind round\_half\_even, round\_half\_up, round\_half\_down, round\_down, round\_up, round\_floor, round\_ceiling.
 
-**•**
-: *rounding* – Beim Umskalieren zu verwendende Rundungsmethode. Zulässige Methoden sind round_half_even, round_half_up, round_half_down, round_down, round_up, round_floor, round_ceiling.
+    - *precision* – Maximale Anzahl der in der Mantisse zulässigen Ziffern.
 
-**•**
-: *precision* – Maximale Anzahl der in der Mantisse zulässigen Ziffern.
+    - *extended* – 1 für den erweiterten Modus, 0 für den vereinfachten Modus.
 
-**•**
-: *extended* – 1 für den erweiterten Modus, 0 für den vereinfachten Modus.
+    - *maxExponent* – Maximaler Wert für den Exponenten. Der Standardwert beträgt 999.
 
-**•**
-: *maxExponent* – Maximaler Wert für den Exponenten. Der Standardwert beträgt 999.
-
-**•**
-: *minExponent* – Minimaler Wert für den Exponenten. Standardwert: -998.
+    - *minExponent* – Minimaler Wert für den Exponenten. Standardwert: -998.
 
 
 **::math::decimal::add** *a* *b*
-: ...siehe nächstes...
+: siehe unten ...
 
 **::math::decimal::+** *a* *b*
 : Gibt die Summe der beiden Dezimalzahlen *a* und *b* zurück.
 
 **::math::decimal::subtract** *a* *b*
-: ...siehe nächstes...
+: siehe unten ...
 
 **::math::decimal::-** *a* *b*
 : Gibt die Differenz der beiden Dezimalzahlen *a* und *b* zurück.
 
 **::math::decimal::multiply** *a* *b*
-: ...siehe nächstes...
+: siehe unten ...
 
 **::math::decimal::\*** *a* *b*
 : Gibt das Produkt der beiden Dezimalzahlen *a* und *b* zurück.
 
 **::math::decimal::divide** *a* *b*
-: ...siehe nächstes...
+: siehe unten ...
 
 **::math::decimal::/** *a* *b*
 : Gibt den Quotienten der Division der beiden Dezimalzahlen *a* und *b* zurück.
@@ -180,10 +177,10 @@ In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da der Zweck d
 : Vergleicht die beiden Dezimalzahlen a und b ohne Berücksichtigung ihrer Vorzeichen und gibt *a* zurück, wenn *abs(a) <= abs(b)* gilt, und *b*, wenn *abs(a) > abs(b)* gilt.
 
 **::math::decimal::plus** *a*
-: Gibt das Ergebnis von *::math::decimal::+ 0 \$a* zurück.
+: Gibt das Ergebnis von *::math::decimal::+ 0 $a* zurück.
 
 **::math::decimal::minus** *a*
-: Gibt das Ergebnis von *::math::decimal::- 0 \$a* zurück.
+: Gibt das Ergebnis von *::math::decimal::- 0 $a* zurück.
 
 **::math::decimal::copynegate** *a*
 : Gibt *a* mit umgekehrtem Vorzeichen zurück.
@@ -209,32 +206,32 @@ In diesem Abschnitt werden einige einfache Beispiele vorgestellt. Da der Zweck d
 **::math::decimal::fma** *a* *b* *c*
 : Gibt das Ergebnis zurück, das sich ergibt, wenn zunächst *a* mit *b* multipliziert und anschließend *c* addiert wird. Das Umskalieren erfolgt erst nach Abschluss aller Rechenoperationen. Daher kann das Ergebnis von dem abweichen, das sich bei getrennter Ausführung der einzelnen Rechenoperationen ergibt.
 
-**::math::decimal::round_half_even** *decimal* *digits*
+**::math::decimal::round\_half\_even** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: Auf den nächstgelegenen Wert runden. Bei gleichem Abstand so runden, dass die letzte Ziffer gerade ist.
 
-**::math::decimal::round_half_up** *decimal* *digits*
+**::math::decimal::round\_half\_up** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: Auf den nächstgelegenen Wert runden. Bei gleichem Abstand aufrunden.
 
-**::math::decimal::round_half_down** *decimal* *digits*
+**::math::decimal::round\_half\_down** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: Auf den nächstgelegenen Wert runden. Bei gleichem Abstand abrunden.
 
-**::math::decimal::round_down** *decimal* *digits*
+**::math::decimal::round\_down** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: In Richtung 0 runden.  (Abschneiden)
 
-**::math::decimal::round_up** *decimal* *digits*
+**::math::decimal::round\_up** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: Von 0 weg runden
 
-**::math::decimal::round_floor** *decimal* *digits*
+**::math::decimal::round\_floor** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: In Richtung -Infinity runden.
 
-**::math::decimal::round_ceiling** *decimal* *digits*
+**::math::decimal::round\_ceiling** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: In Richtung Infinity runden
 
-**::math::decimal::round_05up** *decimal* *digits*
+**::math::decimal::round\_05up** *decimal* *digits*
 : Rundet *decimal* auf *digits* Dezimalstellen nach den folgenden Regeln: Bei 0 oder 5 von 0 weg runden. Wie round-up, mit dem Unterschied, dass nur dann aufgerundet wird, wenn die aufzurundende Ziffer 0 oder 5 ist, und dass das Ergebnis nach einem Überlauf dasselbe ist wie bei round-down.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *decimal* als Kategorie an.
 
@@ -242,11 +239,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2011 Mark Alston <mark at beernut dot com>

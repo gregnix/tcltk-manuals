@@ -1,5 +1,6 @@
 ---
 CommandName: SASL::NTLM
+title: SASL::NTLM
 ManualSection: n
 Version: 1.1.4
 TclPart: tcllib
@@ -19,8 +20,8 @@ SASL::NTLM - Implementation of SASL NTLM mechanism for Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [SASL::NTLM]{.lit} [1.1.4]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [SASL::NTLM]{.lit} [1.1.4]{.optlit}
 :::
 
 # Description
@@ -31,8 +32,7 @@ Please read the documentation for package **sasl** for details.
 
 # References
 
-**\[1\]**
-: No official specification is available. However, *http://davenport.sourceforge.net/ntlm.html* provides a good description.
+1. No official specification is available. However, <http://davenport.sourceforge.net/ntlm.html> provides a good description.
 
 
 # Authors

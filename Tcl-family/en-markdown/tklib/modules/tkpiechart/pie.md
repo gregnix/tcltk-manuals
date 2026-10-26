@@ -1,5 +1,6 @@
 ---
 CommandName: pie
+title: pie
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -24,13 +25,13 @@ pie - 2D or 3D pie chart object in a canvas
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit} 
-[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit} 
-[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit} 
-[stooop::new]{.cmd} [pie]{.sub} [canvas]{.arg} [x]{.arg} [y]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [pieObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [pieObject]{.arg} [option]{.arg} 
-[stooop::delete]{.cmd} [pieObject]{.arg} 
+[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit}
+[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit}
+[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit}
+[stooop::new]{.cmd} [pie]{.lit} [canvas]{.arg} [x]{.arg} [y]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [pieObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [pieObject]{.arg} [option]{.arg}
+[stooop::delete]{.cmd} [pieObject]{.arg}
 :::
 
 pie::newSlice *pieObject* ?labelText?
@@ -107,7 +108,9 @@ The pie class is part of the tkpiechart extension that allows the programmer to 
 # Member procedures
 
 pie::newSlice *pieObject* ?labelText?
-: Creates a slice. A unique object identifier is returned (referred to as *sliceObject* in this document). The slice color is automatically allocated and the slice label placed using the specified labeler (using the **-labeler** option). The slice itself is placed after (clockwise) the existing slices. The slice object identifier will be used for sizing and resizing the slice. If the label text is not specified, it will be set to *"slice n"*, *n* being the number of the slice in the order of creation (first slice is number 1).
+: Creates a slice. A unique object identifier is returned (referred to as *sliceObject* in this document). The slice color is automatically allocated and the slice label placed using the specified labeler (using the **-labeler** option). The slice itself is placed after (clockwise) the existing slices. The slice object identifier will be used for sizing and resizing the slice.
+
+    If the label text is not specified, it will be set to *"slice n"*, *n* being the number of the slice in the order of creation (first slice is number 1).
 
 pie::deleteSlice *pieObject* *sliceObject*
 : Deletes a slice. The following slices (clockwise) if any are then moved to compensate for the empty space left by the deleted slice.
@@ -126,15 +129,14 @@ pie::selectedSlices *pieObject*
 
 The whole pie, the pie graphics (all slices), and each slice have the following specific tags:
 
-**•**
-: **pie(pieObject)**
+- **pie(pieObject)**
 
-**•**
-: **pieSlices(pieObject)**
+- **pieSlices(pieObject)**
 
-**•**
-: **slice(sliceObject)** For example, the whole pie can be moved using the **canvas** **move** command on the pie tag, or bindings on slices can be set using the slice tags (see the **canvas** manual page *ITEM IDS AND TAGS* section for more information).
+- **slice(sliceObject)**
 
+
+For example, the whole pie can be moved using the **canvas** **move** command on the pie tag, or bindings on slices can be set using the slice tags (see the **canvas** manual page *ITEM IDS AND TAGS* section for more information).
 
 # Sizes
 

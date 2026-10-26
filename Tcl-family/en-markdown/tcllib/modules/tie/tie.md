@@ -1,5 +1,6 @@
 ---
 CommandName: tie
+title: tie
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -23,24 +24,24 @@ tie - Array persistence
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tie]{.lit} [1.3]{.optlit} 
-[::tie::tie]{.cmd} [arrayvarname]{.arg} [options...]{.arg} [dstype]{.arg} [dsname...]{.arg} 
-[::tie::untie]{.cmd} [arrayvarname]{.arg} [token]{.optarg} 
-[::tie::info]{.cmd} [ties]{.sub} [arrayvarname]{.arg} 
-[::tie::info]{.cmd} [types]{.sub} 
-[::tie::info]{.cmd} [type]{.sub} [dstype]{.arg} 
-[::tie::register]{.cmd} [dsclasscmd]{.arg} [as]{.lit} [dstype]{.arg} 
-[dsclasscmd]{.cmd} [objname]{.arg} [dsname]{.optdot} 
-[ds]{.cmd} [destroy]{.sub} 
-[ds]{.cmd} [names]{.sub} 
-[ds]{.cmd} [size]{.sub} 
-[ds]{.cmd} [get]{.sub} 
-[ds]{.cmd} [set]{.sub} [dict]{.arg} 
-[ds]{.cmd} [unset]{.sub} [pattern]{.optarg} 
-[ds]{.cmd} [setv]{.sub} [index]{.arg} [value]{.arg} 
-[ds]{.cmd} [unsetv]{.sub} [index]{.arg} 
-[ds]{.cmd} [getv]{.sub} [index]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tie]{.lit} [1.3]{.optlit}
+[::tie::tie]{.cmd} [arrayvarname]{.arg} [options...]{.arg} [dstype]{.arg} [dsname...]{.arg}
+[::tie::untie]{.cmd} [arrayvarname]{.arg} [token]{.optarg}
+[::tie::info]{.cmd} [ties]{.lit} [arrayvarname]{.arg}
+[::tie::info]{.cmd} [types]{.lit}
+[::tie::info]{.cmd} [type]{.lit} [dstype]{.arg}
+[::tie::register]{.cmd} [dsclasscmd]{.arg} [as]{.lit} [dstype]{.arg}
+[dsclasscmd]{.cmd} [objname]{.arg} [dsname...]{.optarg}
+[ds]{.cmd} [destroy]{.lit}
+[ds]{.cmd} [names]{.lit}
+[ds]{.cmd} [size]{.lit}
+[ds]{.cmd} [get]{.lit}
+[ds]{.cmd} [set]{.lit} [dict]{.arg}
+[ds]{.cmd} [unset]{.lit} [pattern]{.optarg}
+[ds]{.cmd} [setv]{.lit} [index]{.arg} [value]{.arg}
+[ds]{.cmd} [unsetv]{.lit} [index]{.arg}
+[ds]{.cmd} [getv]{.lit} [index]{.arg}
 :::
 
 # Description
@@ -53,45 +54,59 @@ It should be noted that a single Tcl array variable can be tied to more than one
 
 # Using ties
 
-## Tie api
+## Tie API
 
 This section describes the basic API used to establish and remove ties between Tcl array variables and data sources. This interface is the only one a casual user has to be concerned about. The following sections about the various internal interfaces can be safely skipped.
 
 **::tie::tie** *arrayvarname* *options*... *dstype* *dsname*...
-: This command establishes a tie between the Tcl array whose name is provided by the argument *arrayvarname* and the *data source* identified by the *dstype* and its series of *dsname* arguments. All changes made to the Tcl array after this command returns will be saved to the *data source* for safekeeping (or distribution). The result of the command is always a token which identifies the new tie. This token can be used later to destroy this specific tie.
+: This command establishes a tie between the Tcl array whose name is provided by the argument *arrayvarname* and the *data source* identified by the *dstype* and its series of *dsname* arguments. All changes made to the Tcl array after this command returns will be saved to the *data source* for safekeeping (or distribution).
+
+    The result of the command is always a token which identifies the new tie. This token can be used later to destroy this specific tie.
+
+    varname *arrayvarname* (in)
+    : The name of the Tcl array variable to connect the new tie to.
+
+    name|command *dstype* (in)
+    : This argument specifies the type of the *data source* we wish to access. The *dstype* can be one of **log**, **array**, **remotearray**, **file**, **growfile**, or **dsource**; in addition, the programmer can register additional data source types. Each *dstype* is followed by one or more arguments that identify the *data source* to which the array is to be tied.
+
+    string *dsname* (in)
+    : The series of *dsname* arguments coming after the *dstype* identifies the *data source* we wish to connect to, and has to be appropriate for the chosen type.
 
 
-varname *arrayvarname* (in)
-: The name of the Tcl array variable to connect the new tie to.
+    The command understands a number of additional options which guide the process of setting up the connection between Tcl array and *data source*.
 
-name|command *dstype* (in)
-: This argument specifies the type of the *data source* we wish to access. The *dstype* can be one of **log**, **array**, **remotearray**, **file**, **growfile**, or **dsource**; in addition, the programmer can register additional data source types. Each *dstype* is followed by one or more arguments that identify the *data source* to which the array is to be tied.
+    **-open**
+    : The Tcl array for the new tie is *loaded* from the *data source*, and the previously existing contents of the Tcl array are erased. Care is taken to *not* erase the previous contents should the creation of the tie fail.
 
-string *dsname* (in)
-: The series of *dsname* arguments coming after the *dstype* identifies the *data source* we wish to connect to, and has to be appropriate for the chosen type.
+        This option and the option **-save** exclude each other. If neither this nor option **-save** are specified then this option is assumed as default.
 
+    **-save**
+    : The Tcl array for the new tie is *saved* to the *data source*, and the previously existing contents of the *data source* are erased.
 
-The command understands a number of additional options which guide the process of setting up the connection between Tcl array and *data source*.
+        This option and the option **-open** exclude each other. If neither this nor option **-open** are specified then option **-open** is assumed as default.
 
-**-open**
-: The Tcl array for the new tie is *loaded* from the *data source*, and the previously existing contents of the Tcl array are erased. Care is taken to *not* erase the previous contents should the creation of the tie fail. This option and the option **-save** exclude each other. If neither this nor option **-save** are specified then this option is assumed as default.
+    **-merge**
+    : Using this option prevents the erasure of any previously existing content and merges the data instead. It can be specified in conjunction with either **-open** or **-save**. They determine how data existing in both Tcl array and *data source*, i.e duplicates, are dealt with.
 
-**-save**
-: The Tcl array for the new tie is *saved* to the *data source*, and the previously existing contents of the *data source* are erased. This option and the option **-open** exclude each other. If neither this nor option **-open** are specified then option **-open** is assumed as default.
+        When used with **-open** data in the *data source* has precedence. In other words, for duplicates the data in the *data source* is loaded into the Tcl array.
 
-**-merge**
-: Using this option prevents the erasure of any previously existing content and merges the data instead. It can be specified in conjunction with either **-open** or **-save**. They determine how data existing in both Tcl array and *data source*, i.e duplicates, are dealt with. When used with **-open** data in the *data source* has precedence. In other words, for duplicates the data in the *data source* is loaded into the Tcl array. When used with **-save** data in the Tcl array has precedence. In other words, for duplicates the data in the Tcl array is saved into the *data source*.
+        When used with **-save** data in the Tcl array has precedence. In other words, for duplicates the data in the Tcl array is saved into the *data source*.
 
 
 **::tie::untie** *arrayvarname* ?*token*?
-: This command dissolves one or more ties associated with the Tcl array named by *arrayvarname*. If no *token* is specified then all ties to that Tcl array are dissolved. Otherwise only the tie the token stands for is removed, if it is actually connected to the array. Trying to remove a specific tie not belonging to the provided array will cause an error. It should be noted that while severing a tie will destroy management information internal to the package the *data source* which was handled by the tie will not be touched, only closed. After the command returns none of changes made to the array will be saved to the *data source* anymore. The result of the command is an empty string.
+: This command dissolves one or more ties associated with the Tcl array named by *arrayvarname*. If no *token* is specified then all ties to that Tcl array are dissolved. Otherwise only the tie the token stands for is removed, if it is actually connected to the array. Trying to remove a specific tie not belonging to the provided array will cause an error.
 
+    It should be noted that while severing a tie will destroy management information internal to the package the *data source* which was handled by the tie will not be touched, only closed.
 
-varname *arrayname* (in)
-: The name of a Tcl array variable which may have ties.
+    After the command returns none of changes made to the array will be saved to the *data source* anymore.
 
-handle *token* (in)
-: A handle representing a specific tie. This argument is optional.
+    The result of the command is an empty string.
+
+    varname *arrayname* (in)
+    : The name of a Tcl array variable which may have ties.
+
+    handle *token* (in)
+    : A handle representing a specific tie. This argument is optional.
 
 
 **::tie::info** **ties** *arrayvarname*
@@ -115,27 +130,44 @@ This package provides the six following types as examples and standard data sour
 : This *data source* uses a regular Tcl array as the origin of the persistent data. It accepts a single identifying argument, the name of this Tcl array. All changes are mirrored to that array.
 
 **remotearray**
-: This *data source* is similar to **array**. The difference is that the Tcl array to which we are mirroring is not directly accessible, but through a **send**-like command. It accepts three identifying arguments, the name of the other Tcl array, the command prefix for the **send**-like accessor command, and an identifier for the remote entity hosting the array, in this order. All changes are mirrored to that array, via the command prefix. All commands will be executed in the context of the global namespace. **send**-like means that the command prefix has to have **send** syntax and semantics. I.e. it is a channel over which we can send arbitrary commands to some other entity. The remote array *data source* however uses only the commands **set**, **unset**, **array exists**, **array names**, **array set**, and **array get** to retrieve and set values in the remote array. The command prefix and the entity id are separate to allow the data source to use options like **-async** when assembling the actual commands. Examples of command prefixes, listed with the id of the remote entity, without options. In reality only the part before the id is the command prefix:
+: This *data source* is similar to **array**. The difference is that the Tcl array to which we are mirroring is not directly accessible, but through a **send**-like command.
 
+    It accepts three identifying arguments, the name of the other Tcl array, the command prefix for the **send**-like accessor command, and an identifier for the remote entity hosting the array, in this order. All changes are mirrored to that array, via the command prefix. All commands will be executed in the context of the global namespace.
 
-**send** *tkname*
-: The Tcl array is in a remote interpreter and is accessed via Tk's X communication.
+    **send**-like means that the command prefix has to have **send** syntax and semantics. I.e. it is a channel over which we can send arbitrary commands to some other entity. The remote array *data source* however uses only the commands **set**, **unset**, **array exists**, **array names**, **array set**, and **array get** to retrieve and set values in the remote array.
 
-**comm::comm send** *hostportid*
-: The Tcl array is in a remote interpreter and is accessed through a socket.
+    The command prefix and the entity id are separate to allow the data source to use options like **-async** when assembling the actual commands.
 
-**thread::send** *threadid*
-: The Tcl array is in a remote interpreter in a different thread of this process.
+    Examples of command prefixes, listed with the id of the remote entity, without options. In reality only the part before the id is the command prefix:
+
+    **send** *tkname*
+    : The Tcl array is in a remote interpreter and is accessed via Tk's X communication.
+
+    **comm::comm send** *hostportid*
+    : The Tcl array is in a remote interpreter and is accessed through a socket.
+
+    **thread::send** *threadid*
+    : The Tcl array is in a remote interpreter in a different thread of this process.
 
 
 **file**
-: This *data source* uses a single file as origin of the persistent data. It accepts a single identifying argument, the path to this file. The file has to be both readable and writable. It may not exist, the *data source* will create it in that case. This (and only this) situation will require that the directory for the file exists and is writable as well. All changes are saved in the file, as proper Tcl commands, one command per operation. In other words, the file will always contain a proper Tcl script. If the file exists when the tie using it is set up, then it will be compacted, i.e. superfluous operations are removed, if the operations log stored in it contains either at least one operation clearing the whole array, or at least 1.5 times more operations than entries in the loaded array.
+: This *data source* uses a single file as origin of the persistent data. It accepts a single identifying argument, the path to this file. The file has to be both readable and writable. It may not exist, the *data source* will create it in that case. This (and only this) situation will require that the directory for the file exists and is writable as well.
+
+    All changes are saved in the file, as proper Tcl commands, one command per operation. In other words, the file will always contain a proper Tcl script.
+
+    If the file exists when the tie using it is set up, then it will be compacted, i.e. superfluous operations are removed, if the operations log stored in it contains either at least one operation clearing the whole array, or at least 1.5 times more operations than entries in the loaded array.
 
 **growfile**
-: This *data source* is like **file** in terms of the storage medium for the array data, and how it is configured. In constrast to the former it however assumes and ensures that the tied array will never shrink. I.e. the creation of new array entries, and the modification of existing entries is allowed, but the deletion of entries is not, and causes the data source to throw errors. This restriction allows us to simplify both file format and access to the file radically. For one, the file is read only once and the internal cache cannot be invalidated. Second, writing data is reduced to a simple append, and no compaction step is necessary. The format of the contents is the string representation of a dictionary which can be incrementally extended forever at the end.
+: This *data source* is like **file** in terms of the storage medium for the array data, and how it is configured. In constrast to the former it however assumes and ensures that the tied array will never shrink. I.e. the creation of new array entries, and the modification of existing entries is allowed, but the deletion of entries is not, and causes the data source to throw errors.
+
+    This restriction allows us to simplify both file format and access to the file radically. For one, the file is read only once and the internal cache cannot be invalidated. Second, writing data is reduced to a simple append, and no compaction step is necessary. The format of the contents is the string representation of a dictionary which can be incrementally extended forever at the end.
 
 **dsource**
-: This *data source* uses an explicitly specified *data source object* as the source for the persistent data. It accepts a single identifying argument, the command prefix, i.e. object command. To use this type it is necessary to know how the framework manages ties and what **data source objects** are. All changes are delegated to the specified object.
+: This *data source* uses an explicitly specified *data source object* as the source for the persistent data. It accepts a single identifying argument, the command prefix, i.e. object command.
+
+    To use this type it is necessary to know how the framework manages ties and what **data source objects** are.
+
+    All changes are delegated to the specified object.
 
 
 # Creating new data sources
@@ -157,7 +189,9 @@ Data source objects are normally automatically created and destroyed by the fram
 After a **data source class** has been written it is necessary to register it as a new type with the framework.
 
 **::tie::register** *dsclasscmd* **as** *dstype*
-: Using this command causes the tie framework to remember the class command *dsclasscmd* of a **data source class** under the type name *dstype*. After the call the argument *dstype* of the basic user command **::tie::tie** will accept *dstype* as a type name and translate it internally to the appropriate class command for the creation of **data source objects** for the new *data source*.
+: Using this command causes the tie framework to remember the class command *dsclasscmd* of a **data source class** under the type name *dstype*.
+
+    After the call the argument *dstype* of the basic user command **::tie::tie** will accept *dstype* as a type name and translate it internally to the appropriate class command for the creation of **data source objects** for the new *data source*.
 
 
 ## Data source class
@@ -165,12 +199,16 @@ After a **data source class** has been written it is necessary to register it as
 Each data source class is represented by a single command, also called the *class command*, or *object creation command*. Its syntax is
 
 **dsclasscmd** *objname* ?*dsname*...?
-: The first argument of the class command is the name of the *data source object* to create. The framework itself will always supply the string **%AUTO%**, to signal that the class command has to generate not only the object, but the object name as well. This is followed by a series of arguments identifying the data source the new object is for. These are the same *dsname* arguments which are given to the basic user command **::tie::tie**. Their actual meaning is dependent on the *data source class*. The result of the class command has to be the fully-qualified name of the new *data source object*, i.e. the name of the *object command*. The interface this command has to follow is described in the section **DATA SOURCE OBJECT API**
+: The first argument of the class command is the name of the *data source object* to create. The framework itself will always supply the string **%AUTO%**, to signal that the class command has to generate not only the object, but the object name as well.
+
+    This is followed by a series of arguments identifying the data source the new object is for. These are the same *dsname* arguments which are given to the basic user command **::tie::tie**. Their actual meaning is dependent on the *data source class*.
+
+    The result of the class command has to be the fully-qualified name of the new *data source object*, i.e. the name of the *object command*. The interface this command has to follow is described in the section [Data source object API]
 
 
-## Data source object api
+## Data source object API
 
-Please read the section **DATA SOURCE CLASS** first, to know how to generate new *object commands*.
+Please read the section [Data source class] first, to know how to generate new *object commands*.
 
 Each *object command* for a *data source* object has to provide at least the methods listed below for proper inter-operation with the tie framework. Note that the names of most of the methods match the subcommands of the builtin **array** command.
 
@@ -193,14 +231,20 @@ Each *object command* for a *data source* object has to provide at least the met
 : This command takes a pattern and removes all elements whose keys matching it from the *data source*. If no pattern is specified it defaults to **\***, causing the removal of all elements. This is nearly equivalent to **array unset**.
 
 **ds** **setv** *index* *value*
-: This command has to save the *value* in the *data source* the object talks to, under the key *index*. The result of the command is ignored. If an error is thrown then this error will show up as error of the set operation which caused the method call.
+: This command has to save the *value* in the *data source* the object talks to, under the key *index*.
+
+    The result of the command is ignored. If an error is thrown then this error will show up as error of the set operation which caused the method call.
 
 **ds** **unsetv** *index*
-: This command has to remove the value under the key *index* from the *data source* the object talks to. The result of the command is ignored. If an error is thrown then this error will show up as error of the unset operation which caused the method call.
+: This command has to remove the value under the key *index* from the *data source* the object talks to.
+
+    The result of the command is ignored. If an error is thrown then this error will show up as error of the unset operation which caused the method call.
 
 **ds** **getv** *index*
-: This command has to return the value for the key *index* in the *data source* the object talks to. And here a small table comparing the *data source* methods to the regular Tcl commands for accessing an array.
+: This command has to return the value for the key *index* in the *data source* the object talks to.
 
+
+And here a small table comparing the *data source* methods to the regular Tcl commands for accessing an array.
 
 ```
         Regular Tcl             Data source

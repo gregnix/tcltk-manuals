@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_WindowId
+title: Tk_WindowId
 ManualSection: 3
 Version: 8.4
 TclPart: Tk
@@ -28,138 +29,87 @@ Copyright:
 
 # Name
 
-Tk_WindowId, Tk_Parent, Tk_Display, Tk_DisplayName, Tk_ScreenNumber, Tk_AlwaysShowSelection, Tk_Screen, Tk_X, Tk_Y, Tk_Width, Tk_Height, Tk_Changes, Tk_Attributes, Tk_IsContainer, Tk_IsEmbedded, Tk_IsMapped, Tk_IsTopLevel, Tk_ReqWidth, Tk_ReqHeight, Tk_MinReqWidth, Tk_MinReqHeight, Tk_InternalBorderLeft, Tk_InternalBorderRight, Tk_InternalBorderTop, Tk_InternalBorderBottom, Tk_Visual, Tk_Depth, Tk_Colormap, Tk_Interp, Tk_NewWindowObj  - retrieve information from Tk's local data structure
+Tk\_WindowId, Tk\_Parent, Tk\_Display, Tk\_DisplayName, Tk\_ScreenNumber, Tk\_AlwaysShowSelection, Tk\_Screen, Tk\_X, Tk\_Y, Tk\_Width, Tk\_Height, Tk\_Changes, Tk\_Attributes, Tk\_IsContainer, Tk\_IsEmbedded, Tk\_IsMapped, Tk\_IsTopLevel, Tk\_ReqWidth, Tk\_ReqHeight, Tk\_MinReqWidth, Tk\_MinReqHeight, Tk\_InternalBorderLeft, Tk\_InternalBorderRight, Tk\_InternalBorderTop, Tk\_InternalBorderBottom, Tk\_Visual, Tk\_Depth, Tk\_Colormap, Tk\_Interp, Tk\_NewWindowObj  - retrieve information from Tk's local data structure
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-Window
-[Tk_WindowId]{.cmd}([tkwin]{.arg})
-
-Tk_Window
-[Tk_Parent]{.cmd}([tkwin]{.arg})
-
-Display \*
-[Tk_Display]{.cmd}([tkwin]{.arg})
-
-const char \*
-[Tk_DisplayName]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_ScreenNumber]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_AlwaysShowSelection]{.cmd}([tkwin]{.arg})
-
-Screen \*
-[Tk_Screen]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_X]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_Y]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_Width]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_Height]{.cmd}([tkwin]{.arg})
-
-XWindowChanges \*
-[Tk_Changes]{.cmd}([tkwin]{.arg})
-
-XSetWindowAttributes \*
-[Tk_Attributes]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_IsContainer]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_IsEmbedded]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_IsMapped]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_IsTopLevel]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_ReqWidth]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_ReqHeight]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_MinReqWidth]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_MinReqHeight]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_InternalBorderLeft]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_InternalBorderRight]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_InternalBorderTop]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_InternalBorderBottom]{.cmd}([tkwin]{.arg})
-
-Visual \*
-[Tk_Visual]{.cmd}([tkwin]{.arg})
-
-int
-[Tk_Depth]{.cmd}([tkwin]{.arg})
-
-Colormap
-[Tk_Colormap]{.cmd}([tkwin]{.arg})
-
-Tcl_Interp \*
-[Tk_Interp]{.cmd}([tkwin]{.arg})
-
-Tcl_Obj \*
-[Tk_NewWindowObj]{.cmd}([tkwin]{.arg})
+**#include <tk.h>**
+[Window]{.ret} [Tk\_WindowId]{.ccmd} [tkwin]{.cargs}
+[Tk\_Window]{.ret} [Tk\_Parent]{.ccmd} [tkwin]{.cargs}
+[Display \*]{.ret} [Tk\_Display]{.ccmd} [tkwin]{.cargs}
+[const char \*]{.ret} [Tk\_DisplayName]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_ScreenNumber]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_AlwaysShowSelection]{.ccmd} [tkwin]{.cargs}
+[Screen \*]{.ret} [Tk\_Screen]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_X]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_Y]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_Width]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_Height]{.ccmd} [tkwin]{.cargs}
+[XWindowChanges \*]{.ret} [Tk\_Changes]{.ccmd} [tkwin]{.cargs}
+[XSetWindowAttributes \*]{.ret} [Tk\_Attributes]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_IsContainer]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_IsEmbedded]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_IsMapped]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_IsTopLevel]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_ReqWidth]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_ReqHeight]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_MinReqWidth]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_MinReqHeight]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_InternalBorderLeft]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_InternalBorderRight]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_InternalBorderTop]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_InternalBorderBottom]{.ccmd} [tkwin]{.cargs}
+[Visual \*]{.ret} [Tk\_Visual]{.ccmd} [tkwin]{.cargs}
+[int]{.ret} [Tk\_Depth]{.ccmd} [tkwin]{.cargs}
+[Colormap]{.ret} [Tk\_Colormap]{.ccmd} [tkwin]{.cargs}
+[Tcl\_Interp \*]{.ret} [Tk\_Interp]{.ccmd} [tkwin]{.cargs}
+[Tcl\_Obj \*]{.ret} [Tk\_NewWindowObj]{.ccmd} [tkwin]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window.
 
+:::
 
 # Description
 
-**Tk_WindowId** and the other names listed above are all macros that return fields from Tk's local data structure for *tkwin*.  None of these macros requires any interaction with the server;  it is safe to assume that all are fast.
+**Tk\_WindowId** and the other names listed above are all macros that return fields from Tk's local data structure for *tkwin*.  None of these macros requires any interaction with the server;  it is safe to assume that all are fast.
 
-**Tk_WindowId** returns the X identifier for *tkwin*, or **NULL** if no X window has been created for *tkwin* yet.
+**Tk\_WindowId** returns the X identifier for *tkwin*, or **NULL** if no X window has been created for *tkwin* yet.
 
-**Tk_Parent** returns Tk's token for the logical parent of *tkwin*.  The parent is the token that was specified when *tkwin* was created, or NULL for main windows.
+**Tk\_Parent** returns Tk's token for the logical parent of *tkwin*.  The parent is the token that was specified when *tkwin* was created, or NULL for main windows.
 
-**Tk_Interp** returns the Tcl interpreter associated with a *tkwin* or NULL if there is an error.
+**Tk\_Interp** returns the Tcl interpreter associated with a *tkwin* or NULL if there is an error.
 
-**Tk_Display** returns a pointer to the Xlib display structure corresponding to *tkwin*.  **Tk_DisplayName** returns an ASCII string identifying *tkwin*'s display.  **Tk_ScreenNumber** returns the index of *tkwin*'s screen among all the screens of *tkwin*'s display.  **Tk_Screen** returns a pointer to the Xlib structure corresponding to *tkwin*'s screen. **Tk_AlwaysShowSelection** indicates whether text/entry widgets should always display their selection, regardless of window focus.
+**Tk\_Display** returns a pointer to the Xlib display structure corresponding to *tkwin*.  **Tk\_DisplayName** returns an ASCII string identifying *tkwin*'s display.  **Tk\_ScreenNumber** returns the index of *tkwin*'s screen among all the screens of *tkwin*'s display.  **Tk\_Screen** returns a pointer to the Xlib structure corresponding to *tkwin*'s screen. **Tk\_AlwaysShowSelection** indicates whether text/entry widgets should always display their selection, regardless of window focus.
 
-**Tk_X**, **Tk_Y**, **Tk_Width**, and **Tk_Height** return information about *tkwin's* location within its parent and its size.  The location information refers to the upper-left pixel in the window, or its border if there is one. The width and height information refers to the interior size of the window, not including any border.  **Tk_Changes** returns a pointer to a structure containing all of the above information plus a few other fields.  **Tk_Attributes** returns a pointer to an XSetWindowAttributes structure describing all of the attributes of the *tkwin*'s window, such as background pixmap, event mask, and so on (Tk keeps track of all this information as it is changed by the application).  Note that it is essential that applications use Tk procedures like **Tk_ResizeWindow** instead of X procedures like **XResizeWindow**, so that Tk can keep its data structures up-to-date.
+**Tk\_X**, **Tk\_Y**, **Tk\_Width**, and **Tk\_Height** return information about *tkwin's* location within its parent and its size.  The location information refers to the upper-left pixel in the window, or its border if there is one. The width and height information refers to the interior size of the window, not including any border.  **Tk\_Changes** returns a pointer to a structure containing all of the above information plus a few other fields.  **Tk\_Attributes** returns a pointer to an XSetWindowAttributes structure describing all of the attributes of the *tkwin*'s window, such as background pixmap, event mask, and so on (Tk keeps track of all this information as it is changed by the application).  Note that it is essential that applications use Tk procedures like [Tk\_ResizeWindow][ConfigWind] instead of X procedures like **XResizeWindow**, so that Tk can keep its data structures up-to-date.
 
-**Tk_IsContainer** returns a non-zero value if *tkwin* is a container, and that some other application may be embedding itself inside *tkwin*.
+**Tk\_IsContainer** returns a non-zero value if *tkwin* is a container, and that some other application may be embedding itself inside *tkwin*.
 
-**Tk_IsEmbedded** returns a non-zero value if *tkwin* is not a free-standing window, but rather is embedded in some other application.
+**Tk\_IsEmbedded** returns a non-zero value if *tkwin* is not a free-standing window, but rather is embedded in some other application.
 
-**Tk_IsMapped** returns a non-zero value if *tkwin* is mapped and zero if *tkwin* is not mapped.
+**Tk\_IsMapped** returns a non-zero value if *tkwin* is mapped and zero if *tkwin* is not mapped.
 
-**Tk_IsTopLevel** returns a non-zero value if *tkwin* is a top-level window (its X parent is the root window of the screen) and zero if *tkwin* is not a top-level window.
+**Tk\_IsTopLevel** returns a non-zero value if *tkwin* is a top-level window (its X parent is the root window of the screen) and zero if *tkwin* is not a top-level window.
 
-**Tk_ReqWidth** and **Tk_ReqHeight** return information about the window's requested size.  These values correspond to the last call to **Tk_GeometryRequest** for *tkwin*.
+**Tk\_ReqWidth** and **Tk\_ReqHeight** return information about the window's requested size.  These values correspond to the last call to [Tk\_GeometryRequest][GeomReq] for *tkwin*.
 
-**Tk_MinReqWidth** and **Tk_MinReqHeight** return information about the window's minimum requested size.  These values correspond to the last call to **Tk_SetMinimumRequestSize** for *tkwin*.
+**Tk\_MinReqWidth** and **Tk\_MinReqHeight** return information about the window's minimum requested size.  These values correspond to the last call to [Tk\_SetMinimumRequestSize][GeomReq] for *tkwin*.
 
-**Tk_InternalBorderLeft**, **Tk_InternalBorderRight**, **Tk_InternalBorderTop** and **Tk_InternalBorderBottom** return the width of one side of the internal border that has been requested for *tkwin*, or 0 if no internal border was requested.  The return value is simply the last value passed to **Tk_SetInternalBorder** or **Tk_SetInternalBorderEx** for *tkwin*.
+**Tk\_InternalBorderLeft**, **Tk\_InternalBorderRight**, **Tk\_InternalBorderTop** and **Tk\_InternalBorderBottom** return the width of one side of the internal border that has been requested for *tkwin*, or 0 if no internal border was requested.  The return value is simply the last value passed to [Tk\_SetInternalBorder][GeomReq] or [Tk\_SetInternalBorderEx][GeomReq] for *tkwin*.
 
-**Tk_Visual**, **Tk_Depth**, and **Tk_Colormap** return information about the visual characteristics of a window. **Tk_Visual** returns the visual type for the window, **Tk_Depth** returns the number of bits per pixel, and **Tk_Colormap** returns the current colormap for the window.  The visual characteristics are normally set from the defaults for the window's screen, but they may be overridden by calling **Tk_SetWindowVisual**.
+**Tk\_Visual**, **Tk\_Depth**, and **Tk\_Colormap** return information about the visual characteristics of a window. **Tk\_Visual** returns the visual type for the window, **Tk\_Depth** returns the number of bits per pixel, and **Tk\_Colormap** returns the current colormap for the window.  The visual characteristics are normally set from the defaults for the window's screen, but they may be overridden by calling [Tk\_SetWindowVisual][SetVisual].
 
-**Tk_NewWindowObj** creates a new **Tcl_Obj** from the window.
+**Tk\_NewWindowObj** creates a new [Tcl\_Obj][Object] from the window.
+
+
+[ConfigWind]: ConfigWind.md
+[GeomReq]: GeomReq.md
+[Object]: ../tcl-c/Object.md
+[SetVisual]: SetVisual.md

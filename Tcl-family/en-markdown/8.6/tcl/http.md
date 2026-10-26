@@ -1,5 +1,6 @@
 ---
 CommandName: http
+title: http
 ManualSection: n
 Version: 2.9
 TclPart: http
@@ -26,24 +27,24 @@ http - Client-side implementation of the HTTP/1.1 protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [http]{.lit} [2.9]{.optlit} 
-[::http::config]{.cmd} [-option value]{.optdot} 
-[::http::geturl]{.cmd} [url]{.arg} [-option value]{.optdot} 
-[::http::formatQuery]{.cmd} [key]{.arg} [value]{.arg} [key value]{.optdot} 
-[::http::quoteString]{.cmd} [value]{.arg} 
-[::http::reset]{.cmd} [token]{.arg} [why]{.optarg} 
-[::http::wait]{.cmd} [token]{.arg} 
-[::http::status]{.cmd} [token]{.arg} 
-[::http::size]{.cmd} [token]{.arg} 
-[::http::code]{.cmd} [token]{.arg} 
-[::http::ncode]{.cmd} [token]{.arg} 
-[::http::meta]{.cmd} [token]{.arg} 
-[::http::data]{.cmd} [token]{.arg} 
-[::http::error]{.cmd} [token]{.arg} 
-[::http::cleanup]{.cmd} [token]{.arg} 
-[::http::register]{.cmd} [proto]{.arg} [port]{.arg} [command]{.arg} 
-[::http::registerError]{.cmd} [port]{.arg} [message]{.optarg} 
-[::http::unregister]{.cmd} [proto]{.arg} 
+[package]{.cmd} [require]{.sub} [http]{.lit} [?2.9?]{.lit}
+[::http::config]{.cmd} [-option value]{.optdot}
+[::http::geturl]{.cmd} [url]{.arg} [-option value]{.optdot}
+[::http::formatQuery]{.cmd} [key]{.arg} [value]{.arg} [key value]{.optdot}
+[::http::quoteString]{.cmd} [value]{.arg}
+[::http::reset]{.cmd} [token]{.arg} [why]{.optarg}
+[::http::wait]{.cmd} [token]{.arg}
+[::http::status]{.cmd} [token]{.arg}
+[::http::size]{.cmd} [token]{.arg}
+[::http::code]{.cmd} [token]{.arg}
+[::http::ncode]{.cmd} [token]{.arg}
+[::http::meta]{.cmd} [token]{.arg}
+[::http::data]{.cmd} [token]{.arg}
+[::http::error]{.cmd} [token]{.arg}
+[::http::cleanup]{.cmd} [token]{.arg}
+[::http::register]{.cmd} [proto]{.arg} [port]{.arg} [command]{.arg}
+[::http::registerError]{.cmd} [port]{.arg} [message]{.optarg}
+[::http::unregister]{.cmd} [proto]{.arg}
 :::
 
 # Exported commands
@@ -54,9 +55,9 @@ It does not export the commands **cleanup**, **code**, **data**, **error**, **me
 
 # Description
 
-The **http** package provides the client side of the HTTP/1.1 protocol, as defined in RFC 7230 to RFC 7235, which supersede RFC 2616. The package implements the GET, POST, and HEAD operations of HTTP/1.1.  It allows configuration of a proxy host to get through firewalls.  The package is compatible with the **Safesock** security policy, so it can be used by untrusted applets to do URL fetching from a restricted set of hosts. This package can be extended to support additional HTTP transport protocols, such as HTTPS, by providing a custom **socket** command, via **::http::register**.
+The **http** package provides the client side of the HTTP/1.1 protocol, as defined in RFC 7230 to RFC 7235, which supersede RFC 2616. The package implements the GET, POST, and HEAD operations of HTTP/1.1.  It allows configuration of a proxy host to get through firewalls.  The package is compatible with the **Safesock** security policy, so it can be used by untrusted applets to do URL fetching from a restricted set of hosts. This package can be extended to support additional HTTP transport protocols, such as HTTPS, by providing a custom [socket] command, via **::http::register**.
 
-The **::http::geturl** procedure does a HTTP transaction. Its *options*  determine whether a GET, POST, or HEAD transaction is performed. The return value of **::http::geturl** is a token for the transaction. The value is also the name of an array in the ::http namespace that contains state information about the transaction.  The elements of this array are described in the **STATE ARRAY** section.
+The **::http::geturl** procedure does a HTTP transaction. Its *options*  determine whether a GET, POST, or HEAD transaction is performed. The return value of **::http::geturl** is a token for the transaction. The value is also the name of an array in the ::http namespace that contains state information about the transaction.  The elements of this array are described in the [State array] section.
 
 If the **-command** option is specified, then the HTTP operation is done in the background. **::http::geturl** returns immediately after generating the HTTP request and the callback is invoked when the transaction completes.  For this to work, the Tcl event loop must be active.  In Tk applications this is always true.  For pure-Tcl applications, the caller can use **::http::wait** after calling **::http::geturl** to start the event loop.
 
@@ -67,149 +68,140 @@ If the **-command** option is specified, then the HTTP operation is done in the 
 **::http::config** ?*options*?
 : The **::http::config** command is used to set and query the name of the proxy server and port, and the User-Agent name used in the HTTP requests.  If no options are specified, then the current configuration is returned.  If a single argument is specified, then it should be one of the flags described below.  In this case the current value of that setting is returned.  Otherwise, the options should be a set of flags and values that define the configuration:
 
+    **-accept** *mimetypes*
+    : The Accept header of the request.  The default is \*/\*, which means that all types of documents are accepted.  Otherwise you can supply a comma-separated list of mime type patterns that you are willing to receive.  For example, "image/gif, image/jpeg, text/\*".
 
-**-accept** *mimetypes*
-: The Accept header of the request.  The default is \*/\*, which means that all types of documents are accepted.  Otherwise you can supply a comma-separated list of mime type patterns that you are willing to receive.  For example, "image/gif, image/jpeg, text/\*".
+    **-pipeline** *boolean*
+    : Specifies whether HTTP/1.1 transactions on a persistent socket will be pipelined.  See the **PERSISTENT SOCKETS** section for details. The default is 1.
 
-**-pipeline** *boolean*
-: Specifies whether HTTP/1.1 transactions on a persistent socket will be pipelined.  See the **PERSISTENT SOCKETS** section for details. The default is 1.
+    **-postfresh** *boolean*
+    : Specifies whether requests that use the **POST** method will always use a fresh socket, overriding the **-keepalive** option of command **http::geturl**.  See the **PERSISTENT SOCKETS** section for details. The default is 0.
 
-**-postfresh** *boolean*
-: Specifies whether requests that use the **POST** method will always use a fresh socket, overriding the **-keepalive** option of command **http::geturl**.  See the **PERSISTENT SOCKETS** section for details. The default is 0.
+    **-proxyhost** *hostname*
+    : The name of the proxy host, if any.  If this value is the empty string, the URL host is contacted directly.
 
-**-proxyhost** *hostname*
-: The name of the proxy host, if any.  If this value is the empty string, the URL host is contacted directly.
+    **-proxyport** *number*
+    : The proxy port number.
 
-**-proxyport** *number*
-: The proxy port number.
+    **-proxyfilter** *command*
+    : The command is a callback that is made during **::http::geturl** to determine if a proxy is required for a given host.  One argument, a host name, is added to *command* when it is invoked.  If a proxy is required, the callback should return a two-element list containing the proxy server and proxy port.  Otherwise the filter should return an empty list.  The default filter returns the values of the **-proxyhost** and **-proxyport** settings if they are non-empty.
 
-**-proxyfilter** *command*
-: The command is a callback that is made during **::http::geturl** to determine if a proxy is required for a given host.  One argument, a host name, is added to *command* when it is invoked.  If a proxy is required, the callback should return a two-element list containing the proxy server and proxy port.  Otherwise the filter should return an empty list.  The default filter returns the values of the **-proxyhost** and **-proxyport** settings if they are non-empty.
+        The **::http::geturl** command runs the **-proxyfilter** callback inside a [catch] command.  Therefore an error in the callback command does not call the [bgerror] handler.  See the [Errors] section for details.
 
+    **-repost** *boolean*
+    : Specifies what to do if a POST request over a persistent connection fails because the server has half-closed the connection.  If boolean **true**, the request will be automatically retried; if boolean **false** it will not, and the application that uses **http::geturl** is expected to seek user confirmation before retrying the POST.  The value **true** should be used only under certain conditions. See the **PERSISTENT SOCKETS** section for details. The default is 0.
 
-The **::http::geturl** command runs the **-proxyfilter** callback inside a **catch** command.  Therefore an error in the callback command does not call the **bgerror** handler.  See the **ERRORS** section for details.
+    **-urlencoding** *encoding*
+    : The *encoding* used for creating the x-url-encoded URLs with **::http::formatQuery** and **::http::quoteString**. The default is **utf-8**, as specified by RFC 2718.  Prior to http 2.5 this was unspecified, and that behavior can be returned by specifying the empty string (**{}**), although *iso8859-1* is recommended to restore similar behavior but without the **::http::formatQuery** or **::http::quoteString** throwing an error processing non-latin-1 characters.
 
-**-repost** *boolean*
-: Specifies what to do if a POST request over a persistent connection fails because the server has half-closed the connection.  If boolean **true**, the request will be automatically retried; if boolean **false** it will not, and the application that uses **http::geturl** is expected to seek user confirmation before retrying the POST.  The value **true** should be used only under certain conditions. See the **PERSISTENT SOCKETS** section for details. The default is 0.
+    **-useragent** *string*
+    : The value of the User-Agent header in the HTTP request.  In an unsafe interpreter, the default value depends upon the operating system, and the version numbers of **http** and **Tcl**, and is (for example) "**Mozilla/5.0 (Windows; U; Windows NT 10.0) http/2.9.0 Tcl/8.6.9**". A safe interpreter cannot determine its operating system, and so the default in a safe interpreter is to use a Windows 10 value with the current version numbers of **http** and **Tcl**.
 
-**-urlencoding** *encoding*
-: The *encoding* used for creating the x-url-encoded URLs with **::http::formatQuery** and **::http::quoteString**. The default is **utf-8**, as specified by RFC 2718.  Prior to http 2.5 this was unspecified, and that behavior can be returned by specifying the empty string (**{}**), although *iso8859-1* is recommended to restore similar behavior but without the **::http::formatQuery** or **::http::quoteString** throwing an error processing non-latin-1 characters.
-
-**-useragent** *string*
-: The value of the User-Agent header in the HTTP request.  In an unsafe interpreter, the default value depends upon the operating system, and the version numbers of **http** and **Tcl**, and is (for example) "**Mozilla/5.0 (Windows; U; Windows NT 10.0) http/2.9.0 Tcl/8.6.9**". A safe interpreter cannot determine its operating system, and so the default in a safe interpreter is to use a Windows 10 value with the current version numbers of **http** and **Tcl**.
-
-**-zip** *boolean*
-: If the value is boolean **true**, then by default requests will send a header "**Accept-Encoding: gzip,deflate,compress**". If the value is boolean **false**, then by default this header will not be sent.  In either case the default can be overridden for an individual request by supplying a custom **Accept-Encoding** header in the **-headers** option of **http::geturl**. The default is 1.
+    **-zip** *boolean*
+    : If the value is boolean **true**, then by default requests will send a header "**Accept-Encoding: gzip,deflate,compress**". If the value is boolean **false**, then by default this header will not be sent.  In either case the default can be overridden for an individual request by supplying a custom **Accept-Encoding** header in the **-headers** option of **http::geturl**. The default is 1.
 
 
 **::http::geturl** *url* ?*options*?
-: The **::http::geturl** command is the main procedure in the package. The **-query** option causes a POST operation and the **-validate** option causes a HEAD operation; otherwise, a GET operation is performed.  The **::http::geturl** command returns a *token* value that can be used to get information about the transaction.  See the **STATE ARRAY** and **ERRORS** section for details.  The **::http::geturl** command blocks until the operation completes, unless the **-command** option specifies a callback that is invoked when the HTTP transaction completes. **::http::geturl** takes several options:
+: The **::http::geturl** command is the main procedure in the package. The **-query** option causes a POST operation and the **-validate** option causes a HEAD operation; otherwise, a GET operation is performed.  The **::http::geturl** command returns a *token* value that can be used to get information about the transaction.  See the [State array] and [Errors] section for details.  The **::http::geturl** command blocks until the operation completes, unless the **-command** option specifies a callback that is invoked when the HTTP transaction completes. **::http::geturl** takes several options:
 
+    **-binary** *boolean*
+    : Specifies whether to force interpreting the URL data as binary.  Normally this is auto-detected (anything not beginning with a **text** content type or whose content encoding is **gzip** or **compress** is considered binary data).
 
-**-binary** *boolean*
-: Specifies whether to force interpreting the URL data as binary.  Normally this is auto-detected (anything not beginning with a **text** content type or whose content encoding is **gzip** or **compress** is considered binary data).
+    **-blocksize** *size*
+    : The block size used when reading the URL. At most *size* bytes are read at once.  After each block, a call to the **-progress** callback is made (if that option is specified).
 
-**-blocksize** *size*
-: The block size used when reading the URL. At most *size* bytes are read at once.  After each block, a call to the **-progress** callback is made (if that option is specified).
+    **-channel** *name*
+    : Copy the URL contents to channel *name* instead of saving it in **state(body)**.
 
-**-channel** *name*
-: Copy the URL contents to channel *name* instead of saving it in **state(body)**.
+    **-command** *callback*
+    : Invoke *callback* after the HTTP transaction completes. This option causes **::http::geturl** to return immediately. The *callback* gets an additional argument that is the *token* returned from **::http::geturl**. This token is the name of an array that is described in the [State array] section.  Here is a template for the callback:
 
-**-command** *callback*
-: Invoke *callback* after the HTTP transaction completes. This option causes **::http::geturl** to return immediately. The *callback* gets an additional argument that is the *token* returned from **::http::geturl**. This token is the name of an array that is described in the **STATE ARRAY** section.  Here is a template for the callback:
+        ```
+        proc httpCallback {token} {
+            upvar #0 $token state
+            # Access state as a Tcl array
+        }
+        ```
 
+        The **::http::geturl** command runs the **-command** callback inside a [catch] command.  Therefore an error in the callback command does not call the [bgerror] handler.  See the [Errors] section for details.
 
-```
-proc httpCallback {token} {
-    upvar #0 $token state
-    # Access state as a Tcl array
-}
-```
+    **-handler** *callback*
+    : Invoke *callback* whenever HTTP data is available; if present, nothing else will be done with the HTTP data.  This procedure gets two additional arguments: the socket for the HTTP data and the *token* returned from **::http::geturl**.  The token is the name of a global array that is described in the [State array] section.  The procedure is expected to return the number of bytes read from the socket.  Here is a template for the callback:
 
-The **::http::geturl** command runs the **-command** callback inside a **catch** command.  Therefore an error in the callback command does not call the **bgerror** handler.  See the **ERRORS** section for details.
+        ```
+        proc httpHandlerCallback {socket token} {
+            upvar #0 $token state
+            # Access socket, and state as a Tcl array
+            # For example...
+            ...
+            set data [read $socket 1000]
+            set nbytes [string length $data]
+            ...
+            return $nbytes
+        }
+        ```
 
-**-handler** *callback*
-: Invoke *callback* whenever HTTP data is available; if present, nothing else will be done with the HTTP data.  This procedure gets two additional arguments: the socket for the HTTP data and the *token* returned from **::http::geturl**.  The token is the name of a global array that is described in the **STATE ARRAY** section.  The procedure is expected to return the number of bytes read from the socket.  Here is a template for the callback:
+        The **http::geturl** code for the **-handler** option is not compatible with either compression or chunked transfer-encoding.  If **-handler** is specified, then to work around these issues **http::geturl** will reduce the HTTP protocol to 1.0, and override the **-zip** option (i.e. it will not send the header "**Accept-Encoding: gzip,deflate,compress**").
 
+        If options **-handler** and **-channel** are used together, the handler is responsible for copying the data from the HTTP socket to the specified channel.  The name of the channel is available to the handler as element **-channel** of the token array.
 
-```
-proc httpHandlerCallback {socket token} {
-    upvar #0 $token state
-    # Access socket, and state as a Tcl array
-    # For example...
-    ...
-    set data [read $socket 1000]
-    set nbytes [string length $data]
-    ...
-    return $nbytes
-}
-```
+        The **::http::geturl** command runs the **-handler** callback inside a [catch] command.  Therefore an error in the callback command does not call the [bgerror] handler.  See the [Errors] section for details.
 
-The **http::geturl** code for the **-handler** option is not compatible with either compression or chunked transfer-encoding.  If **-handler** is specified, then to work around these issues **http::geturl** will reduce the HTTP protocol to 1.0, and override the **-zip** option (i.e. it will not send the header "**Accept-Encoding: gzip,deflate,compress**").
+    **-headers** *keyvaluelist*
+    : This option is used to add headers not already specified by **::http::config** to the HTTP request.  The *keyvaluelist* argument must be a list with an even number of elements that alternate between keys and values.  The keys become header field names.  Newlines are stripped from the values so the header cannot be corrupted.  For example, if *keyvaluelist* is **Pragma no-cache** then the following header is included in the HTTP request:
 
-If options **-handler** and **-channel** are used together, the handler is responsible for copying the data from the HTTP socket to the specified channel.  The name of the channel is available to the handler as element **-channel** of the token array.
+        ```
+        Pragma: no-cache
+        ```
 
-The **::http::geturl** command runs the **-handler** callback inside a **catch** command.  Therefore an error in the callback command does not call the **bgerror** handler.  See the **ERRORS** section for details.
+    **-keepalive** *boolean*
+    : If boolean **true**, attempt to keep the connection open for servicing multiple requests.  Default is 0.
 
-**-headers** *keyvaluelist*
-: This option is used to add headers not already specified by **::http::config** to the HTTP request.  The *keyvaluelist* argument must be a list with an even number of elements that alternate between keys and values.  The keys become header field names.  Newlines are stripped from the values so the header cannot be corrupted.  For example, if *keyvaluelist* is **Pragma no-cache** then the following header is included in the HTTP request:
+    **-method** *type*
+    : Force the HTTP request method to *type*. **::http::geturl** will auto-select GET, POST or HEAD based on other options, but this option overrides that selection and enables choices like PUT and DELETE for WebDAV support.
 
+        It is the caller's responsibility to ensure that the headers and request body (if any) conform to the requirements of the request method.  For example, if using **-method** *POST* to send a POST with an empty request body, the caller must also supply the option "-headers {Content-Length 0}".
 
-```
-Pragma: no-cache
-```
+    **-myaddr** *address*
+    : Pass an specific local address to the underlying [socket] call in case multiple interfaces are available.
 
-**-keepalive** *boolean*
-: If boolean **true**, attempt to keep the connection open for servicing multiple requests.  Default is 0.
+    **-progress** *callback*
+    : The *callback* is made after each transfer of data from the URL. The callback gets three additional arguments: the *token* from **::http::geturl**, the expected total size of the contents from the **Content-Length** meta-data, and the current number of bytes transferred so far.  The expected total size may be unknown, in which case zero is passed to the callback.  Here is a template for the progress callback:
 
-**-method** *type*
-: Force the HTTP request method to *type*. **::http::geturl** will auto-select GET, POST or HEAD based on other options, but this option overrides that selection and enables choices like PUT and DELETE for WebDAV support.
+        ```
+        proc httpProgress {token total current} {
+            upvar #0 $token state
+        }
+        ```
 
+    **-protocol** *version*
+    : Select the HTTP protocol version to use. This should be 1.0 or 1.1 (the default). Should only be necessary for servers that do not understand or otherwise complain about HTTP/1.1.
 
-It is the caller's responsibility to ensure that the headers and request body (if any) conform to the requirements of the request method.  For example, if using **-method** *POST* to send a POST with an empty request body, the caller must also supply the option "-headers {Content-Length 0}".
+    **-query** *query*
+    : This flag (if the value is non-empty) causes **::http::geturl** to do a POST request that passes the string *query* verbatim to the server as the request payload. The content format (and encoding) of *query* is announced by the request header **Content-Type** which is set by the option **-type**.  Any value of **-type** is permitted, and it is the responsibility of the caller to supply *query* in the correct format.
 
-**-myaddr** *address*
-: Pass an specific local address to the underlying **socket** call in case multiple interfaces are available.
+        If **-type** is not specified, it defaults to *application/x-www-form-urlencoded*, which requires *query* to be an x-url-encoding formatted query-string (this **-type** and query format are used in a POST submitted from an html form).  The **::http::formatQuery** procedure can be used to do the formatting.
 
-**-progress** *callback*
-: The *callback* is made after each transfer of data from the URL. The callback gets three additional arguments: the *token* from **::http::geturl**, the expected total size of the contents from the **Content-Length** meta-data, and the current number of bytes transferred so far.  The expected total size may be unknown, in which case zero is passed to the callback.  Here is a template for the progress callback:
+    **-queryblocksize** *size*
+    : The block size used when posting query data to the URL. At most *size* bytes are written at once.  After each block, a call to the **-queryprogress** callback is made (if that option is specified).
 
+    **-querychannel** *channelID*
+    : This flag causes **::http::geturl** to do a POST request that passes the data contained in *channelID* to the server. The data contained in *channelID* must be an x-url-encoding formatted query unless the **-type** option below is used. If a Content-Length header is not specified via the **-headers** options, **::http::geturl** attempts to determine the size of the post data in order to create that header.  If it is unable to determine the size, it returns an error.
 
-```
-proc httpProgress {token total current} {
-    upvar #0 $token state
-}
-```
+    **-queryprogress** *callback*
+    : The *callback* is made after each transfer of data to the URL (i.e. POST) and acts exactly like the **-progress** option (the callback format is the same).
 
-**-protocol** *version*
-: Select the HTTP protocol version to use. This should be 1.0 or 1.1 (the default). Should only be necessary for servers that do not understand or otherwise complain about HTTP/1.1.
+    **-strict** *boolean*
+    : Whether to enforce RFC 3986 URL validation on the request.  Default is 1.
 
-**-query** *query*
-: This flag (if the value is non-empty) causes **::http::geturl** to do a POST request that passes the string *query* verbatim to the server as the request payload. The content format (and encoding) of *query* is announced by the request header **Content-Type** which is set by the option **-type**.  Any value of **-type** is permitted, and it is the responsibility of the caller to supply *query* in the correct format.
+    **-timeout** *milliseconds*
+    : If *milliseconds* is non-zero, then **::http::geturl** sets up a timeout to occur after the specified number of milliseconds. A timeout results in a call to **::http::reset** and to the **-command** callback, if specified. The return value of **::http::status** is **timeout** after a timeout has occurred.
 
+    **-type** *mime-type*
+    : Use *mime-type* as the **Content-Type** value, instead of the default value (**application/x-www-form-urlencoded**) during a POST operation.
 
-If **-type** is not specified, it defaults to *application/x-www-form-urlencoded*, which requires *query* to be an x-url-encoding formatted query-string (this **-type** and query format are used in a POST submitted from an html form).  The **::http::formatQuery** procedure can be used to do the formatting.
-
-**-queryblocksize** *size*
-: The block size used when posting query data to the URL. At most *size* bytes are written at once.  After each block, a call to the **-queryprogress** callback is made (if that option is specified).
-
-**-querychannel** *channelID*
-: This flag causes **::http::geturl** to do a POST request that passes the data contained in *channelID* to the server. The data contained in *channelID* must be an x-url-encoding formatted query unless the **-type** option below is used. If a Content-Length header is not specified via the **-headers** options, **::http::geturl** attempts to determine the size of the post data in order to create that header.  If it is unable to determine the size, it returns an error.
-
-**-queryprogress** *callback*
-: The *callback* is made after each transfer of data to the URL (i.e. POST) and acts exactly like the **-progress** option (the callback format is the same).
-
-**-strict** *boolean*
-: Whether to enforce RFC 3986 URL validation on the request.  Default is 1.
-
-**-timeout** *milliseconds*
-: If *milliseconds* is non-zero, then **::http::geturl** sets up a timeout to occur after the specified number of milliseconds. A timeout results in a call to **::http::reset** and to the **-command** callback, if specified. The return value of **::http::status** is **timeout** after a timeout has occurred.
-
-**-type** *mime-type*
-: Use *mime-type* as the **Content-Type** value, instead of the default value (**application/x-www-form-urlencoded**) during a POST operation.
-
-**-validate** *boolean*
-: If *boolean* is non-zero, then **::http::geturl** does an HTTP HEAD request.  This request returns meta information about the URL, but the contents are not returned.  The meta information is available in the **state(meta)**  variable after the transaction.  See the **STATE ARRAY** section for details.
+    **-validate** *boolean*
+    : If *boolean* is non-zero, then **::http::geturl** does an HTTP HEAD request.  This request returns meta information about the URL, but the contents are not returned.  The meta information is available in the **state(meta)**  variable after the transaction.  See the [State array] section for details.
 
 
 **::http::formatQuery** *key value* ?*key value* ...?
@@ -222,7 +214,7 @@ If **-type** is not specified, it defaults to *application/x-www-form-urlencoded
 : This command resets the HTTP transaction identified by *token*, if any. This sets the **state(status)** value to *why*, which defaults to **reset**, and then calls the registered **-command** callback.
 
 **::http::wait** *token*
-: This is a convenience procedure that blocks and waits for the transaction to complete.  This only works in trusted code because it uses **vwait**.  Also, it is not useful for the case where **::http::geturl** is called *without* the **-command** option because in this case the **::http::geturl** call does not return until the HTTP transaction is complete, and thus there is nothing to wait for.
+: This is a convenience procedure that blocks and waits for the transaction to complete.  This only works in trusted code because it uses [vwait].  Also, it is not useful for the case where **::http::geturl** is called *without* the **-command** option because in this case the **::http::geturl** call does not return until the HTTP transaction is complete, and thus there is nothing to wait for.
 
 **::http::data** *token*
 : This is a convenience procedure that returns the **body** element (i.e., the URL data) of the state array.
@@ -251,15 +243,14 @@ If **-type** is not specified, it defaults to *application/x-www-form-urlencoded
 **::http::register** *proto port command*
 : This procedure allows one to provide custom HTTP transport types such as HTTPS, by registering a prefix, the default port, and the command to execute to create the Tcl **channel**. E.g.:
 
+    ```
+    package require http
+    package require tls
 
-```
-package require http
-package require tls
+    ::http::register https 443 ::tls::socket
 
-::http::register https 443 ::tls::socket
-
-set token [::http::geturl https://my.secure.site/]
-```
+    set token [::http::geturl https://my.secure.site/]
+    ```
 
 **::http::registerError** *port* ?*message*?
 : This procedure allows a registered protocol handler to deliver an error message for use by **http**.  Calling this command does not raise an error. The command is useful when a registered protocol detects an problem (for example, an invalid TLS certificate) that will cause an error to propagate to **http**.  The command allows **http** to provide a precise error message rather than a general one.  The command returns the value provided by the last call with argument *message*, or the empty string if no such call has been made.
@@ -276,7 +267,7 @@ For asynchronous **::http::geturl** calls, all of the above error situations app
 
 Alternatively, if the main program flow reaches a point where it needs to know the result of the asynchronous HTTP request, it can call **::http::wait** and then check status and error, just as the callback does.
 
-The **::http::geturl** command runs the **-command**, **-handler**, and **-proxyfilter** callbacks inside a **catch** command.  Therefore an error in the callback command does not call the **bgerror** handler. When debugging one of these callbacks, it may be convenient to report errors by using a **catch** command within the callback command itself, e.g. to write an error message to stdout.
+The **::http::geturl** command runs the **-command**, **-handler**, and **-proxyfilter** callbacks inside a [catch] command.  Therefore an error in the callback command does not call the [bgerror] handler. When debugging one of these callbacks, it may be convenient to report errors by using a [catch] command within the callback command itself, e.g. to write an error message to stdout.
 
 In any case, you must still call **::http::cleanup** to delete the state array when you are done.
 
@@ -285,8 +276,8 @@ There are other possible results of the HTTP transaction determined by examining
 **ok**
 : If the HTTP transaction completes entirely, then status will be **ok**. However, you should still check the **::http::code** value to get the HTTP status.  The **::http::ncode** procedure provides just the numeric error (e.g., 200, 404 or 500) while the **::http::code** procedure returns a value like "HTTP 404 File not found".
 
-**eof**
-: If the server closes the socket without replying, then no error is raised, but the status of the transaction will be **eof**.
+[eof]
+: If the server closes the socket without replying, then no error is raised, but the status of the transaction will be [eof].
 
 **error**
 : The error message will also be stored in the **error** status array element, accessible via **::http::error**.
@@ -295,8 +286,10 @@ There are other possible results of the HTTP transaction determined by examining
 : A timeout occurred before the transaction could complete
 
 **reset**
-: user-reset Another error possibility is that **::http::geturl** is unable to write all the post query data to the server before the server responds and closes the socket. The error message is saved in the **posterror** status array element and then  **::http::geturl** attempts to complete the transaction. If it can read the server's response it will end up with an **ok** status, otherwise it will have an **eof** status.
+: user-reset
 
+
+Another error possibility is that **::http::geturl** is unable to write all the post query data to the server before the server responds and closes the socket. The error message is saved in the **posterror** status array element and then  **::http::geturl** attempts to complete the transaction. If it can read the server's response it will end up with an **ok** status, otherwise it will have an [eof] status.
 
 # State array
 
@@ -315,7 +308,7 @@ Once the data associated with the URL is no longer needed, the state array shoul
 : The contents of the URL.  This will be empty if the **-channel** option has been specified.  This value is returned by the **::http::data** command.
 
 **charset**
-: The value of the charset attribute from the **Content-Type** meta-data value.  If none was specified, this defaults to the RFC standard **iso8859-1**, or the value of **\$::http::defaultCharset**.  Incoming text data will be automatically converted from this charset to utf-8.
+: The value of the charset attribute from the **Content-Type** meta-data value.  If none was specified, this defaults to the RFC standard **iso8859-1**, or the value of **$::http::defaultCharset**.  Incoming text data will be automatically converted from this charset to utf-8.
 
 **coding**
 : A copy of the **Content-Encoding** meta-data value.
@@ -329,38 +322,36 @@ Once the data associated with the URL is no longer needed, the state array shoul
 **http**
 : The HTTP status reply from the server.  This value is returned by the **::http::code** command.  The format of this value is:
 
+    ```
+    HTTP/1.1 code string
+    ```
 
-```
-HTTP/1.1 code string
-```
-
-The *code* is a three-digit number defined in the HTTP standard. A code of 200 is OK.  Codes beginning with 4 or 5 indicate errors. Codes beginning with 3 are redirection errors.  In this case the **Location** meta-data specifies a new URL that contains the requested information.
+    The *code* is a three-digit number defined in the HTTP standard. A code of 200 is OK.  Codes beginning with 4 or 5 indicate errors. Codes beginning with 3 are redirection errors.  In this case the **Location** meta-data specifies a new URL that contains the requested information.
 
 **meta**
 : The HTTP protocol returns meta-data that describes the URL contents. The **meta** element of the state array is a list of the keys and values of the meta-data.  This is in a format useful for initializing an array that just contains the meta-data:
 
+    ```
+    array set meta $state(meta)
+    ```
 
-```
-array set meta $state(meta)
-```
+    Some of the meta-data keys are listed below, but the HTTP standard defines more, and servers are free to add their own.
 
-Some of the meta-data keys are listed below, but the HTTP standard defines more, and servers are free to add their own.
+    **Content-Type**
+    : The type of the URL contents.  Examples include **text/html**, **image/gif,** **application/postscript** and **application/x-tcl**.
 
-**Content-Type**
-: The type of the URL contents.  Examples include **text/html**, **image/gif,** **application/postscript** and **application/x-tcl**.
+    **Content-Length**
+    : The advertised size of the contents.  The actual size obtained by **::http::geturl** is available as **state(currentsize)**.
 
-**Content-Length**
-: The advertised size of the contents.  The actual size obtained by **::http::geturl** is available as **state(currentsize)**.
-
-**Location**
-: An alternate URL that contains the requested data.
+    **Location**
+    : An alternate URL that contains the requested data.
 
 
 **posterror**
 : The error, if any, that occurred while writing the post query data to the server.
 
 **status**
-: See description in the chapter **ERRORS** above for a list and description of **status**. During the transaction this value is the empty string.
+: See description in the chapter [Errors] above for a list and description of **status**. During the transaction this value is the empty string.
 
 **totalsize**
 : A copy of the **Content-Length** meta-data value.
@@ -422,7 +413,7 @@ There is currently no native Tcl client library for HTTP/2.
 
 The **Upgrade** mechanism is not used to request TLS in web browsers, because **http** and **https** are served over different ports.  It is used by protocols such as Internet Printing Protocol (IPP) that are built on top of **http(s)** and use the same TCP port number for both secure and insecure traffic.
 
-In browsers, opportunistic encryption is instead implemented by the **Upgrade-Insecure-Requests** client header.  If a secure service is available, the server response code is a 307 redirect, and the response header **Location** specifies the target URL.  The browser must call **http::geturl** again in order to fetch this URL. See https://w3c.github.io/webappsec-upgrade-insecure-requests/
+In browsers, opportunistic encryption is instead implemented by the **Upgrade-Insecure-Requests** client header.  If a secure service is available, the server response code is a 307 redirect, and the response header **Location** specifies the target URL.  The browser must call **http::geturl** again in order to fetch this URL. See <https://w3c.github.io/webappsec-upgrade-insecure-requests/>
 
 # Example
 
@@ -462,3 +453,10 @@ proc httpCopyProgress {args} {
     flush stderr
 }
 ```
+
+
+[bgerror]: bgerror.md
+[catch]: catch.md
+[eof]: eof.md
+[socket]: socket.md
+[vwait]: vwait.md

@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::auto
+title: nameserv::auto
 ManualSection: n
 Version: 0.4
 TclPart: tcllib
@@ -16,19 +17,19 @@ Copyright:
  - Copyright (c) 2007-2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 nameserv::auto – Namensdienst-Funktion, Client-Erweiterung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nameserv::auto]{.lit} [0.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [nameserv]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nameserv::auto]{.lit} [0.4]{.optlit}
+[package]{.cmd} [require]{.sub} [nameserv]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Zuerst ist das Dokument *Namensdienst-Funktion, Einleitung* zu lesen.
 
@@ -40,9 +41,9 @@ Das bedeutet, dass die gebundenen Namen sowie laufende und noch nicht abgeschlos
 
 Die für den Benutzer sichtbare API entspricht im Wesentlichen der API von **nameserv** und wird daher an dieser Stelle nicht näher beschrieben. Bitte lesen Sie die Dokumentation zu **nameserv**.
 
-Die Unterschiede werden im Folgenden in den Abschnitten **OPTIONEN** und **EREIGNISSE** erläutert.
+Die Unterschiede werden im Folgenden in den Abschnitten [Optionen] und [Ereignisse] erläutert.
 
-# OPTIONEN
+# Optionen
 
 Dieses Paket unterstützt alle Optionen des Pakets **nameserv** sowie eine weitere Option. Mit dieser zusätzlichen Option kann der Benutzer das Zeitintervall festlegen, in dem versucht wird, eine unterbrochene Verbindung wiederherzustellen.
 
@@ -50,18 +51,22 @@ Dieses Paket unterstützt alle Optionen des Pakets **nameserv** sowie eine weite
 : Der Wert dieser Option ist eine ganze Zahl größer als 0, die das Intervall in Millisekunden festlegt, das zwischen den Versuchen zur Wiederherstellung einer unterbrochenen Verbindung gewartet werden soll. Der Standardwert lautet **1000**, d. h. eine Sekunde.
 
 
-# EREIGNISSE
+# Ereignisse
 
 Dieses Paket generiert alle Ereignisse des Pakets **nameserv** sowie zwei weitere. Beide Ereignisse werden für das Tag *nameserv* generiert.
 
 *lost-name*
-: Dieses Ereignis wird ausgelöst, wenn ein gebundener Name tatsächlich verloren gegangen ist, d. h. nach dem vorübergehenden Verlust der Verbindung zum Namensserver nicht wiederhergestellt werden konnte. Es weist darauf hin, dass ein anderer Client die Kontrolle über den Namen übernommen hat, während dieser Client nicht erreichbar war. Die Detailinformationen des Ereignisses bestehen aus einem Tcl-Dictionary, das zwei Schlüssel enthält: **name** und **data**. Ihre Werte enthalten alle Informationen über den verlorenen Namen.
+: Dieses Ereignis wird ausgelöst, wenn ein gebundener Name tatsächlich verloren gegangen ist, d. h. nach dem vorübergehenden Verlust der Verbindung zum Namensserver nicht wiederhergestellt werden konnte. Es weist darauf hin, dass ein anderer Client die Kontrolle über den Namen übernommen hat, während dieser Client nicht erreichbar war.
+
+    Die Detailinformationen des Ereignisses bestehen aus einem Tcl-Dictionary, das zwei Schlüssel enthält: **name** und **data**. Ihre Werte enthalten alle Informationen über den verlorenen Namen.
 
 *re-connection*
-: Dieses Ereignis wird ausgelöst, wenn die Verbindung zum Server wiederhergestellt ist. Die gespeicherten Daten wurden zum Zeitpunkt der Auslösung des Ereignisses wiederhergestellt. Das Ereignis enthält keine Detailinformationen.
+: Dieses Ereignis wird ausgelöst, wenn die Verbindung zum Server wiederhergestellt ist. Die gespeicherten Daten wurden zum Zeitpunkt der Auslösung des Ereignisses wiederhergestellt.
+
+    Das Ereignis enthält keine Detailinformationen.
 
 
-# DESIGN
+# Design
 
 Das Paket wird auf Basis des regulären Nameservice-Clients, d. h. des Pakets **nameserv**, implementiert. Es erkennt den Verbindungsverlust, indem es auf *lost-connection*-Ereignisse am Tag *nameserv* überwacht.
 
@@ -69,7 +74,7 @@ Es reagiert auf solche Ereignisse, indem es einen periodischen Timer startet und
 
 Ein weiterer Abbruch der Verbindung – sei es während oder nach der erneuten Eingabe der gespeicherten Informationen – führt lediglich dazu, dass der Timer neu gestartet wird und weitere Verbindungsversuche unternommen werden.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *nameserv* als Kategorie an.
 
@@ -77,11 +82,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007-2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>

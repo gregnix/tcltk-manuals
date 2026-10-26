@@ -1,5 +1,6 @@
 ---
 CommandName: struct::tree_v1
+title: struct::tree_v1
 ManualSection: n
 Version: 1.2.3
 TclPart: tcllib
@@ -12,59 +13,64 @@ Copyright:
 
 # Name
 
-struct::tree_v1 - Create and manipulate tree objects
+struct::tree\_v1 - Create and manipulate tree objects
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::tree]{.lit} [1.2.3]{.optlit} 
-[treeName]{.cmd} [option]{.sub} [arg arg]{.optdot} 
-[treeName]{.ins} [append]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[treeName]{.ins} [children]{.sub} [node]{.arg} 
-[treeName]{.ins} [cut]{.sub} [node]{.arg} 
-[treeName]{.ins} [delete]{.sub} [node]{.arg} [node]{.optdot} 
-[treeName]{.ins} [depth]{.sub} [node]{.arg} 
-[treeName]{.ins} [destroy]{.sub} 
-[treeName]{.ins} [exists]{.sub} [node]{.arg} 
-[treeName]{.ins} [get]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [getall]{.sub} [node]{.arg} 
-[treeName]{.ins} [keys]{.sub} [node]{.arg} 
-[treeName]{.ins} [keyexists]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [index]{.sub} [node]{.arg} 
-[treeName]{.ins} [insert]{.sub} [parent]{.arg} [index]{.arg} [child ?child]{.optdot} 
-[treeName]{.ins} [isleaf]{.sub} [node]{.arg} 
-[treeName]{.ins} [lappend]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[treeName]{.ins} [move]{.sub} [parent]{.arg} [index]{.arg} [node]{.arg} [node]{.optdot} 
-[treeName]{.ins} [next]{.sub} [node]{.arg} 
-[treeName]{.ins} [numchildren]{.sub} [node]{.arg} 
-[treeName]{.ins} [parent]{.sub} [node]{.arg} 
-[treeName]{.ins} [previous]{.sub} [node]{.arg} 
-[treeName]{.ins} [set]{.sub} [node]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[treeName]{.ins} [size]{.sub} [node]{.optarg} 
-[treeName]{.ins} [splice]{.sub} [parent]{.arg} [from]{.arg} [to]{.optarg} [child]{.optarg} 
-[treeName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg} 
-[treeName]{.ins} [unset]{.sub} [node]{.arg} [-key key]{.optarg} 
-[treeName]{.ins} [walk]{.sub} [node]{.arg} [-order order]{.optarg} [-type type]{.optarg} [-command]{.lit} [cmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::tree]{.lit} [1.2.3]{.optlit}
+[treeName]{.cmd} [option]{.lit} [arg arg]{.optdot}
+[treeName]{.ins} [append]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[treeName]{.ins} [children]{.sub} [node]{.arg}
+[treeName]{.ins} [cut]{.sub} [node]{.arg}
+[treeName]{.ins} [delete]{.sub} [node]{.arg} [node]{.optdot}
+[treeName]{.ins} [depth]{.sub} [node]{.arg}
+[treeName]{.ins} [destroy]{.sub}
+[treeName]{.ins} [exists]{.sub} [node]{.arg}
+[treeName]{.ins} [get]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [getall]{.sub} [node]{.arg}
+[treeName]{.ins} [keys]{.sub} [node]{.arg}
+[treeName]{.ins} [keyexists]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [index]{.sub} [node]{.arg}
+[treeName]{.ins} [insert]{.sub} [parent]{.arg} [index]{.arg} [child ?child]{.optdot}
+[treeName]{.ins} [isleaf]{.sub} [node]{.arg}
+[treeName]{.ins} [lappend]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[treeName]{.ins} [move]{.sub} [parent]{.arg} [index]{.arg} [node]{.arg} [node]{.optdot}
+[treeName]{.ins} [next]{.sub} [node]{.arg}
+[treeName]{.ins} [numchildren]{.sub} [node]{.arg}
+[treeName]{.ins} [parent]{.sub} [node]{.arg}
+[treeName]{.ins} [previous]{.sub} [node]{.arg}
+[treeName]{.ins} [set]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[treeName]{.ins} [size]{.sub} [node]{.optarg}
+[treeName]{.ins} [splice]{.sub} [parent]{.arg} [from]{.arg} [to]{.optarg} [child]{.optarg}
+[treeName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg}
+[treeName]{.ins} [unset]{.sub} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[treeName]{.ins} [walk]{.sub} [node]{.arg} [[-order]{.lit} [order]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [-command]{.lit} [cmd]{.arg}
 :::
 
 # Description
 
-The **::struct::tree** command creates a new tree object with an associated global Tcl command whose name is *treeName*. This command may be used to invoke various operations on the tree. It has the following general form:
+The [::struct::tree][struct_tree] command creates a new tree object with an associated global Tcl command whose name is *treeName*. This command may be used to invoke various operations on the tree. It has the following general form:
 
 **treeName** **option** ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. A tree is a collection of named elements, called nodes, one of which is distinguished as a root, along with a relation ("parenthood") that places a hierarchical structure on the nodes. (Data Structures and Algorithms; Aho, Hopcroft and Ullman; Addison-Wesley, 1987).  In addition to maintaining the node relationships, this tree implementation allows any number of keyed values to be associated with each node. The element names can be arbitrary strings. A tree is thus similar to an array, but with three important differences:
+: *Option* and the *arg*s determine the exact behavior of the command.
 
 
-**\[1\]**
-: Trees are accessed through an object command, whereas arrays are accessed as variables. (This means trees cannot be local to a procedure.)
+A tree is a collection of named elements, called nodes, one of which is distinguished as a root, along with a relation ("parenthood") that places a hierarchical structure on the nodes. (Data Structures and Algorithms; Aho, Hopcroft and Ullman; Addison-Wesley, 1987).  In addition to maintaining the node relationships, this tree implementation allows any number of keyed values to be associated with each node.
 
-**\[2\]**
-: Trees have a hierarchical structure, whereas an array is just an unordered collection.
+The element names can be arbitrary strings.
 
-**\[3\]**
-: Each node of a tree has a separate collection of attributes and values. This is like an array where every value is a dictionary. The following commands are possible for tree objects:
+A tree is thus similar to an array, but with three important differences:
 
+1. Trees are accessed through an object command, whereas arrays are accessed as variables. (This means trees cannot be local to a procedure.)
+
+2. Trees have a hierarchical structure, whereas an array is just an unordered collection.
+
+3. Each node of a tree has a separate collection of attributes and values. This is like an array where every value is a dictionary.
+
+
+The following commands are possible for tree objects:
 
 *treeName* **append** *node* ?-key *key*? *value*
 : Appends a *value* to one of the keyed values associated with an node. If no *key* is specified, the key **data** is assumed.
@@ -103,7 +109,13 @@ The **::struct::tree** command creates a new tree object with an associated glob
 : Returns the index of *node* in its parent's list of children.  For example, if a node has *nodeFoo*, *nodeBar*, and *nodeBaz* as children, in that order, the index of *nodeBar* is 1.
 
 *treeName* **insert** *parent* *index* ?*child* ?*child* ...??
-: Insert one or more nodes into the tree as children of the node *parent*. The nodes will be added in the order they are given. If *parent* is **root**, it refers to the root of the tree. The new nodes will be added to the *parent* node's child list at the index given by *index*. The *index* can be **end** in which case the new nodes will be added after the current last child. If any of the specified children already exist in *treeName*, those nodes will be moved from their original location to the new location indicated by this command. If no *child* is specified, a single node will be added, and a name will be generated for the new node. The generated name is of the form *node*__x__, where **x** is a number. If names are specified they must neither contain whitespace nor colons (":"). The return result from this command is a list of nodes added.
+: Insert one or more nodes into the tree as children of the node *parent*. The nodes will be added in the order they are given. If *parent* is **root**, it refers to the root of the tree. The new nodes will be added to the *parent* node's child list at the index given by *index*. The *index* can be **end** in which case the new nodes will be added after the current last child.
+
+    If any of the specified children already exist in *treeName*, those nodes will be moved from their original location to the new location indicated by this command.
+
+    If no *child* is specified, a single node will be added, and a name will be generated for the new node. The generated name is of the form *node***x**, where **x** is a number. If names are specified they must neither contain whitespace nor colons (":").
+
+    The return result from this command is a list of nodes added.
 
 *treeName* **isleaf** *node*
 : Returns true if *node* is a leaf of the tree (if *node* has no children), false otherwise.
@@ -133,7 +145,7 @@ The **::struct::tree** command creates a new tree object with an associated glob
 : Return a count of the number of descendants of the node *node*; if no node is specified, **root** is assumed.
 
 *treeName* **splice** *parent* *from* ?*to*? ?*child*?
-: Insert a node named *child* into the tree as a child of the node *parent*. If *parent* is **root**, it refers to the root of the tree. The new node will be added to the parent node's child list at the index given by *from*.  The children of *parent* which are in the range of the indices *from* and *to* are made children of *child*.  If the value of *to* is not specified it defaults to **end**.  If no name is given for *child*, a name will be generated for the new node.  The generated name is of the form *node*__x__, where **x** is a number.  The return result from this command is the name of the new node.
+: Insert a node named *child* into the tree as a child of the node *parent*. If *parent* is **root**, it refers to the root of the tree. The new node will be added to the parent node's child list at the index given by *from*.  The children of *parent* which are in the range of the indices *from* and *to* are made children of *child*.  If the value of *to* is not specified it defaults to **end**.  If no name is given for *child*, a name will be generated for the new node.  The generated name is of the form *node***x**, where **x** is a number.  The return result from this command is the name of the new node.
 
 *treeName* **swap** *node1* *node2*
 : Swap the position of *node1* and *node2* in the tree.
@@ -142,20 +154,24 @@ The **::struct::tree** command creates a new tree object with an associated glob
 : Removes a keyed value from the node *node*.  If no key is specified, the key **data** is assumed.
 
 *treeName* **walk** *node* ?**-order** *order*? ?**-type** *type*? **-command** *cmd*
-: Perform a breadth-first or depth-first walk of the tree starting at the node *node*.  The type of walk, breadth-first or depth-first, is determined by the value of *type*; **bfs** indicates breadth-first, **dfs** indicates depth-first.  Depth-first is the default. The order of the walk, pre-, post-, both- or in-order is determined by the value of *order*; **pre** indicates pre-order, **post** indicates post-order, **both** indicates both-order and **in** indicates in-order. Pre-order is the default. Pre-order walking means that a parent node is visited before any of its children.  For example, a breadth-first search starting from the root will visit the root, followed by all of the root's children, followed by all of the root's grandchildren. Post-order walking means that a parent node is visited after any of its children. Both-order walking means that a parent node is visited before *and* after any of its children. In-order walking means that a parent node is visited after its first child and before the second. This is a generalization of in-order walking for binary trees and will do the right thing if a binary is walked. The combination of a breadth-first walk with in-order is illegal. As the walk progresses, the command *cmd* will be evaluated at each node.  Percent substitution will be performed on *cmd* before evaluation, just as in a **bind** script.  The following substitutions are recognized:
+: Perform a breadth-first or depth-first walk of the tree starting at the node *node*.  The type of walk, breadth-first or depth-first, is determined by the value of *type*; **bfs** indicates breadth-first, **dfs** indicates depth-first.  Depth-first is the default. The order of the walk, pre-, post-, both- or in-order is determined by the value of *order*; **pre** indicates pre-order, **post** indicates post-order, **both** indicates both-order and **in** indicates in-order. Pre-order is the default.
 
+    Pre-order walking means that a parent node is visited before any of its children.  For example, a breadth-first search starting from the root will visit the root, followed by all of the root's children, followed by all of the root's grandchildren. Post-order walking means that a parent node is visited after any of its children. Both-order walking means that a parent node is visited before *and* after any of its children. In-order walking means that a parent node is visited after its first child and before the second. This is a generalization of in-order walking for binary trees and will do the right thing if a binary is walked. The combination of a breadth-first walk with in-order is illegal.
 
-**%%**
-: Insert the literal % character.
+    As the walk progresses, the command *cmd* will be evaluated at each node.  Percent substitution will be performed on *cmd* before evaluation, just as in a **bind** script.  The following substitutions are recognized:
 
-**%t**
-: Name of the tree object.
+    **%%**
+    : Insert the literal % character.
 
-**%n**
-: Name of the current node.
+    **%t**
+    : Name of the tree object.
 
-**%a**
-: Name of the action occurring; one of **enter**, **leave**, or **visit**.  **enter** actions occur during pre-order walks; **leave** actions occur during post-order walks; **visit** actions occur during in-order walks.  In a both-order walk, the command will be evaluated twice for each node; the action is **enter** for the first evaluation, and **leave** for the second.
+    **%n**
+    : Name of the current node.
+
+    **%a**
+    : Name of the action occurring; one of **enter**, **leave**, or **visit**.  **enter** actions occur during pre-order walks; **leave** actions occur during post-order walks; **visit** actions occur during in-order walks.  In a both-order walk, the command will be evaluated twice for each node; the action is **enter** for the first evaluation, and **leave** for the second.
+
 
 
 # Bugs, ideas, feedback
@@ -175,3 +191,6 @@ Data structures
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[struct_tree]: struct_tree.md

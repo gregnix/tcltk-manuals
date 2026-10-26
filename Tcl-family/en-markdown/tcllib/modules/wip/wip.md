@@ -1,5 +1,6 @@
 ---
 CommandName: wip
+title: wip
 ManualSection: n
 Version: 2.3
 TclPart: tcllib
@@ -19,41 +20,41 @@ wip - Word Interpreter
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [wip]{.lit} [2.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [struct::set]{.lit} 
-[::wip]{.cmd} [wipName]{.arg} [engine]{.arg} [arg...]{.arg} 
-[def]{.cmd} [name]{.arg} 
-[def]{.cmd} [name]{.arg} [method_prefix]{.arg} 
-[wipName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[wip::dsl]{.cmd} [suffix]{.optarg} 
-[wipName]{.ins} [def]{.sub} [name]{.arg} [method_prefix]{.optarg} 
-[wipName]{.ins} [defl]{.sub} [names]{.arg} 
-[wipName]{.ins} [defd]{.sub} [dict]{.arg} 
-[wipName]{.ins} [deflva]{.sub} [name...]{.arg} 
-[wipName]{.ins} [defdva]{.sub} (name [method_prefix)...]{.arg} 
-[wipName]{.ins} [undefl]{.sub} [names]{.arg} 
-[wipName]{.ins} [undefva]{.sub} [name...]{.arg} 
-[wipName]{.ins} [unknown]{.sub} [cmdprefix]{.arg} 
-[wipName]{.ins} [runl]{.sub} [wordlist]{.arg} 
-[wipName]{.ins} [run]{.sub} [word...]{.arg} 
-[wipName]{.ins} [run_next]{.sub} 
-[wipName]{.ins} [run_next_while]{.sub} [acceptable]{.arg} 
-[wipName]{.ins} [run_next_until]{.sub} [rejected]{.arg} 
-[wipName]{.ins} [run_next_if]{.sub} [acceptable]{.arg} 
-[wipName]{.ins} [run_next_ifnot]{.sub} [rejected]{.arg} 
-[wipName]{.ins} [next]{.sub} 
-[wipName]{.ins} [peek]{.sub} 
-[wipName]{.ins} [peekall]{.sub} 
-[wipName]{.ins} [insertl]{.sub} [at]{.arg} [wordlist]{.arg} 
-[wipName]{.ins} [replacel]{.sub} [wordlist]{.arg} 
-[wipName]{.ins} [pushl]{.sub} [wordlist]{.arg} 
-[wipName]{.ins} [addl]{.sub} [wordlist]{.arg} 
-[wipName]{.ins} [insert]{.sub} [at]{.arg} [word...]{.arg} 
-[wipName]{.ins} [replace]{.sub} [word...]{.arg} 
-[wipName]{.ins} [push]{.sub} [word...]{.arg} 
-[wipName]{.ins} [add]{.sub} [word...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [wip]{.lit} [2.3]{.optlit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.4]{.optlit}
+[package]{.cmd} [require]{.sub} [struct::set]{.lit}
+[::wip]{.cmd} [wipName]{.arg} [engine]{.arg} [arg...]{.arg}
+[def]{.cmd} [name]{.arg}
+[def]{.cmd} [name]{.arg} [method\_prefix]{.arg}
+[wipName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[wip::dsl]{.cmd} [suffix]{.optarg}
+[wipName]{.ins} [def]{.sub} [name]{.arg} [method\_prefix]{.optarg}
+[wipName]{.ins} [defl]{.sub} [names]{.arg}
+[wipName]{.ins} [defd]{.sub} [dict]{.arg}
+[wipName]{.ins} [deflva]{.sub} [name...]{.arg}
+[wipName]{.ins} [defdva]{.sub} ([name]{.arg} [method\_prefix]{.arg})...
+[wipName]{.ins} [undefl]{.sub} [names]{.arg}
+[wipName]{.ins} [undefva]{.sub} [name...]{.arg}
+[wipName]{.ins} [unknown]{.sub} [cmdprefix]{.arg}
+[wipName]{.ins} [runl]{.sub} [wordlist]{.arg}
+[wipName]{.ins} [run]{.sub} [word...]{.arg}
+[wipName]{.ins} [run\_next]{.sub}
+[wipName]{.ins} [run\_next\_while]{.sub} [acceptable]{.arg}
+[wipName]{.ins} [run\_next\_until]{.sub} [rejected]{.arg}
+[wipName]{.ins} [run\_next\_if]{.sub} [acceptable]{.arg}
+[wipName]{.ins} [run\_next\_ifnot]{.sub} [rejected]{.arg}
+[wipName]{.ins} [next]{.sub}
+[wipName]{.ins} [peek]{.sub}
+[wipName]{.ins} [peekall]{.sub}
+[wipName]{.ins} [insertl]{.sub} [at]{.arg} [wordlist]{.arg}
+[wipName]{.ins} [replacel]{.sub} [wordlist]{.arg}
+[wipName]{.ins} [pushl]{.sub} [wordlist]{.arg}
+[wipName]{.ins} [addl]{.sub} [wordlist]{.arg}
+[wipName]{.ins} [insert]{.sub} [at]{.arg} [word...]{.arg}
+[wipName]{.ins} [replace]{.sub} [word...]{.arg}
+[wipName]{.ins} [push]{.sub} [word...]{.arg}
+[wipName]{.ins} [add]{.sub} [word...]{.arg}
 :::
 
 # Description
@@ -74,52 +75,58 @@ When executing a list of words (aka program) the first word is always taken as t
 
 Note that the methods implementing the language commands may have full access to the list of words and are allowed to manipulate as they see fit.
 
-**\[1\]**
-: This means, for example, that while we cannot specify variable-argument methods directly they can consume words after their fixed arguments before returning to the execution loop. This may be under the control of their fixed arguments.
+1. This means, for example, that while we cannot specify variable-argument methods directly they can consume words after their fixed arguments before returning to the execution loop. This may be under the control of their fixed arguments.
 
-**\[2\]**
-: Another possibility is the use of method **run_next** and its variants to execute commands coming after the current command, changing the order of execution.
+2. Another possibility is the use of method **run\_next** and its variants to execute commands coming after the current command, changing the order of execution.
 
-**\[3\]**
-: Execution can be further changed by use of the program accessor methods which allow a command implementation to modify the remaining list of words (insert, replace, prepend, append words) without executing them immediately.
+3. Execution can be further changed by use of the program accessor methods which allow a command implementation to modify the remaining list of words (insert, replace, prepend, append words) without executing them immediately.
 
-**\[4\]**
-: At last the basic **run** methods save and restore an existing list of words when used, enabling recursive use from within command implementations.
+4. At last the basic **run** methods save and restore an existing list of words when used, enabling recursive use from within command implementations.
 
 
-# Class api
+# Class API
 
 The main command of the package is:
 
 **::wip** *wipName* *engine* *arg*...
-: The command creates a new word interpreter object with an associated global Tcl command whose name is *wipName*. If however the string **%AUTO%** was used as object name the package will generate its own unique name for the object. The *engine* is the object the word interpreter will dispatch all recognized commands to, and the *arg*uments are a word list which defines an initial mapping from language words to engine methods. The recognized language of this word list is
+: The command creates a new word interpreter object with an associated global Tcl command whose name is *wipName*. If however the string **%AUTO%** was used as object name the package will generate its own unique name for the object.
+
+    The *engine* is the object the word interpreter will dispatch all recognized commands to, and the *arg*uments are a word list which defines an initial mapping from language words to engine methods.
+
+    The recognized language of this word list is
+
+    **def** *name*
+    : Defines *name* as command of the language, to be mapped to a method of the *engine* having the same name.
+
+    **def** *name* *method\_prefix*
+    : Defines *name* as command of the language, to be mapped to the method of the *engine* named in the *method\_prefix*.
 
 
-**def** *name*
-: Defines *name* as command of the language, to be mapped to a method of the *engine* having the same name.
+    The returned command may be used to invoke various operations on the object.  It has the following general form:
 
-**def** *name* *method_prefix*
-: Defines *name* as command of the language, to be mapped to the method of the *engine* named in the *method_prefix*.
+    **wipName** *option* ?*arg arg ...*?
+    : *Option* and the *arg*s determine the exact behavior of the command.
 
-
-The returned command may be used to invoke various operations on the object.  It has the following general form:
-
-**wipName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command.
 
 
 The package additionally exports the command:
 
 **wip::dsl** ?*suffix*?
-: This command is for use within snit types which wish to use one or more wip interpreters as a component. Use within the type definition installs most of the boilerplate needed to setup and use a word interpreter. It installs a component named *wip*, and a method **wip_setup** for initializing it. This method has to be called from within the constructor of the type using the word interpreter. If further installs a series of procedures which make the object API of the word interpreter directly available to the type's methods, without having to specify the component. *Note* that this does and cannot install the language to interpret, i.e. the mapping from words to engine methods. It is possible to instantiate multiple word interpreter components within a type by using different suffices as arguments to the command. In that case the name of the component changes to \\'wip\_**\$suffix**', the setup command becomes \\'wip\_**\$suffix**\_setup' and all the procedures also get the suffix \\'\_**\$suffix**'.
+: This command is for use within snit types which wish to use one or more wip interpreters as a component. Use within the type definition installs most of the boilerplate needed to setup and use a word interpreter.
+
+    It installs a component named *wip*, and a method **wip\_setup** for initializing it. This method has to be called from within the constructor of the type using the word interpreter. If further installs a series of procedures which make the object API of the word interpreter directly available to the type's methods, without having to specify the component.
+
+    *Note* that this does and cannot install the language to interpret, i.e. the mapping from words to engine methods.
+
+    It is possible to instantiate multiple word interpreter components within a type by using different suffices as arguments to the command. In that case the name of the component changes to 'wip\_**$suffix**', the setup command becomes 'wip\_**$suffix**\_setup' and all the procedures also get the suffix '\_**$suffix**'.
 
 
-# Object api
+# Object API
 
 The following commands are possible for word interpreter objects:
 
-*wipName* **def** *name* ?*method_prefix*?
-: Defines a language command *name* and maps it to the method named in the engine's *method_prefix*. If the *method_prefix* name is not specified it is simply the name of the language command.
+*wipName* **def** *name* ?*method\_prefix*?
+: Defines a language command *name* and maps it to the method named in the engine's *method\_prefix*. If the *method\_prefix* name is not specified it is simply the name of the language command.
 
 *wipName* **defl** *names*
 : Defines a series of language commands, specified through the list of *names*, all of which are mapped to engine methods of the same name.
@@ -130,7 +137,7 @@ The following commands are possible for word interpreter objects:
 *wipName* **deflva** *name*...
 : As method **defl**, however the list of names is specified through multiple arguments.
 
-*wipName* **defdva** (*name* *method_prefix*)...
+*wipName* **defdva** (*name* *method\_prefix*)...
 : As method **defd**, however the dictionary of names and method prefixes is specified through multiple arguments.
 
 *wipName* **undefl** *names*
@@ -143,25 +150,37 @@ The following commands are possible for word interpreter objects:
 : Sets the handler for unknown words to *cmdprefix*. This command prefix takes one argument, the current word, and either throws some error, or returns the result of executing the word, as defined by the handler. The default handler simply throws an error.
 
 *wipName* **runl** *wordlist*
-: Treats the list of words in *wordlist* as a program and executes the contained command one by one. The result of the command executed last is returned as the result of this command. The *wordlist* is stored in the object for access by the other *run*-methods, and the general program accessor methods (see below). A previously stored wordlist is saved during the execution of this method and restored before it returns. This enables the recursive execution of word lists within word lists.
+: Treats the list of words in *wordlist* as a program and executes the contained command one by one. The result of the command executed last is returned as the result of this command.
+
+    The *wordlist* is stored in the object for access by the other *run*-methods, and the general program accessor methods (see below). A previously stored wordlist is saved during the execution of this method and restored before it returns. This enables the recursive execution of word lists within word lists.
 
 *wipName* **run** *word*...
 : As method **runl**, however the list of words to execute is specified through multiple arguments.
 
-*wipName* **run_next**
-: Low-level method. Determines the next word in the list of words, and its arguments, and then executes it. The result of the executed word is the result of this method. Exposed for use within command implementations. The methods **run** and **runl** use it to execute words until their word list is exhausted.
+*wipName* **run\_next**
+: Low-level method. Determines the next word in the list of words, and its arguments, and then executes it. The result of the executed word is the result of this method.
 
-*wipName* **run_next_while** *acceptable*
-: Low-level method. Invokes the method **run_next** as long as the next word is in the set of *acceptable* words, and the program is not empty. The result of the command executed last is returned as the result of this command. Exposed for use within command implementations to change the order of execution.
+    Exposed for use within command implementations. The methods **run** and **runl** use it to execute words until their word list is exhausted.
 
-*wipName* **run_next_until** *rejected*
-: Low-level method. Invokes the method **run_next** until the next word is in the set of *rejected* words, and the program is not empty. The result of the command executed last is returned as the result of this command. Exposed for use within command implementations to change the order of execution.
+*wipName* **run\_next\_while** *acceptable*
+: Low-level method. Invokes the method **run\_next** as long as the next word is in the set of *acceptable* words, and the program is not empty. The result of the command executed last is returned as the result of this command.
 
-*wipName* **run_next_if** *acceptable*
-: Low-level method. Invokes the method **run_next** if the next word is in the set of *acceptable* words, and the program is not empty. The result of the command executed last is returned as the result of this command. Exposed for use within command implementations to change the order of execution.
+    Exposed for use within command implementations to change the order of execution.
 
-*wipName* **run_next_ifnot** *rejected*
-: Low-level method. Invokes the method **run_next** if the next word is not in the set of *rejected* words, and the program is not empty. The result of the command executed last is returned as the result of this command. Exposed for use within command implementations to change the order of execution.
+*wipName* **run\_next\_until** *rejected*
+: Low-level method. Invokes the method **run\_next** until the next word is in the set of *rejected* words, and the program is not empty. The result of the command executed last is returned as the result of this command.
+
+    Exposed for use within command implementations to change the order of execution.
+
+*wipName* **run\_next\_if** *acceptable*
+: Low-level method. Invokes the method **run\_next** if the next word is in the set of *acceptable* words, and the program is not empty. The result of the command executed last is returned as the result of this command.
+
+    Exposed for use within command implementations to change the order of execution.
+
+*wipName* **run\_next\_ifnot** *rejected*
+: Low-level method. Invokes the method **run\_next** if the next word is not in the set of *rejected* words, and the program is not empty. The result of the command executed last is returned as the result of this command.
+
+    Exposed for use within command implementations to change the order of execution.
 
 *wipName* **next**
 : Returns the next word in the programm. The word is also removed.
@@ -181,18 +200,16 @@ The following commands are possible for word interpreter objects:
 *wipName* **pushl** *wordlist*
 : Program accessor method. The specified *wordlist* is added to the front of the remaining program. Equivalent to
 
-
-```
-$wip insertl 0 $wordlist
-```
+    ```
+    $wip insertl 0 $wordlist
+    ```
 
 *wipName* **addl** *wordlist*
 : Program accessor method. The specified *wordlist* is appended at the end of the remaining program. Equivalent to
 
-
-```
-$wip insertl end $wordlist
-```
+    ```
+    $wip insertl end $wordlist
+    ```
 
 *wipName* **insert** *at* *word*...
 : Like method **insertl**, except the words are specified through multiple arguments.

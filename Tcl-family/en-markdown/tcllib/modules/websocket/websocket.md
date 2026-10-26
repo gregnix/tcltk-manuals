@@ -1,5 +1,6 @@
 ---
 CommandName: websocket
+title: websocket
 ManualSection: n
 Version: 1.6
 TclPart: tcllib
@@ -21,24 +22,24 @@ websocket - Tcl implementation of the websocket protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [http]{.lit} [2.7]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[package]{.cmd} [require]{.sub} [sha1]{.lit} 
-[package]{.cmd} [require]{.sub} [base64]{.lit} 
-[package]{.cmd} [require]{.sub} [websocket]{.lit} [1.6]{.optlit} 
-[::websocket::open]{.cmd} [url]{.arg} [handler]{.arg} [options]{.optarg} 
-[::websocket::send]{.cmd} [sock]{.arg} [type]{.arg} [msg]{.optarg} [final]{.optarg} 
-[::websocket::server]{.cmd} [sock]{.arg} 
-[::websocket::live]{.cmd} [sock]{.arg} [path]{.arg} [cb]{.arg} [proto]{.optarg} 
-[::websocket::test]{.cmd} [srvSock]{.arg} [cliSock]{.arg} [path]{.arg} [hdrs]{.optarg} [qry]{.optarg} 
-[::websocket::upgrade]{.cmd} [sock]{.arg} 
-[::websocket::takeover]{.cmd} [sock]{.arg} [handler]{.arg} [server]{.optarg} 
-[::websocket::conninfo]{.cmd} [sock]{.arg} [what]{.arg} 
-[::websocket::find]{.cmd} [host]{.optarg} [port]{.optarg} 
-[::websocket::configure]{.cmd} [sock]{.arg} [args]{.arg} 
-[::websocket::loglevel]{.cmd} [loglvl]{.optarg} 
-[::websocket::close]{.cmd} [sock]{.arg} [code]{.optarg} [reason]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [http]{.lit} [2.7]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[package]{.cmd} [require]{.sub} [sha1]{.lit}
+[package]{.cmd} [require]{.sub} [base64]{.lit}
+[package]{.cmd} [require]{.sub} [websocket]{.lit} [1.6]{.optlit}
+[::websocket::open]{.cmd} [url]{.arg} [handler]{.arg} [options]{.optarg}
+[::websocket::send]{.cmd} [sock]{.arg} [type]{.arg} [msg]{.optarg} [final]{.optarg}
+[::websocket::server]{.cmd} [sock]{.arg}
+[::websocket::live]{.cmd} [sock]{.arg} [path]{.arg} [cb]{.arg} [proto]{.optarg}
+[::websocket::test]{.cmd} [srvSock]{.arg} [cliSock]{.arg} [path]{.arg} [hdrs]{.optarg} [qry]{.optarg}
+[::websocket::upgrade]{.cmd} [sock]{.arg}
+[::websocket::takeover]{.cmd} [sock]{.arg} [handler]{.arg} [server]{.optarg}
+[::websocket::conninfo]{.cmd} [sock]{.arg} [what]{.arg}
+[::websocket::find]{.cmd} [host]{.optarg} [port]{.optarg}
+[::websocket::configure]{.cmd} [sock]{.arg} [args]{.arg}
+[::websocket::loglevel]{.cmd} [loglvl]{.optarg}
+[::websocket::close]{.cmd} [sock]{.arg} [code]{.optarg} [reason]{.optarg}
 :::
 
 # Description
@@ -65,62 +66,60 @@ A number of commands of the library take a handler handler command as an argumen
 *type*
 : A textual type describing the event or message content, can be one of the following
 
+    **text**
+    : Complete text message
 
-**text**
-: Complete text message
+    **binary**
+    : Complete binary message
 
-**binary**
-: Complete binary message
+    **ping**
+    : Incoming ping message
 
-**ping**
-: Incoming ping message
+    **pong**
+    : Response to incoming ping message
 
-**pong**
-: Response to incoming ping message
+    **connect**
+    : Notification of successful connection to server
 
-**connect**
-: Notification of successful connection to server
+    **disconnect**
+    : Disconnection from remote end
 
-**disconnect**
-: Disconnection from remote end
+    **close**
+    : Pending closure of connection
 
-**close**
-: Pending closure of connection
+    **timeout**
+    : Notification of connection timeout
 
-**timeout**
-: Notification of connection timeout
-
-**error**
-: Notification of error condition
+    **error**
+    : Notification of error condition
 
 
 *msg*
 : Will contain the data of the message, whenever this is relevant, i.e. when the *type* is **text**, **binary**, **ping** or **pong** and whenever there is data available.
 
 
-# Api
+# API
 
 **::websocket::open** *url* *handler* ?*options*?
 : This command is used in clients to open a WebSocket to a remote websocket-enabled HTTP server.  The URL provided as an argument in *url* should start with ws: or wss:, which are the WebSockets counterpart of http: and https:. The *handler* is a command that will be called back on data reception or whenever important events occur during the life of the websocket. **::websocket::open** will return a socket which serves as both the identifier of the websocket and of the physical low-level socket to the server.  This socket can be used in a number of other commands for introspection or for controlling the behaviour of the library. Being essentially a wrapper around the **::http::geturl** command, this command provides mostly the same set of dash-led options than **::http::geturl**.  Documented below are the options that differ from **::http::geturl** and which are specific to the WebSocket library.
 
+    -headers
+    : This option is supported, knowing that a number of headers will be automatically added internally in the library in order to be able to handshake the upgrading of the socket from a regular HTTP socket to a WebSocket with the server.
 
-**-headers**
-: This option is supported, knowing that a number of headers will be automatically added internally in the library in order to be able to handshake the upgrading of the socket from a regular HTTP socket to a WebSocket with the server.
+    -validate
+    : This option is not supported as it has no real point for WebSockets.
 
-**-validate**
-: This option is not supported as it has no real point for WebSockets.
+    -handler
+    : This option is used internally by the websocket library and cannot be used.
 
-**-handler**
-: This option is used internally by the websocket library and cannot be used.
+    -command
+    : This option is used internally by the websocket library and cannot be used.
 
-**-command**
-: This option is used internally by the websocket library and cannot be used.
+    -protocol
+    : This option specifies a list of application protocols to handshake with the server.  This protocols might help the server triggering application specific features.  The http::geturl option -protocol is used internally by the websocket library and cannot be used.
 
-**-protocol**
-: This option specifies a list of application protocols to handshake with the server.  This protocols might help the server triggering application specific features.  The http::geturl option -protocol is used internally by the websocket library and cannot be used.
-
-**-timeout**
-: This option is supported, but will implemented as part of the library to enable a number of finalising cleanups.
+    -timeout
+    : This option is supported, but will implemented as part of the library to enable a number of finalising cleanups.
 
 
 **::websocket::send** *sock* *type* ?*msg*? ?*final*?
@@ -144,40 +143,39 @@ A number of commands of the library take a handler handler command as an argumen
 **::websocket::conninfo** *sock* *what*
 : Provides callers with some introspection facilities in order to get some semi-internal information about an existing websocket connection. Depending on the value of the *what* argument, the procedure returns the following piece of information:
 
+    **peername**
+    : Name (preferred) or IP of remote end.
 
-**peername**
-: Name (preferred) or IP of remote end.
+    **sockname**
+    : or **name** Name or IP of local end.
 
-**sockname**
-: or **name** Name or IP of local end.
+    **closed**
+    : **1** if the connection is closed, **0** otherwise
 
-**closed**
-: **1** if the connection is closed, **0** otherwise
+    **client**
+    : **1** if the connection is a client websocket, **0** otherwise
 
-**client**
-: **1** if the connection is a client websocket, **0** otherwise
+    **server**
+    : **1** if the connection is a server websocket, **0** otherwise
 
-**server**
-: **1** if the connection is a server websocket, **0** otherwise
+    **type**
+    : **server** if the connection is a server websocket, **client** otherwise.
 
-**type**
-: **server** if the connection is a server websocket, **client** otherwise.
+    **handler**
+    : The handler command associated to the websocket
 
-**handler**
-: The handler command associated to the websocket
+    **state**
+    : The state of the websocket, which can be one of:
 
-**state**
-: The state of the websocket, which can be one of:
+        **CONNECTING**
+        : Connection to remote end is in progress.
 
+        **CONNECTED**
+        : Connection is connected to remote end.
 
-**CONNECTING**
-: Connection to remote end is in progress.
+        **CLOSED**
+        : Connection is closed.
 
-**CONNECTED**
-: Connection is connected to remote end.
-
-**CLOSED**
-: Connection is closed.
 
 
 **::websocket::find** ?*host*? ?*port*?
@@ -186,12 +184,11 @@ A number of commands of the library take a handler handler command as an argumen
 **::websocket::configure** *sock* *args*
 : This command takes a number of dash-led options (and their values) to configure the behaviour of an existing websocket connection.  The recognised options are the following (they can be shortened to the lowest common denominator):
 
+    **-keepalive**
+    : is the number of seconds between each keepalive pings being sent along the connection.  A zero or negative number will effectively turn off the feature.  In servers, **-keepalive** defaults to 30 seconds, and in clients, no pings are initiated.
 
-**-keepalive**
-: is the number of seconds between each keepalive pings being sent along the connection.  A zero or negative number will effectively turn off the feature.  In servers, **-keepalive** defaults to 30 seconds, and in clients, no pings are initiated.
-
-**-ping**
-: is the text that is used during the automated pings.  This text defaults to the empty string, leading to an empty ping.
+    **-ping**
+    : is the text that is used during the automated pings.  This text defaults to the empty string, leading to an empty ping.
 
 
 **::websocket::loglevel** ?*loglvl*?
@@ -200,39 +197,39 @@ A number of commands of the library take a handler handler command as an argumen
 **::websocket::close** *sock* ?*code*? ?*reason*?
 : Gracefully close a websocket that was directly or indirectly passed to **::websocket::takeover**.  The procedure will optionally send the *code* and describing *reason* as part of the closure handshake. Good defaults are provided, so that reasons for a number of known codes will be sent back. Only the first 125 characters of a reason string will be kept and sent as part of the handshake. The known codes are:
 
+    **1000**
+    : Normal closure (the default *code* when none provided).
 
-**1000**
-: Normal closure (the default *code* when none provided).
+    **1001**
+    : Endpoint going away
 
-**1001**
-: Endpoint going away
+    **1002**
+    : Protocol Error
 
-**1002**
-: Protocol Error
+    **1003**
+    : Received incompatible data type
 
-**1003**
-: Received incompatible data type
+    **1006**
+    : Abnormal closure
 
-**1006**
-: Abnormal closure
+    **1007**
+    : Received data not consistent with type
 
-**1007**
-: Received data not consistent with type
+    **1008**
+    : Policy violation
 
-**1008**
-: Policy violation
+    **1009**
+    : Received message too big
 
-**1009**
-: Received message too big
+    **1010**
+    : Missing extension
 
-**1010**
-: Missing extension
+    **1011**
+    : Unexpected condition
 
-**1011**
-: Unexpected condition
+    **1015**
+    : TLS handshake error
 
-**1015**
-: TLS handshake error
 
 
 # Examples
@@ -269,7 +266,7 @@ vwait forever
 
 Example code for a websocket server is provided in the Tcllib directory "examples/websocket".
 
-# Tls security considerations
+# TLS security considerations
 
 This package uses the **TLS** package to handle the security for **https** urls and other socket connections.
 

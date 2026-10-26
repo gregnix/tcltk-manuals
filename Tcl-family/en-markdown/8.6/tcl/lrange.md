@@ -1,5 +1,6 @@
 ---
 CommandName: lrange
+title: lrange
 ManualSection: n
 Version: 7.4
 TclPart: Tcl
@@ -33,12 +34,12 @@ lrange - Return one or more adjacent elements from a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lrange]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} 
+[lrange]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg}
 :::
 
 # Description
 
-*List* must be a valid Tcl list.  This command will return a new list consisting of elements *first* through *last*, inclusive. The index values *first* and *last* are interpreted the same as index values for the command **string index**, supporting simple index arithmetic and indices relative to the end of the list. If *first* is less than zero, it is treated as if it were zero. If *last* is greater than or equal to the number of elements in the list, then it is treated as if it were **end**. If *first* is greater than *last* then an empty string is returned. Note: "**lrange** *list first first*" does not always produce the same result as "**lindex** *list first*" (although it often does for simple fields that are not enclosed in braces); it does, however, produce exactly the same results as "**list \[lindex** *list first*__\]__"
+*List* must be a valid Tcl list.  This command will return a new list consisting of elements *first* through *last*, inclusive. The index values *first* and *last* are interpreted the same as index values for the command [string index][string], supporting simple index arithmetic and indices relative to the end of the list. If *first* is less than zero, it is treated as if it were zero. If *last* is greater than or equal to the number of elements in the list, then it is treated as if it were **end**. If *first* is greater than *last* then an empty string is returned. Note: "**lrange** *list first first*" does not always produce the same result as "[lindex] *list first*" (although it often does for simple fields that are not enclosed in braces); it does, however, produce exactly the same results as "[list \[lindex][list] *list first***\]**"
 
 # Examples
 
@@ -63,7 +64,7 @@ Selecting everything except the first and last element:
 b c d
 ```
 
-Selecting a single element with **lrange** is not the same as doing so with **lindex**:
+Selecting a single element with **lrange** is not the same as doing so with [lindex]:
 
 ```
 % set var {some {elements to} select}
@@ -73,3 +74,8 @@ elements to
 % lrange $var 1 1
 {elements to}
 ```
+
+
+[lindex]: lindex.md
+[list]: list.md
+[string]: string.md

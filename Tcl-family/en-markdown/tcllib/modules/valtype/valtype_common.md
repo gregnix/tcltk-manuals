@@ -1,5 +1,6 @@
 ---
 CommandName: valtype::common
+title: valtype::common
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,20 +23,20 @@ valtype::common - Validation, common code
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::common]{.lit} [1.1]{.optlit} 
-[valtype::common::reject]{.cmd} [code]{.arg} [text]{.arg} 
-[valtype::common::badchar]{.cmd} [code]{.arg} [text]{.optarg} 
-[valtype::common::badcheck]{.cmd} [code]{.arg} [text]{.optarg} 
-[valtype::common::badlength]{.cmd} [code]{.arg} [lengths]{.arg} [text]{.optarg} 
-[valtype::common::badprefix]{.cmd} [code]{.arg} [prefixes]{.arg} [text]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::common]{.lit} [1.1]{.optlit}
+[valtype::common::reject]{.cmd} [code]{.arg} [text]{.arg}
+[valtype::common::badchar]{.cmd} [code]{.arg} [text]{.optarg}
+[valtype::common::badcheck]{.cmd} [code]{.arg} [text]{.optarg}
+[valtype::common::badlength]{.cmd} [code]{.arg} [lengths]{.arg} [text]{.optarg}
+[valtype::common::badprefix]{.cmd} [code]{.arg} [prefixes]{.arg} [text]{.optarg}
 :::
 
 # Description
 
-This package implements a number of common commands used by the validation types in this module. These commands essentially encapsulate the throwing of validation errors, ensuring that a proper **-errorcode** is used. See section **Error Codes**.
+This package implements a number of common commands used by the validation types in this module. These commands essentially encapsulate the throwing of validation errors, ensuring that a proper **-errorcode** is used. See section [Error codes].
 
-# Api
+# API
 
 **valtype::common::reject** *code* *text*
 : The core command of this package it throws an **INVALID** error with the specified *text*. The first argument is a list of codes extending the **INVALID** with detail information.
@@ -44,7 +45,7 @@ This package implements a number of common commands used by the validation types
 : This command throws an **INVALID CHAR** error with the specified *text*. The first argument is a list of codes providing details. These are inserted between the codes **INVALID** and **CHARACTER**.
 
 **valtype::common::badcheck** *code* ?*text*?
-: This command throws an **INVALID CHECK-DIGIT** error with the specified *text*, if any, extended by the standard text "the check digit is incorrect". The first argument is a list of codes providing details. These are inserted between the codes **INVALID** and **CHECK_DIGIT**.
+: This command throws an **INVALID CHECK-DIGIT** error with the specified *text*, if any, extended by the standard text "the check digit is incorrect". The first argument is a list of codes providing details. These are inserted between the codes **INVALID** and **CHECK\_DIGIT**.
 
 **valtype::common::badlength** *code* *lengths* ?*text*?
 : This command throws an **INVALID LENGTH** error with the specified *text*, if any, extended by the standard text "incorrect length, expected ... character(s)". The first argument is a list of codes providing details. These are inserted between the codes **INVALID** and **LENGTH**. The argument *lengths* is a list of the input lengths which had been expected, i.e. these are the valid lengths.

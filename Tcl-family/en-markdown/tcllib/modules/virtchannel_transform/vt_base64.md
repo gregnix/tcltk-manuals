@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::base64
+title: tcl::transform::base64
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,10 +24,10 @@ tcl::transform::base64 - Base64 encoding transformation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::base64]{.lit} [1.1]{.optlit} 
-[::tcl::transform::base64]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::base64]{.lit} [1.1]{.optlit}
+[::tcl::transform::base64]{.cmd} [chan]{.arg}
 :::
 
 # Description
@@ -37,7 +38,7 @@ A related transformations in this module is **tcl::transform::hex**.
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::base64** *chan*
 : This command creates a base64 transformation on top of the channel *chan* and returns its handle.

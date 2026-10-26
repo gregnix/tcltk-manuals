@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine::auto
+title: coroutine::auto
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -28,9 +29,9 @@ coroutine::auto - Automatic event and IO coroutine awareness
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine::auto]{.lit} [1.3]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine::auto]{.lit} [1.3]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine]{.lit} [1.4]{.lit}
 :::
 
 # Description
@@ -39,32 +40,15 @@ The **coroutine::auto** package provides no commands or other directly visible f
 
 The commands so affected by this package are
 
-**after**
-: ...see next...
-
-**exit**
-: ...see next...
-
-**gets**
-: ...see next...
-
-**global**
-: ...see next...
-
-**puts**
-: ...see next...
-
-**read**
-: ...see next...
-
-**socket**
-: ...see next...
-
-**update**
-: ...see next...
-
-**vwait**
-: 
+- **after**
+- **exit**
+- **gets**
+- **global**
+- **puts**
+- **read**
+- **socket**
+- **update**
+- **vwait**
 
 
 # Bugs, ideas, feedback

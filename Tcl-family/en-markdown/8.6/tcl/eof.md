@@ -1,5 +1,6 @@
 ---
 CommandName: eof
+title: eof
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -25,14 +26,14 @@ eof - Check for end of file condition on channel
 # Synopsis
 
 ::: {.synopsis} :::
-[eof]{.cmd} [channelId]{.arg} 
+[eof]{.cmd} [channelId]{.arg}
 :::
 
 # Description
 
-Returns 1 if an end of file condition occurred during the most recent input operation on *channelId* (such as **gets**), 0 otherwise.
+Returns 1 if an end of file condition occurred during the most recent input operation on *channelId* (such as [gets]), 0 otherwise.
 
-*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of [open] or [socket], or the result of a channel creation command provided by a Tcl extension.
 
 # Examples
 
@@ -65,3 +66,8 @@ while {1} {
     puts "Read record: $record"
 }
 ```
+
+
+[gets]: gets.md
+[open]: open.md
+[socket]: socket.md

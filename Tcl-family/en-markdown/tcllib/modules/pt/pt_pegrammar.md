@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg
+title: pt::peg
 ManualSection: n
 Version: 1.1.1
 TclPart: tcllib
@@ -32,46 +33,72 @@ pt::peg - Parsing Expression Grammar Serialization
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::peg]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [pt::pe]{.lit} 
-[::pt::peg]{.cmd} [verify]{.sub} [serial]{.arg} [canonvar]{.optarg} 
-[::pt::peg]{.cmd} [verify-as-canonical]{.sub} [serial]{.arg} 
-[::pt::peg]{.cmd} [canonicalize]{.sub} [serial]{.arg} 
-[::pt::peg]{.cmd} [print]{.sub} [serial]{.arg} 
-[::pt::peg]{.cmd} [merge]{.sub} [seriala]{.arg} [serialb]{.arg} 
-[::pt::peg]{.cmd} [equal]{.sub} [seriala]{.arg} [serialb]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::peg]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [pt::pe]{.lit}
+[::pt::peg]{.cmd} [verify]{.lit} [serial]{.arg} [canonvar]{.optarg}
+[::pt::peg]{.cmd} [verify-as-canonical]{.lit} [serial]{.arg}
+[::pt::peg]{.cmd} [canonicalize]{.lit} [serial]{.arg}
+[::pt::peg]{.cmd} [print]{.lit} [serial]{.arg}
+[::pt::peg]{.cmd} [merge]{.lit} [seriala]{.arg} [serialb]{.arg}
+[::pt::peg]{.cmd} [equal]{.lit} [seriala]{.arg} [serialb]{.arg}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-This package provides commands to work with the serializations of parsing expression grammars as managed by the Parser Tools, and specified in section **PEG serialization format**.
+This package provides commands to work with the serializations of parsing expression grammars as managed by the Parser Tools, and specified in section [Peg serialization format].
 
 This is a supporting package in the Core Layer of Parser Tools.
 
-IMAGE: arch_core_support
+IMAGE: arch\_core\_support
 
-# Api
+# API
 
 **::pt::peg** **verify** *serial* ?*canonvar*?
-: This command verifies that the content of *serial* is a valid serialization of a parsing expression and will throw an error if that is not the case. The result of the command is the empty string. If the argument *canonvar* is specified it is interpreted as the name of a variable in the calling context. This variable will be written to if and only if *serial* is a valid regular serialization. Its value will be a boolean, with **True** indicating that the serialization is not only valid, but also *canonical*. **False** will be written for a valid, but non-canonical serialization. For the specification of serializations see the section **PE serialization format**.
+: This command verifies that the content of *serial* is a valid serialization of a parsing expression and will throw an error if that is not the case. The result of the command is the empty string.
+
+    If the argument *canonvar* is specified it is interpreted as the name of a variable in the calling context. This variable will be written to if and only if *serial* is a valid regular serialization. Its value will be a boolean, with **True** indicating that the serialization is not only valid, but also *canonical*. **False** will be written for a valid, but non-canonical serialization.
+
+    For the specification of serializations see the section [PE serialization format].
 
 **::pt::peg** **verify-as-canonical** *serial*
-: This command verifies that the content of *serial* is a valid *canonical* serialization of a PEG and will throw an error if that is not the case. The result of the command is the empty string. For the specification of canonical serializations see the section **PEG serialization format**.
+: This command verifies that the content of *serial* is a valid *canonical* serialization of a PEG and will throw an error if that is not the case. The result of the command is the empty string.
+
+    For the specification of canonical serializations see the section [Peg serialization format].
 
 **::pt::peg** **canonicalize** *serial*
-: This command assumes that the content of *serial* is a valid *regular* serialization of a PEG and will throw an error if that is not the case. It will then convert the input into the *canonical* serialization of the contained PEG and return it as its result. If the input is already canonical it will be returned unchanged. For the specification of regular and canonical serializations see the section **PEG serialization format**.
+: This command assumes that the content of *serial* is a valid *regular* serialization of a PEG and will throw an error if that is not the case.
+
+    It will then convert the input into the *canonical* serialization of the contained PEG and return it as its result. If the input is already canonical it will be returned unchanged.
+
+    For the specification of regular and canonical serializations see the section [Peg serialization format].
 
 **::pt::peg** **print** *serial*
-: This command assumes that the argument *serial* contains a valid serialization of a parsing expression and returns a string containing that PE in a human readable form. The exact format of this form is not specified and cannot be relied on for parsing or other machine-based activities. For the specification of serializations see the section **PEG serialization format**.
+: This command assumes that the argument *serial* contains a valid serialization of a parsing expression and returns a string containing that PE in a human readable form.
+
+    The exact format of this form is not specified and cannot be relied on for parsing or other machine-based activities.
+
+    For the specification of serializations see the section [Peg serialization format].
 
 **::pt::peg** **merge** *seriala* *serialb*
-: This command accepts the regular serializations of two grammars and uses them to create their union.  The result of the command is the canonical serialization of this unified grammar. A merge errors occurs if for any nonterminal symbol S occuring in both input grammars the two input grammars specify different semantic modes. The semantic mode of each nonterminal symbol S is the semantic mode of S in any of its input grammars. The previous rule made sure that for symbols occuring in both grammars these values are identical. The right-hand side of each nonterminal symbol S occuring in both input grammars is the choice between the right-hand sides of S in the input grammars, with the parsing expression of S in *seriala* coming first, except if both expressions are identical. In that case the first expression is taken. The right-hand side of each nonterminal symbol S occuring in only one of the input grammars is the right-hand side of S in its input grammar. The start expression of the unified grammar is the choice between the start expressions of the input grammars, with the start expression of *seriala* coming first, except if both expressions are identical. In that case the first expression is taken
+: This command accepts the regular serializations of two grammars and uses them to create their union.  The result of the command is the canonical serialization of this unified grammar.
+
+    A merge errors occurs if for any nonterminal symbol S occuring in both input grammars the two input grammars specify different semantic modes.
+
+    The semantic mode of each nonterminal symbol S is the semantic mode of S in any of its input grammars. The previous rule made sure that for symbols occuring in both grammars these values are identical.
+
+    The right-hand side of each nonterminal symbol S occuring in both input grammars is the choice between the right-hand sides of S in the input grammars, with the parsing expression of S in *seriala* coming first, except if both expressions are identical. In that case the first expression is taken.
+
+    The right-hand side of each nonterminal symbol S occuring in only one of the input grammars is the right-hand side of S in its input grammar.
+
+    The start expression of the unified grammar is the choice between the start expressions of the input grammars, with the start expression of *seriala* coming first, except if both expressions are identical. In that case the first expression is taken
 
 **::pt::peg** **equal** *seriala* *serialb*
-: This command tests the two grammars *seriala* and *serialb* for structural equality. The result of the command is a boolean value. It will be set to **true** if the expressions are identical, and **false** otherwise. String equality is usable only if we can assume that the two grammars are pure Tcl lists and dictionaries.
+: This command tests the two grammars *seriala* and *serialb* for structural equality. The result of the command is a boolean value. It will be set to **true** if the expressions are identical, and **false** otherwise.
+
+    String equality is usable only if we can assume that the two grammars are pure Tcl lists and dictionaries.
 
 
 # Peg serialization format
@@ -80,68 +107,54 @@ Here we specify the format used by the Parser Tools to serialize Parsing Express
 
 We distinguish between *regular* and *canonical* serializations. While a PEG may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. The serialization of any PEG is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **pt::grammar::peg**, and its value. This value holds the contents of the grammar.
+
+    3. The contents of the grammar are a Tcl dictionary holding the set of nonterminal symbols and the starting expression. The relevant keys and their values are
+
+        **rules**
+        : The value is a Tcl dictionary whose keys are the names of the nonterminal symbols known to the grammar.
+
+            1. Each nonterminal symbol may occur only once.
+
+            2. The empty string is not a legal nonterminal symbol.
+
+            3. The value for each symbol is a Tcl dictionary itself. The relevant keys and their values in this dictionary are
+
+                **is**
+                : The value is the serialization of the parsing expression describing the symbols sentennial structure, as specified in the section [PE serialization format].
+
+                **mode**
+                : The value can be one of three values specifying how a parser should handle the semantic value produced by the symbol.
+
+                    **value**
+                    : The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal itself, which has the ASTs of the symbol's right hand side as its children.
+
+                    **leaf**
+                    : The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal, without any children. Any ASTs generated by the symbol's right hand side are discarded.
+
+                    **void**
+                    : The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well).
 
 
-**\[1\]**
-: The serialization of any PEG is a nested Tcl dictionary.
-
-**\[2\]**
-: This dictionary holds a single key, **pt::grammar::peg**, and its value. This value holds the contents of the grammar.
-
-**\[3\]**
-: The contents of the grammar are a Tcl dictionary holding the set of nonterminal symbols and the starting expression. The relevant keys and their values are
 
 
-**rules**
-: The value is a Tcl dictionary whose keys are the names of the nonterminal symbols known to the grammar.
+        **start**
+        : The value is the serialization of the start parsing expression of the grammar, as specified in the section [PE serialization format].
 
 
-**\[1\]**
-: Each nonterminal symbol may occur only once.
-
-**\[2\]**
-: The empty string is not a legal nonterminal symbol.
-
-**\[3\]**
-: The value for each symbol is a Tcl dictionary itself. The relevant keys and their values in this dictionary are
+    4. The terminal symbols of the grammar are specified implicitly as the set of all terminal symbols used in the start expression and on the RHS of the grammar rules.
 
 
-**is**
-: The value is the serialization of the parsing expression describing the symbols sentennial structure, as specified in the section **PE serialization format**.
-
-**mode**
-: The value can be one of three values specifying how a parser should handle the semantic value produced by the symbol.
-
-
-**value**
-: The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal itself, which has the ASTs of the symbol's right hand side as its children.
-
-**leaf**
-: The semantic value of the nonterminal symbol is an abstract syntax tree consisting of a single node node for the nonterminal, without any children. Any ASTs generated by the symbol's right hand side are discarded.
-
-**void**
-: The nonterminal has no semantic value. Any ASTs generated by the symbol's right hand side are discarded (as well).
-
-
-**start**
-: The value is the serialization of the start parsing expression of the grammar, as specified in the section **PE serialization format**.
-
-
-**\[4\]**
-: The terminal symbols of the grammar are specified implicitly as the set of all terminal symbols used in the start expression and on the RHS of the grammar rules.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a grammar has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this grammar.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
+    2. The string representation of the value is the canonical representation of a Tcl dictionary. I.e. it does not contain superfluous whitespace.
 
-**\[2\]**
-: The string representation of the value is the canonical representation of a Tcl dictionary. I.e. it does not contain superfluous whitespace.
 
 
 ## Example
@@ -179,110 +192,77 @@ pt::grammar::peg {
 }
 ```
 
-# Pe serialization format
+# PE serialization format
 
 Here we specify the format used by the Parser Tools to serialize Parsing Expressions as immutable values for transport, comparison, etc.
 
 We distinguish between *regular* and *canonical* serializations. While a parsing expression may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**Regular serialization**
-: 
+Regular serialization
+: see below ...
+
+    **Atomic Parsing Expressions**
+    : 1. The string **epsilon** is an atomic parsing expression. It matches the empty string.
+
+        2. The string **dot** is an atomic parsing expression. It matches any character.
+
+        3. The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        4. The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        5. The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        6. The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        7. The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        8. The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        9. The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        10. The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        11. The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        12. The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        13. The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        14. The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        15. The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
+
+        16. The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
+
+        17. The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
+
+        18. The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
 
 
-**Atomic Parsing Expressions**
-: 
+    **Combined Parsing Expressions**
+    : 1. For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
+
+        2. For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
+
+        3. For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
+
+        4. For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
+
+        5. For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
+
+        6. For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
+
+        7. For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
 
 
-**\[1\]**
-: The string **epsilon** is an atomic parsing expression. It matches the empty string.
 
-**\[2\]**
-: The string **dot** is an atomic parsing expression. It matches any character.
-
-**\[3\]**
-: The string **alnum** is an atomic parsing expression. It matches any Unicode alphabet or digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[4\]**
-: The string **alpha** is an atomic parsing expression. It matches any Unicode alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[5\]**
-: The string **ascii** is an atomic parsing expression. It matches any Unicode character below U0080. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[6\]**
-: The string **control** is an atomic parsing expression. It matches any Unicode control character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[7\]**
-: The string **digit** is an atomic parsing expression. It matches any Unicode digit character. Note that this includes characters outside of the \[0..9\] range. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[8\]**
-: The string **graph** is an atomic parsing expression. It matches any Unicode printing character, except for space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[9\]**
-: The string **lower** is an atomic parsing expression. It matches any Unicode lower-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[10\]**
-: The string **print** is an atomic parsing expression. It matches any Unicode printing character, including space. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[11\]**
-: The string **punct** is an atomic parsing expression. It matches any Unicode punctuation character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[12\]**
-: The string **space** is an atomic parsing expression. It matches any Unicode space character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[13\]**
-: The string **upper** is an atomic parsing expression. It matches any Unicode upper-case alphabet character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[14\]**
-: The string **wordchar** is an atomic parsing expression. It matches any Unicode word character. This is any alphanumeric character (see alnum), and any connector punctuation characters (e.g. underscore). This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[15\]**
-: The string **xdigit** is an atomic parsing expression. It matches any hexadecimal digit character. This is a custom extension of PEs based on Tcl's builtin command **string is**.
-
-**\[16\]**
-: The string **ddigit** is an atomic parsing expression. It matches any decimal digit character. This is a custom extension of PEs based on Tcl's builtin command **regexp**.
-
-**\[17\]**
-: The expression \[list t **x**\] is an atomic parsing expression. It matches the terminal string **x**.
-
-**\[18\]**
-: The expression \[list n **A**\] is an atomic parsing expression. It matches the nonterminal **A**.
-
-
-**Combined Parsing Expressions**
-: 
-
-
-**\[1\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list / **e1** **e2** ... \] is a parsing expression as well. This is the *ordered choice*, aka *prioritized choice*.
-
-**\[2\]**
-: For parsing expressions **e1**, **e2**, ... the result of \[list x **e1** **e2** ... \] is a parsing expression as well. This is the *sequence*.
-
-**\[3\]**
-: For a parsing expression **e** the result of \[list \* **e**\] is a parsing expression as well. This is the *kleene closure*, describing zero or more repetitions.
-
-**\[4\]**
-: For a parsing expression **e** the result of \[list + **e**\] is a parsing expression as well. This is the *positive kleene closure*, describing one or more repetitions.
-
-**\[5\]**
-: For a parsing expression **e** the result of \[list & **e**\] is a parsing expression as well. This is the *and lookahead predicate*.
-
-**\[6\]**
-: For a parsing expression **e** the result of \[list ! **e**\] is a parsing expression as well. This is the *not lookahead predicate*.
-
-**\[7\]**
-: For a parsing expression **e** the result of \[list ? **e**\] is a parsing expression as well. This is the *optional input*.
-
-
-**Canonical serialization**
+Canonical serialization
 : The canonical serialization of a parsing expression has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this parsing expression.
 
+    1. The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
-**\[1\]**
-: The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
+    2. Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
-**\[2\]**
-: Terminals are *not* encoded as ranges (where start and end of the range are identical).
 
 
 ## Example

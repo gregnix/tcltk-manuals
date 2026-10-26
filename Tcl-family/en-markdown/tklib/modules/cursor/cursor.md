@@ -1,5 +1,6 @@
 ---
 CommandName: cursor
+title: cursor
 ManualSection: n
 Version: 0.3.1
 TclPart: tklib
@@ -21,11 +22,11 @@ cursor - Procedures to handle CURSOR data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [cursor]{.lit} [0.3.1]{.optlit} 
-[::cursor::propagate]{.cmd} [widget]{.arg} [cursor]{.arg} 
-[::cursor::restore]{.cmd} [widget]{.arg} [cursor]{.optarg} 
-[::cursor::display]{.cmd} [parent]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [cursor]{.lit} [0.3.1]{.optlit}
+[::cursor::propagate]{.cmd} [widget]{.arg} [cursor]{.arg}
+[::cursor::restore]{.cmd} [widget]{.arg} [cursor]{.optarg}
+[::cursor::display]{.cmd} [parent]{.optarg}
 :::
 
 # Description

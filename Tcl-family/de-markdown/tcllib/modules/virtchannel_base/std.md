@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::std
+title: tcl::chan::std
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -15,21 +16,21 @@ Copyright:
  - Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::chan::std – Standards-E/A, Zusammenführung von stdin und stdout
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::std]{.lit} [1.2]{.optlit} 
-[::tcl::chan::std]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::std]{.lit} [1.2]{.optlit}
+[::tcl::chan::std]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **tcl::chan::std** stellt einen Befehl bereit, mit dem ein Standardkanal erstellt wird, der stdin und stdout zu einem einzigen les- und schreibbaren Kanal zusammenfasst. Das Ergebnis lässt sich nicht wie die ursprünglichen Standardkanäle durchsuchbar machen.
 
@@ -38,10 +39,12 @@ Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist ein
 # API
 
 **::tcl::chan::std**
-: Dieser Befehl erstellt den Kanal „std“ und gibt dessen Handle zurück. Der Kanal wird nur einmal, beim ersten Aufruf, erstellt, und alle nachfolgenden Aufrufe geben lediglich dieses Handle zurück.
+: Dieser Befehl erstellt den Kanal „std“ und gibt dessen Handle zurück.
+
+    Der Kanal wird nur einmal, beim ersten Aufruf, erstellt, und alle nachfolgenden Aufrufe geben lediglich dieses Handle zurück.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *virtchannel* als Kategorie an.
 
@@ -49,11 +52,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Kanäle
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>

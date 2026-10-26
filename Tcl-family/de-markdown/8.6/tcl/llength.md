@@ -1,5 +1,6 @@
 ---
 CommandName: llength
+title: llength
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -24,21 +25,21 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 llength - Zählt die Elemente einer Liste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[llength]{.cmd} [list]{.arg} 
+[llength]{.cmd} [list]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Behandelt *list* als Liste und gibt eine Dezimalzeichenkette mit der Elementanzahl zurück.
 
-# BEISPIELE
+# Beispiele
 
 Das Ergebnis ist die Anzahl der Elemente:
 

@@ -1,5 +1,6 @@
 ---
 CommandName: ipentry
+title: ipentry
 ManualSection: n
 Version: 0.3.2
 TclPart: tklib
@@ -18,17 +19,17 @@ ipentry - An IP address entry widget
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [ipentry]{.lit} [0.3.2]{.optlit} 
-[::ipentry::ipentry]{.cmd} [pathName]{.arg} [option value]{.optdot} 
-[::ipentry::ipentry6]{.cmd} [pathName]{.arg} [option value]{.optdot} 
-[pathName]{.ins} [complete]{.sub} 
-[pathName]{.ins} [get]{.sub} 
-[pathName]{.ins} [insert]{.sub} [iplist]{.arg} 
-[pathName]{.ins} [icursor]{.sub} [index]{.arg} 
-[pathName]{.ins} [configure]{.sub} [option]{.arg} [value...]{.arg} 
-[pathName]{.ins} [cget]{.sub} [option]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [ipentry]{.lit} [0.3.2]{.optlit}
+[::ipentry::ipentry]{.cmd} [pathName]{.arg} [option value...]{.optarg}
+[::ipentry::ipentry6]{.cmd} [pathName]{.arg} [option value...]{.optarg}
+[pathName]{.ins} [complete]{.sub}
+[pathName]{.ins} [get]{.sub}
+[pathName]{.ins} [insert]{.sub} [iplist]{.arg}
+[pathName]{.ins} [icursor]{.sub} [index]{.arg}
+[pathName]{.ins} [configure]{.sub} [option]{.arg} [value...]{.arg}
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 :::
 
 # Description
@@ -39,7 +40,10 @@ This package provides a widget for the entering of a IP address.
 : Creates a new IPv4 ipentry widget and configures it with the given options and their values.
 
 **::ipentry::ipentry6** *pathName* ?*option* *value*...?
-: Creates a new ipentry widget for the entry of an IPv6 address. All options are the same as the IPv4 widget. Each widget created with the command above supports the following methods:
+: Creates a new ipentry widget for the entry of an IPv6 address. All options are the same as the IPv4 widget.
+
+
+Each widget created with the command above supports the following methods:
 
 *pathName* **complete**
 : Returns a boolean value. True indicates that the entry contains a complete IP address, meaning all fields have a value. In some cases IPv6 address are valid when fields are missing. You will need to do your own validation to detect this.
@@ -62,114 +66,55 @@ This package provides a widget for the entering of a IP address.
 
 # Widget options
 
-```
-Command-Line Switch:    -textvariable
-Database Name:          textvariable
-Database Class:         Variable
-```
-
+**-textvariable** (**textvariable**/**Variable**)
 : The name of a variable which holds the value of the IP address. The value must be a string of the form NNN.NNN.NNN.NNN for IPv4 or HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH for IPv6 where H is a hex digit. The variable will be modified to represent a valid IP address if it is not already.
 
-
-```
-Command-Line Switch:    -state
-Database Name:          state
-Database Class:         State
-```
-
+**-state** (**state**/**State**)
 : Specifies one of three states for the entry: **normal**, **disabled**, or **readonly**.
 
+**-font** (**font**/**Font**)
+: see below ...
 
-```
-Command-Line Switch:    -font
-Database Name:          font
-Database Class:         Font
-```
+**-bd** (**borderWidth**/**BorderWidth**)
+: see below ...
 
-```
-Command-Line Switch:    -bd
-Database Name:          borderWidth
-Database Class:         BorderWidth
-```
+**-fg** (**foreground**/**Foreground**)
+: see below ...
 
-```
-Command-Line Switch:    -fg
-Database Name:          foreground
-Database Class:         Foreground
-```
+**-bg** (**background**/**Background**)
+: see below ...
 
-```
-Command-Line Switch:    -bg
-Database Name:          background
-Database Class:         Background
-```
+**-relief** (**relief**/**Relief**)
+: see below ...
 
-```
-Command-Line Switch:    -relief
-Database Name:          relief
-Database Class:         Relief
-```
+**-highlightthickness** (**highlightThickness**/**HighlightThickness**)
+: see below ...
 
-```
-Command-Line Switch:    -highlightthickness
-Database Name:          highlightThickness
-Database Class:         HighlightThickness
-```
+**-highlightcolor** (**highlightColor**/**HighlightColor**)
+: see below ...
 
-```
-Command-Line Switch:    -highlightcolor
-Database Name:          highlightColor
-Database Class:         HighlightColor
-```
+**-highlightbackground** (**highlightBackground**/**HighlightBackground**)
+: see below ...
 
-```
-Command-Line Switch:    -highlightbackground
-Database Name:          highlightBackground
-Database Class:         HighlightBackground
-```
+**-selectbackground** (**selectBackground**/**Background**)
+: see below ...
 
-```
-Command-Line Switch:    -selectbackground
-Database Name:          selectBackground
-Database Class:         Background
-```
+**-selectforeground** (**selectForeground**/**Foreground**)
+: see below ...
 
-```
-Command-Line Switch:    -selectforeground
-Database Name:          selectForeground
-Database Class:         Foreground
-```
+**-selectborderwidth** (**selectBorderWidth**/**BorderWidth**)
+: see below ...
 
-```
-Command-Line Switch:    -selectborderwidth
-Database Name:          selectBorderWidth
-Database Class:         BorderWidth
-```
+**-disabledbackground** (**disabledBackground**/**DisabledBackground**)
+: see below ...
 
-```
-Command-Line Switch:    -disabledbackground
-Database Name:          disabledBackground
-Database Class:         DisabledBackground
-```
+**-disabledforeground** (**disabledForeground**/**DisabledForeground**)
+: see below ...
 
-```
-Command-Line Switch:    -disabledforeground
-Database Name:          disabledForeground
-Database Class:         DisabledForeground
-```
+**-readonlybackground** (**readonlyBackground**/**ReadonlyBackground**)
+: see below ...
 
-```
-Command-Line Switch:    -readonlybackground
-Database Name:          readonlyBackground
-Database Class:         ReadonlyBackground
-```
-
-```
-Command-Line Switch:    -insertbackground
-Database Name:          insertBackground
-Database Class:         Background
-```
-
+**-insertbackground** (**insertBackground**/**Background**)
 : Standard widget options. See **options** for a description of their meanings and values.
 
 

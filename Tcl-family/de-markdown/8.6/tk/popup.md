@@ -1,5 +1,6 @@
 ---
 CommandName: tk_popup
+title: tk_popup
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -15,33 +16,33 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
-tk_popup - Blendet ein Popup-Menü ein
+tk\_popup - Blendet ein Popup-Menü ein
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tk_popup]{.cmd} [menu]{.arg} [x]{.arg} [y]{.arg} [entry]{.optarg} 
+[tk\_popup]{.cmd} [menu]{.arg} [x]{.arg} [y]{.arg} [entry]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Diese Prozedur blendet ein Menü an einer gegebenen Bildschirmposition ein und konfiguriert Tk so, dass das Menü und seine kaskadierten Kindmenüs mit Maus oder Tastatur durchlaufen werden können. *Menu* ist der Name eines Menü-Widgets; *x* und *y* sind die Root-Koordinaten, an denen das Menü angezeigt wird. Wird *entry* weggelassen oder ist es eine leere Zeichenkette, wird die obere linke Ecke des Menüs an den angegebenen Punkt positioniert. Andernfalls gibt *entry* den Index eines Eintrags in *menu* an, und das Menü wird so positioniert, dass dieser Eintrag über dem angegebenen Punkt liegt.
 
-# BEISPIEL
+# Beispiel
 
 So bindet man ein einfaches Popup-Menü an ein Widget.
 
 ```
-# Menü erzeugen
+# Create a menu
 set m [menu .popupMenu]
-$m add command \-label "Example 1" \-command bell
-$m add command \-label "Example 2" \-command bell
+$m add command -label "Example 1" -command bell
+$m add command -label "Example 2" -command bell
 
-# Ziel-Widget erzeugen
-pack [label .l \-text "Click me!"]
+# Create something to attach it to
+pack [label .l -text "Click me!"]
 
-# Menü beim Klick auf das Label einblenden
+# Arrange for the menu to pop up when the label is clicked
 bind .l <1> {tk_popup .popupMenu %X %Y}
 ```

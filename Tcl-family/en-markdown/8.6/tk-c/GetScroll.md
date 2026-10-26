@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetScrollInfo
+title: Tk_GetScrollInfo
 ManualSection: 3
 Version: 8.0
 TclPart: Tk
@@ -17,47 +18,46 @@ Copyright:
 
 # Name
 
-Tk_GetScrollInfoObj, Tk_GetScrollInfo - parse arguments for scrolling commands
+Tk\_GetScrollInfoObj, Tk\_GetScrollInfo - parse arguments for scrolling commands
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-int
-[Tk_GetScrollInfoObj]{.cmd}([interp]{.arg}, [objc]{.arg}, [objv]{.arg}, [fractionPtr]{.arg}, [stepsPtr]{.arg})
-
-int
-[Tk_GetScrollInfo]{.cmd}([interp]{.arg}, [argc]{.arg}, [argv]{.arg}, [fractionPtr]{.arg}, [stepsPtr]{.arg})
+**#include <tk.h>**
+int Tk\_GetScrollInfoObj(interp, objc, objv, fractionPtr, stepsPtr)
+int Tk\_GetScrollInfo(interp, argc, argv, fractionPtr, stepsPtr)
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to use for error reporting.
 
-int *objc* (in)
-: Number of Tcl_Obj's in *objv* array.
+[objc]{.carg .in type="int"}
+: Number of [Tcl\_Obj][Object]'s in *objv* array.
 
-Tcl_Obj \*const \* *objv* (in)
+[objv]{.carg .in type="Tcl_Obj *const *"}
 : Argument objects.  These represent the entire widget command, of which the first word is typically the widget name and the second word is typically **xview** or **yview**.
 
-int *argc* (in)
+[argc]{.carg .in type="int"}
 : Number of strings in *argv* array.
 
-const char \*\* *argv* (in)
+[argv]{.carg .in type="const char **"}
 : Argument strings.  These represent the entire widget command, of which the first word is typically the widget name and the second word is typically **xview** or **yview**.
 
-double *\*fractionPtr* (out)
+[\*fractionPtr]{.carg .out type="double"}
 : Filled in with fraction from **moveto** option, if any.
 
-int *\*stepsPtr* (out)
+[\*stepsPtr]{.carg .out type="int"}
 : Filled in with line or page count from **scroll** option, if any. The value may be negative.
 
+:::
 
 # Description
 
-**Tk_GetScrollInfoObj** parses the arguments expected by widget scrolling commands such as **xview** and **yview**. It receives the entire list of words that make up a widget command and parses the words starting with *objv*\[2\]. The words starting with *objv*\[2\] must have one of the following forms:
+**Tk\_GetScrollInfoObj** parses the arguments expected by widget scrolling commands such as **xview** and **yview**. It receives the entire list of words that make up a widget command and parses the words starting with *objv*\[2\]. The words starting with *objv*\[2\] must have one of the following forms:
 
 ```
 moveto fraction
@@ -65,6 +65,9 @@ scroll number units
 scroll number pages
 ```
 
-Any of the **moveto**, **scroll**, **units**, and **pages** keywords may be abbreviated. If *objv* has the **moveto** form, **TK_SCROLL_MOVETO** is returned as result and *\*fractionPtr* is filled in with the *fraction* argument to the command, which must be a proper real value. If *objv* has the **scroll** form, **TK_SCROLL_UNITS** or **TK_SCROLL_PAGES** is returned and *\*stepsPtr* is filled in with the *number* value, which must be a proper integer. If an error occurs in parsing the arguments, **TK_SCROLL_ERROR** is returned and an error message is left in interpreter *interp*'s result.
+Any of the **moveto**, **scroll**, **units**, and **pages** keywords may be abbreviated. If *objv* has the **moveto** form, **TK\_SCROLL\_MOVETO** is returned as result and *\*fractionPtr* is filled in with the *fraction* argument to the command, which must be a proper real value. If *objv* has the **scroll** form, **TK\_SCROLL\_UNITS** or **TK\_SCROLL\_PAGES** is returned and *\*stepsPtr* is filled in with the *number* value, which must be a proper integer. If an error occurs in parsing the arguments, **TK\_SCROLL\_ERROR** is returned and an error message is left in interpreter *interp*'s result.
 
-**Tk_GetScrollInfo** is identical in function to **Tk_GetScrollInfoObj**.  However, **Tk_GetScrollInfo** accepts string arguments, making it more appropriate for use with legacy widgets.
+**Tk\_GetScrollInfo** is identical in function to **Tk\_GetScrollInfoObj**.  However, **Tk\_GetScrollInfo** accepts string arguments, making it more appropriate for use with legacy widgets.
+
+
+[Object]: ../tcl-c/Object.md

@@ -1,5 +1,6 @@
 ---
 CommandName: irc
+title: irc
 ManualSection: n
 Version: 0.8.0
 TclPart: tcllib
@@ -19,44 +20,44 @@ irc - Create IRC connection and interface.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [irc]{.lit} [0.8.0]{.optlit} 
-[::irc::config]{.cmd} [key]{.optarg} [value]{.optarg} 
-[::irc::connection]{.cmd} 
-[::irc::connections]{.cmd} 
-[net]{.ins} [registerevent]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [getevent]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [eventexists]{.sub} [event]{.arg} [script]{.arg} 
-[net]{.ins} [connect]{.sub} [hostname]{.arg} [port]{.optarg} 
-[net]{.ins} [config]{.sub} [key]{.optarg} [value]{.optarg} 
-[net]{.ins} [log]{.sub} [level]{.arg} [message]{.arg} 
-[net]{.ins} [logname]{.sub} 
-[net]{.ins} [connected]{.sub} 
-[net]{.ins} [sockname]{.sub} 
-[net]{.ins} [peername]{.sub} 
-[net]{.ins} [socket]{.sub} 
-[net]{.ins} [user]{.sub} [username]{.arg} [localhostname]{.arg} [localdomainname]{.arg} [userinfo]{.arg} 
-[net]{.ins} [nick]{.sub} [nick]{.arg} 
-[net]{.ins} [ping]{.sub} [target]{.arg} 
-[net]{.ins} [serverping]{.sub} 
-[net]{.ins} [join]{.sub} [channel]{.arg} [key]{.optarg} 
-[net]{.ins} [part]{.sub} [channel]{.arg} [message]{.optarg} 
-[net]{.ins} [quit]{.sub} [message]{.optarg} 
-[net]{.ins} [privmsg]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [notice]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [ctcp]{.sub} [target]{.arg} [message]{.arg} 
-[net]{.ins} [kick]{.sub} [channel]{.arg} [target]{.arg} [message]{.optarg} 
-[net]{.ins} [mode]{.sub} [target]{.arg} [args]{.arg} 
-[net]{.ins} [topic]{.sub} [channel]{.arg} [message]{.arg} 
-[net]{.ins} [invite]{.sub} [channel]{.arg} [target]{.arg} 
-[net]{.ins} [send]{.sub} [text]{.arg} 
-[net]{.ins} [destroy]{.sub} 
-[who]{.cmd} [address]{.optlit} 
-[action]{.cmd} 
-[target]{.cmd} 
-[additional]{.cmd} 
-[header]{.cmd} 
-[msg]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [irc]{.lit} [0.8.0]{.optlit}
+[::irc::config]{.cmd} [key]{.optarg} [value]{.optarg}
+[::irc::connection]{.cmd}
+[::irc::connections]{.cmd}
+[net]{.ins} [registerevent]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [getevent]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [eventexists]{.sub} [event]{.arg} [script]{.arg}
+[net]{.ins} [connect]{.sub} [hostname]{.arg} [port]{.optarg}
+[net]{.ins} [config]{.sub} [key]{.optarg} [value]{.optarg}
+[net]{.ins} [log]{.sub} [level]{.arg} [message]{.arg}
+[net]{.ins} [logname]{.sub}
+[net]{.ins} [connected]{.sub}
+[net]{.ins} [sockname]{.sub}
+[net]{.ins} [peername]{.sub}
+[net]{.ins} [socket]{.sub}
+[net]{.ins} [user]{.sub} [username]{.arg} [localhostname]{.arg} [localdomainname]{.arg} [userinfo]{.arg}
+[net]{.ins} [nick]{.sub} [nick]{.arg}
+[net]{.ins} [ping]{.sub} [target]{.arg}
+[net]{.ins} [serverping]{.sub}
+[net]{.ins} [join]{.sub} [channel]{.arg} [key]{.optarg}
+[net]{.ins} [part]{.sub} [channel]{.arg} [message]{.optarg}
+[net]{.ins} [quit]{.sub} [message]{.optarg}
+[net]{.ins} [privmsg]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [notice]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [ctcp]{.sub} [target]{.arg} [message]{.arg}
+[net]{.ins} [kick]{.sub} [channel]{.arg} [target]{.arg} [message]{.optarg}
+[net]{.ins} [mode]{.sub} [target]{.arg} [args]{.arg}
+[net]{.ins} [topic]{.sub} [channel]{.arg} [message]{.arg}
+[net]{.ins} [invite]{.sub} [channel]{.arg} [target]{.arg}
+[net]{.ins} [send]{.sub} [text]{.arg}
+[net]{.ins} [destroy]{.sub}
+[who]{.cmd} [address]{.optlit}
+[action]{.cmd}
+[target]{.cmd}
+[additional]{.cmd}
+[header]{.cmd}
+[msg]{.cmd}
 :::
 
 # Description
@@ -78,7 +79,7 @@ This package provides low-level commands to deal with the IRC protocol (Internet
 In the following list of available connection methods *net* represents a connection command as returned by **::irc::connection**.
 
 *net* **registerevent** *event* *script*
-: Registers a callback handler for the specific event.  Events available are those described in RFC 1459 *http://www.rfc-editor.org/rfc/rfc1459.txt*. In addition, there are several other events defined. **defaultcmd** adds a command that is called if no other callback is present.  **EOF** is called if the connection signals an End of File condition. The events **defaultcmd**, **defaultnumeric**, **defaultevent**, and **EOF** are required. *script* is executed in the connection namespace, which can take advantage of several commands (see **Callback Commands** below) to aid in the parsing of data.
+: Registers a callback handler for the specific event.  Events available are those described in RFC 1459 <http://www.rfc-editor.org/rfc/rfc1459.txt>. In addition, there are several other events defined. **defaultcmd** adds a command that is called if no other callback is present.  **EOF** is called if the connection signals an End of File condition. The events **defaultcmd**, **defaultnumeric**, **defaultevent**, and **EOF** are required. *script* is executed in the connection namespace, which can take advantage of several commands (see [Callback commands] below) to aid in the parsing of data.
 
 *net* **getevent** *event* *script*
 : Returns the current handler for the event if one exists. Otherwise an empty string is returned.
@@ -87,7 +88,7 @@ In the following list of available connection methods *net* represents a connect
 : Returns a boolean value indicating the existence of the event handler.
 
 *net* **connect** *hostname* ?port?
-: This causes the socket to be established.  **::irc::connection** created the namespace and the commands to be used, but did not actually open the socket. This is done here.  NOTE: the older form of \\'connect' did not require the user to specify a hostname and port, which were specified with 'connection'.  That form is deprecated.
+: This causes the socket to be established.  **::irc::connection** created the namespace and the commands to be used, but did not actually open the socket. This is done here.  NOTE: the older form of 'connect' did not require the user to specify a hostname and port, which were specified with 'connection'.  That form is deprecated.
 
 *net* **config** ?key? ?value?
 : The same as **::irc::config** but sets and gets options for the *net* connection only.

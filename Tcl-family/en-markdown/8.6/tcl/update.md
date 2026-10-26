@@ -1,5 +1,6 @@
 ---
 CommandName: update
+title: update
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -26,7 +27,7 @@ update - Process pending events and idle callbacks
 # Synopsis
 
 ::: {.synopsis} :::
-[update]{.cmd} [idletasks]{.optlit} 
+[update]{.cmd} [idletasks]{.optlit}
 :::
 
 # Description

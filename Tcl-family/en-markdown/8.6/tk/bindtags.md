@@ -1,5 +1,6 @@
 ---
 CommandName: bindtags
+title: bindtags
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -22,12 +23,12 @@ bindtags - Determine which bindings apply to a window, and order of evaluation
 # Synopsis
 
 ::: {.synopsis} :::
-[bindtags]{.cmd} [window]{.arg} [tagList]{.optarg} 
+[bindtags]{.cmd} [window]{.arg} [tagList]{.optarg}
 :::
 
 # Description
 
-When a binding is created with the **bind** command, it is associated either with a particular window such as **.a.b.c**, a class name such as **Button**, the keyword **all**, or any other string. All of these forms are called *binding tags*. Each window contains a list of binding tags that determine how events are processed for the window. When an event occurs in a window, it is applied to each of the window's tags in order:  for each tag, the most specific binding that matches the given tag and event is executed. See the **bind** command for more information on the matching process.
+When a binding is created with the [bind] command, it is associated either with a particular window such as **.a.b.c**, a class name such as **Button**, the keyword **all**, or any other string. All of these forms are called *binding tags*. Each window contains a list of binding tags that determine how events are processed for the window. When an event occurs in a window, it is applied to each of the window's tags in order:  for each tag, the most specific binding that matches the given tag and event is executed. See the [bind] command for more information on the matching process.
 
 By default, each window has four binding tags consisting of the name of the window, the window's class name, the name of the window's nearest toplevel ancestor, and **all**, in that order. Toplevel windows have only three tags by default, since the toplevel name is the same as that of the window. The **bindtags** command allows the binding tags for a window to be read and modified.
 
@@ -49,7 +50,7 @@ replaces the **Button** tag for **.b** with **TrickyButton**. This means that th
 
 # Example
 
-If you have a set of nested **frame** widgets and you want events sent to a **button** widget to also be delivered to all the widgets up to the current **toplevel** (in contrast to Tk's default behavior, where events are not delivered to those intermediate windows) to make it easier to have accelerators that are only active for part of a window, you could use a helper procedure like this to help set things up:
+If you have a set of nested [frame] widgets and you want events sent to a [button] widget to also be delivered to all the widgets up to the current [toplevel] (in contrast to Tk's default behavior, where events are not delivered to those intermediate windows) to make it easier to have accelerators that are only active for part of a window, you could use a helper procedure like this to help set things up:
 
 ```
 proc setupBindtagsForTreeDelivery {widget} {
@@ -64,3 +65,9 @@ proc setupBindtagsForTreeDelivery {widget} {
     bindtags $widget $tags
 }
 ```
+
+
+[bind]: bind.md
+[button]: button.md
+[frame]: frame.md
+[toplevel]: toplevel.md

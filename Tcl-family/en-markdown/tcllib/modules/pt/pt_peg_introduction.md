@@ -1,5 +1,6 @@
 ---
 CommandName: pt::pegrammar
+title: pt::pegrammar
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -32,14 +33,14 @@ pt::pegrammar - Introduction to Parsing Expression Grammars
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-Welcome to the introduction to *Parsing Expression Grammar*s (short: *PEG*), the formalism used by the Parser Tools. It is assumed that the reader has a basic knowledge of parsing theory, i.e. *Context-Free Grammars* (short: *CFG*), *languages*, and associated terms like *LL(k)*, *LR(k)*, *terminal* and *nonterminal* *symbols*, etc. We do not intend to recapitulate such basic definitions or terms like *useful*, *reachable*, (left/right) *recursive*, *nullable*, first/last/follow sets, etc. Please see the **References** at the end instead if you are in need of places and books which provide such background information.
+Welcome to the introduction to *Parsing Expression Grammar*s (short: *PEG*), the formalism used by the Parser Tools. It is assumed that the reader has a basic knowledge of parsing theory, i.e. *Context-Free Grammars* (short: *CFG*), *languages*, and associated terms like *LL(k)*, *LR(k)*, *terminal* and *nonterminal* *symbols*, etc. We do not intend to recapitulate such basic definitions or terms like *useful*, *reachable*, (left/right) *recursive*, *nullable*, first/last/follow sets, etc. Please see the [References] at the end instead if you are in need of places and books which provide such background information.
 
 PEGs are formally very similar to CFGs, with terminal and nonterminal symbols, start symbol, and rules defining the structure of each nonterminal symbol. The main difference lies in the choice(sic!) of *choice* operators. Where CFGs use an *unordered choice* to represent alternatives PEGs use *prioritized choice*. Which is fancy way of saying that a parser has to try the first alternative first and can try the other alternatives if only if it fails for the first, and so on.
 
@@ -59,65 +60,56 @@ The remainder of this document consists of the formal definition of PEGs for the
 
 For the mathematically inclined, a Parsing Expression Grammar is a 4-tuple (VN,VT,R,eS) where
 
-**•**
-: VN is a set of *nonterminal symbols*,
+- VN is a set of *nonterminal symbols*,
 
-**•**
-: VT is a set of *terminal symbols*,
+- VT is a set of *terminal symbols*,
 
-**•**
-: R is a finite set of rules, where each rule is a pair (A,e), A in VN, and *e* a *parsing expression*.
+- R is a finite set of rules, where each rule is a pair (A,e), A in VN, and *e* a *parsing expression*.
 
-**•**
-: eS is a parsing expression, the *start expression*. Further constraints are
+- eS is a parsing expression, the *start expression*.
 
-**•**
-: The intersection of VN and VT is empty.
 
-**•**
-: For all A in VT exists exactly one pair (A,e) in R. In other words, R is a function from nonterminal symbols to parsing expressions. Parsing expressions are inductively defined via
+Further constraints are
 
-**•**
-: The empty string (epsilon) is a parsing expression.
+- The intersection of VN and VT is empty.
 
-**•**
-: A terminal symbol *a* is a parsing expression.
+- For all A in VT exists exactly one pair (A,e) in R. In other words, R is a function from nonterminal symbols to parsing expressions.
 
-**•**
-: A nonterminal symbol *A* is a parsing expression.
 
-**•**
-: *e1e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *sequence*.
+Parsing expressions are inductively defined via
 
-**•**
-: *e1*/*e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *ordered choice*.
+- The empty string (epsilon) is a parsing expression.
 
-**•**
-: *e*\* is a parsing expression for parsing expression *e*. This is called *zero-or-more repetitions*, also known as *kleene closure*.
+- A terminal symbol *a* is a parsing expression.
 
-**•**
-: *e*+ is a parsing expression for parsing expression *e*. This is called *one-or-more repetitions*, also known as *positive kleene closure*.
+- A nonterminal symbol *A* is a parsing expression.
 
-**•**
-: !*e* is a parsing expression for parsing expression *e1*. This is called a *not lookahead predicate*.
+- *e1e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *sequence*.
 
-**•**
-: &*e* is a parsing expression for parsing expression *e1*. This is called an *and lookahead predicate*. PEGs are used to define a grammatical structure for streams of symbols over VT. They are a modern phrasing of older formalisms invented by Alexander Birham. These formalisms were called TS (TMG recognition scheme), and gTS (generalized TS). Later they were renamed to TPDL (Top-Down Parsing Languages) and gTPDL (generalized TPDL). They can be easily implemented by recursive descent parsers with backtracking. This makes them relatives of LL(k) Context-Free Grammars.
+- *e1*/*e2* is a parsing expression for parsing expressions *e1* and *2*. This is called *ordered choice*.
 
+- *e*\* is a parsing expression for parsing expression *e*. This is called *zero-or-more repetitions*, also known as *kleene closure*.
+
+- *e*+ is a parsing expression for parsing expression *e*. This is called *one-or-more repetitions*, also known as *positive kleene closure*.
+
+- !*e* is a parsing expression for parsing expression *e1*. This is called a *not lookahead predicate*.
+
+- &*e* is a parsing expression for parsing expression *e1*. This is called an *and lookahead predicate*.
+
+
+PEGs are used to define a grammatical structure for streams of symbols over VT. They are a modern phrasing of older formalisms invented by Alexander Birham. These formalisms were called TS (TMG recognition scheme), and gTS (generalized TS). Later they were renamed to TPDL (Top-Down Parsing Languages) and gTPDL (generalized TPDL).
+
+They can be easily implemented by recursive descent parsers with backtracking. This makes them relatives of LL(k) Context-Free Grammars.
 
 # References
 
-**\[1\]**
-: [The Packrat Parsing and Parsing Expression Grammars Page](http://www.pdos.lcs.mit.edu/~baford/packrat/), by Bryan Ford, Massachusetts Institute of Technology. This is the main entry page to PEGs, and their realization through Packrat Parsers.
+1. [The Packrat Parsing and Parsing Expression Grammars Page](http://www.pdos.lcs.mit.edu/~baford/packrat/), by Bryan Ford, Massachusetts Institute of Technology. This is the main entry page to PEGs, and their realization through Packrat Parsers.
 
-**\[2\]**
-: *http://en.wikipedia.org/wiki/Parsing_expression_grammar* Wikipedia's entry about Parsing Expression Grammars.
+2. <http://en.wikipedia.org/wiki/Parsing_expression_grammar> Wikipedia's entry about Parsing Expression Grammars.
 
-**\[3\]**
-: *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, an online book offering a clear, accessible, and thorough discussion of many different parsing techniques with their interrelations and applicabilities, including error recovery techniques.
+3. *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, an online book offering a clear, accessible, and thorough discussion of many different parsing techniques with their interrelations and applicabilities, including error recovery techniques.
 
-**\[4\]**
-: [Compilers and Compiler Generators](http://scifac.ru.ac.za/compilers/), an online book using CoCo/R, a generator for recursive descent parsers.
+4. [Compilers and Compiler Generators](http://scifac.ru.ac.za/compilers/), an online book using CoCo/R, a generator for recursive descent parsers.
 
 
 # Bugs, ideas, feedback

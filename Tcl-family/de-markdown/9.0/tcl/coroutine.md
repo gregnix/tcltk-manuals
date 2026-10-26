@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine
+title: coroutine
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -16,24 +17,24 @@ Copyright:
  - Copyright (c) 2009 Donal K. Fellows.
 ---
 
-# NAME
+# Name
 
 coroutine, yield, yieldto, coroinject, coroprobe - Coroutinen erzeugen und Werte aus ihnen liefern
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg]{.optdot} 
+[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg...]{.optarg}
 
-[yield]{.cmd} [value]{.optarg} 
-[yieldto]{.cmd} [command]{.arg} [arg]{.optdot} 
-*name* ?*value...*?
+[yield]{.cmd} [value]{.optarg}
+[yieldto]{.cmd} [command]{.arg} [arg...]{.optarg}
+[name]{.ins} [value...]{.optarg}
 
-[coroinject]{.cmd} [coroName]{.arg} [command]{.arg} [arg]{.optdot} 
-[coroprobe]{.cmd} [coroName]{.arg} [command]{.arg} [arg]{.optdot} 
+[coroinject]{.cmd version="TIP383"} [coroName]{.arg} [command]{.arg} [arg...]{.optarg}
+[coroprobe]{.cmd version="TIP383"} [coroName]{.arg} [command]{.arg} [arg...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **coroutine** erzeugt einen neuen Coroutine-Kontext (mit zugehörigem Befehl) namens *name* und führt diesen Kontext aus, indem er *command* aufruft und die übrigen Argumente ohne weitere Interpretation übergibt. Kehrt *command* normal oder mit einer Ausnahme zurück (z. B. einem Fehler), wird der Coroutine-Kontext *name* gelöscht.
 
@@ -41,7 +42,7 @@ Innerhalb des Kontexts können mit **yield** Werte als Ergebnisse erzeugt werden
 
 Die Coroutine kann die Ausführung auch mit **yieldto** aussetzen, der statt zurückzukehren die Ausführung an einen Befehl *command* (im Kontext der Coroutine aufgelöst) übergibt, dem *beliebig viele* Argumente übergeben werden können. Da jede Coroutine einen Kontextbefehl hat, kann **yieldto** die Kontrolle direkt von einer Coroutine zur anderen übergeben (sinnvoll nur, wenn beide Coroutinen das erwarten), aber *jeder* Befehl kann Ziel sein. Wurde eine Coroutine auf diese Weise ausgesetzt, kann die Coroutine-Verarbeitung fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit beliebig vielen Argumenten. Der Rückgabewert des **yieldto**-Aufrufs ist die Liste der Argumente, die an den Kontextbefehl übergeben wurden; der Aufrufer entscheidet, was damit geschieht.
 
-Die empfohlene Art, eine Variante von **yield** zu schreiben, die die Fortsetzung mit mehreren Argumenten erlaubt, nutzt **yieldto** und den Befehl **return**, etwa so:
+Die empfohlene Art, eine Variante von **yield** zu schreiben, die die Fortsetzung mit mehreren Argumenten erlaubt, nutzt **yieldto** und den Befehl [return], etwa so:
 
 ```
 proc yieldMultiple {value} {
@@ -49,28 +50,26 @@ proc yieldMultiple {value} {
 }
 ```
 
-Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit **info coroutine** abfragen. Gibt es Lösch-Spuren auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
+Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit [info coroutine][info] abfragen. Gibt es Lösch-Spuren auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
 
-Zum Zeitpunkt des Aufrufs von *command* ist der aktuelle Namespace der globale Namespace, und es gibt keine Stackframes darüber (im Sinne von **upvar** und **uplevel**). Welcher Befehl aufgerufen wird, wird jedoch im Namespace bestimmt, aus dem **coroutine** aufgerufen wurde.
+Zum Zeitpunkt des Aufrufs von *command* ist der aktuelle Namespace der globale Namespace, und es gibt keine Stackframes darüber (im Sinne von [upvar] und [uplevel]). Welcher Befehl aufgerufen wird, wird jedoch im Namespace bestimmt, aus dem **coroutine** aufgerufen wurde.
 
-::: {.info -version="TIP383"}
-Eine ausgesetzte Coroutine (also eine, die **yield** oder **yieldto** ausgeführt hat) kann an diesem Punkt mit **coroprobe** inspiziert oder verändert werden, indem an der aktuellen Position der Coroutine ein Befehl ausgeführt wird. Der Befehl nimmt den Namen der Coroutine *coroName*, in der ausgeführt werden soll, und den Namen eines Befehls (sowie alle benötigten Argumente), der sofort an dieser Stelle ausgeführt wird. Das Ergebnis dieses Befehls ist das Ergebnis von **coroprobe**; der Gesamtzustand der Coroutine bleibt danach gleich (die Coroutine erwartet weiterhin die Ergebnisse eines **yield** oder **yieldto** wie zuvor), Variablen können sich jedoch geändert haben.
-:::
+[Eine ausgesetzte Coroutine (also eine, die **yield** oder **yieldto** ausgeführt hat) kann an diesem Punkt mit **coroprobe** inspiziert oder verändert werden, indem an der aktuellen Position der Coroutine ein Befehl ausgeführt wird. Der Befehl nimmt den Namen der Coroutine *coroName*, in der ausgeführt werden soll, und den Namen eines Befehls (sowie alle benötigten Argumente), der sofort an dieser Stelle ausgeführt wird. Das Ergebnis dieses Befehls ist das Ergebnis von **coroprobe**; der Gesamtzustand der Coroutine bleibt danach gleich (die Coroutine erwartet weiterhin die Ergebnisse eines **yield** oder **yieldto** wie zuvor), Variablen können sich jedoch geändert haben.]{version="TIP383"}
 
 Entsprechend kann **coroinject** einen Befehl in eine ausgesetzte Coroutine einfügen (der bei Fortsetzung ausgeführt wird), um Argumente zu verarbeiten — mit großer Ähnlichkeit zu **coroprobe**. Bei **coroinject** gibt es jedoch mehrere wesentliche Unterschiede:
 
-- Die Coroutine wird nach der Injektion nicht sofort fortgesetzt. Dadurch sind mehrere Injektionen möglich, bevor die Coroutine fortgesetzt wird. Die injizierten Befehle werden in *umgekehrter Definitionsreihenfolge* ausgeführt (intern auf einem Stack gespeichert).
+- [Die Coroutine wird nach der Injektion nicht sofort fortgesetzt. Dadurch sind mehrere Injektionen möglich, bevor die Coroutine fortgesetzt wird. Die injizierten Befehle werden in *umgekehrter Definitionsreihenfolge* ausgeführt (intern auf einem Stack gespeichert).]{version="TIP383"}
 
-- Der Liste der auszuführenden Argumente (also *command* und seinen *args*) werden zwei weitere Elemente angehängt. Das erste ist der Name des Befehls, der die Coroutine ausgesetzt hat (**yield** oder **yieldto**), das zweite das Argument (bzw. bei **yieldto** die Liste der Argumente), das der aktuelle Fortsetzungswert ist.
+- [Der Liste der auszuführenden Argumente (also *command* und seinen *args*) werden zwei weitere Elemente angehängt. Das erste ist der Name des Befehls, der die Coroutine ausgesetzt hat (**yield** oder **yieldto**), das zweite das Argument (bzw. bei **yieldto** die Liste der Argumente), das der aktuelle Fortsetzungswert ist.]{version="TIP383"}
 
-- Das Ergebnis des injizierten Befehls wird als Ergebnis des **yield** oder **yieldto** verwendet, das die Coroutine ausgesetzt hat. Bei mehreren Injektionen wird das Ergebnis eines zum Fortsetzungswert des nächsten.
+- [Das Ergebnis des injizierten Befehls wird als Ergebnis des **yield** oder **yieldto** verwendet, das die Coroutine ausgesetzt hat. Bei mehreren Injektionen wird das Ergebnis eines zum Fortsetzungswert des nächsten.]{version="TIP383"}
 
 
 Die Injektion ist einmalig. Sie bleibt nach der Ausführung nicht erhalten. Der injizierte Befehl darf im Verlauf **yield** oder **yieldto** ausführen.
 
 Beachten Sie, dass laufende Coroutinen weder untersucht noch injiziert werden können; die Operationen gelten nur für ausgesetzte Coroutinen. (Läuft eine Coroutine, würde Introspektionscode nur den Zustand der aktuellen Ausführung betrachten; **coroinject**/**coroprobe** sind dann unnötig.)
 
-# BEISPIELE
+# Beispiele
 
 Dieses Beispiel zeigt eine Coroutine, die eine unendliche Folge gerader Werte erzeugt, und eine Schleife, die die ersten zehn davon verbraucht.
 
@@ -148,9 +147,7 @@ coroutine j1 juggler Larry [
         coroutine j3 juggler Moe j1]] "Nyuck!Nyuck!Nyuck!"
 ```
 
-::: {.info -version="TIP383"}
-Dieses Beispiel zeigt eine einfache Coroutine, die nicht-leere Werte sammelt und ohne Argument eine Liste davon zurückgibt. Es zeigt auch, wie man in die Coroutine hineinschauen und die Eingabe einmalig ändern kann.
-:::
+[Dieses Beispiel zeigt eine einfache Coroutine, die nicht-leere Werte sammelt und ohne Argument eine Liste davon zurückgibt. Es zeigt auch, wie man in die Coroutine hineinschauen und die Eingabe einmalig ändern kann.]{version="TIP383"}
 
 ```
 proc collectorImpl {} {
@@ -217,3 +214,8 @@ making from 2
 made inner 1 context=:: name=::demo::coroEg
 ```
 
+
+[info]: info.md
+[return]: return.md
+[uplevel]: uplevel.md
+[upvar]: upvar.md

@@ -1,5 +1,6 @@
 ---
 CommandName: cursors
+title: cursors
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -9,7 +10,6 @@ Keywords:
  - option
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
  - Copyright (c) 2006-2007 Daniel A. Steffen <das@users.sourceforge.net>
 ---
 
@@ -109,88 +109,86 @@ The **none** cursor can be specified to eliminate the cursor.
 **Windows**
 : On Windows systems, the following cursors are mapped to native cursors:
 
+    ```
+    arrow
+    center_ptr
+    crosshair
+    fleur
+    ibeam
+    icon
+    none
+    sb_h_double_arrow
+    sb_v_double_arrow
+    watch
+    xterm
+    ```
 
-```
-arrow
-center_ptr
-crosshair
-fleur
-ibeam
-icon
-none
-sb_h_double_arrow
-sb_v_double_arrow
-watch
-xterm
-```
+    And the following additional cursors are available:
 
-And the following additional cursors are available:
-
-```
-no
-starting
-size
-size_ne_sw
-size_ns
-size_nw_se
-size_we
-uparrow
-wait
-```
+    ```
+    no
+    starting
+    size
+    size_ne_sw
+    size_ns
+    size_nw_se
+    size_we
+    uparrow
+    wait
+    ```
 
 **macOS**
 : On macOS, the following cursors are mapped to native cursors:
 
+    ```
+    arrow
+    top_left_arrow
+    left_ptr
+    cross
+    crosshair
+    tcross
+    ibeam
+    none
+    xterm
+    ```
 
-```
-arrow
-top_left_arrow
-left_ptr
-cross
-crosshair
-tcross
-ibeam
-none
-xterm
-```
+    And the following additional native cursors are available:
 
-And the following additional native cursors are available:
-
-```
-copyarrow
-aliasarrow
-contextualmenuarrow
-movearrow
-text
-cross-hair
-hand
-openhand
-closedhand
-fist
-pointinghand
-resize
-resizeleft
-resizeright
-resizeleftright
-resizeup
-resizedown
-resizeupdown
-resizebottomleft
-resizetopleft
-resizebottomright
-resizetopright
-notallowed
-poof
-wait
-countinguphand
-countingdownhand
-countingupanddownhand
-spinning
-help
-bucket
-cancel
-eyedrop
-eyedrop-full
-zoom-in
-zoom-out
-```
+    ```
+    copyarrow
+    aliasarrow
+    contextualmenuarrow
+    movearrow
+    text
+    cross-hair
+    hand
+    openhand
+    closedhand
+    fist
+    pointinghand
+    resize
+    resizeleft
+    resizeright
+    resizeleftright
+    resizeup
+    resizedown
+    resizeupdown
+    resizebottomleft
+    resizetopleft
+    resizebottomright
+    resizetopright
+    notallowed
+    poof
+    wait
+    countinguphand
+    countingdownhand
+    countingupanddownhand
+    spinning
+    help
+    bucket
+    cancel
+    eyedrop
+    eyedrop-full
+    zoom-in
+    zoom-out
+    ```

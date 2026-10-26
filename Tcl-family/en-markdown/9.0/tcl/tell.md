@@ -1,5 +1,6 @@
 ---
 CommandName: tell
+title: tell
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -18,9 +19,12 @@ tell - Return current access position for an open channel
 # Synopsis
 
 ::: {.synopsis} :::
-[tell]{.cmd} [channel]{.arg} 
+[tell]{.cmd} [channel]{.arg}
 :::
 
 # Description
 
-The **tell** command has been superceded by the **chan tell** command which supports the same syntax and options.
+The **tell** command has been superceded by the [chan tell][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

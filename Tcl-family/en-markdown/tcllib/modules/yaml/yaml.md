@@ -1,5 +1,6 @@
 ---
 CommandName: yaml
+title: yaml
 ManualSection: n
 Version: 0.4.2
 TclPart: tcllib
@@ -25,103 +26,96 @@ yaml - YAML Format Encoder/Decoder
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit} 
-[::yaml::yaml2dict]{.cmd} [options]{.optarg} [txt]{.arg} 
-[::yaml::yaml2huddle]{.cmd} [options]{.optarg} [txt]{.arg} 
-[::yaml::setOption]{.cmd} [options]{.optarg} 
-[::yaml::dict2yaml]{.cmd} [dict]{.arg} [indent]{.optarg} [wordwrap]{.optarg} 
-[::yaml::list2yaml]{.cmd} [list]{.arg} [indent]{.optarg} [wordwrap]{.optarg} 
-[::yaml::huddle2yaml]{.cmd} [huddle]{.arg} [indent]{.optarg} [wordwrap]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit}
+[::yaml::yaml2dict]{.cmd} [options]{.optarg} [txt]{.arg}
+[::yaml::yaml2huddle]{.cmd} [options]{.optarg} [txt]{.arg}
+[::yaml::setOption]{.cmd} [options]{.optarg}
+[::yaml::dict2yaml]{.cmd} [dict]{.arg} [indent]{.optarg} [wordwrap]{.optarg}
+[::yaml::list2yaml]{.cmd} [list]{.arg} [indent]{.optarg} [wordwrap]{.optarg}
+[::yaml::huddle2yaml]{.cmd} [huddle]{.arg} [indent]{.optarg} [wordwrap]{.optarg}
 :::
 
 # Description
 
-The **yaml** package provides a simple Tcl-only library for parsing the YAML *http://www.yaml.org/* data exchange format as specified in *http://www.yaml.org/spec/1.1/*.
+The **yaml** package provides a simple Tcl-only library for parsing the YAML <http://www.yaml.org/> data exchange format as specified in <http://www.yaml.org/spec/1.1/>.
 
 The **yaml** package returns data as a Tcl **dict**.  Either the **dict** package or Tcl 8.5 is required for use.
 
 # Commands
 
 **::yaml::yaml2dict** ?*options*? *txt*
-: ...see next...
+: see below ...
 
 **::yaml::yaml2huddle** ?*options*? *txt*
 : Parse yaml formatted text *txt* into a Tcl dict/huddle and return the value.
 
+    **-file**
+    : *txt* is a filename of YAML-stream.
 
-**-file**
-: *txt* is a filename of YAML-stream.
+    **-stream**
+    : *txt* is just a YAML-stream.
 
-**-stream**
-: *txt* is just a YAML-stream.
+    **-types** *list*
+    : The *list* is a type list for the yaml-scalar types.(e.g. !!str !!timestamp !!integer !!true ...)
 
-**-types** *list*
-: The *list* is a type list for the yaml-scalar types.(e.g. !!str !!timestamp !!integer !!true ...)
+        ```
+         -types {timestamp integer null true false}
+        ```
 
+        In this case, if a string matched "timestamp", converted to the TCL internal timestamp.(e.g. "2001-12-15T02:59:43.1Z" => 1008385183)
 
-```
- -types {timestamp integer null true false}
-```
+    **-m:true** *param*
+    : The *param* is two elements of list for the value of true, and considered strings.
 
-: In this case, if a string matched "timestamp", converted to the TCL internal timestamp.(e.g. "2001-12-15T02:59:43.1Z" => 1008385183)
+        ```
+         -m:true {1 {true on + yes y}}
+        ```
 
+        In this case, the string "yes" found in YAML Stream, automatically converted 1.
 
-**-m:true** *param*
-: The *param* is two elements of list for the value of true, and considered strings.
+    **-m:false** *param*
+    : The *param* is two elements of list for the value of false, and considered strings.
 
+        ```
+         -m:false {0 {false off - no n}}
+        ```
 
-```
- -m:true {1 {true on + yes y}}
-```
+    **-m:null** *param*
+    : The *param* is two elements of list for the value of null, and considered strings.
 
-: In this case, the string "yes" found in YAML Stream, automatically converted 1.
+        ```
+         -m:null {"" {null nil "" ~}}
+        ```
 
+    **-validate**
+    : Experiment,old: Output stream contains YAML's-tag, each node.
 
-**-m:false** *param*
-: The *param* is two elements of list for the value of false, and considered strings.
+        ```
+        % puts [::yaml::load -validate {[aaa, bbb]}]
+        =>
+        !!seq {{!!str aaa} {!!str bbb}}
+        ```
 
-
-```
- -m:false {0 {false off - no n}}
-```
-
-**-m:null** *param*
-: The *param* is two elements of list for the value of null, and considered strings.
-
-
-```
- -m:null {"" {null nil "" ~}}
-```
-
-**-validate**
-: Experiment,old: Output stream contains YAML's-tag, each node.
-
-
-```
-% puts [::yaml::load -validate {[aaa, bbb]}]
-=>
-!!seq {{!!str aaa} {!!str bbb}}
-```
 
 **::yaml::setOption** ?*options*?
 : Change implicit options for the library. Now, the params are the same as **::yaml::yaml2dict**. Arguments of**::yaml::yaml2dict** is more priority than this setting.
 
 **::yaml::dict2yaml** *dict* ?*indent*? ?*wordwrap*?
-: ...see next...
+: see below ...
 
 **::yaml::list2yaml** *list* ?*indent*? ?*wordwrap*?
-: ...see next...
+: see below ...
 
 **::yaml::huddle2yaml** *huddle* ?*indent*? ?*wordwrap*?
 : Convert a dict/list/huddle object into YAML stream.
 
+    indent
+    : spaces indent of each block node. currently default is 2.
 
-**indent**
-: spaces indent of each block node. currently default is 2.
+    wordwrap
+    : word wrap for YAML stream. currently default is 40.
 
-**wordwrap**
-: word wrap for YAML stream. currently default is 40.
 
 
 # Examples

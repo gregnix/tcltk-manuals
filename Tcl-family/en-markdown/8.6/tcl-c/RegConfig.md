@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_RegisterConfig
+title: Tcl_RegisterConfig
 ManualSection: 3
 Version: 8.4
 TclPart: Tcl
@@ -14,52 +15,53 @@ Copyright:
 
 # Name
 
-Tcl_RegisterConfig - procedures to register embedded configuration information
+Tcl\_RegisterConfig - procedures to register embedded configuration information
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-void
-[Tcl_RegisterConfig]{.cmd}([interp]{.arg}, [pkgName]{.arg}, [configuration]{.arg}, [valEncoding]{.arg})
+**#include <tcl.h>**
+[void]{.ret} [Tcl\_RegisterConfig]{.ccmd} [interp, pkgName, configuration, valEncoding]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Refers to the interpreter the embedded configuration information is registered for. Must not be NULL.
 
-const char *\*pkgName* (in)
+[\*pkgName]{.carg .in type="const char"}
 : Contains the name of the package registering the embedded configuration as ASCII string. This means that this information is in UTF-8 too. Must not be NULL.
 
-const Tcl_Config *\*configuration* (in)
-: Refers to an array of Tcl_Config entries containing the information embedded in the binary library. Must not be NULL. The end of the array is signaled by either a key identical to NULL, or a key referring to the empty string.
+[\*configuration]{.carg .in type="const Tcl_Config"}
+: Refers to an array of Tcl\_Config entries containing the information embedded in the binary library. Must not be NULL. The end of the array is signaled by either a key identical to NULL, or a key referring to the empty string.
 
-const char *\*valEncoding* (in)
+[\*valEncoding]{.carg .in type="const char"}
 : Contains the name of the encoding used to store the configuration values as ASCII string. This means that this information is in UTF-8 too. Must not be NULL.
 
+:::
 
 # Description
 
 The function described here has its base in TIP 59 and provides extensions with support for the embedding of configuration information into their binary library and the generation of a Tcl-level interface for querying this information.
 
-To embed configuration information into their binary library an extension has to define a non-volatile array of Tcl_Config entries in one if its source files and then call **Tcl_RegisterConfig** to register that information.
+To embed configuration information into their binary library an extension has to define a non-volatile array of Tcl\_Config entries in one if its source files and then call **Tcl\_RegisterConfig** to register that information.
 
-**Tcl_RegisterConfig** takes four arguments; first, a reference to the interpreter we are registering the information with, second, the name of the package registering its configuration information, third, a pointer to an array of structures, and fourth a string declaring the encoding used by the configuration values.
+**Tcl\_RegisterConfig** takes four arguments; first, a reference to the interpreter we are registering the information with, second, the name of the package registering its configuration information, third, a pointer to an array of structures, and fourth a string declaring the encoding used by the configuration values.
 
 The string *valEncoding* contains the name of an encoding known to Tcl.  All these names are use only characters in the ASCII subset of UTF-8 and are thus implicitly in the UTF-8 encoding. It is expected that keys are legible English text and therefore using the ASCII subset of UTF-8. In other words, they are expected to be in UTF-8 too. The values associated with the keys can be any string however. For these the contents of *valEncoding* define which encoding was used to represent the characters of the strings.
 
-Each element of the *configuration* array refers to two strings containing the key and the value associated with that key. The end of the array is signaled by either an empty key or a key identical to NULL. The function makes **no** copy of the *configuration* array. This means that the caller has to make sure that the memory holding this array is never released. This is the meaning behind the word **non-volatile** used earlier. The easiest way to accomplish this is to define a global static array of Tcl_Config entries. See the file "generic/tclPkgConfig.c" in the sources of the Tcl core for an example.
+Each element of the *configuration* array refers to two strings containing the key and the value associated with that key. The end of the array is signaled by either an empty key or a key identical to NULL. The function makes **no** copy of the *configuration* array. This means that the caller has to make sure that the memory holding this array is never released. This is the meaning behind the word **non-volatile** used earlier. The easiest way to accomplish this is to define a global static array of Tcl\_Config entries. See the file "generic/tclPkgConfig.c" in the sources of the Tcl core for an example.
 
-When called **Tcl_RegisterConfig** will
+When called **Tcl\_RegisterConfig** will
 
-**(1)**
-: create a namespace having the provided *pkgName*, if not yet existing.
+1. create a namespace having the provided *pkgName*, if not yet existing.
 
-**(2)**
-: create the command **pkgconfig** in that namespace and link it to the provided information so that the keys from *configuration* and their associated values can be retrieved through calls to **pkgconfig**. The command **pkgconfig** will provide two subcommands, **list** and **get**:
+2. create the command **pkgconfig** in that namespace and link it to the provided information so that the keys from *configuration* and their associated values can be retrieved through calls to **pkgconfig**.
 
+
+The command **pkgconfig** will provide two subcommands, [list] and **get**:
 
 ::*pkgName*::**pkgconfig** list
 : Returns a list containing the names of all defined keys.
@@ -68,9 +70,9 @@ When called **Tcl_RegisterConfig** will
 : Returns the configuration value associated with the specified *key*.
 
 
-# Tcl_config
+# Tcl\_Config
 
-The **Tcl_Config** structure contains the following fields:
+The [Tcl\_Config] structure contains the following fields:
 
 ```
 typedef struct Tcl_Config {
@@ -78,3 +80,6 @@ typedef struct Tcl_Config {
     const char *value;
 } Tcl_Config;
 ```
+
+
+[list]: ../tcl/list.md

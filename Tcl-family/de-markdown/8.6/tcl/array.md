@@ -1,5 +1,6 @@
 ---
 CommandName: array
+title: array
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -19,39 +20,22 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 array - Array-Variablen bearbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[array]{.cmd} [option]{.arg} [arrayName]{.arg} [arg arg]{.optdot} 
+[array]{.cmd} [option]{.arg} [arrayName]{.arg} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl führt eine von mehreren Operationen an der Variable *arrayName* aus. Sofern unten nicht anders angegeben, muss *arrayName* eine bestehende Array-Variable sein. *option* bestimmt die Aktion (Abkürzungen erlaubt):
 
 **array anymore** *arrayName searchId*
 : Gibt 1 zurück, wenn in einer Arraysuche noch Elemente übrig sind, sonst 0. *searchId* bezeichnet die Suche (Rückgabewert von **array startsearch**). Nützlich bei leerem Elementnamen, da **array nextelement** allein nicht anzeigt, ob die Suche abgeschlossen ist.
-
-**array default** *subcommand arrayName args...*
-: Verwaltet den Standardwert des Arrays. Arrays haben zunächst keinen Standardwert; nach dem Setzen wird er beim Lesen eines Elements geliefert, wenn das Lesen sonst einen Fehler ergeben würde. Das kann das Verhalten von **append**, **dict**, **incr** und **lappend** bei nicht existierenden Elementen ändern.
-    *subcommand* steuert die Operation am Standardwert von *arrayName*. Unterbefehle:
-
-**array default exists** *arrayName*
-: Gibt einen booleschen Wert zurück, ob ein Standardwert gesetzt ist. Falsch, wenn *arrayName* nicht existiert. Fehler, wenn *arrayName* existiert, aber kein Array ist.
-
-**array default get** *arrayName*
-: Gibt den aktuellen Standardwert zurück. Fehler, wenn *arrayName* kein Array ist oder keinen Standardwert hat.
-
-**array default set** *arrayName value*
-: Setzt den Standardwert auf *value*, Rückgabe leerer String. Fehler bei ungültigem Arraynamen oder wenn *arrayName* keine Array-Variable ist. Existiert *arrayName* nicht, wird ein leeres Array mit Standardwert angelegt.
-
-**array default unset** *arrayName*
-: Entfernt den Standardwert, Rückgabe leerer String. Ohne Wirkung, wenn kein Standardwert gesetzt ist. Fehler, wenn *arrayName* keine Array-Variable ist.
-
 
 **array donesearch** *arrayName searchId*
 : Beendet eine Arraysuche und gibt den zugehörigen Zustand frei. *searchId* stammt von **array startsearch**. Rückgabe leerer String.
@@ -59,14 +43,11 @@ Der Befehl führt eine von mehreren Operationen an der Variable *arrayName* aus.
 **array exists** *arrayName*
 : 1, wenn *arrayName* ein Array ist; 0, wenn die Variable fehlt oder skalar ist.
 
-**array for {***keyVariable valueVariable***}** *arrayName body*
-: Erstes Argument: zweielementige Liste mit Variablennamen für Schlüssel und Wert jedes Eintrags. Zweites: Arrayname. Drittes: auszuführender Code. Schlüsselreihenfolge undefiniert. Wird während **array for** ein Element gelöscht oder neu eingefügt, bricht der Befehl mit Fehler ab.
-
 **array get** *arrayName* ?*pattern*?
-: Liste aus Paaren: ungerade Position = Elementname, gerade = Wert. Paarreihenfolge undefiniert. Ohne *pattern* alle Elemente. Mit *pattern* nur passende Namen (**string match**). Kein Array oder leeres Array: leere Liste. Ändern Traces die Elementliste während des Aufrufs, werden nur Elemente zurückgegeben, die vor und nach **array get** existieren.
+: Liste aus Paaren: ungerade Position = Elementname, gerade = Wert. Paarreihenfolge undefiniert. Ohne *pattern* alle Elemente. Mit *pattern* nur passende Namen ([string match][string]). Kein Array oder leeres Array: leere Liste. Ändern Traces die Elementliste während des Aufrufs, werden nur Elemente zurückgegeben, die vor und nach **array get** existieren.
 
 **array names** *arrayName* ?*mode*? ?*pattern*?
-: Liste der Elementnamen, die *pattern* entsprechen. *mode*: **-exact**, **-glob** oder **-regexp** (Standard **-glob**). Siehe **string match** und **regexp**. Ohne *pattern* alle Namen. Keine Treffer oder kein Array: leerer String.
+: Liste der Elementnamen, die *pattern* entsprechen. *mode*: **-exact**, **-glob** oder **-regexp** (Standard **-glob**). Siehe [string match][string] und [regexp]. Ohne *pattern* alle Namen. Keine Treffer oder kein Array: leerer String.
 
 **array nextelement** *arrayName searchId*
 : Name des nächsten Elements oder leerer String, wenn die Suche erschöpft ist. *searchId* von **array startsearch**. Warnung: werden Elemente während der Suche hinzugefügt oder gelöscht, werden alle Suchen beendet wie bei **array donesearch**; **array nextelement** schlägt dann für diese Suchen fehl.
@@ -78,16 +59,16 @@ Der Befehl führt eine von mehreren Operationen an der Variable *arrayName* aus.
 : Dezimalstring mit der Elementanzahl. Kein Array: 0.
 
 **array startsearch** *arrayName*
-: Startet elementweise Suche; **array nextelement** liefert die Namen. Abschluss mit **array donesearch**. Rückgabe: Such-ID für parallele Suchen im selben Array. Für die meisten Arrays sind **array get** oder **array names** mit **foreach** effizienter (siehe Beispiele).
+: Startet elementweise Suche; **array nextelement** liefert die Namen. Abschluss mit **array donesearch**. Rückgabe: Such-ID für parallele Suchen im selben Array. Für die meisten Arrays sind **array get** oder **array names** mit [foreach] effizienter (siehe Beispiele).
 
 **array statistics** *arrayName*
 : Statistik zur Datenverteilung in der Hashtable des Arrays: Einträge, Buckets, Auslastung.
 
 **array unset** *arrayName* ?*pattern*?
-: Entfernt alle Elemente, deren Namen *pattern* entsprechen (**string match**). Kein Array oder keine Treffer: kein Fehler. Ohne *pattern* bei Array-Variable: gesamtes Array löschen. Rückgabe immer leerer String.
+: Entfernt alle Elemente, deren Namen *pattern* entsprechen ([string match][string]). Kein Array oder keine Treffer: kein Fehler. Ohne *pattern* bei Array-Variable: gesamtes Array löschen. Rückgabe immer leerer String.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
 array set colorcount {
@@ -136,3 +117,8 @@ array statistics colorcount
     number of buckets with 10 or more entries: 0
     average search distance for entry: 1.2
 ```
+
+
+[foreach]: foreach.md
+[regexp]: regexp.md
+[string]: string.md

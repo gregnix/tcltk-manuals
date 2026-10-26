@@ -1,5 +1,6 @@
 ---
 CommandName: pt::cparam::configuration::critcl
+title: pt::cparam::configuration::critcl
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -32,25 +33,29 @@ pt::cparam::configuration::critcl - C/PARAM, Canned configuration, Critcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::cparam::configuration::critcl]{.lit} [1.0.3]{.optlit} 
-[::pt::cparam::configuration::critcl]{.cmd} [def]{.sub} [name]{.arg} [pkg]{.arg} [version]{.arg} [cmdprefix]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::cparam::configuration::critcl]{.lit} [1.0.3]{.optlit}
+[::pt::cparam::configuration::critcl]{.cmd} [def]{.lit} [name]{.arg} [pkg]{.arg} [version]{.arg} [cmdprefix]{.arg}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-This package is an adjunct to **pt::peg::to::cparam**, to make the use of this highly configurable package easier by providing a canned configuration. When applied this configuration causes the package **pt::peg::to::cparam** to generate **critcl**-based parser packages.
+This package is an adjunct to [pt::peg::to::cparam][pt_peg_to_cparam], to make the use of this highly configurable package easier by providing a canned configuration. When applied this configuration causes the package [pt::peg::to::cparam][pt_peg_to_cparam] to generate **critcl**-based parser packages.
 
 It is a supporting package in the Core Layer of Parser Tools.
 
-IMAGE: arch_core_support
+IMAGE: arch\_core\_support
 
-# Api
+# API
 
 **::pt::cparam::configuration::critcl** **def** *name* *pkg* *version* *cmdprefix*
-: The command applies the configuration provided by this package to the *cmdprefix*, causing the creation of **critcl**-based parsers whose class is *name*, in package *pkg* with *version*. The use of a command prefix as API allows application of the configuration to not only **pt::peg::to::cparam** (**pt::peg::to::cparam configure**), but also export manager instances and PEG containers (**\$export configuration set** and **\[\$container exporter\] configuration set** respectively). Or anything other command prefix accepting two arguments, option and value.
+: The command applies the configuration provided by this package to the *cmdprefix*, causing the creation of **critcl**-based parsers whose class is *name*, in package *pkg* with *version*.
+
+    The use of a command prefix as API allows application of the configuration to not only [pt::peg::to::cparam][pt_peg_to_cparam] ([pt::peg::to::cparam configure][pt_peg_to_cparam]), but also export manager instances and PEG containers (**$export configuration set** and **\[$container exporter\] configuration set** respectively).
+
+    Or anything other command prefix accepting two arguments, option and value.
 
 
 # Bugs, ideas, feedback
@@ -70,3 +75,6 @@ Parsing and Grammars
 ```
 Copyright (c) 2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[pt_peg_to_cparam]: pt_peg_to_cparam.md

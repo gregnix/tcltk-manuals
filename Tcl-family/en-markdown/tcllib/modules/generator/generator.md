@@ -1,5 +1,6 @@
 ---
 CommandName: generator
+title: generator
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -26,49 +27,49 @@ generator - Procedures for creating and using generators.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [generator]{.lit} [0.3]{.optlit} 
-[generator]{.cmd} [define]{.sub} [name]{.arg} [params]{.arg} [body]{.arg} 
-[generator]{.cmd} [yield]{.sub} [arg]{.arg} [args..]{.optarg} 
-[generator]{.cmd} [foreach]{.sub} [varList]{.arg} [generator]{.arg} [varList]{.arg} [generator]{.arg} [...]{.optdot} [body]{.arg} 
-[generator]{.cmd} [next]{.sub} [generator]{.arg} [varName..]{.optarg} 
-[generator]{.cmd} [exists]{.sub} [generator]{.arg} 
-[generator]{.cmd} [names]{.sub} 
-[generator]{.cmd} [destroy]{.sub} [generator..]{.optarg} 
-[generator]{.cmd} [finally]{.sub} [cmd]{.arg} [arg..]{.optarg} 
-[generator]{.cmd} [from]{.sub} [format]{.arg} [value]{.arg} 
-[generator]{.cmd} [to]{.sub} [format]{.arg} [generator]{.arg} 
-[generator]{.cmd} [map]{.sub} [function]{.arg} [generator]{.arg} 
-[generator]{.cmd} [filter]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [reduce]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
-[generator]{.cmd} [foldl]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
-[generator]{.cmd} [foldr]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
-[generator]{.cmd} [all]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [and]{.sub} [generator]{.arg} 
-[generator]{.cmd} [any]{.sub} [generator]{.arg} 
-[generator]{.cmd} [concat]{.sub} [generator]{.arg} [generator..]{.optarg} 
-[generator]{.cmd} [concatMap]{.sub} [function]{.arg} [generator]{.arg} 
-[generator]{.cmd} [drop]{.sub} [n]{.arg} [generator]{.arg} 
-[generator]{.cmd} [dropWhile]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [contains]{.sub} [element]{.arg} [generator]{.arg} 
-[generator]{.cmd} [foldl1]{.sub} [function]{.arg} [generator]{.arg} 
-[generator]{.cmd} [foldli]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
-[generator]{.cmd} [foldri]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
-[generator]{.cmd} [head]{.sub} [generator]{.arg} 
-[generator]{.cmd} [tail]{.sub} [generator]{.arg} 
-[generator]{.cmd} [init]{.sub} [generator]{.arg} 
-[generator]{.cmd} [takeList]{.sub} [n]{.arg} [generator]{.arg} 
-[generator]{.cmd} [take]{.sub} [n]{.arg} [generator]{.arg} 
-[generator]{.cmd} [iterate]{.sub} [function]{.arg} [init]{.arg} 
-[generator]{.cmd} [last]{.sub} [generator]{.arg} 
-[generator]{.cmd} [length]{.sub} [generator]{.arg} 
-[generator]{.cmd} [or]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [product]{.sub} [generator]{.arg} 
-[generator]{.cmd} [repeat]{.sub} [n]{.arg} [value..]{.arg} 
-[generator]{.cmd} [sum]{.sub} [generator]{.arg} 
-[generator]{.cmd} [takeWhile]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [splitWhen]{.sub} [predicate]{.arg} [generator]{.arg} 
-[generator]{.cmd} [scanl]{.sub} [function]{.arg} [zero]{.arg} [generator]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [generator]{.lit} [0.3]{.optlit}
+[generator]{.cmd} [define]{.lit} [name]{.arg} [params]{.arg} [body]{.arg}
+[generator]{.cmd} [yield]{.lit} [arg]{.arg} [args..]{.optarg}
+[generator]{.cmd} [foreach]{.lit} [varList]{.arg} [generator]{.arg} [varList]{.arg} [generator]{.arg} [...]{.optarg} [body]{.arg}
+[generator]{.cmd} [next]{.lit} [generator]{.arg} [varName..]{.optarg}
+[generator]{.cmd} [exists]{.lit} [generator]{.arg}
+[generator]{.cmd} [names]{.lit}
+[generator]{.cmd} [destroy]{.lit} [generator..]{.optarg}
+[generator]{.cmd} [finally]{.lit} [cmd]{.arg} [arg..]{.optarg}
+[generator]{.cmd} [from]{.lit} [format]{.arg} [value]{.arg}
+[generator]{.cmd} [to]{.lit} [format]{.arg} [generator]{.arg}
+[generator]{.cmd} [map]{.lit} [function]{.arg} [generator]{.arg}
+[generator]{.cmd} [filter]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [reduce]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
+[generator]{.cmd} [foldl]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
+[generator]{.cmd} [foldr]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
+[generator]{.cmd} [all]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [and]{.lit} [generator]{.arg}
+[generator]{.cmd} [any]{.lit} [generator]{.arg}
+[generator]{.cmd} [concat]{.lit} [generator]{.arg} [generator..]{.optarg}
+[generator]{.cmd} [concatMap]{.lit} [function]{.arg} [generator]{.arg}
+[generator]{.cmd} [drop]{.lit} [n]{.arg} [generator]{.arg}
+[generator]{.cmd} [dropWhile]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [contains]{.lit} [element]{.arg} [generator]{.arg}
+[generator]{.cmd} [foldl1]{.lit} [function]{.arg} [generator]{.arg}
+[generator]{.cmd} [foldli]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
+[generator]{.cmd} [foldri]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
+[generator]{.cmd} [head]{.lit} [generator]{.arg}
+[generator]{.cmd} [tail]{.lit} [generator]{.arg}
+[generator]{.cmd} [init]{.lit} [generator]{.arg}
+[generator]{.cmd} [takeList]{.lit} [n]{.arg} [generator]{.arg}
+[generator]{.cmd} [take]{.lit} [n]{.arg} [generator]{.arg}
+[generator]{.cmd} [iterate]{.lit} [function]{.arg} [init]{.arg}
+[generator]{.cmd} [last]{.lit} [generator]{.arg}
+[generator]{.cmd} [length]{.lit} [generator]{.arg}
+[generator]{.cmd} [or]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [product]{.lit} [generator]{.arg}
+[generator]{.cmd} [repeat]{.lit} [n]{.arg} [value..]{.arg}
+[generator]{.cmd} [sum]{.lit} [generator]{.arg}
+[generator]{.cmd} [takeWhile]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [splitWhen]{.lit} [predicate]{.arg} [generator]{.arg}
+[generator]{.cmd} [scanl]{.lit} [function]{.arg} [zero]{.arg} [generator]{.arg}
 :::
 
 # Description
@@ -106,7 +107,11 @@ The above example will print the numbers from 1 to 10 in sequence, as you would 
 : Used in the definition of a generator, this command returns the next set of values to the consumer. Once the **yield** command has been called the generator will suspend to allow the consumer to process that value. When the next value is requested, the generator will resume as if the yield command had just returned, and can continue processing to yield the next result. The **yield** command must be called with at least one argument, but can be called with multiple arguments, in which case this is equivalent to calling **yield** once for each argument.
 
 **generator** **foreach** *varList* *generator* *varList* *generator* ?...? *body*
-: Loops through one or more generators, assigning the next values to variables and then executing the loop body. Works much like the built-in **foreach** command, but working with generators rather than lists. Multiple generators can be iterated over in parallel, and multiple results can be retrieved from a single generator at once.  Like the built-in **foreach**, the loop will continue until all of the generators have been exhausted: variables for generators that are exhausted early will be set to the empty string. The **foreach** command will automatically clean-up all of the generators at the end of the loop, regardless of whether the loop terminated early or not. This behaviour is provided as a convenience to avoid having to explicitly clean up a generator in the usual cases. Generators can however be destroyed before the end of the loop, in which case the loop will continue as normal until all the other generators have been destroyed or exhausted. The **foreach** command does not take a snapshot of the generator. Any changes in the state of the generator made inside the loop or by other code will affect the state of the loop. In particular, if the code in the loop invokes the generator to manually retrieve the next element, this element will then be excluded from the loop, and the next iteration will continue from the element after that one. Care should be taken to avoid concurrent updates to generators unless this behaviour is required (e.g., in argument processing).
+: Loops through one or more generators, assigning the next values to variables and then executing the loop body. Works much like the built-in **foreach** command, but working with generators rather than lists. Multiple generators can be iterated over in parallel, and multiple results can be retrieved from a single generator at once.  Like the built-in **foreach**, the loop will continue until all of the generators have been exhausted: variables for generators that are exhausted early will be set to the empty string.
+
+    The **foreach** command will automatically clean-up all of the generators at the end of the loop, regardless of whether the loop terminated early or not. This behaviour is provided as a convenience to avoid having to explicitly clean up a generator in the usual cases. Generators can however be destroyed before the end of the loop, in which case the loop will continue as normal until all the other generators have been destroyed or exhausted.
+
+    The **foreach** command does not take a snapshot of the generator. Any changes in the state of the generator made inside the loop or by other code will affect the state of the loop. In particular, if the code in the loop invokes the generator to manually retrieve the next element, this element will then be excluded from the loop, and the next iteration will continue from the element after that one. Care should be taken to avoid concurrent updates to generators unless this behaviour is required (e.g., in argument processing).
 
 **generator** **next** *generator* ?*varName..*?
 : Manually retrieves the next values from a generator. One value is retrieved for each variable supplied and assigned to the corresponding variable. If the generator becomes exhausted at any time then any remaining variables are set to the empty string.
@@ -123,31 +128,30 @@ The above example will print the numbers from 1 to 10 in sequence, as you would 
 **generator** **finally** *cmd* ?*arg..*?
 : Used in the definition of a generator procedure, this command arranges for a resource to be cleaned up whenever the generator is destroyed, either explicitly or implicitly when the generator is exhausted. This command can be used like a **finally** block in the **try** command, except that it is tied to the life-cycle of the generator rather than to a particular scope. For example, if we create a generator to iterate over the lines in a text file, we can use **finally** to ensure that the file is closed whenever the generator is destroyed:
 
-
-```
-    generator define lines file {
-        set in [open $file]
-        # Ensure file is always closed
-        generator finally close $in
-        while {[gets $in line] >= 0} {
-            generator yield $line
+    ```
+        generator define lines file {
+            set in [open $file]
+            # Ensure file is always closed
+            generator finally close $in
+            while {[gets $in line] >= 0} {
+                generator yield $line
+            }
         }
-    }
-    generator foreach line [lines /etc/passwd] {
-        puts "[incr count]: $line"
-        if {$count > 10} { break }
-    }
-    # File will be closed even on early exit
-```
+        generator foreach line [lines /etc/passwd] {
+            puts "[incr count]: $line"
+            if {$count > 10} { break }
+        }
+        # File will be closed even on early exit
+    ```
 
-If you create a generator that consumes another generator (such as the standard **map** and **filter** generators defined later), then you should use a **finally** command to ensure that this generator is destroyed when its parent is. For example, the **map** generator is defined as follows:
+    If you create a generator that consumes another generator (such as the standard **map** and **filter** generators defined later), then you should use a **finally** command to ensure that this generator is destroyed when its parent is. For example, the **map** generator is defined as follows:
 
-```
-    generator define map {f xs} {
-        generator finally generator destroy $xs
-        generator foreach x $xs { generator yield [{*}$f $x] }
-    }
-```
+    ```
+        generator define map {f xs} {
+            generator finally generator destroy $xs
+            generator foreach x $xs { generator yield [{*}$f $x] }
+        }
+    ```
 
 **generator** **from** *format* *value*
 : Creates a generator from a data structure. Currently, supported formats are **list**, **dict**, or **string**. The list format yields each element in turn. For dictionaries, each key and value are yielded separately. Finally, strings are yielded a character at a time.
@@ -155,11 +159,11 @@ If you create a generator that consumes another generator (such as the standard 
 **generator** **to** *format* *generator*
 : Converts a generator into a data structure. This is the reverse operation of the **from** command, and supports the same data structures. The two operations obey the following identity laws (where **=** is interpreted appropriately):
 
+    ```
+        [generator to $fmt [generator from $fmt $value]] = $value
+        [generator from $fmt [generator to $fmt $gen]]   = $gen
+    ```
 
-```
-    [generator to $fmt [generator from $fmt $value]] = $value
-    [generator from $fmt [generator to $fmt $gen]]   = $gen
-```
 
 # Prelude
 
@@ -168,55 +172,52 @@ The following commands are provided as a standard library of generator combinato
 **generator** **map** *function* *generator*
 : Apply a function to every element of a generator, returning a new generator of the results. This is the classic map function from functional programming, applied to generators. For example, we can generate all the square numbers using the following code (where **nats** is defined as earlier):
 
-
-```
-    proc square x { expr {$x * $x} }
-    generator foreach n [generator map square [nats]] {
-        puts "n = $n"
-        if {$n > 1000} { break }
-    }
-```
+    ```
+        proc square x { expr {$x * $x} }
+        generator foreach n [generator map square [nats]] {
+            puts "n = $n"
+            if {$n > 1000} { break }
+        }
+    ```
 
 **generator** **filter** *predicate* *generator*
 : Another classic functional programming gem. This command returns a generator that yields only those items from the argument generator that satisfy the predicate (boolean function). For example, if we had a generator **employees** that returned a stream of dictionaries representing people, we could filter all those whose salaries are above 100,000 dollars (or whichever currency you prefer) using a simple filter:
 
-
-```
-    proc salary> {amount person} { expr {[dict get $person salary] > $amount} }
-    set fat-cats [generator filter {salary> 100000} $employees]
-```
+    ```
+        proc salary> {amount person} { expr {[dict get $person salary] > $amount} }
+        set fat-cats [generator filter {salary> 100000} $employees]
+    ```
 
 **generator** **reduce** *function* *zero* *generator*
 : This is the classic left-fold operation. This command takes a function, an initial value, and a generator of values. For each element in the generator it applies the function to the current accumulator value (the *zero* argument initially) and that element, and then uses the result as the new accumulator value. This process is repeated through the entire generator (eagerly) and the final accumulator value is then returned. If we consider the function to be a binary operator, and the zero argument to be the left identity element of that operation, then we can consider the **reduce** command as *folding* the operator between each successive pair of values in the generator in a left-associative fashion. For example, the sum of a sequence of numbers can be calculated by folding a **+** operator between them, with 0 as the identity:
 
+    ```
+        # sum xs          = reduce + 0 xs
+        # sum [range 1 5] = reduce + 0 [range 1 5]
+        #                 = reduce + [+ 0 1] [range 2 5]
+        #                 = reduce + [+ 1 2] [range 3 5]
+        #                 = ...
+        #                 = reduce + [+ 10 5] <empty>
+        #                 = ((((0+1)+2)+3)+4)+5
+        #                 = 15
+        proc + {a b} { expr {$a + $b} }
+        proc sum gen { generator reduce + 0 $gen }
+        puts [sum [range 1 10]]
+    ```
 
-```
-    # sum xs          = reduce + 0 xs
-    # sum [range 1 5] = reduce + 0 [range 1 5]
-    #                 = reduce + [+ 0 1] [range 2 5]
-    #                 = reduce + [+ 1 2] [range 3 5]
-    #                 = ...
-    #                 = reduce + [+ 10 5] <empty>
-    #                 = ((((0+1)+2)+3)+4)+5
-    #                 = 15
-    proc + {a b} { expr {$a + $b} }
-    proc sum gen { generator reduce + 0 $gen }
-    puts [sum [range 1 10]]
-```
+    The **reduce** operation is an extremely useful one, and a great variety of different operations can be defined using it. For example, we can define a factorial function as the product of a range using generators. This definition is both very clear and also quite efficient (in both memory and running time):
 
-The **reduce** operation is an extremely useful one, and a great variety of different operations can be defined using it. For example, we can define a factorial function as the product of a range using generators. This definition is both very clear and also quite efficient (in both memory and running time):
+    ```
+        proc * {x y} { expr {$x * $y} }
+        proc prod gen { generator reduce * 0 $gen }
+        proc fac n { prod [range 1 $n] }
+    ```
 
-```
-    proc * {x y} { expr {$x * $y} }
-    proc prod gen { generator reduce * 0 $gen }
-    proc fac n { prod [range 1 $n] }
-```
+    However, while the **reduce** operation is efficient for finite generators, care should be taken not to apply it to an infinite generator, as this will result in an infinite loop:
 
-However, while the **reduce** operation is efficient for finite generators, care should be taken not to apply it to an infinite generator, as this will result in an infinite loop:
-
-```
-    sum [nats]; # Never returns
-```
+    ```
+        sum [nats]; # Never returns
+    ```
 
 **generator** **foldl** *function* *zero* *generator*
 : This is an alias for the **reduce** command.
@@ -275,13 +276,12 @@ However, while the **reduce** operation is efficient for finite generators, care
 **generator** **iterate** *function* *init*
 : Returns an infinite generator formed by repeatedly applying the function to the initial argument. For example, the Fibonacci numbers can be defined as follows:
 
-
-```
-    proc fst pair { lindex $pair 0 }
-    proc snd pair { lindex $pair 1 }
-    proc nextFib ab { list [snd $ab] [expr {[fst $ab] + [snd $ab]}] }
-    proc fibs {} { generator map fst [generator iterate nextFib {0 1}] }
-```
+    ```
+        proc fst pair { lindex $pair 0 }
+        proc snd pair { lindex $pair 1 }
+        proc nextFib ab { list [snd $ab] [expr {[fst $ab] + [snd $ab]}] }
+        proc fibs {} { generator map fst [generator iterate nextFib {0 1}] }
+    ```
 
 **generator** **last** *generator*
 : Returns the last element of the generator (if it exists).
@@ -307,11 +307,10 @@ However, while the **reduce** operation is efficient for finite generators, care
 **generator** **splitWhen** *predicate* *generator*
 : Splits the generator into lists of elements using the predicate to identify delimiters. The resulting lists are returned as a generator. Elements matching the delimiter predicate are discarded. For example, to split up a generator using the string "|" as a delimiter:
 
-
-```
-    set xs [generator from list {a | b | c}]
-    generator split {string equal "|"} $xs ;# returns a then b then c
-```
+    ```
+        set xs [generator from list {a | b | c}]
+        generator split {string equal "|"} $xs ;# returns a then b then c
+    ```
 
 **generator** **scanl** *function* *zero* *generator*
 : Similar to **foldl**, but returns a generator of all of the intermediate values for the accumulator argument. The final element of this generator is equivalent to **foldl** called on the same arguments.

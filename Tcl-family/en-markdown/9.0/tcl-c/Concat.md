@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_Concat
+title: Tcl_Concat
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -16,30 +17,36 @@ Copyright:
 
 # Name
 
-Tcl_Concat - concatenate a collection of strings
+Tcl\_Concat - concatenate a collection of strings
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-const char \*
-[Tcl_Concat]{.cmd}([argc]{.arg}, [argv]{.arg})
+**#include <tcl.h>**
+[const char \*]{.ret} [Tcl\_Concat]{.ccmd} [argc, argv]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Size *argc* (in)
+::: {.arguments} :::
+
+[argc]{.carg .in type="Tcl_Size"}
 : Number of strings.
 
-const char \*const *argv\[\]* (in)
+[argv\[\]]{.carg .in type="const char *const"}
 : Array of strings to concatenate.  Must have *argc* entries.
 
+:::
 
 # Description
 
-**Tcl_Concat** is a utility procedure used by several of the Tcl commands.  Given a collection of strings, it concatenates them together into a single string, with the original strings separated by spaces.  This procedure behaves differently than **Tcl_Merge**, in that the arguments are simply concatenated: no effort is made to ensure proper list structure. However, in most common usage the arguments will all be proper lists themselves;  if this is true, then the result will also have proper list structure.
+**Tcl\_Concat** is a utility procedure used by several of the Tcl commands.  Given a collection of strings, it concatenates them together into a single string, with the original strings separated by spaces.  This procedure behaves differently than [Tcl\_Merge][SplitList], in that the arguments are simply concatenated: no effort is made to ensure proper list structure. However, in most common usage the arguments will all be proper lists themselves;  if this is true, then the result will also have proper list structure.
 
-**Tcl_Concat** eliminates leading and trailing white space as it copies strings from **argv** to the result.  If an element of **argv** consists of nothing but white space, then that string is ignored entirely.  This white-space removal was added to make the output of the **concat** command cleaner-looking.
+**Tcl\_Concat** eliminates leading and trailing white space as it copies strings from **argv** to the result.  If an element of **argv** consists of nothing but white space, then that string is ignored entirely.  This white-space removal was added to make the output of the [concat] command cleaner-looking.
 
-The result string is dynamically allocated using **Tcl_Alloc**;  the caller must eventually release the space by calling **Tcl_Free**.
+The result string is dynamically allocated using [Tcl\_Alloc][Alloc];  the caller must eventually release the space by calling [Tcl\_Free][Alloc].
+
+
+[Alloc]: Alloc.md
+[concat]: ../tcl/concat.md
+[SplitList]: SplitList.md

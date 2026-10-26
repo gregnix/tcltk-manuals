@@ -1,5 +1,6 @@
 ---
 CommandName: lpop
+title: lpop
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -35,27 +36,27 @@ Copyright:
  - Copyright (c) 2018 Peter Spjuth. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lpop - Holt ein Listenelement und entfernt es
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lpop]{.cmd} [varName]{.arg} [index]{.optdot} 
+[lpop]{.cmd} [varName]{.arg} ?index ...?
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-**lpop** erwartet *varName* als Namen einer Variable mit einer Tcl-Liste sowie null oder mehr Indizes in die Liste. Ohne Indizes gilt **end**.
+**lpop** erwartet *varName* als Namen einer Variable mit einer Tcl-Liste sowie einen oder mehrere Indizes in die Liste. Ohne Indizes gilt **end**.
 
 Mit einem Index wird das *index*-te Element geholt, aus der Liste entfernt und zurückgegeben.
 
 Ist *index* negativ oder größer oder gleich der Elementanzahl in *varName*, tritt ein Fehler auf.
 
-Die Auslegung jedes einfachen *index* entspricht **string index** (Arithmetik, end-relativ).
+Die Auslegung jedes einfachen *index* entspricht [string index][string] (Arithmetik, end-relativ).
 
-Weitere *index*-Argumente adressieren wie bei **lindex** und **lset** verschachtelte Unterlisten:
+Weitere *index*-Argumente adressieren wie bei [lindex] und [lset] verschachtelte Unterlisten:
 
 ```
 lpop a 1 2
@@ -63,7 +64,7 @@ lpop a 1 2
 
 holt und entfernt Element 2 der Unterliste 1.
 
-# BEISPIELE
+# Beispiele
 
 Anfangswert von *x* in jedem Beispiel:
 
@@ -97,7 +98,14 @@ set x [list [list [list a b] [list c d]] \
       → {{a b} {c d}} {{e f} {g h}}
 ```
 
+Der angezeigte Wert wird der neue Wert von *x*.
+
 ```
 lpop x 1 1 0
       → {{a b} {c d}} {{e f} h}
 ```
+
+
+[lindex]: lindex.md
+[lset]: lset.md
+[string]: string.md

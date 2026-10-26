@@ -1,5 +1,6 @@
 ---
 CommandName: aes
+title: aes
 ManualSection: n
 Version: 1.2.2
 TclPart: tcllib
@@ -27,14 +28,14 @@ aes - Implementation of the AES block cipher
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [aes]{.lit} [1.2.2]{.optlit} 
-[::aes::aes]{.cmd} [-mode \[ecb|cbc\]]{.optarg} [-dir \[encrypt|decrypt\]]{.optarg} [-key]{.arg} [keydata]{.arg} [-iv vector]{.optarg} [-hex]{.optarg} [-out channel]{.optarg} [-chunksize size]{.optarg} \[ [-in]{.arg} [channel]{.arg} | [--]{.optlit} [data]{.arg} \] 
-[::aes::Init]{.cmd} [mode]{.arg} [keydata]{.arg} [iv]{.arg} 
-[::aes::Encrypt]{.cmd} [Key]{.arg} [data]{.arg} 
-[::aes::Decrypt]{.cmd} [Key]{.arg} [data]{.arg} 
-[::aes::Reset]{.cmd} [Key]{.arg} [iv]{.arg} 
-[::aes::Final]{.cmd} [Key]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [aes]{.lit} [1.2.2]{.optlit}
+[::aes::aes]{.cmd} [-mode \[ecb|cbc\]]{.optarg} [-dir \[encrypt|decrypt\]]{.optarg} [-key]{.arg} [keydata]{.arg} [-iv vector]{.optarg} [-hex]{.optarg} [-out channel]{.optarg} [-chunksize size]{.optarg} \[ [-in]{.arg} [channel]{.arg} | [--]{.optlit} [data]{.arg} \]
+[::aes::Init]{.cmd} [mode]{.arg} [keydata]{.arg} [iv]{.arg}
+[::aes::Encrypt]{.cmd} [Key]{.arg} [data]{.arg}
+[::aes::Decrypt]{.cmd} [Key]{.arg} [data]{.arg}
+[::aes::Reset]{.cmd} [Key]{.arg} [iv]{.arg}
+[::aes::Final]{.cmd} [Key]{.arg}
 :::
 
 # Description
@@ -44,7 +45,13 @@ This is a Tcl implementation of the Advanced Encryption Standard (AES) as publis
 # Commands
 
 **::aes::aes** ?*-mode \[ecb|cbc\]*? ?*-dir \[encrypt|decrypt\]*? *-key keydata* ?*-iv vector*? ?*-hex*? ?*-out channel*? ?*-chunksize size*? \[ *-in channel* | ?**--**? *data* \]
-: Perform the **aes** algorithm on either the data provided by the argument or on the data read from the *-in* channel. If an *-out* channel is given then the result will be written to this channel. The *-key* option must be given. This parameter takes a binary string of either 16, 24 or 32 bytes in length and is used to generate the key schedule. The *-mode* and *-dir* options are optional and default to CBC mode and encrypt respectively. The initialization vector *-iv* takes a 16 byte binary argument which defaults to all zeros. See **MODES OF OPERATION** for more about available modes and their uses. Since AES is a 128-bit block cipher, the data must be provided in units that are a multiple of 16 bytes.
+: Perform the **aes** algorithm on either the data provided by the argument or on the data read from the *-in* channel. If an *-out* channel is given then the result will be written to this channel.
+
+    The *-key* option must be given. This parameter takes a binary string of either 16, 24 or 32 bytes in length and is used to generate the key schedule.
+
+    The *-mode* and *-dir* options are optional and default to CBC mode and encrypt respectively. The initialization vector *-iv* takes a 16 byte binary argument which defaults to all zeros. See [Modes of operation] for more about available modes and their uses.
+
+    Since AES is a 128-bit block cipher, the data must be provided in units that are a multiple of 16 bytes.
 
 
 # Programming interface
@@ -52,7 +59,7 @@ This is a Tcl implementation of the Advanced Encryption Standard (AES) as publis
 Internal state is maintained in an opaque structure that is returned from the **Init** function. For CBC mode some input dependent state is maintained and may be reset by calling the **Reset** function with a new initialization vector value. In ECB mode the state is not affected by the input.
 
 **::aes::Init** *mode* *keydata* *iv*
-: Construct a new AES key schedule using the specified key data and the given initialization vector. The initialization vector is important for CBC mode; it is not used with ECB mode. See **MODES OF OPERATION** for details about cipher modes.
+: Construct a new AES key schedule using the specified key data and the given initialization vector. The initialization vector is important for CBC mode; it is not used with ECB mode. See [Modes of operation] for details about cipher modes.
 
 **::aes::Encrypt** *Key* *data*
 : Use a prepared key acquired by calling **Init** to encrypt the provided data. The data argument should be a binary array that is a multiple of the AES block size of 16 bytes. The result is a binary array the same size as the input of encrypted data.
@@ -69,10 +76,10 @@ Internal state is maintained in an opaque structure that is returned from the **
 
 # Modes of operation
 
-**Cipher Block Chaining (CBC)**
+Cipher Block Chaining (CBC)
 : CBC mode uses the output of the last block encryption to affect the current block. An initialization vector of the same size as the cipher block size is used to handle the first block. The initialization vector should be chosen randomly and transmitted as the first block of the output. Errors in encryption affect the current block and the next block after which the cipher will correct itself. CBC is the most commonly used mode in software encryption, and this module’s default mode of operation.
 
-**Electronic Code Book (ECB)**
+Electronic Code Book (ECB)
 : ECB is the basic mode of all block ciphers. Each block is encrypted independently and so identical plain text will produce identical output when encrypted with the same key. Any encryption errors will only affect a single block. *This mode is vulnerable to known plaintext attacks.*
 
 
@@ -93,8 +100,7 @@ aes::Final $Key
 
 # References
 
-**\[1\]**
-: "Advanced Encryption Standard", Federal Information Processing Standards Publication 197, 2001 (*http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf*)
+1. "Advanced Encryption Standard", Federal Information Processing Standards Publication 197, 2001 (<http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf>)
 
 
 # Authors

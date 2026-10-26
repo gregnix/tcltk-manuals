@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_lang_cmdref
+title: docidx_lang_cmdref
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -19,31 +20,31 @@ Copyright:
  - Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-docidx_lang_cmdref – docidx-Sprachbefehlsreferenz
+docidx\_lang\_cmdref – docidx-Sprachbefehlsreferenz
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[comment]{.cmd} [plaintext]{.arg} 
-[include]{.cmd} [filename]{.arg} 
-[index_begin]{.cmd} [text]{.arg} [title]{.arg} 
-[index_end]{.cmd} 
-[key]{.cmd} [text]{.arg} 
-[lb]{.cmd} 
-[manpage]{.cmd} [file]{.arg} [text]{.arg} 
-[rb]{.cmd} 
-[url]{.cmd} [url]{.arg} [label]{.arg} 
-[vset]{.cmd} [varname]{.arg} [value]{.arg} 
-[vset]{.cmd} [varname]{.arg} 
+[comment]{.cmd} [plaintext]{.arg}
+[include]{.cmd} [filename]{.arg}
+[index\_begin]{.cmd} [text]{.arg} [title]{.arg}
+[index\_end]{.cmd}
+[key]{.cmd} [text]{.arg}
+[lb]{.cmd}
+[manpage]{.cmd} [file]{.arg} [text]{.arg}
+[rb]{.cmd}
+[url]{.cmd} [url]{.arg} [label]{.arg}
+[vset]{.cmd} [varname]{.arg} [value]{.arg}
+[vset]{.cmd} [varname]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, die zusammen die Markup-Sprache „docidx“, Version 1, bilden. Da dieses Dokument als Nachschlagewerk gedacht ist, sind die Befehle in alphabetischer Reihenfolge aufgeführt, und die Beschreibungen sind relativ kurz gehalten. Anfängern wird empfohlen, zunächst die wesentlich informeller verfasste *Einleitung in die Sprache docidx* zu lesen.
 
-# BEFEHLE
+# Befehle
 
 **comment** *plaintext*
 : Indexauszeichnung. Der Text des Arguments wird als Kommentar markiert, der außerhalb des eigentlichen Dokumenttextes steht. Die Hauptverwendung liegt bei freiformigem Text.
@@ -51,10 +52,12 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 **include** *filename*
 : Vorlagen. Der Inhalt der genannten Datei wird als Text im docidx-Markup interpretiert und anstelle des Include-Befehls verarbeitet. Das Markup in der Datei muss in sich geschlossen sein. Ein Markup-Befehl kann die Dateigrenzen nicht überschreiten.
 
-**index_begin** *text* *title*
-: Dokumentstruktur. Der Befehl zum Beginnen eines Indexes. Die Argumente sind eine Bezeichnung für die gesamte Gruppe von Dokumenten, auf die sich der Index bezieht (*text*), sowie der übergreifende Titeltext für den Index (*title*), ohne Markup. Die Bezeichnung ist häufig der Name des Pakets (oder der Erweiterung), zu dem die Dokumente gehören.
+**index\_begin** *text* *title*
+: Dokumentstruktur. Der Befehl zum Beginnen eines Indexes. Die Argumente sind eine Bezeichnung für die gesamte Gruppe von Dokumenten, auf die sich der Index bezieht (*text*), sowie der übergreifende Titeltext für den Index (*title*), ohne Markup.
 
-**index_end**
+    Die Bezeichnung ist häufig der Name des Pakets (oder der Erweiterung), zu dem die Dokumente gehören.
+
+**index\_end**
 : Dokumentstruktur. Befehl zum Beenden eines Indexes. Alles, was in diesem Dokument nach diesem Befehl folgt, ist ein Fehler.
 
 **key** *text*
@@ -64,7 +67,9 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Text. Der Befehl wird durch eine öffnende eckige Klammer ersetzt. Verwendung in freiformigem Text. Erforderlich, um zu verhindern, dass eine öffnende eckige Klammer als Beginn eines Markup-Befehls interpretiert wird. Die Verwendung ist auf die Argumente anderer Markup-Befehle beschränkt.
 
 **manpage** *file* *text*
-: Indexstruktur. Dieser Befehl fügt dem Index ein Element hinzu, das auf ein Dokument verweist. Das Dokument wird über den symbolischen Namen *file* angegeben. Das Argument *text* dient zur Beschriftung des Verweises. Symbolische Namen werden verwendet, um die Konvertierbarkeit dieses Formats in jedes beliebige Ausgabeformat zu gewährleisten. Der tatsächliche Name der Datei wird bei der Konvertierung der Eingabe durch die gewählte Formatierungs-Engine eingefügt. Dies erfolgt auf der Grundlage einer Zuordnung von symbolischen zu tatsächlichen Namen, die der Engine bereitgestellt wird.
+: Indexstruktur. Dieser Befehl fügt dem Index ein Element hinzu, das auf ein Dokument verweist. Das Dokument wird über den symbolischen Namen *file* angegeben. Das Argument *text* dient zur Beschriftung des Verweises.
+
+    Symbolische Namen werden verwendet, um die Konvertierbarkeit dieses Formats in jedes beliebige Ausgabeformat zu gewährleisten. Der tatsächliche Name der Datei wird bei der Konvertierung der Eingabe durch die gewählte Formatierungs-Engine eingefügt. Dies erfolgt auf der Grundlage einer Zuordnung von symbolischen zu tatsächlichen Namen, die der Engine bereitgestellt wird.
 
 **rb**
 : Text. Der Befehl wird durch eine schließende eckige Klammer ersetzt. Verwendung in freiformigem Text. Erforderlich, um zu verhindern, dass eine schließende eckige Klammer als Ende eines Markup-Befehls interpretiert wird. Die Verwendung ist auf die Argumente anderer Befehle beschränkt.
@@ -79,7 +84,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Vorlagen. In dieser Form wird der Befehl durch den Wert der benannten Dokumentvariablen ersetzt
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *doctools* als Kategorie an.
 
@@ -87,11 +92,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>

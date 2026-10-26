@@ -1,5 +1,6 @@
 ---
 CommandName: comm
+title: comm
 ManualSection: n
 Version: 4.7.3
 TclPart: tcllib
@@ -32,27 +33,27 @@ comm - A remote communication facility for Tcl (8.5 and later)
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [comm]{.lit} [4.7.3]{.optlit} 
-[::comm::comm]{.cmd} [send]{.sub} [-async]{.optarg} [-command callback]{.optarg} [id]{.arg} [cmd]{.arg} [arg arg]{.optdot} 
-[::comm::comm]{.cmd} [self]{.sub} 
-[::comm::comm]{.cmd} [interps]{.sub} 
-[::comm::comm]{.cmd} [connect]{.sub} [id]{.optarg} 
-[::comm::comm]{.cmd} [new]{.sub} [chan]{.arg} [name value]{.optdot} 
-[::comm::comm]{.cmd} [channels]{.sub} 
-[::comm::comm]{.cmd} [config]{.sub} 
-[::comm::comm]{.cmd} [config]{.sub} [name]{.arg} 
-[::comm::comm]{.cmd} [config]{.sub} [name value]{.optdot} 
-[::comm::comm]{.cmd} [shutdown]{.sub} [id]{.arg} 
-[::comm::comm]{.cmd} [abort]{.sub} 
-[::comm::comm]{.cmd} [destroy]{.sub} 
-[::comm::comm]{.cmd} [hook]{.sub} [event]{.arg} [+]{.optlit} [script]{.optarg} 
-[::comm::comm]{.cmd} [remoteid]{.sub} 
-[::comm::comm_send]{.cmd} 
-[::comm::comm]{.cmd} [return_async]{.sub} 
-[\$future]{.cmd} [return]{.sub} [-code code]{.optarg} [value]{.optarg} 
-[\$future]{.cmd} [configure]{.sub} [-command ?cmdprefix]{.optarg} 
-[\$future]{.cmd} [cget]{.sub} [-command]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [comm]{.lit} [4.7.3]{.optlit}
+[::comm::comm]{.cmd} [send]{.sub} [-async]{.optarg} [[-command]{.lit} [callback]{.arg}]{.optarg} [id]{.arg} [cmd]{.arg} [arg arg]{.optdot}
+[::comm::comm]{.cmd} [self]{.sub}
+[::comm::comm]{.cmd} [interps]{.sub}
+[::comm::comm]{.cmd} [connect]{.sub} [id]{.optarg}
+[::comm::comm]{.cmd} [new]{.sub} [chan]{.arg} [name value]{.optdot}
+[::comm::comm]{.cmd} [channels]{.sub}
+[::comm::comm]{.cmd} [config]{.sub}
+[::comm::comm]{.cmd} [config]{.sub} [name]{.arg}
+[::comm::comm]{.cmd} [config]{.sub} [name value]{.optdot}
+[::comm::comm]{.cmd} [shutdown]{.sub} [id]{.arg}
+[::comm::comm]{.cmd} [abort]{.sub}
+[::comm::comm]{.cmd} [destroy]{.sub}
+[::comm::comm]{.cmd} [hook]{.sub} [event]{.arg} [+]{.optlit} [script]{.optarg}
+[::comm::comm]{.cmd} [remoteid]{.sub}
+[::comm::comm\_send]{.cmd}
+[::comm::comm]{.cmd} [return\_async]{.sub}
+[$future]{.cmd} [return]{.lit} [[-code]{.lit} [code]{.arg}]{.optarg} [value]{.optarg}
+[$future]{.cmd} [configure]{.lit} [[-command]{.lit} [cmdprefix]{.optarg}]{.optarg}
+[$future]{.cmd} [cget]{.lit} [-command]{.lit}
 :::
 
 # Description
@@ -110,8 +111,10 @@ More than one **comm** channel (or *listener*) can be created in each Tcl interp
 : This creates a new channel and Tcl command with the given channel name.  This new command controls the new channel and takes all the same arguments as **::comm::comm**.  Any remaining arguments are passed to the **config** method.  The fully qualified channel name is returned.
 
 **::comm::comm channels**
-: This lists all the channels allocated in this Tcl interpreter. The default configuration parameters for a new channel are:
+: This lists all the channels allocated in this Tcl interpreter.
 
+
+The default configuration parameters for a new channel are:
 
 ```
     "-port 0 -local 1 -listen 0 -silent 0"
@@ -128,44 +131,34 @@ The default channel **::comm::comm** is created with:
 The **config** method acts similar to **fconfigure** in that it sets or queries configuration variables associated with a channel.
 
 **::comm::comm config**
-: ...see next...
+: see below ...
 
 **::comm::comm config** *name*
-: ...see next...
+: see below ...
 
 **::comm::comm config** ?*name* *value* *...*?
-: When given no arguments, **config** returns a list of all variables and their value With one argument, **config** returns the value of just that argument.  With an even number of arguments, the given variables are set to the given values. These configuration variables can be changed (descriptions of them are elsewhere in this manual page):
+: When given no arguments, **config** returns a list of all variables and their value With one argument, **config** returns the value of just that argument.  With an even number of arguments, the given variables are set to the given values.
 
-**-listen** ?*0|1*?
-: ...see next...
 
-**-local**  ?*0|1*?
-: ...see next...
+These configuration variables can be changed (descriptions of them are elsewhere in this manual page):
 
-**-port**   ?*port*?
-: ...see next...
+- **-listen** ?*0|1*?
+- **-local**  ?*0|1*?
+- **-port**   ?*port*?
+- **-silent** ?*0|1*?
+- **-socketcmd** ?*commandname*?
+- **-interp** ?*interpreter*?
+- **-events** ?*eventlist*?
 
-**-silent** ?*0|1*?
-: ...see next...
 
-**-socketcmd** ?*commandname*?
-: ...see next...
+These configuration variables are read only:
 
-**-interp** ?*interpreter*?
-: ...see next...
+- **-chan**    *chan*
+- **-serial**  *n*
+- **-socket**  sock*In*
 
-**-events** ?*eventlist*?
-: These configuration variables are read only:
 
-**-chan**    *chan*
-: ...see next...
-
-**-serial**  *n*
-: ...see next...
-
-**-socket**  sock*In*
-: When **config** changes the parameters of an existing channel (with the exception of **-interp** and **-events**), it closes and reopens the listening socket. An automatically assigned channel *id* will change when this happens. Recycling the socket is done by invoking **::comm::comm abort**, which causes all active sends to terminate.
-
+When **config** changes the parameters of an existing channel (with the exception of **-interp** and **-events**), it closes and reopens the listening socket. An automatically assigned channel *id* will change when this happens. Recycling the socket is done by invoking **::comm::comm abort**, which causes all active sends to terminate.
 
 ## Id/port assignments
 
@@ -204,10 +197,10 @@ These methods give control over closing connections:
 **::comm::comm destroy**
 : This aborts all connections and then destroys the this comm channel itself, including closing the listening socket.  Special code allows the default **::comm::comm** channel to be closed such that the **::comm::comm** command it is not destroyed.  Doing so closes the listening socket, preventing both incoming and outgoing commands on the channel.  This sequence reinitializes the default channel:
 
+    ```
+        "::comm::comm destroy; ::comm::comm new ::comm::comm"
+    ```
 
-```
-    "::comm::comm destroy; ::comm::comm new ::comm::comm"
-```
 
 When a remote connection is lost (because the remote exited or called **shutdown**), **comm** can invoke an application callback. This can be used to cleanup or restart an ancillary process, for instance.  See the *lost* callback below.
 
@@ -216,177 +209,178 @@ When a remote connection is lost (because the remote exited or called **shutdown
 This is a mechanism for setting hooks for particular events:
 
 **::comm::comm hook** *event* ?**+**? ?*script*?
-: This uses a syntax similar to Tk's **bind** command.  Prefixing *script* with a **+** causes the new script to be appended. Without this, a new *script* replaces any existing script.  When invoked without a script, no change is made.  In all cases, the new hook script is returned by the command. When an *event* occurs, the *script* associated with it is evaluated with the listed variables in scope and available.  The return code (*not* the return value) of the script is commonly used decide how to further process after the hook. Common variables include:
+: This uses a syntax similar to Tk's **bind** command.  Prefixing *script* with a **+** causes the new script to be appended. Without this, a new *script* replaces any existing script.  When invoked without a script, no change is made.  In all cases, the new hook script is returned by the command.
 
+    When an *event* occurs, the *script* associated with it is evaluated with the listed variables in scope and available.  The return code (*not* the return value) of the script is commonly used decide how to further process after the hook.
 
-**chan**
-: the name of the comm channel (and command)
+    Common variables include:
 
-**id**
-: the id of the remote in question
+    **chan**
+    : the name of the comm channel (and command)
 
-**fid**
-: the file id for the socket of the connection
+    **id**
+    : the id of the remote in question
+
+    **fid**
+    : the file id for the socket of the connection
+
 
 
 These are the defined *events*:
 
 **connecting**
-: Variables: **chan**, **id** This hook is invoked before making a connection to the remote named in *id*.  An error return (via **error**) will abort the connection attempt with the error.  Example:
+: Variables: **chan**, **id**
 
+    This hook is invoked before making a connection to the remote named in *id*.  An error return (via **error**) will abort the connection attempt with the error.  Example:
 
-```
-    % ::comm::comm hook connecting {
-        if {[string match {*[02468]} $id]} {
-            error "Can't connect to even ids"
+    ```
+        % ::comm::comm hook connecting {
+            if {[string match {*[02468]} $id]} {
+                error "Can't connect to even ids"
+            }
         }
-    }
-    % ::comm::comm send 10000 puts ok
-    Connect to remote failed: Can't connect to even ids
-    %
-```
+        % ::comm::comm send 10000 puts ok
+        Connect to remote failed: Can't connect to even ids
+        %
+    ```
 
 **connected**
-: Variables: **chan**, **fid**, **id**, **host**, and **port**. This hook is invoked immediately after making a remote connection to *id*, allowing arbitrary authentication over the socket named by *fid*.  An error return (via **error** ) will close the connection with the error.  *host* and *port* are merely extracted from the *id*; changing any of these will have no effect on the connection, however.  It is also possible to substitute and replace *fid*.
+: Variables: **chan**, **fid**, **id**, **host**, and **port**.
+
+    This hook is invoked immediately after making a remote connection to *id*, allowing arbitrary authentication over the socket named by *fid*.  An error return (via **error** ) will close the connection with the error.  *host* and *port* are merely extracted from the *id*; changing any of these will have no effect on the connection, however.  It is also possible to substitute and replace *fid*.
 
 **incoming**
-: Variables: **chan**, **fid**, **addr**, and **remport**. Hook invoked when receiving an incoming connection, allowing arbitrary authentication over socket named by *fid*.  An error return (via **error**) will close the connection with the error.  Note that the peer is named by *remport* and *addr* but that the remote *id* is still unknown.  Example:
+: Variables: **chan**, **fid**, **addr**, and **remport**.
 
+    Hook invoked when receiving an incoming connection, allowing arbitrary authentication over socket named by *fid*.  An error return (via **error**) will close the connection with the error.  Note that the peer is named by *remport* and *addr* but that the remote *id* is still unknown.  Example:
 
-```
-    ::comm::comm hook incoming {
-        if {[string match 127.0.0.1 $addr]} {
-            error "I don't talk to myself"
+    ```
+        ::comm::comm hook incoming {
+            if {[string match 127.0.0.1 $addr]} {
+                error "I don't talk to myself"
+            }
         }
-    }
-```
+    ```
 
 **eval**
-: Variables: **chan**, **id**, **cmd**, and **buffer**. This hook is invoked after collecting a complete script from a remote but *before* evaluating it.  This allows complete control over the processing of incoming commands.  *cmd* contains either **send** or **async**.  *buffer* holds the script to evaluate.  At the time the hook is called, *\$chan remoteid* is identical in value to *id*. By changing *buffer*, the hook can change the script to be evaluated.  The hook can short circuit evaluation and cause a value to be immediately returned by using **return** *result* (or, from within a procedure, **return -code return** *result*).  An error return (via **error**) will return an error result, as is if the script caused the error.  Any other return will evaluate the script in *buffer* as normal.  For compatibility with 3.2, **break** and **return -code break** *result* is supported, acting similarly to **return {}** and **return -code return** *result*. Examples:
+: Variables: **chan**, **id**, **cmd**, and **buffer**.
 
+    This hook is invoked after collecting a complete script from a remote but *before* evaluating it.  This allows complete control over the processing of incoming commands.  *cmd* contains either **send** or **async**.  *buffer* holds the script to evaluate.  At the time the hook is called, *$chan remoteid* is identical in value to *id*.
 
-**\[1\]**
-: augmenting a command
+    By changing *buffer*, the hook can change the script to be evaluated.  The hook can short circuit evaluation and cause a value to be immediately returned by using **return** *result* (or, from within a procedure, **return -code return** *result*).  An error return (via **error**) will return an error result, as is if the script caused the error.  Any other return will evaluate the script in *buffer* as normal.  For compatibility with 3.2, **break** and **return -code break** *result* is supported, acting similarly to **return {}** and **return -code return** *result*.
 
+    Examples:
 
-```
-    % ::comm::comm send [::comm::comm self] pid
-    5013
-    % ::comm::comm hook eval {puts "going to execute $buffer"}
-    % ::comm::comm send [::comm::comm self] pid
-    going to execute pid
-    5013
-```
+    1. augmenting a command
 
-**\[2\]**
-: short circuiting a command
+        ```
+            % ::comm::comm send [::comm::comm self] pid
+            5013
+            % ::comm::comm hook eval {puts "going to execute $buffer"}
+            % ::comm::comm send [::comm::comm self] pid
+            going to execute pid
+            5013
+        ```
 
+    2. short circuiting a command
 
-```
-    % ::comm::comm hook eval {puts "would have executed $buffer"; return 0}
-    % ::comm::comm send [::comm::comm self] pid
-    would have executed pid
-    0
-```
+        ```
+            % ::comm::comm hook eval {puts "would have executed $buffer"; return 0}
+            % ::comm::comm send [::comm::comm self] pid
+            would have executed pid
+            0
+        ```
 
-**\[3\]**
-: Replacing double eval semantics
+    3. Replacing double eval semantics
 
+        ```
+            % ::comm::comm send [::comm::comm self] llength {a b c}
+            wrong # args: should be "llength list"
+            % ::comm::comm hook eval {return [uplevel #0 $buffer]}
+            return [uplevel #0 $buffer]
+            % ::comm::comm send [::comm::comm self] llength {a b c}
+            3
+        ```
 
-```
-    % ::comm::comm send [::comm::comm self] llength {a b c}
-    wrong # args: should be "llength list"
-    % ::comm::comm hook eval {return [uplevel #0 $buffer]}
-    return [uplevel #0 $buffer]
-    % ::comm::comm send [::comm::comm self] llength {a b c}
-    3
-```
+    4. Using a slave interpreter
 
-**\[4\]**
-: Using a slave interpreter
+        ```
+            % interp create foo
+            % ::comm::comm hook eval {return [foo eval $buffer]}
+            % ::comm::comm send [::comm::comm self] set myvar 123
+            123
+            % set myvar
+            can't read "myvar": no such variable
+            % foo eval set myvar
+            123
+        ```
 
+    5. Using a slave interpreter (double eval)
 
-```
-    % interp create foo
-    % ::comm::comm hook eval {return [foo eval $buffer]}
-    % ::comm::comm send [::comm::comm self] set myvar 123
-    123
-    % set myvar
-    can't read "myvar": no such variable
-    % foo eval set myvar
-    123
-```
+        ```
+            % ::comm::comm hook eval {return [eval foo eval $buffer]}
+        ```
 
-**\[5\]**
-: Using a slave interpreter (double eval)
+    6. Subverting the script to execute
 
+        ```
+            % ::comm::comm hook eval {
+                switch -- $buffer {
+                    a {return A-OK}
+                    b {return B-OK}
+                    default {error "$buffer is a no-no"}
+                }
+            }
+            % ::comm::comm send [::comm::comm self] pid
+            pid is a no-no
+            % ::comm::comm send [::comm::comm self] a
+            A-OK
+        ```
 
-```
-    % ::comm::comm hook eval {return [eval foo eval $buffer]}
-```
-
-**\[6\]**
-: Subverting the script to execute
-
-
-```
-    % ::comm::comm hook eval {
-        switch -- $buffer {
-            a {return A-OK}
-            b {return B-OK}
-            default {error "$buffer is a no-no"}
-        }
-    }
-    % ::comm::comm send [::comm::comm self] pid
-    pid is a no-no
-    % ::comm::comm send [::comm::comm self] a
-    A-OK
-```
 
 **reply**
-: Variables: **chan**, **id**, **buffer**, **ret**, and **return()**. This hook is invoked after collecting a complete reply script from a remote but *before* evaluating it.  This allows complete control over the processing of replies to sent commands.  The reply *buffer* is in one of the following forms
+: Variables: **chan**, **id**, **buffer**, **ret**, and **return()**.
+
+    This hook is invoked after collecting a complete reply script from a remote but *before* evaluating it.  This allows complete control over the processing of replies to sent commands.  The reply *buffer* is in one of the following forms
+
+    - return result
+
+    - return -code code result
+
+    - return -code code -errorinfo info -errorcode ecode msg
 
 
-**•**
-: return result
+    For safety reasons, this is decomposed.  The return result is in *ret*, and the return switches are in the return array:
 
-**•**
-: return -code code result
+    - *return(-code)*
 
-**•**
-: return -code code -errorinfo info -errorcode ecode msg
+    - *return(-errorinfo)*
 
-
-For safety reasons, this is decomposed.  The return result is in *ret*, and the return switches are in the return array:
-
-**•**
-: *return(-code)*
-
-**•**
-: *return(-errorinfo)*
-
-**•**
-: *return(-errorcode)*
+    - *return(-errorcode)*
 
 
-Any of these may be the empty string.  Modifying these four variables can change the return value, whereas modifying *buffer* has no effect.
+    Any of these may be the empty string.  Modifying these four variables can change the return value, whereas modifying *buffer* has no effect.
 
 **callback**
-: Variables: **chan**, **id**, **buffer**, **ret**, and **return()**. Similar to *reply*, but used for callbacks.
+: Variables: **chan**, **id**, **buffer**, **ret**, and **return()**.
+
+    Similar to *reply*, but used for callbacks.
 
 **lost**
-: Variables: **chan**, **id**, and **reason**. This hook is invoked when the connection to **id** is lost.  Return value (or thrown error) is ignored.  *reason* is an explanatory string indicating why the connection was lost.  Example:
+: Variables: **chan**, **id**, and **reason**.
 
+    This hook is invoked when the connection to **id** is lost.  Return value (or thrown error) is ignored.  *reason* is an explanatory string indicating why the connection was lost.  Example:
 
-```
-    ::comm::comm hook lost {
-        global myvar
-        if {$myvar(id) == $id} {
-            myfunc
-            return
+    ```
+        ::comm::comm hook lost {
+            global myvar
+            if {$myvar(id) == $id} {
+                myfunc
+                return
+            }
         }
-    }
-```
+    ```
+
 
 ## Unsupported
 
@@ -395,22 +389,22 @@ These interfaces may change or go away in subsequence releases.
 **::comm::comm remoteid**
 : Returns the *id* of the sender of the last remote command executed on this channel.  If used by a proc being invoked remotely, it must be called before any events are processed.  Otherwise, another command may get invoked and change the value.
 
-**::comm::comm_send**
+**::comm::comm\_send**
 : Invoking this procedure will substitute the Tk **send** and **winfo interps** commands with these equivalents that use **::comm::comm**.
 
-
-```
-    proc send {args} {
-        eval ::comm::comm send $args
-    }
-    rename winfo tk_winfo
-    proc winfo {cmd args} {
-        if {![string match in* $cmd]} {
-            return [eval [list tk_winfo $cmd] $args]
+    ```
+        proc send {args} {
+            eval ::comm::comm send $args
         }
-        return [::comm::comm interps]
-    }
-```
+        rename winfo tk_winfo
+        proc winfo {cmd args} {
+            if {![string match in* $cmd]} {
+                return [eval [list tk_winfo $cmd] $args]
+            }
+            return [::comm::comm interps]
+        }
+    ```
+
 
 ## Security
 
@@ -428,13 +422,13 @@ The envisioned main use is the specification of the **tls::socket** command, see
 	...
 ```
 
-The sections **Execution Environment** and **Callbacks** are also relevant to the security of the system, providing means to restrict the execution to a specific environment, perform additional authentication, and the like.
+The sections [Execution environment] and [Callbacks] are also relevant to the security of the system, providing means to restrict the execution to a specific environment, perform additional authentication, and the like.
 
 ## Blocking semantics
 
-There is one outstanding difference between **comm** and **send**.  When blocking in a synchronous remote command, **send** uses an internal C hook (Tk_RestrictEvents) to the event loop to look ahead for send-related events and only process those without processing any other events.  In contrast, **comm** uses the **vwait** command as a semaphore to indicate the return message has arrived.  The difference is that a synchronous **send** will block the application and prevent all events (including window related ones) from being processed, while a synchronous **::comm::comm send** will block the application but still allow other events to get processed.  In particular, **after idle** handlers will fire immediately when comm blocks.
+There is one outstanding difference between **comm** and **send**.  When blocking in a synchronous remote command, **send** uses an internal C hook (Tk\_RestrictEvents) to the event loop to look ahead for send-related events and only process those without processing any other events.  In contrast, **comm** uses the **vwait** command as a semaphore to indicate the return message has arrived.  The difference is that a synchronous **send** will block the application and prevent all events (including window related ones) from being processed, while a synchronous **::comm::comm send** will block the application but still allow other events to get processed.  In particular, **after idle** handlers will fire immediately when comm blocks.
 
-What can be done about this?  First, note that this behavior will come from any code using **vwait** to block and wait for an event to occur.  At the cost of multiple channel support, **comm** could be changed to do blocking I/O on the socket, giving send-like blocking semantics.  However, multiple channel support is a very useful feature of comm that it is deemed too important to lose.  The remaining approaches involve a new loadable module written in C (which is somewhat against the philosophy of **comm**) One way would be to create a modified version of the **vwait** command that allow the event flags passed to Tcl_DoOneEvent to be specified.  For **comm**, just the TCL_FILE_EVENTS would be processed.  Another way would be to implement a mechanism like Tk_RestrictEvents, but apply it to the Tcl event loop (since **comm** doesn't require Tk).  One of these approaches will be available in a future **comm** release as an optional component.
+What can be done about this?  First, note that this behavior will come from any code using **vwait** to block and wait for an event to occur.  At the cost of multiple channel support, **comm** could be changed to do blocking I/O on the socket, giving send-like blocking semantics.  However, multiple channel support is a very useful feature of comm that it is deemed too important to lose.  The remaining approaches involve a new loadable module written in C (which is somewhat against the philosophy of **comm**) One way would be to create a modified version of the **vwait** command that allow the event flags passed to Tcl\_DoOneEvent to be specified.  For **comm**, just the TCL\_FILE\_EVENTS would be processed.  Another way would be to implement a mechanism like Tk\_RestrictEvents, but apply it to the Tcl event loop (since **comm** doesn't require Tk).  One of these approaches will be available in a future **comm** release as an optional component.
 
 ## Asynchronous result generation
 
@@ -446,47 +440,53 @@ Before version 4.5 of comm the only solution was to rewrite the server command t
 
 The proper solution is to have the invoked command indicate to **comm** that it cannot or will not deliver an immediate, synchronous result, but will do so later. At that point the framework can put sending the actual result on hold and continue processing requests using the main event loop. No blocking, no nesting of event loops. At some future date the long running operation delivers the result to comm, via the future object, which is then forwarded to the invoker as usual.
 
-The necessary support for this solution has been added to comm since version 4.5, in the form of the new method **return_async**.
+The necessary support for this solution has been added to comm since version 4.5, in the form of the new method **return\_async**.
 
-**::comm::comm return_async**
-: This command is used by a remotely invoked script to notify the comm channel which invoked it that the result to send back to the invoker is not generated synchronously. If this command is not called the default/standard behaviour of comm is to send the synchronously generated result of the script itself to the invoker. The result of **return_async** is an object. This object, called a *future* is where the result of the script has to be delivered to when it becomes ready. When that happens it will take all the necessary actions to deliver the result to the invoker of the script, and then destroy itself. Should comm have lost the connection to the invoker while the result is being computed the future will not try to deliver the result it got, but just destroy itself. The future can be configured with a command to call when the invoker is lost. This enables the user to implement an early abort of the long-running operation, should this be supported by it. An example:
+**::comm::comm return\_async**
+: This command is used by a remotely invoked script to notify the comm channel which invoked it that the result to send back to the invoker is not generated synchronously. If this command is not called the default/standard behaviour of comm is to send the synchronously generated result of the script itself to the invoker.
 
+    The result of **return\_async** is an object. This object, called a *future* is where the result of the script has to be delivered to when it becomes ready. When that happens it will take all the necessary actions to deliver the result to the invoker of the script, and then destroy itself. Should comm have lost the connection to the invoker while the result is being computed the future will not try to deliver the result it got, but just destroy itself. The future can be configured with a command to call when the invoker is lost. This enables the user to implement an early abort of the long-running operation, should this be supported by it.
 
-```
-# Procedure invoked by remote clients to run database operations.
-proc select {sql} {
-    # Signal the async generation of the result
+    An example:
 
-    set future [::comm::comm return_async]
+    ```
+    # Procedure invoked by remote clients to run database operations.
+    proc select {sql} {
+        # Signal the async generation of the result
 
-    # Generate an async db operation and tell it where to deliver the result.
+        set future [::comm::comm return_async]
 
-    set query [db query -command [list $future return] $sql]
+        # Generate an async db operation and tell it where to deliver the result.
 
-    # Tell the database system which query to cancel if the connection
-    # goes away while it is running.
+        set query [db query -command [list $future return] $sql]
 
-    $future configure -command [list db cancel $query]
+        # Tell the database system which query to cancel if the connection
+        # goes away while it is running.
 
-    # Note: The above will work without problem only if the async
-    # query will nover run its completion callback immediately, but
-    # only from the eventloop. Because otherwise the future we wish to
-    # configure may already be gone. If that is possible use 'catch'
-    # to prevent the error from propagating.
-    return
-}
-```
+        $future configure -command [list db cancel $query]
 
-The API of a future object is:
+        # Note: The above will work without problem only if the async
+        # query will nover run its completion callback immediately, but
+        # only from the eventloop. Because otherwise the future we wish to
+        # configure may already be gone. If that is possible use 'catch'
+        # to prevent the error from propagating.
+        return
+    }
+    ```
 
-**\$future** **return** ?**-code** *code*? ?*value*?
-: Use this method to tell the future that long-running operation has completed. Arguments are an optional return value (defaults to the empty string), and the Tcl return code (defaults to OK). The future will deliver this information to invoker, if the connection was not lost in the meantime, and then destroy itself. If the connection was lost it will do nothing but destroy itself.
+    The API of a future object is:
 
-**\$future** **configure** ?**-command** ?*cmdprefix*??
-: ...see next...
+    **$future** **return** ?**-code** *code*? ?*value*?
+    : Use this method to tell the future that long-running operation has completed. Arguments are an optional return value (defaults to the empty string), and the Tcl return code (defaults to OK).
 
-**\$future** **cget** **-command**
-: These methods allow the user to retrieve and set a command to be called if the connection the future belongs to has been lost.
+        The future will deliver this information to invoker, if the connection was not lost in the meantime, and then destroy itself. If the connection was lost it will do nothing but destroy itself.
+
+    **$future** **configure** ?**-command** ?*cmdprefix*??
+    : see below ...
+
+    **$future** **cget** **-command**
+    : These methods allow the user to retrieve and set a command to be called if the connection the future belongs to has been lost.
+
 
 
 ## Compatibility
@@ -501,106 +501,107 @@ Note that requiring no version (or a specific version) can also be done.
 
 The revision history of **comm** includes these releases:
 
-**4.6.3**
+4.6.3
 : Fixed ticket \[ced0d60fc9\]. Added proper detection of eof on a socket, properly closing it.
 
-**4.6.2**
+4.6.2
 : Fixed bugs 2972571 and 3066872, the first a misdetection of quoted brace after double backslash, the other a blocking gets making for an obvious (hinsight) DoS attack on comm channels.
 
-**4.6.1**
+4.6.1
 : Changed the implementation of **comm::commCollect** to emulate lindex's pre-Tcl 8 behaviour, i.e. it was given the ability to parse out the first word of a list, even if the whole buffer is not a well-formed list. Without this change the first word could only be extracted if the whole buffer was a well-formed list (ever since Tcl 8), and in a ver-high-load situation, i.e. a server sending lots and/or large commands very fast, this may never happen, eventually crashing the receiver when it runs out of memory. With the change the receiver is always able to process the first word when it becomes well-formed, regardless of the structure of the remainder of the buffer.
 
-**4.6**
+4.6
 : Added the option **-socketcmd** enabling users to override how a socket is opened. The envisioned main use is the specification of the **tls::socket** command, see package **tls**, to secure the communication.
 
-**4.5.7**
+4.5.7
 : Changed handling of ports already in use to provide a proper error message.
 
-**4.5.6**
+4.5.6
 : Bugfix in the replacement for **vwait**, made robust against of variable names containing spaces.
 
-**4.5.5**
+4.5.5
 : Bugfix in the handling of hooks, typo in variable name.
 
-**4.5.4**
-: Bugfix in the handling of the result received by the **send** method. Replaced an *after idle unset result* with an immediate **unset**, with the information saved to a local variable. The **after idle** can spill into a forked child process if there is no event loop between its setup and the fork. This may bork the child if the next event loop is the **vwait** of **comm**'s **send** a few lines above the **after idle**, and the child used the same serial number for its next request. In that case the parent's **after idle unset** will delete the very array element the child is waiting for, unlocking the **vwait**, causing it to access a now missing array element, instead of the expected result.
+4.5.4
+: Bugfix in the handling of the result received by the **send** method. Replaced an *after idle unset result* with an immediate **unset**, with the information saved to a local variable.
 
-**4.5.3**
+    The **after idle** can spill into a forked child process if there is no event loop between its setup and the fork. This may bork the child if the next event loop is the **vwait** of **comm**'s **send** a few lines above the **after idle**, and the child used the same serial number for its next request. In that case the parent's **after idle unset** will delete the very array element the child is waiting for, unlocking the **vwait**, causing it to access a now missing array element, instead of the expected result.
+
+4.5.3
 : Bugfixes in the wrappers for the builtin **update** and **vwait** commands.
 
-**4.5.2**
+4.5.2
 : Bugfix in the wrapper for the builtin **update** command.
 
-**4.5.1**
+4.5.1
 : Bugfixes in the handling of -interp for regular scripts. The handling of the buffer was wrong for scripts which are a single statement as list. Fixed missing argument to new command **commSendReply**, introduced by version 4.5. Affected debugging.
 
-**4.5**
-: New server-side feature. The command invoked on the server can now switch comm from the standard synchronous return of its result to an asynchronous (defered) return. Due to the use of snit to implement the *future* objects used by this feature from this version on comm requires at least Tcl 8.3 to run. Please read the section **Asynchronous Result Generation** for more details.
+4.5
+: New server-side feature. The command invoked on the server can now switch comm from the standard synchronous return of its result to an asynchronous (defered) return. Due to the use of snit to implement the *future* objects used by this feature from this version on comm requires at least Tcl 8.3 to run. Please read the section [Asynchronous result generation] for more details.
 
-**4.4.1**
+4.4.1
 : Bugfix in the execution of hooks.
 
-**4.4**
+4.4
 : Bugfixes in the handling of -interp for regular and hook scripts. Bugfixes in channel cleanup.
 
-**4.3.1**
+4.3.1
 : Introduced -interp and -events to enable easy use of a slave interp for execution of received scripts, and of event scripts.
 
-**4.3**
+4.3
 : Bugfixes, and introduces -silent to allow the user to force the server/listening side to silently ignore connection attempts where the protocol negotiation failed.
 
-**4.2**
+4.2
 : Bugfixes, and most important, switched to utf-8 as default encoding for full i18n without any problems.
 
-**4.1**
+4.1
 : Rewrite of internal code to remove old pseudo-object model.  Addition of send -command asynchronous callback option.
 
-**4.0**
+4.0
 : Per request by John LoVerso. Improved handling of error for async invoked commands.
 
-**3.7**
+3.7
 : Moved into tcllib and placed in a proper namespace.
 
-**3.6**
+3.6
 : A bug in the looking up of the remoteid for a executed command could be triggered when the connection was closed while several asynchronous sends were queued to be executed.
 
-**3.5**
+3.5
 : Internal change to how reply messages from a **send** are handled. Reply messages are now decoded into the *value* to pass to **return**; a new return statement is then cons'd up to with this value.  Previously, the return code was passed in from the remote as a command to evaluate.  Since the wire protocol has not changed, this is still the case.  Instead, the reply handling code decodes the **reply** message.
 
-**3.4**
+3.4
 : Added more source commentary, as well as documenting config variables in this man page.  Fixed bug were loss of connection would give error about a variable named **pending** rather than the message about the lost connection.  **comm ids** is now an alias for **comm interps** (previously, it an alias for **comm chans**). Since the method invocation change of 3.0, break and other exceptional conditions were not being returned correctly from **comm send**. This has been fixed by removing the extra level of indirection into the internal procedure **commSend**.  Also added propagation of the *errorCode* variable.  This means that these commands return exactly as they would with **send**:
 
+    ```
+        comm send id break
+        catch {comm send id break}
+        comm send id expr 1 / 0
+    ```
 
-```
-    comm send id break
-    catch {comm send id break}
-    comm send id expr 1 / 0
-```
+    Added a new hook for reply messages.  Reworked method invocation to avoid the use of comm:\* procedures; this also cut the invocation time down by 40%.  Documented **comm config** (as this manual page still listed the defunct **comm init**!)
 
-Added a new hook for reply messages.  Reworked method invocation to avoid the use of comm:\* procedures; this also cut the invocation time down by 40%.  Documented **comm config** (as this manual page still listed the defunct **comm init**!)
-
-**3.3**
+3.3
 : Some minor bugs were corrected and the documentation was cleaned up. Added some examples for hooks.  The return semantics of the **eval** hook were changed.
 
-**3.2**
+3.2
 : A new wire protocol, version 3, was added.  This is backwards compatible with version 2 but adds an exchange of supported protocol versions to allow protocol negotiation in the future.  Several bugs with the hook implementation were fixed.  A new section of the man page on blocking semantics was added.
 
-**3.1**
+3.1
 : All the documented hooks were implemented.  **commLostHook** was removed.  A bug in **comm new** was fixed.
 
-**3.0**
+3.0
 : This is a new version of **comm** with several major changes. There is a new way of creating the methods available under the **comm** command.  The **comm init** method has been retired and is replaced by **comm configure** which allows access to many of the well-defined internal variables.  This also generalizes the options available to **comm new**.  Finally, there is now a protocol version exchanged when a connection is established.  This will allow for future on-wire protocol changes.  Currently, the protocol version is set to 2.
 
-**2.3**
+2.3
 : **comm ids** was renamed to **comm channels**.  General support for **comm hook** was fully implemented, but only the *lost* hook exists, and it was changed to follow the general hook API.  **commLostHook** was unsupported (replaced by **comm hook lost**) and **commLost** was removed.
 
-**2.2**
+2.2
 : The *died* hook was renamed *lost*, to be accessed by **commLostHook** and an early implementation of **comm lost hook**.  As such, **commDied** is now **commLost**.
 
-**2.1**
+2.1
 : Unsupported method **comm remoteid** was added.
 
-**2.0**
+2.0
 : **comm** has been rewritten from scratch (but is fully compatible with Comm 1.0, without the requirement to use obTcl).
 
 
@@ -623,36 +624,38 @@ For example, in light of the recent [POODLE attack](http://googleonlinesecurity.
 
 John LoVerso, John@LoVerso.Southborough.MA.US
 
-*http://www.opengroup.org/~loverso/tcl-tk/#comm*
+<http://www.opengroup.org/~loverso/tcl-tk/#comm>
 
 # License
 
-Please see the file *comm.LICENSE* that accompanied this source, or *http://www.opengroup.org/www/dist_client/caubweb/COPYRIGHT.free.html*.
+Please see the file *comm.LICENSE* that accompanied this source, or <http://www.opengroup.org/www/dist_client/caubweb/COPYRIGHT.free.html>.
 
 This license for **comm**, new as of version 3.2, allows it to be used for free, without any licensing fee or royalty.
 
 # Bugs
 
-**•**
-: If there is a failure initializing a channel created with **::comm::comm new**, then the channel should be destroyed. Currently, it is left in an inconsistent state.
+- If there is a failure initializing a channel created with **::comm::comm new**, then the channel should be destroyed. Currently, it is left in an inconsistent state.
 
-**•**
-: There should be a way to force a channel to quiesce when changing the configuration. The following items can be implemented with the existing hooks and are listed here as a reminder to provide a sample hook in a future version.
-
-**•**
-: Allow easier use of a slave interp for actual command execution (especially when operating in "not local" mode).
-
-**•**
-: Add host list (xhost-like) or "magic cookie" (xauth-like) authentication to initial handshake. The following are outstanding todo items.
-
-**•**
-: Add an interp discovery and name->port mapping.  This is likely to be in a separate, optional nameserver.  (See also the related work, below.)
-
-**•**
-: Fix the *{id host}* form so as not to be dependent upon canonical hostnames.  This requires fixes to Tcl to resolve hostnames! This man page is bigger than the source file.
+- There should be a way to force a channel to quiesce when changing the configuration.
 
 
-# On using old versions of tcl
+The following items can be implemented with the existing hooks and are listed here as a reminder to provide a sample hook in a future version.
+
+- Allow easier use of a slave interp for actual command execution (especially when operating in "not local" mode).
+
+- Add host list (xhost-like) or "magic cookie" (xauth-like) authentication to initial handshake.
+
+
+The following are outstanding todo items.
+
+- Add an interp discovery and name->port mapping.  This is likely to be in a separate, optional nameserver.  (See also the related work, below.)
+
+- Fix the *{id host}* form so as not to be dependent upon canonical hostnames.  This requires fixes to Tcl to resolve hostnames!
+
+
+This man page is bigger than the source file.
+
+# On using old versions of Tcl
 
 Tcl7.5 under Windows contains a bug that causes the interpreter to hang when EOF is reached on non-blocking sockets.  This can be triggered with a command such as this:
 
@@ -668,11 +671,11 @@ Tcl8.0 on UNIX contains a socket bug that can crash Tcl.  It is recommended you 
 
 # Related work
 
-Tcl-DP provides an RPC-based remote execution interface, but is a compiled Tcl extension.  See *http://www.cs.cornell.edu/Info/Projects/zeno/Projects/Tcl-DP.html*.
+Tcl-DP provides an RPC-based remote execution interface, but is a compiled Tcl extension.  See <http://www.cs.cornell.edu/Info/Projects/zeno/Projects/Tcl-DP.html>.
 
-Michael Doyle \<miked@eolas.com> has code that implements the Tcl-DP RPC interface using standard Tcl sockets, much like **comm**. The DpTcl package is available at *http://chiselapp.com/user/gwlester/repository/DpTcl*.
+Michael Doyle <miked@eolas.com> has code that implements the Tcl-DP RPC interface using standard Tcl sockets, much like **comm**. The DpTcl package is available at <http://chiselapp.com/user/gwlester/repository/DpTcl>.
 
-Andreas Kupries \<andreas_kupries@users.sourceforge.net> uses **comm** and has built a simple nameserver as part of his Pool library.  See *http://www.purl.org/net/akupries/soft/pool/index.htm*.
+Andreas Kupries <andreas\_kupries@users.sourceforge.net> uses **comm** and has built a simple nameserver as part of his Pool library.  See <http://www.purl.org/net/akupries/soft/pool/index.htm>.
 
 # Bugs, ideas, feedback
 

@@ -1,5 +1,6 @@
 ---
 CommandName: clipboard
+title: clipboard
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -26,7 +27,7 @@ clipboard - Manipulate Tk clipboard
 # Synopsis
 
 ::: {.synopsis} :::
-[clipboard]{.cmd} [option]{.arg} [arg]{.optdot} 
+[clipboard]{.cmd} [option]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -35,26 +36,25 @@ This command provides a Tcl interface to the Tk clipboard, which stores data for
 
 The first argument to **clipboard** determines the format of the rest of the arguments and the behavior of the command.  The following forms are currently supported:
 
-**clipboard append** ?**-displayof** *window*? ?**-format** *format*? ?**-type** *type*? ?**-**\\**|-**? *data*
+[clipboard]{.cmd} [append]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-format]{.lit} [format]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [--]{.optlit} [data]{.arg}
 : Appends *data* to the clipboard on *window*'s display in the form given by *type* with the representation given by *format* and claims ownership of the clipboard on *window*'s display.
 
+    *Type* specifies the form in which the selection is to be returned (the desired "target" for conversion, in ICCCM terminology), and should be an atom name such as **STRING** or **FILE\_NAME**; see the Inter-Client Communication Conventions Manual for complete details. *Type* defaults to **STRING**.
 
-*Type* specifies the form in which the selection is to be returned (the desired "target" for conversion, in ICCCM terminology), and should be an atom name such as **STRING** or **FILE_NAME**; see the Inter-Client Communication Conventions Manual for complete details. *Type* defaults to **STRING**.
+    The *format* argument specifies the representation that should be used to transmit the selection to the requester (the second column of Table 2 of the ICCCM), and defaults to **STRING**.  If *format* is **STRING**, the selection is transmitted as 8-bit ASCII characters.  If *format* is **ATOM**, then the *data* is divided into fields separated by white space; each field is converted to its atom value, and the 32-bit atom value is transmitted instead of the atom name.  For any other *format*,  *data* is divided into fields separated by white space and each field is converted to a 32-bit integer; an array of integers is transmitted to the selection requester.  Note that strings passed to **clipboard append** are concatenated before conversion, so the caller must take care to ensure appropriate spacing across string boundaries.  All items appended to the clipboard with the same *type* must have the same *format*.
 
-The *format* argument specifies the representation that should be used to transmit the selection to the requester (the second column of Table 2 of the ICCCM), and defaults to **STRING**.  If *format* is **STRING**, the selection is transmitted as 8-bit ASCII characters.  If *format* is **ATOM**, then the *data* is divided into fields separated by white space; each field is converted to its atom value, and the 32-bit atom value is transmitted instead of the atom name.  For any other *format*,  *data* is divided into fields separated by white space and each field is converted to a 32-bit integer; an array of integers is transmitted to the selection requester.  Note that strings passed to **clipboard append** are concatenated before conversion, so the caller must take care to ensure appropriate spacing across string boundaries.  All items appended to the clipboard with the same *type* must have the same *format*.
+    The *format* argument is needed only for compatibility with clipboard requesters that do not use Tk.  If the Tk toolkit is being used to retrieve the **CLIPBOARD** selection then the value is converted back to a string at the requesting end, so *format* is irrelevant.
 
-The *format* argument is needed only for compatibility with clipboard requesters that do not use Tk.  If the Tk toolkit is being used to retrieve the **CLIPBOARD** selection then the value is converted back to a string at the requesting end, so *format* is irrelevant.
+    A **--** argument may be specified to mark the end of options:  the next argument will always be used as *data*. This feature may be convenient if, for example, *data* starts with a **-**.
 
-A **-**\\**|-** argument may be specified to mark the end of options:  the next argument will always be used as *data*. This feature may be convenient if, for example, *data* starts with a **-**.
-
-**clipboard clear** ?**-displayof** *window*?
+[clipboard]{.cmd} [clear]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg}
 : Claims ownership of the clipboard on *window*'s display and removes any previous contents.  *Window* defaults to ".". Returns an empty string.
 
-**clipboard get** ?**-displayof** *window*? ?**-type** *type*?
-: Retrieve data from the clipboard on *window*'s display. *Window* defaults to ".". *Type* specifies the form in which the data is to be returned and should be an atom name such as **STRING** or **FILE_NAME**.  *Type* defaults to **STRING**.  This command is equivalent to "**selection get** **-selection CLIPBOARD**".
+[clipboard]{.cmd} [get]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg}
+: Retrieve data from the clipboard on *window*'s display. *Window* defaults to ".". *Type* specifies the form in which the data is to be returned and should be an atom name such as **STRING** or **FILE\_NAME**.  *Type* defaults to **STRING**.  This command is equivalent to "[selection get][selection] **-selection CLIPBOARD**".
 
+    Note that on modern X11 systems, the most useful type to retrieve for transferred strings is not **STRING**, but rather **UTF8\_STRING**.
 
-Note that on modern X11 systems, the most useful type to retrieve for transferred strings is not **STRING**, but rather **UTF8_STRING**.
 
 # Examples
 
@@ -110,3 +110,6 @@ bind $c <<Paste>> {
    }
 }
 ```
+
+
+[selection]: selection.md

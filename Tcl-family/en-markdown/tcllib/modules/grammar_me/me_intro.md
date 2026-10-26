@@ -1,5 +1,6 @@
 ---
 CommandName: grammar::me_intro
+title: grammar::me_intro
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -28,7 +29,7 @@ Copyright:
 
 # Name
 
-grammar::me_intro - Introduction to virtual machines for parsing token streams
+grammar::me\_intro - Introduction to virtual machines for parsing token streams
 
 # Description
 
@@ -40,10 +41,10 @@ Because of the high degree of similarity in the actual implementations of the af
 
 The relevant documents are:
 
-**grammar::me_vm**
+[grammar::me\_vm][me_vm]
 : Virtual machine specification.
 
-**grammar::me_ast**
+[grammar::me\_ast][me_ast]
 : Specification of various representations used for abstract syntax trees.
 
 **grammar::me::util**
@@ -61,7 +62,7 @@ The relevant documents are:
 
 # Bugs, ideas, feedback
 
-If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar_me* as the category.
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar\_me* as the category.
 
 When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
 
@@ -76,3 +77,7 @@ Grammars and finite automata
 ```
 Copyright (c) 2005 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[me_ast]: me_ast.md
+[me_vm]: me_vm.md

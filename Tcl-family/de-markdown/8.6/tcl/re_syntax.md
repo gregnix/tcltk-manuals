@@ -1,5 +1,6 @@
 ---
 CommandName: re_syntax
+title: re_syntax
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -20,11 +21,11 @@ Copyright:
  - Copyright (c) 1999 Scriptics Corporation
 ---
 
-# NAME
+# Name
 
-re_syntax - Syntax von Tcl-Regulären Ausdrücken
+re\_syntax - Syntax von Tcl-Regulären Ausdrücken
 
-# BESCHREIBUNG
+# Beschreibung
 
 Ein *regulärer Ausdruck* beschreibt Zeichenketten. Er ist ein Muster, das bestimmte Zeichenketten trifft und andere nicht.
 
@@ -55,17 +56,18 @@ Ein quantifiziertes Atom ist ein *Atom*, optional gefolgt von einem einzelnen *Q
 **?**
 : eine Folge von 0 oder 1 Übereinstimmungen des Atoms
 
-**{**_m_**}**
+**{***m***}**
 : eine Folge von genau *m* Übereinstimmungen des Atoms
 
-**{**_m_**,}**
+**{***m***,}**
 : eine Folge von *m* oder mehr Übereinstimmungen des Atoms
 
-**{**_m_**,**_n_**}**
+**{***m***,***n***}**
 : eine Folge von *m* bis *n* (einschließlich) Übereinstimmungen des Atoms; *m* darf *n* nicht überschreiten
 
-**\*?  +?  ??  {**_m_**}?  {**_m_**,}?  {**_m_**,**_n_**}?**
-: *nicht-gierige* Quantifizierer, die dieselben Möglichkeiten treffen, aber die kleinste statt der größten Anzahl von Übereinstimmungen bevorzugen (siehe **ABGLEICH**)
+**\*?  +?  ??  {***m***}?  {***m***,}?  {***m***,***n***}?**
+: *nicht-gierige* Quantifizierer, die dieselben Möglichkeiten treffen, aber die kleinste statt der größten Anzahl von Übereinstimmungen bevorzugen (siehe [Abgleich])
+
 
 Die Formen mit **{** und **}** heißen *Grenzen*. Die Zahlen *m* und *n* sind vorzeichenlose Dezimalzahlen mit zulässigen Werten von 0 bis 255 einschließlich.
 
@@ -73,10 +75,10 @@ Die Formen mit **{** und **}** heißen *Grenzen*. Die Zahlen *m* und *n* sind vo
 
 Ein Atom ist eines von:
 
-**(**_re_**)**
+**(***re***)**
 : trifft eine Übereinstimmung für *re* (*re* ist ein beliebiger regulärer Ausdruck), wobei die Übereinstimmung für eine mögliche Rückmeldung vermerkt wird
 
-**(?:**_re_**)**
+**(?:***re***)**
 : wie zuvor, aber ohne Rückmeldung (eine „nicht erfassende“ Klammergruppe)
 
 **()**
@@ -85,17 +87,17 @@ Ein Atom ist eines von:
 **(?:)**
 : trifft eine leere Zeichenkette, ohne Rückmeldung
 
-**\[**_chars_**\]**
-: ein *Klammerausdruck*, der genau eines der *chars* trifft (siehe **KLAMMERAUSDRÜCKE** für Details)
+**\[***chars***\]**
+: ein *Klammerausdruck*, der genau eines der *chars* trifft (siehe [Klammerausdrücke] für Details)
 
 **.**
 : trifft ein beliebiges einzelnes Zeichen
 
-**\\**_k_
-: trifft das nicht-alphanumerische Zeichen *k* als gewöhnliches Zeichen, z. B. trifft **\\** ein Backslash-Zeichen
+**\\***k*
+: trifft das nicht-alphanumerische Zeichen *k* als gewöhnliches Zeichen, z. B. trifft **\\\\** ein Backslash-Zeichen
 
-**\\**_c_
-: wobei *c* alphanumerisch ist (ggf. von weiteren Zeichen gefolgt), ein *Escape* (nur AREs), siehe **ESCAPES** unten
+**\\***c*
+: wobei *c* alphanumerisch ist (ggf. von weiteren Zeichen gefolgt), ein *Escape* (nur AREs), siehe [Escapes] unten
 
 **{**
 : wenn von einem Zeichen gefolgt, das keine Ziffer ist, trifft es das linke geschweifte Klammerzeichen „**{**“; wenn von einer Ziffer gefolgt, ist es der Beginn einer *Grenze* (siehe oben)
@@ -106,20 +108,22 @@ Ein Atom ist eines von:
 
 ## Einschränkungen
 
-Eine *Einschränkung* trifft eine leere Zeichenkette, wenn bestimmte Bedingungen erfüllt sind. Auf eine Einschränkung darf kein Quantifizierer folgen. Die einfachen Einschränkungen sind wie folgt; weitere Einschränkungen werden später unter **ESCAPES** beschrieben.
+Eine *Einschränkung* trifft eine leere Zeichenkette, wenn bestimmte Bedingungen erfüllt sind. Auf eine Einschränkung darf kein Quantifizierer folgen. Die einfachen Einschränkungen sind wie folgt; weitere Einschränkungen werden später unter [Escapes] beschrieben.
 
 **^**
-: trifft am Anfang der Zeichenkette oder einer Zeile (je nachdem, ob der Abgleich zeilenumbruch-sensitiv ist oder nicht, wie unter **ABGLEICH** unten beschrieben).
+: trifft am Anfang der Zeichenkette oder einer Zeile (je nachdem, ob der Abgleich zeilenumbruch-sensitiv ist oder nicht, wie unter [Abgleich] unten beschrieben).
 
 **$**
-: trifft am Ende der Zeichenkette oder einer Zeile (je nachdem, ob der Abgleich zeilenumbruch-sensitiv ist oder nicht, wie unter **ABGLEICH** unten beschrieben).
-    Der Unterschied zwischen String- und Zeilen-Abgleichmodus ist bedeutungslos, wenn die Zeichenkette kein Zeilenumbruchzeichen enthält. Die Einschränkungs-Escapes **\A** und **\Z** haben einen ähnlichen Zweck, sind aber stets Einschränkungen für die gesamte Zeichenkette.
-    Die Standard-Zeilenumbruch-Sensitivität hängt vom Befehl ab, der den regulären Ausdruck verwendet, und kann wie unter **METASYNTAX** unten überschrieben werden.
+: trifft am Ende der Zeichenkette oder einer Zeile (je nachdem, ob der Abgleich zeilenumbruch-sensitiv ist oder nicht, wie unter [Abgleich] unten beschrieben).
 
-**(?=**_re_**)**
+    Der Unterschied zwischen String- und Zeilen-Abgleichmodus ist bedeutungslos, wenn die Zeichenkette kein Zeilenumbruchzeichen enthält. Die Einschränkungs-Escapes **\\A** und **\\Z** haben einen ähnlichen Zweck, sind aber stets Einschränkungen für die gesamte Zeichenkette.
+
+    Die Standard-Zeilenumbruch-Sensitivität hängt vom Befehl ab, der den regulären Ausdruck verwendet, und kann wie unter [Metasyntax] unten überschrieben werden.
+
+**(?=***re***)**
 : *positives Lookahead* (nur AREs), trifft an jeder Stelle, an der eine Teilzeichenkette beginnt, die *re* trifft
 
-**(?!**_re_**)**
+**(?!***re***)**
 : *negatives Lookahead* (nur AREs), trifft an jeder Stelle, an der keine Teilzeichenkette beginnt, die *re* trifft
 
 
@@ -129,15 +133,15 @@ Ein RE darf nicht mit „**\\**“ enden.
 
 # Klammerausdrücke
 
-Ein *Klammerausdruck* ist eine Liste von Zeichen in „**[\|]**“. Er trifft normalerweise ein beliebiges einzelnes Zeichen aus der Liste (siehe unten). Beginnt die Liste mit „**^**“, trifft er ein beliebiges einzelnes Zeichen (siehe unten) *nicht* aus dem Rest der Liste.
+Ein *Klammerausdruck* ist eine Liste von Zeichen in „**\[\]**“. Er trifft normalerweise ein beliebiges einzelnes Zeichen aus der Liste (siehe unten). Beginnt die Liste mit „**^**“, trifft er ein beliebiges einzelnes Zeichen (siehe unten) *nicht* aus dem Rest der Liste.
 
-Stehen zwei Zeichen in der Liste durch „**-**“ getrennt, ist das eine Abkürzung für den vollen *Bereich* der Zeichen zwischen diesen beiden (einschließlich) in der Sortierfolge, z. B. trifft „**[0-9]**“ in Unicode jede übliche Dezimalziffer. Zwei Bereiche dürfen keinen gemeinsamen Endpunkt haben, z. B. ist „**a-c-e**“ unzulässig. Bereiche in Tcl verwenden stets die Unicode-Sortierfolge; andere Programme können andere Sortierfolgen verwenden — das kann zu Inkompatibilitäten zwischen Programmen führen.
+Stehen zwei Zeichen in der Liste durch „**-**“ getrennt, ist das eine Abkürzung für den vollen *Bereich* der Zeichen zwischen diesen beiden (einschließlich) in der Sortierfolge, z. B. trifft „**\[0-9\]**“ in Unicode jede übliche Dezimalziffer. Zwei Bereiche dürfen keinen gemeinsamen Endpunkt haben, z. B. ist „**a-c-e**“ unzulässig. Bereiche in Tcl verwenden stets die Unicode-Sortierfolge; andere Programme können andere Sortierfolgen verwenden — das kann zu Inkompatibilitäten zwischen Programmen führen.
 
-Um ein wörtliches **]** oder **-** in die Liste aufzunehmen, umschließt man es am einfachsten mit **[.** und **.]**, um ein Sortierelement daraus zu machen (siehe unten). Alternativ macht man es zum ersten Zeichen (nach einem möglichen „**^**“) oder (nur AREs) setzt „**\\**“ davor. Für „**-**“ alternativ: letztes Zeichen oder zweiter Endpunkt eines Bereichs. Soll „**-**“ wörtlich erster Endpunkt eines Bereichs sein, macht man es ein Sortierelement oder (nur AREs) setzt „**\\**“ davor. Mit Ausnahme dieser Fälle, einiger Kombinationen mit **[** (siehe nächste Absätze) und Escapes verlieren alle anderen Sonderzeichen in einem Klammerausdruck ihre Sonderbedeutung.
+Um ein wörtliches **\]** oder **-** in die Liste aufzunehmen, umschließt man es am einfachsten mit **\[.** und **.\]**, um ein Sortierelement daraus zu machen (siehe unten). Alternativ macht man es zum ersten Zeichen (nach einem möglichen „**^**“) oder (nur AREs) setzt „**\\**“ davor. Für „**-**“ alternativ: letztes Zeichen oder zweiter Endpunkt eines Bereichs. Soll „**-**“ wörtlich erster Endpunkt eines Bereichs sein, macht man es ein Sortierelement oder (nur AREs) setzt „**\\**“ davor. Mit Ausnahme dieser Fälle, einiger Kombinationen mit **\[** (siehe nächste Absätze) und Escapes verlieren alle anderen Sonderzeichen in einem Klammerausdruck ihre Sonderbedeutung.
 
 ## Zeichenklassen
 
-In einem Klammerausdruck steht der Name einer *Zeichenklasse* in **[:** und **:]** für die Liste aller Zeichen (nicht aller Sortierelemente!), die zu dieser Klasse gehören. Standard-Zeichenklassen sind:
+In einem Klammerausdruck steht der Name einer *Zeichenklasse* in **\[:** und **:\]** für die Liste aller Zeichen (nicht aller Sortierelemente!), die zu dieser Klasse gehören. Standard-Zeichenklassen sind:
 
 **alpha**
 : ein Buchstabe.
@@ -182,19 +186,19 @@ Ein Gebietsschema kann weitere bereitstellen. Eine Zeichenklasse darf nicht Endp
 
 ## Klammerausdrücke als Einschränkungen
 
-Es gibt zwei Sonderfälle von Klammerausdrücken: die Klammerausdrücke „**[[:<:]]**“ und „**[[:>:]]**“ sind Einschränkungen und treffen leere Zeichenketten am Anfang bzw. Ende eines Wortes. Ein Wort ist eine Folge von Wortzeichen, der weder vorher noch nachher Wortzeichen folgen. Ein Wortzeichen ist ein *alnum*-Zeichen oder ein Unterstrich („**_**“). Diese speziellen Klammerausdrücke sind veraltet; ARE-Nutzer sollten stattdessen Einschränkungs-Escapes verwenden (siehe unten).
+Es gibt zwei Sonderfälle von Klammerausdrücken: die Klammerausdrücke „**\[\[:<:\]\]**“ und „**\[\[:>:\]\]**“ sind Einschränkungen und treffen leere Zeichenketten am Anfang bzw. Ende eines Wortes. Ein Wort ist eine Folge von Wortzeichen, der weder vorher noch nachher Wortzeichen folgen. Ein Wortzeichen ist ein *alnum*-Zeichen oder ein Unterstrich („**\_**“). Diese speziellen Klammerausdrücke sind veraltet; ARE-Nutzer sollten stattdessen Einschränkungs-Escapes verwenden (siehe unten).
 
 ## Sortierelemente
 
-In einem Klammerausdruck steht ein Sortierelement (ein Zeichen, eine mehrzeichenige Folge, die wie ein einzelnes Zeichen sortiert, oder ein Sortierfolgen-Name für eines von beiden) in **[.** und **.]** für die Zeichenfolge dieses Sortierelements. Die Folge ist ein einzelnes Element der Liste des Klammerausdrucks. Ein Klammerausdruck in einem Gebietsschema mit mehrzeichenigen Sortierelementen kann daher mehr als ein Zeichen treffen. So kann (heimtückisch) ein Klammerausdruck, der mit **^** beginnt, mehrzeichenige Sortierelemente treffen, auch wenn keines in der Liste des Klammerausdrucks vorkommt!
+In einem Klammerausdruck steht ein Sortierelement (ein Zeichen, eine mehrzeichenige Folge, die wie ein einzelnes Zeichen sortiert, oder ein Sortierfolgen-Name für eines von beiden) in **\[.** und **.\]** für die Zeichenfolge dieses Sortierelements. Die Folge ist ein einzelnes Element der Liste des Klammerausdrucks. Ein Klammerausdruck in einem Gebietsschema mit mehrzeichenigen Sortierelementen kann daher mehr als ein Zeichen treffen. So kann (heimtückisch) ein Klammerausdruck, der mit **^** beginnt, mehrzeichenige Sortierelemente treffen, auch wenn keines in der Liste des Klammerausdrucks vorkommt!
 
 (*Hinweis:* Tcl hat keine mehrzeichenigen Sortierelemente. Diese Information dient nur zur Veranschaulichung.)
 
-Nehmen wir an, die Sortierfolge enthält ein mehrzeicheniges Sortierelement **ch**. Dann trifft der RE „**[[.ch.]]*c**“ (null oder mehr „**ch**“, gefolgt von „**c**“) die ersten fünf Zeichen von „**chchcc**“. Außerdem trifft der RE „**[^c]b**“ ganz „**chb**“ (weil „**[^c]**“ das mehrzeichenige „**ch**“ trifft).
+Nehmen wir an, die Sortierfolge enthält ein mehrzeicheniges Sortierelement **ch**. Dann trifft der RE „**\[\[.ch.\]\]\*c**“ (null oder mehr „**ch**“, gefolgt von „**c**“) die ersten fünf Zeichen von „**chchcc**“. Außerdem trifft der RE „**\[^c\]b**“ ganz „**chb**“ (weil „**\[^c\]**“ das mehrzeichenige „**ch**“ trifft).
 
 ## Äquivalenzklassen
 
-In einem Klammerausdruck ist ein Sortierelement in **[=** und **=]** eine Äquivalenzklasse und steht für die Zeichenfolgen aller Sortierelemente, die diesem äquivalent sind, einschließlich es selbst. (Gibt es keine anderen äquivalenten Sortierelemente, wird behandelt, als ob die umschließenden Begrenzer „**[.**“ und „**.]**“ wären.) Sind z. B. **o** und **\(^o** Mitglieder einer Äquivalenzklasse, sind „**[[=o=]]**“, „**[[=\(^o=]]**“ und „**[o\(^o]**“ synonym. Eine Äquivalenzklasse darf nicht Endpunkt eines Bereichs sein.
+In einem Klammerausdruck ist ein Sortierelement in **\[=** und **=\]** eine Äquivalenzklasse und steht für die Zeichenfolgen aller Sortierelemente, die diesem äquivalent sind, einschließlich es selbst. (Gibt es keine anderen äquivalenten Sortierelemente, wird behandelt, als ob die umschließenden Begrenzer „**\[.**“ und „**.\]**“ wären.) Sind z. B. **o** und **ô** Mitglieder einer Äquivalenzklasse, sind „**\[\[=o=\]\]**“, „**\[\[=ô=\]\]**“ und „**\[oô\]**“ synonym. Eine Äquivalenzklasse darf nicht Endpunkt eines Bereichs sein.
 
 (*Hinweis:* Tcl implementiert nur das Unicode-Gebietsschema. Es definiert keine Äquivalenzklassen. Die Beispiele oben dienen nur zur Veranschaulichung.)
 
@@ -206,118 +210,118 @@ Escapes (nur AREs), die mit **\\** gefolgt von einem alphanumerischen Zeichen be
 
 Zeicheneingabe-Escapes (nur AREs) erleichtern die Angabe nicht druckbarer und sonst unhandlicher Zeichen in REs:
 
-**\a**
+**\\a**
 : Alarm (Glocke), wie in C
 
-**\b**
+**\\b**
 : Rücktaste, wie in C
 
-**\B**
+**\\B**
 : Synonym für **\\**, um doppeltes Backslash-Escaping in Anwendungen mit mehreren Ebenen von Backslash-Verarbeitung zu verringern
 
-**\\c**_X_
+**\\c***X*
 : (wobei *X* ein beliebiges Zeichen ist) das Zeichen, dessen niederwertige 5 Bits mit denen von *X* übereinstimmen und dessen übrige Bits alle null sind
 
-**\\**
+**\\e**
 : das Zeichen, dessen Sortierfolgen-Name „**ESC**“ ist, oder andernfalls das Zeichen mit Oktalwert 033
 
-**\f**
+**\\f**
 : Seitenvorschub, wie in C
 
-**\n**
+**\\n**
 : Zeilenumbruch, wie in C
 
-**\r**
+**\\r**
 : Wagenrücklauf, wie in C
 
-**\t**
+**\\t**
 : horizontaler Tabulator, wie in C
 
-**\\u**_wxyz_
+**\\u***wxyz*
 : (wobei *wxyz* ein bis vier hexadezimale Ziffern sind) das Unicode-Zeichen **U+**_wxyz_ in der lokalen Byte-Reihenfolge
 
-**\\U**_stuvwxyz_
+**\\U***stuvwxyz*
 : (wobei *stuvwxyz* ein bis acht hexadezimale Ziffern sind) reserviert für eine Unicode-Erweiterung bis 21 Bit. Die Ziffern werden gelesen, bis das erste nicht-hexadezimale Zeichen erreicht wird, maximal acht hexadezimale Ziffern erreicht sind oder ein Überlauf beim Maximalwert **U+**_10ffff_ auftreten würde.
 
-**\v**
+**\\v**
 : vertikaler Tabulator, wie in C, sind alle verfügbar.
 
-**\\x**_hh_
+**\\x***hh*
 : (wobei *hh* ein oder zwei hexadezimale Ziffern sind) das Zeichen mit hexadezimalem Wert **0x***hh*.
 
-**\0**
+**\\0**
 : das Zeichen mit Wert **0**
 
-**\\**_xyz_
+**\\***xyz*
 : (wobei *xyz* genau drei Oktalziffern sind und kein *Rückverweis* (siehe unten)) das Zeichen mit Oktalwert **0***xyz*. Die erste Ziffer muss im Bereich 0–3 liegen, sonst gilt die zweistellige Form.
 
-**\\**_xy_
+**\\***xy*
 : (wobei *xy* genau zwei Oktalziffern sind und kein *Rückverweis* (siehe unten)) das Zeichen mit Oktalwert **0***xy*
 
 
 Hexadezimale Ziffern sind „**0**–**9**“, „**a**–**f**“ und „**A**–**F**“. Oktalziffern sind „**0**–**7**“.
 
-Die Zeicheneingabe-Escapes gelten stets als gewöhnliche Zeichen. Z. B. ist **\135** in Unicode **]**, aber **\135** beendet keinen Klammerausdruck. Beachten Sie jedoch, dass manche Anwendungen (z. B. C-Compiler und der Tcl-Interpreter, wenn der reguläre Ausdruck nicht in geschweifte Klammern gesetzt ist) solche Folgen selbst verarbeiten, bevor das Regex-Paket sie sieht — das kann Verdoppelung (Vervierfachung usw.) von „**\\**“ erfordern.
+Die Zeicheneingabe-Escapes gelten stets als gewöhnliche Zeichen. Z. B. ist **\\135** in Unicode **\]**, aber **\\135** beendet keinen Klammerausdruck. Beachten Sie jedoch, dass manche Anwendungen (z. B. C-Compiler und der Tcl-Interpreter, wenn der reguläre Ausdruck nicht in geschweifte Klammern gesetzt ist) solche Folgen selbst verarbeiten, bevor das Regex-Paket sie sieht — das kann Verdoppelung (Vervierfachung usw.) von „**\\**“ erfordern.
 
 ## Klassenkurzformen
 
 Klassenkurzformen (nur AREs) sind Abkürzungen für häufig verwendete Zeichenklassen:
 
-**\d**
-: **[[:digit:]]**
+**\\d**
+: **\[\[:digit:\]\]**
 
-**\s**
-: **[[:space:]]**
+**\\s**
+: **\[\[:space:\]\]**
 
-**\w**
-: **[[:alnum:]_\u203F\u2040\u2054\uFE33\uFE34\uFE4D\uFE4E\uFE4F\uFF3F]** (einschließlich Interpunktions-Verbindungszeichen)
+**\\w**
+: **\[\[:alnum:\]\_\\u203F\\u2040\\u2054\\uFE33\\uFE34\\uFE4D\\uFE4E\\uFE4F\\uFF3F\]** (einschließlich Interpunktions-Verbindungszeichen)
 
-**\D**
-: **[^[:digit:]]**
+**\\D**
+: **\[^\[:digit:\]\]**
 
-**\S**
-: **[^[:space:]]**
+**\\S**
+: **\[^\[:space:\]\]**
 
-**\W**
-: **[^[:alnum:]_\u203F\u2040\u2054\uFE33\uFE34\uFE4D\uFE4E\uFE4F\uFF3F]** (einschließlich Interpunktions-Verbindungszeichen)
+**\\W**
+: **\[^\[:alnum:\]\_\\u203F\\u2040\\u2054\\uFE33\\uFE34\\uFE4D\\uFE4E\\uFE4F\\uFF3F\]** (einschließlich Interpunktions-Verbindungszeichen)
 
 
-In Klammerausdrücken verlieren „**\d**“, „**\s**“ und „**\w**“ ihre äußeren Klammern, und „**\D**“, „**\S**“ und „**\W**“ sind unzulässig. (Z. B. ist „**[a-c\d]**“ äquivalent zu „**[a-c[:digit:]]**“. „**[a-c\D]**“, äquivalent zu „**[a-c^[:digit:]]**“, ist unzulässig.)
+In Klammerausdrücken verlieren „**\\d**“, „**\\s**“ und „**\\w**“ ihre äußeren Klammern, und „**\\D**“, „**\\S**“ und „**\\W**“ sind unzulässig. (Z. B. ist „**\[a-c\\d\]**“ äquivalent zu „**\[a-c\[:digit:\]\]**“. „**\[a-c\\D\]**“, äquivalent zu „**\[a-c^\[:digit:\]\]**“, ist unzulässig.)
 
 ## Einschränkungs-Escapes
 
 Ein Einschränkungs-Escape (nur AREs) ist eine Einschränkung, die die leere Zeichenkette trifft, wenn bestimmte Bedingungen erfüllt sind, geschrieben als Escape:
 
-**\A**
-: trifft nur am Anfang der Zeichenkette (siehe **ABGLEICH** unten, wie sich das von „**^**“ unterscheidet)
+**\\A**
+: trifft nur am Anfang der Zeichenkette (siehe [Abgleich] unten, wie sich das von „**^**“ unterscheidet)
 
-**\m**
+**\\m**
 : trifft nur am Anfang eines Wortes
 
-**\M**
+**\\M**
 : trifft nur am Ende eines Wortes
 
-**\y**
+**\\y**
 : trifft nur am Anfang oder Ende eines Wortes
 
-**\Y**
+**\\Y**
 : trifft nur an einer Stelle, die weder Wortanfang noch -ende ist
 
-**\Z**
-: trifft nur am Ende der Zeichenkette (siehe **ABGLEICH** unten, wie sich das von „**$**“ unterscheidet)
+**\\Z**
+: trifft nur am Ende der Zeichenkette (siehe [Abgleich] unten, wie sich das von „**$**“ unterscheidet)
 
-**\\**_m_
+**\\***m*
 : (wobei *m* eine von Null verschiedene Ziffer ist) ein *Rückverweis*, siehe unten
 
-**\\**_mnn_
+**\\***mnn*
 : (wobei *m* eine von Null verschiedene Ziffer ist, *nn* weitere Ziffern, und der Dezimalwert *mnn* nicht größer ist als die bisher gesehene Anzahl schließender erfassender Klammern) ein *Rückverweis*, siehe unten
 
 
-Ein Wort ist wie bei „**[[:<:]]**“ und „**[[:>:]]**“ oben definiert. Einschränkungs-Escapes sind in Klammerausdrücken unzulässig.
+Ein Wort ist wie bei „**\[\[:<:\]\]**“ und „**\[\[:>:\]\]**“ oben definiert. Einschränkungs-Escapes sind in Klammerausdrücken unzulässig.
 
 ## Rückverweise
 
-Ein Rückverweis (nur AREs) trifft dieselbe Zeichenkette wie der geklammerte Unterausdruck mit der angegebenen Nummer, sodass z. B. „**([bc])\1**“ „**bb**“ oder „**cc**“, aber nicht „**bc**“ trifft. Der Unterausdruck muss dem Rückverweis im RE vollständig vorausgehen. Unterausdrücke werden in der Reihenfolge ihrer führenden Klammern nummeriert. Nicht erfassende Klammern definieren keine Unterausdrücke.
+Ein Rückverweis (nur AREs) trifft dieselbe Zeichenkette wie der geklammerte Unterausdruck mit der angegebenen Nummer, sodass z. B. „**(\[bc\])\\1**“ „**bb**“ oder „**cc**“, aber nicht „**bc**“ trifft. Der Unterausdruck muss dem Rückverweis im RE vollständig vorausgehen. Unterausdrücke werden in der Reihenfolge ihrer führenden Klammern nummeriert. Nicht erfassende Klammern definieren keine Unterausdrücke.
 
 Es gibt eine historische Mehrdeutigkeit zwischen oktalen Zeicheneingabe-Escapes und Rückverweisen, die heuristisch aufgelöst wird (siehe oben). Eine führende Null bedeutet stets ein Oktal-Escape. Eine einzelne von Null verschiedene Ziffer ohne weitere Ziffer danach ist stets ein Rückverweis. Eine mehrstellige Folge ohne führende Null ist ein Rückverweis, wenn sie auf einen passenden Unterausdruck folgt (d. h. die Nummer liegt im gültigen Bereich), andernfalls Oktal.
 
@@ -339,16 +343,16 @@ Ein ARE kann mit *eingebetteten Optionen* beginnen: eine Folge **(?***xyz***)** 
 : Rest des RE ist ein ERE
 
 **i**
-: groß-/kleinschreibungs-insensitiver Abgleich (siehe **ABGLEICH** unten)
+: groß-/kleinschreibungs-insensitiver Abgleich (siehe [Abgleich] unten)
 
 **m**
 : historisches Synonym für **n**
 
 **n**
-: zeilenumbruch-sensitiver Abgleich (siehe **ABGLEICH** unten)
+: zeilenumbruch-sensitiver Abgleich (siehe [Abgleich] unten)
 
 **p**
-: teilweise zeilenumbruch-sensitiver Abgleich (siehe **ABGLEICH** unten)
+: teilweise zeilenumbruch-sensitiver Abgleich (siehe [Abgleich] unten)
 
 **q**
 : Rest des RE ist eine wörtliche („quoted“) Zeichenkette, alle Zeichen gewöhnlich
@@ -360,7 +364,7 @@ Ein ARE kann mit *eingebetteten Optionen* beginnen: eine Folge **(?***xyz***)** 
 : straffe Syntax (üblicher Standard; siehe unten)
 
 **w**
-: invers teilweise zeilenumbruch-sensitiv („weird“) (siehe **ABGLEICH** unten)
+: invers teilweise zeilenumbruch-sensitiv („weird“) (siehe [Abgleich] unten)
 
 **x**
 : erweiterte Syntax (siehe unten)
@@ -374,7 +378,7 @@ Neben der üblichen (*straffen*) RE-Syntax, in der alle Zeichen bedeutsam sind, 
 
 - Leerraum oder „**#**“ innerhalb eines Klammerausdrucks bleibt erhalten
 
-- Leerraum und Kommentare sind in mehrzeichenigen Symbolen wie dem ARE „**(?:**“ oder dem BRE „**\(**“ unzulässig
+- Leerraum und Kommentare sind in mehrzeichenigen Symbolen wie dem ARE „**(?:**“ oder dem BRE „**\\(**“ unzulässig
 
 
 Leerraumzeichen der erweiterten Syntax sind Leerzeichen, Tabulator, Zeilenumbruch und jedes Zeichen der Zeichenklasse *space*.
@@ -405,9 +409,9 @@ Das Atom „**a**“ hat keine Gierigkeits-Präferenz; für „**b**“ setzen w
 
 Trefferlängen werden in Zeichen, nicht in Sortierelementen gemessen. Eine leere Zeichenkette gilt als länger als gar kein Treffer. Z. B. trifft „**bb\***“ die drei mittleren Zeichen von „**abbbc**“, „**(week|wee)(night|knights)**“ alle zehn Zeichen von „**weeknights**“, bei „**(.\*).\***“ gegen „**abc**“ trifft der geklammerte Unterausdruck alle drei Zeichen, und bei „**(a\*)\***“ gegen „**bc**“ treffen sowohl der gesamte RE als auch der geklammerte Unterausdruck eine leere Zeichenkette.
 
-Ist groß-/kleinschreibungs-unabhängiger Abgleich angegeben, wirkt es etwa so, als ob alle Groß-/Kleinschreibungs-Unterschiede aus dem Alphabet verschwunden wären. Erscheint ein Buchstabe in mehreren Schreibungen außerhalb eines Klammerausdrucks als gewöhnliches Zeichen, wird er effektiv in einen Klammerausdruck mit beiden Schreibungen verwandelt, sodass **x** zu „**[xX]**“ wird. Erscheint er innerhalb eines Klammerausdrucks, werden alle Schreibvarianten hinzugefügt, sodass „**[x]**“ zu „**[xX]**“ und „**[^x]**“ zu „**[^xX]**“ wird.
+Ist groß-/kleinschreibungs-unabhängiger Abgleich angegeben, wirkt es etwa so, als ob alle Groß-/Kleinschreibungs-Unterschiede aus dem Alphabet verschwunden wären. Erscheint ein Buchstabe in mehreren Schreibungen außerhalb eines Klammerausdrucks als gewöhnliches Zeichen, wird er effektiv in einen Klammerausdruck mit beiden Schreibungen verwandelt, sodass **x** zu „**\[xX\]**“ wird. Erscheint er innerhalb eines Klammerausdrucks, werden alle Schreibvarianten hinzugefügt, sodass „**\[x\]**“ zu „**\[xX\]**“ und „**\[^x\]**“ zu „**\[^xX\]**“ wird.
 
-Ist zeilenumbruch-sensitiver Abgleich angegeben, treffen **.** und Klammerausdrücke mit **^** nie das Zeilenumbruchzeichen (Treffer überschreiten Zeilenumbrüche nicht, es sei denn, der RE ordnet es ausdrücklich an), und **^** sowie **$** treffen jeweils die leere Zeichenkette nach bzw. vor einem Zeilenumbruch zusätzlich zu Anfang und Ende der Zeichenkette. ARE **\A** und **\Z** treffen weiterhin *nur* Anfang bzw. Ende der Zeichenkette.
+Ist zeilenumbruch-sensitiver Abgleich angegeben, treffen **.** und Klammerausdrücke mit **^** nie das Zeilenumbruchzeichen (Treffer überschreiten Zeilenumbrüche nicht, es sei denn, der RE ordnet es ausdrücklich an), und **^** sowie **$** treffen jeweils die leere Zeichenkette nach bzw. vor einem Zeilenumbruch zusätzlich zu Anfang und Ende der Zeichenkette. ARE **\\A** und **\\Z** treffen weiterhin *nur* Anfang bzw. Ende der Zeichenkette.
 
 Bei teilweise zeilenumbruch-sensitivem Abgleich betrifft das **.** und Klammerausdrücke wie beim zeilenumbruch-sensitiven Abgleich, aber nicht **^** und **$**.
 
@@ -417,9 +421,9 @@ Bei invers teilweise zeilenumbruch-sensitivem Abgleich betrifft das **^** und **
 
 Für die Länge von REs gibt es keine besondere Grenze. Hoch portable Programme sollten keine REs länger als 256 Byte verwenden, da eine POSIX-konforme Implementierung solche REs ablehnen darf.
 
-Das einzige Merkmal von AREs, das tatsächlich mit POSIX-EREs inkompatibel ist: **\\** verliert in Klammerausdrücken nicht seine Sonderbedeutung. Alle anderen ARE-Merkmale nutzen Syntax, die in POSIX-EREs unzulässig ist oder undefinierte bzw. nicht spezifizierte Wirkung hat; die „**\***“-Syntax der Direktoren liegt ebenfalls außerhalb der POSIX-Syntax für BREs und EREs.
+Das einzige Merkmal von AREs, das tatsächlich mit POSIX-EREs inkompatibel ist: **\\** verliert in Klammerausdrücken nicht seine Sonderbedeutung. Alle anderen ARE-Merkmale nutzen Syntax, die in POSIX-EREs unzulässig ist oder undefinierte bzw. nicht spezifizierte Wirkung hat; die „**\*\*\***“-Syntax der Direktoren liegt ebenfalls außerhalb der POSIX-Syntax für BREs und EREs.
 
-Viele ARE-Erweiterungen stammen aus Perl; einige wurden bereinigt, einige Perl-Erweiterungen fehlen. Bemerkenswerte Inkompatibilitäten: „**\b**“, „**\B**“, fehlende Sonderbehandlung eines abschließenden Zeilenumbruchs, Ergänzung komplementierter Klammerausdrücke bei zeilenumbruch-sensitivem Abgleich, Einschränkungen für Klammern und Rückverweise in Lookahead-Einschränkungen sowie längster/kürzester-Treffer-Semantik (statt erster Treffer).
+Viele ARE-Erweiterungen stammen aus Perl; einige wurden bereinigt, einige Perl-Erweiterungen fehlen. Bemerkenswerte Inkompatibilitäten: „**\\b**“, „**\\B**“, fehlende Sonderbehandlung eines abschließenden Zeilenumbruchs, Ergänzung komplementierter Klammerausdrücke bei zeilenumbruch-sensitivem Abgleich, Einschränkungen für Klammern und Rückverweise in Lookahead-Einschränkungen sowie längster/kürzester-Treffer-Semantik (statt erster Treffer).
 
 Die Abgleichregeln für REs mit normalen und nicht-gierigen Quantifizierern haben sich seit frühen Beta-Versionen dieses Pakets geändert. (Die neuen Regeln sind einfacher und klarer, raten aber weniger die wirklichen Absichten des Nutzers.)
 
@@ -429,11 +433,11 @@ Henry Spencers ursprüngliches *regexp*-Paket von 1986, noch weit verbreitet (z.
 
 - **{** gefolgt von einer Ziffer in einem ARE ist der Beginn einer Grenze; in RREs war **{** stets ein gewöhnliches Zeichen. Solche Folgen sollten selten sein und führen oft zu einem Fehler, weil folgende Zeichen nicht wie eine gültige Grenze aussehen.
 
-- In AREs bleibt **\\** innerhalb von „**[\|]**“ ein Sonderzeichen; ein wörtliches **\\** in **[\|]** muss „**\\**“ geschrieben werden. **\\** liefert in RREs ebenfalls ein wörtliches **\\** in **[\|]**, aber nur wirklich Paranoide verdoppelten routinemäßig den Backslash.
+- In AREs bleibt **\\** innerhalb von „**\[\]**“ ein Sonderzeichen; ein wörtliches **\\** in **\[\]** muss „**\\\\**“ geschrieben werden. **\\\\** liefert in RREs ebenfalls ein wörtliches **\\** in **\[\]**, aber nur wirklich Paranoide verdoppelten routinemäßig den Backslash.
 
 - AREs melden den längsten/kürzesten Treffer für den RE, nicht den ersten in einer festgelegten Suchreihenfolge. Das kann RREs betreffen, die darauf ausgelegt waren, dass der erste Treffer gemeldet wird. (Die sorgfältige Ausgestaltung von RREs zur Optimierung der Suchreihenfolge ist obsolet — AREs prüfen alle möglichen Treffer parallel, ihre Leistung hängt wenig von der Komplexität ab — Fälle, in denen die Suchreihenfolge genutzt wurde, um absichtlich einen Treffer zu finden, der *nicht* der längste/kürzeste ist, müssen umgeschrieben werden.)
 
 
 # Einfache reguläre Ausdrücke
 
-BREs unterscheiden sich in mehreren Punkten von EREs. „**|**“, „**+**“ und **?** sind gewöhnliche Zeichen; es gibt kein Äquivalent für ihre Funktion. Die Begrenzer für Grenzen sind **\{** und „**\}**“, **{** und **}** allein sind gewöhnliche Zeichen. Die Klammern für verschachtelte Unterausdrücke sind **\(** und „**\)**“, **(** und **)** allein sind gewöhnliche Zeichen. **^** ist ein gewöhnliches Zeichen außer am Anfang des RE oder am Anfang eines geklammerten Unterausdrucks, **$** außer am Ende des RE oder am Ende eines geklammerten Unterausdrucks, und **\*** ist ein gewöhnliches Zeichen, wenn es am Anfang des RE oder am Anfang eines geklammerten Unterausdrucks steht (nach einem möglichen führenden „**^**“). Schließlich gibt es einstellige Rückverweise, und **\<** sowie **\>** sind Synonyme für „**[[:<:]]**“ bzw. „**[[:>:]]**“; weitere Escapes gibt es nicht.
+BREs unterscheiden sich in mehreren Punkten von EREs. „**|**“, „**+**“ und **?** sind gewöhnliche Zeichen; es gibt kein Äquivalent für ihre Funktion. Die Begrenzer für Grenzen sind **\\{** und „**\\}**“, **{** und **}** allein sind gewöhnliche Zeichen. Die Klammern für verschachtelte Unterausdrücke sind **\\(** und „**\\)**“, **(** und **)** allein sind gewöhnliche Zeichen. **^** ist ein gewöhnliches Zeichen außer am Anfang des RE oder am Anfang eines geklammerten Unterausdrucks, **$** außer am Ende des RE oder am Ende eines geklammerten Unterausdrucks, und **\*** ist ein gewöhnliches Zeichen, wenn es am Anfang des RE oder am Anfang eines geklammerten Unterausdrucks steht (nach einem möglichen führenden „**^**“). Schließlich gibt es einstellige Rückverweise, und **\\<** sowie **\\>** sind Synonyme für „**\[\[:<:\]\]**“ bzw. „**\[\[:>:\]\]**“; weitere Escapes gibt es nicht.

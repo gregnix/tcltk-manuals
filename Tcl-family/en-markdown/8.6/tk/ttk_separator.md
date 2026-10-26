@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::separator
+title: ttk::separator
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -20,7 +21,7 @@ ttk::separator - Separator bar
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::separator]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::separator]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -29,12 +30,9 @@ A **ttk::separator** widget displays a horizontal or vertical separator bar.
 
 # Standard options
 
-|   |   |
-| --- | --- |
-| **-class** | **-cursor** |
-| **-style** | **-takefocus** |
+**-class**, **-cursor**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -50,10 +48,14 @@ Separator widgets support the standard **cget**, **configure**, **identify**, **
 
 The class name for a **ttk::separator** is **TSeparator**.
 
-**TSeparator** styling options configurable with **ttk::style** are:
+**TSeparator** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

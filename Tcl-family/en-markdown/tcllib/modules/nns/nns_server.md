@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::server
+title: nameserv::server
 ManualSection: n
 Version: 0.3.3
 TclPart: tcllib
@@ -21,18 +22,18 @@ nameserv::server - Name service facility, Server
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nameserv::server]{.lit} [0.3.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [comm]{.lit} 
-[package]{.cmd} [require]{.sub} [interp]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[::nameserv::server::start]{.cmd} 
-[::nameserv::server::stop]{.cmd} 
-[::nameserv::server::active?]{.cmd} 
-[::nameserv::server::cget]{.cmd} [-option]{.sub} 
-[::nameserv::server::configure]{.cmd} 
-[::nameserv::server::configure]{.cmd} [-option]{.sub} 
-[::nameserv::server::configure]{.cmd} [-option]{.sub} [value...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nameserv::server]{.lit} [0.3.3]{.optlit}
+[package]{.cmd} [require]{.sub} [comm]{.lit}
+[package]{.cmd} [require]{.sub} [interp]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[::nameserv::server::start]{.cmd}
+[::nameserv::server::stop]{.cmd}
+[::nameserv::server::active?]{.cmd}
+[::nameserv::server::cget]{.cmd} [-option]{.lit}
+[::nameserv::server::configure]{.cmd}
+[::nameserv::server::configure]{.cmd} [-option]{.lit}
+[::nameserv::server::configure]{.cmd} [-option]{.lit} [value...]{.arg}
 :::
 
 # Description
@@ -45,12 +46,14 @@ This service is built in top of and for the package **comm**. It has nothing to 
 
 This server supports the *Core* protocol feature, and since version 0.3 the *Search/Continuous* feature as well.
 
-# Api
+# API
 
 The package exports five commands, as specified below:
 
 **::nameserv::server::start**
-: This command starts the server and causes it to listen on the configured port. From now on clients are able to connect and make requests. The result of the command is the empty string. Note that any incoming requests will only be handled if the application the server is part of does enter an event loop after this command has been run.
+: This command starts the server and causes it to listen on the configured port. From now on clients are able to connect and make requests. The result of the command is the empty string.
+
+    Note that any incoming requests will only be handled if the application the server is part of does enter an event loop after this command has been run.
 
 **::nameserv::server::stop**
 : Invoking this command stops the server and releases all information it had. Existing connections are shut down, and no new connections will be accepted any longer. The result of the command is the empty string.
@@ -59,16 +62,18 @@ The package exports five commands, as specified below:
 : This command returns a boolean value indicating the state of the server. The result will be **true** if the server is active, i.e. has been started, and **false** otherwise.
 
 **::nameserv::server::cget** **-option**
-: This command returns the currently configured value for the specified **-option**. The list of supported options and their meaning can be found in section **OPTIONS**.
+: This command returns the currently configured value for the specified **-option**. The list of supported options and their meaning can be found in section [Options].
 
 **::nameserv::server::configure**
-: In this form the command returns a dictionary of all supported options, and their current values. The list of supported options and their meaning can be found in section **OPTIONS**.
+: In this form the command returns a dictionary of all supported options, and their current values. The list of supported options and their meaning can be found in section [Options].
 
 **::nameserv::server::configure** **-option**
-: In this form the command is an alias for "**::nameserv::server::cget** **-option**". The list of supported options and their meaning can be found in section **OPTIONS**.
+: In this form the command is an alias for "**::nameserv::server::cget** **-option**". The list of supported options and their meaning can be found in section [Options].
 
 **::nameserv::server::configure** **-option** *value*...
-: In this form the command is used to configure one or more of the supported options. At least one option has to be specified, and each option is followed by its new value. The list of supported options and their meaning can be found in section **OPTIONS**. This form can be used only if the server is not active, i.e. has not been started yet, or has been stopped. While the server is active it cannot be reconfigured.
+: In this form the command is used to configure one or more of the supported options. At least one option has to be specified, and each option is followed by its new value. The list of supported options and their meaning can be found in section [Options].
+
+    This form can be used only if the server is not active, i.e. has not been started yet, or has been stopped. While the server is active it cannot be reconfigured.
 
 
 # Options
@@ -84,13 +89,13 @@ The options supported by the server are for the specification of the TCP port to
 
 # History
 
-**0.3**
+0.3
 : Extended the server with the ability to perform asynchronous and continuous searches.
 
-**0.2**
+0.2
 : Changed name of -local switch to -localonly.
 
-**0.1**
+0.1
 : Initial implementation of the server.
 
 

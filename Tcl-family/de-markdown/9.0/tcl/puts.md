@@ -1,5 +1,6 @@
 ---
 CommandName: puts
+title: puts
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -11,16 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 puts - In einen Kanal schreiben
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[puts]{.cmd} [-nonewline]{.optlit} [channel]{.optarg} [string]{.arg} 
+[puts]{.cmd} [-nonewline]{.optlit} [channel]{.optarg} [string]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **puts** wurde durch **chan puts** abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+Der Befehl **puts** wurde durch [chan puts][chan] abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+
+
+[chan]: chan.md

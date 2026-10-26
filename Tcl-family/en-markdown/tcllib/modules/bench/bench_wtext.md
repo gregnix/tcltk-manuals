@@ -1,5 +1,6 @@
 ---
 CommandName: bench::out::text
+title: bench::out::text
 ManualSection: n
 Version: 0.1.3
 TclPart: tcllib
@@ -25,9 +26,9 @@ bench::out::text - bench::out::text - Formatting benchmark results as human read
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [bench::out::text]{.lit} [0.1.3]{.optlit} 
-[::bench::out::text]{.cmd} [bench_result]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [bench::out::text]{.lit} [0.1.3]{.optlit}
+[::bench::out::text]{.cmd} [bench\_result]{.arg}
 :::
 
 # Description
@@ -38,10 +39,12 @@ A reader interested in the generation or processing of such results should go an
 
 If the bench language itself is the actual interest please start with the *bench language introduction* and then proceed from there to the formal *bench language specification*.
 
-# Public api
+# Public API
 
-**::bench::out::text** *bench_result*
-: This command formats the specified benchmark result for output to a file, socket, etc. This specific command generates human readable text. For other formatting styles see the packages **bench** and **bench::out::csv** which provide commands to format benchmark results in raw form, or as importable CSV data, respectively.
+**::bench::out::text** *bench\_result*
+: This command formats the specified benchmark result for output to a file, socket, etc. This specific command generates human readable text.
+
+    For other formatting styles see the packages **bench** and **bench::out::csv** which provide commands to format benchmark results in raw form, or as importable CSV data, respectively.
 
 
 # Bugs, ideas, feedback

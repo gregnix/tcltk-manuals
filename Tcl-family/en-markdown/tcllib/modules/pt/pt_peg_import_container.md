@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg::import::container
+title: pt::peg::import::container
 ManualSection: n
 Version: 0
 TclPart: tcllib
@@ -32,7 +33,7 @@ pt::peg::import::container - PEG Import Plugin. From CONTAINER format
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
 # Description

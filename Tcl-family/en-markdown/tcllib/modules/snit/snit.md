@@ -1,5 +1,6 @@
 ---
 CommandName: snit
+title: snit
 ManualSection: n
 Version: 2.3.4
 TclPart: tcllib
@@ -28,110 +29,110 @@ snit - Snit's Not Incr Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2.3.4]{.optlit} 
-[snit::type]{.cmd} [name]{.arg} [definition]{.arg} 
-[typevariable]{.cmd} [name]{.arg} [-array]{.optlit} [value]{.optarg} 
-[typemethod]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[typeconstructor]{.cmd} [body]{.arg} 
-[variable]{.cmd} [name]{.arg} [-array]{.optlit} [value]{.optarg} 
-[method]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[option]{.cmd} [namespec]{.arg} [defaultValue]{.optarg} 
-[option]{.cmd} [namespec]{.arg} [options]{.optdot} 
-[constructor]{.cmd} [arglist]{.arg} [body]{.arg} 
-[destructor]{.cmd} [body]{.arg} 
-[proc]{.cmd} [name]{.arg} [args]{.arg} [body]{.arg} 
-[delegate]{.cmd} [method]{.sub} [name]{.arg} [to]{.lit} [comp]{.arg} [as target]{.optarg} 
-[delegate]{.cmd} [method]{.sub} [name]{.arg} [to comp]{.optarg} [using]{.lit} [pattern]{.arg} 
-[delegate]{.cmd} [method]{.sub} [\*]{.lit} [to comp]{.optarg} [using pattern]{.optarg} [except exceptions]{.optarg} 
-[delegate]{.cmd} [option]{.sub} [namespec]{.arg} [to]{.lit} [comp]{.arg} 
-[delegate]{.cmd} [option]{.sub} [namespec]{.arg} [to]{.lit} [comp]{.arg} [as]{.lit} [target]{.arg} 
-[delegate]{.cmd} [option]{.sub} [\*]{.lit} [to]{.lit} [comp]{.arg} 
-[delegate]{.cmd} [option]{.sub} [\*]{.lit} [to]{.lit} [comp]{.arg} [except]{.lit} [exceptions]{.arg} 
-[component]{.cmd} [comp]{.arg} [-public method]{.optarg} [-inherit flag]{.optarg} 
-[delegate]{.cmd} [typemethod]{.sub} [name]{.arg} [to]{.lit} [comp]{.arg} [as target]{.optarg} 
-[delegate]{.cmd} [typemethod]{.sub} [name]{.arg} [to comp]{.optarg} [using]{.lit} [pattern]{.arg} 
-[delegate]{.cmd} [typemethod]{.sub} [\*]{.lit} [to comp]{.optarg} [using pattern]{.optarg} [except exceptions]{.optarg} 
-[typecomponent]{.cmd} [comp]{.arg} [-public typemethod]{.optarg} [-inherit flag]{.optarg} 
-[pragma]{.cmd} [options]{.optdot} 
-[expose]{.cmd} [comp]{.arg} 
-[expose]{.cmd} [comp]{.arg} [as]{.lit} [method]{.arg} 
-[onconfigure]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[oncget]{.cmd} [name]{.arg} [body]{.arg} 
-[snit::widget]{.cmd} [name]{.arg} [definition]{.arg} 
-[widgetclass]{.cmd} [name]{.arg} 
-[hulltype]{.cmd} [type]{.arg} 
-[snit::widgetadaptor]{.cmd} [name]{.arg} [definition]{.arg} 
-[snit::typemethod]{.cmd} [type]{.arg} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[snit::method]{.cmd} [type]{.arg} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[snit::macro]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg} 
-[snit::compile]{.cmd} [which]{.arg} [type]{.arg} [body]{.arg} 
-[\$type]{.cmd} [typemethod]{.arg} [args...]{.arg} 
-[\$type]{.cmd} [create]{.sub} [name]{.arg} [option value]{.optdot} 
-[\$type]{.cmd} [info]{.sub} [typevars]{.lit} [pattern]{.optarg} 
-[\$type]{.cmd} [info]{.sub} [typemethods]{.lit} [pattern]{.optarg} 
-[\$type]{.cmd} [info]{.sub} [args]{.lit} [method]{.arg} 
-[\$type]{.cmd} [info]{.sub} [body]{.lit} [method]{.arg} 
-[\$type]{.cmd} [info]{.sub} [default]{.lit} [method]{.arg} [aname]{.arg} [varname]{.arg} 
-[\$type]{.cmd} [info]{.sub} [instances]{.lit} [pattern]{.optarg} 
-[\$type]{.cmd} [destroy]{.sub} 
-[\$object]{.cmd} [method]{.arg} [args...]{.arg} 
-[\$object]{.cmd} [configure]{.sub} [option]{.optarg} [value]{.optarg} ... 
-[\$object]{.cmd} [configurelist]{.sub} [optionlist]{.arg} 
-[\$object]{.cmd} [cget]{.sub} [option]{.arg} 
-[\$object]{.cmd} [destroy]{.sub} 
-[\$object]{.cmd} [info]{.sub} [type]{.lit} 
-[\$object]{.cmd} [info]{.sub} [vars]{.lit} [pattern]{.optarg} 
-[\$object]{.cmd} [info]{.sub} [typevars]{.lit} [pattern]{.optarg} 
-[\$object]{.cmd} [info]{.sub} [typemethods]{.lit} [pattern]{.optarg} 
-[\$object]{.cmd} [info]{.sub} [options]{.lit} [pattern]{.optarg} 
-[\$object]{.cmd} [info]{.sub} [methods]{.lit} [pattern]{.optarg} 
-[\$object]{.cmd} [info]{.sub} [args]{.lit} [method]{.arg} 
-[\$object]{.cmd} [info]{.sub} [body]{.lit} [method]{.arg} 
-[\$object]{.cmd} [info]{.sub} [default]{.lit} [method]{.arg} [aname]{.arg} [varname]{.arg} 
-[mymethod]{.cmd} [name]{.arg} [args]{.optdot} 
-[mytypemethod]{.cmd} [name]{.arg} [args]{.optdot} 
-[myproc]{.cmd} [name]{.arg} [args]{.optdot} 
-[myvar]{.cmd} [name]{.arg} 
-[mytypevar]{.cmd} [name]{.arg} 
-[from]{.cmd} [argvName]{.arg} [option]{.arg} [defvalue]{.optarg} 
-[install]{.cmd} [compName]{.arg} [using]{.lit} [objType]{.arg} [objName]{.arg} [args...]{.arg} 
-[installhull]{.cmd} [using]{.sub} [widgetType]{.arg} [args...]{.arg} 
-[installhull]{.cmd} [name]{.arg} 
-[variable]{.cmd} [name]{.arg} 
-[typevariable]{.cmd} [name]{.arg} 
-[varname]{.cmd} [name]{.arg} 
-[typevarname]{.cmd} [name]{.arg} 
-[codename]{.cmd} [name]{.arg} 
-[snit::boolean]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::boolean]{.cmd} [name]{.arg} 
-[snit::double]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::double]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::enum]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::enum]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::fpixels]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::fpixels]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::integer]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::integer]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::listtype]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::listtype]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::pixels]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::pixels]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::stringtype]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::stringtype]{.cmd} [name]{.arg} [option value]{.optdot} 
-[snit::window]{.cmd} [validate]{.sub} [value]{.optarg} 
-[snit::window]{.cmd} [name]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2.3.4]{.optlit}
+[snit::type]{.cmd} [name]{.arg} [definition]{.arg}
+[typevariable]{.cmd} [name]{.arg} [-array]{.optlit} [value]{.optarg}
+[typemethod]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[typeconstructor]{.cmd} [body]{.arg}
+[variable]{.cmd} [name]{.arg} [-array]{.optlit} [value]{.optarg}
+[method]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[option]{.cmd} [namespec]{.arg} [defaultValue]{.optarg}
+[option]{.cmd} [namespec]{.arg} [options...]{.optarg}
+[constructor]{.cmd} [arglist]{.arg} [body]{.arg}
+[destructor]{.cmd} [body]{.arg}
+[proc]{.cmd} [name]{.arg} [args]{.arg} [body]{.arg}
+[delegate]{.cmd} [method]{.lit} [name]{.arg} [to]{.lit} [comp]{.arg} [[as]{.lit} [target]{.arg}]{.optarg}
+[delegate]{.cmd} [method]{.lit} [name]{.arg} [[to]{.lit} [comp]{.arg}]{.optarg} [using]{.lit} [pattern]{.arg}
+[delegate]{.cmd} [method]{.lit} [\*]{.lit} [[to]{.lit} [comp]{.arg}]{.optarg} [[using]{.lit} [pattern]{.arg}]{.optarg} [[except]{.lit} [exceptions]{.arg}]{.optarg}
+[delegate]{.cmd} [option]{.lit} [namespec]{.arg} [to]{.lit} [comp]{.arg}
+[delegate]{.cmd} [option]{.lit} [namespec]{.arg} [to]{.lit} [comp]{.arg} [as]{.lit} [target]{.arg}
+[delegate]{.cmd} [option]{.lit} [\*]{.lit} [to]{.lit} [comp]{.arg}
+[delegate]{.cmd} [option]{.lit} [\*]{.lit} [to]{.lit} [comp]{.arg} [except]{.lit} [exceptions]{.arg}
+[component]{.cmd} [comp]{.arg} [[-public]{.lit} [method]{.arg}]{.optarg} [[-inherit]{.lit} [flag]{.arg}]{.optarg}
+[delegate]{.cmd} [typemethod]{.lit} [name]{.arg} [to]{.lit} [comp]{.arg} [[as]{.lit} [target]{.arg}]{.optarg}
+[delegate]{.cmd} [typemethod]{.lit} [name]{.arg} [[to]{.lit} [comp]{.arg}]{.optarg} [using]{.lit} [pattern]{.arg}
+[delegate]{.cmd} [typemethod]{.lit} [\*]{.lit} [[to]{.lit} [comp]{.arg}]{.optarg} [[using]{.lit} [pattern]{.arg}]{.optarg} [[except]{.lit} [exceptions]{.arg}]{.optarg}
+[typecomponent]{.cmd} [comp]{.arg} [[-public]{.lit} [typemethod]{.arg}]{.optarg} [[-inherit]{.lit} [flag]{.arg}]{.optarg}
+[pragma]{.cmd} [options...]{.optarg}
+[expose]{.cmd} [comp]{.arg}
+[expose]{.cmd} [comp]{.arg} [as]{.lit} [method]{.arg}
+[onconfigure]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[oncget]{.cmd} [name]{.arg} [body]{.arg}
+[snit::widget]{.cmd} [name]{.arg} [definition]{.arg}
+[widgetclass]{.cmd} [name]{.arg}
+[hulltype]{.cmd} [type]{.arg}
+[snit::widgetadaptor]{.cmd} [name]{.arg} [definition]{.arg}
+[snit::typemethod]{.cmd} [type]{.arg} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[snit::method]{.cmd} [type]{.arg} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[snit::macro]{.cmd} [name]{.arg} [arglist]{.arg} [body]{.arg}
+[snit::compile]{.cmd} [which]{.arg} [type]{.arg} [body]{.arg}
+[$type]{.cmd} [typemethod]{.arg} [args...]{.arg}
+[$type]{.cmd} [create]{.lit} [name]{.arg} [option value]{.optdot}
+[$type]{.cmd} [info]{.lit} [typevars]{.lit} [pattern]{.optarg}
+[$type]{.cmd} [info]{.lit} [typemethods]{.lit} [pattern]{.optarg}
+[$type]{.cmd} [info]{.lit} [args]{.lit} [method]{.arg}
+[$type]{.cmd} [info]{.lit} [body]{.lit} [method]{.arg}
+[$type]{.cmd} [info]{.lit} [default]{.lit} [method]{.arg} [aname]{.arg} [varname]{.arg}
+[$type]{.cmd} [info]{.lit} [instances]{.lit} [pattern]{.optarg}
+[$type]{.cmd} [destroy]{.lit}
+[$object]{.cmd} [method]{.arg} [args...]{.arg}
+[$object]{.cmd} [configure]{.lit} [option]{.optarg} [value]{.optarg} ...
+[$object]{.cmd} [configurelist]{.lit} [optionlist]{.arg}
+[$object]{.cmd} [cget]{.lit} [option]{.arg}
+[$object]{.cmd} [destroy]{.lit}
+[$object]{.cmd} [info]{.lit} [type]{.lit}
+[$object]{.cmd} [info]{.lit} [vars]{.lit} [pattern]{.optarg}
+[$object]{.cmd} [info]{.lit} [typevars]{.lit} [pattern]{.optarg}
+[$object]{.cmd} [info]{.lit} [typemethods]{.lit} [pattern]{.optarg}
+[$object]{.cmd} [info]{.lit} [options]{.lit} [pattern]{.optarg}
+[$object]{.cmd} [info]{.lit} [methods]{.lit} [pattern]{.optarg}
+[$object]{.cmd} [info]{.lit} [args]{.lit} [method]{.arg}
+[$object]{.cmd} [info]{.lit} [body]{.lit} [method]{.arg}
+[$object]{.cmd} [info]{.lit} [default]{.lit} [method]{.arg} [aname]{.arg} [varname]{.arg}
+[mymethod]{.cmd} [name]{.arg} [args...]{.optarg}
+[mytypemethod]{.cmd} [name]{.arg} [args...]{.optarg}
+[myproc]{.cmd} [name]{.arg} [args...]{.optarg}
+[myvar]{.cmd} [name]{.arg}
+[mytypevar]{.cmd} [name]{.arg}
+[from]{.cmd} [argvName]{.arg} [option]{.arg} [defvalue]{.optarg}
+[install]{.cmd} [compName]{.arg} [using]{.lit} [objType]{.arg} [objName]{.arg} [args...]{.arg}
+[installhull]{.cmd} [using]{.lit} [widgetType]{.arg} [args...]{.arg}
+[installhull]{.cmd} [name]{.arg}
+[variable]{.cmd} [name]{.arg}
+[typevariable]{.cmd} [name]{.arg}
+[varname]{.cmd} [name]{.arg}
+[typevarname]{.cmd} [name]{.arg}
+[codename]{.cmd} [name]{.arg}
+[snit::boolean]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::boolean]{.cmd} [name]{.arg}
+[snit::double]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::double]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::enum]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::enum]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::fpixels]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::fpixels]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::integer]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::integer]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::listtype]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::listtype]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::pixels]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::pixels]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::stringtype]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::stringtype]{.cmd} [name]{.arg} [option value...]{.optarg}
+[snit::window]{.cmd} [validate]{.lit} [value]{.optarg}
+[snit::window]{.cmd} [name]{.arg}
 :::
 
 # Description
 
 Snit is a pure Tcl object and megawidget system.  It's unique among Tcl object systems in that it's based not on inheritance but on delegation.  Object systems based on inheritance only allow you to inherit from classes defined using the same system, which is limiting.  In Tcl, an object is anything that acts like an object; it shouldn't matter how the object was implemented.  Snit is intended to help you build applications out of the materials at hand; thus, Snit is designed to be able to incorporate and build on any object, whether it's a hand-coded object, a **Tk** widget, an **Incr Tcl** object, a **BWidget** or almost anything else.
 
-This man page is intended to be a reference only; see the accompanying **snitfaq** for a gentler, more tutorial introduction to Snit concepts.
+This man page is intended to be a reference only; see the accompanying [snitfaq] for a gentler, more tutorial introduction to Snit concepts.
 
 # Snit versions
 
-This man page covers both Snit 2.2 and Snit 1.3.  The primary difference between the two versions is simply that Snit 2.2 contains speed optimizations based on new features of Tcl 8.5; Snit 1.3 supports all of Tcl 8.3, 8.4 and Tcl 8.5.  There are a few minor inconsistencies; they are flagged in the body of the man page with the label "Snit 1.x Incompatibility"; they are also discussed in the **snitfaq**.
+This man page covers both Snit 2.2 and Snit 1.3.  The primary difference between the two versions is simply that Snit 2.2 contains speed optimizations based on new features of Tcl 8.5; Snit 1.3 supports all of Tcl 8.3, 8.4 and Tcl 8.5.  There are a few minor inconsistencies; they are flagged in the body of the man page with the label "Snit 1.x Incompatibility"; they are also discussed in the [snitfaq].
 
 # Reference
 
@@ -140,525 +141,579 @@ This man page covers both Snit 2.2 and Snit 1.3.  The primary difference between
 Snit provides the following commands for defining new types:
 
 **snit::type** *name* *definition*
-: Defines a new abstract data type called *name*.  If *name* is not a fully qualified command name, it is assumed to be a name in the namespace in which the **snit::type** command was called (usually the global namespace).  It returns the fully qualified name of the new type. The type name is then a command that is used to create objects of the new type, along with other activities. The **snit::type** *definition* block is a script that may contain the following definitions:
+: Defines a new abstract data type called *name*.  If *name* is not a fully qualified command name, it is assumed to be a name in the namespace in which the **snit::type** command was called (usually the global namespace).  It returns the fully qualified name of the new type.
 
+    The type name is then a command that is used to create objects of the new type, along with other activities.
 
-**typevariable** *name* ?**-array**? ?*value*?
-: Defines a type variable with the specified *name*, and optionally the specified *value*.  Type variables are shared by all instances of the type.  If the **-array** option is included, then *value* should be a dictionary; it will be assigned to the variable using **array set**.
+    The **snit::type** *definition* block is a script that may contain the following definitions:
 
-**typemethod** *name* *arglist* *body*
-: Defines a type method, a subcommand of the new type command, with the specified name, argument list, and body.  The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument; however, it may not contain the argument names **type**, **self**, **selfns**, or **win**. The variable **type** is automatically defined in the *body* to the type's fully-qualified name.  In addition, type variables are automatically visible in the *body* of every type method. If the *name* consists of two or more tokens, Snit handles it specially:
+    **typevariable** *name* ?**-array**? ?*value*?
+    : Defines a type variable with the specified *name*, and optionally the specified *value*.  Type variables are shared by all instances of the type.  If the **-array** option is included, then *value* should be a dictionary; it will be assigned to the variable using **array set**.
 
+    **typemethod** *name* *arglist* *body*
+    : Defines a type method, a subcommand of the new type command, with the specified name, argument list, and body.  The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument; however, it may not contain the argument names **type**, **self**, **selfns**, or **win**.
 
-```
-    typemethod {a b} {arg} { puts "Got $arg" }
-```
+        The variable **type** is automatically defined in the *body* to the type's fully-qualified name.  In addition, type variables are automatically visible in the *body* of every type method.
 
-: This statement implicitly defines a type method called **a** which has a subcommand **b**.  **b** is called like this:
+        If the *name* consists of two or more tokens, Snit handles it specially:
 
+        ```
+            typemethod {a b} {arg} { puts "Got $arg" }
+        ```
 
-```
-    $type a b "Hello, world!"
-```
+        This statement implicitly defines a type method called **a** which has a subcommand **b**.  **b** is called like this:
 
-: **a** may have any number of subcommands.  This makes it possible to define a hierarchical command structure; see **method**, below, for more examples. Type methods can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type's type methods can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5. *Snit 1.x Incompatibility:* In Snit 1.x, the following following two calls to this type method are equivalent:
+        ```
+            $type a b "Hello, world!"
+        ```
 
+        **a** may have any number of subcommands.  This makes it possible to define a hierarchical command structure; see **method**, below, for more examples.
 
-```
-    $type a b "Hello, world!"
-    $type {a b} "Hello, world!"
-```
+        Type methods can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type's type methods can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
-: In Snit 2.2, the second form is invalid.
+        *Snit 1.x Incompatibility:* In Snit 1.x, the following following two calls to this type method are equivalent:
 
+        ```
+            $type a b "Hello, world!"
+            $type {a b} "Hello, world!"
+        ```
 
-**typeconstructor** *body*
-: The type constructor's *body* is executed once when the type is first defined; it is typically used to initialize array-valued type variables and to add entries to **The Tk Option Database**. The variable **type** is automatically defined in the *body*, and contains the type's fully-qualified name.  In addition, type variables are automatically visible in the *body* of the type constructor. A type may define at most one type constructor. The type constructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type constructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
+        In Snit 2.2, the second form is invalid.
 
-**variable** *name* ?**-array**? ?*value*?
-: Defines an instance variable, a private variable associated with each instance of this type, and optionally its initial value. If the **-array** option is included, then *value* should be a dictionary; it will be assigned to the variable using **array set**.
+    **typeconstructor** *body*
+    : The type constructor's *body* is executed once when the type is first defined; it is typically used to initialize array-valued type variables and to add entries to [The Tk option database].
 
-**method** *name* *arglist* *body*
-: Defines an instance method, a subcommand of each instance of this type, with the specified name, argument list and body. The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument. The method is implicitly passed the following arguments as well: **type**, which contains the fully-qualified type name; **self**, which contains the current instance command name; **selfns**, which contains the name of the instance's private namespace; and **win**, which contains the original instance name. Consequently, the *arglist* may not contain the argument names **type**, **self**, **selfns**, or **win**. An instance method defined in this way is said to be *locally defined*. Type and instance variables are automatically visible in all instance methods.  If the type has locally defined options, the **options** array is also visible. If the *name* consists of two or more tokens, Snit handles it specially:
+        The variable **type** is automatically defined in the *body*, and contains the type's fully-qualified name.  In addition, type variables are automatically visible in the *body* of the type constructor.
 
+        A type may define at most one type constructor.
 
-```
-    method {a b} {} { ... }
-```
+        The type constructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type constructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
-: This statement implicitly defines a method called **a** which has a subcommand **b**.  **b** is called like this:
+    **variable** *name* ?**-array**? ?*value*?
+    : Defines an instance variable, a private variable associated with each instance of this type, and optionally its initial value. If the **-array** option is included, then *value* should be a dictionary; it will be assigned to the variable using **array set**.
 
+    **method** *name* *arglist* *body*
+    : Defines an instance method, a subcommand of each instance of this type, with the specified name, argument list and body. The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument.
 
-```
-    $self a b "Hello, world!"
-```
+        The method is implicitly passed the following arguments as well: **type**, which contains the fully-qualified type name; **self**, which contains the current instance command name; **selfns**, which contains the name of the instance's private namespace; and **win**, which contains the original instance name. Consequently, the *arglist* may not contain the argument names **type**, **self**, **selfns**, or **win**.
 
-: **a** may have any number of subcommands.  This makes it possible to define a hierarchical command structure:
+        An instance method defined in this way is said to be *locally defined*.
 
+        Type and instance variables are automatically visible in all instance methods.  If the type has locally defined options, the **options** array is also visible.
 
-```
-% snit::type dog {
-    method {tail wag}   {} {return "Wag, wag"}
-    method {tail droop} {} {return "Droop, droop"}
-}
-::dog
-% dog spot
-::spot
-% spot tail wag
-Wag, wag
-% spot tail droop
-Droop, droop
-%
-```
+        If the *name* consists of two or more tokens, Snit handles it specially:
 
-: What we've done is implicitly defined a "tail" method with subcommands "wag" and "droop".  Consequently, it's an error to define "tail" explicitly. Methods can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type's methods can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5. *Snit 1.x Incompatibility:* In Snit 1.x, the following following two calls to this method are equivalent:
+        ```
+            method {a b} {} { ... }
+        ```
 
+        This statement implicitly defines a method called **a** which has a subcommand **b**.  **b** is called like this:
 
-```
-    $self a b "Hello, world!"
-    $self {a b} "Hello, world!"
-```
+        ```
+            $self a b "Hello, world!"
+        ```
 
-: In Snit 2.2, the second form is invalid.
+        **a** may have any number of subcommands.  This makes it possible to define a hierarchical command structure:
 
-
-**option** *namespec* ?*defaultValue*?
-: ...see next...
-
-**option** *namespec* ?*options...*?
-: Defines an option for instances of this type, and optionally gives it an initial value.  The initial value defaults to the empty string if no *defaultValue* is specified. An option defined in this way is said to be *locally defined*. The *namespec* is a list defining the option's name, resource name, and class name, e.g.:
-
-
-```
-    option {-font font Font} {Courier 12}
-```
-
-: The option name must begin with a hyphen, and must not contain any upper case letters. The resource name and class name are optional; if not specified, the resource name defaults to the option name, minus the hyphen, and the class name defaults to the resource name with the first letter capitalized.  Thus, the following statement is equivalent to the previous example:
-
-
-```
-    option -font {Courier 12}
-```
-
-: See **The Tk Option Database** for more information about resource and class names. Options are normally set and retrieved using the standard instance methods **configure** and **cget**; within instance code (method bodies, etc.), option values are available through the **options** array:
-
-
-```
-    set myfont $options(-font)
-```
-
-: If the type defines any option handlers (e.g., **-configuremethod**), then it should probably use **configure** and **cget** to access its options to avoid subtle errors. The **option** statement may include the following options:
-
-
-**-default** *defvalue*
-: Defines the option's default value; the option's default value will be "" otherwise.
-
-**-readonly** *flag*
-: The *flag* can be any Boolean value recognized by Tcl. If *flag* is true, then the option is read-only--it can only be set using **configure** or **configurelist** at creation time, i.e., in the type's constructor.
-
-**-type** *type*
-: Every locally-defined option may define its validation type, which may be either the name of a validation type or a specification for a validation subtype For example, an option may declare that its value must be an integer by specifying **snit::integer** as its validation type:
-
-
-```
-    option -number -type snit::integer
-```
-
-: It may also declare that its value is an integer between 1 and 10 by specifying a validation subtype:
-
-
-```
-    option -number -type {snit::integer -min 1 -max 10}
-```
-
-: If a validation type or subtype is defined for an option, then it will be used to validate the option's value whenever it is changed by the object's **configure** or **configurelist** methods.  In addition, all such options will have their values validated automatically immediately after the constructor executes. Snit defines a family of validation types and subtypes, and it's quite simple to define new ones.  See **Validation Types** for the complete list, and **Defining Validation Types** for an explanation of how to define your own.
-
-
-**-cgetmethod** *methodName*
-: Every locally-defined option may define a **-cgetmethod**; it is called when the option's value is retrieved using the **cget** method.  Whatever the method's *body* returns will be the return value of the call to **cget**. The named method must take one argument, the option name. For example, this code is equivalent to (though slower than) Snit's default handling of **cget**:
-
-
-```
-    option -font -cgetmethod GetOption
-    method GetOption {option} {
-        return $options($option)
-    }
-```
-
-: Note that it's possible for any number of options to share a **-cgetmethod**.
-
-
-**-configuremethod** *methodName*
-: Every locally-defined option may define a **-configuremethod**; it is called when the option's value is set using the **configure** or **configurelist** methods.  It is the named method's responsibility to save the option's value; in other words, the value will not be saved to the **options()** array unless the method saves it there. The named method must take two arguments, the option name and its new value.  For example, this code is equivalent to (though slower than) Snit's default handling of **configure**:
-
-
-```
-    option -font -configuremethod SetOption
-    method SetOption {option value} {
-        set options($option) $value
-    }
-```
-
-: Note that it's possible for any number of options to share a single **-configuremethod**.
-
-
-**-validatemethod** *methodName*
-: Every locally-defined option may define a **-validatemethod**; it is called when the option's value is set using the **configure** or **configurelist** methods, just before the **-configuremethod** (if any).  It is the named method's responsibility to validate the option's new value, and to throw an error if the value is invalid. The named method must take two arguments, the option name and its new value.  For example, this code verifies that **-flag**'s value is a valid Boolean value:
-
-
-```
-    option -font -validatemethod CheckBoolean
-    method CheckBoolean {option value} {
-        if {![string is boolean -strict $value]} {
-            error "option $option must have a boolean value."
+        ```
+        % snit::type dog {
+            method {tail wag}   {} {return "Wag, wag"}
+            method {tail droop} {} {return "Droop, droop"}
         }
-    }
-```
+        ::dog
+        % dog spot
+        ::spot
+        % spot tail wag
+        Wag, wag
+        % spot tail droop
+        Droop, droop
+        %
+        ```
 
-: Note that it's possible for any number of options to share a single **-validatemethod**.
+        What we've done is implicitly defined a "tail" method with subcommands "wag" and "droop".  Consequently, it's an error to define "tail" explicitly.
 
+        Methods can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the type's methods can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
-**constructor** *arglist* *body*
-: The constructor definition specifies a *body* of code to be executed when a new instance is created.  The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument. As with methods, the arguments **type**, **self**, **selfns**, and **win** are defined implicitly, and all type and instance variables are automatically visible in its *body*. If the *definition* doesn't explicitly define the constructor, Snit defines one implicitly.  If the type declares at least one option (whether locally or by delegation), the default constructor will be defined as follows:
+        *Snit 1.x Incompatibility:* In Snit 1.x, the following following two calls to this method are equivalent:
 
+        ```
+            $self a b "Hello, world!"
+            $self {a b} "Hello, world!"
+        ```
 
-```
-    constructor {args} {
-        $self configurelist $args
-    }
-```
+        In Snit 2.2, the second form is invalid.
 
-: For standard Tk widget behavior, the argument list should be the single name **args**, as shown. If the *definition* defines neither a constructor nor any options, the default constructor is defined as follows:
+    **option** *namespec* ?*defaultValue*?
+    : see below ...
 
+    **option** *namespec* ?*options...*?
+    : Defines an option for instances of this type, and optionally gives it an initial value.  The initial value defaults to the empty string if no *defaultValue* is specified.
 
-```
-    constructor {} {}
-```
+        An option defined in this way is said to be *locally defined*.
 
-: As with methods, the constructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the constructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
+        The *namespec* is a list defining the option's name, resource name, and class name, e.g.:
 
+        ```
+            option {-font font Font} {Courier 12}
+        ```
 
-**destructor** *body*
-: The destructor is used to code any actions that must take place when an instance of the type is destroyed: typically, the destruction of anything created in the constructor. The destructor takes no explicit arguments; as with methods, the arguments **type**, **self**, **selfns**, and **win**, are defined implicitly, and all type and instance variables are automatically visible in its *body*. As with methods, the destructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the destructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
+        The option name must begin with a hyphen, and must not contain any upper case letters. The resource name and class name are optional; if not specified, the resource name defaults to the option name, minus the hyphen, and the class name defaults to the resource name with the first letter capitalized.  Thus, the following statement is equivalent to the previous example:
 
-**proc** *name* *args* *body*
-: Defines a new Tcl procedure in the type's namespace. The defined proc differs from a normal Tcl proc in that all type variables are automatically visible.  The proc can access instance variables as well, provided that it is passed **selfns** (with precisely that name) as one of its arguments. Although they are not implicitly defined for procs, the argument names **type**, **self**, and **win** should be avoided. As with methods and typemethods, procs can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the proc can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
+        ```
+            option -font {Courier 12}
+        ```
 
-**delegate** **method** *name* **to** *comp* ?**as** *target*?
-: Delegates method *name* to component *comp*.  That is, when method *name* is called on an instance of this type, the method and its arguments will be passed to the named component's command instead.  That is, the following statement
+        See [The Tk option database] for more information about resource and class names.
 
+        Options are normally set and retrieved using the standard instance methods **configure** and **cget**; within instance code (method bodies, etc.), option values are available through the **options** array:
 
-```
-    delegate method wag to tail
-```
+        ```
+            set myfont $options(-font)
+        ```
 
-: is roughly equivalent to this explicitly defined method:
+        If the type defines any option handlers (e.g., **-configuremethod**), then it should probably use **configure** and **cget** to access its options to avoid subtle errors.
 
+        The **option** statement may include the following options:
 
-```
-    method wag {args} {
-        uplevel $tail wag $args
-    }
-```
+        **-default** *defvalue*
+        : Defines the option's default value; the option's default value will be "" otherwise.
 
-: As with methods, the *name* may have multiple tokens; in this case, the last token of the name is assumed to be the name of the component's method. The optional **as** clause allows you to specify the delegated method name and possibly add some arguments:
+        **-readonly** *flag*
+        : The *flag* can be any Boolean value recognized by Tcl. If *flag* is true, then the option is read-only--it can only be set using **configure** or **configurelist** at creation time, i.e., in the type's constructor.
 
+        **-type** *type*
+        : Every locally-defined option may define its validation type, which may be either the name of a validation type or a specification for a validation subtype
 
-```
-    delegate method wagtail to tail as "wag briskly"
-```
+            For example, an option may declare that its value must be an integer by specifying **snit::integer** as its validation type:
 
-A method cannot be both locally defined and delegated.
+            ```
+                option -number -type snit::integer
+            ```
 
-**Note:** All forms of **delegate method** can delegate to both instance components and type components.
+            It may also declare that its value is an integer between 1 and 10 by specifying a validation subtype:
 
-**delegate** **method** *name* ?**to** *comp*? **using** *pattern*
-: In this form of the **delegate** statement, the **using** clause is used to specify the precise form of the command to which method *name* name is delegated.  In this form, the **to** clause is optional, since the chosen command might not involve any particular component. The value of the **using** clause is a list that may contain any or all of the following substitution codes; these codes are substituted with the described value to build the delegated command prefix.  Note that the following two statements are equivalent:
+            ```
+                option -number -type {snit::integer -min 1 -max 10}
+            ```
 
+            If a validation type or subtype is defined for an option, then it will be used to validate the option's value whenever it is changed by the object's **configure** or **configurelist** methods.  In addition, all such options will have their values validated automatically immediately after the constructor executes.
 
-```
-    delegate method wag to tail
-    delegate method wag to tail using "%c %m"
-```
+            Snit defines a family of validation types and subtypes, and it's quite simple to define new ones.  See [Validation types] for the complete list, and [Defining validation types] for an explanation of how to define your own.
 
-: Each element of the list becomes a single element of the delegated command--it is never reparsed as a string. Substitutions:
+        **-cgetmethod** *methodName*
+        : Every locally-defined option may define a **-cgetmethod**; it is called when the option's value is retrieved using the **cget** method.  Whatever the method's *body* returns will be the return value of the call to **cget**.
 
+            The named method must take one argument, the option name. For example, this code is equivalent to (though slower than) Snit's default handling of **cget**:
 
-**%%**
-: This is replaced with a single "%".  Thus, to pass the string "%c" to the command as an argument, you'd write "%%c".
+            ```
+                option -font -cgetmethod GetOption
+                method GetOption {option} {
+                    return $options($option)
+                }
+            ```
 
-**%c**
-: This is replaced with the named component's command.
+            Note that it's possible for any number of options to share a **-cgetmethod**.
 
-**%m**
-: This is replaced with the final token of the method *name*; if the method *name* has one token, this is identical to **%M**.
+        **-configuremethod** *methodName*
+        : Every locally-defined option may define a **-configuremethod**; it is called when the option's value is set using the **configure** or **configurelist** methods.  It is the named method's responsibility to save the option's value; in other words, the value will not be saved to the **options()** array unless the method saves it there.
 
-**%M**
-: This is replaced by the method *name*; if the *name* consists of multiple tokens, they are joined by space characters.
+            The named method must take two arguments, the option name and its new value.  For example, this code is equivalent to (though slower than) Snit's default handling of **configure**:
 
-**%j**
-: This is replaced by the method *name*; if the *name* consists of multiple tokens, they are joined by underscores ("\_").
+            ```
+                option -font -configuremethod SetOption
+                method SetOption {option value} {
+                    set options($option) $value
+                }
+            ```
 
-**%t**
-: This is replaced with the fully qualified type name.
+            Note that it's possible for any number of options to share a single **-configuremethod**.
 
-**%n**
-: This is replaced with the name of the instance's private namespace.
+        **-validatemethod** *methodName*
+        : Every locally-defined option may define a **-validatemethod**; it is called when the option's value is set using the **configure** or **configurelist** methods, just before the **-configuremethod** (if any).  It is the named method's responsibility to validate the option's new value, and to throw an error if the value is invalid.
 
-**%s**
-: This is replaced with the name of the instance command.
+            The named method must take two arguments, the option name and its new value.  For example, this code verifies that **-flag**'s value is a valid Boolean value:
 
-**%w**
-: This is replaced with the original name of the instance command; for Snit widgets and widget adaptors, it will be the Tk window name. It remains constant, even if the instance command is renamed.
+            ```
+                option -font -validatemethod CheckBoolean
+                method CheckBoolean {option value} {
+                    if {![string is boolean -strict $value]} {
+                        error "option $option must have a boolean value."
+                    }
+                }
+            ```
 
+            Note that it's possible for any number of options to share a single **-validatemethod**.
 
-**delegate** **method** **\*** ?**to** *comp*? ?**using** *pattern*? ?**except** *exceptions*?
-: The form **delegate method \*** delegates all unknown method names to the specified *comp*onent.  The **except** clause can be used to specify a list of *exceptions*, i.e., method names that will not be so delegated. The **using** clause is defined as given above. In this form, the statement must contain the **to** clause, the **using** clause, or both. In fact, the "\*" can be a list of two or more tokens whose last element is "\*", as in the following example:
 
+    **constructor** *arglist* *body*
+    : The constructor definition specifies a *body* of code to be executed when a new instance is created.  The *arglist* is a normal Tcl argument list and may contain default arguments and the **args** argument.
 
-```
-    delegate method {tail *} to tail
-```
+        As with methods, the arguments **type**, **self**, **selfns**, and **win** are defined implicitly, and all type and instance variables are automatically visible in its *body*.
 
-: This implicitly defines the method **tail** whose subcommands will be delegated to the **tail** component.
+        If the *definition* doesn't explicitly define the constructor, Snit defines one implicitly.  If the type declares at least one option (whether locally or by delegation), the default constructor will be defined as follows:
 
+        ```
+            constructor {args} {
+                $self configurelist $args
+            }
+        ```
 
-**delegate** **option** *namespec* **to** *comp*
-: ...see next...
+        For standard Tk widget behavior, the argument list should be the single name **args**, as shown.
 
-**delegate** **option** *namespec* **to** *comp* **as** *target*
-: ...see next...
+        If the *definition* defines neither a constructor nor any options, the default constructor is defined as follows:
 
-**delegate** **option** **\*** **to** *comp*
-: ...see next...
+        ```
+            constructor {} {}
+        ```
 
-**delegate** **option** **\*** **to** *comp* **except** *exceptions*
-: Defines a delegated option; the *namespec* is defined as for the **option** statement. When the **configure**, **configurelist**, or **cget** instance method is used to set or retrieve the option's value, the equivalent **configure** or **cget** command will be applied to the component as though the option was defined with the following **-configuremethod** and **-cgetmethod**:
+        As with methods, the constructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the constructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
+    **destructor** *body*
+    : The destructor is used to code any actions that must take place when an instance of the type is destroyed: typically, the destruction of anything created in the constructor.
 
-```
-    method ConfigureMethod {option value} {
-        $comp configure $option $value
-    }
+        The destructor takes no explicit arguments; as with methods, the arguments **type**, **self**, **selfns**, and **win**, are defined implicitly, and all type and instance variables are automatically visible in its *body*. As with methods, the destructor can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the destructor can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
-    method CgetMethod {option} {
-        return [$comp cget $option]
-    }
-```
+    **proc** *name* *args* *body*
+    : Defines a new Tcl procedure in the type's namespace.
 
-: Note that delegated options never appear in the **options** array. If the **as** clause is specified, then the *target* option name is used in place of *name*. The form **delegate option \*** delegates all unknown options to the specified *comp*onent.  The **except** clause can be used to specify a list of *exceptions*, i.e., option names that will not be so delegated. Warning: options can only be delegated to a component if it supports the **configure** and **cget** instance methods. An option cannot be both locally defined and delegated. TBD: Continue from here.
+        The defined proc differs from a normal Tcl proc in that all type variables are automatically visible.  The proc can access instance variables as well, provided that it is passed **selfns** (with precisely that name) as one of its arguments.
 
+        Although they are not implicitly defined for procs, the argument names **type**, **self**, and **win** should be avoided.
 
-**component** *comp* ?**-public** *method*? ?**-inherit** *flag*?
-: Explicitly declares a component called *comp*, and automatically defines the component's instance variable. If the **-public** option is specified, then the option is made public by defining a *method* whose subcommands are delegated to the component e.g., specifying **-public mycomp** is equivalent to the following:
+        As with methods and typemethods, procs can call commands from the namespace in which the type is defined without importing them, e.g., if the type name is **::parentns::typename**, then the proc can call **::parentns::someproc** just as **someproc**. *Snit 1.x Incompatibility:* This does not work in Snit 1.x, as it depends on **namespace path**, a new command in Tcl 8.5.
 
+    **delegate** **method** *name* **to** *comp* ?**as** *target*?
+    : Delegates method *name* to component *comp*.  That is, when method *name* is called on an instance of this type, the method and its arguments will be passed to the named component's command instead.  That is, the following statement
 
-```
-    component mycomp
-    delegate method {mymethod *} to mycomp
-```
+        ```
+            delegate method wag to tail
+        ```
 
-: If the **-inherit** option is specified, then *flag* must be a Boolean value; if *flag* is true then all unknown methods and options will be delegated to this component.  The name **-inherit** implies that instances of this new type inherit, in a sense, the methods and options of the component. That is, **-inherit yes** is equivalent to:
+        is roughly equivalent to this explicitly defined method:
 
+        ```
+            method wag {args} {
+                uplevel $tail wag $args
+            }
+        ```
 
-```
-    component mycomp
-    delegate option * to mycomp
-    delegate method * to mycomp
-```
+        As with methods, the *name* may have multiple tokens; in this case, the last token of the name is assumed to be the name of the component's method.
 
-**delegate** **typemethod** *name* **to** *comp* ?**as** *target*?
-: Delegates type method *name* to type component *comp*.  That is, when type method *name* is called on this type, the type method and its arguments will be passed to the named type component's command instead.  That is, the following statement
+        The optional **as** clause allows you to specify the delegated method name and possibly add some arguments:
 
+        ```
+            delegate method wagtail to tail as "wag briskly"
+        ```
 
-```
-    delegate typemethod lostdogs to pound
-```
+        A method cannot be both locally defined and delegated.
 
-: is roughly equivalent to this explicitly defined method:
+        **Note:** All forms of **delegate method** can delegate to both instance components and type components.
 
+    **delegate** **method** *name* ?**to** *comp*? **using** *pattern*
+    : In this form of the **delegate** statement, the **using** clause is used to specify the precise form of the command to which method *name* name is delegated.  In this form, the **to** clause is optional, since the chosen command might not involve any particular component.
 
-```
-    typemethod lostdogs {args} {
-        uplevel $pound lostdogs $args
-    }
-```
+        The value of the **using** clause is a list that may contain any or all of the following substitution codes; these codes are substituted with the described value to build the delegated command prefix.  Note that the following two statements are equivalent:
 
-: As with type methods, the *name* may have multiple tokens; in this case, the last token of the name is assumed to be the name of the component's method. The optional **as** clause allows you to specify the delegated method name and possibly add some arguments:
+        ```
+            delegate method wag to tail
+            delegate method wag to tail using "%c %m"
+        ```
 
+        Each element of the list becomes a single element of the delegated command--it is never reparsed as a string.
 
-```
-    delegate typemethod lostdogs to pound as "get lostdogs"
-```
+        Substitutions:
 
-A type method cannot be both locally defined and delegated.
+        **%%**
+        : This is replaced with a single "%".  Thus, to pass the string "%c" to the command as an argument, you'd write "%%c".
 
-**delegate** **typemethod** *name* ?**to** *comp*? **using** *pattern*
-: In this form of the **delegate** statement, the **using** clause is used to specify the precise form of the command to which type method *name* name is delegated.  In this form, the **to** clause is optional, since the chosen command might not involve any particular type component. The value of the **using** clause is a list that may contain any or all of the following substitution codes; these codes are substituted with the described value to build the delegated command prefix.  Note that the following two statements are equivalent:
+        **%c**
+        : This is replaced with the named component's command.
 
+        **%m**
+        : This is replaced with the final token of the method *name*; if the method *name* has one token, this is identical to **%M**.
 
-```
-    delegate typemethod lostdogs to pound
-    delegate typemethod lostdogs to pound using "%c %m"
-```
+        **%M**
+        : This is replaced by the method *name*; if the *name* consists of multiple tokens, they are joined by space characters.
 
-: Each element of the list becomes a single element of the delegated command--it is never reparsed as a string. Substitutions:
+        **%j**
+        : This is replaced by the method *name*; if the *name* consists of multiple tokens, they are joined by underscores ("\_").
 
+        **%t**
+        : This is replaced with the fully qualified type name.
 
-**%%**
-: This is replaced with a single "%".  Thus, to pass the string "%c" to the command as an argument, you'd write "%%c".
+        **%n**
+        : This is replaced with the name of the instance's private namespace.
 
-**%c**
-: This is replaced with the named type component's command.
+        **%s**
+        : This is replaced with the name of the instance command.
 
-**%m**
-: This is replaced with the final token of the type method *name*; if the type method *name* has one token, this is identical to **%M**.
+        **%w**
+        : This is replaced with the original name of the instance command; for Snit widgets and widget adaptors, it will be the Tk window name. It remains constant, even if the instance command is renamed.
 
-**%M**
-: This is replaced by the type method *name*; if the *name* consists of multiple tokens, they are joined by space characters.
 
-**%j**
-: This is replaced by the type method *name*; if the *name* consists of multiple tokens, they are joined by underscores ("\_").
+    **delegate** **method** **\*** ?**to** *comp*? ?**using** *pattern*? ?**except** *exceptions*?
+    : The form **delegate method \*** delegates all unknown method names to the specified *comp*onent.  The **except** clause can be used to specify a list of *exceptions*, i.e., method names that will not be so delegated. The **using** clause is defined as given above. In this form, the statement must contain the **to** clause, the **using** clause, or both.
 
-**%t**
-: This is replaced with the fully qualified type name.
+        In fact, the "\*" can be a list of two or more tokens whose last element is "\*", as in the following example:
 
+        ```
+            delegate method {tail *} to tail
+        ```
 
-**delegate** **typemethod** **\*** ?**to** *comp*? ?**using** *pattern*? ?**except** *exceptions*?
-: The form **delegate typemethod \*** delegates all unknown type method names to the specified type component.  The **except** clause can be used to specify a list of *exceptions*, i.e., type method names that will not be so delegated. The **using** clause is defined as given above. In this form, the statement must contain the **to** clause, the **using** clause, or both. **Note:** By default, Snit interprets **\$type foo**, where **foo** is not a defined type method, as equivalent to **\$type create foo**, where **foo** is the name of a new instance of the type.  If you use **delegate typemethod \***, then the **create** type method must always be used explicitly. The "\*" can be a list of two or more tokens whose last element is "\*", as in the following example:
+        This implicitly defines the method **tail** whose subcommands will be delegated to the **tail** component.
 
+    **delegate** **option** *namespec* **to** *comp*
+    : see below ...
 
-```
-    delegate typemethod {tail *} to tail
-```
+    **delegate** **option** *namespec* **to** *comp* **as** *target*
+    : see below ...
 
-: This implicitly defines the type method **tail** whose subcommands will be delegated to the **tail** type component.
+    **delegate** **option** **\*** **to** *comp*
+    : see below ...
 
+    **delegate** **option** **\*** **to** *comp* **except** *exceptions*
+    : Defines a delegated option; the *namespec* is defined as for the **option** statement. When the **configure**, **configurelist**, or **cget** instance method is used to set or retrieve the option's value, the equivalent **configure** or **cget** command will be applied to the component as though the option was defined with the following **-configuremethod** and **-cgetmethod**:
 
-**typecomponent** *comp* ?**-public** *typemethod*? ?**-inherit** *flag*?
-: Explicitly declares a type component called *comp*, and automatically defines the component's type variable.  A type component is an arbitrary command to which type methods and instance methods can be delegated; the command's name is stored in a type variable. If the **-public** option is specified, then the type component is made public by defining a *typemethod* whose subcommands are delegated to the type component, e.g., specifying **-public mytypemethod** is equivalent to the following:
+        ```
+            method ConfigureMethod {option value} {
+                $comp configure $option $value
+            }
 
+            method CgetMethod {option} {
+                return [$comp cget $option]
+            }
+        ```
 
-```
-    typecomponent mycomp
-    delegate typemethod {mytypemethod *} to mycomp
-```
+        Note that delegated options never appear in the **options** array.
 
-: If the **-inherit** option is specified, then *flag* must be a Boolean value; if *flag* is true then all unknown type methods will be delegated to this type component. (See the note on "delegate typemethod \*", above.) The name **-inherit** implies that this type inherits, in a sense, the behavior of the type component. That is, **-inherit yes** is equivalent to:
+        If the **as** clause is specified, then the *target* option name is used in place of *name*.
 
+        The form **delegate option \*** delegates all unknown options to the specified *comp*onent.  The **except** clause can be used to specify a list of *exceptions*, i.e., option names that will not be so delegated.
 
-```
-    typecomponent mycomp
-    delegate typemethod * to mycomp
-```
+        Warning: options can only be delegated to a component if it supports the **configure** and **cget** instance methods.
 
-**pragma** ?*options...*?
-: The **pragma** statement provides control over how Snit generates a type.  It takes the following options; in each case, *flag* must be a Boolean value recognized by Tcl, e.g., **0**, **1**, **yes**, **no**, and so on. By setting the **-hastypeinfo**, **-hastypedestroy**, and **-hasinstances** pragmas to false and defining appropriate type methods, you can create an ensemble command without any extraneous behavior.
+        An option cannot be both locally defined and delegated. TBD: Continue from here.
 
+    **component** *comp* ?**-public** *method*? ?**-inherit** *flag*?
+    : Explicitly declares a component called *comp*, and automatically defines the component's instance variable.
 
-**-canreplace** *flag*
-: If false (the default) Snit will not create an instance of a **snit::type** that has the same name as an existing command; this prevents subtle errors.  Setting this pragma to true restores the behavior of Snit V0.93 and earlier versions.
+        If the **-public** option is specified, then the option is made public by defining a *method* whose subcommands are delegated to the component e.g., specifying **-public mycomp** is equivalent to the following:
 
-**-hastypeinfo** *flag*
-: If true (the default), the generated type will have a type method called **info** that is used for type introspection; the **info** type method is documented below.  If false, it will not.
+        ```
+            component mycomp
+            delegate method {mymethod *} to mycomp
+        ```
 
-**-hastypedestroy** *flag*
-: If true (the default), the generated type will have a type method called **destroy** that is used to destroy the type and all of its instances.  The **destroy** type method is documented below.  If false, it will not.
+        If the **-inherit** option is specified, then *flag* must be a Boolean value; if *flag* is true then all unknown methods and options will be delegated to this component.  The name **-inherit** implies that instances of this new type inherit, in a sense, the methods and options of the component. That is, **-inherit yes** is equivalent to:
 
-**-hastypemethods** *flag*
-: If true (the default), the generated type's type command will have subcommands (type methods) as usual.  If false, the type command will serve only to create instances of the type; the first argument is the instance name. This pragma and **-hasinstances** cannot both be set false.
+        ```
+            component mycomp
+            delegate option * to mycomp
+            delegate method * to mycomp
+        ```
 
-**-hasinstances** *flag*
-: If true (the default), the generated type will have a type method called **create** that is used to create instances of the type, along with a variety of instance-related features.  If false, it will not. This pragma and **-hastypemethods** cannot both be set false.
+    **delegate** **typemethod** *name* **to** *comp* ?**as** *target*?
+    : Delegates type method *name* to type component *comp*.  That is, when type method *name* is called on this type, the type method and its arguments will be passed to the named type component's command instead.  That is, the following statement
 
-**-hasinfo** *flag*
-: If true (the default), instances of the generated type will have an instance method called **info** that is used for instance introspection; the **info** method is documented below.  If false, it will not.
+        ```
+            delegate typemethod lostdogs to pound
+        ```
 
-**-simpledispatch** *flag*
-: This pragma is intended to make simple, heavily-used abstract data types (e.g., stacks and queues) more efficient. If false (the default), instance methods are dispatched normally.  If true, a faster dispatching scheme is used instead. The speed comes at a price; with **-simpledispatch yes** you get the following limitations:
+        is roughly equivalent to this explicitly defined method:
 
+        ```
+            typemethod lostdogs {args} {
+                uplevel $pound lostdogs $args
+            }
+        ```
 
-**•**
-: Methods cannot be delegated.
+        As with type methods, the *name* may have multiple tokens; in this case, the last token of the name is assumed to be the name of the component's method.
 
-**•**
-: **uplevel** and **upvar** do not work as expected: the caller's scope is two levels up rather than one.
+        The optional **as** clause allows you to specify the delegated method name and possibly add some arguments:
 
-**•**
-: The option-handling methods (**cget**, **configure**, and **configurelist**) are very slightly slower.
+        ```
+            delegate typemethod lostdogs to pound as "get lostdogs"
+        ```
 
+        A type method cannot be both locally defined and delegated.
 
-**expose** *comp*
-: ...see next...
+    **delegate** **typemethod** *name* ?**to** *comp*? **using** *pattern*
+    : In this form of the **delegate** statement, the **using** clause is used to specify the precise form of the command to which type method *name* name is delegated.  In this form, the **to** clause is optional, since the chosen command might not involve any particular type component.
 
-**expose** *comp* **as** *method*
-: **Deprecated.**  To expose component *comp* publicly, use **component**'s **-public** option.
+        The value of the **using** clause is a list that may contain any or all of the following substitution codes; these codes are substituted with the described value to build the delegated command prefix.  Note that the following two statements are equivalent:
 
-**onconfigure** *name* *arglist* *body*
-: **Deprecated.**  Define **option**'s **-configuremethod** option instead. As of version 0.95, the following definitions,
+        ```
+            delegate typemethod lostdogs to pound
+            delegate typemethod lostdogs to pound using "%c %m"
+        ```
 
+        Each element of the list becomes a single element of the delegated command--it is never reparsed as a string.
 
-```
-    option -myoption
-    onconfigure -myoption {value} {
-        # Code to save the option's value
-    }
-```
+        Substitutions:
 
-: are implemented as follows:
+        **%%**
+        : This is replaced with a single "%".  Thus, to pass the string "%c" to the command as an argument, you'd write "%%c".
 
+        **%c**
+        : This is replaced with the named type component's command.
 
-```
-    option -myoption -configuremethod _configure-myoption
-    method _configure-myoption {_option value} {
-        # Code to save the option's value
-    }
-```
+        **%m**
+        : This is replaced with the final token of the type method *name*; if the type method *name* has one token, this is identical to **%M**.
 
-**oncget** *name* *body*
-: **Deprecated.**  Define **option**'s **-cgetmethod** option instead. As of version 0.95, the following definitions,
+        **%M**
+        : This is replaced by the type method *name*; if the *name* consists of multiple tokens, they are joined by space characters.
 
+        **%j**
+        : This is replaced by the type method *name*; if the *name* consists of multiple tokens, they are joined by underscores ("\_").
 
-```
-    option -myoption
-    oncget -myoption {
-        # Code to return the option's value
-    }
-```
+        **%t**
+        : This is replaced with the fully qualified type name.
 
-: are implemented as follows:
 
+    **delegate** **typemethod** **\*** ?**to** *comp*? ?**using** *pattern*? ?**except** *exceptions*?
+    : The form **delegate typemethod \*** delegates all unknown type method names to the specified type component.  The **except** clause can be used to specify a list of *exceptions*, i.e., type method names that will not be so delegated. The **using** clause is defined as given above. In this form, the statement must contain the **to** clause, the **using** clause, or both.
 
-```
-    option -myoption -cgetmethod _cget-myoption
-    method _cget-myoption {_option} {
-        # Code to return the option's value
-    }
-```
+        **Note:** By default, Snit interprets **$type foo**, where **foo** is not a defined type method, as equivalent to **$type create foo**, where **foo** is the name of a new instance of the type.  If you use **delegate typemethod \***, then the **create** type method must always be used explicitly.
+
+        The "\*" can be a list of two or more tokens whose last element is "\*", as in the following example:
+
+        ```
+            delegate typemethod {tail *} to tail
+        ```
+
+        This implicitly defines the type method **tail** whose subcommands will be delegated to the **tail** type component.
+
+    **typecomponent** *comp* ?**-public** *typemethod*? ?**-inherit** *flag*?
+    : Explicitly declares a type component called *comp*, and automatically defines the component's type variable.  A type component is an arbitrary command to which type methods and instance methods can be delegated; the command's name is stored in a type variable.
+
+        If the **-public** option is specified, then the type component is made public by defining a *typemethod* whose subcommands are delegated to the type component, e.g., specifying **-public mytypemethod** is equivalent to the following:
+
+        ```
+            typecomponent mycomp
+            delegate typemethod {mytypemethod *} to mycomp
+        ```
+
+        If the **-inherit** option is specified, then *flag* must be a Boolean value; if *flag* is true then all unknown type methods will be delegated to this type component. (See the note on "delegate typemethod \*", above.) The name **-inherit** implies that this type inherits, in a sense, the behavior of the type component. That is, **-inherit yes** is equivalent to:
+
+        ```
+            typecomponent mycomp
+            delegate typemethod * to mycomp
+        ```
+
+    **pragma** ?*options...*?
+    : The **pragma** statement provides control over how Snit generates a type.  It takes the following options; in each case, *flag* must be a Boolean value recognized by Tcl, e.g., **0**, **1**, **yes**, **no**, and so on.
+
+        By setting the **-hastypeinfo**, **-hastypedestroy**, and **-hasinstances** pragmas to false and defining appropriate type methods, you can create an ensemble command without any extraneous behavior.
+
+        **-canreplace** *flag*
+        : If false (the default) Snit will not create an instance of a **snit::type** that has the same name as an existing command; this prevents subtle errors.  Setting this pragma to true restores the behavior of Snit V0.93 and earlier versions.
+
+        **-hastypeinfo** *flag*
+        : If true (the default), the generated type will have a type method called **info** that is used for type introspection; the **info** type method is documented below.  If false, it will not.
+
+        **-hastypedestroy** *flag*
+        : If true (the default), the generated type will have a type method called **destroy** that is used to destroy the type and all of its instances.  The **destroy** type method is documented below.  If false, it will not.
+
+        **-hastypemethods** *flag*
+        : If true (the default), the generated type's type command will have subcommands (type methods) as usual.  If false, the type command will serve only to create instances of the type; the first argument is the instance name.
+
+            This pragma and **-hasinstances** cannot both be set false.
+
+        **-hasinstances** *flag*
+        : If true (the default), the generated type will have a type method called **create** that is used to create instances of the type, along with a variety of instance-related features.  If false, it will not.
+
+            This pragma and **-hastypemethods** cannot both be set false.
+
+        **-hasinfo** *flag*
+        : If true (the default), instances of the generated type will have an instance method called **info** that is used for instance introspection; the **info** method is documented below.  If false, it will not.
+
+        **-simpledispatch** *flag*
+        : This pragma is intended to make simple, heavily-used abstract data types (e.g., stacks and queues) more efficient.
+
+            If false (the default), instance methods are dispatched normally.  If true, a faster dispatching scheme is used instead. The speed comes at a price; with **-simpledispatch yes** you get the following limitations:
+
+            - Methods cannot be delegated.
+
+            - **uplevel** and **upvar** do not work as expected: the caller's scope is two levels up rather than one.
+
+            - The option-handling methods (**cget**, **configure**, and **configurelist**) are very slightly slower.
+
+
+
+    **expose** *comp*
+    : see below ...
+
+    **expose** *comp* **as** *method*
+    : **Deprecated.**  To expose component *comp* publicly, use **component**'s **-public** option.
+
+    **onconfigure** *name* *arglist* *body*
+    : **Deprecated.**  Define **option**'s **-configuremethod** option instead.
+
+        As of version 0.95, the following definitions,
+
+        ```
+            option -myoption
+            onconfigure -myoption {value} {
+                # Code to save the option's value
+            }
+        ```
+
+        are implemented as follows:
+
+        ```
+            option -myoption -configuremethod _configure-myoption
+            method _configure-myoption {_option value} {
+                # Code to save the option's value
+            }
+        ```
+
+    **oncget** *name* *body*
+    : **Deprecated.**  Define **option**'s **-cgetmethod** option instead.
+
+        As of version 0.95, the following definitions,
+
+        ```
+            option -myoption
+            oncget -myoption {
+                # Code to return the option's value
+            }
+        ```
+
+        are implemented as follows:
+
+        ```
+            option -myoption -cgetmethod _cget-myoption
+            method _cget-myoption {_option} {
+                # Code to return the option's value
+            }
+        ```
+
 
 **snit::widget** *name* *definition*
 : This command defines a Snit megawidget type with the specified *name*.  The *definition* is defined as for **snit::type**. A **snit::widget** differs from a **snit::type** in these ways:
 
+    - Every instance of a **snit::widget** has an automatically-created component called **hull**, which is normally a Tk frame widget. Other widgets created as part of the megawidget will be created within this widget.
 
-**•**
-: Every instance of a **snit::widget** has an automatically-created component called **hull**, which is normally a Tk frame widget. Other widgets created as part of the megawidget will be created within this widget. The hull component is initially created with the requested widget name; then Snit does some magic, renaming the hull component and installing its own instance command in its place. The hull component's new name is saved in an instance variable called **hull**.
+        The hull component is initially created with the requested widget name; then Snit does some magic, renaming the hull component and installing its own instance command in its place. The hull component's new name is saved in an instance variable called **hull**.
 
-**•**
-: The name of an instance must be valid Tk window name, and the parent window must exist.
-
-
-: A **snit::widget** definition can include any of statements allowed in a **snit::type** definition, and may also include the following:
+    - The name of an instance must be valid Tk window name, and the parent window must exist.
 
 
-**widgetclass** *name*
-: Sets the **snit::widget**'s widget class to *name*, overriding the default.  See **The Tk Option Database** for more information.
+    A **snit::widget** definition can include any of statements allowed in a **snit::type** definition, and may also include the following:
 
-**hulltype** *type*
-: Determines the kind of widget used as the **snit::widget**'s hull. The *type* may be **frame** (the default), **toplevel**, **labelframe**; the qualified equivalents of these, **tk::frame**, **tk::toplevel**, and **tk::labelframe**; or, if available, the equivalent Tile widgets: **ttk::frame**, **ttk::toplevel**, and **ttk::labelframe**.  In practice, any widget that supports the **-class** option can be used as a hull widget by **lappend**'ing its name to the variable **snit::hulltypes**.
+    **widgetclass** *name*
+    : Sets the **snit::widget**'s widget class to *name*, overriding the default.  See [The Tk option database] for more information.
+
+    **hulltype** *type*
+    : Determines the kind of widget used as the **snit::widget**'s hull. The *type* may be **frame** (the default), **toplevel**, **labelframe**; the qualified equivalents of these, **tk::frame**, **tk::toplevel**, and **tk::labelframe**; or, if available, the equivalent Tile widgets: **ttk::frame**, **ttk::toplevel**, and **ttk::labelframe**.  In practice, any widget that supports the **-class** option can be used as a hull widget by **lappend**'ing its name to the variable **snit::hulltypes**.
 
 
 **snit::widgetadaptor** *name* *definition*
-: This command defines a Snit megawidget type with the specified name. It differs from **snit::widget** in that the instance's **hull** component is not created automatically, but is created in the constructor and installed using the **installhull** command.  Once the hull is installed, its instance command is renamed and replaced as with normal **snit::widget**s.  The original command is again accessible in the instance variable **hull**. Note that in general it is not possible to change the *widget class* of a **snit::widgetadaptor**'s hull widget. See **The Tk Option Database** for information on how **snit::widgetadaptor**s interact with the option database.
+: This command defines a Snit megawidget type with the specified name. It differs from **snit::widget** in that the instance's **hull** component is not created automatically, but is created in the constructor and installed using the **installhull** command.  Once the hull is installed, its instance command is renamed and replaced as with normal **snit::widget**s.  The original command is again accessible in the instance variable **hull**.
+
+    Note that in general it is not possible to change the *widget class* of a **snit::widgetadaptor**'s hull widget.
+
+    See [The Tk option database] for information on how **snit::widgetadaptor**s interact with the option database.
 
 **snit::typemethod** *type* *name* *arglist* *body*
 : Defines a new type method (or redefines an existing type method) for a previously existing *type*.
@@ -667,57 +722,92 @@ A type method cannot be both locally defined and delegated.
 : Defines a new instance method (or redefines an existing instance method) for a previously existing *type*.  Note that delegated instance methods can't be redefined.
 
 **snit::macro** *name* *arglist* *body*
-: Defines a Snit macro with the specified *name*, *arglist*, and *body*.  Macros are used to define new type and widget definition statements in terms of the statements defined in this man page. A macro is simply a Tcl proc that is defined in the slave interpreter used to compile type and widget definitions.  Thus, macros have access to all of the type and widget definition statements.  See **Macros and Meta-programming** for more details. The macro *name* cannot be the same as any standard Tcl command, or any Snit type or widget definition statement, e.g., you can't redefine the **method** or **delegate** statements, or the standard **set**, **list**, or **string** commands.
+: Defines a Snit macro with the specified *name*, *arglist*, and *body*.  Macros are used to define new type and widget definition statements in terms of the statements defined in this man page.
+
+    A macro is simply a Tcl proc that is defined in the slave interpreter used to compile type and widget definitions.  Thus, macros have access to all of the type and widget definition statements.  See [Macros and meta-programming] for more details.
+
+    The macro *name* cannot be the same as any standard Tcl command, or any Snit type or widget definition statement, e.g., you can't redefine the **method** or **delegate** statements, or the standard **set**, **list**, or **string** commands.
 
 **snit::compile** *which* *type* *body*
-: Snit defines a type, widget, or widgetadaptor by "compiling" the definition into a Tcl script; this script is then evaluated in the Tcl interpreter, which actually defines the new type. This command exposes the "compiler".  Given a definition *body* for the named *type*, where *which* is **type**, **widget**, or **widgetadaptor**, **snit::compile** returns a list of two elements.  The first element is the fully qualified type name; the second element is the definition script. **snit::compile** is useful when additional processing must be done on the Snit-generated code--if it must be instrumented, for example, or run through the TclDevKit compiler.  In addition, the returned script could be saved in a ".tcl" file and used to define the type as part of an application or library, thus saving the compilation overhead at application start-up.  Note that the same version of Snit must be used at run-time as at compile-time.
+: Snit defines a type, widget, or widgetadaptor by "compiling" the definition into a Tcl script; this script is then evaluated in the Tcl interpreter, which actually defines the new type.
+
+    This command exposes the "compiler".  Given a definition *body* for the named *type*, where *which* is **type**, **widget**, or **widgetadaptor**, **snit::compile** returns a list of two elements.  The first element is the fully qualified type name; the second element is the definition script.
+
+    **snit::compile** is useful when additional processing must be done on the Snit-generated code--if it must be instrumented, for example, or run through the TclDevKit compiler.  In addition, the returned script could be saved in a ".tcl" file and used to define the type as part of an application or library, thus saving the compilation overhead at application start-up.  Note that the same version of Snit must be used at run-time as at compile-time.
 
 
 ## The type command
 
 A type or widget definition creates a type command, which is used to create instances of the type.  The type command has this form:
 
-**\$type** *typemethod* *args*...
-: The *typemethod* can be any of the **Standard Type Methods** (e.g., **create**), or any type method defined in the type definition. The subsequent *args* depend on the specific *typemethod* chosen. The type command is most often used to create new instances of the type; hence, the **create** method is assumed if the first argument to the type command doesn't name a valid type method, unless the type definition includes **delegate typemethod \*** or the **-hasinstances** pragma is set to false. Furthermore, if the **-hastypemethods** pragma is false, then Snit type commands can be called with no arguments at all; in this case, the type command creates an instance with an automatically generated name.  In other words, provided that the **-hastypemethods** pragma is false and the type has instances, the following commands are equivalent:
+**$type** *typemethod* *args*...
+: The *typemethod* can be any of the [Standard type methods] (e.g., **create**), or any type method defined in the type definition. The subsequent *args* depend on the specific *typemethod* chosen.
 
+    The type command is most often used to create new instances of the type; hence, the **create** method is assumed if the first argument to the type command doesn't name a valid type method, unless the type definition includes **delegate typemethod \*** or the **-hasinstances** pragma is set to false.
 
-```
-snit::type dog { ... }
+    Furthermore, if the **-hastypemethods** pragma is false, then Snit type commands can be called with no arguments at all; in this case, the type command creates an instance with an automatically generated name.  In other words, provided that the **-hastypemethods** pragma is false and the type has instances, the following commands are equivalent:
 
-set mydog [dog create %AUTO%]
-set mydog [dog %AUTO%]
-set mydog [dog]
-```
+    ```
+    snit::type dog { ... }
 
-: This doesn't work for Snit widgets, for obvious reasons. *Snit 1.x Incompatibility:* In Snit 1.x, the above behavior is available whether **-hastypemethods** is true (the default) or false.
+    set mydog [dog create %AUTO%]
+    set mydog [dog %AUTO%]
+    set mydog [dog]
+    ```
+
+    This doesn't work for Snit widgets, for obvious reasons.
+
+    *Snit 1.x Incompatibility:* In Snit 1.x, the above behavior is available whether **-hastypemethods** is true (the default) or false.
 
 
 ## Standard type methods
 
 In addition to any type methods in the type's definition, all type and widget commands will usually have at least the following subcommands:
 
-**\$type** **create** *name* ?*option* *value* ...?
-: Creates a new instance of the type, giving it the specified *name* and calling the type's constructor. For **snit::type**s, if *name* is not a fully-qualified command name, it is assumed to be a name in the namespace in which the call to **snit::type** appears.  The method returns the fully-qualified instance name. For **snit::widget**s and **snit::widgetadaptor**s, *name* must be a valid widget name; the method returns the widget name. So long as *name* does not conflict with any defined type method name the **create** keyword may be omitted, unless the type definition includes **delegate typemethod \*** or the **-hasinstances** pragma is set to false. If the *name* includes the string **%AUTO%**, it will be replaced with the string **\$type\$counter** where **\$type** is the type name and **\$counter** is a counter that increments each time **%AUTO%** is used for this type. By default, any arguments following the *name* will be a list of *option* names and their *value*s; however, a type's constructor can specify a different argument list. As of Snit V0.95, **create** will throw an error if the *name* is the same as any existing command--note that this was always true for **snit::widget**s and **snit::widgetadaptor**s.  You can restore the previous behavior using the **-canreplace** pragma.
+**$type** **create** *name* ?*option* *value* ...?
+: Creates a new instance of the type, giving it the specified *name* and calling the type's constructor.
 
-**\$type** **info typevars** ?*pattern*?
-: Returns a list of the type's type variables (excluding Snit internal variables); all variable names are fully-qualified. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+    For **snit::type**s, if *name* is not a fully-qualified command name, it is assumed to be a name in the namespace in which the call to **snit::type** appears.  The method returns the fully-qualified instance name.
 
-**\$type** **info typemethods** ?*pattern*?
-: Returns a list of the names of the  type's type methods. If the type has hierarchical type methods, whether locally-defined or delegated, only the first word of each will be included in the list. If the type definition includes **delegate typemethod \***, the list will include only the names of those implicitly delegated type methods that have been called at least once and are still in the type method cache. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+    For **snit::widget**s and **snit::widgetadaptor**s, *name* must be a valid widget name; the method returns the widget name.
 
-**\$type** **info args** *method*
+    So long as *name* does not conflict with any defined type method name the **create** keyword may be omitted, unless the type definition includes **delegate typemethod \*** or the **-hasinstances** pragma is set to false.
+
+    If the *name* includes the string **%AUTO%**, it will be replaced with the string **$type$counter** where **$type** is the type name and **$counter** is a counter that increments each time **%AUTO%** is used for this type.
+
+    By default, any arguments following the *name* will be a list of *option* names and their *value*s; however, a type's constructor can specify a different argument list.
+
+    As of Snit V0.95, **create** will throw an error if the *name* is the same as any existing command--note that this was always true for **snit::widget**s and **snit::widgetadaptor**s.  You can restore the previous behavior using the **-canreplace** pragma.
+
+**$type** **info typevars** ?*pattern*?
+: Returns a list of the type's type variables (excluding Snit internal variables); all variable names are fully-qualified.
+
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+**$type** **info typemethods** ?*pattern*?
+: Returns a list of the names of the  type's type methods. If the type has hierarchical type methods, whether locally-defined or delegated, only the first word of each will be included in the list.
+
+    If the type definition includes **delegate typemethod \***, the list will include only the names of those implicitly delegated type methods that have been called at least once and are still in the type method cache.
+
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+**$type** **info args** *method*
 : Returns a list containing the names of the arguments to the type's *method*, in order. This method cannot be applied to delegated type methods.
 
-**\$type** **info body** *method*
+**$type** **info body** *method*
 : Returns the body of typemethod *method*. This method cannot be applied to delegated type methods.
 
-**\$type** **info default** *method* *aname* *varname*
+**$type** **info default** *method* *aname* *varname*
 : Returns a boolean value indicating whether the argument *aname* of the type's *method* has a default value (**true**) or not (**false**). If the argument has a default its value is placed into the variable *varname*.
 
-**\$type** **info instances** ?*pattern*?
-: Returns a list of the type's instances.  For **snit::type**s, it will be a list of fully-qualified instance names; for **snit::widget**s, it will be a list of Tk widget names. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned. *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+**$type** **info instances** ?*pattern*?
+: Returns a list of the type's instances.  For **snit::type**s, it will be a list of fully-qualified instance names; for **snit::widget**s, it will be a list of Tk widget names.
 
-**\$type** **destroy**
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+    *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+
+**$type** **destroy**
 : Destroys the type's instances, the type's namespace, and the type command itself.
 
 
@@ -725,51 +815,81 @@ In addition to any type methods in the type's definition, all type and widget co
 
 A Snit type or widget's **create** type method creates objects of the type; each object has a unique name that is also a Tcl command. This command is used to access the object's methods and data, and has this form:
 
-**\$object** *method* *args...*
-: The *method* can be any of the **Standard Instance Methods**, or any instance method defined in the type definition. The subsequent *args* depend on the specific *method* chosen.
+**$object** *method* *args...*
+: The *method* can be any of the [Standard instance methods], or any instance method defined in the type definition. The subsequent *args* depend on the specific *method* chosen.
 
 
 ## Standard instance methods
 
 In addition to any delegated or locally-defined instance methods in the type's definition, all Snit objects will have at least the following subcommands:
 
-**\$object** **configure** ?*option*? ?*value*? ...
-: Assigns new values to one or more options.  If called with one argument, an *option* name, returns a list describing the option, as Tk widgets do; if called with no arguments, returns a list of lists describing all options, as Tk widgets do. Warning: This information will be available for delegated options only if the component to which they are delegated has a **configure** method that returns this same kind of information. Note: Snit defines this method only if the type has at least one option.
+**$object** **configure** ?*option*? ?*value*? ...
+: Assigns new values to one or more options.  If called with one argument, an *option* name, returns a list describing the option, as Tk widgets do; if called with no arguments, returns a list of lists describing all options, as Tk widgets do.
 
-**\$object** **configurelist** *optionlist*
-: Like **configure**, but takes one argument, a list of options and their values.  It's mostly useful in the type constructor, but can be used anywhere. Note: Snit defines this method only if the type has at least one option.
+    Warning: This information will be available for delegated options only if the component to which they are delegated has a **configure** method that returns this same kind of information.
 
-**\$object** **cget** *option*
-: Returns the option's value. Note: Snit defines this method only if the type has at least one option.
+    Note: Snit defines this method only if the type has at least one option.
 
-**\$object** **destroy**
-: Destroys the object, calling the **destructor** and freeing all related memory. *Note:* The **destroy** method isn't defined for **snit::widget** or **snit::widgetadaptor** objects; instances of these are destroyed by calling **Tk**'s **destroy** command, just as normal widgets are.
+**$object** **configurelist** *optionlist*
+: Like **configure**, but takes one argument, a list of options and their values.  It's mostly useful in the type constructor, but can be used anywhere.
 
-**\$object** **info type**
+    Note: Snit defines this method only if the type has at least one option.
+
+**$object** **cget** *option*
+: Returns the option's value.
+
+    Note: Snit defines this method only if the type has at least one option.
+
+**$object** **destroy**
+: Destroys the object, calling the **destructor** and freeing all related memory.
+
+    *Note:* The **destroy** method isn't defined for **snit::widget** or **snit::widgetadaptor** objects; instances of these are destroyed by calling **Tk**'s **destroy** command, just as normal widgets are.
+
+**$object** **info type**
 : Returns the instance's type.
 
-**\$object** **info vars** ?*pattern*?
-: Returns a list of the object's instance variables (excluding Snit internal variables).  The names are fully qualified. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+**$object** **info vars** ?*pattern*?
+: Returns a list of the object's instance variables (excluding Snit internal variables).  The names are fully qualified.
 
-**\$object** **info typevars** ?*pattern*?
-: Returns a list of the object's type's type variables (excluding Snit internal variables).  The names are fully qualified. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
 
-**\$object** **info typemethods** ?*pattern*?
-: Returns a list of the names of the  type's type methods. If the type has hierarchical type methods, whether locally-defined or delegated, only the first word of each will be included in the list. If the type definition includes **delegate typemethod \***, the list will include only the names of those implicitly delegated type methods that have been called at least once and are still in the type method cache. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned. *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+**$object** **info typevars** ?*pattern*?
+: Returns a list of the object's type's type variables (excluding Snit internal variables).  The names are fully qualified.
 
-**\$object** **info options** ?*pattern*?
-: Returns a list of the object's option names.  This always includes local options and explicitly delegated options.  If unknown options are delegated as well, and if the component to which they are delegated responds to **\$object configure** like Tk widgets do, then the result will include all possible unknown options that can be delegated to the component. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned. Note that the return value might be different for different instances of the same type, if component object types can vary from one instance to another.
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
 
-**\$object** **info methods** ?*pattern*?
-: Returns a list of the names of the instance's methods. If the type has hierarchical methods, whether locally-defined or delegated, only the first word of each will be included in the list. If the type definition includes **delegate method \***, the list will include only the names of those implicitly delegated methods that have been called at least once and are still in the method cache. If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned. *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+**$object** **info typemethods** ?*pattern*?
+: Returns a list of the names of the  type's type methods. If the type has hierarchical type methods, whether locally-defined or delegated, only the first word of each will be included in the list.
 
-**\$object** **info args** *method*
+    If the type definition includes **delegate typemethod \***, the list will include only the names of those implicitly delegated type methods that have been called at least once and are still in the type method cache.
+
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+    *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+
+**$object** **info options** ?*pattern*?
+: Returns a list of the object's option names.  This always includes local options and explicitly delegated options.  If unknown options are delegated as well, and if the component to which they are delegated responds to **$object configure** like Tk widgets do, then the result will include all possible unknown options that can be delegated to the component.
+
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+    Note that the return value might be different for different instances of the same type, if component object types can vary from one instance to another.
+
+**$object** **info methods** ?*pattern*?
+: Returns a list of the names of the instance's methods. If the type has hierarchical methods, whether locally-defined or delegated, only the first word of each will be included in the list.
+
+    If the type definition includes **delegate method \***, the list will include only the names of those implicitly delegated methods that have been called at least once and are still in the method cache.
+
+    If *pattern* is given, it's used as a **string match** pattern; only names that match the pattern are returned.
+
+    *Snit 1.x Incompatibility:*  In Snit 1.x, the full multi-word names of hierarchical type methods are included in the return value.
+
+**$object** **info args** *method*
 : Returns a list containing the names of the arguments to the instance's *method*, in order. This method cannot be applied to delegated methods.
 
-**\$object** **info body** *method*
+**$object** **info body** *method*
 : Returns the body of the instance's method *method*. This method cannot be applied to delegated methods.
 
-**\$object** **info default** *method* *aname* *varname*
+**$object** **info default** *method* *aname* *varname*
 : Returns a boolean value indicating whether the argument *aname* of the instance's *method* has a default value (**true**) or not (**false**). If the argument has a default its value is placed into the variable *varname*.
 
 
@@ -778,40 +898,35 @@ In addition to any delegated or locally-defined instance methods in the type's d
 Snit defines the following commands for use in your object code: that is, for use in type methods, instance methods, constructors, destructors, onconfigure handlers, oncget handlers, and procs. They do not reside in the ::snit:: namespace; instead, they are created with the type, and can be used without qualification.
 
 **mymethod** *name* ?*args...*?
-: The **mymethod** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke method *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** method to be called when the **\$button** is pressed:
+: The **mymethod** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke method *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** method to be called when the **$button** is pressed:
 
+    ```
+        $button configure -command [list $self dosomething myargument]
 
-```
-    $button configure -command [list $self dosomething myargument]
+        $button configure -command [mymethod dosomething myargument]
+    ```
 
-    $button configure -command [mymethod dosomething myargument]
-```
-
-: The chief distinction between the two is that the latter form will not break if the object's command is renamed.
-
+    The chief distinction between the two is that the latter form will not break if the object's command is renamed.
 
 **mytypemethod** *name* ?*args...*?
-: The **mytypemethod** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke type method *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** type method to be called when **\$button** is pressed:
+: The **mytypemethod** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke type method *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** type method to be called when **$button** is pressed:
 
+    ```
+        $button configure -command [list $type dosomething myargument]
 
-```
-    $button configure -command [list $type dosomething myargument]
+        $button configure -command [mytypemethod dosomething myargument]
+    ```
 
-    $button configure -command [mytypemethod dosomething myargument]
-```
-
-: Type commands cannot be renamed, so in practice there's little difference between the two forms.  **mytypemethod** is provided for parallelism with **mymethod**.
-
+    Type commands cannot be renamed, so in practice there's little difference between the two forms.  **mytypemethod** is provided for parallelism with **mymethod**.
 
 **myproc** *name* ?*args...*?
-: The **myproc** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke the type proc *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** proc to be called when **\$button** is pressed:
+: The **myproc** command is used for formatting callback commands to be passed to other objects.  It returns a command that when called will invoke the type proc *name* with the specified arguments, plus of course any arguments added by the caller.  In other words, both of the following commands will cause the object's **dosomething** proc to be called when **$button** is pressed:
 
+    ```
+        $button configure -command [list ${type}::dosomething myargument]
 
-```
-    $button configure -command [list ${type}::dosomething myargument]
-
-    $button configure -command [myproc dosomething myargument]
-```
+        $button configure -command [myproc dosomething myargument]
+    ```
 
 **myvar** *name*
 : Given an instance variable name, returns the fully qualified name. Use this if you're passing the variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
@@ -820,38 +935,58 @@ Snit defines the following commands for use in your object code: that is, for us
 : Given an type variable name, returns the fully qualified name.  Use this if you're passing the variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
 
 **from** *argvName* *option* ?*defvalue*?
-: The **from** command plucks an option value from a list of options and their values, such as is passed into a type's **constructor**. *argvName* must be the name of a variable containing such a list; *option* is the name of the specific option. **from** looks for *option* in the option list.  If it is found, it and its value are removed from the list, and the value is returned. If *option* doesn't appear in the list, then the *defvalue* is returned. If the option is locally-defined option, and *defvalue* is not specified, then the option's default value as specified in the type definition will be returned instead.
+: The **from** command plucks an option value from a list of options and their values, such as is passed into a type's **constructor**. *argvName* must be the name of a variable containing such a list; *option* is the name of the specific option.
+
+    **from** looks for *option* in the option list.  If it is found, it and its value are removed from the list, and the value is returned. If *option* doesn't appear in the list, then the *defvalue* is returned. If the option is locally-defined option, and *defvalue* is not specified, then the option's default value as specified in the type definition will be returned instead.
 
 **install** *compName* **using** *objType* *objName* *args...*
-: Creates a new object of type *objType* called *objName* and installs it as component *compName*, as described in **Components and Delegation**.  Any additional *args...* are passed along with the name to the *objType* command. If this is a **snit::type**, then the following two commands are equivalent:
+: Creates a new object of type *objType* called *objName* and installs it as component *compName*, as described in [Components and delegation].  Any additional *args...* are passed along with the name to the *objType* command. If this is a **snit::type**, then the following two commands are equivalent:
 
+    ```
+        install myComp using myObjType $self.myComp args...
 
-```
-    install myComp using myObjType $self.myComp args...
+        set myComp [myObjType $self.myComp args...]
+    ```
 
-    set myComp [myObjType $self.myComp args...]
-```
+    Note that whichever method is used, *compName* must still be declared in the type definition using **component**, or must be referenced in at least one **delegate** statement.
 
-: Note that whichever method is used, *compName* must still be declared in the type definition using **component**, or must be referenced in at least one **delegate** statement. If this is a **snit::widget** or **snit::widgetadaptor**, and if options have been delegated to component *compName*, then those options will receive default values from the Tk option database.  Note that it doesn't matter whether the component to be installed is a widget or not.  See **The Tk Option Database** for more information. **install** cannot be used to install type components; just assign the type component's command name to the type component's variable instead.
+    If this is a **snit::widget** or **snit::widgetadaptor**, and if options have been delegated to component *compName*, then those options will receive default values from the Tk option database.  Note that it doesn't matter whether the component to be installed is a widget or not.  See [The Tk option database] for more information.
 
+    **install** cannot be used to install type components; just assign the type component's command name to the type component's variable instead.
 
 **installhull** **using** *widgetType* *args...*
-: ...see next...
+: see below ...
 
 **installhull** *name*
-: The constructor of a **snit::widgetadaptor** must create a widget to be the object's hull component; the widget is installed as the hull component using this command.  Note that the installed widget's name must be **\$win**. This command has two forms. The first form specifies the *widgetType* and the *args...* (that is, the hardcoded option list) to use in creating the hull. Given this form, **installhull** creates the hull widget, and initializes any options delegated to the hull from the Tk option database. In the second form, the hull widget has already been created; note that its name must be "\$win".  In this case, the Tk option database is *not* queried for any options delegated to the hull. The longer form is preferred; however, the shorter form allows the programmer to adapt a widget created elsewhere, which is sometimes useful.  For example, it can be used to adapt a "page" widget created by a **BWidgets** tabbed notebook or pages manager widget. See **The Tk Option Database** for more information about **snit::widgetadaptor**s and the option database.
+: The constructor of a **snit::widgetadaptor** must create a widget to be the object's hull component; the widget is installed as the hull component using this command.  Note that the installed widget's name must be **$win**. This command has two forms.
+
+    The first form specifies the *widgetType* and the *args...* (that is, the hardcoded option list) to use in creating the hull. Given this form, **installhull** creates the hull widget, and initializes any options delegated to the hull from the Tk option database.
+
+    In the second form, the hull widget has already been created; note that its name must be "$win".  In this case, the Tk option database is *not* queried for any options delegated to the hull. The longer form is preferred; however, the shorter form allows the programmer to adapt a widget created elsewhere, which is sometimes useful.  For example, it can be used to adapt a "page" widget created by a **BWidgets** tabbed notebook or pages manager widget.
+
+    See [The Tk option database] for more information about **snit::widgetadaptor**s and the option database.
 
 **variable** *name*
-: Normally, instance variables are defined in the type definition along with the options, methods, and so forth; such instance variables are automatically visible in all instance code (e.g., method bodies).  However, instance code can use the **variable** command to declare instance variables that don't appear in the type definition, and also to bring variables from other namespaces into scope in the usual way. It's generally clearest to define all instance variables in the type definition, and omit declaring them in methods and so forth. Note that this is an instance-specific version of the standard Tcl **::variable** command.
+: Normally, instance variables are defined in the type definition along with the options, methods, and so forth; such instance variables are automatically visible in all instance code (e.g., method bodies).  However, instance code can use the **variable** command to declare instance variables that don't appear in the type definition, and also to bring variables from other namespaces into scope in the usual way.
+
+    It's generally clearest to define all instance variables in the type definition, and omit declaring them in methods and so forth.
+
+    Note that this is an instance-specific version of the standard Tcl **::variable** command.
 
 **typevariable** *name*
-: Normally, type variables are defined in the type definition, along with the instance variables; such type variables are automatically visible in all of the type's code.  However, type methods, instance methods and so forth can use **typevariable** to declare type variables that don't appear in the type definition. It's generally clearest to declare all type variables in the type definition, and omit declaring them in methods, type methods, etc.
+: Normally, type variables are defined in the type definition, along with the instance variables; such type variables are automatically visible in all of the type's code.  However, type methods, instance methods and so forth can use **typevariable** to declare type variables that don't appear in the type definition.
+
+    It's generally clearest to declare all type variables in the type definition, and omit declaring them in methods, type methods, etc.
 
 **varname** *name*
-: **Deprecated.**  Use **myvar** instead. Given an instance variable name, returns the fully qualified name. Use this if you're passing the variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
+: **Deprecated.**  Use **myvar** instead.
+
+    Given an instance variable name, returns the fully qualified name. Use this if you're passing the variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
 
 **typevarname** *name*
-: **Deprecated.**  Use **mytypevar** instead. Given a type variable name, returns the fully qualified name.  Use this if you're passing the type variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
+: **Deprecated.**  Use **mytypevar** instead.
+
+    Given a type variable name, returns the fully qualified name.  Use this if you're passing the type variable to some other object, e.g., as a **-textvariable** to a Tk label widget.
 
 **codename** *name*
 : **Deprecated.**  Use **myproc** instead. Given the name of a proc (but not a type or instance method), returns the fully-qualified command name, suitable for passing as a callback.
@@ -901,7 +1036,7 @@ The **install** command provides an alternate way to create and install the comp
     }
 ```
 
-For **snit::type**s, the two methods are equivalent; for **snit::widget**s and **snit::widgetadaptor**s, the **install** command properly initializes the widget's options by querying **The Tk Option Database**.
+For **snit::type**s, the two methods are equivalent; for **snit::widget**s and **snit::widgetadaptor**s, the **install** command properly initializes the widget's options by querying [The Tk option database].
 
 In the above examples, the **dog** object's **wag** method simply calls the **tail** component's **wag** method.  In OO jargon, this is called delegation.  Snit provides an easier way to do this:
 
@@ -935,34 +1070,36 @@ If desired, all otherwise unknown methods can be delegated to a specific compone
 
 In this case, a **dog** object will handle its own **bark** method; but **wag** will be passed along to **mytail**.  Any other method, being recognized by neither **dog** nor **tail**, will simply raise an error.
 
-Option delegation is similar to method delegation, except for the interactions with the Tk option database; this is described in **The Tk Option Database**.
+Option delegation is similar to method delegation, except for the interactions with the Tk option database; this is described in [The Tk option database].
 
 ## Type components and delegation
 
 The relationship between type components and instance components is identical to that between type variables and instance variables, and that between type methods and instance methods.  Just as an instance component is an instance variable that holds the name of a command, so a type component is a type variable that holds the name of a command. In essence, a type component is a component that's shared by every instance of the type.
 
-Just as **delegate method** can be used to delegate methods to instance components, as described in **Components and Delegation**, so **delegate typemethod** can be used to delegate type methods to type components.
+Just as **delegate method** can be used to delegate methods to instance components, as described in [Components and delegation], so **delegate typemethod** can be used to delegate type methods to type components.
 
 Note also that as of Snit 0.95 **delegate method** can delegate methods to both instance components and type components.
 
-## The tk option database
+## The Tk option database
 
 This section describes how Snit interacts with the Tk option database, and assumes the reader has a working knowledge of the option database and its uses.  The book *Practical Programming in Tcl and Tk* by Welch et al has a good introduction to the option database, as does *Effective Tcl/Tk Programming*.
 
 Snit is implemented so that most of the time it will simply do the right thing with respect to the option database, provided that the widget developer does the right thing by Snit.  The body of this section goes into great deal about what Snit requires.  The following is a brief statement of the requirements, for reference.
 
-**•**
-: If the **snit::widget**'s default widget class is not what is desired, set it explicitly using **widgetclass** in the widget definition.
+- If the **snit::widget**'s default widget class is not what is desired, set it explicitly using **widgetclass** in the widget definition.
 
-**•**
-: When defining or delegating options, specify the resource and class names explicitly when if the defaults aren't what you want.
+- When defining or delegating options, specify the resource and class names explicitly when if the defaults aren't what you want.
 
-**•**
-: Use **installhull using** to install the hull for **snit::widgetadaptor**s.
+- Use **installhull using** to install the hull for **snit::widgetadaptor**s.
 
-**•**
-: Use **install** to install all other components. The interaction of Tk widgets with the option database is a complex thing; the interaction of Snit with the option database is even more so, and repays attention to detail. **Setting the widget class:** Every Tk widget has a widget class. For Tk widgets, the widget class name is the just the widget type name with an initial capital letter, e.g., the widget class for **button** widgets is "Button". Similarly, the widget class of a **snit::widget** defaults to the unqualified type name with the first letter capitalized.  For example, the widget class of
+- Use **install** to install all other components.
 
+
+The interaction of Tk widgets with the option database is a complex thing; the interaction of Snit with the option database is even more so, and repays attention to detail.
+
+**Setting the widget class:** Every Tk widget has a widget class. For Tk widgets, the widget class name is the just the widget type name with an initial capital letter, e.g., the widget class for **button** widgets is "Button".
+
+Similarly, the widget class of a **snit::widget** defaults to the unqualified type name with the first letter capitalized.  For example, the widget class of
 
 ```
     snit::widget ::mylibrary::scrolledText { ... }
@@ -1132,18 +1269,16 @@ The drawback of this method is that Snit has no opportunity to initialize the co
 
 The **install** command does the following:
 
-**•**
-: Builds a list of the options explicitly included in the **install** command -- in this case, **-foreground**.
+- Builds a list of the options explicitly included in the **install** command -- in this case, **-foreground**.
 
-**•**
-: Queries the option database for all options delegated explicitly to the named component.
+- Queries the option database for all options delegated explicitly to the named component.
 
-**•**
-: Creates the component using the specified command, after inserting into it a list of options and values read from the option database. Thus, the explicitly included options (**-foreground**) will override anything read from the option database.
+- Creates the component using the specified command, after inserting into it a list of options and values read from the option database. Thus, the explicitly included options (**-foreground**) will override anything read from the option database.
 
-**•**
-: If the widget definition implicitly delegated options to the component using **delegate option \***, then Snit calls the newly created component's **configure** method to receive a list of all of the component's options.  From this Snit builds a list of options implicitly delegated to the component that were not explicitly included in the **install** command.  For all such options, Snit queries the option database and configures the component accordingly. **Non-widget components:** The option database is never queried for **snit::type**s, since it can only be queried given a Tk widget name. However, **snit::widget**s can have non-widget components.  And if options are delegated to those components, and if the **install** command is used to install those components, then they will be initialized from the option database just as widget components are.
+- If the widget definition implicitly delegated options to the component using **delegate option \***, then Snit calls the newly created component's **configure** method to receive a list of all of the component's options.  From this Snit builds a list of options implicitly delegated to the component that were not explicitly included in the **install** command.  For all such options, Snit queries the option database and configures the component accordingly.
 
+
+**Non-widget components:** The option database is never queried for **snit::type**s, since it can only be queried given a Tk widget name. However, **snit::widget**s can have non-widget components.  And if options are delegated to those components, and if the **install** command is used to install those components, then they will be initialized from the option database just as widget components are.
 
 ## Macros and meta-programming
 
@@ -1241,149 +1376,140 @@ Validation subtypes can be defined explicitly, as in the above example; when a l
     }
 ```
 
-Any object that has a **validate** method with the semantics described above can be used as a validation type; see **Defining Validation Types** for information on how to define new ones.
+Any object that has a **validate** method with the semantics described above can be used as a validation type; see [Defining validation types] for information on how to define new ones.
 
 Snit defines the following validation types:
 
 **snit::boolean** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::boolean** *name*
 : Validates Tcl boolean values: 1, 0, **on**, **off**, **yes**, **no**, **true**, **false**. It's possible to define subtypes--that is, instances--of **snit::boolean**, but as it has no options there's no reason to do so.
 
 **snit::double** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::double** *name* ?*option* *value*...?
 : Validates floating-point values.  Subtypes may be created with the following options:
 
+    **-min** *min*
+    : Specifies a floating-point minimum bound; a value is invalid if it is strictly less than *min*.
 
-**-min** *min*
-: Specifies a floating-point minimum bound; a value is invalid if it is strictly less than *min*.
-
-**-max** *max*
-: Specifies a floating-point maximum bound; a value is invalid if it is strictly greater than *max*.
+    **-max** *max*
+    : Specifies a floating-point maximum bound; a value is invalid if it is strictly greater than *max*.
 
 
 **snit::enum** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::enum** *name* ?*option* *value*...?
 : Validates that a value comes from an enumerated list.  The base type is of little use by itself, as only subtypes actually have an enumerated list to validate against.  Subtypes may be created with the following options:
 
-
-**-values** *list*
-: Specifies a list of valid values.  A value is valid if and only if it's included in the list.
+    **-values** *list*
+    : Specifies a list of valid values.  A value is valid if and only if it's included in the list.
 
 
 **snit::fpixels** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::fpixels** *name* ?*option* *value*...?
 : *Tk programs only.* Validates screen distances, in any of the forms accepted by **winfo fpixels**. Subtypes may be created with the following options:
 
+    **-min** *min*
+    : Specifies a minimum bound; a value is invalid if it is strictly less than *min*.  The bound may be expressed in any of the forms accepted by **winfo fpixels**.
 
-**-min** *min*
-: Specifies a minimum bound; a value is invalid if it is strictly less than *min*.  The bound may be expressed in any of the forms accepted by **winfo fpixels**.
-
-**-max** *max*
-: Specifies a maximum bound; a value is invalid if it is strictly greater than *max*.  The bound may be expressed in any of the forms accepted by **winfo fpixels**.
+    **-max** *max*
+    : Specifies a maximum bound; a value is invalid if it is strictly greater than *max*.  The bound may be expressed in any of the forms accepted by **winfo fpixels**.
 
 
 **snit::integer** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::integer** *name* ?*option* *value*...?
 : Validates integer values.  Subtypes may be created with the following options:
 
+    **-min** *min*
+    : Specifies an integer minimum bound; a value is invalid if it is strictly less than *min*.
 
-**-min** *min*
-: Specifies an integer minimum bound; a value is invalid if it is strictly less than *min*.
-
-**-max** *max*
-: Specifies an integer maximum bound; a value is invalid if it is strictly greater than *max*.
+    **-max** *max*
+    : Specifies an integer maximum bound; a value is invalid if it is strictly greater than *max*.
 
 
 **snit::listtype** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::listtype** *name* ?*option* *value*...?
 : Validates Tcl lists. Subtypes may be created with the following options:
 
+    **-minlen** *min*
+    : Specifies a minimum list length; the value is invalid if it has fewer than *min* elements.  Defaults to 0.
 
-**-minlen** *min*
-: Specifies a minimum list length; the value is invalid if it has fewer than *min* elements.  Defaults to 0.
+    **-maxlen** *max*
+    : Specifies a maximum list length; the value is invalid if it more than *max* elements.
 
-**-maxlen** *max*
-: Specifies a maximum list length; the value is invalid if it more than *max* elements.
+    **-type** *type*
+    : Specifies the type of the list elements; *type* must be the name of a validation type or subtype.  In the following example, the value of **-numbers** must be a list of integers.
 
-**-type** *type*
-: Specifies the type of the list elements; *type* must be the name of a validation type or subtype.  In the following example, the value of **-numbers** must be a list of integers.
+        ```
+            option -numbers -type {snit::listtype -type snit::integer}
+        ```
 
+        Note that this option doesn't support defining new validation subtypes on the fly; that is, the following code will not work (yet, anyway):
 
-```
-    option -numbers -type {snit::listtype -type snit::integer}
-```
+        ```
+            option -numbers -type {
+                snit::listtype -type {snit::integer -min 5}
+            }
+        ```
 
-: Note that this option doesn't support defining new validation subtypes on the fly; that is, the following code will not work (yet, anyway):
+        Instead, define the subtype explicitly:
 
+        ```
+            snit::integer gt4 -min 5
 
-```
-    option -numbers -type {
-        snit::listtype -type {snit::integer -min 5}
-    }
-```
+            snit::type mytype {
+                option -numbers -type {snit::listtype -type gt4}
+            }
+        ```
 
-: Instead, define the subtype explicitly:
-
-
-```
-    snit::integer gt4 -min 5
-
-    snit::type mytype {
-        option -numbers -type {snit::listtype -type gt4}
-    }
-```
 
 **snit::pixels** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::pixels** *name* ?*option* *value*...?
 : *Tk programs only.* Validates screen distances, in any of the forms accepted by **winfo pixels**. Subtypes may be created with the following options:
 
+    **-min** *min*
+    : Specifies a minimum bound; a value is invalid if it is strictly less than *min*.  The bound may be expressed in any of the forms accepted by **winfo pixels**.
 
-**-min** *min*
-: Specifies a minimum bound; a value is invalid if it is strictly less than *min*.  The bound may be expressed in any of the forms accepted by **winfo pixels**.
-
-**-max** *max*
-: Specifies a maximum bound; a value is invalid if it is strictly greater than *max*.  The bound may be expressed in any of the forms accepted by **winfo pixels**.
+    **-max** *max*
+    : Specifies a maximum bound; a value is invalid if it is strictly greater than *max*.  The bound may be expressed in any of the forms accepted by **winfo pixels**.
 
 
 **snit::stringtype** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::stringtype** *name* ?*option* *value*...?
 : Validates Tcl strings. The base type is of little use by itself, since very Tcl value is also a valid string.  Subtypes may be created with the following options:
 
+    **-minlen** *min*
+    : Specifies a minimum string length; the value is invalid if it has fewer than *min* characters.  Defaults to 0.
 
-**-minlen** *min*
-: Specifies a minimum string length; the value is invalid if it has fewer than *min* characters.  Defaults to 0.
+    **-maxlen** *max*
+    : Specifies a maximum string length; the value is invalid if it has more than *max* characters.
 
-**-maxlen** *max*
-: Specifies a maximum string length; the value is invalid if it has more than *max* characters.
+    **-glob** *pattern*
+    : Specifies a **string match** pattern; the value is invalid if it doesn't match the pattern.
 
-**-glob** *pattern*
-: Specifies a **string match** pattern; the value is invalid if it doesn't match the pattern.
+    **-regexp** *regexp*
+    : Specifies a regular expression; the value is invalid if it doesn't match the regular expression.
 
-**-regexp** *regexp*
-: Specifies a regular expression; the value is invalid if it doesn't match the regular expression.
-
-**-nocase** *flag*
-: By default, both **-glob** and **-regexp** matches are case-sensitive.  If **-nocase** is set to true, then both **-glob** and **-regexp** matches are case-insensitive.
+    **-nocase** *flag*
+    : By default, both **-glob** and **-regexp** matches are case-sensitive.  If **-nocase** is set to true, then both **-glob** and **-regexp** matches are case-insensitive.
 
 
 **snit::window** **validate** ?*value*?
-: ...see next...
+: see below ...
 
 **snit::window** *name*
 : *Tk programs only.*  Validates Tk window names.  The value must cause **winfo exists** to return true; otherwise, the value is invalid.  It's possible to define subtypes--that is, instances--of **snit::window**, but as it has no options at present there's no reason to do so.
@@ -1391,7 +1517,7 @@ Snit defines the following validation types:
 
 ## Defining validation types
 
-There are three ways to define a new validation type: as a subtype of one of Snit's validation types, as a validation type command, and as a full-fledged validation type similar to those provided by Snit. Defining subtypes of Snit's validation types is described above, under **Validation Types**.
+There are three ways to define a new validation type: as a subtype of one of Snit's validation types, as a validation type command, and as a full-fledged validation type similar to those provided by Snit. Defining subtypes of Snit's validation types is described above, under [Validation types].
 
 The next simplest way to create a new validation type is as a validation type command.  A validation type is simply an object that has a **validate** method; the **validate** method must take one argument, a value, return the value if it is valid, and throw an error with **-errorcode** INVALID if the value is invalid.  This can be done with a simple **proc**.  For example, the **snit::boolean** validate type could have been implemented like this:
 
@@ -1478,36 +1604,34 @@ The file "validate.tcl" in the Snit distribution defines all of Snit's validatio
 
 # Caveats
 
-If you have problems, find bugs, or new ideas you are hereby cordially invited to submit a report of your problem, bug, or idea as explained in the section **Bugs, Ideas, Feedback** below.
+If you have problems, find bugs, or new ideas you are hereby cordially invited to submit a report of your problem, bug, or idea as explained in the section [Bugs, Ideas, Feedback] below.
 
-Additionally, you might wish to join the Snit mailing list; see *http://www.wjduquette.com/snit* for details.
+Additionally, you might wish to join the Snit mailing list; see <http://www.wjduquette.com/snit> for details.
 
-One particular area to watch is using **snit::widgetadaptor** to adapt megawidgets created by other megawidget packages; correct widget destruction depends on the order of the \<Destroy> bindings. The wisest course is simply not to do this.
+One particular area to watch is using **snit::widgetadaptor** to adapt megawidgets created by other megawidget packages; correct widget destruction depends on the order of the <Destroy> bindings. The wisest course is simply not to do this.
 
 # Known bugs
 
-**•**
-: Error stack traces returned by Snit 1.x are extremely ugly and typically contain far too much information about Snit internals.  The error messages are much improved in Snit 2.2.
+- Error stack traces returned by Snit 1.x are extremely ugly and typically contain far too much information about Snit internals.  The error messages are much improved in Snit 2.2.
 
-**•**
-: Also see the Project Trackers as explained in the section **Bugs, Ideas, Feedback** below.
+- Also see the Project Trackers as explained in the section [Bugs, Ideas, Feedback] below.
 
 
 # History
 
-During the course of developing Notebook (See *http://www.wjduquette.com/notebook*), my Tcl-based personal notebook application, I found I was writing it as a collection of objects.  I wasn't using any particular object-oriented framework; I was just writing objects in pure Tcl following the guidelines in my Guide to Object Commands (see *http://www.wjduquette.com/tcl/objects.html*), along with a few other tricks I'd picked up since.  And though it was working well, it quickly became tiresome because of the amount of boilerplate code associated with each new object type.
+During the course of developing Notebook (See <http://www.wjduquette.com/notebook>), my Tcl-based personal notebook application, I found I was writing it as a collection of objects.  I wasn't using any particular object-oriented framework; I was just writing objects in pure Tcl following the guidelines in my Guide to Object Commands (see <http://www.wjduquette.com/tcl/objects.html>), along with a few other tricks I'd picked up since.  And though it was working well, it quickly became tiresome because of the amount of boilerplate code associated with each new object type.
 
 So that was one thing--tedium is a powerful motivator.  But the other thing I noticed is that I wasn't using inheritance at all, and I wasn't missing it.  Instead, I was using delegation: objects that created other objects and delegated methods to them.
 
 And I said to myself, "This is getting tedious...there has got to be a better way."  And one afternoon, on a whim, I started working on Snit, an object system that works the way Tcl works.  Snit doesn't support inheritance, but it's great at delegation, and it makes creating megawidgets easy.
 
-If you have any comments or suggestions (or bug reports!) don't hesitate to send me e-mail at *will@wjduquette.com*.  In addition, there's a Snit mailing list; you can find out more about it at the Snit home page (see *http://www.wjduquette.com/snit*).
+If you have any comments or suggestions (or bug reports!) don't hesitate to send me e-mail at *will@wjduquette.com*.  In addition, there's a Snit mailing list; you can find out more about it at the Snit home page (see <http://www.wjduquette.com/snit>).
 
 # Credits
 
 Snit has been designed and implemented from the very beginning by William H. Duquette.  However, much credit belongs to the following people for using Snit and providing me with valuable feedback: Rolf Ade, Colin McCormack, Jose Nazario, Jeff Godfrey, Maurice Diamanti, Egon Pasztor, David S. Cargo, Tom Krehbiel, Michael Cleverly, Andreas Kupries, Marty Backe, Andy Goth, Jeff Hobbs, Brian Griffin, Donal Fellows, Miguel Sofer, Kenneth Green, and Anton Kovalenko. If I've forgotten anyone, my apologies; let me know and I'll add your name to the list.
 
-# Bugs, ideas, feedback
+# Bugs, Ideas, Feedback
 
 If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *snit* as the category.
 
@@ -1524,3 +1648,6 @@ Programming tools
 ```
 Copyright (c) 2003-2009, by William H. Duquette
 ```
+
+
+[snitfaq]: snitfaq.md

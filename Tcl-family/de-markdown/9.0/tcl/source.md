@@ -1,5 +1,6 @@
 ---
 CommandName: source
+title: source
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -18,28 +19,28 @@ Copyright:
  - Copyright (c) 2000 Scriptics Corporation.
 ---
 
-# NAME
+# Name
 
 source - Wertet eine Datei oder Ressource als Tcl-Skript aus
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[source]{.cmd} [fileName]{.arg} 
-[source]{.cmd} [-encoding]{.sub} [encodingName]{.arg} [fileName]{.arg} 
+[source]{.cmd} [fileName]{.arg}
+[source]{.cmd} [-encoding]{.lit} [encodingName]{.arg} [fileName]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl liest die angegebene Datei oder Ressource und übergibt den Inhalt dem Tcl-Interpreter als Textskript. Der Rückgabewert von **source** ist der des zuletzt im Skript ausgeführten Befehls. Tritt bei der Auswertung ein Fehler auf, gibt **source** diesen zurück. Wird im Skript **return** aufgerufen, wird der Rest der Datei übersprungen und **source** kehrt normal mit dem Ergebnis von **return** zurück.
+Der Befehl liest die angegebene Datei oder Ressource und übergibt den Inhalt dem Tcl-Interpreter als Textskript. Der Rückgabewert von **source** ist der des zuletzt im Skript ausgeführten Befehls. Tritt bei der Auswertung ein Fehler auf, gibt **source** diesen zurück. Wird im Skript [return] aufgerufen, wird der Rest der Datei übersprungen und **source** kehrt normal mit dem Ergebnis von [return] zurück.
 
-Das Dateiende-Zeichen ist auf allen Plattformen „\32“ (^Z). **source** liest bis zu diesem Zeichen. **read** und **gets** kennen diese Einschränkung nicht (Skripte mit Code- und Datensegmenten). Für einen Literal-Vergleich mit ^Z im Code: „\x1A“ — der Interpreter wandelt das sicher in ^Z um.
+Das Dateiende-Zeichen ist auf allen Plattformen „\\32“ (^Z). **source** liest bis zu diesem Zeichen. [read] und [gets] kennen diese Einschränkung nicht (Skripte mit Code- und Datensegmenten). Für einen Literal-Vergleich mit ^Z im Code: „\\x1A“ — der Interpreter wandelt das sicher in ^Z um.
 
 Eine führende BOM (Byte Order Mark) in der Datei wird bei Unicode-Kodierungen (utf-8, utf-16, ucs-2) ignoriert.
 
 Die Option **-encoding** legt die Kodierung der Daten in *fileName* fest. Ohne **-encoding** wird utf-8 angenommen.
 
-# BEISPIELE
+# Beispiele
 
 Skripte in **foo.tcl** und **bar.tcl** nacheinander ausführen:
 
@@ -55,3 +56,8 @@ foreach scriptFile {foo.tcl bar.tcl} {
     source $scriptFile
 }
 ```
+
+
+[gets]: gets.md
+[read]: read.md
+[return]: return.md

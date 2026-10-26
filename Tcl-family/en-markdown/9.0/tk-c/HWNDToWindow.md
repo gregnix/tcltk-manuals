@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_HWNDToWindow
+title: Tk_HWNDToWindow
 ManualSection: 3
 Version: unknown
 TclPart: Tk
@@ -8,28 +9,28 @@ Keywords:
  - Windows window id
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tk_HWNDToWindow - Find Tk's window information for a Windows window
+Tk\_HWNDToWindow - Find Tk's window information for a Windows window
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tkPlatDecls.h>]{.lit}
-
-Tk_Window
-[Tk_HWNDToWindow]{.cmd}([hwnd]{.arg})
+**#include <tkPlatDecls.h>**
+[Tk\_Window]{.ret} [Tk\_HWNDToWindow]{.ccmd} [hwnd]{.cargs}
 :::
 
 # Arguments
 
-HWND *hwnd* (in)
+::: {.arguments} :::
+
+[hwnd]{.carg .in type="HWND"}
 : Windows handle for the window.
 
+:::
 
 # Description
 
-Given a Windows HWND window identifier, this procedure returns the corresponding Tk_Window handle. If there is no Tk_Window corresponding to *hwnd* then NULL is returned.
+Given a Windows HWND window identifier, this procedure returns the corresponding Tk\_Window handle. If there is no Tk\_Window corresponding to *hwnd* then NULL is returned.

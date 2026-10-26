@@ -1,5 +1,6 @@
 ---
 CommandName: struct::record
+title: struct::record
 ManualSection: n
 Version: 1.2.4
 TclPart: tcllib
@@ -19,30 +20,28 @@ struct::record - Define and create records (similar to 'C' structures)
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::record]{.lit} [1.2.4]{.optlit} 
-[record]{.cmd} [define]{.sub} [recordName]{.arg} [recordMembers]{.arg} [instanceName1 instanceName2]{.optdot} 
-[record]{.cmd} [show]{.sub} [record]{.arg} 
-[record]{.cmd} [show]{.sub} [instances]{.arg} [recordName]{.arg} 
-[record]{.cmd} [show]{.sub} [members]{.arg} [recordName]{.arg} 
-[record]{.cmd} [show]{.sub} [values]{.arg} [instanceName]{.arg} 
-[record]{.cmd} [exists]{.sub} [record]{.arg} [recordName]{.arg} 
-[record]{.cmd} [exists]{.sub} [instance]{.arg} [instanceName]{.arg} 
-[record]{.cmd} [delete]{.sub} [record]{.arg} [recordName]{.arg} 
-[record]{.cmd} [delete]{.sub} [instance]{.arg} [instanceName]{.arg} 
-[instanceName]{.ins} [cget]{.sub} -member 
-[instanceName]{.ins} [cget]{.sub} -member1 -member2 
-[instanceName]{.ins} [cget]{.sub} 
-[instanceName]{.ins} [configure]{.sub} 
-[instanceName]{.ins} [configure]{.sub} -member [value]{.arg} 
-[instanceName]{.ins} [configure]{.sub} -member1 [value1]{.arg} -member2 [value2]{.arg} 
-[instanceName]{.ins} [cget]{.sub} [-member1 -member2]{.optdot} 
-[instanceName]{.ins} [configure]{.sub} [-member1 value1 -member2 value2]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::record]{.lit} [1.2.4]{.optlit}
+[record]{.cmd} [define]{.sub} [recordName]{.arg} [recordMembers]{.arg} [instanceName1 instanceName2]{.optdot}
+[record]{.cmd} [show]{.sub} [record]{.arg}
+[record]{.cmd} [show]{.sub} [instances]{.arg} [recordName]{.arg}
+[record]{.cmd} [show]{.sub} [members]{.arg} [recordName]{.arg}
+[record]{.cmd} [show]{.sub} [values]{.arg} [instanceName]{.arg}
+[record]{.cmd} [exists]{.sub} [record]{.arg} [recordName]{.arg}
+[record]{.cmd} [exists]{.sub} [instance]{.arg} [instanceName]{.arg}
+[record]{.cmd} [delete]{.sub} [record]{.arg} [recordName]{.arg}
+[record]{.cmd} [delete]{.sub} [instance]{.arg} [instanceName]{.arg}
+[instanceName]{.ins} [cget]{.sub} -member
+[instanceName]{.ins} [cget]{.sub} -member1 -member2
+[instanceName]{.ins} [cget]{.sub}
+[instanceName]{.ins} [configure]{.sub}
+[instanceName]{.ins}
+[instanceName]{.ins} [configure]{.sub} -member [value]{.arg}
+[instanceName]{.ins} [configure]{.sub} -member1 [value1]{.arg} -member2 [value2]{.arg}
+[recordName]{.ins} [instanceName|#auto]{.sub} [-member1 value1 -member2 value2]{.optdot}
+[instanceName]{.ins} [cget]{.sub} [-member1 -member2]{.optdot}
+[instanceName]{.ins} [configure]{.sub} [-member1 value1 -member2 value2]{.optdot}
 :::
-
-*instanceName*
-
-*recordName* *instanceName*|**#auto** ?*-member1 value1 -member2 value2 ...*?
 
 # Description
 
@@ -117,21 +116,22 @@ All instances created from this record definition will initially have **5** as t
 To get a value of a member, there are several ways to do this.
 
 *instanceName* **cget** -*member*
-: In this form the built-in **cget** instance method returns the value of the specified *member*. Note the leading dash. To reach a nested member use *dot notation*:
+: In this form the built-in **cget** instance method returns the value of the specified *member*. Note the leading dash.
 
+    To reach a nested member use *dot notation*:
 
-```
-instanceName cget -mem3.nest1
-```
+    ```
+    instanceName cget -mem3.nest1
+    ```
 
 *instanceName* **cget** -*member1* -*member2*
 : In this form the built-in **cget** instance method returns a list containing the values of both specified members, in the order of specification.
 
 *instanceName* **cget**
-: ...see next...
+: see below ...
 
 *instanceName* **configure**
-: ...see next...
+: see below ...
 
 *instanceName*
 : These forms are all equivalent. They return a dictionary of all members and the associated values.
@@ -142,12 +142,13 @@ instanceName cget -mem3.nest1
 To set a value of a member, there are several ways to do this.
 
 *instanceName* **configure** -*member* *value*
-: In this form the built-in **configure** instance method sets the specified *member* to the given *value*. Note the leading dash. To reach a nested member use *dot notation*:
+: In this form the built-in **configure** instance method sets the specified *member* to the given *value*. Note the leading dash.
 
+    To reach a nested member use *dot notation*:
 
-```
-instanceName configure -mem3.nest1 value
-```
+    ```
+    instanceName configure -mem3.nest1 value
+    ```
 
 *instanceName* **configure** -*member1* *value1* -*member2* *value2*
 : In this form the built-in **configure** instance method sets all specified members to the associated values.
@@ -199,7 +200,11 @@ Basically, for every member of every instance, an alias is created. This alias i
 The following subcommands and corresponding arguments are available to any record command:
 
 *recordName* *instanceName*|**#auto** ?*-member1 value1 -member2 value2 ...*?
-: Using the *recordName* object command that was created from the record definition, instances of the record definition can be created. Once an instance is created, it inherits the members of the record definition, very similar to how objects work. During instance generation, an object command for the instance is created as well, using *instanceName*. This object command is used to access the data members of the instance. During the instantiation, while values for that instance may be given, when done, *all* values must be given, and be given as key/value pairs, like for method **configure**. Nested records have to be in list format. Optionally, **#auto** can be used in place of *instanceName*. When **#auto** is used, the instance name will be automatically generated, and of the form **recordNameN**, where **N** is a unique integer (starting at 0) that is generated.
+: Using the *recordName* object command that was created from the record definition, instances of the record definition can be created. Once an instance is created, it inherits the members of the record definition, very similar to how objects work. During instance generation, an object command for the instance is created as well, using *instanceName*.
+
+    This object command is used to access the data members of the instance. During the instantiation, while values for that instance may be given, when done, *all* values must be given, and be given as key/value pairs, like for method **configure**. Nested records have to be in list format.
+
+    Optionally, **#auto** can be used in place of *instanceName*. When **#auto** is used, the instance name will be automatically generated, and of the form **recordNameN**, where **N** is a unique integer (starting at 0) that is generated.
 
 
 # Instance command

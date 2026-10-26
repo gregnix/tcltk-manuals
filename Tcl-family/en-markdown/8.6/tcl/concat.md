@@ -1,5 +1,6 @@
 ---
 CommandName: concat
+title: concat
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -24,7 +25,7 @@ concat - Join lists together
 # Synopsis
 
 ::: {.synopsis} :::
-[concat]{.cmd} [arg arg]{.optdot} 
+[concat]{.cmd} [arg arg]{.optdot}
 :::
 
 # Description

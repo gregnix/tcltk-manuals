@@ -1,5 +1,6 @@
 ---
 CommandName: classvariable
+title: classvariable
 ManualSection: n
 Version: 0.3
 TclPart: TclOO
@@ -20,29 +21,31 @@ Copyright:
  - Copyright (c) 2018 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 classvariable - Verknüpft lokale Variable mit Variable in der Klasse
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[classvariable]{.cmd} [variableName]{.arg} [...]{.optdot} 
+[classvariable]{.cmd} [variableName]{.arg} [...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **classvariable** ist innerhalb von Methoden verfügbar. Er nimmt eine Reihe von einem oder mehr Variablennamen und macht sie im Gültigkeitsbereich der Methode verfügbar; diese Namen dürfen nicht qualifiziert sein und dürfen sich nicht auf Array-Elemente beziehen. Der Ursprungs-Gültigkeitsbereich für die Variablen ist der Namespace der Klasse, in der die Methode definiert wurde. Die referenzierten Variablen werden also von allen Instanzen dieser Klasse geteilt.
 
-Beachten Sie, dass dieser Befehl dem Befehl **typevariable** aus dem snit-Paket in tcllib für denselben Zweck entspricht. Wird er in einer direkt auf einer Klasseninstanz definierten Methode verwendet (z. B. über **oo::objdefine** **method**), entspricht er im Wesentlichen für jede an **classvariable** übergebene Variable:
+Beachten Sie, dass dieser Befehl dem Befehl **typevariable** aus dem snit-Paket in tcllib für denselben Zweck entspricht. Wird er in einer direkt auf einer Klasseninstanz definierten Methode verwendet (z. B. über [oo::objdefine][define] **method**), entspricht er im Wesentlichen:
 
 ```
 namespace upvar [namespace current] $var $var
 ```
 
-# BEISPIELE
+für jede an **classvariable** übergebene Variable.
+
+# Beispiele
 
 Diese Klasse zählt, wie viele Instanzen erzeugt wurden.
 
@@ -67,10 +70,13 @@ oo::class create Counted {
 set a [Counted new]
 set b [Counted new]
 $a report
-        → gibt "This is instance 1 of 2" aus
+        → This is instance 1 of 2
 set c [Counted new]
 $b report
-        → gibt "This is instance 2 of 3" aus
+        → This is instance 2 of 3
 $c report
-        → gibt "This is instance 3 of 3" aus
+        → This is instance 3 of 3
 ```
+
+
+[define]: define.md

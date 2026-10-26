@@ -1,5 +1,6 @@
 ---
 CommandName: httpd
+title: httpd
 ManualSection: n
 Version: 4.3.6
 TclPart: tcllib
@@ -15,243 +16,243 @@ Copyright:
  - Copyright (c) 2018 Sean Woods <yoda@etoyoc.com>
 ---
 
-# NAME
+# Name
 
 httpd – Ein auf TclOO und Coroutinen basierender Webserver
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuid]{.lit} 
-[package]{.cmd} [require]{.sub} [clay]{.lit} 
-[package]{.cmd} [require]{.sub} [coroutine]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil::magic::filetype]{.lit} 
-[package]{.cmd} [require]{.sub} [websocket]{.lit} 
-[package]{.cmd} [require]{.sub} [mime]{.lit} 
-[package]{.cmd} [require]{.sub} [cron]{.lit} 
-[package]{.cmd} [require]{.sub} [uri]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuid]{.lit}
+[package]{.cmd} [require]{.sub} [clay]{.lit}
+[package]{.cmd} [require]{.sub} [coroutine]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil::magic::filetype]{.lit}
+[package]{.cmd} [require]{.sub} [websocket]{.lit}
+[package]{.cmd} [require]{.sub} [mime]{.lit}
+[package]{.cmd} [require]{.sub} [cron]{.lit}
+[package]{.cmd} [require]{.sub} [uri]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit}
 :::
 
-Methode **ChannelCopy** *in* *out* ?*args*?
+method **ChannelCopy** *in* *out* ?*args*?
 
-Methode **html_header** ?*title* ? ?*args*?
+method **html\_header** ?*title* ? ?*args*?
 
-Methode **html_footer** ?*args*?
+method **html\_footer** ?*args*?
 
-Methode **http_code_string** *code*
+method **http\_code\_string** *code*
 
-Methode **HttpHeaders** *sock* ?*debug* ?
+method **HttpHeaders** *sock* ?*debug* ?
 
-Methode **HttpHeaders_Default**
+method **HttpHeaders\_Default**
 
-Methode **HttpServerHeaders**
+method **HttpServerHeaders**
 
-Methode **MimeParse** *mimetext*
+method **MimeParse** *mimetext*
 
-Methode **Url_Decode** *data*
+method **Url\_Decode** *data*
 
-Methode **Url_PathCheck** *urlsuffix*
+method **Url\_PathCheck** *urlsuffix*
 
-Methode **wait** *mode* *sock*
+method **wait** *mode* *sock*
 
-Variable **ChannelRegister**
+variable **ChannelRegister**
 
-Variable **reply**
+variable **reply**
 
-Variable **request**
+variable **request**
 
-Weiterleitung **\<server>**
+delegate **<server>**
 
-Methode **constructor** *ServerObj* ?*args*?
+method **constructor** *ServerObj* ?*args*?
 
-Methode **destructor** ?*dictargs*?
+method **destructor** ?*dictargs*?
 
-Methode **ChannelRegister** ?*args*?
+method **ChannelRegister** ?*args*?
 
-Methode **close**
+method **close**
 
-Methode **Log_Dispatched**
+method **Log\_Dispatched**
 
-Methode **dispatch** *newsock* *datastate*
+method **dispatch** *newsock* *datastate*
 
-Methode **Dispatch**
+method **Dispatch**
 
-Methode **html_header** *title* ?*args*?
+method **html\_header** *title* ?*args*?
 
-Methode **html_footer** ?*args*?
+method **html\_footer** ?*args*?
 
-Methode **error** *code* ?*msg* ? ?*errorInfo* ?
+method **error** *code* ?*msg* ? ?*errorInfo* ?
 
-Methode **content**
+method **content**
 
-Methode **EncodeStatus** *status*
+method **EncodeStatus** *status*
 
-Methode **log** *type* ?*info* ?
+method **log** *type* ?*info* ?
 
-Methode **CoroName**
+method **CoroName**
 
-Methode **DoOutput**
+method **DoOutput**
 
-Methode **FormData**
+method **FormData**
 
-Methode **PostData** *length*
+method **PostData** *length*
 
-Methode **Session_Load**
+method **Session\_Load**
 
-Methode **puts** *line*
+method **puts** *line*
 
-Methode **RequestFind** *field*
+method **RequestFind** *field*
 
-Methode **request** *subcommand* ?*args*?
+method **request** *subcommand* ?*args*?
 
-Methode **reply** *subcommand* ?*args*?
+method **reply** *subcommand* ?*args*?
 
-Methode **reset**
+method **reset**
 
-Methode **timeOutCheck**
+method **timeOutCheck**
 
-Methode **timestamp**
+method **timestamp**
 
-Variable **template**
+variable **template**
 
-Variable **url_patterns**
+variable **url\_patterns**
 
-Methode **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc_root* ? ?*reverse_dns* **0**? ?*configuration_file* ? ?*protocol* **HTTP/1.1**?
+method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc\_root* ? ?*reverse\_dns* **0**? ?*configuration\_file* ? ?*protocol* **HTTP/1.1**?
 
-Methode **destructor** ?*dictargs*?
+method **destructor** ?*dictargs*?
 
-Methode **connect** *sock* *ip* *port*
+method **connect** *sock* *ip* *port*
 
-Methode **ServerHeaders** *ip* *http_request* *mimetxt*
+method **ServerHeaders** *ip* *http\_request* *mimetxt*
 
-Methode **Connect** *uuid* *sock* *ip*
+method **Connect** *uuid* *sock* *ip*
 
-Methode **counter** *which*
+method **counter** *which*
 
-Methode **CheckTimeout**
+method **CheckTimeout**
 
-Methode **debug** ?*args*?
+method **debug** ?*args*?
 
-Methode **dispatch** *data*
+method **dispatch** *data*
 
-Methode **Dispatch_Default** *reply*
+method **Dispatch\_Default** *reply*
 
-Methode **Dispatch_Local** *data*
+method **Dispatch\_Local** *data*
 
-Methode **Headers_Local** *varname*
+method **Headers\_Local** *varname*
 
-Methode **Headers_Process** *varname*
+method **Headers\_Process** *varname*
 
-Methode **HostName** *ipaddr*
+method **HostName** *ipaddr*
 
-Methode **log** ?*args*?
+method **log** ?*args*?
 
-Methode **plugin** *slot* ?*class* ?
+method **plugin** *slot* ?*class* ?
 
-Methode **port_listening**
+method **port\_listening**
 
-Methode **PrefixNormalize** *prefix*
+method **PrefixNormalize** *prefix*
 
-Methode **source** *filename*
+method **source** *filename*
 
-Methode **start**
+method **start**
 
-Methode **stop**
+method **stop**
 
-Methode **SubObject {} db**
+method **SubObject {} db**
 
-Methode **SubObject {} default**
+method **SubObject {} default**
 
-Methode **template** *page*
+method **template** *page*
 
-Methode **TemplateSearch** *page*
+method **TemplateSearch** *page*
 
-Methode **Thread_start**
+method **Thread\_start**
 
-Methode **Uuid_Generate**
+method **Uuid\_Generate**
 
-Methode **Validate_Connection** *sock* *ip*
+method **Validate\_Connection** *sock* *ip*
 
-Methode **reset**
+method **reset**
 
-Methode **content**
+method **content**
 
-Methode **Dispatch**
+method **Dispatch**
 
-Methode **content**
+method **content**
 
-Methode **FileName**
+method **FileName**
 
-Methode **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 
-Methode **content**
+method **content**
 
-Methode **Dispatch**
+method **Dispatch**
 
-Variable **exename**
+variable **exename**
 
-Methode **CgiExec** *execname* *script* *arglist*
+method **CgiExec** *execname* *script* *arglist*
 
-Methode **Cgi_Executable** *script*
+method **Cgi\_Executable** *script*
 
-Methode **proxy_channel**
+method **proxy\_channel**
 
-Methode **proxy_path**
+method **proxy\_path**
 
-Methode **ProxyRequest** *chana* *chanb*
+method **ProxyRequest** *chana* *chanb*
 
-Methode **ProxyReply** *chana* *chanb* ?*args*?
+method **ProxyReply** *chana* *chanb* ?*args*?
 
-Methode **Dispatch**
+method **Dispatch**
 
-Methode **FileName**
+method **FileName**
 
-Methode **proxy_channel**
+method **proxy\_channel**
 
-Methode **ProxyRequest** *chana* *chanb*
+method **ProxyRequest** *chana* *chanb*
 
-Methode **ProxyReply** *chana* *chanb* ?*args*?
+method **ProxyReply** *chana* *chanb* ?*args*?
 
-Methode **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 
-Methode **EncodeStatus** *status*
+method **EncodeStatus** *status*
 
-Methode **scgi_info**
+method **scgi\_info**
 
-Methode **proxy_channel**
+method **proxy\_channel**
 
-Methode **ProxyRequest** *chana* *chanb*
+method **ProxyRequest** *chana* *chanb*
 
-Methode **ProxyReply** *chana* *chanb* ?*args*?
+method **ProxyReply** *chana* *chanb* ?*args*?
 
-Methode **debug** ?*args*?
+method **debug** ?*args*?
 
-Methode **Connect** *uuid* *sock* *ip*
+method **Connect** *uuid* *sock* *ip*
 
-Methode **Dispatch_Dict** *data*
+method **Dispatch\_Dict** *data*
 
-Methode **uri {} add** *vhosts* *patterns* *info*
+method **uri {} add** *vhosts* *patterns* *info*
 
-Methode **uri {} direct** *vhosts* *patterns* *info* *body*
+method **uri {} direct** *vhosts* *patterns* *info* *body*
 
-Methode **output**
+method **output**
 
-Methode **DoOutput**
+method **DoOutput**
 
-Methode **close**
+method **close**
 
-Methode **local_memchan** *command* ?*args*?
+method **local\_memchan** *command* ?*args*?
 
-Methode **Connect_Local** *uuid* *sock* ?*args*?
+method **Connect\_Local** *uuid* *sock* ?*args*?
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Modul implementiert einen Webserver, der sich zur Einbindung in eine Anwendung eignet. Der Server ist objektorientiert und enthält alle Grundlagen, die für eine voll funktionsfähige Website erforderlich sind.
 
-# MINIMALBEISPIEL
+# Minimalbeispiel
 
 Zum Starten eines Webdienstes wird eine Klasse vom Typ **httpd::server** instanziiert und diesem Server werden eine oder mehrere zu bedienende URIs sowie von **httpd::reply** abgeleitete Klassen zur Generierung dieser URIs bereitgestellt.
 
@@ -289,46 +290,44 @@ cd ~/tcl/sandbox/tcllib
 tclsh examples/httpd.tcl
 ```
 
-# KLASSEN
+# Klassen
 
 ## Klasse httpd::mime
 
 Eine Metaklasse für das MIME-Verarbeitungsverhalten über einen aktiven Socket hinweg
 
-**Methods**
+**Methoden**
 
-Methode **ChannelCopy** *in* *out* ?*args*?
-: ...siehe nächstes...
+method **ChannelCopy** *in* *out* ?*args*?
+: siehe unten ...
 
-Methode **html_header** ?*title* ? ?*args*?
+method **html\_header** ?*title* ? ?*args*?
 : Gibt einen HTML-Block zurück
 
-Methode **html_footer** ?*args*?
-: ...siehe nächstes...
+method **html\_footer** ?*args*?
+: siehe unten ...
 
-Methode **http_code_string** *code*
-: ...siehe nächstes...
+method **http\_code\_string** *code*
+: siehe unten ...
 
-Methode **HttpHeaders** *sock* ?*debug* ?
-: ...siehe nächstes...
+method **HttpHeaders** *sock* ?*debug* ?
+: siehe unten ...
 
-Methode **HttpHeaders_Default**
-: ...siehe nächstes...
+method **HttpHeaders\_Default**
+: siehe unten ...
 
-Methode **HttpServerHeaders**
-: ...siehe nächstes...
+method **HttpServerHeaders**
+: siehe unten ...
 
-Methode **MimeParse** *mimetext*
+method **MimeParse** *mimetext*
 : Wandelt einen Block von MIME-kodiertem Text in eine Schlüssel-Wert-Liste um. Tritt eine Ausnahme auf, löst die Methode einen eigenen Aufruf der Methode **error** aus und ruft unverzüglich die Methode **output** auf, um einen Fehlercode zu generieren und die Verbindung zu schließen.
 
-Methode **Url_Decode** *data*
+method **Url\_Decode** *data*
 : Entfernt die HTTP-Kodierung aus einer Zeichenkette.
 
-Methode **Url_PathCheck** *urlsuffix*
-: ...siehe nächstes...
 
-Methode **wait** *mode* *sock*
-: 
+- Methode **Url\_PathCheck** *urlsuffix*
+- Methode **wait** *mode* *sock*
 
 
 ## Klasse httpd::reply
@@ -337,24 +336,20 @@ Methode **wait** *mode* *sock*
 
 Eine Klasse, die eine Anfrage durch den Prozess der Antwortgenerierung begleitet. Der mit der Antwort verbundene Socket ist jederzeit über die Variable *chan* verfügbar. Der Prozess der Antwortgenerierung beginnt damit, dass eine **httpd::server** ein **http::class**-Objekt erzeugt, eine Reihe von Verhaltensweisen einbindet und anschließend die **dispatch**-Methode des Antwortobjekts aufruft. Im Normalbetrieb führt die Methode **dispatch** folgende Schritte aus:
 
-**\[1\]**
-: Ruft die Methode **reset** des Objekts auf, um die Standard-Header zu füllen.
+1. Ruft die Methode **reset** des Objekts auf, um die Standard-Header zu füllen.
 
-**\[2\]**
-: Ruft die Methode **HttpHeaders** auf, um die MIME-Header aus dem Socket zu streamen
+2. Ruft die Methode **HttpHeaders** auf, um die MIME-Header aus dem Socket zu streamen
 
-**\[3\]**
-: Ruft die Methode **request parse** auf, um den Strom der MIME-Header in ein Dictionary umzuwandeln, das über die Methode **request** gelesen werden kann.
+3. Ruft die Methode **request parse** auf, um den Strom der MIME-Header in ein Dictionary umzuwandeln, das über die Methode **request** gelesen werden kann.
 
-**\[4\]**
-: Speichert den Rohdatenstrom der MIME-Header in der Variable *rawrequest* des Objekts.
+4. Speichert den Rohdatenstrom der MIME-Header in der Variable *rawrequest* des Objekts.
 
-**\[5\]**
-: Ruft die Methode **content** für das Objekt auf und löst einen Aufruf der Methode **error** aus, falls eine Ausnahme ausgelöst wird.
+5. Ruft die Methode **content** für das Objekt auf und löst einen Aufruf der Methode **error** aus, falls eine Ausnahme ausgelöst wird.
 
-**\[6\]**
-: Ruft die Methode **output** des Objekts auf. Entwickler können die Ausgabe über die Methode **puts** der Antwort in einen Puffer schreiben oder einfach die Variable *reply_body* des Objekts füllen. Die von der Methode **content** zurückgegebenen Informationen werden in keiner Weise interpretiert. Wenn eine Ausnahme ausgelöst wird (beispielsweise über den Befehl **error** in Tcl), erzeugt der Aufrufer automatisch eine Meldung 500 {Internal Error}. Eine typische Implementierung von **content** sieht wie folgt aus:
+6. Ruft die Methode **output** des Objekts auf.
 
+
+Entwickler können die Ausgabe über die Methode **puts** der Antwort in einen Puffer schreiben oder einfach die Variable *reply\_body* des Objekts füllen. Die von der Methode **content** zurückgegebenen Informationen werden in keiner Weise interpretiert. Wenn eine Ausnahme ausgelöst wird (beispielsweise über den Befehl **error** in Tcl), erzeugt der Aufrufer automatisch eine Meldung 500 {Internal Error}. Eine typische Implementierung von **content** sieht wie folgt aus:
 
 ```
  clay::define ::test::content.file {
@@ -415,97 +410,109 @@ Eine Klasse, die eine Anfrage durch den Prozess der Antwortgenerierung begleitet
 
 **Variable**
 
-Variable **ChannelRegister**
-: ...siehe nächstes...
+variable **ChannelRegister**
+: siehe unten ...
 
-Variable **reply**
+variable **reply**
 : Ein Dictionary, das in die MIME-Header der Antwort umgewandelt wird
 
-Variable **request**
-: Ein Dictionary, das die durch SCGI durchgeführte Transformation der HTTP-Header für die Anfrage **Delegate** enthält
+variable **request**
+: Ein Dictionary, das die durch SCGI durchgeführte Transformation der HTTP-Header für die Anfrage
 
-Weiterleitung **\<server>**
-: Das Server-Objekt, das diese Antwort erzeugt hat **Methods**
 
-Methode **constructor** *ServerObj* ?*args*?
-: ...siehe nächstes...
+**Delegate** enthält
 
-Methode **destructor** ?*dictargs*?
+delegate **<server>**
+: Das Server-Objekt, das diese Antwort erzeugt hat
+
+
+**Methoden**
+
+method **constructor** *ServerObj* ?*args*?
+: siehe unten ...
+
+method **destructor** ?*dictargs*?
 : Räumt beim Beenden auf.
 
-Methode **ChannelRegister** ?*args*?
+method **ChannelRegister** ?*args*?
 : Registriert einen Kanal, der von der Methode **close** geschlossen werden soll.
 
-Methode **close**
+method **close**
 : Schließt die von diesem Objekt geöffneten Kanäle.
 
-Methode **Log_Dispatched**
+method **Log\_Dispatched**
 : Erfasst ein Dispatch-Ereignis.
 
-Methode **dispatch** *newsock* *datastate*
-: Nimmt die Übergabe des Sockets *newsock* vom Server-Objekt entgegen und übergibt ihm den Zustand *datastate*. Felder, nach denen *datastate* insbesondere sucht, sind: \* **mixin** – eine Schlüssel-Wert-Liste mit Slots und Klassen, die vor dem Aufruf von **Dispatch** in das Objekt eingebunden werden sollen. \* **http** – eine Schlüssel-Wert-Liste mit Werten, die in das Ensemble *request* des Objekts eingefügt werden sollen. Alle übrigen Felder werden an die Struktur **clay** des Objekts weitergereicht.
+method **dispatch** *newsock* *datastate*
+: Nimmt die Übergabe des Sockets *newsock* vom Server-Objekt entgegen und übergibt ihm den Zustand *datastate*. Felder, nach denen *datastate* insbesondere sucht, sind:
 
-Methode **Dispatch**
-: ...siehe nächstes...
+    \* **mixin** – eine Schlüssel-Wert-Liste mit Slots und Klassen, die vor dem Aufruf von **Dispatch** in das Objekt eingebunden werden sollen.
 
-Methode **html_header** *title* ?*args*?
-: ...siehe nächstes...
+    \* **http** – eine Schlüssel-Wert-Liste mit Werten, die in das Ensemble *request* des Objekts eingefügt werden sollen.
 
-Methode **html_footer** ?*args*?
-: ...siehe nächstes...
+    Alle übrigen Felder werden an die Struktur **clay** des Objekts weitergereicht.
 
-Methode **error** *code* ?*msg* ? ?*errorInfo* ?
-: ...siehe nächstes...
+method **Dispatch**
+: siehe unten ...
 
-Methode **content**
-: REPLACE ME: Diese Methode ist der Kern Ihrer Anwendung. Sie schreibt über die Methode **puts** in den Ergebnispuffer und kann die Header über „clay put header_reply“ anpassen.
+method **html\_header** *title* ?*args*?
+: siehe unten ...
 
-Methode **EncodeStatus** *status*
+method **html\_footer** ?*args*?
+: siehe unten ...
+
+method **error** *code* ?*msg* ? ?*errorInfo* ?
+: siehe unten ...
+
+method **content**
+: REPLACE ME: Diese Methode ist der Kern Ihrer Anwendung. Sie schreibt über die Methode **puts** in den Ergebnispuffer und kann die Header über „clay put header\_reply“ anpassen.
+
+method **EncodeStatus** *status*
 : Bildet aus der angegebenen Zeichenkette einen HTTP-Status-Header in Standardform.
 
-Methode **log** *type* ?*info* ?
-: ...siehe nächstes...
+method **log** *type* ?*info* ?
+: siehe unten ...
 
-Methode **CoroName**
-: ...siehe nächstes...
+method **CoroName**
+: siehe unten ...
 
-Methode **DoOutput**
+method **DoOutput**
 : Erzeugt die HTTP-Antwort, überträgt sie über *chan* und zerstört das Objekt.
 
-Methode **FormData**
-: Bei GET-Anfragen wird der QUERY_DATA-Header in eine Schlüssel-Wert-Liste umgewandelt. Bei POST-Anfragen werden die POST-Daten gelesen und diese Informationen für „application/x-www-form-urlencoded“-POSTs in eine Schlüssel-Wert-Liste umgewandelt. Bei Multipart-Posts fasst es alle MIME-Header des Posts zu einer einzigen Schlüssel-Wert-Liste zusammen und stellt MIME\_\* Informationen bereit, wie sie vom Paket **mime** berechnet werden, einschließlich des MIME_TOKEN, das wieder in das mime-Paket eingespeist werden kann, um den Inhalt auszulesen.
+method **FormData**
+: Bei GET-Anfragen wird der QUERY\_DATA-Header in eine Schlüssel-Wert-Liste umgewandelt. Bei POST-Anfragen werden die POST-Daten gelesen und diese Informationen für „application/x-www-form-urlencoded“-POSTs in eine Schlüssel-Wert-Liste umgewandelt. Bei Multipart-Posts fasst es alle MIME-Header des Posts zu einer einzigen Schlüssel-Wert-Liste zusammen und stellt MIME\_\* Informationen bereit, wie sie vom Paket **mime** berechnet werden, einschließlich des MIME\_TOKEN, das wieder in das mime-Paket eingespeist werden kann, um den Inhalt auszulesen.
 
-Methode **PostData** *length*
+method **PostData** *length*
 : Liest *length* Bytes aus dem Socket *chan*, aber nur wenn die Anfrage ein POST oder PUSH ist. Andernfalls wird eine leere Zeichenkette zurückgegeben.
 
-Methode **Session_Load**
+method **Session\_Load**
 : Verwaltet Sitzungsdaten.
 
-Methode **puts** *line*
-: Hängt den Wert von *string* an *reply_body* an und fügt ein abschließendes Zeilenumbruchzeichen hinzu.
+method **puts** *line*
+: Hängt den Wert von *string* an *reply\_body* an und fügt ein abschließendes Zeilenumbruchzeichen hinzu.
 
-Methode **RequestFind** *field*
-: ...siehe nächstes...
+method **RequestFind** *field*
+: siehe unten ...
 
-Methode **request** *subcommand* ?*args*?
-: ...siehe nächstes...
+method **request** *subcommand* ?*args*?
+: siehe unten ...
 
-Methode **reply** *subcommand* ?*args*?
-: ...siehe nächstes...
+method **reply** *subcommand* ?*args*?
+: siehe unten ...
 
-Methode **reset**
-: Löscht den Inhalt der Variablen *reply_body* und setzt alle Header in der Struktur **reply** auf die Standardwerte dieses Objekts zurück.
+method **reset**
+: Löscht den Inhalt der Variablen *reply\_body* und setzt alle Header in der Struktur **reply** auf die Standardwerte dieses Objekts zurück.
 
-Methode **timeOutCheck**
+method **timeOutCheck**
 : Wird vom Objekt **http::server** aufgerufen, das diese Antwort ausgelöst hat. Es wird geprüft, ob beim Warten auf Daten oder beim Erstellen einer Antwort zu viel Zeit verstrichen ist; ist dies der Fall, wird ein Timeout-Fehler an die Anfrage zurückgegeben, das Objekt zerstört und der *chan*-Socket geschlossen.
 
-Methode **timestamp**
+method **timestamp**
 : Gibt die aktuelle Systemzeit im folgenden Format zurück:
 
+    ```
+    %a, %d %b %Y %T %Z
+    ```
 
-```
-%a, %d %b %Y %T %Z
-```
 
 ## Klasse httpd::server
 
@@ -513,99 +520,106 @@ Methode **timestamp**
 
 **Variable**
 
-Variable **template**
-: ...siehe nächstes...
+- Variable **template**
+- Variable **url\_patterns**
 
-Variable **url_patterns**
-: **Methods**
 
-Methode **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc_root* ? ?*reverse_dns* **0**? ?*configuration_file* ? ?*protocol* **HTTP/1.1**?
-: ...siehe nächstes...
+**Methoden**
 
-Methode **destructor** ?*dictargs*?
-: ...siehe nächstes...
+method **constructor** *args* ?*port* **auto**? ?*myaddr* **127.0.0.1**? ?*string* **auto**? ?*name* **auto**? ?*doc\_root* ? ?*reverse\_dns* **0**? ?*configuration\_file* ? ?*protocol* **HTTP/1.1**?
+: siehe unten ...
 
-Methode **connect** *sock* *ip* *port*
+method **destructor** ?*dictargs*?
+: siehe unten ...
+
+method **connect** *sock* *ip* *port*
 : Antwortet auf einen offenen Socket. Diese Methode erzeugt eine Coroutine, die den Rest der Verbindung verwaltet. Die Abläufe der Coroutine steuert die Methode **Connect**.
 
-Methode **ServerHeaders** *ip* *http_request* *mimetxt*
-: ...siehe nächstes...
+method **ServerHeaders** *ip* *http\_request* *mimetxt*
+: siehe unten ...
 
-Methode **Connect** *uuid* *sock* *ip*
+method **Connect** *uuid* *sock* *ip*
 : Diese Methode liest die HTTP-Header und greift anschließend auf die Methode **dispatch** zurück, um festzustellen, ob die Anfrage gültig ist und/oder welche Art von Antwort generiert werden soll. Im Normalfall wird ein Objekt der Klasse **::http::reply** erstellt und die Methode **dispatch** dieser Klasse aufgerufen. Dadurch wird die Kontrolle über den Socket an das Antwortobjekt übergeben. Das Antwortobjekt verwaltet den Rest der Transaktion, einschließlich des Schließens des Sockets.
 
-Methode **counter** *which*
+method **counter** *which*
 : Erhöht einen internen Zähler.
 
-Methode **CheckTimeout**
+method **CheckTimeout**
 : Prüft offene Verbindungen auf ein Timeout.
 
-Methode **debug** ?*args*?
-: ...siehe nächstes...
+method **debug** ?*args*?
+: siehe unten ...
 
-Methode **dispatch** *data*
+method **dispatch** *data*
 : Gibt zu einer Schlüssel-Wert-Liste mit Informationen eine Datenstruktur zurück, die beschreibt, wie der Server antworten soll.
 
-Methode **Dispatch_Default** *reply*
-: Dispatch-Methode als letztes Mittel, bevor ein Fehler 404 NOT FOUND zurückgegeben wird. Standardmäßig wird in *DOCUMENT_ROOT* nach einer Datei gesucht, die zur Abfrage passt.
+method **Dispatch\_Default** *reply*
+: Dispatch-Methode als letztes Mittel, bevor ein Fehler 404 NOT FOUND zurückgegeben wird. Standardmäßig wird in *DOCUMENT\_ROOT* nach einer Datei gesucht, die zur Abfrage passt.
 
-Methode **Dispatch_Local** *data*
+method **Dispatch\_Local** *data*
 : Dispatch-Methode, die vor den von Plugins implementierten Methoden aufgerufen wird. Gibt sie ein nicht leeres Dictionary zurück, wird diese Struktur an die Antwort übergeben. Die Standardimplementierung ist leer.
 
-Methode **Headers_Local** *varname*
+method **Headers\_Local** *varname*
 : Untersucht eine für eine Antwort vorgesehene Datenstruktur und passt sie gegebenenfalls an. Diese Methode wird vor den von Plugins implementierten Header-Methoden aufgerufen. Die Standardimplementierung ist leer.
 
-Methode **Headers_Process** *varname*
+method **Headers\_Process** *varname*
 : Untersucht eine für eine Antwort vorgesehene Datenstruktur und passt sie gegebenenfalls an. Diese Methode wird von der Methode **plugin** dynamisch aufgebaut.
 
-Methode **HostName** *ipaddr*
-: Wandelt eine IP-Adresse in einen Hostnamen um. Ist das Flag server/reverse_dns false, gibt die Methode nur die IP-Adresse zurück. Intern verwendet sie das Modul *dns* aus tcllib.
+method **HostName** *ipaddr*
+: Wandelt eine IP-Adresse in einen Hostnamen um. Ist das Flag server/reverse\_dns false, gibt die Methode nur die IP-Adresse zurück. Intern verwendet sie das Modul *dns* aus tcllib.
 
-Methode **log** ?*args*?
+method **log** ?*args*?
 : Protokolliert ein Ereignis. Die Eingabe für args ist frei formulierbar. Die Methode ist dafür vorgesehen, vom Benutzer ersetzt zu werden, und tut bei einem http::server-Objekt im Auslieferungszustand nichts.
 
-Methode **plugin** *slot* ?*class* ?
-: Bindet Verhalten aus einem Plugin ein. Diese Methode baut die Methoden **Dispatch** und **Headers** dynamisch neu auf. Für jedes Plugin sucht der Server unter *clay plugin/* nach diesen Einträgen: *load* – ein Skript, das beim Aufruf der Methode **plugin** im Namespace des Servers ausgeführt wird. *dispatch* – ein Skript, das in die Methode **Dispatch** des Servers eingefügt wird. *headers* – ein Skript, das in die Methode **Headers** des Servers eingefügt wird. *thread* – ein Skript, das in die Methode **Thread_start** des Servers eingefügt wird.
+method **plugin** *slot* ?*class* ?
+: Bindet Verhalten aus einem Plugin ein. Diese Methode baut die Methoden **Dispatch** und **Headers** dynamisch neu auf. Für jedes Plugin sucht der Server unter *clay plugin/* nach diesen Einträgen:
 
-Methode **port_listening**
+    *load* – ein Skript, das beim Aufruf der Methode **plugin** im Namespace des Servers ausgeführt wird.
+
+    *dispatch* – ein Skript, das in die Methode **Dispatch** des Servers eingefügt wird.
+
+    *headers* – ein Skript, das in die Methode **Headers** des Servers eingefügt wird.
+
+    *thread* – ein Skript, das in die Methode **Thread\_start** des Servers eingefügt wird.
+
+method **port\_listening**
 : Gibt den Port zurück, auf dem httpd tatsächlich auf Verbindungen wartet.
 
-Methode **PrefixNormalize** *prefix*
+method **PrefixNormalize** *prefix*
 : Die Fassung im Auslieferungszustand entfernt abschließende „/“ und „\*“ von einem Präfix. Die Methode kann ersetzt werden, um weitere für die Anwendung nötige Umformungen auszuführen.
 
-Methode **source** *filename*
-: ...siehe nächstes...
+method **source** *filename*
+: siehe unten ...
 
-Methode **start**
+method **start**
 : Öffnet den Socket-Listener.
 
-Methode **stop**
+method **stop**
 : Schaltet den Socket-Listener ab und zerstört alle ausstehenden Antworten.
 
-Methode **SubObject {} db**
-: ...siehe nächstes...
+method **SubObject {} db**
+: siehe unten ...
 
-Methode **SubObject {} default**
-: ...siehe nächstes...
+method **SubObject {} default**
+: siehe unten ...
 
-Methode **template** *page*
+method **template** *page*
 : Gibt eine Vorlage für die Zeichenkette *page* zurück.
 
-Methode **TemplateSearch** *page*
-: Sucht die Vorlage, die am besten zu *page* passt. Das kann lokale Dateisuchen, Strukturen im Arbeitsspeicher oder auch Datenbankabfragen umfassen. Die Fassung im Auslieferungszustand sucht nur nach Dateien mit der Erweiterung .tml oder .html im Verzeichnis ?doc_root?.
+method **TemplateSearch** *page*
+: Sucht die Vorlage, die am besten zu *page* passt. Das kann lokale Dateisuchen, Strukturen im Arbeitsspeicher oder auch Datenbankabfragen umfassen. Die Fassung im Auslieferungszustand sucht nur nach Dateien mit der Erweiterung .tml oder .html im Verzeichnis ?doc\_root?.
 
-Methode **Thread_start**
+method **Thread\_start**
 : Wird von der Methode **plugin** aufgebaut. Wird von der Methode **start** aufgerufen. Damit können Plugins Arbeits-Threads erzeugen.
 
-Methode **Uuid_Generate**
+method **Uuid\_Generate**
 : Erzeugt eine GUUID. Damit erhält jede Anfrage eine eindeutige ID. Die Standardimplementierung lautet:
 
+    ```
+       return [::clay::uuid generate]
+    ```
 
-```
-   return [::clay::uuid generate]
-```
-
-Methode **Validate_Connection** *sock* *ip*
+method **Validate\_Connection** *sock* *ip*
 : Gibt bei einem Socket und einer IP-Adresse true zurück, wenn diese Verbindung beendet werden soll, und false, wenn sie fortgesetzt werden darf. Die Fassung im Auslieferungszustand gibt stets 0 zurück. Anwendungen können damit Sperrlisten umsetzen und den Zugriff anhand der IP-Adresse einschränken.
 
 
@@ -617,62 +631,49 @@ Stellt einen abwärtskompatiblen Alias bereit.
 
 ## Klasse httpd::content.redirect
 
-**Methods**
+**Methoden**
 
-Methode **reset**
-: ...siehe nächstes...
-
-Methode **content**
-: 
+- Methode **reset**
+- Methode **content**
 
 
 ## Klasse httpd::content.cache
 
-**Methods**
+**Methoden**
 
-Methode **Dispatch**
-: 
+- Methode **Dispatch**
 
 
 ## Klasse httpd::content.template
 
-**Methods**
+**Methoden**
 
-Methode **content**
-: 
+- Methode **content**
 
 
 ## Klasse httpd::content.file
 
 Klasse zur Bereitstellung statischer Inhalte. Wenn diese Klasse verwendet wird, wird ihr vom Dispatcher ein lokaler Dateiname übergeben.
 
-**Methods**
+**Methoden**
 
-Methode **FileName**
-: ...siehe nächstes...
-
-Methode **DirectoryListing** *local_file*
-: ...siehe nächstes...
-
-Methode **content**
-: ...siehe nächstes...
-
-Methode **Dispatch**
-: 
+- Methode **FileName**
+- Methode **DirectoryListing** *local\_file*
+- Methode **content**
+- Methode **Dispatch**
 
 
 ## Klasse httpd::content.exec
 
 **Variable**
 
-Variable **exename**
-: **Methods**
+- Variable **exename**
 
-Methode **CgiExec** *execname* *script* *arglist*
-: ...siehe nächstes...
 
-Methode **Cgi_Executable** *script*
-: 
+**Methoden**
+
+- Methode **CgiExec** *execname* *script* *arglist*
+- Methode **Cgi\_Executable** *script*
 
 
 ## Klasse httpd::content.proxy
@@ -681,43 +682,34 @@ Methode **Cgi_Executable** *script*
 
 Gibt Daten aus einem Proxy-Prozess zurück.
 
-**Methods**
+**Methoden**
 
-Methode **proxy_channel**
-: ...siehe nächstes...
-
-Methode **proxy_path**
-: ...siehe nächstes...
-
-Methode **ProxyRequest** *chana* *chanb*
-: ...siehe nächstes...
-
-Methode **ProxyReply** *chana* *chanb* ?*args*?
-: ...siehe nächstes...
-
-Methode **Dispatch**
-: 
+- Methode **proxy\_channel**
+- Methode **proxy\_path**
+- Methode **ProxyRequest** *chana* *chanb*
+- Methode **ProxyReply** *chana* *chanb* ?*args*?
+- Methode **Dispatch**
 
 
 ## Klasse httpd::content.cgi
 
 *ancestors*: **httpd::content.proxy**
 
-**Methods**
+**Methoden**
 
-Methode **FileName**
-: ...siehe nächstes...
+method **FileName**
+: siehe unten ...
 
-Methode **proxy_channel**
-: ...siehe nächstes...
+method **proxy\_channel**
+: siehe unten ...
 
-Methode **ProxyRequest** *chana* *chanb*
-: ...siehe nächstes...
+method **ProxyRequest** *chana* *chanb*
+: siehe unten ...
 
-Methode **ProxyReply** *chana* *chanb* ?*args*?
-: ...siehe nächstes...
+method **ProxyReply** *chana* *chanb* ?*args*?
+: siehe unten ...
 
-Methode **DirectoryListing** *local_file*
+method **DirectoryListing** *local\_file*
 : Bei den meisten CGI-Anwendungen ist eine Verzeichnisauflistung verboten.
 
 
@@ -725,29 +717,21 @@ Methode **DirectoryListing** *local_file*
 
 Gibt Daten aus einem SCGI-Prozess zurück.
 
-**Methods**
+**Methoden**
 
-Methode **EncodeStatus** *status*
-: 
+- Methode **EncodeStatus** *status*
 
 
 ## Klasse httpd::content.scgi
 
 *ancestors*: **httpd::content.proxy**
 
-**Methods**
+**Methoden**
 
-Methode **scgi_info**
-: ...siehe nächstes...
-
-Methode **proxy_channel**
-: ...siehe nächstes...
-
-Methode **ProxyRequest** *chana* *chanb*
-: ...siehe nächstes...
-
-Methode **ProxyReply** *chana* *chanb* ?*args*?
-: 
+- Methode **scgi\_info**
+- Methode **proxy\_channel**
+- Methode **ProxyRequest** *chana* *chanb*
+- Methode **ProxyReply** *chana* *chanb* ?*args*?
 
 
 ## Klasse httpd::server.scgi
@@ -756,13 +740,10 @@ Methode **ProxyReply** *chana* *chanb* ?*args*?
 
 Fungiert als SCGI-Server.
 
-**Methods**
+**Methoden**
 
-Methode **debug** ?*args*?
-: ...siehe nächstes...
-
-Methode **Connect** *uuid* *sock* *ip*
-: 
+- Methode **debug** ?*args*?
+- Methode **Connect** *uuid* *sock* *ip*
 
 
 ## Klasse httpd::content.websocket
@@ -777,50 +758,43 @@ httpd-Plugin-Vorlage
 
 Ein einfaches Plugin, das URLs anhand einer dict-Datenstruktur weiterleitet.
 
-**Methods**
+**Methoden**
 
-Methode **Dispatch_Dict** *data*
+method **Dispatch\_Dict** *data*
 : Implementierung des Dispatchers
 
-Methode **uri {} add** *vhosts* *patterns* *info*
-: ...siehe nächstes...
 
-Methode **uri {} direct** *vhosts* *patterns* *info* *body*
-: 
+- Methode **uri {} add** *vhosts* *patterns* *info*
+- Methode **uri {} direct** *vhosts* *patterns* *info* *body*
 
 
 ## Klasse httpd::reply.memchan
 
 *ancestors*: **httpd::reply**
 
-**Methods**
+**Methoden**
 
-Methode **output**
-: ...siehe nächstes...
-
-Methode **DoOutput**
-: ...siehe nächstes...
-
-Methode **close**
-: 
+- Methode **output**
+- Methode **DoOutput**
+- Methode **close**
 
 
 ## Klasse httpd::plugin.local_memchan
 
-**Methods**
+**Methoden**
 
-Methode **local_memchan** *command* ?*args*?
-: ...siehe nächstes...
+method **local\_memchan** *command* ?*args*?
+: siehe unten ...
 
-Methode **Connect_Local** *uuid* *sock* ?*args*?
-: Eine abgewandelte Verbindungsmethode, die eine einfache GET-Anfrage an ein Objekt übergibt und die Daten direkt aus der Variablen reply_body des Objekts holt. Nötig, weil memchan bidirektional ist und sich anscheinend nicht ausdrücken lässt, dass der Server die eine Seite der Verbindung ist und die Antwort die andere.
+method **Connect\_Local** *uuid* *sock* ?*args*?
+: Eine abgewandelte Verbindungsmethode, die eine einfache GET-Anfrage an ein Objekt übergibt und die Daten direkt aus der Variablen reply\_body des Objekts holt. Nötig, weil memchan bidirektional ist und sich anscheinend nicht ausdrücken lässt, dass der Server die eine Seite der Verbindung ist und die Antwort die andere.
 
 
-# AUTOREN
+# Autoren
 
 Sean Woods
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *network* als Kategorie an.
 
@@ -828,11 +802,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2018 Sean Woods <yoda@etoyoc.com>

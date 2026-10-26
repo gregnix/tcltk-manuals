@@ -1,5 +1,6 @@
 ---
 CommandName: prefix
+title: prefix
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -16,19 +17,19 @@ Copyright:
  - Copyright (c) 2008 Peter Spjuth <pspjuth@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tcl::prefix - Hilfsmittel für Präfixabgleich
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg} 
+[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [match]{.sub} [?option]{.arg} [...?]{.arg} [table]{.arg} [string]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument beschreibt Befehle zum Nachschlagen eines Präfixes in einer Liste von Zeichenketten. Folgende Befehle werden unterstützt:
 
@@ -41,23 +42,23 @@ Dieses Dokument beschreibt Befehle zum Nachschlagen eines Präfixes in einer Lis
 **::tcl::prefix match** ?*option ...*? *table string*
 : Wenn *string* einem Element in *table* entspricht oder das Präfix genau eines Elements ist, wird das gefundene Element zurückgegeben. Andernfalls hängt das Ergebnis von der Option **-error** ab. (Es wird empfohlen, *table* vor der Verwendung mit diesem Unterbefehl zu sortieren, damit die Liste der Übereinstimmungen in der Fehlermeldung ebenfalls sortiert ist; dies ist für die Funktion des Unterbefehls selbst jedoch nicht zwingend erforderlich.) Folgende Optionen werden unterstützt:
 
-**-exact**\0
-: Nur exakte Übereinstimmungen akzeptieren.
+    **-exact**
+    : Nur exakte Übereinstimmungen akzeptieren.
 
-**-message**\\**0**_string_
-: *string* in der Fehlermeldung bei Nichtübereinstimmung verwenden. Standard ist „option“.
+    **-message** *string*
+    : *string* in der Fehlermeldung bei Nichtübereinstimmung verwenden. Standard ist „option“.
 
-**-error**\\**0**_options_
-: Die *options* werden verwendet, wenn keine Übereinstimmung gefunden wird. Ist *options* leer, wird kein Fehler erzeugt und eine leere Zeichenkette zurückgegeben. Andernfalls werden die *options* als **return**-Optionen bei der Erzeugung der Fehlermeldung verwendet. Der Standard entspricht dem Setzen von „-level 0“. Beispiel: Wird „**-error** {-errorcode MyError -level 1}“ verwendet, würde ein Fehler wie folgt erzeugt:
+    **-error** *options*
+    : Die *options* werden verwendet, wenn keine Übereinstimmung gefunden wird. Ist *options* leer, wird kein Fehler erzeugt und eine leere Zeichenkette zurückgegeben. Andernfalls werden die *options* als [return]-Optionen bei der Erzeugung der Fehlermeldung verwendet. Der Standard entspricht dem Setzen von „-level 0“. Beispiel: Wird „**-error** {-errorcode MyError -level 1}“ verwendet, würde ein Fehler wie folgt erzeugt:
+
+        ```
+        return -errorcode MyError -level 1 -code error \
+               "ambiguous option ..."
+        ```
 
 
-    ```
-    return \-errorcode MyError \-level 1 \-code error \
-           "ambiguous option ..."
-    ```
 
-
-# BEISPIELE
+# Beispiele
 
 Grundlegende Verwendung:
 
@@ -67,9 +68,9 @@ prefix match {apa bepa cepa} apa
      → apa
 prefix match {apa bepa cepa} a
      → apa
-prefix match \-exact {apa bepa cepa} a
+prefix match -exact {apa bepa cepa} a
      → bad option "a": must be apa, bepa, or cepa
-prefix match \-message "switch" {apa ada bepa cepa} a
+prefix match -message "switch" {apa ada bepa cepa} a
      → ambiguous switch "a": must be apa, ada, bepa, or cepa
 prefix longest {fblocked fconfigure fcopy file fileevent flush} fc
      → fco
@@ -80,13 +81,13 @@ prefix all {fblocked fconfigure fcopy file fileevent flush} fc
 Optionenabgleich vereinfachen:
 
 ```
-array set opts {\-apa 1 \-bepa "" \-cepa 0}
+array set opts {-apa 1 -bepa "" -cepa 0}
 foreach {arg val} $args {
-    set opts([prefix match {\-apa \-bepa \-cepa} $arg]) $val
+    set opts([prefix match {-apa -bepa -cepa} $arg]) $val
 }
 ```
 
-Erzeugen eines **switch**, der Präfixe unterstützt:
+Erzeugen eines [switch], der Präfixe unterstützt:
 
 ```
 switch [prefix match {apa bepa cepa} $arg] {
@@ -95,3 +96,7 @@ switch [prefix match {apa bepa cepa} $arg] {
     cepa { }
 }
 ```
+
+
+[return]: return.md
+[switch]: switch.md

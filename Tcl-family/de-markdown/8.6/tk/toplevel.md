@@ -1,5 +1,6 @@
 ---
 CommandName: toplevel
+title: toplevel
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -17,56 +18,62 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 toplevel - Erstellt und manipuliert Haupt- und Popup-Fenster vom Typ 'toplevel'
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[toplevel]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[toplevel]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-background** (background/Background)
+**-borderwidth**, **-highlightcolor**, **-pady**, **-cursor**, **-highlightthickness**, **-relief**, **-highlightbackground**, **-padx**, **-takefocus**
+
+Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-background** (**background**/**Background**)
 : Diese Option ist identisch mit der Standard-Option **-background**, außer dass ihr Wert auch als leerer String angegeben werden kann. In diesem Fall zeigt das Widget keinen Hintergrund oder Rahmen an, und es werden keine Farben aus seiner Farbkarte für Hintergrund und Rahmen verbraucht.
 
-**-class** (class/Class)
+**-class** (**class**/**Class**)
 : Klasse des Fensters. Wird bei Abfragen der Optionsdatenbank und später z. B. für Bindings verwendet. Manche Window-Manager zeigen den Klassennamen im Dock, andere den Fenstertitel. **-class** kann nicht mit **configure** geändert werden.
 
-**-colormap** (colormap/Colormap)
+**-colormap** (**colormap**/**Colormap**)
 : Farbkarte für das Fenster: **new** (neue Farbkarte für Fenster und Kinder) oder Name eines anderen Fensters (gleicher Bildschirm, gleiche Visualisierung wie *pathName*); dann nutzt das neue Fenster dessen Farbkarte. Ohne Angabe: Standard-Farbkarte des Bildschirms. Nicht mit **configure** änderbar.
 
-**-container** (container/Container)
+**-container** (**container**/**Container**)
 : Wert muss ein Boolean sein. Ist er wahr, dient das Fenster als Container für eine eingebettete Anwendung (z. B. Tk-Toplevel mit **-use**). Das Fenster unterstützt die passenden Window-Manager-Protokolle (z. B. Geometrie). In dieser Anwendung sollte das Fenster keine eigenen Kinder haben. Nicht mit **configure** änderbar.
 
-**-height** (height/Height)
-: Legt die gewünschte Höhe für das Fenster in einer der von **Tk_GetPixels** akzeptierten Formen fest. Wenn diese Option kleiner oder gleich null ist, fordert das Fenster überhaupt keine Größe an.
+**-height** (**height**/**Height**)
+: Legt die gewünschte Höhe für das Fenster in einer der von [Tk\_GetPixels][GetPixels] akzeptierten Formen fest. Wenn diese Option kleiner oder gleich null ist, fordert das Fenster überhaupt keine Größe an.
 
-**-menu** (menu/Menu)
+**-menu** ([menu]/**Menu**)
 : Menü-Widget als Menüleiste. Auf dem Macintosh über den gesamten Hauptmonitor; unter Windows und UNIX in der Fensterdekoration des Toplevel.
 
-**-screen** (""/"")
+**-screen**
 : Bildschirm für das neue Fenster. Jeder gültige Bildschirmname, auch eines anderen Displays. Standard: gleicher Bildschirm wie das Eltern-Element. Speziell: nicht über die Optionsdatenbank setzbar, nicht mit **configure** änderbar.
 
-**-use** (use/Use)
-: Für Einbettung. Ist der Wert nicht leer, muss er die Fenster-ID eines Container-Fensters sein (hexadezimal wie von **winfo id**). Das Toplevel wird Kind dieses Containers statt des Root-Fensters des Bildschirms. Liegt der Container in einer Tk-Anwendung, muss es ein **frame**- oder **toplevel**-Widget mit gesetzter Option **-container** sein. Nicht mit **configure** änderbar.
+**-use** (**use**/**Use**)
+: Für Einbettung. Ist der Wert nicht leer, muss er die Fenster-ID eines Container-Fensters sein (hexadezimal wie von [winfo id][winfo]). Das Toplevel wird Kind dieses Containers statt des Root-Fensters des Bildschirms. Liegt der Container in einer Tk-Anwendung, muss es ein frame- oder toplevel-Widget mit gesetzter Option **-container** sein. Nicht mit **configure** änderbar.
 
-**-visual** (visual/Visual)
-: Visuelle Informationen in allen von **Tk_GetVisual** akzeptierten Formen. Ohne Angabe: Standard-Visual des Bildschirms. **-visual** nicht mit **configure** änderbar.
+**-visual** (**visual**/**Visual**)
+: Visuelle Informationen in allen von [Tk\_GetVisual][GetVisual] akzeptierten Formen. Ohne Angabe: Standard-Visual des Bildschirms. **-visual** nicht mit **configure** änderbar.
 
-**-width** (width/Width)
-: Gewünschte Breite in allen von **Tk_GetPixels** akzeptierten Formen. Kleiner oder gleich null: keine Größenanforderung.
+**-width** (**width**/**Width**)
+: Gewünschte Breite in allen von [Tk\_GetPixels][GetPixels] akzeptierten Formen. Kleiner oder gleich null: keine Größenanforderung.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **toplevel** erstellt ein neues Toplevel-Widget (*pathName*). Weitere Optionen können in der Befehlszeile oder Optionsdatenbank gesetzt werden (Hintergrund, Relief usw.). **toplevel** liefert den Pfadnamen des neuen Fensters.
 
-Ein Toplevel ähnelt einem **frame**, wird aber als Top-Level-Fenster erzeugt: sein X-Eltern-Element ist das Root-Fenster eines Bildschirms, nicht das logische Eltern-Element aus dem Tk-Pfadnamen. Hauptzweck: Container für Dialoge und Widget-Sammlungen. Sichtbar sind im Wesentlichen Hintergrund und optional ein 3D-Rahmen (erhaben/eingesenkt).
+Ein Toplevel ähnelt einem [frame], wird aber als Top-Level-Fenster erzeugt: sein X-Eltern-Element ist das Root-Fenster eines Bildschirms, nicht das logische Eltern-Element aus dem Tk-Pfadnamen. Hauptzweck: Container für Dialoge und Widget-Sammlungen. Sichtbar sind im Wesentlichen Hintergrund und optional ein 3D-Rahmen (erhaben/eingesenkt).
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
 **toplevel** erzeugt einen neuen Tcl-Befehl mit dem Namen des Fensterpfads. Form:
 
@@ -80,11 +87,20 @@ pathName option ?arg arg ...?
 : Aktueller Wert der Konfigurationsoption *option* (alle vom Befehl **toplevel** akzeptierten Werte).
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Konfigurationsoptionen abfragen oder ändern. Ohne *option*: Liste aller Optionen (Format siehe **Tk_ConfigureInfo**). Nur *option*: Liste für diese eine Option. Mit *option-value*-Paaren: Optionen setzen, leerer String als Rückgabe. *option*: alle von **toplevel** akzeptierten Werte.
+: Konfigurationsoptionen abfragen oder ändern. Ohne *option*: Liste aller Optionen (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Nur *option*: Liste für diese eine Option. Mit *option-value*-Paaren: Optionen setzen, leerer String als Rückgabe. *option*: alle von **toplevel** akzeptierten Werte.
 
 
-# BINDINGS
+# Bindings
 
 Beim Erzeugen eines neuen Toplevel gibt es keine Standard-Bindings; Toplevels sind nicht für Interaktion gedacht.
 
 Bindings auf Toplevels können Ereignisse von Unter-Widgets erhalten.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[frame]: frame.md
+[GetPixels]: ../tk-c/GetPixels.md
+[GetVisual]: ../tk-c/GetVisual.md
+[menu]: menu.md
+[options]: options.md
+[winfo]: winfo.md

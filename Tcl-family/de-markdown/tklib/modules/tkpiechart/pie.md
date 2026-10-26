@@ -1,5 +1,6 @@
 ---
 CommandName: pie
+title: pie
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -17,20 +18,20 @@ Copyright:
  - Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>
 ---
 
-# NAME
+# Name
 
 pie – 2D- oder 3D-Kreisdiagramm-Objekt in einem Canvas
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit} 
-[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit} 
-[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit} 
-[stooop::new]{.cmd} [pie]{.sub} [canvas]{.arg} [x]{.arg} [y]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [pieObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [pieObject]{.arg} [option]{.arg} 
-[stooop::delete]{.cmd} [pieObject]{.arg} 
+[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit}
+[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit}
+[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit}
+[stooop::new]{.cmd} [pie]{.lit} [canvas]{.arg} [x]{.arg} [y]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [pieObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [pieObject]{.arg} [option]{.arg}
+[stooop::delete]{.cmd} [pieObject]{.arg}
 :::
 
 pie::newSlice *pieObject* ?labelText?
@@ -43,7 +44,7 @@ pie::labelSlice *pieObject* *sliceObject* *string*
 
 pie::selectedSlices *pieObject*
 
-# BESCHREIBUNG
+# Beschreibung
 
 Ein pie-Objekt stellt eine Menge von Werten dar, gewöhnlich als Anteile an einer Summe. Jeder Wert ist ein farbiges Segment, mit zwei- oder dreidimensionalem Aussehen. Zu jedem Segment gehört eine Beschriftung mit dem Datennamen und ein Zahlenfeld mit dem prozentualen Anteil des Segments. Die Beschriftungen setzt das gewählte Labeler-Objekt, Option **-labeler**. Die Farbe jeder Beschriftung entspricht dem zugehörigen Segment.
 
@@ -64,11 +65,11 @@ Die Segmentfarben werden automatisch erzeugt, mit einer voreingestellten Farblis
 : Löscht das angegebene Kreisdiagramm-Objekt.
 
 
-# ÜBERBLICK
+# Überblick
 
 Die Klasse „pie“ ist Teil der Erweiterung „tkpiechart“, die es dem Programmierer ermöglicht, 2D- oder 3D-Kreisdiagramme in einer Tcl/Tk-Anwendung zu erstellen und dynamisch zu aktualisieren. Das Paket „tkpiechart“ ist ausschließlich in Tcl geschrieben und nutzt dank des in „tcllib“ enthaltenen Pakets „stooop“ objektorientierte Techniken.
 
-# OPTIONEN
+# Optionen
 
 **-autoupdate** boolean
 : Boolescher Wert. Legt fest, ob alle Segmente und ihre Beschriftungen neu gezeichnet werden, wenn sich eine Segmentgröße ändert. Voreingestellt eingeschaltet. Ausschalten und **pie::update** aufrufen, wenn viele Segmente auf einmal geändert werden und das schneller gehen soll.
@@ -104,10 +105,12 @@ Die Klasse „pie“ ist Teil der Erweiterung „tkpiechart“, die es dem Progr
 : Gesamtbreite des Kreisdiagramms, einschließlich des Platzes für die Beschriftungen des Labelers. Die Segmente werden in der Größe angepasst, wenn Beschriftungen hinzukommen oder wegfallen, also beim Erzeugen oder Löschen von Segmenten, sodass die Gesamtbreite gleich bleibt. Der Wert hat eine der Formen aus dem Abschnitt *KOORDINATEN* der Handbuchseite **canvas**.
 
 
-# PROZEDUREN FÜR MITGLIEDER
+# Prozeduren für Mitglieder
 
 pie::newSlice *pieObject* ?labelText?
-: Erzeugt ein Segment. Zurückgegeben wird ein eindeutiger Objektbezeichner, in diesem Dokument *sliceObject*. Die Segmentfarbe wird automatisch vergeben, die Beschriftung setzt der angegebene Labeler, Option **-labeler**. Das Segment selbst liegt im Uhrzeigersinn hinter den vorhandenen Segmenten. Der Objektbezeichner dient zum Setzen und Ändern der Größe. Fehlt der Beschriftungstext, wird er *"slice n"*, wobei *n* die Nummer des Segments in der Erzeugungsreihenfolge ist. Das erste Segment hat die Nummer 1.
+: Erzeugt ein Segment. Zurückgegeben wird ein eindeutiger Objektbezeichner, in diesem Dokument *sliceObject*. Die Segmentfarbe wird automatisch vergeben, die Beschriftung setzt der angegebene Labeler, Option **-labeler**. Das Segment selbst liegt im Uhrzeigersinn hinter den vorhandenen Segmenten. Der Objektbezeichner dient zum Setzen und Ändern der Größe.
+
+    Fehlt der Beschriftungstext, wird er *"slice n"*, wobei *n* die Nummer des Segments in der Erzeugungsreihenfolge ist. Das erste Segment hat die Nummer 1.
 
 pie::deleteSlice *pieObject* *sliceObject*
 : Löscht ein Segment. Die folgenden Segmente im Uhrzeigersinn rücken nach, sodass die Lücke verschwindet.
@@ -122,33 +125,32 @@ pie::selectedSlices *pieObject*
 : Gibt die Liste der gerade ausgewählten Segmentobjekte zurück.
 
 
-# TAGS
+# Tags
 
 Das gesamte Kreisdiagramm, die Grafiken des Kreisdiagramms (alle Segmente) sowie jedes einzelne Segment sind mit den folgenden spezifischen Tags versehen:
 
-**•**
-: **pie(pieObject)**
+- **pie(pieObject)**
 
-**•**
-: **pieSlices(pieObject)**
+- **pieSlices(pieObject)**
 
-**•**
-: **slice(sliceObject)** Zum Beispiel lässt sich das ganze Kreisdiagramm mit dem Befehl **move** von **canvas** am pie-Tag verschieben, und Bindings an Segmenten lassen sich über die Segment-Tags setzen. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*.
+- **slice(sliceObject)**
 
 
-# GRÖßEN
+Zum Beispiel lässt sich das ganze Kreisdiagramm mit dem Befehl **move** von **canvas** am pie-Tag verschieben, und Bindings an Segmenten lassen sich über die Segment-Tags setzen. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*.
+
+# Größen
 
 Alle Größen zu Kreisdiagrammen sind Gleitkommazahlen. Koordinaten und Größen sind Bildschirmeinheiten, Gleitkommazahlen, optional gefolgt von einem der Buchstaben aus dem Abschnitt *KOORDINATEN* der Handbuchseite **canvas**.
 
-# EINSCHRÄNKUNGEN
+# Einschränkungen
 
 Ist die Zahl der Segmente zu groß, bekommen einige Segmente dieselbe Farbe. Dann lassen sich eigene Farben setzen.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *tkpiechart* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>

@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine
+title: coroutine
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -16,30 +17,28 @@ Copyright:
  - Copyright (c) 2009 Donal K. Fellows.
 ---
 
-# NAME
+# Name
 
 coroutine, yield, yieldto - Coroutinen erzeugen und Werte aus ihnen liefern
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg]{.optdot} 
-[yield]{.cmd} [value]{.optarg} 
-[yieldto]{.cmd} [command]{.arg} [arg]{.optdot} 
-*name* ?*value...*?
+[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg...]{.optarg}
+[yield]{.cmd} [value]{.optarg}
+[yieldto]{.cmd version="TIP396"} [command]{.arg} [arg...]{.optarg}
+[name]{.ins} [value...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **coroutine** erzeugt einen neuen Coroutine-Kontext (mit zugehörigem Befehl) namens *name* und führt diesen Kontext aus, indem er *command* aufruft und die übrigen Argumente ohne weitere Interpretation übergibt. Kehrt *command* normal oder mit einer Ausnahme zurück (z. B. einem Fehler), wird der Coroutine-Kontext *name* gelöscht.
 
 Innerhalb des Kontexts können mit **yield** Werte als Ergebnisse erzeugt werden; fehlt *value*, wird die leere Zeichenkette verwendet. Beim Aufruf von **yield** wird die Ausführung des Kontexts ausgesetzt und der Befehl **coroutine** gibt das Argument von **yield** zurück. Die Ausführung des Kontexts kann fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit dem *einen* Wert, der als Ergebnis des **yield**-Aufrufs gelten soll, der den Kontext ausgesetzt hat. Liefert der Coroutine-Kontext nie **yield** und kehrt stattdessen konventionell zurück, ist das Ergebnis von **coroutine** das Ergebnis der Auswertung des Kontexts.
 
-::: {.info -version="TIP396"}
-Die Coroutine kann die Ausführung auch mit **yieldto** aussetzen, der statt zurückzukehren die Ausführung an einen Befehl *command* (im Kontext der Coroutine aufgelöst) übergibt, dem *beliebig viele* Argumente übergeben werden können. Da jede Coroutine einen Kontextbefehl hat, kann **yieldto** die Kontrolle direkt von einer Coroutine zur anderen übergeben (sinnvoll nur, wenn beide Coroutinen das erwarten), aber *jeder* Befehl kann Ziel sein. Wurde eine Coroutine auf diese Weise ausgesetzt, kann die Coroutine-Verarbeitung fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit beliebig vielen Argumenten. Der Rückgabewert des **yieldto**-Aufrufs ist die Liste der Argumente, die an den Kontextbefehl übergeben wurden; der Aufrufer entscheidet, was damit geschieht.
-:::
+[Die Coroutine kann die Ausführung auch mit **yieldto** aussetzen, der statt zurückzukehren die Ausführung an einen Befehl *command* (im Kontext der Coroutine aufgelöst) übergibt, dem *beliebig viele* Argumente übergeben werden können. Da jede Coroutine einen Kontextbefehl hat, kann **yieldto** die Kontrolle direkt von einer Coroutine zur anderen übergeben (sinnvoll nur, wenn beide Coroutinen das erwarten), aber *jeder* Befehl kann Ziel sein. Wurde eine Coroutine auf diese Weise ausgesetzt, kann die Coroutine-Verarbeitung fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit beliebig vielen Argumenten. Der Rückgabewert des **yieldto**-Aufrufs ist die Liste der Argumente, die an den Kontextbefehl übergeben wurden; der Aufrufer entscheidet, was damit geschieht.]{version="TIP396"}
 
-Die empfohlene Art, eine Variante von **yield** zu schreiben, die die Fortsetzung mit mehreren Argumenten erlaubt, nutzt **yieldto** und den Befehl **return**, etwa so:
+Die empfohlene Art, eine Variante von **yield** zu schreiben, die die Fortsetzung mit mehreren Argumenten erlaubt, nutzt **yieldto** und den Befehl [return], etwa so:
 
 ```
 proc yieldm {value} {
@@ -47,11 +46,11 @@ proc yieldm {value} {
 }
 ```
 
-Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit **info coroutine** abfragen. Gibt es Lösch-Spuren auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
+Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit [info coroutine][info] abfragen. Gibt es Lösch-Spuren auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
 
-Zum Zeitpunkt des Aufrufs von *command* ist der aktuelle Namespace der globale Namespace, und es gibt keine Stackframes darüber (im Sinne von **upvar** und **uplevel**). Welcher Befehl aufgerufen wird, wird jedoch im Namespace bestimmt, aus dem **coroutine** aufgerufen wurde.
+Zum Zeitpunkt des Aufrufs von *command* ist der aktuelle Namespace der globale Namespace, und es gibt keine Stackframes darüber (im Sinne von [upvar] und [uplevel]). Welcher Befehl aufgerufen wird, wird jedoch im Namespace bestimmt, aus dem **coroutine** aufgerufen wurde.
 
-# BEISPIELE
+# Beispiele
 
 Dieses Beispiel zeigt eine Coroutine, die eine unendliche Folge gerader Werte erzeugt, und eine Schleife, die die ersten zehn davon verbraucht.
 
@@ -111,9 +110,7 @@ for {set i 1} {$i <= 20} {incr i} {
 }
 ```
 
-::: {.info -version="TIP396"}
-Dieses Beispiel zeigt, wie ein Wert zwischen drei Coroutinen weitergegeben wird, die sich gegenseitig **yieldto** aufrufen:
-:::
+[Dieses Beispiel zeigt, wie ein Wert zwischen drei Coroutinen weitergegeben wird, die sich gegenseitig **yieldto** aufrufen:]{version="TIP396"}
 
 ```
 proc juggler {name target {value ""}} {
@@ -163,3 +160,8 @@ making from 2
 made inner 1 context=:: name=::demo::coroEg
 ```
 
+
+[info]: info.md
+[return]: return.md
+[uplevel]: uplevel.md
+[upvar]: upvar.md

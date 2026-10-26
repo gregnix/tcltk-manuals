@@ -1,5 +1,6 @@
 ---
 CommandName: break
+title: break
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -27,12 +28,12 @@ break - Abort looping command
 # Synopsis
 
 ::: {.synopsis} :::
-[break]{.cmd} 
+[break]{.cmd}
 :::
 
 # Description
 
-This command is typically invoked inside the body of a looping command such as **for** or **foreach** or **while**. It returns a 3 (**TCL_BREAK**) result code, which causes a break exception to occur. The exception causes the current script to be aborted out to the innermost containing loop command, which then aborts its execution and returns normally. Break exceptions are also handled in a few other situations, such as the **catch** command, Tk event bindings, and the outermost scripts of procedure bodies.
+This command is typically invoked inside the body of a looping command such as [for] or [foreach] or [while]. It returns a 3 ([TCL\_BREAK][catch]) result code, which causes a break exception to occur. The exception causes the current script to be aborted out to the innermost containing loop command, which then aborts its execution and returns normally. Break exceptions are also handled in a few other situations, such as the [catch] command, Tk event bindings, and the outermost scripts of procedure bodies.
 
 # Example
 
@@ -46,3 +47,9 @@ for {set x 0} {$x<10} {incr x} {
     puts "x is $x"
 }
 ```
+
+
+[catch]: catch.md
+[for]: for.md
+[foreach]: foreach.md
+[while]: while.md

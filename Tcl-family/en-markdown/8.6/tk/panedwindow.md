@@ -1,5 +1,6 @@
 ---
 CommandName: panedwindow
+title: panedwindow
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -22,28 +23,25 @@ panedwindow - Create and manipulate 'panedwindow' split container widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[panedwindow]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[panedwindow]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-background** | **-borderwidth** | **-cursor** |
-| **-orient** | **-relief** |  |
+**-background**, **-borderwidth**, **-cursor**, **-orient**, **-relief**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
 **-handlepad** (**handlePad**/**HandlePad**)
-: When sash handles are drawn, specifies the distance from the top or left end of the sash (depending on the orientation of the widget) at which to draw the handle.  May be any value accepted by **Tk_GetPixels**.
+: When sash handles are drawn, specifies the distance from the top or left end of the sash (depending on the orientation of the widget) at which to draw the handle.  May be any value accepted by [Tk\_GetPixels][GetPixels].
 
 **-handlesize** (**handleSize**/**HandleSize**)
-: Specifies the side length of a sash handle.  Handles are always drawn as squares.  May be any value accepted by **Tk_GetPixels**.
+: Specifies the side length of a sash handle.  Handles are always drawn as squares.  May be any value accepted by [Tk\_GetPixels][GetPixels].
 
 **-height** (**height**/**Height**)
-: Specifies a desired height for the overall panedwindow widget. May be any value accepted by **Tk_GetPixels**. If an empty string, the widget will be made high enough to allow all contained widgets to have their natural height.
+: Specifies a desired height for the overall panedwindow widget. May be any value accepted by [Tk\_GetPixels][GetPixels]. If an empty string, the widget will be made high enough to allow all contained widgets to have their natural height.
 
 **-opaqueresize** (**opaqueResize**/**OpaqueResize**)
 : Specifies whether panes should be resized as a sash is moved (true), or if resizing should be deferred until the sash is placed (false). In the latter case, a "ghost" version of the sash is displayed during the resizing to show where the panes will be resized to when releasing the mouse button. This "ghost" version of the sash is the proxy. It's rendering can be configured using the **-proxybackground**, **-proxyborderwidth** and **-proxyrelief** options.
@@ -52,28 +50,28 @@ See the options manual entry for details on the standard options.
 : Background color to use when drawing the proxy. If an empty string, the value of the **-background** option will be used.
 
 **-proxyborderwidth** (**proxyBorderWidth**/**ProxyBorderWidth**)
-: Specifies the borderwidth of the proxy. May be any value accepted by **Tk_GetPixels**.
+: Specifies the borderwidth of the proxy. May be any value accepted by [Tk\_GetPixels][GetPixels].
 
 **-proxyrelief** (**proxyRelief**/**ProxyRelief**)
 : Relief to use when drawing the proxy. May be any of the standard Tk relief values. If an empty string, the value of the **-sashrelief** option will be used.
 
 **-sashcursor** (**sashCursor**/**SashCursor**)
-: Mouse cursor to use when over a sash.  If null, **sb_h_double_arrow** will be used for horizontal panedwindows, and **sb_v_double_arrow** will be used for vertical panedwindows.
+: Mouse cursor to use when over a sash.  If null, **sb\_h\_double\_arrow** will be used for horizontal panedwindows, and **sb\_v\_double\_arrow** will be used for vertical panedwindows.
 
 **-sashpad** (**sashPad**/**SashPad**)
-: Specifies the amount of padding to leave of each side of a sash.  May be any value accepted by **Tk_GetPixels**.
+: Specifies the amount of padding to leave of each side of a sash.  May be any value accepted by [Tk\_GetPixels][GetPixels].
 
 **-sashrelief** (**sashRelief**/**SashRelief**)
 : Relief to use when drawing a sash.  May be any of the standard Tk relief values.
 
 **-sashwidth** (**sashWidth**/**SashWidth**)
-: Specifies the width of each sash.  May be any value accepted by **Tk_GetPixels**.
+: Specifies the width of each sash.  May be any value accepted by [Tk\_GetPixels][GetPixels].
 
 **-showhandle** (**showHandle**/**ShowHandle**)
 : Specifies whether sash handles should be shown.  May be any valid Tcl boolean value.
 
 **-width** (**width**/**Width**)
-: Specifies a desired width for the overall panedwindow widget. May be any value accepted by **Tk_GetPixels**. If an empty string, the widget will be made wide enough to allow all contained widgets to have their natural width.
+: Specifies a desired width for the overall panedwindow widget. May be any value accepted by [Tk\_GetPixels][GetPixels]. If an empty string, the widget will be made wide enough to allow all contained widgets to have their natural width.
 
 
 # Description
@@ -99,7 +97,7 @@ pathName option ?arg arg ...?
 : Returns the current value of the configuration option given by *option*.  *Option* may have any of the values accepted by the **panedwindow** command.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget.  If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **panedwindow** command.
+: Query or modify the configuration options of the widget.  If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **panedwindow** command.
 
 *pathName* **forget** *window* ?*window ...*?
 : Remove the pane containing *window* from the panedwindow.  All geometry management options for *window* will be forgotten.
@@ -111,55 +109,53 @@ pathName option ?arg arg ...?
 : Query a management option for *window*.  *Option* may be any value allowed by the **paneconfigure** subcommand.
 
 *pathName* **paneconfigure** *window* ?*option*? ?*value option value ...*?
-: Query or modify the management options for *window*.  If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string.  The following options are supported:
+: Query or modify the management options for *window*.  If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string.  The following options are supported:
+
+    **-after** *window*
+    : Insert the window after the window specified.  *window* should be the name of a window already managed by *pathName*.
+
+    **-before** *window*
+    : Insert the window before the window specified.  *window* should be the name of a window already managed by *pathName*.
+
+    **-height** *size*
+    : Specify a height for the window.  The height will be the outer dimension of the window including its border, if any.  If *size* is an empty string, or if **-height** is not specified, then the height requested internally by the window will be used initially; the height may later be adjusted by the movement of sashes in the panedwindow.  *Size* may be any value accepted by [Tk\_GetPixels][GetPixels].
+
+    **-hide** *boolean*
+    : Controls the visibility of a pane.  When the *boolean* is true (according to [Tcl\_GetBoolean][GetInt]) the pane will not be visible, but it will still be maintained in the list of panes.
+
+    **-minsize** *n*
+    : Specifies that the size of the window cannot be made less than *n*.  This constraint only affects the size of the widget in the paned dimension — the x dimension for horizontal panedwindows, the y dimension for vertical panedwindows.  May be any value accepted by [Tk\_GetPixels][GetPixels].
+
+    **-padx** *n*
+    : Specifies a non-negative value indicating how much extra space to leave on each side of the window in the X-direction.  The value may have any of the forms accepted by [Tk\_GetPixels][GetPixels].
+
+    **-pady** *n*
+    : Specifies a non-negative value indicating how much extra space to leave on each side of the window in the Y-direction.  The value may have any of the forms accepted by [Tk\_GetPixels][GetPixels].
+
+    **-sticky** *style*
+    : If a window's pane is larger than the requested dimensions of the window, this option may be used to position (or stretch) the window within its pane.  *Style*  is a string that contains zero or more of the characters **n**, **s**, **e** or **w**.  The string can optionally contains spaces or commas, but they are ignored.  Each letter refers to a side (north, south, east, or west) that the window will "stick" to.  If both **n** and **s** (or **e** and **w**) are specified, the window will be stretched to fill the entire height (or width) of its cavity.
+
+    **-stretch** *when*
+    : Controls how extra space is allocated to each of the panes. *When* is one of **always**, **first**, **last**, **middle**, and **never**. The panedwindow will calculate the required size of all its panes. Any remaining (or deficit) space will be distributed to those panes marked for stretching. The space will be distributed based on each panes current ratio of the whole.  The *when* values have the following definition:
+
+        **always**
+        : This pane will always stretch.
+
+        **first**
+        : Only if this pane is the first pane (left-most or top-most) will it stretch.
+
+        **last**
+        : Only if this pane is the last pane (right-most or bottom-most) will it stretch.  This is the default value.
+
+        **middle**
+        : Only if this pane is not the first or last pane will it stretch.
+
+        **never**
+        : This pane will never stretch.
 
 
-**-after** *window*
-: Insert the window after the window specified.  *window* should be the name of a window already managed by *pathName*.
-
-**-before** *window*
-: Insert the window before the window specified.  *window* should be the name of a window already managed by *pathName*.
-
-**-height** *size*
-: Specify a height for the window.  The height will be the outer dimension of the window including its border, if any.  If *size* is an empty string, or if **-height** is not specified, then the height requested internally by the window will be used initially; the height may later be adjusted by the movement of sashes in the panedwindow.  *Size* may be any value accepted by **Tk_GetPixels**.
-
-**-hide** *boolean*
-: Controls the visibility of a pane.  When the *boolean* is true (according to **Tcl_GetBoolean**) the pane will not be visible, but it will still be maintained in the list of panes.
-
-**-minsize** *n*
-: Specifies that the size of the window cannot be made less than *n*.  This constraint only affects the size of the widget in the paned dimension — the x dimension for horizontal panedwindows, the y dimension for vertical panedwindows.  May be any value accepted by **Tk_GetPixels**.
-
-**-padx** *n*
-: Specifies a non-negative value indicating how much extra space to leave on each side of the window in the X-direction.  The value may have any of the forms accepted by **Tk_GetPixels**.
-
-**-pady** *n*
-: Specifies a non-negative value indicating how much extra space to leave on each side of the window in the Y-direction.  The value may have any of the forms accepted by **Tk_GetPixels**.
-
-**-sticky** *style*
-: If a window's pane is larger than the requested dimensions of the window, this option may be used to position (or stretch) the window within its pane.  *Style*  is a string that contains zero or more of the characters **n**, **s**, **e** or **w**.  The string can optionally contains spaces or commas, but they are ignored.  Each letter refers to a side (north, south, east, or west) that the window will "stick" to.  If both **n** and **s** (or **e** and **w**) are specified, the window will be stretched to fill the entire height (or width) of its cavity.
-
-**-stretch** *when*
-: Controls how extra space is allocated to each of the panes. *When* is one of **always**, **first**, **last**, **middle**, and **never**. The panedwindow will calculate the required size of all its panes. Any remaining (or deficit) space will be distributed to those panes marked for stretching. The space will be distributed based on each panes current ratio of the whole.  The *when* values have the following definition:
-
-
-**always**
-: This pane will always stretch.
-
-**first**
-: Only if this pane is the first pane (left-most or top-most) will it stretch.
-
-**last**
-: Only if this pane is the last pane (right-most or bottom-most) will it stretch.  This is the default value.
-
-**middle**
-: Only if this pane is not the first or last pane will it stretch.
-
-**never**
-: This pane will never stretch.
-
-
-**-width** *size*
-: Specify a width for the window.  The width will be the outer dimension of the window including its border, if any.  If *size* is an empty string, or if **-width** is not specified, then the width requested internally by the window will be used initially; the width may later be adjusted by the movement of sashes in the panedwindow.  *Size* may be any value accepted by **Tk_GetPixels**.
+    **-width** *size*
+    : Specify a width for the window.  The width will be the outer dimension of the window including its border, if any.  If *size* is an empty string, or if **-width** is not specified, then the width requested internally by the window will be used initially; the width may later be adjusted by the movement of sashes in the panedwindow.  *Size* may be any value accepted by [Tk\_GetPixels][GetPixels].
 
 
 *pathName* **panes**
@@ -168,32 +164,31 @@ pathName option ?arg arg ...?
 *pathName* **proxy** ?*args*?
 : This command is used to query and change the position of the sash proxy, used for rubberband-style pane resizing. It can take any of the following forms:
 
+    *pathName* **proxy coord**
+    : Return a list containing the x and y coordinates of the most recent proxy location.
 
-*pathName* **proxy coord**
-: Return a list containing the x and y coordinates of the most recent proxy location.
+    *pathName* **proxy forget**
+    : Remove the proxy from the display.
 
-*pathName* **proxy forget**
-: Remove the proxy from the display.
-
-*pathName* **proxy place** *x y*
-: Place the proxy at the given *x* and *y* coordinates.
+    *pathName* **proxy place** *x y*
+    : Place the proxy at the given *x* and *y* coordinates.
 
 
 *pathName* **sash** ?*args*?
 : This command is used to query and change the position of sashes in the panedwindow.  It can take any of the following forms:
 
+    *pathName* **sash coord** *index*
+    : Return the current x and y coordinate pair for the sash given by *index*.  *Index* must be an integer between 0 and 1 less than the number of panes in the panedwindow.  The coordinates given are those of the top left corner of the region containing the sash.
 
-*pathName* **sash coord** *index*
-: Return the current x and y coordinate pair for the sash given by *index*.  *Index* must be an integer between 0 and 1 less than the number of panes in the panedwindow.  The coordinates given are those of the top left corner of the region containing the sash.
+    *pathName* **sash dragto** *index x y*
+    : This command computes the difference between the given coordinates and the coordinates given to the last **sash mark** command for the given sash.  It then moves that sash the computed difference.  The return value is the empty string.
 
-*pathName* **sash dragto** *index x y*
-: This command computes the difference between the given coordinates and the coordinates given to the last **sash mark** command for the given sash.  It then moves that sash the computed difference.  The return value is the empty string.
+    *pathName* **sash mark** *index x y*
+    : Records *x* and *y* for the sash given by *index*; used in conjunction with later **sash dragto** commands to move the sash.
 
-*pathName* **sash mark** *index x y*
-: Records *x* and *y* for the sash given by *index*; used in conjunction with later **sash dragto** commands to move the sash.
+    *pathName* **sash place** *index x y*
+    : Place the sash given by *index* at the given coordinates.
 
-*pathName* **sash place** *index x y*
-: Place the sash given by *index* at the given coordinates.
 
 
 # Resizing panes
@@ -203,3 +198,9 @@ A pane is resized by grabbing the sash (or sash handle if present) and dragging 
 When a pane is resized from outside (e.g. it is packed to expand and fill, and the containing toplevel is resized), space is added to the final (rightmost or bottommost) pane in the window.
 
 Unlike child windows managed by e.g. pack or grid, the panes managed by a panedwindow do not change width or height to accommodate changes in the requested widths or heights of the panes, once these have become mapped. Therefore it may be advisable, particularly when creating layouts interactively, to not add a pane to the panedwindow widget until after the geometry requests of that pane has been finalized (i.e., all components of the pane inserted, all options affecting geometry set to their proper values, etc.).
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetInt]: ../tcl-c/GetInt.md
+[GetPixels]: ../tk-c/GetPixels.md
+[options]: options.md

@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::zlib
+title: tcl::transform::zlib
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -25,10 +26,10 @@ tcl::transform::zlib - zlib (de)compression
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::zlib]{.lit} [1.1]{.optlit} 
-[::tcl::transform::zlib]{.cmd} [chan]{.arg} [level]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::zlib]{.lit} [1.1]{.optlit}
+[::tcl::transform::zlib]{.cmd} [chan]{.arg} [level]{.optarg}
 :::
 
 # Description
@@ -37,10 +38,12 @@ The **tcl::transform::zlib** package provides a command creating a channel trans
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::zlib** *chan* ?*level*?
-: This command creates a zlib compressor transformation on top of the channel *chan* and returns its handle. The *level* specifies how much effort is put into the compression, from **0** to **9**, and defaults to **4**.
+: This command creates a zlib compressor transformation on top of the channel *chan* and returns its handle.
+
+    The *level* specifies how much effort is put into the compression, from **0** to **9**, and defaults to **4**.
 
 
 # Bugs, ideas, feedback

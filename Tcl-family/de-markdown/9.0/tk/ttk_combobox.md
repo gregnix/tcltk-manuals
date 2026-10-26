@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::combobox
+title: ttk::combobox
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -17,99 +18,158 @@ Copyright:
  - Copyright (c) 2004 Joe English
 ---
 
-# NAME
+# Name
 
 ttk::combobox - Textfeld mit ausklappbarer Auswahlliste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[ttk::combobox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::combobox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Ein **ttk::combobox** kombiniert ein Textfeld mit einer ausklappbaren Liste von Werten; der Benutzer kann den Wert des Textfelds aus den Einträgen der Liste wählen. Standardoptionen (siehe **ttk_widget**): **-class**, **-cursor**, **-takefocus**, **-style**, **-placeholder**, **-placeholderforeground**.
+Ein **ttk::combobox** kombiniert ein Textfeld mit einer ausklappbaren Liste von Werten; der Benutzer kann den Wert des Textfelds aus den Einträgen der Liste wählen.
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-exportselection** (exportSelection/ExportSelection)
+**-class**, **-cursor**, **-takefocus**, **-style**, **-placeholder**, **-placeholderforeground**
+
+Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-exportselection** (**exportSelection**/**ExportSelection**)
 : Boolescher Wert. Ist er gesetzt, ist die Widget-Auswahl mit der X-Auswahl verknüpft.
 
-**-justify** (justify/Justify)
+**-justify** (**justify**/**Justify**)
 : Legt fest, wie der Text im Widget ausgerichtet ist. Muss einer von **left**, **center** oder **right** sein.
 
-**-height** (height/Height)
+**-height** (**height**/**Height**)
 : Legt die Höhe der ausklappbaren Listbox in Zeilen fest.
 
-**-postcommand** (postCommand/PostCommand)
+**-postcommand** (**postCommand**/**PostCommand**)
 : Tcl-Skript, das unmittelbar vor dem Anzeigen der Listbox ausgewertet wird. Das Skript **-postcommand** kann die anzuzeigenden **-values** festlegen.
 
-**-state** (state/State)
+**-state** (**state**/**State**)
 : Einer von **normal**, **readonly** oder **disabled**. Im Zustand **readonly** kann der Wert nicht direkt bearbeitet werden; der Benutzer kann nur einen der **-values** aus der Dropdown-Liste wählen. Im Zustand **normal** ist das Textfeld direkt editierbar. Im Zustand **disabled** ist keine Interaktion möglich.
 
-**-textvariable** (textVariable/TextVariable)
+**-textvariable** (**textVariable**/**TextVariable**)
 : Name einer globalen Variable, deren Wert mit dem Widget-Wert verknüpft ist. Ändert sich die Variable, wird der Widget-Wert aktualisiert und umgekehrt.
 
-**-values** (values/Values)
+**-values** (**values**/**Values**)
 : Liste der in der Dropdown-Listbox anzuzeigenden Werte.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Ganzzahl für die gewünschte Breite des Eingabefensters in Zeichen durchschnittlicher Größe der Widget-Schriftart.
 
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
-Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe **ttk::widget**) unterstützen Combobox-Widgets folgende zusätzliche Befehle:
+Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Combobox-Widgets folgende zusätzliche Befehle:
 
-*pathName* **current** ?*newIndex*?
-: Wird *newIndex* angegeben, setzt der Befehl den Combobox-Wert auf das Element an Position *newIndex* in der Liste **-values** (neben Ganzzahlen wird der Index **end** unterstützt und bezeichnet das letzte Element der Liste; außerdem gilt dieselbe einfache Interpretation wie beim Befehl **string index**, mit einfacher ganzzahliger Indexarithmetik und Indizierung relativ zu **end**). Andernfalls gibt er den Index des aktuellen Werts in der Liste **-values** zurück oder **{}**, wenn der aktuelle Wert nicht in der Liste vorkommt.
+[pathName]{.ins} [current]{.sub} [newIndex]{.optarg}
+: Wird *newIndex* angegeben, setzt der Befehl den Combobox-Wert auf das Element an Position *newIndex* in der Liste **-values** (neben Ganzzahlen wird der Index **end** unterstützt und bezeichnet das letzte Element der Liste; außerdem gilt dieselbe einfache Interpretation wie beim Befehl [string index][string], mit einfacher ganzzahliger Indexarithmetik und Indizierung relativ zu **end**). Andernfalls gibt er den Index des aktuellen Werts in der Liste **-values** zurück oder **{}**, wenn der aktuelle Wert nicht in der Liste vorkommt.
 
-*pathName* **get**
+[pathName]{.ins} [get]{.sub}
 : Gibt den aktuellen Wert der Combobox zurück.
 
-*pathName* **set** *value*
+[pathName]{.ins} [set]{.sub} [value]{.arg}
 : Setzt den Wert der Combobox auf *value*.
 
 
-Die Combobox unterstützt außerdem folgende Befehle des **ttk::entry**-Widgets:
+Die Combobox unterstützt außerdem folgende Befehle des [ttk::entry][ttk_entry]-Widgets:
 
-```
-bbox            delete          icursor
-index           insert          selection
-xview
-```
+::: {.info DISPLAY="yes"}
+**bbox**	**delete**	**icursor**\
+**index**	**insert**	**selection**\
+**xview**
+:::
 
-# VIRTUELLE EREIGNISSE
+# Virtuelle Ereignisse
 
 Die Combobox erzeugt ein virtuelles Ereignis **<\<ComboboxSelected>>**, wenn der Benutzer ein Element aus der Werteliste wählt. Schließt die Auswahlaktion die Listbox, wird dieses Ereignis nach dem Schließen der Listbox ausgeliefert.
 
-# STYLING-OPTIONEN
+# Styling-Optionen
 
-Der Klassenname für ein **ttk::combobox** ist **TCombobox**. **ttk::combobox** verwendet intern die Widgets **entry** und **listbox**. Der Listbox-Rahmen hat den Klassennamen **ComboboxPopdownFrame**.
+Der Klassenname für ein **ttk::combobox** ist **TCombobox**. **ttk::combobox** verwendet intern die Widgets [entry] und [listbox]. Der Listbox-Rahmen hat den Klassennamen **ComboboxPopdownFrame**.
 
 Dynamische Zustände: **disabled**, **focus**, **pressed**, **readonly**.
 
-**TCombobox**-Styling-Optionen, die mit **ttk::style** konfiguriert werden können, sind:
+**TCombobox**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
 
-**-arrowcolor** *color* .br **-arrowsize** *amount* .br **-background** *color* .br **-bordercolor** *color* .br **-darkcolor** *color* .br **-focusfill** *color* .br **-foreground** *color* .br **-fieldbackground** *color* Kann nur bei nicht-nativen und nicht-grafischen Themes geändert werden. **-insertcolor** *color* .br **-insertwidth** *amount* .br **-lightcolor** *color* .br **-padding** *padding* .br **-placeholderforeground** *color* .br **-postoffset** *padding* .br **-selectbackground** *color* Hintergrund der Textauswahl. **-selectforeground** *color* Vordergrund der Textauswahl.
+**-arrowcolor** *color*
 
-Die ausklappbare Listbox von **ttk::combobox** lässt sich weder mit **ttk::style** noch über den Widget-Befehl **configure** konfigurieren. Die Listbox kann über die Optionsdatenbank konfiguriert werden.
+**-arrowsize** *amount*
 
-option add *TCombobox*Listbox.background *color* .br option add *TCombobox*Listbox.font *font* .br option add *TCombobox*Listbox.foreground *color* .br option add *TCombobox*Listbox.selectBackground *color* .br option add *TCombobox*Listbox.selectForeground *color*
+**-background** *color*
+
+**-bordercolor** *color*
+
+**-darkcolor** *color*
+
+**-focusfill** *color*
+
+**-foreground** *color*
+
+**-fieldbackground** *color*
+: Kann nur bei nicht-nativen und nicht-grafischen Themes geändert werden.
+
+
+**-insertcolor** *color*
+
+**-insertwidth** *amount*
+
+**-lightcolor** *color*
+
+**-padding** *padding*
+
+**-placeholderforeground** *color*
+
+**-postoffset** *padding*
+
+**-selectbackground** *color*
+: Hintergrund der Textauswahl.
+
+
+**-selectforeground** *color*
+: Vordergrund der Textauswahl.
+
+
+Die ausklappbare Listbox von **ttk::combobox** lässt sich weder mit [ttk::style][ttk_style] noch über den Widget-Befehl **configure** konfigurieren. Die Listbox kann über die Optionsdatenbank konfiguriert werden.
+
+option add \*TCombobox\*Listbox.background *color*
+
+option add \*TCombobox\*Listbox.font *font*
+
+option add \*TCombobox\*Listbox.foreground *color*
+
+option add \*TCombobox\*Listbox.selectBackground *color*
+
+option add \*TCombobox\*Listbox.selectForeground *color*
 
 Zum Konfigurieren einer bestimmten Listbox (kann sich künftig ändern):
 
 ```
 set popdown [ttk::combobox::PopdownWindow .mycombobox]
-$popdown.f.l configure \-font font
+$popdown.f.l configure -font font
 ```
 
-**ComboboxPopdownFrame**-Styling-Optionen, die mit **ttk::style** konfiguriert werden können, sind:
+**ComboboxPopdownFrame**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
 
-**-borderwidth** *amount* .br **-relief** *relief*
+**-borderwidth** *amount*
+
+**-relief** *relief*
 
 Einige Optionen sind nur für bestimmte Themes verfügbar.
 
-Siehe die Handbuch-Seite **ttk::style** für Informationen zur Konfiguration von ttk-Stilen.
+Siehe die Handbuch-Seite [ttk::style][ttk_style] für Informationen zur Konfiguration von ttk-Stilen.
 
+
+[entry]: entry.md
+[listbox]: listbox.md
+[string]: ../tcl/string.md
+[ttk_entry]: ttk_entry.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

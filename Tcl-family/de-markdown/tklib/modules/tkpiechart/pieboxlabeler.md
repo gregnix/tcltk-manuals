@@ -1,5 +1,6 @@
 ---
 CommandName: pieBoxLabeler
+title: pieBoxLabeler
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -17,19 +18,19 @@ Copyright:
  - Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>
 ---
 
-# NAME
+# Name
 
 pieBoxLabeler – Labeler-Klasse von tkpiechart im Kastenstil
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[stooop::new]{.cmd} [pieBoxLabeler]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [pieBoxLabelerObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [pieBoxLabelerObject]{.arg} [option]{.arg} 
+[stooop::new]{.cmd} [pieBoxLabeler]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [pieBoxLabelerObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [pieBoxLabelerObject]{.arg} [option]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Labeler-Objekt im Kastenstil setzt die Segmentbeschriftungen eines Objekts **pie** und wird dem Konstruktor von pie über die Option **-labeler** übergeben. Siehe die Handbuchseite der Klasse **pie**.
 
@@ -47,7 +48,7 @@ Ein Objekt **pieBoxLabeler** muss nicht gelöscht werden. Die Klasse pie erledig
 : Gibt einen Optionswert des angegebenen pieBoxLabeler-Objekts zurück.
 
 
-# OPTIONEN
+# Optionen
 
 **-font** value
 : Eine Schrift für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schrift systemabhängig.
@@ -59,19 +60,18 @@ Ein Objekt **pieBoxLabeler** muss nicht gelöscht werden. Die Klasse pie erledig
 : Abstand zwischen der Kreisdiagrammgrafik und der nächsten Segmentbeschriftung. Der Wert hat eine der Formen aus dem Abschnitt *KOORDINATEN* der Handbuchseite **canvas**.
 
 
-# TAGS
+# Tags
 
 Der Labeler hat das folgende besondere Tag. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*:
 
-**•**
-: pieBoxLabeler(pieBoxLabelerObject)
+- pieBoxLabeler(pieBoxLabelerObject)
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *tkpiechart* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>

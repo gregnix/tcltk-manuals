@@ -1,5 +1,6 @@
 ---
 CommandName: pop3d::dbox
+title: pop3d::dbox
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -21,37 +22,43 @@ pop3d::dbox - Simple mailbox database for pop3d
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3d::dbox]{.lit} [1.0.3]{.optlit} 
-[::pop3d::dbox::new]{.cmd} [dbName]{.optarg} 
-[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[dbName]{.ins} [destroy]{.sub} 
-[dbName]{.ins} [base]{.sub} [base]{.arg} 
-[dbName]{.ins} [add]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [remove]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [move]{.sub} [old]{.arg} [new]{.arg} 
-[dbName]{.ins} [list]{.sub} 
-[dbName]{.ins} [exists]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [locked]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [lock]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [unlock]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [stat]{.sub} [mbox]{.arg} 
-[dbName]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg} 
-[dbName]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg} 
-[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3d::dbox]{.lit} [1.0.3]{.optlit}
+[::pop3d::dbox::new]{.cmd} [dbName]{.optarg}
+[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[dbName]{.ins} [destroy]{.sub}
+[dbName]{.ins} [base]{.sub} [base]{.arg}
+[dbName]{.ins} [add]{.sub} [mbox]{.arg}
+[dbName]{.ins} [remove]{.sub} [mbox]{.arg}
+[dbName]{.ins} [move]{.sub} [old]{.arg} [new]{.arg}
+[dbName]{.ins} [list]{.sub}
+[dbName]{.ins} [exists]{.sub} [mbox]{.arg}
+[dbName]{.ins} [locked]{.sub} [mbox]{.arg}
+[dbName]{.ins} [lock]{.sub} [mbox]{.arg}
+[dbName]{.ins} [unlock]{.sub} [mbox]{.arg}
+[dbName]{.ins} [stat]{.sub} [mbox]{.arg}
+[dbName]{.ins} [size]{.sub} [mbox]{.arg} [msgId]{.optarg}
+[dbName]{.ins} [dele]{.sub} [mbox]{.arg} [msgList]{.arg}
+[storageCmd]{.ins} [get]{.sub} [mbox]{.arg} [msgId]{.arg}
 :::
 
 # Description
 
-The package **pop3d::dbox** provides simple/basic mailbox management facilities. Each mailbox object manages a single base directory whose subdirectories represent the managed mailboxes. Mails in a mailbox are represented by files in a mailbox directory, where each of these files contains a single mail, both headers and body, in RFC 822 (*http://www.rfc-editor.org/rfc/rfc822.txt*) conformant format.
+The package **pop3d::dbox** provides simple/basic mailbox management facilities. Each mailbox object manages a single base directory whose subdirectories represent the managed mailboxes. Mails in a mailbox are represented by files in a mailbox directory, where each of these files contains a single mail, both headers and body, in RFC 822 (<http://www.rfc-editor.org/rfc/rfc822.txt>) conformant format.
 
 Any mailbox object following the interface described below can be used in conjunction with the pop3 server core provided by the package **pop3d**. It is especially possible to directly use the objects created by this package in the storage callback of pop3 servers following the same interface as servers created by the package **pop3d**.
 
 **::pop3d::dbox::new** ?*dbName*?
-: This command creates a new database object with an associated global Tcl command whose name is *dbName*. The command **dbName** may be used to invoke various operations on the database.  It has the following general form:
+: This command creates a new database object with an associated global Tcl command whose name is *dbName*.
+
+
+The command **dbName** may be used to invoke various operations on the database.  It has the following general form:
 
 **dbName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. The following commands are possible for database objects:
+: *Option* and the *arg*s determine the exact behavior of the command.
+
+
+The following commands are possible for database objects:
 
 *dbName* **destroy**
 : Destroys the mailbox database and all transient data. The directory associated with the object is not destroyed.

@@ -1,5 +1,6 @@
 ---
 CommandName: crc32
+title: crc32
 ManualSection: n
 Version: 1.3.4
 TclPart: tcllib
@@ -27,17 +28,17 @@ crc32 - Perform a 32bit Cyclic Redundancy Check
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [crc32]{.lit} [1.3.4]{.optlit} 
-[::crc::crc32]{.cmd} [-format format]{.optarg} [-seed value]{.optarg} \[ [-channel]{.arg} [chan]{.arg} | [-filename]{.arg} [file]{.arg} | [message]{.arg} \] 
-[::crc::Crc32Init]{.cmd} [seed]{.optarg} 
-[::crc::Crc32Update]{.cmd} [token]{.arg} [data]{.arg} 
-[::crc::Crc32Final]{.cmd} [token]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [crc32]{.lit} [1.3.4]{.optlit}
+[::crc::crc32]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-seed]{.lit} [value]{.arg}]{.optarg} \[ [-channel]{.arg} [chan]{.arg} | [-filename]{.arg} [file]{.arg} | [message]{.arg} \]
+[::crc::Crc32Init]{.cmd} [seed]{.optarg}
+[::crc::Crc32Update]{.cmd} [token]{.arg} [data]{.arg}
+[::crc::Crc32Final]{.cmd} [token]{.arg}
 :::
 
 # Description
 
-This package provides a Tcl implementation of the CRC-32 algorithm based upon information provided at http://www.naaccr.org/standard/crc32/document.html If either the **critcl** package or the **Trf** package are available then a compiled version may be used internally to accelerate the checksum calculation.
+This package provides a Tcl implementation of the CRC-32 algorithm based upon information provided at <http://www.naaccr.org/standard/crc32/document.html> If either the **critcl** package or the **Trf** package are available then a compiled version may be used internally to accelerate the checksum calculation.
 
 # Commands
 
@@ -48,7 +49,7 @@ This package provides a Tcl implementation of the CRC-32 algorithm based upon in
 # Options
 
 -channel *name*
-: Return a checksum for the data read from a channel. The command will read data from the channel until the **eof** is true. If you need to be able to process events during this calculation see the **PROGRAMMING INTERFACE** section
+: Return a checksum for the data read from a channel. The command will read data from the channel until the **eof** is true. If you need to be able to process events during this calculation see the [Programming interface] section
 
 -filename *name*
 : This is a convenience option that opens the specified file, sets the encoding to binary and then acts as if the *-channel* option had been used. The file is closed on completion.
@@ -57,7 +58,7 @@ This package provides a Tcl implementation of the CRC-32 algorithm based upon in
 : Return the checksum using an alternative format template.
 
 -seed *value*
-: Select an alternative seed value for the CRC calculation. The default is 0xffffffff. This can be useful for calculating the CRC for data structures without first converting the whole structure into a string. The CRC of the previous member can be used as the seed for calculating the CRC of the next member. Note that the crc32 algorithm includes a final XOR step. If incremental processing is desired then this must be undone before using the output of the algorithm as the seed for further processing. A simpler alternative is to use the **PROGRAMMING INTERFACE** which is intended for this mode of operation.
+: Select an alternative seed value for the CRC calculation. The default is 0xffffffff. This can be useful for calculating the CRC for data structures without first converting the whole structure into a string. The CRC of the previous member can be used as the seed for calculating the CRC of the next member. Note that the crc32 algorithm includes a final XOR step. If incremental processing is desired then this must be undone before using the output of the algorithm as the seed for further processing. A simpler alternative is to use the [Programming interface] which is intended for this mode of operation.
 
 
 # Programming interface
@@ -68,7 +69,7 @@ The CRC-32 package implements the checksum using a context variable to which add
 : Begins a new CRC32 context. Returns a token ID that must be used for the remaining functions. An optional seed may be specified if required.
 
 **::crc::Crc32Update** *token* *data*
-: Add data to the checksum identified by token. Calling *Crc32Update \$token "abcd"* is equivalent to calling *Crc32Update \$token "ab"* followed by *Crc32Update \$token "cb"*. See **EXAMPLES**.
+: Add data to the checksum identified by token. Calling *Crc32Update $token "abcd"* is equivalent to calling *Crc32Update $token "ab"* followed by *Crc32Update $token "cb"*. See [Examples].
 
 **::crc::Crc32Final** *token*
 : Returns the checksum value and releases any resources held by this token. Once this command completes the token will be invalid. The result is a 32 bit integer value.

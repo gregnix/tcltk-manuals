@@ -1,5 +1,6 @@
 ---
 CommandName: struct::queue
+title: struct::queue
 ManualSection: n
 Version: 1.4.6
 TclPart: tcllib
@@ -25,16 +26,16 @@ struct::queue - Create and manipulate queue objects
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4.6]{.optlit} 
-[queueName]{.ins} [option]{.sub} [arg arg]{.optdot} 
-[queueName]{.ins} [clear]{.sub} 
-[queueName]{.ins} [destroy]{.sub} 
-[queueName]{.ins} [get]{.sub} [count]{.optarg} 
-[queueName]{.ins} [peek]{.sub} [count]{.optarg} 
-[queueName]{.ins} [put]{.sub} [item]{.arg} [item]{.optdot} 
-[queueName]{.ins} [unget]{.sub} [item]{.arg} 
-[queueName]{.ins} [size]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4.6]{.optlit}
+[queueName]{.ins} [option]{.sub} [arg arg]{.optdot}
+[queueName]{.ins} [clear]{.sub}
+[queueName]{.ins} [destroy]{.sub}
+[queueName]{.ins} [get]{.sub} [count]{.optarg}
+[queueName]{.ins} [peek]{.sub} [count]{.optarg}
+[queueName]{.ins} [put]{.sub} [item]{.arg} [item]{.optdot}
+[queueName]{.ins} [unget]{.sub} [item]{.arg}
+[queueName]{.ins} [size]{.sub}
 :::
 
 # Description

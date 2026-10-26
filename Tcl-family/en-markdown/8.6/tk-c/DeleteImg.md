@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_DeleteImage
+title: Tk_DeleteImage
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -13,25 +14,27 @@ Copyright:
 
 # Name
 
-Tk_DeleteImage - Destroy an image.
+Tk\_DeleteImage - Destroy an image.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_DeleteImage]{.cmd}([interp]{.arg}, [name]{.arg})
+**#include <tk.h>**
+[Tk\_DeleteImage]{.ccmd} [interp, name]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter for which the image was created.
 
-const char *\*name* (in)
+[\*name]{.carg .in type="const char"}
 : Name of the image.
 
+:::
 
 # Description
 
-**Tk_DeleteImage** deletes the image given by *interp* and *name*, if there is one.  All instances of that image will redisplay as empty regions.  If the given image does not exist then the procedure has no effect.
+**Tk\_DeleteImage** deletes the image given by *interp* and *name*, if there is one.  All instances of that image will redisplay as empty regions.  If the given image does not exist then the procedure has no effect.

@@ -1,5 +1,6 @@
 ---
 CommandName: canvasLabel
+title: canvasLabel
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -17,23 +18,23 @@ Copyright:
  - Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>
 ---
 
-# NAME
+# Name
 
 canvasLabel – tkpiechart-Klasse für Canvas-Beschriftungen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit} 
-[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit} 
-[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit} 
-[stooop::new]{.cmd} [canvasLabel]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [canvasLabelObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [canvasLabelObject]{.arg} [option]{.arg} 
-[stooop::delete]{.cmd} [canvasLabelObject]{.arg} 
+[package]{.cmd} [require]{.sub} [stooop]{.lit} [4.1]{.lit}
+[package]{.cmd} [require]{.sub} [switched]{.lit} [2.2]{.lit}
+[package]{.cmd} [require]{.sub} [tkpiechart]{.lit} [6.6]{.lit}
+[stooop::new]{.cmd} [canvasLabel]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [canvasLabelObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [canvasLabelObject]{.arg} [option]{.arg}
+[stooop::delete]{.cmd} [canvasLabelObject]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Die Klasse canvasLabel gibt dem Text-Element des Canvas einige Fähigkeiten des Tk-Label-Widgets, etwa einen Hintergrund und einen Rand.
 
@@ -54,7 +55,7 @@ Die Beschriftung hat ein eigenes Tag. Damit lassen sich über die Canvas-Funktio
 : Löscht das angegebene „canvasLabel“-Objekt.
 
 
-# OPTIONEN
+# Optionen
 
 **-anchor** value
 : Ankerposition von Rechteck und Text, relativ zum Positionierungspunkt. Das Verhalten entspricht der Option **-anchor** des *text*-Elements von **canvas**, nur dass das Rechteck mitzählt. Voreingestellt ist *center*.
@@ -108,19 +109,18 @@ Die Beschriftung hat ein eigenes Tag. Damit lassen sich über die Canvas-Funktio
 : Maximale Zeilenlänge des Textes, wie die Option **-width** des *text*-Elements von **canvas**. Voreingestellt ist *0*.
 
 
-# TAGS
+# Tags
 
 Der Labeler hat das folgende besondere Tag. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*:
 
-**•**
-: canvasLabel(canvasLabelObject)
+- canvasLabel(canvasLabelObject)
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *tkpiechart* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>

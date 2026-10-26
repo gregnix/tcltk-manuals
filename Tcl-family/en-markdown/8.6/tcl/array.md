@@ -1,5 +1,6 @@
 ---
 CommandName: array
+title: array
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -26,7 +27,7 @@ array - Manipulate array variables
 # Synopsis
 
 ::: {.synopsis} :::
-[array]{.cmd} [option]{.arg} [arrayName]{.arg} [arg arg]{.optdot} 
+[array]{.cmd} [option]{.arg} [arrayName]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -43,10 +44,10 @@ This command performs one of several operations on the variable given by *arrayN
 : Returns 1 if *arrayName* is an array variable, 0 if there is no variable by that name or if it is a scalar variable.
 
 **array get** *arrayName* ?*pattern*?
-: Returns a list containing pairs of elements.  The first element in each pair is the name of an element in *arrayName* and the second element of each pair is the value of the array element.  The order of the pairs is undefined. If *pattern* is not specified, then all of the elements of the array are included in the result. If *pattern* is specified, then only those elements whose names match *pattern* (using the matching rules of **string match**) are included. If *arrayName* is not the name of an array variable, or if the array contains no elements, then an empty list is returned. If traces on the array modify the list of elements, the elements returned are those that exist both before and after the call to **array get**.
+: Returns a list containing pairs of elements.  The first element in each pair is the name of an element in *arrayName* and the second element of each pair is the value of the array element.  The order of the pairs is undefined. If *pattern* is not specified, then all of the elements of the array are included in the result. If *pattern* is specified, then only those elements whose names match *pattern* (using the matching rules of [string match][string]) are included. If *arrayName* is not the name of an array variable, or if the array contains no elements, then an empty list is returned. If traces on the array modify the list of elements, the elements returned are those that exist both before and after the call to **array get**.
 
 **array names** *arrayName* ?*mode*? ?*pattern*?
-: Returns a list containing the names of all of the elements in the array that match *pattern*.  *Mode* may be one of **-exact**, **-glob**, or **-regexp**.  If specified, *mode* designates which matching rules to use to match *pattern* against the names of the elements in the array.  If not specified, *mode* defaults to **-glob**.  See the documentation for **string match** for information on glob style matching, and the documentation for **regexp** for information on regexp matching. If *pattern* is omitted then the command returns all of the element names in the array.  If there are no (matching) elements in the array, or if *arrayName* is not the name of an array variable, then an empty string is returned.
+: Returns a list containing the names of all of the elements in the array that match *pattern*.  *Mode* may be one of **-exact**, **-glob**, or **-regexp**.  If specified, *mode* designates which matching rules to use to match *pattern* against the names of the elements in the array.  If not specified, *mode* defaults to **-glob**.  See the documentation for [string match][string] for information on glob style matching, and the documentation for [regexp] for information on regexp matching. If *pattern* is omitted then the command returns all of the element names in the array.  If there are no (matching) elements in the array, or if *arrayName* is not the name of an array variable, then an empty string is returned.
 
 **array nextelement** *arrayName searchId*
 : Returns the name of the next element in *arrayName*, or an empty string if all elements of *arrayName* have already been returned in this search.  The *searchId* argument identifies the search, and must have been the return value of an **array startsearch** command. Warning:  if elements are added to or deleted from the array, then all searches are automatically terminated just as if **array donesearch** had been invoked; this will cause **array nextelement** operations to fail for those searches.
@@ -58,13 +59,13 @@ This command performs one of several operations on the variable given by *arrayN
 : Returns a decimal string giving the number of elements in the array. If *arrayName* is not the name of an array then 0 is returned.
 
 **array startsearch** *arrayName*
-: This command initializes an element-by-element search through the array given by *arrayName*, such that invocations of the **array nextelement** command will return the names of the individual elements in the array. When the search has been completed, the **array donesearch** command should be invoked. The return value is a search identifier that must be used in **array nextelement** and **array donesearch** commands; it allows multiple searches to be underway simultaneously for the same array. It is currently more efficient and easier to use either the **array get** or **array names**, together with **foreach**, to iterate over all but very large arrays.  See the examples below for how to do this.
+: This command initializes an element-by-element search through the array given by *arrayName*, such that invocations of the **array nextelement** command will return the names of the individual elements in the array. When the search has been completed, the **array donesearch** command should be invoked. The return value is a search identifier that must be used in **array nextelement** and **array donesearch** commands; it allows multiple searches to be underway simultaneously for the same array. It is currently more efficient and easier to use either the **array get** or **array names**, together with [foreach], to iterate over all but very large arrays.  See the examples below for how to do this.
 
 **array statistics** *arrayName*
 : Returns statistics about the distribution of data within the hashtable that represents the array.  This information includes the number of entries in the table, the number of buckets, and the utilization of the buckets.
 
 **array unset** *arrayName* ?*pattern*?
-: Unsets all of the elements in the array that match *pattern* (using the matching rules of **string match**).  If *arrayName* is not the name of an array variable or there are no matching elements in the array, no error will be raised.  If *pattern* is omitted and *arrayName* is an array variable, then the command unsets the entire array. The command always returns an empty string.
+: Unsets all of the elements in the array that match *pattern* (using the matching rules of [string match][string]).  If *arrayName* is not the name of an array variable or there are no matching elements in the array, no error will be raised.  If *pattern* is omitted and *arrayName* is an array variable, then the command unsets the entire array. The command always returns an empty string.
 
 
 # Examples
@@ -116,3 +117,8 @@ array statistics colorcount
     number of buckets with 10 or more entries: 0
     average search distance for entry: 1.2
 ```
+
+
+[foreach]: foreach.md
+[regexp]: regexp.md
+[string]: string.md

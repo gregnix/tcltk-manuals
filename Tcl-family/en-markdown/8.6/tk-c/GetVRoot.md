@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_GetVRootGeometry
+title: Tk_GetVRootGeometry
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -18,34 +19,36 @@ Copyright:
 
 # Name
 
-Tk_GetVRootGeometry - Get location and size of virtual root for window
+Tk\_GetVRootGeometry - Get location and size of virtual root for window
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_GetVRootGeometry]{.cmd}([tkwin]{.arg}, [xPtr]{.arg}, [yPtr]{.arg}, [widthPtr]{.arg}, [heightPtr]{.arg})
+**#include <tk.h>**
+Tk\_GetVRootGeometry(tkwin, xPtr, yPtr, widthPtr, heightPtr)
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Token for window whose virtual root is to be queried.
 
-int *xPtr* (out)
+[xPtr]{.carg .out type="int"}
 : Points to word in which to store x-offset of virtual root.
 
-int *yPtr* (out)
+[yPtr]{.carg .out type="int"}
 : Points to word in which to store y-offset of virtual root.
 
-int *widthPtr* (out)
+[widthPtr]{.carg .out type="int"}
 : Points to word in which to store width of virtual root.
 
-int *heightPtr* (out)
+[heightPtr]{.carg .out type="int"}
 : Points to word in which to store height of virtual root.
 
+:::
 
 # Description
 
-**Tk_GetVRootGeometry** returns geometry information about the virtual root window associated with *tkwin*.  The "associated" virtual root is the one in which *tkwin*'s nearest top-level ancestor (or *tkwin* itself if it is a top-level window) has been reparented by the window manager.  This window is identified by a **\__SWM_ROOT** or **\__WM_ROOT** property placed on the top-level window by the window manager. If *tkwin* is not associated with a virtual root (e.g. because the window manager does not use virtual roots) then \**xPtr* and \**yPtr* will be set to 0 and \**widthPtr* and \**heightPtr* will be set to the dimensions of the screen containing *tkwin*.
+**Tk\_GetVRootGeometry** returns geometry information about the virtual root window associated with *tkwin*.  The "associated" virtual root is the one in which *tkwin*'s nearest top-level ancestor (or *tkwin* itself if it is a top-level window) has been reparented by the window manager.  This window is identified by a **\_\_SWM\_ROOT** or **\_\_WM\_ROOT** property placed on the top-level window by the window manager. If *tkwin* is not associated with a virtual root (e.g. because the window manager does not use virtual roots) then \**xPtr* and \**yPtr* will be set to 0 and \**widthPtr* and \**heightPtr* will be set to the dimensions of the screen containing *tkwin*.

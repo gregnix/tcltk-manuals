@@ -1,5 +1,6 @@
 ---
 CommandName: seek
+title: seek
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -18,9 +19,12 @@ seek - Change the access position for an open channel
 # Synopsis
 
 ::: {.synopsis} :::
-[seek]{.cmd} [channel]{.arg} [offset]{.arg} [origin]{.optarg} 
+[seek]{.cmd} [channel]{.arg} [offset]{.arg} [origin]{.optarg}
 :::
 
 # Description
 
-The **seek** command has been superceded by the **chan seek** command which supports the same syntax and options.
+The **seek** command has been superceded by the [chan seek][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

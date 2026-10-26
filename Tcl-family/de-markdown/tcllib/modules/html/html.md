@@ -1,5 +1,6 @@
 ---
 CommandName: html
+title: html
 ManualSection: n
 Version: 1.6
 TclPart: tcllib
@@ -17,84 +18,84 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 html – Prozeduren zur Erstellung von HTML-Strukturen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [html]{.lit} [1.6]{.optlit} 
-[::html::author]{.cmd} [author]{.arg} 
-[::html::bodyTag]{.cmd} [args]{.arg} 
-[::html::cell]{.cmd} [param]{.arg} [value]{.arg} [tag]{.optarg} 
-[::html::checkbox]{.cmd} [name]{.arg} [value]{.arg} 
-[::html::checkSet]{.cmd} [key]{.arg} [sep]{.arg} [list]{.arg} 
-[::html::checkValue]{.cmd} [name]{.arg} [value]{.optarg} 
-[::html::closeTag]{.cmd} 
-[::html::default]{.cmd} [key]{.arg} [param]{.optarg} 
-[::html::description]{.cmd} [description]{.arg} 
-[::html::end]{.cmd} 
-[::html::eval]{.cmd} [arg]{.arg} [args]{.optarg} 
-[::html::extractParam]{.cmd} [param]{.arg} [key]{.arg} [varName]{.optarg} 
-[::html::font]{.cmd} [args]{.arg} 
-[::html::for]{.cmd} [start]{.arg} [test]{.arg} [next]{.arg} [body]{.arg} 
-[::html::foreach]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg} 
-[::html::formValue]{.cmd} [name]{.arg} [defvalue]{.optarg} 
-[::html::getFormInfo]{.cmd} [args]{.arg} 
-[::html::getTitle]{.cmd} 
-[::html::h]{.cmd} [level]{.arg} [string]{.arg} [param]{.optarg} 
-[::html::h1]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::h2]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::h3]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::h4]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::h5]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::h6]{.cmd} [string]{.arg} [param]{.optarg} 
-[::html::hdrRow]{.cmd} [args]{.arg} 
-[::html::head]{.cmd} [title]{.arg} 
-[::html::headTag]{.cmd} [string]{.arg} 
-[::html::html_entities]{.cmd} [string]{.arg} 
-[::html::if]{.cmd} [expr1]{.arg} [body1]{.arg} [elseif expr2 body2]{.optdot} [else bodyN]{.optarg} 
-[::html::init]{.cmd} [list]{.optarg} 
-[::html::keywords]{.cmd} [args]{.arg} 
-[::html::mailto]{.cmd} [email]{.arg} [subject]{.optarg} 
-[::html::meta]{.cmd} [args]{.arg} 
-[::html::meta_name]{.cmd} [args]{.arg} 
-[::html::meta_equiv]{.cmd} [args]{.arg} 
-[::html::meta_charset]{.cmd} [charset]{.arg} 
-[::html::css]{.cmd} [href]{.arg} 
-[::html::css-clear]{.cmd} 
-[::html::js]{.cmd} [href]{.arg} 
-[::html::js-clear]{.cmd} 
-[::html::minorList]{.cmd} [list]{.arg} [ordered]{.optarg} 
-[::html::minorMenu]{.cmd} [list]{.arg} [sep]{.optarg} 
-[::html::nl2br]{.cmd} [string]{.arg} 
-[::html::openTag]{.cmd} [tag]{.arg} [param]{.optarg} 
-[::html::paramRow]{.cmd} [list]{.arg} [rparam]{.optarg} [cparam]{.optarg} 
-[::html::passwordInput]{.cmd} [name]{.optarg} 
-[::html::passwordInputRow]{.cmd} [label]{.arg} [name]{.optarg} 
-[::html::quoteFormValue]{.cmd} [value]{.arg} 
-[::html::radioSet]{.cmd} [key]{.arg} [sep]{.arg} [list]{.arg} 
-[::html::radioValue]{.cmd} [name]{.arg} [value]{.arg} 
-[::html::refresh]{.cmd} [seconds]{.arg} [url]{.arg} 
-[::html::row]{.cmd} [args]{.arg} 
-[::html::select]{.cmd} [name]{.arg} [param]{.arg} [choices]{.arg} [current]{.optarg} 
-[::html::selectPlain]{.cmd} [name]{.arg} [param]{.arg} [choices]{.arg} [current]{.optarg} 
-[::html::set]{.cmd} [var]{.arg} [val]{.arg} 
-[::html::submit]{.cmd} [label]{.arg} [name]{.optarg} [title]{.optarg} 
-[::html::tableFromArray]{.cmd} [arrname]{.arg} [param]{.optarg} [pat]{.optarg} 
-[::html::tableFromList]{.cmd} [querylist]{.arg} [param]{.optarg} 
-[::html::textarea]{.cmd} [name]{.arg} [param]{.optarg} [current]{.optarg} 
-[::html::textInput]{.cmd} [name]{.arg} [value]{.arg} [args]{.arg} 
-[::html::textInputRow]{.cmd} [label]{.arg} [name]{.arg} [value]{.arg} [args]{.arg} 
-[::html::varEmpty]{.cmd} [name]{.arg} 
-[::html::while]{.cmd} [test]{.arg} [body]{.arg} 
-[::html::doctype]{.cmd} [id]{.arg} 
-[::html::wrapTag]{.cmd} [tag]{.arg} [text]{.optarg} [args]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [html]{.lit} [1.6]{.optlit}
+[::html::author]{.cmd} [author]{.arg}
+[::html::bodyTag]{.cmd} [args]{.arg}
+[::html::cell]{.cmd} [param]{.arg} [value]{.arg} [tag]{.optarg}
+[::html::checkbox]{.cmd} [name]{.arg} [value]{.arg}
+[::html::checkSet]{.cmd} [key]{.arg} [sep]{.arg} [list]{.arg}
+[::html::checkValue]{.cmd} [name]{.arg} [value]{.optarg}
+[::html::closeTag]{.cmd}
+[::html::default]{.cmd} [key]{.arg} [param]{.optarg}
+[::html::description]{.cmd} [description]{.arg}
+[::html::end]{.cmd}
+[::html::eval]{.cmd} [arg]{.arg} [args]{.optarg}
+[::html::extractParam]{.cmd} [param]{.arg} [key]{.arg} [varName]{.optarg}
+[::html::font]{.cmd} [args]{.arg}
+[::html::for]{.cmd} [start]{.arg} [test]{.arg} [next]{.arg} [body]{.arg}
+[::html::foreach]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg}
+[::html::formValue]{.cmd} [name]{.arg} [defvalue]{.optarg}
+[::html::getFormInfo]{.cmd} [args]{.arg}
+[::html::getTitle]{.cmd}
+[::html::h]{.cmd} [level]{.arg} [string]{.arg} [param]{.optarg}
+[::html::h1]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::h2]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::h3]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::h4]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::h5]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::h6]{.cmd} [string]{.arg} [param]{.optarg}
+[::html::hdrRow]{.cmd} [args]{.arg}
+[::html::head]{.cmd} [title]{.arg}
+[::html::headTag]{.cmd} [string]{.arg}
+[::html::html\_entities]{.cmd} [string]{.arg}
+[::html::if]{.cmd} [expr1]{.arg} [body1]{.arg} [[elseif]{.lit} [expr2]{.arg} body2]{.optdot} [[else]{.lit} [bodyN]{.arg}]{.optarg}
+[::html::init]{.cmd} [list]{.optarg}
+[::html::keywords]{.cmd} [args]{.arg}
+[::html::mailto]{.cmd} [email]{.arg} [subject]{.optarg}
+[::html::meta]{.cmd} [args]{.arg}
+[::html::meta\_name]{.cmd} [args]{.arg}
+[::html::meta\_equiv]{.cmd} [args]{.arg}
+[::html::meta\_charset]{.cmd} [charset]{.arg}
+[::html::css]{.cmd} [href]{.arg}
+[::html::css-clear]{.cmd}
+[::html::js]{.cmd} [href]{.arg}
+[::html::js-clear]{.cmd}
+[::html::minorList]{.cmd} [list]{.arg} [ordered]{.optarg}
+[::html::minorMenu]{.cmd} [list]{.arg} [sep]{.optarg}
+[::html::nl2br]{.cmd} [string]{.arg}
+[::html::openTag]{.cmd} [tag]{.arg} [param]{.optarg}
+[::html::paramRow]{.cmd} [list]{.arg} [rparam]{.optarg} [cparam]{.optarg}
+[::html::passwordInput]{.cmd} [name]{.optarg}
+[::html::passwordInputRow]{.cmd} [label]{.arg} [name]{.optarg}
+[::html::quoteFormValue]{.cmd} [value]{.arg}
+[::html::radioSet]{.cmd} [key]{.arg} [sep]{.arg} [list]{.arg}
+[::html::radioValue]{.cmd} [name]{.arg} [value]{.arg}
+[::html::refresh]{.cmd} [seconds]{.arg} [url]{.arg}
+[::html::row]{.cmd} [args]{.arg}
+[::html::select]{.cmd} [name]{.arg} [param]{.arg} [choices]{.arg} [current]{.optarg}
+[::html::selectPlain]{.cmd} [name]{.arg} [param]{.arg} [choices]{.arg} [current]{.optarg}
+[::html::set]{.cmd} [var]{.arg} [val]{.arg}
+[::html::submit]{.cmd} [label]{.arg} [name]{.optarg} [title]{.optarg}
+[::html::tableFromArray]{.cmd} [arrname]{.arg} [param]{.optarg} [pat]{.optarg}
+[::html::tableFromList]{.cmd} [querylist]{.arg} [param]{.optarg}
+[::html::textarea]{.cmd} [name]{.arg} [param]{.optarg} [current]{.optarg}
+[::html::textInput]{.cmd} [name]{.arg} [value]{.arg} [args]{.arg}
+[::html::textInputRow]{.cmd} [label]{.arg} [name]{.arg} [value]{.arg} [args]{.arg}
+[::html::varEmpty]{.cmd} [name]{.arg}
+[::html::while]{.cmd} [test]{.arg} [body]{.arg}
+[::html::doctype]{.cmd} [id]{.arg}
+[::html::wrapTag]{.cmd} [tag]{.arg} [text]{.optarg} [args]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **html** stellt Befehle zur Verfügung, die HTML generieren. Diese Befehle geben in der Regel eine HTML-Zeichenkette als Ergebnis zurück. Insbesondere geben sie ihr Ergebnis nicht über **stdout** aus.
 
@@ -119,7 +120,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erzeugt den Eintrag „name=*name* value=*value*“ für ein *Checkbox*-Formularelement. Wenn die CGI-Variable *name* den Wert *value* hat, wird dem Rückgabewert „SELECTED“ hinzugefügt. Der Standardwert für *value* ist „1“.
 
 **::html::closeTag**
-: Entnimmt ein Tag aus dem von **::html::openTag** erstellten Stapel und generiert das entsprechende schließende Tag (z. B. \</BODY>).
+: Entnimmt ein Tag aus dem von **::html::openTag** erstellten Stapel und generiert das entsprechende schließende Tag (z. B. </BODY>).
 
 **::html::default** *key* ?*param*?
 : Diese Prozedur wird von **::html::tagParam** verwendet, um den Namen und die Werteliste der Parameter für einen Tag zu generieren. Die Prozedur **::html::default** dient dazu, Standardwerte für diejenigen Elemente zu generieren, die noch nicht in *param* enthalten sind.  Wenn der durch *key* identifizierte Wert mit einem Wert in *param* übereinstimmt, gibt diese Prozedur die leere Zeichenkette zurück. Andernfalls gibt sie eine Zeichenkette im Format „parameter=value“ für ein durch *key* identifiziertes Formularelement zurück. Der *key* hat die Form „tag.parameter“ (z. B. body.bgcolor).  Verwenden Sie **::html::init**, um Standardwerte zu registrieren. *param* ist standardmäßig die leere Zeichenkette.
@@ -128,7 +129,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *Meta*-Tag mit einer Beschreibung für die Seite zu definieren.  Dieses Tag wird später beim Aufruf von **::html::head** generiert.
 
 **::html::end**
-: Alle offenen Tags aus dem Stapel entfernen und die entsprechenden schließenden HTML-Tags generieren (z. B. \</BODY>\</HTML>).
+: Alle offenen Tags aus dem Stapel entfernen und die entsprechenden schließenden HTML-Tags generieren (z. B. </BODY></HTML>).
 
 **::html::eval** *arg* ?*args*?
 : Diese Prozedur ähnelt dem integrierten Tcl-Befehl **eval**. Der einzige Unterschied besteht darin, dass sie „“ gibt zurück, sodass sie aus einer HTML-Vorlagendatei aufgerufen werden kann, ohne dass unerwünschte Ergebnisse angehängt werden.
@@ -148,10 +149,9 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 **::html::formValue** *name* ?*defvalue*?
 : Gibt ein Name-Wert-Paar zurück, wobei der Wert – sofern vorhanden – anhand vorhandener CGI-Daten initialisiert wird. Das Ergebnis hat folgende Form:
 
-
-```
-  name="fred" value="freds value"
-```
+    ```
+      name="fred" value="freds value"
+    ```
 
 **::html::getFormInfo** *args*
 : Erzeugt versteckte Felder, um Formularwerte zu erfassen. Wenn *args* leer ist, werden für alle CGI-Werte versteckte Felder erzeugt. Andernfalls ist *args* eine Liste von Zeichenfolgenmustern, die mit den Namen von Formularelementen übereinstimmen sollen.
@@ -189,7 +189,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 **::html::headTag** *string*
 : Speichert einen Tag zur Einbindung in den von **::html::head** generierten *head*-Abschnitt. Der *String* umfasst den gesamten Inhalt des Tags mit Ausnahme der umschließenden spitzen Klammern < >.
 
-**::html::html_entities** *string*
+**::html::html\_entities** *string*
 : Dieser Befehl ersetzt alle Sonderzeichen in der *Zeichenkette* durch ihre HTML-Entitäten und gibt den geänderten Text zurück.
 
 **::html::if** *expr1 body1* ?**elseif** *expr2 body2 ...*? ?**else** *bodyN*?
@@ -205,28 +205,36 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erstellt einen Hypertext-Link zu einer „mailto:“-URL.
 
 **::html::meta** *args*
-: Name der Kompatibilität für **html::meta_name**.
+: Name der Kompatibilität für **html::meta\_name**.
 
-**::html::meta_name** *args*
+**::html::meta\_name** *args*
 : *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **name=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** eingebunden.
 
-**::html::meta_equiv** *args*
+**::html::meta\_equiv** *args*
 : *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **http-equiv=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
 
-**::html::meta_charset** *charset*
+**::html::meta\_charset** *charset*
 : *Nur als Nebeneffekt*. Rufen Sie dies vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Der *charset* wird mit dem Attribut **charset=** des *meta*-Tags verwendet. Der *meta*-Tag ist im Ergebnis von **::html::head** enthalten.
 
 **::html::css** *href*
-: *Nur als Nebeneffekt*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *link*-Tag für ein verknüpftes CSS-Dokument zu definieren. Der Wert von *href* ist eine HTTP-URL zu einem CSS-Dokument. Das *link*-Tag wird in das Ergebnis von **::html::head** aufgenommen. Mehrere Aufrufe dieses Befehls sind zulässig, wodurch die Verwendung mehrerer Verweise auf CSS-Dokumente ermöglicht wird. Mit anderen Worten: Die Argumente mehrerer Aufrufe werden kumuliert und überschreiben sich nicht gegenseitig.
+: *Nur als Nebeneffekt*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *link*-Tag für ein verknüpftes CSS-Dokument zu definieren. Der Wert von *href* ist eine HTTP-URL zu einem CSS-Dokument. Das *link*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
+
+    Mehrere Aufrufe dieses Befehls sind zulässig, wodurch die Verwendung mehrerer Verweise auf CSS-Dokumente ermöglicht wird. Mit anderen Worten: Die Argumente mehrerer Aufrufe werden kumuliert und überschreiben sich nicht gegenseitig.
 
 **::html::css-clear**
-: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um alle Verweise auf CSS-Dokumente zu löschen. Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::css** dazwischenliegt, hat dies jedoch keine weitere Auswirkung.
+: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um alle Verweise auf CSS-Dokumente zu löschen.
+
+    Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::css** dazwischenliegt, hat dies jedoch keine weitere Auswirkung.
 
 **::html::js** *href*
-: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *Skript*-Tag für ein verknüpftes JavaScript-Dokument zu definieren. Das *href* ist eine HTTP-URL zu einem JavaScript-Dokument. Das *script*-Tag wird in das Ergebnis von **::html::head** aufgenommen. Mehrere Aufrufe dieses Befehls sind zulässig, wodurch die Verwendung mehrerer Verweise auf JavaScript-Dokumente ermöglicht wird. Mit anderen Worten: Die Argumente mehrerer Aufrufe werden kumuliert und überschreiben sich nicht gegenseitig.
+: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *Skript*-Tag für ein verknüpftes JavaScript-Dokument zu definieren. Das *href* ist eine HTTP-URL zu einem JavaScript-Dokument. Das *script*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
+
+    Mehrere Aufrufe dieses Befehls sind zulässig, wodurch die Verwendung mehrerer Verweise auf JavaScript-Dokumente ermöglicht wird. Mit anderen Worten: Die Argumente mehrerer Aufrufe werden kumuliert und überschreiben sich nicht gegenseitig.
 
 **::html::js-clear**
-: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um alle Verweise auf JavaScript-Dokumente zu löschen. Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::js** dazwischenliegt, hat der Befehl jedoch keine weitere Wirkung.
+: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um alle Verweise auf JavaScript-Dokumente zu löschen.
+
+    Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::js** dazwischenliegt, hat der Befehl jedoch keine weitere Wirkung.
 
 **::html::minorList** *list* ?*ordered*?
 : Erzeugt eine nummerierte oder unnummerierte Liste von Links. Der Name der *list* ist eine Liste im Tcl-Stil, bestehend aus Bezeichnungen und URLs für die Links. *ordered* ist ein boolescher Wert, mit dem zwischen einer nummerierten und einer unnummerierten Liste gewählt werden kann. Der Standardwert ist **false**.
@@ -300,49 +308,36 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 **::html::doctype** *id*
 : Mit dieser Prozedur lässt sich die Standard-DOCTYPE-Deklarationszeichenfolge erstellen. Sie gibt die Standard-Deklarationszeichenfolge für die jeweilige ID zurück oder löst einen Fehler aus, wenn die ID unbekannt ist. Folgende IDs sind definiert:
 
+    1. HTML32
 
-**\[1\]**
-: HTML32
+    2. HTML40
 
-**\[2\]**
-: HTML40
+    3. HTML40T
 
-**\[3\]**
-: HTML40T
+    4. HTML40F
 
-**\[4\]**
-: HTML40F
+    5. HTML401
 
-**\[5\]**
-: HTML401
+    6. HTML401T
 
-**\[6\]**
-: HTML401T
+    7. HTML401F
 
-**\[7\]**
-: HTML401F
+    8. XHTML10S
 
-**\[8\]**
-: XHTML10S
+    9. XHTML10T
 
-**\[9\]**
-: XHTML10T
+    10. XHTML10F
 
-**\[10\]**
-: XHTML10F
+    11. XHTML11
 
-**\[11\]**
-: XHTML11
-
-**\[12\]**
-: XHTMLB
+    12. XHTMLB
 
 
 **::html::wrapTag** *tag* ?*text*? ?*args*?
 : Eine Hilfsfunktion, um einen *Text* in ein Paar aus öffnendem und schließendem *Tag* einzufassen. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die dazu dient, dem öffnenden Tag Attribute und zugehörige Werte zuzuweisen. Das Ergebnis ist eine Zeichenkette, die aus dem öffnenden *Tag* zusammen mit den optionalen Attributen, dem optionalen Text und dem schließenden Tag besteht.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *html* als Kategorie an.
 
@@ -350,6 +345,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 CGI-Programmierung

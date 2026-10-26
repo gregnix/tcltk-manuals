@@ -1,5 +1,6 @@
 ---
 CommandName: page_intro
+title: page_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -12,11 +13,11 @@ Copyright:
  - Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-page_intro – Einleitung zu page
+page\_intro – Einleitung zu page
 
-# BESCHREIBUNG
+# Beschreibung
 
 *page* (kurz für *parser generator*) steht für eine Reihe verwandter Pakete, die bei der Erstellung von Parser-Generatoren helfen, und für andere Hilfsprogramme, die Textverarbeitung betreiben.
 
@@ -24,7 +25,7 @@ Sie dienen in erster Linie der Unterstützung der Tcllib-Anwendung **page**, wob
 
 Die Pakete, die die Plugins implementieren, sind nicht wie gewöhnliche Pakete dokumentiert, da sie ohne umfangreiche Vorbereitungsmaßnahmen am Interpreter nicht in einen allgemeinen Interpreter wie tclsh geladen werden können. Diese Vorbereitungsmaßnahmen werden vom Plugin-Manager für sie vorgenommen.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *page* als Kategorie an.
 
@@ -32,11 +33,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Page-Parsergenerator
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>

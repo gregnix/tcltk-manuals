@@ -1,5 +1,6 @@
 ---
 CommandName: diagram
+title: diagram
 ManualSection: n
 Version: 0.3
 TclPart: tklib
@@ -39,104 +40,100 @@ diagram - Diagram drawing
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [diagram]{.lit} [1]{.lit} 
-[::diagram]{.cmd} [objectName]{.arg} [canvas]{.arg} [script]{.optarg} 
-[diagramObject]{.ins} [new]{.sub} [direction]{.lit} [name]{.arg} [key value]{.optdot} 
-[diagramObject]{.ins} [new]{.sub} [element]{.lit} [name]{.arg} [attributes]{.arg} [cmdprefix]{.arg} 
-[diagramObject]{.ins} [new]{.sub} [alias]{.lit} [name]{.arg} [cmdprefix]{.arg} 
-[diagramObject]{.ins} [new]{.sub} [command]{.lit} [name]{.arg} [arguments]{.arg} [body]{.arg} 
-[diagramObject]{.ins} [new]{.sub} [attribute]{.lit} [name]{.arg} [key value]{.optdot} 
-[diagramObject]{.ins} [unknown]{.sub} [attribute]{.lit} [cmdprefix]{.arg} 
-[diagramObject]{.ins} [draw]{.sub} [script]{.arg} 
-[arc]{.cmd} [attr...]{.arg} 
-[arrow]{.cmd} [attr...]{.arg} 
-[-->]{.cmd} [attr...]{.arg} 
-[<-->]{.cmd} [attr...]{.arg} 
-[<-->]{.cmd} [attr...]{.arg} 
-[block]{.cmd} [script]{.arg} [attr...]{.arg} 
-[box]{.cmd} [attr...]{.arg} 
-[circle]{.cmd} [attr...]{.arg} 
-[O]{.cmd} [attr...]{.arg} 
-[diamond]{.cmd} [attr...]{.arg} 
-[<>]{.cmd} [attr...]{.arg} 
-[drum]{.cmd} [attr...]{.arg} 
-[ellipse]{.cmd} [attr...]{.arg} 
-[line]{.cmd} [attr...]{.arg} 
-[--]{.cmd} [attr...]{.arg} 
-[move]{.cmd} [attr]{.arg} 
-[spline]{.cmd} [attr...]{.arg} 
-[text]{.cmd} [attr...]{.arg} 
-[west]{.cmd} 
-[w]{.cmd} 
-[left]{.cmd} 
-[l]{.cmd} 
-[south]{.cmd} 
-[s]{.cmd} 
-[down]{.cmd} 
-[bottom]{.cmd} 
-[bot]{.cmd} 
-[b]{.cmd} 
-[east]{.cmd} 
-[e]{.cmd} 
-[right]{.cmd} 
-[r]{.cmd} 
-[north]{.cmd} 
-[n]{.cmd} 
-[up]{.cmd} 
-[top]{.cmd} 
-[t]{.cmd} 
-[northwest]{.cmd} 
-[nw]{.cmd} 
-[up-left]{.cmd} 
-[upleft]{.cmd} 
-[leftup]{.cmd} 
-[northeast]{.cmd} 
-[ne]{.cmd} 
-[up-right]{.cmd} 
-[upright]{.cmd} 
-[rightup]{.cmd} 
-[southwest]{.cmd} 
-[sw]{.cmd} 
-[down-left]{.cmd} 
-[downleft]{.cmd} 
-[leftdown]{.cmd} 
-[southeast]{.cmd} 
-[se]{.cmd} 
-[down-right]{.cmd} 
-[downright]{.cmd} 
-[rightdown]{.cmd} 
-[number]{.ins} [cm]{.sub} 
-[number]{.ins} [mm]{.sub} 
-[number]{.ins} [inch]{.sub} 
-[number]{.ins} [pt]{.sub} 
-[by]{.cmd} [distance]{.arg} [direction]{.arg} 
-[point1]{.ins} [+]{.sub} [point2]{.arg} 
-[point1]{.ins} [-]{.sub} [point2]{.arg} 
-[point]{.ins} [by]{.sub} [distance]{.arg} [direction]{.arg} 
-[point1]{.ins} [|]{.sub} [point2]{.arg} 
-[n]{.ins} [between]{.sub} [poin1]{.arg} [point2]{.arg} 
-[intersect]{.cmd} [elem1]{.arg} [elem2]{.arg} 
-[element]{.ins} [names]{.sub} [pattern]{.optarg} 
-[nth]{.cmd} [corner]{.optarg} 
-[nth]{.cmd} [last]{.sub} [corner]{.optarg} 
-[nth]{.cmd} [shape]{.arg} [corner]{.optarg} 
-[nth]{.cmd} [last]{.sub} [shape]{.arg} [corner]{.optarg} 
-[last]{.cmd} [corner]{.optarg} 
-[last]{.cmd} [shape]{.arg} [corner]{.optarg} 
-[1st]{.cmd} 
-[2nd]{.cmd} 
-[3rd]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [diagram]{.lit} [1]{.lit}
+[::diagram]{.cmd} [objectName]{.arg} [canvas]{.arg} [script]{.optarg}
+[diagramObject]{.ins} [new]{.sub} [direction]{.lit} [name]{.arg} [key value...]{.optarg}
+[diagramObject]{.ins} [new]{.sub} [element]{.lit} [name]{.arg} [attributes]{.arg} [cmdprefix]{.arg}
+[diagramObject]{.ins} [new]{.sub} [alias]{.lit} [name]{.arg} [cmdprefix]{.arg}
+[diagramObject]{.ins} [new]{.sub} [command]{.lit} [name]{.arg} [arguments]{.arg} [body]{.arg}
+[diagramObject]{.ins} [new]{.sub} [attribute]{.lit} [name]{.arg} [key value...]{.optarg}
+[diagramObject]{.ins} [unknown]{.sub} [attribute]{.lit} [cmdprefix]{.arg}
+[diagramObject]{.ins} [draw]{.sub} [script]{.arg}
+[arc]{.cmd} [attr...]{.arg}
+[arrow]{.cmd} [attr...]{.arg}
+[-->]{.lit} [attr...]{.arg}
+[<-->]{.lit} [attr...]{.arg}
+[<-->]{.lit} [attr...]{.arg}
+[block]{.cmd} [script]{.arg} [attr...]{.arg}
+[box]{.cmd} [attr...]{.arg}
+[circle]{.cmd} [attr...]{.arg}
+[O]{.cmd} [attr...]{.arg}
+[diamond]{.cmd} [attr...]{.arg}
+[<>]{.lit} [attr...]{.arg}
+[drum]{.cmd} [attr...]{.arg}
+[ellipse]{.cmd} [attr...]{.arg}
+[line]{.cmd} [attr...]{.arg}
+[--]{.lit} [attr...]{.arg}
+[move]{.cmd} [attr]{.arg}
+[spline]{.cmd} [attr...]{.arg}
+[text]{.cmd} [attr...]{.arg}
+[west]{.cmd}
+[w]{.cmd}
+[left]{.cmd}
+[l]{.cmd}
+[south]{.cmd}
+[s]{.cmd}
+[down]{.cmd}
+[bottom]{.cmd}
+[bot]{.cmd}
+[b]{.cmd}
+[east]{.cmd}
+[e]{.cmd}
+[right]{.cmd}
+[r]{.cmd}
+[north]{.cmd}
+[n]{.cmd}
+[up]{.cmd}
+[top]{.cmd}
+[t]{.cmd}
+[northwest]{.cmd}
+[nw]{.cmd}
+[up-left]{.cmd}
+[upleft]{.cmd}
+[leftup]{.cmd}
+[northeast]{.cmd}
+[ne]{.cmd}
+[up-right]{.cmd}
+[upright]{.cmd}
+[rightup]{.cmd}
+[southwest]{.cmd}
+[sw]{.cmd}
+[down-left]{.cmd}
+[downleft]{.cmd}
+[leftdown]{.cmd}
+[southeast]{.cmd}
+[se]{.cmd}
+[down-right]{.cmd}
+[downright]{.cmd}
+[rightdown]{.cmd}
+[number]{.ins} [cm]{.sub}
+[number]{.ins} [mm]{.sub}
+[number]{.ins} [inch]{.sub}
+[number]{.ins} [pt]{.sub}
+[number]{.ins} [number]{.sub}
+[by]{.cmd} [distance]{.arg} [direction]{.arg}
+[point1]{.ins} [+]{.sub} [point2]{.arg}
+[point1]{.ins} [-]{.sub} [point2]{.arg}
+[point]{.ins} [by]{.sub} [distance]{.arg} [direction]{.arg}
+[point1]{.ins} [|]{.sub} [point2]{.arg}
+[n]{.ins} [between]{.sub} [poin1]{.arg} [point2]{.arg}
+[intersect]{.cmd} [elem1]{.arg} [elem2]{.arg}
+[element]{.ins} [names]{.sub} [pattern]{.optarg}
+[element]{.ins} [corner]{.sub}
+[element]{.ins} [corner1]{.sub} [corner2...]{.arg}
+[element]{.ins} [corner1... ?names ?pattern]{.optarg} [\]]{.optarg}
+nth [corner]{.optarg}
+nth [last]{.lit} [corner]{.optarg}
+nth [shape]{.arg} [corner]{.optarg}
+nth [last]{.lit} [shape]{.arg} [corner]{.optarg}
+[last]{.cmd} [corner]{.optarg}
+[last]{.cmd} [shape]{.arg} [corner]{.optarg}
+[1st]{.cmd}
+[2nd]{.lit}
+[3rd]{.cmd}
 :::
-
-*number* *number*
-
-*element* *corner*
-
-*element* *corner1* *corner2*...
-
-*element* ?*corner1*... ?**names** ?*pattern*??\]?
 
 # Description
 
@@ -148,870 +145,928 @@ This document contains the reference to the API and drawing (language) commands.
 
 In the remainder of the document we first describe the APIs of the diagram class and its instances, followed by the language reference for the drawing language itself.
 
-# Api
+# API
 
-## Class api
+## Class API
 
 The package exports the API described here.
 
 **::diagram** *objectName* *canvas* ?*script*?
-: The command creates a new instance of a diagram controller and returns the fully qualified name of the object command as its result. The new instance is connected to the specified *canvas* object, which is used as the diagrams graphics engine. This is usually an instance of Tk's canvas, however any object which is API compatible to Tk's canvas can be used here. The API of this object command is described in the following section, **Object API**. It may be used to invoke various operations on the object. If the *script* argument is specified then method **draw** will be invoked on it.
+: The command creates a new instance of a diagram controller and returns the fully qualified name of the object command as its result. The new instance is connected to the specified *canvas* object, which is used as the diagrams graphics engine. This is usually an instance of Tk's canvas, however any object which is API compatible to Tk's canvas can be used here.
+
+    The API of this object command is described in the following section, [Object API]. It may be used to invoke various operations on the object.
+
+    If the *script* argument is specified then method **draw** will be invoked on it.
 
 
-## Object api
+## Object API
 
 Instances of the diagram class support the following methods:
 
 *diagramObject* **new direction** *name* ?*key* *value*...?
-: This method defines a new named direction and its attributes. The latter is given through the *key*/*value* pairs coming after the *name*. Users are mostly free to specify arbitrary attributes with whatever meaning they desire. The exception are the names *angle* and *opposite*. They are special to the diagram package and have a fixed meaning.
+: This method defines a new named direction and its attributes. The latter is given through the *key*/*value* pairs coming after the *name*.
 
+    Users are mostly free to specify arbitrary attributes with whatever meaning they desire. The exception are the names *angle* and *opposite*. They are special to the diagram package and have a fixed meaning.
 
-**angle**
-: This attribute specifies the angle of the direction in degrees, where 0 points east (to the right) and 90 points north (up).
+    angle
+    : This attribute specifies the angle of the direction in degrees, where 0 points east (to the right) and 90 points north (up).
 
-**opposite**
-: This attribute specifies the name of the direction which should be considered as complementary to the named one.
+    opposite
+    : This attribute specifies the name of the direction which should be considered as complementary to the named one.
 
 
 *diagramObject* **new element** *name* *attributes* *cmdprefix*
-: This method defines a new graphics element for the drawing language. I.e. *name* will become a new command in the language, and the specified command prefix (*cmdprefix*) will be called to perform the actual drawing. *attributes* specifies the set of attributes for which data has to be available. I.e. the system will run the ...-callbacks for these attributes. See the method **new attribute** for more information on attribute definitions. The command prefix is expected to conform to the following signature:
+: This method defines a new graphics element for the drawing language. I.e. *name* will become a new command in the language, and the specified command prefix (*cmdprefix*) will be called to perform the actual drawing.
 
+    *attributes* specifies the set of attributes for which data has to be available. I.e. the system will run the ...-callbacks for these attributes. See the method **new attribute** for more information on attribute definitions.
 
-**cmdprefix** *canvas* *attributes*
-: Where *canvas* is the handle of the canvas widget to draw to, and *attributes* is a dictionary holding the attributes for the element, be they user-specified, or defaults. The results of the command has to be a list containing at least two and at most four items. These are, in order:
+    The command prefix is expected to conform to the following signature:
 
+    **cmdprefix** *canvas* *attributes*
+    : Where *canvas* is the handle of the canvas widget to draw to, and *attributes* is a dictionary holding the attributes for the element, be they user-specified, or defaults.
 
-**\[1\]**
-: The list of canvas items the drawn element consists of.
+        The results of the command has to be a list containing at least two and at most four items. These are, in order:
 
-**\[2\]**
-: The dictionary of named locations in the element, its *corners*.
+        1. The list of canvas items the drawn element consists of.
 
-**\[3\]**
-: An optional mode, either "relative" or "absolute". When not returned "relative" is assumed. In the case of a relative element position the attributes "with" and "at" are used to determine the final position of the new element.
+        2. The dictionary of named locations in the element, its *corners*.
 
-**\[4\]**
-: An optional name of a direction. If not the empty string this is handed to the automatic layouter as the new direction to follow.
+        3. An optional mode, either "relative" or "absolute". When not returned "relative" is assumed. In the case of a relative element position the attributes "with" and "at" are used to determine the final position of the new element.
+
+        4. An optional name of a direction. If not the empty string this is handed to the automatic layouter as the new direction to follow.
+
 
 
 *diagramObject* **new alias** *name* *cmdprefix*
-: This method defines a new command for the drawing language. I.e. *name* will become a new command in the language, and the specified command prefix (*cmdprefix*) will be called on use of this new command. Any arguments given to the command are simply passed to the prefix. There is no fixed siganture. Note that the prefix is run in the context of the drawing language, allowing the direct use of any existing commands.
+: This method defines a new command for the drawing language. I.e. *name* will become a new command in the language, and the specified command prefix (*cmdprefix*) will be called on use of this new command. Any arguments given to the command are simply passed to the prefix. There is no fixed siganture.
+
+    Note that the prefix is run in the context of the drawing language, allowing the direct use of any existing commands.
 
 *diagramObject* **new command** *name* *arguments* *body*
 : This is like **new alias** except that the new command is defined as a procedure in the language's context, with regular argument list and body.
 
 *diagramObject* **new attribute** *name* ?*key* *value*...?
-: This method defines a new named attribute which can be used by graphical elements. The handling of the attribute by the processor is declared through the *key*/*value* pairs coming after the *name*. The accepted keys and their meanings are:
+: This method defines a new named attribute which can be used by graphical elements. The handling of the attribute by the processor is declared through the *key*/*value* pairs coming after the *name*.
+
+    The accepted keys and their meanings are:
+
+    **key**
+    : The value of this key is the name of the key under which the attribute's value shall be stored in the attribute dictionary given to the drawing command after attribute processing is complete.
+
+        This key is optional. If it is not specified it defaults to the name of the attribute.
+
+    **get**
+    : The value of this key is a command prefix which will be invoked to retrieve the attribute's argument(s) from the command line.
+
+        This key is optional. If it is not specified a default is used which takes the single word after the attribute name as the attribute's value.
+
+        The signature of the command prefix is
+
+        **cmdprefix** *wordqueue*
+        : Where *wordqueue* is the handle of a queue object conforming to the API of the queues provided by package **struct::queue**. This queue contains the not-yet-processed part of the attribute definitions, with one entry per word, with the first entry the word *after* name of the attribute. In other words, the attribute's name has already been removed from the queue.
+
+            The result of the command is the value of the attribute, which may have been taken from the queue, or not.
 
 
-**key**
-: The value of this key is the name of the key under which the attribute's value shall be stored in the attribute dictionary given to the drawing command after attribute processing is complete. This key is optional. If it is not specified it defaults to the name of the attribute.
+    **transform**
+    : The value of this key is a command prefix which will be invoked to transform the retrieved value (See **get**) into their final form.
 
-**get**
-: The value of this key is a command prefix which will be invoked to retrieve the attribute's argument(s) from the command line. This key is optional. If it is not specified a default is used which takes the single word after the attribute name as the attribute's value. The signature of the command prefix is
+        This key is optional. If it is not specified no transformation is done. The signature of the command prefix is
 
+        **cmdprefix** *value*
+        : Where *value* is the value to transform.
 
-**cmdprefix** *wordqueue*
-: Where *wordqueue* is the handle of a queue object conforming to the API of the queues provided by package **struct::queue**. This queue contains the not-yet-processed part of the attribute definitions, with one entry per word, with the first entry the word *after* name of the attribute. In other words, the attribute's name has already been removed from the queue. The result of the command is the value of the attribute, which may have been taken from the queue, or not.
-
-
-**transform**
-: The value of this key is a command prefix which will be invoked to transform the retrieved value (See **get**) into their final form. This key is optional. If it is not specified no transformation is done. The signature of the command prefix is
+            The result of the command is the final value of the attribute.
 
 
-**cmdprefix** *value*
-: Where *value* is the value to transform. The result of the command is the final value of the attribute.
+    **type**
+    : The value of this key is a command prefix which will be invoked to validate the attribute's argument(s).
+
+        This key is optional. If it is not specified no validation is done.
+
+        The signature of the command prefix is that of snit validation types. See the documentation of the **snit** package.
+
+    **merge**
+    : The value of this key is a command prefix which will be invoked to insert the transformed and validated attribute value into the dictionary of collected attributes.
+
+        This key is optional. If it is not specified a default merge is chosen, based on the data for key **aggregate**, see below. The signature of the command prefix is
+
+        **cmdprefix** *value* *dict*
+        : Where *value* is the value to insert, and *dict* the dictionary of attributes and values collected so far.
+
+            The result of the command is the new dictionary of attributes.
 
 
-**type**
-: The value of this key is a command prefix which will be invoked to validate the attribute's argument(s). This key is optional. If it is not specified no validation is done. The signature of the command prefix is that of snit validation types. See the documentation of the **snit** package.
+    **aggregate**
+    : The value of this key is a boolean flag. It has an effect if and only if the key **merge** was not specified. This key is optional. If it is not specified it defaults to **False**.
 
-**merge**
-: The value of this key is a command prefix which will be invoked to insert the transformed and validated attribute value into the dictionary of collected attributes. This key is optional. If it is not specified a default merge is chosen, based on the data for key **aggregate**, see below. The signature of the command prefix is
+        If the key is effective, the value of **False** means that the attribute's value is *set* into the dictionary using the value of key *key* (see above) as index, *overwriting* any previously specified value.
+
+        If the key is effective, the value of **True** means that the attribute's value is *added* to the dictionary using the value of key *key* (see above) as index, *extending* any previously specified value. This means that the final value of the attribute as seen after processing will be a list of the collected values.
+
+    **default**
+    : The value of this key is a command prefix which will be invoked after collection of attributes has been completed and this attribute is in the list of required attributes for the drawing element (See argument *attributes* of method **new element**).
+
+        Note that the connection is made through the value of key *key*, not through the attribute name per se.
+
+        Further note that this command prefix is invoked even if a user specified attribute value is present. This allows the command to go beyond simply setting defaults, it can calculate and store derived values as well.
+
+        This key is optional. If an element requires this attribute, but *default* is not specified then nothing will be done.
+
+        The signature of the command prefix is
+
+        **cmdprefix** **init**
+        : This method is run when the attribute is defined, its responsibility is to initialize anything in the language namespace for the attribute and default processing.
+
+            The result of this method is ignored.
+
+        **cmdprefix** **fill** *varname*
+        : This method is run to put defaults, or derived values into the attribute dictionary named by *varname*. This variable will be found in the calling context.
+
+            The result of this method is ignored.
+
+        **cmdprefix** **set** *name* *value*
+        : This method is run to push current a attribute value into the language namespace, to make it the new default.
+
+            The result of this method is ignored.
 
 
-**cmdprefix** *value* *dict*
-: Where *value* is the value to insert, and *dict* the dictionary of attributes and values collected so far. The result of the command is the new dictionary of attributes.
+    **linked**
+    : This key is effective if and only if key **default** is not specified. In that case is supplies a default handling for **default**, linking the attribute to a variable in the language context.
 
-
-**aggregate**
-: The value of this key is a boolean flag. It has an effect if and only if the key **merge** was not specified. This key is optional. If it is not specified it defaults to **False**. If the key is effective, the value of **False** means that the attribute's value is *set* into the dictionary using the value of key *key* (see above) as index, *overwriting* any previously specified value. If the key is effective, the value of **True** means that the attribute's value is *added* to the dictionary using the value of key *key* (see above) as index, *extending* any previously specified value. This means that the final value of the attribute as seen after processing will be a list of the collected values.
-
-**default**
-: The value of this key is a command prefix which will be invoked after collection of attributes has been completed and this attribute is in the list of required attributes for the drawing element (See argument *attributes* of method **new element**). Note that the connection is made through the value of key *key*, not through the attribute name per se. Further note that this command prefix is invoked even if a user specified attribute value is present. This allows the command to go beyond simply setting defaults, it can calculate and store derived values as well. This key is optional. If an element requires this attribute, but *default* is not specified then nothing will be done. The signature of the command prefix is
-
-
-**cmdprefix** **init**
-: This method is run when the attribute is defined, its responsibility is to initialize anything in the language namespace for the attribute and default processing. The result of this method is ignored.
-
-**cmdprefix** **fill** *varname*
-: This method is run to put defaults, or derived values into the attribute dictionary named by *varname*. This variable will be found in the calling context. The result of this method is ignored.
-
-**cmdprefix** **set** *name* *value*
-: This method is run to push current a attribute value into the language namespace, to make it the new default. The result of this method is ignored.
-
-
-**linked**
-: This key is effective if and only if key **default** is not specified. In that case is supplies a default handling for **default**, linking the attribute to a variable in the language context. The value for this key is a 2-element list containing the name of the variable to link to, and its initial value, in this order.
+        The value for this key is a 2-element list containing the name of the variable to link to, and its initial value, in this order.
 
 
 *diagramObject* **unknown attribute** *cmdprefix*
-: This method registers the command prefix with the subsystem processing the attributes for element commands, telling it to call it when it encounters an attribute it is unable to handle on its on. It is allowed to register more than callback, these will be called in order of registration (i.e. first to last), until one of the callbacks accepts the current input. The command prefix is expected to conform to the following signature:
+: This method registers the command prefix with the subsystem processing the attributes for element commands, telling it to call it when it encounters an attribute it is unable to handle on its on.
 
+    It is allowed to register more than callback, these will be called in order of registration (i.e. first to last), until one of the callbacks accepts the current input. The command prefix is expected to conform to the following signature:
 
-**cmdprefix** *wordqueue*
-: Where *wordqueue* is the handle of a queue object conforming to the API of the queues provided by package **struct::queue**. This queue contains the not-yet-processed part of the attribute definitions, with one entry per word, with the first entry the name of the attribute which could not be processed. The results of the command has to be a boolean value where **True** signals that this callback has accepted the attribute, processed it, and the new state of the *wordqueue* is where the general processing shall continue. Given the signature the command has basically two ways of handling (rewriting) the attributes it recognizes:
+    **cmdprefix** *wordqueue*
+    : Where *wordqueue* is the handle of a queue object conforming to the API of the queues provided by package **struct::queue**. This queue contains the not-yet-processed part of the attribute definitions, with one entry per word, with the first entry the name of the attribute which could not be processed.
 
+        The results of the command has to be a boolean value where **True** signals that this callback has accepted the attribute, processed it, and the new state of the *wordqueue* is where the general processing shall continue.
 
-**\[1\]**
-: Replace the attribute (and arguments) with a different attribute and arguments.
+        Given the signature the command has basically two ways of handling (rewriting) the attributes it recognizes:
 
-**\[2\]**
-: Push additional words in front to get the general processing unstuck.
+        1. Replace the attribute (and arguments) with a different attribute and arguments.
+
+        2. Push additional words in front to get the general processing unstuck.
+
 
 
 *diagramObject* **draw** *script*
-: This method runs the given *script* in the context of the drawing language definitions. See section **Language Reference** for details on the available commands. *Note* that *script* is *trusted*. It is executed in the current interpreter with access to its full abilities. For the execution of untrusted diagram scripts this interpreter should be a safe one.
+: This method runs the given *script* in the context of the drawing language definitions. See section [Language reference] for details on the available commands.
+
+    *Note* that *script* is *trusted*. It is executed in the current interpreter with access to its full abilities. For the execution of untrusted diagram scripts this interpreter should be a safe one.
 
 
 # Language reference
 
 ## Elements
 
-This section lists the commands for the predefined drawing elements, aka shapes. These commands are all defined in the language's context. All commands of this section return the handle of the newly created element as their result. This handle also exists as a command which can be used to query the element for its corners (names, values). See section **Miscellaneous Commands**. IMAGE: figure-02-basic-shapes
+This section lists the commands for the predefined drawing elements, aka shapes. These commands are all defined in the language's context. All commands of this section return the handle of the newly created element as their result. This handle also exists as a command which can be used to query the element for its corners (names, values). See section [Miscellaneous commands]. IMAGE: figure-02-basic-shapes
 
 **arc** *attr*...
 : IMAGE: figure-02-arc An open element with the corresponding corners, i.e. "start", "end", and "center". Note however that it also has the compass rose of closed elements as its corners, with the center of the arc's circle as the center of the compass and the other points on the circle the arc is part of. It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**clockwise**
-: ...see next...
+    **clockwise**
+    : see below ...
 
-**cw**
-: Specifies the direction of the **arc** element, here going clockwise. The complementary attribute is **counterclockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
+    **cw**
+    : Specifies the direction of the **arc** element, here going clockwise. The complementary attribute is **counterclockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**counterclockwise**
-: ...see next...
+    **counterclockwise**
+    : see below ...
 
-**ccw**
-: Specifies the direction of the **arc** element, here counter-clockwise. The complementary attribute is **clockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
+    **ccw**
+    : Specifies the direction of the **arc** element, here counter-clockwise. The complementary attribute is **clockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-**from** *location*
-: Specifies the location where the **arc** element begins. Defaults to the current location as maintained by the layouting system.
+    **from** *location*
+    : Specifies the location where the **arc** element begins. Defaults to the current location as maintained by the layouting system.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**radius** *length*
-: Specifies the radius of the **arc** element, or rather, the radius of the circle the shown arc is a part of. If not specified the system falls back to the value taken from the language variable **arcradius**, which itself defaults to the pixel equivalent of **1 cm**.
+    **radius** *length*
+    : Specifies the radius of the **arc** element, or rather, the radius of the circle the shown arc is a part of. If not specified the system falls back to the value taken from the language variable **arcradius**, which itself defaults to the pixel equivalent of **1 cm**.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+        **solid**, empty string
+        : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**to** *location*
-: Specifies the location where the **arc** element ends. Defaults to a location such that a 90-degree arc is drawn in the chosen direction, starting at **from**.
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+
+    **to** *location*
+    : Specifies the location where the **arc** element ends. Defaults to a location such that a 90-degree arc is drawn in the chosen direction, starting at **from**.
 
 
 **arrow** *attr*...
-: ...see next...
+: see below ...
 
 **-->** *attr*...
-: ...see next...
+: see below ...
 
 **<-->** *attr*...
-: ...see next...
+: see below ...
 
 **<-->** *attr*...
 : IMAGE: figure-02-arrow An alias for the **line** element (see below), with the attribute **arrowhead** preset to **->**, **<->**, or **<-**.  The **arrow** is equivalent to **-->**.
 
 **block** *script* *attr*...
-: A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". The main effect is the aggregration of all elements created by the *script* into one element. This also means that while the elements created by the script are visible in the element history while the script is executing, afterward the history contains only the block itself, and not the elements it is composed of. The script has access to the current state of all variables in the language context. Any changes to the variables will be reverted after execution of the block. However, also, any variables set in the script will be exported as corners of the element, allowing users to define their own named locations in the block. Regarding the layout mechanism any changes made by the script are reverted after the element is done. In other words, a block is an implicit **group**. Blocks handle all attributes, propgating their settings into the script as the default values active during script execution.
+: A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". The main effect is the aggregration of all elements created by the *script* into one element. This also means that while the elements created by the script are visible in the element history while the script is executing, afterward the history contains only the block itself, and not the elements it is composed of.
+
+    The script has access to the current state of all variables in the language context. Any changes to the variables will be reverted after execution of the block. However, also, any variables set in the script will be exported as corners of the element, allowing users to define their own named locations in the block.
+
+    Regarding the layout mechanism any changes made by the script are reverted after the element is done. In other words, a block is an implicit **group**.
+
+    Blocks handle all attributes, propgating their settings into the script as the default values active during script execution.
 
 **box** *attr*...
 : IMAGE: figure-02-box A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-**height** *length*
-: ...see next...
+    **height** *length*
+    : see below ...
 
-**ht** *length*
-: Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
+    **ht** *length*
+    : Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**slant** *angle*
-: Specifies the angle by which the **box** element is slanted, in degrees. If not specified the system falls back to the value taken from the language variable **slant**, which itself defaults to **90**, i.e. vertical, no slant. 0 degrees is slanting straight east, pointing to the right. 90 degrees is slanting to the north, pointing straight up.
+    **slant** *angle*
+    : Specifies the angle by which the **box** element is slanted, in degrees. If not specified the system falls back to the value taken from the language variable **slant**, which itself defaults to **90**, i.e. vertical, no slant. 0 degrees is slanting straight east, pointing to the right. 90 degrees is slanting to the north, pointing straight up.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+        **solid**, empty string
+        : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**width** *length*
-: ...see next...
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**wid** *length*
-: Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+    **width** *length*
+    : see below ...
 
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **wid** *length*
+    : Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
 
 
 **circle** *attr*...
-: ...see next...
+: see below ...
 
 **O** *attr*...
 : IMAGE: figure-02-circle A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**diameter** *length*
-: ...see next...
+    **diameter** *length*
+    : see below ...
 
-**diam** *length*
-: Specifies the diameter of the **circle** element, as an alternative way to specify its **radius**. Effective if and only if the radius was not specified. I.e. if both diameter and radius are specified then the radius infomration has precendence. This attribute has no default, because the defaults are taken from the radius.
+    **diam** *length*
+    : Specifies the diameter of the **circle** element, as an alternative way to specify its **radius**. Effective if and only if the radius was not specified. I.e. if both diameter and radius are specified then the radius infomration has precendence. This attribute has no default, because the defaults are taken from the radius.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**radius** *length*
-: ...see next...
+    **radius** *length*
+    : see below ...
 
-**rad** *length*
-: Specifies the radius of the **circle** element. If not specified the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**.
+    **rad** *length*
+    : Specifies the radius of the **circle** element. If not specified the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+        **solid**, empty string
+        : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
 
 
 **diamond** *attr*...
-: ...see next...
+: see below ...
 
 **<>** *attr*...
 : IMAGE: figure-02-diamond A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**aspect** *number*
-: Specifies the aspect ratio, i.e ratio of width to height, of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **width** and **height**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+    **aspect** *number*
+    : Specifies the aspect ratio, i.e ratio of width to height, of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **width** and **height**, if any.
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+        If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+        If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+        If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
 
-**height** *length*
-: Specifies the height of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **width**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+        If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+
+    **height** *length*
+    : Specifies the height of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **width**, if any.
+
+        If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
+
+        If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
+
+        If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
+
+        If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+
+        **solid**, empty string
+        : Draw solid line.
+
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
+
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
+
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
+
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**solid**, empty string
-: Draw solid line.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
+    **width** *length*
+    : Specifies the width of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **height**, if any.
 
+        If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
 
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
 
+        If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
-
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
-
-**width** *length*
-: Specifies the width of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **height**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
-
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
 
 
 **drum** *attr*...
 : IMAGE: figure-02-drum A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**aspect** *number*
-: Specifies the aspect ratio, i.e ratio of width to height, of the ellipses which are used to draw the top and bottom of the **drum** element. If not specified the system falls back to the value taken from the language variable **drumaspect**, which itself defaults to **0.35**.
+    **aspect** *number*
+    : Specifies the aspect ratio, i.e ratio of width to height, of the ellipses which are used to draw the top and bottom of the **drum** element. If not specified the system falls back to the value taken from the language variable **drumaspect**, which itself defaults to **0.35**.
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-**height** *length*
-: ...see next...
+    **height** *length*
+    : see below ...
 
-**ht** *length*
-: Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
+    **ht** *length*
+    : Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+        **solid**, empty string
+        : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**width** *length*
-: ...see next...
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**wid** *length*
-: Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+    **width** *length*
+    : see below ...
 
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **wid** *length*
+    : Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
 
 
 **ellipse** *attr*...
 : IMAGE: figure-02-ellipse A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-**height** *length*
-: ...see next...
+    **height** *length*
+    : see below ...
 
-**ht** *length*
-: Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
+    **ht** *length*
+    : Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+        **solid**, empty string
+        : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**width** *length*
-: ...see next...
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**wid** *length*
-: Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+    **width** *length*
+    : see below ...
 
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **wid** *length*
+    : Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
+
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
 
 
 **line** *attr*...
-: ...see next...
+: see below ...
 
 **--** *attr*...
 : IMAGE: figure-02-line An open element with the corresponding corners, i.e. "start", "end", and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**arrowhead** *spec*
-: IMAGE: figure-19-style-arrowheads Specifies where to draw arrowheads on the **line** element, at the beginning or end, at both ends, or none. If not specified the system falls back to the value taken from the language variable **arrowhead**, which itself defaults to **none**. The legal values are
+    **arrowhead** *spec*
+    : IMAGE: figure-19-style-arrowheads Specifies where to draw arrowheads on the **line** element, at the beginning or end, at both ends, or none. If not specified the system falls back to the value taken from the language variable **arrowhead**, which itself defaults to **none**. The legal values are
+
+        **none**, **-**
+        : Draw no arrowheads, at neither end of the line.
+
+        **start**, **first**, **<-**
+        : Draw an arrowhead at the beginning of the line, but not at its end.
+
+        **end**, **last**, **->**
+        : Draw an arrowhead at the end of the line, but not at its beginning.
+
+        **both**, **<->**
+        : Draw arrowheads at both ends of the line.
 
 
-**none**, **-**
-: Draw no arrowheads, at neither end of the line.
+        Note that the values "start", "end", "-", "->", "<-", and "<->" are all accepted as shorthands for the **arrowhead** command using them as argument.
 
-**start**, **first**, **<-**
-: Draw an arrowhead at the beginning of the line, but not at its end.
+    **at** *location*
+    : **Line** elements are normally positioned absolutely, using the locations specified through the attributes **from**, **then**, and **to**. If **at** is specified however then these positions are translated a last time, moving the line's corner named by the attribute **with** to the location given by this attribute.
 
-**end**, **last**, **->**
-: Draw an arrowhead at the end of the line, but not at its beginning.
+    **chop** ?*length*?
+    : Specifies the length of the **line** element to remove from the beginning and/or end. Defaults to nothing. If specified once the chopping applies to both beginning and end of the line. If specified twice or more the last two specifications are used, and applied to beginning and end of the line, in this order. Whenever the attribute is specified without an explicit length, the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**
 
-**both**, **<->**
-: Draw arrowheads at both ends of the line.
+    **color** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
+    **fillcolor** *spec*
+    : IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
 
-: Note that the values "start", "end", "-", "->", "<-", and "<->" are all accepted as shorthands for the **arrowhead** command using them as argument.
+    **from** *location*
+    : Specifies the location where the **line** element begins. Defaults to the current location as maintained by the layouting system.
 
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**at** *location*
-: **Line** elements are normally positioned absolutely, using the locations specified through the attributes **from**, **then**, and **to**. If **at** is specified however then these positions are translated a last time, moving the line's corner named by the attribute **with** to the location given by this attribute.
+    **noturn**
+    : Specifies that the direction of **line** element at its end is not propagated to the layout management. If not specified the direction of the line becomes the new direction the layout.
 
-**chop** ?*length*?
-: Specifies the length of the **line** element to remove from the beginning and/or end. Defaults to nothing. If specified once the chopping applies to both beginning and end of the line. If specified twice or more the last two specifications are used, and applied to beginning and end of the line, in this order. Whenever the attribute is specified without an explicit length, the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**
+    **smooth**
+    : Specifies the use of bezier splines for the **line** element. If not specified lines are drawn exactly through the specified waypoints, without any smooth curves.
 
-**color** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
+    **stroke** *width*
+    : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
-**fillcolor** *spec*
-: IMAGE: figure-21-style-colors Specifies the color used to draw the inside of the element. If not specified the system falls back to the value taken from the language variable **fillcolor**, which itself defaults to the empty string, signaling "no filling".
+    **style** *spec*
+    : IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
-**from** *location*
-: Specifies the location where the **line** element begins. Defaults to the current location as maintained by the layouting system.
+        **solid**, empty string
+        : Draw solid line.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+        **dash**, **dashed**, **-**
+        : Draw a dashed line.
 
-**noturn**
-: Specifies that the direction of **line** element at its end is not propagated to the layout management. If not specified the direction of the line becomes the new direction the layout.
+        **dot**, **dotted**, **.**
+        : Draw a dotted line.
 
-**smooth**
-: Specifies the use of bezier splines for the **line** element. If not specified lines are drawn exactly through the specified waypoints, without any smooth curves.
+        **dash-dot**, **-.**
+        : Draw a dash-dotted line
 
-**stroke** *width*
-: IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
-
-**style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
-
-
-**solid**, empty string
-: Draw solid line.
-
-**dash**, **dashed**, **-**
-: Draw a dashed line.
-
-**dot**, **dotted**, **.**
-: Draw a dotted line.
-
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
+        **dash-dot-dot**, **-..**
+        : Draw a dash-dot-dotted line.
 
 
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
+        Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **then** *location*
+    : see below ...
 
-**then** *location*
-: ...see next...
+    **then** (<direction> ?*length*?)...
+    : see below ...
 
-**then** (\<direction> ?*length*?)...
-: ...see next...
+    (<direction> ?*length*?)...
+    : This attribute specifies an intermediate location the **line** element has to go through. It can be specified multiple times, with each use adding one additional location to the series which the line will go through. These location will be traversed in the order they were specified.
 
-(\<direction> ?*length*?)...
-: This attribute specifies an intermediate location the **line** element has to go through. It can be specified multiple times, with each use adding one additional location to the series which the line will go through. These location will be traversed in the order they were specified. The location can be given explicitly, or as a series of directions with distances. In the latter case the names of all known directions are accepted for the direction part. If no distance is specified for a direction the system falls back to the value taken from the language variable **movelength**, which itself defaults to the pixel equivalent of **2 cm**. The whole set of direction,distance pairs is treated as a series of translations which are added up to provide the final translation specifying the intermediate point (relative to the preceding point). The last named direction is propagated to the layout system as the direction to follow. The use of **noturn** is not able to overide this behaviour. At last, the names of the registered directions also serve as attribute commands, with an implicit attribute **then** in front of them. If no intermediate or last location is specified for the line the system falls back to a point **movelength** pixels away from the starting location, in the current direction as maintained by the layouting system
+        The location can be given explicitly, or as a series of directions with distances. In the latter case the names of all known directions are accepted for the direction part. If no distance is specified for a direction the system falls back to the value taken from the language variable **movelength**, which itself defaults to the pixel equivalent of **2 cm**. The whole set of direction,distance pairs is treated as a series of translations which are added up to provide the final translation specifying the intermediate point (relative to the preceding point).
 
-**to** *location*
-: Specifies the location where the **line** element ends. This attribute has no default. The default is handled by the attribute **then**, which makes it appear as if **to** has a default when not specified.
+        The last named direction is propagated to the layout system as the direction to follow. The use of **noturn** is not able to overide this behaviour.
 
-**with** *corner*
-: **Line** elements are normally positioned absolutely, using the locations specified through the attributes **from**, **then**, and **to**. If **at** is specified however then these positions are translated a last time, moving the line's corner named by the attribute **with** to the location given by this attribute. This means that *with* is effective if and only if the attribute **at** was specified as well for the line.
+        At last, the names of the registered directions also serve as attribute commands, with an implicit attribute **then** in front of them.
+
+        If no intermediate or last location is specified for the line the system falls back to a point **movelength** pixels away from the starting location, in the current direction as maintained by the layouting system
+
+    **to** *location*
+    : Specifies the location where the **line** element ends. This attribute has no default. The default is handled by the attribute **then**, which makes it appear as if **to** has a default when not specified.
+
+    **with** *corner*
+    : **Line** elements are normally positioned absolutely, using the locations specified through the attributes **from**, **then**, and **to**. If **at** is specified however then these positions are translated a last time, moving the line's corner named by the attribute **with** to the location given by this attribute. This means that *with* is effective if and only if the attribute **at** was specified as well for the line.
 
 
 **move** *attr*
@@ -1023,59 +1078,58 @@ This section lists the commands for the predefined drawing elements, aka shapes.
 **text** *attr*...
 : IMAGE: figure-02-text A closed element with the corresponding corners, i.e. the eight directions of the compass rose, and "center". It handles the attributes
 
+    **anchor** *name*
+    : see below ...
 
-**anchor** *name*
-: ...see next...
+    **ljust**
+    : see below ...
 
-**ljust**
-: ...see next...
+    **rjust**
+    : see below ...
 
-**rjust**
-: ...see next...
+    **above**
+    : see below ...
 
-**above**
-: ...see next...
+    **below**
+    : IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
-**below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+        **ljust**
+        : "anchor west"
 
+        **rjust**
+        : "anchor east"
 
-**ljust**
-: "anchor west"
+        **above**
+        : "anchor south"
 
-**rjust**
-: "anchor east"
-
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+        **below**
+        : "anchor north"
 
 
-**at** *location*
-: Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
+    **at** *location*
+    : Specifies the location of the element's corner named by the attribute **with**. Defaults to the current location as maintained by the layouting system.
 
-**height** *length*
-: Specifies the height of the **text** element. Defaults to the natural height of its text.
+    **height** *length*
+    : Specifies the height of the **text** element. Defaults to the natural height of its text.
 
-**justify** **left**|**center**|**right**
-: Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
+    **justify** **left**|**center**|**right**
+    : Specifies how multi-line text associated with the element is positioned within its box. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **justify**, which itself defaults to **left**. The legal values are **left**, **right**, and **center**.
 
-**text** *string*
-: Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
+    **text** *string*
+    : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
 
-**textcolor** *spec*
-: Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
+    **textcolor** *spec*
+    : Specifies the color used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textcolor**, which itself defaults to **black**.
 
-**textfont** *spec*
-: Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
+    **textfont** *spec*
+    : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
-**width** *length*
-: Specifies the width of the **text** element. Defaults to the natural width of its text.
+    **width** *length*
+    : Specifies the width of the **text** element. Defaults to the natural width of its text.
 
-**with** *corner*
-: Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+    **with** *corner*
+    : Specifies the corner of the element to place at the location given by the attribute **at**. Defaults to the current corner as maintained by the layouting system, except if the value for **at** was specified by the user. In that case it defaults to **center**.
+
 
 
 ## Attributes
@@ -1087,56 +1141,61 @@ Note that some of the attribute names are overloaded, i.e. have multiple, differ
 Further, as a catch-all clause, any attribute which could not be processed according to the definitions below will be treated as the argument of an implicit **text** attribute.
 
 **anchor** *name*
-: ...see next...
+: see below ...
 
 **ljust**
-: ...see next...
+: see below ...
 
 **rjust**
-: ...see next...
+: see below ...
 
 **above**
-: ...see next...
+: see below ...
 
 **below**
-: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
+: IMAGE: figure-22-text-anchoring-3 Specifies the anchor of the text which is to be placed at the element's center, by name. I.e. this attribute defines the text's position relative to the element's center. The value is ignored if no text was specified for the element. If not specified the system falls back to the value taken from the language variable **anchor**, which itself defaults to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm). The commands without arguments are all shorthands with the anchor implied. Note that they do not combine, only the last is used. For comined directions the main attribute command, **anchor** has to be used.
 
+    **ljust**
+    : "anchor west"
 
-**ljust**
-: "anchor west"
+    **rjust**
+    : "anchor east"
 
-**rjust**
-: "anchor east"
+    **above**
+    : "anchor south"
 
-**above**
-: "anchor south"
-
-**below**
-: "anchor north"
+    **below**
+    : "anchor north"
 
 
 **arrowhead** *spec*
 : IMAGE: figure-19-style-arrowheads Specifies where to draw arrowheads on the **line** element, at the beginning or end, at both ends, or none. If not specified the system falls back to the value taken from the language variable **arrowhead**, which itself defaults to **none**. The legal values are
 
+    **none**, **-**
+    : Draw no arrowheads, at neither end of the line.
 
-**none**, **-**
-: Draw no arrowheads, at neither end of the line.
+    **start**, **first**, **<-**
+    : Draw an arrowhead at the beginning of the line, but not at its end.
 
-**start**, **first**, **<-**
-: Draw an arrowhead at the beginning of the line, but not at its end.
+    **end**, **last**, **->**
+    : Draw an arrowhead at the end of the line, but not at its beginning.
 
-**end**, **last**, **->**
-: Draw an arrowhead at the end of the line, but not at its beginning.
-
-**both**, **<->**
-: Draw arrowheads at both ends of the line.
+    **both**, **<->**
+    : Draw arrowheads at both ends of the line.
 
 
-: Note that the values "start", "end", "-", "->", "<-", and "<->" are all accepted as shorthands for the **arrowhead** command using them as argument.
-
+    Note that the values "start", "end", "-", "->", "<-", and "<->" are all accepted as shorthands for the **arrowhead** command using them as argument.
 
 **aspect** *number*
-: Specifies the aspect ratio, i.e ratio of width to height, of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **width** and **height**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+: Specifies the aspect ratio, i.e ratio of width to height, of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **width** and **height**, if any.
+
+    If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
+
+    If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
+
+    If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
+
+    If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
 
 **aspect** *number*
 : Specifies the aspect ratio, i.e ratio of width to height, of the ellipses which are used to draw the top and bottom of the **drum** element. If not specified the system falls back to the value taken from the language variable **drumaspect**, which itself defaults to **0.35**.
@@ -1151,7 +1210,7 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : Specifies the length of the **line** element to remove from the beginning and/or end. Defaults to nothing. If specified once the chopping applies to both beginning and end of the line. If specified twice or more the last two specifications are used, and applied to beginning and end of the line, in this order. Whenever the attribute is specified without an explicit length, the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**
 
 **clockwise**
-: ...see next...
+: see below ...
 
 **cw**
 : Specifies the direction of the **arc** element, here going clockwise. The complementary attribute is **counterclockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
@@ -1160,13 +1219,13 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : IMAGE: figure-21-style-colors Specifies the color used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linecolor**, which itself defaults to **black**.
 
 **counterclockwise**
-: ...see next...
+: see below ...
 
 **ccw**
 : Specifies the direction of the **arc** element, here counter-clockwise. The complementary attribute is **clockwise**. If not specified the system falls back to the value taken from the language variable **clockwise**, which itself defaults to **false**, for counter-clockwise direction.
 
 **diameter** *length*
-: ...see next...
+: see below ...
 
 **diam** *length*
 : Specifies the diameter of the **circle** element, as an alternative way to specify its **radius**. Effective if and only if the radius was not specified. I.e. if both diameter and radius are specified then the radius infomration has precendence. This attribute has no default, because the defaults are taken from the radius.
@@ -1181,13 +1240,21 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : Specifies the location where the **arc** element begins. Defaults to the current location as maintained by the layouting system.
 
 **height** *length*
-: ...see next...
+: see below ...
 
 **ht** *length*
 : Specifies the height of the element. If not specified the system falls back to the value taken from the language variable **boxheight**, which itself defaults to the pixel equivalent of **2 cm**.
 
 **height** *length*
-: Specifies the height of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **width**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+: Specifies the height of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **width**, if any.
+
+    If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
+
+    If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
+
+    If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
+
+    If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
 
 **height** *length*
 : Specifies the height of the **text** element. Defaults to the natural height of its text.
@@ -1199,7 +1266,7 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : Specifies that the direction of **line** element at its end is not propagated to the layout management. If not specified the direction of the line becomes the new direction the layout.
 
 **radius** *length*
-: ...see next...
+: see below ...
 
 **rad** *length*
 : Specifies the radius of the **circle** element. If not specified the system falls back to the value taken from the language variable **circleradius**, which itself defaults to the pixel equivalent of **1 cm**.
@@ -1217,27 +1284,25 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : IMAGE: figure-20-style-stroke Specifies the width of the lines drawn for the the element, in pixels. If not specified the system falls back to the value taken from the language variable **linewidth**, which itself defaults to **1**.
 
 **style** *spec*
-: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+: IMAGE: figure-18-style-dash Specifies the style used to draw the lines of the element. If not specified the system falls back to the value taken from the language variable **linestyle**, which itself defaults to **solid** lines. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+
+    **solid**, empty string
+    : Draw solid line.
+
+    **dash**, **dashed**, **-**
+    : Draw a dashed line.
+
+    **dot**, **dotted**, **.**
+    : Draw a dotted line.
+
+    **dash-dot**, **-.**
+    : Draw a dash-dotted line
+
+    **dash-dot-dot**, **-..**
+    : Draw a dash-dot-dotted line.
 
 
-**solid**, empty string
-: Draw solid line.
-
-**dash**, **dashed**, **-**
-: Draw a dashed line.
-
-**dot**, **dotted**, **.**
-: Draw a dotted line.
-
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
-
-
-: Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
-
+    Note that the values "solid", "dot(ted)", "dash(ed)", "dash-dot", and "dash-dot-dot" are all accepted as shorthands for the **style** command using them as argument.
 
 **text** *string*
 : Specifies the text to associate with the element. Defaults to nothing. When specified multiple times the actually shown text is the concatenation of the individual strings, vertically stacked, with the first string specified being the topmost element.
@@ -1249,13 +1314,21 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : Specifies the font used to draw the text of an element with. Ignored if there is no text. If not specified the system falls back to the value taken from the language variable **textfont**, which itself defaults to **Helvetica 12pt**.
 
 **then** *location*
-: ...see next...
+: see below ...
 
-**then** (\<direction> ?*length*?)...
-: ...see next...
+**then** (<direction> ?*length*?)...
+: see below ...
 
-(\<direction> ?*length*?)...
-: This attribute specifies an intermediate location the **line** element has to go through. It can be specified multiple times, with each use adding one additional location to the series which the line will go through. These location will be traversed in the order they were specified. The location can be given explicitly, or as a series of directions with distances. In the latter case the names of all known directions are accepted for the direction part. If no distance is specified for a direction the system falls back to the value taken from the language variable **movelength**, which itself defaults to the pixel equivalent of **2 cm**. The whole set of direction,distance pairs is treated as a series of translations which are added up to provide the final translation specifying the intermediate point (relative to the preceding point). The last named direction is propagated to the layout system as the direction to follow. The use of **noturn** is not able to overide this behaviour. At last, the names of the registered directions also serve as attribute commands, with an implicit attribute **then** in front of them. If no intermediate or last location is specified for the line the system falls back to a point **movelength** pixels away from the starting location, in the current direction as maintained by the layouting system
+(<direction> ?*length*?)...
+: This attribute specifies an intermediate location the **line** element has to go through. It can be specified multiple times, with each use adding one additional location to the series which the line will go through. These location will be traversed in the order they were specified.
+
+    The location can be given explicitly, or as a series of directions with distances. In the latter case the names of all known directions are accepted for the direction part. If no distance is specified for a direction the system falls back to the value taken from the language variable **movelength**, which itself defaults to the pixel equivalent of **2 cm**. The whole set of direction,distance pairs is treated as a series of translations which are added up to provide the final translation specifying the intermediate point (relative to the preceding point).
+
+    The last named direction is propagated to the layout system as the direction to follow. The use of **noturn** is not able to overide this behaviour.
+
+    At last, the names of the registered directions also serve as attribute commands, with an implicit attribute **then** in front of them.
+
+    If no intermediate or last location is specified for the line the system falls back to a point **movelength** pixels away from the starting location, in the current direction as maintained by the layouting system
 
 **to** *location*
 : Specifies the location where the **line** element ends. This attribute has no default. The default is handled by the attribute **then**, which makes it appear as if **to** has a default when not specified.
@@ -1264,13 +1337,21 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 : Specifies the location where the **arc** element ends. Defaults to a location such that a 90-degree arc is drawn in the chosen direction, starting at **from**.
 
 **width** *length*
-: ...see next...
+: see below ...
 
 **wid** *length*
 : Specifies the width of the element. If not specified the system falls back to the value taken from the language variable **boxwidth**, which itself defaults to the pixel equivalent of **2 cm**.
 
 **width** *length*
-: Specifies the width of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **height**, if any. If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required. If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either. If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**. If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
+: Specifies the width of the **diamond** element. The manner in which a default is calculated when not specified also depends on the specifications of the attributes **aspect** and **height**, if any.
+
+    If both **width**, and **height** are specified then any specification of **aspect** is ignored, as it is implicitly defined in the width and height as well, and this takes precedence. A missing specification is ignored in that case well, i.e. no defaults are required.
+
+    If the **aspect** is specified, and one of the attributes **width** or **height**, then the missing attribute is calculated from the two which are specified. No defaults are required for these cases either.
+
+    If only one of the attributes **width** or **height** is specified then the system uses a fallback for the **aspect**, the value taken from the language variable **diamondaspect**, which itselfs defaults to **2**.
+
+    If none of of the attributes **width** or **height** is specified then the system uses a fallback for the **width**, the value taken from the language variable **boxwidth**, which itselfs defaults to the pixel equivalent of **2 cm**. For the aspect it uses either the user-specified value or the default taken as described in the previous paragraph.
 
 **width** *length*
 : Specifies the width of the **text** element. Defaults to the natural width of its text.
@@ -1286,26 +1367,25 @@ Further, as a catch-all clause, any attribute which could not be processed accor
 
 Corners are named values for in elements, usually locations.
 
-**•**
-: The *closed* elements define corners for the compass rose, including the "center", and their "width" and "height". IMAGE: figure-27-corners-closed
+- The *closed* elements define corners for the compass rose, including the "center", and their "width" and "height".
 
-**•**
-: **block** elements additionally export all variables which were set during their definition as corners.
+    IMAGE: figure-27-corners-closed
 
-**•**
-: The *open* elements on the other hand define "start", "end", and "center". The first two map to the locations originally provided through the attributes **from** and **to** of the element. IMAGE: figure-28-corners-open
+- **block** elements additionally export all variables which were set during their definition as corners.
 
-**•**
-: The center of **line** and **move** elements is the location halfway between "start" and "end" corners, this is regardless of any intermediate locations the element may have.
+- The *open* elements on the other hand define "start", "end", and "center". The first two map to the locations originally provided through the attributes **from** and **to** of the element.
 
-**•**
-: The **line** and **move** elements additionally name all their locations as corners using numbers as names, starting from **1** (equivalent to "start"), in order of traversal. IMAGE: figure-15-spline-1
+    IMAGE: figure-28-corners-open
 
-**•**
-: The center of **arc** elements is the center of the circle the arc is part off.
+- The center of **line** and **move** elements is the location halfway between "start" and "end" corners, this is regardless of any intermediate locations the element may have.
 
-**•**
-: The **arc** elements additionally define the compass rose of closed elements as well.
+- The **line** and **move** elements additionally name all their locations as corners using numbers as names, starting from **1** (equivalent to "start"), in order of traversal.
+
+    IMAGE: figure-15-spline-1
+
+- The center of **arc** elements is the center of the circle the arc is part off.
+
+- The **arc** elements additionally define the compass rose of closed elements as well.
 
 
 ## Named directions
@@ -1318,199 +1398,134 @@ IMAGE: figure-27-corners-closed
 
 This overlaps with the pre-defined corners for closed elements. This is used by the layout system, when are going in direction X the name of the opposite direction is the name of the corner at which the new element will be attached to the current position, and if this corner does not exist the nearest actual corner by angle is used.
 
-**west**
-: ...see next...
-
-**w**
-: ...see next...
-
-**left**
-: ...see next...
-
-**l**
-: ...see next...
-
-**south**
-: ...see next...
-
-**s**
-: ...see next...
-
-**down**
-: ...see next...
-
-**bottom**
-: ...see next...
-
-**bot**
-: ...see next...
-
-**b**
-: ...see next...
-
-**east**
-: ...see next...
-
-**e**
-: ...see next...
-
-**right**
-: ...see next...
-
-**r**
-: ...see next...
-
-**north**
-: ...see next...
-
-**n**
-: ...see next...
-
-**up**
-: ...see next...
-
-**top**
-: ...see next...
-
-**t**
-: ...see next...
-
-**northwest**
-: ...see next...
-
-**nw**
-: ...see next...
-
-**up-left**
-: ...see next...
-
-**upleft**
-: ...see next...
-
-**leftup**
-: ...see next...
-
-**northeast**
-: ...see next...
-
-**ne**
-: ...see next...
-
-**up-right**
-: ...see next...
-
-**upright**
-: ...see next...
-
-**rightup**
-: ...see next...
-
-**southwest**
-: ...see next...
-
-**sw**
-: ...see next...
-
-**down-left**
-: ...see next...
-
-**downleft**
-: ...see next...
-
-**leftdown**
-: ...see next...
-
-**southeast**
-: ...see next...
-
-**se**
-: ...see next...
-
-**down-right**
-: ...see next...
-
-**downright**
-: ...see next...
-
-**rightdown**
-: 
+- **west**
+- **w**
+- **left**
+- **l**
+- **south**
+- **s**
+- **down**
+- **bottom**
+- **bot**
+- **b**
+- **east**
+- **e**
+- **right**
+- **r**
+- **north**
+- **n**
+- **up**
+- **top**
+- **t**
+- **northwest**
+- **nw**
+- **up-left**
+- **upleft**
+- **leftup**
+- **northeast**
+- **ne**
+- **up-right**
+- **upright**
+- **rightup**
+- **southwest**
+- **sw**
+- **down-left**
+- **downleft**
+- **leftdown**
+- **southeast**
+- **se**
+- **down-right**
+- **downright**
+- **rightdown**
 
 
 ## Miscellaneous commands
 
 *number* **cm**
-: ...see next...
+: see below ...
 
 *number* **mm**
-: ...see next...
+: see below ...
 
 *number* **inch**
-: ...see next...
+: see below ...
 
 *number* **pt**
-: These commands allow the specification of distances and coordinates in metric and imperial units, returning the equivalent distance or coordinate in pixels, which is the unit used internally for all calculations. The conversion factors are based on the result of **tk scaling** and are computed once, at the time the package is sourced, future changes of the **tk scaling** factor have no effect.
+: These commands allow the specification of distances and coordinates in metric and imperial units, returning the equivalent distance or coordinate in pixels, which is the unit used internally for all calculations.
+
+    The conversion factors are based on the result of **tk scaling** and are computed once, at the time the package is sourced, future changes of the **tk scaling** factor have no effect.
 
 *number* *number*
-: IMAGE: figure-50-point-cons-absolute This command takes the x and y coordinates of a location and returns the *absolute* point for it.
+: IMAGE: figure-50-point-cons-absolute
+
+    This command takes the x and y coordinates of a location and returns the *absolute* point for it.
 
 **by** *distance* *direction*
-: IMAGE: figure-51-point-cons-relative This command takes a *distance* and *direction* (angle in degress, or registered direction name) and returns the *relative* point for it, i.e. the *delta* or *translation* it represents. Note also the (dis)similarities to the directional specifications for the attribute **then** of **line** and **move** elements. Where we say here
+: IMAGE: figure-51-point-cons-relative
 
+    This command takes a *distance* and *direction* (angle in degress, or registered direction name) and returns the *relative* point for it, i.e. the *delta* or *translation* it represents.
 
-```
-by 50 east
-```
+    Note also the (dis)similarities to the directional specifications for the attribute **then** of **line** and **move** elements. Where we say here
 
-: for the attribute we say
+    ```
+    by 50 east
+    ```
 
+    for the attribute we say
 
-```
-... then east 50 ...
-```
+    ```
+    ... then east 50 ...
+    ```
 
-: or just
+    or just
 
-
-```
-... then east ...
-```
+    ```
+    ... then east ...
+    ```
 
 *point1* **+** *point2*
-: IMAGE: figure-48-point-vectoradd This command interprets two points as vectors and adds them together. If at least one of the points is *absolute* the result is absolute as well. The result is a *relative* point if and only if both points are *relative*.
+: IMAGE: figure-48-point-vectoradd
+
+    This command interprets two points as vectors and adds them together. If at least one of the points is *absolute* the result is absolute as well. The result is a *relative* point if and only if both points are *relative*.
 
 *point1* **-** *point2*
-: IMAGE: figure-49-point-vectorsub This command interprets two points as vectors and subtracts the second from the first. If at least one of the points is *absolute* the result is absolute as well. The result is a *relative* point if and only if both points are *relative*.
+: IMAGE: figure-49-point-vectorsub
+
+    This command interprets two points as vectors and subtracts the second from the first. If at least one of the points is *absolute* the result is absolute as well. The result is a *relative* point if and only if both points are *relative*.
 
 *point* **by** *distance* *direction*
 : This command is a more convenient, or at least shorter, form of
 
-
-```
-    [$point + [by $distance $direction]]
-```
+    ```
+        [$point + [by $distance $direction]]
+    ```
 
 *point1* **|** *point2*
-: IMAGE: figure-31-point-projection This command calculates the *projection* of two points, i.e. the result is the point having the x-coordinate of *point1* and the y-coordinate of *point2*.
+: IMAGE: figure-31-point-projection
+
+    This command calculates the *projection* of two points, i.e. the result is the point having the x-coordinate of *point1* and the y-coordinate of *point2*.
 
 *n* **between** *poin1* *point2*
-: IMAGE: figure-29-point-interpolation-1 This command computes the point which is *n*\*100 percent of the way between *point1* and *point2*, and returns it as its result. This means that for
+: IMAGE: figure-29-point-interpolation-1
+
+    This command computes the point which is *n*\*100 percent of the way between *point1* and *point2*, and returns it as its result. This means that for
+
+    *n* == 0
+    : The result is *point1*.
+
+    *n* == 1
+    : The result is *point2*.
+
+    *n* == 0.5
+    : The result is half way between the two points.
 
 
-*n* == 0
-: The result is *point1*.
-
-*n* == 1
-: The result is *point2*.
-
-*n* == 0.5
-: The result is half way between the two points.
-
-
-: etc. *Note* that it is allowed to use values < 0 and > 1 for *n*
-
+    etc. *Note* that it is allowed to use values < 0 and > 1 for *n*
 
 **intersect** *elem1* *elem2*
-: IMAGE: figure-32-point-intersection This command takes two *open* elements, computes the lines going through their "start"- and "end"-corners, and returns the point where these two lines intersect. The command throws an error if the lines do not intersect, or are coincident.
+: IMAGE: figure-32-point-intersection
+
+    This command takes two *open* elements, computes the lines going through their "start"- and "end"-corners, and returns the point where these two lines intersect. The command throws an error if the lines do not intersect, or are coincident.
 
 *element* **names** ?*pattern*?
 : This command returns a list containing the names of all corners for the *element*. If a pattern is specified then only the names matching it (via **string match** are returned. Otherwise all names are returned (equivalent to a default pattern of **\***).
@@ -1521,36 +1536,32 @@ by 50 east
 *element* *corner1* *corner2*...
 : This is a convenience shorthand for
 
+    ```
+    [[[$elem $corner1] $corner2] ...]
+    ```
 
-```
-[[[$elem $corner1] $corner2] ...]
-```
+    assuming that the value for
 
-: assuming that the value for
+    ```
+     [$elem $corner1]
+    ```
 
-
-```
- [$elem $corner1]
-```
-
-.IP, etc. is again an element.
+    , etc. is again an element.
 
 *element* ?*corner1*... ?**names** ?*pattern*??\]?
 : This is a convenience shorthand for
 
+    ```
+    [[[$elem $corner1] ...] names ?pattern?]
+    ```
 
-```
-[[[$elem $corner1] ...] names ?pattern?]
-```
+    assuming that the value for
 
-: assuming that the value for
+    ```
+     [$elem $corner1]
+    ```
 
-
-```
- [$elem $corner1]
-```
-
-.IP, etc. is again an element.
+    , etc. is again an element.
 
 **n**th ?*corner*?
 : This command asks the diagram history for the **n**th element created, searching from the beginning of the history (counting from 1) and returns it as its result. If the *corner* is specified then the value for this corner is returned instead.
@@ -1565,16 +1576,16 @@ by 50 east
 : This command asks the diagram history for the **n**th element created, of the given *shape*, searching from the end of the history and returns it as its result. If the *corner* is specified then the value for this corner is returned instead.
 
 **last** ?*corner*?
-: ...see next...
+: see below ...
 
 **last** *shape* ?*corner*?
 : Convenience commands mapping to "**1st last**" and "**1st last** *shape*".
 
 **1st**
-: ...see next...
+: see below ...
 
 **2nd**
-: ...see next...
+: see below ...
 
 **3rd**
 : Aliases for **1th**, **2th**, and **3th**, for readability, usable whereever **n**th can ocur.
@@ -1585,7 +1596,7 @@ by 50 east
 The language context contains a number of predefined variables which hold the default values for various attributes. These variables, their uses, and values are:
 
 **anchor**
-: The default value for the attribute **anchor**. Initialized to **center**. The legal values are all those accepted by [Tk_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm).
+: The default value for the attribute **anchor**. Initialized to **center**. The legal values are all those accepted by [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm).
 
 **arcradius**
 : The default value for the attribute **radius** of **arc** elements. Initialized to the pixel equivalent of **1 cm**.
@@ -1593,18 +1604,17 @@ The language context contains a number of predefined variables which hold the de
 **arrowhead**
 : The default value for the attribute **arrowhead**. Initialized to **none**. The legal values are
 
+    **none**, **-**
+    : Draw no arrowheads, at neither end of the line.
 
-**none**, **-**
-: Draw no arrowheads, at neither end of the line.
+    **start**, **first**, **<-**
+    : Draw an arrowhead at the beginning of the line, but not at its end.
 
-**start**, **first**, **<-**
-: Draw an arrowhead at the beginning of the line, but not at its end.
+    **end**, **last**, **->**
+    : Draw an arrowhead at the end of the line, but not at its beginning.
 
-**end**, **last**, **->**
-: Draw an arrowhead at the end of the line, but not at its beginning.
-
-**both**, **<->**
-: Draw arrowheads at both ends of the line.
+    **both**, **<->**
+    : Draw arrowheads at both ends of the line.
 
 
 **boxheight**
@@ -1632,23 +1642,22 @@ The language context contains a number of predefined variables which hold the de
 : The default value for the attribute **color** of all elements having to draw lines (all but **text**). Initialized to **black**.
 
 **linestyle**
-: The default value for the attribute **style** of all elements having to draw some line. Initialized to **solid**. The legal values are all those accepted by [Tk_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
+: The default value for the attribute **style** of all elements having to draw some line. Initialized to **solid**. The legal values are all those accepted by [Tk\_GetDash](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetDash.htm), and additionally all which are listed below:
 
+    **solid**, empty string
+    : Draw solid line.
 
-**solid**, empty string
-: Draw solid line.
+    **dash**, **dashed**, **-**
+    : Draw a dashed line.
 
-**dash**, **dashed**, **-**
-: Draw a dashed line.
+    **dot**, **dotted**, **.**
+    : Draw a dotted line.
 
-**dot**, **dotted**, **.**
-: Draw a dotted line.
+    **dash-dot**, **-.**
+    : Draw a dash-dotted line
 
-**dash-dot**, **-.**
-: Draw a dash-dotted line
-
-**dash-dot-dot**, **-..**
-: Draw a dash-dot-dotted line.
+    **dash-dot-dot**, **-..**
+    : Draw a dash-dot-dotted line.
 
 
 **linewidth**
@@ -1667,7 +1676,7 @@ The language context contains a number of predefined variables which hold the de
 : The default value for the attribute **textfont** of all elements having to draw some text. Initialized to **Helvetica 12pt**.
 
 
-# Diagram classes
+# Diagram classes"     The intended audience of this section are developers wishing to work
 
 on the internals of the diagram package. Regular users of **diagram** can skip this section without missing anything.
 

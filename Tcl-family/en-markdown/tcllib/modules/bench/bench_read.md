@@ -1,5 +1,6 @@
 ---
 CommandName: bench::in
+title: bench::in
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -30,10 +31,10 @@ bench::in - bench::in - Reading benchmark results
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [csv]{.lit} 
-[package]{.cmd} [require]{.sub} [bench::in]{.lit} [0.2]{.optlit} 
-[::bench::in::read]{.cmd} [file]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [csv]{.lit}
+[package]{.cmd} [require]{.sub} [bench::in]{.lit} [0.2]{.optlit}
+[::bench::in::read]{.cmd} [file]{.arg}
 :::
 
 # Description
@@ -44,23 +45,23 @@ A reader interested in the creation, processing or writing of such results shoul
 
 If the bench language itself is the actual interest please start with the *bench language introduction* and then proceed from there to the formal *bench language specification*.
 
-# Public api
+# Public API
 
 **::bench::in::read** *file*
 : This command reads a benchmark result from the specified *file* and returns it as its result. The command understands the three formats created by the commands
 
+    **bench::out::raw**
+    : Provided by package **bench**.
 
-**bench::out::raw**
-: Provided by package **bench**.
+    **bench::out::csv**
+    : Provided by package **bench::out::csv**.
 
-**bench::out::csv**
-: Provided by package **bench::out::csv**.
-
-**bench::out::text**
-: Provided by package **bench::out::text**.
+    **bench::out::text**
+    : Provided by package **bench::out::text**.
 
 
-and automatically detects which format is used by the input file.
+    and automatically detects which format is used by the input file.
+
 
 # Bugs, ideas, feedback
 

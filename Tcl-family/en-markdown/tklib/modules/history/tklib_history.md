@@ -1,5 +1,6 @@
 ---
 CommandName: history
+title: history
 ManualSection: n
 Version: 0.3
 TclPart: tklib
@@ -17,15 +18,15 @@ history - Provides a history for Entry widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [history]{.lit} [0.3]{.optlit} 
-[::history::init]{.cmd} [pathName]{.arg} [length]{.optarg} 
-[::history::remove]{.cmd} [pathName]{.arg} 
-[::history::add]{.cmd} [pathName]{.arg} [text]{.arg} 
-[::history::get]{.cmd} [pathName]{.arg} 
-[::history::clear]{.cmd} [pathName]{.arg} 
-[::history::configure]{.cmd} [pathName]{.arg} [option]{.arg} [value]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [history]{.lit} [0.3]{.optlit}
+[::history::init]{.cmd} [pathName]{.arg} [length]{.optarg}
+[::history::remove]{.cmd} [pathName]{.arg}
+[::history::add]{.cmd} [pathName]{.arg} [text]{.arg}
+[::history::get]{.cmd} [pathName]{.arg}
+[::history::clear]{.cmd} [pathName]{.arg}
+[::history::configure]{.cmd} [pathName]{.arg} [option]{.arg} [value]{.optarg}
 :::
 
 bell
@@ -52,7 +53,7 @@ This package provides a convenient history mechanism for Entry widgets. The hist
 **::history::configure** *pathName* *option* ?value?
 : This command queries or sets configuration options. Currently the options recognized are *length* and *alert*. Setting the length determines the number of history entries to keep for the named Entry. Alert specifies the command to run when the user reaches the end of the history, it defaults to
 
-**bell**
+bell
 : . Although configure requires a *pathName* argument, the setting for alert is global and the path is ignored.
 
 

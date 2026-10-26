@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_RecordAndEvalObj
+title: Tcl_RecordAndEvalObj
 ManualSection: 3
 Version: 8.0
 TclPart: Tcl
@@ -21,29 +22,35 @@ Copyright:
 
 # Name
 
-Tcl_RecordAndEvalObj - save command on history list before evaluating
+Tcl\_RecordAndEvalObj - save command on history list before evaluating
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_RecordAndEvalObj]{.cmd}([interp]{.arg}, [cmdPtr]{.arg}, [flags]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_RecordAndEvalObj]{.ccmd} [interp, cmdPtr, flags]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Tcl interpreter in which to evaluate command.
 
-Tcl_Obj *\*cmdPtr* (in)
+[\*cmdPtr]{.carg .in type="Tcl_Obj"}
 : Points to a Tcl value containing a command (or sequence of commands) to execute.
 
-int *flags* (in)
-: An OR'ed combination of flag bits.  **TCL_NO_EVAL** means record the command but do not evaluate it.  **TCL_EVAL_GLOBAL** means evaluate the command at global level instead of the current stack level.
+[flags]{.carg .in type="int"}
+: An OR'ed combination of flag bits.  **TCL\_NO\_EVAL** means record the command but do not evaluate it.  **TCL\_EVAL\_GLOBAL** means evaluate the command at global level instead of the current stack level.
 
+:::
 
 # Description
 
-**Tcl_RecordAndEvalObj** is invoked to record a command as an event on the history list and then execute it using **Tcl_EvalObjEx** (or **Tcl_GlobalEvalObj** if the **TCL_EVAL_GLOBAL** bit is set in *flags*). It returns a completion code such as **TCL_OK** just like **Tcl_EvalObjEx**, as well as a result value containing additional information (a result value or error message) that can be retrieved using **Tcl_GetObjResult**. If you do not want the command recorded on the history list then you should invoke **Tcl_EvalObjEx** instead of **Tcl_RecordAndEvalObj**. Normally **Tcl_RecordAndEvalObj** is only called with top-level commands typed by the user, since the purpose of history is to allow the user to re-issue recently invoked commands. If the *flags* argument contains the **TCL_NO_EVAL** bit then the command is recorded without being evaluated.
+**Tcl\_RecordAndEvalObj** is invoked to record a command as an event on the history list and then execute it using [Tcl\_EvalObjEx][Eval] (or [Tcl\_GlobalEvalObj][Eval] if the **TCL\_EVAL\_GLOBAL** bit is set in *flags*). It returns a completion code such as [TCL\_OK][catch] just like [Tcl\_EvalObjEx][Eval], as well as a result value containing additional information (a result value or error message) that can be retrieved using [Tcl\_GetObjResult][SetResult]. If you do not want the command recorded on the history list then you should invoke [Tcl\_EvalObjEx][Eval] instead of **Tcl\_RecordAndEvalObj**. Normally **Tcl\_RecordAndEvalObj** is only called with top-level commands typed by the user, since the purpose of history is to allow the user to re-issue recently invoked commands. If the *flags* argument contains the **TCL\_NO\_EVAL** bit then the command is recorded without being evaluated.
+
+
+[catch]: ../tcl/catch.md
+[Eval]: Eval.md
+[SetResult]: SetResult.md

@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::limitsize
+title: tcl::transform::limitsize
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,10 +24,10 @@ tcl::transform::limitsize - limiting input
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::limitsize]{.lit} [1.1]{.optlit} 
-[::tcl::transform::limitsize]{.cmd} [chan]{.arg} [max]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::limitsize]{.lit} [1.1]{.optlit}
+[::tcl::transform::limitsize]{.cmd} [chan]{.arg} [max]{.arg}
 :::
 
 # Description
@@ -35,10 +36,12 @@ The **tcl::transform::limitsize** package provides a command creating a channel 
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::limitsize** *chan* *max*
-: This command creates a size limiting transformation on top of the channel *chan* and returns its handle. *max* is the number of bytes which can be read from the channel before EOF is signaled by the transformation. Note that popping the transformation clears the EOF it generated as well.
+: This command creates a size limiting transformation on top of the channel *chan* and returns its handle.
+
+    *max* is the number of bytes which can be read from the channel before EOF is signaled by the transformation. Note that popping the transformation clears the EOF it generated as well.
 
 
 # Bugs, ideas, feedback

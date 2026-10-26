@@ -1,5 +1,6 @@
 ---
 CommandName: pt::ast
+title: pt::ast
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -32,57 +33,82 @@ pt::ast - Abstract Syntax Tree Serialization
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::ast]{.lit} [1.2]{.optlit} 
-[::pt::ast]{.cmd} [verify]{.sub} [serial]{.arg} [canonvar]{.optarg} 
-[::pt::ast]{.cmd} [verify-as-canonical]{.sub} [serial]{.arg} 
-[::pt::ast]{.cmd} [canonicalize]{.sub} [serial]{.arg} 
-[::pt::ast]{.cmd} [print]{.sub} [serial]{.arg} 
-[::pt::ast]{.cmd} [bottomup]{.sub} [cmdprefix]{.arg} [ast]{.arg} 
-[cmdprefix]{.cmd} [ast]{.arg} 
-[::pt::ast]{.cmd} [topdown]{.sub} [cmdprefix]{.arg} [pe]{.arg} 
-[::pt::ast]{.cmd} [equal]{.sub} [seriala]{.arg} [serialb]{.arg} 
-[::pt::ast]{.cmd} [new0]{.sub} [s]{.arg} [loc]{.arg} [child]{.optdot} 
-[::pt::ast]{.cmd} [new]{.sub} [s]{.arg} [start]{.arg} [end]{.arg} [child]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pt::ast]{.lit} [1.2]{.optlit}
+[::pt::ast]{.cmd} [verify]{.lit} [serial]{.arg} [canonvar]{.optarg}
+[::pt::ast]{.cmd} [verify-as-canonical]{.lit} [serial]{.arg}
+[::pt::ast]{.cmd} [canonicalize]{.lit} [serial]{.arg}
+[::pt::ast]{.cmd} [print]{.lit} [serial]{.arg}
+[::pt::ast]{.cmd} [bottomup]{.lit} [cmdprefix]{.arg} [ast]{.arg}
+[cmdprefix]{.cmd} [ast]{.arg}
+[::pt::ast]{.cmd} [topdown]{.lit} [cmdprefix]{.arg} [pe]{.arg}
+[::pt::ast]{.cmd} [equal]{.lit} [seriala]{.arg} [serialb]{.arg}
+[::pt::ast]{.cmd} [new0]{.lit} [s]{.arg} [loc]{.arg} [child...]{.optarg}
+[::pt::ast]{.cmd} [new]{.lit} [s]{.arg} [start]{.arg} [end]{.arg} [child...]{.optarg}
 :::
 
 # Description
 
 Are you lost ? Do you have trouble understanding this document ? In that case please read the overview provided by the *Introduction to Parser Tools*. This document is the entrypoint to the whole system the current package is a part of.
 
-This package provides commands to work with the serializations of abstract syntax trees as managed by the Parser Tools, and specified in section **AST serialization format**.
+This package provides commands to work with the serializations of abstract syntax trees as managed by the Parser Tools, and specified in section [Ast serialization format].
 
 This is a supporting package in the Core Layer of Parser Tools.
 
-IMAGE: arch_core_support
+IMAGE: arch\_core\_support
 
-# Api
+# API
 
 **::pt::ast** **verify** *serial* ?*canonvar*?
-: This command verifies that the content of *serial* is a valid serialization of an abstract syntax tree and will throw an error if that is not the case. The result of the command is the empty string. If the argument *canonvar* is specified it is interpreted as the name of a variable in the calling context. This variable will be written to if and only if *serial* is a valid regular serialization. Its value will be a boolean, with **True** indicating that the serialization is not only valid, but also *canonical*. **False** will be written for a valid, but non-canonical serialization. For the specification of serializations see the section **AST serialization format**.
+: This command verifies that the content of *serial* is a valid serialization of an abstract syntax tree and will throw an error if that is not the case. The result of the command is the empty string.
+
+    If the argument *canonvar* is specified it is interpreted as the name of a variable in the calling context. This variable will be written to if and only if *serial* is a valid regular serialization. Its value will be a boolean, with **True** indicating that the serialization is not only valid, but also *canonical*. **False** will be written for a valid, but non-canonical serialization.
+
+    For the specification of serializations see the section [Ast serialization format].
 
 **::pt::ast** **verify-as-canonical** *serial*
-: This command verifies that the content of *serial* is a valid *canonical* serialization of an abstract syntax tree and will throw an error if that is not the case. The result of the command is the empty string. For the specification of canonical serializations see the section **AST serialization format**.
+: This command verifies that the content of *serial* is a valid *canonical* serialization of an abstract syntax tree and will throw an error if that is not the case. The result of the command is the empty string.
+
+    For the specification of canonical serializations see the section [Ast serialization format].
 
 **::pt::ast** **canonicalize** *serial*
-: This command assumes that the content of *serial* is a valid *regular* serialization of an abstract syntax and will throw an error if that is not the case. It will then convert the input into the *canonical* serialization of the contained tree and return it as its result. If the input is already canonical it will be returned unchanged. For the specification of regular and canonical serializations see the section **AST serialization format**.
+: This command assumes that the content of *serial* is a valid *regular* serialization of an abstract syntax and will throw an error if that is not the case.
+
+    It will then convert the input into the *canonical* serialization of the contained tree and return it as its result. If the input is already canonical it will be returned unchanged.
+
+    For the specification of regular and canonical serializations see the section [Ast serialization format].
 
 **::pt::ast** **print** *serial*
-: This command assumes that the argument *serial* contains a valid serialization of an abstract syntax tree and returns a string containing that tree in a human readable form. The exact format of this form is not specified and cannot be relied on for parsing or other machine-based activities. For the specification of serializations see the section **AST serialization format**.
+: This command assumes that the argument *serial* contains a valid serialization of an abstract syntax tree and returns a string containing that tree in a human readable form.
+
+    The exact format of this form is not specified and cannot be relied on for parsing or other machine-based activities.
+
+    For the specification of serializations see the section [Ast serialization format].
 
 **::pt::ast** **bottomup** *cmdprefix* *ast*
-: This command walks the abstract syntax tree *ast* from the bottom up to the root, invoking the command prefix *cmdprefix* for each node. This implies that the children of a node N are handled before N. The command prefix has the signature
+: This command walks the abstract syntax tree *ast* from the bottom up to the root, invoking the command prefix *cmdprefix* for each node. This implies that the children of a node N are handled before N.
 
+    The command prefix has the signature
 
-**cmdprefix** *ast*
-: I.e. it is invoked with the ast node the walk is currently at. The result returned by the command prefix replaces *ast* in the node it was a child of, allowing transformations of the tree. This also means that for all inner node the contents of the children elements are the results of the command prefix invoked for the children of this node.
+    **cmdprefix** *ast*
+    : I.e. it is invoked with the ast node the walk is currently at.
+
+        The result returned by the command prefix replaces *ast* in the node it was a child of, allowing transformations of the tree.
+
+        This also means that for all inner node the contents of the children elements are the results of the command prefix invoked for the children of this node.
 
 
 **::pt::ast** **topdown** *cmdprefix* *pe*
-: This command walks the abstract syntax tree *ast* from the root down to the leaves, invoking the command prefix *cmdprefix* for each node. This implies that the children of a node N are handled after N. The command prefix has the same signature as for **bottomup**, see above. The result returned by the command prefix is *ignored*.
+: This command walks the abstract syntax tree *ast* from the root down to the leaves, invoking the command prefix *cmdprefix* for each node. This implies that the children of a node N are handled after N.
+
+    The command prefix has the same signature as for **bottomup**, see above.
+
+    The result returned by the command prefix is *ignored*.
 
 **::pt::ast** **equal** *seriala* *serialb*
-: This command tests the two sbstract syntax trees *seriala* and *serialb* for structural equality. The result of the command is a boolean value. It will be set to **true** if the trees are identical, and **false** otherwise. String equality is usable only if we can assume that the two trees are pure Tcl lists.
+: This command tests the two sbstract syntax trees *seriala* and *serialb* for structural equality. The result of the command is a boolean value. It will be set to **true** if the trees are identical, and **false** otherwise.
+
+    String equality is usable only if we can assume that the two trees are pure Tcl lists.
 
 **::pt::ast** **new0** *s* *loc* ?*child*...?
 : This command command constructs the ast for a nonterminal node refering refering to the symbol *s* at position *loc* in the input, and the set of child nodes *child* ..., from left right. The latter may be empty. The constructed node is returned as the result of the command. The end position is *loc*-1, i.e. one character before the start. This type of node is possible for rules containing optional parts.
@@ -99,41 +125,29 @@ Each node in an AST represents a nonterminal symbol of a grammar, and the range 
 
 We distinguish between *regular* and *canonical* serializations. While a tree may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**Regular serialization**
-: 
+Regular serialization
+: 1. The serialization of any AST is the serialization of its root node.
+
+    2. The serialization of any node is a Tcl list containing at least three elements.
+
+        1. The first element is the name of the nonterminal symbol stored in the node.
+
+        2. The second and third element are the locations of the first and last token in the token stream the node represents (covers).
+
+            1. Locations are provided as non-negative integer offsets from the beginning of the token stream, with the first token found in the stream located at offset 0 (zero).
+
+            2. The end location has to be equal to or larger than the start location.
 
 
-**\[1\]**
-: The serialization of any AST is the serialization of its root node.
-
-**\[2\]**
-: The serialization of any node is a Tcl list containing at least three elements.
+        3. All elements after the first three represent the children of the node, which are themselves nodes. This means that the serializations of nodes without children, i.e. leaf nodes, have exactly three elements. The children are stored in the list with the leftmost child first, and the rightmost child last.
 
 
-**\[1\]**
-: The first element is the name of the nonterminal symbol stored in the node.
 
-**\[2\]**
-: The second and third element are the locations of the first and last token in the token stream the node represents (covers).
-
-
-**\[1\]**
-: Locations are provided as non-negative integer offsets from the beginning of the token stream, with the first token found in the stream located at offset 0 (zero).
-
-**\[2\]**
-: The end location has to be equal to or larger than the start location.
-
-
-**\[3\]**
-: All elements after the first three represent the children of the node, which are themselves nodes. This means that the serializations of nodes without children, i.e. leaf nodes, have exactly three elements. The children are stored in the list with the leftmost child first, and the rightmost child last.
-
-
-**Canonical serialization**
+Canonical serialization
 : The canonical serialization of an abstract syntax tree has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this tree.
 
+    1. The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
-**\[1\]**
-: The string representation of the value is the canonical representation of a pure Tcl list. I.e. it does not contain superfluous whitespace.
 
 
 ## Example

@@ -1,5 +1,6 @@
 ---
 CommandName: unicode
+title: unicode
 ManualSection: n
 Version: 1.1.1
 TclPart: tcllib
@@ -13,22 +14,22 @@ Copyright:
  - Copyright (c) 2007, Sergei Golovan <sgolovan@nes.ru>
 ---
 
-# NAME
+# Name
 
 unicode – Implementierung der Unicode-Normalisierung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [unicode]{.lit} [1.1.1]{.lit} 
-[::unicode::normalizeS]{.cmd} [form]{.arg} [string]{.arg} 
-[::unicode::fromstring]{.cmd} [string]{.arg} 
-[::unicode::tostring]{.cmd} [codepointsList]{.arg} 
-[::unicode::normalize]{.cmd} [form]{.arg} [codepointsList]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [unicode]{.lit} [1.1.1]{.lit}
+[::unicode::normalizeS]{.cmd} [form]{.arg} [string]{.arg}
+[::unicode::fromstring]{.cmd} [string]{.arg}
+[::unicode::tostring]{.cmd} [codepointsList]{.arg}
+[::unicode::normalize]{.cmd} [form]{.arg} [codepointsList]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dies ist eine Tcl-Implementierung der Unicode-Normalisierungsbefehle.
 
@@ -39,19 +40,25 @@ Dies ist eine Tcl-Implementierung der Unicode-Normalisierungsbefehle.
 Das Argument *form* in den unten aufgeführten Befehlen muss eine Zeichenkette sein, die einen der folgenden Werte annimmt: **D** (kanonische Zerlegung), **C** (kanonische Zerlegung, gefolgt von kanonischer Zusammensetzung), **KD** (Kompatibilitätszerlegung) oder **KC** (Kompatibilitätszerlegung, gefolgt von kanonischer Zusammensetzung).
 
 **::unicode::normalizeS** *form* *string*
-: Gibt eine möglicherweise geänderte Kopie von *string* zurück, die gemäß der angegebenen *form* normalisiert wurde. Dies ist eine Kurzform für: *::unicode::tostring* \[*unicode::normalize \$form* \[*::unicode::fromstring \$string*\]\].
+: Gibt eine möglicherweise geänderte Kopie von *string* zurück, die gemäß der angegebenen *form* normalisiert wurde.
+
+    Dies ist eine Kurzform für: *::unicode::tostring* \[*unicode::normalize $form* \[*::unicode::fromstring $string*\]\].
 
 **::unicode::fromstring** *string*
-: Gibt eine Liste von ganzzahligen Unicode-Codepunkten zurück, die die Zeichen in *string* darstellen. (Diese ganzzahligen Codepunkte werden in **unicode** für die interne Darstellung von Zeichenfolgen verwendet.)
+: Gibt eine Liste von ganzzahligen Unicode-Codepunkten zurück, die die Zeichen in *string* darstellen.
+
+    (Diese ganzzahligen Codepunkte werden in **unicode** für die interne Darstellung von Zeichenfolgen verwendet.)
 
 **::unicode::tostring** *codepointsList*
-: Gibt eine Zeichenkette zurück, deren Zeichen den in *codepointsList* enthaltenen Ganzzahlen entsprechen. Jede Ganzzahl, die ein gültiger Unicode-Codepunkt ist, wird in der zurückgegebenen Zeichenkette durch das entsprechende Unicode-Zeichen dargestellt. Jede Ganzzahl, die kein gültiger Unicode-Codepunkt ist, wird durch das Unicode-Ersatzzeichen �, U+FFFD, dargestellt, es sei denn, sie ist ausreichend groß; in diesem Fall wird ein Fehler ausgelöst.
+: Gibt eine Zeichenkette zurück, deren Zeichen den in *codepointsList* enthaltenen Ganzzahlen entsprechen.
+
+    Jede Ganzzahl, die ein gültiger Unicode-Codepunkt ist, wird in der zurückgegebenen Zeichenkette durch das entsprechende Unicode-Zeichen dargestellt. Jede Ganzzahl, die kein gültiger Unicode-Codepunkt ist, wird durch das Unicode-Ersatzzeichen �, U+FFFD, dargestellt, es sei denn, sie ist ausreichend groß; in diesem Fall wird ein Fehler ausgelöst.
 
 **::unicode::normalize** *form* *codepointsList*
 : Gibt eine möglicherweise geänderte Kopie der *codepointsList* aus ganzen Zahlen zurück (die alle gültige Unicode-Codepunkte sein müssen), die gemäß der angegebenen Normalisierungsform *form* normalisiert wurde.
 
 
-# BEISPIELE
+# Beispiele
 
 Einige Unicode-Zeichen verfügen in einer Unicode-Kodierung wie beispielsweise UTF-8 über mehr als eine Darstellung. Normalerweise stellt dies *innerhalb* einer Programmiersprache kein Problem dar, da die Sprache für ein bestimmtes Zeichen in der Regel stets dieselbe Darstellung verwendet. Bei Daten, die aus Dateien oder anderen externen Quellen eingelesen werden, könnte jedoch jede der möglichen Darstellungen verwendet werden. In diesen Fällen kann daher eine Normalisierung erforderlich sein.
 
@@ -105,17 +112,16 @@ A
 %
 ```
 
-# LITERATUR
+# Literatur
 
-**\[1\]**
-: "Unicode Standard Annex #15: Unicode Normalization Forms", (*http://unicode.org/reports/tr15/*)
+1. "Unicode Standard Annex #15: Unicode Normalization Forms", (<http://unicode.org/reports/tr15/>)
 
 
-# AUTOREN
+# Autoren
 
 Sergei Golovan
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *stringprep* als Kategorie an.
 
@@ -123,7 +129,7 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007, Sergei Golovan <sgolovan@nes.ru>

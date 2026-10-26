@@ -1,5 +1,6 @@
 ---
 CommandName: grab
+title: grab
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -23,8 +24,8 @@ grab - Confine pointer and keyboard events to a window sub-tree
 # Synopsis
 
 ::: {.synopsis} :::
-[grab]{.cmd} [-global]{.optlit} [window]{.arg} 
-[grab]{.cmd} [option]{.arg} [arg]{.optdot} 
+[grab]{.cmd} [-global]{.optlit} [window]{.arg}
+[grab]{.cmd} [option]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -33,7 +34,7 @@ This command implements simple pointer and keyboard grabs for Tk. Tk's grabs are
 
 Two forms of grabs are possible:  local and global. A local grab affects only the grabbing application:  events will be reported to other applications as if the grab had never occurred. Grabs are local by default. A global grab locks out all applications on the screen, so that only the given subtree of the grabbing application will be sensitive to pointer events (mouse button presses, mouse button releases, pointer motions, window entries, and window exits). During global grabs the window manager will not receive pointer events either.
 
-During local grabs, keyboard events (key presses and key releases) are delivered as usual:  the window manager controls which application receives keyboard events, and if they are sent to any window in the grabbing application then they are redirected to the focus window. During a global grab Tk grabs the keyboard so that all keyboard events are always sent to the grabbing application. The **focus** command is still used to determine which window in the application receives the keyboard events. The keyboard grab is released when the grab is released.
+During local grabs, keyboard events (key presses and key releases) are delivered as usual:  the window manager controls which application receives keyboard events, and if they are sent to any window in the grabbing application then they are redirected to the focus window. During a global grab Tk grabs the keyboard so that all keyboard events are always sent to the grabbing application. The [focus] command is still used to determine which window in the application receives the keyboard events. The keyboard grab is released when the grab is released.
 
 On macOS a global grab affects all windows created by one Tk process. No window in that process other than the grab window can even be focused, hence no other window receives key or mouse events.  A local grab on macOS affects all windows created by one Tcl interpreter.  It is possible to focus any window belonging to the Tk process during a local grab but the grab window is the only window created by its interpreter which receives key or mouse events.  Windows belonging to the same process but created by different interpreters continue to receive key and mouse events normally.
 
@@ -44,16 +45,16 @@ The **grab** command can take any of the following forms:
 **grab** ?**-global**? *window*
 : Same as **grab set**, described below.
 
-**grab current** ?*window*?
+[grab]{.cmd} [current]{.sub} [window]{.optarg}
 : If *window* is specified, returns the name of the current grab window in this application for *window*'s display, or an empty string if there is no such window. If *window* is omitted, the command returns a list whose elements are all of the windows grabbed by this application for all displays, or an empty string if the application has no grabs.
 
-**grab release** *window*
+[grab]{.cmd} [release]{.sub} [window]{.arg}
 : Releases the grab on *window* if there is one, otherwise does nothing.  Returns an empty string.
 
-**grab set** ?**-global**? *window*
+[grab]{.cmd} [set]{.sub} [-global]{.optlit} [window]{.arg}
 : Sets a grab on *window*.  If **-global** is specified then the grab is global, otherwise it is local. If a grab was already in effect for this application on *window*'s display then it is automatically released. If there is already a grab on *window* and it has the same global/local form as the requested grab, then the command does nothing.  Returns an empty string.
 
-**grab status** *window*
+[grab]{.cmd} [status]{.sub} [window]{.arg}
 : Returns **none** if no grab is currently set on *window*, **local** if a local grab is set on *window*, and **global** if a global grab is set.
 
 
@@ -77,3 +78,6 @@ pack [button .b2 -text "Click me! #2" -command {destroy .b2}]
 pack [button .b3 -text "Click me! #3" -command {destroy .b3}]
 grab .b2
 ```
+
+
+[focus]: focus.md

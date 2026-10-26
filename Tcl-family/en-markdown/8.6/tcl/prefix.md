@@ -1,5 +1,6 @@
 ---
 CommandName: prefix
+title: prefix
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -23,9 +24,9 @@ tcl::prefix - facilities for prefix matching
 # Synopsis
 
 ::: {.synopsis} :::
-[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg} 
-[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg} 
+[::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [match]{.sub} [?option]{.arg} [...?]{.arg} [table]{.arg} [string]{.arg}
 :::
 
 # Description
@@ -41,21 +42,21 @@ This document describes commands looking up a prefix in a list of strings. The f
 **::tcl::prefix match** ?*option ...*? *table string*
 : If *string* equals one element in *table* or is a prefix to exactly one element, the matched element is returned. If not, the result depends on the **-error** option. (It is recommended that the *table* be sorted before use with this subcommand, so that the list of matches presented in the error message also becomes sorted, though this is not strictly necessary for the operation of this subcommand itself.) The following options are supported:
 
+    **-exact**
+    : Accept only exact matches.
 
-**-exact**\\0
-: Accept only exact matches.
+    **-message** *string*
+    : Use *string* in the error message at a mismatch. Default is "option".
 
-**-message**\\**0**_string_
-: Use *string* in the error message at a mismatch. Default is "option".
+    **-error** *options*
+    : The *options* are used when no match is found. If *options* is empty, no error is generated and an empty string is returned. Otherwise the *options* are used as [return] options when generating the error message. The default corresponds to setting "-level 0". Example: If "**-error** {-errorcode MyError -level 1}" is used, an error would be generated as:
 
-**-error**\\**0**_options_
-: The *options* are used when no match is found. If *options* is empty, no error is generated and an empty string is returned. Otherwise the *options* are used as **return** options when generating the error message. The default corresponds to setting "-level 0". Example: If "**-error** {-errorcode MyError -level 1}" is used, an error would be generated as:
+        ```
+        return -errorcode MyError -level 1 -code error \
+               "ambiguous option ..."
+        ```
 
 
-```
-return -errorcode MyError -level 1 -code error \
-       "ambiguous option ..."
-```
 
 # Examples
 
@@ -86,7 +87,7 @@ foreach {arg val} $args {
 }
 ```
 
-Creating a **switch** that supports prefixes:
+Creating a [switch] that supports prefixes:
 
 ```
 switch [prefix match {apa bepa cepa} $arg] {
@@ -95,3 +96,7 @@ switch [prefix match {apa bepa cepa} $arg] {
     cepa { }
 }
 ```
+
+
+[return]: return.md
+[switch]: switch.md

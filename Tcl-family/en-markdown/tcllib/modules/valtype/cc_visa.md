@@ -1,5 +1,6 @@
 ---
 CommandName: valtype::creditcard::visa
+title: valtype::creditcard::visa
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -27,13 +28,13 @@ valtype::creditcard::visa - Validation for VISA creditcard number
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::common]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::luhn]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::creditcard::visa]{.lit} [1.1]{.optlit} 
-[valtype::creditcard::visa]{.cmd} [validate]{.sub} [value]{.arg} 
-[valtype::creditcard::visa]{.cmd} [checkdigit]{.sub} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::common]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::luhn]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::creditcard::visa]{.lit} [1.1]{.optlit}
+[valtype::creditcard::visa]{.cmd} [validate]{.lit} [value]{.arg}
+[valtype::creditcard::visa]{.cmd} [checkdigit]{.lit} [value]{.arg}
 :::
 
 # Description
@@ -51,7 +52,7 @@ Every validation type has a **validate** method which is used to do the validati
 
 The **validate** method will always return the validated value on success, and throw the **-errorcode** INVALID on error, possibly with additional elements which provide more details about the problem.
 
-# Api
+# API
 
 The API provided by this package satisfies the specification of snit validation types found in the documentation of *Snit's Not Incr Tcl*.
 
@@ -68,16 +69,16 @@ As said in the package description, the errors thrown by the commands of this pa
 
 To provide more detailed information about why the validation failed the **-errorCode** goes actually beyond that. First, it will contain a code detailing the type itself. Here this is **CREDITCARD VISA**. This is then followed by values detailing the reason for the failure. The full set of **-errorCode**s which can be thrown by this package are:
 
-**INVALID CREDITCARD VISA CHARACTER**
+INVALID CREDITCARD VISA CHARACTER
 : The input value contained one or more bad characters, i.e. characters which must not occur in the input for it to be a VISA creditcard number.
 
-**INVALID CREDITCARD VISA CHECK-DIGIT**
+INVALID CREDITCARD VISA CHECK-DIGIT
 : The check digit of the input value is wrong. This usually signals a data-entry error, with digits transposed, forgotten, etc. Of course, th input may be an outright fake too.
 
-**INVALID CREDITCARD VISA LENGTH**
+INVALID CREDITCARD VISA LENGTH
 : The input value is of the wrong length to be a VISA creditcard number.
 
-**INVALID CREDITCARD VISA PREFIX**
+INVALID CREDITCARD VISA PREFIX
 : The input value does not start with the magic value(s) required for it to be a VISA creditcard number.
 
 

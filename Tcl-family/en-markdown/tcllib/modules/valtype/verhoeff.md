@@ -1,5 +1,6 @@
 ---
 CommandName: valtype::verhoeff
+title: valtype::verhoeff
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,12 +24,12 @@ valtype::verhoeff - Validation for plain number with a VERHOEFF checkdigit
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::common]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::verhoeff]{.lit} [1.1]{.optlit} 
-[valtype::verhoeff]{.cmd} [validate]{.sub} [value]{.arg} 
-[valtype::verhoeff]{.cmd} [checkdigit]{.sub} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::common]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::verhoeff]{.lit} [1.1]{.optlit}
+[valtype::verhoeff]{.cmd} [validate]{.lit} [value]{.arg}
+[valtype::verhoeff]{.cmd} [checkdigit]{.lit} [value]{.arg}
 :::
 
 # Description
@@ -46,7 +47,7 @@ Every validation type has a **validate** method which is used to do the validati
 
 The **validate** method will always return the validated value on success, and throw the **-errorcode** INVALID on error, possibly with additional elements which provide more details about the problem.
 
-# Api
+# API
 
 The API provided by this package satisfies the specification of snit validation types found in the documentation of *Snit's Not Incr Tcl*.
 
@@ -63,10 +64,10 @@ As said in the package description, the errors thrown by the commands of this pa
 
 To provide more detailed information about why the validation failed the **-errorCode** goes actually beyond that. First, it will contain a code detailing the type itself. Here this is **VERHOEFF**. This is then followed by values detailing the reason for the failure. The full set of **-errorCode**s which can be thrown by this package are:
 
-**INVALID VERHOEFF CHARACTER**
+INVALID VERHOEFF CHARACTER
 : The input value contained one or more bad characters, i.e. characters which must not occur in the input for it to be a plain number with a VERHOEFF checkdigit.
 
-**INVALID VERHOEFF CHECK-DIGIT**
+INVALID VERHOEFF CHECK-DIGIT
 : The check digit of the input value is wrong. This usually signals a data-entry error, with digits transposed, forgotten, etc. Of course, th input may be an outright fake too.
 
 

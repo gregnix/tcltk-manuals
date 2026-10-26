@@ -1,17 +1,18 @@
 ---
 CommandName: tcllib_install_guide
+title: tcllib_install_guide
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
-# NAME
+# Name
 
-tcllib_install_guide – Tcllib – Anleitung für Installateure
+tcllib\_install\_guide – Tcllib – Anleitung für Installateure
 
-# BESCHREIBUNG
+# Beschreibung
 
 Willkommen bei Tcllib, der Tcl-Standardbibliothek. Beachten Sie, dass Tcllib selbst kein Paket ist. Es handelt sich um eine Sammlung von (teilweise unabhängigen) *Tcl*-Paketen, die Hilfsfunktionen bereitstellen, die für eine große Zahl von Tcl-Programmierern nützlich sind.
 
@@ -19,20 +20,23 @@ Dieses Dokument richtet sich an alle, die die in Tcllib enthaltenen Pakete kompi
 
 Darüber hinaus bieten wir Folgendes an:
 
-**\[1\]**
-: *Tcllib – Das Entwicklerhandbuch*. Für Entwickler, die selbst an den Paketen arbeiten möchten. Bitte lesen Sie zunächst *Tcllib – So erhalten Sie die Quellcodes*, falls das noch nicht geschehen ist. Hier wird davon ausgegangen, dass die Quelltexte bereits in einem Verzeichnis der Wahl vorliegen.
+1. *Tcllib – Das Entwicklerhandbuch*.
 
 
-# VORAUSSETZUNGEN
+Für Entwickler, die selbst an den Paketen arbeiten möchten.
+
+Bitte lesen Sie zunächst *Tcllib – So erhalten Sie die Quellcodes*, falls das noch nicht geschehen ist. Hier wird davon ausgegangen, dass die Quelltexte bereits in einem Verzeichnis der Wahl vorliegen.
+
+# Voraussetzungen
 
 Bevor Tcllib kompiliert und verwendet werden kann, müssen einige Voraussetzungen installiert werden. Diese sind:
 
-**\[1\]**
-: Die Skriptsprache Tcl. Weitere Informationen finden Sie unter **Tcl**.
+1. Die Skriptsprache Tcl. Weitere Informationen finden Sie unter [Tcl].
 
-**\[2\]**
-: Optional das Paket **critcl** (C-Einbettung) für **Tcl**. Einzelheiten finden Sie unter **CriTcl**. Diese Liste geht davon aus, dass der Rechner, auf dem Tcllib installiert werden soll, im Wesentlichen leer ist. Wenn Teile der unten aufgeführten Abhängigkeiten bereits installiert sind, können die entsprechenden Schritte natürlich übersprungen werden. Es wird jedoch weiterhin empfohlen, die entsprechenden Abschnitte zu lesen, um sicherzustellen, dass die dort genannten Abhängigkeiten tatsächlich installiert sind.
+2. Optional das Paket [Critcl] (C-Einbettung) für [Tcl]. Einzelheiten finden Sie unter **CriTcl**.
 
+
+Diese Liste geht davon aus, dass der Rechner, auf dem Tcllib installiert werden soll, im Wesentlichen leer ist. Wenn Teile der unten aufgeführten Abhängigkeiten bereits installiert sind, können die entsprechenden Schritte natürlich übersprungen werden. Es wird jedoch weiterhin empfohlen, die entsprechenden Abschnitte zu lesen, um sicherzustellen, dass die dort genannten Abhängigkeiten tatsächlich installiert sind.
 
 ## Tcl
 
@@ -46,19 +50,23 @@ Ich selbst habe während der Entwicklung die [ActiveState's](http://www.activest
 
 *(Offenlegung: Ich, Andreas Kupries, war bis 2016 bei ActiveState beschäftigt und habe dort die Pflege von ActiveTcl und TclDevKit übernommen).*. Derzeit bin ich bei SUSE Software Canada ULC tätig, allerdings nicht in Bereichen, die mit Tcl zu tun haben.
 
-Diese Distribution finden Sie unter *http://www.activestate.com/activetcl*. Laden Sie das Archiv von ActiveTcl 8.5 (oder höher) für Ihre Plattform herunter und installieren Sie es gemäß den Anweisungen von ActiveState.
+Diese Distribution finden Sie unter <http://www.activestate.com/activetcl>. Laden Sie das Archiv von ActiveTcl 8.5 (oder höher) für Ihre Plattform herunter und installieren Sie es gemäß den Anweisungen von ActiveState.
 
 Für diejenigen, die Tcl selbst kompilieren und installieren möchten, finden Sie die entsprechenden Quelldateien unter
 
-**Tcl**
-: *http://core.tcl-lang.org/tcl/* zusammen mit den erforderlichen Anweisungen zur Kompilierung. Wenn Probleme beim Kompilieren, Installieren oder Verwenden von Tcl auftreten, reichen Sie bitte ein Ticket bei *Tcl* oder beim Anbieter Ihrer Distribution ein, *nicht* bei *Tcllib*.
+Tcl
+: <http://core.tcl-lang.org/tcl/>
 
+
+zusammen mit den erforderlichen Anweisungen zur Kompilierung.
+
+Wenn Probleme beim Kompilieren, Installieren oder Verwenden von Tcl auftreten, reichen Sie bitte ein Ticket bei *Tcl* oder beim Anbieter Ihrer Distribution ein, *nicht* bei *Tcllib*.
 
 ## Critcl
 
 Das Tool **critcl** ist eine *optionale* Abhängigkeit.
 
-Dies ist nur erforderlich, wenn Sie versuchen, die C-basierten *Beschleuniger* für eine Reihe von Paketen zu erstellen, wie unter **Critcl und Beschleuniger** erläutert.
+Dies ist nur erforderlich, wenn Sie versuchen, die C-basierten *Beschleuniger* für eine Reihe von Paketen zu erstellen, wie unter [Critcl und Beschleuniger] erläutert.
 
 *Vorsicht*: Die C-Beschleuniger werden *standardmäßig gebaut*.
 
@@ -78,9 +86,9 @@ Unter der oben genannten URL finden Sie zudem eine Anleitung zum Kompilieren und
 
 Die Anleitung dazu wird hier nicht wiederholt. Wenn bei dieser Anleitung Probleme auftreten, reichen Sie bitte ein Ticket für das Projekt *Critcl* ein, nicht für Tcllib.
 
-# BAU- UND INSTALLATIONSANLEITUNG
+# Bau- und Installationsanleitung
 
-Da es sich bei Tcllib im Wesentlichen um eine Sammlung von Paketen handelt, die in reinem Tcl geschrieben sind, entspricht das Erstellen derselben der Installation. Die Ausnahmen hiervon werden später in einem eigenen Unterabschnitt, **Critcl und Beschleuniger**, behandelt.
+Da es sich bei Tcllib im Wesentlichen um eine Sammlung von Paketen handelt, die in reinem Tcl geschrieben sind, entspricht das Erstellen derselben der Installation. Die Ausnahmen hiervon werden später in einem eigenen Unterabschnitt, [Critcl und Beschleuniger], behandelt.
 
 Zuvor gilt jedoch der Standardfall, der sich je nach Plattform durch wesentliche Unterschiede in der Anleitung auszeichnet, d. h. *Unix*-like im Vergleich zu *Windows*.
 
@@ -220,52 +228,58 @@ Das Installationsprogramm führt eine Auswahl der Standardeinstellungen für die
 : Im CLI-Modus fordert das Installationsprogramm den Benutzer standardmäßig auf, zu bestätigen, dass die gewählte Konfiguration (Zielpfade, zu installierende Komponenten) korrekt ist, bevor es weitere Schritte ausführt. Mit dieser Option überspringt das Installationsprogramm diese Abfrage und beginnt sofort mit der Installation.
 
 **-app-path** *path*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-example-path** *path*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-html-path** *path*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-nroff-path** *path*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-pkg-path** *path*
 : Legt die Zielpfade für die Anwendungen, Beispiele, die HTML-Dokumentation, die nroff-Manpages und die Pakete fest. Die Standardwerte leiten sich aus dem Speicherort der Datei „**tclsh**“ ab, die zum Ausführen des Installationsprogramms verwendet wurde.
 
 **-dry-run**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-simulate**
 : Führt das Installationsprogramm aus, ohne die Zielverzeichnisse zu ändern.
 
 **-apps**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-no-apps**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-examples**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-no-examples**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-pkgs**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-no-pkgs**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-html**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-no-html**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-nroff**
-: ...siehe nächstes...
+: siehe unten ...
 
 **-no-nroff**
-: Schaltet die Installation von Anwendungen, Beispielen, Paketen, der HTML-Dokumentation und der nroff-Manpages aus oder ein. Anwendungen, Beispiele und Pakete werden standardmäßig installiert. Unter Windows wird die HTML-Dokumentation standardmäßig installiert. Unter Unix werden die nroff-Manpages standardmäßig installiert.
+: Schaltet die Installation von Anwendungen, Beispielen, Paketen, der HTML-Dokumentation und der nroff-Manpages aus oder ein.
+
+    Anwendungen, Beispiele und Pakete werden standardmäßig installiert.
+
+    Unter Windows wird die HTML-Dokumentation standardmäßig installiert.
+
+    Unter Unix werden die nroff-Manpages standardmäßig installiert.

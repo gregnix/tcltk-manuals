@@ -1,5 +1,6 @@
 ---
 CommandName: tailcall
+title: tailcall
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -24,7 +25,7 @@ tailcall - Replace the current procedure with another command
 # Synopsis
 
 ::: {.synopsis} :::
-[tailcall]{.cmd} [command]{.arg} [arg]{.optdot} 
+[tailcall]{.cmd} [command]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -35,7 +36,7 @@ The **tailcall** command replaces the currently executing procedure, lambda appl
 return [uplevel 1 [list command ?arg ...?]]
 ```
 
-This command may not be invoked from within an **uplevel** into a procedure or inside a **catch** inside a procedure or lambda.
+This command may not be invoked from within an [uplevel] into a procedure or inside a [catch] inside a procedure or lambda.
 
 # Example
 
@@ -66,3 +67,7 @@ proc printList2 {theList} {
     }
 }
 ```
+
+
+[catch]: catch.md
+[uplevel]: uplevel.md

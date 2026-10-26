@@ -1,5 +1,6 @@
 ---
 CommandName: term::ansi::send
+title: term::ansi::send
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -19,95 +20,95 @@ term::ansi::send - Output of ANSI control sequences to terminals
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::ansi::send]{.lit} [0.2]{.optlit} 
-[::term::ansi::send::import]{.cmd} [ns]{.optarg} [...]{.arg} 
-[::term::ansi::send::eeol]{.cmd} 
-[::term::ansi::send::esol]{.cmd} 
-[::term::ansi::send::el]{.cmd} 
-[::term::ansi::send::ed]{.cmd} 
-[::term::ansi::send::eu]{.cmd} 
-[::term::ansi::send::es]{.cmd} 
-[::term::ansi::send::sd]{.cmd} 
-[::term::ansi::send::su]{.cmd} 
-[::term::ansi::send::ch]{.cmd} 
-[::term::ansi::send::sc]{.cmd} 
-[::term::ansi::send::rc]{.cmd} 
-[::term::ansi::send::sca]{.cmd} 
-[::term::ansi::send::rca]{.cmd} 
-[::term::ansi::send::st]{.cmd} 
-[::term::ansi::send::ct]{.cmd} 
-[::term::ansi::send::cat]{.cmd} 
-[::term::ansi::send::qdc]{.cmd} 
-[::term::ansi::send::qds]{.cmd} 
-[::term::ansi::send::qcp]{.cmd} 
-[::term::ansi::send::rd]{.cmd} 
-[::term::ansi::send::elw]{.cmd} 
-[::term::ansi::send::dlw]{.cmd} 
-[::term::ansi::send::eg]{.cmd} 
-[::term::ansi::send::lg]{.cmd} 
-[::term::ansi::send::scs0]{.cmd} [tag]{.arg} 
-[::term::ansi::send::scs1]{.cmd} [tag]{.arg} 
-[::term::ansi::send::sda]{.cmd} [arg...]{.arg} 
-[::term::ansi::send::sda_fgblack]{.cmd} 
-[::term::ansi::send::sda_fgred]{.cmd} 
-[::term::ansi::send::sda_fggreen]{.cmd} 
-[::term::ansi::send::sda_fgyellow]{.cmd} 
-[::term::ansi::send::sda_fgblue]{.cmd} 
-[::term::ansi::send::sda_fgmagenta]{.cmd} 
-[::term::ansi::send::sda_fgcyan]{.cmd} 
-[::term::ansi::send::sda_fgwhite]{.cmd} 
-[::term::ansi::send::sda_fgdefault]{.cmd} 
-[::term::ansi::send::sda_bgblack]{.cmd} 
-[::term::ansi::send::sda_bgred]{.cmd} 
-[::term::ansi::send::sda_bggreen]{.cmd} 
-[::term::ansi::send::sda_bgyellow]{.cmd} 
-[::term::ansi::send::sda_bgblue]{.cmd} 
-[::term::ansi::send::sda_bgmagenta]{.cmd} 
-[::term::ansi::send::sda_bgcyan]{.cmd} 
-[::term::ansi::send::sda_bgwhite]{.cmd} 
-[::term::ansi::send::sda_bgdefault]{.cmd} 
-[::term::ansi::send::sda_bold]{.cmd} 
-[::term::ansi::send::sda_dim]{.cmd} 
-[::term::ansi::send::sda_italic]{.cmd} 
-[::term::ansi::send::sda_underline]{.cmd} 
-[::term::ansi::send::sda_blink]{.cmd} 
-[::term::ansi::send::sda_revers]{.cmd} 
-[::term::ansi::send::sda_hidden]{.cmd} 
-[::term::ansi::send::sda_strike]{.cmd} 
-[::term::ansi::send::sda_nobold]{.cmd} 
-[::term::ansi::send::sda_noitalic]{.cmd} 
-[::term::ansi::send::sda_nounderline]{.cmd} 
-[::term::ansi::send::sda_noblink]{.cmd} 
-[::term::ansi::send::sda_norevers]{.cmd} 
-[::term::ansi::send::sda_nohidden]{.cmd} 
-[::term::ansi::send::sda_nostrike]{.cmd} 
-[::term::ansi::send::sda_reset]{.cmd} 
-[::term::ansi::send::fcp]{.cmd} [row]{.arg} [col]{.arg} 
-[::term::ansi::send::cu]{.cmd} [n]{.optarg} 
-[::term::ansi::send::cd]{.cmd} [n]{.optarg} 
-[::term::ansi::send::cf]{.cmd} [n]{.optarg} 
-[::term::ansi::send::cb]{.cmd} [n]{.optarg} 
-[::term::ansi::send::ss]{.cmd} [s e]{.optarg} 
-[::term::ansi::send::skd]{.cmd} [code]{.arg} [str]{.arg} 
-[::term::ansi::send::title]{.cmd} [str]{.arg} 
-[::term::ansi::send::gron]{.cmd} 
-[::term::ansi::send::groff]{.cmd} 
-[::term::ansi::send::tlc]{.cmd} 
-[::term::ansi::send::trc]{.cmd} 
-[::term::ansi::send::brc]{.cmd} 
-[::term::ansi::send::blc]{.cmd} 
-[::term::ansi::send::ltj]{.cmd} 
-[::term::ansi::send::ttj]{.cmd} 
-[::term::ansi::send::rtj]{.cmd} 
-[::term::ansi::send::btj]{.cmd} 
-[::term::ansi::send::fwj]{.cmd} 
-[::term::ansi::send::hl]{.cmd} 
-[::term::ansi::send::vl]{.cmd} 
-[::term::ansi::send::groptim]{.cmd} [str]{.arg} 
-[::term::ansi::send::clear]{.cmd} 
-[::term::ansi::send::init]{.cmd} 
-[::term::ansi::send::showat]{.cmd} [row]{.arg} [col]{.arg} [text]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::ansi::send]{.lit} [0.2]{.optlit}
+[::term::ansi::send::import]{.cmd} [ns]{.optarg} [...]{.arg}
+[::term::ansi::send::eeol]{.cmd}
+[::term::ansi::send::esol]{.cmd}
+[::term::ansi::send::el]{.cmd}
+[::term::ansi::send::ed]{.cmd}
+[::term::ansi::send::eu]{.cmd}
+[::term::ansi::send::es]{.cmd}
+[::term::ansi::send::sd]{.cmd}
+[::term::ansi::send::su]{.cmd}
+[::term::ansi::send::ch]{.cmd}
+[::term::ansi::send::sc]{.cmd}
+[::term::ansi::send::rc]{.cmd}
+[::term::ansi::send::sca]{.cmd}
+[::term::ansi::send::rca]{.cmd}
+[::term::ansi::send::st]{.cmd}
+[::term::ansi::send::ct]{.cmd}
+[::term::ansi::send::cat]{.cmd}
+[::term::ansi::send::qdc]{.cmd}
+[::term::ansi::send::qds]{.cmd}
+[::term::ansi::send::qcp]{.cmd}
+[::term::ansi::send::rd]{.cmd}
+[::term::ansi::send::elw]{.cmd}
+[::term::ansi::send::dlw]{.cmd}
+[::term::ansi::send::eg]{.cmd}
+[::term::ansi::send::lg]{.cmd}
+[::term::ansi::send::scs0]{.cmd} [tag]{.arg}
+[::term::ansi::send::scs1]{.cmd} [tag]{.arg}
+[::term::ansi::send::sda]{.cmd} [arg...]{.arg}
+[::term::ansi::send::sda\_fgblack]{.cmd}
+[::term::ansi::send::sda\_fgred]{.cmd}
+[::term::ansi::send::sda\_fggreen]{.cmd}
+[::term::ansi::send::sda\_fgyellow]{.cmd}
+[::term::ansi::send::sda\_fgblue]{.cmd}
+[::term::ansi::send::sda\_fgmagenta]{.cmd}
+[::term::ansi::send::sda\_fgcyan]{.cmd}
+[::term::ansi::send::sda\_fgwhite]{.cmd}
+[::term::ansi::send::sda\_fgdefault]{.cmd}
+[::term::ansi::send::sda\_bgblack]{.cmd}
+[::term::ansi::send::sda\_bgred]{.cmd}
+[::term::ansi::send::sda\_bggreen]{.cmd}
+[::term::ansi::send::sda\_bgyellow]{.cmd}
+[::term::ansi::send::sda\_bgblue]{.cmd}
+[::term::ansi::send::sda\_bgmagenta]{.cmd}
+[::term::ansi::send::sda\_bgcyan]{.cmd}
+[::term::ansi::send::sda\_bgwhite]{.cmd}
+[::term::ansi::send::sda\_bgdefault]{.cmd}
+[::term::ansi::send::sda\_bold]{.cmd}
+[::term::ansi::send::sda\_dim]{.cmd}
+[::term::ansi::send::sda\_italic]{.cmd}
+[::term::ansi::send::sda\_underline]{.cmd}
+[::term::ansi::send::sda\_blink]{.cmd}
+[::term::ansi::send::sda\_revers]{.cmd}
+[::term::ansi::send::sda\_hidden]{.cmd}
+[::term::ansi::send::sda\_strike]{.cmd}
+[::term::ansi::send::sda\_nobold]{.cmd}
+[::term::ansi::send::sda\_noitalic]{.cmd}
+[::term::ansi::send::sda\_nounderline]{.cmd}
+[::term::ansi::send::sda\_noblink]{.cmd}
+[::term::ansi::send::sda\_norevers]{.cmd}
+[::term::ansi::send::sda\_nohidden]{.cmd}
+[::term::ansi::send::sda\_nostrike]{.cmd}
+[::term::ansi::send::sda\_reset]{.cmd}
+[::term::ansi::send::fcp]{.cmd} [row]{.arg} [col]{.arg}
+[::term::ansi::send::cu]{.cmd} [n]{.optarg}
+[::term::ansi::send::cd]{.cmd} [n]{.optarg}
+[::term::ansi::send::cf]{.cmd} [n]{.optarg}
+[::term::ansi::send::cb]{.cmd} [n]{.optarg}
+[::term::ansi::send::ss]{.cmd} [s e]{.optarg}
+[::term::ansi::send::skd]{.cmd} [code]{.arg} [str]{.arg}
+[::term::ansi::send::title]{.cmd} [str]{.arg}
+[::term::ansi::send::gron]{.cmd}
+[::term::ansi::send::groff]{.cmd}
+[::term::ansi::send::tlc]{.cmd}
+[::term::ansi::send::trc]{.cmd}
+[::term::ansi::send::brc]{.cmd}
+[::term::ansi::send::blc]{.cmd}
+[::term::ansi::send::ltj]{.cmd}
+[::term::ansi::send::ttj]{.cmd}
+[::term::ansi::send::rtj]{.cmd}
+[::term::ansi::send::btj]{.cmd}
+[::term::ansi::send::fwj]{.cmd}
+[::term::ansi::send::hl]{.cmd}
+[::term::ansi::send::vl]{.cmd}
+[::term::ansi::send::groptim]{.cmd} [str]{.arg}
+[::term::ansi::send::clear]{.cmd}
+[::term::ansi::send::init]{.cmd}
+[::term::ansi::send::showat]{.cmd} [row]{.arg} [col]{.arg} [text]{.arg}
 :::
 
 # Description
@@ -117,7 +118,9 @@ This package provides commands to send ANSI terminal control sequences to a term
 The commands are defined using the control sequences provided by the package **term::ansi::code::ctrl**. They have the same arguments as the commands they are based on, with the exception of the variant for sending to any channel. Their first argument is always a channel handle, then followed by the original arguments. Below we will list only the variant sending to *stdout*.
 
 **::term::ansi::send::import** ?*ns*? *...*
-: Imports the commands of this package into the namespace *ns*. If not specified it defaults to *send*. Note that this default is a relative namespace name, i.e. the actual namespace will be created under the current namespace. By default all commands will be imported, this can however be restricted to specific commands, by listing them after the namespace to import them into.
+: Imports the commands of this package into the namespace *ns*. If not specified it defaults to *send*. Note that this default is a relative namespace name, i.e. the actual namespace will be created under the current namespace.
+
+    By default all commands will be imported, this can however be restricted to specific commands, by listing them after the namespace to import them into.
 
 **::term::ansi::send::eeol**
 : Erase (to) End Of Line.
@@ -192,131 +195,134 @@ The commands are defined using the control sequences provided by the package **t
 : Exit Graphics Mode.
 
 **::term::ansi::send::scs0** *tag*
-: ...see next...
+: see below ...
 
 **::term::ansi::send::scs1** *tag*
-: Select Character Set. Choose which character set is used for default (scs0) and alternate font (scs1). This does not change whether default or alternate font are used, just their definitions. The legal tags, and their meanings, are:
+: Select Character Set.
 
+    Choose which character set is used for default (scs0) and alternate font (scs1). This does not change whether default or alternate font are used, just their definitions.
 
-**A**
-: United Kingdom Set
+    The legal tags, and their meanings, are:
 
-**B**
-: ASCII Set
+    A
+    : United Kingdom Set
 
-**0**
-: Special Graphics
+    B
+    : ASCII Set
 
-**1**
-: Alternate Character ROM Standard Character Set
+    0
+    : Special Graphics
 
-**2**
-: Alternate Character ROM Special Graphics
+    1
+    : Alternate Character ROM Standard Character Set
+
+    2
+    : Alternate Character ROM Special Graphics
 
 
 **::term::ansi::send::sda** *arg*...
 : Set Display Attributes. The arguments are the code sequences for the possible attributes, as provided by the package **term::ansi::code::attr**. For convenience this package also provides additional commands each setting a single specific attribute.
 
-**::term::ansi::send::sda_fgblack**
+**::term::ansi::send::sda\_fgblack**
 : Set text color to *Black*.
 
-**::term::ansi::send::sda_fgred**
+**::term::ansi::send::sda\_fgred**
 : Set text color to *Red*.
 
-**::term::ansi::send::sda_fggreen**
+**::term::ansi::send::sda\_fggreen**
 : Set text color to *Green*.
 
-**::term::ansi::send::sda_fgyellow**
+**::term::ansi::send::sda\_fgyellow**
 : Set text color to *Yellow*.
 
-**::term::ansi::send::sda_fgblue**
+**::term::ansi::send::sda\_fgblue**
 : Set text color to *Blue*.
 
-**::term::ansi::send::sda_fgmagenta**
+**::term::ansi::send::sda\_fgmagenta**
 : Set text color to *Magenta*.
 
-**::term::ansi::send::sda_fgcyan**
+**::term::ansi::send::sda\_fgcyan**
 : Set text color to *Cyan*.
 
-**::term::ansi::send::sda_fgwhite**
+**::term::ansi::send::sda\_fgwhite**
 : Set text color to *White*.
 
-**::term::ansi::send::sda_fgdefault**
+**::term::ansi::send::sda\_fgdefault**
 : Set default text color (*Black*).
 
-**::term::ansi::send::sda_bgblack**
+**::term::ansi::send::sda\_bgblack**
 : Set background to *Black*.
 
-**::term::ansi::send::sda_bgred**
+**::term::ansi::send::sda\_bgred**
 : Set background to *Red*.
 
-**::term::ansi::send::sda_bggreen**
+**::term::ansi::send::sda\_bggreen**
 : Set background to *Green*.
 
-**::term::ansi::send::sda_bgyellow**
+**::term::ansi::send::sda\_bgyellow**
 : Set background to *Yellow*.
 
-**::term::ansi::send::sda_bgblue**
+**::term::ansi::send::sda\_bgblue**
 : Set background to *Blue*.
 
-**::term::ansi::send::sda_bgmagenta**
+**::term::ansi::send::sda\_bgmagenta**
 : Set background to *Magenta*.
 
-**::term::ansi::send::sda_bgcyan**
+**::term::ansi::send::sda\_bgcyan**
 : Set background to *Cyan*.
 
-**::term::ansi::send::sda_bgwhite**
+**::term::ansi::send::sda\_bgwhite**
 : Set background to *White*.
 
-**::term::ansi::send::sda_bgdefault**
+**::term::ansi::send::sda\_bgdefault**
 : Set default background (Transparent).
 
-**::term::ansi::send::sda_bold**
+**::term::ansi::send::sda\_bold**
 : Bold on.
 
-**::term::ansi::send::sda_dim**
+**::term::ansi::send::sda\_dim**
 : Dim on.
 
-**::term::ansi::send::sda_italic**
+**::term::ansi::send::sda\_italic**
 : Italics on.
 
-**::term::ansi::send::sda_underline**
+**::term::ansi::send::sda\_underline**
 : Underscore on.
 
-**::term::ansi::send::sda_blink**
+**::term::ansi::send::sda\_blink**
 : Blink on.
 
-**::term::ansi::send::sda_revers**
+**::term::ansi::send::sda\_revers**
 : Reverse on.
 
-**::term::ansi::send::sda_hidden**
+**::term::ansi::send::sda\_hidden**
 : Hidden on.
 
-**::term::ansi::send::sda_strike**
+**::term::ansi::send::sda\_strike**
 : Strike-through on.
 
-**::term::ansi::send::sda_nobold**
+**::term::ansi::send::sda\_nobold**
 : Bold off.
 
-**::term::ansi::send::sda_noitalic**
+**::term::ansi::send::sda\_noitalic**
 : Italics off.
 
-**::term::ansi::send::sda_nounderline**
+**::term::ansi::send::sda\_nounderline**
 : Underscore off.
 
-**::term::ansi::send::sda_noblink**
+**::term::ansi::send::sda\_noblink**
 : Blink off.
 
-**::term::ansi::send::sda_norevers**
+**::term::ansi::send::sda\_norevers**
 : Reverse off.
 
-**::term::ansi::send::sda_nohidden**
+**::term::ansi::send::sda\_nohidden**
 : Hidden off.
 
-**::term::ansi::send::sda_nostrike**
+**::term::ansi::send::sda\_nostrike**
 : Strike-through off.
 
-**::term::ansi::send::sda_reset**
+**::term::ansi::send::sda\_reset**
 : Reset all attributes to their default values.
 
 **::term::ansi::send::fcp** *row* *col*

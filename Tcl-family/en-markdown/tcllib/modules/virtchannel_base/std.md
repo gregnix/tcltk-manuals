@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::std
+title: tcl::chan::std
 ManualSection: n
 Version: 1.2
 TclPart: tcllib
@@ -22,11 +23,11 @@ tcl::chan::std - Standard I/O, unification of stdin and stdout
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::std]{.lit} [1.2]{.optlit} 
-[::tcl::chan::std]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::std]{.lit} [1.2]{.optlit}
+[::tcl::chan::std]{.cmd}
 :::
 
 # Description
@@ -35,10 +36,12 @@ The **tcl::chan::std** package provides a command creating a standard channel wh
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::core** framework.
 
-# Api
+# API
 
 **::tcl::chan::std**
-: This command creates the std channel and returns its handle. The channel is created only once, on the first call, and all future calls simply return this handle.
+: This command creates the std channel and returns its handle.
+
+    The channel is created only once, on the first call, and all future calls simply return this handle.
 
 
 # Bugs, ideas, feedback

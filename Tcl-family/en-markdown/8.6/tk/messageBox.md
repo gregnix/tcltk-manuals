@@ -1,5 +1,6 @@
 ---
 CommandName: tk_messageBox
+title: tk_messageBox
 ManualSection: n
 Version: 4.2
 TclPart: Tk
@@ -12,17 +13,17 @@ Copyright:
 
 # Name
 
-tk_messageBox - pops up a message window and waits for user response.
+tk\_messageBox - pops up a message window and waits for user response.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[tk_messageBox]{.cmd} [option value]{.optdot} 
+[tk\_messageBox]{.cmd} [option value]{.optdot}
 :::
 
 # Description
 
-This procedure creates and displays a message window with an application-specified message, an icon and a set of buttons.  Each of the buttons in the message window is identified by a unique symbolic name (see the **-type** options).  After the message window is popped up, **tk_messageBox** waits for the user to select one of the buttons. Then it returns the symbolic name of the selected button.
+This procedure creates and displays a message window with an application-specified message, an icon and a set of buttons.  Each of the buttons in the message window is identified by a unique symbolic name (see the **-type** options).  After the message window is popped up, **tk\_messageBox** waits for the user to select one of the buttons. Then it returns the symbolic name of the selected button.
 
 The following option-value pairs are supported:
 
@@ -50,24 +51,24 @@ The following option-value pairs are supported:
 **-type** *predefinedType*
 : Arranges for a predefined set of buttons to be displayed. The following values are possible for *predefinedType*:
 
+    **abortretryignore**
+    : Displays three buttons whose symbolic names are **abort**, **retry** and **ignore**.
 
-**abortretryignore**
-: Displays three buttons whose symbolic names are **abort**, **retry** and **ignore**.
+    **ok**
+    : Displays one button whose symbolic name is **ok**. This is the default.
 
-**ok**
-: Displays one button whose symbolic name is **ok**. This is the default.
+    **okcancel**
+    : Displays two buttons whose symbolic names are **ok** and **cancel**.
 
-**okcancel**
-: Displays two buttons whose symbolic names are **ok** and **cancel**.
+    **retrycancel**
+    : Displays two buttons whose symbolic names are **retry** and **cancel**.
 
-**retrycancel**
-: Displays two buttons whose symbolic names are **retry** and **cancel**.
+    **yesno**
+    : Displays two buttons whose symbolic names are **yes** and **no**.
 
-**yesno**
-: Displays two buttons whose symbolic names are **yes** and **no**.
+    **yesnocancel**
+    : Displays three buttons whose symbolic names are **yes**, **no** and **cancel**.
 
-**yesnocancel**
-: Displays three buttons whose symbolic names are **yes**, **no** and **cancel**.
 
 
 # Example

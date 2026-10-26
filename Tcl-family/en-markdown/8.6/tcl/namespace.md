@@ -1,5 +1,6 @@
 ---
 CommandName: namespace
+title: namespace
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -28,18 +29,18 @@ namespace - create and manipulate contexts for commands and variables
 # Synopsis
 
 ::: {.synopsis} :::
-[namespace]{.cmd} [subcommand]{.arg} [arg]{.optdot} 
+[namespace]{.cmd} [subcommand]{.arg} [arg]{.optdot}
 :::
 
 # Description
 
-The **namespace** command lets you create, access, and destroy separate contexts for commands and variables. See the section **WHAT IS A NAMESPACE?** below for a brief overview of namespaces. The legal values of *subcommand* are listed below. Note that you can abbreviate the *subcommand*s.
+The **namespace** command lets you create, access, and destroy separate contexts for commands and variables. See the section [What is a namespace?] below for a brief overview of namespaces. The legal values of *subcommand* are listed below. Note that you can abbreviate the *subcommand*s.
 
 **namespace children** ?*namespace*? ?*pattern*?
 : Returns a list of all child namespaces that belong to the namespace *namespace*. If *namespace* is not specified, then the children are returned for the current namespace. This command returns fully-qualified names, which start with a double colon (**::**). If the optional *pattern* is given, then this command returns only the names that match the glob-style pattern. The actual pattern used is determined as follows: a pattern that starts with double colon (**::**) is used directly, otherwise the namespace *namespace* (or the fully-qualified name of the current namespace) is prepended onto the pattern.
 
 **namespace code** *script*
-: Captures the current namespace context for later execution of the script *script*. It returns a new script in which *script* has been wrapped in a **namespace inscope** command. The new script has two important properties. First, it can be evaluated in any namespace and will cause *script* to be evaluated in the current namespace (the one where the **namespace code** command was invoked). Second, additional arguments can be appended to the resulting script and they will be passed to *script* as additional arguments. For example, suppose the command **set script \[namespace code {foo bar}\]** is invoked in namespace **::a::b**. Then **eval \$script \[list x y\]** can be executed in any namespace (assuming the value of **script** has been passed in properly) and will have the same effect as the command **::namespace eval ::a::b {foo bar x y}**. This command is needed because extensions like Tk normally execute callback scripts in the global namespace. A scoped command captures a command together with its namespace context in a way that allows it to be executed properly later. See the section **SCOPED SCRIPTS** for some examples of how this is used to create callback scripts.
+: Captures the current namespace context for later execution of the script *script*. It returns a new script in which *script* has been wrapped in a **namespace inscope** command. The new script has two important properties. First, it can be evaluated in any namespace and will cause *script* to be evaluated in the current namespace (the one where the **namespace code** command was invoked). Second, additional arguments can be appended to the resulting script and they will be passed to *script* as additional arguments. For example, suppose the command **set script \[namespace code {foo bar}\]** is invoked in namespace **::a::b**. Then **eval $script \[list x y\]** can be executed in any namespace (assuming the value of **script** has been passed in properly) and will have the same effect as the command **::namespace eval ::a::b {foo bar x y}**. This command is needed because extensions like Tk normally execute callback scripts in the global namespace. A scoped command captures a command together with its namespace context in a way that allows it to be executed properly later. See the section [Scoped scripts] for some examples of how this is used to create callback scripts.
 
 **namespace current**
 : Returns the fully-qualified name for the current namespace. The actual name of the global namespace is "" (i.e., an empty string), but this command returns **::** for the global namespace as a convenience to programmers.
@@ -48,13 +49,12 @@ The **namespace** command lets you create, access, and destroy separate contexts
 : Each namespace *namespace* is deleted and all variables, procedures, and child namespaces contained in the namespace are deleted. If a procedure is currently executing inside the namespace, the namespace will be kept alive until the procedure returns; however, the namespace is marked to prevent other code from looking it up by name. If a namespace does not exist, this command returns an error. If no namespace names are given, this command does nothing.
 
 **namespace ensemble** *subcommand* ?*arg ...*?
-: Creates and manipulates a command that is formed out of an ensemble of subcommands.  See the section **ENSEMBLES** below for further details.
+: Creates and manipulates a command that is formed out of an ensemble of subcommands.  See the section [Ensembles] below for further details.
 
 **namespace eval** *namespace arg* ?*arg ...*?
-: Activates a namespace called *namespace* and evaluates some code in that context. If the namespace does not already exist, it is created. If more than one *arg* argument is specified, the arguments are concatenated together with a space between each one in the same fashion as the **eval** command, and the result is evaluated.
+: Activates a namespace called *namespace* and evaluates some code in that context. If the namespace does not already exist, it is created. If more than one *arg* argument is specified, the arguments are concatenated together with a space between each one in the same fashion as the [eval] command, and the result is evaluated.
 
-
-If *namespace* has leading namespace qualifiers and any leading namespaces do not exist, they are automatically created.
+    If *namespace* has leading namespace qualifiers and any leading namespaces do not exist, they are automatically created.
 
 **namespace exists** *namespace*
 : Returns **1** if *namespace* is a valid namespace in the current context, returns **0** otherwise.
@@ -66,28 +66,26 @@ If *namespace* has leading namespace qualifiers and any leading namespaces do no
 : Removes previously imported commands from a namespace. Each *pattern* is a simple or qualified name such as **x**, **foo::x** or **a::b::p\***. Qualified names contain double colons (**::**) and qualify a name with the name of one or more namespaces. Each "qualified pattern" is qualified with the name of an exporting namespace and may have glob-style special characters in the command name at the end of the qualified name. Glob characters may not appear in a namespace name. For each "simple pattern" this command deletes the matching commands of the current namespace that were imported from a different namespace. For "qualified patterns", this command first finds the matching exported commands. It then checks whether any of those commands were previously imported by the current namespace. If so, this command deletes the corresponding imported commands. In effect, this undoes the action of a **namespace import** command.
 
 **namespace import** ?**-force**? ?*pattern* *pattern ...*?
-: Imports commands into a namespace, or queries the set of imported commands in a namespace.  When no arguments are present, **namespace import** returns the list of commands in the current namespace that have been imported from other namespaces.  The commands in the returned list are in the format of simple names, with no namespace qualifiers at all. This format is suitable for composition with **namespace forget** (see **EXAMPLES** below).
+: Imports commands into a namespace, or queries the set of imported commands in a namespace.  When no arguments are present, **namespace import** returns the list of commands in the current namespace that have been imported from other namespaces.  The commands in the returned list are in the format of simple names, with no namespace qualifiers at all. This format is suitable for composition with **namespace forget** (see [Examples] below).
 
+    When *pattern* arguments are present, each *pattern* is a qualified name like **foo::x** or **a::p\***. That is, it includes the name of an exporting namespace and may have glob-style special characters in the command name at the end of the qualified name. Glob characters may not appear in a namespace name. When the namespace name is not fully qualified (i.e., does not start with a namespace separator) it is resolved as a namespace name in the way described in the [Name resolution] section; it is an error if no namespace with that name can be found.
 
-When *pattern* arguments are present, each *pattern* is a qualified name like **foo::x** or **a::p\***. That is, it includes the name of an exporting namespace and may have glob-style special characters in the command name at the end of the qualified name. Glob characters may not appear in a namespace name. When the namespace name is not fully qualified (i.e., does not start with a namespace separator) it is resolved as a namespace name in the way described in the **NAME RESOLUTION** section; it is an error if no namespace with that name can be found.
-
-All the commands that match a *pattern* string and which are currently exported from their namespace are added to the current namespace. This is done by creating a new command in the current namespace that points to the exported command in its original namespace; when the new imported command is called, it invokes the exported command. This command normally returns an error if an imported command conflicts with an existing command. However, if the **-force** option is given, imported commands will silently replace existing commands. The **namespace import** command has snapshot semantics: that is, only requested commands that are currently defined in the exporting namespace are imported. In other words, you can import only the commands that are in a namespace at the time when the **namespace import** command is executed. If another command is defined and exported in this namespace later on, it will not be imported.
+    All the commands that match a *pattern* string and which are currently exported from their namespace are added to the current namespace. This is done by creating a new command in the current namespace that points to the exported command in its original namespace; when the new imported command is called, it invokes the exported command. This command normally returns an error if an imported command conflicts with an existing command. However, if the **-force** option is given, imported commands will silently replace existing commands. The **namespace import** command has snapshot semantics: that is, only requested commands that are currently defined in the exporting namespace are imported. In other words, you can import only the commands that are in a namespace at the time when the **namespace import** command is executed. If another command is defined and exported in this namespace later on, it will not be imported.
 
 **namespace inscope** *namespace* *script* ?*arg ...*?
 : Executes a script in the context of the specified *namespace*. This command is not expected to be used directly by programmers; calls to it are generated implicitly when applications use **namespace code** commands to create callback scripts that the applications then register with, e.g., Tk widgets. The **namespace inscope** command is much like the **namespace eval** command except that the *namespace* must already exist, and **namespace inscope** appends additional *arg*s as proper list elements.
 
+    ```
+    namespace inscope ::foo $script $x $y $z
+    ```
 
-```
-namespace inscope ::foo $script $x $y $z
-```
+    is equivalent to
 
-is equivalent to
+    ```
+    namespace eval ::foo [concat $script [list $x $y $z]]
+    ```
 
-```
-namespace eval ::foo [concat $script [list $x $y $z]]
-```
-
-thus additional arguments will not undergo a second round of substitution, as is the case with **namespace eval**.
+    thus additional arguments will not undergo a second round of substitution, as is the case with **namespace eval**.
 
 **namespace origin** *command*
 : Returns the fully-qualified name of the original command to which the imported command *command* refers. When a command is imported into a namespace, a new command is created in that namespace that points to the actual command in the exporting namespace. If a command is imported into a sequence of namespaces *a, b,...,n* where each successive namespace just imports the command from the previous namespace, this command returns the fully-qualified name of the original command in the first namespace, *a*. If *command* does not refer to an imported command, the command's own fully-qualified name is returned.
@@ -96,7 +94,7 @@ thus additional arguments will not undergo a second round of substitution, as is
 : Returns the fully-qualified name of the parent namespace for namespace *namespace*. If *namespace* is not specified, the fully-qualified name of the current namespace's parent is returned.
 
 **namespace path** ?*namespaceList*?
-: Returns the command resolution path of the current namespace. If *namespaceList* is specified as a list of named namespaces, the current namespace's command resolution path is set to those namespaces and returns the empty list. The default command resolution path is always empty. See the section **NAME RESOLUTION** below for an explanation of the rules regarding name resolution.
+: Returns the command resolution path of the current namespace. If *namespaceList* is specified as a list of named namespaces, the current namespace's command resolution path is set to those namespaces and returns the empty list. The default command resolution path is always empty. See the section [Name resolution] below for an explanation of the rules regarding name resolution.
 
 **namespace qualifiers** *string*
 : Returns any leading namespace qualifiers for *string*. Qualifiers are namespace names separated by double colons (**::**). For the *string* **::foo::bar::x**, this command returns **::foo::bar**, and for **::** it returns an empty string. This command is the complement of the **namespace tail** command. Note that it does not check whether the namespace names are, in fact, the names of currently defined namespaces.
@@ -105,13 +103,13 @@ thus additional arguments will not undergo a second round of substitution, as is
 : Returns the simple name at the end of a qualified string. Qualifiers are namespace names separated by double colons (**::**). For the *string* **::foo::bar::x**, this command returns **x**, and for **::** it returns an empty string. This command is the complement of the **namespace qualifiers** command. It does not check whether the namespace names are, in fact, the names of currently defined namespaces.
 
 **namespace upvar** *namespace* ?*otherVar myVar* ...?
-: This command arranges for zero or more local variables in the current procedure to refer to variables in *namespace*. The namespace name is resolved as described in section **NAME RESOLUTION**. The command **namespace upvar \$ns a b** has the same behaviour as **upvar 0 \${ns}::a b**, with the sole exception of the resolution rules used for qualified namespace or variable names. **namespace upvar** returns an empty string.
+: This command arranges for zero or more local variables in the current procedure to refer to variables in *namespace*. The namespace name is resolved as described in section [Name resolution]. The command **namespace upvar $ns a b** has the same behaviour as **upvar 0 ${ns}::a b**, with the sole exception of the resolution rules used for qualified namespace or variable names. **namespace upvar** returns an empty string.
 
 **namespace unknown** ?*script*?
 : Sets or returns the unknown command handler for the current namespace. The handler is invoked when a command called from within the namespace cannot be found in the current namespace, the namespace's path nor in the global namespace. The *script* argument, if given, should be a well formed list representing a command name and optional arguments. When the handler is invoked, the full invocation line will be appended to the script and the result evaluated in the context of the namespace. The default handler for all namespaces is **::unknown**. If no argument is given, it returns the handler for the current namespace.
 
 **namespace which** ?**-command**? ?**-variable**? *name*
-: Looks up *name* as either a command or variable and returns its fully-qualified name. For example, if *name* does not exist in the current namespace but does exist in the global namespace, this command returns a fully-qualified name in the global namespace. If the command or variable does not exist, this command returns an empty string.  If the variable has been created but not defined, such as with the **variable** command or through a **trace** on the variable, this command will return the fully-qualified name of the variable. If no flag is given, *name* is treated as a command name. See the section **NAME RESOLUTION** below for an explanation of the rules regarding name resolution.
+: Looks up *name* as either a command or variable and returns its fully-qualified name. For example, if *name* does not exist in the current namespace but does exist in the global namespace, this command returns a fully-qualified name in the global namespace. If the command or variable does not exist, this command returns an empty string.  If the variable has been created but not defined, such as with the [variable] command or through a [trace] on the variable, this command will return the fully-qualified name of the variable. If no flag is given, *name* is treated as a command name. See the section [Name resolution] below for an explanation of the rules regarding name resolution.
 
 
 # What is a namespace?
@@ -132,7 +130,7 @@ namespace eval Counter {
 
 creates a new namespace containing the variable **num** and the procedure **bump**. The commands and variables in this namespace are separate from other commands and variables in the same program. If there is a command named **bump** in the global namespace, for example, it will be different from the command **bump** in the **Counter** namespace.
 
-Namespace variables resemble global variables in Tcl. They exist outside of the procedures in a namespace but can be accessed in a procedure via the **variable** command, as shown in the example above.
+Namespace variables resemble global variables in Tcl. They exist outside of the procedures in a namespace but can be accessed in a procedure via the [variable] command, as shown in the example above.
 
 Namespaces are dynamic. You can add and delete commands and variables at any time, so you can build up the contents of a namespace over time using a series of **namespace eval** commands. For example, the following series of commands has the same effect as the namespace definition shown above:
 
@@ -154,13 +152,13 @@ namespace eval Counter {
 }
 ```
 
-Note that the **test** procedure is added to the **Counter** namespace, and later removed via the **rename** command.
+Note that the **test** procedure is added to the **Counter** namespace, and later removed via the [rename] command.
 
 Namespaces can have other namespaces within them, so they nest hierarchically. A nested namespace is encapsulated inside its parent namespace and can not interfere with other namespaces.
 
 # Qualified names
 
-Each namespace has a textual name such as **history** or **::safe::interp**. Since namespaces may nest, qualified names are used to refer to commands, variables, and child namespaces contained inside namespaces. Qualified names are similar to the hierarchical path names for Unix files or Tk widgets, except that **::** is used as the separator instead of **/** or **.**. The topmost or global namespace has the name "" (i.e., an empty string), although **::** is a synonym. As an example, the name **::safe::interp::create** refers to the command **create** in the namespace **interp** that is a child of namespace **::safe**, which in turn is a child of the global namespace, **::**.
+Each namespace has a textual name such as [history] or **::safe::interp**. Since namespaces may nest, qualified names are used to refer to commands, variables, and child namespaces contained inside namespaces. Qualified names are similar to the hierarchical path names for Unix files or Tk widgets, except that **::** is used as the separator instead of **/** or **.**. The topmost or global namespace has the name "" (i.e., an empty string), although **::** is a synonym. As an example, the name **::safe::interp::create** refers to the command **create** in the namespace [interp] that is a child of namespace **::safe**, which in turn is a child of the global namespace, **::**.
 
 If you want to access commands and variables from another namespace, you must use some extra syntax. Names must be qualified by the namespace that contains them. From the global namespace, we might access the **Counter** procedures like this:
 
@@ -197,17 +195,16 @@ There are a few remaining points about qualified names that we should cover. Nam
 
 # Name resolution
 
-In general, all Tcl commands that take variable and command names support qualified names. This means you can give qualified names to such commands as **set**, **proc**, **rename**, and **interp alias**. If you provide a fully-qualified name that starts with a **::**, there is no question about what command, variable, or namespace you mean. However, if the name does not start with a **::** (i.e., is *relative*), Tcl follows basic rules for looking it up:
+In general, all Tcl commands that take variable and command names support qualified names. This means you can give qualified names to such commands as [set], [proc], [rename], and [interp alias][interp]. If you provide a fully-qualified name that starts with a **::**, there is no question about what command, variable, or namespace you mean. However, if the name does not start with a **::** (i.e., is *relative*), Tcl follows basic rules for looking it up:
 
-**•**
-: **Variable names** are always resolved by looking first in the current namespace, and then in the global namespace.
+- **Variable names** are always resolved by looking first in the current namespace, and then in the global namespace.
 
-**•**
-: **Command names** are always resolved by looking in the current namespace first. If not found there, they are searched for in every namespace on the current namespace's command path (which is empty by default). If not found there, command names are looked up in the global namespace (or, failing that, are processed by the appropriate **namespace unknown** handler.)
+- **Command names** are always resolved by looking in the current namespace first. If not found there, they are searched for in every namespace on the current namespace's command path (which is empty by default). If not found there, command names are looked up in the global namespace (or, failing that, are processed by the appropriate **namespace unknown** handler.)
 
-**•**
-: **Namespace names** are always resolved by looking in only the current namespace. In the following example,
+- **Namespace names** are always resolved by looking in only the current namespace.
 
+
+In the following example,
 
 ```
 set traceLevel 0
@@ -249,7 +246,7 @@ As mentioned above, namespace names are looked up differently than the names of 
 
 Tcl has no access control to limit what variables, commands, or namespaces you can reference. If you provide a qualified name that resolves to an element by the name resolution rule above, you can access the element.
 
-You can access a namespace variable from a procedure in the same namespace by using the **variable** command. Much like the **global** command, this creates a local link to the namespace variable. If necessary, it also creates the variable in the current namespace and initializes it. Note that the **global** command only creates links to variables in the global namespace. It is not necessary to use a **variable** command if you always refer to the namespace variable using an appropriate qualified name.
+You can access a namespace variable from a procedure in the same namespace by using the [variable] command. Much like the [global] command, this creates a local link to the namespace variable. If necessary, it also creates the variable in the current namespace and initializes it. Note that the [global] command only creates links to variables in the global namespace. It is not necessary to use a [variable] command if you always refer to the namespace variable using an appropriate qualified name.
 
 # Importing commands
 
@@ -347,7 +344,7 @@ The **namespace import** command only imports commands that were declared as exp
 
 # Scoped scripts
 
-The **namespace code** command is the means by which a script may be packaged for evaluation in a namespace other than the one in which it was created.  It is used most often to create event handlers, Tk bindings, and traces for evaluation in the global context.  For instance, the following code indicates how to direct a variable **trace** callback into the current namespace:
+The **namespace code** command is the means by which a script may be packaged for evaluation in a namespace other than the one in which it was created.  It is used most often to create event handlers, Tk bindings, and traces for evaluation in the global context.  For instance, the following code indicates how to direct a variable [trace] callback into the current namespace:
 
 ```
 namespace eval a {
@@ -375,24 +372,26 @@ The **namespace ensemble** is used to create and manipulate ensemble commands, w
 Three subcommands of the **namespace ensemble** command are defined:
 
 **namespace ensemble create** ?*option value ...*?
-: Creates a new ensemble command linked to the current namespace, returning the fully qualified name of the command created.  The arguments to **namespace ensemble create** allow the configuration of the command as if with the **namespace ensemble configure** command.  If not overridden with the **-command** option, this command creates an ensemble with exactly the same name as the linked namespace.  See the section **ENSEMBLE OPTIONS** below for a full list of options supported and their effects.
+: Creates a new ensemble command linked to the current namespace, returning the fully qualified name of the command created.  The arguments to **namespace ensemble create** allow the configuration of the command as if with the **namespace ensemble configure** command.  If not overridden with the **-command** option, this command creates an ensemble with exactly the same name as the linked namespace.  See the section [Ensemble options] below for a full list of options supported and their effects.
 
 **namespace ensemble configure** *command* ?*option*? ?*value ...*?
-: Retrieves the value of an option associated with the ensemble command named *command*, or updates some options associated with that ensemble command.  See the section **ENSEMBLE OPTIONS** below for a full list of options supported and their effects.
+: Retrieves the value of an option associated with the ensemble command named *command*, or updates some options associated with that ensemble command.  See the section [Ensemble options] below for a full list of options supported and their effects.
 
 **namespace ensemble exists** *command*
-: Returns a boolean value that describes whether the command *command* exists and is an ensemble command.  This command only ever returns an error if the number of arguments to the command is wrong. When called, an ensemble command takes its first argument and looks it up (according to the rules described below) to discover a list of words to replace the ensemble command and subcommand with.  The resulting list of words is then evaluated (with no further substitutions) as if that was what was typed originally (i.e. by passing the list of words through **Tcl_EvalObjv**) and returning the result of the command.  Note that it is legal to make the target of an ensemble rewrite be another (or even the same) ensemble command.  The ensemble command will not be visible through the use of the **uplevel** or **info level** commands.
+: Returns a boolean value that describes whether the command *command* exists and is an ensemble command.  This command only ever returns an error if the number of arguments to the command is wrong.
 
+
+When called, an ensemble command takes its first argument and looks it up (according to the rules described below) to discover a list of words to replace the ensemble command and subcommand with.  The resulting list of words is then evaluated (with no further substitutions) as if that was what was typed originally (i.e. by passing the list of words through [Tcl\_EvalObjv][Eval]) and returning the result of the command.  Note that it is legal to make the target of an ensemble rewrite be another (or even the same) ensemble command.  The ensemble command will not be visible through the use of the [uplevel] or [info level][info] commands.
 
 ## Ensemble options
 
 The following options, supported by the **namespace ensemble create** and **namespace ensemble configure** commands, control how an ensemble command behaves:
 
 **-map**
-: When non-empty, this option supplies a dictionary that provides a mapping from subcommand names to a list of prefix words to substitute in place of the ensemble command and subcommand words (in a manner similar to an alias created with **interp alias**; the words are not reparsed after substitution); if the first word of any target is not fully qualified when set, it is assumed to be relative to the *current* namespace and changed to be exactly that (that is, it is always fully qualified when read). When this option is empty, the mapping will be from the local name of the subcommand to its fully-qualified name.  Note that when this option is non-empty and the **-subcommands** option is empty, the ensemble subcommand names will be exactly those words that have mappings in the dictionary.
+: When non-empty, this option supplies a dictionary that provides a mapping from subcommand names to a list of prefix words to substitute in place of the ensemble command and subcommand words (in a manner similar to an alias created with [interp alias][interp]; the words are not reparsed after substitution); if the first word of any target is not fully qualified when set, it is assumed to be relative to the *current* namespace and changed to be exactly that (that is, it is always fully qualified when read). When this option is empty, the mapping will be from the local name of the subcommand to its fully-qualified name.  Note that when this option is non-empty and the **-subcommands** option is empty, the ensemble subcommand names will be exactly those words that have mappings in the dictionary.
 
 **-parameters**
-: This option gives a list of named arguments (the names being used during generation of error messages) that are passed by the caller of the ensemble between the name of the ensemble and the subcommand argument. By default, it is the empty list.
+: [This option gives a list of named arguments (the names being used during generation of error messages) that are passed by the caller of the ensemble between the name of the ensemble and the subcommand argument. By default, it is the empty list.]{version="8.6"}
 
 **-prefixes**
 : This option (which is enabled by default) controls whether the ensemble command recognizes unambiguous prefixes of its subcommands. When turned off, the ensemble command requires exact matching of subcommand names.
@@ -401,10 +400,16 @@ The following options, supported by the **namespace ensemble create** and **name
 : When non-empty, this option lists exactly what subcommands are in the ensemble.  The mapping for each of those commands will be either whatever is defined in the **-map** option, or to the command with the same name in the namespace linked to the ensemble.  If this option is empty, the subcommands of the namespace will either be the keys of the dictionary listed in the **-map** option or the exported commands of the linked namespace at the time of the invocation of the ensemble command.
 
 **-unknown**
-: When non-empty, this option provides a partial command (to which all the words that are arguments to the ensemble command, including the fully-qualified name of the ensemble, are appended) to handle the case where an ensemble subcommand is not recognized and would otherwise generate an error.  When empty (the default) an error (in the style of **Tcl_GetIndexFromObj**) is generated whenever the ensemble is unable to determine how to implement a particular subcommand.  See **UNKNOWN HANDLER BEHAVIOUR** for more details. The following extra option is allowed by **namespace ensemble create**:
+: When non-empty, this option provides a partial command (to which all the words that are arguments to the ensemble command, including the fully-qualified name of the ensemble, are appended) to handle the case where an ensemble subcommand is not recognized and would otherwise generate an error.  When empty (the default) an error (in the style of [Tcl\_GetIndexFromObj][GetIndex]) is generated whenever the ensemble is unable to determine how to implement a particular subcommand.  See [Unknown handler behaviour] for more details.
+
+
+The following extra option is allowed by **namespace ensemble create**:
 
 **-command**
-: This write-only option allows the name of the ensemble created by **namespace ensemble create** to be anything in any existing namespace.  The default value for this option is the fully-qualified name of the namespace in which the **namespace ensemble create** command is invoked. The following extra option is allowed by **namespace ensemble configure**:
+: This write-only option allows the name of the ensemble created by **namespace ensemble create** to be anything in any existing namespace.  The default value for this option is the fully-qualified name of the namespace in which the **namespace ensemble create** command is invoked.
+
+
+The following extra option is allowed by **namespace ensemble configure**:
 
 **-namespace**
 : This read-only option allows the retrieval of the fully-qualified name of the namespace which the ensemble was created within.
@@ -420,7 +425,7 @@ The result of the unknown handler is expected to be a list (it is an error if it
 
 When the result is a non-empty list, the words of that list are used to replace the ensemble command and subcommand, just as if they had been looked up in the **-map**. It is up to the unknown handler to supply all namespace qualifiers if the implementing subcommand is not in the namespace of the caller of the ensemble command. Also note that when ensemble commands are chained (e.g. if you make one of the commands that implement an ensemble subcommand into an ensemble, in a manner similar to the **text** widget's tag and mark subcommands) then the rewrite happens in the context of the caller of the outermost ensemble. That is to say that ensembles do not in themselves place any namespace contexts on the Tcl call stack.
 
-Where an empty **-unknown** handler is given (the default), the ensemble command will generate an error message based on the list of commands that the ensemble has defined (formatted similarly to the error message from **Tcl_GetIndexFromObj**). This is the error that will be thrown when the subcommand is still not recognized during reparsing. It is also an error for an **-unknown** handler to delete its namespace.
+Where an empty **-unknown** handler is given (the default), the ensemble command will generate an error message based on the list of commands that the ensemble has defined (formatted similarly to the error message from [Tcl\_GetIndexFromObj][GetIndex]). This is the error that will be thrown when the subcommand is still not recognized during reparsing. It is also an error for an **-unknown** handler to delete its namespace.
 
 # Examples
 
@@ -475,9 +480,7 @@ Remove all imported commands from the current namespace:
 namespace forget {*}[namespace import]
 ```
 
-::: {.info -version="8.6"}
-Create an ensemble for simple working with numbers, using the **-parameters** option to allow the operator to be put between the first and second arguments.
-:::
+[Create an ensemble for simple working with numbers, using the **-parameters** option to allow the operator to be put between the first and second arguments.]{version="8.6"}
 
 ```
 namespace eval do {
@@ -490,3 +493,18 @@ namespace eval do {
 # In use, the ensemble works like this:
 puts [do 1 plus [do 9 minus 7]]
 ```
+
+
+[Eval]: ../tcl-c/Eval.md
+[eval]: eval.md
+[GetIndex]: ../tcl-c/GetIndex.md
+[global]: global.md
+[history]: history.md
+[info]: info.md
+[interp]: interp.md
+[proc]: proc.md
+[rename]: rename.md
+[set]: set.md
+[trace]: trace.md
+[uplevel]: uplevel.md
+[variable]: variable.md

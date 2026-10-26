@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::facade
+title: tcl::chan::facade
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -20,12 +21,12 @@ tcl::chan::facade - Facade channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::facade]{.lit} [1.1]{.optlit} 
-[::tcl::chan::facade]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::facade]{.lit} [1.1]{.optlit}
+[::tcl::chan::facade]{.cmd} [chan]{.arg}
 :::
 
 # Description
@@ -53,10 +54,12 @@ Beyond that facades provide the following additional channel configuration optio
 : The time the facade was created, as per **clock milliseconds**.
 
 **-user**
-: A free-form value identifying the user of the facade and its wrapped channel. Of these only option **-user** is writable.
+: A free-form value identifying the user of the facade and its wrapped channel.
 
 
-# Api
+Of these only option **-user** is writable.
+
+# API
 
 **::tcl::chan::facade** *chan*
 : This command creates the facade channel around the provided channel *chan*, and returns its handle.

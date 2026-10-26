@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::msgcat
+title: doctools::msgcat
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -26,10 +27,10 @@ doctools::msgcat - Message catalog management for the various document parsers
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [msgcat]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::msgcat]{.lit} [0.2]{.optlit} 
-[::doctools::msgcat::init]{.cmd} [prefix]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [msgcat]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::msgcat]{.lit} [0.2]{.optlit}
+[::doctools::msgcat::init]{.cmd} [prefix]{.arg}
 :::
 
 # Description
@@ -38,20 +39,21 @@ The package **doctools::msgcat** is a support module handling the selection of m
 
 If you are such please go the documentation of either
 
-**\[1\]**
-: **doctools::doc**,
+1. **doctools::doc**,
 
-**\[2\]**
-: **doctools::toc**, or
+2. **doctools::toc**, or
 
-**\[3\]**
-: **doctools::idx** Within the system architecture this package resides under the various parser packages, and is shared by them. Underneath it, but not explicit dependencies, are the packages providing the message catalogs for the various languages.
+3. **doctools::idx**
 
 
-# Api
+Within the system architecture this package resides under the various parser packages, and is shared by them. Underneath it, but not explicit dependencies, are the packages providing the message catalogs for the various languages.
+
+# API
 
 **::doctools::msgcat::init** *prefix*
-: The command locates and loads the message catalogs for all the languages returned by **msgcat::mcpreferences**, provided that they could be found. It returns an integer number describing how many packages were found and loaded. The names of the packages the command will look for have the form "doctools::msgcat::*prefix*::**langcode**", with *prefix* the argument to the command, and the **langcode** supplied by the result of **msgcat::mcpreferences**.
+: The command locates and loads the message catalogs for all the languages returned by **msgcat::mcpreferences**, provided that they could be found. It returns an integer number describing how many packages were found and loaded.
+
+    The names of the packages the command will look for have the form "doctools::msgcat::*prefix*::**langcode**", with *prefix* the argument to the command, and the **langcode** supplied by the result of **msgcat::mcpreferences**.
 
 
 # Bugs, ideas, feedback

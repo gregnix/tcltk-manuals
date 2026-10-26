@@ -1,5 +1,6 @@
 ---
 CommandName: sum
+title: sum
 ManualSection: n
 Version: 1.1.3
 TclPart: tcllib
@@ -21,34 +22,34 @@ Copyright:
  - Copyright (c) 2002, Pat Thoyts <patthoyts@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 sum – Berechnung einer „sum(1)“-kompatiblen Prüfsumme
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [sum]{.lit} [1.1.3]{.optlit} 
-[::crc::sum]{.cmd} [-bsd | -sysv]{.optarg} [-format fmt]{.optarg} [-chunksize size]{.optarg} \[ [-filename]{.arg} [file]{.arg} | [-channel]{.arg} [chan]{.arg} | [string]{.arg} \] 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [sum]{.lit} [1.1.3]{.optlit}
+[::crc::sum]{.cmd} [-bsd | -sysv]{.optarg} [-format fmt]{.optarg} [-chunksize size]{.optarg} \[ [-filename]{.arg} [file]{.arg} | [-channel]{.arg} [chan]{.arg} | [string]{.arg} \]
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält eine ausschließlich in Tcl geschriebene Implementierung des Befehls „sum(1)“, der aus den Eingabedaten einen 16-Bit-Prüfsummenwert berechnet. Standardmäßig wird der BSD-Summenalgorithmus verwendet, es steht jedoch auch der SysV-Algorithmus zur Verfügung.
 
-# BEFEHLE
+# Befehle
 
 **::crc::sum** ?*-bsd* | *-sysv*? ?*-format fmt*? ?*-chunksize size*? \[ *-filename file* | *-channel chan* | *string* \]
 : Der Befehl akzeptiert Zeichenfolgen, einen Dateinamen oder einen Kanal als Eingabe und gibt einen Prüfsummenwert zurück, der mithilfe des Algorithmus **sum(1)** berechnet wurde. Das Ergebnis wird entweder gemäß dem angegebenen Bezeichner *format*(n) oder standardmäßig als vorzeichenlose Ganzzahl (%u) formatiert.
 
 
-# OPTIONEN
+# Optionen
 
-**-sysv**
+-sysv
 : Der SysV-Algorithmus ist relativ einfach aufgebaut. Die Byte-Werte werden addiert, und ein eventueller Überlauf wird verworfen. Die niedrigsten 16 Bits werden als Prüfsumme zurückgegeben. Eingaben mit identischem Inhalt, aber unterschiedlicher Reihenfolge führen zum gleichen Ergebnis.
 
-**-bsd**
+-bsd
 : Dieser Algorithmus ähnelt der SysV-Version, beinhaltet jedoch einen Schritt zur Bitrotation, wodurch eine Abhängigkeit von der Reihenfolge der Werte entsteht.
 
 -filename *name*
@@ -64,7 +65,7 @@ Dieses Paket enthält eine ausschließlich in Tcl geschriebene Implementierung d
 : Gibt die Prüfsumme unter Verwendung einer alternativen Formatvorlage zurück.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
 % crc::sum "Hello, World!"
@@ -81,11 +82,11 @@ Dieses Paket enthält eine ausschließlich in Tcl geschriebene Implementierung d
 13392
 ```
 
-# AUTOREN
+# Autoren
 
 Pat Thoyts
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *crc* als Kategorie an.
 
@@ -93,11 +94,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Hashwerte, Prüfsummen und Verschlüsselung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Pat Thoyts <patthoyts@users.sourceforge.net>

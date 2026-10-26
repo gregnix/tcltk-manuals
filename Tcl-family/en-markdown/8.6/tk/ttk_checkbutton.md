@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::checkbutton
+title: ttk::checkbutton
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -25,7 +26,7 @@ ttk::checkbutton - On/off widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::checkbutton]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::checkbutton]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -34,14 +35,9 @@ A **ttk::checkbutton** widget is used to show or change a setting. It has two st
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-compound** | **-cursor** |
-| **-image** | **-state** | **-style** |
-| **-takefocus** | **-text** | **-textvariable** |
-| **-underline** | **-width** |  |
+**-class**, **-compound**, **-cursor**, **-image**, **-state**, **-style**, **-takefocus**, **-text**, **-textvariable**, **-underline**, **-width**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -80,7 +76,7 @@ The class name for a **ttk::checkbutton** is **TCheckbutton**.
 
 Dynamic states: **active**, **alternate**, **disabled**, **pressed**, **selected**, **readonly**.
 
-**TCheckbutton** styling options configurable with **ttk::style** are:
+**TCheckbutton** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -100,4 +96,8 @@ Dynamic states: **active**, **alternate**, **disabled**, **pressed**, **selected
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

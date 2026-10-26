@@ -1,5 +1,6 @@
 ---
 CommandName: valtype::iban
+title: valtype::iban
 ManualSection: n
 Version: 1.8
 TclPart: tcllib
@@ -19,22 +20,22 @@ Copyright:
  - Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 valtype::iban – Validierung der IBAN
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::common]{.lit} 
-[package]{.cmd} [require]{.sub} [valtype::iban]{.lit} [1.8]{.optlit} 
-[valtype::iban]{.cmd} [validate]{.sub} [value]{.arg} 
-[valtype::iban]{.cmd} [checkdigit]{.sub} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [2]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::common]{.lit}
+[package]{.cmd} [require]{.sub} [valtype::iban]{.lit} [1.8]{.optlit}
+[valtype::iban]{.cmd} [validate]{.lit} [value]{.arg}
+[valtype::iban]{.cmd} [checkdigit]{.lit} [value]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket implementiert einen SNIT-Validierungstyp für eine IBAN.
 
@@ -60,20 +61,20 @@ Die von diesem Paket bereitgestellte API entspricht der Spezifikation der Snit-V
 : Diese Methode berechnet eine Prüfziffer für den *value*. Zuvor wird dieser – mit Ausnahme der Prüfziffer – einer Validierung unterzogen. Wenn der Wert die Validierung nicht besteht, wird keine Prüfziffer berechnet, sondern stattdessen ein Fehler ausgelöst.
 
 
-# FEHLERCODES
+# Fehlercodes
 
 Wie in der Paketbeschreibung angegeben, verwenden die Fehler, die von den Befehlen dieses Pakets als Reaktion auf Fehler bei der Eingabevalidierung ausgelöst werden, den Code **-errorcode** INVALID, um sich von paketinternen Fehlern zu unterscheiden.
 
 Um detailliertere Informationen darüber zu liefern, warum die Validierung fehlgeschlagen ist, geht der Fehlercode **-errorCode** tatsächlich noch einen Schritt weiter. Zunächst enthält er einen Code, der die Art des Fehlers selbst angibt. In diesem Fall lautet dieser **IBAN**. Darauf folgen Werte, die den Grund für den Fehler näher erläutern. Die vollständige Liste der **-errorCode**-Fehler, die von diesem Paket ausgelöst werden können, lautet wie folgt:
 
-**INVALID IBAN CHARACTER**
+INVALID IBAN CHARACTER
 : Der Eingabewert enthielt ein oder mehrere unzulässige Zeichen, d. h. Zeichen, die in der Eingabe nicht vorkommen dürfen, damit es sich um eine IBAN handelt.
 
-**INVALID IBAN CHECK-DIGIT**
+INVALID IBAN CHECK-DIGIT
 : Die Prüfziffer des eingegebenen Werts ist falsch. Dies deutet in der Regel auf einen Eingabefehler hin, beispielsweise vertauschte oder fehlende Ziffern usw. Selbstverständlich kann es sich bei der Eingabe auch um eine regelrechte Fälschung handeln.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *valtype* als Kategorie an.
 
@@ -81,11 +82,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Validierung, Typprüfung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2011 Andreas Kupries <andreas_kupries@users.sourceforge.net>

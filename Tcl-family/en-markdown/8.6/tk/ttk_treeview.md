@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::treeview
+title: ttk::treeview
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -20,14 +21,14 @@ ttk::treeview - hierarchical multicolumn data display widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::treeview]{.cmd} [pathname]{.arg} [options]{.optarg} 
+[ttk::treeview]{.cmd} [pathname]{.arg} [options]{.optarg}
 :::
 
 # Description
 
 The **ttk::treeview** widget displays a hierarchical collection of items. Each item has a textual label, an optional image, and an optional list of data values. The data values are displayed in successive columns after the tree label.
 
-The order in which data values are displayed may be controlled by setting the **-displaycolumns** widget option. The tree widget can also display column headings. Columns may be accessed by number or by symbolic names listed in the **-columns** widget option; see **COLUMN IDENTIFIERS**.
+The order in which data values are displayed may be controlled by setting the **-displaycolumns** widget option. The tree widget can also display column headings. Columns may be accessed by number or by symbolic names listed in the **-columns** widget option; see [Column identifiers].
 
 Each item is identified by a unique name. The widget will generate item IDs if they are not supplied by the caller. There is a distinguished root item, named **{}**. The root item itself is not displayed; its children appear at the top level of the hierarchy.
 
@@ -37,13 +38,9 @@ Treeview widgets support horizontal and vertical scrolling with the standard **-
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-takefocus** |
-| **-style** | **-xscrollcommand** | **-yscrollcommand** |
-| **-padding** |  |  |
+**-class**, **-cursor**, **-takefocus**, **-style**, **-xscrollcommand**, **-yscrollcommand**, **-padding**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -59,20 +56,23 @@ See the ttk_widget manual entry for details on the standard options.
 **-selectmode** (**selectMode**/**SelectMode**)
 : Controls how the built-in class bindings manage the selection. One of **extended**, **browse**, or **none**.
 
+    If set to **extended** (the default), multiple items may be selected. If **browse**, only a single item will be selected at a time. If **none**, the selection will not be changed.
 
-If set to **extended** (the default), multiple items may be selected. If **browse**, only a single item will be selected at a time. If **none**, the selection will not be changed.
-
-Note that application code and tag bindings can set the selection however they wish, regardless of the value of **-selectmode**.
+    Note that application code and tag bindings can set the selection however they wish, regardless of the value of **-selectmode**.
 
 **-show** (**show**/**Show**)
 : A list containing zero or more of the following values, specifying which elements of the tree to display.
 
+    **tree**
+    : Display tree labels in column #0.
 
-**tree**
-: Display tree labels in column #0.
+    **headings**
+    : Display the heading row.
 
-**headings**
-: Display the heading row. The default is **tree headings**, i.e., show all elements. **NOTE:** Column #0 always refers to the tree column, even if **-show tree** is not specified.
+
+    The default is **tree headings**, i.e., show all elements.
+
+    **NOTE:** Column #0 always refers to the tree column, even if **-show tree** is not specified.
 
 
 # Widget command
@@ -86,28 +86,28 @@ Note that application code and tag bindings can set the selection however they w
 *pathname* **children** *item* ?*newchildren*?
 : If *newchildren* is not specified, returns the list of children belonging to *item*.
 
-
-If *newchildren* is specified, replaces *item*'s child list with *newchildren*. Items in the old child list not present in the new child list are detached from the tree. None of the items in *newchildren* may be an ancestor of *item*.
+    If *newchildren* is specified, replaces *item*'s child list with *newchildren*. Items in the old child list not present in the new child list are detached from the tree. None of the items in *newchildren* may be an ancestor of *item*.
 
 *pathname* **column** *column* ?*-option* ?*value -option value...*?
 : Query or modify the options for the specified *column*. If no *-option* is specified, returns a dictionary of option/value pairs. If a single *-option* is specified, returns the value of that option. Otherwise, the options are updated with the specified values. The following options may be set on each column:
 
+    **-id** *name*
+    : The column name.  This is a read-only option. For example, \[*$pathname* **column #***n* **-id**\] returns the data column associated with display column #*n*.
 
-**-id** *name*
-: The column name.  This is a read-only option. For example, \[*\$pathname* **column #**_n_ **-id**\] returns the data column associated with display column #*n*.
+    **-anchor** *anchor*
+    : Specifies how the text in this column should be aligned with respect to the cell. *Anchor* is one of **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw**, or **center**.
 
-**-anchor** *anchor*
-: Specifies how the text in this column should be aligned with respect to the cell. *Anchor* is one of **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw**, or **center**.
+    **-minwidth** *minwidth*
+    : The minimum width of the column in pixels. The treeview widget will not make the column any smaller than **-minwidth** when the widget is resized or the user drags a column separator.  Default is 20 pixels.
 
-**-minwidth** *minwidth*
-: The minimum width of the column in pixels. The treeview widget will not make the column any smaller than **-minwidth** when the widget is resized or the user drags a column separator.  Default is 20 pixels.
+    **-stretch** *boolean*
+    : Specifies whether or not the column width should be adjusted when the widget is resized or the user drags a column separator. *Boolean* may have any of the forms accepted by [Tcl\_GetBoolean][GetInt]. By default columns are stretchable.
 
-**-stretch** *boolean*
-: Specifies whether or not the column width should be adjusted when the widget is resized or the user drags a column separator. *Boolean* may have any of the forms accepted by **Tcl_GetBoolean**. By default columns are stretchable.
+    **-width** *width*
+    : The width of the column in pixels.  Default is 200 pixels. The specified column width may be changed by Tk in order to honor **-stretch** and/or **-minwidth**, or when the widget is resized or the user drags a column separator.
 
-**-width** *width*
-: The width of the column in pixels.  Default is 200 pixels. The specified column width may be changed by Tk in order to honor **-stretch** and/or **-minwidth**, or when the widget is resized or the user drags a column separator. Use *pathname column #0* to configure the tree column.
 
+    Use *pathname column #0* to configure the tree column.
 
 *pathname* **configure** ?*option*? ?*value option value ...*?
 : Modify or query widget options; see *ttk::widget(n)*.
@@ -127,54 +127,53 @@ If *newchildren* is specified, replaces *item*'s child list with *newchildren*. 
 *pathname* **heading** *column* ?*-option* ?*value -option value...*?
 : Query or modify the heading options for the specified *column*. Valid options are:
 
+    **-text** *text*
+    : The text to display in the column heading.
 
-**-text** *text*
-: The text to display in the column heading.
+    **-image** *imageName*
+    : Specifies an image to display to the right of the column heading.
 
-**-image** *imageName*
-: Specifies an image to display to the right of the column heading.
+    **-anchor** *anchor*
+    : Specifies how the heading text should be aligned. One of the standard Tk anchor values.
 
-**-anchor** *anchor*
-: Specifies how the heading text should be aligned. One of the standard Tk anchor values.
+    **-command** *script*
+    : A script to evaluate when the heading label is pressed.
 
-**-command** *script*
-: A script to evaluate when the heading label is pressed. Use *pathname heading #0* to configure the tree column heading.
 
+    Use *pathname heading #0* to configure the tree column heading.
 
 *pathname* **identify** *component x y*
-: Returns a description of the specified *component* under the point given by *x* and *y*, or the empty string if no such *component* is present at that position. The values *x* and *y* may have any of the forms acceptable to **Tk_GetPixels**. The following subcommands are supported:
+: Returns a description of the specified *component* under the point given by *x* and *y*, or the empty string if no such *component* is present at that position. The values *x* and *y* may have any of the forms acceptable to [Tk\_GetPixels][GetPixels]. The following subcommands are supported:
+
+    *pathname* **identify region** *x y*
+    : Returns one of:
+
+        heading
+        : Tree heading area; use \[**pathname identify column** *x y*\] to determine the heading number.
+
+        separator
+        : Space between two column headings; \[**pathname identify column** *x y*\] will return the display column identifier of the heading to left of the separator.
+
+        tree
+        : The tree area.
+
+        cell
+        : A data cell.
 
 
-*pathname* **identify region** *x y*
-: 
+        *pathname* **identify item** *x y* Returns the item ID of the item at position *y*.
+
+    *pathname* **identify column** *x y*
+    : Returns the display column identifier of the cell at position *x*. The tree column has ID **#0**.
+
+    *pathname* **identify element** *x y*
+    : The element at position *x,y*.
+
+    *pathname* **identify row** *x y*
+    : Obsolescent synonym for *pathname* **identify item**.
 
 
-Returns one of:
-
-**heading**
-: Tree heading area; use \[**pathname identify column** *x y*\] to determine the heading number.
-
-**separator**
-: Space between two column headings; \[**pathname identify column** *x y*\] will return the display column identifier of the heading to left of the separator.
-
-**tree**
-: The tree area.
-
-**cell**
-: A data cell.
-
-
-*pathname* **identify item** *x y* Returns the item ID of the item at position *y*.
-
-*pathname* **identify column** *x y*
-: Returns the display column identifier of the cell at position *x*. The tree column has ID **#0**.
-
-*pathname* **identify element** *x y*
-: The element at position *x,y*.
-
-*pathname* **identify row** *x y*
-: Obsolescent synonym for *pathname* **identify item**. See **COLUMN IDENTIFIERS** for a discussion of display columns and data columns.
-
+    See [Column identifiers] for a discussion of display columns and data columns.
 
 *pathname* **index** *item*
 : Returns the integer index of *item* within its parent's list of children.
@@ -182,20 +181,18 @@ Returns one of:
 *pathname* **insert** *parent index* ?**-id** *id*? *options...*
 : Creates a new item. *parent* is the item ID of the parent item, or the empty string **{}** to create a new top-level item. *index* is an integer, or the value **end**, specifying where in the list of *parent*'s children to insert the new item. If *index* is less than or equal to zero, the new node is inserted at the beginning; if *index* is greater than or equal to the current number of children, it is inserted at the end. If **-id** is specified, it is used as the item identifier; *id* must not already exist in the tree. Otherwise, a new unique identifier is generated.
 
-
-*pathname* **insert** returns the item identifier of the newly created item. See **ITEM OPTIONS** for the list of available options.
+    *pathname* **insert** returns the item identifier of the newly created item. See [Item options] for the list of available options.
 
 *pathname* **instate** *statespec* ?*script*?
 : Test the widget state; see *ttk::widget(n)*.
 
 *pathname* **item** *item* ?*-option* ?*value -option value...*?
-: Query or modify the options for the specified *item*. If no *-option* is specified, returns a dictionary of option/value pairs. If a single *-option* is specified, returns the value of that option. Otherwise, the item's options are updated with the specified values. See **ITEM OPTIONS** for the list of available options.
+: Query or modify the options for the specified *item*. If no *-option* is specified, returns a dictionary of option/value pairs. If a single *-option* is specified, returns the value of that option. Otherwise, the item's options are updated with the specified values. See [Item options] for the list of available options.
 
 *pathname* **move** *item parent index*
 : Moves *item* to position *index* in *parent*'s list of children. It is illegal to move an item under one of its descendants.
 
-
-If *index* is less than or equal to zero, *item* is moved to the beginning; if greater than or equal to the number of children, it is moved to the end.
+    If *index* is less than or equal to zero, *item* is moved to the beginning; if greater than or equal to the number of children, it is moved to the end.
 
 *pathname* **next** *item*
 : Returns the identifier of *item*'s next sibling, or **{}** if *item* is the last child of its parent.
@@ -212,59 +209,57 @@ If *index* is less than or equal to zero, *item* is moved to the beginning; if g
 *pathname* **selection** ?*selop itemList*?
 : If *selop* is not specified, returns the list of selected items. Otherwise, *selop* is one of the following:
 
+    *pathname* **selection set** *itemList*
+    : *itemList* becomes the new selection.
 
-*pathname* **selection set** *itemList*
-: *itemList* becomes the new selection.
+    *pathname* **selection add** *itemList*
+    : Add *itemList* to the selection
 
-*pathname* **selection add** *itemList*
-: Add *itemList* to the selection
+    *pathname* **selection remove** *itemList*
+    : Remove *itemList* from the selection
 
-*pathname* **selection remove** *itemList*
-: Remove *itemList* from the selection
-
-*pathname* **selection toggle** *itemList*
-: Toggle the selection state of each item in *itemList*.
+    *pathname* **selection toggle** *itemList*
+    : Toggle the selection state of each item in *itemList*.
 
 
 *pathname* **set** *item* ?*column*? ?*value*?
-: With one argument, returns a dictionary of column/value pairs for the specified *item*. With two arguments, returns the current value of the specified *column*. With three arguments, sets the value of column *column* in item *item* to the specified *value*. See also **COLUMN IDENTIFIERS**.
+: With one argument, returns a dictionary of column/value pairs for the specified *item*. With two arguments, returns the current value of the specified *column*. With three arguments, sets the value of column *column* in item *item* to the specified *value*. See also [Column identifiers].
 
 *pathname* **state** ?*stateSpec*?
 : Modify or query the widget state; see *ttk::widget(n)*.
 
 *pathName* **tag** *args...*
-: 
+: see below ...
+
+    *pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
+    : Add a Tk binding script for the event sequence *sequence* to the tag *tagName*.  When an X event is delivered to an item, binding scripts for each of the item's **-tags** are evaluated in order as per *bindtags(n)*.
+
+        **<KeyPress>**, **<KeyRelease>**, and virtual events are sent to the focus item. **<ButtonPress>**, **<ButtonRelease>**, and **<Motion>** events are sent to the item under the mouse pointer. No other event types are supported.
+
+        The binding *script* undergoes **%**-substitutions before evaluation; see **bind(n)** for details.
+
+    *pathName* **tag configure** *tagName* ?*option*? ?*value option value...*?
+    : Query or modify the options for the specified *tagName*. If one or more *option/value* pairs are specified, sets the value of those options for the specified tag. If a single *option* is specified, returns the value of that option (or the empty string if the option has not been specified for *tagName*). With no additional arguments, returns a dictionary of the option settings for *tagName*. See [Tag options] for the list of available options.
+
+    *pathName* **tag has** *tagName* ?*item*?
+    : If *item* is specified, returns 1 or 0 depending on whether the specified item has the named tag. Otherwise, returns a list of all items which have the specified tag.
+
+    *pathName* **tag names**
+    : Returns a list of all tags used by the widget.
+
+    *pathName* **tag add** *tag items*
+    : Adds the specified *tag* to each of the listed *items*. If *tag* is already present for a particular item, then the **-tags** for that item are unchanged.
+
+    *pathName* **tag remove** *tag* ?*items*?
+    : Removes the specified *tag* from each of the listed *items*. If *items* is omitted, removes *tag* from each item in the tree. If *tag* is not present for a particular item, then the **-tags** for that item are unchanged.
 
 
-*pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
-: Add a Tk binding script for the event sequence *sequence* to the tag *tagName*.  When an X event is delivered to an item, binding scripts for each of the item's **-tags** are evaluated in order as per *bindtags(n)*.
 
+The treeview widget also supports the following generic [ttk::widget][ttk_widget] widget subcommands (see *ttk::widget(n)* for details):
 
-**\<KeyPress>**, **\<KeyRelease>**, and virtual events are sent to the focus item. **\<ButtonPress>**, **\<ButtonRelease>**, and **\<Motion>** events are sent to the item under the mouse pointer. No other event types are supported.
-
-The binding *script* undergoes **%**-substitutions before evaluation; see **bind(n)** for details.
-
-*pathName* **tag configure** *tagName* ?*option*? ?*value option value...*?
-: Query or modify the options for the specified *tagName*. If one or more *option/value* pairs are specified, sets the value of those options for the specified tag. If a single *option* is specified, returns the value of that option (or the empty string if the option has not been specified for *tagName*). With no additional arguments, returns a dictionary of the option settings for *tagName*. See **TAG OPTIONS** for the list of available options.
-
-*pathName* **tag has** *tagName* ?*item*?
-: If *item* is specified, returns 1 or 0 depending on whether the specified item has the named tag. Otherwise, returns a list of all items which have the specified tag.
-
-*pathName* **tag names**
-: Returns a list of all tags used by the widget.
-
-*pathName* **tag add** *tag items*
-: Adds the specified *tag* to each of the listed *items*. If *tag* is already present for a particular item, then the **-tags** for that item are unchanged.
-
-*pathName* **tag remove** *tag* ?*items*?
-: Removes the specified *tag* from each of the listed *items*. If *items* is omitted, removes *tag* from each item in the tree. If *tag* is not present for a particular item, then the **-tags** for that item are unchanged.
-
-
-The treeview widget also supports the following generic **ttk::widget** widget subcommands (see *ttk::widget(n)* for details):
-
-```
-xview           yview
-```
+::: {.info DISPLAY="yes"}
+**xview**	**yview**
+:::
 
 # Item options
 
@@ -273,14 +268,13 @@ The following item options may be specified for items in the **insert** and **it
 **-text** (**text**/**Text**)
 : The textual label to display for the item.
 
-**-image** (**image**/**Image**)
+**-image** ([image]/**Image**)
 : A Tk image, displayed to the left of the label.
 
 **-values** (**values**/**Values**)
 : The list of values associated with the item.
 
-
-Each item should have the same number of values as the **-columns** widget option. If there are fewer values than columns, the remaining values are assumed empty. If there are more values than columns, the extra values are ignored.
+    Each item should have the same number of values as the **-columns** widget option. If there are fewer values than columns, the remaining values are assumed empty. If there are more values than columns, the extra values are ignored.
 
 **-open** (**open**/**Open**)
 : A boolean value indicating whether the item's children should be displayed (**-open true**) or hidden (**-open false**).
@@ -303,36 +297,43 @@ The following options may be specified on tags:
 : Specifies the font to use when drawing text.
 
 **-image**
-: Specifies the item image, in case the item's **-image** option is empty. Tag priority is decided by the creation order: tags created first receive higher priority.
+: Specifies the item image, in case the item's **-image** option is empty.
 
+
+Tag priority is decided by the creation order: tags created first receive higher priority.
 
 # Column identifiers
 
 Column identifiers take any of the following forms:
 
-**•**
-: A symbolic name from the list of **-columns**.
+- A symbolic name from the list of **-columns**.
 
-**•**
-: An integer *n*, specifying the *n*th data column.
+- An integer *n*, specifying the *n*th data column.
 
-**•**
-: A string of the form **#**_n_, where *n* is an integer, specifying the *n*th display column. **NOTE:** Item **-values** may be displayed in a different order than the order in which they are stored. **NOTE:** Column #0 always refers to the tree column, even if **-show tree** is not specified. A *data column number* is an index into an item's **-values** list; a *display column number* is the column number in the tree where the values are displayed. Tree labels are displayed in column #0. If **-displaycolumns** is not set, then data column *n* is displayed in display column **#**_n+1_. Again, **column #0 always refers to the tree column**.
+- A string of the form **#***n*, where *n* is an integer, specifying the *n*th display column.
 
+
+**NOTE:** Item **-values** may be displayed in a different order than the order in which they are stored.
+
+**NOTE:** Column #0 always refers to the tree column, even if **-show tree** is not specified.
+
+A *data column number* is an index into an item's **-values** list; a *display column number* is the column number in the tree where the values are displayed. Tree labels are displayed in column #0. If **-displaycolumns** is not set, then data column *n* is displayed in display column **#***n+1*. Again, **column #0 always refers to the tree column**.
 
 # Virtual events
 
 The treeview widget generates the following virtual events.
 
-**<\<TreeviewSelect>>**
+<<TreeviewSelect>>
 : Generated whenever the selection changes. It might also be generated when selection is affected but not actually changed. Further, multiple selection changes could happen before events can be processed leading to multiple events with the same visible selection.
 
-**<\<TreeviewOpen>>**
+<<TreeviewOpen>>
 : Generated just before setting the focus item to **-open true**.
 
-**<\<TreeviewClose>>**
-: Generated just after setting the focus item to **-open false**. The **focus** and **selection** widget commands can be used to determine the affected item or items.
+<<TreeviewClose>>
+: Generated just after setting the focus item to **-open false**.
 
+
+The **focus** and **selection** widget commands can be used to determine the affected item or items.
 
 # Styling options
 
@@ -340,7 +341,7 @@ The class name for a **ttk::treeview** is **Treeview**. The treeview header clas
 
 Dynamic states: **disabled**, **selected**.
 
-**Treeview** styling options configurable with **ttk::style** are:
+**Treeview** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -351,21 +352,21 @@ Dynamic states: **disabled**, **selected**.
 **-foreground** *color*
 
 **-indent** *amount*
+: Specifies how far items are indented from their parents. Defaults to 20 pixels. The value may have any of the forms acceptable to [Tk\_GetPixels][GetPixels].
 
-Specifies how far items are indented from their parents. Defaults to 20 pixels. The value may have any of the forms acceptable to **Tk_GetPixels**.
 
 **-rowheight** *amount*
+: This is the standard height for an item. Defaults to 20 pixels. The value may have any of the forms acceptable to [Tk\_GetPixels][GetPixels]. If **-rowheight** is not set by the style, it is set by measuring an item and a cell layout with the style's settings. This thus picks up the font and any focus ring or padding from the theme's layout. The **-rowheight** may need to be set to make sure that a row is large enough to contain any images.
 
-This is the standard height for an item. Defaults to 20 pixels. The value may have any of the forms acceptable to **Tk_GetPixels**. If **-rowheight** is not set by the style, it is set by measuring an item and a cell layout with the style's settings. This thus picks up the font and any focus ring or padding from the theme's layout. The **-rowheight** may need to be set to make sure that a row is large enough to contain any images.
+    To adjust the **-rowheight** for the Treeview style, use the following code after [tk scaling][tk] has been applied. Note that even if you do not support or change [tk scaling][tk] in your program, your users may have it set in their .wishrc.
 
-To adjust the **-rowheight** for the Treeview style, use the following code after **tk scaling** has been applied. Note that even if you do not support or change **tk scaling** in your program, your users may have it set in their .wishrc.
 
 ```
 ttk::style configure Treeview \
      -rowheight [expr {[font metrics font -linespace] + 2}]
 ```
 
-**Heading** styling options configurable with **ttk::style** are:
+**Heading** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -373,7 +374,7 @@ ttk::style configure Treeview \
 
 **-relief** *relief*
 
-**Item** styling options configurable with **ttk::style** are:
+**Item** styling options configurable with [ttk::style][ttk_style] are:
 
 **-foreground** *color*
 
@@ -383,10 +384,18 @@ ttk::style configure Treeview \
 
 **-padding** *padding*
 
-**Cell** styling options configurable with **ttk::style** are:
+**Cell** styling options configurable with [ttk::style][ttk_style] are:
 
 **-padding** *padding*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[GetInt]: ../tcl-c/GetInt.md
+[GetPixels]: ../tk-c/GetPixels.md
+[image]: image.md
+[tk]: tk.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

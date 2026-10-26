@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::halfpipe
+title: tcl::chan::halfpipe
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
@@ -22,12 +23,12 @@ tcl::chan::halfpipe - In-memory channel, half of a fifo2
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::halfpipe]{.lit} [1.0.2]{.optlit} 
-[::tcl::chan::halfpipe]{.cmd} [-option value]{.optdot} 
-[objectCmd]{.ins} [put]{.sub} [bytes]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::halfpipe]{.lit} [1.0.2]{.optlit}
+[::tcl::chan::halfpipe]{.cmd} [[-option]{.lit} [value...]{.arg}]{.optarg}
+[objectCmd]{.ins} [put]{.sub} [bytes]{.arg}
 :::
 
 # Description
@@ -36,10 +37,12 @@ The **tcl::chan::halfpipe** package provides a command creating one half of a **
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::halfpipe** ?**-option** *value*...?
-: This command creates a halfpipe channel and configures it with the callbacks to run when the channel is closed, data was written to it, or ran empty. See the section **Options** for the list of options and associated semantics. The result of the command is a list containing two elements, the handle of the new channel, and the object command of the channel handler, in this order. The latter is supplied to the caller to provide her with access to the **put** method for adding data to the channel. Two halfpipes with a bit of glue logic in the callbacks make for one **tcl::chan::fifo2**.
+: This command creates a halfpipe channel and configures it with the callbacks to run when the channel is closed, data was written to it, or ran empty. See the section [Options] for the list of options and associated semantics. The result of the command is a list containing two elements, the handle of the new channel, and the object command of the channel handler, in this order. The latter is supplied to the caller to provide her with access to the **put** method for adding data to the channel.
+
+    Two halfpipes with a bit of glue logic in the callbacks make for one **tcl::chan::fifo2**.
 
 *objectCmd* **put** *bytes*
 : This method of the channel handler object puts the data *bytes* into the channel so that it can be read from it.

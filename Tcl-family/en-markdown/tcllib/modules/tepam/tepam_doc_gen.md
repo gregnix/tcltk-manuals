@@ -1,5 +1,6 @@
 ---
 CommandName: tepam::doc_gen
+title: tepam::doc_gen
 ManualSection: n
 Version: 0.1.3
 TclPart: tcllib
@@ -17,29 +18,31 @@ Copyright:
 
 # Name
 
-tepam::doc_gen - TEPAM DOC Generation, reference manual
+tepam::doc\_gen - TEPAM DOC Generation, reference manual
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tepam]{.lit} [0.5]{.lit} 
-[package]{.cmd} [require]{.sub} [tepam::doc_gen]{.lit} [0.1.3]{.optlit} 
-[tepam::doc_gen::generate]{.cmd} [-format format]{.optarg} [-style style]{.optarg} [-header_footer]{.optarg} [-dest_file dest_file]{.optarg} [name]{.arg} 
-[tepam::doc_gen::patch]{.cmd} [-format format]{.optarg} [-style style]{.optarg} [-search_pattern search_pattern]{.optarg} [-src_string src_string | -src_file src_file]{.optarg} [-dest_file dest_file]{.optarg} [name]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tepam]{.lit} [0.5]{.lit}
+[package]{.cmd} [require]{.sub} [tepam::doc\_gen]{.lit} [0.1.3]{.optlit}
+[tepam::doc\_gen::generate]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-style]{.lit} [style]{.arg}]{.optarg} [-header\_footer]{.optarg} [[-dest\_file]{.lit} [dest\_file]{.arg}]{.optarg} [name]{.arg}
+[tepam::doc\_gen::patch]{.cmd} [[-format]{.lit} [format]{.arg}]{.optarg} [[-style]{.lit} [style]{.arg}]{.optarg} [[-search\_pattern]{.lit} [search\_pattern]{.arg}]{.optarg} [[-src\_string]{.lit} [src\_string]{.arg} | -src\_file [src\_file]{.arg}]{.optarg} [[-dest\_file]{.lit} [dest\_file]{.arg}]{.optarg} [name]{.optarg}
 :::
 
 # Description
 
-This package generates documentations of TEPAM procedures (procedures that have been declared with **tepam::procedure**). The documents are generated in the classic UNIX document style using the following document sections: Name, Synopsis, Description, Arguments and Example. **TEPAM Doc Gen** provides support for various document formats. Support for additional formats can be added if necessary.
+This package generates documentations of TEPAM procedures (procedures that have been declared with [tepam::procedure][tepam_procedure]). The documents are generated in the classic UNIX document style using the following document sections: Name, Synopsis, Description, Arguments and Example. **TEPAM Doc Gen** provides support for various document formats. Support for additional formats can be added if necessary.
 
 The **TEPAM Doc Gen** package provides the following commands:
 
-**tepam::doc_gen::generate** ?-format *format*? ?-style *style*? ?-header_footer? ?-dest_file *dest_file*? *name*
-: This command generates the documentation for a specified procedure (*name*) in one of the supported formats (TXT, HTML, POD (Perl Doc), DT (TclLib DocTool), or in a custom specific format. The format is specified via ?format?. The flag ?-header_footer? adds to the documentation file header and footer. If ?dest_file? is specified the documentation is stored in a file (the file header and footer are added automatically in this case) and the file name is returned. Otherwise the documentation string is returned by **generate**.
+**tepam::doc\_gen::generate** ?-format *format*? ?-style *style*? ?-header\_footer? ?-dest\_file *dest\_file*? *name*
+: This command generates the documentation for a specified procedure (*name*) in one of the supported formats (TXT, HTML, POD (Perl Doc), DT (TclLib DocTool), or in a custom specific format. The format is specified via ?format?. The flag ?-header\_footer? adds to the documentation file header and footer. If ?dest\_file? is specified the documentation is stored in a file (the file header and footer are added automatically in this case) and the file name is returned. Otherwise the documentation string is returned by **generate**.
 
-**tepam::doc_gen::patch** ?-format *format*? ?-style *style*? ?-search_pattern *search_pattern*? ?-src_string *src_string* | -src_file *src_file*? ?-dest_file *dest_file*? ?name?
-: This command inserts procedure documentations into an existing master document at the locations indicated by insertion placeholders which are matching the pattern of ?search_pattern?. The existing master document is either provided as data to the argument (?src_string?) or via a file (?src_file?). The final document is returned by **patch** if no destination file is defined (?dest_file?). Otherwise, the document is stored in the specified file, and the number of insertion placeholders that could be handled successfully is returned. Any insertion placeholders of the master document are handled by default. By defining the argument ?name? the documentation insertion will be restricted to a particular procedure.
+**tepam::doc\_gen::patch** ?-format *format*? ?-style *style*? ?-search\_pattern *search\_pattern*? ?-src\_string *src\_string* | -src\_file *src\_file*? ?-dest\_file *dest\_file*? ?name?
+: This command inserts procedure documentations into an existing master document at the locations indicated by insertion placeholders which are matching the pattern of ?search\_pattern?. The existing master document is either provided as data to the argument (?src\_string?) or via a file (?src\_file?). The final document is returned by **patch** if no destination file is defined (?dest\_file?). Otherwise, the document is stored in the specified file, and the number of insertion placeholders that could be handled successfully is returned.
+
+    Any insertion placeholders of the master document are handled by default. By defining the argument ?name? the documentation insertion will be restricted to a particular procedure.
 
 
 # Arguments
@@ -47,110 +50,100 @@ The **TEPAM Doc Gen** package provides the following commands:
 ?-format *format*?
 : Specifies the documentation format. **TEPAM Doc Gen** provides support for the following formats:
 
+    - TXT - Text format (default)
 
-**•**
-: TXT - Text format (default)
+    - HTML
 
-**•**
-: HTML
+    - POD - Perl Plain Old Documentation format (PerlPOD)
 
-**•**
-: POD - Perl Plain Old Documentation format (PerlPOD)
-
-**•**
-: DT - TclLib DocTool format
+    - DT - TclLib DocTool format
 
 
-: Section **ADDING SUPPORT FOR NEW DOCUMENT FORMATS** shows how support for additional formats can be added.
-
+    Section [Adding support for new document formats] shows how support for additional formats can be added.
 
 ?-style *style*?
 : The documentation is by default generated in Tcl style (e.g. **command arg1 arg2 ...**). C-style documentation can be generated by setting this argument to 'C' (e.g. **command(arg1,arg2,...)**).
 
-?-dest_file *dest_file*?
-: If ?dest_file? is defined the documentation is written into the specified destination file. Otherwise the documentation string is returned by the commands **generate** and **patch**.
+?-dest\_file *dest\_file*?
+: If ?dest\_file? is defined the documentation is written into the specified destination file. Otherwise the documentation string is returned by the commands **generate** and **patch**.
 
 *name* / ?name?
 : This is the name of the procedure for which the documentation has to be generated. This is a mandatory argument for **generate**, but an optional argument for **patch**.
 
-**?-header_footer?**
-: **Generate** adds to the generated procedure documentation the file header and footer only if a file is generated. By selecting the flag ?-header_footer? the header and footer are also generated if the documentation is returned as string by **generate**.
+?-header\_footer?
+: **Generate** adds to the generated procedure documentation the file header and footer only if a file is generated. By selecting the flag ?-header\_footer? the header and footer are also generated if the documentation is returned as string by **generate**.
 
-?-src_string *src_string* | -src_file *src_file*?
-: **Patch** inserts procedure documentations into an existing document that is either provided as string to the argument (?src_string?) or as a file (?src_file?). One of these two arguments need to be specified.
+?-src\_string *src\_string* | -src\_file *src\_file*?
+: **Patch** inserts procedure documentations into an existing document that is either provided as string to the argument (?src\_string?) or as a file (?src\_file?). One of these two arguments need to be specified.
 
-?-search_pattern *search_pattern*?
-: The argument ?search_pattern? defines the documentation insertion placeholder used in a document. It is a regular expression accepted by **regexp** and needs to contain a parenthesized sub-expression that contains the procedure name for which the documentation needs to be inserted. The default insertion placeholder pattern is *\\{!(.\*?)!\\}*, which means that the procedure name will be embedded between *{!* and *!}*. The section **EXAMPLES** contains a custom insertion placeholder pattern example.
+?-search\_pattern *search\_pattern*?
+: The argument ?search\_pattern? defines the documentation insertion placeholder used in a document. It is a regular expression accepted by **regexp** and needs to contain a parenthesized sub-expression that contains the procedure name for which the documentation needs to be inserted.
+
+    The default insertion placeholder pattern is *\\{!(.\*?)!\\}*, which means that the procedure name will be embedded between *{!* and *!}*. The section [Examples] contains a custom insertion placeholder pattern example.
 
 
 # Predefined document formats
 
 **TEPAM Doc Gen** pre-defines the following document formats:
 
-## Txt - text format
+## TXT - text format
 
 The documentation will be generated in a simple text format if this format is selected. The format can be customized via the following variable:
 
-**tepam::doc_gen::Option(TXT,MaxLineLength)**
-: Default: 80 This variable defines the line wrapping limit (character position).
+**tepam::doc\_gen::Option(TXT,MaxLineLength)**
+: Default: 80
+
+    This variable defines the line wrapping limit (character position).
 
 
-## Html - html format
+## HTML - HTML format
 
 **TEPAM Doc Gen** generates CSS styled HTML files. The HTML documentation can be customized via the following variable:
 
-**tepam::doc_gen::Option(HTML,CssFile)**
-: Default: "*tepam_doc_stylesheet.css*" This variable specifies the CSS stylesheet file that is referred by the generated HTML files. The CSS stylesheet can be customized to change the documentation formatting. A good starting point to create a customized CSS stylesheet is to use the CSS file provided by the **TEPAM Doc Gen** example/demo. The HTML documentation uses the following CSS class styles:
+**tepam::doc\_gen::Option(HTML,CssFile)**
+: Default: "*tepam\_doc\_stylesheet.css*"
+
+    This variable specifies the CSS stylesheet file that is referred by the generated HTML files.
 
 
-**•**
-: *h1.tepam_page_title* - Document page title. Only used by **generate** if a file is created or if the header and footer are built (flag ?-header_footer? selected).
+The CSS stylesheet can be customized to change the documentation formatting. A good starting point to create a customized CSS stylesheet is to use the CSS file provided by the **TEPAM Doc Gen** example/demo. The HTML documentation uses the following CSS class styles:
 
-**•**
-: *div.tepam_command_help* - Documentation container. The entire procedure documentation is placed inside this container.
+- *h1.tepam\_page\_title* - Document page title. Only used by **generate** if a file is created or if the header and footer are built (flag ?-header\_footer? selected).
 
-**•**
-: *p.tepam_section_title* - Section title (e.g. *Name*, *Synopsis*, *Description*, ...)
+- *div.tepam\_command\_help* - Documentation container. The entire procedure documentation is placed inside this container.
 
-**•**
-: *p.tepam_sub_section_title* - Sub-section title (used to separate the documentation of multiple sub-procedures)
+- *p.tepam\_section\_title* - Section title (e.g. *Name*, *Synopsis*, *Description*, ...)
 
-**•**
-: *p.tepam_name* - Name section
+- *p.tepam\_sub\_section\_title* - Sub-section title (used to separate the documentation of multiple sub-procedures)
 
-**•**
-: *p.tepam_synopsis* - Synopsis section
+- *p.tepam\_name* - Name section
 
-**•**
-: *p.tepam_description* - Single description paragraph
+- *p.tepam\_synopsis* - Synopsis section
 
-**•**
-: *ul.tepam_description_list* - Item of a HTML bulleted/unordered list inside the description section
+- *p.tepam\_description* - Single description paragraph
 
-**•**
-: *dt.tepam_argument* - Item of a HTML description list used to list the procedure arguments
+- *ul.tepam\_description\_list* - Item of a HTML bulleted/unordered list inside the description section
 
-**•**
-: *p.tepam_argument_description* - Argument description paragraph
+- *dt.tepam\_argument* - Item of a HTML description list used to list the procedure arguments
 
-**•**
-: *p.tepam_argument_attribute* - Argument attribute line
+- *p.tepam\_argument\_description* - Argument description paragraph
 
-**•**
-: *pre.tepam_example* - Example section
+- *p.tepam\_argument\_attribute* - Argument attribute line
+
+- *pre.tepam\_example* - Example section
 
 
-## Pod - perl document format
+## POD - Perl document format
 
 The documentation is generated in the Perl Plain Old Documentation format (PerlPOD) if this format is selected.
 
-## Dt - tcllib doctools format
+## Dt - TclLib doctools format
 
 The documentation is generated in the Tcllib DocTools format if this format is selected.
 
 # Adding support for new document formats
 
-Support for a new document format can be added by defining in the **tepam::doc_gen** namespace a set of procedures that generate the different document components.
+Support for a new document format can be added by defining in the **tepam::doc\_gen** namespace a set of procedures that generate the different document components.
 
 The following documentation listing contains tokens that refer to the different document generation procedures:
 
@@ -188,127 +181,131 @@ The following documentation listing contains tokens that refer to the different 
 
 There are 2 types of document generation procedures:
 
-**Content generation procedures (e.g. <40s>...<40e>)**
+Content generation procedures (e.g. <40s>...<40e>)
 : These procedures generate some document content based on the text that is provided as procedure argument. The listing above shows two tokens for these procedures to indicate the beginning and the end of the generated content.
 
-**Control generation procedures (e.g. <03>)**
-: These procedures generate control constructs, for example to generate the prolog code and epilog code for lists, sections, etc. These procedures have no argument. The following set of procedures needs to be defined to provide support for a new document format:
+Control generation procedures (e.g. <03>)
+: These procedures generate control constructs, for example to generate the prolog code and epilog code for lists, sections, etc. These procedures have no argument.
 
-*01* - **gen(\$Format,Header)** {*Text*}
-: Only called if **doc_gen** generates a file or if it is called with the flag ?-header_footer?. The procedure creates the file header. The provided parameter is the procedure name for which the documentation has to be generated.
 
-*02* - **gen(\$Format,Footer)** {*Text*}
-: Only called if **doc_gen** generates a file or if it is called with the flag ?-header_footer?. The procedure creates the file footer.
+The following set of procedures needs to be defined to provide support for a new document format:
 
-*03* - **gen(\$Format,Begin)** {}
+*01* - **gen($Format,Header)** {*Text*}
+: Only called if **doc\_gen** generates a file or if it is called with the flag ?-header\_footer?. The procedure creates the file header. The provided parameter is the procedure name for which the documentation has to be generated.
+
+*02* - **gen($Format,Footer)** {*Text*}
+: Only called if **doc\_gen** generates a file or if it is called with the flag ?-header\_footer?. The procedure creates the file footer.
+
+*03* - **gen($Format,Begin)** {}
 : Generates the documentation prolog (preamble)
 
-*04* - **gen(\$Format,End)** {}
+*04* - **gen($Format,End)** {}
 : Generates the documentation epilog
 
-*20* - **gen(\$Format,SectionTitle)** {*Text*}
+*20* - **gen($Format,SectionTitle)** {*Text*}
 : Generates a section title (e.g. *Name*, *Synopsis*, *Description*, ...). The raw title text is provided as parameter
 
-*21* - **gen(\$Format,SubSectionTitle)** {*Text*}
+*21* - **gen($Format,SubSectionTitle)** {*Text*}
 : Generates a sub-section title. Sub-sections are used if a single documentation is generated for multiple sub-commands to make a separation between them. The raw title text is provided as parameter
 
-*30* - **gen(\$Format,Name)** {*Text*}
+*30* - **gen($Format,Name)** {*Text*}
 : Generates the name section (without title). The raw section text is provided as parameter.
 
-*40* - **gen(\$Format,Synopsis)** {*Text*}
-: Generates the synopsis section (without title). The section text provided as parameter is pre-formatted (the argument strings are generated by **gen(\$Format,ArgumentString)**).
+*40* - **gen($Format,Synopsis)** {*Text*}
+: Generates the synopsis section (without title). The section text provided as parameter is pre-formatted (the argument strings are generated by **gen($Format,ArgumentString)**).
 
-*50* - **gen(\$Format,Description)** {*Text*}
+*50* - **gen($Format,Description)** {*Text*}
 : Generates a description paragraph. The raw paragraph text is provided as parameter.
 
-*51* - **gen(\$Format,DescriptionListBegin)** {}
+*51* - **gen($Format,DescriptionListBegin)** {}
 : Generates the prolog of a bulleted/unordered list inside the description section. This prolog is usually the start code of a list structure.
 
-*52* - **gen(\$Format,DescriptionListEnd)** {}
+*52* - **gen($Format,DescriptionListEnd)** {}
 : Generates the epilog of a bulleted/unordered list inside the description section. This epilog is usually the end code of a list structure.
 
-*53* - **gen(\$Format,DescriptionListItem)** {*Text*}
+*53* - **gen($Format,DescriptionListItem)** {*Text*}
 : Generates a text item in a bulleted/unordered description list. The raw item text is provided as parameter.
 
-*54* - **gen(\$Format,DescriptionSynopsis)** {*Text*}
-: Generates the synopsis line on the beginning of the description section. The command can return an empty string if no synopsys line is required at this place. Some formats (e.g. Tcl DocTools) require that the synopsis line is defined in the description section, to build then automatically the synopsis section. The section text provided as parameter is pre-formatted (the argument strings are generated by **gen(\$Format,ArgumentString)**).
+*54* - **gen($Format,DescriptionSynopsis)** {*Text*}
+: Generates the synopsis line on the beginning of the description section. The command can return an empty string if no synopsys line is required at this place.
 
-*60* - **gen(\$Format,ArgumentListBegin)** {}
+    Some formats (e.g. Tcl DocTools) require that the synopsis line is defined in the description section, to build then automatically the synopsis section. The section text provided as parameter is pre-formatted (the argument strings are generated by **gen($Format,ArgumentString)**).
+
+*60* - **gen($Format,ArgumentListBegin)** {}
 : Generates the prolog of argument list (definition/non-bulleted list). This prolog is usually the start code of a definition list.
 
-*61* - **gen(\$Format,ArgumentListEnd)** {}
+*61* - **gen($Format,ArgumentListEnd)** {}
 : Generates the epilog of the argument list. This epilog is usually the end string of a list structure.
 
-*62* - **gen(\$Format,ArgumentListItem)** {Name IsOptional IsNamed Type}
-: Generates an argument item line inside the argument list. This command can rely on **gen(\$Format,ArgumentDetailBegin)** since the parameters are identical.
+*62* - **gen($Format,ArgumentListItem)** {Name IsOptional IsNamed Type}
+: Generates an argument item line inside the argument list. This command can rely on **gen($Format,ArgumentDetailBegin)** since the parameters are identical.
 
-*63* - **gen(\$Format,ArgumentDetailBegin)** {}
+*63* - **gen($Format,ArgumentDetailBegin)** {}
 : Generates the argument details prolog (preamble).
 
-*64* - **gen(\$Format,ArgumentDetailEnd)** {}
+*64* - **gen($Format,ArgumentDetailEnd)** {}
 : Generates the argument details epilog
 
-*65* - **gen(\$Format,ArgumentDescription)** {*Text*}
+*65* - **gen($Format,ArgumentDescription)** {*Text*}
 : Generates the argument description (single paragraph).
 
-*66* - **gen(\$Format,ArgumentAttribute)** {*Text*}
+*66* - **gen($Format,ArgumentAttribute)** {*Text*}
 : Generates a single argument attribute string. The command is called individually for each attribute.
 
-*70* - **gen(\$Format,ExampleBegin)** {}
+*70* - **gen($Format,ExampleBegin)** {}
 : Generates the example section prolog (preamble)
 
-*71* - **gen(\$Format,ExampleEnd)** {}
+*71* - **gen($Format,ExampleEnd)** {}
 : Generates the example section epilog
 
-*72* - **gen(\$Format,ExampleCommandLine)** {*Text*}
+*72* - **gen($Format,ExampleCommandLine)** {*Text*}
 : Generates a single command line in the example section. The command is called for each individual command line.
 
-*73* - **gen(\$Format,ExampleResultLine)** {*Text*}
+*73* - **gen($Format,ExampleResultLine)** {*Text*}
 : Generates a command result line
 
-*80* - **gen(\$Format,ArgumentString)** {Name IsOptional IsNamed Type}
-: Generates the part of the command line or the synopsis that is specific to an argument. The generated string has to indicate if an argument is optional, named and if it is a flag. The following parameters are provided to this procedure:
+*80* - **gen($Format,ArgumentString)** {Name IsOptional IsNamed Type}
+: Generates the part of the command line or the synopsis that is specific to an argument. The generated string has to indicate if an argument is optional, named and if it is a flag.
+
+    The following parameters are provided to this procedure:
+
+    *Name*
+    : Name of the argument
+
+    *IsOptional*
+    : If true (=**1**) the argument is optional which should be indicated by the generated string (for example by putting the argument into brackets {\[\]} or into question marks '?'):
+
+        ```
+        gen(TXT,ArgumentString) mtype 1 0 string -> "[mtype]"
+        ```
+
+    *IsNamed*
+    : If true (=**1**) an argument is a named argument (option). The generated string should in this case contain the argument/option name, followed by the argument itself:
+
+        ```
+        gen(TXT,ArgumentString) mtype 0 1 string -> "-mtype <mtype>"
+        ```
+
+        Named arguments can also be optional:
+
+        ```
+        gen(TXT,ArgumentString) mtype 1 1 string -> "[-mtype <mtype>]"
+        ```
+
+    *Type*
+    : Indicates the type of the argument. If the type is set to **none** the argument is a flag, which needs to be indicated by the generated string. Example:
+
+        ```
+        gen(TXT,ArgumentString) close 1 1 none -> "[-close]"
+        ```
 
 
-*Name*
-: Name of the argument
-
-*IsOptional*
-: If true (=**1**) the argument is optional which should be indicated by the generated string (for example by putting the argument into brackets {\[\]} or into question marks '?'):
-
-
-```
-gen(TXT,ArgumentString) mtype 1 0 string -> "[mtype]"
-```
-
-*IsNamed*
-: If true (=**1**) an argument is a named argument (option). The generated string should in this case contain the argument/option name, followed by the argument itself:
-
-
-```
-gen(TXT,ArgumentString) mtype 0 1 string -> "-mtype <mtype>"
-```
-
-: Named arguments can also be optional:
-
-
-```
-gen(TXT,ArgumentString) mtype 1 1 string -> "[-mtype <mtype>]"
-```
-
-*Type*
-: Indicates the type of the argument. If the type is set to **none** the argument is a flag, which needs to be indicated by the generated string. Example:
-
-
-```
-gen(TXT,ArgumentString) close 1 1 none -> "[-close]"
-```
 
 # Examples
 
-## Tepam::doc_gen::generate
+## Tepam::doc\_gen::generate
 
-The **TEPAM Doc Gen** package can be explored by generating the documentation of the command **tepam::doc_gen::generate**. The following example generates the document in text format (default format):
+The **TEPAM Doc Gen** package can be explored by generating the documentation of the command **tepam::doc\_gen::generate**. The following example generates the document in text format (default format):
 
 ```
 tepam::doc_gen::generate tepam::doc_gen::generate
@@ -320,7 +317,7 @@ The next example generates the documentation in HTML format:
 tepam::doc_gen::generate -format HTML tepam::doc_gen::generate
 ```
 
-The flag ?header_footer? adds also the file header and footer:
+The flag ?header\_footer? adds also the file header and footer:
 
 ```
 tepam::doc_gen::generate -format HTML -header_footer tepam::doc_gen::generate
@@ -332,7 +329,7 @@ The documentation can directly be stored in a file. The file header and footer a
 tepam::doc_gen::generate -format HTML -dest_file doc_gen.html tepam::doc_gen::generate
 ```
 
-The generated HTML file refers a CSS stylesheet file (default: tepam_doc_stylesheet.css). To display the HTML file correctly this CSS stylesheet file needs to be copied into the directory of the generated HTML file.
+The generated HTML file refers a CSS stylesheet file (default: tepam\_doc\_stylesheet.css). To display the HTML file correctly this CSS stylesheet file needs to be copied into the directory of the generated HTML file.
 
 The Tcl DOC Tools format can be used as intermediate format to generate other formats, for example HTML:
 
@@ -350,11 +347,11 @@ puts $fHtml [myDoc format $dt]
 close $fHtml
 ```
 
-## Tepam::doc_gen::patch
+## Tepam::doc\_gen::patch
 
 While **generate** provides a limited number of possibilities to vary the document structure, **patch** offers more flexibility. Multiple documentations for different procedures and meta information can for example be added.
 
-The following listing shows how the **patch** command works. It defines first a HTML master document string that contains 2 procedure documentation placeholders (*{\*\<ProcedureName>\*}*). There placeholders are replaced by **patch** with the generated documentation of the referred procedures. Since nonstandard placeholders are used, **patch** is called with an explicit placeholder pattern definition (argument *search_pattern*).
+The following listing shows how the **patch** command works. It defines first a HTML master document string that contains 2 procedure documentation placeholders (*{\*<ProcedureName>\*}*). There placeholders are replaced by **patch** with the generated documentation of the referred procedures. Since nonstandard placeholders are used, **patch** is called with an explicit placeholder pattern definition (argument *search\_pattern*).
 
 ```
 # Define the HTML master document
@@ -390,3 +387,6 @@ Documentation tools
 ```
 Copyright (c) 2013, Andreas Drollinger
 ```
+
+
+[tepam_procedure]: tepam_procedure.md

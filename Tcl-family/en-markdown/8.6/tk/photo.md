@@ -1,5 +1,6 @@
 ---
 CommandName: photo
+title: photo
 ManualSection: n
 Version: 4.0
 TclPart: Tk
@@ -22,34 +23,28 @@ photo - Full-color images
 # Synopsis
 
 ::: {.synopsis} :::
-[image]{.cmd} [create]{.sub} [photo]{.lit} [name]{.optarg} [options]{.optarg} 
+[image]{.cmd} [create]{.sub} [photo]{.lit} [name]{.optarg} [options]{.optarg}
 
-[imageName]{.ins} [blank]{.sub} 
-[imageName]{.ins} [cget]{.sub} [option]{.arg} 
-[imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot} 
-[imageName]{.ins} [copy]{.sub} [sourceImage]{.arg} [option value(s)]{.optdot} 
-[imageName]{.ins} [data]{.sub} [option value(s)]{.optdot} 
-[imageName]{.ins} [get]{.sub} [x]{.arg} [y]{.arg} 
-[imageName]{.ins} [put]{.sub} [data]{.arg} [option value(s)]{.optdot} 
-[imageName]{.ins} [read]{.sub} [filename]{.arg} [option value(s)]{.optdot} 
-[imageName]{.ins} [redither]{.sub} 
-[imageName]{.ins} [transparency]{.sub} [subcommand]{.arg} [arg arg]{.optdot} 
-[imageName]{.ins} [write]{.sub} [filename]{.arg} [option value(s)]{.optdot} 
+[imageName]{.ins} [blank]{.sub}
+[imageName]{.ins} [cget]{.sub} [option]{.arg}
+[imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+[imageName]{.ins} [copy]{.sub} [sourceImage]{.arg} [option value(s)]{.optdot}
+[imageName]{.ins} [data]{.sub} [option value(s)]{.optdot}
+[imageName]{.ins} [get]{.sub} [x]{.arg} [y]{.arg}
+[imageName]{.ins} [put]{.sub} [data]{.arg} [option value(s)]{.optdot}
+[imageName]{.ins} [read]{.sub} [filename]{.arg} [option value(s)]{.optdot}
+[imageName]{.ins} [redither]{.sub}
+[imageName]{.ins} [transparency]{.sub} [subcommand]{.arg} [arg arg]{.optdot}
+[imageName]{.ins} [write]{.sub} [filename]{.arg} [option value(s)]{.optdot}
 :::
 
 # Description
 
-A photo is an image whose pixels can display any color or be transparent.  A photo image is stored internally in full color (32 bits per pixel), and is displayed using dithering if necessary.  Image data for a photo image can be obtained from a file or a string, or it can be supplied from C code through a procedural interface.  At present, only
-
-::: {.info -version="8.6"}
-PNG,
-:::
-
-GIF and PPM/PGM formats are supported, but an interface exists to allow additional image file formats to be added easily.  A photo image is transparent in regions where no image data has been supplied or where it has been set transparent by the **transparency set** subcommand.
+A photo is an image whose pixels can display any color or be transparent.  A photo image is stored internally in full color (32 bits per pixel), and is displayed using dithering if necessary.  Image data for a photo image can be obtained from a file or a string, or it can be supplied from C code through a procedural interface.  At present, only [PNG,]{version="8.6"} GIF and PPM/PGM formats are supported, but an interface exists to allow additional image file formats to be added easily.  A photo image is transparent in regions where no image data has been supplied or where it has been set transparent by the **transparency set** subcommand.
 
 # Creating photos
 
-Like all images, photos are created using the **image create** command. Photos support the following *options*:
+Like all images, photos are created using the [image create][image] command. Photos support the following *options*:
 
 **-data** *string*
 : Specifies the contents of the image as a string.  The string should contain binary data or, for some formats, base64-encoded data (this is currently guaranteed to be supported for PNG and GIF images). The format of the string must be one of those for which there is an image file format handler that will accept string data.  If both the **-data** and **-file** options are specified, the **-file** option takes precedence.
@@ -91,80 +86,76 @@ The following commands are possible for photo images:
 : Blank the image; that is, set the entire image to have no data, so it will be displayed as transparent, and the background of whatever window it is displayed in will show through.
 
 *imageName* **cget** *option*
-: Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **image create** **photo** command.
+: Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the [image create][image] **photo** command.
 
 *imageName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options for the image. If no *option* is specified, returns a list describing all of the available options for *imageName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **image create** **photo** command.
+: Query or modify the configuration options for the image. If no *option* is specified, returns a list describing all of the available options for *imageName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the [image create][image] **photo** command.
 
 *imageName* **copy** *sourceImage* ?*option value(s) ...*?
 : Copies a region from the image called *sourceImage* (which must be a photo image) to the image called *imageName*, possibly with pixel zooming and/or subsampling.  If no options are specified, this command copies the whole of *sourceImage* into *imageName*, starting at coordinates (0,0) in *imageName*.  The following options may be specified:
 
+    **-from** *x1 y1 x2 y2*
+    : Specifies a rectangular sub-region of the source image to be copied. (*x1,y1*) and (*x2,y2*) specify diagonally opposite corners of the rectangle.  If *x2* and *y2* are not specified, the default value is the bottom-right corner of the source image.  The pixels copied will include the left and top edges of the specified rectangle but not the bottom or right edges.  If the **-from** option is not given, the default is the whole source image.
 
-**-from** *x1 y1 x2 y2*
-: Specifies a rectangular sub-region of the source image to be copied. (*x1,y1*) and (*x2,y2*) specify diagonally opposite corners of the rectangle.  If *x2* and *y2* are not specified, the default value is the bottom-right corner of the source image.  The pixels copied will include the left and top edges of the specified rectangle but not the bottom or right edges.  If the **-from** option is not given, the default is the whole source image.
+    **-to** *x1 y1 x2 y2*
+    : Specifies a rectangular sub-region of the destination image to be affected.  (*x1,y1*) and (*x2,y2*) specify diagonally opposite corners of the rectangle.  If *x2* and *y2* are not specified, the default value is (*x1,y1*) plus the size of the source region (after subsampling and zooming, if specified).  If *x2* and *y2* are specified, the source region will be replicated if necessary to fill the destination region in a tiled fashion.
 
-**-to** *x1 y1 x2 y2*
-: Specifies a rectangular sub-region of the destination image to be affected.  (*x1,y1*) and (*x2,y2*) specify diagonally opposite corners of the rectangle.  If *x2* and *y2* are not specified, the default value is (*x1,y1*) plus the size of the source region (after subsampling and zooming, if specified).  If *x2* and *y2* are specified, the source region will be replicated if necessary to fill the destination region in a tiled fashion.
+    **-shrink**
+    : Specifies that the size of the destination image should be reduced, if necessary, so that the region being copied into is at the bottom-right corner of the image.  This option will not affect the width or height of the image if the user has specified a non-zero value for the **-width** or **-height** configuration option, respectively.
 
-**-shrink**
-: Specifies that the size of the destination image should be reduced, if necessary, so that the region being copied into is at the bottom-right corner of the image.  This option will not affect the width or height of the image if the user has specified a non-zero value for the **-width** or **-height** configuration option, respectively.
+    **-zoom** *x y*
+    : Specifies that the source region should be magnified by a factor of *x* in the X direction and *y* in the Y direction.  If *y* is not given, the default value is the same as *x*.  With this option, each pixel in the source image will be expanded into a block of *x* x *y* pixels in the destination image, all the same color.  *x* and *y* must be greater than 0.
 
-**-zoom** *x y*
-: Specifies that the source region should be magnified by a factor of *x* in the X direction and *y* in the Y direction.  If *y* is not given, the default value is the same as *x*.  With this option, each pixel in the source image will be expanded into a block of *x* x *y* pixels in the destination image, all the same color.  *x* and *y* must be greater than 0.
+    **-subsample** *x y*
+    : Specifies that the source image should be reduced in size by using only every *x*th pixel in the X direction and *y*th pixel in the Y direction.  Negative values will cause the image to be flipped about the Y or X axes, respectively.  If *y* is not given, the default value is the same as *x*.
 
-**-subsample** *x y*
-: Specifies that the source image should be reduced in size by using only every *x*th pixel in the X direction and *y*th pixel in the Y direction.  Negative values will cause the image to be flipped about the Y or X axes, respectively.  If *y* is not given, the default value is the same as *x*.
-
-**-compositingrule** *rule*
-: Specifies how transparent pixels in the source image are combined with the destination image.  When a compositing rule of *overlay* is set, the old contents of the destination image are visible, as if the source image were printed on a piece of transparent film and placed over the top of the destination.  When a compositing rule of *set* is set, the old contents of the destination image are discarded and the source image is used as-is.  The default compositing rule is *overlay*.
+    **-compositingrule** *rule*
+    : Specifies how transparent pixels in the source image are combined with the destination image.  When a compositing rule of *overlay* is set, the old contents of the destination image are visible, as if the source image were printed on a piece of transparent film and placed over the top of the destination.  When a compositing rule of *set* is set, the old contents of the destination image are discarded and the source image is used as-is.  The default compositing rule is *overlay*.
 
 
 *imageName* **data** ?*option value(s) ...*?
 : Returns image data in the form of a string. The following options may be specified:
 
+    **-background** *color*
+    : If the color is specified, the data will not contain any transparency information. In all transparent pixels the color will be replaced by the specified color.
 
-**-background** *color*
-: If the color is specified, the data will not contain any transparency information. In all transparent pixels the color will be replaced by the specified color.
+    **-format** *format-name*
+    : Specifies the name of the image file format handler to be used. Specifically, this subcommand searches for the first handler whose name matches an initial substring of *format-name* and which has the capability to write a string containing this image data. If this option is not given, this subcommand uses a format that consists of a list (one element per row) of lists (one element per pixel/column) of colors in "**#***rrggbb*" format (where *rr* is a pair of hexadecimal digits for the red channel, *gg* for green, and *bb* for blue).
 
-**-format** *format-name*
-: Specifies the name of the image file format handler to be used. Specifically, this subcommand searches for the first handler whose name matches an initial substring of *format-name* and which has the capability to write a string containing this image data. If this option is not given, this subcommand uses a format that consists of a list (one element per row) of lists (one element per pixel/column) of colors in "**#**_rrggbb_" format (where *rr* is a pair of hexadecimal digits for the red channel, *gg* for green, and *bb* for blue).
+    **-from** *x1 y1 x2 y2*
+    : Specifies a rectangular region of *imageName* to be returned. If only *x1* and *y1* are specified, the region extends from *(x1,y1)* to the bottom-right corner of *imageName*.  If all four coordinates are given, they specify diagonally opposite corners of the rectangular region, including x1,y1 and excluding x2,y2.  The default, if this option is not given, is the whole image.
 
-**-from** *x1 y1 x2 y2*
-: Specifies a rectangular region of *imageName* to be returned. If only *x1* and *y1* are specified, the region extends from *(x1,y1)* to the bottom-right corner of *imageName*.  If all four coordinates are given, they specify diagonally opposite corners of the rectangular region, including x1,y1 and excluding x2,y2.  The default, if this option is not given, is the whole image.
-
-**-grayscale**
-: If this options is specified, the data will not contain color information. All pixel data will be transformed into grayscale.
+    **-grayscale**
+    : If this options is specified, the data will not contain color information. All pixel data will be transformed into grayscale.
 
 
 *imageName* **get** *x y*
 : Returns the color of the pixel at coordinates (*x*,*y*) in the image as a list of three integers between 0 and 255, representing the red, green and blue components respectively.
 
 *imageName* **put** *data* ?*option value(s) ...*?
-: Sets pixels in  *imageName* to the data specified in *data*. This command first searches the list of image file format handlers for a handler that can interpret the data in *data*, and then reads the image encoded within into *imageName* (the destination image). If *data* does not match any known format, an attempt to interpret it as a (top-to-bottom) list of scan-lines is made, with each scan-line being a (left-to-right) list of pixel colors (see **Tk_GetColor** for a description of valid colors.)  Every scan-line must be of the same length.  Note that when *data* is a single color name, you are instructing Tk to fill a rectangular region with that color.  The following options may be specified:
+: Sets pixels in *imageName* to the data specified in *data*. This command first searches the list of image file format handlers for a handler that can interpret the data in *data*, and then reads the image encoded within into *imageName* (the destination image). If *data* does not match any known format, an attempt to interpret it as a (top-to-bottom) list of scan-lines is made, with each scan-line being a (left-to-right) list of pixel colors (see [Tk\_GetColor][GetColor] for a description of valid colors.)  Every scan-line must be of the same length.  Note that when *data* is a single color name, you are instructing Tk to fill a rectangular region with that color.  The following options may be specified:
 
+    **-format** *format-name*
+    : Specifies the format of the image data in *data*. Specifically, only image file format handlers whose names begin with *format-name* will be used while searching for an image data format handler to read the data.
 
-**-format** *format-name*
-: Specifies the format of the image data in *data*. Specifically, only image file format handlers whose names begin with *format-name* will be used while searching for an image data format handler to read the data.
-
-**-to** *x1 y1* ?*x2 y2*?
-: Specifies the coordinates of the top-left corner (*x1*,*y1*) of the region of *imageName* into which the image data will be copied.  The default position is (0,0).  If *x2*,*y2* is given and *data* is not large enough to cover the rectangle specified by this option, the image data extracted will be tiled so it covers the entire destination rectangle.  Note that if *data* specifies a single color value, then a region extending to the bottom-right corner represented by (*x2*,*y2*) will be filled with that color.
+    **-to** *x1 y1* ?*x2 y2*?
+    : Specifies the coordinates of the top-left corner (*x1*,*y1*) of the region of *imageName* into which the image data will be copied.  The default position is (0,0).  If *x2*,*y2* is given and *data* is not large enough to cover the rectangle specified by this option, the image data extracted will be tiled so it covers the entire destination rectangle.  Note that if *data* specifies a single color value, then a region extending to the bottom-right corner represented by (*x2*,*y2*) will be filled with that color.
 
 
 *imageName* **read** *filename* ?*option value(s) ...*?
 : Reads image data from the file named *filename* into the image. This command first searches the list of image file format handlers for a handler that can interpret the data in *filename*, and then reads the image in *filename* into *imageName* (the destination image).  The following options may be specified:
 
+    **-format** *format-name*
+    : Specifies the format of the image data in *filename*. Specifically, only image file format handlers whose names begin with *format-name* will be used while searching for an image data format handler to read the data.
 
-**-format** *format-name*
-: Specifies the format of the image data in *filename*. Specifically, only image file format handlers whose names begin with *format-name* will be used while searching for an image data format handler to read the data.
+    **-from** *x1 y1 x2 y2*
+    : Specifies a rectangular sub-region of the image file data to be copied to the destination image.  If only *x1* and *y1* are specified, the region extends from (*x1,y1*) to the bottom-right corner of the image in the image file.  If all four coordinates are specified, they specify diagonally opposite corners or the region. The default, if this option is not specified, is the whole of the image in the image file.
 
-**-from** *x1 y1 x2 y2*
-: Specifies a rectangular sub-region of the image file data to be copied to the destination image.  If only *x1* and *y1* are specified, the region extends from (*x1,y1*) to the bottom-right corner of the image in the image file.  If all four coordinates are specified, they specify diagonally opposite corners or the region. The default, if this option is not specified, is the whole of the image in the image file.
+    **-shrink**
+    : If this option, the size of *imageName* will be reduced, if necessary, so that the region into which the image file data are read is at the bottom-right corner of the *imageName*.  This option will not affect the width or height of the image if the user has specified a non-zero value for the **-width** or **-height** configuration option, respectively.
 
-**-shrink**
-: If this option, the size of *imageName* will be reduced, if necessary, so that the region into which the image file data are read is at the bottom-right corner of the *imageName*.  This option will not affect the width or height of the image if the user has specified a non-zero value for the **-width** or **-height** configuration option, respectively.
-
-**-to** *x y*
-: Specifies the coordinates of the top-left corner of the region of *imageName* into which data from *filename* are to be read. The default is (0,0).
+    **-to** *x y*
+    : Specifies the coordinates of the top-left corner of the region of *imageName* into which data from *filename* are to be read. The default is (0,0).
 
 
 *imageName* **redither**
@@ -173,34 +164,33 @@ The following commands are possible for photo images:
 *imageName* **transparency** *subcommand* ?*arg arg ...*?
 : Allows examination and manipulation of the transparency information in the photo image.  Several subcommands are available:
 
+    *imageName* **transparency get** *x y*
+    : Returns a boolean indicating if the pixel at (*x*,*y*) is transparent.
 
-*imageName* **transparency get** *x y*
-: Returns a boolean indicating if the pixel at (*x*,*y*) is transparent.
-
-*imageName* **transparency set** *x y boolean*
-: Makes the pixel at (*x*,*y*) transparent if *boolean* is true, and makes that pixel opaque otherwise.
+    *imageName* **transparency set** *x y boolean*
+    : Makes the pixel at (*x*,*y*) transparent if *boolean* is true, and makes that pixel opaque otherwise.
 
 
 *imageName* **write** *filename* ?*option value(s) ...*?
 : Writes image data from *imageName* to a file named *filename*. The following options may be specified:
 
+    **-background** *color*
+    : If the color is specified, the data will not contain any transparency information. In all transparent pixels the color will be replaced by the specified color.
 
-**-background** *color*
-: If the color is specified, the data will not contain any transparency information. In all transparent pixels the color will be replaced by the specified color.
+    **-format** *format-name*
+    : Specifies the name of the image file format handler to be used to write the data to the file.  Specifically, this subcommand searches for the first handler whose name matches an initial substring of *format-name* and which has the capability to write an image file.  If this option is not given, the format is guessed from the file extension. If that cannot be determined, this subcommand uses the first handler that has the capability to write an image file.
 
-**-format** *format-name*
-: Specifies the name of the image file format handler to be used to write the data to the file.  Specifically, this subcommand searches for the first handler whose name matches an initial substring of *format-name* and which has the capability to write an image file.  If this option is not given, the format is guessed from the file extension. If that cannot be determined, this subcommand uses the first handler that has the capability to write an image file.
+    **-from** *x1 y1 x2 y2*
+    : Specifies a rectangular region of *imageName* to be written to the image file.  If only *x1* and *y1* are specified, the region extends from *(x1,y1)* to the bottom-right corner of *imageName*.  If all four coordinates are given, they specify diagonally opposite corners of the rectangular region.  The default, if this option is not given, is the whole image.
 
-**-from** *x1 y1 x2 y2*
-: Specifies a rectangular region of *imageName* to be written to the image file.  If only *x1* and *y1* are specified, the region extends from *(x1,y1)* to the bottom-right corner of *imageName*.  If all four coordinates are given, they specify diagonally opposite corners of the rectangular region.  The default, if this option is not given, is the whole image.
+    **-grayscale**
+    : If this options is specified, the data will not contain color information. All pixel data will be transformed into grayscale.
 
-**-grayscale**
-: If this options is specified, the data will not contain color information. All pixel data will be transformed into grayscale.
 
 
 # Image formats
 
-The photo image code is structured to allow handlers for additional image file formats to be added easily.  The photo image code maintains a list of these handlers.  Handlers are added to the list by registering them with a call to **Tk_CreatePhotoImageFormat**.  The standard Tk distribution comes with handlers for PPM/PGM, PNG and GIF formats, which are automatically registered on initialization.
+The photo image code is structured to allow handlers for additional image file formats to be added easily.  The photo image code maintains a list of these handlers.  Handlers are added to the list by registering them with a call to [Tk\_CreatePhotoImageFormat][CrtPhImgFmt].  The standard Tk distribution comes with handlers for PPM/PGM, PNG and GIF formats, which are automatically registered on initialization.
 
 When reading an image file or processing string data specified with the **-data** configuration option, the photo image code invokes each handler in turn until one is found that claims to be able to read the data in the file or string. Usually this will find the correct handler, but if it does not, the user may give a format name with the **-format** option to specify which handler to use.  In fact the photo image code will try those handlers whose names begin with the string specified for the **-format** option (the comparison is case-insensitive).  For example, if the user specifies **-format gif**, then a handler named GIF87 or GIF89 may be invoked, but a handler named JPEG may not (assuming that such handlers had been registered).
 
@@ -208,15 +198,13 @@ When writing image data to a file, the processing of the **-format** option is s
 
 ## Format suboptions
 
-::: {.info -version="8.6"}
-Some image formats support sub-options, which are specified at the time that the image is loaded using additional words in the **-format** option. At the time of writing, the following are supported:
-:::
+[Some image formats support sub-options, which are specified at the time that the image is loaded using additional words in the **-format** option. At the time of writing, the following are supported:]{version="8.6"}
 
-**gif -index** *indexValue*
-: When parsing a multi-part GIF image, Tk normally only accesses the first image. By giving the **-index** sub-option, the *indexValue*'th value may be used instead. The *indexValue* must be an integer from 0 up to the number of image parts in the GIF data.
+[**gif -index** *indexValue*]{version="8.6"}
+: [When parsing a multi-part GIF image, Tk normally only accesses the first image. By giving the **-index** sub-option, the *indexValue*'th value may be used instead. The *indexValue* must be an integer from 0 up to the number of image parts in the GIF data.]{version="8.6"}
 
-**png -alpha** *alphaValue*
-: An additional alpha filtering for the overall image, which allows the background on which the image is displayed to show through. This usually also has the effect of desaturating the image. The *alphaValue* must be between 0.0 and 1.0.
+[**png -alpha** *alphaValue*]{version="8.6"}
+: [An additional alpha filtering for the overall image, which allows the background on which the image is displayed to show through. This usually also has the effect of desaturating the image. The *alphaValue* must be between 0.0 and 1.0.]{version="8.6"}
 
 
 # Color allocation
@@ -247,9 +235,7 @@ set height [winfo height .someWidget]
 tiled copy untiled -to 0 0 $width $height -shrink
 ```
 
-::: {.info -version="8.6"}
-The PNG image loader allows the application of an additional alpha factor during loading, which is useful for generating images suitable for disabled buttons:
-:::
+[The PNG image loader allows the application of an additional alpha factor during loading, which is useful for generating images suitable for disabled buttons:]{version="8.6"}
 
 ```
 image create photo icon -file "icon.png"
@@ -257,3 +243,9 @@ image create photo iconDisabled -file "icon.png" \
         -format "png -alpha 0.5"
 button .b -image icon -disabledimage iconDisabled
 ```
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[CrtPhImgFmt]: ../tk-c/CrtPhImgFmt.md
+[GetColor]: ../tk-c/GetColor.md
+[image]: image.md

@@ -1,5 +1,6 @@
 ---
 CommandName: grammar::peg::interp
+title: grammar::peg::interp
 ManualSection: n
 Version: 0.1.2
 TclPart: tcllib
@@ -31,11 +32,11 @@ grammar::peg::interp - Interpreter for parsing expression grammars
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::mengine]{.lit} [0.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [grammar::peg::interp]{.lit} [0.1.2]{.optlit} 
-[::grammar::peg::interp::setup]{.cmd} [peg]{.arg} 
-[::grammar::peg::interp::parse]{.cmd} [nextcmd]{.arg} [errorvar]{.arg} [astvar]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::mengine]{.lit} [0.1]{.optlit}
+[package]{.cmd} [require]{.sub} [grammar::peg::interp]{.lit} [0.1.2]{.optlit}
+[::grammar::peg::interp::setup]{.cmd} [peg]{.arg}
+[::grammar::peg::interp::parse]{.cmd} [nextcmd]{.arg} [errorvar]{.arg} [astvar]{.arg}
 :::
 
 # Description
@@ -50,20 +51,28 @@ It should be noted that the package provides exactly one instance of the interpr
 
 Also of note is that the implementation assumes a pull-type handling of the input. In other words, the interpreter pulls characters from the input stream as it needs them. For usage in a push environment, i.e. where the environment pushes new characters as they come we have to put the engine into its own thread.
 
-# The interpreter api
+# The interpreter API
 
 The package exports the following API
 
 **::grammar::peg::interp::setup** *peg*
-: This command (re)initializes the interpreter. It returns the empty string. This command has to be invoked first, before any matching run. Its argument *peg* is the handle of an object containing the parsing expression grammar to interpret. This grammar has to be valid, or an error will be thrown.
+: This command (re)initializes the interpreter. It returns the empty string. This command has to be invoked first, before any matching run.
+
+    Its argument *peg* is the handle of an object containing the parsing expression grammar to interpret. This grammar has to be valid, or an error will be thrown.
 
 **::grammar::peg::interp::parse** *nextcmd* *errorvar* *astvar*
-: This command interprets the loaded grammar and tries to match it against the stream of characters represented by the command prefix *nextcmd*. The command prefix *nextcmd* represents the input stream of characters and is invoked by the interpreter whenever the a new character from the stream is required. The callback has to return either the empty list, or a list of 4 elements containing the token, its lexeme attribute, and its location as line number and column index, in this order. The empty list is the signal that the end of the input stream has been reached. The lexeme attribute is stored in the terminal cache, but otherwise not used by the machine. The result of the command is a boolean value indicating whether the matching process was successful (**true**), or not (**false**). In the case of a match failure error information will be stored into the variable referenced by *errorvar*. The variable referenced by *astvar* will always contain the generated abstract syntax tree, however in the case of an error it will be only partial and possibly malformed. The abstract syntax tree is represented by a nested list, as described in section **AST VALUES** of document *grammar::me_ast*.
+: This command interprets the loaded grammar and tries to match it against the stream of characters represented by the command prefix *nextcmd*.
+
+    The command prefix *nextcmd* represents the input stream of characters and is invoked by the interpreter whenever the a new character from the stream is required. The callback has to return either the empty list, or a list of 4 elements containing the token, its lexeme attribute, and its location as line number and column index, in this order. The empty list is the signal that the end of the input stream has been reached. The lexeme attribute is stored in the terminal cache, but otherwise not used by the machine.
+
+    The result of the command is a boolean value indicating whether the matching process was successful (**true**), or not (**false**). In the case of a match failure error information will be stored into the variable referenced by *errorvar*. The variable referenced by *astvar* will always contain the generated abstract syntax tree, however in the case of an error it will be only partial and possibly malformed.
+
+    The abstract syntax tree is represented by a nested list, as described in section **AST VALUES** of document *grammar::me\_ast*.
 
 
 # Bugs, ideas, feedback
 
-If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar_peg* as the category.
+If you find errors in this document or bugs or problems with the package it describes, or if you want to suggest improvements for the documentation or the package, please use the [Tcllib Trackers](http://core.tcl.tk/tcllib/reportlist) and specify *grammar\_peg* as the category.
 
 When proposing code changes, please provide *unified diffs*, i.e the output of **diff -u**.
 

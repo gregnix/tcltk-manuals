@@ -1,5 +1,6 @@
 ---
 CommandName: radiobutton
+title: radiobutton
 ManualSection: n
 Version: 4.4
 TclPart: Tk
@@ -26,23 +27,14 @@ radiobutton - Create and manipulate 'radiobutton' pick-one widgets
 # Synopsis
 
 ::: {.synopsis} :::
-[radiobutton]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[radiobutton]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-activebackground** | **-disabledforeground** | **-padx** |
-| **-activeforeground** | **-font** | **-pady** |
-| **-anchor** | **-foreground** | **-relief** |
-| **-background** | **-highlightbackground** | **-takefocus** |
-| **-bitmap** | **-highlightcolor** | **-text** |
-| **-borderwidth** | **-highlightthickness** | **-textvariable** |
-| **-compound** | **-image** | **-underline** |
-| **-cursor** | **-justify** | **-wraplength** |
+**-activebackground**, **-disabledforeground**, **-padx**, **-activeforeground**, **-font**, **-pady**, **-anchor**, **-foreground**, **-relief**, **-background**, **-highlightbackground**, **-takefocus**, **-bitmap**, **-highlightcolor**, **-text**, **-borderwidth**, **-highlightthickness**, **-textvariable**, **-compound**, **-image**, **-underline**, **-cursor**, **-justify**, **-wraplength**
 
-See the options manual entry for details on the standard options.
+See the [options] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -50,7 +42,7 @@ See the options manual entry for details on the standard options.
 : Specifies a Tcl command to associate with the button.  This command is typically invoked when mouse button 1 is released over the button window.  The button's global variable (**-variable** option) will be updated before the command is invoked.
 
 **-height** (**height**/**Height**)
-: Specifies a desired height for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to **Tk_GetPixels**); for text it is in lines of text. If this option is not specified, the button's desired height is computed from the size of the image or bitmap or text being displayed in it.
+: Specifies a desired height for the button. If an image or bitmap is being displayed in the button then the value is in screen units (i.e. any of the forms acceptable to [Tk\_GetPixels][GetPixels]); for text it is in lines of text. If this option is not specified, the button's desired height is computed from the size of the image or bitmap or text being displayed in it.
 
 **-indicatoron** (**indicatorOn**/**IndicatorOn**)
 : Specifies whether or not the indicator should be drawn.  Must be a proper boolean value.  If false, the **-relief** option is ignored and the widget's relief is always sunken if the widget is selected and raised otherwise.
@@ -79,11 +71,11 @@ See the options manual entry for details on the standard options.
 **-value** (**value**/**Value**)
 : Specifies value to store in the button's associated variable whenever this button is selected.
 
-**-variable** (**variable**/**Variable**)
+**-variable** ([variable]/**Variable**)
 : Specifies the name of a global variable to set whenever this button is selected.  Changes in this variable also cause the button to select or deselect itself. Defaults to the value **selectedButton**.
 
 **-width** (**width**/**Width**)
-: Specifies a desired width for the button. If an image or bitmap is being displayed in the button, the value is in screen units (i.e. any of the forms acceptable to **Tk_GetPixels**); for text it is in characters. If this option is not specified, the button's desired width is computed from the size of the image or bitmap or text being displayed in it.
+: Specifies a desired width for the button. If an image or bitmap is being displayed in the button, the value is in screen units (i.e. any of the forms acceptable to [Tk\_GetPixels][GetPixels]); for text it is in characters. If this option is not specified, the button's desired width is computed from the size of the image or bitmap or text being displayed in it.
 
 
 # Description
@@ -104,22 +96,22 @@ pathName option ?arg ...?
 
 *Option* and the *arg*s determine the exact behavior of the command.  The following commands are possible for radiobutton widgets:
 
-*pathName* **cget** *option*
+[pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Returns the current value of the configuration option given by *option*. *Option* may have any of the values accepted by the **radiobutton** command.
 
-*pathName* **configure** ?*option*? ?*value option value ...*?
-: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **radiobutton** command.
+[pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
+: Query or modify the configuration options of the widget. If no *option* is specified, returns a list describing all of the available options for *pathName* (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, the command modifies the given widget option(s) to have the given value(s);  in this case the command returns an empty string. *Option* may have any of the values accepted by the **radiobutton** command.
 
-*pathName* **deselect**
+[pathName]{.ins} [deselect]{.sub}
 : Deselects the radiobutton and sets the associated variable to an empty string. If this radiobutton was not currently selected, the command has no effect.
 
-*pathName* **flash**
+[pathName]{.ins} [flash]{.sub}
 : Flashes the radiobutton.  This is accomplished by redisplaying the radiobutton several times, alternating between active and normal colors.  At the end of the flash the radiobutton is left in the same normal/active state as when the command was invoked. This command is ignored if the radiobutton's state is **disabled**.
 
-*pathName* **invoke**
+[pathName]{.ins} [invoke]{.sub}
 : Does just what would have happened if the user invoked the radiobutton with the mouse: selects the button and invokes its associated Tcl command, if there is one. The return value is the return value from the Tcl command, or an empty string if there is no command associated with the radiobutton. This command is ignored if the radiobutton's state is **disabled**.
 
-*pathName* **select**
+[pathName]{.ins} [select]{.sub}
 : Selects the radiobutton and sets the associated variable to the value corresponding to this widget.
 
 
@@ -127,11 +119,19 @@ pathName option ?arg ...?
 
 Tk automatically creates class bindings for radiobuttons that give them the following default behavior:
 
-**\[1\]**
-: On Unix systems, a radiobutton activates whenever the mouse passes over it and deactivates whenever the mouse leaves the radiobutton.  On Mac and Windows systems, when mouse button 1 is pressed over a radiobutton, the button activates whenever the mouse pointer is inside the button, and deactivates whenever the mouse pointer leaves the button.
+1. On Unix systems, a radiobutton activates whenever the mouse passes over it and deactivates whenever the mouse leaves the radiobutton.  On Mac and Windows systems, when mouse button 1 is pressed over a radiobutton, the button activates whenever the mouse pointer is inside the button, and deactivates whenever the mouse pointer leaves the button.
 
-**\[2\]**
-: When mouse button 1 is pressed over a radiobutton it is invoked (it becomes selected and the command associated with the button is invoked, if there is one).
+2. When mouse button 1 is pressed over a radiobutton it is invoked (it becomes selected and the command associated with the button is invoked, if there is one).
 
-**\[3\]**
-: When a radiobutton has the input focus, the space key causes the radiobutton to be invoked. If the radiobutton's state is **disabled** then none of the above actions occur:  the radiobutton is completely non-responsive. The behavior of radiobuttons can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+3. When a radiobutton has the input focus, the space key causes the radiobutton to be invoked.
+
+
+If the radiobutton's state is **disabled** then none of the above actions occur:  the radiobutton is completely non-responsive.
+
+The behavior of radiobuttons can be changed by defining new bindings for individual widgets or by redefining the class bindings.
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetPixels]: ../tk-c/GetPixels.md
+[options]: options.md
+[variable]: ../tcl/variable.md

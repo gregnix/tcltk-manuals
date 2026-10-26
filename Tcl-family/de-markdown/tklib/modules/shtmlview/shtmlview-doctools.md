@@ -1,5 +1,6 @@
 ---
 CommandName: shtmlview_doctools
+title: shtmlview_doctools
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -14,18 +15,18 @@ Copyright:
  - Copyright (c) 2022, Detlef Groth <detlef(at)dgroth(dot)de>
 ---
 
-# NAME
+# Name
 
-shtmlview_doctools – Erweiterung für shtmlview mit Unterstützung für doctools-Markup
+shtmlview\_doctools – Erweiterung für shtmlview mit Unterstützung für doctools-Markup
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [dtplite]{.lit} 
-[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} 
+[package]{.cmd} [require]{.sub} [dtplite]{.lit}
+[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **shtmlview::doctools** erweitert die Widgets von **shtmlview::shtmlview** um die Darstellung von Dokumenten im Format *doctools*.
 
@@ -33,21 +34,18 @@ Durch das einfache Laden des Pakets wird die Unterstützung registriert.
 
 Das Paket exportiert keinerlei Befehle, Klassen usw.
 
-# ÄNDERUNGSPROTOKOLL
+# Änderungsprotokoll
 
-**2022-04-07 version 0.1**
-: 
-
-
-**•**
-: Erste Umsetzung
+2022-04-07 version 0.1
+: - Erste Umsetzung
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese dem Autor des Pakets. Bitte teilen Sie ihm auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation mit.
 
-# COPYRIGHT AM CODE
+# Copyright am Code
 
 Art der BSD-Lizenz:
 
@@ -61,7 +59,7 @@ Die Autoren und Vertreiber schließen ausdrücklich jegliche Gewährleistung aus
 
 EINGESCHRÄNKTE RECHTE: Die Nutzung, Vervielfältigung oder Offenlegung durch die Regierung unterliegt den Einschränkungen, die in Unterabsatz (c) (1) (ii) der Klausel über Rechte an technischen Daten und Computersoftware gemäß DFARS 252.227-7013 und FAR 52.227-19 festgelegt sind.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2022, Detlef Groth <detlef(at)dgroth(dot)de>

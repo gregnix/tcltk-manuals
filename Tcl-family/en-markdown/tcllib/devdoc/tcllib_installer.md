@@ -1,15 +1,16 @@
 ---
 CommandName: tcllib_install_guide
+title: tcllib_install_guide
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
 # Name
 
-tcllib_install_guide - Tcllib - The Installer's Guide
+tcllib\_install\_guide - Tcllib - The Installer's Guide
 
 # Description
 
@@ -19,20 +20,23 @@ This document is targeted at anybody wishing to build and install the packages f
 
 We additionally provide
 
-**\[1\]**
-: *Tcllib - The Developer's Guide*. for developers wishing to work on the packages themselves. Please read *Tcllib - How To Get The Sources* first, if that was not done already. Here we assume that the sources are already available in a directory of your choice.
+1. *Tcllib - The Developer's Guide*.
 
+
+for developers wishing to work on the packages themselves.
+
+Please read *Tcllib - How To Get The Sources* first, if that was not done already. Here we assume that the sources are already available in a directory of your choice.
 
 # Requisites
 
 Before Tcllib can be build and used a number of requisites must be installed. These are:
 
-**\[1\]**
-: The scripting language Tcl. For details see **Tcl**.
+1. The scripting language Tcl. For details see [Tcl].
 
-**\[2\]**
-: Optionally, the **critcl** package (C embedding) for **Tcl**. For details see **CriTcl**. This list assumes that the machine where Tcllib is to be installed is essentially clean. Of course, if parts of the dependencies listed below are already installed the associated steps can be skipped. It is still recommended to read their sections though, to validate that the dependencies they talk about are indeed installed.
+2. Optionally, the **critcl** package (C embedding) for [Tcl]. For details see [Critcl].
 
+
+This list assumes that the machine where Tcllib is to be installed is essentially clean. Of course, if parts of the dependencies listed below are already installed the associated steps can be skipped. It is still recommended to read their sections though, to validate that the dependencies they talk about are indeed installed.
 
 ## Tcl
 
@@ -46,19 +50,23 @@ Myself, I used (and still use) [ActiveState's](http://www.activestate.com) Activ
 
 *(Disclosure: I, Andreas Kupries, worked for ActiveState until 2016, maintaining ActiveTcl and TclDevKit for them).*. I am currently working for SUSE Software Canada ULC, although not in Tcl-related areas.
 
-This distribution can be found at *http://www.activestate.com/activetcl*. Retrieve the archive of ActiveTcl 8.5 (or higher) for your platform and install it as directed by ActiveState.
+This distribution can be found at <http://www.activestate.com/activetcl>. Retrieve the archive of ActiveTcl 8.5 (or higher) for your platform and install it as directed by ActiveState.
 
 For those wishing to build and install Tcl on their own, the relevant sources can be found at
 
-**Tcl**
-: *http://core.tcl-lang.org/tcl/* together with the necessary instructions on how to build it. If there are problems with building, installing, or using Tcl, please file a ticket against *Tcl*, or the vendor of your distribution, and *not* *Tcllib*.
+Tcl
+: <http://core.tcl-lang.org/tcl/>
 
+
+together with the necessary instructions on how to build it.
+
+If there are problems with building, installing, or using Tcl, please file a ticket against *Tcl*, or the vendor of your distribution, and *not* *Tcllib*.
 
 ## Critcl
 
 The **critcl** tool is an *optional* dependency.
 
-It is only required when trying to build the C-based *accelerators* for a number of packages, as explained in **Critcl & Accelerators**
+It is only required when trying to build the C-based *accelerators* for a number of packages, as explained in [Critcl & accelerators]
 
 *Beware*: The C accelerators are *built by default*.
 
@@ -80,7 +88,7 @@ Its instructions will not be repeated here. If there are problems with these dir
 
 # Build & installation instructions
 
-As Tcllib is mainly a bundle of packages written in pure Tcl building it is the same as installing it. The exceptions to this have their own subsection, **Critcl & Accelerators**, later on.
+As Tcllib is mainly a bundle of packages written in pure Tcl building it is the same as installing it. The exceptions to this have their own subsection, [Critcl & accelerators], later on.
 
 Before that however comes the standard case, differentiated by the platforms with material differences in the instruction, i.e. *Unix*-like, versus *Windows*.
 
@@ -88,7 +96,7 @@ Regarding the latter it should also be noted that it is possible set up an *Unix
 
 Regardless of environment or platform, a suitable *Tcl* has to be installed, and its **tclsh** should be placed on the  (*Unix*) or associated with "*.tcl*" files (*Windows*).
 
-## Installing on unix
+## Installing on Unix
 
 For *Unix*-like environments Tcllib comes with the standard set of files to make
 
@@ -121,7 +129,7 @@ For a graphical installer invoke
 
 instead. *Note* however that this installer handles only the Tcl packages, applications, and the documentation. It does *not* handle the binary Tcllibc.
 
-## Installing on windows
+## Installing on Windows
 
 In a Windows environment we have the **installer.tcl** script to perform installation.
 
@@ -220,52 +228,58 @@ The installer will select a number of defaults for the locations of packages, ex
 : In CLI mode the installer will by default ask the user to confirm that the chosen configuration (destination paths, things to install) is correct before performing any action. Using this option causes the installer to skip this query and immediately jump to installation.
 
 **-app-path** *path*
-: ...see next...
+: see below ...
 
 **-example-path** *path*
-: ...see next...
+: see below ...
 
 **-html-path** *path*
-: ...see next...
+: see below ...
 
 **-nroff-path** *path*
-: ...see next...
+: see below ...
 
 **-pkg-path** *path*
 : Declare the destination paths for the applications, examples, html documentation, nroff manpages, and packages. The defaults are derived from the location of the **tclsh** used to run the installer.
 
 **-dry-run**
-: ...see next...
+: see below ...
 
 **-simulate**
 : Run the installer without modifying the destination directories.
 
 **-apps**
-: ...see next...
+: see below ...
 
 **-no-apps**
-: ...see next...
+: see below ...
 
 **-examples**
-: ...see next...
+: see below ...
 
 **-no-examples**
-: ...see next...
+: see below ...
 
 **-pkgs**
-: ...see next...
+: see below ...
 
 **-no-pkgs**
-: ...see next...
+: see below ...
 
 **-html**
-: ...see next...
+: see below ...
 
 **-no-html**
-: ...see next...
+: see below ...
 
 **-nroff**
-: ...see next...
+: see below ...
 
 **-no-nroff**
-: (De)activate the installation of applications, examples, packages, html documentation, and nroff manpages. Applications, examples, and packages are installed by default. On Windows the html documentation is installed by default. On Unix the nroff manpages are installed by default.
+: (De)activate the installation of applications, examples, packages, html documentation, and nroff manpages.
+
+    Applications, examples, and packages are installed by default.
+
+    On Windows the html documentation is installed by default.
+
+    On Unix the nroff manpages are installed by default.

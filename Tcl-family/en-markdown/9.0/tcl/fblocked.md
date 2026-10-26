@@ -1,5 +1,6 @@
 ---
 CommandName: fblocked
+title: fblocked
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -17,9 +18,12 @@ fblocked - Test whether the last input operation exhausted all available input
 # Synopsis
 
 ::: {.synopsis} :::
-[fblocked]{.cmd} [channel]{.arg} 
+[fblocked]{.cmd} [channel]{.arg}
 :::
 
 # Description
 
-The **fblocked** command has been superceded by the **chan blocked** command which supports the same syntax and options.
+The **fblocked** command has been superceded by the [chan blocked][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

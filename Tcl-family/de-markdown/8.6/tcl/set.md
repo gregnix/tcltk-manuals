@@ -1,5 +1,6 @@
 ---
 CommandName: set
+title: set
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -22,25 +23,25 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 set - Liest und schreibt Variablen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[set]{.cmd} [varName]{.arg} [value]{.optarg} 
+[set]{.cmd} [varName]{.arg} [value]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Gibt den Wert der Variable *varName* zurück. Wenn *value* angegeben ist, wird der Wert von *varName* auf *value* gesetzt, wobei eine neue Variable erstellt wird, falls noch keine existiert, und ihr Wert zurückgegeben wird. Wenn *varName* eine öffnende Klammer enthält und mit einer schließenden Klammer endet, bezieht es sich auf ein Array-Element: Die Zeichen vor der ersten öffnenden Klammer sind der Name des Arrays, und die Zeichen zwischen den Klammern sind der Index innerhalb des Arrays. Andernfalls bezieht sich *varName* auf eine skalare Variable.
 
-Wenn *varName* Namespace-Qualifizierer enthält (im Array-Namen, falls es sich auf ein Array-Element bezieht), oder wenn *varName* unqualifiziert ist (keine Namen von umgebenden Namespaces enthält), aber keine Prozedur aktiv ist, bezieht sich *varName* auf eine Namespace-Variable, die gemäß den Regeln unter **NAME RESOLUTION** in der **namespace**-Manpage aufgelöst wird.
+Wenn *varName* Namespace-Qualifizierer enthält (im Array-Namen, falls es sich auf ein Array-Element bezieht), oder wenn *varName* unqualifiziert ist (keine Namen von umgebenden Namespaces enthält), aber keine Prozedur aktiv ist, bezieht sich *varName* auf eine Namespace-Variable, die gemäß den Regeln unter **NAME RESOLUTION** in der [namespace]-Manpage aufgelöst wird.
 
-Wenn eine Prozedur aktiv ist und *varName* unqualifiziert ist, bezieht sich *varName* auf einen Parameter oder eine lokale Variable der Prozedur, es sei denn, *varName* wurde durch einen der Befehle **global**, **variable** oder **upvar** anders deklariert.
+Wenn eine Prozedur aktiv ist und *varName* unqualifiziert ist, bezieht sich *varName* auf einen Parameter oder eine lokale Variable der Prozedur, es sei denn, *varName* wurde durch einen der Befehle [global], [variable] oder [upvar] anders deklariert.
 
-# BEISPIELE
+# Beispiele
 
 Speichert eine Zufallszahl in der Variable *r*:
 
@@ -70,3 +71,8 @@ set vbl in[expr {rand() >= 0.5}]
 set out [set $vbl]
 ```
 
+
+[global]: global.md
+[namespace]: namespace.md
+[upvar]: upvar.md
+[variable]: variable.md

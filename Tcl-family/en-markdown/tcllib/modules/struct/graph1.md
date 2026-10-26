@@ -1,5 +1,6 @@
 ---
 CommandName: struct::graph_v1
+title: struct::graph_v1
 ManualSection: n
 Version: 1.2.2
 TclPart: tcllib
@@ -13,61 +14,72 @@ Copyright:
 
 # Name
 
-struct::graph_v1 - Create and manipulate directed graph objects
+struct::graph\_v1 - Create and manipulate directed graph objects
 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::graph]{.lit} [1.2.2]{.optlit} 
-[graphName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[graphName]{.ins} [destroy]{.sub} 
-[graphName]{.ins} [arc]{.sub} [append]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [arc]{.sub} [delete]{.lit} [arc]{.arg} [arc]{.optdot} 
-[graphName]{.ins} [arc]{.sub} [exists]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [get]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [getall]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [keys]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [keyexists]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [insert]{.lit} [start]{.arg} [end]{.arg} [child]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [lappend]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [arc]{.sub} [set]{.lit} [arc]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [arc]{.sub} [source]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [target]{.lit} [arc]{.arg} 
-[graphName]{.ins} [arc]{.sub} [unset]{.lit} [arc]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [arcs]{.sub} [-key key]{.optarg} [-value value]{.optarg} [-in|-out|-adj|-inner|-embedding nodelist]{.optarg} 
-[graphName]{.ins} [node]{.sub} [append]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [node]{.sub} [degree]{.lit} [-in|-out]{.optarg} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [delete]{.lit} [node]{.arg} [node]{.optdot} 
-[graphName]{.ins} [node]{.sub} [exists]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [get]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [node]{.sub} [getall]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [keys]{.lit} [node]{.arg} 
-[graphName]{.ins} [node]{.sub} [keyexists]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [node]{.sub} [insert]{.lit} [child]{.optarg} 
-[graphName]{.ins} [node]{.sub} [lappend]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.arg} 
-[graphName]{.ins} [node]{.sub} [opposite]{.lit} [node]{.arg} [arc]{.arg} 
-[graphName]{.ins} [node]{.sub} [set]{.lit} [node]{.arg} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [node]{.sub} [unset]{.lit} [node]{.arg} [-key key]{.optarg} 
-[graphName]{.ins} [nodes]{.sub} [-key key]{.optarg} [-value value]{.optarg} [-in|-out|-adj|-inner|-embedding nodelist]{.optarg} 
-[graphName]{.ins} [get]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [getall]{.sub} 
-[graphName]{.ins} [keys]{.sub} 
-[graphName]{.ins} [keyexists]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [set]{.sub} [-key key]{.optarg} [value]{.optarg} 
-[graphName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg} 
-[graphName]{.ins} [unset]{.sub} [-key key]{.optarg} 
-[graphName]{.ins} [walk]{.sub} [node]{.arg} [-order order]{.optarg} [-type type]{.optarg} [-dir direction]{.optarg} -command [cmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::graph]{.lit} [1.2.2]{.optlit}
+[graphName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[graphName]{.ins} [destroy]{.sub}
+[graphName]{.ins} [arc]{.sub} [append]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [arc]{.sub} [delete]{.lit} [arc]{.arg} [arc]{.optdot}
+[graphName]{.ins} [arc]{.sub} [exists]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [get]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arc]{.sub} [getall]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [keys]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [keyexists]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arc]{.sub} [insert]{.lit} [start]{.arg} [end]{.arg} [child]{.optarg}
+[graphName]{.ins} [arc]{.sub} [lappend]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [arc]{.sub} [set]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [arc]{.sub} [source]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [target]{.lit} [arc]{.arg}
+[graphName]{.ins} [arc]{.sub} [unset]{.lit} [arc]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [arcs]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [[-value]{.lit} [value]{.arg}]{.optarg} [[-in|-out|-adj|-inner|-embedding]{.lit} [nodelist]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [append]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [node]{.sub} [degree]{.lit} [-in|-out]{.optarg} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [delete]{.lit} [node]{.arg} [node]{.optdot}
+[graphName]{.ins} [node]{.sub} [exists]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [get]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [getall]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [keys]{.lit} [node]{.arg}
+[graphName]{.ins} [node]{.sub} [keyexists]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [node]{.sub} [insert]{.lit} [child]{.optarg}
+[graphName]{.ins} [node]{.sub} [lappend]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.arg}
+[graphName]{.ins} [node]{.sub} [opposite]{.lit} [node]{.arg} [arc]{.arg}
+[graphName]{.ins} [node]{.sub} [set]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [node]{.sub} [unset]{.lit} [node]{.arg} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [nodes]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [[-value]{.lit} [value]{.arg}]{.optarg} [[-in|-out|-adj|-inner|-embedding]{.lit} [nodelist]{.arg}]{.optarg}
+[graphName]{.ins} [get]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [getall]{.sub}
+[graphName]{.ins} [keys]{.sub}
+[graphName]{.ins} [keyexists]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [set]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg} [value]{.optarg}
+[graphName]{.ins} [swap]{.sub} [node1]{.arg} [node2]{.arg}
+[graphName]{.ins} [unset]{.sub} [[-key]{.lit} [key]{.arg}]{.optarg}
+[graphName]{.ins} [walk]{.sub} [node]{.arg} [[-order]{.lit} [order]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [[-dir]{.lit} [direction]{.arg}]{.optarg} -command [cmd]{.arg}
 :::
 
 # Description
 
 *This package has been superseded by* **struct::graph** *version 2.*
 
-The **::struct::graph** command creates a new graph object with an associated global Tcl command whose name is *graphName*.  This command may be used to invoke various operations on the graph.  It has the following general form:
+The [::struct::graph][graph] command creates a new graph object with an associated global Tcl command whose name is *graphName*.  This command may be used to invoke various operations on the graph.  It has the following general form:
 
 **graphName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. A directed graph is a structure containing two collections of elements, called *nodes* and *arcs* respectively, together with a relation ("connectivity") that places a general structure upon the nodes and arcs. Each arc is connected to two nodes, one of which is called the *source* and the other the *target*. This imposes a direction upon the arc, which is said to go from the source to the target. It is allowed that source and target of an arc are the same node. Such an arc is called a *loop*. Whenever a node is source or target of an arc both are said to be *adjacent*. This extends into a relation between nodes, i.e. if two nodes are connected through at least one arc they are said to be *adjacent* too. Each node can be the source and target for any number of arcs. The former are called the *outgoing arcs* of the node, the latter the *incoming arcs* of the node. The number of edges in either set is called the *in-* resp. the *out-degree* of the node. In addition to maintaining the node and arc relationships, this graph implementation allows any number of keyed values to be associated with each node and arc. The following commands are possible for graph objects:
+: *Option* and the *arg*s determine the exact behavior of the command.
+
+
+A directed graph is a structure containing two collections of elements, called *nodes* and *arcs* respectively, together with a relation ("connectivity") that places a general structure upon the nodes and arcs.
+
+Each arc is connected to two nodes, one of which is called the *source* and the other the *target*. This imposes a direction upon the arc, which is said to go from the source to the target. It is allowed that source and target of an arc are the same node. Such an arc is called a *loop*. Whenever a node is source or target of an arc both are said to be *adjacent*. This extends into a relation between nodes, i.e. if two nodes are connected through at least one arc they are said to be *adjacent* too.
+
+Each node can be the source and target for any number of arcs. The former are called the *outgoing arcs* of the node, the latter the *incoming arcs* of the node. The number of edges in either set is called the *in-* resp. the *out-degree* of the node.
+
+In addition to maintaining the node and arc relationships, this graph implementation allows any number of keyed values to be associated with each node and arc.
+
+The following commands are possible for graph objects:
 
 *graphName* **destroy**
 : Destroy the graph, including its storage space and associated command.
@@ -114,30 +126,29 @@ The **::struct::graph** command creates a new graph object with an associated gl
 *graphName* **arcs** ?-key *key*? ?-value *value*? ?-in|-out|-adj|-inner|-embedding *nodelist*?
 : Return a list of arcs in the graph. If no restriction is specified a list containing all arcs is returned. Restrictions can limit the list of returned arcs based on the nodes that are connected by the arc, on the keyed values associated with the arc, or both. The restrictions that involve connected nodes have a list of nodes as argument, specified after the name of the restriction itself.
 
+    **-in**
+    : Return a list of all arcs whose target is one of the nodes in the *nodelist*.
 
-**-in**
-: Return a list of all arcs whose target is one of the nodes in the *nodelist*.
+    **-out**
+    : Return a list of all arcs whose source is one of the nodes in the *nodelist*.
 
-**-out**
-: Return a list of all arcs whose source is one of the nodes in the *nodelist*.
+    **-adj**
+    : Return a list of all arcs adjacent to at least one of the nodes in the *nodelist*. This is the union of the nodes returned by **-in** and **-out**.
 
-**-adj**
-: Return a list of all arcs adjacent to at least one of the nodes in the *nodelist*. This is the union of the nodes returned by **-in** and **-out**.
+    **-inner**
+    : Return a list of all arcs adjacent to two of the nodes in the *nodelist*. This is the set of arcs in the subgraph spawned by the specified nodes.
 
-**-inner**
-: Return a list of all arcs adjacent to two of the nodes in the *nodelist*. This is the set of arcs in the subgraph spawned by the specified nodes.
+    **-embedding**
+    : Return a list of all arcs adjacent to exactly one of the nodes in the *nodelist*. This is the set of arcs connecting the subgraph spawned by the specified nodes to the rest of the graph.
 
-**-embedding**
-: Return a list of all arcs adjacent to exactly one of the nodes in the *nodelist*. This is the set of arcs connecting the subgraph spawned by the specified nodes to the rest of the graph.
+    **-key** *key*
+    : Limit the list of arcs that are returned to those arcs that have an associated key *key*.
 
-**-key** *key*
-: Limit the list of arcs that are returned to those arcs that have an associated key *key*.
-
-**-value** *value*
-: This restriction can only be used in combination with **-key**. It limits the list of arcs that are returned to those arcs whose associated key *key* has the value *value*.
+    **-value** *value*
+    : This restriction can only be used in combination with **-key**. It limits the list of arcs that are returned to those arcs whose associated key *key* has the value *value*.
 
 
-The restrictions imposed by either **-in**, **-out**, **-adj**, **-inner**, or **-embedded** are applied first. Specifying more than one of them is illegal. At last the restrictions set via **-key** (and **-value**) are applied. Specifying more than one **-key** (and **-value**) is illegal.
+    The restrictions imposed by either **-in**, **-out**, **-adj**, **-inner**, or **-embedded** are applied first. Specifying more than one of them is illegal. At last the restrictions set via **-key** (and **-value**) are applied. Specifying more than one **-key** (and **-value**) is illegal.
 
 *graphName* **node append** *node* ?-key *key*? *value*
 : Appends a *value* to one of the keyed values associated with an *node*. If no *key* is specified, the key **data** is assumed.
@@ -179,7 +190,9 @@ The restrictions imposed by either **-in**, **-out**, **-adj**, **-inner**, or *
 : Remove a keyed value from the node *node*.  If no key is specified, the key **data** is assumed.
 
 *graphName* **nodes** ?-key *key*? ?-value *value*? ?-in|-out|-adj|-inner|-embedding *nodelist*?
-: Return a list of nodes in the graph. Restrictions can limit the list of returned nodes based on neighboring nodes, or based on the keyed values associated with the node. The restrictions that involve neighboring nodes have a list of nodes as argument, specified after the name of the restriction itself. The possible restrictions are the same as for method **arcs**. The set of nodes to return is computed as the union of all source and target nodes for all the arcs satisfying the restriction as defined for **arcs**.
+: Return a list of nodes in the graph. Restrictions can limit the list of returned nodes based on neighboring nodes, or based on the keyed values associated with the node. The restrictions that involve neighboring nodes have a list of nodes as argument, specified after the name of the restriction itself.
+
+    The possible restrictions are the same as for method **arcs**. The set of nodes to return is computed as the union of all source and target nodes for all the arcs satisfying the restriction as defined for **arcs**.
 
 *graphName* **get** ?-key *key*?
 : Return the value associated with the key *key* for the graph. If no key is specified, the key **data** is assumed.
@@ -203,7 +216,15 @@ The restrictions imposed by either **-in**, **-out**, **-adj**, **-inner**, or *
 : Remove a keyed value from the graph. If no key is specified, the key **data** is assumed.
 
 *graphName* **walk** *node* ?-order *order*? ?-type *type*? ?-dir *direction*? -command *cmd*
-: Perform a breadth-first or depth-first walk of the graph starting at the node *node* going in either the direction of outgoing or opposite to the incoming arcs. The type of walk, breadth-first or depth-first, is determined by the value of *type*; **bfs** indicates breadth-first, **dfs** indicates depth-first.  Depth-first is the default. The order of the walk, pre-order, post-order or both-order is determined by the value of *order*; **pre** indicates pre-order, **post** indicates post-order, **both** indicates both-order. Pre-order is the default. Pre-order walking means that a node is visited before any of its neighbors (as defined by the *direction*, see below). Post-order walking means that a parent is visited after any of its neighbors. Both-order walking means that a node is visited before *and* after any of its neighbors. The combination of a bread-first walk with post- or both-order is illegal. The direction of the walk is determined by the value of *dir*; **backward** indicates the direction opposite to the incoming arcs, **forward** indicates the direction of the outgoing arcs. As the walk progresses, the command *cmd* will be evaluated at each node, with the mode of the call (**enter** or **leave**) and values *graphName* and the name of the current node appended. For a pre-order walk, all nodes are **enter**ed, for a post-order all nodes are left. In a both-order walk the first visit of a node **enter**s it, the second visit **leave**s it.
+: Perform a breadth-first or depth-first walk of the graph starting at the node *node* going in either the direction of outgoing or opposite to the incoming arcs.
+
+    The type of walk, breadth-first or depth-first, is determined by the value of *type*; **bfs** indicates breadth-first, **dfs** indicates depth-first.  Depth-first is the default.
+
+    The order of the walk, pre-order, post-order or both-order is determined by the value of *order*; **pre** indicates pre-order, **post** indicates post-order, **both** indicates both-order. Pre-order is the default. Pre-order walking means that a node is visited before any of its neighbors (as defined by the *direction*, see below). Post-order walking means that a parent is visited after any of its neighbors. Both-order walking means that a node is visited before *and* after any of its neighbors. The combination of a bread-first walk with post- or both-order is illegal.
+
+    The direction of the walk is determined by the value of *dir*; **backward** indicates the direction opposite to the incoming arcs, **forward** indicates the direction of the outgoing arcs.
+
+    As the walk progresses, the command *cmd* will be evaluated at each node, with the mode of the call (**enter** or **leave**) and values *graphName* and the name of the current node appended. For a pre-order walk, all nodes are **enter**ed, for a post-order all nodes are left. In a both-order walk the first visit of a node **enter**s it, the second visit **leave**s it.
 
 
 # Bugs, ideas, feedback
@@ -223,3 +244,6 @@ Data structures
 ```
 Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[graph]: graph.md

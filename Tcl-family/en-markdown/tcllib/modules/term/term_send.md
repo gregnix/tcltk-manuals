@@ -1,5 +1,6 @@
 ---
 CommandName: term::send
+title: term::send
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -19,10 +20,10 @@ term::send - General output to terminals
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::send]{.lit} [0.2]{.optlit} 
-[::term::send::wrch]{.cmd} [chan]{.arg} [str]{.arg} 
-[::term::send::wr]{.cmd} [str]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::send]{.lit} [0.2]{.optlit}
+[::term::send::wrch]{.cmd} [chan]{.arg} [str]{.arg}
+[::term::send::wr]{.cmd} [str]{.arg}
 :::
 
 # Description

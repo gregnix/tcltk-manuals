@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::spacer
+title: tcl::transform::spacer
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,10 +23,10 @@ tcl::transform::spacer - Space insertation and removal
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::spacer]{.lit} [1.1]{.optlit} 
-[::tcl::transform::spacer]{.cmd} [chan]{.arg} [n]{.arg} [space]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::spacer]{.lit} [1.1]{.optlit}
+[::tcl::transform::spacer]{.cmd} [chan]{.arg} [n]{.arg} [space]{.optarg}
 :::
 
 # Description
@@ -34,10 +35,12 @@ The **tcl::transform::spacer** package provides a command creating a channel tra
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::spacer** *chan* *n* ?*space*?
-: This command creates a spacer transformation on top of the channel *chan* and returns its handle. The *space* character sequence will be added every *n* bytes of data written, and on the read side the same is done in reverse, removing the spacing. If *space* is not specified it defaults to a single space character (ASCII 32).
+: This command creates a spacer transformation on top of the channel *chan* and returns its handle.
+
+    The *space* character sequence will be added every *n* bytes of data written, and on the read side the same is done in reverse, removing the spacing. If *space* is not specified it defaults to a single space character (ASCII 32).
 
 
 # Bugs, ideas, feedback

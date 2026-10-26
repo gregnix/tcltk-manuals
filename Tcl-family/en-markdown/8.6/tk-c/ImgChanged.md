@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_ImageChanged
+title: Tk_ImageChanged
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -17,46 +18,46 @@ Copyright:
 
 # Name
 
-Tk_ImageChanged - notify widgets that image needs to be redrawn
+Tk\_ImageChanged - notify widgets that image needs to be redrawn
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_ImageChanged]{.cmd}([model]{.arg}, [x]{.arg}, [y]{.arg}, [width]{.arg}, [height]{.arg}, [imageWidth]{.arg}, [imageHeight]{.arg})
+**#include <tk.h>**
+[Tk\_ImageChanged]{.ccmd} [model, x, y, width, height, imageWidth, imageHeight]{.cargs}
 :::
 
 # Arguments
 
-Tk_ImageMaster *model* (in)
+::: {.arguments} :::
+
+[model]{.carg .in type="Tk_ImageMaster"}
 : Token for image, which was passed to image's *createProc* when the image was created.
 
-int *x* (in)
+[x]{.carg .in type="int"}
 : X-coordinate of upper-left corner of region that needs redisplay (measured from upper-left corner of image).
 
-int *y* (in)
+[y]{.carg .in type="int"}
 : Y-coordinate of upper-left corner of region that needs redisplay (measured from upper-left corner of image).
 
-int *width* (in)
+[width]{.carg .in type="int"}
 : Width of region that needs to be redrawn, in pixels.
 
-int *height* (in)
+[height]{.carg .in type="int"}
 : Height of region that needs to be redrawn, in pixels.
 
-int *imageWidth* (in)
+[imageWidth]{.carg .in type="int"}
 : Current width of image, in pixels.
 
-int *imageHeight* (in)
+[imageHeight]{.carg .in type="int"}
 : Current height of image, in pixels.
 
+:::
 
 # Description
 
-An image manager calls **Tk_ImageChanged** for an image whenever anything happens that requires the image to be redrawn. As a result of calling **Tk_ImageChanged**, any widgets using the image are notified so that they can redisplay themselves appropriately. The *model* argument identifies the image, and *x*, *y*, *width*, and *height* specify a rectangular region within the image that needs to be redrawn. *imageWidth* and *imageHeight* specify the image's (new) size.
+An image manager calls **Tk\_ImageChanged** for an image whenever anything happens that requires the image to be redrawn. As a result of calling **Tk\_ImageChanged**, any widgets using the image are notified so that they can redisplay themselves appropriately. The *model* argument identifies the image, and *x*, *y*, *width*, and *height* specify a rectangular region within the image that needs to be redrawn. *imageWidth* and *imageHeight* specify the image's (new) size.
 
-::: {.info -version="TIP 581"}
-*Tk_ImageModel* is synonym for *Tk_ImageMaster*
-:::
+[*Tk\_ImageModel* is synonym for *Tk\_ImageMaster*]{version="TIP 581"}
 
-An image manager should call **Tk_ImageChanged** during its *createProc* to specify the image's initial size and to force redisplay if there are existing instances for the image. If any of the pixel values in the image should change later on, **Tk_ImageChanged** should be called again with *x*, *y*, *width*, and *height* values that cover all the pixels that changed. If the size of the image should change, then **Tk_ImageChanged** must be called to indicate the new size, even if no pixels need to be redisplayed.
+An image manager should call **Tk\_ImageChanged** during its *createProc* to specify the image's initial size and to force redisplay if there are existing instances for the image. If any of the pixel values in the image should change later on, **Tk\_ImageChanged** should be called again with *x*, *y*, *width*, and *height* values that cover all the pixels that changed. If the size of the image should change, then **Tk\_ImageChanged** must be called to indicate the new size, even if no pixels need to be redisplayed.

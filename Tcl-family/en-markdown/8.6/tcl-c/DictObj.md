@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_DictObj
+title: Tcl_DictObj
 ManualSection: 3
 Version: 8.5
 TclPart: Tcl
@@ -23,80 +24,64 @@ Copyright:
 
 # Name
 
-Tcl_NewDictObj, Tcl_DictObjPut, Tcl_DictObjGet, Tcl_DictObjRemove, Tcl_DictObjSize, Tcl_DictObjFirst, Tcl_DictObjNext, Tcl_DictObjDone, Tcl_DictObjPutKeyList, Tcl_DictObjRemoveKeyList - manipulate Tcl values as dictionaries
+Tcl\_NewDictObj, Tcl\_DictObjPut, Tcl\_DictObjGet, Tcl\_DictObjRemove, Tcl\_DictObjSize, Tcl\_DictObjFirst, Tcl\_DictObjNext, Tcl\_DictObjDone, Tcl\_DictObjPutKeyList, Tcl\_DictObjRemoveKeyList - manipulate Tcl values as dictionaries
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-Tcl_Obj \*
-[Tcl_NewDictObj]{.cmd}()
-
-int
-[Tcl_DictObjGet]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [keyPtr]{.arg}, [valuePtrPtr]{.arg})
-
-int
-[Tcl_DictObjPut]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [keyPtr]{.arg}, [valuePtr]{.arg})
-
-int
-[Tcl_DictObjRemove]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [keyPtr]{.arg})
-
-int
-[Tcl_DictObjSize]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [sizePtr]{.arg})
-
-int
-[Tcl_DictObjFirst]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [searchPtr]{.arg},
-[keyPtrPtr]{.arg}, [valuePtrPtr]{.arg}, [donePtr]{.arg})
-
-void
-[Tcl_DictObjNext]{.cmd}([searchPtr]{.arg}, [keyPtrPtr]{.arg}, [valuePtrPtr]{.arg}, [donePtr]{.arg})
-
-void
-[Tcl_DictObjDone]{.cmd}([searchPtr]{.arg})
-
-int
-[Tcl_DictObjPutKeyList]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [keyc]{.arg}, [keyv]{.arg}, [valuePtr]{.arg})
-
-int
-[Tcl_DictObjRemoveKeyList]{.cmd}([interp]{.arg}, [dictPtr]{.arg}, [keyc]{.arg}, [keyv]{.arg})
+**#include <tcl.h>**
+[Tcl\_Obj \*]{.ret} [Tcl\_NewDictObj]{.ccmd} []{.cargs}
+[int]{.ret} [Tcl\_DictObjGet]{.ccmd} [interp, dictPtr, keyPtr, valuePtrPtr]{.cargs}
+[int]{.ret} [Tcl\_DictObjPut]{.ccmd} [interp, dictPtr, keyPtr, valuePtr]{.cargs}
+[int]{.ret} [Tcl\_DictObjRemove]{.ccmd} [interp, dictPtr, keyPtr]{.cargs}
+[int]{.ret} [Tcl\_DictObjSize]{.ccmd} [interp, dictPtr, sizePtr]{.cargs}
+int Tcl\_DictObjFirst(interp, dictPtr, searchPtr,
+[void]{.ret} [Tcl\_DictObjNext]{.ccmd} [searchPtr, keyPtrPtr, valuePtrPtr, donePtr]{.cargs}
+[void]{.ret} [Tcl\_DictObjDone]{.ccmd} [searchPtr]{.cargs}
+[int]{.ret} [Tcl\_DictObjPutKeyList]{.ccmd} [interp, dictPtr, keyc, keyv, valuePtr]{.cargs}
+[int]{.ret} [Tcl\_DictObjRemoveKeyList]{.ccmd} [interp, dictPtr, keyc, keyv]{.cargs}
 :::
+
+keyPtrPtr, valuePtrPtr, donePtr)
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : If an error occurs while converting a value to be a dictionary value, an error message is left in the interpreter's result value unless *interp* is NULL.
 
-Tcl_Obj *\*dictPtr* (in/out)
+[\*dictPtr]{.carg .in/out type="Tcl_Obj"}
 : Points to the dictionary value to be manipulated. If *dictPtr* does not already point to a dictionary value, an attempt will be made to convert it to one.
 
-Tcl_Obj *\*keyPtr* (in)
+[\*keyPtr]{.carg .in type="Tcl_Obj"}
 : Points to the key for the key/value pair being manipulated within the dictionary value.
 
-Tcl_Obj *\*\*keyPtrPtr* (out)
+[\*\*keyPtrPtr]{.carg .out type="Tcl_Obj"}
 : Points to a variable that will have the key from a key/value pair placed within it.  May be NULL to indicate that the caller is not interested in the key.
 
-Tcl_Obj *\*valuePtr* (in)
-: Points to the value for the key/value pair being manipulated within the dictionary value (or sub-value, in the case of **Tcl_DictObjPutKeyList**.)
+[\*valuePtr]{.carg .in type="Tcl_Obj"}
+: Points to the value for the key/value pair being manipulated within the dictionary value (or sub-value, in the case of **Tcl\_DictObjPutKeyList**.)
 
-Tcl_Obj *\*\*valuePtrPtr* (out)
-: Points to a variable that will have the value from a key/value pair placed within it.  For **Tcl_DictObjFirst** and **Tcl_DictObjNext**, this may be NULL to indicate that the caller is not interested in the value.
+[\*\*valuePtrPtr]{.carg .out type="Tcl_Obj"}
+: Points to a variable that will have the value from a key/value pair placed within it.  For **Tcl\_DictObjFirst** and **Tcl\_DictObjNext**, this may be NULL to indicate that the caller is not interested in the value.
 
-int *\*sizePtr* (out)
+[\*sizePtr]{.carg .out type="int"}
 : Points to a variable that will have the number of key/value pairs contained within the dictionary placed within it.
 
-Tcl_DictSearch *\*searchPtr* (in/out)
-: Pointer to record to use to keep track of progress in enumerating all key/value pairs in a dictionary.  The contents of the record will be initialized by the call to **Tcl_DictObjFirst**.  If the enumerating is to be terminated before all values in the dictionary have been returned, the search record *must* be passed to **Tcl_DictObjDone** to enable the internal locks to be released.
+[\*searchPtr]{.carg .in/out type="Tcl_DictSearch"}
+: Pointer to record to use to keep track of progress in enumerating all key/value pairs in a dictionary.  The contents of the record will be initialized by the call to **Tcl\_DictObjFirst**.  If the enumerating is to be terminated before all values in the dictionary have been returned, the search record *must* be passed to **Tcl\_DictObjDone** to enable the internal locks to be released.
 
-int *\*donePtr* (out)
+[\*donePtr]{.carg .out type="int"}
 : Points to a variable that will have a non-zero value written into it when the enumeration of the key/value pairs in a dictionary has completed, and a zero otherwise.
 
-int *keyc* (in)
+[keyc]{.carg .in type="int"}
 : Indicates the number of keys that will be supplied in the *keyv* array.
 
-Tcl_Obj \*const *\*keyv* (in)
-: Array of *keyc* pointers to values that **Tcl_DictObjPutKeyList** and **Tcl_DictObjRemoveKeyList** will use to locate the key/value pair to manipulate within the sub-dictionaries of the main dictionary value passed to them.
+[\*keyv]{.carg .in type="Tcl_Obj *const"}
+: Array of *keyc* pointers to values that **Tcl\_DictObjPutKeyList** and **Tcl\_DictObjRemoveKeyList** will use to locate the key/value pair to manipulate within the sub-dictionaries of the main dictionary value passed to them.
 
+:::
 
 # Description
 
@@ -104,21 +89,21 @@ Tcl dictionary values have an internal representation that supports efficient ma
 
 The procedures described in this man page are used to create, modify, index, and iterate over dictionary values from C code.
 
-**Tcl_NewDictObj** creates a new, empty dictionary value.  The string representation of the value will be invalid, and the reference count of the value will be zero.
+**Tcl\_NewDictObj** creates a new, empty dictionary value.  The string representation of the value will be invalid, and the reference count of the value will be zero.
 
-**Tcl_DictObjGet** looks up the given key within the given dictionary and writes a pointer to the value associated with that key into the variable pointed to by *valuePtrPtr*, or a NULL if the key has no mapping within the dictionary.  The result of this procedure is **TCL_OK**, or **TCL_ERROR** if the *dictPtr* cannot be converted to a dictionary.
+**Tcl\_DictObjGet** looks up the given key within the given dictionary and writes a pointer to the value associated with that key into the variable pointed to by *valuePtrPtr*, or a NULL if the key has no mapping within the dictionary.  The result of this procedure is [TCL\_OK][catch], or [TCL\_ERROR][catch] if the *dictPtr* cannot be converted to a dictionary.
 
-**Tcl_DictObjPut** updates the given dictionary so that the given key maps to the given value; any key may exist at most once in any particular dictionary.  The dictionary must not be shared, but the key and value may be.  This procedure may increase the reference count of both key and value if it proves necessary to store them.  Neither key nor value should be NULL.  The result of this procedure is **TCL_OK**, or **TCL_ERROR** if the *dictPtr* cannot be converted to a dictionary.
+**Tcl\_DictObjPut** updates the given dictionary so that the given key maps to the given value; any key may exist at most once in any particular dictionary.  The dictionary must not be shared, but the key and value may be.  This procedure may increase the reference count of both key and value if it proves necessary to store them.  Neither key nor value should be NULL.  The result of this procedure is [TCL\_OK][catch], or [TCL\_ERROR][catch] if the *dictPtr* cannot be converted to a dictionary.
 
-**Tcl_DictObjRemove** updates the given dictionary so that the given key has no mapping to any value.  The dictionary must not be shared, but the key may be.  The key actually stored in the dictionary will have its reference count decremented if it was present.  It is not an error if the key did not previously exist.  The result of this procedure is **TCL_OK**, or **TCL_ERROR** if the *dictPtr* cannot be converted to a dictionary.
+**Tcl\_DictObjRemove** updates the given dictionary so that the given key has no mapping to any value.  The dictionary must not be shared, but the key may be.  The key actually stored in the dictionary will have its reference count decremented if it was present.  It is not an error if the key did not previously exist.  The result of this procedure is [TCL\_OK][catch], or [TCL\_ERROR][catch] if the *dictPtr* cannot be converted to a dictionary.
 
-**Tcl_DictObjSize** updates the given variable with the number of key/value pairs currently in the given dictionary. The result of this procedure is **TCL_OK**, or **TCL_ERROR** if the *dictPtr* cannot be converted to a dictionary.
+**Tcl\_DictObjSize** updates the given variable with the number of key/value pairs currently in the given dictionary. The result of this procedure is [TCL\_OK][catch], or [TCL\_ERROR][catch] if the *dictPtr* cannot be converted to a dictionary.
 
-**Tcl_DictObjFirst** commences an iteration across all the key/value pairs in the given dictionary, placing the key and value in the variables pointed to by the *keyPtrPtr* and *valuePtrPtr* arguments (which may be NULL to indicate that the caller is uninterested in they key or variable respectively.)  The next key/value pair in the dictionary may be retrieved with **Tcl_DictObjNext**.  Concurrent updates of the dictionary's internal representation will not modify the iteration processing unless the dictionary is unshared, when this will trigger premature termination of the iteration instead (which Tcl scripts cannot trigger via the **dict** command.)  The *searchPtr* argument points to a piece of context that is used to identify which particular iteration is being performed, and is initialized by the call to **Tcl_DictObjFirst**.  The *donePtr* argument points to a variable that is updated to be zero of there are further key/value pairs to be iterated over, or non-zero if the iteration is complete. The order of iteration is implementation-defined.  If the *dictPtr* argument cannot be converted to a dictionary, **Tcl_DictObjFirst** returns **TCL_ERROR** and the iteration is not commenced, and otherwise it returns **TCL_OK**.
+**Tcl\_DictObjFirst** commences an iteration across all the key/value pairs in the given dictionary, placing the key and value in the variables pointed to by the *keyPtrPtr* and *valuePtrPtr* arguments (which may be NULL to indicate that the caller is uninterested in they key or variable respectively.)  The next key/value pair in the dictionary may be retrieved with **Tcl\_DictObjNext**.  Concurrent updates of the dictionary's internal representation will not modify the iteration processing unless the dictionary is unshared, when this will trigger premature termination of the iteration instead (which Tcl scripts cannot trigger via the [dict] command.)  The *searchPtr* argument points to a piece of context that is used to identify which particular iteration is being performed, and is initialized by the call to **Tcl\_DictObjFirst**.  The *donePtr* argument points to a variable that is updated to be zero of there are further key/value pairs to be iterated over, or non-zero if the iteration is complete. The order of iteration is implementation-defined.  If the *dictPtr* argument cannot be converted to a dictionary, **Tcl\_DictObjFirst** returns [TCL\_ERROR][catch] and the iteration is not commenced, and otherwise it returns [TCL\_OK][catch].
 
-When **Tcl_DictObjFirst** is called upon a dictionary, a lock is placed on the dictionary to enable that dictionary to be iterated over safely without regard for whether the dictionary is modified during the iteration. Because of this, once the iteration over a dictionary's keys has finished (whether because all values have been iterated over as indicated by the variable indicated by the *donePtr* argument being set to one, or because no further values are required) the **Tcl_DictObjDone** function must be called with the same *searchPtr* as was passed to **Tcl_DictObjFirst** so that the internal locks can be released. Once a particular *searchPtr* is passed to **Tcl_DictObjDone**, passing it to **Tcl_DictObjNext** (without first initializing it with **Tcl_DictObjFirst**) will result in no values being produced and the variable pointed to by *donePtr* being set to one. It is safe to call **Tcl_DictObjDone** multiple times on the same *searchPtr* for each call to **Tcl_DictObjFirst**.
+When **Tcl\_DictObjFirst** is called upon a dictionary, a lock is placed on the dictionary to enable that dictionary to be iterated over safely without regard for whether the dictionary is modified during the iteration. Because of this, once the iteration over a dictionary's keys has finished (whether because all values have been iterated over as indicated by the variable indicated by the *donePtr* argument being set to one, or because no further values are required) the **Tcl\_DictObjDone** function must be called with the same *searchPtr* as was passed to **Tcl\_DictObjFirst** so that the internal locks can be released. Once a particular *searchPtr* is passed to **Tcl\_DictObjDone**, passing it to **Tcl\_DictObjNext** (without first initializing it with **Tcl\_DictObjFirst**) will result in no values being produced and the variable pointed to by *donePtr* being set to one. It is safe to call **Tcl\_DictObjDone** multiple times on the same *searchPtr* for each call to **Tcl\_DictObjFirst**.
 
-The procedures **Tcl_DictObjPutKeyList** and **Tcl_DictObjRemoveKeyList** are the close analogues of **Tcl_DictObjPut** and **Tcl_DictObjRemove** respectively, except that instead of working with a single dictionary, they are designed to operate on a nested tree of dictionaries, with inner dictionaries stored as values inside outer dictionaries.  The *keyc* and *keyv* arguments specify a list of keys (with outermost keys first) that acts as a path to the key/value pair to be affected.  Note that there is no corresponding operation for reading a value for a path as this is easy to construct from repeated use of **Tcl_DictObjGet**. With **Tcl_DictObjPutKeyList**, nested dictionaries are created for non-terminal keys where they do not already exist. With **Tcl_DictObjRemoveKeyList**, all non-terminal keys must exist and have dictionaries as their values.
+The procedures **Tcl\_DictObjPutKeyList** and **Tcl\_DictObjRemoveKeyList** are the close analogues of **Tcl\_DictObjPut** and **Tcl\_DictObjRemove** respectively, except that instead of working with a single dictionary, they are designed to operate on a nested tree of dictionaries, with inner dictionaries stored as values inside outer dictionaries.  The *keyc* and *keyv* arguments specify a list of keys (with outermost keys first) that acts as a path to the key/value pair to be affected.  Note that there is no corresponding operation for reading a value for a path as this is easy to construct from repeated use of **Tcl\_DictObjGet**. With **Tcl\_DictObjPutKeyList**, nested dictionaries are created for non-terminal keys where they do not already exist. With **Tcl\_DictObjRemoveKeyList**, all non-terminal keys must exist and have dictionaries as their values.
 
 # Example
 
@@ -158,3 +143,7 @@ Tcl_DictObjDone(&search);
 Tcl_SetObjResult(interp, Tcl_NewBooleanObj(!done));
 return TCL_OK;
 ```
+
+
+[catch]: ../tcl/catch.md
+[dict]: ../tcl/dict.md

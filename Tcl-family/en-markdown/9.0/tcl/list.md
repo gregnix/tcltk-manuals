@@ -1,5 +1,6 @@
 ---
 CommandName: list
+title: list
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -39,12 +40,12 @@ list - Create a list
 # Synopsis
 
 ::: {.synopsis} :::
-[list]{.cmd} [arg arg]{.optdot} 
+[list]{.cmd} [arg arg]{.optdot}
 :::
 
 # Description
 
-This command returns a list comprised of all the *arg*s, or an empty string if no *arg*s are specified. Braces and backslashes get added as necessary, so that the **lindex** command may be used on the result to re-extract the original arguments, and also so that **eval** may be used to execute the resulting list, with *arg1* comprising the command's name and the other *arg*s comprising its arguments.  **List** produces slightly different results than **concat**:  **concat** removes one level of grouping before forming the list, while **list** works directly from the original arguments.
+This command returns a list comprised of all the *arg*s, or an empty string if no *arg*s are specified. Braces and backslashes get added as necessary, so that the [lindex] command may be used on the result to re-extract the original arguments, and also so that [eval] may be used to execute the resulting list, with *arg1* comprising the command's name and the other *arg*s comprising its arguments.  **List** produces slightly different results than [concat]:  [concat] removes one level of grouping before forming the list, while **list** works directly from the original arguments.
 
 # Example
 
@@ -60,8 +61,13 @@ will return
 a b {c d e  } {  f {g h}}
 ```
 
-while **concat** with the same arguments will return
+while [concat] with the same arguments will return
 
 ```
 a b c d e f {g h}
 ```
+
+
+[concat]: concat.md
+[eval]: eval.md
+[lindex]: lindex.md

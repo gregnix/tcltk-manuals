@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::random
+title: tcl::chan::random
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -21,11 +22,11 @@ tcl::chan::random - Random channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::random]{.lit} [1.1]{.optlit} 
-[::tcl::chan::random]{.cmd} [seed]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::random]{.lit} [1.1]{.optlit}
+[::tcl::chan::random]{.cmd} [seed]{.arg}
 :::
 
 # Description
@@ -34,7 +35,7 @@ The **tcl::chan::random** package provides a command creating random channels, i
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::random** *seed*
 : This command creates a new random channel and returns its handle. The seed is a list of integer numbers used to initialize the internal feedback shift register of the generator.

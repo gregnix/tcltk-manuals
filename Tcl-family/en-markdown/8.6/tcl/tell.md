@@ -1,5 +1,6 @@
 ---
 CommandName: tell
+title: tell
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -27,14 +28,14 @@ tell - Return current access position for an open channel
 # Synopsis
 
 ::: {.synopsis} :::
-[tell]{.cmd} [channelId]{.arg} 
+[tell]{.cmd} [channelId]{.arg}
 :::
 
 # Description
 
-Returns an integer string giving the current access position in *channelId*.  This value returned is a byte offset that can be passed to **seek** in order to set the channel to a particular position.  Note that this value is in terms of bytes, not characters like **read**. The value returned is -1 for channels that do not support seeking.
+Returns an integer string giving the current access position in *channelId*.  This value returned is a byte offset that can be passed to [seek] in order to set the channel to a particular position.  Note that this value is in terms of bytes, not characters like [read]. The value returned is -1 for channels that do not support seeking.
 
-*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of [open] or [socket], or the result of a channel creation command provided by a Tcl extension.
 
 # Example
 
@@ -51,3 +52,9 @@ if {[read $chan 6] eq "foobar"} {
     seek $chan $offset
 }
 ```
+
+
+[open]: open.md
+[read]: read.md
+[seek]: seek.md
+[socket]: socket.md

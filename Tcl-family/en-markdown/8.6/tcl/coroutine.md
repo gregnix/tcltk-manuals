@@ -1,5 +1,6 @@
 ---
 CommandName: coroutine
+title: coroutine
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -23,10 +24,10 @@ coroutine, yield, yieldto - Create and produce values from coroutines
 # Synopsis
 
 ::: {.synopsis} :::
-[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg]{.optdot} 
-[yield]{.cmd} [value]{.optarg} 
-[yieldto]{.cmd} [command]{.arg} [arg]{.optdot} 
-*name* ?*value...*?
+[coroutine]{.cmd} [name]{.arg} [command]{.arg} [arg...]{.optarg}
+[yield]{.cmd} [value]{.optarg}
+[yieldto]{.cmd version="TIP396"} [command]{.arg} [arg...]{.optarg}
+[name]{.ins} [value...]{.optarg}
 :::
 
 # Description
@@ -35,11 +36,9 @@ The **coroutine** command creates a new coroutine context (with associated comma
 
 Within the context, values may be generated as results by using the **yield** command; if no *value* is supplied, the empty string is used. When that is called, the context will suspend execution and the **coroutine** command will return the argument to **yield**. The execution of the context can then be resumed by calling the context command, optionally passing in the *single* value to use as the result of the **yield** call that caused the context to be suspended. If the coroutine context never yields and instead returns conventionally, the result of the **coroutine** command will be the result of the evaluation of the context.
 
-::: {.info -version="TIP396"}
-The coroutine may also suspend its execution by use of the **yieldto** command, which instead of returning, cedes execution to some command called *command* (resolved in the context of the coroutine) and to which *any number* of arguments may be passed. Since every coroutine has a context command, **yieldto** can be used to transfer control directly from one coroutine to another (this is only advisable if the two coroutines are expecting this to happen) but *any* command may be the target. If a coroutine is suspended by this mechanism, the coroutine processing can be resumed by calling the context command optionally passing in an arbitrary number of arguments. The return value of the **yieldto** call will be the list of arguments passed to the context command; it is up to the caller to decide what to do with those values.
+[The coroutine may also suspend its execution by use of the **yieldto** command, which instead of returning, cedes execution to some command called *command* (resolved in the context of the coroutine) and to which *any number* of arguments may be passed. Since every coroutine has a context command, **yieldto** can be used to transfer control directly from one coroutine to another (this is only advisable if the two coroutines are expecting this to happen) but *any* command may be the target. If a coroutine is suspended by this mechanism, the coroutine processing can be resumed by calling the context command optionally passing in an arbitrary number of arguments. The return value of the **yieldto** call will be the list of arguments passed to the context command; it is up to the caller to decide what to do with those values.]{version="TIP396"}
 
-The recommended way of writing a version of **yield** that allows resumption with multiple arguments is by using **yieldto** and the **return** command, like this:
-:::
+The recommended way of writing a version of **yield** that allows resumption with multiple arguments is by using **yieldto** and the [return] command, like this:
 
 ```
 proc yieldm {value} {
@@ -47,9 +46,9 @@ proc yieldm {value} {
 }
 ```
 
-The coroutine can also be deleted by destroying the command *name*, and the name of the current coroutine can be retrieved by using **info coroutine**. If there are deletion traces on variables in the coroutine's implementation, they will fire at the point when the coroutine is explicitly deleted (or, naturally, if the command returns conventionally).
+The coroutine can also be deleted by destroying the command *name*, and the name of the current coroutine can be retrieved by using [info coroutine][info]. If there are deletion traces on variables in the coroutine's implementation, they will fire at the point when the coroutine is explicitly deleted (or, naturally, if the command returns conventionally).
 
-At the point when *command* is called, the current namespace will be the global namespace and there will be no stack frames above it (in the sense of **upvar** and **uplevel**). However, which command to call will be determined in the namespace that the **coroutine** command was called from.
+At the point when *command* is called, the current namespace will be the global namespace and there will be no stack frames above it (in the sense of [upvar] and [uplevel]). However, which command to call will be determined in the namespace that the **coroutine** command was called from.
 
 # Examples
 
@@ -111,9 +110,7 @@ for {set i 1} {$i <= 20} {incr i} {
 }
 ```
 
-::: {.info -version="TIP396"}
-This example shows how a value can be passed around a group of three coroutines that yield to each other:
-:::
+[This example shows how a value can be passed around a group of three coroutines that yield to each other:]{version="TIP396"}
 
 ```
 proc juggler {name target {value ""}} {
@@ -162,3 +159,9 @@ Which produces the output below. In particular, we can see that stack manipulati
 making from 2
 made inner 1 context=:: name=::demo::coroEg
 ```
+
+
+[info]: info.md
+[return]: return.md
+[uplevel]: uplevel.md
+[upvar]: upvar.md

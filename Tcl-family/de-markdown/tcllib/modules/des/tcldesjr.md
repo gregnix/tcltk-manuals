@@ -1,5 +1,6 @@
 ---
 CommandName: tclDESjr
+title: tclDESjr
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -17,24 +18,24 @@ Copyright:
  - Copyright (c) 2005, Pat Thoyts <patthoyts@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 tclDESjr – Implementierung der DES- und Triple-DES-Verschlüsselungsalgorithmen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tclDESjr]{.lit} [1.1]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tclDESjr]{.lit} [1.1]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket „**tclDESjr**“ ist ein Hilfspaket für „**des**“.
 
 Einzelheiten entnehmen Sie bitte der Dokumentation zu **des**.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *des* als Kategorie an.
 
@@ -42,11 +43,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Hashwerte, Prüfsummen und Verschlüsselung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2005, Pat Thoyts <patthoyts@users.sourceforge.net>

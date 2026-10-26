@@ -1,5 +1,6 @@
 ---
 CommandName: struct::pool
+title: struct::pool
 ManualSection: n
 Version: 1.2.4
 TclPart: tcllib
@@ -13,66 +14,67 @@ Copyright:
  - Copyright (c) 2002, Erik Leunissen <e.leunissen@hccnet.nl>
 ---
 
-# NAME
+# Name
 
 struct::pool – Pool-Objekte (aus einzelnen Elementen) anlegen und bearbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::pool]{.lit} [1.2.4]{.optlit} 
-[::struct::pool]{.cmd} [poolName]{.optarg} [maxsize]{.optarg} 
-[poolName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[poolName]{.ins} [add]{.sub} [itemName1]{.arg} [itemName2 itemName3]{.optdot} 
-[poolName]{.ins} [clear]{.sub} [-force]{.optlit} 
-[poolName]{.ins} [destroy]{.sub} [-force]{.optlit} 
-[poolName]{.ins} [info]{.sub} [type]{.arg} [arg]{.optarg} 
-[poolName]{.ins} [maxsize]{.sub} [maxsize]{.optarg} 
-[poolName]{.ins} [release]{.sub} [itemName]{.arg} 
-[poolName]{.ins} [remove]{.sub} [itemName]{.arg} [-force]{.optlit} 
-[poolName]{.ins} [request]{.sub} itemVar [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::pool]{.lit} [1.2.4]{.optlit}
+[::struct::pool]{.cmd} [poolName]{.optarg} [maxsize]{.optarg}
+[poolName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[poolName]{.ins} [add]{.sub} [itemName1]{.arg} [itemName2 itemName3]{.optdot}
+[poolName]{.ins} [clear]{.sub} [-force]{.optlit}
+[poolName]{.ins} [destroy]{.sub} [-force]{.optlit}
+[poolName]{.ins} [info]{.sub} [type]{.arg} [arg]{.optarg}
+[poolName]{.ins} [maxsize]{.sub} [maxsize]{.optarg}
+[poolName]{.ins} [release]{.sub} [itemName]{.arg}
+[poolName]{.ins} [remove]{.sub} [itemName]{.arg} [-force]{.optlit}
+[poolName]{.ins} [request]{.sub} itemVar [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt Pool-Objekte bereit, mit denen sich endliche Sammlungen diskreter Elemente verwalten lassen.
 
 **::struct::pool** ?*poolName*? ?*maxsize*?
-: Erstellt ein neues Pool-Objekt. Wird kein *poolName* angegeben, erhält der neue Pool den Namen „pool**X**“, wobei X eine positive ganze Zahl ist. Das optionale zweite Argument *maxsize* muss eine positive ganze Zahl sein, die die maximale Größe des Pools angibt; dies ist die maximale Anzahl von Elementen, die der Pool enthalten darf. Der Standardwert hierfür lautet **10**. Dem Pool-Objekt ist ein globaler Tcl-Befehl zugeordnet, dessen Name *poolName* lautet. Mit diesem Befehl lassen sich verschiedene Konfigurationsoperationen auf dem Pool aufrufen. Er hat die folgende allgemeine Form:
+: Erstellt ein neues Pool-Objekt. Wird kein *poolName* angegeben, erhält der neue Pool den Namen „pool**X**“, wobei X eine positive ganze Zahl ist. Das optionale zweite Argument *maxsize* muss eine positive ganze Zahl sein, die die maximale Größe des Pools angibt; dies ist die maximale Anzahl von Elementen, die der Pool enthalten darf. Der Standardwert hierfür lautet **10**.
+
+    Dem Pool-Objekt ist ein globaler Tcl-Befehl zugeordnet, dessen Name *poolName* lautet. Mit diesem Befehl lassen sich verschiedene Konfigurationsoperationen auf dem Pool aufrufen. Er hat die folgende allgemeine Form:
+
+    **poolName** *option* ?*arg arg ...*?
+    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Eine detaillierte Auflistung der Optionen und ihrer Funktionsweise finden Sie im Abschnitt [Pool-Objektbefehl].
 
 
-**poolName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Eine detaillierte Auflistung der Optionen und ihrer Funktionsweise finden Sie im Abschnitt **POOL-OBJEKTBEFEHL**.
 
-
-# POOLS UND ZUTEILUNG
+# Pools und Zuteilung
 
 Der Befehl pool und der von ihm erzeugte Pool-Objektbefehl dienen dazu, Pools aus einzelnen Elementen zu verwalten. Beispiele für einen Pool aus einzelnen Elementen sind:
 
-**•**
-: die Plätze in einem Kino, Theater, Zug usw., die Besucher bzw. Reisende reservieren können;
+- die Plätze in einem Kino, Theater, Zug usw., die Besucher bzw. Reisende reservieren können;
 
-**•**
-: die dynamischen IP-Adressen, die ein Internetdienstanbieter an seine Kunden vergeben kann;
+- die dynamischen IP-Adressen, die ein Internetdienstanbieter an seine Kunden vergeben kann;
 
-**•**
-: die Fahrzeugflotte eines Autovermieters, die von Kunden gemietet werden kann;
+- die Fahrzeugflotte eines Autovermieters, die von Kunden gemietet werden kann;
 
-**•**
-: die Klassenräume in einem Schulgebäude, die eingeplant werden müssen;
+- die Klassenräume in einem Schulgebäude, die eingeplant werden müssen;
 
-**•**
-: die Datenbankverbindungen, die den Client-Threads einer Webserver-Anwendung zur Verfügung stehen;
+- die Datenbankverbindungen, die den Client-Threads einer Webserver-Anwendung zur Verfügung stehen;
 
-**•**
-: die Bücher in einer Bibliothek, die die Kunden ausleihen können;
+- die Bücher in einer Bibliothek, die die Kunden ausleihen können;
 
-**•**
-: usw. … Der gemeinsame Nenner dieser Beispiele besteht darin, dass es eine mehr oder weniger feste Anzahl von Elementen (Sitzplätze, IP-Adressen, Autos, …) gibt, die mehr oder weniger regelmäßig zugewiesen werden sollen. Ein Element kann jeweils nur einmal zugewiesen sein. Ein zugewiesenes Element muss freigegeben werden, bevor es erneut zugewiesen werden kann. Während laufend Elemente eines Pools zugewiesen und freigegeben werden, bleibt die Gesamtzahl der Elemente im Pool konstant. Festzuhalten, welche Elemente zugewiesen sind und an wen, ist der Zweck des Befehls pool und der ihm untergeordneten Befehle. *Pool-Fachsprache*: Wenn wir sagen, dass ein Element *zugewiesen* ist, bedeutet dies, dass das Element *belegt*, *im Besitz* oder *besetzt* ist; es steht nicht mehr zur Verfügung. Wenn ein Element *frei* ist, ist es *verfügbar*. Ein Element freizugeben (deallocate) heißt dasselbe wie es freizusetzen oder zurückzugeben. Von der Person oder Stelle, der das Element zugeteilt wurde, sagt man, sie besitze das Element.
+- usw. …
 
 
-# ELEMENTE
+Der gemeinsame Nenner dieser Beispiele besteht darin, dass es eine mehr oder weniger feste Anzahl von Elementen (Sitzplätze, IP-Adressen, Autos, …) gibt, die mehr oder weniger regelmäßig zugewiesen werden sollen. Ein Element kann jeweils nur einmal zugewiesen sein. Ein zugewiesenes Element muss freigegeben werden, bevor es erneut zugewiesen werden kann. Während laufend Elemente eines Pools zugewiesen und freigegeben werden, bleibt die Gesamtzahl der Elemente im Pool konstant.
+
+Festzuhalten, welche Elemente zugewiesen sind und an wen, ist der Zweck des Befehls pool und der ihm untergeordneten Befehle.
+
+*Pool-Fachsprache*: Wenn wir sagen, dass ein Element *zugewiesen* ist, bedeutet dies, dass das Element *belegt*, *im Besitz* oder *besetzt* ist; es steht nicht mehr zur Verfügung. Wenn ein Element *frei* ist, ist es *verfügbar*. Ein Element freizugeben (deallocate) heißt dasselbe wie es freizusetzen oder zurückzugeben. Von der Person oder Stelle, der das Element zugeteilt wurde, sagt man, sie besitze das Element.
+
+# Elemente
 
 *Diskrete Elemente*
 
@@ -90,7 +92,7 @@ Aus Sicht des Verwalters eines Pools sind die Elemente gleichwertig. Dem Verwalt
 
 Ein künftiger Besitzer bevorzugt möglicherweise ein bestimmtes Element. Eine Zuweisung nach Präferenz wird unterstützt (siehe die Option **-prefer** des Unterbefehls request). Eine Präferenz für ein bestimmtes Element ergibt sich meist daraus, dass sich die Merkmale der Elemente unterscheiden. Beachten Sie, dass die Pool-Befehle selbst nicht dafür ausgelegt sind, solche Elementeigenschaften zu verwalten. Wenn Elementeigenschaften in einer Anwendung eine Rolle spielen, sollten sie separat verwaltet werden.
 
-# POOL-OBJEKTBEFEHL
+# Pool-Objektbefehl
 
 Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden Pool-Objektbefehl zur Verfügung.
 
@@ -106,28 +108,31 @@ Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden Po
 *poolName* **info** *type* ?*arg*?
 : Gibt verschiedene Informationen zum Pool für die weitere programmatische Verwendung zurück. Das Argument *type* gibt die Art der angeforderten Informationen an. Lediglich der Typ **allocID** verwendet ein zusätzliches Argument.
 
+    **allocID** *itemName*
+    : gibt die allocID des Elements mit dem Namen *itemName* zurück. Freie Elemente haben die Zuweisungs-ID **-1**.
 
-**allocID** *itemName*
-: gibt die allocID des Elements mit dem Namen *itemName* zurück. Freie Elemente haben die Zuweisungs-ID **-1**.
+    **allitems**
+    : gibt eine Liste aller Elemente im Pool zurück.
 
-**allitems**
-: gibt eine Liste aller Elemente im Pool zurück.
+    **allocstate**
+    : Gibt eine Liste von Schlüssel-Wert-Paaren zurück; die Schlüssel sind die Elemente, die Werte die zugehörigen Zuweisungs-IDs. Freie Elemente haben die Zuweisungs-ID **-1**.
 
-**allocstate**
-: Gibt eine Liste von Schlüssel-Wert-Paaren zurück; die Schlüssel sind die Elemente, die Werte die zugehörigen Zuweisungs-IDs. Freie Elemente haben die Zuweisungs-ID **-1**.
+    **cursize**
+    : gibt die aktuelle Poolgröße zurück, d. h. die Anzahl der Elemente im Pool.
 
-**cursize**
-: gibt die aktuelle Poolgröße zurück, d. h. die Anzahl der Elemente im Pool.
+    **freeitems**
+    : gibt eine Liste von Elementen zurück, die derzeit nicht zugewiesen sind.
 
-**freeitems**
-: gibt eine Liste von Elementen zurück, die derzeit nicht zugewiesen sind.
-
-**maxsize**
-: gibt die maximale Größe des Pools zurück.
+    **maxsize**
+    : gibt die maximale Größe des Pools zurück.
 
 
 *poolName* **maxsize** ?*maxsize*?
-: Legt die maximale Größe des Pools fest oder fragt diese ab, je nachdem, ob das Argument *maxsize* angegeben wird oder nicht. Wird *maxsize* angegeben, wird die maximale Größe des Pools auf diesen Wert gesetzt. Wird kein Argument angegeben, gibt der Befehl die aktuelle maximale Größe des Pools zurück. In dieser Variante ist der Befehl ein Alias für: **poolName info maxsize**. Das Argument *maxsize* muss eine positive ganze Zahl sein.
+: Legt die maximale Größe des Pools fest oder fragt diese ab, je nachdem, ob das Argument *maxsize* angegeben wird oder nicht. Wird *maxsize* angegeben, wird die maximale Größe des Pools auf diesen Wert gesetzt. Wird kein Argument angegeben, gibt der Befehl die aktuelle maximale Größe des Pools zurück. In dieser Variante ist der Befehl ein Alias für:
+
+    **poolName info maxsize**.
+
+    Das Argument *maxsize* muss eine positive ganze Zahl sein.
 
 *poolName* **release** *itemName*
 : Gibt das zuvor zugewiesene Element mit dem Namen *itemName* frei. Es wird ein Fehler ausgelöst, wenn das Element zum Zeitpunkt der Befehlsausführung nicht zugewiesen war.
@@ -138,26 +143,24 @@ Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden Po
 *poolName* **request** itemVar ?options?
 : Bearbeitet eine Anforderung eines Elements und berücksichtigt dabei eine mögliche Präferenz für ein bestimmtes Element. Je nach Verfügbarkeit der Elemente gibt es zwei mögliche Ergebnisse:
 
+    1. Die Anforderung wird erfüllt, ein Element wird zugewiesen, und die Variable, deren Name mit dem Argument *itemVar* übergeben wird, wird auf den Namen des zugewiesenen Elements gesetzt. Der Befehl gibt den Wert 1 zurück.
 
-**\[1\]**
-: Die Anforderung wird erfüllt, ein Element wird zugewiesen, und die Variable, deren Name mit dem Argument *itemVar* übergeben wird, wird auf den Namen des zugewiesenen Elements gesetzt. Der Befehl gibt den Wert 1 zurück.
-
-**\[2\]**
-: Die Anforderung wird abgelehnt. Es wird kein Element zugewiesen. Die Variable mit dem Namen itemVar wird nicht gesetzt. Versuche, *itemVar* zu lesen, können einen Fehler auslösen, wenn die Variable vor der Anforderung nicht definiert war. Der Befehl gibt den Wert 0 zurück.
+    2. Die Anforderung wird abgelehnt. Es wird kein Element zugewiesen. Die Variable mit dem Namen itemVar wird nicht gesetzt. Versuche, *itemVar* zu lesen, können einen Fehler auslösen, wenn die Variable vor der Anforderung nicht definiert war. Der Befehl gibt den Wert 0 zurück.
 
 
-Die Werte, die dieser Befehl zurückgibt, sind zur Überprüfung vorgesehen. Die folgenden Beispiele zeigen, wie dies geschieht. Wird der Wert nicht überprüft, kann dies zu fehlerhaftem Verhalten führen. Wird über die Option **-prefer** (siehe unten) keine Präferenz für ein bestimmtes Element angegeben, werden alle Anforderungen erfüllt, solange Elemente verfügbar sind.
+    Die Werte, die dieser Befehl zurückgibt, sind zur Überprüfung vorgesehen. Die folgenden Beispiele zeigen, wie dies geschieht. Wird der Wert nicht überprüft, kann dies zu fehlerhaftem Verhalten führen. Wird über die Option **-prefer** (siehe unten) keine Präferenz für ein bestimmtes Element angegeben, werden alle Anforderungen erfüllt, solange Elemente verfügbar sind.
 
-Folgende Optionen werden unterstützt:
+    Folgende Optionen werden unterstützt:
 
-**-allocID** *allocID*
-: Wird die Anforderung erfüllt, wird ein Element der durch allocID bezeichneten Stelle zugewiesen. Wird der Zuweisungsstatus eines Elements abgefragt, wird diese Zuweisungs-ID zurückgegeben. Fehlt die Option **-allocID**, wird das Element an **dummyID** vergeben und gehört dann diesem. Zuweisungs-IDs können beliebige Werte sein, außer dem Wert -1, der für freie Elemente reserviert ist.
+    **-allocID** *allocID*
+    : Wird die Anforderung erfüllt, wird ein Element der durch allocID bezeichneten Stelle zugewiesen. Wird der Zuweisungsstatus eines Elements abgefragt, wird diese Zuweisungs-ID zurückgegeben. Fehlt die Option **-allocID**, wird das Element an **dummyID** vergeben und gehört dann diesem. Zuweisungs-IDs können beliebige Werte sein, außer dem Wert -1, der für freie Elemente reserviert ist.
 
-**-prefer** *preferredItem*
-: Diese Option ändert die Zuweisungsstrategie wie folgt: Wenn das Element mit dem Namen *preferredItem* zum Zeitpunkt der Ausführung des Befehls nicht zugewiesen ist, wird die Anforderung erfüllt (Rückgabewert ist 1). Wenn das Element zum Zeitpunkt der Ausführung des Befehls bereits zugewiesen war, wird die Anforderung abgelehnt (Rückgabewert ist 0).
+    **-prefer** *preferredItem*
+    : Diese Option ändert die Zuweisungsstrategie wie folgt: Wenn das Element mit dem Namen *preferredItem* zum Zeitpunkt der Ausführung des Befehls nicht zugewiesen ist, wird die Anforderung erfüllt (Rückgabewert ist 1). Wenn das Element zum Zeitpunkt der Ausführung des Befehls bereits zugewiesen war, wird die Anforderung abgelehnt (Rückgabewert ist 0).
 
 
-# BEISPIELE
+
+# Beispiele
 
 Es werden zwei Beispiele vorgestellt. Das erste Beispiel simuliert eine schrittweise interaktive tclsh-Sitzung, in der jeder Schritt erläutert wird. Das zweite Beispiel veranschaulicht die Verwendung in einer Serveranwendung, die mit einer Backend-Anwendung kommuniziert.
 
@@ -262,7 +265,7 @@ Dieses Beispiel beschreibt den Fall, aus dem sich der Bedarf des Autors an einer
      }
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: pool* als Kategorie an.
 
@@ -270,11 +273,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Datenstrukturen
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2002, Erik Leunissen <e.leunissen@hccnet.nl>

@@ -1,5 +1,6 @@
 ---
 CommandName: bench_lang_intro
+title: bench_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -19,7 +20,7 @@ Copyright:
 
 # Name
 
-bench_lang_intro - bench language introduction
+bench\_lang\_intro - bench language introduction
 
 # Description
 
@@ -65,7 +66,7 @@ Instead of running the **-body** just once the system actually executes the **-b
 
 The drawback of doing things this way is that when we measure operations which are not idempotent we will most likely not measure the time for the operation we want, but of the state(s) the system is in after the first iteration, a mixture of things we have no interest in.
 
-Should we wish, for example, to measure the time it takes to include an element into a set, with the element not yet in the set, and the set having specific properties like being a shared Tcl_Obj, then the first iteration will measure the time for this. *However* all subsequent iterations will measure the time to include an element which is already in the set, and the Tcl_Obj holding the set will not be shared anymore either. In the end the timings taken for the several hundred iterations of this state will overwhelm the time taken from the first iteration, the only one which actually measured what we wanted.
+Should we wish, for example, to measure the time it takes to include an element into a set, with the element not yet in the set, and the set having specific properties like being a shared Tcl\_Obj, then the first iteration will measure the time for this. *However* all subsequent iterations will measure the time to include an element which is already in the set, and the Tcl\_Obj holding the set will not be shared anymore either. In the end the timings taken for the several hundred iterations of this state will overwhelm the time taken from the first iteration, the only one which actually measured what we wanted.
 
 The advanced initialization and cleanup codes, **-ipre**- and the **-ipost**-body respectively, are present to solve this very problem. While the regular initialization and cleanup codes are executed before and after the whole series of iterations the advanced codes are executed before and after each iteration of the body, without being measured themselves. This allows them to bring the system into the exact state the body wishes to measure.
 

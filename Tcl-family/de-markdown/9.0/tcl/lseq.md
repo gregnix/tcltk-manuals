@@ -1,5 +1,6 @@
 ---
 CommandName: lseq
+title: lseq
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -29,19 +30,19 @@ Copyright:
  - Copyright (c) 2022 Eric Taylor. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lseq - Numerische Folge erzeugen und als Liste zurückgeben
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [?by]{.optlit} [step?]{.arg} 
-[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [?by]{.optlit} [step?]{.arg} 
-[lseq]{.cmd} [count]{.arg} [by step]{.optarg} 
+[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [?by]{.optarg} [step?]{.arg}
+[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [?by]{.optarg} [step?]{.arg}
+[lseq]{.cmd} [count]{.arg} [[by]{.lit} [step]{.arg}]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **lseq** erzeugt eine Folge numerischer Werte, die entweder breite Ganzzahlen oder Gleitkommazahlen sein können, anhand der Parameter *start*, *end* und *step*. Das Argument *operation* „**..**“ oder „**to**“ definiert den Bereich. Die Option „**count**“ legt die Anzahl der Elemente in der Liste fest. In der Kurzform mit nur einem Zählwert entsteht ein Bereich von 0 bis *count*-1.
 
@@ -75,7 +76,7 @@ Der Befehl **lseq** kann sowohl aufsteigende als auch absteigende Folgen erzeuge
 count = int( ( (end - start) / step ) + 1 )
 ```
 
-# BEISPIELE
+# Beispiele
 
 ```
 lseq 3

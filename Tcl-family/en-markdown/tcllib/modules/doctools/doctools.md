@@ -1,5 +1,6 @@
 ---
 CommandName: doctools
+title: doctools
 ManualSection: n
 Version: 1.6.1
 TclPart: tcllib
@@ -30,23 +31,23 @@ doctools - doctools - Processing documents
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools]{.lit} [1.6.1]{.optlit} 
-[::doctools::new]{.cmd} [objectName]{.arg} [option value]{.optdot} 
-[::doctools::help]{.cmd} 
-[::doctools::search]{.cmd} [path]{.arg} 
-[objectName]{.cmd} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [configure]{.sub} 
-[objectName]{.ins} [configure]{.sub} [option]{.arg} 
-[objectName]{.ins} [configure]{.sub} [-option]{.lit} [value...]{.arg} 
-[objectName]{.ins} [cget]{.sub} [-option]{.lit} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [format]{.sub} [text]{.arg} 
-[objectName]{.ins} [map]{.sub} [symbolic]{.arg} [actual]{.arg} 
-[objectName]{.ins} [parameters]{.sub} 
-[objectName]{.ins} [search]{.sub} [path]{.arg} 
-[objectName]{.ins} [setparam]{.sub} [name]{.arg} [value]{.arg} 
-[objectName]{.ins} [warnings]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [doctools]{.lit} [1.6.1]{.optlit}
+[::doctools::new]{.cmd} [objectName]{.arg} [option value...]{.optarg}
+[::doctools::help]{.cmd}
+[::doctools::search]{.cmd} [path]{.arg}
+[objectName]{.cmd} [method]{.lit} [arg arg]{.optdot}
+[objectName]{.ins} [configure]{.sub}
+[objectName]{.ins} [configure]{.sub} [option]{.arg}
+[objectName]{.ins} [configure]{.sub} [-option]{.lit} [value...]{.arg}
+[objectName]{.ins} [cget]{.sub} [-option]{.lit}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [format]{.sub} [text]{.arg}
+[objectName]{.ins} [map]{.sub} [symbolic]{.arg} [actual]{.arg}
+[objectName]{.ins} [parameters]{.sub}
+[objectName]{.ins} [search]{.sub} [path]{.arg}
+[objectName]{.ins} [setparam]{.sub} [name]{.arg} [value]{.arg}
+[objectName]{.ins} [warnings]{.sub}
 :::
 
 # Description
@@ -57,18 +58,24 @@ A reader interested in the markup language itself should start with the *doctool
 
 If on the other hand the reader wishes to write her own formatting engine for some format, i.e. is a *plugin writer* then reading and understanding the *doctools plugin API reference* is an absolute necessity, as that document specifies the interaction between this package and its plugins, i.e. the formatting engines, in detail.
 
-# Public api
+# Public API
 
 ## Package commands
 
 **::doctools::new** *objectName* ?*option value*...?
-: This command creates a new doctools object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **OBJECT COMMAND** and **OBJECT METHODS**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The options and their values coming after the name of the object are used to set the initial configuration of the object.
+: This command creates a new doctools object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
+
+    The options and their values coming after the name of the object are used to set the initial configuration of the object.
 
 **::doctools::help**
 : This is a convenience command for applications wishing to provide their user with a short description of the available formatting commands and their meanings. It returns a string containing a standard help text.
 
 **::doctools::search** *path*
-: Whenever an object created by this the package has to map the name of a format to the file containing the code for its formatting engine it will search for the file in a number of directories stored in a list. See section **FORMAT MAPPING** for more explanations. This list not only contains three default directories which are declared by the package itself, but is also extensible user of the package. This command is the means to do so. When given a *path* to an existing and readable directory it will prepend that directory to the list of directories to search. This means that the *path* added last is later searched through first. An error will be thrown if the *path* either does not exist, is not a directory, or is not readable.
+: Whenever an object created by this the package has to map the name of a format to the file containing the code for its formatting engine it will search for the file in a number of directories stored in a list. See section [Format mapping] for more explanations.
+
+    This list not only contains three default directories which are declared by the package itself, but is also extensible user of the package. This command is the means to do so. When given a *path* to an existing and readable directory it will prepend that directory to the list of directories to search. This means that the *path* added last is later searched through first.
+
+    An error will be thrown if the *path* either does not exist, is not a directory, or is not readable.
 
 
 ## Object command
@@ -76,7 +83,7 @@ If on the other hand the reader wishes to write her own formatting engine for so
 All commands created by **::doctools::new** have the following general form and may be used to invoke various operations on their doctools converter object.
 
 **objectName** **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **OBJECT METHODS** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -88,25 +95,31 @@ All commands created by **::doctools::new** have the following general form and 
 : The method behaves like the method **cget** when called with a single argument and returns the value of the option specified by said argument.
 
 *objectName* **configure** **-option** *value*...
-: The method reconfigures the specified **option**s of the object, setting them to the associated *value*s, when called with an even number of arguments, at least two. The legal options are described in the section **OBJECT CONFIGURATION**.
+: The method reconfigures the specified **option**s of the object, setting them to the associated *value*s, when called with an even number of arguments, at least two.
+
+    The legal options are described in the section [Object configuration].
 
 *objectName* **cget** **-option**
-: This method expects a legal configuration option as argument and will return the current value of that option for the object the method was invoked for. The legal configuration options are described in section **OBJECT CONFIGURATION**.
+: This method expects a legal configuration option as argument and will return the current value of that option for the object the method was invoked for.
+
+    The legal configuration options are described in section [Object configuration].
 
 *objectName* **destroy**
 : This method destroys the object it is invoked for.
 
 *objectName* **format** *text*
-: This method runs the *text* through the configured formatting engine and returns the generated string as its result. An error will be thrown if no **-format** was configured for the object. The method assumes that the *text* is in *doctools* format as specified in the companion document *doctools_fmt*. Errors will be thrown otherwise.
+: This method runs the *text* through the configured formatting engine and returns the generated string as its result. An error will be thrown if no **-format** was configured for the object.
+
+    The method assumes that the *text* is in *doctools* format as specified in the companion document *doctools\_fmt*. Errors will be thrown otherwise.
 
 *objectName* **map** *symbolic* *actual*
-: This methods add one entry to the per-object mapping from *symbolic* filenames to the *actual* uris. The object just stores this mapping and makes it available to the configured formatting engine through the command **dt_fmap**. This command is described in more detail in the *doctools plugin API reference* which specifies the interaction between the objects created by this package and doctools formatting engines.
+: This methods add one entry to the per-object mapping from *symbolic* filenames to the *actual* uris. The object just stores this mapping and makes it available to the configured formatting engine through the command [dt\_fmap][docidx_plugin_apiref]. This command is described in more detail in the *doctools plugin API reference* which specifies the interaction between the objects created by this package and doctools formatting engines.
 
 *objectName* **parameters**
 : This method returns a list containing the names of all engine parameters provided by the configured formatting engine. It will return an empty list if the object is not yet configured for a specific format.
 
 *objectName* **search** *path*
-: This method extends the per-object list of paths searched for doctools formatting engines. See also the command **::doctools::search** on how to extend the per-package list of paths. Note that the path entered last will be searched first. For more details see section **FORMAT MAPPING**.
+: This method extends the per-object list of paths searched for doctools formatting engines. See also the command **::doctools::search** on how to extend the per-package list of paths. Note that the path entered last will be searched first. For more details see section [Format mapping].
 
 *objectName* **setparam** *name* *value*
 : This method sets the *name*d engine parameter to the specified *value*. It will throw an error if the object is either not yet configured for a specific format, or if the formatting engine for the configured format does not provide a parameter with the given *name*. The list of parameters provided by the configured formatting engine can be retrieved through the method **parameters**.
@@ -120,108 +133,142 @@ All commands created by **::doctools::new** have the following general form and 
 All doctools objects understand the following configuration options:
 
 **-file** *file*
-: The argument of this option is stored in the object and made available to the configured formatting engine through the commands **dt_file** and **dt_mainfile**. These commands are described in more detail in the companion document *doctools_api* which specifies the API between the object and formatting engines. The default value of this option is the empty string. The configured formatting engine should interpret the value as the name of the file containing the document which is currently processed.
+: The argument of this option is stored in the object and made available to the configured formatting engine through the commands [dt\_file][doctools_plugin_apiref] and [dt\_mainfile][doctools_plugin_apiref]. These commands are described in more detail in the companion document *doctools\_api* which specifies the API between the object and formatting engines.
+
+    The default value of this option is the empty string.
+
+    The configured formatting engine should interpret the value as the name of the file containing the document which is currently processed.
 
 **-ibase** *file*
-: The argument of this option is stored in the object and used as the base path for resolution of relative include paths. If this option is not set (empty string) the value of **-file** is used instead. Note that **-file** and **-ibase**, while similar looking, are actually very different. The value of **-file** is used by some engines for the generation of proper relative references between output documents (HTML). As such this is a *destination* path. The **-ibase** on the other hand is used to resolve relative include paths, and as such deals with *source* paths. The default value of this option is the empty string.
+: The argument of this option is stored in the object and used as the base path for resolution of relative include paths. If this option is not set (empty string) the value of **-file** is used instead.
+
+    Note that **-file** and **-ibase**, while similar looking, are actually very different. The value of **-file** is used by some engines for the generation of proper relative references between output documents (HTML). As such this is a *destination* path. The **-ibase** on the other hand is used to resolve relative include paths, and as such deals with *source* paths.
+
+    The default value of this option is the empty string.
 
 **-module** *text*
-: The argument of this option is stored in the object and made available to the configured formatting engine through the command **dt_module**. This command is described in more detail in the companion document *doctools_api* which specifies the API between the object and formatting engines. The default value of this option is the empty string. The configured formatting engine should interpret the value as the name of the module the file containing the document which is currently processed belongs to.
+: The argument of this option is stored in the object and made available to the configured formatting engine through the command [dt\_module][doctools_plugin_apiref]. This command is described in more detail in the companion document *doctools\_api* which specifies the API between the object and formatting engines.
+
+    The default value of this option is the empty string.
+
+    The configured formatting engine should interpret the value as the name of the module the file containing the document which is currently processed belongs to.
 
 **-format** *text*
-: The argument of this option specifies the format to generate and by implication the formatting engine to use when converting text via the method **format**. Its default value is the empty string. The method **format** cannot be used if this option is not set to a valid value at least once. The package will immediately try to map the given name to a file containing the code for a formatting engine generating that format. An error will be thrown if this mapping fails. In that case a previously configured format is left untouched. The section **FORMAT MAPPING** explains in detail how the package and object will look for engine implementations.
+: The argument of this option specifies the format to generate and by implication the formatting engine to use when converting text via the method **format**. Its default value is the empty string. The method **format** cannot be used if this option is not set to a valid value at least once.
+
+    The package will immediately try to map the given name to a file containing the code for a formatting engine generating that format. An error will be thrown if this mapping fails. In that case a previously configured format is left untouched.
+
+    The section [Format mapping] explains in detail how the package and object will look for engine implementations.
 
 **-deprecated** *boolean*
-: This option is a boolean flag. The object will generate warnings if this flag is set and the text given to method **format** contains the deprecated markup command **strong**. Its default value is **FALSE**. In other words, no warnings will be generated.
+: This option is a boolean flag. The object will generate warnings if this flag is set and the text given to method **format** contains the deprecated markup command [strong][doctools_lang_cmdref]. Its default value is **FALSE**. In other words, no warnings will be generated.
 
 **-copyright** *text*
-: The argument of this option is stored in the object and made available to the configured formatting engine through the command **dt_copyright**. This command is described in more detail in the companion document *doctools_api* which specifies the API between the object and formatting engines. The default value of this option is the empty string. The configured formatting engine should interpret the value as a copyright assignment for the document which is currently processed, or the package described by it. This information must be used if and only if the engine is unable to find any copyright assignments within the document itself. Such are specified by the formatting command **copyright**. This command is described in more detail in the companion document *doctools_fmt* which specifies the *doctools* format itself.
+: The argument of this option is stored in the object and made available to the configured formatting engine through the command [dt\_copyright][doctools_plugin_apiref]. This command is described in more detail in the companion document *doctools\_api* which specifies the API between the object and formatting engines.
+
+    The default value of this option is the empty string.
+
+    The configured formatting engine should interpret the value as a copyright assignment for the document which is currently processed, or the package described by it.
+
+    This information must be used if and only if the engine is unable to find any copyright assignments within the document itself. Such are specified by the formatting command [copyright][doctools_lang_cmdref]. This command is described in more detail in the companion document *doctools\_fmt* which specifies the *doctools* format itself.
 
 
 ## Format mapping
 
 The package and object will perform the following algorithm when trying to map a format name *foo* to a file containing an implementation of a formatting engine for *foo*:
 
-**\[1\]**
-: If *foo* is the name of an existing file then this file is directly taken as the implementation.
+1. If *foo* is the name of an existing file then this file is directly taken as the implementation.
 
-**\[2\]**
-: If not, the list of per-object search paths is searched. For each directory in the list the package checks if that directory contains a file "*fmt.foo*". If yes, then that file is taken as the implementation. Note that this list of paths is initially empty and can be extended through the object method **search**.
+2. If not, the list of per-object search paths is searched. For each directory in the list the package checks if that directory contains a file "*fmt.foo*". If yes, then that file is taken as the implementation.
 
-**\[3\]**
-: If not, the list of package paths is searched. For each directory in the list the package checks if that directory contains a file "*fmt.foo*". If yes, then that file is taken as the implementation. This list of paths can be extended through the command **::doctools::search**. It contains initially one path, the subdirectory "*mpformats*" of the directory the package itself is located in. In other words, if the package implementation "*doctools.tcl*" is installed in the directory "*/usr/local/lib/tcllib/doctools*" then it will by default search the directory "*/usr/local/lib/tcllib/doctools/mpformats*" for format implementations.
+    Note that this list of paths is initially empty and can be extended through the object method **search**.
 
-**\[4\]**
-: The mapping fails.
+3. If not, the list of package paths is searched. For each directory in the list the package checks if that directory contains a file "*fmt.foo*". If yes, then that file is taken as the implementation.
+
+    This list of paths can be extended through the command **::doctools::search**. It contains initially one path, the subdirectory "*mpformats*" of the directory the package itself is located in. In other words, if the package implementation "*doctools.tcl*" is installed in the directory "*/usr/local/lib/tcllib/doctools*" then it will by default search the directory "*/usr/local/lib/tcllib/doctools/mpformats*" for format implementations.
+
+4. The mapping fails.
 
 
 # Predefined engines
 
 The package provides predefined engines for the following formats. Some of the engines support parameters. These will be explained below as well.
 
-**html**
+html
 : This engine generates HTML markup, for processing by web browsers and the like. This engine supports four parameters:
 
+    footer
+    : The value for this parameter has to be valid selfcontained HTML markup for the body section of a HTML document. The default value is the empty string. The value is inserted into the generated output just before the **</body>** tag, closing the body of the generated HTML.
 
-**footer**
-: The value for this parameter has to be valid selfcontained HTML markup for the body section of a HTML document. The default value is the empty string. The value is inserted into the generated output just before the **\</body>** tag, closing the body of the generated HTML. This can be used to insert boilerplate footer markup into the generated document.
+        This can be used to insert boilerplate footer markup into the generated document.
 
-**header**
-: The value for this parameter has to be valid selfcontained HTML markup for the body section of a HTML document. The default value is the empty string. The value is inserted into the generated output just after the **\<body>** tag, starting the body of the generated HTML. This can be used to insert boilerplate header markup into the generated document.
+    header
+    : The value for this parameter has to be valid selfcontained HTML markup for the body section of a HTML document. The default value is the empty string. The value is inserted into the generated output just after the **<body>** tag, starting the body of the generated HTML.
 
-**meta**
-: The value for this parameter has to be valid selfcontained HTML markup for the header section of a HTML document. The default value is the empty string. The value is inserted into the generated output just after the **\<head>** tag, starting the header section of the generated HTML. This can be used to insert boilerplate meta data markup into the generated document, like references to a stylesheet, standard meta keywords, etc.
+        This can be used to insert boilerplate header markup into the generated document.
 
-**xref**
-: The value for this parameter has to be a list of triples specifying cross-reference information. This information is used by the engine to create more hyperlinks. Each triple is a list containing a pattern, symbolic filename and fragment reference, in this order. If a pattern is specified multiple times the last occurrence of the pattern will be used. The engine will consult the xref database when encountering specific commands and will create a link if the relevant text matches one of the patterns. No link will be created if no match was found. The link will go to the uri **file#fragment** listed in the relevant triple, after conversion of the symbolic file name to the actual uri via **dt_fmap** (see the *doctools plugin API reference*). This file-to-uri mapping was build by calls to the method **map** of the doctools object (See section **OBJECT METHODS**). The following formatting commands will consult the xref database:
+    meta
+    : The value for this parameter has to be valid selfcontained HTML markup for the header section of a HTML document. The default value is the empty string. The value is inserted into the generated output just after the **<head>** tag, starting the header section of the generated HTML.
+
+        This can be used to insert boilerplate meta data markup into the generated document, like references to a stylesheet, standard meta keywords, etc.
+
+    xref
+    : The value for this parameter has to be a list of triples specifying cross-reference information. This information is used by the engine to create more hyperlinks. Each triple is a list containing a pattern, symbolic filename and fragment reference, in this order. If a pattern is specified multiple times the last occurrence of the pattern will be used.
+
+        The engine will consult the xref database when encountering specific commands and will create a link if the relevant text matches one of the patterns. No link will be created if no match was found. The link will go to the uri **file#fragment** listed in the relevant triple, after conversion of the symbolic file name to the actual uri via [dt\_fmap][docidx_plugin_apiref] (see the *doctools plugin API reference*). This file-to-uri mapping was build by calls to the method **map** of the doctools object (See section [Object methods]).
+
+        The following formatting commands will consult the xref database:
+
+        [cmd][doctools_lang_cmdref] *word*
+        : The command will look for the patterns **sa,***word*, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
+
+        [syscmd][doctools_lang_cmdref] *word*
+        : The command will look for the patterns **sa,***word*, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
+
+        [term][doctools_lang_cmdref] *word*
+        : The command will look for the patterns **kw,***word*, **sa,***word*, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
+
+        **package** *word*
+        : The command will look for the patterns **sa,***word*, **kw,***word*, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
+
+        [see\_also][doctools_lang_cmdref] *word*...
+        : The command will look for the patterns **sa,***word*, and *word*, in this order, for each *word* given to the command. If this fails if it will convert *word* to all lowercase and try again.
+
+        [keywords][doctools_lang_cmdref] *word*...
+        : The command will look for the patterns **kw,***word*, and *word*, in this order, for each *word* given to the command. If this fails if it will convert *word* to all lowercase and try again.
 
 
-**cmd** *word*
-: The command will look for the patterns **sa,**_word_, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
 
-**syscmd** *word*
-: The command will look for the patterns **sa,**_word_, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
-
-**term** *word*
-: The command will look for the patterns **kw,**_word_, **sa,**_word_, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
-
-**package** *word*
-: The command will look for the patterns **sa,**_word_, **kw,**_word_, and *word*, in this order. If this fails if it will convert *word* to all lowercase and try again.
-
-**see_also** *word*...
-: The command will look for the patterns **sa,**_word_, and *word*, in this order, for each *word* given to the command. If this fails if it will convert *word* to all lowercase and try again.
-
-**keywords** *word*...
-: The command will look for the patterns **kw,**_word_, and *word*, in this order, for each *word* given to the command. If this fails if it will convert *word* to all lowercase and try again.
-
-
-**latex**
+latex
 : This engine generates output suitable for the **latex** text processor coming out of the TeX world.
 
-**list**
+list
 : This engine retrieves version, section and title of the manpage from the document. As such it can be used to generate a directory listing for a set of manpages.
 
-**nroff**
+nroff
 : This engine generates nroff output, for processing by **nroff**, or **groff**. The result will be standard man pages as they are known in the unix world.
 
-**markdown**
+markdown
 : This engine generates *Markdown* markup. This engine supports two parameters:
 
+    header
+    : The value for this parameter has to be valid selfcontained markdown markup for the body section of a markdown document. The default value is the empty string. The value is inserted into the generated output just before the table of contents.
 
-**header**
-: The value for this parameter has to be valid selfcontained markdown markup for the body section of a markdown document. The default value is the empty string. The value is inserted into the generated output just before the table of contents. This can be used to insert boilerplate header markup into the generated document.
+        This can be used to insert boilerplate header markup into the generated document.
 
-**xref**
-: The value for this parameter has to be a list of triples specifying cross-reference information. The full details of expected syntax and engine-internal use are explained above for the *html* engine.
+    xref
+    : The value for this parameter has to be a list of triples specifying cross-reference information.
+
+        The full details of expected syntax and engine-internal use are explained above for the *html* engine.
 
 
-**null**
+null
 : This engine generates no outout at all. This can be used if one just wants to validate some input.
 
-**tmml**
+tmml
 : This engine generates TMML markup as specified by Joe English. The Tcl Manpage Markup Language is a derivate of XML.
 
-**wiki**
+wiki
 : This engine generates Wiki markup as understood by Jean Claude Wippler's **wikit** application.
 
 
@@ -242,3 +289,8 @@ Documentation tools
 ```
 Copyright (c) 2003-2024 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_plugin_apiref]: docidx_plugin_apiref.md
+[doctools_lang_cmdref]: doctools_lang_cmdref.md
+[doctools_plugin_apiref]: doctools_plugin_apiref.md

@@ -1,5 +1,6 @@
 ---
 CommandName: docstrip
+title: docstrip
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -24,10 +25,10 @@ docstrip - Docstrip style source code extraction
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [docstrip]{.lit} [1.3]{.optlit} 
-[docstrip::extract]{.cmd} [text]{.arg} [terminals]{.arg} [option value]{.optdot} 
-[docstrip::sourcefrom]{.cmd} [filename]{.arg} [terminals]{.arg} [option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [docstrip]{.lit} [1.3]{.optlit}
+[docstrip::extract]{.cmd} [text]{.arg} [terminals]{.arg} [option value]{.optdot}
+[docstrip::sourcefrom]{.cmd} [filename]{.arg} [terminals]{.arg} [option value]{.optdot}
 :::
 
 # Description
@@ -38,23 +39,24 @@ In short, the basic principle of literate programming is that program source sho
 
 Even for those who do not whole-hartedly subscribe to the philosophy behind literate programming, **docstrip** can bring greater clarity to in particular:
 
-**•**
-: programs employing non-obvious mathematics
+- programs employing non-obvious mathematics
 
-**•**
-: projects where separate pieces of code, perhaps in different languages, need to be closely coordinated. The first is by providing access to much more powerful typographical features for source code comments than are possible in plain text. The second is because all the separate pieces of code can be kept next to each other in the same source file. The way it works is that the programmer edits directly only one or several "master" source code files, from which **docstrip** generates the more traditional "source" files compilers or the like would expect. The master sources typically contain a large amount of documentation of the code, sometimes even in places where the code consumers would not allow any comments. The etymology of "docstrip" is that this *doc*umentation was *strip*ped away (although "code extraction" might be a better description, as it has always been a matter of copying selected pieces of the master source rather than deleting text from it). The **docstrip** Tcl package contains a reimplementation of the basic extraction functionality from the **docstrip** program, and thus makes it possible for a Tcl interpreter to read and interpret the master source files directly. Readers who are not previously familiar with **docstrip** but want to know more about it may consult the following sources.
+- projects where separate pieces of code, perhaps in different languages, need to be closely coordinated.
 
-**\[1\]**
-: *The tclldoc package and class*, *http://ctan.org/tex-archive/macros/latex/contrib/tclldoc/*.
 
-**\[2\]**
-: *The DocStrip utility*, *http://ctan.org/tex-archive/macros/latex/base/docstrip.dtx*.
+The first is by providing access to much more powerful typographical features for source code comments than are possible in plain text. The second is because all the separate pieces of code can be kept next to each other in the same source file.
 
-**\[3\]**
-: *The doc and shortvrb Packages*, *http://ctan.org/tex-archive/macros/latex/base/doc.dtx*.
+The way it works is that the programmer edits directly only one or several "master" source code files, from which **docstrip** generates the more traditional "source" files compilers or the like would expect. The master sources typically contain a large amount of documentation of the code, sometimes even in places where the code consumers would not allow any comments. The etymology of "docstrip" is that this *doc*umentation was *strip*ped away (although "code extraction" might be a better description, as it has always been a matter of copying selected pieces of the master source rather than deleting text from it). The **docstrip** Tcl package contains a reimplementation of the basic extraction functionality from the **docstrip** program, and thus makes it possible for a Tcl interpreter to read and interpret the master source files directly.
 
-**\[4\]**
-: Chapter 14 of *The LaTeX Companion* (second edition), Addison-Wesley, 2004; ISBN 0-201-36299-6.
+Readers who are not previously familiar with **docstrip** but want to know more about it may consult the following sources.
+
+1. *The tclldoc package and class*, <http://ctan.org/tex-archive/macros/latex/contrib/tclldoc/>.
+
+2. *The DocStrip utility*, <http://ctan.org/tex-archive/macros/latex/base/docstrip.dtx>.
+
+3. *The doc and shortvrb Packages*, <http://ctan.org/tex-archive/macros/latex/base/doc.dtx>.
+
+4. Chapter 14 of *The LaTeX Companion* (second edition), Addison-Wesley, 2004; ISBN 0-201-36299-6.
 
 
 # File format
@@ -87,7 +89,7 @@ returns the same sequence of lines as
 
 It does not matter to **docstrip** what format is used for the documentation in the comment lines, but in order to do better than plain text comments, one typically uses some markup language. Most commonly LaTeX is used, as that is a very established standard and also provides the best support for mathematical formulae, but the **docstrip::util** package also gives some support for *doctools*-like markup.
 
-Besides the basic code and comment lines, there are also *guard lines*, which begin with the two characters '%<', and *meta-comment lines*, which begin with the two characters \\'%%'. Within guard lines there is furthermore the distinction between *verbatim guard lines*, which begin with '%<<', and ordinary guard lines, where the '%<' is not followed by another '<'. The last category is by far the most common.
+Besides the basic code and comment lines, there are also *guard lines*, which begin with the two characters '%<', and *meta-comment lines*, which begin with the two characters '%%'. Within guard lines there is furthermore the distinction between *verbatim guard lines*, which begin with '%<<', and ordinary guard lines, where the '%<' is not followed by another '<'. The last category is by far the most common.
 
 Ordinary guard lines conditions extraction of the code line(s) they guard by the value of a boolean expression; the guarded block of code lines will only be included if the expression evaluates to true. The syntax of an ordinary guard line is one of
 
@@ -110,7 +112,7 @@ where
 
 Comma and vertical bar both denote 'or'. Ampersand denotes 'and'. Exclamation mark denotes 'not'. A TERMINAL can be any nonempty string of characters not containing '>', '&', '|', comma, '(', or ')', although the **docstrip** manual is a bit restrictive and only guarantees proper operation for strings of letters (although even the LaTeX core sources make heavy use also of digits in TERMINALs). The second argument of **docstrip::extract** is the list of those TERMINALs that should count as having the value 'true'; all other TERMINALs count as being 'false' when guard expressions are evaluated.
 
-In the case of a '%<\**EXPRESSION*>' guard, the lines guarded are all lines up to the next '%\</*EXPRESSION*>' guard with the same *EXPRESSION* (compared as strings). The blocks of code delimited by such '\*' and '/' guard lines must be properly nested.
+In the case of a '%<\**EXPRESSION*>' guard, the lines guarded are all lines up to the next '%</*EXPRESSION*>' guard with the same *EXPRESSION* (compared as strings). The blocks of code delimited by such '\*' and '/' guard lines must be properly nested.
 
 ```
    set text [join {
@@ -136,7 +138,7 @@ In the case of a '%<\**EXPRESSION*>' guard, the lines guarded are all lines up t
    append res [docstrip::extract $text bar]
 ```
 
-sets \$res to the result of
+sets $res to the result of
 
 ```
    join {
@@ -160,7 +162,7 @@ sets \$res to the result of
    } \n
 ```
 
-In guard lines without a '\*', '/', '+', or '-' modifier after the \\'%<', the guard applies only to the CODE following the '>' on that single line. A '+' modifier is equivalent to no modifier. A '-' modifier is like the case with no modifier, but the expression is implicitly negated, i.e., the CODE of a '%<-' guard line is only included if the expression evaluates to false.
+In guard lines without a '\*', '/', '+', or '-' modifier after the '%<', the guard applies only to the CODE following the '>' on that single line. A '+' modifier is equivalent to no modifier. A '-' modifier is like the case with no modifier, but the expression is implicitly negated, i.e., the CODE of a '%<-' guard line is only included if the expression evaluates to false.
 
 Metacomment lines are "comment lines which should not be stripped away", but be extracted like code lines; these are sometimes used for copyright notices and similar material. The '%%' prefix is however not kept, but substituted by the current **-metaprefix**, which is customarily set to some "comment until end of line" character (or character sequence) of the language of the code being extracted.
 
@@ -181,7 +183,7 @@ Metacomment lines are "comment lines which should not be stripped away", but be 
    append res [docstrip::extract $text bar -metaprefix {#}]
 ```
 
-sets \$res to the result of
+sets $res to the result of
 
 ```
    join {
@@ -221,7 +223,7 @@ Verbatim guards can be used to force code line interpretation of a block of line
    append res [docstrip::extract $text {}]
 ```
 
-sets \$res to the result of
+sets $res to the result of
 
 ```
    join {
@@ -249,33 +251,30 @@ The package defines two commands.
 **docstrip::extract** *text* *terminals* ?*option* *value* ...?
 : The **extract** command docstrips the *text* and returns the extracted lines of code, as a string with each line terminated with a newline. The *terminals* is the list of those guard expression terminals which should evaluate to true. The available options are:
 
+    **-annotate** *lines*
+    : Requests the specified number of lines of annotation to follow each extracted line in the result. Defaults to 0. Annotation lines are mostly useful when the extracted lines are to undergo some further transformation. A first annotation line is a list of three elements: line type, prefix removed in extraction, and prefix inserted in extraction. The line type is one of: 'V' (verbatim), 'M' (metacomment), '+' (+ or no modifier guard line), '-' (- modifier guard line), '.' (normal line). A second annotation line is the source line number. A third annotation line is the current stack of block guards. Requesting more than three lines of annotation is currently not supported.
 
-**-annotate** *lines*
-: Requests the specified number of lines of annotation to follow each extracted line in the result. Defaults to 0. Annotation lines are mostly useful when the extracted lines are to undergo some further transformation. A first annotation line is a list of three elements: line type, prefix removed in extraction, and prefix inserted in extraction. The line type is one of: 'V' (verbatim), \\'M' (metacomment), '+' (+ or no modifier guard line), '-' (- modifier guard line), '.' (normal line). A second annotation line is the source line number. A third annotation line is the current stack of block guards. Requesting more than three lines of annotation is currently not supported.
+    **-metaprefix** *string*
+    : The string by which the '%%' prefix of a metacomment line will be replaced. Defaults to '%%'. For Tcl code this would typically be '#'.
 
-**-metaprefix** *string*
-: The string by which the '%%' prefix of a metacomment line will be replaced. Defaults to '%%'. For Tcl code this would typically be '#'.
+    **-onerror** *keyword*
+    : Controls what will be done when a format error in the *text* being processed is detected. The settings are:
 
-**-onerror** *keyword*
-: Controls what will be done when a format error in the *text* being processed is detected. The settings are:
+        **ignore**
+        : Just ignore the error; continue as if nothing happened.
 
+        **puts**
+        : Write an error message to **stderr**, then continue processing.
 
-**ignore**
-: Just ignore the error; continue as if nothing happened.
-
-**puts**
-: Write an error message to **stderr**, then continue processing.
-
-**throw**
-: Throw an error. The **-errorcode** is set to a list whose first element is **DOCSTRIP**, second element is the type of error, and third element is the line number where the error is detected. This is the default.
+        **throw**
+        : Throw an error. The **-errorcode** is set to a list whose first element is **DOCSTRIP**, second element is the type of error, and third element is the line number where the error is detected. This is the default.
 
 
-**-trimlines** *boolean*
-: Controls whether *spaces* at the end of a line should be trimmed away before the line is processed. Defaults to true.
+    **-trimlines** *boolean*
+    : Controls whether *spaces* at the end of a line should be trimmed away before the line is processed. Defaults to true.
 
 
-: It should be remarked that the *terminals* are often called "options" in the context of the **docstrip** program, since these specify which optional code fragments should be included.
-
+    It should be remarked that the *terminals* are often called "options" in the context of the **docstrip** program, since these specify which optional code fragments should be included.
 
 **docstrip::sourcefrom** *filename* *terminals* ?*option* *value* ...?
 : The **sourcefrom** command is a docstripping emulation of **source**. It opens the file *filename*, reads it, closes it, docstrips the contents as specified by the *terminals*, and evaluates the result in the local context of the caller, during which time the **info** **script** value will be the *filename*. The options are passed on to **fconfigure** to configure the file before its contents are read. The **-metaprefix** is set to '#', all other **extract** options have their default values.
@@ -302,7 +301,7 @@ Master source files with "*.dtx*" extension are usually set up so that they can 
 
 or some variation thereof. The trick is that the file gets read twice. With normal LaTeX reading rules, the first two lines are comments and therefore ignored. The third line is the document preamble, the fourth line begins the document body, and the sixth line ends the document, so LaTeX stops there — non-comments below that point in the file are never subjected to the normal LaTeX reading rules. Before that, however, the \\DocInput command on the fifth line is processed, and that does two things: it changes the interpretation of '%' from "comment" to "ignored", and it inputs the file specified in the argument (which is normally the name of the file the command is in). It is this second time that the file is being read that the comments and code in it are typeset.
 
-The function of the \\iffalse ... \\fi is to skip lines two to seven on this second time through; this is similar to the "if 0 { ... }" idiom for block comments in Tcl code, and it is needed here because (amongst other things) the \\documentclass command may only be executed once. The function of the \<driver> guards is to prevent this short piece of LaTeX code from being extracted by **docstrip**. The total effect is that the file can function both as a LaTeX document and as a **docstrip** master source code file.
+The function of the \\iffalse ... \\fi is to skip lines two to seven on this second time through; this is similar to the "if 0 { ... }" idiom for block comments in Tcl code, and it is needed here because (amongst other things) the \\documentclass command may only be executed once. The function of the <driver> guards is to prevent this short piece of LaTeX code from being extracted by **docstrip**. The total effect is that the file can function both as a LaTeX document and as a **docstrip** master source code file.
 
 It is not necessary to use the tclldoc document class, but that does provide a number of features that are convenient for "*.dtx*" files containing Tcl code. More information on this matter can be found in the references above.
 

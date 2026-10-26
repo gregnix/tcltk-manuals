@@ -1,5 +1,6 @@
 ---
 CommandName: fpclassify
+title: fpclassify
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -14,18 +15,18 @@ Copyright:
  - Copyright (c) 2019 Donal Fellows
 ---
 
-# NAME
+# Name
 
 fpclassify - Klassifikation von Gleitkommazahlen bei Tcl-Werten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl]{.lit} [9.0]{.lit} 
-[fpclassify]{.cmd} [value]{.arg} 
+[package]{.cmd} [require]{.sub} [tcl]{.lit} [9.0]{.lit}
+[fpclassify]{.cmd} [value]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **fpclassify** nimmt eine Gleitkommazahl *value* und gibt eine der folgenden beschreibenden Zeichenketten zurück:
 
@@ -47,7 +48,7 @@ Der Befehl **fpclassify** nimmt eine Gleitkommazahl *value* und gibt eine der fo
 
 Der Befehl **fpclassify** löst einen Fehler aus, wenn *value* kein Gleitkommawert ist und nicht in einen umgewandelt werden kann.
 
-# BEISPIEL
+# Beispiel
 
 Dies zeigt, wie geprüft wird, ob das Ergebnis einer Berechnung numerisch sicher ist. (Es schützt jedoch nicht vor numerischen Fehlern, sondern nur vor Darstellungsproblemen.)
 
@@ -69,11 +70,11 @@ switch [fpclassify $value] {
 }
 ```
 
-# STANDARDS
+# Standards
 
 Dieser Befehl setzt voraus, dass das C-Makro **fpclassify**() der Norm „ISO C99“ entspricht (d. h. ISO/IEC 9899:1999).
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright © 2018 Kevin B. Kenny <kennykb@acm.org>. All rights reserved

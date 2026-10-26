@@ -1,5 +1,6 @@
 ---
 CommandName: yencode
+title: yencode
 ManualSection: n
 Version: 1.1.4
 TclPart: tcllib
@@ -20,28 +21,32 @@ yencode - Y-encode/decode binary data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [yencode]{.lit} [1.1.4]{.optlit} 
-[::yencode::encode]{.cmd} [bstring]{.arg} 
-[::yencode::decode]{.cmd} [estring]{.arg} 
-[::yencode::yencode]{.cmd} [-name string]{.optarg} [-line integer]{.optarg} [-crc32 boolean]{.optarg} (-file [filename]{.arg} | [--]{.optlit} [bstring)]{.arg} 
-[::yencode::ydecode]{.cmd} (-file [filename]{.arg} | [--]{.optlit} [estring)]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [yencode]{.lit} [1.1.4]{.optlit}
+[::yencode::encode]{.cmd} [bstring]{.arg}
+[::yencode::decode]{.cmd} [estring]{.arg}
+[::yencode::yencode]{.cmd} [[-name]{.lit} [string]{.arg}]{.optarg} [[-line]{.lit} [integer]{.arg}]{.optarg} [[-crc32]{.lit} [boolean]{.arg}]{.optarg} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [bstring]{.arg})
+[::yencode::ydecode]{.cmd} ([-file]{.lit} [filename]{.arg} | [--]{.optlit} [estring]{.arg})
 :::
 
 # Description
 
-This package provides a Tcl-only implementation of the yEncode file encoding used for Usenet messages. This encoding packs binary data into a format that requires an 8-bit clean transmission layer but that escapes characters special to the *NNTP* posting protocols. See *http://www.yenc.org* for the encoding’s details.
+This package provides a Tcl-only implementation of the yEncode file encoding used for Usenet messages. This encoding packs binary data into a format that requires an 8-bit clean transmission layer but that escapes characters special to the *NNTP* posting protocols. See <http://www.yenc.org> for the encoding’s details.
 
-# Api
+# API
 
 **::yencode::encode** *bstring*
-: Returns a yEncoded version of the binary string *bstring* as its result. The command will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns a yEncoded version of the binary string *bstring* as its result.
+
+    The command will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::yencode::decode** *estring*
 : Returns a binary string that has been yEncode-decoded from the *estring*.
 
 **::yencode::yencode** ?**-name** *string*? ?**-line** *integer*? ?**-crc32** *boolean*? (**-file** *filename* | ?**--**? *bstring*)
-: Returns a wrapped yEncoded version of the data in the file specified by **-file** *filename* or by the binary string *bstring* as its result. Each wrapped yEncoded result consists of a header, body, and trailer. The header is a line starting with **=ybegin** followed by a line length of form **line=**_length_, the size of the original data (in bytes) of form **size=**_size_, and the name of the original file of form **name=**_filename_, all space-separated. The body is the yEncoded data. The trailer is a line starting with **=yend** followed by the size of the original data of form **size=**_size_, and optionally (but recommended), a CRC32 checksum value of form **crc32=**_checksum_, all space-separated.
+: Returns a wrapped yEncoded version of the data in the file specified by **-file** *filename* or by the binary string *bstring* as its result.
+
+    Each wrapped yEncoded result consists of a header, body, and trailer. The header is a line starting with **=ybegin** followed by a line length of form **line=***length*, the size of the original data (in bytes) of form **size=***size*, and the name of the original file of form **name=***filename*, all space-separated. The body is the yEncoded data. The trailer is a line starting with **=yend** followed by the size of the original data of form **size=***size*, and optionally (but recommended), a CRC32 checksum value of form **crc32=***checksum*, all space-separated.
 
 **::yencode::ydecode** (**-file** *filename* | ?**--**? *estring*)
 : Returns a list of 3-element lists of filename, file size, yEncode-decoded bytes, from the file specified by **-file** *filename* or from the *estring*.
@@ -118,8 +123,7 @@ name=test.y size=23 line='Δ÷ “Utf-8” ♞ℤ'
 
 # References
 
-**\[1\]**
-: *http://www.yenc.org/yenc-draft.1.3.txt*
+1. <http://www.yenc.org/yenc-draft.1.3.txt>
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: link
+title: link
 ManualSection: n
 Version: 0.3
 TclPart: TclOO
@@ -18,28 +19,28 @@ Copyright:
  - Copyright (c) 2018 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 link - Verknüpfung von Befehl mit Methode eines Objekts erstellen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tcl::oo]{.lit} 
+[package]{.cmd} [require]{.sub} [tcl::oo]{.lit}
 
-[link]{.cmd} [methodName]{.arg} [...]{.optdot} 
-[link]{.cmd} { [commandName]{.arg} [methodName]{.arg} } [...]{.optdot} 
+[link]{.cmd} [methodName]{.arg} [...]{.optarg}
+[link]{.cmd} [{commandName methodName}]{.arg} [...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **link** steht innerhalb von Methoden zur Verfügung. Er nimmt eine Reihe von einem oder mehreren Methodennamen (*methodName ...*) und/oder Paaren aus Befehls- und Methodennamen (**{***commandName methodName***}**) entgegen und macht die genannten Methoden als Befehle verfügbar, ohne dass der Objektname oder der Befehl **my** ausdrücklich verwendet werden muss. Die Methode muss zum Zeitpunkt der Verknüpfung noch nicht existieren; wird der verknüpfte Befehl aufgerufen, während die Methode nicht existiert, greift das übliche **unknown**-Behandlungssystem für Methoden.
+Der Befehl **link** steht innerhalb von Methoden zur Verfügung. Er nimmt eine Reihe von einem oder mehreren Methodennamen (*methodName ...*) und/oder Paaren aus Befehls- und Methodennamen (**{***commandName methodName***}**) entgegen und macht die genannten Methoden als Befehle verfügbar, ohne dass der Objektname oder der Befehl [my] ausdrücklich verwendet werden muss. Die Methode muss zum Zeitpunkt der Verknüpfung noch nicht existieren; wird der verknüpfte Befehl aufgerufen, während die Methode nicht existiert, greift das übliche **unknown**-Behandlungssystem für Methoden.
 
 Der Befehlsname, unter dem die Methode verfügbar wird, entspricht standardmäßig dem Methodennamen, außer wenn er über ein Alias-/Methoden-Paar ausdrücklich angegeben wird. Formal muss jedes Argument eine Liste sein; hat die Liste zwei Elemente, ist das erste Element der Name des zu erzeugenden Befehls und das zweite Element der Name der Methode des aktuellen Objekts, mit der der Befehl verknüpft wird; andernfalls sind Befehlsname und Methodenname dieselbe Zeichenkette (das erste Element der Liste).
 
 Ist der Befehlsname kein voll qualifizierter Befehlsname, wird er relativ zum aktuellen Namespace aufgelöst (d. h. dem Objekt-Namespace).
 
-# BEISPIELE
+# Beispiele
 
 Dies zeigt die Verknüpfung einer einzelnen Methode auf verschiedene Weise. Zuerst eine einfache Verknüpfung, dann eine umbenannte Verknüpfung, dann eine externe Verknüpfung. Beachten Sie, dass die Methode selbst nicht exportiert ist, aber dennoch direkt von außerhalb der Klasse aufgerufen werden kann.
 
@@ -112,3 +113,6 @@ $o call 3 5 7
         → This is b(3)
         → This is c(5,7)
 ```
+
+
+[my]: my.md

@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::textwindow
+title: tcl::chan::textwindow
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -21,11 +22,11 @@ tcl::chan::textwindow - Textwindow channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::textwindow]{.lit} [1.1]{.optlit} 
-[::tcl::chan::textwindow]{.cmd} [widget]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::textwindow]{.lit} [1.1]{.optlit}
+[::tcl::chan::textwindow]{.cmd} [widget]{.arg}
 :::
 
 # Description
@@ -34,7 +35,7 @@ The **tcl::chan::textwindow** package provides a command creating write-only cha
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::textwindow** *widget*
 : This command creates a new textwindow channel and returns its handle. Data written to this channel will appear in the associated *widget*.

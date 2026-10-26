@@ -1,5 +1,6 @@
 ---
 CommandName: debug::heartbeat
+title: debug::heartbeat
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
@@ -22,18 +23,24 @@ debug::heartbeat - debug narrative - heartbeat
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::heartbeat]{.lit} [1.0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} [1]{.optlit} 
-[debug]{.cmd} [heartbeat]{.sub} [delta]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [debug::heartbeat]{.lit} [1.0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [debug]{.lit} [1]{.optlit}
+[debug]{.cmd} [heartbeat]{.lit} [delta]{.optarg}
 :::
 
 # Description
 
-# Api
+# API
 
-**debug** **heartbeat** ?*delta*?
-: This method activates or disables a heartbeat with which to monitor the event loop of an event-based Tcl application. It reserves the debug tag **heartbeat** for its operation and writes a message every *delta* milliseconds. A *delta*-value <= 0 disables the heartbeat. The message produced by the heartbeat contains a sequence counter and the time in milliseconds since the last beat, thus providing insight into timing variationsn and deviations from the nominal *delta*.
+[debug] **heartbeat** ?*delta*?
+: This method activates or disables a heartbeat with which to monitor the event loop of an event-based Tcl application.
+
+    It reserves the debug tag **heartbeat** for its operation and writes a message every *delta* milliseconds.
+
+    A *delta*-value <= 0 disables the heartbeat.
+
+    The message produced by the heartbeat contains a sequence counter and the time in milliseconds since the last beat, thus providing insight into timing variationsn and deviations from the nominal *delta*.
 
 
 # Bugs, ideas, feedback
@@ -54,3 +61,6 @@ debugging, tracing, and logging
 Copyright (c) 200?, Colin McCormack, Wub Server Utilities
 Copyright (c) 2012, Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[debug]: debug.md

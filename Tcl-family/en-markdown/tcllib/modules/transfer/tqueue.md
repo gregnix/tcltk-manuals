@@ -1,5 +1,6 @@
 ---
 CommandName: transfer::copy::queue
+title: transfer::copy::queue
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -20,17 +21,17 @@ transfer::copy::queue - Queued transfers
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::copy]{.lit} [0.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::copy::queue]{.lit} [0.2]{.optlit} 
-[transfer::copy::queue]{.cmd} [objectName]{.arg} [outchannel]{.arg} [options]{.optdot} 
-[objectName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [busy]{.sub} 
-[objectName]{.ins} [pending]{.sub} 
-[objectName]{.ins} [put]{.sub} [request]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::copy]{.lit} [0.3]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::copy::queue]{.lit} [0.2]{.optlit}
+[transfer::copy::queue]{.cmd} [objectName]{.arg} [outchannel]{.arg} [options...]{.optarg}
+[objectName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [busy]{.sub}
+[objectName]{.ins} [pending]{.sub}
+[objectName]{.ins} [put]{.sub} [request]{.arg}
 :::
 
 # Description
@@ -47,14 +48,16 @@ All transfer requests are of the form
 	{type data options...}
 ```
 
-where *type* is in {**chan**, **string**}, and *data* specifies the information to transfer. For **chan** the data is the handle of the channel containing the actual information to transfer, whereas for **string** *data* contains directly the information to transfer. The *options* are a list of them and their values, and are the same as are accepted by the low-level copy operations of the package **transfer::copy**. Note how just prepending the request with **transfer::copy::do** and inserting a channel handle in between *data* and *options* easily transforms it from a pure data structure into a command whose evaluation will perform the request.
+where *type* is in {**chan**, **string**}, and *data* specifies the information to transfer. For **chan** the data is the handle of the channel containing the actual information to transfer, whereas for **string** *data* contains directly the information to transfer. The *options* are a list of them and their values, and are the same as are accepted by the low-level copy operations of the package **transfer::copy**. Note how just prepending the request with [transfer::copy::do][copyops] and inserting a channel handle in between *data* and *options* easily transforms it from a pure data structure into a command whose evaluation will perform the request.
 
-# Api
+# API
 
 ## Package commands
 
 **transfer::copy::queue** *objectName* *outchannel* ?*options*...?
-: This command creates a new queue object for the management of the channel *outchannel*, with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The set of supported *options* is explained in section **Options**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
+: This command creates a new queue object for the management of the channel *outchannel*, with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The set of supported *options* is explained in section [Options].
+
+    The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
 
 
 ## Object command
@@ -62,7 +65,7 @@ where *type* is in {**chan**, **string**}, and *data* specifies the information 
 All objects created by the **::transfer::copy::queue** command have the following general form:
 
 *objectName* **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -107,3 +110,6 @@ Transfer module
 ```
 Copyright (c) 2006 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[copyops]: copyops.md

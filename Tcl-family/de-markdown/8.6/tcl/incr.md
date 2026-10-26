@@ -1,5 +1,6 @@
 ---
 CommandName: incr
+title: incr
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -17,23 +18,23 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 incr - Erhöht den Wert einer Variable
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[incr]{.cmd} [varName]{.arg} [increment]{.optarg} 
+[incr]{.cmd} [varName]{.arg} [increment]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Erhöht den in der Variable *varName* gespeicherten Wert. Der Variablenwert muss eine Ganzzahl sein. Ist *increment* angegeben, wird dessen Wert (ebenfalls eine Ganzzahl) zum Wert von *varName* addiert; andernfalls wird 1 addiert. Der neue Wert wird als Dezimalzeichenkette in *varName* gespeichert und auch als Ergebnis zurückgegeben.
 
 Ab Tcl 8.5 darf *varName* unset sein; dann wird sie auf den Wert *increment* oder den Standard-Inkrementwert **1** gesetzt.
 
-# BEISPIELE
+# Beispiele
 
 Addiert eins zum Inhalt der Variable *x*:
 

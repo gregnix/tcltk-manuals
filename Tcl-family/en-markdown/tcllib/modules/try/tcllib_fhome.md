@@ -1,5 +1,6 @@
 ---
 CommandName: file::home
+title: file::home
 ManualSection: n
 Version: 1
 TclPart: tcllib
@@ -15,9 +16,9 @@ file::home - file home - Return home directory of current or other user
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.x]{.lit} 
-[package]{.cmd} [require]{.sub} [fhome]{.lit} [1]{.optlit} 
-[file]{.cmd} [home]{.sub} [user]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.x]{.lit}
+[package]{.cmd} [require]{.sub} [fhome]{.lit} [1]{.optlit}
+[file]{.cmd} [home]{.lit} [user]{.optarg}
 :::
 
 # Description

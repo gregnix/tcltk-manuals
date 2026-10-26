@@ -1,5 +1,6 @@
 ---
 CommandName: split
+title: split
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -17,21 +18,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 split - Teilt eine Zeichenkette in eine gültige Tcl-Liste
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[split]{.cmd} [string]{.arg} [splitChars]{.optarg} 
+[split]{.cmd} [string]{.arg} [splitChars]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Gibt eine Liste zurück, die entsteht, wenn *string* an jedem Zeichen aus *splitChars* geteilt wird. Jedes Listenelement besteht aus den Zeichen von *string* zwischen solchen Trennzeichen. Leere Elemente entstehen bei benachbarten Trennzeichen oder wenn *string* mit einem Trennzeichen beginnt oder endet. Ist *splitChars* leer, wird jedes Zeichen von *string* ein eigenes Element. Standard: übliche Leerraumzeichen.
 
-# BEISPIELE
+# Beispiele
 
 USENET-Gruppenname in Hierarchieebenen:
 

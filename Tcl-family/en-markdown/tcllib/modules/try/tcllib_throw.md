@@ -1,5 +1,6 @@
 ---
 CommandName: throw
+title: throw
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -21,16 +22,16 @@ throw - throw - Throw an error exception with a message
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [throw]{.lit} [1.1]{.optlit} 
-[::throw]{.cmd} [error_code]{.arg} [error_message]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [throw]{.lit} [1.1]{.optlit}
+[::throw]{.cmd} [error\_code]{.arg} [error\_message]{.arg}
 :::
 
 # Description
 
 This package provides a forward-compatibility implementation of Tcl 8.6's **throw** command (TIP 329), for Tcl 8.5. The code was directly pulled from Tcl 8.6 revision ?, when try/finally was implemented as Tcl procedure instead of in C.
 
-**::throw** *error_code* *error_message*
+**::throw** *error\_code* *error\_message*
 : throw is merely a reordering of the arguments of the error command. It throws an error with the indicated error code and error message.
 
 

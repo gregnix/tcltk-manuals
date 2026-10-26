@@ -1,5 +1,6 @@
 ---
 CommandName: lower
+title: lower
 ManualSection: n
 Version: 3.3
 TclPart: Tk
@@ -15,18 +16,21 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 lower - Ändert die Position eines Fensters in der Stapelreihenfolge
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lower]{.cmd} [window]{.arg} [belowThis]{.optarg} 
+[lower]{.cmd} [window]{.arg} [belowThis]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Ist das Argument *belowThis* weggelassen, senkt **lower** *window* so ab, dass es unter allen Geschwister-Fenstern in der Stapelreihenfolge liegt (es wird von überlappenden Geschwistern verdeckt und verdeckt keine Geschwister). Ist *belowThis* angegeben, muss es der Pfadname eines Fensters sein, das Geschwister von *window* ist oder Nachkomme eines Geschwisters von *window*. Dann fügt **lower** *window* in die Stapelreihenfolge direkt unter *belowThis* ein (oder unter den Vorfahren von *belowThis*, der Geschwister von *window* ist); das kann *window* anheben oder absenken.
 
-Alle **toplevel**-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Window-Manager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
+Alle [toplevel]-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Window-Manager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
+
+
+[toplevel]: toplevel.md

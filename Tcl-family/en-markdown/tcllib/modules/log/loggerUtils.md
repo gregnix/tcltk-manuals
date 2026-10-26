@@ -1,5 +1,6 @@
 ---
 CommandName: logger::utils
+title: logger::utils
 ManualSection: n
 Version: 1.3.2
 TclPart: tcllib
@@ -18,12 +19,12 @@ logger::utils - Utilities for logger
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [logger::utils]{.lit} [1.3.2]{.optlit} 
-[::logger::utils::createFormatCmd]{.cmd} [formatString]{.arg} 
-[::logger::utils::createLogProc]{.cmd} [-procName]{.sub} [procName]{.arg} [options]{.optdot} 
-[::logger::utils::applyAppender]{.cmd} [-appender]{.sub} [appenderType]{.arg} [options]{.optdot} 
-[::logger::utils::autoApplyAppender]{.cmd} [command]{.arg} [command-string]{.arg} [log]{.arg} [op]{.arg} [args...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [logger::utils]{.lit} [1.3.2]{.optlit}
+[::logger::utils::createFormatCmd]{.cmd} [formatString]{.arg}
+[::logger::utils::createLogProc]{.cmd} [-procName]{.lit} [procName]{.arg} [options...]{.optarg}
+[::logger::utils::applyAppender]{.cmd} [-appender]{.lit} [appenderType]{.arg} [options...]{.optarg}
+[::logger::utils::autoApplyAppender]{.cmd} [command]{.arg} [command-string]{.arg} [log]{.arg} [op]{.arg} [args...]{.arg}
 :::
 
 # Description
@@ -33,99 +34,98 @@ This package adds template based *appenders*.
 **::logger::utils::createFormatCmd** *formatString*
 : This command translates *formatString* into an expandable command string. The following strings are the known substitutions (from log4perl) allowed to occur in the *formatString*:
 
+    %c
+    : Category of the logging event
 
-**%c**
-: Category of the logging event
+    %C
+    : Fully qualified name of logging event
 
-**%C**
-: Fully qualified name of logging event
+    %d
+    : Current date in yyyy/MM/dd hh:mm:ss
 
-**%d**
-: Current date in yyyy/MM/dd hh:mm:ss
+    %H
+    : Hostname
 
-**%H**
-: Hostname
+    %m
+    : Message to be logged
 
-**%m**
-: Message to be logged
+    %M
+    : Method where logging event was issued
 
-**%M**
-: Method where logging event was issued
+    %p
+    : Priority of logging event
 
-**%p**
-: Priority of logging event
-
-**%P**
-: Pid of current process
+    %P
+    : Pid of current process
 
 
 **::logger::utils::createLogProc** **-procName** *procName* ?*options*...?
 : This command ...
 
+    **-procName** procName
+    : The name of the procedure to create.
 
-**-procName** procName
-: The name of the procedure to create.
+    **-conversionPattern** pattern
+    : See **::logger::utils::createFormatCmd** for the substitutions allowed in the *pattern*.
 
-**-conversionPattern** pattern
-: See **::logger::utils::createFormatCmd** for the substitutions allowed in the *pattern*.
+    **-category** category
+    : The category (service).
 
-**-category** category
-: The category (service).
+    **-priority** priority
+    : The priority (level).
 
-**-priority** priority
-: The priority (level).
-
-**-outputChannel** channel
-: channel to output on (default stdout)
+    **-outputChannel** channel
+    : channel to output on (default stdout)
 
 
 **::logger::utils::applyAppender** **-appender** *appenderType* ?*options*...?
 : This command will create an appender for the specified logger services. If no service is specified then the appender will be added as the default appender for the specified levels. If no levels are specified, then all levels are assumed.
 
+    **-service** loggerservices
+    : see below ...
 
-**-service** loggerservices
-: ...see next...
+    **-serviceCmd** loggerserviceCmds
+    : Name of the logger instance to modify. **-serviceCmd** takes as input the return of [logger::init][logger].
 
-**-serviceCmd** loggerserviceCmds
-: Name of the logger instance to modify. **-serviceCmd** takes as input the return of **logger::init**.
+    **-appender** appenderType
+    : Type of the appender to use. One of **console**, **colorConsole**.
 
-**-appender** appenderType
-: Type of the appender to use. One of **console**, **colorConsole**.
+    **-appenderArgs** appenderArgs
+    : Additional arguments to apply to the appender. The argument of the option is a list of options and their arguments.
 
-**-appenderArgs** appenderArgs
-: Additional arguments to apply to the appender. The argument of the option is a list of options and their arguments. For example
+        For example
 
+        ```
+        logger::utils::applyAppender -serviceCmd $log -appender console -appenderArgs {-conversionPattern {\[%M\] \[%p\] - %m}}
+        ```
 
-```
-logger::utils::applyAppender -serviceCmd $log -appender console -appenderArgs {-conversionPattern {\[%M\] \[%p\] - %m}}
-```
+        The usual Tcl quoting rules apply.
 
-: The usual Tcl quoting rules apply.
-
-
-**-levels** levelList
-: The list of levels to apply this appender to. If not specified all levels are assumed.
+    **-levels** levelList
+    : The list of levels to apply this appender to. If not specified all levels are assumed.
 
 
-Example of usage:
+    Example of usage:
 
-```
-   % set log [logger::init testLog]
-   ::logger::tree::testLog
-   % logger::utils::applyAppender -appender console -serviceCmd $log
-   % ${log}::error "this is an error"
-   [2005/08/22 10:14:13] [testLog] [global] [error] this is an error
-```
+    ```
+       % set log [logger::init testLog]
+       ::logger::tree::testLog
+       % logger::utils::applyAppender -appender console -serviceCmd $log
+       % ${log}::error "this is an error"
+       [2005/08/22 10:14:13] [testLog] [global] [error] this is an error
+    ```
 
 **::logger::utils::autoApplyAppender** *command* *command-string* *log* *op* *args*...
-: This command is designed to be added via **trace leave** to calls of **logger::init**. It will look at preconfigured state (via **::logger::utils::applyAppender**) to autocreate appenders for newly created logger instances. It will return its argument *log*. Example of usage:
+: This command is designed to be added via **trace leave** to calls of [logger::init][logger]. It will look at preconfigured state (via **::logger::utils::applyAppender**) to autocreate appenders for newly created logger instances. It will return its argument *log*.
 
+    Example of usage:
 
-```
-  logger::utils::applyAppender -appender console
-  set log [logger::init applyAppender-3]
-  ${log}::error "this is an error"
-```
+    ```
+      logger::utils::applyAppender -appender console
+      set log [logger::init applyAppender-3]
+      ${log}::error "this is an error"
+    ```
+
 
 # Bugs, ideas, feedback
 
@@ -144,3 +144,6 @@ Programming tools
 ```
 Copyright (c) 2005 Aamer Akhter <aakhter@cisco.com>
 ```
+
+
+[logger]: logger.md

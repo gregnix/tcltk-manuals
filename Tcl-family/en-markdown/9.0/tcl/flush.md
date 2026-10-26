@@ -1,5 +1,6 @@
 ---
 CommandName: flush
+title: flush
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -18,9 +19,12 @@ flush - Flush buffered output for a channel
 # Synopsis
 
 ::: {.synopsis} :::
-[flush]{.cmd} [channel]{.arg} 
+[flush]{.cmd} [channel]{.arg}
 :::
 
 # Description
 
-The **flush** command has been superceded by the **chan flush** command which supports the same syntax and options.
+The **flush** command has been superceded by the [chan flush][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

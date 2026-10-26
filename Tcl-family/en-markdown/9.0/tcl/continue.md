@@ -1,5 +1,6 @@
 ---
 CommandName: continue
+title: continue
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -26,12 +27,12 @@ continue - Skip to the next iteration of a loop
 # Synopsis
 
 ::: {.synopsis} :::
-[continue]{.cmd} 
+[continue]{.cmd}
 :::
 
 # Description
 
-This command is typically invoked inside the body of a looping command such as **for** or **foreach** or **while**. It returns a 4 (**TCL_CONTINUE**) result code, which causes a continue exception to occur. The exception causes the current script to be aborted out to the innermost containing loop command, which then continues with the next iteration of the loop. Continue exceptions are also handled in a few other situations, such as the **catch** command and the outermost scripts of procedure bodies.
+This command is typically invoked inside the body of a looping command such as [for] or [foreach] or [while]. It returns a 4 ([TCL\_CONTINUE][catch]) result code, which causes a continue exception to occur. The exception causes the current script to be aborted out to the innermost containing loop command, which then continues with the next iteration of the loop. Continue exceptions are also handled in a few other situations, such as the [catch] command and the outermost scripts of procedure bodies.
 
 # Example
 
@@ -45,3 +46,9 @@ for {set x 0} {$x<10} {incr x} {
     puts "x is $x"
 }
 ```
+
+
+[catch]: catch.md
+[for]: for.md
+[foreach]: foreach.md
+[while]: while.md

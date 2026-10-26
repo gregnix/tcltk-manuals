@@ -1,5 +1,6 @@
 ---
 CommandName: tk_chooseDirectory
+title: tk_chooseDirectory
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -14,43 +15,42 @@ Keywords:
  - platform-specific
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
-# NAME
+# Name
 
-tk_chooseDirectory - Zeigt einen Dialog zur Verzeichnisauswahl an
+tk\_chooseDirectory - Zeigt einen Dialog zur Verzeichnisauswahl an
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tk_chooseDirectory]{.cmd} [option value]{.optdot} 
+[tk\_chooseDirectory]{.cmd} [option value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Die Prozedur **tk_chooseDirectory** zeigt einen Dialog an, in dem der Benutzer ein Verzeichnis auswählen kann. Folgende *option-value*-Paare sind als Befehlszeilenargumente möglich:
+Die Prozedur **tk\_chooseDirectory** zeigt einen Dialog an, in dem der Benutzer ein Verzeichnis auswählen kann. Folgende *option-value*-Paare sind als Befehlszeilenargumente möglich:
 
-**-command** *string*
+[-command]{.lit} [string]{.arg}
 : Legt das Präfix eines Tcl-Befehls fest, der ausgeführt wird, wenn der Benutzer den Dialog nach einer Auswahl schließt. Dieser Rückruf wird nicht aufgerufen, wenn der Benutzer den Dialog abbricht. Der tatsächliche Befehl besteht aus *string*, gefolgt von einem Leerzeichen und dem vom Benutzer im Dialog gewählten Wert. Nur unter macOS verfügbar.
 
-**-initialdir** *dirname*
+[-initialdir]{.lit} [dirname]{.arg}
 : Legt fest, dass beim Öffnen des Dialogs die Verzeichnisse in *directory* angezeigt werden. Wird dieser Parameter nicht angegeben, ist das Anfangsverzeichnis auf Nicht-Windows-Systemen und auf Windows vor Vista das aktuelle Arbeitsverzeichnis. Unter Vista und neuer ist es das zuletzt vom Benutzer für die Anwendung gewählte Verzeichnis. Gibt der Parameter einen relativen Pfad an, wandelt der Rückgabewert diesen in einen absoluten Pfad um.
 
-**-message** *string*
+[-message]{.lit} [string]{.arg}
 : Legt eine Meldung fest, die im Client-Bereich des Dialogs angezeigt wird. Nur unter macOS verfügbar.
 
-**-mustexist** *boolean*
+[-mustexist]{.lit} [boolean]{.arg}
 : Legt fest, ob der Benutzer nicht vorhandene Verzeichnisse angeben darf. Ist dieser Parameter wahr, kann der Benutzer nur bereits existierende Verzeichnisse wählen. Der Standardwert ist *false*.
 
-**-parent** *window*
+[-parent]{.lit} [window]{.arg}
 : Macht *window* zum logischen Elternfenster des Dialogs. Der Dialog wird über seinem Elternfenster angezeigt. Unter macOS wird der Dateidialog zu einem an das Elternfenster angehängten Sheet.
 
-**-title** *titleString*
+[-title]{.lit} [titleString]{.arg}
 : Legt eine Zeichenkette fest, die als Titel des Dialogfelds angezeigt wird. Wird diese Option nicht angegeben, wird ein Standardtitel angezeigt.
 
 
-# BEISPIEL
+# Beispiel
 
 ```
 set dir [tk_chooseDirectory \

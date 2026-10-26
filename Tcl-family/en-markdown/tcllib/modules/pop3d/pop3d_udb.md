@@ -1,5 +1,6 @@
 ---
 CommandName: pop3d::udb
+title: pop3d::udb
 ManualSection: n
 Version: 1.0.1
 TclPart: tcllib
@@ -20,19 +21,19 @@ pop3d::udb - Simple user database for pop3d
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3d::udb]{.lit} [1.0.1]{.optlit} 
-[::pop3d::udb::new]{.cmd} [dbName]{.optarg} 
-[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-[dbName]{.ins} [destroy]{.sub} 
-[dbName]{.ins} [add]{.sub} [user]{.arg} [pwd]{.arg} [storage]{.arg} 
-[dbName]{.ins} [remove]{.sub} [user]{.arg} 
-[dbName]{.ins} [rename]{.sub} [user]{.arg} [newName]{.arg} 
-[dbName]{.ins} [lookup]{.sub} [user]{.arg} 
-[dbName]{.ins} [exists]{.sub} [user]{.arg} 
-[dbName]{.ins} [who]{.sub} 
-[dbName]{.ins} [save]{.sub} [file]{.optarg} 
-[dbName]{.ins} [read]{.sub} [file]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3d::udb]{.lit} [1.0.1]{.optlit}
+[::pop3d::udb::new]{.cmd} [dbName]{.optarg}
+[dbName]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[dbName]{.ins} [destroy]{.sub}
+[dbName]{.ins} [add]{.sub} [user]{.arg} [pwd]{.arg} [storage]{.arg}
+[dbName]{.ins} [remove]{.sub} [user]{.arg}
+[dbName]{.ins} [rename]{.sub} [user]{.arg} [newName]{.arg}
+[dbName]{.ins} [lookup]{.sub} [user]{.arg}
+[dbName]{.ins} [exists]{.sub} [user]{.arg}
+[dbName]{.ins} [who]{.sub}
+[dbName]{.ins} [save]{.sub} [file]{.optarg}
+[dbName]{.ins} [read]{.sub} [file]{.arg}
 :::
 
 # Description
@@ -42,10 +43,16 @@ The package **pop3d::udb** provides simple in memory databases which can be used
 Objects created by this package can be directly used in the authentication callback of pop3 servers following the same interface as servers created by the package **pop3d**.
 
 **::pop3d::udb::new** ?*dbName*?
-: This command creates a new database object with an associated global Tcl command whose name is *dbName*. The command **dbName** may be used to invoke various operations on the database.  It has the following general form:
+: This command creates a new database object with an associated global Tcl command whose name is *dbName*.
+
+
+The command **dbName** may be used to invoke various operations on the database.  It has the following general form:
 
 **dbName** *option* ?*arg arg ...*?
-: *Option* and the *arg*s determine the exact behavior of the command. The following commands are possible for database objects:
+: *Option* and the *arg*s determine the exact behavior of the command.
+
+
+The following commands are possible for database objects:
 
 *dbName* **destroy**
 : Destroys the database object.

@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::radiobutton
+title: ttk::radiobutton
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -23,7 +24,7 @@ ttk::radiobutton - Mutually exclusive option widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::radiobutton]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::radiobutton]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -32,14 +33,9 @@ ttk::radiobutton - Mutually exclusive option widget
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-compound** | **-cursor** |
-| **-image** | **-state** | **-style** |
-| **-takefocus** | **-text** | **-textvariable** |
-| **-underline** | **-width** |  |
+**-class**, **-compound**, **-cursor**, **-image**, **-state**, **-style**, **-takefocus**, **-text**, **-textvariable**, **-underline**, **-width**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -55,9 +51,9 @@ See the ttk_widget manual entry for details on the standard options.
 
 # Widget command
 
-In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see **ttk::widget**), radiobutton widgets support the following additional commands:
+In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see [ttk::widget][ttk_widget]), radiobutton widgets support the following additional commands:
 
-*pathname* **invoke**
+[pathname]{.ins} [invoke]{.sub}
 : Sets the **-variable** to the **-value**, selects the widget, and evaluates the associated **-command**. Returns the result of the **-command**, or the empty string if no **-command** is specified.
 
 
@@ -75,7 +71,7 @@ The class name for a **ttk::radiobutton** is **TRadiobutton**.
 
 Dynamic states: **active**, **alternate**, **disabled**, **pressed**, **readonly**, **selected**.
 
-**TRadiobutton** styling options configurable with **ttk::style** are:
+**TRadiobutton** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -95,4 +91,8 @@ Dynamic states: **active**, **alternate**, **disabled**, **pressed**, **readonly
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

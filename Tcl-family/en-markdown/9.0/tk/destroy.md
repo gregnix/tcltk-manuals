@@ -1,5 +1,6 @@
 ---
 CommandName: destroy
+title: destroy
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -20,7 +21,7 @@ destroy - Destroy one or more windows
 # Synopsis
 
 ::: {.synopsis} :::
-[destroy]{.cmd} [window window]{.optdot} 
+[destroy]{.cmd} [window window]{.optdot}
 :::
 
 # Description

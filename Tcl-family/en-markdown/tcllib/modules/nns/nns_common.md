@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::common
+title: nameserv::common
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -22,9 +23,9 @@ nameserv::common - Name service facility, shared definitions
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nameserv::common]{.lit} [0.2]{.optlit} 
-[::nameserv::common::port]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nameserv::common]{.lit} [0.2]{.optlit}
+[::nameserv::common::port]{.cmd}
 :::
 
 # Description
@@ -35,7 +36,7 @@ This package is internal and of no interest to users. It provides the commands o
 
 This service is built in top of and for the package **comm**. It has nothing to do with the Internet's Domain Name System. If the reader is looking for a package dealing with that please see Tcllib's packages **dns** and **resolv**.
 
-# Api
+# API
 
 The package exports a single command, as specified below:
 

@@ -1,5 +1,6 @@
 ---
 CommandName: lappend
+title: lappend
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -30,12 +31,12 @@ lappend - Append list elements onto a variable
 # Synopsis
 
 ::: {.synopsis} :::
-[lappend]{.cmd} [varName]{.arg} [value value value]{.optdot} 
+[lappend]{.cmd} [varName]{.arg} [value value value]{.optdot}
 :::
 
 # Description
 
-This command treats the variable given by *varName* as a list and appends each of the *value* arguments to that list as a separate element, with spaces between elements. If *varName* does not exist, it is created as a list with elements given by the *value* arguments. **Lappend** is similar to **append** except that the *value*s are appended as list elements rather than raw text. This command provides a relatively efficient way to build up large lists.  For example, "**lappend a \$b**" is much more efficient than "**set a \[concat \$a \[list \$b\]\]**" when **\$a** is long.
+This command treats the variable given by *varName* as a list and appends each of the *value* arguments to that list as a separate element, with spaces between elements. If *varName* does not exist, it is created as a list with elements given by the *value* arguments. **Lappend** is similar to [append] except that the *value*s are appended as list elements rather than raw text. This command provides a relatively efficient way to build up large lists.  For example, "**lappend a $b**" is much more efficient than "**set a \[concat $a \[list $b\]\]**" when **$a** is long.
 
 # Example
 
@@ -49,3 +50,6 @@ Using **lappend** to build up a list of numbers.
 % lappend var 3 4 5
 1 2 3 4 5
 ```
+
+
+[append]: append.md

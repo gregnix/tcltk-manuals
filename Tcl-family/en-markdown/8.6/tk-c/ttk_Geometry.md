@@ -1,5 +1,6 @@
 ---
 CommandName: Geometry
+title: Geometry
 ManualSection: 3
 Version: 8.5
 TclPart: Tk
@@ -22,131 +23,119 @@ Copyright:
 
 # Name
 
-Ttk_MakeBox, Ttk_PadBox, Ttk_ExpandBox, Ttk_PackBox, Ttk_StickBox, Ttk_PlaceBox, Ttk_BoxContains, Ttk_MakePadding, Ttk_UniformPadding, Ttk_AddPadding, Ttk_RelievePadding, Ttk_GetPaddingFromObj, Ttk_GetBorderFromObj, Ttk_GetStickyFromObj - Tk themed geometry utilities
+Ttk\_MakeBox, Ttk\_PadBox, Ttk\_ExpandBox, Ttk\_PackBox, Ttk\_StickBox, Ttk\_PlaceBox, Ttk\_BoxContains, Ttk\_MakePadding, Ttk\_UniformPadding, Ttk\_AddPadding, Ttk\_RelievePadding, Ttk\_GetPaddingFromObj, Ttk\_GetBorderFromObj, Ttk\_GetStickyFromObj - Tk themed geometry utilities
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tkTheme.h>]{.lit}
+**#include <tkTheme.h>**
 
-Ttk_Box
-[Ttk_MakeBox]{.cmd}(int [x]{.arg}, int [y]{.arg}, int [width]{.arg}, int [height]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_MakeBox]{.ccmd} [int x, int y, int width, int height]{.cargs}
 
-Ttk_Box
-[Ttk_PadBox]{.cmd}(Ttk_Box [parcel]{.arg}, Ttk_Padding [padding]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_PadBox]{.ccmd} [Ttk\_Box parcel, Ttk\_Padding padding]{.cargs}
 
-Ttk_Box
-[Ttk_ExpandBox]{.cmd}(Ttk_Box [parcel]{.arg}, Ttk_Padding [padding]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_ExpandBox]{.ccmd} [Ttk\_Box parcel, Ttk\_Padding padding]{.cargs}
 
-Ttk_Box
-[Ttk_PackBox]{.cmd}(Ttk_Box \*[cavity]{.arg}, int [width]{.arg}, int [height]{.arg}, Ttk_Side [side]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_PackBox]{.ccmd} [Ttk\_Box \*cavity, int width, int height, Ttk\_Side side]{.cargs}
 
-Ttk_Box
-[Ttk_StickBox]{.cmd}(Ttk_Box [parcel]{.arg}, int [width]{.arg}, int [height]{.arg}, unsigned [sticky]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_StickBox]{.ccmd} [Ttk\_Box parcel, int width, int height, unsigned sticky]{.cargs}
 
-Ttk_Box
-[Ttk_PlaceBox]{.cmd}(Ttk_Box \*[cavity]{.arg}, int [width]{.arg}, int [height]{.arg}, Ttk_Side [side]{.arg}, unsigned [sticky]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_PlaceBox]{.ccmd} [Ttk\_Box \*cavity, int width, int height, Ttk\_Side side, unsigned sticky]{.cargs}
 
-Ttk_Box
-[Ttk_AnchorBox]{.cmd}(Ttk_Box [parcel]{.arg}, int [width]{.arg}, int [height]{.arg}, Tk_Anchor [anchor]{.arg});
+[Ttk\_Box]{.ret} [Ttk\_AnchorBox]{.ccmd} [Ttk\_Box parcel, int width, int height, Tk\_Anchor anchor]{.cargs}
 
-Ttk_Padding
-[Ttk_MakePadding]{.cmd}(short [left]{.arg}, short [top]{.arg}, short [right]{.arg}, short [bottom]{.arg});
+[Ttk\_Padding]{.ret} [Ttk\_MakePadding]{.ccmd} [short left, short top, short right, short bottom]{.cargs}
 
-Ttk_Padding
-[Ttk_UniformPadding]{.cmd}(short [border]{.arg});
+[Ttk\_Padding]{.ret} [Ttk\_UniformPadding]{.ccmd} [short border]{.cargs}
 
-Ttk_Padding
-[Ttk_AddPadding]{.cmd}(Ttk_Padding [padding1]{.arg}, Ttk_Padding [padding2]{.arg};
+Ttk\_Padding Ttk\_AddPadding(Ttk\_Padding padding1, Ttk\_Padding padding2;
 
-Ttk_Padding
-[Ttk_RelievePadding]{.cmd}(Ttk_Padding [padding]{.arg}, int [relief]{.arg});
+[Ttk\_Padding]{.ret} [Ttk\_RelievePadding]{.ccmd} [Ttk\_Padding padding, int relief]{.cargs}
 
-int
-[Ttk_BoxContains]{.cmd}(Ttk_Box [box]{.arg}, int [x]{.arg}, int [y]{.arg});
+[int]{.ret} [Ttk\_BoxContains]{.ccmd} [Ttk\_Box box, int x, int y]{.cargs}
 
-int
-[Ttk_GetPaddingFromObj]{.cmd}(Tcl_Interp \*[interp]{.arg}, Tk_Window [tkwin]{.arg}, Tcl_Obj \*[objPtr]{.arg}, Ttk_Padding \*[padding_rtn]{.arg});
+[int]{.ret} [Ttk\_GetPaddingFromObj]{.ccmd} [Tcl\_Interp \*interp, Tk\_Window tkwin, Tcl\_Obj \*objPtr, Ttk\_Padding \*padding\_rtn]{.cargs}
 
-int
-[Ttk_GetBorderFromObj]{.cmd}(Tcl_Interp \*[interp]{.arg}, Tcl_Obj \*[objPtr]{.arg}, Ttk_Padding \*[padding_rtn]{.arg});
+[int]{.ret} [Ttk\_GetBorderFromObj]{.ccmd} [Tcl\_Interp \*interp, Tcl\_Obj \*objPtr, Ttk\_Padding \*padding\_rtn]{.cargs}
 
-int
-[Ttk_GetStickyFromObj]{.cmd}(Tcl_Interp \*[interp]{.arg}, Tcl_Obj \*[objPtr]{.arg}, int \*[sticky_rtn]{.arg});
+[int]{.ret} [Ttk\_GetStickyFromObj]{.ccmd} [Tcl\_Interp \*interp, Tcl\_Obj \*objPtr, int \*sticky\_rtn]{.cargs}
 :::
 
 # Arguments
 
-Tk_Anchor *anchor* (in)
-: One of the symbolic constants **TK_ANCHOR_N**, **TK_ANCHOR_NE**, etc.  See *Tk_GetAnchorFromObj(3)*.
+::: {.arguments} :::
 
-Ttk_Box \* *cavity* (in/out)
+[anchor]{.carg .in type="Tk_Anchor"}
+: One of the symbolic constants **TK\_ANCHOR\_N**, **TK\_ANCHOR\_NE**, etc.  See *[Tk\_GetAnchorFromObj][GetAnchor](3)*.
+
+[cavity]{.carg .in/out type="Ttk_Box *"}
 : A rectangular region from which a parcel is allocated.
 
-short *border* (in)
+[border]{.carg .in type="short"}
 : Extra padding (in pixels) to add uniformly to each side of a region.
 
-short *bottom* (in)
+[bottom]{.carg .in type="short"}
 : Extra padding (in pixels) to add to the bottom of a region.
 
-Ttk_Box *box* (in)
+[box]{.carg .in type="Ttk_Box"}
 : Specifies a rectangular region.
 
-Ttk_Box \* *box_rtn* (out)
+[box\_rtn]{.carg .out type="Ttk_Box *"}
 : A rectangular region.
 
-int *height* (in)
+[height]{.carg .in type="int"}
 : The height in pixels of a region.
 
-Tcl_Interp \* *interp* (in)
+[interp]{.carg .in type="Tcl_Interp *"}
 : Used to store error messages.
 
-int *left* (in)
+[left]{.carg .in type="int"}
 : Extra padding (in pixels) to add to the left side of a region.
 
-Tcl_Obj \* *objPtr* (in)
+[objPtr]{.carg .in type="Tcl_Obj *"}
 : String value contains a symbolic name to be converted to an enumerated value or bitmask. Internal rep may be be modified to cache corresponding value.
 
-Ttk_Padding *padding* (in)
+[padding]{.carg .in type="Ttk_Padding"}
 : Extra padding to add on the inside of a region.
 
-Ttk_Padding \* *padding_rtn* (out)
+[padding\_rtn]{.carg .out type="Ttk_Padding *"}
 : Padding present in the inside of a region.
 
-Ttk_Box *parcel* (in)
+[parcel]{.carg .in type="Ttk_Box"}
 : A rectangular region, allocated from a cavity.
 
-int *relief* (in)
-: One of the standard Tk relief options (**TK_RELIEF_RAISED**, **TK_RELIEF_SUNKEN**, etc.). See **Tk_GetReliefFromObj**.
+[relief]{.carg .in type="int"}
+: One of the standard Tk relief options (**TK\_RELIEF\_RAISED**, **TK\_RELIEF\_SUNKEN**, etc.). See [Tk\_GetReliefFromObj][GetRelief].
 
-short *right* (in)
+[right]{.carg .in type="short"}
 : Extra padding (in pixels) to add to the right side of a region.
 
-Ttk_Side *side* (in)
-: One of **TTK_SIDE_LEFT**, **TTK_SIDE_TOP**, **TTK_SIDE_RIGHT**, or **TTK_SIDE_BOTTOM**.
+[side]{.carg .in type="Ttk_Side"}
+: One of **TTK\_SIDE\_LEFT**, **TTK\_SIDE\_TOP**, **TTK\_SIDE\_RIGHT**, or **TTK\_SIDE\_BOTTOM**.
 
-unsigned *sticky* (in)
-: A bitmask containing one or more of the bits **TTK_STICK_W** (west, or left), **TTK_STICK_E** (east, or right), **TTK_STICK_N** (north, or top), and **TTK_STICK_S** (south, or bottom). **TTK_FILL_X** is defined as a synonym for (**TTK_STICK_W**|**TTK_STICK_E**), **TTK_FILL_Y** is a synonym for (**TTK_STICK_N**|**TTK_STICK_S**), and  **TTK_FILL_BOTH** is a synonym for (**TTK_FILL_X**|**TTK_FILL_Y**). See also: *grid(n)*.
+[sticky]{.carg .in type="unsigned"}
+: A bitmask containing one or more of the bits **TTK\_STICK\_W** (west, or left), **TTK\_STICK\_E** (east, or right), **TTK\_STICK\_N** (north, or top), and **TTK\_STICK\_S** (south, or bottom). **TTK\_FILL\_X** is defined as a synonym for (**TTK\_STICK\_W**|**TTK\_STICK\_E**), **TTK\_FILL\_Y** is a synonym for (**TTK\_STICK\_N**|**TTK\_STICK\_S**), and  **TTK\_FILL\_BOTH** is a synonym for (**TTK\_FILL\_X**|**TTK\_FILL\_Y**). See also: *grid(n)*.
 
-Tk_Window *tkwin* (in)
+[tkwin]{.carg .in type="Tk_Window"}
 : Window whose screen geometry determines the conversion between absolute units and pixels.
 
-short *top* (in)
+[top]{.carg .in type="short"}
 : Extra padding at the top of a region.
 
-int *width* (in)
+[width]{.carg .in type="int"}
 : The width in pixels of a region.
 
-int *x* (in)
+[x]{.carg .in type="int"}
 : X coordinate of upper-left corner of region.
 
-int *y* (in)
+[y]{.carg .in type="int"}
 : Y coordinate of upper-left corner of region.
 
+:::
 
 # Boxes
 
-The **Ttk_Box** structure represents a rectangular region of a window:
+The **Ttk\_Box** structure represents a rectangular region of a window:
 
 ```
 typedef struct {
@@ -159,25 +148,25 @@ typedef struct {
 
 All coordinates are relative to the window.
 
-**Ttk_MakeBox** is a convenience routine that constructs a **Ttk_Box** structure representing a region *width* pixels wide, *height* pixels tall, at the specified *x, y* coordinates.
+**Ttk\_MakeBox** is a convenience routine that constructs a **Ttk\_Box** structure representing a region *width* pixels wide, *height* pixels tall, at the specified *x, y* coordinates.
 
-**Ttk_PadBox** returns a new box located inside the specified *parcel*, shrunken according to the left, top, right, and bottom margins specified by *padding*.
+**Ttk\_PadBox** returns a new box located inside the specified *parcel*, shrunken according to the left, top, right, and bottom margins specified by *padding*.
 
-**Ttk_ExpandBox** is the inverse of **Ttk_PadBox**: it returns a new box surrounding the specified *parcel*, expanded  according to the left, top, right, and bottom margins specified by *padding*.
+**Ttk\_ExpandBox** is the inverse of **Ttk\_PadBox**: it returns a new box surrounding the specified *parcel*, expanded  according to the left, top, right, and bottom margins specified by *padding*.
 
-**Ttk_PackBox** allocates a parcel *width* by *height* pixels wide on the specified *side* of the *cavity*, and shrinks the *cavity* accordingly.
+**Ttk\_PackBox** allocates a parcel *width* by *height* pixels wide on the specified *side* of the *cavity*, and shrinks the *cavity* accordingly.
 
-**Ttk_StickBox** places a box with the requested *width* and *height* inside the *parcel* according to the *sticky* bits.
+**Ttk\_StickBox** places a box with the requested *width* and *height* inside the *parcel* according to the *sticky* bits.
 
-**Ttk_PlaceBox** combines **Ttk_PackBox** and **Ttk_StickBox**: it allocates a parcel on the specified *side* of the *cavity*, places a box of the requested size inside the parcel according to *sticky*, and shrinks the *cavity*.
+**Ttk\_PlaceBox** combines **Ttk\_PackBox** and **Ttk\_StickBox**: it allocates a parcel on the specified *side* of the *cavity*, places a box of the requested size inside the parcel according to *sticky*, and shrinks the *cavity*.
 
-**Ttk_AnchorBox** places a box with the requested *width* and *height* inside the *parcel* according to the specified *anchor* option.
+**Ttk\_AnchorBox** places a box with the requested *width* and *height* inside the *parcel* according to the specified *anchor* option.
 
-**Ttk_BoxContains** tests if the specified *x, y* coordinate lies within the rectangular region *box*.
+**Ttk\_BoxContains** tests if the specified *x, y* coordinate lies within the rectangular region *box*.
 
 # Paddding
 
-The **Ttk_Padding** structure is used to represent borders, internal padding, and external margins:
+The **Ttk\_Padding** structure is used to represent borders, internal padding, and external margins:
 
 ```
 typedef struct {
@@ -188,18 +177,23 @@ typedef struct {
 } Ttk_Padding;
 ```
 
-**Ttk_MakePadding** is a convenience routine that constructs a **Ttk_Padding** structure with the specified left, top, right, and bottom components.
+**Ttk\_MakePadding** is a convenience routine that constructs a **Ttk\_Padding** structure with the specified left, top, right, and bottom components.
 
-**Ttk_UniformPadding** constructs a **Ttk_Padding** structure with all components equal to the specified *border*.
+**Ttk\_UniformPadding** constructs a **Ttk\_Padding** structure with all components equal to the specified *border*.
 
-**Ttk_AddPadding** adds two **Ttk_Padding**s together and returns a combined padding containing the sum of the individual padding components.
+**Ttk\_AddPadding** adds two **Ttk\_Padding**s together and returns a combined padding containing the sum of the individual padding components.
 
-**Ttk_RelievePadding** adds an extra 2 pixels of padding to *padding* according to the specified *relief*. If *relief* is **TK_RELIEF_SUNKEN**, adds two pixels at the top and left so the inner region is shifted down and to the left. If it is **TK_RELIEF_RAISED**, adds two pixels at the bottom and right so the inner region is shifted up and to the right. Otherwise, adds 1 pixel on all sides. This is typically used in element geometry procedures to simulate a "pressed-in" look for pushbuttons.
+**Ttk\_RelievePadding** adds an extra 2 pixels of padding to *padding* according to the specified *relief*. If *relief* is **TK\_RELIEF\_SUNKEN**, adds two pixels at the top and left so the inner region is shifted down and to the left. If it is **TK\_RELIEF\_RAISED**, adds two pixels at the bottom and right so the inner region is shifted up and to the right. Otherwise, adds 1 pixel on all sides. This is typically used in element geometry procedures to simulate a "pressed-in" look for pushbuttons.
 
 # Conversion routines
 
-**Ttk_GetPaddingFromObj** converts the string in *objPtr* to a **Ttk_Padding** structure. The string representation is a list of up to four length specifications "*left top right bottom*". If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. See **Tk_GetPixelsFromObj(3)** for the syntax of length specifications.
+**Ttk\_GetPaddingFromObj** converts the string in *objPtr* to a **Ttk\_Padding** structure. The string representation is a list of up to four length specifications "*left top right bottom*". If fewer than four elements are specified, *bottom* defaults to *top*, *right* defaults to *left*, and *top* defaults to *left*. See **[Tk\_GetPixelsFromObj][GetPixels](3)** for the syntax of length specifications.
 
-**Ttk_GetBorderFromObj** is the same as **Ttk_GetPaddingFromObj** except that the lengths are specified as integers (i.e., resolution-dependent values like *3m* are not allowed).
+**Ttk\_GetBorderFromObj** is the same as **Ttk\_GetPaddingFromObj** except that the lengths are specified as integers (i.e., resolution-dependent values like *3m* are not allowed).
 
-**Ttk_GetStickyFromObj** converts the string in *objPtr* to a *sticky* bitmask.  The string contains zero or more of the characters **n**, **s**, **e**, or **w**.
+**Ttk\_GetStickyFromObj** converts the string in *objPtr* to a *sticky* bitmask.  The string contains zero or more of the characters **n**, **s**, **e**, or **w**.
+
+
+[GetAnchor]: GetAnchor.md
+[GetPixels]: GetPixels.md
+[GetRelief]: GetRelief.md

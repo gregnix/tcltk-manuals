@@ -1,5 +1,6 @@
 ---
 CommandName: doctoc_lang_syntax
+title: doctoc_lang_syntax
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,7 +23,7 @@ Copyright:
 
 # Name
 
-doctoc_lang_syntax - doctoc language syntax
+doctoc\_lang\_syntax - doctoc language syntax
 
 # Description
 
@@ -40,14 +41,11 @@ In this document we specify first the lexeme, and then the syntax, i.e. how we c
 
 In the syntax rules listed in the next section
 
-**\[1\]**
-: \<TEXT> stands for all text except markup commands.
+1. <TEXT> stands for all text except markup commands.
 
-**\[2\]**
-: Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
+2. Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
 
-**\[3\]**
-: \<WHITE> stands for all text consisting only of spaces, newlines, tabulators and the **comment** markup command.
+3. <WHITE> stands for all text consisting only of spaces, newlines, tabulators and the [comment][docidx_lang_cmdref] markup command.
 
 
 # Syntax
@@ -56,12 +54,12 @@ The rules listed here specify only the syntax of doctoc documents. The lexical l
 
 Regarding the syntax of the (E)BNF itself
 
-**\[1\]**
-: The construct { X } stands for zero or more occurrences of X.
+1. The construct { X } stands for zero or more occurrences of X.
 
-**\[2\]**
-: The construct \[ X \] stands for zero or one occurrence of X. The syntax:
+2. The construct \[ X \] stands for zero or one occurrence of X.
 
+
+The syntax:
 
 ```
 toc       = defs
@@ -97,3 +95,6 @@ Documentation tools
 ```
 Copyright (c) 2007-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md

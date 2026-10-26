@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::menubutton
+title: ttk::menubutton
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -23,7 +24,7 @@ ttk::menubutton - Widget that pops down a menu when pressed
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::menubutton]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::menubutton]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -32,27 +33,22 @@ A **ttk::menubutton** widget displays a textual label and/or image, and displays
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-compound** | **-cursor** |
-| **-image** | **-state** | **-style** |
-| **-takefocus** | **-text** | **-textvariable** |
-| **-underline** | **-width** |  |
+**-class**, **-compound**, **-cursor**, **-image**, **-state**, **-style**, **-takefocus**, **-text**, **-textvariable**, **-underline**, **-width**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
 **-direction** (**direction**/**Direction**)
 : Specifies where the menu is to be popped up relative to the menubutton. One of: **above**, **below**, **left**, **right**, or **flush**.  The default is **below**. **flush** pops the menu up directly over the menubutton.
 
-**-menu** (**menu**/**Menu**)
+**-menu** ([menu]/**Menu**)
 : Specifies the path name of the menu associated with the menubutton. To be on the safe side, the menu ought to be a direct child of the menubutton.
 
 
 # Widget command
 
-Menubutton widgets support the standard commands **cget**, **configure**, **identify element**, **instate**, **state** and **style** (see **ttk::widget**).
+Menubutton widgets support the standard commands **cget**, **configure**, **identify element**, **instate**, **state** and **style** (see [ttk::widget][ttk_widget]).
 
 # Standard styles
 
@@ -64,7 +60,7 @@ The class name for a **ttk::menubutton** is **TMenubutton**.
 
 Dynamic states: **active**, **disabled**, **readonly**.
 
-**TMenubutton** styling options configurable with **ttk::style** are:
+**TMenubutton** styling options configurable with [ttk::style][ttk_style] are:
 
 **-arrowsize** *amount*
 
@@ -84,4 +80,9 @@ Dynamic states: **active**, **disabled**, **readonly**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[menu]: menu.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

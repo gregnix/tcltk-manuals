@@ -1,5 +1,6 @@
 ---
 CommandName: console
+title: console
 ManualSection: n
 Version: 8.4
 TclPart: Tk
@@ -22,45 +23,45 @@ Copyright:
  - Copyright (c) 2001 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 console - Steuert die Konsole auf Systemen ohne echte Konsole
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[console]{.cmd} [subcommand]{.arg} [arg]{.optdot} 
+[console]{.cmd} [subcommand]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Das Konsolenfenster ersetzt eine echte Konsole, um Ein- und Ausgabe auf den Standard-I/O-Kanälen auf Plattformen ohne echte Konsole zu ermöglichen. Es ist als separater Interpreter mit geladenem Tk-Toolkit implementiert; die Steuerung erfolgt über den Befehl **console**. Das Verhalten des Konsolenfensters wird vor allem durch den Inhalt der Datei *console.tcl* in der Tk-Bibliothek definiert. Außer bei TkAqua ist dieser Befehl nicht verfügbar, wenn Tk mit „**package require tk**“ in einen tclsh-Interpreter geladen wird, da dort ein herkömmliches Terminal erwartet wird. Unter TkAqua ist der Befehl deaktiviert, wenn ein Startskript vorliegt und stdin **/dev/null** ist (wie z. B. wenn eine gebündelte Tk-Anwendung vom macOS Launcher gestartet wird). Um den Befehl in diesem Fall zu aktivieren, definieren Sie die Umgebungsvariable **TK_CONSOLE**. Dies kann durch Anpassen der Info.plist erfolgen: Schlüssel LSEnvironment zum Haupt-dict hinzufügen und als Wert ein dict mit dem Schlüssel **TK_CONSOLE** setzen.
+Das Konsolenfenster ersetzt eine echte Konsole, um Ein- und Ausgabe auf den Standard-I/O-Kanälen auf Plattformen ohne echte Konsole zu ermöglichen. Es ist als separater Interpreter mit geladenem Tk-Toolkit implementiert; die Steuerung erfolgt über den Befehl **console**. Das Verhalten des Konsolenfensters wird vor allem durch den Inhalt der Datei *console.tcl* in der Tk-Bibliothek definiert. Außer bei TkAqua ist dieser Befehl nicht verfügbar, wenn Tk mit „**package require tk**“ in einen tclsh-Interpreter geladen wird, da dort ein herkömmliches Terminal erwartet wird. Unter TkAqua ist der Befehl deaktiviert, wenn ein Startskript vorliegt und stdin **/dev/null** ist (wie z. B. wenn eine gebündelte Tk-Anwendung vom macOS Launcher gestartet wird). Um den Befehl in diesem Fall zu aktivieren, definieren Sie die Umgebungsvariable **TK\_CONSOLE**. Dies kann durch Anpassen der Info.plist erfolgen: Schlüssel LSEnvironment zum Haupt-dict hinzufügen und als Wert ein dict mit dem Schlüssel **TK\_CONSOLE** setzen.
 
-**console eval** *script*
+[console]{.cmd} [eval]{.sub} [script]{.arg}
 : Wertet das Argument *script* als Tcl-Skript im Konsolen-Interpreter aus. Auf den normalen Interpreter wird im Konsolen-Interpreter über den Befehl **consoleinterp** zugegriffen.
 
-**console hide**
+[console]{.cmd} [hide]{.sub}
 : Blendet das Konsolenfenster aus. Entspricht genau dem Zurückziehen des Fensters **.** im Konsolen-Interpreter.
 
-**console show**
+[console]{.cmd} [show]{.sub}
 : Zeigt das Konsolenfenster an. Entspricht genau dem Deiconify des Fensters **.** im Konsolen-Interpreter.
 
-**console title** ?*string*?
-: Fragt den Titel des Konsolenfensters ab oder ändert ihn. Ist *string* nicht angegeben, wird der Titel abgefragt; andernfalls auf *string* gesetzt. Entspricht genau dem Befehl **wm title** im Konsolen-Interpreter.
+[console]{.cmd} [title]{.sub} [string]{.optarg}
+: Fragt den Titel des Konsolenfensters ab oder ändert ihn. Ist *string* nicht angegeben, wird der Titel abgefragt; andernfalls auf *string* gesetzt. Entspricht genau dem Befehl [wm title][wm] im Konsolen-Interpreter.
 
 
-# ZUGRIFF AUF DEN HAUPT-INTERPRETER
+# Zugriff auf den Haupt-Interpreter
 
 Der Befehl **consoleinterp** im Konsolen-Interpreter erlaubt die Auswertung von Skripten im Haupt-Interpreter. Er unterstützt zwei Unterbefehle: **eval** und **record**.
 
-**consoleinterp eval** *script*
+[consoleinterp]{.cmd} [eval]{.sub} [script]{.arg}
 : Wertet *script* als Tcl-Skript auf globaler Ebene im Haupt-Interpreter aus.
 
-**consoleinterp record** *script*
+[consoleinterp]{.cmd} [record]{.sub} [script]{.arg}
 : Zeichnet *script* auf und wertet es auf globaler Ebene im Haupt-Interpreter aus, als ob *script* an der Konsole eingegeben worden wäre.
 
 
-# ZUSÄTZLICHE TRAP-AUFRUFE
+# Zusätzliche Trap-Aufrufe
 
 Im Konsolen-Interpreter gibt es mehrere zusätzliche Befehle, die als Reaktion auf Aktivität im Haupt-Interpreter aufgerufen werden. *Sie sind hier nur der Vollständigkeit halber dokumentiert; sie gehören zur internen Implementierung der Konsole und können ohne Vorwarnung geändert werden.*
 
@@ -68,17 +69,17 @@ Ausgabe der Konsole aus dem Haupt-Interpreter über die Kanäle stdout und stder
 
 Wenn das Fenster **.** des Haupt-Interpreters zerstört wird, wird der Befehl **tk::ConsoleExit** im Konsolen-Interpreter aufgerufen (sofern der Konsolen-Interpreter nicht bereits selbst gelöscht wurde).
 
-# STANDARD-BINDINGS
+# Standard-Bindings
 
 Das Standardskript erzeugt ein Konsolenfenster (implementiert mit einem Text-Widget) mit folgendem Verhalten:
 
 1. Tab oder Escape versucht, den Text unmittelbar vor dem Cursor zu vervollständigen. Die Konsole probiert der Reihe nach einen Dateinamen im aktuellen Verzeichnis, dann einen Befehlsnamen, dann einen Variablennamen und hört beim ersten Typ auf, der einen Treffer liefert.
 
-Nur dieser Typ wird danach verwendet. Gibt es darin mehr als einen Treffer, wird die längste gemeinsame Übereinstimmung eingesetzt; die vollständige Liste erscheint erst, wenn die Vervollständigung erneut versucht wird und nichts mehr zu verlängern ist.
+    Nur dieser Typ wird danach verwendet. Gibt es darin mehr als einen Treffer, wird die längste gemeinsame Übereinstimmung eingesetzt; die vollständige Liste erscheint erst, wenn die Vervollständigung erneut versucht wird und nichts mehr zu verlängern ist.
 
-Eigene Vervollständigungs-Bindings für Dateien, Befehle und Variablen stehen unten (Punkte 12–14).
+    Eigene Vervollständigungs-Bindings für Dateien, Befehle und Variablen stehen unten (Punkte 12–14).
 
-2. Return-Taste übergibt die aktuelle Zeile (wenn sie nach den Regeln von **info complete** vollständig ist) zur Auswertung an den Haupt-Interpreter.
+2. Return-Taste übergibt die aktuelle Zeile (wenn sie nach den Regeln von [info complete][info] vollständig ist) zur Auswertung an den Haupt-Interpreter.
 
 3. Delete-Taste löscht den ausgewählten Text (falls vorhanden) oder das Zeichen rechts vom Cursor (wenn nicht am Zeilenende).
 
@@ -104,12 +105,20 @@ Eigene Vervollständigungs-Bindings für Dateien, Befehle und Variablen stehen u
 
 14. Control+Umschalt+V vervollständigt nur gegen Variablennamen. Sieht der zu vervollständigende Text wie ein Array-Element aus (array(name)), wird gegen die Elementnamen dieses Arrays vervollständigt statt allgemein gegen Variablennamen.
 
-15. Drehen am Mausrad bei gedrückter Cmd-Taste (macOS) oder Ctrl (andere Plattformen) vergrößert (nach oben) oder verkleinert (nach unten) die Konsolenschrift. Das übrige Verhalten entspricht einem herkömmlichen Text-Widget, außer dass das Ereignis *<\<Cut>>* identisch zu *<\<Copy>>* behandelt wird.
+15. Drehen am Mausrad bei gedrückter Cmd-Taste (macOS) oder Ctrl (andere Plattformen) vergrößert (nach oben) oder verkleinert (nach unten) die Konsolenschrift.
 
-# BEISPIEL
 
-Nicht alle Plattformen haben den Befehl **console**; Debug-Code enthält daher oft folgendes Fragment, damit Ausgabe von **puts** während der Entwicklung sichtbar ist:
+Das übrige Verhalten entspricht einem herkömmlichen Text-Widget, außer dass das Ereignis *<<Cut>>* identisch zu *<<Copy>>* behandelt wird.
+
+# Beispiel
+
+Nicht alle Plattformen haben den Befehl **console**; Debug-Code enthält daher oft folgendes Fragment, damit Ausgabe von [puts] während der Entwicklung sichtbar ist:
 
 ```
 catch {console show}
 ```
+
+
+[info]: ../tcl/info.md
+[puts]: ../tcl/puts.md
+[wm]: wm.md

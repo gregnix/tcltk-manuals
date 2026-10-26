@@ -1,5 +1,6 @@
 ---
 CommandName: mkdoc
+title: mkdoc
 ManualSection: n
 Version: 0.7.2
 TclPart: tcllib
@@ -15,13 +16,13 @@ mkdoc - Extracts and optionally converts Markdown comments in source code to HTM
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} [1.2.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [mkdoc]{.lit} [0.7.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [hook]{.lit} 
-[::mkdoc::mkdoc]{.cmd} [infile]{.arg} [outfile]{.arg} [-css cssfile]{.optarg} 
-[::mkdoc::run]{.cmd} [infile]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit} [1.2.2]{.optlit}
+[package]{.cmd} [require]{.sub} [yaml]{.lit} [0.4.2]{.optlit}
+[package]{.cmd} [require]{.sub} [mkdoc]{.lit} [0.7.2]{.optlit}
+[package]{.cmd} [require]{.sub} [hook]{.lit}
+[::mkdoc::mkdoc]{.cmd} [infile]{.arg} [outfile]{.arg} [[-css]{.lit} [cssfile]{.arg}]{.optarg}
+[::mkdoc::run]{.cmd} [infile]{.arg}
 :::
 
 # Description
@@ -29,24 +30,32 @@ mkdoc - Extracts and optionally converts Markdown comments in source code to HTM
 The package **mkdoc** provides a command to extract documentation embedded in code and optionally convert these comments into HTML. The latter uses Tcllib's **Markdown** package. Each line of the embedded documentation begins with the special comment marker **#'**.
 
 **::mkdoc::mkdoc** *infile* *outfile* ?**-css** *cssfile*?
-: The command reads the specified *infile* and extracts the code comments introduced by the  **#'** marker.  If the *outfile* is either a "*.html*" or "*.htm*" file the Markdown is converted into HTML using either a default style or the specified style sheet *cssfile*. All arguments are paths to the files to read from or write to. The result of the command is the empty string. See section **Formatting** for the supported Markdown syntax and extensions to it.
+: The command reads the specified *infile* and extracts the code comments introduced by the **#'** marker.  If the *outfile* is either a "*.html*" or "*.htm*" file the Markdown is converted into HTML using either a default style or the specified style sheet *cssfile*.
+
+    All arguments are paths to the files to read from or write to.
+
+    The result of the command is the empty string.
+
+    See section [Formatting] for the supported Markdown syntax and extensions to it.
 
 **::mkdoc::run** *infile*
-: The command reads the specified *infile*, extracts the embedded documentation, and then executes the contents of the first example, i.e. **\`\`\`**-quoted block, found in the **Example** section. Here is such an example which will be executed by the Tcl interpreter
+: The command reads the specified *infile*, extracts the embedded documentation, and then executes the contents of the first example, i.e. **```**-quoted block, found in the **Example** section.
 
+    Here is such an example which will be executed by the Tcl interpreter
 
-```
-    #' ## <a name="example">Example</a>
-    #'
-    #' ```
-    #' puts "Hello mkdoc package"
-    #' puts "I am in the example section"
-    #' ```
-```
+    ```
+        #' ## <a name="example">Example</a>
+        #'
+        #' ```
+        #' puts "Hello mkdoc package"
+        #' puts "I am in the example section"
+        #' ```
+    ```
 
-*DANGER, BEWARE*. Failing to open the *infile* causes the command to *exit* the entire process.
+    *DANGER, BEWARE*. Failing to open the *infile* causes the command to *exit* the entire process.
 
-Use of this command in a general context is not recommended.
+    Use of this command in a general context is not recommended.
+
 
 # Examples
 
@@ -72,14 +81,18 @@ It further supports a set of simple YAML headers whose information is inserted i
 : Set the document author. Defaults to **NN**.
 
 **title**
-: Set the document title. Defaults to **Documentation filename**\].
+: Set the document title. Defaults to **Documentation** **filename**\].
 
 **date**
 : Sets the document date. Defaults to the current day.
 
 **css**
-: Sets a custom CSS stylesheet. Defaults to the internal mkdoc sheet. *Note* that in Markdown output mode these headers are simply passed through into the result. This is proper, as processors like **pandoc** are able to use them as well. See the example below for the syntax:
+: Sets a custom CSS stylesheet. Defaults to the internal mkdoc sheet.
 
+
+*Note* that in Markdown output mode these headers are simply passed through into the result. This is proper, as processors like **pandoc** are able to use them as well.
+
+See the example below for the syntax:
 
 ```
     #' ---

@@ -1,5 +1,6 @@
 ---
 CommandName: term
+title: term
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -18,8 +19,8 @@ term - General terminal control
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term]{.lit} [0.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term]{.lit} [0.2]{.optlit}
 :::
 
 # Description

@@ -1,5 +1,6 @@
 ---
 CommandName: nns_intro
+title: nns_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,7 +23,7 @@ Copyright:
 
 # Name
 
-nns_intro - Name service facility, introduction
+nns\_intro - Name service facility, introduction
 
 # Description
 
@@ -42,7 +43,7 @@ The only case for this to make some sense would be in a shell script wrapped aro
 
 The third application, **nnslog** is a stripped down form of the **nns** client application. It is reduced to perform a continuous search for all changes and logs all received events to stdout.
 
-Both clients use the **nameserv::auto** package to automatically hande the loss and restoration of the connection to the server.
+Both clients use the [nameserv::auto][nns_auto] package to automatically hande the loss and restoration of the connection to the server.
 
 # Packages
 
@@ -50,7 +51,7 @@ The two main packages implementing the service are **nameserv** and **nameserv::
 
 The basic client, in package **nameserv**, provides the main API to manipulate and query the service. An example of its use is the application **nns**.
 
-The second client package, **nameserv::auto** is API compatible to the basic client, but provides the additional functionality that it will automatically restore data like bound names when the connection to the name service was lost and then reestablished. I.e. it automatically detects the loss of the server and re-enters the data when the server comes back.
+The second client package, [nameserv::auto][nns_auto] is API compatible to the basic client, but provides the additional functionality that it will automatically restore data like bound names when the connection to the name service was lost and then reestablished. I.e. it automatically detects the loss of the server and re-enters the data when the server comes back.
 
 The package **nameserv::common** is of no interest to users. It is an internal package containing code and definitions common to the packages **nameserv** and **nameserv::server**.
 
@@ -79,3 +80,6 @@ Networking
 ```
 Copyright (c) 2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[nns_auto]: nns_auto.md

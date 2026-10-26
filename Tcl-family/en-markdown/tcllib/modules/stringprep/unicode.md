@@ -1,5 +1,6 @@
 ---
 CommandName: unicode
+title: unicode
 ManualSection: n
 Version: 1.1.1
 TclPart: tcllib
@@ -20,12 +21,12 @@ unicode - Implementation of Unicode normalization
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [unicode]{.lit} [1.1.1]{.lit} 
-[::unicode::normalizeS]{.cmd} [form]{.arg} [string]{.arg} 
-[::unicode::fromstring]{.cmd} [string]{.arg} 
-[::unicode::tostring]{.cmd} [codepointsList]{.arg} 
-[::unicode::normalize]{.cmd} [form]{.arg} [codepointsList]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [unicode]{.lit} [1.1.1]{.lit}
+[::unicode::normalizeS]{.cmd} [form]{.arg} [string]{.arg}
+[::unicode::fromstring]{.cmd} [string]{.arg}
+[::unicode::tostring]{.cmd} [codepointsList]{.arg}
+[::unicode::normalize]{.cmd} [form]{.arg} [codepointsList]{.arg}
 :::
 
 # Description
@@ -34,18 +35,24 @@ This is a Tcl implementation of Unicode normalization commands.
 
 *Note* that if normalization alone is insufficient (e.g., for string comparisons), the **stringprep** package may prove useful.
 
-# Api
+# API
 
 The *form* argument in the commands listed below must be a string that has one of the following values: **D** (canonical decomposition), **C** (canonical decomposition, followed by canonical composition), **KD** (compatibility decomposition), or **KC** (compatibility decomposition, followed by canonical composition).
 
 **::unicode::normalizeS** *form* *string*
-: Returns a possibly modified copy of *string*, normalized in accordance with the given *form*. This is a convenience for: *::unicode::tostring* \[*unicode::normalize \$form* \[*::unicode::fromstring \$string*\]\].
+: Returns a possibly modified copy of *string*, normalized in accordance with the given *form*.
+
+    This is a convenience for: *::unicode::tostring* \[*unicode::normalize $form* \[*::unicode::fromstring $string*\]\].
 
 **::unicode::fromstring** *string*
-: Returns a list of integer Unicode code points representing the characters in *string*. (These integer code points are used in **unicode** for internal string representation.)
+: Returns a list of integer Unicode code points representing the characters in *string*.
+
+    (These integer code points are used in **unicode** for internal string representation.)
 
 **::unicode::tostring** *codepointsList*
-: Returns a string whose characters are those corresponding to the *codepointsList* of integers. Every integer that is a valid Unicode code point is represented in the returned string by the corresponding Unicode character. Any integer that is not a valid Unicode code point is represented using the Unicode replacement character �, U+FFFD, unless it is sufficiently big, in which case an error is thrown.
+: Returns a string whose characters are those corresponding to the *codepointsList* of integers.
+
+    Every integer that is a valid Unicode code point is represented in the returned string by the corresponding Unicode character. Any integer that is not a valid Unicode code point is represented using the Unicode replacement character �, U+FFFD, unless it is sufficiently big, in which case an error is thrown.
 
 **::unicode::normalize** *form* *codepointsList*
 : Returns a possibly modified copy of the *codepointsList* of integers (which must all be valid Unicode code points), normalized according to the given normalization *form*.
@@ -107,8 +114,7 @@ A
 
 # References
 
-**\[1\]**
-: "Unicode Standard Annex #15: Unicode Normalization Forms", (*http://unicode.org/reports/tr15/*)
+1. "Unicode Standard Annex #15: Unicode Normalization Forms", (<http://unicode.org/reports/tr15/>)
 
 
 # Authors

@@ -1,5 +1,6 @@
 ---
 CommandName: rcs
+title: rcs
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -28,15 +29,15 @@ rcs - RCS low level utilities
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [rcs]{.lit} [0.2]{.optlit} 
-[::rcs::text2dict]{.cmd} [text]{.arg} 
-[::rcs::dict2text]{.cmd} [dict]{.arg} 
-[::rcs::file2dict]{.cmd} [filename]{.arg} 
-[::rcs::dict2file]{.cmd} [filename]{.arg} [dict]{.arg} 
-[::rcs::decodeRcsPatch]{.cmd} [text]{.arg} 
-[::rcs::encodeRcsPatch]{.cmd} [pcmds]{.arg} 
-[::rcs::applyRcsPatch]{.cmd} [text]{.arg} [pcmds]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [rcs]{.lit} [0.2]{.optlit}
+[::rcs::text2dict]{.cmd} [text]{.arg}
+[::rcs::dict2text]{.cmd} [dict]{.arg}
+[::rcs::file2dict]{.cmd} [filename]{.arg}
+[::rcs::dict2file]{.cmd} [filename]{.arg} [dict]{.arg}
+[::rcs::decodeRcsPatch]{.cmd} [text]{.arg}
+[::rcs::encodeRcsPatch]{.cmd} [pcmds]{.arg}
+[::rcs::applyRcsPatch]{.cmd} [text]{.arg} [pcmds]{.arg}
 :::
 
 # Description
@@ -47,20 +48,18 @@ This package *does not* implement RCS.
 
 It only provides a number of low level commands which should be useful in the implementation of any revision management system, namely:
 
-**\[1\]**
-: The conversion of texts into and out of a data structures which allow the easy modification of such text by *patches*, i.e. sequences of instructions for the transformation of one text into an other.
+1. The conversion of texts into and out of a data structures which allow the easy modification of such text by *patches*, i.e. sequences of instructions for the transformation of one text into an other.
 
-**\[2\]**
-: And the conversion of one particular format for patches, the so-called *RCS patches*, into and out of data structures which allow their easy application to texts.
+2. And the conversion of one particular format for patches, the so-called *RCS patches*, into and out of data structures which allow their easy application to texts.
 
 
 # Commands
 
 **::rcs::text2dict** *text*
-: Converts the argument *text* into a dictionary containing and representing the same text in an indexed form and returns that dictionary as its result. More information about the format of the result can be found in section **TEXT DICT DATA STRUCTURE**. This command returns the *canonical* representation of the input.
+: Converts the argument *text* into a dictionary containing and representing the same text in an indexed form and returns that dictionary as its result. More information about the format of the result can be found in section [Text dict data structure]. This command returns the *canonical* representation of the input.
 
 **::rcs::dict2text** *dict*
-: This command provides the complementary operation to **::rcs::text2dict**. It converts a dictionary in the form described in section **TEXT DICT DATA STRUCTURE** back into a text and returns that text as its result. The command does accept non-canonical representations of the text as its input.
+: This command provides the complementary operation to **::rcs::text2dict**. It converts a dictionary in the form described in section [Text dict data structure] back into a text and returns that text as its result. The command does accept non-canonical representations of the text as its input.
 
 **::rcs::file2dict** *filename*
 : This command is identical to **::rcs::text2dict**, except that it reads the text to convert from the file with path *filename*. The file has to exist and must be readable as well.
@@ -69,13 +68,17 @@ It only provides a number of low level commands which should be useful in the im
 : This command is identical to **::rcs::2dict2text**, except that it stores the resulting text in the file with path *filename*. The file is created if it did not exist, and must be writable. The result of the command is the empty string.
 
 **::rcs::decodeRcsPatch** *text*
-: Converts the *text* argument into a patch command list (PCL) as specified in the section **RCS PATCH COMMAND LIST** and returns this list as its result. It is assumed that the input text is in *diff -n format*, also known as *RCS patch* format, as specified in the section **RCS PATCH FORMAT**. Please note that the command ignores no-ops in the input, in other words the resulting PCL contains only instructions doing something.
+: Converts the *text* argument into a patch command list (PCL) as specified in the section [Rcs patch command list] and returns this list as its result. It is assumed that the input text is in *diff -n format*, also known as *RCS patch* format, as specified in the section [Rcs patch format]. Please note that the command ignores no-ops in the input, in other words the resulting PCL contains only instructions doing something.
 
 **::rcs::encodeRcsPatch** *pcmds*
-: This command provides the complementary operation to **::rcs::decodeRcsPatch**. It convert a patch comand list (PCL) list as specified in the section **RCS PATCH COMMAND LIST** back into a text in **RCS PATCH FORMAT** and returns that text as its result. Note that this command and **::rcs::decodeRcsPatch** are not exactly complementary, as the latter strips no-ops from its input, which the encoder cannot put back anymore into the generated RCS patch. In other words, the result of a decode/encode step may not match the original input at the character level, but it will match it at the functional level.
+: This command provides the complementary operation to **::rcs::decodeRcsPatch**. It convert a patch comand list (PCL) list as specified in the section [Rcs patch command list] back into a text in [Rcs patch format] and returns that text as its result.
+
+    Note that this command and **::rcs::decodeRcsPatch** are not exactly complementary, as the latter strips no-ops from its input, which the encoder cannot put back anymore into the generated RCS patch. In other words, the result of a decode/encode step may not match the original input at the character level, but it will match it at the functional level.
 
 **::rcs::applyRcsPatch** *text* *pcmds*
-: This operation applies a patch in the form of a PCL to a text given in the form of a dictionary and returns the modified text, again as dictionary, as its result. To handle actual text use the commands **::rcs::text2dict** (or equivalent) and **::rcs::decodeRcsPatch** to transform the inputs into data structures acceptable to this command. Analogously use the command **::rcs::dict2text** (or equivalent) to transform the result of this command into actuall text as required.
+: This operation applies a patch in the form of a PCL to a text given in the form of a dictionary and returns the modified text, again as dictionary, as its result.
+
+    To handle actual text use the commands **::rcs::text2dict** (or equivalent) and **::rcs::decodeRcsPatch** to transform the inputs into data structures acceptable to this command. Analogously use the command **::rcs::dict2text** (or equivalent) to transform the result of this command into actuall text as required.
 
 
 # Text dict data structure
@@ -127,14 +130,23 @@ The format is line oriented, with each line containing either a command or text 
 
 The commands are:
 
+""
 : The empty line is a command which does nothing.
 
 "a**start** **n**"
 : A line starting with the character **a** is a command for the addition of text to the output. It is followed by **n** lines of text data. When applying the patch the data is added just between the lines **start** and **start**+1. The same effect is had by appending the data to the existing text on line **start**. A non-existing line **start** is created.
 
 "d**start** **n**"
-: A line starting with the character **d** is a command for the deletion of text from the output. When applied it deletes **n** lines of text, and the first line deleted is at index **start**. Note that the line indices **start** always refer to the text which is transformed as it is in its original state, without taking the precending changes into account. Note also that the instruction have to be applied in the order they occur in the patch, or in a manner which produces the same result as in-order application. This is the format of results returned by the command **::rcs::decodeRcsPatch** and accepted by the commands **::rcs::encodeRcsPatch** and **::rcs::appplyRcsPatch** resp. Note however that the decoder will strip no-op commands, and the encoder will not generate no-ops, making them not fully complementary at the textual level, only at the functional level. And example of a RCS patch is
+: A line starting with the character **d** is a command for the deletion of text from the output. When applied it deletes **n** lines of text, and the first line deleted is at index **start**.
 
+
+Note that the line indices **start** always refer to the text which is transformed as it is in its original state, without taking the precending changes into account.
+
+Note also that the instruction have to be applied in the order they occur in the patch, or in a manner which produces the same result as in-order application.
+
+This is the format of results returned by the command **::rcs::decodeRcsPatch** and accepted by the commands **::rcs::encodeRcsPatch** and **::rcs::appplyRcsPatch** resp. Note however that the decoder will strip no-op commands, and the encoder will not generate no-ops, making them not fully complementary at the textual level, only at the functional level.
+
+And example of a RCS patch is
 
 ```
 d1 2
@@ -154,12 +166,16 @@ Patch command lists (sort: PCL's) are the data structures generated by patch dec
 
 A PCL is a list where each element represents a single patch instruction, either an addition, or a deletion. The elements are lists themselves, where the first item specifies the command and the remainder represent the arguments of the command.
 
-**a**
+a
 : This is the instruction for the addition of text. It has two arguments, the index of the line where to add the text, and the text to add, in this order.
 
-**d**
-: This is the instruction for the deletion of text. It has two arguments, the index of the line where to start deleting text, and the number of lines to delete, in this order. This is the format returned by the patch decoder command and accepted as input by the patch encoder and applicator commands. An example for a patch command is shown below, it represents the example RCS patch found in section **RCS PATCH FORMAT**.
+d
+: This is the instruction for the deletion of text. It has two arguments, the index of the line where to start deleting text, and the number of lines to delete, in this order.
 
+
+This is the format returned by the patch decoder command and accepted as input by the patch encoder and applicator commands.
+
+An example for a patch command is shown below, it represents the example RCS patch found in section [Rcs patch format].
 
 ```
 {{d 1 2} {d 4 1} {a 4 {The named is the mother of all things.

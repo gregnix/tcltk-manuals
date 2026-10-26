@@ -1,5 +1,6 @@
 ---
 CommandName: piePeripheralLabeler
+title: piePeripheralLabeler
 ManualSection: n
 Version: 6.6
 TclPart: tklib
@@ -17,19 +18,19 @@ Copyright:
  - Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>
 ---
 
-# NAME
+# Name
 
 piePeripheralLabeler – Labeler-Klasse von tkpiechart mit Beschriftung am Rand
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[stooop::new]{.cmd} [piePeripheralLabeler]{.sub} [canvas]{.arg} [options]{.optarg} 
-[switched::configure]{.cmd} [piePeripheralLabelerObject]{.arg} [options]{.optarg} 
-[switched::cget]{.cmd} [piePeripheralLabelerObject]{.arg} [option]{.arg} 
+[stooop::new]{.cmd} [piePeripheralLabeler]{.lit} [canvas]{.arg} [options]{.optarg}
+[switched::configure]{.cmd} [piePeripheralLabelerObject]{.arg} [options]{.optarg}
+[switched::cget]{.cmd} [piePeripheralLabelerObject]{.arg} [option]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Labeler-Objekt mit Beschriftung am Rand setzt die Segmentbeschriftungen eines Objekts **pie** und wird dem Konstruktor von pie über die Option **-labeler** übergeben. Siehe die Handbuchseite der Klasse **pie**.
 
@@ -47,7 +48,7 @@ Ein Objekt **piePeripheralLabeler** muss nicht gelöscht werden. Die Klasse pie 
 : Gibt einen Optionswert des angegebenen piePeripheralLabeler-Objekts zurück.
 
 
-# OPTIONEN
+# Optionen
 
 **-font** value
 : Eine Schrift für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schrift systemabhängig.
@@ -65,19 +66,18 @@ Ein Objekt **piePeripheralLabeler** muss nicht gelöscht werden. Die Klasse pie 
 : Eine Zeichenkette maximaler Breite für die Segmentwerte, die um das Kreisdiagramm neben den Segmenten stehen, damit beim Setzen von Breite und Höhe genug Platz für diese Wertbeschriftungen bleibt. Voreingestellt ist 00.0. Zum Beispiel kann der Wert „00.00 %“ sein.
 
 
-# TAGS
+# Tags
 
 Der Labeler hat das folgende besondere Tag. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*:
 
-**•**
-: piePeripheralLabeler(piePeripheralLabelerObject)
+- piePeripheralLabeler(piePeripheralLabelerObject)
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *tkpiechart* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 1995-2004 Jean-Luc Fontaine <jfontain@free.fr>

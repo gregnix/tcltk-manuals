@@ -1,5 +1,6 @@
 ---
 CommandName: place
+title: place
 ManualSection: n
 Version: unknown
 TclPart: Tk
@@ -28,7 +29,7 @@ place - Geometry manager for fixed or rubber-sheet placement
 # Synopsis
 
 ::: {.synopsis} :::
-[place]{.cmd} [option]{.arg} [arg]{.arg} [arg]{.optdot} 
+[place]{.cmd} [option]{.arg} [arg]{.arg} [arg]{.optdot}
 :::
 
 # Description
@@ -39,47 +40,47 @@ The placer is a geometry manager for Tk. It provides simple fixed placement of w
 : Arrange for the placer to manage the geometry of a content whose pathName is *window*.  The remaining arguments consist of one or more *option-value* pairs that specify the way in which *window*'s geometry is managed.  *Option* may have any of the values accepted by the **place configure** command.
 
 **place configure** *window* ?*option*? ?*value option value ...*?
-: Query or modify the geometry options of the content given by *window*.  If no *option* is specified, this command returns a list describing the available options (see **Tk_ConfigureInfo** for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string.
+: Query or modify the geometry options of the content given by *window*.  If no *option* is specified, this command returns a list describing the available options (see [Tk\_ConfigureInfo][ConfigWidg] for information on the format of this list).  If *option* is specified with no *value*, then the command returns a list describing the one named option (this list will be identical to the corresponding sublist of the value returned if no *option* is specified).  If one or more *option-value* pairs are specified, then the command modifies the given option(s) to have the given value(s); in this case the command returns an empty string.
+
+    The following *option-value* pairs are supported:
+
+    **-anchor** *where*
+    : *Where* specifies which point of *window* is to be positioned at the (x,y) location selected by the **-x**, **-y**, **-relx**, and **-rely** options. The anchor point is in terms of the outer area of *window* including its border, if any. Thus if *where* is **se** then the lower-right corner of *window*'s border will appear at the given (x,y) location in the container. The anchor position defaults to **nw**.
+
+    **-bordermode** *mode*
+    : *Mode* determines the degree to which borders within the container are used in determining the placement of the content. The default and most common value is **inside**. In this case the placer considers the area of the container to be the innermost area of the container, inside any border: an option of **-x 0** corresponds to an x-coordinate just inside the border and an option of **-relwidth 1.0** means *window* will fill the area inside the container's border.
+
+        If *mode* is **outside** then the placer considers the area of the container to include its border; this mode is typically used when placing *window* outside its container, as with the options **-x 0 -y 0 -anchor ne**. Lastly, *mode* may be specified as **ignore**, in which case borders are ignored:  the area of the container is considered to be its official X area, which includes any internal border but no external border.  A bordermode of **ignore** is probably not very useful.
+
+    **-height** *size*
+    : *Size* specifies the height for *window* in screen units (i.e. any of the forms accepted by [Tk\_GetPixels][GetPixels]). The height will be the outer dimension of *window* including its border, if any. If *size* is an empty string, or if no **-height** or **-relheight** option is specified, then the height requested internally by the window will be used.
+
+    **-in** *container*
+    : *Container* specifies the path name of the window relative to which *window* is to be placed. *Container* must either be *window*'s parent or a descendant of *window*'s parent. In addition, *container* and *window* must both be descendants of the same top-level window. These restrictions are necessary to guarantee that *window* is visible whenever *container* is visible. If this option is not specified then the other window defaults to *window*'s parent.
+
+    **-relheight** *size*
+    : *Size* specifies the height for *window*. In this case the height is specified as a floating-point number relative to the height of the container: 0.5 means *window* will be half as high as the container, 1.0 means *window* will have the same height as the container, and so on. If both **-height** and **-relheight** are specified for a content, their values are summed.  For example, **-relheight 1.0 -height -2** makes the content 2 pixels shorter than the container.
+
+    **-relwidth** *size*
+    : *Size* specifies the width for *window*. In this case the width is specified as a floating-point number relative to the width of the container: 0.5 means *window* will be half as wide as the container, 1.0 means *window* will have the same width as the container, and so on. If both **-width** and **-relwidth** are specified for a content, their values are summed.  For example, **-relwidth 1.0 -width 5** makes the content 5 pixels wider than the container.
+
+    **-relx** *location*
+    : *Location* specifies the x-coordinate within the container window of the anchor point for *window*. In this case the location is specified in a relative fashion as a floating-point number:  0.0 corresponds to the left edge of the container and 1.0 corresponds to the right edge of the container. *Location* need not be in the range 0.0-1.0. If both **-x** and **-relx** are specified for a content then their values are summed.  For example, **-relx 0.5 -x -2** positions the left edge of the content 2 pixels to the left of the center of its container.
+
+    **-rely** *location*
+    : *Location* specifies the y-coordinate within the container window of the anchor point for *window*. In this case the value is specified in a relative fashion as a floating-point number:  0.0 corresponds to the top edge of the container and 1.0 corresponds to the bottom edge of the container. *Location* need not be in the range 0.0-1.0. If both **-y** and **-rely** are specified for a content then their values are summed.  For example, **-rely 0.5 -x 3** positions the top edge of the content 3 pixels below the center of its container.
+
+    **-width** *size*
+    : *Size* specifies the width for *window* in screen units (i.e. any of the forms accepted by [Tk\_GetPixels][GetPixels]). The width will be the outer width of *window* including its border, if any. If *size* is an empty string, or if no **-width** or **-relwidth** option is specified, then the width requested internally by the window will be used.
+
+    **-x** *location*
+    : *Location* specifies the x-coordinate within the container window of the anchor point for *window*. The location is specified in screen units (i.e. any of the forms accepted by [Tk\_GetPixels][GetPixels]) and need not lie within the bounds of the container window.
+
+    **-y** *location*
+    : *Location* specifies the y-coordinate within the container window of the anchor point for *window*. The location is specified in screen units (i.e. any of the forms accepted by [Tk\_GetPixels][GetPixels]) and need not lie within the bounds of the container window.
 
 
-The following *option-value* pairs are supported:
-
-**-anchor** *where*
-: *Where* specifies which point of *window* is to be positioned at the (x,y) location selected by the **-x**, **-y**, **-relx**, and **-rely** options. The anchor point is in terms of the outer area of *window* including its border, if any. Thus if *where* is **se** then the lower-right corner of *window*'s border will appear at the given (x,y) location in the container. The anchor position defaults to **nw**.
-
-**-bordermode** *mode*
-: *Mode* determines the degree to which borders within the container are used in determining the placement of the content. The default and most common value is **inside**. In this case the placer considers the area of the container to be the innermost area of the container, inside any border: an option of **-x 0** corresponds to an x-coordinate just inside the border and an option of **-relwidth 1.0** means *window* will fill the area inside the container's border.
-
-
-If *mode* is **outside** then the placer considers the area of the container to include its border; this mode is typically used when placing *window* outside its container, as with the options **-x 0 -y 0 -anchor ne**. Lastly, *mode* may be specified as **ignore**, in which case borders are ignored:  the area of the container is considered to be its official X area, which includes any internal border but no external border.  A bordermode of **ignore** is probably not very useful.
-
-**-height** *size*
-: *Size* specifies the height for *window* in screen units (i.e. any of the forms accepted by **Tk_GetPixels**). The height will be the outer dimension of *window* including its border, if any. If *size* is an empty string, or if no **-height** or **-relheight** option is specified, then the height requested internally by the window will be used.
-
-**-in** *container*
-: *Container* specifies the path name of the window relative to which *window* is to be placed. *Container* must either be *window*'s parent or a descendant of *window*'s parent. In addition, *container* and *window* must both be descendants of the same top-level window. These restrictions are necessary to guarantee that *window* is visible whenever *container* is visible. If this option is not specified then the other window defaults to *window*'s parent.
-
-**-relheight** *size*
-: *Size* specifies the height for *window*. In this case the height is specified as a floating-point number relative to the height of the container: 0.5 means *window* will be half as high as the container, 1.0 means *window* will have the same height as the container, and so on. If both **-height** and **-relheight** are specified for a content, their values are summed.  For example, **-relheight 1.0 -height -2** makes the content 2 pixels shorter than the container.
-
-**-relwidth** *size*
-: *Size* specifies the width for *window*. In this case the width is specified as a floating-point number relative to the width of the container: 0.5 means *window* will be half as wide as the container, 1.0 means *window* will have the same width as the container, and so on. If both **-width** and **-relwidth** are specified for a content, their values are summed.  For example, **-relwidth 1.0 -width 5** makes the content 5 pixels wider than the container.
-
-**-relx** *location*
-: *Location* specifies the x-coordinate within the container window of the anchor point for *window*. In this case the location is specified in a relative fashion as a floating-point number:  0.0 corresponds to the left edge of the container and 1.0 corresponds to the right edge of the container. *Location* need not be in the range 0.0-1.0. If both **-x** and **-relx** are specified for a content then their values are summed.  For example, **-relx 0.5 -x -2** positions the left edge of the content 2 pixels to the left of the center of its container.
-
-**-rely** *location*
-: *Location* specifies the y-coordinate within the container window of the anchor point for *window*. In this case the value is specified in a relative fashion as a floating-point number:  0.0 corresponds to the top edge of the container and 1.0 corresponds to the bottom edge of the container. *Location* need not be in the range 0.0-1.0. If both **-y** and **-rely** are specified for a content then their values are summed.  For example, **-rely 0.5 -x 3** positions the top edge of the content 3 pixels below the center of its container.
-
-**-width** *size*
-: *Size* specifies the width for *window* in screen units (i.e. any of the forms accepted by **Tk_GetPixels**). The width will be the outer width of *window* including its border, if any. If *size* is an empty string, or if no **-width** or **-relwidth** option is specified, then the width requested internally by the window will be used.
-
-**-x** *location*
-: *Location* specifies the x-coordinate within the container window of the anchor point for *window*. The location is specified in screen units (i.e. any of the forms accepted by **Tk_GetPixels**) and need not lie within the bounds of the container window.
-
-**-y** *location*
-: *Location* specifies the y-coordinate within the container window of the anchor point for *window*. The location is specified in screen units (i.e. any of the forms accepted by **Tk_GetPixels**) and need not lie within the bounds of the container window. If the same value is specified separately with two different options, such as **-x** and **-relx**, then the most recent option is used and the older one is ignored.
-
+    If the same value is specified separately with two different options, such as **-x** and **-relx**, then the most recent option is used and the older one is ignored.
 
 **place forget** *window*
 : Causes the placer to stop managing the geometry of *window*.  As a side effect of this command *window* will be unmapped so that it does not appear on the screen.  If *window* is not currently managed by the placer then the command has no effect.  This command returns an empty string.
@@ -90,9 +91,11 @@ If *mode* is **outside** then the placer considers the area of the container to 
 **place slaves** *window*
 : Returns a list of all the content windows for which *window* is the container. If there is no content for *window* then an empty string is returned.
 
-**place content** *window*
-: Synonym for **place slaves** *window*. If the configuration of a window has been retrieved with **place info**, that configuration can be restored later by first using **place forget** to erase any existing information for the window and then invoking **place configure** with the saved information.
+[**place content** *window*]{version="TIP 581"}
+: [Synonym for **place slaves** *window*.]{version="TIP 581"}
 
+
+If the configuration of a window has been retrieved with **place info**, that configuration can be restored later by first using **place forget** to erase any existing information for the window and then invoking **place configure** with the saved information.
 
 # Fine points
 
@@ -116,3 +119,7 @@ Make the label occupy the middle bit of the toplevel, no matter how it is resize
 label .l -text "In the\nMiddle!" -bg black -fg white
 place .l -relwidth .3 -relx .35 -relheight .3 -rely .35
 ```
+
+
+[ConfigWidg]: ../tk-c/ConfigWidg.md
+[GetPixels]: ../tk-c/GetPixels.md

@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::tabify
+title: textutil::tabify
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -15,22 +16,22 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 textutil::tabify – Prozeduren zum (Ent-)Tabulieren von Zeichenketten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::tabify]{.lit} [0.8]{.optlit} 
-[::textutil::tabify::tabify]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::tabify2]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::untabify]{.cmd} [string]{.arg} [count]{.optarg} 
-[::textutil::tabify::untabify2]{.cmd} [string]{.arg} [count]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::tabify]{.lit} [0.8]{.optlit}
+[::textutil::tabify::tabify]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::tabify2]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::untabify]{.cmd} [string]{.arg} [count]{.optarg}
+[::textutil::tabify::untabify2]{.cmd} [string]{.arg} [count]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **textutil::tabify** enthält Befehle zum Ersetzen von Tabulatoren durch Leerzeichen oder von Leerzeichen durch Tabulatoren in Zeichenketten.
 
@@ -40,16 +41,22 @@ Das Paket **textutil::tabify** enthält Befehle zum Ersetzen von Tabulatoren dur
 : Gibt eine Kopie von *string* zurück, wobei jede Teilzeichenfolge aus *count* Leerzeichen durch ein horizontales Tabulatorzeichen ersetzt wird. Der Standardwert für *count* ist 8.
 
 **::textutil::tabify::tabify2** *string* ?*count*?
-: Gibt eine Kopie von *string* zurück, in der Teilzeichenfolgen mit *count* *oder weniger* Leerzeichen durch einen horizontalen Tabulator ersetzt wurden, wobei ein Texteditor-ähnlicher Algorithmus verwendet wird. Der Standardwert für *count* ist 8. Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, dann bei Spalten **8**, **16**, **24**, …) Nur Folgen von *zwei oder mehr* Leerzeichen, die unmittelbar vor einem fiktiven Tabulator-Stopp auftreten, werden durch einen Tabulator ersetzt.
+: Gibt eine Kopie von *string* zurück, in der Teilzeichenfolgen mit *count* *oder weniger* Leerzeichen durch einen horizontalen Tabulator ersetzt wurden, wobei ein Texteditor-ähnlicher Algorithmus verwendet wird. Der Standardwert für *count* ist 8.
+
+    Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, dann bei Spalten **8**, **16**, **24**, …) Nur Folgen von *zwei oder mehr* Leerzeichen, die unmittelbar vor einem fiktiven Tabulator-Stopp auftreten, werden durch einen Tabulator ersetzt.
 
 **::textutil::tabify::untabify** *string* ?*count*?
 : Gibt eine Kopie von *string* zurück, in der jeder horizontale Tabulator durch *count* Leerzeichen ersetzt wurde. Der Standardwert für *count* ist 8.
 
 **::textutil::tabify::untabify2** *string* ?*count*?
-: Gibt eine Kopie von *string* zurück, wobei horizontale Tabulatoren durch *count* *oder weniger* Leerzeichen ersetzt werden – nach einem Prinzip, das dem eines Texteditors ähnelt. Der Standardwert für *count* ist 8. Dieser Befehl ist das Gegenstück zu **::textutil::tabify::tabify2**. Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, werden an den Spalten **8**, **16**, **24**, …) wird anstelle einer blinden Ersetzung jedes horizontalen Tabulatorzeichens durch *count* Leerzeichen jedes horizontale Tabulatorzeichen an einer fiktiven Tabulatorposition durch so viele Leerzeichen ersetzt, dass die nächste fiktive Tabulatorposition erreicht wird. Es gibt jedoch eine Asymmetrie: Ein Tabulatorzeichen kann durch ein einzelnes Leerzeichen ersetzt werden, aber nicht umgekehrt.
+: Gibt eine Kopie von *string* zurück, wobei horizontale Tabulatoren durch *count* *oder weniger* Leerzeichen ersetzt werden – nach einem Prinzip, das dem eines Texteditors ähnelt. Der Standardwert für *count* ist 8.
+
+    Dieser Befehl ist das Gegenstück zu **::textutil::tabify::tabify2**. Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, werden an den Spalten **8**, **16**, **24**, …) wird anstelle einer blinden Ersetzung jedes horizontalen Tabulatorzeichens durch *count* Leerzeichen jedes horizontale Tabulatorzeichen an einer fiktiven Tabulatorposition durch so viele Leerzeichen ersetzt, dass die nächste fiktive Tabulatorposition erreicht wird.
+
+    Es gibt jedoch eine Asymmetrie: Ein Tabulatorzeichen kann durch ein einzelnes Leerzeichen ersetzt werden, aber nicht umgekehrt.
 
 
-# BEISPIELE
+# Beispiele
 
 Die folgenden Beispiele veranschaulichen einige Befehle des Pakets **::textutil::tabify** in der Praxis.
 
@@ -85,7 +92,7 @@ puts "=== 4spc→tab ===\n[replace_tab_spc $tabbed]\n"
 →}
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *textutil* als Kategorie an.
 
@@ -93,6 +100,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung

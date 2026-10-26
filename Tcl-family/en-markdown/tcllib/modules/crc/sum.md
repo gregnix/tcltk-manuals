@@ -1,5 +1,6 @@
 ---
 CommandName: sum
+title: sum
 ManualSection: n
 Version: 1.1.3
 TclPart: tcllib
@@ -28,9 +29,9 @@ sum - Calculate a sum(1) compatible checksum
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [sum]{.lit} [1.1.3]{.optlit} 
-[::crc::sum]{.cmd} [-bsd | -sysv]{.optarg} [-format fmt]{.optarg} [-chunksize size]{.optarg} \[ [-filename]{.arg} [file]{.arg} | [-channel]{.arg} [chan]{.arg} | [string]{.arg} \] 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [sum]{.lit} [1.1.3]{.optlit}
+[::crc::sum]{.cmd} [-bsd | -sysv]{.optarg} [-format fmt]{.optarg} [-chunksize size]{.optarg} \[ [-filename]{.arg} [file]{.arg} | [-channel]{.arg} [chan]{.arg} | [string]{.arg} \]
 :::
 
 # Description
@@ -45,10 +46,10 @@ This package provides a Tcl-only implementation of the sum(1) command which calc
 
 # Options
 
-**-sysv**
+-sysv
 : The SysV algorithm is fairly naive. The byte values are summed and any overflow is discarded. The lowest 16 bits are returned as the checksum.  Input with the same content but different ordering will give the same result.
 
-**-bsd**
+-bsd
 : This algorithm is similar to the SysV version but includes a bit rotation step which provides a dependency on the order of the data values.
 
 -filename *name*

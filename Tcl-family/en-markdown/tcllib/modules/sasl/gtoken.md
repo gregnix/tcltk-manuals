@@ -1,5 +1,6 @@
 ---
 CommandName: SASL::XGoogleToken
+title: SASL::XGoogleToken
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
@@ -19,8 +20,8 @@ SASL::XGoogleToken - Implementation of SASL NTLM mechanism for Tcl
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [SASL::XGoogleToken]{.lit} [1.0.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [SASL::XGoogleToken]{.lit} [1.0.2]{.optlit}
 :::
 
 # Description
@@ -29,7 +30,7 @@ This package provides the XGoogleToken authentication mechanism for the Simple A
 
 Please read the documentation for package **sasl** for details.
 
-# Tls security considerations
+# TLS security considerations
 
 This package uses the **TLS** package to handle the security for **https** urls and other socket connections.
 

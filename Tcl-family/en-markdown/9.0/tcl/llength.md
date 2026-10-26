@@ -1,5 +1,6 @@
 ---
 CommandName: llength
+title: llength
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -39,7 +40,7 @@ llength - Count the number of elements in a list
 # Synopsis
 
 ::: {.synopsis} :::
-[llength]{.cmd} [list]{.arg} 
+[llength]{.cmd} [list]{.arg}
 :::
 
 # Description

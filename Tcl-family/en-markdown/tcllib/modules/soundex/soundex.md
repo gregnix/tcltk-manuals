@@ -1,5 +1,6 @@
 ---
 CommandName: soundex
+title: soundex
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,9 +23,9 @@ soundex - Soundex
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [soundex]{.lit} [1.1]{.optlit} 
-[::soundex::knuth]{.cmd} [string]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [soundex]{.lit} [1.1]{.optlit}
+[::soundex::knuth]{.cmd} [string]{.arg}
 :::
 
 # Description

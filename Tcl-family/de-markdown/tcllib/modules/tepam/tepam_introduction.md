@@ -1,5 +1,6 @@
 ---
 CommandName: tepam
+title: tepam
 ManualSection: n
 Version: 0.5.4
 TclPart: tcllib
@@ -19,15 +20,15 @@ Copyright:
  - Copyright (c) 2009-2013, Andreas Drollinger
 ---
 
-# NAME
+# Name
 
 tepam – Eine Einleitung in TEPAM, den erweiterten Manager für Prozeduren und Argumente von Tcl
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieses Dokument bietet eine informelle Einleitung in TEPAM, den „Enhanced Procedure and Argument Manager“ von Tcl. Ausführliche Informationen zum TEPAM-Paket finden Sie in den Referenzhandbüchern *tepam::procedure* und *tepam::argument_dialogbox*.
+Dieses Dokument bietet eine informelle Einleitung in TEPAM, den „Enhanced Procedure and Argument Manager“ von Tcl. Ausführliche Informationen zum TEPAM-Paket finden Sie in den Referenzhandbüchern *tepam::procedure* und *tepam::argument\_dialogbox*.
 
-# ÜBERBLICK
+# Überblick
 
 Dieses Paket bietet eine neue Syntax für die Deklaration von Tcl-Prozeduren, die die Implementierung von Unterbefehlen für Prozeduren sowie den Umgang mit den verschiedenen Arten von Prozedurargumenten – wie Flags oder Schalter, Optionen, unbenannte Argumente, optionale und obligatorische Optionen und Argumente, Vorgabewerte usw. – vereinfacht. Prozedurdeklarationen können um detaillierte Informationen zur Prozedur und ihren Argumenten ergänzt werden. Diese Informationen werden für folgende Zwecke verwendet:
 
@@ -37,44 +38,32 @@ Der grafische Formulargenerator, der die erforderlichen Formulare zur Argumentsp
 
 Hier ein kurzer Überblick über alle wichtigen Funktionen von TEPAM:
 
-**•**
-: Neue Syntax für selbstdokumentierende Prozedurdeklarationen: Die zusätzlichen Informationen, die für eine korrekte Deklaration einer Prozedur erforderlich sind, müssen nicht mehr durch zusätzliche Anweisungen bereitgestellt werden, sondern können in einer natürlichen Syntax direkt in den Prozedurkopf eingefügt werden.
+- Neue Syntax für selbstdokumentierende Prozedurdeklarationen: Die zusätzlichen Informationen, die für eine korrekte Deklaration einer Prozedur erforderlich sind, müssen nicht mehr durch zusätzliche Anweisungen bereitgestellt werden, sondern können in einer natürlichen Syntax direkt in den Prozedurkopf eingefügt werden.
 
-**•**
-: Einfache Methode zur Definition von Unterbefehlen: Ein Unterbefehl wird wie eine Prozedur deklariert, und zwar einfach mit einem Namen der Prozedur, der sich aus einem Basisnamen und einem daran anschließenden Namen des Unterbefehls zusammensetzt. Unter-Unterbefehle werden auf identische Weise erstellt, indem einfach Namen der Prozeduren verwendet werden, die aus drei Wörtern bestehen.
+- Einfache Methode zur Definition von Unterbefehlen: Ein Unterbefehl wird wie eine Prozedur deklariert, und zwar einfach mit einem Namen der Prozedur, der sich aus einem Basisnamen und einem daran anschließenden Namen des Unterbefehls zusammensetzt. Unter-Unterbefehle werden auf identische Weise erstellt, indem einfach Namen der Prozeduren verwendet werden, die aus drei Wörtern bestehen.
 
-**•**
-: Flexible Verwendung von Flags (Schaltern), Optionen (benannte Argumente) und unbenannten Argumenten. Optionsnamen werden optional automatisch vervollständigt.
+- Flexible Verwendung von Flags (Schaltern), Optionen (benannte Argumente) und unbenannten Argumenten. Optionsnamen werden optional automatisch vervollständigt.
 
-**•**
-: Unterstützung für Vorgabewerte, obligatorische bzw. optionale Optionen und Argumente, Auswahllisten, Wertebereiche sowie mehrfach verwendbare Optionen und Argumente.
+- Unterstützung für Vorgabewerte, obligatorische bzw. optionale Optionen und Argumente, Auswahllisten, Wertebereiche sowie mehrfach verwendbare Optionen und Argumente.
 
-**•**
-: Wahl zwischen dem Aufrufstil *benannte Argumente zuerst, unbenannte Argumente danach* (typisch für Tcl-Befehle) und dem Aufrufstil *unbenannte Argumente zuerst, benannte Argumente danach* (typisch für Tk-Befehle).
+- Wahl zwischen dem Aufrufstil *benannte Argumente zuerst, unbenannte Argumente danach* (typisch für Tcl-Befehle) und dem Aufrufstil *unbenannte Argumente zuerst, benannte Argumente danach* (typisch für Tk-Befehle).
 
-**•**
-: Falls der Stil *benannte Argumente zuerst, unbenannte Argumente danach* (Tcl) ausgewählt ist:  Klare Trennung zwischen Optionen und Argumenten durch das Flag „--“. Auf die unbenannten Argumente kann optional als Optionen (benannte Argumente) zugegriffen werden.
+- Falls der Stil *benannte Argumente zuerst, unbenannte Argumente danach* (Tcl) ausgewählt ist:  Klare Trennung zwischen Optionen und Argumenten durch das Flag „--“. Auf die unbenannten Argumente kann optional als Optionen (benannte Argumente) zugegriffen werden.
 
-**•**
-: Automatische Typ- und Wertprüfung vor der Ausführung des Prozedurkörpers unter Berücksichtigung von Validierungsbereichen, Auswahllisten und benutzerdefinierten Validierungsbefehlen. Bei Bedarf Generierung einer eindeutigen Fehlermeldung.
+- Automatische Typ- und Wertprüfung vor der Ausführung des Prozedurkörpers unter Berücksichtigung von Validierungsbereichen, Auswahllisten und benutzerdefinierten Validierungsbefehlen. Bei Bedarf Generierung einer eindeutigen Fehlermeldung.
 
-**•**
-: Es gibt zahlreiche vordefinierte Typen (integer, boolean, double, color, file, font, …). Weitere anwendungsspezifische Typen lassen sich problemlos hinzufügen.
+- Es gibt zahlreiche vordefinierte Typen (integer, boolean, double, color, file, font, …). Weitere anwendungsspezifische Typen lassen sich problemlos hinzufügen.
 
-**•**
-: Automatische Generierung von Hilfe- und Verwendungstexten, wenn eine Prozedur mit dem Flag *-help* aufgerufen wird.
+- Automatische Generierung von Hilfe- und Verwendungstexten, wenn eine Prozedur mit dem Flag *-help* aufgerufen wird.
 
-**•**
-: Automatische Erstellung eines interaktiven Formulars zur Definition der Argumente, falls eine Prozedur mit dem Flag *-interactive* aufgerufen wird.
+- Automatische Erstellung eines interaktiven Formulars zur Definition der Argumente, falls eine Prozedur mit dem Flag *-interactive* aufgerufen wird.
 
-**•**
-: Prozeduraufrufe können protokolliert werden, was nützlich ist, um bei interaktiv aufgerufenen Prozeduren die Befehlszeilen des Aufrufs zu erhalten.
+- Prozeduraufrufe können protokolliert werden, was nützlich ist, um bei interaktiv aufgerufenen Prozeduren die Befehlszeilen des Aufrufs zu erhalten.
 
-**•**
-: Leistungsstarke und codeeffiziente Generierung komplexer Formulare zur Definition von Parametern.
+- Leistungsstarke und codeeffiziente Generierung komplexer Formulare zur Definition von Parametern.
 
 
-# PROZEDURDEKLARATION
+# Prozedurdeklaration
 
 Die Syntax für die Deklaration einer Prozedur in TEPAM ist einfach und selbsterklärend. Anstatt eine Prozedur mit dem Tcl-Schlüsselwort **proc** zu deklarieren, wird eine Prozedur mit dem TEPAM-Befehl **procedure** deklariert, der wie **proc** ebenfalls drei Argumente benötigt: den Namen der Prozedur, den Prozedurkopf und den Prozedurkörper.
 
@@ -119,7 +108,7 @@ Benannte und unbenannte Argumente sind obligatorisch, es sei denn, sie werden mi
 
 Die Reihenfolge der Argumentdeklarationen ist nur für unbenannte Argumente von Bedeutung, die standardmäßig nach den benannten Argumenten ausgewertet werden (Tcl-Stil). Mit einer Variable lässt sich dieses Verhalten so ändern, dass unbenannte Argumente vor den benannten Argumenten ausgewertet werden (Tk-Stil).
 
-# HILFE ZUR PROZEDUR
+# Hilfe zur Prozedur
 
 Die deklarierte Prozedur kann einfach mit der Option *-help* aufgerufen werden, um Informationen über die Verwendung der Prozedur und ihrer Argumente abzurufen:
 
@@ -150,7 +139,7 @@ DESCRIPTION
       This procedure allows displaying a configurable message box.
 ```
 
-# PROZEDURENAUFRUF
+# Prozedurenaufruf
 
 Die angegebene Prozedur kann auf vielfältige Weise aufgerufen werden. Das folgende Listing zeigt einige gültige Prozeduraufrufe:
 
@@ -226,7 +215,7 @@ display message -level 12 Hello
   -> display message: Argument (level) has to be between 1 and 10
 ```
 
-# INTERAKTIVE PROZEDURENAUFRUFE
+# Interaktive Prozedurenaufrufe
 
 Die intuitivste Art, die Prozedur aufzurufen, ist die Verwendung eines Formulars, in dem alle Argumente interaktiv festgelegt werden können. Dieses Formular wird automatisch generiert, wenn die deklarierte Prozedur mit dem Flag *-interactive* aufgerufen wird. Um diese Funktion nutzen zu können, muss die Tk-Bibliothek geladen sein.
 
@@ -240,7 +229,7 @@ Nachdem die angegebenen Argumentdaten über eine „OK“-Schaltfläche bestäti
 
 Die Prozeduraufrufe können optional in einer Variablen protokolliert werden. Dies ist beispielsweise nützlich, um die Befehlszeilen von interaktiv aufgerufenen Prozeduren abzurufen.
 
-# FLEXIBLE ARGUMENT-DIALOGBOX
+# Flexible Argument-Dialogbox
 
 Der Formulargenerator, der im vorangegangenen Beispiel die Argument-Dialogbox für den interaktiven Aufruf einer Prozedur erstellt, steht auch für andere Zwecke als die Definition von Prozedurargumenten zur Verfügung. Wenn Tk geladen wurde, stellt TEPAM eine Argument-Dialogbox bereit, mit dem sich komplexe Parameterdefinitionsformulare auf sehr effiziente Weise erstellen lassen.
 
@@ -253,9 +242,9 @@ tepam::argument_dialogbox \
    -checkbutton {-label "Overwrite existing file" -variable Overwrite}
 ```
 
-Der Befehl **argument_dialogbox** gibt **ok** zurück, wenn die eingegebenen Daten validiert wurden. Er gibt **cancel** zurück, wenn die Dateneingabe abgebrochen wurde. Nach der Validierung der eingegebenen Daten definiert **argument_dialogbox** alle angegebenen Variablen mit den eingegebenen Daten im aufrufenden Kontext.
+Der Befehl **argument\_dialogbox** gibt **ok** zurück, wenn die eingegebenen Daten validiert wurden. Er gibt **cancel** zurück, wenn die Dateneingabe abgebrochen wurde. Nach der Validierung der eingegebenen Daten definiert **argument\_dialogbox** alle angegebenen Variablen mit den eingegebenen Daten im aufrufenden Kontext.
 
-Der Befehl **argument_dialogbox** benötigt für jede Variable, die er verarbeiten soll, ein Argumentpaar. Das erste Argument definiert den Typ des Eingabe-Widgets, mit dem der Wert der Variable ausgewählt wird, und das zweite Argument ist eine Liste von Attributen, die sich auf die Variable und das Eingabe-Widget beziehen.
+Der Befehl **argument\_dialogbox** benötigt für jede Variable, die er verarbeiten soll, ein Argumentpaar. Das erste Argument definiert den Typ des Eingabe-Widgets, mit dem der Wert der Variable ausgewählt wird, und das zweite Argument ist eine Liste von Attributen, die sich auf die Variable und das Eingabe-Widget beziehen.
 
 Es stehen zahlreiche Arten von Eingabe-Widgets zur Verfügung: Neben den einfachen generischen Eingabefeldern gibt es verschiedene Arten von Listen- und Kombinationsfeldern, Browser für vorhandene und neue Dateien und Verzeichnisse, Check- und Radioboxen und -buttons sowie Farb- und Schriftartenauswahlfelder. Bei Bedarf können zusätzliche Eingabe-Widgets definiert werden.
 
@@ -303,7 +292,7 @@ set Result [tepam::argument_dialogbox \
       -font {-label "Font" -variable Font -default {Courier 12 italic}}]
 ```
 
-Der Befehl **argument_dialogbox** belegt alle angegebenen Variablen mit den eingegebenen Daten und gibt **ok** zurück, wenn die Daten über die Schaltfläche „OK“ bestätigt wurden. Wenn die Dateneingabe mit der Schaltfläche „Cancel“ abgebrochen wird, gibt **argument_dialogbox** **cancel** zurück.
+Der Befehl **argument\_dialogbox** belegt alle angegebenen Variablen mit den eingegebenen Daten und gibt **ok** zurück, wenn die Daten über die Schaltfläche „OK“ bestätigt wurden. Wenn die Dateneingabe mit der Schaltfläche „Cancel“ abgebrochen wird, gibt **argument\_dialogbox** **cancel** zurück.
 
 ```
 if {$Result=="cancel"} {
@@ -338,11 +327,11 @@ if {$Result=="cancel"} {
    Font: 'Courier 12 italic'
 ```
 
-# KATEGORIE
+# Kategorie
 
 Prozeduren, Argumente, Parameter, Optionen
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2009-2013, Andreas Drollinger

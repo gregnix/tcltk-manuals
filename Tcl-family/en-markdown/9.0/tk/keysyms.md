@@ -1,5 +1,6 @@
 ---
 CommandName: keysyms
+title: keysyms
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -14,7 +15,6 @@ Keywords:
  - keysym
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
@@ -23,7 +23,7 @@ keysyms - keysyms recognized by Tk
 
 # Description
 
-Tk recognizes many keysyms when specifying key bindings (e.g., "**bind** **. <**_keysym_**>**"). The following list enumerates the keysyms that will be recognized by Tk.  Note that not all keysyms will be valid on all platforms, and some keysyms are also available on platforms that have a different native name for that key. For example, on Unix systems, the presence of a particular keysym is dependent on the configuration of the keyboard modifier map.  This list shows keysyms along with their decimal and hexadecimal values.
+Tk recognizes many keysyms when specifying key bindings (e.g., "[bind] **. <***keysym***>**"). The following list enumerates the keysyms that will be recognized by Tk.  Note that not all keysyms will be valid on all platforms, and some keysyms are also available on platforms that have a different native name for that key. For example, on Unix systems, the presence of a particular keysym is dependent on the configuration of the keyboard modifier map.  This list shows keysyms along with their decimal and hexadecimal values.
 
 ```
 space                               32     0x20
@@ -122,101 +122,101 @@ braceleft                          123     0x7B
 braceright                         125     0x7D
 ~ (asciitilde)                     126     0x7E
 nobreakspace                       160     0xA0
-[r!] (exclamdown)                     161     0xA1
+¡ (exclamdown)                     161     0xA1
 ¢ (cent)                           162     0xA2
-[Po] (sterling)                       163     0xA3
-[Cs] (currency)                       164     0xA4
-[Ye] (yen)                            165     0xA5
-[bb] (brokenbar)                      166     0xA6
+£ (sterling)                       163     0xA3
+¤ (currency)                       164     0xA4
+¥ (yen)                            165     0xA5
+¦ (brokenbar)                      166     0xA6
 § (section)                        167     0xA7
-[ad] (diaeresis)                      168     0xA8
+¨ (diaeresis)                      168     0xA8
 © (copyright)                      169     0xA9
-[Of] (ordfeminine)                    170     0xAA
+ª (ordfeminine)                    170     0xAA
 « (guillemetleft)                  171     0xAB
 ¬ (notsign)                        172     0xAC
 hyphen                             173     0xAD
 ® (registered)                     174     0xAE
-[a-] (macron)                         175     0xAF
+¯ (macron)                         175     0xAF
 ° (degree)                         176     0xB0
-[+-] (plusminus)                      177     0xB1
-[S2] (twosuperior)                    178     0xB2
-[S3] (threesuperior)                  179     0xB3
+± (plusminus)                      177     0xB1
+² (twosuperior)                    178     0xB2
+³ (threesuperior)                  179     0xB3
 ´ (acute)                          180     0xB4
-[mc] (mu)                             181     0xB5
-[ps] (paragraph)                      182     0xB6
-[pc] (periodcentered)                 183     0xB7
-[ac] (cedilla)                        184     0xB8
-[S1] (onesuperior)                    185     0xB9
-[Om] (ordmasculine)                   186     0xBA
+µ (mu)                             181     0xB5
+¶ (paragraph)                      182     0xB6
+· (periodcentered)                 183     0xB7
+¸ (cedilla)                        184     0xB8
+¹ (onesuperior)                    185     0xB9
+º (ordmasculine)                   186     0xBA
 » (guillemetright)                 187     0xBB
 ¼ (onequarter)                     188     0xBC
 ½ (onehalf)                        189     0xBD
 ¾ (threequarters)                  190     0xBE
-[r?] (questiondown)                   191     0xBF
-[`A] (Agrave)                         192     0xC0
-['A] (Aacute)                         193     0xC1
-[^A] (Acircumflex)                    194     0xC2
-[~A] (Atilde)                         195     0xC3
-[:A] (Adiaeresis)                     196     0xC4
-[oA] (Aring)                          197     0xC5
-[AE] (AE)                             198     0xC6
-[,C] (Ccedilla)                       199     0xC7
-[`E] (Egrave)                         200     0xC8
-['E] (Eacute)                         201     0xC9
-[^E] (Ecircumflex)                    202     0xCA
-[:E] (Ediaeresis)                     203     0xCB
-[`I] (Igrave)                         204     0xCC
-['I] (Iacute)                         205     0xCD
-[^I] (Icircumflex)                    206     0xCE
-[:I] (Idiaeresis)                     207     0xCF
-[-D] (ETH)                            208     0xD0
-[~N] (Ntilde)                         209     0xD1
-[`O] (Ograve)                         210     0xD2
-['O] (Oacute)                         211     0xD3
-[^O] (Ocircumflex)                    212     0xD4
-[~O] (Otilde)                         213     0xD5
-[:O] (Odiaeresis)                     214     0xD6
-μ (multiply)                       215     0xD7
-[/O] (Oslash)                         216     0xD8
-[`U] (Ugrave)                         217     0xD9
-['U] (Uacute)                         218     0xDA
-[^U] (Ucircumflex)                    219     0xDB
-[:U] (Udiaeresis)                     220     0xDC
-['Y] (Yacute)                         221     0xDD
-[TP] (THORN)                          222     0xDE
-[ss] (ssharp)                         223     0xDF
-[`a] (agrave)                         224     0xE0
-['a] (aacute)                         225     0xE1
-[^a] (acircumflex)                    226     0xE2
-[~a] (atilde)                         227     0xE3
-[:a] (adiaeresis)                     228     0xE4
-[oa] (aring)                          229     0xE5
-[ae] (ae)                             230     0xE6
-[,c] (ccedilla)                       231     0xE7
-[`e] (egrave)                         232     0xE8
-['e] (eacute)                         233     0xE9
-[^e] (ecircumflex)                    234     0xEA
-[:e] (ediaeresis)                     235     0xEB
-[`i] (igrave)                         236     0xEC
-['i] (iacute)                         237     0xED
-[^i] (icircumflex)                    238     0xEE
-[:i] (idiaeresis)                     239     0xEF
-[Sd] (eth)                            240     0xF0
-[~n] (ntilde)                         241     0xF1
-[`o] (ograve)                         242     0xF2
-['o] (oacute)                         243     0xF3
-[^o] (ocircumflex)                    244     0xF4
-[~o] (otilde)                         245     0xF5
-[:o] (odiaeresis)                     246     0xF6
+¿ (questiondown)                   191     0xBF
+À (Agrave)                         192     0xC0
+Á (Aacute)                         193     0xC1
+Â (Acircumflex)                    194     0xC2
+Ã (Atilde)                         195     0xC3
+Ä (Adiaeresis)                     196     0xC4
+Å (Aring)                          197     0xC5
+Æ (AE)                             198     0xC6
+Ç (Ccedilla)                       199     0xC7
+È (Egrave)                         200     0xC8
+É (Eacute)                         201     0xC9
+Ê (Ecircumflex)                    202     0xCA
+Ë (Ediaeresis)                     203     0xCB
+Ì (Igrave)                         204     0xCC
+Í (Iacute)                         205     0xCD
+Î (Icircumflex)                    206     0xCE
+Ï (Idiaeresis)                     207     0xCF
+Ð (ETH)                            208     0xD0
+Ñ (Ntilde)                         209     0xD1
+Ò (Ograve)                         210     0xD2
+Ó (Oacute)                         211     0xD3
+Ô (Ocircumflex)                    212     0xD4
+Õ (Otilde)                         213     0xD5
+Ö (Odiaeresis)                     214     0xD6
+× (multiply)                       215     0xD7
+Ø (Oslash)                         216     0xD8
+Ù (Ugrave)                         217     0xD9
+Ú (Uacute)                         218     0xDA
+Û (Ucircumflex)                    219     0xDB
+Ü (Udiaeresis)                     220     0xDC
+Ý (Yacute)                         221     0xDD
+Þ (THORN)                          222     0xDE
+ß (ssharp)                         223     0xDF
+à (agrave)                         224     0xE0
+á (aacute)                         225     0xE1
+â (acircumflex)                    226     0xE2
+ã (atilde)                         227     0xE3
+ä (adiaeresis)                     228     0xE4
+å (aring)                          229     0xE5
+æ (ae)                             230     0xE6
+ç (ccedilla)                       231     0xE7
+è (egrave)                         232     0xE8
+é (eacute)                         233     0xE9
+ê (ecircumflex)                    234     0xEA
+ë (ediaeresis)                     235     0xEB
+ì (igrave)                         236     0xEC
+í (iacute)                         237     0xED
+î (icircumflex)                    238     0xEE
+ï (idiaeresis)                     239     0xEF
+ð (eth)                            240     0xF0
+ñ (ntilde)                         241     0xF1
+ò (ograve)                         242     0xF2
+ó (oacute)                         243     0xF3
+ô (ocircumflex)                    244     0xF4
+õ (otilde)                         245     0xF5
+ö (odiaeresis)                     246     0xF6
 ÷ (division)                       247     0xF7
-[/o] (oslash)                         248     0xF8
-[`u] (ugrave)                         249     0xF9
-['u] (uacute)                         250     0xFA
-[^u] (ucircumflex)                    251     0xFB
-[:u] (udiaeresis)                     252     0xFC
-['y] (yacute)                         253     0xFD
-[Tp] (thorn)                          254     0xFE
-[:y] (ydiaeresis)                     255     0xFF
+ø (oslash)                         248     0xF8
+ù (ugrave)                         249     0xF9
+ú (uacute)                         250     0xFA
+û (ucircumflex)                    251     0xFB
+ü (udiaeresis)                     252     0xFC
+ý (yacute)                         253     0xFD
+þ (thorn)                          254     0xFE
+ÿ (ydiaeresis)                     255     0xFF
 ```
 
 ```
@@ -1005,7 +1005,7 @@ Korean_Won                        3839     0xEFF
 OE                                5052     0x13BC
 oe                                5053     0x13BD
 Ydiaeresis                        5054     0x13BE
-[eu] (EuroSign)                      8364     0x20AC
+€ (EuroSign)                      8364     0x20AC
 ```
 
 ```
@@ -1664,3 +1664,6 @@ XF86AudioPreset              269025206     0x1008FFB6
 XF86RotationLockToggle       269025207     0x1008FFB7
 XF86FullScreen               269025208     0x1008FFB8
 ```
+
+
+[bind]: bind.md

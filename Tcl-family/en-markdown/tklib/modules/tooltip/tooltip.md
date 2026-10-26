@@ -1,5 +1,6 @@
 ---
 CommandName: tooltip
+title: tooltip
 ManualSection: n
 Version: 2.0.4
 TclPart: tklib
@@ -21,10 +22,10 @@ tooltip - Tooltip management
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [tooltip]{.lit} [2.0.4]{.optlit} 
-[::tooltip::tooltip]{.cmd} [command]{.arg} [options]{.optarg} 
-[::tooltip::tooltip]{.cmd} [pathName]{.arg} [option value]{.optdot} [--]{.optlit} [message]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [tooltip]{.lit} [2.0.4]{.optlit}
+[::tooltip::tooltip]{.cmd} [command]{.arg} [options]{.optarg}
+[::tooltip::tooltip]{.cmd} [pathName]{.arg} [option value...]{.optarg} [--]{.optlit} [message]{.arg}
 :::
 
 # Description
@@ -36,59 +37,62 @@ This package provides tooltips, i.e., small text messages that can be displayed 
 **::tooltip::tooltip** *command* ?*options*?
 : Manage the tooltip package using the following subcommands.
 
+    **clear** ?*pattern*?
+    : Prevents the specified widgets from showing tooltips. *pattern* is a glob pattern and defaults to matching all widgets.
 
-**clear** ?*pattern*?
-: Prevents the specified widgets from showing tooltips. *pattern* is a glob pattern and defaults to matching all widgets.
+    **configure** ?*option* ?*value option value* ...??
+    : Queries or modifies the configuration options of the tooltip. The supported options are **-backgroud**, **-foreground** and **-font**. If no *option* is specified, returns a dictionary of the option values. If one *option* is specified with no value, returns the value of that option. Otherwise, sets the given *option*s to the corresponding *value*s.
 
-**configure** ?*option* ?*value option value* ...??
-: Queries or modifies the configuration options of the tooltip. The supported options are **-backgroud**, **-foreground** and **-font**. If no *option* is specified, returns a dictionary of the option values. If one *option* is specified with no value, returns the value of that option. Otherwise, sets the given *option*s to the corresponding *value*s.
+    **delay** ?*millisecs*?
+    : Query or set the hover delay. This is the interval that the pointer must remain over the widget before the tooltip is displayed. The delay is specified in milliseconds and must be greater than or equal to 50 ms. With no argument the current delay is returned.
 
-**delay** ?*millisecs*?
-: Query or set the hover delay. This is the interval that the pointer must remain over the widget before the tooltip is displayed. The delay is specified in milliseconds and must be greater than or equal to 50 ms. With no argument the current delay is returned.
+    **fade** ?*boolean*?
+    : Enable or disable fading of the tooltip.  The fading is enabled by default on Win32 and Aqua.  The tooltip will fade away on Leave events instead disappearing.
 
-**fade** ?*boolean*?
-: Enable or disable fading of the tooltip.  The fading is enabled by default on Win32 and Aqua.  The tooltip will fade away on Leave events instead disappearing.
+    **disable**
+    : see below ...
 
-**disable**
-: ...see next...
+    **off**
+    : Disable all tooltips
 
-**off**
-: Disable all tooltips
+    **enable**
+    : see below ...
 
-**enable**
-: ...see next...
-
-**on**
-: Enables tooltips for defined widgets.
+    **on**
+    : Enables tooltips for defined widgets.
 
 
 **::tooltip::tooltip** *pathName* ?*option value*...? ?**--**? *message*
-: This command arranges for widget *pathName* to display a tooltip with a *message*. If the specified widget is a **menu**, **canvas**, **listbox**, **ttk::treeview**, **ttk::notebook** or **text** widget then additional options are used to tie the tooltip to specific menu, canvas or listbox items, ttk::treeview items or column headings, ttk::notebook tabs, or text widget tags.
+: This command arranges for widget *pathName* to display a tooltip with a *message*.
 
+    If the specified widget is a **menu**, **canvas**, **listbox**, **ttk::treeview**, **ttk::notebook** or **text** widget then additional options are used to tie the tooltip to specific menu, canvas or listbox items, ttk::treeview items or column headings, ttk::notebook tabs, or text widget tags.
 
-**-heading** *columnId*
-: This option is used to set a tooltip for a ttk::treeview column heading. The column does not need to already exist. You should not use the same identifiers for columns and items in a widget for which you are using tooltips as their tooltips will be mixed. The widget must be a ttk::treeview widget.
+    **-heading** *columnId*
+    : This option is used to set a tooltip for a ttk::treeview column heading. The column does not need to already exist. You should not use the same identifiers for columns and items in a widget for which you are using tooltips as their tooltips will be mixed. The widget must be a ttk::treeview widget.
 
-**-image** *image*
-: The specified (photo) image will be displayed to the left of the primary tooltip *message*.
+    **-image** *image*
+    : The specified (photo) image will be displayed to the left of the primary tooltip *message*.
 
-**-index** *index*
-: This option is used to set a tooltip on a menu item. The index may be either the entry index or the entry label. The widget must be a menu widget but the entries do not have to exist when the tooltip is set.
+    **-index** *index*
+    : This option is used to set a tooltip on a menu item. The index may be either the entry index or the entry label. The widget must be a menu widget but the entries do not have to exist when the tooltip is set.
 
-**-info** *info*
-: The specified *info* text will be displayed as additional information below the primary tooltip *message*.
+    **-info** *info*
+    : The specified *info* text will be displayed as additional information below the primary tooltip *message*.
 
-**-items** *items*
-: This option is used to set a tooltip for canvas, listbox or ttk::treview items. For the canvas widget, the item must already be present in the canvas and will be found with a **find withtag** lookup. For listbox and ttk::treview widgets the item(s) may be created later but the programmer is responsible for managing the link between the listbox or ttk::treview item index and the corresponding tooltip. If the listbox or ttk::treview items are re-ordered, the tooltips will need amending. If the widget is not a canvas, listbox or ttk::treview then an error is raised.
+    **-items** *items*
+    : This option is used to set a tooltip for canvas, listbox or ttk::treview items. For the canvas widget, the item must already be present in the canvas and will be found with a **find withtag** lookup. For listbox and ttk::treview widgets the item(s) may be created later but the programmer is responsible for managing the link between the listbox or ttk::treview item index and the corresponding tooltip. If the listbox or ttk::treview items are re-ordered, the tooltips will need amending.
 
-**-tab** *tabId*
-: The **-tab** option can be used to set a tooltip for a ttk::notebook tab. The tab should already be present when this command is called, or an error will be returned. The widget must be a ttk::notebook widget.
+        If the widget is not a canvas, listbox or ttk::treview then an error is raised.
 
-**-tag** *name*
-: The **-tag** option can be used to set a tooltip for a text widget tag. The tag should already be present when this command is called, or an error will be returned. The widget must be a text widget.
+    **-tab** *tabId*
+    : The **-tab** option can be used to set a tooltip for a ttk::notebook tab. The tab should already be present when this command is called, or an error will be returned. The widget must be a ttk::notebook widget.
 
-**--**
-: The **--** option marks the end of options. The argument following this one will be treated as *message* even if it starts with a **-**.
+    **-tag** *name*
+    : The **-tag** option can be used to set a tooltip for a text widget tag. The tag should already be present when this command is called, or an error will be returned. The widget must be a text widget.
+
+    **--**
+    : The **--** option marks the end of options. The argument following this one will be treated as *message* even if it starts with a **-**.
+
 
 
 # Example

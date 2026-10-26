@@ -1,5 +1,6 @@
 ---
 CommandName: units
+title: units
 ManualSection: n
 Version: 2.2.3
 TclPart: tcllib
@@ -15,21 +16,21 @@ Copyright:
  - Copyright (c) 2000-2005 Mayo Foundation
 ---
 
-# NAME
+# Name
 
 units – Einheitenumrechnung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [units]{.lit} [2.2.3]{.optlit} 
-[::units::convert]{.cmd} [value]{.arg} [targetUnits]{.arg} 
-[::units::reduce]{.cmd} [unitString]{.arg} 
-[::units::new]{.cmd} [name]{.arg} [baseUnits]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [units]{.lit} [2.2.3]{.optlit}
+[::units::convert]{.cmd} [value]{.arg} [targetUnits]{.arg}
+[::units::reduce]{.cmd} [unitString]{.arg}
+[::units::new]{.cmd} [name]{.arg} [baseUnits]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Diese Bibliothek bietet eine Funktion zur Umwandlung verschiedener wissenschaftlicher und technischer Kurzschreibweisen in Gleitkommazahlen. Dadurch können Anwendungsentwickler Werte mit unterschiedlichen Einheiten problemlos in einheitlich skalierte Zahlen umwandeln.
 
@@ -39,61 +40,54 @@ Werte werden mittels Dimensionsanalyse von einem Einheitensystem in ein anderes 
 
 Neue Einheiten und neue Einheitenabkürzungen können anhand bestehender Einheiten und Abkürzungen definiert werden. Es ist auch möglich, eine neue Grundeinheit zu definieren, obwohl dies wahrscheinlich nicht erforderlich sein wird. Neue Einheiten werden in der Regel definiert, um Nicht-SI-Maßsysteme zu berücksichtigen, beispielsweise die Definition der Einheit *Zoll* als *2,54 cm*.
 
-# BEFEHLE
+# Befehle
 
 **::units::convert** *value* *targetUnits*
 : Wandelt die Zeichenfolge *value* in eine Gleitkommazahl um, die auf die angegebenen *targetUnits* skaliert wird. Die Zeichenfolge *value* kann eine Zahl und Einheiten enthalten.  Wenn Einheiten festgelegt werden, müssen diese mit den *targetUnits* kompatibel sein.  Werden für den *value* keine Einheiten festgelegt, wird er auf die Zieleinheiten skaliert.  Beispielsweise:
 
-
-```
-% ::units::convert "2.3 miles" km
-3.7014912
-% ::units::convert 300m/s miles/hour
-671.080887616
-% ::units::convert "1.0 m kg/s^2" newton
-1.0
-% ::units::convert 1.0 millimeter
-1000.0
-```
+    ```
+    % ::units::convert "2.3 miles" km
+    3.7014912
+    % ::units::convert 300m/s miles/hour
+    671.080887616
+    % ::units::convert "1.0 m kg/s^2" newton
+    1.0
+    % ::units::convert 1.0 millimeter
+    1000.0
+    ```
 
 **::units::reduce** *unitString*
 : Gibt eine Einheitenzeichenfolge zurück, die aus einem Skalierungsfaktor und einer durch Leerzeichen getrennten Liste sortierter und reduzierter Grundeinheiten besteht. Die reduzierte Einheitenzeichenfolge kann einen Schrägstrich enthalten (der durch Leerzeichen von den umgebenden Grundeinheiten getrennt ist), der angibt, dass sich die verbleibenden Untereinheiten im Nenner befinden.  Löst einen Fehler aus, wenn die *unitString* ungültig ist.
 
-
-```
-% ::units::reduce pascal
-1000.0 gram / meter second second
-```
+    ```
+    % ::units::reduce pascal
+    1000.0 gram / meter second second
+    ```
 
 **::units::new** *name* *baseUnits*
 : Erstellt eine neue Einheitenumrechnung mit dem festgelegten Namen. Der neue Name *name* darf ausschließlich aus Buchstaben (Groß- oder Kleinbuchstaben) bestehen. Die Zeichenfolge *baseUnits* kann aus jeder gültigen Zeichenfolge für eine Einheitenumrechnung bestehen, einschließlich konstanter Faktoren, Zähler- und Nenneranteile, Einheiten mit Vorsätzen und Exponenten. Die *baseUnits* dürfen eine beliebige Anzahl von Untereinheiten enthalten, müssen sich jedoch auf primitive Einheiten zurückführen lassen.  *BaseUnits* könnte auch die Zeichenfolge *-primitive* sein, um eine neue Art von Größe darzustellen, die sich nicht aus anderen Einheiten ableiten lässt. Dies würden Sie jedoch wahrscheinlich nur tun, wenn Sie eine neue universelle Eigenschaft entdeckt hätten.
 
+    ```
+    % ::units::new furlong "220 yards"
+    % ::units::new fortnight "14 days"
+    % ::units::convert 100m/s furlongs/fortnight
+    601288.475303
+    ```
 
-```
-% ::units::new furlong "220 yards"
-% ::units::new fortnight "14 days"
-% ::units::convert 100m/s furlongs/fortnight
-601288.475303
-```
 
-# FORMAT DER EINHEITENZEICHENFOLGE
+# Format der Einheitenzeichenfolge
 
 Das Format für Werte und Einheitenzeichenfolgen ist sehr flexibel. Es ist möglich, praktisch jede Kombination aus Einheiten, Präfixen und Potenzen zu definieren. Gültige Einheitenzeichenfolgen müssen diesen Regeln entsprechen.
 
-**•**
-: Eine Einheitenfolge besteht aus einem optionalen Skalierungsfaktor, gefolgt von null oder mehr Untereinheiten. Der Skalierungsfaktor muss eine gültige Gleitkommazahl sein und kann von den Untereinheiten getrennt sein oder auch nicht. Der Skalierungsfaktor kann negativ sein.
+- Eine Einheitenfolge besteht aus einem optionalen Skalierungsfaktor, gefolgt von null oder mehr Untereinheiten. Der Skalierungsfaktor muss eine gültige Gleitkommazahl sein und kann von den Untereinheiten getrennt sein oder auch nicht. Der Skalierungsfaktor kann negativ sein.
 
-**•**
-: Untereinheiten werden durch ein oder mehrere Trennzeichen voneinander getrennt; dabei handelt es sich um Leerzeichen („ “), Bindestrich („-“), Sternchen („\*“) und Schrägstrich („/“).  Sicher, beschweren Sie sich ruhig darüber, dass das Minuszeichen („-“) zur Darstellung der Multiplikation verwendet wird. Das ist mathematisch gesehen einfach nicht korrekt, und eigentlich sollten wir von jedem die Anforderung stellen, das Sternchen („\*“) zur Trennung aller Einheiten zu verwenden.  Letztendlich sind jedoch komplexe Einheitenfolgen wie *m-kg/s^2* angenehm lesbar.
+- Untereinheiten werden durch ein oder mehrere Trennzeichen voneinander getrennt; dabei handelt es sich um Leerzeichen („ “), Bindestrich („-“), Sternchen („\*“) und Schrägstrich („/“).  Sicher, beschweren Sie sich ruhig darüber, dass das Minuszeichen („-“) zur Darstellung der Multiplikation verwendet wird. Das ist mathematisch gesehen einfach nicht korrekt, und eigentlich sollten wir von jedem die Anforderung stellen, das Sternchen („\*“) zur Trennung aller Einheiten zu verwenden.  Letztendlich sind jedoch komplexe Einheitenfolgen wie *m-kg/s^2* angenehm lesbar.
 
-**•**
-: Das Schrägstrich-Trennzeichen („/“) zeigt an, dass sich die nachfolgenden Untereinheiten im Nenner befinden. Es darf höchstens ein Schrägstrich-Trennzeichen vorhanden sein.
+- Das Schrägstrich-Trennzeichen („/“) zeigt an, dass sich die nachfolgenden Untereinheiten im Nenner befinden. Es darf höchstens ein Schrägstrich-Trennzeichen vorhanden sein.
 
-**•**
-: Untereinheiten können Skalierungsfaktoren mit Gleitkommazahlen sein, müssen jedoch – mit Ausnahme des führenden Skalierungsfaktors – von gültigen Trennzeichen umgeben sein. Skalierungsfaktoren von Untereinheiten dürfen nicht negativ sein. (Beachten Sie, dass der Bindestrich ein Einheitentrennzeichen ist.)
+- Untereinheiten können Skalierungsfaktoren mit Gleitkommazahlen sein, müssen jedoch – mit Ausnahme des führenden Skalierungsfaktors – von gültigen Trennzeichen umgeben sein. Skalierungsfaktoren von Untereinheiten dürfen nicht negativ sein. (Beachten Sie, dass der Bindestrich ein Einheitentrennzeichen ist.)
 
-**•**
-: Untereinheiten können gültige Einheiten oder Abkürzungen sein. Sie können ein Präfix enthalten. Sie können die Pluralendungen „s“ oder „es“ enthalten.  Sie können außerdem eine Potenzangabe enthalten, die durch ein Zirkumflex („^“) gekennzeichnet ist, gefolgt von einer ganzen Zahl, die hinter dem Namen der Einheit (oder dem Plural-Suffix, falls vorhanden) steht. Negative Exponenten sind nicht zulässig.  (Beachten Sie, dass der Bindestrich als Einheitstrennzeichen dient.)
+- Untereinheiten können gültige Einheiten oder Abkürzungen sein. Sie können ein Präfix enthalten. Sie können die Pluralendungen „s“ oder „es“ enthalten.  Sie können außerdem eine Potenzangabe enthalten, die durch ein Zirkumflex („^“) gekennzeichnet ist, gefolgt von einer ganzen Zahl, die hinter dem Namen der Einheit (oder dem Plural-Suffix, falls vorhanden) steht. Negative Exponenten sind nicht zulässig.  (Beachten Sie, dass der Bindestrich als Einheitstrennzeichen dient.)
 
 
 ## Beispiele für gültige Einheitenangaben
@@ -114,7 +108,7 @@ kg-m/s^2                 1000.0 gram meter / second second
 200*meter/20.5*second    9.75609756098 meter / second
 ```
 
-# SI-EINHEITEN
+# SI-Einheiten
 
 Die SI-Standardeinheiten sind gemäß der *NIST Special Publication 330* vordefiniert. Die Standardeinheiten sowohl für die SI-Basiseinheiten (Tabelle 1) als auch für die abgeleiteten SI-Einheiten mit speziellen Namen (Tabellen 3a und 3b) sind hier als Referenz enthalten.  Jeder Name und jede Abkürzung einer Standardeinheit sind in diesem Paket enthalten.
 
@@ -243,21 +237,21 @@ year                          3.1536E7 s
 
 Dieses Paket zur Einheitenumrechnung beschränkt sich ausschließlich auf die Umrechnung, den Vergleich und die Skalierung von Einheiten. Dieses Paket berücksichtigt keine der Größennamen, weder für Basiseinheiten noch für abgeleitete Einheiten. Eine ähnliche Implementierung oder eine Erweiterung in einer typisierten oder objektorientierten Sprache könnte benutzerdefinierte Typen für die Größen einführen.  Die Überprüfung des Größentyps könnte beispielsweise dazu dienen, sicherzustellen, dass alle *Längen*-Werte ordnungsgemäß auf *Meter* reduziert werden oder dass alle *Geschwindigkeits*-Werte ordnungsgemäß auf *Meter/Sekunde* reduziert werden.
 
-Es wurde eine C-Implementierung dieses Pakets erstellt, die in Verbindung mit dem „Simplified Wrapper Interface Generator“ (*http://www.swig.org/*) funktioniert. Dieses Paket (units.i) nutzt das Typmap-System von SWIG, um Skript-Größenangaben automatisch in Gleitkommagrößen umzuwandeln.  Funktionsargumente werden als Größentypen festgelegt (z. B. *typedef float Length*), und die Ziel-Einheiten (wie sie vom C-Anwendungscode erwartet werden) werden in einem assoziativen Array festgelegt. Für jeden Größentyp sind zudem Standardeinheiten definiert, die auf alle einheitenlosen Größenangaben angewendet werden.
+Es wurde eine C-Implementierung dieses Pakets erstellt, die in Verbindung mit dem „Simplified Wrapper Interface Generator“ (<http://www.swig.org/>) funktioniert. Dieses Paket (units.i) nutzt das Typmap-System von SWIG, um Skript-Größenangaben automatisch in Gleitkommagrößen umzuwandeln.  Funktionsargumente werden als Größentypen festgelegt (z. B. *typedef float Length*), und die Ziel-Einheiten (wie sie vom C-Anwendungscode erwartet werden) werden in einem assoziativen Array festgelegt. Für jeden Größentyp sind zudem Standardeinheiten definiert, die auf alle einheitenlosen Größenangaben angewendet werden.
 
 Ein mit einer Mengen-Typprüfung erweitertes Einheitensystem könnte von der Einbeziehung weiterer abgeleiteter Typen profitieren, die in Form spezieller Einheiten zum Ausdruck gebracht werden, wie in Tabelle 2 der *NIST-Veröffentlichung 330* dargestellt.  Die Größe *Fläche* könnte beispielsweise als Einheiten definiert werden, die sich ordnungsgemäß auf *Meter²* zurückführen lassen, obwohl der Nutzen der Definition einer Einheit mit dem Namen *Quadratmeter* fraglich ist.
 
-# LITERATUR
+# Literatur
 
-Die Namen der Einheiten, Abkürzungen und Werte stammen aus den Veröffentlichungen der Technologieverwaltung des US-Handelsministeriums, des National Institute of Standards and Technology (NIST), in *NIST Special Publication 330: Das Internationale Einheitensystem (SI)* und *NIST Special Publication 811: Leitfaden zur Anwendung des Internationalen Einheitensystems (SI)*. Beide Veröffentlichungen sind (Stand: Dezember 2000) unter *http://physics.nist.gov/cuu/Reference/contents.html* erhältlich.
+Die Namen der Einheiten, Abkürzungen und Werte stammen aus den Veröffentlichungen der Technologieverwaltung des US-Handelsministeriums, des National Institute of Standards and Technology (NIST), in *NIST Special Publication 330: Das Internationale Einheitensystem (SI)* und *NIST Special Publication 811: Leitfaden zur Anwendung des Internationalen Einheitensystems (SI)*. Beide Veröffentlichungen sind (Stand: Dezember 2000) unter <http://physics.nist.gov/cuu/Reference/contents.html> erhältlich.
 
-Die Ideen hinter der Umsetzung dieses Pakets basieren zum Teil auf Code, der 1993 von Adrian Mariano geschrieben wurde und der eine Dimensionsanalyse von Einheitenzeichenfolgen unter Verwendung von Tabellen fester Größe aus C-Strukturen durchführte.  Nachdem Adrians Code Ende der 1990er Jahre verschollen war, tauchte er im Programm „GNU Units“ unter *http://www.gnu.org/software/units/* wieder auf.
+Die Ideen hinter der Umsetzung dieses Pakets basieren zum Teil auf Code, der 1993 von Adrian Mariano geschrieben wurde und der eine Dimensionsanalyse von Einheitenzeichenfolgen unter Verwendung von Tabellen fester Größe aus C-Strukturen durchführte.  Nachdem Adrians Code Ende der 1990er Jahre verschollen war, tauchte er im Programm „GNU Units“ unter <http://www.gnu.org/software/units/> wieder auf.
 
-# AUTOREN
+# Autoren
 
 Robert W. Techentin
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *units* als Kategorie an.
 
@@ -265,7 +259,7 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2000-2005 Mayo Foundation

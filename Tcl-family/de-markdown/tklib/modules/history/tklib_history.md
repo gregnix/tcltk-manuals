@@ -1,5 +1,6 @@
 ---
 CommandName: history
+title: history
 ManualSection: n
 Version: 0.3
 TclPart: tklib
@@ -10,27 +11,27 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 history – Verlauf für Entry-Widgets
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [history]{.lit} [0.3]{.optlit} 
-[::history::init]{.cmd} [pathName]{.arg} [length]{.optarg} 
-[::history::remove]{.cmd} [pathName]{.arg} 
-[::history::add]{.cmd} [pathName]{.arg} [text]{.arg} 
-[::history::get]{.cmd} [pathName]{.arg} 
-[::history::clear]{.cmd} [pathName]{.arg} 
-[::history::configure]{.cmd} [pathName]{.arg} [option]{.arg} [value]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [history]{.lit} [0.3]{.optlit}
+[::history::init]{.cmd} [pathName]{.arg} [length]{.optarg}
+[::history::remove]{.cmd} [pathName]{.arg}
+[::history::add]{.cmd} [pathName]{.arg} [text]{.arg}
+[::history::get]{.cmd} [pathName]{.arg}
+[::history::clear]{.cmd} [pathName]{.arg}
+[::history::configure]{.cmd} [pathName]{.arg} [option]{.arg} [value]{.optarg}
 :::
 
 bell
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt einen Verlauf für Entry-Widgets bereit. Der Verlauf ist über die Pfeiltasten nach oben und unten erreichbar.
 
@@ -52,7 +53,7 @@ Dieses Paket stellt einen Verlauf für Entry-Widgets bereit. Der Verlauf ist üb
 **::history::configure** *pathName* *option* ?value?
 : Fragt Konfigurationsoptionen ab oder setzt sie. Erkannt werden *length* und *alert*. *length* bestimmt, wie viele Verlaufseinträge für das genannte Entry behalten werden. *alert* ist der Befehl, der läuft, wenn der Benutzer das Ende des Verlaufs erreicht. Die Vorgabe ist
 
-**bell**
+bell
 : . **configure** verlangt ein Argument *pathName*, die Einstellung von alert ist aber global, und der Pfad wird ignoriert.
 
 
@@ -71,6 +72,6 @@ proc ProcessEntry {w} {
 }
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *entry::history* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.

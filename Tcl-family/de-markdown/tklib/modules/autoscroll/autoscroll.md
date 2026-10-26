@@ -1,5 +1,6 @@
 ---
 CommandName: autoscroll
+title: autoscroll
 ManualSection: n
 Version: 1.1
 TclPart: tklib
@@ -10,22 +11,22 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 autoscroll – Sorgt dafür, dass eine Bildlaufleiste je nach Bedarf automatisch ein- und ausgeblendet wird
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-[package]{.cmd} [require]{.sub} [autoscroll]{.lit} [1.1]{.optlit} 
-[::autoscroll::autoscroll]{.cmd} [scrollbar]{.arg} 
-[::autoscroll::unautoscroll]{.cmd} [scrollbar]{.arg} 
-[::autoscroll::wrap]{.cmd} 
-[::autoscroll::unwrap]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [autoscroll]{.lit} [1.1]{.optlit}
+[::autoscroll::autoscroll]{.cmd} [scrollbar]{.arg}
+[::autoscroll::unautoscroll]{.cmd} [scrollbar]{.arg}
+[::autoscroll::wrap]{.cmd}
+[::autoscroll::unwrap]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Mit diesem Paket können Bildlaufleisten je nach Größe und Inhalt des Widgets, das die Bildlaufleiste verschiebt, nach Bedarf zugeordnet und wieder entfernt werden. Die Bildlaufleiste muss entweder von pack oder grid verwaltet werden; andere Geometriemanager werden nicht unterstützt.
 
@@ -54,6 +55,6 @@ pack .t -side left -fill both -expand 1
 ::autoscroll::autoscroll .scrolly
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *autoscroll* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.

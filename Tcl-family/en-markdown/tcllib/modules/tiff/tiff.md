@@ -1,5 +1,6 @@
 ---
 CommandName: tiff
+title: tiff
 ManualSection: n
 Version: 0.2.3
 TclPart: tcllib
@@ -19,29 +20,29 @@ tiff - TIFF reading, writing, and querying and manipulation of meta data
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tiff]{.lit} [0.2.3]{.optlit} 
-[::tiff::isTIFF]{.cmd} [file]{.arg} 
-[::tiff::byteOrder]{.cmd} [file]{.arg} 
-[::tiff::numImages]{.cmd} [file]{.arg} 
-[::tiff::dimensions]{.cmd} [file]{.arg} [image]{.optarg} 
-[::tiff::imageInfo]{.cmd} [file]{.arg} [image]{.optarg} 
-[::tiff::entries]{.cmd} [file]{.arg} [image]{.optarg} 
-[::tiff::getEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg} 
-[::tiff::addEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg} 
-[::tiff::deleteEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg} 
-[::tiff::getImage]{.cmd} [file]{.arg} [image]{.optarg} 
-[::tiff::writeImage]{.cmd} [image]{.arg} [file]{.arg} [entry]{.optarg} 
-[::tiff::nametotag]{.cmd} [names]{.arg} 
-[::tiff::tagtoname]{.cmd} [tags]{.arg} 
-[::tiff::debug]{.cmd} [file]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tiff]{.lit} [0.2.3]{.optlit}
+[::tiff::isTIFF]{.cmd} [file]{.arg}
+[::tiff::byteOrder]{.cmd} [file]{.arg}
+[::tiff::numImages]{.cmd} [file]{.arg}
+[::tiff::dimensions]{.cmd} [file]{.arg} [image]{.optarg}
+[::tiff::imageInfo]{.cmd} [file]{.arg} [image]{.optarg}
+[::tiff::entries]{.cmd} [file]{.arg} [image]{.optarg}
+[::tiff::getEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg}
+[::tiff::addEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg}
+[::tiff::deleteEntry]{.cmd} [file]{.arg} [entry]{.arg} [image]{.optarg}
+[::tiff::getImage]{.cmd} [file]{.arg} [image]{.optarg}
+[::tiff::writeImage]{.cmd} [image]{.arg} [file]{.arg} [entry]{.optarg}
+[::tiff::nametotag]{.cmd} [names]{.arg}
+[::tiff::tagtoname]{.cmd} [tags]{.arg}
+[::tiff::debug]{.cmd} [file]{.arg}
 :::
 
 # Description
 
-This package provides commands to query, modify, read, and write TIFF images. TIFF stands for *Tagged Image File Format* and is a standard for lossless storage of photographical images and associated metadata. It is specified at *http://partners.adobe.com/public/developer/tiff/index.html*.
+This package provides commands to query, modify, read, and write TIFF images. TIFF stands for *Tagged Image File Format* and is a standard for lossless storage of photographical images and associated metadata. It is specified at <http://partners.adobe.com/public/developer/tiff/index.html>.
 
-Multiple images may be stored in a single TIFF file. The ?image? options to the functions in this package are for accessing images other than the first. Data in a TIFF image is stored as a series of tags having a numerical value, which are represented in either a 4 digit hexadecimal format or a string name. For a reference on defined tags and their meanings see *http://www.awaresystems.be/imaging/tiff/tifftags.html*
+Multiple images may be stored in a single TIFF file. The ?image? options to the functions in this package are for accessing images other than the first. Data in a TIFF image is stored as a series of tags having a numerical value, which are represented in either a 4 digit hexadecimal format or a string name. For a reference on defined tags and their meanings see <http://www.awaresystems.be/imaging/tiff/tifftags.html>
 
 # Commands
 
@@ -60,18 +61,16 @@ Multiple images may be stored in a single TIFF file. The ?image? options to the 
 **::tiff::imageInfo** *file* ?image?
 : Returns a dictionary with keys **ImageWidth**, **ImageLength**, **BitsPerSample**, **Compression**, **PhotometricInterpretation**, **ImageDescription**, **Orientation**, **XResolution**, **YResolution**, **ResolutionUnit**, **DateTime**, **Artist**, and **HostComputer**. The values are the associated properties of the TIFF ?image? in *file*. Values may be empty if the associated tag is not present in the file.
 
+    ```
+        puts [::tiff::imageInfo photo.tif]
 
-```
-    puts [::tiff::imageInfo photo.tif]
+        ImageWidth 686 ImageLength 1024 BitsPerSample {8 8 8} Compression 1
+        PhotometricInterpretation 2 ImageDescription {} Orientation 1
+        XResolution 170.667 YResolution 170.667 ResolutionUnit 2 DateTime {2005:12:28 19:44:45}
+        Artist {} HostComputer {}
+    ```
 
-    ImageWidth 686 ImageLength 1024 BitsPerSample {8 8 8} Compression 1
-    PhotometricInterpretation 2 ImageDescription {} Orientation 1
-    XResolution 170.667 YResolution 170.667 ResolutionUnit 2 DateTime {2005:12:28 19:44:45}
-    Artist {} HostComputer {}
-```
-
-: There is nothing special about these tags, this is simply a convience procedure which calls **getEntry** with common entries. Throws an error if *file* is not a TIFF image.
-
+    There is nothing special about these tags, this is simply a convience procedure which calls **getEntry** with common entries. Throws an error if *file* is not a TIFF image.
 
 **::tiff::entries** *file* ?image?
 : Returns a list of all entries in the given *file* and ?image? in hexadecimal format. Throws an error if *file* is not a TIFF image.
@@ -79,65 +78,60 @@ Multiple images may be stored in a single TIFF file. The ?image? options to the 
 **::tiff::getEntry** *file* *entry* ?image?
 : Returns the value of *entry* from image ?image? in the TIFF *file*. *entry* may be a list of multiple entries. If an entry does not exist, an empty string is returned
 
+    ```
+        set data [::tiff::getEntry photo.tif {0131 0132}]
+        puts "file was written at [lindex $data 0] with software [lindex $data 1]"
+    ```
 
-```
-    set data [::tiff::getEntry photo.tif {0131 0132}]
-    puts "file was written at [lindex $data 0] with software [lindex $data 1]"
-```
-
-: Throws an error if *file* is not a TIFF image.
-
+    Throws an error if *file* is not a TIFF image.
 
 **::tiff::addEntry** *file* *entry* ?image?
 : Adds the specified entries to the image named by ?image? (default 0), or optionally **all**. *entry* must be a list where each element is a list of tag, type, and value. If a tag already exists, it is overwritten.
 
+    ```
+        ::tiff::addEntry photo.tif {{010e 2 "an example photo"} {013b 2 "Aaron F"}}
+    ```
 
-```
-    ::tiff::addEntry photo.tif {{010e 2 "an example photo"} {013b 2 "Aaron F"}}
-```
+    The data types are defined as follows
 
-: The data types are defined as follows
+    **1**
+    : BYTE (8 bit unsigned integer)
 
+    **2**
+    : ASCII
 
-**1**
-: BYTE (8 bit unsigned integer)
+    **3**
+    : SHORT (16 bit unsigned integer)
 
-**2**
-: ASCII
+    **4**
+    : LONG (32 bit unsigned integer)
 
-**3**
-: SHORT (16 bit unsigned integer)
+    **5**
+    : RATIONAL
 
-**4**
-: LONG (32 bit unsigned integer)
+    **6**
+    : SBYTE (8 bit signed byte)
 
-**5**
-: RATIONAL
+    **7**
+    : UNDEFINED (uninterpreted binary data)
 
-**6**
-: SBYTE (8 bit signed byte)
+    **8**
+    : SSHORT (signed 16 bit integer)
 
-**7**
-: UNDEFINED (uninterpreted binary data)
+    **9**
+    : SLONG (signed 32 bit integer)
 
-**8**
-: SSHORT (signed 16 bit integer)
+    **10**
+    : SRATIONAL
 
-**9**
-: SLONG (signed 32 bit integer)
+    **11**
+    : FLOAT (32 bit floating point number)
 
-**10**
-: SRATIONAL
-
-**11**
-: FLOAT (32 bit floating point number)
-
-**12**
-: DOUBLE (64 bit floating point number)
+    **12**
+    : DOUBLE (64 bit floating point number)
 
 
-: Throws an error if *file* is not a TIFF image.
-
+    Throws an error if *file* is not a TIFF image.
 
 **::tiff::deleteEntry** *file* *entry* ?image?
 : Deletes the specified entries from the image named by ?image? (default 0), or optionally **all**. Throws an error if *file* is not a TIFF image.
@@ -160,18 +154,15 @@ Multiple images may be stored in a single TIFF file. The ?image? options to the 
 
 # Variables
 
-The mapping of 4 digit tag names to string names uses the array ::tiff::tiff_tags. The reverse mapping uses the array ::tiff::tiff_sgat.
+The mapping of 4 digit tag names to string names uses the array ::tiff::tiff\_tags. The reverse mapping uses the array ::tiff::tiff\_sgat.
 
 # Limitations
 
-**\[1\]**
-: Cannot write exif ifd
+1. Cannot write exif ifd
 
-**\[2\]**
-: Reading limited to uncompressed 8 bit rgb and 8 bit palletized images
+2. Reading limited to uncompressed 8 bit rgb and 8 bit palletized images
 
-**\[3\]**
-: Writing limited to uncompressed 8 bit rgb
+3. Writing limited to uncompressed 8 bit rgb
 
 
 # Bugs, ideas, feedback

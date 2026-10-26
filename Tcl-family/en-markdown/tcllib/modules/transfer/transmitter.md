@@ -1,5 +1,6 @@
 ---
 CommandName: transfer::transmitter
+title: transfer::transmitter
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -24,34 +25,42 @@ transfer::transmitter - Data source
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::copy]{.lit} [0.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::data::source]{.lit} [0.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::connect]{.lit} [0.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [transfer::transmitter]{.lit} [0.3]{.optlit} 
-[transfer::transmitter]{.cmd} [objectName]{.arg} [options]{.optdot} 
-[transfer::transmitter]{.cmd} [stream]{.sub} [channel]{.lit} [chan]{.arg} [host]{.arg} [port]{.arg} [arg]{.optdot} 
-[transfer::transmitter]{.cmd} [stream]{.sub} [file]{.lit} [path]{.arg} [host]{.arg} [port]{.arg} [arg]{.optdot} 
-[objectName]{.ins} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [start]{.sub} 
-[objectName]{.ins} [busy]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::copy]{.lit} [0.3]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::data::source]{.lit} [0.3]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::connect]{.lit} [0.3]{.optlit}
+[package]{.cmd} [require]{.sub} [transfer::transmitter]{.lit} [0.3]{.optlit}
+[transfer::transmitter]{.cmd} [objectName]{.arg} [options...]{.optarg}
+[transfer::transmitter]{.cmd} [stream]{.lit} [channel]{.lit} [chan]{.arg} [host]{.arg} [port]{.arg} [arg...]{.optarg}
+[transfer::transmitter]{.cmd} [stream]{.lit} [file]{.lit} [path]{.arg} [host]{.arg} [port]{.arg} [arg...]{.optarg}
+[objectName]{.ins} [method]{.sub} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [start]{.sub}
+[objectName]{.ins} [busy]{.sub}
 :::
 
 # Description
 
-This package pulls data sources and connection setup together into a combined object for the transmission of information over a socket. These objects understand all the options from objects created by the packages **transfer::data::source** and **transfer::connect**.
+This package pulls data sources and connection setup together into a combined object for the transmission of information over a socket. These objects understand all the options from objects created by the packages [transfer::data::source][dsource] and [transfer::connect][connect].
 
-# Api
+# API
 
 ## Package commands
 
 **transfer::transmitter** *objectName* ?*options*...?
-: This command creates a new transmitter object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The set of supported *options* is explained in section **Options**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
+: This command creates a new transmitter object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The set of supported *options* is explained in section [Options].
+
+    The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The fully qualified name of the object command is returned as the result of the command.
 
 **transfer::transmitter** **stream channel** *chan* *host* *port* ?*arg*...?
-: This method creates a fire-and-forget transfer for the data contained in the channel *chan*, starting at the current seek location. The channel is configured to use binary translation and encoding for the transfer. The channel is automatically closed when the transfer has completed. If both *host* and *port* are provided an **active** connection to the destination is made. If only a *port* is specified (with *host* the empty string) then a **passive** connection is made instead. Any arguments after the port are treated as options and are used to configure the internal transmitter object. See the section **Options** for a list of the supported options and their meaning. *Note* however that the signature of the command prefix specified for the **-command** callback differs from the signature for the same option of the transmitter object. This callback is only given the number of bytes and transfered, and possibly an error message. No reference to the internally used transmitter object is made. The result returned by the command is the empty string if it was set to make an *active* connection, and the port the internal transmitter object is listening on otherwise, i.e when it is configured to connect *passive*ly. See also the package **transfer::connect** and the description of the method **connect** for where this behaviour comes from.
+: This method creates a fire-and-forget transfer for the data contained in the channel *chan*, starting at the current seek location. The channel is configured to use binary translation and encoding for the transfer. The channel is automatically closed when the transfer has completed.
+
+    If both *host* and *port* are provided an **active** connection to the destination is made. If only a *port* is specified (with *host* the empty string) then a **passive** connection is made instead.
+
+    Any arguments after the port are treated as options and are used to configure the internal transmitter object. See the section [Options] for a list of the supported options and their meaning. *Note* however that the signature of the command prefix specified for the **-command** callback differs from the signature for the same option of the transmitter object. This callback is only given the number of bytes and transfered, and possibly an error message. No reference to the internally used transmitter object is made.
+
+    The result returned by the command is the empty string if it was set to make an *active* connection, and the port the internal transmitter object is listening on otherwise, i.e when it is configured to connect *passive*ly. See also the package [transfer::connect][connect] and the description of the method **connect** for where this behaviour comes from.
 
 **transfer::transmitter** **stream file** *path* *host* *port* ?*arg*...?
 : This method is like **stream channel**, except that the data contained in the file *path* is transfered.
@@ -62,7 +71,7 @@ This package pulls data sources and connection setup together into a combined ob
 All objects created by the **::transfer::transmitter** command have the following general form:
 
 *objectName* **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -71,7 +80,9 @@ All objects created by the **::transfer::transmitter** command have the followin
 : This method destroys the object. Doing so while a transmission is in progress will cause errors later on, when the transmission completes and tries to access the now missing data structures of the destroyed object.
 
 *objectName* **start**
-: This method initiates the data transmission, setting up the connection first and then copying the information. The method will throw an error if a transmission is already/still in progress. I.e. it is not possible to run two transmissions in parallel on a single object, only in sequence. Multiple transmitter objects are needed to manage parallel transfers, one per transmission. Errors will also be thrown if the configuration of the data source is invalid, or if no completion callback was specified. The result returned by the method is the empty string for an object configured to make an *active* connection, and the port the object is listening on otherwise, i.e when it is configured to connect *passive*ly. See also the package **transfer::connect** and the description of the method **connect** for where this behaviour comes from.
+: This method initiates the data transmission, setting up the connection first and then copying the information. The method will throw an error if a transmission is already/still in progress. I.e. it is not possible to run two transmissions in parallel on a single object, only in sequence. Multiple transmitter objects are needed to manage parallel transfers, one per transmission. Errors will also be thrown if the configuration of the data source is invalid, or if no completion callback was specified.
+
+    The result returned by the method is the empty string for an object configured to make an *active* connection, and the port the object is listening on otherwise, i.e when it is configured to connect *passive*ly. See also the package [transfer::connect][connect] and the description of the method **connect** for where this behaviour comes from.
 
 *objectName* **busy**
 : This method returns a boolean value telling us whether a transmission is in progress (**True**), or not (**False**).
@@ -79,23 +90,22 @@ All objects created by the **::transfer::transmitter** command have the followin
 
 ## Options
 
-All transmitter objects support the union of the options supported by their connect and data source components, plus two of their own. See also the documentation for the packages **transfer::data::source** and **transfer::connect**.
+All transmitter objects support the union of the options supported by their connect and data source components, plus two of their own. See also the documentation for the packages [transfer::data::source][dsource] and [transfer::connect][connect].
 
 **-blocksize** *int*
 : This option specifies the size of the chunks to be transmitted in one block. Usage is optional, its default value is **1024**.
 
 **-command** *cmdprefix*
-: This option specifies the command to invoke when the transmission of the information has been completed. The arguments given to this command are the same as given to the completion callback of the command **transfer::copy::do** provided by the package **transfer::copy**.
+: This option specifies the command to invoke when the transmission of the information has been completed. The arguments given to this command are the same as given to the completion callback of the command [transfer::copy::do][copyops] provided by the package **transfer::copy**.
 
 **-mode** *mode*
 : This option specifies the mode the object is in. It is optional and defaults to **active** mode. The two possible modes are:
 
+    **active**
+    : In this mode the two options **-host** and **-port** are relevant and specify the host and TCP port the object has to connect to. The host is given by either name or IP address.
 
-**active**
-: In this mode the two options **-host** and **-port** are relevant and specify the host and TCP port the object has to connect to. The host is given by either name or IP address.
-
-**passive**
-: In this mode the option **-host** has no relevance and is ignored should it be configured. The only option the object needs is **-port**, and it specifies the TCP port on which the listening socket is opened to await the connection from the partner.
+    **passive**
+    : In this mode the option **-host** has no relevance and is ignored should it be configured. The only option the object needs is **-port**, and it specifies the TCP port on which the listening socket is opened to await the connection from the partner.
 
 
 **-host** *hostname-or-ipaddr*
@@ -105,13 +115,17 @@ All transmitter objects support the union of the options supported by their conn
 : For *active* mode this option specifies the port the object is expected to connect to. For *passive* mode however it is the port where the object creates the listening socket waiting for a connection. It defaults to **0**, which allows the OS to choose the actual port to listen on.
 
 **-socketcmd** *command*
-: This option allows the user to specify which command to use to open a socket. The default is to use the builtin **::socket**. Any compatible with that command is allowed. The envisioned main use is the specfication of **tls::socket**. I.e. this option allows the creation of secure transfer channels, without making this package explicitly dependent on the **tls** package. See also section **Secure connections**.
+: This option allows the user to specify which command to use to open a socket. The default is to use the builtin **::socket**. Any compatible with that command is allowed.
+
+    The envisioned main use is the specfication of **tls::socket**. I.e. this option allows the creation of secure transfer channels, without making this package explicitly dependent on the **tls** package.
+
+    See also section [Secure connections].
 
 **-encoding** encodingname
-: ...see next...
+: see below ...
 
 **-eofchar** eofspec
-: ...see next...
+: see below ...
 
 **-translation** transspec
 : These options are the same as are recognized by the builtin command **fconfigure**. They provide the configuration to be set for the channel between the two partners after it has been established, but before the callback is invoked (See method **connect**).
@@ -181,3 +195,8 @@ Transfer module
 ```
 Copyright (c) 2006-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[connect]: connect.md
+[copyops]: copyops.md
+[dsource]: dsource.md

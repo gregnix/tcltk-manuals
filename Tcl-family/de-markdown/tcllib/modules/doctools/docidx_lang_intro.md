@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_lang_intro
+title: docidx_lang_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -19,11 +20,11 @@ Copyright:
  - Copyright (c) 2007-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-docidx_lang_intro – Einleitung in die Sprache „docidx“
+docidx\_lang\_intro – Einleitung in die Sprache „docidx“
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument bietet anhand zahlreicher Beispiele eine informelle Einleitung in Version 1 der docidx-Auszeichnungssprache. Nach der Lektüre dieses Dokuments sollten Autoren in der Lage sein, die beiden Teile der formalen Spezifikation zu verstehen, nämlich die Spezifikation der *docidx-Sprachsyntax* und die *docidx-Befehlsreferenz*.
 
@@ -65,7 +66,7 @@ Ein nützlicherer Index enthält zumindest Schlüsselwörter oder kurze „Schl�
 [index_end]
 ```
 
-Im obigen Beispiel wird der Befehl **key** verwendet, um die Schlüsselwortphrasen zu definieren, die in den Index aufgenommen werden sollen.
+Im obigen Beispiel wird der Befehl [key][docidx_lang_cmdref] verwendet, um die Schlüsselwortphrasen zu definieren, die in den Index aufgenommen werden sollen.
 
 Ein wirklich nützlicher Index listet jedoch nicht nur die Schlüsselwortphrasen auf, sondern enthält auch Verweise auf Dokumente, die mit den Schlüsselwörtern in Verbindung stehen. Hier ist ein fiktiver Index für alle Manpages im Modul *base64*:
 
@@ -88,15 +89,15 @@ Ein wirklich nützlicher Index listet jedoch nicht nur die Schlüsselwortphrasen
 [index_end]
 ```
 
-Im obigen Beispiel wird der Befehl **manpage** verwendet, um Verweise auf Dokumente unter Verwendung symbolischer Namen einzufügen, wobei jeder Befehl dem unmittelbar vorangehenden Befehl **key** zugeordnet ist.
+Im obigen Beispiel wird der Befehl [manpage][docidx_lang_cmdref] verwendet, um Verweise auf Dokumente unter Verwendung symbolischer Namen einzufügen, wobei jeder Befehl dem unmittelbar vorangehenden Befehl [key][docidx_lang_cmdref] zugeordnet ist.
 
-Der andere Befehl zum Einfügen von Verweisen lautet **url**. Im Gegensatz zu **manpage** verwendet er explizite (möglicherweise formatspezifische) URLs, um den Speicherort des referenzierten Dokuments anzugeben. Daher ist dieser Befehl für die Erstellung von Verweisen auf externe Dokumente vorgesehen, die auf keine andere Weise verarbeitet werden konnten.
+Der andere Befehl zum Einfügen von Verweisen lautet **url**. Im Gegensatz zu [manpage][docidx_lang_cmdref] verwendet er explizite (möglicherweise formatspezifische) URLs, um den Speicherort des referenzierten Dokuments anzugeben. Daher ist dieser Befehl für die Erstellung von Verweisen auf externe Dokumente vorgesehen, die auf keine andere Weise verarbeitet werden konnten.
 
 ## Erweiterte Struktur
 
-In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **index_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
+In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **index\_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
 
-Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle **include** und **vset** zulässig, damit der Verfasser für den Index relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
+Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für den Index relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
 
 ```
 [include FILE]
@@ -116,11 +117,11 @@ Noch wichtiger ist, dass diese beiden Befehle überall dort zulässig sind, wo e
 [index_end]
 ```
 
-Die einzige Einschränkung, die **include** beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **index_begin** eingebunden wird, darf nur die Template-Befehle **vset** und **include** enthalten; eine Datei, die nach einem Schlüssel eingebunden wird, darf nur **manpage**- oder **url**-Verweise sowie andere Schlüssel enthalten, usw.
+Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **index\_begin** eingebunden wird, darf nur die Template-Befehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine Datei, die nach einem Schlüssel eingebunden wird, darf nur **manpage**- oder **url**-Verweise sowie andere Schlüssel enthalten, usw.
 
 ## Escapes
 
-Neben den bisher vorgestellten sechs Befehlen stehen zwei weitere zur Verfügung. Diese dienen jedoch nicht der Markierung der Indexstruktur, sondern dem Einfügen von Zeichen, nämlich **\[** und **\]**. Diese Befehle, nämlich **lb** bzw. **rb**, sind erforderlich, da unsere Verwendung von \[ und \] zur Einrahmung von Markup-Befehlen es unmöglich macht, \[ und \] direkt innerhalb des Textes zu verwenden.
+Neben den bisher vorgestellten sechs Befehlen stehen zwei weitere zur Verfügung. Diese dienen jedoch nicht der Markierung der Indexstruktur, sondern dem Einfügen von Zeichen, nämlich **\[** und **\]**. Diese Befehle, nämlich [lb][docidx_lang_cmdref] bzw. [rb][docidx_lang_cmdref], sind erforderlich, da unsere Verwendung von \[ und \] zur Einrahmung von Markup-Befehlen es unmöglich macht, \[ und \] direkt innerhalb des Textes zu verwenden.
 
 Als Beispiel für ihre Verwendung dient der Quelltext des letzten Satzes im vorangegangenen Absatz, wobei einige Stellen hervorgehoben wurden.
 
@@ -132,7 +133,7 @@ Als Beispiel für ihre Verwendung dient der Quelltext des letzten Satzes im vora
   ...
 ```
 
-# WEITERFÜHRENDE LITERATUR
+# Weiterführende Literatur
 
 Nachdem der Leser dieses Dokument nun verinnerlicht hat – wobei davon ausgegangen wird, dass es sich um einen *Verfasser* von Dokumentationen handelt –, sollte er ausreichend gerüstet sein, um auch die formale Spezifikation der *docidx-Sprachsyntax* zu verstehen. Von nun an dient die *docidx-Befehlsreferenz* zudem als detaillierte Spezifikation und Spickzettel für alle verfügbaren Befehle und deren Syntax.
 
@@ -140,7 +141,7 @@ Um ein Dokument bereits während der Erstellung validieren zu können, empfiehlt
 
 Andererseits eignet sich docidx hervorragend für die automatische Generierung aus doctools-Dokumenten, und genau diesen Weg beschreitet das benutzerfreundliche und einfache **dtplite** von Tcllib, das im Hintergrund einen Index für eine Reihe von Dokumenten erstellt, ohne dass der Verfasser dies selbst tun muss.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *doctools* als Kategorie an.
 
@@ -148,12 +149,15 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007-2009 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md

@@ -1,5 +1,6 @@
 ---
 CommandName: struct::queue
+title: struct::queue
 ManualSection: n
 Version: 1.4.6
 TclPart: tcllib
@@ -18,26 +19,26 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 struct::queue – Warteschlangenobjekte anlegen und bearbeiten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4.6]{.optlit} 
-[queueName]{.ins} [option]{.sub} [arg arg]{.optdot} 
-[queueName]{.ins} [clear]{.sub} 
-[queueName]{.ins} [destroy]{.sub} 
-[queueName]{.ins} [get]{.sub} [count]{.optarg} 
-[queueName]{.ins} [peek]{.sub} [count]{.optarg} 
-[queueName]{.ins} [put]{.sub} [item]{.arg} [item]{.optdot} 
-[queueName]{.ins} [unget]{.sub} [item]{.arg} 
-[queueName]{.ins} [size]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::queue]{.lit} [1.4.6]{.optlit}
+[queueName]{.ins} [option]{.sub} [arg arg]{.optdot}
+[queueName]{.ins} [clear]{.sub}
+[queueName]{.ins} [destroy]{.sub}
+[queueName]{.ins} [get]{.sub} [count]{.optarg}
+[queueName]{.ins} [peek]{.sub} [count]{.optarg}
+[queueName]{.ins} [put]{.sub} [item]{.arg} [item]{.optdot}
+[queueName]{.ins} [unget]{.sub} [item]{.arg}
+[queueName]{.ins} [size]{.sub}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Namespace **::struct** enthält Befehle zur Verarbeitung endlicher Warteschlangen.
 
@@ -72,7 +73,7 @@ Der Befehl **::struct::queue** erzeugt ein neues Warteschlangenobjekt mit einem 
 : Gibt die Anzahl der Elemente in der Warteschlange zurück.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *struct :: queue* als Kategorie an.
 
@@ -80,6 +81,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Datenstrukturen

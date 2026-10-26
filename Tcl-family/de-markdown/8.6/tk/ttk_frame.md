@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::frame
+title: ttk::frame
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -16,55 +17,70 @@ Copyright:
  - Copyright (c) 2005 Joe English
 ---
 
-# NAME
+# Name
 
 ttk::frame - Einfaches Container-Widget
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[ttk::frame]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::frame]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Ein **ttk::frame**-Widget ist ein Container zum Gruppieren anderer Widgets. Standardoptionen (siehe **ttk_widget**): **-class**, **-cursor**, **-padding**, **-style**, **-takefocus**.
+Ein **ttk::frame**-Widget ist ein Container zum Gruppieren anderer Widgets.
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Standardoptionen
 
-**-borderwidth** (borderWidth/BorderWidth)
+**-class**, **-cursor**, **-padding**, **-style**, **-takefocus**
+
+Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Standardoptionen.
+
+# Widget-spezifische Optionen
+
+**-borderwidth** (**borderWidth**/**BorderWidth**)
 : Gewünschte Breite des Widget-Rahmens. Standard ist 0. Je nach Theme kann die Option ignoriert werden.
 
-**-relief** (relief/Relief)
+**-relief** (**relief**/**Relief**)
 : Einer der Standard-Tk-Rahmenstile: **flat**, **groove**, **raised**, **ridge**, **solid** oder **sunken**. Standard ist **flat**.
 
-**-width** (width/Width)
+**-width** (**width**/**Width**)
 : Legt bei Angabe die gewünschte Widget-Breite in Pixeln fest.
 
-**-height** (height/Height)
+**-height** (**height**/**Height**)
 : Ist angegeben, die gewünschte Widget-Höhe in Pixeln.
 
 
-# WIDGET-BEFEHL
+# Widget-Befehl
 
-Frame-Widgets unterstützen die Standardbefehle **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe **ttk::widget**).
+Unterstützt die Standard-Widget-Befehle **configure**, **cget**, **identify**, **instate** und **state**; siehe *ttk::widget(n)*.
 
-# HINWEISE
+# Hinweise
 
-Werden **pack**, **grid** oder andere Geometrie-Manager für die Kinder des **frame** verwendet, hat die vom Manager gewünschte Größe meist Vorrang vor den Optionen **-width** und **-height** des **frame**. Mit **pack propagate** und **grid propagate** lässt sich das ändern.
+Werden [pack], [grid] oder andere Geometrie-Manager für die Kinder des [frame] verwendet, hat die vom Manager gewünschte Größe meist Vorrang vor den Optionen **-width** und **-height** des [frame]. Mit [pack propagate][pack] und [grid propagate][grid] lässt sich das ändern.
 
-# STYLING-OPTIONEN
+# Styling-Optionen
 
 Der Klassenname für ein **ttk::frame** ist **TFrame**.
 
-**TFrame**-Styling-Optionen, die mit **ttk::style** konfiguriert werden können:
+**TFrame**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können:
 
-**-background** *color* .br **-relief** *relief*
+**-background** *color*
+
+**-relief** *relief*
 
 Einige Optionen sind nur für bestimmte Themes verfügbar.
 
-Siehe die Handbuch-Seite **ttk::style** für Informationen zur Konfiguration von ttk-Stilen.
+Siehe die Handbuch-Seite [ttk::style][ttk_style] für Informationen zur Konfiguration von ttk-Stilen.
 
-# BINDINGS
+# Bindings
 
 Beim Erzeugen eines neuen **ttk::frame** gibt es keine Standard-Ereignis-Bindings; **ttk::frame**-Widgets sind nicht für Interaktion gedacht.
+
+
+[frame]: frame.md
+[grid]: grid.md
+[pack]: pack.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

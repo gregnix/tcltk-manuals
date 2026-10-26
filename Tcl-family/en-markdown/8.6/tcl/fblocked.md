@@ -1,5 +1,6 @@
 ---
 CommandName: fblocked
+title: fblocked
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -24,14 +25,14 @@ fblocked - Test whether the last input operation exhausted all available input
 # Synopsis
 
 ::: {.synopsis} :::
-[fblocked]{.cmd} [channelId]{.arg} 
+[fblocked]{.cmd} [channelId]{.arg}
 :::
 
 # Description
 
-The **fblocked** command returns 1 if the most recent input operation on *channelId* returned less information than requested because all available input was exhausted. For example, if **gets** is invoked when there are only three characters available for input and no end-of-line sequence, **gets** returns an empty string and a subsequent call to **fblocked** will return 1.
+The **fblocked** command returns 1 if the most recent input operation on *channelId* returned less information than requested because all available input was exhausted. For example, if [gets] is invoked when there are only three characters available for input and no end-of-line sequence, [gets] returns an empty string and a subsequent call to **fblocked** will return 1.
 
-*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of [open] or [socket], or the result of a channel creation command provided by a Tcl extension.
 
 # Example
 
@@ -65,3 +66,8 @@ proc echoLine {chan clientName} {
 socket -server connect 12345
 vwait forever
 ```
+
+
+[gets]: gets.md
+[open]: open.md
+[socket]: socket.md

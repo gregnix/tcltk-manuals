@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::common
+title: nameserv::common
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -15,19 +16,19 @@ Copyright:
  - Copyright (c) 2007-2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 nameserv::common – Namensdienst-Funktion, gemeinsame Definitionen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nameserv::common]{.lit} [0.2]{.optlit} 
-[::nameserv::common::port]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nameserv::common]{.lit} [0.2]{.optlit}
+[::nameserv::common::port]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Bitte lesen Sie zunächst *Namensdienst-Funktion, Einleitung*.
 
@@ -43,7 +44,7 @@ Das Paket exportiert einen einzigen Befehl, wie im Folgenden festgelegt:
 : Das vom Befehl zurückgegebene Ergebnis ist die Kennung des Standard-TCP/IP-Ports, auf dem ein Namensdienstserver auf eingehende Verbindungen wartet und zu dem ein Namensdienst-Client eine Verbindung herzustellen versucht.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *nameserv* als Kategorie an.
 
@@ -51,11 +52,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007-2008 Andreas Kupries <andreas_kupries@users.sourceforge.net>

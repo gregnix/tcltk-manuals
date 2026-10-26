@@ -1,5 +1,6 @@
 ---
 CommandName: pwd
+title: pwd
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -16,23 +17,23 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 pwd - Gibt den absoluten Pfad des aktuellen Arbeitsverzeichnisses zurück
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[pwd]{.cmd} 
+[pwd]{.cmd}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Gibt den absoluten Pfadnamen des aktuellen Arbeitsverzeichnisses zurück.
 
-# BEISPIELE
+# Beispiele
 
-Manchmal ist es nützlich, für einen externen Befehl mit **exec** in ein bekanntes Verzeichnis zu wechseln, während die Anwendung normalerweise im Verzeichnis weiterläuft, in dem sie gestartet wurde (sofern der Benutzer nichts anderes angibt), um Verwirrung zu vermeiden. Dazu speichert man das aktuelle Verzeichnis während des externen Befehls und wechselt danach zurück:
+Manchmal ist es nützlich, für einen externen Befehl mit [exec] in ein bekanntes Verzeichnis zu wechseln, während die Anwendung normalerweise im Verzeichnis weiterläuft, in dem sie gestartet wurde (sofern der Benutzer nichts anderes angibt), um Verwirrung zu vermeiden. Dazu speichert man das aktuelle Verzeichnis während des externen Befehls und wechselt danach zurück:
 
 ```
 set tarFile [file normalize somefile.tar]
@@ -41,3 +42,6 @@ cd /tmp
 exec tar -xf $tarFile
 cd $savedDir
 ```
+
+
+[exec]: exec.md

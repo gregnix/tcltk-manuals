@@ -1,5 +1,6 @@
 ---
 CommandName: tell
+title: tell
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -20,32 +21,40 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 tell - Gibt die aktuelle Zugriffsposition eines offenen Kanals zurück
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tell]{.cmd} [channelId]{.arg} 
+[tell]{.cmd} [channelId]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **tell** wurde durch den Befehl **chan tell** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Gibt eine Ganzzahl-Zeichenkette mit der aktuellen Zugriffsposition in *channelId* zurück. Der Wert ist ein Byte-Offset, der an [seek] übergeben werden kann, um den Kanal auf eine bestimmte Position zu setzen. Beachten Sie, dass dieser Wert in Bytes angegeben ist, nicht in Zeichen wie bei [read]. Für Kanäle, die keine Positionierung unterstützen, ist der Rückgabewert -1.
 
-# BEISPIEL
+*channelId* muss eine Kennung für einen geöffneten Kanal sein, z. B. einen Tcl-Standardkanal (**stdin**, **stdout** oder **stderr**), den Rückgabewert von [open] oder [socket] oder das Ergebnis eines Kanalerzeugungsbefehls einer Tcl-Erweiterung.
+
+# Beispiele
 
 Eine Zeile von einem Dateikanal nur lesen, wenn sie mit **foobar** beginnt:
 
 ```
-# Offset sichern, falls das Lesen rückgängig gemacht werden muss...
+# Save the offset in case we need to undo the read...
 set offset [tell $chan]
 if {[read $chan 6] eq "foobar"} {
     gets $chan line
 } else {
     set line {}
-    # Lesen rückgängig machen...
+    # Undo the read...
     seek $chan $offset
 }
 ```
+
+
+[open]: open.md
+[read]: read.md
+[seek]: seek.md
+[socket]: socket.md

@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_GetOpenFile
+title: Tcl_GetOpenFile
 ManualSection: 3
 Version: 8.0
 TclPart: Tcl
@@ -17,37 +18,42 @@ Copyright:
 
 # Name
 
-Tcl_GetOpenFile - Return a FILE\* for a channel registered in the given interpreter (Unix only)
+Tcl\_GetOpenFile - Return a FILE\* for a channel registered in the given interpreter (Unix only)
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_GetOpenFile]{.cmd}([interp]{.arg}, [chanID]{.arg}, [write]{.arg}, [checkUsage]{.arg}, [filePtr]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_GetOpenFile]{.ccmd} [interp, chanID, write, checkUsage, filePtr]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Tcl interpreter from which file handle is to be obtained.
 
-const char *\*chanID* (in)
+[\*chanID]{.carg .in type="const char"}
 : String identifying channel, such as **stdin** or **file4**.
 
-int *write* (in)
+[write]{.carg .in type="int"}
 : Non-zero means the file will be used for writing, zero means it will be used for reading.
 
-int *checkUsage* (in)
+[checkUsage]{.carg .in type="int"}
 : If non-zero, then an error will be generated if the file was not opened for the access indicated by *write*.
 
-void *\*\*filePtr* (out)
+[\*\*filePtr]{.carg .out type="void"}
 : Points to word in which to store pointer to FILE structure for the file given by *chanID*.
 
+:::
 
 # Description
 
-**Tcl_GetOpenFile** takes as argument a file identifier of the form returned by the **open** command and returns at *\*filePtr* a pointer to the FILE structure for the file. The *write* argument indicates whether the FILE pointer will be used for reading or writing. In some cases, such as a channel that connects to a pipeline of subprocesses, different FILE pointers will be returned for reading and writing. **Tcl_GetOpenFile** normally returns **TCL_OK**. If an error occurs in **Tcl_GetOpenFile** (e.g. *chanID* did not make any sense or *checkUsage* was set and the file was not opened for the access specified by *write*) then **TCL_ERROR** is returned and the interpreter's result will contain an error message. In the current implementation *checkUsage* is ignored and consistency checks are always performed.
+**Tcl\_GetOpenFile** takes as argument a file identifier of the form returned by the [open] command and returns at *\*filePtr* a pointer to the FILE structure for the file. The *write* argument indicates whether the FILE pointer will be used for reading or writing. In some cases, such as a channel that connects to a pipeline of subprocesses, different FILE pointers will be returned for reading and writing. **Tcl\_GetOpenFile** normally returns [TCL\_OK][catch]. If an error occurs in **Tcl\_GetOpenFile** (e.g. *chanID* did not make any sense or *checkUsage* was set and the file was not opened for the access specified by *write*) then [TCL\_ERROR][catch] is returned and the interpreter's result will contain an error message. In the current implementation *checkUsage* is ignored and consistency checks are always performed.
 
 Note that this interface is only supported on the Unix platform.
+
+
+[catch]: ../tcl/catch.md
+[open]: ../tcl/open.md

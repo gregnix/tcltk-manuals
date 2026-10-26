@@ -1,5 +1,6 @@
 ---
 CommandName: ttk_vsapi
+title: ttk_vsapi
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -20,19 +21,19 @@ Copyright:
 
 # Name
 
-ttk_vsapi - Define a Microsoft Visual Styles element
+ttk\_vsapi - Define a Microsoft Visual Styles element
 
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [vsapi]{.lit} [className]{.arg} [partId]{.arg} [stateMap]{.optarg} [options]{.optarg} 
+[ttk::style]{.cmd} [element]{.sub} [create]{.lit} [name]{.arg} [vsapi]{.lit} [className]{.arg} [partId]{.arg} [stateMap]{.optarg} [options]{.optarg}
 :::
 
 # Description
 
 The **vsapi** element factory creates a new element in the current theme whose visual appearance is drawn using the Microsoft Visual Styles API which is used in ttk for the MS-Windows native styles. This factory permits any of the Visual Styles parts to be declared as Ttk elements that can then be included in a style layout to modify the appearance of Ttk widgets.
 
-*className* and *partId* are required parameters and specify the Visual Styles class and part as given in the Microsoft documentation. The *stateMap* may be provided to map Ttk states to Visual Styles API states (see **STATE MAP**).
+*className* and *partId* are required parameters and specify the Visual Styles class and part as given in the Microsoft documentation. The *stateMap* may be provided to map Ttk states to Visual Styles API states (see [State map]).
 
 # Options
 
@@ -53,13 +54,13 @@ Valid *options* are:
 
 # State map
 
-The *stateMap* parameter is a list of ttk states and the corresponding Visual Styles API state value. This permits the element appearance to respond to changes in the widget state such as becoming active or being pressed. The list should be as described for the **ttk::style map** command but note that the last pair in the list should be the default state and is typically an empty list and 1. Unfortunately all the Visual Styles parts have different state values and these must be looked up either in the Microsoft documentation or more likely in the header files. The original header to use was *tmschema.h*, but in more recent versions of the Windows Development Kit this is *vssym32.h*.
+The *stateMap* parameter is a list of ttk states and the corresponding Visual Styles API state value. This permits the element appearance to respond to changes in the widget state such as becoming active or being pressed. The list should be as described for the [ttk::style map][ttk_style] command but note that the last pair in the list should be the default state and is typically an empty list and 1. Unfortunately all the Visual Styles parts have different state values and these must be looked up either in the Microsoft documentation or more likely in the header files. The original header to use was *tmschema.h*, but in more recent versions of the Windows Development Kit this is *vssym32.h*.
 
 If no *stateMap* parameter is given there is an implicit default map of {{} 1}
 
 # Example
 
-Create a correctly themed close button by changing the layout of a **ttk::button**(n). This uses the WINDOW part WP_SMALLCLOSEBUTTON and as documented the states CBS_DISABLED, CBS_HOT, CBS_NORMAL and CBS_PUSHED are mapped from ttk states.
+Create a correctly themed close button by changing the layout of a [ttk::button][ttk_button](n). This uses the WINDOW part WP\_SMALLCLOSEBUTTON and as documented the states CBS\_DISABLED, CBS\_HOT, CBS\_NORMAL and CBS\_PUSHED are mapped from ttk states.
 
 ```
 ttk::style element create smallclose vsapi WINDOW 19 \
@@ -68,7 +69,7 @@ ttk::style layout CloseButton {CloseButton.smallclose -sticky news}
 pack [ttk::button .close -style CloseButton]
 ```
 
-Change the appearance of a **ttk::checkbutton**(n) to use the Explorer pin part EBP_HEADERPIN.
+Change the appearance of a [ttk::checkbutton][ttk_checkbutton](n) to use the Explorer pin part EBP\_HEADERPIN.
 
 ```
 ttk::style element create pin vsapi EXPLORERBAR 3 {
@@ -82,3 +83,8 @@ ttk::style element create pin vsapi EXPLORERBAR 3 {
 ttk::style layout Explorer.Pin {Explorer.Pin.pin -sticky news}
 pack [ttk::checkbutton .pin -style Explorer.Pin]
 ```
+
+
+[ttk_button]: ttk_button.md
+[ttk_checkbutton]: ttk_checkbutton.md
+[ttk_style]: ttk_style.md

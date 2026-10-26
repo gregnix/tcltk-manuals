@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_Init
+title: Tcl_Init
 ManualSection: 3
 Version: 9.0
 TclPart: Tcl
@@ -13,40 +14,46 @@ Keywords:
  - interpreter
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tcl_Init - find and source initialization script
+Tcl\_Init - find and source initialization script
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_Init]{.cmd}([interp]{.arg})
-
-const char \*
-[Tcl_SetPreInitScript]{.cmd}([scriptPtr]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_Init]{.ccmd} [interp]{.cargs}
+[const char \*]{.ret} [Tcl\_SetPreInitScript]{.ccmd} [scriptPtr]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to initialize.
 
-const char *\*scriptPtr* (in)
+[\*scriptPtr]{.carg .in type="const char"}
 : Address of the initialization script.
 
+:::
 
 # Description
 
-**Tcl_Init** is a helper procedure that finds and **source**s the **init.tcl** script, which should exist somewhere on the Tcl library path.
+**Tcl\_Init** is a helper procedure that finds and [source]s the **init.tcl** script, which should exist somewhere on the Tcl library path.
 
-**Tcl_Init** is typically called from **Tcl_AppInit** procedures.
+**Tcl\_Init** is typically called from [Tcl\_AppInit][AppInit] procedures.
 
-**Tcl_SetPreInitScript** registers the pre-initialization script and returns the former (now replaced) script pointer. A value of *NULL* may be passed to not register any script. The pre-initialization script is executed by **Tcl_Init** before accessing the file system. The purpose is to typically prepare a custom file system (like an embedded zip-file) to be activated before the search.
+**Tcl\_SetPreInitScript** registers the pre-initialization script and returns the former (now replaced) script pointer. A value of *NULL* may be passed to not register any script. The pre-initialization script is executed by **Tcl\_Init** before accessing the file system. The purpose is to typically prepare a custom file system (like an embedded zip-file) to be activated before the search.
 
-When used in stub-enabled embedders, the stubs table must be first initialized using one of **Tcl_InitSubsystems**, **Tcl_SetPanicProc**, **Tcl_FindExecutable** or **TclZipfs_AppHook** before **Tcl_SetPreInitScript** may be called.
+When used in stub-enabled embedders, the stubs table must be first initialized using one of [Tcl\_InitSubsystems][InitSubSyst], [Tcl\_SetPanicProc][Panic], [Tcl\_FindExecutable][FindExec] or [TclZipfs\_AppHook][zipfs] before **Tcl\_SetPreInitScript** may be called.
+
+
+[AppInit]: AppInit.md
+[FindExec]: FindExec.md
+[InitSubSyst]: InitSubSyst.md
+[Panic]: Panic.md
+[source]: ../tcl/source.md
+[zipfs]: zipfs.md

@@ -1,606 +1,606 @@
 # pdf	tcltk-8.6-capi-en.pdf
 # label	Tcl/Tk 8.6 C API
 # title	Tcl/Tk 8.6 C API
-3D	279
-3DBorder	279
-abort	96,199
-above	397
+3D	264
+3DBorder	264
+abort	91,188
+above	378
 Access	7
-access	101
-access point	186
-add	284
+access	95
+access point	175
+add	268
 AddErrInfo	8
-AddOption	284
-alias	32
+AddOption	268
+alias	31
 Alloc	12
 allocation	12
-AllowExc	14
-alpha	134
-anchor	295,403
-anchor position	343
-append	68,152,227,242,293
+AllowExc	13
+alpha	127
+anchor	278,384
+anchor position	327
+append	65,144,214,229,277
 AppInit	14
-application	14,140,381,399,421
-application-specific initialization	234,255,422
-argument	14,200
-arguments	390
-array	230
+application	14,132,362,363,380,401
+application-specific initialization	222,241,402
+argument	14,189
+arguments	372
+array	218
 AssocData	15
 association	15
-Async	17
-asynchronous event	17
-atom	373,380
-attributes	303,423
-BackgdErr	19
-background	19,71,279
-Backslash	20
-backslash	235,274
-backslash substitution	203,248
-below	397
-beta	134
-bevel	364
-bgerror	19
-binary	126
-binary code	155
-binary data	22
-binary library	214
-bind	52,60,306,310,334
-binding	285
-BindTable	285
-bitmap	287,295,345,403
-blocking	36,50,186
-boolean	21,98,99,129,149,295,403
-BoolObj	21
-border	279,295,303,403
-box	426
-braces	203
-break	14
-buffered I/O	186
-butt	349
-byte array	22
-ByteArrObj	22
-cache	380
-callback	23,50,52,54,65,75,77,96,146,306,308,310,334,377,383,396,401
-CallDel	23
-Cancel	24
-canvas	287,289,291,316
-CanvPsY	287
-CanvTkwin	289
-CanvTxtInfo	291
-cap style	295,349
-caret	400
-case	262
-center	365
-centimeters	367
-channel	25,50,130,186,196
-channel closing	52
-channel driver	36,186,223
-channel registration	36
-channel type	36,223
-child	32,71
-ChnlStack	25
-Class	27
-class	284,366,400,401
-classification	271
-cleanup	23,96
-clear	293,294
-client	196
-clientData	263,265
-Clipboard	293
-clock	65,396
-ClrSelect	294
-CmdCmplt	31
-color	279,287,295,303,351,403
-colormap	350,374,414,423
-command	14,32,52,56,60,66,89,160,165,203,213,214,227,263,278
-command line	390
-command substitution	248
-command-line arguments	255,422
-commands	146
-complete command	31
-compress	250
-compression	25
-Concat	32
-concat	242
-concatenate	32,242
-condition variable	258
-configuration	214
-configuration option	403
-configuration options	295
-configure	303
-ConfigWidg	295
-ConfigWind	303
-console	307
-constructor	27,156
-container	382
-containing	306
-continue	14
-conversion	129,212,357
-convert	80,235,367
-coordinates	306,370
-CoordToWin	306
-create	52,56,60,66,331
-CrtAlias	32
-CrtChannel	36
-CrtChnlHdlr	50
-CrtCloseHdlr	52
-CrtCmHdlr	306
-CrtCommand	52
-CrtConsoleChan	307
-CrtErrHdlr	308
-CrtFileHdlr	54
-CrtGenHdlr	310
-CrtImgType	311
-CrtInterp	56
-CrtItemType	316
-CrtMathFnc	58
-CrtObjCmd	60
-CrtPhImgFmt	325
-CrtSelHdlr	330
-CrtTimerHdlr	65
-CrtTrace	66
-CrtWindow	331
-cursor	295,354,400,403
-custom	295
-dash	357
+Async	16
+asynchronous event	16
+atom	355,361
+attributes	287,403
+BackgdErr	18
+background	18,67,264
+Backslash	19
+backslash	222,259
+backslash substitution	192,235
+below	378
+beta	127
+bevel	346
+bgerror	18
+binary	119
+binary code	147
+binary data	21
+binary library	203
+bind	50,57,290,293,318
+binding	269
+BindTable	269
+bitmap	271,278,328,384
+blocking	34,48,175
+boolean	20,93,94,122,140,278,384
+BoolObj	20
+border	264,278,287,384
+box	405
+braces	192
+break	13
+buffered I/O	175
+butt	332
+byte array	21
+ByteArrObj	21
+cache	361
+callback	22,48,49,52,61,72,73,91,138,290,291,293,318,359,365,377,382
+CallDel	22
+Cancel	23
+canvas	271,273,275,299
+CanvPsY	271
+CanvTkwin	273
+CanvTxtInfo	275
+cap style	278,332
+caret	381
+case	247
+center	347
+centimeters	349
+channel	24,48,123,175,185
+channel closing	49
+channel driver	34,175,211
+channel registration	34
+channel type	34,211
+child	31,67
+ChnlStack	24
+Class	26
+class	268,348,381,382
+classification	257
+cleanup	22,91
+clear	277,278
+client	185
+clientData	248,251
+Clipboard	277
+clock	61,377
+ClrSelect	278
+CmdCmplt	29
+color	264,271,278,287,334,384
+colormap	333,356,395,403
+command	14,31,50,53,57,62,85,152,156,192,201,202,214,248,263
+command line	372
+command substitution	235
+command-line arguments	241,402
+commands	138
+complete command	29
+compress	237
+compression	24
+Concat	30
+concat	229
+concatenate	30,229
+condition variable	244
+configuration	203
+configuration option	384
+configuration options	278
+configure	287
+ConfigWidg	278
+ConfigWind	287
+console	291
+constructor	26,148
+container	363
+containing	289
+continue	13
+conversion	122,200,340
+convert	76,222,349
+coordinates	289,352
+CoordToWin	289
+create	50,53,57,62,315
+CrtAlias	31
+CrtChannel	34
+CrtChnlHdlr	48
+CrtCloseHdlr	49
+CrtCmHdlr	290
+CrtCommand	50
+CrtConsoleChan	291
+CrtErrHdlr	291
+CrtFileHdlr	52
+CrtGenHdlr	293
+CrtImgType	295
+CrtInterp	53
+CrtItemType	299
+CrtMathFnc	55
+CrtObjCmd	57
+CrtPhImgFmt	309
+CrtSelHdlr	313
+CrtTimerHdlr	61
+CrtTrace	62
+CrtWindow	315
+cursor	278,336,381,384
+custom	278
+dash	340
 data	15
-date	133
-debug	79,249
-decompress	250
-defer	77
-deferred creation	331
-deflate	250
-delay	398
-delete	23,52,56,60,66
-delete image	333
-DeleteImg	333
+date	125
+debug	75,236
+decompress	237
+defer	73
+deferred creation	315
+deflate	237
+delay	379
+delete	22,50,53,57,62
+delete image	317
+DeleteImg	317
 deletion procedure	15
-depressed	279
-depth	414,423
-destroy	331
-detach	71
-DetachPids	71
-dict	72
-dict value	72
-dictionary	72
-dictionary value	72
-DictObj	72
-display	331,380,423
-DoOneEvent	75
-double	78,98,99,129,295,404
-double type	78
-double value	78
-double-precision	212
-DoubleObj	78
-DoWhenIdle	77
-DrawFocHlt	334
-DString	68
-DumpActiveMemory	79
-dynamic loading	96
-dynamic string	68
-element	227,235
-embedding	214
-Encoding	80
-end application	96
-end of file	186
-Ensemble	89
-Environment	93
-errno	225
-error	8,19,199,308
-error code	225
-error message	278
-error messages	223
-Eval	93
-evaluate	98,99
-event	75,167,213,214,285,306,308,310,334,377,381,398
-event queue	167
-event sources	167
-EventHndlr	334
-events	50,396
-exception	14
-executable file	126
-execute	93,160,213,214
-Exit	96
-exposed commands	32
-expression	58,98,99,203
-ExprLong	98
-ExprLongObj	99
-fatal	199
-file	54,93,238
-file events	167
-file handle	130
-file name	270
-filename	238
-FileSystem	101
-fill	365
-filter	398
-FindExec	126
-FindPhoto	335
-floating-point	129,212
-flush	186
-focus	289,291,316,334
-font	287,295,340,358,385,404,415
-FontId	340
-format	293,330,372
-free	12,68,144,211
-FreeXId	341
-geometry	342,374,383,426
-geometry manager	382,423
-GeomReq	342
-get	372
-get variable	230
-GetAnchor	343
-GetBitmap	345
-GetCapStyl	349
-GetClrmap	350
-GetColor	351
-GetCursor	354
-GetCwd	127
-GetDash	357
-GetFont	358
-GetGC	360
-GetHINSTANCE	361
-GetHostName	127
-GetHWND	361
-GetImage	362
-GetIndex	128
-GetInt	129
-GetJoinStl	364
-GetJustify	365
-GetOpnFl	130
-GetOption	366
-GetPixels	367
-GetPixmap	368
-GetRelief	369
-GetRootCrd	370
-GetScroll	371
-GetSelect	372
-GetStdChan	131
-GetTime	133
-GetUid	373
-GetVersion	134
-GetVisual	374
-GetVRoot	374
-global	93,160
-global variables	225
-Grab	376
-graphics context	360
-grid	403
-gzip	250
-HandleEvent	377
-handler	17,50,54,65,75,306,308,310,330,334,377,396
-Hash	135
-hash table	72,135
-height	303,374,423
-hidden commands	32
-history	213,214
-home directory	270
-hostname	127
-HWNDToWindow	377
-identifier	361,423
-idle	75,167,379
-idle callback	77
-IdToWindow	378
-illumination	279
-image	335
-image file	325
-image manager	311,333,389
-image name	389
-image size changes	378
-image type	311
-images	362,378
-ImgChanged	378
-Inactive	379
-inches	367
-index	128,152
-inflate	250
-Init	140
-initialization	14,140,421
-initialization procedure	239
-initialized	144
-InitStubs	140
-input	186
-insert	152
-insertion cursor	291
-instance	311,361
-integer	98,99,129,141,149,295,404
-integer type	141
-integer value	141
-intensity	351
-internal representation	78,141,152,178,182,242
-internal window	331
-internationalization	22
-InternAtom	380
-Interp	144
-interp	19,221
-interpreter	14,15,23,32,52,56,66,140,144,146,213,214,227,230
-IntObj	141
-invoke	32
-item type	289,316
-iteration	72
-join	238
-join style	295,364
-justification	365
-justify	295,404
-key	15,135
-length	152
-Limit	146
-link	149
-linked variable	273
-LinkVar	149
-list	152,227,235
-list type	152
-list value	152
-ListObj	152
-Load	155
-load	421
-loading	155
-location	374
-lookup	135
-main loop	381
-main program	234,255,422
-main window	381,421
-MainLoop	381
-MaintGeom	382
-MainWin	381
-major	134
-malloc	12,144
-managed	383
-ManageGeom	383
-map	382,384
-mapped	423
-MapWindow	384
-margins	426
-match	216,242
-mathematical function	58
-MeasureChar	385
-measurement	340,385
-memory	12,79,249
-merge	235
-Method	156
-millimeters	295,367
-minor	134
-miter	364
-modal timeout	396
-model	311
-Motif compliance	415
-MoveToplev	387
-mutex	258
-Name	388
-name	284,366,369,399
-NameOfImg	389
-Namespace	165
-namespace	52,60
-nesting depth	226
-nonblocking	36,50,186
-nonrecursive	160
-Notifier	167
-NRE	160
-Object	178
-object	27,156,285
-ObjectType	182
-obscure	397
-OOInitStubs	177
-OpenFileChnl	186
-OpenTcp	196
-option	128,284,366
-options	390
-output	186
-own	390
-OwnSelect	390
-package	209,239
-padding	426
-Panic	199
-parent	32,382
-parse	20,200,203,371
-ParseArgs	200
-ParseArgv	390
-ParseCmd	203
-partial command	31
-patchlevel	134
-path	238,287
-path name	388
-pattern	216,242
-permissions	130
-photo	335
-photo image	325
-pipeline	130
-pixel	303
-pixel value	351
-pixels	295,367,404
-pixmap	303,345,368
-PkgRequire	209
-points	367
-polygon	279
-position	382,387
-Postscript	287,340
-present	209
-Preserve	211
-PrintDbl	212
-process	71
-projecting	349
-provide	209
-pwd	127
-QWinEvent	396
-raised	279
-rc file	234
-read	130,186
-read-only	149
-real	149
+depressed	264
+depth	395,403
+destroy	315
+detach	67
+DetachPids	67
+dict	68
+dict value	68
+dictionary	68
+dictionary value	68
+DictObj	68
+display	315,361,403
+DoOneEvent	72
+double	74,93,94,122,278,384
+double type	74
+double value	74
+double-precision	200
+DoubleObj	74
+DoWhenIdle	73
+DrawFocHlt	317
+DString	65
+DumpActiveMemory	75
+dynamic loading	91
+dynamic string	65
+element	214,222
+embedding	203
+Encoding	76
+end application	91
+end of file	175
+Ensemble	85
+Environment	88
+errno	213
+error	8,18,188,291
+error code	213
+error message	263
+error messages	211
+Eval	88
+evaluate	93,94
+event	72,158,201,202,269,290,291,293,318,359,362,379
+event queue	158
+event sources	158
+EventHndlr	318
+events	48,377
+exception	13
+executable file	119
+execute	88,152,201,202
+Exit	91
+exposed commands	31
+expression	55,93,94,192
+ExprLong	93
+ExprLongObj	94
+fatal	188
+file	52,88,225
+file events	158
+file handle	123
+file name	256
+filename	225
+FileSystem	95
+fill	347
+filter	379
+FindExec	119
+FindPhoto	319
+floating-point	122,200
+flush	175
+focus	273,275,299,317
+font	271,278,323,341,367,384,396
+FontId	323
+format	277,313,354
+free	12,65,136,199
+FreeXId	324
+geometry	325,355,365,405
+geometry manager	363,403
+GeomReq	325
+get	354
+get variable	218
+GetAnchor	327
+GetBitmap	328
+GetCapStyl	332
+GetClrmap	333
+GetColor	334
+GetCursor	336
+GetCwd	120
+GetDash	340
+GetFont	341
+GetGC	342
+GetHINSTANCE	343
+GetHostName	120
+GetHWND	343
+GetImage	344
+GetIndex	121
+GetInt	122
+GetJoinStl	346
+GetJustify	347
+GetOpnFl	123
+GetOption	348
+GetPixels	349
+GetPixmap	350
+GetRelief	351
+GetRootCrd	352
+GetScroll	353
+GetSelect	354
+GetStdChan	124
+GetTime	125
+GetUid	355
+GetVersion	127
+GetVisual	356
+GetVRoot	355
+global	88,152
+global variables	213
+Grab	358
+graphics context	342
+grid	383
+gzip	237
+HandleEvent	359
+handler	16,48,52,61,72,290,291,293,313,318,359,377
+Hash	128
+hash table	68,128
+height	287,355,403
+hidden commands	31
+history	201,202
+home directory	256
+hostname	120
+HWNDToWindow	358
+identifier	343,403
+idle	72,158,361
+idle callback	73
+IdToWindow	359
+illumination	264
+image	319
+image file	309
+image manager	295,317,370
+image name	370
+image size changes	360
+image type	295
+images	344,360
+ImgChanged	360
+Inactive	361
+inches	349
+index	121,144
+inflate	237
+Init	132
+initialization	14,132,401
+initialization procedure	226
+initialized	136
+InitStubs	133
+input	175
+insert	144
+insertion cursor	275
+instance	295,343
+integer	93,94,122,134,140,278,384
+integer type	134
+integer value	134
+intensity	334
+internal representation	74,134,144,168,172,229
+internal window	315
+internationalization	21
+InternAtom	361
+Interp	136
+interp	18,209
+interpreter	13,14,15,22,31,50,53,62,132,136,138,201,202,214,218
+IntObj	134
+invoke	31
+item type	273,299
+iteration	68
+join	225
+join style	278,346
+justification	347
+justify	278,384
+key	15,128
+length	144
+Limit	138
+link	140
+linked variable	258
+LinkVar	140
+list	144,214,222
+list type	144
+list value	144
+ListObj	144
+Load	147
+load	401
+loading	147
+location	355
+lookup	128
+main loop	362
+main program	222,241,402
+main window	363,401
+MainLoop	362
+MaintGeom	363
+MainWin	363
+major	127
+malloc	12,136
+managed	365
+ManageGeom	365
+map	363,366
+mapped	403
+MapWindow	366
+margins	405
+match	204,229
+mathematical function	55
+MeasureChar	367
+measurement	323,367
+memory	12,75,236
+merge	222
+Method	148
+millimeters	278,349
+minor	127
+miter	346
+modal timeout	377
+model	295
+Motif compliance	396
+MoveToplev	369
+mutex	244
+Name	369
+name	268,348,351,380
+NameOfImg	370
+Namespace	156
+namespace	50,57
+nesting depth	214
+nonblocking	34,48,175
+nonrecursive	152
+Notifier	158
+NRE	152
+Object	168
+object	26,148,269
+ObjectType	172
+obscure	378
+OOInitStubs	167
+OpenFileChnl	175
+OpenTcp	185
+option	121,268,348
+options	372
+output	175
+own	371
+OwnSelect	371
+package	198,226
+padding	405
+Panic	188
+parent	31,363
+parse	19,189,192,353
+ParseArgs	189
+ParseArgv	372
+ParseCmd	192
+partial command	29
+patchlevel	127
+path	225,271
+path name	369
+pattern	204,229
+permissions	123
+photo	319
+photo image	309
+pipeline	123
+pixel	287
+pixel value	334
+pixels	278,349,384
+pixmap	287,328,350
+PkgRequire	198
+points	349
+polygon	264
+position	363,369
+Postscript	271,323
+present	198
+Preserve	199
+PrintDbl	200
+process	67
+projecting	332
+provide	198
+pwd	120
+QWinEvent	377
+raised	264
+rc file	222
+read	123,175
+read-only	140
+real	140
 realloc	12
-RecEvalObj	213
-record	213,214
-RecordEval	214
-recursion	226
-redisplay	289,362,378
-reference count	211
-reference counting	178
-RegConfig	214
-RegExp	216
-region	426
-register	399
-regular expression	216
-release	134
-relief	295,369,404,426
-replace	152
-request	342,383
-requested size	423
-require	209
-resource	146
-resource identifier	341,368
-Restack	397
-RestrictEv	398
-restriction	398
-result	68,93,144,160,221,227
-retrieve	366
-return value	227
-root window	306,370
-round	349,364
-safe	421
-SaveResult	221
-scalar	230
-screen	331,374,423
-screen distance	404
-screen units	367
-script	93,160,285
-scrollbar	371
-scrolling command	371
-search	135
-seek	186
-selection	289,291,294,316,330
-selection anchor	291
-selection owner	390
-selection retrieval	372
-send command	399
-server	196
-service mode	167
-set	230
-SetAppName	399
-SetCaret	400
-SetChanErr	223
-SetClass	400
-SetClassProcs	401
-SetErrno	225
-SetGrid	403
-SetOptions	403
-SetRecLmt	226
-SetResult	227
-SetVar	230
-SetVisual	414
-shadow	279
-shared library	155
-Signal	233
-signal	17
-signal numbers	233
-signals	233
-Sleep	234
-socket	196
-SourceRCFile	234
-split	235,238
-SplitList	235
-SplitPath	238
+RecEvalObj	201
+record	201,202
+RecordEval	202
+recursion	214
+redisplay	273,344,360
+reference count	199
+reference counting	168
+RegConfig	203
+RegExp	204
+region	405
+register	380
+regular expression	204
+release	127
+relief	278,351,384,405
+replace	144
+request	325,365
+requested size	403
+require	198
+resource	138
+resource identifier	324,350
+Restack	378
+RestrictEv	379
+restriction	379
+result	65,88,136,152,209,214
+retrieve	348
+return value	214
+root window	289,352
+round	332,346
+safe	401
+SaveResult	209
+scalar	218
+screen	315,356,403
+screen distance	384
+screen units	349
+script	88,152,269
+scrollbar	353
+scrolling command	353
+search	128
+seek	175
+selection	273,275,278,299,313
+selection anchor	275
+selection owner	371
+selection retrieval	354
+send command	380
+server	185
+service mode	158
+set	218
+SetAppName	380
+SetCaret	381
+SetChanErr	211
+SetClass	381
+SetClassProcs	382
+SetErrno	213
+SetGrid	383
+SetOptions	384
+SetRecLmt	214
+SetResult	214
+SetVar	218
+SetVisual	395
+shadow	264
+shared library	147
+Signal	221
+signal	16
+signal numbers	221
+signals	221
+Sleep	221
+socket	185
+SourceRCFile	222
+split	222,225
+SplitList	222
+SplitPath	225
 stack	8
-stacking order	397
-stackless	160
-standard channel	131
-standard channels	240,307
-standard error	131
-standard input	131
-standard output	131
-stat	7,101
-state	221
-static linking	239
-StaticPkg	239
-StdChannels	240
-sticky	426
-stipple	287
-storage	211
-StrictMotif	415
-string	98,99,149,212,216,242,365,369
-string representation	78,141,152,178,182,242
-string type	242
-string value	242
-StringObj	242
-strings	32,235
-StrMatch	242
-stubs	140,177,420
-subexpression	216
-SubstObj	248
-synonym	295,404
-table lookup	128
-target	330
-Tcl_Main	255
-TCL_MEM_DEBUG	12,249
-Tcl_RegExpIndices	216
-Tcl_RegExpInfo	216
-Tcl_SaveInterpState	17
-TclZlib	250
-TCP	196
-text	291
-TextLayout	415
-Thread	258
-thread	17,96
-thread local storage	258
-threads	167
-three-dimensional effect	279
-tilde	270
-time	133,146,234
-timer	65,75,167
-Tk_Init	421
-Tk_Main	422
-tk_strictMotif variable	415
-TkInitStubs	420
-token	203,388
-tolower	262
-top-level	423
-top-level window	331,387
-totitle	262
-ToUpper	262
-trace	8,66,149,263,265
-TraceCmd	263
-TraceVar	265
-Translate	270
-traversal highlight	334
-ttk_Geometry	426
-ttk_Theme	429
-type	238,293
-type conversion	178,182
-type manager	289,316
-uid	295
-UniCharIsAlpha	271
-unicode	22,242,262,271,274
-unique identifier	373,400
-unloading	96
-unmanaged	383
-unmap	382,384
-unset	230
-unwind	24
-UpVar	273
-user	270
-Utf	274
-utf	22,80,262
-value	8,21,22,60,72,78,93,98,99,128,135,141,152,160,178,182,213,227,230,242,279,351
-value creation	178
+stacking order	378
+stackless	152
+standard channel	124
+standard channels	227,291
+standard error	124
+standard input	124
+standard output	124
+stat	7,95
+state	209
+static linking	226
+StaticPkg	226
+StdChannels	227
+sticky	405
+stipple	271
+storage	199
+StrictMotif	396
+string	93,94,140,200,204,229,347,351
+string representation	74,134,144,168,172,229
+string type	229
+string value	229
+StringObj	229
+strings	30,222
+StrMatch	229
+stubs	133,167,400
+subexpression	204
+SubstObj	235
+synonym	278,384
+table lookup	121
+target	313
+Tcl_Main	241
+TCL_MEM_DEBUG	12,236
+Tcl_RegExpIndices	204
+Tcl_RegExpInfo	204
+Tcl_SaveInterpState	16
+TclZlib	237
+TCP	185
+text	275
+TextLayout	396
+Thread	244
+thread	16,91
+thread local storage	244
+threads	158
+three-dimensional effect	264
+tilde	256
+time	125,138,221
+timer	61,72,158
+Tk_Init	401
+Tk_Main	402
+tk_strictMotif variable	396
+TkInitStubs	400
+token	192,369
+tolower	247
+top-level	403
+top-level window	315,369
+totitle	247
+ToUpper	247
+trace	8,62,140,248,251
+TraceCmd	248
+TraceVar	251
+Translate	256
+traversal highlight	317
+ttk_Geometry	405
+ttk_Theme	409
+type	225,277
+type conversion	168,172
+type manager	273,299
+uid	278
+UniCharIsAlpha	257
+unicode	21,229,247,257,259
+unique identifier	355,381
+unloading	91
+unmanaged	365
+unmap	363,366
+unset	218
+unwind	23
+UpVar	258
+user	256
+Utf	259
+utf	21,76,247
+value	8,20,21,57,68,74,88,93,94,121,128,134,144,152,168,172,201,214,218,229,264,334
+value creation	168
 value result	8
-value type	78,141,152,178,182,242
-variable	8,93,149,230,265,273
-variable substitution	203,248
-version	134,209
-vfs	101
-virtual filesystem	101
-virtual root	374
-visual	350,374,414,423
-wait	71,234
-width	303,374,423
-window	303,331,361,376,377,382,384,388,400,403,423
-window manager	374,387,400,403
-WindowId	423
-Windows window id	377
-write	130,186
-wrong number of arguments	278
-WrongNumArgs	278
-x	303,423
-X window id	378
-xview	371
-y	303,423
-yview	371
+value type	74,134,144,168,172,229
+variable	8,88,140,218,251,258
+variable substitution	192,235
+version	127,198
+vfs	95
+virtual filesystem	95
+virtual root	355
+visual	333,356,395,403
+wait	67,221
+width	287,355,403
+window	287,315,343,358,359,363,366,369,381,383,403
+window manager	355,369,381,383
+WindowId	403
+Windows window id	358
+write	123,175
+wrong number of arguments	263
+WrongNumArgs	263
+x	287,403
+X window id	359
+xview	353
+y	287,403
+yview	353

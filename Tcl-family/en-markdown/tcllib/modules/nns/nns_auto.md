@@ -1,5 +1,6 @@
 ---
 CommandName: nameserv::auto
+title: nameserv::auto
 ManualSection: n
 Version: 0.4
 TclPart: tcllib
@@ -23,9 +24,9 @@ nameserv::auto - Name service facility, Client Extension
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [nameserv::auto]{.lit} [0.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [nameserv]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [nameserv::auto]{.lit} [0.4]{.optlit}
+[package]{.cmd} [require]{.sub} [nameserv]{.lit}
 :::
 
 # Description
@@ -36,11 +37,11 @@ This package provides the *exact* same API as is provided by package **nameserv*
 
 This means that the bound names and continuous and unfullfilled async searches are remembered client-side and automatically re-entered into the server when the connection comes back after its loss. For bound names there is one important limitation to such restoration: It is possible that a name of this client was bound by a different client while the connection was gone. Such names are fully lost, and the best the package can and will do is to inform the user of this.
 
-# Api
+# API
 
 The user-visible API is mainly identical to the API of **nameserv** and is therefore not described here. Please read the documentation of **nameserv**.
 
-The differences are explained below, in the sections **OPTIONS** and **EVENTS**.
+The differences are explained below, in the sections [Options] and [Events].
 
 # Options
 
@@ -55,10 +56,14 @@ This package supports all the options of package **nameserv**, plus one more. Th
 This package generates all of the events of package **nameserv**, plus two more. Both events are generated for the tag *nameserv*.
 
 *lost-name*
-: This event is generated when a bound name is truly lost, i.e. could not be restored after the temporary loss of the connection to the name server. It indicates that a different client took ownership of the name while this client was out of contact. The detail information of the event will be a Tcl dictionary containing two keys, **name**, and **data**. Their values hold all the information about the lost name.
+: This event is generated when a bound name is truly lost, i.e. could not be restored after the temporary loss of the connection to the name server. It indicates that a different client took ownership of the name while this client was out of contact.
+
+    The detail information of the event will be a Tcl dictionary containing two keys, **name**, and **data**. Their values hold all the information about the lost name.
 
 *re-connection*
-: This event is generated when the connection to the server is restored. The remembered data has been restored when the event is posted. The event has no detail information.
+: This event is generated when the connection to the server is restored. The remembered data has been restored when the event is posted.
+
+    The event has no detail information.
 
 
 # Design

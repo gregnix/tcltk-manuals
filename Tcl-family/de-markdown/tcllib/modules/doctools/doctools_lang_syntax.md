@@ -1,5 +1,6 @@
 ---
 CommandName: doctools_lang_syntax
+title: doctools_lang_syntax
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -20,15 +21,15 @@ Copyright:
  - Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
-doctools_lang_syntax – doctools-Sprachsyntax
+doctools\_lang\_syntax – doctools-Sprachsyntax
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument enthält die formale Spezifikation der Syntax der doctools-Markup-Sprache, Version 1, in Backus-Naur-Form. Dieses Dokument ist als Nachschlagewerk gedacht und ergänzt die *doctools-Befehlsreferenz*. Anfängern wird empfohlen, zunächst die wesentlich informeller verfasste *Einleitung in die doctools-Sprache* zu lesen, bevor sie versuchen, dieses Dokument oder die Befehlsreferenz zu verstehen.
 
-# GRUNDLAGEN
+# Grundlagen
 
 Im weitesten Sinne ähnelt die *doctools-Auszeichnungssprache* eher LaTeX als SGML und ähnlichen Sprachen. Ein in dieser Sprache verfasstes Dokument besteht in erster Linie aus Text, in den Auszeichnungsbefehle eingebettet sind.
 
@@ -36,35 +37,31 @@ Jeder Markup-Befehl ist lediglich ein Tcl-Befehl, der von einem passenden Paar a
 
 In diesem Dokument legen wir zunächst das Lexem fest und legen anschließend die Syntax fest, d. h., wie sich Text und Markup-Befehle miteinander mischen lassen.
 
-# LEXIKALISCHE DEFINITIONEN
+# Lexikalische Definitionen
 
 In den im folgenden Abschnitt aufgeführten Syntaxregeln
 
-**\[1\]**
-: \<TEXT> steht für den gesamten Text mit Ausnahme von Markup-Befehlen.
+1. <TEXT> steht für den gesamten Text mit Ausnahme von Markup-Befehlen.
 
-**\[2\]**
-: Jedes „XXX“ steht für den Markup-Befehl \[xxx\] einschließlich seiner Argumente. Jeder Markup-Befehl ist ein Tcl-Befehl, der von einem passenden Paar aus **\[** und **\]** umgeben ist. Innerhalb dieser Begrenzungszeichen gelten die üblichen Regeln für einen Tcl-Befehl hinsichtlich der Quotierung von Wörtern, verschachtelter Befehle, Fortsetzungszeilen usw.
+2. Jedes „XXX“ steht für den Markup-Befehl \[xxx\] einschließlich seiner Argumente. Jeder Markup-Befehl ist ein Tcl-Befehl, der von einem passenden Paar aus **\[** und **\]** umgeben ist. Innerhalb dieser Begrenzungszeichen gelten die üblichen Regeln für einen Tcl-Befehl hinsichtlich der Quotierung von Wörtern, verschachtelter Befehle, Fortsetzungszeilen usw.
 
-**\[3\]**
-: \<WHITE> steht für sämtlichen Text, der ausschließlich aus Leerzeichen, Zeilenumbrüchen, Tabulatoren und dem Markup-Befehl **comment** besteht.
+3. <WHITE> steht für sämtlichen Text, der ausschließlich aus Leerzeichen, Zeilenumbrüchen, Tabulatoren und dem Markup-Befehl [comment][docidx_lang_cmdref] besteht.
 
 
-# SYNTAX
+# Syntax
 
 Die hier aufgeführten Regeln legen lediglich die Syntax von doctools-Dokumenten fest. Die lexikalische Ebene der Sprache wurde im vorangegangenen Abschnitt behandelt.
 
 Zur Syntax der (E)BNF selbst
 
-**\[1\]**
-: Das Konstrukt { X } steht für null oder mehr Vorkommen von X.
+1. Das Konstrukt { X } steht für null oder mehr Vorkommen von X.
 
-**\[2\]**
-: Das Konstrukt \[ X \] steht für kein oder ein Vorkommen von X.
+2. Das Konstrukt \[ X \] steht für kein oder ein Vorkommen von X.
 
-**\[3\]**
-: Das Konstrukt LIST_BEGIN\<X> steht für den Markup-Befehl **list_begin** mit **X** als Typ-Argument. Die Syntax:
+3. Das Konstrukt LIST\_BEGIN<X> steht für den Markup-Befehl **list\_begin** mit **X** als Typ-Argument.
 
+
+Die Syntax:
 
 ```
 manpage = defs
@@ -116,7 +113,7 @@ optd_list   = [ <WHITE> ] { OPT_DEF      paras }
 tkoptd_list = [ <WHITE> ] { TKOPTION_DEF paras }
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *doctools* als Kategorie an.
 
@@ -124,12 +121,16 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md
+[doctools_lang_cmdref]: doctools_lang_cmdref.md

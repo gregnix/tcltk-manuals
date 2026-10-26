@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::idx::export
+title: doctools::idx::export
 ManualSection: n
 Version: 0.2.2
 TclPart: tcllib
@@ -35,22 +36,22 @@ doctools::idx::export - Exporting keyword indices
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [doctools::idx::export]{.lit} [0.2.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::map]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::idx::structure]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [pluginmgr]{.lit} 
-[::doctools::idx::export]{.cmd} [objectName]{.arg} 
-[objectName]{.cmd} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [export]{.sub} [serial]{.lit} [serial]{.arg} [format]{.optarg} 
-[objectName]{.ins} [export]{.sub} [object]{.lit} [object]{.arg} [format]{.optarg} 
-[objectName]{.ins} [config]{.sub} [names]{.lit} 
-[objectName]{.ins} [config]{.sub} [get]{.lit} 
-[objectName]{.ins} [config]{.sub} [set]{.lit} [name]{.arg} [value]{.optarg} 
-[objectName]{.ins} [config]{.sub} [unset]{.lit} [pattern...]{.arg} 
-[export]{.cmd} [serial]{.arg} [configuration]{.arg} 
+[package]{.cmd} [require]{.sub} [doctools::idx::export]{.lit} [0.2.2]{.optlit}
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::map]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::idx::structure]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [pluginmgr]{.lit}
+[::doctools::idx::export]{.cmd} [objectName]{.arg}
+[objectName]{.cmd} [method]{.lit} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [export]{.sub} [serial]{.lit} [serial]{.arg} [format]{.optarg}
+[objectName]{.ins} [export]{.sub} [object]{.lit} [object]{.arg} [format]{.optarg}
+[objectName]{.ins} [config]{.sub} [names]{.lit}
+[objectName]{.ins} [config]{.sub} [get]{.lit}
+[objectName]{.ins} [config]{.sub} [set]{.lit} [name]{.arg} [value]{.optarg}
+[objectName]{.ins} [config]{.sub} [unset]{.lit} [pattern...]{.arg}
+[export]{.cmd} [serial]{.arg} [configuration]{.arg}
 :::
 
 # Description
@@ -59,110 +60,99 @@ This package provides a class to manage the plugins for the export of keyword in
 
 This is one of the three public pillars the management of keyword indices resides on. The other two pillars are
 
-**\[1\]**
-: *Importing keyword indices*, and
+1. *Importing keyword indices*, and
 
-**\[2\]**
-: *Holding keyword indices* For information about the **Concepts** of keyword indices, and their parts, see the same-named section. For information about the data structure which is the major input to the manager objects provided by this package see the section **Keyword index serialization format**. The plugin system of our class is based on the package **pluginmgr**, and configured to look for plugins using
-
-**\[1\]**
-: the environment variable **DOCTOOLS_IDX_EXPORT_PLUGINS**,
-
-**\[2\]**
-: the environment variable **DOCTOOLS_IDX_PLUGINS**,
-
-**\[3\]**
-: the environment variable **DOCTOOLS_PLUGINS**,
-
-**\[4\]**
-: the path "*~/.doctools/idx/export/plugin*"
-
-**\[5\]**
-: the path "*~/.doctools/idx/plugin*"
-
-**\[6\]**
-: the path "*~/.doctools/plugin*"
-
-**\[7\]**
-: the path "*~/.doctools/idx/export/plugins*"
-
-**\[8\]**
-: the path "*~/.doctools/idx/plugins*"
-
-**\[9\]**
-: the path "*~/.doctools/plugins*"
-
-**\[10\]**
-: the registry entry "HKEY_CURRENT_USER\\SOFTWARE\\DOCTOOLS\\IDX\\EXPORT\\PLUGINS"
-
-**\[11\]**
-: the registry entry "HKEY_CURRENT_USER\\SOFTWARE\\DOCTOOLS\\IDX\\PLUGINS"
-
-**\[12\]**
-: the registry entry "HKEY_CURRENT_USER\\SOFTWARE\\DOCTOOLS\\PLUGINS" The last three are used only when the package is run on a machine using Windows(tm) operating system. The whole system is delivered with six predefined export plugins, namely
+2. *Holding keyword indices*
 
 
-**docidx**
+For information about the [Concepts] of keyword indices, and their parts, see the same-named section. For information about the data structure which is the major input to the manager objects provided by this package see the section [Keyword index serialization format].
+
+The plugin system of our class is based on the package **pluginmgr**, and configured to look for plugins using
+
+1. the environment variable **DOCTOOLS\_IDX\_EXPORT\_PLUGINS**,
+
+2. the environment variable **DOCTOOLS\_IDX\_PLUGINS**,
+
+3. the environment variable **DOCTOOLS\_PLUGINS**,
+
+4. the path "*~/.doctools/idx/export/plugin*"
+
+5. the path "*~/.doctools/idx/plugin*"
+
+6. the path "*~/.doctools/plugin*"
+
+7. the path "*~/.doctools/idx/export/plugins*"
+
+8. the path "*~/.doctools/idx/plugins*"
+
+9. the path "*~/.doctools/plugins*"
+
+10. the registry entry "HKEY\_CURRENT\_USER\\SOFTWARE\\DOCTOOLS\\IDX\\EXPORT\\PLUGINS"
+
+11. the registry entry "HKEY\_CURRENT\_USER\\SOFTWARE\\DOCTOOLS\\IDX\\PLUGINS"
+
+12. the registry entry "HKEY\_CURRENT\_USER\\SOFTWARE\\DOCTOOLS\\PLUGINS"
+
+
+The last three are used only when the package is run on a machine using Windows(tm) operating system.
+
+The whole system is delivered with six predefined export plugins, namely
+
+docidx
 : See *docidx export plugin* for details.
 
-**html**
+html
 : See *html export plugin* for details.
 
-**json**
+json
 : See *json export plugin* for details.
 
-**nroff**
+nroff
 : See *nroff export plugin* for details.
 
-**text**
+text
 : See *text export plugin* for details.
 
-**wiki**
-: See *wiki export plugin* for details. Readers wishing to write their own export plugin for some format, i.e. *plugin writer*s reading and understanding the section containing the **Export plugin API v2 reference** is an absolute necessity, as it specifies the interaction between this package and its plugins in detail.
+wiki
+: See *wiki export plugin* for details.
 
+
+Readers wishing to write their own export plugin for some format, i.e. *plugin writer*s reading and understanding the section containing the [Export plugin API v2 reference] is an absolute necessity, as it specifies the interaction between this package and its plugins in detail.
 
 # Concepts
 
-**\[1\]**
-: A *keyword index* consists of a (possibly empty) set of *keywords*.
+1. A *keyword index* consists of a (possibly empty) set of *keywords*.
 
-**\[2\]**
-: Each keyword in the set is identified by its name.
+2. Each keyword in the set is identified by its name.
 
-**\[3\]**
-: Each keyword has a (possibly empty) set of *references*.
+3. Each keyword has a (possibly empty) set of *references*.
 
-**\[4\]**
-: A reference can be associated with more than one keyword.
+4. A reference can be associated with more than one keyword.
 
-**\[5\]**
-: A reference not associated with at least one keyword is not possible however.
+5. A reference not associated with at least one keyword is not possible however.
 
-**\[6\]**
-: Each reference is identified by its target, specified as either an url or symbolic filename, depending on the type of reference (**url**, or **manpage**).
+6. Each reference is identified by its target, specified as either an url or symbolic filename, depending on the type of reference (**url**, or **manpage**).
 
-**\[7\]**
-: The type of a reference (url, or manpage) depends only on the reference itself, and not the keywords it is associated with.
+7. The type of a reference (url, or manpage) depends only on the reference itself, and not the keywords it is associated with.
 
-**\[8\]**
-: In addition to a type each reference has a descriptive label as well. This label depends only on the reference itself, and not the keywords it is associated with. A few notes
-
-**\[1\]**
-: Manpage references are intended to be used for references to the documents the index is made for. Their target is a symbolic file name identifying the document, and export plugins may replace symbolic with actual file names, if specified.
-
-**\[2\]**
-: Url references are intended on the othre hand are inteded to be used for links to anything else, like websites. Their target is an url.
-
-**\[3\]**
-: While url and manpage references share a namespace for their identifiers, this should be no problem, given that manpage identifiers are symbolic filenames and as such they should never look like urls, the identifiers for url references.
+8. In addition to a type each reference has a descriptive label as well. This label depends only on the reference itself, and not the keywords it is associated with.
 
 
-# Api
+A few notes
+
+1. Manpage references are intended to be used for references to the documents the index is made for. Their target is a symbolic file name identifying the document, and export plugins may replace symbolic with actual file names, if specified.
+
+2. Url references are intended on the othre hand are inteded to be used for links to anything else, like websites. Their target is an url.
+
+3. While url and manpage references share a namespace for their identifiers, this should be no problem, given that manpage identifiers are symbolic filenames and as such they should never look like urls, the identifiers for url references.
+
+
+# API
 
 ## Package commands
 
 **::doctools::idx::export** *objectName*
-: This command creates a new export manager object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
+: This command creates a new export manager object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
 
 
 ## Object command
@@ -170,7 +160,7 @@ This is one of the three public pillars the management of keyword indices reside
 All objects created by the **::doctools::idx::export** command have the following general form:
 
 **objectName** **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -179,7 +169,13 @@ All objects created by the **::doctools::idx::export** command have the followin
 : This method destroys the object it is invoked for.
 
 *objectName* **export serial** *serial* ?*format*?
-: This method takes the canonical serialization of a keyword index stored in *serial* and converts it to the specified *format*, using the export plugin for the format. An error is thrown if no plugin could be found for the format. The string generated by the conversion process is returned as the result of this method. If no format is specified the method defaults to **docidx**. The specification of what a *canonical* serialization is can be found in the section **Keyword index serialization format**. The plugin has to conform to the interface specified in section **Export plugin API v2 reference**.
+: This method takes the canonical serialization of a keyword index stored in *serial* and converts it to the specified *format*, using the export plugin for the format. An error is thrown if no plugin could be found for the format. The string generated by the conversion process is returned as the result of this method.
+
+    If no format is specified the method defaults to **docidx**.
+
+    The specification of what a *canonical* serialization is can be found in the section [Keyword index serialization format].
+
+    The plugin has to conform to the interface specified in section [Export plugin API v2 reference].
 
 *objectName* **export object** *object* ?*format*?
 : This method is a convenient wrapper around the **export serial** method described by the previous item. It expects that *object* is an object command supporting a **serialize** method returning the canonical serialization of a keyword index. It invokes that method, feeds the result into **export serial** and returns the resulting string as its own result.
@@ -191,57 +187,57 @@ All objects created by the **::doctools::idx::export** command have the followin
 : This method returns a dictionary containing the names and values of all configuration variables currently known to the object.
 
 *objectName* **config set** *name* ?*value*?
-: This method sets the configuration variable *name* to the specified *value* and returns the new value of the variable. If no value is specified it simply returns the current value, without changing it. Note that while the user can set the predefined configuration variables **user** and **format** doing so will have no effect, these values will be internally overridden when invoking an import plugin.
+: This method sets the configuration variable *name* to the specified *value* and returns the new value of the variable.
+
+    If no value is specified it simply returns the current value, without changing it.
+
+    Note that while the user can set the predefined configuration variables **user** and **format** doing so will have no effect, these values will be internally overridden when invoking an import plugin.
 
 *objectName* **config unset** *pattern*...
 : This method unsets all configuration variables matching the specified glob *pattern*s. If no pattern is specified it will unset all currently defined configuration variables.
 
 
-# Export plugin api v2 reference
+# Export plugin API v2 reference
 
-Plugins are what this package uses to manage the support for any output format beyond the **Keyword index serialization format**. Here we specify the API the objects created by this package use to interact with their plugins.
+Plugins are what this package uses to manage the support for any output format beyond the [Keyword index serialization format]. Here we specify the API the objects created by this package use to interact with their plugins.
 
 A plugin for this package has to follow the rules listed below:
 
-**\[1\]**
-: A plugin is a package.
+1. A plugin is a package.
 
-**\[2\]**
-: The name of a plugin package has the form doctools::idx::export::**FOO**, where **FOO** is the name of the format the plugin will generate output for. This name is also the argument to provide to the various **export** methods of export manager objects to get a string encoding a keyword index in that format.
+2. The name of a plugin package has the form doctools::idx::export::**FOO**, where **FOO** is the name of the format the plugin will generate output for. This name is also the argument to provide to the various **export** methods of export manager objects to get a string encoding a keyword index in that format.
 
-**\[3\]**
-: The plugin can expect that the package **doctools::idx::export::plugin** is present, as indicator that it was invoked from a genuine plugin manager.
+3. The plugin can expect that the package **doctools::idx::export::plugin** is present, as indicator that it was invoked from a genuine plugin manager.
 
-**\[4\]**
-: A plugin has to provide one command, with the signature shown below.
+4. A plugin has to provide one command, with the signature shown below.
 
+    **export** *serial* *configuration*
+    : Whenever an export manager of **doctools::idx** has to generate output for an index it will invoke this command.
 
-**export** *serial* *configuration*
-: Whenever an export manager of **doctools::idx** has to generate output for an index it will invoke this command.
+        string *serial*
+        : This argument will contain the *canonical* serialization of the index for which to generate the output. The specification of what a *canonical* serialization is can be found in the section [Keyword index serialization format].
 
+        dictionary *configuration*
+        : This argument will contain the current configuration to apply to the generation, as a dictionary mapping from variable names to values.
 
-string *serial*
-: This argument will contain the *canonical* serialization of the index for which to generate the output. The specification of what a *canonical* serialization is can be found in the section **Keyword index serialization format**.
+            The following configuration variables have a predefined meaning all plugins have to obey, although they can ignore this information at their discretion. Any other other configuration variables recognized by a plugin will be described in the manpage for that plugin.
 
-dictionary *configuration*
-: This argument will contain the current configuration to apply to the generation, as a dictionary mapping from variable names to values. The following configuration variables have a predefined meaning all plugins have to obey, although they can ignore this information at their discretion. Any other other configuration variables recognized by a plugin will be described in the manpage for that plugin.
+            user
+            : This variable is expected to contain the name of the user owning the process invoking the plugin.
 
+            format
+            : This variable is expected to contain the name of the format whose plugin is invoked.
 
-**user**
-: This variable is expected to contain the name of the user owning the process invoking the plugin.
+            file
+            : This variable, if defined by the user of the index object is expected to contain the name of the input file for which the plugin is generating its output for.
 
-**format**
-: This variable is expected to contain the name of the format whose plugin is invoked.
-
-**file**
-: This variable, if defined by the user of the index object is expected to contain the name of the input file for which the plugin is generating its output for.
-
-**map**
-: This variable, if defined by the user of the index object is expected to contain a dictionary mapping from symbolic file names used in the references of type **manpage** to actual paths (or urls). A plugin has to be able to handle the possibility that a symbolic name is without entry in this mapping.
+            map
+            : This variable, if defined by the user of the index object is expected to contain a dictionary mapping from symbolic file names used in the references of type **manpage** to actual paths (or urls). A plugin has to be able to handle the possibility that a symbolic name is without entry in this mapping.
 
 
-**\[5\]**
-: A single usage cycle of a plugin consists of the invokations of the command **export**. This call has to leave the plugin in a state where another usage cycle can be run without problems.
+
+
+5. A single usage cycle of a plugin consists of the invokations of the command **export**. This call has to leave the plugin in a state where another usage cycle can be run without problems.
 
 
 # Keyword index serialization format
@@ -250,53 +246,47 @@ Here we specify the format used by the doctools v2 packages to serialize keyword
 
 We distinguish between *regular* and *canonical* serializations. While a keyword index may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. An index serialization is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **doctools::idx**, and its value. This value holds the contents of the index.
+
+    3. The contents of the index are a Tcl dictionary holding the title of the index, a label, and the keywords and references. The relevant keys and their values are
+
+        **title**
+        : The value is a string containing the title of the index.
+
+        **label**
+        : The value is a string containing a label for the index.
+
+        **keywords**
+        : The value is a Tcl dictionary, using the keywords known to the index as keys. The associated values are lists containing the identifiers of the references associated with that particular keyword.
+
+            Any reference identifier used in these lists has to exist as a key in the **references** dictionary, see the next item for its definition.
+
+        **references**
+        : The value is a Tcl dictionary, using the identifiers for the references known to the index as keys. The associated values are 2-element lists containing the type and label of the reference, in this order.
+
+            Any key here has to be associated with at least one keyword, i.e. occur in at least one of the reference lists which are the values in the **keywords** dictionary, see previous item for its definition.
 
 
-**\[1\]**
-: An index serialization is a nested Tcl dictionary.
+    4. The *type* of a reference can be one of two values,
 
-**\[2\]**
-: This dictionary holds a single key, **doctools::idx**, and its value. This value holds the contents of the index.
+        **manpage**
+        : The identifier of the reference is interpreted as symbolic file name, referring to one of the documents the index was made for.
 
-**\[3\]**
-: The contents of the index are a Tcl dictionary holding the title of the index, a label, and the keywords and references. The relevant keys and their values are
-
-
-**title**
-: The value is a string containing the title of the index.
-
-**label**
-: The value is a string containing a label for the index.
-
-**keywords**
-: The value is a Tcl dictionary, using the keywords known to the index as keys. The associated values are lists containing the identifiers of the references associated with that particular keyword. Any reference identifier used in these lists has to exist as a key in the **references** dictionary, see the next item for its definition.
-
-**references**
-: The value is a Tcl dictionary, using the identifiers for the references known to the index as keys. The associated values are 2-element lists containing the type and label of the reference, in this order. Any key here has to be associated with at least one keyword, i.e. occur in at least one of the reference lists which are the values in the **keywords** dictionary, see previous item for its definition.
+        **url**
+        : The identifier of the reference is interpreted as an url, referring to some external location, like a website, etc.
 
 
-**\[4\]**
-: The *type* of a reference can be one of two values,
 
-
-**manpage**
-: The identifier of the reference is interpreted as symbolic file name, referring to one of the documents the index was made for.
-
-**url**
-: The identifier of the reference is interpreted as an url, referring to some external location, like a website, etc.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a keyword index has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of the keyword index.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
+    2. The references listed for each keyword of the index, if any, are listed in ascending dictionary order of their *labels*, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[2\]**
-: The references listed for each keyword of the index, if any, are listed in ascending dictionary order of their *labels*, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
 
 # Bugs, ideas, feedback

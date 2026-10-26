@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::toc::export::nroff
+title: doctools::toc::export::nroff
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -22,11 +23,11 @@ doctools::toc::export::nroff - nroff export plugin
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::toc::export::nroff]{.lit} [0.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [doctools::text]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::nroff::man_macros]{.lit} 
-[export]{.cmd} [serial]{.arg} [configuration]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::toc::export::nroff]{.lit} [0.3]{.optlit}
+[package]{.cmd} [require]{.sub} [doctools::text]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::nroff::man\_macros]{.lit}
+[export]{.cmd} [serial]{.arg} [configuration]{.arg}
 :::
 
 # Description
@@ -37,12 +38,12 @@ This is an internal package of doctools, for use by the higher level management 
 
 Using it from a regular interpreter is possible, however only with contortions, and is not recommended. The proper way to use this functionality is through the package **doctools::toc::export** and the export manager objects it provides.
 
-# Api
+# API
 
 The API provided by this package satisfies the specification of the doctoc export plugin API version 2.
 
 **export** *serial* *configuration*
-: This command takes the canonical serialization of a table of contents, as specified in section **ToC serialization format**, and contained in *serial*, the *configuration*, a dictionary, and generates nroff markup encoding the table. The created string is then returned as the result of the command.
+: This command takes the canonical serialization of a table of contents, as specified in section [Toc serialization format], and contained in *serial*, the *configuration*, a dictionary, and generates nroff markup encoding the table. The created string is then returned as the result of the command.
 
 
 # Configuration
@@ -56,8 +57,12 @@ string *file*
 : This standard configuration variable contains the name of the file the table of contents came from. This variable may not be set or contain the empty string. The plugin puts this information, if defined, i.e. set and not the empty string, into the provenance comment at the beginning of the generated document.
 
 boolean *inline*
-: If this flag is set (default) the plugin will place the definitions of the man macro set directly into the output. If this flag is not set, the plugin will place a reference to the definitions of the man macro set into the output, but not the macro definitions themselves. *Note* that this plugin ignores the standard configuration variables **format**, and **map**, and their values.
+: If this flag is set (default) the plugin will place the definitions of the man macro set directly into the output.
 
+    If this flag is not set, the plugin will place a reference to the definitions of the man macro set into the output, but not the macro definitions themselves.
+
+
+*Note* that this plugin ignores the standard configuration variables **format**, and **map**, and their values.
 
 # Toc serialization format
 
@@ -65,64 +70,60 @@ Here we specify the format used by the doctools v2 packages to serialize tables 
 
 We distinguish between *regular* and *canonical* serializations. While a table of contents may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. The serialization of any table of contents is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+
+    3. The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+
+        **title**
+        : The value is a string containing the title of the table of contents.
+
+        **label**
+        : The value is a string containing a label for the table of contents.
+
+        **items**
+        : The value is a Tcl list holding the elements of the table, in the order they are to be shown.
+
+            Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description.
+
+            The two legal item types and their descriptions are
+
+            **reference**
+            : This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
+
+                **id**
+                : The value is a string containing the id of the document associated with the entry.
+
+                **label**
+                : The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
+
+                **desc**
+                : The value is a string containing a longer description for this entry.
 
 
-**\[1\]**
-: The serialization of any table of contents is a nested Tcl dictionary.
+            **division**
+            : This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
 
-**\[2\]**
-: This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+                **id**
+                : The value is a string containing the id of the document associated with the whole group. This key is optional.
 
-**\[3\]**
-: The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+                **label**
+                : The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
 
-
-**title**
-: The value is a string containing the title of the table of contents.
-
-**label**
-: The value is a string containing a label for the table of contents.
-
-**items**
-: The value is a Tcl list holding the elements of the table, in the order they are to be shown. Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description. The two legal item types and their descriptions are
+                **items**
+                : The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
 
 
-**reference**
-: This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
 
 
-**id**
-: The value is a string containing the id of the document associated with the entry.
 
-**label**
-: The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**desc**
-: The value is a string containing a longer description for this entry.
-
-
-**division**
-: This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
-
-
-**id**
-: The value is a string containing the id of the document associated with the whole group. This key is optional.
-
-**label**
-: The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**items**
-: The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a table of contents has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this table of contents.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
 
 # Bugs, ideas, feedback

@@ -1,5 +1,6 @@
 ---
 CommandName: struct::set
+title: struct::set
 ManualSection: n
 Version: 2.2.5
 TclPart: tcllib
@@ -26,22 +27,22 @@ struct::set - Commands for manipulating sets
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::set]{.lit} [2.2.4]{.optlit} 
-[::struct::set]{.cmd} [empty]{.sub} [set]{.arg} 
-[::struct::set]{.cmd} [size]{.sub} [set]{.arg} 
-[::struct::set]{.cmd} [contains]{.sub} [set]{.arg} [value]{.arg} 
-[::struct::set]{.cmd} [union]{.sub} [set1]{.optdot} 
-[::struct::set]{.cmd} [intersect]{.sub} [set1]{.optdot} 
-[::struct::set]{.cmd} [difference]{.sub} [set1]{.arg} [set2]{.arg} 
-[::struct::set]{.cmd} [symdiff]{.sub} [set1]{.arg} [set2]{.arg} 
-[::struct::set]{.cmd} [intersect3]{.sub} [set1]{.arg} [set2]{.arg} 
-[::struct::set]{.cmd} [equal]{.sub} [set1]{.arg} [set2]{.arg} 
-[::struct::set]{.cmd} [include]{.sub} [setVar]{.arg} [value]{.arg} 
-[::struct::set]{.cmd} [exclude]{.sub} [setVar]{.arg} [value]{.arg} 
-[::struct::set]{.cmd} [add]{.sub} [setVar]{.arg} [set]{.arg} 
-[::struct::set]{.cmd} [subtract]{.sub} [setVar]{.arg} [set]{.arg} 
-[::struct::set]{.cmd} [subsetof]{.sub} [A]{.arg} [B]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [struct::set]{.lit} [2.2.4]{.optlit}
+[::struct::set]{.cmd} [empty]{.lit} [set]{.arg}
+[::struct::set]{.cmd} [size]{.lit} [set]{.arg}
+[::struct::set]{.cmd} [contains]{.lit} [set]{.arg} [value]{.arg}
+[::struct::set]{.cmd} [union]{.lit} [set1...]{.optarg}
+[::struct::set]{.cmd} [intersect]{.lit} [set1...]{.optarg}
+[::struct::set]{.cmd} [difference]{.lit} [set1]{.arg} [set2]{.arg}
+[::struct::set]{.cmd} [symdiff]{.lit} [set1]{.arg} [set2]{.arg}
+[::struct::set]{.cmd} [intersect3]{.lit} [set1]{.arg} [set2]{.arg}
+[::struct::set]{.cmd} [equal]{.lit} [set1]{.arg} [set2]{.arg}
+[::struct::set]{.cmd} [include]{.lit} [setVar]{.arg} [value]{.arg}
+[::struct::set]{.cmd} [exclude]{.lit} [setVar]{.arg} [value]{.arg}
+[::struct::set]{.cmd} [add]{.lit} [setVar]{.arg} [set]{.arg}
+[::struct::set]{.cmd} [subtract]{.lit} [setVar]{.arg} [set]{.arg}
+[::struct::set]{.cmd} [subsetof]{.lit} [A]{.arg} [B]{.arg}
 :::
 
 # Description
@@ -80,7 +81,9 @@ In the following, *set*, *set1*, and *set2* are **set** values and *setVar* is a
 : Returns a **set** consisting of the symmetric difference between *set1* and *set2*, i.e., *set1* Δ *set2*. The resulting **set** will contain every value that is in *set1* *or* is in *set2*, but *not* in both.
 
 **::struct::set** **intersect3** *set1* *set2*
-: Returns a combination of the methods **intersect** and **difference**. The return value is a three-element list containing "*set1* ∩ *set2*", "*set1* - *set2*", and "*set2* - *set1*", in this order. In other words, the intersection of *set1* and *set2*, and their differences.
+: Returns a combination of the methods **intersect** and **difference**.
+
+    The return value is a three-element list containing "*set1* ∩ *set2*", "*set1* - *set2*", and "*set2* - *set1*", in this order. In other words, the intersection of *set1* and *set2*, and their differences.
 
 **::struct::set** **equal** *set1* *set2*
 : Returns **1** (true) if the two **set**s contain exactly the same values; otherwise returns **0** (false).
@@ -92,7 +95,9 @@ In the following, *set*, *set1*, and *set2* are **set** values and *setVar* is a
 : Removes element *value* from the **set** called *setVar*. If *value* isn’t in *setVar*, the command harmlessly does nothing. Returns nothing.
 
 **::struct::set** **add** *setVar* *set*
-: Adds every element from the **set** value *set* to the **set** called *setVar*, excluding duplicates. The **set** *setVar* is created if it doesn’t exist. Returns nothing. Use **::struct::set add** *setVar {}* to create a new empty set. Use **::struct::set include** to add individual values.
+: Adds every element from the **set** value *set* to the **set** called *setVar*, excluding duplicates. The **set** *setVar* is created if it doesn’t exist. Returns nothing.
+
+    Use **::struct::set add** *setVar {}* to create a new empty set. Use **::struct::set include** to add individual values.
 
 **::struct::set** **subtract** *setVar* *set*
 : Removes every element from the **set** value *set* from the **set** called *setVar*. Returns nothing. Use **::struct::set exclude** to remove individual values.
@@ -103,7 +108,7 @@ In the following, *set*, *set1*, and *set2* are **set** values and *setVar* is a
 
 # Examples
 
-Creating and populating a new **set** from scratch. The **earth_metals** **set** will be created on the first iteration of the loop and added to on subsequent iterations.
+Creating and populating a new **set** from scratch. The **earth\_metals** **set** will be created on the first iteration of the loop and added to on subsequent iterations.
 
 ```
 foreach element {Be Mg Ca Sr Ba Ra} {

@@ -1,5 +1,6 @@
 ---
 CommandName: nns
+title: nns
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,10 +23,10 @@ nns - Name service facility, Commandline Client Application
 # Synopsis
 
 ::: {.synopsis} :::
-[nns]{.cmd} [bind]{.sub} [-host host]{.optarg} [-port port]{.optarg} [name]{.arg} [data]{.arg} 
-[nns]{.cmd} [search]{.sub} [-host host]{.optarg} [-port port]{.optarg} [-continuous]{.optlit} [pattern]{.optarg} 
-[nns]{.cmd} [ident]{.sub} [-host host]{.optarg} [-port port]{.optarg} 
-[nns]{.cmd} [who]{.sub} 
+[nns]{.cmd} [bind]{.lit} [[-host]{.lit} [host]{.arg}]{.optarg} [[-port]{.lit} [port]{.arg}]{.optarg} [name]{.arg} [data]{.arg}
+[nns]{.cmd} [search]{.lit} [[-host]{.lit} [host]{.arg}]{.optarg} [[-port]{.lit} [port]{.arg}]{.optarg} [-continuous]{.optlit} [pattern]{.optarg}
+[nns]{.cmd} [ident]{.lit} [[-host]{.lit} [host]{.arg}]{.optarg} [[-port]{.lit} [port]{.arg}]{.optarg}
+[nns]{.cmd} [who]{.lit}
 :::
 
 # Description
@@ -40,23 +41,31 @@ This name service facility has nothing to do with the Internet's *Domain Name Sy
 
 **nns** was written with the following two main use cases in mind.
 
-**\[1\]**
-: Registration of a name/data pair in the name service.
+1. Registration of a name/data pair in the name service.
 
-**\[2\]**
-: Searching the name service for entries matching a glob pattern. Beyond the above we also want to be able to identify the client, and get information about the name service.
+2. Searching the name service for entries matching a glob pattern.
 
+
+Beyond the above we also want to be able to identify the client, and get information about the name service.
 
 ## Command line
 
 **nns** **bind** ?**-host** *host*? ?**-port** *port*? *name* *data*
-: This form registers the *name*/*data* pair in the specified name service. In this form the command will *not* exit to keep the registration alive. The user has to kill it explicitly, either by sending a signal, or through the job-control facilities of the shell in use. It will especially survive the loss of the connection to the name service and reestablish the *name*/*data* pair when the connection is restored. The options to specify the name service will be explained later, in section **OPTIONS**.
+: This form registers the *name*/*data* pair in the specified name service. In this form the command will *not* exit to keep the registration alive. The user has to kill it explicitly, either by sending a signal, or through the job-control facilities of the shell in use. It will especially survive the loss of the connection to the name service and reestablish the *name*/*data* pair when the connection is restored.
+
+    The options to specify the name service will be explained later, in section [Options].
 
 **nns** **search** ?**-host** *host*? ?**-port** *port*? ?**-continuous**? ?*pattern*?
-: This form searches the specified name service for entries matching the glob-*pattern* and prints them to stdout, with each entry on its own line. If no pattern is specified it defaults to **\***, matching everything. The options to specify the name service will be explained later, in section **OPTIONS**. If the option **-continuous** is specified the client will not exit after performing the search, but start to continuously monitor the service for changes to the set of matching entries, appropriately updating the display as changes arrive. In that form it will especially also survive the loss of the connection to the name service and reestablish the search when the connection is restored.
+: This form searches the specified name service for entries matching the glob-*pattern* and prints them to stdout, with each entry on its own line. If no pattern is specified it defaults to **\***, matching everything.
+
+    The options to specify the name service will be explained later, in section [Options].
+
+    If the option **-continuous** is specified the client will not exit after performing the search, but start to continuously monitor the service for changes to the set of matching entries, appropriately updating the display as changes arrive. In that form it will especially also survive the loss of the connection to the name service and reestablish the search when the connection is restored.
 
 **nns** **ident** ?**-host** *host*? ?**-port** *port*?
-: This form asks the specified name service for the version and features of the name service protocol it supports and prints the results to stdout. The options to specify the name service will be explained later, in section **OPTIONS**.
+: This form asks the specified name service for the version and features of the name service protocol it supports and prints the results to stdout.
+
+    The options to specify the name service will be explained later, in section [Options].
 
 **nns** **who**
 : This form prints name, version, and protocol version of the application to stdout.

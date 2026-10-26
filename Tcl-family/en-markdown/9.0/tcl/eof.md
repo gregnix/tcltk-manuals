@@ -1,5 +1,6 @@
 ---
 CommandName: eof
+title: eof
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -18,9 +19,12 @@ eof - Check for end of file condition on channel
 # Synopsis
 
 ::: {.synopsis} :::
-[eof]{.cmd} [channel]{.arg} 
+[eof]{.cmd} [channel]{.arg}
 :::
 
 # Description
 
-The **eof** command has been superceded by the **chan eof** command which supports the same syntax and options.
+The **eof** command has been superceded by the [chan eof][chan] command which supports the same syntax and options.
+
+
+[chan]: chan.md

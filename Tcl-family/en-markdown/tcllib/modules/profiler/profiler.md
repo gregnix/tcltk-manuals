@@ -1,5 +1,6 @@
 ---
 CommandName: profiler
+title: profiler
 ManualSection: n
 Version: 0.7
 TclPart: tcllib
@@ -18,17 +19,17 @@ profiler - Tcl source code profiler
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [profiler]{.lit} [0.7]{.optlit} 
-[::profiler::init]{.cmd} 
-[::profiler::dump]{.cmd} [pattern]{.arg} 
-[::profiler::print]{.cmd} [pattern]{.optarg} 
-[::profiler::reset]{.cmd} [pattern]{.optarg} 
-[::profiler::suspend]{.cmd} [pattern]{.optarg} 
-[::profiler::resume]{.cmd} [pattern]{.optarg} 
-[::profiler::new-disabled]{.cmd} 
-[::profiler::new-enabled]{.cmd} 
-[::profiler::sortFunctions]{.cmd} [key]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [profiler]{.lit} [0.7]{.optlit}
+[::profiler::init]{.cmd}
+[::profiler::dump]{.cmd} [pattern]{.arg}
+[::profiler::print]{.cmd} [pattern]{.optarg}
+[::profiler::reset]{.cmd} [pattern]{.optarg}
+[::profiler::suspend]{.cmd} [pattern]{.optarg}
+[::profiler::resume]{.cmd} [pattern]{.optarg}
+[::profiler::new-disabled]{.cmd}
+[::profiler::new-enabled]{.cmd}
+[::profiler::sortFunctions]{.cmd} [key]{.arg}
 :::
 
 # Description
@@ -43,27 +44,26 @@ The **profiler** package provides a simple Tcl source code profiler.  It is a fu
 **::profiler::dump** *pattern*
 : Dump profiling information for the all functions matching *pattern*.  If no pattern is specified, information for all functions will be returned.  The result is a list of key/value pairs that maps function names to information about that function.  The information about each function is in turn a list of key/value pairs. The keys used and their values are:
 
+    **totalCalls**
+    : The total number of times *functionName* was called.
 
-**totalCalls**
-: The total number of times *functionName* was called.
+    **callerDist**
+    : A list of key/value pairs mapping each calling function that called *functionName* to the number of times it called *functionName*.
 
-**callerDist**
-: A list of key/value pairs mapping each calling function that called *functionName* to the number of times it called *functionName*.
+    **compileTime**
+    : The runtime, in clock clicks, of *functionName* the first time that it was called.
 
-**compileTime**
-: The runtime, in clock clicks, of *functionName* the first time that it was called.
+    **totalRuntime**
+    : The sum of the runtimes of all calls of *functionName*.
 
-**totalRuntime**
-: The sum of the runtimes of all calls of *functionName*.
+    **averageRuntime**
+    : Average runtime of *functionName*.
 
-**averageRuntime**
-: Average runtime of *functionName*.
+    **descendantTime**
+    : Sum of the time spent in descendants of *functionName*.
 
-**descendantTime**
-: Sum of the time spent in descendants of *functionName*.
-
-**averageDescendantTime**
-: Average time spent in descendants of *functionName*.
+    **averageDescendantTime**
+    : Average time spent in descendants of *functionName*.
 
 
 **::profiler::print** ?*pattern*?

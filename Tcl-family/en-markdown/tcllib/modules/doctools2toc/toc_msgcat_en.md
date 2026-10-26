@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::msgcat::toc::en
+title: doctools::msgcat::toc::en
 ManualSection: n
 Version: 0.1
 TclPart: tcllib
@@ -26,9 +27,9 @@ doctools::msgcat::toc::en - Message catalog for the doctoc parser (EN)
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [msgcat]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::msgcat::toc::en]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [msgcat]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::msgcat::toc::en]{.lit} [0.1]{.optlit}
 :::
 
 # Description
@@ -37,17 +38,16 @@ The package **doctools::msgcat::toc::en** is a support module providing the EN (
 
 If you are such please go the documentation of either
 
-**\[1\]**
-: **doctools::doc**,
+1. **doctools::doc**,
 
-**\[2\]**
-: **doctools::toc**, or
+2. **doctools::toc**, or
 
-**\[3\]**
-: **doctools::idx** Within the system architecture this package resides under the package **doctools::msgcat** providing the general message catalog management within the system. *Note* that there is *no* explicit dependency between the manager and catalog packages. The catalog is a plugin which is selected and loaded dynamically.
+3. **doctools::idx**
 
 
-# Api
+Within the system architecture this package resides under the package **doctools::msgcat** providing the general message catalog management within the system. *Note* that there is *no* explicit dependency between the manager and catalog packages. The catalog is a plugin which is selected and loaded dynamically.
+
+# API
 
 This package has no exported API.
 

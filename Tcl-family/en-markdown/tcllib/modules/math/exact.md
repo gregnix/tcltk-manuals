@@ -1,12 +1,12 @@
 ---
 CommandName: math::exact
+title: math::exact
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
 TclDescription: Tcl Math Library
 Copyright:
  - Copyright (c) 2015 Kevin B. Kenny <kennykb@acm.org>
- - Redistribution permitted under the terms of the Open Publication License <http://www.opencontent.org/openpub/>
 ---
 
 # Name
@@ -16,14 +16,14 @@ math::exact - Exact Real Arithmetic
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [math::exact]{.lit} [1.0.2]{.lit} 
-[::math::exact::exactexpr]{.cmd} [expr]{.arg} 
-[number]{.ins} [ref]{.sub} 
-[number]{.ins} [unref]{.sub} 
-[number]{.ins} [asPrint]{.sub} [precision]{.arg} 
-[number]{.ins} [asFloat]{.sub} [precision]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [math::exact]{.lit} [1.0.2]{.lit}
+[::math::exact::exactexpr]{.cmd} [expr]{.arg}
+[number]{.ins} [ref]{.sub}
+[number]{.ins} [unref]{.sub}
+[number]{.ins} [asPrint]{.sub} [precision]{.arg}
+[number]{.ins} [asFloat]{.sub} [precision]{.arg}
 :::
 
 # Description
@@ -53,7 +53,7 @@ The following procedure is the primary entry into the **math::exact** package.
 # Parameters
 
 *expr*
-: Expression to evaluate. The syntax for expressions is the same as it is in Tcl, but the set of operations is smaller. See **Expressions** below for details.
+: Expression to evaluate. The syntax for expressions is the same as it is in Tcl, but the set of operations is smaller. See [Expressions] below for details.
 
 *number*
 : The object returned by an earlier invocation of **math::exact::exactexpr**
@@ -66,81 +66,74 @@ The following procedure is the primary entry into the **math::exact** package.
 
 The **math::exact::exactexpr** command accepts expressions in a subset of Tcl's syntax. The following components may be used in an expression.
 
-**•**
-: Decimal integers.
+- Decimal integers.
 
-**•**
-: Variable references with the dollar sign (**\$**). The value of the variable must be the result of another call to **math::exact::exactexpr**. The reference count of the value will be increased by one for each position at which it appears in the expression.
+- Variable references with the dollar sign (**$**). The value of the variable must be the result of another call to **math::exact::exactexpr**. The reference count of the value will be increased by one for each position at which it appears in the expression.
 
-**•**
-: The exponentiation operator (**\*\***).
+- The exponentiation operator (**\*\***).
 
-**•**
-: Unary plus (**+**) and minus (**-**) operators.
+- Unary plus (**+**) and minus (**-**) operators.
 
-**•**
-: Multiplication (**\***) and division (**/**) operators.
+- Multiplication (**\***) and division (**/**) operators.
 
-**•**
-: Parentheses used for grouping.
+- Parentheses used for grouping.
 
-**•**
-: Functions. See **Functions** below for the functions that are available.
+- Functions. See [Functions] below for the functions that are available.
 
 
 # Functions
 
 The following functions are available for use within exact real expressions.
 
-**acos(**_x_**)**
+**acos(***x***)**
 : The inverse cosine of *x*. The result is expressed in radians. The absolute value of *x* must be less than 1.
 
-**acosh(**_x_**)**
+**acosh(***x***)**
 : The inverse hyperbolic cosine of *x*. *x* must be greater than 1.
 
-**asin(**_x_**)**
+**asin(***x***)**
 : The inverse sine of *x*. The result is expressed in radians. The absolute value of *x* must be less than 1.
 
-**asinh(**_x_**)**
+**asinh(***x***)**
 : The inverse hyperbolic sine of *x*.
 
-**atan(**_x_**)**
+**atan(***x***)**
 : The inverse tangent of *x*. The result is expressed in radians.
 
-**atanh(**_x_**)**
+**atanh(***x***)**
 : The inverse hyperbolic tangent of *x*. The absolute value of *x* must be less than 1.
 
-**cos(**_x_**)**
+**cos(***x***)**
 : The cosine of *x*. *x* is expressed in radians.
 
-**cosh(**_x_**)**
+**cosh(***x***)**
 : The hyperbolic cosine of *x*.
 
 **e()**
 : The base of the natural logarithms = **2.71828...**
 
-**exp(**_x_**)**
+**exp(***x***)**
 : The exponential function of *x*.
 
-**log(**_x_**)**
+**log(***x***)**
 : The natural logarithm of *x*. *x* must be positive.
 
 **pi()**
 : The value of pi = **3.15159...**
 
-**sin(**_x_**)**
+**sin(***x***)**
 : The sine of *x*. *x* is expressed in radians.
 
-**sinh(**_x_**)**
+**sinh(***x***)**
 : The hyperbolic sine of *x*.
 
-**sqrt(**_x_**)**
+**sqrt(***x***)**
 : The square root of *x*. *x* must be positive.
 
-**tan(**_x_**)**
+**tan(***x***)**
 : The tangent of *x*. *x* is expressed in radians.
 
-**tanh(**_x_**)**
+**tanh(***x***)**
 : The hyperbolic tangent of *x*.
 
 

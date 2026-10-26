@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::labelframe
+title: ttk::labelframe
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -25,7 +26,7 @@ ttk::labelframe - Container widget with optional label
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::labelframe]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::labelframe]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -34,12 +35,9 @@ A **ttk::labelframe** widget is a container used to group other widgets together
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-padding** |
-| **-style** | **-takefocus** |  |
+**-class**, **-cursor**, **-padding**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -50,7 +48,7 @@ See the ttk_widget manual entry for details on the standard options.
 : Specifies where to place the label. Allowed values are (clockwise from the top upper left corner): **nw**, **n**, **ne**, **en**, **e**, **es**, **se**, **s**,**sw**, **ws**, **w** and **wn**. The default value is theme-dependent.
 
 **-labelwidget** (**labelWidget**/**LabelWidget**)
-: The name of a widget to use for the label. If set, overrides the **-text** option. The **-labelwidget** must be a child of the **labelframe** widget or one of the **labelframe**'s ancestors, and must belong to the same top-level widget as the **labelframe**.
+: The name of a widget to use for the label. If set, overrides the **-text** option. The **-labelwidget** must be a child of the [labelframe] widget or one of the [labelframe]'s ancestors, and must belong to the same top-level widget as the [labelframe].
 
 **-text** (**text**/**Text**)
 : Specifies the text of the label.
@@ -72,7 +70,7 @@ The class name for a **ttk::labelframe** is **TLabelframe**. The text label has 
 
 Dynamic states: **disabled**, **readonly**.
 
-**TLabelframe** styling options configurable with **ttk::style** are:
+**TLabelframe** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -90,7 +88,7 @@ Dynamic states: **disabled**, **readonly**.
 
 **-relief** *relief*
 
-**TLabelframe.Label** styling options configurable with **ttk::style** are:
+**TLabelframe.Label** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -100,4 +98,9 @@ Dynamic states: **disabled**, **readonly**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[labelframe]: labelframe.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

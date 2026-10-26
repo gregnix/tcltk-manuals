@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::zoom
+title: canvas::zoom
 ManualSection: n
 Version: 0.2.1
 TclPart: tklib
@@ -16,22 +17,24 @@ canvas::zoom - Zoom control for canvas::sqmap
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::zoom]{.lit} [0.2.1]{.optlit} 
-[::canvas::zoom]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.4]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [uevent::onidle]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::zoom]{.lit} [0.2.1]{.optlit}
+[::canvas::zoom]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
 
 This package provides a widget to enable the user of a map display to control the zoom level.
 
-# Api
+# API
 
 **::canvas::zoom** *pathName* ?options?
-: Creates the zoom control widget *pathName* and configures it. The methods and options supported by the new widget are described in the following sections. The result of the command is *pathName*.
+: Creates the zoom control widget *pathName* and configures it. The methods and options supported by the new widget are described in the following sections.
+
+    The result of the command is *pathName*.
 
 
 ## Options

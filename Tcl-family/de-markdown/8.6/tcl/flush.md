@@ -1,5 +1,6 @@
 ---
 CommandName: flush
+title: flush
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -21,25 +22,25 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 flush - Leert die gepufferte Ausgabe eines Kanals
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[flush]{.cmd} [channelId]{.arg} 
+[flush]{.cmd} [channelId]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Leert alle für *channelId* gepufferte Ausgabe.
 
-*channelId* muss eine Kennung für einen geöffneten Kanal sein, z. B. einen Tcl-Standardkanal (**stdout** oder **stderr**), den Rückgabewert von **open** oder **socket** oder das Ergebnis eines Kanalerzeugungsbefehls einer Tcl-Erweiterung. Der Kanal muss zum Schreiben geöffnet worden sein.
+*channelId* muss eine Kennung für einen geöffneten Kanal sein, z. B. einen Tcl-Standardkanal (**stdout** oder **stderr**), den Rückgabewert von [open] oder [socket] oder das Ergebnis eines Kanalerzeugungsbefehls einer Tcl-Erweiterung. Der Kanal muss zum Schreiben geöffnet worden sein.
 
 Ist der Kanal im blockierenden Modus, kehrt der Befehl erst zurück, wenn die gesamte gepufferte Ausgabe in den Kanal geschrieben wurde. Ist der Kanal im nicht-blockierenden Modus, kann der Befehl zurückkehren, bevor die gesamte gepufferte Ausgabe geleert ist; der Rest wird im Hintergrund geleert, sobald die zugrunde liegende Datei oder das Gerät Daten aufnehmen kann.
 
-# BEISPIELE
+# Beispiele
 
 Fordert den Benutzer auf, seinen Namen auf der Konsole einzugeben:
 
@@ -49,3 +50,7 @@ flush stdout
 gets stdin name
 puts "Hello there, $name!"
 ```
+
+
+[open]: open.md
+[socket]: socket.md

@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::combobox
+title: ttk::combobox
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -24,7 +25,7 @@ ttk::combobox - text field with popdown selection list
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::combobox]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::combobox]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -33,12 +34,9 @@ A **ttk::combobox** combines a text field with a pop-down list of values; the us
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-takefocus** |
-| **-style** |  |  |
+**-class**, **-cursor**, **-takefocus**, **-style**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -78,33 +76,35 @@ The following subcommands are possible for combobox widgets:
 : Returns the current value of the combobox.
 
 *pathName* **set** *value*
-: Sets the value of the combobox to *value*. The combobox widget also supports the following **ttk::entry** widget subcommands (see *ttk::entry(n)* for details):
+: Sets the value of the combobox to *value*.
 
 
-```
-bbox            delete          icursor
-index           insert          selection
-xview
-```
+The combobox widget also supports the following [ttk::entry][ttk_entry] widget subcommands (see *ttk::entry(n)* for details):
 
-The combobox widget also supports the following generic **ttk::widget** widget subcommands (see *ttk::widget(n)* for details):
+::: {.info DISPLAY="yes"}
+**bbox**	**delete**	**icursor**\
+**index**	**insert**	**selection**\
+**xview**
+:::
 
-```
-cget            configure       identify
-instate         state
-```
+The combobox widget also supports the following generic [ttk::widget][ttk_widget] widget subcommands (see *ttk::widget(n)* for details):
+
+::: {.info DISPLAY="yes"}
+**cget**	**configure**	**identify**\
+**instate**	**state**
+:::
 
 # Virtual events
 
-The combobox widget generates a **<\<ComboboxSelected>>** virtual event when the user selects an element from the list of values. If the selection action unposts the listbox, this event is delivered after the listbox is unposted.
+The combobox widget generates a **<<ComboboxSelected>>** virtual event when the user selects an element from the list of values. If the selection action unposts the listbox, this event is delivered after the listbox is unposted.
 
 # Styling options
 
-The class name for a **ttk::combobox** is **TCombobox**. The **ttk::combobox** uses the **entry** and **listbox** widgets internally. The listbox frame has a class name of **ComboboxPopdownFrame**.
+The class name for a **ttk::combobox** is **TCombobox**. The **ttk::combobox** uses the [entry] and [listbox] widgets internally. The listbox frame has a class name of **ComboboxPopdownFrame**.
 
 Dynamic states: **disabled**, **focus**, **pressed**, **readonly**.
 
-**TCombobox** styling options configurable with **ttk::style** are:
+**TCombobox** styling options configurable with [ttk::style][ttk_style] are:
 
 **-arrowcolor** *color*
 
@@ -121,8 +121,8 @@ Dynamic states: **disabled**, **focus**, **pressed**, **readonly**.
 **-foreground** *color*
 
 **-fieldbackground** *color*
+: Can only be changed when using non-native and non-graphical themes.
 
-Can only be changed when using non-native and non-graphical themes.
 
 **-insertcolor** *color*
 
@@ -135,14 +135,14 @@ Can only be changed when using non-native and non-graphical themes.
 **-postoffset** *padding*
 
 **-selectbackground** *color*
+: Text entry select background.
 
-Text entry select background.
 
 **-selectforeground** *color*
+: Text entry select foreground.
 
-Text entry select foreground.
 
-The **ttk::combobox** popdown listbox cannot be configured using **ttk::style** nor via the widget **configure** command.  The listbox can be configured using the option database.
+The **ttk::combobox** popdown listbox cannot be configured using [ttk::style][ttk_style] nor via the widget **configure** command.  The listbox can be configured using the option database.
 
 option add \*TCombobox\*Listbox.background *color*
 
@@ -161,7 +161,7 @@ set popdown [ttk::combobox::PopdownWindow .mycombobox]
 $popdown.f.l configure -font font
 ```
 
-**ComboboxPopdownFrame** styling options configurable with **ttk::style** are:
+**ComboboxPopdownFrame** styling options configurable with [ttk::style][ttk_style] are:
 
 **-borderwidth** *amount*
 
@@ -169,4 +169,11 @@ $popdown.f.l configure -font font
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[entry]: entry.md
+[listbox]: listbox.md
+[ttk_entry]: ttk_entry.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

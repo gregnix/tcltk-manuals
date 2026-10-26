@@ -1,5 +1,6 @@
 ---
 CommandName: cursor
+title: cursor
 ManualSection: n
 Version: 0.3.1
 TclPart: tklib
@@ -14,25 +15,25 @@ Copyright:
  - Copyright (c) Jeffrey Hobbs <jeff@hobbs.org>
 ---
 
-# NAME
+# Name
 
 cursor – Prozeduren für Tk-Cursor
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [cursor]{.lit} [0.3.1]{.optlit} 
-[::cursor::propagate]{.cmd} [widget]{.arg} [cursor]{.arg} 
-[::cursor::restore]{.cmd} [widget]{.arg} [cursor]{.optarg} 
-[::cursor::display]{.cmd} [parent]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [cursor]{.lit} [0.3.1]{.optlit}
+[::cursor::propagate]{.cmd} [widget]{.arg} [cursor]{.arg}
+[::cursor::restore]{.cmd} [widget]{.arg} [cursor]{.optarg}
+[::cursor::display]{.cmd} [parent]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **cursor** stellt Befehle zur Verwaltung von Tk-Cursorn bereit.
 
-# BEFEHLE
+# Befehle
 
 Folgende Befehle stehen zur Verfügung:
 
@@ -46,11 +47,11 @@ Folgende Befehle stehen zur Verfügung:
 : Es wird ein Dialogfeld mit einer listbox angezeigt, die alle Cursor-Namen enthält. Wenn Sie einen Cursor-Namen auswählen, wird dieser in diesem Dialogfeld angezeigt. Dies dient lediglich dazu, alle auf der Plattform verfügbaren Cursor anzuzeigen.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *cursor* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) Jeffrey Hobbs <jeff@hobbs.org>

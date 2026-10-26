@@ -1,5 +1,6 @@
 ---
 CommandName: fconfigure
+title: fconfigure
 ManualSection: n
 Version: 8.3
 TclPart: Tcl
@@ -10,19 +11,21 @@ Copyright:
  - Copyright (c) 1995-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 fconfigure - Legt Kanaloptionen fest und gibt sie zurück
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[fconfigure]{.cmd} [channel]{.arg} 
-[fconfigure]{.cmd} [channel]{.arg} [name]{.arg} 
-[fconfigure]{.cmd} [channel]{.arg} [name]{.arg} [value]{.arg} [name value]{.optdot} 
+[fconfigure]{.cmd} [channel]{.arg}
+[fconfigure]{.cmd} [channel]{.arg} [name]{.arg}
+[fconfigure]{.cmd} [channel]{.arg} [name]{.arg} [value]{.arg} [name value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **fconfigure** wurde durch den Befehl **chan configure** abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
+Der Befehl **fconfigure** wurde durch den Befehl [chan configure][chan] abgelöst, der dieselbe Syntax und dieselben Optionen unterstützt.
 
+
+[chan]: chan.md

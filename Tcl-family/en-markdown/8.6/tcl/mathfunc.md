@@ -1,5 +1,6 @@
 ---
 CommandName: mathfunc
+title: mathfunc
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -21,58 +22,58 @@ mathfunc - Mathematical functions for Tcl expressions
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[::tcl::mathfunc::abs]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::acos]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::asin]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::atan]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::atan2]{.cmd} [y]{.arg} [x]{.arg} 
-[::tcl::mathfunc::bool]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::ceil]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::cos]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::cosh]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::double]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::entier]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::exp]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::floor]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::fmod]{.cmd} [x]{.arg} [y]{.arg} 
-[::tcl::mathfunc::hypot]{.cmd} [x]{.arg} [y]{.arg} 
-[::tcl::mathfunc::int]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::isqrt]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::log]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::log10]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::max]{.cmd} [arg]{.arg} [arg]{.optdot} 
-[::tcl::mathfunc::min]{.cmd} [arg]{.arg} [arg]{.optdot} 
-[::tcl::mathfunc::pow]{.cmd} [x]{.arg} [y]{.arg} 
-[::tcl::mathfunc::rand]{.cmd} 
-[::tcl::mathfunc::round]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::sin]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::sinh]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::sqrt]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::srand]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::tan]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::tanh]{.cmd} [arg]{.arg} 
-[::tcl::mathfunc::wide]{.cmd} [arg]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[::tcl::mathfunc::abs]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::acos]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::asin]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::atan]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::atan2]{.cmd} [y]{.arg} [x]{.arg}
+[::tcl::mathfunc::bool]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::ceil]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::cos]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::cosh]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::double]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::entier]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::exp]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::floor]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::fmod]{.cmd} [x]{.arg} [y]{.arg}
+[::tcl::mathfunc::hypot]{.cmd} [x]{.arg} [y]{.arg}
+[::tcl::mathfunc::int]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::isqrt]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::log]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::log10]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::max]{.cmd} [arg]{.arg} [arg]{.optdot}
+[::tcl::mathfunc::min]{.cmd} [arg]{.arg} [arg]{.optdot}
+[::tcl::mathfunc::pow]{.cmd} [x]{.arg} [y]{.arg}
+[::tcl::mathfunc::rand]{.cmd}
+[::tcl::mathfunc::round]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::sin]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::sinh]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::sqrt]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::srand]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::tan]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::tanh]{.cmd} [arg]{.arg}
+[::tcl::mathfunc::wide]{.cmd} [arg]{.arg}
 :::
 
 # Description
 
-The **expr** command handles mathematical functions of the form **sin(\$x)** or **atan2(\$y,\$x)** by converting them to calls of the form **\[tcl::mathfunc::sin \[expr {\$x}\]\]** or **\[tcl::mathfunc::atan2 \[expr {\$y}\] \[expr {\$x}\]\]**. A number of math functions are available by default within the namespace **::tcl::mathfunc**; these functions are also available for code apart from **expr**, by invoking the given commands directly.
+The [expr] command handles mathematical functions of the form **sin($x)** or **atan2($y,$x)** by converting them to calls of the form **\[tcl::mathfunc::sin \[expr {$x}\]\]** or **\[tcl::mathfunc::atan2 \[expr {$y}\] \[expr {$x}\]\]**. A number of math functions are available by default within the namespace **::tcl::mathfunc**; these functions are also available for code apart from [expr], by invoking the given commands directly.
 
 Tcl supports the following mathematical functions in expressions, all of which work solely with floating-point numbers unless otherwise noted:
 
-```
-abs   acos  asin  atan
-atan2 bool  ceil  cos
-cosh  double entier exp
-floor fmod  hypot int
-isqrt log   log10 max
-min   pow   rand  round
-sin   sinh  sqrt  srand
-tan   tanh  wide
-```
+::: {.info DISPLAY="yes"}
+**abs**	**acos**	**asin**	**atan**\
+**atan2**	**bool**	**ceil**	**cos**\
+**cosh**	**double**	**entier**	**exp**\
+**floor**	**fmod**	**hypot**	**int**\
+**isqrt**	**log**	**log10**	**max**\
+**min**	**pow**	**rand**	**round**\
+**sin**	**sinh**	**sqrt**	**srand**\
+**tan**	**tanh**	**wide**
+:::
 
-In addition to these predefined functions, applications may define additional functions by using **proc** (or any other method, such as **interp alias** or **Tcl_CreateObjCommand**) to define new commands in the **tcl::mathfunc** namespace.  In addition, an obsolete interface named **Tcl_CreateMathFunc**() is available to extensions that are written in C. The latter interface is not recommended for new implementations.
+In addition to these predefined functions, applications may define additional functions by using [proc] (or any other method, such as [interp alias][interp] or [Tcl\_CreateObjCommand][CrtObjCmd]) to define new commands in the **tcl::mathfunc** namespace.  In addition, an obsolete interface named [Tcl\_CreateMathFunc][CrtMathFnc]() is available to extensions that are written in C. The latter interface is not recommended for new implementations.
 
 ## Detailed definitions
 
@@ -89,7 +90,7 @@ In addition to these predefined functions, applications may define additional fu
 : Returns the arc tangent of *arg*, in the range \[*-pi/2*,*pi/2*\] radians.
 
 **atan2** *y x*
-: Returns the arc tangent of *y*/*x*, in the range \[*-pi*,*pi*\] radians.  *x* and *y* cannot both be 0.  If *x* is greater than *0*, this is equivalent to "**atan** \[**expr** {*y*__/__*x*}\]".
+: Returns the arc tangent of *y*/*x*, in the range \[*-pi*,*pi*\] radians.  *x* and *y* cannot both be 0.  If *x* is greater than *0*, this is equivalent to "**atan** \[[expr] {*y***/***x*}\]".
 
 **bool** *arg*
 : Accepts any numeric value, or any string acceptable to **string is boolean**, and returns the corresponding boolean value **0** or **1**.  Non-zero numbers are true. Other numbers are false.  Non-numeric strings produce boolean value in agreement with **string is true** and **string is false**.
@@ -119,10 +120,10 @@ In addition to these predefined functions, applications may define additional fu
 : Returns the floating-point remainder of the division of *x* by *y*.  If *y* is 0, an error is returned.
 
 **hypot** *x y*
-: Computes the length of the hypotenuse of a right-angled triangle, approximately "**sqrt** \[**expr** {*x*__\*__*x*__+__*y*__\*__*y*}\]" except for being more numerically stable when the two arguments have substantially different magnitudes.
+: Computes the length of the hypotenuse of a right-angled triangle, approximately "**sqrt** \[[expr] {*x***\****x***+***y***\****y*}\]" except for being more numerically stable when the two arguments have substantially different magnitudes.
 
 **int** *arg*
-: The argument may be any numeric value.  The integer part of *arg* is determined, and then the low order bits of that integer value up to the machine word size are returned as an integer value.  For reference, the number of bytes in the machine word are stored in the **wordSize** element of the **tcl_platform** array.
+: The argument may be any numeric value.  The integer part of *arg* is determined, and then the low order bits of that integer value up to the machine word size are returned as an integer value.  For reference, the number of bytes in the machine word are stored in the **wordSize** element of the [tcl\_platform][tclvars] array.
 
 **isqrt** *arg*
 : Computes the integer part of the square root of *arg*.  *Arg* must be a positive value, either an integer or a floating point number. Unlike **sqrt**, which is limited to the precision of a floating point number, *isqrt* will return a result of arbitrary precision.
@@ -177,3 +178,11 @@ Copyright © 1993 The Regents of the University of California.
 Copyright © 1994-2000 Sun Microsystems Incorporated.
 Copyright © 2005, 2006 Kevin B. Kenny <kennykb@acm.org>.
 ```
+
+
+[CrtMathFnc]: ../tcl-c/CrtMathFnc.md
+[CrtObjCmd]: ../tcl-c/CrtObjCmd.md
+[expr]: expr.md
+[interp]: interp.md
+[proc]: proc.md
+[tclvars]: tclvars.md

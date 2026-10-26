@@ -1,5 +1,6 @@
 ---
 CommandName: switch
+title: switch
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -17,18 +18,18 @@ Copyright:
  - Copyright (c) 1994-1997 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 switch - Wertet eines von mehreren Skripten aus, abhängig von einem Wert
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[switch]{.cmd} [options]{.optarg} [string]{.arg} [pattern]{.arg} [body]{.arg} [pattern body]{.optdot} 
-[switch]{.cmd} [options]{.optarg} [string]{.arg} { [pattern]{.arg} [body]{.arg} [pattern body]{.optdot} } 
+[switch]{.cmd} [options]{.optarg} [string]{.arg} [pattern]{.arg} [body]{.arg} [pattern body]{.optdot}
+[switch]{.cmd} [options]{.optarg} [string]{.arg} [{pattern body ?pattern body ...?}]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 **switch** vergleicht sein Argument *string* nacheinander mit jedem *pattern*. Sobald ein *pattern* zu *string* passt, wird das folgende *body* rekursiv ausgewertet; dessen Ergebnis liefert **switch**. Ist das letzte *pattern* **default**, passt es auf alles. Passt kein *pattern* und gibt es kein **default**, gibt **switch** eine leere Zeichenkette zurück.
 
@@ -38,10 +39,10 @@ Beginnen die ersten Argumente mit **-**, gelten sie als Optionen — außer es g
 : Exakter Vergleich von *string* mit dem Muster (Standard).
 
 **-glob**
-: Glob-Vergleich (wie **string match**).
+: Glob-Vergleich (wie [string match][string]).
 
 **-regexp**
-: Reguläre Ausdrücke (siehe **re_syntax**).
+: Reguläre Ausdrücke (siehe [re\_syntax][re_syntax]).
 
 **-nocase**
 : Vergleich ohne Berücksichtigung der Groß-/Kleinschreibung.
@@ -50,10 +51,11 @@ Beginnen die ersten Argumente mit **-**, gelten sie als Optionen — außer es g
 : Nur mit **-regexp**: Variable erhält die Trefferliste der Engine (gesamtes Match, dann Capturing Groups). Bei **default**: leere Liste. Kombinierbar mit **-indexvar**.
 
 **-indexvar** *varName*
-: Nur mit **-regexp**: Indizes der Treffer (zwei Elemente Start/Ende pro Teilstring, analog **regexp -indices**).
+: Nur mit **-regexp**: Indizes der Treffer (zwei Elemente Start/Ende pro Teilstring, analog zur Option **-indices** von [regexp]). Bei **default**: leere Liste. Kombinierbar mit **-matchvar**.
 
 **--**
 : Ende der Optionen; das folgende Argument ist *string*, auch wenn es mit **-** beginnt. Nicht nötig, wenn Muster und Körper in einem Listenargument stehen.
+
 
 Zwei Syntaxen für *pattern* und *body*: getrennte Argumente (Substitutionen in Mustern/Körpern möglich) oder eine Liste aller Paare (mehrzeilige **switch**-Befehle; Muster in geschweiften Klammern ohne Substitution — Verhalten kann abweichen).
 
@@ -61,7 +63,7 @@ Ist *body* als **-** angegeben, gilt der *body* des nächsten Musters auch hier 
 
 Kommentare in **switch** nur **innerhalb** des Ausführungskörpers eines Musters, nicht zwischen den Mustern.
 
-# BEISPIELE
+# Beispiele
 
 Abgleich mit Variablen (Ergebnis *2*):
 
@@ -112,3 +114,8 @@ switch -regexp -matchvar foo -- $bar {
     }
 }
 ```
+
+
+[re_syntax]: re_syntax.md
+[regexp]: regexp.md
+[string]: string.md

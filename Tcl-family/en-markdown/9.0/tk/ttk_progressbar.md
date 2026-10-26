@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::progressbar
+title: ttk::progressbar
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -17,7 +18,7 @@ ttk::progressbar - Provide progress feedback
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::progressbar]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::progressbar]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -28,18 +29,14 @@ If the value of **-orient** is **horizontal** a text string can be displayed ins
 
 # Standard options
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **-anchor** | **-class** | **-cursor** |  |
-| **-font** | **-foreground** | **-justify** | **-style** |
-| **-takefocus** | **-text** | **-wraplength** |  |
+**-anchor**, **-class**, **-cursor**, **-font**, **-foreground**, **-justify**, **-style**, **-takefocus**, **-text**, **-wraplength**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
 **-length** (**length**/**Length**)
-: Specifies the length of the long axis of the progress bar (width if horizontal, height if vertical). The value may have any of the forms acceptable to **Tk_GetPixels**.
+: Specifies the length of the long axis of the progress bar (width if horizontal, height if vertical). The value may have any of the forms acceptable to [Tk\_GetPixels][GetPixels].
 
 **-maximum** (**maximum**/**Maximum**)
 : A floating point number specifying the maximum **-value**. Defaults to 100.
@@ -62,15 +59,15 @@ See the ttk_widget manual entry for details on the standard options.
 
 # Widget command
 
-In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see **ttk::widget**), progressbar widgets support the following additional commands:
+In addition to the standard **cget**, **configure**, **identify element**, **instate**, **state** and **style** commands (see [ttk::widget][ttk_widget]), progressbar widgets support the following additional commands:
 
-*pathName* **start** ?*interval*?
+[pathName]{.ins} [start]{.sub} [interval]{.optarg}
 : Begin autoincrement mode: schedules a recurring timer event that calls **step** every *interval* milliseconds. If omitted, *interval* defaults to 50 milliseconds (20 steps/second).
 
-*pathName* **step** ?*amount*?
+[pathName]{.ins} [step]{.sub} [amount]{.optarg}
 : Increments the **-value** by *amount*. *amount* defaults to 1.0 if omitted.
 
-*pathName* **stop**
+[pathName]{.ins} [stop]{.sub}
 : Stop autoincrement mode: cancels any recurring timer event initiated by *pathName* **start**.
 
 
@@ -78,7 +75,7 @@ In addition to the standard **cget**, **configure**, **identify element**, **ins
 
 The class name for a **ttk::progressbar** is **TProgressbar**.
 
-**TProgressbar** styling options configurable with **ttk::style** are:
+**TProgressbar** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -89,15 +86,20 @@ The class name for a **ttk::progressbar** is **TProgressbar**.
 **-lightcolor** *color*
 
 **-maxphase**
+: For the aqua theme.
 
-For the aqua theme.
 
 **-period**
+: For the aqua theme.
 
-For the aqua theme.
 
 **-troughcolor** *color*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[GetPixels]: ../tk-c/GetPixels.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

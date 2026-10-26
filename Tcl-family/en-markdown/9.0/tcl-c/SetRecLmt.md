@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_SetRecursionLimit
+title: Tcl_SetRecursionLimit
 ManualSection: 3
 Version: 7.0
 TclPart: Tcl
@@ -14,30 +15,34 @@ Copyright:
 
 # Name
 
-Tcl_SetRecursionLimit - set maximum allowable nesting depth in interpreter
+Tcl\_SetRecursionLimit - set maximum allowable nesting depth in interpreter
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-Tcl_Size
-[Tcl_SetRecursionLimit]{.cmd}([interp]{.arg}, [depth]{.arg})
+**#include <tcl.h>**
+[Tcl\_Size]{.ret} [Tcl\_SetRecursionLimit]{.ccmd} [interp, depth]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter whose recursion limit is to be set. Must be greater than zero.
 
-Tcl_Size *depth* (in)
-: New limit for nested calls to **Tcl_Eval** for *interp*.
+[depth]{.carg .in type="Tcl_Size"}
+: New limit for nested calls to [Tcl\_Eval][Eval] for *interp*.
 
+:::
 
 # Description
 
-At any given time Tcl enforces a limit on the number of recursive calls that may be active for **Tcl_Eval** and related procedures such as **Tcl_EvalEx**. Any call to **Tcl_Eval** that exceeds this depth is aborted with an error. By default the recursion limit is 1000.
+At any given time Tcl enforces a limit on the number of recursive calls that may be active for [Tcl\_Eval][Eval] and related procedures such as [Tcl\_EvalEx][Eval]. Any call to [Tcl\_Eval][Eval] that exceeds this depth is aborted with an error. By default the recursion limit is 1000.
 
-**Tcl_SetRecursionLimit** may be used to change the maximum allowable nesting depth for an interpreter. The *depth* argument specifies a new limit for *interp*, and **Tcl_SetRecursionLimit** returns the old limit. To read out the old limit without modifying it, invoke **Tcl_SetRecursionLimit** with *depth* equal to 0.
+**Tcl\_SetRecursionLimit** may be used to change the maximum allowable nesting depth for an interpreter. The *depth* argument specifies a new limit for *interp*, and **Tcl\_SetRecursionLimit** returns the old limit. To read out the old limit without modifying it, invoke **Tcl\_SetRecursionLimit** with *depth* equal to 0.
 
-The **Tcl_SetRecursionLimit** only sets the size of the Tcl call stack:  it cannot by itself prevent stack overflows on the C stack being used by the application.  If your machine has a limit on the size of the C stack, you may get stack overflows before reaching the limit set by **Tcl_SetRecursionLimit**. If this happens, see if there is a mechanism in your system for increasing the maximum size of the C stack.
+The **Tcl\_SetRecursionLimit** only sets the size of the Tcl call stack:  it cannot by itself prevent stack overflows on the C stack being used by the application.  If your machine has a limit on the size of the C stack, you may get stack overflows before reaching the limit set by **Tcl\_SetRecursionLimit**. If this happens, see if there is a mechanism in your system for increasing the maximum size of the C stack.
+
+
+[Eval]: Eval.md

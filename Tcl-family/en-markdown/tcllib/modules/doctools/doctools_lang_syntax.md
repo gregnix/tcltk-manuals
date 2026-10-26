@@ -1,5 +1,6 @@
 ---
 CommandName: doctools_lang_syntax
+title: doctools_lang_syntax
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -22,7 +23,7 @@ Copyright:
 
 # Name
 
-doctools_lang_syntax - doctools language syntax
+doctools\_lang\_syntax - doctools language syntax
 
 # Description
 
@@ -40,14 +41,11 @@ In this document we specify first the lexeme, and then the syntax, i.e. how we c
 
 In the syntax rules listed in the next section
 
-**\[1\]**
-: \<TEXT> stands for all text except markup commands.
+1. <TEXT> stands for all text except markup commands.
 
-**\[2\]**
-: Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
+2. Any XXX stands for the markup command \[xxx\] including its arguments. Each markup command is a Tcl command surrounded by a matching pair of **\[** and **\]**. Inside of these delimiters the usual rules for a Tcl command apply with regard to word quotation, nested commands, continuation lines, etc.
 
-**\[3\]**
-: \<WHITE> stands for all text consisting only of spaces, newlines, tabulators and the **comment** markup command.
+3. <WHITE> stands for all text consisting only of spaces, newlines, tabulators and the [comment][docidx_lang_cmdref] markup command.
 
 
 # Syntax
@@ -56,15 +54,14 @@ The rules listed here specify only the syntax of doctools documents. The lexical
 
 Regarding the syntax of the (E)BNF itself
 
-**\[1\]**
-: The construct { X } stands for zero or more occurrences of X.
+1. The construct { X } stands for zero or more occurrences of X.
 
-**\[2\]**
-: The construct \[ X \] stands for zero or one occurrence of X.
+2. The construct \[ X \] stands for zero or one occurrence of X.
 
-**\[3\]**
-: The construct LIST_BEGIN\<X> stands for the markup command **list_begin** with **X** as its type argument. The syntax:
+3. The construct LIST\_BEGIN<X> stands for the markup command [list\_begin][doctools_lang_cmdref] with **X** as its type argument.
 
+
+The syntax:
 
 ```
 manpage = defs
@@ -133,3 +130,7 @@ Documentation tools
 ```
 Copyright (c) 2007 Andreas Kupries <andreas_kupries@users.sourceforge.net>
 ```
+
+
+[docidx_lang_cmdref]: docidx_lang_cmdref.md
+[doctools_lang_cmdref]: doctools_lang_cmdref.md

@@ -1,5 +1,6 @@
 ---
 CommandName: term::ansi::ctrl::unix
+title: term::ansi::ctrl::unix
 ManualSection: n
 Version: 0.1.2
 TclPart: tcllib
@@ -25,22 +26,22 @@ term::ansi::ctrl::unix - Control operations and queries
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::ansi::ctrl::unix]{.lit} [0.1.2]{.optlit} 
-[::term::ansi::ctrl::unix::import]{.cmd} [ns]{.optarg} [arg]{.optdot} 
-[::term::ansi::ctrl::unix::raw]{.cmd} 
-[::term::ansi::ctrl::unix::cooked]{.cmd} 
-[::term::ansi::ctrl::unix::columns]{.cmd} 
-[::term::ansi::ctrl::unix::rows]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::ansi::ctrl::unix]{.lit} [0.1.2]{.optlit}
+[::term::ansi::ctrl::unix::import]{.cmd} [ns]{.optarg} [arg...]{.optarg}
+[::term::ansi::ctrl::unix::raw]{.cmd}
+[::term::ansi::ctrl::unix::cooked]{.cmd}
+[::term::ansi::ctrl::unix::columns]{.cmd}
+[::term::ansi::ctrl::unix::rows]{.cmd}
 :::
 
 # Description
 
-*WARNING*: This package is unix-specific and depends on the availability of two unix system commands for terminal control, i.e. **stty** and **tput**, both of which have to be found in the **\$PATH**. If any of these two commands is missing the loading of the package will fail.
+*WARNING*: This package is unix-specific and depends on the availability of two unix system commands for terminal control, i.e. **stty** and **tput**, both of which have to be found in the **$PATH**. If any of these two commands is missing the loading of the package will fail.
 
 The package provides commands to switch the standard input of the current process between *raw* and *cooked* input modes, and to query the size of terminals, i.e. the available number of columns and lines.
 
-# Api
+# API
 
 ## Introspection
 

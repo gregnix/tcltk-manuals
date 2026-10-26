@@ -1,5 +1,6 @@
 ---
 CommandName: smtp
+title: smtp
 ManualSection: n
 Version: 1.5.2
 TclPart: tcllib
@@ -33,10 +34,10 @@ smtp - Client-side tcl implementation of the smtp protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-[package]{.cmd} [require]{.sub} [mime]{.lit} [1.5.4]{.optlit} 
-[package]{.cmd} [require]{.sub} [smtp]{.lit} [1.5.2]{.optlit} 
-[::smtp::sendmessage]{.cmd} [token]{.arg} [option...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [mime]{.lit} [1.5.4]{.optlit}
+[package]{.cmd} [require]{.sub} [smtp]{.lit} [1.5.2]{.optlit}
+[::smtp::sendmessage]{.cmd} [token]{.arg} [option...]{.arg}
 :::
 
 # Description
@@ -46,50 +47,56 @@ The **smtp** library package provides the client side of the Simple Mail Transfe
 **::smtp::sendmessage** *token* *option*...
 : This command sends the MIME part (see package **mime**) represented by *token* to an SMTP server. *options* is a list of options and their associated values.  The recognized options are:
 
+    **-servers**
+    : A list of SMTP servers. The default is **localhost**.
 
-**-servers**
-: A list of SMTP servers. The default is **localhost**. If multiple servers are specified they are tried in sequence. Note that the **-ports** are iterated over in tandem with the servers. If there are not enough ports for the number of servers the default port (see below) is used. If there are more ports than servers the superfluous ports are ignored.
+        If multiple servers are specified they are tried in sequence. Note that the **-ports** are iterated over in tandem with the servers. If there are not enough ports for the number of servers the default port (see below) is used. If there are more ports than servers the superfluous ports are ignored.
 
-**-ports**
-: A list of SMTP ports. The default is **25**. See option **-servers** above regardig the behaviour for then multiple servers and ports are specified.
+    **-ports**
+    : A list of SMTP ports. The default is **25**.
 
-**-client**
-: The name to use as our hostname when connecting to the server. By default this is either localhost if one of the servers is localhost, or is set to the string returned by **info hostname**.
+        See option **-servers** above regardig the behaviour for then multiple servers and ports are specified.
 
-**-queue**
-: Indicates that the SMTP server should be asked to queue the message for later processing. A boolean value.
+    **-client**
+    : The name to use as our hostname when connecting to the server. By default this is either localhost if one of the servers is localhost, or is set to the string returned by **info hostname**.
 
-**-atleastone**
-: Indicates that the SMTP server must find at least one recipient acceptable for the message to be sent. A boolean value.
+    **-queue**
+    : Indicates that the SMTP server should be asked to queue the message for later processing. A boolean value.
 
-**-originator**
-: A string containing an 822-style address specification. If present the header isn't examined for an originator address.
+    **-atleastone**
+    : Indicates that the SMTP server must find at least one recipient acceptable for the message to be sent. A boolean value.
 
-**-recipients**
-: A string containing one or more 822-style address specifications. If present the header isn't examined for recipient addresses). If the string contains more than one address they will be separated by commas.
+    **-originator**
+    : A string containing an 822-style address specification. If present the header isn't examined for an originator address.
 
-**-header**
-: A list containing two elements, an smtp header and its associated value (the -header option may occur zero or more times).
+    **-recipients**
+    : A string containing one or more 822-style address specifications. If present the header isn't examined for recipient addresses). If the string contains more than one address they will be separated by commas.
 
-**-usetls**
-: This package supports the RFC 3207 TLS extension (3) by default provided the tls package is available. You can turn this off with this boolean option.
+    **-header**
+    : A list containing two elements, an smtp header and its associated value (the -header option may occur zero or more times).
 
-**-tlsimport**
-: This boolean flag is **false** by default. When this flag is set the package will import TLS on a sucessfully opened channel. This is needed for connections using native TLS negotiation instead of **STARTTLS**. The **tls** package is automatically required when needed.
+    **-usetls**
+    : This package supports the RFC 3207 TLS extension (3) by default provided the tls package is available. You can turn this off with this boolean option.
 
-**-tlspolicy**
-: This option lets you specify a command to be called if an error occurs during TLS setup. The command is called with the SMTP code and diagnostic message appended. The command should return 'secure' or 'insecure' where insecure will cause the package to continue on the unencrypted channel. Returning 'secure' will cause the socket to be closed and the next server in the **-servers** list to be tried.
+    **-tlsimport**
+    : This boolean flag is **false** by default. When this flag is set the package will import TLS on a sucessfully opened channel. This is needed for connections using native TLS negotiation instead of **STARTTLS**. The **tls** package is automatically required when needed.
 
-**-username**
-: ...see next...
+    **-tlspolicy**
+    : This option lets you specify a command to be called if an error occurs during TLS setup. The command is called with the SMTP code and diagnostic message appended. The command should return 'secure' or 'insecure' where insecure will cause the package to continue on the unencrypted channel. Returning 'secure' will cause the socket to be closed and the next server in the **-servers** list to be tried.
 
-**-password**
-: If your SMTP server requires authentication (RFC 2554 (4)) before accepting mail you can use **-username** and **-password** to provide your authentication details to the server. Currently this package supports DIGEST-MD5, CRAM-MD5, LOGIN and PLAIN authentication methods. The most secure method will be tried first and each method tried in turn until we are either authorized or we run out of methods. Note that if the server permits a TLS connection, then the authorization will occur after we begin using the secure channel. Please also read the section on **Authentication**, it details the necessary prequisites, i.e. packages needed to support these options and authentication.
+    **-username**
+    : see below ...
+
+    **-password**
+    : If your SMTP server requires authentication (RFC 2554 (4)) before accepting mail you can use **-username** and **-password** to provide your authentication details to the server. Currently this package supports DIGEST-MD5, CRAM-MD5, LOGIN and PLAIN authentication methods. The most secure method will be tried first and each method tried in turn until we are either authorized or we run out of methods. Note that if the server permits a TLS connection, then the authorization will occur after we begin using the secure channel.
+
+        Please also read the section on [Authentication], it details the necessary prequisites, i.e. packages needed to support these options and authentication.
 
 
-If the **-originator** option is not present, the originator address is taken from **From** (or **Resent-From**); similarly, if the **-recipients** option is not present, recipient addresses are taken from **To**, **cc**, and **Bcc** (or **Resent-To**, and so on). Note that the header key/values supplied by the **-header** option (not those present in the MIME part) are consulted. Regardless, header key/values are added to the outgoing message as necessary to ensure that a valid 822-style message is sent.
+    If the **-originator** option is not present, the originator address is taken from **From** (or **Resent-From**); similarly, if the **-recipients** option is not present, recipient addresses are taken from **To**, **cc**, and **Bcc** (or **Resent-To**, and so on). Note that the header key/values supplied by the **-header** option (not those present in the MIME part) are consulted. Regardless, header key/values are added to the outgoing message as necessary to ensure that a valid 822-style message is sent.
 
-The command returns a list indicating which recipients were unacceptable to the SMTP server. Each element of the list is another list, containing the address, an SMTP error code, and a textual diagnostic. Depending on the **-atleastone** option and the intended recipients, a non-empty list may still indicate that the message was accepted by the server.
+    The command returns a list indicating which recipients were unacceptable to the SMTP server. Each element of the list is another list, containing the address, an SMTP error code, and a textual diagnostic. Depending on the **-atleastone** option and the intended recipients, a non-empty list may still indicate that the message was accepted by the server.
+
 
 # Authentication
 
@@ -116,7 +123,7 @@ send_simple_message someone@somewhere.com localhost \
     "This is the subject." "This is the message."
 ```
 
-# Tls security considerations
+# TLS security considerations
 
 This package uses the **TLS** package to handle the security for **https** urls and other socket connections.
 
@@ -133,17 +140,13 @@ For example, in light of the recent [POODLE attack](http://googleonlinesecurity.
 
 # References
 
-**\[1\]**
-: Jonathan B. Postel, "SIMPLE MAIL TRANSFER PROTOCOL", RFC 821, August 1982. (*http://www.rfc-editor.org/rfc/rfc821.txt*)
+1. Jonathan B. Postel, "SIMPLE MAIL TRANSFER PROTOCOL", RFC 821, August 1982. (<http://www.rfc-editor.org/rfc/rfc821.txt>)
 
-**\[2\]**
-: J. Klensin, "Simple Mail Transfer Protocol", RFC 2821, April 2001. (*http://www.rfc-editor.org/rfc/rfc2821.txt*)
+2. J. Klensin, "Simple Mail Transfer Protocol", RFC 2821, April 2001. (<http://www.rfc-editor.org/rfc/rfc2821.txt>)
 
-**\[3\]**
-: P. Hoffman, "SMTP Service Extension for Secure SMTP over Transport Layer Security", RFC 3207, February 2002. (*http://www.rfc-editor.org/rfc/rfc3207.txt*)
+3. P. Hoffman, "SMTP Service Extension for Secure SMTP over Transport Layer Security", RFC 3207, February 2002. (<http://www.rfc-editor.org/rfc/rfc3207.txt>)
 
-**\[4\]**
-: J. Myers, "SMTP Service Extension for Authentication", RFC 2554, March 1999. (*http://www.rfc-editor.org/rfc/rfc2554.txt*)
+4. J. Myers, "SMTP Service Extension for Authentication", RFC 2554, March 1999. (<http://www.rfc-editor.org/rfc/rfc2554.txt>)
 
 
 # Bugs, ideas, feedback

@@ -1,23 +1,24 @@
 ---
 CommandName: tcllib_license
+title: tcllib_license
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
-# NAME
+# Name
 
-tcllib_license – Tcllib – Lizenz
+tcllib\_license – Tcllib – Lizenz
 
-# BESCHREIBUNG
+# Beschreibung
 
 Willkommen bei Tcllib, der Tcl-Standardbibliothek. Beachten Sie, dass Tcllib selbst kein Paket ist. Es handelt sich um eine Sammlung von (teilweise unabhängigen) *Tcl*-Paketen, die Hilfsfunktionen bereitstellen, die für eine große Zahl von Tcl-Programmierern nützlich sind.
 
 Die Sammlung unterliegt der BSD-Lizenz.
 
-# LIZENZ
+# Lizenz
 
 Das Copyright an dieser Software liegt bei Ajuba Solutions und anderen Parteien. Die folgenden Bedingungen gelten für alle mit der Software verbundenen Dateien, sofern in einzelnen Dateien nicht ausdrücklich etwas anderes angegeben ist.
 

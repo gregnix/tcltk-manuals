@@ -1,5 +1,6 @@
 ---
 CommandName: javascript
+title: javascript
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -16,24 +17,24 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 javascript – Prozeduren zur Erzeugung von HTML- und JavaScript-Strukturen.
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [javascript]{.lit} [1.0.3]{.optlit} 
-[::javascript::makeSelectorWidget]{.cmd} [id]{.arg} [leftLabel]{.arg} [leftValueList]{.arg} [rightLabel]{.arg} [rightValueList]{.arg} [rightNameList]{.arg} [length]{.optarg} [minWidth]{.optarg} 
-[::javascript::makeSubmitButton]{.cmd} [name]{.arg} [value]{.arg} 
-[::javascript::makeProtectedSubmitButton]{.cmd} [name]{.arg} [value]{.arg} [msg]{.arg} 
-[::javascript::makeMasterButton]{.cmd} [master]{.arg} [value]{.arg} [slavePattern]{.arg} [boolean]{.arg} 
-[::javascript::makeParentCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg} 
-[::javascript::makeChildCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [javascript]{.lit} [1.0.3]{.optlit}
+[::javascript::makeSelectorWidget]{.cmd} [id]{.arg} [leftLabel]{.arg} [leftValueList]{.arg} [rightLabel]{.arg} [rightValueList]{.arg} [rightNameList]{.arg} [length]{.optarg} [minWidth]{.optarg}
+[::javascript::makeSubmitButton]{.cmd} [name]{.arg} [value]{.arg}
+[::javascript::makeProtectedSubmitButton]{.cmd} [name]{.arg} [value]{.arg} [msg]{.arg}
+[::javascript::makeMasterButton]{.cmd} [master]{.arg} [value]{.arg} [slavePattern]{.arg} [boolean]{.arg}
+[::javascript::makeParentCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg}
+[::javascript::makeChildCheckbox]{.cmd} [parentName]{.arg} [childName]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **::javascript** stellt Befehle bereit, die HTML- und JavaScript-Code erzeugen. Diese Befehle geben üblicherweise eine HTML-Zeichenkette zurück. Insbesondere schreiben sie ihr Ergebnis nicht nach **stdout**.
 
@@ -56,7 +57,7 @@ Das Paket **::javascript** stellt Befehle bereit, die HTML- und JavaScript-Code 
 : Erzeugt ein HTML-Kontrollkästchen und koppelt seinen Wert an den des übergeordneten Kontrollkästchens. Ist das untergeordnete markiert, wird das übergeordnete ebenfalls markiert. Das Argument *parentName* ist der Name des übergeordneten HTML-Kontrollkästchens. Das Argument *childName* ist der Name des zu erzeugenden untergeordneten HTML-Kontrollkästchens.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *javascript* als Kategorie an.
 
@@ -64,6 +65,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 CGI-Programmierung

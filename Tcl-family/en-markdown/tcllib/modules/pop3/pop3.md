@@ -1,5 +1,6 @@
 ---
 CommandName: pop3
+title: pop3
 ManualSection: n
 Version: 1.11
 TclPart: tcllib
@@ -23,19 +24,19 @@ pop3 - Tcl client for POP3 email protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pop3]{.lit} [1.11]{.optlit} 
-[::pop3::open]{.cmd} [-msex 0|1]{.optarg} [-retr-mode retr|list|slow]{.optarg} [-socketcmd cmdprefix]{.optarg} [-stls 0|1]{.optarg} [-tls-callback stls-callback-command]{.optarg} [host]{.arg} [username]{.arg} [password]{.arg} [port]{.optarg} 
-[::pop3::config]{.cmd} [chan]{.arg} 
-[::pop3::status]{.cmd} [chan]{.arg} 
-[::pop3::last]{.cmd} [chan]{.arg} 
-[::pop3::retrieve]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg} 
-[::pop3::delete]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg} 
-[::pop3::list]{.cmd} [chan]{.arg} [msg]{.optarg} 
-[::pop3::top]{.cmd} [chan]{.arg} [msg]{.arg} [n]{.arg} 
-[::pop3::uidl]{.cmd} [chan]{.arg} [msg]{.optarg} 
-[::pop3::capa]{.cmd} [chan]{.arg} 
-[::pop3::close]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pop3]{.lit} [1.11]{.optlit}
+[::pop3::open]{.cmd} [[-msex]{.lit} 0|1]{.optarg} [[-retr-mode]{.lit} retr|list|slow]{.optarg} [[-socketcmd]{.lit} cmdprefix]{.optarg} [[-stls]{.lit} 0|1]{.optarg} [[-tls-callback]{.lit} stls-callback-command]{.optarg} [host]{.arg} [username]{.arg} [password]{.arg} [port]{.optarg}
+[::pop3::config]{.cmd} [chan]{.arg}
+[::pop3::status]{.cmd} [chan]{.arg}
+[::pop3::last]{.cmd} [chan]{.arg}
+[::pop3::retrieve]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg}
+[::pop3::delete]{.cmd} [chan]{.arg} [startIndex]{.arg} [endIndex]{.optarg}
+[::pop3::list]{.cmd} [chan]{.arg} [msg]{.optarg}
+[::pop3::top]{.cmd} [chan]{.arg} [msg]{.arg} [n]{.arg}
+[::pop3::uidl]{.cmd} [chan]{.arg} [msg]{.optarg}
+[::pop3::capa]{.cmd} [chan]{.arg}
+[::pop3::close]{.cmd} [chan]{.arg}
 :::
 
 # Description
@@ -57,26 +58,27 @@ For example, in light of the recent [POODLE attack](http://googleonlinesecurity.
     ... your own application code ...
 ```
 
-# Api
+# API
 
 **::pop3::open** ?**-msex** 0|1? ?**-retr-mode** retr|list|slow? ?**-socketcmd** cmdprefix? ?**-stls** 0|1? ?**-tls-callback** stls-callback-command? *host username password* ?*port*?
-: Open a socket connection to the server specified by *host*, transmit the *username* and *password* as login information to the server.  The default port number is **110**, which can be overridden using the optional *port* argument.  The return value is a channel used by all of the other ::pop3 functions. The command recognizes three options
+: Open a socket connection to the server specified by *host*, transmit the *username* and *password* as login information to the server.  The default port number is **110**, which can be overridden using the optional *port* argument.  The return value is a channel used by all of the other ::pop3 functions.
 
+    The command recognizes three options
 
-**-msex** boolean
-: Setting this option tells the package that the server we are talking to is an MS Exchange server (which has some oddities we have to work around). The default is **False**.
+    **-msex** boolean
+    : Setting this option tells the package that the server we are talking to is an MS Exchange server (which has some oddities we have to work around). The default is **False**.
 
-**-retr-mode** retr|list|slow
-: The retrieval mode determines how exactly messages are read from the server. The allowed values are **retr**, **list** and **slow**. The default is **retr**. See **::pop3::retrieve** for more information.
+    **-retr-mode** retr|list|slow
+    : The retrieval mode determines how exactly messages are read from the server. The allowed values are **retr**, **list** and **slow**. The default is **retr**. See **::pop3::retrieve** for more information.
 
-**-socketcmd** cmdprefix
-: This option allows the user to overide the use of the builtin **socket** command with any API-compatible command. The envisioned main use is the securing of the new connection via SSL, through the specification of the command **tls::socket**. This command is specially recognized as well, changing the default port of the connection to **995**.
+    **-socketcmd** cmdprefix
+    : This option allows the user to overide the use of the builtin **socket** command with any API-compatible command. The envisioned main use is the securing of the new connection via SSL, through the specification of the command **tls::socket**. This command is specially recognized as well, changing the default port of the connection to **995**.
 
-**-stls** boolean
-: Setting this option tells the package to secure the connection using SSL or TLS. It performs STARTTLS as described in IETF RFC 2595, it first opens a normal, unencrypted connection and then negotiates a SSLv3 or TLSv1 connection. If the connection cannot be secured, the connection will be closed and an error will be returned
+    **-stls** boolean
+    : Setting this option tells the package to secure the connection using SSL or TLS. It performs STARTTLS as described in IETF RFC 2595, it first opens a normal, unencrypted connection and then negotiates a SSLv3 or TLSv1 connection. If the connection cannot be secured, the connection will be closed and an error will be returned
 
-**-tls-callback** stls-callback-command
-: This option allows the user to overide the **tls::callback** used during the **-stls** SSL/TLS handshake. See the TLS manual for details on how to implement this callback.
+    **-tls-callback** stls-callback-command
+    : This option allows the user to overide the **tls::callback** used during the **-stls** SSL/TLS handshake. See the TLS manual for details on how to implement this callback.
 
 
 **::pop3::config** *chan*
@@ -89,35 +91,37 @@ For example, in light of the recent [POODLE attack](http://googleonlinesecurity.
 : Query the server for the last email message read from the spool.  This value includes all messages read from all clients connecting to the login account.  This command may not be supported by the email server, in which case the server may return 0 or an error.
 
 **::pop3::retrieve** *chan startIndex* ?*endIndex*?
-: Retrieve a range of messages from the server.  If the *endIndex* is not specified, only one message will be retrieved.  The return value is a list containing each message as a separate element.  See the *startIndex* and *endIndex* descriptions below. The retrieval mode determines how exactly messages are read from the server. The mode **retr** assumes that the RETR command delivers the size of the message as part of the command status and uses this to read the message efficiently. In mode **list** RETR does not deliver the size, but the LIST command does and we use this to retrieve the message size before the actual retrieval, which can then be done efficiently. In the last mode, **slow**, the system is unable to obtain the size of the message to retrieve in any manner and falls back to reading the message from the server line by line. It should also be noted that the system checks upon the configured mode and falls back to the slower modes if the above assumptions are not true.
+: Retrieve a range of messages from the server.  If the *endIndex* is not specified, only one message will be retrieved.  The return value is a list containing each message as a separate element.  See the *startIndex* and *endIndex* descriptions below.
+
+    The retrieval mode determines how exactly messages are read from the server. The mode **retr** assumes that the RETR command delivers the size of the message as part of the command status and uses this to read the message efficiently. In mode **list** RETR does not deliver the size, but the LIST command does and we use this to retrieve the message size before the actual retrieval, which can then be done efficiently. In the last mode, **slow**, the system is unable to obtain the size of the message to retrieve in any manner and falls back to reading the message from the server line by line.
+
+    It should also be noted that the system checks upon the configured mode and falls back to the slower modes if the above assumptions are not true.
 
 **::pop3::delete** *chan startIndex* ?*endIndex*?
 : Delete a range of messages from the server.  If the *endIndex* is not specified, only one message will be deleted.  Note, the indices are not reordered on the server, so if you delete message 1, then the first message in the queue is message 2 (message index 1 is no longer valid).  See the *startIndex* and *endIndex* descriptions below.
 
+    *startIndex*
+    : The *startIndex* may be an index of a specific message starting with the index 1, or it have any of the following values:
 
-*startIndex*
-: The *startIndex* may be an index of a specific message starting with the index 1, or it have any of the following values:
+        **start**
+        : This is a logical value for the first message in the spool, equivalent to the value 1.
 
+        **next**
+        : The message immediately following the last message read, see **::pop3::last**.
 
-**start**
-: This is a logical value for the first message in the spool, equivalent to the value 1.
-
-**next**
-: The message immediately following the last message read, see **::pop3::last**.
-
-**end**
-: The most recent message in the spool (the end of the spool).  This is useful to retrieve only the most recent message.
+        **end**
+        : The most recent message in the spool (the end of the spool).  This is useful to retrieve only the most recent message.
 
 
-*endIndex*
-: The *endIndex* is an optional parameter and defaults to the value "-1", which indicates to only retrieve the one message specified by *startIndex*.  If specified, it may be an index of a specific message starting with the index "1", or it may have any of the following values:
+    *endIndex*
+    : The *endIndex* is an optional parameter and defaults to the value "-1", which indicates to only retrieve the one message specified by *startIndex*.  If specified, it may be an index of a specific message starting with the index "1", or it may have any of the following values:
 
+        **last**
+        : The message is the last message read by a POP3 client, see **::pop3::last**.
 
-**last**
-: The message is the last message read by a POP3 client, see **::pop3::last**.
+        **end**
+        : The most recent message in the spool (the end of the spool).
 
-**end**
-: The most recent message in the spool (the end of the spool).
 
 
 **::pop3::list** *chan* ?*msg*?

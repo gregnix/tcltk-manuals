@@ -1,5 +1,6 @@
 ---
 CommandName: shtmlview
+title: shtmlview
 ManualSection: n
 Version: 1.1.2
 TclPart: tklib
@@ -17,40 +18,40 @@ Copyright:
  - Copyright (c) 1995-1999, Stephen Uhler
 ---
 
-# NAME
+# Name
 
 shtmlview – Erweitertes Tcl/Tk-Text-Widget mit grundlegender Unterstützung für die Darstellung von HTML und Markdown
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tk]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [Markdown]{.lit} [;#]{.lit} [optional]{.lit} [Markdown]{.lit} [support]{.lit} 
-[package]{.cmd} [require]{.sub} [img::jpeg]{.lit} [;#]{.lit} [optional]{.lit} [jpeg]{.lit} [image]{.lit} [support]{.lit} 
-[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} [1.1.2]{.optlit} 
-[::shtmlview::converter]{.cmd} [extension]{.arg} [description]{.arg} [cmdprefix]{.arg} 
-[::shtmlview::shtmlview]{.cmd} [pathName]{.arg} [options]{.optarg} 
-[pathName]{.ins} [back]{.sub} 
-[pathName]{.ins} [browse]{.sub} [filename]{.arg} [args]{.optarg} 
-[pathName]{.ins} [dosearch]{.sub} [string]{.arg} [direction]{.arg} 
-[pathName]{.ins} [edittext]{.sub} [cmd]{.arg} [options]{.optarg} 
-[pathName]{.ins} [editView]{.sub} 
-[pathName]{.ins} [forward]{.sub} 
-[pathName]{.ins} [getFiles]{.sub} 
-[pathName]{.ins} [getHistory]{.sub} 
-[pathName]{.ins} [getEditWidget]{.sub} 
-[pathName]{.ins} [getTextWidget]{.sub} 
-[pathName]{.ins} [helptext]{.sub} [cmd]{.arg} [options]{.optarg} 
-[pathName]{.ins} [home]{.sub} 
-[pathName]{.ins} [open]{.sub} 
-[pathName]{.ins} [reload]{.sub} 
-[pathName]{.ins} [render]{.sub} [text]{.arg} [ext]{.optarg} 
-[pathName]{.ins} [sourceView]{.sub} 
-[pathName]{.ins} [url]{.sub} 
+[package]{.cmd} [require]{.sub} [Tk]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [Markdown]{.lit} [;#]{.lit} [optional]{.lit} [Markdown]{.lit} [support]{.lit}
+[package]{.cmd} [require]{.sub} [img::jpeg]{.lit} [;#]{.lit} [optional]{.lit} [jpeg]{.lit} [image]{.lit} [support]{.lit}
+[package]{.cmd} [require]{.sub} [shtmlview::shtmlview]{.lit} [1.1.2]{.optlit}
+[::shtmlview::converter]{.cmd} [extension]{.arg} [description]{.arg} [cmdprefix]{.arg}
+[::shtmlview::shtmlview]{.cmd} [pathName]{.arg} [options]{.optarg}
+[pathName]{.ins} [back]{.sub}
+[pathName]{.ins} [browse]{.sub} [filename]{.arg} [args]{.optarg}
+[pathName]{.ins} [dosearch]{.sub} [string]{.arg} [direction]{.arg}
+[pathName]{.ins} [edittext]{.sub} [cmd]{.arg} [options]{.optarg}
+[pathName]{.ins} [editView]{.sub}
+[pathName]{.ins} [forward]{.sub}
+[pathName]{.ins} [getFiles]{.sub}
+[pathName]{.ins} [getHistory]{.sub}
+[pathName]{.ins} [getEditWidget]{.sub}
+[pathName]{.ins} [getTextWidget]{.sub}
+[pathName]{.ins} [helptext]{.sub} [cmd]{.arg} [options]{.optarg}
+[pathName]{.ins} [home]{.sub}
+[pathName]{.ins} [open]{.sub}
+[pathName]{.ins} [reload]{.sub}
+[pathName]{.ins} [render]{.sub} [text]{.arg} [ext]{.optarg}
+[pathName]{.ins} [sourceView]{.sub}
+[pathName]{.ins} [url]{.sub}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **shtmlview::shtmlview** stellt ein reines Tcl/Tk-Widget mit dem gleichen Namen bereit, um einfache HTML- und Markdown-Dateien sowie Zeichenfolgen zu rendern und anzuzeigen.
 
@@ -62,7 +63,7 @@ Anwendungsfälle sind der Hilfe-Viewer sowie alle Fälle, in denen der Entwickle
 
 Kommentare und Rückmeldungen sind willkommen.
 
-Das Widget **shtmlview::shtmlview** überlädt das Text-Widget und bietet neue Befehle und Optionen. Diese werden in den Abschnitten **WIDGET-BEFEHLE** und **WIDGET-OPTIONEN** erläutert.
+Das Widget **shtmlview::shtmlview** überlädt das Text-Widget und bietet neue Befehle und Optionen. Diese werden in den Abschnitten [Widget-Befehle] und [Widget-Optionen] erläutert.
 
 Hinweis: Die Datei „*shtmlview.tcl*“ ist nicht nur ein Paket, sondern auch eine eigenständige Anwendung zur direkten Anzeige von Markdown- und HTML-Dateien. Aufruf:
 
@@ -74,16 +75,32 @@ in einem Terminal.
 
 Die in diesem Dokument beschriebene API stellt nicht die gesamte API dar, die vom snit-Objekt **::shtmlview::shtmlview** bereitgestellt wird. Vielmehr handelt es sich um eine Teilmenge dieser API, bei der davon ausgegangen wird, dass sie sich in zukünftigen Versionen nicht ändern wird.
 
-# BEFEHLE
+# Befehle
 
 **::shtmlview::converter** *extension* *description* *cmdprefix*
-: Registriert ein Konvertierungspräfix (*cmdprefix*) für Dateien mit der *extension*. Die *description* ist eine kurze Zusammenfassung der Dateien, die diese Erweiterung tragen sollen. Das Ergebnis des Befehls ist die leere Zeichenkette. Stößt ein shtmlview-Widget auf eine Datei mit dieser *extension*, ruft es das registrierte Präfix mit einem Argument auf, dem Pfad der zu konvertierenden Datei. Der Aufruf soll das HTML liefern, das dargestellt wird. Ein Beispiel steht im Abschnitt **ERWEITERUNGEN**.
+: Registriert ein Konvertierungspräfix (*cmdprefix*) für Dateien mit der *extension*. Die *description* ist eine kurze Zusammenfassung der Dateien, die diese Erweiterung tragen sollen.
+
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
+
+    Stößt ein shtmlview-Widget auf eine Datei mit dieser *extension*, ruft es das registrierte Präfix mit einem Argument auf, dem Pfad der zu konvertierenden Datei. Der Aufruf soll das HTML liefern, das dargestellt wird.
+
+    Ein Beispiel steht im Abschnitt [Erweiterungen].
 
 **::shtmlview::shtmlview** *pathName* ?*options*?
-: Erzeugt und konfiguriert das shtmlview-Widget *pathName*. Das Ergebnis des Befehls ist der *pathName*. Ein Fehler entsteht, wenn für *pathName* schon ein Widget besteht. Ein Fehler entsteht auch, wenn das Eltern-Widget von *pathName* nicht besteht. Die erkannten Optionen stehen im Abschnitt **WIDGET-OPTIONEN**. Die Methoden des neuen Widgets stehen im Abschnitt **WIDGET-BEFEHLE**.
+: Erzeugt und konfiguriert das shtmlview-Widget *pathName*.
+
+    Das Ergebnis des Befehls ist der *pathName*.
+
+    Ein Fehler entsteht, wenn für *pathName* schon ein Widget besteht.
+
+    Ein Fehler entsteht auch, wenn das Eltern-Widget von *pathName* nicht besteht.
+
+    Die erkannten Optionen stehen im Abschnitt [Widget-Optionen].
+
+    Die Methoden des neuen Widgets stehen im Abschnitt [Widget-Befehle].
 
 
-# WIDGET-OPTIONEN
+# Widget-Optionen
 
 Die Methode **helptext** konfiguriert das interne Text-Widget.
 
@@ -106,7 +123,7 @@ Die Methode **helptext** konfiguriert das interne Text-Widget.
 : Wenn **true** (Standard) eingestellt ist, wird oben eine Symbolleiste angezeigt. Die Symbolleiste enthält Standardschaltflächen für die Methoden **back**, **forward** und **home** sowie Suchfunktionen. Standardmäßig ist **true** eingestellt.
 
 
-# WIDGET-BEFEHLE
+# Widget-Befehle
 
 Jedes mit dem oben genannten Befehl erstellte shtmlview-Widget unterstützt die folgenden Befehle und Optionen:
 
@@ -122,23 +139,21 @@ Jedes mit dem oben genannten Befehl erstellte shtmlview-Widget unterstützt die 
 *pathName* **edittext** *cmd* ?*options*?
 : Legt das interne Texteditor-Widget zur Konfiguration offen. Beispiel:
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help editView
-    .help edittext configure -background salmon
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help editView
+        .help edittext configure -background salmon
+    ```
 
 *pathName* **editView**
 : Wechselt das Widget von der Anzeige zur Bearbeitung. In diesem Modus lässt sich die geladene Datei ändern. Die nicht bearbeitbare Quellansicht ist **sourceView** weiter unten.
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help editView
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help editView
+    ```
 
 *pathName* **forward**
 : Zeigt die nächste HTML- oder Markdown-Seite im Browserverlauf an, sofern vorhanden.
@@ -158,12 +173,11 @@ Jedes mit dem oben genannten Befehl erstellte shtmlview-Widget unterstützt die 
 *pathName* **helptext** *cmd* ?*options*?
 : Legt das interne Text-Widget der Anzeige zur Konfiguration offen. Beispiel:
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.html
-    .help helptext configure -background yellow
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.html
+        .help helptext configure -background yellow
+    ```
 
 *pathName* **home**
 : Zeigt entweder die durch die Option **-home** festgelegte Seite oder die erste Seite an, für die **browse** aufgerufen wurde.
@@ -180,65 +194,64 @@ Jedes mit dem oben genannten Befehl erstellte shtmlview-Widget unterstützt die 
 *pathName* **sourceView**
 : Dieser Befehl wechselt die Ansicht des Widgets vom aktuellen Dokument selbst zur Quelltextansicht dieses Dokuments. Um zur bearbeitbaren Quelltextansicht zu wechseln, siehe **editView** oben.
 
-
-```
-    ::shtmlview::shtmlview .help
-    .help browse index.md
-    .help sourceView
-```
+    ```
+        ::shtmlview::shtmlview .help
+        .help browse index.md
+        .help sourceView
+    ```
 
 *pathName* **url**
 : Gibt die aktuell angezeigte URL zurück.
 
 
-# BINDINGS FÜR DAS WIDGET
+# Bindings für das Widget
 
 Dem Widget sind die folgenden Tasten für die Navigation und andere Aktionen zugewiesen:
 
-**\<cursor>**
+<cursor>
 : Standardmäßige Cursorbewegung in der Ansicht
 
-**b**
+b
 : Zurück. Zeigt die vorherige Seite im Verlauf.
 
-**f**
+f
 : Vorwärts. Zeigt die nächste Seite im Verlauf.
 
-**p**
+p
 : Vorheriger Treffer. Bewegt den Cursor zum vorherigen Suchtreffer.
 
-**n**
+n
 : Weiter. Bewegt den Cursor zum nächsten Suchtreffer.
 
-**q**
+q
 : Entfernt die aktuelle Seite aus dem Verlauf. Das setzt **f** voraus.
 
-**r**
+r
 : Suche rückwärts starten
 
-**s**
+s
 : Suche vorwärts starten
 
-**Ctrl-E**
+Ctrl-E
 : Bearbeitungsmodus umschalten
 
-**Ctrl-s**
+Ctrl-s
 : Im Bearbeitungsmodus: Seite speichern
 
-**Ctrl-r**
+Ctrl-r
 : Aktuelle Seite neu laden
 
-**Ctrl-u**
+Ctrl-u
 : Zwischen Quell- und gerenderter Ansicht umschalten
 
-**Return**
+Return
 : Folgt dem Link unter dem Cursor.
 
-**TAB**
+TAB
 : Cursor zum nächsten Link auf der aktuellen Seite bewegen
 
 
-# BEISPIEL
+# Beispiel
 
 ```
     package require shtmlview::shtmlview
@@ -254,7 +267,7 @@ Dem Widget sind die folgenden Tasten für die Navigation und andere Aktionen zug
 
 Weitere Beispiele stehen in den Quelldateien des Pakets.
 
-# ERWEITERUNGEN
+# Erweiterungen
 
 Zwar unterstützt das Paket standardmäßig nur HTML-Dokumente sowie Markdown-Dokumente, wenn das entsprechende Paket „**Markdown**“ verfügbar ist, doch lässt sich der Bereich der unterstützten Formate über einen Erweiterungsmechanismus vergrößern.
 
@@ -296,154 +309,105 @@ Erweiterungen können statt eines Tcl-Pakets eine externe Anwendung wie **pandoc
 
 Und natürlich ist es mit diesem Paket auch möglich, Konvertierungsbefehle direkt aus der Anwendung heraus zu registrieren, anstatt über ein separates Paket zu gehen.
 
-# ÄNDERUNGSPROTOKOLL
+# Änderungsprotokoll
 
-**2022-02-25 version 0.9.2**
-: 
-
-
-**•**
-: Korrektur zu **tk_textCopy** und Aktualisierung der Dokumentation
+2022-02-25 version 0.9.2
+: - Korrektur zu **tk\_textCopy** und Aktualisierung der Dokumentation
 
 
-**2022-03-06 version 0.9.3**
-: 
+2022-03-06 version 0.9.3
+: - Unterstützung für Mausrad-Bindings
+
+    - Korrektur von Hyperlinks auf http(s)-Links
+
+    - Unterstützung für Datei-Anker-Links wie **file.html#anchor**
+
+    - Unterstützung für **#** als Link zum Seitenanfang
+
+    - Vielen Dank an aplsimple für die Vorschläge und Fehlermeldungen
 
 
-**•**
-: Unterstützung für Mausrad-Bindings
+2022-03-26 version 1.0.0
+: - HTML 3.2-Tags: div, sub, sup, small, big
 
-**•**
-: Korrektur von Hyperlinks auf http(s)-Links
+    - Erste Unterstützung für Markdown-Dateien
 
-**•**
-: Unterstützung für Datei-Anker-Links wie **file.html#anchor**
+    - Erste Unterstützung für Base64-kodierte Inline-Bilddateien
 
-**•**
-: Unterstützung für **#** als Link zum Seitenanfang
+    - Unterstützung für JPEG-Bilder, wenn das Paket „**img::jpeg**“ verfügbar ist
 
-**•**
-: Vielen Dank an aplsimple für die Vorschläge und Fehlermeldungen
+    - Unterstützung für SVG-Bilder, wenn entweder **critcl** und *librsvg-dev(el)* oder die Terminal-Anwendung **rsvg-convert** bzw. **cairosvg** verfügbar sind
 
+    - Zurück und Vorwärts auch für Anker
 
-**2022-03-26 version 1.0.0**
-: 
+    - Schaltflächen für den ersten und letzten Eintrag des Verlaufs
 
+    - Verlauf mit vollständigem Dateipfad, damit sich das Verzeichnis wechseln lässt
 
-**•**
-: HTML 3.2-Tags: div, sub, sup, small, big
+    - Verbesserte Aufrufzeile und Installationsoption
 
-**•**
-: Erste Unterstützung für Markdown-Dateien
+    - Bindings für die nächste und die vorherige Suche
 
-**•**
-: Erste Unterstützung für Base64-kodierte Inline-Bilddateien
+    - Return und Tab für Links
 
-**•**
-: Unterstützung für JPEG-Bilder, wenn das Paket „**img::jpeg**“ verfügbar ist
+    - Option -historycombo
 
-**•**
-: Unterstützung für SVG-Bilder, wenn entweder **critcl** und *librsvg-dev(el)* oder die Terminal-Anwendung **rsvg-convert** bzw. **cairosvg** verfügbar sind
+    - Korrektur der Symbolleiste
 
-**•**
-: Zurück und Vorwärts auch für Anker
+    - Korrektur von browse für nicht vorhandene Dateien
 
-**•**
-: Schaltflächen für den ersten und letzten Eintrag des Verlaufs
+    - Nicht verwendeter CSS-/Stylesheet- und WebForms-Code wurde entfernt
 
-**•**
-: Verlauf mit vollständigem Dateipfad, damit sich das Verzeichnis wechseln lässt
-
-**•**
-: Verbesserte Aufrufzeile und Installationsoption
-
-**•**
-: Bindings für die nächste und die vorherige Suche
-
-**•**
-: Return und Tab für Links
-
-**•**
-: Option -historycombo
-
-**•**
-: Korrektur der Symbolleiste
-
-**•**
-: Korrektur von browse für nicht vorhandene Dateien
-
-**•**
-: Nicht verwendeter CSS-/Stylesheet- und WebForms-Code wurde entfernt
-
-**•**
-: Vielen Dank an pepdiz für die Fehlermeldungen und Vorschläge
+    - Vielen Dank an pepdiz für die Fehlermeldungen und Vorschläge
 
 
-**2022-04-XX version 1.1.0**
-: 
+2022-04-XX version 1.1.0
+: - Tastenbindung Ctrl-u für die Quellansicht von HTML- und Markdown-Dateien
+
+    - Tastenbindung Ctrl-Shift-e für einen einfachen Texteditor zur Dateibearbeitung
+
+    - Der Dialog zum Öffnen von Dateien speichert nun das zuletzt verwendete Verzeichnis und die zuletzt verwendete Erweiterung.
+
+    - Es wurde eine Schaltfläche zum Schließen der Datei mit der Option -closebutton hinzugefügt, die für Toplevel-Fenster nützlich ist
+
+    - Einige Korrekturen bezüglich des Backslashs bei Markdown-Links
+
+    - Hinzufügen eines „span“-Tags zur Formatierung
+
+    - Hinzufügen einer Render-Methode zum direkten Einlesen von HTML ohne Dateinamen
+
+    - Erweiterungsstruktur für weitere Dateitypen wie die Doctools von Tcllib oder mkdoc
+
+    - Die Unterstützung für Tcl doctools ist in einem eigenen Paket enthalten
+
+    - Die Unterstützung für Tcl-mkdoc liegt in einem eigenen Paket.
 
 
-**•**
-: Tastenbindung Ctrl-u für die Quellansicht von HTML- und Markdown-Dateien
 
-**•**
-: Tastenbindung Ctrl-Shift-e für einen einfachen Texteditor zur Dateibearbeitung
+# Noch zu tun
 
-**•**
-: Der Dialog zum Öffnen von Dateien speichert nun das zuletzt verwendete Verzeichnis und die zuletzt verwendete Erweiterung.
+- Markdown-Rendering mithilfe des tcllib-Pakets **Markdown**, falls eine URL mit „*.md*“ endet (erledigt)
 
-**•**
-: Es wurde eine Schaltfläche zum Schließen der Datei mit der Option -closebutton hinzugefügt, die für Toplevel-Fenster nützlich ist
+- Unterstützung für SVG-Bilder, beispielsweise mithilfe von [svgconvert](https://wiki.tcl-lang.org/page/svgconvert), zumindest unter Linux/Windows
 
-**•**
-: Einige Korrekturen bezüglich des Backslashs bei Markdown-Links
+- Weitere Tags, siehe die Geschichte der HTML-Tags, HTML-3.2-Tags ergänzen: <http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html> (erledigt)
 
-**•**
-: Hinzufügen eines „span“-Tags zur Formatierung
+- Quellansicht mit Ctrl-u (erledigt)
 
-**•**
-: Hinzufügen einer Render-Methode zum direkten Einlesen von HTML ohne Dateinamen
+- Bearbeitungsansicht mit Ctrl-Shift-e
 
-**•**
-: Erweiterungsstruktur für weitere Dateitypen wie die Doctools von Tcllib oder mkdoc
-
-**•**
-: Die Unterstützung für Tcl doctools ist in einem eigenen Paket enthalten
-
-**•**
-: Die Unterstützung für Tcl-mkdoc liegt in einem eigenen Paket.
+- Behebung von Problemen mit dem Mausrad
 
 
-# NOCH ZU TUN
-
-**•**
-: Markdown-Rendering mithilfe des tcllib-Pakets **Markdown**, falls eine URL mit „*.md*“ endet (erledigt)
-
-**•**
-: Unterstützung für SVG-Bilder, beispielsweise mithilfe von [svgconvert](https://wiki.tcl-lang.org/page/svgconvert), zumindest unter Linux/Windows
-
-**•**
-: Weitere Tags, siehe die Geschichte der HTML-Tags, HTML-3.2-Tags ergänzen: *http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html* (erledigt)
-
-**•**
-: Quellansicht mit Ctrl-u (erledigt)
-
-**•**
-: Bearbeitungsansicht mit Ctrl-Shift-e
-
-**•**
-: Behebung von Problemen mit dem Mausrad
-
-
-# DANK
+# Dank
 
 Stephen Uhler, Clif Flynt und Robert Heller haben den Großteil des Codes für dieses Widget beigesteuert.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese dem Autor des Pakets. Bitte teilen Sie ihm auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation mit.
 
-# COPYRIGHT AM CODE
+# Copyright am Code
 
 Art der BSD-Lizenz:
 
@@ -457,7 +421,7 @@ Die Autoren und Vertreiber schließen ausdrücklich jegliche Gewährleistung aus
 
 EINGESCHRÄNKTE RECHTE: Die Nutzung, Vervielfältigung oder Offenlegung durch die Regierung unterliegt den Einschränkungen, die in Unterabsatz (c) (1) (ii) der Klausel über Rechte an technischen Daten und Computersoftware gemäß DFARS 252.227-7013 und FAR 52.227-19 festgelegt sind.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2018-2022, Detlef Groth <detlef(at)dgroth(dot)de>

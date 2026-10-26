@@ -1,5 +1,6 @@
 ---
 CommandName: flush
+title: flush
 ManualSection: n
 Version: 7.5
 TclPart: Tcl
@@ -11,17 +12,19 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 flush - Leert die gepufferte Ausgabe eines Kanals
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[flush]{.cmd} [channel]{.arg} 
+[flush]{.cmd} [channel]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **flush** wurde durch den Befehl **chan flush** ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
+Der Befehl **flush** wurde durch den Befehl [chan flush][chan] ersetzt, der die gleiche Syntax und die gleichen Optionen unterstützt.
 
+
+[chan]: chan.md

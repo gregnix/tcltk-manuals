@@ -1,5 +1,6 @@
 ---
 CommandName: cursors
+title: cursors
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -9,15 +10,14 @@ Keywords:
  - option
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
  - Copyright (c) 2006-2007 Daniel A. Steffen <das@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 cursors - in Tk verfügbare Mauszeiger
 
-# BESCHREIBUNG
+# Beschreibung
 
 Die Widget-Option **-cursor** ermöglicht es, den Mauszeiger für ein bestimmtes Widget zu ändern. Die von Tk auf allen Plattformen erkannten Zeigernamen sind:
 
@@ -104,7 +104,7 @@ xterm
 
 Der Zeiger **none** kann angegeben werden, um den Zeiger zu unterdrücken.
 
-# PORTIERBARKEITSPROBLEME
+# Portierbarkeitsprobleme
 
 **Windows**
 : Unter Windows werden folgende Zeiger nativen Zeigern zugeordnet:
@@ -122,6 +122,7 @@ Der Zeiger **none** kann angegeben werden, um den Zeiger zu unterdrücken.
     watch
     xterm
     ```
+
     Zusätzlich stehen folgende Zeiger zur Verfügung:
 
     ```
@@ -150,6 +151,7 @@ Der Zeiger **none** kann angegeben werden, um den Zeiger zu unterdrücken.
     none
     xterm
     ```
+
     Zusätzlich stehen folgende native Zeiger zur Verfügung:
 
     ```
@@ -190,4 +192,3 @@ Der Zeiger **none** kann angegeben werden, um den Zeiger zu unterdrücken.
     zoom-in
     zoom-out
     ```
-

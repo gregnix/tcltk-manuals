@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_OwnSelection
+title: Tk_OwnSelection
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -14,38 +15,43 @@ Copyright:
 
 # Name
 
-Tk_OwnSelection - make a window the owner of the primary selection
+Tk\_OwnSelection - make a window the owner of the primary selection
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-[Tk_OwnSelection]{.cmd}([tkwin]{.arg}, [selection]{.arg}, [proc]{.arg}, [clientData]{.arg})
+**#include <tk.h>**
+[Tk\_OwnSelection]{.ccmd} [tkwin, selection, proc, clientData]{.cargs}
 :::
 
 # Arguments
 
-Tk_Window *tkwin* (in)
+::: {.arguments} :::
+
+[tkwin]{.carg .in type="Tk_Window"}
 : Window that is to become new selection owner.
 
-Atom *selection* (in)
-: The name of the selection to be owned, such as XA_PRIMARY.
+[selection]{.carg .in type="Atom"}
+: The name of the selection to be owned, such as XA\_PRIMARY.
 
-Tk_LostSelProc *\*proc* (in)
+[\*proc]{.carg .in type="Tk_LostSelProc"}
 : Procedure to invoke when *tkwin* loses selection ownership later.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value to pass to *proc*.
 
+:::
 
 # Description
 
-**Tk_OwnSelection** arranges for *tkwin* to become the new owner of the selection specified by the atom *selection*.  After this call completes, future requests for the selection will be directed to handlers created for *tkwin* using **Tk_CreateSelHandler**.  When *tkwin* eventually loses the selection ownership, *proc* will be invoked so that the window can clean itself up (e.g. by unhighlighting the selection).  *Proc* should have arguments and result that match the type **Tk_LostSelProc**:
+**Tk\_OwnSelection** arranges for *tkwin* to become the new owner of the selection specified by the atom *selection*.  After this call completes, future requests for the selection will be directed to handlers created for *tkwin* using [Tk\_CreateSelHandler][CrtSelHdlr].  When *tkwin* eventually loses the selection ownership, *proc* will be invoked so that the window can clean itself up (e.g. by unhighlighting the selection).  *Proc* should have arguments and result that match the type **Tk\_LostSelProc**:
 
 ```
 typedef void Tk_LostSelProc(
         void *clientData);
 ```
 
-The *clientData* parameter to *proc* is a copy of the *clientData* argument given to **Tk_OwnSelection**, and is usually a pointer to a data structure containing application-specific information about *tkwin*.
+The *clientData* parameter to *proc* is a copy of the *clientData* argument given to **Tk\_OwnSelection**, and is usually a pointer to a data structure containing application-specific information about *tkwin*.
+
+
+[CrtSelHdlr]: CrtSelHdlr.md

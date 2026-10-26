@@ -1,5 +1,6 @@
 ---
 CommandName: bench
+title: bench
 ManualSection: n
 Version: 0.6
 TclPart: tcllib
@@ -28,16 +29,16 @@ bench - bench - Processing benchmark suites
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [bench]{.lit} [0.6]{.optlit} 
-[::bench::locate]{.cmd} [pattern]{.arg} [paths]{.arg} 
-[::bench::run]{.cmd} [option value]{.optdot} [interp_list]{.arg} [file...]{.arg} 
-[::bench::versions]{.cmd} [interp_list]{.arg} 
-[::bench::del]{.cmd} [bench_result]{.arg} [column]{.arg} 
-[::bench::edit]{.cmd} [bench_result]{.arg} [column]{.arg} [newvalue]{.arg} 
-[::bench::merge]{.cmd} [bench_result...]{.arg} 
-[::bench::norm]{.cmd} [bench_result]{.arg} [column]{.arg} 
-[::bench::out::raw]{.cmd} [bench_result]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [bench]{.lit} [0.6]{.optlit}
+[::bench::locate]{.cmd} [pattern]{.arg} [paths]{.arg}
+[::bench::run]{.cmd} [option value...]{.optarg} [interp\_list]{.arg} [file...]{.arg}
+[::bench::versions]{.cmd} [interp\_list]{.arg}
+[::bench::del]{.cmd} [bench\_result]{.arg} [column]{.arg}
+[::bench::edit]{.cmd} [bench\_result]{.arg} [column]{.arg} [newvalue]{.arg}
+[::bench::merge]{.cmd} [bench\_result...]{.arg}
+[::bench::norm]{.cmd} [bench\_result]{.arg} [column]{.arg}
+[::bench::out::raw]{.cmd} [bench\_result]{.arg}
 :::
 
 # Description
@@ -46,56 +47,91 @@ This package provides commands for the execution of benchmarks written in the be
 
 A reader interested in the bench language itself should start with the *bench language introduction* and proceed from there to the formal *bench language specification*.
 
-# Public api
+# Public API
 
 ## Benchmark execution
 
 **::bench::locate** *pattern* *paths*
-: This command locates Tcl interpreters and returns a list containing their paths. It searches them in the list of *paths* specified by the caller, using the glob *pattern*. The command resolves soft links to find the actual executables matching the pattern. Note that only interpreters which are marked as executable and are actually executable on the current platform are put into the result.
+: This command locates Tcl interpreters and returns a list containing their paths. It searches them in the list of *paths* specified by the caller, using the glob *pattern*.
 
-**::bench::run** ?*option value*...? *interp_list* *file*...
-: This command executes the benchmarks declared in the set of files, once per Tcl interpreter specified via the *interp_list*, and per the configuration specified by the options, and then returns the accumulated timing results. The format of this result is described in section **Result format**. It is assumed that the contents of the files are written in the bench language. The available options are
+    The command resolves soft links to find the actual executables matching the pattern. Note that only interpreters which are marked as executable and are actually executable on the current platform are put into the result.
+
+**::bench::run** ?*option value*...? *interp\_list* *file*...
+: This command executes the benchmarks declared in the set of files, once per Tcl interpreter specified via the *interp\_list*, and per the configuration specified by the options, and then returns the accumulated timing results. The format of this result is described in section [Result format].
+
+    It is assumed that the contents of the files are written in the bench language.
+
+    The available options are
+
+    **-errors** *flag*
+    : The argument is a boolean value. If set errors in benchmarks are propagated to the command, aborting benchmark execution. Otherwise they are recorded in the timing result via a special result code. The default is to propagate and abort.
+
+    **-threads** *n*
+    : The argument is a non-negative integer value declaring the number of threads to use while executing the benchmarks. The default value is **0**, to not use threads.
+
+    **-match** *pattern*
+    : The argument is a glob pattern. Only benchmarks whose description matches the pattern are executed. The default is the empty string, to execute all patterns.
+
+    **-rmatch** *pattern*
+    : The argument is a regular expression pattern. Only benchmarks whose description matches the pattern are executed. The default is the empty string, to execute all patterns.
+
+    **-iters** *n*
+    : The argument is positive integer number, the maximal number of iterations for any benchmark. The default is **1000**. Individual benchmarks can override this.
+
+    **-pkgdir** *path*
+    : The argument is a path to an existing, readable directory. Multiple paths can be specified, simply use the option multiple times, each time with one of the paths to use.
+
+        If no paths were specified the system will behave as before. If one or more paths are specified, say **N**, each of the specified interpreters will be invoked **N** times, with one of the specified paths. The chosen path is put into the interpreters' **auto\_path**, thus allowing it to find specific versions of a package.
+
+        In this way the use of **-pkgdir** allows the user to benchmark several different versions of a package, against one or more interpreters.
+
+        *Note:* The empty string is allowed as a path and causes the system to run the specified interpreters with an unmodified **auto\_path**. In case the package in question is available there as well.
 
 
-**-errors** *flag*
-: The argument is a boolean value. If set errors in benchmarks are propagated to the command, aborting benchmark execution. Otherwise they are recorded in the timing result via a special result code. The default is to propagate and abort.
+**::bench::versions** *interp\_list*
+: This command takes a list of Tcl interpreters, identified by their path, and returns a dictionary mapping from the interpreters to their versions. Interpreters which are not actually executable, or fail when interrogated, are not put into the result. I.e the result may contain less interpreters than there in the input list.
 
-**-threads** *n*
-: The argument is a non-negative integer value declaring the number of threads to use while executing the benchmarks. The default value is **0**, to not use threads.
-
-**-match** *pattern*
-: The argument is a glob pattern. Only benchmarks whose description matches the pattern are executed. The default is the empty string, to execute all patterns.
-
-**-rmatch** *pattern*
-: The argument is a regular expression pattern. Only benchmarks whose description matches the pattern are executed. The default is the empty string, to execute all patterns.
-
-**-iters** *n*
-: The argument is positive integer number, the maximal number of iterations for any benchmark. The default is **1000**. Individual benchmarks can override this.
-
-**-pkgdir** *path*
-: The argument is a path to an existing, readable directory. Multiple paths can be specified, simply use the option multiple times, each time with one of the paths to use. If no paths were specified the system will behave as before. If one or more paths are specified, say **N**, each of the specified interpreters will be invoked **N** times, with one of the specified paths. The chosen path is put into the interpreters' **auto_path**, thus allowing it to find specific versions of a package. In this way the use of **-pkgdir** allows the user to benchmark several different versions of a package, against one or more interpreters. *Note:* The empty string is allowed as a path and causes the system to run the specified interpreters with an unmodified **auto_path**. In case the package in question is available there as well.
-
-
-**::bench::versions** *interp_list*
-: This command takes a list of Tcl interpreters, identified by their path, and returns a dictionary mapping from the interpreters to their versions. Interpreters which are not actually executable, or fail when interrogated, are not put into the result. I.e the result may contain less interpreters than there in the input list. The command uses builtin command **info patchlevel** to determine the version of each interpreter.
+    The command uses builtin command **info patchlevel** to determine the version of each interpreter.
 
 
 ## Result manipulation
 
-**::bench::del** *bench_result* *column*
-: This command removes a column, i.e. all benchmark results for a specific Tcl interpreter, from the specified benchmark result and returns the modified result. The benchmark results are in the format described in section **Result format**. The column is identified by an integer number.
+**::bench::del** *bench\_result* *column*
+: This command removes a column, i.e. all benchmark results for a specific Tcl interpreter, from the specified benchmark result and returns the modified result.
 
-**::bench::edit** *bench_result* *column* *newvalue*
-: This command renames a column in the specified benchmark result and returns the modified result. This means that the path of the Tcl interpreter in the identified column is changed to an arbitrary string. The benchmark results are in the format described in section **Result format**. The column is identified by an integer number.
+    The benchmark results are in the format described in section [Result format].
 
-**::bench::merge** *bench_result*...
-: This commands takes one or more benchmark results, merges them into one big result, and returns that as its result. All benchmark results are in the format described in section **Result format**.
+    The column is identified by an integer number.
 
-**::bench::norm** *bench_result* *column*
-: This command normalizes the timing results in the specified benchmark result and returns the modified result. This means that the cell values are not times anymore, but factors showing how much faster or slower the execution was relative to the baseline. The baseline against which the command normalizes are the timing results in the chosen column. This means that after the normalization the values in this column are all **1**, as these benchmarks are neither faster nor slower than the baseline. A factor less than **1** indicates a benchmark which was faster than the baseline, whereas a factor greater than **1** indicates a slower execution. The benchmark results are in the format described in section **Result format**. The column is identified by an integer number.
+**::bench::edit** *bench\_result* *column* *newvalue*
+: This command renames a column in the specified benchmark result and returns the modified result. This means that the path of the Tcl interpreter in the identified column is changed to an arbitrary string.
 
-**::bench::out::raw** *bench_result*
-: This command formats the specified benchmark result for output to a file, socket, etc. This specific command does no formatting at all, it passes the input through unchanged. For other formatting styles see the packages **bench::out::text** and **bench::out::csv** which provide commands to format benchmark results for human consumption, or as CSV data importable by spread sheets, respectively. Complementary, to read benchmark results from files, sockets etc. look for the package **bench::in** and the commands provided by it.
+    The benchmark results are in the format described in section [Result format].
+
+    The column is identified by an integer number.
+
+**::bench::merge** *bench\_result*...
+: This commands takes one or more benchmark results, merges them into one big result, and returns that as its result.
+
+    All benchmark results are in the format described in section [Result format].
+
+**::bench::norm** *bench\_result* *column*
+: This command normalizes the timing results in the specified benchmark result and returns the modified result. This means that the cell values are not times anymore, but factors showing how much faster or slower the execution was relative to the baseline.
+
+    The baseline against which the command normalizes are the timing results in the chosen column. This means that after the normalization the values in this column are all **1**, as these benchmarks are neither faster nor slower than the baseline.
+
+    A factor less than **1** indicates a benchmark which was faster than the baseline, whereas a factor greater than **1** indicates a slower execution.
+
+    The benchmark results are in the format described in section [Result format].
+
+    The column is identified by an integer number.
+
+**::bench::out::raw** *bench\_result*
+: This command formats the specified benchmark result for output to a file, socket, etc. This specific command does no formatting at all, it passes the input through unchanged.
+
+    For other formatting styles see the packages **bench::out::text** and **bench::out::csv** which provide commands to format benchmark results for human consumption, or as CSV data importable by spread sheets, respectively.
+
+    Complementary, to read benchmark results from files, sockets etc. look for the package **bench::in** and the commands provided by it.
 
 
 ## Result format
@@ -104,21 +140,27 @@ After the execution of a set of benchmarks the raw result returned by this packa
 
 The possible keys are all valid Tcl lists of two or three elements and have one of the following forms:
 
-**{interp \*}**
-: The set of keys matching this glob pattern capture the information about all the Tcl interpreters used to run the benchmarks. The second element of the key is the path to the interpreter. The associated value is the version of the Tcl interpreter.
+{interp \*}
+: The set of keys matching this glob pattern capture the information about all the Tcl interpreters used to run the benchmarks. The second element of the key is the path to the interpreter.
 
-**{desc \*}**
-: The set of keys matching this glob pattern capture the information about all the benchmarks found in the executed benchmark suite. The second element of the key is the description of the benchmark, which has to be unique. The associated value is irrelevant, and set to the empty string.
+    The associated value is the version of the Tcl interpreter.
 
-**{usec \* \*}**
-: The set of keys matching this glob pattern capture the performance information, i.e. timing results. The second element of the key is the description of the benchmark, the third element the path of the Tcl interpreter which was used to run it. The associated value is either one of several special result codes, or the time it took to execute the benchmark, in microseconds. The possible special result codes are
+{desc \*}
+: The set of keys matching this glob pattern capture the information about all the benchmarks found in the executed benchmark suite. The second element of the key is the description of the benchmark, which has to be unique.
 
+    The associated value is irrelevant, and set to the empty string.
 
-**ERR**
-: Benchmark could not be executed, failed with a Tcl error.
+{usec \* \*}
+: The set of keys matching this glob pattern capture the performance information, i.e. timing results. The second element of the key is the description of the benchmark, the third element the path of the Tcl interpreter which was used to run it.
 
-**BAD_RES**
-: The benchmark could be executed, however the result from its body did not match the declared expectations.
+    The associated value is either one of several special result codes, or the time it took to execute the benchmark, in microseconds. The possible special result codes are
+
+    ERR
+    : Benchmark could not be executed, failed with a Tcl error.
+
+    BAD\_RES
+    : The benchmark could be executed, however the result from its body did not match the declared expectations.
+
 
 
 # Bugs, ideas, feedback

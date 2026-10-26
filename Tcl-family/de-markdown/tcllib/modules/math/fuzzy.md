@@ -1,5 +1,6 @@
 ---
 CommandName: math::fuzzy
+title: math::fuzzy
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -11,39 +12,39 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 math::fuzzy – Unscharfer Vergleich von Gleitkommazahlen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.3]{.optlit} 
-[package]{.cmd} [require]{.sub} [math::fuzzy]{.lit} [0.2]{.optlit} 
-[::math::fuzzy::teq]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tne]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tge]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tle]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tlt]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tgt]{.cmd} [value1]{.arg} [value2]{.arg} 
-[::math::fuzzy::tfloor]{.cmd} [value]{.arg} 
-[::math::fuzzy::tceil]{.cmd} [value]{.arg} 
-[::math::fuzzy::tround]{.cmd} [value]{.arg} 
-[::math::fuzzy::troundn]{.cmd} [value]{.arg} [ndigits]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.3]{.optlit}
+[package]{.cmd} [require]{.sub} [math::fuzzy]{.lit} [0.2]{.optlit}
+[::math::fuzzy::teq]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tne]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tge]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tle]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tlt]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tgt]{.cmd} [value1]{.arg} [value2]{.arg}
+[::math::fuzzy::tfloor]{.cmd} [value]{.arg}
+[::math::fuzzy::tceil]{.cmd} [value]{.arg}
+[::math::fuzzy::tround]{.cmd} [value]{.arg}
+[::math::fuzzy::troundn]{.cmd} [value]{.arg} [ndigits]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket „Fuzzy“ dient dazu, häufige Probleme mit Gleitkommazahlen auf systematische Weise zu lösen:
 
-**•**
-: Der Vergleich zweier Zahlen, die eigentlich identisch sein „sollten“, wie beispielsweise 1.0 und 2.1/(1.2+0.9), führt nicht zwangsläufig zu dem intuitiv erwarteten Ergebnis.
+- Der Vergleich zweier Zahlen, die eigentlich identisch sein „sollten“, wie beispielsweise 1.0 und 2.1/(1.2+0.9), führt nicht zwangsläufig zu dem intuitiv erwarteten Ergebnis.
 
-**•**
-: Das Runden einer Zahl, die genau zwischen zwei ganzen Zahlen liegt, kann zu seltsamen Fehlern führen, wie beispielsweise int(100.0\*2.8) != 28, sondern 27. Das Fuzzy-Paket soll dabei helfen, diese Art von Problemen zu lösen, indem es „unscharfe“ Vergleichsprozeduren für Gleitkommazahlen definiert. Dies geschieht durch die Berücksichtigung einer kleinen Toleranz, die automatisch bestimmt wird – die Toleranz beträgt das Dreifache des „Epsilon“-Werts, d. h. das Dreifache der kleinsten Zahl *eps*, bei der 1.0 und 1.0+\$eps unterschieden werden können. In Tcl, das Gleitkommazahlen mit doppelter Genauigkeit verwendet, beträgt dieser Wert typischerweise 1.1e-16.
+- Das Runden einer Zahl, die genau zwischen zwei ganzen Zahlen liegt, kann zu seltsamen Fehlern führen, wie beispielsweise int(100.0\*2.8) != 28, sondern 27.
 
 
-# PROZEDUREN
+Das Fuzzy-Paket soll dabei helfen, diese Art von Problemen zu lösen, indem es „unscharfe“ Vergleichsprozeduren für Gleitkommazahlen definiert. Dies geschieht durch die Berücksichtigung einer kleinen Toleranz, die automatisch bestimmt wird – die Toleranz beträgt das Dreifache des „Epsilon“-Werts, d. h. das Dreifache der kleinsten Zahl *eps*, bei der 1.0 und 1.0+$eps unterschieden werden können. In Tcl, das Gleitkommazahlen mit doppelter Genauigkeit verwendet, beträgt dieser Wert typischerweise 1.1e-16.
+
+# Prozeduren
 
 Im Wesentlichen bietet das Paket die folgenden Prozeduren:
 
@@ -75,8 +76,10 @@ Im Wesentlichen bietet das Paket die folgenden Prozeduren:
 : Rundet die Gleitkommazahl.
 
 **::math::fuzzy::troundn** *value* *ndigits*
-: Rundet die Gleitkommazahl auf die festgelegte Anzahl von Dezimalstellen (Pro memorie). Verwendung:
+: Rundet die Gleitkommazahl auf die festgelegte Anzahl von Dezimalstellen (Pro memorie).
 
+
+Verwendung:
 
 ```
 if { [teq $x $y] } { puts "x == y" }
@@ -92,18 +95,20 @@ set rounded [tround $x]
 set roundn  [troundn $x $nodigits]
 ```
 
-# TESTFÄLLE
+# Testfälle
 
 Die Probleme, die bei Gleitkommazahlen auftreten können, werden anhand der Tests in der Datei „fuzzy.test“ veranschaulicht:
 
-**•**
-: In mehreren Tests werden die üblichen Vergleichsoperatoren verwendet, und diese liefern ausnahmslos keine nachvollziehbaren Ergebnisse.
+- In mehreren Tests werden die üblichen Vergleichsoperatoren verwendet, und diese liefern ausnahmslos keine nachvollziehbaren Ergebnisse.
 
-**•**
-: Ein Testfall verwendet \[expr\] ohne geschweifte Klammern ({ und }). Auch dieser schlägt fehl. Daraus lässt sich schließen, dass jeder Ausdruck in geschweifte Klammern gesetzt werden sollte, da es andernfalls zu sehr unangenehmen Situationen kommen kann, wenn Genauigkeit erforderlich ist. Darüber hinaus werden Genauigkeit und Verständlichkeit der Ergebnisse durch die Verwendung dieser „toleranten“ oder unscharfen Vergleiche verbessert. Hinweis: Es gibt neben dem reinen Tcl-Paket auch eine C-basierte Version.
+- Ein Testfall verwendet \[expr\] ohne geschweifte Klammern ({ und }). Auch dieser schlägt fehl.
 
 
-# LITERATUR
+Daraus lässt sich schließen, dass jeder Ausdruck in geschweifte Klammern gesetzt werden sollte, da es andernfalls zu sehr unangenehmen Situationen kommen kann, wenn Genauigkeit erforderlich ist. Darüber hinaus werden Genauigkeit und Verständlichkeit der Ergebnisse durch die Verwendung dieser „toleranten“ oder unscharfen Vergleiche verbessert.
+
+Hinweis: Es gibt neben dem reinen Tcl-Paket auch eine C-basierte Version.
+
+# Literatur
 
 Ursprüngliche Implementierung in Fortran durch Dr. H.D. Knoble (Penn State University).
 
@@ -113,7 +118,7 @@ L. M. Breed, „Definitions for Fuzzy Floor and Ceiling“, APL QUOTE QUAD 8(3):
 
 D. Knuth, Art of Computer Programming, Band 1, Aufgabe 1.2.4–5.
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *math :: fuzzy* als Kategorie an.
 
@@ -121,6 +126,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik

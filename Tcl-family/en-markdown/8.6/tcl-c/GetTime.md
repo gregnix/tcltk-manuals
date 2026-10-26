@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_GetTime
+title: Tcl_GetTime
 ManualSection: 3
 Version: 8.4
 TclPart: Tcl
@@ -15,47 +16,47 @@ Copyright:
 
 # Name
 
-Tcl_GetTime, Tcl_SetTimeProc, Tcl_QueryTimeProc - get date and time
+Tcl\_GetTime, Tcl\_SetTimeProc, Tcl\_QueryTimeProc - get date and time
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-[Tcl_GetTime]{.cmd}([timePtr]{.arg})
-
-[Tcl_SetTimeProc]{.cmd}([getProc]{.arg}, [scaleProc]{.arg}, [clientData]{.arg})
-
-[Tcl_QueryTimeProc]{.cmd}([getProcPtr]{.arg}, [scaleProcPtr]{.arg}, [clientDataPtr]{.arg})
+**#include <tcl.h>**
+[Tcl\_GetTime]{.ccmd} [timePtr]{.cargs}
+[Tcl\_SetTimeProc]{.ccmd} [getProc, scaleProc, clientData]{.cargs}
+[Tcl\_QueryTimeProc]{.ccmd} [getProcPtr, scaleProcPtr, clientDataPtr]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Time *\*timePtr* (out)
+::: {.arguments} :::
+
+[\*timePtr]{.carg .out type="Tcl_Time"}
 : Points to memory in which to store the date and time information.
 
-Tcl_GetTimeProc *getProc* (in)
-: Pointer to handler function replacing **Tcl_GetTime**'s access to the OS.
+[getProc]{.carg .in type="Tcl_GetTimeProc"}
+: Pointer to handler function replacing **Tcl\_GetTime**'s access to the OS.
 
-Tcl_ScaleTimeProc *scaleProc* (in)
+[scaleProc]{.carg .in type="Tcl_ScaleTimeProc"}
 : Pointer to handler function for the conversion of time delays in the virtual domain to real-time.
 
-ClientData *clientData* (in)
+[clientData]{.carg .in type="ClientData"}
 : Value passed through to the two handler functions.
 
-Tcl_GetTimeProc *\*getProcPtr* (out)
+[\*getProcPtr]{.carg .out type="Tcl_GetTimeProc"}
 : Pointer to place the currently registered get handler function into.
 
-Tcl_ScaleTimeProc *\*scaleProcPtr* (out)
+[\*scaleProcPtr]{.carg .out type="Tcl_ScaleTimeProc"}
 : Pointer to place the currently registered scale handler function into.
 
-ClientData *\*clientDataPtr* (out)
+[\*clientDataPtr]{.carg .out type="ClientData"}
 : Pointer to place the currently registered pass-through value into.
 
+:::
 
 # Description
 
-The **Tcl_GetTime** function retrieves the current time as a *Tcl_Time* structure in memory the caller provides.  This structure has the following definition:
+The **Tcl\_GetTime** function retrieves the current time as a *Tcl\_Time* structure in memory the caller provides.  This structure has the following definition:
 
 ```
 typedef struct Tcl_Time {
@@ -70,9 +71,9 @@ The *usec* member of the structure is filled in with the number of microseconds 
 
 ## Virtualized time
 
-The **Tcl_SetTimeProc** function registers two related handler functions with the core. The first handler function is a replacement for **Tcl_GetTime**, or rather the OS access made by **Tcl_GetTime**. The other handler function is used by the Tcl notifier to convert wait/block times from the virtual domain into real time.
+The **Tcl\_SetTimeProc** function registers two related handler functions with the core. The first handler function is a replacement for **Tcl\_GetTime**, or rather the OS access made by **Tcl\_GetTime**. The other handler function is used by the Tcl notifier to convert wait/block times from the virtual domain into real time.
 
-The **Tcl_QueryTimeProc** function returns the currently registered handler functions. If no external handlers were set then this will return the standard handlers accessing and processing the native time of the OS. The arguments to the function are allowed to be NULL; and any argument which is NULL is ignored and not set.
+The **Tcl\_QueryTimeProc** function returns the currently registered handler functions. If no external handlers were set then this will return the standard handlers accessing and processing the native time of the OS. The arguments to the function are allowed to be NULL; and any argument which is NULL is ignored and not set.
 
 The signatures of the handler functions are as follows:
 

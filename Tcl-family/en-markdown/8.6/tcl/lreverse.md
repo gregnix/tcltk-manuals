@@ -1,5 +1,6 @@
 ---
 CommandName: lreverse
+title: lreverse
 ManualSection: n
 Version: 8.5
 TclPart: Tcl
@@ -23,7 +24,7 @@ lreverse - Reverse the order of a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lreverse]{.cmd} [list]{.arg} 
+[lreverse]{.cmd} [list]{.arg}
 :::
 
 # Description

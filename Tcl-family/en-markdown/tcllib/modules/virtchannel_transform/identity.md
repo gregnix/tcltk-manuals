@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::identity
+title: tcl::transform::identity
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,10 +23,10 @@ tcl::transform::identity - Identity transformation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::identity]{.lit} [1.1]{.optlit} 
-[::tcl::transform::identity]{.cmd} [chan]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::identity]{.lit} [1.1]{.optlit}
+[::tcl::transform::identity]{.cmd} [chan]{.arg}
 :::
 
 # Description
@@ -36,7 +37,7 @@ The transformations in this module which derived from identity's code are **tcl:
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::identity** *chan*
 : This command creates an identity transformation on top of the channel *chan* and returns its handle.

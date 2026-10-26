@@ -1,5 +1,6 @@
 ---
 CommandName: subst
+title: subst
 ManualSection: n
 Version: 7.4
 TclPart: Tcl
@@ -28,7 +29,7 @@ subst - Perform backslash, command, and variable substitutions
 # Synopsis
 
 ::: {.synopsis} :::
-[subst]{.cmd} [-nobackslashes]{.optlit} [-nocommands]{.optlit} [-novariables]{.optlit} [string]{.arg} 
+[subst]{.cmd} [-nobackslashes]{.optlit} [-nocommands]{.optlit} [-novariables]{.optlit} [string]{.arg}
 :::
 
 # Description
@@ -37,9 +38,9 @@ This command performs variable substitutions, command substitutions, and backsla
 
 If any of the **-nobackslashes**, **-nocommands**, or **-novariables** are specified, then the corresponding substitutions are not performed. For example, if **-nocommands** is specified, command substitution is not performed:  open and close brackets are treated as ordinary characters with no special interpretation.
 
-Note that the substitution of one kind can include substitution of other kinds.  For example, even when the **-novariables** option is specified, command substitution is performed without restriction. This means that any variable substitution necessary to complete the command substitution will still take place.  Likewise, any command substitution necessary to complete a variable substitution will take place, even when **-nocommands** is specified.  See the **EXAMPLES** below.
+Note that the substitution of one kind can include substitution of other kinds.  For example, even when the **-novariables** option is specified, command substitution is performed without restriction. This means that any variable substitution necessary to complete the command substitution will still take place.  Likewise, any command substitution necessary to complete a variable substitution will take place, even when **-nocommands** is specified.  See the [Examples] below.
 
-If an error occurs during substitution, then **subst** will return that error.  If a break exception occurs during command or variable substitution, the result of the whole substitution will be the string (as substituted) up to the start of the substitution that raised the exception.  If a continue exception occurs during the evaluation of a command or variable substitution, an empty string will be substituted for that entire command or variable substitution (as long as it is well-formed Tcl.)  If a return exception occurs, or any other return code is returned during command or variable substitution, then the returned value is substituted for that substitution.  See the **EXAMPLES** below.  In this way, all exceptional return codes are "caught" by **subst**.  The **subst** command itself will either return an error, or will complete successfully.
+If an error occurs during substitution, then **subst** will return that error.  If a break exception occurs during command or variable substitution, the result of the whole substitution will be the string (as substituted) up to the start of the substitution that raised the exception.  If a continue exception occurs during the evaluation of a command or variable substitution, an empty string will be substituted for that entire command or variable substitution (as long as it is well-formed Tcl.)  If a return exception occurs, or any other return code is returned during command or variable substitution, then the returned value is substituted for that substitution.  See the [Examples] below.  In this way, all exceptional return codes are "caught" by **subst**.  The **subst** command itself will either return an error, or will complete successfully.
 
 # Examples
 
@@ -50,7 +51,7 @@ set a 44
 subst {xyz {$a}}
 ```
 
-returns "**xyz {44}**", not "**xyz {\$a}**" and the script
+returns "**xyz {44}**", not "**xyz {$a}**" and the script
 
 ```
 set a "p\} q \{r"
@@ -66,7 +67,7 @@ set a 44
 subst -novariables {$a [format $a]}
 ```
 
-returns "**\$a 44**", not "**\$a \$a**". Similarly, when variable substitution is performed, it includes any command substitution necessary to retrieve the value of the variable.
+returns "**$a 44**", not "**$a $a**". Similarly, when variable substitution is performed, it includes any command substitution necessary to retrieve the value of the variable.
 
 ```
 proc b {} {return c}

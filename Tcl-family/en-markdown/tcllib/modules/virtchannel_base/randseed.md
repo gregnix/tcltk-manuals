@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::randomseed
+title: tcl::randomseed
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -23,18 +24,18 @@ tcl::randomseed - Utilities for random channels
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::randomseed]{.lit} [1.1]{.optlit} 
-[::tcl::randomseed]{.cmd} 
-[::tcl::combine]{.cmd} [seed1]{.arg} [seed2]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::randomseed]{.lit} [1.1]{.optlit}
+[::tcl::randomseed]{.cmd}
+[::tcl::combine]{.cmd} [seed1]{.arg} [seed2]{.arg}
 :::
 
 # Description
 
 The **tcl::randomseed** package provides a a few utility commands to help with the seeding of **tcl::chan::random** channels.
 
-# Api
+# API
 
 **::tcl::randomseed**
 : This command creates returns a list of seed integers suitable as seed argument for random channels. The numbers are derived from the process id, current time, and Tcl random number generator.

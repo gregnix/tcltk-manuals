@@ -1,5 +1,6 @@
 ---
 CommandName: profiler
+title: profiler
 ManualSection: n
 Version: 0.7
 TclPart: tcllib
@@ -11,31 +12,31 @@ Keywords:
 Copyright:
 ---
 
-# NAME
+# Name
 
 profiler – Tcl-Quellcode-Profiler
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [profiler]{.lit} [0.7]{.optlit} 
-[::profiler::init]{.cmd} 
-[::profiler::dump]{.cmd} [pattern]{.arg} 
-[::profiler::print]{.cmd} [pattern]{.optarg} 
-[::profiler::reset]{.cmd} [pattern]{.optarg} 
-[::profiler::suspend]{.cmd} [pattern]{.optarg} 
-[::profiler::resume]{.cmd} [pattern]{.optarg} 
-[::profiler::new-disabled]{.cmd} 
-[::profiler::new-enabled]{.cmd} 
-[::profiler::sortFunctions]{.cmd} [key]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [profiler]{.lit} [0.7]{.optlit}
+[::profiler::init]{.cmd}
+[::profiler::dump]{.cmd} [pattern]{.arg}
+[::profiler::print]{.cmd} [pattern]{.optarg}
+[::profiler::reset]{.cmd} [pattern]{.optarg}
+[::profiler::suspend]{.cmd} [pattern]{.optarg}
+[::profiler::resume]{.cmd} [pattern]{.optarg}
+[::profiler::new-disabled]{.cmd}
+[::profiler::new-enabled]{.cmd}
+[::profiler::sortFunctions]{.cmd} [key]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Das Paket **profiler** stellt einen einfachen Tcl-Quellcode-Profiler bereit. Es handelt sich um einen Profiler auf Funktionsebene; das heißt, er erfasst lediglich Informationen auf Funktionsebene, nicht jedoch die detaillierteren Informationen auf Zeilenebene.  Er funktioniert durch die Neudefinition des Tcl-Befehls **proc**. Die Profilerstellung wird über den Befehl **::profiler::init** initiiert.
 
-# BEFEHLE
+# Befehle
 
 **::profiler::init**
 : Profilierung starten. Alle Prozeduren, die nach dem Aufruf dieses Befehls erstellt werden, werden profiliert. Um eine gesamte Anwendung zu profilieren, muss dieser Befehl vor allen anderen Befehlen aufgerufen werden.
@@ -43,27 +44,26 @@ Das Paket **profiler** stellt einen einfachen Tcl-Quellcode-Profiler bereit. Es 
 **::profiler::dump** *pattern*
 : Gibt Profilierungsinformationen für alle Funktionen aus, die dem Muster *pattern* entsprechen.  Wenn kein Muster festgelegt wird, werden Informationen zu allen Funktionen zurückgegeben.  Das Ergebnis ist eine Liste von Schlüssel-Wert-Paaren, die Funktionsnamen Informationen zu der jeweiligen Funktion zuordnet.  Die Informationen zu jeder Funktion bestehen wiederum aus einer Liste von Schlüssel-Wert-Paaren. Die verwendeten Schlüssel und ihre Werte lauten wie folgt:
 
+    **totalCalls**
+    : Die Gesamtzahl der Aufrufe von *functionName*.
 
-**totalCalls**
-: Die Gesamtzahl der Aufrufe von *functionName*.
+    **callerDist**
+    : Eine Liste von Schlüssel-Wert-Paaren, in der jede aufrufende Funktion, die *functionName* aufgerufen hat, der Anzahl ihrer Aufrufe von *functionName* zugeordnet wird.
 
-**callerDist**
-: Eine Liste von Schlüssel-Wert-Paaren, in der jede aufrufende Funktion, die *functionName* aufgerufen hat, der Anzahl ihrer Aufrufe von *functionName* zugeordnet wird.
+    **compileTime**
+    : Die Laufzeit in Taktklicks der Funktion *functionName* bei ihrem ersten Aufruf.
 
-**compileTime**
-: Die Laufzeit in Taktklicks der Funktion *functionName* bei ihrem ersten Aufruf.
+    **totalRuntime**
+    : Die Summe der Laufzeiten aller Aufrufe von *functionName*.
 
-**totalRuntime**
-: Die Summe der Laufzeiten aller Aufrufe von *functionName*.
+    **averageRuntime**
+    : Durchschnittliche Laufzeit von *functionName*.
 
-**averageRuntime**
-: Durchschnittliche Laufzeit von *functionName*.
+    **descendantTime**
+    : Summe der Zeit, die in den Nachfolgern von *functionName* verbracht wurde.
 
-**descendantTime**
-: Summe der Zeit, die in den Nachfolgern von *functionName* verbracht wurde.
-
-**averageDescendantTime**
-: Durchschnittliche Verweildauer in den untergeordneten Elementen von *functionName*.
+    **averageDescendantTime**
+    : Durchschnittliche Verweildauer in den untergeordneten Elementen von *functionName*.
 
 
 **::profiler::print** ?*pattern*?
@@ -88,7 +88,7 @@ Das Paket **profiler** stellt einen einfachen Tcl-Quellcode-Profiler bereit. Es 
 : Gibt eine Liste von Funktionen zurück, sortiert nach einer bestimmten Profiling-Statistik. Unterstützte Werte für *key* sind: **calls**, **exclusiveTime**, **compileTime**, **nonCompileTime**, **totalRuntime**, **avgExclusiveTime** und **avgRuntime**.  Das Rückgaberesultat ist eine Liste von Listen, wobei jede Unterliste aus einem Funktionsnamen und dem Wert von *key* für diese Funktion besteht.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *profiler* als Kategorie an.
 
@@ -96,6 +96,6 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Programmierwerkzeuge

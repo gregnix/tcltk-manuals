@@ -1,5 +1,6 @@
 ---
 CommandName: mkdoc
+title: mkdoc
 ManualSection: n
 Version: 0.7.0
 TclPart: tcllib
@@ -8,24 +9,24 @@ Copyright:
  - Copyright (c) 2019-2022, Detlef Groth <detlef(at)dgroth(dot)de>
 ---
 
-# NAME
+# Name
 
 mkdoc – Anwendung zum Extrahieren und Konvertieren von Quellcode-Dokumentation
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[mkdoc]{.cmd} [--help]{.sub} 
-[mkdoc]{.cmd} [--version]{.sub} 
-[mkdoc]{.cmd} [--license]{.sub} 
-[mkdoc]{.cmd} [input]{.arg} [output]{.arg} [--css cssfile]{.optarg} 
+[mkdoc]{.cmd} [--help]{.lit}
+[mkdoc]{.cmd} [--version]{.lit}
+[mkdoc]{.cmd} [--license]{.lit}
+[mkdoc]{.cmd} [input]{.arg} [output]{.arg} [[--css]{.lit} [cssfile]{.arg}]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Dokument beschreibt **mkdoc**, eine Anwendung zum Extrahieren von Dokumentation, die in Quellcode-Dateien eingebettet ist, seien es „*.tcl*“-Dateien oder andere.
 
-# BEFEHLSZEILE
+# Befehlszeile
 
 **mkdoc** **--help**
 : Die Anwendung gibt eine kurze Hilfe auf die Standardausgabe aus und beendet sich.
@@ -37,10 +38,18 @@ Dieses Dokument beschreibt **mkdoc**, eine Anwendung zum Extrahieren von Dokumen
 : Die Anwendung gibt ihre Lizenz auf der Standardausgabe aus und wird beendet.
 
 **mkdoc** *input* *output* ?**--css** *cssfile*?
-: Die Anwendung liest die Datei *input* ein, extrahiert die darin enthaltene Dokumentation und schreibt sie in die Datei *output*. Wenn die Ausgabedatei nicht die Endung „*.md*“ hat, wird die extrahierte Dokumentation vor dem Schreiben in HTML konvertiert. Wenn die Generierung und das Schreiben von HTML erfolgen, kann das Standard-CSS-Stylesheet überschrieben werden, indem über die Option **--css** der Pfad zu einem benutzerdefinierten Stylesheet festgelegt wird. Wenn die Eingabedatei eine „*.md*“-Datei ist, wird erwartet, dass sie Markdown im Originalformat enthält, anstatt in Code eingebettetes Markdown. Wenn die Datei hingegen als Code betrachtet wird, wird erwartet, dass die Dokumentation in allen Zeilen enthalten ist, die mit dem Marker **#'** beginnen. Bei Skriptsprachen wie Tcl bedeutet das Zeichen **#** dieses Markers, dass die Dokumentation in den entsprechend gekennzeichneten Kommentaren enthalten ist. Bei anderen Sprachen müssen der Marker und die Dokumentation möglicherweise in mehrzeilige Kommentare eingebettet werden.
+: Die Anwendung liest die Datei *input* ein, extrahiert die darin enthaltene Dokumentation und schreibt sie in die Datei *output*.
+
+    Wenn die Ausgabedatei nicht die Endung „*.md*“ hat, wird die extrahierte Dokumentation vor dem Schreiben in HTML konvertiert.
+
+    Wenn die Generierung und das Schreiben von HTML erfolgen, kann das Standard-CSS-Stylesheet überschrieben werden, indem über die Option **--css** der Pfad zu einem benutzerdefinierten Stylesheet festgelegt wird.
+
+    Wenn die Eingabedatei eine „*.md*“-Datei ist, wird erwartet, dass sie Markdown im Originalformat enthält, anstatt in Code eingebettetes Markdown.
+
+    Wenn die Datei hingegen als Code betrachtet wird, wird erwartet, dass die Dokumentation in allen Zeilen enthalten ist, die mit dem Marker **#'** beginnen. Bei Skriptsprachen wie Tcl bedeutet das Zeichen **#** dieses Markers, dass die Dokumentation in den entsprechend gekennzeichneten Kommentaren enthalten ist. Bei anderen Sprachen müssen der Marker und die Dokumentation möglicherweise in mehrzeilige Kommentare eingebettet werden.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
     # Create HTML manual for a CPP file using a custom style sheet
@@ -54,11 +63,11 @@ Dieses Dokument beschreibt **mkdoc**, eine Anwendung zum Extrahieren von Dokumen
     mkdoc sample.md sample.html
 ```
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese dem Autor des Pakets. Bitte teilen Sie ihm auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation mit.
 
-# COPYRIGHT AM CODE
+# Copyright am Code
 
 Art der BSD-Lizenz:
 
@@ -72,11 +81,11 @@ Die Autoren und Vertreiber schließen ausdrücklich jegliche Gewährleistung aus
 
 *EINGESCHRÄNKTE RECHTE*: Die Nutzung, Vervielfältigung oder Offenlegung durch die Regierung unterliegt den Einschränkungen, die in Unterabsatz (c) (1) (ii) der Klausel über Rechte an technischen Daten und Computersoftware gemäß DFARS 252.227-7013 und FAR 52.227-19 festgelegt sind.
 
-# KATEGORIE
+# Kategorie
 
 Textverarbeitung
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2019-2022, Detlef Groth <detlef(at)dgroth(dot)de>

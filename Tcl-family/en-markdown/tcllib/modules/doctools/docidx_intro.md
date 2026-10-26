@@ -1,5 +1,6 @@
 ---
 CommandName: docidx_intro
+title: docidx_intro
 ManualSection: n
 Version: 1.0
 TclPart: tcllib
@@ -24,29 +25,30 @@ Copyright:
 
 # Name
 
-docidx_intro - docidx introduction
+docidx\_intro - docidx introduction
 
 # Description
 
 *docidx* (short for *documentation tables of contents*) stands for a set of related, yet different, entities which are working together for the easy creation and transformation of keyword-based indices for documentation. These are
 
-**\[1\]**
-: A tcl based language for the semantic markup of a keyword index. Markup is represented by Tcl commands.
+1. A tcl based language for the semantic markup of a keyword index. Markup is represented by Tcl commands.
 
-**\[2\]**
-: A package providing the ability to read and transform texts written in that markup language. It is important to note that the actual transformation of the input text is delegated to plugins.
+2. A package providing the ability to read and transform texts written in that markup language. It is important to note that the actual transformation of the input text is delegated to plugins.
 
-**\[3\]**
-: An API describing the interface between the package above and a plugin. Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
+3. An API describing the interface between the package above and a plugin.
 
-**\[1\]**
-: A *writer* of documentation has to understand the markup language itself. A beginner to docidx should read the more informally written *docidx language introduction* first. Having digested this the formal *docidx language syntax* specification should become understandable. A writer experienced with docidx may only need the *docidx language command reference* from time to time to refresh her memory. While a document is written the **dtp** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc. The simpler **dtplite** application makes internal use of docidx when handling directories of documentation, automatically generating a proper keyword index for them.
 
-**\[2\]**
-: A *processor* of documentation written in the *docidx* markup language has to know which tools are available for use. The main tool is the aforementioned **dtp** application provided by Tcllib. The simpler **dtplite** does not expose docidx to the user. At the bottom level, common to both applications, however sits the package **doctoools::idx**, providing the basic facilities to read and process files containing text in the docidx format.
+Which of the more detailed documents are relevant to the reader of this introduction depends on their role in the documentation process.
 
-**\[3\]**
-: At last, but not least, *plugin writers* have to understand the interaction between the **doctools::idx** package and its plugins, as described in the *docidx plugin API reference*.
+1. A *writer* of documentation has to understand the markup language itself. A beginner to docidx should read the more informally written *docidx language introduction* first. Having digested this the formal *docidx language syntax* specification should become understandable. A writer experienced with docidx may only need the *docidx language command reference* from time to time to refresh her memory.
+
+    While a document is written the **dtp** application can be used to validate it, and after completion it also performs the conversion into the chosen system of visual markup, be it \*roff, HTML, plain text, wiki, etc. The simpler **dtplite** application makes internal use of docidx when handling directories of documentation, automatically generating a proper keyword index for them.
+
+2. A *processor* of documentation written in the *docidx* markup language has to know which tools are available for use.
+
+    The main tool is the aforementioned **dtp** application provided by Tcllib. The simpler **dtplite** does not expose docidx to the user. At the bottom level, common to both applications, however sits the package **doctoools::idx**, providing the basic facilities to read and process files containing text in the docidx format.
+
+3. At last, but not least, *plugin writers* have to understand the interaction between the **doctools::idx** package and its plugins, as described in the *docidx plugin API reference*.
 
 
 # Related formats

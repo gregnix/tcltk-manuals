@@ -1,5 +1,6 @@
 ---
 CommandName: khim
+title: khim
 ManualSection: n
 Version: 1.0.3
 TclPart: tklib
@@ -20,12 +21,12 @@ khim - Provides key bindings for entering international characters on a keyboard
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-[package]{.cmd} [require]{.sub} [khim]{.lit} [1.0.3]{.optlit} 
-[::khim::getOptions]{.cmd} [path]{.arg} 
-[::khim::getConfig]{.cmd} 
-[::khim::setConfig]{.cmd} [version]{.arg} [enabled]{.arg} [compose]{.arg} [map]{.arg} 
-[::khim::showHelp]{.cmd} [path]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [khim]{.lit} [1.0.3]{.optlit}
+[::khim::getOptions]{.cmd} [path]{.arg}
+[::khim::getConfig]{.cmd}
+[::khim::setConfig]{.cmd} [version]{.arg} [enabled]{.arg} [compose]{.arg} [map]{.arg}
+[::khim::showHelp]{.cmd} [path]{.arg}
 :::
 
 # Description
@@ -51,16 +52,15 @@ In addition to commands supporting the KHIM binding tag, the following commands 
 **::khim::getConfig**
 : Returns a Tcl script that restores the current configuration of KHIM: the enabled/disabled state, the choice of "Compose" key, and the key sequences that may be composed.  This script is designed to be saved to a configuration file for use in a subsequent invocation of the same application:
 
+    ```
+    # Save KHIM configuration
+    set f [open ~/.khimrc w]
+    puts $f [::khim::getConfig]
+    close $f
 
-```
-# Save KHIM configuration
-set f [open ~/.khimrc w]
-puts $f [::khim::getConfig]
-close $f
-
-# Restore KHIM configuration
-source ~/.khimrc
-```
+    # Restore KHIM configuration
+    source ~/.khimrc
+    ```
 
 **::khim::setConfig** *version* *enabled* *compose* *map*
 : Restores an earlier saved configuration.  Few, if any, applications will call this command in any other way than to evaluate it as returned from **::khim::getConfig**.

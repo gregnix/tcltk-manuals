@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::mvg
+title: canvas::mvg
 ManualSection: n
 Version: 1.0.1
 TclPart: tklib
@@ -25,17 +26,17 @@ canvas::mvg - Canvas to ImageMagick MVG vector format
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::mvg]{.lit} [1]{.optlit} 
-[::canvas::mvg]{.cmd} [pathName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::mvg]{.lit} [1]{.optlit}
+[::canvas::mvg]{.cmd} [pathName]{.arg}
 :::
 
 # Description
 
 This package provides a command to convert a canvas' contents to ImageMagick's MVG vector format.
 
-# Api
+# API
 
 **::canvas::mvg** *pathName*
 : Dump the contents of the canvas *pathName*. The result is a string in ImageMagick's MVG vector format.

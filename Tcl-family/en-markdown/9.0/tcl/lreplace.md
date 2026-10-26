@@ -1,5 +1,6 @@
 ---
 CommandName: lreplace
+title: lreplace
 ManualSection: n
 Version: 7.4
 TclPart: Tcl
@@ -40,12 +41,12 @@ lreplace - Replace elements in a list with new elements
 # Synopsis
 
 ::: {.synopsis} :::
-[lreplace]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} [element element]{.optdot} 
+[lreplace]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} [element element]{.optdot}
 :::
 
 # Description
 
-**lreplace** returns a new list formed by replacing zero or more elements of *list* with the *element* arguments. *first* and *last* are index values specifying the first and last elements of the range to replace. The index values *first* and *last* are interpreted the same as index values for the command **string index**, supporting simple index arithmetic and indices relative to the end of the list. 0 refers to the first element of the list, and **end** refers to the last element of the list.
+**lreplace** returns a new list formed by replacing zero or more elements of *list* with the *element* arguments. *first* and *last* are index values specifying the first and last elements of the range to replace. The index values *first* and *last* are interpreted the same as index values for the command [string index][string], supporting simple index arithmetic and indices relative to the end of the list. 0 refers to the first element of the list, and **end** refers to the last element of the list.
 
 If either *first* or *last* is less than zero, it is considered to refer to before the first element of the list. This allows **lreplace** to prepend elements to *list*. If either *first* or *last* indicates a position greater than the index of the last element of the list, it is treated as if it is an index one greater than the last element. This allows **lreplace** to append elements to *list*.
 
@@ -96,3 +97,6 @@ a b c d e
 % set var [lreplace $var 12345 end+2 f g h i]
 a b c d e f g h i
 ```
+
+
+[string]: string.md

@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::scale
+title: ttk::scale
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -23,7 +24,7 @@ ttk::scale - Create and manipulate a scale widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::scale]{.cmd} [pathName]{.arg} [options]{.optdot} 
+[ttk::scale]{.cmd} [pathName]{.arg} [options...]{.optarg}
 :::
 
 # Description
@@ -32,12 +33,9 @@ A **ttk::scale** widget is typically used to control the numeric value of a link
 
 # Standard options
 
-|   |   |   |
-| --- | --- | --- |
-| **-class** | **-cursor** | **-style** |
-| **-takefocus** |  |  |
+**-class**, **-cursor**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget-specific options
 
@@ -48,7 +46,7 @@ See the ttk_widget manual entry for details on the standard options.
 : A real value corresponding to the left or top end of the scale.
 
 **-length** (**length**/**Length**)
-: Specifies the desired long dimension of the scale in screen units (i.e. any of the forms acceptable to **Tk_GetPixels**). For vertical scales this is the scale's height; for horizontal scales it is the scale's width.
+: Specifies the desired long dimension of the scale in screen units (i.e. any of the forms acceptable to [Tk\_GetPixels][GetPixels]). For vertical scales this is the scale's height; for horizontal scales it is the scale's width.
 
 **-orient** (**orient**/**Orient**)
 : Specifies which orientation whether the widget should be laid out horizontally or vertically. Must be either **horizontal** or **vertical** or an abbreviation of one of these.
@@ -99,7 +97,7 @@ The class name for a **ttk::scale** is **TScale**.
 
 Dynamic states: **active**.
 
-**TScale** styling options configurable with **ttk::style** are:
+**TScale** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
@@ -119,4 +117,9 @@ Dynamic states: **active**.
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[GetPixels]: ../tk-c/GetPixels.md
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

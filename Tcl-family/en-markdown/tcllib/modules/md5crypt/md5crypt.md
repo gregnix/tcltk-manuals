@@ -1,5 +1,6 @@
 ---
 CommandName: md5crypt
+title: md5crypt
 ManualSection: n
 Version: 1.2.0
 TclPart: tcllib
@@ -23,12 +24,12 @@ md5crypt - MD5-based password encryption
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [md5]{.lit} [2.0]{.lit} 
-[package]{.cmd} [require]{.sub} [md5crypt]{.lit} [1.2.0]{.optlit} 
-[::md5crypt::md5crypt]{.cmd} [password]{.arg} [salt]{.arg} 
-[::md5crypt::aprcrypt]{.cmd} [password]{.arg} [salt]{.arg} 
-[::md5crypt::salt]{.cmd} [length]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [md5]{.lit} [2.0]{.lit}
+[package]{.cmd} [require]{.sub} [md5crypt]{.lit} [1.2.0]{.optlit}
+[::md5crypt::md5crypt]{.cmd} [password]{.arg} [salt]{.arg}
+[::md5crypt::aprcrypt]{.cmd} [password]{.arg} [salt]{.arg}
+[::md5crypt::salt]{.cmd} [length]{.optarg}
 :::
 
 # Description
@@ -49,7 +50,7 @@ This package provides an implementation of the MD5-crypt password encryption alg
 
 # Salt
 
-The salt passed to either of the encryption schemes implemented here is checked to see if it begins with the encryption scheme magic string (either "\$1\$" for MD5-crypt or "\$apr1\$" for Apache crypt). If so, this is removed. The remaining characters up to the next \$ and up to a maximum of 8 characters are then used as the salt. The salt text should probably be restricted to the set of ASCII alphanumeric characters plus "./" (dot and forward-slash) - this is to preserve maximum compatibility with the unix password file format.
+The salt passed to either of the encryption schemes implemented here is checked to see if it begins with the encryption scheme magic string (either "$1$" for MD5-crypt or "$apr1$" for Apache crypt). If so, this is removed. The remaining characters up to the next $ and up to a maximum of 8 characters are then used as the salt. The salt text should probably be restricted to the set of ASCII alphanumeric characters plus "./" (dot and forward-slash) - this is to preserve maximum compatibility with the unix password file format.
 
 If a password is being generated rather than checked from a password file then the **salt** command may be used to generate a random salt.
 

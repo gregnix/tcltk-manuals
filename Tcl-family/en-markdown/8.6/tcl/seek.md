@@ -1,5 +1,6 @@
 ---
 CommandName: seek
+title: seek
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -27,14 +28,14 @@ seek - Change the access position for an open channel
 # Synopsis
 
 ::: {.synopsis} :::
-[seek]{.cmd} [channelId]{.arg} [offset]{.arg} [origin]{.optarg} 
+[seek]{.cmd} [channelId]{.arg} [offset]{.arg} [origin]{.optarg}
 :::
 
 # Description
 
 Changes the current access position for *channelId*.
 
-*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of **open** or **socket**, or the result of a channel creation command provided by a Tcl extension.
+*ChannelId* must be an identifier for an open channel such as a Tcl standard channel (**stdin**, **stdout**, or **stderr**), the return value from an invocation of [open] or [socket], or the result of a channel creation command provided by a Tcl extension.
 
 The *offset* and *origin* arguments specify the position at which the next read or write will occur for *channelId*. *Offset* must be an integer (which may be negative) and *origin* must be one of the following:
 
@@ -45,8 +46,14 @@ The *offset* and *origin* arguments specify the position at which the next read 
 : The new access position will be *offset* bytes from the current access position; a negative *offset* moves the access position backwards in the underlying file or device.
 
 **end**
-: The new access position will be *offset* bytes from the end of the file or device.  A negative *offset* places the access position before the end of file, and a positive *offset* places the access position after the end of file. The *origin* argument defaults to **start**. The command flushes all buffered output for the channel before the command returns, even if the channel is in non-blocking mode. It also discards any buffered and unread input. This command returns an empty string. An error occurs if this command is applied to channels whose underlying file or device does not support seeking. Note that *offset* values are byte offsets, not character offsets.  Both **seek** and **tell** operate in terms of bytes, not characters, unlike **read**.
+: The new access position will be *offset* bytes from the end of the file or device.  A negative *offset* places the access position before the end of file, and a positive *offset* places the access position after the end of file.
 
+
+The *origin* argument defaults to **start**.
+
+The command flushes all buffered output for the channel before the command returns, even if the channel is in non-blocking mode. It also discards any buffered and unread input. This command returns an empty string. An error occurs if this command is applied to channels whose underlying file or device does not support seeking.
+
+Note that *offset* values are byte offsets, not character offsets.  Both **seek** and [tell] operate in terms of bytes, not characters, unlike [read].
 
 # Examples
 
@@ -72,3 +79,9 @@ seek $f -10 end
 set data [read $f 10]
 close $f
 ```
+
+
+[open]: open.md
+[read]: read.md
+[socket]: socket.md
+[tell]: tell.md

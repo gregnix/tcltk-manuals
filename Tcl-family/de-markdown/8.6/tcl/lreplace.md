@@ -1,5 +1,6 @@
 ---
 CommandName: lreplace
+title: lreplace
 ManualSection: n
 Version: 7.4
 TclPart: Tcl
@@ -25,31 +26,27 @@ Copyright:
  - Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
 ---
 
-# NAME
+# Name
 
 lreplace - Ersetzt Elemente in einer Liste durch neue Elemente
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[lreplace]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} [element element]{.optdot} 
+[lreplace]{.cmd} [list]{.arg} [first]{.arg} [last]{.arg} [element element]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-**lreplace** gibt eine neue Liste zurück, die entsteht, wenn null oder mehr Elemente von *list* durch die *element*-Argumente ersetzt werden. *first* und *last* begrenzen den zu ersetzenden Bereich; ihre Auslegung entspricht **string index** (Arithmetik, end-relativ). 0 ist das erste Element, **end** das letzte.
+**lreplace** gibt eine neue Liste zurück, die entsteht, wenn null oder mehr Elemente von *list* durch die *element*-Argumente ersetzt werden. *first* und *last* begrenzen den zu ersetzenden Bereich; ihre Auslegung entspricht [string index][string] (Arithmetik, end-relativ). 0 ist das erste Element, **end** das letzte.
 
-Ist *first* oder *last* kleiner als null, gilt die Position vor dem ersten Element — so können Elemente vorangestellt werden.
-
-::: {.info -version="TIP505"}
-Liegt *first* oder *last* hinter dem letzten Index, gilt Index „eins hinter dem letzten“ — so können Elemente angehängt werden.
-:::
+Ist *first* oder *last* kleiner als null, gilt die Position vor dem ersten Element — so können Elemente vorangestellt werden. [Liegt *first* oder *last* hinter dem letzten Index, gilt Index „eins hinter dem letzten“ — so können Elemente angehängt werden.]{version="TIP505"}
 
 Ist *last* kleiner als *first*, werden die *element*s vor dem von *first* bezeichneten Element eingefügt, ohne dass etwas gelöscht wird.
 
 Die *element*-Argumente sind die neuen Elemente an Stelle der gelöschten; jedes wird ein separates Listenelement. Ohne *element* werden nur die Elemente von *first* bis *last* entfernt.
 
-# BEISPIELE
+# Beispiele
 
 Ein Element ersetzen:
 
@@ -84,12 +81,14 @@ proc lremove {listVariable value} {
 }
 ```
 
-::: {.info -version="TIP505"}
-Anhängen; **end+2** wird zunächst wie 6 behandelt, liegt aber hinter dem letzten Index und verhält sich wie ein Index hinter dem Ende:
-:::
+[Anhängen; **end+2** wird zunächst wie 6 behandelt, liegt aber hinter dem letzten Index und verhält sich wie ein Index hinter dem Ende:]{version="TIP505"}
+
 ```
 % set var {a b c d e}
 a b c d e
 % set var [lreplace $var 12345 end+2 f g h i]
 a b c d e f g h i
 ```
+
+
+[string]: string.md

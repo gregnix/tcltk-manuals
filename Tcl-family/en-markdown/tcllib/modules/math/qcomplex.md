@@ -1,5 +1,6 @@
 ---
 CommandName: math::complexnumbers
+title: math::complexnumbers
 ManualSection: n
 Version: 1.0.3
 TclPart: tcllib
@@ -18,26 +19,26 @@ math::complexnumbers - Straightforward complex number package
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [math::complexnumbers]{.lit} [1.0.3]{.optlit} 
-[::math::complexnumbers::+]{.cmd} [z1]{.arg} [z2]{.arg} 
-[::math::complexnumbers::-]{.cmd} [z1]{.arg} [z2]{.arg} 
-[::math::complexnumbers::\*]{.cmd} [z1]{.arg} [z2]{.arg} 
-[::math::complexnumbers::/]{.cmd} [z1]{.arg} [z2]{.arg} 
-[::math::complexnumbers::conj]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::real]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::imag]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::mod]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::arg]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::complex]{.cmd} [real]{.arg} [imag]{.arg} 
-[::math::complexnumbers::tostring]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::exp]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::sin]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::cos]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::tan]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::log]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::sqrt]{.cmd} [z1]{.arg} 
-[::math::complexnumbers::pow]{.cmd} [z1]{.arg} [z2]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [math::complexnumbers]{.lit} [1.0.3]{.optlit}
+[::math::complexnumbers::+]{.cmd} [z1]{.arg} [z2]{.arg}
+[::math::complexnumbers::-]{.cmd} [z1]{.arg} [z2]{.arg}
+[::math::complexnumbers::\*]{.cmd} [z1]{.arg} [z2]{.arg}
+[::math::complexnumbers::/]{.cmd} [z1]{.arg} [z2]{.arg}
+[::math::complexnumbers::conj]{.cmd} [z1]{.arg}
+[::math::complexnumbers::real]{.cmd} [z1]{.arg}
+[::math::complexnumbers::imag]{.cmd} [z1]{.arg}
+[::math::complexnumbers::mod]{.cmd} [z1]{.arg}
+[::math::complexnumbers::arg]{.cmd} [z1]{.arg}
+[::math::complexnumbers::complex]{.cmd} [real]{.arg} [imag]{.arg}
+[::math::complexnumbers::tostring]{.cmd} [z1]{.arg}
+[::math::complexnumbers::exp]{.cmd} [z1]{.arg}
+[::math::complexnumbers::sin]{.cmd} [z1]{.arg}
+[::math::complexnumbers::cos]{.cmd} [z1]{.arg}
+[::math::complexnumbers::tan]{.cmd} [z1]{.arg}
+[::math::complexnumbers::log]{.cmd} [z1]{.arg}
+[::math::complexnumbers::sqrt]{.cmd} [z1]{.arg}
+[::math::complexnumbers::pow]{.cmd} [z1]{.arg} [z2]{.arg}
 :::
 
 # Description
@@ -70,53 +71,49 @@ The package implements all or most basic operations and elementary functions.
 **::math::complexnumbers::+** *z1* *z2*
 : Add the two arguments and return the resulting complex number
 
+    complex *z1* (in)
+    : First argument in the summation
 
-complex *z1* (in)
-: First argument in the summation
-
-complex *z2* (in)
-: Second argument in the summation
+    complex *z2* (in)
+    : Second argument in the summation
 
 
 **::math::complexnumbers::-** *z1* *z2*
 : Subtract the second argument from the first and return the resulting complex number. If there is only one argument, the opposite of z1 is returned (i.e. -z1)
 
+    complex *z1* (in)
+    : First argument in the subtraction
 
-complex *z1* (in)
-: First argument in the subtraction
-
-complex *z2* (in)
-: Second argument in the subtraction (optional)
+    complex *z2* (in)
+    : Second argument in the subtraction (optional)
 
 
 **::math::complexnumbers::\*** *z1* *z2*
 : Multiply the two arguments and return the resulting complex number
 
+    complex *z1* (in)
+    : First argument in the multiplication
 
-complex *z1* (in)
-: First argument in the multiplication
-
-complex *z2* (in)
-: Second argument in the multiplication
+    complex *z2* (in)
+    : Second argument in the multiplication
 
 
 **::math::complexnumbers::/** *z1* *z2*
 : Divide the first argument by the second and return the resulting complex number
 
+    complex *z1* (in)
+    : First argument (numerator) in the division
 
-complex *z1* (in)
-: First argument (numerator) in the division
-
-complex *z2* (in)
-: Second argument (denominator) in the division
+    complex *z2* (in)
+    : Second argument (denominator) in the division
 
 
 **::math::complexnumbers::conj** *z1*
 : Return the conjugate of the given complex number
 
+    complex *z1* (in)
+    : Complex number in question
 
-complex *z1* (in)
-: Complex number in question
 
 
 *Conversion/inquiry procedures:*
@@ -124,52 +121,47 @@ complex *z1* (in)
 **::math::complexnumbers::real** *z1*
 : Return the real part of the given complex number
 
-
-complex *z1* (in)
-: Complex number in question
+    complex *z1* (in)
+    : Complex number in question
 
 
 **::math::complexnumbers::imag** *z1*
 : Return the imaginary part of the given complex number
 
-
-complex *z1* (in)
-: Complex number in question
+    complex *z1* (in)
+    : Complex number in question
 
 
 **::math::complexnumbers::mod** *z1*
 : Return the modulus of the given complex number
 
-
-complex *z1* (in)
-: Complex number in question
+    complex *z1* (in)
+    : Complex number in question
 
 
 **::math::complexnumbers::arg** *z1*
 : Return the argument ("angle" in radians) of the given complex number
 
-
-complex *z1* (in)
-: Complex number in question
+    complex *z1* (in)
+    : Complex number in question
 
 
 **::math::complexnumbers::complex** *real* *imag*
 : Construct the complex number "real + imag\*i" and return it
 
+    float *real* (in)
+    : The real part of the new complex number
 
-float *real* (in)
-: The real part of the new complex number
-
-float *imag* (in)
-: The imaginary part of the new complex number
+    float *imag* (in)
+    : The imaginary part of the new complex number
 
 
 **::math::complexnumbers::tostring** *z1*
 : Convert the complex number to the form "real + imag\*i" and return the string
 
+    float *complex* (in)
+    : The complex number to be converted
 
-float *complex* (in)
-: The complex number to be converted
 
 
 *Elementary functions:*
@@ -177,60 +169,54 @@ float *complex* (in)
 **::math::complexnumbers::exp** *z1*
 : Calculate the exponential for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::sin** *z1*
 : Calculate the sine function for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::cos** *z1*
 : Calculate the cosine function for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::tan** *z1*
 : Calculate the tangent function for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::log** *z1*
 : Calculate the (principle value of the) logarithm for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::sqrt** *z1*
 : Calculate the (principle value of the) square root for the given complex argument and return the result
 
-
-complex *z1* (in)
-: The complex argument for the function
+    complex *z1* (in)
+    : The complex argument for the function
 
 
 **::math::complexnumbers::pow** *z1* *z2*
 : Calculate "z1 to the power of z2" and return the result
 
+    complex *z1* (in)
+    : The complex number to be raised to a power
 
-complex *z1* (in)
-: The complex number to be raised to a power
+    complex *z2* (in)
+    : The complex power to be used
 
-complex *z2* (in)
-: The complex power to be used
 
 
 # Bugs, ideas, feedback

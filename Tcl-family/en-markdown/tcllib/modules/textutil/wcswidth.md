@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::wcswidth
+title: textutil::wcswidth
 ManualSection: n
 Version: 35.3
 TclPart: tcllib
@@ -25,31 +26,37 @@ textutil::wcswidth - Procedures to compute terminal width of strings
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::wcswidth]{.lit} [35.3]{.optlit} 
-[::textutil::wcswidth]{.cmd} [string]{.arg} 
-[::textutil::wcswidth_char]{.cmd} [codepoint]{.arg} 
-[::textutil::wcswidth_type]{.cmd} [codepoint]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::wcswidth]{.lit} [35.3]{.optlit}
+[::textutil::wcswidth]{.cmd} [string]{.arg}
+[::textutil::wcswidth\_char]{.cmd} [codepoint]{.arg}
+[::textutil::wcswidth\_type]{.cmd} [codepoint]{.arg}
 :::
 
 # Description
 
 The **textutil::wcswidth** package provides commands that report character types, character widths, and string widths, in the context of terminal (console) output.
 
-This package’s data, and therefore its underlying the functionality, is based on the Unicode database file *http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt*.
+This package’s data, and therefore its underlying the functionality, is based on the Unicode database file <http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>.
 
-# Api
+# API
 
 This package’s commands account for double-width characters from the various Asian and other scripts.
 
 **::textutil::wcswidth** *string*
 : Returns the number of character cells needed by the given *string* when output to a terminal.
 
-**::textutil::wcswidth_char** *codepoint*
-: Returns the number of character cells needed by the given *codepoint* Unicode character when output to a terminal. *Important*: The *codepoint* Unicode character must be specified as an integer.
+**::textutil::wcswidth\_char** *codepoint*
+: Returns the number of character cells needed by the given *codepoint* Unicode character when output to a terminal.
 
-**::textutil::wcswidth_type** *codepoint*
-: Returns the character type of the specified *codepoint* Unicode character. The returned value is a string containing one of the following constants: **A**, **F**, **H**, **N**, **Na**, or **W**, as specified in *http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt*. *Important*: The *codepoint* Unicode character must be specified as an integer.
+    *Important*: The *codepoint* Unicode character must be specified as an integer.
+
+**::textutil::wcswidth\_type** *codepoint*
+: Returns the character type of the specified *codepoint* Unicode character.
+
+    The returned value is a string containing one of the following constants: **A**, **F**, **H**, **N**, **Na**, or **W**, as specified in <http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>.
+
+    *Important*: The *codepoint* Unicode character must be specified as an integer.
 
 
 # Examples

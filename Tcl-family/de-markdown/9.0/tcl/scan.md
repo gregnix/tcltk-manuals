@@ -1,5 +1,6 @@
 ---
 CommandName: scan
+title: scan
 ManualSection: n
 Version: 8.4
 TclPart: Tcl
@@ -17,35 +18,37 @@ Copyright:
  - Copyright (c) 2000 Scriptics Corporation.
 ---
 
-# NAME
+# Name
 
 scan - Zeichenkette mit Konvertierungsspezifizierern im sscanf-Stil parsen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[scan]{.cmd} [string]{.arg} [format]{.arg} [varName varName]{.optdot} 
+[scan]{.cmd} [string]{.arg} [format]{.arg} [varName varName]{.optdot}
 :::
 
-# EINLEITUNG
+# Einleitung
 
 Der Befehl parst Teilstrings aus einer Eingabezeichenkette analog zu ANSI-C **sscanf** und gibt die Anzahl erfolgreicher Konvertierungen zurück, oder -1, wenn das Ende von *string* erreicht wird, bevor eine Konvertierung gelang. *string* ist die Eingabe, *format* legt das Muster fest (**%** wie bei **sscanf**). Jedes *varName* benennt eine Variable; passt ein Teilstring zu einem Spezifizierer, wird er der Variable zugewiesen. Ohne *varName* arbeitet **scan** inline und gibt die Werte als Liste zurück; am Ende ohne Konvertierung: leerer String.
 
-# DETAILS ZUM SCANNEN
+# Details zum Scannen
 
 **scan** durchläuft *string* und *format* gemeinsam. Ist das nächste Zeichen in *format* Leerzeichen oder Tab, entspricht es beliebig viel Leerraum in *string* (auch null). Sonst, wenn es kein **%** ist, muss es mit dem nächsten Zeichen von *string* übereinstimmen. **%** beginnt einen Konvertierungsspezifizierer mit bis zu vier Feldern: XPG3-Position (oder **\*** zum Verwerfen), maximale Teilstringbreite, Größenmodifikator, Konvertierungszeichen (Pflicht). Reihenfolge wie oben.
 
-Bei einem Spezifizierer überspringt **scan** zunächst Leerraum in *string* (außer bei **[** oder **c**), konvertiert dann die nächsten Zeichen und speichert das Ergebnis in der nächsten Variable.
+Bei einem Spezifizierer überspringt **scan** zunächst Leerraum in *string* (außer bei **\[** oder **c**), konvertiert dann die nächsten Zeichen und speichert das Ergebnis in der nächsten Variable.
 
 ## Optionale Positionsangabe
 
-**%** gefolgt von Zahl und **\$** (z. B. **%2\$d**): Variable nicht sequenziell, sondern vom angegebenen *varName* (1 = erstes). Sind Positionsangaben vorhanden, müssen alle positional sein. Jedes *varName* muss genau einem Spezifizierer entsprechen, sonst Fehler; inline darf jede Position höchstens einmal vorkommen, leere Positionen werden mit leeren Strings gefüllt.
+**%** gefolgt von Zahl und **$** (z. B. **%2$d**): Variable nicht sequenziell, sondern vom angegebenen *varName* (1 = erstes). Sind Positionsangaben vorhanden, müssen alle positional sein. Jedes *varName* muss genau einem Spezifizierer entsprechen, sonst Fehler; inline darf jede Position höchstens einmal vorkommen, leere Positionen werden mit leeren Strings gefüllt.
 
 ## Optionaler Größenmodifikator
 
-Nur bei Tcl-Ganzzahlen relevant; begrenzt den speicherbaren Bereich (bzw. Listenposition inline). Gültig: **h**, **l**, **z**, **t**, **q**, **j**, **ll**, **L**. **h** oder fehlend: 32-Bit-Bereich. **L** oder **ll**: unbegrenzt. **l** (**q**, **j**): Bereich wie **wide()** in **expr**. **z**/**t**: wie **h** oder **l** je nach **pointerSize** in **tcl_platform**.
+Nur bei Tcl-Ganzzahlen relevant; begrenzt den speicherbaren Bereich (bzw. Listenposition inline). Gültig: **h**, **l**, **z**, **t**, **q**, **j**, **ll**, **L**. **h** oder fehlend: 32-Bit-Bereich. **L** oder **ll**: unbegrenzt. **l** (**q**, **j**): Bereich wie **wide()** in [expr]. **z**/**t**: wie **h** oder **l** je nach **pointerSize** in [tcl\_platform][tclvars].
 
 ## Pflicht-Konvertierungszeichen
+
+Folgende Konvertierungszeichen werden unterstützt:
 
 **d**
 : Dezimalganzzahl; Wert in Variable, gekürzt gemäß Größenmodifikator.
@@ -74,11 +77,11 @@ Nur bei Tcl-Ganzzahlen relevant; begrenzt den speicherbaren Bereich (bzw. Listen
 **e** oder **f** oder **g** oder **E** oder **G**
 : Gleitkommazahl mit optionalem Vorzeichen, Dezimalziffern optional mit Punkt, optionaler Exponent **e**/**E** mit Vorzeichen und Ziffern; intern als Gleitkomma.
 
-**\[**_chars_**\]**
-: Ein oder mehr Zeichen aus *chars*; Treffer in Variable. Steht **]** zuerst in *chars*, gehört es zu *chars*. Bereich *a*__-__*b* inklusive. Führendes oder abschließendes **-** in *chars* ist Literal, kein Bereich.
+**\[***chars***\]**
+: Ein oder mehr Zeichen aus *chars*; Treffer in Variable. Steht **\]** zuerst in *chars*, gehört es zu *chars*. Bereich *a***-***b* inklusive. Führendes oder abschließendes **-** in *chars* ist Literal, kein Bereich.
 
-**\[^**_chars_**\]**
-: Zeichen nicht in *chars*; Treffer in Variable. **^** gefolgt von **]**: **]** gehört zur Menge. Bereiche und **-** wie oben.
+**\[^***chars***\]**
+: Zeichen nicht in *chars*; Treffer in Variable. **^** gefolgt von **\]**: **\]** gehört zur Menge. Bereiche und **-** wie oben.
 
 **n**
 : Kein Verbrauch aus *string*; bisher gescannte Zeichenanzahl in die Variable.
@@ -86,7 +89,7 @@ Nur bei Tcl-Ganzzahlen relevant; begrenzt den speicherbaren Bereich (bzw. Listen
 
 Gelesen wird jeweils die längste sinnvolle Folge (**%d**: Dezimalziffern, **%o**: Oktal, usw.). Abbruch bei Leerzeichen oder maximaler Breite. **\*** im Spezifizierer: keine Zuweisung, nächstes Scan-Argument wird nicht verbraucht.
 
-# UNTERSCHIEDE ZU ANSI SSCANF
+# Unterschiede zu ANSI sscanf
 
 Wie **sscanf**, außer:
 
@@ -99,7 +102,7 @@ Wie **sscanf**, außer:
 4. Ende von *string* vor Konvertierungen ohne Variablen: leerer String.
 
 
-# BEISPIELE
+# Beispiele
 
 Unicode-Zeichen in numerischen Wert:
 
@@ -165,3 +168,7 @@ Kürzung durch Größenmodifikatoren:
 % scan 20000000000000000000 %lld
 20000000000000000000
 ```
+
+
+[expr]: expr.md
+[tclvars]: tclvars.md

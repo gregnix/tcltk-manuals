@@ -1,5 +1,6 @@
 ---
 CommandName: eval
+title: eval
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -24,25 +25,23 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 eval - Wertet ein Tcl-Skript aus
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[eval]{.cmd} [arg]{.arg} [arg]{.optdot} 
+[eval]{.cmd} [arg]{.arg} [arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-**eval** nimmt ein oder mehrere Argumente, die zusammen ein Tcl-Skript mit einem oder mehreren Befehlen bilden. **eval** verkettet alle Argumente wie **concat**, übergibt die Zeichenkette rekursiv an den Tcl-Interpreter und gibt das Auswertungsergebnis (oder einen dabei erzeugten Fehler) zurück.
+**eval** nimmt ein oder mehrere Argumente, die zusammen ein Tcl-Skript mit einem oder mehreren Befehlen bilden. **eval** verkettet alle Argumente wie [concat], übergibt die Zeichenkette rekursiv an den Tcl-Interpreter und gibt das Auswertungsergebnis (oder einen dabei erzeugten Fehler) zurück. Der Befehl [list] quotiert Wortfolgen so, dass **eval** sie nicht weiter aufsplittet.
 
-Der Befehl **list** quotiert Wortfolgen so, dass **eval** sie nicht weiter aufsplittet.
+# Beispiele
 
-# BEISPIELE
-
-Oft speichert man ein Skriptfragment in einer Variable und führt es später mit angehängten Werten aus (z. B. in **fcopy**, **lsort**, **trace**-Callbacks):
+Oft speichert man ein Skriptfragment in einer Variable und führt es später mit angehängten Werten aus (z. B. in [fcopy], [lsort], [trace]-Callbacks):
 
 ```
 set script {
@@ -50,22 +49,25 @@ set script {
     lappend $myCurrentLogVar
 }
 set myCurrentLogVar log1
-# Logging-Variable nach 20 s umschalten
+# Set up a switch of logging variable part way through!
 after 20000 set myCurrentLogVar log2
 
 for {set i 0} {$i<10} {incr i} {
+    # Introduce a random delay
     after [expr {int(5000 * rand())}]
-    update    ;# asynchronen Log-Wechsel prüfen
+    update    ;# Check for the asynch log switch
     eval $script $i [clock clicks]
 }
 ```
 
-Ist das Fragment nur ein Befehlspräfix (Liste von Wörtern), ist **{*}$script** meist robuster als **eval**. Eine Prozedur analog zu **lappend**, die Argumente am Listenanfang einfügt:
+Ist das Fragment nur ein Befehlspräfix (Liste von Wörtern), ist **{\*}$script** meist robuster als **eval**. Eine Prozedur analog zu [lappend], die Argumente am Listenanfang einfügt:
 
 ```
 proc lprepend {varName args} {
     upvar 1 $varName var
+    # Ensure that the variable exists and contains a list
     lappend var
+    # Now we insert all the arguments in one go
     set var [eval [list linsert $var 0] $args]
 }
 ```
@@ -75,3 +77,11 @@ Heute üblicher ohne **eval**:
 ```
 set var [linsert $var 0 {*}$args]
 ```
+
+
+[concat]: concat.md
+[fcopy]: fcopy.md
+[lappend]: lappend.md
+[list]: list.md
+[lsort]: lsort.md
+[trace]: trace.md

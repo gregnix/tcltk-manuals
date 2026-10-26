@@ -1,36 +1,36 @@
 ---
 CommandName: math::exact
+title: math::exact
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
 TclDescription: Tcl Math Library
 Copyright:
  - Copyright (c) 2015 Kevin B. Kenny <kennykb@acm.org>
- - Redistribution permitted under the terms of the Open Publication License <http://www.opencontent.org/openpub/>
 ---
 
-# NAME
+# Name
 
 math::exact – Exakte reelle Arithmetik
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [math::exact]{.lit} [1.0.2]{.lit} 
-[::math::exact::exactexpr]{.cmd} [expr]{.arg} 
-[number]{.ins} [ref]{.sub} 
-[number]{.ins} [unref]{.sub} 
-[number]{.ins} [asPrint]{.sub} [precision]{.arg} 
-[number]{.ins} [asFloat]{.sub} [precision]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [grammar::aycock]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [math::exact]{.lit} [1.0.2]{.lit}
+[::math::exact::exactexpr]{.cmd} [expr]{.arg}
+[number]{.ins} [ref]{.sub}
+[number]{.ins} [unref]{.sub}
+[number]{.ins} [asPrint]{.sub} [precision]{.arg}
+[number]{.ins} [asFloat]{.sub} [precision]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Befehl **exactexpr** im Paket **math::exact** ermöglicht exakte Berechnungen über den Bereich der berechenbaren reellen Zahlen. Dabei handelt es sich nicht um Berechnungen mit beliebiger Genauigkeit, sondern um exakte Berechnungen, bei denen Zahlen durch Algorithmen dargestellt werden, die aufeinanderfolgende Näherungswerte erzeugen. Am Ende einer Berechnung kann der Aufrufer eine bestimmte Genauigkeit für das Endergebnis anfordern, und Zwischenergebnisse werden mit der Genauigkeit berechnet, die zur Erfüllung dieser Anforderung erforderlich ist.
 
-# PROZEDUREN
+# Prozeduren
 
 Die folgende Prozedur ist der primäre Einstieg in das Paket **math::exact**.
 
@@ -50,10 +50,10 @@ Die folgende Prozedur ist der primäre Einstieg in das Paket **math::exact**.
 : Formatiert die angegebene *number* für die Ausgabe mit der festgelegten *precision*. (Wie *precision* interpretiert wird, erfahren Sie weiter unten.) Alle Zahlen werden im Gleitkomma-E-Format formatiert.
 
 
-# PARAMETER
+# Parameter
 
 *expr*
-: Auszuwertender Ausdruck. Die Syntax für Ausdrücke entspricht der in Tcl, allerdings ist der Umfang der verfügbaren Operationen geringer. Weitere Einzelheiten finden Sie weiter unten im Abschnitt **AUSDRÜCKE**.
+: Auszuwertender Ausdruck. Die Syntax für Ausdrücke entspricht der in Tcl, allerdings ist der Umfang der verfügbaren Operationen geringer. Weitere Einzelheiten finden Sie weiter unten im Abschnitt [Ausdrücke].
 
 *number*
 : Das Objekt, das bei einem früheren Aufruf von **math::exact::exactexpr** zurückgegeben wurde
@@ -62,89 +62,82 @@ Die folgende Prozedur ist der primäre Einstieg in das Paket **math::exact**.
 : Die gewünschte „Genauigkeit“ des Ergebnisses. Die Genauigkeit entspricht (ungefähr) dem Betrag des binären Exponenten zuzüglich der Anzahl der Bits der binären Mantisse. Um beispielsweise Ergebnisse in IEEE-754-Gleitkommazahlen doppelter Genauigkeit zurückzugeben, sind 56 Bits zuzüglich des Exponenten erforderlich. Zahlen zwischen 1/2 und 2 erfordern eine Genauigkeit von 57; Zahlen zwischen 1/4 und 1/2 oder zwischen 2 und 4 erfordern 58; Zahlen zwischen 1/8 und 1/4 oder zwischen 4 und 8 erfordern 59; und so weiter.
 
 
-# AUSDRÜCKE
+# Ausdrücke
 
 Der Befehl **math::exact::exactexpr** akzeptiert Ausdrücke, die auf einer Teilmenge der Tcl-Syntax basieren. Die folgenden Komponenten dürfen in einem Ausdruck verwendet werden.
 
-**•**
-: Dezimalganzzahlen.
+- Dezimalganzzahlen.
 
-**•**
-: Variablenreferenzen mit dem Dollarzeichen (**\$**). Der Wert der Variablen muss das Ergebnis eines weiteren Aufrufs von **math::exact::exactexpr** sein. Die Referenzanzahl des Werts wird für jede Stelle, an der er im Ausdruck vorkommt, um eins erhöht.
+- Variablenreferenzen mit dem Dollarzeichen (**$**). Der Wert der Variablen muss das Ergebnis eines weiteren Aufrufs von **math::exact::exactexpr** sein. Die Referenzanzahl des Werts wird für jede Stelle, an der er im Ausdruck vorkommt, um eins erhöht.
 
-**•**
-: Der Potenzierungsoperator (**\*\***).
+- Der Potenzierungsoperator (**\*\***).
 
-**•**
-: Unäre Plus- (**+**) und Minus- (**-**) Operatoren.
+- Unäre Plus- (**+**) und Minus- (**-**) Operatoren.
 
-**•**
-: Die Operatoren für die Multiplikation (**\***) und die Division (**/**).
+- Die Operatoren für die Multiplikation (**\***) und die Division (**/**).
 
-**•**
-: Klammern zur Gruppierung.
+- Klammern zur Gruppierung.
 
-**•**
-: Funktionen. Die verfügbaren Funktionen finden Sie weiter unten im Abschnitt **FUNKTIONEN**.
+- Funktionen. Die verfügbaren Funktionen finden Sie weiter unten im Abschnitt [Funktionen].
 
 
-# FUNKTIONEN
+# Funktionen
 
 Die folgenden Funktionen stehen zur Verwendung in exakten reellen Ausdrücken zur Verfügung.
 
-**acos(**_x_**)**
+**acos(***x***)**
 : Der Arkuskosinus von *x*. Das Ergebnis wird im Bogenmaß angegeben. Der Betrag von *x* muss kleiner als 1 sein.
 
-**acosh(**_x_**)**
+**acosh(***x***)**
 : Der inverse hyperbolische Kosinus von *x*. *x* muss größer als 1 sein.
 
-**asin(**_x_**)**
+**asin(***x***)**
 : Der Arkussinus von *x*. Das Ergebnis wird im Bogenmaß angegeben. Der Betrag von *x* muss kleiner als 1 sein.
 
-**asinh(**_x_**)**
+**asinh(***x***)**
 : Der inverse hyperbolische Sinus von *x*.
 
-**atan(**_x_**)**
+**atan(***x***)**
 : Der Arkustangens von *x*. Das Ergebnis wird im Bogenmaß angegeben.
 
-**atanh(**_x_**)**
+**atanh(***x***)**
 : Der inverse hyperbolische Tangens von *x*. Der Betrag von *x* muss kleiner als 1 sein.
 
-**cos(**_x_**)**
+**cos(***x***)**
 : Der Kosinus von *x*. *x* wird im Bogenmaß angegeben.
 
-**cosh(**_x_**)**
+**cosh(***x***)**
 : Der hyperbolische Kosinus von *x*.
 
 **e()**
 : Die Basis der natürlichen Logarithmen = **2.71828...**
 
-**exp(**_x_**)**
+**exp(***x***)**
 : Die Exponentialfunktion von *x*.
 
-**log(**_x_**)**
+**log(***x***)**
 : Der natürliche Logarithmus von *x*. *x* muss positiv sein.
 
 **pi()**
 : Der Wert von Pi = **3.15159...**
 
-**sin(**_x_**)**
+**sin(***x***)**
 : Der Sinus von *x*. *x* wird im Bogenmaß angegeben.
 
-**sinh(**_x_**)**
+**sinh(***x***)**
 : Der hyperbolische Sinus von *x*.
 
-**sqrt(**_x_**)**
+**sqrt(***x***)**
 : Die Quadratwurzel von *x*. *x* muss positiv sein.
 
-**tan(**_x_**)**
+**tan(***x***)**
 : Der Tangens von *x*. *x* wird im Bogenmaß angegeben.
 
-**tanh(**_x_**)**
+**tanh(***x***)**
 : Der hyperbolische Tangens von *x*.
 
 
-# ZUSAMMENFASSUNG
+# Zusammenfassung
 
 Der Befehl **math::exact::exactexpr** stellt ein System bereit, das exakte Arithmetik über berechenbare reelle Zahlen durchführt, wobei die Zahlen als Algorithmen zur sukzessiven Annäherung dargestellt werden. Nachstehend finden Sie ein Beispiel, das die aus der Schule bekannte Lösungsformel für quadratische Gleichungen umsetzt.
 
@@ -181,11 +174,11 @@ Hinweis: Wenn die IEEE-754-Gleitkommadarstellung verwendet worden wäre, hätte 
 
 Die Aufrufe von **exactexpr** sollten weitgehend selbsterklärend sein. Die weiteren erwähnenswerten Befehle sind **ref** und **unref**. Der Aufrufer muss den Überblick über Verweise auf exakte Ausdrücke behalten – er muss **ref** jedes Mal aufrufen, wenn ein exakter Ausdruck in einer Variablen gespeichert wird, und **unref** jedes Mal, wenn die Variable den Gültigkeitsbereich verlässt oder überschrieben wird. Die Methode **asFloat** gibt Dezimalziffern aus, solange die angeforderte Genauigkeit dies zulässt. Sie wird beendet, wenn die angeforderte Genauigkeit zu einer Ungenauigkeit von mehr als einer Einheit in der niedrigstwertigen Ziffer führt.
 
-# KATEGORIE
+# Kategorie
 
 Mathematik
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2015 Kevin B. Kenny <kennykb@acm.org>

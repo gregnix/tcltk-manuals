@@ -1,5 +1,6 @@
 ---
 CommandName: raise
+title: raise
 ManualSection: n
 Version: 3.3
 TclPart: Tk
@@ -15,25 +16,25 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 raise - Ändert die Position eines Fensters in der Stapelreihenfolge
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[raise]{.cmd} [window]{.arg} [aboveThis]{.optarg} 
+[raise]{.cmd} [window]{.arg} [aboveThis]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Ist das Argument *aboveThis* weggelassen, hebt **raise** *window* so an, dass es über allen Geschwister-Fenstern in der Stapelreihenfolge liegt (es wird von keinem Geschwister verdeckt und verdeckt überlappende Geschwister). Ist *aboveThis* angegeben, muss es der Pfadname eines Fensters sein, das Geschwister von *window* ist oder Nachkomme eines Geschwisters von *window*. Dann fügt **raise** *window* in die Stapelreihenfolge direkt über *aboveThis* ein (oder über den Vorfahren von *aboveThis*, der Geschwister von *window* ist); das kann *window* anheben oder absenken.
 
-Alle **toplevel**-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Window-Manager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
+Alle [toplevel]-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Window-Manager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
 
-Unter macOS führt das Anheben eines iconisierten **toplevel**-Fensters zur De-Iconifizierung.
+Unter macOS führt das Anheben eines iconisierten [toplevel]-Fensters zur De-Iconifizierung.
 
-# BEISPIELE
+# Beispiele
 
 Ein Button soll in einem Geschwister-Frame erscheinen, der nach dem Button erzeugt wurde — oft nötig, wenn Widgets zuerst erzeugt und dann layoutet werden:
 
@@ -45,3 +46,6 @@ pack .b -in .f
 pack [label .f.l2 -text "This is below"]
 raise .b
 ```
+
+
+[toplevel]: toplevel.md

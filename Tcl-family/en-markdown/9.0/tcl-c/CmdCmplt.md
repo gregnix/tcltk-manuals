@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_CommandComplete
+title: Tcl_CommandComplete
 ManualSection: 3
 Version: unknown
 TclPart: Tcl
@@ -14,23 +15,24 @@ Copyright:
 
 # Name
 
-Tcl_CommandComplete - Check for unmatched braces in a Tcl command
+Tcl\_CommandComplete - Check for unmatched braces in a Tcl command
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-int
-[Tcl_CommandComplete]{.cmd}([cmd]{.arg})
+**#include <tcl.h>**
+[int]{.ret} [Tcl\_CommandComplete]{.ccmd} [cmd]{.cargs}
 :::
 
 # Arguments
 
-const char *\*cmd* (in)
+::: {.arguments} :::
+
+[\*cmd]{.carg .in type="const char"}
 : Command string to test for completeness.
 
+:::
 
 # Description
 
-**Tcl_CommandComplete** takes a Tcl command string as argument and determines whether it contains one or more complete commands (i.e. there are no unclosed quotes, braces, brackets, or variable references). If the command string is complete then it returns 1; otherwise it returns 0.
+**Tcl\_CommandComplete** takes a Tcl command string as argument and determines whether it contains one or more complete commands (i.e. there are no unclosed quotes, braces, brackets, or variable references). If the command string is complete then it returns 1; otherwise it returns 0.

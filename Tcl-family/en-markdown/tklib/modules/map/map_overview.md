@@ -1,5 +1,6 @@
 ---
 CommandName: map_overview
+title: map_overview
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -11,140 +12,99 @@ Copyright:
 
 # Name
 
-map_overview - Overview of the packages in the Map module
+map\_overview - Overview of the packages in the Map module
 
 # Description
 
-**Storage**
-: 
+Storage
+: see below ...
+
+    File
+    : Definitions of simple file formats to hold various geo/\* resources, and the ability to read/write these files.
+
+        - [map::area::file][area-file]
+
+        - [map::box::file][box-file]
+
+        - [map::point::file][point-file]
+
+        - [map::track::file][track-file]
 
 
-**File**
-: Definitions of simple file formats to hold various geo/\* resources, and the ability to read/write these files.
+    Disk
+    : On-disk stores for various geo/\* resources. Exist as basic examples to start with, and as API demonstrators. In the original project these packages were factored out of **sqlite** was used as a store. This store is however entwined too much with that project to be factored.
+
+        - [map::area::store::fs][area-store-fs]
+
+        - [map::box::store::fs][box-store-fs]
+
+        - [map::point::store::fs][point-store-fs]
+
+        - [map::track::store::fs][track-store-fs]
 
 
-**•**
-: **map::area::file**
+    Memory
+    : In-memory stores caching geo/\* data and adding derived attributes. The bridge between the actual on-disk stores and the various widgets and behaviours.
 
-**•**
-: **map::box::file**
+        - [map::area::store::memory][area-store-mem]
 
-**•**
-: **map::point::file**
+        - [map::box::store::memory][box-store-mem]
 
-**•**
-: **map::track::file**
+        - [map::point::store::memory][point-store-mem]
 
-
-**Disk**
-: On-disk stores for various geo/\* resources. Exist as basic examples to start with, and as API demonstrators. In the original project these packages were factored out of **sqlite** was used as a store. This store is however entwined too much with that project to be factored.
+        - [map::track::store::memory][track-store-mem]
 
 
-**•**
-: **map::area::store::fs**
 
-**•**
-: **map::box::store::fs**
-
-**•**
-: **map::point::store::fs**
-
-**•**
-: **map::track::store::fs**
-
-
-**Memory**
-: In-memory stores caching geo/\* data and adding derived attributes. The bridge between the actual on-disk stores and the various widgets and behaviours.
-
-
-**•**
-: **map::area::store::memory**
-
-**•**
-: **map::box::store::memory**
-
-**•**
-: **map::point::store::memory**
-
-**•**
-: **map::track::store::memory**
-
-
-**Widgets**
+Widgets
 : To show maps, singular geo resources, and tables of many geo resources of the same kind.
 
+    Map
+    : [map::display][display]
 
-**Map**
-: **map::display**
+    Geo Resource Tables
+    : - [map::area::table-display][area-table-display]
 
-**Geo Resource Tables**
-: 
+        - [map::box::table-display][box-table-display]
 
+        - [map::point::table-display][point-table-display]
 
-**•**
-: **map::area::table-display**
-
-**•**
-: **map::box::table-display**
-
-**•**
-: **map::point::table-display**
-
-**•**
-: **map::track::table-display**
+        - [map::track::table-display][track-table-display]
 
 
-**Geo Resource Display**
-: 
+    Geo Resource Display
+    : - [map::area::display][area-display]
+
+        - [map::box::display][box-display]
+
+        - [map::track::display][track-display]
 
 
-**•**
-: **map::area::display**
 
-**•**
-: **map::box::display**
+Behaviours
+: Engines attachable to [map::display][display] to add custom behaviours to the shown map.  The two classes of engines are for displaying overlays for specific geo resources, and the editing/entry of specific single geo resources.
 
-**•**
-: **map::track::display**
+    Display
+    : - [map::area::map-display][area-map-display]
 
+        - [map::box::map-display][box-map-display]
 
-**Behaviours**
-: Engines attachable to **map::display** to add custom behaviours to the shown map.  The two classes of engines are for displaying overlays for specific geo resources, and the editing/entry of specific single geo resources.
+        - [map::point::map-display][point-map-display]
 
-
-**Display**
-: 
+        - [map::track::map-display][track-map-display]
 
 
-**•**
-: **map::area::map-display**
+    Editing
+    : - [map::box::entry][box-entry]
 
-**•**
-: **map::box::map-display**
+        - [map::mark][mark]
 
-**•**
-: **map::point::map-display**
-
-**•**
-: **map::track::map-display**
+        - [map::track::entry][track-entry]
 
 
-**Editing**
-: 
 
-
-**•**
-: **map::box::entry**
-
-**•**
-: **map::mark**
-
-**•**
-: **map::track::entry**
-
-
-**Support**
-: **map::provider::osm**
+Support
+: [map::provider::osm][provider-osm]
 
 
 # Bugs, ideas, feedback
@@ -154,3 +114,33 @@ This document, and the package it describes, will undoubtedly contain bugs and o
 # Category
 
 Map Display and Supporting Utilities
+
+
+[area-display]: area-display.md
+[area-file]: area-file.md
+[area-map-display]: area-map-display.md
+[area-store-fs]: area-store-fs.md
+[area-store-mem]: area-store-mem.md
+[area-table-display]: area-table-display.md
+[box-display]: box-display.md
+[box-entry]: box-entry.md
+[box-file]: box-file.md
+[box-map-display]: box-map-display.md
+[box-store-fs]: box-store-fs.md
+[box-store-mem]: box-store-mem.md
+[box-table-display]: box-table-display.md
+[display]: display.md
+[mark]: mark.md
+[point-file]: point-file.md
+[point-map-display]: point-map-display.md
+[point-store-fs]: point-store-fs.md
+[point-store-mem]: point-store-mem.md
+[point-table-display]: point-table-display.md
+[provider-osm]: provider-osm.md
+[track-display]: track-display.md
+[track-entry]: track-entry.md
+[track-file]: track-file.md
+[track-map-display]: track-map-display.md
+[track-store-fs]: track-store-fs.md
+[track-store-mem]: track-store-mem.md
+[track-table-display]: track-table-display.md

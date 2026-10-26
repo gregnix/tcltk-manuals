@@ -1,5 +1,6 @@
 ---
 CommandName: inifile
+title: inifile
 ManualSection: n
 Version: 0.3.3
 TclPart: tcllib
@@ -14,22 +15,22 @@ inifile - Parsing of Windows INI files
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [inifile]{.lit} [0.3.3]{.optlit} 
-[::ini::open]{.cmd} [file]{.arg} [-encoding encoding]{.optarg} [access]{.optarg} 
-[::ini::close]{.cmd} [ini]{.arg} 
-[::ini::commit]{.cmd} [ini]{.arg} 
-[::ini::revert]{.cmd} [ini]{.arg} 
-[::ini::filename]{.cmd} [ini]{.arg} 
-[::ini::sections]{.cmd} [ini]{.arg} 
-[::ini::keys]{.cmd} [ini]{.arg} [section]{.arg} 
-[::ini::get]{.cmd} [ini]{.arg} [section]{.arg} 
-[::ini::exists]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg} 
-[::ini::value]{.cmd} [ini]{.arg} [section]{.arg} [key]{.arg} [default]{.optarg} 
-[::ini::set]{.cmd} [ini]{.arg} [section]{.arg} [key]{.arg} [value]{.arg} 
-[::ini::delete]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg} 
-[::ini::comment]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg} [text]{.optarg} 
-[::ini::commentchar]{.cmd} [char]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [inifile]{.lit} [0.3.3]{.optlit}
+[::ini::open]{.cmd} [file]{.arg} [[-encoding]{.lit} [encoding]{.arg}]{.optarg} [access]{.optarg}
+[::ini::close]{.cmd} [ini]{.arg}
+[::ini::commit]{.cmd} [ini]{.arg}
+[::ini::revert]{.cmd} [ini]{.arg}
+[::ini::filename]{.cmd} [ini]{.arg}
+[::ini::sections]{.cmd} [ini]{.arg}
+[::ini::keys]{.cmd} [ini]{.arg} [section]{.arg}
+[::ini::get]{.cmd} [ini]{.arg} [section]{.arg}
+[::ini::exists]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg}
+[::ini::value]{.cmd} [ini]{.arg} [section]{.arg} [key]{.arg} [default]{.optarg}
+[::ini::set]{.cmd} [ini]{.arg} [section]{.arg} [key]{.arg} [value]{.arg}
+[::ini::delete]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg}
+[::ini::comment]{.cmd} [ini]{.arg} [section]{.arg} [key]{.optarg} [text]{.optarg}
+[::ini::commentchar]{.cmd} [char]{.optarg}
 :::
 
 # Description
@@ -37,7 +38,9 @@ inifile - Parsing of Windows INI files
 This package provides an interface for easy manipulation of Windows INI files.
 
 **::ini::open** *file* ?**-encoding** *encoding*? ?*access*?
-: Opens an INI file and returns a handle that is used by other commands. *access* is the same as the first form (non POSIX) of the **open** command, with the exception that mode **a** is not supported. The default mode is **r+**. The default *encoding* is the system encoding.
+: Opens an INI file and returns a handle that is used by other commands. *access* is the same as the first form (non POSIX) of the **open** command, with the exception that mode **a** is not supported. The default mode is **r+**.
+
+    The default *encoding* is the system encoding.
 
 **::ini::close** *ini*
 : Close the specified handle. If any changes were made and not written by **commit** they are lost.

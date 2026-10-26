@@ -1,5 +1,6 @@
 ---
 CommandName: pluginmgr
+title: pluginmgr
 ManualSection: n
 Version: 0.5
 TclPart: tcllib
@@ -18,25 +19,25 @@ pluginmgr - Manage a plugin
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [pluginmgr]{.lit} [0.5]{.optlit} 
-[::pluginmgr]{.cmd} [objectName]{.arg} [option value]{.optdot} 
-[::pluginmgr::paths]{.cmd} [objectName]{.arg} [name...]{.arg} 
-[objectName]{.cmd} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [clone]{.sub} 
-[objectName]{.ins} [configure]{.sub} 
-[objectName]{.ins} [configure]{.sub} [option]{.arg} 
-[objectName]{.ins} [configure]{.sub} [-option]{.lit} [value...]{.arg} 
-[objectName]{.ins} [cget]{.sub} [-option]{.lit} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [do]{.sub} [arg...]{.arg} 
-[objectName]{.ins} [interpreter]{.sub} 
-[objectName]{.ins} [plugin]{.sub} 
-[objectName]{.ins} [load]{.sub} [string]{.arg} 
-[objectName]{.ins} [unload]{.sub} 
-[objectName]{.ins} [list]{.sub} 
-[objectName]{.ins} [path]{.sub} [path]{.arg} 
-[objectName]{.ins} [paths]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [pluginmgr]{.lit} [0.5]{.optlit}
+[::pluginmgr]{.cmd} [objectName]{.arg} [option value...]{.optarg}
+[::pluginmgr::paths]{.cmd} [objectName]{.arg} [name...]{.arg}
+[objectName]{.cmd} [method]{.lit} [arg arg]{.optdot}
+[objectName]{.ins} [clone]{.sub}
+[objectName]{.ins} [configure]{.sub}
+[objectName]{.ins} [configure]{.sub} [option]{.arg}
+[objectName]{.ins} [configure]{.sub} [-option]{.lit} [value...]{.arg}
+[objectName]{.ins} [cget]{.sub} [-option]{.lit}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [do]{.sub} [arg...]{.arg}
+[objectName]{.ins} [interpreter]{.sub}
+[objectName]{.ins} [plugin]{.sub}
+[objectName]{.ins} [load]{.sub} [string]{.arg}
+[objectName]{.ins} [unload]{.sub}
+[objectName]{.ins} [list]{.sub}
+[objectName]{.ins} [path]{.sub} [path]{.arg}
+[objectName]{.ins} [paths]{.sub}
 :::
 
 # Description
@@ -47,75 +48,81 @@ To avoid the implementation of yet another system to locate Tcl code the system 
 
 The main contribution of this package is a generic framework which allows the easy declaration of
 
-**\[1\]**
-: How to translate a plugin name to the name of the package implementing it, and vice versa.
+1. How to translate a plugin name to the name of the package implementing it, and vice versa.
 
-**\[2\]**
-: The list of commands a plugin has to provide as API, and also of more complex checks as code.
+2. The list of commands a plugin has to provide as API, and also of more complex checks as code.
 
-**\[3\]**
-: The list of commands expected by the plugin from the environment. This then allows the easy generation of plugin managers customized to particular types of plugins for an application. It should be noted that all plugin code is considered untrusted and will always be executed within a safe interpreter. The interpreter is enabled enough to allow plugins the loading of all additional packages they may need.
+3. The list of commands expected by the plugin from the environment.
 
+
+This then allows the easy generation of plugin managers customized to particular types of plugins for an application.
+
+It should be noted that all plugin code is considered untrusted and will always be executed within a safe interpreter. The interpreter is enabled enough to allow plugins the loading of all additional packages they may need.
 
 # Public api
 
 ## Package commands
 
 **::pluginmgr** *objectName* ?*option value*...?
-: This command creates a new plugin manager object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **OBJECT COMMAND** and **OBJECT METHODS**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise. The options and their values coming after the name of the object are used to set the initial configuration of the mamager object, specifying the applicable plugins and their API.
+: This command creates a new plugin manager object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
+
+    The options and their values coming after the name of the object are used to set the initial configuration of the mamager object, specifying the applicable plugins and their API.
 
 **::pluginmgr::paths** *objectName* *name*...
 : This utility command adds a set of paths to the specified object, based on the given *name*s. It will search for:
 
+    1. The environment variable *name*\_PLUGINS. Its contents will be interpreted as a list of package paths. The entries have to be separated by either **:** (unix) or **;** (windows).
 
-**\[1\]**
-: The environment variable *name*\_PLUGINS. Its contents will be interpreted as a list of package paths. The entries have to be separated by either **:** (unix) or **;** (windows). The name will be converted to upper-case letters.
+        The name will be converted to upper-case letters.
 
-**\[2\]**
-: The registry entry "HKEY_LOCAL_MACHINE\\SOFTWARE\\*name*\\PLUGINS". Its contents will be interpreted as a list of package paths. The entries have to be separated by **;**. This item is considered only when on Windows (tm). The casing of letters is not changed.
+    2. The registry entry "HKEY\_LOCAL\_MACHINE\\SOFTWARE\\*name*\\PLUGINS". Its contents will be interpreted as a list of package paths. The entries have to be separated by **;**. This item is considered only when on Windows (tm).
 
-**\[3\]**
-: The registry entry "HKEY_CURRENT_USER\\SOFTWARE\\*name*\\PLUGINS". Its contents will be interpreted as a list of package paths. The entries have to be separated by **;**. This item is considered only when on Windows (tm). The casing of letters is not changed.
+        The casing of letters is not changed.
 
-**\[4\]**
-: The directory "*~/.name*/plugin".
+    3. The registry entry "HKEY\_CURRENT\_USER\\SOFTWARE\\*name*\\PLUGINS". Its contents will be interpreted as a list of package paths. The entries have to be separated by **;**. This item is considered only when on Windows (tm).
 
-**\[5\]**
-: The directory "*~/.name*/plugins". The casing of letters is not changed.
+        The casing of letters is not changed.
+
+    4. The directory "*~/.name*/plugin".
+
+    5. The directory "*~/.name*/plugins".
+
+        The casing of letters is not changed.
 
 
-and add all the paths found that way to the list of package paths maintained by the object.
+    and add all the paths found that way to the list of package paths maintained by the object.
 
-If *name* is namespaced each item in the list will be repeated per prefix of *name*, with conversion of :-sequences into the proper separator (underscore for environment variables, backslash for registry entries, and / for directories).
+    If *name* is namespaced each item in the list will be repeated per prefix of *name*, with conversion of :-sequences into the proper separator (underscore for environment variables, backslash for registry entries, and / for directories).
 
-Examples:
+    Examples:
 
-```
-    ::pluginmgr::paths ::obj docidx
+    ```
+        ::pluginmgr::paths ::obj docidx
 
-    => env  DOCIDX_PLUGINS
-       reg  HKEY_LOCAL_MACHINE\SOFTWARE\docidx\PLUGINS
-       reg  HKEY_CURRENT_USER\SOFTWARE\docidx\PLUGINS
-       path ~/.docidx/plugins
+        => env  DOCIDX_PLUGINS
+           reg  HKEY_LOCAL_MACHINE\SOFTWARE\docidx\PLUGINS
+           reg  HKEY_CURRENT_USER\SOFTWARE\docidx\PLUGINS
+           path ~/.docidx/plugins
 
-    ::pluginmgr::paths ::obj doctools::idx
+        ::pluginmgr::paths ::obj doctools::idx
 
-    => env  DOCTOOLS_PLUGINS
-       env  DOCTOOLS_IDX_PLUGINS
-       reg  HKEY_LOCAL_MACHINE\SOFTWARE\doctools\PLUGINS
-       reg  HKEY_LOCAL_MACHINE\SOFTWARE\doctools\idx\PLUGINS
-       reg  HKEY_CURRENT_USER\SOFTWARE\doctools\PLUGINS
-       reg  HKEY_CURRENT_USER\SOFTWARE\doctools\idx\PLUGINS
-       path ~/.doctools/plugin
-       path ~/.doctools/idx/plugin
-```
+        => env  DOCTOOLS_PLUGINS
+           env  DOCTOOLS_IDX_PLUGINS
+           reg  HKEY_LOCAL_MACHINE\SOFTWARE\doctools\PLUGINS
+           reg  HKEY_LOCAL_MACHINE\SOFTWARE\doctools\idx\PLUGINS
+           reg  HKEY_CURRENT_USER\SOFTWARE\doctools\PLUGINS
+           reg  HKEY_CURRENT_USER\SOFTWARE\doctools\idx\PLUGINS
+           path ~/.doctools/plugin
+           path ~/.doctools/idx/plugin
+    ```
+
 
 ## Object command
 
-All commands created by the command **::pluginmgr** (See section **PACKAGE COMMANDS**) have the following general form and may be used to invoke various operations on their plugin manager object.
+All commands created by the command **::pluginmgr** (See section [Package commands]) have the following general form and may be used to invoke various operations on their plugin manager object.
 
 **objectName** **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **OBJECT METHODS** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -130,10 +137,14 @@ All commands created by the command **::pluginmgr** (See section **PACKAGE COMMA
 : The method behaves like the method **cget** when called with a single argument and returns the value of the option specified by said argument.
 
 *objectName* **configure** **-option** *value*...
-: The method reconfigures the specified **option**s of the object, setting them to the associated *value*s, when called with an even number of arguments, at least two. The legal options are described in the section **OBJECT CONFIGURATION**.
+: The method reconfigures the specified **option**s of the object, setting them to the associated *value*s, when called with an even number of arguments, at least two.
+
+    The legal options are described in the section [Object configuration].
 
 *objectName* **cget** **-option**
-: This method expects a legal configuration option as argument and will return the current value of that option for the object the method was invoked for. The legal configuration options are described in section **OBJECT CONFIGURATION**.
+: This method expects a legal configuration option as argument and will return the current value of that option for the object the method was invoked for.
+
+    The legal configuration options are described in section [Object configuration].
 
 *objectName* **destroy**
 : This method destroys the object it is invoked for.
@@ -148,35 +159,29 @@ All commands created by the command **::pluginmgr** (See section **PACKAGE COMMA
 : This method returns the name of the plugin currently loaded. An empty string as return value signals that the manager currently has no valid plugin loaded.
 
 *objectName* **load** *string*
-: This method loads, validates, and initializes a named plugin into the manager object. The algorithm to locate and load the plugin employed is:
+: This method loads, validates, and initializes a named plugin into the manager object.
+
+    The algorithm to locate and load the plugin employed is:
+
+    1. If the *string* contains the path to an existing file then this file is taken as the implementation of the plugin.
+
+    2. Otherwise the plugin name is translated into a package name via the value of the option **-pattern** and then loaded through the regular package management.
+
+    3. The load fails.
 
 
-**\[1\]**
-: If the *string* contains the path to an existing file then this file is taken as the implementation of the plugin.
+    The algorithm to validate and initialize the loaded code is:
 
-**\[2\]**
-: Otherwise the plugin name is translated into a package name via the value of the option **-pattern** and then loaded through the regular package management.
+    1. If the option **-api** is non-empty introspection commands are used to ascertain that the plugin provides the listed commands.
 
-**\[3\]**
-: The load fails.
+    2. If the option **-check** is non-empty the specified command prefix is called.
 
+    3. If either of the above fails the candidate plugin is unloaded again
 
-The algorithm to validate and initialize the loaded code is:
-
-**\[1\]**
-: If the option **-api** is non-empty introspection commands are used to ascertain that the plugin provides the listed commands.
-
-**\[2\]**
-: If the option **-check** is non-empty the specified command prefix is called.
-
-**\[3\]**
-: If either of the above fails the candidate plugin is unloaded again
-
-**\[4\]**
-: Otherwise all the commands specified via the option **-cmds** are installed in the plugin.
+    4. Otherwise all the commands specified via the option **-cmds** are installed in the plugin.
 
 
-A previously loaded plugin is discarded, but only if the new plugin was found and sucessfully validated and initialized. Note that there will be no intereference between old and new plugin as both will be put into separate safe interpreters.
+    A previously loaded plugin is discarded, but only if the new plugin was found and sucessfully validated and initialized. Note that there will be no intereference between old and new plugin as both will be put into separate safe interpreters.
 
 *objectName* **unload**
 : This method unloads the currently loaded plugin. It returns the empty string. The call will be silently ignored if no plugin is loaded at all.
@@ -196,13 +201,19 @@ A previously loaded plugin is discarded, but only if the new plugin was found an
 All plugin manager objects understand the following configuration options:
 
 **-pattern** *string*
-: The value of this option is a glob pattern which has to contain exactly one '\*'-operator. All packages whose names match this pattern are the plugins recognized by the manager object. And vice versa, the replacement of the '\*'-operator with a plugin name will yield the name of the package implementing that plugin. This option has no default, except if option **-name** was set. It has to be set before attempting to load a plugin, either directly, or through option **-name**.
+: The value of this option is a glob pattern which has to contain exactly one '\*'-operator. All packages whose names match this pattern are the plugins recognized by the manager object. And vice versa, the replacement of the '\*'-operator with a plugin name will yield the name of the package implementing that plugin.
+
+    This option has no default, except if option **-name** was set. It has to be set before attempting to load a plugin, either directly, or through option **-name**.
 
 **-api** *list*
 : The value of this option is a list of command names, and any plugin loaded has to provide these commands. Names which are not fully qualified are considered to be rooted in the global namespace. If empty no expectations are made on the plugin. The default value is the empty list.
 
 **-check** *cmdprefix*
-: The value of this option is interpreted as a command prefix. Its purpose is to perform complex checks on a loaded plugin package to validate it, which go beyond a simple list of provided commands. It is called with the manager object command as the only argument and has to return a boolean value. A value of **true** will be interpreted to mean that the candidate plugin passed the test. The call will happen if and only if the candidate plugin already passed the basic API check specified through the option **-api**. The default value is the empty list, which causes the manager object to suppress the call and to assume the candidate plugin passes.
+: The value of this option is interpreted as a command prefix. Its purpose is to perform complex checks on a loaded plugin package to validate it, which go beyond a simple list of provided commands.
+
+    It is called with the manager object command as the only argument and has to return a boolean value. A value of **true** will be interpreted to mean that the candidate plugin passed the test. The call will happen if and only if the candidate plugin already passed the basic API check specified through the option **-api**.
+
+    The default value is the empty list, which causes the manager object to suppress the call and to assume the candidate plugin passes.
 
 **-cmds** *dict*
 : The value of this option is a dictionary.  It specifies the commands which will be made available to the plugin (as keys), and the trusted commands in the environment which implement them (as values). The trusted commands will be executed in the interpreter specified by the option **-cmdip**. The default value is the empty dictionary.
@@ -211,7 +222,11 @@ All plugin manager objects understand the following configuration options:
 : The value of this option is the path of the interpreter where the trusted commands given to the plugin will be executed in. The default is the empty string, referring to the current interpreter.
 
 **-setup** *cmdprefix*
-: The value of this option is interpreted as a command prefix. It is called whenever a new safe interpreter for a plugin has been created, but before a plugin is loaded. It is provided with the manager object command and the interpreter handle as its only arguments. Any return value will be ignored. Its purpose is give a user of the plugin management the ability to define commands, packages, etc. a chosen plugin may need while being loaded.
+: The value of this option is interpreted as a command prefix.
+
+    It is called whenever a new safe interpreter for a plugin has been created, but before a plugin is loaded. It is provided with the manager object command and the interpreter handle as its only arguments. Any return value will be ignored.
+
+    Its purpose is give a user of the plugin management the ability to define commands, packages, etc. a chosen plugin may need while being loaded.
 
 
 # Bugs, ideas, feedback

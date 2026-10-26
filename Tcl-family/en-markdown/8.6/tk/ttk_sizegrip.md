@@ -1,5 +1,6 @@
 ---
 CommandName: ttk::sizegrip
+title: ttk::sizegrip
 ManualSection: n
 Version: 8.5
 TclPart: Tk
@@ -21,7 +22,7 @@ ttk::sizegrip - Bottom-right corner resize widget
 # Synopsis
 
 ::: {.synopsis} :::
-[ttk::sizegrip]{.cmd} [pathName]{.arg} [options]{.optarg} 
+[ttk::sizegrip]{.cmd} [pathName]{.arg} [options]{.optarg}
 :::
 
 # Description
@@ -30,12 +31,9 @@ A **ttk::sizegrip** widget (also known as a *grow box*) allows the user to resiz
 
 # Standard options
 
-|   |   |
-| --- | --- |
-| **-class** | **-cursor** |
-| **-style** | **-takefocus** |
+**-class**, **-cursor**, **-style**, **-takefocus**
 
-See the ttk_widget manual entry for details on the standard options.
+See the [ttk\_widget][ttk_widget] manual entry for details on the standard options.
 
 # Widget command
 
@@ -65,7 +63,7 @@ grid [ttk::sizegrip $top.statusbar.grip] \
 
 # Bugs
 
-If the containing toplevel's position was specified relative to the right or bottom of the screen (e.g., "**wm geometry ...** *w*__x__*h*__-__*x*__-__*y*" instead of "**wm geometry ...** *w*__x__*h*__+__*x*__+__*y*"), the sizegrip widget will not resize the window.
+If the containing toplevel's position was specified relative to the right or bottom of the screen (e.g., "**wm geometry ...** *w***x***h***-***x***-***y*" instead of "**wm geometry ...** *w***x***h***+***x***+***y*"), the sizegrip widget will not resize the window.
 
 **ttk::sizegrip** widgets only support "southeast" resizing.
 
@@ -73,10 +71,14 @@ If the containing toplevel's position was specified relative to the right or bot
 
 The class name for a **ttk::sizegrip** is **TSizegrip**.
 
-**TSizegrip** styling options configurable with **ttk::style** are:
+**TSizegrip** styling options configurable with [ttk::style][ttk_style] are:
 
 **-background** *color*
 
 Some options are only available for specific themes.
 
-See the **ttk::style** manual page for information on how to configure ttk styles.
+See the [ttk::style][ttk_style] manual page for information on how to configure ttk styles.
+
+
+[ttk_style]: ttk_style.md
+[ttk_widget]: ttk_widget.md

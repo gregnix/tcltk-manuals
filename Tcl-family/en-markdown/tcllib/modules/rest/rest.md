@@ -1,5 +1,6 @@
 ---
 CommandName: rest
+title: rest
 ManualSection: n
 Version: 1.7
 TclPart: tcllib
@@ -14,21 +15,21 @@ rest - define REST web APIs and call them inline or asychronously
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [rest]{.lit} [1.7]{.optlit} 
-[::rest::simple]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::get]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::post]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::patch]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::head]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::put]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::delete]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg} 
-[::rest::save]{.cmd} [name]{.arg} [file]{.arg} 
-[::rest::describe]{.cmd} [name]{.arg} 
-[::rest::parameters]{.cmd} [url]{.arg} [key]{.optarg} 
-[::rest::parse_opts]{.cmd} [static]{.arg} [required]{.arg} [optional]{.arg} [words]{.arg} 
-[::rest::substitute]{.cmd} [string]{.arg} [var]{.arg} 
-[::rest::create_interface]{.cmd} [name]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [rest]{.lit} [1.7]{.optlit}
+[::rest::simple]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::get]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::post]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::patch]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::head]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::put]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::delete]{.cmd} [url]{.arg} [query]{.arg} [config]{.optarg} [body]{.optarg}
+[::rest::save]{.cmd} [name]{.arg} [file]{.arg}
+[::rest::describe]{.cmd} [name]{.arg}
+[::rest::parameters]{.cmd} [url]{.arg} [key]{.optarg}
+[::rest::parse\_opts]{.cmd} [static]{.arg} [required]{.arg} [optional]{.arg} [words]{.arg}
+[::rest::substitute]{.cmd} [string]{.arg} [var]{.arg}
+[::rest::create\_interface]{.cmd} [name]{.arg}
 :::
 
 # Description
@@ -40,78 +41,65 @@ There are two types of usage this package supports: *simple calls*, and complete
 In simple usage you make calls using the http method procedures and then check or process the returned data yourself
 
 **::rest::simple** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::get** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::post** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::patch** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::head** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::put** *url* *query* ?*config*? ?*body*?
-: ...see next...
+: see below ...
 
 **::rest::delete** *url* *query* ?*config*? ?*body*?
-: These commands are all equivalent except for the http method used. If you use **simple** then the method should be specified as an option in the *config* dictionary. If that is not done it defaults to **get**. If a *body* is needed then the *config* dictionary must be present, however it is allowed to be empty. The *config* dictionary supports the following keys
+: These commands are all equivalent except for the http method used. If you use **simple** then the method should be specified as an option in the *config* dictionary. If that is not done it defaults to **get**. If a *body* is needed then the *config* dictionary must be present, however it is allowed to be empty.
+
+    The *config* dictionary supports the following keys
+
+    - **auth**
+    - **content-type**
+    - **cookie**
+    - **error-body**
+    - **format**
+    - **headers**
+    - **method**
+    - **timeout**
 
 
-**auth**
-: ...see next...
+    Two quick examples:
 
-**content-type**
-: ...see next...
+    Example 1, Yahoo Boss:
 
-**cookie**
-: ...see next...
+    ```
+        set appid APPID
+        set search tcl
+        set res [rest::get http://boss.yahooapis.com/ysearch/web/v1/$search [list appid $appid]]
+        set res [rest::format_json $res]
+    ```
 
-**error-body**
-: ...see next...
+    Example 2, Twitter:
 
-**format**
-: ...see next...
+    ```
+        set url   http://twitter.com/statuses/update.json
+        set query [list status $text]
+        set res [rest::simple $url $query {
+            method post
+            auth   {basic user password}
+            format json
+        }]
+    ```
 
-**headers**
-: ...see next...
-
-**method**
-: ...see next...
-
-**timeout**
-: 
-
-
-Two quick examples:
-
-Example 1, Yahoo Boss:
-
-```
-    set appid APPID
-    set search tcl
-    set res [rest::get http://boss.yahooapis.com/ysearch/web/v1/$search [list appid $appid]]
-    set res [rest::format_json $res]
-```
-
-Example 2, Twitter:
-
-```
-    set url   http://twitter.com/statuses/update.json
-    set query [list status $text]
-    set res [rest::simple $url $query {
-        method post
-        auth   {basic user password}
-        format json
-    }]
-```
 
 # Interface usage
 
-An interface to a REST API consists of a series of definitions of REST calls contained in an array. The name of that array becomes a namespace containing the defined commands. Each key of the array specifies the name of the call, with the associated configuration a dictionary, i.e. key/value pairs. The acceptable keys, i.e. legal configuration options are described below. After creating the definitions in the array simply calling **rest::create_interface** with the array as argument will then create the desired commands.
+An interface to a REST API consists of a series of definitions of REST calls contained in an array. The name of that array becomes a namespace containing the defined commands. Each key of the array specifies the name of the call, with the associated configuration a dictionary, i.e. key/value pairs. The acceptable keys, i.e. legal configuration options are described below. After creating the definitions in the array simply calling **rest::create\_interface** with the array as argument will then create the desired commands.
 
 Example, Yahoo Weather:
 
@@ -128,170 +116,207 @@ Example, Yahoo Weather:
 ```
 
 **::rest::save** *name* *file*
-: This command saves a copy of the dynamically created procedures for all the API calls specified in the array variable *name* to the *file*, for later loading. The result of the command is the empty string
+: This command saves a copy of the dynamically created procedures for all the API calls specified in the array variable *name* to the *file*, for later loading.
+
+    The result of the command is the empty string
 
 **::rest::describe** *name*
-: This command prints a description of all API calls specified in the array variable *name* to the channel **stdout**. The result of the command is the empty string.
+: This command prints a description of all API calls specified in the array variable *name* to the channel **stdout**.
+
+    The result of the command is the empty string.
 
 **::rest::parameters** *url* ?*key*?
-: This command parses an *url* query string into a dictionary and returns said dictionary as its result. If *key* is specified the command will not return the entire dictionary, but only the value of that *key*.
+: This command parses an *url* query string into a dictionary and returns said dictionary as its result.
 
-**::rest::parse_opts** *static* *required* *optional* *words*
+    If *key* is specified the command will not return the entire dictionary, but only the value of that *key*.
+
+**::rest::parse\_opts** *static* *required* *optional* *words*
 : This command implements a custom parserfor command options.
 
+    dict *static*
+    : A dictionary of options and their values that are always present in the output.
 
-dict *static*
-: A dictionary of options and their values that are always present in the output.
+    list *required*
+    : A list of options that must be supplied by *words*
 
-list *required*
-: A list of options that must be supplied by *words*
+    list *optional*
+    : A list of options that may appear in the *words*, but are not required. The elements must be in one of three forms:
 
-list *optional*
-: A list of options that may appear in the *words*, but are not required. The elements must be in one of three forms:
+        name
+        : The option may be present or not, no default.
 
+        name:
+        : When present the option requires an argument.
 
-**name**
-: The option may be present or not, no default.
-
-**name:**
-: When present the option requires an argument.
-
-**name:value**
-: When not present use **value** as default.
+        name:value
+        : When not present use **value** as default.
 
 
-list *words*
-: The words to parse into options and values.
+    list *words*
+    : The words to parse into options and values.
 
 
-The result of the command is a list containing two elements. The first element is a dictionary containing the parsed options and their values.  The second element is a list of the remaining words.
+    The result of the command is a list containing two elements. The first element is a dictionary containing the parsed options and their values.  The second element is a list of the remaining words.
 
 **::rest::substitute** *string* *var*
-: This command takes a *string*, substitutes values for any option identifiers found inside and returns the modified string as its results. The values to substitute are found in the variable *var*, which is expected to contain a dictionary mapping from the option identifiers to replace to their values. *Note* that option identifiers which have no key in *var* are replaced with the empty string. The option identifiers in *string* have to follow the syntax **%...%** where **...** may contain any combination of lower-case alphanumeric characters, plus underscore, colon and dash.
+: This command takes a *string*, substitutes values for any option identifiers found inside and returns the modified string as its results.
 
-**::rest::create_interface** *name*
-: This command creates procedures for all the API calls specified in the array variable *name*. The name of that array becomes a namespace containing the defined commands. Each key of the array specifies the name of the call, with the associated configuration a dictionary, i.e. key/value pairs. The legal keys and their meanings are:
+    The values to substitute are found in the variable *var*, which is expected to contain a dictionary mapping from the option identifiers to replace to their values. *Note* that option identifiers which have no key in *var* are replaced with the empty string.
 
+    The option identifiers in *string* have to follow the syntax **%...%** where **...** may contain any combination of lower-case alphanumeric characters, plus underscore, colon and dash.
 
-**url**
-: The value of this *required* option must be the target of the http request.
+**::rest::create\_interface** *name*
+: This command creates procedures for all the API calls specified in the array variable *name*.
 
-**description**
-: The value of this option must be a short string describing the call. Default to the empty string, if not specified. Used only by **::rest::describe**.
+    The name of that array becomes a namespace containing the defined commands. Each key of the array specifies the name of the call, with the associated configuration a dictionary, i.e. key/value pairs. The legal keys and their meanings are:
 
-**body**
-: The value of this option indicates if arguments are required for the call's request body or not. The acceptable values are listed below. Defaults to **optional** if not specified.
+    **url**
+    : The value of this *required* option must be the target of the http request.
 
+    **description**
+    : The value of this option must be a short string describing the call. Default to the empty string, if not specified. Used only by **::rest::describe**.
 
-**none**
-: The call has no request body, none must be supplied.
+    **body**
+    : The value of this option indicates if arguments are required for the call's request body or not. The acceptable values are listed below. Defaults to **optional** if not specified.
 
-**optional**
-: A request body can be supplied, but is not required.
+        **none**
+        : The call has no request body, none must be supplied.
 
-**required**
-: A request body must be supplied.
+        **optional**
+        : A request body can be supplied, but is not required.
 
-**argument**
-: This value must be followed by the name of an option, treating the entire string as a list. The request body will be used as the value of that option.
+        **required**
+        : A request body must be supplied.
 
-**mime_multipart**
-: A request body must be supplied and will be interpreted as each argument representing one part of a mime/multipart document. Arguments must be lists containing 2 elements, a list of header keys and values, and the mime part body, in this order.
+        **argument**
+        : This value must be followed by the name of an option, treating the entire string as a list. The request body will be used as the value of that option.
 
-**mime_multipart/\<value>**
-: Same as mime_multipart, but the **Content-Type** header is set to **multipart/\<value>**.
+        **mime\_multipart**
+        : A request body must be supplied and will be interpreted as each argument representing one part of a mime/multipart document. Arguments must be lists containing 2 elements, a list of header keys and values, and the mime part body, in this order.
 
-
-**method**
-: The value of this option must be the name of the HTTP method to call on the url. Defaults to GET, if not specified. The acceptable values are **GET**, **POST**, and **PUT**, regardless of letter-case.
-
-**copy**
-: When present the value of this option specifies the name of a previously defined call. The definition of that call is copied to the current call, except for the options specified by the current call itself.
-
-**unset**
-: When present the value of this option contains a list of options in the current call. These options are removed from the definition. Use this after **copy**ing an existing definition to remove options, instead of overriding their value.
-
-**headers**
-: Specification of additional header fields. The value of this option must be a dictionary, interpreted to contain the new header fields and their values. The default is to not add any additional headers.
-
-**content-type**
-: The value of this option specifies the content type for the request data.
-
-**req_args**
-: The value of this option is a list naming the required arguments of the call.  Names ending in a colon will require a value.
-
-**opt_args**
-: The value of this option a list naming the arguments that may be present for a call but are not required.
-
-**static_args**
-: The value of this option a list naming the arguments that are always the same.  No sense in troubling the user with these.  A leading dash (**-**) is allowed but not required to maintain consistency with the command line.
-
-**auth**
-: The value of this option specifies how to authenticate the calls. No authentication is done if the option is not specified.
+        **mime\_multipart/<value>**
+        : Same as mime\_multipart, but the **Content-Type** header is set to **multipart/<value>**.
 
 
-**basic**
-: The user may configure the *basic authentication* by overriding the procedure **basic_auth** in the namespace of interface. This procedure takes two arguments, the username and password, in this order.
+    **method**
+    : The value of this option must be the name of the HTTP method to call on the url. Defaults to GET, if not specified. The acceptable values are **GET**, **POST**, and **PUT**, regardless of letter-case.
 
-**bearer**
-: The user may configure a bearer token as authentication. The value is the token passed to the HTTP authorization header.
+    **copy**
+    : When present the value of this option specifies the name of a previously defined call. The definition of that call is copied to the current call, except for the options specified by the current call itself.
 
-**sign**
-: The value must actually be a list with the second element the name of a procedure which will be called to perform request signing.
+    **unset**
+    : When present the value of this option contains a list of options in the current call. These options are removed from the definition. Use this after **copy**ing an existing definition to remove options, instead of overriding their value.
 
+    **headers**
+    : Specification of additional header fields. The value of this option must be a dictionary, interpreted to contain the new header fields and their values. The default is to not add any additional headers.
 
-**callback**
-: If this option is present then the method will be created as an *async* call. Such calls will return immediately with the value of the associated http token instead of the call's result. The event loop must be active to use this option. The value of this option is treated as a command prefix which is invoked when the HTTP call is complete. The prefix will receive at least two additional arguments, the name of the calling procedure and the status of the result (one of **OK** or **ERROR**), in this order. In case of **OK** a third argument is added, the data associated with the result. If and only if the **ERROR** is a redirection, the location redirected to will be added as argument. Further, if the configuration key **error-body** is set to **true** the data associated with the result will be added as argument as well. The http request header will be available in that procedure via **upvar token token**.
+    **content-type**
+    : The value of this option specifies the content type for the request data.
 
-**cookie**
-: The value of this option is a list of cookies to be passed in the http header. This is a shortcut to the **headers** option.
+    **req\_args**
+    : The value of this option is a list naming the required arguments of the call.  Names ending in a colon will require a value.
 
-**input_transform**
-: The value of this option is a command prefix or script to perform a transformation on the query before invoking the call. A script transform is wrapped into an automatically generated internal procedure. If not specified no transformation is done. The command (prefix) must accept a single argument, the query (a dictionary) to transform, and must return the modified query (again as dictionary) as its result. The request body is accessible in the transform command via **upvar body body**.
+    **opt\_args**
+    : The value of this option a list naming the arguments that may be present for a call but are not required.
 
-**format**
-: ...see next...
+    **static\_args**
+    : The value of this option a list naming the arguments that are always the same.  No sense in troubling the user with these.  A leading dash (**-**) is allowed but not required to maintain consistency with the command line.
 
-**result**
-: The value of this option specifies the format of the returned data. Defaults to **auto** if not specified. The acceptable values are:
+    **auth**
+    : The value of this option specifies how to authenticate the calls. No authentication is done if the option is not specified.
 
+        **basic**
+        : The user may configure the *basic authentication* by overriding the procedure **basic\_auth** in the namespace of interface. This procedure takes two arguments, the username and password, in this order.
 
-**auto**
-: Auto detect between **xml** and **json**.
+        **bearer**
+        : The user may configure a bearer token as authentication. The value is the token passed to the HTTP authorization header.
 
-**discard**
-: ...see next...
-
-**json**
-: ...see next...
-
-**raw**
-: ...see next...
-
-**rss**
-: This is formatted as a special case of **xml**.
-
-**tdom**
-: ...see next...
-
-**xml**
-: 
+        **sign**
+        : The value must actually be a list with the second element the name of a procedure which will be called to perform request signing.
 
 
-**pre_transform**
-: The value of this option is a command prefix or script to perform a transformation on the result of a call (*before* the application of the output transform as per **format**). A script transform is wrapped into an automatically generated internal procedure. If not specified no transformation is done. The command (prefix) must accept a single argument, the result to transform, and must return the modified result as its result. The http request header is accessible in the transform command via **upvar token token**
+    **callback**
+    : If this option is present then the method will be created as an *async* call. Such calls will return immediately with the value of the associated http token instead of the call's result. The event loop must be active to use this option.
 
-**post_transform**
-: The value of this option is a command prefix or script to perform a transformation on the result of a call (*after* the application of the output transform as per **format**). A script transform is wrapped into an automatically generated internal procedure. If not specified no transformation is done. The command (prefix) must accept a single argument, the result to transform, and must return the modified result as its result. The http request header is accessible in the transform command via **upvar token token**
+        The value of this option is treated as a command prefix which is invoked when the HTTP call is complete. The prefix will receive at least two additional arguments, the name of the calling procedure and the status of the result (one of **OK** or **ERROR**), in this order.
 
-**check_result**
-: The value of this option must be list of two expressions, either of which may be empty. The first expression is checks the OK condition, it must return **true** when the result is satisfactory, and **false** otherwise. The second expression is the ERROR condition, it must return **false** unless there is an error, then it has to return **true**.
+        In case of **OK** a third argument is added, the data associated with the result.
 
-**error_body**
-: The value of this option determines whether to return the response when encountering an HTTP error, or not. The default is to not return the response body on error. See **callback** above for more information.
+        If and only if the **ERROR** is a redirection, the location redirected to will be added as argument. Further, if the configuration key **error-body** is set to **true** the data associated with the result will be added as argument as well.
 
-**timeout**
-: The value of this option determines whether to set a timeout on the HTTP call. By default, no timeout is set. Timeout value is accepted in milliseconds.
+        The http request header will be available in that procedure via **upvar token token**.
+
+    **cookie**
+    : The value of this option is a list of cookies to be passed in the http header. This is a shortcut to the **headers** option.
+
+    **input\_transform**
+    : The value of this option is a command prefix or script to perform a transformation on the query before invoking the call. A script transform is wrapped into an automatically generated internal procedure.
+
+        If not specified no transformation is done.
+
+        The command (prefix) must accept a single argument, the query (a dictionary) to transform, and must return the modified query (again as dictionary) as its result. The request body is accessible in the transform command via **upvar body body**.
+
+    **format**
+    : see below ...
+
+    **result**
+    : The value of this option specifies the format of the returned data. Defaults to **auto** if not specified. The acceptable values are:
+
+        **auto**
+        : Auto detect between **xml** and **json**.
+
+        **discard**
+        : see below ...
+
+        **json**
+        : see below ...
+
+        **raw**
+        : see below ...
+
+        **rss**
+        : This is formatted as a special case of **xml**.
+
+
+        - **tdom**
+        - **xml**
+
+
+    **pre\_transform**
+    : The value of this option is a command prefix or script to perform a transformation on the result of a call (*before* the application of the output transform as per **format**). A script transform is wrapped into an automatically generated internal procedure.
+
+        If not specified no transformation is done.
+
+        The command (prefix) must accept a single argument, the result to transform, and must return the modified result as its result.
+
+        The http request header is accessible in the transform command via **upvar token token**
+
+    **post\_transform**
+    : The value of this option is a command prefix or script to perform a transformation on the result of a call (*after* the application of the output transform as per **format**). A script transform is wrapped into an automatically generated internal procedure.
+
+        If not specified no transformation is done.
+
+        The command (prefix) must accept a single argument, the result to transform, and must return the modified result as its result.
+
+        The http request header is accessible in the transform command via **upvar token token**
+
+    **check\_result**
+    : The value of this option must be list of two expressions, either of which may be empty.
+
+        The first expression is checks the OK condition, it must return **true** when the result is satisfactory, and **false** otherwise.
+
+        The second expression is the ERROR condition, it must return **false** unless there is an error, then it has to return **true**.
+
+    **error\_body**
+    : The value of this option determines whether to return the response when encountering an HTTP error, or not. The default is to not return the response body on error.
+
+        See **callback** above for more information.
+
+    **timeout**
+    : The value of this option determines whether to set a timeout on the HTTP call. By default, no timeout is set.
+
+        Timeout value is accepted in milliseconds.
+
 
 
 # Examples
@@ -352,31 +377,22 @@ proc ::flickr::do_signature {query} {
 
 The package provides functional but incomplete implementations for the following services:
 
-**del.icio.us**
-: ...see next...
+- **del.icio.us**
+- **facebook**
+- **flickr**
+- **twitter**
+- **google calendar**
+- **yahoo boss**
+- **yahoo weather**
 
-**facebook**
-: ...see next...
 
-**flickr**
-: ...see next...
+Please either read the package's implementation, or use **rest::describe** after loading it for their details.
 
-**twitter**
-: ...see next...
-
-**google calendar**
-: ...see next...
-
-**yahoo boss**
-: ...see next...
-
-**yahoo weather**
-: Please either read the package's implementation, or use **rest::describe** after loading it for their details. Do not forget developers' documentation on the respective sites either.
-
+Do not forget developers' documentation on the respective sites either.
 
 # Tls
 
-The **rest** package can be used with *https*-secured services, by requiring the **TLS** package and then registering it with the **http** package it is sitting on top of. Example
+The **rest** package can be used with *https*-secured services, by requiring the [Tls] package and then registering it with the **http** package it is sitting on top of. Example
 
 ```
     package require tls
@@ -385,11 +401,11 @@ The **rest** package can be used with *https*-secured services, by requiring the
 
 # Tls security considerations
 
-This package uses the **TLS** package to handle the security for **https** urls and other socket connections.
+This package uses the [Tls] package to handle the security for **https** urls and other socket connections.
 
-Policy decisions like the set of protocols to support and what ciphers to use are not the responsibility of **TLS**, nor of this package itself however. Such decisions are the responsibility of whichever application is using the package, and are likely influenced by the set of servers the application will talk to as well.
+Policy decisions like the set of protocols to support and what ciphers to use are not the responsibility of [Tls], nor of this package itself however. Such decisions are the responsibility of whichever application is using the package, and are likely influenced by the set of servers the application will talk to as well.
 
-For example, in light of the recent [POODLE attack](http://googleonlinesecurity.blogspot.co.uk/2014/10/this-poodle-bites-exploiting-ssl-30.html) discovered by Google many servers will disable support for the SSLv3 protocol. To handle this change the applications using **TLS** must be patched, and not this package, nor **TLS** itself. Such a patch may be as simple as generally activating **tls1** support, as shown in the example below.
+For example, in light of the recent [POODLE attack](http://googleonlinesecurity.blogspot.co.uk/2014/10/this-poodle-bites-exploiting-ssl-30.html) discovered by Google many servers will disable support for the SSLv3 protocol. To handle this change the applications using [Tls] must be patched, and not this package, nor [Tls] itself. Such a patch may be as simple as generally activating **tls1** support, as shown in the example below.
 
 ```
     package require tls

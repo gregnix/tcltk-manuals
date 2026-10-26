@@ -1,5 +1,6 @@
 ---
 CommandName: foreach
+title: foreach
 ManualSection: n
 Version: unknown
 TclPart: Tcl
@@ -19,33 +20,33 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 foreach - Iteriert über alle Elemente einer oder mehrerer Listen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[foreach]{.cmd} [varname]{.arg} [list]{.arg} [body]{.arg} 
-[foreach]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg} 
+[foreach]{.cmd} [varname]{.arg} [list]{.arg} [body]{.arg}
+[foreach]{.cmd} [varlist1]{.arg} [list1]{.arg} [varlist2 list2]{.optdot} [body]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-**foreach** implementiert eine Schleife, in der die Schleifenvariable(n) Werte aus einer oder mehreren Listen annehmen. Im einfachsten Fall gibt es *varname* und *list*; für jedes Element von *list* (von vorne nach hinten) wird der Inhalt *varname* zugewiesen (wie mit **lindex**) und *body* ausgeführt.
+**foreach** implementiert eine Schleife, in der die Schleifenvariable(n) Werte aus einer oder mehreren Listen annehmen. Im einfachsten Fall gibt es *varname* und *list*. Das Argument *body* ist ein Tcl-Skript. Für jedes Element von *list* (von vorne nach hinten) wird der Inhalt *varname* zugewiesen (wie mit [lindex]) und *body* ausgeführt.
 
 Allgemein können mehrere Wertelisten (*list1*, *list2*, …) jeweils mit Variablenlisten (*varlist1*, *varlist2*, …) verknüpft sein. Pro Iteration erhalten die Variablen jeder *varlist* aufeinanderfolgende Werte aus der zugehörigen Liste; Werte werden der Reihe nach verbraucht, jeder genau einmal. Die Iterationsanzahl reicht aus, alle Wertelisten zu erschöpfen. Reicht eine Liste für ihre Variablen in einer Iteration nicht, werden fehlende Elemente leer gesetzt.
 
-**break** und **continue** in *body* wirken wie bei **for**. **foreach** gibt eine leere Zeichenkette zurück.
+[break] und [continue] in *body* wirken wie bei [for]. **foreach** gibt eine leere Zeichenkette zurück.
 
-# BEISPIELE
+# Beispiele
 
 Jeden Wert mit Quadrat und Kubik ausgeben:
 
 ```
 set values {1 3 5 7 2 4 6 8}	;# Ungerade zuerst
-puts "Value\tSquare\tCube"
-foreach x $values {
+puts "Value\tSquare\tCube"	;# Neat-looking header
+foreach x $values {	;# Now loop and print...
     puts " $x\t [expr {$x**2}]\t [expr {$x**3}]"
 }
 ```
@@ -57,7 +58,8 @@ set x {}
 foreach {i j} {a b c d e f} {
     lappend x $j $i
 }
-# x ist "b a d c f e" — 3 Iterationen
+# The value of x is "b a d c f e"
+# There are 3 iterations of the loop.
 ```
 
 Parallele Iteration über zwei Listen:
@@ -67,7 +69,8 @@ set x {}
 foreach i {a b c} j {d e f g} {
     lappend x $i $j
 }
-# x ist "a d b e c f {} g" — 4 Iterationen
+# The value of x is "a d b e c f {} g"
+# There are 4 iterations of the loop.
 ```
 
 Kombination beider Formen:
@@ -77,5 +80,12 @@ set x {}
 foreach i {a b c} {j k} {d e f g} {
     lappend x $i $j $k
 }
-# x ist "a d e b f g c {} {}" — 3 Iterationen
+# The value of x is "a d e b f g c {} {}"
+# There are 3 iterations of the loop.
 ```
+
+
+[break]: break.md
+[continue]: continue.md
+[for]: for.md
+[lindex]: lindex.md

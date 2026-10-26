@@ -1,5 +1,6 @@
 ---
 CommandName: term::receive::bind
+title: term::receive::bind
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -22,32 +23,34 @@ term::receive::bind - Keyboard dispatch from terminals
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [term::receive::bind]{.lit} [0.2]{.optlit} 
-[term::receive::bind]{.cmd} [object]{.arg} [map]{.optarg} 
-[object]{.ins} [map]{.sub} [str]{.arg} [cmd]{.arg} 
-[object]{.ins} [default]{.sub} [cmd]{.arg} 
-[object]{.ins} [listen]{.sub} [chan]{.optarg} 
-[object]{.ins} [unlisten]{.sub} [chan]{.optarg} 
-[object]{.ins} [reset]{.sub} 
-[object]{.ins} [next]{.sub} [char]{.arg} 
-[object]{.ins} [process]{.sub} [str]{.arg} 
-[object]{.ins} [eof]{.sub} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [term::receive::bind]{.lit} [0.2]{.optlit}
+[term::receive::bind]{.cmd} [object]{.arg} [map]{.optarg}
+[object]{.ins} [map]{.sub} [str]{.arg} [cmd]{.arg}
+[object]{.ins} [default]{.sub} [cmd]{.arg}
+[object]{.ins} [listen]{.sub} [chan]{.optarg}
+[object]{.ins} [unlisten]{.sub} [chan]{.optarg}
+[object]{.ins} [reset]{.sub}
+[object]{.ins} [next]{.sub} [char]{.arg}
+[object]{.ins} [process]{.sub} [str]{.arg}
+[object]{.ins} [eof]{.sub}
 :::
 
 # Description
 
 This package provides a class for the creation of simple dispatchers from character sequences to actions. Internally each dispatcher is in essence a deterministic finite automaton with tree structure.
 
-# Class api
+# Class API
 
 The package exports a single command, the class command, enabling the creation of dispatcher instances. Its API is:
 
 **term::receive::bind** *object* ?*map*?
-: This command creates a new dispatcher object with the name *object*, initializes it, and returns the fully qualified name of the object command as its result. The argument is a dictionary mapping from strings, i.e. character sequences to the command prefices to invoke when the sequence is found in the input stream.
+: This command creates a new dispatcher object with the name *object*, initializes it, and returns the fully qualified name of the object command as its result.
+
+    The argument is a dictionary mapping from strings, i.e. character sequences to the command prefices to invoke when the sequence is found in the input stream.
 
 
-# Object api
+# Object API
 
 The objects created by the class command provide the methods listed below:
 
@@ -58,10 +61,14 @@ The objects created by the class command provide the methods listed below:
 : This method defines a default action *cmd* which will be invoked whenever an unknown character sequence is encountered. The command prefix is handled in the same as the regular action defined via method **map**.
 
 *object* **listen** ?*chan*?
-: This methods sets up a filevent listener for the channel with handle *chan* and invokes the dispatcher object whenever characters have been received, or EOF was reached. If not specified *chan* defaults to **stdin**.
+: This methods sets up a filevent listener for the channel with handle *chan* and invokes the dispatcher object whenever characters have been received, or EOF was reached.
+
+    If not specified *chan* defaults to **stdin**.
 
 *object* **unlisten** ?*chan*?
-: This methods removes the filevent listener for the channel with handle *chan*. If not specified *chan* defaults to **stdin**.
+: This methods removes the filevent listener for the channel with handle *chan*.
+
+    If not specified *chan* defaults to **stdin**.
 
 *object* **reset**
 : This method resets the character processor to the beginning of the tree.

@@ -1,5 +1,6 @@
 ---
 CommandName: Tk_IdToWindow
+title: Tk_IdToWindow
 ManualSection: 3
 Version: 4.0
 TclPart: Tk
@@ -12,26 +13,27 @@ Copyright:
 
 # Name
 
-Tk_IdToWindow - Find Tk's window information for an X window
+Tk\_IdToWindow - Find Tk's window information for an X window
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tk.h>]{.lit}
-
-Tk_Window
-[Tk_IdToWindow]{.cmd}([display]{.arg}, [window]{.arg})
+**#include <tk.h>**
+[Tk\_Window]{.ret} [Tk\_IdToWindow]{.ccmd} [display, window]{.cargs}
 :::
 
 # Arguments
 
-Display *\*display* (in)
+::: {.arguments} :::
+
+[\*display]{.carg .in type="Display"}
 : X display containing the window.
 
-Window *window* (in)
+[window]{.carg .in type="Window"}
 : X id for window.
 
+:::
 
 # Description
 
-Given an X window identifier and the X display it corresponds to, this procedure returns the corresponding Tk_Window handle. If there is no Tk_Window corresponding to *window* then NULL is returned.
+Given an X window identifier and the X display it corresponds to, this procedure returns the corresponding Tk\_Window handle. If there is no Tk\_Window corresponding to *window* then NULL is returned.

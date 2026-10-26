@@ -1,5 +1,6 @@
 ---
 CommandName: gpx
+title: gpx
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -18,19 +19,19 @@ gpx - Extracts waypoints, tracks and routes from GPX files
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [gpx]{.lit} [1.1]{.optlit} 
-[::gpx::Create]{.cmd} [gpxFilename]{.arg} [rawXML]{.optarg} 
-[::gpx::Cleanup]{.cmd} [token]{.arg} 
-[::gpx::GetGPXMetadata]{.cmd} [token]{.arg} 
-[::gpx::GetWaypointCount]{.cmd} [token]{.arg} 
-[::gpx::GetAllWaypoints]{.cmd} [token]{.arg} 
-[::gpx::GetTrackCount]{.cmd} [token]{.arg} 
-[::gpx::GetTrackMetadata]{.cmd} [token]{.arg} [whichTrack]{.arg} 
-[::gpx::GetTrackPoints]{.cmd} [token]{.arg} [whichTrack]{.arg} 
-[::gpx::GetRouteCount]{.cmd} [token]{.arg} 
-[::gpx::GetRouteMetadata]{.cmd} [token]{.arg} [whichRoute]{.arg} 
-[::gpx::GetRoutePoints]{.cmd} [token]{.arg} [whichRoute]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [gpx]{.lit} [1.1]{.optlit}
+[::gpx::Create]{.cmd} [gpxFilename]{.arg} [rawXML]{.optarg}
+[::gpx::Cleanup]{.cmd} [token]{.arg}
+[::gpx::GetGPXMetadata]{.cmd} [token]{.arg}
+[::gpx::GetWaypointCount]{.cmd} [token]{.arg}
+[::gpx::GetAllWaypoints]{.cmd} [token]{.arg}
+[::gpx::GetTrackCount]{.cmd} [token]{.arg}
+[::gpx::GetTrackMetadata]{.cmd} [token]{.arg} [whichTrack]{.arg}
+[::gpx::GetTrackPoints]{.cmd} [token]{.arg} [whichTrack]{.arg}
+[::gpx::GetRouteCount]{.cmd} [token]{.arg}
+[::gpx::GetRouteMetadata]{.cmd} [token]{.arg} [whichRoute]{.arg}
+[::gpx::GetRoutePoints]{.cmd} [token]{.arg} [whichRoute]{.arg}
 :::
 
 # Description
@@ -75,10 +76,10 @@ This module parses and extracts waypoints, tracks, routes and metadata from a GP
 
 # Data structures
 
-**metadata dictionary**
+metadata dictionary
 : The metadata associated with either the GPX document, a track, a route, a waypoint, a track point or route point is returned in a dictionary. The keys of that dictionary will be whatever optional GPX elements are present. The value for each key depends on the GPX schema for that element. For example, the value for a version key will be a string, while for a link key will be a sub-dictionary with keys *href* and optionally *text* and *type*.
 
-**point item**
+point item
 : Each item in a track or route list of points consists of a list of three elements: *latitude*, *longitude* and *metadata dictionary*. *Latitude* and *longitude* are decimal numbers. The *metadata dictionary* format is described above. For points in a track, typically there will always be ele (elevation) and time metadata keys.
 
 
@@ -99,14 +100,11 @@ This module parses and extracts waypoints, tracks, routes and metadata from a GP
 
 # References
 
-**\[1\]**
-: GPX: the GPS Exchange Format (*http://www.topografix.com/gpx.asp*)
+1. GPX: the GPS Exchange Format (<http://www.topografix.com/gpx.asp>)
 
-**\[2\]**
-: GPX 1.1 Schema Documentation (*http://www.topografix.com/GPX/1/1/*)
+2. GPX 1.1 Schema Documentation (<http://www.topografix.com/GPX/1/1/>)
 
-**\[3\]**
-: GPX 1.0 Developer's Manual (*http://www.topografix.com/gpx_manual.asp*)
+3. GPX 1.0 Developer's Manual (<http://www.topografix.com/gpx_manual.asp>)
 
 
 # Author

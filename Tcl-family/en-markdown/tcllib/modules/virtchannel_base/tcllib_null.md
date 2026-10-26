@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::null
+title: tcl::chan::null
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -21,11 +22,11 @@ tcl::chan::null - Null channel
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::null]{.lit} [1.1]{.optlit} 
-[::tcl::chan::null]{.cmd} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::null]{.lit} [1.1]{.optlit}
+[::tcl::chan::null]{.cmd}
 :::
 
 # Description
@@ -36,7 +37,7 @@ Packages related to this are **tcl::chan::zero** and **tcl::chan::nullzero**.
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::null**
 : This command creates a new null channel and returns its handle.

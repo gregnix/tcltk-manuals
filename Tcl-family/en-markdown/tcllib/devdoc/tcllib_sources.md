@@ -1,15 +1,16 @@
 ---
 CommandName: tcllib_sources
+title: tcllib_sources
 ManualSection: n
 Version: 1
 TclPart: tcllib
-TclDescription: 
+TclDescription:
 Copyright:
 ---
 
 # Name
 
-tcllib_sources - Tcllib - How To Get The Sources
+tcllib\_sources - Tcllib - How To Get The Sources
 
 # Description
 
@@ -19,16 +20,16 @@ The audience of this document is anyone wishing to either have just a look at Tc
 
 For builders and developers we additionally provide
 
-**\[1\]**
-: *Tcllib - The Installer's Guide*.
+1. *Tcllib - The Installer's Guide*.
 
-**\[2\]**
-: *Tcllib - The Developer's Guide*. respectively.
+2. *Tcllib - The Developer's Guide*.
 
+
+respectively.
 
 # Source location
 
-The official repository for Tcllib is found at *http://core.tcl-lang.org/tcllib*. This repository is managed by the [Fossil SCM](http://www.fossil-scm.org).
+The official repository for Tcllib is found at <http://core.tcl-lang.org/tcllib>. This repository is managed by the [Fossil SCM](http://www.fossil-scm.org).
 
 # Get archives for head and releases
 
@@ -51,29 +52,22 @@ The part of of the url after the **((ID))** is the name of the file to return an
 
 Without a known commit id the process is longer again:
 
-**\[1\]**
-: Go to the [official repository](http://core.tcl-lang.org/tcllib).
+1. Go to the [official repository](http://core.tcl-lang.org/tcllib).
 
-**\[2\]**
-: Find the login link/button in the top right corner of the page.
+2. Find the login link/button in the top right corner of the page.
 
-**\[3\]**
-: Log in as "anonymous", using the semi-random password in the captcha.
+3. Log in as "anonymous", using the semi-random password in the captcha.
 
-**\[4\]**
-: Go to the "Timeline" following the link/button in the middle of the nav bar.
+4. Go to the "Timeline" following the link/button in the middle of the nav bar.
 
-**\[5\]**
-: Choose the revision you wish to have.
+5. Choose the revision you wish to have.
 
-**\[6\]**
-: Follow its link to its detailed information page.
+6. Follow its link to its detailed information page.
 
-**\[7\]**
-: On that page, choose either the "ZIP" or "Tarball" link to get a copy of this revision in the format of your choice.
+7. On that page, choose either the "ZIP" or "Tarball" link to get a copy of this revision in the format of your choice.
 
 
-# Source code management
+# Source Code management
 
 The sources are managed with the [Fossil SCM](http://www.fossil-scm.org). Binaries for popular platforms can be found directly at its [download page](http://www.fossil-scm.org/download.html).
 

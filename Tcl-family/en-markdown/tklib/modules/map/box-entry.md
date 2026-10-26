@@ -1,5 +1,6 @@
 ---
 CommandName: map::box::entry
+title: map::box::entry
 ManualSection: n
 Version: 0.1
 TclPart: tklib
@@ -8,7 +9,13 @@ Keywords:
  - addon
  - box entry
  - map display
+ - box entry
+ - map display
+ - addon
  - map
+ - map display
+ - addon
+ - box entry
 Copyright:
 ---
 
@@ -19,20 +26,20 @@ map::box::entry - Map Action Engine - Box Entry
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::edit::rectangle]{.lit} 
-[package]{.cmd} [require]{.sub} [debug]{.lit} 
-[package]{.cmd} [require]{.sub} [debug::caller]{.lit} 
-[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [map::box::entry]{.lit} [0.1]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6-]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::edit::rectangle]{.lit}
+[package]{.cmd} [require]{.sub} [debug]{.lit}
+[package]{.cmd} [require]{.sub} [debug::caller]{.lit}
+[package]{.cmd} [require]{.sub} [map::slippy]{.lit} [0.8]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [map::box::entry]{.lit} [0.1]{.optlit}
 :::
 
 # Description
 
-This package provides a **map::display** attachment extending the map's behaviour. This attachment enables the user to enter a (bounding) *geo/box*.
+This package provides a [map::display][display] attachment extending the map's behaviour. This attachment enables the user to enter a (bounding) *geo/box*.
 
-# Api
+# API
 
 # Example
 
@@ -43,3 +50,6 @@ This document, and the package it describes, will undoubtedly contain bugs and o
 # Category
 
 Map Display and Supporting Utilities
+
+
+[display]: display.md

@@ -1,5 +1,6 @@
 ---
 CommandName: keysyms
+title: keysyms
 ManualSection: n
 Version: 8.3
 TclPart: Tk
@@ -14,7 +15,6 @@ Keywords:
  - keysym
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
@@ -23,7 +23,7 @@ keysyms - keysyms recognized by Tk
 
 # Description
 
-Tk recognizes many keysyms when specifying key bindings (e.g., "**bind** **. \<Key-**_keysym_**>**"). The following list enumerates the keysyms that will be recognized by Tk.  Note that not all keysyms will be valid on all platforms, and some keysyms are also available on platforms that have a different native name for that key. For example, on Unix systems, the presence of a particular keysym is dependent on the configuration of the keyboard modifier map.  This list shows keysyms along with their decimal and hexadecimal values.
+Tk recognizes many keysyms when specifying key bindings (e.g., "[bind] **. <Key-***keysym***>**"). The following list enumerates the keysyms that will be recognized by Tk.  Note that not all keysyms will be valid on all platforms, and some keysyms are also available on platforms that have a different native name for that key. For example, on Unix systems, the presence of a particular keysym is dependent on the configuration of the keyboard modifier map.  This list shows keysyms along with their decimal and hexadecimal values.
 
 ```
 space                               32     0x20
@@ -1666,3 +1666,6 @@ XF86AudioPreset              269025206     0x1008FFB6
 XF86RotationLockToggle       269025207     0x1008FFB7
 XF86FullScreen               269025208     0x1008FFB8
 ```
+
+
+[bind]: bind.md

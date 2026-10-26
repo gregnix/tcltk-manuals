@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::toc::parse
+title: doctools::toc::parse
 ManualSection: n
 Version: 1
 TclPart: tcllib
@@ -20,38 +21,40 @@ doctools::toc::parse - Parsing text in doctoc format
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [doctools::toc::parse]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::toc::structure]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::msgcat]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::tcl::parse]{.lit} 
-[package]{.cmd} [require]{.sub} [fileutil]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::list]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::stack]{.lit} 
-[::doctools::toc::parse]{.cmd} [text]{.sub} [text]{.arg} 
-[::doctools::toc::parse]{.cmd} [file]{.sub} [path]{.arg} 
-[::doctools::toc::parse]{.cmd} [includes]{.sub} 
-[::doctools::toc::parse]{.cmd} [include]{.sub} [add]{.lit} [path]{.arg} 
-[::doctools::toc::parse]{.cmd} [include]{.sub} [remove]{.lit} [path]{.arg} 
-[::doctools::toc::parse]{.cmd} [include]{.sub} [clear]{.lit} 
-[::doctools::toc::parse]{.cmd} [vars]{.sub} 
-[::doctools::toc::parse]{.cmd} [var]{.sub} [set]{.lit} [name]{.arg} [value]{.arg} 
-[::doctools::toc::parse]{.cmd} [var]{.sub} [unset]{.lit} [name]{.arg} 
-[::doctools::toc::parse]{.cmd} [var]{.sub} [clear]{.lit} [pattern]{.optarg} 
+[package]{.cmd} [require]{.sub} [doctools::toc::parse]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::toc::structure]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::msgcat]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::tcl::parse]{.lit}
+[package]{.cmd} [require]{.sub} [fileutil]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [struct::list]{.lit}
+[package]{.cmd} [require]{.sub} [struct::stack]{.lit}
+[::doctools::toc::parse]{.cmd} [text]{.lit} [text]{.arg}
+[::doctools::toc::parse]{.cmd} [file]{.lit} [path]{.arg}
+[::doctools::toc::parse]{.cmd} [includes]{.lit}
+[::doctools::toc::parse]{.cmd} [include]{.lit} [add]{.lit} [path]{.arg}
+[::doctools::toc::parse]{.cmd} [include]{.lit} [remove]{.lit} [path]{.arg}
+[::doctools::toc::parse]{.cmd} [include]{.lit} [clear]{.lit}
+[::doctools::toc::parse]{.cmd} [vars]{.lit}
+[::doctools::toc::parse]{.cmd} [var]{.lit} [set]{.lit} [name]{.arg} [value]{.arg}
+[::doctools::toc::parse]{.cmd} [var]{.lit} [unset]{.lit} [name]{.arg}
+[::doctools::toc::parse]{.cmd} [var]{.lit} [clear]{.lit} [pattern]{.optarg}
 :::
 
 # Description
 
-This package provides commands to parse text written in the *doctoc* markup language and convert it into the canonical serialization of the table of contents encoded in the text. See the section **ToC serialization format** for specification of their format.
+This package provides commands to parse text written in the *doctoc* markup language and convert it into the canonical serialization of the table of contents encoded in the text. See the section [Toc serialization format] for specification of their format.
 
 This is an internal package of doctools, for use by the higher level packages handling *doctoc* documents.
 
-# Api
+# API
 
 **::doctools::toc::parse** **text** *text*
-: The command takes the string contained in *text* and parses it under the assumption that it contains a document written using the *doctoc* markup language. An error is thrown if this assumption is found to be false. The format of these errors is described in section **Parse errors**. When successful the command returns the canonical serialization of the table of contents which was encoded in the text. See the section **ToC serialization format** for specification of that format.
+: The command takes the string contained in *text* and parses it under the assumption that it contains a document written using the *doctoc* markup language. An error is thrown if this assumption is found to be false. The format of these errors is described in section [Parse errors].
+
+    When successful the command returns the canonical serialization of the table of contents which was encoded in the text. See the section [Toc serialization format] for specification of that format.
 
 **::doctools::toc::parse** **file** *path*
 : The same as **text**, except that the text to parse is read from the file specified by *path*.
@@ -78,7 +81,9 @@ This is an internal package of doctools, for use by the higher level packages ha
 : This method removes the variable *name* from the set of predefined variables known to the **vset** markup command during processing. The method returns the empty string as its result.
 
 **::doctools::toc::parse** **var clear** ?*pattern*?
-: This method removes all variables matching the *pattern* from the set of predefined variables known to the **vset** markup command during processing. The method returns the empty string as its result. The pattern matching is done with **string match**, and the default pattern used when none is specified, is **\***.
+: This method removes all variables matching the *pattern* from the set of predefined variables known to the **vset** markup command during processing. The method returns the empty string as its result.
+
+    The pattern matching is done with **string match**, and the default pattern used when none is specified, is **\***.
 
 
 # Parse errors
@@ -87,45 +92,39 @@ The format of the parse error messages thrown when encountering violations of th
 
 *However*, the errorCode attached to the message is machine-readable and has the following format:
 
-**\[1\]**
-: The error code will be a list, each element describing a single error found in the input. The list has at least one element, possibly more.
+1. The error code will be a list, each element describing a single error found in the input. The list has at least one element, possibly more.
 
-**\[2\]**
-: Each error element will be a list containing six strings describing an error in detail. The strings will be
+2. Each error element will be a list containing six strings describing an error in detail. The strings will be
 
+    1. The path of the file the error occurred in. This may be empty.
 
-**\[1\]**
-: The path of the file the error occurred in. This may be empty.
+    2. The range of the token the error was found at. This range is a two-element list containing the offset of the first and last character in the range, counted from the beginning of the input (file). Offsets are counted from zero.
 
-**\[2\]**
-: The range of the token the error was found at. This range is a two-element list containing the offset of the first and last character in the range, counted from the beginning of the input (file). Offsets are counted from zero.
+    3. The line the first character after the error is on. Lines are counted from one.
 
-**\[3\]**
-: The line the first character after the error is on. Lines are counted from one.
+    4. The column the first character after the error is at. Columns are counted from zero.
 
-**\[4\]**
-: The column the first character after the error is at. Columns are counted from zero.
+    5. The message code of the error. This value can be used as argument to **msgcat::mc** to obtain a localized error message, assuming that the application had a suitable call of **doctools::msgcat::init** to initialize the necessary message catalogs (See package **doctools::msgcat**).
 
-**\[5\]**
-: The message code of the error. This value can be used as argument to **msgcat::mc** to obtain a localized error message, assuming that the application had a suitable call of **doctools::msgcat::init** to initialize the necessary message catalogs (See package **doctools::msgcat**).
+    6. A list of details for the error, like the markup command involved. In the case of message code **doctoc/include/syntax** this value is the set of errors found in the included file, using the format described here.
 
-**\[6\]**
-: A list of details for the error, like the markup command involved. In the case of message code **doctoc/include/syntax** this value is the set of errors found in the included file, using the format described here.
 
 
 # \[doctoc\] notation of tables of contents
 
 The doctoc format for tables of contents, also called the *doctoc markup language*, is too large to be covered in single section. The interested reader should start with the document
 
-**\[1\]**
-: *doctoc language introduction* and then proceed from there to the formal specifications, i.e. the documents
+1. *doctoc language introduction*
 
-**\[1\]**
-: *doctoc language syntax* and
 
-**\[2\]**
-: *doctoc language command reference*. to get a thorough understanding of the language.
+and then proceed from there to the formal specifications, i.e. the documents
 
+1. *doctoc language syntax* and
+
+2. *doctoc language command reference*.
+
+
+to get a thorough understanding of the language.
 
 # Toc serialization format
 
@@ -133,64 +132,60 @@ Here we specify the format used by the doctools v2 packages to serialize tables 
 
 We distinguish between *regular* and *canonical* serializations. While a table of contents may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. The serialization of any table of contents is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+
+    3. The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+
+        **title**
+        : The value is a string containing the title of the table of contents.
+
+        **label**
+        : The value is a string containing a label for the table of contents.
+
+        **items**
+        : The value is a Tcl list holding the elements of the table, in the order they are to be shown.
+
+            Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description.
+
+            The two legal item types and their descriptions are
+
+            **reference**
+            : This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
+
+                **id**
+                : The value is a string containing the id of the document associated with the entry.
+
+                **label**
+                : The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
+
+                **desc**
+                : The value is a string containing a longer description for this entry.
 
 
-**\[1\]**
-: The serialization of any table of contents is a nested Tcl dictionary.
+            **division**
+            : This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
 
-**\[2\]**
-: This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+                **id**
+                : The value is a string containing the id of the document associated with the whole group. This key is optional.
 
-**\[3\]**
-: The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+                **label**
+                : The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
 
-
-**title**
-: The value is a string containing the title of the table of contents.
-
-**label**
-: The value is a string containing a label for the table of contents.
-
-**items**
-: The value is a Tcl list holding the elements of the table, in the order they are to be shown. Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description. The two legal item types and their descriptions are
+                **items**
+                : The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
 
 
-**reference**
-: This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
 
 
-**id**
-: The value is a string containing the id of the document associated with the entry.
 
-**label**
-: The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**desc**
-: The value is a string containing a longer description for this entry.
-
-
-**division**
-: This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
-
-
-**id**
-: The value is a string containing the id of the document associated with the whole group. This key is optional.
-
-**label**
-: The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**items**
-: The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a table of contents has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this table of contents.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
 
 # Bugs, ideas, feedback

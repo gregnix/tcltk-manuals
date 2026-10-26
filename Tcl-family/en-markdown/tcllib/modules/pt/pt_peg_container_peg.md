@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg::container::peg
+title: pt::peg::container::peg
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -32,10 +33,10 @@ pt::peg::container::peg - PEG Storage. Canned PEG grammar specification
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[package]{.cmd} [require]{.sub} [pt::peg::container::peg]{.lit} [1]{.optlit} 
-[package]{.cmd} [require]{.sub} [pt::peg::container]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[package]{.cmd} [require]{.sub} [pt::peg::container::peg]{.lit} [1]{.optlit}
+[package]{.cmd} [require]{.sub} [pt::peg::container]{.lit}
 :::
 
 # Description

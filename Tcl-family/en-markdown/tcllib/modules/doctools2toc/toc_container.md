@@ -1,5 +1,6 @@
 ---
 CommandName: doctools::toc
+title: doctools::toc
 ManualSection: n
 Version: 2
 TclPart: tcllib
@@ -35,39 +36,39 @@ doctools::toc - Holding tables of contents
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [doctools::toc]{.lit} [2]{.optlit} 
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [doctools::toc::structure]{.lit} 
-[package]{.cmd} [require]{.sub} [struct::tree]{.lit} 
-[package]{.cmd} [require]{.sub} [snit]{.lit} 
-[::doctools::toc]{.cmd} [objectName]{.arg} 
-[objectName]{.cmd} [method]{.sub} [arg arg]{.optdot} 
-[objectName]{.ins} [destroy]{.sub} 
-[objectName]{.ins} [+]{.sub} [reference]{.lit} [id]{.arg} [label]{.arg} [docid]{.arg} [desc]{.arg} 
-[objectName]{.ins} [+]{.sub} [division]{.lit} [id]{.arg} [label]{.arg} [docid]{.optarg} 
-[objectName]{.ins} [remove]{.sub} [id]{.arg} 
-[objectName]{.ins} [up]{.sub} [id]{.arg} 
-[objectName]{.ins} [next]{.sub} [id]{.arg} 
-[objectName]{.ins} [prev]{.sub} [id]{.arg} 
-[objectName]{.ins} [child]{.sub} [id]{.arg} [label]{.arg} [...]{.optdot} 
-[objectName]{.ins} [element]{.sub} [...]{.optdot} 
-[objectName]{.ins} [children]{.sub} [id]{.arg} 
-[objectName]{.ins} [type]{.sub} [id]{.arg} 
-[objectName]{.ins} [full-label]{.sub} [id]{.arg} 
-[objectName]{.ins} [elabel]{.sub} [id]{.arg} [newlabel]{.optarg} 
-[objectName]{.ins} [description]{.sub} [id]{.arg} [newdesc]{.optarg} 
-[objectName]{.ins} [document]{.sub} [id]{.arg} [newdocid]{.optarg} 
-[objectName]{.ins} [title]{.sub} 
-[objectName]{.ins} [title]{.sub} [text]{.arg} 
-[objectName]{.ins} [label]{.sub} 
-[objectName]{.ins} [label]{.sub} [text]{.arg} 
-[objectName]{.ins} [importer]{.sub} 
-[objectName]{.ins} [importer]{.sub} [object]{.arg} 
-[objectName]{.ins} [exporter]{.sub} 
-[objectName]{.ins} [exporter]{.sub} [object]{.arg} 
-[objectName]{.ins} [deserialize]{.sub} [=]{.lit} [data]{.arg} [format]{.optarg} 
-[objectName]{.ins} [deserialize]{.sub} [+=]{.lit} [data]{.arg} [format]{.optarg} 
-[objectName]{.ins} [serialize]{.sub} [format]{.optarg} 
+[package]{.cmd} [require]{.sub} [doctools::toc]{.lit} [2]{.optlit}
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [doctools::toc::structure]{.lit}
+[package]{.cmd} [require]{.sub} [struct::tree]{.lit}
+[package]{.cmd} [require]{.sub} [snit]{.lit}
+[::doctools::toc]{.cmd} [objectName]{.arg}
+[objectName]{.cmd} [method]{.lit} [arg arg]{.optdot}
+[objectName]{.ins} [destroy]{.sub}
+[objectName]{.ins} [+]{.sub} [reference]{.lit} [id]{.arg} [label]{.arg} [docid]{.arg} [desc]{.arg}
+[objectName]{.ins} [+]{.sub} [division]{.lit} [id]{.arg} [label]{.arg} [docid]{.optarg}
+[objectName]{.ins} [remove]{.sub} [id]{.arg}
+[objectName]{.ins} [up]{.sub} [id]{.arg}
+[objectName]{.ins} [next]{.sub} [id]{.arg}
+[objectName]{.ins} [prev]{.sub} [id]{.arg}
+[objectName]{.ins} [child]{.sub} [id]{.arg} [label]{.arg} [...]{.optarg}
+[objectName]{.ins} [element]{.sub} [...]{.optarg}
+[objectName]{.ins} [children]{.sub} [id]{.arg}
+[objectName]{.ins} [type]{.sub} [id]{.arg}
+[objectName]{.ins} [full-label]{.sub} [id]{.arg}
+[objectName]{.ins} [elabel]{.sub} [id]{.arg} [newlabel]{.optarg}
+[objectName]{.ins} [description]{.sub} [id]{.arg} [newdesc]{.optarg}
+[objectName]{.ins} [document]{.sub} [id]{.arg} [newdocid]{.optarg}
+[objectName]{.ins} [title]{.sub}
+[objectName]{.ins} [title]{.sub} [text]{.arg}
+[objectName]{.ins} [label]{.sub}
+[objectName]{.ins} [label]{.sub} [text]{.arg}
+[objectName]{.ins} [importer]{.sub}
+[objectName]{.ins} [importer]{.sub} [object]{.arg}
+[objectName]{.ins} [exporter]{.sub}
+[objectName]{.ins} [exporter]{.sub} [object]{.arg}
+[objectName]{.ins} [deserialize]{.sub} [=]{.lit} [data]{.arg} [format]{.optarg}
+[objectName]{.ins} [deserialize]{.sub} [+=]{.lit} [data]{.arg} [format]{.optarg}
+[objectName]{.ins} [serialize]{.sub} [format]{.optarg}
 :::
 
 # Description
@@ -76,46 +77,41 @@ This package provides a class to contain and programmatically manipulate tables 
 
 This is one of the three public pillars the management of tables of contents resides on. The other two pillars are
 
-**\[1\]**
-: *Exporting tables of contents*, and
+1. *Exporting tables of contents*, and
 
-**\[2\]**
-: *Importing tables of contents* For information about the **Concepts** of tables of contents, and their parts, see the same-named section. For information about the data structure which is used to encode tables of contents as values see the section **ToC serialization format**. This is the only format directly known to this class. Conversions from and to any other format are handled by export and import manager objects. These may be attached to a container, but do not have to be, it is merely a convenience.
+2. *Importing tables of contents*
 
+
+For information about the [Concepts] of tables of contents, and their parts, see the same-named section. For information about the data structure which is used to encode tables of contents as values see the section [Toc serialization format]. This is the only format directly known to this class. Conversions from and to any other format are handled by export and import manager objects. These may be attached to a container, but do not have to be, it is merely a convenience.
 
 # Concepts
 
-**\[1\]**
-: A *table of contents* consists of a (possibly empty) list of *elements*.
+1. A *table of contents* consists of a (possibly empty) list of *elements*.
 
-**\[2\]**
-: Each element in the list is identified by its label.
+2. Each element in the list is identified by its label.
 
-**\[3\]**
-: Each element is either a *reference*, or a *division*.
+3. Each element is either a *reference*, or a *division*.
 
-**\[4\]**
-: Each reference has an associated document, identified by a symbolic id, and a textual description.
+4. Each reference has an associated document, identified by a symbolic id, and a textual description.
 
-**\[5\]**
-: Each division may have an associated document, identified by a symbolic id.
+5. Each division may have an associated document, identified by a symbolic id.
 
-**\[6\]**
-: Each division consists consists of a (possibly empty) list of *elements*, with each element following the rules as specified in item 2 and above. A few notes
-
-**\[1\]**
-: The above rules span up a tree of elements, with references as the leaf nodes, and divisions as the inner nodes, and each element representing an entry in the whole table of contents.
-
-**\[2\]**
-: The identifying labels of any element E are unique within their division (or toc), and the full label of any element E is the list of labels for all nodes on the unique path from the root of the tree to E, including E.
+6. Each division consists consists of a (possibly empty) list of *elements*, with each element following the rules as specified in item 2 and above.
 
 
-# Api
+A few notes
+
+1. The above rules span up a tree of elements, with references as the leaf nodes, and divisions as the inner nodes, and each element representing an entry in the whole table of contents.
+
+2. The identifying labels of any element E are unique within their division (or toc), and the full label of any element E is the list of labels for all nodes on the unique path from the root of the tree to E, including E.
+
+
+# API
 
 ## Package commands
 
 **::doctools::toc** *objectName*
-: This command creates a new container object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections **Object command** and **Object methods**. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
+: This command creates a new container object with an associated Tcl command whose name is *objectName*. This *object* command is explained in full detail in the sections [Object command] and [Object methods]. The object command will be created under the current namespace if the *objectName* is not fully qualified, and in the specified namespace otherwise.
 
 
 ## Object command
@@ -123,7 +119,7 @@ This is one of the three public pillars the management of tables of contents res
 All objects created by the **::doctools::toc** command have the following general form:
 
 **objectName** **method** ?*arg arg ...*?
-: The method **method** and its *arg*'uments determine the exact behavior of the command. See section **Object methods** for the detailed specifications.
+: The method **method** and its *arg*'uments determine the exact behavior of the command. See section [Object methods] for the detailed specifications.
 
 
 ## Object methods
@@ -132,13 +128,23 @@ All objects created by the **::doctools::toc** command have the following genera
 : This method destroys the object it is invoked for.
 
 *objectName* **+ reference** *id* *label* *docid* *desc*
-: This method adds a new reference element to the table of contents, under the element specified via its handle *id*. This parent element has to be a division element, or the root. An error is thrown otherwise. The new element will be externally identified by its *label*, which has to be be unique within the parent element. An error is thrown otherwise. As a reference element it will refer to a document identified by the symbolic *docid*. This reference must not be the empty string, an error is thrown otherwise. Beyond the label the element also has a longer descriptive string, supplied via *desc*. The result of the method is the handle (id) of the new element.
+: This method adds a new reference element to the table of contents, under the element specified via its handle *id*. This parent element has to be a division element, or the root. An error is thrown otherwise. The new element will be externally identified by its *label*, which has to be be unique within the parent element. An error is thrown otherwise.
+
+    As a reference element it will refer to a document identified by the symbolic *docid*. This reference must not be the empty string, an error is thrown otherwise. Beyond the label the element also has a longer descriptive string, supplied via *desc*.
+
+    The result of the method is the handle (id) of the new element.
 
 *objectName* **+ division** *id* *label* ?*docid*?
-: This method adds a new division element to the table of contents, under the element specified via its handle *id*. This parent element has to be a division element, or the root. An error is thrown otherwise. The new element will be externally identified by its *label*, which has to be be unique within the parent element. An error is thrown otherwise. As a division element it is can refer to a document, identified by the symbolic *docid*, but may choose not to. The result of the method is the handle (id) of the new element.
+: This method adds a new division element to the table of contents, under the element specified via its handle *id*. This parent element has to be a division element, or the root. An error is thrown otherwise. The new element will be externally identified by its *label*, which has to be be unique within the parent element. An error is thrown otherwise.
+
+    As a division element it is can refer to a document, identified by the symbolic *docid*, but may choose not to.
+
+    The result of the method is the handle (id) of the new element.
 
 *objectName* **remove** *id*
-: This method removes the element identified by the handle *id* from the table of contents. If the element is a division all of its children, if any, are removed as well. The root element/division of the table of contents cannot be removed however, only its children. The result of the method is the empty string.
+: This method removes the element identified by the handle *id* from the table of contents. If the element is a division all of its children, if any, are removed as well. The root element/division of the table of contents cannot be removed however, only its children.
+
+    The result of the method is the empty string.
 
 *objectName* **up** *id*
 : This method returns the handle of the parent for the element identified by its handle *id*, or the empty string if *id* referred to the root element.
@@ -165,13 +171,21 @@ All objects created by the **::doctools::toc** command have the following genera
 : This method is the complement of the method **element**, converting the handle *id* of an element into a list of labels full identifying the element within the whole table of contents.
 
 *objectName* **elabel** *id* ?*newlabel*?
-: This method queries and/or changes the label of the element identified by the handle *id*. If the argument *newlabel* is present then the label is changed to that value. Regardless of this, the result of the method is the current value of the label. If the label is changed the new label has to be unique within the containing division, or an error is thrown. Further, of the *id* refers to the root element of the table of contents, then using this method is equivalent to using the method *label*, i.e. it is accessing the global label for the whole table.
+: This method queries and/or changes the label of the element identified by the handle *id*. If the argument *newlabel* is present then the label is changed to that value. Regardless of this, the result of the method is the current value of the label.
+
+    If the label is changed the new label has to be unique within the containing division, or an error is thrown.
+
+    Further, of the *id* refers to the root element of the table of contents, then using this method is equivalent to using the method *label*, i.e. it is accessing the global label for the whole table.
 
 *objectName* **description** *id* ?*newdesc*?
-: This method queries and/or changes the description of the element identified by the handle *id*. If the argument *newdesc* is present then the description is changed to that value. Regardless of this, the result of the method is the current value of the description. The element this method operates on has to be a reference element, or an error will be thrown.
+: This method queries and/or changes the description of the element identified by the handle *id*. If the argument *newdesc* is present then the description is changed to that value. Regardless of this, the result of the method is the current value of the description.
+
+    The element this method operates on has to be a reference element, or an error will be thrown.
 
 *objectName* **document** *id* ?*newdocid*?
-: This method queries and/or changes the document reference of the element identified by the handle *id*. If the argument *newdocid* is present then the description is changed to that value. Regardless of this, the result of the method is the current value of the document reference. Setting the reference to the empty string means unsetting it, and is allowed only for division elements. Conversely, if the result is the empty string then the element has no document reference, and this can happen only for division elements.
+: This method queries and/or changes the document reference of the element identified by the handle *id*. If the argument *newdocid* is present then the description is changed to that value. Regardless of this, the result of the method is the current value of the document reference.
+
+    Setting the reference to the empty string means unsetting it, and is allowed only for division elements. Conversely, if the result is the empty string then the element has no document reference, and this can happen only for division elements.
 
 *objectName* **title**
 : Returns the currently defined title of the table of contents.
@@ -189,22 +203,34 @@ All objects created by the **::doctools::toc** command have the following genera
 : Returns the import manager object currently attached to the container, if any.
 
 *objectName* **importer** *object*
-: Attaches the *object* as import manager to the container, and returns it as the result of the command. Note that the *object* is *not* put into ownership of the container. I.e., destruction of the container will *not* destroy the *object*. It is expected that *object* provides a method named **import text** which takes a text and a format name, and returns the canonical serialization of the table of contents contained in the text, assuming the given format.
+: Attaches the *object* as import manager to the container, and returns it as the result of the command. Note that the *object* is *not* put into ownership of the container. I.e., destruction of the container will *not* destroy the *object*.
+
+    It is expected that *object* provides a method named **import text** which takes a text and a format name, and returns the canonical serialization of the table of contents contained in the text, assuming the given format.
 
 *objectName* **exporter**
 : Returns the export manager object currently attached to the container, if any.
 
 *objectName* **exporter** *object*
-: Attaches the *object* as export manager to the container, and returns it as the result of the command. Note that the *object* is *not* put into ownership of the container. I.e., destruction of the container will *not* destroy the *object*. It is expected that *object* provides a method named **export object** which takes the container and a format name, and returns a text encoding table of contents stored in the container, in the given format. It is further expected that the *object* will use the container's method **serialize** to obtain the serialization of the table of contents from which to generate the text.
+: Attaches the *object* as export manager to the container, and returns it as the result of the command. Note that the *object* is *not* put into ownership of the container. I.e., destruction of the container will *not* destroy the *object*.
+
+    It is expected that *object* provides a method named **export object** which takes the container and a format name, and returns a text encoding table of contents stored in the container, in the given format. It is further expected that the *object* will use the container's method **serialize** to obtain the serialization of the table of contents from which to generate the text.
 
 *objectName* **deserialize =** *data* ?*format*?
-: This method replaces the contents of the table object with the table contained in the *data*. If no *format* was specified it is assumed to be the regular serialization of a table of contents. Otherwise the object will use the attached import manager to convert the data from the specified format to a serialization it can handle. In that case an error will be thrown if the container has no import manager attached to it. The result of the method is the empty string.
+: This method replaces the contents of the table object with the table contained in the *data*. If no *format* was specified it is assumed to be the regular serialization of a table of contents.
+
+    Otherwise the object will use the attached import manager to convert the data from the specified format to a serialization it can handle. In that case an error will be thrown if the container has no import manager attached to it.
+
+    The result of the method is the empty string.
 
 *objectName* **deserialize +=** *data* ?*format*?
-: This method behaves like **deserialize =** in its essentials, except that it merges the table of contents in the *data* to its contents instead of replacing it. The method will throw an error if merging is not possible, i.e. would produce an invalid table. The existing content is left unchanged in that case. The result of the method is the empty string.
+: This method behaves like **deserialize =** in its essentials, except that it merges the table of contents in the *data* to its contents instead of replacing it. The method will throw an error if merging is not possible, i.e. would produce an invalid table. The existing content is left unchanged in that case.
+
+    The result of the method is the empty string.
 
 *objectName* **serialize** ?*format*?
-: This method returns the table of contents contained in the object. If no *format* is not specified the returned result is the canonical serialization of its contents. Otherwise the object will use the attached export manager to convert the data to the specified format. In that case an error will be thrown if the container has no export manager attached to it.
+: This method returns the table of contents contained in the object. If no *format* is not specified the returned result is the canonical serialization of its contents.
+
+    Otherwise the object will use the attached export manager to convert the data to the specified format. In that case an error will be thrown if the container has no export manager attached to it.
 
 
 # Toc serialization format
@@ -213,64 +239,60 @@ Here we specify the format used by the doctools v2 packages to serialize tables 
 
 We distinguish between *regular* and *canonical* serializations. While a table of contents may have more than one regular serialization only exactly one of them will be *canonical*.
 
-**regular serialization**
-: 
+regular serialization
+: 1. The serialization of any table of contents is a nested Tcl dictionary.
+
+    2. This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+
+    3. The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+
+        **title**
+        : The value is a string containing the title of the table of contents.
+
+        **label**
+        : The value is a string containing a label for the table of contents.
+
+        **items**
+        : The value is a Tcl list holding the elements of the table, in the order they are to be shown.
+
+            Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description.
+
+            The two legal item types and their descriptions are
+
+            **reference**
+            : This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
+
+                **id**
+                : The value is a string containing the id of the document associated with the entry.
+
+                **label**
+                : The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
+
+                **desc**
+                : The value is a string containing a longer description for this entry.
 
 
-**\[1\]**
-: The serialization of any table of contents is a nested Tcl dictionary.
+            **division**
+            : This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
 
-**\[2\]**
-: This dictionary holds a single key, **doctools::toc**, and its value. This value holds the contents of the table of contents.
+                **id**
+                : The value is a string containing the id of the document associated with the whole group. This key is optional.
 
-**\[3\]**
-: The contents of the table of contents are a Tcl dictionary holding the title of the table of contents, a label, and its elements. The relevant keys and their values are
+                **label**
+                : The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
 
-
-**title**
-: The value is a string containing the title of the table of contents.
-
-**label**
-: The value is a string containing a label for the table of contents.
-
-**items**
-: The value is a Tcl list holding the elements of the table, in the order they are to be shown. Each element is a Tcl list holding the type of the item, and its description, in this order. An alternative description would be that it is a Tcl dictionary holding a single key, the item type, mapped to the item description. The two legal item types and their descriptions are
+                **items**
+                : The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
 
 
-**reference**
-: This item describes a single entry in the table of contents, referencing a single document. To this end its value is a Tcl dictionary containing an id for the referenced document, a label, and a longer textual description which can be associated with the entry. The relevant keys and their values are
 
 
-**id**
-: The value is a string containing the id of the document associated with the entry.
 
-**label**
-: The value is a string containing a label for this entry. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**desc**
-: The value is a string containing a longer description for this entry.
-
-
-**division**
-: This item describes a group of entries in the table of contents, inducing a hierarchy of entries. To this end its value is a Tcl dictionary containing a label for the group, an optional id to a document for the whole group, and the list of entries in the group. The relevant keys and their values are
-
-
-**id**
-: The value is a string containing the id of the document associated with the whole group. This key is optional.
-
-**label**
-: The value is a string containing a label for the group. This string also identifies the entry, and no two entries (references and divisions) in the containing list are allowed to have the same label.
-
-**items**
-: The value is a Tcl list holding the elements of the group, in the order they are to be shown. This list has the same structure as the value for the keyword **items** used to describe the whole table of contents, see above. This closes the recusrive definition of the structure, with divisions holding the same type of elements as the whole table of contents, including other divisions.
-
-
-**canonical serialization**
+canonical serialization
 : The canonical serialization of a table of contents has the format as specified in the previous item, and then additionally satisfies the constraints below, which make it unique among all the possible serializations of this table of contents.
 
+    1. The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
-**\[1\]**
-: The keys found in all the nested Tcl dictionaries are sorted in ascending dictionary order, as generated by Tcl's builtin command **lsort -increasing -dict**.
 
 
 # Bugs, ideas, feedback

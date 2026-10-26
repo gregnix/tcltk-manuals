@@ -1,5 +1,6 @@
 ---
 CommandName: base32::hex
+title: base32::hex
 ManualSection: n
 Version: 0.2
 TclPart: tcllib
@@ -21,11 +22,11 @@ base32::hex - base32 extended hex encoding
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit} 
-[package]{.cmd} [require]{.sub} [base32::hex]{.lit} [0.2]{.optlit} 
-[::base32::hex::encode]{.cmd} [bstring]{.arg} 
-[::base32::hex::decode]{.cmd} [estring]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [base32::core]{.lit} [0.2]{.optlit}
+[package]{.cmd} [require]{.sub} [base32::hex]{.lit} [0.2]{.optlit}
+[::base32::hex::encode]{.cmd} [bstring]{.arg}
+[::base32::hex::decode]{.cmd} [estring]{.arg}
 :::
 
 # Description
@@ -34,26 +35,30 @@ This package provides commands for encoding and decoding binary strings to and f
 
 (Note that Tcl’s built-in [binary](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) command provides simple encoding and decoding of bytes to and from pairs of hex digits.)
 
-# Api
+# API
 
 **::base32::hex::encode** *bstring*
-: Returns an extended hex base32-encoded version of the binary string *bstring* as its result. The result may be padded at the end with **=** characters to ensure that the result’s length is a multiple of eight. The encoder will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
+: Returns an extended hex base32-encoded version of the binary string *bstring* as its result.
+
+    The result may be padded at the end with **=** characters to ensure that the result’s length is a multiple of eight.
+
+    The encoder will throw an error if *bstring* is neither a binary string, nor a string containing only 7-bit ASCII.
 
 **::base32::hex::decode** *estring*
-: Returns a binary string that has been extended hex base32-decoded from the *estring*. Note that while the encoder produces only uppercase characters, this decoder is case-insensitive, i.e., more permissive. The decoder may throw an error on invalid input. For example, if:
+: Returns a binary string that has been extended hex base32-decoded from the *estring*.
 
+    Note that while the encoder produces only uppercase characters, this decoder is case-insensitive, i.e., more permissive.
 
-**•**
-: the input contains characters which are not valid for extended hex base32-encoded data;
+    The decoder may throw an error on invalid input. For example, if:
 
-**•**
-: the length of the input is not a multiple of eight;
+    - the input contains characters which are not valid for extended hex base32-encoded data;
 
-**•**
-: padding appears in the middle rather than at the end of the input;
+    - the length of the input is not a multiple of eight;
 
-**•**
-: the padding’s length is not exactly one, three, four, or six characters.
+    - padding appears in the middle rather than at the end of the input;
+
+    - the padding’s length is not exactly one, three, four, or six characters.
+
 
 
 It is also possible to have invalid input that does *not* throw an error—for example, plain text that doesn’t do any of the things listed above.

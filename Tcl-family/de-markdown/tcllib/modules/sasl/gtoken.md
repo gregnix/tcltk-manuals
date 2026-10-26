@@ -1,5 +1,6 @@
 ---
 CommandName: SASL::XGoogleToken
+title: SASL::XGoogleToken
 ManualSection: n
 Version: 1.0.2
 TclPart: tcllib
@@ -12,24 +13,24 @@ Copyright:
  - Copyright (c) 2006, Pat Thoyts <patthoyts@users.sourceforge.net>
 ---
 
-# NAME
+# Name
 
 SASL::XGoogleToken – Implementierung des SASL-NTLM-Mechanismus für Tcl
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [SASL::XGoogleToken]{.lit} [1.0.2]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [SASL::XGoogleToken]{.lit} [1.0.2]{.optlit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket stellt den Authentifizierungsmechanismus „XGoogleToken“ für die Simple Authentication and Security Layer (SASL) bereit.
 
 Bitte lesen Sie die Dokumentation zum Paket **sasl**, um weitere Einzelheiten zu erfahren.
 
-# TLS-SICHERHEITSHINWEISE
+# TLS-Sicherheitshinweise
 
 Dieses Paket nutzt das **TLS**-Paket, um die Sicherheit für **https**-URLs und andere Socket-Verbindungen zu gewährleisten.
 
@@ -44,11 +45,11 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
     ... your own application code ...
 ```
 
-# AUTOREN
+# Autoren
 
 Pat Thoyts
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Wenn Sie Fehler in diesem Dokument oder Fehler und Probleme im beschriebenen Paket finden oder Verbesserungen für die Dokumentation oder das Paket vorschlagen möchten, nutzen Sie bitte die [Tcllib-Tracker](http://core.tcl.tk/tcllib/reportlist) und geben Sie *sasl* als Kategorie an.
 
@@ -56,11 +57,11 @@ Schlagen Sie Codeänderungen bitte als *Unified Diffs* vor, also als Ausgabe von
 
 *Anhänge* sind eingebetteten Patches ausdrücklich vorzuziehen. Anhänge lassen sich über das Formular **Edit** des Tickets direkt nach dem Anlegen hinzufügen, mit der Schaltfläche ganz links in der zweiten Navigationsleiste.
 
-# KATEGORIE
+# Kategorie
 
 Netzwerk
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2006, Pat Thoyts <patthoyts@users.sourceforge.net>

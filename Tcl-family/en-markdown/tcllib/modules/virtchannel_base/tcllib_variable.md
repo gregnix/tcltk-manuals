@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::chan::variable
+title: tcl::chan::variable
 ManualSection: n
 Version: 1.0.5
 TclPart: tcllib
@@ -20,11 +21,11 @@ tcl::chan::variable - In-memory channel using variable for storage
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [TclOO]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::chan::variable]{.lit} [1.0.5]{.optlit} 
-[::tcl::chan::variable]{.cmd} [varname]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [TclOO]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::chan::events]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::chan::variable]{.lit} [1.0.5]{.optlit}
+[::tcl::chan::variable]{.cmd} [varname]{.arg}
 :::
 
 # Description
@@ -35,7 +36,7 @@ Packages related to this are **tcl::chan::memchan** and **tcl::chan::string**.
 
 The internal **TclOO** class implementing the channel handler is a sub-class of the **tcl::chan::events** framework.
 
-# Api
+# API
 
 **::tcl::chan::variable** *varname*
 : This command creates a new variable channel and returns its handle. The content of the channel is stored in the associated namespace variable *varname*.

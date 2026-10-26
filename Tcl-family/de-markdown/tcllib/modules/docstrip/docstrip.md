@@ -1,5 +1,6 @@
 ---
 CommandName: docstrip
+title: docstrip
 ManualSection: n
 Version: 1.3
 TclPart: tcllib
@@ -17,20 +18,20 @@ Copyright:
  - Copyright (c) 2003–2010 Lars Hellström <Lars dot Hellstrom at residenset dot net>
 ---
 
-# NAME
+# Name
 
 docstrip – Extraktion von Quellcode im Docstrip-Stil
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [docstrip]{.lit} [1.3]{.optlit} 
-[docstrip::extract]{.cmd} [text]{.arg} [terminals]{.arg} [option value]{.optdot} 
-[docstrip::sourcefrom]{.cmd} [filename]{.arg} [terminals]{.arg} [option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [docstrip]{.lit} [1.3]{.optlit}
+[docstrip::extract]{.cmd} [text]{.arg} [terminals]{.arg} [option value]{.optdot}
+[docstrip::sourcefrom]{.cmd} [filename]{.arg} [terminals]{.arg} [option value]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 **Docstrip** ist ein Tool, das zur Unterstützung einer Form der „Literate Programming“ entwickelt wurde. Es ist vor allem in der (La)TeX-Community verbreitet, wo es für nahezu alle Bereiche vom LaTeX-Kern aufwärts eingesetzt wird; es gibt jedoch keinen Grund, warum **docstrip** nicht auch für andere Arten von Software verwendet werden könnte.
 
@@ -38,26 +39,27 @@ Kurz gesagt besteht das Grundprinzip der literaten Programmierung darin, dass de
 
 Selbst für diejenigen, die sich nicht uneingeschränkt der Philosophie hinter der „Literate Programming“ anschließen, kann **docstrip** insbesondere in folgenden Bereichen für mehr Klarheit sorgen:
 
-**•**
-: Programme, die nicht offensichtliche mathematische Konzepte nutzen
+- Programme, die nicht offensichtliche mathematische Konzepte nutzen
 
-**•**
-: Projekte, bei denen einzelne Codeabschnitte – möglicherweise in verschiedenen Sprachen – eng aufeinander abgestimmt werden müssen. Zum einen, weil dadurch Zugriff auf weitaus leistungsfähigere Formatierungsfunktionen für Quellcode-Kommentare geboten wird, als dies im reinen Text möglich ist. Zum anderen, weil alle einzelnen Codeabschnitte nebeneinander in derselben Quelldatei zusammengefasst werden können. Das funktioniert so, dass der Programmierer direkt nur eine oder mehrere „Master“-Quellcode-Dateien bearbeitet, aus denen **docstrip** dann die traditionelleren „Quell“-Dateien generiert, die Compiler oder ähnliche Programme erwarten würden. Die Master-Quelldateien enthalten in der Regel eine umfangreiche Dokumentation des Codes, manchmal sogar an Plätzen, an denen die Code-Nutzer keinerlei Kommentare zulassen würden. Die Etymologie von „docstrip“ liegt darin, dass diese *doc*umentation *strip*ped away wurde (obwohl „Code-Extraktion“ möglicherweise eine bessere Beschreibung wäre, da es stets darum ging, ausgewählte Teile der Master-Quelldatei zu kopieren, anstatt Text daraus zu löschen). Das Tcl-Paket **docstrip** enthält eine Neuimplementierung der grundlegenden Extraktionsfunktionalität aus dem Programm **docstrip** und ermöglicht es somit einem Tcl-Interpreter, die Master-Quelldateien direkt zu lesen und zu interpretieren. Leser, die bisher noch nicht mit **docstrip** vertraut sind, aber mehr darüber erfahren möchten, können die folgenden Quellen zu Rate ziehen.
-
-**\[1\]**
-: *The tclldoc package and class*, *http://ctan.org/tex-archive/macros/latex/contrib/tclldoc/*.
-
-**\[2\]**
-: *The DocStrip utility*, *http://ctan.org/tex-archive/macros/latex/base/docstrip.dtx*.
-
-**\[3\]**
-: *The doc and shortvrb Packages*, *http://ctan.org/tex-archive/macros/latex/base/doc.dtx*.
-
-**\[4\]**
-: Kapitel 14 aus *The LaTeX Companion* (2. Auflage), Addison-Wesley, 2004; ISBN 0-201-36299-6.
+- Projekte, bei denen einzelne Codeabschnitte – möglicherweise in verschiedenen Sprachen – eng aufeinander abgestimmt werden müssen.
 
 
-# DATEIFORMAT
+Zum einen, weil dadurch Zugriff auf weitaus leistungsfähigere Formatierungsfunktionen für Quellcode-Kommentare geboten wird, als dies im reinen Text möglich ist. Zum anderen, weil alle einzelnen Codeabschnitte nebeneinander in derselben Quelldatei zusammengefasst werden können.
+
+Das funktioniert so, dass der Programmierer direkt nur eine oder mehrere „Master“-Quellcode-Dateien bearbeitet, aus denen **docstrip** dann die traditionelleren „Quell“-Dateien generiert, die Compiler oder ähnliche Programme erwarten würden. Die Master-Quelldateien enthalten in der Regel eine umfangreiche Dokumentation des Codes, manchmal sogar an Plätzen, an denen die Code-Nutzer keinerlei Kommentare zulassen würden. Die Etymologie von „docstrip“ liegt darin, dass diese *doc*umentation *strip*ped away wurde (obwohl „Code-Extraktion“ möglicherweise eine bessere Beschreibung wäre, da es stets darum ging, ausgewählte Teile der Master-Quelldatei zu kopieren, anstatt Text daraus zu löschen). Das Tcl-Paket **docstrip** enthält eine Neuimplementierung der grundlegenden Extraktionsfunktionalität aus dem Programm **docstrip** und ermöglicht es somit einem Tcl-Interpreter, die Master-Quelldateien direkt zu lesen und zu interpretieren.
+
+Leser, die bisher noch nicht mit **docstrip** vertraut sind, aber mehr darüber erfahren möchten, können die folgenden Quellen zu Rate ziehen.
+
+1. *The tclldoc package and class*, <http://ctan.org/tex-archive/macros/latex/contrib/tclldoc/>.
+
+2. *The DocStrip utility*, <http://ctan.org/tex-archive/macros/latex/base/docstrip.dtx>.
+
+3. *The doc and shortvrb Packages*, <http://ctan.org/tex-archive/macros/latex/base/doc.dtx>.
+
+4. Kapitel 14 aus *The LaTeX Companion* (2. Auflage), Addison-Wesley, 2004; ISBN 0-201-36299-6.
+
+
+# Dateiformat
 
 Die Grundeinheit, mit der **docstrip** arbeitet, sind die *lines* einer Master-Quelldatei. Die Extraktion besteht darin, einige dieser Zeilen auszuwählen, die vom Eingabetext in den Ausgabetext kopiert werden sollen. Die grundlegende Unterscheidung erfolgt zwischen *Codezeilen* (die kopiert werden und nicht mit einem Prozentzeichen beginnen) und *Kommentarzeilen* (die mit einem Prozentzeichen beginnen und nicht kopiert werden).
 
@@ -110,7 +112,7 @@ wobei
 
 Das Komma und der senkrechte Strich stehen beide für „oder“. Das Und-Zeichen steht für „und“. Das Ausrufezeichen steht für „nicht“. Ein TERMINAL kann eine beliebige nichtleere Zeichenfolge sein, die weder „>“, „&“, „|“, ein Komma, „(“ noch „)“ enthält, obwohl das Handbuch **docstrip** etwas restriktiv ist und den ordnungsgemäßen Betrieb nur für Zeichenfolgen aus Buchstaben garantiert (obwohl selbst die LaTeX-Kernquellen in TERMINALs in großem Umfang auch Ziffern verwenden). Das zweite Argument von **docstrip::extract** ist die Liste jener TERMINALs, die als den Wert „true“ habend gelten sollen; alle anderen TERMINALs gelten bei der Auswertung von Guard-Ausdrücken als „false“.
 
-Im Falle einer „%<\**Ausdruck*>“-Abgrenzung umfassen die abgetrennten Zeilen alle Zeilen bis zur nächsten „%\</*Ausdruck*>“-Abgrenzung mit demselben *Ausdruck (verglichen als Zeichenfolgen). Die durch solche „\*“- und „/“-Begrenzungszeilen abgegrenzten Codeblöcke müssen korrekt verschachtelt sein.
+Im Falle einer „%<\**Ausdruck*>“-Abgrenzung umfassen die abgetrennten Zeilen alle Zeilen bis zur nächsten „%</*Ausdruck*>“-Abgrenzung mit demselben *Ausdruck (verglichen als Zeichenfolgen). Die durch solche „\*“- und „/“-Begrenzungszeilen abgegrenzten Codeblöcke müssen korrekt verschachtelt sein.
 
 ```
    set text [join {
@@ -136,7 +138,7 @@ Im Falle einer „%<\**Ausdruck*>“-Abgrenzung umfassen die abgetrennten Zeilen
    append res [docstrip::extract $text bar]
 ```
 
-setzt \$res auf das Ergebnis von
+setzt $res auf das Ergebnis von
 
 ```
    join {
@@ -181,7 +183,7 @@ Metakommentarzeilen sind „Kommentarzeilen, die nicht entfernt werden sollen“
    append res [docstrip::extract $text bar -metaprefix {#}]
 ```
 
-setzt \$res auf das Ergebnis von
+setzt $res auf das Ergebnis von
 
 ```
    join {
@@ -221,7 +223,7 @@ Verbatim-Guards können verwendet werden, um die Interpretation eines Zeilenbloc
    append res [docstrip::extract $text {}]
 ```
 
-setzt \$res auf das Ergebnis von
+setzt $res auf das Ergebnis von
 
 ```
    join {
@@ -242,46 +244,43 @@ Der Prozess der Verarbeitung von Verbatim-Guards erfolgt auch innerhalb von Zeil
 
 Ein letzter Aspekt der Syntax von **docstrip** ist, dass die Extraktion an einer Zeile endet, die genau „\\endinput“ lautet; dies wird häufig verwendet, um das Kopieren zufälliger Leerzeichen am Dateiende zu vermeiden. Für den unwahrscheinlichen Fall, dass Sie eine solche Codezeile benötigen, können Sie diese mit einem Verbatim-Guard schützen.
 
-# BEFEHLE
+# Befehle
 
 Das Paket definiert zwei Befehle.
 
 **docstrip::extract** *text* *terminals* ?*option* *value* ...?
 : Der Befehl **extract** extrahiert den *text* und gibt die extrahierten Codezeilen als Zeichenkette zurück, wobei jede Zeile mit einem Zeilenumbruch abgeschlossen wird. *terminals* ist die Liste jener Terminale des Schutzausdrucks, deren Auswertung „wahr“ sein soll. Die verfügbaren Optionen sind:
 
+    **-annotate** *lines*
+    : Legt fest, dass auf jede extrahierte Zeile im Ergebnis die angegebene Anzahl von Anmerkungszeilen folgen soll. Der Standardwert ist 0. Anmerkungszeilen sind vor allem dann nützlich, wenn die extrahierten Zeilen einer weiteren Transformation unterzogen werden sollen. Eine erste Anmerkungszeile besteht aus einer Liste mit drei Elementen: Zeilentyp, bei der Extraktion entferntes Präfix und bei der Extraktion eingefügtes Präfix. Der Zeilentyp kann einer der folgenden sein: „V“ (wörtlich), „M“ (Metakommentar), „+“ (+ oder keine Modifikator-Schutzzeile), „-“ (– Modifikator-Schutzzeile), „.“ (normale Zeile). Eine zweite Anmerkungszeile ist die Nummer der Quellzeile. Eine dritte Anmerkungszeile ist der aktuelle Stapel der Block-Guards. Die Anforderung von mehr als drei Anmerkungszeilen wird derzeit nicht unterstützt.
 
-**-annotate** *lines*
-: Legt fest, dass auf jede extrahierte Zeile im Ergebnis die angegebene Anzahl von Anmerkungszeilen folgen soll. Der Standardwert ist 0. Anmerkungszeilen sind vor allem dann nützlich, wenn die extrahierten Zeilen einer weiteren Transformation unterzogen werden sollen. Eine erste Anmerkungszeile besteht aus einer Liste mit drei Elementen: Zeilentyp, bei der Extraktion entferntes Präfix und bei der Extraktion eingefügtes Präfix. Der Zeilentyp kann einer der folgenden sein: „V“ (wörtlich), „M“ (Metakommentar), „+“ (+ oder keine Modifikator-Schutzzeile), „-“ (– Modifikator-Schutzzeile), „.“ (normale Zeile). Eine zweite Anmerkungszeile ist die Nummer der Quellzeile. Eine dritte Anmerkungszeile ist der aktuelle Stapel der Block-Guards. Die Anforderung von mehr als drei Anmerkungszeilen wird derzeit nicht unterstützt.
+    **-metaprefix** *string*
+    : Die Zeichenfolge, durch die das Präfix „%%“ einer Metakommentarzeile ersetzt wird. Die Standardeinstellung lautet „%%“. Bei Tcl-Code wäre dies in der Regel „#“.
 
-**-metaprefix** *string*
-: Die Zeichenfolge, durch die das Präfix „%%“ einer Metakommentarzeile ersetzt wird. Die Standardeinstellung lautet „%%“. Bei Tcl-Code wäre dies in der Regel „#“.
+    **-onerror** *keyword*
+    : Legt fest, welche Maßnahmen ergriffen werden, wenn ein Formatfehler im zu verarbeitenden *text* erkannt wird. Die Einstellungsmöglichkeiten sind:
 
-**-onerror** *keyword*
-: Legt fest, welche Maßnahmen ergriffen werden, wenn ein Formatfehler im zu verarbeitenden *text* erkannt wird. Die Einstellungsmöglichkeiten sind:
+        **ignore**
+        : Ignoriert den Fehler und fährt fort, als wäre nichts geschehen.
 
+        **puts**
+        : Schreibt eine Fehlermeldung nach **stderr** und setzt die Verarbeitung fort.
 
-**ignore**
-: Ignoriert den Fehler und fährt fort, als wäre nichts geschehen.
-
-**puts**
-: Schreibt eine Fehlermeldung nach **stderr** und setzt die Verarbeitung fort.
-
-**throw**
-: Löst einen Fehler aus. Der Parameter **-errorcode** wird auf eine Liste gesetzt, deren erstes Element **DOCSTRIP** ist, deren zweites Element die Fehlerart angibt und deren drittes Element die Zeilennummer ist, in der der Fehler erkannt wurde. Dies ist die Standardeinstellung.
+        **throw**
+        : Löst einen Fehler aus. Der Parameter **-errorcode** wird auf eine Liste gesetzt, deren erstes Element **DOCSTRIP** ist, deren zweites Element die Fehlerart angibt und deren drittes Element die Zeilennummer ist, in der der Fehler erkannt wurde. Dies ist die Standardeinstellung.
 
 
-**-trimlines** *boolean*
-: Legt fest, ob *Leerzeichen* am Ende einer Zeile vor dem Prozess der Zeile entfernt werden sollen. Der Standardwert ist „true“.
+    **-trimlines** *boolean*
+    : Legt fest, ob *Leerzeichen* am Ende einer Zeile vor dem Prozess der Zeile entfernt werden sollen. Der Standardwert ist „true“.
 
 
-: Es sei darauf hingewiesen, dass die *terminals* im Zusammenhang mit dem Programm **docstrip** häufig als „Optionen“ bezeichnet werden, da diese festlegen, welche optionalen Codefragmente einbezogen werden sollen.
-
+    Es sei darauf hingewiesen, dass die *terminals* im Zusammenhang mit dem Programm **docstrip** häufig als „Optionen“ bezeichnet werden, da diese festlegen, welche optionalen Codefragmente einbezogen werden sollen.
 
 **docstrip::sourcefrom** *filename* *terminals* ?*option* *value* ...?
 : Der Befehl **sourcefrom** ist eine Docstripping-Emulation von **source**. Er öffnet die Datei *filename*, liest sie ein, schließt sie, entfernt die Dokumentationsinformationen gemäß den Angaben unter *terminals* und führt die Auswertung des Ergebnisses im lokalen Kontext des Aufrufers durch; während dieser Zeit ist der Wert von **info** **script** der *filename*. Die Optionen werden an **fconfigure** übergeben, um die Datei vor dem Einlesen ihres Inhalts zu konfigurieren. **-metaprefix** wird auf „#“ gesetzt, alle anderen **extract**-Optionen behalten ihre Standardwerte.
 
 
-# DOKUMENTAUFBAU
+# Dokumentaufbau
 
 Das Dateiformat (wie oben beschrieben) bestimmt, ob eine Master-Quellcodedatei von **docstrip** korrekt verarbeitet werden kann; der Nutzen des Formats hängt jedoch nicht zuletzt auch davon ab, dass der Code und die Kommentarzeilen zusammen ein wohlgeformtes Dokument bilden.
 
@@ -302,15 +301,15 @@ Master-Quelldateien mit der Erweiterung „*.dtx*“ sind in der Regel so einger
 
 oder eine Variante davon. Der Trick besteht darin, dass die Datei zweimal gelesen wird. Nach den üblichen LaTeX-Leseregeln gelten die ersten beiden Zeilen als Kommentare und werden daher ignoriert. Die dritte Zeile ist die Präambel des Dokuments, die vierte Zeile leitet den Dokumenttext ein und die sechste Zeile beendet das Dokument, sodass LaTeX an dieser Stelle stoppt – Nicht-Kommentare unterhalb dieser Stelle in der Datei unterliegen niemals den normalen LaTeX-Leseregeln. Zuvor wird jedoch der Befehl \\DocInput in der fünften Zeile verarbeitet, der zwei Dinge bewirkt: Er ändert die Interpretation von „%“ von „Kommentar“ in „ignoriert“ und gibt die im Argument angegebene Datei ein (bei der es sich normalerweise um den Namen der Datei handelt, in der sich der Befehl befindet). Erst bei diesem zweiten Durchlauf, bei dem die Datei gelesen wird, werden die darin enthaltenen Kommentare und der Code gesetzt.
 
-Die Funktion von \\iffalse ... \\fi besteht darin, beim zweiten Durchlauf die Zeilen zwei bis sieben zu überspringen; dies ähnelt dem Konstrukt „if 0 { ... }“ für Blockkommentare im Tcl-Code und ist hier unter anderem deshalb erforderlich, weil der Befehl \\documentclass nur einmal ausgeführt werden darf. Die Funktion der \<driver>-Schutzeinrichtungen besteht darin, zu verhindern, dass dieser kurze LaTeX-Code von **docstrip** extrahiert wird. Insgesamt führt dies dazu, dass die Datei sowohl als LaTeX-Dokument als auch als **docstrip**-Master-Quellcode-Datei fungieren kann.
+Die Funktion von \\iffalse ... \\fi besteht darin, beim zweiten Durchlauf die Zeilen zwei bis sieben zu überspringen; dies ähnelt dem Konstrukt „if 0 { ... }“ für Blockkommentare im Tcl-Code und ist hier unter anderem deshalb erforderlich, weil der Befehl \\documentclass nur einmal ausgeführt werden darf. Die Funktion der <driver>-Schutzeinrichtungen besteht darin, zu verhindern, dass dieser kurze LaTeX-Code von **docstrip** extrahiert wird. Insgesamt führt dies dazu, dass die Datei sowohl als LaTeX-Dokument als auch als **docstrip**-Master-Quellcode-Datei fungieren kann.
 
 Es ist nicht zwingend erforderlich, die Dokumentklasse „tclldoc“ zu verwenden, doch diese bietet eine Reihe von Funktionen, die für „*.dtx*“-Dateien mit Tcl-Code sehr praktisch sind. Weitere Informationen hierzu finden Sie in der oben genannten Literatur.
 
-# KATEGORIE
+# Kategorie
 
 Dokumentationswerkzeuge
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2003–2010 Lars Hellström <Lars dot Hellstrom at residenset dot net>

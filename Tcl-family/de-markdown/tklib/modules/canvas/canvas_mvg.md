@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::mvg
+title: canvas::mvg
 ManualSection: n
 Version: 1.0.1
 TclPart: tklib
@@ -18,20 +19,20 @@ Copyright:
  - Copyright (c) 2010 Documentation, Andreas Kupries
 ---
 
-# NAME
+# Name
 
 canvas::mvg – Von Canvas in das MVG-Vektorformat von ImageMagick
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::mvg]{.lit} [1]{.optlit} 
-[::canvas::mvg]{.cmd} [pathName]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::mvg]{.lit} [1]{.optlit}
+[::canvas::mvg]{.cmd} [pathName]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Dieses Paket enthält einen Befehl, mit dem der Inhalt eines Canvas in das MVG-Vektorformat von ImageMagick konvertiert werden kann.
 
@@ -41,11 +42,11 @@ Dieses Paket enthält einen Befehl, mit dem der Inhalt eines Canvas in das MVG-V
 : Gibt den Inhalt des Canvas *pathName* aus. Das Ergebnis ist eine Zeichenkette im MVG-Vektorformat von ImageMagick.
 
 
-# FEHLER, IDEEN, RÜCKMELDUNGEN
+# Fehler, Ideen, Rückmeldungen
 
 Dieses Dokument und das darin beschriebene Paket enthalten zweifellos Fehler und andere Probleme. Bitte melden Sie diese in der Kategorie *canvas* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist). Bitte melden Sie dort auch Ihre Ideen für Verbesserungen am Paket oder an der Dokumentation.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 2010 Wolf-Dieter Busch (http://wiki.tcl-lang.org/15505)

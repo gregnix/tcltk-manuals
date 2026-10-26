@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_CreateCloseHandler
+title: Tcl_CreateCloseHandler
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -17,41 +18,44 @@ Copyright:
 
 # Name
 
-Tcl_CreateCloseHandler, Tcl_DeleteCloseHandler - arrange for callbacks when channels are closed
+Tcl\_CreateCloseHandler, Tcl\_DeleteCloseHandler - arrange for callbacks when channels are closed
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-void
-[Tcl_CreateCloseHandler]{.cmd}([channel]{.arg}, [proc]{.arg}, [clientData]{.arg})
-
-void
-[Tcl_DeleteCloseHandler]{.cmd}([channel]{.arg}, [proc]{.arg}, [clientData]{.arg})
+**#include <tcl.h>**
+[void]{.ret} [Tcl\_CreateCloseHandler]{.ccmd} [channel, proc, clientData]{.cargs}
+[void]{.ret} [Tcl\_DeleteCloseHandler]{.ccmd} [channel, proc, clientData]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Channel *channel* (in)
+::: {.arguments} :::
+
+[channel]{.carg .in type="Tcl_Channel"}
 : The channel for which to create or delete a close callback.
 
-Tcl_CloseProc *\*proc* (in)
+[\*proc]{.carg .in type="Tcl_CloseProc"}
 : The procedure to call as the callback.
 
-ClientData *clientData* (in)
+[clientData]{.carg .in type="ClientData"}
 : Arbitrary one-word value to pass to *proc*.
 
+:::
 
 # Description
 
-**Tcl_CreateCloseHandler** arranges for *proc* to be called when *channel* is closed with **Tcl_Close** or **Tcl_UnregisterChannel**, or using the Tcl **close** command. *Proc* should match the following prototype:
+**Tcl\_CreateCloseHandler** arranges for *proc* to be called when *channel* is closed with [Tcl\_Close][OpenFileChnl] or [Tcl\_UnregisterChannel][OpenFileChnl], or using the Tcl [close] command. *Proc* should match the following prototype:
 
 ```
 typedef void Tcl_CloseProc(
         ClientData clientData);
 ```
 
-The *clientData* is the same as the value provided in the call to **Tcl_CreateCloseHandler**.
+The *clientData* is the same as the value provided in the call to **Tcl\_CreateCloseHandler**.
 
-**Tcl_DeleteCloseHandler** removes a close callback for *channel*. The *proc* and *clientData* identify which close callback to remove; **Tcl_DeleteCloseHandler** does nothing if its *proc* and *clientData* arguments do not match the *proc* and *clientData* for a  close handler for *channel*.
+**Tcl\_DeleteCloseHandler** removes a close callback for *channel*. The *proc* and *clientData* identify which close callback to remove; **Tcl\_DeleteCloseHandler** does nothing if its *proc* and *clientData* arguments do not match the *proc* and *clientData* for a  close handler for *channel*.
+
+
+[close]: ../tcl/close.md
+[OpenFileChnl]: OpenFileChnl.md

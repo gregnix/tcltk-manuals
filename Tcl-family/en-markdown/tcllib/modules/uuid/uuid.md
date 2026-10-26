@@ -1,5 +1,6 @@
 ---
 CommandName: uuid
+title: uuid
 ManualSection: n
 Version: 1.0.9
 TclPart: tcllib
@@ -18,10 +19,10 @@ uuid - UUID generation and comparison
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [uuid]{.lit} [1.0.9]{.optlit} 
-[::uuid::uuid]{.cmd} [generate]{.sub} 
-[::uuid::uuid]{.cmd} [equal]{.sub} [id1]{.arg} [id2]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [uuid]{.lit} [1.0.9]{.optlit}
+[::uuid::uuid]{.cmd} [generate]{.sub}
+[::uuid::uuid]{.cmd} [equal]{.sub} [id1]{.arg} [id2]{.arg}
 :::
 
 # Description
@@ -46,8 +47,7 @@ b12dc22c-5c36-41d2-57da-e29d0ef5839c
 
 # References
 
-**\[1\]**
-: Paul J. Leach, "UUIDs and GUIDs", February 1998. (*http://www.opengroup.org/dce/info/draft-leach-uuids-guids-01.txt*)
+1. Paul J. Leach, "UUIDs and GUIDs", February 1998. (<http://www.opengroup.org/dce/info/draft-leach-uuids-guids-01.txt>)
 
 
 # Bugs, ideas, feedback

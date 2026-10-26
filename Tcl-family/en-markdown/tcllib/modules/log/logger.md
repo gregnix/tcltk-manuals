@@ -1,5 +1,6 @@
 ---
 CommandName: logger
+title: logger
 ManualSection: n
 Version: 0.9.5
 TclPart: tcllib
@@ -19,47 +20,47 @@ logger - System to control logging of events.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} [0.9.5]{.optlit} 
-[logger::init]{.cmd} [service]{.arg} 
-[logger::import]{.cmd} [-all]{.optlit} [-force]{.optlit} [-prefix prefix]{.optarg} [-namespace namespace]{.optarg} [service]{.arg} 
-[logger::initNamespace]{.cmd} [ns]{.arg} [level]{.optarg} 
-[logger::services]{.cmd} 
-[logger::enable]{.cmd} [level]{.arg} 
-[logger::disable]{.cmd} [level]{.arg} 
-[logger::setlevel]{.cmd} [level]{.arg} 
-[logger::levels]{.cmd} 
-[logger::servicecmd]{.cmd} [service]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::debug]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::info]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::notice]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::warn]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::error]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::critical]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::alert]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::emergency]{.lit} [message]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::setlevel]{.lit} [level]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::enable]{.lit} [level]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::disable]{.lit} [level]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::lvlchangeproc]{.lit} [command]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::lvlchangeproc]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::logproc]{.lit} [level]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::logproc]{.lit} [level]{.arg} [command]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::logproc]{.lit} [level]{.arg} [argname]{.arg} [body]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::services]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::servicename]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::currentloglevel]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::delproc]{.lit} [command]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::delproc]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::delete]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [command]{.arg} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [on]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [off]{.lit} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [status]{.lit} [procName]{.optarg} [...]{.optdot} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [add]{.lit} [procName]{.arg} [...]{.optdot} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [add]{.lit} [-ns]{.optarg} [nsName]{.arg} [...]{.optdot} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [remove]{.lit} [procName]{.arg} [...]{.optdot} 
-[\$]{.cmd} { [log]{.lit} } [::trace]{.lit} [remove]{.lit} [-ns]{.optarg} [nsName]{.arg} [...]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit} [0.9.5]{.optlit}
+[logger::init]{.cmd} [service]{.arg}
+[logger::import]{.cmd} [-all]{.optlit} [-force]{.optlit} [[-prefix]{.lit} [prefix]{.arg}]{.optarg} [[-namespace]{.lit} [namespace]{.arg}]{.optarg} [service]{.arg}
+[logger::initNamespace]{.cmd} [ns]{.arg} [level]{.optarg}
+[logger::services]{.cmd}
+[logger::enable]{.cmd} [level]{.arg}
+[logger::disable]{.cmd} [level]{.arg}
+[logger::setlevel]{.cmd} [level]{.arg}
+[logger::levels]{.cmd}
+[logger::servicecmd]{.cmd} [service]{.arg}
+[${log}::debug]{.cmd} [message]{.arg}
+[${log}::info]{.cmd} [message]{.arg}
+[${log}::notice]{.cmd} [message]{.arg}
+[${log}::warn]{.cmd} [message]{.arg}
+[${log}::error]{.cmd} [message]{.arg}
+[${log}::critical]{.cmd} [message]{.arg}
+[${log}::alert]{.cmd} [message]{.arg}
+[${log}::emergency]{.cmd} [message]{.arg}
+[${log}::setlevel]{.cmd} [level]{.arg}
+[${log}::enable]{.cmd} [level]{.arg}
+[${log}::disable]{.cmd} [level]{.arg}
+[${log}::lvlchangeproc]{.cmd} [command]{.arg}
+[${log}::lvlchangeproc]{.cmd}
+[${log}::logproc]{.cmd} [level]{.arg}
+[${log}::logproc]{.cmd} [level]{.arg} [command]{.arg}
+[${log}::logproc]{.cmd} [level]{.arg} [argname]{.arg} [body]{.arg}
+[${log}::services]{.cmd}
+[${log}::servicename]{.cmd}
+[${log}::currentloglevel]{.cmd}
+[${log}::delproc]{.cmd} [command]{.arg}
+[${log}::delproc]{.cmd}
+[${log}::delete]{.cmd}
+[${log}::trace]{.cmd} [command]{.arg}
+[${log}::trace]{.cmd} [on]{.lit}
+[${log}::trace]{.cmd} [off]{.lit}
+[${log}::trace]{.cmd} [status]{.lit} [procName]{.optarg} [...]{.optarg}
+[${log}::trace]{.cmd} [add]{.lit} [procName]{.arg} [...]{.optarg}
+[${log}::trace]{.cmd} [add]{.lit} [-ns]{.optarg} [nsName]{.arg} [...]{.optarg}
+[${log}::trace]{.cmd} [remove]{.lit} [procName]{.arg} [...]{.optarg}
+[${log}::trace]{.cmd} [remove]{.lit} [-ns]{.optarg} [nsName]{.arg} [...]{.optarg}
 :::
 
 # Description
@@ -85,7 +86,7 @@ In the above code, after the package is loaded, the following things happen:
 : Initializes the service *service* for logging.  The service names are actually Tcl namespace names, so they are separated with '::'. The service name may not be the empty string or only ':'s. When a logger service is initialized, it "inherits" properties from its parents.  For instance, if there were a service *foo*, and we did a **logger::init** *foo::bar* (to create a *bar* service underneath *foo*), *bar* would copy the current configuration of the *foo* service, although it would of course, also be possible to then separately configure *bar*. If a logger service is initialized and the parent does not yet exist, the parent is also created. The new logger service is initialized with the default loglevel set with **logger::setlevel**.
 
 **logger::import** ?**-all**? ?**-force**? ?**-prefix** *prefix*? ?**-namespace** *namespace*? *service*
-: Import the logger service commands into the current namespace. Without the **-all** option only the commands corresponding to the log levels are imported. If **-all** is given, all the **\${log}::cmd** style commands are imported. If the import would overwrite a command an error is returned and no command is imported. Use the **-force** option to force the import and overwrite existing commands without complaining. If the **-prefix** option is given, the commands are imported with the given *prefix* prepended to their names. If the **-namespace** option is given, the commands are imported into the given namespace. If the namespace does not exist, it is created. If a namespace without a leading :: is given, it is interpreted as a child namespace to the current namespace.
+: Import the logger service commands into the current namespace. Without the **-all** option only the commands corresponding to the log levels are imported. If **-all** is given, all the **${log}::cmd** style commands are imported. If the import would overwrite a command an error is returned and no command is imported. Use the **-force** option to force the import and overwrite existing commands without complaining. If the **-prefix** option is given, the commands are imported with the given *prefix* prepended to their names. If the **-namespace** option is given, the commands are imported into the given namespace. If the namespace does not exist, it is created. If a namespace without a leading :: is given, it is interpreted as a child namespace to the current namespace.
 
 **logger::initNamespace** *ns* ?*level*?
 : Convenience command for setting up a namespace for logging. Creates a logger service named after the namespace *ns* (a :: prefix is stripped), imports all the log commands into the namespace, and sets the default logging level, either as specified by *level*, or inherited from a service in the parent namespace, or a hardwired default, **warn**.
@@ -106,184 +107,172 @@ In the above code, after the package is loaded, the following things happen:
 : Returns a list of the available log levels (also listed above under **enable**).
 
 **logger::servicecmd** *service*
-: Returns the **\${log}** token created by **logger::init** for this service.
+: Returns the **${log}** token created by **logger::init** for this service.
 
-**\${log}::debug** *message*
-: ...see next...
+**${log}::debug** *message*
+: see below ...
 
-**\${log}::info** *message*
-: ...see next...
+**${log}::info** *message*
+: see below ...
 
-**\${log}::notice** *message*
-: ...see next...
+**${log}::notice** *message*
+: see below ...
 
-**\${log}::warn** *message*
-: ...see next...
+**${log}::warn** *message*
+: see below ...
 
-**\${log}::error** *message*
-: ...see next...
+**${log}::error** *message*
+: see below ...
 
-**\${log}::critical** *message*
-: ...see next...
+**${log}::critical** *message*
+: see below ...
 
-**\${log}::alert** *message*
-: ...see next...
+**${log}::alert** *message*
+: see below ...
 
-**\${log}::emergency** *message*
-: These are the commands called to actually log a message about an event.  **\${log}** is the variable obtained from **logger::init**.
+**${log}::emergency** *message*
+: These are the commands called to actually log a message about an event.  **${log}** is the variable obtained from **logger::init**.
 
-**\${log}::setlevel** *level*
-: Enable logging, in the service referenced by **\${log}**, and its children, at and above the level specified, and disable logging below it.
+**${log}::setlevel** *level*
+: Enable logging, in the service referenced by **${log}**, and its children, at and above the level specified, and disable logging below it.
 
-**\${log}::enable** *level*
-: Enable logging, in the service referenced by **\${log}**, and its children, at and above the level specified.  Note that this does *not* disable logging below this level, so you should probably use **setlevel** instead.
+**${log}::enable** *level*
+: Enable logging, in the service referenced by **${log}**, and its children, at and above the level specified.  Note that this does *not* disable logging below this level, so you should probably use **setlevel** instead.
 
-**\${log}::disable** *level*
-: Disable logging, in the service referenced by **\${log}**, and its children, at and below the level specified. Note that this does *not* enable logging above this level, so you should probably use **setlevel** instead. Disabling the loglevel **emergency** switches logging off for the service and its children.
+**${log}::disable** *level*
+: Disable logging, in the service referenced by **${log}**, and its children, at and below the level specified. Note that this does *not* enable logging above this level, so you should probably use **setlevel** instead. Disabling the loglevel **emergency** switches logging off for the service and its children.
 
-**\${log}::lvlchangeproc** *command*
-: ...see next...
+**${log}::lvlchangeproc** *command*
+: see below ...
 
-**\${log}::lvlchangeproc**
+**${log}::lvlchangeproc**
 : Set the script to call when the log instance in question changes its log level. If called without a command it returns the currently registered command. The command gets two arguments appended, the old and the new loglevel. The callback is invoked after all changes have been done. If child loggers are affected, their callbacks are called before their parents callback.
 
+    ```
+     	proc lvlcallback {old new} {
+     	    puts "Loglevel changed from $old to $new"
+     	}
+     	${log}::lvlchangeproc lvlcallback
+    ```
 
-```
- 	proc lvlcallback {old new} {
- 	    puts "Loglevel changed from $old to $new"
- 	}
- 	${log}::lvlchangeproc lvlcallback
-```
+**${log}::logproc** *level*
+: see below ...
 
-**\${log}::logproc** *level*
-: ...see next...
+**${log}::logproc** *level* *command*
+: see below ...
 
-**\${log}::logproc** *level* *command*
-: ...see next...
-
-**\${log}::logproc** *level* *argname* *body*
+**${log}::logproc** *level* *argname* *body*
 : This command comes in three forms - the third, older one is deprecated and may be removed from future versions of the logger package. The current set version takes one argument, a command to be executed when the level is called.  The callback command takes on argument, the text to be logged. If called only with a valid level **logproc** returns the name of the command currently registered as callback command. **logproc** specifies which command will perform the actual logging for a given level.  The logger package ships with default commands for all log levels, but with **logproc** it is possible to replace them with custom code.  This would let you send your logs over the network, to a database, or anything else.  For example:
 
+    ```
+        proc logtoserver {txt} {
+            variable socket
+            puts $socket "Notice: $txt"
+        }
 
-```
-    proc logtoserver {txt} {
-        variable socket
-        puts $socket "Notice: $txt"
-    }
+        ${log}::logproc notice logtoserver
+    ```
 
-    ${log}::logproc notice logtoserver
-```
+    Trace logs are slightly different: instead of a plain text argument, the argument provided to the logproc is a dictionary consisting of the **enter** or **leave** keyword along with another dictionary of details about the trace.  These include:
 
-: Trace logs are slightly different: instead of a plain text argument, the argument provided to the logproc is a dictionary consisting of the **enter** or **leave** keyword along with another dictionary of details about the trace.  These include:
+    - **proc** - Name of the procedure being traced.
 
+    - **level** - The stack level for the procedure invocation (from **info** **level**).
 
-**•**
-: **proc** - Name of the procedure being traced.
+    - **script** - The name of the file in which the procedure is defined, or an empty string if defined in interactive mode.
 
-**•**
-: **level** - The stack level for the procedure invocation (from **info** **level**).
+    - **caller** - The name of the procedure calling the procedure being traced, or an empty string if the procedure was called from the global scope (stack level 0).
 
-**•**
-: **script** - The name of the file in which the procedure is defined, or an empty string if defined in interactive mode.
+    - **procargs** - A dictionary consisting of the names of arguments to the procedure paired with values given for those arguments (**enter** traces only).
 
-**•**
-: **caller** - The name of the procedure calling the procedure being traced, or an empty string if the procedure was called from the global scope (stack level 0).
+    - **status** - The Tcl return code (e.g. **ok**, **continue**, etc.) (**leave** traces only).
 
-**•**
-: **procargs** - A dictionary consisting of the names of arguments to the procedure paired with values given for those arguments (**enter** traces only).
-
-**•**
-: **status** - The Tcl return code (e.g. **ok**, **continue**, etc.) (**leave** traces only).
-
-**•**
-: **result** - The value returned by the procedure (**leave** traces only).
+    - **result** - The value returned by the procedure (**leave** traces only).
 
 
-**\${log}::services**
+**${log}::services**
 : Returns a list of the registered logging services which are children of this service.
 
-**\${log}::servicename**
+**${log}::servicename**
 : Returns the name of this service.
 
-**\${log}::currentloglevel**
+**${log}::currentloglevel**
 : Returns the currently enabled log level for this service. If no logging is enabled returns **none**.
 
-**\${log}::delproc** *command*
-: ...see next...
+**${log}::delproc** *command*
+: see below ...
 
-**\${log}::delproc**
+**${log}::delproc**
 : Set the script to call when the log instance in question is deleted. If called without a command it returns the currently registered command. For example:
 
+    ```
+        ${log}::delproc [list closesock $logsock]
+    ```
 
-```
-    ${log}::delproc [list closesock $logsock]
-```
-
-**\${log}::delete**
+**${log}::delete**
 : This command deletes a particular logging service, and its children. You must call this to clean up the resources used by a service.
 
-**\${log}::trace** *command*
+**${log}::trace** *command*
 : This command controls logging of enter/leave traces for specified procedures. It is used to enable and disable tracing, query tracing status, and specify procedures are to be traced.  Trace handlers are unregistered when tracing is disabled.  As a result, there is not performance impact to a library when tracing is disabled, just as with other log level commands.
 
+    ```
+      proc tracecmd { dict } {
+          puts $dict
+      }
 
-```
-  proc tracecmd { dict } {
-      puts $dict
-  }
+      set log [::logger::init example]
+      ${log}::logproc trace tracecmd
 
-  set log [::logger::init example]
-  ${log}::logproc trace tracecmd
+      proc foo { args } {
+          puts "In foo"
+          bar 1
+          return "foo_result"
+      }
 
-  proc foo { args } {
-      puts "In foo"
-      bar 1
-      return "foo_result"
-  }
+      proc bar { x } {
+          puts "In bar"
+          return "bar_result"
+      }
 
-  proc bar { x } {
-      puts "In bar"
-      return "bar_result"
-  }
+      ${log}::trace add foo bar
+      ${log}::trace on
 
-  ${log}::trace add foo bar
-  ${log}::trace on
+      foo
 
-  foo
+    # Output:
+    enter {proc ::foo level 1 script {} caller {} procargs {args {}}}
+    In foo
+    enter {proc ::bar level 2 script {} caller ::foo procargs {x 1}}
+    In bar
+    leave {proc ::bar level 2 script {} caller ::foo status ok result bar_result}
+    leave {proc ::foo level 1 script {} caller {} status ok result foo_result}
+    ```
 
-# Output:
-enter {proc ::foo level 1 script {} caller {} procargs {args {}}}
-In foo
-enter {proc ::bar level 2 script {} caller ::foo procargs {x 1}}
-In bar
-leave {proc ::bar level 2 script {} caller ::foo status ok result bar_result}
-leave {proc ::foo level 1 script {} caller {} status ok result foo_result}
-```
-
-**\${log}::trace** **on**
+**${log}::trace** **on**
 : Turns on trace logging for procedures registered through the **trace** **add** command.  This is similar to the **enable** command for other logging levels, but allows trace logging to take place at any level. The trace logging mechanism takes advantage of the execution trace feature of Tcl 8.4 and later.  The **trace** **on** command will return an error if called from earlier versions of Tcl.
 
-**\${log}::trace** **off**
+**${log}::trace** **off**
 : Turns off trace logging for procedures registered for trace logging through the **trace** **add** command.  This is similar to the **disable** command for other logging levels, but allows trace logging to take place at any level. Procedures are not unregistered, so logging for them can be turned back on with the **trace** **on** command.  There is no overhead imposed by trace registration when trace logging is disabled.
 
-**\${log}::trace** **status** ?procName? ?...?
+**${log}::trace** **status** ?procName? ?...?
 : This command returns a list of the procedures currently registered for trace logging, or a flag indicating whether or not a trace is registered for one or more specified procedures.
 
-**\${log}::trace** **add** *procName* ?...?
-: ...see next...
+**${log}::trace** **add** *procName* ?...?
+: see below ...
 
-**\${log}::trace** **add** ?-ns? *nsName* ?...?
+**${log}::trace** **add** ?-ns? *nsName* ?...?
 : This command registers one or more procedures for logging of entry/exit traces.  Procedures can be specified via a list of procedure names or namespace names (in which case all procedure within the namespace are targeted by the operation).  By default, each name is first interpreted as a procedure name or glob-style search pattern, and if not found its interpreted as a namespace name.  The *-ns* option can be used to force interpretation of all provided arguments as namespace names. Procedures must be defined prior to registering them for tracing through the **trace** **add** command.  Any procedure or namespace names/patterns that don't match any existing procedures will be silently ignored.
 
-**\${log}::trace** **remove** *procName* ?...?
-: ...see next...
+**${log}::trace** **remove** *procName* ?...?
+: see below ...
 
-**\${log}::trace** **remove** ?-ns? *nsName* ?...?
+**${log}::trace** **remove** ?-ns? *nsName* ?...?
 : This command unregisters one or more procedures so that they will no longer have trace logging performed, with the same matching rules as that of the **trace** **add** command.
 
 
 # Implementation
 
-The logger package is implemented in such a way as to optimize (for Tcl 8.4 and newer) log procedures which are disabled.  They are aliased to a proc which has no body, which is compiled to a no op in bytecode.  This should make the peformance hit minimal.  If you really want to pull out all the stops, you can replace the \${log} token in your code with the actual namespace and command (\${log}::warn becomes ::logger::tree::myservice::warn), so that no variable lookup is done. This puts the performance of disabled logger commands very close to no logging at all.
+The logger package is implemented in such a way as to optimize (for Tcl 8.4 and newer) log procedures which are disabled.  They are aliased to a proc which has no body, which is compiled to a no op in bytecode.  This should make the peformance hit minimal.  If you really want to pull out all the stops, you can replace the ${log} token in your code with the actual namespace and command (${log}::warn becomes ::logger::tree::myservice::warn), so that no variable lookup is done. This puts the performance of disabled logger commands very close to no logging at all.
 
 The "object orientation" is done through a hierarchy of namespaces. Using an actual object oriented system would probably be a better way of doing things, or at least provide for a cleaner implementation.
 

@@ -1,5 +1,6 @@
 ---
 CommandName: math::decimal
+title: math::decimal
 ManualSection: n
 Version: 1.0.5
 TclPart: tcllib
@@ -19,59 +20,61 @@ math::decimal - General decimal arithmetic
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [?8.5]{.lit} [9?]{.lit} 
-[package]{.cmd} [require]{.sub} [math::decimal]{.lit} [1.0.3]{.lit} 
-[::math::decimal::fromstr]{.cmd} [string]{.arg} 
-[::math::decimal::tostr]{.cmd} [decimal]{.arg} 
-[::math::decimal::setVariable]{.cmd} [variable]{.arg} [setting]{.arg} 
-[::math::decimal::add]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::+]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::subtract]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::-]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::multiply]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::\*]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::divide]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::/]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::divideint]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::remainder]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::abs]{.cmd} [decimal]{.arg} 
-[::math::decimal::compare]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::max]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::maxmag]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::min]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::minmag]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::plus]{.cmd} [a]{.arg} 
-[::math::decimal::minus]{.cmd} [a]{.arg} 
-[::math::decimal::copynegate]{.cmd} [a]{.arg} 
-[::math::decimal::copysign]{.cmd} [a]{.arg} [b]{.arg} 
-[::math::decimal::is-signed]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-zero]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-NaN]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-infinite]{.cmd} [decimal]{.arg} 
-[::math::decimal::is-finite]{.cmd} [decimal]{.arg} 
-[::math::decimal::fma]{.cmd} [a]{.arg} [b]{.arg} [c]{.arg} 
-[::math::decimal::round_half_even]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_half_up]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_half_down]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_down]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_up]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_floor]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_ceiling]{.cmd} [decimal]{.arg} [digits]{.arg} 
-[::math::decimal::round_05up]{.cmd} [decimal]{.arg} [digits]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5 9]{.optlit}
+[package]{.cmd} [require]{.sub} [math::decimal]{.lit} [1.0.3]{.lit}
+[::math::decimal::fromstr]{.cmd} [string]{.arg}
+[::math::decimal::tostr]{.cmd} [decimal]{.arg}
+[::math::decimal::setVariable]{.cmd} [variable]{.arg} [setting]{.arg}
+[::math::decimal::add]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::+]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::subtract]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::-]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::multiply]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::\*]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::divide]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::/]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::divideint]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::remainder]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::abs]{.cmd} [decimal]{.arg}
+[::math::decimal::compare]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::max]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::maxmag]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::min]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::minmag]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::plus]{.cmd} [a]{.arg}
+[::math::decimal::minus]{.cmd} [a]{.arg}
+[::math::decimal::copynegate]{.cmd} [a]{.arg}
+[::math::decimal::copysign]{.cmd} [a]{.arg} [b]{.arg}
+[::math::decimal::is-signed]{.cmd} [decimal]{.arg}
+[::math::decimal::is-zero]{.cmd} [decimal]{.arg}
+[::math::decimal::is-NaN]{.cmd} [decimal]{.arg}
+[::math::decimal::is-infinite]{.cmd} [decimal]{.arg}
+[::math::decimal::is-finite]{.cmd} [decimal]{.arg}
+[::math::decimal::fma]{.cmd} [a]{.arg} [b]{.arg} [c]{.arg}
+[::math::decimal::round\_half\_even]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_half\_up]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_half\_down]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_down]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_up]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_floor]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_ceiling]{.cmd} [decimal]{.arg} [digits]{.arg}
+[::math::decimal::round\_05up]{.cmd} [decimal]{.arg} [digits]{.arg}
 :::
 
 # Description
 
 The decimal package provides decimal arithmetic support for both limited precision floating point and arbitrary precision floating point. Additionally, integer arithmetic is supported.
 
-More information and the specifications on which this package depends can be found on the general decimal arithmetic page at http://speleotrove.com/decimal This package provides for:
+More information and the specifications on which this package depends can be found on the general decimal arithmetic page at <http://speleotrove.com/decimal> This package provides for:
 
-**•**
-: A new data type decimal which is represented as a list containing sign, mantissa and exponent.
+- A new data type decimal which is represented as a list containing sign, mantissa and exponent.
 
-**•**
-: Arithmetic operations on those decimal numbers such as addition, subtraction, multiplication, etc... Numbers are converted to decimal format using the operation ::math::decimal::fromstr. Numbers are converted back to string format using the operation ::math::decimal::tostr.
+- Arithmetic operations on those decimal numbers such as addition, subtraction, multiplication, etc...
 
+
+Numbers are converted to decimal format using the operation ::math::decimal::fromstr.
+
+Numbers are converted back to string format using the operation ::math::decimal::tostr.
 
 # Examples
 
@@ -103,7 +106,7 @@ This section shows some simple examples. Since the purpose of this library is to
     # See http://speleotrove.com/decimal to learn more about why this happens.
 ```
 
-# Api
+# API
 
 **::math::decimal::fromstr** *string*
 : Convert *string* into a decimal.
@@ -114,43 +117,37 @@ This section shows some simple examples. Since the purpose of this library is to
 **::math::decimal::setVariable** *variable* *setting*
 : Sets the *variable* to *setting*. Valid variables are:
 
+    - *rounding* - Method of rounding to use during rescale. Valid methods are round\_half\_even, round\_half\_up, round\_half\_down, round\_down, round\_up, round\_floor, round\_ceiling.
 
-**•**
-: *rounding* - Method of rounding to use during rescale. Valid methods are round_half_even, round_half_up, round_half_down, round_down, round_up, round_floor, round_ceiling.
+    - *precision* - Maximum number of digits allowed in mantissa.
 
-**•**
-: *precision* - Maximum number of digits allowed in mantissa.
+    - *extended* - Set to 1 for extended mode. 0 for simplified mode.
 
-**•**
-: *extended* - Set to 1 for extended mode. 0 for simplified mode.
+    - *maxExponent* - Maximum value for the exponent. Defaults to 999.
 
-**•**
-: *maxExponent* - Maximum value for the exponent. Defaults to 999.
-
-**•**
-: *minExponent* - Minimum value for the exponent. Default to -998.
+    - *minExponent* - Minimum value for the exponent. Default to -998.
 
 
 **::math::decimal::add** *a* *b*
-: ...see next...
+: see below ...
 
 **::math::decimal::+** *a* *b*
 : Return the sum of the two decimals *a* and *b*.
 
 **::math::decimal::subtract** *a* *b*
-: ...see next...
+: see below ...
 
 **::math::decimal::-** *a* *b*
 : Return the differnece of the two decimals *a* and *b*.
 
 **::math::decimal::multiply** *a* *b*
-: ...see next...
+: see below ...
 
 **::math::decimal::\*** *a* *b*
 : Return the product of the two decimals *a* and *b*.
 
 **::math::decimal::divide** *a* *b*
-: ...see next...
+: see below ...
 
 **::math::decimal::/** *a* *b*
 : Return the quotient of the division between the two decimals *a* and *b*.
@@ -180,10 +177,10 @@ This section shows some simple examples. Since the purpose of this library is to
 : Compare the two decimals a and b while ignoring their signs, and return *a* if *abs(a) <= abs(b)*, and *b* if *abs(a) > abs(b)*.
 
 **::math::decimal::plus** *a*
-: Return the result from *::math::decimal::+ 0 \$a*.
+: Return the result from *::math::decimal::+ 0 $a*.
 
 **::math::decimal::minus** *a*
-: Return the result from *::math::decimal::- 0 \$a*.
+: Return the result from *::math::decimal::- 0 $a*.
 
 **::math::decimal::copynegate** *a*
 : Returns *a* with the sign flipped.
@@ -209,28 +206,28 @@ This section shows some simple examples. Since the purpose of this library is to
 **::math::decimal::fma** *a* *b* *c*
 : Return the result from first multiplying *a* by *b* and then adding *c*. Rescaling only occurs after completion of all operations. In this way the result may vary from that returned by performing the operations individually.
 
-**::math::decimal::round_half_even** *decimal* *digits*
+**::math::decimal::round\_half\_even** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round to the nearest. If equidistant, round so the final digit is even.
 
-**::math::decimal::round_half_up** *decimal* *digits*
+**::math::decimal::round\_half\_up** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round to the nearest. If equidistant, round up.
 
-**::math::decimal::round_half_down** *decimal* *digits*
+**::math::decimal::round\_half\_down** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round to the nearest. If equidistant, round down.
 
-**::math::decimal::round_down** *decimal* *digits*
+**::math::decimal::round\_down** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round toward 0.  (Truncate)
 
-**::math::decimal::round_up** *decimal* *digits*
+**::math::decimal::round\_up** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round away from 0
 
-**::math::decimal::round_floor** *decimal* *digits*
+**::math::decimal::round\_floor** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round toward -Infinity.
 
-**::math::decimal::round_ceiling** *decimal* *digits*
+**::math::decimal::round\_ceiling** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round toward Infinity
 
-**::math::decimal::round_05up** *decimal* *digits*
+**::math::decimal::round\_05up** *decimal* *digits*
 : Rounds *decimal* to *digits* number of decimal points with the following rules: Round zero or five away from 0. The same as round-up, except that rounding up only occurs if the digit to be rounded up is 0 or 5, and after overflow the result is the same as for round-down.
 
 

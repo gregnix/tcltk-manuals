@@ -1,5 +1,6 @@
 ---
 CommandName: format
+title: format
 ManualSection: n
 Version: 8.1
 TclPart: Tcl
@@ -19,29 +20,29 @@ Copyright:
  - Copyright (c) 1994-1996 Sun Microsystems, Inc.
 ---
 
-# NAME
+# Name
 
 format - Zeichenkette im Stil von sprintf formatieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[format]{.cmd} [formatString]{.arg} [arg arg]{.optdot} 
+[format]{.cmd} [formatString]{.arg} [arg arg]{.optdot}
 :::
 
-# EINLEITUNG
+# Einleitung
 
 Der Befehl erzeugt eine formatierte Zeichenkette analog zu ANSI-C **sprintf**. *formatString* legt das Format fest (**%**-Konvertierungen wie bei **sprintf**); weitere Argumente liefern die einzusetzenden Werte. Rückgabe: die formatierte Zeichenkette.
 
-# DETAILS ZUM FORMATIEREN
+# Details zum Formatieren
 
 **format** durchläuft *formatString* von links nach rechts. Jedes Zeichen wird an die Ergebniszeichenkette angehängt, außer es ist **%**. Dann wird nicht kopiert; die folgenden Zeichen sind ein Konvertierungsspezifizierer. Er steuert die Umwandlung des nächsten *arg* und ersetzt den Spezifizierer im Ergebnis. Mehrere Spezifizierer verarbeiten weitere *arg*s in Reihenfolge; es müssen genug *arg*s für alle Spezifizierer vorhanden sein.
 
-Ein Spezifizierer kann bis zu sechs Teile haben: XPG3-Positionsangabe, Flags, Mindestfeldbreite, Genauigkeit, Größenmodifikator, Konvertierungszeichen. Pflicht ist nur das Konvertierungszeichen; vorhandene Teile in der genannten Reihenfolge.
+Ein Spezifizierer kann bis zu sechs Teile haben: XPG3-Positionsangabe, Flags, Mindestfeldbreite, Genauigkeit, Größenmodifikator, Konvertierungszeichen. Pflicht ist nur das Konvertierungszeichen; vorhandene Teile in der genannten Reihenfolge. Die folgenden Absätze behandeln diese Felder der Reihe nach.
 
 ## Optionale Positionsangabe
 
-Folgt auf **%** eine Dezimalzahl und **\$** (z. B. **%2\$d**), stammt der Wert nicht vom nächsten sequenziellen Argument, sondern vom angegebenen (1 = erstes *arg*). Benötigt der Spezifizierer mehrere Argumente wegen **\*** in der Angabe, werden ab diesem Argument weitere verwendet (XPG3). Sind Positionsangaben vorhanden, müssen alle Spezifizierer positional sein.
+Folgt auf **%** eine Dezimalzahl und **$** (z. B. **%2$d**), stammt der Wert nicht vom nächsten sequenziellen Argument, sondern vom angegebenen (1 = erstes *arg*). Benötigt der Spezifizierer mehrere Argumente wegen **\*** in der Angabe, werden ab diesem Argument weitere verwendet (XPG3). Sind Positionsangaben vorhanden, müssen alle Spezifizierer positional sein.
 
 ## Optionale Flags
 
@@ -60,7 +61,7 @@ Zweiter Teil des Spezifizierers, beliebige Reihenfolge:
 : Links mit Nullen statt Leerzeichen auffüllen.
 
 **#**
-: Alternative Ausgabeform. **o**: **0o** am Anfang (außer Null). **x**/**X**: **0x** (außer Null). **b**: **0b** (außer Null). **d**: allein ohne Wirkung; mit **0**: **0d** am Anfang. Gleitkomma (**e**, **E**, **f**, **g**, **G**): Dezimalpunkt immer. **g**/**G** mit **#**: nachgestellte Nullen nicht entfernen.
+: Alternative Ausgabeform. **o**: erste Ziffer immer **0**. **x**/**X**: **0x** bzw. **0X** am Anfang (außer Null). **b**: **0b** am Anfang (außer Null). Gleitkomma (**e**, **E**, **f**, **g**, **G**): Dezimalpunkt immer. **g**/**G**: nachgestellte Nullen nicht entfernen.
 
 
 ## Optionale Feldbreite
@@ -73,7 +74,7 @@ Vierter Teil: Punkt und Zahl. Bedeutung je nach Konvertierung: **e**, **E**, **f
 
 ## Optionaler Größenmodifikator
 
-Fünfter Teil: **ll**, **h**, **l**, **z**, **t** oder **L**. **ll**: Ganzzahl ohne Kürzung. **h**: auf 16-Bit-Bereich kürzen (selten nützlich). **l** (oder **j** oder **q**): Bereich wie **wide()** in **expr** (mindestens 64 Bit). **z**/**t**: Bereich gemäß **pointerSize** in **tcl_platform**. **L**: Ganzzahl oder Gleitkomma ohne Kürzung. Fehlt der Modifikator: Ganzzahl auf 32-Bit-Bereich gekürzt.
+Fünfter Teil: Größenmodifikator **ll**, **h** oder **l**. **ll**: Ganzzahl ohne Kürzung. **h**: auf 16-Bit-Bereich kürzen (selten nützlich). **l**: Bereich wie **wide()** in [expr] (mindestens 64 Bit). Fehlen **h** und **l**: Bereich wie **int()** in [expr] (mindestens 32 Bit, bestimmt durch das Element **wordSize** des Arrays [tcl\_platform][tclvars]).
 
 ## Pflicht-Konvertierungstyp
 
@@ -83,7 +84,7 @@ Letztes Zeichen: Konvertierungsart:
 : Ganzzahl → vorzeichenbehafteter Dezimalstring.
 
 **u**
-: Ganzzahl → vorzeichenloser Dezimalstring.
+: Wandelt eine Ganzzahl in eine vorzeichenlose Dezimalzeichenkette um. Ohne Bezug auf einen Kürzungsbereich ist diese Umwandlung sinnlos; daher ist der Größenmodifikator **ll** zusammen mit dem Umwandlungszeichen **u** nicht erlaubt.
 
 **i**
 : wie **d**.
@@ -107,35 +108,29 @@ Letztes Zeichen: Konvertierungsart:
 : Zahl → Dezimalstring *xx.yyy*; Anzahl *y* durch Genauigkeit (Standard 6). Genauigkeit 0: kein Dezimalpunkt.
 
 **e** oder **E**
-: wissenschaftliche Notation *x.yyy*__e±__*zz*; *y*-Anzahl wie oben (Standard 6). **E** statt **e**.
+: wissenschaftliche Notation *x.yyy***e±***zz*; *y*-Anzahl wie oben (Standard 6). Genauigkeit 0: kein Dezimalpunkt. **E** statt **e**.
 
 **g** oder **G**
 : Exponent &lt; -4 oder ≥ Genauigkeit → wie **%e**/**%E**, sonst wie **%f**. Nachgestellte Nullen und Punkt am Ende weggelassen.
 
-**a** oder **A**
-: Gleitkomma hexadezimal *0x1.yyy*__p±__*zz* (Standard 13 *y*). **A**: Hex in Großbuchstaben.
-
 **%**
 : Literal **%**.
 
-**p**
-: Kurzform für **0x%zx** (Hex mit **0x**-Präfix).
 
-
-# UNTERSCHIEDE ZU ANSI SPRINTF
+# Unterschiede zu ANSI sprintf
 
 Wie **sprintf**, außer:
 
 1. Tcl arbeitet mit UNICODE-Zeichen.
 
-2. **%n** wird nicht unterstützt.
+2. Die Angaben **%p** und **%n** werden nicht unterstützt.
 
 3. Bei **%c** muss das Argument eine Ganzzahl sein (wird zum Zeichen).
 
-4. Größenmodifikatoren bei Gleitkomma werden ignoriert. **b** hat kein **sprintf**-Pendant.
+4. Größenmodifikatoren bei Gleitkomma werden ignoriert. **ll** hat kein **sprintf**-Pendant. **b** hat kein **sprintf**-Pendant.
 
 
-# BEISPIELE
+# Beispiele
 
 Numerischen Unicode-Wert in ein Zeichen:
 
@@ -144,7 +139,7 @@ set value 120
 set char [format %c $value]
 ```
 
-**time**-Ausgabe in Sekunden mit Hundertsteln:
+[time]-Ausgabe in Sekunden mit Hundertsteln:
 
 ```
 set us [lindex [time $someTclCode] 0]
@@ -158,7 +153,7 @@ X11-Farbspezifikation:
 set color [format "#%02x%02x%02x" $r $g $b]
 ```
 
-XPG3-Positionscodes für lokalisierte Meldungen (**msgcat**):
+XPG3-Positionscodes für lokalisierte Meldungen ([msgcat]), um Felder umzuordnen, ohne die an **format** übergebenen Werte umzuordnen:
 
 ```
 set fmt1 "Today, %d shares in %s were bought at $%.2f each"
@@ -191,3 +186,9 @@ for {set i 0} {$i<=20} {incr i} {
 # Finish off by printing the separator again
 puts $sep
 ```
+
+
+[expr]: expr.md
+[msgcat]: msgcat.md
+[tclvars]: tclvars.md
+[time]: time.md

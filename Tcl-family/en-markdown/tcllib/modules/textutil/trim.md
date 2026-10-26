@@ -1,5 +1,6 @@
 ---
 CommandName: textutil::trim
+title: textutil::trim
 ManualSection: n
 Version: 0.8
 TclPart: tcllib
@@ -23,13 +24,13 @@ textutil::trim - Procedures to trim strings
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [textutil::trim]{.lit} [0.8]{.optlit} 
-[::textutil::trim::trim]{.cmd} [string]{.arg} [regexp]{.optarg} 
-[::textutil::trim::trimleft]{.cmd} [string]{.arg} [regexp]{.optarg} 
-[::textutil::trim::trimright]{.cmd} [string]{.arg} [regexp]{.optarg} 
-[::textutil::trim::trimPrefix]{.cmd} [string]{.arg} [prefix]{.arg} 
-[::textutil::trim::trimEmptyHeading]{.cmd} [string]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [textutil::trim]{.lit} [0.8]{.optlit}
+[::textutil::trim::trim]{.cmd} [string]{.arg} [regexp]{.optarg}
+[::textutil::trim::trimleft]{.cmd} [string]{.arg} [regexp]{.optarg}
+[::textutil::trim::trimright]{.cmd} [string]{.arg} [regexp]{.optarg}
+[::textutil::trim::trimPrefix]{.cmd} [string]{.arg} [prefix]{.arg}
+[::textutil::trim::trimEmptyHeading]{.cmd} [string]{.arg}
 :::
 
 # Description
@@ -38,7 +39,7 @@ The **textutil::trim** package provides commands that trim strings in various wa
 
 To trim strings of sets of characters (such as whitespace), use the built-in [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html) command’s **trim**, **trimleft**, **trimright** subcommands.
 
-# Api
+# API
 
 **::textutil::trim::trim** *string* ?*regexp*?
 : Returns a copy of *string* with any leading or trailing substring that matches *regexp* removed from the *string* if does not contain newlines, or from *every line* within the *string* if it contains newlines. The *regexp* defaults to *\[ \\t\]+*. This default will remove leading and trailing spaces and tabs from the *string* if it does not contain newlines, or from *every line* within the *string* if it contains newlines.
@@ -50,7 +51,9 @@ To trim strings of sets of characters (such as whitespace), use the built-in [st
 : Returns a copy of *string* with any trailing substring that matches *regexp* removed from the *string* if does not contain newlines, or from *every line* within the *string* if it contains newlines. The *regexp* defaults to *\[ \\t\]+*. This default will remove trailing spaces and tabs from the *string* if it does not contain newlines, or from *every line* within the *string* if it contains newlines.
 
 **::textutil::trim::trimPrefix** *string* *prefix*
-: Returns a copy of *string* with *prefix* removed from the start if it is present; otherwise returns *string* unchanged. Contrast this command with the built-in [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html) command’s **trim**, **trimleft**, **trimright** subcommands which remove all characters in a given set of characters passed as a string.
+: Returns a copy of *string* with *prefix* removed from the start if it is present; otherwise returns *string* unchanged.
+
+    Contrast this command with the built-in [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html) command’s **trim**, **trimleft**, **trimright** subcommands which remove all characters in a given set of characters passed as a string.
 
 **::textutil::trim::trimEmptyHeading** *string*
 : Returns a copy of *string* with any leading blank lines (including lines containing only whitespace) removed.

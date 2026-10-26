@@ -1,5 +1,6 @@
 ---
 CommandName: multiplexer
+title: multiplexer
 ManualSection: n
 Version: 0.3
 TclPart: tcllib
@@ -17,18 +18,18 @@ multiplexer - One-to-many communication with sockets.
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [logger]{.lit} 
-[package]{.cmd} [require]{.sub} [multiplexer]{.lit} [0.3]{.optlit} 
-[::multiplexer::create]{.cmd} 
-[\$]{.cmd} { [multiplexer_instance]{.lit} } [::Init]{.lit} [port]{.arg} 
-[\$]{.cmd} { [multiplexer_instance]{.lit} } [::Config]{.lit} [key]{.arg} [value]{.arg} 
-[\$]{.cmd} { [multiplexer_instance]{.lit} } [::AddFilter]{.lit} [cmdprefix]{.arg} 
-[cmdprefix]{.cmd} [data]{.arg} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg} 
-[\$]{.cmd} { [multiplexer_instance]{.lit} } [::AddAccessFilter]{.lit} [cmdprefix]{.arg} 
-[cmdprefix]{.cmd} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg} 
-[\$]{.cmd} { [multiplexer_instance]{.lit} } [::AddExitFilter]{.lit} [cmdprefix]{.arg} 
-[cmdprefix]{.cmd} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [logger]{.lit}
+[package]{.cmd} [require]{.sub} [multiplexer]{.lit} [0.3]{.optlit}
+[::multiplexer::create]{.cmd}
+[${multiplexer\_instance}::Init]{.cmd} [port]{.arg}
+[${multiplexer\_instance}::Config]{.cmd} [key]{.arg} [value]{.arg}
+[${multiplexer\_instance}::AddFilter]{.cmd} [cmdprefix]{.arg}
+[cmdprefix]{.cmd} [data]{.arg} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg}
+[${multiplexer\_instance}::AddAccessFilter]{.cmd} [cmdprefix]{.arg}
+[cmdprefix]{.cmd} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg}
+[${multiplexer\_instance}::AddExitFilter]{.cmd} [cmdprefix]{.arg}
+[cmdprefix]{.cmd} [chan]{.arg} [clientaddress]{.arg} [clientport]{.arg}
 :::
 
 # Description
@@ -40,54 +41,49 @@ It is possible to have different multiplexers running concurrently.
 **::multiplexer::create**
 : The **create** command creates a new multiplexer 'instance'.  For example:
 
+    ```
+    set mp [::multiplexer::create]
+    ```
 
-```
-set mp [::multiplexer::create]
-```
+    This instance can then be manipulated like so:
 
-: This instance can then be manipulated like so:
+    ```
+    ${mp}::Init 35100
+    ```
 
-
-```
-${mp}::Init 35100
-```
-
-**\${multiplexer_instance}::Init** *port*
+**${multiplexer\_instance}::Init** *port*
 : This starts the multiplexer listening on the specified port.
 
-**\${multiplexer_instance}::Config** *key* *value*
+**${multiplexer\_instance}::Config** *key* *value*
 : Use **Config** to configure the multiplexer instance.  Configuration options currently include:
 
+    **sendtoorigin**
+    : A boolean flag. If **true**, the sender will receive a copy of the sent message.  Defaults to **false**.
 
-**sendtoorigin**
-: A boolean flag. If **true**, the sender will receive a copy of the sent message.  Defaults to **false**.
-
-**debuglevel**
-: Sets the debug level to use for the multiplexer instance, according to those specified by the **logger** package (debug, info, notice, warn, error, critical).
+    **debuglevel**
+    : Sets the debug level to use for the multiplexer instance, according to those specified by the **logger** package (debug, info, notice, warn, error, critical).
 
 
-**\${multiplexer_instance}::AddFilter** *cmdprefix*
+**${multiplexer\_instance}::AddFilter** *cmdprefix*
 : Command to add a filter for data that passes through the multiplexer instance. The registered *cmdprefix* is called when data arrives at a multiplexer instance. If there is more than one filter command registered at the instance they will be called in the order of registristation, and each filter will get the result of the preceding filter as its argument. The first filter gets the incoming data as its argument. The result returned by the last filter is the data which will be broadcast to all clients of the multiplexer instance. The command prefix is called as
 
+    **cmdprefix** *data* *chan* *clientaddress* *clientport*
+    : Takes the incoming *data*, modifies it, and returns that as its result. The last three arguments contain information about the client which sent the data to filter: The channel connecting us to the client, its ip-address, and its ip-port.
 
-**cmdprefix** *data* *chan* *clientaddress* *clientport*
-: Takes the incoming *data*, modifies it, and returns that as its result. The last three arguments contain information about the client which sent the data to filter: The channel connecting us to the client, its ip-address, and its ip-port.
 
-
-**\${multiplexer_instance}::AddAccessFilter** *cmdprefix*
+**${multiplexer\_instance}::AddAccessFilter** *cmdprefix*
 : Command to add an access filter. The registered *cmdprefix* is called when a new client socket tries to connect to the multixer instance. If there is more than one access filter command registered at the instance they will be called in the order of registristation. If any of the called commands returns **-1** the access to the multiplexer instance is denied and the client channel is closed immediately. Any other result grants the client access to the multiplexer instance. The command prefix is called as
 
+    **cmdprefix** *chan* *clientaddress* *clientport*
+    : The arguments contain information about the client which tries to connected to the instance: The channel connecting us to the client, its ip-address, and its ip-port.
 
-**cmdprefix** *chan* *clientaddress* *clientport*
-: The arguments contain information about the client which tries to connected to the instance: The channel connecting us to the client, its ip-address, and its ip-port.
 
-
-**\${multiplexer_instance}::AddExitFilter** *cmdprefix*
+**${multiplexer\_instance}::AddExitFilter** *cmdprefix*
 : Adds filter to be run when client socket generates an EOF condition. The registered *cmdprefix* is called when a client socket of the multixer signals EOF. If there is more than one exit filter command registered at the instance they will be called in the order of registristation. Errors thrown by an exit filter are ignored, but logged. Any result returned by an exit filter is ignored. The command prefix is called as
 
+    **cmdprefix** *chan* *clientaddress* *clientport*
+    : The arguments contain information about the client which signaled the EOF: The channel connecting us to the client, its ip-address, and its ip-port.
 
-**cmdprefix** *chan* *clientaddress* *clientport*
-: The arguments contain information about the client which signaled the EOF: The channel connecting us to the client, its ip-address, and its ip-port.
 
 
 # Bugs, ideas, feedback

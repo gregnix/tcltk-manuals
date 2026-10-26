@@ -1,5 +1,6 @@
 ---
 CommandName: tcl::transform::counter
+title: tcl::transform::counter
 ManualSection: n
 Version: 1.1
 TclPart: tcllib
@@ -22,10 +23,10 @@ tcl::transform::counter - Counter transformation
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit} 
-[package]{.cmd} [require]{.sub} [tcl::transform::counter]{.lit} [1.1]{.optlit} 
-[::tcl::transform::counter]{.cmd} [chan]{.arg} [-option]{.lit} [value...]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.6]{.lit} [9]{.lit}
+[package]{.cmd} [require]{.sub} [tcl::transform::core]{.lit} [1.1]{.optlit}
+[package]{.cmd} [require]{.sub} [tcl::transform::counter]{.lit} [1.1]{.optlit}
+[::tcl::transform::counter]{.cmd} [chan]{.arg} [-option]{.lit} [value...]{.arg}
 :::
 
 # Description
@@ -36,17 +37,21 @@ Related transformations in this module are **tcl::transform::adler32**, **tcl::t
 
 The internal **TclOO** class implementing the transform handler is a sub-class of the **tcl::transform::core** framework.
 
-# Api
+# API
 
 **::tcl::transform::counter** *chan* **-option** *value*...
 : This command creates a counter transformation on top of the channel *chan* and returns its handle. The accepted options are
 
+    **-read-variable** varname
+    : The value of the option is the name of a global or namespaced variable, the location where the transformation has to store the byte count of the data read from the channel.
 
-**-read-variable** varname
-: The value of the option is the name of a global or namespaced variable, the location where the transformation has to store the byte count of the data read from the channel. If not specified, or the empty string, the counter of the read direction is not saved.
+        If not specified, or the empty string, the counter of the read direction is not saved.
 
-**-write-variable** varname
-: The value of the option is the name of a global or namespaced variable, the location where the transformation has to store the byte count of the data written to the channel. If not specified, or the empty string, the counter of the write direction is not saved.
+    **-write-variable** varname
+    : The value of the option is the name of a global or namespaced variable, the location where the transformation has to store the byte count of the data written to the channel.
+
+        If not specified, or the empty string, the counter of the write direction is not saved.
+
 
 
 # Bugs, ideas, feedback

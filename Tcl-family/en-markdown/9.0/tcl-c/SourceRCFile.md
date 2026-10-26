@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_SourceRCFile
+title: Tcl_SourceRCFile
 ManualSection: 3
 Version: 8.3
 TclPart: Tcl
@@ -10,27 +11,33 @@ Keywords:
  - rc file
 Copyright:
  - Copyright (c) 1998-2000 Scriptics Corporation.
- - All rights reserved.
 ---
 
 # Name
 
-Tcl_SourceRCFile - source the Tcl rc file
+Tcl\_SourceRCFile - source the Tcl rc file
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-[Tcl_SourceRCFile]{.cmd}([interp]{.arg})
+**#include <tcl.h>**
+[Tcl\_SourceRCFile]{.ccmd} [interp]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Tcl interpreter to source rc file into.
 
+:::
 
 # Description
 
-**Tcl_SourceRCFile** is used to source the Tcl rc file at startup. It is typically invoked by Tcl_Main or Tk_Main.  The name of the file sourced is obtained from the global variable **tcl_rcFileName** in the interpreter given by *interp*.  If this variable is not defined, or if the file it indicates cannot be found, no action is taken.
+**Tcl\_SourceRCFile** is used to source the Tcl rc file at startup. It is typically invoked by [Tcl\_Main][Tcl_Main] or [Tk\_Main][Tk_Main].  The name of the file sourced is obtained from the global variable [tcl\_rcFileName][tclvars] in the interpreter given by *interp*.  If this variable is not defined, or if the file it indicates cannot be found, no action is taken.
+
+
+[Tcl_Main]: Tcl_Main.md
+[tclvars]: ../tcl/tclvars.md
+[Tk_Main]: ../tk-c/Tk_Main.md

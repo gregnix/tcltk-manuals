@@ -1,5 +1,6 @@
 ---
 CommandName: Tcl_CreateTimerHandler
+title: Tcl_CreateTimerHandler
 ManualSection: 3
 Version: 7.5
 TclPart: Tcl
@@ -20,45 +21,49 @@ Copyright:
 
 # Name
 
-Tcl_CreateTimerHandler, Tcl_DeleteTimerHandler - call a procedure at a given time
+Tcl\_CreateTimerHandler, Tcl\_DeleteTimerHandler - call a procedure at a given time
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tcl.h>]{.lit}
-
-Tcl_TimerToken
-[Tcl_CreateTimerHandler]{.cmd}([milliseconds]{.arg}, [proc]{.arg}, [clientData]{.arg})
-
-[Tcl_DeleteTimerHandler]{.cmd}([token]{.arg})
+**#include <tcl.h>**
+[Tcl\_TimerToken]{.ret} [Tcl\_CreateTimerHandler]{.ccmd} [milliseconds, proc, clientData]{.cargs}
+[Tcl\_DeleteTimerHandler]{.ccmd} [token]{.cargs}
 :::
 
 # Arguments
 
-int *milliseconds* (in)
+::: {.arguments} :::
+
+[milliseconds]{.carg .in type="int"}
 : How many milliseconds to wait before invoking *proc*.
 
-Tcl_TimerProc *\*proc* (in)
+[\*proc]{.carg .in type="Tcl_TimerProc"}
 : Procedure to invoke after *milliseconds* have elapsed.
 
-ClientData *clientData* (in)
+[clientData]{.carg .in type="ClientData"}
 : Arbitrary one-word value to pass to *proc*.
 
-Tcl_TimerToken *token* (in)
-: Token for previously created timer handler (the return value from some previous call to **Tcl_CreateTimerHandler**).
+[token]{.carg .in type="Tcl_TimerToken"}
+: Token for previously created timer handler (the return value from some previous call to **Tcl\_CreateTimerHandler**).
 
+:::
 
 # Description
 
-**Tcl_CreateTimerHandler** arranges for *proc* to be invoked at a time *milliseconds* milliseconds in the future. The callback to *proc* will be made by **Tcl_DoOneEvent**, so **Tcl_CreateTimerHandler** is only useful in programs that dispatch events through **Tcl_DoOneEvent** or through Tcl commands such as **vwait**. The call to *proc* may not be made at the exact time given by *milliseconds*:  it will be made at the next opportunity after that time.  For example, if **Tcl_DoOneEvent** is not called until long after the time has elapsed, or if there are other pending events to process before the call to *proc*, then the call to *proc* will be delayed.
+**Tcl\_CreateTimerHandler** arranges for *proc* to be invoked at a time *milliseconds* milliseconds in the future. The callback to *proc* will be made by [Tcl\_DoOneEvent][DoOneEvent], so **Tcl\_CreateTimerHandler** is only useful in programs that dispatch events through [Tcl\_DoOneEvent][DoOneEvent] or through Tcl commands such as [vwait]. The call to *proc* may not be made at the exact time given by *milliseconds*:  it will be made at the next opportunity after that time.  For example, if [Tcl\_DoOneEvent][DoOneEvent] is not called until long after the time has elapsed, or if there are other pending events to process before the call to *proc*, then the call to *proc* will be delayed.
 
-*Proc* should have arguments and return value that match the type **Tcl_TimerProc**:
+*Proc* should have arguments and return value that match the type **Tcl\_TimerProc**:
 
 ```
 typedef void Tcl_TimerProc(
         ClientData clientData);
 ```
 
-The *clientData* parameter to *proc* is a copy of the *clientData* argument given to **Tcl_CreateTimerHandler** when the callback was created.  Typically, *clientData* points to a data structure containing application-specific information about what to do in *proc*.
+The *clientData* parameter to *proc* is a copy of the *clientData* argument given to **Tcl\_CreateTimerHandler** when the callback was created.  Typically, *clientData* points to a data structure containing application-specific information about what to do in *proc*.
 
-**Tcl_DeleteTimerHandler** may be called to delete a previously created timer handler.  It deletes the handler indicated by *token* so that no call to *proc* will be made;  if that handler no longer exists (e.g. because the time period has already elapsed and *proc* has been invoked then **Tcl_DeleteTimerHandler** does nothing. The tokens returned by **Tcl_CreateTimerHandler** never have a value of NULL, so if NULL is passed to **Tcl_DeleteTimerHandler** then the procedure does nothing.
+**Tcl\_DeleteTimerHandler** may be called to delete a previously created timer handler.  It deletes the handler indicated by *token* so that no call to *proc* will be made;  if that handler no longer exists (e.g. because the time period has already elapsed and *proc* has been invoked then **Tcl\_DeleteTimerHandler** does nothing. The tokens returned by **Tcl\_CreateTimerHandler** never have a value of NULL, so if NULL is passed to **Tcl\_DeleteTimerHandler** then the procedure does nothing.
+
+
+[DoOneEvent]: DoOneEvent.md
+[vwait]: ../tcl/vwait.md

@@ -1,5 +1,6 @@
 ---
 CommandName: pt::peg::from::container
+title: pt::peg::from::container
 ManualSection: n
 Version: 0
 TclPart: tcllib
@@ -32,7 +33,7 @@ pt::peg::from::container - PEG Conversion. From CONTAINER format
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 :::
 
 # Description

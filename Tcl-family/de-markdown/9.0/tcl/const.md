@@ -1,5 +1,6 @@
 ---
 CommandName: const
+title: const
 ManualSection: n
 Version: 9.0
 TclPart: Tcl
@@ -18,27 +19,27 @@ Copyright:
  - Copyright (c) 2023 Donal K. Fellows
 ---
 
-# NAME
+# Name
 
 const - Konstante erzeugen und initialisieren
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[const]{.cmd} [varName]{.arg} [value]{.arg} 
+[const]{.cmd} [varName]{.arg} [value]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl wird üblicherweise im Körper einer Prozedur (oder Methode, oder in einem Lambda-Term) verwendet, um dort eine Konstante anzulegen, oder im Körper von **namespace eval**, um eine Konstante im Namespace zu erzeugen. Die Konstante ist eine nicht veränderbare Variable *varName*, initialisiert mit *value*. Bei Erfolg liefert **const** stets einen leeren String.
+Der Befehl wird üblicherweise im Körper einer Prozedur (oder Methode, oder in einem Lambda-Term) verwendet, um dort eine Konstante anzulegen, oder im Körper von [namespace eval][namespace], um eine Konstante im Namespace zu erzeugen. Die Konstante ist eine nicht veränderbare Variable *varName*, initialisiert mit *value*. Bei Erfolg liefert **const** stets einen leeren String.
 
-Existiert *varName* noch nicht, wird sie mit Wert *value* erzeugt und als Konstante markiert: andere Befehle (**set**, **append**, **incr**, **unset**) dürfen die Variable weder ändern noch entfernen; vor Traces wird geprüft, ob eine Variable Konstante ist. Existiert *varName* bereits, ist das ein Fehler — außer die Variable ist bereits als Konstante markiert (dann ist **const** eine No-Op).
+Existiert *varName* noch nicht, wird sie mit Wert *value* erzeugt und als Konstante markiert: andere Befehle ([set], [append], [incr], [unset]) dürfen die Variable weder ändern noch entfernen; vor Traces wird geprüft, ob eine Variable Konstante ist. Existiert *varName* bereits, ist das ein Fehler — außer die Variable ist bereits als Konstante markiert (dann ist **const** eine No-Op).
 
 *varName* darf kein qualifizierter Name sein und darf kein Array-Element bezeichnen. Existiert die Variable bereits als Array, ist das ein Fehler.
 
 Konstanten werden normalerweise erst entfernt, wenn die umgebende Prozedur endet oder der Namespace gelöscht wird.
 
-# BEISPIELE
+# Beispiele
 
 Konstante in einer Prozedur:
 
@@ -78,3 +79,10 @@ proc foo {n} {
     }
 }
 ```
+
+
+[append]: append.md
+[incr]: incr.md
+[namespace]: namespace.md
+[set]: set.md
+[unset]: unset.md

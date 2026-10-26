@@ -1,5 +1,6 @@
 ---
 CommandName: canvas::gradient
+title: canvas::gradient
 ManualSection: n
 Version: 0.2
 TclPart: tklib
@@ -25,10 +26,10 @@ canvas::gradient - Canvas with a gradient background
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit} 
-[package]{.cmd} [require]{.sub} [canvas::gradient]{.lit} [0.2]{.optlit} 
-[::canvas::gradient]{.cmd} [pathName]{.arg} [options?]{.optdot} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [Tk]{.lit} [8.5]{.lit}
+[package]{.cmd} [require]{.sub} [canvas::gradient]{.lit} [0.2]{.optlit}
+[::canvas::gradient]{.cmd} [pathName]{.arg} ?options?...
 :::
 
 # Description
@@ -37,10 +38,12 @@ This package provides a command to set background gradients on canvases.
 
 *NOTE!* This package reserves the canvas tag **canvas::gradient** for its use.
 
-# Api
+# API
 
 **::canvas::gradient** *pathName* ?options?...
-: Creates a background gradient on the canvas *pathName*. An existing gradient is replaced by the new definition. The set of available options is decribed below, in section **Options**.
+: Creates a background gradient on the canvas *pathName*. An existing gradient is replaced by the new definition.
+
+    The set of available options is decribed below, in section [Options].
 
 
 ## Options
@@ -48,21 +51,20 @@ This package provides a command to set background gradients on canvases.
 **-direction** *direction*
 : The value for this option specifies the *direction* of the gradient. If not specified the system defaults to **x**, a horizontal gradient. The package supports five directions:
 
+    **x**
+    : for a horizontal gradient (default). Color changes along the x-axis, with the start color at the left.
 
-**x**
-: for a horizontal gradient (default). Color changes along the x-axis, with the start color at the left.
+    **y**
+    : for a vertical gradient. Color changes along the y-axis, with the start color at the top.
 
-**y**
-: for a vertical gradient. Color changes along the y-axis, with the start color at the top.
+    **d1**
+    : for a diagonal gradient from left+top to bottom+right. Color changes along the diagonal. with the start color at left+top.
 
-**d1**
-: for a diagonal gradient from left+top to bottom+right. Color changes along the diagonal. with the start color at left+top.
+    **d2**
+    : for a diagonal gradient from left+bottom to top+right. Color changes along the diagonal. with the start color at left+bottom.
 
-**d2**
-: for a diagonal gradient from left+bottom to top+right. Color changes along the diagonal. with the start color at left+bottom.
-
-**r**
-: for a radial gradient around the center of the viewport Color changes from the center outward, with the start color at the center.
+    **r**
+    : for a radial gradient around the center of the viewport Color changes from the center outward, with the start color at the center.
 
 
 **-color1** *color*
@@ -74,9 +76,9 @@ This package provides a command to set background gradients on canvases.
 **-type** *type*
 : The value for this option specifies how the gradient is calculated. The package currently supports on ly one method, which is the default, naturally:
 
+    **linear**
+    : for linear interpolation between the start and end colors (default).
 
-**linear**
-: for linear interpolation between the start and end colors (default).
 
 
 # Example
