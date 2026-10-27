@@ -36,6 +36,14 @@ Sprüngen, manche Betrachter im Browser nicht.
 Die Seiten im Format TIP 700 tragen im YAML-Kopf Befehlsname, Abschnitt,
 Stichwörter und die Copyright-Angaben des Originals.
 
+Die Markdown-Seiten orientieren sich am Format von TIP 700, das auch
+`man2markdown.tcl` aus den Tcl-Quellen verwendet. Die Umwandlung erfolgte
+mit `n2md` aus dem Projekt [man-viewer](https://github.com/gregnix/man-viewer).
+Dieses unabhängig entwickelte Werkzeug unterstützt neben Tcl/Tk 9 auch
+Tcl/Tk 8.6, Tcllib, Tklib und weitere Erweiterungen. `n2md` ist als
+ergänzendes Werkzeug gedacht und erhebt nicht den Anspruch,
+`man2markdown.tcl` zu ersetzen.
+
 ## Lizenzen
 
 Jeder Teil steht unter der Lizenz seines Originals; die deutschen
