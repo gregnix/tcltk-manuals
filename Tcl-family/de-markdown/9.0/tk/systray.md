@@ -20,7 +20,7 @@ systray - Erzeugt ein Symbol in der plattformspezifischen Systemleiste
 
 ::: {.synopsis} :::
 [tk]{.cmd} [systray]{.sub} [create]{.lit} [-image]{.lit} [image]{.arg} [[-text]{.lit} [text]{.arg}]{.optarg} [[-button1]{.lit} [callback]{.arg}]{.optarg} [[-button3]{.lit} [callback]{.arg}]{.optarg}
-[tk]{.cmd} [systray]{.sub} [configure]{.lit} [?option?]{.arg} ?value option value ...?
+[tk]{.cmd} [systray]{.sub} [configure]{.lit} [?option?]{.arg} [value option value]{.optdot}
 [tk]{.cmd} [systray]{.sub} [exists]{.lit}
 [tk]{.cmd} [systray]{.sub} [destroy]{.lit}
 :::

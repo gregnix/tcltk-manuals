@@ -1,5 +1,6 @@
 ---
 CommandName: vfs
+title: vfs
 ManualSection: n
 Version: 1.4
 TclPart: Vfs
@@ -19,28 +20,20 @@ Copyright:
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-
-[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.4]{.optlit} 
-
-[vfs::filesystem]{.cmd} [info]{.arg} 
-
-[vfs::filesystem]{.cmd} [mount]{.arg} 
-
-[vfs::filesystem]{.cmd} [unmount]{.arg} 
-
-[vfs::accessMode]{.cmd} [mode]{.arg} 
-
-[vfs::matchDirectories]{.cmd} [types]{.arg} 
-
-[vfs::matchFiles]{.cmd} [types]{.arg} 
-
-[vfs::matchCorrectTypes]{.cmd} [types]{.arg} [filelist]{.arg} [inDir]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.4]{.optlit}
+[vfs::filesystem]{.cmd} [info]{.arg}
+[vfs::filesystem]{.cmd} [mount]{.arg}
+[vfs::filesystem]{.cmd} [unmount]{.arg}
+[vfs::accessMode]{.cmd} [mode]{.arg}
+[vfs::matchDirectories]{.cmd} [types]{.arg}
+[vfs::matchFiles]{.cmd} [types]{.arg}
+[vfs::matchCorrectTypes]{.cmd} [types]{.arg} [filelist]{.arg} [inDir]{.optarg}
 :::
 
 # Description
 
-The **::vfs** package provides commands to query, mount and unmount virtual filesystems, and provides as Tcl libraries some facilities for helping the writing of new virtual filesystems in Tcl.  Once a virtual filesystem is in place, the standard Tcl **file**, **glob**, **cd**, **pwd**, **open** commands, including all their C APIs in the Tcl library (e.g. **Tcl_FSOpenFileChannel**, **Tcl_FSMatchInDirectory**,...), can be used within the filesystem (and indeed, properly written extensions such as Tk which may open or read files will also transparently access the virtual filesystem). Because all of Tcl's FS activity passes through a single layer, it can all be intercepted.  This package does just that.  Notice that this is quite different to overloading the **file** command in Tcl.  We are actually providing vfs replacements for C commands like **access**, **stat**.  By implementing just a handful of commands at this low level, we ensure that all commands at higher levels function irrespective of what is going on inside the FS layer.
+The **::vfs** package provides commands to query, mount and unmount virtual filesystems, and provides as Tcl libraries some facilities for helping the writing of new virtual filesystems in Tcl.  Once a virtual filesystem is in place, the standard Tcl **file**, **glob**, **cd**, **pwd**, **open** commands, including all their C APIs in the Tcl library (e.g. **Tcl\_FSOpenFileChannel**, **Tcl\_FSMatchInDirectory**,...), can be used within the filesystem (and indeed, properly written extensions such as Tk which may open or read files will also transparently access the virtual filesystem). Because all of Tcl's FS activity passes through a single layer, it can all be intercepted.  This package does just that.  Notice that this is quite different to overloading the **file** command in Tcl.  We are actually providing vfs replacements for C commands like **access**, **stat**.  By implementing just a handful of commands at this low level, we ensure that all commands at higher levels function irrespective of what is going on inside the FS layer.
 
 Tcl's filesystem hooks operate on a per-process basis.  This means every Tcl interpreter in the same process/application sees the same filesystem, including any virtual filesystems.
 
@@ -61,22 +54,22 @@ There are three somewhat unsupported subcommands of **vfs::filesystem**, **fully
 : Performs a full expansion of *path*, (as per 'file normalize'), but including following any links in the last element of path.
 
 
-# Implementing a tcl only vfs
+# Implementing a Tcl only vfs
 
-The vfs package will intercept every filesystem operation which falls within a given mount point, and pass the operation on to the mount point's *command* in the interpreter which registered it. In general this occurs by the C equivalent of an evaluation like this: *eval \$command \[list \$subcmd \$root \$relative \$actualpath\] \$args*.
+The vfs package will intercept every filesystem operation which falls within a given mount point, and pass the operation on to the mount point's *command* in the interpreter which registered it. In general this occurs by the C equivalent of an evaluation like this: *eval $command \[list $subcmd $root $relative $actualpath\] $args*.
 
 Here *subcmd* may be any of the following: *access*, *createdirectory*, *deletefile*, *fileattributes*, *matchindirectory*, *open*, *removedirectory*, *stat*, *utime*. If *command* takes appropriate action for each of these cases, a complete, perfect virtual filesystem will be achieved, indistinguishable to Tcl from the native filesystem.  (CAVEATS: right now I don't expose to Tcl all the permission-related flags of 'glob').
 
-The remaining arguments specify a file path on which to operate (all commands operate on one of these), and any additional arguments which may be required to carry out the action.  The file path is specified by three arguments: *root* is the part of the path which lies outside this filesystem's mount point, *relative* is the part of the path which lies inside this filesytem, and *actualpath* is the original (unnormalized) name of the path which was used in the current command wherever it originated (in Tcl or C).  For example, if *C:/foo/bar/mount.zip/xxx/yyy* is a path in your filesystem, where *mount.zip* is a zip archive which has been mounted (on top of itself) and contains *xxx/yyy*, and the current working directory is inside *xxx*, and we evaluate a command like *file exists yyy*, then *root*\\*R will be C:/foo/bar/mount.zip*, *relative* will be *xxx/yyy*, and *actualpath* will be *yyy*. The file separator between the *root* and *relative* is omitted.
+The remaining arguments specify a file path on which to operate (all commands operate on one of these), and any additional arguments which may be required to carry out the action.  The file path is specified by three arguments: *root* is the part of the path which lies outside this filesystem's mount point, *relative* is the part of the path which lies inside this filesytem, and *actualpath* is the original (unnormalized) name of the path which was used in the current command wherever it originated (in Tcl or C).  For example, if *C:/foo/bar/mount.zip/xxx/yyy* is a path in your filesystem, where *mount.zip* is a zip archive which has been mounted (on top of itself) and contains *xxx/yyy*, and the current working directory is inside *xxx*, and we evaluate a command like *file exists yyy*, then *root\\R will be C:/foo/bar/mount.zip*, *relative* will be *xxx/yyy*, and *actualpath* will be *yyy*. The file separator between the *root* and *relative* is omitted.
 
 Note that most filesystem operations will only require the *relative* argument to work correctly, but the other arguments are actually required for correct operation of some subcommands.
 
-Almost all of these commands should either return correctly (i.e. with a TCL_OK result at the C level) or they should use vfs::filesystem posixerror to signal the appropriate posix error code.  If a Tcl error is thrown, that should be considered a bug, but it will be interpreted as an unknown posix error in the filesystem call.  The exceptions to these rules are those filesystem commands which are able to specify a Tcl error message directly: open (when an interpreter is given), matchindirectory and fileattributes (for a set or get operation only).  These three commands are allowed to throw any Tcl error message which will be passed along to the caller, or they may throw a posix error which will be handled appropriately.
+Almost all of these commands should either return correctly (i.e. with a TCL\_OK result at the C level) or they should use vfs::filesystem posixerror to signal the appropriate posix error code.  If a Tcl error is thrown, that should be considered a bug, but it will be interpreted as an unknown posix error in the filesystem call.  The exceptions to these rules are those filesystem commands which are able to specify a Tcl error message directly: open (when an interpreter is given), matchindirectory and fileattributes (for a set or get operation only).  These three commands are allowed to throw any Tcl error message which will be passed along to the caller, or they may throw a posix error which will be handled appropriately.
 
 The actual commands are as follows (where *r-r-a* represents the standard argument triplet of *root*, *relative* and *actualpath*):
 
 *command* *access* *r-r-a* *mode*
-: Return TCL_OK or throw a posix error depending on whether the given access mode (which is an integer) is compatible with the file.
+: Return TCL\_OK or throw a posix error depending on whether the given access mode (which is an integer) is compatible with the file.
 
 *command* *createdirectory* *r-r-a*
 : Create a directory with the given name.  The command can assume that all sub-directories in the path exist and are valid, and that the actual desired path does not yet exist (Tcl takes care of all of that for us).
@@ -122,7 +115,7 @@ The vfslib provides a number of Tcl procedures which can help with writing comma
 
 # Vfs debugging
 
-Use something like this to debug problems in your implementation: vfs::filesystem internalerror report ; proc report {} { puts stderr \$::errorInfo }
+Use something like this to debug problems in your implementation: vfs::filesystem internalerror report ; proc report {} { puts stderr $::errorInfo }
 
 # Limitations
 
@@ -130,4 +123,4 @@ There are very few limitations to the vfs code.  One subtlety that you may encou
 
 We may add *link* and *lstat* commands in the future to allow virtual filesystems to support reading and writing links - this is supported by the C API, but has simply not been exposed to Tcl in this extension, yet.
 
-The Tcl 'Tcl_FSMatchInDirectory' function takes a variety of type information in a Tcl_GlobTypeData structure.  We currently only expose the 'type' field from that structure (so the 'permissions' and MacOS type/creator fields are ignored).
+The Tcl 'Tcl\_FSMatchInDirectory' function takes a variety of type information in a Tcl\_GlobTypeData structure.  We currently only expose the 'type' field from that structure (so the 'permissions' and MacOS type/creator fields are ignored).

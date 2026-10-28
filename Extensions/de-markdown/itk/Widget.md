@@ -1,9 +1,10 @@
 ---
 CommandName: Widget
+title: Widget
 ManualSection: n
 Version: 3.0
 TclPart: itk
-TclDescription: "[incr\\ Tk]"
+TclDescription: "[incr Tk]"
 Keywords:
  - itk
  - Archetype
@@ -13,40 +14,35 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-
-# NAME
+# Name
 
 Widget - Basisklasse für Megawidgets innerhalb eines Frames
 
-# VERERBUNG
+# Vererbung
 
 itk::Archetype <- itk::Widget
 
-# STANDARDOPTIONEN
+# Standardoptionen
 
 ```
-background cursor
+background	cursor
 ```
 
 Einzelheiten zu den Standardoptionen stehen im Handbuchabschnitt „options“.
 
-# BESCHREIBUNG
+# Beschreibung
 
-Die Klasse **Widget** erbt alles von der Klasse **Archetype** und fügt einen Tk-Frame namens Komponente „hull“ hinzu, der den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
+Die Klasse **Widget** erbt alles von der Klasse [Archetype] und fügt einen Tk-Frame namens Komponente „hull“ hinzu, der den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk\_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
 
 Da der Hull der Klasse **Widget** mit einem Tk-Frame umgesetzt ist, lassen sich Megawidgets der Klasse **Widget** in andere Frames und Toplevel-Fenster packen.
 
-# KOMPONENTEN
+# Komponenten
 
-```
-Name:           hull
-Class:          Frame
-```
-
+**hull** (**Frame**)
 : Die Komponente „hull“ dient als Rumpf des gesamten Megawidgets. Weitere Komponenten werden in den Hull gepackt, um das Widget weiter zu spezialisieren.
 
 
-# BEISPIEL
+# Beispiel
 
 Das folgende Beispiel setzt ein einfaches Megawidget **TextDisplay** um. Es erzeugt eine nur lesbare Anzeige von Text mit einem Text-Widget und einem Rollbalken.
 
@@ -107,10 +103,13 @@ itk::usual TextDisplay {
 }
 
 #
-# BEISPIEL: Die Datei /etc/passwd anzeigen
+# EXAMPLE:  Display the /etc/passwd file
 #
 TextDisplay .file -background red
 pack .file
 
 .file display [exec cat /etc/passwd]
 ```
+
+
+[Archetype]: Archetype.md

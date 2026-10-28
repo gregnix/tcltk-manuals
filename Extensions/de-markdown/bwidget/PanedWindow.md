@@ -13,11 +13,11 @@
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -activator |   -pad |
-|   -side |   -weights |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -activator |   -pad |
+    |   -side |   -weights |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -67,13 +67,11 @@ WIDGET-BEFEHL
 *pathName* **add** ?*option value...*? 
 : Dieser Befehl fügt eine neue Teilfläche hinzu. Die neue Teilfläche wird bei senkrechter Anordnung unter die vorherige Teilfläche gelegt und bei waagerechter Anordnung rechts davon. Dieser Befehl gibt einen Rahmen zurück, in den das Widget gelegt werden kann. Gültige Optionen sind:
 
-**-minsize**
-:  Legt die verlangte Mindestgröße der Teilfläche fest. Weitere Angaben stehen beim Befehl **grid**. 
+    **-minsize**
+    :  Legt die verlangte Mindestgröße der Teilfläche fest. Weitere Angaben stehen beim Befehl **grid**. 
 
-
-**-weight**
-:  Legt das relative Gewicht fest, nach dem zusätzlicher Platz auf die Teilflächen verteilt wird. Weitere Angaben stehen beim Befehl **grid**. 
-
+    **-weight**
+    :  Legt das relative Gewicht fest, nach dem zusätzlicher Platz auf die Teilflächen verteilt wird. Weitere Angaben stehen beim Befehl **grid**. 
 
 
 *pathName* **cget** *option* 

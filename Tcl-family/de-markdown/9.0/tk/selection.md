@@ -69,7 +69,7 @@ Das erste Argument von **selection** legt das Format der weiteren Argumente und 
 
 Die Widgets [text], [entry], [ttk::entry][ttk_entry], [listbox], [spinbox] und [ttk::spinbox][ttk_spinbox] haben die Option **-exportselection**. Ist sie auf den booleschen Wert **true** gesetzt, wird (in einem unsicheren Interpreter) eine im Widget getroffene Auswahl automatisch in die **PRIMARY**-Selection geschrieben.
 
-Ein GUI-Ereignis, z. B. **<\<PasteSelection>>**, kann die **PRIMARY**-Selection in bestimmte Widgets kopieren. Die Kopie erfolgt über eine Widget-Bindung an das Ereignis; das Bindungs-Skript ruft **selection** auf.
+Ein GUI-Ereignis, z. B. **<<PasteSelection>>**, kann die **PRIMARY**-Selection in bestimmte Widgets kopieren. Die Kopie erfolgt über eine Widget-Bindung an das Ereignis; das Bindungs-Skript ruft **selection** auf.
 
 # Portierbarkeit
 

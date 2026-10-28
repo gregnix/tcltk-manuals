@@ -2,20 +2,20 @@
 
 ---
 
-## INHALT
+## Inhalt
 
 - [1 Überblick](#berblick) 
 - [2 Rivet-Beispiel](#rivet-beispiel) 
 
  
 
-## ÜBERBLICK
+## Überblick
 
 Seit TCLWS 2.4 kann eine Antwort im *REST-Stil* zurückgegeben werden. Das heißt, statt eines XML-Dokuments wird eine JSON-Antwort zurückgegeben.
 
 Unser Anwendungsfall verlangte nur, FORM-Argumente anzunehmen und für alles JSON-Antworten zurückzugeben. Logik, die Eingabeargumente zerlegt, die als serialisierte JSON-Daten übergeben werden, ist deshalb nicht umgesetzt. Das könnte jemand später untersuchen.
 
-## RIVET-BEISPIEL
+## Rivet-Beispiel
 
 Ein Stück Code zeigt, wie dieser Modus in Apache Rivet anfangs gestartet wird. Das ähnelt tatsächlich stark der Verwendung von tclws im SOAP-Modus aus Apache Rivet:
 

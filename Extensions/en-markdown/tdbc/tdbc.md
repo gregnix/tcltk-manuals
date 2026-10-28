@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc
+title: tdbc
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -34,10 +35,10 @@ tdbc - Tcl Database Connectivity
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 :::
 
 # Description

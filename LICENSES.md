@@ -75,10 +75,13 @@ original pages stay with each page.
 | `de-markdown/Tclutils-de`, `en-markdown/Tclutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 | `de-markdown/pdf4tcl-de`, `en-markdown/pdf4tcl-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 | `de-markdown/pdf4tcllib-de`, `en-markdown/pdf4tcllib-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/Tkutils-de`, `en-markdown/Tkutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/Mdserver-de`, `en-markdown/Mdserver-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 
 Der Lizenztext steht als letztes Kapitel in jedem Buch-PDF (bookkit,
 `book-build.tcl`). / The license text is the last chapter of every book PDF.
 
 ## Skripte / Scripts (`scripts/`)
 
-`createpdf`, `build-pdfs.sh`, `hole-lizenzen.sh`: MIT, © 2026 Gregor Ebbing.
+`createpdf`, `build-pdfs.sh`, `hole-lizenzen.sh`, `katalog.tsv`,
+`katalog.tcl`, `tests/`: MIT, © 2026 Gregor Ebbing.

@@ -9,15 +9,15 @@
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -default |
-|   -homogeneous |
-|   -orient |
-|   -padx |
-|   -pady |
-|   -spacing |
-|   -state |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -default |
+    |   -homogeneous |
+    |   -orient |
+    |   -padx |
+    |   -pady |
+    |   -spacing |
+    |   -state |
 
 
 *WIDGET-BEFEHL*
@@ -48,7 +48,7 @@ BESCHREIBUNG
 
  ButtonBox ordnet Buttons waagerecht oder senkrecht an. Einige Befehle nehmen einen *index* als Argument, der angibt, auf welchen Button sie wirken. Dieser Index kann in jeder der folgenden Formen angegeben werden: 
 
- 
+
 
  *number* 
 :  Bezeichnet den Button numerisch, wobei 0 dem zuerst hinzugefügten Button entspricht, 1 dem nächsten, und so weiter. 
@@ -110,7 +110,7 @@ WIDGET-BEFEHL
 *pathName* **add** ?*option value...*? 
 : Fügt der Schaltflächenleiste eine Schaltfläche hinzu.
 
- Die Beschreibung der Optionen steht bei [Button](Button.md). 
+     Die Beschreibung der Optionen steht bei [Button](Button.md). 
 
 
 *pathName* **cget** *option* 

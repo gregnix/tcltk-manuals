@@ -29,7 +29,7 @@
   the message is `does not support 'put'`, without a code.
 - Taking `string length` as the visible character count — `tustr::graphemes`.
   `truncate` and `padLeft` still calculate with `string length`.
-- `tustr::slugify` for a German title — only ASCII remains, "Größe"
+- `tustr::slugify` for a German title — only ASCII remains, `Größe`
   becomes `gr-e`. The anchor from `tumd` for the same title is `gre`.
 - Reading an indented Markdown list as nested — `tumd`
   turns it into a flat list.

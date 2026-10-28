@@ -9,35 +9,35 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-cursor](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectforeground](options.md) |   [-takefocus](options.md) |
-|   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-cursor](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectforeground](options.md) |   [-takefocus](options.md) |
+    |   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -closecmd |   -crossfill |
-|   -crossclosebitmap |   -crosscloseimage |
-|   -crossopenbitmap |   -crossopenimage |
-|   -deltax |   -deltay |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -dropovermode |   -droptypes |
-|   -height |   -linesfill |
-|   -linestipple |   -opencmd |
-|   -padx |   -redraw |
-|   -selectcommand |   -selectfill |
-|   -showlines |   -width |
+    |   |   |
+    | --- | --- |
+    |   -closecmd |   -crossfill |
+    |   -crossclosebitmap |   -crosscloseimage |
+    |   -crossopenbitmap |   -crossopenimage |
+    |   -deltax |   -deltay |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -dropovermode |   -droptypes |
+    |   -height |   -linesfill |
+    |   -linestipple |   -opencmd |
+    |   -padx |   -redraw |
+    |   -selectcommand |   -selectfill |
+    |   -showlines |   -width |
 
 
 *WIDGET COMMAND*
@@ -152,17 +152,17 @@ WIDGET-SPECIFIC OPTIONS
 : Tree has a command wrapper for *drag-init* events. This command refused the drag if no node is designated. In other cases:   
   If **draginitcmd** is empty, it returns:
 
-  - the value of option **dragtype** or *TREE_NODE* if empty as the data type, 
-  - *{copy move link}* as the operations, 
-  - the node identifier as the data. 
+      - the value of option **dragtype** or *TREE_NODE* if empty as the data type, 
+      - *{copy move link}* as the operations, 
+      - the node identifier as the data. 
 
-If **draginitcmd** is not empty, it is called with the following arguments:
+    If **draginitcmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the tree, 
-  - the identifier of the dragged node, 
-  - the toplevel created to represent dragged data. 
+      - the pathname of the tree, 
+      - the identifier of the dragged node, 
+      - the toplevel created to represent dragged data. 
 
-and must return a value conforming to **draginitcmd** option described in **DragSite::register**.
+    and must return a value conforming to **draginitcmd** option described in **DragSite::register**.
 
 
 **-dragtype**
@@ -173,16 +173,16 @@ and must return a value conforming to **draginitcmd** option described in **Drag
 : Tree has a command wrapper for *drop* events. This command stops auto scrolling and extract node and position.   
   If **dropcmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the tree, 
-  - the pathname of the drag source, 
-  - a list describing where the drop occurs. It can be:  
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the tree, 
+      - the pathname of the drag source, 
+      - a list describing where the drop occurs. It can be:  
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-    - *{*__widget__*}*, 
-    - *{*__node__ *node}* or 
-    - *{*__position__ *node index}*. 
+        - *{*__widget__*}*, 
+        - *{*__node__ *node}* or 
+        - *{*__position__ *node index}*. 
 
 
 **-dropenabled**
@@ -192,22 +192,22 @@ and must return a value conforming to **draginitcmd** option described in **Drag
 **-dropovercmd**
 : Tree has a command wrapper for *drag-over* events. This command enables auto scrolling and position extraction during the *drag-over*. If **dropovercmd** is not empty, the command is called with the following aguments:
 
-  - the pathname of the tree, 
-  - the pathname of the drag source, 
-  - a list describing where the drop can occur, whose elements are:  
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the tree, 
+      - the pathname of the drag source, 
+      - a list describing where the drop can occur, whose elements are:  
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-    - the string *widget* if **dropovertype** option contains *w*, else empty string. 
-    - the targeted node if drag icon points a node and **dropovertype** option contains *n*, else empty string. 
-    - a list containing a node and the position within the children of the node where drag icon points to if **dropovertype** option contains *p*, else empty string. 
-    - optionally, the preferred method if drop can occur both inside a node and between two nodes. The value is *position* or *node*. 
+        - the string *widget* if **dropovertype** option contains *w*, else empty string. 
+        - the targeted node if drag icon points a node and **dropovertype** option contains *n*, else empty string. 
+        - a list containing a node and the position within the children of the node where drag icon points to if **dropovertype** option contains *p*, else empty string. 
+        - optionally, the preferred method if drop can occur both inside a node and between two nodes. The value is *position* or *node*. 
 
-The command must return a list with two elements:
+    The command must return a list with two elements:
 
-  - the drop status, conforming to those described in **dropovercmd** option of **DropSite::register**, 
-  - the choosen method: *widget*, *node* or *position*. 
+      - the drop status, conforming to those described in **dropovercmd** option of **DropSite::register**, 
+      - the choosen method: *widget*, *node* or *position*. 
 
 
 **-dropovermode**
@@ -274,13 +274,13 @@ WIDGET COMMAND
 *pathName* **bindImage** *event* *script* 
 : This command associates a command to execute whenever the event sequence given by *event* occurs on the image of a node. The node idenfier on which the event occurs is appended to the command and may be used to manipulate the tree (e.g. don't use **%W**).
 
- If **-selectfill** is given, an eventual binding of the background box by **bindText** is overwritten. 
+     If **-selectfill** is given, an eventual binding of the background box by **bindText** is overwritten. 
 
 
 *pathName* **bindText** *event* *script* 
 : This command associates a command to execute whenever the event sequence given by *event* occurs on the label of a node. The node idenfier on which the event occurs is appended to the command and may be used to manipulate the tree (e.g. don't use **%W**).
 
- If **-selectfill** is given, an eventual binding of the background box by **bindImage** is overwritten. 
+     If **-selectfill** is given, an eventual binding of the background box by **bindImage** is overwritten. 
 
 
 *pathName* **cget** *option* 
@@ -315,7 +315,7 @@ WIDGET COMMAND
 *pathName* **find** *findinfo* ?*confine*? 
 :  Returns the node given by the position *findinfo*. *findinfo* can take the form of a pixel position *@x,y* or of the line number of a currently visible Tree node. The first line of the Tree has the value of zero. 
 
- If *confine* is non-empty, then confine *findinfo* to only match pixel positions for the area consumed by Tree labels, not just anywhere on their lines. (*confine* has no effect if *findinfo* is a line number.) 
+     If *confine* is non-empty, then confine *findinfo* to only match pixel positions for the area consumed by Tree labels, not just anywhere on their lines. (*confine* has no effect if *findinfo* is a line number.) 
 
 
 *pathName* **index** *node* 
@@ -325,74 +325,58 @@ WIDGET COMMAND
 *pathName* **insert** *index* *parent* *node* ?*option value...*? 
 :  Inserts a new node identified by *node* in the children list of *parent* at position *index*. 
 
- Any instance of *#auto* within the node name will be replaced by the number of the item in the order of insertion. The non-printable characters \\1 to \\5 are reserved for internal use and should not be present in node names. 
+     Any instance of *#auto* within the node name will be replaced by the number of the item in the order of insertion. The non-printable characters \\1 to \\5 are reserved for internal use and should not be present in node names. 
 
- 
+     
 
-**-anchor**
-:  Specifies the anchor of the image or window of the node. Defaults to w. 
+    **-anchor**
+    :  Specifies the anchor of the image or window of the node. Defaults to w. 
 
+    **-data**
+    :  User data associated to the node. 
 
-**-data**
-:  User data associated to the node. 
+    **-deltax**
+    :  Specifies the horizontal indentation of the node. If the value is -1, the node will be drawn with the deltax for the entire tree. 
 
+    **-drawcross**
+    :  Specifies how the cross used to expand or collapse the children of a node should be drawn. Must be one of **auto**, **always** or **never**.   
+      If **auto**, the cross is drawn only if the node has children. If **always**, the cross is always drawn. If **never**, the cross is never drawn. To maintain compatibility with older versions of this widget, **allways** is a deprecated synonym to **always**. 
 
-**-deltax**
-:  Specifies the horizontal indentation of the node. If the value is -1, the node will be drawn with the deltax for the entire tree. 
+    **-fill**
+    :  Specifies the foreground color of the label of the node. 
 
+    **-font**
+    :  Specifies a font for the label of the node. 
 
-**-drawcross**
-:  Specifies how the cross used to expand or collapse the children of a node should be drawn. Must be one of **auto**, **always** or **never**.   
-  If **auto**, the cross is drawn only if the node has children. If **always**, the cross is always drawn. If **never**, the cross is never drawn. To maintain compatibility with older versions of this widget, **allways** is a deprecated synonym to **always**. 
+    **-helpcmd**
+    :  If specified, refers to a command to execute to get the help text to display. The command must return a string to display. If the command returns an empty string, no help is displayed. See also [DynamicHelp](DynamicHelp.md). 
 
+    **-helptext**
+    :  Text for dynamic help. See also [DynamicHelp](DynamicHelp.md). 
 
-**-fill**
-:  Specifies the foreground color of the label of the node. 
+    **-helptype**
+    :  Type of dynamic help. Use *balloon* or *variable*. See also [DynamicHelp](DynamicHelp.md). 
 
+    **-helpvar**
+    :  Variable to use when **helptype** option is *variable*. See also [DynamicHelp](DynamicHelp.md). 
 
-**-font**
-:  Specifies a font for the label of the node. 
+    **-image**
+    :  Specifies an image to display at the left of the label of the node. **window** option override **image**. 
 
+    **-open**
+    :  Specifies wether or not the children of the node should be drawn. 
 
-**-helpcmd**
-:  If specified, refers to a command to execute to get the help text to display. The command must return a string to display. If the command returns an empty string, no help is displayed. See also [DynamicHelp](DynamicHelp.md). 
+    **-padx**
+    :  Specifies the distance between image or window and the text of the node. If the value is -1, the node will be drawn with the padx for the entire tree. 
 
+    **-selectable**
+    :  Specifies if the node can be selected or not. 
 
-**-helptext**
-:  Text for dynamic help. See also [DynamicHelp](DynamicHelp.md). 
+    **-text**
+    :  Specifies the label of the node. 
 
-
-**-helptype**
-:  Type of dynamic help. Use *balloon* or *variable*. See also [DynamicHelp](DynamicHelp.md). 
-
-
-**-helpvar**
-:  Variable to use when **helptype** option is *variable*. See also [DynamicHelp](DynamicHelp.md). 
-
-
-**-image**
-:  Specifies an image to display at the left of the label of the node. **window** option override **image**. 
-
-
-**-open**
-:  Specifies wether or not the children of the node should be drawn. 
-
-
-**-padx**
-:  Specifies the distance between image or window and the text of the node. If the value is -1, the node will be drawn with the padx for the entire tree. 
-
-
-**-selectable**
-:  Specifies if the node can be selected or not. 
-
-
-**-text**
-:  Specifies the label of the node. 
-
-
-**-window**
-:  Specifies a pathname to display at the left of the label of the node. **window** option override **image**. 
-
+    **-window**
+    :  Specifies a pathname to display at the left of the label of the node. **window** option override **image**. 
 
 
 *pathName* **itemcget** *node* *option* 
@@ -435,32 +419,31 @@ WIDGET COMMAND
 *pathName* **selection** *cmd* ?*arg...*? 
 : Modifies the list of selected nodes following *cmd*:
 
-**add** 
-: Adds all nodes in *arg* to the selection. 
+    **add** 
+    : Adds all nodes in *arg* to the selection. 
 
-**clear** 
-: Removes all nodes from the selection. 
+    **clear** 
+    : Removes all nodes from the selection. 
 
-**get** 
-: Returns a list containing the indices of current selected nodes. 
+    **get** 
+    : Returns a list containing the indices of current selected nodes. 
 
-**includes** 
-: Tests if the specified node is selected. Returns true if the answer is yes, and false else. 
+    **includes** 
+    : Tests if the specified node is selected. Returns true if the answer is yes, and false else. 
 
-**range** 
-: Sets the selection to all nodes between the two specified ones. 
+    **range** 
+    : Sets the selection to all nodes between the two specified ones. 
 
-**remove** 
-: Removes all nodes in *arg* from the selection. 
+    **remove** 
+    : Removes all nodes in *arg* from the selection. 
 
-**set** 
-: Sets the selection to all nodes in *arg*. 
+    **set** 
+    : Sets the selection to all nodes in *arg*. 
 
-**toggle** 
-: Toggles the selection status of all nodes in *arg*. 
+    **toggle** 
+    : Toggles the selection status of all nodes in *arg*. 
 
-
-The subcommands **add**, **range**, and **set** silently ignore nodes which are declared unselectable. See the node option -selectable to influence this.
+    The subcommands **add**, **range**, and **set** silently ignore nodes which are declared unselectable. See the node option -selectable to influence this.
 
 
 *pathName* **toggle** *node* 

@@ -1,9 +1,10 @@
 ---
 CommandName: Itcl_InitList
+title: Itcl_InitList
 ManualSection: 3
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl] Library Procedures"
+TclDescription: "[incr Tcl] Library Procedures"
 Keywords:
  - list
 Copyright:
@@ -12,51 +13,45 @@ Copyright:
 
 # Name
 
-Itcl_InitList, Itcl_DeleteList, Itcl_CreateListElem, Itcl_DeleteListElem, Itcl_InsertList, Itcl_InsertListElem, Itcl_AppendList, Itcl_AppendListElem, Itcl_SetListValue - Manipulate an Itcl list object.
+Itcl\_InitList, Itcl\_DeleteList, Itcl\_CreateListElem, Itcl\_DeleteListElem, Itcl\_InsertList, Itcl\_InsertListElem, Itcl\_AppendList, Itcl\_AppendListElem, Itcl\_SetListValue - Manipulate an Itcl list object.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<itcl.h>]{.lit}
+**#include <itcl.h>**
 
-void
-[Itcl_InitList]{.cmd}([list]{.arg})
+[void]{.ret} [Itcl\_InitList]{.ccmd} [list]{.cargs}
 
-void
-[Itcl_DeleteList]{.cmd}([list]{.arg})
+[void]{.ret} [Itcl\_DeleteList]{.ccmd} [list]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_CreateListElem]{.cmd}([list]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_CreateListElem]{.ccmd} [list]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_DeleteListElem]{.cmd}([elem]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_DeleteListElem]{.ccmd} [elem]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_InsertList]{.cmd}([list]{.arg}, [clientData]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_InsertList]{.ccmd} [list, clientData]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_InsertListElem]{.cmd}([elem]{.arg}, [clientData]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_InsertListElem]{.ccmd} [elem, clientData]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_AppendList]{.cmd}([list]{.arg}, [clientData]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_AppendList]{.ccmd} [list, clientData]{.cargs}
 
-Itcl_ListElem \*
-[Itcl_AppendListElem]{.cmd}([elem]{.arg}, [clientData]{.arg})
+[Itcl\_ListElem \*]{.ret} [Itcl\_AppendListElem]{.ccmd} [elem, clientData]{.cargs}
 
-void
-[Itcl_SetListValue]{.cmd}([elem]{.arg}, [clientData]{.arg})
+[void]{.ret} [Itcl\_SetListValue]{.ccmd} [elem, clientData]{.cargs}
 :::
 
 # Arguments
 
-Itcl_List *\*list* (in)
+::: {.arguments} :::
+
+[\*list]{.carg .in type="Itcl_List"}
 : List info structure.
 
-Itcl_ListElem *\*elem* (in)
+[\*elem]{.carg .in type="Itcl_ListElem"}
 : List element info structure.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value to save in the list.
 
+:::
 
 # Description

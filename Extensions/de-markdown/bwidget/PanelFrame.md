@@ -9,23 +9,23 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-text](options.md) |
-|   [-textvariable](options.md) |
-|   [-font](options.md) |   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-text](options.md) |
+    |   [-textvariable](options.md) |
+    |   [-font](options.md) |   [-relief](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -height |
-|   -width |
-|   -panelbackground |   -panelforeground |
-|   -ipad |
+    |   |   |
+    | --- | --- |
+    |   -height |
+    |   -width |
+    |   -panelbackground |   -panelforeground |
+    |   -ipad |
 
 
 *WIDGET-BEFEHL*
@@ -67,18 +67,17 @@ WIDGET-BEFEHL
 *pathName* **add** **widget** ?*option* *value* *option* *value* ...? 
 : Fügt dem Panel ein Widget hinzu. Die Widgets werden mit **pack** hineingelegt. Mögliche Optionen sind:
 
-**-side**
-: Seite, auf die der Eintrag gelegt wird (Vorgabe **right**).
+    **-side**
+    : Seite, auf die der Eintrag gelegt wird (Vorgabe **right**).
 
-**-fill**
-: Ob der Platz gefüllt wird (Vorgabe **none**).
+    **-fill**
+    : Ob der Platz gefüllt wird (Vorgabe **none**).
 
-**-expand**
-: Ob der Platz ausgedehnt wird (Vorgabe **0**).
+    **-expand**
+    : Ob der Platz ausgedehnt wird (Vorgabe **0**).
 
-**-pad**
-: Überschreibt die Option **-ipad** des Widgets für diesen Eintrag.
-
+    **-pad**
+    : Überschreibt die Option **-ipad** des Widgets für diesen Eintrag.
 
 
 *pathName* **cget** *option* 

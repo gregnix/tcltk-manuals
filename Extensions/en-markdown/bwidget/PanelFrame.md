@@ -9,23 +9,23 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-text](options.md) |
-|   [-textvariable](options.md) |
-|   [-font](options.md) |   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-text](options.md) |
+    |   [-textvariable](options.md) |
+    |   [-font](options.md) |   [-relief](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -height |
-|   -width |
-|   -panelbackground |   -panelforeground |
-|   -ipad |
+    |   |   |
+    | --- | --- |
+    |   -height |
+    |   -width |
+    |   -panelbackground |   -panelforeground |
+    |   -ipad |
 
 
 *WIDGET COMMAND*
@@ -67,18 +67,17 @@ WIDGET COMMAND
 *pathName* **add** **widget** ?*option* *value* *option* *value* ...? 
 : Add a widget to the panel. Widgets are **pack**ed in. Possible options are:
 
-**-side**
-: Side to place item on (defaults to **right**).
+    **-side**
+    : Side to place item on (defaults to **right**).
 
-**-fill**
-: Whether to fill space (defaults to **none**).
+    **-fill**
+    : Whether to fill space (defaults to **none**).
 
-**-expand**
-: Whether to expand space (defaults to **0**).
+    **-expand**
+    : Whether to expand space (defaults to **0**).
 
-**-pad**
-: Override of the widget's **-ipad** option for this item.
-
+    **-pad**
+    : Override of the widget's **-ipad** option for this item.
 
 
 *pathName* **cget** *option* 

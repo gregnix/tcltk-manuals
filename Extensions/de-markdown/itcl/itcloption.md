@@ -1,9 +1,10 @@
 ---
 CommandName: option
+title: option
 ManualSection: n
 Version: 4.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - option
  - widget
@@ -13,26 +14,26 @@ Copyright:
  - Copyright (c) 2008 Arnulf Wiedemann
 ---
 
-# NAME
+# Name
 
 itcl::option - Optionen für extendedclass, widget oder widgetadaptor definieren
 
 Teile dieser Beschreibung sind von der Tcl-Erweiterung \[snit\] „entliehen“, weil die Funktion weitgehend gleich ist.
 
-# WARNUNG
+# Warnung
 
 Das ist neue Funktionalität in \[incr Tcl\], bei der sich die API noch ändern kann!!
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[option]{.cmd} [optionSpec]{.arg} [defaultValue]{.optarg} 
-[option]{.cmd} [optionSpec]{.arg} [options]{.optarg} 
+[option]{.cmd} [optionSpec]{.arg} [defaultValue]{.optarg}
+[option]{.cmd} [optionSpec]{.arg} [options]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **option** wird innerhalb einer Definition extendedclass/widget/widgetadaptor von **\[incr**\\ **Tcl\]** verwendet, um Optionen zu definieren.
+Der Befehl **option** wird innerhalb einer Definition extendedclass/widget/widgetadaptor von **\[incr Tcl\]** verwendet, um Optionen zu definieren.
 
 Die erste Form definiert eine Option für Instanzen dieses Typs und gibt ihr optional einen Anfangswert. Der Anfangswert ist die leere Zeichenkette, wenn kein defaultValue angegeben ist.
 
@@ -69,35 +70,33 @@ Die Anweisung option kann die folgenden Optionen enthalten:
 **-cgetmethod** *methodName*
 : Jede lokal definierte Option darf eine -cgetmethod definieren; sie wird aufgerufen, wenn der Wert der Option mit der Methode cget abgefragt wird. Was der Rumpf der Methode zurückgibt, ist der Rückgabewert des Aufrufs von cget.
 
+    Die genannte Methode muss ein Argument nehmen, den Optionsnamen. Dieser Code entspricht zum Beispiel der voreingestellten cget-Behandlung von Itcl, ist aber langsamer:
 
-Die genannte Methode muss ein Argument nehmen, den Optionsnamen. Dieser Code entspricht zum Beispiel der voreingestellten cget-Behandlung von Itcl, ist aber langsamer:
+    ```
+            option -font -cgetmethod GetOption
+            method GetOption {option} {
+                return $itcl_options($option)
+            }
+    ```
 
-```
-        option -font -cgetmethod GetOption
-        method GetOption {option} {
-            return $itcl_options($option)
-        }
-```
-
-Beliebig viele Optionen können sich eine -cgetmethod teilen.
+    Beliebig viele Optionen können sich eine -cgetmethod teilen.
 
 **-cgetmethodvar** *varName*
 : Das ist -cgetmethod sehr ähnlich, der einzige Unterschied ist, dass sich eine Variable angeben lässt, in der die cgetmethod zur Laufzeit zu finden ist.
 
 **-configuremethod** *methodName*
-: Jede lokal definierte Option darf eine -configuremethod definieren; sie wird aufgerufen, wenn der Wert der Option mit den Methoden configure oder configurelist gesetzt wird. Die genannte Methode muss den Wert der Option selbst speichern; der Wert wird also nur dann im Array itcl_options() gespeichert, wenn die Methode ihn dort speichert.
+: Jede lokal definierte Option darf eine -configuremethod definieren; sie wird aufgerufen, wenn der Wert der Option mit den Methoden configure oder configurelist gesetzt wird. Die genannte Methode muss den Wert der Option selbst speichern; der Wert wird also nur dann im Array itcl\_options() gespeichert, wenn die Methode ihn dort speichert.
 
+    Die genannte Methode muss zwei Argumente nehmen, den Optionsnamen und seinen neuen Wert. Dieser Code entspricht zum Beispiel der voreingestellten configure-Behandlung von Itcl, ist aber langsamer:
 
-Die genannte Methode muss zwei Argumente nehmen, den Optionsnamen und seinen neuen Wert. Dieser Code entspricht zum Beispiel der voreingestellten configure-Behandlung von Itcl, ist aber langsamer:
+    ```
+            option -font -configuremethod SetOption
+            method SetOption {option value} {
+                set itcl_options($option) $value
+            }
+    ```
 
-```
-        option -font -configuremethod SetOption
-        method SetOption {option value} {
-            set itcl_options($option) $value
-        }
-```
-
-Beliebig viele Optionen können sich eine einzelne -configuremethod teilen.
+    Beliebig viele Optionen können sich eine einzelne -configuremethod teilen.
 
 **-configuremethodvar** *varName*
 : Das ist -configuremethod sehr ähnlich, der einzige Unterschied ist, dass sich eine Variable angeben lässt, in der die configuremethod zur Laufzeit zu finden ist.
@@ -105,19 +104,18 @@ Beliebig viele Optionen können sich eine einzelne -configuremethod teilen.
 **-validatemethod** *methodName*
 : Jede lokal definierte Option darf eine -validatemethod definieren; sie wird aufgerufen, wenn der Wert der Option mit den Methoden configure oder configurelist gesetzt wird, unmittelbar vor der -configuremethod (falls vorhanden). Die genannte Methode muss den neuen Wert der Option prüfen und einen Fehler melden, wenn der Wert ungültig ist.
 
+    Die genannte Methode muss zwei Argumente nehmen, den Optionsnamen und seinen neuen Wert. Dieser Code prüft zum Beispiel, dass der Wert von -flag ein gültiger boolescher Wert ist:
 
-Die genannte Methode muss zwei Argumente nehmen, den Optionsnamen und seinen neuen Wert. Dieser Code prüft zum Beispiel, dass der Wert von -flag ein gültiger boolescher Wert ist:
-
-```
-        option -font -validatemethod CheckBoolean
-        method CheckBoolean {option value} {
-            if {![string is boolean -strict $value]} {
-                error "option $option must have a boolean value."
+    ```
+            option -font -validatemethod CheckBoolean
+            method CheckBoolean {option value} {
+                if {![string is boolean -strict $value]} {
+                    error "option $option must have a boolean value."
+                }
             }
-        }
-```
+    ```
 
-Beliebig viele Optionen können sich eine einzelne -validatemethod teilen.
+    Beliebig viele Optionen können sich eine einzelne -validatemethod teilen.
 
 **-validatemethodvar** *varName*
 : Das ist -validatemethod sehr ähnlich, der einzige Unterschied ist, dass sich eine Variable angeben lässt, in der die validatemethod zur Laufzeit zu finden ist.

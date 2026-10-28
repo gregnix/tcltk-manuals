@@ -216,7 +216,7 @@ Wenn der Auswahlmodus **multiple** oder **extended** ist, können beliebig viele
 
 Die meisten Benutzer werden wahrscheinlich den Modus **browse** für Einzelauswahlen und den Modus **extended** für Mehrfachauswahlen verwenden wollen; die anderen Modi scheinen nur in besonderen Situationen nützlich zu sein.
 
-Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Event **<\<ListboxSelect>>** erzeugt. Dieses virtuelle Event wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* [selection] angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
+Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Event **<<ListboxSelect>>** erzeugt. Dieses virtuelle Event wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* [selection] angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
 
 Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindings folgendes weiteres Verhalten definiert:
 

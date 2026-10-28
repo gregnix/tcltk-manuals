@@ -21,7 +21,7 @@ platform - System identification support code and utilities
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [platform]{.lit} [?1.0.10?]{.lit}
+[package]{.cmd} [require]{.sub} [platform]{.lit} [1.0.10]{.optlit}
 [platform::generic]{.cmd}
 [platform::identify]{.cmd}
 [platform::patterns]{.cmd} [identifier]{.arg}

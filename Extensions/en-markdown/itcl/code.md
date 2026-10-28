@@ -1,9 +1,10 @@
 ---
 CommandName: code
+title: code
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - scope
  - callback
@@ -22,12 +23,12 @@ itcl::code - capture the namespace context for a code fragment
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::code]{.cmd} [-namespace name]{.optarg} [command]{.arg} [arg arg]{.optdot} 
+[itcl::code]{.cmd} [[-namespace]{.lit} [name]{.arg}]{.optarg} [command]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
 
-Creates a scoped value for the specified *command* and its associated *arg* arguments.  A scoped value is a list with three elements:  the "\\ffC@scope" keyword, a namespace context, and a value string.  For example, the command
+Creates a scoped value for the specified *command* and its associated *arg* arguments.  A scoped value is a list with three elements:  the "**@scope**" keyword, a namespace context, and a value string.  For example, the command
 
 ```
 namespace foo {
@@ -57,7 +58,7 @@ namespace foo {
 }
 ```
 
-The code fragment associated with button \\ffC.b1 only makes sense in the context of namespace "foo".  Furthermore, the "report" procedure is private, and can only be accessed within that namespace.  The **code** command wraps up the code fragment in a way that allows it to be executed properly when the button is pressed.
+The code fragment associated with button **.b1** only makes sense in the context of namespace "foo".  Furthermore, the "report" procedure is private, and can only be accessed within that namespace.  The **code** command wraps up the code fragment in a way that allows it to be executed properly when the button is pressed.
 
 Also, note that the **code** command preserves the integrity of arguments on the command line.  This makes it a natural replacement for the **list** command, which is often used to format Tcl code fragments.  In other words, instead of using the **list** command like this:
 

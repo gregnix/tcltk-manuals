@@ -111,18 +111,17 @@ BWidget::**parsetext** *text*
 BWidget::**place** *path* *w* *h* ?*arg...*? 
 : Used to position and resize the widget specified by *path*. *w* and *h* are used to specify the requested width and height of the *path* widget for use by **wm geometry** (set to 0 to use current values). The placement of the widget relative to other widgets or the screen is controlled by additional arguments:
 
-**at** *x* *y*
-: Place the widget specified by the *path* argument at screen position x,y. See **wm geometry** for information about window placement values.
+    **at** *x* *y*
+    : Place the widget specified by the *path* argument at screen position x,y. See **wm geometry** for information about window placement values.
 
-**center** *?widget?*
-: Place the *path* widget centered against *widget* or against the root widget if *widget* is not given.
+    **center** *?widget?*
+    : Place the *path* widget centered against *widget* or against the root widget if *widget* is not given.
 
-**right** *?widget?*
-: Place the *path* widget either left or right of the reference widget (or the root widget if *widget* is not specified). If the reference widget's position is such that the newly placed window might be obscured then the opposite side will be tried.
+    **right** *?widget?*
+    : Place the *path* widget either left or right of the reference widget (or the root widget if *widget* is not specified). If the reference widget's position is such that the newly placed window might be obscured then the opposite side will be tried.
 
-**below** *?widget?*
-: As for left/right above, this option causes the widget to be placed either above or below the reference widget with the opposite placement being attempted if the newly placed widget will not be visible. 
-
+    **below** *?widget?*
+    : As for left/right above, this option causes the widget to be placed either above or below the reference widget with the opposite placement being attempted if the newly placed widget will not be visible. 
 
 
 BWidget::**write** *filename* ?*mode*? 

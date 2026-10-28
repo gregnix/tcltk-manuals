@@ -9,11 +9,11 @@
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -color |   -parent |
-|   -placement |   -title |
-|   -type |
+    |   |   |
+    | --- | --- |
+    |   -color |   -parent |
+    |   -placement |   -title |
+    |   -type |
 
 
 *WIDGET COMMAND*
@@ -79,7 +79,7 @@ SelectColor::**dialog** *pathName* *?option value ...?*
 SelectColor::**menu** *pathName* *placement* *?option value ...?* 
 : Creates a small, popup dialog for the user to select from a predefined list of colors with an additional button to display a full color dialog.
 
- *placement* can be any of **at**, **center**, **left**, **right**, **above**, or **below**. If *-parent* is specified, placement will be in relation to the parent widget. 
+     *placement* can be any of **at**, **center**, **left**, **right**, **above**, or **below**. If *-parent* is specified, placement will be in relation to the parent widget. 
 
 
 SelectColor::**setcolor** *index* *color* 

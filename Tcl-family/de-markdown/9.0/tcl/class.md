@@ -68,7 +68,7 @@ Die Klasse **oo::class** definiert keinen expliziten Destruktor. Wird jedoch ein
 Die Klasse **oo::class** unterstützt folgende nicht exportierte Methoden:
 
 [cls]{.ins} [createWithNamespace]{.sub} [name]{.arg} [nsName]{.arg} [arg]{.optdot}
-: Erzeugt eine neue Instanz der Klasse *cls* mit dem Namen *name* (wird im Namespace des Aufrufkontexts aufgelöst, wenn nicht voll qualifiziert), übergibt die Argumente *arg ...* an den Konstruktor und gibt (bei erfolgreichem Ergebnis) den voll qualifizierten Namen des erzeugten Objekts zurück (das Ergebnis des Konstruktors wird ignoriert). Der Name des Instanz-Namespace des Objekts ist *nsName*; es ist ein Fehler, wenn dieser Namespace nicht erzeugt werden kann. Schlägt der Konstruktor fehl, wird das Objekt zerstört und die Fehlermeldung ist das Ergebnis dieses Methodenaufrufs.
+: Erzeugt eine neue Instanz der Klasse *cls* mit dem Namen *name* (wird im Namespace des Aufrufkontexts aufgelöst, wenn nicht voll qualifiziert), übergibt die Argumente *arg ...* an den Konstruktor und gibt (bei erfolgreichem Ergebnis) den voll qualifizierten Namen des erzeugten Objekts zurück (das Ergebnis des Konstruktors wird ignoriert). Der Name des Instanz-Namespace des Objekts ist *nsName*; [es ist ein Fehler, wenn dieser Namespace nicht erzeugt werden kann.]{version=""} Schlägt der Konstruktor fehl, wird das Objekt zerstört und die Fehlermeldung ist das Ergebnis dieses Methodenaufrufs.
 
 
 # Beispiele

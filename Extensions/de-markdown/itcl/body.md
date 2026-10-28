@@ -1,9 +1,10 @@
 ---
 CommandName: body
+title: body
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -12,19 +13,19 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-# NAME
+# Name
 
 itcl::body - den Rumpf einer Klassenmethode oder eines Klassen-proc ändern
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[itcl::body]{.cmd} [className::function]{.arg} [args]{.arg} [body]{.arg} 
+[itcl::body]{.cmd} [className::function]{.arg} [args]{.arg} [body]{.arg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **body** wird außerhalb einer Klassendefinition von **\[incr**\\ **Tcl\]** verwendet, um den Rumpf einer Klassenmethode oder eines proc zu definieren oder neu zu definieren. Diese Einrichtung erlaubt einer Klassendefinition getrennte Teile für Schnittstelle und Umsetzung. Der Teil der Schnittstelle ist ein Befehl **class** mit Deklarationen für methods, procs, Instanzvariablen und common-Variablen. Der Teil der Umsetzung ist eine Folge der Befehle **body** und **configbody**. Wenn der Teil der Umsetzung in einer eigenen Datei liegt, lässt sie sich immer wieder einlesen, während Fehler behoben werden, um die interaktive Entwicklung zu unterstützen. Im Modus „tcl“ des Editors **emacs** können Schnittstelle und Umsetzung in derselben Datei liegen; während Fehler behoben werden, lassen sich einzelne Rümpfe markieren und an die Testanwendung schicken.
+Der Befehl **body** wird außerhalb einer Klassendefinition von **\[incr Tcl\]** verwendet, um den Rumpf einer Klassenmethode oder eines proc zu definieren oder neu zu definieren. Diese Einrichtung erlaubt einer Klassendefinition getrennte Teile für Schnittstelle und Umsetzung. Der Teil der Schnittstelle ist ein Befehl **class** mit Deklarationen für methods, procs, Instanzvariablen und common-Variablen. Der Teil der Umsetzung ist eine Folge der Befehle **body** und **configbody**. Wenn der Teil der Umsetzung in einer eigenen Datei liegt, lässt sie sich immer wieder einlesen, während Fehler behoben werden, um die interaktive Entwicklung zu unterstützen. Im Modus „tcl“ des Editors **emacs** können Schnittstelle und Umsetzung in derselben Datei liegen; während Fehler behoben werden, lassen sich einzelne Rümpfe markieren und an die Testanwendung schicken.
 
 Der Name „*className*__::__*function*“ bezeichnet die Methode oder das proc, das geändert wird.
 
@@ -32,12 +33,12 @@ Wenn bei der Definition der *function* in der Klassendefinition eine Liste *args
 
 Wenn die Zeichenkette *body* mit „**@**“ beginnt, wird sie als symbolischer Name einer C-Prozedur behandelt. Die Liste *args* hat für die C-Prozedur wenig Bedeutung, außer die erwartete Verwendung zu dokumentieren. (Es ist nicht garantiert, dass die C-Prozedur die Argumente auf diese Weise verwendet.) Wenn *body* nicht mit „**@**“ beginnt, wird es als Tcl-Befehlsskript behandelt. Wenn die Funktion aufgerufen wird, werden die Argumente der Befehlszeile mit der Liste *args* abgeglichen, und für jedes Argument werden lokale Variablen erzeugt. Das ist das übliche Verhalten einer Prozedur im Tcl-Stil.
 
-Symbolische Namen für C-Prozeduren werden festgelegt, indem Prozeduren über **Itcl_RegisterObjC()** registriert werden. Das geschieht gewöhnlich in der Prozedur **Tcl_AppInit()**, die automatisch aufgerufen wird, wenn der Interpreter startet. Im folgenden Beispiel wird die Prozedur \\ffCMy_FooObjCmd() unter dem symbolischen Namen „foo“ registriert. Im Befehl **body** lässt sich diese Prozedur als "\\ffC@foo" ansprechen.
+Symbolische Namen für C-Prozeduren werden festgelegt, indem Prozeduren über **Itcl\_RegisterObjC()** registriert werden. Das geschieht gewöhnlich in der Prozedur **Tcl\_AppInit()**, die automatisch aufgerufen wird, wenn der Interpreter startet. Im folgenden Beispiel wird die Prozedur **My\_FooObjCmd()** unter dem symbolischen Namen „foo“ registriert. Im Befehl **body** lässt sich diese Prozedur als "**@foo**" ansprechen.
 
 ```
 int
 Tcl_AppInit(interp)
-    Tcl_Interp *interp;     /* Interpreter für die Anwendung. */
+    Tcl_Interp *interp;     /* Interpreter for application. */
 {
     if (Itcl_Init(interp) == TCL_ERROR) {
         return TCL_ERROR;
@@ -49,7 +50,7 @@ Tcl_AppInit(interp)
 }
 ```
 
-# BEISPIEL
+# Beispiel
 
 Im folgenden Beispiel wird eine Klasse „File“ definiert, die offene Dateien darstellt. Die Methodenrümpfe stehen unter der Klassendefinition, über den Befehl **body**. Die Rümpfe von Konstruktor und Destruktor müssen in der Klassendefinition stehen, sie lassen sich aber ebenfalls über den Befehl **body** neu definieren.
 
@@ -79,7 +80,7 @@ itcl::body File::eof {} {
 }
 
 #
-# Die Klasse File in Aktion:
+# See the File class in action:
 #
 File x /etc/passwd "r"
 while {![x eof]} {

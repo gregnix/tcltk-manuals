@@ -1,9 +1,10 @@
 ---
 CommandName: ensemble
+title: ensemble
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - ensemble
  - part
@@ -19,23 +20,21 @@ itcl::ensemble - create or modify a composite command
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::ensemble]{.cmd} [ensName]{.arg} [command arg arg]{.optdot} 
-[ensemble]{.cmd} [ensName]{.arg} { 
-[part]{.cmd} [partName]{.arg} [args]{.arg} [body]{.arg} 
-...
-[ensemble]{.cmd} [partName]{.arg} { 
-[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg} 
-[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg} 
-...
-}
-}
+[itcl::ensemble]{.cmd} [ensName]{.arg} [command arg arg...]{.optarg}
+[ensemble]{.cmd} [ensName]{.arg} {
+[part]{.cmd} [partName]{.arg} [args]{.arg} [body]{.arg}
+[...]{.ins}
+[ensemble]{.cmd} [partName]{.arg} {
+[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg}
+[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg}
+[...]{.ins}
 :::
 
-or
+or     } }
 
 # Description
 
-The **ensemble** command is used to create or modify a composite command.  See the section **WHAT IS AN ENSEMBLE?** below for a brief overview of ensembles.
+The **ensemble** command is used to create or modify a composite command.  See the section [What is an ensemble?] below for a brief overview of ensembles.
 
 If the **ensemble** command finds an existing ensemble called *ensName*, it updates that ensemble.  Otherwise, it creates an ensemble called *ensName*.  If the *ensName* is a simple name like "foo", then an ensemble command named "foo" is added to the current namespace context.  If a command named "foo" already exists in that context, then it is deleted.  If the *ensName* contains namespace qualifiers like "a::b::foo", then the namespace path is resolved, and the ensemble command is added that namespace context. Parent namespaces like "a" and "b" are created automatically, as needed.
 

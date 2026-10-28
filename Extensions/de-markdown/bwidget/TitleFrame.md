@@ -9,11 +9,11 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-font](options.md) |
-|   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-font](options.md) |
+    |   [-relief](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*

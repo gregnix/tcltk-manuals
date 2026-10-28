@@ -9,24 +9,24 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-activebackground](options.md) |   [-activeforeground](options.md) |
-|   [-anchor](options.md) |   [-background oder -bg](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-activebackground](options.md) |   [-activeforeground](options.md) |
+    |   [-anchor](options.md) |   [-background oder -bg](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -armcommand |   -command |
-|   -default |   -disarmcommand |
-|   -height |   -helptext |
-|   -helptype |   -helpvar |
-|   -name |   -relief |
-|   -state |   -underline |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -armcommand |   -command |
+    |   -default |   -disarmcommand |
+    |   -height |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -name |   -relief |
+    |   -state |   -underline |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -115,4 +115,4 @@ WIDGET-BEFEHL
 *pathName* **invoke** 
 : Wenn der **state** des Buttons nicht disabled ist, ruft das die Befehle des Buttons auf. Der Button wird mit der aktiven Farbe und dem Relief sunken neu angezeigt, und **armcommand** wird aufgerufen. Danach wird der Button mit der normalen Farbe und seinem festgelegten Relief neu angezeigt, und **disarmcommand** und danach **command** werden aufgerufen.
 
-**invoke** wird aufgerufen, wenn der Button den Eingabefokus hat und die Leertaste gedrückt wird.
+    **invoke** wird aufgerufen, wenn der Button den Eingabefokus hat und die Leertaste gedrückt wird.

@@ -173,9 +173,9 @@ Namens spielt keine Rolle.
 
 ```tcl
 package require tclutils::tuvcard
-set vcf "BEGIN:VCARD\nFN:Gregor\nN:Nachname;Gregor;;;\nTEL:1\nEND:VCARD\n"
+set vcf "BEGIN:VCARD\nFN:Ada\nN:Lovelace;Ada;;;\nTEL:1\nEND:VCARD\n"
 set card [lindex [::tclutils::tuvcard::parse $vcf] 0]
-::tclutils::tuvcard::fullName $card          ;# -> Gregor
+::tclutils::tuvcard::fullName $card          ;# -> Ada
 ::tclutils::tuvcard::get $card TEL           ;# -> 1
 ::tclutils::tuvcard::names $card             ;# -> FN N TEL
 ```
@@ -403,6 +403,19 @@ package require tclutils::tuholiday
 
 `easter xyz` wirft `{TCLUTILS TUHOLIDAY YEAR}`. `-region at` wirft
 `{TCLUTILS TUHOLIDAY REGION}`.
+
+---
+
+## Kalenderansichten: tical
+
+Die Module dieses Kapitels liefern Daten und Text: Wiederholungen,
+Feiertage, iCalendar, einen Monat wie `cal`. Ansichten für Monat, Woche
+und Tag mit Renderern für Terminal, Tk-Canvas und PDF bietet die
+eigenständige Bibliothek [tical]{.index} 1.1. Sie bringt eigene
+Feiertage und einen iCalendar-Export (mit `RRULE`) mit; ihr Kern braucht
+tclutils nicht. Ihr optionaler Import (`tical::io::import`) liest
+iCalendar mit `tuical` und expandiert Wiederholungen mit `turrule`.
+Beschrieben ist sie im Buch *Utils-Stack*.
 
 ---
 

@@ -9,27 +9,27 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-borderwidth or -bd](options.md) |   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-borderwidth or -bd](options.md) |   [-relief](options.md) |
 
 
 *OPTIONS from Label*
 : 
 
-|   |   |
-| --- | --- |
-|   -anchor |   -background or -bg |
-|   -bitmap |   -disabledforeground |
-|   -focus |   -font |
-|   -foreground or -fg |   -height |
-|   -helptext |   -helptype |
-|   -helpvar |   -image |
-|   -justify |   -name |
-|   -padx |   -pady |
-|   -state |   -text |
-|   -textvariable |   -underline |
-|   -width |   -wraplength |
+    |   |   |
+    | --- | --- |
+    |   -anchor |   -background or -bg |
+    |   -bitmap |   -disabledforeground |
+    |   -focus |   -font |
+    |   -foreground or -fg |   -height |
+    |   -helptext |   -helptype |
+    |   -helpvar |   -image |
+    |   -justify |   -name |
+    |   -padx |   -pady |
+    |   -state |   -text |
+    |   -textvariable |   -underline |
+    |   -width |   -wraplength |
 
 
 *WIDGET-SPECIFIC OPTIONS*

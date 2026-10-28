@@ -96,7 +96,7 @@ Die Combobox unterstützt außerdem folgende generische Unterbefehle des [ttk::w
 
 # Virtuelle Ereignisse
 
-Die Combobox erzeugt ein virtuelles Ereignis **<\<ComboboxSelected>>**, wenn der Benutzer ein Element aus der Werteliste wählt. Schließt die Auswahlaktion die Listbox, wird dieses Ereignis nach dem Schließen der Listbox ausgeliefert.
+Die Combobox erzeugt ein virtuelles Ereignis **<<ComboboxSelected>>**, wenn der Benutzer ein Element aus der Werteliste wählt. Schließt die Auswahlaktion die Listbox, wird dieses Ereignis nach dem Schließen der Listbox ausgeliefert.
 
 # Styling-Optionen
 

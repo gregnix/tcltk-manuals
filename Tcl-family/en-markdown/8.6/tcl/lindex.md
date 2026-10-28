@@ -33,7 +33,7 @@ lindex - Retrieve an element from a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lindex]{.cmd} [list]{.arg} ?index ...?
+[lindex]{.cmd} [list]{.arg} [index]{.optdot}
 :::
 
 # Description

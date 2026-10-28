@@ -1,10 +1,15 @@
 #!/bin/bash
 # build-pdfs.sh -- die Handbuecher und Buecher als PDF.
 #
-#   bash scripts/build-pdfs.sh ?-de|-en? ?NAME ...?
+#   bash scripts/build-pdfs.sh ?-de|-en? ?-index-terms auto|keywords|all? ?NAME ...?
 #
 #   -de / -en   nur diese Sprache (ohne: beide)
-#   NAME        nur diese PDFs (Namen aus der Liste unten)
+#   -index-terms M
+#               Stichwoerter der Handbuecher, an createpdf durchgereicht
+#               (Vorgabe auto: aus der Seite abgeleitet nur bei Seiten ohne
+#               YAML-Kopf, etwa den Nemethi-Paketen; keywords: nur
+#               Befehlsname und Keywords; all: bei allen Seiten ableiten)
+#   NAME        nur diese PDFs (Namen aus scripts/katalog.tsv)
 #
 # Das Repository hat drei Gruppen, jede mit LANG-markdown/ und LANG-pdf/:
 #
@@ -12,16 +17,22 @@
 #   Extensions/   Erweiterungen (TDBC, Thread, [incr Tcl], tDOM, expect ...)
 #   Books/        Tclutils, pdf4tcl, pdf4tcllib (de und en)
 #
-# Ergebnis: GRUPPE/de-pdf/NAME-de.pdf und GRUPPE/en-pdf/NAME-en.pdf.
+# Welche PDFs es gibt, steht in scripts/katalog.tsv (gemeinsam mit
+# scripts/pdfgui.tcl): Name, Art, Gruppe, Ordner, Teile, Sprachen, Titel.
+#
+# Ergebnis: GRUPPE/de-pdf/NAME-de.pdf und GRUPPE/en-pdf/NAME-en.pdf,
+# Buecher als Books/LANG-pdf/NAME.pdf.
 #
 # Gesamtindex: Fuer die Tcl-Familie entsteht je Sprache zusaetzlich
 # Tcl-family/LANG-pdf/tcl-family-index-LANG.pdf, ein Stichwortverzeichnis
 # ueber alle ihre PDFs; jede Seitenzahl springt in das jeweilige PDF
 # (scripts/createpdf/index-gesamt.tcl). Grundlage sind die Tabellen
-# NAME-LANG.index.tsv neben den PDFs, die createpdf mitschreibt. Der
-# Gesamtindex wird gebaut, wenn alle PDFs gebaut werden oder der Name
-# tcl-family-index genannt ist; er nimmt die vorhandenen Tabellen, darum
-# nach jedem neuen PDF der Tcl-Familie mitbauen.
+# NAME-LANG.index.tsv neben den PDFs, die createpdf mitschreibt. Ein
+# Teil-Index (z. B. nemethi-index) nimmt nur die Handbuecher aus seiner
+# Spalte quelle, in dieser Reihenfolge; fehlt dort eine Tabelle, wird sie
+# mit Meldung ausgelassen. Jeder Index (art index) wird gebaut, wenn alle
+# PDFs gebaut werden oder sein Name genannt ist; er nimmt die vorhandenen
+# Tabellen, darum nach jedem neuen PDF der Tcl-Familie mitbauen.
 #
 # Handbuecher: scripts/createpdf/createpdf.tcl, mit Titelseite,
 # Inhaltsverzeichnis, Stichwortverzeichnis und Lizenzkapitel. Es braucht
@@ -33,42 +44,73 @@
 # scripts/createpdf/uebersetzung-de.txt bzw. umwandlung-en.txt.
 #
 # Buecher: bookkit (tools/book-build.tcl). BOOKKIT=/pfad/zu/bookkit setzen;
-# ohne BOOKKIT werden die Buecher uebersprungen.
+# ohne BOOKKIT werden die Buecher uebersprungen. Gebaut wird aus
+# Books/LANG-markdown/ORDNER; dorthin kommt ein Buch von Hand oder mit
+# „Seiten uebernehmen“ in pdfgui.tcl (README: Ein Buch aufnehmen).
 
 cd "$(dirname "$0")/.." || exit 1
 tclsh=${TCLSH:-tclsh}
 sprachen="de en"
-case "$1" in -de) sprachen=de; shift ;; -en) sprachen=en; shift ;; esac
+stichworte=
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -de) sprachen=de; shift ;;
+        -en) sprachen=en; shift ;;
+        -index-terms)
+            case "$2" in
+                auto|keywords|all) stichworte=$2; shift 2 ;;
+                *) echo "-index-terms: auto, keywords oder all" >&2; exit 2 ;;
+            esac ;;
+        *) break ;;
+    esac
+done
 
-# Name            Gruppe       Ordner         Unterordner  Titel (de)          Titel (en)
-# Ordner: unter GRUPPE/LANG-markdown/; "." = die ganze Gruppe.
-# Unterordner: nur diese (mit Komma getrennt), "*" = der ganze Ordner.
-# Fehlen sie in einer Sprache (die C-API ist nicht uebersetzt), entfaellt
-# das PDF dort.
-LISTE='
-tcltk-9.0        Tcl-family   9.0            tcl,tk       Tcl/Tk_9.0            Tcl/Tk_9.0
-tcltk-9.0-capi   Tcl-family   9.0            tcl-c,tk-c   Tcl/Tk_9.0_C-API      Tcl/Tk_9.0_C_API
-tcltk-8.6        Tcl-family   8.6            tcl,tk       Tcl/Tk_8.6            Tcl/Tk_8.6
-tcltk-8.6-capi   Tcl-family   8.6            tcl-c,tk-c   Tcl/Tk_8.6_C-API      Tcl/Tk_8.6_C_API
-tcllib           Tcl-family   tcllib         *            Tcllib                Tcllib
-tklib            Tcl-family   tklib          *            Tklib                 Tklib
-tablelist        Tcl-family   pakete/tablelist  *         Tablelist             Tablelist
-mentry           Tcl-family   pakete/mentry  *            Mentry                Mentry
-scrollutil       Tcl-family   pakete/scrollutil *         Scrollutil            Scrollutil
-wcb              Tcl-family   pakete/wcb     *            Wcb                   Wcb
-tsw              Tcl-family   pakete/tsw     *            Tsw                   Tsw
-erweiterungen    Extensions   .              *            Erweiterungen         Extensions
-'
+# Die Liste der PDFs steht in scripts/katalog.tsv (Spalten dort erklaert),
+# gemeinsam mit scripts/pdfgui.tcl. katalog gibt die Datenzeilen aus:
+# ohne Kommentare, Leerzeilen und Kopfzeile, Felder mit Tabulator getrennt.
+katalog() {
+    local zeile
+    while IFS= read -r zeile || [ -n "$zeile" ]; do
+        zeile=${zeile%$'\r'}
+        case $zeile in ''|'#'*|name$'\t'*) continue ;; esac
+        printf '%s\n' "$zeile"
+    done < scripts/katalog.tsv
+}
+[ -f scripts/katalog.tsv ] || { echo "scripts/katalog.tsv fehlt" >&2; exit 1; }
 
-# Buecher: Name, Ordner unter Books/LANG-markdown/, Sprache
-BUECHER='
-Tclutils-de      Tclutils-de     de
-Tclutils-en      Tclutils-en     en
-pdf4tcl-de       pdf4tcl-de      de
-pdf4tcl-en       pdf4tcl-en      en
-pdf4tcllib-de    pdf4tcllib-de   de
-pdf4tcllib-en    pdf4tcllib-en   en
-'
+# Spalte quelle der Index-Zeilen pruefen: jeder Name ein Handbuch derselben
+# Gruppe (wie scripts/katalog.tcl).
+declare -A k_art k_gruppe
+while IFS=$'\t' read -r name art gruppe _; do
+    k_art[$name]=$art; k_gruppe[$name]=$gruppe
+done < <(katalog)
+while IFS=$'\t' read -r iname art igruppe _ _ _ iquelle _; do
+    [ "$art" = index ] && [ "$iquelle" != - ] || continue
+    gesehen=" "
+    for q in ${iquelle//,/ }; do
+        if [ -z "${k_art[$q]}" ]; then
+            fehler="„$q“ steht nicht im Katalog"
+        elif [ "${k_art[$q]}" != handbuch ]; then
+            fehler="„$q“ ist kein Handbuch (art ${k_art[$q]})"
+        elif [ "${k_gruppe[$q]}" != "$igruppe" ]; then
+            fehler="„$q“ gehoert zur Gruppe ${k_gruppe[$q]}, nicht $igruppe"
+        elif [[ $gesehen == *" $q "* ]]; then
+            fehler="„$q“ doppelt genannt"
+        else
+            gesehen+="$q "
+            continue
+        fi
+        echo "scripts/katalog.tsv: Index $iname: $fehler" >&2
+        exit 1
+    done
+    if [ "$gesehen" = " " ]; then
+        echo "scripts/katalog.tsv: Index $iname: keine Handbuecher in quelle" >&2
+        exit 1
+    fi
+done < <(katalog)
+
+# hat SPRACHEN (de,en) die Sprache LANG?
+spricht() { case ",$1," in *",$2,"*) return 0 ;; esac; return 1; }
 
 gewollt() {
     [ $# -gt 1 ] || return 0
@@ -80,8 +122,8 @@ gewollt() {
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 rc=0
 for lang in $sprachen; do
-    while read -r name gruppe ordner teile tde ten; do
-        [ -n "$name" ] || continue
+    while IFS=$'\t' read -r name art gruppe ordner teile sprachen quelle tde ten; do
+        [ "$art" = handbuch ] && spricht "$sprachen" "$lang" || continue
         gewollt "$name" "$@" || continue
         src=$gruppe/$lang-markdown/$ordner
         # Arbeitskopie ohne README.md und QUELLE.txt (sonst ein Kapitel "README")
@@ -104,11 +146,11 @@ for lang in $sprachen; do
             *)        ude="Handbuchseiten (deutsch)";      uen="Reference manual pages" ;;
         esac
         if [ "$lang" = de ]; then
-            titel=${tde//_/ }
+            titel=$tde
             extra=(-lang de -subtitle "$ude" -subject "$ude"
                    -note scripts/createpdf/uebersetzung-de.txt)
         else
-            titel=${ten//_/ }
+            titel=$ten
             extra=(-lang en -subtitle "$uen" -subject "$uen"
                    -note scripts/createpdf/umwandlung-en.txt)
         fi
@@ -117,49 +159,63 @@ for lang in $sprachen; do
         if [ "$gruppe" = Tcl-family ]; then
             extra+=(-index-tsv "${out%.pdf}.index.tsv")
         fi
+        [ -n "$stichworte" ] && extra+=(-index-terms "$stichworte")
         echo "== $out ($(find "$w" -name '*.md' | wc -l) Seiten)"
         if ! "$tclsh" scripts/createpdf/createpdf.tcl "$w" -o "$out" \
-                -title "$titel" "${extra[@]}"; then
+                -title "$titel" "${extra[@]}" < /dev/null; then
             echo "$name ($lang): Fehler" >&2; rc=1
         fi
-    done <<< "$LISTE"
+    done < <(katalog)
 
-    # Gesamtindex der Tcl-Familie aus den Tabellen neben den PDFs,
-    # in der Reihenfolge der Liste
-    if [ $# -eq 0 ] || gewollt tcl-family-index "$@"; then
+    # Index (art index) aus den Tabellen neben den PDFs: quelle "-" = alle
+    # Handbuecher seiner Gruppe in der Reihenfolge des Katalogs (fehlende
+    # Tabellen ohne Meldung, etwa die C-API deutsch), sonst die genannten
+    # in deren Reihenfolge (fehlende mit Meldung)
+    while IFS=$'\t' read -r iname art igruppe _ _ isprachen iquelle itde iten; do
+        [ "$art" = index ] && spricht "$isprachen" "$lang" || continue
+        gewollt "$iname" "$@" || continue
         tsvs=()
-        while read -r name gruppe _; do
-            [ "$gruppe" = Tcl-family ] || continue
-            t=Tcl-family/$lang-pdf/$name-$lang.index.tsv
-            [ -f "$t" ] && tsvs+=("$t")
-        done <<< "$LISTE"
-        if [ ${#tsvs[@]} -gt 0 ]; then
-            if [ "$lang" = de ]; then gtitel="Tcl-Familie: Gesamtindex"
-            else gtitel="Tcl family: combined index"; fi
-            out=Tcl-family/$lang-pdf/tcl-family-index-$lang.pdf
-            echo "== $out (${#tsvs[@]} Handbuecher)"
-            if ! "$tclsh" scripts/createpdf/index-gesamt.tcl -pdf "$out" \
-                    -lang "$lang" -title "$gtitel" "${tsvs[@]}"; then
-                echo "tcl-family-index ($lang): Fehler" >&2; rc=1
-            fi
+        if [ "$iquelle" = - ]; then
+            while IFS=$'\t' read -r name art2 gruppe _; do
+                [ "$art2" = handbuch ] && [ "$gruppe" = "$igruppe" ] || continue
+                t=$igruppe/$lang-pdf/$name-$lang.index.tsv
+                [ -f "$t" ] && tsvs+=("$t")
+            done < <(katalog)
+        else
+            for name in ${iquelle//,/ }; do
+                t=$igruppe/$lang-pdf/$name-$lang.index.tsv
+                if [ -f "$t" ]; then
+                    tsvs+=("$t")
+                else
+                    echo "$iname ($lang): $t fehlt, ausgelassen"
+                fi
+            done
         fi
-    fi
+        [ ${#tsvs[@]} -gt 0 ] || continue
+        if [ "$lang" = de ]; then gtitel=$itde; else gtitel=$iten; fi
+        out=$igruppe/$lang-pdf/$iname-$lang.pdf
+        echo "== $out (${#tsvs[@]} Handbuecher)"
+        if ! "$tclsh" scripts/createpdf/index-gesamt.tcl -pdf "$out" \
+                -lang "$lang" -title "$gtitel" "${tsvs[@]}" < /dev/null; then
+            echo "$iname ($lang): Fehler" >&2; rc=1
+        fi
+    done < <(katalog)
 
-    while read -r name ordner blang; do
-        [ -n "$name" ] && [ "$blang" = "$lang" ] || continue
+    while IFS=$'\t' read -r name art gruppe ordner _ sprachen _; do
+        [ "$art" = buch ] && spricht "$sprachen" "$lang" || continue
         gewollt "$name" "$@" || continue
-        src=Books/$lang-markdown/$ordner
+        src=$gruppe/$lang-markdown/$ordner
         [ -f "$src/book.tcl" ] || { echo "$name: kein $src/book.tcl, uebersprungen"; continue; }
         if [ -z "$BOOKKIT" ] || [ ! -f "$BOOKKIT/tools/book-build.tcl" ]; then
             echo "$name: BOOKKIT nicht gesetzt, uebersprungen"
             continue
         fi
-        mkdir -p "Books/$lang-pdf"
-        out=Books/$lang-pdf/$name.pdf
+        mkdir -p "$gruppe/$lang-pdf"
+        out=$gruppe/$lang-pdf/$name.pdf
         echo "== $out (bookkit)"
-        if ! "$tclsh" "$BOOKKIT/tools/book-build.tcl" "$src" -number -pdf "$out"; then
+        if ! "$tclsh" "$BOOKKIT/tools/book-build.tcl" "$src" -number -pdf "$out" < /dev/null; then
             echo "$name: Fehler" >&2; rc=1
         fi
-    done <<< "$BUECHER"
+    done < <(katalog)
 done
 exit $rc

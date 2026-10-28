@@ -1,9 +1,10 @@
 ---
 CommandName: is
+title: is
 ManualSection: n
 Version: 3.3
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -18,7 +19,7 @@ itcl::is - test argument to see if it is a class or an object
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::is]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[itcl::is]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -30,27 +31,25 @@ The *option* argument determines what action is carried out by the command.  The
 **is class** *command*
 : Returns 1 if command is a class, and returns 0 otherwise.
 
+    The fully qualified name of the class needs to be given as the *command* argument. So, if a class resides in a namespace, then the namespace needs to be specified as well. So, if a class **C** resides in a namespace **N**, then the command should be called like:
 
-The fully qualified name of the class needs to be given as the *command* argument. So, if a class resides in a namespace, then the namespace needs to be specified as well. So, if a class **C** resides in a namespace **N**, then the command should be called like:
-
-```
-is N::C
-    or
-is ::N::C
-```
+    ```
+    is N::C
+        or
+    is ::N::C
+    ```
 
 **is** object ?**-class** *className*? *command*
 : Returns 1 if *command* is an object, and returns 0 otherwise.
 
+    If the optional "**-class**" parameter is specified, then the *command* will be checked within the context of the class given. Note that *className* has to exist. If not, then an error will be given. So, if *className* is uncertain to be a class, then the programmer will need to check it's existance beforehand, or wrap it in a catch statement.
 
-If the optional "**-class**" parameter is specified, then the *command* will be checked within the context of the class given. Note that *className* has to exist. If not, then an error will be given. So, if *className* is uncertain to be a class, then the programmer will need to check it's existance beforehand, or wrap it in a catch statement.
+    So, if **c** is an object in the class **C**, in namespace N then these are the possibilities (all return 1):
 
-So, if **c** is an object in the class **C**, in namespace N then these are the possibilities (all return 1):
-
-```
-set obj [N::C c]
-itcl::is object N::c
-itcl::is object c
-itcl::is object $obj
-itcl::is object [itcl::code c]
-```
+    ```
+    set obj [N::C c]
+    itcl::is object N::c
+    itcl::is object c
+    itcl::is object $obj
+    itcl::is object [itcl::code c]
+    ```

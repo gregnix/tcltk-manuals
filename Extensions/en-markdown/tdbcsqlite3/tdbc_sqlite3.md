@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::sqlite3
+title: tdbc::sqlite3
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -27,8 +28,8 @@ tdbc::sqlite3 - TDBC driver for the SQLite3 database manager
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc::sqlite3]{.lit} [1.0]{.lit} 
-[tdbc::sqlite3::connection]{.cmd} [create]{.sub} [db]{.arg} [fileName]{.arg} [-option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [tdbc::sqlite3]{.lit} [1.0]{.lit}
+[tdbc::sqlite3::connection]{.cmd} [create]{.sub} [db]{.arg} [fileName]{.arg} [-option value...]{.optarg}
 :::
 
 # Description

@@ -9,23 +9,23 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-relief](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -auto |
-|   -ipad |
-|   -managed |
-|   -scrollbar |
-|   -sides |
-|   -size |
+    |   |
+    | --- |
+    |   -auto |
+    |   -ipad |
+    |   -managed |
+    |   -scrollbar |
+    |   -sides |
+    |   -size |
 
 
 *WIDGET COMMAND*

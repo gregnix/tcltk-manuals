@@ -19,7 +19,7 @@
 ## Caps per scheme
 
 `caps` returns a list of the operations the backend actually
-supports. As of 0.68.0 (unchanged since 0.64.0):
+supports. The table applies to 0.68.0 (the same since 0.64.0):
 
 | Scheme | caps |
 |---|---|

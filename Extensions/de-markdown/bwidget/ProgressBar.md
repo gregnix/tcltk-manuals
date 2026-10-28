@@ -9,24 +9,24 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-foreground oder -fg](options.md) |   [-orient](options.md) |
-|   [-relief](options.md) |
-|   [-troughcolor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-foreground oder -fg](options.md) |   [-orient](options.md) |
+    |   [-relief](options.md) |
+    |   [-troughcolor](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -height |
-|   -maximum |
-|   -type |
-|   -variable |
-|   -width |
+    |   |
+    | --- |
+    |   -height |
+    |   -maximum |
+    |   -type |
+    |   -variable |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -55,17 +55,17 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 **-type**
 :  Legt den Typ der ProgressBar fest. Muss einer der Werte **normal**, **incremental**, **infinite** oder **nonincremental_infinite** sein.   
-    
+
   Wenn **type** *normal* ist, wird die Fortschrittsanzeige jedes Mal, wenn die Variable gesetzt wird, im Verhältnis zum Wert der Variable und zur Option **maximum** gezeichnet.   
-    
+
   Wenn **type** *incremental* ist, wird der Wert der Fortschrittsanzeige intern gehalten und jedes Mal, wenn die Variable gesetzt wird, um ihren Wert erhöht. Die Fortschrittsanzeige wird im Verhältnis zum internen Wert und zur Option **maximum** gezeichnet.   
-    
+
   Wenn **type** *infinite* ist, wird der Wert der Fortschrittsanzeige intern gehalten und jedes Mal, wenn die Variable gesetzt wird, um ihren Wert erhöht. Die Fortschrittsanzeige bewegt sich von links nach rechts, wenn der interne Wert (modulo **maximum**) kleiner als **maximum**/2 ist, und von rechts nach links, wenn der interne Wert größer als **maximum**/2 ist.   
-    
+
   Wenn **type** *nonincremental_infinite* ist, wird der Wert der Fortschrittsanzeige aus dem Wert der Variable genommen. Die Fortschrittsanzeige bewegt sich von links nach rechts, wenn der Wert der Variable (modulo **maximum**) kleiner als **maximum**/2 ist, und von rechts nach links, wenn der interne Wert größer als **maximum**/2 ist.   
-    
+
   Der Sonderfall des Wertes steht bei der Option **-variable**,   
-    
+
   Der Vorgabewert für **type** ist *normal*. 
 
 

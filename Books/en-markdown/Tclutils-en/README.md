@@ -1,6 +1,6 @@
 # tclutils
 
-*As of: 2026-10-24*
+*As of: 2026-10-27*
 
 Manual for [tclutils]{.index} **0.68.0**: pure-Tcl modules without Tk —
 text filters, characters and paths, data formats, TDBC, PDF text, ODF, providers,
@@ -9,9 +9,8 @@ HTTPS policy, settings, tasks (`tutask`), test runner.
 This is the English edition. The German original is in `Tclutils-de/`
 next to this directory; both have the same file names.
 
-Pairing: tclutils **0.68.0** + tkutils **0.47.0** + ctrlutils **0.4**.
-Widgets: book *tkutils* (`book-tkutils`, German). Stack and controllers: book
-*Utils-Stack* (`book-utils-stack`, German).
+Pairing: tclutils **0.68.0** + tkutils **0.48.0** + ctrlutils **0.4**.
+Widgets: book *tkutils*. Stack and controllers: book *Utils-Stack*.
 
 This book does not change the module code. API details: `docs/<modul>.md` in the
 tclutils tree.
@@ -32,6 +31,8 @@ tclutils tree.
 cd ../..
 tclsh bookkit/tools/book-build.tcl book-tclutils/Tclutils-en/ -number
 ```
+
+Written with the help of AI tools; text and examples are checked by the author.
 
 ## License
 

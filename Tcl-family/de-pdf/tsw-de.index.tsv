@@ -1,6 +1,23 @@
 # pdf	tsw-de.pdf
 # label	Tsw
 # title	Tsw
+attrib	8
+cget	8
+configure	8
+hasattrib	8
+identify	8
 index	3
+instate	8
+state	8
+STILOPTIONEN	10
+style	8
+switchstate	8
+Tablelist-Bearbeitungsoptionen	16
+toggle	9
 toggleswitch	3
 tsw	11
+Tsw-Demo	14
+unsetattrib	9
+VORGABEBINDUNGEN	9
+Wahl zwischen toggleswitch und (ttk::)checkbutton	11
+WIDGET-ZUSTÄNDE	10

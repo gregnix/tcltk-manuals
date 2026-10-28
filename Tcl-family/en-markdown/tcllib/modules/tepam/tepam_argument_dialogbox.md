@@ -25,7 +25,7 @@ tepam::argument\_dialogbox - TEPAM argument\_dialogbox, reference manual
 [package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5]{.lit} [9]{.lit}
 [package]{.cmd} [require]{.sub} [Tk]{.lit} [8.3]{.lit}
 [package]{.cmd} [require]{.sub} [tepam]{.lit} [0.5]{.optlit}
-[tepam::argument\_dialogbox]{.cmd} [item\_name]{.arg} [item\_attributes]{.arg} ?item\_name item\_attributes? ?...?
+[tepam::argument\_dialogbox]{.cmd} [item\_name]{.arg} [item\_attributes]{.arg} [item\_name item\_attributes]{.optarg} ?...?
 [tepam::argument\_dialogbox]{.cmd} [{item\_name item\_attributes ?item\_name item\_attributes? ?...?}]{.arg}
 :::
 

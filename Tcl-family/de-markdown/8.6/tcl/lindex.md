@@ -33,7 +33,7 @@ lindex - Liest ein Element aus einer Liste
 # Übersicht
 
 ::: {.synopsis} :::
-[lindex]{.cmd} [list]{.arg} ?index ...?
+[lindex]{.cmd} [list]{.arg} [index]{.optdot}
 :::
 
 # Beschreibung

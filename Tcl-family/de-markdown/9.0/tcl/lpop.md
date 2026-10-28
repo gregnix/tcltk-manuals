@@ -43,7 +43,7 @@ lpop - Holt ein Listenelement und entfernt es
 # Übersicht
 
 ::: {.synopsis} :::
-[lpop]{.cmd} [varName]{.arg} ?index ...?
+[lpop]{.cmd} [varName]{.arg} [index]{.optdot}
 :::
 
 # Beschreibung

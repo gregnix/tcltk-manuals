@@ -21,7 +21,7 @@ platform::shell - System identification support code and utilities
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [?1.1.4?]{.lit}
+[package]{.cmd} [require]{.sub} [platform::shell]{.lit} [1.1.4]{.optlit}
 [platform::shell::generic]{.cmd} [shell]{.arg}
 [platform::shell::identify]{.cmd} [shell]{.arg}
 [platform::shell::platform]{.cmd} [shell]{.arg}

@@ -1,9 +1,10 @@
 ---
 CommandName: ensemble
+title: ensemble
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - ensemble
  - part
@@ -12,30 +13,28 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-# NAME
+# Name
 
 itcl::ensemble - einen zusammengesetzten Befehl erzeugen oder ändern
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[itcl::ensemble]{.cmd} [ensName]{.arg} [command arg arg]{.optdot} 
-[ensemble]{.cmd} [ensName]{.arg} { 
-[part]{.cmd} [partName]{.arg} [args]{.arg} [body]{.arg} 
-...
-[ensemble]{.cmd} [partName]{.arg} { 
-[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg} 
-[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg} 
-...
-}
-}
+[itcl::ensemble]{.cmd} [ensName]{.arg} [command arg arg...]{.optarg}
+[ensemble]{.cmd} [ensName]{.arg} {
+[part]{.cmd} [partName]{.arg} [args]{.arg} [body]{.arg}
+[...]{.ins}
+[ensemble]{.cmd} [partName]{.arg} {
+[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg}
+[part]{.cmd} [subPartName]{.arg} [args]{.arg} [body]{.arg}
+[...]{.ins}
 :::
 
 oder
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **ensemble** erzeugt einen zusammengesetzten Befehl oder ändert ihn. Ein kurzer Überblick über Ensembles steht unten im Abschnitt **WAS IST EIN ENSEMBLE?**.
+Der Befehl **ensemble** erzeugt einen zusammengesetzten Befehl oder ändert ihn. Ein kurzer Überblick über Ensembles steht unten im Abschnitt [Was ist ein Ensemble?].
 
 Wenn der Befehl **ensemble** ein vorhandenes Ensemble namens *ensName* findet, aktualisiert er dieses Ensemble. Sonst erzeugt er ein Ensemble namens *ensName*. Wenn der *ensName* ein einfacher Name wie „foo“ ist, wird dem aktuellen Namespace-Kontext ein Ensemble-Befehl namens „foo“ hinzugefügt. Wenn in diesem Kontext bereits ein Befehl namens „foo“ existiert, wird er gelöscht. Wenn der *ensName* Namespace-Qualifizierer wie „a::b::foo“ enthält, wird der Namespace-Pfad aufgelöst, und der Ensemble-Befehl wird diesem Namespace-Kontext hinzugefügt. Übergeordnete Namespaces wie „a“ und „b“ werden bei Bedarf automatisch erzeugt.
 
@@ -47,7 +46,7 @@ Der Befehl **part** definiert einen neuen Teil des Ensembles. Seine Syntax ist m
 
 Der Befehl **ensemble** kann in einem anderen Befehl **ensemble** verschachtelt werden, um ein Unter-Ensemble zu definieren.
 
-# WAS IST EIN ENSEMBLE?
+# Was ist ein Ensemble?
 
 Der gewöhnliche Befehl „info“ ist ein zusammengesetzter Befehl: auf den Befehlsnamen **info** muss ein Unterbefehl wie **body** oder **globals** folgen. Ein Befehl wie **info** wird hier *Ensemble* genannt, Unterbefehle wie **body** oder **globals** seine *Teile*.
 
@@ -85,7 +84,7 @@ wrong # args: should be one of...
 
 Auch die Reaktion eines Ensembles auf Fehler lässt sich anpassen. Wenn ein Ensemble auf einen nicht angegebenen oder mehrdeutigen Teilnamen trifft, sucht es einen Teil namens **@error**. Wenn der existiert, behandelt er den Fehler. Dieser Teil erhält alle Argumente der Befehlszeile, beginnend mit dem beanstandeten Teilnamen. Er kann den Befehl auf einem anderen Weg auflösen oder eine eigene Fehlermeldung erzeugen.
 
-# BEISPIEL
+# Beispiel
 
 Ein Ensemble könnte die Syntax der verschiedenen „wait“-Befehle in Tcl/Tk aufräumen. Statt einer Reihe eigenartiger Befehle wie dieser:
 

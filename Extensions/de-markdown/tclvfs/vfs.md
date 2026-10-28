@@ -1,5 +1,6 @@
 ---
 CommandName: vfs
+title: vfs
 ManualSection: n
 Version: 1.4
 TclPart: Vfs
@@ -12,35 +13,27 @@ Copyright:
  - Copyright (c) 2001-2003, Vince Darley
 ---
 
-# NAME
+# Name
 
 ::vfs - Befehle und Prozeduren zum Anlegen virtueller Dateisysteme
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-
-[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.4]{.optlit} 
-
-[vfs::filesystem]{.cmd} [info]{.arg} 
-
-[vfs::filesystem]{.cmd} [mount]{.arg} 
-
-[vfs::filesystem]{.cmd} [unmount]{.arg} 
-
-[vfs::accessMode]{.cmd} [mode]{.arg} 
-
-[vfs::matchDirectories]{.cmd} [types]{.arg} 
-
-[vfs::matchFiles]{.cmd} [types]{.arg} 
-
-[vfs::matchCorrectTypes]{.cmd} [types]{.arg} [filelist]{.arg} [inDir]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.4]{.optlit}
+[vfs::filesystem]{.cmd} [info]{.arg}
+[vfs::filesystem]{.cmd} [mount]{.arg}
+[vfs::filesystem]{.cmd} [unmount]{.arg}
+[vfs::accessMode]{.cmd} [mode]{.arg}
+[vfs::matchDirectories]{.cmd} [types]{.arg}
+[vfs::matchFiles]{.cmd} [types]{.arg}
+[vfs::matchCorrectTypes]{.cmd} [types]{.arg} [filelist]{.arg} [inDir]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Das Paket **::vfs** liefert Befehle, um virtuelle Dateisysteme abzufragen, einzuhängen und auszuhängen, und als Tcl-Bibliotheken Hilfen zum Schreiben neuer virtueller Dateisysteme in Tcl. Sobald ein virtuelles Dateisystem steht, gelten darin die Tcl-Befehle **file**, **glob**, **cd**, **pwd** und **open**, einschließlich ihrer C-Schnittstellen in der Tcl-Bibliothek (zum Beispiel **Tcl_FSOpenFileChannel**, **Tcl_FSMatchInDirectory**, …). Sauber geschriebene Erweiterungen wie Tk, die Dateien öffnen oder lesen, erreichen das virtuelle Dateisystem ebenfalls. Weil die gesamte Dateisystemarbeit von Tcl durch eine Schicht läuft, lässt sie sich abfangen. Genau das tut dieses Paket. Das ist etwas anderes, als den Befehl **file** in Tcl zu überladen. Ersetzt werden C-Befehle wie **access** und **stat**. Wenige Befehle auf dieser niedrigen Ebene genügen, damit alle Befehle der höheren Ebenen arbeiten, unabhängig davon, was in der Dateisystemschicht geschieht.
+Das Paket **::vfs** liefert Befehle, um virtuelle Dateisysteme abzufragen, einzuhängen und auszuhängen, und als Tcl-Bibliotheken Hilfen zum Schreiben neuer virtueller Dateisysteme in Tcl. Sobald ein virtuelles Dateisystem steht, gelten darin die Tcl-Befehle **file**, **glob**, **cd**, **pwd** und **open**, einschließlich ihrer C-Schnittstellen in der Tcl-Bibliothek (zum Beispiel **Tcl\_FSOpenFileChannel**, **Tcl\_FSMatchInDirectory**, …). Sauber geschriebene Erweiterungen wie Tk, die Dateien öffnen oder lesen, erreichen das virtuelle Dateisystem ebenfalls. Weil die gesamte Dateisystemarbeit von Tcl durch eine Schicht läuft, lässt sie sich abfangen. Genau das tut dieses Paket. Das ist etwas anderes, als den Befehl **file** in Tcl zu überladen. Ersetzt werden C-Befehle wie **access** und **stat**. Wenige Befehle auf dieser niedrigen Ebene genügen, damit alle Befehle der höheren Ebenen arbeiten, unabhängig davon, was in der Dateisystemschicht geschieht.
 
 Die Dateisystem-Hooks von Tcl gelten je Prozess. Jeder Tcl-Interpreter im selben Prozess sieht dasselbe Dateisystem, einschließlich der virtuellen Dateisysteme.
 
@@ -61,9 +54,9 @@ Drei wenig unterstützte Unterbefehle von **vfs::filesystem** sind **fullynormal
 : Expandiert *path* vollständig, wie 'file normalize', und folgt dabei auch Links im letzten Pfadbestandteil.
 
 
-# EIN VIRTUELLES DATEISYSTEM NUR IN TCL
+# Ein virtuelles Dateisystem nur in Tcl
 
-Das Paket vfs fängt jede Dateisystemoperation ab, die in einen Einhängepunkt fällt, und gibt sie an das *command* des Einhängepunkts in dem Interpreter weiter, der ihn eingetragen hat. Das entspricht auf C-Ebene einer Auswertung wie *eval \$command \[list \$subcmd \$root \$relative \$actualpath\] \$args*.
+Das Paket vfs fängt jede Dateisystemoperation ab, die in einen Einhängepunkt fällt, und gibt sie an das *command* des Einhängepunkts in dem Interpreter weiter, der ihn eingetragen hat. Das entspricht auf C-Ebene einer Auswertung wie *eval $command \[list $subcmd $root $relative $actualpath\] $args*.
 
 *subcmd* ist einer der Werte *access*, *createdirectory*, *deletefile*, *fileattributes*, *matchindirectory*, *open*, *removedirectory*, *stat*, *utime*. Behandelt *command* jeden dieser Fälle passend, entsteht ein vollständiges virtuelles Dateisystem, das Tcl vom nativen Dateisystem nicht unterscheidet. (Einschränkung: derzeit werden nicht alle berechtigungsbezogenen Flags von 'glob' an Tcl durchgereicht.)
 
@@ -71,12 +64,12 @@ Die übrigen Argumente nennen den Dateipfad, auf dem die Operation arbeitet (jed
 
 Die meisten Dateisystemoperationen brauchen für ein richtiges Ergebnis nur das Argument *relative*. Für manche Unterbefehle sind die anderen Argumente nötig.
 
-Fast alle diese Befehle kehren entweder ordnungsgemäß zurück (auf C-Ebene mit dem Ergebnis TCL_OK) oder sie melden den passenden POSIX-Fehlercode mit vfs::filesystem posixerror. Ein geworfener Tcl-Fehler gilt als Fehler der Umsetzung und wird als unbekannter POSIX-Fehler des Dateisystemaufrufs gelesen. Ausgenommen sind die Dateisystembefehle, die eine Tcl-Fehlermeldung direkt angeben dürfen: open (wenn ein Interpreter übergeben wird), matchindirectory und fileattributes (nur bei einer set- oder get-Operation). Diese drei Befehle dürfen jede Tcl-Fehlermeldung werfen; sie geht an den Aufrufer. Sie dürfen auch einen POSIX-Fehler werfen, der passend behandelt wird.
+Fast alle diese Befehle kehren entweder ordnungsgemäß zurück (auf C-Ebene mit dem Ergebnis TCL\_OK) oder sie melden den passenden POSIX-Fehlercode mit vfs::filesystem posixerror. Ein geworfener Tcl-Fehler gilt als Fehler der Umsetzung und wird als unbekannter POSIX-Fehler des Dateisystemaufrufs gelesen. Ausgenommen sind die Dateisystembefehle, die eine Tcl-Fehlermeldung direkt angeben dürfen: open (wenn ein Interpreter übergeben wird), matchindirectory und fileattributes (nur bei einer set- oder get-Operation). Diese drei Befehle dürfen jede Tcl-Fehlermeldung werfen; sie geht an den Aufrufer. Sie dürfen auch einen POSIX-Fehler werfen, der passend behandelt wird.
 
 Die Befehle im Einzelnen (*r-r-a* steht für das übliche Argumenttripel *root*, *relative* und *actualpath*):
 
 *command* *access* *r-r-a* *mode*
-: Gibt TCL_OK zurück oder wirft einen POSIX-Fehler, je nachdem, ob der angegebene Zugriffsmodus (eine ganze Zahl) zur Datei passt.
+: Gibt TCL\_OK zurück oder wirft einen POSIX-Fehler, je nachdem, ob der angegebene Zugriffsmodus (eine ganze Zahl) zur Datei passt.
 
 *command* *createdirectory* *r-r-a*
 : Legt ein Verzeichnis mit dem angegebenen Namen an. Der Befehl darf annehmen, dass alle Unterverzeichnisse im Pfad vorhanden und gültig sind und dass der gewünschte Pfad noch nicht existiert. Darum kümmert sich Tcl.
@@ -103,7 +96,7 @@ Die Befehle im Einzelnen (*r-r-a* steht für das übliche Argumenttripel *root*,
 : Setzt Zugriffs- und Änderungszeit der angegebenen Datei. Gelesen werden sie mit 'stat'.
 
 
-# VFS-HILFEN
+# VFS-Hilfen
 
 Die vfslib stellt Tcl-Prozeduren bereit, die beim Schreiben der Befehlsprozeduren für die genannten Fälle helfen. Das sind:
 
@@ -120,14 +113,14 @@ Die vfslib stellt Tcl-Prozeduren bereit, die beim Schreiben der Befehlsprozedure
 : Gibt den Teil der *filelist* zurück, der zu den angegebenen *types* passt. Die Elemente sind absolute Pfade oder Namen von Dateien in *inDir*.
 
 
-# VFS-FEHLERSUCHE
+# VFS-Fehlersuche
 
-Zum Untersuchen von Problemen in der Umsetzung dient zum Beispiel: vfs::filesystem internalerror report ; proc report {} { puts stderr \$::errorInfo }
+Zum Untersuchen von Problemen in der Umsetzung dient zum Beispiel: vfs::filesystem internalerror report ; proc report {} { puts stderr $::errorInfo }
 
-# EINSCHRÄNKUNGEN
+# Einschränkungen
 
 Der vfs-Code hat sehr wenige Einschränkungen. Eine Feinheit: wird ein virtuelles Dateisystem, das Groß- und Kleinschreibung unterscheidet, in ein System eingehängt, das sie nicht unterscheidet (das übliche Dateisystem von Windows oder MacOS), und der eigene Code verlässt sich auf die Gleichbehandlung, dann läuft er im virtuellen Dateisystem nicht richtig. Code, der sich darauf verlässt, liefe unter Tcl auf Unix ebenfalls nicht. Der Ausweg ist, den Code zu korrigieren.
 
 Später können die Befehle *link* und *lstat* dazukommen, damit virtuelle Dateisysteme Links lesen und schreiben. Die C-Schnittstelle kann das. Diese Erweiterung reicht es an Tcl noch nicht durch.
 
-Die Tcl-Funktion 'Tcl_FSMatchInDirectory' nimmt verschiedene Typangaben in einer Struktur Tcl_GlobTypeData entgegen. Derzeit wird daraus nur das Feld 'type' durchgereicht. Die Felder 'permissions' und der MacOS-Typ mit Creator bleiben unbeachtet.
+Die Tcl-Funktion 'Tcl\_FSMatchInDirectory' nimmt verschiedene Typangaben in einer Struktur Tcl\_GlobTypeData entgegen. Derzeit wird daraus nur das Feld 'type' durchgereicht. Die Felder 'permissions' und der MacOS-Typ mit Creator bleiben unbeachtet.

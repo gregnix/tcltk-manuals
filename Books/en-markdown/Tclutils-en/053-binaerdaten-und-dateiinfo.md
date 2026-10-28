@@ -230,8 +230,8 @@ Hex patterns for `findHex` and `patch` may contain spaces, `:`, `-`,
 `,` and `0x` before each byte; `{50 4B 03 04}`, `504b0304` and
 `0x50,0x4B,0x03,0x04` are the same pattern. `findString` converts the
 text to bytes with the encoding before searching, default `utf-8`. An
-`ä` in a Latin-1 file is therefore found only by `findString pfad ä
-iso8859-1`. A character the encoding cannot represent is an
+`ä` in a Latin-1 file is therefore found only by
+`findString pfad ä iso8859-1`. A character the encoding cannot represent is an
 error.
 
 `writeBytes` and `patch` first create a copy `pfad.bak` and overwrite

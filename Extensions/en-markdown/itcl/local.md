@@ -1,9 +1,10 @@
 ---
 CommandName: local
+title: local
 ManualSection: n
 Version: unknown
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -19,14 +20,14 @@ itcl::local - create an object local to a procedure
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::local]{.cmd} [className]{.arg} [objName]{.arg} [arg arg]{.optdot} 
+[itcl::local]{.cmd} [className]{.arg} [objName]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
 
-The **local** command creates an **\[incr**\\ **Tcl\]** object that is local to the current call frame.  When the call frame goes away, the object is automatically deleted.  This command is useful for creating objects that are local to a procedure.
+The **local** command creates an **\[incr Tcl\]** object that is local to the current call frame.  When the call frame goes away, the object is automatically deleted.  This command is useful for creating objects that are local to a procedure.
 
-As a side effect, this command creates a variable named "**itcl-local-**_xxx_", where *xxx* is the name of the object that is created.  This variable detects when the call frame is destroyed and automatically deletes the associated object.
+As a side effect, this command creates a variable named "**itcl-local-***xxx*", where *xxx* is the name of the object that is created.  This variable detects when the call frame is destroyed and automatically deletes the associated object.
 
 # Example
 

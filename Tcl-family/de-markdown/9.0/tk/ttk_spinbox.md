@@ -87,7 +87,7 @@ Für Spinbox-Widgets sind zusätzlich zu den in der Handbuch-Seite [ttk::entry][
 
 # Virtuelle Ereignisse
 
-Das Spinbox-Widget erzeugt ein virtuelles Ereignis **<\<Increment>>**, wenn der Benutzer <Up> drückt, und ein virtuelles Ereignis **<\<Decrement>>**, wenn er <Down> drückt.
+Das Spinbox-Widget erzeugt ein virtuelles Ereignis **<<Increment>>**, wenn der Benutzer <Up> drückt, und ein virtuelles Ereignis **<<Decrement>>**, wenn er <Down> drückt.
 
 # Styling-Optionen
 

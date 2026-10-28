@@ -68,7 +68,7 @@ Bei normaler Verwendung wird ein Eintrag aktiv (stellt sich anders dar), sobald 
 
 Einträge können *deaktiviert* werden, wodurch ihre Beschriftungen und Accelerators mit gedimmteren Farben angezeigt werden. Die Standard-Menü-Bindings erlauben nicht, dass ein deaktivierter Eintrag aktiviert oder aufgerufen wird. Deaktivierte Einträge können wieder aktiviert werden; dann ist es wieder möglich, sie zu aktivieren und aufzurufen.
 
-Wann immer sich der aktive Eintrag eines Menüs ändert, wird ein virtuelles Event <\<MenuSelect>> an das Menü gesendet. Der aktive Eintrag kann dann vom Menü abgefragt werden, und es kann eine Aktion ausgeführt werden, z. B. das Setzen kontextsensitiver Hilfetexte für den Eintrag.
+Wann immer sich der aktive Eintrag eines Menüs ändert, wird ein virtuelles Event <<MenuSelect>> an das Menü gesendet. Der aktive Eintrag kann dann vom Menü abgefragt werden, und es kann eine Aktion ausgeführt werden, z. B. das Setzen kontextsensitiver Hilfetexte für den Eintrag.
 
 # Eintragstypen
 
@@ -114,7 +114,9 @@ Ein Tear-off-Eintrag erscheint oben im Menü, wenn er mit der Option **-tearoff*
 
 # Menüleisten
 
-Jedes Menü kann als Menüleiste für ein Toplevel-Fenster gesetzt werden (siehe Befehl [toplevel] für die Syntax). Auf dem Macintosh erscheinen die Cascade-Einträge dieses Menüs in der Menüleiste am oberen Rand des Hauptbildschirms, sobald das Toplevel im Vordergrund ist. Unter Windows und Unix werden die Einträge dieses Menüs in einer Menüleiste am oberen Rand des Fensters angezeigt. Diese Menüs verhalten sich gemäß den Schnittstellenrichtlinien ihrer Plattformen. Da macOS verlangt, dass für die aktive App immer eine Menüleiste angezeigt wird, wird ein Standard-Menü angezeigt, wenn für ein Toplevel kein Menü per **configure -menu** zugewiesen wurde und dieses Toplevel den Fokus hat. Für jedes als Menüleiste gesetzte Menü wird ein Klon-Menü erstellt. Siehe Abschnitt [Klone] für weitere Informationen.
+Jedes Menü kann als Menüleiste für ein Toplevel-Fenster gesetzt werden (siehe Befehl [toplevel] für die Syntax). Auf dem Macintosh erscheinen die Cascade-Einträge dieses Menüs in der Menüleiste am oberen Rand des Hauptbildschirms, sobald das Toplevel im Vordergrund ist. Unter Windows und Unix werden die Einträge dieses Menüs in einer Menüleiste am oberen Rand des Fensters angezeigt. Diese Menüs verhalten sich gemäß den Schnittstellenrichtlinien ihrer Plattformen. Da macOS verlangt, dass für die aktive App immer eine Menüleiste angezeigt wird, wird ein Standard-Menü angezeigt, wenn für ein Toplevel kein Menü per **configure -menu** zugewiesen wurde und dieses Toplevel den Fokus hat.
+
+Für jedes als Menüleiste gesetzte Menü wird ein Klon-Menü erstellt. Siehe Abschnitt [Klone] für weitere Informationen.
 
 Wie erwähnt, können Menüleisten auf verschiedenen Plattformen unterschiedlich wirken. Ein Beispiel betrifft die Behandlung von Checkbuttons und Radiobuttons innerhalb des Menüs. Obwohl es erlaubt ist, diese Menüelemente in Menüleisten zu verwenden, werden sie auf einigen Plattformen aufgrund von Systembeschränkungen möglicherweise nicht mit Indikatoren gezeichnet.
 

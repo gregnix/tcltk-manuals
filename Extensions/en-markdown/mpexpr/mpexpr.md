@@ -51,7 +51,7 @@ Operands may be specified in any of the following ways:
 : 0   
 
 
- 
+     
 
 
 ## OPERATORS 
@@ -239,7 +239,7 @@ Additional *mpexpr*  functions:
 **relprime(i,j)**  
 : Return 1 if *i*  and *j*  are relatively prime to each other, 0 otherwise.
 
- 
+     
 
 
 ## TYPES, OVERFLOW, AND PRECISION 
@@ -339,7 +339,7 @@ Additional *mpexpr*  functions:
 **\\b**  
 : Format ASCII backspace.
 
- 
+     
 
 
 ## NOTES 

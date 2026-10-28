@@ -19,7 +19,7 @@
 ## Caps pro Schema
 
 `caps` liefert eine Liste der Operationen, die das Backend wirklich
-kann. Stand 0.68.0 (unverändert seit 0.64.0):
+kann. Die Tabelle gilt für 0.68.0 (gleich seit 0.64.0):
 
 | Schema | caps |
 |---|---|

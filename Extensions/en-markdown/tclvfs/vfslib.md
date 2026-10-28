@@ -1,5 +1,6 @@
 ---
 CommandName: vfslib
+title: vfslib
 ManualSection: n
 Version: 1.0
 TclPart: Vfslib
@@ -26,39 +27,23 @@ Copyright:
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} 
-
-[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.2.1]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::zip]{.lit} [1.0]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::mk4]{.lit} [1.6]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::tar]{.lit} [0.9]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::ftp]{.lit} [1.0]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::ns]{.lit} [1.0]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::webdav]{.lit} [0.1]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::http]{.lit} [0.5]{.optlit} 
-
-[package]{.cmd} [require]{.sub} [vfs::urltype]{.lit} [1.0]{.optlit} 
-
-[vfs::zip::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::ftp::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::tar::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::http::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::mk4::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::ns::Mount]{.cmd} [path]{.arg} [to]{.arg} 
-
-[vfs::urltype::Mount]{.cmd} [type]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit}
+[package]{.cmd} [require]{.sub} [vfs]{.lit} [1.2.1]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::zip]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::mk4]{.lit} [1.6]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::tar]{.lit} [0.9]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::ftp]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::ns]{.lit} [1.0]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::webdav]{.lit} [0.1]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::http]{.lit} [0.5]{.optlit}
+[package]{.cmd} [require]{.sub} [vfs::urltype]{.lit} [1.0]{.optlit}
+[vfs::zip::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::ftp::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::tar::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::http::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::mk4::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::ns::Mount]{.cmd} [path]{.arg} [to]{.arg}
+[vfs::urltype::Mount]{.cmd} [type]{.arg}
 :::
 
 # Description
@@ -71,7 +56,7 @@ The current supported types are ftp, tar, http, zip, mk4, ns, webdav.  In additi
 
 *vfs::urltype::Mount ftp*
 
-for instance.  Any access inside the new volume will result in an attempt to require a package through 'package require vfs::\${type}', which must therefore exist, or errors will be thrown.
+for instance.  Any access inside the new volume will result in an attempt to require a package through 'package require vfs::${type}', which must therefore exist, or errors will be thrown.
 
 # Limitations
 

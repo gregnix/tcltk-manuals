@@ -1,5 +1,6 @@
 ---
 CommandName: tclhttpd
+title: tclhttpd
 ManualSection: 1
 Version: unknown
 TclPart: TclPro
@@ -10,20 +11,19 @@ Keywords:
  - TclHttpd
 Copyright:
  - Copyright (c) 1998-2000 by Ajuba Solutions
- - All rights reserved.
 ---
 
-# NAME
+# Name
 
 tclhttpd - Tcl-Webserver
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[tclsh]{.cmd} [httpd.tcl]{.sub} [options]{.optarg} 
+[tclsh]{.cmd} [httpd.tcl]{.sub} [options]{.optarg}
 :::
 
-# OPTIONEN
+# Optionen
 
 **-help**
 : Zeigt die Aufrufhilfe an und beendet sich, ohne etwas zu tun.
@@ -59,19 +59,23 @@ tclhttpd - Tcl-Webserver
 : Läuft mit *num* Arbeits-Threads. Dafür ist eine thread-sichere Tcl-Shell nötig.
 
 **-library** *directory*
-: Verzeichnis, das an den auto_path angehängt wird.
+: Verzeichnis, das an den auto\_path angehängt wird.
 
 **-verbose**
 : Gibt beim Start zusätzliche Meldungen aus.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
 TclHttpd ist ein einfacher, erweiterbarer Webserver, der sich einbetten lässt. Die ausführliche Dokumentation liegt als HTML beim Server.
 
-Zum Starten wird das Skript httpd.tcl mit *tclsh* oder *wish* ausgeführt. Das folgende Beispiel startet den Server auf dem üblichen Webserver-Port 80: tclsh \<installdir>/bin/httpd.tcl -port 80. Auf UNIX-Systemen muss der Server als root starten, wenn die Portnummer kleiner als 1024 ist. Soll der Prozess danach unter einem anderen Benutzer als root laufen, was dringend zu empfehlen ist, dienen die Optionen **-uid** und **-gid**. So startet der Server als root, öffnet den Socket und wechselt dann auf ein Konto mit weniger Rechten.
+Zum Starten wird das Skript httpd.tcl mit *tclsh* oder *wish* ausgeführt. Das folgende Beispiel startet den Server auf dem üblichen Webserver-Port 80.
 
-# KONFIGURATION UND ANPASSUNG
+tclsh <installdir>/bin/httpd.tcl -port 80
+
+Auf UNIX-Systemen muss der Server als root starten, wenn die Portnummer kleiner als 1024 ist. Soll der Prozess danach unter einem anderen Benutzer als root laufen, was dringend zu empfehlen ist, dienen die Optionen **-uid** und **-gid**. So startet der Server als root, öffnet den Socket und wechselt dann auf ein Konto mit weniger Rechten.
+
+# Konfiguration und Anpassung
 
 Das Haupt-Skript hängt von einem Tcl-Skript je Thread, httpdthread.tcl, und von einer Konfigurationsdatei tclhttpd.rc ab. Darin stehen die Einstellungen und der Startcode des Webservers.
 
@@ -90,11 +94,11 @@ Debug_Url /debug Debug
 
 Der Webserver erreicht jedes Tcl-Paket, das mit der Tcl-Installation liegt. Die mitgelieferte HTML-Dokumentation beschreibt das Programmieren des Servers ausführlicher.
 
-# SEITENVORLAGEN
+# Seitenvorlagen
 
 TclHttpd hat ein Vorlagensystem, das Tcl-Code in die HTML-Seiten einbettet. Der Webserver wertet das Tcl aus. Es erzeugt in der Regel Teile der HTML-Seite, und das Ergebnis geht unverändert an den Client. Die Ergebnisse der Vorlagen lassen sich zwischenspeichern, oder die Seiten werden bei jedem Zugriff neu verarbeitet.
 
-Jede Seite, die auf ".tml" endet, gilt als HTML+Tcl-Vorlage. Der Webserver ersetzt mit dem Tcl-Befehl **subst** Befehle in Klammern, \[ und \], und Variablenverweise wie \$Phone durch ihren Wert. Auch der Backslash wird verarbeitet. Wörtliche Dollarbeträge in den Vorlagen brauchen einen Backslash vor dem \$:
+Jede Seite, die auf ".tml" endet, gilt als HTML+Tcl-Vorlage. Der Webserver ersetzt mit dem Tcl-Befehl **subst** Befehle in Klammern, \[ und \], und Variablenverweise wie $Phone durch ihren Wert. Auch der Backslash wird verarbeitet. Wörtliche Dollarbeträge in den Vorlagen brauchen einen Backslash vor dem $:
 
 ```
 The price is \$10.00.
@@ -139,4 +143,4 @@ Page content here.
 Send email to [Mailto [Doc_Webmaster]].
 ```
 
-Die Variable **bgcolor** wird in der Datei .tml gesetzt und im BODY-Tag verwendet. **Mailto** gehört zum Paket **htmlutils**, das die Datei .tml anfordert. Die Prozedur **Doc_Webmaster** ist in TclHttpd eingebaut. Die Prozedur MyDate kommt dazu und gilt für jede Seite in htdocs/mystuff und darunter.
+Die Variable **bgcolor** wird in der Datei .tml gesetzt und im BODY-Tag verwendet. **Mailto** gehört zum Paket **htmlutils**, das die Datei .tml anfordert. Die Prozedur **Doc\_Webmaster** ist in TclHttpd eingebaut. Die Prozedur MyDate kommt dazu und gilt für jede Seite in htdocs/mystuff und darunter.

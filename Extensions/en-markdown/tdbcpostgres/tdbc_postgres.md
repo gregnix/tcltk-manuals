@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::postgres
+title: tdbc::postgres
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -27,9 +28,9 @@ tdbc::postgres - TDBC-POSTGRES bridge
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc::postgres]{.lit} [1.0]{.lit} 
-[tdbc::postgres::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
-[tdbc::postgres::connection]{.cmd} [new]{.sub} [-option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [tdbc::postgres]{.lit} [1.0]{.lit}
+[tdbc::postgres::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
+[tdbc::postgres::connection]{.cmd} [new]{.sub} [-option value...]{.optarg}
 :::
 
 # Description
@@ -59,13 +60,13 @@ In addition, the following options are recognized (these options must be set on 
 : Presents *name* as the user name to the Postgres server. Default is the current user ID.
 
 **-passwd** *password*
-: ...see next...
+: see below ...
 
 **-password** *password*
 : These two options are synonymous. They present the given *password* as the user's password to the Postgres server. Default is not to present a password.
 
 **-database** *name*
-: ...see next...
+: see below ...
 
 **-db** *name*
 : These two options are synonymous.  They present the given *name* as the name of the default database to use in Postgres queries. If not specified, the default database for the current user is used.
@@ -83,7 +84,7 @@ In addition, the following options are recognized (these options must be set on 
 : This option is deprecated in favor of the **-sslmode** setting. The *flag* value must be a Boolean value. If it is **true** (or any equivalent), driver will then refuse to connect if the server does not accept an SSL connection. The default value is **false** (or any equivalent), and acts the same like **-sslmode** **preffered**
 
 **-service** *name*
-: It specifies a service *name* in pg_service.conf file that holds additional connection parameters. This allows applications to specify only a service name so connection parameters can be centrally maintained. Refer to PostgreSQL Documentation or PREFIX/share/pg_service.conf.sample file for details.
+: It specifies a service *name* in pg\_service.conf file that holds additional connection parameters. This allows applications to specify only a service name so connection parameters can be centrally maintained. Refer to PostgreSQL Documentation or PREFIX/share/pg\_service.conf.sample file for details.
 
 
 # Examples
@@ -92,7 +93,7 @@ In addition, the following options are recognized (these options must be set on 
 tdbc::postgres::connection -user joe -passwd sesame -db joes_database
 ```
 
-Connects to the Postgres server on the local host using the default connection method, presenting user ID 'joe' and password 'sesame'. Uses 'joes_database' as the default database name.
+Connects to the Postgres server on the local host using the default connection method, presenting user ID 'joe' and password 'sesame'. Uses 'joes\_database' as the default database name.
 
 # Copyright
 

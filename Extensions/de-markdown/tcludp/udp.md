@@ -1,5 +1,6 @@
 ---
 CommandName: udp
+title: udp
 ManualSection: n
 Version: 1.0.14
 TclPart: udp
@@ -27,90 +28,100 @@ Copyright:
  - Copyright (c) 1999-2000 Columbia University; all rights reserved
 ---
 
-# NAME
+# Name
 
 udp - UDP-Sockets in Tcl anlegen
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5-]{.lit} 
-[package]{.cmd} [require]{.sub} [udp]{.lit} [1.0.14]{.lit} 
-[udp_open]{.cmd} [localport]{.optarg} [reuse]{.optlit} [ipv6]{.optlit} 
-[udp_conf]{.cmd} [channel]{.arg} [host]{.arg} [port]{.arg} 
-[udp_conf]{.cmd} [channel]{.arg} [optionName]{.optarg} [value]{.optarg} [optionName value]{.optdot} 
-[udp_peek]{.cmd} [channel]{.arg} [buffersize]{.optarg} 
-[::udp::build-info]{.cmd} 
-[::udp::getaddrinfo]{.cmd} [-hostname]{.sub} [name]{.arg} [optionName value]{.optdot} 
-[::udp::getnameinfo]{.cmd} [address]{.arg} [ipv6]{.optlit} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [8.5-]{.lit}
+[package]{.cmd} [require]{.sub} [udp]{.lit} [1.0.14]{.lit}
+[udp\_open]{.cmd} [localport]{.optarg} [reuse]{.optlit} [ipv6]{.optlit}
+[udp\_conf]{.cmd} [channel]{.arg} [host]{.arg} [port]{.arg}
+[udp\_conf]{.cmd} [channel]{.arg} [optionName]{.optarg} [value]{.optarg} [optionName value]{.optdot}
+[udp\_peek]{.cmd} [channel]{.arg} [buffersize]{.optarg}
+[::udp::build-info]{.cmd}
+[::udp::getaddrinfo]{.cmd} [-hostname]{.lit} [name]{.arg} [optionName value]{.optdot}
+[::udp::getnameinfo]{.cmd} [address]{.arg} [?ipv6?]{.lit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Dieses Paket ermöglicht UDP aus Tcl. Es stellt einen neuen Kanaltyp bereit und erlaubt paketorientiertes UDP über die stromorientierten Kanäle von Tcl. Das Paket definiert drei Befehle. **udp_conf** gilt als veraltet; an seine Stelle tritt der Tcl-Befehl **fconfigure**.
+Dieses Paket ermöglicht UDP aus Tcl. Es stellt einen neuen Kanaltyp bereit und erlaubt paketorientiertes UDP über die stromorientierten Kanäle von Tcl. Das Paket definiert drei Befehle. **udp\_conf** gilt als veraltet; an seine Stelle tritt der Tcl-Befehl **fconfigure**.
 
-# BEFEHLE
+# Befehle
 
-**udp_open** ?*localport*? ?**reuse**? ?**ipv6**?
-: **udp_open** öffnet einen UDP-Socket. Ist *localport* angegeben, wird der Socket an diesen Port gebunden. Sonst wählt das System einen Port. Die Portnummer liefert bei Bedarf **udp_conf**. Die folgenden Schlüsselwörter setzen Optionen des geöffneten Sockets.
+**udp\_open** ?*localport*? ?**reuse**? ?**ipv6**?
+: **udp\_open** öffnet einen UDP-Socket. Ist *localport* angegeben, wird der Socket an diesen Port gebunden. Sonst wählt das System einen Port. Die Portnummer liefert bei Bedarf **udp\_conf**.
 
+    Die folgenden Schlüsselwörter setzen Optionen des geöffneten Sockets.
 
-**reuse**
-: Dieses Schlüsselwort setzt die Socket-Option SO_REUSEADDR. Damit dürfen mehrere Sockets an dieselbe Kombination aus Adresse und Port gebunden werden.
+    **reuse**
+    : Dieses Schlüsselwort setzt die Socket-Option SO\_REUSEADDR. Damit dürfen mehrere Sockets an dieselbe Kombination aus Adresse und Port gebunden werden.
 
-**ipv6**
-: Voreingestellt entsteht ein IPv4-Socket. Das Schlüsselwort **ipv6** öffnet einen IPv6-Socket.
-
-
-**udp_conf** *channel* *host* *port*
-: *Veraltet*, zugunsten der Tcl-Befehle **fconfigure** und **chan configure**. **udp_conf** in dieser Form legt das entfernte Ziel der Pakete fest, die auf diesen *channel* geschrieben werden. Der Befehl ist aufzurufen, bevor Daten auf den UDP-Socket geschrieben werden.
-
-**udp_conf** *channel* *?optionName?* *?value?* *?optionName value ...?*
-: *Veraltet*, zugunsten der Tcl-Befehle **fconfigure** und **chan configure**. Neben dem entfernten Rechner liefert **udp_conf** Angaben zum UDP-Socket. Alle diese Optionen stehen inzwischen über **fconfigure** und **chan configure** zur Verfügung.
+    **ipv6**
+    : Voreingestellt entsteht ein IPv4-Socket. Das Schlüsselwort **ipv6** öffnet einen IPv6-Socket.
 
 
-**-myport**
-: Gibt die lokale Portnummer des Sockets zurück. Option nur zum Lesen.
+**udp\_conf** *channel* *host* *port*
+: *Veraltet*, zugunsten der Tcl-Befehle **fconfigure** und **chan configure**.
 
-**-remote** *?address port?*
-: Legt den entfernten Rechnernamen und die Portnummer fest oder gibt sie zurück. Dieselbe Angabe setzt **udp_conf** *channel* *host* *port*.
+    **udp\_conf** in dieser Form legt das entfernte Ziel der Pakete fest, die auf diesen *channel* geschrieben werden. Der Befehl ist aufzurufen, bevor Daten auf den UDP-Socket geschrieben werden.
 
-**-peer**
-: Gibt Rechnername und Portnummer des zuletzt auf diesem Socket empfangenen Pakets zurück. Option nur zum Lesen.
+**udp\_conf** *channel* *?optionName?* *?value?* *?optionName value ...?*
+: *Veraltet*, zugunsten der Tcl-Befehle **fconfigure** und **chan configure**.
 
-**-family**
-: Gibt zurück, ob der Socket für IPv4 oder IPv6 eingerichtet ist. Option nur zum Lesen.
+    Neben dem entfernten Rechner liefert **udp\_conf** Angaben zum UDP-Socket. Alle diese Optionen stehen inzwischen über **fconfigure** und **chan configure** zur Verfügung.
 
-**-broadcast** *?boolean?*
-: Legt fest oder gibt zurück, ob der Socket auf der Broadcast-Adresse empfangen und senden kann. Auf manchen Systemen braucht der Socket dafür ein Flag. Mit IPv6 ist die Option nicht zulässig; dort ist Multicast zu verwenden.
+    **-myport**
+    : Gibt die lokale Portnummer des Sockets zurück. Option nur zum Lesen.
 
-**-ttl** *?count?*
-: Die Lebensdauer ist die Zahl der Router-Sprünge, die das Paket ausführen darf. Bei Multicast-Paketen bestimmt sie die Verteilung. Die Systemvorgabe für Multicast ist 1 und beschränkt das Paket auf das lokale Subnetz. Sollen Pakete Router passieren, ist der TTL-Wert zu erhöhen. 31 bleibt in der Regel innerhalb eines Standorts, 255 lässt das Paket das gesamte Netz durchqueren.
+    **-remote** *?address port?*
+    : Legt den entfernten Rechnernamen und die Portnummer fest oder gibt sie zurück. Dieselbe Angabe setzt **udp\_conf** *channel* *host* *port*.
 
-**-mcastadd** groupaddr
-: … siehe den folgenden Eintrag …
+    **-peer**
+    : Gibt Rechnername und Portnummer des zuletzt auf diesem Socket empfangenen Pakets zurück. Option nur zum Lesen.
 
-**-mcastadd** "groupaddr netwif"
-: … siehe den folgenden Eintrag …
+    **-family**
+    : Gibt zurück, ob der Socket für IPv4 oder IPv6 eingerichtet ist. Option nur zum Lesen.
 
-**-mcastdrop** groupaddr
-: … siehe den folgenden Eintrag …
+    **-broadcast** *?boolean?*
+    : Legt fest oder gibt zurück, ob der Socket auf der Broadcast-Adresse empfangen und senden kann. Auf manchen Systemen braucht der Socket dafür ein Flag. Mit IPv6 ist die Option nicht zulässig; dort ist Multicast zu verwenden.
 
-**-mcastdrop** "groupaddr netwif"
-: … siehe den folgenden Eintrag …
+    **-ttl** *?count?*
+    : Die Lebensdauer ist die Zahl der Router-Sprünge, die das Paket ausführen darf. Bei Multicast-Paketen bestimmt sie die Verteilung. Die Systemvorgabe für Multicast ist 1 und beschränkt das Paket auf das lokale Subnetz. Sollen Pakete Router passieren, ist der TTL-Wert zu erhöhen. 31 bleibt in der Regel innerhalb eines Standorts, 255 lässt das Paket das gesamte Netz durchqueren.
 
-**-mcastgroups**
-: Sockets von **tcludp** unterstützen Multicast mit IPv4 und IPv6. Damit Multicast-Pakete ankommen, muss die Anwendung dem Betriebssystem mitteilen, dass sie einer bestimmten Multicast-Gruppe beitritt. Bei IPv4 sind das Adressen von 224.0.0.0 bis 239.255.255.255. Steht nur *groupaddr*, wählt das System die Netzschnittstelle. *netwif* tritt einer Multicast-Gruppe auf einer bestimmten Schnittstelle bei. Das ist auf einem System mit mehreren Netzschnittstellen sinnvoll. Unter Windows ist der Index der Netzschnittstelle anzugeben. Auf anderen Plattformen kann der Name der Schnittstelle stehen, zum Beispiel 'eth0'. Die aktuellen Multicast-Gruppen eines Kanals zeigt *-mcastgroups*.
+    **-mcastadd** groupaddr
+    : siehe unten ...
 
-**-mcastif**
-: Gibt zurück, welche Schnittstelle ausgehende Multicast-Pakete verwendet. Nur UNIX.
+    **-mcastadd** "groupaddr netwif"
+    : siehe unten ...
 
-**-mcastloop** *?boolean?*
-: Bei Multicast-UDP kann das System Pakete empfangen, die es selbst gesendet hat, oder sie verwerfen. Das ist die Multicast-Schleife und lässt sich mit dieser Option steuern. Voreingestellt ist der Wert true, und die Anwendung empfängt ihre eigenen Sendungen.
+    **-mcastdrop** groupaddr
+    : siehe unten ...
+
+    **-mcastdrop** "groupaddr netwif"
+    : siehe unten ...
+
+    **-mcastgroups**
+    : Sockets von **tcludp** unterstützen Multicast mit IPv4 und IPv6. Damit Multicast-Pakete ankommen, muss die Anwendung dem Betriebssystem mitteilen, dass sie einer bestimmten Multicast-Gruppe beitritt. Bei IPv4 sind das Adressen von 224.0.0.0 bis 239.255.255.255.
+
+        Steht nur *groupaddr*, wählt das System die Netzschnittstelle. *netwif* tritt einer Multicast-Gruppe auf einer bestimmten Schnittstelle bei. Das ist auf einem System mit mehreren Netzschnittstellen sinnvoll. Unter Windows ist der Index der Netzschnittstelle anzugeben. Auf anderen Plattformen kann der Name der Schnittstelle stehen, zum Beispiel 'eth0'.
+
+        Die aktuellen Multicast-Gruppen eines Kanals zeigt *-mcastgroups*.
+
+    **-mcastif**
+    : Gibt zurück, welche Schnittstelle ausgehende Multicast-Pakete verwendet. Nur UNIX.
+
+    **-mcastloop** *?boolean?*
+    : Bei Multicast-UDP kann das System Pakete empfangen, die es selbst gesendet hat, oder sie verwerfen. Das ist die Multicast-Schleife und lässt sich mit dieser Option steuern. Voreingestellt ist der Wert true, und die Anwendung empfängt ihre eigenen Sendungen.
 
 
-**udp_peek** *channel* ?*buffersize*?
-: Sieht ein Paket an, ohne es aus dem Puffer zu nehmen. Die Option *buffersize* legt die größte Puffergröße fest. Der Wert liegt zwischen 0 und 16. Unter Windows gibt es diese Funktion nicht.
+**udp\_peek** *channel* ?*buffersize*?
+: Sieht ein Paket an, ohne es aus dem Puffer zu nehmen. Die Option *buffersize* legt die größte Puffergröße fest. Der Wert liegt zwischen 0 und 16.
+
+    Unter Windows gibt es diese Funktion nicht.
 
 **::udp::build-info**
 : Gibt Informationen zur Bauumgebung zurück.
@@ -118,37 +129,36 @@ Dieses Paket ermöglicht UDP aus Tcl. Es stellt einen neuen Kanaltyp bereit und 
 **::udp::getaddrinfo** **-hostname** *name* *?optionName value ...?*
 : Gibt eine Liste mit Angaben zu der IP-Adresse zurück, die zu den Parametern passt. Gültige Optionen:
 
+    **-hostname** *name*
+    : Legt fest, welche IP-Adresse nachgeschlagen wird. Zulässig sind Adresse oder Name. Pflichtoption.
 
-**-hostname** *name*
-: Legt fest, welche IP-Adresse nachgeschlagen wird. Zulässig sind Adresse oder Name. Pflichtoption.
+    **-port** *number*
+    : Legt fest, welche Portnummer nachgeschlagen wird.
 
-**-port** *number*
-: Legt fest, welche Portnummer nachgeschlagen wird.
+    **-service** *name*
+    : Legt fest, welcher bekannte Dienst (also http, https und so weiter) beim Nachschlagen den Port bestimmt.
 
-**-service** *name*
-: Legt fest, welcher bekannte Dienst (also http, https und so weiter) beim Nachschlagen den Port bestimmt.
+    **-ipv4**
+    : Gibt nur IPv4-Adressen zurück.
 
-**-ipv4**
-: Gibt nur IPv4-Adressen zurück.
+    **-ipv6**
+    : Gibt nur IPv6-Adressen zurück.
 
-**-ipv6**
-: Gibt nur IPv6-Adressen zurück.
+    **-server**
+    : Gibt nur Dienste zurück, für die der Rechnername ein Server ist.
 
-**-server**
-: Gibt nur Dienste zurück, für die der Rechnername ein Server ist.
+    **-tcp**
+    : Gibt nur TCP-Dienste zurück.
 
-**-tcp**
-: Gibt nur TCP-Dienste zurück.
-
-**-udp**
-: Gibt nur UDP-Dienste zurück.
+    **-udp**
+    : Gibt nur UDP-Dienste zurück.
 
 
 **::udp::getnameinfo** *address* **?ipv6?**
 : **::udp::getnameinfo** gibt die Namen zur IP-Adresse *address* zurück. Mit *ipv6* ist die Adresse eine IPv6-Adresse.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
 # Send data to a remote UDP socket
@@ -209,7 +219,7 @@ vwait ::forever
 exit
 ```
 
-# GESCHICHTE
+# Geschichte
 
 Ein Teil des Codes dieser Erweiterung stammt aus dem Paket tcludp von Michael Miller (http://www.neosoft.com/tcl/ftparchive/sorted/comm/tcludp-1.0/). Gegenüber Michaels UDP-Erweiterung bietet diese Erweiterung Windows und das Lesen und Schreiben des Sockets mit 'gets/puts'. Dazu kommen weitere Einstellungen.
 
@@ -217,7 +227,7 @@ Erweiterungen für Binärdaten und die Einrichtung des Pakets für die Tcl Exten
 
 Die Unterstützung für IPv6 und den Beitritt zu einer Multicast-Gruppe auf einer bestimmten Netzschnittstelle hat Huub Eikens ergänzt.
 
-# COPYRIGHT
+# Copyright
 
 ```
 Copyright (c) 1999-2000 Columbia University; all rights reserved

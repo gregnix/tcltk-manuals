@@ -1,9 +1,10 @@
 ---
 CommandName: itk
+title: itk
 ManualSection: n
 Version: 3.0
 TclPart: itk
-TclDescription: "[incr\\ Tk]"
+TclDescription: "[incr Tk]"
 Keywords:
  - class
  - object
@@ -12,7 +13,6 @@ Keywords:
 Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
-
 
 # Name
 
@@ -40,41 +40,49 @@ set fileName [.fsb get]
 
 In effect, a mega-widget looks and acts exactly like a Tk widget, but is considerably easier to implement.
 
-**\[incr**\\ **Tk\]** is a framework for building mega-widgets.  It uses **\[incr**\\ **Tcl\]** to support the object paradigm, and adds base classes which provide default widget behaviors.
+**\[incr Tk\]** is a framework for building mega-widgets.  It uses **\[incr Tcl\]** to support the object paradigm, and adds base classes which provide default widget behaviors.
 
-All **\[incr**\\ **Tk\]** widgets are derived from the **Archetype** base class.  This class manages internal component widgets, and provides methods like "configure" and "cget" to access configuration options.
+All **\[incr Tk\]** widgets are derived from the [Archetype] base class.  This class manages internal component widgets, and provides methods like "configure" and "cget" to access configuration options.
 
-The **Widget** base class inherits everything from **Archetype**, and adds a Tk frame which acts as a container for the mega-widget. It is used to build mega-widgets that sit inside of other frames and toplevels.  Derived classes create other internal components and pack them into the "hull" frame created by the **Widget** base class.
+The [Widget] base class inherits everything from [Archetype], and adds a Tk frame which acts as a container for the mega-widget. It is used to build mega-widgets that sit inside of other frames and toplevels.  Derived classes create other internal components and pack them into the "hull" frame created by the [Widget] base class.
 
-The **Toplevel** base class inherits everything from **Archetype**, but adds a Tk toplevel which acts as a container for the mega-widget. It is used to build mega-widgets, such as dialog boxes, that have their own toplevel window.  Derived classes create other internal components and pack them into the "hull" toplevel created by the **Toplevel** base class.
+The [Toplevel] base class inherits everything from [Archetype], but adds a Tk toplevel which acts as a container for the mega-widget. It is used to build mega-widgets, such as dialog boxes, that have their own toplevel window.  Derived classes create other internal components and pack them into the "hull" toplevel created by the [Toplevel] base class.
 
 # \[incr Widgets\] library
 
-**\[incr**\\ **Widgets\]** is a mega-widget library built using **\[incr**\\ **Tk\]**.  It can be used right out of the box, and contains more than 30 different widget classes, including:
+**\[incr Widgets\]** is a mega-widget library built using **\[incr Tk\]**.  It can be used right out of the box, and contains more than 30 different widget classes, including:
 
-**-**
+-
 : fileselectiondialog
 
-**-**
+-
 : tabnotebook
 
-**-**
+-
 : panedwindow
 
-**-**
+-
 : combobox
 
-**-**
+-
 : optionmenu
 
-**-**
+-
 : scrolledlistbox
 
-**-**
+-
 : scrolledframe
 
-**-**
+-
 : messagedialog
 
-**-**
-: and many others... The **catalog** demo in the "iwidgets/demos" directory shows all of the available widgets in action.  Each widget class has its own man page describing the features available.
+-
+: and many others...
+
+
+The **catalog** demo in the "iwidgets/demos" directory shows all of the available widgets in action.  Each widget class has its own man page describing the features available.
+
+
+[Archetype]: Archetype.md
+[Toplevel]: Toplevel.md
+[Widget]: Widget.md

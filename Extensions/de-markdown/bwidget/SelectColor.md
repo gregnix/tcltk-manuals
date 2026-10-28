@@ -9,11 +9,11 @@
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -color |   -parent |
-|   -placement |   -title |
-|   -type |
+    |   |   |
+    | --- | --- |
+    |   -color |   -parent |
+    |   -placement |   -title |
+    |   -type |
 
 
 *WIDGET-BEFEHL*
@@ -79,7 +79,7 @@ SelectColor::**dialog** *pathName* *?option value ...?*
 SelectColor::**menu** *pathName* *placement* *?option value ...?* 
 : Erzeugt einen kleinen Popup-Dialog, in dem aus einer vordefinierten Farbliste gewählt wird, mit einer zusätzlichen Schaltfläche, die einen vollständigen Farbdialog anzeigt.
 
- *placement* kann einer der Werte **at**, **center**, **left**, **right**, **above** oder **below** sein. Wenn *-parent* angegeben ist, gilt die Platzierung relativ zum Eltern-Widget. 
+     *placement* kann einer der Werte **at**, **center**, **left**, **right**, **above** oder **below** sein. Wenn *-parent* angegeben ist, gilt die Platzierung relativ zum Eltern-Widget. 
 
 
 SelectColor::**setcolor** *index* *color* 

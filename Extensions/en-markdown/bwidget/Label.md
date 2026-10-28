@@ -9,53 +9,53 @@
 *STANDARD OPTIONS*
 : 
 
-|   |
-| --- |
-|   [-anchor](options.md) |
-|   [-background or -bg](options.md) |
-|   [-bitmap](options.md) |
-|   [-borderwidth or -bd](options.md) |
-|   [-cursor](options.md) |
-|   [-disabledforeground](options.md) |
-|   [-font](options.md) |
-|   [-foreground or -fg](options.md) |
-|   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |
-|   [-highlightthickness](options.md) |
-|   [-image](options.md) |
-|   [-justify](options.md) |
-|   [-padx](options.md) |
-|   [-pady](options.md) |
-|   [-relief](options.md) |
-|   [-takefocus](options.md) |
-|   [-text](options.md) |
-|   [-textvariable](options.md) |
-|   [-wraplength](options.md) |
+    |   |
+    | --- |
+    |   [-anchor](options.md) |
+    |   [-background or -bg](options.md) |
+    |   [-bitmap](options.md) |
+    |   [-borderwidth or -bd](options.md) |
+    |   [-cursor](options.md) |
+    |   [-disabledforeground](options.md) |
+    |   [-font](options.md) |
+    |   [-foreground or -fg](options.md) |
+    |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |
+    |   [-highlightthickness](options.md) |
+    |   [-image](options.md) |
+    |   [-justify](options.md) |
+    |   [-padx](options.md) |
+    |   [-pady](options.md) |
+    |   [-relief](options.md) |
+    |   [-takefocus](options.md) |
+    |   [-text](options.md) |
+    |   [-textvariable](options.md) |
+    |   [-wraplength](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -dragenabled |
-|   -dragendcmd |
-|   -dragevent |
-|   -draginitcmd |
-|   -dragtype |
-|   -dropcmd |
-|   -dropenabled |
-|   -dropovercmd |
-|   -droptypes |
-|   -focus |
-|   -height |
-|   -helptext |
-|   -helptype |
-|   -helpvar |
-|   -name |
-|   -state |
-|   -underline |
-|   -width |
+    |   |
+    | --- |
+    |   -dragenabled |
+    |   -dragendcmd |
+    |   -dragevent |
+    |   -draginitcmd |
+    |   -dragtype |
+    |   -dropcmd |
+    |   -dropenabled |
+    |   -dropovercmd |
+    |   -droptypes |
+    |   -focus |
+    |   -height |
+    |   -helptext |
+    |   -helptype |
+    |   -helpvar |
+    |   -name |
+    |   -state |
+    |   -underline |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -92,13 +92,13 @@ WIDGET-SPECIFIC OPTIONS
 : Specifies a command to be called when **dragevent** occurs on widget. **draginitcmd** must be a command conforming to the description of the option **draginitcmd** of **DragSite::register**.   
   If **draginitcmd** is empty, the internal **draginitcmd** command is used instead and returns:
 
+    : 
 
-|   |   |
-| --- | --- |
-| *IMAGE {copy} \<image name>*  | if an image is displayed.  |
+        |   |   |
+        | --- | --- |
+        | *IMAGE {copy} \<image name>*  | if an image is displayed.  |
 
-
-Note that if **dragtype** option is not empty, its value is used instead of those above.
+    Note that if **dragtype** option is not empty, its value is used instead of those above.
 
 
 **-dragtype**
@@ -109,17 +109,17 @@ Note that if **dragtype** option is not empty, its value is used instead of thos
 : Specifies a command to be called when drop occurs on the widget. **dropcmd** must be a command conforming to the description of the option **dropcmd** of **DropSite::register**.   
   If **dropcmd** is empty, the command updates the label following the type of the data:
 
+    : 
 
-|   |   |
-| --- | --- |
-| *COLOR* or *FGCOLOR* | reconfigure the **foreground** of the Label. |
-| *BGCOLOR* | reconfigure the **background** of the Label. |
-| *IMAGE* | reconfigure the Label to display the associated image. |
-| *BITMAP* | reconfigure the Label to display the associated bitmap. **image** option is set to empty. |
-| *TEXT*,   or any other tag | reconfigure the Label to display the associated string. **image** and **bitmap** options are set to empty. |
+        |   |   |
+        | --- | --- |
+        | *COLOR* or *FGCOLOR* | reconfigure the **foreground** of the Label. |
+        | *BGCOLOR* | reconfigure the **background** of the Label. |
+        | *IMAGE* | reconfigure the Label to display the associated image. |
+        | *BITMAP* | reconfigure the Label to display the associated bitmap. **image** option is set to empty. |
+        | *TEXT*,   or any other tag | reconfigure the Label to display the associated string. **image** and **bitmap** options are set to empty. |
 
-
-and returns 1.
+    and returns 1.
 
 
 **-dropenabled**

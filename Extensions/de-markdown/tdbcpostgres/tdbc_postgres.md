@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::postgres
+title: tdbc::postgres
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -20,19 +21,19 @@ Copyright:
  - Copyright (c) 2009 by Slawomir Cygan
 ---
 
-# NAME
+# Name
 
 tdbc::postgres - TDBC-POSTGRES-Brücke
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc::postgres]{.lit} [1.0]{.lit} 
-[tdbc::postgres::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
-[tdbc::postgres::connection]{.cmd} [new]{.sub} [-option value]{.optdot} 
+[package]{.cmd} [require]{.sub} [tdbc::postgres]{.lit} [1.0]{.lit}
+[tdbc::postgres::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
+[tdbc::postgres::connection]{.cmd} [new]{.sub} [-option value...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Treiber **tdbc::postgres** stellt eine Datenbankschnittstelle bereit, die Tcl DataBase Connectivity (TDBC) entspricht, und erlaubt einem Tcl-Skript, sich mit einer Postgres-Datenbank zu verbinden.
 
@@ -40,7 +41,7 @@ Die Verbindung zu einer POSTGRES-Datenbank entsteht durch den Aufruf von **tdbc:
 
 Die Nebenwirkung von **tdbc::postgres::connection create** ist, eine neue Datenbankverbindung zu erzeugen. **tdbc::connection(n)** beschreibt, wie die Verbindung zum Bearbeiten einer Datenbank verwendet wird.
 
-# VERBINDUNGSOPTIONEN
+# Verbindungsoptionen
 
 Der Objektbefehl **tdbc::postgres::connection create** unterstützt die Optionen **-encoding**, **-isolation**, **-readonly** und **-timeout**, die allen TDBC-Treibern gemeinsam sind. Die Option **-timeout** wirkt sich nur auf den Verbindungsvorgang aus; einmal verbunden, wird dieser Wert ignoriert und lässt sich nach dem Verbinden nicht mehr ändern.
 
@@ -59,13 +60,13 @@ Zusätzlich werden die folgenden Optionen erkannt (diese Optionen müssen beim e
 : Legt *name* dem Postgres-Server als Benutzernamen vor. Vorgegeben ist die aktuelle Benutzerkennung.
 
 **-passwd** *password*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-password** *password*
 : Diese beiden Optionen sind gleichbedeutend. Sie legen das gegebene *password* dem Postgres-Server als Passwort des Benutzers vor. Vorgegeben ist, kein Passwort vorzulegen.
 
 **-database** *name*
-: ...siehe nächstes...
+: siehe unten ...
 
 **-db** *name*
 : Diese beiden Optionen sind gleichbedeutend. Sie legen den gegebenen *name* als Namen der voreingestellten Datenbank vor, die in Postgres-Abfragen verwendet wird. Ist nichts angegeben, wird die voreingestellte Datenbank des aktuellen Benutzers verwendet.
@@ -83,17 +84,17 @@ Zusätzlich werden die folgenden Optionen erkannt (diese Optionen müssen beim e
 : Diese Option ist zugunsten der Einstellung **-sslmode** veraltet. Der Wert *flag* muss ein boolescher Wert sein. Ist er **true** (oder ein gleichwertiger Wert), verweigert der Treiber die Verbindung, wenn der Server keine SSL-Verbindung annimmt. Der voreingestellte Wert ist **false** (oder ein gleichwertiger Wert) und wirkt wie **-sslmode** **preffered**
 
 **-service** *name*
-: Legt fest, welcher Dienstname *name* in der Datei pg_service.conf gilt. Die Datei enthält weitere Verbindungsparameter. Dadurch können Anwendungen nur einen Dienstnamen angeben, sodass die Verbindungsparameter zentral gepflegt werden können. Einzelheiten stehen in der PostgreSQL-Dokumentation oder in der Datei PREFIX/share/pg_service.conf.sample.
+: Legt fest, welcher Dienstname *name* in der Datei pg\_service.conf gilt. Die Datei enthält weitere Verbindungsparameter. Dadurch können Anwendungen nur einen Dienstnamen angeben, sodass die Verbindungsparameter zentral gepflegt werden können. Einzelheiten stehen in der PostgreSQL-Dokumentation oder in der Datei PREFIX/share/pg\_service.conf.sample.
 
 
-# BEISPIELE
+# Beispiele
 
 ```
 tdbc::postgres::connection -user joe -passwd sesame -db joes_database
 ```
 
-Verbindet mit dem Postgres-Server auf dem lokalen Host über die voreingestellte Verbindungsmethode, legt die Benutzerkennung „joe“ und das Passwort „sesame“ vor. Verwendet „joes_database“ als voreingestellten Datenbanknamen.
+Verbindet mit dem Postgres-Server auf dem lokalen Host über die voreingestellte Verbindungsmethode, legt die Benutzerkennung „joe“ und das Passwort „sesame“ vor. Verwendet „joes\_database“ als voreingestellten Datenbanknamen.
 
-# COPYRIGHT
+# Copyright
 
 Copyright (c) 2009 by Slawomir Cygan

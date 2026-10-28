@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc
+title: tdbc
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -27,25 +28,25 @@ Copyright:
  - Copyright (c) 2008 by Kevin B. Kenny.
 ---
 
-# NAME
+# Name
 
 tdbc - Datenbankanbindung für Tcl
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Tcl Database Connectivity (TDBC) ist eine gemeinsame Schnittstelle, über die Tcl-Programme auf SQL-Datenbanken zugreifen. Umgesetzt wird sie durch eine Reihe von Datenbank-*Treibern*: getrennte Module, von denen jedes Tcl an die Schnittstelle eines bestimmten Datenbanksystems anpasst. Alle Treiber stellen eine gemeinsame Folge von Befehlen bereit, mit denen die Datenbank bearbeitet wird. Diese Befehle werden sämtlich dynamisch benannt, weil sie Objekte im Datenbanksystem darstellen. Dazu gehören **Verbindungen,** die Verbindungen zu einer Datenbank darstellen, **Anweisungen,** die SQL-Anweisungen darstellen, und **Ergebnismengen,** die die Mengen der Zeilen darstellen, die aus dem Ausführen von Anweisungen entstehen. Jede dieser Arten hat eine eigene Handbuchseite; aufgeführt sind sie unter **SIEHE AUCH**.
 
 Daneben enthält TDBC selbst einige Dienstprozeduren, die vor allem für Autoren von Treibern von Bedeutung sind. **SIEHE AUCH** zählt auch sie auf.
 
-# COPYRIGHT
+# Copyright
 
 Copyright (c) 2008 by Kevin B. Kenny.

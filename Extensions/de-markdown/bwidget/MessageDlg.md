@@ -9,32 +9,32 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-anchor](options.md) |   [-font](options.md) |
-|   [-foreground oder -fg](options.md) |   [-padx](options.md) |
-|   [-pady](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-anchor](options.md) |   [-font](options.md) |
+    |   [-foreground oder -fg](options.md) |   [-padx](options.md) |
+    |   [-pady](options.md) |
 
 
 *OPTIONEN VON Dialog*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -cancel |
-|   -default |   -parent |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -cancel |
+    |   -default |   -parent |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -aspect |   -buttons |
-|   -buttonwidth |   -icon |
-|   -justify |   -message |
-|   -title |   -type |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -aspect |   -buttons |
+    |   -buttonwidth |   -icon |
+    |   -justify |   -message |
+    |   -title |   -type |
+    |   -width |
 
 
 ---
@@ -74,22 +74,22 @@ WIDGET-SPEZIFISCHE OPTIONEN
 **-title**
 : Legt eine Zeichenkette fest, die als Titel des Meldungsfeldes angezeigt wird. Wenn der Wert leer ist (die Vorgabe), wird ein Vorgabetitel passend zur Option **icon** gesetzt. Der zugehörige Vorgabetitel ist englisch und kann in eine andere Sprache gesetzt werden, indem die Ressource angegeben wird:
 
-```
-    *MessageDlg.nameTitle:   value
-```
+    ```
+        *MessageDlg.nameTitle:   value
+    ```
 
-oder der gleichwertige Tcl-Befehl:
+    oder der gleichwertige Tcl-Befehl:
 
-```
-    option add *MessageDlg.nameTitle value
-```
+    ```
+        option add *MessageDlg.nameTitle value
+    ```
 
-dabei ist *name* der Name eines Icons, wie er in der Option **icon** definiert ist.   
-Zum Beispiel kann für die französische Sprache bei einem Warndialog angegeben werden:
+    dabei ist *name* der Name eines Icons, wie er in der Option **icon** definiert ist.   
+    Zum Beispiel kann für die französische Sprache bei einem Warndialog angegeben werden:
 
-```
-    option add *MessageDlg.warningTitle  "Attention"
-```
+    ```
+        option add *MessageDlg.warningTitle  "Attention"
+    ```
 
 
 **-type**
@@ -97,46 +97,45 @@ Zum Beispiel kann für die französische Sprache bei einem Warndialog angegeben 
 
 :  
 
- **abortretryignore** 
-: Zeigt drei Schaltflächen an, deren symbolische Namen **abort**, **retry** und **ignore** sind.
+     **abortretryignore** 
+    : Zeigt drei Schaltflächen an, deren symbolische Namen **abort**, **retry** und **ignore** sind.
 
- 
 
-ok
 
-Zeigt eine Schaltfläche an, deren symbolischer Name **ok** ist.
+        ok
 
- 
+        Zeigt eine Schaltfläche an, deren symbolischer Name **ok** ist.
 
-okcancel
 
-Zeigt zwei Schaltflächen an, deren symbolische Namen **ok** und **cancel** sind.
 
- 
+        okcancel
 
-retrycancel
+        Zeigt zwei Schaltflächen an, deren symbolische Namen **ok** und **cancel** sind.
 
-Zeigt zwei Schaltflächen an, deren symbolische Namen **retry** und **cancel** sind.
 
- 
 
-yesno
+        retrycancel
 
-Zeigt zwei Schaltflächen an, deren symbolische Namen **yes** und **no** sind.
+        Zeigt zwei Schaltflächen an, deren symbolische Namen **retry** und **cancel** sind.
 
- 
 
-yesnocancel
 
-Zeigt drei Schaltflächen an, deren symbolische Namen **yes**, **no** und **cancel** sind.
+        yesno
 
- 
+        Zeigt zwei Schaltflächen an, deren symbolische Namen **yes** und **no** sind.
 
-user
 
-Zeigt die Schaltflächen der Option **-buttons** an.
 
- 
+        yesnocancel
+
+        Zeigt drei Schaltflächen an, deren symbolische Namen **yes**, **no** und **cancel** sind.
+
+
+
+        user
+
+        Zeigt die Schaltflächen der Option **-buttons** an.
+
 
 
 

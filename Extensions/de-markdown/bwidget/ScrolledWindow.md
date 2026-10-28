@@ -9,23 +9,23 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-relief](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-relief](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -auto |
-|   -ipad |
-|   -managed |
-|   -scrollbar |
-|   -sides |
-|   -size |
+    |   |
+    | --- |
+    |   -auto |
+    |   -ipad |
+    |   -managed |
+    |   -scrollbar |
+    |   -sides |
+    |   -size |
 
 
 *WIDGET-BEFEHL*

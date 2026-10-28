@@ -9,19 +9,19 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-cursor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-cursor](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -fill |
-|   -height |
+    |   |
+    | --- |
+    |   -fill |
+    |   -height |
 
 
 *WIDGET COMMAND*

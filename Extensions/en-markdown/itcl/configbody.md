@@ -1,9 +1,10 @@
 ---
 CommandName: configbody
+title: configbody
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -20,18 +21,18 @@ itcl::configbody - change the "config" code for a public variable
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::configbody]{.cmd} [className::varName]{.arg} [body]{.arg} 
+[itcl::configbody]{.cmd} [className::varName]{.arg} [body]{.arg}
 :::
 
 # Description
 
-The **configbody** command is used outside of an **\[incr**\\ **Tcl\]** class definition to define or redefine the configuration code associated with a public variable.  Public variables act like configuration options for an object.  They can be modified outside the class scope using the built-in **configure** method. Each variable can have a bit of "config" code associate with it that is automatically executed when the variable is configured. The **configbody** command can be used to define or redefine this body of code.
+The **configbody** command is used outside of an **\[incr Tcl\]** class definition to define or redefine the configuration code associated with a public variable.  Public variables act like configuration options for an object.  They can be modified outside the class scope using the built-in **configure** method. Each variable can have a bit of "config" code associate with it that is automatically executed when the variable is configured. The **configbody** command can be used to define or redefine this body of code.
 
 Like the **body** command, this facility allows a class definition to have separate "interface" and "implementation" parts. The "interface" part is a **class** command with declarations for methods, procs, instance variables and common variables. The "implementation" part is a series of **body** and **configbody** commands.  If the "implementation" part is kept in a separate file, it can be sourced again and again as bugs are fixed, to support interactive development. When using the "tcl" mode in the **emacs** editor, the "interface" and "implementation" parts can be kept in the same file; as bugs are fixed, individual bodies can be highlighted and sent to the test application.
 
-The name "*className*__::__*varName*" identifies the public variable being updated. If the *body* string starts with "**@**", it is treated as the symbolic name for a C procedure.  Otherwise, it is treated as a Tcl command script.
+The name "*className***::***varName*" identifies the public variable being updated. If the *body* string starts with "**@**", it is treated as the symbolic name for a C procedure.  Otherwise, it is treated as a Tcl command script.
 
-Symbolic names for C procedures are established by registering procedures via **Itcl_RegisterObjC()**.  This is usually done in the **Tcl_AppInit()** procedure, which is automatically called when the interpreter starts up.  In the following example, the procedure \\ffCMy_FooObjCmd() is registered with the symbolic name "foo".  This procedure can be referenced in the **configbody** command as "\\ffC@foo".
+Symbolic names for C procedures are established by registering procedures via **Itcl\_RegisterObjC()**.  This is usually done in the **Tcl\_AppInit()** procedure, which is automatically called when the interpreter starts up.  In the following example, the procedure **My\_FooObjCmd()** is registered with the symbolic name "foo".  This procedure can be referenced in the **configbody** command as "**@foo**".
 
 ```
 int

@@ -1,9 +1,10 @@
 ---
 CommandName: widget
+title: widget
 ManualSection: n
 Version: 4.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - widget
  - object
@@ -23,45 +24,45 @@ This is new functionality in \[incr Tcl\] where the API can still change!!
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::widget]{.cmd} [widgetName]{.arg} { 
-[inherit]{.cmd} [baseWidget]{.arg} [baseWidget]{.optdot} 
-[constructor]{.cmd} [args]{.arg} [init]{.optarg} [body]{.arg} 
-[destructor]{.cmd} [body]{.arg} 
-[public]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[protected]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[private]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[public]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[protected]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[private]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg} 
-[public]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg} 
-[protected]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg} 
-[private]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg} 
-[public]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg} 
-[protected]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg} 
-[private]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg} 
+[itcl::widget]{.cmd} [widgetName]{.arg} [{]{.lit}
+[inherit]{.cmd} [baseWidget]{.arg} [baseWidget...]{.optarg}
+[constructor]{.cmd} [args]{.arg} [init]{.optarg} [body]{.arg}
+[destructor]{.cmd} [body]{.arg}
+[public]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[protected]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[private]{.cmd} [method]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[public]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[protected]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[private]{.cmd} [proc]{.sub} [name]{.arg} [args]{.optarg} [body]{.optarg}
+[public]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg}
+[protected]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg}
+[private]{.cmd} [variable]{.sub} [varName]{.arg} [init]{.optarg} [config]{.optarg}
+[public]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg}
+[protected]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg}
+[private]{.cmd} [common]{.sub} [varName]{.arg} [init]{.optarg}
 
-[public]{.cmd} [command]{.arg} [arg arg]{.optdot} 
-[protected]{.cmd} [command]{.arg} [arg arg]{.optdot} 
-[private]{.cmd} [command]{.arg} [arg arg]{.optdot} 
+[public]{.cmd} [command]{.arg} [arg arg]{.optdot}
+[protected]{.cmd} [command]{.arg} [arg arg]{.optdot}
+[private]{.cmd} [command]{.arg} [arg arg]{.optdot}
 
-[\<delegation]{.cmd} [info>]{.sub} see delegation page 
+[<delegation]{.cmd} [info>]{.sub} see delegation page
 
-[\<option]{.cmd} [info>]{.sub} see option page 
+[<option]{.cmd} [info>]{.sub} see option page
 
-[set]{.cmd} [varName]{.arg} [value]{.optarg} 
-[array]{.cmd} [option]{.arg} [arg arg]{.optdot} 
-}
+[set]{.cmd} [varName]{.arg} [value]{.optarg}
+[array]{.cmd} [option]{.arg} [arg arg]{.optdot}
+[}]{.cmd}
 
-*widgetName objName* ?*arg arg ...*?
+[widgetName]{.ins} [objName]{.arg} [arg arg]{.optdot}
 
-*objName method* ?*arg arg ...*?
+[objName]{.ins} [method]{.arg} [arg arg]{.optdot}
 
-*widgetName::proc* ?*arg arg ...*?
+[widgetName::proc]{.ins} [arg arg]{.optdot}
 :::
 
 # Description
 
-One of the fundamental constructs in **\[incr**\\ **Tcl\]** is the widget definition. A widget is like a class with some additional features. Each widget acts as a template for actual objects that can be created. The widget itself is a namespace which contains things common to all objects.  Each object has its own unique bundle of data which contains instances of the "variables" defined in the widget definition.  Each object also has a built-in variable named "this", which contains the name of the object.  Widgets can also have "common" data members that are shared by all objects in a widget.
+One of the fundamental constructs in **\[incr Tcl\]** is the widget definition. A widget is like a class with some additional features. Each widget acts as a template for actual objects that can be created. The widget itself is a namespace which contains things common to all objects.  Each object has its own unique bundle of data which contains instances of the "variables" defined in the widget definition.  Each object also has a built-in variable named "this", which contains the name of the object.  Widgets can also have "common" data members that are shared by all objects in a widget.
 
 Two types of functions can be included in the widget definition. "Methods" are functions which operate on a specific object, and therefore have access to both "variables" and "common" data members. "Procs" are ordinary procedures in the widget namespace, and only have access to "common" data members.
 
@@ -69,91 +70,86 @@ If the body of any method or proc starts with "**@**", it is treated as the symb
 
 A widget can only be defined once, although the bodies of widget methods and procs can be defined again and again for interactive debugging.  See the **body** and **configbody** commands for details.
 
-Each namespace can have its own collection of objects and widgets. The list of widgets available in the current context can be queried using the "**itcl::find widgets**" command, and the list of objects, with the "**itcl::find objects**" command.
+Each namespace can have its own collection of objects and widgets. The list of widgets available in the current context can be queried using the "[itcl::find widgets][find]" command, and the list of objects, with the "[itcl::find objects][find]" command.
 
 A widget can be deleted using the "**delete widget**" command. Individual objects can be deleted using the "**delete object**" command.
 
 # Widget definitions
 
 **widget** *widgetName definition*
-: Provides the definition for a widget named *widgetName*.  If the widget *widgetName* already exists, or if a command called *widgetName* exists in the current namespace context, this command returns an error.  If the widget definition is successfully parsed, *widgetName* becomes a command in the current context, handling the creation of objects for this widget. The widget *definition* is evaluated as a series of Tcl statements that define elements within the widget.  The following widget definition commands are recognized:
+: Provides the definition for a widget named *widgetName*.  If the widget *widgetName* already exists, or if a command called *widgetName* exists in the current namespace context, this command returns an error.  If the widget definition is successfully parsed, *widgetName* becomes a command in the current context, handling the creation of objects for this widget.
 
+
+The widget *definition* is evaluated as a series of Tcl statements that define elements within the widget.  The following widget definition commands are recognized:
 
 **inherit** *baseWidget* ?*baseWidget*...?
 : Causes the current widget to inherit characteristics from one or more base widgets.  Widgets must have been defined by a previous **widget** command, or must be available to the auto-loading facility (see "AUTO-LOADING" below).  A single widget definition can contain no more than one **inherit** command.
 
+    The order of *baseWidget* names in the **inherit** list affects the name resolution for widget members.  When the same member name appears in two or more base widgets, the base widget that appears first in the **inherit** list takes precedence. For example, if widgets "Foo" and "Bar" both contain the member "x", and if another widget has the "**inherit**" statement:
 
-The order of *baseWidget* names in the **inherit** list affects the name resolution for widget members.  When the same member name appears in two or more base widgets, the base widget that appears first in the **inherit** list takes precedence. For example, if widgets "Foo" and "Bar" both contain the member "x", and if another widget has the "**inherit**" statement:
+    ```
+    inherit Foo Bar
+    ```
 
-```
-inherit Foo Bar
-```
-
-then the name "x" means "Foo::x".  Other inherited members named "x" must be referenced with their explicit name, like "Bar::x".
+    then the name "x" means "Foo::x".  Other inherited members named "x" must be referenced with their explicit name, like "Bar::x".
 
 **constructor** *args* ?*init*? *body*
 : Declares the *args* argument list and *body* used for the constructor, which is automatically invoked whenever an object is created.
 
+    Before the *body* is executed, the optional *init* statement is used to invoke any base widget constructors that require arguments.  Variables in the *args* specification can be accessed in the *init* code fragment, and passed to base widget constructors.  After evaluating the *init* statement, any base widget constructors that have not been executed are invoked automatically without arguments. This ensures that all base widgets are fully constructed before the constructor *body* is executed.  By default, this scheme causes constructors to be invoked in order from least- to most-specific.  This is exactly the opposite of the order that widgets are reported by the **info heritage** command.
 
-Before the *body* is executed, the optional *init* statement is used to invoke any base widget constructors that require arguments.  Variables in the *args* specification can be accessed in the *init* code fragment, and passed to base widget constructors.  After evaluating the *init* statement, any base widget constructors that have not been executed are invoked automatically without arguments. This ensures that all base widgets are fully constructed before the constructor *body* is executed.  By default, this scheme causes constructors to be invoked in order from least- to most-specific.  This is exactly the opposite of the order that widgets are reported by the **info heritage** command.
-
-If construction is successful, the constructor always returns the object name-regardless of how the *body* is defined-and the object name becomes a command in the current namespace context. If construction fails, an error message is returned.
+    If construction is successful, the constructor always returns the object name-regardless of how the *body* is defined-and the object name becomes a command in the current namespace context. If construction fails, an error message is returned.
 
 **destructor** *body*
 : Declares the *body* used for the destructor, which is automatically invoked when an object is deleted.  If the destructor is successful, the object data is destroyed and the object name is removed as a command from the interpreter.  If destruction fails, an error message is returned and the object remains.
 
-
-When an object is destroyed, all destructors in its widget hierarchy are invoked in order from most- to least-specific.  This is the order that the widgets are reported by the "**info heritage**" command, and it is exactly the opposite of the default constructor order.
+    When an object is destroyed, all destructors in its widget hierarchy are invoked in order from most- to least-specific.  This is the order that the widgets are reported by the "**info heritage**" command, and it is exactly the opposite of the default constructor order.
 
 **method** *name* ?*args*? ?*body*?
 : Declares a method called *name*.  When the method *body* is executed, it will have automatic access to object-specific variables and common data members.
 
+    If the *args* list is specified, it establishes the usage information for this method.  The **body** command can be used to redefine the method body, but the *args* list must match this specification.
 
-If the *args* list is specified, it establishes the usage information for this method.  The **body** command can be used to redefine the method body, but the *args* list must match this specification.
-
-Within the body of another widget method, a method can be invoked like any other command-simply by using its name.  Outside of the widget context, the method name must be prefaced an object name, which provides the context for the data that it manipulates. Methods in a base widget that are redefined in the current widget, or hidden by another base widget, can be qualified using the "*widgetName*::*method*" syntax.
+    Within the body of another widget method, a method can be invoked like any other command-simply by using its name.  Outside of the widget context, the method name must be prefaced an object name, which provides the context for the data that it manipulates. Methods in a base widget that are redefined in the current widget, or hidden by another base widget, can be qualified using the "*widgetName*::*method*" syntax.
 
 **proc** *name* ?*args*? ?*body*?
 : Declares a proc called *name*.  A proc is an ordinary procedure within the widget namespace.  Unlike a method, a proc is invoked without referring to a specific object.  When the proc *body* is executed, it will have automatic access only to common data members.
 
+    If the *args* list is specified, it establishes the usage information for this proc.  The **body** command can be used to redefine the proc body, but the *args* list must match this specification.
 
-If the *args* list is specified, it establishes the usage information for this proc.  The **body** command can be used to redefine the proc body, but the *args* list must match this specification.
-
-Within the body of another widget method or proc, a proc can be invoked like any other command-simply by using its name. In any other namespace context, the proc is invoked using a qualified name like "*widgetName*__::__*proc*".  Procs in a base widget that are redefined in the current widget, or hidden by another base widget, can also be accessed via their qualified name.
+    Within the body of another widget method or proc, a proc can be invoked like any other command-simply by using its name. In any other namespace context, the proc is invoked using a qualified name like "*widgetName***::***proc*".  Procs in a base widget that are redefined in the current widget, or hidden by another base widget, can also be accessed via their qualified name.
 
 **variable** *varName* ?*init*? ?*config*?
 : Defines an object-specific variable named *varName*.  All object-specific variables are automatically available in widget methods.  They need not be declared with anything like the **global** command.
 
+    If the optional *init* string is specified, it is used as the initial value of the variable when a new object is created. Initialization forces the variable to be a simple scalar value; uninitialized variables, on the other hand, can be set within the constructor and used as arrays.
 
-If the optional *init* string is specified, it is used as the initial value of the variable when a new object is created. Initialization forces the variable to be a simple scalar value; uninitialized variables, on the other hand, can be set within the constructor and used as arrays.
-
-The optional *config* script is only allowed for public variables. If specified, this code fragment is executed whenever a public variable is modified by the built-in "configure" method.  The *config* script can also be specified outside of the widget definition using the **configbody** command.
+    The optional *config* script is only allowed for public variables. If specified, this code fragment is executed whenever a public variable is modified by the built-in "configure" method.  The *config* script can also be specified outside of the widget definition using the **configbody** command.
 
 **common** *varName* ?*init*?
 : Declares a common variable named *varName*.  Common variables reside in the widget namespace and are shared by all objects belonging to the widget.  They are just like global variables, except that they need not be declared with the usual **global** command. They are automatically visible in all widget methods and procs.
 
+    If the optional *init* string is specified, it is used as the initial value of the variable.  Initialization forces the variable to be a simple scalar value; uninitialized variables, on the other hand, can be set with subsequent **set** and **array** commands and used as arrays.
 
-If the optional *init* string is specified, it is used as the initial value of the variable.  Initialization forces the variable to be a simple scalar value; uninitialized variables, on the other hand, can be set with subsequent **set** and **array** commands and used as arrays.
+    Once a common data member has been defined, it can be set using **set** and **array** commands within the widget definition. This allows common data members to be initialized as arrays. For example:
 
-Once a common data member has been defined, it can be set using **set** and **array** commands within the widget definition. This allows common data members to be initialized as arrays. For example:
+    ```
+    itcl::widget Foo {
+        protected common boolean
+        set boolean(true) 1
+        set boolean(false) 0
+    }
+    ```
 
-```
-itcl::widget Foo {
-    protected common boolean
-    set boolean(true) 1
-    set boolean(false) 0
-}
-```
+    Note that if common data members are initialized within the constructor, they get initialized again and again whenever new objects are created.
 
-Note that if common data members are initialized within the constructor, they get initialized again and again whenever new objects are created.
+[public][itclcomponent] *command* ?*arg arg ...*?
+: see below ...
 
-**public** *command* ?*arg arg ...*?
-: ...see next...
+[protected][itclcomponent] *command* ?*arg arg ...*?
+: see below ...
 
-**protected** *command* ?*arg arg ...*?
-: ...see next...
-
-**private** *command* ?*arg arg ...*?
+[private][itclcomponent] *command* ?*arg arg ...*?
 : These commands are used to set the protection level for widget members that are created when *command* is evaluated. The *command* is usually **method**, **proc**, **variable** or**common**, and the remaining *arg*'s complete the member definition.  However, *command* can also be a script containing many different member definitions, and the protection level will apply to all of the members that are created.
 
 
@@ -164,14 +160,14 @@ Once a widget has been defined, the widget name can be used as a command to crea
 *widgetName objName* ?*args...*?
 : Creates a new object in widget *widgetName* with the name *objName*. Remaining arguments are passed to the constructor of the most-specific widget.  This in turn passes arguments to base widget constructors before invoking its own body of commands.  If construction is successful, a command called *objName* is created in the current namespace context, and *objName* is returned as the result of this operation. If an error is encountered during construction, the destructors are automatically invoked to free any resources that have been allocated, the object is deleted, and an error is returned.
 
+    If *objName* contains the string "**#auto**", that string is replaced with an automatically generated name.  Names have the form *widgetName<number>*, where the *widgetName* part is modified to start with a lowercase letter.  In widget "Toaster", for example, the "**#auto**" specification would produce names like toaster0, toaster1, etc.  Note that "**#auto**" can be also be buried within an object name:
 
-If *objName* contains the string "**#auto**", that string is replaced with an automatically generated name.  Names have the form *widgetName\<number>*, where the *widgetName* part is modified to start with a lowercase letter.  In widget "Toaster", for example, the "**#auto**" specification would produce names like toaster0, toaster1, etc.  Note that "**#auto**" can be also be buried within an object name:
+    ```
+    fileselectiondialog .foo.bar.#auto -background red
+    ```
 
-```
-fileselectiondialog .foo.bar.#auto -background red
-```
+    This would generate an object named ".foo.bar.fileselectiondialog0".
 
-This would generate an object named ".foo.bar.fileselectiondialog0".
 
 # Object usage
 
@@ -184,15 +180,14 @@ Once an object has been created, the object name can be used as a command to inv
 # Built-in methods
 
 *objName* **cget option**
-: Provides access to public variables as configuration options.  This mimics the behavior of the usual "cget" operation for Tk widgets. The *option* argument is a string of the form "**-**_varName_", and this method returns the current value of the public variable *varName*.
+: Provides access to public variables as configuration options.  This mimics the behavior of the usual "cget" operation for Tk widgets. The *option* argument is a string of the form "**-***varName*", and this method returns the current value of the public variable *varName*.
 
 *objName* **configure** ?*option*? ?*value option value ...*?
 : Provides access to public variables as configuration options.  This mimics the behavior of the usual "configure" operation for Tk widgets. With no arguments, this method returns a list of lists describing all of the public variables.  Each list has three elements:  the variable name, its initial value and its current value.
 
+    If a single *option* of the form "**-***varName*" is specified, then this method returns the information for that one variable.
 
-If a single *option* of the form "**-**_varName_" is specified, then this method returns the information for that one variable.
-
-Otherwise, the arguments are treated as *option*/*value* pairs assigning new values to public variables.  Each variable is assigned its new value, and if it has any "config" code associated with it, it is executed in the context of the widget where it was defined.  If the "config" code generates an error, the variable is set back to its previous value, and the **configure** method returns an error.
+    Otherwise, the arguments are treated as *option*/*value* pairs assigning new values to public variables.  Each variable is assigned its new value, and if it has any "config" code associated with it, it is executed in the context of the widget where it was defined.  If the "config" code generates an error, the variable is set back to its previous value, and the **configure** method returns an error.
 
 *objName* **isa** *widgetName*
 : Returns non-zero if the given *widgetName* can be found in the object's heritage, and zero otherwise.
@@ -200,21 +195,21 @@ Otherwise, the arguments are treated as *option*/*value* pairs assigning new val
 *objName* **info** *option* ?*args...*?
 : Returns information related to a particular object named *objName*, or to its widget definition.  The *option* parameter includes the following things, as well as the options recognized by the usual Tcl "info" command:
 
+    *objName* **info widget**
+    : Returns the name of the most-specific widget for object *objName*.
 
-*objName* **info widget**
-: Returns the name of the most-specific widget for object *objName*.
+    *objName* **info inherit**
+    : Returns the list of base widgets as they were defined in the "**inherit**" command, or an empty string if this widget has no base widgets.
 
-*objName* **info inherit**
-: Returns the list of base widgets as they were defined in the "**inherit**" command, or an empty string if this widget has no base widgets.
+    *objName* **info heritage**
+    : Returns the current widget name and the entire list of base widgets in the order that they are traversed for member lookup and object destruction.
 
-*objName* **info heritage**
-: Returns the current widget name and the entire list of base widgets in the order that they are traversed for member lookup and object destruction.
+    *objName* **info function** ?*cmdName*? ?**-protection**? ?**-type**? ?**-name**? ?**-args**? ?**-body**?
+    : With no arguments, this command returns a list of all widgets methods and procs.  If *cmdName* is specified, it returns information for a specific method or proc.  If no flags are specified, this command returns a list with the following elements:  the protection level, the type (method/proc), the qualified name, the argument list and the body.  Flags can be used to request specific elements from this list.
 
-*objName* **info function** ?*cmdName*? ?**-protection**? ?**-type**? ?**-name**? ?**-args**? ?**-body**?
-: With no arguments, this command returns a list of all widgets methods and procs.  If *cmdName* is specified, it returns information for a specific method or proc.  If no flags are specified, this command returns a list with the following elements:  the protection level, the type (method/proc), the qualified name, the argument list and the body.  Flags can be used to request specific elements from this list.
+    *objName* **info variable** ?*varName*? ?**-protection**? ?**-type**? ?**-name**? ?**-init**? ?**-value**? ?**-config**?
+    : With no arguments, this command returns a list of all object-specific variables and common data members.  If *varName* is specified, it returns information for a specific data member.  If no flags are specified, this command returns a list with the following elements:  the protection level, the type (variable/common), the qualified name, the initial value, and the current value.  If *varName* is a public variable, the "config" code is included on this list.  Flags can be used to request specific elements from this list.
 
-*objName* **info variable** ?*varName*? ?**-protection**? ?**-type**? ?**-name**? ?**-init**? ?**-value**? ?**-config**?
-: With no arguments, this command returns a list of all object-specific variables and common data members.  If *varName* is specified, it returns information for a specific data member.  If no flags are specified, this command returns a list with the following elements:  the protection level, the type (variable/common), the qualified name, the initial value, and the current value.  If *varName* is a public variable, the "config" code is included on this list.  Flags can be used to request specific elements from this list.
 
 
 # Chaining methods/procs
@@ -268,7 +263,7 @@ The chain command searches through the widget hierarchy for a slightly more gene
 
 # Auto-loading
 
-Widget definitions need not be loaded explicitly; they can be loaded as needed by the usual Tcl auto-loading facility.  Each directory containing widget definition files should have an accompanying "tclIndex" file. Each line in this file identifies a Tcl procedure or **\[incr**\\ **Tcl\]** widget definition and the file where the definition can be found.
+Widget definitions need not be loaded explicitly; they can be loaded as needed by the usual Tcl auto-loading facility.  Each directory containing widget definition files should have an accompanying "tclIndex" file. Each line in this file identifies a Tcl procedure or **\[incr Tcl\]** widget definition and the file where the definition can be found.
 
 For example, suppose a directory contains the definitions for widgets "Toaster" and "SmartToaster".  Then the "tclIndex" file for this directory would look like:
 
@@ -285,15 +280,15 @@ set auto_index(::Toaster) "source $dir/Toaster.itcl"
 set auto_index(::SmartToaster) "source $dir/SmartToaster.itcl"
 ```
 
-The **auto_mkindex** command is used to automatically generate "tclIndex" files.
+The **auto\_mkindex** command is used to automatically generate "tclIndex" files.
 
-The auto-loader must be made aware of this directory by appending the directory name to the "auto_path" variable.  When this is in place, widgets will be auto-loaded as needed when used in an application.
+The auto-loader must be made aware of this directory by appending the directory name to the "auto\_path" variable.  When this is in place, widgets will be auto-loaded as needed when used in an application.
 
 # C procedures
 
-C procedures can be integrated into an **\[incr**\\ **Tcl\]** widget definition to implement methods, procs, and the "config" code for public variables.  Any body that starts with "**@**" is treated as the symbolic name for a C procedure.
+C procedures can be integrated into an **\[incr Tcl\]** widget definition to implement methods, procs, and the "config" code for public variables.  Any body that starts with "**@**" is treated as the symbolic name for a C procedure.
 
-Symbolic names are established by registering procedures via **Itcl_RegisterObjC()**.  This is usually done in the **Tcl_AppInit()** procedure, which is automatically called when the interpreter starts up. In the following example, the procedure \\ffCMy_FooObjCmd() is registered with the symbolic name "foo".  This procedure can be referenced in the **body** command as "\\ffC@foo".
+Symbolic names are established by registering procedures via **Itcl\_RegisterObjC()**.  This is usually done in the **Tcl\_AppInit()** procedure, which is automatically called when the interpreter starts up. In the following example, the procedure **My\_FooObjCmd()** is registered with the symbolic name "foo".  This procedure can be referenced in the **body** command as "**@foo**".
 
 ```
 int
@@ -310,6 +305,10 @@ Tcl_AppInit(interp)
 }
 ```
 
-C procedures are implemented just like ordinary Tcl commands. See the **CrtCommand** man page for details.  Within the procedure, widget data members can be accessed like ordinary variables using **Tcl_SetVar()**, **Tcl_GetVar()**, **Tcl_TraceVar()**, etc.  Widget methods and procs can be executed like ordinary commands using **Tcl_Eval()**.  **\[incr**\\ **Tcl\]** makes this possible by automatically setting up the context before executing the C procedure.
+C procedures are implemented just like ordinary Tcl commands. See the **CrtCommand** man page for details.  Within the procedure, widget data members can be accessed like ordinary variables using **Tcl\_SetVar()**, **Tcl\_GetVar()**, **Tcl\_TraceVar()**, etc.  Widget methods and procs can be executed like ordinary commands using **Tcl\_Eval()**.  **\[incr Tcl\]** makes this possible by automatically setting up the context before executing the C procedure.
 
 This scheme provides a natural migration path for code development. Widgets can be developed quickly using Tcl code to implement the bodies.  An entire application can be built and tested.  When necessary, individual bodies can be implemented with C code to improve performance.
+
+
+[find]: find.md
+[itclcomponent]: itclcomponent.md

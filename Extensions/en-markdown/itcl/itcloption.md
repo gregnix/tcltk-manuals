@@ -1,9 +1,10 @@
 ---
 CommandName: option
+title: option
 ManualSection: n
 Version: 4.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - option
  - widget
@@ -26,13 +27,13 @@ This is new functionality in \[incr Tcl\] where the API can still change!!
 # Synopsis
 
 ::: {.synopsis} :::
-[option]{.cmd} [optionSpec]{.arg} [defaultValue]{.optarg} 
-[option]{.cmd} [optionSpec]{.arg} [options]{.optarg} 
+[option]{.cmd} [optionSpec]{.arg} [defaultValue]{.optarg}
+[option]{.cmd} [optionSpec]{.arg} [options]{.optarg}
 :::
 
 # Description
 
-The **option** command is used inside an **\[incr**\\ **Tcl\]** extendedclass/widget/widgetadaptor definition to define options.
+The **option** command is used inside an **\[incr Tcl\]** extendedclass/widget/widgetadaptor definition to define options.
 
 In the first form defines an option for instances of this type, and optionally gives it an initial value. The initial value defaults to the empty string if no defaultValue is specified.
 
@@ -69,35 +70,33 @@ The option statement may include the following options:
 **-cgetmethod** *methodName*
 : Every locally-defined option may define a -cgetmethod; it is called when the option's value is retrieved using the cget method. Whatever the method's body returns will be the return value of the call to cget.
 
+    The named method must take one argument, the option name. For example, this code is equivalent to (though slower than) Itcl's default handling of cget:
 
-The named method must take one argument, the option name. For example, this code is equivalent to (though slower than) Itcl's default handling of cget:
+    ```
+            option -font -cgetmethod GetOption
+            method GetOption {option} {
+                return $itcl_options($option)
+            }
+    ```
 
-```
-        option -font -cgetmethod GetOption
-        method GetOption {option} {
-            return $itcl_options($option)
-        }
-```
-
-Note that it's possible for any number of options to share a -cgetmethod.
+    Note that it's possible for any number of options to share a -cgetmethod.
 
 **-cgetmethodvar** *varName*
 : That is very similar to -cgetmethod, the only difference is, one can define a variable, where to find the cgetmethod during runtime.
 
 **-configuremethod** *methodName*
-: Every locally-defined option may define a -configuremethod; it is called when the option's value is set using the configure or configurelist methods. It is the named method's responsibility to save the option's value; in other words, the value will not be saved to the itcl_options() array unless the method saves it there.
+: Every locally-defined option may define a -configuremethod; it is called when the option's value is set using the configure or configurelist methods. It is the named method's responsibility to save the option's value; in other words, the value will not be saved to the itcl\_options() array unless the method saves it there.
 
+    The named method must take two arguments, the option name and its new value. For example, this code is equivalent to (though slower than) Itcl's default handling of configure:
 
-The named method must take two arguments, the option name and its new value. For example, this code is equivalent to (though slower than) Itcl's default handling of configure:
+    ```
+            option -font -configuremethod SetOption
+            method SetOption {option value} {
+                set itcl_options($option) $value
+            }
+    ```
 
-```
-        option -font -configuremethod SetOption
-        method SetOption {option value} {
-            set itcl_options($option) $value
-        }
-```
-
-Note that it's possible for any number of options to share a single -configuremethod.
+    Note that it's possible for any number of options to share a single -configuremethod.
 
 **-configuremethodvar** *varName*
 : That is very similar to -configuremethod, the only difference is, one can define a variable, where to find the configuremethod during runtime.
@@ -105,19 +104,18 @@ Note that it's possible for any number of options to share a single -configureme
 **-validatemethod** *methodName*
 : Every locally-defined option may define a -validatemethod; it is called when the option's value is set using the configure or configurelist methods, just before the -configuremethod (if any). It is the named method's responsibility to validate the option's new value, and to throw an error if the value is invalid.
 
+    The named method must take two arguments, the option name and its new value. For example, this code verifies that -flag's value is a valid Boolean value:
 
-The named method must take two arguments, the option name and its new value. For example, this code verifies that -flag's value is a valid Boolean value:
-
-```
-        option -font -validatemethod CheckBoolean
-        method CheckBoolean {option value} {
-            if {![string is boolean -strict $value]} {
-                error "option $option must have a boolean value."
+    ```
+            option -font -validatemethod CheckBoolean
+            method CheckBoolean {option value} {
+                if {![string is boolean -strict $value]} {
+                    error "option $option must have a boolean value."
+                }
             }
-        }
-```
+    ```
 
-Note that it's possible for any number of options to share a single -validatemethod.
+    Note that it's possible for any number of options to share a single -validatemethod.
 
 **-validatemethodvar** *varName*
 : That is very similar to -validatemethod, the only difference is, one can define a variable, where to find the validatemethod during runtime.

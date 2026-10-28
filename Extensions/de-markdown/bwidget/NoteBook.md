@@ -13,23 +13,23 @@
 *OPTIONS from ArrowButton*
 : 
 
-|   |   |
-| --- | --- |
-|   -activebackground |   -activeforeground |
-|   -background oder -bg |   -borderwidth oder -bd |
-|   -disabledforeground |   -foreground oder -fg |
-|   -repeatdelay |   -repeatinterval |
+    |   |   |
+    | --- | --- |
+    |   -activebackground |   -activeforeground |
+    |   -background oder -bg |   -borderwidth oder -bd |
+    |   -disabledforeground |   -foreground oder -fg |
+    |   -repeatdelay |   -repeatinterval |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -arcradius |   -height |
-|   -homogeneous |   -side |
-|   -tabbevelsize |   -tabpady |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -arcradius |   -height |
+    |   -homogeneous |   -side |
+    |   -tabbevelsize |   -tabpady |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -137,29 +137,23 @@ WIDGET-BEFEHL
 *pathName* **insert** *index* *page* ?*option value...*? 
 : Fügt eine neue Seite ein, die durch *page* gekennzeichnet ist, an der Position *index* in der Seitenliste. *index* muss numerisch oder **end** sein. Der Pfadname der neuen Seite wird zurückgegeben.
 
-**-createcmd**
-:  Legt einen Befehl fest, der aufgerufen wird, wenn die Seite zum ersten Mal angehoben wird. 
+    **-createcmd**
+    :  Legt einen Befehl fest, der aufgerufen wird, wenn die Seite zum ersten Mal angehoben wird. 
 
+    **-image**
+    :  Legt ein Bild fest, das für die Seite links von der Beschriftung angezeigt wird 
 
-**-image**
-:  Legt ein Bild fest, das für die Seite links von der Beschriftung angezeigt wird 
+    **-leavecmd**
+    :  Legt einen Befehl fest, der aufgerufen wird, wenn eine Seite verlassen werden soll. Der Befehl muss 0 zurückgeben, wenn die Seite nicht verlassen werden kann, oder 1, wenn sie es kann. 
 
+    **-raisecmd**
+    :  Legt einen Befehl fest, der jedes Mal aufgerufen wird, wenn die Seite angehoben wird. 
 
-**-leavecmd**
-:  Legt einen Befehl fest, der aufgerufen wird, wenn eine Seite verlassen werden soll. Der Befehl muss 0 zurückgeben, wenn die Seite nicht verlassen werden kann, oder 1, wenn sie es kann. 
+    **-state**
+    :  Legt den Zustand der Seite fest. Muss **normal** oder **disabled** sein. 
 
-
-**-raisecmd**
-:  Legt einen Befehl fest, der jedes Mal aufgerufen wird, wenn die Seite angehoben wird. 
-
-
-**-state**
-:  Legt den Zustand der Seite fest. Muss **normal** oder **disabled** sein. 
-
-
-**-text**
-:  Legt eine Beschriftung fest, die für die Seite angezeigt wird. 
-
+    **-text**
+    :  Legt eine Beschriftung fest, die für die Seite angezeigt wird. 
 
 
 *pathName* **itemcget** *page* *option* 

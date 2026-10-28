@@ -1,9 +1,10 @@
 ---
 CommandName: tnc
+title: tnc
 ManualSection: n
 Version: unknown
 TclPart: Tcl
-TclDescription: 
+TclDescription:
 Keywords:
  - Validation
  - DTD
@@ -17,12 +18,12 @@ tnc - tnc is an expat parser object extension, that validates the XML stream aga
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdom]{.lit} 
-[package]{.cmd} [require]{.sub} [tnc]{.lit} 
+[package]{.cmd} [require]{.sub} [tdom]{.lit}
+[package]{.cmd} [require]{.sub} [tnc]{.lit}
 
 set parser \[expat\]
 
-tnc \$parser enable
+tnc $parser enable
 :::
 
 # Description
@@ -32,40 +33,32 @@ tnc \$parser enable
 This handler set has only three methods:
 
 **tnc** *parserObj* **enable**
-: 
-
-
-Adds the tnc C handler set to a Tcl expat parser object.
+: Adds the tnc C handler set to a Tcl expat parser object.
 
 **tnc** *parserObj* **remove**
-: 
-
-
-Removes the tnc validatore from the parser *parserObj* and frees all information, stored by it.
+: Removes the tnc validatore from the parser *parserObj* and frees all information, stored by it.
 
 **tnc** *parserObj* **getValidateCmd** **?validateCmdName?**
-: 
+: Returns a new created validation command, if one is available from the parser command, otherwise it signals error. The name of the validation command is the *validateCmdName*, if this optional argument was given, or a random chosen name. A validation command is available in a parser command, if the parser with tnc enabled was previously used, to parse an XML document with a valid doctype declaration, a valid external subset, if one was given by the doctype declaration, and a valid internal subset. The further document doesn't need to be valid, to make the validation command available. The validation command can only get received one time from the parser command. The created validation command has this syntax:
 
+    ```
+    validationCmd method ?args?
+    ```
 
-Returns a new created validation command, if one is available from the parser command, otherwise it signals error. The name of the validation command is the *validateCmdName*, if this optional argument was given, or a random chosen name. A validation command is available in a parser command, if the parser with tnc enabled was previously used, to parse an XML document with a valid doctype declaration, a valid external subset, if one was given by the doctype declaration, and a valid internal subset. The further document doesn't need to be valid, to make the validation command available. The validation command can only get received one time from the parser command. The created validation command has this syntax:
+    The valid methods are:
 
-```
-validationCmd method ?args?
-```
+    **validateDocument** *domDocument* *?varName?*
+    : Checks, if the given domDocument is valid against the DTD information represented by the validation command. Returns 1, if the document ist valid, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case of a valid document.
 
-The valid methods are:
+    **validateTree** *elementNode* *?varName?*
+    : Checks, if the given subtree with *domNode* as root element is a possible valid subtree of a document conforming to the DTD information represented by the validation command. IDREF could not checked, while validating only a subtree, but it is checked, that every known ID attribute in the subtree is unique. Returns 1, if the subtree is OK, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case of a valid subtree.
 
-**validateDocument** *domDocument* *?varName?*
-: Checks, if the given domDocument is valid against the DTD information represented by the validation command. Returns 1, if the document ist valid, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case of a valid document.
+    **validateAttributes** *elementNode* *?varName?*
+    : Checks, if there is an element declaration for the name of the *elementNode* in the DTD represented by the validation command and, if yes, if the attributes of the *elementNode* are conform to the ATTLIST declarations for that element in the DTD. Returns 1, if the attributes and there value types are OK, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case the element has all its required attributes, only declared attributes and the values of the attributes matches there type.
 
-**validateTree** *elementNode* *?varName?*
-: Checks, if the given subtree with *domNode* as root element is a possible valid subtree of a document conforming to the DTD information represented by the validation command. IDREF could not checked, while validating only a subtree, but it is checked, that every known ID attribute in the subtree is unique. Returns 1, if the subtree is OK, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case of a valid subtree.
+    **delete**
+    : Deletes the validation command and frees the memory used by it. Returns the empty string.
 
-**validateAttributes** *elementNode* *?varName?*
-: Checks, if there is an element declaration for the name of the *elementNode* in the DTD represented by the validation command and, if yes, if the attributes of the *elementNode* are conform to the ATTLIST declarations for that element in the DTD. Returns 1, if the attributes and there value types are OK, 0 otherwise. If the *varName* argument is given, then the variable it names is set to the detected reason for the validation error or to the empty string in case the element has all its required attributes, only declared attributes and the values of the attributes matches there type.
-
-**delete**
-: Deletes the validation command and frees the memory used by it. Returns the empty string.
 
 
 # Bugs

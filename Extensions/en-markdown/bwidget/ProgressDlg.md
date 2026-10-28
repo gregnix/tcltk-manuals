@@ -9,41 +9,41 @@
 *STANDARD OPTIONS*
 : 
 
-|   |
-| --- |
-|   [-font](options.md) |
-|   [-textvariable](options.md) |
+    |   |
+    | --- |
+    |   [-font](options.md) |
+    |   [-textvariable](options.md) |
 
 
 *OPTIONS from Dialog*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -parent |
-|   -separator |   -title |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -parent |
+    |   -separator |   -title |
 
 
 *OPTIONS from ProgressBar*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -borderwidth or -bd |
-|   -foreground or -fg |   -maximum |
-|   -relief |   -troughcolor |
-|   -type |   -variable |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -borderwidth or -bd |
+    |   -foreground or -fg |   -maximum |
+    |   -relief |   -troughcolor |
+    |   -type |   -variable |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -command |
-|   -height |
-|   -stop |
-|   -width |
+    |   |
+    | --- |
+    |   -command |
+    |   -height |
+    |   -stop |
+    |   -width |
 
 
 *WIDGET COMMAND*

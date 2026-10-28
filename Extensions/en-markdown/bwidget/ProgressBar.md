@@ -9,24 +9,24 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-foreground or -fg](options.md) |   [-orient](options.md) |
-|   [-relief](options.md) |
-|   [-troughcolor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-foreground or -fg](options.md) |   [-orient](options.md) |
+    |   [-relief](options.md) |
+    |   [-troughcolor](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -height |
-|   -maximum |
-|   -type |
-|   -variable |
-|   -width |
+    |   |
+    | --- |
+    |   -height |
+    |   -maximum |
+    |   -type |
+    |   -variable |
+    |   -width |
 
 
 *WIDGET COMMAND*

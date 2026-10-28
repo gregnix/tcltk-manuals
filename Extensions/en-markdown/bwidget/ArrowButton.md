@@ -9,44 +9,44 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-activebackground](options.md) |
-|   [-activeforeground](options.md) |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-disabledforeground](options.md) |
-|   [-foreground or -fg](options.md) |
-|   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |
-|   [-highlightthickness](options.md) |
-|   [-relief](options.md) |
-|   [-repeatdelay](options.md) |
-|   [-repeatinterval](options.md) |
-|   [-takefocus](options.md) |
-|   [-troughcolor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-activebackground](options.md) |
+    |   [-activeforeground](options.md) |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-disabledforeground](options.md) |
+    |   [-foreground or -fg](options.md) |
+    |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |
+    |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |
+    |   [-repeatdelay](options.md) |
+    |   [-repeatinterval](options.md) |
+    |   [-takefocus](options.md) |
+    |   [-troughcolor](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -armcommand |
-|   -arrowbd |
-|   -arrowrelief |
-|   -clean |
-|   -command |
-|   -dir |
-|   -disarmcommand |
-|   -height |
-|   -helptext |
-|   -helptype |
-|   -helpvar |
-|   -ipadx |
-|   -ipady |
-|   -state |
-|   -type |
-|   -width |
+    |   |
+    | --- |
+    |   -armcommand |
+    |   -arrowbd |
+    |   -arrowrelief |
+    |   -clean |
+    |   -command |
+    |   -dir |
+    |   -disarmcommand |
+    |   -height |
+    |   -helptext |
+    |   -helptype |
+    |   -helpvar |
+    |   -ipadx |
+    |   -ipady |
+    |   -state |
+    |   -type |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -122,14 +122,13 @@ WIDGET-SPECIFIC OPTIONS
 **-state**
 : Specifies one of three states for the ArrowButton: **normal**, **active**, or **disabled**.
 
-If ArrowButton **type** is *button*:
-: In normal state the ArrowButton is displayed using the **foreground** and **background** options. The active state is typically used when the pointer is over the ArrowButton. In active state the ArrowButton is displayed using the **activeforeground** and **activebackground** options. In disabled state the **disabledforeground** and **background** options determine how the ArrowButton is displayed. 
+    If ArrowButton **type** is *button*:
+    : In normal state the ArrowButton is displayed using the **foreground** and **background** options. The active state is typically used when the pointer is over the ArrowButton. In active state the ArrowButton is displayed using the **activeforeground** and **activebackground** options. In disabled state the **disabledforeground** and **background** options determine how the ArrowButton is displayed. 
 
-If ArrowButton **type** is *arrow*:
-: Only colors of arrow change. The background of ArrowButton is always displayed using **troughcolor** option. In normal state the ArrowButton is displayed using the **background** option. The active state is typically used when the pointer is over the ArrowButton. In active state the ArrowButton is displayed using the **activebackground** option. In disabled state the ArrowButton is displayed with a dark stipple. 
+    If ArrowButton **type** is *arrow*:
+    : Only colors of arrow change. The background of ArrowButton is always displayed using **troughcolor** option. In normal state the ArrowButton is displayed using the **background** option. The active state is typically used when the pointer is over the ArrowButton. In active state the ArrowButton is displayed using the **activebackground** option. In disabled state the ArrowButton is displayed with a dark stipple. 
 
-
-Disabled state means that the ArrowButton should be insensitive: the default bindings will refuse to activate the widget and will ignore mouse button presses.
+    Disabled state means that the ArrowButton should be insensitive: the default bindings will refuse to activate the widget and will ignore mouse button presses.
 
 
 **-type**
@@ -155,4 +154,4 @@ WIDGET COMMAND
 *pathName* **invoke** 
 : If ArrowButton **state** is not disabled, this invoke the commands of the button. ArrowButton is redisplayed with active color and sunken relief, and **armcommand** is called. Then ArrowButton is redisplayed with normal color and its defined relief, and **disarmcommand** then **command** are called.
 
-**invoke** is called when ArrowButton has input focus and user press the space bar.
+    **invoke** is called when ArrowButton has input focus and user press the space bar.

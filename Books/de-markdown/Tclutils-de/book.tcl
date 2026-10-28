@@ -1,12 +1,10 @@
-# book.tcl — tclutils (bookkit)
-#
-# Build (aus bibliothek/books/):
-#   tclsh bookkit/tools/book-build.tcl book-tclutils/Tclutils-de/ -number
+# book.tcl -- tclutils, Handbuch (deutsch). Build (eine Ebene ueber dem Buchordner):
+#   tclsh bookkit/tools/book-build.tcl Tclutils-de/ -number
 
 set title     "tclutils"
 set author    ""
 set subtitle  "Pure-Tcl Engines, 0.68.0"
-set date      "2026"
+set date      "2026-10-27"
 set lang      "de"
 set titlePage 1
 set booktype  manual                 ;# Handbuch, siehe bookkit/doc/de/STYLE.md

@@ -137,85 +137,83 @@
 **pathName column option args**
 : 
 
-**pathName column add name options**
-:  Adds a new column with the specified *name*. *options* may be any of the valid column configuration options. 
+    **pathName column add name options**
+    :  Adds a new column with the specified *name*. *options* may be any of the valid column configuration options. 
 
-pathName column cget name option
+        pathName column cget name option
 
- Returns the value for the named *option* 
+         Returns the value for the named *option* 
 
-pathName column configure name options
+        pathName column configure name options
 
- Configures or queries attributes of the *named* column. 
+         Configures or queries attributes of the *named* column. 
 
- Columns may be configured with the standard listbox options (-background, -font, etc). In addition, the following options are available: 
+         Columns may be configured with the standard listbox options (-background, -font, etc). In addition, the following options are available: 
 
-**-background**
-:  Specifies the background color for this column. If the value is an empty string the column will be configured with the default background color. 
+        **-background**
+        :  Specifies the background color for this column. If the value is an empty string the column will be configured with the default background color. 
 
--bitmap
+            -bitmap
 
- Specifies a bitmap to display in the column label. If the bitmap option is specified then it overrides the -label option. the bitmap option may be reset to an empty string to re-enable a text display. 
+             Specifies a bitmap to display in the column label. If the bitmap option is specified then it overrides the -label option. the bitmap option may be reset to an empty string to re-enable a text display. 
 
--font
+            -font
 
- Specifies the font for this column. If the value is an empty string the column will be configured with the default font. Note that if fonts with different line heights are used for separate columns, the data in each column will not line up properly. 
+             Specifies the font for this column. If the value is an empty string the column will be configured with the default font. Note that if fonts with different line heights are used for separate columns, the data in each column will not line up properly. 
 
--foreground
+            -foreground
 
- Specifies the foreground color for this column. If the value is an empty string the column will be configured with the default foreground color. 
+             Specifies the foreground color for this column. If the value is an empty string the column will be configured with the default foreground color. 
 
--image
+            -image
 
- Specifies an image to display in the column label. If the image option is specified then it overrides other options that specify a bitmap or textual value to display in the column label; the image option may be reset to an empty string to re-enable a bitmap or text display. 
+             Specifies an image to display in the column label. If the image option is specified then it overrides other options that specify a bitmap or textual value to display in the column label; the image option may be reset to an empty string to re-enable a bitmap or text display. 
 
--label
+            -label
 
- Specifies the desired text to be used in the column label. 
+             Specifies the desired text to be used in the column label. 
 
--position
+            -position
 
- Specifies the position of the column. 0 (zero) is the first column, 1 (one) is the second and so on. 
+             Specifies the position of the column. 0 (zero) is the first column, 1 (one) is the second and so on. 
 
--resizable
+            -resizable
 
- Specifies whether the column is resizable. This only takes effect if the global option **-resizablecolumns** is true. 
+             Specifies whether the column is resizable. This only takes effect if the global option **-resizablecolumns** is true. 
 
--visible
+            -visible
 
- Specifies whether the column is visible or not. 
+             Specifies whether the column is visible or not. 
 
--width
+            -width
 
- Specifies the desired width of the column in characters. If the font doesn't have a uniform width then the width of the character \`\`0'' is used in translating from character units to screen units. If zero or less, then the desired width for the window is made just large enough to hold all the elements in the listbox. 
+             Specifies the desired width of the column in characters. If the font doesn't have a uniform width then the width of the character \`\`0'' is used in translating from character units to screen units. If zero or less, then the desired width for the window is made just large enough to hold all the elements in the listbox. 
 
+        pathName column delete name
 
-pathName column delete name
+         Deletes the column identified by *name* 
 
- Deletes the column identified by *name* 
+        pathName column names
 
-pathName column names
+         Returns a list containing all of the column *names*. The order of the list is the same as the visual order of the columns, and is the same as the order the data is returned by the get command. 
 
- Returns a list containing all of the column *names*. The order of the list is the same as the visual order of the columns, and is the same as the order the data is returned by the get command. 
+        pathName column nearext x
 
-pathName column nearext x
+         Given a x-coordinate within the mclistbox window, this command returns the name of the column nearest to that x-coordinate. 
 
- Given a x-coordinate within the mclistbox window, this command returns the name of the column nearest to that x-coordinate. 
+    pathName get first ?last?
 
+     If last is omitted, returns a list containing the element from each column of the listbox element indicated by *first*, or an empty list if first refers to a non-existent element. If *last* is specified, the command returns a list of lists. Each of the sublists will contain an element from each column of the mclistbox element. Both first and last may have any of the standard forms for indices. 
 
-pathName get first ?last?
+     The data will be returned in the order that the columns appear visually, and is the same order as reported by the **column names** command. 
 
- If last is omitted, returns a list containing the element from each column of the listbox element indicated by *first*, or an empty list if first refers to a non-existent element. If *last* is specified, the command returns a list of lists. Each of the sublists will contain an element from each column of the mclistbox element. Both first and last may have any of the standard forms for indices. 
+    pathName insert index list ?list ...?
 
- The data will be returned in the order that the columns appear visually, and is the same order as reported by the **column names** command. 
+     Inserts zero or more new elements in the mclistbox just before the element given by index. If index is specified as end then the new elements are added to the end of the list. Returns an empty string. Each *list* argument becomes one row in the mclistbox. If there are not enough elements to fill all of the columns, blank values will be used to fill in the missing columns. 
 
-pathName insert index list ?list ...?
+    pathName label bind name sequence command
 
- Inserts zero or more new elements in the mclistbox just before the element given by index. If index is specified as end then the new elements are added to the end of the list. Returns an empty string. Each *list* argument becomes one row in the mclistbox. If there are not enough elements to fill all of the columns, blank values will be used to fill in the missing columns. 
-
-pathName label bind name sequence command
-
- This command associates *command* with a column label such that whenever the event sequence given by *sequence* occurs over the label for the column named *name* the *command* will be invoked. This widget command is similar to the bind command except that it operates on column labels rather than the entire widget. See the bind manual entry for complete details on the syntax of *sequence* and the substitutions performed on *command* before invoking it. 
+     This command associates *command* with a column label such that whenever the event sequence given by *sequence* occurs over the label for the column named *name* the *command* will be invoked. This widget command is similar to the bind command except that it operates on column labels rather than the entire widget. See the bind manual entry for complete details on the syntax of *sequence* and the substitutions performed on *command* before invoking it. 
 
 
  

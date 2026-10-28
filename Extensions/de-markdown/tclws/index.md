@@ -1,6 +1,6 @@
 # Tcl-Webdienste
 
-## ZUSAMMENFASSUNG
+## Zusammenfassung
 
 Die Distribution bietet sowohl den Zugriff auf Webdienste von der Client-Seite als auch das Erzeugen von Webdiensten auf der Server-Seite. Derzeit werden auf der Client-Seite nur document/literal und rpc/encoded mit HTTP-Soap-Transport unterstützt. Die Server-Seite arbeitet derzeit nur mit TclHttpd oder eingebettet in eine Anwendung. Die Server-Seite stellt alle Dienste als document/literal über HTTP-Soap-Transport bereit. Die Dokumentation des Pakets einschließlich der Beispiele steht hier.
 
@@ -16,11 +16,11 @@ Die Distribution bietet sowohl den Zugriff auf Webdienste von der Client-Seite a
 
 Der Client arbeitet nachweislich mit Webdiensten auf der Basis von #C und Java (das Ergebnis kann abweichen).
 
-## LIZENZ
+## Lizenz
 
 Standard-BSD.
 
-# WEBSERVER
+# Webserver
 
 Die Server-Seite arbeitet mit den folgenden Webservern:
 
@@ -31,7 +31,7 @@ Die Server-Seite arbeitet mit den folgenden Webservern:
 -  [wibble](http://wiki.tcl-lang.org/23626)
 -  Eingebetteter Modus (siehe [Einbetten](Embedded_Web_Service.md))
 
-## BENÖTIGTE PAKETE
+## Benötigte Pakete
 
 Die folgenden Pakete werden verwendet:
 

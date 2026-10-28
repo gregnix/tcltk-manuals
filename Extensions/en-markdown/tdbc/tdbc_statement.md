@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::statement
+title: tdbc::statement
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -32,23 +33,22 @@ tdbc::statement - TDBC statement object
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 
-[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg} 
-[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [preparecall]{.lit} [call\]]{.arg} 
+[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg}
+[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [preparecall]{.lit} [call\]]{.arg}
 
-[\$stmt]{.ins} [params]{.sub} 
-[\$stmt]{.ins} [paramtype]{.sub} [direction]{.optarg} [type]{.arg} [precision]{.optarg} [scale]{.optarg} 
-[\$stmt]{.ins} [execute]{.sub} [dict]{.optarg} 
-[\$stmt]{.ins} [resultsets]{.sub} 
-[\$stmt]{.ins} [foreach]{.sub} [-as lists|dicts]{.optarg} [-columnsvariable name]{.optarg} [--]{.optlit} [varName]{.arg} [dict]{.optarg} [script]{.arg} 
-[\$stmt]{.ins} [close]{.sub} 
+[$stmt]{.ins} [params]{.sub}
+[$stmt]{.ins} [paramtype]{.sub} [direction]{.optarg} [type]{.arg} [precision]{.optarg} [scale]{.optarg}
+[$stmt]{.ins} [execute]{.sub} [dict]{.optarg}
+[$stmt]{.ins} [resultsets]{.sub}
+[$stmt]{.ins} [allrows]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [dict]{.optarg}
+[$stmt]{.ins} [foreach]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [varName]{.arg} [dict]{.optarg} [script]{.arg}
+[$stmt]{.ins} [close]{.sub}
 :::
-
-.in 14 *\$stmt* **allrows** ?**-as lists|dicts**? ?**-columnsvariable** *name*? ?**--**? ?*dict*
 
 # Description
 
@@ -85,8 +85,20 @@ The **params** method against a statement object enumerates the bound variables 
 : Contains the scale of the column (the number of digits after the radix point), for types that support the concept.
 
 **nullable**
-: Contains 1 if the column can contain NULL values, and 0 otherwise. The **paramtype** object command allows the script to specify the type and direction of parameter transmission of a variable in a statement. (Some databases provide no method to determine this information automatically and place the burden on the caller to do so.) The *direction*, *type*, *precision*, *scale*, and *nullable* arguments have the same meaning as the corresponding dictionary values in the **params** object command. The **execute** object command executes the statement. Prior to executing the statement, values are provided for the bound variables that appear in it.  If the *dict* parameter is supplied, it is searched for a key whose name matches the name of the bound variable. If the key is present, its value becomes the substituted variable. If not, the value of the substituted variable becomes a SQL NULL. If the *dict* parameter is *not* supplied, the **execute** object command searches for a variable in the caller's scope whose name matches the name of the bound variable. If one is found, its value becomes the bound variable's value. If none is found, the bound variable is assigned a SQL NULL as its value.  Once substitution is finished, the resulting statement is executed. The return value is a result set object (see **tdbc::resultset** for details). The **resultsets** method returns a list of all the result sets that have been returned by executing the statement and have not yet been closed. The **allrows** object command executes the statement as with the **execute** object command, accepting an optional *dict* parameter giving bind variables. After executing the statement, it uses the *allrows* object command on the result set (see **tdbc::resultset**) to construct a list of the results. Finally, the result set is closed. The return value is the list of results. The **foreach** object command executes the statement as with the **execute** object command, accepting an optional *dict* parameter giving bind variables. After executing the statement, it uses the *foreach* object command on the result set (see **tdbc::resultset**) to evaluate the given *script* for each row of the results. Finally, the result set is closed, even if the given *script* results in a **return**, an error, or an unusual return code. The **close** object command removes a statement and any result sets that it has created. All system resources associated with the objects are freed.
+: Contains 1 if the column can contain NULL values, and 0 otherwise.
 
+
+The **paramtype** object command allows the script to specify the type and direction of parameter transmission of a variable in a statement. (Some databases provide no method to determine this information automatically and place the burden on the caller to do so.) The *direction*, *type*, *precision*, *scale*, and *nullable* arguments have the same meaning as the corresponding dictionary values in the **params** object command.
+
+The **execute** object command executes the statement. Prior to executing the statement, values are provided for the bound variables that appear in it.  If the *dict* parameter is supplied, it is searched for a key whose name matches the name of the bound variable. If the key is present, its value becomes the substituted variable. If not, the value of the substituted variable becomes a SQL NULL. If the *dict* parameter is *not* supplied, the **execute** object command searches for a variable in the caller's scope whose name matches the name of the bound variable. If one is found, its value becomes the bound variable's value. If none is found, the bound variable is assigned a SQL NULL as its value.  Once substitution is finished, the resulting statement is executed. The return value is a result set object (see **tdbc::resultset** for details).
+
+The **resultsets** method returns a list of all the result sets that have been returned by executing the statement and have not yet been closed.
+
+The **allrows** object command executes the statement as with the **execute** object command, accepting an optional *dict* parameter giving bind variables. After executing the statement, it uses the *allrows* object command on the result set (see **tdbc::resultset**) to construct a list of the results. Finally, the result set is closed. The return value is the list of results.
+
+The **foreach** object command executes the statement as with the **execute** object command, accepting an optional *dict* parameter giving bind variables. After executing the statement, it uses the *foreach* object command on the result set (see **tdbc::resultset**) to evaluate the given *script* for each row of the results. Finally, the result set is closed, even if the given *script* results in a **return**, an error, or an unusual return code.
+
+The **close** object command removes a statement and any result sets that it has created. All system resources associated with the objects are freed.
 
 # Examples
 

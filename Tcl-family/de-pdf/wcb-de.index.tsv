@@ -1,6 +1,25 @@
 # pdf	wcb-de.pdf
 # label	Wcb
 # title	Wcb
+before-insert-Rückruffunktionen für text- und ctext-Widgets	26
+Das Paket Wcb	4
+Eine activate-Rückruffunktion für ein listbox-Widget	9
+Eine selset-Rückruffunktion für ein listbox-Widget	7
+Einige before-insert-Rückruffunktionen für entry-Widgets	6
+Einige häufige Probleme	3
 index	3
+Sieben Rückruffunktionen für ein text-Widget	11
 wcb	3
+wcb::callback	17
+wcb::cancel	20
+wcb::canceled	21
+wcb::cbappend	20
+wcb::cbprepend	20
+wcb::changeEntryText	22
+wcb::extend	21
+wcb::pathname	22
+wcb::postDeleteEntryText	23
+wcb::postInsertEntryLen	23
+wcb::postInsertEntryText	23
+wcb::replace	21
 wcbRef	16

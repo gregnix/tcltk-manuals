@@ -43,7 +43,7 @@ package require tclutils::tustr
 ```
 
 `slugify` does not transliterate umlauts (`ö` does not become `oe`).
-"Größe" loses `ö` and `ß`, leaving `gr-e`.
+`Größe` loses `ö` and `ß`, leaving `gr-e`.
 
 ### Visible Characters
 

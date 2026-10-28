@@ -1,9 +1,10 @@
 ---
 CommandName: Itcl_CreateObject
+title: Itcl_CreateObject
 ManualSection: 3
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl] Library Procedures"
+TclDescription: "[incr Tcl] Library Procedures"
 Keywords:
  - free
  - memory
@@ -13,30 +14,30 @@ Copyright:
 
 # Name
 
-Itcl_CreateObject, Itcl_DeleteObject, Itcl_FindObject, Itcl_IsObject, Itcl_IsObjectIsa - Manipulate an class instance.
+Itcl\_CreateObject, Itcl\_DeleteObject, Itcl\_FindObject, Itcl\_IsObject, Itcl\_IsObjectIsa - Manipulate an class instance.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<itclInt.h>]{.lit}
+**#include <itclInt.h>**
 
-void
-[Itcl_PreserveData]{.cmd}([cdata]{.arg})
+[void]{.ret} [Itcl\_PreserveData]{.ccmd} [cdata]{.cargs}
 
-void
-[Itcl_ReleaseData]{.cmd}([cdata]{.arg})
+[void]{.ret} [Itcl\_ReleaseData]{.ccmd} [cdata]{.cargs}
 
-void
-[Itcl_EventuallyFree]{.cmd}([cdata]{.arg}, [fproc]{.arg})
+[void]{.ret} [Itcl\_EventuallyFree]{.ccmd} [cdata, fproc]{.cargs}
 :::
 
 # Arguments
 
-Tcl_FreeProc *\*fproc* (in)
+::: {.arguments} :::
+
+[\*fproc]{.carg .in type="Tcl_FreeProc"}
 : Address of function to call when the block is to be freed.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value.
 
+:::
 
 # Description

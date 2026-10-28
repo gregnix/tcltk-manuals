@@ -31,7 +31,7 @@ auto-exec	168
 auto-load	168,240,241
 auto-loading	280,542
 auto_mkindex	280,542
-background error	17,648
+background error	17,649
 backslash	7
 backslash substitution	304
 base class	228
@@ -52,7 +52,7 @@ break	30,277
 buffer	119
 buffering	100
 busy	387
-button	391,672,674,692,702
+button	391,673,674,692,702
 byte array	100
 bytecode	327
 call	225,290,308
@@ -71,7 +71,7 @@ check	674
 checkbutton	416
 child interpreter	154,280,542
 children	653
-choice	675
+choice	676
 chooseColor	421
 chooseDirectory	421
 class	46,70,228,564,653
@@ -84,7 +84,7 @@ close	60
 color	421,424,577,583
 color selection	421
 colors	424
-command	7,146,196,213,276,342,672
+command	7,146,196,213,276,342,673
 command substitution	304
 comment	7
 compare	94,299
@@ -115,7 +115,7 @@ date	48
 dde	67,610
 debug	201
 decompress	366
-default	672
+default	673
 define	70,460
 definition	70
 deflate	366
@@ -138,7 +138,7 @@ encoding	82,100,261
 end of file	33,83,104,125,261
 end of line	100,104,125,261
 ensemble	213,263,347
-entry	452,612,675,678,710
+entry	452,612,676,678,710
 environment	327,649
 eof	83
 equal	299
@@ -184,7 +184,7 @@ fuzzy comparison	94
 generator	64
 geometry	653,661
 geometry management	578
-geometry manager	486,570,573,589
+geometry manager	486,571,573,589
 getOpenFile	481
 gets	125
 glob	126
@@ -252,14 +252,14 @@ linear search	185
 linemode	100
 linsert	176
 list	62,121,166,167,174,176,177,178,182,183,185,187,189,298
-list box	675
+list box	676
 listbox	534
 llength	177
 lmap	178
 load	179,280,542
 loadTk	542
 localization	202
-location	486,570,573,589
+location	486,571,573,589
 lookup	77
 loop	30,63,120,121,178,365
 lower	543
@@ -317,14 +317,14 @@ output	33,119,249
 output channels	444
 own	607
 pack	486,573
-pack-old	570
+pack-old	571
 package	237,240,241,338
 packagens	240
-packer	570,573
+packer	571,573
 palette	577
-pane	693
+pane	694
 panedwindow	578
-parcel	570,573
+parcel	571,573
 parent	653
 parent interpreter	154,280,542
 parse	285
@@ -383,7 +383,7 @@ remove	354
 rename	276,342
 rename files	107
 replace	183,187
-reporting	17,648
+reporting	17,649
 resource management	349
 result	277
 retrieve	562
@@ -399,7 +399,7 @@ scan	18,285
 screen	653
 script	7,85,114,297,335,336
 script file	309,658
-scrollbar	602,705
+scrollbar	602,706
 search	14,185
 security	610
 security policy	131
@@ -413,7 +413,7 @@ serial	230
 set	167,187,292
 shared library	179,352
 shell	309,658
-size	486,570,573,661
+size	486,571,573,661
 sizegrip	709
 sleep	10
 slider	598,704
@@ -438,7 +438,7 @@ subprocess	86,327
 subst	304
 substitution	7,122,274,304
 switch	306,564
-tab	693
+tab	694
 table lookup	246
 tag	384
 tail recursion	308
@@ -454,7 +454,7 @@ test	310,365
 test harness	310
 test suite	310
 text	202,621,649
-text box	675
+text box	676
 text field	678,710
 theme	686,712,722
 throw	334
@@ -463,9 +463,9 @@ timerate	336
 title	661
 tk	643
 tk_mac	645
-tkerror	648
+tkerror	649
 tkvars	621,649
-tkwait	650
+tkwait	651
 tm	338
 toggle	674
 toolkit	658
@@ -479,27 +479,27 @@ translation	100,104,202,261
 trough	598,704
 true	144
 try	349
-ttk_button	672
+ttk_button	673
 ttk_checkbutton	674
-ttk_combobox	675
+ttk_combobox	676
 ttk_entry	678
 ttk_frame	685
 ttk_image	686
 ttk_intro	687
-ttk_label	689
+ttk_label	690
 ttk_labelframe	691
 ttk_menubutton	692
-ttk_notebook	693
+ttk_notebook	694
 ttk_panedwindow	698
-ttk_progressbar	700
+ttk_progressbar	701
 ttk_radiobutton	702
 ttk_scale	704
-ttk_scrollbar	705
+ttk_scrollbar	706
 ttk_separator	708
 ttk_sizegrip	709
 ttk_spinbox	710
 ttk_style	712
-ttk_treeview	714
+ttk_treeview	715
 ttk_vsapi	722
 ttk_widget	724
 type	422,607
@@ -515,21 +515,21 @@ uplevel	356
 upvar	358
 user	107,327
 value	145
-variable	7,12,129,145,146,167,213,292,342,354,356,358,360,361,650
+variable	7,12,129,145,146,167,213,292,342,354,356,358,360,361,651
 variable substitution	304
 variables	327,649
 version	237,240,241,649
 virtual event	460
 virtual root	653
-visibility	650
+visibility	651
 volume-relative file name	117
 vwait	361
-wait	361,650
+wait	361,651
 while	365
 whitespace	168
-widget	391,394,416,452,479,529,531,534,544,556,558,578,593,598,602,612,621,651,672,674,675,678,685,691,692,702,704,705,708,709,710
+widget	391,394,416,452,479,529,531,534,544,556,558,578,593,598,602,612,621,651,673,674,676,678,685,691,692,702,704,706,708,709,710
 width	492,589,653
-window	387,444,450,484,650,653
+window	387,444,450,484,651,653
 window manager	468,661
 windows	722
 winfo	653

@@ -1,9 +1,10 @@
 ---
 CommandName: ttrace
+title: ttrace
 ManualSection: n
 Version: 3.0
 TclPart: Tcl Threading
-TclDescription: 
+TclDescription:
 Links:
  - thread
  - tpool
@@ -21,25 +22,25 @@ ttrace - Trace-based interpreter initialization
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [9.0]{.lit} 
-[package]{.cmd} [require]{.sub} [thread]{.lit} [3.0]{.optlit} 
-[ttrace::eval]{.cmd} [arg]{.arg} [arg]{.optdot} 
-[ttrace::enable]{.cmd} 
-[ttrace::disable]{.cmd} 
-[ttrace::cleanup]{.cmd} 
-[ttrace::update]{.cmd} [epoch]{.optarg} 
-[ttrace::getscript]{.cmd} 
-[ttrace::atenable]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg} 
-[ttrace::atdisable]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg} 
-[ttrace::addtrace]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg} 
-[ttrace::addscript]{.cmd} [name]{.arg} [body]{.arg} 
-[ttrace::addresolver]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg} 
-[ttrace::addcleanup]{.cmd} [body]{.arg} 
-[ttrace::addentry]{.cmd} [cmd]{.arg} [var]{.arg} [val]{.arg} 
-[ttrace::getentry]{.cmd} [cmd]{.arg} [var]{.arg} 
-[ttrace::getentries]{.cmd} [cmd]{.arg} [pattern]{.optarg} 
-[ttrace::delentry]{.cmd} [cmd]{.arg} 
-[ttrace::preload]{.cmd} [cmd]{.arg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [9.0]{.lit}
+[package]{.cmd} [require]{.sub} [thread]{.lit} [3.0]{.optlit}
+[ttrace::eval]{.cmd} [arg]{.arg} [arg]{.optdot}
+[ttrace::enable]{.cmd}
+[ttrace::disable]{.cmd}
+[ttrace::cleanup]{.cmd}
+[ttrace::update]{.cmd} [epoch]{.optarg}
+[ttrace::getscript]{.cmd}
+[ttrace::atenable]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg}
+[ttrace::atdisable]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg}
+[ttrace::addtrace]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg}
+[ttrace::addscript]{.cmd} [name]{.arg} [body]{.arg}
+[ttrace::addresolver]{.cmd} [cmd]{.arg} [arglist]{.arg} [body]{.arg}
+[ttrace::addcleanup]{.cmd} [body]{.arg}
+[ttrace::addentry]{.cmd} [cmd]{.arg} [var]{.arg} [val]{.arg}
+[ttrace::getentry]{.cmd} [cmd]{.arg} [var]{.arg}
+[ttrace::getentries]{.cmd} [cmd]{.arg} [pattern]{.optarg}
+[ttrace::delentry]{.cmd} [cmd]{.arg}
+[ttrace::preload]{.cmd} [cmd]{.arg}
 :::
 
 # Description
@@ -75,7 +76,9 @@ As seen from above, the **ttrace::eval** and **ttrace::update** commands are use
 This section describes user-level commands. Those commands can be used by script writers to control the execution of the tracing framework.
 
 **ttrace::eval** *arg* ?arg ...?
-: This command concatenates given arguments and evaluates the resulting Tcl command with trace framework enabled. If the command execution was ok, it takes necessary steps to automatically propagate the trace epoch change to all threads in the application. For AOLserver, only newly created threads actually receive the epoch change. For the Tcl threading extension, all threads created by the extension are automatically updated. If the command execution resulted in Tcl error, no state propagation takes place. This is the most important user-level command of the package as it wraps most of the commands described below. This greatly simplifies things, because user need to learn just this (one) command in order to effectively use the package. Other commands, as described below, are included mostly for the sake of completeness.
+: This command concatenates given arguments and evaluates the resulting Tcl command with trace framework enabled. If the command execution was ok, it takes necessary steps to automatically propagate the trace epoch change to all threads in the application. For AOLserver, only newly created threads actually receive the epoch change. For the Tcl threading extension, all threads created by the extension are automatically updated. If the command execution resulted in Tcl error, no state propagation takes place.
+
+    This is the most important user-level command of the package as it wraps most of the commands described below. This greatly simplifies things, because user need to learn just this (one) command in order to effectively use the package. Other commands, as described below, are included mostly for the sake of completeness.
 
 **ttrace::enable**
 : Activates all registered callbacks in the framework and starts a new trace epoch. The trace epoch encapsulates all changes done to the interpreter during the time traces are activated.

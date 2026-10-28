@@ -1,9 +1,10 @@
 ---
 CommandName: Toplevel
+title: Toplevel
 ManualSection: n
 Version: 3.0
 TclPart: itk
-TclDescription: "[incr\\ Tk]"
+TclDescription: "[incr Tk]"
 Keywords:
  - itk
  - Archetype
@@ -13,51 +14,41 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-
-# NAME
+# Name
 
 Toplevel - Basisklasse für Megawidgets in einem Toplevel-Fenster
 
-# VERERBUNG
+# Vererbung
 
 itk::Archetype <- itk::Toplevel
 
-# STANDARDOPTIONEN
+# Standardoptionen
 
 ```
-background cursor
+background	cursor
 ```
 
 Einzelheiten zu den Standardoptionen stehen im Handbuchabschnitt „options“.
 
-# WIDGET-SPEZIFISCHE OPTIONEN
+# Widget-spezifische Optionen
 
-```
-Name:   title
-Class:  Title
-Command-Line Switch:    -title
-```
-
+**-title** (**title**/**Title**)
 : Legt den Titel fest, den der Fenstermanager in der Titelleiste über dem Fenster anzeigt. Der voreingestellte Titel ist die leere Zeichenkette.
 
 
-# BESCHREIBUNG
+# Beschreibung
 
-Die Klasse **Toplevel** erbt alles von der Klasse **Archetype** und fügt ein Tk-Toplevel namens Komponente „hull“ hinzu, das den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
+Die Klasse **Toplevel** erbt alles von der Klasse [Archetype] und fügt ein Tk-Toplevel namens Komponente „hull“ hinzu, das den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk\_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
 
 Da der Hull der Klasse **Toplevel** mit einem Tk-Toplevel umgesetzt ist, haben Megawidgets der Klasse **Toplevel** ein eigenes Toplevel-Fenster. Diese Klasse wird verwendet, um Dialogfenster und andere eingeblendete Fenster zu erzeugen.
 
-# KOMPONENTEN
+# Komponenten
 
-```
-Name:           hull
-Class:          Toplevel
-```
-
+**hull** (**Toplevel**)
 : Die Komponente „hull“ dient als Rumpf des gesamten Megawidgets. Weitere Komponenten werden in den Hull gepackt, um das Widget weiter zu spezialisieren.
 
 
-# BEISPIEL
+# Beispiel
 
 Das folgende Beispiel setzt ein Megawidget **MessageInfo** um. Es erzeugt eine eingeblendete Meldung, die der Benutzer mit der Schaltfläche „Dismiss“ schließen kann.
 
@@ -120,7 +111,10 @@ itk::usual MessageInfo {
 }
 
 #
-# BEISPIEL: Ein Hinweisfenster erzeugen:
+# EXAMPLE:  Create a notice window:
 #
 MessageInfo .m -message "File not found:\n/usr/local/bin/foo"
 ```
+
+
+[Archetype]: Archetype.md

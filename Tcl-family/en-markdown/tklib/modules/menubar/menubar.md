@@ -22,17 +22,17 @@ menubar - Creates an instance of the *menubar* Class.
 [menubar]{.cmd} [new]{.sub} [options]{.optarg}
 [mBarInst]{.ins} [define]{.sub} [body]{.arg}
 [mBarInst]{.ins} [install]{.sub} [pathName]{.arg} [body]{.arg}
-[mBarInst]{.ins} [menu.configure]{.sub} [option]{.arg} [tag-settings]{.arg} ?option tag-settings ...?
+[mBarInst]{.ins} [menu.configure]{.sub} [option]{.arg} [tag-settings]{.arg} [option tag-settings]{.optdot}
 [mBarInst]{.ins} [menu.namespace]{.sub} [tag]{.arg} [namespace]{.arg}
 [mBarInst]{.ins} [menu.hide]{.sub} [tag]{.arg}
 [mBarInst]{.ins} [menu.show]{.sub} [tag]{.arg}
 [mBarInst]{.ins} [tag.add]{.sub} [tag]{.arg} [value]{.arg}
-[mBarInst]{.ins} [tag.configure]{.sub} [pathName]{.arg} [tag]{.arg} ?option value ...option value?
+[mBarInst]{.ins} [tag.configure]{.sub} [pathName]{.arg} [tag]{.arg} [option value ...option value]{.optarg}
 [mBarInst]{.ins} [tag.cget]{.sub} [pathName]{.arg} [tag]{.arg} ?option?
 [mBarInst]{.ins} [group.add]{.sub} [tag]{.arg} [label]{.arg} [cmd]{.optarg} [accel]{.optarg} [sequence]{.optarg} ?state?
 [mBarInst]{.ins} [group.delete]{.sub} [tag]{.arg} [label]{.arg}
 [mBarInst]{.ins} [group.move]{.sub} [direction]{.arg} [tag]{.arg} [label]{.arg}
-[mBarInst]{.ins} [group.configure]{.sub} [tag]{.arg} [label]{.arg} ?option value ...option value?
+[mBarInst]{.ins} [group.configure]{.sub} [tag]{.arg} [label]{.arg} [option value ...option value]{.optarg}
 [mBarInst]{.ins} [group.serialize]{.sub} [tag]{.arg}
 [mBarInst]{.ins} [group.deserialize]{.sub} [tag]{.arg} [stream]{.arg}
 [mBarInst]{.ins} [notebook.addTabStore]{.sub} [pathname]{.arg}

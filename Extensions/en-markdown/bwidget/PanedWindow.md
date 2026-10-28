@@ -13,11 +13,11 @@
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -activator |   -pad |
-|   -side |   -weights |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -activator |   -pad |
+    |   -side |   -weights |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -67,13 +67,11 @@ WIDGET COMMAND
 *pathName* **add** ?*option value...*? 
 : This command add a new pane. The new pane is placed below the previous pane for vertical layout or at right for horizontal layout. This command returns a frame where user can place its widget. Valid options are:
 
-**-minsize**
-:  Specifies the minimum size requested for the pane. See the **grid** command for more information. 
+    **-minsize**
+    :  Specifies the minimum size requested for the pane. See the **grid** command for more information. 
 
-
-**-weight**
-:  Specifies the relative weight for apportioning any extra spaces among panes. See the **grid** command for more information. 
-
+    **-weight**
+    :  Specifies the relative weight for apportioning any extra spaces among panes. See the **grid** command for more information. 
 
 
 *pathName* **cget** *option* 

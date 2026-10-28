@@ -9,35 +9,35 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-cursor](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectforeground](options.md) |   [-takefocus](options.md) |
-|   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-cursor](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectforeground](options.md) |   [-takefocus](options.md) |
+    |   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -closecmd |   -crossfill |
-|   -crossclosebitmap |   -crosscloseimage |
-|   -crossopenbitmap |   -crossopenimage |
-|   -deltax |   -deltay |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -dropovermode |   -droptypes |
-|   -height |   -linesfill |
-|   -linestipple |   -opencmd |
-|   -padx |   -redraw |
-|   -selectcommand |   -selectfill |
-|   -showlines |   -width |
+    |   |   |
+    | --- | --- |
+    |   -closecmd |   -crossfill |
+    |   -crossclosebitmap |   -crosscloseimage |
+    |   -crossopenbitmap |   -crossopenimage |
+    |   -deltax |   -deltay |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -dropovermode |   -droptypes |
+    |   -height |   -linesfill |
+    |   -linestipple |   -opencmd |
+    |   -padx |   -redraw |
+    |   -selectcommand |   -selectfill |
+    |   -showlines |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -152,17 +152,17 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : Tree hat einen Befehlsrahmen für Ereignisse *drag-init*. Dieser Befehl lehnt das Ziehen ab, wenn kein Knoten bezeichnet ist. In den anderen Fällen:   
   Wenn **draginitcmd** leer ist, gibt er zurück:
 
-  - als Datentyp den Wert der Option **dragtype** oder *TREE_NODE*, wenn er leer ist, 
-  - *{copy move link}* als die Operationen, 
-  - den Bezeichner des Knotens als die Daten. 
+      - als Datentyp den Wert der Option **dragtype** oder *TREE_NODE*, wenn er leer ist, 
+      - *{copy move link}* als die Operationen, 
+      - den Bezeichner des Knotens als die Daten. 
 
-Wenn **draginitcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
+    Wenn **draginitcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname des Baums, 
-  - der Bezeichner des gezogenen Knotens, 
-  - das Toplevel-Fenster, das erzeugt wird, um die gezogenen Daten darzustellen. 
+      - der Pfadname des Baums, 
+      - der Bezeichner des gezogenen Knotens, 
+      - das Toplevel-Fenster, das erzeugt wird, um die gezogenen Daten darzustellen. 
 
-und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die in **DragSite::register** beschrieben ist.
+    und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die in **DragSite::register** beschrieben ist.
 
 
 **-dragtype**
@@ -173,16 +173,16 @@ und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die
 : Tree hat einen Befehlsrahmen für Ereignisse *drop*. Dieser Befehl beendet das automatische Scrollen und ermittelt Knoten und Position.   
   Wenn **dropcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname des Baums, 
-  - der Pfadname der Ziehquelle, 
-  - eine Liste, die beschreibt, wo das Ablegen geschieht. Sie kann sein:  
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname des Baums, 
+      - der Pfadname der Ziehquelle, 
+      - eine Liste, die beschreibt, wo das Ablegen geschieht. Sie kann sein:  
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-    - *{*__widget__*}*, 
-    - *{*__node__ *node}* oder 
-    - *{*__position__ *node index}*. 
+        - *{*__widget__*}*, 
+        - *{*__node__ *node}* oder 
+        - *{*__position__ *node index}*. 
 
 
 **-dropenabled**
@@ -192,22 +192,22 @@ und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die
 **-dropovercmd**
 : Tree hat einen Befehlsrahmen für Ereignisse *drag-over*. Dieser Befehl schaltet während des *drag-over* das automatische Scrollen und die Ermittlung der Position ein. Wenn **dropovercmd** nicht leer ist, wird der Befehl mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname des Baums, 
-  - der Pfadname der Ziehquelle, 
-  - eine Liste, die beschreibt, wo das Ablegen geschehen kann; ihre Elemente sind:  
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname des Baums, 
+      - der Pfadname der Ziehquelle, 
+      - eine Liste, die beschreibt, wo das Ablegen geschehen kann; ihre Elemente sind:  
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-    - die Zeichenkette *widget*, wenn die Option **dropovertype** *w* enthält, sonst die leere Zeichenkette. 
-    - der angezielte Knoten, wenn das Ziehsymbol auf einen Knoten zeigt und die Option **dropovertype** *n* enthält, sonst die leere Zeichenkette. 
-    - eine Liste mit einem Knoten und der Position innerhalb der Kinder des Knotens, auf die das Ziehsymbol zeigt, wenn die Option **dropovertype** *p* enthält, sonst die leere Zeichenkette. 
-    - optional die bevorzugte Methode, wenn das Ablegen sowohl innerhalb eines Knotens als auch zwischen zwei Knoten geschehen kann. Der Wert ist *position* oder *node*. 
+        - die Zeichenkette *widget*, wenn die Option **dropovertype** *w* enthält, sonst die leere Zeichenkette. 
+        - der angezielte Knoten, wenn das Ziehsymbol auf einen Knoten zeigt und die Option **dropovertype** *n* enthält, sonst die leere Zeichenkette. 
+        - eine Liste mit einem Knoten und der Position innerhalb der Kinder des Knotens, auf die das Ziehsymbol zeigt, wenn die Option **dropovertype** *p* enthält, sonst die leere Zeichenkette. 
+        - optional die bevorzugte Methode, wenn das Ablegen sowohl innerhalb eines Knotens als auch zwischen zwei Knoten geschehen kann. Der Wert ist *position* oder *node*. 
 
-Der Befehl muss eine Liste mit zwei Elementen zurückgeben:
+    Der Befehl muss eine Liste mit zwei Elementen zurückgeben:
 
-  - den Ablegezustand, entsprechend der Beschreibung in der Option **dropovercmd** von **DropSite::register**, 
-  - die gewählte Methode: *widget*, *node* oder *position*. 
+      - den Ablegezustand, entsprechend der Beschreibung in der Option **dropovercmd** von **DropSite::register**, 
+      - die gewählte Methode: *widget*, *node* oder *position*. 
 
 
 **-dropovermode**
@@ -274,13 +274,13 @@ WIDGET-BEFEHL
 *pathName* **bindImage** *event* *script* 
 : Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf dem Bild eines Knotens eintritt. Der Knotenbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt und kann verwendet werden, um den Baum zu bearbeiten (zum Beispiel **%W** nicht verwenden).
 
- Wenn **-selectfill** angegeben ist, wird eine etwaige Bindung des Hintergrundrahmens durch **bindText** überschrieben. 
+     Wenn **-selectfill** angegeben ist, wird eine etwaige Bindung des Hintergrundrahmens durch **bindText** überschrieben. 
 
 
 *pathName* **bindText** *event* *script* 
 : Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf der Beschriftung eines Knotens eintritt. Der Knotenbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt und kann verwendet werden, um den Baum zu bearbeiten (zum Beispiel **%W** nicht verwenden).
 
- Wenn **-selectfill** angegeben ist, wird eine etwaige Bindung des Hintergrundrahmens durch **bindImage** überschrieben. 
+     Wenn **-selectfill** angegeben ist, wird eine etwaige Bindung des Hintergrundrahmens durch **bindImage** überschrieben. 
 
 
 *pathName* **cget** *option* 
@@ -315,7 +315,7 @@ WIDGET-BEFEHL
 *pathName* **find** *findinfo* ?*confine*? 
 :  Gibt den Knoten zurück, den die Position *findinfo* angibt. *findinfo* kann die Form einer Pixelposition *@x,y* oder der Zeilennummer eines gerade sichtbaren Tree-Knotens haben. Die erste Zeile des Tree hat den Wert null. 
 
- Wenn *confine* nicht leer ist, wird *findinfo* darauf beschränkt, nur Pixelpositionen in der Fläche der Tree-Beschriftungen zu treffen, nicht irgendwo auf ihren Zeilen. (*confine* hat keine Wirkung, wenn *findinfo* eine Zeilennummer ist.) 
+     Wenn *confine* nicht leer ist, wird *findinfo* darauf beschränkt, nur Pixelpositionen in der Fläche der Tree-Beschriftungen zu treffen, nicht irgendwo auf ihren Zeilen. (*confine* hat keine Wirkung, wenn *findinfo* eine Zeilennummer ist.) 
 
 
 *pathName* **index** *node* 
@@ -325,74 +325,58 @@ WIDGET-BEFEHL
 *pathName* **insert** *index* *parent* *node* ?*option value...*? 
 :  Fügt einen neuen Knoten, der durch *node* gekennzeichnet ist, in die Kinderliste von *parent* an der Position *index* ein. 
 
- Jedes Vorkommen von *#auto* im Knotennamen wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. Die nicht druckbaren Zeichen \\1 to \\5 sind für den internen Gebrauch reserviert und sollen in Knotennamen nicht vorkommen.
-
- 
-
-**-anchor**
-:  Legt den Anker des Bildes oder Fensters des Knotens fest. Voreingestellt ist w. 
+     Jedes Vorkommen von *#auto* im Knotennamen wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. Die nicht druckbaren Zeichen \\1 to \\5 sind für den internen Gebrauch reserviert und sollen in Knotennamen nicht vorkommen.
 
 
-**-data**
-:  Benutzerdaten, die zum Knoten gehören. 
 
+    **-anchor**
+    :  Legt den Anker des Bildes oder Fensters des Knotens fest. Voreingestellt ist w. 
 
-**-deltax**
-:  Legt die waagerechte Einrückung des Knotens fest. Wenn der Wert -1 ist, wird der Knoten mit dem deltax des gesamten Baums gezeichnet. 
+    **-data**
+    :  Benutzerdaten, die zum Knoten gehören. 
 
+    **-deltax**
+    :  Legt die waagerechte Einrückung des Knotens fest. Wenn der Wert -1 ist, wird der Knoten mit dem deltax des gesamten Baums gezeichnet. 
 
-**-drawcross**
-:  Legt fest, wie das Kreuz gezeichnet wird, mit dem die Kinder eines Knotens ausgeklappt oder eingeklappt werden. Muss einer der Werte **auto**, **always** oder **never** sein.   
-  Bei **auto** wird das Kreuz nur gezeichnet, wenn der Knoten Kinder hat. Bei **always** wird das Kreuz immer gezeichnet. Bei **never** wird das Kreuz nie gezeichnet. Zur Kompatibilität mit älteren Versionen dieses Widgets ist **allways** ein veraltetes Synonym für **always**. 
+    **-drawcross**
+    :  Legt fest, wie das Kreuz gezeichnet wird, mit dem die Kinder eines Knotens ausgeklappt oder eingeklappt werden. Muss einer der Werte **auto**, **always** oder **never** sein.   
+      Bei **auto** wird das Kreuz nur gezeichnet, wenn der Knoten Kinder hat. Bei **always** wird das Kreuz immer gezeichnet. Bei **never** wird das Kreuz nie gezeichnet. Zur Kompatibilität mit älteren Versionen dieses Widgets ist **allways** ein veraltetes Synonym für **always**. 
 
+    **-fill**
+    :  Legt die Vordergrundfarbe der Beschriftung des Knotens fest. 
 
-**-fill**
-:  Legt die Vordergrundfarbe der Beschriftung des Knotens fest. 
+    **-font**
+    :  Legt eine Schriftart für die Beschriftung des Knotens fest. 
 
+    **-helpcmd**
+    :  Wenn angegeben, verweist das auf einen Befehl, der ausgeführt wird, um den anzuzeigenden Hilfetext zu holen. Der Befehl muss eine Zeichenkette zur Anzeige zurückgeben. Wenn der Befehl eine leere Zeichenkette zurückgibt, wird keine Hilfe angezeigt. Siehe auch [DynamicHelp](DynamicHelp.md). 
 
-**-font**
-:  Legt eine Schriftart für die Beschriftung des Knotens fest. 
+    **-helptext**
+    :  Text für die dynamische Hilfe. Siehe auch [DynamicHelp](DynamicHelp.md). 
 
+    **-helptype**
+    :  Typ der dynamischen Hilfe. *balloon* oder *variable* verwenden. Siehe auch [DynamicHelp](DynamicHelp.md). 
 
-**-helpcmd**
-:  Wenn angegeben, verweist das auf einen Befehl, der ausgeführt wird, um den anzuzeigenden Hilfetext zu holen. Der Befehl muss eine Zeichenkette zur Anzeige zurückgeben. Wenn der Befehl eine leere Zeichenkette zurückgibt, wird keine Hilfe angezeigt. Siehe auch [DynamicHelp](DynamicHelp.md). 
+    **-helpvar**
+    :  Variable, die verwendet wird, wenn die Option **helptype** *variable* ist. Siehe auch [DynamicHelp](DynamicHelp.md). 
 
+    **-image**
+    :  Legt ein Bild fest, das links von der Beschriftung des Knotens angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
 
-**-helptext**
-:  Text für die dynamische Hilfe. Siehe auch [DynamicHelp](DynamicHelp.md). 
+    **-open**
+    :  Legt fest, ob die Kinder des Knotens gezeichnet werden sollen. 
 
+    **-padx**
+    :  Legt den Abstand zwischen Bild oder Fenster und dem Text des Knotens fest. Wenn der Wert -1 ist, wird der Knoten mit dem padx des gesamten Baums gezeichnet. 
 
-**-helptype**
-:  Typ der dynamischen Hilfe. *balloon* oder *variable* verwenden. Siehe auch [DynamicHelp](DynamicHelp.md). 
+    **-selectable**
+    :  Legt fest, ob der Knoten ausgewählt werden kann. 
 
+    **-text**
+    :  Legt die Beschriftung des Knotens fest. 
 
-**-helpvar**
-:  Variable, die verwendet wird, wenn die Option **helptype** *variable* ist. Siehe auch [DynamicHelp](DynamicHelp.md). 
-
-
-**-image**
-:  Legt ein Bild fest, das links von der Beschriftung des Knotens angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
-
-
-**-open**
-:  Legt fest, ob die Kinder des Knotens gezeichnet werden sollen. 
-
-
-**-padx**
-:  Legt den Abstand zwischen Bild oder Fenster und dem Text des Knotens fest. Wenn der Wert -1 ist, wird der Knoten mit dem padx des gesamten Baums gezeichnet. 
-
-
-**-selectable**
-:  Legt fest, ob der Knoten ausgewählt werden kann. 
-
-
-**-text**
-:  Legt die Beschriftung des Knotens fest. 
-
-
-**-window**
-:  Legt einen Pfadnamen fest, der links von der Beschriftung des Knotens angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
-
+    **-window**
+    :  Legt einen Pfadnamen fest, der links von der Beschriftung des Knotens angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
 
 
 *pathName* **itemcget** *node* *option* 
@@ -435,32 +419,31 @@ WIDGET-BEFEHL
 *pathName* **selection** *cmd* ?*arg...*? 
 : Ändert die Liste der ausgewählten Knoten entsprechend *cmd*:
 
-**add** 
-: Nimmt alle Knoten in *arg* in die Auswahl auf. 
+    **add** 
+    : Nimmt alle Knoten in *arg* in die Auswahl auf. 
 
-**clear** 
-: Entfernt alle Knoten aus der Auswahl. 
+    **clear** 
+    : Entfernt alle Knoten aus der Auswahl. 
 
-**get** 
-: Gibt eine Liste mit den Indizes der aktuell ausgewählten Knoten zurück. 
+    **get** 
+    : Gibt eine Liste mit den Indizes der aktuell ausgewählten Knoten zurück. 
 
-**includes** 
-: Prüft, ob der angegebene Knoten ausgewählt ist. Gibt true zurück, wenn die Antwort ja ist, und sonst false. 
+    **includes** 
+    : Prüft, ob der angegebene Knoten ausgewählt ist. Gibt true zurück, wenn die Antwort ja ist, und sonst false. 
 
-**range** 
-: Setzt die Auswahl auf alle Knoten zwischen den beiden angegebenen. 
+    **range** 
+    : Setzt die Auswahl auf alle Knoten zwischen den beiden angegebenen. 
 
-**remove** 
-: Entfernt alle Knoten in *arg* aus der Auswahl. 
+    **remove** 
+    : Entfernt alle Knoten in *arg* aus der Auswahl. 
 
-**set** 
-: Setzt die Auswahl auf alle Knoten in *arg*. 
+    **set** 
+    : Setzt die Auswahl auf alle Knoten in *arg*. 
 
-**toggle** 
-: Schaltet den Auswahlzustand aller Knoten in *arg* um. 
+    **toggle** 
+    : Schaltet den Auswahlzustand aller Knoten in *arg* um. 
 
-
-Die Unterbefehle **add**, **range** und **set** ignorieren still Knoten, die als nicht auswählbar deklariert sind. Die Knotenoption -selectable beeinflusst das.
+    Die Unterbefehle **add**, **range** und **set** ignorieren still Knoten, die als nicht auswählbar deklariert sind. Die Knotenoption -selectable beeinflusst das.
 
 
 *pathName* **toggle** *node* 

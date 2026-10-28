@@ -9,24 +9,24 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-activebackground](options.md) |   [-activeforeground](options.md) |
-|   [-anchor](options.md) |   [-background or -bg](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-activebackground](options.md) |   [-activeforeground](options.md) |
+    |   [-anchor](options.md) |   [-background or -bg](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -armcommand |   -command |
-|   -default |   -disarmcommand |
-|   -height |   -helptext |
-|   -helptype |   -helpvar |
-|   -name |   -relief |
-|   -state |   -underline |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -armcommand |   -command |
+    |   -default |   -disarmcommand |
+    |   -height |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -name |   -relief |
+    |   -state |   -underline |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -115,4 +115,4 @@ WIDGET COMMAND
 *pathName* **invoke** 
 : If Button **state** is not disabled, this invoke the commands of the Button. Button is redisplayed with active color and sunken relief, and **armcommand** is called. Then Button is redisplayed with normal color and its defined relief, and **disarmcommand** then **command** are called.
 
-**invoke** is called when Button has input focus and user press the space bar.
+    **invoke** is called when Button has input focus and user press the space bar.

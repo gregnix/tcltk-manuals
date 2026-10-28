@@ -99,7 +99,9 @@ Weitere Erläuterungen zum Standardkanal stehen bei [Tcl\_StandardChannels][StdC
 
 Wird eine Zip-Datei an das Ende von **tclsh** angehängt, wird ihr Inhalt beim Start unter einem virtuellen Dateisystem (VFS) eingehängt. Die Wurzel dieses VFS liefert der Befehl [zipfs root][zipfs]. Das Archiv liegt im Verzeichnis **app** innerhalb des VFS. Liegt im obersten Verzeichnis des Archivs eine Datei **main.tcl**, wird sie geladen statt der üblichen Befehlszeilenverarbeitung von tclsh. Liegt dort ein Verzeichnis [tcl\_library][tclvars], wird es als env(TCL\_LIBRARY) geladen. Liegt im obersten Verzeichnis des Archivs eine Datei **main.tcl**, wird sie geladen statt der üblichen Befehlszeilenverarbeitung der Shell.
 
-An das Ende eines Programmbilds (tclsh oder wish) kann nur eine Zip-Datei angehängt werden. Sind mehrere angehängt, gilt nur die letzte. Dieses Dateisystem ist nur lesbar. Dateien darin lassen sich nicht hinzufügen oder ändern. Einzelheiten stehen in zipfs(n).
+An das Ende eines Programmbilds (tclsh oder wish) kann nur eine Zip-Datei angehängt werden. Sind mehrere angehängt, gilt nur die letzte.
+
+Dieses Dateisystem ist nur lesbar. Dateien darin lassen sich nicht hinzufügen oder ändern. Einzelheiten stehen in zipfs(n).
 
 
 [binary]: binary.md

@@ -1,9 +1,10 @@
 ---
 CommandName: expatapi
+title: expatapi
 ManualSection: 3
 Version: unknown
 TclPart: Tcl
-TclDescription: 
+TclDescription:
 Links:
  - expat
 Keywords:
@@ -18,47 +19,43 @@ CheckExpatParserObj, CHandlerSetInstall, CHandlerSetRemove, CHandlerSetCreate, C
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<tclexpat.h>]{.lit}
+**#include <tclexpat.h>**
 
-int
-[CheckExpatParserObj]{.cmd} ([interp]{.arg}, [nameObj]{.arg})
+[int]{.ret} [CheckExpatParserObj]{.ccmd} [interp, nameObj]{.cargs}
 
-int
-[CHandlerSetInstall]{.cmd} ([interp]{.arg}, [expatObj]{.arg}, [handlerSet]{.arg})
+[int]{.ret} [CHandlerSetInstall]{.ccmd} [interp, expatObj, handlerSet]{.cargs}
 
-int
-[CHandlerSetRemove]{.cmd} ([interp]{.arg}, [expatObj]{.arg}, [handlerSetName]{.arg})
+[int]{.ret} [CHandlerSetRemove]{.ccmd} [interp, expatObj, handlerSetName]{.cargs}
 
-CHandlerSet\*
-[CHandlerSetCreate]{.cmd} ([handlerSetName]{.arg})
+[CHandlerSet\*]{.ret} [CHandlerSetCreate]{.ccmd} [handlerSetName]{.cargs}
 
-CHandlerSet\*
-[CHandlerSetGet]{.cmd} ([interp]{.arg}, [expatObj]{.arg}, [handlerSetName]{.arg})
+[CHandlerSet\*]{.ret} [CHandlerSetGet]{.ccmd} [interp, expatObj, handlerSetName]{.cargs}
 
-void\*
-[CHandlerSetGetUserData]{.cmd} ([interp]{.arg}, [expatObj]{.arg}, [handlerSetName]{.arg})
+[void\*]{.ret} [CHandlerSetGetUserData]{.ccmd} [interp, expatObj, handlerSetName]{.cargs}
 
-TclGenExpatInfo\*
-[GetExpatInfo]{.cmd} ([interp]{.arg}, [expatObj]{.arg})
+[TclGenExpatInfo\*]{.ret} [GetExpatInfo]{.ccmd} [interp, expatObj]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter with the expat parser object.
 
-Tcl_Obj *\*expatObj* (in)
+[\*expatObj]{.carg .in type="Tcl_Obj"}
 : A Tcl Object containing the command name of the expat parser object to be queried or modified.
 
-char *\*handlerSetName* (in)
+[\*handlerSetName]{.carg .in type="char"}
 : Identifier of the handler set.
 
-CHandlerSet *\*handlerSet* (in)
+[\*handlerSet]{.carg .in type="CHandlerSet"}
 : Pointer to a C handler set.
 
-Tcl_Obj *\*nameObj*
+[\*nameObj]{.carg .inout type="Tcl_Obj"}
 : A Tcl Object containing the name of a expat parser object
 
+:::
 
 # Description
 
@@ -138,7 +135,7 @@ The *userData* element points to the handler set specific data. The event handle
 void (Tcl_Interp *interp, void *userData)
 ```
 
-*resetProc* is called in case the parser is reset with **\<parserObj> reset** and should do any necessary cleanup and reinitializing to prepare the C handler set for a new XML document. The *freeProc* is called, if the parser is deleted and should do memory cleanup etc.
+*resetProc* is called in case the parser is reset with **<parserObj> reset** and should do any necessary cleanup and reinitializing to prepare the C handler set for a new XML document. The *freeProc* is called, if the parser is deleted and should do memory cleanup etc.
 
 *CHandlerSetCreate* create a C handler set, gives it the name *name* and initializes any other element with NULL.
 

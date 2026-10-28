@@ -9,49 +9,49 @@
 *OPTIONS from ArrowButton*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -disabledforeground |
-|   -foreground oder -fg |   -state |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -disabledforeground |
+    |   -foreground oder -fg |   -state |
 
 
 *OPTIONS from Entry*
 : 
 
-|   |   |
-| --- | --- |
-|   -command |   -disabledforeground |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -droptypes |   -editable |
-|   -entrybg (siehe **-background**) |   -entryfg (see **-foreground**) |
-|   -exportselection |   -font |
-|   -helptext |   -helptype |
-|   -helpvar |   -highlightbackground |
-|   -highlightcolor |   -highlightthickness |
-|   -insertbackground |   -insertborderwidth |
-|   -insertofftime |   -insertontime |
-|   -insertwidth |   -justify |
-|   -selectbackground |   -selectborderwidth |
-|   -selectforeground |   -show |
-|   -state |   -takefocus |
-|   -text |   -textvariable |
-|   -width |   -xscrollcommand |
+    |   |   |
+    | --- | --- |
+    |   -command |   -disabledforeground |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -droptypes |   -editable |
+    |   -entrybg (siehe **-background**) |   -entryfg (see **-foreground**) |
+    |   -exportselection |   -font |
+    |   -helptext |   -helptype |
+    |   -helpvar |   -highlightbackground |
+    |   -highlightcolor |   -highlightthickness |
+    |   -insertbackground |   -insertborderwidth |
+    |   -insertofftime |   -insertontime |
+    |   -insertwidth |   -justify |
+    |   -selectbackground |   -selectborderwidth |
+    |   -selectforeground |   -show |
+    |   -state |   -takefocus |
+    |   -text |   -textvariable |
+    |   -width |   -xscrollcommand |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -autocomplete |   -autopost |
-|   -bwlistbox |   -expand |
-|   -height |   -hottrack |
-|   -images |   -listboxwidth |
-|   -modifycmd |   -postcommand |
-|   -values |
+    |   |   |
+    | --- | --- |
+    |   -autocomplete |   -autopost |
+    |   -bwlistbox |   -expand |
+    |   -height |   -hottrack |
+    |   -images |   -listboxwidth |
+    |   -modifycmd |   -postcommand |
+    |   -values |
 
 
 *WIDGET-BEFEHL*
@@ -164,23 +164,22 @@ WIDGET-BEFEHL
 *pathName* **setvalue** *index* 
 : Setzt den Text der ComboBox auf den Wert, den *index* in der Werteliste angibt. *index* kann in jeder der folgenden Formen angegeben werden:
 
- 
 
- **last** 
-:  Legt das letzte Element der Werteliste fest. 
 
-**first** 
-:  Legt das erste Element der Werteliste fest. 
+     **last** 
+    :  Legt das letzte Element der Werteliste fest. 
 
- **next** 
-:  Legt das Element fest, das auf das aktuelle folgt (das heißt das von **getvalue** zurückgegebene) in der Werteliste. 
+    **first** 
+    :  Legt das erste Element der Werteliste fest. 
 
-**previous** 
-:  Legt das Element fest, das dem aktuellen vorausgeht (das heißt das von **getvalue** zurückgegebene) in der Werteliste. 
+     **next** 
+    :  Legt das Element fest, das auf das aktuelle folgt (das heißt das von **getvalue** zurückgegebene) in der Werteliste. 
 
- @*number* 
-:  Legt den ganzzahligen Index in der Werteliste fest. 
+    **previous** 
+    :  Legt das Element fest, das dem aktuellen vorausgeht (das heißt das von **getvalue** zurückgegebene) in der Werteliste. 
 
+     @*number* 
+    :  Legt den ganzzahligen Index in der Werteliste fest. 
 
 
 *pathName* **unpost** 

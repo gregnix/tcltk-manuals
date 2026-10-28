@@ -13,23 +13,23 @@
 *OPTIONS from ArrowButton*
 : 
 
-|   |   |
-| --- | --- |
-|   -activebackground |   -activeforeground |
-|   -background or -bg |   -borderwidth or -bd |
-|   -disabledforeground |   -foreground or -fg |
-|   -repeatdelay |   -repeatinterval |
+    |   |   |
+    | --- | --- |
+    |   -activebackground |   -activeforeground |
+    |   -background or -bg |   -borderwidth or -bd |
+    |   -disabledforeground |   -foreground or -fg |
+    |   -repeatdelay |   -repeatinterval |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -arcradius |   -height |
-|   -homogeneous |   -side |
-|   -tabbevelsize |   -tabpady |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -arcradius |   -height |
+    |   -homogeneous |   -side |
+    |   -tabbevelsize |   -tabpady |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -137,29 +137,23 @@ WIDGET COMMAND
 *pathName* **insert** *index* *page* ?*option value...*? 
 : Insert a new page idendified by *page* at position *index* in the pages list. *index* must be numeric or **end**. The pathname of the new page is returned.
 
-**-createcmd**
-:  Specifies a command to be called the first time the page is raised. 
+    **-createcmd**
+    :  Specifies a command to be called the first time the page is raised. 
 
+    **-image**
+    :  Specifies an image to display for the page at the left of the label 
 
-**-image**
-:  Specifies an image to display for the page at the left of the label 
+    **-leavecmd**
+    :  Specifies a command to be called when a page is about to be leaved. The command must return 0 if the page can not be leaved, or 1 if it can. 
 
+    **-raisecmd**
+    :  Specifies a command to be called each time the page is raised. 
 
-**-leavecmd**
-:  Specifies a command to be called when a page is about to be leaved. The command must return 0 if the page can not be leaved, or 1 if it can. 
+    **-state**
+    :  Specifies the state of the page. Must be **normal** or **disabled**. 
 
-
-**-raisecmd**
-:  Specifies a command to be called each time the page is raised. 
-
-
-**-state**
-:  Specifies the state of the page. Must be **normal** or **disabled**. 
-
-
-**-text**
-:  Specifies a label to display for the page. 
-
+    **-text**
+    :  Specifies a label to display for the page. 
 
 
 *pathName* **itemcget** *page* *option* 

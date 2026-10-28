@@ -25,7 +25,7 @@ Tcl\_ZlibAdler32, Tcl\_ZlibCRC32, Tcl\_ZlibDeflate, Tcl\_ZlibInflate, Tcl\_ZlibS
 # Synopsis
 
 ::: {.synopsis} :::
-include <tcl.h>
+**#include <tcl.h>**
 [int]{.ret} [Tcl\_ZlibDeflate]{.ccmd} [interp, format, dataObj, level, dictObj]{.cargs}
 [int]{.ret} [Tcl\_ZlibInflate]{.ccmd} [interp, format, dataObj, bufferSize, dictObj]{.cargs}
 [unsigned]{.ret} [Tcl\_ZlibCRC32]{.ccmd} [initValue, bytes, length]{.cargs}

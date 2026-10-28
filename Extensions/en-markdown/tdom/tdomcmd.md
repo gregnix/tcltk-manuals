@@ -1,9 +1,10 @@
 ---
 CommandName: tdom
+title: tdom
 ManualSection: n
 Version: unknown
 TclPart: Tcl
-TclDescription: 
+TclDescription:
 Links:
  - dom
  - expat
@@ -21,46 +22,34 @@ tdom - tdom is an expat parser object extension to create an in-memory DOM tree 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdom]{.lit} 
+[package]{.cmd} [require]{.sub} [tdom]{.lit}
 
 set parser \[expat\]
 
-tdom \$parser enable
+tdom $parser enable
 :::
 
 # Description
 
-*tdom* adds the C handler set "tdom" to an tcl expat parser obj. This handler set builds an in-memory DOM tree out of the input, parsed by the parser. A DOM tree created this way behave exactly like a DOM tree created by the "dom" command (see there). In fact, tdom is only another interface to the same functionality; it uses the code behind the **dom** code for building the DOM tree.
+*tdom* adds the C handler set "tdom" to an tcl expat parser obj. This handler set builds an in-memory DOM tree out of the input, parsed by the parser. A DOM tree created this way behave exactly like a DOM tree created by the "dom" command (see there). In fact, tdom is only another interface to the same functionality; it uses the code behind the [dom] code for building the DOM tree.
 
 **tdom** *parserObj* **enable**
-: 
-
-
-Adds the tdom C handler set to a Tcl expat parser object. Next time, the parser parses input, the tdom C handler functions create an in-memory DOM tree.
+: Adds the tdom C handler set to a Tcl expat parser object. Next time, the parser parses input, the tdom C handler functions create an in-memory DOM tree.
 
 **tdom** *parserObj* **getdoc**
-: 
+: Returns the DOM tree as domDoc (see there) object.
 
-
-Returns the DOM tree as domDoc (see there) object.
-
-**tdom** *parserObj* **setStoreLineColumn** ?*boolean*__?__
-: 
-
-
-See the method **setStoreLineColumn** of the **dom** command.
+**tdom** *parserObj* **setStoreLineColumn** ?*boolean***?**
+: See the method **setStoreLineColumn** of the [dom] command.
 
 **tdom** *parserObj* **remove**
-: 
-
-
-Removes the tdom C handler set from the parser object.
+: Removes the tdom C handler set from the parser object.
 
 **tdom** *parserObj* **keepEmpties**
-: 
+: See the option **-keepEmpties** of the [dom] command.
 
 
-See the option **-keepEmpties** of the **dom** command.
+- **tdom** *parserObj* **setExternalEntityResolver** *script*
 
-**tdom** *parserObj* **setExternalEntityResolver** *script*
-:
+
+[dom]: dom.md

@@ -1,9 +1,10 @@
 ---
 CommandName: component
+title: component
 ManualSection: n
 Version: 4.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - component
  - widget
@@ -26,14 +27,14 @@ This is new functionality in \[incr Tcl\] where the API can still change!!
 # Synopsis
 
 ::: {.synopsis} :::
-[public]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
-[protected]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
-[private]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
+[public]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
+[protected]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
+[private]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
 :::
 
 # Description
 
-The **component** command is used inside an **\[incr**\\ **Tcl\]** extendedclass/widget/widgetadaptor definition to define components.
+The **component** command is used inside an **\[incr Tcl\]** extendedclass/widget/widgetadaptor definition to define components.
 
 Explicitly declares a component called comp, and automatically defines the component's instance variable.
 

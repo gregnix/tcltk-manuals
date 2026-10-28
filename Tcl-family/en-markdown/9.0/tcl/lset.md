@@ -41,7 +41,7 @@ lset - Change an element in a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lset]{.cmd} [varName]{.arg} ?index ...? newValue
+[lset]{.cmd} [varName]{.arg} [index]{.optdot} newValue
 :::
 
 # Description

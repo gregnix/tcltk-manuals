@@ -1,12 +1,109 @@
 # pdf	scrollutil-de.pdf
 # label	Scrollutil
 # title	Scrollutil
-index	3
+-padding	7
+-sticky	7
+add	8,17,52
+addbutton	18
+addlabel	18
+addseparator	18
+adjustsize	8,18,52
+attrib	8,19,29,44,52,62
+autofillx	30
+autofilly	30
+autosize	30
+cget	8,19,30,44,52,63
+closablestate	19
+closetab	57
+closetabstate	52
+configure	8,19,30,44,52,63
+contentframe	31
+Ein scrollbares Canvas-Widget	82
+Ein scrollbares Tablelist-Widget	77
+Ein scrollbares Text-Widget	79
+Ein Skript, das ein iwidgets::scrolledframe-Widget verwendet	93
+Eine Demo von scrollutil::pagesman	110
+Eine Demo von scrollutil::plainnotebook	108
+Eine Demo von scrollutil::scrollednotebook	103
+forget	9,19,53
+hasattrib	9,19,31,45,53,63
+haspageattrib	9
+hastabattrib	19,53
+hide	19,53
+identify	53
+index	3,9,19,53
+insert	9,19,53
+insertbutton	20
+insertlabel	20
+insertseparator	20
+instate	20,53
+notebookpath	53
+pageattrib	9
+pagecget	9
+pageconfigure	9
+pages	10
 pagesman	3
 plainnotebook	10
+preparescan	31
+preparescroll	31
+REGISTERKENNUNGEN	17,52
+REGISTEROPTIONEN	17,52
+scan	31
+scan dragto	31
+scan mark	31
 scrollableframe	23
 scrollarea	38
 scrollednotebook	46
 scrollsync	59
 scrollutil	65
+scrollutil::adaptBtn2EventHandling	34
+scrollutil::adaptWheelEventHandling	121
+scrollutil::addclosetab	58
+scrollutil::addMouseWheelSupport	117
+scrollutil::closetabstate	58
+scrollutil::createWheelEventBindings	119
+scrollutil::disableScrollingByWheel	120
+scrollutil::enableScrollingByWheel	120
+scrollutil::focusCheckWindow	125
+scrollutil::getScalingPct	75
+scrollutil::getscrollarea	46
+scrollutil::getscrollsync	64
+scrollutil::prepareScrollingByWheel	123
+scrollutil::removeclosetab	58
+scrollutil::scalingpct	71
+scrollutil::scrollableframe	23
+scrollutil::scrollarea	38
+scrollutil::scrollednotebook	47
+scrollutil::scrollsync	60
+scrollutil::setFocusCheckWindow	124
+scrollutil::svgfmt	75
+see	20,32,54
+seerect	32
+SEITENKONFIGURATIONSOPTIONEN	7
+select	10,20,54
+setwidget	45
+setwidgets	63
+size	10
+state	20,54
+style	20,54
+styleUtil.tcl	75
+Synchronisierung von drei Tablelist-Widgets	86
+tab	20,54
+tabattrib	20,54
+tabpath	21
+tabs	21,54
+TASTATURNAVIGATION	21,54
+titlepath	21
+unsetattrib	10,21,32,46,54,63
+unsetpageattrib	10
+unsettabattrib	21,54
+VIRTUELLE EREIGNISSE	10,21,54
+VORGABEBINDUNGEN	10,34,46,64
+WEITERE BINDUNGEN	22,55
 wheelEvent	117
+widget	46
+widgets	63
+window	10
+xview	32,63
+yview	33,64
+Zwei listbox-Widgets synchronisieren	85

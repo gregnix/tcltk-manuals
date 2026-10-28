@@ -9,24 +9,24 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-foreground oder -fg](options.md) |   [-orient](options.md) |
-|   [-relief](options.md) |
-|   [-troughcolor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-foreground oder -fg](options.md) |   [-orient](options.md) |
+    |   [-relief](options.md) |
+    |   [-troughcolor](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -height |
-|   -showresize |
-|   -ipad |
-|   -pad |
-|   -width  |
+    |   |
+    | --- |
+    |   -height |
+    |   -showresize |
+    |   -ipad |
+    |   -pad |
+    |   -width  |
 
 
 *WIDGET-BEFEHL*
@@ -72,18 +72,17 @@ WIDGET-BEFEHL
 *pathName* **add** **widget** ?*option* *value* *option* *value* ...? 
 : Fügt der Statusleiste ein Widget hinzu. Mögliche Optionen sind:
 
-**-weight**
-: Gewichtung dieses Eintrags bei der Größenänderung (wird an **grid** übergeben).
+    **-weight**
+    : Gewichtung dieses Eintrags bei der Größenänderung (wird an **grid** übergeben).
 
-**-separator**
-: Ob für diesen Eintrag ein Trenner verwendet wird.
+    **-separator**
+    : Ob für diesen Eintrag ein Trenner verwendet wird.
 
-**-sticky**
-: Wird an grid weitergegeben.
+    **-sticky**
+    : Wird an grid weitergegeben.
 
-**-pad**
-: Überschreibt die Option **-ipad** des Widgets für diesen Eintrag.
-
+    **-pad**
+    : Überschreibt die Option **-ipad** des Widgets für diesen Eintrag.
 
 
 *pathName* **cget** *option* 

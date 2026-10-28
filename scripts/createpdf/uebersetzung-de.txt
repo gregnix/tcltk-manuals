@@ -6,6 +6,9 @@ Ziel, Layoutbilder) kann dabei wegfallen. Das sind die Änderungen; für Teile
 unter der Mozilla Public License 1.1 (tDOM) ist es die Beschreibung der
 Änderungen nach Abschnitt 3.3.
 
+Die Übersetzung entstand mit Unterstützung von DeepL und KI-Werkzeugen und
+wurde von Hand durchgesehen und überarbeitet.
+
 Die Übersetzung steht unter denselben Bedingungen wie das jeweilige
 englische Original. Diese Bedingungen folgen. Die Copyright-Angaben der
 Originalseiten stehen bei jeder Seite.

@@ -1,5 +1,6 @@
 ---
 CommandName: tclhttpd
+title: tclhttpd
 ManualSection: 1
 Version: unknown
 TclPart: TclPro
@@ -10,7 +11,6 @@ Keywords:
  - TclHttpd
 Copyright:
  - Copyright (c) 1998-2000 by Ajuba Solutions
- - All rights reserved.
 ---
 
 # Name
@@ -20,7 +20,7 @@ tclhttpd - Tcl Web Server
 # Synopsis
 
 ::: {.synopsis} :::
-[tclsh]{.cmd} [httpd.tcl]{.sub} [options]{.optarg} 
+[tclsh]{.cmd} [httpd.tcl]{.sub} [options]{.optarg}
 :::
 
 # Options
@@ -59,7 +59,7 @@ tclhttpd - Tcl Web Server
 : Run with *num* worker threads. Requires a thread safe Tcl shell.
 
 **-library** *directory*
-: Directory to add to the auto_path.
+: Directory to add to the auto\_path.
 
 **-verbose**
 : Causes extra print statements during startup.
@@ -69,11 +69,15 @@ tclhttpd - Tcl Web Server
 
 TclHttpd is a simple, extensible, embeddable Web Server. The best source of documentation is in HTML distributed with the server.
 
-To start the server, simply run the httpd.tcl script with *tclsh* or *wish*. For example, this starts the server on the standard Web server port, 80. tclsh \<installdir>/bin/httpd.tcl -port 80 Note that you must start the server as root if you use port numbers less than 1024 on UNIX systems.  If you want the server process to run under a different user than root, which is strongly recommended, then use the **-uid** and **-gid** options.  This way the server can start as root, open the socket, and then switch to a less privileged account.
+To start the server, simply run the httpd.tcl script with *tclsh* or *wish*. For example, this starts the server on the standard Web server port, 80.
+
+tclsh <installdir>/bin/httpd.tcl -port 80
+
+Note that you must start the server as root if you use port numbers less than 1024 on UNIX systems.  If you want the server process to run under a different user than root, which is strongly recommended, then use the **-uid** and **-gid** options.  This way the server can start as root, open the socket, and then switch to a less privileged account.
 
 # Configuration and customization
 
-The main script depends on a per-thread Tcl script, httpdthread.tcl, and a configuration file, tclhttpd.rc. These have configuration settings and the start up code for the web server.
+The main script depends on a per-thread Tcl script, httpdthread.tcl, and a configuration file, tclhttpd.rc.  These have configuration settings and the start up code for the web server.
 
 The configuration file can be used to set the port, user ID, and other values described in the Options list above. You can configure additional features such as log file location, and more, by editting the configuration file. There is an explanation about each option, so you can make a copy of the configuration file and try out new settings.
 
@@ -88,13 +92,13 @@ package require httpd::debug
 Debug_Url /debug Debug
 ```
 
-The web server should have access to any Tcl package installed along with your Tcl installation.  Consult the on-line HTML documentation for a more indepth discussion of programming the server.
+The web server should have access to any Tcl package installed along with your Tcl installation.  Consult the on-line HTML  documentation for a more indepth discussion of programming the server.
 
 # Web page templates
 
 TclHttpd supports a flexible template system that embeds Tcl code into your HTML pages.  The Web Server processes the Tcl, which typically generates bits and pieces of your HTML page, and delivers the result to the client transparently.  You can cache the results of processing your templates, or you can have pages that are processed dynamically on each access.
 
-Any page that ends in ".tml" is treated like an HTML+Tcl template page. The Web Server uses the Tcl **subst** command to replace commands within brackets, \[ and \], and variable references, like \$Phone, with their value.  Backslash processing is also done. The main thing you need to watch out for is putting literal dollar amounts in your templates.  You'll need to protect your \$ with a backslash:
+Any page that ends in ".tml" is treated like an HTML+Tcl template page. The Web Server uses the Tcl **subst** command to replace commands within brackets, \[ and \], and variable references, like $Phone, with their value.  Backslash processing is also done. The main thing you need to watch out for is putting literal dollar amounts in your templates.  You'll need to protect your $ with a backslash:
 
 ```
 The price is \$10.00.
@@ -139,4 +143,4 @@ Page content here.
 Send email to [Mailto [Doc_Webmaster]].
 ```
 
-The **bgcolor** variable is set in the .tml file and used in the BODY tag. The **Mailto** is part of the **htmlutils** package that was required by the .tml file. The **Doc_Webmaster** procedure is built into TclHttpd. The MyDate procedure was added by you, and is shared by any page in or below the htdocs/mystuff directory.
+The **bgcolor** variable is set in the .tml file and used in the BODY tag. The **Mailto** is part of the **htmlutils** package that was required by the .tml file. The **Doc\_Webmaster** procedure is built into TclHttpd. The MyDate procedure was added by you, and is shared by any page in or below the htdocs/mystuff directory.

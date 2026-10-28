@@ -65,7 +65,9 @@ These procedures provide a platform and compiler independent interface for memor
 
 **Tcl\_AttemptAlloc** and **Tcl\_AttemptRealloc** are identical in function to **Tcl\_Alloc** and **Tcl\_Realloc**, except that **Tcl\_AttemptAlloc** and **Tcl\_AttemptRealloc** will not cause the Tcl interpreter to **panic** if the memory allocation fails.  If the allocation fails, these functions will return NULL.  Note that on some platforms, but not all, attempting to allocate a zero-sized block of memory will also cause these functions to return NULL.
 
-The procedures **ckalloc**, **ckfree**, **ckrealloc**, **attemptckalloc**, and **attemptckrealloc** are implemented as macros.  Normally, they are synonyms for the corresponding procedures documented on this page.  When Tcl and all modules calling Tcl are compiled with [TCL\_MEM\_DEBUG][TCL_MEM_DEBUG] defined, however, these macros are redefined to be special debugging versions of these procedures.  To support Tcl's memory debugging within a module, use the macros rather than direct calls to **Tcl\_Alloc**, etc.  **Tcl\_GetMemoryInfo** appends a list-of-lists of memory stats to the provided DString. This function cannot be used in stub-enabled extensions, and it is only available if Tcl is compiled with the threaded memory allocator.
+The procedures **ckalloc**, **ckfree**, **ckrealloc**, **attemptckalloc**, and **attemptckrealloc** are implemented as macros.  Normally, they are synonyms for the corresponding procedures documented on this page.  When Tcl and all modules calling Tcl are compiled with [TCL\_MEM\_DEBUG][TCL_MEM_DEBUG] defined, however, these macros are redefined to be special debugging versions of these procedures.  To support Tcl's memory debugging within a module, use the macros rather than direct calls to **Tcl\_Alloc**, etc.
+
+**Tcl\_GetMemoryInfo** appends a list-of-lists of memory stats to the provided DString. This function cannot be used in stub-enabled extensions, and it is only available if Tcl is compiled with the threaded memory allocator.
 
 
 [TCL_MEM_DEBUG]: TCL_MEM_DEBUG.md

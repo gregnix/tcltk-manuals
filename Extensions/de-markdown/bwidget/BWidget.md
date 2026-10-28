@@ -111,18 +111,17 @@ BWidget::**parsetext** *text*
 BWidget::**place** *path* *w* *h* ?*arg...*? 
 : Dient dazu, das durch *path* angegebene Widget zu positionieren und in der Größe zu ändern. *w* und *h* geben die verlangte Breite und Höhe des Widgets *path* für **wm geometry** an (0 verwendet die aktuellen Werte). Die Platzierung des Widgets relativ zu anderen Widgets oder zum Bildschirm steuern zusätzliche Argumente:
 
-**at** *x* *y*
-: Platziert das durch das Argument *path* angegebene Widget an der Bildschirmposition x,y. Angaben zu den Werten der Fensterplatzierung stehen bei **wm geometry**.
+    **at** *x* *y*
+    : Platziert das durch das Argument *path* angegebene Widget an der Bildschirmposition x,y. Angaben zu den Werten der Fensterplatzierung stehen bei **wm geometry**.
 
-**center** *?widget?*
-: Platziert das Widget *path* zentriert gegen *widget* oder gegen das Wurzel-Widget, wenn *widget* nicht angegeben ist.
+    **center** *?widget?*
+    : Platziert das Widget *path* zentriert gegen *widget* oder gegen das Wurzel-Widget, wenn *widget* nicht angegeben ist.
 
-**right** *?widget?*
-: Platziert das Widget *path* links oder rechts vom Bezugs-Widget (oder vom Wurzel-Widget, wenn *widget* nicht angegeben ist). Wenn die Position des Bezugs-Widgets so ist, dass das neu platzierte Fenster verdeckt sein könnte, wird die gegenüberliegende Seite versucht.
+    **right** *?widget?*
+    : Platziert das Widget *path* links oder rechts vom Bezugs-Widget (oder vom Wurzel-Widget, wenn *widget* nicht angegeben ist). Wenn die Position des Bezugs-Widgets so ist, dass das neu platzierte Fenster verdeckt sein könnte, wird die gegenüberliegende Seite versucht.
 
-**below** *?widget?*
-: Wie bei links/rechts oben bewirkt diese Option, dass das Widget entweder über oder unter dem Bezugs-Widget platziert wird; die gegenüberliegende Platzierung wird versucht, wenn das neu platzierte Widget nicht sichtbar wäre. 
-
+    **below** *?widget?*
+    : Wie bei links/rechts oben bewirkt diese Option, dass das Widget entweder über oder unter dem Bezugs-Widget platziert wird; die gegenüberliegende Platzierung wird versucht, wenn das neu platzierte Widget nicht sichtbar wäre. 
 
 
 BWidget::**write** *filename* ?*mode*? 

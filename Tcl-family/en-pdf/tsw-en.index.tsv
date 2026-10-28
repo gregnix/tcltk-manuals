@@ -1,6 +1,23 @@
 # pdf	tsw-en.pdf
 # label	Tsw
 # title	Tsw
+attrib	7
+cget	8
+Choosing between toggleswitch and (ttk::)checkbutton	10
+configure	8
+DEFAULT BINDINGS	9
+hasattrib	8
+identify	8
 index	3
+instate	8
+state	8
+style	8
+STYLING OPTIONS	9
+switchstate	8
+Tablelist Editing Options	15
+toggle	9
 toggleswitch	3
 tsw	11
+Tsw Demo	13
+unsetattrib	9
+WIDGET STATES	9

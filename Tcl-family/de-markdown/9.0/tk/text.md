@@ -357,7 +357,7 @@ Die Auswahl wird über Tags realisiert. Ist **-exportselection** true, wird der 
 
 3. Wird die Auswahl von einer anderen Anwendung oder einem anderen Fenster übernommen, wird **sel** von allen Zeichen entfernt.
 
-4. Bei jeder Änderung des **sel**-Bereichs wird **<\<Selection>>** erzeugt, ggf. auch wenn die Auswahl betroffen, aber nicht geändert ist. Mehrere Änderungen vor der Ereignisverarbeitung können mehrere Ereignisse mit gleicher sichtbarer Auswahl ergeben.
+4. Bei jeder Änderung des **sel**-Bereichs wird **<<Selection>>** erzeugt, ggf. auch wenn die Auswahl betroffen, aber nicht geändert ist. Mehrere Änderungen vor der Ereignisverarbeitung können mehrere Ereignisse mit gleicher sichtbarer Auswahl ergeben.
 
 
 **sel** wird beim Erstellen automatisch definiert und darf nicht mit „*pathName* **tag delete**“ gelöscht werden. **-selectbackground**, **-selectborderwidth** und **-selectforeground** des Widgets sind an **-background**, **-borderwidth** und **-foreground** von **sel** gekoppelt; Änderungen spiegeln sich gegenseitig. Ohne Fokus gilt **-inactiveselectbackground** statt **-selectbackground**. So lässt sich **sel** für Vorder- und Hintergrundfenster steuern oder bei leerem **-inactiveselectbackground** ausblenden. Jedes Peer-Widget hat ein eigenes **sel**.
@@ -368,7 +368,7 @@ Die Marke **insert** ist besonders. Sie wird automatisch erzeugt und darf nicht 
 
 # Die Modified-Flagge
 
-Das Widget kann Änderungen über die modified-Flagge verfolgen. Einfügen oder Löschen setzt sie. Abfrage, Setzen und Löschen sind programmatisch möglich. Bei Zustandsänderung wird **<\<Modified>>** erzeugt. Siehe *pathName* **edit modified**.
+Das Widget kann Änderungen über die modified-Flagge verfolgen. Einfügen oder Löschen setzt sie. Abfrage, Setzen und Löschen sind programmatisch möglich. Bei Zustandsänderung wird **<<Modified>>** erzeugt. Siehe *pathName* **edit modified**.
 
 # Der Rückgängig-Mechanismus
 
@@ -378,7 +378,7 @@ Trennzeichen („separators“) gruppieren Aktionen zu zusammengesetzten Bearbei
 
 Bei **-autoseparators** true werden Trennzeichen automatisch eingefügt; auch manuell möglich. Steht oben bereits eines, wird kein zweites eingefügt — zwei Trennzeichen sind stets durch mindestens eine Einfüge- oder Löschaktion getrennt.
 
-**<\<UndoStack>>** wird erzeugt, wenn Rückgängig- oder Wiederholen-Stapel leer oder nicht mehr leer wird.
+**<<UndoStack>>** wird erzeugt, wenn Rückgängig- oder Wiederholen-Stapel leer oder nicht mehr leer wird.
 
 Der Mechanismus ist mit der modified-Flagge gekoppelt: Rückgängig/Wiederholen kann zum unveränderten Zustand führen. Die automatische Kopplung gilt nicht, wenn der Benutzer die Flagge gesetzt hat, bis sie zurückgesetzt wurde.
 
@@ -408,9 +408,9 @@ Aus Performance-Gründen warten diese Befehle nicht immer auf Abschluss; in viel
 
 Bei Bedarf an Genauigkeit (und Geometrie-Verwaltung): *pathName* **sync** und *pathName* **pendingsync**.
 
-**<\<WidgetViewSync>>** tritt auf, wenn Zeilenhöhen veraltet sind, und erneut bei Synchronität. Das Detail-Feld (%d) ist true (synchron) oder false.
+**<<WidgetViewSync>>** tritt auf, wenn Zeilenhöhen veraltet sind, und erneut bei Synchronität. Das Detail-Feld (%d) ist true (synchron) oder false.
 
-*pathName* **sync**, *pathName* **pendingsync** und **<\<WidgetViewSync>>** gelten pro Widget unabhängig von Peers.
+*pathName* **sync**, *pathName* **pendingsync** und **<<WidgetViewSync>>** gelten pro Widget unabhängig von Peers.
 
 Beispiele:
 
@@ -488,7 +488,7 @@ pathName option ?arg ...?
 : Abfrage oder Änderung der Konfiguration. Ohne *option* Liste aller Optionen ([Tk\_ConfigureInfo][ConfigWidg]). *option* ohne *value*: Beschreibung dieser Option. *option-value*-Paare: setzen und leeren String zurück. *Option* wie beim Befehl **text**.
 
 [pathName]{.ins} [count]{.sub} [options]{.optarg} [index1]{.arg} [index2]{.arg}
-: Zählt relevante Einheiten zwischen zwei Indizes. Liegt *index1* nach *index2*, negatives Ergebnis (für jede Option). Die gezählten Einheiten hängen von den Optionen ab. Ergebnis: Liste von Ganzzahlen, je eine pro Zähloption. Gültig: **-chars**, **-displaychars**, **-displayindices**, **-displaylines**, **-indices**, **-lines**, **-xpixels**, **-ypixels**. Standard: **-indices**. Zusätzlich **-update** als Modifier: bei gesetztem Wert (und Geometrie-Verwaltung) werden veraltete Daten neu berechnet — derzeit vor allem für **-ypixels** (ohne **-update** Cache pro Zeile). **-update** ist veraltet zugunsten von *pathName* **sync**, *pathName* **pendingsync** und **<\<WidgetViewSync>>**. Interpretation:
+: Zählt relevante Einheiten zwischen zwei Indizes. Liegt *index1* nach *index2*, negatives Ergebnis (für jede Option). Die gezählten Einheiten hängen von den Optionen ab. Ergebnis: Liste von Ganzzahlen, je eine pro Zähloption. Gültig: **-chars**, **-displaychars**, **-displayindices**, **-displaylines**, **-indices**, **-lines**, **-xpixels**, **-ypixels**. Standard: **-indices**. Zusätzlich **-update** als Modifier: bei gesetztem Wert (und Geometrie-Verwaltung) werden veraltete Daten neu berechnet — derzeit vor allem für **-ypixels** (ohne **-update** Cache pro Zeile). **-update** ist veraltet zugunsten von *pathName* **sync**, *pathName* **pendingsync** und **<<WidgetViewSync>>**. Interpretation:
 
     **-chars**
     : alle Zeichen, ausgeblendet oder nicht; keine eingebetteten Fenster/Bilder.

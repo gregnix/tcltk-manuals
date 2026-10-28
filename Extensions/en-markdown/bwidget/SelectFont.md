@@ -9,9 +9,9 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-font](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-font](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*

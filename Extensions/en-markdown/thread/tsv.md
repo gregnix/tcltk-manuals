@@ -1,9 +1,10 @@
 ---
 CommandName: tsv
+title: tsv
 ManualSection: n
 Version: 3.0
 TclPart: Tcl Threading
-TclDescription: 
+TclDescription:
 Links:
  - thread
  - tpool
@@ -23,42 +24,42 @@ tsv - Part of the Tcl threading extension allowing script level manipulation of 
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [Tcl]{.lit} [9.0]{.lit} 
-[package]{.cmd} [require]{.sub} [thread]{.lit} [3.0]{.optlit} 
-[tsv::names]{.cmd} [pattern]{.optarg} 
-[tsv::object]{.cmd} [varname]{.arg} [element]{.arg} 
-[tsv::set]{.cmd} [varname]{.arg} [element]{.arg} [value]{.optarg} 
-[tsv::get]{.cmd} [varname]{.arg} [element]{.arg} [namedvar]{.optarg} 
-[tsv::unset]{.cmd} [varname]{.arg} [element]{.optarg} 
-[tsv::exists]{.cmd} [varname]{.arg} [element]{.arg} 
-[tsv::pop]{.cmd} [varname]{.arg} [element]{.arg} 
-[tsv::move]{.cmd} [varname]{.arg} [oldname]{.arg} [newname]{.arg} 
-[tsv::incr]{.cmd} [varname]{.arg} [element]{.arg} [count]{.optarg} 
-[tsv::append]{.cmd} [varname]{.arg} [element]{.arg} [value]{.arg} [value]{.optdot} 
-[tsv::lock]{.cmd} [varname]{.arg} [arg]{.arg} [arg]{.optdot} 
-[tsv::handlers]{.cmd} 
-[tsv::lappend]{.cmd} [varname]{.arg} [element]{.arg} [value]{.arg} [value]{.optdot} 
-[tsv::linsert]{.cmd} [varname]{.arg} [element]{.arg} [index]{.arg} [value]{.arg} [value]{.optdot} 
-[tsv::lreplace]{.cmd} [varname]{.arg} [element]{.arg} [first]{.arg} [last]{.arg} [value]{.optdot} 
-[tsv::llength]{.cmd} [varname]{.arg} [element]{.arg} 
-[tsv::lindex]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg} 
-[tsv::lrange]{.cmd} [varname]{.arg} [element]{.arg} [from]{.arg} [to]{.arg} 
-[tsv::lsearch]{.cmd} [varname]{.arg} [element]{.arg} [options]{.optarg} [pattern]{.arg} 
-[tsv::lset]{.cmd} [varname]{.arg} [element]{.arg} [index]{.arg} [index]{.optdot} [value]{.arg} 
-[tsv::lpop]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg} 
-[tsv::lpush]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg} 
-[tsv::array]{.cmd} [set]{.sub} [varname]{.arg} [list]{.arg} 
-[tsv::array]{.cmd} [get]{.sub} [varname]{.arg} [pattern]{.optarg} 
-[tsv::array]{.cmd} [names]{.sub} [varname]{.arg} [pattern]{.optarg} 
-[tsv::array]{.cmd} [size]{.sub} [varname]{.arg} 
-[tsv::array]{.cmd} [reset]{.sub} [varname]{.arg} [list]{.arg} 
-[tsv::array]{.cmd} [bind]{.sub} [varname]{.arg} [handle]{.arg} 
-[tsv::array]{.cmd} [unbind]{.sub} [varname]{.arg} 
-[tsv::array]{.cmd} [isbound]{.sub} [varname]{.arg} 
-[tsv::keyldel]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg} 
-[tsv::keylget]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg} [retvar]{.optarg} 
-[tsv::keylkeys]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.optarg} 
-[tsv::keylset]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg} [value]{.arg} [key value..]{.optarg} 
+[package]{.cmd} [require]{.sub} [Tcl]{.lit} [9.0]{.lit}
+[package]{.cmd} [require]{.sub} [thread]{.lit} [3.0]{.optlit}
+[tsv::names]{.cmd} [pattern]{.optarg}
+[tsv::object]{.cmd} [varname]{.arg} [element]{.arg}
+[tsv::set]{.cmd} [varname]{.arg} [element]{.arg} [value]{.optarg}
+[tsv::get]{.cmd} [varname]{.arg} [element]{.arg} [namedvar]{.optarg}
+[tsv::unset]{.cmd} [varname]{.arg} [element]{.optarg}
+[tsv::exists]{.cmd} [varname]{.arg} [element]{.arg}
+[tsv::pop]{.cmd} [varname]{.arg} [element]{.arg}
+[tsv::move]{.cmd} [varname]{.arg} [oldname]{.arg} [newname]{.arg}
+[tsv::incr]{.cmd} [varname]{.arg} [element]{.arg} [count]{.optarg}
+[tsv::append]{.cmd} [varname]{.arg} [element]{.arg} [value]{.arg} [value]{.optdot}
+[tsv::lock]{.cmd} [varname]{.arg} [arg]{.arg} [arg]{.optdot}
+[tsv::handlers]{.cmd}
+[tsv::lappend]{.cmd} [varname]{.arg} [element]{.arg} [value]{.arg} [value]{.optdot}
+[tsv::linsert]{.cmd} [varname]{.arg} [element]{.arg} [index]{.arg} [value]{.arg} [value]{.optdot}
+[tsv::lreplace]{.cmd} [varname]{.arg} [element]{.arg} [first]{.arg} [last]{.arg} [value]{.optdot}
+[tsv::llength]{.cmd} [varname]{.arg} [element]{.arg}
+[tsv::lindex]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg}
+[tsv::lrange]{.cmd} [varname]{.arg} [element]{.arg} [from]{.arg} [to]{.arg}
+[tsv::lsearch]{.cmd} [varname]{.arg} [element]{.arg} [options]{.optarg} [pattern]{.arg}
+[tsv::lset]{.cmd} [varname]{.arg} [element]{.arg} [index]{.arg} [index]{.optdot} [value]{.arg}
+[tsv::lpop]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg}
+[tsv::lpush]{.cmd} [varname]{.arg} [element]{.arg} [index]{.optarg}
+[tsv::array]{.cmd} [set]{.sub} [varname]{.arg} [list]{.arg}
+[tsv::array]{.cmd} [get]{.sub} [varname]{.arg} [pattern]{.optarg}
+[tsv::array]{.cmd} [names]{.sub} [varname]{.arg} [pattern]{.optarg}
+[tsv::array]{.cmd} [size]{.sub} [varname]{.arg}
+[tsv::array]{.cmd} [reset]{.sub} [varname]{.arg} [list]{.arg}
+[tsv::array]{.cmd} [bind]{.sub} [varname]{.arg} [handle]{.arg}
+[tsv::array]{.cmd} [unbind]{.sub} [varname]{.arg}
+[tsv::array]{.cmd} [isbound]{.sub} [varname]{.arg}
+[tsv::keyldel]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg}
+[tsv::keylget]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg} [retvar]{.optarg}
+[tsv::keylkeys]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.optarg}
+[tsv::keylset]{.cmd} [varname]{.arg} [keylist]{.arg} [key]{.arg} [value]{.arg} [key value..]{.optarg}
 :::
 
 # Description
@@ -75,13 +76,12 @@ Thread shared variables are not bound to any thread explicitly. That means that 
 **tsv::object** *varname* *element*
 : Creates object accessor command for the *element* in the shared variable *varname*. Using this command, one can apply most of the other shared variable commands as method functions of the element object command. The object command is automatically deleted when the element which this command is pointing to is unset.
 
-
-```
-    % tsv::set foo bar "A shared string"
-    % set string [tsv::object foo bar]
-    % $string append " appended"
-    => A shared string appended
-```
+    ```
+        % tsv::set foo bar "A shared string"
+        % set string [tsv::object foo bar]
+        % $string append " appended"
+        => A shared string appended
+    ```
 
 **tsv::set** *varname* *element* ?value?
 : Sets the value of the *element* in the shared variable *varname* to *value* and returns the value to caller. The *value* may be omitted, in which case the command will return the current value of the element. If the element cannot be found, error is triggered.
@@ -110,18 +110,17 @@ Thread shared variables are not bound to any thread explicitly. That means that 
 **tsv::lock** *varname* *arg* ?arg ...?
 : This command concatenates passed arguments and evaluates the resulting script under the internal mutex protection. During the script evaluation, the entire shared variable is locked. For shared variable commands within the script, internal locking is disabled so no deadlock can occur. It is also allowed to unset the shared variable from within the script. The shared variable is automatically created if it did not exists at the time of the first lock operation.
 
-
-```
-    % tsv::lock foo {
-        tsv::lappend foo bar 1
-        tsv::lappend foo bar 2
-        puts stderr [tsv::set foo bar]
-        tsv::unset foo
-    }
-```
+    ```
+        % tsv::lock foo {
+            tsv::lappend foo bar 1
+            tsv::lappend foo bar 2
+            puts stderr [tsv::set foo bar]
+            tsv::unset foo
+        }
+    ```
 
 **tsv::handlers**
-: Returns the names of all persistent storage handlers enabled at compile time. See **ARRAY COMMANDS** for details.
+: Returns the names of all persistent storage handlers enabled at compile time. See [Array commands] for details.
 
 
 # List commands
@@ -179,7 +178,7 @@ This command supports most of the options of the standard Tcl **array** command.
 : Does the same as standard Tcl **array set** but it clears the *varname* and sets new values from the list atomically.
 
 **tsv::array bind** *varname* *handle*
-: Binds the *varname* to the persistent storage *handle*. The format of the *handle* is \<handler>:\<address>, where \<handler> is "gdbm" for GNU Gdbm and "lmdb" for LMDB and \<address> is the path to the database file.
+: Binds the *varname* to the persistent storage *handle*. The format of the *handle* is <handler>:<address>, where <handler> is "gdbm" for GNU Gdbm and "lmdb" for LMDB and <address> is the path to the database file.
 
 **tsv::array unbind** *varname*
 : Unbinds the shared *array* from its bound persistent storage.
@@ -198,7 +197,7 @@ A keyed list is a list in which each element contains a key and value pair. Thes
     {{NAME  {Frank  Zappa}} {JOB {musician and composer}}}
 ```
 
-Fields may contain subfields; \`.' is the separator character. Subfields are actually fields  where the value is another keyed list. Thus the following list has the top level fields ID and NAME, and subfields NAME.FIRST and NAME.LAST:
+Fields may contain subfields; `.' is the separator character. Subfields are actually fields  where the value is another keyed list. Thus the following list has the top level fields ID and NAME, and subfields NAME.FIRST and NAME.LAST:
 
 ```
     {ID 106} {NAME {{FIRST Frank} {LAST Zappa}}}
@@ -210,7 +209,9 @@ There is no limit to the recursive depth of subfields, allowing one to build com
 : Delete the field specified by *key* from the keyed list *keylist* in the shared variable *varname*. This removes both the key and the value from the keyed list.
 
 **tsv::keylget** *varname* *keylist* *key* ?retvar?
-: Return the value associated with *key* from the keyed list *keylist* in the shared variable *varname*. If the optional *retvar* is not specified, then the value will be returned as the result of the command. In this case, if key is not found in the list, an error will result. If *retvar* is specified and *key* is in the list, then the value is returned in the variable *retvar* and the command returns 1 if the key was present within the list. If *key* isn't in the list, the command will return 0, and *retvar* will be left unchanged. If {} is specified for *retvar*, the value is not returned, allowing the Tcl programmer to determine if a *key* is present in a keyed list without setting a variable as a side-effect.
+: Return the value associated with *key* from the keyed list *keylist* in the shared variable *varname*. If the optional *retvar* is not specified, then the value will be returned as the result of the command. In this case, if key is not found in the list, an error will result.
+
+    If *retvar* is specified and *key* is in the list, then the value is returned in the variable *retvar* and the command returns 1 if the key was present within the list. If *key* isn't in the list, the command will return 0, and *retvar* will be left unchanged. If {} is specified for *retvar*, the value is not returned, allowing the Tcl programmer to determine if a *key* is present in a keyed list without setting a variable as a side-effect.
 
 **tsv::keylkeys** *varname* *keylist* ?key?
 : Return  the a list of the keys in the keyed list *keylist* in the shared variable *varname*. If *key* is specified, then it is the name of a key field whose subfield keys are to be retrieved.

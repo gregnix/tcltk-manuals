@@ -9,53 +9,53 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |
-| --- |
-|   [-anchor](options.md) |
-|   [-background oder -bg](options.md) |
-|   [-bitmap](options.md) |
-|   [-borderwidth oder -bd](options.md) |
-|   [-cursor](options.md) |
-|   [-disabledforeground](options.md) |
-|   [-font](options.md) |
-|   [-foreground oder -fg](options.md) |
-|   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |
-|   [-highlightthickness](options.md) |
-|   [-image](options.md) |
-|   [-justify](options.md) |
-|   [-padx](options.md) |
-|   [-pady](options.md) |
-|   [-relief](options.md) |
-|   [-takefocus](options.md) |
-|   [-text](options.md) |
-|   [-textvariable](options.md) |
-|   [-wraplength](options.md) |
+    |   |
+    | --- |
+    |   [-anchor](options.md) |
+    |   [-background oder -bg](options.md) |
+    |   [-bitmap](options.md) |
+    |   [-borderwidth oder -bd](options.md) |
+    |   [-cursor](options.md) |
+    |   [-disabledforeground](options.md) |
+    |   [-font](options.md) |
+    |   [-foreground oder -fg](options.md) |
+    |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |
+    |   [-highlightthickness](options.md) |
+    |   [-image](options.md) |
+    |   [-justify](options.md) |
+    |   [-padx](options.md) |
+    |   [-pady](options.md) |
+    |   [-relief](options.md) |
+    |   [-takefocus](options.md) |
+    |   [-text](options.md) |
+    |   [-textvariable](options.md) |
+    |   [-wraplength](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -dragenabled |
-|   -dragendcmd |
-|   -dragevent |
-|   -draginitcmd |
-|   -dragtype |
-|   -dropcmd |
-|   -dropenabled |
-|   -dropovercmd |
-|   -droptypes |
-|   -focus |
-|   -height |
-|   -helptext |
-|   -helptype |
-|   -helpvar |
-|   -name |
-|   -state |
-|   -underline |
-|   -width |
+    |   |
+    | --- |
+    |   -dragenabled |
+    |   -dragendcmd |
+    |   -dragevent |
+    |   -draginitcmd |
+    |   -dragtype |
+    |   -dropcmd |
+    |   -dropenabled |
+    |   -dropovercmd |
+    |   -droptypes |
+    |   -focus |
+    |   -height |
+    |   -helptext |
+    |   -helptype |
+    |   -helpvar |
+    |   -name |
+    |   -state |
+    |   -underline |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -92,13 +92,13 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : Legt einen Befehl fest, der aufgerufen wird, wenn **dragevent** auf dem Widget eintritt. **draginitcmd** muss ein Befehl sein, der der Beschreibung der Option **draginitcmd** von **DragSite::register** entspricht.   
   Wenn **draginitcmd** leer ist, wird stattdessen der interne Befehl **draginitcmd** verwendet und gibt zurück:
 
+    :
 
-|   |   |
-| --- | --- |
-| *IMAGE {copy} \<image name>*  | wenn ein Bild angezeigt wird.  |
+        |   |   |
+        | --- | --- |
+        | *IMAGE {copy} \<image name>*  | wenn ein Bild angezeigt wird.  |
 
-
-Wenn die Option **dragtype** nicht leer ist, wird ihr Wert anstelle der oben genannten verwendet.
+    Wenn die Option **dragtype** nicht leer ist, wird ihr Wert anstelle der oben genannten verwendet.
 
 
 **-dragtype**
@@ -109,17 +109,17 @@ Wenn die Option **dragtype** nicht leer ist, wird ihr Wert anstelle der oben gen
 : Legt einen Befehl fest, der aufgerufen wird, wenn auf dem Widget abgelegt wird. **dropcmd** muss ein Befehl sein, der der Beschreibung der Option **dropcmd** von **DropSite::register** entspricht.   
   Wenn **dropcmd** leer ist, aktualisiert der Befehl das Label entsprechend dem Typ der Daten:
 
+    :
 
-|   |   |
-| --- | --- |
-| *COLOR* oder *FGCOLOR* | konfiguriert den **foreground** des Labels neu. |
-| *BGCOLOR* | konfiguriert den **background** des Labels neu. |
-| *IMAGE* | konfiguriert das Label neu, damit es das zugehörige Bild anzeigt. |
-| *BITMAP* | konfiguriert das Label neu, damit es die zugehörige Bitmap anzeigt. Die Option **image** wird auf leer gesetzt. |
-| *TEXT*,   oder jedes andere Tag | konfiguriert das Label neu, damit es die zugehörige Zeichenkette anzeigt. Die Optionen **image** und **bitmap** werden auf leer gesetzt. |
+        |   |   |
+        | --- | --- |
+        | *COLOR* oder *FGCOLOR* | konfiguriert den **foreground** des Labels neu. |
+        | *BGCOLOR* | konfiguriert den **background** des Labels neu. |
+        | *IMAGE* | konfiguriert das Label neu, damit es das zugehörige Bild anzeigt. |
+        | *BITMAP* | konfiguriert das Label neu, damit es die zugehörige Bitmap anzeigt. Die Option **image** wird auf leer gesetzt. |
+        | *TEXT*,   oder jedes andere Tag | konfiguriert das Label neu, damit es die zugehörige Zeichenkette anzeigt. Die Optionen **image** und **bitmap** werden auf leer gesetzt. |
 
-
-und gibt 1 zurück.
+    und gibt 1 zurück.
 
 
 **-dropenabled**

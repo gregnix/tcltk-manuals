@@ -9,30 +9,30 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-cursor](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectforeground](options.md) |   [-takefocus](options.md) |
-|   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-cursor](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectforeground](options.md) |   [-takefocus](options.md) |
+    |   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |   |
-| --- | --- | --- |
-|   -autofocus |   -deltax |   -deltay |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -dropovermode |   -droptypes |
-|   -height |   -multicolumn |
-|   -padx |   -redraw |
-|   -selectfill |   -selectmode |   -width |
+    |   |   |   |
+    | --- | --- | --- |
+    |   -autofocus |   -deltax |   -deltay |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -dropovermode |   -droptypes |
+    |   -height |   -multicolumn |
+    |   -padx |   -redraw |
+    |   -selectfill |   -selectmode |   -width |
 
 
 *WIDGET COMMAND*
@@ -113,17 +113,17 @@ WIDGET-SPECIFIC OPTIONS
 : ListBox has a command wrapper for *drag-init* events. This command refused the drag if no item is designated. In other cases:   
   If **draginitcmd** is empty, it returns:
 
-  - the value of option **dragtype** or *LISTBOX_ITEM* if empty as the data type, 
-  - *{move copy link}* as the operations, 
-  - the item identifier as the data. 
+      - the value of option **dragtype** or *LISTBOX_ITEM* if empty as the data type, 
+      - *{move copy link}* as the operations, 
+      - the item identifier as the data. 
 
-If **draginitcmd** is not empty, it is called with the following arguments:
+    If **draginitcmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the listbox, 
-  - the identifier of the dragged item, 
-  - the toplevel created to represent dragged data. 
+      - the pathname of the listbox, 
+      - the identifier of the dragged item, 
+      - the toplevel created to represent dragged data. 
 
-and must return a value conforming to **draginitcmd** option described in **DragSite::register**.
+    and must return a value conforming to **draginitcmd** option described in **DragSite::register**.
 
 
 **-dragtype**
@@ -134,18 +134,18 @@ and must return a value conforming to **draginitcmd** option described in **Drag
 : ListBox has a command wrapper for *drop* events. This command stops auto scrolling and extract item and position.   
   If **dropcmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the listbox, 
-  - the pathname of the drag source, 
-  - a list describing where the drop occurs. It can be:  
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the listbox, 
+      - the pathname of the drag source, 
+      - a list describing where the drop occurs. It can be:  
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-    - *{*__widget__*}*, 
-    - *{*__item__ *item}* or 
-    - *{*__position__ *index}*. 
+        - *{*__widget__*}*, 
+        - *{*__item__ *item}* or 
+        - *{*__position__ *index}*. 
 
- The default drop command allows for drag-and-drop within the listbox but not to or from other widgets. 
+     The default drop command allows for drag-and-drop within the listbox but not to or from other widgets. 
 
 
 **-dropenabled**
@@ -155,22 +155,22 @@ and must return a value conforming to **draginitcmd** option described in **Drag
 **-dropovercmd**
 : LsitBox has a command wrapper for *drag-over* events. This command enables auto scrolling and position extraction during the *drag-over*. If **dropovercmd** is not empty, the command is called with the following aguments:
 
-  - the pathname of the listbox, 
-  - the pathname of the drag source, 
-  - a list describing where the drop can occur, whose elements are:  
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the listbox, 
+      - the pathname of the drag source, 
+      - a list describing where the drop can occur, whose elements are:  
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-    - the string *widget* if **dropovertype** option contains *w*, else empty string. 
-    - the targeted item if drag icon points an item and **dropovertype** option contains *i*, else empty string. 
-    - an index within two items where drag icon points to if **dropovertype** option contains *p*, else empty string. 
-    - optionally, the preferred method if drop can occur both inside an item and between two items. The value is *position* or *item*. 
+        - the string *widget* if **dropovertype** option contains *w*, else empty string. 
+        - the targeted item if drag icon points an item and **dropovertype** option contains *i*, else empty string. 
+        - an index within two items where drag icon points to if **dropovertype** option contains *p*, else empty string. 
+        - optionally, the preferred method if drop can occur both inside an item and between two items. The value is *position* or *item*. 
 
-The command must return a list with two elements:
+    The command must return a list with two elements:
 
-  - the drop status, conforming to those described in **dropovercmd** option of **DropSite::register**, 
-  - the choosen method: *widget*, *item* or *position*. 
+      - the drop status, conforming to those described in **dropovercmd** option of **DropSite::register**, 
+      - the choosen method: *widget*, *item* or *position*. 
 
 
 **-dropovermode**
@@ -217,13 +217,13 @@ WIDGET COMMAND
 *pathName* **bindImage** *event* *script* 
 : This command associates a command to execute whenever the event sequence given by *event* occurs on the image of a item. The item idenfier on which the event occurs is appended to the command.
 
- Any occurrence of **%W** in *script* is substituted with the path of the listbox. 
+     Any occurrence of **%W** in *script* is substituted with the path of the listbox. 
 
 
 *pathName* **bindText** *event* *script* 
 : This command associates a command to execute whenever the event sequence given by *event* occurs on the label of a item. The item idenfier on which the event occurs is appended to the command.
 
- Any occurrence of **%W** in *script* is substituted with the path of the listbox. 
+     Any occurrence of **%W** in *script* is substituted with the path of the listbox. 
 
 
 *pathName* **cget** *option* 
@@ -258,37 +258,30 @@ WIDGET COMMAND
 *pathName* **insert** *index* *item* ?*option value...*? 
 :  Inserts a new item identified by *item* in the list at position *index*. 
 
- Any instance of *#auto* within the item name will be replaced by the number of the item in the order of insertion. 
+     Any instance of *#auto* within the item name will be replaced by the number of the item in the order of insertion. 
 
- 
+     
 
-**-data**
-:  User data associated to the item. 
+    **-data**
+    :  User data associated to the item. 
 
+    **-fill**
+    :  Specifies the foreground color of the label of the item. 
 
-**-fill**
-:  Specifies the foreground color of the label of the item. 
+    **-font**
+    :  Specifies a font for the label of the item. 
 
+    **-image**
+    :  Specifies an image to display at the left of the label of the item. **window** option override **image**. 
 
-**-font**
-:  Specifies a font for the label of the item. 
+    **-indent**
+    :  Specifies the amount of extra space in pixels at the left of the item. 
 
+    **-text**
+    :  Specifies the label of the item. 
 
-**-image**
-:  Specifies an image to display at the left of the label of the item. **window** option override **image**. 
-
-
-**-indent**
-:  Specifies the amount of extra space in pixels at the left of the item. 
-
-
-**-text**
-:  Specifies the label of the item. 
-
-
-**-window**
-:  Specifies a pathname to display at the left of the label of the item. **window** option override **image**. 
-
+    **-window**
+    :  Specifies a pathname to display at the left of the label of the item. **window** option override **image**. 
 
 
 *pathName* **item** *first* ?*last*? 
@@ -323,21 +316,20 @@ WIDGET COMMAND
 *pathName* **selection** *cmd* ?*arg...*? 
 : Modifies the list of selected items following *cmd*:
 
-**clear** 
-: remove all items of the selection. 
+    **clear** 
+    : remove all items of the selection. 
 
-**set** 
-: set the selection to all items in *arg* 
+    **set** 
+    : set the selection to all items in *arg* 
 
-**add** 
-: add all items of *arg* in the selection 
+    **add** 
+    : add all items of *arg* in the selection 
 
-**remove** 
-: remove all items of *arg* of the selection 
+    **remove** 
+    : remove all items of *arg* of the selection 
 
-**get** 
-: return the current selected items 
-
+    **get** 
+    : return the current selected items 
 
 
 *pathName* **xview** ?*arg...*? 

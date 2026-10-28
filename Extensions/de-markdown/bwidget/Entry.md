@@ -9,36 +9,36 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-disabledbackground](options.md) |   [-disabledforeground](options.md) |
-|   [-exportselection](options.md) |   [-font](options.md) |
-|   [-foreground oder -fg](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-insertbackground](options.md) |   [-insertborderwidth](options.md) |
-|   [-insertofftime](options.md) |   [-insertontime](options.md) |
-|   [-insertwidth](options.md) |   [-justify](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectborderwidth](options.md) |   [-selectforeground](options.md) |
-|   [-takefocus](options.md) |   [-text](options.md) |
-|   [-textvariable](options.md) |   [-xscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-disabledbackground](options.md) |   [-disabledforeground](options.md) |
+    |   [-exportselection](options.md) |   [-font](options.md) |
+    |   [-foreground oder -fg](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-insertbackground](options.md) |   [-insertborderwidth](options.md) |
+    |   [-insertofftime](options.md) |   [-insertontime](options.md) |
+    |   [-insertwidth](options.md) |   [-justify](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectborderwidth](options.md) |   [-selectforeground](options.md) |
+    |   [-takefocus](options.md) |   [-text](options.md) |
+    |   [-textvariable](options.md) |   [-xscrollcommand](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   -command |   -dragenabled |
-|   -dragendcmd |   -dragevent |
-|   -draginitcmd |   -dragtype |
-|   -dropcmd |   -dropenabled |
-|   -dropovercmd |   -droptypes |
-|   -editable |   -helptext |
-|   -helptype |   -helpvar |
-|   -show |   -state |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -command |   -dragenabled |
+    |   -dragendcmd |   -dragevent |
+    |   -draginitcmd |   -dragtype |
+    |   -dropcmd |   -dropenabled |
+    |   -dropovercmd |   -droptypes |
+    |   -editable |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -show |   -state |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -81,9 +81,9 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : Legt einen Befehl fest, der aufgerufen wird, wenn **dragevent** auf dem Widget eintritt. **draginitcmd** muss ein Befehl sein, der der Beschreibung der Option **draginitcmd** von **DragSite::register** entspricht.   
   Wenn **draginitcmd** leer ist, lehnt der Befehl das Ziehen ab, wenn das Entry leer ist oder wenn ein Textabschnitt ausgewählt ist und das Ereignis nicht über der Auswahl eintritt. In allen anderen Fällen gibt der Befehl zurück:
 
-  - als Datentyp den Wert der Option **dragtype** oder *TEXT*, wenn er leer ist, 
-  - als Operationen *{copy move}*, wenn **state** normal und **editable** true ist, oder nur *{copy}* in den anderen Fällen, 
-  - als Daten den gesamten Inhalt oder den ausgewählten Teil des Entry. 
+      - als Datentyp den Wert der Option **dragtype** oder *TEXT*, wenn er leer ist, 
+      - als Operationen *{copy move}*, wenn **state** normal und **editable** true ist, oder nur *{copy}* in den anderen Fällen, 
+      - als Daten den gesamten Inhalt oder den ausgewählten Teil des Entry. 
 
 
 **-dragtype**
@@ -94,24 +94,24 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : Entry hat einen Befehlsrahmen für Ereignisse *drop*. Dieser Befehl beendet das automatische Scrollen und ermittelt die aktuelle Position.   
   Wenn **dropcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname des Entry, 
-  - der Pfadname der Ziehquelle, 
-  - der numerische Index im Entry, den der Cursor bezeichnet, 
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname des Entry, 
+      - der Pfadname der Ziehquelle, 
+      - der numerische Index im Entry, den der Cursor bezeichnet, 
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-und muss einen Wert zurückgeben, der der Option **dropcmd** entspricht, die in **DropSite::register** beschrieben ist. Wenn **dropcmd** leer ist, aktualisiert der Rahmen das Entry entsprechend dem Typ der Daten:
+    und muss einen Wert zurückgeben, der der Option **dropcmd** entspricht, die in **DropSite::register** beschrieben ist. Wenn **dropcmd** leer ist, aktualisiert der Rahmen das Entry entsprechend dem Typ der Daten:
 
+    :
 
-|   |   |
-| --- | --- |
-| *COLOR* oder *FGCOLOR* | konfiguriert den **foreground** des Entry neu |
-| *BGCOLOR* | konfiguriert den **background** des Entry neu |
-| *TEXT*,   oder jedes andere Tag | konfiguriert das Entry neu, damit es die zugehörige Zeichenkette anzeigt. |
+        |   |   |
+        | --- | --- |
+        | *COLOR* oder *FGCOLOR* | konfiguriert den **foreground** des Entry neu |
+        | *BGCOLOR* | konfiguriert den **background** des Entry neu |
+        | *TEXT*,   oder jedes andere Tag | konfiguriert das Entry neu, damit es die zugehörige Zeichenkette anzeigt. |
 
-
-und gibt 1 zurück.
+    und gibt 1 zurück.
 
 
 **-dropenabled**
@@ -123,15 +123,15 @@ und gibt 1 zurück.
   Wenn **dropovercmd** leer ist, nimmt der Rahmen das Ablegen an, wenn die Option **editable** true und die Option **state** normal ist.   
   Wenn **dropovercmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname des Entry, 
-  - der Pfadname der Ziehquelle, 
-  - das Ereignis, 
-  - der numerische Index im Entry, den der Cursor bezeichnet, 
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname des Entry, 
+      - der Pfadname der Ziehquelle, 
+      - das Ereignis, 
+      - der numerische Index im Entry, den der Cursor bezeichnet, 
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-und muss einen Wert zurückgeben, der der Option **dropovercmd** entspricht, die in **DropSite::register** beschrieben ist.
+    und muss einen Wert zurückgeben, der der Option **dropovercmd** entspricht, die in **DropSite::register** beschrieben ist.
 
 
 **-droptypes**

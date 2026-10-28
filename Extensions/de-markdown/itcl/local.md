@@ -1,9 +1,10 @@
 ---
 CommandName: local
+title: local
 ManualSection: n
 Version: unknown
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -12,23 +13,23 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-# NAME
+# Name
 
 itcl::local - ein Objekt erzeugen, das lokal zu einer Prozedur ist
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[itcl::local]{.cmd} [className]{.arg} [objName]{.arg} [arg arg]{.optdot} 
+[itcl::local]{.cmd} [className]{.arg} [objName]{.arg} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **local** erzeugt ein Objekt von **\[incr**\\ **Tcl\]**, das lokal zum aktuellen Aufruf-Frame ist. Wenn der Aufruf-Frame verschwindet, wird das Objekt automatisch gelöscht. Dieser Befehl eignet sich, um Objekte zu erzeugen, die lokal zu einer Prozedur sind.
+Der Befehl **local** erzeugt ein Objekt von **\[incr Tcl\]**, das lokal zum aktuellen Aufruf-Frame ist. Wenn der Aufruf-Frame verschwindet, wird das Objekt automatisch gelöscht. Dieser Befehl eignet sich, um Objekte zu erzeugen, die lokal zu einer Prozedur sind.
 
 Als Nebenwirkung erzeugt dieser Befehl eine Variable namens „**itcl-local-**_xxx_“, wobei *xxx* der Name des erzeugten Objekts ist. Diese Variable erkennt, wenn der Aufruf-Frame zerstört wird, und löscht das zugeordnete Objekt automatisch.
 
-# BEISPIEL
+# Beispiel
 
 Im folgenden Beispiel wird ein einfaches Objekt „counter“ innerhalb der Prozedur „test“ verwendet. Der Zähler wird als lokales Objekt erzeugt und deshalb bei jedem Verlassen der Prozedur automatisch gelöscht. Die Anweisungen **puts** in Konstruktor und Destruktor zeigen, wie das Objekt beim Aufruf der Prozedur entsteht und wieder verschwindet.
 

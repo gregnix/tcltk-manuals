@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::connection
+title: tdbc::connection
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -29,33 +30,32 @@ tdbc::connection - TDBC connection object
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 
-[db]{.ins} [configure]{.sub} [-option value]{.optdot} 
-[db]{.ins} [close]{.sub} 
-[db]{.ins} [foreignkeys]{.sub} [-primary tableName]{.optarg} [-foreign tableName]{.optarg} 
-[db]{.ins} [prepare]{.sub} [sql-code]{.arg} 
-[db]{.ins} [preparecall]{.sub} [call]{.arg} 
-[db]{.ins} [primarykeys]{.sub} [tableName]{.arg} 
-[db]{.ins} [statements]{.sub} 
-[db]{.ins} [resultsets]{.sub} 
-[db]{.ins} [tables]{.sub} [pattern]{.optarg} 
-[db]{.ins} [columns]{.sub} [table]{.arg} [pattern]{.optarg} 
-[db]{.ins} [begintransaction]{.sub} 
-[db]{.ins} [commit]{.sub} 
-[db]{.ins} [rollback]{.sub} 
-[db]{.ins} [transaction]{.sub} [script]{.arg} 
-[db]{.ins} [foreach]{.sub} [-as lists|dicts]{.optarg} [-columnsvariable name]{.optarg} [--]{.optarg} [varName]{.arg} [sqlcode]{.arg} [dictionary]{.optarg} [script]{.arg} 
+[db]{.ins} [configure]{.sub} [-option value...]{.optarg}
+[db]{.ins} [close]{.sub}
+[db]{.ins} [foreignkeys]{.sub} [-primary tableName]{.optarg} [-foreign tableName]{.optarg}
+[db]{.ins} [prepare]{.sub} [sql-code]{.arg}
+[db]{.ins} [preparecall]{.sub} [call]{.arg}
+[db]{.ins} [primarykeys]{.sub} [tableName]{.arg}
+[db]{.ins} [statements]{.sub}
+[db]{.ins} [resultsets]{.sub}
+[db]{.ins} [tables]{.sub} [pattern]{.optarg}
+[db]{.ins} [columns]{.sub} [table]{.arg} [pattern]{.optarg}
+[db]{.ins} [begintransaction]{.sub}
+[db]{.ins} [commit]{.sub}
+[db]{.ins} [rollback]{.sub}
+[db]{.ins} [transaction]{.sub} [script]{.arg}
+[db]{.ins} [allrows]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [sql-code]{.arg} [dictionary]{.optarg}
+[db]{.ins} [foreach]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optarg} [varName]{.arg} [sqlcode]{.arg} [dictionary]{.optarg} [script]{.arg}
 :::
-
-.in 14 *db* **allrows** ?**-as lists**|**dicts**? ?**-columnsvariable** *name*? ?**--**? *sql-code* ?*dictionary*?
 
 # Description
 
-Every database driver for TDBC (Tcl DataBase Connectivity) implements a *connection* object that represents a connection to a database. By convention, this object is created by the command, **tdbc::**_driver_**::connection create**. This command accepts the name of a Tcl command that will represent the connection and a possible set of options (see **CONFIGURATION OPTIONS**). It establishes a connection to the database and returns the name of the newly-created Tcl command.
+Every database driver for TDBC (Tcl DataBase Connectivity) implements a *connection* object that represents a connection to a database. By convention, this object is created by the command, **tdbc::***driver***::connection create**. This command accepts the name of a Tcl command that will represent the connection and a possible set of options (see [Configuration options]). It establishes a connection to the database and returns the name of the newly-created Tcl command.
 
 The **configure** object command on a database connection, if presented with no arguments, returns a list of alternating keywords and values representing the connection's current configuration. If presented with a single argument *-option*, it returns the configured value of the given option. Otherwise, it must be given an even number of arguments which are alternating options and values. The specified options receive the specified values, and nothing is returned.
 
@@ -89,7 +89,10 @@ The **columns** object command allows the program to query the connection for th
 : Contains the scale of the column (the number of digits after the radix point), for types that support the concept.
 
 **nullable**
-: Contains 1 if the column can contain NULL values, and 0 otherwise. The **primarykeys** object command allows the program to query the connection for the primary keys belonging to a given table. The *tableName* parameter identifies the table being interrogated. The result is a list of dictionaries enumerating the keys (in a similar format to the list returned by *\$connection* **allrows -as dicts**). The keys of the dictionary may include at least the following. Values that are NULL or meaningless in a given database are omitted.
+: Contains 1 if the column can contain NULL values, and 0 otherwise.
+
+
+The **primarykeys** object command allows the program to query the connection for the primary keys belonging to a given table. The *tableName* parameter identifies the table being interrogated. The result is a list of dictionaries enumerating the keys (in a similar format to the list returned by *$connection* **allrows -as dicts**). The keys of the dictionary may include at least the following. Values that are NULL or meaningless in a given database are omitted.
 
 **tableCatalog**
 : Name of the catalog in which the table appears.
@@ -113,7 +116,12 @@ The **columns** object command allows the program to query the connection for th
 : Name of a column that is a member of the primary key.
 
 **ordinalPosition**
-: Ordinal position of the column within the primary key. To these columns may be added additional ones that are specific to a particular database system. The **foreignkeys** object command allows the program to query the connection for foreign key relationships that apply to a particular table. The relationships may be constrained to the keys that appear in a particular table (**-foreign** *tableName*), the keys that refer to a particular table (**-primary** *tableName*), or both. At least one of **-primary** and **-foreign** should be specified, although some drivers will enumerate all foreign keys in the current catalog if both options are omitted. The result of the **foreignkeys** object command is a list of dictionaries, with one list element per key (in a similar format to the list returned by *\$connection* **allrows -as dicts**). The keys of the dictionary may include at least the following. Values that are NULL or meaningless in a given database are omitted.
+: Ordinal position of the column within the primary key.
+
+
+To these columns may be added additional ones that are specific to a particular database system.
+
+The **foreignkeys** object command allows the program to query the connection for foreign key relationships that apply to a particular table. The relationships may be constrained to the keys that appear in a particular table (**-foreign** *tableName*), the keys that refer to a particular table (**-primary** *tableName*), or both. At least one of **-primary** and **-foreign** should be specified, although some drivers will enumerate all foreign keys in the current catalog if both options are omitted. The result of the **foreignkeys** object command is a list of dictionaries, with one list element per key (in a similar format to the list returned by *$connection* **allrows -as dicts**). The keys of the dictionary may include at least the following. Values that are NULL or meaningless in a given database are omitted.
 
 **foreignConstraintCatalog**
 : Catalog in which the foreign key constraint appears.
@@ -145,6 +153,7 @@ The **columns** object command allows the program to query the connection for th
 **primarySchema**
 : Schema name in which the primary table (the one to which the foreign key refers) appears.
 
+
 **primaryTable**
 : Table name of the primary table (the one to which the foreign key refers).
 
@@ -164,8 +173,20 @@ The **columns** object command allows the program to query the connection for th
 : Name of the column appearing in the foreign key.
 
 **ordinalPosition**
-: Position of the column in the foreign key, if the key is a compound key. The **begintransaction** object command on a database connection begins a transaction on the database. If the underlying database does not support atomic, consistent, isolated, durable transactions, the **begintransaction** object command returns an error reporting the fact. Similarly, if multiple **begintransaction** commands are executed withough an intervening **commit** or **rollback** command, an error is returned unless the underlying database supports nested transactions. The **commit** object command on a database connection ends the most recent transaction started by **begintransaction** and commits changes to the database. The **rollback** object command on a database connection rolls back the most recent transaction started by **begintransaction**. The state of the database is as if nothing happened during the transaction. The **transaction** object command on a database connection presents a simple way of bundling a database transaction. It begins a transaction, and evaluates the supplied *script* argument as a Tcl script in the caller's scope. If *script* terminates normally, or by **break**, **continue**, or **return**, the transaction is committed (and any action requested by **break**, **continue**, or **return** takes place). If the commit fails for any reason, the error in the commit is treated as an error in the *script*. In the case of an error in *script* or in the commit, the transaction is rolled back and the error is rethrown. Any nonstandard return code from the script causes the transaction to be rolled back and then is rethrown. The **allrows** object command prepares a SQL statement (given by the *sql-code* parameter) to execute against the database. It then executes it (see **tdbc::statement** for details) with the optional *dictionary* parameter giving bind variables. Finally, it uses the *allrows* object command on the result set (see **tdbc::resultset**) to construct a list of the results. Finally, both result set and statement are closed. The return value is the list of results. The **foreach** object command prepares a SQL statement (given by the *sql-code* parameter) to execute against the database. It then executes it (see **tdbc::statement** for details) with the optional *dictionary* parameter giving bind variables. Finally, it uses the *foreach* object command on the result set (see **tdbc::resultset**) to evaluate the given *script* for each row of the results. Finally, both result set and statement are closed, even if the given *script* results in a **return**, an error, or an unusual return code.
+: Position of the column in the foreign key, if the key is a compound key.
 
+
+The **begintransaction** object command on a database connection begins a transaction on the database. If the underlying database does not support atomic, consistent, isolated, durable transactions, the **begintransaction** object command returns an error reporting the fact. Similarly, if multiple **begintransaction** commands are executed withough an intervening **commit** or **rollback** command, an error is returned unless the underlying database supports nested transactions.
+
+The **commit** object command on a database connection ends the most recent transaction started by **begintransaction** and commits changes to the database.
+
+The **rollback** object command on a database connection rolls back the most recent transaction started by **begintransaction**. The state of the database is as if nothing happened during the transaction.
+
+The **transaction** object command on a database connection presents a simple way of bundling a database transaction. It begins a transaction, and evaluates the supplied *script* argument as a Tcl script in the caller's scope. If *script* terminates normally, or by **break**, **continue**, or **return**, the transaction is committed (and any action requested by **break**, **continue**, or **return** takes place). If the commit fails for any reason, the error in the commit is treated as an error in the *script*. In the case of an error in *script* or in the commit, the transaction is rolled back and the error is rethrown. Any nonstandard return code from the script causes the transaction to be rolled back and then is rethrown.
+
+The **allrows** object command prepares a SQL statement (given by the *sql-code* parameter) to execute against the database. It then executes it (see **tdbc::statement** for details) with the optional *dictionary* parameter giving bind variables. Finally, it uses the *allrows* object command on the result set (see **tdbc::resultset**) to construct a list of the results. Finally, both result set and statement are closed. The return value is the list of results.
+
+The **foreach** object command prepares a SQL statement (given by the *sql-code* parameter) to execute against the database. It then executes it (see **tdbc::statement** for details) with the optional *dictionary* parameter giving bind variables. Finally, it uses the *foreach* object command on the result set (see **tdbc::resultset**) to evaluate the given *script* for each row of the results. Finally, both result set and statement are closed, even if the given *script* results in a **return**, an error, or an unusual return code.
 
 # Configuration options
 
@@ -175,7 +196,7 @@ The configuration options accepted when the connection is created and on the con
 : Specifies the encoding to be used in connecting to the database. The *name* should be one of the names accepted by the **encoding** command. This option is usually unnecessary; most database drivers can figure out the encoding in use by themselves.
 
 **-isolation** *level*
-: Specifies the transaction isolation level needed for transactions on the database. The acceptable values for *level* are shown under **TRANSACTION ISOLATION LEVELS**.
+: Specifies the transaction isolation level needed for transactions on the database. The acceptable values for *level* are shown under [Transaction isolation levels].
 
 **-timeout** *ms*
 : Specifies the maximum time to wait for a an operation database engine before reporting an error to the caller. The *ms* argument gives the maximum time in milliseconds. A value of zero (the default) specifies that the calling process is to wait indefinitely for database operations.
@@ -201,8 +222,12 @@ The acceptable values for the **-isolation** configuration option are as follows
 : The most restrictive (and most expensive) level of transaction isolation. Any query to the database, if repeated, will return precisely the same results for the life of the transaction, exactly as if the transaction is the only user of the database.
 
 **readonly**
-: Behaves like **serializable** in that the only results visible to the transaction are those that were committed prior to the start of the transaction, but forbids the transaction from modifying the database. A database that does not implement one of these isolation levels will instead use the next more restrictive isolation level. If the given level of isolation cannot be obtained, the database interface throws an error reporting the fact. The default isolation level is **readcommitted**. A script should not the isolation level when a transaction is in progress.
+: Behaves like **serializable** in that the only results visible to the transaction are those that were committed prior to the start of the transaction, but forbids the transaction from modifying the database.
 
+
+A database that does not implement one of these isolation levels will instead use the next more restrictive isolation level. If the given level of isolation cannot be obtained, the database interface throws an error reporting the fact. The default isolation level is **readcommitted**.
+
+A script should not the isolation level when a transaction is in progress.
 
 # Copyright
 

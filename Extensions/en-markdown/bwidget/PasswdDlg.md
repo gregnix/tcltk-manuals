@@ -9,50 +9,50 @@
 *OPTIONS from Dialog*
 : 
 
-|   |   |
-| --- | --- |
-|   -anchor |   -background or -bg |
-|   -homogeneous |   -modal |
-|   -padx |   -pady |
-|   -parent |   -spacing |
-|   -title |
+    |   |   |
+    | --- | --- |
+    |   -anchor |   -background or -bg |
+    |   -homogeneous |   -modal |
+    |   -padx |   -pady |
+    |   -parent |   -spacing |
+    |   -title |
 
 
 *OPTIONS from LabelEntry*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -borderwidth or -bd |
-|   -disabledforeground |   -entrybg |
-|   -entryfg |   -exportselection |
-|   -font |   -foreground or -fg |
-|   -helptype |   -highlightbackground |
-|   -highlightcolor |   -highlightthickness |
-|   -insertbackground |   -insertborderwidth |
-|   -insertofftime |   -insertontime |
-|   -insertwidth |   -labelanchor |
-|   -labelfont |   -labelheight |
-|   -labeljustify |   -labelwidth |
-|   -loginhelptext (see **-helptext**) |   -loginhelpvar (see **-helpvar**) |
-|   -loginlabel (see **-label**) |   -logintext (see **-text**) |
-|   -logintextvariable (see **-textvariable**) |   -loginunderline (see **-underline**) |
-|   -passwdeditable (see **-editable**) |   -passwdhelptext (see **-helptext**) |
-|   -passwdhelpvar (see **-helpvar**) |   -passwdlabel (see **-label**) |
-|   -passwdstate (see **-state**) |   -passwdtext (see **-text**) |
-|   -passwdtextvariable (see **-textvariable**) |   -passwdunderline (see **-underline**) |
-|   -relief |   -selectbackground |
-|   -selectborderwidth |   -selectforeground |
-|   -wraplength |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -borderwidth or -bd |
+    |   -disabledforeground |   -entrybg |
+    |   -entryfg |   -exportselection |
+    |   -font |   -foreground or -fg |
+    |   -helptype |   -highlightbackground |
+    |   -highlightcolor |   -highlightthickness |
+    |   -insertbackground |   -insertborderwidth |
+    |   -insertofftime |   -insertontime |
+    |   -insertwidth |   -labelanchor |
+    |   -labelfont |   -labelheight |
+    |   -labeljustify |   -labelwidth |
+    |   -loginhelptext (see **-helptext**) |   -loginhelpvar (see **-helpvar**) |
+    |   -loginlabel (see **-label**) |   -logintext (see **-text**) |
+    |   -logintextvariable (see **-textvariable**) |   -loginunderline (see **-underline**) |
+    |   -passwdeditable (see **-editable**) |   -passwdhelptext (see **-helptext**) |
+    |   -passwdhelpvar (see **-helpvar**) |   -passwdlabel (see **-label**) |
+    |   -passwdstate (see **-state**) |   -passwdtext (see **-text**) |
+    |   -passwdtextvariable (see **-textvariable**) |   -passwdunderline (see **-underline**) |
+    |   -relief |   -selectbackground |
+    |   -selectborderwidth |   -selectforeground |
+    |   -wraplength |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -command |
-|   -type |
+    |   |
+    | --- |
+    |   -command |
+    |   -type |
 
 
 *WIDGET COMMAND*
@@ -86,17 +86,16 @@ WIDGET-SPECIFIC OPTIONS
 
 :  
 
- **ok** 
-: Displays one button whose symbolic name is **ok**.
+     **ok** 
+    : Displays one button whose symbolic name is **ok**.
 
- 
+         
 
-okcancel
+        okcancel
 
-Displays two buttons whose symbolic names are **ok** and **cancel**.
+        Displays two buttons whose symbolic names are **ok** and **cancel**.
 
- 
-
+         
 
 
 ---

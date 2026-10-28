@@ -9,31 +9,31 @@
 *OPTIONEN VON ButtonBox*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -homogeneous |
-|   -padx |   -pady |
-|   -spacing |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -homogeneous |
+    |   -padx |   -pady |
+    |   -spacing |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -anchor |
-|   -bitmap |
-|   -cancel |
-|   -default |
-|   -geometry |
-|   -image |
-|   -modal |
-|   -parent |
-|   -place |
-|   -separator |
-|   -side |
-|   -title |
-|   -transient |
+    |   |
+    | --- |
+    |   -anchor |
+    |   -bitmap |
+    |   -cancel |
+    |   -default |
+    |   -geometry |
+    |   -image |
+    |   -modal |
+    |   -parent |
+    |   -place |
+    |   -separator |
+    |   -side |
+    |   -title |
+    |   -transient |
 
 
 *WIDGET-BEFEHL*
@@ -66,7 +66,7 @@ BESCHREIBUNG
 
  Das Widget Dialog ermöglicht, einen Dialog zu erzeugen. Einige Befehle nehmen einen *index* als Argument, der angibt, auf welchen Button sie wirken. Dieser Index ist derselbe, der für den entsprechenden Befehl von ButtonBox angegeben wird: 
 
- 
+
 
  *number* 
 :  Bezeichnet den Button numerisch, wobei 0 dem zuerst hinzugefügten Button entspricht, 1 dem nächsten, und so weiter. 
@@ -154,7 +154,7 @@ WIDGET-BEFEHL
 *pathName* **draw** ?*focus*? 
 : Dieser Befehl zeichnet den Dialog und setzt den Grab darauf, entsprechend der Option **modal**. Wenn die Option **modal** auf *none* gesetzt ist, gibt der Befehl sofort eine leere Zeichenkette zurück. In allen anderen Fällen kehrt der Befehl zurück, wenn Dialog::**enddialog** aufgerufen oder der Dialog zerstört wird. Der Rückgabewert ist das Ergebnisargument von Dialog::**enddialog** oder -1, wenn er zerstört wird.
 
- In der Vorgabe wird der Fokus auf die Vorgabeschaltfläche gesetzt, auf die die Option **default** zeigt, oder auf das Toplevel des Dialogs, wenn keine Vorgabeschaltfläche gesetzt wurde. Wenn *focus* vorhanden ist, muss es ein Pfadname oder ein Index einer Schaltfläche sein. Der anfängliche Fokus wird auf diesen Pfadnamen oder die entsprechende Schaltfläche gesetzt. 
+     In der Vorgabe wird der Fokus auf die Vorgabeschaltfläche gesetzt, auf die die Option **default** zeigt, oder auf das Toplevel des Dialogs, wenn keine Vorgabeschaltfläche gesetzt wurde. Wenn *focus* vorhanden ist, muss es ein Pfadname oder ein Index einer Schaltfläche sein. Der anfängliche Fokus wird auf diesen Pfadnamen oder die entsprechende Schaltfläche gesetzt. 
 
 
 *pathName* **enddialog** *result* 

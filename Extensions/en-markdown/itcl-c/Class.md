@@ -1,9 +1,10 @@
 ---
 CommandName: Itcl_CreateClass
+title: Itcl_CreateClass
 ManualSection: 3
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl] Library Procedures"
+TclDescription: "[incr Tcl] Library Procedures"
 Keywords:
  - class
  - find
@@ -13,54 +14,52 @@ Copyright:
 
 # Name
 
-Itcl_CreateClass, Itcl_DeleteClass, Itcl_FindClass, Itcl_IsClass, Itcl_IsClassNamespace - Manipulate classes.
+Itcl\_CreateClass, Itcl\_DeleteClass, Itcl\_FindClass, Itcl\_IsClass, Itcl\_IsClassNamespace - Manipulate classes.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<itclInt.h>]{.lit}
+**#include <itclInt.h>**
 
-int
-[Itcl_CreateClass]{.cmd}([interp]{.arg}, [path]{.arg}, [info]{.arg}, [rPtr]{.arg})
+[int]{.ret} [Itcl\_CreateClass]{.ccmd} [interp, path, info, rPtr]{.cargs}
 
-int
-[Itcl_DeleteClass]{.cmd}([interp]{.arg}, [cdefnPtr]{.arg})
+[int]{.ret} [Itcl\_DeleteClass]{.ccmd} [interp, cdefnPtr]{.cargs}
 
-ItclClass \*
-[Itcl_FindClass]{.cmd}([interp]{.arg}, [path]{.arg}, [autoload]{.arg})
+[ItclClass \*]{.ret} [Itcl\_FindClass]{.ccmd} [interp, path, autoload]{.cargs}
 
-int
-[Itcl_IsClass]{.cmd}([cmd]{.arg})
+[int]{.ret} [Itcl\_IsClass]{.ccmd} [cmd]{.cargs}
 
-int
-[Itcl_IsClassNamespace]{.cmd}([namesp]{.arg})
+[int]{.ret} [Itcl\_IsClassNamespace]{.ccmd} [namesp]{.cargs}
 :::
 
 # Arguments
 
-Tcl_Interp *\*interp* (in)
+::: {.arguments} :::
+
+[\*interp]{.carg .in type="Tcl_Interp"}
 : Interpreter to modify.
 
-const char *\*path* (in)
+[\*path]{.carg .in type="const char"}
 : Path of the class.
 
-ItclObjectInfo *\*info* (in)
+[\*info]{.carg .in type="ItclObjectInfo"}
 : TODO.
 
-ItclClass *\*\*rPtr* (in/out)
+[\*\*rPtr]{.carg .in/out type="ItclClass"}
 : The address of the pointer to modify.
 
-ItclClass *\*cdefnPtr* (in)
+[\*cdefnPtr]{.carg .in type="ItclClass"}
 : Pointer to class info struct.
 
-int *autoload* (in)
+[autoload]{.carg .in type="int"}
 : Flag value for if the class should be autoloaded
 
-Tcl_Command *cmd* (in)
+[cmd]{.carg .in type="Tcl_Command"}
 : Command to check.
 
-Tcl_Namespace *\*namesp* (in)
+[\*namesp]{.carg .in type="Tcl_Namespace"}
 : Namespace to check.
 
+:::
 
 # Description

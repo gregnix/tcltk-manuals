@@ -1,9 +1,10 @@
 ---
 CommandName: Toplevel
+title: Toplevel
 ManualSection: n
 Version: 3.0
 TclPart: itk
-TclDescription: "[incr\\ Tk]"
+TclDescription: "[incr Tk]"
 Keywords:
  - itk
  - Archetype
@@ -12,7 +13,6 @@ Keywords:
 Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
-
 
 # Name
 
@@ -25,35 +25,26 @@ itk::Archetype <- itk::Toplevel
 # Standard options
 
 ```
-background cursor
+background	cursor
 ```
 
 See the "options" manual entry for details on the standard options.
 
 # Widget-specific options
 
-```
-Name:   title
-Class:  Title
-Command-Line Switch:    -title
-```
-
+**-title** (**title**/**Title**)
 : Sets the title that the window manager displays in the title bar above the window.  The default title is the null string.
 
 
 # Description
 
-The **Toplevel** class inherits everything from the **Archetype** class, and adds a Tk toplevel called the "hull" component to represent the body of the mega-widget.  The window class name for the hull is set to the most-specific class name for the mega-widget. The protected variable **itk_interior** contains the window path name for the "hull" component.  Derived classes specialize this widget by packing other widget components into the hull.
+The **Toplevel** class inherits everything from the [Archetype] class, and adds a Tk toplevel called the "hull" component to represent the body of the mega-widget.  The window class name for the hull is set to the most-specific class name for the mega-widget. The protected variable **itk\_interior** contains the window path name for the "hull" component.  Derived classes specialize this widget by packing other widget components into the hull.
 
 Since the hull for the **Toplevel** class is implemented with a Tk toplevel, mega-widgets in the **Toplevel** class have their own toplevel window.  This class is used to create dialog boxes and other pop-up windows.
 
 # Components
 
-```
-Name:           hull
-Class:          Toplevel
-```
-
+**hull** (**Toplevel**)
 : The "hull" component acts as the body for the entire mega-widget. Other components are packed into the hull to further specialize the widget.
 
 
@@ -124,3 +115,6 @@ itk::usual MessageInfo {
 #
 MessageInfo .m -message "File not found:\n/usr/local/bin/foo"
 ```
+
+
+[Archetype]: Archetype.md

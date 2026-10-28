@@ -114,7 +114,9 @@ A tear-off entry appears at the top of the menu if enabled with the **-tearoff**
 
 # Menubars
 
-Any menu can be set as a menubar for a toplevel window (see [toplevel] command for syntax). On the Macintosh, whenever the toplevel is in front, this menu's cascade items will appear in the menubar across the top of the main screen. On Windows and Unix, this menu's items will be displayed in a menubar across the top of the window. These menus will behave according to the interface guidelines of their platforms. In particular, since macOS requires that a menubar always be displayed for the active app, if no menu is assigned by a **configure -menu** for a certain toplevel then a standard default menu will be displayed whenever that toplevel has focus.  For every menu set as a menubar, a clone menu is made. See the [Clones] section for more information.
+Any menu can be set as a menubar for a toplevel window (see [toplevel] command for syntax). On the Macintosh, whenever the toplevel is in front, this menu's cascade items will appear in the menubar across the top of the main screen. On Windows and Unix, this menu's items will be displayed in a menubar across the top of the window. These menus will behave according to the interface guidelines of their platforms. In particular, since macOS requires that a menubar always be displayed for the active app, if no menu is assigned by a **configure -menu** for a certain toplevel then a standard default menu will be displayed whenever that toplevel has focus.
+
+For every menu set as a menubar, a clone menu is made. See the [Clones] section for more information.
 
 As noted, menubars may behave differently on different platforms.  One example of this concerns the handling of checkbuttons and radiobuttons within the menu.  While it is permitted to put these menu elements on menubars, they may not be drawn with indicators on some platforms, due to system restrictions.
 

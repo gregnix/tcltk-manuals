@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::tokenize
+title: tdbc::tokenize
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -25,9 +26,9 @@ tdbc::tokenize - TDBC SQL tokenizer
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
 
-[tdbc::tokenize]{.cmd} [string]{.arg} 
+[tdbc::tokenize]{.cmd} [string]{.arg}
 :::
 
 # Description
@@ -36,14 +37,11 @@ As a convenience to database drivers, Tcl Database Connectivity (TDBC) provides 
 
 The **tdbc::tokenize** command accepts as its parameter a string that is expected to contain one or more SQL statements. It returns a list of substrings; concatenating these substrings together will yield the original string. Each substring is one of the following:
 
-**\[1\]**
-: A bound variable, which begins with one of the characters '**:**', '**@**', or '**\$**'. The remainder of the string is the variable name and will consist of alphanumeric characters and underscores. (The leading character will be be non-numeric.)
+1. A bound variable, which begins with one of the characters '**:**', '**@**', or '**$**'. The remainder of the string is the variable name and will consist of alphanumeric characters and underscores. (The leading character will be be non-numeric.)
 
-**\[2\]**
-: A semicolon that separates two SQL statements.
+2. A semicolon that separates two SQL statements.
 
-**\[3\]**
-: Something else in a SQL statement. The tokenizer does not attempt to parse SQL; it merely identifies bound variables (distinguishing them from similar strings appearing inside quotes or comments) and statement delimiters.
+3. Something else in a SQL statement. The tokenizer does not attempt to parse SQL; it merely identifies bound variables (distinguishing them from similar strings appearing inside quotes or comments) and statement delimiters.
 
 
 # Copyright

@@ -9,15 +9,15 @@
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -default |
-|   -homogeneous |
-|   -orient |
-|   -padx |
-|   -pady |
-|   -spacing |
-|   -state |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -default |
+    |   -homogeneous |
+    |   -orient |
+    |   -padx |
+    |   -pady |
+    |   -spacing |
+    |   -state |
 
 
 *WIDGET COMMAND*
@@ -110,7 +110,7 @@ WIDGET COMMAND
 *pathName* **add** ?*option value...*? 
 : Add a button to the button box.
 
- See [Button](Button.md) for description of options. 
+     See [Button](Button.md) for description of options. 
 
 
 *pathName* **cget** *option* 

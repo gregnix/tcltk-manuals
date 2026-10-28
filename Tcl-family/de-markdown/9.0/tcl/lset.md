@@ -41,7 +41,7 @@ lset - Ändert ein Element in einer Liste
 # Übersicht
 
 ::: {.synopsis} :::
-[lset]{.cmd} [varName]{.arg} ?index ...? newValue
+[lset]{.cmd} [varName]{.arg} [index]{.optdot} newValue
 :::
 
 # Beschreibung

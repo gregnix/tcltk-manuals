@@ -37,8 +37,8 @@ lseq - Numerische Folge erzeugen und als Liste zurückgeben
 # Übersicht
 
 ::: {.synopsis} :::
-[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [?by]{.optarg} [step?]{.arg}
-[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [?by]{.optarg} [step?]{.arg}
+[lseq]{.cmd} [start]{.arg} [(..|to)]{.optarg} [end]{.arg} [[by]{.optlit} [step]{.arg}]{.optarg}
+[lseq]{.cmd} [start]{.arg} [count]{.lit} [count]{.arg} [[by]{.optlit} [step]{.arg}]{.optarg}
 [lseq]{.cmd} [count]{.arg} [[by]{.lit} [step]{.arg}]{.optarg}
 :::
 

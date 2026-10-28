@@ -118,7 +118,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ## queryTimeout - Zeitlimit für http(s)-Abfragen setzen
 
- Zeitlimit für jede Netzabfrage in ms. Das [Paket auf der Client-Seite](Calling_a_Web_Service.md#configuring-a-service) hat eine Option mit derselben Funktion, die verwendet wird, wenn ein Aufruf einen Optionskontext hat. 
+ Zeitlimit für jede Netzabfrage in ms. Das [Paket auf der Client-Seite](Calling_a_Web_Service.md#einen-dienst-konfigurieren) hat eine Option mit derselben Funktion, die verwendet wird, wenn ein Aufruf einen Optionskontext hat. 
 
 Vorgabewert: 60000 (1 Minute).
 

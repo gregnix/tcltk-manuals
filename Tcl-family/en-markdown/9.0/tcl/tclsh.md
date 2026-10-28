@@ -99,7 +99,9 @@ See [Tcl\_StandardChannels][StdChannels] for more explanations.
 
 When a zipfile is concatenated to the end of a **tclsh**, on startup the contents of the zip archive will be mounted under a virtual file system (VFS). The root of that VFS can be retrieved using the [zipfs root][zipfs] command. The zip archive is mounted under the **app** directory within the VFS. If a file named **main.tcl** is present in the top level directory of the zip archive, it will be sourced instead of tclsh's normal command line handing. If a top level directory [tcl\_library][tclvars] is present in the zip archive, it will become the directory loaded as env(TCL\_LIBRARY). If a file named **main.tcl** is present in the top level directory of the zip archive, it will be sourced instead of the shell's normal command line handling.
 
-Only one zipfile can be concatenated to the end of executable image (tclsh, or wish). However, if multiple zipfiles are concatenated, only the last one is used.  This filesystem is read-only. Files cannot be added or modified within this mounted file system.  See zipfs(n) for complete details.
+Only one zipfile can be concatenated to the end of executable image (tclsh, or wish). However, if multiple zipfiles are concatenated, only the last one is used.
+
+This filesystem is read-only. Files cannot be added or modified within this mounted file system.  See zipfs(n) for complete details.
 
 
 [binary]: binary.md

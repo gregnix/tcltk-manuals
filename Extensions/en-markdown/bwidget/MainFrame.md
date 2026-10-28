@@ -9,23 +9,23 @@
 *OPTIONS from ProgressBar*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -progressfg (see **-foreground**) |
-|   -progressmax (see **-maximum**) |   -progresstype (see **-type**) |
-|   -progressvar (see **-variable**) |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -progressfg (see **-foreground**) |
+    |   -progressmax (see **-maximum**) |   -progresstype (see **-type**) |
+    |   -progressvar (see **-variable**) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -height |
-|   -menu |
-|   -separator |
-|   -textvariable |
-|   -width |
+    |   |
+    | --- |
+    |   -height |
+    |   -menu |
+    |   -separator |
+    |   -textvariable |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -74,53 +74,53 @@ WIDGET-SPECIFIC OPTIONS
 **-menu (read-only)**
 : This option describes the menu. This is a list whose each five elements describe one cascade menu. It has the following form: {*menuname* *tags* *menuId* *tearoff* *menuentries*...} where *menuentries* is a list where each element describe one menu entry, which can be:
 
-  - for a separator:  
-   {**separator**} 
-  - for a command:  
-   {**command** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
-  - for a check button:  
-   {**checkbutton** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
-  - for a radio button:  
-   {**radiobutton** *menuname* ?*tags*? ?*description*? ?*accelerator* ?*option* *value*? ...} 
-  - for a cascade menu:  
-   {**cascade** *menuname* *tags* *menuId* *tearoff* *menuentries*} 
+      - for a separator:  
+       {**separator**} 
+      - for a command:  
+       {**command** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
+      - for a check button:  
+       {**checkbutton** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
+      - for a radio button:  
+       {**radiobutton** *menuname* ?*tags*? ?*description*? ?*accelerator* ?*option* *value*? ...} 
+      - for a cascade menu:  
+       {**cascade** *menuname* *tags* *menuId* *tearoff* *menuentries*} 
 
-where:
+    where:
 
-  - *menuname* is the name of the menu. If it contains a &, the following character is automatically converted to the corresponding **-underline** option of **menu add** command. 
-  - *tags* is the tags list for the entry, used for enabling or disabling menu entries with **MainFrame::setmenustate**. 
-  - *menuId* is an id for the menu, from which you can get menu pathname with **MainFrame::getmenu**. 
-  - *tearoff* specifies if menu has tearoff entry. 
-  - *description* specifies a string for [DynamicHelp](\"DynamicHelp.html\"). 
-  - *accelerator* specifies a key sequence. It is a list of two elements, where the first is one of **Ctrl**, **Alt** or **CtrlAlt**, and the second as letter or a digit. An accelerator string is build and corresponding binding set on the toplevel to invoke the menu entry. 
-  - *option value* specifies additionnal options for the entry (see **menu add** command). 
+      - *menuname* is the name of the menu. If it contains a &, the following character is automatically converted to the corresponding **-underline** option of **menu add** command. 
+      - *tags* is the tags list for the entry, used for enabling or disabling menu entries with **MainFrame::setmenustate**. 
+      - *menuId* is an id for the menu, from which you can get menu pathname with **MainFrame::getmenu**. 
+      - *tearoff* specifies if menu has tearoff entry. 
+      - *description* specifies a string for [DynamicHelp](\"DynamicHelp.html\"). 
+      - *accelerator* specifies a key sequence. It is a list of two elements, where the first is one of **Ctrl**, **Alt** or **CtrlAlt**, and the second as letter or a digit. An accelerator string is build and corresponding binding set on the toplevel to invoke the menu entry. 
+      - *option value* specifies additionnal options for the entry (see **menu add** command). 
 
-Each value enclosed by ? are optional and defaulted to empty string, but must be provided if one or more following options is not empty.   
-Example:
+    Each value enclosed by ? are optional and defaulted to empty string, but must be provided if one or more following options is not empty.   
+    Example:
 
-```
-set descmenu {
-    "&File" {} {} 0 {
-        {command "&New"     {} "Create a new document"     {Ctrl n} -command Menu::new}
-        {command "&Open..." {} "Open an existing document" {Ctrl o} -command Menu::open}
-        {command "&Save"    open "Save the document" {Ctrl s} -command Menu::save}
-        {cascade  "&Export"  {} export 0 {
-            {command "Format &1" open "Export document to format 1" {} -command {Menu::export 1}}
-            {command "Format &2" open "Export document to format 2" {} -command {Menu::export 2}}
-        }}
-        {separator}
-        {cascade "&Recent files" {} recent 0 {}}
-        {separator}
-        {command "E&xit" {} "Exit the application" {} -command Menu::exit}
-    }
-    "&Options" {} {} 0 {
-        {checkbutton "Toolbar" {} "Show/hide toolbar" {} 
-            -variable Menu::_drawtoolbar
-            -command  {$Menu::_mainframe showtoolbar toolbar $Menu::_drawtoolbar}
+    ```
+    set descmenu {
+        "&File" {} {} 0 {
+            {command "&New"     {} "Create a new document"     {Ctrl n} -command Menu::new}
+            {command "&Open..." {} "Open an existing document" {Ctrl o} -command Menu::open}
+            {command "&Save"    open "Save the document" {Ctrl s} -command Menu::save}
+            {cascade  "&Export"  {} export 0 {
+                {command "Format &1" open "Export document to format 1" {} -command {Menu::export 1}}
+                {command "Format &2" open "Export document to format 2" {} -command {Menu::export 2}}
+            }}
+            {separator}
+            {cascade "&Recent files" {} recent 0 {}}
+            {separator}
+            {command "E&xit" {} "Exit the application" {} -command Menu::exit}
+        }
+        "&Options" {} {} 0 {
+            {checkbutton "Toolbar" {} "Show/hide toolbar" {} 
+                -variable Menu::_drawtoolbar
+                -command  {$Menu::_mainframe showtoolbar toolbar $Menu::_drawtoolbar}
+            }
         }
     }
-}
-```
+    ```
 
 
 **-separator (read-only)**

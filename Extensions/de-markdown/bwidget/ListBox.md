@@ -9,30 +9,30 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-cursor](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectforeground](options.md) |   [-takefocus](options.md) |
-|   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-cursor](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectforeground](options.md) |   [-takefocus](options.md) |
+    |   [-xscrollcommand](options.md) |   [-yscrollcommand](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |   |   |
-| --- | --- | --- |
-|   -autofocus |   -deltax |   -deltay |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -dropovermode |   -droptypes |
-|   -height |   -multicolumn |
-|   -padx |   -redraw |
-|   -selectfill |   -selectmode |   -width |
+    |   |   |   |
+    | --- | --- | --- |
+    |   -autofocus |   -deltax |   -deltay |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -dropovermode |   -droptypes |
+    |   -height |   -multicolumn |
+    |   -padx |   -redraw |
+    |   -selectfill |   -selectmode |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -113,17 +113,17 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : ListBox hat einen Befehlsrahmen für Ereignisse *drag-init*. Dieser Befehl lehnt das Ziehen ab, wenn kein Eintrag bezeichnet ist. In den anderen Fällen:   
   Wenn **draginitcmd** leer ist, gibt er zurück:
 
-  - als Datentyp den Wert der Option **dragtype** oder *LISTBOX_ITEM*, wenn er leer ist, 
-  - *{move copy link}* als die Operationen, 
-  - den Bezeichner des Eintrags als die Daten. 
+      - als Datentyp den Wert der Option **dragtype** oder *LISTBOX_ITEM*, wenn er leer ist, 
+      - *{move copy link}* als die Operationen, 
+      - den Bezeichner des Eintrags als die Daten. 
 
-Wenn **draginitcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
+    Wenn **draginitcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname der Listbox, 
-  - der Bezeichner des gezogenen Eintrags, 
-  - das Toplevel-Fenster, das erzeugt wird, um die gezogenen Daten darzustellen. 
+      - der Pfadname der Listbox, 
+      - der Bezeichner des gezogenen Eintrags, 
+      - das Toplevel-Fenster, das erzeugt wird, um die gezogenen Daten darzustellen. 
 
-und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die in **DragSite::register** beschrieben ist.
+    und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die in **DragSite::register** beschrieben ist.
 
 
 **-dragtype**
@@ -134,18 +134,18 @@ und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die
 : ListBox hat einen Befehlsrahmen für Ereignisse *drop*. Dieser Befehl beendet das automatische Scrollen und ermittelt Eintrag und Position.   
   Wenn **dropcmd** nicht leer ist, wird er mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname der Listbox, 
-  - der Pfadname der Ziehquelle, 
-  - eine Liste, die beschreibt, wo das Ablegen geschieht. Sie kann sein:  
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname der Listbox, 
+      - der Pfadname der Ziehquelle, 
+      - eine Liste, die beschreibt, wo das Ablegen geschieht. Sie kann sein:  
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-    - *{*__widget__*}*, 
-    - *{*__item__ *item}* oder 
-    - *{*__position__ *index}*. 
+        - *{*__widget__*}*, 
+        - *{*__item__ *item}* oder 
+        - *{*__position__ *index}*. 
 
- Der Vorgabe-Ablegebefehl erlaubt Ziehen und Ablegen innerhalb der Listbox, aber nicht zu anderen Widgets oder von ihnen. 
+     Der Vorgabe-Ablegebefehl erlaubt Ziehen und Ablegen innerhalb der Listbox, aber nicht zu anderen Widgets oder von ihnen. 
 
 
 **-dropenabled**
@@ -155,22 +155,22 @@ und muss einen Wert zurückgeben, der der Option **draginitcmd** entspricht, die
 **-dropovercmd**
 : LsitBox hat einen Befehlsrahmen für Ereignisse *drag-over*. Dieser Befehl schaltet während des *drag-over* das automatische Scrollen und die Ermittlung der Position ein. Wenn **dropovercmd** nicht leer ist, wird der Befehl mit den folgenden Argumenten aufgerufen:
 
-  - der Pfadname der Listbox, 
-  - der Pfadname der Ziehquelle, 
-  - eine Liste, die beschreibt, wo das Ablegen geschehen kann; ihre Elemente sind:  
-  - die aktuelle Operation, 
-  - der Datentyp, 
-  - die Daten. 
+      - der Pfadname der Listbox, 
+      - der Pfadname der Ziehquelle, 
+      - eine Liste, die beschreibt, wo das Ablegen geschehen kann; ihre Elemente sind:  
+      - die aktuelle Operation, 
+      - der Datentyp, 
+      - die Daten. 
 
-    - die Zeichenkette *widget*, wenn die Option **dropovertype** *w* enthält, sonst die leere Zeichenkette. 
-    - der angezielte Eintrag, wenn das Ziehsymbol auf einen Eintrag zeigt und die Option **dropovertype** *i* enthält, sonst die leere Zeichenkette. 
-    - ein Index zwischen zwei Einträgen, auf den das Ziehsymbol zeigt, wenn die Option **dropovertype** *p* enthält, sonst die leere Zeichenkette. 
-    - optional die bevorzugte Methode, wenn das Ablegen sowohl innerhalb eines Eintrags als auch zwischen zwei Einträgen geschehen kann. Der Wert ist *position* oder *item*. 
+        - die Zeichenkette *widget*, wenn die Option **dropovertype** *w* enthält, sonst die leere Zeichenkette. 
+        - der angezielte Eintrag, wenn das Ziehsymbol auf einen Eintrag zeigt und die Option **dropovertype** *i* enthält, sonst die leere Zeichenkette. 
+        - ein Index zwischen zwei Einträgen, auf den das Ziehsymbol zeigt, wenn die Option **dropovertype** *p* enthält, sonst die leere Zeichenkette. 
+        - optional die bevorzugte Methode, wenn das Ablegen sowohl innerhalb eines Eintrags als auch zwischen zwei Einträgen geschehen kann. Der Wert ist *position* oder *item*. 
 
-Der Befehl muss eine Liste mit zwei Elementen zurückgeben:
+    Der Befehl muss eine Liste mit zwei Elementen zurückgeben:
 
-  - den Ablegezustand, entsprechend der Beschreibung in der Option **dropovercmd** von **DropSite::register**, 
-  - die gewählte Methode: *widget*, *item* oder *position*. 
+      - den Ablegezustand, entsprechend der Beschreibung in der Option **dropovercmd** von **DropSite::register**, 
+      - die gewählte Methode: *widget*, *item* oder *position*. 
 
 
 **-dropovermode**
@@ -217,13 +217,13 @@ WIDGET-BEFEHL
 *pathName* **bindImage** *event* *script* 
 : Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf dem Bild eines Eintrags eintritt. Der Eintragsbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt.
 
- Jedes Vorkommen von **%W** in *script* wird durch den Pfad der Listbox ersetzt. 
+     Jedes Vorkommen von **%W** in *script* wird durch den Pfad der Listbox ersetzt. 
 
 
 *pathName* **bindText** *event* *script* 
 : Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf der Beschriftung eines Eintrags eintritt. Der Eintragsbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt.
 
- Jedes Vorkommen von **%W** in *script* wird durch den Pfad der Listbox ersetzt. 
+     Jedes Vorkommen von **%W** in *script* wird durch den Pfad der Listbox ersetzt. 
 
 
 *pathName* **cget** *option* 
@@ -258,37 +258,30 @@ WIDGET-BEFEHL
 *pathName* **insert** *index* *item* ?*option value...*? 
 :  Fügt einen neuen Eintrag, der durch *item* gekennzeichnet ist, an der Position *index* in die Liste ein. 
 
- Jedes Vorkommen von *#auto* im Namen des Eintrags wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. 
-
- 
-
-**-data**
-:  Benutzerdaten, die zum Eintrag gehören. 
+     Jedes Vorkommen von *#auto* im Namen des Eintrags wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. 
 
 
-**-fill**
-:  Legt die Vordergrundfarbe der Beschriftung des Eintrags fest. 
 
+    **-data**
+    :  Benutzerdaten, die zum Eintrag gehören. 
 
-**-font**
-:  Legt eine Schriftart für die Beschriftung des Eintrags fest. 
+    **-fill**
+    :  Legt die Vordergrundfarbe der Beschriftung des Eintrags fest. 
 
+    **-font**
+    :  Legt eine Schriftart für die Beschriftung des Eintrags fest. 
 
-**-image**
-:  Legt ein Bild fest, das links von der Beschriftung des Eintrags angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
+    **-image**
+    :  Legt ein Bild fest, das links von der Beschriftung des Eintrags angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
 
+    **-indent**
+    :  Legt den zusätzlichen Abstand in Pixeln links vom Eintrag fest. 
 
-**-indent**
-:  Legt den zusätzlichen Abstand in Pixeln links vom Eintrag fest. 
+    **-text**
+    :  Legt die Beschriftung des Eintrags fest. 
 
-
-**-text**
-:  Legt die Beschriftung des Eintrags fest. 
-
-
-**-window**
-:  Legt einen Pfadnamen fest, der links von der Beschriftung des Eintrags angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
-
+    **-window**
+    :  Legt einen Pfadnamen fest, der links von der Beschriftung des Eintrags angezeigt wird. Die Option **window** setzt **image** außer Kraft. 
 
 
 *pathName* **item** *first* ?*last*? 
@@ -323,21 +316,20 @@ WIDGET-BEFEHL
 *pathName* **selection** *cmd* ?*arg...*? 
 : Ändert die Liste der ausgewählten Einträge entsprechend *cmd*:
 
-**clear** 
-: entfernt alle Einträge der Auswahl. 
+    **clear** 
+    : entfernt alle Einträge der Auswahl. 
 
-**set** 
-: setzt die Auswahl auf alle Einträge in *arg* 
+    **set** 
+    : setzt die Auswahl auf alle Einträge in *arg* 
 
-**add** 
-: nimmt alle Einträge von *arg* in die Auswahl auf 
+    **add** 
+    : nimmt alle Einträge von *arg* in die Auswahl auf 
 
-**remove** 
-: entfernt alle Einträge von *arg* aus der Auswahl 
+    **remove** 
+    : entfernt alle Einträge von *arg* aus der Auswahl 
 
-**get** 
-: gibt die aktuell ausgewählten Einträge zurück 
-
+    **get** 
+    : gibt die aktuell ausgewählten Einträge zurück 
 
 
 *pathName* **xview** ?*arg...*? 

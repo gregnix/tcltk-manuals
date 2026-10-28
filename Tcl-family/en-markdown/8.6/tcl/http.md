@@ -27,7 +27,7 @@ http - Client-side implementation of the HTTP/1.1 protocol
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [http]{.lit} [?2.9?]{.lit}
+[package]{.cmd} [require]{.sub} [http]{.lit} [2.9]{.optlit}
 [::http::config]{.cmd} [-option value]{.optdot}
 [::http::geturl]{.cmd} [url]{.arg} [-option value]{.optdot}
 [::http::formatQuery]{.cmd} [key]{.arg} [value]{.arg} [key value]{.optdot}

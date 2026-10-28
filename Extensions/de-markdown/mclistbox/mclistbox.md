@@ -1,6 +1,10 @@
+
+
 ## NAME
 
 mclistbox::mclistbox - Eine mehrspaltige Listbox anlegen und bedienen
+
+
 
 ## ÜBERSICHT
 
@@ -8,15 +12,21 @@ mclistbox::mclistbox - Eine mehrspaltige Listbox anlegen und bedienen
 
 **mclistbox::mclistbox** *pathName* *?options?*
 
+
+
 ## EXPORTE
 
 mclistbox
+
+
 
 ## STANDARDOPTIONEN
 
 **-background** **-borderwidth** **-cursor** **-exportselection** **-font** **-foreground** **-height** **-highlightbackground** **-highlightcolor** **-highlightthickness** **-relief** **-selectbackground** **-selectborderwidth** **-selectforeground** **-setgrid** **-takefocus** **-width** **-xscrollcommand** **-yscrollcommand**
 
 Die ausführliche Beschreibung der Optionen oben steht im Handbucheintrag *options*.
+
+
 
 ## WIDGET-SPEZIFISCHE OPTIONEN
 
@@ -104,6 +114,8 @@ Datenbank-Klasse: **SelectMode**
 
 Legt einen von mehreren Stilen für die Auswahl fest. Der Wert der Option darf beliebig sein. Die Vorgabebindungen erwarten **single**, **browse**, **multiple** oder **extended**. Der Vorgabewert ist browse.
 
+
+
 ## BESCHREIBUNG
 
 Der Befehl **mclistbox** erzeugt ein neues Fenster, gegeben durch das Argument *pathName*, und macht es zu einem mclistbox-Widget. Weitere Optionen, oben beschrieben, können auf der Befehlszeile Aspekte der mclistbox festlegen, etwa Farben, Schrift, Text und Relief. Der Befehl mclistbox gibt sein Argument pathName zurück. Beim Aufruf darf noch kein Fenster namens pathName bestehen. Das Elternfenster von pathName muss bestehen.
@@ -111,6 +123,8 @@ Der Befehl **mclistbox** erzeugt ein neues Fenster, gegeben durch das Argument *
 Eine mclistbox zeigt eine Liste von Zeichenketten, eine je Zeile. Eine neue mclistbox hat anfangs keine Elemente und keine Spalten. Spalten und Elemente werden mit den Widget-Befehlen unten hinzugefügt oder gelöscht. Ein oder mehrere Elemente lassen sich auswählen, wie unten beschrieben. Wird ein Element in einer Spalte ausgewählt, werden die Elemente in allen Spalten ausgewählt.
 
 Nicht alle Elemente müssen gleichzeitig im Fenster der mclistbox sichtbar sein. Die Befehle unten ändern die Sicht im Fenster. Mclistboxen lassen sich in beide Richtungen schieben, über die Standardoptionen xScrollCommand und yScrollCommand. Sie unterstützen auch das Scannen, wie unten beschrieben.
+
+
 
 ## WIDGET-BEFEHL
 
@@ -123,91 +137,98 @@ Dazu kommen einige Befehle, die es nur bei der mclistbox gibt:
 **pathName column option args**
 :
 
-**pathName column add name options**
-: Fügt eine neue Spalte mit dem angegebenen *name* hinzu. *options* dürfen alle gültigen Spaltenoptionen sein.
+    **pathName column add name options**
+    : Fügt eine neue Spalte mit dem angegebenen *name* hinzu. *options* dürfen alle gültigen Spaltenoptionen sein.
 
-pathName column cget name option
+        pathName column cget name option
 
-Gibt den Wert der genannten *option* zurück.
+        Gibt den Wert der genannten *option* zurück.
 
-pathName column configure name options
+        pathName column configure name options
 
-Konfiguriert Attribute der genannten Spalte oder fragt sie ab.
+        Konfiguriert Attribute der genannten Spalte oder fragt sie ab.
 
-Spalten lassen sich mit den Standardoptionen der Listbox konfigurieren (-background, -font und so weiter). Zusätzlich stehen diese Optionen zur Verfügung:
+        Spalten lassen sich mit den Standardoptionen der Listbox konfigurieren (-background, -font und so weiter). Zusätzlich stehen diese Optionen zur Verfügung:
 
-**-background**
-: Legt die Hintergrundfarbe dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Hintergrundfarbe.
+        **-background**
+        : Legt die Hintergrundfarbe dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Hintergrundfarbe.
 
--bitmap
+            -bitmap
 
-Legt eine Bitmap fest, die in der Spaltenbeschriftung angezeigt wird. Ist die Option bitmap angegeben, verdrängt sie die Option -label. Die Option bitmap lässt sich auf die leere Zeichenkette zurücksetzen, damit wieder Text angezeigt wird.
+            Legt eine Bitmap fest, die in der Spaltenbeschriftung angezeigt wird. Ist die Option bitmap angegeben, verdrängt sie die Option -label. Die Option bitmap lässt sich auf die leere Zeichenkette zurücksetzen, damit wieder Text angezeigt wird.
 
--font
+            -font
 
-Legt die Schrift dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Schrift. Werden für getrennte Spalten Schriften mit verschiedener Zeilenhöhe verwendet, stehen die Daten der Spalten nicht auf einer Linie.
+            Legt die Schrift dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Schrift. Werden für getrennte Spalten Schriften mit verschiedener Zeilenhöhe verwendet, stehen die Daten der Spalten nicht auf einer Linie.
 
--foreground
+            -foreground
 
-Legt die Vordergrundfarbe dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Vordergrundfarbe.
+            Legt die Vordergrundfarbe dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Vordergrundfarbe.
 
--image
+            -image
 
-Legt ein Bild fest, das in der Spaltenbeschriftung angezeigt wird. Ist die Option image angegeben, verdrängt sie andere Optionen, die eine Bitmap oder einen Text für die Spaltenbeschriftung nennen. Die Option image lässt sich auf die leere Zeichenkette zurücksetzen, damit wieder eine Bitmap oder Text angezeigt wird.
+            Legt ein Bild fest, das in der Spaltenbeschriftung angezeigt wird. Ist die Option image angegeben, verdrängt sie andere Optionen, die eine Bitmap oder einen Text für die Spaltenbeschriftung nennen. Die Option image lässt sich auf die leere Zeichenkette zurücksetzen, damit wieder eine Bitmap oder Text angezeigt wird.
 
--label
+            -label
 
-Legt den Text fest, der in der Spaltenbeschriftung stehen soll.
+            Legt den Text fest, der in der Spaltenbeschriftung stehen soll.
 
--position
+            -position
 
-Legt die Position der Spalte fest. 0 (null) ist die erste Spalte, 1 (eins) die zweite, und so weiter.
+            Legt die Position der Spalte fest. 0 (null) ist die erste Spalte, 1 (eins) die zweite, und so weiter.
 
--resizable
+            -resizable
 
-Legt fest, ob die Spalte in der Größe geändert werden kann. Das wirkt nur, wenn die globale Option **-resizablecolumns** true ist.
+            Legt fest, ob die Spalte in der Größe geändert werden kann. Das wirkt nur, wenn die globale Option **-resizablecolumns** true ist.
 
--visible
+            -visible
 
-Legt fest, ob die Spalte sichtbar ist.
+            Legt fest, ob die Spalte sichtbar ist.
 
--width
+            -width
 
-Legt die gewünschte Breite der Spalte in Zeichen fest. Hat die Schrift keine einheitliche Breite, wird die Breite des Zeichens \`\`0'' verwendet, um von Zeicheneinheiten auf Bildschirmeinheiten umzurechnen. Ist der Wert null oder kleiner, wird die gewünschte Breite des Fensters gerade so groß, dass alle Elemente der Listbox hineinpassen.
+            Legt die gewünschte Breite der Spalte in Zeichen fest. Hat die Schrift keine einheitliche Breite, wird die Breite des Zeichens \`\`0'' verwendet, um von Zeicheneinheiten auf Bildschirmeinheiten umzurechnen. Ist der Wert null oder kleiner, wird die gewünschte Breite des Fensters gerade so groß, dass alle Elemente der Listbox hineinpassen.
 
-pathName column delete name
+        pathName column delete name
 
-Löscht die Spalte mit dem Namen *name*.
+        Löscht die Spalte mit dem Namen *name*.
 
-pathName column names
+        pathName column names
 
-Gibt eine Liste aller Spalten-*names* zurück. Die Reihenfolge der Liste ist die sichtbare Reihenfolge der Spalten und dieselbe Reihenfolge, in der der Befehl get die Daten zurückgibt.
+        Gibt eine Liste aller Spalten-*names* zurück. Die Reihenfolge der Liste ist die sichtbare Reihenfolge der Spalten und dieselbe Reihenfolge, in der der Befehl get die Daten zurückgibt.
 
-pathName column nearext x
+        pathName column nearext x
 
-Zu einer x-Koordinate im Fenster der mclistbox gibt dieser Befehl den Namen der Spalte zurück, die dieser x-Koordinate am nächsten liegt.
+        Zu einer x-Koordinate im Fenster der mclistbox gibt dieser Befehl den Namen der Spalte zurück, die dieser x-Koordinate am nächsten liegt.
 
-pathName get first ?last?
+    pathName get first ?last?
 
-Fehlt last, kommt eine Liste zurück mit dem Element jeder Spalte des Listbox-Elements, das *first* bezeichnet, oder eine leere Liste, wenn first auf ein nicht vorhandenes Element zeigt. Ist *last* angegeben, gibt der Befehl eine Liste von Listen zurück. Jede Teilliste enthält ein Element jeder Spalte des mclistbox-Elements. first und last dürfen jede der üblichen Indexformen haben.
+    Fehlt last, kommt eine Liste zurück mit dem Element jeder Spalte des Listbox-Elements, das *first* bezeichnet, oder eine leere Liste, wenn first auf ein nicht vorhandenes Element zeigt. Ist *last* angegeben, gibt der Befehl eine Liste von Listen zurück. Jede Teilliste enthält ein Element jeder Spalte des mclistbox-Elements. first und last dürfen jede der üblichen Indexformen haben.
 
-Die Daten kommen in der sichtbaren Reihenfolge der Spalten zurück, derselben Reihenfolge, die der Befehl **column names** meldet.
+    Die Daten kommen in der sichtbaren Reihenfolge der Spalten zurück, derselben Reihenfolge, die der Befehl **column names** meldet.
 
-pathName insert index list ?list ...?
+    pathName insert index list ?list ...?
 
-Fügt null oder mehr neue Elemente in die mclistbox ein, unmittelbar vor dem Element, das index bezeichnet. Ist index als end angegeben, kommen die neuen Elemente an das Ende der Liste. Der Befehl gibt die leere Zeichenkette zurück. Jedes Argument *list* wird eine Zeile der mclistbox. Reichen die Elemente nicht für alle Spalten, füllen leere Werte die fehlenden Spalten.
+    Fügt null oder mehr neue Elemente in die mclistbox ein, unmittelbar vor dem Element, das index bezeichnet. Ist index als end angegeben, kommen die neuen Elemente an das Ende der Liste. Der Befehl gibt die leere Zeichenkette zurück. Jedes Argument *list* wird eine Zeile der mclistbox. Reichen die Elemente nicht für alle Spalten, füllen leere Werte die fehlenden Spalten.
 
-pathName label bind name sequence command
+    pathName label bind name sequence command
 
-Dieser Befehl verbindet *command* mit einer Spaltenbeschriftung. Tritt die Ereignisfolge *sequence* über der Beschriftung der Spalte *name* ein, wird *command* aufgerufen. Der Widget-Befehl ähnelt dem Befehl bind, wirkt aber auf Spaltenbeschriftungen und nicht auf das ganze Widget. Der Handbucheintrag bind beschreibt die Syntax von *sequence* und die Ersetzungen in *command* vor dem Aufruf.
+    Dieser Befehl verbindet *command* mit einer Spaltenbeschriftung. Tritt die Ereignisfolge *sequence* über der Beschriftung der Spalte *name* ein, wird *command* aufgerufen. Der Widget-Befehl ähnelt dem Befehl bind, wirkt aber auf Spaltenbeschriftungen und nicht auf das ganze Widget. Der Handbucheintrag bind beschreibt die Syntax von *sequence* und die Ersetzungen in *command* vor dem Aufruf.
+
+
+
 
 ## BEISPIEL
 
 Das folgende Beispiel erzeugt eine Listbox mit drei Spalten:
 
+
+
 ```
     mclistbox .listbox -width 55
 ```
+
+
 
 ```
     .listbox column add name -label "First Name"    -width 20
@@ -217,12 +238,16 @@ Das folgende Beispiel erzeugt eine Listbox mit drei Spalten:
 
 Einträge kommen so in die Liste:
 
+
+
 ```
     .listbox insert end [list "Bryan" "Oakley" "ChannelPoint"]
     .listbox insert end [list "John"  "Ousterhout" "Ajuba Solutions"]
 ```
 
 … oder kürzer:
+
+
 
 ```
     .listbox insert end \
@@ -232,15 +257,21 @@ Einträge kommen so in die Liste:
 
 Damit eine Prozedur aufgerufen wird, wenn auf die Spaltenbeschriftung der Spalte \`\`date'' geklickt wird, dient \`\`label bind'' wie im folgenden Beispiel:
 
+
+
 ```
     .listbox label bind date <ButtonPress-1> "sortByDate %W"
 ```
+
+
 
 ```
     proc sortByDate {w} {
         # code to sort the contents of the mclistbox named $w
     }
 ```
+
+
 
 ## VORGABEBINDUNGEN
 
@@ -249,6 +280,8 @@ Die Bindungen des mclistbox-Widgets sind dieselben wie bei einem gewöhnlichen L
 **ButtonPress-1** beginnt eine Größenänderung der Spalte, wenn der Zeiger über einem Spaltenkopf und wenige Pixel vom linken oder rechten Rand der Beschriftung entfernt ist. **B1-Motion** ändert die Spalten beiderseits des Zeigers entsprechend der Bewegung des Zeigers. **ButtonRelease-1** beendet die Größenänderung.
 
 Ist über **label bind** eine Bindung auf einer Beschriftung gesetzt und **-resizablecolumns** ist gesetzt, feuert die Bindung nicht, wenn das Ereignis in den wenigen Pixeln am linken und rechten Rand der Beschriftung liegt, in denen eine Größenänderung möglich ist. So lösen eine Beschriftungsbindung und eine Größenänderung nicht denselben Tastendruck aus.
+
+
 
 ## FEHLER
 

@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::odbc
+title: tdbc::odbc
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -20,22 +21,22 @@ Copyright:
  - Copyright (c) 2008 by Kevin B. Kenny.
 ---
 
-# NAME
+# Name
 
 tdbc::odbc - TDBC-ODBC-Brücke
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc::odbc]{.lit} [1.0]{.lit} 
-[tdbc::odbc::connection]{.cmd} [create]{.sub} [db]{.arg} [connectionString]{.arg} [-option value]{.optdot} 
-[tdbc::odbc::connection]{.cmd} [new]{.sub} [connectionString]{.arg} [-option value]{.optdot} 
-[tdbc::odbc::datasources]{.cmd} [-system|-user]{.optlit} 
-[tdbc::odbc::drivers]{.cmd} 
-[tdbc::odbc::datasource]{.cmd} [command]{.arg} [driverName]{.arg} [keyword-value?]{.optdot} 
+[package]{.cmd} [require]{.sub} [tdbc::odbc]{.lit} [1.0]{.lit}
+[tdbc::odbc::connection]{.cmd} [create]{.sub} [db]{.arg} [connectionString]{.arg} [-option value...]{.optarg}
+[tdbc::odbc::connection]{.cmd} [new]{.sub} [connectionString]{.arg} [-option value...]{.optarg}
+[tdbc::odbc::datasources]{.cmd} [-system|-user]{.optlit}
+[tdbc::odbc::drivers]{.cmd}
+[tdbc::odbc::datasource]{.cmd} [command]{.arg} [driverName]{.arg} [keyword-value?...]{.optarg}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
 Der Treiber **tdbc::odbc** stellt eine Datenbankschnittstelle bereit, die Tcl DataBase Connectivity (TDBC) entspricht, und erlaubt einem Tcl-Skript, sich mit jeder SQL-Datenbank zu verbinden, die eine ODBC-Schnittstelle anbietet. Er liegt außerdem als ausgearbeitetes Beispiel dafür vor, wie ein Datenbanktreiber in C geschrieben wird, damit Autoren von Treibern einen Ausgangspunkt für die weitere Entwicklung haben.
 
@@ -54,29 +55,29 @@ Der Befehl **tdbc::odbc::datasource** erlaubt das Konfigurieren benannter Datenq
 **add**
 : Fügt eine Benutzerdatenquelle hinzu. Die Schlüsselwort-Wert-Paare müssen mindestens eine Option **DSN** enthalten, die die Datenquelle benennt.
 
-**add_system**
+**add\_system**
 : Fügt eine Systemdatenquelle hinzu. Die Schlüsselwort-Wert-Paare müssen mindestens eine Option **DSN** enthalten, die die Datenquelle benennt.
 
 **configure**
-: Konfiguriert eine Benutzerdatenquelle. Die Schlüsselwort-Wert-Paare enthalten gewöhnlich eine Option **DSN**, die die Datenquelle benennt. Manche Treiber unterstützen weitere Optionen, etwa die Option **CREATE_DB** des Microsoft-Access-Treibers unter Windows.
+: Konfiguriert eine Benutzerdatenquelle. Die Schlüsselwort-Wert-Paare enthalten gewöhnlich eine Option **DSN**, die die Datenquelle benennt. Manche Treiber unterstützen weitere Optionen, etwa die Option **CREATE\_DB** des Microsoft-Access-Treibers unter Windows.
 
-**configure_system**
+**configure\_system**
 : Konfiguriert eine Systemdatenquelle.
 
 **remove**
 : Entfernt eine Benutzerdatenquelle. Die Schlüsselwort-Wert-Paare müssen eine Option **DSN** enthalten, die die zu entfernende Datenquelle angibt.
 
-**remove_system**
+**remove\_system**
 : Entfernt eine Systemdatenquelle. Die Schlüsselwort-Wert-Paare müssen eine Option **DSN** enthalten, die die zu entfernende Datenquelle angibt.
 
 
-# VERBINDUNGSOPTIONEN
+# Verbindungsoptionen
 
 Der Objektbefehl **tdbc::odbc::connection create** unterstützt die Optionen **-encoding**, **-isolation**, **-readonly** und **-timeout**, die allen TDBC-Treibern gemeinsam sind. Die Option **-encoding** gelingt nur, wenn die verlangte Kodierung dieselbe ist wie die Systemkodierung; **tdbc::odbc** versucht nicht, einem ODBC-Treiber abweichende Kodierungen vorzugeben. (Manche Treiber akzeptieren Kodierungsangaben in der Verbindungszeichenkette.)
 
 Ist zusätzlich Tk im anfordernden Interpreter vorhanden und unterstützt der ODBC-Treibermanager des lokalen Systems eine grafische Benutzeroberfläche, unterstützt der Objektbefehl **tdbc::odbc::connection create** eine Option **-parent**, deren Wert der Pfadname eines Tk-Fensters ist. Ist diese Option angegeben und nennt eine Verbindungszeichenkette nicht alle Angaben, die für die Verbindung zu einer Schnittstelle nötig sind, zeigt der ODBC-Treibermanager einen Dialog an, der die zusätzlich nötigen Angaben erfragt. Der anfordernde Interpreter blockiert, bis der Benutzer den Dialog schließt; dann wird die Verbindung hergestellt.
 
-# BEISPIELE
+# Beispiele
 
 Da ODBC-Verbindungszeichenketten vom Treiber abhängen, ist die Dokumentation, die zum Zusammensetzen nötig ist, oft schwer zu finden. Die folgenden Beispiele arbeiten auf den meisten Windows-Systemen und zeigen zumindest einige nützliche Dinge, die ein Programm tun kann.
 
@@ -95,14 +96,14 @@ append connString {DBQ=} \
 tdbc::odbc::connection create db2 -readonly 1 $connString
 ```
 
-Öffnet eine Verbindung zu einer Microsoft-Access-Datenbankdatei, deren Dateiname in *\$fileName* steht. Die Datenbank wird nur zum Lesen geöffnet. Die entstehende Verbindung heißt „db2“.
+Öffnet eine Verbindung zu einer Microsoft-Access-Datenbankdatei, deren Dateiname in *$fileName* steht. Die Datenbank wird nur zum Lesen geöffnet. Die entstehende Verbindung heißt „db2“.
 
 ```
 tdbc::odbc::connection create db3 \
     "DRIVER=SQLite3;DATABASE=$fileName"
 ```
 
-Öffnet eine Verbindung zu einer SQLite3-Datenbank, deren Name in „\$fileName“ steht.
+Öffnet eine Verbindung zu einer SQLite3-Datenbank, deren Name in „$fileName“ steht.
 
 ```
 tdbc::odbc::datasource add \
@@ -111,7 +112,7 @@ tdbc::odbc::datasource add \
     DBQ=[file native [file normalize $fileName]]
 ```
 
-Erzeugt eine neue Benutzerdatenquelle mit dem Namen „MyTestDatabase“, gebunden an eine Microsoft-Access-Datei, deren Pfadname in „\$fileName“ steht. Eine Verbindung zur Datenquelle entsteht erst, wenn das Programm **tdbc::odbc::connection create** aufruft.
+Erzeugt eine neue Benutzerdatenquelle mit dem Namen „MyTestDatabase“, gebunden an eine Microsoft-Access-Datei, deren Pfadname in „$fileName“ steht. Eine Verbindung zur Datenquelle entsteht erst, wenn das Programm **tdbc::odbc::connection create** aufruft.
 
 ```
 tdbc::odbc::datasource configure \
@@ -120,16 +121,16 @@ tdbc::odbc::datasource configure \
     General
 ```
 
-Erzeugt eine neue, leere Microsoft-Access-Datenbank in der durch „\$fileName“ bezeichneten Datei. Eine Verbindung zur Datenbank entsteht erst, wenn das Programm **tdbc::odbc::connection create** aufruft.
+Erzeugt eine neue, leere Microsoft-Access-Datenbank in der durch „$fileName“ bezeichneten Datei. Eine Verbindung zur Datenbank entsteht erst, wenn das Programm **tdbc::odbc::connection create** aufruft.
 
-# WEITERE VERBINDUNGSMETHODEN
+# Weitere Verbindungsmethoden
 
 Zusätzlich zu den üblichen Methoden des Objekts tdbc::connection(n) unterstützen Verbindungen zu einer ODBC-Datenbank eine weitere Methode:
 
-*\$connection* **evaldirect** *sqlStatement*
-: Diese Methode nimmt den gegebenen treibereigenen SQL-Code *sqlStatement* entgegen und wertet ihn aus, ohne ihn vorzubereiten. Die Anweisung wird nicht in Token zerlegt und darf keine Variablenersetzungen enthalten. Das Auswerten von *sqlStatement* erzeugt eine Ergebnismenge mit null oder mehr Zeilen. Das Ergebnis des Befehls ist eine Liste von Dictionarys mit einem Listenelement je Zeile in der Ergebnismenge (in einem ähnlichen Format wie die Liste, die *\$connection allrows -as dicts* zurückgibt). *Dieser Befehl ist nicht zu empfehlen* für alles, bei dem die üblichen Methoden *prepare* oder *preparecall* richtig arbeiten. Er liegt vor, damit Anweisungen der Datenverwaltungssprache ausgeführt werden können, die die API für vorbereitete Anweisungen des Treibers nicht umsetzt (etwa **CREATE DATABASE** oder **CREATE PROCEDURE**), oder die Zeichen enthalten, die der Tokenizer reserviert.
+*$connection* **evaldirect** *sqlStatement*
+: Diese Methode nimmt den gegebenen treibereigenen SQL-Code *sqlStatement* entgegen und wertet ihn aus, ohne ihn vorzubereiten. Die Anweisung wird nicht in Token zerlegt und darf keine Variablenersetzungen enthalten. Das Auswerten von *sqlStatement* erzeugt eine Ergebnismenge mit null oder mehr Zeilen. Das Ergebnis des Befehls ist eine Liste von Dictionarys mit einem Listenelement je Zeile in der Ergebnismenge (in einem ähnlichen Format wie die Liste, die *$connection allrows -as dicts* zurückgibt). *Dieser Befehl ist nicht zu empfehlen* für alles, bei dem die üblichen Methoden *prepare* oder *preparecall* richtig arbeiten. Er liegt vor, damit Anweisungen der Datenverwaltungssprache ausgeführt werden können, die die API für vorbereitete Anweisungen des Treibers nicht umsetzt (etwa **CREATE DATABASE** oder **CREATE PROCEDURE**), oder die Zeichen enthalten, die der Tokenizer reserviert.
 
 
-# COPYRIGHT
+# Copyright
 
 Copyright (c) 2008 by Kevin B. Kenny.

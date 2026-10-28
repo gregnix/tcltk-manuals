@@ -9,9 +9,9 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-orient](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-orient](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*

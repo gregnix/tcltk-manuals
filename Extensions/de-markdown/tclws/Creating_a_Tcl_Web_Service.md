@@ -1,13 +1,13 @@
 # Einen Tcl-Webdienst erzeugen
 
-## INHALT
+## Inhalt
 
 - [1 Das Paket Webservices Server laden](#das-paket-webservices-server-laden) 
 - [2 Einen Dienst definieren](#einen-dienst-definieren) 
 - [3 Eine Operation definieren (auch eine Dienstprozedur)](#eine-operation-definieren-auch-eine-dienstprozedur) 
 - [4 Komplexe Typen deklarieren](#komplexe-typen-deklarieren) 
 
-## DAS PAKET WEBSERVICES SERVER LADEN
+## Das Paket Webservices Server laden
 
 Das Serverpaket für Webservices wird so geladen:
 
@@ -44,7 +44,7 @@ Wenn die veröffentlichten URLs des Dienstes anders erscheinen sollen, können d
 
 ---
 
-## EINEN DIENST DEFINIEREN
+## Einen Dienst definieren
 
 Der Code, der einen Dienst definiert, steht gewöhnlich in einer oder mehreren Dateien im Verzeichnis custom.
 
@@ -176,7 +176,7 @@ Der Code, der einen Dienst definiert, steht gewöhnlich in einer oder mehreren D
 
 ---
 
-## EINE OPERATION DEFINIEREN (AUCH EINE DIENSTPROZEDUR)
+## Eine Operation definieren (auch eine Dienstprozedur)
 
 **Prozedurname : ::WS::Server::ServiceProc**
 
@@ -231,6 +231,6 @@ darf die folgenden Suffixe enthalten:
 
 ---
 
-## KOMPLEXE TYPEN DEKLARIEREN
+## Komplexe Typen deklarieren
 
 Siehe: [Einen Webdienst-Typ aus Tcl erzeugen](Creating_a_Web_Service_Type.md)

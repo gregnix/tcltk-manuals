@@ -1,9 +1,10 @@
 ---
 CommandName: code
+title: code
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - scope
  - callback
@@ -15,19 +16,19 @@ Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
 
-# NAME
+# Name
 
 itcl::code - den Namespace-Kontext eines Codefragments festhalten
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[itcl::code]{.cmd} [-namespace name]{.optarg} [command]{.arg} [arg arg]{.optdot} 
+[itcl::code]{.cmd} [[-namespace]{.lit} [name]{.arg}]{.optarg} [command]{.arg} [arg arg]{.optdot}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Erzeugt einen geltungsbezogenen Wert für den angegebenen *command* und die zugehörigen Argumente *arg*. Ein geltungsbezogener Wert ist eine Liste mit drei Elementen: dem Schlüsselwort "\\ffC@scope", einem Namespace-Kontext und einer Wert-Zeichenkette. Der Befehl
+Erzeugt einen geltungsbezogenen Wert für den angegebenen *command* und die zugehörigen Argumente *arg*. Ein geltungsbezogener Wert ist eine Liste mit drei Elementen: dem Schlüsselwort "**@scope**", einem Namespace-Kontext und einer Wert-Zeichenkette. Der Befehl
 
 ```
 namespace foo {
@@ -57,7 +58,7 @@ namespace foo {
 }
 ```
 
-Das Codefragment der Schaltfläche \\ffC.b1 ist nur im Kontext des Namespace „foo“ sinnvoll. Außerdem ist die Prozedur „report“ private und nur innerhalb dieses Namespace zugänglich. Der Befehl **code** packt das Codefragment so ein, dass es richtig ausgeführt wird, wenn die Schaltfläche gedrückt wird.
+Das Codefragment der Schaltfläche **.b1** ist nur im Kontext des Namespace „foo“ sinnvoll. Außerdem ist die Prozedur „report“ private und nur innerhalb dieses Namespace zugänglich. Der Befehl **code** packt das Codefragment so ein, dass es richtig ausgeführt wird, wenn die Schaltfläche gedrückt wird.
 
 Außerdem bewahrt der Befehl **code** die Argumente auf der Befehlszeile unversehrt. Dadurch ist er ein natürlicher Ersatz für den Befehl **list**, mit dem Tcl-Codefragmente oft formatiert werden. Mit anderen Worten, statt den Befehl **list** so zu verwenden:
 

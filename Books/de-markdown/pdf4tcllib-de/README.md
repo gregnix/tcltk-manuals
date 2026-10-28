@@ -20,8 +20,10 @@ wiederkehren.
 
 ## Beispiele
 
-Jedes Beispiel liegt als Skript in `../beispiele/`. Ob Buch und Skripte
-übereinstimmen und die Skripte laufen, prüft:
+Jedes Beispiel liegt als Skript in `../beispiele/`. Die Serie
+`serie-pdf4tcllib` misst Einheiten, Satzspiegel, Umbruch, Tabelle
+und Balken. Ob Buch und Skripte übereinstimmen und die Skripte laufen,
+prüft:
 
 ```bash
 tclsh beispiele/pruefe-beispiele.tcl -run

@@ -1,9 +1,10 @@
 ---
 CommandName: delete
+title: delete
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - namespace
  - proc
@@ -20,7 +21,7 @@ itcl::delete - delete things in the interpreter
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::delete]{.cmd} [option]{.arg} [arg arg]{.optdot} 
+[itcl::delete]{.cmd} [option]{.arg} [arg arg]{.optdot}
 :::
 
 # Description
@@ -30,22 +31,20 @@ The **delete** command is used to delete things in the interpreter. It is implem
 The *option* argument determines what action is carried out by the command.  The legal *options* (which may be abbreviated) are:
 
 **delete class** *name* ?*name...*?
-: Deletes one or more **\[incr**\\ **Tcl\]** classes called *name*. This deletes all objects in the class, and all derived classes as well.
+: Deletes one or more **\[incr Tcl\]** classes called *name*. This deletes all objects in the class, and all derived classes as well.
 
-
-If an error is encountered while destructing an object, it will prevent the destruction of the class and any remaining objects. To destroy the entire class without regard for errors, use the "**delete namespace**" command.
+    If an error is encountered while destructing an object, it will prevent the destruction of the class and any remaining objects. To destroy the entire class without regard for errors, use the "**delete namespace**" command.
 
 **delete object** *name* ?*name...*?
-: Deletes one or more **\[incr**\\ **Tcl\]** objects called *name*. An object is deleted by invoking all destructors in its class hierarchy, in order from most- to least-specific.  If all destructors are successful, data associated with the object is deleted and the *name* is removed as a command from the interpreter.
+: Deletes one or more **\[incr Tcl\]** objects called *name*. An object is deleted by invoking all destructors in its class hierarchy, in order from most- to least-specific.  If all destructors are successful, data associated with the object is deleted and the *name* is removed as a command from the interpreter.
 
+    If the access command for an object resides in another namespace, then its qualified name can be used:
 
-If the access command for an object resides in another namespace, then its qualified name can be used:
+    ```
+    itcl::delete object foo::bar::x
+    ```
 
-```
-itcl::delete object foo::bar::x
-```
-
-If an error is encountered while destructing an object, the **delete** command is aborted and the object remains alive. To destroy an object without regard for errors, use the "**rename**" command to destroy the object access command.
+    If an error is encountered while destructing an object, the **delete** command is aborted and the object remains alive. To destroy an object without regard for errors, use the "**rename**" command to destroy the object access command.
 
 **delete namespace** *name* ?*name...*?
 : Deletes one or more namespaces called *name*.  This deletes all commands and variables in the namespace, and deletes all child namespaces as well.  When a namespace is deleted, it is automatically removed from the import lists of all other namespaces.

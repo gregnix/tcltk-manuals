@@ -136,7 +136,9 @@ When **wish** is invoked interactively it normally prompts for each command with
 
 When a zipfile is concatenated to the end of **wish**, on startup the contents of the zip archive will be mounted under the virtual file system **//zipfs:/**. If a top level directory [tk\_library][tkvars] is present in the zip archive, it will become the directory loaded as env(TK\_LIBRARY). If a file named **main.tcl** is present in the top level directory of the zip archive, it will be sourced instead of the shell's normal command line handing.
 
-Only one zipfile can be concatenated to the end of executable image (tclsh, or wish). However, if multiple zipfiles are concatenated, only the last one is used.  This filesystem is read-only. Files cannot be added or modified within this mounted file system.  See zipfs(n) for complete details.
+Only one zipfile can be concatenated to the end of executable image (tclsh, or wish). However, if multiple zipfiles are concatenated, only the last one is used.
+
+This filesystem is read-only. Files cannot be added or modified within this mounted file system.  See zipfs(n) for complete details.
 
 
 [binary]: ../tcl/binary.md

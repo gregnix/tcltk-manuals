@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::resultset
+title: tdbc::resultset
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -32,25 +33,24 @@ tdbc::resultset - TDBC result set object
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 
-[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg} 
-[set]{.cmd} [resultset]{.arg} [\[\$stmt]{.lit} [execute]{.lit} [args...?\]]{.optarg} 
+[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg}
+[set]{.cmd} [resultset]{.arg} [\[$stmt]{.lit} [execute]{.lit} [args...?\]]{.optarg}
 
-[\$resultset]{.ins} [columns]{.sub} 
-[\$resultset]{.ins} [rowcount]{.sub} 
-[\$resultset]{.ins} [nextrow]{.sub} [-as lists|dicts]{.optarg} [--]{.optlit} [varname]{.arg} 
-[\$resultset]{.ins} [nextlist]{.sub} [varname]{.arg} 
-[\$resultset]{.ins} [nextdict]{.sub} [varname]{.arg} 
-[\$resultset]{.ins} [nextresults]{.sub} 
-[\$resultset]{.ins} [foreach]{.sub} [-as lists|dicts]{.optarg} [-columnsvariable name]{.optarg} [--]{.optlit} [varname]{.arg} [script]{.arg} 
-[\$resultset]{.ins} [close]{.sub} 
+[$resultset]{.ins} [columns]{.sub}
+[$resultset]{.ins} [rowcount]{.sub}
+[$resultset]{.ins} [nextrow]{.sub} [[-as]{.lit} lists|dicts]{.optarg} [--]{.optlit} [varname]{.arg}
+[$resultset]{.ins} [nextlist]{.sub} [varname]{.arg}
+[$resultset]{.ins} [nextdict]{.sub} [varname]{.arg}
+[$resultset]{.ins} [nextresults]{.sub}
+[$resultset]{.ins} [allrows]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit}
+[$resultset]{.ins} [foreach]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [varname]{.arg} [script]{.arg}
+[$resultset]{.ins} [close]{.sub}
 :::
-
-.in 14 *\$resultset* **allrows** ?**-as lists|dicts**? ?**-columnsvariable** *name*? ?**--**?
 
 # Description
 

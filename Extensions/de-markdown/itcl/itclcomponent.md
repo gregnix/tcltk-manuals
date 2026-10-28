@@ -1,9 +1,10 @@
 ---
 CommandName: component
+title: component
 ManualSection: n
 Version: 4.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - component
  - widget
@@ -13,27 +14,27 @@ Copyright:
  - Copyright (c) 2008 Arnulf Wiedemann
 ---
 
-# NAME
+# Name
 
 itcl::component - Komponenten für extendedclass, widget oder widgetadaptor definieren
 
 Teile dieser Beschreibung sind von der Tcl-Erweiterung \[snit\] „entliehen“, weil die Funktion weitgehend gleich ist.
 
-# WARNUNG
+# Warnung
 
 Das ist neue Funktionalität in \[incr Tcl\], bei der sich die API noch ändern kann!!
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[public]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
-[protected]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
-[private]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit} 
+[public]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
+[protected]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
+[private]{.cmd} [component]{.sub} [comp]{.arg} [-inherit]{.optlit}
 :::
 
-# BESCHREIBUNG
+# Beschreibung
 
-Der Befehl **component** wird innerhalb einer Definition extendedclass/widget/widgetadaptor von **\[incr**\\ **Tcl\]** verwendet, um Komponenten zu definieren.
+Der Befehl **component** wird innerhalb einer Definition extendedclass/widget/widgetadaptor von **\[incr Tcl\]** verwendet, um Komponenten zu definieren.
 
 Deklariert ausdrücklich eine Komponente namens comp und definiert automatisch die Instanzvariable der Komponente.
 

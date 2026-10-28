@@ -9,44 +9,44 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-activebackground](options.md) |
-|   [-activeforeground](options.md) |
-|   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
-|   [-disabledforeground](options.md) |
-|   [-foreground oder -fg](options.md) |
-|   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |
-|   [-highlightthickness](options.md) |
-|   [-relief](options.md) |
-|   [-repeatdelay](options.md) |
-|   [-repeatinterval](options.md) |
-|   [-takefocus](options.md) |
-|   [-troughcolor](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-activebackground](options.md) |
+    |   [-activeforeground](options.md) |
+    |   [-background oder -bg](options.md) |   [-borderwidth oder -bd](options.md) |
+    |   [-disabledforeground](options.md) |
+    |   [-foreground oder -fg](options.md) |
+    |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |
+    |   [-highlightthickness](options.md) |
+    |   [-relief](options.md) |
+    |   [-repeatdelay](options.md) |
+    |   [-repeatinterval](options.md) |
+    |   [-takefocus](options.md) |
+    |   [-troughcolor](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -armcommand |
-|   -arrowbd |
-|   -arrowrelief |
-|   -clean |
-|   -command |
-|   -dir |
-|   -disarmcommand |
-|   -height |
-|   -helptext |
-|   -helptype |
-|   -helpvar |
-|   -ipadx |
-|   -ipady |
-|   -state |
-|   -type |
-|   -width |
+    |   |
+    | --- |
+    |   -armcommand |
+    |   -arrowbd |
+    |   -arrowrelief |
+    |   -clean |
+    |   -command |
+    |   -dir |
+    |   -disarmcommand |
+    |   -height |
+    |   -helptext |
+    |   -helptype |
+    |   -helpvar |
+    |   -ipadx |
+    |   -ipady |
+    |   -state |
+    |   -type |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -122,14 +122,13 @@ WIDGET-SPEZIFISCHE OPTIONEN
 **-state**
 : Legt einen von drei Zuständen für den ArrowButton fest: **normal**, **active** oder **disabled**.
 
-Wenn der **type** des ArrowButton *button* ist:
-: Im Zustand normal wird der ArrowButton mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit den Optionen **activeforeground** und **activebackground** angezeigt. Im Zustand disabled bestimmen die Optionen **disabledforeground** und **background**, wie der ArrowButton angezeigt wird. 
+    Wenn der **type** des ArrowButton *button* ist:
+    : Im Zustand normal wird der ArrowButton mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit den Optionen **activeforeground** und **activebackground** angezeigt. Im Zustand disabled bestimmen die Optionen **disabledforeground** und **background**, wie der ArrowButton angezeigt wird. 
 
-Wenn der **type** des ArrowButton *arrow* ist:
-: Nur die Farben des Pfeils ändern sich. Der Hintergrund des ArrowButton wird immer mit der Option **troughcolor** angezeigt. Im Zustand normal wird der ArrowButton mit der Option **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit der Option **activebackground** angezeigt. Im Zustand disabled wird der ArrowButton mit einer dunklen Schraffur angezeigt. 
+    Wenn der **type** des ArrowButton *arrow* ist:
+    : Nur die Farben des Pfeils ändern sich. Der Hintergrund des ArrowButton wird immer mit der Option **troughcolor** angezeigt. Im Zustand normal wird der ArrowButton mit der Option **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit der Option **activebackground** angezeigt. Im Zustand disabled wird der ArrowButton mit einer dunklen Schraffur angezeigt. 
 
-
-Der Zustand disabled bedeutet, dass der ArrowButton unempfindlich sein soll: die Vorgabebindungen weigern sich, das Widget zu aktivieren, und ignorieren das Drücken der Maustasten.
+    Der Zustand disabled bedeutet, dass der ArrowButton unempfindlich sein soll: die Vorgabebindungen weigern sich, das Widget zu aktivieren, und ignorieren das Drücken der Maustasten.
 
 
 **-type**
@@ -155,4 +154,4 @@ WIDGET-BEFEHL
 *pathName* **invoke** 
 : Wenn der **state** des ArrowButton nicht disabled ist, ruft das die Befehle der Schaltfläche auf. Der ArrowButton wird mit der aktiven Farbe und dem Relief sunken neu angezeigt, und **armcommand** wird aufgerufen. Danach wird der ArrowButton mit der normalen Farbe und seinem festgelegten Relief neu angezeigt, und **disarmcommand** und danach **command** werden aufgerufen.
 
-**invoke** wird aufgerufen, wenn der ArrowButton den Eingabefokus hat und die Leertaste gedrückt wird.
+    **invoke** wird aufgerufen, wenn der ArrowButton den Eingabefokus hat und die Leertaste gedrückt wird.

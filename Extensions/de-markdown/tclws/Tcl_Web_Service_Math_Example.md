@@ -1,6 +1,6 @@
 # Mathematikbeispiel eines Tcl-Webdienstes
 
-## SERVERSEITE
+## Serverseite
 
 Das Folgende steht in httpdthread.tcl:
 
@@ -78,7 +78,7 @@ Das Folgende steht in eine Datei im Verzeichnis custom:
   
 
 
-## CLIENTSEITE
+## Clientseite
 
 ```
     package require WS::Client

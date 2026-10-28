@@ -136,7 +136,9 @@ Interaktives **wish** fordert jeden Befehl mit „**%** “ an. Die Variablen **
 
 Wird eine Zip-Datei an das Ende von **wish** angehängt, wird ihr Inhalt beim Start unter dem virtuellen Dateisystem **//zipfs:/** eingehängt. Liegt im Archiv ein Verzeichnis [tk\_library][tkvars] auf oberster Ebene, wird es als env(TK\_LIBRARY) geladen. Liegt im obersten Verzeichnis des Archivs eine Datei **main.tcl**, wird sie geladen statt der üblichen Befehlszeilenverarbeitung der Shell.
 
-An das Ende eines Programmbilds (tclsh oder wish) kann nur eine Zip-Datei angehängt werden. Sind mehrere angehängt, gilt nur die letzte. Dieses Dateisystem ist nur lesbar. Dateien darin lassen sich nicht hinzufügen oder ändern. Einzelheiten stehen in zipfs(n).
+An das Ende eines Programmbilds (tclsh oder wish) kann nur eine Zip-Datei angehängt werden. Sind mehrere angehängt, gilt nur die letzte.
+
+Dieses Dateisystem ist nur lesbar. Dateien darin lassen sich nicht hinzufügen oder ändern. Einzelheiten stehen in zipfs(n).
 
 
 [binary]: ../tcl/binary.md

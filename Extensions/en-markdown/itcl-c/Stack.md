@@ -1,9 +1,10 @@
 ---
 CommandName: Itcl_InitStack
+title: Itcl_InitStack
 ManualSection: 3
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl] Library Procedures"
+TclDescription: "[incr Tcl] Library Procedures"
 Keywords:
  - stack
 Copyright:
@@ -12,47 +13,43 @@ Copyright:
 
 # Name
 
-Itcl_InitStack, Itcl_DeleteStack, Itcl_PushStack, Itcl_PopStack, Itcl_PeekStack, Itcl_GetStackValue, Itcl_GetStackSize - Manipulate an Itcl stack object.
+Itcl\_InitStack, Itcl\_DeleteStack, Itcl\_PushStack, Itcl\_PopStack, Itcl\_PeekStack, Itcl\_GetStackValue, Itcl\_GetStackSize - Manipulate an Itcl stack object.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<itcl.h>]{.lit}
+**#include <itcl.h>**
 
-int
-[Itcl_InitStack]{.cmd}([stack]{.arg})
+[int]{.ret} [Itcl\_InitStack]{.ccmd} [stack]{.cargs}
 
-int
-[Itcl_DeleteStack]{.cmd}([stack]{.arg})
+[int]{.ret} [Itcl\_DeleteStack]{.ccmd} [stack]{.cargs}
 
-int
-[Itcl_PushStack]{.cmd}([cdata]{.arg}, [stack]{.arg})
+[int]{.ret} [Itcl\_PushStack]{.ccmd} [cdata, stack]{.cargs}
 
-void \*
-[Itcl_PopStack]{.cmd}([stack]{.arg})
+[void \*]{.ret} [Itcl\_PopStack]{.ccmd} [stack]{.cargs}
 
-void \*
-[Itcl_PeekStack]{.cmd}([stack]{.arg})
+[void \*]{.ret} [Itcl\_PeekStack]{.ccmd} [stack]{.cargs}
 
-void \*
-[Itcl_GetStackValue]{.cmd}([stack]{.arg}, [pos]{.arg})
+[void \*]{.ret} [Itcl\_GetStackValue]{.ccmd} [stack, pos]{.cargs}
 
-int
-[Itcl_GetStackSize]{.cmd}([stack]{.arg})
+[int]{.ret} [Itcl\_GetStackSize]{.ccmd} [stack]{.cargs}
 :::
 
 # Arguments
 
-Itcl_Stack *\*stack* (in)
+::: {.arguments} :::
+
+[\*stack]{.carg .in type="Itcl_Stack"}
 : Stack info structure.
 
-int *pos* (in)
+[pos]{.carg .in type="int"}
 : position in stack order from the top.
 
-void *\*clientData* (in)
+[\*clientData]{.carg .in type="void"}
 : Arbitrary one-word value to save in the stack.
 
+:::
 
 # Description
 
-**Itcl_InitStack** initializes a stack structure and **Itcl_DeleteStack** deletes it. **Itcl_PushStack** pushes the *cdata* value onto the stack. **Itcl_PopStack** removes and returns the top most *cdata* value. **Itcl_PeekStack** returns the top most value, but does not remove it. **Itcl_GetStackValue** gets a value at some index within the stack.  Index "0" is the first value pushed onto the stack. **Itcl_GetStackSize** returns the count of entries on the stack.
+**Itcl\_InitStack** initializes a stack structure and **Itcl\_DeleteStack** deletes it. **Itcl\_PushStack** pushes the *cdata* value onto the stack. **Itcl\_PopStack** removes and returns the top most *cdata* value. **Itcl\_PeekStack** returns the top most value, but does not remove it. **Itcl\_GetStackValue** gets a value at some index within the stack.  Index "0" is the first value pushed onto the stack. **Itcl\_GetStackSize** returns the count of entries on the stack.

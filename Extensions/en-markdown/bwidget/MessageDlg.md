@@ -9,32 +9,32 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-anchor](options.md) |   [-font](options.md) |
-|   [-foreground or -fg](options.md) |   [-padx](options.md) |
-|   [-pady](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-anchor](options.md) |   [-font](options.md) |
+    |   [-foreground or -fg](options.md) |   [-padx](options.md) |
+    |   [-pady](options.md) |
 
 
 *OPTIONS from Dialog*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -cancel |
-|   -default |   -parent |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -cancel |
+    |   -default |   -parent |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -aspect |   -buttons |
-|   -buttonwidth |   -icon |
-|   -justify |   -message |
-|   -title |   -type |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -aspect |   -buttons |
+    |   -buttonwidth |   -icon |
+    |   -justify |   -message |
+    |   -title |   -type |
+    |   -width |
 
 
 ---
@@ -74,22 +74,22 @@ WIDGET-SPECIFIC OPTIONS
 **-title**
 : Specifies a string to display as the title of the message box. If the value is empty (the default), a default title will be set corresponding to the **icon** option. The default associated title is in english, and can be modified to set it in another language by specifying the resource:
 
-```
-    *MessageDlg.nameTitle:   value
-```
+    ```
+        *MessageDlg.nameTitle:   value
+    ```
 
-or the equivalent tcl command:
+    or the equivalent tcl command:
 
-```
-    option add *MessageDlg.nameTitle value
-```
+    ```
+        option add *MessageDlg.nameTitle value
+    ```
 
-where *name* is the name of an icon as defined in the **icon** option.   
-For example, for french language, you can specify for a warning dialog:
+    where *name* is the name of an icon as defined in the **icon** option.   
+    For example, for french language, you can specify for a warning dialog:
 
-```
-    option add *MessageDlg.warningTitle  "Attention"
-```
+    ```
+        option add *MessageDlg.warningTitle  "Attention"
+    ```
 
 
 **-type**
@@ -97,47 +97,46 @@ For example, for french language, you can specify for a warning dialog:
 
 :  
 
- **abortretryignore** 
-: Displays three buttons whose symbolic names are **abort**, **retry** and **ignore**.
+     **abortretryignore** 
+    : Displays three buttons whose symbolic names are **abort**, **retry** and **ignore**.
 
- 
+         
 
-ok
+        ok
 
-Displays one button whose symbolic name is **ok**.
+        Displays one button whose symbolic name is **ok**.
 
- 
+         
 
-okcancel
+        okcancel
 
-Displays two buttons whose symbolic names are **ok** and **cancel**.
+        Displays two buttons whose symbolic names are **ok** and **cancel**.
 
- 
+         
 
-retrycancel
+        retrycancel
 
-Displays two buttons whose symbolic names are **retry** and **cancel**.
+        Displays two buttons whose symbolic names are **retry** and **cancel**.
 
- 
+         
 
-yesno
+        yesno
 
-Displays two buttons whose symbolic names are **yes** and **no**.
+        Displays two buttons whose symbolic names are **yes** and **no**.
 
- 
+         
 
-yesnocancel
+        yesnocancel
 
-Displays three buttons whose symbolic names are **yes**, **no** and **cancel**.
+        Displays three buttons whose symbolic names are **yes**, **no** and **cancel**.
 
- 
+         
 
-user
+        user
 
-Displays buttons of **-buttons** option.
+        Displays buttons of **-buttons** option.
 
- 
-
+         
 
 
 **-width**

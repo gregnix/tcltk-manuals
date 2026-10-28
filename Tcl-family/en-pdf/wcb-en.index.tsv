@@ -1,6 +1,25 @@
 # pdf	wcb-en.pdf
 # label	Wcb
 # title	Wcb
+A selset Callback for a listbox Widget	7
+An activate Callback for a listbox Widget	9
+Before-insert Callbacks for text and ctext Widgets	25
 index	3
+Seven Callbacks for a text Widget	11
+Some before-insert Callbacks for entry Widgets	6
+Some Common Problems	3
+The Wcb Package	4
 wcb	3
+wcb::callback	17
+wcb::cancel	20
+wcb::canceled	21
+wcb::cbappend	20
+wcb::cbprepend	20
+wcb::changeEntryText	22
+wcb::extend	21
+wcb::pathname	22
+wcb::postDeleteEntryText	23
+wcb::postInsertEntryLen	23
+wcb::postInsertEntryText	23
+wcb::replace	21
 wcbRef	16

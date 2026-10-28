@@ -211,7 +211,7 @@ ancillary chunks such as `gAMA`, `pHYs` or `tEXt`. The decoder rejects
 (`BITDEPTH`), as well as interlacing (`INTERLACE`). It skips ancillary
 chunks other than `tRNS` after the CRC check.
 
-Run time, measured on an Intel Xeon at 2.8 GHz, Tcl 9.0.4 and
+Run time (measured) on an Intel Xeon at 2.8 GHz, Tcl 9.0.4 and
 8.6.14 (values for 8.6 in parentheses):
 
 | Operation | Image | Time |

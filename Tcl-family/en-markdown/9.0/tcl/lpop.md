@@ -43,7 +43,7 @@ lpop - Get and remove an element in a list
 # Synopsis
 
 ::: {.synopsis} :::
-[lpop]{.cmd} [varName]{.arg} ?index ...?
+[lpop]{.cmd} [varName]{.arg} [index]{.optdot}
 :::
 
 # Description

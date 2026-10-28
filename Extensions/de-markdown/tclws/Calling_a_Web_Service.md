@@ -2,7 +2,7 @@
 
 ---
 
-## INHALT
+## Inhalt
 
 - [1 Überblick](#berblick) 
 - [2 Das Paket Webservices Client laden](#das-paket-webservices-client-laden) 
@@ -20,7 +20,7 @@
 
  
 
-## ÜBERBLICK 
+## Überblick 
 
 Das Paket Webservices Client bietet mehrere Wege, festzulegen, welche Operationen ein entfernter Webdienst-Server bereitstellt und wie diese Operationen aufgerufen werden. Es enthält außerdem mehrere Wege, eine Operation aufzurufen. 
 
@@ -47,7 +47,7 @@ Dieses Paket verwendet das Paket **log** aus **TclLib**. Insbesondere werden die
 - info -- HTTP-Aufrufe einschließlich des XML, mit denen Operationen aufgerufen werden, und die empfangenen Antworten. *Eingeführt in 2.2.8.* 
 - debug -- ausführliche interne Angaben. Das sollte nur verwendet werden, wenn die Interna des Pakets TclWs im Code nachvollzogen werden sollen. 
 
-## DAS PAKET WEBSERVICES CLIENT LADEN 
+## Das Paket Webservices Client laden 
 
 Das Serverpaket für Webservices wird so geladen: 
 
@@ -59,7 +59,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ---
 
-## WSDL EINES ENTFERNTEN WEBDIENST-SERVERS ABFRAGEN UND ZERLEGEN 
+## WSDL eines entfernten Webdienst-Servers abfragen und zerlegen 
 
 **Prozedurname : ::WS::Client::GetAndParseWsdl** 
 
@@ -111,7 +111,7 @@ Mit *serviceAlias*="SE" und *serviceNumber*=2 entstünde der Dienst "SE", der "s
 
 ---
 
-## EINE GESPEICHERTE WSDL ZERLEGEN 
+## Eine gespeicherte WSDL zerlegen 
 
 **Prozedurname : ::WS::Client::ParseWsdl** 
 
@@ -156,7 +156,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## EINE VORZERLEGTE WSDL LADEN 
+## Eine vorzerlegte WSDL laden 
 
 **Prozedurname : ::WS::Client::LoadParsedWsdl** 
 
@@ -189,7 +189,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## EINEN REST-DIENST VON HAND DEFINIEREN 
+## Einen REST-Dienst von Hand definieren 
 
 ### Dienstdefinition
 
@@ -245,7 +245,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## TRANSFORMATIONEN DEFINIEREN 
+## Transformationen definieren 
 
 **Prozedurname : ::WS::Client::SetServiceTransforms** 
 
@@ -278,7 +278,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## SYNCHRONER AUFRUF, DER EIN DICTIONARY-OBJEKT ZURÜCKGIBT 
+## Synchroner Aufruf, der ein Dictionary-Objekt zurückgibt 
 
 **Prozedurname : ::WS::Client::DoCall** 
 
@@ -320,7 +320,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## ASYNCHRONER AUFRUF MIT GETRENNTEN RÜCKRUFFUNKTIONEN FÜR ERFOLG UND FEHLER 
+## Asynchroner Aufruf mit getrennten Rückruffunktionen für Erfolg und Fehler 
 
 **Prozedurname : ::WS::Client::DoAsyncCall** 
 
@@ -367,7 +367,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## ERZEUGEN VON STUB-PROZEDUREN IN TCL FÜR SYNCHRONE AUFRUFE 
+## Erzeugen von Stub-Prozeduren in Tcl für synchrone Aufrufe 
 
 **Prozedurname : ::WS::Client::CreateStubs** 
 
@@ -400,7 +400,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## SYNCHRONER AUFRUF, DER DAS ROHE XML ZURÜCKGIBT 
+## Synchroner Aufruf, der das rohe XML zurückgibt 
 
 **Prozedurname : ::WS::Client::DoRawCall** 
 
@@ -440,7 +440,7 @@ Ein Beispiel für *serviceAlias* und *serviceNumber* steht in [dem Kapitel oben]
 
 ---
 
-## EIN VORLAGEN-DICTIONARY ERZEUGEN
+## Ein Vorlagen-Dictionary erzeugen
 
 **Prozedurname : ::WS::Utils::GenerateTemplateDict** 
 
@@ -466,7 +466,7 @@ Voraussetzungen : Der Dienst muss definiert worden sein.
 
 ---
 
-## EINEN DIENST KONFIGURIEREN 
+## Einen Dienst konfigurieren 
 
 Es gibt zwei Prozeduren, um einen Dienst zu konfigurieren:
 
@@ -555,7 +555,7 @@ Im Folgenden werden zuerst die beiden Zugriffsroutinen beschrieben. Danach folgt
   genOutAttr
   ```
 
-  erzeugt Attribute an ausgehenden Tags, Einzelheiten stehen [hier](Using_Options.md#genoutattr-generate-attributes-on-outbound-tags)
+  erzeugt Attribute an ausgehenden Tags, Einzelheiten stehen [hier](Using_Options.md#genoutattr-attribute-an-ausgehenden-tags-erzeugen)
 
 - 
 
@@ -624,7 +624,7 @@ Im Folgenden werden zuerst die beiden Zugriffsroutinen beschrieben. Danach folgt
   parseInAttr
   ```
 
-  zerlegt Attribute an eingehenden Tags, Einzelheiten stehen [hier](Using_Options.md#parseinattr-parse-attributes-on-inbound-tags)
+  zerlegt Attribute an eingehenden Tags, Einzelheiten stehen [hier](Using_Options.md#parseinattr-attribute-an-eingehenden-tags-zerlegen)
 
 - 
 
@@ -632,7 +632,7 @@ Im Folgenden werden zuerst die beiden Zugriffsroutinen beschrieben. Danach folgt
   queryTimeout
   ```
 
-  Zeitlimit für jede Netzabfrage in ms. Vorgabewert: 60000 (1 Minute). Das [Hilfspaket](Using_Options.md#querytimeout-set-http-s-query-timeout) hat eine Option mit derselben Funktion, die verwendet wird, wenn kein Kontext einer Aufrufoption vorliegt.
+  Zeitlimit für jede Netzabfrage in ms. Vorgabewert: 60000 (1 Minute). Das [Hilfspaket](Using_Options.md#querytimeout-zeitlimit-f-r-http-s-abfragen-setzen) hat eine Option mit derselben Funktion, die verwendet wird, wenn kein Kontext einer Aufrufoption vorliegt.
 
 - 
 
@@ -725,7 +725,7 @@ Im Folgenden werden zuerst die beiden Zugriffsroutinen beschrieben. Danach folgt
   UseNS (default: empty string)
   ```
 
-  Siehe [hier](Using_Options.md#usens-put-namespaces-on-field-tags)
+  Siehe [hier](Using_Options.md#usens-namespaces-an-feld-tags-setzen)
 
 - 
 
@@ -757,7 +757,7 @@ Ausnahmebedingungen : Keine
 Voraussetzungen : Der Dienst muss definiert worden sein. 
 ```
 
-## ABSTRAKTE TYPEN IN KONKRETE TYPEN UMWANDELN 
+## Abstrakte Typen in konkrete Typen umwandeln 
 
  Wenn *parseInAttr* und *genOutAttr* eingeschaltet sind, behandelt das System halbautomatisch die Umwandlung von Elementen, die als Typ deklariert sind, der ein abstrakter Typ ist, in den konkreten Typ, der in einer Nachricht tatsächlich verwendet wird, und zurück. Bei einem Element, das als Typ deklariert ist, der ein abstrakter Typ ist, gibt der Wert des Schlüssels **::type** im Dictionary den konkreten Typ an, der tatsächlich verwendet werden soll (oder bei einer Antwortnachricht den konkreten Typ, der tatsächlich verwendet wurde). 
 

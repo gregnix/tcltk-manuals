@@ -9,31 +9,31 @@
 *OPTIONS from ButtonBox*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -homogeneous |
-|   -padx |   -pady |
-|   -spacing |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -homogeneous |
+    |   -padx |   -pady |
+    |   -spacing |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -anchor |
-|   -bitmap |
-|   -cancel |
-|   -default |
-|   -geometry |
-|   -image |
-|   -modal |
-|   -parent |
-|   -place |
-|   -separator |
-|   -side |
-|   -title |
-|   -transient |
+    |   |
+    | --- |
+    |   -anchor |
+    |   -bitmap |
+    |   -cancel |
+    |   -default |
+    |   -geometry |
+    |   -image |
+    |   -modal |
+    |   -parent |
+    |   -place |
+    |   -separator |
+    |   -side |
+    |   -title |
+    |   -transient |
 
 
 *WIDGET COMMAND*
@@ -154,7 +154,7 @@ WIDGET COMMAND
 *pathName* **draw** ?*focus*? 
 : This command draw the Dialog, and set grab to it following **modal** option. If **modal** option is set to *none*, the command returns immediatly an empty string. In all other case, the command returns when Dialog::**enddialog** is called or when Dialog is destroyed. The return value is the result argument of Dialog::**enddialog** or -1 if it is destroyed.
 
- By default, the focus is set to the default button referenced by **default** option, or to the toplevel of Dialog if no default button has been set. If *focus* is present, it must be a pathname, or an index to a button. Initial focus is set on this pathname or corresponding button. 
+     By default, the focus is set to the default button referenced by **default** option, or to the toplevel of Dialog if no default button has been set. If *focus* is present, it must be a pathname, or an index to a button. Initial focus is set on this pathname or corresponding button. 
 
 
 *pathName* **enddialog** *result* 

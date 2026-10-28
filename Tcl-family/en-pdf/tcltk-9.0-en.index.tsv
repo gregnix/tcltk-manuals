@@ -14,7 +14,7 @@ alias	202,349,626
 anonymous function	16
 antialiasing	744
 API	329,421
-appearance	788,814,826
+appearance	789,814,826
 append	15,215,293,507
 Apple event	744
 application	96,383,535,696,759
@@ -73,7 +73,7 @@ checkbutton	501
 child	315
 child interpreter	202,349,626
 children	754
-choice	778
+choice	779
 chooseColor	505
 chooseDirectory	505
 class	12,61,63,80,98,261,291,364,650,754
@@ -149,7 +149,7 @@ encoding	118
 end of file	42,138
 end of line	138
 ensemble	274,329,421
-entry	537,698,778,781,812
+entry	537,698,779,781,812
 environment	402,748
 eof	121
 equal	372
@@ -159,8 +159,8 @@ evaluate	122
 event	164,430,435,453,465,545,579
 events	42,553
 exception	40,121,345,408,424
-exec	123
-execute	123
+exec	124
+execute	124
 exist	160
 exit	130
 exported	274
@@ -168,7 +168,7 @@ expr	131
 expression	131,255
 false	189
 fblocked	137
-fconfigure	138
+fconfigure	137
 fcopy	138
 file	141,160,293,306,370
 file selection dialog	566
@@ -223,7 +223,7 @@ idle	430
 idle callback	13
 idna	188
 if	189
-image	466,577,645,665,707,788
+image	466,577,645,665,707,789
 incr	190
 increment	190
 increments	762
@@ -265,7 +265,7 @@ linear search	240
 link	226
 linsert	228
 list	79,153,215,216,217,224,228,229,230,234,236,237,238,239,240,243,245,247,370
-list box	778
+list box	779
 listbox	619
 llength	230
 lmap	230
@@ -349,8 +349,8 @@ performance measurement	410
 permissions	293
 photo	665
 pid	306
-pipeline	123,293,306
-pixmap theme	788
+pipeline	124,293,306
+pixmap theme	789
 pkgMkIndex	307
 place	676
 platform	310,311
@@ -387,7 +387,7 @@ read	138,329,363,416
 readable	42
 record	164
 recursion	382
-redirection	123
+redirection	124
 refchan	329
 reflection	329
 regexp	336
@@ -416,7 +416,7 @@ scan	22,357
 screen	754
 script	8,122,370,409,410
 script file	383,759
-scrollbar	689,807
+scrollbar	689,808
 search	17,240
 security	696
 security policy	87,165
@@ -451,9 +451,9 @@ stat	141
 state	828
 stdio	42
 string	154,240,318,336,370,372
-style	788,814,826
+style	789,814,826
 sublist	236
-subprocess	123,402
+subprocess	124,402
 subst	378
 substitution	8,154,341,378
 switch	380,650
@@ -475,9 +475,9 @@ test	386,441
 test harness	386
 test suite	386
 text	261,680,709,748
-text box	778
+text box	779
 text field	781,812
-theme	788,814,826
+theme	789,814,826
 throw	408
 time	13,64,409,410
 timerate	410
@@ -502,20 +502,20 @@ true	189
 try	424
 ttk_button	775
 ttk_checkbutton	777
-ttk_combobox	778
+ttk_combobox	779
 ttk_entry	781
 ttk_frame	787
-ttk_image	788
+ttk_image	789
 ttk_intro	790
 ttk_label	792
 ttk_labelframe	793
 ttk_menubutton	795
 ttk_notebook	796
-ttk_panedwindow	800
+ttk_panedwindow	801
 ttk_progressbar	803
 ttk_radiobutton	804
 ttk_scale	806
-ttk_scrollbar	807
+ttk_scrollbar	808
 ttk_separator	810
 ttk_sizegrip	811
 ttk_spinbox	812
@@ -548,7 +548,7 @@ vwait	435
 wait	315,435,751
 while	441
 whitespace	218
-widget	471,474,501,537,564,614,616,619,627,639,642,660,681,685,689,698,709,751,775,777,778,781,787,793,795,804,806,807,810,811,812
+widget	471,474,501,537,564,614,616,619,627,639,642,660,681,685,689,698,709,751,775,777,779,781,787,793,795,804,806,808,810,811,812
 width	577,645,676,754
 window	467,529,535,569,751,754
 window manager	553,762

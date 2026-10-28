@@ -1,31 +1,10 @@
 ---
 CommandName: LIBEXPECT
+title: LIBEXPECT
 ManualSection: 3
 Version: 12 December 1991
-TclPart: 
-TclDescription: 
-Links:
- - An alternative to this library is the expect program. expect interprets scripts written in a high-level language which direct the dialogue. In addition
- - the user can take control and interact directly when desired. If it is not absolutely necessary to write your own C program
- - "it is much easier to use expect to perform the entire interaction. It is described further in the following references: \"expect: Curing Those Uncontrollable Fits of Interactivity\" by Don Libes"
- - Proceedings of the Summer 1990 USENIX Conference
- - Anaheim
- - California
- - June 11-15
- - 1990. "Using expect to Automate System Administration Tasks" by Don Libes
- - Proceedings of the 1990 USENIX Large Installation Systems Administration Conference
- - Colorado Springs
- - Colorado
- - October 17-19
- - 1990. expect(1)
- - alarm(3)
- - read(2)
- - write(2)
- - fdopen(3)
- - execve(2)
- - execvp(3)
- - longjmp(3)
- - pty(4). There are several examples C programs in the test directory of expect's source distribution which use the expect library
+TclPart:
+TclDescription:
 Copyright:
 ---
 
@@ -40,17 +19,17 @@ This library contains functions that allow Expect to be used as a Tcl extension 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [expect_tcl.h]{.lit}
-[Expect_Init]{.cmd}(interp);
+**#include expect\_tcl.h**
+[Expect\_Init]{.ccmd} [interp]{.cargs}
 
-cc files... -lexpect5.20 -ltcl7.5 -lm
+[cc]{.cmd} [files...]{.sub} [-lexpect5.20]{.lit} [-ltcl7.5]{.lit} [-lm]{.lit}
 :::
 
 Note: library versions may differ in the actual release.
 
-The Expect_Init function adds expect commands to the named interpreter.  It avoids overwriting commands that already exist, however aliases beginning with "exp\_" are always created for expect commands.  So for example, "send" can be used as "exp_send".
+The Expect\_Init function adds expect commands to the named interpreter.  It avoids overwriting commands that already exist, however aliases beginning with "exp\_" are always created for expect commands.  So for example, "send" can be used as "exp\_send".
 
-Generally, you should only call Expect commands via Tcl_Eval. Certain auxiliary functions may be called directly.  They are summarized below.  They may be useful in constructing your own main.  Look at the file exp_main_exp.c in the Expect distribution as a prototype main.  Another prototype is tclAppInit.c in the Tcl source distribution.  A prototype for working with Tk is in exp_main_tk.c in the Expect distribution.
+Generally, you should only call Expect commands via Tcl\_Eval. Certain auxiliary functions may be called directly.  They are summarized below.  They may be useful in constructing your own main.  Look at the file exp\_main\_exp.c in the Expect distribution as a prototype main.  Another prototype is tclAppInit.c in the Tcl source distribution.  A prototype for working with Tk is in exp\_main\_tk.c in the Expect distribution.
 
 ```
 int exp_cmdlinecmds;
@@ -71,55 +50,41 @@ void	exp_exit_handlers(Tcl_Interp *);
 void	exp_error(Tcl_Interp,char *,...);
 ```
 
-**exp_cmdlinecmds** is 1 if Expect has been invoked with commands on the program command-line (using "-c" for example). **exp_interactive** is 1 if Expect has been invoked with the -i flag or if no commands or script is being invoked. **exp_cmdfile** is a stream from which Expect will read commands. **exp_cmdfilename** is the name of a file which Expect will open and read commands from. **exp_tcl_debugger_available** is 1 if the debugger has been armed.
+**exp\_cmdlinecmds** is 1 if Expect has been invoked with commands on the program command-line (using "-c" for example). **exp\_interactive** is 1 if Expect has been invoked with the -i flag or if no commands or script is being invoked. **exp\_cmdfile** is a stream from which Expect will read commands. **exp\_cmdfilename** is the name of a file which Expect will open and read commands from. **exp\_tcl\_debugger\_available** is 1 if the debugger has been armed.
 
-**exp_parse_argv** reads the representation of the command line. Based on what is found, any of the other variables listed here are initialized appropriately. **exp_interpreter** interactively prompts the user for commands and evaluates them. **exp_interpret_cmdfile** reads the given stream and evaluates any commands found. **exp_interpret_cmdfilename** opens the named file and evaluates any commands found. **exp_interpret_rcfiles** reads and evalutes the .rc files.  If my_rc is zero, then ~/.expectrc is skipped.  If sys_rc is zero, then the system-wide expectrc file is skipped. **exp_cook** returns a static buffer containing the argument reproduced with newlines replaced by carriage-return linefeed sequences. The primary purpose of this is to allow messages to be produced without worrying about whether the terminal is in raw mode or cooked mode. If length is zero, it is computed via strlen. **exp_error is a printf-like function that writes the result** to interp->result.
+**exp\_parse\_argv** reads the representation of the command line. Based on what is found, any of the other variables listed here are initialized appropriately. **exp\_interpreter** interactively prompts the user for commands and evaluates them. **exp\_interpret\_cmdfile** reads the given stream and evaluates any commands found. **exp\_interpret\_cmdfilename** opens the named file and evaluates any commands found. **exp\_interpret\_rcfiles** reads and evalutes the .rc files.  If my\_rc is zero, then ~/.expectrc is skipped.  If sys\_rc is zero, then the system-wide expectrc file is skipped. **exp\_cook** returns a static buffer containing the argument reproduced with newlines replaced by carriage-return linefeed sequences. The primary purpose of this is to allow messages to be produced without worrying about whether the terminal is in raw mode or cooked mode. If length is zero, it is computed via strlen. **exp\_error is a printf-like function that writes the result** to interp->result.
 
 # Synopsis
 
 ::: {.synopsis} :::
-[#include]{.cmd} [\<expect.h>]{.lit}
+**#include <expect.h>**
 
-int
-[exp_spawnl]{.cmd}(file, arg0 \[, arg1, ..., argn\] (char \*)0);
-char \*file;
-char \*arg0, \*arg1, ... \*argn;
+[int]{.ret} [exp\_spawnl]{.ccmd} [file, arg0 \[, arg1, ..., argn\] (char \*)0]{.cargs}
 
-int
-[exp_spawnv]{.cmd}(file,argv);
-char \*file, \*argv\[ \];
+[int]{.ret} [exp\_spawnv]{.ccmd} [file,argv]{.cargs}
 
-int
-[exp_spawnfd]{.cmd}(fd);
-int fd;
+[int]{.ret} [exp\_spawnfd]{.ccmd} [fd]{.cargs}
 
-FILE \*
-[exp_popen]{.cmd}(command);
-char \*command;
+[FILE \*]{.ret} [exp\_popen]{.ccmd} [command]{.cargs}
 
-extern int exp_pid;
-extern int exp_ttyinit;
-extern int exp_ttycopy;
-extern int exp_console;
-extern char \*exp_stty_init;
-extern void (\*exp_close_in_child)();
-extern void (\*exp_child_exec_prelude)();
-extern void [exp_close_tcl_files]{.cmd}();
+[extern void (\*exp\_child\_exec\_prelude)(); extern void]{.ret} [exp\_close\_tcl\_files]{.ccmd} []{.cargs}
 
-cc files... -lexpect -ltcl -lm
+[cc]{.cmd} [files...]{.sub} [-lexpect]{.lit} [-ltcl]{.lit} [-lm]{.lit}
 :::
+
+char \*file; char \*arg0, \*arg1, ... \*argn; char \*file, \*argv\[ \]; int fd; char \*command; extern int exp\_pid; extern int exp\_ttyinit; extern int exp\_ttycopy; extern int exp\_console; extern char \*exp\_stty\_init; extern void (\*exp\_close\_in\_child)();
 
 # Description
 
-**exp_spawnl** and **exp_spawnv** fork a new process so that its stdin, stdout, and stderr can be written and read by the current process. *file* is the name of a file to be executed.  The *arg* pointers are null-terminated strings.  Following the style of execve(), *arg0* (or *argv\[0\]*) is customarily a duplicate of the name of the file.
+**exp\_spawnl** and **exp\_spawnv** fork a new process so that its stdin, stdout, and stderr can be written and read by the current process. *file* is the name of a file to be executed.  The *arg* pointers are null-terminated strings.  Following the style of execve(), *arg0* (or *argv\[0\]*) is customarily a duplicate of the name of the file.
 
-Four interfaces are available, **exp_spawnl** is useful when the number of arguments is known at compile time. **exp_spawnv** is useful when the number of arguments is not known at compile time. **exp_spawnfd** is useful when an open file descriptor is already available as a source. **exp_popen** is explained later on.
+Four interfaces are available, **exp\_spawnl** is useful when the number of arguments is known at compile time. **exp\_spawnv** is useful when the number of arguments is not known at compile time. **exp\_spawnfd** is useful when an open file descriptor is already available as a source. **exp\_popen** is explained later on.
 
 If the process is successfully created, a file descriptor is returned which corresponds to the process's stdin, stdout and stderr. A stream may be associated with the file descriptor by using fdopen(). (This should almost certainly be followed by setbuf() to unbuffer the I/O.)
 
 Closing the file descriptor will typically be detected by the process as an EOF.  Once such a process exits, it should be waited upon (via wait) in order to free up the kernel process slot.  (Some systems allow you to avoid this if you ignore the SIGCHLD signal).
 
-**exp_popen** is yet another interface, styled after popen().  It takes a Bourne shell command line, and returns a stream that corresponds to the process's stdin, stdout and stderr.  The actual implementation of **exp_popen** below demonstrates **exp_spawnl**.
+**exp\_popen** is yet another interface, styled after popen().  It takes a Bourne shell command line, and returns a stream that corresponds to the process's stdin, stdout and stderr.  The actual implementation of **exp\_popen** below demonstrates **exp\_spawnl**.
 
 ```
 FILE *
@@ -137,23 +102,23 @@ char *program;
 }
 ```
 
-After a process is started, the variable **exp_pid** is set to the process-id of the new process.  The variable **exp_pty_slave_name** is set to the name of the slave side of the pty.
+After a process is started, the variable **exp\_pid** is set to the process-id of the new process.  The variable **exp\_pty\_slave\_name** is set to the name of the slave side of the pty.
 
-The spawn functions uses a pty to communicate with the process.  By default, the pty is initialized the same way as the user's tty (if possible, i.e., if the environment has a controlling terminal.)  This initialization can be skipped by setting exp_ttycopy to 0.
+The spawn functions uses a pty to communicate with the process.  By default, the pty is initialized the same way as the user's tty (if possible, i.e., if the environment has a controlling terminal.)  This initialization can be skipped by setting exp\_ttycopy to 0.
 
-The pty is further initialized to some system wide defaults if exp_ttyinit is non-zero.  The default is generally comparable to "stty sane".
+The pty is further initialized to some system wide defaults if exp\_ttyinit is non-zero.  The default is generally comparable to "stty sane".
 
-The tty setting can be further modified by setting the variable **exp_stty_init**. This variable is interpreted in the style of stty arguments.  For example, exp_stty_init = "sane"; repeats the default initialization.
+The tty setting can be further modified by setting the variable **exp\_stty\_init**. This variable is interpreted in the style of stty arguments.  For example, exp\_stty\_init = "sane"; repeats the default initialization.
 
-On some systems, it is possible to redirect console output to ptys. If this is supported, you can force the next spawn to obtain the console output by setting the variable **exp_console** to 1.
+On some systems, it is possible to redirect console output to ptys. If this is supported, you can force the next spawn to obtain the console output by setting the variable **exp\_console** to 1.
 
 Between the time a process is started and the new program is given control, the spawn functions can clean up the environment by closing file descriptors.  By default, the only file descriptors closed are ones internal to Expect and any marked "close-on-exec".
 
-If needed, you can close additional file descriptors by creating an appropriate function and assigning it to exp_close_in_child. The function will be called after the fork and before the exec. (This also modifies the behavior of the spawn command in Expect.)
+If needed, you can close additional file descriptors by creating an appropriate function and assigning it to exp\_close\_in\_child. The function will be called after the fork and before the exec. (This also modifies the behavior of the spawn command in Expect.)
 
-If you are also using Tcl, it may be convenient to use the function exp_close_tcl_files which closes all files between the default standard file descriptors and the highest descriptor known to Tcl. (Expect does this.)
+If you are also using Tcl, it may be convenient to use the function exp\_close\_tcl\_files which closes all files between the default standard file descriptors and the highest descriptor known to Tcl. (Expect does this.)
 
-The function exp_child_exec_prelude is the last function called prior to the actual exec in the child.  You can redefine this for effects such as manipulating the uid or the signals.
+The function exp\_child\_exec\_prelude is the last function called prior to the actual exec in the child.  You can redefine this for effects such as manipulating the uid or the signals.
 
 # If you want to allocate your own pty
 
@@ -162,13 +127,13 @@ extern int exp_autoallocpty;
 extern int exp_pty[2];
 ```
 
-The spawn functions use a pty to communicate with the process.  By default, a pty is automatically allocated each time a process is spawned. If you want to allocate ptys yourself, before calling one of the spawn functions, set **exp_autoallocpty** to 0, **exp_pty\[0\]** to the master pty file descriptor and **exp_pty\[1\]** to the slave pty file descriptor. The expect library will not do any pty initializations (e.g., exp_stty_init will not be used). The slave pty file descriptor will be automatically closed when the process is spawned.  After the process is started, all further communication takes place with the master pty file descriptor.
+The spawn functions use a pty to communicate with the process.  By default, a pty is automatically allocated each time a process is spawned. If you want to allocate ptys yourself, before calling one of the spawn functions, set **exp\_autoallocpty** to 0, **exp\_pty\[0\]** to the master pty file descriptor and **exp\_pty\[1\]** to the slave pty file descriptor. The expect library will not do any pty initializations (e.g., exp\_stty\_init will not be used). The slave pty file descriptor will be automatically closed when the process is spawned.  After the process is started, all further communication takes place with the master pty file descriptor.
 
-**exp_spawnl** and **exp_spawnv** duplicate the shell's actions in searching for an executable file in a list of directories.  The directory list is obtained from the environment.
+**exp\_spawnl** and **exp\_spawnv** duplicate the shell's actions in searching for an executable file in a list of directories.  The directory list is obtained from the environment.
 
 # Expect processing
 
-While it is possible to use read() to read information from a process spawned by **exp_spawnl** or **exp_spawnv**, more convenient functions are provided.  They are as follows:
+While it is possible to use read() to read information from a process spawned by **exp\_spawnl** or **exp\_spawnv**, more convenient functions are provided.  They are as follows:
 
 ```
 int
@@ -223,27 +188,27 @@ extern int exp_full_buffer;
 extern int exp_remove_nulls;
 ```
 
-The functions wait until the output from a process matches one of the patterns, a specified time period has passed, or an EOF is seen.
+**The functions wait until the output from a process matches one of the** patterns, a specified time period has passed, or an EOF is seen.
 
 The first argument to each function is either a file descriptor or a stream. Successive sets of arguments describe patterns and associated integer values to return when the pattern matches.
 
-The type argument is one of four values.  exp_end indicates that no more patterns appear. exp_glob indicates that the pattern is a glob-style string pattern. exp_exact indicates that the pattern is an exact string. exp_regexp indicates that the pattern is a regexp-style string pattern. exp_compiled indicates that the pattern is a regexp-style string pattern, and that its compiled form is also provided. exp_null indicates that the pattern is a null (for debugging purposes, a string pattern must also follow).
+The type argument is one of four values.  exp\_end indicates that no more patterns appear. exp\_glob indicates that the pattern is a glob-style string pattern. exp\_exact indicates that the pattern is an exact string. exp\_regexp indicates that the pattern is a regexp-style string pattern. exp\_compiled indicates that the pattern is a regexp-style string pattern, and that its compiled form is also provided. exp\_null indicates that the pattern is a null (for debugging purposes, a string pattern must also follow).
 
-If the compiled form is not provided with the functions **exp_expectl** and **exp_fexpectl**, any pattern compilation done internally is thrown away after the function returns.  The functions **exp_expectv** and **exp_fexpectv** will automatically compile patterns and will not throw them away. Instead, they must be discarded by the user, by calling free on each pattern.  It is only necessary to discard them, the last time the cases are used.
+If the compiled form is not provided with the functions **exp\_expectl** and **exp\_fexpectl**, any pattern compilation done internally is thrown away after the function returns.  The functions **exp\_expectv** and **exp\_fexpectv** will automatically compile patterns and will not throw them away. Instead, they must be discarded by the user, by calling free on each pattern.  It is only necessary to discard them, the last time the cases are used.
 
 Regexp subpatterns matched are stored in the compiled regexp. Assuming "re" contains a compiled regexp, the matched string can be found in re->startp\[0\].  The match substrings (according to the parentheses) in the original pattern can be found in re->startp\[1\], re->startp\[2\], and so on, up to re->startp\[9\].  The corresponding strings ends are re->endp\[x\] where x is that same index as for the string start.
 
-The type exp_null matches if a null appears in the input.  The variable exp_remove_nulls must be set to 0 to prevent nulls from being automatically stripped.  By default, exp_remove_nulls is set to 1 and nulls are automatically stripped.
+The type exp\_null matches if a null appears in the input.  The variable exp\_remove\_nulls must be set to 0 to prevent nulls from being automatically stripped.  By default, exp\_remove\_nulls is set to 1 and nulls are automatically stripped.
 
-**exp_expectv** and **exp_fexpectv** are useful when the number of patterns is not known in advance.  In this case, the sets are provided in an array. The end of the array is denoted by a struct exp_case with type exp_end. For the rest of this discussion, these functions will be referred to generically as *expect.*
+**exp\_expectv** and **exp\_fexpectv** are useful when the number of patterns is not known in advance.  In this case, the sets are provided in an array. The end of the array is denoted by a struct exp\_case with type exp\_end. For the rest of this discussion, these functions will be referred to generically as *expect.*
 
-If a pattern matches, then the corresponding integer value is returned. Values need not be unique, however they should be positive to avoid being mistaken for EXP_EOF, EXP_TIMEOUT, or EXP_FULLBUFFER. Upon EOF or timeout, the value **EXP_EOF** or **EXP_TIMEOUT** is returned.  The default timeout period is 10 seconds but may be changed by setting the variable **exp_timeout**. A value of -1 disables a timeout from occurring. A value of 0 causes the expect function to return immediately (i.e., poll) after one read(). However it must be preceded by a function such as select, poll, or an event manager callback to guarantee that there is data to be read.
+If a pattern matches, then the corresponding integer value is returned. Values need not be unique, however they should be positive to avoid being mistaken for EXP\_EOF, EXP\_TIMEOUT, or EXP\_FULLBUFFER. Upon EOF or timeout, the value **EXP\_EOF** or **EXP\_TIMEOUT** is returned.  The default timeout period is 10 seconds but may be changed by setting the variable **exp\_timeout**. A value of -1 disables a timeout from occurring. A value of 0 causes the expect function to return immediately (i.e., poll) after one read(). However it must be preceded by a function such as select, poll, or  an event manager callback to guarantee that there is data to be read.
 
-If the variable exp_full_buffer is 1, then EXP_FULLBUFFER is returned if exp_buffer fills with no pattern having matched.
+If the variable exp\_full\_buffer is 1, then EXP\_FULLBUFFER is returned if exp\_buffer fills with no pattern having matched.
 
-When the expect function returns, **exp_buffer** points to the buffer of characters that was being considered for matching. **exp_buffer_end** points to one past the last character in exp_buffer. If a match occurred, **exp_match** points into **exp_buffer** where the match began. **exp_match_end** points to one character past where the match ended.
+When the expect function returns, **exp\_buffer** points to the buffer of characters that was being considered for matching. **exp\_buffer\_end** points to one past the last character in exp\_buffer. If a match occurred, **exp\_match** points into **exp\_buffer** where the match began. **exp\_match\_end** points to one character past where the match ended.
 
-Each time new input arrives, it is compared to each pattern in the order they are listed.  Thus, you may test for absence of a match by making the last pattern something guaranteed to appear, such as a prompt.  In situations where there is no prompt, you must check for **EXP_TIMEOUT** (just like you would if you were interacting manually).  More philosophy and strategies on specifying **expect** patterns can be found in the documentation on the **expect** program itself.  See SEE ALSO below.
+Each time new input arrives, it is compared to each pattern in the order they are listed.  Thus, you may test for absence of a match by making the last pattern something guaranteed to appear, such as a prompt.  In situations where there is no prompt, you must check for **EXP\_TIMEOUT** (just like you would if you were interacting manually).  More philosophy and strategies on specifying **expect** patterns can be found in the documentation on the **expect** program itself.  See SEE ALSO below.
 
 Patterns are the usual C-shell-style regular expressions.  For example, the following fragment looks for a successful login, such as from a telnet dialogue.
 
@@ -265,7 +230,7 @@ Patterns are the usual C-shell-style regular expressions.  For example, the foll
 	}
 ```
 
-Asterisks (as in the example above) are a useful shorthand for omitting line-termination characters and other detail. Patterns must match the entire output of the current process (since the previous read on the descriptor or stream). More than 2000 bytes of output can force earlier bytes to be "forgotten".  This may be changed by setting the variable **exp_match_max**. Note that excessively large values can slow down the pattern matcher.
+Asterisks (as in the example above) are a useful shorthand for omitting line-termination characters and other detail. Patterns must match the entire output of the current process (since the previous read on the descriptor or stream).   More than 2000 bytes of output can force earlier bytes to be "forgotten".  This may be changed by setting the variable **exp\_match\_max**. Note that excessively large values can slow down the pattern matcher.
 
 # Running in the background
 
@@ -276,7 +241,7 @@ int exp_disconnect();
 
 It is possible to move a process into the background after it has begun running.  A typical use for this is to read passwords and then go into the background to sleep before using the passwords to do real work.
 
-To move a process into the background, fork, call exp_disconnect() in the child process and exit() in the parent process.  This disassociates your process from the controlling terminal.  If you wish to move a process into the background in a different way, you must set the variable exp_disconnected to 1.  This allows processes spawned after this point to be started correctly.
+To move a process into the background, fork, call exp\_disconnect() in the child process and exit() in the parent process.  This disassociates your process from the controlling terminal.  If you wish to move a process into the background in a different way, you must set the variable exp\_disconnected to 1.  This allows processes spawned after this point to be started correctly.
 
 # Multiplexing
 
@@ -295,7 +260,7 @@ int enable;
 
 Pty trapping is normally done automatically by the expect functions. However, if you want to issue an ioctl, for example, directly on the slave device, you should temporary disable trapping.
 
-Pty trapping can be controlled with exp_slave_control.  The first argument is the file descriptor corresponding to the spawned process. The second argument is a 0 if trapping is to be disabled and 1 if it is to be enabled.
+Pty trapping can be controlled with exp\_slave\_control.  The first argument is the file descriptor corresponding to the spawned process. The second argument is a 0 if trapping is to be disabled and 1 if it is to be enabled.
 
 # Errors
 
@@ -312,7 +277,7 @@ extern jmp_buf exp_readenv;
 
 **expect** uses alarm() to timeout, thus if you generate alarms during **expect**, it will timeout prematurely.
 
-Internally, **expect** calls read() which can be interrupted by signals.  If you define signal handlers, you can choose to restart or abort **expect**'s internal read.  The variable, **exp_reading**, is true if (and only if) **expect**'s read has been interrupted.  longjmp(exp_readenv,EXP_ABORT) will abort the read.  longjmp(exp_readenv,EXP_RESTART) will restart the read.
+Internally, **expect** calls read() which can be interrupted by signals.  If you define signal handlers, you can choose to restart or abort **expect**'s internal read.  The variable, **exp\_reading**, is true if (and only if) **expect**'s read has been interrupted.  longjmp(exp\_readenv,EXP\_ABORT) will abort the read.  longjmp(exp\_readenv,EXP\_RESTART) will restart the read.
 
 # Logging
 
@@ -322,7 +287,7 @@ extern int exp_logfile_all
 extern FILE *exp_logfile;
 ```
 
-If **exp_loguser** is nonzero, **expect** sends any output from the spawned process to stdout.  Since interactive programs typically echo their input, this usually suffices to show both sides of the conversation.  If **exp_logfile** is also nonzero, this same output is written to the stream defined by **exp_logfile**. If **exp_logfile_all** is non-zero, **exp_logfile** is written regardless of the value of **exp_loguser**.
+If **exp\_loguser** is nonzero, **expect** sends any output from the spawned process to stdout.  Since interactive programs typically echo their input, this usually suffices to show both sides of the conversation.  If **exp\_logfile** is also nonzero, this same output is written to the stream defined by  **exp\_logfile**. If  **exp\_logfile\_all** is non-zero, **exp\_logfile** is written regardless of the value of  **exp\_loguser**.
 
 # Debugging
 
@@ -337,9 +302,9 @@ extern FILE *exp_debugfile;
 
 While expect dialogues seem very intuitive, trying to codify them in a program can reveal many surprises in a program's interface.  Therefore a variety of debugging aids are available.  They are controlled by the above variables, all 0 by default.
 
-Debugging information internal to **expect** is sent to stderr when **exp_is_debugging** is non-zero.  The debugging information includes every character received, and every attempt made to match the current input against the patterns.  In addition, non-printable characters are translated to a printable form.  For example, a control-C appears as a caret followed by a C.  If **exp_logfile** is non-zero, this information is also written to that stream.
+Debugging information internal to **expect** is sent to stderr when **exp\_is\_debugging** is non-zero.  The debugging information includes every character received, and every attempt made to match the current input against the patterns.  In addition, non-printable characters are translated to a printable form.  For example, a control-C appears as a caret followed by a C.  If  **exp\_logfile** is non-zero, this information is also written to that stream.
 
-If **exp_debugfile** is non-zero, all normal and debugging information is written to that stream, regardless of the value of **exp_is_debugging**.
+If  **exp\_debugfile** is non-zero, all normal and debugging information is written to that stream, regardless of the value of  **exp\_is\_debugging**.
 
 # Caveats
 
@@ -347,15 +312,27 @@ The stream versions of the **expect** functions are much slower than the file de
 
 You can actually get the best of both worlds, writing with the usual stream functions and reading with the file descriptor versions of **expect** as long as you don't attempt to intermix other stream input functions (e.g., fgetc). To do this, pass fileno(stream) as the file descriptor each time. Fortunately, there is little reason to use anything but the **expect** functions when reading from interactive programs.
 
-There is no matching exp_pclose to exp_popen (unlike popen and pclose). It only takes two functions to close down a connection (fclose() followed by waiting on the pid), but it is not uncommon to separate these two actions by large time intervals, so the function seems of little value.
+There is no matching exp\_pclose to exp\_popen (unlike popen and pclose). It only takes two functions to close down a connection (fclose() followed by waiting on the pid), but it is not uncommon to separate these two actions by large time intervals, so the function seems of little value.
 
-If you are running on a Cray running Unicos (all I know for sure from experience), you must run your compiled program as root or setuid.  The problem is that the Cray only allows root processes to open ptys. You should observe as much precautions as possible:  If you don't need permissions, setuid(0) only immediately before calling one of the spawn functions and immediately set it back afterwards.
+If you are running on a Cray running Unicos (all I know for sure from experience), you must run your compiled program as root or setuid.  The problem is that the Cray only allows root processes to open ptys.  You should observe as much precautions as possible:  If you don't need permissions, setuid(0) only immediately before calling one of the spawn functions and immediately set it back afterwards.
 
 Normally, **spawn** takes little time to execute.  If you notice spawn taking a significant amount of time, it is probably encountering ptys that are wedged.  A number of tests are run on ptys to avoid entanglements with errant processes.  (These take 10 seconds per wedged pty.)  Running expect with the -d option will show if **expect** is encountering many ptys in odd states.  If you cannot kill the processes to which these ptys are attached, your only recourse may be to reboot.
 
 # Bugs
 
-The **exp_fexpect** functions don't work at all under HP-UX - it appears to be a bug in getc. Follow the advice (above) about using the **exp_expect** functions (which doesn't need to call getc).  If you fix the problem (before I do - please check the latest release) let me know.
+The **exp\_fexpect** functions don't work at all under HP-UX - it appears to be a bug in getc. Follow the advice (above) about using the **exp\_expect** functions (which doesn't need to call getc).  If you fix the problem (before I do - please check the latest release) let me know.
+
+# See also
+
+An alternative to this library is the **expect** program. **expect** interprets scripts written in a high-level language which direct the dialogue. In addition, the user can take control and interact directly when desired. If it is not absolutely necessary to write your own C program, it is much easier to use **expect** to perform the entire interaction. It is described further in the following references:
+
+*"expect: Curing Those Uncontrollable Fits of Interactivity"* by Don Libes, Proceedings of the Summer 1990 USENIX Conference, Anaheim, California, June 11-15, 1990.
+
+*"Using expect to Automate System Administration Tasks"* by Don Libes, Proceedings of the 1990 USENIX Large Installation Systems Administration Conference, Colorado Springs, Colorado, October 17-19, 1990.
+
+expect(1), alarm(3), read(2), write(2), fdopen(3), execve(2), execvp(3), longjmp(3), pty(4).
+
+There are several examples C programs in the test directory of **expect**'s source distribution which use the expect library.
 
 # Author
 

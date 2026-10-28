@@ -10,14 +10,14 @@ access mode	286
 add	185
 after	13
 alert	696
-alias	196,340,613
+alias	196,340,614
 anonymous function	15
 antialiasing	722
 API	321,409
-appearance	766,792,804
+appearance	766,792,805
 append	15,209,286,493
 Apple event	722
-application	93,372,520,685,737
+application	93,372,521,685,737
 application name	720
 apply	15
 architecture	302,303
@@ -31,8 +31,8 @@ atom	731
 attributes	136
 auto-exec	211
 auto-load	211,298,299
-auto-loading	340,613
-auto_mkindex	340,613
+auto-loading	340,614
+auto_mkindex	340,614
 background	307
 background error	20,726
 backslash	8
@@ -45,17 +45,17 @@ binary	21
 binary code	225,415
 binary search	233
 bind	356,442,565
-binding	442,454,530,565
+binding	442,454,531,565
 bindtags	454
 bisque	648
-bitmap	455,521
+bitmap	455,522
 blocking	40,133
 boolean	126,147,184,429
 break	34,337
 build-info	35
 buildinfo	35
-busy	456
-button	460,752,754,772,782
+busy	457
+button	460,753,754,772,782
 bytecode	390
 call	280,352,371
 callback	36,697
@@ -64,19 +64,19 @@ canvas	464,668
 case conversion	362
 catch	38,337
 cd	39
-cell	557
+cell	558
 chan	40
 channel	40,133,321,356,409
 character	362
 check	754
 checkbutton	487
 child	307
-child interpreter	196,340,613
+child interpreter	196,340,614
 children	731
-choice	755
+choice	756
 chooseColor	491
 chooseDirectory	492
-class	12,59,62,77,95,254,284,355,637,731
+class	12,59,62,77,95,254,284,355,638,731
 class variable	62
 classvariable	62
 cleanup	412
@@ -88,7 +88,7 @@ close	75
 color	491,495,648,654
 color selection	491
 colors	495
-command	8,186,220,248,268,336,404,752
+command	8,186,220,248,268,336,404,753
 command substitution	367
 comment	8
 compare	126,362
@@ -101,12 +101,12 @@ configurable	77
 configuration	77
 configure	806
 connection	356
-console	514
+console	515
 const	82
 constant	82
-container	664,765,770
-content	664
-context	419,420
+container	665,765,771
+content	665
+context	419,421
 continue	83,337
 conversion specifier	149,348
 cookie	84
@@ -120,22 +120,22 @@ ctype	362
 current directory	144
 cursor	517
 cursors	517
-database	634
+database	635
 date	63
 dde	93,685
 debug	253
 decompress	435
-default	752
-define	95,530
+default	753
+define	95,531
 definition	95
 deflate	435
 deiconify	740
 delay	13
 delete	336
 delete files	136
-destroy	520
+destroy	521
 detach	307
-dialog	491,492,521,547
+dialog	491,492,522,547
 dict	108
 dictionary	108
 directory	136,492
@@ -149,14 +149,14 @@ encoding	113
 end of file	40,133
 end of line	133
 ensemble	268,321,409
-entry	522,687,755,758,789
+entry	523,687,756,758,790
 environment	390,726
 eof	116
 equal	362
-error	38,116,337,390,397,412,413
+error	38,116,337,390,397,412,414
 eval	117
 evaluate	117
-event	157,418,424,442,454,530,565
+event	157,418,424,442,454,531,565
 events	40,539
 exception	38,116,337,397,412
 exec	119
@@ -171,7 +171,7 @@ fblocked	132
 fconfigure	132
 fcopy	133
 file	136,154,286,299,360
-file selection dialog	552
+file selection dialog	553
 fileevent	144
 filename	144
 filesystem	430
@@ -182,7 +182,7 @@ flush	147,418
 focus	539,541
 focus model	740
 focusNext	541
-font	541,547
+font	542,547
 font chooser	547
 font panel	547
 font selection	547
@@ -191,26 +191,26 @@ for	147
 foreach	148,224
 format	21,149,493,682
 fpclassify	153
-frame	420,550,765,770
+frame	421,550,765,771
 fuzzy comparison	126
 generator	88
 geometry	731,740
 geometry management	649
-geometry manager	557,643,664
-getOpenFile	552
+geometry manager	558,644,665
+getOpenFile	553
 gets	154
 glob	154
-global	157,420,422
-grab	555
+global	157,421,422
+grab	556
 graphics	668
-grid	557,740
+grid	558,740
 group	740
-groupbox	770
-grow box	788
+groupbox	771
+grow box	789
 gzip	435
-handle	530
+handle	531
 handler	418,682
-height	563,632,664,731
+height	564,633,665,731
 history	157
 host	356
 http	159
@@ -223,7 +223,7 @@ idle	418
 idle callback	13
 idna	183
 if	184
-image	455,563,632,654,697,766
+image	455,564,633,654,697,766
 incr	185
 increment	185
 increments	740
@@ -234,48 +234,48 @@ information	186,731
 input	40
 insert	222
 integer value	126,362
-interactive	514
+interactive	515
 internal	268
 internationalization	254
 internet	84,159,183
 interp	196
-interpreter	186,372,514,737
+interpreter	186,372,515,737
 interpreters	731
 introspection	186,352
 iterate	108
 iteration	83,147,148,224
 join	76,208
 keyboard	539
-keyboard events	456,555
+keyboard events	457,556
 keyboard traversal	541
 keysym	565
 keysyms	565
 l10n	254
-label	600,770
-labelframe	602
+label	601,771
+labelframe	603
 lambda	15
 lappend	209
 lassign	209
 ledit	210
 length	223
-level	186,419,420
+level	186,419,421
 library	211
 lindex	218
 linear search	233
 link	220
 linsert	222
 list	76,148,208,209,210,218,222,223,224,228,229,230,231,233,236,238,240,361
-list box	755
-listbox	605
+list box	756
+listbox	606
 llength	223
 lmap	224
-load	225,340,613
-loadTk	613
+load	225,340,614
+loadTk	614
 localization	254
-location	557,643,664
+location	558,644,665
 lookup	108
 loop	34,83,147,148,224,429
-lower	614
+lower	615
 lpop	228
 lrange	229
 lremove	230
@@ -292,55 +292,55 @@ match	233,310,328,333,362,369
 mathfunc	243
 mathop	248
 memory	253
-menu	615,667,772
+menu	615,668,772
 menubutton	627
 message	254,629
-message box	631
-messageBox	631
+message box	632
+messageBox	632
 metaclass	12,59,355
 method	95,220,266,280
 method chain	280
 method visibility	266
-modal	521
+modal	522
 modules	400
 move files	136
 msgcat	254
 multiple	209
 my	266
-name	93,136,637,685
-namespace	82,157,186,268,336,419,420,422
+name	93,136,638,685
+namespace	82,157,186,268,336,419,421,422
 network address	356
 next	280
 non-blocking	40,286
-non-existent command	413
+non-existent command	414
 nonblocking	133
 notify	696
 NSImage	722
-nsimage	632
+nsimage	633
 object	12,36,59,77,87,95,186,220,254,266,284,352,355
-obscure	614,673
+obscure	615,673
 offset	40
 open	286
 operating system	302,303
 operator	248
-option	495,517,634,754,782,806
-option menu	636
-optionMenu	636
-options	637
+option	495,517,635,754,782,806
+option menu	637
+optionMenu	637
+options	638
 order	240
 output	40,668
-output channels	514
+output channels	515
 own	682
-pack	557,643
+pack	558,644
 package	294,298,299,400
 packagens	298
-packer	643
+packer	644
 palette	648
-pane	773
+pane	774
 panedwindow	649
-parcel	643
+parcel	644
 parent	731
-parent interpreter	196,340,613
+parent interpreter	196,340,614
 parse	348
 parsing	328
 path name	731
@@ -352,27 +352,27 @@ pid	299
 pipeline	119,286,299
 pixmap theme	766
 pkgMkIndex	299
-place	664
+place	665
 platform	302,303
 platform-specific	492
 platform_shell	303
-pointer events	456,555
+pointer events	457,556
 pop	228
-popup	667
+popup	668
 portability	144
 position	740
 POSIX	390
 precision	390
 prefix	304,321,409
 print	668,720
-priority	634
+priority	635
 private method	266
 proc	306
-procedure	15,82,157,186,306,337,420,422
+procedure	15,82,157,186,306,337,421,422
 process	125,286,307
 process identifier	299
 prompt	372,737
-propagation	557,643
+propagation	558,644
 properties	77
 public method	266
 puts	309
@@ -403,20 +403,20 @@ replace	210,231,238
 reporting	20,726
 resource management	412
 result	337
-retrieve	634
+retrieve	635
 return	337
 reverse	233,362
 ring	441
 root class	284
-rubber sheet	664
+rubber sheet	665
 safe	340
-safe interpreter	196,225,340,415,613
-scale	673,783
+safe interpreter	196,225,340,415,614
+scale	674,784
 scan	21,348
 screen	731
 script	8,117,360,397,398
 script file	372,737
-scrollbar	677,785
+scrollbar	678,785
 search	17,233
 security	685
 security policy	84,159
@@ -431,35 +431,35 @@ shared library	225,415
 shell	372,737
 single instance	355
 singleton	355
-size	557,643,740
-sizegrip	788
+size	558,644,740
+sizegrip	789
 sleep	13
-slider	673,783
+slider	674,784
 slot	95
 socket	159,356
 sort	240
-source	340,360,613
-spinbox	687,789
+source	340,360,614
+spinbox	687,790
 split	361
 splitting	328
 sprintf	149
 stack	228
 stack frame	419
-stacking order	614,673
-standard option	637
+stacking order	615,673
+standard option	638
 stat	136
 state	806
 stdio	40
 string	149,233,310,328,361,362
-style	766,792,804
+style	766,792,805
 sublist	229
 subprocess	119,390
 subst	367
 substitution	8,149,333,367
-switch	369,637
+switch	369,638
 sysnotify	696,720
 systray	697,720
-tab	773
+tab	774
 table lookup	304
 tag	454
 tail recursion	371
@@ -470,14 +470,14 @@ tclsh	372
 tcltest	374
 tclvars	390
 tcp	356
-tell	40,396
+tell	40,397
 test	374,429
 test harness	374
 test suite	374
 text	254,668,698,726
-text box	755
-text field	758,789
-theme	766,792,804
+text box	756
+text field	758,790
+theme	766,792,805
 throw	397
 time	13,63,397,398
 timerate	398
@@ -486,7 +486,7 @@ tk	720
 tk_mac	722
 tkerror	726
 tkvars	698,726
-tkwait	728
+tkwait	729
 tm	400
 toggle	754
 toolkit	737
@@ -497,62 +497,62 @@ trace	404
 transchan	409
 transformation	409
 translation	133,254
-trough	673,783
+trough	674,784
 true	184
 try	412
-ttk_button	752
+ttk_button	753
 ttk_checkbutton	754
-ttk_combobox	755
+ttk_combobox	756
 ttk_entry	758
 ttk_frame	765
 ttk_image	766
 ttk_intro	767
-ttk_label	769
-ttk_labelframe	770
+ttk_label	770
+ttk_labelframe	771
 ttk_menubutton	772
-ttk_notebook	773
+ttk_notebook	774
 ttk_panedwindow	778
-ttk_progressbar	780
+ttk_progressbar	781
 ttk_radiobutton	782
-ttk_scale	783
+ttk_scale	784
 ttk_scrollbar	785
 ttk_separator	788
-ttk_sizegrip	788
-ttk_spinbox	789
+ttk_sizegrip	789
+ttk_spinbox	790
 ttk_style	792
-ttk_treeview	794
-ttk_vsapi	804
+ttk_treeview	795
+ttk_vsapi	805
 ttk_widget	806
 type	493,682
-types of images	563,632
+types of images	564,633
 unicode	113
 units	740
-unknown	211,413
+unknown	211,414
 unload	415
 unloading	415
 unset	404,417
 update	108,418
 uplevel	419
-upvar	420
+upvar	421
 user	136,390
 value	185
-variable	8,15,62,82,157,185,186,209,268,354,404,417,419,420,422,424,728
+variable	8,15,62,82,157,185,186,209,268,354,404,417,419,421,422,424,729
 variable substitution	367
 variables	390,726
 version	294,298,299,726
-virtual event	530
+virtual event	531
 virtual root	731
-visibility	728
+visibility	729
 volume-relative file name	144
 vwait	424
-wait	307,424,728
+wait	307,424,729
 while	429
 whitespace	211
-widget	460,464,487,522,550,600,602,605,615,627,629,649,669,673,677,687,698,729,752,754,755,758,765,770,772,782,783,785,788,789
-width	563,632,664,731
-window	456,514,520,555,728,731
+widget	460,464,487,523,550,601,603,606,615,627,629,649,669,674,678,687,698,729,753,754,756,758,765,771,772,782,784,785,788,789,790
+width	564,633,665,731
+window	457,515,521,556,729,731
 window manager	539,740
-windows	804
+windows	805
 winfo	731
 wish	737
 wm	740

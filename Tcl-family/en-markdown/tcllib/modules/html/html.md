@@ -56,7 +56,7 @@ html - Procedures to generate HTML structures
 [::html::head]{.cmd} [title]{.arg}
 [::html::headTag]{.cmd} [string]{.arg}
 [::html::html\_entities]{.cmd} [string]{.arg}
-[::html::if]{.cmd} [expr1]{.arg} [body1]{.arg} [[elseif]{.lit} [expr2]{.arg} body2]{.optdot} [[else]{.lit} [bodyN]{.arg}]{.optarg}
+[::html::if]{.cmd} [expr1]{.arg} [body1]{.arg} [[elseif]{.lit} [expr2]{.arg} [body2]{.arg}]{.optdot} [[else]{.lit} [bodyN]{.arg}]{.optarg}
 [::html::init]{.cmd} [list]{.optarg}
 [::html::keywords]{.cmd} [args]{.arg}
 [::html::mailto]{.cmd} [email]{.arg} [subject]{.optarg}

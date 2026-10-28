@@ -9,47 +9,47 @@
 *OPTIONS from ArrowButton*
 : 
 
-|   |   |
-| --- | --- |
-|   -background or -bg |   -disabledforeground |
-|   -foreground or -fg |   -repeatdelay |
-|   -repeatinterval |   -state |
+    |   |   |
+    | --- | --- |
+    |   -background or -bg |   -disabledforeground |
+    |   -foreground or -fg |   -repeatdelay |
+    |   -repeatinterval |   -state |
 
 
 *OPTIONS from Entry*
 : 
 
-|   |   |
-| --- | --- |
-|   -command |   -disabledforeground |
-|   -dragenabled |   -dragendcmd |
-|   -dragevent |   -draginitcmd |
-|   -dragtype |   -dropcmd |
-|   -dropenabled |   -dropovercmd |
-|   -droptypes |   -editable |
-|   -entrybg (see **-background**) |   -entryfg (see **-foreground**) |
-|   -exportselection |   -font |
-|   -helptext |   -helptype |
-|   -helpvar |   -highlightbackground |
-|   -highlightcolor |   -highlightthickness |
-|   -insertbackground |   -insertborderwidth |
-|   -insertofftime |   -insertontime |
-|   -insertwidth |   -justify |
-|   -selectbackground |   -selectborderwidth |
-|   -selectforeground |   -show |
-|   -state |   -takefocus |
-|   -text |   -textvariable |
-|   -width |   -xscrollcommand |
+    |   |   |
+    | --- | --- |
+    |   -command |   -disabledforeground |
+    |   -dragenabled |   -dragendcmd |
+    |   -dragevent |   -draginitcmd |
+    |   -dragtype |   -dropcmd |
+    |   -dropenabled |   -dropovercmd |
+    |   -droptypes |   -editable |
+    |   -entrybg (see **-background**) |   -entryfg (see **-foreground**) |
+    |   -exportselection |   -font |
+    |   -helptext |   -helptype |
+    |   -helpvar |   -highlightbackground |
+    |   -highlightcolor |   -highlightthickness |
+    |   -insertbackground |   -insertborderwidth |
+    |   -insertofftime |   -insertontime |
+    |   -insertwidth |   -justify |
+    |   -selectbackground |   -selectborderwidth |
+    |   -selectforeground |   -show |
+    |   -state |   -takefocus |
+    |   -text |   -textvariable |
+    |   -width |   -xscrollcommand |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |
-| --- |
-|   -modifycmd |
-|   -range |
-|   -values |
+    |   |
+    | --- |
+    |   -modifycmd |
+    |   -range |
+    |   -values |
 
 
 *WIDGET COMMAND*
@@ -109,23 +109,22 @@ WIDGET COMMAND
 *pathName* **setvalue** *index* 
 : Set the text of the SpinBox to the value indicated by *index* in the list of values. *index* may be specified in any of the following forms:
 
- 
+     
 
- **last** 
-:  Specifies the last element of the list of values. 
+     **last** 
+    :  Specifies the last element of the list of values. 
 
-**first** 
-:  Specifies the first element of the list of values. 
+    **first** 
+    :  Specifies the first element of the list of values. 
 
- **next** 
-:  Specifies the element following the current (ie returned by **getvalue**) in the list of values. 
+     **next** 
+    :  Specifies the element following the current (ie returned by **getvalue**) in the list of values. 
 
-**previous** 
-:  Specifies the element preceding the current (ie returned by **getvalue**) in the list of values. 
+    **previous** 
+    :  Specifies the element preceding the current (ie returned by **getvalue**) in the list of values. 
 
- @*number* 
-:  Specifies the integer index in the list of values. 
-
+     @*number* 
+    :  Specifies the integer index in the list of values. 
 
 
 ---

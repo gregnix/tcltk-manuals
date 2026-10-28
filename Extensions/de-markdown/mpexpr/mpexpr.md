@@ -51,7 +51,7 @@ Operanden lassen sich auf eine der folgenden Arten angeben:
 : 0   
 
 
- 
+
 
 
 ## OPERATOREN 
@@ -239,7 +239,7 @@ Weitere Funktionen von *mpexpr*:
 **relprime(i,j)**  
 : Gibt 1 zurück, wenn *i* und *j* teilerfremd sind, sonst 0.
 
- 
+
 
 
 ## TYPEN, ÜBERLAUF UND GENAUIGKEIT 
@@ -339,7 +339,7 @@ Weitere Funktionen von *mpexpr*:
 **\\b**  
 : Formatiert ein ASCII-Rückschrittzeichen.
 
- 
+
 
 
 ## ANMERKUNGEN 
@@ -360,7 +360,7 @@ Tom Poindexter, tpoindex@nyx.net, Talus Technologies, Inc., Highlands Ranch, CO.
 
  Copyright 1998 Tom Poindexter. Weitere Copyright- und Lizenzbedingungen stehen in der Datei 'LICENSE.TERMS'. 
 
- 
+
 
 ---
 

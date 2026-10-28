@@ -9,23 +9,23 @@
 *OPTIONEN VON ProgressBar*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -progressfg (siehe **-foreground**) |
-|   -progressmax (siehe **-maximum**) |   -progresstype (siehe **-type**) |
-|   -progressvar (siehe **-variable**) |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -progressfg (siehe **-foreground**) |
+    |   -progressmax (siehe **-maximum**) |   -progresstype (siehe **-type**) |
+    |   -progressvar (siehe **-variable**) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -height |
-|   -menu |
-|   -separator |
-|   -textvariable |
-|   -width |
+    |   |
+    | --- |
+    |   -height |
+    |   -menu |
+    |   -separator |
+    |   -textvariable |
+    |   -width |
 
 
 *WIDGET-BEFEHL*
@@ -57,7 +57,7 @@
 BESCHREIBUNG
 
  MainFrame verwaltet ein Toplevel-Fenster, damit es hat:  
- 
+
 
 - einfache Erzeugung eines Menüs, mit automatischen Beschleuniger-Bindungen und Zuordnung von [DynamicHelp](DynamicHelp.md), 
 - eine oder mehrere Werkzeugleisten, die verborgen werden können, 
@@ -74,53 +74,53 @@ WIDGET-SPEZIFISCHE OPTIONEN
 **-menu (nur lesbar)**
 : Diese Option beschreibt das Menü. Das ist eine Liste, deren je fünf Elemente ein Kaskadenmenü beschreiben. Sie hat die folgende Form: {*menuname* *tags* *menuId* *tearoff* *menuentries*...}, wobei *menuentries* eine Liste ist, deren jedes Element einen Menüeintrag beschreibt, der sein kann:
 
-  - für einen Trenner:  
-   {**separator**} 
-  - für einen Befehl:  
-   {**command** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
-  - für eine Schaltfläche zum Abhaken:  
-   {**checkbutton** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
-  - für einen Radiobutton:  
-   {**radiobutton** *menuname* ?*tags*? ?*description*? ?*accelerator* ?*option* *value*? ...} 
-  - für ein Kaskadenmenü:  
-   {**cascade** *menuname* *tags* *menuId* *tearoff* *menuentries*} 
+      - für einen Trenner:  
+       {**separator**} 
+      - für einen Befehl:  
+       {**command** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
+      - für eine Schaltfläche zum Abhaken:  
+       {**checkbutton** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
+      - für einen Radiobutton:  
+       {**radiobutton** *menuname* ?*tags*? ?*description*? ?*accelerator* ?*option* *value*? ...} 
+      - für ein Kaskadenmenü:  
+       {**cascade** *menuname* *tags* *menuId* *tearoff* *menuentries*} 
 
-where:
+    where:
 
-  - *menuname* ist der Name des Menüs. Wenn er ein & enthält, wird das folgende Zeichen automatisch in die entsprechende Option **-underline** des Befehls **menu add** umgesetzt. 
-  - *tags* ist die Tag-Liste für den Eintrag, mit der Menüeinträge über **MainFrame::setmenustate** ein- oder ausgeschaltet werden. 
-  - *menuId* ist eine Kennung für das Menü, aus der **MainFrame::getmenu** den Pfadnamen des Menüs holt. 
-  - *tearoff* legt fest, ob das Menü einen Abreißeintrag hat. 
-  - *description* legt eine Zeichenkette für [DynamicHelp](\"DynamicHelp.html\") fest. 
-  - *accelerator* legt eine Tastenfolge fest. Das ist eine Liste aus zwei Elementen, das erste ist **Ctrl**, **Alt** oder **CtrlAlt**, das zweite ein Buchstabe oder eine Ziffer. Eine Beschleuniger-Zeichenkette wird aufgebaut und die entsprechende Bindung auf dem Toplevel gesetzt, um den Menüeintrag aufzurufen. 
-  - *option value* legt zusätzliche Optionen für den Eintrag fest (siehe den Befehl **menu add**). 
+      - *menuname* ist der Name des Menüs. Wenn er ein & enthält, wird das folgende Zeichen automatisch in die entsprechende Option **-underline** des Befehls **menu add** umgesetzt. 
+      - *tags* ist die Tag-Liste für den Eintrag, mit der Menüeinträge über **MainFrame::setmenustate** ein- oder ausgeschaltet werden. 
+      - *menuId* ist eine Kennung für das Menü, aus der **MainFrame::getmenu** den Pfadnamen des Menüs holt. 
+      - *tearoff* legt fest, ob das Menü einen Abreißeintrag hat. 
+      - *description* legt eine Zeichenkette für [DynamicHelp](\"DynamicHelp.html\") fest. 
+      - *accelerator* legt eine Tastenfolge fest. Das ist eine Liste aus zwei Elementen, das erste ist **Ctrl**, **Alt** oder **CtrlAlt**, das zweite ein Buchstabe oder eine Ziffer. Eine Beschleuniger-Zeichenkette wird aufgebaut und die entsprechende Bindung auf dem Toplevel gesetzt, um den Menüeintrag aufzurufen. 
+      - *option value* legt zusätzliche Optionen für den Eintrag fest (siehe den Befehl **menu add**). 
 
-Jeder Wert in ? ist optional und in der Vorgabe die leere Zeichenkette, muss aber angegeben werden, wenn eine oder mehrere folgende Optionen nicht leer sind.   
-Beispiel:
+    Jeder Wert in ? ist optional und in der Vorgabe die leere Zeichenkette, muss aber angegeben werden, wenn eine oder mehrere folgende Optionen nicht leer sind.   
+    Beispiel:
 
-```
-set descmenu {
-    "&File" {} {} 0 {
-        {command "&New"     {} "Create a new document"     {Ctrl n} -command Menu::new}
-        {command "&Open..." {} "Open an existing document" {Ctrl o} -command Menu::open}
-        {command "&Save"    open "Save the document" {Ctrl s} -command Menu::save}
-        {cascade  "&Export"  {} export 0 {
-            {command "Format &1" open "Export document to format 1" {} -command {Menu::export 1}}
-            {command "Format &2" open "Export document to format 2" {} -command {Menu::export 2}}
-        }}
-        {separator}
-        {cascade "&Recent files" {} recent 0 {}}
-        {separator}
-        {command "E&xit" {} "Exit the application" {} -command Menu::exit}
-    }
-    "&Options" {} {} 0 {
-        {checkbutton "Toolbar" {} "Show/hide toolbar" {} 
-            -variable Menu::_drawtoolbar
-            -command  {$Menu::_mainframe showtoolbar toolbar $Menu::_drawtoolbar}
+    ```
+    set descmenu {
+        "&File" {} {} 0 {
+            {command "&New"     {} "Create a new document"     {Ctrl n} -command Menu::new}
+            {command "&Open..." {} "Open an existing document" {Ctrl o} -command Menu::open}
+            {command "&Save"    open "Save the document" {Ctrl s} -command Menu::save}
+            {cascade  "&Export"  {} export 0 {
+                {command "Format &1" open "Export document to format 1" {} -command {Menu::export 1}}
+                {command "Format &2" open "Export document to format 2" {} -command {Menu::export 2}}
+            }}
+            {separator}
+            {cascade "&Recent files" {} recent 0 {}}
+            {separator}
+            {command "E&xit" {} "Exit the application" {} -command Menu::exit}
+        }
+        "&Options" {} {} 0 {
+            {checkbutton "Toolbar" {} "Show/hide toolbar" {} 
+                -variable Menu::_drawtoolbar
+                -command  {$Menu::_mainframe showtoolbar toolbar $Menu::_drawtoolbar}
+            }
         }
     }
-}
-```
+    ```
 
 
 **-separator (nur lesbar)**

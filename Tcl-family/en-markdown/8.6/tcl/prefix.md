@@ -26,7 +26,7 @@ tcl::prefix - facilities for prefix matching
 ::: {.synopsis} :::
 [::tcl::prefix]{.cmd} [all]{.sub} [table]{.arg} [string]{.arg}
 [::tcl::prefix]{.cmd} [longest]{.sub} [table]{.arg} [string]{.arg}
-[::tcl::prefix]{.cmd} [match]{.sub} [?option]{.arg} [...?]{.arg} [table]{.arg} [string]{.arg}
+[::tcl::prefix]{.cmd} [match]{.sub} [option]{.optdot} [table]{.arg} [string]{.arg}
 :::
 
 # Description

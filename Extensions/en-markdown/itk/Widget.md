@@ -1,9 +1,10 @@
 ---
 CommandName: Widget
+title: Widget
 ManualSection: n
 Version: 3.0
 TclPart: itk
-TclDescription: "[incr\\ Tk]"
+TclDescription: "[incr Tk]"
 Keywords:
  - itk
  - Archetype
@@ -12,7 +13,6 @@ Keywords:
 Copyright:
  - Copyright (c) 1993-1998 Lucent Technologies, Inc.
 ---
-
 
 # Name
 
@@ -25,24 +25,20 @@ itk::Archetype <- itk::Widget
 # Standard options
 
 ```
-background cursor
+background	cursor
 ```
 
 See the "options" manual entry for details on the standard options.
 
 # Description
 
-The **Widget** class inherits everything from the **Archetype** class, and adds a Tk frame called the "hull" component to represent the body of the mega-widget.  The window class name for the hull is set to the most-specific class name for the mega-widget. The protected variable **itk_interior** contains the window path name for the "hull" component.  Derived classes specialize this widget by packing other widget components into the hull.
+The **Widget** class inherits everything from the [Archetype] class, and adds a Tk frame called the "hull" component to represent the body of the mega-widget.  The window class name for the hull is set to the most-specific class name for the mega-widget. The protected variable **itk\_interior** contains the window path name for the "hull" component.  Derived classes specialize this widget by packing other widget components into the hull.
 
 Since the hull for the **Widget** class is implemented with a Tk frame, mega-widgets in the **Widget** class can be packed into other frames and toplevels.
 
 # Components
 
-```
-Name:           hull
-Class:          Frame
-```
-
+**hull** (**Frame**)
 : The "hull" component acts as the body for the entire mega-widget. Other components are packed into the hull to further specialize the widget.
 
 
@@ -114,3 +110,6 @@ pack .file
 
 .file display [exec cat /etc/passwd]
 ```
+
+
+[Archetype]: Archetype.md

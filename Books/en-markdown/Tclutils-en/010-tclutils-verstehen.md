@@ -80,8 +80,9 @@ error messages (D), the API catalog (E) and practice examples (F).
 - Pure Tcl, no Tk, version 0.68.0.
 - Core without third-party packages; tls, tcllib `ftp`, curl/wget, Thread only for
   optional modules or the `tutask` pool.
-- Pairing according to the CHANGELOG: tclutils 0.68.0 + tkutils 0.47.0 + ctrlutils 0.4.
-  tkutils 0.47.0 needs at least tclutils 0.64.0.
+- Pairing according to the CHANGELOG of tkutils 0.48.0: tclutils 0.68.0
+  + tkutils 0.48.0 + ctrlutils 0.4. tkutils 0.48.0 needs at least
+  tclutils 0.64.0.
 
 ---
 

@@ -312,7 +312,7 @@ Folgende *subcommand*-Werte unterstützt **info class**:
 Folgende *subcommand*-Werte unterstützt **info object**:
 
 [info]{.cmd} [object]{.sub} [call]{.lit} [object]{.arg} [method]{.arg}
-: Beschreibung der Methodenimplementierungen für *object*'s Implementierung von *method*. Viererlisten wie bei **info class call**; das dritte Wort gibt an, was die Methode definierte (vollqualifizierter Klassenname oder **object** bei Instanzimplementierung), das vierte den Implementierungstyp (siehe **info object methodtype**).
+: Gibt eine Beschreibung der Methodenimplementierungen zurück, mit denen *object* die Methode *method* implementiert. Das ist eine Liste von Listen mit je vier Elementen: ein Wort für die allgemeine Art der Methodenimplementierung (**method** für eine gewöhnliche Methode, **filter** für einen angewendeten Filter, [**private** für eine private Methode,]{version="TIP500"} und [unknown] für eine Methode, die bei der Behandlung unbekannter Methoden aufgerufen wird), ein Wort mit dem Namen der aufgerufenen Methode (bei der Art **method** immer gleich *method*, bei der Art [unknown] „[unknown]“), ein Wort, das angibt, was die Methode definiert hat (der vollqualifizierte Name der Klasse oder die Zeichenkette **object**, wenn die Methodenimplementierung an einer Instanz liegt), und ein Wort, das die Art der Methodenimplementierung beschreibt (siehe **info object methodtype**).
 
     Es wird nicht geprüft, ob die Implementierungen [next] zur Weitergabe entlang der Aufrufkette nutzen; [die von diesem Befehl gelieferten Aufrufketten enthalten private Methoden nicht.]{version="TIP500"}
 

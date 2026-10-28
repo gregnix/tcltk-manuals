@@ -1,12 +1,114 @@
 # pdf	scrollutil-en.pdf
 # label	Scrollutil
 # title	Scrollutil
-index	3
+-padding	7
+-sticky	7
+A Script Using a BWidget ScrollableFrame Widget	85
+A Script Using a scrollutil::scrollableframe Widget	82
+A Script Using an iwidgets::scrolledframe Widget	87
+A Script Using Two BWidget ScrollableFrame Widgets	93
+A Script Using Two iwidgets::scrolledframe Widgets	95
+A Script Using Two scrollutil::scrollableframe Widgets	88
+A Scrolled canvas Widget	75
+A Scrolled tablelist Widget	71
+A Scrolled text Widget	73
+A scrollutil::pagesman Demo	103
+A scrollutil::plainnotebook Demo	102
+A scrollutil::scrollednotebook Demo	97
+add	7,16,48
+addbutton	17
+addlabel	17
+addseparator	17
+adjustsize	8,17,48
+attrib	8,18,27,41,48,58
+autofillx	28
+autofilly	28
+autosize	28
+BINDINGS	10,31,42,59
+cget	8,18,28,41,48,58
+closablestate	18
+closetabstate	49
+configure	8,18,28,41,49,58
+contentframe	29
+forget	8,18,49
+FURTHER BINDINGS	20,51
+hasattrib	8,18,29,41,49,58
+haspageattrib	8
+hastabattrib	18,49
+hide	18,49
+identify	49
+index	3,9,18,49
+insert	9,18,49
+insertbutton	19
+insertlabel	19
+insertseparator	19
+instate	19,49
+KEYBOARD TRAVERSAL	20,50
+notebookpath	49
+PAGE CONFIGURATION OPTIONS	7
+pageattrib	9
+pagecget	9
+pageconfigure	9
+pages	9
 pagesman	3
 plainnotebook	10
+preparescan	29
+preparescroll	29
+scan	29
+scan dragto	29
+scan mark	29
 scrollableframe	21
 scrollarea	35
 scrollednotebook	43
 scrollsync	55
 scrollutil	60
+scrollutil::adaptBtn2EventHandling	32
+scrollutil::adaptWheelEventHandling	113
+scrollutil::addclosetab	53
+scrollutil::addMouseWheelSupport	110
+scrollutil::closetabstate	54
+scrollutil::createWheelEventBindings	112
+scrollutil::disableScrollingByWheel	113
+scrollutil::enableScrollingByWheel	112
+scrollutil::focusCheckWindow	117
+scrollutil::getScalingPct	69
+scrollutil::getscrollarea	43
+scrollutil::getscrollsync	59
+scrollutil::prepareScrollingByWheel	116
+scrollutil::removeclosetab	54
+scrollutil::scalingpct	66
+scrollutil::scrollableframe	22
+scrollutil::scrollarea	36
+scrollutil::scrollednotebook	43
+scrollutil::scrollsync	55
+scrollutil::setFocusCheckWindow	116
+scrollutil::svgfmt	69
+see	19,29,50
+seerect	30
+select	9,19,50
+setwidget	42
+setwidgets	58
+size	9
+state	19,50
+style	19,50
+Synchronizing Three tablelist Widgets	80
+Synchronizing Two listbox Widgets	79
+tab	19,50
+TAB IDENTIFIERS	16,48
+TAB OPTIONS	16,48
+tabattrib	19,50
+tabpath	19
+tabs	20,50
+The closetab Style Element	53
+The Helper Script styleUtil.tcl	70
+titlepath	20
+unsetattrib	10,20,30,42,50,59
+unsetpageattrib	10
+unsettabattrib	20,50
+VIRTUAL EVENTS	10,20,50
 wheelEvent	110
+widget	42
+widgets	59
+window	10
+xview	30,59
+yview	31,59

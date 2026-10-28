@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::statement
+title: tdbc::statement
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -25,32 +26,31 @@ Copyright:
  - Copyright (c) 2008 by Kevin B. Kenny.
 ---
 
-# NAME
+# Name
 
 tdbc::statement - TDBC-Objekt für eine Anweisung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 
-[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg} 
-[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [preparecall]{.lit} [call\]]{.arg} 
+[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [prepare]{.lit} [sql-code\]]{.arg}
+[set]{.cmd} [stmt]{.arg} [\[db]{.lit} [preparecall]{.lit} [call\]]{.arg}
 
-[\$stmt]{.ins} [params]{.sub} 
-[\$stmt]{.ins} [paramtype]{.sub} [direction]{.optarg} [type]{.arg} [precision]{.optarg} [scale]{.optarg} 
-[\$stmt]{.ins} [execute]{.sub} [dict]{.optarg} 
-[\$stmt]{.ins} [resultsets]{.sub} 
-[\$stmt]{.ins} [foreach]{.sub} [-as lists|dicts]{.optarg} [-columnsvariable name]{.optarg} [--]{.optlit} [varName]{.arg} [dict]{.optarg} [script]{.arg} 
-[\$stmt]{.ins} [close]{.sub} 
+[$stmt]{.ins} [params]{.sub}
+[$stmt]{.ins} [paramtype]{.sub} [direction]{.optarg} [type]{.arg} [precision]{.optarg} [scale]{.optarg}
+[$stmt]{.ins} [execute]{.sub} [dict]{.optarg}
+[$stmt]{.ins} [resultsets]{.sub}
+[$stmt]{.ins} [allrows]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [dict]{.optarg}
+[$stmt]{.ins} [foreach]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [varName]{.arg} [dict]{.optarg} [script]{.arg}
+[$stmt]{.ins} [close]{.sub}
 :::
 
-.in 14 *\$stmt* **allrows** ?**-as lists|dicts**? ?**-columnsvariable** *name*? ?**--**? ?*dict*
-
-# BESCHREIBUNG
+# Beschreibung
 
 Jeder Datenbanktreiber für TDBC (Tcl DataBase Connectivity) setzt ein Objekt *Anweisung* um, das eine SQL-Anweisung in einer Datenbank darstellt. Instanzen dieses Objekts entstehen, indem der Objektbefehl **prepare** oder **preparecall** auf einer Datenbankverbindung ausgeführt wird.
 
@@ -85,10 +85,22 @@ Die Methode **params** auf einem Anweisungsobjekt zählt die gebundenen Variable
 : Enthält die Skala der Spalte (die Anzahl der Ziffern nach dem Radixpunkt) für Typen, die dieses Konzept kennen.
 
 **nullable**
-: Enthält 1, wenn die Spalte NULL-Werte enthalten kann, und andernfalls 0. Der Objektbefehl **paramtype** erlaubt dem Skript, Typ und Richtung der Parameterübertragung einer Variable in einer Anweisung festzulegen. (Manche Datenbanken bieten keine Methode, diese Information automatisch zu ermitteln, und legen die Last dafür auf den Aufrufer.) Die Argumente *direction*, *type*, *precision*, *scale* und *nullable* haben dieselbe Bedeutung wie die entsprechenden Dictionary-Werte im Objektbefehl **params**. Der Objektbefehl **execute** führt die Anweisung aus. Vor dem Ausführen der Anweisung werden Werte für die gebundenen Variablen bereitgestellt, die in ihr vorkommen. Ist der Parameter *dict* angegeben, wird darin nach einem Schlüssel gesucht, dessen Name zum Namen der gebundenen Variable passt. Ist der Schlüssel vorhanden, wird sein Wert zur eingesetzten Variable. Andernfalls wird der Wert der eingesetzten Variable ein SQL-NULL. Ist der Parameter *dict* *nicht* angegeben, sucht der Objektbefehl **execute** im Geltungsbereich des Aufrufers nach einer Variable, deren Name zum Namen der gebundenen Variable passt. Wird eine gefunden, wird ihr Wert zum Wert der gebundenen Variable. Wird keine gefunden, erhält die gebundene Variable ein SQL-NULL als Wert. Sobald die Ersetzung abgeschlossen ist, wird die entstehende Anweisung ausgeführt. Der Rückgabewert ist ein Ergebnismengenobjekt (Einzelheiten stehen bei **tdbc::resultset**). Die Methode **resultsets** gibt eine Liste aller Ergebnismengen zurück, die das Ausführen der Anweisung geliefert hat und die noch nicht geschlossen wurden. Der Objektbefehl **allrows** führt die Anweisung wie der Objektbefehl **execute** aus und nimmt einen optionalen Parameter *dict* entgegen, der gebundene Variablen angibt. Nach dem Ausführen der Anweisung verwendet er den Objektbefehl *allrows* auf der Ergebnismenge (siehe **tdbc::resultset**), um eine Liste der Ergebnisse aufzubauen. Anschließend wird die Ergebnismenge geschlossen. Der Rückgabewert ist die Liste der Ergebnisse. Der Objektbefehl **foreach** führt die Anweisung wie der Objektbefehl **execute** aus und nimmt einen optionalen Parameter *dict* entgegen, der gebundene Variablen angibt. Nach dem Ausführen der Anweisung verwendet er den Objektbefehl *foreach* auf der Ergebnismenge (siehe **tdbc::resultset**), um das gegebene *script* für jede Ergebniszeile auszuwerten. Anschließend wird die Ergebnismenge geschlossen, auch wenn das gegebene *script* ein **return**, einen Fehler oder einen ungewöhnlichen Rückgabecode ergibt. Der Objektbefehl **close** entfernt eine Anweisung und alle Ergebnismengen, die sie erzeugt hat. Alle den Objekten zugeordneten Systemressourcen werden freigegeben.
+: Enthält 1, wenn die Spalte NULL-Werte enthalten kann, und andernfalls 0.
 
 
-# BEISPIELE
+Der Objektbefehl **paramtype** erlaubt dem Skript, Typ und Richtung der Parameterübertragung einer Variable in einer Anweisung festzulegen. (Manche Datenbanken bieten keine Methode, diese Information automatisch zu ermitteln, und legen die Last dafür auf den Aufrufer.) Die Argumente *direction*, *type*, *precision*, *scale* und *nullable* haben dieselbe Bedeutung wie die entsprechenden Dictionary-Werte im Objektbefehl **params**.
+
+Der Objektbefehl **execute** führt die Anweisung aus. Vor dem Ausführen der Anweisung werden Werte für die gebundenen Variablen bereitgestellt, die in ihr vorkommen. Ist der Parameter *dict* angegeben, wird darin nach einem Schlüssel gesucht, dessen Name zum Namen der gebundenen Variable passt. Ist der Schlüssel vorhanden, wird sein Wert zur eingesetzten Variable. Andernfalls wird der Wert der eingesetzten Variable ein SQL-NULL. Ist der Parameter *dict* *nicht* angegeben, sucht der Objektbefehl **execute** im Geltungsbereich des Aufrufers nach einer Variable, deren Name zum Namen der gebundenen Variable passt. Wird eine gefunden, wird ihr Wert zum Wert der gebundenen Variable. Wird keine gefunden, erhält die gebundene Variable ein SQL-NULL als Wert. Sobald die Ersetzung abgeschlossen ist, wird die entstehende Anweisung ausgeführt. Der Rückgabewert ist ein Ergebnismengenobjekt (Einzelheiten stehen bei **tdbc::resultset**).
+
+Die Methode **resultsets** gibt eine Liste aller Ergebnismengen zurück, die das Ausführen der Anweisung geliefert hat und die noch nicht geschlossen wurden.
+
+Der Objektbefehl **allrows** führt die Anweisung wie der Objektbefehl **execute** aus und nimmt einen optionalen Parameter *dict* entgegen, der gebundene Variablen angibt. Nach dem Ausführen der Anweisung verwendet er den Objektbefehl *allrows* auf der Ergebnismenge (siehe **tdbc::resultset**), um eine Liste der Ergebnisse aufzubauen. Anschließend wird die Ergebnismenge geschlossen. Der Rückgabewert ist die Liste der Ergebnisse.
+
+Der Objektbefehl **foreach** führt die Anweisung wie der Objektbefehl **execute** aus und nimmt einen optionalen Parameter *dict* entgegen, der gebundene Variablen angibt. Nach dem Ausführen der Anweisung verwendet er den Objektbefehl *foreach* auf der Ergebnismenge (siehe **tdbc::resultset**), um das gegebene *script* für jede Ergebniszeile auszuwerten. Anschließend wird die Ergebnismenge geschlossen, auch wenn das gegebene *script* ein **return**, einen Fehler oder einen ungewöhnlichen Rückgabecode ergibt.
+
+Der Objektbefehl **close** entfernt eine Anweisung und alle Ergebnismengen, die sie erzeugt hat. Alle den Objekten zugeordneten Systemressourcen werden freigegeben.
+
+# Beispiele
 
 Der folgende Code schlägt eine Telefonnummer in einem Verzeichnis nach, ein passendes SQL-Schema vorausgesetzt:
 
@@ -108,6 +120,6 @@ $statement close
 db close
 ```
 
-# COPYRIGHT
+# Copyright
 
 Copyright (c) 2008 by Kevin B. Kenny.

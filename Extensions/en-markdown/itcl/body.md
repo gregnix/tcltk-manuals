@@ -1,9 +1,10 @@
 ---
 CommandName: body
+title: body
 ManualSection: n
 Version: 3.0
 TclPart: itcl
-TclDescription: "[incr\\ Tcl]"
+TclDescription: "[incr Tcl]"
 Keywords:
  - class
  - object
@@ -19,20 +20,20 @@ itcl::body - change the body for a class method/proc
 # Synopsis
 
 ::: {.synopsis} :::
-[itcl::body]{.cmd} [className::function]{.arg} [args]{.arg} [body]{.arg} 
+[itcl::body]{.cmd} [className::function]{.arg} [args]{.arg} [body]{.arg}
 :::
 
 # Description
 
-The **body** command is used outside of an **\[incr**\\ **Tcl\]** class definition to define or redefine the body of a class method or proc.  This facility allows a class definition to have separate "interface" and "implementation" parts. The "interface" part is a **class** command with declarations for methods, procs, instance variables and common variables. The "implementation" part is a series of **body** and **configbody** commands.  If the "implementation" part is kept in a separate file, it can be sourced again and again as bugs are fixed, to support interactive development. When using the "tcl" mode in the **emacs** editor, the "interface" and "implementation" parts can be kept in the same file; as bugs are fixed, individual bodies can be highlighted and sent to the test application.
+The **body** command is used outside of an **\[incr Tcl\]** class definition to define or redefine the body of a class method or proc.  This facility allows a class definition to have separate "interface" and "implementation" parts. The "interface" part is a **class** command with declarations for methods, procs, instance variables and common variables. The "implementation" part is a series of **body** and **configbody** commands.  If the "implementation" part is kept in a separate file, it can be sourced again and again as bugs are fixed, to support interactive development. When using the "tcl" mode in the **emacs** editor, the "interface" and "implementation" parts can be kept in the same file; as bugs are fixed, individual bodies can be highlighted and sent to the test application.
 
-The name "*className*__::__*function*" identifies the method/proc being changed.
+The name "*className***::***function*" identifies the method/proc being changed.
 
 If an *args* list was specified when the *function* was defined in the class definition, the *args* list for the **body** command must match in meaning.  Variable names can change, but the argument lists must have the same required arguments and the same default values for optional arguments. The special **args** argument acts as a wildcard when included in the *args* list in the class definition; it will match zero or more arguments of any type when the body is redefined.
 
 If the *body* string starts with "**@**", it is treated as the symbolic name for a C procedure.  The *args* list has little meaning for the C procedure, except to document the expected usage.  (The C procedure is not guaranteed to use arguments in this manner.)  If *body* does not start with "**@**", it is treated as a Tcl command script.  When the function is invoked, command line arguments are matched against the *args* list, and local variables are created to represent each argument.  This is the usual behavior for a Tcl-style proc.
 
-Symbolic names for C procedures are established by registering procedures via **Itcl_RegisterObjC()**.  This is usually done in the **Tcl_AppInit()** procedure, which is automatically called when the interpreter starts up.  In the following example, the procedure \\ffCMy_FooObjCmd() is registered with the symbolic name "foo".  This procedure can be referenced in the **body** command as "\\ffC@foo".
+Symbolic names for C procedures are established by registering procedures via **Itcl\_RegisterObjC()**.  This is usually done in the **Tcl\_AppInit()** procedure, which is automatically called when the interpreter starts up.  In the following example, the procedure **My\_FooObjCmd()** is registered with the symbolic name "foo".  This procedure can be referenced in the **body** command as "**@foo**".
 
 ```
 int

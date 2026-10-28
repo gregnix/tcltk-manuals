@@ -9,25 +9,25 @@
 *STANDARDOPTIONEN*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background oder -bg](options.md) |   [-xscrollcommand](options.md) |
-|   [-yscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background oder -bg](options.md) |   [-xscrollcommand](options.md) |
+    |   [-yscrollcommand](options.md) |
 
 
 *WIDGET-SPEZIFISCHE OPTIONEN*
 : 
 
-|   |
-| --- |
-|   -areaheight |
-|   -areawidth |
-|   -constrainedheight |
-|   -constrainedwidth |
-|   -height |
-|   -width |
-|   -xscrollincrement |
-|   -yscrollincrement |
+    |   |
+    | --- |
+    |   -areaheight |
+    |   -areawidth |
+    |   -constrainedheight |
+    |   -constrainedwidth |
+    |   -height |
+    |   -width |
+    |   -xscrollincrement |
+    |   -yscrollincrement |
 
 
 *WIDGET-BEFEHL*

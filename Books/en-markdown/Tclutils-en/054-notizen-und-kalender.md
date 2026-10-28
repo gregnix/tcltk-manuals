@@ -36,7 +36,7 @@ package require tclutils::tumd
 ::tclutils::tumd::toHtml "- a\n  - b"      ;# -> <ul>\n<li>a</li>\n<li>b</li>\n</ul>
 ```
 
-The anchor of "Größe" is `gre`. `tustr::slugify` turns it into `gr-e`.
+The anchor of `Größe` is `gre`. `tustr::slugify` turns it into `gr-e`.
 
 ---
 
@@ -172,9 +172,9 @@ matter.
 
 ```tcl
 package require tclutils::tuvcard
-set vcf "BEGIN:VCARD\nFN:Gregor\nN:Nachname;Gregor;;;\nTEL:1\nEND:VCARD\n"
+set vcf "BEGIN:VCARD\nFN:Ada\nN:Lovelace;Ada;;;\nTEL:1\nEND:VCARD\n"
 set card [lindex [::tclutils::tuvcard::parse $vcf] 0]
-::tclutils::tuvcard::fullName $card          ;# -> Gregor
+::tclutils::tuvcard::fullName $card          ;# -> Ada
 ::tclutils::tuvcard::get $card TEL           ;# -> 1
 ::tclutils::tuvcard::names $card             ;# -> FN N TEL
 ```
@@ -404,9 +404,22 @@ package require tclutils::tuholiday
 
 ---
 
+## Calendar Views: tical
+
+The modules of this chapter deliver data and text: recurrences,
+holidays, iCalendar, a month like `cal`. Views for month, week and day
+with renderers for the terminal, the Tk canvas and PDF come with the
+separate library [tical]{.index} 1.1. It has its own holidays and an
+iCalendar export (with `RRULE`); its core does not need tclutils. Its
+optional import (`tical::io::import`) reads iCalendar with `tuical` and
+expands recurrences with `turrule`. It is described in the book
+*Utils-Stack*.
+
+---
+
 ## In short
 
-- `tumd` is a subset. The anchor of "Größe" is `gre`.
+- `tumd` is a subset. The anchor of `Größe` is `gre`.
 - iCalendar and vCard values stay raw. `eventInfo` unescapes text.
 - `toIcs` and `toVcf` write CR/LF.
 - `tunotes`: change through the variable name, read through the value.

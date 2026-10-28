@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::connection
+title: tdbc::connection
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -22,40 +23,39 @@ Copyright:
  - Copyright (c) 2008 by Kevin B. Kenny.
 ---
 
-# NAME
+# Name
 
 tdbc::connection - TDBC-Objekt für eine Verbindung
 
-# ÜBERSICHT
+# Übersicht
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit} 
-[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit} 
+[package]{.cmd} [require]{.sub} [tdbc]{.lit} [1.0]{.lit}
+[package]{.cmd} [require]{.sub} [tdbc::driver]{.lit} [version]{.lit}
 
-[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value]{.optdot} 
+[tdbc::driver::connection]{.cmd} [create]{.sub} [db]{.arg} [-option value...]{.optarg}
 
-[db]{.ins} [configure]{.sub} [-option value]{.optdot} 
-[db]{.ins} [close]{.sub} 
-[db]{.ins} [foreignkeys]{.sub} [-primary tableName]{.optarg} [-foreign tableName]{.optarg} 
-[db]{.ins} [prepare]{.sub} [sql-code]{.arg} 
-[db]{.ins} [preparecall]{.sub} [call]{.arg} 
-[db]{.ins} [primarykeys]{.sub} [tableName]{.arg} 
-[db]{.ins} [statements]{.sub} 
-[db]{.ins} [resultsets]{.sub} 
-[db]{.ins} [tables]{.sub} [pattern]{.optarg} 
-[db]{.ins} [columns]{.sub} [table]{.arg} [pattern]{.optarg} 
-[db]{.ins} [begintransaction]{.sub} 
-[db]{.ins} [commit]{.sub} 
-[db]{.ins} [rollback]{.sub} 
-[db]{.ins} [transaction]{.sub} [script]{.arg} 
-[db]{.ins} [foreach]{.sub} [-as lists|dicts]{.optarg} [-columnsvariable name]{.optarg} [--]{.optarg} [varName]{.arg} [sqlcode]{.arg} [dictionary]{.optarg} [script]{.arg} 
+[db]{.ins} [configure]{.sub} [-option value...]{.optarg}
+[db]{.ins} [close]{.sub}
+[db]{.ins} [foreignkeys]{.sub} [-primary tableName]{.optarg} [-foreign tableName]{.optarg}
+[db]{.ins} [prepare]{.sub} [sql-code]{.arg}
+[db]{.ins} [preparecall]{.sub} [call]{.arg}
+[db]{.ins} [primarykeys]{.sub} [tableName]{.arg}
+[db]{.ins} [statements]{.sub}
+[db]{.ins} [resultsets]{.sub}
+[db]{.ins} [tables]{.sub} [pattern]{.optarg}
+[db]{.ins} [columns]{.sub} [table]{.arg} [pattern]{.optarg}
+[db]{.ins} [begintransaction]{.sub}
+[db]{.ins} [commit]{.sub}
+[db]{.ins} [rollback]{.sub}
+[db]{.ins} [transaction]{.sub} [script]{.arg}
+[db]{.ins} [allrows]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optlit} [sql-code]{.arg} [dictionary]{.optarg}
+[db]{.ins} [foreach]{.sub} [-as lists|dicts]{.optlit} [[-columnsvariable]{.lit} [name]{.arg}]{.optarg} [--]{.optarg} [varName]{.arg} [sqlcode]{.arg} [dictionary]{.optarg} [script]{.arg}
 :::
 
-.in 14 *db* **allrows** ?**-as lists**|**dicts**? ?**-columnsvariable** *name*? ?**--**? *sql-code* ?*dictionary*?
+# Beschreibung
 
-# BESCHREIBUNG
-
-Jeder Datenbanktreiber für TDBC (Tcl DataBase Connectivity) setzt ein Objekt *Verbindung* um, das eine Verbindung zu einer Datenbank darstellt. Nach üblicher Vereinbarung entsteht dieses Objekt durch den Befehl **tdbc::**_driver_**::connection create**. Dieser Befehl nimmt den Namen eines Tcl-Befehls entgegen, der die Verbindung darstellen wird, und eine mögliche Menge von Optionen (siehe **KONFIGURATIONSOPTIONEN**). Er stellt eine Verbindung zur Datenbank her und gibt den Namen des neu erzeugten Tcl-Befehls zurück.
+Jeder Datenbanktreiber für TDBC (Tcl DataBase Connectivity) setzt ein Objekt *Verbindung* um, das eine Verbindung zu einer Datenbank darstellt. Nach üblicher Vereinbarung entsteht dieses Objekt durch den Befehl **tdbc::**_driver_**::connection create**. Dieser Befehl nimmt den Namen eines Tcl-Befehls entgegen, der die Verbindung darstellen wird, und eine mögliche Menge von Optionen (siehe [Konfigurationsoptionen]). Er stellt eine Verbindung zur Datenbank her und gibt den Namen des neu erzeugten Tcl-Befehls zurück.
 
 Der Objektbefehl **configure** auf einer Datenbankverbindung gibt, ohne Argumente aufgerufen, eine Liste abwechselnder Schlüsselwörter und Werte zurück, die die aktuelle Konfiguration der Verbindung darstellen. Mit einem einzelnen Argument *-option* gibt er den konfigurierten Wert der angegebenen Option zurück. Andernfalls muss er eine gerade Anzahl von Argumenten erhalten, abwechselnd Optionen und Werte. Die angegebenen Optionen erhalten die angegebenen Werte, und der Befehl gibt nichts zurück.
 
@@ -89,7 +89,10 @@ Der Objektbefehl **columns** erlaubt dem Programm, die Verbindung nach den Namen
 : Enthält die Skala der Spalte (die Anzahl der Ziffern nach dem Radixpunkt) für Typen, die dieses Konzept kennen.
 
 **nullable**
-: Enthält 1, wenn die Spalte NULL-Werte enthalten kann, und andernfalls 0. Der Objektbefehl **primarykeys** erlaubt dem Programm, die Verbindung nach den Primärschlüsseln zu fragen, die zu einer gegebenen Tabelle gehören. Der Parameter *tableName* bezeichnet die abgefragte Tabelle. Das Ergebnis ist eine Liste von Dictionarys, die die Schlüssel aufzählen (in einem ähnlichen Format wie die Liste, die *\$connection* **allrows -as dicts** zurückgibt). Die Schlüssel des Dictionary dürfen mindestens die folgenden umfassen. Werte, die NULL sind oder in einer gegebenen Datenbank ohne Bedeutung sind, werden weggelassen.
+: Enthält 1, wenn die Spalte NULL-Werte enthalten kann, und andernfalls 0.
+
+
+Der Objektbefehl **primarykeys** erlaubt dem Programm, die Verbindung nach den Primärschlüsseln zu fragen, die zu einer gegebenen Tabelle gehören. Der Parameter *tableName* bezeichnet die abgefragte Tabelle. Das Ergebnis ist eine Liste von Dictionarys, die die Schlüssel aufzählen (in einem ähnlichen Format wie die Liste, die *$connection* **allrows -as dicts** zurückgibt). Die Schlüssel des Dictionary dürfen mindestens die folgenden umfassen. Werte, die NULL sind oder in einer gegebenen Datenbank ohne Bedeutung sind, werden weggelassen.
 
 **tableCatalog**
 : Name des Katalogs, in dem die Tabelle erscheint.
@@ -113,7 +116,12 @@ Der Objektbefehl **columns** erlaubt dem Programm, die Verbindung nach den Namen
 : Name einer Spalte, die Teil des Primärschlüssels ist.
 
 **ordinalPosition**
-: Ordnungsposition der Spalte innerhalb des Primärschlüssels. Diesen Spalten dürfen weitere hinzugefügt werden, die für ein bestimmtes Datenbanksystem spezifisch sind. Der Objektbefehl **foreignkeys** erlaubt dem Programm, die Verbindung nach Fremdschlüsselbeziehungen zu fragen, die für eine bestimmte Tabelle gelten. Die Beziehungen lassen sich auf die Schlüssel einschränken, die in einer bestimmten Tabelle erscheinen (**-foreign** *tableName*), auf die Schlüssel, die auf eine bestimmte Tabelle verweisen (**-primary** *tableName*), oder auf beides. Mindestens eines von **-primary** und **-foreign** sollte angegeben werden, obwohl manche Treiber alle Fremdschlüssel im aktuellen Katalog aufzählen, wenn beide Optionen entfallen. Das Ergebnis des Objektbefehls **foreignkeys** ist eine Liste von Dictionarys mit einem Listenelement je Schlüssel (in einem ähnlichen Format wie die Liste, die *\$connection* **allrows -as dicts** zurückgibt). Die Schlüssel des Dictionary dürfen mindestens die folgenden umfassen. Werte, die NULL sind oder in einer gegebenen Datenbank ohne Bedeutung sind, werden weggelassen.
+: Ordnungsposition der Spalte innerhalb des Primärschlüssels.
+
+
+Diesen Spalten dürfen weitere hinzugefügt werden, die für ein bestimmtes Datenbanksystem spezifisch sind.
+
+Der Objektbefehl **foreignkeys** erlaubt dem Programm, die Verbindung nach Fremdschlüsselbeziehungen zu fragen, die für eine bestimmte Tabelle gelten. Die Beziehungen lassen sich auf die Schlüssel einschränken, die in einer bestimmten Tabelle erscheinen (**-foreign** *tableName*), auf die Schlüssel, die auf eine bestimmte Tabelle verweisen (**-primary** *tableName*), oder auf beides. Mindestens eines von **-primary** und **-foreign** sollte angegeben werden, obwohl manche Treiber alle Fremdschlüssel im aktuellen Katalog aufzählen, wenn beide Optionen entfallen. Das Ergebnis des Objektbefehls **foreignkeys** ist eine Liste von Dictionarys mit einem Listenelement je Schlüssel (in einem ähnlichen Format wie die Liste, die *$connection* **allrows -as dicts** zurückgibt). Die Schlüssel des Dictionary dürfen mindestens die folgenden umfassen. Werte, die NULL sind oder in einer gegebenen Datenbank ohne Bedeutung sind, werden weggelassen.
 
 **foreignConstraintCatalog**
 : Katalog, in dem das Fremdschlüssel-Constraint erscheint.
@@ -145,6 +153,7 @@ Der Objektbefehl **columns** erlaubt dem Programm, die Verbindung nach den Namen
 **primarySchema**
 : Name des Schemas, in dem die Primärtabelle erscheint (diejenige, auf die der Fremdschlüssel verweist).
 
+
 **primaryTable**
 : Tabellenname der Primärtabelle (derjenigen, auf die der Fremdschlüssel verweist).
 
@@ -164,10 +173,22 @@ Der Objektbefehl **columns** erlaubt dem Programm, die Verbindung nach den Namen
 : Name der Spalte, die im Fremdschlüssel erscheint.
 
 **ordinalPosition**
-: Position der Spalte im Fremdschlüssel, wenn der Schlüssel ein zusammengesetzter Schlüssel ist. Der Objektbefehl **begintransaction** auf einer Datenbankverbindung beginnt eine Transaktion auf der Datenbank. Unterstützt die zugrunde liegende Datenbank keine atomaren, konsistenten, isolierten und dauerhaften Transaktionen, gibt der Objektbefehl **begintransaction** einen Fehler zurück, der diesen Umstand meldet. Ebenso wird ein Fehler zurückgegeben, wenn mehrere Befehle **begintransaction** ohne einen dazwischenliegenden Befehl **commit** oder **rollback** ausgeführt werden, es sei denn, die zugrunde liegende Datenbank unterstützt verschachtelte Transaktionen. Der Objektbefehl **commit** auf einer Datenbankverbindung beendet die jüngste durch **begintransaction** begonnene Transaktion und schreibt die Änderungen in der Datenbank fest. Der Objektbefehl **rollback** auf einer Datenbankverbindung setzt die jüngste durch **begintransaction** begonnene Transaktion zurück. Der Zustand der Datenbank ist so, als wäre während der Transaktion nichts geschehen. Der Objektbefehl **transaction** auf einer Datenbankverbindung bietet einen einfachen Weg, eine Datenbanktransaktion zusammenzufassen. Er beginnt eine Transaktion und wertet das übergebene Argument *script* als Tcl-Skript im Geltungsbereich des Aufrufers aus. Endet *script* normal oder durch **break**, **continue** oder **return**, wird die Transaktion festgeschrieben (und jede von **break**, **continue** oder **return** verlangte Aktion findet statt). Schlägt das Festschreiben aus irgendeinem Grund fehl, wird der Fehler beim Festschreiben als Fehler im *script* behandelt. Bei einem Fehler in *script* oder beim Festschreiben wird die Transaktion zurückgesetzt und der Fehler erneut gemeldet. Jeder abweichende Rückgabecode des Skripts setzt die Transaktion zurück und wird danach erneut gemeldet. Der Objektbefehl **allrows** bereitet eine SQL-Anweisung vor (gegeben durch den Parameter *sql-code*), die gegen die Datenbank ausgeführt werden soll. Danach führt er sie aus (Einzelheiten bei **tdbc::statement**), wobei der optionale Parameter *dictionary* gebundene Variablen angibt. Anschließend verwendet er den Objektbefehl *allrows* auf der Ergebnismenge (siehe **tdbc::resultset**), um eine Liste der Ergebnisse aufzubauen. Anschließend werden Ergebnismenge und Anweisung geschlossen. Der Rückgabewert ist die Liste der Ergebnisse. Der Objektbefehl **foreach** bereitet eine SQL-Anweisung vor (gegeben durch den Parameter *sql-code*), die gegen die Datenbank ausgeführt werden soll. Danach führt er sie aus (Einzelheiten bei **tdbc::statement**), wobei der optionale Parameter *dictionary* gebundene Variablen angibt. Anschließend verwendet er den Objektbefehl *foreach* auf der Ergebnismenge (siehe **tdbc::resultset**), um das gegebene *script* für jede Ergebniszeile auszuwerten. Anschließend werden Ergebnismenge und Anweisung geschlossen, auch wenn das gegebene *script* ein **return**, einen Fehler oder einen ungewöhnlichen Rückgabecode ergibt.
+: Position der Spalte im Fremdschlüssel, wenn der Schlüssel ein zusammengesetzter Schlüssel ist.
 
 
-# KONFIGURATIONSOPTIONEN
+Der Objektbefehl **begintransaction** auf einer Datenbankverbindung beginnt eine Transaktion auf der Datenbank. Unterstützt die zugrunde liegende Datenbank keine atomaren, konsistenten, isolierten und dauerhaften Transaktionen, gibt der Objektbefehl **begintransaction** einen Fehler zurück, der diesen Umstand meldet. Ebenso wird ein Fehler zurückgegeben, wenn mehrere Befehle **begintransaction** ohne einen dazwischenliegenden Befehl **commit** oder **rollback** ausgeführt werden, es sei denn, die zugrunde liegende Datenbank unterstützt verschachtelte Transaktionen.
+
+Der Objektbefehl **commit** auf einer Datenbankverbindung beendet die jüngste durch **begintransaction** begonnene Transaktion und schreibt die Änderungen in der Datenbank fest.
+
+Der Objektbefehl **rollback** auf einer Datenbankverbindung setzt die jüngste durch **begintransaction** begonnene Transaktion zurück. Der Zustand der Datenbank ist so, als wäre während der Transaktion nichts geschehen.
+
+Der Objektbefehl **transaction** auf einer Datenbankverbindung bietet einen einfachen Weg, eine Datenbanktransaktion zusammenzufassen. Er beginnt eine Transaktion und wertet das übergebene Argument *script* als Tcl-Skript im Geltungsbereich des Aufrufers aus. Endet *script* normal oder durch **break**, **continue** oder **return**, wird die Transaktion festgeschrieben (und jede von **break**, **continue** oder **return** verlangte Aktion findet statt). Schlägt das Festschreiben aus irgendeinem Grund fehl, wird der Fehler beim Festschreiben als Fehler im *script* behandelt. Bei einem Fehler in *script* oder beim Festschreiben wird die Transaktion zurückgesetzt und der Fehler erneut gemeldet. Jeder abweichende Rückgabecode des Skripts setzt die Transaktion zurück und wird danach erneut gemeldet.
+
+Der Objektbefehl **allrows** bereitet eine SQL-Anweisung vor (gegeben durch den Parameter *sql-code*), die gegen die Datenbank ausgeführt werden soll. Danach führt er sie aus (Einzelheiten bei **tdbc::statement**), wobei der optionale Parameter *dictionary* gebundene Variablen angibt. Anschließend verwendet er den Objektbefehl *allrows* auf der Ergebnismenge (siehe **tdbc::resultset**), um eine Liste der Ergebnisse aufzubauen. Anschließend werden Ergebnismenge und Anweisung geschlossen. Der Rückgabewert ist die Liste der Ergebnisse.
+
+Der Objektbefehl **foreach** bereitet eine SQL-Anweisung vor (gegeben durch den Parameter *sql-code*), die gegen die Datenbank ausgeführt werden soll. Danach führt er sie aus (Einzelheiten bei **tdbc::statement**), wobei der optionale Parameter *dictionary* gebundene Variablen angibt. Anschließend verwendet er den Objektbefehl *foreach* auf der Ergebnismenge (siehe **tdbc::resultset**), um das gegebene *script* für jede Ergebniszeile auszuwerten. Anschließend werden Ergebnismenge und Anweisung geschlossen, auch wenn das gegebene *script* ein **return**, einen Fehler oder einen ungewöhnlichen Rückgabecode ergibt.
+
+# Konfigurationsoptionen
 
 Die Konfigurationsoptionen, die beim Erzeugen der Verbindung und beim Objektbefehl **configure** der Verbindung akzeptiert werden, umfassen die folgenden und dürfen weitere umfassen, die für einen Datenbanktreiber spezifisch sind.
 
@@ -175,7 +196,7 @@ Die Konfigurationsoptionen, die beim Erzeugen der Verbindung und beim Objektbefe
 : Legt die Kodierung fest, die für die Verbindung zur Datenbank verwendet wird. *name* soll einer der Namen sein, die der Befehl **encoding** akzeptiert. Diese Option ist gewöhnlich unnötig; die meisten Datenbanktreiber ermitteln die verwendete Kodierung selbst.
 
 **-isolation** *level*
-: Legt die Isolationsstufe fest, die Transaktionen auf der Datenbank brauchen. Die zulässigen Werte für *level* stehen unter **ISOLATIONSSTUFEN VON TRANSAKTIONEN**.
+: Legt die Isolationsstufe fest, die Transaktionen auf der Datenbank brauchen. Die zulässigen Werte für *level* stehen unter [Isolationsstufen von Transaktionen].
 
 **-timeout** *ms*
 : Legt die Höchstdauer fest, die auf eine Operation der Datenbank-Engine gewartet wird, bevor dem Aufrufer ein Fehler gemeldet wird. Das Argument *ms* gibt die Höchstdauer in Millisekunden an. Der Wert null (die Vorgabe) legt fest, dass der aufrufende Prozess unbegrenzt auf Datenbankoperationen wartet.
@@ -184,7 +205,7 @@ Die Konfigurationsoptionen, die beim Erzeugen der Verbindung und beim Objektbefe
 : Legt fest, dass die Verbindung die Datenbank nicht verändert (wenn der boolesche Parameter *flag* wahr ist) oder dass sie die Datenbank verändern darf (wenn *flag* falsch ist). Ist *flag* wahr, kann diese Option bewirken, dass die Isolationsstufe auf *readonly* angehoben wird.
 
 
-## ISOLATIONSSTUFEN VON TRANSAKTIONEN
+## Isolationsstufen von Transaktionen
 
 Die zulässigen Werte für die Konfigurationsoption **-isolation** sind:
 
@@ -201,9 +222,13 @@ Die zulässigen Werte für die Konfigurationsoption **-isolation** sind:
 : Die strengste (und teuerste) Isolationsstufe. Jede Abfrage an die Datenbank liefert, wird sie wiederholt, für die Dauer der Transaktion genau dieselben Ergebnisse, so als wäre die Transaktion der einzige Benutzer der Datenbank.
 
 **readonly**
-: Verhält sich wie **serializable**, insofern der Transaktion nur Ergebnisse sichtbar sind, die vor dem Beginn der Transaktion festgeschrieben wurden, verbietet der Transaktion aber, die Datenbank zu verändern. Eine Datenbank, die eine dieser Isolationsstufen nicht umsetzt, verwendet stattdessen die nächststrengere Isolationsstufe. Lässt sich die angegebene Isolationsstufe nicht erreichen, meldet die Datenbankschnittstelle einen Fehler, der diesen Umstand nennt. Die voreingestellte Isolationsstufe ist **readcommitted**. Ein Skript soll die Isolationsstufe nicht ändern, während eine Transaktion läuft.
+: Verhält sich wie **serializable**, insofern der Transaktion nur Ergebnisse sichtbar sind, die vor dem Beginn der Transaktion festgeschrieben wurden, verbietet der Transaktion aber, die Datenbank zu verändern.
 
 
-# COPYRIGHT
+Eine Datenbank, die eine dieser Isolationsstufen nicht umsetzt, verwendet stattdessen die nächststrengere Isolationsstufe. Lässt sich die angegebene Isolationsstufe nicht erreichen, meldet die Datenbankschnittstelle einen Fehler, der diesen Umstand nennt. Die voreingestellte Isolationsstufe ist **readcommitted**.
+
+Ein Skript soll die Isolationsstufe nicht ändern, während eine Transaktion läuft.
+
+# Copyright
 
 Copyright (c) 2008 by Kevin B. Kenny.

@@ -1,0 +1,49 @@
+# katalog.tsv -- die PDFs der Sammlung, gelesen von build-pdfs.sh und pdfgui.tcl.
+#
+# UTF-8, Spalten mit Tabulator getrennt, "#" am Zeilenanfang = Kommentar.
+# Kein Feld leer lassen: "-" steht fuer "nichts".
+#
+# name      Name des PDFs (Handbuch: NAME-LANG.pdf, Buch: NAME.pdf)
+# art       handbuch | index | buch
+# gruppe    Tcl-family | Extensions | Books
+# ordner    unter GRUPPE/LANG-markdown/; "." = die ganze Gruppe
+# teile     "*" = der ganze Ordner, sonst Unterordner mit Komma (tcl,tk)
+# sprachen  de,en | de | en (Buch: genau eine)
+# quelle    woher "Seiten uebernehmen" (pdfgui) kopiert:
+#           Handbuch: Pfad unter <Uebersetzung>/LANG-markdown/
+#           Buch: Buchordner relativ zum Buecherbaum (PDFGUI_BOOKS)
+#           Index: die Handbuecher, deren .index.tsv er zusammenfasst,
+#           mit Komma (tablelist,mentry); "-" = alle Handbuecher der Gruppe
+# titel_de  Titel auf der Titelseite (Buch: -, der Titel steht in book.tcl)
+# titel_en
+#
+# Ein Handbuch, das in einer Sprache keine Seiten hat (die C-API gibt es
+# nur englisch), entfaellt dort beim Bauen. Ein Index fasst die
+# .index.tsv der Handbuecher seiner Gruppe zusammen, alle oder die in
+# quelle genannten (Teil-Index, in dieser Reihenfolge).
+name	art	gruppe	ordner	teile	sprachen	quelle	titel_de	titel_en
+tcltk-9.0	handbuch	Tcl-family	9.0	tcl,tk	de,en	9.0	Tcl/Tk 9.0	Tcl/Tk 9.0
+tcltk-9.0-capi	handbuch	Tcl-family	9.0	tcl-c,tk-c	de,en	9.0	Tcl/Tk 9.0 C-API	Tcl/Tk 9.0 C API
+tcltk-8.6	handbuch	Tcl-family	8.6	tcl,tk	de,en	8.6	Tcl/Tk 8.6	Tcl/Tk 8.6
+tcltk-8.6-capi	handbuch	Tcl-family	8.6	tcl-c,tk-c	de,en	8.6	Tcl/Tk 8.6 C-API	Tcl/Tk 8.6 C API
+tcllib	handbuch	Tcl-family	tcllib	*	de,en	tcllib	Tcllib	Tcllib
+tklib	handbuch	Tcl-family	tklib	*	de,en	tklib	Tklib	Tklib
+tablelist	handbuch	Tcl-family	pakete/tablelist	*	de,en	pakete/tablelist	Tablelist	Tablelist
+mentry	handbuch	Tcl-family	pakete/mentry	*	de,en	pakete/mentry	Mentry	Mentry
+scrollutil	handbuch	Tcl-family	pakete/scrollutil	*	de,en	pakete/scrollutil	Scrollutil	Scrollutil
+wcb	handbuch	Tcl-family	pakete/wcb	*	de,en	pakete/wcb	Wcb	Wcb
+tsw	handbuch	Tcl-family	pakete/tsw	*	de,en	pakete/tsw	Tsw	Tsw
+erweiterungen	handbuch	Extensions	.	*	de,en	erweiterungen	Erweiterungen	Extensions
+bwidget	handbuch	Extensions	bwidget	*	de,en	erweiterungen/bwidget	BWidget	BWidget
+tcl-family-index	index	Tcl-family	.	*	de,en	-	Tcl-Familie: Gesamtindex	Tcl family: combined index
+nemethi-index	index	Tcl-family	.	*	de,en	tablelist,mentry,scrollutil,wcb,tsw	Pakete von Csaba Nemethi: Gesamtindex	Packages by Csaba Nemethi: combined index
+Tclutils-de	buch	Books	Tclutils-de	*	de	book-tclutils/Tclutils-de	-	-
+Tclutils-en	buch	Books	Tclutils-en	*	en	book-tclutils/Tclutils-en	-	-
+pdf4tcl-de	buch	Books	pdf4tcl-de	*	de	book-pdf4tcl/pdf4tcl-de	-	-
+pdf4tcl-en	buch	Books	pdf4tcl-en	*	en	book-pdf4tcl/pdf4tcl-en	-	-
+pdf4tcllib-de	buch	Books	pdf4tcllib-de	*	de	book-pdf4tcllib/pdf4tcllib-de	-	-
+pdf4tcllib-en	buch	Books	pdf4tcllib-en	*	en	book-pdf4tcllib/pdf4tcllib-en	-	-
+Tkutils-de	buch	Books	Tkutils-de	*	de	book-tkutils/Tkutils-de	-	-
+Tkutils-en	buch	Books	Tkutils-en	*	en	book-tkutils/Tkutils-en	-	-
+Mdserver-de	buch	Books	Mdserver-de	*	de	book-mdserver/Mdserver-de	-	-
+Mdserver-en	buch	Books	Mdserver-en	*	en	book-mdserver/Mdserver-en	-	-

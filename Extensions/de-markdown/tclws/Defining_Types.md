@@ -1,4 +1,4 @@
-## INHALT
+## Inhalt
 
 - [1 Überblick](#berblick) 
 - [2 Das Paket Webservices Utility laden](#das-paket-webservices-utility-laden) 
@@ -9,7 +9,7 @@
 
  
 
-## ÜBERBLICK
+## Überblick
 
 Die Deklaration von Webdienst-Typen gehört zum Paket Webservices Utility.
 
@@ -17,7 +17,7 @@ Beim Schreiben eines Webdienstes ist oft eine komplexe Typdefinition für ein Ar
 
 Beim Aufruf einer Operation eines Webdienstes ist es manchmal bequem, einen komplexen Typ zu definieren, um strukturierte Daten als XML-Fragment zurückzugeben, auch wenn der Dienst angibt, nur eine Zeichenkette zu erwarten.
 
-## DAS PAKET WEBSERVICES UTILITY LADEN
+## Das Paket Webservices Utility laden
 
 Das Serverpaket für Webservices wird so geladen:
 
@@ -29,7 +29,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ---
 
-## EINEN TYP DEFINIEREN
+## Einen Typ definieren
 
 **Prozedurname** : *::WS::Utils::ServiceTypeDef*
 
@@ -59,7 +59,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ---
 
-## EINEN ABGELEITETEN TYP DEFINIEREN
+## Einen abgeleiteten Typ definieren
 
 **Prozedurname** : *::WS::Utils::ServiceSimpleTypeDef*
 
@@ -97,7 +97,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ---
 
-## EINE TYPDEFINITION ABFRAGEN
+## Eine Typdefinition abfragen
 
 **Prozedurname** : *::WS::Utils::GetServiceTypeDef*
 
@@ -135,7 +135,7 @@ Dieser Befehl lädt die Hilfsprogramme nur beim ersten Mal, es schadet also nich
 
 ---
 
-## EIN VORLAGEN-DICTIONARY FÜR EINE TYPDEFINITION ERZEUGEN
+## Ein Vorlagen-Dictionary für eine Typdefinition erzeugen
 
 **Prozedurname** : *::WS::Utils::GenerateTemplateDict*
 

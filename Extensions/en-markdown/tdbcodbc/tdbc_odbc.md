@@ -1,5 +1,6 @@
 ---
 CommandName: tdbc::odbc
+title: tdbc::odbc
 ManualSection: n
 Version: 8.6
 TclPart: Tcl
@@ -27,12 +28,12 @@ tdbc::odbc - TDBC-ODBC bridge
 # Synopsis
 
 ::: {.synopsis} :::
-[package]{.cmd} [require]{.sub} [tdbc::odbc]{.lit} [1.0]{.lit} 
-[tdbc::odbc::connection]{.cmd} [create]{.sub} [db]{.arg} [connectionString]{.arg} [-option value]{.optdot} 
-[tdbc::odbc::connection]{.cmd} [new]{.sub} [connectionString]{.arg} [-option value]{.optdot} 
-[tdbc::odbc::datasources]{.cmd} [-system|-user]{.optlit} 
-[tdbc::odbc::drivers]{.cmd} 
-[tdbc::odbc::datasource]{.cmd} [command]{.arg} [driverName]{.arg} [keyword-value?]{.optdot} 
+[package]{.cmd} [require]{.sub} [tdbc::odbc]{.lit} [1.0]{.lit}
+[tdbc::odbc::connection]{.cmd} [create]{.sub} [db]{.arg} [connectionString]{.arg} [-option value...]{.optarg}
+[tdbc::odbc::connection]{.cmd} [new]{.sub} [connectionString]{.arg} [-option value...]{.optarg}
+[tdbc::odbc::datasources]{.cmd} [-system|-user]{.optlit}
+[tdbc::odbc::drivers]{.cmd}
+[tdbc::odbc::datasource]{.cmd} [command]{.arg} [driverName]{.arg} [keyword-value?...]{.optarg}
 :::
 
 # Description
@@ -54,19 +55,19 @@ The **tdbc::odbc::datasource** command allows configuration of named data source
 **add**
 : Adds a user data source. The keyword-value pairs must include at least a **DSN** option naming the data source
 
-**add_system**
+**add\_system**
 : Adds a system data source. The keyword-value pairs must include at least a **DSN** option naming the data source
 
 **configure**
-: Configures a user data source. The keyword-value pairs will usually include a **DSN** option naming the data source. Some drivers will support other options, such as the **CREATE_DB** option to the Microsoft Access driver on Windows.
+: Configures a user data source. The keyword-value pairs will usually include a **DSN** option naming the data source. Some drivers will support other options, such as the **CREATE\_DB** option to the Microsoft Access driver on Windows.
 
-**configure_system**
+**configure\_system**
 : Configures a system data source.
 
 **remove**
 : Removes a user data source. The keyword-value pairs must include a **DSN** option specifying the data source to remove.
 
-**remove_system**
+**remove\_system**
 : Removes a system data source. The keyword-value pairs must include a **DSN** option specifying the data source to remove.
 
 
@@ -95,14 +96,14 @@ append connString {DBQ=} \
 tdbc::odbc::connection create db2 -readonly 1 $connString
 ```
 
-Opens a connection to a Microsoft Access database file whose name is in *\$fileName*. The database is opened in read-only mode. The resulting connection is called "db2".
+Opens a connection to a Microsoft Access database file whose name is in *$fileName*. The database is opened in read-only mode. The resulting connection is called "db2".
 
 ```
 tdbc::odbc::connection create db3 \
     "DRIVER=SQLite3;DATABASE=$fileName"
 ```
 
-Opens a connection to a SQLite3 database whose name is in "\$fileName".
+Opens a connection to a SQLite3 database whose name is in "$fileName".
 
 ```
 tdbc::odbc::datasource add \
@@ -111,7 +112,7 @@ tdbc::odbc::datasource add \
     DBQ=[file native [file normalize $fileName]]
 ```
 
-Creates a new user data source with the name, "MyTestDatabase" bound to a Microsoft Access file whose path name is in "\$fileName". No connection is made to the data source until the program calls **tdbc::odbc::connection create**.
+Creates a new user data source with the name, "MyTestDatabase" bound to a Microsoft Access file whose path name is in "$fileName". No connection is made to the data source until the program calls **tdbc::odbc::connection create**.
 
 ```
 tdbc::odbc::datasource configure \
@@ -120,14 +121,14 @@ tdbc::odbc::datasource configure \
     General
 ```
 
-Creates a new, empty Microsoft Access database in the file identified by "\$fileName". No connection is made to the database until the program calls **tdbc::odbc::connection create**.
+Creates a new, empty Microsoft Access database in the file identified by "$fileName". No connection is made to the database until the program calls **tdbc::odbc::connection create**.
 
 # Additional connection methods
 
 In addition to the usual methods on the tdbc::connection(n) object, connections to an ODBC database support one additional method:
 
-*\$connection* **evaldirect** *sqlStatement*
-: This method takes the given driver-native SQL code *sqlStatement* and evaluates it without preparing it. The statement is not tokenized and must not contain variable substitutions.  Evaluating the *sqlStatement* produces a result set of zero or more rows.  The result of the command is a list of dictionaries, with one list element per row in the result set (in a similar format to the list returned by *\$connection allrows -as dicts*). *This command is not recommended* for anything where the usual *prepare* or *preparecall* methods work correctly. It is provided so that data management language statements that are not implemented by the driver's prepared statement API (such as **CREATE DATABASE** or **CREATE PROCEDURE**), or that contain characters that are reserved by the tokenizer, can be executed.
+*$connection* **evaldirect** *sqlStatement*
+: This method takes the given driver-native SQL code *sqlStatement* and evaluates it without preparing it. The statement is not tokenized and must not contain variable substitutions.  Evaluating the *sqlStatement* produces a result set of zero or more rows.  The result of the command is a list of dictionaries, with one list element per row in the result set (in a similar format to the list returned by *$connection allrows -as dicts*). *This command is not recommended* for anything where the usual *prepare* or *preparecall* methods work correctly. It is provided so that data management language statements that are not implemented by the driver's prepared statement API (such as **CREATE DATABASE** or **CREATE PROCEDURE**), or that contain characters that are reserved by the tokenizer, can be executed.
 
 
 # Copyright

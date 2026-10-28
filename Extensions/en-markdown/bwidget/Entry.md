@@ -9,36 +9,36 @@
 *STANDARD OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
-|   [-disabledbackground](options.md) |   [-disabledforeground](options.md) |
-|   [-exportselection](options.md) |   [-font](options.md) |
-|   [-foreground or -fg](options.md) |   [-highlightbackground](options.md) |
-|   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
-|   [-insertbackground](options.md) |   [-insertborderwidth](options.md) |
-|   [-insertofftime](options.md) |   [-insertontime](options.md) |
-|   [-insertwidth](options.md) |   [-justify](options.md) |
-|   [-relief](options.md) |   [-selectbackground](options.md) |
-|   [-selectborderwidth](options.md) |   [-selectforeground](options.md) |
-|   [-takefocus](options.md) |   [-text](options.md) |
-|   [-textvariable](options.md) |   [-xscrollcommand](options.md) |
+    |   |   |
+    | --- | --- |
+    |   [-background or -bg](options.md) |   [-borderwidth or -bd](options.md) |
+    |   [-disabledbackground](options.md) |   [-disabledforeground](options.md) |
+    |   [-exportselection](options.md) |   [-font](options.md) |
+    |   [-foreground or -fg](options.md) |   [-highlightbackground](options.md) |
+    |   [-highlightcolor](options.md) |   [-highlightthickness](options.md) |
+    |   [-insertbackground](options.md) |   [-insertborderwidth](options.md) |
+    |   [-insertofftime](options.md) |   [-insertontime](options.md) |
+    |   [-insertwidth](options.md) |   [-justify](options.md) |
+    |   [-relief](options.md) |   [-selectbackground](options.md) |
+    |   [-selectborderwidth](options.md) |   [-selectforeground](options.md) |
+    |   [-takefocus](options.md) |   [-text](options.md) |
+    |   [-textvariable](options.md) |   [-xscrollcommand](options.md) |
 
 
 *WIDGET-SPECIFIC OPTIONS*
 : 
 
-|   |   |
-| --- | --- |
-|   -command |   -dragenabled |
-|   -dragendcmd |   -dragevent |
-|   -draginitcmd |   -dragtype |
-|   -dropcmd |   -dropenabled |
-|   -dropovercmd |   -droptypes |
-|   -editable |   -helptext |
-|   -helptype |   -helpvar |
-|   -show |   -state |
-|   -width |
+    |   |   |
+    | --- | --- |
+    |   -command |   -dragenabled |
+    |   -dragendcmd |   -dragevent |
+    |   -draginitcmd |   -dragtype |
+    |   -dropcmd |   -dropenabled |
+    |   -dropovercmd |   -droptypes |
+    |   -editable |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -show |   -state |
+    |   -width |
 
 
 *WIDGET COMMAND*
@@ -81,9 +81,9 @@ WIDGET-SPECIFIC OPTIONS
 : Specifies a command to be called when **dragevent** occurs on widget. **draginitcmd** must be a command conforming to the description of the option **draginitcmd** of **DragSite::register**.   
   if **draginitcmd** is empty, the command refuse the drag if entry is empty or if portion of text is selected and event doesn't occur above the selection. In all other cases, the command returns:
 
-  - as the data type, the value of option **dragtype** or *TEXT* if empty, 
-  - as the operations, *{copy move}* if **state** is normal and **editable** is true, or *{copy}* only in other cases, 
-  - as the data, the whole content or the selected portion of the entry. 
+      - as the data type, the value of option **dragtype** or *TEXT* if empty, 
+      - as the operations, *{copy move}* if **state** is normal and **editable** is true, or *{copy}* only in other cases, 
+      - as the data, the whole content or the selected portion of the entry. 
 
 
 **-dragtype**
@@ -94,24 +94,24 @@ WIDGET-SPECIFIC OPTIONS
 : Entry has a command wrapper for *drop* events. This command stops auto scrolling and extract current position.   
   If **dropcmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the Entry, 
-  - the pathname of the drag source, 
-  - the numeric index in the entry designated by the cursor, 
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the Entry, 
+      - the pathname of the drag source, 
+      - the numeric index in the entry designated by the cursor, 
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-and must return a value conforming to **dropcmd** option described in **DropSite::register**. If **dropcmd** is empty, the wrapper updates the entry following the type of data:
+    and must return a value conforming to **dropcmd** option described in **DropSite::register**. If **dropcmd** is empty, the wrapper updates the entry following the type of data:
 
+    : 
 
-|   |   |
-| --- | --- |
-| *COLOR* or *FGCOLOR* | reconfigure the **foreground** of the Entry |
-| *BGCOLOR* | reconfigure the **background** of the Entry |
-| *TEXT*,   or any other tag | reconfigure the Entry to display the associated string. |
+        |   |   |
+        | --- | --- |
+        | *COLOR* or *FGCOLOR* | reconfigure the **foreground** of the Entry |
+        | *BGCOLOR* | reconfigure the **background** of the Entry |
+        | *TEXT*,   or any other tag | reconfigure the Entry to display the associated string. |
 
-
-and returns 1.
+    and returns 1.
 
 
 **-dropenabled**
@@ -123,15 +123,15 @@ and returns 1.
   If **dropovercmd** is empty, the wrapper accepts the drop if **editable** option is true and **state** option is normal.   
   If **dropovercmd** is not empty, it is called with the following arguments:
 
-  - the pathname of the Entry, 
-  - the pathname of the drag source, 
-  - the event, 
-  - the numeric index in the entry designated by the cursor, 
-  - the current operation, 
-  - the data type, 
-  - the data. 
+      - the pathname of the Entry, 
+      - the pathname of the drag source, 
+      - the event, 
+      - the numeric index in the entry designated by the cursor, 
+      - the current operation, 
+      - the data type, 
+      - the data. 
 
-and must return a value conforming to **dropovercmd** option described in **DropSite::register**.
+    and must return a value conforming to **dropovercmd** option described in **DropSite::register**.
 
 
 **-droptypes**

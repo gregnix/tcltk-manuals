@@ -9,45 +9,45 @@
 *OPTIONEN VON Entry*
 : 
 
-|   |   |
-| --- | --- |
-|   -borderwidth oder -bd |   -command |
-|   -disabledforeground |   -dragenabled |
-|   -dragendcmd |   -dragevent |
-|   -draginitcmd |   -dragtype |
-|   -dropcmd |   -dropenabled |
-|   -dropovercmd |   -droptypes |
-|   -editable |   -entrybg (siehe **-background**) |
-|   -entryfg (siehe **-foreground**) |   -exportselection |
-|   -font |   -helptext |
-|   -helptype |   -helpvar |
-|   -highlightbackground |   -highlightcolor |
-|   -highlightthickness |   -insertbackground |
-|   -insertborderwidth |   -insertofftime |
-|   -insertontime |   -insertwidth |
-|   -justify |   -relief |
-|   -selectbackground |   -selectborderwidth |
-|   -selectforeground |   -show |
-|   -state |   -takefocus |
-|   -text |   -textvariable |
-|   -width |   -xscrollcommand |
+    |   |   |
+    | --- | --- |
+    |   -borderwidth oder -bd |   -command |
+    |   -disabledforeground |   -dragenabled |
+    |   -dragendcmd |   -dragevent |
+    |   -draginitcmd |   -dragtype |
+    |   -dropcmd |   -dropenabled |
+    |   -dropovercmd |   -droptypes |
+    |   -editable |   -entrybg (siehe **-background**) |
+    |   -entryfg (siehe **-foreground**) |   -exportselection |
+    |   -font |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -highlightbackground |   -highlightcolor |
+    |   -highlightthickness |   -insertbackground |
+    |   -insertborderwidth |   -insertofftime |
+    |   -insertontime |   -insertwidth |
+    |   -justify |   -relief |
+    |   -selectbackground |   -selectborderwidth |
+    |   -selectforeground |   -show |
+    |   -state |   -takefocus |
+    |   -text |   -textvariable |
+    |   -width |   -xscrollcommand |
 
 
 *OPTIONEN VON LabelFrame*
 : 
 
-|   |   |
-| --- | --- |
-|   -background oder -bg |   -disabledforeground |
-|   -foreground oder -fg |   -helptext |
-|   -helptype |   -helpvar |
-|   -label (siehe **-text**) |   -labelanchor (siehe **-anchor**) |
-|   -labelfont (siehe **-font**) |   -labelheight (siehe **-height**) |
-|   -labeljustify (siehe **-justify**) |   -labelwidth (siehe **-width**) |
-|   -name |   -padx |
-|   -pady |   -side |
-|   -state |   -underline |
-|   -wraplength |
+    |   |   |
+    | --- | --- |
+    |   -background oder -bg |   -disabledforeground |
+    |   -foreground oder -fg |   -helptext |
+    |   -helptype |   -helpvar |
+    |   -label (siehe **-text**) |   -labelanchor (siehe **-anchor**) |
+    |   -labelfont (siehe **-font**) |   -labelheight (siehe **-height**) |
+    |   -labeljustify (siehe **-justify**) |   -labelwidth (siehe **-width**) |
+    |   -name |   -padx |
+    |   -pady |   -side |
+    |   -state |   -underline |
+    |   -wraplength |
 
 
 *WIDGET-BEFEHL*

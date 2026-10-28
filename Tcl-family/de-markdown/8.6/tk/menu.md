@@ -68,7 +68,7 @@ Bei normaler Verwendung wird ein Eintrag aktiv (stellt sich anders dar), sobald 
 
 Einträge können *deaktiviert* werden, wodurch ihre Beschriftungen und Accelerators mit gedimmteren Farben angezeigt werden. Die Standard-Menü-Bindings erlauben nicht, dass ein deaktivierter Eintrag aktiviert oder aufgerufen wird. Deaktivierte Einträge können wieder aktiviert werden; dann ist es wieder möglich, sie zu aktivieren und aufzurufen.
 
-Wann immer sich der aktive Eintrag eines Menüs ändert, wird ein virtuelles Event <\<MenuSelect>> an das Menü gesendet. Der aktive Eintrag kann dann vom Menü abgefragt werden, und es kann eine Aktion ausgeführt werden, z. B. das Setzen kontextsensitiver Hilfetexte für den Eintrag.
+Wann immer sich der aktive Eintrag eines Menüs ändert, wird ein virtuelles Event <<MenuSelect>> an das Menü gesendet. Der aktive Eintrag kann dann vom Menü abgefragt werden, und es kann eine Aktion ausgeführt werden, z. B. das Setzen kontextsensitiver Hilfetexte für den Eintrag.
 
 # Eintragstypen
 

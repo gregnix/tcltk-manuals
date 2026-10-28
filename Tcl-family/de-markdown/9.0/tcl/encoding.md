@@ -86,10 +86,16 @@ Folgende Profile sind derzeit implementiert; Standard ist **strict**, wenn **-pr
 : [Das Profil **strict** stoppt die Verarbeitung stets bei einem Konvertierungsfehler. Der Fehler wird per Exception oder über **-failindex** gemeldet. **strict** entspricht dem Unicode-Standard.]{version="TIP656"}
 
 [**tcl8**]{version="TIP656"}
-: [Das Profil **tcl8** folgt stets der ersten Strategie oben und entspricht dem Verhalten von Kodierungstransformationen in Tcl 8.6. Beim Konvertieren von einer externen Kodierung **außer utf-8** in Tcl-Zeichenketten mit **encoding convertfrom** werden ungültige Bytes ihren numerisch äquivalenten Codepunkten zugeordnet. Das Byte 0x80, in ASCII ungültig, wird z. B. auf Codepunkt U+0080 abgebildet. Beim Konvertieren von **utf-8** werden ungültige Bytes, die in CP1252 definiert sind, ihren Unicode-Äquivalenten zugeordnet, andere fallen auf numerische Äquivalente zurück. Byte 0x80 ist in CP1252 definiert und wird daher U+20AC zugeordnet; Byte 0x81 ist in CP1252 nicht definiert und wird U+0081 zugeordnet. Als Sonderfall wird die Sequenz 0xC0 0x80 auf U+0000 abgebildet. Beim Konvertieren von Tcl-Zeichenketten in ein externes Format mit **encoding convertto** werden nicht darstellbare Zeichen durch ein kodierungsabhängiges Zeichen ersetzt, meist **?**.]{version="TIP656"}
+: [Das Profil **tcl8** folgt stets der ersten Strategie oben und entspricht dem Verhalten von Kodierungstransformationen in Tcl 8.6. Beim Konvertieren von einer externen Kodierung **außer utf-8** in Tcl-Zeichenketten mit **encoding convertfrom** werden ungültige Bytes ihren numerisch äquivalenten Codepunkten zugeordnet. Das Byte 0x80, in ASCII ungültig, wird z. B. auf Codepunkt U+0080 abgebildet. Beim Konvertieren von **utf-8** werden ungültige Bytes, die in CP1252 definiert sind, ihren Unicode-Äquivalenten zugeordnet, andere fallen auf numerische Äquivalente zurück. Byte 0x80 ist in CP1252 definiert und wird daher U+20AC zugeordnet; Byte 0x81 ist in CP1252 nicht definiert und wird U+0081 zugeordnet. Als Sonderfall wird die Sequenz 0xC0 0x80 auf U+0000 abgebildet.]{version="TIP656"}
+
+    [Beim Konvertieren von Tcl-Zeichenketten in ein externes Format mit **encoding convertto** werden nicht darstellbare Zeichen durch ein kodierungsabhängiges Zeichen ersetzt, meist **?**.]{version="TIP656"}
 
 [**replace**]{version="TIP656"}
-: [Wie **tcl8** setzt **replace** bei Konvertierungsfehlern die Verarbeitung fort, verwendet aber eine Unicode-konforme Ersetzungsmethode für ungültige Quelldaten. Bei **encoding convertfrom** werden ungültige Bytes durch den Codepunkt U+FFFD REPLACEMENT CHARACTER ersetzt. Bei **encoding convertto** werden nicht darstellbare Codepunkte in ein kodierungsspezifisches Ersatzzeichen umgewandelt: U+FFFD REPLACEMENT CHARACTER für UTF-Ziele, sonst meist `?`.]{version="TIP656"}
+: [Wie **tcl8** setzt **replace** bei Konvertierungsfehlern die Verarbeitung fort, verwendet aber eine Unicode-konforme Ersetzungsmethode für ungültige Quelldaten.]{version="TIP656"}
+
+    [Bei **encoding convertfrom** werden ungültige Bytes durch den Codepunkt U+FFFD REPLACEMENT CHARACTER ersetzt.]{version="TIP656"}
+
+    [Bei **encoding convertto** werden nicht darstellbare Codepunkte in ein kodierungsspezifisches Ersatzzeichen umgewandelt: U+FFFD REPLACEMENT CHARACTER für UTF-Ziele, sonst meist `?`.]{version="TIP656"}
 
 
 # Beispiele
