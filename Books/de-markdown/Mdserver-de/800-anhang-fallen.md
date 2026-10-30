@@ -104,7 +104,8 @@ Mit `nroff2md --linkmode server` erzeugt, zeigen die Verweise auf
 
 ## Suche findet eine Datei nicht
 
-Die Suche liest `.md` und, mit tclutils, `.pdf`. Punkt-Ordner bleiben
+Die Suche liest `.md` und, mit tclutils, `.pdf`, Office-Dateien und
+`.csv` (Banner-Zeilen `PDF:`, `Office:`, `CSV:`). Punkt-Ordner bleiben
 draußen (bei `--dotfiles 0`), Symlinks immer — auch solche, die
 innerhalb der Wurzel bleiben. Wörter unter zwei Zeichen werden
 ignoriert.
@@ -122,11 +123,51 @@ gelesen“. Eine gescannte PDF ohne Textebene gibt nie einen Treffer.
 
 ---
 
+## `or` findet nichts mehr
+
+`a or b` sucht drei Wörter, darunter `or`. Nur `OR`, `ODER` und `|`
+verbinden zwei Wörter zu „eins von beiden“.
+
+---
+
+## Eine CSV lässt sich nicht herunterladen
+
+Im Stil `site` öffnet ein Link auf eine `.csv` die Tabellenseite. Die
+Datei selbst liefert `datei.csv?raw=1` (Link oben auf der Seite), für
+alle Dateien `--csv-view 0`.
+
+---
+
+## Datum aus einer XLSX ist eine Zahl
+
+Excel speichert ein Datum als Seriennummer. Die Suche findet „46325“,
+nicht „30.10.2026“.
+
+---
+
 ## Handbuchseiten heißen alle „NAME“
 
 Nur in *Alle Dokumente* (`/?nav=index`). Seitenleiste, Kacheln, Titel
 und Suche nehmen `CommandName` oder die NAME-Zeile (Kapitel
 *Seitenlayout und Suche*).
+
+---
+
+## Älterer Stand: Befehle über die URL
+
+Bis zum Stand vom 30.10.2026 lief der URL-Pfad durch `subst`. Eine
+Anfrage auf `/[exec id]` führte `id` als Server-Benutzer aus, auch hinter
+einem Proxy. Jede ältere Installation aktualisieren; der neue Stand
+dekodiert nur `%XX` (Test `url-1`), ein kaputtes `%` im Pfad ist 400.
+
+---
+
+## Dateinamen mit Umlauten: 404
+
+Unter systemd ist `LANG` nicht gesetzt, Tcl liest Dateinamen dann als
+iso8859-1. Die Startmeldung warnt mit `Achtung: Systemkodierung`. In der
+Unit `Environment=LANG=C.UTF-8` setzen (steht in
+`mdserver.service.beispiel`).
 
 ---
 

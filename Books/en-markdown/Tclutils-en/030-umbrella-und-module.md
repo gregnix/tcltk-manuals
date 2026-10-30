@@ -69,7 +69,7 @@ The version in the file name is that of the module, not that of the umbrella.
 tclsh tools/check-modules.tcl -require test,doc,man
 ```
 
-146 modules, none without test, doc or man page.
+148 modules, none without test, doc or man page.
 
 ---
 

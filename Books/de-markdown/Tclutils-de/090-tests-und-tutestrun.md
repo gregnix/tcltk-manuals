@@ -19,8 +19,8 @@ Ergebnis für tclutils 0.69.0 unter Linux (Xvfb), macOS und Windows:
 
 | Lauf | Dateien | Tests | bestanden | übersprungen | fehlgeschlagen |
 |---|---|---|---|---|---|
-| Tcl 8.6.14 mit tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 154 | 2620 | 2595 | 25 | 0 |
-| Tcl 9.0.4 (aus den Quellen gebaut) mit tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 154 | 2620 | 2603 | 17 | 0 |
+| Tcl 8.6.14 mit tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 156 | 2642 | 2617 | 25 | 0 |
+| Tcl 9.0.4 (aus den Quellen gebaut) mit tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 156 | 2642 | 2625 | 17 | 0 |
 | macOS (Darwin 27, arm64), Tcl/Tk 9.0.4 (Aqua), Stand vor den Schreibfehler-Tests | 154 | 2582 | 2567 | 15 | 0 |
 | Windows, Tcl 8.6.17 (Systemkodierung cp1252), Stand vor den Schreibfehler-Tests | 154 | 2582 | 2545 | 37 | 0 |
 | Windows, Tcl 9.0.4, Stand vor den Schreibfehler-Tests | 154 | 2582 | 2549 | 33 | 0 |

@@ -81,6 +81,16 @@ No abort. Only with `--pdf-search 1`; with `auto` it appears only in
 the banner (`PDF:   Suche aus: …`). Put tclutils into `lib/` or set
 `TCLUTILS_TM` (chapter *Starting*).
 
+```
+WARNING: --office-search: not found: tclutils::tudocx, tclutils::tuxlsx
+WARNING: --csv-view: tclutils::tucsv 0.2 not found -- CSV files are sent as they are: …
+```
+
+No abort. Only with `--office-search 1` or `--csv-view 1`; with `auto`
+the formats appear only in the banner (`Office:`, `CSV:`). The first line
+means: ODF is searched, Word and Excel are not, because tclutils is older
+than 0.69.0.
+
 ---
 
 ## PDF Worker
@@ -138,12 +148,14 @@ mdctl: keine Antwort von 127.0.0.1:8099
 |---|---|
 | 301 | directory without trailing slash |
 | 304 | unchanged |
+| 400 | in the path a `%` without two hex digits, `%00` or NUL |
 | 403 | path outside the root (also a symlink leading out), dot file with `--dotfiles 0` |
 | 404 | not found |
 | 405 | method not GET/HEAD |
 | 414 | request line longer than `--maxline` |
 | 416 | range not satisfiable (start beyond the end of the file); an unreadable Range header gives 200 |
 | 431 | one header line longer than `--maxline`, or all headers longer than `--maxheader` |
+| 501 | `?format=json` without `tclutils::tujson`: `format=json needs tclutils::tujson` |
 | 503 | health: root not readable |
 
 ---

@@ -103,7 +103,8 @@ subfolder.
 
 ## Search Does Not Find a File
 
-The search reads `.md` and, with tclutils, `.pdf`. Dot folders stay
+The search reads `.md` and, with tclutils, `.pdf`, office files and
+`.csv` (banner lines `PDF:`, `Office:`, `CSV:`). Dot folders stay
 out (with `--dotfiles 0`), symlinks always — even those that stay
 inside the root. Words shorter than two characters are ignored.
 
@@ -121,11 +122,51 @@ layer never gives a hit.
 
 ---
 
+## `or` Finds Nothing Any More
+
+`a or b` searches three words, `or` among them. Only `OR`, `ODER` and
+`|` join two words into "either of the two".
+
+---
+
+## A CSV Cannot Be Downloaded
+
+In style `site` a link to a `.csv` opens the table page. The file itself
+comes from `file.csv?raw=1` (link at the top of the page), for all files
+`--csv-view 0`.
+
+---
+
+## A Date From an XLSX Is a Number
+
+Excel stores a date as its serial number. The search finds "46325",
+not "30.10.2026".
+
+---
+
 ## Manual Pages Are All Called "NAME"
 
 Only in `Alle Dokumente` (`/?nav=index`). Sidebar, cards, title and
 search use `CommandName` or the NAME line (chapter *Page Layout and
 Search*).
+
+---
+
+## Older State: Commands via the URL
+
+Up to the state of 30.10.2026 the URL path went through `subst`. A
+request for `/[exec id]` ran `id` as the server user, also behind a
+proxy. Update every older installation; the new state only decodes
+`%XX` (test `url-1`), a broken `%` in the path is 400.
+
+---
+
+## File Names With Umlauts: 404
+
+Under systemd `LANG` is not set, and Tcl then reads file names as
+iso8859-1. The start banner warns with `Achtung: Systemkodierung`. Set
+`Environment=LANG=C.UTF-8` in the unit (it is in
+`mdserver.service.beispiel`).
 
 ---
 

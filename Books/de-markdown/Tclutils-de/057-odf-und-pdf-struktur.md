@@ -5,8 +5,9 @@ Seitenmarker, Trailer, Infos und einen Hinweis auf ZUGFeRD. Den Text der
 Seiten liest `tupdftext`, Kapitel
 [Text aus PDF-Dateien](055-pdf-text.md).
 
-[tuodf]{.index} 0.1 schreibt und liest ein schlichtes OpenDocument mit
-Absätzen. Beide liegen im Umbrella.
+[tuodf]{.index} 0.2 schreibt und liest ein schlichtes OpenDocument mit
+Absätzen. [tudocx]{.index} und [tuxlsx]{.index} 0.1 tun dasselbe für
+Word- und Excel-Dateien (Office Open XML). Alle liegen im Umbrella.
 
 ---
 
@@ -99,9 +100,81 @@ aneinander, deshalb endet das Ergebnis mit einem Zeilenumbruch.
 `meta.xml` enthält `<dc:title>Lager</dc:title>` und
 `<dc:creator>Nord</dc:creator>`.
 
-`paragraphs` liest `text:p`. Tabellen und andere Blöcke übergeht es.
+`paragraphs` liest Absätze (`text:p`) und seit 0.2 auch Überschriften
+(`text:h`), in der Reihenfolge des Dokuments. Absätze in Tabellen, Listen,
+Tabellenzellen einer `.ods` und Folien einer `.odp` findet es mit; den
+Aufbau selbst (Zeilen, Spalten, Ebenen) gibt es nicht wieder.
 Eine fehlende ZIP-Datei meldet `tuzip`, nicht einen eigenen Code von
 `tuodf`.
+
+---
+
+## Word: tudocx
+
+```tcl
+package require tclutils::tudocx
+::tclutils::tudocx::createText datei absätze ?-title T? ?-creator C?
+::tclutils::tudocx::parts      datei
+::tclutils::tudocx::part       datei name
+::tclutils::tudocx::paragraphs datei
+::tclutils::tudocx::text       datei
+```
+
+Die Befehle heißen wie bei `tuodf`. `createText` schreibt die fünf Teile,
+die eine `.docx` mindestens braucht; Word, LibreOffice und python-docx
+öffnen sie. Ein Tabulator im Absatz wird `w:tab`, ein Zeilenumbruch
+`w:br`.
+
+```tcl
+set d [::tclutils::tudocx::createText lager.docx \
+    [list {Lager Nord} "Regal\t3" {}] -title Lager]
+::tclutils::tudocx::parts $d
+    ;# -> {[Content_Types].xml} _rels/.rels word/document.xml docProps/core.xml docProps/app.xml
+::tclutils::tudocx::paragraphs $d        ;# -> {Lager Nord} {Regal<TAB>3} {}
+```
+
+`paragraphs` liest den Hauptteil, den `_rels/.rels` nennt, meist
+`word/document.xml`: jeden Absatz in der Reihenfolge des Dokuments, auch
+Überschriften, Listenpunkte und Tabellenzellen. Gelöschter Text einer
+Änderungsverfolgung (`w:delText`) und Feldbefehle (`w:instrText`) bleiben
+weg. Kopf- und Fußzeilen, Fußnoten und Kommentare stehen in anderen Teilen
+und werden nicht gelesen. Fehlt der Hauptteil, ist das
+`{TCLUTILS TUDOCX PART …}`.
+
+---
+
+## Excel: tuxlsx
+
+```tcl
+package require tclutils::tuxlsx
+::tclutils::tuxlsx::writeRows datei zeilen ?-sheet NAME? ?-numbers auto|0? ?-title T? ?-creator C?
+::tclutils::tuxlsx::sheets    datei
+::tclutils::tuxlsx::rows      datei ?-sheet NAME|NUMMER?
+::tclutils::tuxlsx::text      datei
+::tclutils::tuxlsx::part      datei name
+::tclutils::tuxlsx::parts     datei
+```
+
+`writeRows` schreibt ein Blatt. Mit `-numbers auto` wird ein Wert, der wie
+eine Dezimalzahl aussieht, als Zahl gespeichert, alles andere als Text;
+`007` bleibt Text.
+
+```tcl
+set x [::tclutils::tuxlsx::writeRows lager.xlsx \
+    {{Artikel Menge} {Schraube 120} {Mutter 007}} -sheet Lager]
+::tclutils::tuxlsx::sheets $x            ;# -> Lager
+::tclutils::tuxlsx::rows $x              ;# -> {Artikel Menge} {Schraube 120} {Mutter 007}
+::tclutils::tuxlsx::rows $x -sheet Nord  ;# Fehler {TCLUTILS TUXLSX SHEET Nord}
+```
+
+`rows` liest jede Arbeitsmappe, auch die von Excel und LibreOffice. Die
+Werte kommen so, wie die Datei sie speichert: Text aus der Tabelle der
+gemeinsamen Zeichenketten oder direkt in der Zelle, Zahlen wie
+geschrieben, ein Datum als Seriennummer, Wahrheitswerte als `1` und `0`,
+eine Formel mit ihrem zuletzt berechneten Wert, ein Fehler als Text
+(`#DIV/0!`). Lücken werden mit `""` gefüllt. Formate liest `tuxlsx` nicht.
+`text` gibt alle Blätter aus, Zellen mit Tabulator, Zeilen mit
+Zeilenumbruch getrennt.
 
 ---
 
@@ -110,6 +183,8 @@ Eine fehlende ZIP-Datei meldet `tuzip`, nicht einen eigenen Code von
 - Den Seitentext liest `tupdftext`. `tupdf` liefert Version, Objekte, Infos.
 - `/Pages` zählt nicht als Seite. `zugferd` prüft die Datei nicht auf Norm.
 - `tuodf` schreibt Absätze. `mimetype` ist der erste, unkomprimierte Eintrag.
+- `tudocx` und `tuxlsx` heißen und arbeiten wie `tuodf`; `tuxlsx::rows`
+  liefert Werte, wie die Datei sie speichert (Datum als Seriennummer).
 - Ein leerer Absatz am Ende hängt an `text` einen Zeilenumbruch.
 
 ---

@@ -2,7 +2,7 @@
 
 | Layer | Book / location | Size |
 |---|---|---|
-| tclutils | book *tclutils*, `tclutils/docs/` | 146 module files |
+| tclutils | book *tclutils*, `tclutils/docs/` | 148 module files |
 | tkutils | book *tkutils*, `tkutils/docs/` | 79 modules |
 | ctrlutils | this book, `ctrlutils/docs/` | 5 modules |
 | tical | this book, chapter 10, `tical/doc/`, `tical/schemas/` | 19 packages |
@@ -86,7 +86,7 @@ In tkutils 0.49.0, `tkutils::tkutical` 0.4 and `tkutils::tkumonthcanvas`
 
 ## Summary
 
-- tclutils 146 module files, tkutils 79, ctrlutils 5 modules, tical 19
+- tclutils 148 module files, tkutils 79, ctrlutils 5 modules, tical 19
   packages.
 - ctrlutils 0.5 contains cufileops 0.6, cuundo 0.5, cusync 0.3 and
   cufilter 0.2.

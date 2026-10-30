@@ -18,6 +18,8 @@ ignoriert.
 | `--pdf-search` | `auto` | PDFs in der Suche: `auto` (wenn `tclutils::tupdftext` ladbar), `1`, `0` |
 | `--pdf-cache` | `$HOME/.cache/mdserver-pdf` | Cache für den PDF-Text, außerhalb der Wurzel. Ohne `HOME` unter dem Arbeitsverzeichnis |
 | `--pdf-worker` | `1` | PDFs in einem zweiten `tclsh` lesen; `0`: im Serverprozess |
+| `--office-search` | `auto` | `.odt`, `.ods`, `.odp`, `.docx`, `.xlsx` in der Suche: `auto` (jedes Format, dessen Modul ladbar ist), `1`, `0` |
+| `--csv-view` | `auto` | `.csv` im Stil `site` als Tabelle und in der Suche: `auto` (wenn `tclutils::tucsv` 0.2 ladbar), `1`, `0` |
 | `--trusted-proxy` | leer | Gegenstellen, deren `X-Forwarded-For` gilt. Exakte Adresse, keine Maske |
 | `--maxline` | `8190` | Bytes je Zeile. Anfragezeile darüber: 414, Kopfzeile darüber: 431. `0` = ohne Grenze |
 | `--maxheader` | `16384` | Bytes aller Köpfe; darüber 431. `0` = ohne Grenze |
@@ -38,8 +40,8 @@ ignoriert.
 
 Mehrere Proxys: `--trusted-proxy "127.0.0.1 10.0.0.5"`.
 
-Für `--pdf-search` und `--pdf-worker` gelten auch `off`, `no` und
-`false` als aus. `--pdf-search 1` warnt beim Start, wenn
+Für `--pdf-search`, `--pdf-worker`, `--office-search` und `--csv-view`
+gelten auch `off`, `no` und `false` als aus. `--pdf-search 1` warnt beim Start, wenn
 `tclutils::tupdftext` fehlt; `auto` schaltet die Suche dann still ab.
 
 ---

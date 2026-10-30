@@ -99,9 +99,11 @@ für `docir::html` sucht Tcl die Datei `docir/html-0.2.tm`. Flach nebeneinander
 gelegt findet `package require` sie nicht.
 
 Für die PDF-Suche kommt tclutils dazu. Der Launcher sucht es nicht
-selbst: entweder liegen `tclutils/common-0.2.tm`,
+selbst: entweder liegen `tclutils/common-0.3.tm`,
 `tclutils/tupdftext-0.1.tm` und `tclutils/tutask-0.2.tm` ebenfalls in
-`lib/` (`tupdftext` und `tutask` laden `common`), oder die Umgebungsvariable `TCLUTILS_TM` zeigt auf
+`lib/` (`tupdftext` und `tutask` laden `common`), für Office-Dateien,
+CSV und JSON dazu `tuzip`, `tuodf`, `tudocx`, `tuxlsx`, `tucsv` und
+`tujson`, oder die Umgebungsvariable `TCLUTILS_TM` zeigt auf
 das Modulverzeichnis einer tclutils-Ablage (das Verzeichnis, das den
 Ordner `tclutils/` enthält):
 

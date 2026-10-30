@@ -396,6 +396,18 @@ Source: `lib/tm/tclutils/tudiff-0.2.tm`. Limited to `namespace export`.
 ::tclutils::tudiff::directory {oldDir newDir args}
 ```
 
+## `tudocx`
+
+Source: `lib/tm/tclutils/tudocx-0.1.tm`. Limited to `namespace export`.
+
+```tcl
+::tclutils::tudocx::createText {docxFile paragraphs args}
+::tclutils::tudocx::part {docxFile name}
+::tclutils::tudocx::parts {docxFile}
+::tclutils::tudocx::paragraphs {docxFile}
+::tclutils::tudocx::text {docxFile}
+```
+
 ## `tuedid`
 
 Source: `lib/tm/tclutils/tuedid-0.1.tm`. Limited to `namespace export`.
@@ -953,7 +965,7 @@ Source: `lib/tm/tclutils/tuod-0.2.tm`. Limited to `namespace export`.
 
 ## `tuodf`
 
-Source: `lib/tm/tclutils/tuodf-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuodf-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuodf::createText {odtFile paragraphs args}
@@ -1619,6 +1631,19 @@ Source: `lib/tm/tclutils/tuxargs-0.1.tm`. Limited to `namespace export`.
 ::tclutils::tuxargs::batches {items args}
 ::tclutils::tuxargs::apply {items commandPrefix args}
 ::tclutils::tuxargs::command {items commandPrefix args}
+```
+
+## `tuxlsx`
+
+Source: `lib/tm/tclutils/tuxlsx-0.1.tm`. Limited to `namespace export`.
+
+```tcl
+::tclutils::tuxlsx::writeRows {xlsxFile rows args}
+::tclutils::tuxlsx::part {xlsxFile name}
+::tclutils::tuxlsx::parts {xlsxFile}
+::tclutils::tuxlsx::sheets {xlsxFile}
+::tclutils::tuxlsx::rows {xlsxFile args}
+::tclutils::tuxlsx::text {xlsxFile}
 ```
 
 ## `tuxml`

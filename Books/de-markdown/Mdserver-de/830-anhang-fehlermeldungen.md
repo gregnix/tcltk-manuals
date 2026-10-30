@@ -79,6 +79,16 @@ Kein Abbruch. Nur mit `--pdf-search 1`; bei `auto` steht es allein im
 Banner (`PDF:   Suche aus: …`). tclutils in `lib/` legen oder
 `TCLUTILS_TM` setzen (Kapitel *Starten*).
 
+```
+WARNING: --office-search: not found: tclutils::tudocx, tclutils::tuxlsx
+WARNING: --csv-view: tclutils::tucsv 0.2 not found -- CSV files are sent as they are: …
+```
+
+Kein Abbruch. Nur mit `--office-search 1` bzw. `--csv-view 1`; bei
+`auto` stehen die Formate allein im Banner (`Office:`, `CSV:`). Die
+erste Zeile heißt: ODF wird gesucht, Word und Excel nicht, weil das
+tclutils älter als 0.69.0 ist.
+
 ---
 
 ## PDF-Worker
@@ -137,12 +147,14 @@ keine Antwort. Rückgabe 1.
 |---|---|
 | 301 | Verzeichnis ohne Schrägstrich |
 | 304 | unverändert |
+| 400 | im Pfad ein `%` ohne zwei Hexziffern, `%00` oder NUL |
 | 403 | Pfad außerhalb der Wurzel (auch Symlink hinaus), Punkt-Datei bei `--dotfiles 0` |
 | 404 | nicht gefunden |
 | 405 | Methode nicht GET/HEAD |
 | 414 | Anfragezeile länger als `--maxline` |
 | 416 | Bereich nicht erfüllbar (Anfang hinter Dateiende); unlesbarer Range-Kopf gibt 200 |
 | 431 | eine Kopfzeile länger als `--maxline` oder alle Köpfe länger als `--maxheader` |
+| 501 | `?format=json` ohne `tclutils::tujson`: `format=json needs tclutils::tujson` |
 | 503 | Health: Wurzel nicht lesbar |
 
 ---

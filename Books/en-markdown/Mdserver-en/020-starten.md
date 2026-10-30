@@ -99,9 +99,11 @@ for `docir::html` Tcl looks for the file `docir/html-0.2.tm`. Laid out
 flat side by side, `package require` does not find them.
 
 The PDF search needs tclutils as well. The launcher does not look for
-it: either `tclutils/common-0.2.tm`, `tclutils/tupdftext-0.1.tm` and
+it: either `tclutils/common-0.3.tm`, `tclutils/tupdftext-0.1.tm` and
 `tclutils/tutask-0.2.tm` also go into `lib/` (`tupdftext` and `tutask`
-load `common`), or the environment variable `TCLUTILS_TM` points to the
+load `common`), for office files, CSV and JSON also `tuzip`, `tuodf`,
+`tudocx`, `tuxlsx`, `tucsv` and `tujson`, or the environment variable
+`TCLUTILS_TM` points to the
 module directory of a tclutils installation (the directory that holds
 the folder `tclutils/`):
 

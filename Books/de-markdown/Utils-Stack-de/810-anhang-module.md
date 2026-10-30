@@ -2,7 +2,7 @@
 
 | Schicht | Buch / Ort | Umfang |
 |---|---|---|
-| tclutils | Buch *tclutils*, `tclutils/docs/` | 146 Moduldateien |
+| tclutils | Buch *tclutils*, `tclutils/docs/` | 148 Moduldateien |
 | tkutils | Buch *tkutils*, `tkutils/docs/` | 79 Module |
 | ctrlutils | dieses Buch, `ctrlutils/docs/` | 5 Module |
 | tical | dieses Buch, Kapitel 10, `tical/doc/`, `tical/schemas/` | 19 Pakete |
@@ -86,7 +86,7 @@ Auf tical bauen in tkutils 0.49.0 `tkutils::tkutical` 0.4 und
 
 ## Zusammenfassung
 
-- tclutils 146 Moduldateien, tkutils 79, ctrlutils 5 Module, tical 19
+- tclutils 148 Moduldateien, tkutils 79, ctrlutils 5 Module, tical 19
   Pakete.
 - ctrlutils 0.5 enthält cufileops 0.6, cuundo 0.5, cusync 0.3 und
   cufilter 0.2.

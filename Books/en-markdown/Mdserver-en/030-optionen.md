@@ -17,6 +17,8 @@
 | `--pdf-search` | `auto` | PDFs in the search: `auto` (when `tclutils::tupdftext` loads), `1`, `0` |
 | `--pdf-cache` | `$HOME/.cache/mdserver-pdf` | cache for the PDF text, outside the root. Without `HOME`, below the working directory |
 | `--pdf-worker` | `1` | read PDFs in a second `tclsh`; `0`: in the server process |
+| `--office-search` | `auto` | `.odt`, `.ods`, `.odp`, `.docx`, `.xlsx` in the search: `auto` (each format whose module loads), `1`, `0` |
+| `--csv-view` | `auto` | `.csv` as a table in style `site` and in the search: `auto` (when `tclutils::tucsv` 0.2 loads), `1`, `0` |
 | `--trusted-proxy` | empty | peers whose `X-Forwarded-For` counts. Exact address, no mask |
 | `--maxline` | `8190` | bytes per line. Request line over that: 414, header line over that: 431. `0` = no limit |
 | `--maxheader` | `16384` | bytes of all headers; over that 431. `0` = no limit |
@@ -37,8 +39,8 @@
 
 Several proxies: `--trusted-proxy "127.0.0.1 10.0.0.5"`.
 
-For `--pdf-search` and `--pdf-worker`, `off`, `no` and `false` also
-mean off. `--pdf-search 1` warns at the start when
+For `--pdf-search`, `--pdf-worker`, `--office-search` and `--csv-view`,
+`off`, `no` and `false` also mean off. `--pdf-search 1` warns at the start when
 `tclutils::tupdftext` is missing; `auto` then turns the search off
 quietly.
 

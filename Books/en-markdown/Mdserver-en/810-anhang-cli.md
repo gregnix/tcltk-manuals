@@ -25,6 +25,8 @@ TCLUTILS_TM=/opt/tclutils/lib/tm tclsh mdserver.tcl --root /srv/md
 tclsh mdserver.tcl --root /srv/md --pdf-cache /var/cache/mdserver-pdf
 tclsh mdserver.tcl --root /srv/md --pdf-search 1     # Warnung, wenn tclutils fehlt
 tclsh mdserver.tcl --root /srv/md --pdf-search 0     # nur Markdown
+tclsh mdserver.tcl --root /srv/md --office-search 0  # Markdown and PDF only
+tclsh mdserver.tcl --root /srv/md --csv-view 0       # send CSV files unchanged
 tclsh mdserver.tcl --root /srv/md --pdf-worker 0     # PDFs im Serverprozess lesen
 ```
 

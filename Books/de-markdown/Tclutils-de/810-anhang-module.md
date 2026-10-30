@@ -73,6 +73,7 @@ Test, Doc oder man-Seite; 25 davon nicht direkt im Umbrella.
 | `tunotes` | 0.2 | Datei immer UTF-8; ältere Dateien in der Systemkodierung werden noch gelesen (Verhalten) |
 | `tumindmap` | 0.2 | Ids mit Umlauten vor einer Form (Verhalten) |
 | `tulint` | 0.1 | neu: Prüfregeln für Tcl-Quelltexte, nicht im Umbrella |
+| `tudocx`, `tuxlsx` | 0.1 | neu: Word- und Excel-Dateien schreiben und lesen, wie `tuodf`; im Umbrella |
 | `common` | 0.3 | neu `replaceFile`: Schreiben über temporäre Datei |
 | `tused`, `tusettings` | 0.2 | Schreiben über `replaceFile`; scheitert es, bleibt die alte Datei und kein Kanal offen (Verhalten) |
 | `tuprovider` | 0.3 | lokales `put` über `replaceFile` (Verhalten) |
@@ -86,6 +87,7 @@ Test, Doc oder man-Seite; 25 davon nicht direkt im Umbrella.
 | `tupngdraw` | 0.14 | `write` über `replaceFile` (Verhalten) |
 | `tupng` | 0.6 | `write*` über `replaceFile` (Verhalten) |
 | `tuappinfo` | 0.3 | Tk-Zeile mit Patchlevel; `writeLog` UTF-8 über `replaceFile` (Verhalten) |
+| `tuodf` | 0.2 | `paragraphs` liefert auch Überschriften (Verhalten) |
 
 Beim Überkopieren eines älteren Baums `tucsv-0.1.tm`, `tusqlite-0.1.tm`,
 `tuholiday-0.1.tm`, `tuzip-0.1.tm`, `tudiff-0.1.tm`, `tubookmark-0.2.tm`,
@@ -105,7 +107,7 @@ Beim Überkopieren eines älteren Baums `tucsv-0.1.tm`, `tusqlite-0.1.tm`,
 `tuclass-0.2.tm`, `tupacket-0.2.tm`, `tujourney-0.2.tm`, `tukanban-0.1.tm`,
 `tutimeline-0.2.tm`, `tupie-0.2.tm`, `tuquadrant-0.1.tm`, `tusequence-0.2.tm`,
 `tudiagram-0.5.tm`, `tusvg-0.3.tm`, `tupngdraw-0.13.tm`, `tupng-0.5.tm`,
-`tuappinfo-0.2.tm` und `tclutils-0.68.0.tm` löschen. Der Umbrella steht auf 0.69.0.
+`tuappinfo-0.2.tm`, `tuodf-0.1.tm` und `tclutils-0.68.0.tm` löschen. Der Umbrella steht auf 0.69.0.
 
 ## Neu in 0.68.0
 
@@ -237,8 +239,8 @@ Aus 0.63.0 weiter relevant: `tuhttps` 0.1 (neu), `tufetch` 0.4,
 
 ## Zusammenfassung
 
-- 146 Module im Baum 0.69.0, alle mit Test, Doc und man-Seite.
-- Neu in 0.69.0: `tucsv`, `tusqlite`, `tuholiday`, `tuzip`, `tudiff`, `tuical`, `tuvcard`, `tuini`, `tumd`, `tuiconv`, `tucat`, `tucsplit`, `tuhead`, `tutail`, `tugrep`, `tuxychart`, `tusankey` 0.2, `tupatch`, `tusplit`, `tutee`, `tuldif`, `tustr`, `tugantt` 0.3, `tuer` 0.4, `tubookmark` 0.3, `tudate`, `tunumany`, `tubase64`, `tucrc`, `tudav`, `tuflow`, `tuc4`, `tugit`, `turadar` und neun Zeilenfilter, neu `tusysinfo` und `tuedid` 0.1.
+- 148 Module im Baum 0.69.0, alle mit Test, Doc und man-Seite.
+- Neu in 0.69.0: `tucsv`, `tusqlite`, `tuholiday`, `tuzip`, `tudiff`, `tuical`, `tuvcard`, `tuini`, `tumd`, `tuiconv`, `tucat`, `tucsplit`, `tuhead`, `tutail`, `tugrep`, `tuxychart`, `tusankey` 0.2, `tupatch`, `tusplit`, `tutee`, `tuldif`, `tustr`, `tugantt` 0.3, `tuer` 0.4, `tubookmark` 0.3, `tudate`, `tunumany`, `tubase64`, `tucrc`, `tudav`, `tuflow`, `tuc4`, `tugit`, `turadar` und neun Zeilenfilter, neu `tusysinfo`, `tuedid`, `tulint`, `tudocx` und `tuxlsx` 0.1.
 - In 0.68.0 haben 76 Module Korrekturen und eine neue Version bekommen.
 - Neu in 0.67.0: `tupdftext` 0.1.
 - In 0.66.0 geändert ist nur `tutask` (0.2); neu in 0.65.0 war `tutask` 0.1.

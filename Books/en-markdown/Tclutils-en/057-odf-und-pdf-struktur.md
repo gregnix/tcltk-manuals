@@ -5,8 +5,9 @@ numbers, page markers, trailer, info and an indication of ZUGFeRD.
 `tupdftext` reads the text of the pages, see the chapter
 [Text from PDF Files](055-pdf-text.md).
 
-[tuodf]{.index} 0.1 writes and reads a plain OpenDocument with
-paragraphs. Both are in the umbrella.
+[tuodf]{.index} 0.2 writes and reads a plain OpenDocument with
+paragraphs. [tudocx]{.index} and [tuxlsx]{.index} 0.1 do the same for
+Word and Excel files (Office Open XML). All are in the umbrella.
 
 ---
 
@@ -100,9 +101,77 @@ so the result ends with a newline.
 `meta.xml` contains `<dc:title>Lager</dc:title>` and
 `<dc:creator>Nord</dc:creator>`.
 
-`paragraphs` reads `text:p`. It skips tables and other blocks. A
+`paragraphs` reads paragraphs (`text:p`) and, since 0.2, headings
+(`text:h`), in document order. It finds paragraphs inside tables and
+lists, in the cells of an `.ods` and on the slides of an `.odp` as well;
+the structure itself (rows, columns, levels) is not kept. A
 missing ZIP file is reported by `tuzip`, not with an error code of
 `tuodf`'s own.
+
+---
+
+## Word: tudocx
+
+```tcl
+package require tclutils::tudocx
+::tclutils::tudocx::createText file paragraphs ?-title T? ?-creator C?
+::tclutils::tudocx::parts      file
+::tclutils::tudocx::part       file name
+::tclutils::tudocx::paragraphs file
+::tclutils::tudocx::text       file
+```
+
+The commands are named as in `tuodf`. `createText` writes the five parts a
+`.docx` needs at least; Word, LibreOffice and python-docx open it. A tab in
+a paragraph becomes `w:tab`, a line break `w:br`.
+
+```tcl
+set d [::tclutils::tudocx::createText lager.docx \
+    [list {Lager Nord} "Regal\t3" {}] -title Lager]
+::tclutils::tudocx::parts $d
+    ;# -> {[Content_Types].xml} _rels/.rels word/document.xml docProps/core.xml docProps/app.xml
+::tclutils::tudocx::paragraphs $d        ;# -> {Lager Nord} {Regal<TAB>3} {}
+```
+
+`paragraphs` reads the main part named in `_rels/.rels`, usually
+`word/document.xml`: every paragraph in document order, headings, list
+items and table cells included. Deleted text of tracked changes
+(`w:delText`) and field codes (`w:instrText`) are left out. Headers,
+footers, footnotes and comments are in other parts and are not read. A
+missing main part is `{TCLUTILS TUDOCX PART …}`.
+
+---
+
+## Excel: tuxlsx
+
+```tcl
+package require tclutils::tuxlsx
+::tclutils::tuxlsx::writeRows file rows ?-sheet NAME? ?-numbers auto|0? ?-title T? ?-creator C?
+::tclutils::tuxlsx::sheets    file
+::tclutils::tuxlsx::rows      file ?-sheet NAME|NUMBER?
+::tclutils::tuxlsx::text      file
+::tclutils::tuxlsx::part      file name
+::tclutils::tuxlsx::parts     file
+```
+
+`writeRows` writes one sheet. With `-numbers auto` a value that looks like
+a decimal number is stored as a number, everything else as text; `007`
+stays text.
+
+```tcl
+set x [::tclutils::tuxlsx::writeRows lager.xlsx \
+    {{Artikel Menge} {Schraube 120} {Mutter 007}} -sheet Lager]
+::tclutils::tuxlsx::sheets $x            ;# -> Lager
+::tclutils::tuxlsx::rows $x              ;# -> {Artikel Menge} {Schraube 120} {Mutter 007}
+::tclutils::tuxlsx::rows $x -sheet Nord  ;# error {TCLUTILS TUXLSX SHEET Nord}
+```
+
+`rows` reads any workbook, also those of Excel and LibreOffice. The values
+come as the file stores them: text from the shared string table or inline
+in the cell, numbers as written, a date as its serial number, booleans as
+`1` and `0`, a formula with its last computed value, an error as text
+(`#DIV/0!`). Gaps are filled with `""`. `tuxlsx` does not read formats.
+`text` returns all sheets, cells separated by a tab, rows by a newline.
 
 ---
 
@@ -111,6 +180,8 @@ missing ZIP file is reported by `tuzip`, not with an error code of
 - `tupdftext` reads the page text. `tupdf` returns version, objects, info.
 - `/Pages` does not count as a page. `zugferd` does not check the file for conformance.
 - `tuodf` writes paragraphs. `mimetype` is the first, uncompressed entry.
+- `tudocx` and `tuxlsx` are named and work like `tuodf`; `tuxlsx::rows`
+  returns values as the file stores them (a date as its serial number).
 - An empty paragraph at the end adds a newline to `text`.
 
 ---

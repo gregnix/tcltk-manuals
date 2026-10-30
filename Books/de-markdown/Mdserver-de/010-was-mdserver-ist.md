@@ -60,6 +60,10 @@ Büchern *Proxmox LXC nginx* und *Dokumentenserver LAN*.
 | `mdstack::theme` | 0.1 | 0.1 | empfohlen |
 | `tclutils::tupdftext` | 0.1 | 0.1 (tclutils 0.68.0) | nur PDF-Suche |
 | `tclutils::tutask` | 0.2 | 0.2 (tclutils 0.68.0) | nur PDF-Worker |
+| `tclutils::tuodf`, `tudocx`, `tuxlsx` | 0.1 | 0.2, 0.1, 0.1 (tclutils 0.69.0) | nur Office-Dateien in der Suche |
+| `tclutils::tucsv` | 0.2 | 0.2 (tclutils 0.69.0) | nur CSV als Tabelle |
+| `tclutils::tujson` | 0.1 | 0.1 (tclutils 0.69.0) | nur Suche als JSON |
+| `tclutils::common` | 0.3 | 0.3 (tclutils 0.69.0) | nein; PDF-Cache über `replaceFile`, sonst dasselbe von Hand |
 | `tls` | — | — | nur HTTPS |
 
 Die [docir-Module]{.index} sind keine Kür. `mdstack::html` 0.2 lädt
@@ -70,10 +74,13 @@ Die [docir-Module]{.index} sind keine Kür. `mdstack::html` 0.2 lädt
 Ohne `mdstack::theme` läuft der Server, aber `--theme` wirkt nicht. Am
 Start steht dann eine Warnung.
 
-Die beiden tclutils-Module sind freiwillig. `tupdftext` (ab tclutils
-0.67.0) liest den Text von PDFs für die Suche, `tutask` startet dafür
-einen zweiten `tclsh` (Kapitel *Seitenlayout und Suche*). Ohne sie
-durchsucht mdserver nur Markdown.
+Alle tclutils-Module sind freiwillig; fehlt eines, fällt nur seine
+Funktion weg (Kapitel *Seitenlayout und Suche*). `tupdftext` (ab
+tclutils 0.67.0) liest den Text von PDFs für die Suche, `tutask` startet
+dafür einen zweiten `tclsh`. `tuodf`, `tudocx` und `tuxlsx` lesen
+Office-Dateien, `tucsv` zeigt CSV als Tabelle, `tujson` gibt die Suche
+als JSON aus (alle drei ab tclutils 0.69.0). Ohne tclutils durchsucht
+mdserver nur Markdown.
 
 HTTPS braucht das Paket `tls`, unter Debian:
 

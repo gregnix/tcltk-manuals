@@ -5,7 +5,8 @@
 `site` ist der Vorgabestil. Er baut jede Seite
 gleich auf, mit einem einzigen Stylesheet (`styles/site.css`), ohne
 JavaScript. Dazu kommt eine [Volltextsuche]{.index} über alle
-Markdown-Dateien der Wurzel, auf Wunsch auch über PDFs.
+Markdown-Dateien der Wurzel, mit tclutils auch über PDFs, Office- und
+CSV-Dateien.
 
 Warum ein eigener Stil: die älteren machten `<body>` zum Raster. Eine
 lange Seitenleiste schob den Text dann unter eine Lücke ihrer Höhe.
@@ -77,7 +78,7 @@ Gruppen:
 | Bücher | Ordner mit `book.tcl`, oder ein Ordner, der Bücher direkt enthält | Abzeichen „Buch“, Titel, Untertitel, Sprachen |
 | Bereiche | andere Ordner, wenn darunter eine `.md` oder `.pdf` liegt | Titel, erster Absatz von `index.md` oder `README.md` |
 | Dokumente | `.md`-Dateien außer `index.md`, dazu `.pdf` | H1 und erster Absatz; bei einer PDF Dateiname, „PDF“ und Größe |
-| Dateien | alles andere außer `.md`, `.pdf`, `.tcl`, `.tsv`, `.css` | Name, Typ, Größe in KB |
+| Dateien | alles andere außer `.md`, `.pdf`, `.tcl`, `.tsv`, `.css`; eine `.csv` öffnet als Tabelle | Name, Typ, Größe in KB |
 
 Ein Ordner nur mit PDFs zählt als Ordner mit Dokumenten. Er erscheint
 in der Kopfleiste, in der Seitenleiste und bei den Kacheln. Die
@@ -121,6 +122,25 @@ Dokumente*. Die älteren Stile senden eine schlichte 404-Seite.
 
 ---
 
+## CSV als Tabelle
+
+Ist `tclutils::tucsv` 0.2 ladbar (`--csv-view auto`, Vorgabe), zeigt
+`site` eine `.csv` als [Tabelle]{.index} statt sie herunterzuladen:
+oben der Dateiname, die Zahl der Zeilen und der Link „als CSV
+herunterladen“, darunter die Tabelle mit der ersten Zeile als Kopf.
+
+| Frage | Antwort |
+|---|---|
+| Trennzeichen | `;`, wenn die erste Zeile mehr davon hat als `,`, sonst `,` |
+| Kodierung | UTF-8, wenn die Bytes gültiges UTF-8 sind, sonst cp1252 (Excel unter Windows) |
+| Länge | höchstens 2000 Zeilen, darunter ein Hinweis auf die Gesamtzahl |
+| die Datei selbst | `datei.csv?raw=1` |
+
+Der Inhalt steht auch in der Suche (`typ:csv`). Die älteren Stile liefern
+die Datei unverändert. `--csv-view 0` schaltet die Tabellenseite ab.
+
+---
+
 ## Suche
 
 In der Kopfleiste steht ein Suchfeld. Es schickt `/?q=Wörter`. Die
@@ -140,6 +160,29 @@ Regeln:
 - Gesucht wird im Text ohne Markdown-Zeichen und ohne Link-Ziele.
 - Treffer im Titel (erste H1) zählen mehr als Treffer im Text.
 - Höchstens 50 Treffer, die besten zuerst.
+
+[Suchsyntax]{.index} über einfache Wörter hinaus:
+
+| Eingabe | Wirkung |
+|---|---|
+| `"die Freigabe"` | Wortfolge: die Wörter in dieser Reihenfolge, auch über einen Zeilenumbruch |
+| `-proxy`, `-"im Archiv"` | Treffer mit diesem Wort oder dieser Folge fallen weg |
+| `a OR b`, `a ODER b`, `a \| b` | eins von beiden; bindet nur die beiden Nachbarn |
+| `in:buch/kapitel` | nur unterhalb dieses Ordners, relativ zur Wurzel |
+| `typ:md`, `typ:pdf`, `typ:office`, `typ:csv` | nur diese Art von Datei |
+
+`OR` und `ODER` gelten nur großgeschrieben; `or` ist ein gewöhnliches
+Suchwort. `in` und `typ` gehen auch als URL-Parameter
+(`/?q=router&in=netz&typ=pdf`); steht beides da, gilt die Angabe in der
+Anfrage. `..`, `.` und Punkt-Ordner in `in` zählen als „überall“.
+
+[Eingrenzen]{.index} geht auch ohne Syntax. Unter dem Suchfeld der
+Ergebnisseite stehen zwei Auswahlen: *Bereich* und *Typ*. Das Suchfeld
+in der Kopfleiste schickt den Ordner der aktuellen Seite als `von=` mit.
+*Bereich* bietet dann diesen Ordner und alle darüber an, jeweils mit
+ihrem Titel. Gesucht wird trotzdem zuerst überall; eingegrenzt wird erst,
+wenn man einen Bereich wählt. Aus einem Buchkapitel heraus heißt das: ein
+Klick, und die Suche bleibt im Buch.
 
 Jeder Treffer zeigt den Titel als Link, darunter den Ordnerpfad
 (`Bücher › Beispiel`, Ordnertitel wie in den Brotkrumen; bei einer Datei
@@ -232,6 +275,34 @@ Die erste Zeile gehört zu einem Start mit `--pdf-cache
 Außer im Banner meldet `auto` nichts. Unter systemd gehört
 `TCLUTILS_TM` deshalb in die Unit (`Environment=TCLUTILS_TM=…`).
 
+**Office-Dateien.** Mit `--office-search auto` (Vorgabe) durchsucht
+`?q=` auch Office-Dateien, jedes Format, dessen Modul aus tclutils ladbar
+ist: `.odt`, `.ods`, `.odp` mit `tuodf`, `.docx` mit `tudocx`, `.xlsx`
+mit `tuxlsx`. Ein Treffer je Datei, verlinkt auf die Datei selbst.
+Gelesen wird der Text der Absätze, auch in Tabellen, Listen und auf
+Folien, bei Tabellenkalkulationen der Inhalt aller Zellen aller Blätter.
+Überschriften in ODF findet erst `tuodf` 0.2. Das Lesen geht schnell
+(ein ZIP und wenige XML-Teile) und läuft im Serverprozess, ohne Worker;
+der Text bleibt mit der mtime im Suchindex. Das Banner nennt die
+Formate:
+
+```
+  Office: Suche an (.odt .ods .odp .docx .xlsx; tuodf 0.2, tudocx 0.1, tuxlsx 0.1)
+```
+
+**Suche als JSON.** `/?q=…&format=json` gibt die Treffer als
+[JSON]{.index} zurück, in jedem Stil, mit `in` und `typ` wie oben. Das
+braucht `tclutils::tujson`; ohne es antwortet mdserver mit **501**.
+
+```json
+{"query":"proxy_pass","pending":0,"hits":[{"url":"/a/eins.md",
+ "title":"Netzwerk","path":"A","snippet":"… der proxy_pass Wert.","score":1}]}
+```
+
+`snippet` ist reiner Text ohne `<mark>`; `pending` zählt die PDFs, die
+der Worker noch liest. So kann ein Skript oder ein Editor die Suche
+benutzen, ohne HTML zu zerlegen.
+
 **Ältere Stile.** `?q=` geht auch dort. Die Antwort ist eine schlichte
 Liste „Suche: …“ mit Titel und Ordnerpfad, ohne Ausschnitt. Ein Suchfeld
 gibt es dort nicht.
@@ -248,6 +319,10 @@ gibt es dort nicht.
 - `/?q=` sucht UND-verknüpft, ohne Groß/klein, mit Umlautfaltung.
 - Mit tclutils (ab 0.67.0) auch in PDFs, ein Treffer je Seite
   (`datei.pdf#page=N`); der Text liegt im Cache außerhalb der Wurzel.
+- Wortfolgen in Anführungszeichen, `-wort`, `OR`, `in:` und `typ:`;
+  *Bereich* und *Typ* auf der Ergebnisseite.
+- Mit tclutils 0.69.0 auch Office-Dateien (ODF, DOCX, XLSX), CSV als
+  Tabelle und die Suche als JSON (`format=json`).
 
 ---
 

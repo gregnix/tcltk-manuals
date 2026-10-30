@@ -4,8 +4,8 @@
 
 `site` is the default style. It builds every page the same way, with a
 single stylesheet (`styles/site.css`) and no JavaScript. On top comes a
-[full-text search]{.index} over all Markdown files of the root, on
-request also over PDFs.
+[full-text search]{.index} over all Markdown files of the root, with
+tclutils also over PDFs, office and CSV files.
 
 Why a style of its own: the older ones turned `<body>` into a grid. A
 long sidebar then pushed the text below a gap of its height.
@@ -76,7 +76,7 @@ the top the folder title, below it the first paragraph of the
 | Bücher (books) | folders with `book.tcl`, or a folder that holds books directly | badge "Buch", title, subtitle, languages |
 | Bereiche (sections) | other folders, if a `.md` or `.pdf` lies below them | title, first paragraph of `index.md` or `README.md` |
 | Dokumente (documents) | `.md` files except `index.md`, plus `.pdf` | H1 and first paragraph; for a PDF the file name, "PDF" and size |
-| Dateien (files) | everything else except `.md`, `.pdf`, `.tcl`, `.tsv`, `.css` | name, type, size in KB |
+| Dateien (files) | everything else except `.md`, `.pdf`, `.tcl`, `.tsv`, `.css`; a `.csv` opens as a table | name, type, size in KB |
 
 A folder that holds only PDFs counts as a folder of documents. It
 appears in the header bar, in the sidebar and among the cards. The
@@ -118,6 +118,26 @@ Dokumente*. The older styles send a plain 404 page.
 
 ---
 
+## CSV as a Table
+
+When `tclutils::tucsv` 0.2 loads (`--csv-view auto`, the default),
+`site` shows a `.csv` as a [table]{.index} instead of downloading it: on
+top the file name, the number of rows and the link "als CSV
+herunterladen" (download as CSV), below it the table with the first row
+as the header.
+
+| Question | Answer |
+|---|---|
+| delimiter | `;` when the first line has more of them than `,`, else `,` |
+| encoding | UTF-8 when the bytes are valid UTF-8, else cp1252 (Excel on Windows) |
+| length | at most 2000 rows, below them a note with the total |
+| the file itself | `file.csv?raw=1` |
+
+The content is in the search as well (`typ:csv`). The older styles send
+the file unchanged. `--csv-view 0` turns the table page off.
+
+---
+
 ## Search
 
 The header bar holds a search field. It sends `/?q=words`. The address
@@ -138,6 +158,29 @@ Rules:
   link targets.
 - Hits in the title (first H1) count more than hits in the text.
 - At most 50 hits, best first.
+
+[Search syntax]{.index} beyond plain words:
+
+| Input | Effect |
+|---|---|
+| `"die Freigabe"` | phrase: the words in this order, also across a line break |
+| `-proxy`, `-"im Archiv"` | hits with this word or phrase are left out |
+| `a OR b`, `a ODER b`, `a \| b` | either of the two; binds the two neighbours only |
+| `in:book/chapter` | only below this folder, relative to the root |
+| `typ:md`, `typ:pdf`, `typ:office`, `typ:csv` | only this kind of file |
+
+`OR` and `ODER` count only in upper case; `or` is an ordinary search
+word. `in` and `typ` also work as URL parameters
+(`/?q=router&in=netz&typ=pdf`); when both are given, the query wins.
+`..`, `.` and dot folders in `in` count as "everywhere".
+
+[Narrowing]{.index} also works without syntax. Below the search field of
+the result page there are two choices: *Bereich* (scope) and *Typ*. The
+search field in the header bar sends the folder of the current page
+along as `von=`. *Bereich* then offers this folder and all above it,
+each with its title. The search itself still covers everything until a
+scope is chosen. From a book chapter that means: one click, and the
+search stays in the book.
 
 Each hit shows the title as a link, below it the folder path
 (`Bücher › Beispiel`, folder titles as in the breadcrumbs; empty for a
@@ -229,6 +272,34 @@ Apart from the banner, `auto` says nothing. Under systemd,
 `TCLUTILS_TM` therefore belongs in the unit
 (`Environment=TCLUTILS_TM=…`).
 
+**Office files.** With `--office-search auto` (the default), `?q=`
+also searches office files, each format whose module from tclutils
+loads: `.odt`, `.ods`, `.odp` with `tuodf`, `.docx` with `tudocx`,
+`.xlsx` with `tuxlsx`. One hit per file, linked to the file itself. It
+reads the text of the paragraphs, also in tables, lists and on slides,
+and for spreadsheets the content of all cells of all sheets. ODF
+headings are found only with `tuodf` 0.2. Reading is quick (a ZIP and a
+few XML parts) and runs in the server process, without a worker; the
+text stays in the search index with its mtime. The banner names the
+formats:
+
+```
+  Office: Suche an (.odt .ods .odp .docx .xlsx; tuodf 0.2, tudocx 0.1, tuxlsx 0.1)
+```
+
+**Search as JSON.** `/?q=…&format=json` returns the hits as
+[JSON]{.index}, in every style, with `in` and `typ` as above. It needs
+`tclutils::tujson`; without it mdserver answers **501**.
+
+```json
+{"query":"proxy_pass","pending":0,"hits":[{"url":"/a/eins.md",
+ "title":"Netzwerk","path":"A","snippet":"… der proxy_pass Wert.","score":1}]}
+```
+
+`snippet` is plain text without `<mark>`; `pending` counts the PDFs the
+worker is still reading. A script or an editor can use the search this
+way without taking HTML apart.
+
 **Older styles.** `?q=` works there too. The answer is a plain list
 "Suche: …" with title and folder path, without snippet. There is no
 search field.
@@ -246,6 +317,10 @@ search field.
 - `/?q=` searches with AND, ignoring case, with umlaut folding.
 - With tclutils (0.67.0 or later) also in PDFs, one hit per page
   (`file.pdf#page=N`); the text is cached outside the root.
+- Phrases in quotes, `-word`, `OR`, `in:` and `typ:`; *Bereich* and
+  *Typ* on the result page.
+- With tclutils 0.69.0 also office files (ODF, DOCX, XLSX), CSV as a
+  table and the search as JSON (`format=json`).
 
 ---
 
