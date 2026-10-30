@@ -15,6 +15,7 @@ Tcl selbst, die Digests sind reines Tcl und brauchen kein tcllib.
 | Option | Vorgabe | Wirkung |
 |---|---|---|
 | `-maxlen` | `0` | Zeilenumbruch nach so vielen Zeichen; `0` lässt die Zeile ganz |
+| `-encoding` | `binary` | `encode`: `binary` nimmt jedes Zeichen als ein Byte, `utf-8` wandelt Text zuerst; `decode`: `utf-8` macht aus den Bytes wieder Text |
 
 ```tcl
 package require tclutils::tubase64
@@ -27,6 +28,22 @@ package require tclutils::tubase64
 `-maxlen -1` wirft `{TCLUTILS TUBASE64 MAXLEN}`. Ein Text ohne gültiges
 Base64, etwa `!!!`, kommt als leere Zeichenkette zurück, ohne
 Fehlercode.
+
+`encode` nimmt ohne Option Bytes. Ein Zeichen über 255 wirft unter
+Tcl 8.6 wie unter 9.0 `{TCLUTILS TUBASE64 BYTES}`; bis tclutils 0.68.0
+behielt Tcl 8.6 still nur das untere Byte. Text gehört mit
+`-encoding utf-8` hinein:
+
+```tcl
+::tclutils::tubase64::encode "Jörg €" -encoding utf-8   ;# -> SsO2cmcg4oKs
+::tclutils::tubase64::decode SsO2cmcg4oKs -encoding utf-8 ;# -> Jörg €
+::tclutils::tubase64::encode Jörg                        ;# -> SvZyZw==
+```
+
+Das letzte Beispiel kodiert `ö` als ein Byte `f6`. `tuhash` und
+`tuxxhash` wandeln Text dagegen von sich aus nach UTF-8; sie werden
+meist auf Text angewandt, `tubase64`, `tubase32` und `tucrc` meist auf
+Datei- und Bilddaten.
 
 ---
 
@@ -85,7 +102,10 @@ Alphabets wirft `{TCLUTILS TUBASE32 CHAR}`, etwa
 ## CRC: tucrc
 
 `crc32` und `adler32` reichen die Bytes an `zlib` weiter. Ein zweites
-Argument ist der Startwert für eine fortgesetzte Summe. `hex32` macht
+Argument ist der Startwert für eine fortgesetzte Summe. Danach darf
+`-encoding binary|utf-8` stehen, wie bei `tubase64`: ohne Option ist
+ein Zeichen über 255 `{TCLUTILS TUCRC BYTES}`, mit `utf-8` gleicht die
+Summe der von `crc32File` einer UTF-8-Datei mit diesem Text. `hex32` macht
 daraus acht Hex-Zeichen in Großbuchstaben. `crc32File` und
 `adler32File` lesen die Datei binär.
 
@@ -97,8 +117,9 @@ package require tclutils::tucrc
 ::tclutils::tucrc::adler32 hallo            ;# -> 102498833
 ```
 
-Ein falsches Argument zählt als `wrong # args`, ohne eigenen
-`-errorcode`.
+Ein falsches Argument meldet `wrong # args` mit
+`{TCLUTILS TUCRC OPTION}`, eine unbekannte Kodierung
+`{TCLUTILS TUCRC ENCODING}`.
 
 ---
 
@@ -186,10 +207,10 @@ dabei binär; die Umwandlung geschieht mit `encoding convertfrom` und
 | Befehl | Wirkung |
 |---|---|
 | `encodings` | die Namen aus `encoding names`, sortiert |
-| `convert bytes von nach` | Bytes in `von` zu Bytes in `nach` |
-| `readFile pfad kodierung` | der Text der Datei |
-| `writeFile pfad text kodierung` | schreibt die Datei, gibt `pfad` zurück |
-| `convertFile ein aus von nach` | liest `ein`, schreibt `aus`, gibt `aus` zurück |
+| `convert bytes von nach ?-replace b?` | Bytes in `von` zu Bytes in `nach` |
+| `readFile pfad kodierung ?-replace b?` | der Text der Datei |
+| `writeFile pfad text kodierung ?-replace b?` | schreibt die Datei, gibt `pfad` zurück |
+| `convertFile ein aus von nach ?-replace b?` | liest `ein`, schreibt `aus`, gibt `aus` zurück |
 
 Ein Name muss genau in `encoding names` stehen, etwa `utf-8`,
 `iso8859-1` oder `cp1252`. Schreibweisen wie `utf8` oder `latin1`
@@ -206,10 +227,22 @@ set zurueck [::tclutils::tuiconv::convert $cp cp1252 utf-8]
 encoding convertfrom utf-8 $zurueck         ;# -> Größe
 ```
 
-Bei einem Zeichen, das die Zielkodierung nicht kennt, oder bei
-ungültigen Bytes unterscheiden sich die Versionen. Tcl 9.0 wirft
-`{TCL ENCODING ILLEGALSEQUENCE 0}`, etwa für `ł` nach `cp1252`.
-Tcl 8.6 setzt still `?` ein bzw. liest das Byte als einzelnes Zeichen.
+Seit 0.2 ist die Umwandlung unter Tcl 8.6 und 9.0 gleich streng. Ein
+Zeichen, das die Zielkodierung nicht kennt, etwa `ł` nach `cp1252`,
+wirft `{TCLUTILS TUICONV UNMAPPABLE cp1252}`; Bytes, die in der
+Quellkodierung ungültig sind, werfen `{TCLUTILS TUICONV INVALID name}`.
+`-replace 1` an allen Befehlen ersetzt stattdessen, beim Schreiben
+durch `?`. `writeFile` wandelt vor dem Öffnen um: Bei einem Fehler
+behält die Datei ihren Inhalt. Bis 0.1 setzte Tcl 8.6 still `?` ein,
+Tcl 9.0 warf einen Tcl-Fehler ohne eigenen Code.
+
+```tcl
+catch {::tclutils::tuiconv::convert [encoding convertto utf-8 ł] utf-8 cp1252} m
+set m             ;# -> character U+0142 at index 0 cannot be written in cp1252
+binary encode hex [::tclutils::tuiconv::convert \
+    [encoding convertto utf-8 ł] utf-8 cp1252 -replace 1]
+                                          ;# -> 3f
+```
 
 ---
 
@@ -262,7 +295,10 @@ package require tclutils::tuurl
                                           ;# -> ort {Nord Lager} gang 3
 ```
 
-Ein Schlüssel ohne `=` bekommt den leeren Wert. Ein ungültiges
+Ein Schlüssel ohne `=` bekommt den leeren Wert. Steht ein Schlüssel
+mehrmals in der Query (`a=1&a=2`, etwa bei Checkboxen), behält
+`parseQuery` nur den letzten Wert; wer alle braucht, teilt die Query
+selbst am `&`. Ein ungültiges
 Wahrheitswort an `-plus` wirft `{TCLUTILS COMMON BOOLEAN -plus}`.
 
 ---
@@ -327,6 +363,18 @@ package require tclutils::tudiff
 je zwei Zeilen und `-maxcells 1` werfen `{TCLUTILS TUDIFF TOO_LARGE}`,
 weil 2 × 2 die Grenze übersteigt.
 
+Zeilenenden zählen nach Vorgabe nicht mit: CRLF, CR und LF sind gleich,
+ein fehlendes letztes Newline auch (`-eol ignore`). `-eol strict` (seit
+0.2) vergleicht jede Zeile mit ihrem Ende. Die Operationen tragen dann
+das Ende mit, und `unifiedText` markiert ein fehlendes Newline wie GNU
+diff. `files`, `unified` und `context` nehmen dazu `-encoding`.
+
+```tcl
+::tclutils::tudiff::text "a\r\nb" "a\nb\n"              ;# -> {equal a} {equal b}
+::tclutils::tudiff::unifiedText "a\nb\n" "a\nb" -eol strict
+;# -> --- old\n+++ new\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file
+```
+
 ---
 
 ## Diff anwenden: tupatch
@@ -347,14 +395,17 @@ aber auch `diff -u` oder `git diff` mit mehreren Abschnitten.
 | `-strict` | `1` | prüft Kontext- und Löschzeilen gegen die Quelle; `0` folgt blind dem Diff |
 
 Ein Abschnitt aus `parse` hat `oldStart`, `oldLen`, `newStart`,
-`newLen` und `body`. `body` ist eine Liste von Paaren aus Art (` `,
-`+`, `-`) und Zeile. Kopfzeilen wie `---`, `+++`, `diff` und `index`
-fallen weg, ebenso `\ No newline at end of file`. Eine leere Zeile
-beendet einen Abschnitt.
+`newLen`, `body`, `oldNoNl` und `newNoNl`. `body` ist eine Liste von
+Paaren aus Art (` `, `+`, `-`) und Zeile. Kopfzeilen wie `---`, `+++`,
+`diff` und `index` fallen weg. `oldNoNl` und `newNoNl` sind 1, wenn
+`\ No newline at end of file` hinter der letzten alten bzw. neuen Zeile
+steht. Eine leere Zeile beendet einen Abschnitt.
 
 Jeder Abschnitt gilt an der Zeile aus seinem Kopf. Eine Verschiebung
-sucht `tupatch` nicht. Die Zeilen werden mit `\n` verbunden; ein
-Zeilenumbruch am Ende der Quelle fehlt im Ergebnis. Ohne Abschnitt im
+sucht `tupatch` nicht. Die Zeilen werden mit `\n` verbunden. Endet die
+Quelle auf `\n`, endet auch das Ergebnis darauf; die Markierung
+`\ No newline at end of file` wirkt wie bei `diff -u` (seit 0.3; bis 0.2
+fehlte das letzte `\n` im Ergebnis immer). Ohne Abschnitt im
 Diff kommt die Quelle unverändert zurück.
 
 ```tcl
@@ -389,7 +440,7 @@ Gegenstücke); `-strict foo` wirft `{TCLUTILS COMMON BOOLEAN -strict}`.
 - `tudiff` hält die ganze Vergleichstabelle im Speicher.
 - Base32: `tubase32`, Eingabe sind Bytes; `-hex 1` für base32hex. Ungültiger Text wirft einen Fehler.
 - `xxh32` hasht Text als UTF-8 wie `tuhash`; `-encoding binary` für Bytes.
-- `tuiconv` kennt nur die Namen aus `encoding names`. Tcl 9.0 wirft bei nicht darstellbaren Zeichen.
+- `tuiconv` kennt nur die Namen aus `encoding names`. Nicht darstellbare Zeichen und ungültige Bytes sind ein Fehler; `-replace 1` ersetzt.
 - `tupatch` wendet ohne Verschiebung an. `-reverse 1` nimmt den Diff zurück.
 
 ---

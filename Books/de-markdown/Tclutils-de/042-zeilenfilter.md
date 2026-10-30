@@ -14,12 +14,15 @@ wirft `{TCLUTILS COMMON INTEGER -name}`, ein Nicht-Wahrheitswert
 bei jedem Modul noch einmal.
 
 `file` liest die Datei mit der Systemkodierung und wandelt `\r\n` in
-`\n`. Ob ein abschließendes `\n` erhalten bleibt, hängt vom Modul ab:
+`\n`. Das Ergebnis endet mit `\n` genau dann, wenn die Eingabe so endet:
 
 | Abschließendes `\n` | Module |
 |---|---|
-| bleibt | `tunl`, `tutac`, `turev`, `tuexpand`, `tutr` |
-| fällt weg | `tufold`, `tufmt`, `tucolumn`, `tushuf`, `tupr` |
+| wie in der Eingabe | `tunl`, `tutac`, `turev`, `tuexpand`, `tutr`, `tufold`, `tufmt`, `tucolumn`, `tushuf` |
+| eigene Regel | `tupr` (Seiten, siehe dort) |
+
+Bis tclutils 0.68.0 ließen `tufold`, `tufmt`, `tucolumn` und `tushuf`
+das abschließende `\n` weg.
 
 ---
 
@@ -289,7 +292,7 @@ puts [::tclutils::tutable::render {Artikel Menge} \
 | `turev::line zeile` | die Zeichen rückwärts, wie `string reverse` |
 | `turev::text text`, `file pfad` | jede Zeile für sich; abschließendes `\n` bleibt |
 | `tushuf::lines liste ?opt?` | gemischte Liste |
-| `tushuf::text text ?opt?`, `file pfad ?opt?` | gemischte Zeilen, ohne abschließendes `\n` |
+| `tushuf::text text ?opt?`, `file pfad ?opt?` | gemischte Zeilen; abschließendes `\n` bleibt |
 
 `tutac` behandelt die letzte Zeile ohne `\n` wie jede andere:
 `"a\nb"` wird zu `"b\na"`. Unix `tac` liefert hier `ba` und ein `\n`.

@@ -925,7 +925,8 @@ Kopf, bleibt `dimensions` leer. Die Bytes müssen binär gelesen sein.
 
 `dataUri` setzt `data:mime;base64,` vor die Base64-Form, ohne den
 MIME-Typ zu prüfen. `fromDataUri` dekodiert Base64 nur, wenn `base64`
-im Kopf steht; sonst kommt der Inhalt unverändert zurück, ohne
+im Kopf steht, nicht in einem Parameter in Anführungszeichen wie
+`charset="utf-8;base64"` (0.2); sonst kommt der Inhalt unverändert zurück, ohne
 Prozent-Dekodierung. Ungültiges Base64 wie `!!!` ergibt leere Bytes,
 keinen Fehler. Base64 übernimmt `tubase64`, siehe
 [Kodierung, Hash, Vergleich](052-kodierung-hash-vergleich.md).

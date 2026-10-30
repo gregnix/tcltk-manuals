@@ -2,21 +2,21 @@
 
 *As of: 2026-10-27*
 
-Manual for [tkutils]{.index} **0.48.0**: Tk widgets on top of the engines
+Manual for [tkutils]{.index} **0.49.0**: Tk widgets on top of the engines
 in tclutils. Dialogs, file list, tablelist and its helpers, geometry,
 actions, scaffolding, input, calendar and notes, data views, designer,
 images and the tkdevtools app.
 
-Pairing: tclutils **0.68.0** + tkutils **0.48.0** + ctrlutils **0.4**
-(at least tclutils 0.64.0). Version 0.68.0 requires nothing new from
-tkutils.
+Pairing: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils **0.5**
+(at least tclutils 0.64.0; the CSV export of `tkutablelist` only with
+0.69.0).
 
 Related books: the engines are covered by the book *tclutils*, the stack,
 controllers and tical by the book *Utils-Stack*, Tk basics without
 tkutils by the German book on Tcl/Tk user interfaces. This book does not
 change the module code.
 
-Checked against tkutils 0.48.0 with Tcl/Tk 8.6.14 and 9.0.4 on Linux
+Checked against tkutils 0.49.0 with Tcl/Tk 8.6.14 and 9.0.4 on Linux
 under Xvfb. Windows and macOS are not checked; environment and open
 points: Appendix G.
 

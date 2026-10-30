@@ -21,22 +21,25 @@ indented list becomes a flat list.
 `frontmatter` separates a YAML header between two `---` lines. If the
 closing rule is missing, the header stays empty and the text whole.
 `toHtml` omits the header. `headings` returns pairs of level and text.
-`toc` builds a list with anchors. The anchor is lowercase and consists
-only of `a`–`z`, digits, spaces and hyphens. Other characters are
-dropped.
+`toc` builds a list with anchors, `toHtml` sets the same ones as `id`.
+The anchor is made as on GitHub: lowercase, `*` and backticks are
+dropped, as is everything except letters, digits, `_`, `-` and spaces;
+spaces become `-`. Letters of every script stay. A second equal anchor
+gets `-1`, a third `-2` (since 0.2; up to 0.1 only `a`–`z` and digits
+stayed, and `Jörg` and `Jrg` had the same anchor `jrg`).
 
 ```tcl
 package require tclutils::tumd
 ::tclutils::tumd::toHtml "# Größe\n\nEin **Regal** und `x < y`."
-                                          ;# -> <h1 id="gre">Größe</h1>\n<p>Ein <strong>Regal</strong> und <code>x &lt; y</code>.</p>
+                                          ;# -> <h1 id="größe">Größe</h1>\n<p>Ein <strong>Regal</strong> und <code>x &lt; y</code>.</p>
 ::tclutils::tumd::headings "# Größe"       ;# -> {1 Größe}
-::tclutils::tumd::toc "# Größe"            ;# -> - [Größe](#gre)
+::tclutils::tumd::toc "# Größe"            ;# -> - [Größe](#größe)
 ::tclutils::tumd::frontmatter "---\ntitle: Lager\n---\n# Lager\n"
                                           ;# -> {title: Lager} {# Lager\n}
 ::tclutils::tumd::toHtml "- a\n  - b"      ;# -> <ul>\n<li>a</li>\n<li>b</li>\n</ul>
 ```
 
-The anchor of `Größe` is `gre`. `tustr::slugify` turns it into `gr-e`.
+The anchor of `Größe` is `größe`. `tustr::slugify` turns it into `groesse`.
 
 ---
 
@@ -48,11 +51,19 @@ dict with `type`, `props` and `components`. A property is a dict with
 `escapeText` and `unescapeText` handle `\`, `;`, `,` and the newline
 according to RFC 5545. `eventInfo`, `todoInfo` and `journalInfo`
 unescape the text fields. A continuation line starts with a space or
-tab.
+tab. `BEGIN` and `END` may be lower case. A quoted parameter value may
+hold `;` and `:` (`ALTREP="http://x"`); the quotes are dropped on reading
+and written again where the value needs them. `setProperty` and
+`addProperty` refuse a value with a line break (`{TCLUTILS TUICAL
+VALUE}`), because the raw break would end the line; pass text through
+`escapeText` first.
 
 `events`, `todos` and `journals` find `VEVENT`, `VTODO` and `VJOURNAL`
 in nested components as well. `newComponent` builds a component from a
-flat `Name Wert` list. `toIcs` writes it back, each line with CR/LF.
+flat `Name Wert` list. `toIcs` writes it back, each line with CR/LF, since 0.2 the last one too.
+Long lines are folded after 75 bytes, never inside a UTF-8 character; up
+to tclutils 0.68.0 it counted characters, so a line of umlauts became
+142 bytes long.
 
 ```tcl
 package require tclutils::tuical
@@ -167,8 +178,12 @@ and `WEEKLY` throw `{TCLUTILS TURRULE BYDAY}`; a month outside 1–12 in
 `parse` returns a list of cards. A card is a list of property dicts,
 the same structure as in `tuical`. `property` returns the first value
 of a name, `get` all values, `fullName` the property `FN`. `toVcf`
-writes CR/LF. The case of the name does not
-matter.
+writes CR/LF, after the last line too, and folds after 75 bytes like
+`tuical`. The case of the name does not matter. A group prefix is not
+part of the name: `fullName` finds `item1.FN:Ada`, which is written back
+as `item1.FN`. `TYPE="work;cell"` is one value `work;cell`. A line break
+in a value for `addProperty` or `setProperty` is
+`{TCLUTILS TUVCARD VALUE}`.
 
 ```tcl
 package require tclutils::tuvcard
@@ -194,7 +209,9 @@ The id is `clock microseconds`.
 `search` compares title and content with `string match`, ignoring
 case. An asterisk in the query is a pattern character. `toJson` and
 `fromJson` go through `tujson`. `fromJson` fills missing fields with
-empty values. `load` of a missing file yields an empty store. `delete`
+empty values. `load` of a missing file yields an empty store. `save`
+always writes the file as UTF-8 (0.2). `load` reads a file that is not
+valid UTF-8 in the system encoding; that is how 0.1 wrote it. `delete`
 with the third argument `1` (default) removes the branch; with `0` the
 children are attached to the root.
 
@@ -389,7 +406,9 @@ Day are missing. `isHoliday` returns the name or the empty string.
 
 Fixed dates are New Year's Day, Labor Day (May 1), the Day of German
 Unity and the two Christmas holidays. For 2024 the dict has eleven
-entries.
+entries. Easter Sunday and Whit Sunday are statutory holidays in a few
+states only; `-sundays 0` (since 0.2, for `holidays` and `isHoliday`)
+leaves them out and returns the nine days that apply everywhere.
 
 ```tcl
 package require tclutils::tuholiday
@@ -397,10 +416,13 @@ package require tclutils::tuholiday
 ::tclutils::tuholiday::easter 2025           ;# -> 2025-04-20
 ::tclutils::tuholiday::isHoliday 2024-03-31  ;# -> Ostersonntag
 ::tclutils::tuholiday::isHoliday 2024-03-15  ;# ->
+::tclutils::tuholiday::isHoliday 2024-03-31 -sundays 0  ;# ->
+dict size [::tclutils::tuholiday::holidays 2024 -sundays 0]  ;# -> 9
 ```
 
 `easter xyz` throws `{TCLUTILS TUHOLIDAY YEAR}`. `-region at` throws
-`{TCLUTILS TUHOLIDAY REGION}`.
+`{TCLUTILS TUHOLIDAY REGION}`, `-sundays maybe`
+`{TCLUTILS TUHOLIDAY SUNDAYS}`.
 
 ---
 
@@ -419,9 +441,9 @@ expands recurrences with `turrule`. It is described in the book
 
 ## In short
 
-- `tumd` is a subset. The anchor of `Größe` is `gre`.
+- `tumd` is a subset. The anchor of `Größe` is `größe`.
 - iCalendar and vCard values stay raw. `eventInfo` unescapes text.
-- `toIcs` and `toVcf` write CR/LF.
+- `toIcs` and `toVcf` write CR/LF, after the last line too.
 - `tunotes`: change through the variable name, read through the value.
 - Public holidays: only `de`, eleven names, no state-specific days.
 - `turrule` needs a limit: `-to`, `-count`, `COUNT` or `UNTIL`. Unsupported parts throw `UNSUPPORTED`.

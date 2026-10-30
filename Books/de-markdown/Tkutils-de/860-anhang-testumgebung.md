@@ -15,8 +15,8 @@ geprüft sind.
 | System | Linux, GUI unter Xvfb ohne Fenstermanager, Bildschirm 1280×1024 |
 | Tcl/Tk 8.6 | 8.6.14 mit tDOM 0.9.3, sqlite3 3.45.1, tklib 0.8 (Tablelist 6.20, scrollutil 1.17), Img 1.4.16; ohne tksvg |
 | Tcl/Tk 9 | 9.0.4 mit tDOM 0.9.7, sqlite3 3.53.0, Tablelist 7.11, scrollutil 2.10, Img 2.1.1 |
-| tkutils | 0.48.0 |
-| tclutils | 0.68.0 |
+| tkutils | 0.49.0 |
+| tclutils | 0.69.0 |
 | ctrlutils | 0.4 |
 | tical | 1.1, über `TICAL_DIR` oder Geschwisterordner |
 
@@ -38,6 +38,13 @@ die Knöpfe beim Anlegen; `tkulauncher-9.5` prüft den Fall nach
 ---
 
 ## Ältere Fassungen
+
+### Testsuite 0.48.0
+
+Gleiche Umgebung, tclutils 0.68.0: 78 Testdateien, 843 Tests; unter
+8.6.14 831 bestanden und 12 übersprungen, unter 9.0.4 840 bestanden und
+3 übersprungen, 0 Fehler. 0.49.0 bringt vier neue Testdateien
+(`tkutlfilter`, `tkutlgroup`, `tkutldrag`, `tkusysinfo`) und 64 Tests mehr.
 
 ### Testsuite 0.46.0
 
@@ -104,7 +111,7 @@ benutzen. In 0.47.0 (`tkufiledialog` 0.2) behoben.
 
 | Kapitel | offen |
 |---|---|
-| alle | Windows und macOS |
+| alle | unter Windows und macOS nur die Testsuite |
 | [Dialoge](030-dialoge.md) | Darstellung, Fokus und Platzierung auf einem echten Bildschirm |
 | [Datei-Widgets](040-datei-widgets.md) | Navigation eines Dateimanagers mit Windows-Pfaden |
 | [Geometrie und Units](060-geometry-und-units.md) | Konfig-Ordner unter Windows und macOS; mehrere Monitore; Zoom-Zustand (Xvfb ohne Fenstermanager kennt keinen) |

@@ -29,8 +29,8 @@
   die Meldung ist `does not support 'put'`, ohne Code.
 - `string length` als sichtbare Zeichenzahl nehmen — `tustr::graphemes`.
   `truncate` und `padLeft` rechnen weiter mit `string length`.
-- `tustr::slugify` für einen deutschen Titel — nur ASCII bleibt, „Größe“
-  wird `gr-e`. Der Anker von `tumd` für denselben Titel ist `gre`.
+- `tustr::slugify` und den Anker von `tumd` für dasselbe halten — `slugify`
+  macht aus „Größe“ `groesse` (ASCII), `tumd` den Anker `größe`.
 - Eine eingerückte Markdown-Liste als verschachtelt lesen — `tumd`
   macht daraus eine flache Liste.
 - `tunotes::create` den Speicherwert übergeben — die Änderung verlangt
@@ -38,7 +38,8 @@
 - `tunotes::search` als regulären Ausdruck lesen — es ist `string match`,
   ein Stern in der Frage ist ein Musterzeichen.
 - Landesspezifische Feiertage bei `tuholiday` erwarten — nur die
-  bundesweite Menge `de`, dazu Oster- und Pfingstsonntag.
+  bundesweite Menge `de`, dazu Oster- und Pfingstsonntag (ohne sie:
+  `-sundays 0`).
 - `tuflow::parse` auf ein `pie` — `{TCLUTILS TUFLOW UNSUPPORTED}`.
   Zeichnen geht über `toSvg`.
 - `tudiagram::addEdge` auf unbekannte Ids und einen Fehler erwarten —
@@ -48,6 +49,12 @@
   `956.06` wird `95606.0`.
 - `tudate::diff -unit days` über die Sommerzeit als Kalendertage lesen —
   Sekunden durch 86400; 15. März bis 15. April 2024 ergibt 30.
+- `02/03/2026` als 3. Februar lesen — `tudate::parse` nimmt `d/m/Y`
+  vor `m/d/Y`, das ist der 2. März. `m/d/Y` greift erst, wenn `d/m/Y`
+  kein Datum ergibt (`10/29/2026`).
+- Eine Zeichenkette mit Umlaut an `tubase64::encode` oder
+  `tucrc::crc32` ohne `-encoding utf-8` — `ö` wird das eine Byte `f6`,
+  `€` ist `BYTES`. `tuhash` nimmt dagegen UTF-8.
 - `tudate::relative` deutsch erwarten — die Texte sind `today`,
   `tomorrow`, `yesterday`.
 - `tudict::getOr` wie `dict get` lesen — die Vorgabe steht vor dem
@@ -60,6 +67,9 @@
   ohne `-errorcode`.
 - SQL-NULL aus `tusqlite::rows` am Sentinel erkennen — die Zelle kommt
   leer zurück. NULL setzt `insert` mit `null`.
+- In `tusqlite::rows` einen Platzhalter `:x` aus einer Variablen `x`
+  erwarten — seit 0.2 kommt der Wert nur aus dem Parameter-Dict; ohne
+  Eintrag ist er NULL.
 - Bei TDBC `allrows -as dicts` eine fehlende Spalte als leer lesen —
   NULL-Spalten fallen aus dem Dict. `tutdbc::rows` setzt sie leer wieder
   ein. `0` bleibt `0`.

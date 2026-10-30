@@ -1,10 +1,10 @@
 # Widgets (Orientierung)
 
-Übersicht im tkutils-Baum: `docs/guide/tkutils-modules.md`. **75**
+Übersicht im tkutils-Baum: `docs/guide/tkutils-modules.md`. **79**
 Module, je mit Test, Doc und Manpage (`tools/check-docman.tcl` meldet
 keine fehlenden Dateien). Der Umbrella lädt 53 direkt und `tkutablelist`
 und `tkuopts` indirekt; maßgeblich ist der Code des Umbrellas. Keine
-Parallelversionen: `tkutablelist` nur 0.4, `tkudialog` nur 0.3.
+Parallelversionen: `tkutablelist` nur 0.5, `tkudialog` nur 0.3.
 
 ## Auszug
 
@@ -15,12 +15,12 @@ Parallelversionen: `tkutablelist` nur 0.4, `tkudialog` nur 0.3.
 | tkufilelist 0.2 / tkufiletree 0.2 | Provider-UI |
 | tkupath 0.3 | Pfadzeile, auch Laufwerk und UNC |
 | tkupreview 0.2 | Vorschau, Texte über msgcat |
-| tkutablelist 0.4 | tablelist-Wrapper, `-exportselection 0` |
+| tkutablelist 0.5 | tablelist-Wrapper, `-exportselection 0`, Zeilen-IDs |
 | tkugeometry 0.1 | Fenstergeometrie merken |
 | tkuunits 0.1 | px/pt/mm/cm/inch |
 | tkuaction 0.2 | Actions, Enable pro Fenster |
 | tkutoolbar 0.2 | Leiste, `addAction` |
-| tkulauncher 0.3 | Programmstarter (Menü/Liste) |
+| tkulauncher 0.4 | Programmstarter (Menü/Liste) |
 | tkuload 0.3 / tkurender 0.2 | UI-Laden / placeholder (nicht im Umbrella) |
 | tkuopts 0.1 | Optionsprüfung (indirekt geladen) |
 | tkuwinico 0.1 | Windows-Symbol aus Tk-Bildern |
@@ -34,17 +34,18 @@ Parallelversionen: `tkutablelist` nur 0.4, `tkudialog` nur 0.3.
 | tkusqlite 0.1 | sqlite3 |
 | tkuicon 0.1 | tksvg / Tk 9 für SVG |
 | tkuscrolledframe 0.1 | scrollutil |
-| tkutical 0.3, tkumonthcanvas 0.5 | tical 1.0 |
+| tkutical 0.4, tkumonthcanvas 0.5 | tical 1.0 (`-events`: 1.1) |
 | tkucanvaspng 0.2 | tclutils::tupngdraw |
-| tkutltools 0.2, tkutl* (0.2/0.3) | Tablelist (`tablelist_tile`) |
+| tkutltools 0.3, tkutl* (0.1 bis 0.4) | Tablelist (`tablelist_tile`) |
 | tkumdview, tkupdfinspect, tkulayoutcanvas (je 0.1) | tclutils-Engines |
+| tkusysinfo 0.1 | tclutils::tusysinfo (tclutils 0.69.0) |
 
 ---
 
 ## Zusammenfassung
 
-- 75 Module: 55 über den Umbrella, 20 einzeln.
-- Die Versionen dieses Anhangs sind die Dateien im Baum von 0.48.0.
+- 79 Module: 55 über den Umbrella, 24 einzeln.
+- Die Versionen dieses Anhangs sind die Dateien im Baum von 0.49.0.
 
 ---
 

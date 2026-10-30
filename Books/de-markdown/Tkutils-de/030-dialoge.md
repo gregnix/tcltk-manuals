@@ -168,7 +168,7 @@ lädt 0.3 (kompatibel für einfache Labels). Doc: `docs/tkudialog.md`.
 ## ctrlutils
 
 `cufileops` verlangt seit 0.3 `tkudialog` 0.3 für Bestätigungen; der
-aktuelle Stand in ctrlutils 0.4 ist `cufileops` 0.5. Siehe *Utils-Stack*.
+aktuelle Stand in ctrlutils 0.5 ist `cufileops` 0.6. Siehe *Utils-Stack*.
 
 ---
 

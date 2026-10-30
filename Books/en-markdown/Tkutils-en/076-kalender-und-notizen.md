@@ -64,19 +64,23 @@ the error of `tucal`, for example `{TCLUTILS TUCAL MONTH}` with
 
 ## tical: tkutical and tkumonthcanvas
 
-[tkutical]{.index} 0.3 draws a month or a week through tical.
+[tkutical]{.index} 0.4 draws a month or a week through tical.
 
 ```tcl
 set w [::tkutils::tkutical::widget .w ?-year j? ?-month m? \
     ?-weeknumbers 0|1? ?-fontsize n? ?-holidays region? \
-    ?-selectmode none|single|multiple? ?-command befehl?]
+    ?-selectmode none|single|multiple? ?-command befehl? ?-events liste?]
 ::tkutils::tkutical::setMonth $w jahr monat
 ::tkutils::tkutical::getSelection $w
 ::tkutils::tkutical::setSelection $w {daten und A..B}
 ```
 
 `setMonth` returns `{year month}` and raises an error for an invalid
-month. `getSelection` returns sorted ISO dates.
+month. `getSelection` returns sorted ISO dates. `-events` and
+`setEvents` (since 0.4) take appointments in the format of
+`tical::event`; they appear as dots in the month and as titles in the
+week, a series on each of its days. This needs tical 1.1 or later,
+otherwise `{TKUTILS TKUTICAL EVENTS}`.
 
 [tkumonthcanvas]{.index} 0.5 draws month, quarter and year onto an
 existing canvas. `init` sets font and theme before drawing.
@@ -101,7 +105,7 @@ plus `defineTheme`.
 
 ## Appointments: tkuical
 
-[tkuical]{.index} 0.2 shows the `VEVENT` entries of an iCalendar text in
+[tkuical]{.index} 0.3 shows the `VEVENT` entries of an iCalendar text in
 a table: summary, start, end, location. The engine is
 `tclutils::tuical`.
 
@@ -121,7 +125,11 @@ default and shows a bar for summary, start, end and location.
 `addEvent`, `removeEvent` and `setField` change an appointment.
 `setField` knows `summary`, `start`, `end` and `location`. Other
 properties and components that are not appointments are kept when
-writing.
+writing, in their place: a to-do after the appointment stays after it. `loadFile` and `save` work in UTF-8, whatever the system
+encoding; `save` writes the CRLF line ends once (up to 0.2
+`\r\r\n`). With `tuical` 0.2 the last line ends with CRLF too; a file
+read and written without change then stays the same apart from the
+folding of long lines.
 
 ---
 
@@ -148,7 +156,7 @@ timestamp `COMPLETED`. Back sets `NEEDS-ACTION`, `PERCENT-COMPLETE` to
 
 ## Notes: tkunotes
 
-[tkunotes]{.index} 0.2 is a tree on the left and an editor on the right.
+[tkunotes]{.index} 0.4 is a tree on the left and an editor on the right.
 Storage and search come from `tclutils::tunotes`.
 
 ```tcl
@@ -165,13 +173,21 @@ set w [::tkutils::tkunotes::widget .w ?-file notizen.json? ?-toolbar 0?]
 
 `addRoot` returns the id. `search` returns ids. `load` returns the
 count. `commit` writes the editor fields into the store. `store` is the
-dict of `tunotes`. `-toolbar 0` is the default.
+dict of `tunotes`. The toolbar is on; `-toolbar 0` hides it. Its Save
+button takes the fields and since 0.3 also writes the JSON file
+(`-file`, the one loaded or saved last, else it asks); up to 0.2 it only
+did `commit`. In the Tags field a comma separates the tags,
+`Arbeit Büro, privat` is two (up to 0.2 every word was a tag). Since
+0.4 edits are kept when another note is chosen (click in the tree,
+`select`, new note, search hit): title, tags and content of the
+previous note go into the store. Up to 0.3 they were lost without
+Save. Only Save or `save` writes the file.
 
 ---
 
 ## Contacts and LDIF
 
-[tkuvcard]{.index} 0.2 shows every card as a node with `FN` and the
+[tkuvcard]{.index} 0.3 shows every card as a node with `FN` and the
 properties as children. The engine is `tclutils::tuvcard`.
 
 ```tcl
@@ -182,11 +198,16 @@ set w [::tkutils::tkuvcard::widget .w]
 ```
 
 `loadText` returns the number of cards. `-editable 1` is the default.
+`setProperty` changes name, value and `TYPE` of a line and keeps the
+other parameters such as `PREF` (up to 0.2 they were lost); several
+types are separated by commas (`"CELL, VOICE"`). `tkuvcard` reads and
+writes files in UTF-8 with CRLF.
 
-[tkuldif]{.index} 0.2 shows every LDIF entry as a node with `dn` and
+[tkuldif]{.index} 0.3 shows every LDIF entry as a node with `dn` and
 every attribute line as a child. The engine is `tclutils::tuldif`.
 `loadText` returns the number of entries. `-editable 1` is the default.
-`entries` returns the entries.
+`entries` returns the entries. Files in UTF-8. With `tuldif` 0.3,
+binary attributes such as `jpegPhoto` keep their bytes when saved.
 
 ---
 

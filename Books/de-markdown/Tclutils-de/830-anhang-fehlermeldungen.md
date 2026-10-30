@@ -24,10 +24,13 @@ Typische `-errorcode`-Muster (Auszug). Vollständig: jeweiliges
 | `{TCLUTILS TUFETCH TIMEOUT}` | Zeitüberschreitung |
 | `{TCLUTILS TUFETCH REDIRECT}` | zu viele Weiterleitungen |
 | `{TCLUTILS TUCSV QUOTE}` | CSV-Feld mit offenem Anführungszeichen (`-strict 1`) |
+| `{TCLUTILS TUCSV PROFILE <name>}` | `-profile` weder `excel-de` noch `rfc4180` |
 | `{TCLUTILS TUJSON PARSE offset}` | JSON an dieser Stelle ungültig |
 | `{TCLUTILS TUJSON TYPE}` | `toJson` mit unbekannter Art |
 | `{TCLUTILS TUINI SYNTAX}` | INI nicht parsebar, auch ein offener Abschnitt |
 | `{TCLUTILS TUBASE64 MAXLEN}` | `-maxlen` keine ganze Zahl ab 0 |
+| `{TCLUTILS TUBASE64 BYTES}` | `encode` ohne `-encoding utf-8` mit einem Zeichen über 255 |
+| `{TCLUTILS TUCRC BYTES}` | `crc32`, `adler32` ohne `-encoding utf-8` mit einem Zeichen über 255 |
 | `{TCLUTILS TUHASH ENCODING}` | `-encoding` weder `utf-8` noch `binary` |
 | `{TCLUTILS TUUUID INVALID}` | `version` ohne UUID-Form |
 | `{TCLUTILS TUUUID VERSION}` | `generate -version` weder 4 noch 7 |
@@ -36,7 +39,11 @@ Typische `-errorcode`-Muster (Auszug). Vollständig: jeweiliges
 | `{TCLUTILS TUDIFF TOO_LARGE}` | Zeilen alt mal Zeilen neu über `-maxcells` |
 | `{TCLUTILS TUXML NAME <name>}` | Elementname ungültig |
 | `{TCLUTILS TUXML ATTR <name>}` | Attributname ungültig |
-| `{TCLUTILS TUSQLITE EMPTY}` | `insert` ohne Spalte |
+| `{TCLUTILS TUSQLITE EMPTY}` | `insert` ohne Spalte, `update` ohne neuen Wert |
+| `{TCLUTILS TUSQLITE WHERE}` | `update` oder `delete` mit leerem Bedingungs-Dict |
+| `{TCLUTILS TUSQLITE PARAM <name>}` | Platzhaltername in `rows`/`value` ungültig |
+| `{TCLUTILS TUSYSINFO OPTION}`, `SECTION`, `PLATFORM` | `collect`: unbekannte Option, unbekannter Abschnitt, unbekannte Plattform |
+| `{TCLUTILS TUEDID SHORT}`, `HEADER`, `HEX` | EDID kürzer als 128 Byte, ohne EDID-Kopf, kein Hex |
 | `{TCLUTILS TUTDBC EMPTY}` | `tutdbc::insert` ohne Spalte |
 | `{TCLUTILS TUMMDB FORMAT}` | Datei ist keine MaxMind-DB |
 | `{TCLUTILS TUMMDB HANDLE}` | unbekanntes Handle bei `metadata` oder `lookup` |
@@ -52,6 +59,11 @@ Typische `-errorcode`-Muster (Auszug). Vollständig: jeweiliges
 | `{TCLUTILS TUFLOW BADID}` | ungültige Knoten-Id, etwa mit angehängtem `-…` |
 | `{TCLUTILS TUFLOW EMPTY}` | Flowchart ohne Knoten |
 | `{TCLUTILS TUFLOW UNSUPPORTED}` | `parse` auf einer Art, die nur `toSvg` zeichnet |
+| `{TCLUTILS TUGIT DUPID}` | Commit-Id kommt zweimal vor |
+| `{TCLUTILS TUICAL VALUE}`, `{TCLUTILS TUVCARD VALUE}` | Wert mit Zeilenumbruch an `setProperty` oder `addProperty` |
+| `{TCLUTILS TUSQLITE OPTION}` | `value` mit unbekannter Option oder Option ohne Wert |
+| `{TCLUTILS TURADAR COUNT}` | Zahl der Werte passt nicht zu den Achsen |
+| `{TCLUTILS TURADAR AXIS}` | Reihe ohne Wert für eine Achse, oder Schlüssel ohne Achse |
 | `{TCLUTILS TUPIE EMPTY}` | Kreisdiagramm ohne Sektor |
 | `{TCLUTILS TUPIE VALUE}` | negativer Wert, oder Sektoren summieren sich nicht positiv |
 | `{TCLUTILS TUC4 EMPTY}` | C4 ohne Elemente |
@@ -59,7 +71,7 @@ Typische `-errorcode`-Muster (Auszug). Vollständig: jeweiliges
 | `{TCLUTILS TUPATH RELATIVE}` | `relative`: ein Pfad absolut, der andere relativ |
 | `{TCLUTILS TUPATH ARGS}` | `commonPath` ohne Pfad |
 | `{TCLUTILS TUPATH NOTLINK}` | `readlink` auf keiner symbolischen Verknüpfung |
-| `{TCLUTILS TUDATE PARSE}` | `tudate::parse` liest das Datum nicht |
+| `{TCLUTILS TUDATE PARSE}` | `tudate::parse` liest das Datum nicht, auch einen Tag, den es nicht gibt (`2026-02-29`) |
 | `{TCLUTILS TUDATE UNIT}` | `tudate::add` mit unbekannter Einheit |
 | `{TCLUTILS TUNUM DECIMALS}` | `format -decimals` keine ganze Zahl ab 0 |
 | `{TCLUTILS TUNUM LOCALE}` | `parse`-Locale nicht `auto`/`de-strict`, oder `format`-Locale nicht `de` |
@@ -93,6 +105,18 @@ Typische `-errorcode`-Muster (Auszug). Vollständig: jeweiliges
 | `{TCLUTILS TUAWK OPTION}` | `tuawk`: unbekannte Option oder Option ohne Wert |
 | `{TCLUTILS TUAGREP MAXDIST}` | `tuagrep`: `-maxdist` keine Ganzzahl ab 0 |
 | `{TCLUTILS TUSPLIT BYTES}` | `tusplit::splitBytes`: Zeichen über `\xFF` |
+| `{TCLUTILS TUSPLIT ENCODING name}` | `tusplit::splitLines`: unbekannte `-encoding` |
+| `{TCLUTILS TUICONV UNMAPPABLE enc}` | `tuiconv`: Zeichen in `enc` nicht darstellbar (ohne `-replace 1`) |
+| `{TCLUTILS TUICONV INVALID enc}` | `tuiconv`: Bytes in `enc` ungültig (ohne `-replace 1`) |
+| `{TCLUTILS TULDIF BINARY}` | `tuldif::toLdif`: Binärwert mit Zeichen über `\xFF` |
+| `{TCLUTILS TULDIF OPTION}` | `tuldif`: Option außer `-binary` |
+| `{TCLUTILS TUINI VALUE}` | `tuini`: Wert, Schlüssel oder Abschnitt, den INI nicht fassen kann |
+| `{TCLUTILS TUCSPLIT ENCODING name}` | `tucsplit`: unbekannte `-encoding` |
+| `{TCLUTILS TUHEAD COUNT}`, `{TCLUTILS TUTAIL COUNT}` | Anzahl keine ganze Zahl ab 0 |
+| `{TCLUTILS TUER SYNTAX}` | `tuer`: Zeile weder Block noch Entität noch Beziehung |
+| `{TCLUTILS TUGANTT DURATION}` | `tugantt`: Dauer mit unbekannter Einheit |
+| `{TCLUTILS TUXYCHART COUNT}` | `tuxychart`: Zahl der Werte passt nicht zu den Kategorien |
+| `{TCLUTILS TUSANKEY VALUE}` | `tusankey`: Zeile nicht `Quelle,Ziel,Wert` mit Zahl ab 0 |
 | `{TCLUTILS <MODUL> BYTES}` | Bytes erwartet, Zeichen über 255 gefunden (`tuhexdump`, `tuod`, `tustrings`, `tucmp`, `tuhexedit`, `tuxxhash`) |
 | `{TCLUTILS TUHEXEDIT OFFSET\|RANGE\|ENCODING}` | ungültiger Offset; Schreiben über das Dateiende; Zeichen nicht kodierbar |
 | `{TCLUTILS TUHEXDUMP OFFSET\|LENGTH}` | `-offset` bzw. `-length` ungültig |

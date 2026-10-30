@@ -24,11 +24,14 @@ drei PNG mit 900×600 Pixeln, Exit-Code 0.
 
 Voraussetzungen: Tcl/Tk 8.6 oder 9.x, mindestens **tclutils 0.64.0**
 (`tucolor`, `tustr` 0.2, `tudate` 0.2, `tupkgfinder` 0.2, `tuappinfo`,
-`tupath`, `tunum` 0.4; empfohlen 0.68.0), aus tkutils `tkutablelist` 0.4
+`tupath`, `tunum` 0.4; empfohlen 0.69.0), aus tkutils `tkutablelist` ab 0.4
 und `tkuunits`, dazu Tablelist. Die App lädt `tablelist_tile` vor
 `tkutablelist`; die Helfer `tkutl*` nehmen dieselbe Variante (Kapitel
 [tkutils verstehen](010-tkutils-verstehen.md)). Die Helfer
-`tkutlsort`, `tkutlfind`, `tkutlclip` werden genutzt, wenn vorhanden. Die
+`tkutlsort`, `tkutlfind`, `tkutlclip` werden genutzt, wenn vorhanden.
+Mit `tkutlclip` 0.3 (tkutils 0.49.0) kopiert Strg+C in den Tabellen die
+markierten Zeilen als TSV; vorher überschrieb die eigene Bindung von
+Tablelist die Zwischenablage. Die
 Bibliotheken findet die App über `apps/_lib/paths.tcl` (dieselbe Logik wie
 `tools/setup.tcl`).
 
@@ -101,7 +104,7 @@ double-Wert.
 - tkdevtools: Referenz und Proben, schreibt nichts.
 - Seit 0.46.0: Package shadows, Paths, glob, Programs, Encoding profiles,
   Font aliases, Number format.
-- Braucht mindestens tclutils 0.64.0 (empfohlen 0.68.0) und Tablelist.
+- Braucht mindestens tclutils 0.64.0 (empfohlen 0.69.0) und Tablelist.
 - `--shot` braucht Img (`img::window`) oder ImageMagick.
 
 ::: {.info}

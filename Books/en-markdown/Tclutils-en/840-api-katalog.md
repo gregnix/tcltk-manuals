@@ -4,16 +4,17 @@ This catalog was derived from the shipped `.tm` source files. It shows **procedu
 
 The commands are written with their full namespace. An `args` signature means variable arguments; the allowed options have to be looked up in the respective module implementation.
 
-Modules with procedures covered: **140**.
+Modules with procedures covered: **143**.
 
 ## `common`
 
-Source: `lib/tm/tclutils/common-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/common-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::common::readFile {path args}
 ::tclutils::common::readBinaryFile {path}
 ::tclutils::common::writeFile {path data args}
+::tclutils::common::replaceFile {path data args}
 ::tclutils::common::splitLines {text}
 ::tclutils::common::splitDelimited {line delimiter}
 ::tclutils::common::parseOptions {defaults args}
@@ -35,7 +36,7 @@ Source: `lib/tm/tclutils/tuagrep-0.2.tm`. Limited to `namespace export`.
 
 ## `tuappinfo`
 
-Source: `lib/tm/tclutils/tuappinfo-0.2.tm`. No export list found with the simple source pattern; visible procedures without a leading underscore are listed.
+Source: `lib/tm/tclutils/tuappinfo-0.3.tm`. No export list found with the simple source pattern; visible procedures without a leading underscore are listed.
 
 ```tcl
 
@@ -43,7 +44,7 @@ Source: `lib/tm/tclutils/tuappinfo-0.2.tm`. No export list found with the simple
 
 ## `tuarchitecture`
 
-Source: `lib/tm/tclutils/tuarchitecture-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuarchitecture-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuarchitecture::parse {text}
@@ -71,11 +72,11 @@ Source: `lib/tm/tclutils/tubase32-0.2.tm`. Limited to `namespace export`.
 
 ## `tubase64`
 
-Source: `lib/tm/tclutils/tubase64-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tubase64-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tubase64::encode {data args}
-::tclutils::tubase64::decode {text}
+::tclutils::tubase64::decode {text args}
 ::tclutils::tubase64::encodeFile {path args}
 ::tclutils::tubase64::decodeFile {path}
 ```
@@ -121,7 +122,7 @@ Source: `lib/tm/tclutils/tubin-0.3.tm`. Limited to `namespace export`.
 
 ## `tublock`
 
-Source: `lib/tm/tclutils/tublock-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tublock-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tublock::parse {text}
@@ -129,7 +130,7 @@ Source: `lib/tm/tclutils/tublock-0.1.tm`. Limited to `namespace export`.
 
 ## `tubookmark`
 
-Source: `lib/tm/tclutils/tubookmark-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tubookmark-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tubookmark::parse {html}
@@ -138,7 +139,7 @@ Source: `lib/tm/tclutils/tubookmark-0.2.tm`. Limited to `namespace export`.
 
 ## `tuc4`
 
-Source: `lib/tm/tclutils/tuc4-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuc4-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuc4::parse {text}
@@ -158,7 +159,7 @@ Source: `lib/tm/tclutils/tucal-0.2.tm`. Limited to `namespace export`.
 
 ## `tucat`
 
-Source: `lib/tm/tclutils/tucat-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucat-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucat::text {text args}
@@ -168,7 +169,7 @@ Source: `lib/tm/tclutils/tucat-0.1.tm`. Limited to `namespace export`.
 
 ## `tuclass`
 
-Source: `lib/tm/tclutils/tuclass-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuclass-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuclass::parse {text}
@@ -229,7 +230,7 @@ Source: `lib/tm/tclutils/tucolor-0.2.tm`. Limited to `namespace export`.
 
 ## `tucolumn`
 
-Source: `lib/tm/tclutils/tucolumn-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucolumn-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucolumn::table {text args}
@@ -251,7 +252,7 @@ Source: `lib/tm/tclutils/tucomm-0.2.tm`. Limited to `namespace export`.
 
 ## `tucrc`
 
-Source: `lib/tm/tclutils/tucrc-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucrc-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucrc::hex32 {value}
@@ -263,7 +264,7 @@ Source: `lib/tm/tclutils/tucrc-0.1.tm`. Limited to `namespace export`.
 
 ## `tucsplit`
 
-Source: `lib/tm/tclutils/tucsplit-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucsplit-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucsplit::splitText {text pattern args}
@@ -272,7 +273,7 @@ Source: `lib/tm/tclutils/tucsplit-0.1.tm`. Limited to `namespace export`.
 
 ## `tucsv`
 
-Source: `lib/tm/tclutils/tucsv-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucsv-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucsv::parseLine {line args}
@@ -286,7 +287,7 @@ Source: `lib/tm/tclutils/tucsv-0.1.tm`. Limited to `namespace export`.
 
 ## `tucut`
 
-Source: `lib/tm/tclutils/tucut-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tucut-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tucut::field {line delimiter index}
@@ -299,7 +300,7 @@ Source: `lib/tm/tclutils/tucut-0.1.tm`. Limited to `namespace export`.
 
 ## `tudate`
 
-Source: `lib/tm/tclutils/tudate-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tudate-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tudate::parse {str args}
@@ -313,12 +314,21 @@ Source: `lib/tm/tclutils/tudate-0.2.tm`. Limited to `namespace export`.
 
 ## `tudav`
 
-Source: `lib/tm/tclutils/tudav-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tudav-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tudav::client {url args}
 ::tclutils::tudav::configure {c args}
+::tclutils::tudav::lastStatus {c}
 ::tclutils::tudav::destroy {c}
+::tclutils::tudav::propfind {c args}
+::tclutils::tudav::report {c path body args}
+::tclutils::tudav::listResources {c args}
+::tclutils::tudav::get {c path}
+::tclutils::tudav::put {c path data args}
+::tclutils::tudav::delete {c path args}
+::tclutils::tudav::calendarQuery {c path fromIso toIso}
+::tclutils::tudav::addressbookMultiget {c path hrefs}
 ```
 
 ## `tudeploy`
@@ -348,7 +358,7 @@ Source: `lib/tm/tclutils/tudhash-0.2.tm`. Limited to `namespace export`.
 
 ## `tudiagram`
 
-Source: `lib/tm/tclutils/tudiagram-0.5.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tudiagram-0.6.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tudiagram::create {args}
@@ -374,7 +384,7 @@ Source: `lib/tm/tclutils/tudict-0.1.tm`. Limited to `namespace export`.
 
 ## `tudiff`
 
-Source: `lib/tm/tclutils/tudiff-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tudiff-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tudiff::text {oldText newText args}
@@ -386,9 +396,19 @@ Source: `lib/tm/tclutils/tudiff-0.1.tm`. Limited to `namespace export`.
 ::tclutils::tudiff::directory {oldDir newDir args}
 ```
 
+## `tuedid`
+
+Source: `lib/tm/tclutils/tuedid-0.1.tm`. Limited to `namespace export`.
+
+```tcl
+::tclutils::tuedid::vendor {code}
+::tclutils::tuedid::parseHex {text}
+::tclutils::tuedid::parse {bytes}
+```
+
 ## `tuer`
 
-Source: `lib/tm/tclutils/tuer-0.3.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuer-0.4.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuer::parse {text}
@@ -463,7 +483,7 @@ Source: `lib/tm/tclutils/tufind-0.2.tm`. Limited to `namespace export`.
 
 ## `tuflow`
 
-Source: `lib/tm/tclutils/tuflow-0.3.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuflow-0.4.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuflow::parse {text args}
@@ -475,7 +495,7 @@ Source: `lib/tm/tclutils/tuflow-0.3.tm`. Limited to `namespace export`.
 
 ## `tufmt`
 
-Source: `lib/tm/tclutils/tufmt-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tufmt-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tufmt::reflow {text args}
@@ -484,7 +504,7 @@ Source: `lib/tm/tclutils/tufmt-0.1.tm`. Limited to `namespace export`.
 
 ## `tufold`
 
-Source: `lib/tm/tclutils/tufold-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tufold-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tufold::foldLine {line args}
@@ -506,7 +526,7 @@ Source: `lib/tm/tclutils/tufuzzy-0.2.tm`. Limited to `namespace export`.
 
 ## `tugantt`
 
-Source: `lib/tm/tclutils/tugantt-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tugantt-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tugantt::parse {text}
@@ -518,7 +538,7 @@ Source: `lib/tm/tclutils/tugantt-0.2.tm`. Limited to `namespace export`.
 
 ## `tugit`
 
-Source: `lib/tm/tclutils/tugit-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tugit-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tugit::parse {text}
@@ -526,7 +546,7 @@ Source: `lib/tm/tclutils/tugit-0.2.tm`. Limited to `namespace export`.
 
 ## `tugrep`
 
-Source: `lib/tm/tclutils/tugrep-0.1.3.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tugrep-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tugrep::match {line pattern args}
@@ -550,11 +570,11 @@ Source: `lib/tm/tclutils/tuhash-0.1.tm`. Limited to `namespace export`.
 
 ## `tuhead`
 
-Source: `lib/tm/tclutils/tuhead-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuhead-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuhead::text {text {count 10}}
-::tclutils::tuhead::file {path {count 10}}
+::tclutils::tuhead::file {path {count 10} args}
 ```
 
 ## `tuhexdump`
@@ -582,7 +602,7 @@ Source: `lib/tm/tclutils/tuhexedit-0.2.tm`. Limited to `namespace export`.
 
 ## `tuholiday`
 
-Source: `lib/tm/tclutils/tuholiday-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuholiday-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuholiday::easter {year}
@@ -602,7 +622,7 @@ Source: `lib/tm/tclutils/tuhttps-0.1.tm`. Limited to `namespace export`.
 
 ## `tuical`
 
-Source: `lib/tm/tclutils/tuical-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuical-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuical::parse {ics}
@@ -612,6 +632,17 @@ Source: `lib/tm/tclutils/tuical-0.1.tm`. Limited to `namespace export`.
 ::tclutils::tuical::property {comp name}
 ::tclutils::tuical::find {comps type}
 ::tclutils::tuical::events {comps}
+::tclutils::tuical::escapeText {s}
+::tclutils::tuical::unescapeText {s}
+::tclutils::tuical::setProperty {comp name value {params {}}}
+::tclutils::tuical::addProperty {comp name value {params {}}}
+::tclutils::tuical::removeProperty {comp name}
+::tclutils::tuical::todos {comps}
+::tclutils::tuical::journals {comps}
+::tclutils::tuical::eventInfo {comp}
+::tclutils::tuical::todoInfo {comp}
+::tclutils::tuical::journalInfo {comp}
+::tclutils::tuical::newComponent {type {props {}}}
 ```
 
 ## `tuico`
@@ -626,19 +657,19 @@ Source: `lib/tm/tclutils/tuico-0.2.tm`. Limited to `namespace export`.
 
 ## `tuiconv`
 
-Source: `lib/tm/tclutils/tuiconv-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuiconv-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuiconv::encodings {}
-::tclutils::tuiconv::convert {data from to}
-::tclutils::tuiconv::readFile {filename encodingName}
-::tclutils::tuiconv::writeFile {filename text encodingName}
-::tclutils::tuiconv::convertFile {infile outfile from to}
+::tclutils::tuiconv::convert {data from to args}
+::tclutils::tuiconv::readFile {filename encodingName args}
+::tclutils::tuiconv::writeFile {filename text encodingName args}
+::tclutils::tuiconv::convertFile {infile outfile from to args}
 ```
 
 ## `tuimage`
 
-Source: `lib/tm/tclutils/tuimage-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuimage-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuimage::type {bytes}
@@ -651,7 +682,7 @@ Source: `lib/tm/tclutils/tuimage-0.1.tm`. Limited to `namespace export`.
 
 ## `tuini`
 
-Source: `lib/tm/tclutils/tuini-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuini-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuini::parse {ini}
@@ -665,7 +696,7 @@ Source: `lib/tm/tclutils/tuini-0.1.tm`. Limited to `namespace export`.
 
 ## `tujoin`
 
-Source: `lib/tm/tclutils/tujoin-0.1.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tujoin-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tujoin::lines {leftLines rightLines args}
@@ -675,7 +706,7 @@ Source: `lib/tm/tclutils/tujoin-0.1.2.tm`. Limited to `namespace export`.
 
 ## `tujourney`
 
-Source: `lib/tm/tclutils/tujourney-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tujourney-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tujourney::parse {text}
@@ -711,7 +742,7 @@ Source: `lib/tm/tclutils/tujson-0.1.tm`. Limited to `namespace export`.
 
 ## `tukanban`
 
-Source: `lib/tm/tclutils/tukanban-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tukanban-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tukanban::parse {text}
@@ -736,15 +767,30 @@ Source: `lib/tm/tclutils/tulayout-0.2.tm`. Limited to `namespace export`.
 
 ## `tuldif`
 
-Source: `lib/tm/tclutils/tuldif-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuldif-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
-::tclutils::tuldif::parse {ldif}
-::tclutils::tuldif::toLdif {entries}
+::tclutils::tuldif::parse {ldif args}
+::tclutils::tuldif::toLdif {entries args}
 ::tclutils::tuldif::dn {entry}
 ::tclutils::tuldif::get {entry attr}
 ::tclutils::tuldif::attributes {entry}
 ::tclutils::tuldif::toDict {entry}
+```
+
+## `tulint`
+
+Source: `lib/tm/tclutils/tulint-0.1.tm`. Limited to `namespace export`.
+
+```tcl
+::tclutils::tulint::register {name severity description cmd}
+::tclutils::tulint::unregister {name}
+::tclutils::tulint::rules {}
+::tclutils::tulint::checkText {text args}
+::tclutils::tulint::checkFile {path args}
+::tclutils::tulint::check {paths args}
+::tclutils::tulint::summary {findings}
+::tclutils::tulint::format {findings args}
 ```
 
 ## `tulist`
@@ -788,7 +834,7 @@ Source: `lib/tm/tclutils/tumath-0.1.tm`. Limited to `namespace export`.
 
 ## `tumd`
 
-Source: `lib/tm/tclutils/tumd-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tumd-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tumd::frontmatter {markdown}
@@ -799,7 +845,7 @@ Source: `lib/tm/tclutils/tumd-0.1.tm`. Limited to `namespace export`.
 
 ## `tumindmap`
 
-Source: `lib/tm/tclutils/tumindmap-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tumindmap-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tumindmap::parse {text}
@@ -838,7 +884,7 @@ Source: `lib/tm/tclutils/tunl-0.2.tm`. Limited to `namespace export`.
 
 ## `tunotes`
 
-Source: `lib/tm/tclutils/tunotes-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tunotes-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tunotes::create {storeVar title content {tags {}} {parentId ""}}
@@ -878,7 +924,7 @@ Source: `lib/tm/tclutils/tunum-0.4.tm`. Limited to `namespace export`.
 
 ## `tunumany`
 
-Source: `lib/tm/tclutils/tunumany-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tunumany-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tunumany::parse {str args}
@@ -931,7 +977,7 @@ Source: `lib/tm/tclutils/tuopen-0.2.tm`. Limited to `namespace export`.
 
 ## `tupacket`
 
-Source: `lib/tm/tclutils/tupacket-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupacket-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupacket::parse {text}
@@ -953,7 +999,7 @@ Source: `lib/tm/tclutils/tupagespec-0.2.tm`. Limited to `namespace export`.
 
 ## `tupaste`
 
-Source: `lib/tm/tclutils/tupaste-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupaste-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupaste::lines {lineLists args}
@@ -963,7 +1009,7 @@ Source: `lib/tm/tclutils/tupaste-0.2.tm`. Limited to `namespace export`.
 
 ## `tupatch`
 
-Source: `lib/tm/tclutils/tupatch-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupatch-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupatch::parse {patchText}
@@ -1009,7 +1055,7 @@ Source: `lib/tm/tclutils/tupdftext-0.1.tm`. Limited to `namespace export`.
 
 ## `tupie`
 
-Source: `lib/tm/tclutils/tupie-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupie-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupie::parse {text}
@@ -1034,7 +1080,7 @@ Source: `lib/tm/tclutils/tupkgfinder-0.2.tm`. Limited to `namespace export`.
 
 ## `tupng`
 
-Source: `lib/tm/tclutils/tupng-0.5.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupng-0.6.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupng::encodeRGB {image args}
@@ -1045,7 +1091,7 @@ Source: `lib/tm/tclutils/tupng-0.5.tm`. Limited to `namespace export`.
 
 ## `tupngdraw`
 
-Source: `lib/tm/tclutils/tupngdraw-0.13.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupngdraw-0.14.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupngdraw::new {args}
@@ -1088,7 +1134,7 @@ Source: `lib/tm/tclutils/tupr-0.1.tm`. Limited to `namespace export`.
 
 ## `tuprovider`
 
-Source: `lib/tm/tclutils/tuprovider-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuprovider-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuprovider::register {scheme class}
@@ -1098,7 +1144,7 @@ Source: `lib/tm/tclutils/tuprovider-0.2.tm`. Limited to `namespace export`.
 
 ## `tuquadrant`
 
-Source: `lib/tm/tclutils/tuquadrant-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuquadrant-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuquadrant::parse {text}
@@ -1110,7 +1156,7 @@ Source: `lib/tm/tclutils/tuquadrant-0.1.tm`. Limited to `namespace export`.
 
 ## `turadar`
 
-Source: `lib/tm/tclutils/turadar-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/turadar-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::turadar::parse {text}
@@ -1164,7 +1210,7 @@ Source: `lib/tm/tclutils/turrule-0.2.tm`. Limited to `namespace export`.
 
 ## `tusankey`
 
-Source: `lib/tm/tclutils/tusankey-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusankey-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusankey::parse {text}
@@ -1176,7 +1222,7 @@ Source: `lib/tm/tclutils/tusankey-0.1.tm`. Limited to `namespace export`.
 
 ## `tused`
 
-Source: `lib/tm/tclutils/tused-0.1.3.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tused-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tused::replace {text pattern replacement args}
@@ -1198,7 +1244,7 @@ Source: `lib/tm/tclutils/tuseq-0.2.tm`. Limited to `namespace export`.
 
 ## `tusequence`
 
-Source: `lib/tm/tclutils/tusequence-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusequence-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusequence::parse {text}
@@ -1210,7 +1256,7 @@ Source: `lib/tm/tclutils/tusequence-0.2.tm`. Limited to `namespace export`.
 
 ## `tusettings`
 
-Source: `lib/tm/tclutils/tusettings-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusettings-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusettings::dir {kind app args}
@@ -1222,7 +1268,7 @@ Source: `lib/tm/tclutils/tusettings-0.1.tm`. Limited to `namespace export`.
 
 ## `tushuf`
 
-Source: `lib/tm/tclutils/tushuf-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tushuf-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tushuf::lines {lineList args}
@@ -1242,7 +1288,7 @@ Source: `lib/tm/tclutils/tusize-0.2.tm`. Limited to `namespace export`.
 
 ## `tusort`
 
-Source: `lib/tm/tclutils/tusort-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusort-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusort::sortList {items args}
@@ -1261,7 +1307,7 @@ Source: `lib/tm/tclutils/tusparql-0.2.tm`. Limited to `namespace export`.
 
 ## `tusplit`
 
-Source: `lib/tm/tclutils/tusplit-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusplit-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusplit::splitLines {text args}
@@ -1273,14 +1319,16 @@ Source: `lib/tm/tclutils/tusplit-0.2.tm`. Limited to `namespace export`.
 
 ## `tusqlite`
 
-Source: `lib/tm/tclutils/tusqlite-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusqlite-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusqlite::null {}
 ::tclutils::tusqlite::quoteId {name}
 ::tclutils::tusqlite::insert {db table data}
-::tclutils::tusqlite::rows {db sql}
-::tclutils::tusqlite::value {db sql {default ""}}
+::tclutils::tusqlite::rows {db sql {params {}}}
+::tclutils::tusqlite::value {db sql args}
+::tclutils::tusqlite::update {db table set where}
+::tclutils::tusqlite::delete {db table where}
 ```
 
 ## `tustat`
@@ -1295,7 +1343,7 @@ Source: `lib/tm/tclutils/tustat-0.2.tm`. Limited to `namespace export`.
 
 ## `tustate`
 
-Source: `lib/tm/tclutils/tustate-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tustate-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tustate::parse {text}
@@ -1303,7 +1351,7 @@ Source: `lib/tm/tclutils/tustate-0.1.tm`. Limited to `namespace export`.
 
 ## `tustr`
 
-Source: `lib/tm/tclutils/tustr-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tustr-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tustr::isEmpty {s} { return [expr {$s eq ""}] }
@@ -1324,10 +1372,20 @@ Source: `lib/tm/tclutils/tustrings-0.2.tm`. Limited to `namespace export`.
 
 ## `tusvg`
 
-Source: `lib/tm/tclutils/tusvg-0.3.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tusvg-0.4.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tusvg::new {args}
+```
+
+## `tusysinfo`
+
+Source: `lib/tm/tclutils/tusysinfo-0.1.tm`. Limited to `namespace export`.
+
+```tcl
+::tclutils::tusysinfo::collect {args}
+::tclutils::tusysinfo::report {info args}
+::tclutils::tusysinfo::toJson {info args}
 ```
 
 ## `tutable`
@@ -1359,11 +1417,11 @@ Source: `lib/tm/tclutils/tutac-0.1.tm`. Limited to `namespace export`.
 
 ## `tutail`
 
-Source: `lib/tm/tclutils/tutail-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tutail-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tutail::text {text {count 10}}
-::tclutils::tutail::file {path {count 10}}
+::tclutils::tutail::file {path {count 10} args}
 ```
 
 ## `tutask`
@@ -1397,7 +1455,7 @@ Source: `lib/tm/tclutils/tutdbc-0.2.tm`. Limited to `namespace export`.
 
 ## `tutee`
 
-Source: `lib/tm/tclutils/tutee-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tutee-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tutee::write {data paths args}
@@ -1423,7 +1481,7 @@ Source: `lib/tm/tclutils/tuterm-0.2.tm`. Limited to `namespace export`.
 
 ## `tutestrun`
 
-Source: `lib/tm/tclutils/tutestrun-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tutestrun-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tutestrun::run {dir libs args}
@@ -1431,7 +1489,7 @@ Source: `lib/tm/tclutils/tutestrun-0.1.tm`. Limited to `namespace export`.
 
 ## `tutimeline`
 
-Source: `lib/tm/tclutils/tutimeline-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tutimeline-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tutimeline::parse {text}
@@ -1454,7 +1512,7 @@ Source: `lib/tm/tclutils/tutr-0.2.tm`. Limited to `namespace export`.
 
 ## `tutreemap`
 
-Source: `lib/tm/tclutils/tutreemap-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tutreemap-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tutreemap::parse {text}
@@ -1476,7 +1534,7 @@ Source: `lib/tm/tclutils/tutsort-0.2.tm`. Limited to `namespace export`.
 
 ## `tuuniq`
 
-Source: `lib/tm/tclutils/tuuniq-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuuniq-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuuniq::uniqList {items args}
@@ -1529,7 +1587,7 @@ Source: `lib/tm/tclutils/tuvalidate-0.2.tm`. Limited to `namespace export`.
 
 ## `tuvcard`
 
-Source: `lib/tm/tclutils/tuvcard-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuvcard-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuvcard::parse {vcf}
@@ -1539,6 +1597,9 @@ Source: `lib/tm/tclutils/tuvcard-0.1.tm`. Limited to `namespace export`.
 ::tclutils::tuvcard::get {card name}
 ::tclutils::tuvcard::names {card}
 ::tclutils::tuvcard::fullName {card}
+::tclutils::tuvcard::addProperty {card name value {params {}}}
+::tclutils::tuvcard::removeProperty {card index}
+::tclutils::tuvcard::setProperty {card index name value {params {}}}
 ```
 
 ## `tuwc`
@@ -1585,7 +1646,7 @@ Source: `lib/tm/tclutils/tuxxhash-0.2.tm`. Limited to `namespace export`.
 
 ## `tuxychart`
 
-Source: `lib/tm/tclutils/tuxychart-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuxychart-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuxychart::parse {text}
@@ -1597,13 +1658,13 @@ Source: `lib/tm/tclutils/tuxychart-0.1.tm`. Limited to `namespace export`.
 
 ## `tuzip`
 
-Source: `lib/tm/tclutils/tuzip-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuzip-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
-::tclutils::tuzip::entries {zipfile}
-::tclutils::tuzip::names {zipfile}
-::tclutils::tuzip::readMember {zipfile member}
-::tclutils::tuzip::extract {zipfile member outfile}
+::tclutils::tuzip::entries {zipfile args}
+::tclutils::tuzip::names {zipfile args}
+::tclutils::tuzip::readMember {zipfile member args}
+::tclutils::tuzip::extract {zipfile member outfile args}
 ::tclutils::tuzip::create {zipfile files args}
 ::tclutils::tuzip::createMembers {zipfile members args}
 ```

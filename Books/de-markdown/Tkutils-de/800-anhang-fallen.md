@@ -27,7 +27,17 @@
 - Tests mit `wish` starten — `tclsh tests/all.tcl`.
 - Dateioperationen im Widget suchen — gehören in ctrlutils.
 - Unbekannte Optionen an `tkutlfooter` — werden ohne Fehler übergangen.
-- 0.48.0 über einen älteren Baum kopieren und die alten `.tm`-Dateien
+- `tkutablelist::toCsv` oder `saveCsv` mit versteckten Zeilen oder
+  Spalten — seit 0.49.0 exportieren beide nur Sichtbares; alles mit
+  `-all 1`.
+- Eine `integer`- oder `real`-Spalte mit leeren Zellen sortieren —
+  Tablelist bricht mit einem Fehler ab; `tkutlsort::column … -empty last`.
+- Von `tkutltree::fromData` den Tabellenpfad zurück erwarten — seit 0.3
+  kommen die Schlüssel der obersten Knoten.
+- Strg+C mit `tkutlclip::installBindings` bis tkutils 0.48.0 — die eigene
+  `<<Copy>>`-Bindung von Tablelist überschrieb die Zwischenablage; seit
+  `tkutlclip` 0.3 behoben.
+- 0.49.0 über einen älteren Baum kopieren und die alten `.tm`-Dateien
   liegen lassen — dann liegen zwei Versionen nebeneinander (Liste im
   Kapitel [Installation](020-installation.md)).
 - Auf den Fehlercode `{TKUTILS <MODUL> OPTION}` ohne viertes Element

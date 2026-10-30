@@ -38,29 +38,45 @@ Fehlt nur der tclutils-Baum, scheitern Module mit Engine-Bedarf, etwa
 
 ### Über einen älteren Baum kopieren
 
-Der Umbrella von 0.48.0 ist `lib/tm/tkutils-0.48.0.tm`. Neue
-Modulversionen in 0.48.0: `tkulauncher` und `tkuload` 0.3; in 0.47.0:
+Der Umbrella von 0.49.0 ist `lib/tm/tkutils-0.49.0.tm`. Neue
+Modulversionen in 0.49.0: `tkutablelist` 0.5, `tkutlstate` 0.4,
+`tkutlclip`, `tkutlfind`, `tkutlsort`, `tkutltree`, `tkutltools` 0.3,
+`tkuical`, `tkuvcard`, `tkuldif`, `tkuini` 0.3, `tkunotes`, `tkueditor`
+0.4, `tkubase64` 0.2, `tkutical` 0.4, `tkutlfooter` 0.4,
+neu `tkutlfilter`, `tkutlgroup`, `tkutldrag`, `tkusysinfo` 0.1; in 0.48.0:
+`tkulauncher` und `tkuload` 0.3; in 0.47.0:
 `tkufiledialog` 0.2; `tkutlsort`, `tkutlclip`, `tkutlfind`, `tkutltree`,
-`tkutltools` 0.2; `tkutlfooter`, `tkutlfmt`, `tkutlstate` 0.3. Wer 0.48.0
+`tkutltools` 0.2; `tkutlfooter`, `tkutlfmt`, `tkutlstate` 0.3. Wer 0.49.0
 über einen älteren Baum kopiert, löscht vorher die alten Dateien, sonst
 liegen zwei Versionen nebeneinander.
 
-Über einen Baum von 0.47.0:
+Über einen Baum von 0.48.0:
 
-- `lib/tm/tkutils-0.47.0.tm`
-- `lib/tm/tkutils/tkulauncher-0.2.tm`, `tkuload-0.2.tm`
+- `lib/tm/tkutils-0.48.0.tm`
+- in `lib/tm/tkutils/`: `tkutablelist-0.4.tm`, `tkutlclip-0.2.tm`,
+  `tkutlfind-0.2.tm`, `tkutlsort-0.2.tm`, `tkutlstate-0.3.tm`,
+  `tkutltools-0.2.tm`, `tkutltree-0.2.tm`
+- ebenso `tkuical-0.2.tm`, `tkuvcard-0.2.tm`, `tkuldif-0.2.tm`,
+  `tkuini-0.2.tm`, `tkutical-0.3.tm`, `tkunotes-0.2.tm`,
+  `tkueditor-0.2.tm`, `tkubase64-0.1.tm`, `tkutlfooter-0.3.tm`,
+  `tkulauncher-0.3.tm`, `tkuhexedit-0.1.tm`
+
+Über einen Baum von 0.47.0 statt `tkutils-0.48.0.tm` die Datei
+`lib/tm/tkutils-0.47.0.tm`, dazu dieselben Dateien und
+`tkulauncher-0.2.tm`, `tkuload-0.2.tm`.
 
 Über einen Baum von 0.46.0 statt `tkutils-0.47.0.tm` die Datei
 `lib/tm/tkutils-0.46.0.tm`, dazu in `lib/tm/tkutils/`:
 
 - `tkufiledialog-0.1.tm`
 - `tkutlclip-0.1.tm`, `tkutlfind-0.1.tm`, `tkutlsort-0.1.tm`,
-  `tkutltools-0.1.tm`, `tkutltree-0.1.tm`
+  `tkutltools-0.1.tm`, `tkutltree-0.1.tm`, `tkutablelist-0.4.tm`
 - `tkutlfmt-0.2.tm`, `tkutlfooter-0.2.tm`, `tkutlstate-0.2.tm`
 - `tkulauncher-0.2.tm`, `tkuload-0.2.tm`
 
-Die Listen stammen aus dem Vergleich der Bäume von 0.46.0, 0.47.0 und
-0.48.0.
+Die Listen stammen aus dem Vergleich der Bäume von 0.46.0 bis 0.49.0.
+Bleibt eine ältere Datei liegen, lädt `package require` trotzdem die
+höhere Version; `tools/check-modules.tcl` meldet die Doppelung.
 
 ---
 
@@ -126,18 +142,22 @@ Checkout; ohne `TICAL_DIR` bestehen dort 13 von 13 Tests.
 
 ### Testlauf
 
-tkutils 0.48.0 unter Linux (Xvfb) mit tclutils 0.68.0, tical 1.1 und
+tkutils 0.49.0 unter Linux (Xvfb) mit tclutils 0.69.0, tical 1.1 und
 gesetztem `TICAL_DIR`; Tablelist 6.20 unter Tcl/Tk 8.6.14, 7.11 unter
 9.0.4:
 
 | Tcl/Tk | Dateien | Tests | bestanden | übersprungen | Fehler |
 |---|---|---|---|---|---|
-| 8.6.14 | 78 | 843 | 831 | 12 | 0 |
-| 9.0.4 | 78 | 843 | 840 | 3 | 0 |
+| 8.6.14 | 83 | 947 | 935 | 12 | 0 |
+| 9.0.4 | 83 | 947 | 944 | 3 | 0 |
 
 Unter 8.6.14 überspringt die Suite die SVG-Tests von `tkuicon` und
 `tkuwinico` (kein tksvg), dazu je einen Test von `tkuscrolledframe` und
-`tkuwheel`. Unter Windows und macOS ist die Suite nicht geprüft. Umgebung
+`tkuwheel`. Unter macOS (Darwin 27, arm64, Tcl/Tk 9.0.4 mit Aqua) lief
+die Suite vor den Schreibfehler-Tests ohne Fehler: 83 Dateien, 938 Tests,
+896 bestanden, 42 übersprungen. Unter Windows im selben Stand ebenfalls
+ohne Fehler: Tcl/Tk 8.6.17 927 bestanden, 11 übersprungen; Tcl/Tk 9.0.4
+935 bestanden, 3 übersprungen. Umgebung
 und Ergebnisse von 0.46.0: [Anhang G](860-anhang-testumgebung.md).
 
 ---

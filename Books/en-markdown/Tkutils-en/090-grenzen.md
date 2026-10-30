@@ -3,7 +3,7 @@
 ---
 
 - Without tclutils no sensible pairing (engines, tusettings, tutestrun);
-  at least 0.64.0, 0.68.0 recommended.
+  at least 0.64.0, 0.69.0 recommended.
 - The umbrella needs Tablelist (through `tkufilelist` → `tkutablelist`).
 - tkutils loads `tablelist_tile` everywhere; an application that also
   requires `tablelist` itself fails in tklib.

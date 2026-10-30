@@ -83,7 +83,7 @@ chapter [Viewing Data](078-daten-ansehen.md).
 
 ---
 
-## tkulauncher 0.3
+## tkulauncher 0.4
 
 [tkulauncher]{.index} is a program launcher as a menu (`-mode menu`) or
 a list of buttons (`-mode list`). Entries: `app` (also `command`), `url`,

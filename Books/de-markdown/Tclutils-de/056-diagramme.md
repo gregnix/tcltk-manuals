@@ -62,7 +62,10 @@ Kleinschreibung. Steht dort eine Art ohne Graph, ruft die Fassade
 `parse` und `toSvg` oder `toPng` des Moduls dieser Art. Sonst ruft
 sie das eigene `parse` und zeichnet das Modell mit `tudiagram`.
 `writeSvg` schreibt UTF-8 mit LF, `writePng` binär; beide geben den
-Dateinamen zurück.
+Dateinamen zurück. Bei allen Diagrammmodulen geht das Schreiben über eine
+temporäre Datei
+(`common::replaceFile`): Scheitert es, bleibt die alte Datei stehen, und
+kein Kanal bleibt offen.
 
 ```tcl
 package require tclutils::tuflow
@@ -222,8 +225,10 @@ dict get $o -errorcode               ;# -> TCLUTILS TUDIAGRAM THEME
 `parse` liest `graph` und `flowchart` und liefert ein
 `tudiagram`-Modell. Die Kopfzeile ist optional, Groß- und
 Kleinschreibung zählen nicht (`FLOWCHART td`, `Graph LR`); ohne
-Richtung gilt `LR`, `TD` wird `TB`. Eine Id
-ist `[A-Za-z0-9_]+`. Die Form steckt in der Klammer, Anführungszeichen
+Richtung gilt `LR`, `TD` wird `TB`. Eine Id besteht aus Buchstaben,
+Ziffern und `_`, Umlaute eingeschlossen: `Büro[Amt]` ist der Knoten
+`Büro` (bis tclutils 0.68.0 nur ASCII, und die Zeile fiel weg). Die
+Form steckt in der Klammer, Anführungszeichen
 um die Beschriftung fallen weg.
 
 | Schreibweise | Form |
@@ -250,7 +255,9 @@ Die Beschriftung steht als `A -->|Text| B`, `A -- Text --> B`,
 `A -. Text .-> B` oder `A == Text ==> B`. Ketten `A --> B --> C`
 gelten. `&` verbindet mehrere Knoten auf einer Seite:
 `A & B --> C & D` ergibt eine Kante für jedes Paar, hier vier. `%%`
-ist ein Kommentar, Anweisungen dürfen mit `;` getrennt sein. Wird
+ist ein Kommentar, Anweisungen dürfen mit `;` getrennt sein; ein `;`
+in einer Beschriftung (`A[Jörg;Büro]`, `-->|a;b|`) oder in
+Anführungszeichen trennt nicht. Wird
 eine Id zweimal mit Form genannt, gilt die letzte.
 `subgraph name [Beschriftung]` bis `end` wird eine Gruppe mit den
 Knoten darin, auch verschachtelt; `direction` darin entfällt. Eine
@@ -328,7 +335,7 @@ Spitze. Die Richtung ist `TB`.
 | `A --> B` und `A --> B : Text` | Kante, Text als Beschriftung |
 | `[*] --> A` | Startpunkt `__start` als `dot` |
 | `A --> [*]` | Endpunkt `__end` als `dot` |
-| `A : Text` | Beschriftung des Zustands `A` |
+| `A : Text` | Beschriftung des Zustands `A`; die Id darf Umlaute haben (`Büro : Jörg`) |
 | `A` allein | Zustand ohne Kante |
 | `state X <<fork>>`, `<<join>>` | Zustand `X` als `rounded` |
 | `direction LR` | `LR`; `RL` wird `LR`, `BT` und `TD` werden `TB` |
@@ -370,7 +377,7 @@ Methoden. Eine Zeile `----------` trennt die Teile. Ein Mitglied mit
 | Schreibweise | Ergebnis |
 |---|---|
 | `class X {` … `}` über mehrere Zeilen | Klasse mit einem Mitglied je Zeile |
-| `class X { +a; +b() }` | Block auf einer Zeile, `;` trennt die Mitglieder |
+| `class X { +a; +b() }` | Block auf einer Zeile, `;` trennt die Mitglieder; in Anführungszeichen nicht (0.3) |
 | `class X`, `class X { }` | Klasse ohne Mitglieder |
 | `X : +int alter`, `X : +laut()` | Mitglied von `X` |
 | `A <\|-- B` | Kante `B` nach `A`, Beschriftung `extends` |
@@ -416,7 +423,7 @@ Ein Text ohne Klasse wirft `{TCLUTILS TUCLASS EMPTY}`.
 
 ## ER-Diagramm: tuer
 
-[tuer]{.index} 0.3 liest `erDiagram`. Eine Entität wird ein
+[tuer]{.index} 0.4 liest `erDiagram`. Eine Entität wird ein
 `box`-Knoten mit dem Namen in der ersten Zeile und einem Attribut je
 weiterer Zeile. Eine Beziehung wird eine Kante ohne Spitze mit
 Krähenfüßen an beiden Enden. Die Richtung ist `TB`.
@@ -434,6 +441,14 @@ viele, `o` heißt null. `||` wird `exactlyOne`, `|o` und `o|`
 `zeroOrOne`, `}|` und `|{` `oneOrMany`, `}o` und `o{` `zeroOrMany`.
 Anführungszeichen um die Beschriftung fallen weg: `: "gibt auf"`
 wird die Beschriftung `gibt auf`.
+
+Ein Entitätsname besteht aus Buchstaben jeder Schrift, Ziffern, `_` und
+`-`, also geht auch `Büro {`. Drei Wörter sind nur dann eine Beziehung,
+wenn das mittlere `--` oder `..` enthält. Zeilen mit `direction`,
+`title`, `accTitle` und `accDescr` werden übergangen; jede andere Zeile,
+die weder Block noch Entität noch Beziehung ist, wirft
+`{TCLUTILS TUER SYNTAX}`. Bis 0.3 blieb `Büro {` unerkannt, und aus der
+Attributzeile `string name PK` wurde eine Kante von `string` nach `PK`.
 
 ```tcl
 set er "erDiagram
@@ -542,7 +557,9 @@ Ein Text ohne Zeile nach dem Kopf wirft `{TCLUTILS TUMINDMAP EMPTY}`.
 `C4Dynamic` und `C4Deployment`. Die Richtung ist `TB`. Ein Element
 `Typ(id, "Name", …)` wird ein Knoten mit der Id und dem ersten Text
 in Anführungszeichen als Beschriftung; Technik und Beschreibung
-entfallen. Die Füllfarbe kommt aus dem Typ.
+entfallen. Die Id besteht aus Buchstaben, Ziffern und `_`, Umlaute
+eingeschlossen: `Person(größe, "Weg")` hat die Id `größe` (bis
+tclutils 0.68.0 `gr`). Die Füllfarbe kommt aus dem Typ.
 
 | Typ | Form | Farbe |
 |---|---|---|
@@ -590,7 +607,9 @@ Die Formen entsprechen dem Flussdiagramm: `a["Text"]` `box`,
 `a("Text")` `rounded`, `a(("Text"))` `circle`, `a{"Text"}`
 `diamond`, `a{{"Text"}}` `hexagon`, `a(["Text"])` `stadium`,
 `a[("Text")]` `cylinder`, `a[["Text"]]` `box`. Die Blöcke werden als
-Graph von oben nach unten (`TB`) gelegt, nicht im Raster.
+Graph von oben nach unten (`TB`) gelegt, nicht im Raster. Ids dürfen
+Umlaute haben: `Büro[Jörg]` ist der Block `Büro` mit der Beschriftung
+`Jörg` (bis tclutils 0.68.0 ein einziges Token).
 
 | Schreibweise | Ergebnis |
 |---|---|
@@ -640,8 +659,12 @@ das Modul nicht.
 | `merge name` | `box` „merge name“ mit zwei Eltern |
 | `cherry-pick id: "X"` | `rounded` „pick X“ |
 
-`commit type: …` wird übergangen. Eine zweite `commit id: "X"`
-erzeugt keinen zweiten Knoten.
+`commit type: …` wird übergangen. Eine Commit-Id darf nur einmal
+vorkommen, wie in Mermaid: eine zweite `commit id: "X"` oder ein
+`merge … id: "X"` mit vergebener Id wirft `{TCLUTILS TUGIT DUPID}`
+(bis tclutils 0.68.0 fiel der zweite Commit weg, und eine Kante lief
+von `X` auf sich selbst). Erzeugte Ids (`c1`, `c2`, …) überspringen Ids,
+die der Text schon nutzt.
 
 ```tcl
 set gg {gitGraph
@@ -657,7 +680,8 @@ lmap n [dict get $m nodes] {dict get $n label}
 llength [dict get $m edges]                  ;# -> 3
 ```
 
-Ein Text ohne Commit wirft `{TCLUTILS TUGIT EMPTY}`.
+Ein Text ohne Commit wirft `{TCLUTILS TUGIT EMPTY}`, eine doppelte
+Commit-Id `{TCLUTILS TUGIT DUPID}`.
 
 ---
 
@@ -669,7 +693,7 @@ ist `LR`.
 
 | Schreibweise | Ergebnis |
 |---|---|
-| `service id(icon)[Text]` | Knoten, Form nach dem Symbol |
+| `service id(icon)[Text]` | Knoten, Form nach dem Symbol; die Id darf Umlaute haben |
 | `service id(icon)[Text] in g` | Knoten in der Gruppe `g` |
 | `group id(icon)[Text]` | Rahmen um ihre Mitglieder |
 | `group id(icon)[Text] in g` | verschachtelte Gruppe |
@@ -811,8 +835,10 @@ nimmt 26 Pixel, bei 400 Pixeln haben mit Titel 13 Zeilen Platz. Mit
 `dateFormat` und `axisFormat` übersetzen `YYYY`, `YY`, `MM`, `DD`,
 `HH`, `mm` und `ss` in `clock`-Formate; `%`-Formate wie `%d.%m.`
 bleiben stehen. `X` heißt Sekunden seit 1970. Dauern sind Zahl und
-Einheit: `s`, `m` oder `min`, `h`, `d`, `w`; eine andere Einheit
-zählt 0. Die erste Aufgabe braucht einen Start: Ohne Datum und ohne
+Einheit: `ms`, `s`, `m` oder `min`, `h`, `d`, `w`; eine andere Einheit
+wirft beim Zeichnen `{TCLUTILS TUGANTT DURATION}` (seit 0.3; bis 0.2
+zählte sie 0). Eine Id darf Buchstaben jeder Schrift enthalten
+(`büro`). Die erste Aufgabe braucht einen Start: Ohne Datum und ohne
 `after` auf eine frühere Aufgabe wirft das Zeichnen
 `{TCLUTILS TUGANTT DATE}`, wie Mermaid es ohne Startdatum nicht
 zeichnet. Die Achse hat bis zu sechs Marken, gerundet auf ganze
@@ -843,6 +869,7 @@ dict get $a endTok                           ;# -> 2w
 | `-errorcode` | Ursache |
 |---|---|
 | `{TCLUTILS TUGANTT EMPTY}` | keine Zeile mit `:` nach dem Kopf |
+| `{TCLUTILS TUGANTT DURATION}` | Dauer mit unbekannter Einheit, etwa `5x`; erst beim Zeichnen |
 | `{TCLUTILS TUGANTT DATE}` | Datum passt nicht zu `dateFormat` oder gibt es nicht, oder die erste Aufgabe hat keinen Start; erst beim Zeichnen |
 | `{TCLUTILS TUGANTT ARG}` | `-scale` keine ganze Zahl ab 1 |
 | `{TCLUTILS TUGANTT FONT}` | `-fontfile` nennt keine Datei |
@@ -984,6 +1011,7 @@ dict get $m series             ;# -> {type bar values {40 65 50}}
 |---|---|
 | `{TCLUTILS TUXYCHART EMPTY}` | keine Reihe |
 | `{TCLUTILS TUXYCHART VALUE}` | Wert in einer Reihe keine Zahl |
+| `{TCLUTILS TUXYCHART COUNT}` | mit Kategorien: eine Reihe hat nicht einen Wert je Kategorie (seit 0.2) |
 | `{TCLUTILS TUXYCHART ARG}` | `-scale` keine ganze Zahl ab 1 |
 | `{TCLUTILS TUXYCHART FONT}` | `-fontfile` nennt keine Datei |
 
@@ -1147,7 +1175,10 @@ die Breite eines Bands dem Wert. Ein Band hat die Farbe seiner
 Quelle.
 
 Eine Zeile mit weniger als drei Feldern, leerem Namen oder einem
-Wert, der keine Zahl über 0 ist, entfällt ohne Fehler. Felder nach
+Wert, der keine Zahl oder kleiner 0 ist, wirft
+`{TCLUTILS TUSANKEY VALUE}` (seit 0.2; bis 0.1 entfiel sie still). Eine
+Zeile mit dem Wert 0 entfällt: Sie zeichnet nichts, und ein Knoten, der
+nur in solchen Zeilen vorkommt, erscheint nicht. Felder nach
 dem dritten werden übergangen. Ein Kreis im Fluss bricht nicht ab,
 die Spalten sind dann nur ungefähr.
 
@@ -1162,6 +1193,7 @@ dict get $m links          ;# -> {Quelle Werk 10} {A,B Werk 2}
 | `-errorcode` | Ursache |
 |---|---|
 | `{TCLUTILS TUSANKEY EMPTY}` | keine gültige Zeile |
+| `{TCLUTILS TUSANKEY VALUE}` | Zeile nicht `Quelle,Ziel,Wert` mit Zahl ab 0 |
 | `{TCLUTILS TUSANKEY ARG}` | `-scale` keine ganze Zahl ab 1 |
 | `{TCLUTILS TUSANKEY FONT}` | `-fontfile` nennt keine Datei |
 
@@ -1202,7 +1234,11 @@ Fläche ist 600 × 600.
 | `graticule circle`, `polygon` | Form der Ringe, Vorgabe `circle` |
 | `showLegend true`, `false` | Legende |
 
-Eine fehlende Achse in einer Reihe zählt 0. Ohne `["Name"]` nimmt die
+Jede Reihe braucht genau einen Wert je Achse. Stehen die Werte in
+Achsenfolge und sind es mehr oder weniger als Achsen, wirft `parse`
+`COUNT`; fehlt in der Schlüsselform eine Achse oder nennt ein Schlüssel
+keine Achse, wirft es `AXIS`. Bis tclutils 0.68.0 zählte ein fehlender
+Wert 0, und überzählige oder vertippte fielen weg. Ohne `["Name"]` nimmt die
 Reihe ihre Id als Namen. Die Legende erscheint, wenn mindestens eine
 Reihe einen Namen in `["…"]` hat; `showLegend` legt sie ausdrücklich
 fest. Unbekannte Zeilen entfallen. Die erste Zeile
@@ -1228,6 +1264,8 @@ dict get [::tclutils::turadar::parse $r2] showLegend  ;# -> 0
 |---|---|
 | `{TCLUTILS TURADAR EMPTY}` | Kopf fehlt oder keine Reihe |
 | `{TCLUTILS TURADAR AXES}` | weniger als drei Achsen |
+| `{TCLUTILS TURADAR AXIS}` | Schlüsselform ohne Wert für eine Achse, oder Schlüssel ohne Achse |
+| `{TCLUTILS TURADAR COUNT}` | Zahl der Werte in Achsenfolge passt nicht zu den Achsen |
 | `{TCLUTILS TURADAR VALUE}` | Wert, `min` oder `max` keine Zahl |
 | `{TCLUTILS TURADAR ARG}` | `-scale` keine ganze Zahl ab 1 |
 | `{TCLUTILS TURADAR FONT}` | `-fontfile` nennt keine Datei |
@@ -1249,7 +1287,7 @@ Vorgabe der Fläche ist 640 × 400.
 | `"Name"` | Zweig |
 | `"Name": 30` | Blatt mit Wert |
 | `Name: 30`, `Name` | ebenso ohne Anführungszeichen |
-| `"Name": 5:::klasse`, `classDef`, `style` | Stil entfällt |
+| `"Name": 5:::klasse`, `classDef`, `style` | Stil entfällt, auch eine Klasse mit Umlauten (0.3) |
 
 Ein Knoten mit Wert und Kindern ist ein Zweig; der Wert entfällt.
 Texte werden abgeschnitten, nicht umbrochen. Ein Blatt mit einem Wert

@@ -19,7 +19,7 @@
 ## Caps per scheme
 
 `caps` returns a list of the operations the backend actually
-supports. The table applies to 0.68.0 (the same since 0.64.0):
+supports. The table applies to 0.69.0 (the same since 0.64.0):
 
 | Scheme | caps |
 |---|---|
@@ -61,7 +61,8 @@ dict get [$p stat [file join $dir a.txt]] type    ;# -> file
 $p get [file join $dir a.txt]                      ;# -> eins
 ```
 
-`mtime` can be empty. With the ZIP provider the member path is
+`put` of the local provider writes through a temporary file; if it
+fails, the old file stays (0.3). `mtime` can be empty. With the ZIP provider the member path is
 `/notiz.txt`, the time stays empty, `size` is the byte count.
 
 ### Writes the caps forbid

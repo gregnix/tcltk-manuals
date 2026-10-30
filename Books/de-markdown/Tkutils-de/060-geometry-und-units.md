@@ -7,7 +7,7 @@ Toplevels über `tclutils::tusettings`, in einer eigenen Datei
 `<Konfig-Ordner>/<app>/geometry.ini`. Eine App, die beim Beenden ihr
 eigenes Settings-Dict speichert, kann die Geometrie so nicht
 überschreiben. Braucht mindestens tclutils **0.64.0** (dort kam
-`tusettings` dazu); empfohlen ist 0.68.0.
+`tusettings` dazu); empfohlen ist 0.69.0.
 
 Der Konfig-Ordner kommt aus `tusettings::dir config`: unter Linux
 `$XDG_CONFIG_HOME/<app>`, sonst `$HOME/.config/<app>`; laut Code unter

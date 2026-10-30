@@ -84,7 +84,9 @@ INI kann nicht alles. `save` lehnt ab: Werte mit Zeilenumbruch oder
 Leerzeichen am Rand; leere Schlüssel, Schlüssel mit `=`, Zeilenumbruch,
 Leerzeichen am Rand oder mit `;`, `#`, `[` am Anfang; Sektionsnamen mit
 `]` oder Zeilenumbruch. Geprüft wird vor dem Schreiben, die Datei bleibt
-dann unverändert. Kommentare in der Datei überleben `save` nicht.
+dann unverändert. Scheitert das Schreiben selbst, bleibt die alte Datei
+ebenfalls, die Temp-Datei wird gelöscht, und kein Kanal bleibt offen
+(0.2). Kommentare in der Datei überleben `save` nicht.
 
 ```tcl
 try {

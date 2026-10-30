@@ -22,22 +22,33 @@ String, `file` auf einem Pfad, `files` auf einer Pfadliste.
 
 `tucat` nummeriert mit `-number 1` jede Zeile, auch eine leere, als
 sechs Stellen, Tabulator, Text (`format %6d`). `-nonblank 1` nummeriert
-nur Zeilen mit Inhalt. Ein Text, der auf `\n` endet, hat eine leere
-letzte Zeile, und die wird mitgezählt.
+nur Zeilen mit Inhalt. Wie bei `cat -n` ist der Rest hinter dem letzten
+`\n` keine Zeile und bekommt keine Nummer, und `files` nummeriert die
+Dateien hintereinander in einem Lauf. Eine Datei ohne `\n` am Ende läuft
+in die nächste über. Eine unbekannte Option wirft
+`{TCLUTILS COMMON OPTION -name}` (seit 0.2; bis 0.1 bekam die leere
+letzte Zeile eine Nummer, jede Datei begann bei 1, und unbekannte
+Optionen fielen still weg).
 
 ```tcl
 package require tclutils::tucat
 package require tclutils::tuhead
 package require tclutils::tutail
 set text "alpha\nbeta\nbeta\nalpha"
-::tclutils::tuhead::text $text 2          ;# -> alpha\nbeta
+::tclutils::tuhead::text $text 2          ;# -> alpha\nbeta\n
 ::tclutils::tutail::text $text 1          ;# -> alpha
 ::tclutils::tucat::text "alpha\nbeta" -number 1
                                           ;# -> "     1\talpha\n     2\tbeta"
 ```
 
-`tuhead` und `tutail` haben kein Folgen von Dateien. Eine negative
-Anzahl ist ein Fehler ohne eigenen `-errorcode`.
+Wie bei `head -n` und `tail -n` behält das Ergebnis die Zeilenenden: Jede
+Zeile endet mit `\n`, außer der letzten Zeile der Eingabe, wenn sie keins
+hat. `text` und `file` liefern dasselbe; `file` liest UTF-8, andere
+Kodierungen mit `-encoding`. Bis 0.1 war `tutail::text "eins\nJörg\n" 1`
+leer, und `file` ließ alle Zeilenenden weg. Zum Ausgeben deshalb
+`puts -nonewline`. `tuhead` und `tutail` haben kein Folgen von Dateien.
+Eine negative Anzahl wirft `{TCLUTILS TUHEAD COUNT}` bzw.
+`{TCLUTILS TUTAIL COUNT}`.
 
 ---
 
@@ -82,7 +93,9 @@ set text "alpha\nbeta\nERROR eins\nerror zwei\nERRORCODE"
 ```
 
 `-word` trifft `ERROR` und nicht `ERRORCODE`. `-max` zählt Zeilen, nicht
-Treffer in einer Zeile.
+Treffer in einer Zeile. Der Rest hinter einem abschließenden `\n` ist
+keine Zeile: `.*` trifft in `"eins\nJörg\n"` zwei Zeilen (seit 0.2; bis
+0.1.3 drei, und `file` strich leere Zeilen am Dateiende).
 
 ---
 
@@ -132,6 +145,8 @@ package require tclutils::tucut
 ```
 
 `text` und `file` nehmen `-delimiter`, `-fields` und `-chars`.
+Wie bei `tusort::text` und `tuuniq::text` endet das Ergebnis mit `\n`
+genau dann, wenn die Eingabe so endet; bis tclutils 0.68.0 fiel es weg.
 
 `tused` ersetzt und löscht zeilenweise. Ohne `-all` gilt der erste
 Treffer der Zeile. `-fixed 1` sucht literal, sonst als Regex.
@@ -228,7 +243,14 @@ package require tclutils::tuzip
 
 `-base` schneidet das Verzeichnis vom Namen ab. Die Reihenfolge in
 `createMembers` bleibt; ein ODF legt `mimetype` so als ersten,
-ungespeicherten Eintrag. Der Provider über derselben Datei steht im
+ungespeicherten Eintrag.
+
+Namen schreibt `tuzip` seit 0.2 als UTF-8; ein Name mit Umlaut bekommt
+das UTF-8-Flag, und `unzip`, Python und Windows lesen ihn richtig. Bis
+0.1 standen Namen in Latin-1 ohne Flag, andere Programme lasen `Jörg`
+als `J÷rg`. Beim Lesen gilt `-encoding auto`: mit Flag oder gültigem
+UTF-8 UTF-8, sonst CP437, wie es das ZIP-Format vorsieht. Für Archive
+aus tuzip 0.1 mit Umlauten `-encoding iso8859-1` angeben. Der Provider über derselben Datei steht im
 Kapitel [Provider](060-provider.md).
 
 Pfade ohne Dateisystem, sichtbare Zeichen und Beträge:

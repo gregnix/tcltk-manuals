@@ -3,7 +3,7 @@
 Not a complete list — for state and status see
 `docs/guide/module-status.md` and `README.md` in the tclutils tree.
 Hygiene count with `tools/check-modules.tcl -require test,doc,man`:
-**144** modules in the 0.68.0 tree, none without a
+**146** modules in the 0.69.0 tree, none without a
 test, doc or man page; 25 of them not directly in the umbrella.
 
 ## Categories
@@ -23,10 +23,89 @@ test, doc or man page; 25 of them not directly in the umbrella.
 | Provider | tuprovider, …::zip, …::dav |
 | Application | tulog, tuevent, turegistry, tuvalidate, tulist, tumath, tunumany, tuappinfo, tudeploy, tuexe, tuopen, tuzipfs, tuterm, tupagespec, tulayout (chapter [Building Blocks for Applications](062-anwendungsbausteine.md)) |
 | Network | tufetch, tudav, tuhttps, tusparql |
-| Settings / test | tusettings, tutestrun |
+| Settings / test | tusettings, tutestrun, tulint |
 | Tasks / async | tutask |
 | Strings / dates / numbers | tustr, tudate, tunum, tupath (chapter [Characters, Numbers, Dates and Paths](045-zeichen-zahlen-datum.md)) |
-| Diagnostics | tupkgfinder, tuappinfo |
+| Diagnostics | tupkgfinder, tuappinfo, tusysinfo, tuedid |
+
+## New in 0.69.0
+
+| Module | Version | Change |
+|---|---|---|
+| `tucsv` | 0.2 | `-profile excel-de` or `rfc4180`, `text -bom 1`, `-encoding` for `file` and `writeFile` (default UTF-8); `writeFile` keeps the line ends of `-newline` |
+| `tusqlite` | 0.2 | `rows` and `value` with a parameter dict, the caller's variables no longer reach the query (behaviour); new `update`, `delete` |
+| `tusysinfo` | 0.1 | new: operating system, CPU, memory, model, disks, monitors; in the umbrella; `bin/tusysinfo.tcl` |
+| `tuedid` | 0.1 | new: read a monitor's EDID block; in the umbrella |
+| `tuholiday` | 0.2 | `-sundays 0` for the nine nationwide days; default 1 as before |
+| `tuzip` | 0.2 | names in UTF-8 with the UTF-8 flag (behaviour); reading with `-encoding auto` |
+| `tudiff` | 0.2 | `-eol ignore\|strict`, `-encoding` for files; `text` ignores CR in strings too (behaviour) |
+| `tubookmark` | 0.3 | order kept, key `folders`, `HREF` in single quotes (behaviour); `<DD>` description and toolbar folder are kept |
+| `tuical`, `tuvcard` | 0.2 | `toIcs` and `toVcf` end the last line with CR/LF too (behaviour) |
+| `tuini` | 0.2 | `setValue`, `addSection`, `toIni` refuse what INI cannot hold, such as a line break in a value (behaviour) |
+| `tupatch` | 0.3 | the final `\n` stays; `\ No newline at end of file` as with `diff -u` (behaviour) |
+| `tusplit` | 0.3 | line parts keep their line ends; `file -lines` splits bytes (behaviour) |
+| `tutee` | 0.3 | `writeFile` copies bytes, returns the byte count (behaviour) |
+| `tumd` | 0.2 | anchors as on GitHub, with umlauts and `-1`, `-2` (behaviour) |
+| `tuiconv` | 0.2 | strict under 8.6 and 9.0, `-replace 1` (behaviour) |
+| `tucat` | 0.2 | no number after the last `\n`, `files` numbers through (behaviour) |
+| `tuldif` | 0.3 | binary attributes keep their bytes, `-binary` (behaviour) |
+| `tucsplit` | 0.2 | parts keep their line ends, `-encoding` (behaviour) |
+| `tuhead`, `tutail` | 0.2 | line ends as `head`/`tail`, `text` = `file`, `COUNT` (behaviour) |
+| `tugrep` | 0.2 | no empty line after the last `\n` (behaviour) |
+| `tustr` | 0.3 | `slugify` spells umlauts out, `toCamel`/`toSnake` with Unicode (behaviour) |
+| `tuer` | 0.4 | entity names with umlauts; `SYNTAX` (behaviour) |
+| `tugantt` | 0.3 | unknown unit `DURATION`; ids with umlauts; `writeSvg`/`writePng` through a temporary file (behaviour) |
+| `tuxychart` | 0.2 | `COUNT` when values and categories do not match; writing through a temporary file (behaviour) |
+| `tusankey` | 0.2 | bad lines `VALUE` instead of dropped silently; writing through a temporary file (behaviour) |
+| `tudate` | 0.3 | days and months that do not exist are `PARSE`, also on 8.6; `m/d/Y` after `d/m/Y`; more formats (behaviour) |
+| `tunumany` | 0.3 | decimal comma before the unit, `1,5K` is 1500 (behaviour) |
+| `tubase64`, `tucrc` | 0.2 | `-encoding binary\|utf-8`; a character above 255 is `BYTES` (behaviour) |
+| `tudav` | 0.3 | Basic authentication in UTF-8; `.` and `..` in an `href` resolved (behaviour) |
+| `tuflow` | 0.4 | node ids with umlauts (behaviour) |
+| `tuc4` | 0.2 | ids with umlauts (behaviour) |
+| `tugit` | 0.3 | duplicate commit id is `DUPID` (behaviour) |
+| `turadar` | 0.3 | exactly one value per axis, else `COUNT` or `AXIS`; writing through a temporary file (behaviour) |
+| `tusort`, `tuuniq`, `tucut`, `tujoin`, `tucolumn`, `tufmt` | 0.2 | trailing `\n` as in the input (behaviour) |
+| `tupaste`, `tushuf`, `tufold` | 0.3 | trailing `\n` as in the input (behaviour) |
+| `tutestrun` | 0.2 | test files with `-encoding utf-8` (behaviour) |
+| `tuarchitecture` | 0.3 | ids with umlauts (behaviour) |
+| `tustate`, `tublock` | 0.2 | ids with umlauts (behaviour) |
+| `tunotes` | 0.2 | file always UTF-8; older files in the system encoding are still read (behaviour) |
+| `tumindmap` | 0.2 | ids with umlauts before a shape (behaviour) |
+| `tulint` | 0.1 | new: checking rules for Tcl sources, not in the umbrella |
+| `common` | 0.3 | new `replaceFile`: writing through a temporary file |
+| `tused`, `tusettings` | 0.2 | writing through `replaceFile`; if it fails, the old file stays and no channel is left open (behaviour) |
+| `tuprovider` | 0.3 | local `put` through `replaceFile` (behaviour) |
+| `tutreemap` | 0.3 | `:::class` with umlauts removed whole; writing through a temporary file (behaviour) |
+| `tuclass` | 0.3 | `;` inside quotes does not split members (behaviour) |
+| `tuimage` | 0.2 | `;base64` inside a quoted parameter does not switch on Base64 (behaviour) |
+| `tupacket`, `tujourney`, `tutimeline`, `tupie`, `tusequence` | 0.3 | `writeSvg`/`writePng` through `replaceFile` (behaviour) |
+| `tukanban`, `tuquadrant` | 0.2 | `writeSvg`/`writePng` through `replaceFile` (behaviour) |
+| `tudiagram` | 0.6 | `writePng` through `replaceFile` (behaviour) |
+| `tusvg` | 0.4 | `write` through `replaceFile` (behaviour) |
+| `tupngdraw` | 0.14 | `write` through `replaceFile` (behaviour) |
+| `tupng` | 0.6 | `write*` through `replaceFile` (behaviour) |
+| `tuappinfo` | 0.3 | Tk line with patch level; `writeLog` UTF-8 through `replaceFile` (behaviour) |
+
+When copying over an older tree, delete `tucsv-0.1.tm`, `tusqlite-0.1.tm`,
+`tuholiday-0.1.tm`, `tuzip-0.1.tm`, `tudiff-0.1.tm`, `tubookmark-0.2.tm`,
+`tuical-0.1.tm`, `tuvcard-0.1.tm`, `tuini-0.1.tm`, `tupatch-0.2.tm`,
+`tusplit-0.2.tm`, `tutee-0.2.tm`, `tumd-0.1.tm`, `tuiconv-0.1.tm`,
+`tucat-0.1.tm`, `tuldif-0.2.tm`, `tucsplit-0.1.tm`,
+`tuhead-0.1.tm`, `tutail-0.1.tm`, `tugrep-0.1.3.tm`, `tustr-0.2.tm`,
+`tuer-0.3.tm`, `tugantt-0.2.tm`, `tuxychart-0.1.tm`, `tusankey-0.1.tm`,
+`tudate-0.2.tm`, `tunumany-0.2.tm`, `tubase64-0.1.tm`, `tucrc-0.1.tm`,
+`tudav-0.2.tm`, `tuflow-0.3.tm`, `tuc4-0.1.tm`, `tugit-0.2.tm`,
+`turadar-0.2.tm`, `tusort-0.1.tm`, `tuuniq-0.1.tm`, `tucut-0.1.tm`,
+`tupaste-0.2.tm`, `tujoin-0.1.2.tm`, `tushuf-0.2.tm`, `tucolumn-0.1.tm`,
+`tufold-0.2.tm`, `tufmt-0.1.tm`, `tutestrun-0.1.tm`,
+`tuarchitecture-0.2.tm`, `tustate-0.1.tm`, `tublock-0.1.tm`,
+`tunotes-0.1.tm`, `tumindmap-0.1.tm`, `common-0.2.tm`, `tused-0.1.3.tm`,
+`tusettings-0.1.tm`, `tuimage-0.1.tm`, `tuprovider-0.2.tm`, `tutreemap-0.2.tm`,
+`tuclass-0.2.tm`, `tupacket-0.2.tm`, `tujourney-0.2.tm`, `tukanban-0.1.tm`,
+`tutimeline-0.2.tm`, `tupie-0.2.tm`, `tuquadrant-0.1.tm`, `tusequence-0.2.tm`,
+`tudiagram-0.5.tm`, `tusvg-0.3.tm`, `tupngdraw-0.13.tm`, `tupng-0.5.tm`,
+`tuappinfo-0.2.tm` and `tclutils-0.68.0.tm`. The umbrella is at 0.69.0.
 
 ## New in 0.68.0
 
@@ -113,7 +192,7 @@ Rows marked "behavior" change previous results.
 | `tuzipfs` | 0.3 | `rcopy` with dot files |
 
 When copying over an older tree, delete the module's old file
-(e.g. `tuawk-0.1.tm` next to `tuawk-0.2.tm`). The umbrella is at 0.68.0.
+(e.g. `tuawk-0.1.tm` next to `tuawk-0.2.tm`). The umbrella was at 0.68.0.
 
 ## New in 0.67.0
 
@@ -158,7 +237,8 @@ Still relevant from 0.63.0: `tuhttps` 0.1 (new), `tufetch` 0.4,
 
 ## Summary
 
-- 144 modules in the 0.68.0 tree, all with a test, doc and man page.
+- 146 modules in the 0.69.0 tree, all with a test, doc and man page.
+- New in 0.69.0: `tucsv`, `tusqlite`, `tuholiday`, `tuzip`, `tudiff`, `tuical`, `tuvcard`, `tuini`, `tumd`, `tuiconv`, `tucat`, `tucsplit`, `tuhead`, `tutail`, `tugrep`, `tuxychart`, `tusankey` 0.2, `tupatch`, `tusplit`, `tutee`, `tuldif`, `tustr`, `tugantt` 0.3, `tuer` 0.4, `tubookmark` 0.3, `tudate`, `tunumany`, `tubase64`, `tucrc`, `tudav`, `tuflow`, `tuc4`, `tugit`, `turadar` and nine line filters, new `tusysinfo` and `tuedid` 0.1.
 - In 0.68.0, 76 modules got fixes and a new version.
 - New in 0.67.0: `tupdftext` 0.1.
 - In 0.66.0 only `tutask` changed (0.2); new in 0.65.0 was `tutask` 0.1.

@@ -21,22 +21,26 @@ nicht als solche erkannt. Eine eingerückte Liste wird eine flache Liste.
 `frontmatter` trennt einen YAML-Kopf zwischen zwei Zeilen `---`. Fehlt
 der schließende Strich, bleibt der Kopf leer und der Text ganz.
 `toHtml` lässt den Kopf weg. `headings` liefert Paare aus Stufe und
-Text. `toc` baut eine Liste mit Ankern. Der Anker ist kleingeschrieben,
-nur aus `a`–`z`, Ziffern, Leerzeichen und Bindestrich. Andere Zeichen
-fallen weg.
+Text. `toc` baut eine Liste mit Ankern, `toHtml` setzt dieselben als
+`id`. Der Anker entsteht wie bei GitHub: kleingeschrieben, `*` und Gravis
+fallen weg, ebenso alles außer Buchstaben, Ziffern, `_`, `-` und
+Leerzeichen; Leerzeichen werden `-`. Buchstaben jeder Schrift bleiben.
+Ein zweiter gleicher Anker bekommt `-1`, ein dritter `-2` (seit 0.2;
+bis 0.1 blieben nur `a`–`z` und Ziffern, und `Jörg` und `Jrg` hatten
+denselben Anker `jrg`).
 
 ```tcl
 package require tclutils::tumd
 ::tclutils::tumd::toHtml "# Größe\n\nEin **Regal** und `x < y`."
-                                          ;# -> <h1 id="gre">Größe</h1>\n<p>Ein <strong>Regal</strong> und <code>x &lt; y</code>.</p>
+                                          ;# -> <h1 id="größe">Größe</h1>\n<p>Ein <strong>Regal</strong> und <code>x &lt; y</code>.</p>
 ::tclutils::tumd::headings "# Größe"       ;# -> {1 Größe}
-::tclutils::tumd::toc "# Größe"            ;# -> - [Größe](#gre)
+::tclutils::tumd::toc "# Größe"            ;# -> - [Größe](#größe)
 ::tclutils::tumd::frontmatter "---\ntitle: Lager\n---\n# Lager\n"
                                           ;# -> {title: Lager} {# Lager\n}
 ::tclutils::tumd::toHtml "- a\n  - b"      ;# -> <ul>\n<li>a</li>\n<li>b</li>\n</ul>
 ```
 
-Der Anker von „Größe“ ist `gre`. `tustr::slugify` macht daraus `gr-e`.
+Der Anker von „Größe“ ist `größe`. `tustr::slugify` macht daraus `groesse`.
 
 ---
 
@@ -48,12 +52,21 @@ ein Dict mit `name`, `value` und `params`. Der Wert bleibt roh, wie in
 der Datei. `escapeText` und `unescapeText` setzen `\`, `;`, `,` und den
 Zeilenumbruch nach RFC 5545. `eventInfo`, `todoInfo` und `journalInfo`
 lösen die Textfelder auf. Eine Fortsetzungszeile beginnt mit Leerzeichen
-oder Tabulator.
+oder Tabulator. `BEGIN` und `END` dürfen klein geschrieben sein. Ein
+Parameterwert in Anführungszeichen darf `;` und `:` enthalten
+(`ALTREP="http://x"`); die Anführungszeichen fallen beim Lesen weg und
+kommen beim Schreiben wieder dazu, wo der Wert sie braucht.
+`setProperty` und `addProperty` lehnen einen Wert mit Zeilenumbruch ab
+(`{TCLUTILS TUICAL VALUE}`), weil der rohe Umbruch die Zeile beenden
+würde; Text gehört vorher durch `escapeText`.
 
 `events`, `todos` und `journals` suchen `VEVENT`, `VTODO` und
 `VJOURNAL` auch in verschachtelten Komponenten. `newComponent` baut
 eine Komponente aus einer flachen Liste `Name Wert`. `toIcs` schreibt
-sie zurück, jede Zeile mit CR/LF.
+sie zurück, jede Zeile mit CR/LF, seit 0.2 auch die letzte. Lange Zeilen
+faltet `toIcs` nach 75 Byte, nie mitten in einem UTF-8-Zeichen; bis
+tclutils 0.68.0 zählte es Zeichen, eine Zeile aus Umlauten wurde so
+142 Byte lang.
 
 ```tcl
 package require tclutils::tuical
@@ -168,8 +181,12 @@ außerhalb 1–12 in `BYMONTH` oder ein Tag außerhalb ±1–31 in
 `parse` liefert eine Liste von Karten. Eine Karte ist eine Liste von
 Eigenschafts-Dicts, derselbe Aufbau wie bei `tuical`. `property` gibt
 den ersten Wert eines Namens, `get` alle Werte, `fullName` die
-Eigenschaft `FN`. `toVcf` schreibt CR/LF. Groß- und Kleinschreibung des
-Namens spielt keine Rolle.
+Eigenschaft `FN`. `toVcf` schreibt CR/LF, auch nach der letzten Zeile,
+und faltet wie `tuical` nach 75 Byte. Groß- und Kleinschreibung des
+Namens spielt keine Rolle. Ein Gruppenpräfix zählt nicht zum Namen:
+`item1.FN:Ada` findet `fullName`, geschrieben bleibt es `item1.FN`.
+`TYPE="work;cell"` ist ein Wert `work;cell`. Ein Zeilenumbruch im Wert
+von `addProperty` oder `setProperty` ist `{TCLUTILS TUVCARD VALUE}`.
 
 ```tcl
 package require tclutils::tuvcard
@@ -196,7 +213,9 @@ den Wert. Die Id ist `clock microseconds`.
 auf Großbuchstaben. Ein Stern in der Frage ist ein Musterzeichen.
 `toJson` und `fromJson` gehen über `tujson`. Fehlende Felder füllt
 `fromJson` leer auf. `load` einer fehlenden Datei ergibt einen leeren
-Speicher. `delete` mit dem dritten Argument `1` (Vorgabe) entfernt den
+Speicher. `save` schreibt die Datei immer als UTF-8 (0.2). `load` liest
+eine Datei, die kein gültiges UTF-8 ist, in der Systemkodierung; so hat
+0.1 sie geschrieben. `delete` mit dem dritten Argument `1` (Vorgabe) entfernt den
 Zweig, mit `0` hängen die Kinder an der Wurzel.
 
 ```tcl
@@ -391,7 +410,10 @@ Drei Könige, Fronleichnam, Allerheiligen und der Reformationstag fehlen.
 | +50 | Pfingstmontag |
 
 Fest liegen Neujahr, der Tag der Arbeit, der Tag der Deutschen Einheit
-und die beiden Weihnachtstage. 2024 hat das Dict elf Einträge.
+und die beiden Weihnachtstage. 2024 hat das Dict elf Einträge. Oster- und
+Pfingstsonntag sind nur in einzelnen Ländern gesetzliche Feiertage;
+`-sundays 0` (seit 0.2, für `holidays` und `isHoliday`) lässt sie weg
+und gibt die neun Tage, die überall gelten.
 
 ```tcl
 package require tclutils::tuholiday
@@ -399,10 +421,13 @@ package require tclutils::tuholiday
 ::tclutils::tuholiday::easter 2025           ;# -> 2025-04-20
 ::tclutils::tuholiday::isHoliday 2024-03-31  ;# -> Ostersonntag
 ::tclutils::tuholiday::isHoliday 2024-03-15  ;# ->
+::tclutils::tuholiday::isHoliday 2024-03-31 -sundays 0  ;# ->
+dict size [::tclutils::tuholiday::holidays 2024 -sundays 0]  ;# -> 9
 ```
 
 `easter xyz` wirft `{TCLUTILS TUHOLIDAY YEAR}`. `-region at` wirft
-`{TCLUTILS TUHOLIDAY REGION}`.
+`{TCLUTILS TUHOLIDAY REGION}`, `-sundays vielleicht`
+`{TCLUTILS TUHOLIDAY SUNDAYS}`.
 
 ---
 
@@ -421,9 +446,9 @@ Beschrieben ist sie im Buch *Utils-Stack*.
 
 ## Merkliste
 
-- `tumd` ist eine Teilmenge. Der Anker von „Größe“ ist `gre`.
+- `tumd` ist eine Teilmenge. Der Anker von „Größe“ ist `größe`.
 - iCalendar- und vCard-Werte bleiben roh. `eventInfo` löst Text auf.
-- `toIcs` und `toVcf` schreiben CR/LF.
+- `toIcs` und `toVcf` schreiben CR/LF, auch nach der letzten Zeile.
 - `tunotes`: ändern über den Variablennamen, lesen über den Wert.
 - Feiertage: nur `de`, elf Namen, keine landesspezifischen Tage.
 - `turrule` braucht eine Grenze: `-to`, `-count`, `COUNT` oder `UNTIL`. Nicht unterstützte Teile werfen `UNSUPPORTED`.

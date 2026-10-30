@@ -925,7 +925,8 @@ header, `dimensions` stays empty. The bytes must have been read in binary mode.
 
 `dataUri` puts `data:mime;base64,` in front of the Base64 form without
 checking the MIME type. `fromDataUri` decodes Base64 only if `base64`
-is in the header; otherwise the content comes back unchanged, without
+is in the header, not inside a quoted parameter such as
+`charset="utf-8;base64"` (0.2); otherwise the content comes back unchanged, without
 percent decoding. Invalid Base64 such as `!!!` gives empty bytes,
 not an error. Base64 is handled by `tubase64`, see
 [Encoding, Hashing and Comparing](052-kodierung-hash-vergleich.md).

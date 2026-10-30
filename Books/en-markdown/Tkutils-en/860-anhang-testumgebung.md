@@ -15,8 +15,8 @@ checked.
 | System | Linux, GUI under Xvfb without a window manager, screen 1280×1024 |
 | Tcl/Tk 8.6 | 8.6.14 with tDOM 0.9.3, sqlite3 3.45.1, tklib 0.8 (Tablelist 6.20, scrollutil 1.17), Img 1.4.16; without tksvg |
 | Tcl/Tk 9 | 9.0.4 with tDOM 0.9.7, sqlite3 3.53.0, Tablelist 7.11, scrollutil 2.10, Img 2.1.1 |
-| tkutils | 0.48.0 |
-| tclutils | 0.68.0 |
+| tkutils | 0.49.0 |
+| tclutils | 0.69.0 |
 | ctrlutils | 0.4 |
 | tical | 1.1, through `TICAL_DIR` or a sibling folder |
 
@@ -38,6 +38,13 @@ after `reload`.
 ---
 
 ## Older Versions
+
+### Test Suite 0.48.0
+
+Same environment, tclutils 0.68.0: 78 test files, 843 tests; under
+8.6.14 831 passed and 12 skipped, under 9.0.4 840 passed and 3 skipped,
+0 failed. 0.49.0 adds four test files (`tkutlfilter`, `tkutlgroup`,
+`tkutldrag`, `tkusysinfo`) and 64 more tests.
 
 ### Test Suite 0.46.0
 
@@ -106,7 +113,7 @@ Remedy: select the file and use *OK* or Return. Fixed in 0.47.0
 
 | Chapter | open |
 |---|---|
-| all | Windows and macOS |
+| all | on Windows and macOS only the test suite |
 | [Dialogs](030-dialoge.md) | appearance, focus and placement on a real screen |
 | [File Widgets](040-datei-widgets.md) | navigation of a file manager with Windows paths |
 | [Geometry and Units](060-geometry-und-units.md) | configuration folder on Windows and macOS; several monitors; zoom state (Xvfb without a window manager has none) |

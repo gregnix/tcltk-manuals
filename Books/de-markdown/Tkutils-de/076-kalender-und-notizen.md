@@ -63,19 +63,23 @@ wirft den Fehler von `tucal`, etwa `{TCLUTILS TUCAL MONTH}` mit
 
 ## tical: tkutical und tkumonthcanvas
 
-[tkutical]{.index} 0.3 zeichnet Monat oder Woche über tical.
+[tkutical]{.index} 0.4 zeichnet Monat oder Woche über tical.
 
 ```tcl
 set w [::tkutils::tkutical::widget .w ?-year j? ?-month m? \
     ?-weeknumbers 0|1? ?-fontsize n? ?-holidays region? \
-    ?-selectmode none|single|multiple? ?-command befehl?]
+    ?-selectmode none|single|multiple? ?-command befehl? ?-events liste?]
 ::tkutils::tkutical::setMonth $w jahr monat
 ::tkutils::tkutical::getSelection $w
 ::tkutils::tkutical::setSelection $w {daten und A..B}
 ```
 
 `setMonth` liefert `{jahr monat}` und wirft bei einem ungültigen Monat.
-`getSelection` liefert sortierte ISO-Daten.
+`getSelection` liefert sortierte ISO-Daten. `-events` und `setEvents`
+(seit 0.4) nehmen Termine im Format von `tical::event`; sie erscheinen
+als Punkte im Monat und als Titel in der Woche, eine Serie an jedem
+ihrer Tage. Das braucht tical 1.1 oder neuer, sonst
+`{TKUTILS TKUTICAL EVENTS}`.
 
 [tkumonthcanvas]{.index} 0.5 zeichnet Monat, Quartal und Jahr auf eine
 bestehende Zeichenfläche. `init` setzt Schrift und Thema, bevor
@@ -101,7 +105,7 @@ kennt `day`, `week`, `month` und `select`. Themen sind `default`,
 
 ## Termine: tkuical
 
-[tkuical]{.index} 0.2 zeigt die `VEVENT`-Einträge eines iCalendar-Textes
+[tkuical]{.index} 0.3 zeigt die `VEVENT`-Einträge eines iCalendar-Textes
 in einer Tabelle: Summary, Start, Ende, Ort. Die Engine ist
 `tclutils::tuical`.
 
@@ -120,7 +124,13 @@ set w [::tkutils::tkuical::widget .w]
 und zeigt eine Leiste für Summary, Start, Ende und Ort. `addEvent`,
 `removeEvent` und `setField` ändern einen Termin. `setField` kennt
 `summary`, `start`, `end` und `location`. Andere Eigenschaften und
-Komponenten, die keine Termine sind, bleiben beim Schreiben erhalten.
+Komponenten, die keine Termine sind, bleiben beim Schreiben erhalten,
+an ihrer Stelle: Eine Aufgabe nach dem Termin steht danach wieder dort.
+`loadFile` und `save` arbeiten in UTF-8, gleich welches Encoding das
+System hat; `save` schreibt die Zeilenenden CRLF einmal (bis 0.2
+`\r\r\n`). Mit `tuical` 0.2 endet auch die letzte Zeile mit CRLF; eine
+Datei, die ohne Änderung gelesen und geschrieben wird, bleibt dann bis
+auf die Faltung langer Zeilen gleich.
 
 ---
 
@@ -147,7 +157,7 @@ und einen Zeitstempel `COMPLETED`. Zurück setzt `NEEDS-ACTION`,
 
 ## Notizen: tkunotes
 
-[tkunotes]{.index} 0.2 ist ein Baum links und ein Editor rechts. Speichern
+[tkunotes]{.index} 0.4 ist ein Baum links und ein Editor rechts. Speichern
 und Suche kommen von `tclutils::tunotes`.
 
 ```tcl
@@ -164,13 +174,22 @@ set w [::tkutils::tkunotes::widget .w ?-file notizen.json? ?-toolbar 0?]
 
 `addRoot` liefert die Id. `search` liefert Ids. `load` liefert die
 Zahl. `commit` schreibt die Felder des Editors in den Speicher.
-`store` ist das Dict von `tunotes`. `-toolbar 0` ist die Vorgabe.
+`store` ist das Dict von `tunotes`. Die Leiste ist an; `-toolbar 0`
+blendet sie aus. Ihr Knopf „Save“ übernimmt die Felder und schreibt
+seit 0.3 auch die JSON-Datei (`-file`, die zuletzt geladene oder
+gespeicherte, sonst fragt er); bis 0.2 tat er nur `commit`. Im Feld
+„Tags“ trennt ein Komma die Tags, `Arbeit Büro, privat` sind zwei (bis
+0.2 war jedes Wort ein Tag). Seit 0.4 bleiben Änderungen erhalten, wenn
+eine andere Notiz gewählt wird (Klick im Baum, `select`, neue Notiz,
+Suchtreffer): Titel, Tags und Inhalt der bisherigen gehen in den
+Speicher. Bis 0.3 waren sie ohne „Save“ verloren. Die Datei schreibt
+weiter nur „Save“ oder `save`.
 
 ---
 
 ## Kontakte und LDIF
 
-[tkuvcard]{.index} 0.2 zeigt jede Karte als Knoten mit `FN` und die
+[tkuvcard]{.index} 0.3 zeigt jede Karte als Knoten mit `FN` und die
 Eigenschaften als Kinder. Die Engine ist `tclutils::tuvcard`.
 
 ```tcl
@@ -181,11 +200,16 @@ set w [::tkutils::tkuvcard::widget .w]
 ```
 
 `loadText` liefert die Zahl der Karten. `-editable 1` ist die Vorgabe.
+`setProperty` ändert Name, Wert und `TYPE` einer Zeile und behält die
+übrigen Parameter wie `PREF` (bis 0.2 gingen sie verloren); mehrere
+Typen stehen durch Komma getrennt (`"CELL, VOICE"`). Dateien liest und
+schreibt `tkuvcard` in UTF-8 mit CRLF.
 
-[tkuldif]{.index} 0.2 zeigt jeden LDIF-Eintrag als Knoten mit `dn` und
+[tkuldif]{.index} 0.3 zeigt jeden LDIF-Eintrag als Knoten mit `dn` und
 jede Attributzeile als Kind. Die Engine ist `tclutils::tuldif`.
 `loadText` liefert die Zahl der Einträge. `-editable 1` ist die
-Vorgabe. `entries` liefert die Einträge.
+Vorgabe. `entries` liefert die Einträge. Dateien in UTF-8. Mit `tuldif`
+0.3 behalten Binärattribute wie `jpegPhoto` beim Speichern ihre Bytes.
 
 ---
 

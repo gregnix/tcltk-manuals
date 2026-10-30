@@ -34,7 +34,9 @@ wie Unix `paste`.
 
 `lines` nimmt eine Liste von Zeilenlisten, `texts` eine Liste von
 Texten, `files` eine Liste von Pfaden. Alle drei liefern einen String,
-Zeilen durch `\n` getrennt, ohne `\n` am Ende.
+Zeilen durch `\n` getrennt. `lines` endet ohne `\n`; `texts` und `files`
+enden mit `\n`, wenn eine der Eingaben so endet (bis tclutils 0.68.0
+nie).
 
 | Option | Vorgabe | Wirkung |
 |---|---|---|
@@ -52,7 +54,7 @@ Eine unbekannte Option und eine Option ohne Wert melden
 ```tcl
 package require tclutils::tupaste
 ::tclutils::tupaste::texts [list "a\nb\nc\n" "1\n2\n"] -delimiter ";"
-                                          ;# -> a;1\nb;2\nc;
+                                          ;# -> a;1\nb;2\nc;\n
 ::tclutils::tupaste::lines {{a b} {1 2}} -delimiter " | "
                                           ;# -> a | 1\nb | 2
 ::tclutils::tupaste::files {namen.txt orte.txt} -delimiter ": "
@@ -87,7 +89,8 @@ angelehnt an Unix `join`.
 
 Jede Ausgabezeile besteht aus dem Schlüssel, den übrigen Feldern links
 und den übrigen Feldern rechts. Die Rückgabe ist ein String mit `\n`
-zwischen den Zeilen.
+zwischen den Zeilen. `texts` und `files` hängen ein `\n` an, wenn eine
+der Eingaben so endet (bis tclutils 0.68.0 nie); `lines` nicht.
 
 - `-outer none` ist der innere Join: nur Zeilen mit Partner.
 - `-outer left`, `right`, `full` nehmen Zeilen ohne Partner der
@@ -124,13 +127,13 @@ package require tclutils::tujoin
 set L "1;Ada\n2;Linus\n3;Grace\n"
 set R "1;Berlin\n2;Helsinki\n4;Paris\n"
 ::tclutils::tujoin::texts $L $R -delimiter ";"
-    ;# -> 1;Ada;Berlin\n2;Linus;Helsinki
+    ;# -> 1;Ada;Berlin\n2;Linus;Helsinki\n
 ::tclutils::tujoin::texts $L $R -delimiter ";" -outer full
-    ;# -> 1;Ada;Berlin\n2;Linus;Helsinki\n3;Grace;\n4;;Paris
+    ;# -> 1;Ada;Berlin\n2;Linus;Helsinki\n3;Grace;\n4;;Paris\n
 ::tclutils::tujoin::texts $L $R -delimiter ";" -anti both
-                                          ;# -> 3;Grace\n4;Paris
+                                          ;# -> 3;Grace\n4;Paris\n
 ::tclutils::tujoin::texts $L $R -delimiter ";" -joiner ,
-    ;# -> 1,Ada,Berlin\n2,Linus,Helsinki
+    ;# -> 1,Ada,Berlin\n2,Linus,Helsinki\n
 ::tclutils::tujoin::texts "id;name\n1;Ada" "ort;id\nBerlin;1" \
     -delimiter ";" -header 1 -rightfield 2
     ;# -> id;name;ort\n1;Ada;Berlin
@@ -227,12 +230,15 @@ Zeile, die zu einem Muster passt, eine neue Datei. Vorbild ist Unix
 | `-suffix` | leer | Ende des Dateinamens, etwa `.md` |
 | `-digits` | 2 | Stellen der laufenden Nummer, ab 0 |
 | `-outdir` | `.` | Zielverzeichnis; fehlt es, wird es angelegt |
+| `-encoding` | `utf-8` | Kodierung der Teile; `file` liest auch darin |
 
 Rückgabe ist die Liste der geschriebenen Pfade, mindestens einer: Ein
 Text ohne Treffer und ein leerer Text ergeben je eine Datei. Vor dem
-ersten Treffer steht ohne `-empty 1` kein leerer Teil. Die Teile enden
-ohne `\n`, auch wenn die Eingabe eins hatte. Vorhandene Dateien gleichen
-Namens werden überschrieben.
+ersten Treffer steht ohne `-empty 1` kein leerer Teil. Jede Zeile behält
+ihr Zeilenende, die Teile hintereinander ergeben wieder die Eingabe (seit
+0.2; bis 0.1 endeten die Teile ohne `\n`). `file` liest die Bytes in
+`-encoding` und behält CRLF; das Muster sieht die Zeile ohne Zeilenende.
+Vorhandene Dateien gleichen Namens werden überschrieben.
 
 Abweichungen von `csplit`: Ein einziges Muster gilt für alle Zeilen; es
 gibt keine Liste von Mustern, keine Zeilennummern als Grenze und keine
@@ -242,6 +248,7 @@ bei `csplit`.
 | Fehler | `-errorcode` |
 |---|---|
 | `-outdir` ist eine Datei | `TCLUTILS TUCSPLIT OUTDIR` |
+| unbekannte Kodierung | `TCLUTILS TUCSPLIT ENCODING name` |
 | unbekannte Option | `TCLUTILS COMMON OPTION -name` |
 | `-digits` kleiner 1 | `TCLUTILS COMMON INTEGER -digits` |
 | kein Wahrheitswert | `TCLUTILS COMMON BOOLEAN -name` |
@@ -258,9 +265,9 @@ lmap p $teile {file tail $p}
     ;# -> kap00.md kap01.md kap02.md
 ```
 
-Im ersten Lauf enthält `xx00` die Zeile `Vorwort`, `xx01` den Text
-`# Eins\neins`, `xx02` den Text `# Zwei\nzwei`. Im zweiten Lauf fehlen
-die Überschriften: `kap01.md` enthält nur `eins`.
+Im ersten Lauf enthält `xx00` die Zeile `Vorwort\n`, `xx01` den Text
+`# Eins\neins\n`, `xx02` den Text `# Zwei\nzwei\n`. Im zweiten Lauf
+fehlen die Überschriften: `kap01.md` enthält nur `eins\n`.
 
 ---
 
@@ -285,8 +292,10 @@ Unix `split`.
 | `-suffix` | leer | Ende des Dateinamens |
 | `-digits` | 2 | Stellen der laufenden Nummer, ab 0 |
 | `-outdir` | `.` | Zielverzeichnis; fehlt es, wird es angelegt |
+| `-encoding` | `utf-8` | nur `splitLines`: Kodierung der Teile |
 
-`file` liest im Zeilenmodus als Text, im Bytemodus binär. Ohne `-lines`
+`file` teilt in beiden Modi die Bytes der Datei: CRLF und die Kodierung
+bleiben, wie sie sind (seit 0.3). Ohne `-lines`
 und `-bytes` gilt der Zeilenmodus mit 1000 Zeilen. `lines` und `bytes`
 sind Kurzformen von `file … -lines n` und `file … -bytes n`. Rückgabe ist
 die Liste der Pfade; eine leere Eingabe ergibt eine leere Datei `x00`.
@@ -297,14 +306,17 @@ Zeichen über `\xFF` ist ein Fehler `TCLUTILS TUSPLIT BYTES`, unter
 Tcl 8.6 und 9.0 gleich; die Prüfung läuft, bevor eine Datei entsteht.
 
 Abweichungen von `split`: Die Nummer ist dezimal (`x00`, `x01`, wie
-`split -d`), nicht `xaa`, `xab`. Teile aus `splitLines` enden ohne `\n`.
-Eine Aufteilung in eine feste Zahl von Teilen (`split -n`) gibt es nicht.
+`split -d`), nicht `xaa`, `xab`. Wie bei `split` behält jede Zeile ihr
+Zeilenende; die Teile hintereinander ergeben wieder die Eingabe. Bis 0.2
+endete jeder Teil ohne `\n`, und zusammengesetzt klebte die letzte Zeile
+eines Teils an der ersten des nächsten. Eine Aufteilung in eine feste Zahl von Teilen (`split -n`) gibt es nicht.
 
 | Fehler | `-errorcode` |
 |---|---|
 | `-lines` und `-bytes` zugleich bei `file` | `TCLUTILS TUSPLIT MODE` |
 | `-outdir` ist eine Datei | `TCLUTILS TUSPLIT OUTDIR` |
 | Zeichen über `\xFF` bei `splitBytes` | `TCLUTILS TUSPLIT BYTES` |
+| unbekannte Kodierung bei `splitLines` | `TCLUTILS TUSPLIT ENCODING name` |
 | Anzahl oder `-digits` kleiner 1 | `TCLUTILS COMMON INTEGER -name` |
 | unbekannte Option, Option ohne Wert | `TCLUTILS COMMON OPTION -name` |
 
@@ -320,7 +332,7 @@ lmap p $teile {file tail $p}
     ;# -> teil00.bin teil01.bin teil02.bin
 ```
 
-`x00` enthält `1\n2`, `x02` nur `5`. Die drei Binärteile enthalten
+`x00` enthält `1\n2\n`, `x02` nur `5\n`. Die drei Binärteile enthalten
 `abc`, `def` und `g`.
 
 ---
@@ -344,10 +356,12 @@ lmap p $teile {file tail $p}
 | `-chunksize` | 8192 | `copyChannel` | Zeichen je Lesevorgang |
 
 - `write` schreibt `data` mit `puts`, also mit `\n` am Ende, außer mit
-  `-nonewline 1`. Rückgabe ist `data`.
-- `writeFile` liest `inputFile` als Text und schreibt den Inhalt
-  unverändert, ohne zusätzliches `\n`. Rückgabe ist der Inhalt.
-  `-nonewline` gibt es hier nicht.
+  `-nonewline 1`; anders als das Kommando `tee`, das nichts anhängt.
+  Rückgabe ist `data`.
+- `writeFile` kopiert die Bytes von `inputFile` unverändert, CR und
+  Kodierung eingeschlossen. Rückgabe ist die Zahl der Bytes.
+  `-nonewline` gibt es hier nicht. Bis 0.2 las `writeFile` die Datei als
+  Text und schrieb LF in der Systemkodierung.
 - `copyChannel` liest `inChan` bis zum Ende und schreibt jeden Block in
   alle Kanäle aus `outChans`. Rückgabe ist die Zahl der kopierten
   Zeichen; bei binär geöffneten Kanälen sind das Bytes. Die Kanäle

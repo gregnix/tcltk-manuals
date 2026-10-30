@@ -82,7 +82,7 @@ Kapitel [Daten ansehen](078-daten-ansehen.md).
 
 ---
 
-## tkulauncher 0.3
+## tkulauncher 0.4
 
 [tkulauncher]{.index} ist ein Programmstarter als Menü (`-mode menu`) oder
 Knopfliste (`-mode list`). Einträge: `app` (auch `command`), `url`, `open` (auch `file`), `tcl`,

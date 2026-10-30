@@ -29,8 +29,9 @@
   the message is `does not support 'put'`, without a code.
 - Taking `string length` as the visible character count — `tustr::graphemes`.
   `truncate` and `padLeft` still calculate with `string length`.
-- `tustr::slugify` for a German title — only ASCII remains, `Größe`
-  becomes `gr-e`. The anchor from `tumd` for the same title is `gre`.
+- Taking `tustr::slugify` and the `tumd` anchor for the same thing —
+  `slugify` turns `Größe` into `groesse` (ASCII), `tumd` into the anchor
+  `größe`.
 - Reading an indented Markdown list as nested — `tumd`
   turns it into a flat list.
 - Passing the stored value to `tunotes::create` — the change requires
@@ -38,7 +39,8 @@
 - Reading `tunotes::search` as a regular expression — it is `string match`,
   an asterisk in the query is a pattern character.
 - Expecting state-specific public holidays from `tuholiday` — only the
-  nationwide set `de`, plus Easter Sunday and Whit Sunday.
+  nationwide set `de`, plus Easter Sunday and Whit Sunday (without
+  them: `-sundays 0`).
 - `tuflow::parse` on a `pie` — `{TCLUTILS TUFLOW UNSUPPORTED}`.
   Drawing goes through `toSvg`.
 - `tudiagram::addEdge` on unknown ids and expecting an error —
@@ -48,6 +50,12 @@
   `956.06` becomes `95606.0`.
 - Reading `tudate::diff -unit days` across daylight saving time as calendar days —
   seconds divided by 86400; March 15 to April 15, 2024 gives 30.
+- Reading `02/03/2026` as 3 February — `tudate::parse` tries `d/m/Y`
+  before `m/d/Y`, so that is 2 March. `m/d/Y` only applies when
+  `d/m/Y` gives no date (`10/29/2026`).
+- A string with an umlaut passed to `tubase64::encode` or
+  `tucrc::crc32` without `-encoding utf-8` — `ö` becomes the single
+  byte `f6`, `€` is `BYTES`. `tuhash` takes UTF-8 instead.
 - Expecting German from `tudate::relative` — the texts are `today`,
   `tomorrow`, `yesterday`.
 - Reading `tudict::getOr` like `dict get` — the default comes before the
@@ -60,6 +68,9 @@
   without `-errorcode`.
 - Recognizing SQL NULL from `tusqlite::rows` by the sentinel — the cell comes
   back empty. `insert` sets NULL with `null`.
+- Expecting `tusqlite::rows` to take a placeholder `:x` from a variable
+  `x` — since 0.2 the value comes only from the parameter dict; without
+  an entry it is NULL.
 - With TDBC `allrows -as dicts`, reading a missing column as empty —
   NULL columns drop out of the dict. `tutdbc::rows` puts them back in as
   empty. `0` stays `0`.

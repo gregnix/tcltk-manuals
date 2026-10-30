@@ -29,7 +29,17 @@
 - Starting the tests with `wish` — `tclsh tests/all.tcl`.
 - Looking for file operations in the widget — they belong in ctrlutils.
 - Unknown options to `tkutlfooter` — skipped without an error.
-- Copying 0.48.0 over an older tree and leaving the old `.tm` files —
+- `tkutablelist::toCsv` or `saveCsv` with hidden rows or columns —
+  since 0.49.0 both export only what is visible; everything with
+  `-all 1`.
+- Sorting an `integer` or `real` column with empty cells — Tablelist
+  stops with an error; `tkutlsort::column … -empty last`.
+- Expecting the table path back from `tkutltree::fromData` — since 0.3
+  it returns the keys of the top-level nodes.
+- Ctrl+C with `tkutlclip::installBindings` up to tkutils 0.48.0 —
+  Tablelist's own `<<Copy>>` binding overwrote the clipboard; fixed since
+  `tkutlclip` 0.3.
+- Copying 0.49.0 over an older tree and leaving the old `.tm` files —
   then two versions sit side by side (list in the chapter
   [Installation](020-installation.md)).
 - Checking for the error code `{TKUTILS <MODUL> OPTION}` without a

@@ -19,7 +19,7 @@
 ## Caps pro Schema
 
 `caps` liefert eine Liste der Operationen, die das Backend wirklich
-kann. Die Tabelle gilt für 0.68.0 (gleich seit 0.64.0):
+kann. Die Tabelle gilt für 0.69.0 (gleich seit 0.64.0):
 
 | Schema | caps |
 |---|---|
@@ -61,7 +61,8 @@ dict get [$p stat [file join $dir a.txt]] type    ;# -> file
 $p get [file join $dir a.txt]                      ;# -> eins
 ```
 
-`mtime` kann leer sein. Beim ZIP-Provider ist der Mitgliedspfad
+`put` des lokalen Providers schreibt über eine temporäre Datei; scheitert
+es, bleibt die alte Datei (0.3). `mtime` kann leer sein. Beim ZIP-Provider ist der Mitgliedspfad
 `/notiz.txt`, die Zeit bleibt leer, `size` ist die Bytezahl.
 
 ### Schreiben, das die caps verbieten

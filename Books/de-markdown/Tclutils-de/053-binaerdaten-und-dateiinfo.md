@@ -372,6 +372,11 @@ zählen nicht mit. Unter der Basis gibt `human` die ganze Zahl mit `B`
 aus, sonst den Wert mit einer Nachkommastelle. Über `YiB` (`YB`) geht
 es nicht hinaus, größere Werte bleiben in dieser Einheit.
 
+Die Einheit nennt immer ihre Basis: `KiB` ist 1024, `kB` ist 1000. 1500
+und 1536 Bytes sind beide `1.5 KiB`, weil nur eine Nachkommastelle
+steht. `tunumfmt::toHuman` schreibt dagegen wie `numfmt` das bloße `K`
+für 1000 (`1.5K`); für Bytes passt dort `-to iec` (`1.5Ki`).
+
 In einen symbolischen Link steigt `bytes` nicht ab und folgt ihm
 nicht. Gezählt wird der Link selbst mit `file lstat`; unter Unix ist
 seine Größe die Länge des Zielpfads. Das gilt für Links auf Dateien,

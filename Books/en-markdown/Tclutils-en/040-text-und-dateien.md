@@ -22,22 +22,31 @@ Common pattern, where the module has it: `text` works on a string,
 
 With `-number 1`, `tucat` numbers every line, including an empty one,
 as six digits, tab, text (`format %6d`). `-nonblank 1` numbers only
-lines with content. A text that ends in `\n` has an empty last line,
-and that line is counted.
+lines with content. As with `cat -n`, the rest after the last `\n` is
+not a line and gets no number, and `files` numbers the files one after
+another in one run. A file without a final `\n` runs into the next one.
+An unknown option throws `{TCLUTILS COMMON OPTION -name}` (since 0.2; up
+to 0.1 the empty last line got a number, every file started at 1, and
+unknown options were silently ignored).
 
 ```tcl
 package require tclutils::tucat
 package require tclutils::tuhead
 package require tclutils::tutail
 set text "alpha\nbeta\nbeta\nalpha"
-::tclutils::tuhead::text $text 2          ;# -> alpha\nbeta
+::tclutils::tuhead::text $text 2          ;# -> alpha\nbeta\n
 ::tclutils::tutail::text $text 1          ;# -> alpha
 ::tclutils::tucat::text "alpha\nbeta" -number 1
                                           ;# -> "     1\talpha\n     2\tbeta"
 ```
 
-`tuhead` and `tutail` do not follow files. A negative count is an
-error without its own `-errorcode`.
+As with `head -n` and `tail -n`, the result keeps the line ends: every
+line ends with `\n`, except the last line of the input when it has none.
+`text` and `file` return the same; `file` reads UTF-8, other encodings
+with `-encoding`. Up to 0.1 `tutail::text "eins\nJörg\n" 1` was empty, and
+`file` dropped every line end. So print with `puts -nonewline`. `tuhead`
+and `tutail` do not follow files. A negative count throws
+`{TCLUTILS TUHEAD COUNT}` or `{TCLUTILS TUTAIL COUNT}`.
 
 ---
 
@@ -82,7 +91,9 @@ set text "alpha\nbeta\nERROR eins\nerror zwei\nERRORCODE"
 ```
 
 `-word` matches `ERROR` and not `ERRORCODE`. `-max` counts lines, not
-matches within a line.
+matches within a line. The rest after a final `\n` is not a line: `.*` matches two lines in
+`"eins\nJörg\n"` (since 0.2; up to 0.1.3 three, and `file` dropped empty
+lines at the end of the file).
 
 ---
 
@@ -132,6 +143,8 @@ package require tclutils::tucut
 ```
 
 `text` and `file` take `-delimiter`, `-fields` and `-chars`.
+As with `tusort::text` and `tuuniq::text`, the result ends with `\n`
+exactly when the input does; up to tclutils 0.68.0 it was dropped.
 
 `tused` replaces and deletes line by line. Without `-all`, the first
 match in the line applies. `-fixed 1` searches literally, otherwise as
@@ -229,7 +242,14 @@ package require tclutils::tuzip
 
 `-base` strips the directory from the name. The order in
 `createMembers` is kept; this way an ODF puts `mimetype` as the first,
-stored entry. The provider over the same file is described in the
+stored entry.
+
+Since 0.2 `tuzip` writes names as UTF-8; a name with an umlaut gets the
+UTF-8 flag, and `unzip`, Python and Windows read it correctly. Up to
+0.1 names were Latin-1 without the flag, other programs read `Jörg` as
+`J÷rg`. Reading uses `-encoding auto`: with the flag or valid UTF-8,
+UTF-8, else CP437, as the ZIP format specifies. For archives from tuzip
+0.1 with umlauts, pass `-encoding iso8859-1`. The provider over the same file is described in the
 chapter [Providers](060-provider.md).
 
 Paths without a file system, visible characters and amounts:

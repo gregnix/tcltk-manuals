@@ -60,7 +60,9 @@ neither empty nor a `%%` comment, regardless of upper and lower
 case. If it names a kind without a graph, the facade calls `parse`
 and `toSvg` or `toPng` of that kind's module. Otherwise it calls its
 own `parse` and draws the model with `tudiagram`. `writeSvg` writes
-UTF-8 with LF, `writePng` writes binary; both return the file name.
+UTF-8 with LF, `writePng` writes binary; both return the file name. In all
+diagram modules writing goes through a temporary file (`common::replaceFile`): if it fails, the old
+file stays and no channel is left open.
 
 ```tcl
 package require tclutils::tuflow
@@ -220,8 +222,9 @@ dict get $o -errorcode               ;# -> TCLUTILS TUDIAGRAM THEME
 `parse` reads `graph` and `flowchart` and returns a
 `tudiagram` model. The header line is optional, and upper and lower
 case do not matter (`FLOWCHART td`, `Graph LR`); without a
-direction `LR` applies, `TD` becomes `TB`. An id
-is `[A-Za-z0-9_]+`. The shape is given by the brackets; quotation
+direction `LR` applies, `TD` becomes `TB`. An id consists of letters,
+digits and `_`, umlauts included: `Büro[Amt]` is the node `Büro` (up to
+tclutils 0.68.0 ASCII only, and the line was dropped). The shape is given by the brackets; quotation
 marks around the label are removed.
 
 | Notation | Shape |
@@ -248,7 +251,8 @@ The label is written as `A -->|Text| B`, `A -- Text --> B`,
 `A -. Text .-> B` or `A == Text ==> B`. Chains `A --> B --> C`
 are accepted. `&` joins several nodes on one side:
 `A & B --> C & D` yields one edge for each pair, here four. `%%`
-is a comment, statements may be separated by `;`. If an id is given
+is a comment, statements may be separated by `;`; a `;` inside a label
+(`A[Jörg;Büro]`, `-->|a;b|`) or in quotes does not separate. If an id is given
 twice with a shape, the last one applies.
 `subgraph name [Beschriftung]` up to `end` becomes a group with the
 nodes inside it, also nested; a `direction` inside it is dropped. An
@@ -326,7 +330,7 @@ arrowhead. The direction is `TB`.
 | `A --> B` and `A --> B : Text` | edge, text as label |
 | `[*] --> A` | start point `__start` as `dot` |
 | `A --> [*]` | end point `__end` as `dot` |
-| `A : Text` | label of state `A` |
+| `A : Text` | label of state `A`; the id may have umlauts (`Büro : Jörg`) |
 | `A` alone | state without an edge |
 | `state X <<fork>>`, `<<join>>` | state `X` as `rounded` |
 | `direction LR` | `LR`; `RL` becomes `LR`, `BT` and `TD` become `TB` |
@@ -368,7 +372,7 @@ methods. A line `----------` separates the parts. A member with
 | Notation | Result |
 |---|---|
 | `class X {` … `}` over several lines | class with one member per line |
-| `class X { +a; +b() }` | block on one line, `;` separates the members |
+| `class X { +a; +b() }` | block on one line, `;` separates the members; not inside quotes (0.3) |
 | `class X`, `class X { }` | class without members |
 | `X : +int alter`, `X : +laut()` | member of `X` |
 | `A <\|-- B` | edge `B` to `A`, label `extends` |
@@ -414,7 +418,7 @@ A text without a class throws `{TCLUTILS TUCLASS EMPTY}`.
 
 ## ER Diagram: tuer
 
-[tuer]{.index} 0.3 reads `erDiagram`. An entity becomes a
+[tuer]{.index} 0.4 reads `erDiagram`. An entity becomes a
 `box` node with the name on the first line and one attribute on each
 further line. A relationship becomes an edge without an arrowhead,
 with crow's feet at both ends. The direction is `TB`.
@@ -432,6 +436,14 @@ many, `o` means zero. `||` becomes `exactlyOne`, `|o` and `o|`
 `zeroOrOne`, `}|` and `|{` `oneOrMany`, `}o` and `o{` `zeroOrMany`.
 Quotation marks around the label are removed: `: "gibt auf"`
 becomes the label `gibt auf`.
+
+An entity name consists of letters of any script, digits, `_` and `-`,
+so `Büro {` works too. Three words are a relationship only when the
+middle one contains `--` or `..`. Lines with `direction`, `title`,
+`accTitle` and `accDescr` are skipped; any other line that is neither a
+block nor an entity nor a relationship throws `{TCLUTILS TUER SYNTAX}`.
+Up to 0.3 `Büro {` was not recognised, and the attribute line
+`string name PK` became an edge from `string` to `PK`.
 
 ```tcl
 set er "erDiagram
@@ -540,7 +552,9 @@ A text without a line after the header throws `{TCLUTILS TUMINDMAP EMPTY}`.
 `C4Dynamic` and `C4Deployment`. The direction is `TB`. An element
 `Typ(id, "Name", …)` becomes a node with the id, and the first quoted
 text as its label; technology and description
-are dropped. The fill color comes from the type.
+are dropped. The id consists of letters, digits and `_`, umlauts
+included: `Person(größe, "Weg")` has the id `größe` (up to tclutils
+0.68.0 `gr`). The fill color comes from the type.
 
 | Type | Shape | Color |
 |---|---|---|
@@ -588,7 +602,9 @@ The shapes match the flowchart: `a["Text"]` `box`,
 `a("Text")` `rounded`, `a(("Text"))` `circle`, `a{"Text"}`
 `diamond`, `a{{"Text"}}` `hexagon`, `a(["Text"])` `stadium`,
 `a[("Text")]` `cylinder`, `a[["Text"]]` `box`. The blocks are laid out
-as a top-down graph (`TB`), not in a grid.
+as a top-down graph (`TB`), not in a grid. Ids may have umlauts:
+`Büro[Jörg]` is the block `Büro` with the label `Jörg` (up to tclutils
+0.68.0 one single token).
 
 | Notation | Result |
 |---|---|
@@ -638,8 +654,11 @@ Mermaid does.
 | `merge name` | `box` "merge name" with two parents |
 | `cherry-pick id: "X"` | `rounded` "pick X" |
 
-`commit type: …` is skipped. A second `commit id: "X"`
-does not create a second node.
+`commit type: …` is skipped. A commit id may occur only once, as in
+Mermaid: a second `commit id: "X"` or a `merge … id: "X"` with a taken
+id throws `{TCLUTILS TUGIT DUPID}` (up to tclutils 0.68.0 the second
+commit was dropped and an edge ran from `X` to itself). Generated ids
+(`c1`, `c2`, …) skip ids the text already uses.
 
 ```tcl
 set gg {gitGraph
@@ -655,7 +674,8 @@ lmap n [dict get $m nodes] {dict get $n label}
 llength [dict get $m edges]                  ;# -> 3
 ```
 
-A text without a commit throws `{TCLUTILS TUGIT EMPTY}`.
+A text without a commit throws `{TCLUTILS TUGIT EMPTY}`, a duplicate
+commit id `{TCLUTILS TUGIT DUPID}`.
 
 ---
 
@@ -667,7 +687,7 @@ direction is `LR`.
 
 | Notation | Result |
 |---|---|
-| `service id(icon)[Text]` | node, shape by icon |
+| `service id(icon)[Text]` | node, shape by icon; the id may have umlauts |
 | `service id(icon)[Text] in g` | node in group `g` |
 | `group id(icon)[Text]` | frame around its members |
 | `group id(icon)[Text] in g` | nested group |
@@ -809,8 +829,9 @@ takes 26 pixels, and at 400 pixels 13 rows fit with a title. With
 `dateFormat` and `axisFormat` translate `YYYY`, `YY`, `MM`, `DD`,
 `HH`, `mm` and `ss` into `clock` formats; `%` formats such as `%d.%m.`
 stay as they are. `X` means seconds since 1970. Durations are a number
-and a unit: `s`, `m` or `min`, `h`, `d`, `w`; any other unit
-counts as 0. The first task needs a start: without a date and without
+and a unit: `ms`, `s`, `m` or `min`, `h`, `d`, `w`; any other unit
+throws `{TCLUTILS TUGANTT DURATION}` when drawing (since 0.3; up to 0.2
+it counted as 0). An id may contain letters of any script (`büro`). The first task needs a start: without a date and without
 `after` referring to an earlier task, drawing throws
 `{TCLUTILS TUGANTT DATE}`, just as Mermaid does not draw a chart
 without a start date. The axis has up to six ticks, rounded to whole
@@ -841,6 +862,7 @@ dict get $a endTok                           ;# -> 2w
 | `-errorcode` | Cause |
 |---|---|
 | `{TCLUTILS TUGANTT EMPTY}` | no line with `:` after the header |
+| `{TCLUTILS TUGANTT DURATION}` | duration with an unknown unit, such as `5x`; only when drawing |
 | `{TCLUTILS TUGANTT DATE}` | date does not match `dateFormat` or does not exist, or the first task has no start; only when drawing |
 | `{TCLUTILS TUGANTT ARG}` | `-scale` not an integer from 1 |
 | `{TCLUTILS TUGANTT FONT}` | `-fontfile` names no file |
@@ -982,6 +1004,7 @@ dict get $m series             ;# -> {type bar values {40 65 50}}
 |---|---|
 | `{TCLUTILS TUXYCHART EMPTY}` | no series |
 | `{TCLUTILS TUXYCHART VALUE}` | value in a series not a number |
+| `{TCLUTILS TUXYCHART COUNT}` | with categories: a series does not have one value per category (since 0.2) |
 | `{TCLUTILS TUXYCHART ARG}` | `-scale` not an integer from 1 |
 | `{TCLUTILS TUXYCHART FONT}` | `-fontfile` names no file |
 
@@ -1144,8 +1167,11 @@ The height of a node follows the larger value of inflow and outflow,
 the width of a band follows its value. A band has the color of its
 source.
 
-A line with fewer than three fields, an empty name or a
-value that is not a number above 0 is dropped without an error. Fields
+A line with fewer than three fields, an empty name or a value that is
+not a number or below 0 throws `{TCLUTILS TUSANKEY VALUE}` (since 0.2; up
+to 0.1 it was dropped silently). A line with the value 0 is dropped: it
+draws nothing, and a node that only occurs in such lines does not
+appear. Fields
 after the third are skipped. A cycle in the flow does not abort;
 the columns are then only approximate.
 
@@ -1160,6 +1186,7 @@ dict get $m links          ;# -> {Quelle Werk 10} {A,B Werk 2}
 | `-errorcode` | Cause |
 |---|---|
 | `{TCLUTILS TUSANKEY EMPTY}` | no valid line |
+| `{TCLUTILS TUSANKEY VALUE}` | line not `source,target,value` with a number from 0 |
 | `{TCLUTILS TUSANKEY ARG}` | `-scale` not an integer from 1 |
 | `{TCLUTILS TUSANKEY FONT}` | `-fontfile` names no file |
 
@@ -1200,7 +1227,11 @@ surface is 600 × 600.
 | `graticule circle`, `polygon` | shape of the rings, default `circle` |
 | `showLegend true`, `false` | legend |
 
-A missing axis in a series counts as 0. Without `["Name"]` the
+Every series needs exactly one value per axis. If the values are in
+axis order and there are more or fewer than axes, `parse` throws
+`COUNT`; if the key form leaves out an axis or a key names no axis, it
+throws `AXIS`. Up to tclutils 0.68.0 a missing value counted as 0, and
+extra or misspelled ones were dropped. Without `["Name"]` the
 series uses its id as its name. The legend appears when at least one
 series has a name in `["…"]`; `showLegend` sets it
 explicitly. Unknown lines are dropped. The first line
@@ -1226,6 +1257,8 @@ dict get [::tclutils::turadar::parse $r2] showLegend  ;# -> 0
 |---|---|
 | `{TCLUTILS TURADAR EMPTY}` | header missing or no series |
 | `{TCLUTILS TURADAR AXES}` | fewer than three axes |
+| `{TCLUTILS TURADAR AXIS}` | key form without a value for an axis, or a key without an axis |
+| `{TCLUTILS TURADAR COUNT}` | number of values in axis order does not match the axes |
 | `{TCLUTILS TURADAR VALUE}` | value, `min` or `max` not a number |
 | `{TCLUTILS TURADAR ARG}` | `-scale` not an integer from 1 |
 | `{TCLUTILS TURADAR FONT}` | `-fontfile` names no file |
@@ -1247,7 +1280,7 @@ The default surface is 640 × 400.
 | `"Name"` | branch |
 | `"Name": 30` | leaf with value |
 | `Name: 30`, `Name` | likewise without quotation marks |
-| `"Name": 5:::klasse`, `classDef`, `style` | style is dropped |
+| `"Name": 5:::klasse`, `classDef`, `style` | style is dropped, also a class with umlauts (0.3) |
 
 A node with a value and children is a branch; the value is dropped.
 Texts are cut off, not wrapped. A leaf with a value

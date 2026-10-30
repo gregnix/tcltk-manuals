@@ -13,12 +13,15 @@ message. An integer below 1 where a positive one is required throws
 for every module below.
 
 `file` reads the file with the system encoding and converts `\r\n` to
-`\n`. Whether a trailing `\n` is kept depends on the module:
+`\n`. The result ends with `\n` exactly when the input does:
 
 | Trailing `\n` | Modules |
 |---|---|
-| kept | `tunl`, `tutac`, `turev`, `tuexpand`, `tutr` |
-| dropped | `tufold`, `tufmt`, `tucolumn`, `tushuf`, `tupr` |
+| as in the input | `tunl`, `tutac`, `turev`, `tuexpand`, `tutr`, `tufold`, `tufmt`, `tucolumn`, `tushuf` |
+| own rule | `tupr` (pages, see there) |
+
+Up to tclutils 0.68.0, `tufold`, `tufmt`, `tucolumn` and `tushuf`
+dropped the trailing `\n`.
 
 ---
 
@@ -289,7 +292,7 @@ puts [::tclutils::tutable::render {Artikel Menge} \
 | `turev::line zeile` | the characters in reverse, like `string reverse` |
 | `turev::text text`, `file pfad` | each line on its own; trailing `\n` is kept |
 | `tushuf::lines liste ?opt?` | shuffled list |
-| `tushuf::text text ?opt?`, `file pfad ?opt?` | shuffled lines, without trailing `\n` |
+| `tushuf::text text ?opt?`, `file pfad ?opt?` | shuffled lines; a trailing `\n` is kept |
 
 `tutac` treats the last line without `\n` like any other:
 `"a\nb"` becomes `"b\na"`. Unix `tac` returns `ba` and a `\n` here.

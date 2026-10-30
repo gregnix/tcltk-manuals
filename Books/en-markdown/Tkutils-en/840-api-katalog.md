@@ -2,15 +2,15 @@
 
 The catalog lists the procedure signatures of the public commands, in the
 order of the source file `lib/tm/tkutils/<module>-<version>.tm`. It is
-generated from the tkutils 0.48.0 sources. Options, return values, error
+generated from the tkutils 0.49.0 sources. Options, return values, error
 codes and side effects are in the chapters and in `docs/<module>.md`.
 
 Public means: matched by `namespace export`. A signature with `args`
 takes options or a variable number of arguments; a pair `{name value}`
 is an argument with a default.
 
-Modules with entries: **74** of 75. `tkutltools` has no commands of
-its own; it loads the seven `tkutl*` helpers.
+Modules with entries: **78** of 79. `tkutltools` has no commands of
+its own; it loads the ten `tkutl*` helpers.
 
 ## `tkuaction`
 
@@ -55,7 +55,7 @@ Source: `lib/tm/tkutils/tkuballoon-0.1.tm`.
 
 ## `tkubase64`
 
-Source: `lib/tm/tkutils/tkubase64-0.1.tm`.
+Source: `lib/tm/tkutils/tkubase64-0.2.tm`.
 
 ```tcl
 ::tkutils::tkubase64::widget {path args}
@@ -254,7 +254,7 @@ Source: `lib/tm/tkutils/tkudiff-0.1.tm`.
 
 ## `tkueditor`
 
-Source: `lib/tm/tkutils/tkueditor-0.2.tm`.
+Source: `lib/tm/tkutils/tkueditor-0.4.tm`.
 
 ```tcl
 ::tkutils::tkueditor::widget {path args}
@@ -379,7 +379,7 @@ Source: `lib/tm/tkutils/tkugeometry-0.1.tm`.
 
 ## `tkuhexedit`
 
-Source: `lib/tm/tkutils/tkuhexedit-0.1.tm`.
+Source: `lib/tm/tkutils/tkuhexedit-0.2.tm`.
 
 ```tcl
 ::tkutils::tkuhexedit::widget {path args}
@@ -396,7 +396,7 @@ Source: `lib/tm/tkutils/tkuhexedit-0.1.tm`.
 
 ## `tkuical`
 
-Source: `lib/tm/tkutils/tkuical-0.2.tm`.
+Source: `lib/tm/tkutils/tkuical-0.3.tm`.
 
 ```tcl
 ::tkutils::tkuical::widget {path args}
@@ -452,7 +452,7 @@ Source: `lib/tm/tkutils/tkuimage-0.2.tm`.
 
 ## `tkuini`
 
-Source: `lib/tm/tkutils/tkuini-0.2.tm`.
+Source: `lib/tm/tkutils/tkuini-0.3.tm`.
 
 ```tcl
 ::tkutils::tkuini::widget {path args}
@@ -511,7 +511,7 @@ Source: `lib/tm/tkutils/tkulabeled-0.1.tm`.
 
 ## `tkulauncher`
 
-Source: `lib/tm/tkutils/tkulauncher-0.3.tm`.
+Source: `lib/tm/tkutils/tkulauncher-0.4.tm`.
 
 ```tcl
 ::tkutils::tkulauncher::widget {path args}
@@ -549,7 +549,7 @@ Source: `lib/tm/tkutils/tkulayoutcanvas-0.1.tm`.
 
 ## `tkuldif`
 
-Source: `lib/tm/tkutils/tkuldif-0.2.tm`.
+Source: `lib/tm/tkutils/tkuldif-0.3.tm`.
 
 ```tcl
 ::tkutils::tkuldif::widget {path args}
@@ -629,7 +629,7 @@ Source: `lib/tm/tkutils/tkumonthcanvas-0.5.tm`.
 
 ## `tkunotes`
 
-Source: `lib/tm/tkutils/tkunotes-0.2.tm`.
+Source: `lib/tm/tkutils/tkunotes-0.4.tm`.
 
 ```tcl
 ::tkutils::tkunotes::widget {path args}
@@ -822,6 +822,20 @@ Source: `lib/tm/tkutils/tkustrings-0.1.tm`.
 ::tkutils::tkustrings::getStrings {path}
 ```
 
+## `tkusysinfo`
+
+Source: `lib/tm/tkutils/tkusysinfo-0.1.tm`.
+
+```tcl
+::tkutils::tkusysinfo::widget {path args}
+::tkutils::tkusysinfo::screen {win}
+::tkutils::tkusysinfo::refresh {path}
+::tkutils::tkusysinfo::data {path}
+::tkutils::tkusysinfo::report {path args}
+::tkutils::tkusysinfo::json {path}
+::tkutils::tkusysinfo::save {path file args}
+```
+
 ## `tkutab`
 
 Source: `lib/tm/tkutils/tkutab-0.2.tm`.
@@ -838,7 +852,7 @@ Source: `lib/tm/tkutils/tkutab-0.2.tm`.
 
 ## `tkutablelist`
 
-Source: `lib/tm/tkutils/tkutablelist-0.4.tm`.
+Source: `lib/tm/tkutils/tkutablelist-0.5.tm`.
 
 ```tcl
 ::tkutils::tkutablelist::widget {path args}
@@ -846,8 +860,12 @@ Source: `lib/tm/tkutils/tkutablelist-0.4.tm`.
 ::tkutils::tkutablelist::footerSet {path values}
 ::tkutils::tkutablelist::footerSum {path args}
 ::tkutils::tkutablelist::tableWidget {path}
-::tkutils::tkutablelist::insert {path row}
-::tkutils::tkutablelist::setRows {path rows}
+::tkutils::tkutablelist::insert {path row {id ""}}
+::tkutils::tkutablelist::setRows {path rows args}
+::tkutils::tkutablelist::rowId {path index}
+::tkutils::tkutablelist::findId {path id}
+::tkutils::tkutablelist::selectedIds {path}
+::tkutils::tkutablelist::selectIds {path ids}
 ::tkutils::tkutablelist::rows {path}
 ::tkutils::tkutablelist::clear {path}
 ::tkutils::tkutablelist::size {path}
@@ -892,7 +910,7 @@ Source: `lib/tm/tkutils/tkutags-0.1.tm`.
 
 ## `tkutical`
 
-Source: `lib/tm/tkutils/tkutical-0.3.tm`.
+Source: `lib/tm/tkutils/tkutical-0.4.tm`.
 
 ```tcl
 ::tkutils::tkutical::widget {path args}
@@ -911,6 +929,8 @@ Source: `lib/tm/tkutils/tkutical-0.3.tm`.
 ::tkutils::tkutical::setSelection {path dates}
 ::tkutils::tkutical::clearSelection {path}
 ::tkutils::tkutical::canvasWidget {path}
+::tkutils::tkutical::setEvents {path events}
+::tkutils::tkutical::getEvents {path}
 ```
 
 ## `tkutimeentry`
@@ -925,7 +945,7 @@ Source: `lib/tm/tkutils/tkutimeentry-0.1.tm`.
 
 ## `tkutlclip`
 
-Source: `lib/tm/tkutils/tkutlclip-0.2.tm`.
+Source: `lib/tm/tkutils/tkutlclip-0.3.tm`.
 
 ```tcl
 ::tkutils::tkutlclip::asText {tbl rows args}
@@ -934,9 +954,30 @@ Source: `lib/tm/tkutils/tkutlclip-0.2.tm`.
 ::tkutils::tkutlclip::installBindings {tbl args}
 ```
 
+## `tkutldrag`
+
+Source: `lib/tm/tkutils/tkutldrag-0.1.tm`.
+
+```tcl
+::tkutils::tkutldrag::enable {tbl args}
+::tkutils::tkutldrag::disable {tbl}
+::tkutils::tkutldrag::order {tbl {parent root}}
+```
+
+## `tkutlfilter`
+
+Source: `lib/tm/tkutils/tkutlfilter-0.1.tm`.
+
+```tcl
+::tkutils::tkutlfilter::filter {tbl query args}
+::tkutils::tkutlfilter::clear {tbl}
+::tkutils::tkutlfilter::query {tbl}
+::tkutils::tkutlfilter::later {tbl ms query args}
+```
+
 ## `tkutlfind`
 
-Source: `lib/tm/tkutils/tkutlfind-0.2.tm`.
+Source: `lib/tm/tkutils/tkutlfind-0.3.tm`.
 
 ```tcl
 ::tkutils::tkutlfind::find {tbl query args}
@@ -957,7 +998,7 @@ Source: `lib/tm/tkutils/tkutlfmt-0.3.tm`.
 
 ## `tkutlfooter`
 
-Source: `lib/tm/tkutils/tkutlfooter-0.3.tm`.
+Source: `lib/tm/tkutils/tkutlfooter-0.4.tm`.
 
 ```tcl
 ::tkutils::tkutlfooter::attach {tbl foot args}
@@ -967,18 +1008,27 @@ Source: `lib/tm/tkutils/tkutlfooter-0.3.tm`.
 ::tkutils::tkutlfooter::autosum {tbl foot args}
 ```
 
-## `tkutlsort`
+## `tkutlgroup`
 
-Source: `lib/tm/tkutils/tkutlsort-0.2.tm`.
+Source: `lib/tm/tkutils/tkutlgroup-0.1.tm`.
 
 ```tcl
-::tkutils::tkutlsort::column {tbl col type {cmd ""}}
-::tkutils::tkutlsort::columns {tbl spec}
+::tkutils::tkutlgroup::group {tbl rows keyCol args}
+::tkutils::tkutlgroup::ungroup {tbl}
+```
+
+## `tkutlsort`
+
+Source: `lib/tm/tkutils/tkutlsort-0.3.tm`.
+
+```tcl
+::tkutils::tkutlsort::column {tbl col type args}
+::tkutils::tkutlsort::columns {tbl spec args}
 ```
 
 ## `tkutlstate`
 
-Source: `lib/tm/tkutils/tkutlstate-0.3.tm`.
+Source: `lib/tm/tkutils/tkutlstate-0.4.tm`.
 
 ```tcl
 ::tkutils::tkutlstate::save {tbl}
@@ -989,16 +1039,20 @@ Source: `lib/tm/tkutils/tkutlstate-0.3.tm`.
 ::tkutils::tkutlstate::restoreVia {tbl key getPrefix}
 ::tkutils::tkutlstate::autosave {tbl key setPrefix args}
 ::tkutils::tkutlstate::cancelAutosave {tbl}
+::tkutils::tkutlstate::lastError {tbl}
 ```
 
 ## `tkutltree`
 
-Source: `lib/tm/tkutils/tkutltree-0.2.tm`.
+Source: `lib/tm/tkutils/tkutltree-0.3.tm`.
 
 ```tcl
 ::tkutils::tkutltree::fromData {tbl data args}
 ::tkutils::tkutltree::toData {tbl args}
 ::tkutils::tkutltree::clear {tbl args}
+::tkutils::tkutltree::lazy {tbl loadCmd args}
+::tkutils::tkutltree::reveal {tbl index}
+::tkutils::tkutltree::findId {tbl id}
 ```
 
 ## `tkutodo`
@@ -1077,7 +1131,7 @@ Source: `lib/tm/tkutils/tkuvalidate-0.1.tm`.
 
 ## `tkuvcard`
 
-Source: `lib/tm/tkutils/tkuvcard-0.2.tm`.
+Source: `lib/tm/tkutils/tkuvcard-0.3.tm`.
 
 ```tcl
 ::tkutils::tkuvcard::widget {path args}
@@ -1137,4 +1191,3 @@ Source: `lib/tm/tkutils/tkuzip-0.1.tm`.
 ::tkutils::tkuzip::getEntries {path}
 ::tkutils::tkuzip::selectedMember {path}
 ```
-

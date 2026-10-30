@@ -10,7 +10,7 @@
   `pie` and the other kinds are drawn by `toSvg`. `validate` does not throw.
   See [Diagrams](056-diagramme.md).
 - `tustr::graphemes` is a simplified UAX #29 (no Hangul syllables,
-  no Indic conjuncts). `slugify` keeps ASCII only.
+  no Indic conjuncts). `slugify` returns ASCII; scripts without Latin letters are dropped.
 - `tupdf` counts pages by `/Type /Page`. `zugferd` looks for markers; it does not check
   the invoice. `object` throws `NOTFOUND` if the number is missing after
   inflating. See [ODF and PDF Structure](057-odf-und-pdf-struktur.md).
@@ -23,7 +23,7 @@
 - `tujson::parse` turns `true` into `1` and `null` into empty.
 - `tuhash` is pure Tcl. Text is converted to UTF-8 before the digest.
 - `tumd` does not know nested lists, tables or Setext headings.
-  The anchor drops characters outside `a`–`z` and digits.
+  The anchor keeps letters of every script, digits, `_` and `-`.
 - `tuical` and `tuvcard` leave property values raw. `toIcs` and `toVcf`
   write CR/LF.
 - `tuholiday` knows only `-region de` and no state-specific days.

@@ -8,14 +8,15 @@ Designer-Slots und die App tkdevtools. Die Engines bleiben in
 [tclutils]{.index}, so brauchen Server und CI kein Tk. Der Code nennt
 Tcl/Tk **8.6** und **9.x**.
 
-Dieses Handbuch beschreibt tkutils **0.48.0** für Desktop-Anwendungen auf
+Dieses Handbuch beschreibt tkutils **0.49.0** für Desktop-Anwendungen auf
 Provider und ttk. Die Beispiele und die Testsuite laufen mit Tcl/Tk 8.6.14
 und 9.0.4 unter Linux (Xvfb). Unter Windows und macOS ist das Buch nicht
 geprüft.
 
-Empfohlene Paarung: tclutils **0.68.0** + tkutils **0.48.0** + ctrlutils
-**0.4**. Die Fassung 0.68.0 verlangt von tkutils nichts Neues.
-tkutils 0.48.0 braucht mindestens tclutils **0.64.0**: Erst diese Version
+Empfohlene Paarung: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils
+**0.4**. Den CSV-Export von `tkutablelist` 0.5 (`toCsv`, `saveCsv`)
+braucht `tclutils::tucsv` 0.2 aus tclutils 0.69.0.
+Sonst braucht tkutils 0.49.0 mindestens tclutils **0.64.0**: Erst diese Version
 bringt `tusettings` (für `tkugeometry`), `tutestrun` (Testrunner) und die
 Funktionen, die tkdevtools braucht.
 
@@ -60,7 +61,7 @@ indirekt mit:
   [Fehlermeldungen](830-anhang-fehlermeldungen.md)).
 
 Nach `package require tkutils` sind **55** Pakete `tkutils::*` geladen —
-53 direkt, dazu `tkutablelist` 0.4 und `tkuopts` 0.1. Der Umbrella fordert
+53 direkt, dazu `tkutablelist` 0.5 und `tkuopts` 0.1. Der Umbrella fordert
 `tkupath 0.2` und `tkupreview 0.1` an; geladen werden die vorhandenen
 Versionen 0.3 und 0.2.
 
@@ -74,20 +75,21 @@ Nicht im Umbrella — einzeln requiren:
 | `tkuscrolledframe` | scrollutil (tklib) |
 | `tkutical`, `tkumonthcanvas` | tical 1.0 |
 | `tkucanvaspng` | `tclutils::tupngdraw` |
-| `tkutltools` und `tkutlclip`, `tkutlfind`, `tkutlfmt`, `tkutlfooter`, `tkutlsort`, `tkutlstate`, `tkutltree` | Tablelist (`tablelist_tile`) |
+| `tkutltools` und `tkutlclip`, `tkutldrag`, `tkutlfilter`, `tkutlfind`, `tkutlfmt`, `tkutlfooter`, `tkutlgroup`, `tkutlsort`, `tkutlstate`, `tkutltree` | Tablelist (`tablelist_tile`) |
 | `tkuload`, `tkurender` | — (Designer-Kern) |
 | `tkumdview`, `tkupdfinspect`, `tkulayoutcanvas` | tclutils-Engines |
+| `tkusysinfo` | `tclutils::tusysinfo` (tclutils 0.69.0) |
 
-Das sind **20** Module; zusammen mit den 55 aus dem Umbrella ergibt das die
-**75** Module des Baums.
+Das sind **24** Module; zusammen mit den 55 aus dem Umbrella ergibt das die
+**79** Module des Baums.
 
 ```tcl
 package require tkutils
-puts [package present tkutils::tkutablelist]   ;# -> 0.4, über tkufilelist
+puts [package present tkutils::tkutablelist]   ;# -> 0.5, über tkufilelist
 package require tkutils::tkuload               ;# extra
 ```
 
-Alle 20 Einzelmodule laden, wenn tDOM, sqlite3, tklib (Tablelist,
+Alle 24 Einzelmodule laden, wenn tDOM, sqlite3, tklib (Tablelist,
 scrollutil) und tical auf dem Pfad liegen; `tkuicon` lädt auch ohne
 tksvg.
 
@@ -100,7 +102,7 @@ mit; tragen Sie ihn in den `auto_path` ein:
 
 ```tcl
 lappend auto_path /pfad/zu/tical
-package require tkutils::tkutical        ;# -> 0.3
+package require tkutils::tkutical        ;# -> 0.4
 package require tkutils::tkumonthcanvas  ;# -> 0.5
 ```
 
@@ -147,18 +149,18 @@ Praxisbeispiele (F) und die Testumgebung (G).
 
 ## Merkliste
 
-- Widgets auf tclutils-Engines, Version 0.48.0.
-- Paarung tclutils 0.68.0 + tkutils 0.48.0 + ctrlutils 0.4; mindestens
-  tclutils 0.64.0.
+- Widgets auf tclutils-Engines, Version 0.49.0.
+- Paarung tclutils 0.69.0 + tkutils 0.49.0 + ctrlutils 0.5; mindestens
+  tclutils 0.64.0, für den CSV-Export von `tkutablelist` 0.69.0.
 - Befehle immer mit `::tkutils::tku<name>::…` aufrufen.
-- Umbrella braucht Tablelist; 20 Module kommen nur einzeln.
+- Umbrella braucht Tablelist; 24 Module kommen nur einzeln.
 - Überall `tablelist_tile`; beide Tablelist-Varianten in einem Programm
   lehnt tklib ab.
 
 ::: {.info}
 **Getestet mit** Tcl/Tk 8.6.14 (Tablelist 6.20, scrollutil 1.17) und
 9.0.4 (Tablelist 7.11, scrollutil 2.10) unter Linux und Xvfb, tclutils
-0.68.0, tical 1.1.
+0.69.0, tical 1.1.
 
 **Nicht getestet:** Windows, macOS.
 :::

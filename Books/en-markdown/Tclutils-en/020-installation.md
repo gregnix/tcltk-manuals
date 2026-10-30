@@ -9,8 +9,8 @@ tclutils is a tree of Tcl modules under `lib/tm/`. Tcl loads a
 ## Adding a directory
 
 ```tcl
-::tcl::tm::path add /pfad/zu/tclutils-0.68.0/lib/tm
-package require tclutils                 ;# -> 0.68.0
+::tcl::tm::path add /pfad/zu/tclutils-0.69.0/lib/tm
+package require tclutils                 ;# -> 0.69.0
 package require tclutils::tucsv          ;# ein Modul, der Umbrella ist nicht nötig
 ```
 
@@ -46,7 +46,7 @@ first existing candidate ends up in front and wins:
 | 6 | sibling folder `<paket>/lib/tm` next to the tree |
 | 7 | `<paket>-*/lib/tm`, the highest version that has a `lib/tm` |
 
-If `TCLUTILS_TM` is set, `package ifneeded tclutils 0.68.0` comes from
+If `TCLUTILS_TM` is set, `package ifneeded tclutils 0.69.0` comes from
 that directory, even if the source tree lies next to it. As soon as
 installation and tree diverge, the variable decides, not
 the proximity to the script.
@@ -68,7 +68,7 @@ resolves to. It looks up the path; it does not load it at this point.
 
 ```text
 Modules resolve to:
-  tclutils   0.68.0   …/tclutils/lib/tm/tclutils-0.68.0.tm
+  tclutils   0.69.0   …/tclutils/lib/tm/tclutils-0.69.0.tm
 ```
 
 If the same version lies

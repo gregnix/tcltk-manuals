@@ -20,8 +20,8 @@ calendar dates ([tudate]{.index}) and paths without a file system
 | `startsWith`, `endsWith` | 1 if the edge matches |
 | `removePrefix`, `removeSuffix` | cut off the edge, otherwise unchanged |
 | `splitTrim s ?sep?` | splits, removes spaces, drops empty pieces; the default for `sep` is the space |
-| `toCamel`, `toSnake` | `my-cool_var` becomes `myCoolVar`, `myCoolVar` becomes `my_cool_var` |
-| `slugify s` | lowercase, everything except `a`–`z` and digits becomes `-` |
+| `toCamel`, `toSnake` | `my-cool_var` becomes `myCoolVar`, `myCoolVar` becomes `my_cool_var`; letters of every script count |
+| `slugify s` | ASCII lowercase: umlauts spelled out, otherwise everything except `a`–`z` and digits becomes `-` |
 | `capitalize s` | first letter uppercase |
 | `count s teil` | non-overlapping matches |
 | `graphemes s` | list of the visible characters |
@@ -39,11 +39,16 @@ package require tclutils::tustr
 ::tclutils::tustr::splitTrim { a , , b } ,       ;# -> a b
 ::tclutils::tustr::count ababa ba                ;# -> 2
 ::tclutils::tustr::slugify "Hallo, Welt!"        ;# -> hallo-welt
-::tclutils::tustr::slugify "Größe"               ;# -> gr-e
+::tclutils::tustr::slugify "Größe"               ;# -> groesse
+::tclutils::tustr::toCamel "Jörg Müller"         ;# -> jörgMüller
 ```
 
-`slugify` does not transliterate umlauts (`ö` does not become `oe`).
-`Größe` loses `ö` and `ß`, leaving `gr-e`.
+`slugify` returns ASCII for file names and URLs. It spells Latin letters
+in ASCII first: `ä` becomes `ae`, `ö` `oe`, `ü` `ue`, `ß` `ss`, accents
+are dropped (`é` becomes `e`, `ł` becomes `l`). What has no ASCII form,
+such as `日本`, is dropped. `toCamel` and `toSnake` keep letters of every
+script (since 0.3; up to 0.2 `Größe` became `gr-e` and
+`toCamel "Jörg Müller"` became `jRgMLler`).
 
 ### Visible Characters
 
@@ -111,7 +116,7 @@ there. On Windows, according to the code, this also applies to `C:/`, `/`
 
 | Command | Effect |
 |---|---|
-| `parse text ?-format fmt?` | seconds since the epoch; without `-format` ISO, `d.m.Y`, `d/m/Y`, `Y/m/d`, then a free-form attempt |
+| `parse text ?-format fmt?` | seconds since the epoch; without `-format` a list of formats, then a free-form attempt |
 | `iso sekunden ?-time 0?` | `yyyy-mm-dd`, with `-time 1` additionally `THH:MM:SS` |
 | `add sekunden zahl einheit` | calendar addition; unit `second`, `minute`, `hour`, `day`, `week`, `month`, `year`, also in the plural |
 | `diff a b ?-unit days?` | `a` minus `b`, as an integer; units `seconds`, `minutes`, `hours`, `days`, `weeks` |
@@ -129,6 +134,28 @@ set t [::tclutils::tudate::parse 15.03.2024]
 ::tclutils::tudate::relative [::tclutils::tudate::add $t 3 day] -base $t
                                                         ;# -> in 3 days
 expr {"Europe/Berlin" in [::tclutils::tudate::zones]}   ;# -> 1
+```
+
+Without `-format`, `parse` tries in turn the ISO date and ISO date-time
+(also without seconds and as `YYYYMMDD`), `d.m.Y` (also with a time),
+`d/m/Y`, `Y/m/d`, `m/d/Y`, `H:M:S`, `H:M` and English month names
+(`29 Oct 2025`, `Oct 29 2025`). `02/03/2026` is 2 March; `m/d/Y` only
+applies when `d/m/Y` gives no date, so `10/29/2026` is 29 October. A
+string of digits and separators only never goes to the free-form
+attempt.
+
+`parse` rejects a day or month that does not exist, with and without
+`-format`, on Tcl 8.6 as on 9.0: `2026-02-29`, `31.04.2026`,
+`29/02/2026` and `Feb 30 2026` give `{TCLUTILS TUDATE PARSE}`.
+`clock scan` alone turns these into 1 March, 1 May and 2 May 2028 on
+8.6; `parse` formats every match back and drops it when the numbers
+differ. Up to tclutils 0.68.0 these days slipped through on 8.6.
+
+```tcl
+::tclutils::tudate::iso [::tclutils::tudate::parse 10/29/2026]
+                                                        ;# -> 2026-10-29
+catch {::tclutils::tudate::parse 2026-02-29} m o
+dict get $o -errorcode                                  ;# -> TCLUTILS TUDATE PARSE
 ```
 
 `relative` answers in English: `today`, `tomorrow`, `yesterday`,
@@ -204,7 +231,7 @@ a locale other than `de` results in `{TCLUTILS TUNUM LOCALE}`.
 ## In short
 
 - Visible length: `tustr::graphemes`, not `string length`.
-- `slugify` keeps only ASCII.
+- `slugify` returns ASCII and spells umlauts out: `Größe` becomes `groesse`.
 - `tupath::clean` and `relative` read no file; `..` stops at the root.
 - `tudate::diff -unit days` divides seconds; `relative` answers in English.
 - Amounts: `tunum::format`. `de-strict` treats every period as a thousands separator.

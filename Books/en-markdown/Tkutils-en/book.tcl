@@ -5,7 +5,7 @@
 
 set title     "tkutils"
 set author    ""
-set subtitle  "Tk Widgets on tclutils, 0.48.0"
+set subtitle  "Tk Widgets on tclutils, 0.49.0"
 set date      "2026-10-27"
 set lang      "en"
 set titlePage 1

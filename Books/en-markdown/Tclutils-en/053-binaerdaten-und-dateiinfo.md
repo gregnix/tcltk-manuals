@@ -370,6 +370,11 @@ on disk, and the directories themselves do not count. Below the base,
 decimal place. It does not go beyond `YiB` (`YB`); larger values stay
 in that unit.
 
+The unit always names its base: `KiB` is 1024, `kB` is 1000. 1500 and
+1536 bytes are both `1.5 KiB` because only one decimal is shown.
+`tunumfmt::toHuman` instead writes the bare `K` for 1000 like `numfmt`
+(`1.5K`); for bytes use `-to iec` there (`1.5Ki`).
+
 `bytes` does not descend into a symbolic link and does not follow it.
 It counts the link itself with `file lstat`; under Unix its size is the
 length of the target path. This applies to links to files, links to

@@ -24,11 +24,13 @@ files of 900×600 pixels are created, exit code 0.
 
 Requirements: Tcl/Tk 8.6 or 9.x, at least **tclutils 0.64.0**
 (`tucolor`, `tustr` 0.2, `tudate` 0.2, `tupkgfinder` 0.2, `tuappinfo`,
-`tupath`, `tunum` 0.4; 0.68.0 recommended), from tkutils `tkutablelist`
-0.4 and `tkuunits`, plus Tablelist. The app loads `tablelist_tile`
+`tupath`, `tunum` 0.4; 0.69.0 recommended), from tkutils `tkutablelist`
+0.4 or newer and `tkuunits`, plus Tablelist. The app loads `tablelist_tile`
 before `tkutablelist`; the `tkutl*` helpers use the same variant
 (chapter [Understanding tkutils](010-tkutils-verstehen.md)). The helpers
-`tkutlsort`, `tkutlfind`, `tkutlclip` are used when present. The app
+`tkutlsort`, `tkutlfind`, `tkutlclip` are used when present. With
+`tkutlclip` 0.3 (tkutils 0.49.0) Ctrl+C in the tables copies the selected
+rows as TSV; before, Tablelist's own binding overwrote the clipboard. The app
 finds the libraries through `apps/_lib/paths.tcl` (the same logic as
 `tools/setup.tcl`).
 
@@ -100,7 +102,7 @@ runtime; glibc and Windows differ at x.5) and `tunum::format`
 - tkdevtools: reference and probes, writes nothing.
 - Since 0.46.0: Package shadows, Paths, glob, Programs, Encoding
   profiles, Font aliases, Number format.
-- Needs at least tclutils 0.64.0 (0.68.0 recommended) and Tablelist.
+- Needs at least tclutils 0.64.0 (0.69.0 recommended) and Tablelist.
 - `--shot` needs Img (`img::window`) or ImageMagick.
 
 ::: {.info}

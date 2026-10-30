@@ -38,28 +38,45 @@ for example `tkugeometry` with `can't find package tclutils::common 0.1`.
 
 ### Copying Over an Older Tree
 
-The umbrella of 0.48.0 is `lib/tm/tkutils-0.48.0.tm`. New module
-versions in 0.48.0: `tkulauncher` and `tkuload` 0.3; in 0.47.0:
+The umbrella of 0.49.0 is `lib/tm/tkutils-0.49.0.tm`. New module
+versions in 0.49.0: `tkutablelist` 0.5, `tkutlstate` 0.4, `tkutlclip`,
+`tkutlfind`, `tkutlsort`, `tkutltree`, `tkutltools` 0.3, `tkuical`,
+`tkuvcard`, `tkuldif`, `tkuini` 0.3, `tkunotes`, `tkueditor` 0.4,
+`tkubase64` 0.2, `tkutical` 0.4, `tkutlfooter` 0.4, new
+`tkutlfilter`, `tkutlgroup`, `tkutldrag`, `tkusysinfo` 0.1; in 0.48.0: `tkulauncher`
+and `tkuload` 0.3; in 0.47.0:
 `tkufiledialog` 0.2; `tkutlsort`, `tkutlclip`, `tkutlfind`, `tkutltree`,
 `tkutltools` 0.2; `tkutlfooter`, `tkutlfmt`, `tkutlstate` 0.3. Anyone
-copying 0.48.0 over an older tree deletes the old files first, otherwise
+copying 0.49.0 over an older tree deletes the old files first, otherwise
 two versions sit side by side.
 
-Over a 0.47.0 tree:
+Over a 0.48.0 tree:
 
-- `lib/tm/tkutils-0.47.0.tm`
-- `lib/tm/tkutils/tkulauncher-0.2.tm`, `tkuload-0.2.tm`
+- `lib/tm/tkutils-0.48.0.tm`
+- in `lib/tm/tkutils/`: `tkutablelist-0.4.tm`, `tkutlclip-0.2.tm`,
+  `tkutlfind-0.2.tm`, `tkutlsort-0.2.tm`, `tkutlstate-0.3.tm`,
+  `tkutltools-0.2.tm`, `tkutltree-0.2.tm`
+- also `tkuical-0.2.tm`, `tkuvcard-0.2.tm`, `tkuldif-0.2.tm`,
+  `tkuini-0.2.tm`, `tkutical-0.3.tm`, `tkunotes-0.2.tm`,
+  `tkueditor-0.2.tm`, `tkubase64-0.1.tm`, `tkutlfooter-0.3.tm`,
+  `tkulauncher-0.3.tm`, `tkuhexedit-0.1.tm`
+
+Over a 0.47.0 tree, the file `lib/tm/tkutils-0.47.0.tm` instead of
+`tkutils-0.48.0.tm`, plus the same files and `tkulauncher-0.2.tm`,
+`tkuload-0.2.tm`.
 
 Over a 0.46.0 tree, the file `lib/tm/tkutils-0.46.0.tm` instead of
 `tkutils-0.47.0.tm`, plus in `lib/tm/tkutils/`:
 
 - `tkufiledialog-0.1.tm`
 - `tkutlclip-0.1.tm`, `tkutlfind-0.1.tm`, `tkutlsort-0.1.tm`,
-  `tkutltools-0.1.tm`, `tkutltree-0.1.tm`
+  `tkutltools-0.1.tm`, `tkutltree-0.1.tm`, `tkutablelist-0.4.tm`
 - `tkutlfmt-0.2.tm`, `tkutlfooter-0.2.tm`, `tkutlstate-0.2.tm`
 - `tkulauncher-0.2.tm`, `tkuload-0.2.tm`
 
-The lists come from comparing the trees of 0.46.0, 0.47.0 and 0.48.0.
+The lists come from comparing the trees of 0.46.0 to 0.49.0. If an older
+file stays behind, `package require` still loads the higher version;
+`tools/check-modules.tcl` reports the duplicate.
 
 ---
 
@@ -126,17 +143,21 @@ finds the flat checkout; without `TICAL_DIR`, 13 of 13 tests pass there.
 
 ### Test Run
 
-tkutils 0.48.0 on Linux (Xvfb) with tclutils 0.68.0, tical 1.1 and
+tkutils 0.49.0 on Linux (Xvfb) with tclutils 0.69.0, tical 1.1 and
 `TICAL_DIR` set; Tablelist 6.20 under Tcl/Tk 8.6.14, 7.11 under 9.0.4:
 
 | Tcl/Tk | Files | Tests | passed | skipped | failed |
 |---|---|---|---|---|---|
-| 8.6.14 | 78 | 843 | 831 | 12 | 0 |
-| 9.0.4 | 78 | 843 | 840 | 3 | 0 |
+| 8.6.14 | 83 | 947 | 935 | 12 | 0 |
+| 9.0.4 | 83 | 947 | 944 | 3 | 0 |
 
 Under 8.6.14 the suite skips the SVG tests of `tkuicon` and `tkuwinico`
-(no tksvg), plus one test each of `tkuscrolledframe` and `tkuwheel`. The
-suite is not checked on Windows or macOS. Environment and results of
+(no tksvg), plus one test each of `tkuscrolledframe` and `tkuwheel`. On
+macOS (Darwin 27, arm64, Tcl/Tk 9.0.4 with Aqua) the suite passed without
+failures before the write-error tests: 83 files, 938 tests, 896 passed,
+42 skipped. On Windows the same state also passed without failures:
+Tcl/Tk 8.6.17 927 passed, 11 skipped; Tcl/Tk 9.0.4 935 passed, 3
+skipped. Environment and results of
 0.46.0: [Appendix G](860-anhang-testumgebung.md).
 
 ---

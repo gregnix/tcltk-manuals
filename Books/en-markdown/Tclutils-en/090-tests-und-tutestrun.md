@@ -15,12 +15,15 @@ reports `All test files passed`; exit code 1 on problems. If
 `all.tcl` does not find the runner, it aborts with exit code 2 and
 `all.tcl: tclutils::tutestrun not found (set TCLUTILS_TM)`.
 
-Result for tclutils 0.68.0 under Linux (Xvfb):
+Result for tclutils 0.69.0 under Linux (Xvfb), macOS and Windows:
 
 | Run | Files | Tests | passed | skipped | failed |
 |---|---|---|---|---|---|
-| Tcl 8.6.14 with tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 150 | 2355 | 2330 | 25 | 0 |
-| Tcl 9.0.4 (built from source) with tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 150 | 2355 | 2338 | 17 | 0 |
+| Tcl 8.6.14 with tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 154 | 2620 | 2595 | 25 | 0 |
+| Tcl 9.0.4 (built from source) with tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 154 | 2620 | 2603 | 17 | 0 |
+| macOS (Darwin 27, arm64), Tcl/Tk 9.0.4 (Aqua), state before the write-error tests | 154 | 2582 | 2567 | 15 | 0 |
+| Windows, Tcl 8.6.17 (system encoding cp1252), state before the write-error tests | 154 | 2582 | 2545 | 37 | 0 |
+| Windows, Tcl 9.0.4, state before the write-error tests | 154 | 2582 | 2549 | 33 | 0 |
 
 No test fails. Skipped tests depend
 on missing packages or on the platform (constraints such as `tdbc`,
@@ -30,7 +33,7 @@ on missing packages or on the platform (constraints such as `tdbc`,
 
 ## tutestrun
 
-[tutestrun]{.index} **0.1** is the shared runner for tclutils,
+[tutestrun]{.index} **0.2** is the shared runner for tclutils,
 tkutils and ctrlutils. **Not** in the umbrella — `tests/all.tcl` sources the
 `.tm` from the tree under test (its own `lib/tm`, `$env(TCLUTILS_TM)` or
 the sibling checkout); otherwise an old installation wins.
@@ -60,7 +63,11 @@ What `run` does:
    system encoding made the run stall until the limit.
    tutestrun replaces such bytes (`-profile replace`); Tcl 8.6 does not need
    this.
-5. **Summary.** Failed tests, a missing tcltest total,
+5. **Test files in UTF-8.** Every file starts as
+   `tclsh -encoding utf-8 file.test`. Tcl 8.6 would otherwise read it in the
+   system encoding, cp1252 on Windows, and every expected value with an
+   umlaut would be wrong; with tutestrun 0.1, 19 tests failed that way.
+6. **Summary.** Failed tests, a missing tcltest total,
    a nonzero exit or hangs end up under "Files with problems".
    tcltest ends a file with 0 even on errors — the total line
    is what counts.
@@ -107,6 +114,47 @@ for example `unknown option "-x" (-pattern, -tmpaths, -autopath)`.
 
 ---
 
+## Checking Rules: tulint
+
+[tulint]{.index} checks Tcl sources and returns the findings as data: a
+list of dicts with `file`, `line`, `rule`, `severity` and `message`. The
+module prints nothing and never exits; the command line is
+`bin/tulint.tcl`. The rule names are the identifiers of the book
+*Tcl/Tk Quality*:
+
+| Rule | Severity | Finds |
+|---|---|---|
+| `ENC-1` | warning | non-ASCII characters in a `*.test` file |
+| `ENC-2` | error | `source` without `-encoding` in `pkgIndex.tcl` |
+| `ENC-3` | warning | non-ASCII characters outside comments in a `*.tcl` script |
+| `TST-3` | error | the same test name twice in a file |
+| `DAT-2` | info | `open` with `w`, `wb`, `w+` or `TRUNC` outside test files |
+
+```tcl
+package require tclutils::tulint
+set f [::tclutils::tulint::checkText \
+    "test a {} -result {}\ntest a {} -result {}\n" -file x.test]
+::tclutils::tulint::format $f
+;# -> x.test:2: error TST-3: test name "a" already used in line 1
+::tclutils::tulint::summary $f        ;# -> error 1 warning 0 info 0
+```
+
+`TST-3` reads complete commands (`info complete`), not lines, and
+descends into braced bodies. Two branches of the same `if` or `switch`
+count as alternatives. `check paths ?-rules names? ?-exclude patterns?`
+walks directories. Own rules are added with
+`register name severity description cmd`; `cmd` gets the file name and
+the text and returns pairs `{line message}`. A comment
+`# tulint: ignore RULE` applies to the next line, `;# tulint: ignore
+RULE` at the end of a line to that line.
+
+`bin/tulint.tcl` exits with 1 as soon as a finding of severity `error`
+is among them. `--severity` filters only the output, not the exit code.
+An unknown option or rule is an error `{TCLUTILS TULINT OPTION}` or
+`RULE`.
+
+---
+
 ## Windows
 
 According to the CHANGELOG, the suite also runs under Windows since 0.64.0: no
@@ -121,6 +169,7 @@ the Windows tests `tutask` 2.8w/4.4w for `pipe` were added.
 - `tests/all.tcl` → tutestrun: own trees first, banner, limit.
 - Source the runner from the tree, do not require it blindly.
 - `tupkgfinder::shadows` finds duplicate copies.
+- `tulint` checks error classes from the quality book.
 
 ---
 

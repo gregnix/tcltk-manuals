@@ -22,10 +22,10 @@ into dicts. It is not an import framework.
 | `parseLine zeile` | one line to a list; `-delimiter` (default comma), `-quote` (default `"`), `-trim` (default 0) |
 | `joinLine felder` | a list to a line; the same `-delimiter` and `-quote`, plus `-alwaysQuote` (default 0) |
 | `parse text ?optionen?` | lines to a list of field lists; a field may contain a line break |
-| `text zeilen ?optionen?` | field lists back to text; additionally `-newline` |
+| `text zeilen ?optionen?` | field lists back to text; additionally `-newline`, `-bom`, `-profile` |
 | `dicts zeilen` | the first line becomes the header, each further line a dict |
-| `file pfad ?optionen?` | a file, like `parse` |
-| `writeFile pfad zeilen ?optionen?` | writes a file |
+| `file pfad ?optionen?` | a file, like `parse`; additionally `-encoding` (default `utf-8`), `-profile` |
+| `writeFile pfad zeilen ?optionen?` | writes a file; like `text`, plus `-encoding` |
 
 A field with a comma, a quote or a line break is put in
 quotes. A quote inside the field is doubled.
@@ -46,7 +46,28 @@ set zeilen [::tclutils::tucsv::parse "name;city\nAlice;Berlin" -delimiter {;}]
 `-strict 1` is the default. An unclosed quote throws
 `{TCLUTILS TUCSV QUOTE}` with `unterminated quoted field`.
 `-strict 0` takes the rest as a field and does not throw. `parse`
-removes a leading UTF-8 BOM by itself; this is stated in `docs/tucsv.md`.
+removes a leading UTF-8 BOM by itself, including the one from `-profile excel-de`.
+
+Since `tucsv` 0.2 there are profiles for Excel. `-profile excel-de` sets
+a semicolon, CRLF and a UTF-8 BOM, so that a German Excel recognizes
+umlauts and columns. `-profile rfc4180` sets a comma and CRLF. An
+option after the profile wins over the profile. An unknown profile
+throws `{TCLUTILS TUCSV PROFILE <name>}`.
+
+```tcl
+package require tclutils::tucsv 0.2
+set zeilen {{Name Ort} {Müller Köln} {{A, B} Essen}}
+::tclutils::tucsv::writeFile liste.csv $zeilen -profile excel-de
+                                          ;# BOM, "Name;Ort" CRLF ...
+::tclutils::tucsv::file liste.csv -delimiter {;}
+                                          ;# -> {Name Ort} {Müller Köln} {{A, B} Essen}
+::tclutils::tucsv::text {{a b}} -profile excel-de -delimiter ,
+                                          ;# BOM + a,b
+```
+
+`file` and `writeFile` read and write UTF-8 unless `-encoding` says
+otherwise. `writeFile` writes the line ends from `-newline` unchanged;
+without `-newline` the platform default applies.
 
 Fields without quotes, cut only at the delimiter, belong
 to `tucut` in the chapter [Text and Files](040-text-und-dateien.md).
@@ -69,6 +90,9 @@ object, array and scalar is lost in the process.
 | number | the digit text from the source |
 | `true` / `false` | `1` / `0` |
 | `null` | empty string |
+
+If an object holds a key twice, the last value wins, as in JavaScript;
+RFC 8259 only says that names should be unique.
 
 ```tcl
 package require tclutils::tujson
@@ -152,11 +176,25 @@ set ini [::tclutils::tuini::setValue $ini lager gang 3]
 ::tclutils::tuini::toIni $ini                ;# -> \[lager\]\nort=Nord\ngang=3
 ```
 
+If a key appears twice in a section, the last value wins; Windows
+(`GetPrivateProfileString`) takes the first. Blanks at the edges of key
+and value are dropped, so a value cannot end in a blank.
+
 An unclosed section throws `{TCLUTILS TUINI SYNTAX}`,
-for example `unterminated section header: [offen`. The same limit applies to
-values with a line break in `tusettings`, chapter
-[tusettings](080-tusettings.md): the module stores INI and passes
-the syntax on to `tuini`.
+for example `unterminated section header: [offen`. What INI cannot hold,
+`setValue`, `addSection` and `toIni` refuse since 0.2 with
+`{TCLUTILS TUINI VALUE}`: a line break in a value; in a key `=`, a line
+break, `;`, `#` or `[` at the start, blanks at the edges; in a section
+name `]`, a line break, blanks at the edges. Up to 0.1 `toIni` wrote such
+text, and `parse` failed on it.
+
+```tcl
+catch {::tclutils::tuini::setValue {} lager notiz "a\nb"} m
+set m                                    ;# -> value of lager.notiz: no line breaks in INI
+```
+
+`tusettings`, chapter [tusettings](080-tusettings.md), checks the same
+limits when saving and also refuses blanks at the edges of a value.
 
 ---
 
@@ -187,7 +225,18 @@ caller passes an open handle. `insert` builds the statement in
 its own scope so that a value does not bind to a variable
 of the caller. `rows` returns dicts in the order of the
 rows. `value` takes the first column of the first row, otherwise the
-default.
+default. `value db sql -default d -params dict` keeps the default and
+the placeholders apart; the positional form `value db sql default
+?dict?` still works. Without options `value db $sql {id 1}` took the dict
+as the default and returned it when no row matched.
+
+Since `tusqlite` 0.2, `rows` and `value` take a dict with values for the
+placeholders `:name`. The query also runs in its own scope: it does not
+reach the caller's variables, and a placeholder without a value in the
+dict becomes SQL NULL. `update` and `delete` take the condition as a dict
+(`column value`, joined with AND) and return the number of changed rows.
+They refuse an empty condition dict, so that a mistake does not hit
+every row.
 
 A value equal to `[tusqlite::null]` becomes SQL NULL. `rows` returns this
 cell as an empty string. `quoteId` puts a name in
@@ -204,9 +253,22 @@ db eval {create table lager (ort text, gang integer)}
                                           ;# -> {ort Nord gang 3}
 ::tclutils::tusqlite::value db {select gang from lager where ort = 'x'} -
                                           ;# -> -
+::tclutils::tusqlite::insert db lager {ort Sued gang 5}
+                                          ;# -> 2
+::tclutils::tusqlite::rows db {select ort, gang from lager where gang > :min} {min 4}
+                                          ;# -> {ort Sued gang 5}
+::tclutils::tusqlite::value db {select gang from lager where ort = :o} - {o Nord}
+                                          ;# -> 3
+::tclutils::tusqlite::update db lager {gang 4} {ort Nord}
+                                          ;# -> 1
+::tclutils::tusqlite::delete db lager {ort Sued}
+                                          ;# -> 1
 ```
 
-An empty dict throws `{TCLUTILS TUSQLITE EMPTY}`.
+An empty dict for `insert` or for the new values of `update` throws
+`{TCLUTILS TUSQLITE EMPTY}`, an empty condition dict
+`{TCLUTILS TUSQLITE WHERE}`, a placeholder name with characters other
+than letters, digits and `_` `{TCLUTILS TUSQLITE PARAM <name>}`.
 
 ---
 
@@ -219,8 +281,8 @@ multi-valued attribute appears several times in the list.
 
 | Command | Effect |
 |---|---|
-| `parse text` | list of entries; a blank line separates two entries |
-| `toLdif einträge` | LDIF text, a blank line after each entry |
+| `parse text ?-binary namen?` | list of entries; a blank line separates two entries |
+| `toLdif einträge ?-binary namen?` | LDIF text, a blank line after each entry |
 | `dn eintrag` | value of `dn`, otherwise the empty string |
 | `get eintrag attribut` | all values of the attribute; case does not matter |
 | `attributes eintrag` | attribute names in the order of first appearance |
@@ -233,15 +295,26 @@ multi-valued attribute appears several times in the list.
 line that starts with a space continues the previous one. A
 value `attr:: …` is decoded through `tubase64` and read as UTF-8,
 because LDIF values are UTF-8 according to RFC 2849. Bytes that do not
-form valid UTF-8 (a binary attribute such as `jpegPhoto`) stay bytes, one
-character per byte. With `attr:< url`, the URL itself is the value; no
+form valid UTF-8 stay bytes, one character per byte. With `attr:< url`, the URL itself is the value; no
 file is read.
 
 `toLdif` writes a value as Base64 if it starts with a space, `:`
 or `<`, ends with a space or contains a character
 outside ASCII 32–126. Before Base64, the value is converted to UTF-8;
 `Hällo` becomes `SMOkbGxv`, and a character above 255 such as `€` works
-the same way. `toLdif` does not wrap long lines.
+the same way. `toLdif` does not wrap long lines. Comments from the
+input are gone after `parse`.
+
+Binary attributes (since 0.3) have bytes as their value, one character
+per byte. `parse` leaves the decoded bytes as they are, even when they
+happen to be valid UTF-8, and `toLdif` writes them unchanged as Base64.
+Up to 0.2 `toLdif` converted them to UTF-8 first, and the Base64 line held
+other bytes. Binary are `jpegPhoto`, `photo`, `audio`, `thumbnailPhoto`,
+the certificate and revocation list attributes (`userCertificate`,
+`cACertificate`, …), `objectGUID`, `objectSid`, every attribute with the
+option `;binary`, and the names from `-binary` to `parse` and `toLdif`.
+A character above `\xFF` in a binary value throws
+`{TCLUTILS TULDIF BINARY}`.
 
 ```tcl
 package require tclutils::tuldif
@@ -289,9 +362,10 @@ dict get $o -errorcode            ;# -> TCLUTILS TULDIF CHANGETYPE
 
 [tubookmark]{.index} reads and writes the Netscape bookmark format, the
 HTML file through which browsers import and export bookmarks.
-A bookmark is a dict with `title`, `url`, `folder`, `tags` and
-`adddate`. `folder` is the folder path with `/`, empty for the top
-level. `tags` is a list.
+A bookmark is a dict with `title`, `url`, `folder`, `folders`, `tags`
+and `adddate`. `folders` is the list of folder names from the top, empty
+for the top level; `folder` is the same joined with `/`, for display.
+`tags` is a list.
 
 | Command | Effect |
 |---|---|
@@ -307,13 +381,22 @@ level. `tags` is a list.
 line. Folders result from `<H3>` and the nested
 `<DL>`. Entities in the title, `HREF`, `TAGS` and `ADD_DATE` are resolved
 by `tuxml::unescape`. `TAGS` is split at the comma, `ADD_DATE` stays
-text. Other attributes such as `ICON` are dropped.
+text. Values may stand in double or single quotes or without (`HREF='…'`,
+since 0.3). If a `<DD>` follows a link, its text goes into the key
+`description`. If the bookmark lies in the folder with
+`PERSONAL_TOOLBAR_FOLDER="true"` (the toolbar) or below it, `toolbar`
+holds the path of that folder as a list. Both keys exist only when the
+file has them; `serialize` writes them back. Other attributes such as
+`ICON`, the dates of folders and a `<DD>` after a folder are dropped.
 
-`serialize` sorts the folders of a level by name and puts them
-before the bookmarks of that level. Title and folder name are escaped
-(`&`, `<`, `>`), the attribute values `HREF`, `TAGS` and `ADD_DATE`
-additionally `"` as `&quot;`. A `/` in a folder name is always a
-path separator. Each line of the header starts in the first column.
+`serialize` keeps the order of the list: a folder stands where its
+first bookmark is, folders and links stay mixed. It takes the path from
+`folders`, else it splits `folder` at `/`; a folder name with `/` thus
+stays one folder. Up to 0.2 `serialize` sorted the folders, put them
+before the links and made two folders out of `A/B`. Title and folder
+name are escaped (`&`, `<`, `>`), the attribute values `HREF`, `TAGS`
+and `ADD_DATE` additionally `"` as `&quot;`. Each line of the header
+starts in the first column.
 
 ```tcl
 package require tclutils::tubookmark
@@ -363,8 +446,10 @@ The view of the same data in the user interface is in *tkutils*
 - INI comments are `#` and `;`. `toIni` writes no spaces around the equals sign.
 - `tuxml` escapes in `textElement`. `element` inserts the content raw.
 - `tusqlite` binds SQL NULL through `null`. `rows` returns the empty string.
+- `tusqlite::rows` and `value` bind `:name` from the dict, not from variables.
+- CSV for a German Excel: `tucsv::writeFile … -profile excel-de`.
 - `tuldif`: entry = list of pairs. Base64 values are UTF-8; change records throw `CHANGETYPE`.
-- `tubookmark`: each `<A>` is a bookmark; `folder` is a path with `/`.
+- `tubookmark`: each `<A>` is a bookmark; `folders` holds the folder path as a list.
 
 ---
 

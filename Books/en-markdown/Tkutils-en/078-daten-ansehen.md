@@ -2,10 +2,10 @@
 
 The widgets of this chapter show what the engines in tclutils already
 read: CSV, JSON, XML, INI, Markdown, SQLite, diff, hex, strings, Base64,
-fuzzy search, ZIP and PDF structure. Plus the DAV browser and the text
-editor. The engine API is in the manual *tclutils*.
+fuzzy search, ZIP and PDF structure. Plus the DAV browser, the text
+editor and the system overview. The engine API is in the manual *tclutils*.
 
-`tkuxml`, `tkusqlite` and the editor are loaded separately. The other
+`tkuxml`, `tkusqlite`, `tkusysinfo` and the editor are loaded separately. The other
 viewers of this chapter are in the umbrella unless the chapter says
 otherwise.
 
@@ -64,7 +64,7 @@ names, attributes and text.
 
 ## INI: tkuini
 
-[tkuini]{.index} 0.2 shows sections on the left and the pairs of the
+[tkuini]{.index} 0.3 shows sections on the left and the pairs of the
 selected section on the right. The section `""` is called `(global)`.
 The engine is `tclutils::tuini`.
 
@@ -78,7 +78,13 @@ set w [::tkutils::tkuini::widget .w]
 ::tkutils::tkuini::data           $w
 ```
 
-`loadText` returns the number of sections.
+`loadText` returns the number of sections. `loadFile` and `save` work in
+UTF-8, whatever the system encoding (since 0.3).
+
+With `tuini` 0.2, `setKey` and `addSection` throw
+`{TCLUTILS TUINI VALUE}` when INI cannot hold the value, such as a line
+break; the data then stay unchanged. The edit bar trims blanks at the
+edges of key and section and shows such an error as a message.
 
 ---
 
@@ -147,8 +153,9 @@ set w [::tkutils::tkudiff::widget .w ?-width n? ?-height n?]
 
 Options go to `tudiff::text`. `getOps` returns a list `{op token}`.
 
-[tkuhexedit]{.index} 0.1 shows and changes bytes through `tuhexdump` and
-`tubin`.
+[tkuhexedit]{.index} 0.2 shows and changes bytes through `tuhexdump` and
+`tubin`. `saveFile` writes through a temporary file; if writing fails,
+the old file stays.
 
 ```tcl
 set w [::tkutils::tkuhexedit::widget .hex]
@@ -163,9 +170,13 @@ set w [::tkutils::tkuhexedit::widget .hex]
 `tclutils::tustrings`. `setData` and `loadFile` take `-minlength` and
 return the count. `getStrings` returns the runs.
 
-[tkubase64]{.index} 0.1 encodes and decodes through
+[tkubase64]{.index} 0.2 encodes and decodes through
 `tclutils::tubase64`. `encode` and `decode` return the output text.
 `setInput`, `getInput` and `getOutput` read and write the two fields.
+The fields hold text: `encode` converts it to UTF-8 first, `decode`
+reads the bytes as UTF-8, so `Jörg €` becomes `SsO2cmcg4oKs` and comes
+back unchanged. Up to 0.1 `€` failed under Tcl 9, and `ö` became one
+byte.
 
 ---
 
@@ -259,16 +270,16 @@ the flat list, `selected` the dict or `{}`.
 
 ## Editor: tkueditor
 
-[tkueditor]{.index} 0.2 is a text editor with a toolbar and a status
+[tkueditor]{.index} 0.4 is a text editor with a toolbar and a status
 line. It requires `tkuicon`, `tkutoolbar` and `tkustatus`, plus
-`tclutils::tuiconv`. The module header calls it a prototype.
+`tclutils::tuiconv`.
 
 ```tcl
 set w [::tkutils::tkueditor::widget .w ?-width n? ?-height n? ?-wrap modus?]
 ::tkutils::tkueditor::setText    $w text
 ::tkutils::tkueditor::getText    $w
 ::tkutils::tkueditor::loadFile   $w pfad ?-encoding name?
-::tkutils::tkueditor::saveFile   $w ?pfad? ?-encoding name? ?-eol lf|crlf?
+::tkutils::tkueditor::saveFile   $w ?pfad? ?-encoding name? ?-eol lf|crlf|cr?
 ::tkutils::tkueditor::find       $w nadel ?-from index? ?-nocase?
 ::tkutils::tkueditor::replace    $w nadel ersatz ?-all? ?-nocase?
 ::tkutils::tkueditor::gotoLine   $w n
@@ -280,6 +291,67 @@ set w [::tkutils::tkueditor::widget .w ?-width n? ?-height n? ?-wrap modus?]
 possible. `statusbarWidget` returns the `tkustatus` bar, or `""` when it
 is switched off.
 
+`loadFile` detects line ends as `lf`, `crlf`, `cr` or `mixed` (several
+kinds in one file); `eol` returns the style. A mixed file saved unchanged
+stays the same byte for byte; after an edit `saveFile` writes the most
+frequent kind and says so in the status line. Up to 0.2 a single CRLF
+made the whole file CRLF, and a lone CR became LF.
+
+The encoding goes through `tclutils::tuiconv`. With `tuiconv` 0.2 it is
+strict under Tcl 8.6 too: `loadFile` throws
+`{TCLUTILS TUICONV INVALID enc}` when the file is invalid in the
+encoding, `saveFile` throws `{TCLUTILS TUICONV UNMAPPABLE enc}` when a
+character cannot be written in it; the file then stays as it was. The
+toolbar's Open and Save buttons catch these errors, and files that
+cannot be read or written: a message box and the status bar name the
+file and the reason, the text in the editor stays (since 0.4; up to
+0.3 the error went to `bgerror`).
+
+---
+
+## System: tkusysinfo
+
+[tkusysinfo]{.index} 0.1 shows what `tclutils::tusysinfo` collects about
+the computer: operating system, processor, memory, model, disks and
+monitors, plus a "Screen" section from Tk itself (pixels, millimetres,
+DPI, `tk scaling`, colour depth, windowing system). Buttons: *Refresh*,
+*Copy* (text report to the clipboard), *Save...* (text or JSON). Not in
+the umbrella, because it needs `tusysinfo` from tclutils 0.69.0.
+
+```tcl
+set w [::tkutils::tkusysinfo::widget .si ?option wert ...?]
+::tkutils::tkusysinfo::refresh $w            ;# neu sammeln -> Dict; ein Fehler steht in der Statuszeile
+::tkutils::tkusysinfo::data    $w            ;# letztes Dict
+::tkutils::tkusysinfo::report  $w ?-anonymize 0|1?
+::tkutils::tkusysinfo::json    $w
+::tkutils::tkusysinfo::save    $w datei ?-format text|json? ?-anonymize 0|1?
+::tkutils::tkusysinfo::screen  fenster       ;# Tk-Bildschirmdaten
+```
+
+| Option | Default | Effect |
+|---|---|---|
+| `-sections` | all | sections of `tusysinfo` |
+| `-serials` | `0` | `1` shows serial numbers |
+| `-timeout` | `10000` | limit per program call in ms |
+| `-autoload` | `1` | collect right when the widget is built |
+| `-height` | `16` | visible rows |
+| `-buttons` | `1` | `0` without the button bar |
+
+```tcl
+package require tkutils::tkusysinfo
+pack [::tkutils::tkusysinfo::widget .si -sections {os cpu memory}] \
+    -fill both -expand 1
+dict keys [::tkutils::tkusysinfo::screen .]
+;# -> pixels millimeters dpi scaling depth windowing
+```
+
+Tk sees only one screen: with several monitors `pixels` is the whole X
+desktop on Linux, the main monitor on Windows and macOS. The monitors
+themselves are listed under "Monitors", from their EDID. On macOS
+collecting takes a few seconds; the mouse pointer shows `watch`
+meanwhile. An unknown option raises `{TKUTILS TKUSYSINFO OPTION <opt>}`,
+another format for `save` `{TKUTILS TKUSYSINFO FORMAT}`.
+
 ---
 
 ## In short
@@ -290,7 +362,8 @@ is switched off.
   name of the root element.
 - `tkudavbrowser::setData` builds the tree without network access.
   `refresh` blocks.
-- `tkueditor` 0.2 is marked as a prototype.
+- `tkueditor` keeps mixed line ends as long as the text is unchanged.
+- `tkusysinfo` needs tclutils 0.69.0 and is therefore outside the umbrella.
 
 ---
 

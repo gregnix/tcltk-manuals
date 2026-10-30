@@ -8,14 +8,15 @@ designer slots and the tkdevtools app. The engines stay in
 [tclutils]{.index}, so servers and CI do not need Tk. The code names
 Tcl/Tk **8.6** and **9.x**.
 
-This manual describes tkutils **0.48.0** for desktop applications built
+This manual describes tkutils **0.49.0** for desktop applications built
 on providers and ttk. The examples and the test suite run with Tcl/Tk
 8.6.14 and 9.0.4 on Linux (Xvfb). The book is not checked on Windows or
 macOS.
 
-Recommended pairing: tclutils **0.68.0** + tkutils **0.48.0** + ctrlutils
-**0.4**. Version 0.68.0 requires nothing new from tkutils.
-tkutils 0.48.0 needs at least tclutils **0.64.0**: only that version
+Recommended pairing: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils
+**0.4**. The CSV export of `tkutablelist` 0.5 (`toCsv`, `saveCsv`) needs
+`tclutils::tucsv` 0.2 from tclutils 0.69.0.
+Otherwise tkutils 0.49.0 needs at least tclutils **0.64.0**: only that version
 brings `tusettings` (for `tkugeometry`), `tutestrun` (test runner) and
 the functions tkdevtools needs.
 
@@ -60,7 +61,7 @@ in indirectly:
   [Error Messages](830-anhang-fehlermeldungen.md)).
 
 After `package require tkutils`, **55** packages `tkutils::*` are loaded
-— 53 directly, plus `tkutablelist` 0.4 and `tkuopts` 0.1. The umbrella
+— 53 directly, plus `tkutablelist` 0.5 and `tkuopts` 0.1. The umbrella
 asks for `tkupath 0.2` and `tkupreview 0.1`; the versions present, 0.3
 and 0.2, are loaded.
 
@@ -74,20 +75,21 @@ Not in the umbrella — require them one by one:
 | `tkuscrolledframe` | scrollutil (tklib) |
 | `tkutical`, `tkumonthcanvas` | tical 1.0 |
 | `tkucanvaspng` | `tclutils::tupngdraw` |
-| `tkutltools` and `tkutlclip`, `tkutlfind`, `tkutlfmt`, `tkutlfooter`, `tkutlsort`, `tkutlstate`, `tkutltree` | Tablelist (`tablelist_tile`) |
+| `tkutltools` and `tkutlclip`, `tkutldrag`, `tkutlfilter`, `tkutlfind`, `tkutlfmt`, `tkutlfooter`, `tkutlgroup`, `tkutlsort`, `tkutlstate`, `tkutltree` | Tablelist (`tablelist_tile`) |
 | `tkuload`, `tkurender` | — (designer core) |
 | `tkumdview`, `tkupdfinspect`, `tkulayoutcanvas` | tclutils engines |
+| `tkusysinfo` | `tclutils::tusysinfo` (tclutils 0.69.0) |
 
-These are **20** modules; together with the 55 from the umbrella they
-make up the **75** modules of the tree.
+These are **24** modules; together with the 55 from the umbrella they
+make up the **79** modules of the tree.
 
 ```tcl
 package require tkutils
-puts [package present tkutils::tkutablelist]   ;# -> 0.4, über tkufilelist
+puts [package present tkutils::tkutablelist]   ;# -> 0.5, über tkufilelist
 package require tkutils::tkuload               ;# extra
 ```
 
-All 20 separate modules load when tDOM, sqlite3, tklib (Tablelist,
+All 24 separate modules load when tDOM, sqlite3, tklib (Tablelist,
 scrollutil) and tical are on the path; `tkuicon` loads even without
 tksvg.
 
@@ -100,7 +102,7 @@ find it. The tical tree ships a `pkgIndex.tcl`; add it to the
 
 ```tcl
 lappend auto_path /pfad/zu/tical
-package require tkutils::tkutical        ;# -> 0.3
+package require tkutils::tkutical        ;# -> 0.4
 package require tkutils::tkumonthcanvas  ;# -> 0.5
 ```
 
@@ -149,18 +151,18 @@ the API catalog (E), practical examples (F) and the test environment
 
 ## In short
 
-- Widgets on tclutils engines, version 0.48.0.
-- Pairing tclutils 0.68.0 + tkutils 0.48.0 + ctrlutils 0.4; at least
-  tclutils 0.64.0.
+- Widgets on tclutils engines, version 0.49.0.
+- Pairing tclutils 0.69.0 + tkutils 0.49.0 + ctrlutils 0.5; at least
+  tclutils 0.64.0, 0.69.0 for the CSV export of `tkutablelist`.
 - Always call commands as `::tkutils::tku<name>::…`.
-- The umbrella needs Tablelist; 20 modules come only on their own.
+- The umbrella needs Tablelist; 24 modules come only on their own.
 - `tablelist_tile` everywhere; tklib refuses both Tablelist variants in
   one program.
 
 ::: {.info}
 **Tested with** Tcl/Tk 8.6.14 (Tablelist 6.20, scrollutil 1.17) and
 9.0.4 (Tablelist 7.11, scrollutil 2.10) on Linux under Xvfb, tclutils
-0.68.0, tical 1.1.
+0.69.0, tical 1.1.
 
 **Not tested:** Windows, macOS.
 :::

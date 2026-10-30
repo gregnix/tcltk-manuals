@@ -3,7 +3,7 @@
 
 set title     "tclutils"
 set author    ""
-set subtitle  "Pure-Tcl Engines, 0.68.0"
+set subtitle  "Pure-Tcl Engines, 0.69.0"
 set date      "2026-10-27"
 set lang      "en"
 set titlePage 1

@@ -1,17 +1,17 @@
 # Building Blocks for Applications
 
-Fifteen small modules that an application needs around its actual task:
+Seventeen small modules that an application needs around its actual task:
 log and events, checking and calculating, environment and deployment,
 output in the terminal and on the page. All are pure Tcl without Tk and
 are part of the umbrella `tclutils`. Platform-dependent are
-`tuappinfo`, `tudeploy`, `tuexe`, `tuopen` and `tuterm`; `tuzipfs`
+`tuappinfo`, `tusysinfo`, `tudeploy`, `tuexe`, `tuopen` and `tuterm`; `tuzipfs`
 needs Tcl 9 for most commands.
 
 | Group | Modules |
 |---|---|
 | Log and events | `tulog`, `tuevent`, `turegistry` |
 | Checking and calculating | `tuvalidate`, `tulist`, `tumath`, `tunumany` |
-| Environment and deployment | `tuappinfo`, `tudeploy`, `tuexe`, `tuopen`, `tuzipfs` |
+| Environment and deployment | `tuappinfo`, `tusysinfo`, `tuedid`, `tudeploy`, `tuexe`, `tuopen`, `tuzipfs` |
 | Output | `tuterm`, `tupagespec`, `tulayout` |
 
 The modules report unknown options and options without a value in
@@ -343,7 +343,7 @@ notations. Amounts with thousands separators and currency go to
 | `-prefer` | `auto` | `auto`, `si` or `locale`: which parser is asked first |
 
 With `auto`, `parse` chooses the SI path if the trimmed text is a
-number with a point as decimal separator, optional spaces and exactly
+number with a point or comma as decimal separator, optional spaces and exactly
 one of the letters `K M G T P E Z Y` (also lowercase) with an optional
 `i`. Everything else goes to `tunum::parse` with locale `auto`. If the
 chosen parser returns nothing, `parse` asks the other one. `parse`
@@ -361,12 +361,18 @@ package require tclutils::tunumany
 ::tclutils::tunumany::parse 2KiB             ;# -> 2048
 ::tclutils::tunumany::parse "3 G"            ;# -> 3000000000
 ::tclutils::tunumany::parse 1.5m             ;# -> 1500000
-::tclutils::tunumany::parse 1,5K             ;# -> (leer)
+::tclutils::tunumany::parse 1,5K             ;# -> 1500
+::tclutils::tunumany::parse 1,500K -default x ;# -> x
 ::tclutils::tunumany::parse x -default 0     ;# -> 0
 ```
 
 Lowercase letters stand for the same units: `m` is mega, not milli. A
-decimal comma before the unit (`1,5K`) is recognized by neither path.
+decimal comma before the unit counts: `1,5K` is 1500 (up to tclutils
+0.68.0 the empty string). With exactly three digits after the comma
+(`1,500K`) it could also group thousands; `parse` does not read that
+form and returns the default. Because the default `""` also stands for
+unreadable input, a `-default` that cannot be a number tells the two
+cases apart.
 Integers without a unit go through `tunum` and come back as
 floating-point numbers. An `i` directly after the unit letter makes the
 unit an IEC unit, also with a trailing `B`: `2KiB` gives 2048, `2KB`
@@ -399,15 +405,16 @@ developer. The caller handles the display.
 
 `trackTm` records a module file for the last section and returns the
 list of all recorded files. `buildReport` returns the report as one
-string, `writeLog` writes it with `puts` to the file (system encoding)
-and returns the file name.
+string, `writeLog` writes it as UTF-8 through a temporary file
+(`common::replaceFile`) and returns the file name; if writing fails, an
+old log stays. Up to 0.2 it wrote in the system encoding.
 
 The report has these sections in this order:
 
 | Section | Content |
 |---|---|
 | Header | title, `Timestamp:`, `PID:` |
-| `--- Tcl / Tk ---` | `info patchlevel`, `tk_version` (only with Tk), `info nameofexecutable`, operating system and version, machine, `Host:` |
+| `--- Tcl / Tk ---` | `info patchlevel`, `tk_patchLevel` (only with Tk; up to 0.2 `tk_version`), `info nameofexecutable`, operating system and version, machine, `Host:` |
 | `--- Environment ---` | `USER`, `USERNAME`, `HOME`, `TEMP`, `TMP`, `PATH`, if set |
 | `--- auto_path ---` | one entry per line |
 | `--- Loaded Packages ---` | each package with its `package provide` version |
@@ -462,6 +469,149 @@ The other lines depend on the computer: under Linux, for example,
 
 `writeLog` checks the options through `buildReport` before it creates
 the file.
+
+---
+
+## tusysinfo
+
+[tusysinfo]{.index} describes the computer: operating system, processor,
+memory, model, disks and monitors, on Linux, macOS and Windows.
+`tuappinfo` describes the Tcl runtime, `tusysinfo` the machine beneath
+it.
+
+```tcl
+::tclutils::tusysinfo::collect ?option wert ...?        ;# -> Dict
+::tclutils::tusysinfo::report  info ?-title text? ?-anonymize 0|1?
+::tclutils::tusysinfo::toJson  info ?-indent n?
+```
+
+The module reads files and the registry first and calls a program only
+where nothing else has the data. If a program is missing, its fields
+stay empty; `collect` does not fail because of it.
+
+| System | Sources |
+|---|---|
+| Linux | `/etc/os-release`, `/proc/cpuinfo`, `/proc/meminfo`, `/sys/class/dmi/id`, `/sys/block`, `/sys/class/drm/*/edid`; no program, no root |
+| macOS | `sw_vers`, `uname`, `sysctl`, `system_profiler -json` (a few seconds) |
+| Windows | registry (package `registry`) for system, CPU, model and the monitors' EDID; one PowerShell call (CIM) for memory, disks and the active monitors |
+
+| Option | Default | Effect |
+|---|---|---|
+| `-sections` | all | any of `os cpu memory machine disks displays` |
+| `-serials` | `0` | `1`: serial numbers of computer, disks, monitors |
+| `-commands` | `1` | `0`: call no program |
+| `-timeout` | `10000` | limit in ms per program call |
+| `-platform` | this computer | `linux`, `macos`, `windows` |
+| `-root` | empty | Linux: read `/etc`, `/proc`, `/sys` below this folder (tests) |
+
+`collect` returns a dict with `platform`, `host` and per section a dict
+(`os`, `cpu`, `memory`, `machine`) or a list of dicts (`disks`,
+`displays`). Sizes are in bytes. A monitor carries the fields from its
+EDID (section `tuedid`), the connector and `present` (1 connected, 0 not
+connected). On Windows a monitor without a status counts as not
+connected. If PowerShell gives no answer or one that cannot be read, the
+dict has a list `warnings` and `report` shows a section "Warnings";
+memory, disks and monitor state are then missing instead of empty.
+
+```tcl
+package require tclutils::tusysinfo
+set i [::tclutils::tusysinfo::collect -sections {os memory}]
+lsort [dict keys $i]                  ;# -> host memory os platform
+dict get $i os id                     ;# -> debian (depends on the computer)
+puts [::tclutils::tusysinfo::report $i -anonymize 1]
+```
+
+`report` shows disks in GB as on the label and memory in GiB, `toJson`
+writes numbers as numbers. The command line `bin/tusysinfo.tcl` prints
+the same, with `--json`, `--serials`, `--anonymize` and `--sections`.
+
+Serial numbers, host names and MAC addresses identify a computer and,
+at an office desk, its user. Serial numbers come only with
+`-serials 1`, MAC addresses not at all; `report -anonymize 1` hides the
+host name and serial numbers.
+
+Further details:
+
+- Linux: only root may read the computer's serial number
+  (`product_serial`). Virtual machines often have no DMI data and no
+  monitor.
+- Windows: the registry keeps every monitor that was ever connected,
+  often the same one under several entries (other port, other driver).
+  `tusysinfo` lists each EDID once and sets `present` from
+  `Get-PnpDevice -Class Monitor`: 1 for status OK, otherwise 0, empty
+  without that list. In a remote desktop session the physical monitors
+  count as not connected; `report` then writes "(not connected)".
+  `WmiMonitorID` reports "not supported" on some computers and is
+  therefore not used. Windows 11
+  still reports "Windows 10 …" as `ProductName`; from build 22000 on it
+  shows Windows 11. SSD or HDD comes from `Get-PhysicalDisk`; an NVMe
+  disk counts as SSD.
+- Firmware placeholders such as "Default string" or "To be filled by
+  O.E.M." are left empty.
+- macOS: `system_profiler` takes a few seconds; `-sections {os cpu
+  memory}` leaves it out. For a monitor it gives maker, model, product
+  code, week and year, but no size; `widthCm`, `heightCm` and
+  `diagonal` stay 0. There is one entry per APFS container (`disk3`),
+  its volumes in `volumes`; the size is that of the container, a little
+  below the drive's.
+- Linux: `disks` shows the devices, not loop devices, RAM disks and
+  device mapper volumes (LVM, LUKS); RAID (`md*`) stays. Debian
+  testing/sid has no `VERSION_ID`; `version` then comes from
+  `/etc/debian_version`, e.g. `forky/sid`.
+- Checked on a Linux PC with two monitors (Debian sid), a Windows 11
+  PC and a Mac mini (Apple Silicon, macOS 27). The tests replay
+  recorded output of these computers.
+
+| Case | Code |
+|---|---|
+| unknown option, option without a value | `{TCLUTILS TUSYSINFO OPTION}` |
+| unknown section | `{TCLUTILS TUSYSINFO SECTION}` |
+| unknown platform | `{TCLUTILS TUSYSINFO PLATFORM}` |
+
+---
+
+## tuedid
+
+[tuedid]{.index} reads a monitor's EDID block. In it the monitor
+describes itself in 128 bytes: manufacturer, product code, serial
+number, week and year of manufacture, size in centimetres and the
+preferred resolution; text fields carry the model name and a serial
+number as text.
+
+```tcl
+::tclutils::tuedid::parse    bytes       ;# -> Dict
+::tclutils::tuedid::parseHex text        ;# hex digits; spaces and ":" ignored
+::tclutils::tuedid::vendor   kürzel      ;# DEL -> Dell
+```
+
+On Linux the bytes are in `/sys/class/drm/card*-*/edid`, on Windows in
+the registry (`Enum\DISPLAY\…\Device Parameters`, value `EDID`);
+`xrandr --verbose` and `ioreg` on macOS print them as hex. `tusysinfo`
+reads them itself.
+
+```tcl
+package require tclutils::tuedid
+set fh [open /sys/class/drm/card0-DP-1/edid rb]
+set d [::tclutils::tuedid::parse [read $fh]]
+close $fh
+dict get $d vendor                    ;# -> Dell
+dict get $d diagonal                  ;# -> 27.2 (inches)
+dict get $d preferred                 ;# -> width 1920 height 1080 refresh 60.0
+```
+
+| Key | Content |
+|---|---|
+| `valid` | 1 for a correct checksum; a block with a wrong sum is still read |
+| `manufacturer`, `vendor` | PNP id (`DEL`) and the name for known ids |
+| `productCode`, `serial`, `serialText`, `name` | product code (hex), serial number as a number and as text, model name |
+| `week`, `year` | manufacture, 0 when unknown |
+| `widthCm`, `heightCm`, `diagonal` | size; 0 for projectors without a size |
+| `preferred` | first detailed resolution: `width`, `height`, `refresh` |
+
+Extension blocks (CEA-861, DisplayID) are counted in `extensions`, not
+read. Fewer than 128 bytes raise `{TCLUTILS TUEDID SHORT}`, a missing
+EDID header `{TCLUTILS TUEDID HEADER}`, text that is not hex
+`{TCLUTILS TUEDID HEX}`.
 
 ---
 

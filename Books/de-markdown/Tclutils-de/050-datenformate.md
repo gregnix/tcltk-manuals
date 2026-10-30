@@ -22,10 +22,10 @@ in Dicts. Es ist kein Import-Rahmen.
 | `parseLine zeile` | eine Zeile zur Liste; `-delimiter` (Vorgabe Komma), `-quote` (Vorgabe `"`), `-trim` (Vorgabe 0) |
 | `joinLine felder` | eine Liste zur Zeile; dieselben `-delimiter` und `-quote`, dazu `-alwaysQuote` (Vorgabe 0) |
 | `parse text ?optionen?` | Zeilen zu einer Liste von Feldlisten; ein Feld darf einen Zeilenumbruch enthalten |
-| `text zeilen ?optionen?` | Feldlisten zurück zum Text; zusätzlich `-newline` |
+| `text zeilen ?optionen?` | Feldlisten zurück zum Text; zusätzlich `-newline`, `-bom`, `-profile` |
 | `dicts zeilen` | erste Zeile wird Kopf, jede weitere ein Dict |
-| `file pfad ?optionen?` | Datei wie `parse` |
-| `writeFile pfad zeilen ?optionen?` | Datei schreiben |
+| `file pfad ?optionen?` | Datei wie `parse`; zusätzlich `-encoding` (Vorgabe `utf-8`), `-profile` |
+| `writeFile pfad zeilen ?optionen?` | Datei schreiben; wie `text`, dazu `-encoding` |
 
 Ein Feld mit Komma, Anführungszeichen oder Zeilenumbruch wird in
 Anführungszeichen gesetzt. Ein Anführungszeichen im Feld verdoppelt
@@ -46,7 +46,28 @@ set zeilen [::tclutils::tucsv::parse "name;city\nAlice;Berlin" -delimiter {;}]
 `-strict 1` ist die Vorgabe. Ein nicht geschlossenes Anführungszeichen
 wirft `{TCLUTILS TUCSV QUOTE}` mit `unterminated quoted field`.
 `-strict 0` nimmt den Rest als Feld und wirft nicht. Ein führendes
-UTF-8-BOM entfernt `parse` von selbst; das steht so in `docs/tucsv.md`.
+UTF-8-BOM entfernt `parse` von selbst, auch das aus `-profile excel-de`.
+
+Für Excel gibt es seit `tucsv` 0.2 Profile. `-profile excel-de` setzt
+Semikolon, CRLF und ein UTF-8-BOM, damit ein deutsches Excel Umlaute
+und Spalten richtig erkennt. `-profile rfc4180` setzt Komma und CRLF.
+Eine Option nach dem Profil gilt vor dem Profil. Ein unbekanntes Profil
+wirft `{TCLUTILS TUCSV PROFILE <name>}`.
+
+```tcl
+package require tclutils::tucsv 0.2
+set zeilen {{Name Ort} {Müller Köln} {{A, B} Essen}}
+::tclutils::tucsv::writeFile liste.csv $zeilen -profile excel-de
+                                          ;# BOM, "Name;Ort" CRLF ...
+::tclutils::tucsv::file liste.csv -delimiter {;}
+                                          ;# -> {Name Ort} {Müller Köln} {{A, B} Essen}
+::tclutils::tucsv::text {{a b}} -profile excel-de -delimiter ,
+                                          ;# BOM + a,b
+```
+
+`file` und `writeFile` lesen und schreiben UTF-8, wenn `-encoding`
+nichts anderes sagt. `writeFile` schreibt die Zeilenenden aus
+`-newline` unverändert; ohne `-newline` gilt die Vorgabe der Plattform.
 
 Felder ohne Anführungszeichen, nur am Trennzeichen geschnitten, gehören
 zu `tucut` im Kapitel [Text und Dateien](040-text-und-dateien.md).
@@ -69,6 +90,9 @@ von Objekt, Array und Skalar verloren.
 | Zahl | der Zifferntext aus der Quelle |
 | `true` / `false` | `1` / `0` |
 | `null` | leerer String |
+
+Steht ein Schlüssel in einem Objekt zweimal, gilt der letzte Wert, wie in
+JavaScript; RFC 8259 verlangt nur, dass Namen eindeutig sein sollten.
 
 ```tcl
 package require tclutils::tujson
@@ -152,11 +176,27 @@ set ini [::tclutils::tuini::setValue $ini lager gang 3]
 ::tclutils::tuini::toIni $ini                ;# -> \[lager\]\nort=Nord\ngang=3
 ```
 
+Steht ein Schlüssel in einem Abschnitt zweimal, gilt der letzte Wert;
+Windows (`GetPrivateProfileString`) nimmt den ersten. Leerzeichen am
+Rand von Schlüssel und Wert fallen weg, ein Wert kann also nicht auf ein
+Leerzeichen enden.
+
 Ein nicht geschlossener Abschnitt wirft `{TCLUTILS TUINI SYNTAX}`,
-etwa `unterminated section header: [offen`. Dieselbe Grenze gilt für
-Werte mit Zeilenumbruch in `tusettings`, Kapitel
-[tusettings](080-tusettings.md): das Modul speichert INI und reicht
-die Syntax an `tuini` weiter.
+etwa `unterminated section header: [offen`. Was INI nicht fassen kann,
+lehnen `setValue`, `addSection` und `toIni` seit 0.2 mit
+`{TCLUTILS TUINI VALUE}` ab: einen Zeilenumbruch im Wert; im Schlüssel
+`=`, einen Zeilenumbruch, `;`, `#` oder `[` am Anfang, Leerzeichen am
+Rand; im Abschnittsnamen `]`, einen Zeilenumbruch, Leerzeichen am Rand.
+Bis 0.1 schrieb `toIni` solchen Text, und `parse` scheiterte daran.
+
+```tcl
+catch {::tclutils::tuini::setValue {} lager notiz "a\nb"} m
+set m                                    ;# -> value of lager.notiz: no line breaks in INI
+```
+
+`tusettings`, Kapitel [tusettings](080-tusettings.md), prüft dieselben
+Grenzen schon beim Speichern und lehnt zusätzlich Leerzeichen am Rand
+eines Werts ab.
 
 ---
 
@@ -187,7 +227,18 @@ Aufrufer übergibt ein offenes Handle. `insert` baut die Anweisung in
 einem eigenen Geltungsbereich, damit ein Wert nicht an eine Variable
 des Aufrufers bindet. `rows` liefert Dicts in der Reihenfolge der
 Zeilen. `value` nimmt die erste Spalte der ersten Zeile, sonst die
-Vorgabe.
+Vorgabe. `value db sql -default d -params dict` hält Vorgabe und
+Platzhalter auseinander; die Stellungsform `value db sql vorgabe ?dict?`
+gilt weiter. Ohne Optionen wurde `value db $sql {id 1}` die Vorgabe,
+und das Dict kam zurück, wenn keine Zeile passte.
+
+Seit `tusqlite` 0.2 nehmen `rows` und `value` ein Dict mit Werten für
+die Platzhalter `:name`. Die Abfrage läuft ebenfalls in einem eigenen
+Geltungsbereich: Variablen des Aufrufers erreicht sie nicht, ein
+Platzhalter ohne Wert im Dict wird SQL-NULL. `update` und `delete`
+nehmen die Bedingung als Dict (`spalte wert`, mit UND verknüpft) und
+geben die Zahl der geänderten Zeilen zurück. Ein leeres Bedingungs-Dict
+lehnen sie ab, damit ein Fehler nicht alle Zeilen trifft.
 
 Ein Wert gleich `[tusqlite::null]` wird SQL-NULL. `rows` gibt diese
 Zelle als leere Zeichenkette zurück. `quoteId` setzt einen Namen in
@@ -204,9 +255,22 @@ db eval {create table lager (ort text, gang integer)}
                                           ;# -> {ort Nord gang 3}
 ::tclutils::tusqlite::value db {select gang from lager where ort = 'x'} -
                                           ;# -> -
+::tclutils::tusqlite::insert db lager {ort Sued gang 5}
+                                          ;# -> 2
+::tclutils::tusqlite::rows db {select ort, gang from lager where gang > :min} {min 4}
+                                          ;# -> {ort Sued gang 5}
+::tclutils::tusqlite::value db {select gang from lager where ort = :o} - {o Nord}
+                                          ;# -> 3
+::tclutils::tusqlite::update db lager {gang 4} {ort Nord}
+                                          ;# -> 1
+::tclutils::tusqlite::delete db lager {ort Sued}
+                                          ;# -> 1
 ```
 
-Ein leeres Dict wirft `{TCLUTILS TUSQLITE EMPTY}`.
+Ein leeres Dict bei `insert` oder bei den neuen Werten von `update` wirft
+`{TCLUTILS TUSQLITE EMPTY}`, ein leeres Bedingungs-Dict
+`{TCLUTILS TUSQLITE WHERE}`, ein Platzhaltername mit anderen Zeichen
+als Buchstaben, Ziffern und `_` `{TCLUTILS TUSQLITE PARAM <name>}`.
 
 ---
 
@@ -219,8 +283,8 @@ mehrwertiges Attribut steht mehrmals in der Liste.
 
 | Befehl | Wirkung |
 |---|---|
-| `parse text` | Liste der Einträge; eine Leerzeile trennt zwei Einträge |
-| `toLdif einträge` | LDIF-Text, nach jedem Eintrag eine Leerzeile |
+| `parse text ?-binary namen?` | Liste der Einträge; eine Leerzeile trennt zwei Einträge |
+| `toLdif einträge ?-binary namen?` | LDIF-Text, nach jedem Eintrag eine Leerzeile |
 | `dn eintrag` | Wert von `dn`, sonst die leere Zeichenkette |
 | `get eintrag attribut` | alle Werte des Attributs; Groß- und Kleinschreibung zählt nicht |
 | `attributes eintrag` | Attributnamen in der Reihenfolge des ersten Auftretens |
@@ -233,15 +297,26 @@ mehrwertiges Attribut steht mehrmals in der Liste.
 Zeile, die mit einem Leerzeichen beginnt, setzt die vorige fort. Ein
 Wert `attr:: …` wird über `tubase64` dekodiert und als UTF-8 gelesen,
 denn LDIF-Werte sind nach RFC 2849 UTF-8. Bytes, die kein gültiges
-UTF-8 ergeben (ein Binärattribut wie `jpegPhoto`), bleiben Bytes, ein
-Zeichen je Byte. Bei `attr:< url` ist die URL selbst der Wert; eine
+UTF-8 ergeben, bleiben Bytes, ein Zeichen je Byte. Bei `attr:< url` ist die URL selbst der Wert; eine
 Datei wird nicht gelesen.
 
 `toLdif` schreibt einen Wert als Base64, wenn er mit Leerzeichen, `:`
 oder `<` beginnt, mit einem Leerzeichen endet oder ein Zeichen
 außerhalb von ASCII 32–126 enthält. Vor Base64 wird der Wert nach UTF-8
 gewandelt; `Hällo` wird `SMOkbGxv`, ein Zeichen über 255 wie `€` geht
-ebenso. Lange Zeilen bricht `toLdif` nicht um.
+ebenso. Lange Zeilen bricht `toLdif` nicht um. Kommentare aus der
+Eingabe sind nach `parse` weg.
+
+Binärattribute (seit 0.3) haben Bytes als Wert, ein Zeichen je Byte.
+`parse` lässt die dekodierten Bytes stehen, auch wenn sie zufällig
+gültiges UTF-8 sind, und `toLdif` schreibt sie unverändert als Base64.
+Bis 0.2 wandelte `toLdif` sie erst nach UTF-8, und die Base64-Zeile trug
+andere Bytes. Binär sind `jpegPhoto`, `photo`, `audio`, `thumbnailPhoto`,
+die Zertifikats- und Sperrlisten-Attribute (`userCertificate`,
+`cACertificate`, …), `objectGUID`, `objectSid`, jedes Attribut mit der
+Option `;binary` und die Namen aus `-binary` an `parse` und `toLdif`.
+Ein Zeichen über `\xFF` in einem Binärwert wirft
+`{TCLUTILS TULDIF BINARY}`.
 
 ```tcl
 package require tclutils::tuldif
@@ -289,9 +364,10 @@ dict get $o -errorcode            ;# -> TCLUTILS TULDIF CHANGETYPE
 
 [tubookmark]{.index} liest und schreibt das Netscape-Lesezeichenformat, die
 HTML-Datei, über die Browser Lesezeichen importieren und exportieren.
-Ein Lesezeichen ist ein Dict mit `title`, `url`, `folder`, `tags` und
-`adddate`. `folder` ist der Ordnerpfad mit `/`, leer für die oberste
-Ebene. `tags` ist eine Liste.
+Ein Lesezeichen ist ein Dict mit `title`, `url`, `folder`, `folders`,
+`tags` und `adddate`. `folders` ist die Liste der Ordnernamen von oben,
+leer für die oberste Ebene; `folder` dasselbe mit `/` verbunden, zum
+Anzeigen. `tags` ist eine Liste.
 
 | Befehl | Wirkung |
 |---|---|
@@ -307,13 +383,23 @@ Ebene. `tags` ist eine Liste.
 Zeile stehen. Ordner ergeben sich aus `<H3>` und den geschachtelten
 `<DL>`. Entitäten in Titel, `HREF`, `TAGS` und `ADD_DATE` löst
 `tuxml::unescape` auf. `TAGS` wird am Komma geteilt, `ADD_DATE` bleibt
-Text. Andere Attribute wie `ICON` fallen weg.
+Text. Werte dürfen in doppelten oder einfachen Anführungszeichen oder
+ohne stehen (`HREF='…'`, seit 0.3). Steht nach einem Link ein `<DD>`,
+kommt sein Text in den Schlüssel `description`. Liegt das Lesezeichen in
+dem Ordner mit `PERSONAL_TOOLBAR_FOLDER="true"` (der Lesezeichenleiste)
+oder darunter, trägt `toolbar` den Pfad dieses Ordners als Liste. Beide
+Schlüssel gibt es nur, wenn die Datei sie hat; `serialize` schreibt sie
+zurück. Andere Attribute wie `ICON`, die Daten der Ordner und ein `<DD>`
+nach einem Ordner fallen weg.
 
-`serialize` sortiert die Ordner einer Ebene nach Namen und setzt sie
-vor die Lesezeichen dieser Ebene. Titel und Ordnername werden maskiert
-(`&`, `<`, `>`), die Attributwerte `HREF`, `TAGS` und `ADD_DATE`
-zusätzlich `"` als `&quot;`. Ein `/` im Ordnernamen ist immer
-Pfadtrenner. Jede Zeile des Kopfs beginnt in der ersten Spalte.
+`serialize` behält die Reihenfolge der Liste: Ein Ordner steht dort,
+wo sein erstes Lesezeichen steht, Ordner und Links bleiben gemischt.
+Den Pfad nimmt es aus `folders`, sonst teilt es `folder` am `/`; ein
+Ordnername mit `/` bleibt so ein Ordner. Bis 0.2 sortierte `serialize`
+die Ordner, stellte sie vor die Links und machte aus `A/B` zwei Ordner.
+Titel und Ordnername werden maskiert (`&`, `<`, `>`), die Attributwerte
+`HREF`, `TAGS` und `ADD_DATE` zusätzlich `"` als `&quot;`. Jede Zeile
+des Kopfs beginnt in der ersten Spalte.
 
 ```tcl
 package require tclutils::tubookmark
@@ -363,8 +449,10 @@ Die Ansicht derselben Daten in der Oberfläche liegt in *tkutils*
 - INI-Kommentare sind `#` und `;`. Um das Gleichheitszeichen schreibt `toIni` keine Leerzeichen.
 - `tuxml` maskiert in `textElement`. `element` setzt den Inhalt roh ein.
 - `tusqlite` bindet SQL-NULL über `null`. Aus `rows` kommt die leere Zeichenkette.
+- `tusqlite::rows` und `value` binden `:name` aus dem Dict, nicht aus Variablen.
+- CSV für ein deutsches Excel: `tucsv::writeFile … -profile excel-de`.
 - `tuldif`: Eintrag = Liste von Paaren. Base64-Werte sind UTF-8; Änderungssätze werfen `CHANGETYPE`.
-- `tubookmark`: jedes `<A>` ein Lesezeichen; `folder` ist ein Pfad mit `/`.
+- `tubookmark`: jedes `<A>` ein Lesezeichen; den Ordnerpfad trägt `folders` als Liste.
 
 ---
 

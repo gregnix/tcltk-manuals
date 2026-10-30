@@ -9,7 +9,7 @@ Tcl selbst (`zlib` für ZIP gehört zu Tcl). Die Module verlangen
 `package require Tcl 8.6-` und laufen damit unter Tcl **8.6** und
 **9.x**.
 
-Dieses Handbuch beschreibt tclutils **0.68.0**. Es richtet sich an
+Dieses Handbuch beschreibt tclutils **0.69.0**. Es richtet sich an
 Server-, CLI- und CI-Programme ohne Tk und an Anwendungen, die die
 Engines unter tkutils und ctrlutils nutzen.
 
@@ -77,12 +77,12 @@ Fehlermeldungen (D), den API-Katalog (E) und Praxisbeispiele (F).
 
 ## Merkliste
 
-- Pure Tcl, kein Tk, Version 0.68.0.
+- Pure Tcl, kein Tk, Version 0.69.0.
 - Kern ohne Fremdpakete; tls, tcllib-`ftp`, curl/wget, Thread nur für
   optionale Module bzw. den Pool von `tutask`.
-- Pairing laut CHANGELOG von tkutils 0.48.0: tclutils 0.68.0 + tkutils
-  0.48.0 + ctrlutils 0.4. tkutils 0.48.0 braucht mindestens tclutils
-  0.64.0.
+- Pairing laut CHANGELOG von tkutils 0.49.0: tclutils 0.69.0 + tkutils
+  0.49.0 + ctrlutils 0.5. tkutils 0.49.0 braucht mindestens tclutils
+  0.64.0, den CSV-Export von `tkutablelist` erst mit 0.69.0.
 
 ---
 

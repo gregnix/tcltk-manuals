@@ -15,6 +15,7 @@ Tcl itself; the digests are pure Tcl and need no tcllib.
 | Option | Default | Effect |
 |---|---|---|
 | `-maxlen` | `0` | line break after this many characters; `0` keeps the line whole |
+| `-encoding` | `binary` | `encode`: `binary` takes each character as one byte, `utf-8` converts text first; `decode`: `utf-8` turns the bytes back into text |
 
 ```tcl
 package require tclutils::tubase64
@@ -27,6 +28,22 @@ package require tclutils::tubase64
 `-maxlen -1` throws `{TCLUTILS TUBASE64 MAXLEN}`. A text without valid
 Base64, such as `!!!`, comes back as an empty string, without an
 error code.
+
+Without the option `encode` takes bytes. A character above 255 throws
+`{TCLUTILS TUBASE64 BYTES}` on Tcl 8.6 as on 9.0; up to tclutils 0.68.0
+Tcl 8.6 silently kept only the low byte. Text goes in with
+`-encoding utf-8`:
+
+```tcl
+::tclutils::tubase64::encode "Jörg €" -encoding utf-8   ;# -> SsO2cmcg4oKs
+::tclutils::tubase64::decode SsO2cmcg4oKs -encoding utf-8 ;# -> Jörg €
+::tclutils::tubase64::encode Jörg                        ;# -> SvZyZw==
+```
+
+The last example encodes `ö` as the single byte `f6`. `tuhash` and
+`tuxxhash`, in contrast, convert text to UTF-8 on their own; they are
+mostly used on text, `tubase64`, `tubase32` and `tucrc` mostly on file
+and image data.
 
 ---
 
@@ -85,7 +102,11 @@ alphabet throws `{TCLUTILS TUBASE32 CHAR}`, for example
 ## CRC: tucrc
 
 `crc32` and `adler32` pass the bytes on to `zlib`. A second
-argument is the start value for a continued checksum. `hex32` turns
+argument is the start value for a continued checksum. After it,
+`-encoding binary|utf-8` may follow, as with `tubase64`: without the
+option a character above 255 is `{TCLUTILS TUCRC BYTES}`, with `utf-8`
+the checksum equals that of `crc32File` on a UTF-8 file with this text.
+`hex32` turns
 it into eight hex characters in uppercase. `crc32File` and
 `adler32File` read the file in binary mode.
 
@@ -97,8 +118,9 @@ package require tclutils::tucrc
 ::tclutils::tucrc::adler32 hallo            ;# -> 102498833
 ```
 
-A wrong argument counts as `wrong # args`, without its own
-`-errorcode`.
+A wrong argument reports `wrong # args` with
+`{TCLUTILS TUCRC OPTION}`, an unknown encoding
+`{TCLUTILS TUCRC ENCODING}`.
 
 ---
 
@@ -186,10 +208,10 @@ binary; the conversion is done with `encoding convertfrom` and
 | Command | Effect |
 |---|---|
 | `encodings` | the names from `encoding names`, sorted |
-| `convert bytes von nach` | bytes in `von` to bytes in `nach` |
-| `readFile pfad kodierung` | the text of the file |
-| `writeFile pfad text kodierung` | writes the file, returns `pfad` |
-| `convertFile ein aus von nach` | reads `ein`, writes `aus`, returns `aus` |
+| `convert bytes von nach ?-replace b?` | bytes in `von` to bytes in `nach` |
+| `readFile pfad kodierung ?-replace b?` | the text of the file |
+| `writeFile pfad text kodierung ?-replace b?` | writes the file, returns `pfad` |
+| `convertFile ein aus von nach ?-replace b?` | reads `ein`, writes `aus`, returns `aus` |
 
 A name must appear exactly in `encoding names`, such as `utf-8`,
 `iso8859-1` or `cp1252`. Spellings such as `utf8` or `latin1`
@@ -206,10 +228,22 @@ set zurueck [::tclutils::tuiconv::convert $cp cp1252 utf-8]
 encoding convertfrom utf-8 $zurueck         ;# -> Größe
 ```
 
-For a character the target encoding does not know, or for
-invalid bytes, the versions differ. Tcl 9.0 throws
-`{TCL ENCODING ILLEGALSEQUENCE 0}`, for example for `ł` to `cp1252`.
-Tcl 8.6 silently inserts `?` or reads the byte as a single character.
+Since 0.2 the conversion is equally strict under Tcl 8.6 and 9.0. A
+character the target encoding does not know, for example `ł` to
+`cp1252`, throws `{TCLUTILS TUICONV UNMAPPABLE cp1252}`; bytes that are
+invalid in the source encoding throw `{TCLUTILS TUICONV INVALID name}`.
+`-replace 1` on all commands substitutes instead, with `?` when writing.
+`writeFile` converts before it opens the file: on an error the file
+keeps its content. Up to 0.1 Tcl 8.6 silently inserted `?`, Tcl 9.0
+threw a Tcl error without its own code.
+
+```tcl
+catch {::tclutils::tuiconv::convert [encoding convertto utf-8 ł] utf-8 cp1252} m
+set m             ;# -> character U+0142 at index 0 cannot be written in cp1252
+binary encode hex [::tclutils::tuiconv::convert \
+    [encoding convertto utf-8 ł] utf-8 cp1252 -replace 1]
+                                          ;# -> 3f
+```
 
 ---
 
@@ -262,7 +296,10 @@ package require tclutils::tuurl
                                           ;# -> ort {Nord Lager} gang 3
 ```
 
-A key without `=` gets the empty value. An invalid
+A key without `=` gets the empty value. If a key occurs more than once
+in the query (`a=1&a=2`, for example with checkboxes), `parseQuery`
+keeps only the last value; if every value counts, split the query at
+`&` yourself. An invalid
 boolean word for `-plus` throws `{TCLUTILS COMMON BOOLEAN -plus}`.
 
 ---
@@ -327,6 +364,18 @@ package require tclutils::tudiff
 two lines each and `-maxcells 1` throw `{TCLUTILS TUDIFF TOO_LARGE}`,
 because 2 × 2 exceeds the limit.
 
+By default line ends do not count: CRLF, CR and LF are the same, and so
+is a missing final newline (`-eol ignore`). `-eol strict` (since 0.2)
+compares each line with its end. The operations then carry the end, and
+`unifiedText` marks a missing newline as GNU diff does. `files`,
+`unified` and `context` also take `-encoding`.
+
+```tcl
+::tclutils::tudiff::text "a\r\nb" "a\nb\n"              ;# -> {equal a} {equal b}
+::tclutils::tudiff::unifiedText "a\nb\n" "a\nb" -eol strict
+;# -> --- old\n+++ new\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file
+```
+
 ---
 
 ## Applying a Diff: tupatch
@@ -347,14 +396,17 @@ but also `diff -u` or `git diff` with several hunks.
 | `-strict` | `1` | checks context and deletion lines against the source; `0` follows the diff blindly |
 
 A hunk from `parse` has `oldStart`, `oldLen`, `newStart`,
-`newLen` and `body`. `body` is a list of pairs of kind (` `,
-`+`, `-`) and line. Header lines such as `---`, `+++`, `diff` and `index`
-are dropped, as is `\ No newline at end of file`. An empty line
-ends a hunk.
+`newLen`, `body`, `oldNoNl` and `newNoNl`. `body` is a list of pairs of
+kind (` `, `+`, `-`) and line. Header lines such as `---`, `+++`, `diff`
+and `index` are dropped. `oldNoNl` and `newNoNl` are 1 when
+`\ No newline at end of file` follows the last old or new line. An empty
+line ends a hunk.
 
 Each hunk applies at the line from its header. `tupatch` does not
-search for an offset. The lines are joined with `\n`; a
-line break at the end of the source is missing from the result. If the diff
+search for an offset. The lines are joined with `\n`. If the source
+ends with `\n`, so does the result; the marker
+`\ No newline at end of file` works as with `diff -u` (since 0.3; up to
+0.2 the last `\n` was always missing from the result). If the diff
 has no hunk, the source comes back unchanged.
 
 ```tcl
@@ -389,7 +441,7 @@ counterparts); `-strict foo` throws `{TCLUTILS COMMON BOOLEAN -strict}`.
 - `tudiff` keeps the whole comparison table in memory.
 - Base32: `tubase32`, the input is bytes; `-hex 1` for base32hex. Invalid text throws an error.
 - `xxh32` hashes text as UTF-8 like `tuhash`; `-encoding binary` for bytes.
-- `tuiconv` knows only the names from `encoding names`. Tcl 9.0 throws on characters it cannot represent.
+- `tuiconv` knows only the names from `encoding names`. Characters it cannot represent and invalid bytes are an error; `-replace 1` substitutes.
 - `tupatch` applies without offset search. `-reverse 1` undoes the diff.
 
 ---

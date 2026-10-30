@@ -2,7 +2,7 @@
 
 ## Processing CSV Lines
 
-`tucsv` provides the functions `parseLine`, `joinLine`, `parse`, `text`, `file`, `dicts` and `writeFile`. The parser options `-delimiter`, `-quote`, `-trim` and `-strict` are defined in the source of `tucsv-0.1.tm`. The output of `joinLine` can be controlled with `-alwaysQuote`.
+`tucsv` provides the functions `parseLine`, `joinLine`, `parse`, `text`, `file`, `dicts` and `writeFile`. The parser options `-delimiter`, `-quote`, `-trim` and `-strict` are defined in the source of `tucsv-0.2.tm`; `text`, `file` and `writeFile` also know `-profile`, `-bom` and `-encoding`. The output of `joinLine` can be controlled with `-alwaysQuote`.
 
 ```tcl
 package require tclutils::tucsv

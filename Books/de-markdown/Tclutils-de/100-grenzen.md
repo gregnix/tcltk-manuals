@@ -10,7 +10,7 @@
   `pie` und die weiteren Arten zeichnet `toSvg`. `validate` wirft nicht.
   Siehe [Diagramme](056-diagramme.md).
 - `tustr::graphemes` ist vereinfachtes UAX #29 (keine Hangul-Silben,
-  keine indischen Konjunkte). `slugify` behält nur ASCII.
+  keine indischen Konjunkte). `slugify` liefert ASCII; Schriften ohne lateinische Buchstaben fallen weg.
 - `tupdf` zählt Seiten an `/Type /Page`. `zugferd` sucht Marker, es prüft
   die Rechnung nicht. `object` wirft `NOTFOUND`, wenn die Nummer nach
   dem Aufblasen fehlt. Siehe [ODF und PDF-Struktur](057-odf-und-pdf-struktur.md).
@@ -23,7 +23,7 @@
 - `tujson::parse` macht `true` zu `1` und `null` zu leer.
 - `tuhash` ist reines Tcl. Text wird vor dem Digest nach UTF-8 gewandelt.
 - `tumd` kennt keine verschachtelten Listen, Tabellen und Setext-Überschriften.
-  Der Anker streicht Zeichen außerhalb von `a`–`z` und Ziffern.
+  Der Anker behält Buchstaben jeder Schrift, Ziffern, `_` und `-`.
 - `tuical` und `tuvcard` lassen Eigenschaftswerte roh. `toIcs` und `toVcf`
   schreiben CR/LF.
 - `tuholiday` kennt nur `-region de` und keine landesspezifischen Tage.

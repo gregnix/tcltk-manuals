@@ -2,11 +2,11 @@
 
 *Stand: 2026-10-27*
 
-Handbuch für [tclutils]{.index} **0.68.0**: Pure-Tcl-Module ohne Tk —
+Handbuch für [tclutils]{.index} **0.69.0**: Pure-Tcl-Module ohne Tk —
 Textfilter, Zeichen und Pfade, Datenformate, TDBC, PDF-Text, ODF, Provider,
 HTTPS-Politik, Settings, Tasks (`tutask`), Test-Runner.
 
-Pairing: tclutils **0.68.0** + tkutils **0.48.0** + ctrlutils **0.4**.
+Pairing: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils **0.5**.
 Widgets: Buch *tkutils*. Stack und Controller: Buch *Utils-Stack*.
 
 Dieses Buch ändert den Modulcode nicht. API-Details: `docs/<modul>.md` im

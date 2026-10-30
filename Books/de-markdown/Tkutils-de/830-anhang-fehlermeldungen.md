@@ -51,7 +51,10 @@ Nur wenige Module nutzen die tclutils-Prüfung und melden
 Nicht jedes Modul folgt dem Schema: `tkutlclip` und `tkutlfind` melden
 `{TKUTILS <MODUL> OPTION}` ohne Optionsnamen und ohne `Known:`-Zeile,
 `tkutlstate::autosave` den Grund `badoption` in Kleinbuchstaben, und
-`tkutlfooter` prüft Optionen nicht.
+`tkutlfooter` prüft Optionen nicht. Die neuen Helfer `tkutlfilter`,
+`tkutlgroup` und `tkutldrag` melden `OPTION` ohne Optionsnamen im Code,
+nennen die bekannten Optionen aber in der Meldung
+(`unknown option "-x": must be …`).
 
 Modul-spezifische Codes: jeweiliges `docs/<modul>.md`.
 

@@ -6,7 +6,7 @@
 toplevel through `tclutils::tusettings`, in a file of its own,
 `<Konfig-Ordner>/<app>/geometry.ini`. An app that saves its own settings
 dict on exit therefore cannot overwrite the geometry. Needs at least
-tclutils **0.64.0** (which added `tusettings`); 0.68.0 is recommended.
+tclutils **0.64.0** (which added `tusettings`); 0.69.0 is recommended.
 
 The configuration folder comes from `tusettings::dir config`: on Linux
 `$XDG_CONFIG_HOME/<app>`, otherwise `$HOME/.config/<app>`; according to

@@ -52,7 +52,10 @@ Only a few modules use the tclutils check and report
 Not every module follows the scheme: `tkutlclip` and `tkutlfind` report
 `{TKUTILS <MODUL> OPTION}` without the option name and without a
 `Known:` line, `tkutlstate::autosave` the reason `badoption` in lower
-case, and `tkutlfooter` does not check options.
+case, and `tkutlfooter` does not check options. The new helpers
+`tkutlfilter`, `tkutlgroup` and `tkutldrag` report `OPTION` without the
+option name in the code, but name the known options in the message
+(`unknown option "-x": must be …`).
 
 Module-specific codes: the respective `docs/<modul>.md`.
 

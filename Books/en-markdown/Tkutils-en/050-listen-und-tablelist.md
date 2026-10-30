@@ -1,10 +1,10 @@
 # Lists and tablelist
 
-## tkutablelist 0.4
+## tkutablelist 0.5
 
 A wrapper around [tablelist]{.index} from tklib: row/column API, sorting
-by header click, editable cells, selection helpers, loading and saving
-CSV, footer, hierarchy. Not directly in the umbrella, but it comes in
+by header click, editable cells, selection helpers, row ids, loading
+and saving CSV, footer, hierarchy. Not directly in the umbrella, but it comes in
 through `tkufilelist`.
 
 ```tcl
@@ -36,8 +36,8 @@ an entry in the toolbar —, the table loses its selection. In a file
 manager this means: select several files, right-click, and the
 selection is gone before *Copy* acts.
 
-With [exportselection]{.index} 0 the selection stays. Because this
-changes observable behavior, the module carries the number **0.4**.
+With [exportselection]{.index} 0 the selection stays. This default came
+with **0.4**.
 
 ```tcl
 package require tkutils::tkutablelist
@@ -50,11 +50,80 @@ Anyone who needs the old Tk behavior sets `-exportselection 1`.
 
 ---
 
-## Only 0.4
+## Row Ids and Sorting
 
-There is only **0.4**. `package require tkutils::tkutablelist 0.3` loads
-0.4 (same major version 0); a separate 0.3 is no longer maintained
-(`package require … 0.3` returns `0.4`).
+A row number holds only until the user sorts. Since **0.5** every row can
+carry an id in its row option `-name`. `setRows` takes the ids with
+`-ids`, `insert` as its third argument.
+
+```tcl
+::tkutils::tkutablelist::setRows $w {
+    {c.png 4096 Bild} {a.txt 120 Text} {b.md 80 Markdown}
+} -ids {f3 f1 f2}
+::tkutils::tkutablelist::sortBy $w 0
+puts [::tkutils::tkutablelist::findId $w f3]          ;# -> 2
+puts [::tkutils::tkutablelist::selectIds $w {f2 f9}]  ;# -> f2
+puts [::tkutils::tkutablelist::selectedIds $w]        ;# -> f2
+```
+
+| Command | Effect |
+|---|---|
+| `rowId w index` | id of the row, empty without an id |
+| `findId w id` | current row number, `-1` if not found |
+| `selectedIds w` | ids of the selected rows; a row without an id is left out, `curselection` gives all |
+| `selectIds w ids` | selects these rows, activates the first and scrolls to it; returns the ids found |
+
+`setRows` inserts all rows with one `insertlist` and then restores the
+sorting the user chose last. If the number of ids does not match the
+number of rows, it raises `{TKUTILS TKUTABLELIST IDS}` with
+`-ids needs one id per row (2 rows, 1 ids)`. `selectRows` also activates
+the first row and scrolls to it.
+
+With `-sortable 1` (default) a click on the header sorts through
+`tablelist::sortByColumn`: the second click reverses the direction, the
+arrow appears, `<<TablelistColumnSorted>>` arrives. Shift+click adds a
+further column (`tablelist::addToSortColumns`).
+
+---
+
+## CSV
+
+`toCsv` returns what the user sees: visible rows, visible columns, raw
+cell values. `saveCsv` writes the same as UTF-8.
+
+```tcl
+set tbl [::tkutils::tkutablelist::tableWidget $w]
+::tkutils::tkutablelist::setRows $w {
+    {a.txt 120 Text} {b.md 80 Markdown} {c.png 4096 Bild}
+}
+$tbl rowconfigure 1 -hide 1
+$tbl columnconfigure 2 -hide 1
+puts [::tkutils::tkutablelist::toCsv $w]
+;# Name,Größe
+;# a.txt,120
+;# c.png,4096
+::tkutils::tkutablelist::saveCsv $w liste.csv -profile excel-de
+```
+
+| Option | Default | Effect |
+|---|---|---|
+| `-header` | `1` | column titles as the first line |
+| `-all` | `0` | `1`: all rows and columns, hidden ones too |
+| `-formatted` | `0` | `1`: displayed values instead of raw values |
+| `-encoding` | `utf-8` | `saveCsv` only |
+
+All other options go to `tclutils::tucsv::text`, for example
+`-delimiter ;` or `-profile excel-de` (semicolon, CRLF, BOM). For this
+`tkutablelist` needs `tclutils::tucsv` 0.2 from tclutils 0.69.0.
+
+---
+
+## Versions
+
+There is only **0.5**. `package require tkutils::tkutablelist 0.4` and
+`… 0.3` load 0.5 (same major version 0). If an old
+`tkutablelist-0.4.tm` is still in the tree, `package require` still loads
+the higher version; delete the old file when copying over.
 
 Unknown option: `{TKUTILS TKUTABLELIST OPTION -colums}` with the option
 name, as with `tkuopts`. The message has two lines:
@@ -65,17 +134,18 @@ Known: -columns -doublecommand -editable -editendcommand -exportselection -foote
 ```
 
 Up to 0.46.0 the option name and the `Known:` list were missing
-(Appendix [Pitfalls](800-anhang-fallen.md)); the module version stayed
-0.4. A missing value reports `{TKUTILS TKUTABLELIST OPTION}` with
+(Appendix [Pitfalls](800-anhang-fallen.md)). A missing value reports
+`{TKUTILS TKUTABLELIST OPTION}` with
 `missing value for option "-columns"`.
 
 ---
 
 ## Tablelist Helpers
 
-Sorting, display, clipboard, footer, search, column layout and tree are
-in the chapter [Tablelist Helpers](052-tablelist-helfer.md).
-`tkutltools` loads all seven. Wrapper and helpers load
+Sorting, display, clipboard, footer, search, column layout, tree,
+filtering, grouping and dragging are in the chapter
+[Tablelist Helpers](052-tablelist-helfer.md). `tkutltools` loads all
+ten. Wrapper and helpers load
 `tablelist_tile`; the order relative to the umbrella is free (chapter
 [Understanding tkutils](010-tkutils-verstehen.md)).
 
@@ -83,10 +153,14 @@ in the chapter [Tablelist Helpers](052-tablelist-helfer.md).
 
 ## Summary
 
-- 0.4 for multi-select + context menu; the selection survives menus.
-- Old behavior with `-exportselection 1`.
-- `require … 0.3` loads 0.4.
-- `tkutltools` loads all seven helpers. Commands: chapter
+- The selection survives menus (`-exportselection 0`); old behavior with
+  `-exportselection 1`.
+- Row ids with `setRows -ids`; `findId`, `selectIds` hold after sorting
+  too.
+- `toCsv` and `saveCsv` export only what is visible; `-all 1` takes
+  everything.
+- `require … 0.4` loads 0.5.
+- `tkutltools` loads all ten helpers. Commands: chapter
   [Tablelist Helpers](052-tablelist-helfer.md).
 
 ::: {.info}

@@ -84,7 +84,8 @@ INI cannot hold everything. `save` rejects: values with a line break or
 leading/trailing spaces; empty keys, keys with `=`, a line break,
 leading/trailing spaces, or starting with `;`, `#`, `[`; section names with
 `]` or a line break. The check runs before writing, so the file stays
-unchanged. Comments in the file do not survive `save`.
+unchanged. If the writing itself fails, the old file stays as well, the
+temp file is removed and no channel is left open (0.2). Comments in the file do not survive `save`.
 
 ```tcl
 try {

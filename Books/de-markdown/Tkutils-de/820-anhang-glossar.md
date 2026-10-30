@@ -34,8 +34,8 @@
 :   Zweite Kopie eines Pakets auf dem Suchpfad; tkdevtools zeigt sie.
 
 [Pairing]{.index}
-:   Empfohlene Versionskombination: tclutils 0.68.0 + tkutils 0.48.0 +
-    ctrlutils 0.4.
+:   Empfohlene Versionskombination: tclutils 0.69.0 + tkutils 0.49.0 +
+    ctrlutils 0.5.
 
 [tablelist_tile]{.index}
 :   ttk-Variante von Tablelist; `tkutablelist` und die `tkutl*`-Helfer

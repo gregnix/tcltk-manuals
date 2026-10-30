@@ -168,7 +168,7 @@ The file **0.2** is gone; `package require tkutils::tkudialog 0.2` loads
 ## ctrlutils
 
 `cufileops` has required `tkudialog` 0.3 for confirmations since 0.3;
-the current state in ctrlutils 0.4 is `cufileops` 0.5. See *Utils-Stack*.
+the current state in ctrlutils 0.5 is `cufileops` 0.6. See *Utils-Stack*.
 
 ---
 
