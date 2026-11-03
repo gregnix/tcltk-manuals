@@ -564,17 +564,17 @@ Das Paket definiert die folgenden öffentlichen Prozeduren:
 
 
 **::math::geometry::degToRad** *angle*
-: Rechnet von Grad in Radiant um
+: Rechnet von Grad in Bogenmaß um
 
     list *angle*
     : Winkel in Grad
 
 
 **::math::geometry::radToDeg** *angle*
-: Rechnet von Radiant in Grad um
+: Rechnet vom Bogenmaß in Grad um
 
     list *angle*
-    : Winkel in Radiant
+    : Winkel im Bogenmaß
 
 
 **::math::geometry::circle** *centre* *radius*

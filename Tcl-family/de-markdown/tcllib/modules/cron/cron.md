@@ -72,17 +72,17 @@ Während Cron ursprünglich für Zeiträume von mehr als einer Sekunde konzipier
     ```
 
 **::cron::in** *?processname?* *timecode* *command*
-: Dieser Befehl registriert einen *command*, der nach einer durch *timecode* festgelegten Verzögerung aufgerufen werden soll. *timecode* wird als Ausdruck in Sekunden angegeben. Diese Aufgabe kann durch nachfolgende Aufrufe der Befehle dieses Pakets unter Bezugnahme auf *processname* geändert werden. Wenn *processname* bereits existiert, wird er ersetzt. Wird *processname* nicht angegeben, gibt der Befehl einen Namen zurück.
+: Dieser Befehl registriert einen *command*, der nach einer durch *timecode* festgelegten Verzögerung aufgerufen werden soll. *timecode* wird in Sekunden angegeben. Diese Aufgabe kann durch nachfolgende Aufrufe der Befehle dieses Pakets unter Bezugnahme auf *processname* geändert werden. Wenn *processname* bereits existiert, wird er ersetzt. Wird *processname* nicht angegeben, wird ein Name generiert und vom Befehl zurückgegeben.
 
 **::cron::object\_coroutine** *object* *coroutine* *?info?*
 : Dieser Befehl registriert eine *coroutine*, die mit *object* verknüpft ist und unter Angabe der Parameter von *info* aufgerufen werden soll. Werden keine Parameter angegeben, wird davon ausgegangen, dass es sich bei der Coroutine um eine Leerlaufaufgabe handelt, die sich selbst beendet. *info* kann in jeder Form angegeben werden, die mit **::cron::task set** kompatibel ist.
 
 **::cron::sleep** *milliseconds*
-: Wird dieser Befehl innerhalb einer Coroutine ausgeführt, registriert er die Coroutine für eine Callback-Funktion zum festgelegten Zeitpunkt und führt sofort ein „Yield“ durch.
+: Wird dieser Befehl innerhalb einer Coroutine ausgeführt, registriert er die Coroutine für einen Rückruf zum festgelegten Zeitpunkt und führt sofort ein „Yield“ durch.
 
     Wenn die Variable ::cron::time größer als 0 ist, erhöht dieser Befehl die interne Zeit schrittweise um jeweils 100 ms.
 
-    In allen anderen Fällen erzeugt dieser Befehl eine fiktive Variable, löst einen Nachruf aus und wartet mit „vwait“ auf die Variable:
+    In allen anderen Fällen erzeugt dieser Befehl eine fiktive Variable, setzt einen **after**-Aufruf ab und wartet mit „vwait“ auf die Variable:
 
     ```
     set eventid [incr ::cron::eventcount]
@@ -112,7 +112,7 @@ Während Cron ursprünglich für Zeiträume von mehr als einer Sekunde konzipier
 : Wenn der *process* nicht existiert, wird er angelegt. Zu den Optionen gehören:
 
     **command**
-    : Wenn **coroutine** auf „black“ gesetzt ist, handelt es sich um einen globalen Befehl, der diesen Prozess ausführt. Wenn **coroutine** nicht auf „black“ gesetzt ist, ist dies der Befehl, der zum Erstellen oder erneuten Erstellen der Coroutine aufgerufen werden muss.
+    : Wenn **coroutine** leer ist, handelt es sich um einen globalen Befehl, der diesen Prozess ausführt. Wenn **coroutine** nicht leer ist, ist dies der Befehl, der zum Erstellen oder erneuten Erstellen der Coroutine aufgerufen werden muss.
 
     **coroutine**
     : Der Name der Coroutine (sofern vorhanden), die diesen Prozess implementiert.
@@ -124,10 +124,10 @@ Während Cron ursprünglich für Zeiträume von mehr als einer Sekunde konzipier
     : Das Objekt, das diesem Prozess oder dieser Coroutine zugeordnet ist.
 
     **scheduled**
-    : Wenn der Wert ungleich Null ist, ist dies die absolute Zeit (in Millisekunden) ab der Epoche, nach der dieser Prozess ein Ereignis auslöst. Wenn der Wert Null ist und der Wert von **frequency** ebenfalls Null ist, wird dieser Prozess bei jeder Leerlaufschleife aufgerufen.
+    : Wenn der Wert ungleich Null ist, ist dies die absolute Zeit (in Millisekunden) ab der Epoche, zu der dieser Prozess ein Ereignis auslöst. Wenn der Wert Null ist und der Wert von **frequency** ebenfalls Null ist, wird dieser Prozess bei jeder Leerlaufschleife aufgerufen.
 
     **running**
-    : Ein boolescher Flag. Ist er auf „true“ gesetzt, bedeutet dies, dass der Prozess während der Ereignisschleife weder zurückgegeben hat noch die Kontrolle abgegeben hat und erst dann erneut aufgerufen wird, wenn dies geschieht.
+    : Ein boolesches Flag. Ist es auf „true“ gesetzt, bedeutet dies, dass der Prozess während der Ereignisschleife weder zurückgekehrt ist noch die Kontrolle abgegeben hat und erst dann erneut aufgerufen wird, wenn dies geschieht.
 
 
 **::cron::wake** *?who?*
@@ -138,13 +138,13 @@ Während Cron ursprünglich für Zeiträume von mehr als einer Sekunde konzipier
     ```
 
 
-Es stehen mehrere Hilfsprogramme zur Verfügung, die intern in cron sowie zum Testen von cron verwendet werden, die jedoch im allgemeinen Fall nützlich sein können oder auch nicht.
+Es stehen mehrere Hilfsbefehle zur Verfügung, die intern in cron sowie zum Testen von cron verwendet werden, die jedoch im allgemeinen Fall nützlich sein können oder auch nicht.
 
 **::cron::clock\_step** *milliseconds*
-: Gibt eine absolute Uhrzeit relativ zur Epoche zurück, die auf den nächsten Rahmen zwischen einer Sekunde und der nächsten fällt, und zwar für den Wert von *milliseconds*
+: Gibt eine absolute Uhrzeit relativ zur Epoche zurück, die auf die nächste Grenze zwischen einer Sekunde und der nächsten fällt, und zwar für den Wert von *milliseconds*
 
 **::cron::clock\_delay** *milliseconds*
-: Gibt eine absolute Uhrzeit relativ zur Epoche zurück, die auf den nächsten Rahmen zwischen einer Sekunde und den nächsten *milliseconds* in der Zukunft fällt.
+: Gibt eine absolute Uhrzeit relativ zur Epoche zurück, die auf die nächste Grenze zwischen einer Sekunde und den nächsten *milliseconds* in der Zukunft fällt.
 
 **::cron::clock\_sleep** *seconds* *?offset?*
 : Gibt eine absolute Uhrzeit relativ zur Epoche zurück, die genau *seconds* in der Zukunft liegt. Wenn „offset“ angegeben wird, kann dieser Wert positiv oder negativ sein und verschiebt die endgültige Zeit vor oder nach den Sekundenwechsel.
@@ -152,7 +152,7 @@ Es stehen mehrere Hilfsprogramme zur Verfügung, die intern in cron sowie zum Te
 **::cron::clock\_set** *newtime*
 : Stellt die interne Uhr für cron ein. Dieser Befehl verschiebt die Zeit in Schritten von 100 ms nach vorne und löst dabei Ereignisse aus, bis die interne Zeit den Wert *newtime* erreicht hat.
 
-    *newtime* wird in absoluten Millisekunden seit Beginn der Epoche als Ausdruck angegeben.
+    *newtime* wird in absoluten Millisekunden seit Beginn der Epoche angegeben.
 
 
 # Fehler, Ideen, Rückmeldungen

@@ -31,7 +31,7 @@ grammar::me::util – AST-Dienstprogramme
 
 # Beschreibung
 
-Dieses Paket stellt eine Reihe von Hilfsbefehlen zur Umwandlung zwischen den verschiedenen Darstellungen abstrakter Syntaxbäume bereit, wie sie im Dokument **grammar::me\_ast** festgelegt sind.
+Dieses Paket stellt eine Reihe von Hilfsbefehlen zur Umwandlung zwischen den verschiedenen Darstellungen abstrakter Syntaxbäume bereit, wie sie im Dokument [grammar::me\_ast][me_ast] festgelegt sind.
 
 **::grammar::me::util::ast2tree** *ast* *tree* ?*root*?
 : Dieser Befehl wandelt einen *ast* von der Wertdarstellung in die Objektdarstellung um. Alle Knoten im *ast* werden zu Knoten dieses *tree*, wobei die Wurzel des AST ein Kindknoten des Knotens *root* wird. Wird dieser Knoten nicht ausdrücklich angegeben, wird die Wurzel des Baums verwendet. Der bisherige Inhalt des Baums bleibt unberührt, er wird weder entfernt noch verändert, außer dass der angegebene Wurzelknoten einen neuen Kindknoten erhält.
@@ -48,7 +48,7 @@ Dieses Paket stellt eine Reihe von Hilfsbefehlen zur Umwandlung zwischen den ver
         Jedes Element der zurückgegebenen Liste ist eine Liste, die das Token, das zugehörige Lexem, die Zeilennummer und den Spaltenindex in dieser Reihenfolge enthält.
 
 
-    Sowohl der Ensemble-Befehl [::grammar::me::tcl][me_tcl], der vom Paket **grammar::me::tcl** bereitgestellt wird, als auch der Objektbefehl, den das Paket **grammar::me::cpu** erzeugt, entsprechen der oben genannten Spezifikation.
+    Sowohl der Ensemble-Befehl [::grammar::me::tcl][me_tcl], der vom Paket **grammar::me::tcl** bereitgestellt wird, als auch der Objektbefehl, den das Paket [::grammar::me::cpu][me_cpu] erzeugt, entsprechen der oben genannten Spezifikation.
 
 **::grammar::me::util::tree2ast** *tree* ?*root*?
 : Dieser Befehl wandelt einen *ast* in (erweiterter) Objektdarstellung in einen Wert um und gibt ihn zurück. Ist ein Knoten *root* angegeben, wird der AST von diesem Knoten abwärts erzeugt. Andernfalls dient die Wurzel des Baumobjekts als Ausgangspunkt.

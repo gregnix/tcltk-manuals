@@ -87,7 +87,7 @@ Der Befehl **toplevel** erzeugt einen neuen Tcl-Befehl, dessen Name gleich dem P
 pathName option ?arg ...?
 ```
 
-*PathName* ist der Name des Befehls; er ist gleich dem Pfadnamen des Toplevel-Widgets. *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Für Toplevel-Widgets sind folgende Befehle möglich:
+*PathName* ist der Name des Befehls; er ist gleich dem Pfadnamen des Toplevel-Widgets. *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Für Toplevel-Widgets sind folgende Befehle möglich:
 
 [pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der Konfigurationsoption zurück, die durch *option* angegeben ist. *Option* kann jeden Wert haben, den der Befehl **toplevel** akzeptiert.

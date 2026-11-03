@@ -66,7 +66,7 @@ Namen werden hauptsächlich zur Identifizierung der nichtterminalen Symbole der 
 
 Der Aufbau eines Namens ist einfach:
 
-1. Es beginnt mit einem Buchstaben, einem Unterstrich oder einem Doppelpunkt, gefolgt von
+1. Er beginnt mit einem Buchstaben, einem Unterstrich oder einem Doppelpunkt, gefolgt von
 
 2. null oder mehr Buchstaben, Ziffern, Unterstriche oder Doppelpunkte.
 
@@ -138,7 +138,7 @@ Hier sind die Operatoren, geordnet nach ihrer Priorität (d. h. der Stärke de
     ( <<expression>> ) # Put an expression in parens to change its priority.
 ```
 
-Damit können wir nun den im Abschnitt **Namen** angegebenen formalen Ausdruck für Namen zerlegen:
+Damit können wir nun den im Abschnitt [Namen] angegebenen formalen Ausdruck für Namen zerlegen:
 
 ```
     ([_:] / <alpha>) ([_:] / <alnum>)*
@@ -168,14 +168,14 @@ Und *atomare Ausdrücke* sind unser nächstes Thema. Sie lassen sich in drei Kla
 
 1. Namen, d. h. nichtterminale Symbole,
 
-2. Zeichenfolgenliterale und
+2. Zeichenkettenliterale und
 
 3. Zeichenklassen.
 
 
 Die Namen sind Ihnen bereits bekannt; falls nicht, lesen Sie bitte den Abschnitt [Namen] zur Auffrischung.
 
-Zeichenfolgenliterale sind einfach. Sie werden entweder durch ein einfaches oder ein doppeltes Apostroph begrenzt (d. h., sie beginnen und enden damit), und zwischen den Begrenzungszeichen können beliebige Zeichen stehen, mit Ausnahme des Begrenzungszeichens selbst. Sie können auch leer sein. Beispiele für Zeichenfolgen sind
+Zeichenkettenliterale sind einfach. Sie werden entweder durch ein einfaches oder ein doppeltes Apostroph begrenzt (d. h., sie beginnen und enden damit), und zwischen den Begrenzungszeichen können beliebige Zeichen stehen, mit Ausnahme des Begrenzungszeichens selbst. Sie können auch leer sein. Beispiele für Zeichenketten sind
 
 ```
     ''
@@ -186,7 +186,7 @@ Zeichenfolgenliterale sind einfach. Sie werden entweder durch ein einfaches oder
     '"'
 ```
 
-Die beiden letzten Beispiele veranschaulichen, wie sich jedes Begrenzungszeichen in eine Zeichenfolge einfügen lässt.
+Die beiden letzten Beispiele veranschaulichen, wie sich jedes Begrenzungszeichen in eine Zeichenkette einfügen lässt.
 
 Zum Schluss unter den atomaren Ausdrücken die Zeichenklassen. Es gibt eine Reihe vordefinierter Klassen, unten aufgeführt, und die Möglichkeit, eigene zu bilden. Die vordefinierten Klassen lauten:
 
@@ -228,7 +228,7 @@ Beispiele für Zeichenklassen, die in dieser Einleitung schon vorgekommen sind, 
     [0-9a-fA-F]
 ```
 
-Wir sind mit den Ausdrücken fast fertig. Als Letztes müssen wir noch erläutern, wie die Zeichen in Klassen und Zeichenfolgenliteralen festgelegt werden.
+Wir sind mit den Ausdrücken fast fertig. Als Letztes müssen wir noch erläutern, wie die Zeichen in Zeichenklassen und Zeichenkettenliteralen festgelegt werden.
 
 Grundsätzlich stehen die Zeichen in der Eingabe für sich selbst; darüber hinaus gibt es verschiedene Arten von Escape-Syntax, um Steuerzeichen oder Zeichen darzustellen, die außerhalb der Kodierung liegen, in der der Text vorliegt.
 
@@ -243,11 +243,11 @@ Alle Escape-Sequenzen beginnen mit einem Backslash-Zeichen („\\“, Unicode-Co
 
 ## Leerzeichen und Kommentare
 
-Ein Thema, das bisher noch nicht angesprochen wurde, sind Leerzeichen und Kommentare.
+Ein Thema, das bisher noch nicht angesprochen wurde, sind Leerraum und Kommentare.
 
-Als Leerzeichen gelten alle Unicode-Leerzeichen, d. h. alle Zeichen der Klasse <space> sowie Kommentare. Letztere sind Zeichenfolgen, die mit einem „#“ (Hash, Unicode-Codepunkt 0x23) beginnen und am nächsten Zeilenende enden.
+Als Leerraum gelten alle Unicode-Leerzeichen, d. h. alle Zeichen der Klasse <space> sowie Kommentare. Letztere sind Zeichenfolgen, die mit einem „#“ (Hash, Unicode-Codepunkt 0x23) beginnen und am nächsten Zeilenende enden.
 
-Zwischen allen syntaktischen Elementen einer Grammatikbeschreibung können Leerzeichen beliebig verwendet werden. Innerhalb von syntaktischen Elementen, wie Namen, Zeichenfolgenliteralen, vordefinierten Zeichenklassen usw., dürfen sie nicht verwendet werden.
+Zwischen allen syntaktischen Elementen einer Grammatikbeschreibung kann Leerraum beliebig verwendet werden. Innerhalb von syntaktischen Elementen, wie Namen, Zeichenkettenliteralen, vordefinierten Zeichenklassen usw., darf er nicht verwendet werden.
 
 ## Attribute von Nichtterminalen
 
@@ -266,7 +266,7 @@ Das stimmt nicht ganz. Es ist möglich, dem Nichtterminal in der Regel einen sem
 Diese Schreibweise ist ebenfalls zulässig. Dieser Modus ist optional. Die bekannten Modi und ihre Bedeutungen lauten wie folgt:
 
 **value**
-: Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
+: Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
 
 **leaf**
 : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.

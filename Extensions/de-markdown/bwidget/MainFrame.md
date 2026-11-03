@@ -78,7 +78,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
        {**separator**} 
       - für einen Befehl:  
        {**command** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
-      - für eine Schaltfläche zum Abhaken:  
+      - für einen Checkbutton:  
        {**checkbutton** *menuname* ?*tags*? ?*description*? ?*accelerator*? ?*option* *value*? ...} 
       - für einen Radiobutton:  
        {**radiobutton** *menuname* ?*tags*? ?*description*? ?*accelerator* ?*option* *value*? ...} 

@@ -124,7 +124,7 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
 **::math::optimize::nelderMead** *objective* *xVector* ?**-scale** *xScaleVector*? ?**-ftol** *epsilon*? ?**-maxiter** *count*? ??-trace? *flag*?
 : Minimiert auf uneingeschränkte Weise eine Funktion mehrerer Variablen über den gesamten Raum. Die auszuwertende Funktion, *objective*, muss ein einzelner Tcl-Befehl sein. An diesen werden so viele Elemente angehängt, wie in der Anfangsschätzung für die Lage des Minimums enthalten sind, die als Tcl-Liste *xVector* übergeben wird.
 
-    *xScaleVector* ist eine anfängliche Schätzung des Problemmaßstabs; die ersten Auswertungen der Funktion erfolgen durch Variation der Koordinaten in *xVector* um die in *xScaleVector* angegebenen Beträge.  Wenn *xScaleVector* nicht angegeben wird, werden die Koordinaten um den Faktor 1.0001 (sofern die Koordinate ungleich Null ist) oder um den konstanten Wert 0.0001 (sofern die Koordinate Null ist) variiert.
+    *xScaleVector* ist eine anfängliche Schätzung des Problemmaßstabs; die ersten Auswertungen der Funktion erfolgen durch Variation der Koordinaten in *xVector* um die in *xScaleVector* angegebenen Beträge.  Wenn *xScaleVector* nicht angegeben wird, werden die Koordinaten um den Faktor 1,0001 (sofern die Koordinate ungleich Null ist) oder um den konstanten Wert 0,0001 (sofern die Koordinate Null ist) variiert.
 
     *epsilon* ist der gewünschte relative Fehler des am Minimum ausgewerteten Funktionswerts. Der Standardwert ist 1.0e-7, was in der Regel eine Genauigkeit von drei signifikanten Stellen bei den x-Werten ergibt.
 
@@ -190,7 +190,7 @@ proc efunc { x } { expr {$x*$x*$x * exp(-3.0*$x)} }
 puts "Maximum at: [::math::optimize::max_bound_1d efunc 0.0 10.0]"
 ```
 
-Der maximal zulässige Fehler bestimmt die Anzahl der durchgeführten Schritte (bei jedem Schritt der Iteration wird das Intervall um den Faktor 1/2 verringert). Somit wird ein maximaler Fehler von 0.0001 in etwa 14 Schritten erreicht.
+Der maximal zulässige Fehler bestimmt die Anzahl der durchgeführten Schritte (bei jedem Schritt der Iteration wird das Intervall um den Faktor 1/2 verringert). Somit wird ein maximaler Fehler von 0,0001 in etwa 14 Schritten erreicht.
 
 Ein Beispiel für ein *lineares Programm*:
 

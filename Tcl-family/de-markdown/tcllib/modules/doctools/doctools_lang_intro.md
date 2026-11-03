@@ -131,9 +131,9 @@ Wenn hingegen *Leerraum* vorhanden ist, besteht er nicht nur aus einer beliebige
 
 ## Erweiterte Struktur
 
-In den einfachen Beispielen des letzten Abschnitts waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **manpage\_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
+In den einfachen Beispielen des letzten Abschnitts waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl [manpage\_begin][doctools_lang_cmdref] zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
 
-Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser dokumentrelevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
+Anstelle von reinem Leerraum sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser dokumentrelevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
 
 ```
 [include FILE]
@@ -153,7 +153,7 @@ Noch wichtiger ist, dass diese beiden Befehle überall dort zulässig sind, wo e
 [manpage_end]
 ```
 
-Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **manpage\_begin** eingebunden wird, darf nur die Template-Befehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine in den Kopf eingebundene Datei darf nur Kopfbefehle enthalten usw.
+Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor [manpage\_begin][doctools_lang_cmdref] eingebunden wird, darf nur die Template-Befehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine in den Kopf eingebundene Datei darf nur Kopfbefehle enthalten usw.
 
 ## Textstruktur
 
@@ -161,7 +161,7 @@ Der Hauptteil des Dokuments besteht hauptsächlich aus Text, der möglicherweise
 
 In diesem Abschnitt werden die übergeordneten Strukturbefehle erläutert; alle weiteren Aspekte werden in den folgenden Abschnitten behandelt.
 
-Die einfachste Möglichkeit, den Haupttext zu gliedern, ist die Einfügung von Absätzen. Der entsprechende Befehl lautet [para][doctools_lang_cmdref]. Jedes Auftreten dieses Befehls schließt den vorherigen Absatz und eröffnet automatisch den nächsten. Der erste Absatz wird am Anfang des Haupttextes automatisch durch den Befehl [description][doctools_lang_cmdref] eröffnet. Auf dieselbe Weise endet der letzte Absatz automatisch mit dem Befehl **manpage\_end**.
+Die einfachste Möglichkeit, den Haupttext zu gliedern, ist die Einfügung von Absätzen. Der entsprechende Befehl lautet [para][doctools_lang_cmdref]. Jedes Auftreten dieses Befehls schließt den vorherigen Absatz und eröffnet automatisch den nächsten. Der erste Absatz wird am Anfang des Haupttextes automatisch durch den Befehl [description][doctools_lang_cmdref] eröffnet. Auf dieselbe Weise endet der letzte Absatz automatisch mit dem Befehl [manpage\_end][doctools_lang_cmdref].
 
 ```
 [manpage_begin NAME SECTION VERSION]
@@ -176,7 +176,7 @@ Die einfachste Möglichkeit, den Haupttext zu gliedern, ist die Einfügung von A
 
 Leere Absätze werden ignoriert.
 
-Eine Struktur, die grober gegliedert ist als Absätze, sind Abschnitte, die es dem Verfasser ermöglichen, ein Dokument in größere, beschriftete Teile zu unterteilen. Der Befehl hierfür lautet **section**. Jedes Auftreten dieses Befehls schließt den vorherigen Abschnitt und eröffnet automatisch den nächsten, einschließlich dessen ersten Absatzes. Der erste Abschnitt wird am Anfang des Haupttextes automatisch durch den Befehl [description][doctools_lang_cmdref] eröffnet (dieser Abschnitt trägt die Bezeichnung „DESCRIPTION“). Auf dieselbe Weise endet der letzte Abschnitt automatisch mit dem Befehl **manpage\_end**.
+Eine Struktur, die grober gegliedert ist als Absätze, sind Abschnitte, die es dem Verfasser ermöglichen, ein Dokument in größere, beschriftete Teile zu unterteilen. Der Befehl hierfür lautet **section**. Jedes Auftreten dieses Befehls schließt den vorherigen Abschnitt und eröffnet automatisch den nächsten, einschließlich dessen ersten Absatzes. Der erste Abschnitt wird am Anfang des Haupttextes automatisch durch den Befehl [description][doctools_lang_cmdref] eröffnet (dieser Abschnitt trägt die Bezeichnung „DESCRIPTION“). Auf dieselbe Weise endet der letzte Abschnitt automatisch mit dem Befehl [manpage\_end][doctools_lang_cmdref].
 
 Leere Abschnitte werden *nicht* ignoriert. Es steht uns frei, innerhalb von Abschnitten Absätze zu verwenden oder darauf zu verzichten.
 
@@ -193,7 +193,7 @@ Leere Abschnitte werden *nicht* ignoriert. Es steht uns frei, innerhalb von Absc
 [manpage_end]
 ```
 
-Zwischen Abschnitten und Absätzen befinden sich Unterabschnitte, um Abschnitte zu unterteilen. Der Befehl hierfür lautet [subsection][doctools_lang_cmdref]. Jedes Vorkommen dieses Befehls schließt den vorherigen Unterabschnitt und eröffnet automatisch den nächsten, einschließlich dessen ersten Absatzes. Ein Unterabschnitt wird automatisch am Anfang des Haupttextes durch den Befehl [description][doctools_lang_cmdref] sowie am Anfang jedes Abschnitts eröffnet. Ebenso endet der letzte Unterabschnitt automatisch mit dem Befehl **manpage\_end**.
+Zwischen Abschnitten und Absätzen befinden sich Unterabschnitte, um Abschnitte zu unterteilen. Der Befehl hierfür lautet [subsection][doctools_lang_cmdref]. Jedes Vorkommen dieses Befehls schließt den vorherigen Unterabschnitt und eröffnet automatisch den nächsten, einschließlich dessen ersten Absatzes. Ein Unterabschnitt wird automatisch am Anfang des Haupttextes durch den Befehl [description][doctools_lang_cmdref] sowie am Anfang jedes Abschnitts eröffnet. Ebenso endet der letzte Unterabschnitt automatisch mit dem Befehl [manpage\_end][doctools_lang_cmdref].
 
 Leere Unterabschnitte werden *nicht* ignoriert. Es steht uns frei, innerhalb von Unterabschnitten Absätze zu verwenden oder darauf zu verzichten.
 
@@ -314,16 +314,16 @@ Als Beispiel für ihre Verwendung dient der Quelltext des letzten Satzes im vora
 
 ## Querverweise
 
-Die letzten beiden Befehle, die wir noch behandeln müssen, dienen der Deklaration von Querverweisen zwischen Dokumenten – sowohl expliziten als auch impliziten. Es handelt sich dabei um [keywords][doctools_lang_cmdref] und **see\_also**. Beide akzeptieren eine beliebige Anzahl von Argumenten, die alle aus einfachem, unmarkiertem Text bestehen müssen. Das heißt, es ist nicht zulässig, Markup-Elemente darin zu verwenden. Beide Befehle können in einem Dokument mehrfach verwendet werden. In diesem Fall werden alle Argumente aller Vorkommen eines der beiden Befehle zu einer einzigen Menge zusammengefasst.
+Die letzten beiden Befehle, die wir noch behandeln müssen, dienen der Deklaration von Querverweisen zwischen Dokumenten – sowohl expliziten als auch impliziten. Es handelt sich dabei um [keywords][doctools_lang_cmdref] und [see\_also][doctools_lang_cmdref]. Beide akzeptieren eine beliebige Anzahl von Argumenten, die alle aus einfachem, unmarkiertem Text bestehen müssen. Das heißt, es ist nicht zulässig, Markup-Elemente darin zu verwenden. Beide Befehle können in einem Dokument mehrfach verwendet werden. In diesem Fall werden alle Argumente aller Vorkommen eines der beiden Befehle zu einer einzigen Menge zusammengefasst.
 
 [keywords][doctools_lang_cmdref]
-: Die Argumente dieses Befehls werden als Schlüsselwörter interpretiert, die das Dokument beschreiben. Ein Prozessor kann diese Informationen nutzen, um einen Index zu erstellen, der das betreffende Dokument indirekt mit allen Dokumenten verknüpft, die dieselben Schlüsselwörter enthalten.
+: Die Argumente dieses Befehls werden als Schlüsselwörter interpretiert, die das Dokument beschreiben. Ein Verarbeiter kann diese Informationen nutzen, um einen Index zu erstellen, der das betreffende Dokument indirekt mit allen Dokumenten verknüpft, die dieselben Schlüsselwörter enthalten.
 
 [see\_also][doctools_lang_cmdref]
-: Die Argumente dieses Befehls werden als Verweise auf andere Dokumente interpretiert. Ein Prozessor kann sie als direkte Links zu diesen Dokumenten formatieren.
+: Die Argumente dieses Befehls werden als Verweise auf andere Dokumente interpretiert. Ein Verarbeiter kann sie als direkte Links zu diesen Dokumenten formatieren.
 
 
-Alle Querverweis-Befehle können an beliebiger Stelle im Dokument zwischen **manpage\_begin** und **manpage\_end** vorkommen. Somit kann die Verfasserin entscheiden, ob sie diese am Anfang des Hauptteils oder an dessen Ende platzieren möchte, vielleicht in der Nähe der Stelle, an der ein Schlüsselwort im Hauptinhalt tatsächlich definiert wird, oder ob sie sie als Metadaten betrachtet, die im Kopf stehen sollten, usw.
+Alle Querverweis-Befehle können an beliebiger Stelle im Dokument zwischen [manpage\_begin][doctools_lang_cmdref] und [manpage\_end][doctools_lang_cmdref] vorkommen. Somit kann die Verfasserin entscheiden, ob sie diese am Anfang des Hauptteils oder an dessen Ende platzieren möchte, vielleicht in der Nähe der Stelle, an der ein Schlüsselwort im Hauptinhalt tatsächlich definiert wird, oder ob sie sie als Metadaten betrachtet, die im Kopf stehen sollten, usw.
 
 Unser Beispiel zeigt den Quelltext der Querverweise dieses Dokuments, wobei einige Stellen hervorgehoben wurden. Sie befinden sich übrigens am Ende des Hauptteils.
 
@@ -340,7 +340,7 @@ Unser Beispiel zeigt den Quelltext der Querverweise dieses Dokuments, wobei eini
 
 ## Beispiele
 
-Überall dort, wo wir einfachen Text eingeben können, können wir auch Beispiele eingeben. Für einfache Beispiele steht uns der Befehl **example** zur Verfügung, der ein einziges Argument erwartet, nämlich den Text des Arguments. Der Beispieltext darf keine Markups enthalten. Wenn wir Markups innerhalb eines Beispiels verwenden möchten, müssen wir stattdessen die Kombination aus den beiden Befehlen **example\_begin** / **example\_end** verwenden.
+Überall dort, wo wir einfachen Text eingeben können, können wir auch Beispiele eingeben. Für einfache Beispiele steht uns der Befehl **example** zur Verfügung, der ein einziges Argument erwartet, nämlich den Text des Arguments. Der Beispieltext darf keine Markups enthalten. Wenn wir Markups innerhalb eines Beispiels verwenden möchten, müssen wir stattdessen die Kombination aus den beiden Befehlen [example\_begin][doctools_lang_cmdref] / [example\_end][doctools_lang_cmdref] verwenden.
 
 Der erste Befehl öffnet einen Beispielblock, der andere schließt ihn, und dazwischen können wir einfachen Text schreiben und alle üblichen Befehle zur Textauszeichnung verwenden. Zu beachten ist, dass Befehle zur Textstruktur nicht zulässig sind. Dies bedeutet auch, dass es nicht möglich ist, Beispiele und Listen innerhalb eines Beispiels einzubetten. Andererseits *können* wir innerhalb von Beispielblöcken Template-Befehle verwenden, um deren Inhalt aus einer Datei zu lesen (siehe Abschnitt [Erweiterte Struktur]).
 
@@ -352,7 +352,7 @@ Die Quelle für das allererste Beispiel in diesem Dokument (siehe Abschnitt [Gru
   }]
 ```
 
-Bei Verwendung von **example\_begin** / **example\_end** würde dies wie folgt aussehen:
+Bei Verwendung von [example\_begin][doctools_lang_cmdref] / [example\_end][doctools_lang_cmdref] würde dies wie folgt aussehen:
 
 ```
   [example_begin]
@@ -362,17 +362,17 @@ Bei Verwendung von **example\_begin** / **example\_end** würde dies wie folgt a
 
 ## Listen
 
-Überall dort, wo wir einfachen Text schreiben können, können wir auch Listen schreiben. Die wichtigsten Befehle sind **list\_begin** zum Starten einer Liste und **list\_end** zum Schließen einer Liste. Der eröffnende Befehl nimmt ein Argument entgegen, das den Typ der begonnenen Liste festlegt; dies bestimmt wiederum, welche der acht vorhandenen Listenelement-Befehle innerhalb der Liste zum Beginnen von Listenelementen zulässig sind.
+Überall dort, wo wir einfachen Text schreiben können, können wir auch Listen schreiben. Die wichtigsten Befehle sind [list\_begin][doctools_lang_cmdref] zum Starten einer Liste und [list\_end][doctools_lang_cmdref] zum Schließen einer Liste. Der eröffnende Befehl nimmt ein Argument entgegen, das den Typ der begonnenen Liste festlegt; dies bestimmt wiederum, welche der acht vorhandenen Listenelement-Befehle innerhalb der Liste zum Beginnen von Listenelementen zulässig sind.
 
 Nach dem Eröffnungsbefehl ist nur Leerraum zulässig, bis der erste Listenelement-Befehl das erste Element der Liste eröffnet. Jedes Element ist eine reguläre Folge von Absätzen und wird entweder durch den nächsten Listenelement-Befehl oder durch das Ende der Liste geschlossen. Wird es durch einen Listenelement-Befehl geschlossen, eröffnet dieser Befehl automatisch das nächste Listenelement. Da ein Listenelement eine Folge von Absätzen ist, kann innerhalb eines Listenelements die gesamte reguläre Textauszeichnung verwendet werden, einschließlich Beispielen und weiterer Listen.
 
-Die von **list\_begin** unterstützten Listentypen und die zugehörigen Befehle für Listenelemente lauten wie folgt:
+Die von [list\_begin][doctools_lang_cmdref] unterstützten Listentypen und die zugehörigen Befehle für Listenelemente lauten wie folgt:
 
 **arguments**
-: (**arg\_def**) Hiermit wird eine *Argumentliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Argumentname ist, zusammen mit seinem Typ und seinem E/A-Modus.
+: ([arg\_def][doctools_lang_cmdref]) Hiermit wird eine *Argumentliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Argumentname ist, zusammen mit seinem Typ und seinem E/A-Modus.
 
 **commands**
-: (**cmd\_def**) Hiermit wird eine *Befehlsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Befehlsname ist.
+: ([cmd\_def][doctools_lang_cmdref]) Hiermit wird eine *Befehlsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Befehlsname ist.
 
 **definitions**
 : ([def][doctools_lang_cmdref] und [call][doctools_lang_cmdref]) Hiermit wird eine allgemeine *Liste der Begriffsdefinitionen* geöffnet. Die durch die Listenelemente definierten Begriffe werden über die Argumente der Listenelement-Befehle festgelegt; dabei handelt es sich entweder um allgemeine Begriffe, gegebenenfalls mit Markup ([def][doctools_lang_cmdref]), oder um Tcl-Befehle mit ihrer Syntax ([call][doctools_lang_cmdref]).
@@ -384,10 +384,10 @@ Die von **list\_begin** unterstützten Listentypen und die zugehörigen Befehle 
 : ([item][doctoc_lang_cmdref]) Hiermit wird eine allgemeine *Auflistung* geöffnet.
 
 **options**
-: (**opt\_def**) Hiermit wird eine *Optionsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Optionsname ist, gegebenenfalls zusammen mit den Argumenten der Option.
+: ([opt\_def][doctools_lang_cmdref]) Hiermit wird eine *Optionsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff ein Optionsname ist, gegebenenfalls zusammen mit den Argumenten der Option.
 
 **tkoptions**
-: (**tkoption\_def**) Hiermit wird eine *Widget-Optionsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff der Name einer Konfigurationsoption für ein Widget ist, mit seinem Namen und seiner Klasse in der Optionsdatenbank.
+: ([tkoption\_def][doctools_lang_cmdref]) Hiermit wird eine *Widget-Optionsliste (Deklaration)* geöffnet. Es handelt sich um eine spezielle Form einer Begriffsdefinitionsliste, bei der der Begriff der Name einer Konfigurationsoption für ein Widget ist, mit seinem Namen und seiner Klasse in der Optionsdatenbank.
 
 
 Unser Beispiel ist der Quelltext der Definitionsliste im vorigen Absatz, wobei der größte Teil des Inhalts in der Mitte entfernt wurde.

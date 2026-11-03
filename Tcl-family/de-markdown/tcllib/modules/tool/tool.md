@@ -56,9 +56,9 @@ tool::define **variable** *name* *value*
 
 Dieses Modul implementiert den Tcl Object Oriented Library-Rahmen, kurz *TOOL*. Es ist als universell einsetzbarer Rahmen konzipiert, der eigenständig genutzt werden kann und leicht erweiterbar ist.
 
-TOOL definiert eine Metaklasse, die der Beschreibung TclOO mehrere zusätzliche Schlüsselwörter, Standardverhalten für die zugehörigen Objekte sowie eine Top-Down-Integration mit den vom Paket **oo::meta** bereitgestellten Funktionen bereitstellt.
+TOOL definiert eine Metaklasse, die der TclOO-Beschreibungssprache mehrere zusätzliche Schlüsselwörter, Standardverhalten für die zugehörigen Objekte sowie eine Top-Down-Integration mit den vom Paket **oo::meta** bereitgestellten Funktionen bereitstellt.
 
-Die Metaklasse „TOOL“ wurde mit dem Paket „**oo::dialect**“ erstellt und kann daher als Grundlage für weitere Metaklassen dienen. Als Metaklasse verfügt „TOOL“ über eine eigene „class“-Klasse, eine eigene „Objekt“-Klasse und definiert einen Namespace.
+Die Metaklasse „TOOL“ wurde mit dem Paket „**oo::dialect**“ erstellt und kann daher als Grundlage für weitere Metaklassen dienen. Als Metaklasse verfügt „TOOL“ über eine eigene „class“-Klasse, eine eigene „object“-Klasse und einen eigenen define-Namespace.
 
 ```
 package require tool
@@ -85,7 +85,7 @@ oo::class create myooclass {
 In mehreren Handbuchseiten werden bestimmte Schlüsselwörter und Methoden ausführlicher behandelt.
 
 - **tool::array\_ensemble**
-- **tool::dict\_ensemble**
+- [tool::dict\_ensemble][tool_dict_ensemble]
 - **tool::method\_ensemble**
 - **tool::object**
 - **tool::option\_handling**
@@ -112,7 +112,7 @@ tool::define **dict\_ensemble** *methodname* *varname* ?cases?
     Ein Methodenname ist reserviert: **initialize**. **initialize** deklariert die Anfangswerte, mit denen das Array gefüllt wird, als Schlüssel-Wert-Liste; daraus wird keine Methode des Ensembles.
 
 tool::define **method** *methodname* *arglist* *body*
-: Enthält *methodname* die Zeichenfolge ::, gilt die Methode als Teil eines Methoden-Ensembles. Siehe **tool::method\_ensembles**. Andernfalls verhält sich dieser Befehl genau wie der Standardbefehl **oo::define** **method**.
+: Enthält *methodname* die Zeichenkette ::, gilt die Methode als Teil eines Methoden-Ensembles. Siehe **tool::method\_ensembles**. Andernfalls verhält sich dieser Befehl genau wie der Standardbefehl **oo::define** **method**.
 
 tool::define **option** *name* *dictopts*
 : Deklariert eine Option. *dictopts* ist eine Schlüssel-Wert-Liste mit den Parametern der Option. Siehe **tool::option\_handling**.
@@ -147,16 +147,16 @@ Das TOOL-Objekt, die „Mutter aller Klassen“, definiert mehrere Methoden, um 
 : siehe unten ...
 
 *object* **configure** *field* *value* ?field? ?value? ?...?
-: Dieser Befehl fügt dem Array *options* der Objekte neue Werte hinzu, gemäß den in den Beschreibungen der Optionen festgelegten Regeln. Einzelheiten finden Sie unter **tool::option\_handling**. **configure** entfernt führende Minuszeichen („-“) aus Feldnamen, wodurch eine quasi-abwärtskompatible Funktionsweise zu tk-Optionen gewährleistet wird.
+: Dieser Befehl fügt dem Array *options* des Objekts neue Werte hinzu, gemäß den in den Beschreibungen der Optionen festgelegten Regeln. Einzelheiten finden Sie unter **tool::option\_handling**. **configure** entfernt führende Minuszeichen („-“) aus Feldnamen, wodurch eine quasi-abwärtskompatible Funktionsweise zu tk-Optionen gewährleistet wird.
 
 *object* **configurelist** ?keyvaluelist?
-: Dieser Befehl fügt dem Array *options* der Objekte neue Werte hinzu, gemäß den in den Beschreibungen der Optionen festgelegten Regeln. Dieser Befehl führt Validierungs- und alternative Speicherregeln durch. Er löst keine Trigger-Regeln aus. Weitere Informationen finden Sie unter **tool::option\_handling**.
+: Dieser Befehl fügt dem Array *options* des Objekts neue Werte hinzu, gemäß den in den Beschreibungen der Optionen festgelegten Regeln. Dieser Befehl führt Validierungs- und alternative Speicherregeln durch. Er löst keine Trigger-Regeln aus. Weitere Informationen finden Sie unter **tool::option\_handling**.
 
 *object* **forward** *stub* *forward*
 : Eine Weiterleitung zu **oo:objdefine \[self\] forward**
 
 *object* **graft** *stub* *forward*
-: Weiterleitet die Methode *<stub>* an das durch *forward* angegebene Objekt oder den angegebenen Befehl
+: Leitet die Methode *<stub>* an das durch *forward* angegebene Objekt oder den angegebenen Befehl weiter
 
     ```
     tool::object create A

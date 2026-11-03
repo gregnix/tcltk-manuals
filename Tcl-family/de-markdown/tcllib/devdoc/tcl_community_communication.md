@@ -50,10 +50,10 @@ Personen mit den Namen ansprechen, die sie selbst verwenden.
 Gegenüber anderen Teilnehmern keinen harschen Ton anschlagen.
 : Bitte führen Sie keine persönlichen Angriffe gegen irgendjemanden durch (unabhängig davon, ob es sich um einen Teilnehmer handelt oder nicht).
 
-    Kritisieren Sie Anweisungen und Handlungen, niemals Personen.
+    Kritisieren Sie Aussagen und Handlungen, niemals Personen.
 
 Nichts persönlich nehmen
-: Im Zweifelsfall sollten Sie von den besten Absichten der Menschen ausgehen. Kritik an Ihren Anweisungen ist kein persönlicher Angriff auf Sie.
+: Im Zweifelsfall sollten Sie von den besten Absichten der Menschen ausgehen. Kritik an Ihren Aussagen ist kein persönlicher Angriff auf Sie.
 
 Personen, nicht Menschengruppen
 : Stereotypen sind in vielerlei Hinsicht ein wenig hilfreiches Mittel. Sie sind in der Regel zu stark vereinfacht. Meistens sind sie schlichtweg falsch. Und selbst wenn sie „richtig“ wären, sind sie absolut nicht geeignet, um die Fähigkeiten, Motivationen oder Eignung einer Person zu beurteilen.
@@ -76,10 +76,10 @@ Wenn es schwierig wird, nicht eskalieren
     Wenn Sie Zeuge eines laufenden Streits sind, bitten Sie die beiden Parteien höflich, die Angelegenheit in einem privateren Rahmen zu klären.
 
 Das letzte Wort ist: Es tut mir leid
-: Sollte es doch einmal zu einem persönlichen Argument kommen, entschuldigen Sie sich als Erster. Eine Entschuldigung bedeutet kein Eingeständnis in einer logischen Frage. Sie räumt lediglich ein, dass die Diskussion an einem bestimmten Punkt entweder die Logik oder die Anstandsregeln der Gemeinschaft – oder beides – außer Acht gelassen hat. Kehren Sie zum Thema zurück, sobald sich die Gemüter wieder beruhigt haben.
+: Sollte es doch einmal zu einem persönlichen Streit kommen, entschuldigen Sie sich als Erster. Eine Entschuldigung bedeutet kein Eingeständnis in einer logischen Frage. Sie räumt lediglich ein, dass die Diskussion an einem bestimmten Punkt entweder die Logik oder die Anstandsregeln der Gemeinschaft – oder beides – außer Acht gelassen hat. Kehren Sie zum Thema zurück, sobald sich die Gemüter wieder beruhigt haben.
 
 Niemand führt Buch
-: Es gibt keinen Preis dafür, Recht zu haben. Es entstehen keine Kosten, wenn man Unrecht hat. Eine aufdringliche Verkaufsmasche wird Ihre Idee nicht weiterbringen – genauso wenig wie ein logisches Argument. Sie bewerben sich nicht um ein politisches Amt. Dies ist kein Debattierclub. Wenn Sie feststellen, dass Sie eine Diskussion über den Punkt hinaus fortsetzen, an dem ein Thema noch logisch erörtert werden kann, hören Sie auf.
+: Es gibt keinen Preis dafür, Recht zu haben. Es entstehen keine Kosten, wenn man Unrecht hat. Eine aufdringliche Verkaufsmasche wird Ihre Idee nicht weiter voranbringen als ein logisches Argument. Sie bewerben sich nicht um ein politisches Amt. Dies ist kein Debattierclub. Wenn Sie feststellen, dass Sie eine Diskussion über den Punkt hinaus fortsetzen, an dem ein Thema noch logisch erörtert werden kann, hören Sie auf.
 
 Kein Missionieren
 : Die Tcl-Community ist kein Ort, um für Ihr bevorzugtes Betriebssystem, Ihre politische Einstellung, Ihre Religion, Ihr Marketingkonzept oder Ihr Wirtschaftsmodell zu werben. Punkt.
@@ -89,7 +89,7 @@ Kein Missionieren
 Die Gemeinschaft respektieren
 : Wenn die Gemeinschaft eine Entscheidung über das weitere Vorgehen getroffen hat, hören Sie bitte auf zu streiten.
 
-    Wenn sich jemand darüber beschwert, wie Sie Ihren Ausdruck für Ihre Ideen verwenden, hören Sie zu.
+    Wenn sich jemand darüber beschwert, wie Sie Ihre Ideen ausdrücken, hören Sie zu.
 
     Wenn Ihre Worte andere verletzen, hören Sie damit auf. Es gibt kein Maß an „Recht haben“, das es wiedergutmachen könnte, wenn jemand unsere Gemeinschaft verlässt, weil er sich beleidigt, bedroht oder ignoriert gefühlt hat.
 

@@ -66,7 +66,7 @@ Dies ist eine der drei öffentlichen Säulen, auf denen die Verwaltung von Inhal
 2. *Aufnehmen von Inhaltsverzeichnissen*
 
 
-Zu den [Begriffe] der Inhaltsverzeichnisse und ihrer Teile siehe den gleichnamigen Abschnitt. Zur Datenstruktur, die das wesentliche Ergebnis der von diesem Paket bereitgestellten Manager-Objekte ist, siehe den Abschnitt [Serialisierungsformat für Inhaltsverzeichnisse].
+Zu den Begriffen der Inhaltsverzeichnisse und ihrer Teile siehe den Abschnitt [Begriffe]. Zur Datenstruktur, die das wesentliche Ergebnis der von diesem Paket bereitgestellten Manager-Objekte ist, siehe den Abschnitt [Serialisierungsformat für Inhaltsverzeichnisse].
 
 Das Plugin-System der Klasse beruht auf dem Paket **pluginmgr** und sucht Plugins über
 
@@ -204,7 +204,7 @@ Alle mit dem Befehl **::doctools::toc::import** erstellten Objekte haben die fol
 
 # Referenz zur Import-Plugin-API v2
 
-Plugins verwalten in diesem Paket die Unterstützung für jedes Eingabeformat jenseits des [Serialisierungsformat für Inhaltsverzeichnisse]. Hier ist die API festgelegt, über die die von diesem Paket erzeugten Objekte mit ihren Plugins verkehren.
+Plugins verwalten in diesem Paket die Unterstützung für jedes Eingabeformat über das [Serialisierungsformat für Inhaltsverzeichnisse] hinaus. Hier ist die API festgelegt, über die die von diesem Paket erzeugten Objekte mit ihren Plugins verkehren.
 
 Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten:
 
@@ -219,7 +219,7 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
     **IncludeFile** *currentfile* *path*
     : Diesen Befehl muss das Plugin aufrufen, wenn es eine eingebundene Datei verarbeiten muss, sofern das Format einen solchen Begriff hat. Ein Beispiel für ein solches Format ist *doctoc*.
 
-        Das Plugin übergibt die folgenden Argumente
+        Das Plugin muss die folgenden Argumente übergeben
 
         string *currentfile*
         : Der Pfad der Datei, die es gerade verarbeitet. Das kann die leere Zeichenkette sein, wenn keiner bekannt ist.
@@ -232,11 +232,11 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
 
         1. Ein boolesches Flag, das Erfolg (**True**) oder Misserfolg (**False**) des Vorgangs angibt.
 
-        2. Im Erfolgsfall den Inhalt der eingebundenen Datei, andernfalls die leere Zeichenkette.
+        2. Im Erfolgsfall der Inhalt der eingebundenen Datei, andernfalls die leere Zeichenkette.
 
         3. Der aufgelöste, d. h. der absolute Pfad der eingebundenen Datei, sofern möglich, oder das unveränderte *path*-Argument. Dies dient zur Anzeige in einer Fehlermeldung oder als *currentfile*-Argument eines weiteren Aufrufs von **IncludeFile**, falls diese Datei weitere Dateien enthält.
 
-        4. Im Erfolgsfall eine leere Zeichenkette und im Fehlerfall einen Code, der den Grund dafür angibt, und zwar einen der folgenden:
+        4. Im Erfolgsfall eine leere Zeichenkette und im Fehlerfall ein Code, der den Grund dafür angibt, und zwar einen der folgenden:
 
             notfound
             : Die angegebene Datei konnte nicht gefunden werden.
@@ -245,7 +245,7 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
             : Die angegebene Datei wurde gefunden, konnte jedoch nicht in den Arbeitsspeicher geladen werden.
 
 
-        5. Eine leere Zeichenfolge im Falle eines Erfolgs oder eines Fehlers mit dem Code **notfound** sowie eine zusätzliche Fehlermeldung, die den Grund für einen Fehler mit dem Code **notread** näher erläutert.
+        5. Eine leere Zeichenkette im Falle eines Erfolgs oder eines Fehlers mit dem Code **notfound** sowie eine zusätzliche Fehlermeldung, die den Grund für einen Fehler mit dem Code **notread** näher erläutert.
 
 
 

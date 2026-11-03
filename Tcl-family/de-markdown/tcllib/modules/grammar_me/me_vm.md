@@ -19,7 +19,7 @@ grammar::me\_vm – Virtuelle Maschine zur Analyse von Token-Strömen
 
 # Beschreibung
 
-Bitte lesen Sie zunächst das Dokument **grammar::me\_intro**, um eine Einleitung in die verschiedenen Dokumente und deren Zusammenhänge zu erhalten.
+Bitte lesen Sie zunächst das Dokument [grammar::me\_intro][me_intro], um einen Überblick in die verschiedenen Dokumente und deren Zusammenhänge zu erhalten.
 
 Dieses Dokument legt eine virtuelle Maschine für das kontrollierte Abgleichen und Parsen von Token-Strömen fest, wobei ein *abstrakter Syntaxbaum* (kurz *AST*) erstellt wird, der die Struktur der Eingabe widerspiegelt. Zu den besonderen Merkmalen der Maschine zählen das Zwischenspeichern und die Wiederverwendung von Teilergebnissen, das Zwischenspeichern der erfassten Eingabe sowie die Möglichkeit, sowohl bei der Eingabe als auch bei der Erstellung des AST zurückzuspringen.
 
@@ -42,7 +42,7 @@ Eine virtuelle ME-Maschine verwaltet den folgenden Zustand:
     Diese Information wird implizit von den in den Abschnitten [Abgleich von Terminalen] und [Abgleich von Nichtterminalen] definierten Anweisungen verwendet und verändert; sie kann zudem durch die in Abschnitt [Verwaltung der Eingabeposition] definierten Anweisungen direkt abgefragt und verändert werden.
 
 *Location stack* LS
-: Zusätzlich zu den oben genannten Elementen gibt es einen Stapel mit Positionen für das Zurückverfolgen. Positionen können auf den Stapel gelegt, von diesem entfernt und durch Festlegen der aktuellen Position entfernt werden.
+: Zusätzlich zu den oben genannten Elementen gibt es einen Stapel mit Positionen für das Zurückverfolgen. Positionen können auf den Stapel gelegt, von diesem entfernt und unter Setzen der aktuellen Position auf sie entfernt werden.
 
     Diese Informationen werden implizit durch die in den Abschnitten [Abgleich von Terminalen] und [Abgleich von Nichtterminalen] definierten Anweisungen verwendet und verändert und können durch die im Abschnitt [Verwaltung der Eingabeposition] definierten Anweisungen direkt abgefragt und verändert werden.
 
@@ -62,14 +62,14 @@ Eine virtuelle ME-Maschine verwaltet den folgenden Zustand:
     Diese Informationen werden durch die in den Abschnitten [Semantische Werte] und [AST-Stack-Verwaltung] definierten Anweisungen beeinflusst.
 
 *AST Marker stack* MS
-: Zusätzlich zu den oben genannten Elementen gibt es einen „Stack der Stacks“ für das Backtracking. Dabei handelt es sich eigentlich um einen Stack von Markern im AST-Stack, wodurch implizit zu einem bestimmten Zeitpunkt ein Snapshot des Zustands des AST-Stacks erstellt wird. Marker können auf den Stapel gesetzt, von ihm entfernt und dazu verwendet werden, den AST-Stapel auf einen früheren Zustand zurückzusetzen.
+: Zusätzlich zu den oben genannten Elementen gibt es einen „Stapel von Stapeln“ für das Backtracking. Dabei handelt es sich eigentlich um einen Stapel von Markern im AST-Stapel, wodurch implizit zu einem bestimmten Zeitpunkt ein Snapshot des Zustands des AST-Stapels erstellt wird. Marker können auf den Stapel gesetzt, von ihm entfernt und dazu verwendet werden, den AST-Stapel auf einen früheren Zustand zurückzusetzen.
 
     Diese Informationen werden durch die in den Abschnitten [Semantische Werte] und [AST-Stack-Verwaltung] definierten Anweisungen beeinflusst.
 
 *Error status* ER
 : Fehlerinformationen im Zusammenhang mit dem letzten Versuch, die Eingabe abzugleichen. Enthält entweder die leere Zeichenkette oder eine Liste mit zwei Elementen: eine Position in der Eingabe und eine Liste der damit verbundenen Fehlermeldungen, in dieser Reihenfolge.
 
-    *Hinweis*: Fehlerinformationen werden auch dann gesetzt, wenn der letzte Versuch, die Eingabe abzugleichen, erfolgreich war. Beispielsweise ist der Ausdruck \*-operator (der nullmal oder mehrmals auf einen Teilausdruck passt) in einer Parsing-Ausdrucksgrammatik stets erfolgreich, selbst wenn weiter hinten in der Eingabe ein Problem auftritt und ein Rückwärtsablauf erforderlich wird. Solche Probleme dürfen bei der Fortsetzung des Abgleichs nicht außer Acht gelassen werden.
+    *Hinweis*: Fehlerinformationen können auch dann gesetzt werden, wenn der letzte Versuch, die Eingabe abzugleichen, erfolgreich war. Beispielsweise ist der \*-Operator (der nullmal oder mehrmals auf einen Teilausdruck passt) in einer Parsing Expression Grammar stets erfolgreich, selbst wenn weiter hinten in der Eingabe ein Problem auftritt und ein Rückwärtsablauf erforderlich wird. Solche Probleme dürfen bei der Fortsetzung des Abgleichs nicht außer Acht gelassen werden.
 
     Diese Informationen werden durch die in den Abschnitten [Abgleich von Terminalen], [Abgleich von Nichtterminalen] und [Fehlerbehandlung] definierten Anweisungen abgefragt und beeinflusst.
 
@@ -147,7 +147,7 @@ Diese Befehle sind die einzigen, die ein neues Token aus dem Eingabestrom abrufe
 
 ## Abgleich von Nichtterminalen
 
-Die Anweisungen in diesem Abschnitt befassen sich mit der Zuordnung von Nichtterminal-Symbolen. Sie fragen den Nichtterminal-Cache *NC* nach gespeicherten Informationen ab und speichern diese Informationen im Cache.
+Die Anweisungen in diesem Abschnitt befassen sich mit dem Abgleich von Nichtterminal-Symbolen. Sie fragen den Nichtterminal-Cache *NC* nach gespeicherten Informationen ab und speichern diese Informationen im Cache.
 
 Die Verwendung des Caches dient als Leistungsoptimierung für Backtracking-Parser und ermöglicht es ihnen, eine aufwendige erneute Überprüfung komplexer nichtterminaler Symbole zu vermeiden, sofern diese bereits zuvor angetroffen wurden.
 
@@ -177,7 +177,7 @@ Die Verwendung des Caches dient als Leistungsoptimierung für Backtracking-Parse
 Die Anweisungen in diesem Abschnitt beziehen sich auf die übrigen Abgleichoperatoren. Sie ändern den Abgleichstatus *OK* direkt und bedingungslos.
 
 **iok\_ok**
-: Dieser Befehl weist **true** den Abgleichstatus *OK* zu, was einen erfolgreichen Abgleich anzeigt.
+: Dieser Befehl setzt den Abgleichstatus *OK* auf **true**, was einen erfolgreichen Abgleich anzeigt.
 
 **iok\_fail**
 : Mit diesem Befehl wird der Abgleichstatus *OK* auf **false** gesetzt, was einen fehlgeschlagenen Abgleich anzeigt.
@@ -200,7 +200,7 @@ Die Anweisungen in diesem Abschnitt implementieren sowohl bedingte als auch unbe
 : Dieser Befehl setzt den Programmzähler *PC* auf die durch *branchlabel* angegebene Adresse. Dies geschieht genau dann, wenn der Abgleichstatus *OK* einen Fehler anzeigt. Andernfalls wird die Ausführung einfach mit dem nächsten Befehl fortgesetzt. Hierbei handelt es sich um einen bedingten Sprung.
 
 **icf\_halt**
-: Dieser Befehl hält die Maschine an und unterbricht die weitere Ausführung.
+: Dieser Befehl hält die Maschine an und verhindert jede weitere Ausführung.
 
 
 ## Verwaltung der Eingabeposition
@@ -254,14 +254,14 @@ Die Anweisungen in diesem Abschnitt beeinflussen den semantischen Wert *SV*.
     Diese Anweisung sollte genau dann ausgeführt werden, wenn der Übereinstimmungsstatus *OK* einen Erfolg anzeigt. Im Falle eines Fehlers sollte **isv\_clear** aufgerufen werden.
 
 **isv\_nonterminal\_range** *nt*
-: Diese Anweisung erstellt einen nichtterminalen AST-Knoten für das Nichtterminal *nt* mit einem einzelnen Terminalknoten als Kindknoten und macht diesen AST zum semantischen Wert *SV*. Der terminale Knoten bezieht sich auf die Eingabezeichenfolge von der Position, die sich ganz oben auf dem Positionsstapel *LS* befindet, bis zur aktuellen Position *CL* (beide einschließlich).
+: Diese Anweisung erstellt einen nichtterminalen AST-Knoten für das Nichtterminal *nt* mit einem einzelnen Terminalknoten als Kindknoten und macht diesen AST zum semantischen Wert *SV*. Der terminale Knoten bezieht sich auf die Eingabezeichenkette von der Position, die sich ganz oben auf dem Positionsstapel *LS* befindet, bis zur aktuellen Position *CL* (beide einschließlich).
 
     Diese Anweisung sollte genau dann ausgeführt werden, wenn der Übereinstimmungsstatus *OK* einen Erfolg anzeigt. Im Falle eines Fehlers sollte **isv\_clear** aufgerufen werden.
 
 **isv\_nonterminal\_reduce** *nt*
 : Diese Anweisung erstellt einen nichtterminalen AST-Knoten für das Nichtterminal *nt* und macht ihn zum semantischen Wert *SV*.
 
-    Alle Einträge auf dem AST-Stapel *AS*, die über dem Marker liegen, der im obersten Eintrag des AST-Marker-Stapels *MS* gefunden wurde, werden zu Kindern des neuen Knotens, wobei der Eintrag an der Stapelspitze zum Kind ganz rechts wird. Wenn der AST-Marker-Stapel *MS* leer ist, wird der gesamte Stapel verwendet. Der AST-Marker-Stapel *MS* bleibt unverändert.
+    Alle Einträge auf dem AST-Stapel *AS*, die über dem Marker liegen, der im obersten Eintrag des AST-Marker-Stapels *MS* gefunden wurde, werden zu Kindknoten des neuen Knotens, wobei der Eintrag an der Stapelspitze zum Kindknoten ganz rechts wird. Wenn der AST-Marker-Stapel *MS* leer ist, wird der gesamte Stapel verwendet. Der AST-Marker-Stapel *MS* bleibt unverändert.
 
     Diese Anweisung sollte genau dann ausgeführt werden, wenn der Übereinstimmungsstatus *OK* einen Erfolg anzeigt. Im Falle eines Fehlers sollte **isv\_clear** aufgerufen werden.
 
@@ -277,10 +277,10 @@ Die Anweisungen in diesem Abschnitt bearbeiten den AST-Stapel *AS* und den AST-M
 : Dieser Befehl schiebt einen Marker für den aktuellen Zustand des AST-Stapels *AS* auf den AST-Marker-Stapel *MS*.
 
 **ias\_mrewind**
-: Dieser Befehl entnimmt dem AST-Marker-Stack *MS* einen Eintrag und fährt anschließend fort, Einträge aus dem AST-Stack *AS* zu entnehmen, bis der durch den entnommenen Marker dargestellte Zustand erneut erreicht ist. Es erfolgt keine Aktion, wenn der AST-Stack *AS* bereits kleiner ist als durch den entnommenen Marker angegeben.
+: Dieser Befehl entnimmt dem AST-Marker-Stapel *MS* einen Eintrag und fährt anschließend fort, Einträge aus dem AST-Stapel *AS* zu entnehmen, bis der durch den entnommenen Marker dargestellte Zustand erneut erreicht ist. Es erfolgt keine Aktion, wenn der AST-Stapel *AS* bereits kleiner ist als durch den entnommenen Marker angegeben.
 
 **ias\_mpop**
-: Dieser Befehl entnimmt dem AST-Marker-Stack *MS* einen Eintrag und verwirft ihn.
+: Dieser Befehl entnimmt dem AST-Marker-Stapel *MS* einen Eintrag und verwirft ihn.
 
 
 # Fehler, Ideen, Rückmeldungen

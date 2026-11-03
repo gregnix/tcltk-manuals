@@ -101,7 +101,7 @@ Die Klassen*definition* wird als Folge von Tcl-Anweisungen ausgewertet, die Elem
 
     Wenn die Liste *args* angegeben ist, legt sie die Verwendungsangabe für dieses proc fest. Mit dem Befehl **body** lässt sich der Rumpf des proc neu definieren, die Liste *args* muss aber zu dieser Angabe passen.
 
-    Innerhalb des Rumpfes einer anderen Klassenmethode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*className*__::__*proc*“ aufgerufen. Procs einer Basisklasse, die in der aktuellen Klasse neu definiert oder von einer anderen Basisklasse verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
+    Innerhalb des Rumpfes einer anderen Klassenmethode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*className***::***proc*“ aufgerufen. Procs einer Basisklasse, die in der aktuellen Klasse neu definiert oder von einer anderen Basisklasse verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
 
 **variable** *varName* ?*init*? ?*config*?
 : Definiert eine objektspezifische Variable namens *varName*. Alle objektspezifischen Variablen stehen in Klassenmethoden automatisch zur Verfügung. Sie müssen nicht mit etwas wie dem Befehl **global** deklariert werden.
@@ -142,7 +142,7 @@ Die Klassen*definition* wird als Folge von Tcl-Anweisungen ausgewertet, die Elem
 Sobald eine Klasse definiert ist, kann der Klassenname als Befehl verwendet werden, um neue Objekte zu erzeugen, die zur Klasse gehören.
 
 *className objName* ?*args...*?
-: Erzeugt ein neues Objekt der Klasse *className* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor der spezifischsten Klasse übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basisklassen weiter, bevor er seinen eigenen Befehlsumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
+: Erzeugt ein neues Objekt der Klasse *className* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor der spezifischsten Klasse übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basisklassen weiter, bevor er seinen eigenen Befehlsrumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
 
     Wenn *objName* die Zeichenkette „**#auto**“ enthält, wird diese Zeichenkette durch einen automatisch erzeugten Namen ersetzt. Namen haben die Form *className<number>*, wobei der Teil *className* so geändert wird, dass er mit einem Kleinbuchstaben beginnt. In der Klasse „Toaster“ würde die Angabe „**#auto**“ zum Beispiel Namen wie toaster0, toaster1 und so weiter erzeugen. „**#auto**“ kann auch mitten in einem Objektnamen stehen:
 
@@ -167,7 +167,7 @@ Sobald ein Objekt erzeugt ist, kann der Objektname als Befehl verwendet werden, 
 : Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „cget“ für Tk-Widgets nach. Das Argument *option* ist eine Zeichenkette der Form „**-**_varName_“, und diese Methode gibt den aktuellen Wert der öffentlichen Variablen *varName* zurück.
 
 *objName* **configure** ?*option*? ?*value option value ...*?
-: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, seinen Anfangswert und seinen aktuellen Wert.
+: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, ihren Anfangswert und ihren aktuellen Wert.
 
     Wenn eine einzelne *option* der Form „**-**_varName_“ angegeben ist, gibt diese Methode die Angaben für diese eine Variable zurück.
 

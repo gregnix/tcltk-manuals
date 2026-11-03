@@ -93,14 +93,14 @@ Dieser Abschnitt beschreibt Befehle auf Benutzerebene. Skriptautoren können mit
 : Dient dazu, den Zustand des Interpreters aufzufrischen, sodass er zur optionalen Trace-Epoche ?epoch? passt. Ist die optionale ?epoch? nicht angegeben, nimmt er die jüngste Trace-Epoche.
 
 **ttrace::getscript**
-: Gibt ein zusammengesetztes Tcl-Skript zurück, das in jedem Interpreter per source geladen werden kann. Dieses Skript bereitet den Tcl-Befehl **unknown** so vor, dass er per Trace erfasste Ressourcen aus der Datenbank im Speicher laden kann. Gewöhnlich rufen andere Befehle höherer Ebene wie **ttrace::eval** und **ttrace::update** diesen Befehl automatisch auf.
+: Gibt ein zusammengesetztes Tcl-Skript zurück, das in jedem Interpreter mittels `source` eingelesen werden kann. Dieses Skript bereitet den Tcl-Befehl **unknown** so vor, dass er per Trace erfasste Ressourcen aus der Datenbank im Speicher laden kann. Gewöhnlich rufen andere Befehle höherer Ebene wie **ttrace::eval** und **ttrace::update** diesen Befehl automatisch auf.
 
 
 # Rückrufbefehle
 
 Vorweg: Das Paket enthält bereits Rückruffunktionen, um die folgenden Tcl-Befehle zu tracen: **proc**, **namespace**, **variable**, **load** und **rename**. Zusätzlich liegt ein Satz von Rückruffunktionen vor, um Ressourcen (Objekt, Klassen) von XOTcl ab Version 1.3.8 zu tracen, einer OO-Erweiterung von Tcl. Das gibt eine tragfähige Grundlage, die meisten Bedürfnisse der Praxis zu lösen, und dient als Beispiel für alle, die das Paket an ihre besonderen Bedürfnisse anpassen wollen.
 
-Unten stehen Befehle, um Rückruffunktionen im Rahmen zu registrieren und Rückruffunktionskripte zu schreiben. Der Rahmen ruft diese Rückruffunktionen auf, um Zustandsänderungen des Interpreters zu sammeln, die Datenbank im Speicher aufzubauen, eigene Aufräumarbeiten auszuführen und verschiedene andere Aufgaben zu erledigen.
+Unten stehen Befehle, um Rückruffunktionen im Rahmen zu registrieren und Skripte für Rückruffunktionen zu schreiben. Der Rahmen ruft diese Rückruffunktionen auf, um Zustandsänderungen des Interpreters zu sammeln, die Datenbank im Speicher aufzubauen, eigene Aufräumarbeiten auszuführen und verschiedene andere Aufgaben zu erledigen.
 
 **ttrace::atenable** *cmd* *arglist* *body*
 : Registriert eine Tcl-Rückruffunktion, die bei **ttrace::enable** aktiviert wird. Registrierte Rückruffunktionen werden nach FIFO aktiviert. Die Definition der Rückruffunktion umfasst den Namen der Rückruffunktion, *cmd*, eine Liste der Argumente der Rückruffunktion, *arglist*, und den *body* der Rückruffunktion. Wirksam entspricht das der Aufrufschnittstelle des üblichen Tcl-Befehls **proc**.

@@ -50,7 +50,7 @@ textutil::expander – Prozeduren zur Bearbeitung von Vorlagen und zum Erweitern
 
 # Beschreibung
 
-Das Paket **textutil::expander** bietet eine Funktion zur Erstellung von Zeichenfolgenvorlagen, die leistungsfähiger und flexibler ist als der integrierte Befehl [subst](https://www.tcl-lang.org/man/tcl/TclCmd/subst.html).
+Das Paket **textutil::expander** bietet eine Funktion zur Erstellung von Zeichenkettenvorlagen, die leistungsfähiger und flexibler ist als der integrierte Befehl [subst](https://www.tcl-lang.org/man/tcl/TclCmd/subst.html).
 
 Im Abschnitt [Anleitung] erfahren Sie mehr über das Paket, und im Abschnitt [API] finden Sie alle Einzelheiten.
 
@@ -115,7 +115,7 @@ Expander-Objekte unterstützen die folgenden Methoden:
 : Gibt die aktuell im obersten Kontext erfasste Ausgabe zurück und leert diesen Puffer. Dies entspricht in etwa einer Kombination aus **cpop** und anschließendem **cpush**, mit dem Unterschied, dass hier der interne Zustand (Klammern) beibehalten wird.
 
 *expanderName* **cpush** *cname*
-: Fügt einen Kontext namens *cname* auf den Kontextstapel ein. Der Kontext muss vor Ende der Erweiterung mit **cpop** vom Stapel entfernt werden, andernfalls wird ein Fehler ausgelöst.
+: Legt einen Kontext namens *cname* auf den Kontextstapel. Der Kontext muss vor Ende der Erweiterung mit **cpop** vom Stapel entfernt werden, andernfalls wird ein Fehler ausgelöst.
 
 *expanderName* **cset** *varname* *value*
 : Setzt die Variable *varname* im aktuellen Kontext auf den Wert *value*.
@@ -145,7 +145,7 @@ Expander-Objekte unterstützen die folgenden Methoden:
 *expanderName* **expand** *string* ?*brackets*?
 : Erweitert die Eingabezeichenkette, ersetzt darin enthaltene Makros durch ihre expandierten Werte und gibt die expandierte Zeichenkette zurück.
 
-    Hinweis: Diese Methode während ihrer Ausführung einen neuen (leeren) Kontext auf den Kontextstapel schiebt und ihn bei der Rückkehr wieder entfernt.
+    Hinweis: Diese Methode legt während ihrer Ausführung einen neuen (leeren) Kontext auf den Kontextstapel und entfernt ihn bei der Rückkehr wieder.
 
     Wenn *brackets* angegeben wird, muss es sich um eine Liste aus zwei Zeichenketten handeln; die Elemente werden ausschließlich für diese Erweiterung als linke und rechte Klammersequenz für die Makroerweiterung verwendet.
 
@@ -162,12 +162,12 @@ Expander-Objekte unterstützen die folgenden Methoden:
 : Legt die linken und rechten Klammern für die Makroauswertung fest. Dieser Befehl ist zur Verwendung als oder innerhalb eines Makros vorgesehen oder dient dazu, die Klammerdefinitionen dauerhaft zu ändern.  Standardmäßig lauten die Klammern **\[** und **\]**, es kann jedoch jede nicht leere Zeichenkette verwendet werden; zum Beispiel **<** und **>** oder **(\*** und **\*)** oder sogar **Hello,** und **World!**.
 
 *expanderName* **textcmd** ?*newTextCmd*?
-: Gibt den aktuellen Befehl zur Verarbeitung von Klartext zurück, der standardmäßig die leere Zeichenkette ist, was *identity* bedeutet. Wenn angegeben, wird *newTextCmd* für die spätere Verwendung gespeichert und anschließend zurückgegeben; es muss sich um einen Tcl-Befehl handeln, der ein zusätzliches Argument erwartet: den zu verarbeitenden Text. Das Expander-Objekt verwendet diesen Befehl für jeden antreffenden Klartext, wodurch der Benutzer des Objekts die Möglichkeit erhält, den gesamten Klartext auf eine einheitliche Weise zu verarbeiten, bevor er in die Ausgabe geschrieben wird. Das Objekt erwartet, dass der Befehl den verarbeiteten Klartext gibt.
+: Gibt den aktuellen Befehl zur Verarbeitung von Klartext zurück, der standardmäßig die leere Zeichenkette ist, was *identity* bedeutet. Wenn angegeben, wird *newTextCmd* für die spätere Verwendung gespeichert und anschließend zurückgegeben; es muss sich um einen Tcl-Befehl handeln, der ein zusätzliches Argument erwartet: den zu verarbeitenden Text. Das Expander-Objekt verwendet diesen Befehl für jeden Klartext, auf den es trifft, wodurch der Benutzer des Objekts die Möglichkeit erhält, den gesamten Klartext auf eine einheitliche Weise zu verarbeiten, bevor er in die Ausgabe geschrieben wird. Das Objekt erwartet, dass der Befehl den verarbeiteten Klartext zurückgibt.
 
     *Hinweis*: Die Kombination „**textcmd** *plaintext*“ wird zur tatsächlichen Auswertung durch den *evalcmd* geleitet. Mit anderen Worten: Der *textcmd* wird als spezielles Makro behandelt, das implizit den gesamten Klartext in der Vorlage umschließt.
 
 *expanderName* **where**
-: Gibt eine Liste mit drei Elementen zurück, die die aktuelle Zeichenposition, Zeile und Spalte enthält, die der Expander bei der Verarbeitung der aktuellen Eingabezeichenfolge erreicht hat.
+: Gibt eine Liste mit drei Elementen zurück, die die aktuelle Zeichenposition, Zeile und Spalte enthält, die der Expander bei der Verarbeitung der aktuellen Eingabezeichenkette erreicht hat.
 
 
 # Anleitung
@@ -184,7 +184,7 @@ Erstellen Sie zunächst ein Expander-Objekt:
     %
 ```
 
-Das erstellte **::myexp**-Objekt kann verwendet werden, um Textzeichenfolgen zu erweitern, die eingebettete Tcl-Befehle enthalten. Standardmäßig werden eingebettete Befehle durch eckige Klammern begrenzt. Beachten Sie, dass der Expander nicht versucht, Variablen zu interpolieren, da Variablen von eingebetteten Befehlen referenziert werden können:
+Das erstellte **::myexp**-Objekt kann verwendet werden, um Textzeichenketten zu erweitern, die eingebettete Tcl-Befehle enthalten. Standardmäßig werden eingebettete Befehle durch eckige Klammern begrenzt. Beachten Sie, dass der Expander nicht versucht, Variablen zu interpolieren, da Variablen von eingebetteten Befehlen referenziert werden können:
 
 ```
     % set greeting "Howdy"
@@ -197,7 +197,7 @@ Das erstellte **::myexp**-Objekt kann verwendet werden, um Textzeichenfolgen zu 
 
 ## Makros einbetten
 
-Ein Expander-Makro ist einfach ein in eine Textzeichenfolge eingebettetes Tcl-Skript. Expander führt das Skript im globalen Kontext aus und ersetzt es durch die resultierende Zeichenfolge. Zum Beispiel:
+Ein Expander-Makro ist einfach ein in eine Textzeichenkette eingebettetes Tcl-Skript. Expander führt das Skript im globalen Kontext aus und ersetzt es durch die resultierende Zeichenkette. Zum Beispiel:
 
 ```
     % set greetings {Howdy Hi "What's up"}
@@ -220,7 +220,7 @@ Ein Expander-Makro ist einfach ein in eine Textzeichenfolge eingebettetes Tcl-Sk
 
 ## Makrobefehle schreiben
 
-In der Regel werden *Makrobefehle* zur Erstellung einer Auszeichnungssprache verwendet. Ein Makrobefehl ist lediglich ein Tcl-Befehl, der eine Ausgabekette gibt. Mit dem Befehl „expand“ lässt sich beispielsweise eine generische Dokumentauszeichnungssprache implementieren, die auf HTML oder ein beliebiges anderes Ausgabeformat angepasst werden kann:
+In der Regel werden *Makrobefehle* zur Erstellung einer Auszeichnungssprache verwendet. Ein Makrobefehl ist lediglich ein Tcl-Befehl, der eine Ausgabezeichenkette zurückgibt. Mit dem Befehl „expand“ lässt sich beispielsweise eine generische Dokumentauszeichnungssprache implementieren, die auf HTML oder ein beliebiges anderes Ausgabeformat angepasst werden kann:
 
 ```
     % proc bold {} {return "<b>"}
@@ -234,7 +234,7 @@ Die oben genannten Definitionen von **bold** und **/bold** geben HTML zurück, d
 
 ## Expansionsklammern ändern
 
-Standardmäßig werden eingebettete Makros in eckige Klammern, **\[** und **\]**, gesetzt.  Wenn eckige Klammern in der Ausgabe enthalten sein müssen, können in der Eingabe die Befehle **lb** und **rb** verwendet werden.  Alternativ oder wenn eckige Klammern aus einem anderen Grund unerwünscht sind, können die Klammern für die Makroauswertung durch ein beliebiges Paar nichtleerer Zeichenfolgen ersetzt werden.
+Standardmäßig werden eingebettete Makros in eckige Klammern, **\[** und **\]**, gesetzt.  Wenn eckige Klammern in der Ausgabe enthalten sein müssen, können in der Eingabe die Befehle **lb** und **rb** verwendet werden.  Alternativ oder wenn eckige Klammern aus einem anderen Grund unerwünscht sind, können die Klammern für die Makroauswertung durch ein beliebiges Paar nichtleerer Zeichenketten ersetzt werden.
 
 Die Methode **setbrackets** ändert die Klammern für alle nachfolgenden Erweiterungen, die auf das aktuelle Erweiterungsobjekt angewendet werden. Sie können beispielsweise Pseudo-HTML schreiben, indem Sie sie in **<** und **>** ändern:
 
@@ -255,9 +255,9 @@ Alternativ können Sie die Expansionsklammern vorübergehend ändern, indem Sie 
 
 ## Individuelle Makroauswertung
 
-Standardmäßig werden Makros mit dem Tcl-Befehl **uplevel #0** ausgewertet, sodass der eingebettete Code im globalen Kontext ausgeführt wird. Die Anwendung kann über die Methode **evalcmd** einen anderen Befehl für die Auswertung bereitstellen; dies ermöglicht es der Anwendung beispielsweise, einen sicheren Interpreter zu verwenden oder sogar etwas anderes als Tcl-Code auszuwerten.  Es gibt jedoch eine Einschränkung: Um als gültig erkannt zu werden, muss ein Makro den Wert **1** (wahr) geben, wenn es an den Tcl-Unterbefehl [info complete](https://www.tcl-lang.org/man/tcl9.0/TclCmd/info.html) übergeben wird.
+Standardmäßig werden Makros mit dem Tcl-Befehl **uplevel #0** ausgewertet, sodass der eingebettete Code im globalen Kontext ausgeführt wird. Die Anwendung kann über die Methode **evalcmd** einen anderen Befehl für die Auswertung bereitstellen; dies ermöglicht es der Anwendung beispielsweise, einen sicheren Interpreter zu verwenden oder sogar etwas anderes als Tcl-Code auszuwerten.  Es gibt jedoch eine Einschränkung: Um als gültig erkannt zu werden, muss ein Makro den Wert **1** (wahr) zurückgeben, wenn es an den Tcl-Unterbefehl [info complete](https://www.tcl-lang.org/man/tcl9.0/TclCmd/info.html) übergeben wird.
 
-Beispielsweise erfolgt bei jedem Makro eine Auswertung, bei der der Makrotext selbst zurückgegeben wird.
+Der folgende Code „wertet“ beispielsweise jedes Makro „aus“, indem er den Makrotext selbst zurückgibt.
 
 ```
     proc identity {macro} {return $macro}
@@ -283,7 +283,7 @@ Das Makro **footnote** würde dieser Fußnote vermutlich eine Nummer zuweisen un
 
 Hier steht der Fußnotentext zwischen den Makros **footnote** und **/footnote**, setzt sich in einer zweiten Zeile fort und enthält selbst mehrere Makros. Das ist sowohl übersichtlicher als auch flexibler; mit den bisher vorgestellten Funktionen gibt es jedoch keine einfache Möglichkeit, dies umzusetzen.  Dafür ist der Kontextstapel gedacht.
 
-Jede Makro-Erweiterung findet in einem bestimmten Kontext statt. Hier fügt das Makro **footnote** einen neuen Kontext auf den Kontextstapel. Anschließend wird der gesamte erweiterte Text in diesen neuen Kontext eingefügt. **/footnote** ruft ihn ab, indem es den Kontext vom Stapel nimmt. Hier ist eine grobe Implementierung dieser beiden Makros:
+Jede Makro-Erweiterung findet in einem bestimmten Kontext statt. Hier legt das Makro **footnote** einen neuen Kontext auf den Kontextstapel. Anschließend wird der gesamte erweiterte Text in diesen neuen Kontext eingefügt. **/footnote** ruft ihn ab, indem es den Kontext vom Stapel nimmt. Hier ist eine grobe Implementierung dieser beiden Makros:
 
 ```
     proc footnote {} {
@@ -298,7 +298,7 @@ Jede Makro-Erweiterung findet in einem bestimmten Kontext statt. Hier fügt das 
     }
 ```
 
-Die Methode **cpush** schiebt einen neuen Kontext auf den Stack; das Argument ist der Name des Kontexts.  Dies kann eine beliebige Zeichenkette sein, ist jedoch in der Regel der Name des Makros selbst. Anschließend überprüft **cpop**, ob der aktuelle Kontext den erwarteten Name trägt, entfernt ihn vom Stack und gibt den gesammelten Text zurück.
+Die Methode **cpush** schiebt einen neuen Kontext auf den Stapel; das Argument ist der Name des Kontexts.  Dies kann eine beliebige Zeichenkette sein, ist jedoch in der Regel der Name des Makros selbst. Anschließend überprüft **cpop**, ob der aktuelle Kontext den erwarteten Namen trägt, entfernt ihn vom Stapel und gibt den gesammelten Text zurück.
 
 Expand bietet mehrere weitere Werkzeuge im Zusammenhang mit dem Kontextstapel. Angenommen, das erste Makro in einem Kontextpaar nimmt Argumente entgegen oder berechnet Werte, die das zweite Makro in diesem Paar benötigt. Nach dem Aufruf von **cpush** kann das erste Makro eine oder mehrere Kontextvariablen definieren; das zweite Makro kann deren Werte jederzeit vor dem Aufruf von **cpop** abrufen.  Nehmen wir beispielsweise an, das Dokument müsse die Fußnotennummer explizit angeben:
 

@@ -46,7 +46,7 @@ Dieses Paket stellt Befehle und Objekte für die allgemeine Verwaltung von Plugi
 
 Um die Einführung eines weiteren Systems zur Lokalisierung von Tcl-Code zu vermeiden, baut das von diesem Paket bereitgestellte System auf dem regulären Paketverwaltungssystem auf. Jedes Plugin gilt als Paket, und ein einfacher Aufruf von **package require** genügt, um es zu finden und zu laden, sofern es vorhanden ist. Zusätzliche Pfade werden nur dann benötigt, wenn ein Plugin-Manager Teil einer verpackten Anwendung ist und nach Plugins suchen muss, die außerhalb dieser Anwendung vorhanden sind. Für diesen Fall stellt das Paket einen Befehl bereit, mit dem sich ein allgemeiner Satz solcher Pfade anhand der Namen des betreffenden Plugin-Managers und/oder der betreffenden Anwendung erstellen lässt.
 
-Der wichtigste Beitrag dieses Pakets ist ein generischer Rahmen, der die einfache Deklaration von
+Der wichtigste Beitrag dieses Pakets ist ein generischer Rahmen, der die einfache Deklaration folgender Angaben ermöglicht:
 
 1. Wie der Name eines Plugins in den Namen des Pakets übersetzt wird, das es implementiert, und umgekehrt.
 
@@ -69,7 +69,7 @@ Der gesamte Plugin-Code gilt als nicht vertrauenswürdig und wird stets in einem
     Die Optionen und ihre Werte nach dem Namen des Objekts legen die Anfangskonfiguration des Manager-Objekts fest und geben die zutreffenden Plugins sowie deren API an.
 
 **::pluginmgr::paths** *objectName* *name*...
-: Dieser Hilfsbefehl fügt dem angegebenen Objekt eine Reihe von Pfaden hinzu, basierend auf den angegebenen *name*s. Er sucht nach:
+: Dieser Hilfsbefehl fügt dem angegebenen Objekt eine Reihe von Pfaden hinzu, basierend auf den angegebenen Namen *name*. Er sucht nach:
 
     1. Die Umgebungsvariable *name*\_PLUGINS. Ihr Inhalt wird als Liste von Paketpfaden interpretiert. Die Einträge müssen entweder durch **:** (unix) oder **;** (windows) getrennt sein.
 
@@ -137,7 +137,7 @@ Alle Befehle, die durch den Befehl **::pluginmgr** erstellt wurden (siehe Abschn
 : Die Methode verhält sich wie die Methode **cget**, wenn sie mit einem einzigen Argument aufgerufen wird, und gibt den Wert der durch dieses Argument festgelegten Option zurück.
 
 *objectName* **configure** **-option** *value*...
-: Die Methode konfiguriert die angegebenen **option**s des Objekts neu und setzt sie auf die zugehörigen *value*s, wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
+: Die Methode konfiguriert die angegebenen Optionen **option** des Objekts neu und setzt sie auf die zugehörigen Werte *value*, wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
 
     Die zulässigen Optionen sind im Abschnitt [Objekt-Konfiguration] beschrieben.
 
@@ -211,7 +211,7 @@ Alle Plugin-Manager-Objekte unterstützen die folgenden Konfigurationsoptionen:
 **-check** *cmdprefix*
 : Der Wert dieser Option wird als Befehlspräfix interpretiert. Sein Zweck besteht darin, komplexe Prüfungen an einem geladenen Plugin-Paket durchzuführen, um dessen Gültigkeit zu überprüfen; diese Prüfungen gehen über eine einfache Liste der bereitgestellten Befehle hinaus.
 
-    Die Funktion wird mit dem Objektbefehl des Manager-Objekts als einzigem Argument aufgerufen und muss einen booleschen Wert zurückgeben. Ein Wert von **true** wird so interpretiert, dass das betreffende Plugin den Test bestanden hat. Der Aufruf erfolgt genau dann, wenn das betreffende Plugin bereits die über die Option **-api** festgelegte grundlegende API-Prüfung bestanden hat.
+    Das Befehlspräfix wird mit dem Objektbefehl des Manager-Objekts als einzigem Argument aufgerufen und muss einen booleschen Wert zurückgeben. Ein Wert von **true** wird so interpretiert, dass das betreffende Plugin den Test bestanden hat. Der Aufruf erfolgt genau dann, wenn das betreffende Plugin bereits die über die Option **-api** festgelegte grundlegende API-Prüfung bestanden hat.
 
     Der Standardwert ist eine leere Liste, was dazu führt, dass das Manager-Objekt den Aufruf unterdrückt und davon ausgeht, dass das Kandidaten-Plugin den Test bestanden hat.
 
@@ -224,7 +224,7 @@ Alle Plugin-Manager-Objekte unterstützen die folgenden Konfigurationsoptionen:
 **-setup** *cmdprefix*
 : Der Wert dieser Option wird als Befehlspräfix interpretiert.
 
-    Er wird immer dann aufgerufen, wenn ein neuer sicherer Interpreter für ein Plugin erstellt wurde, jedoch noch bevor das Plugin geladen wird. Als einzige Argumente werden ihm der Objektbefehl des Managers und das Interpreter-Handle übergeben. Jeder Rückgabewert wird ignoriert.
+    Es wird immer dann aufgerufen, wenn ein neuer sicherer Interpreter für ein Plugin erstellt wurde, jedoch noch bevor das Plugin geladen wird. Als einzige Argumente werden ihm der Objektbefehl des Managers und das Interpreter-Handle übergeben. Jeder Rückgabewert wird ignoriert.
 
     Der Zweck besteht darin, einem Benutzer der Plugin-Verwaltung die Möglichkeit zu geben, Befehle, Pakete usw. zu definieren, die ein ausgewähltes Plugin beim Laden möglicherweise benötigt.
 

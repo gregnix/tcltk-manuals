@@ -98,7 +98,7 @@ In diesem Abschnitt wird die grundlegende API beschrieben, mit der Verknüpfunge
 
     Zu beachten ist, dass durch das Aufheben einer Verbindung zwar die paketinternen Verwaltungsinformationen zerstört werden, die *Datenquelle*, die von der Verbindung verwaltet wurde, jedoch nicht verändert, sondern lediglich geschlossen wird.
 
-    Nachdem der Befehl zurückgibt, werden keine der am Array vorgenommenen Änderungen mehr in der *Datenquelle* gespeichert.
+    Nachdem der Befehl zurückgekehrt ist, werden keine der am Array vorgenommenen Änderungen mehr in der *Datenquelle* gespeichert.
 
     Das Ergebnis des Befehls ist eine leere Zeichenkette.
 
@@ -116,7 +116,7 @@ In diesem Abschnitt wird die grundlegende API beschrieben, mit der Verknüpfunge
 : Dieser Befehl gibt ein Dictionary zurück, das die registrierten Typen sowie die ihnen zugeordneten Klassenbefehle enthält.
 
 **::tie::info** **type** *dstype*
-: Dieser Befehl gibt den vollständig aufgelösten Befehl für eine Klasse mit dem Namen des Typs zurück. Das bedeutet, dass der Befehl einer Kette von Typdefinitionen bis zu deren Ende folgt.
+: Dieser Befehl gibt den vollständig aufgelösten Klassenbefehl für einen Typnamen zurück. Das bedeutet, dass der Befehl einer Kette von Typdefinitionen bis zu deren Ende folgt.
 
 
 ## Standarddatenquellentypen
@@ -130,9 +130,9 @@ Dieses Paket stellt die folgenden sechs Typen als Beispiele und Standarddatenque
 : Diese *Datenquelle* verwendet ein reguläres Tcl-Array als Quelle für die persistenten Daten. Sie akzeptiert ein einziges identifizierendes Argument, nämlich den Namen dieses Tcl-Arrays. Alle Änderungen werden in dieses Array übernommen.
 
 **remotearray**
-: Diese *Datenquelle* ähnelt **array**. Der Unterschied besteht darin, dass auf das Tcl-Array, auf das wir spiegeln, nicht direkt zugegriffen werden kann, sondern nur über einen Befehl vom Typ **send**.
+: Diese *Datenquelle* ähnelt **array**. Der Unterschied besteht darin, dass auf das Tcl-Array, auf das wir spiegeln, nicht direkt zugegriffen werden kann, sondern nur über einen **send**-ähnlichen Befehl.
 
-    Er akzeptiert drei identifizierende Argumente: den Namen des anderen Tcl-Arrays, den Befehls-Präfix für den **send**-ähnlichen Zugriffs-Befehl sowie eine Kennung für die Remote-Entität, die das Array hostet – in dieser Reihenfolge. Alle Änderungen werden über das Befehlspräfix auf dieses Array gespiegelt. Alle Befehle werden im Kontext des globalen Namespaces ausgeführt.
+    Sie akzeptiert drei identifizierende Argumente: den Namen des anderen Tcl-Arrays, das Befehlspräfix für den **send**-ähnlichen Zugriffs-Befehl sowie eine Kennung für die Remote-Entität, die das Array hostet – in dieser Reihenfolge. Alle Änderungen werden über das Befehlspräfix auf dieses Array gespiegelt. Alle Befehle werden im Kontext des globalen Namespaces ausgeführt.
 
     „**send**-ähnlich“ bedeutet, dass das Befehlspräfix die Syntax und Semantik von **send** aufweisen muss. Das heißt, es handelt sich um einen Kanal, über den wir beliebige Befehle an eine andere Instanz senden können. Die *Datenquelle* des Remote-Arrays verwendet jedoch ausschließlich die Befehle **set**, **unset**, **array exists**, **array names**, **array set** und **array get**, um Werte im Remote-Array abzurufen und festzulegen.
 
@@ -144,14 +144,14 @@ Dieses Paket stellt die folgenden sechs Typen als Beispiele und Standarddatenque
     : Das Tcl-Array befindet sich in einem entfernten Interpreter und wird über die X-Kommunikation von Tk aufgerufen.
 
     **comm::comm send** *hostportid*
-    : Das Tcl-Array befindet sich in einem Remote-Interpreter und wird über einen Socket aufgerufen.
+    : Das Tcl-Array befindet sich in einem entfernten Interpreter und wird über einen Socket aufgerufen.
 
     **thread::send** *threadid*
-    : Das Tcl-Array befindet sich in einem Remote-Interpreter in einem anderen Thread dieses Prozesses.
+    : Das Tcl-Array befindet sich in einem entfernten Interpreter in einem anderen Thread dieses Prozesses.
 
 
 **file**
-: Diese *Datenquelle* verwendet eine einzelne Datei als Quelle für die persistenten Daten. Sie akzeptiert ein einziges identifizierendes Argument: den Pfad zu dieser Datei. Die Datei muss sowohl lesbar als auch beschreibbar sein. Sie darf noch nicht vorhanden sein; in diesem Fall legt die *Datenquelle* sie an. Nur in diesem (und ausschließlich in diesem) Fall muss das Verzeichnis, in dem sich die Datei befindet, ebenfalls vorhanden und beschreibbar sein.
+: Diese *Datenquelle* verwendet eine einzelne Datei als Quelle für die persistenten Daten. Sie akzeptiert ein einziges identifizierendes Argument: den Pfad zu dieser Datei. Die Datei muss sowohl lesbar als auch beschreibbar sein. Sie muss nicht vorhanden sein; in diesem Fall legt die *Datenquelle* sie an. Nur in diesem (und ausschließlich in diesem) Fall muss das Verzeichnis, in dem sich die Datei befindet, ebenfalls vorhanden und beschreibbar sein.
 
     Alle Änderungen werden in der Datei als korrekte Tcl-Befehle gespeichert, wobei pro Operation ein Befehl steht. Mit anderen Worten: Die Datei enthält stets ein korrektes Tcl-Skript.
 
@@ -160,7 +160,7 @@ Dieses Paket stellt die folgenden sechs Typen als Beispiele und Standarddatenque
 **growfile**
 : Diese *Datenquelle* ähnelt **file** hinsichtlich des Speichermediums für die Array-Daten und ihrer Konfiguration. Im Gegensatz zu ersterer geht sie jedoch davon aus und stellt sicher, dass das verknüpfte Array niemals schrumpft. Das heißt: Das Anlegen neuer Array-Einträge sowie die Änderung bestehender Einträge ist zulässig, das Löschen von Einträgen hingegen nicht und führt dazu, dass die Datenquelle Fehler meldet.
 
-    Diese Einschränkung ermöglicht es uns, sowohl das Dateiformat als auch den Zugriff auf die Datei radikal zu vereinfachen. Zum einen wird die Datei nur einmal gelesen, und der interne Cache kann nicht ungültig gemacht werden. Zweitens beschränkt sich das Schreiben von Daten auf ein einfaches Anhängen, und es ist kein Komprimierungsschritt erforderlich. Das Format des Inhalts ist die Zeichenfolgendarstellung eines Dictionarys, das am Ende unbegrenzt schrittweise erweitert werden kann.
+    Diese Einschränkung ermöglicht es uns, sowohl das Dateiformat als auch den Zugriff auf die Datei radikal zu vereinfachen. Zum einen wird die Datei nur einmal gelesen, und der interne Cache kann nicht ungültig gemacht werden. Zweitens beschränkt sich das Schreiben von Daten auf ein einfaches Anhängen, und es ist kein Komprimierungsschritt erforderlich. Das Format des Inhalts ist die Zeichenkettendarstellung eines Dictionarys, das am Ende unbegrenzt schrittweise erweitert werden kann.
 
 **dsource**
 : Diese *Datenquelle* verwendet ein explizit angegebenes *Datenquellenobjekt* als Quelle für die persistenten Daten. Sie akzeptiert ein einziges identifizierendes Argument, das Befehlspräfix, d. h. den Objektbefehl.
@@ -180,30 +180,30 @@ Alle Verknüpfungen werden intern durch ein In-Memory-Objekt dargestellt, das al
 
 Die Klasse „**data source class**“ ist *keine* generische Klasse, sondern spezifisch für den Typ der *Datenquelle*. Um eine neue *Datenquelle* zu erstellen, müssen wir eine solche Klasse schreiben und diese anschließend als neuen Typ beim Rahmen registrieren.
 
-In den folgenden Unterabschnitten werden die verschiedenen APIs beschrieben, denen ein **data source class** und die von ihm generierten Objekte entsprechen müssen, um die Kompatibilität mit dem tie-Rahmen zu gewährleisten.
+In den folgenden Unterabschnitten werden die verschiedenen APIs beschrieben, denen eine **data source class** und die von ihr generierten Objekte entsprechen müssen, um die Kompatibilität mit dem tie-Rahmen zu gewährleisten.
 
 Datenquellenobjekte werden normalerweise automatisch vom Rahmen erstellt und gelöscht, wenn eine Verknüpfung angelegt oder entfernt wird. Diese Verwaltung kann durch die Verwendung des Typs „dsource“ explizit umgangen werden. Die *Datenquelle* für diesen Typ ist selbst ein *Datenquellenobjekt*, und dieses Objekt befindet sich außerhalb des Geltungsbereichs des Tie-Rahmens und wird von diesem nicht verwaltet. Mit anderen Worten: Dieser Typ ermöglicht die Erstellung von Ties, die mit bereits vorhandenen *Datenquellenobjekten* kommunizieren, und diese Objekte bleiben auch nach dem Entfernen der Ties, die sie nutzen, erhalten.
 
 ## Eine neue Datenquellenklasse registrieren
 
-Nachdem ein **data source class** geschrieben wurde, muss es als neuer Typ im Rahmen registriert werden.
+Nachdem eine **data source class** geschrieben wurde, muss sie als neuer Typ im Rahmen registriert werden.
 
 **::tie::register** *dsclasscmd* **as** *dstype*
-: Durch die Verwendung dieses Befehls speichert das Tie-Framework den Befehl für die Klasse *dsclasscmd* eines **data source class** unter dem Namen *dstype*.
+: Durch die Verwendung dieses Befehls speichert der Tie-Rahmen den Klassenbefehl *dsclasscmd* einer **data source class** unter dem Namen *dstype*.
 
     Nach dem Aufruf akzeptiert das Argument *dstype* des Basisbenutzerbefehls **::tie::tie** *dstype* als Typnamen und wandelt diesen intern in den entsprechenden Befehl für die Klasse um, um **data source objects** für die neue *Datenquelle* anzulegen.
 
 
 ## Datenquellenklasse
 
-Jede Datenquellenklasse wird durch einen einzelnen Befehl dargestellt, der auch als *Klassenbefehl* oder *Objektbefehl* bezeichnet wird. Seine Syntax lautet
+Jede Datenquellenklasse wird durch einen einzelnen Befehl dargestellt, der auch als *Klassenbefehl* oder *Objekterzeugungsbefehl* bezeichnet wird. Seine Syntax lautet
 
 **dsclasscmd** *objname* ?*dsname*...?
-: Das erste Argument des Befehls „class“ ist der Name des zu erstellenden *Datenquellenobjekts*. Der Rahmen liefert stets die Zeichenfolge **%AUTO%**, um anzuzeigen, dass der Befehl „class“ nicht nur das Objekt, sondern auch den Objektnamen generieren muss.
+: Das erste Argument des Klassenbefehls ist der Name des zu erstellenden *Datenquellenobjekts*. Der Rahmen liefert stets die Zeichenkette **%AUTO%**, um anzuzeigen, dass der Klassenbefehl nicht nur das Objekt, sondern auch den Objektnamen generieren muss.
 
     Darauf folgt eine Reihe von Argumenten, die die Datenquelle identifizieren, für die das neue Objekt bestimmt ist. Dabei handelt es sich um dieselben *dsname*-Argumente, die auch dem grundlegenden Benutzerbefehl **::tie::tie** übergeben werden. Ihre tatsächliche Bedeutung hängt von der *Datenquellenklasse* ab.
 
-    Das Ergebnis des Befehls „class“ muss der vollqualifizierte Name des neuen *Datenquellenobjekts* sein, d. h. der Name des *Objektbefehls*. Die Schnittstelle, der dieser Befehl folgen muss, wird im Abschnitt [API für Datenquellenobjekte] beschrieben.
+    Das Ergebnis des Klassenbefehls muss der vollqualifizierte Name des neuen *Datenquellenobjekts* sein, d. h. der Name des *Objektbefehls*. Die Schnittstelle, der dieser Befehl folgen muss, wird im Abschnitt [API für Datenquellenobjekte] beschrieben.
 
 
 ## API für Datenquellenobjekte
@@ -216,13 +216,13 @@ Jeder *Objektbefehl* für ein *Datenquellen*-Objekt muss mindestens die unten au
 : Diese Methode wird aufgerufen, wenn das Objekt **ds** gelöscht wird. Es muss nun alle seine internen Ressourcen freigeben, die mit der externen Datenquelle verknüpft sind.
 
 **ds** **names**
-: Dieser Befehl muss eine Liste geben, die die Namen aller Schlüssel enthält, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array names**.
+: Dieser Befehl muss eine Liste zurückgeben, die die Namen aller Schlüssel enthält, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array names**.
 
 **ds** **size**
-: Dieser Befehl muss eine Ganzzahl geben, die die Anzahl der Schlüssel festlegt, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array size**.
+: Dieser Befehl muss eine Ganzzahl zurückgeben, die die Anzahl der Schlüssel festlegt, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array size**.
 
 **ds** **get**
-: Dieser Befehl muss ein Dictionary geben, das die Daten enthält, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array get**.
+: Dieser Befehl muss ein Dictionary zurückgeben, das die Daten enthält, die in der *Datenquelle* gefunden wurden, mit der das Objekt kommuniziert. Dies entspricht **array get**.
 
 **ds** **set** *dict*
 : Dieser Befehl nimmt ein Dictionary entgegen und fügt dessen Inhalt der Datenquelle hinzu, mit der das Objekt kommuniziert. Dies entspricht dem Befehl **array set**.

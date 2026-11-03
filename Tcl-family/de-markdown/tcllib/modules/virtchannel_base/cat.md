@@ -30,13 +30,13 @@ tcl::chan::cat – Verkettungskanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::cat** stellt einen Befehl zur Erstellung von Verkettungskanälen bereit. Dabei handelt es sich um nicht durchsuchbare Kanäle, die eine Liste untergeordneter Kanäle enthalten, deren Inhalte sie der Reihe nach geben, bis alle erschöpft sind. Auf diese Weise stellt der Kanal die Verkettung der Inhalte aller untergeordneten Kanäle dar.
+Das Paket **tcl::chan::cat** stellt einen Befehl zur Erstellung von Verkettungskanälen bereit. Dabei handelt es sich um nicht positionierbare Kanäle, die eine Liste untergeordneter Kanäle enthalten, deren Inhalte sie der Reihe nach zurückgeben, bis alle erschöpft sind. Auf diese Weise stellt der Kanal die Verkettung der Inhalte aller untergeordneten Kanäle dar.
 
 Hinweis: Die erstellten Kanäle übernehmen die Verantwortung für die Kanäle, aus denen sie aufgebaut wurden. Sobald sie einen ihrer Kanäle vollständig ausgeschöpft haben, wird dieser geschlossen. Ebenso führt das Schließen des „cat“-Kanals dazu, dass alle ihm noch untergeordneten Kanäle geschlossen werden.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::core**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::core**“.
 
-Die Ereignisbehandlung wird an den derzeit aktiven Kanal weitergeleitet.
+Die Ereignisbehandlung wird an den derzeit aktiven untergeordneten Kanal weitergeleitet.
 
 # API
 

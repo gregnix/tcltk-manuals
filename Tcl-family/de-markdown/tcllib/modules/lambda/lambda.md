@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-lambda – Hilfskommandos für anonyme Prozeduren
+lambda – Hilfsbefehle für anonyme Prozeduren
 
 # Übersicht
 
@@ -35,7 +35,7 @@ lambda – Hilfskommandos für anonyme Prozeduren
 
 # Beschreibung
 
-Dieses Paket bietet zwei Komfortbefehle, die die Erstellung anonymer Befehle, d. h. Lambda-Ausdrücke, **proc**-like. Anstatt beispielsweise zu schreiben
+Dieses Paket bietet zwei Komfortbefehle, die die Erstellung anonymer Befehle, d. h. Lambda-Ausdrücke, **proc**-ähnlicher gestalten. Anstatt beispielsweise zu schreiben
 
 ```
      set f {::apply {{x} {
@@ -51,7 +51,7 @@ mit seiner tiefen Verschachtelung von Klammern oder
      }} $value_for_x]
 ```
 
-Um mit einem **list**-Befehl einige der Argumente einer partiellen Anwendung einzufügen, schreibe einfach
+mit einem **list**-Befehl, der einige der Argumente einer partiellen Anwendung einfügt, schreiben Sie einfach
 
 ```
      set f [lambda {x} {
@@ -115,7 +115,7 @@ puts $url
 www.tcl-lang.org/Set or $ usage?
 ```
 
-Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html) der Befehl selbst *hinter* der zu suchenden Zeichenfolge steht (an der Position des Arguments *subSpec*).
+Beachten Sie, dass bei Verwendung der Option **-command** des integrierten Befehls [regsub](https://www.tcl-lang.org/man/tcl/TclCmd/regsub.html) der Befehl selbst *hinter* der zu suchenden Zeichenkette steht (an der Position des Arguments *subSpec*).
 
 ## Verwendung von „lsort“ mit Lambda
 

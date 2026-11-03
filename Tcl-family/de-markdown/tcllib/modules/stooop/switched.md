@@ -57,7 +57,7 @@ Der Konstruktor der Klasse switched nimmt die optionalen Paare aus Konfiguration
 Dem Programmierer stehen diese Member der Klasse **switched** zur Verfügung:
 
 **<switched>** **complete** *this*
-: Diese Prozedur teilt der Switched-Schicht mit, dass das Objekt der abgeleiteten Klasse (in den Beispielen ein Auto) vollständig aufgebaut ist. Dann erfolgt die Erstkonfiguration des Switched-Objekts mit den Standardwerten der Optionen (siehe Prozedur **options**), gegebenenfalls überschrieben durch Werte aus der Konstruktion, die beim Aufruf des Operators **new** übergeben wurden. Diese Prozedur darf nur einmal aufgerufen werden, üblicherweise am Ende oder kurz vor dem Ende des Konstruktors der abgeleiteten Klasse. (*Hinweis*: auch das Daten-Member **complete** weiter unten in diesem Abschnitt).
+: Diese Prozedur teilt der Switched-Schicht mit, dass das Objekt der abgeleiteten Klasse (in den Beispielen ein Auto) vollständig aufgebaut ist. Dann erfolgt die Erstkonfiguration des Switched-Objekts mit den Standardwerten der Optionen (siehe Prozedur **options**), gegebenenfalls überschrieben durch Werte aus der Konstruktion, die beim Aufruf des Operators **new** übergeben wurden. Diese Prozedur darf nur einmal aufgerufen werden, üblicherweise am Ende oder kurz vor dem Ende des Konstruktors der abgeleiteten Klasse. (*Hinweis*: Beachten Sie auch das Daten-Member **complete** weiter unten in diesem Abschnitt).
 
 **<switched>** **options** *this*
 : Diese Prozedur muss die Konfigurationsbeschreibung für *alle* Optionen zurückgeben, die das Switched-Objekt akzeptiert. Sie ist eine rein virtuelle Member-Prozedur, ihre Implementierung in der abgeleiteten Klasse ist daher *obligatorisch*. Die Prozedur muss eine Liste von Listen zurückgeben. Jede Liste gehört zu einer einzelnen Option und besteht aus dem Schalternamen, dem Standardwert der Option und einem optionalen Anfangswert. Zum Beispiel:
@@ -117,7 +117,7 @@ Dem Programmierer stehen diese Member der Klasse **switched** zur Verfügung:
 
     Da die Option **-width** in der Prozedur **options** aufgeführt wurde, gibt es eine Implementierung von **set-width**, die die Breite des Autos setzen würde (und zum Beispiel das Aussehen einer grafischen Darstellung anpassen würde).
 
-    Wird ein unterstütztes **option** in die von **options** zurückgegebene Liste aufgenommen, kann die entsprechende Prozedur **set-option** aufgerufen werden, sobald das Switched-Objekt vollständig ist; das ist der Fall, wenn die Prozedur **complete** der Switched-Ebene aufgerufen wird. Zum Beispiel:
+    Wird eine unterstützte **option** in die von **options** zurückgegebene Liste aufgenommen, kann die entsprechende Prozedur **set-option** aufgerufen werden, sobald das Switched-Objekt vollständig ist; das ist der Fall, wenn die Prozedur **complete** der Switched-Ebene aufgerufen wird. Zum Beispiel:
 
     ```
     class car {

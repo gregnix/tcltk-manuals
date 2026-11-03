@@ -48,7 +48,7 @@ nameserv – Namensdienst-Funktion, Client
 
 Bitte lesen Sie zunächst *Namensdienst-Funktion, Einleitung*.
 
-Dieses Paket stellt einen Client für die vom Paket **nameserv::server** implementierte Namensdienstfunktion bereit.
+Dieses Paket stellt einen Client für die vom Paket **nameserv::server** implementierte Namensdienst-Funktion bereit.
 
 Dieser Dienst wurde auf der Grundlage des Pakets **comm** entwickelt und ist für dieses bestimmt. Er hat nichts mit dem Domain Name System des Internets zu tun. Wenn Sie nach einem Paket suchen, das sich damit befasst, sehen Sie sich bitte die Tcllib-Pakete **dns** und **resolv** an.
 
@@ -135,7 +135,7 @@ Die vom Client unterstützten Optionen dienen der Festlegung, welcher Namensdien
 : Diese Option legt fest, auf welchem Host der zu kontaktierende Namensdienst läuft, entweder über den *name* oder über die *ipaddress*. Die anfängliche Standardeinstellung lautet **localhost**, d. h., es wird erwartet, dass ein Namensdienst kontaktiert wird, der auf demselben Host läuft wie die Anwendung, die dieses Paket verwendet.
 
 **-port** *number*
-: Diese Option legt den Port fest, auf dem der zu kontaktierende Namensdienst auf eingehende Verbindungen wartet. Es muss sich um eine positive ganze Zahl (> 0) handeln, die nicht größer als 65536 (unsigned short) ist. Der anfängliche Standardwert ist die Zahl, die vom Befehl [::nameserv::common::port][nns_common] zurückgegeben wird, wie sie vom Paket **::nameserv::common** bereitgestellt wird.
+: Diese Option legt den Port fest, auf dem der zu kontaktierende Namensdienst auf eingehende Verbindungen wartet. Es muss sich um eine positive Ganzzahl (> 0) handeln, die nicht größer als 65536 (unsigned short) ist. Der anfängliche Standardwert ist die Zahl, die vom Befehl [::nameserv::common::port][nns_common] zurückgegeben wird, wie sie vom Paket **::nameserv::common** bereitgestellt wird.
 
 
 # Asynchrone und kontinuierliche Suchvorgänge

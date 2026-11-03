@@ -58,7 +58,7 @@ Dieses Paket stellt eine Klasse für den Zugriff auf Geokodierungsdienste bereit
     Die Signatur des Befehlspräfixes lautet:
 
     **$cmdprefix** *result*
-    : Das *result* ist eine Liste von Dictionaries, die jeweils einen Eintrag pro Treffer enthält. Jedes Dictionary enthält die folgenden Einträge:
+    : Das *result* ist eine Liste von Dictionaries, die ein Element pro Treffer enthält. Jedes Dictionary enthält die folgenden Einträge:
 
         place\_id
         : Die Ortskennung (FIXME: Was ist das?)

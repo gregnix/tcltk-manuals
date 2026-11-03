@@ -96,7 +96,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 
 Der Befehl **spinbox** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Spinbox-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte der Spinbox wie Farben, Schriftart und Relief zu konfigurieren. Der Befehl **spinbox** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Eine **spinbox** ist ein erweitertes [entry]-Widget, mit dem der Benutzer durch eine feste Menge auf- oder absteigender Werte (z. B. Zeiten oder Daten) „drehen“ kann, zusätzlich zur Bearbeitung des Werts wie in einem [entry]. Bei der Erstellung ist der Text der Spinbox leer. Ein Teil der Spinbox kann wie unten beschrieben ausgewählt werden. Exportiert eine Spinbox ihre Auswahl (siehe die Option **-exportselection**), beachtet sie die Standard-Protokolle für die Behandlung der Selection; Spinbox-Auswahlen sind als Typ **STRING** verfügbar. Spinboxen beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat eine Spinbox den Eingabefokus, zeigt sie einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
+Eine **spinbox** ist ein erweitertes [entry]-Widget, mit dem der Benutzer durch eine feste Menge auf- oder absteigender Werte (z. B. Zeiten oder Daten) „drehen“ kann, zusätzlich zur Bearbeitung des Werts wie in einem [entry]. Bei der Erstellung ist der Text der Spinbox leer. Ein Teil der Spinbox kann wie unten beschrieben ausgewählt werden. Exportiert eine Spinbox ihre Auswahl (siehe die Option **-exportselection**), beachtet sie die Standard-Protokolle für die Behandlung der Auswahl; Spinbox-Auswahlen sind als Typ **STRING** verfügbar. Spinboxen beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat eine Spinbox den Eingabefokus, zeigt sie einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
 
 Spinboxen können Zeichenketten anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil der Zeichenkette angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Spinboxen verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details). Sie unterstützen außerdem Scannen, wie unten beschrieben.
 
@@ -129,7 +129,7 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Ersetzungen mögli
 : Art der Aktion: 1 für **insert**, 0 für **delete**, oder -1 für Fokus-, erzwungene oder **textvariable**-Validierung.
 
 **%i**
-: Index des einzufügenden/zu löschenden Zeichenstrings, falls vorhanden, sonst -1.
+: Index der einzufügenden/zu löschenden Zeichenkette, falls vorhanden, sonst -1.
 
 **%P**
 : Der Wert der Spinbox, wenn die Bearbeitung erfolgen soll. Konfigurieren Sie die Spinbox mit einer neuen **textvariable**, ist dies der Wert dieser **textvariable**.
@@ -150,7 +150,7 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Ersetzungen mögli
 : Der Name des Spinbox-Widgets.
 
 
-Im Allgemeinen können **-textvariable** und **-validatecommand** problematisch kombiniert werden. Das wurde so gelöst, dass **-validatecommand** das traditionelle Verhalten der Spinbox nicht stört. **-textvariable** nur lesend zu verwenden, verursacht nie Probleme. Gefährlich wird es, wenn **-textvariable** auf etwas gesetzt wird, das **-validatecommand** nicht akzeptieren würde — dann wird **-validate** **none** (**-invalidcommand** wird nicht ausgelöst). Dasselbe passiert bei einem Fehler bei der Auswertung von **-validatecommand**.
+Im Allgemeinen kann es gefährlich sein, **-textvariable** und **-validatecommand** zu kombinieren. Das wurde so gelöst, dass **-validatecommand** das traditionelle Verhalten der Spinbox nicht stört. **-textvariable** nur lesend zu verwenden, verursacht nie Probleme. Gefährlich wird es, wenn **-textvariable** auf etwas gesetzt wird, das **-validatecommand** nicht akzeptieren würde — dann wird **-validate** **none** (**-invalidcommand** wird nicht ausgelöst). Dasselbe passiert bei einem Fehler bei der Auswertung von **-validatecommand**.
 
 Vor allem tritt ein Fehler auf, wenn **-validatecommand** oder **-invalidcommand** einen Fehler im Skript hat oder **-validatecommand** keinen gültigen Tcl-Boolean zurückgibt. **-validate** setzt sich auch auf **none**, wenn die Spinbox aus **-validatecommand** oder **-invalidcommand** bearbeitet wird. Solche Bearbeitungen überschreiben die gerade validierte. Soll der Wert während der Validierung geändert und **-validate** beibehalten werden, gehört in **-validatecommand** oder **-invalidcommand** (je nachdem, von wo aus bearbeitet wurde):
 
@@ -178,7 +178,7 @@ Der Befehl **spinbox** erstellt einen neuen Tcl-Befehl mit dem Namen *pathName*.
 pathName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 ## Indizes
 
@@ -219,7 +219,7 @@ Folgende Befehle sind für Spinbox-Widgets möglich:
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (identisch mit dem entsprechenden Teilliste der Rückgabe ohne *option*). Sind ein oder mehr *option-value*-Paare angegeben, setzt der Befehl die angegebenen Widget-Optionen auf die angegebenen Werte; in diesem Fall gibt er die leere Zeichenkette zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
+: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (identisch mit der entsprechenden Teilliste der Rückgabe ohne *option*). Sind ein oder mehr *option-value*-Paare angegeben, setzt der Befehl die angegebenen Widget-Optionen auf die angegebenen Werte; in diesem Fall gibt er die leere Zeichenkette zurück. *Option* kann jeden von **spinbox** akzeptierten Wert haben.
 
 [pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
 : Löscht ein oder mehrere Elemente der Spinbox. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Ist *last* nicht angegeben, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt die leere Zeichenkette zurück.

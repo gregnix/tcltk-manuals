@@ -38,10 +38,10 @@ string - Zeichenketten bearbeiten
 
 # Beschreibung
 
-Führt je nach *option* eine von mehreren Zeichenkettenoperationen aus. Die zulässigen *option*s (sie dürfen abgekürzt werden) sind:
+Führt je nach *option* eine von mehreren Zeichenkettenoperationen aus. Die zulässigen *option*en (sie dürfen abgekürzt werden) sind:
 
 [string]{.cmd} [cat]{.sub} [string1]{.optarg} [string2...]{.optarg}
-: [Verkettet die angegebenen *string*s so, als stünden sie direkt nebeneinander, und gibt die entstandene zusammengesetzte Zeichenkette zurück. Ist kein *string* angegeben, ist das Ergebnis eine leere Zeichenkette.]{version="8.6.2"}
+: [Verkettet die angegebenen *string*-Argumente so, als stünden sie direkt nebeneinander, und gibt die entstandene zusammengesetzte Zeichenkette zurück. Ist kein *string*-Argument angegeben, ist das Ergebnis eine leere Zeichenkette.]{version="8.6.2"}
 
     Dieser elementare Befehl ist gelegentlich handlicher als das bloße Aneinanderreihen von Zeichenketten, wenn gemischte Quotierung gewünscht ist oder wenn das Ergebnis einer Verkettung zurückgegeben werden soll, ohne auf [return] **-level 0** zurückzugreifen. Außerdem ist er effizienter, als eine Liste von Argumenten aufzubauen und [join] mit einer leeren Verbindungszeichenkette zu verwenden.
 

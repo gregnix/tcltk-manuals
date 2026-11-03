@@ -65,7 +65,7 @@ Die Idee basiert auf dem Prozessor „**treeql**“ von Colin McCormack, der so 
 
 # Allgemeines Verhalten
 
-Wortinterpreter verfügen über eine Zuordnung zwischen den Namen der Sprachbefehle, die sie erkennen sollen, und den Methoden in der engine, die dafür aufgerufen werden sollen, sowie gegebenenfalls über feste Argumente für diese Methoden. Diese Zuordnung ist weitgehend statisch; es ist jedoch möglich, sie während der Ausführung einer Wortliste (= Programm) zu ändern.
+Wort-Interpreter verfügen über eine Zuordnung zwischen den Namen der Sprachbefehle, die sie erkennen sollen, und den Methoden in der engine, die dafür aufgerufen werden sollen, sowie gegebenenfalls über feste Argumente für diese Methoden. Diese Zuordnung ist weitgehend statisch; es ist jedoch möglich, sie während der Ausführung einer Wortliste (= Programm) zu ändern.
 
 Zum Zeitpunkt der Definition eines Sprachbefehls nutzt der Wort-Interpreter die Introspektionsfunktionen von **snit**, um die Anzahl der Argumente zu ermitteln, die von der Methode der *engine* erwartet werden, und zusammen mit der Anzahl der festen Argumente, die im Methodenpräfix der Zuordnung angegeben sind, ist dann bekannt, wie viele Argumente der Sprachbefehl erwartet. Dies ist die *Arität* des Befehls. Methoden mit variabler Argumentanzahl (d. h. mit dem letzten Argument namens *args*) sind *nicht* zulässig und führen dazu, dass der Wort-Interpreter bereits bei der Definition einen Fehler auslöst.
 
@@ -73,7 +73,7 @@ Die Fähigkeiten von **snit** wurden genannt; das *engine*-Objekt kann jedoch au
 
 Bei der Ausführung einer Wortliste (auch Programm genannt) wird das erste Wort stets als Name eines Sprachbefehls genommen, die folgenden Wörter als dessen Argumente, entsprechend der *Arität* des Befehls. Befehls- und Argumentwörter werden aus der Liste entfernt, und anschließend wird die zugehörige Methode der *engine* mit den Argumentwörtern ausgeführt. Der Vorgang wiederholt sich danach mit dem dann ersten Wort der Liste.
 
-Die Methoden, die die Sprachbefehle implementieren, haben möglicherweise uneingeschränkten Zugriff auf die Wortliste und dürfen sie nach eigenem Ermessen bearbeiten.
+Die Methoden, die die Sprachbefehle implementieren, dürfen uneingeschränkt auf die Wortliste zugreifen und dürfen sie nach eigenem Ermessen bearbeiten.
 
 1. Das bedeutet beispielsweise, dass wir Methoden mit variabler Argumentanzahl zwar nicht direkt spezifizieren können, diese jedoch nach ihren festen Argumenten weitere Wörter verarbeiten können, bevor sie zur Ausführungsschleife zurückkehren. Dies kann durch ihre festen Argumente gesteuert werden.
 
@@ -89,7 +89,7 @@ Die Methoden, die die Sprachbefehle implementieren, haben möglicherweise uneing
 Der Hauptbefehl des Pakets lautet:
 
 **::wip** *wipName* *engine* *arg*...
-: Der Befehl erstellt ein neues Wort-Interpreter-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *wipName* lautet. Wurde jedoch die Zeichenfolge **%AUTO%** als Objektname verwendet, erzeugt das Paket einen eigenen eindeutigen Namen für das Objekt.
+: Der Befehl erstellt ein neues Wort-Interpreter-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *wipName* lautet. Wurde jedoch die Zeichenkette **%AUTO%** als Objektname verwendet, erzeugt das Paket einen eigenen eindeutigen Namen für das Objekt.
 
     Die *engine* ist das Objekt, an das der Wort-Interpreter alle erkannten Befehle weiterleitet, und die *arg*umente sind eine Wortliste, die eine anfängliche Zuordnung von Sprachwörtern zu Methoden der *engine* definiert.
 
@@ -105,7 +105,7 @@ Der Hauptbefehl des Pakets lautet:
     Der zurückgegebene Befehl kann verwendet werden, um verschiedene Operationen auf dem Objekt auszuführen. Er hat die folgende allgemeine Form:
 
     **wipName** *option* ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
 
@@ -118,12 +118,12 @@ Das Paket exportiert darüber hinaus den Befehl:
 
     *Hinweis*: Dadurch wird die zu interpretierende Sprache nicht installiert und kann auch nicht installiert werden, d. h. die Zuordnung von Wörtern zu Methoden der *engine*.
 
-    Es ist möglich, mehrere Wort-Interpreter-Komponenten innerhalb eines Typs zu instanziieren, indem unterschiedliche Suffixe als Argumente für den Befehl verwendet werden. In diesem Fall ändert sich der Name der Komponente zu \\'wip\_**$suffix**', der Einrichtungsbefehl lautet \\'wip\_**$suffix**\_setup' und alle Prozeduren erhalten ebenfalls das Suffix \\'\_**$suffix**'.
+    Es ist möglich, mehrere Wort-Interpreter-Komponenten innerhalb eines Typs zu instanziieren, indem unterschiedliche Suffixe als Argumente für den Befehl verwendet werden. In diesem Fall ändert sich der Name der Komponente zu 'wip\_**$suffix**', der Einrichtungsbefehl lautet 'wip\_**$suffix**\_setup' und alle Prozeduren erhalten ebenfalls das Suffix '\_**$suffix**'.
 
 
 # Objekt-API
 
-Für Wortinterpreter-Objekte sind folgende Befehle möglich:
+Für Wort-Interpreter-Objekte sind folgende Befehle möglich:
 
 *wipName* **def** *name* ?*method\_prefix*?
 : Definiert einen Sprachbefehl *name* und ordnet ihn der Methode zu, die im *method\_prefix* der *engine* genannt ist. Wenn der Name des *method\_prefix* nicht angegeben ist, ist er einfach der Name des Sprachbefehls.

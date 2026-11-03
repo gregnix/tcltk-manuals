@@ -21,7 +21,7 @@ Copyright:
 
 # Name
 
-yaml – YAML-Format-Encoder/Decoder für die Kodierung und Dekodierung
+yaml – YAML-Format-Encoder/Decoder
 
 # Übersicht
 
@@ -48,7 +48,7 @@ Das **yaml**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung ist 
 : siehe unten ...
 
 **::yaml::yaml2huddle** ?*options*? *txt*
-: YAML-formatierten Text *txt* in ein Tcl-Dict/Huddle parsen und den Wert geben.
+: YAML-formatierten Text *txt* in ein Tcl-Dict/Huddle parsen und den Wert zurückgeben.
 
     **-file**
     : *txt* ist der Dateiname eines YAML-Streams.
@@ -57,32 +57,32 @@ Das **yaml**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung ist 
     : *txt* ist lediglich ein YAML-Stream.
 
     **-types** *list*
-    : Die *Liste* ist eine Typenliste für die YAML-Skalar-Typen (z. B. !!str !!timestamp !!integer !!true ...).
+    : Die *list* ist eine Typenliste für die YAML-Skalar-Typen (z. B. !!str !!timestamp !!integer !!true ...).
 
         ```
          -types {timestamp integer null true false}
         ```
 
-        In diesem Fall, wenn eine Zeichenfolge mit „timestamp“ übereinstimmte, wurde sie in den TCL-internen Zeitstempel umgewandelt (z. B. „2001-12-15T02:59:43.1Z“ => 1008385183).
+        In diesem Fall wird eine Zeichenkette, die mit „timestamp“ übereinstimmt, in den TCL-internen Zeitstempel umgewandelt (z. B. „2001-12-15T02:59:43.1Z“ => 1008385183).
 
     **-m:true** *param*
-    : Der *param* besteht aus zwei Elementen der Liste, die den Wert „true“ haben und als Zeichenfolgen betrachtet werden.
+    : Der *param* ist eine Liste aus zwei Zeichenketten, die als Wert „true“ gelten.
 
         ```
          -m:true {1 {true on + yes y}}
         ```
 
-        In diesem Fall wurde die in YAML Stream gefundene Zeichenfolge „yes“ automatisch in 1 umgewandelt.
+        In diesem Fall wird die im YAML-Stream gefundene Zeichenkette „yes“ automatisch in 1 umgewandelt.
 
     **-m:false** *param*
-    : Der *param* besteht aus zwei Elementen der Liste, die den Wert „false“ haben und als Zeichenfolgen betrachtet werden.
+    : Der *param* ist eine Liste aus zwei Zeichenketten, die als Wert „false“ gelten.
 
         ```
          -m:false {0 {false off - no n}}
         ```
 
     **-m:null** *param*
-    : Der *param* besteht aus zwei Elementen der Liste, die den Wert „null“ haben und als Zeichenfolgen betrachtet werden.
+    : Der *param* ist eine Liste aus zwei Zeichenketten, die als Wert „null“ gelten.
 
         ```
          -m:null {"" {null nil "" ~}}

@@ -44,13 +44,13 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
     : Hält einen gruppierten Zähler, bei dem der Name des Histogramm-Buckets an **::counter::count** übergeben wird.
 
     **-hist** *bucketsize*
-    : Sammelt den Zählerstand in Histogramm-Bucket mit der Größe *bucketsize*.  Wenn es sich bei den Messwerten beispielsweise um Zeitwerte in Millisekunden handelt und *bucketsize* den Wert 10 hat, dann repräsentiert jedes Histogramm-Intervall Zeitwerte von 0 bis 10 ms, 10 bis 20 ms, 20 bis 30 ms und so weiter.
+    : Sammelt den Zählerstand in Histogramm-Buckets mit der Größe *bucketsize*.  Wenn es sich bei den Messwerten beispielsweise um Zeitwerte in Millisekunden handelt und *bucketsize* den Wert 10 hat, dann repräsentiert jeder Histogramm-Bucket Zeitwerte von 0 bis 10 ms, 10 bis 20 ms, 20 bis 30 ms und so weiter.
 
     **-hist2x** *bucketsize*
-    : Sammelt die Statistik in Histogramm-Bucket. Die Größe des ersten Buckets beträgt *bucketsize*, jeder weitere Bucket fasst Werte, deren Umfang doppelt so groß ist wie der des vorherigen Buckets.  Wenn *bucketsize* beispielsweise 10 beträgt, so repräsentiert jedes Histogramm-Intervall Werte von 0 bis 10 ms, 10 bis 20 ms, 20 bis 40 ms, 40 bis 80 ms und so weiter.
+    : Sammelt die Statistik in Histogramm-Buckets. Die Größe des ersten Buckets beträgt *bucketsize*, jeder weitere Bucket fasst Werte, deren Umfang doppelt so groß ist wie der des vorherigen Buckets.  Wenn *bucketsize* beispielsweise 10 beträgt, so repräsentiert jeder Histogramm-Bucket Werte von 0 bis 10 ms, 10 bis 20 ms, 20 bis 40 ms, 40 bis 80 ms und so weiter.
 
     **-hist10x** *bucketsize*
-    : Sammelt die Statistik in Histogramm-Bucket. Die Größe des ersten Buckets beträgt *bucketsize*, jeder weitere Bucket umfasst Werte, die das Zehnfache der Größe des vorherigen Buckets betragen.  Wenn beispielsweise *bucketsize* gleich 10 ist, repräsentiert jedes Histogramm-Intervall Werte von 0 bis 10 ms, 10 bis 100 ms, 100 bis 1000 ms und so weiter.
+    : Sammelt die Statistik in Histogramm-Buckets. Die Größe des ersten Buckets beträgt *bucketsize*, jeder weitere Bucket umfasst Werte, die das Zehnfache der Größe des vorherigen Buckets betragen.  Wenn beispielsweise *bucketsize* gleich 10 ist, repräsentiert jeder Histogramm-Bucket Werte von 0 bis 10 ms, 10 bis 100 ms, 100 bis 1000 ms und so weiter.
 
     **-lastn** *N*
     : Speichert die letzten *N* Werte des Zählers, um einen „gleitenden Durchschnitt“ über die letzten *N* Werte zu ermitteln.
@@ -60,7 +60,7 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
 
 
 **::counter::count** *tag* ?*delta*? ?*instance*?
-: Erhöht den durch *tag* identifizierten Zähler. Die Vorgabe ist 1; mit *delta* lässt sich um einen beliebigen ganzzahligen oder reellen Wert erhöhen. Jeder Zähler wird mit **::counter::init** deklariert, bevor er benutzt wird. Beim Typ **-group** wird der durch *instance* identifizierte Zähler erhöht.
+: Erhöht den durch *tag* identifizierten Zähler. Die Vorgabe ist 1; mit *delta* lässt sich um einen beliebigen ganzzahligen oder reellen Wert erhöhen. Jeder Zähler muss mit **::counter::init** deklariert werden, um seine Eigenschaften festzulegen, bevor er benutzt wird. Beim Typ **-group** wird der durch *instance* identifizierte Zähler erhöht.
 
 **::counter::start** *tag instance*
 : Erfasst den Startzeitpunkt eines Intervalls. Der *tag* ist der Name des Zählers, der als wertbasiertes Histogramm „**-hist**“ definiert ist. Die *instance* dient dazu, dieses Intervall von anderen Intervallen zu unterscheiden, die sich möglicherweise mit diesem überschneiden.
@@ -72,13 +72,13 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
 : Gibt Statistiken zu einem durch *tag* identifizierten Zähler zurück. Die *args* legen fest, welcher Wert zurückgegeben werden soll:
 
     **-total**
-    : Gibt den Wert des Zählers zurück. Dies ist die Standardeinstellung, wenn *args* nicht angegeben wird.
+    : Gibt den Gesamtwert des Zählers zurück. Dies ist die Standardeinstellung, wenn *args* nicht angegeben wird.
 
     **-totalVar**
     : Gibt den Namen der Variablen „total“ zurück. Dies ist nützlich, um diese in Verbindung mit -textvariable in einem Tk-Widget festzulegen.
 
     **-N**
-    : Gibt die Anzahl der im Zähler gesammelten Messwerte zurück.
+    : Gibt die Anzahl der im Zähler gesammelten Stichproben zurück.
 
     **-avg**
     : Gibt den Durchschnitt der im Zähler gesammelten Stichproben zurück.
@@ -87,19 +87,19 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
     : Gibt den Durchschnitt der letzten *N* erfassten Stichproben zurück. Der Wert *N* wird im Aufruf von **::counter::init** festgelegt.
 
     **-hist** *bucket*
-    : Wenn *bucket* festgelegt wird, gibt es den Wert in diesem Bucket des Histogramms zurück. Andernfalls gibt es das vollständige Histogramm im Array-Get-Format zurück, sortiert nach Buckets.
+    : Wenn *bucket* festgelegt wird, wird der Wert in diesem Bucket des Histogramms zurückgegeben. Andernfalls wird das vollständige Histogramm im Array-Get-Format zurückgegeben, sortiert nach Buckets.
 
     **-histVar**
     : Gibt den Namen der Histogramm-Array-Variablen zurück.
 
     **-histHour**
-    : Gibt das vollständige Stundenhistogramm im Array-Format zurück, sortiert nach Zeitfenstern.
+    : Gibt das vollständige Stundenhistogramm im Array-Get-Format zurück, sortiert nach Buckets.
 
     **-histHourVar**
     : Gibt den Namen der Variablen für das Stundenhistogramm-Array zurück.
 
     **-histDay**
-    : Gibt das vollständige Tageshistogramm im Array-Format zurück, sortiert nach Buckets.
+    : Gibt das vollständige Tageshistogramm im Array-Get-Format zurück, sortiert nach Buckets.
 
     **-histDayVar**
     : Gibt den Namen der Variablen für das Tageshistogramm-Array zurück.
@@ -108,7 +108,7 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
     : Gibt den Wert der Uhrsekunden zurück, der zum Zeitpunkt des letzten Zurücksetzens des Zählers aufgezeichnet wurde.
 
     **-all**
-    : Gibt ein Array zurück, das die Elemente des Arrays enthält, in dem der Zähler gespeichert ist.  Dies umfasst die Gesamtsumme, die Anzahl der Stichproben (N) sowie etwaige typspezifische Informationen.  Das Histogramm-Array ist darin nicht enthalten.
+    : Gibt das Ergebnis von array get für das Array zurück, in dem der Zähler gespeichert ist.  Dies umfasst die Gesamtsumme, die Anzahl der Stichproben (N) sowie etwaige typspezifische Informationen.  Das Histogramm-Array ist darin nicht enthalten.
 
 
 **::counter::exists** *tag*
@@ -136,7 +136,7 @@ Das Paket **counter** bietet eine Zählerfunktion und kann Statistiken und Histo
     : Bild für den aktiven Histogrammbalken. Der *filename* ist relativ zum Verzeichnis „**-images**“.
 
     **-max** *N*
-    : Maximale Anzahl der anzuzeigenden wertbasierten Gruppen.
+    : Maximale Anzahl der anzuzeigenden wertbasierten Buckets.
 
     **-height** *N*
     : Pixelhöhe des höchsten Balkens.

@@ -53,16 +53,16 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Die Zeichenkette wird als Titel für das Fenster verwendet, das erzeugt wird, wenn dieses Menü abgerissen wird. Wenn der Titel NULL ist, hat das Fenster den Titel des Menubuttons oder den Text des Cascade-Eintrags, von dem aus dieses Menü aufgerufen wurde.
 
 **-type** (**type**/**Type**)
-: Diese Option kann einer von **menubar**, **tearoff** oder **normal** sein und wird beim Erzeugen des Menüs gesetzt. Obwohl sich der von der Konfigurationsdatenbank zurückgegebene Zeichenkette ändert, wenn diese Option geändert wird, beeinflusst dies das Verhalten des Menü-Widgets nicht. Dies wird vom Klon-Mechanismus verwendet und wird normalerweise nicht außerhalb der Tk-Bibliothek gesetzt.
+: Diese Option kann einer von **menubar**, **tearoff** oder **normal** sein und wird beim Erzeugen des Menüs gesetzt. Obwohl sich die von der Konfigurationsdatenbank zurückgegebene Zeichenkette ändert, wenn diese Option geändert wird, beeinflusst dies das Verhalten des Menü-Widgets nicht. Dies wird vom Klon-Mechanismus verwendet und wird normalerweise nicht außerhalb der Tk-Bibliothek gesetzt.
 
 
 # Einleitung
 
-Der Befehl **menu** erstellt ein neues Toplevel-Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Menu-Widget. Dieses Menu-Widget kann entweder als Pop-up-Fenster verwendet oder auf ein [toplevel] (mit dessen Option **-menu**) angewendet werden, um es zur Menüleiste für dieses Toplevel zu machen. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte des Menüs wie Farben und Schriftart zu konfigurieren. Der Befehl **menu** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
+Der Befehl **menu** erstellt ein neues Toplevel-Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Menu-Widget. Dieses Menu-Widget kann entweder als Pop-up-Fenster verwendet oder auf ein [toplevel] (mit dessen Option **-menu**) angewendet werden, um es zur Menüleiste für dieses Toplevel zu machen. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte des Menüs wie Farben und Schriftart zu konfigurieren. Der Befehl **menu** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Elternfenster von *pathName* muss existieren.
 
 Ein Menü ist ein Widget, das eine Sammlung einzeiliger Einträge anzeigt, die in einer oder mehreren Spalten angeordnet sind. Es gibt mehrere verschiedene Eintragstypen, jeweils mit unterschiedlichen Eigenschaften. Einträge verschiedener Typen können in einem einzigen Menü kombiniert werden. Menüeinträge sind nicht dasselbe wie Entry-Widgets. Tatsächlich sind Menüeinträge nicht einmal separate Widgets; das gesamte Menü ist ein Widget.
 
-Menüeinträge werden mit bis zu drei getrennten Feldern angezeigt. Das Hauptfeld ist eine Beschriftung in Form eines Textstrings, eines Bitmaps oder eines Bildes, gesteuert durch die Optionen **-label**, **-bitmap** und **-image** für den Eintrag. Wenn für einen Eintrag die Option **-accelerator** angegeben ist, wird rechts neben der Beschriftung ein zweites Textfeld angezeigt. Der Accelerator beschreibt typischerweise eine Tastenkombination, die in der Anwendung verwendet werden kann, um dasselbe Ergebnis wie beim Aufrufen des Menüeintrags zu erzielen. Dies ist eine Anzeigeoption; sie legt die entsprechende Bindung nicht tatsächlich fest (was mit dem Befehl [bind] erreicht werden kann). Das dritte Feld ist ein *Indikator*. Der Indikator ist nur bei Checkbutton- oder Radiobutton-Einträgen vorhanden. Er zeigt an, ob der Eintrag ausgewählt ist oder nicht, und wird links vom Text des Eintrags angezeigt.
+Menüeinträge werden mit bis zu drei getrennten Feldern angezeigt. Das Hauptfeld ist eine Beschriftung in Form einer Textzeichenkette, eines Bitmaps oder eines Bildes, gesteuert durch die Optionen **-label**, **-bitmap** und **-image** für den Eintrag. Wenn für einen Eintrag die Option **-accelerator** angegeben ist, wird rechts neben der Beschriftung ein zweites Textfeld angezeigt. Der Accelerator beschreibt typischerweise eine Tastenkombination, die in der Anwendung verwendet werden kann, um dasselbe Ergebnis wie beim Aufrufen des Menüeintrags zu erzielen. Dies ist eine Anzeigeoption; sie legt die entsprechende Bindung nicht tatsächlich fest (was mit dem Befehl [bind] erreicht werden kann). Das dritte Feld ist ein *Indikator*. Der Indikator ist nur bei Checkbutton- oder Radiobutton-Einträgen vorhanden. Er zeigt an, ob der Eintrag ausgewählt ist oder nicht, und wird links vom Text des Eintrags angezeigt.
 
 Bei normaler Verwendung wird ein Eintrag aktiv (stellt sich anders dar), sobald der Mauszeiger über dem Eintrag ist. Wenn eine Maustaste über dem Eintrag losgelassen wird, wird der Eintrag *aufgerufen*. Die Wirkung des Aufrufs ist für jeden Eintragstyp unterschiedlich; diese Wirkungen werden unten in den Abschnitten zu den einzelnen Einträgen beschrieben.
 
@@ -144,9 +144,9 @@ Der Befehl **menu** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist.
 pathName option ?arg arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
-Viele Widget-Befehle für ein Menü nehmen als ein Argument einen Indikator dafür an, auf welchen Eintrag des Menüs gearbeitet werden soll. Diese Indikatoren heißen *Index*e und können in einer der folgenden Formen angegeben werden:
+Viele Widget-Befehle für ein Menü nehmen als ein Argument einen Indikator dafür an, auf welchen Eintrag des Menüs gearbeitet werden soll. Diese Indikatoren heißen *Indizes* und können in einer der folgenden Formen angegeben werden:
 
 **active**
 : Bezeichnet den Eintrag, der derzeit aktiv ist. Wenn kein Eintrag aktiv ist, ist diese Form äquivalent zu **none**. Diese Form darf nicht abgekürzt werden.
@@ -187,7 +187,7 @@ Folgende Widget-Befehle sind für Menu-Widgets möglich:
 : Erstellt einen Klon des aktuellen Menüs mit dem Namen *newPathName*. Dieser Klon ist ein Menü für sich, aber Änderungen am Klon werden auf das ursprüngliche Menü und umgekehrt übertragen. *cloneType* kann **normal**, **menubar** oder **tearoff** sein. Sollte normalerweise nicht außerhalb der Tk-Bibliothek aufgerufen werden. Siehe Abschnitt [Klone] für weitere Informationen.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **menu** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **menu** akzeptierten Werte haben.
 
 [pathName]{.ins} [delete]{.sub} [index1]{.arg} [index2]{.optarg}
 : Löscht alle Menüeinträge zwischen *index1* und *index2* einschließlich. Wenn *index2* weggelassen wird, entspricht es *index1*. Versuche, einen Tear-off-Menüeintrag zu löschen, werden ignoriert (stattdessen sollte die Option **-tearoff** geändert werden, um den Tear-off-Eintrag zu entfernen).
@@ -196,7 +196,7 @@ Folgende Widget-Befehle sind für Menu-Widgets möglich:
 : Gibt den aktuellen Wert einer Konfigurationsoption für den durch *index* gegebenen Eintrag zurück. *Option* kann einen der unten im Abschnitt [Menüeintrags-Optionen] beschriebenen Namen haben.
 
 [pathName]{.ins} [entryconfigure]{.sub} [index]{.arg} [options...]{.optarg}
-: Dieser Befehl ähnelt dem Befehl **configure**, gilt jedoch für die Optionen eines einzelnen Eintrags, während **configure** für die Optionen des Menüs als Ganzes gilt. *Options* kann jeden der im Abschnitt [Menüeintrags-Optionen] beschriebenen Werte haben. Wenn *options* angegeben sind, werden die Optionen wie im Befehl angegeben geändert und der Befehl gibt eine leere Zeichenkette zurück. Wenn keine *options* angegeben sind, gibt eine Liste zurück, die die aktuellen Optionen für Eintrag *index* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste).
+: Dieser Befehl ähnelt dem Befehl **configure**, gilt jedoch für die Optionen eines einzelnen Eintrags, während **configure** für die Optionen des Menüs als Ganzes gilt. *Options* kann jeden der im Abschnitt [Menüeintrags-Optionen] beschriebenen Werte haben. Wenn *options* angegeben sind, werden die Optionen wie im Befehl angegeben geändert und der Befehl gibt eine leere Zeichenkette zurück. Wenn keine *options* angegeben sind, gibt der Befehl eine Liste zurück, die die aktuellen Optionen für Eintrag *index* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste).
 
 [pathName]{.ins} [index]{.sub} [index]{.arg}
 : Gibt den numerischen Index zurück, der *index* entspricht, oder **none**, wenn *index* als **none** angegeben wurde.
@@ -211,7 +211,7 @@ Folgende Widget-Befehle sind für Menu-Widgets möglich:
 : Sorgt dafür, dass das Menü an den Root-Fenster-Koordinaten *x* und *y* auf dem Bildschirm angezeigt wird. Wenn ein Index angegeben ist, wird das Menü so positioniert, dass der Eintrag mit diesem Index an dem Punkt angezeigt wird. Diese Koordinaten werden bei Bedarf angepasst, damit das gesamte Menü auf dem Bildschirm sichtbar ist. Dieser Befehl gibt normalerweise eine leere Zeichenkette zurück. Wurde die Option **-postcommand** angegeben, wird ihr Wert als Tcl-Skript vor dem Posten des Menüs ausgeführt und das Ergebnis dieses Skripts als Ergebnis des Widget-Befehls **post** zurückgegeben. Tritt beim Ausführen des Befehls ein Fehler auf, wird der Fehler zurückgegeben, ohne das Menü zu posten.
 
 [pathName]{.ins} [postcascade]{.sub} [index]{.arg}
-: Postet das Untermenü, das dem durch *index* gegebenen Cascade-Eintrag zugeordnet ist, und entfernt jedes zuvor gepostete Untermenü. Entspricht *index* keinem Cascade-Eintrag oder ist *pathName* nicht gepostet, hat der Befehl keine Wirkung außer das Entfernen eines aktuell geposteten Untermenüs.
+: Postet das Untermenü, das dem durch *index* gegebenen Cascade-Eintrag zugeordnet ist, und entfernt jedes zuvor gepostete Untermenü. Entspricht *index* keinem Cascade-Eintrag oder ist *pathName* nicht gepostet, hat der Befehl keine Wirkung außer dem Entfernen eines aktuell geposteten Untermenüs.
 
 [pathName]{.ins} [type]{.sub} [index]{.arg}
 : Gibt den Typ des durch *index* gegebenen Menüeintrags zurück. Dies ist das *type*-Argument, das beim Erzeugen des Eintrags an **add** oder **insert** übergeben wurde, z. B. **command** oder **separator**, oder **tearoff** für einen Tear-off-Eintrag.
@@ -220,10 +220,10 @@ Folgende Widget-Befehle sind für Menu-Widgets möglich:
 : Entfernt die Zuordnung des Fensters, sodass es nicht mehr angezeigt wird. Ist ein kaskadiertes Untermenü auf niedrigerer Ebene gepostet, wird dieses entfernt. Gibt eine leere Zeichenkette zurück. Dieser Unterbefehl funktioniert unter Windows und auf dem Macintosh nicht, da diese Plattformen ihr eigenes Entfernen von Menüs haben.
 
 [pathName]{.ins} [xposition]{.sub} [index]{.arg}
-: Gibt einen Dezimalstring zurück mit der x-Koordinate im Menüfenster des linken Pixel des durch *index* angegebenen Eintrags.
+: Gibt eine Dezimalzeichenkette zurück mit der x-Koordinate im Menüfenster des am weitesten links liegenden Pixels des durch *index* angegebenen Eintrags.
 
 [pathName]{.ins} [yposition]{.sub} [index]{.arg}
-: Gibt einen Dezimalstring zurück mit der y-Koordinate im Menüfenster des obersten Pixel des durch *index* angegebenen Eintrags.
+: Gibt eine Dezimalzeichenkette zurück mit der y-Koordinate im Menüfenster des obersten Pixels des durch *index* angegebenen Eintrags.
 
 
 # Menüeintrags-Optionen
@@ -255,7 +255,7 @@ Die folgenden Optionen sind für Menüeinträge erlaubt. Die meisten Optionen we
 : Legt fest, ob der Menüeintrag sowohl ein Bild als auch Text anzeigen soll und falls ja, wo das Bild relativ zum Text platziert wird. Gültige Werte sind **bottom**, **center**, **left**, **none**, **right** und **top**. Der Standardwert ist **none**, d. h. es wird entweder ein Bild oder Text angezeigt, je nach den Werten der Optionen **-image** und **-bitmap**.
 
 [-font]{.lit} [value]{.arg}
-: Legt die Schriftart fest, mit der die Beschriftung oder der Accelerator-String in diesem Eintrag gezeichnet wird. Ist diese Option als leere Zeichenkette angegeben (Standard), wird die Option **-font** für das gesamte Menü verwendet. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
+: Legt die Schriftart fest, mit der die Beschriftung oder die Accelerator-Zeichenkette in diesem Eintrag gezeichnet wird. Ist diese Option als leere Zeichenkette angegeben (Standard), wird die Option **-font** für das gesamte Menü verwendet. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
 
 [-foreground]{.lit} [value]{.arg}
 : Legt eine Vordergrundfarbe fest, die für die Anzeige dieses Eintrags im normalen Zustand verwendet wird. Diese Option wird unter Aqua/macOS ignoriert. Ist sie als leere Zeichenkette angegeben (Standard), wird die Option **-foreground** für das gesamte Menü verwendet. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
@@ -264,7 +264,7 @@ Die folgenden Optionen sind für Menüeinträge erlaubt. Die meisten Optionen we
 : Legt fest, ob die Standardränder für diesen Menüeintrag gezeichnet werden sollen. Nützlich beim Erzeugen von Paletten mit Bildern, z. B. Farb- oder Musterpaletten. 1 bedeutet, dass der Rand für den Eintrag verborgen ist; 0 bedeutet, dass der Rand verwendet wird.
 
 [-image]{.lit} [value]{.arg}
-: Legt ein Bild fest, das im Menü statt eines Textstrings oder Bitmaps angezeigt wird. Das Bild muss durch einen früheren Aufruf von [image create][image] erzeugt worden sein. Diese Option überschreibt die Optionen **-label** und **-bitmap** (gesteuert durch **-compound**), kann aber auf eine leere Zeichenkette zurückgesetzt werden, um eine Text- oder Bitmap-Beschriftung anzuzeigen. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
+: Legt ein Bild fest, das im Menü statt einer Textzeichenkette oder eines Bitmaps angezeigt wird. Das Bild muss durch einen früheren Aufruf von [image create][image] erzeugt worden sein. Diese Option überschreibt die Optionen **-label** und **-bitmap** (gesteuert durch **-compound**), kann aber auf eine leere Zeichenkette zurückgesetzt werden, um eine Text- oder Bitmap-Beschriftung anzuzeigen. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
 
 [-indicatoron]{.lit} [value]{.arg}
 : Nur für Checkbutton- und Radiobutton-Einträge verfügbar. *Value* ist ein boolescher Wert, der festlegt, ob der Indikator angezeigt werden soll.
@@ -288,10 +288,10 @@ Die folgenden Optionen sind für Menüeinträge erlaubt. Die meisten Optionen we
 : Nur für Checkbutton- und Radiobutton-Einträge verfügbar. Legt ein Bild fest, das im Eintrag angezeigt wird (anstelle der Option **-image**), wenn er ausgewählt ist. *Value* ist der Name eines Bildes, das durch einen früheren Aufruf von [image create][image] erzeugt worden sein muss. Diese Option wird ignoriert, sofern die Option **-image** nicht angegeben wurde.
 
 [-state]{.lit} [value]{.arg}
-: Legt einen von drei Zuständen für den Eintrag fest: **normal**, **active** oder **disabled**. Im normalen Zustand wird der Eintrag mit der Option **-foreground** des Menüs und der Option **-background** des Eintrags oder des Menüs angezeigt. Der aktive Zustand wird typischerweise verwendet, wenn der Zeiger über dem Eintrag ist. Im aktiven Zustand werden **-activeforeground** des Menüs und **-activebackground** des Eintrags verwendet. Der deaktivierte Zustand bedeutet, dass der Eintrag unempfindlich sein soll: Die Standard-Bindungen weigern sich, ihn zu aktivieren oder aufzurufen. In diesem Zustand werden **-disabledforeground** des Menüs und **-background** des Eintrags verwendet. Diese Option ist für Trenner-Einträge nicht verfügbar.
+: Legt einen von drei Zuständen für den Eintrag fest: **normal**, **active** oder **disabled**. Im normalen Zustand wird der Eintrag mit der Option **-foreground** des Menüs und der Option **-background** des Eintrags oder des Menüs angezeigt. Der aktive Zustand wird typischerweise verwendet, wenn der Mauszeiger über dem Eintrag ist. Im aktiven Zustand werden **-activeforeground** des Menüs und **-activebackground** des Eintrags verwendet. Der deaktivierte Zustand bedeutet, dass der Eintrag unempfindlich sein soll: Die Standard-Bindungen weigern sich, ihn zu aktivieren oder aufzurufen. In diesem Zustand werden **-disabledforeground** des Menüs und **-background** des Eintrags verwendet. Diese Option ist für Trenner-Einträge nicht verfügbar.
 
 [-underline]{.lit} [value]{.arg}
-: Legt den ganzzahligen Index eines zu unterstreichenden Zeichens im Eintrag fest. Diese Option wird auch von den Standard-Bindungen abgefragt und für die Tastatur-Traversierung verwendet. 0 entspricht dem ersten Zeichen des im Eintrag angezeigten Textes, 1 dem nächsten und so weiter. Wird im Eintrag ein Bitmap oder Bild angezeigt, wird diese Option ignoriert. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
+: Legt den ganzzahligen Index eines zu unterstreichenden Zeichens im Eintrag fest. Diese Option wird auch von den Standard-Bindungen abgefragt und für die Tastaturnavigation verwendet. 0 entspricht dem ersten Zeichen des im Eintrag angezeigten Textes, 1 dem nächsten und so weiter. Wird im Eintrag ein Bitmap oder Bild angezeigt, wird diese Option ignoriert. Diese Option ist für Trenner- oder Tear-off-Einträge nicht verfügbar.
 
 [-value]{.lit} [value]{.arg}
 : Nur für Radiobutton-Einträge verfügbar. Legt den Wert fest, der in der zugehörigen Variable des Eintrags gespeichert wird, wenn der Eintrag ausgewählt ist. Wird eine leere Zeichenkette angegeben, wird die Option **-label** des Eintrags als in der Variable zu speichernder Wert verwendet.
@@ -330,7 +330,7 @@ Tk erstellt automatisch Klassen-Bindungen für Menüs, die folgendes Standardver
 
 2. Wenn die Maus ein Menü verlässt, werden alle Einträge im Menü deaktiviert, außer im Spezialfall, wenn die Maus von einem Menü zu einem kaskadierten Untermenü wechselt.
 
-3. Wird eine Taste über einem Menü losgelassen, wird der aktive Eintrag (falls vorhanden) aufgerufen. Das Menü wird auch entfernt, sofern es kein abgerissenes Menü ist.
+3. Wird eine Maustaste über einem Menü losgelassen, wird der aktive Eintrag (falls vorhanden) aufgerufen. Das Menü wird auch entfernt, sofern es kein abgerissenes Menü ist.
 
 4. Die Tasten Leertaste und Return rufen den aktiven Eintrag auf und entfernen das Menü.
 
@@ -342,7 +342,7 @@ Tk erstellt automatisch Klassen-Bindungen für Menüs, die folgendes Standardver
 
 8. Die linke Pfeiltaste wechselt zum nächsten Menü links. Ist das aktuelle Menü ein kaskadiertes Untermenü, wird das Untermenü entfernt und der aktuelle Menüeintrag wird zum Cascade-Eintrag im Eltern-Menü. Ist das aktuelle Menü ein von einem Menubutton gepostetes Top-Level-Menü, wird der aktuelle Menubutton entfernt und der nächste Menubutton links gepostet. Andernfalls hat die Taste keine Wirkung. Die Links-Rechts-Reihenfolge der Menubuttons folgt ihrer Stapelreihenfolge: Tk nimmt an, dass der unterste Menubutton (standardmäßig der zuerst erzeugte) links ist.
 
-9. Die rechte Pfeiltaste wechselt zum nächsten Menü rechts. Ist der aktuelle Eintrag ein Cascade-Eintrag, wird das Untermenü gepostet und der aktuelle Menüeintrag wird zum ersten Eintrag im Untermenü. War das aktuelle Menü von einem Menubutton gepostet, wird der aktuelle Menubutton entfernt und der nächste Menubutton rechts gepostet.
+9. Die rechte Pfeiltaste wechselt zum nächsten Menü rechts. Ist der aktuelle Eintrag ein Cascade-Eintrag, wird das Untermenü gepostet und der aktuelle Menüeintrag wird zum ersten Eintrag im Untermenü. Andernfalls, wenn das aktuelle Menü von einem Menubutton gepostet wurde, wird der aktuelle Menubutton entfernt und der nächste Menubutton rechts gepostet.
 
 
 Deaktivierte Menüeinträge reagieren nicht: Sie werden nicht aktiviert und ignorieren Mausklicks.

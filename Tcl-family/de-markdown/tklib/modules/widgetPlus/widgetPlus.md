@@ -122,7 +122,7 @@ Zusätzlich zu den üblichen Befehlen der Widgets **entry**, **spinbox**, **ttk:
 *pathName* **edit separator**
 : Wird der Vollständigkeit halber aufgenommen, hat jedoch keine Auswirkung.
 
-    (Anmerkung: Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird dem *Undo-Stapel* ein implizites Trennzeichen hinzugefügt.  Sie trennen damit das Eintippen oder Löschen einzelner Zeichen, außer dass *cut* und *paste* jeweils ein eigener Schritt sind.)
+    (Anmerkung: Bei jedem Aufruf eines Widget-Befehls (z. B. **insert** oder **delete**), der den Inhalt des Widgets verändert, wird dem *Undo-Stapel* ein implizites Trennzeichen hinzugefügt.  Diese Trennzeichen trennen damit das Hinzufügen oder Entfernen einzelner Zeichen beim Tippen, außer dass *cut* und *paste* jeweils ein eigener Schritt sind.)
 
 *pathName* **edit undo**
 : Macht die letzte Änderung rückgängig, wenn **-undo** **true** ist. Eine Änderung ist ein einzelner Befehl **insert** oder **delete** auf dem *Undo-Stapel*. Ist der *Undo-Stapel* leer, entsteht ein Fehler. Ist **-undo** **false**, geschieht nichts.
@@ -144,9 +144,9 @@ Das Klassen-Bindungs-Tag für verschiedene Widgets weist folgende Standardwerte 
 
 - **ttk::combobox**   verwendet **TCombobox**
 
-- [entryPlus] verwendet **EntryPlus**
+- **entryPlus** verwendet [entryPlus]
 
-- [spinboxPlus]     verwendet **SpinboxPlus**
+- **spinboxPlus**     verwendet [spinboxPlus]
 
 - **ttkEntryPlus**    verwendet [TEntryPlus]
 
@@ -242,7 +242,7 @@ entryPlus $w.entry -undo 1 -maxundo 0
 
 Eine **BWidget**-**ComboBox** mit dem Pfad **$w** enthält ein Widget **entry** **$w.e**, das statt des voreingestellten Tags **Entry** den Bindtag **BwEntry** benutzt.
 
-Das Paket **widgetPlus** stellt ein Ersatz-Bindtag **BwEntryPlus** bereit; berechnet wird er beim Laden des Pakets nicht, weil **BWidget** vorher geladen sein muss. **::widgetPlus::EnableBWidget** muss aufgerufen werden, damit **BwEntryPlus** existiert. Danach lässt sich die **BWidget**-**ComboBox** ändern (siehe [Beispiele])
+Das Paket **widgetPlus** stellt einen Ersatz-Bindtag **BwEntryPlus** bereit; berechnet wird er beim Laden des Pakets nicht, weil **BWidget** vorher geladen sein muss. **::widgetPlus::EnableBWidget** muss aufgerufen werden, damit **BwEntryPlus** existiert. Danach lässt sich die **BWidget**-**ComboBox** ändern (siehe [Beispiele])
 
 ```
 ::widgetPlus::EnableBWidget
@@ -264,7 +264,7 @@ entryPlus $w.e -undo 1 -maxundo 0
 
 # Bugs
 
-Diese Version von **widgetPlus** bietet Kompatibilität mit allen Releases von **Tk** 8.5 und 8.6 sowie mit den Zweigen *core-8-5-branch*, *core-8-6-branch* sowie *trunk* im Quellcode-Repository für **Tk**.  Jede Inkompatibilität mit einer dieser Versionen, unabhängig vom verwendeten **Tk**-Fenstersystem, sollte als Fehler gemeldet werden. Bitte melden Sie solche Fehler in der Kategorie *widgetPlus* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist).
+Diese Version von **widgetPlus** soll mit allen Releases von **Tk** 8.5 und 8.6 sowie mit den Zweigen *core-8-5-branch*, *core-8-6-branch* sowie *trunk* im Quellcode-Repository für **Tk**.  Jede Inkompatibilität mit einer dieser Versionen, unabhängig vom verwendeten **Tk**-Fenstersystem, sollte als Fehler gemeldet werden. Bitte melden Sie solche Fehler in der Kategorie *widgetPlus* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist).
 
 # Beispiele
 

@@ -59,7 +59,7 @@ Diese Manpage beschreibt einen Prozessor bzw. Konverter für Manpages im doctool
     : Der Prozessor erzeugt Wiki-Markup, wie es **wikit** versteht.
 
     **list**
-    : Der Prozessor extrahiert die von **manpage\_begin** bereitgestellten Informationen.
+    : Der Prozessor extrahiert die von [manpage\_begin][doctools_lang_cmdref] bereitgestellten Informationen.
 
     **null**
     : Der Prozessor erzeugt keine Ausgabe.

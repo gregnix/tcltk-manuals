@@ -87,12 +87,12 @@ Der Hauptbefehl des Pakets lautet:
 : Der Befehl erstellt ein neues Objekt für eine Operation mit mehreren Dateien, dem ein globaler Tcl-Befehl mit dem Namen *opName* zugeordnet ist. Mit diesem Befehl lassen sich die verschiedenen möglichen Dateioperationen aufrufen. Er hat die folgende allgemeine Form:
 
     **opName** *option* ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
-    Wenn die Zeichenfolge **%AUTO%** als *opName* verwendet wird, generiert das Paket selbstständig einen eindeutigen Name.
+    Wenn die Zeichenkette **%AUTO%** als *opName* verwendet wird, generiert das Paket selbstständig einen eindeutigen Namen.
 
-    Wenn ein oder mehrere *Wörter* angegeben werden, werden diese als anfängliche Reihe von auszuführenden Dateibefehlen interpretiert. Das heißt, die Methode **do** des neu erstellten Objekts wird implizit aufgerufen, wobei die Wörter als Argumente verwendet werden.
+    Wenn ein oder mehrere Wörter *word* angegeben werden, werden diese als anfängliche Reihe von auszuführenden Dateibefehlen interpretiert. Das heißt, die Methode **do** des neu erstellten Objekts wird implizit aufgerufen, wobei die Wörter als Argumente verwendet werden.
 
 
 # Objekt-API
@@ -107,7 +107,7 @@ Für Objekte mit Mehrdateienbetrieb sind folgende Methoden möglich:
 
 # Datei-API
 
-Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern und interpretieren diese als auszuführende Dateibefehle. Die Namen wurden so gewählt, dass Operationen als Sätze in einer nahezu natürlichen Sprache gebildet werden können. Die meisten Befehle beeinflussen lediglich den Zustand des Objekts, d. h., sie liefern lediglich die Konfiguration, die von dem Befehl verwendet wird, der die eigentliche Aktion auslöst.
+Sowohl der Objektkonstruktor als auch die Methode **do** nehmen eine Liste von Wörtern entgegen und interpretieren diese als auszuführende Dateibefehle. Die Namen wurden so gewählt, dass Operationen als Sätze in einer nahezu natürlichen Sprache gebildet werden können. Die meisten Befehle beeinflussen lediglich den Zustand des Objekts, d. h., sie liefern lediglich die Konfiguration, die von dem Befehl verwendet wird, der die eigentliche Aktion auslöst.
 
 **into** *directory*
 : Legt das Zielverzeichnis für die Vorgänge fest.
@@ -119,7 +119,7 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Alias für **into**.
 
 **from** *directory*
-: Legt das Verzeichnis für die Vorgänge fest.
+: Legt das Quellverzeichnis für die Vorgänge fest.
 
 **not** *pattern*
 : Legt ein Glob-Muster für Pfade fest, die von der Operation ausgeschlossen werden sollen.
@@ -137,10 +137,10 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Ein Semi-Alias für **but**. Hat keine eigenen Argumente, sucht jedoch in der Wortliste vorwärts und führt alle unmittelbar darauf folgenden **for**-Befehle aus. Dies ermöglicht die Bildung von „außer“-Klauseln für eine natürlicher klingende Angabe ausgeschlossener Pfade.
 
 **as** *name*
-: Legt einen neuen Name für die erste Datei fest, die im Rahmen des aktuellen Vorgangs bearbeitet wird. Das heißt, für die Umbenennung einer einzelnen Datei während des Vorgangs.
+: Legt einen neuen Namen für die erste Datei fest, die im Rahmen des aktuellen Vorgangs bearbeitet wird. Das heißt, für die Umbenennung einer einzelnen Datei während des Vorgangs.
 
 **recursive**
-: Gibt an, dass die Dateierweiterung in der gesamten Verzeichnishierarchie und nicht nur im Verzeichnis selbst erfolgen soll.
+: Gibt an, dass die Expansion der Dateimuster in der gesamten Verzeichnishierarchie und nicht nur im Verzeichnis selbst erfolgen soll.
 
 **recursively**
 : Ein Alias für **recursive**.
@@ -158,7 +158,7 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Zeigt an, dass außer der Berechnung der Dateimenge anhand der Ein- und Ausschlussmuster keine weitere Operation stattfindet. Diese Operation ist nicht verfügbar, wenn **the-set** verwendet wird.
 
 **invoke** *cmdprefix*
-: Gibt an, dass das vom Benutzer angegebene Befehlspräfix *cmdprefix* die auszuführende Operation ist. Das Befehlspräfix wird auf globaler Ebene ausgeführt und erhält dabei das Quellverzeichnis, das Zielverzeichnis sowie die Dateigruppe (als Wörterbuchzuordnung von Quell- zu Zieldateien) in dieser Reihenfolge.
+: Gibt an, dass das vom Benutzer angegebene Befehlspräfix *cmdprefix* die auszuführende Operation ist. Das Befehlspräfix wird auf globaler Ebene ausgeführt und erhält dabei das Quellverzeichnis, das Zielverzeichnis sowie die Dateigruppe (als Dictionary, das Quell- auf Zieldateien abbildet) in dieser Reihenfolge.
 
 **reset**
 : Versetzt das Objekt in den Grundzustand, in dem alle Teile der Konfiguration Standardwerte aufweisen.
@@ -170,38 +170,38 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
 : Entnimmt den Zustand vom obersten Element des Zustandsstapels und stellt ihn wieder her, d. h., macht ihn zum neuen aktuellen Zustand des Objekts.
 
 **cd** *directory*
-: Ändert das Zielverzeichnis in das Unterverzeichnis *verzeichnis* des aktuellen Ziels.
+: Ändert das Zielverzeichnis in das Unterverzeichnis *directory* des aktuellen Ziels.
 
 **up**
 : Ändert das Zielverzeichnis in das übergeordnete Verzeichnis des aktuellen Ziels.
 
 **for-windows**
-: Prüft, ob Windows die aktuelle Plattform ist. Bricht den Prozess ab, wenn dies nicht der Fall ist.
+: Prüft, ob Windows die aktuelle Plattform ist. Bricht die Verarbeitung ab, wenn dies nicht der Fall ist.
 
 **for-win**
 : Ein Alias für **for-windows**.
 
 **for-unix**
-: Prüft, ob Unix die aktuelle Plattform ist. Bricht den Prozess ab, wenn dies nicht der Fall ist.
+: Prüft, ob Unix die aktuelle Plattform ist. Bricht die Verarbeitung ab, wenn dies nicht der Fall ist.
 
 **the** *pattern*
 : Dieser Befehl legt die zu bearbeitenden Dateien anhand eines Glob-Musters fest und ist zugleich das aktive Element, d. h. der Befehl, der die angegebene Operation tatsächlich ausführt. Alle anderen Befehle ändern lediglich den Objektzustand, um die Operation vorzubereiten, führen aber keine weiteren Aktionen aus.
 
     Um eine natürlichere Syntax zu ermöglichen, blickt dieser Befehl auch in die Liste der nachfolgenden Wörter vor und führt mehrere unmittelbar darauf folgende Befehle aus, bevor er seine eigenen Aktionen ausführt. Diese Befehle sind **as**, **but**, **exclude**, **except**, **from** und **into** (sowie Aliase). Auf diese Weise fungieren diese Befehle wie Qualifizierer und werden dennoch so wirksam, als wären sie vor diesem Befehl geschrieben worden.
 
-    Nachdem die Operation ausgeführt wurde, werden der Objektzustand, die Ausschlussmuster und der Aliasname, wenn sie festgelegt wurden, auf ihre Standardwerte (d. h. leer) zurückgesetzt, aber sonst nichts.
+    Nachdem die Operation ausgeführt wurde, werden im Objektzustand die Ausschlussmuster und der Aliasname, wenn sie festgelegt wurden, auf ihre Standardwerte (d. h. leer) zurückgesetzt, aber sonst nichts.
 
 **the-set** *varname*
 : Ähnlich wie bei **the** wird die zu verwendende Dateimenge jedoch nicht implizit über ein Glob-Muster angegeben, sondern ist in der angegebenen Variable enthalten und wird von dort geladen. Die Operation **expand** steht bei Verwendung dieses Befehls nicht zur Verfügung.
 
 **->** *varname*
-: Speichert die Dateien aus der letzten Erweiterung in der angegebenen Variable.
+: Speichert die Dateimenge aus der letzten Expansion in der angegebenen Variable.
 
 **strict**
-: Die Dateierweiterung und die Definition des Zielverzeichnisses (**in** und Aliase) streng handhaben, d. h. Fehler bei fehlenden Verzeichnissen und leeren Erweiterungen melden.
+: Die Expansion der Dateimuster und die Definition des Zielverzeichnisses (**in** und Aliase) streng handhaben, d. h. Fehler bei fehlenden Verzeichnissen und leerer Expansion melden.
 
 **!strict**
-: Ergänzung zu **strict**. Ein fehlendes Zielverzeichnis oder eine leere Erweiterung werden nicht als Fehler gemeldet.
+: Gegenstück zu **strict**. Ein fehlendes Zielverzeichnis oder eine leere Expansion werden nicht als Fehler gemeldet.
 
 **files**
 : Die Suche auf Dateien beschränken. Standardmäßig werden alle Pfadtypen akzeptiert.
@@ -228,7 +228,7 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
     : Liste der derzeit bekannten Ausschlussmuster.
 
     **from**
-    : Aktuelles Verzeichnis für die Quellcodes, festgelegt durch **from**.
+    : Aktuelles Quellverzeichnis, festgelegt durch **from**.
 
     **into**
     : Aktuelles Verzeichnis für das Ziel, festgelegt durch **into** (und Aliase).
@@ -243,7 +243,7 @@ Sowohl der Objektkonstruktor als auch die Methode **do** eine Liste von Wörtern
     : Aktuelle Strenge. Wird mit **strict** und **!strict** gesetzt bzw. aufgehoben.
 
     **type**
-    : Begrenzer für den aktuellen PFADTYP. Einstellbar auf **files**, **directories**, **links** oder **all**.
+    : Aktueller Pfadtyp-Begrenzer. Festgelegt durch **files**, **directories**, **links** oder **all**.
 
 
 **as?**

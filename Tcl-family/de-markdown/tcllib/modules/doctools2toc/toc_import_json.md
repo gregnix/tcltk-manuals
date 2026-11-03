@@ -80,7 +80,7 @@ doctools::toc {
 }
 ```
 
-entspricht der JSON-Zeichenkette
+gleichwertig mit der JSON-Zeichenkette
 
 ```
 {

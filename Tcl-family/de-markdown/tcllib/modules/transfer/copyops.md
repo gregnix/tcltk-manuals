@@ -32,12 +32,12 @@ transfer::copy – Grundlagen der Datenübertragung
 
 # Beschreibung
 
-Dieses Paket stellt eine Reihe von Befehlen für die asynchrone Verarbeitung von Informationen bereit, die entweder in einer Zeichenkette oder in einem Kanal enthalten sind. Der Hauptvorteil dieses Pakets besteht darin, dass die hier enthaltenen Befehle eine benutzerfreundlichere Rückruffunktion bieten als der integrierte Befehl **fcopy**, wodurch die Nutzung dieser Funktionen einfacher ist als die des integrierten Befehls.
+Dieses Paket stellt eine Reihe von Befehlen für die asynchrone Verarbeitung von Informationen bereit, die entweder in einer Zeichenkette oder in einem Kanal enthalten sind. Der Hauptvorteil dieses Pakets besteht darin, dass die hier enthaltenen Befehle eine benutzerfreundlichere API für Rückruffunktionen bieten als der integrierte Befehl **fcopy**, wodurch die Nutzung dieser Funktionen einfacher ist als die des integrierten Befehls.
 
 # API
 
 **transfer::copy::do** **chan**|**string** *data* *outchannel* ?*options*...?
-: Dieser Befehl überträgt die in *data* enthaltenen Informationen gemäß den *outchannel* an den *options*. Der Typ der in *data* enthaltenen Informationen wird durch das erste Argument bestimmt.
+: Dieser Befehl überträgt die in *data* enthaltenen Informationen gemäß den *options* an den *outchannel*. Der Typ der in *data* enthaltenen Informationen wird durch das erste Argument bestimmt.
 
     Die für diesen Befehl verfügbaren Optionen entsprechen denen des Befehls **transfer::copy::options** und werden dort erläutert.
 
@@ -58,7 +58,7 @@ Dieses Paket stellt eine Reihe von Befehlen für die asynchrone Verarbeitung von
 : Dieser Befehl ist eine alternative Form von **transfer::copy::chan**, die ihre Optionen nicht aus einer Argumentliste variabler Länge, sondern aus der Array-Variablen mit dem Namen *optvar* ausliest.
 
 **transfer::copy::doString** *string* *outchannel* *optvar*
-: Dieser Befehl ist eine alternative Form von **transfer::copy::string**, der seine Optionen nicht aus einer Argumentliste variabler Länge, sondern aus der durch *optvar* benannten Array-Variablen ausliest.
+: Dieser Befehl ist eine alternative Form von **transfer::copy::string**, die ihre Optionen nicht aus einer Argumentliste variabler Länge, sondern aus der durch *optvar* benannten Array-Variablen ausliest.
 
 **transfer::copy::options** *outchannel* *optionlist* *optvar*
 : Dieser Befehl ist der Optionsprozessor, der von allen oben genannten Befehlen verwendet wird, welche ihre Optionen aus einer Argumentliste variabler Länge auslesen. Er liest zunächst die Standardeinstellungen aus dem Kanal-Handle *outchannel* aus, verarbeitet anschließend die Liste der Optionen in *optionlist* und speichert schließlich die Ergebnisse in der durch *optvar* benannten Array-Variablen. Der Inhalt dieser Variablen liegt in einem Format vor, das von allen oben genannten Befehlen, die ihre Optionen aus einer Array-Variablen lesen, direkt verstanden wird.

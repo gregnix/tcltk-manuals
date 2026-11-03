@@ -135,7 +135,7 @@ Jeder BigFloat ist ein Intervall, nämlich \[*m-d, m+d*\], wobei *m* die Mantiss
 : Gibt zu einem BigFloat einen Double-Wert zurück, der in *expr* verwendet werden kann.
 
 **isInt** *number*
-: Gibt 1 zurück, wenn *number* eine ganze Zahl ist, andernfalls 0.
+: Gibt 1 zurück, wenn *number* eine Ganzzahl ist, andernfalls 0.
 
 **isFloat** *number*
 : Gibt 1 zurück, wenn *number* ein BigFloat ist, andernfalls 0.
@@ -176,7 +176,7 @@ Jeder BigFloat ist ein Intervall, nämlich \[*m-d, m+d*\], wobei *m* die Mantiss
 : Gibt die Gegenzahl von *x* zurück (-*x*)
 
 **pow** *x* *n*
-: Gibt *x* hoch *n* zurück. Dies funktioniert nur, wenn *n* eine ganze Zahl ist. *x* kann ein BigFloat oder eine ganze Zahl sein.
+: Gibt *x* hoch *n* zurück. Dies funktioniert nur, wenn *n* eine Ganzzahl ist. *x* kann ein BigFloat oder eine Ganzzahl sein.
 
 
 # Vergleiche
@@ -186,7 +186,7 @@ Jeder BigFloat ist ein Intervall, nämlich \[*m-d, m+d*\], wobei *m* die Mantiss
 
     - ein BigFloat, der nahe genug an Null liegt, um den Fehler „Division durch Null“ auszulösen.
 
-    - die ganze Zahl 0.
+    - die Ganzzahl 0.
 
 
     Hier sehen Sie, wie Zahlen, die nahe bei Null liegen, in Zeichenketten umgewandelt werden:
@@ -256,7 +256,7 @@ Jeder BigFloat ist ein Intervall, nämlich \[*m-d, m+d*\], wobei *m* die Mantiss
 : Die oben genannten Funktionen geben jeweils Folgendes zurück: Quadratwurzel, Logarithmus, Exponentialfunktion, Kosinus, Sinus, Tangens, Kotangens, Arkuskosinus, Arkussinus, Arkustangens, hyperbolischer Kosinus, hyperbolischer Sinus, hyperbolischer Tangens eines BigFloat *x*.
 
 **pi** *n*
-: Gibt einen BigFloat zurück, der die Konstante Pi mit *n* Stellen nach dem Komma darstellt. *n* ist eine positive ganze Zahl.
+: Gibt einen BigFloat zurück, der die Konstante Pi mit *n* Stellen nach dem Komma darstellt. *n* ist eine positive Ganzzahl.
 
 **rad2deg** *radians*
 : siehe unten ...
@@ -314,7 +314,7 @@ set sum [add $a $b]]
 tostr $sum ; # 3.57
 ```
 
-Wenn wir jedoch beispielsweise eine ganze Zahl zu einem BigFloat addieren oder von diesem subtrahieren, bleibt die relative Unsicherheit des Ergebnisses unverändert. Daher ist es ratsam, ganze Zahlen nicht in BigFloats umzuwandeln:
+Wenn wir jedoch beispielsweise eine Ganzzahl zu einem BigFloat addieren oder von diesem subtrahieren, bleibt die relative Unsicherheit des Ergebnisses unverändert. Daher ist es ratsam, Ganzzahlen nicht in BigFloats umzuwandeln:
 
 ```
 set a [fromstr 0.999999999]

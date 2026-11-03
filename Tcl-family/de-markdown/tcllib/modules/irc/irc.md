@@ -68,7 +68,7 @@ Dieses Paket stellt Low-Level-Befehle zur Verfügung, die das IRC-Protokoll (Int
 : Setzt die Konfiguration ?key? auf ?value?. Die derzeit definierten Konfigurationsschlüssel sind die booleschen Flags **logger** und **debug**. **logger** bewirkt, dass **irc** das Logger-Paket zur Ausgabe von Fehlern verwendet. **debug** setzt **logger** voraus und gibt zusätzliche Debug-Ausgaben aus. Wenn weder ?key? noch ?value? angegeben wird, werden die aktuellen Werte zurückgegeben.
 
 **::irc::connection**
-: Der Befehl erstellt ein neues Objekt zur Verwaltung einer IRC-Verbindung. Durch das Erstellen dieses IRC-Objekts wird die Netzwerkverbindung nicht automatisch hergestellt. Er gibt einen neuen Befehl im IRC-Namespace zurück, mit dem sich die neue IRC-Verbindung steuern lässt. Hinweis: Die alte Form des Befehls connection, bei der Hostname und Port als Argumente übergeben wurden, ist veraltet. Stattdessen legt **connect** diese Angaben fest.
+: Der Befehl erstellt ein neues Objekt zur Verwaltung einer IRC-Verbindung. Durch das Erstellen dieses IRC-Objekts wird die Netzwerkverbindung nicht automatisch hergestellt. Er gibt einen neuen Befehl im IRC-Namespace zurück, mit dem sich die neue IRC-Verbindung steuern lässt. Hinweis: Die alte Form des Befehls connection, bei der Hostname und Port als Argumente übergeben wurden, ist veraltet. Verwenden Sie stattdessen **connect**, um diese Angaben festzulegen.
 
 **::irc::connections**
 : Gibt eine Liste aller aktuellen Verbindungen zurück, die mit **connection** erstellt wurden
@@ -79,7 +79,7 @@ Dieses Paket stellt Low-Level-Befehle zur Verfügung, die das IRC-Protokoll (Int
 In der folgenden Liste der verfügbaren Verbindungsmethoden steht *net* für einen Verbindungsbefehl, wie er von **::irc::connection** zurückgegeben wird.
 
 *net* **registerevent** *event* *script*
-: Registriert einen Rückruf-Handler für das jeweilige Ereignis. Verfügbar sind die in RFC 1459 <http://www.rfc-editor.org/rfc/rfc1459.txt> beschriebenen Ereignisse. Darüber hinaus sind mehrere weitere Ereignisse definiert. **defaultcmd** fügt einen Befehl hinzu, der aufgerufen wird, wenn keine andere Rückruffunktion vorhanden ist. **EOF** wird aufgerufen, wenn die Verbindung ein Dateiende signalisiert. Die Ereignisse **defaultcmd**, **defaultnumeric**, **defaultevent** und **EOF** sind erforderlich. *script* wird im Namespace der Verbindung ausgeführt und kann dabei verschiedene Befehle nutzen (siehe [Callback-Befehle] weiter unten), die beim Parsen der Daten helfen.
+: Registriert eine Rückruffunktion für das jeweilige Ereignis. Verfügbar sind die in RFC 1459 <http://www.rfc-editor.org/rfc/rfc1459.txt> beschriebenen Ereignisse. Darüber hinaus sind mehrere weitere Ereignisse definiert. **defaultcmd** fügt einen Befehl hinzu, der aufgerufen wird, wenn keine andere Rückruffunktion vorhanden ist. **EOF** wird aufgerufen, wenn die Verbindung ein Dateiende signalisiert. Die Ereignisse **defaultcmd**, **defaultnumeric**, **defaultevent** und **EOF** sind erforderlich. *script* wird im Namespace der Verbindung ausgeführt und kann dabei verschiedene Befehle nutzen (siehe [Callback-Befehle] weiter unten), die beim Parsen der Daten helfen.
 
 *net* **getevent** *event* *script*
 : Gibt den aktuellen Ereignisbehandler zurück, sofern einer vorhanden ist. Andernfalls wird eine leere Zeichenkette zurückgegeben.
@@ -88,7 +88,7 @@ In der folgenden Liste der verfügbaren Verbindungsmethoden steht *net* für ein
 : Gibt einen booleschen Wert zurück, der angibt, ob der Ereignisbehandler vorhanden ist.
 
 *net* **connect** *hostname* ?port?
-: Dadurch wird die Socket-Verbindung hergestellt. **::irc::connection** hat den Namespace und die zu verwendenden Befehle erstellt, jedoch den Socket noch nicht tatsächlich geöffnet. Dies geschieht hier. Hinweis: Bei der älteren Form von \\'connect' mussten kein Hostname und kein Port angegeben werden; diese wurden mit 'connection' festgelegt. Diese Form ist veraltet.
+: Dadurch wird die Socket-Verbindung hergestellt. **::irc::connection** hat den Namespace und die zu verwendenden Befehle erstellt, jedoch den Socket noch nicht tatsächlich geöffnet. Dies geschieht hier. Hinweis: Bei der älteren Form von 'connect' mussten kein Hostname und kein Port angegeben werden; diese wurden mit 'connection' festgelegt. Diese Form ist veraltet.
 
 *net* **config** ?key? ?value?
 : Entspricht **::irc::config**, legt Optionen jedoch nur für die Verbindung *net* fest und ruft sie nur von dort ab.
@@ -148,7 +148,7 @@ In der folgenden Liste der verfügbaren Verbindungsmethoden steht *net* für ein
 : Legt den Modus *args* für das Ziel *target* fest. *target* kann ein Kanal, ein Kanalbenutzer oder der eigene Benutzer sein.
 
 *net* **topic** *channel* *message*
-: Legt das Thema auf *channel* auf *message* fest; durch die Angabe einer leeren Zeichenfolge wird das Thema entfernt.
+: Legt das Thema auf *channel* auf *message* fest; durch die Angabe einer leeren Zeichenkette wird das Thema entfernt.
 
 *net* **invite** *channel* *target*
 : Lädt *target* ein, dem Kanal *channel* beizutreten

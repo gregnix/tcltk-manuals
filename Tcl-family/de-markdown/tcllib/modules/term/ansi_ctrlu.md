@@ -46,7 +46,7 @@ Das Paket stellt Befehle bereit, mit denen die Standardeingabe des aktuellen Pro
 ## Introspektion
 
 **::term::ansi::ctrl::unix::import** ?*ns*? ?*arg*...?
-: Dieser Befehl importiert einige oder alle Attributbefehle in den Namespace *ns*. Standardmäßig ist dies der Namespace *ctrl*. Beachten Sie, dass es sich hierbei um einen relativen Namensraumnamen handelt, wodurch der importierte Befehl in einen Unternamensraum des aktuellen Namensraums eingefügt wird. Standardmäßig werden alle Befehle importiert; dies kann jedoch eingeschränkt werden, indem die Namen der gewünschten Befehle nach dem Namensraum-Argument aufgeführt werden.
+: Dieser Befehl importiert einige oder alle Attributbefehle in den Namespace *ns*. Standardmäßig ist dies der Namespace *ctrl*. Beachten Sie, dass es sich hierbei um einen relativen Namespace-Namen handelt, wodurch der importierte Befehl in einen Kind-Namespace des aktuellen Namespace eingefügt wird. Standardmäßig werden alle Befehle importiert; dies kann jedoch eingeschränkt werden, indem die Namen der gewünschten Befehle nach dem Namespace-Argument aufgeführt werden.
 
 
 ## Operationen

@@ -41,13 +41,13 @@ oo::object
 
 # Beschreibung
 
-Singleton-Klassen sind Klassen, die höchstens eine Instanz von sich selbst zulassen. Sie exportieren die Methoden **create** und **createWithNamespace** vollständig nicht und überschreiben **new** so, dass nur dann eine neue Instanz erzeugt wird, wenn noch keine existiert. Von einer Singleton-Klasse zu erben wird nicht empfohlen; Singleton-Eigenschaft wird *nicht* vererbt. Es wird nicht empfohlen, dass der Konstruktor einer Singleton-Klasse Argumente annimmt.
+Singleton-Klassen sind Klassen, die höchstens eine Instanz von sich selbst zulassen. Sie nehmen die Methoden **create** und **createWithNamespace** vollständig aus dem Export und überschreiben **new** so, dass nur dann eine neue Instanz erzeugt wird, wenn noch keine existiert. Von einer Singleton-Klasse zu erben wird nicht empfohlen; Singleton-Eigenschaft wird *nicht* vererbt. Es wird nicht empfohlen, dass der Konstruktor einer Singleton-Klasse Argumente annimmt.
 
 Instanzen haben ihre Methode **destroy** durch eine Methode ersetzt, die stets einen Fehler zurückgibt, um die Zerstörung des Objekts zu erschweren; Zerstörung bleibt bei striktem Bedarf möglich (z. B. durch Zerstörung der Klasse oder [rename] zum Löschen). Sie definieren außerdem eine (nicht exportierte) Methode **<cloned>**, die ebenfalls stets Fehler zurückgibt, damit Versuche, die Singleton-Instanz mit [oo::copy][copy] zu nutzen, scheitern.
 
 ## Konstruktor
 
-Die Klasse **oo::singleton** definiert keinen expliziten Konstruktor; sie verhält sich damit wie der Konstruktor der Klasse [oo::class][class].
+Die Klasse **oo::singleton** definiert keinen expliziten Konstruktor; ihr Konstruktor entspricht damit dem Konstruktor der Klasse [oo::class][class].
 
 ## Destruktor
 
@@ -58,7 +58,7 @@ Die Klasse **oo::singleton** definiert keinen expliziten Destruktor; das Zerstö
 [cls]{.ins} [new]{.sub} [arg]{.optdot}
 : Gibt die aktuelle Instanz der Singleton-Klasse zurück, falls eine existiert, und erzeugt nur dann eine neue Instanz, wenn noch keine existiert. Die zusätzlichen Argumente *arg ...* werden nur verwendet, wenn tatsächlich eine neue Instanz erzeugt wird; die Erzeugung erfolgt über **new** der Klasse [oo::class][class].
 
-    Dies überschreibt das Verhalten einer Superklassen-Methode mit derselben Aufrufsignatur.
+    Dies überschreibt das Verhalten einer Oberklassen-Methode mit derselben Aufrufsignatur wie die Implementierung der Oberklasse.
 
 
 ## Nicht exportierte Methoden
@@ -87,7 +87,7 @@ if {$h1 eq $h3} {
 }
 ```
 
-Beachten Sie, dass der Name der Singleton-Instanz nicht garantiert ist.
+Beachten Sie, dass für den Namen der Singleton-Instanz kein bestimmter Wert garantiert ist.
 
 
 [class]: class.md

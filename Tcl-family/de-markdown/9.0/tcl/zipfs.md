@@ -58,7 +58,7 @@ Pfade in eingebundenen Archiven sind auf allen Plattformen groß-/kleinschreibun
 : Gibt 1 zurück, wenn der angegebene Dateiname im eingebundenen zipfs existiert, und 0, wenn nicht.
 
 [zipfs]{.cmd} [find]{.sub} [directoryName]{.arg}
-: Gibt die Liste der Pfade unter dem Verzeichnis *directoryName* zurück, das nicht innerhalb eines zipfs-eingebundenen Archivs liegen muss. Die Pfade werden mit *directoryName* vorangestellt. Dieser Befehl wird auch von den Befehlen **zipfs mkzip** und **zipfs mkimg** verwendet.
+: Gibt die Liste der Pfade unter dem Verzeichnis *directoryName* zurück, das nicht innerhalb eines zipfs-eingebundenen Archivs liegen muss. Den Pfaden wird *directoryName* vorangestellt. Dieser Befehl wird auch von den Befehlen **zipfs mkzip** und **zipfs mkimg** verwendet.
 
 [zipfs]{.cmd} [info]{.sub} [file]{.arg}
 : Gibt Informationen über die angegebene *file* im eingebundenen zipfs zurück. Die Informationen bestehen aus:
@@ -120,12 +120,12 @@ Dieses Paket stellt außerdem mehrere Befehle bereit, die bei der Erstellung von
 
     Wenn der Parameter *infile* angegeben ist, wird diese Datei vor das ZIP-Archiv gesetzt, andernfalls wird die von [info nameofexecutable][info] zurückgegebene Datei verwendet (d. h. die ausführbare Datei des laufenden Prozesses, typischerweise [wish] oder [tclsh]). Wenn der Parameter *password* nicht die leere Zeichenkette ist, wird eine verschleierte Version dieses Passworts (siehe **zipfs mkkey**) zwischen Image- und ZIP-Teil der Ausgabedatei platziert und der Inhalt des ZIP-Teils mit diesem Passwort geschützt. Wenn das Ausgangs-Image bereits ein ZIP-Archiv angehängt hat, wird es aus der Kopie in *outfile* entfernt, bevor das neue ZIP-Archiv hinzugefügt wird.
 
-    Wenn es eine Datei **main.tcl** im Wurzelverzeichnis des resultierenden Archivs gibt und die Image-Datei, an die das Archiv angehängt ist, eine [tclsh]- (oder [wish]-)Instanz ist (standardmäßig wahr, hängt aber von der Konfiguration ab), dann ist das resultierende Image eine ausführbare Datei, die nach dem Einbinden des ZIP-Archivs das Skript in **main.tcl** per [source] ausführt und nach Ausführung dieses Skripts per [exit] beendet.
+    Wenn es eine Datei **main.tcl** im Wurzelverzeichnis des resultierenden Archivs gibt und die Image-Datei, an die das Archiv angehängt ist, eine [tclsh]- (oder [wish]-)Instanz ist (standardmäßig wahr, hängt aber von der Konfiguration ab), dann ist das resultierende Image eine ausführbare Datei, die nach dem Einbinden des ZIP-Archivs das Skript in **main.tcl** per [source] ausführt und sich nach Ausführung dieses Skripts per [exit] beendet.
 
     **Hinweis:** [tclsh] und [wish] können mit dynamischer oder statischer Bindung der Kernimplementierungsbibliotheken gebaut werden. Bei dynamischer Bindung sind die Tcl\_Library-Inhalte der Basisanwendung an die Shared Libraries **libtcl** bzw. **libtk** angehängt. Bei statischer Bindung sind die Tcl\_Library-Inhalte usw. an die Anwendung [tclsh] oder [wish] angehängt. Bei Verwendung von **mkimg** mit einem statisch gebauten tclsh liegt es in der Verantwortung des Benutzers, das angehängte Archiv zu erhalten, indem er es zuerst an einen temporären Ort extrahiert und dann die gewünschten zusätzlichen Dateien hinzufügt, bevor das neue Archiv erstellt und an die neue Anwendung angehängt wird.
 
 [zipfs]{.cmd} [mkkey]{.sub} [password]{.arg}
-: Gibt bei dem Klartext-Argument *password* eine verschleierte Stringversion im gleichen Format zurück, das im Befehl **zipfs mkimg** verwendet wird.
+: Gibt bei dem Klartext-Argument *password* eine verschleierte Zeichenkettenversion im gleichen Format zurück, das im Befehl **zipfs mkimg** verwendet wird.
 
 [zipfs]{.cmd} [lmkimg]{.sub} [outfile]{.arg} [inlist]{.arg} [password]{.optarg} [infile]{.optarg}
 : Dieser Befehl entspricht **zipfs mkimg**, aber anstelle eines Eingabeverzeichnisses muss *inlist* eine Tcl-Liste sein, deren ungerade Elemente die Namen der in das Archiv im Image zu kopierenden Dateien sind und deren gerade Elemente ihre jeweiligen Namen innerhalb dieses Archivs.

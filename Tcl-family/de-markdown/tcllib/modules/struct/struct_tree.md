@@ -101,7 +101,7 @@ Die wichtigsten Befehle des Pakets lauten:
 : Der Befehl erzeugt ein neues Baumobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *treeName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Baum aufrufen. Er hat die folgende allgemeine Form:
 
     **treeName** **option** ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
     Ist *treeName* nicht angegeben, erzeugt das Paket selbst einen eindeutigen Namen. Ist eine *source* angegeben, wird der neue Baum daraus initialisiert. Bei den Operatoren **=**, **:=** und **as** wird *source* als Name eines anderen Baumobjekts interpretiert, und der Zuweisungsoperator **=** wird ausgeführt. Bei **deserialize** ist *source* ein serialisiertes Baumobjekt, und **deserialize** wird ausgeführt.

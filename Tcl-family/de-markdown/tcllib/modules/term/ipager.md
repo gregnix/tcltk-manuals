@@ -40,7 +40,7 @@ Dieses Paket enthält eine Klasse zur Erstellung einer einfachen Textanzeige mit
 
 # API für Klassen
 
-Das Paket exportiert einen einzigen Befehl, den Befehl „class“, der die Erstellung von Pager-Instanzen ermöglicht. Seine API lautet wie folgt:
+Das Paket exportiert einen einzigen Befehl, den Klassenbefehl, der die Erstellung von Pager-Instanzen ermöglicht. Seine API lautet wie folgt:
 
 **term::interact::pager** *object* *text* ?*options*...?
 : Dieser Befehl erstellt ein neues Pager-Objekt mit dem Namen *object*, initialisiert es und gibt den vollqualifizierten Namen des Objektbefehls als Ergebnis zurück.
@@ -50,7 +50,7 @@ Das Paket exportiert einen einzigen Befehl, den Befehl „class“, der die Erst
 
 # Objekt-API
 
-Die durch den Befehl „class“ erstellten Objekte stellen die nachfolgend aufgeführten Methoden bereit:
+Die durch den Klassenbefehl erstellten Objekte stellen die nachfolgend aufgeführten Methoden bereit:
 
 *object* **interact**
 : Zeigt den Pager an der konfigurierten Stelle auf dem Bildschirm an und beginnt mit der Interaktion. Dadurch wird eine eigene Ereignisschleife für die Verarbeitung eingehender Zeichen eröffnet. Die Methode gibt zurück, wenn die Interaktion abgeschlossen ist. Die möglichen Interaktionen stehen im Abschnitt [Interaktion].
@@ -117,7 +117,7 @@ Page Down
 : Der Text wird um eine Seite nach oben gescrollt. Der Pager reagiert nicht, wenn die letzte Zeile des Textes bereits angezeigt wird.
 
 Enter/Return
-: Die Interaktion mit dem Objekt wurde beendet.
+: Die Interaktion mit dem Objekt wird beendet.
 
 
 # Fehler, Ideen, Rückmeldungen

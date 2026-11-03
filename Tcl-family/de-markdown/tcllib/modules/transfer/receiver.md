@@ -53,16 +53,16 @@ Dieses Paket fasst Datenziele und den Verbindungsaufbau in einem gemeinsamen Obj
     Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace. Der vollständig qualifizierte Name des Objektbefehls wird als Ergebnis des Befehls zurückgegeben.
 
 **transfer::receiver** **stream channel** *chan* *host* *port* ?*arg*...?
-: Diese Methode erstellt eine „Fire-and-Forget“-Übertragung für die Daten, die von der Quelle unter Host/Port (Details siehe unten) stammen und in den Kanal *chan* geschrieben werden, beginnend an der aktuellen Suchposition. Der Kanal ist so konfiguriert, dass er für die Übertragung binäre Übersetzung und Kodierung verwendet. Der Kanal wird nach Abschluss der Übertragung *nicht* geschlossen. Dies wird der Rückruffunktion überlassen.
+: Diese Methode erstellt eine „Fire-and-Forget“-Übertragung für die Daten, die von der Quelle unter Host/Port (Details siehe unten) stammen und in den Kanal *chan* geschrieben werden, beginnend an der aktuellen Position im Kanal. Der Kanal ist so konfiguriert, dass er für die Übertragung binäre Übersetzung und Kodierung verwendet. Der Kanal wird nach Abschluss der Übertragung *nicht* geschlossen. Dies wird der Abschluss-Rückruffunktion überlassen.
 
     Werden sowohl *host* als auch *port* angegeben, wird eine **active**-Verbindung zur Datenquelle hergestellt. Wenn nur ein *port* festgelegt wird (wobei *host* die leere Zeichenkette ist), wird stattdessen eine **passive**-Verbindung hergestellt, d. h., der Empfänger wartet dann auf eine Verbindung durch den Sender.
 
-    Alle Argumente nach dem Port werden als Optionen behandelt und dienen zur Konfiguration des internen Empfängerobjekts. Eine Liste der unterstützten Optionen und deren Bedeutung finden Sie im Abschnitt [Optionen]. *Hinweis*: Die Signatur des für die **-command**-Rückruffunktion angegebenen Befehlspräfixes unterscheidet sich von der Signatur für dieselbe Option des Empfängerobjekts. Diese Rückruffunktion erhält lediglich die Anzahl der Bytes und die übertragene Datenmenge sowie gegebenenfalls eine Fehlermeldung. Es wird kein Verweis auf das intern verwendete Empfängerobjekt hergestellt.
+    Alle Argumente nach dem Port werden als Optionen behandelt und dienen zur Konfiguration des internen Empfängerobjekts. Eine Liste der unterstützten Optionen und deren Bedeutung finden Sie im Abschnitt [Optionen]. *Hinweis*: Die Signatur des für die **-command**-Rückruffunktion angegebenen Befehlspräfixes unterscheidet sich von der Signatur für dieselbe Option des Empfängerobjekts. Diese Rückruffunktion erhält lediglich die Anzahl der übertragenen Bytes sowie gegebenenfalls eine Fehlermeldung. Es wird kein Verweis auf das intern verwendete Empfängerobjekt hergestellt.
 
     Das vom Befehl zurückgegebene Ergebnis ist die leere Zeichenkette, wenn der Befehl so eingestellt wurde, dass eine *aktive* Verbindung hergestellt wird, und andernfalls der Port, auf dem das interne Empfängerobjekt lauscht, d. h. wenn es so konfiguriert ist, dass es *passiv* eine Verbindung herstellt. Siehe auch das Paket [transfer::connect][connect] und die Beschreibung der Methode **connect**, um zu erfahren, woher dieses Verhalten stammt.
 
 **transfer::receiver** **stream file** *path* *host* *port* ?*arg*...?
-: Diese Methode entspricht der Methode **stream channel**, mit dem Unterschied, dass die empfangenen Daten in den Pfad *path* geschrieben werden und dabei den bisherigen Inhalt ersetzen.
+: Diese Methode entspricht der Methode **stream channel**, mit dem Unterschied, dass die empfangenen Daten in die Datei *path* geschrieben werden und dabei den bisherigen Inhalt ersetzen.
 
 
 ## Objektbefehl
@@ -92,7 +92,7 @@ Alle mit dem Befehl **::transfer::receiver** erstellten Objekte haben die folgen
 Alle Empfängerobjekte unterstützen die Vereinigung der Optionen, die von ihren „connect“- und „data destination“-Komponenten unterstützt werden, sowie eine eigene Option. Siehe auch die Dokumentation zu den Paketen [transfer::data::destination][ddest] und [transfer::connect][connect].
 
 **-command** *cmdprefix*
-: Diese Option legt den Befehl fest, der aufgerufen werden soll, wenn der Empfang der Informationen abgeschlossen ist. Die diesem Befehl übergebenen Argumente entsprechen denen, die an den Abschluss-Callback des Befehls [transfer::copy::do][copyops] übergeben werden, der vom Paket **transfer::copy** bereitgestellt wird.
+: Diese Option legt den Befehl fest, der aufgerufen werden soll, wenn der Empfang der Informationen abgeschlossen ist. Die diesem Befehl übergebenen Argumente entsprechen denen, die an die Abschluss-Rückruffunktion des Befehls [transfer::copy::do][copyops] übergeben werden, der vom Paket **transfer::copy** bereitgestellt wird.
 
 **-mode** *mode*
 : Diese Option legt den Modus fest, in dem sich das Objekt befindet. Sie ist optional und ist standardmäßig auf den Modus **active** eingestellt. Die beiden möglichen Modi sind:
@@ -101,7 +101,7 @@ Alle Empfängerobjekte unterstützen die Vereinigung der Optionen, die von ihren
     : In diesem Modus sind die beiden Optionen **-host** und **-port** relevant und legen den Host sowie den TCP-Port fest, mit dem das Objekt eine Verbindung herstellen muss. Der Host wird entweder durch einen Namen oder eine IP-Adresse angegeben.
 
     **passive**
-    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschenden Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
+    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschende Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
 
 
 **-host** *hostname-or-ipaddr*

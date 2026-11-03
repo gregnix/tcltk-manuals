@@ -88,7 +88,7 @@ Die genaue Bedeutung einiger in diesem Dokument verwendeter Begriffe wird im Fol
     *Flags* werden von TEPAM als eine spezielle Form von *benannten Argumenten* betrachtet.
 
 *Unbenanntes Argument*
-: Für die übrigen Parameter, d. h. diejenigen, bei denen der Name des Arguments nicht angegeben werden muss, verwendet TEPAM den Begriff *unbenanntes Argument*. Das vorangegangene Beispiel **string compare** verwendet für die beiden übergebenen Zeichenfolgen zwei *unbenannte Argumente*.
+: Für die übrigen Parameter, d. h. diejenigen, bei denen der Name des Arguments nicht angegeben werden muss, verwendet TEPAM den Begriff *unbenanntes Argument*. Das vorangegangene Beispiel **string compare** verwendet für die beiden übergebenen Zeichenketten zwei *unbenannte Argumente*.
 
 *Argumentattribut*
 : TEPAM ermöglicht es, den Zweck jedes Prozedurarguments mithilfe von *Argumentattributen* zu beschreiben. Während einige davon lediglich der Dokumentation der Argumente dienen, werden die meisten Attribute von einem Argumentmanager verwendet, um die bei einem Prozeduraufruf übergebenen Argumente zu steuern und zu validieren. Argumentattribute dienen dazu, Vorgabewerte, Parameterklassen (integer, xdigit, font, …), Validierungslisten für Auswahlmöglichkeiten, Wertebereiche usw. festzulegen.
@@ -258,7 +258,7 @@ Mit dem folgenden Attribut lassen sich die Protokollierungseinstellungen für ei
 Die nächste Gruppe von Prozedurattributen dient ausschließlich der Dokumentation und der Erstellung von Hilfetexten:
 
 -category *string*
-: Einer Prozedur kann zu Dokumentationszwecken eine Kategorie zugewiesen werden. Als Kategorie wird jede beliebige Zeichenfolge akzeptiert.
+: Einer Prozedur kann zu Dokumentationszwecken eine Kategorie zugewiesen werden. Als Kategorie wird jede beliebige Zeichenkette akzeptiert.
 
 -short\_description *string*
 : Die Kurzbeschreibung einer Prozedur wird sowohl in der Zusammenfassung der Dokumentation einer generierten Liste von Prozeduren als auch im Abschnitt NAME einer generierten Handbuchseite zur Prozedur verwendet.
@@ -367,7 +367,7 @@ Argumentname (*<argument\_name\_<n>>*)
         Argumentkommentare werden im Wesentlichen in den grafischen Formularen zur Argumentdefinition verwendet, die erstellt werden, wenn eine Prozedur interaktiv aufgerufen wird.
 
     *"#\*"*
-    : Eine Argumentdefinitionsliste, die mit „#“ beginnt, wird als Abschnittskommentar gewertet. Die Argumentdefinitionsliste wird um die „#“-Zeichen gekürzt, und die verbleibende Zeichenfolge wird als Abschnittskommentar verwendet.
+    : Eine Argumentdefinitionsliste, die mit „#“ beginnt, wird als Abschnittskommentar gewertet. Die Argumentdefinitionsliste wird um die „#“-Zeichen gekürzt, und die verbleibende Zeichenkette wird als Abschnittskommentar verwendet.
 
         Abschnittskommentare können dazu dienen, den Code der Argumentdefinitionen visuell zu strukturieren. Abschnittskommentare werden zudem zur Strukturierung der generierten Hilfetexte und der interaktiven Formulare zur Argumentdefinition verwendet.
 
@@ -471,7 +471,7 @@ Argumentattribute (*<arg\_attr\_name\_<mn>> <arg\_attr\_value\_<mn>>*)
         ```
 
     -auxargs\_commands *script*
-    : Wenn die Attribute der Hilfsargumente nicht statisch sind, sondern dynamisch anpassbar sein müssen, ermöglicht das Attribut *-auxargs\_commands* deren Definition über Befehle, die während eines Prozeduraufrufs ausgeführt werden. Dem Attribut *-auxargs\_commands* muss eine Liste von Paaren aus Hilfsattributnamen und Befehlen übergeben werden. Die übergebenen Befehle werden im Kontext der aufrufenden Prozedur ausgeführt.
+    : Wenn die Hilfsattribute der Argumente nicht statisch sind, sondern dynamisch anpassbar sein müssen, ermöglicht das Attribut *-auxargs\_commands* deren Definition über Befehle, die während eines Prozeduraufrufs ausgeführt werden. Dem Attribut *-auxargs\_commands* muss eine Liste von Paaren aus Hilfsattributnamen und Befehlen übergeben werden. Die übergebenen Befehle werden im Kontext der aufrufenden Prozedur ausgeführt.
 
         ```
         -auxargs_commands {-<arg_attr_name_1a> <arg_attr_command_1a> \
@@ -592,14 +592,14 @@ Es gibt einige *Spezialtypen*, die die erste Kategorie vordefinierter Argumentty
 
 - **text**
 
-    **Text** entspricht **string**, mit dem einzigen Unterschied, dass es die Eingabe mehrzeiliger Zeichenfolgen bei interaktiven Aufrufen von Prozeduren ermöglicht.
+    **Text** entspricht **string**, mit dem einzigen Unterschied, dass es die Eingabe mehrzeiliger Zeichenketten bei interaktiven Aufrufen von Prozeduren ermöglicht.
 
 - **{}**
 
-    **{}** Ein leerer Argumenttyp (**blank**) bezeichnet einen undefinierten Argumenttyp. Dies ist der Standardargumenttyp, der verwendet wird, wenn kein Typ explizit angegeben wurde. Ein Argument vom Typ **blank** verhält sich genauso wie ein Argument vom Typ **string**, d. h., es werden keine Datenprüfungen für Argumente durchgeführt. Der einzige Unterschied besteht darin, dass der Datentyp **string** in der generierten Hilfedokumentation erwähnt wird, während dies beim Typ **blank** nicht der Fall ist.
+    Ein leerer Argumenttyp (**blank**) bezeichnet einen undefinierten Argumenttyp. Dies ist der Standardargumenttyp, der verwendet wird, wenn kein Typ explizit angegeben wurde. Ein Argument vom Typ **blank** verhält sich genauso wie ein Argument vom Typ **string**, d. h., es werden keine Datenprüfungen für Argumente durchgeführt. Der einzige Unterschied besteht darin, dass der Datentyp **string** in der generierten Hilfedokumentation erwähnt wird, während dies beim Typ **blank** nicht der Fall ist.
 
 
-Von TEPAM werden mehrere *numerische Typen* definiert. Die Typvalidierungsprozeduren verwenden die Befehle **string is <type> -strict**, um die Gültigkeit der übergebenen Argumente zu überprüfen, wodurch sichergestellt wird, dass keine leeren Zeichenfolgen als Argumentwert akzeptiert werden. Der Typvalidierungsausdruck für die numerischen Typen und die Argumenttypen, auf die dieser Ausdruck angewendet wird, lauten wie folgt:
+Von TEPAM werden mehrere *numerische Typen* definiert. Die Typvalidierungsprozeduren verwenden die Befehle **string is <type> -strict**, um die Gültigkeit der übergebenen Argumente zu überprüfen, wodurch sichergestellt wird, dass keine leeren Zeichenketten als Argumentwert akzeptiert werden. Der Typvalidierungsausdruck für die numerischen Typen und die Argumenttypen, auf die dieser Ausdruck angewendet wird, lauten wie folgt:
 
 ```
 string is <type_to_check> -strict <argument_value>
@@ -612,7 +612,7 @@ string is <type_to_check> -strict <argument_value>
 - *double*
 
 
-Leere Zeichenfolgen werden als Argumentwert für alle alphanumerischen Argumenttypen akzeptiert. Die Argumenttypen, die in diese Kategorie fallen, sowie der für sie verwendete Validierungsausdruck lauten wie folgt:
+Leere Zeichenketten werden als Argumentwert für alle alphanumerischen Argumenttypen akzeptiert. Die Argumenttypen, die in diese Kategorie fallen, sowie der für sie verwendete Validierungsausdruck lauten wie folgt:
 
 ```
 string is <type_to_check> <argument_value>
@@ -657,7 +657,7 @@ Zusätzlich zu den mit den Befehlen **string is <type>** überprüften Datentype
 
 - *color*
 
-    Alle Zeichenfolgen, die von Tk als Farbe akzeptiert werden, gelten als gültiges Farbargument. Beachten Sie, dass das Tk-Paket geladen sein muss, um den Typ *color* verwenden zu können. TEPAM verwendet den folgenden Befehl zur Validierung des Farbtyps:
+    Alle Zeichenketten, die von Tk als Farbe akzeptiert werden, gelten als gültiges Farbargument. Beachten Sie, dass das Tk-Paket geladen sein muss, um den Typ *color* verwenden zu können. TEPAM verwendet den folgenden Befehl zur Validierung des Farbtyps:
 
     ```
     expr ![catch {winfo rgb . <argument_value>}]
@@ -665,7 +665,7 @@ Zusätzlich zu den mit den Befehlen **string is <type>** überprüften Datentype
 
 - *font*
 
-    Alle Zeichenfolgen, die von Tk als Schriftart akzeptiert werden, gelten als gültiges Schriftart-Argument. Beachten Sie, dass das Tk-Paket geladen sein muss, um den Typ *font* verwenden zu können. TEPAM verwendet den folgenden Befehl zur Validierung des Schriftarttyps:
+    Alle Zeichenketten, die von Tk als Schriftart akzeptiert werden, gelten als gültiges Schriftart-Argument. Beachten Sie, dass das Tk-Paket geladen sein muss, um den Typ *font* verwenden zu können. TEPAM verwendet den folgenden Befehl zur Validierung des Schriftarttyps:
 
     ```
     expr ![catch {font measure <argument_value> ""}]
@@ -673,7 +673,7 @@ Zusätzlich zu den mit den Befehlen **string is <type>** überprüften Datentype
 
 - *file*
 
-    Alle Zeichenfolgen, die keines der folgenden Zeichen enthalten, gelten als gültige Dateinamen: \* ? " < >. Es ist nicht erforderlich, dass die Datei und das Verzeichnis, in dem sie sich befindet, vorhanden sind. Zeichenfolgen der Länge Null gelten nicht als gültige Dateinamen.
+    Alle Zeichenketten, die keines der folgenden Zeichen enthalten, gelten als gültige Dateinamen: \* ? " < >. Es ist nicht erforderlich, dass die Datei und das Verzeichnis, in dem sie sich befindet, vorhanden sind. Zeichenketten der Länge Null gelten nicht als gültige Dateinamen.
 
     Zur Validierung der Dateinamen wird der folgende Ausdruck verwendet:
 
@@ -708,7 +708,7 @@ Um die Unterstützung für einen neuen anwendungsspezifischen Argumenttyp hinzuz
 
 Der Abschnitt mit den Validierungsbefehlen im Paket *tepam.tcl* enthält genügend Beispiele für Validierungsfunktionen, da dort die Funktionen für die Standard-TEPAM-Typen implementiert sind.
 
-Der folgende zusätzliche Codeausschnitt zeigt die Validierungsfunktion für einen benutzerdefinierten Argumenttyp, der Werte mit einer Zeichenfolgenlänge von genau 2 erfordert:
+Der folgende zusätzliche Codeausschnitt zeigt die Validierungsfunktion für einen benutzerdefinierten Argumenttyp, der Werte mit einer Zeichenkettenlänge von genau 2 erfordert:
 
 ```
 proc tepam::Validate(two_char) {v} {expr {[string length $v]==2}}
@@ -758,7 +758,7 @@ display message: Argument '-help' not known
 
 ## Interaktiver Aufruf einer Prozedur
 
-Wenn Tk geladen wurde, kann eine Prozedur mit dem Flag *-interactive* aufgerufen werden, um ein grafisches Formular zu öffnen, in dem alle Prozedurargumente interaktiv angegeben werden können. Das folgende Beispiel stellt sicher, dass die Tk-Bibliothek geladen ist, und zeigt die Befehlszeile zum interaktiven Aufruf der unter **PROZEDUREN-AUFRUFE** deklarierten Prozedur:
+Wenn Tk geladen wurde, kann eine Prozedur mit dem Flag *-interactive* aufgerufen werden, um ein grafisches Formular zu öffnen, in dem alle Prozedurargumente interaktiv angegeben werden können. Das folgende Beispiel stellt sicher, dass die Tk-Bibliothek geladen ist, und zeigt die Befehlszeile zum interaktiven Aufruf der in [Prozeduren-Aufrufe] deklarierten Prozedur:
 
 ```
 package require Tk
@@ -773,7 +773,7 @@ display message -mtype Info "It is 7:00" -interactive
 
 ## Unbenannte Argumente
 
-Unbenannte Argumente werden der aufgerufenen Prozedur in der Regel als einfache Parameter übergeben. Bei dieser Form des Prozeduraufrufs müssen die übergebenen Argumente streng der Reihenfolge der angegebenen Argumente entsprechen. Dem letzten Argument können mehrere Parameter zugewiesen werden, sofern dieses über das Attribut *-multiple* verfügt. Somit gilt für die folgende deklarierte Prozedur …
+Unbenannte Argumente werden der aufgerufenen Prozedur in der Regel als einfache Parameter übergeben. Bei dieser Form des Prozeduraufrufs müssen die übergebenen Argumente streng der Reihenfolge der angegebenen Argumente entsprechen. Dem letzten Argument können mehrere Parameter zugewiesen werden, sofern dieses über das Attribut *-multiple* verfügt. Somit kann die folgende deklarierte Prozedur …
 
 ```
 tepam::procedure {display_message} {
@@ -891,7 +891,7 @@ my_proc -n1 N1 -n2 N2 -n1 M1 U1 U2
 -> n1:'M1', n2:'N2', u1:'U1', u2:'U2'
 ```
 
-Der Name des ersten unbenannten Arguments darf daher nicht mit dem Zeichen „-“ beginnen. Andernfalls wird das unbenannte Argument als Name eines anderen benannten Arguments interpretiert. Dies ist insbesondere dann von Bedeutung, wenn das erste unbenannte Argument durch eine Variable angegeben wird, die beliebige Zeichenfolgen enthalten kann:
+Der Name des ersten unbenannten Arguments darf daher nicht mit dem Zeichen „-“ beginnen. Andernfalls wird das unbenannte Argument als Name eines anderen benannten Arguments interpretiert. Dies ist insbesondere dann von Bedeutung, wenn das erste unbenannte Argument durch eine Variable angegeben wird, die beliebige Zeichenketten enthalten kann:
 
 ```
 my_proc -n1 N1 -n2 N2 "->" "<-"

@@ -141,7 +141,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 [file]{.cmd} [link]{.sub} [-linktype]{.optarg} [linkName]{.arg} [target]{.optarg}
 : Wird nur ein Argument übergeben, wird dieses als *linkName* angenommen, und der Befehl gibt den Wert des Links *linkName* zurück (d. h. den Namen der Datei, auf die er verweist). Ist *linkName* kein Link oder kann sein Wert nicht gelesen werden (wie z. B. bei Hardlinks, die wie normale Dateien aussehen), wird ein Fehler zurückgegeben.
 
-    Werden zwei Argumente übergeben, werden diese als *linkName* und *target* angenommen. Existiert *linkName* bereits oder existiert *target* nicht, wird ein Fehler zurückgegeben. Andernfalls erstellt Tcl einen neuen Link *linkName*, der auf das vorhandene Dateisystemobjekt bei *target* verweist (dies ist auch der Rückgabewert); der Linktyp ist plattformspezifisch (unter Unix standardmäßig ein symbolischer Link). Das ist nützlich, wenn der Benutzer einen Link plattformübergreifend anlegen will, ohne den konkreten Linktyp zu kennen.
+    Werden zwei Argumente übergeben, werden diese als *linkName* und *target* angenommen. Existiert *linkName* bereits oder existiert *target* nicht, wird ein Fehler zurückgegeben. Andernfalls erstellt Tcl einen neuen Link *linkName*, der auf das vorhandene Dateisystemobjekt bei *target* verweist (dies ist auch der Rückgabewert); der Linktyp ist plattformspezifisch (unter Unix standardmäßig ein symbolischer Link). Das ist nützlich, wenn der Benutzer einen Link plattformübergreifend anlegen will, ohne dass es auf den konkreten Linktyp ankommt.
 
     Soll nur ein Link eines bestimmten Typs erstellt werden (mit Fehler, falls das nicht möglich ist), ist das optionale Argument *-linktype* anzugeben. Zulässige Werte für *-linktype* sind „**-symbolic**“ und „**-hard**“.
 
@@ -166,7 +166,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Gibt **1** zurück, wenn die Datei *name* dem aktuellen Benutzer gehört, sonst **0**.
 
 [file]{.cmd} [pathtype]{.sub} [name]{.arg}
-: Gibt einen der Werte **absolute**, **relative**, **volumerelative** zurück. Verweist *name* auf eine bestimmte Datei auf einem bestimmten Volume, ist der Pfadtyp **absolute**. Verweist *name* relativ zum aktuellen Arbeitsverzeichnis, ist der Typ **relative**. Verweist *name* relativ zum aktuellen Arbeitsverzeichnis auf einem angegebenen Volume oder auf eine bestimmte Datei auf dem aktuellen Arbeits-Volume, ist der Typ **volumerelative**.
+: Gibt einen der Werte **absolute**, **relative**, **volumerelative** zurück. Verweist *name* auf eine bestimmte Datei auf einem bestimmten Volume, ist der Pfadtyp **absolute**. Verweist *name* auf eine Datei relativ zum aktuellen Arbeitsverzeichnis, ist der Typ **relative**. Verweist *name* auf eine Datei relativ zum aktuellen Arbeitsverzeichnis auf einem angegebenen Volume oder auf eine bestimmte Datei auf dem aktuellen Arbeits-Volume, ist der Typ **volumerelative**.
 
 [file]{.cmd} [readable]{.sub} [name]{.arg}
 : Gibt **1** zurück, wenn die Datei *name* für den aktuellen Benutzer lesbar ist, sonst **0**.
@@ -181,7 +181,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Die erste Form benennt die Datei oder das Verzeichnis *source* in *target* um und verschiebt sie, wenn *target* einen Namen in einem anderen Verzeichnis angibt. Ist *target* ein vorhandenes Verzeichnis, wird die zweite Form verwendet. Die zweite Form verschiebt jede *source*-Datei oder jedes *source*-Verzeichnis in *targetDir*. Vorhandene Dateien werden nicht überschrieben, sofern **-force** nicht angegeben ist. Innerhalb eines einzelnen Dateisystems benennt Tcl symbolische Links um, nicht deren Ziele. Der Versuch, ein nicht leeres Verzeichnis zu überschreiben, ein Verzeichnis mit einer Datei zu überschreiben oder eine Datei mit einem Verzeichnis zu überschreiben, führt zu Fehlern. Die Argumente werden in der angegebenen Reihenfolge verarbeitet und beim ersten Fehler abgebrochen. Ein **--** markiert das Ende der Schalter; das Argument nach **--** wird als *source* behandelt, auch wenn es mit **-** beginnt.
 
 [file]{.cmd} [rootname]{.sub} [name]{.arg}
-: Gibt alle Zeichen in *name* bis, aber ohne das letzte „.“-Zeichen im letzten Komponenten von *name* zurück. Enthält die letzte Komponente von *name* keinen Punkt, wird *name* zurückgegeben.
+: Gibt alle Zeichen in *name* bis, aber ohne das letzte „.“-Zeichen in der letzten Komponente von *name* zurück. Enthält die letzte Komponente von *name* keinen Punkt, wird *name* zurückgegeben.
 
 [file]{.cmd} [separator]{.sub} [name]{.optarg}
 : Ohne Argument gibt der Befehl das Zeichen zurück, das Pfadsegmente nativer Dateien auf dieser Plattform trennt. Ist ein Pfad angegeben, wird das zuständige Dateisystem nach seinem Trennzeichen befragt. Akzeptiert kein Dateisystem *name*, wird ein Fehler erzeugt.
@@ -218,12 +218,12 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
     ```
 
 [file]{.cmd} [tempfile]{.sub} [nameVar]{.optarg} [template]{.optarg}
-: Erstellt eine temporäre Datei und gibt einen Lese-Schreib-Kanal zurück, der auf dieser Datei geöffnet ist. Ist *nameVar* angegeben, wird der Name der temporären Datei in diese Variable geschrieben; fehlt sie, versucht Tcl, die temporäre Datei zu löschen, sobald sie nicht mehr benötigt wird. Ist *template* vorhanden, legt es Teile der Vorlage des Dateinamens fest (z. B. Verzeichnis, Basisname oder Erweiterung); einige Plattformen ignorieren Teile davon und verwenden einen eingebauten Standard.
+: Erstellt eine temporäre Datei und gibt einen Lese-Schreib-Kanal zurück, der auf dieser Datei geöffnet ist. Ist *nameVar* angegeben, wird der Name der temporären Datei in diese Variable geschrieben; fehlt sie, versucht Tcl, die temporäre Datei zu löschen, sobald sie nicht mehr benötigt wird. Ist *template* vorhanden, legt es Teile der Vorlage des Dateinamens fest (z. B. Verzeichnis, Basisname oder Erweiterung); einige Plattformen ignorieren jedoch möglicherweise einige oder alle dieser Teile und verwenden stattdessen einen eingebauten Standard.
 
     Temporäre Dateien werden *nur* auf dem nativen Dateisystem erstellt. Sie eignen sich daher für Betriebssystem-APIs und externe Programme, die einen Dateinamen benötigen.
 
 [file]{.cmd} [tildeexpand]{.sub} [name]{.arg}
-: [Gibt das Ergebnis der Tilden-Ersetzung für *name* zurück. Beginnt der Name mit einer Tilde, wird der Dateiname so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Pfadtrenner, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls gelten die Zeichen zwischen Tilde und dem nächsten Trenner als Benutzername, dessen Home-Verzeichnis für die Ersetzung verwendet wird. Ist die Umgebungsvariable **$HOME** oder der Benutzer nicht vorhanden, wird ein Fehler ausgelöst.]{version="TIP602"}
+: [Gibt das Ergebnis der Tilden-Ersetzung für *name* zurück. Beginnt der Name mit einer Tilde, wird der Dateiname so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Pfadtrenner, wird die Umgebungsvariable **$HOME** eingesetzt. Andernfalls gelten die Zeichen zwischen Tilde und dem nächsten Trenner als Benutzername, dessen Home-Verzeichnis für die Ersetzung verwendet wird. Ist die Umgebungsvariable **$HOME** oder der Benutzer nicht vorhanden, wird ein Fehler ausgelöst.]{version="TIP602"}
 
     Beginnt der Dateiname nicht mit einer Tilde, wird er unverändert zurückgegeben.
 
@@ -231,7 +231,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Gibt eine Zeichenkette mit dem Typ der Datei *name* zurück: **file**, **directory**, **characterSpecial**, **blockSpecial**, **fifo**, **link** oder **socket**.
 
 [file]{.cmd} [volumes]{.sub}
-: Gibt die absoluten Pfade der im System eingehängten Volumes als ordentliche Tcl-Liste zurück. Ohne zusätzliche virtuelle Dateisysteme als Stamm-Volumes liefert der Befehl unter UNIX „//zipfs:/“ oder „/“ (bei einem Bau mit --disable-zipfs), da alle Dateisysteme lokal eingehängt sind. Unter Windows eine Liste der verfügbaren lokalen Laufwerke (z. B. „//zipfs:/ C:/“). Hat ein virtuelles Dateisystem weitere Volumes eingehängt, erscheinen diese ebenfalls in der Liste.
+: Gibt die absoluten Pfade der im System eingehängten Volumes als ordentliche Tcl-Liste zurück. Ohne zusätzliche virtuelle Dateisysteme als Stamm-Volumes liefert der Befehl unter UNIX „//zipfs:/“ oder „/“ (bei einem Bau mit --disable-zipfs), da alle Dateisysteme lokal eingehängt sind. Unter Windows gibt er eine Liste der verfügbaren lokalen Laufwerke zurück (z. B. „//zipfs:/ C:/“). Hat ein virtuelles Dateisystem weitere Volumes eingehängt, erscheinen diese ebenfalls in der Liste.
 
 [file]{.cmd} [writable]{.sub} [name]{.arg}
 : Gibt **1** zurück, wenn die Datei *name* für den aktuellen Benutzer beschreibbar ist, sonst **0**.

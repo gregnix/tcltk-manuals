@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-crosshair – Fadenkreuze für das Tk-Canvas
+crosshair – Fadenkreuze für den Tk-Canvas
 
 # Übersicht
 

@@ -48,7 +48,7 @@ $a $b $c
 
 # Beispiele
 
-Oft speichert man ein Skriptfragment in einer Variable und führt es später mit angehängten Werten aus (z. B. in [fcopy], [lsort], [trace]-Callbacks):
+Oft ist es nützlich, ein Skriptfragment in einer Variable zu speichern und später mit angehängten Werten auszuführen. Diese Technik wird an mehreren Stellen im Tcl-Kern verwendet (z. B. bei Rückruffunktionen der Befehle [fcopy], [lsort] und [trace]). Dieses Beispiel zeigt, wie das mit Tcl-Kernbefehlen geht:
 
 ```
 set script {
@@ -67,7 +67,7 @@ for {set i 0} {$i<10} {incr i} {
 }
 ```
 
-Ist das Fragment nur ein Befehlspräfix (Liste von Wörtern), ist **{\*}$script** meist robuster als **eval**. Eine Prozedur analog zu [lappend], die Argumente am Listenanfang einfügt:
+Ist das Fragment nur ein Befehlspräfix (Liste von Wörtern), ist **{\*}$script** meist robuster als **eval**. Die folgende Prozedur verhält sich analog zu [lappend], fügt die Argumentwerte jedoch am Anfang der Liste in der Variable ein:
 
 ```
 proc lprepend {varName args} {
@@ -79,7 +79,7 @@ proc lprepend {varName args} {
 }
 ```
 
-Heute üblicher ohne **eval**:
+Die letzte Zeile würde man heute jedoch normalerweise ohne **eval** schreiben, etwa so:
 
 ```
 set var [linsert $var 0 {*}$args]

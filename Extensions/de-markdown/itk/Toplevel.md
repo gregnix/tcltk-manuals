@@ -38,7 +38,7 @@ Einzelheiten zu den Standardoptionen stehen im Handbuchabschnitt „options“.
 
 # Beschreibung
 
-Die Klasse **Toplevel** erbt alles von der Klasse [Archetype] und fügt ein Tk-Toplevel namens Komponente „hull“ hinzu, das den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk\_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
+Die Klasse **Toplevel** erbt alles von der Klasse [Archetype] und fügt als Komponente „hull“ ein Tk-Toplevel hinzu, das den Rumpf des Megawidgets darstellt. Der Name der Fensterklasse des Hull wird auf den spezifischsten Klassennamen des Megawidgets gesetzt. Die geschützte Variable **itk\_interior** enthält den Fensterpfadnamen der Komponente „hull“. Abgeleitete Klassen spezialisieren dieses Widget, indem sie weitere Widget-Komponenten in den Hull packen.
 
 Da der Hull der Klasse **Toplevel** mit einem Tk-Toplevel umgesetzt ist, haben Megawidgets der Klasse **Toplevel** ein eigenes Toplevel-Fenster. Diese Klasse wird verwendet, um Dialogfenster und andere eingeblendete Fenster zu erzeugen.
 

@@ -73,7 +73,7 @@ Der Befehl **menubutton** erzeugt einen neuen Tcl-Befehl, dessen Name *pathName*
 pathName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Für Menubutton-Widgets sind folgende Befehle möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Für Menubutton-Widgets sind folgende Befehle möglich:
 
 [pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der Konfigurationsoption zurück, die durch *option* angegeben ist. *Option* kann jeden Wert haben, den der Befehl **menubutton** akzeptiert.

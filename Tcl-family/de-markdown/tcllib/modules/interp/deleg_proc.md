@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-deleg\_proc – Erstellung von Kommunikationsdelegaten (Prozeduren)
+deleg\_proc – Erstellung von comm-Delegaten (Prozeduren)
 
 # Übersicht
 
@@ -33,11 +33,11 @@ Dieses Paket stellt einen einzigen Befehl zur Verfügung, mit dem sich Prozedure
 # API
 
 **::interp::delegate::proc** ?**-async**? *name* *arguments* *comm* *id*
-: Dieser Befehl erstellt eine Prozedur mit dem Namen *name* und gibt deren vollqualifizierten Namen zurück. Alle Aufrufe dieser Prozedur leiten die eigentliche Arbeit an den Remote-Standort weiter, der durch den Kommunikationskanal *comm* und die Endpunkt-ID *id* identifiziert wird.
+: Dieser Befehl erstellt eine Prozedur mit dem Namen *name* und gibt deren vollqualifizierten Namen zurück. Alle Aufrufe dieser Prozedur leiten die eigentliche Arbeit an den entfernten Standort weiter, der durch den Kommunikationskanal *comm* und die Endpunkt-ID *id* identifiziert wird.
 
-    Der Name der vom Delegator aufgerufenen Remote-Prozedur lautet \[Namespace tail *name*\]. Das heißt, die Namespace-Informationen werden aus dem Aufruf entfernt.
+    Der Name der vom Delegator aufgerufenen Remote-Prozedur lautet \[namespace tail *name*\]. Das heißt, die Namespace-Informationen werden aus dem Aufruf entfernt.
 
-    Normalerweise marshallt die generierte Prozedur die *arguments* und gibt das Ergebnis der Remote-Prozedur als ihr eigenes Ergebnis zurück. Wenn jedoch die Option **-async** festgelegt wurde, wartet die generierte Prozedur nicht auf ein Ergebnis und gibt es sofort zurück.
+    Normalerweise marshallt die generierte Prozedur die *arguments* und gibt das Ergebnis der entfernten Prozedur als ihr eigenes Ergebnis zurück. Wenn jedoch die Option **-async** festgelegt wurde, wartet die generierte Prozedur nicht auf ein Ergebnis und kehrt sofort zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

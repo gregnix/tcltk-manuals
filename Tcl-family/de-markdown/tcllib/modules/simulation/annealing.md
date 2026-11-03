@@ -31,7 +31,7 @@ simulation::annealing – Simuliertes Annealing
 
 # Beschreibung
 
-Die Technik des *Simulated Annealing* bietet Methoden zur Schätzung des globalen Optimums einer Funktion. Sie wird auf der Wiki-Seite *http://wiki.tcl.tk/...* ausführlich beschrieben. Die Idee ist einfach:
+Die Technik des *Simulated Annealing* bietet Methoden zur Schätzung des globalen Optimums einer Funktion. Sie wird auf der Wiki-Seite <http://wiki.tcl.tk/>... ausführlich beschrieben. Die Idee ist einfach:
 
 - Punkte innerhalb eines vorgegebenen Suchraums zufällig auswählen
 
@@ -131,7 +131,7 @@ Es ist möglich, über einen nicht rechteckigen Bereich zu optimieren, doch ist 
 - Dies bedeutet, dass eine automatische Bestimmung eines Skalierungsfaktors nicht in Frage kommt – die hohen Werte der Funktionen, die den Punkt in den Bereich hineinzwingen, würden die Schätzung verfälschen.
 
 
-Hier sind Beispiele für die Suche nach einem Optimum innerhalb eines Kreises:
+Hier ist ein Beispiel für die Suche nach einem Optimum innerhalb eines Kreises:
 
 ```
     puts [::simulation::annealing::findMinimum  -trials 3000  -reduce 0.98  -parameters {x -5.0 5.0 y -5.0 5.0}  -code {

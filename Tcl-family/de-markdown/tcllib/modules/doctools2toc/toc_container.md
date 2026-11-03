@@ -111,7 +111,7 @@ Einige Anmerkungen
 ## Paketbefehle
 
 **::doctools::toc** *objectName*
-: Dieser Befehl erzeugt ein neues Container-Objekt mit einem zugehörigen Tcl-Befehl namens *objectName*. Dieser Befehl *object* ist in den Abschnitten [Objektbefehl] und [Objektmethoden] vollständig beschrieben. Der Objektbefehl entsteht im aktuellen Namespace, wenn *objectName* nicht vollqualifiziert ist, sonst im angegebenen Namespace.
+: Dieser Befehl erzeugt ein neues Container-Objekt mit einem zugehörigen Tcl-Befehl namens *objectName*. Dieser *Objekt*befehl ist in den Abschnitten [Objektbefehl] und [Objektmethoden] vollständig beschrieben. Der Objektbefehl entsteht im aktuellen Namespace, wenn *objectName* nicht vollqualifiziert ist, sonst im angegebenen Namespace.
 
 
 ## Objektbefehl
@@ -239,7 +239,7 @@ Hier ist das Format festgelegt, in dem die Pakete von doctools v2 Inhaltsverzeic
 
 Es wird zwischen *regulären* und *kanonischen* Serialisierungen unterschieden. Ein Inhaltsverzeichnis kann mehr als eine reguläre Serialisierung haben, *kanonisch* ist aber genau eine.
 
-regular serialization
+reguläre Serialisierung
 : 1. Die Serialisierung eines beliebigen Inhaltsverzeichnisses ist ein verschachteltes Tcl-Dictionary.
 
     2. Dieses Dictionary enthält genau einen Schlüssel, **doctools::toc**, und dessen Wert. Dieser Wert enthält den Inhalt des Inhaltsverzeichnisses.
@@ -288,7 +288,7 @@ regular serialization
 
 
 
-canonical serialization
+kanonische Serialisierung
 : Die kanonische Serialisierung eines Inhaltsverzeichnisses hat das im vorigen Punkt festgelegte Format und erfüllt zusätzlich die folgenden Bedingungen. Dadurch ist sie unter allen möglichen Serialisierungen dieses Inhaltsverzeichnisses eindeutig.
 
     1. Die Schlüssel in allen verschachtelten Tcl-Dictionaries sind in aufsteigender Wörterbuchreihenfolge sortiert, wie sie der eingebaute Tcl-Befehl **lsort -increasing -dict** erzeugt.

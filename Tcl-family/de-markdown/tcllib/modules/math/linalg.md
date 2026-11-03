@@ -352,7 +352,7 @@ Das Paket definiert die folgenden öffentlichen Prozeduren (einige davon existie
 *Basic operations*
 
 **::math::linearalgebra::norm** *vector* *type*
-: Gibt die Norm des angegebenen Vektors zurück. Das Argument „type“ kann folgende Werte annehmen: 1, 2, inf oder max; dies entspricht jeweils der Summe der Absolutwerte, der gewöhnlichen euklidischen Norm oder der Max-Norm.
+: Gibt die Norm des angegebenen Vektors zurück. Das Argument „type“ kann folgende Werte annehmen: 1, 2, inf oder max; dies entspricht jeweils der Summe der Beträge, der gewöhnlichen euklidischen Norm oder der Max-Norm.
 
     list *vector*
     : Vektor, Liste der Koeffizienten
@@ -362,7 +362,7 @@ Das Paket definiert die folgenden öffentlichen Prozeduren (einige davon existie
 
 
 **::math::linearalgebra::norm\_one** *vector*
-: Gibt die L1-Norm des angegebenen Vektors zurück, d. h. die Summe der Absolutwerte
+: Gibt die L1-Norm des angegebenen Vektors zurück, d. h. die Summe der Beträge
 
     list *vector*
     : Vektor, Liste der Koeffizienten
@@ -386,7 +386,7 @@ Das Paket definiert die folgenden öffentlichen Prozeduren (einige davon existie
 
 
 **::math::linearalgebra::normMatrix** *matrix* *type*
-: Gibt die Norm der angegebenen Matrix zurück. Das Argument „type“ kann folgende Werte annehmen: 1, 2, inf oder max; dies entspricht jeweils der Summe der Absolutwerte, der gewöhnlichen euklidischen Norm bzw. der Max-Norm.
+: Gibt die Norm der angegebenen Matrix zurück. Das Argument „type“ kann folgende Werte annehmen: 1, 2, inf oder max; dies entspricht jeweils der Summe der Beträge, der gewöhnlichen euklidischen Norm bzw. der Max-Norm.
 
     list *matrix*
     : Matrix, Liste von Zeilenvektoren

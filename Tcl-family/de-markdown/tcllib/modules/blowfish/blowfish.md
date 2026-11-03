@@ -49,7 +49,7 @@ Dieses Paket ist eine Implementierung des von Bruce Schneier entwickelten Blowfi
 
     Die Optionen *-mode* und *-dir* sind optional und sind standardmäßig auf den CBC-Modus bzw. encrypt gesetzt. Der Initialisierungsvektor *-iv* erwartet ein 8-Byte-Binärargument, dessen Standardwert aus 8 Nullen besteht. Weitere Informationen zu den verfügbaren Modi und deren Verwendung finden Sie unter [Betriebsarten].
 
-    Blowfish ist eine 64-Bit-Blockverschlüsselung. Das bedeutet, dass die Daten in Einheiten bereitgestellt werden müssen, die ein Vielfaches von 8 Byte sind. Der Befehl ***blowfish*** fügt standardmäßig bei Bedarf Nul-Zeichen hinzu, um die Eingabedaten auf ein Vielfaches von 8 Byte aufzufüllen. Die Befehle der Programmier-API fügen niemals Innenabstände hinzu, sondern lösen stattdessen einen Fehler aus, wenn die Eingabe kein Vielfaches der Blockgröße ist. Mit der Option *-pad* können Sie den Innenabstand ändern oder die Innenabstände deaktivieren, wenn die leere Zeichenkette als Argument übergeben wird.
+    Blowfish ist eine 64-Bit-Blockverschlüsselung. Das bedeutet, dass die Daten in Einheiten bereitgestellt werden müssen, die ein Vielfaches von 8 Byte sind. Der Befehl **blowfish** fügt standardmäßig bei Bedarf Nul-Zeichen hinzu, um die Eingabedaten auf ein Vielfaches von 8 Byte aufzufüllen. Die Befehle der Programmier-API füllen niemals auf, sondern lösen stattdessen einen Fehler aus, wenn die Eingabe kein Vielfaches der Blockgröße ist. Mit der Option *-pad* können Sie das Füllzeichen ändern oder das Auffüllen deaktivieren, wenn die leere Zeichenkette als Argument übergeben wird.
 
 
 # Programmierschnittstelle
@@ -58,10 +58,10 @@ Dieses Paket ist eine Implementierung des von Bruce Schneier entwickelten Blowfi
 : Erstellt eine neue Blowfish-Schlüsselplanung unter Verwendung der angegebenen Schlüsseldaten und des vorgegebenen Initialisierungsvektors. Der Initialisierungsvektor wird im ECB-Modus nicht verwendet, ist jedoch für den CBC-Modus von Bedeutung. Weitere Informationen zu den Verschlüsselungsmodi finden Sie unter [Betriebsarten].
 
 **::blowfish::Encrypt** *Key* *data*
-: Verschlüsselt die bereitgestellten Daten mit einem vorbereiteten Schlüssel aus **Init**. Das Argument „data“ sollte ein binäres Array sein, dessen Größe ein Vielfaches der Blockgröße von 8 Byte beträgt. Das Ergebnis ist ein binäres Array, dessen Größe der der Eingabe der verschlüsselten Daten entspricht.
+: Verschlüsselt die bereitgestellten Daten mit einem vorbereiteten Schlüssel aus **Init**. Das Argument „data“ sollte ein binäres Array sein, dessen Größe ein Vielfaches der Blockgröße von 8 Byte beträgt. Das Ergebnis ist ein binäres Array aus verschlüsselten Daten, dessen Größe der der Eingabe entspricht.
 
 **::blowfish::Decrypt** *Key* *data*
-: Hinweis: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
+: Entschlüsselt Daten mit dem Schlüssel. Hinweis: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
 
 **::blowfish::Reset** *Key* *iv*
 : Setzt den Initialisierungsvektor zurück. Dies ermöglicht es dem Programmierer, einen Schlüssel wiederzuverwenden und den Aufwand für die Neugenerierung des Schlüsselschemas zu vermeiden, wenn dieselben Schlüsseldaten mehrfach verwendet werden.
@@ -73,7 +73,7 @@ Dieses Paket ist eine Implementierung des von Bruce Schneier entwickelten Blowfi
 # Betriebsarten
 
 Electronic Code Book (ECB)
-: Der ECB-Modus ist der Grundmodus aller Blockchiffren. Jeder Block wird unabhängig verschlüsselt, sodass identischer Klartext bei der Verschlüsselung mit demselben Schlüssel zu identischem Ergebnis führt. Etwaige Verschlüsselungsfehler wirken sich zwar nur auf einen einzelnen Block aus, dieser ist jedoch anfällig für Angriffe mit bekanntem Klartext.
+: Der ECB-Modus ist der Grundmodus aller Blockchiffren. Jeder Block wird unabhängig verschlüsselt, sodass identischer Klartext bei der Verschlüsselung mit demselben Schlüssel zu identischem Ergebnis führt. Etwaige Verschlüsselungsfehler wirken sich zwar nur auf einen einzelnen Block aus, dieser Modus ist jedoch anfällig für Angriffe mit bekanntem Klartext.
 
 Cipher Block Chaining (CBC)
 : Im CBC-Modus wird die Ausgabe der Verschlüsselung des letzten Blocks zur Beeinflussung des aktuellen Blocks herangezogen. Für die Verarbeitung des ersten Blocks wird ein Initialisierungsvektor verwendet, dessen Größe der Chiffreblockgröße entspricht. Der Initialisierungsvektor sollte zufällig ausgewählt und als erster Block der Ausgabe übertragen werden. Fehler bei der Verschlüsselung wirken sich auf den aktuellen Block und den nächsten Block aus; danach korrigiert sich die Chiffre von selbst. CBC ist der am häufigsten verwendete Modus bei der Softwareverschlüsselung.

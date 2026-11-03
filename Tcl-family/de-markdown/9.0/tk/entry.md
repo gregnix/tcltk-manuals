@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-entry - Erstellt und manipuliert 'Entry'-Einzeilige-Text-Eingabe-Widgets
+entry - Erstellt und manipuliert 'Entry'-Widgets für einzeilige Texteingabe
 
 # Übersicht
 
@@ -40,7 +40,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 **-disabledforeground** (**disabledForeground**/**DisabledForeground**)
 : Legt die Vordergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option die leere Zeichenkette ist, wird die normale Vordergrundfarbe verwendet.
 
-**-invalidcommand**, **-invcmd** (invalidCommand/InvalidCommand)
+**-invalidcommand or -invcmd** (**invalidCommand**/**InvalidCommand**)
 : Legt ein Skript fest, das ausgeführt wird, wenn **-validatecommand** 0 zurückgibt. Das Setzen auf {} deaktiviert diese Funktion (Standard). Die beste Verwendung dieser Option ist, sie auf *bell* zu setzen. Siehe [Validierung] unten für weitere Informationen.
 
 **-readonlybackground** (**readonlyBackground**/**ReadonlyBackground**)
@@ -55,7 +55,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 **-validate** (**validate**/**Validate**)
 : Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe [Validierung] unten für weitere Informationen.
 
-**-validatecommand**, **-vcmd** (validateCommand/ValidateCommand)
+**-validatecommand or -vcmd** (**validateCommand**/**ValidateCommand**)
 : Legt ein Skript fest, das ausgeführt wird, wenn Sie die Eingabe in das Entry-Widget validieren möchten. Das Setzen auf {} deaktiviert diese Funktion (Standard). Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Wenn er 0 zurückgibt (oder das gültige Tcl-Boolean-Äquivalent), bedeutet dies, dass Sie die neue Bearbeitung ablehnen und sie nicht erfolgt und das **-invalidcommand** ausgewertet wird, falls gesetzt. Wenn er 1 zurückgibt, erfolgt die neue Bearbeitung. Siehe [Validierung] unten für weitere Informationen.
 
 **-width** (**width**/**Width**)
@@ -99,7 +99,7 @@ Es ist möglich, Prozent-Ersetzungen auf den Werten der Optionen **-validatecomm
 : Art der Aktion: 1 für **insert**, 0 für **delete** oder -1 für Fokus-, erzwungene oder **textvariable**-Validierung.
 
 **%i**
-: Index des einzufügenden/zu löschenden Zeichenstrings, falls vorhanden, sonst -1.
+: Index der einzufügenden/zu löschenden Zeichenkette, falls vorhanden, sonst -1.
 
 **%P**
 : Der Wert des Entrys, wenn die Bearbeitung erlaubt ist. Wenn Sie das Entry-Widget mit einer neuen **textvariable** konfigurieren, ist dies der Wert dieser **textvariable**.
@@ -108,7 +108,7 @@ Es ist möglich, Prozent-Ersetzungen auf den Werten der Optionen **-validatecomm
 : Der aktuelle Wert des Entrys vor der Bearbeitung.
 
 **%S**
-: Der einzufügende/zu löschende Textstring, falls vorhanden, sonst {}.
+: Die einzufügende/zu löschende Zeichenkette, falls vorhanden, sonst {}.
 
 **%v**
 : Der Typ der aktuell gesetzten Validierung.
@@ -138,7 +138,7 @@ Der Befehl **entry** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist
 pathName subcommand ?arg ...?
 ```
 
-*Subcommand* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+*Subcommand* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 ## Indizes
 
@@ -179,7 +179,7 @@ Folgende Befehle sind für Entry-Widgets möglich:
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
 [pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
 : Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Wenn *last* nicht angegeben ist, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt eine leere Zeichenkette zurück.
@@ -203,7 +203,7 @@ Folgende Befehle sind für Entry-Widgets möglich:
     : Speichert *x* und die aktuelle Ansicht im Entry-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Maustastendruck im Widget verknüpft. Er gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg}
-    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist eine leere Zeichenkette.
+    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungsereignissen im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist eine leere Zeichenkette.
 
 
 [pathName]{.ins} [selection]{.sub} [option]{.arg} [arg]{.arg}
@@ -258,15 +258,15 @@ Tk erstellt automatisch Klassen-Bindungen für Entrys, die ihnen folgendes Stand
 
 3. Dreifachklick mit Maustaste 1 wählt den gesamten Text im Entry aus und positioniert den Einfügecursor am Zeilenende.
 
-4. Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden; dabei wird das Ende der Auswahl angepasst, das dem Mauszeiger beim Drücken von Taste 1 am nächsten war. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
+4. Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden; dabei wird das Ende der Auswahl angepasst, das dem Mauszeiger beim Drücken von Maustaste 1 am nächsten war. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
 
-5. Klick mit Maustaste 1 bei gedrückter Steuerung positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
+5. Klick mit Maustaste 1 bei gedrückter Steuerungstaste positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
 
 6. Werden normale druckbare Zeichen in einem Entry eingegeben, werden sie an der Position des Einfügecursors eingefügt.
 
 7. Die Ansicht im Entry kann durch Ziehen mit der mittleren Maustaste (Taste 2, oder Taste 3 unter TkAqua) angepasst werden. Wird die mittlere Maustaste ohne Mausbewegung geklickt, wird die Auswahl an der Mausposition in das Entry kopiert.
 
-8. Wird die Maus beim Gedrückthalten von Taste 1 links oder rechts aus dem Entry gezogen, scrollt das Entry automatisch, um mehr Text sichtbar zu machen (falls auf der Seite, auf der die Maus das Fenster verließ, noch Text außerhalb des Bildschirms liegt).
+8. Wird die Maus beim Gedrückthalten von Maustaste 1 links oder rechts aus dem Entry gezogen, scrollt das Entry automatisch, um mehr Text sichtbar zu machen (falls auf der Seite, auf der die Maus das Fenster verließ, noch Text außerhalb des Bildschirms liegt).
 
 9. Die Tasten Links und Rechts bewegen den Einfügecursor um ein Zeichen nach links oder rechts; sie löschen außerdem jede Auswahl im Entry und setzen den Auswahl-Anker. Wird Links oder Rechts mit gedrückter Umschalttaste eingegeben, bewegt sich der Einfügecursor und die Auswahl wird um das neue Zeichen erweitert. Steuerung-Links und Steuerung-Rechts bewegen den Einfügecursor wortweise; Steuerung-Umschalt-Links und Steuerung-Umschalt-Rechts bewegen ihn wortweise und erweitern die Auswahl. Steuerung-b und Steuerung-f verhalten sich wie Links bzw. Rechts. Meta-b und Meta-f verhalten sich wie Steuerung-Links bzw. Steuerung-Rechts.
 

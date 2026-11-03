@@ -96,14 +96,14 @@ Dieses Paket dient der Zusammenstellung verschiedener zahlentheoretischer Operat
 
 
 **math::numtheory::uniquePrimeFactors** *N*
-: Gibt eine Liste der *eindeutigen* Primfaktoren der Zahl N zurück.
+: Gibt eine Liste der *verschiedenen* Primfaktoren der Zahl N zurück.
 
     integer *N* (in)
     : Zu faktorisierende Zahl
 
 
 **math::numtheory::factors** *N*
-: Gibt eine Liste aller *eindeutigen* Teiler der Zahl N zurück, einschließlich 1 und N selbst.
+: Gibt eine Liste aller *verschiedenen* Teiler der Zahl N zurück, einschließlich 1 und N selbst.
 
     integer *N* (in)
     : Zu faktorisierende Zahl

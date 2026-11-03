@@ -55,13 +55,13 @@ pki – Implementierung der Public-Key-Verschlüsselung
 
     Der Aufrufer muss entweder „**-priv**“ für die Verschlüsselung mit dem privaten Schlüssel oder „**-pub**“ für die Verschlüsselung mit dem öffentlichen Schlüssel festlegen.  Die Standardoption sieht ein Padding und die Rückgabe im Hexadezimalformat vor. Es muss entweder „**-pub**“ oder „**-priv**“ festgelegt werden.
 
-    Die Option „**-hex**“ bewirkt, dass die Daten als hexadezimale Zeichenkette mit Kodierung zurückgegeben werden, während die Option „**-binary**“ bewirkt, dass die Daten als binäre Zeichenkette mit Kodierung zurückgegeben werden.  Wenn diese Optionen mehrfach gelegt werden, wird die zuletzt gelegte Option verwendet.
+    Die Option „**-hex**“ bewirkt, dass die Daten als hexadezimale Zeichenkette mit Kodierung zurückgegeben werden, während die Option „**-binary**“ bewirkt, dass die Daten als binäre Zeichenkette zurückgegeben werden.  Wenn diese Optionen mehrfach festgelegt werden, wird die zuletzt festgelegte Option verwendet.
 
     Die Option **-pad** bewirkt, dass die Daten vor der Verschlüsselung gemäß PKCS#1 mit Padding aufgefüllt werden. Die Option **-nopad** unterbindet dieses Verhalten. Wenn diese Optionen mehrfach festgelegt werden, wird die zuletzt festgelegte Option verwendet.
 
     Die zu verschlüsselnde Eingabe wird als *input* festgelegt.
 
-    Der Parameter *key*, der den zu verwendenden Schlüssel enthält, ist ein Wert, der von entweder **::pki::pkcs::parse\_key**, **::pki::x509::parse\_cert** oder **::pki::rsa::generate** gegeben wird.
+    Der Parameter *key*, der den zu verwendenden Schlüssel enthält, ist ein Wert, der von entweder **::pki::pkcs::parse\_key**, **::pki::x509::parse\_cert** oder **::pki::rsa::generate** zurückgegeben wird.
 
     Zuordnung zur OpenSSL-Anwendung **openssl**:
 
@@ -83,14 +83,14 @@ pki – Implementierung der Public-Key-Verschlüsselung
 **::pki::sign** *input* *key* ?*algo*?
 : Signiert die Nachricht *input* digital mit dem privaten *key*.
 
-    Wenn *algo* weggelassen wird, wird „sha1“ angenommen. Mögliche Werte für *algo* sind „**md5**“, „**sha1**“, „**sha256**“ und „**raw**“. Die Angabe von „**raw**“ für *algo* verhindert die Erstellung einer ASN.1-Struktur für die Kodierung des gewählten Hash-Algorithmus. *Achtung*: In diesem Fall muss der entsprechende **pkgi::verify** als Algorithmusinformation **with** aufgerufen werden. Umgekehrt legt die Angabe eines anderen Algorithmus als „**raw**“ an dieser Stelle fest, dass der entsprechende Aufruf von **pkgi::verify** *ohne* Algorithmusangabe erfolgen muss.
+    Wenn *algo* weggelassen wird, wird „sha1“ angenommen. Mögliche Werte für *algo* sind „**md5**“, „**sha1**“, „**sha256**“ und „**raw**“. Die Angabe von „**raw**“ für *algo* verhindert die Erstellung einer ASN.1-Struktur für die Kodierung des gewählten Hash-Algorithmus. *Achtung*: In diesem Fall muss der entsprechende **pkgi::verify** **mit** Algorithmusangabe aufgerufen werden. Umgekehrt legt die Angabe eines anderen Algorithmus als „**raw**“ an dieser Stelle fest, dass der entsprechende Aufruf von **pkgi::verify** *ohne* Algorithmusangabe erfolgen muss.
 
-    Die *Eingabe* sollte der Klartext sein, auf den die Hash-Berechnung angewendet wird.
+    Das Argument *input* sollte der Klartext sein, auf den die Hash-Berechnung angewendet wird.
 
     Der *key* sollte den privaten Schlüssel enthalten.
 
 **::pki::verify** *signedmessage* *plaintext* *key* ?*algo*?
-: Überprüfen einer digitalen Signatur mithilfe eines öffentlichen *key*. Gibt „true“ oder „false“ zurück.
+: Überprüft eine digitale Signatur mithilfe eines öffentlichen *key*. Gibt „true“ oder „false“ zurück.
 
     *Achtung*: Die Algorithmusinformation *algo* muss genau dann festgelegt werden, wenn die Funktion **pki::sign**, die die *signedmessage* erzeugt hat, mit dem Algorithmus „**raw**“ aufgerufen wurde. Dadurch wurde die Erstellung der ASN.1-Struktur, die die Kodierung des gewählten Hash-Algorithmus enthält, verhindert. Umgekehrt dürfen Sie hier *keinen* Algorithmus angeben, wenn bei der Signierung bereits ein geeigneter Algorithmus festgelegt wurde.
 
@@ -113,14 +113,14 @@ pki – Implementierung der Public-Key-Verschlüsselung
 
     - In „**notAfter**“ ist das Ablaufdatum der Zertifikatsgültigkeit hinterlegt.
 
-    - **version** liegt im X.509-Format vor.
+    - **version** enthält die Version des X.509-Formats.
 
     - **extensions** enthält ein Dictionary mit den im Zertifikat enthaltenen Erweiterungen (siehe unten).
 
 
-    Das Wörterbuch enthält zusätzliche Einträge zum Thema Verschlüsselung. Diese sind für die Verwendung der oben genannten Befehle für kryptografische Operationen vorgesehen.
+    Das Dictionary enthält zusätzliche Einträge zum Schlüsselmaterial. Diese sind für die Verwendung der oben genannten Befehle für kryptografische Operationen vorgesehen.
 
-    Der Schlüssel „**extensions**“ im zurückgegebenen Wörterbuch enthält ein verschachteltes Dictionary, dessen Schlüssel den Namen (mit genau derselben Groß-/Kleinschreibung) in [Certificate Extensions](https://www.rfc-editor.org/rfc/rfc5280#section-4.2) in RFC 5280. Das Format jedes Werts basiert ebenfalls auf den dort definierten ASN.1-Strukturen. Eine Veranschaulichung finden Sie im Abschnitt *Beispiele* \[#section3\].
+    Der Schlüssel „**extensions**“ im zurückgegebenen Dictionary enthält ein verschachteltes Dictionary, dessen Schlüssel den Namen (mit genau derselben Groß-/Kleinschreibung) in [Certificate Extensions](https://www.rfc-editor.org/rfc/rfc5280#section-4.2) in RFC 5280 entsprechen. Das Format jedes Werts basiert ebenfalls auf den dort definierten ASN.1-Strukturen. Eine Veranschaulichung finden Sie im Abschnitt *Beispiele* \[#section3\].
 
 **::pki::rsa::generate** *bitlength* ?*exponent*?
 : Erzeugt ein neues RSA-Schlüsselpaar, dessen Bestandteile als Argumente für **::pki::encrypt**, **::pki::decrypt**, **::pki::sign** und **::pki::verify** verwendet werden können.
@@ -147,13 +147,13 @@ pki – Implementierung der Public-Key-Verschlüsselung
     Das Argument *algo* legt den Hash-Algorithmus fest, den wir zum Signieren dieser Zertifikatssignierungsanforderung verwenden sollen. Die Standardeinstellung ist „sha1“. Weitere mögliche Werte sind „md5“ und „sha256“.
 
 **::pki::pkcs::parse\_csr** *csr*
-: Ein Zertifikatssignierungsersuchen analysieren. Das Argument *csr* kann entweder in der PEM- oder DER-Kodierung vorliegen. Der Befehl gibt ein Dictionary zurück, das die folgenden Schlüssel enthält:
+: Analysiert eine Zertifikatssignierungsanforderung. Das Argument *csr* kann entweder in der PEM- oder DER-Kodierung vorliegen. Der Befehl gibt ein Dictionary zurück, das die folgenden Schlüssel enthält:
 
     - **subject** – enthält den Namen des Subjekts aus dem CSR.
 
     - **type** – enthält den Namen des Algorithmus für den öffentlichen Schlüssel. Derzeit wird ausschließlich **rsa** unterstützt.
 
-    - **extensionRequest** – enthält ein Dictionary mit den Inhalten der **extensionRequest** <HTTPS://datatracker.ietf.org/doc/html/rfc2986#page-5>-Informationen im CSR. Dieses hat dieselbe Form wie das für das **extensions**-Dictionary in der Dokumentation zu **parse\_cert** beschriebene.
+    - **extensionRequest** – enthält ein Dictionary mit den Inhalten der **extensionRequest**-Informationen <https://datatracker.ietf.org/doc/html/rfc2986#page-5> im CSR. Dieses hat dieselbe Form wie das für das **extensions**-Dictionary in der Dokumentation zu **parse\_cert** beschriebene.
 
 
     Möglicherweise sind im Dictionary weitere Schlüssel enthalten, die mit dem verwendeten Algorithmus für öffentliche Schlüssel in Zusammenhang stehen.
@@ -171,7 +171,7 @@ pki – Implementierung der Public-Key-Verschlüsselung
 
     Das Argument *isCA* ist ein boolesches Argument, das angibt, ob es sich bei dem signierten Zertifikat um ein CA-Zertifikat handeln soll oder nicht.  Wenn der Wert „true“ angegeben wird, wird die Erweiterung „id-ce-basicConstraints“ hinzugefügt, wobei die Argumente „critical“ auf „true“, „allowCA“ auf „true“ und „caDepth“ auf -1 (unendlich) gesetzt sind.
 
-    Das Argument *extensions* ist eine Liste von Erweiterungen und deren Parametern, die für die Kodierung des erstellten Zertifikats verwendet werden sollen. Derzeit wird nur eine Erweiterung unterstützt („id-ce-basicConstraints“). Sie akzeptiert drei Argumente: *critical*, *allowCA* und *caDepth*.  Das Argument *critical* dieser Erweiterung (und jeder anderen Erweiterung) legt fest, ob der Validator das Zertifikat als ungültig zurückweisen soll, wenn er die Erweiterung nicht versteht (bei der Einstellung „true“), oder ob er die Erweiterung ignorieren soll (bei der Einstellung „false“).  Das Argument *allowCA* dient dazu, als boolescher Wert festzulegen, ob wir als Zertifizierungsstelle (CA) verwendet werden dürfen oder nicht.  Das Argument *caDepth* gibt an, wie viele untergeordnete Zertifizierungsstellen in der Hierarchie unter dieser Zertifizierungsstelle liegen dürfen. Ein Wert von „0“ für das Argument *caDepth* bedeutet, dass diese Zertifizierungsstelle kein CA-Zertifikat signieren kann, ohne dass das Ergebnis ungültig wird. Ein Wert von „-1“ bedeutet unbegrenzte Tiefe.
+    Das Argument *extensions* ist eine Liste von Erweiterungen und deren Parametern, die in das erstellte Zertifikat kodiert werden sollen. Derzeit wird nur eine Erweiterung unterstützt („id-ce-basicConstraints“). Sie akzeptiert drei Argumente: *critical*, *allowCA* und *caDepth*.  Das Argument *critical* dieser Erweiterung (und jeder anderen Erweiterung) legt fest, ob der Validator das Zertifikat als ungültig zurückweisen soll, wenn er die Erweiterung nicht versteht (bei der Einstellung „true“), oder ob er die Erweiterung ignorieren soll (bei der Einstellung „false“).  Das Argument *allowCA* dient dazu, als boolescher Wert festzulegen, ob wir als Zertifizierungsstelle (CA) verwendet werden dürfen oder nicht.  Das Argument *caDepth* gibt an, wie viele untergeordnete Zertifizierungsstellen in der Hierarchie unter dieser Zertifizierungsstelle liegen dürfen. Ein Wert von „0“ für das Argument *caDepth* bedeutet, dass diese Zertifizierungsstelle kein CA-Zertifikat signieren kann, ohne dass das Ergebnis ungültig wird. Ein Wert von „-1“ bedeutet unbegrenzte Tiefe.
 
 
 # Beispiele

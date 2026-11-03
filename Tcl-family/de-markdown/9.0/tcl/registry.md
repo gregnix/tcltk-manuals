@@ -28,7 +28,7 @@ registry - Windows-Registrierung manipulieren
 
 Das Paket **registry** stellt einen allgemeinen Satz von Operationen zum Manipulieren der Windows-Registrierung bereit. Das Paket implementiert den Tcl-Befehl **registry**. Dieser Befehl wird nur auf der Windows-Plattform unterstützt. Warnung: Dieser Befehl sollte mit Vorsicht verwendet werden, da eine beschädigte Registrierung das System unbrauchbar machen kann.
 
-*KeyName* ist der Name eines Registrierungsschlüssels. Registrierungsschlüssel müssen eine der folgenden Formen haben:
+*KeyName* ist der Name eines Registry-Schlüssels. Registry-Schlüssel müssen eine der folgenden Formen haben:
 
 **\\\\**_hostname_**\\**_rootname_**\\**_keypath_
 
@@ -36,14 +36,14 @@ Das Paket **registry** stellt einen allgemeinen Satz von Operationen zum Manipul
 
 *rootname*
 
-*Hostname* gibt den Namen eines beliebigen gültigen Windows-Hosts an, der seine Registrierung exportiert. Die Komponente *rootname* muss eine von **HKEY\_LOCAL\_MACHINE**, **HKEY\_USERS**, **HKEY\_CLASSES\_ROOT**, **HKEY\_CURRENT\_USER**, **HKEY\_CURRENT\_CONFIG**, **HKEY\_PERFORMANCE\_DATA** oder **HKEY\_DYN\_DATA** sein. Der *keypath* kann aus einem oder mehreren Registrierungsschlüsselnamen bestehen, die durch Backslash-Zeichen (**\\**) getrennt sind.
+*Hostname* gibt den Namen eines beliebigen gültigen Windows-Hosts an, der seine Registrierung exportiert. Die Komponente *rootname* muss eine von **HKEY\_LOCAL\_MACHINE**, **HKEY\_USERS**, **HKEY\_CLASSES\_ROOT**, **HKEY\_CURRENT\_USER**, **HKEY\_CURRENT\_CONFIG**, **HKEY\_PERFORMANCE\_DATA** oder **HKEY\_DYN\_DATA** sein. Der *keypath* kann aus einem oder mehreren Registry-Schlüsselnamen bestehen, die durch Backslash-Zeichen (**\\**) getrennt sind.
 
 Das optionale Argument *-mode* gibt an, mit welcher Registrierung gearbeitet werden soll; bei **-32bit** wird die 32-Bit-Registrierung verwendet, bei **-64bit** die 64-Bit-Registrierung. Wenn dieses Argument weggelassen wird, ist die Standard-Registrierung des Systems Gegenstand der angeforderten Operation.
 
 *Option* gibt an, was mit dem Registrierungsschlüsselnamen geschehen soll. Jede eindeutige Abkürzung für *option* ist zulässig. Die gültigen Optionen sind:
 
 [registry]{.cmd} [broadcast]{.sub} [keyName]{.arg} [[-timeout]{.lit} [milliseconds]{.arg}]{.optarg}
-: Sendet eine Broadcast-Nachricht an das System und laufende Programme, um sie über bestimmte Aktualisierungen zu informieren. Dies ist notwendig, um Änderungen an wichtigen Registrierungsschlüsseln wie Environment zu propagieren. Der Timeout gibt die Wartezeit in Millisekunden an, bis Anwendungen auf die Broadcast-Nachricht reagieren. Standardwert ist 3000. Das folgende Beispiel zeigt, wie ein Pfad zur globalen Umgebungsvariable hinzugefügt und Anwendungen über die Änderung informiert werden kann, ohne Ab- und Anmelden zu erfordern (setzt Administratorrechte voraus):
+: Sendet eine Broadcast-Nachricht an das System und laufende Programme, um sie über bestimmte Aktualisierungen zu informieren. Dies ist notwendig, um Änderungen an wichtigen Registry-Schlüsseln wie Environment zu propagieren. Der Timeout gibt die Wartezeit in Millisekunden an, bis Anwendungen auf die Broadcast-Nachricht reagieren. Standardwert ist 3000. Das folgende Beispiel zeigt, wie ein Pfad zur globalen Umgebungsvariable hinzugefügt und Anwendungen über die Änderung informiert werden kann, ohne Ab- und Anmelden zu erfordern (setzt Administratorrechte voraus):
 
     ```
     set regPath [join {
@@ -66,7 +66,7 @@ Das optionale Argument *-mode* gibt an, mit welcher Registrierung gearbeitet wer
 : Gibt die mit dem Wert *valueName* unter dem Schlüssel *keyName* verknüpften Daten zurück. Wenn entweder der Schlüssel oder der Wert nicht existiert, wird ein Fehler erzeugt. Weitere Details zum Format der zurückgegebenen Daten siehe [Unterstützte Typen] weiter unten.
 
 [registry]{.cmd} [keys]{.sub} [keyName]{.arg} [pattern]{.optarg}
-: Wenn *pattern* nicht angegeben ist, gibt eine Liste der Namen aller Unterschlüssel von *keyName* zurück. Wenn *pattern* angegeben ist, werden nur die Namen zurückgegeben, die auf *pattern* passen. Die Übereinstimmung wird nach denselben Regeln wie bei [string match][string] bestimmt. Wenn der angegebene *keyName* nicht existiert, wird ein Fehler erzeugt.
+: Wenn *pattern* nicht angegeben ist, gibt der Befehl eine Liste der Namen aller Unterschlüssel von *keyName* zurück. Wenn *pattern* angegeben ist, werden nur die Namen zurückgegeben, die auf *pattern* passen. Die Übereinstimmung wird nach denselben Regeln wie bei [string match][string] bestimmt. Wenn der angegebene *keyName* nicht existiert, wird ein Fehler erzeugt.
 
 [registry]{.cmd} [set]{.sub} [keyName]{.arg} [valueName data ?type]{.optarg}
 : Wenn *valueName* nicht angegeben ist, wird der Schlüssel *keyName* erstellt, falls er noch nicht existiert. Wenn *valueName* angegeben ist, werden der Schlüssel *keyName* und der Wert *valueName* bei Bedarf erstellt. Der Inhalt von *valueName* wird auf *data* mit dem durch *type* angegebenen Typ gesetzt. Wenn *type* nicht angegeben ist, wird der Typ **sz** angenommen. Weitere Details zu den Argumenten *data* und *type* siehe [Unterstützte Typen] weiter unten.
@@ -75,7 +75,7 @@ Das optionale Argument *-mode* gibt an, mit welcher Registrierung gearbeitet wer
 : Gibt den Typ des Werts *valueName* im Schlüssel *keyName* zurück. Weitere Informationen zu den möglichen Typen siehe [Unterstützte Typen] weiter unten.
 
 [registry]{.cmd} [values]{.sub} [keyName]{.arg} [pattern]{.optarg}
-: Wenn *pattern* nicht angegeben ist, gibt eine Liste der Namen aller Werte von *keyName* zurück. Wenn *pattern* angegeben ist, werden nur die Namen zurückgegeben, die auf *pattern* passen. Die Übereinstimmung wird nach denselben Regeln wie bei [string match][string] bestimmt.
+: Wenn *pattern* nicht angegeben ist, gibt der Befehl eine Liste der Namen aller Werte von *keyName* zurück. Wenn *pattern* angegeben ist, werden nur die Namen zurückgegeben, die auf *pattern* passen. Die Übereinstimmung wird nach denselben Regeln wie bei [string match][string] bestimmt.
 
 
 # Unterstützte Typen
@@ -95,10 +95,10 @@ Jeder Wert unter einem Schlüssel in der Registrierung enthält Daten eines best
 : Der Registrierungswert enthält eine nullterminierte Zeichenkette mit nicht expandierten Verweisen auf Umgebungsvariablen im üblichen Windows-Stil (zum Beispiel „%PATH%“). Die Daten werden in Tcl als Zeichenkette dargestellt.
 
 **dword**
-: Der Registrierungswert enthält eine 32-Bit-Zahl in Little-Endian-Darstellung. Die Daten werden in Tcl als Dezimalstring dargestellt.
+: Der Registrierungswert enthält eine 32-Bit-Zahl in Little-Endian-Darstellung. Die Daten werden in Tcl als Dezimalzeichenkette dargestellt.
 
 **dword\_big\_endian**
-: Der Registrierungswert enthält eine 32-Bit-Zahl in Big-Endian-Darstellung. Die Daten werden in Tcl als Dezimalstring dargestellt.
+: Der Registrierungswert enthält eine 32-Bit-Zahl in Big-Endian-Darstellung. Die Daten werden in Tcl als Dezimalzeichenkette dargestellt.
 
 [link]
 : Der Registrierungswert enthält einen symbolischen Link. Die Daten werden in Tcl exakt dargestellt, einschließlich eingebetteter Nullen.

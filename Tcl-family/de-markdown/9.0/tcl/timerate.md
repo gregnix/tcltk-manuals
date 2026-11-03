@@ -51,6 +51,7 @@ Sie bedeutet:
 
 - die geschätzte echte Ausführungszeit ohne Messaufwand (\[**lindex** $result 6\])
 
+
 Folgende Optionen kann **timerate** erhalten:
 
 [-calibrate]{.lit}
@@ -59,7 +60,7 @@ Folgende Optionen kann **timerate** erhalten:
     Die Kalibrierung ist in der derzeitigen Implementierung nicht thread-sicher.
 
 [-overhead]{.lit} [estimate]{.arg}
-: **-overhead** gibt eine Schätzung (in Mikrosekunden, auch als Gleitkommazahl) des Messaufwands je Durchlauf des getesteten Skripts an. Der übergebene Wert ersetzt für diesen Aufruf von **timerate** den durch eine frühere Kalibrierung geschätzten Aufwand. Solche Ersetzungen lassen sich selbst mit **timerate** messen, wie ein späteres Beispiel zeigt.
+: **-overhead** gibt eine Schätzung (in Mikrosekunden, auch als Gleitkommazahl) des Messaufwands je Durchlauf des getesteten Skripts an. Der übergebene Wert ersetzt für diesen Aufruf von **timerate** den durch eine frühere Kalibrierung geschätzten Aufwand. Solche Ersatzwerte lassen sich selbst mit **timerate** messen, wie ein späteres Beispiel zeigt.
 
 [-direct]{.lit}
 : **-direct** führt das angegebene Skript direkt aus, ohne Kompilierung, ähnlich dem Befehl [time]. Damit lässt sich der Aufwand von [Tcl\_EvalObjEx][Eval], des Aufrufs kanonischer Listen und der unkompilierten Fassungen bytecodierter Befehle messen.

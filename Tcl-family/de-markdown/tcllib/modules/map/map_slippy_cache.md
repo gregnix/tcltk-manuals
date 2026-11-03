@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-map::slippy::cache – Verwaltung eines Kache-Caches im lokalen Dateisystem
+map::slippy::cache – Verwaltung eines Kachel-Caches im lokalen Dateisystem
 
 # Übersicht
 
@@ -37,7 +37,7 @@ map::slippy::cache – Verwaltung eines Kache-Caches im lokalen Dateisystem
 
 Dieses Paket stellt eine Klasse zur Verwaltung eines Cache mit Kacheln für „Slippy“-basierte Karten im lokalen Dateisystem bereit.
 
-*ACHTUNG*, *Hinweis*: Version *0.5* hat keine abwärtskompatible Kompatibilität mit Version 0.3 und früheren Versionen. Dies ist darauf zurückzuführen, dass die internen Abläufe dieses Pakets auf die Verwendung der Version 0.8 von **map::slippy** umgestellt wurden.
+*ACHTUNG*, *Hinweis*: Version *0.5* ist *nicht abwärtskompatibel* mit Version 0.3 und früheren Versionen. Dies ist darauf zurückzuführen, dass die internen Abläufe dieses Pakets auf die Verwendung der Version 0.8 von **map::slippy** umgestellt wurden.
 
 # API
 
@@ -58,16 +58,16 @@ Dieses Paket stellt eine Klasse zur Verwaltung eines Cache mit Kacheln für „S
 *cacheName* **get** *tile* *donecmd*
 : Dies ist die Hauptmethode des Caches, mit der das Bild für die angegebene *tile* aus dem Cache abgerufen wird. Die Kachel-Kennung ist eine Liste mit drei Elementen: der Zoomstufe sowie der Zeilen- und Spaltennummer der Kachel, in dieser Reihenfolge.
 
-    Der Befehl refix *donecmd* wird aufgerufen, wenn der Cache entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild verfügbar sein wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
+    Das Befehlspräfix *donecmd* wird aufgerufen, wenn der Cache entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild verfügbar sein wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
 
-    1. Die Zeichenfolge „**set**“, die *tile* und das Bild.
+    1. Die Zeichenkette **set**, die *tile* und das Bild.
 
-    2. Die Zeichenfolge „**unset**“ und die *tile*.
+    2. Die Zeichenkette **unset** und die *tile*.
 
 
     Diese beiden Möglichkeiten dienen dazu, entweder das Bild für die *tile* anzugeben oder zu signalisieren, dass für die *tile* kein Bild definiert ist.
 
-    Wenn der Cache keine Informationen über die Kachel besitzt, ruft er den bei seiner Erstellung festgelegten Befehlspräfix *provider* auf und fügt drei Argumente hinzu: die Zeichenfolge **get**, die *tile* sowie eine Rückruffunktion in den Cache. Letzterer wird vom Provider aufgerufen, um entweder das Bild an den Cache zu übertragen oder zu signalisieren, dass für die Kachel kein Bild vorhanden ist.
+    Wenn der Cache keine Informationen über die Kachel besitzt, ruft er das bei seiner Erstellung festgelegte Befehlspräfix *provider* auf und fügt drei Argumente hinzu: die Zeichenkette **get**, die *tile* sowie eine Rückruffunktion in den Cache. Letztere wird vom Provider aufgerufen, um entweder das Bild an den Cache zu übertragen oder zu signalisieren, dass für die Kachel kein Bild vorhanden ist.
 
     Wenn mehrere Anfragen für dieselbe Kachel gestellt werden, wird nur eine einzige Anfrage an den Provider gesendet.
 

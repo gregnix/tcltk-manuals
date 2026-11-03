@@ -15,7 +15,7 @@
   - [ StrictMode - Verarbeitungsmodus für WSDL](#strictmode-verarbeitungsmodus-f-r-wsdl) 
   - [ UseNS - Namespaces an Feld-Tags setzen](#usens-namespaces-an-feld-tags-setzen) 
   - [ useTypeNs - das Namespace-Präfix des Typs als Präfix der Elemente verwenden](#usetypens-das-namespace-pr-fix-des-typs-als-pr-fix-der-elemente-verwenden) 
-  - [ suppressNS - einen bestimmten Namespace-Präfix nicht setzen](#suppressns-einen-gegebenen-namespace-pr-fix-nicht-setzen) 
+  - [ suppressNS - ein bestimmtes Namespace-Präfix nicht setzen](#suppressns-einen-gegebenen-namespace-pr-fix-nicht-setzen) 
 
  
 

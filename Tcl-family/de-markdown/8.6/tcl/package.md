@@ -66,7 +66,7 @@ Das Verhalten des Befehls **package** hängt von seinem ersten Argument ab. Die 
 
     Im Auswahlmodus „stable“ wählt der Befehl die höchste stabile Version, die die Anforderungen erfüllt, sofern es eine gibt. Erfüllt keine stabile Version die Anforderungen, wird die höchste instabile Version gewählt, die die Anforderungen erfüllt. Im Auswahlmodus „latest“ akzeptiert der Befehl die höchste Version, die alle Anforderungen erfüllt, unabhängig davon, ob sie stabil ist.
 
-    Wurde bereits eine Version von *package* bereitgestellt (durch Aufruf des Befehls **package provide**), muss ihre Versionsnummer die *requirement*s erfüllen, und der Befehl kehrt sofort zurück. Andernfalls durchsucht der Befehl die Datenbank mit den Informationen aus früheren **package ifneeded**-Befehlen, um festzustellen, ob eine annehmbare Version des Pakets verfügbar ist. Ist das der Fall, wird das Skript für die höchste annehmbare Versionsnummer im globalen Namespace ausgewertet. Es muss alles Nötige tun, um das Paket zu laden, einschließlich des Aufrufs von **package provide** für das Paket. Enthält die **package ifneeded**-Datenbank keine annehmbare Version des Pakets und wurde für den Interpreter ein **package unknown**-Befehl festgelegt, wird dieser Befehl im globalen Namespace ausgewertet. Wenn er abgeschlossen ist, prüft Tcl erneut, ob das Paket jetzt bereitgestellt ist oder ob es ein **package ifneeded**-Skript dafür gibt. Liefert keiner dieser Schritte eine annehmbare Version des Pakets, gibt der Befehl einen Fehler zurück.
+    Wurde bereits eine Version von *package* bereitgestellt (durch Aufruf des Befehls **package provide**), muss ihre Versionsnummer die *requirement*-Argumente erfüllen, und der Befehl kehrt sofort zurück. Andernfalls durchsucht der Befehl die Datenbank mit den Informationen aus früheren **package ifneeded**-Befehlen, um festzustellen, ob eine annehmbare Version des Pakets verfügbar ist. Ist das der Fall, wird das Skript für die höchste annehmbare Versionsnummer im globalen Namespace ausgewertet. Es muss alles Nötige tun, um das Paket zu laden, einschließlich des Aufrufs von **package provide** für das Paket. Enthält die **package ifneeded**-Datenbank keine annehmbare Version des Pakets und wurde für den Interpreter ein **package unknown**-Befehl festgelegt, wird dieser Befehl im globalen Namespace ausgewertet. Wenn er abgeschlossen ist, prüft Tcl erneut, ob das Paket jetzt bereitgestellt ist oder ob es ein **package ifneeded**-Skript dafür gibt. Liefert keiner dieser Schritte eine annehmbare Version des Pakets, gibt der Befehl einen Fehler zurück.
 
 [package]{.cmd} [require]{.sub} [-exact]{.lit} [package]{.arg} [version]{.arg}
 : Diese Form des Befehls wird verwendet, wenn für den Aufrufer nur die angegebene *version* von *package* annehmbar ist. Dieser Befehl entspricht **package require** *package version*-*version*.
@@ -121,7 +121,7 @@ Jede *requirement* darf eine der folgenden Formen haben:
 
 wobei „*min*“ und „*max*“ gültige Versionsnummern sind. Die ältere Syntax ist ein Sonderfall der erweiterten Syntax, sodass die Abwärtskompatibilität erhalten bleibt. Für die Erfüllung gelten folgende Regeln:
 
-1. Die *version* muss mindestens eine der aufgeführten *requirement*s erfüllen, damit sie passt.
+1. Die *version* muss mindestens eines der aufgeführten *requirement*-Argumente erfüllen, damit sie passt.
 
 2. Eine Version erfüllt eine „bounded“-Anforderung unter folgenden Bedingungen:
 

@@ -54,7 +54,7 @@ grammar::peg – Erstellen und Bearbeiten von Parsing Expression Grammars
 
 # Beschreibung
 
-Dieses Paket stellt eine Containerklasse für *Parsing Expression Grammars* (kurz: PEG) bereit. Es ermöglicht die schrittweise Definition der Grammatik, deren Bearbeitung sowie die Abfrage der Definition. Das Paket bietet weder komplexe Operationen auf der Grammatik an, noch verfügt es über die Fähigkeit, eine Grammatikdefinition für einen Symbolstrom auszuführen. Zwei mit diesem Paket verwandte Pakete sind **grammar::mengine** und **grammar::peg::interpreter**. Das erste davon definiert eine allgemeine virtuelle Maschine für das Abgleichen eines Zeichenstroms, und das zweite implementiert auf Basis dieser virtuellen Maschine einen Interpreter für Parsing-Ausdrücke.
+Dieses Paket stellt eine Containerklasse für *Parsing Expression Grammars* (kurz: PEG) bereit. Es ermöglicht die schrittweise Definition der Grammatik, deren Bearbeitung sowie die Abfrage der Definition. Das Paket bietet weder komplexe Operationen auf der Grammatik an, noch verfügt es über die Fähigkeit, eine Grammatikdefinition für einen Symbolstrom auszuführen. Zwei mit diesem Paket verwandte Pakete sind **grammar::mengine** und **grammar::peg::interpreter**. Das erste davon definiert eine allgemeine virtuelle Maschine für das Abgleichen eines Zeichenstroms, und das zweite implementiert auf Basis dieser virtuellen Maschine einen Interpreter für Parsing Expression Grammars.
 
 ## Begriffe und Konzepte
 
@@ -83,7 +83,7 @@ Ein abgeleiteter Ausdruck, der nur Terminale enthält, ist ein *Satz*. Die Menge
 
 Einige Definitionen für Nichtterminale und Ausdrücke:
 
-1. Ein Nichtterminal A heißt *reachable*, wenn sich aus dem Startausdruck ein Parsing-Ausdruck ableiten lässt, der A enthält.
+1. Ein Nichtterminal A heißt *erreichbar*, wenn sich aus dem Startausdruck ein Parsing-Ausdruck ableiten lässt, der A enthält.
 
 2. Ein Nichtterminal A wird als *nützlich* bezeichnet, wenn es möglich ist, daraus einen Satz abzuleiten.
 
@@ -114,7 +114,7 @@ Und auf der Grundlage der obigen Definitionen für Grammatiken gilt:
 Das Paket exportiert die hier beschriebene API.
 
 **::grammar::peg** *pegName* ?**=**|**:=**|**<--**|**as**|**deserialize** *src*?
-: Der Befehl erstellt ein neues Containerobjekt für eine Parsing-Ausdrucksgrammatik und gibt den vollqualifizierten Namen des Objektbefehls als Ergebnis zurück. Die API, der der zurückgegebene Befehl folgt, wird im Abschnitt [API für Container-Objekte] beschrieben. Sie kann verwendet werden, um verschiedene Operationen auf den Container und die darin enthaltene Grammatik anzuwenden.
+: Der Befehl erstellt ein neues Containerobjekt für eine Parsing Expression Grammar und gibt den vollqualifizierten Namen des Objektbefehls als Ergebnis zurück. Die API, der der zurückgegebene Befehl folgt, wird im Abschnitt [API für Container-Objekte] beschrieben. Sie kann verwendet werden, um verschiedene Operationen auf den Container und die darin enthaltene Grammatik anzuwenden.
 
     Der neue Container, d. h. die Grammatik, ist leer, wenn kein *src* angegeben wird. Andernfalls enthält er eine Kopie der in *src* enthaltenen Grammatik. *src* muss bei allen Operatoren mit Ausnahme von **deserialize** eine Referenz auf ein Container-Objekt sein. Der Operator **deserialize** verlangt stattdessen, dass *src* die Serialisierung einer Parsing Expression Grammar ist.
 
@@ -150,13 +150,13 @@ Alle Grammatik-Container-Objekte stellen die folgenden Methoden zur Bearbeitung 
     ```
 
 *pegName* **serialize**
-: Diese Methode serialisiert die in *pegName* gespeicherte Grammatik. Mit anderen Worten: Sie gibt einen Tcl-*value* zurück, der diese Grammatik vollständig beschreibt. Dies ermöglicht beispielsweise die Übertragung von Grammatiken über beliebige Kanäle, die Persistenz usw. Diese Methode bildet zudem die Grundlage sowohl für den Kopier-Konstruktor als auch für den Zuweisungsoperator.
+: Diese Methode serialisiert die in *pegName* gespeicherte Grammatik. Mit anderen Worten: Sie gibt einen Tcl-*Wert* zurück, der diese Grammatik vollständig beschreibt. Dies ermöglicht beispielsweise die Übertragung von Grammatiken über beliebige Kanäle, die Persistenz usw. Diese Methode bildet zudem die Grundlage sowohl für den Kopier-Konstruktor als auch für den Zuweisungsoperator.
 
     Das Ergebnis dieser Methode muss über alle Implementierungen der Schnittstelle **grammar::peg** hinweg semantisch identisch sein. Dies ermöglicht es uns, Grammatiken zwischen verschiedenen Implementierungen derselben Schnittstelle zu kopieren.
 
     Das Ergebnis ist eine Liste mit vier Elementen, die folgende Struktur aufweist:
 
-    1. Die Konstante „**grammar::peg**“.
+    1. Die konstante Zeichenkette **grammar::peg**.
 
     2. Ein Dictionary. Seine Schlüssel sind die Namen aller bekannten nichtterminalen Symbole, und die ihnen zugeordneten Werte sind die Parsing-Ausdrücke, die deren Satzstruktur beschreiben.
 
@@ -178,7 +178,7 @@ Alle Grammatik-Container-Objekte stellen die folgenden Methoden zur Bearbeitung 
         Term       <- Number
     ```
 
-    Eine mögliche Serialisierung lautet
+    lautet eine mögliche Serialisierung
 
     ```
         grammar::peg \
@@ -202,7 +202,7 @@ Alle Grammatik-Container-Objekte stellen die folgenden Methoden zur Bearbeitung 
     Eine mögliche Variante, da die Reihenfolge der Nichtterminale im Dictionary keine Rolle spielt.
 
 *pegName* **deserialize** *serialization*
-: Dies ist die Ergänzung zu **serialize**. Sie ersetzt die Grammatikdefinition in *pegName* durch die durch den Wert *serialization* beschriebene Grammatik. Der bisherige Inhalt von *pegName* wird durch diesen Vorgang gelöscht.
+: Dies ist das Gegenstück zu **serialize**. Sie ersetzt die Grammatikdefinition in *pegName* durch die durch den Wert *serialization* beschriebene Grammatik. Der bisherige Inhalt von *pegName* wird durch diesen Vorgang gelöscht.
 
 *pegName* **is valid**
 : Ein Prädikat. Es prüft, ob die PEG in *pegName* *gültig* ist. Die Definition dieser Grammatikeigenschaft finden Sie im Abschnitt [Begriffe und Konzepte]. Das Ergebnis ist ein boolescher Wert. Er wird auf **true** gesetzt, wenn die PEG die geprüfte Eigenschaft aufweist, andernfalls auf **false**.
@@ -219,12 +219,12 @@ Alle Grammatik-Container-Objekte stellen die folgenden Methoden zur Bearbeitung 
 : Diese Methode fügt das Nichtterminal *nt* und den dazugehörigen Parsing-Ausdruck *pe* zur Menge der Nichtterminal-Symbole und Regeln der PEG hinzu, die im Objekt *pegName* enthalten sind. Die Methode schlägt fehl und löst einen Fehler aus, wenn entweder die Zeichenkette *nt* bereits als Symbol der Grammatik bekannt ist oder wenn *pe* keinen gültigen Parsing-Ausdruck enthält, wie im Abschnitt [Parsing-Ausdrücke] festgelegt. In diesem Fall wird die aktuelle Menge der nichtterminalen Symbole und Regeln nicht verändert. Die Methode gibt die leere Zeichenkette als Ergebnis zurück.
 
 *pegName* **nonterminal delete** *nt1* ?*nt2* ...?
-: Diese Methode entfernt die genannten Symbole *nt1* und *nt2* aus der Menge der nichtterminalen Symbole der PEG, die im Objekt *pegName* enthalten ist. Die Methode schlägt fehl und löst einen Fehler aus, wenn eine der Zeichenfolgen nicht als nichtterminales Symbol bekannt ist. In diesem Fall wird die aktuelle Menge der nichtterminalen Symbole nicht verändert. Die Methode gibt als Ergebnis die leere Zeichenkette zurück.
+: Diese Methode entfernt die genannten Symbole *nt1* und *nt2* aus der Menge der nichtterminalen Symbole der PEG, die im Objekt *pegName* enthalten ist. Die Methode schlägt fehl und löst einen Fehler aus, wenn eine der Zeichenketten nicht als nichtterminales Symbol bekannt ist. In diesem Fall wird die aktuelle Menge der nichtterminalen Symbole nicht verändert. Die Methode gibt als Ergebnis die leere Zeichenkette zurück.
 
     Die gespeicherte Grammatik wird ungültig, wenn die gelöschten Nichtterminale von der rechten Seite (RHS) noch bekannter Regeln referenziert werden.
 
 *pegName* **nonterminal exists** *nt*
-: Ein Prädikat. Es führt Tests durch, um zu prüfen, ob das nichtterminale Symbol *nt* dem PEG in *pegName* bekannt ist. Das Ergebnis ist ein boolescher Wert. Er wird auf **true** gesetzt, wenn das Symbol *nt* bekannt ist, andernfalls auf **false**.
+: Ein Prädikat. Es führt Tests durch, um zu prüfen, ob das nichtterminale Symbol *nt* der PEG in *pegName* bekannt ist. Das Ergebnis ist ein boolescher Wert. Er wird auf **true** gesetzt, wenn das Symbol *nt* bekannt ist, andernfalls auf **false**.
 
 *pegName* **nonterminal rename** *nt* *ntnew*
 : Diese Methode benennt das nichtterminale Symbol *nt* in *ntnew* um. Die Methode schlägt fehl und löst einen Fehler aus, wenn entweder *nt* nicht als nichtterminales Symbol bekannt ist oder wenn *ntnew* ein bekanntes Symbol ist. Die Methode gibt als Ergebnis die leere Zeichenkette zurück.
@@ -256,19 +256,19 @@ Alle Grammatik-Container-Objekte stellen die folgenden Methoden zur Bearbeitung 
 
 Verschiedene Methoden von PEG-Container-Objekten erwarten einen Parsing-Ausdruck als Argument oder geben einen solchen zurück. In diesem Abschnitt wird das Format solcher Parsing-Ausdrücke festgelegt.
 
-1. Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
+1. Die Zeichenkette **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenkette.
 
-2. Die Zeichenfolge „**alnum**“ ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphanumerische Zeichen.
+2. Die Zeichenkette „**alnum**“ ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphanumerische Zeichen.
 
-3. Die Zeichenfolge „**alpha**“ ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Zeichen.
+3. Die Zeichenkette „**alpha**“ ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Zeichen.
 
-4. Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
+4. Die Zeichenkette **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
 
 5. Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
 
 6. Der Ausdruck \[list n **A**\] ist ein atomarer Parsing-Ausdruck. Er passt auf das Nichtterminal **A**.
 
-7. Für die Parsing-Ausdrücke **e1**, **e2**, ... ist das Ergebnis von \[list / **e1** **e2** ... \] ebenfalls ein Parsing-Ausdruck. Das ist die *ordered choice*, auch *prioritized choice*.
+7. Für die Parsing-Ausdrücke **e1**, **e2**, ... ist das Ergebnis von \[list / **e1** **e2** ... \] ebenfalls ein Parsing-Ausdruck. Das ist die *geordnete Auswahl*, auch *priorisierte Auswahl*.
 
 8. Für die Parsing-Ausdrücke **e1**, **e2**, … ist das Ergebnis von \[list x **e1** **e2** … \] ebenfalls ein Parsing-Ausdruck. Dies ist die *Sequenz*.
 
@@ -276,9 +276,9 @@ Verschiedene Methoden von PEG-Container-Objekten erwarten einen Parsing-Ausdruck
 
 10. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list + **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist der *positive Kleene-Abschluss*, der eine oder mehrere Wiederholungen beschreibt.
 
-11. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list & **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *„and lookahead“-Prädikat*.
+11. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list & **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *Vorausschau-Prädikat* (and lookahead).
 
-12. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ! **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *Not-Lookahead-Prädikat*.
+12. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ! **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist das *Prädikat der negativen Vorausschau*.
 
 13. Für einen Parsing-Ausdruck **e** ist das Ergebnis von \[list ? **e**\] ebenfalls ein Parsing-Ausdruck. Dies ist die *optionale Eingabe*.
 
@@ -287,7 +287,7 @@ Beispiele für Parsing-Ausdrücke wurden bereits in der Beschreibung der Methode
 
 # Parsing-Expression-Grammatiken
 
-Für mathematisch Interessierte: Ein PEG ist ein 4-Tupel (VN, VT, R, eS), wobei
+Für mathematisch Interessierte: Eine PEG ist ein 4-Tupel (VN, VT, R, eS), wobei
 
 - VN ist eine Menge von *nichtterminalen Symbolen*,
 
@@ -321,9 +321,9 @@ Parsing-Ausdrücke werden induktiv definiert über
 
 - *e*+ ist ein Parsing-Ausdruck für den Parsing-Ausdruck *e*. Dies wird als *eine oder mehrere Wiederholungen* bezeichnet, auch bekannt als *positiver Kleene-Abschluss*.
 
-- !*e* ist ein Parsing-Ausdruck für den Parsing-Ausdruck *e*. Dies wird als *Prädikat ohne Vorausschau* bezeichnet.
+- !*e* ist ein Parsing-Ausdruck für den Parsing-Ausdruck *e*. Dies wird als *Prädikat der negativen Vorausschau* bezeichnet.
 
-- &*e* ist ein Parsing-Ausdruck für den Parsing-Ausdruck *e*. Dies wird als *„And-Lookahead-Prädikat“* bezeichnet.
+- &*e* ist ein Parsing-Ausdruck für den Parsing-Ausdruck *e*. Dies wird als *Vorausschau-Prädikat* (and lookahead) bezeichnet.
 
 
 PEGs werden verwendet, um eine grammatikalische Struktur für Symbolströme über VT zu definieren. Sie stellen eine moderne Weiterentwicklung älterer Formalismen dar, die von Alexander Birham entwickelt wurden. Diese Formalismen wurden als TS (TMG-Erkennungsschema) und gTS (verallgemeinertes TS) bezeichnet. Später wurden sie in TPDL (Top-Down-Parsing-Sprachen) und gTPDL (verallgemeinertes TPDL) umbenannt.
@@ -334,7 +334,7 @@ Sie lassen sich leicht durch rekursive Abstiegsparser mit Backtracking implement
 
 1. [The Packrat Parsing and Parsing Expression Grammars Page](http://www.pdos.lcs.mit.edu/~baford/packrat/), von Bryan Ford, Massachusetts Institute of Technology. Das ist die Haupteinstiegsseite zu PEGs und ihrer Umsetzung durch Packrat-Parser.
 
-2. *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, ein Online-Buch, das eine klare, leicht verständliche und umfassende Darstellung zahlreicher verschiedener Parsing-Techniken mit ihren Zusammenhängen und Anwendungsmöglichkeiten bietet, einschließlich Techniken zur Fehlerbehebung.
+2. *Parsing Techniques - A Practical Guide*  <http://www.cs.vu.nl/~dick/PTAPG.html>, ein Online-Buch, das eine klare, leicht verständliche und umfassende Darstellung zahlreicher verschiedener Parsing-Techniken mit ihren Zusammenhängen und Anwendungsmöglichkeiten bietet, einschließlich Techniken zur Fehlererholung.
 
 3. [Compilers and Compiler Generators](http://scifac.ru.ac.za/compilers/), ein Online-Buch, das CoCo/R verwendet, einen Generator für rekursive Abstiegsparser.
 

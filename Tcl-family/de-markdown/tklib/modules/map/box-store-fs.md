@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-map::box::store::fs – Dateisystembasierte Speicherung von Geo-/Box-Definitionen
+map::box::store::fs – Dateisystembasierte Speicherung von geo/box-Definitionen
 
 # Übersicht
 

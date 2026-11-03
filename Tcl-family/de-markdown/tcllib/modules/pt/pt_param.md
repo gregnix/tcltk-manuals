@@ -242,13 +242,13 @@ Die Anweisungen in diesem Abschnitt greifen hauptsächlich auf ER und ES zu.
 
 ## Statussteuerung
 
-Die Anweisungen in diesem Abschnitt greifen direkt auf ST zu.
+Die Anweisungen in diesem Abschnitt verändern ST direkt.
 
 **status\_ok**
 : Dieser Befehl setzt ST auf **true** und protokolliert den Erfolg.
 
 **status\_fail**
-: Dieser Befehl setzt ST auf **false** und protokolliert dabei einen Fehler.
+: Dieser Befehl setzt ST auf **false** und protokolliert dabei einen Fehlschlag.
 
 **status\_negate**
 : Dieser Befehl kehrt den Wert von ST um und verwandelt damit einen Fehlschlag in einen Erfolg und umgekehrt.
@@ -273,7 +273,7 @@ Die Befehle in diesem Abschnitt greifen auf CL und LS zu.
 Die Befehle in diesem Abschnitt dienen dem Zugriff auf und der Bearbeitung von NC.
 
 **symbol\_restore** *symbol*
-: Dieser Befehl prüft, ob NC Daten für das Nichtterminal *symbol* an CL enthält oder nicht. Das Ergebnis des Befehls ist ein boolescher Flag, wobei **True** anzeigt, dass Daten im Cache gefunden wurden. In diesem Fall hat der Befehl den Architekturzustand der Maschine mit den zwischengespeicherten Informationen – nämlich CL, ST, ER und SV – weiter aktualisiert.
+: Dieser Befehl prüft, ob NC Daten für das Nichtterminal *symbol* an CL enthält oder nicht. Das Ergebnis des Befehls ist ein boolesches Flag, wobei **True** anzeigt, dass Daten im Cache gefunden wurden. In diesem Fall hat der Befehl den Architekturzustand der Maschine mit den zwischengespeicherten Informationen – nämlich CL, ST, ER und SV – weiter aktualisiert.
 
     Die Methode, mit der das Ergebnis des Befehls in den Kontrollfluss transformiert wird, bleibt undefiniert und liegt in der Verantwortung der Implementierung.
 

@@ -30,9 +30,9 @@ bindtags - Legt anwendbare Bindungen und ihre Auswertungsreihenfolge fest
 
 Wird eine Bindung mit dem Befehl [bind] erzeugt, wird sie entweder einem bestimmten Fenster wie **.a.b.c**, einem Klassennamen wie **Button**, dem Schlüsselwort **all** oder einer anderen Zeichenkette zugeordnet. All diese Formen heißen *Bindungs-Tags*. Jedes Fenster enthält eine Liste von Bindungs-Tags, die bestimmen, wie Ereignisse für das Fenster verarbeitet werden. Tritt ein Ereignis in einem Fenster ein, wird es nacheinander auf jedes Tag des Fensters angewendet: Für jedes Tag wird die spezifischste Bindung ausgeführt, die zum Tag und Ereignis passt. Details zum Abgleich siehe Befehl [bind].
 
-Standardmäßig hat jedes Fenster vier Bindungs-Tags in dieser Reihenfolge: Fenstername, Klassenname des Fensters, Name des nächsten **toplevel**-Vorfahren und **all**. **toplevel**-Fenster haben standardmäßig nur drei Tags, da der Toplevel-Name mit dem Fensternamen übereinstimmt. Mit **bindtags** können die Bindungs-Tags eines Fensters gelesen und geändert werden.
+Standardmäßig hat jedes Fenster vier Bindungs-Tags in dieser Reihenfolge: Fenstername, Klassenname des Fensters, Name des nächsten Toplevel-Vorfahren und **all**. Toplevel-Fenster haben standardmäßig nur drei Tags, da der Toplevel-Name mit dem Fensternamen übereinstimmt. Mit **bindtags** können die Bindungs-Tags eines Fensters gelesen und geändert werden.
 
-Wird **bindtags** nur mit einem Argument aufgerufen, gibt der Befehl die aktuelle Bindungs-Tag-Liste von *window* als Liste zurück. Ist das Argument *tagList* angegeben, muss es eine gültige Liste sein; die Tags von *window* werden auf die Listenelemente gesetzt. Die Elemente von *tagList* dürfen beliebige Zeichenketten sein; beginnt ein Tag mit einem Punkt, wird er als Fenstername behandelt — existiert zum Zeitpunkt der Ereignisverarbeitung kein Fenster mit diesem Namen, wird das Tag für dieses Ereignis ignoriert. Die Reihenfolge der Elemente in *tagList* legt fest, in welcher Reihenfolge Bindungsskripte bei Ereignissen ausgeführt werden. Beispiel:
+Wird **bindtags** nur mit einem Argument aufgerufen, gibt der Befehl die aktuelle Bindungs-Tag-Liste von *window* als Liste zurück. Ist das Argument *tagList* angegeben, muss es eine gültige Liste sein; die Tags von *window* werden auf die Listenelemente gesetzt. Die Elemente von *tagList* dürfen beliebige Zeichenketten sein; beginnt ein Tag mit einem Punkt, wird es als Fenstername behandelt — existiert zum Zeitpunkt der Ereignisverarbeitung kein Fenster mit diesem Namen, wird das Tag für dieses Ereignis ignoriert. Die Reihenfolge der Elemente in *tagList* legt fest, in welcher Reihenfolge Bindungsskripte bei Ereignissen ausgeführt werden. Beispiel:
 
 ```
 bindtags .b {all . Button .b}
@@ -46,11 +46,11 @@ Mit **bindtags** lassen sich beliebige zusätzliche Bindungs-Tags einführen ode
 bindtags .b {.b TrickyButton . all}
 ```
 
-ersetzt den **Button**-Tag von **.b** durch **TrickyButton**. Die Standard-Widget-Bindungen für Buttons (Tag **Button**) gelten dann nicht mehr für **.b**; Bindungen für **TrickyButton** (z. B. neues Button-Verhalten) schon.
+ersetzt das **Button**-Tag von **.b** durch **TrickyButton**. Die Standard-Widget-Bindungen für Buttons (Tag **Button**) gelten dann nicht mehr für **.b**; Bindungen für **TrickyButton** (z. B. neues Button-Verhalten) schon.
 
 # Beispiele
 
-Bei verschachtelten [frame]-Widgets sollen Ereignisse eines [button]-Widgets auch an alle Widgets bis zum aktuellen [toplevel] weitergegeben werden (im Gegensatz zum Tk-Standard, der Zwischenfenster auslässt) — praktisch für Beschleuniger, die nur für einen Teil des Fensters aktiv sind. Hilfsprozedur:
+Haben Sie verschachtelte [frame]-Widgets und sollen Ereignisse an ein [button]-Widget auch an alle Widgets bis zum aktuellen [toplevel] weitergegeben werden (im Gegensatz zum Tk-Standard, der Zwischenfenster auslässt) — praktisch für Beschleuniger, die nur für einen Teil des Fensters aktiv sind. Hilfsprozedur:
 
 ```
 proc setupBindtagsForTreeDelivery {widget} {

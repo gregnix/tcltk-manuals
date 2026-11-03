@@ -163,7 +163,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-width**
-:  Legt eine ganze Zahl fest, die die gewünschte Breite des Entry-Fensters in Zeichen mittlerer Größe der Schriftart des Widgets angibt. Wenn der Wert kleiner oder gleich null ist, wählt das Widget eine Größe, die gerade für den aktuellen Text reicht. 
+:  Legt eine Ganzzahl fest, die die gewünschte Breite des Entry-Fensters in Zeichen mittlerer Größe der Schriftart des Widgets angibt. Wenn der Wert kleiner oder gleich null ist, wählt das Widget eine Größe, die gerade für den aktuellen Text reicht. 
 
 
 ---

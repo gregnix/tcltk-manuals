@@ -51,7 +51,7 @@ Eine Message ist ein Widget, das einen Text anzeigt. Ein Message-Widget hat drei
 
 Das zweite Merkmal eines Message-Widgets ist die Ausrichtung. Der Text kann linksbündig angezeigt werden (jede Zeile beginnt am linken Rand des Fensters), zeilenweise zentriert oder rechtsbündig (jede Zeile endet am rechten Rand des Fensters).
 
-Das dritte Merkmal eines Message-Widgets ist, dass Steuerzeichen und nicht druckbare Zeichen besonders behandelt werden. Tabulatorzeichen werden durch genügend Leerzeichen ersetzt, um an der nächsten 8-Zeichen-Grenze ausgerichtet zu sein. Zeilenumbrüche verursachen Zeilenumbrüche. Andere Steuerzeichen (ASCII-Code kleiner als 0x20) und in der Schriftart nicht definierte Zeichen werden als vierzeichenige Sequenz **\x***hh* angezeigt, wobei *hh* die zweistellige hexadezimale Zahl ist, die dem Zeichen entspricht. Im ungewöhnlichen Fall, dass die Schriftart nicht alle Zeichen in „0123456789abcdef\x" enthält, werden Steuerzeichen und undefinierte Zeichen überhaupt nicht angezeigt.
+Das dritte Merkmal eines Message-Widgets ist, dass Steuerzeichen und nicht druckbare Zeichen besonders behandelt werden. Tabulatorzeichen werden durch genügend Leerzeichen ersetzt, um an der nächsten 8-Zeichen-Grenze ausgerichtet zu sein. Zeilenumbruchzeichen (Newlines) erzwingen Zeilenumbrüche. Andere Steuerzeichen (ASCII-Code kleiner als 0x20) und in der Schriftart nicht definierte Zeichen werden als vierzeichenige Sequenz **\x***hh* angezeigt, wobei *hh* die zweistellige hexadezimale Zahl ist, die dem Zeichen entspricht. Im ungewöhnlichen Fall, dass die Schriftart nicht alle Zeichen in „0123456789abcdef\x" enthält, werden Steuerzeichen und undefinierte Zeichen überhaupt nicht angezeigt.
 
 # Widget-Befehl
 
@@ -61,18 +61,18 @@ Der Befehl **message** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* i
 pathName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Message-Widgets möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Message-Widgets möglich:
 
 [pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
 
 
 # Standard-Bindungen
 
-Wenn eine neue Message erstellt wird, hat sie keine Standard-Event-Bindungen: Messages sind nur für Ausgabe-Zwecke gedacht.
+Wenn eine neue Message erstellt wird, hat sie keine Standard-Ereignisbindungen: Messages sind nur für Ausgabe-Zwecke gedacht.
 
 # Fehler
 

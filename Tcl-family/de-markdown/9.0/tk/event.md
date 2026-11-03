@@ -33,13 +33,13 @@ event - Verschiedene Ereignisfunktionen: virtuelle Ereignisse definieren und Ere
 Der Befehl **event** bietet mehrere Einrichtungen zum Umgang mit Fenstersystem-Ereignissen, etwa zum Definieren virtueller Ereignisse und zum Synthetisieren von Ereignissen. Der Befehl hat mehrere Formen, die durch das erste Argument bestimmt werden. Derzeit werden folgende Formen unterstützt:
 
 [event]{.cmd} [add]{.sub} [<<virtual>>]{.lit} [sequence]{.arg} [sequence]{.optdot}
-: Ordnet dem virtuellen Ereignis *virtual* die physischen Ereignissequenz(en) zu, die durch die Argumente *sequence* angegeben werden, sodass das virtuelle Ereignis ausgelöst wird, sobald eine der *sequence*s auftritt. *Virtual* kann ein beliebiger Zeichenkettenwert sein und *sequence* kann jeden der für das Argument *sequence* des Befehls [bind] zulässigen Werte haben. Ist *virtual* bereits definiert, werden die neuen physischen Ereignissequenzen zu den bestehenden Sequenzen für das Ereignis hinzugefügt.
+: Ordnet dem virtuellen Ereignis *virtual* die physischen Ereignissequenz(en) zu, die durch die Argumente *sequence* angegeben werden, sodass das virtuelle Ereignis ausgelöst wird, sobald eines der *sequence*-Argumente auftritt. *Virtual* kann ein beliebiger Zeichenkettenwert sein und *sequence* kann jeden der für das Argument *sequence* des Befehls [bind] zulässigen Werte haben. Ist *virtual* bereits definiert, werden die neuen physischen Ereignissequenzen zu den bestehenden Sequenzen für das Ereignis hinzugefügt.
 
 [event]{.cmd} [delete]{.sub} [<<virtual>>]{.lit} [sequence sequence]{.optdot}
-: Löscht jede der *sequence*s aus denen, die mit dem virtuellen Ereignis *virtual* verknüpft sind. *Virtual* kann ein beliebiger Zeichenkettenwert sein und *sequence* kann jeden der für das Argument *sequence* des Befehls [bind] zulässigen Werte haben. *sequence*s, die derzeit nicht mit *virtual* verknüpft sind, werden ignoriert. Wird kein Argument *sequence* angegeben, werden alle physischen Ereignissequenzen für *virtual* entfernt, sodass das virtuelle Ereignis nicht mehr ausgelöst wird.
+: Löscht jedes der *sequence*-Argumente aus denen, die mit dem virtuellen Ereignis *virtual* verknüpft sind. *Virtual* kann ein beliebiger Zeichenkettenwert sein und *sequence* kann jeden der für das Argument *sequence* des Befehls [bind] zulässigen Werte haben. *sequence*-Argumente, die derzeit nicht mit *virtual* verknüpft sind, werden ignoriert. Wird kein Argument *sequence* angegeben, werden alle physischen Ereignissequenzen für *virtual* entfernt, sodass das virtuelle Ereignis nicht mehr ausgelöst wird.
 
 [event]{.cmd} [generate]{.sub} [window]{.arg} [event]{.arg} [option value option value]{.optdot}
-: Erzeugt ein Fensterereignis und sorgt dafür, dass es genauso verarbeitet wird, als käme es vom Fenstersystem. *Window* gibt den Pfadnamen des Fensters an, für das das Ereignis erzeugt wird; es kann auch eine Kennung sein (wie von [winfo id][winfo] zurückgegeben), solange es ein Fenster der aktuellen Anwendung ist. *Event* liefert eine grundlegende Beschreibung des Ereignisses, etwa **<Shift-Button-2>** oder **<<Paste>>**. Ist *Window* leer, ist der gesamte Bildschirm gemeint und die Koordinaten beziehen sich auf den Bildschirm. *Event* kann jede der für das Argument *sequence* des Befehls [bind] zulässigen Formen haben, muss aber aus genau einem Ereignismuster bestehen, nicht aus einer Sequenz. Paare *Option-Wert* können zusätzliche Attribute des Ereignisses angeben, etwa die x- und y-Position der Maus; siehe [Ereignisfelder] unten. Ist die Option **-when** nicht angegeben, wird das Ereignis sofort verarbeitet: alle Handler für das Ereignis werden abgeschlossen, bevor der Befehl **event generate** zurückkehrt. Ist die Option **-when** angegeben, legt sie fest, wann das Ereignis verarbeitet wird. Bestimmte Ereignisse, etwa Tastaturereignisse, erfordern, dass das Fenster den Fokus hat, um das Ereignis ordnungsgemäß zu empfangen.
+: Erzeugt ein Fensterereignis und sorgt dafür, dass es genauso verarbeitet wird, als käme es vom Fenstersystem. *Window* gibt den Pfadnamen des Fensters an, für das das Ereignis erzeugt wird; es kann auch eine Kennung sein (wie von [winfo id][winfo] zurückgegeben), solange es ein Fenster der aktuellen Anwendung ist. *Event* liefert eine grundlegende Beschreibung des Ereignisses, etwa **<Shift-Button-2>** oder **<<Paste>>**. Ist *Window* leer, ist der gesamte Bildschirm gemeint und die Koordinaten beziehen sich auf den Bildschirm. *Event* kann jede der für das Argument *sequence* des Befehls [bind] zulässigen Formen haben, muss aber aus genau einem Ereignismuster bestehen, nicht aus einer Sequenz. Paare *Option-Wert* können zusätzliche Attribute des Ereignisses angeben, etwa die x- und y-Position der Maus; siehe [Ereignisfelder] unten. Ist die Option **-when** nicht angegeben, wird das Ereignis sofort verarbeitet: alle Ereignisbehandler für das Ereignis werden abgeschlossen, bevor der Befehl **event generate** zurückkehrt. Ist die Option **-when** angegeben, legt sie fest, wann das Ereignis verarbeitet wird. Bestimmte Ereignisse, etwa Tastaturereignisse, erfordern, dass das Fenster den Fokus hat, um das Ereignis ordnungsgemäß zu empfangen.
 
 [event]{.cmd} [info]{.sub} [<<virtual>>]{.optlit}
 : Gibt Informationen über virtuelle Ereignisse zurück. Wird das Argument **<<***virtual***>>** weggelassen, ist der Rückgabewert eine Liste aller derzeit definierten virtuellen Ereignisse. Ist **<<***virtual***>>** angegeben, ist der Rückgabewert eine Liste, deren Elemente die für das angegebene virtuelle Ereignis derzeit definierten physischen Ereignissequenzen sind; ist das virtuelle Ereignis nicht definiert, wird eine leere Zeichenkette zurückgegeben.
@@ -103,7 +103,7 @@ Die folgenden Optionen werden für den Befehl **event generate** unterstützt. S
 : *Where* legt das Feld *place* für das Ereignis fest; es muss **PlaceOnTop** oder **PlaceOnBottom** sein. Gültig für **Circulate**-Ereignisse. Entspricht der **%p**-Ersetzung in Bindungsskripten.
 
 [-root]{.lit} [window]{.arg}
-: *Window* muss entweder ein Fensterpfadname oder eine ganzzahlige Fensterkennung sein; er legt das Feld *root* für das Ereignis fest. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse. Entspricht der **%R**-Ersetzung in Bindungsskripten.
+: *Window* muss entweder ein Fensterpfadname oder ein ganzzahliger Fensterbezeichner sein; er legt das Feld *root* für das Ereignis fest. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse. Entspricht der **%R**-Ersetzung in Bindungsskripten.
 
 [-rootx]{.lit} [coord]{.arg}
 : *Coord* muss ein Bildschirmabstand sein; er legt das Feld *x\_root* für das Ereignis fest. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse. Entspricht der **%X**-Ersetzung in Bindungsskripten.
@@ -121,7 +121,7 @@ Die folgenden Optionen werden für den Befehl **event generate** unterstützt. S
 : *State* legt das Feld *state* für das Ereignis fest. Für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse muss es ein ganzzahliger Wert sein. Für **Visibility**-Ereignisse muss es eines von **VisibilityUnobscured**, **VisibilityPartiallyObscured** oder **VisibilityFullyObscured** sein. Diese Option überschreibt Modifikatoren wie **Meta** oder **Control**, die im Basis-*event* angegeben sind. Entspricht der **%s**-Ersetzung in Bindungsskripten.
 
 [-subwindow]{.lit} [window]{.arg}
-: *Window* legt das Feld *subwindow* für das Ereignis fest, entweder als Pfadnamen eines Tk-Widgets oder als ganzzahlige Fensterkennung. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse. Ähnlich der **%S**-Ersetzung in Bindungsskripten.
+: *Window* legt das Feld *subwindow* für das Ereignis fest, entweder als Pfadnamen eines Tk-Widgets oder als ganzzahligen Fensterbezeichner. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**- und **Motion**-Ereignisse. Ähnlich der **%S**-Ersetzung in Bindungsskripten.
 
 [-time]{.lit} [integer]{.arg}
 : *Integer* muss ein ganzzahliger Wert sein; er legt das Feld *time* für das Ereignis fest. Zusätzlich ist der Sonderwert **current** erlaubt; dieser wird durch die aktuelle Ereigniszeit ersetzt. Gültig für **Key**-, **KeyRelease**-, **Button**-, **ButtonRelease**-, **Enter**-, **Leave**-, **Motion**- und **Property**-Ereignisse. Entspricht der **%t**-Ersetzung in Bindungsskripten.
@@ -231,7 +231,7 @@ Tk definiert die folgenden virtuellen Ereignisse, um Bindungen über mehrere Pla
 : Den aktuell ausgewählten Widget-Inhalt durch den Inhalt der Zwischenablage ersetzen.
 
 **<<PasteSelection>>**
-: Den Inhalt der Selection an der Mausposition einfügen. (Dieses Ereignis hat sinnvolle **%x**- und **%y**-Ersetzungen).
+: Den Inhalt der Auswahl an der Mausposition einfügen. (Dieses Ereignis hat sinnvolle **%x**- und **%y**-Ersetzungen).
 
 **<<PrevChar>>**
 : Zum vorherigen Element (d. h. sichtbaren Zeichen) im aktuellen Widget wechseln und dabei jede Auswahl aufheben.
@@ -316,7 +316,7 @@ Im Befehl [bind] kann ein virtuelles Ereignis wie jeder andere eingebaute Ereign
 bind Entry <<Paste>> {%W insert [selection get]}
 ```
 
-Die doppelten spitzen Klammern geben an, dass ein virtuelles Ereignis gebunden wird. Tippt der Benutzer Control-y oder drückt Taste 2, oder wird ein virtuelles Ereignis **<<Paste>>** mit **event generate** synthetisiert, wird die **<<Paste>>**-Bindung aufgerufen.
+Die doppelten spitzen Klammern geben an, dass ein virtuelles Ereignis gebunden wird. Tippt der Benutzer Control-y oder drückt Maustaste 2, oder wird ein virtuelles Ereignis **<<Paste>>** mit **event generate** synthetisiert, wird die **<<Paste>>**-Bindung aufgerufen.
 
 Hat eine virtuelle Bindung exakt dieselbe Sequenz wie eine separate physische Bindung, hat die physische Bindung Vorrang. Betrachten Sie folgendes Beispiel:
 

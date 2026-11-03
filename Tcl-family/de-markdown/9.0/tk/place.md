@@ -56,7 +56,7 @@ Der Placer ist ein Geometriemanager für Tk. Er ermöglicht einfache feste Platz
     : *Size* legt die Höhe von *window* in Bildschirmeinheiten fest (Formen wie von [Tk\_GetPixels][GetPixels] akzeptiert). Die Höhe ist die äußere Abmessung von *window* einschließlich Rahmen. Ist *size* leer oder sind weder **-height** noch **-relheight** gesetzt, wird die intern angeforderte Fensterhöhe verwendet.
 
     [-in]{.lit} [container]{.arg}
-    : *Container* gibt den Pfadnamen des Fensters an, relativ zu dem *window* platziert wird. *Container* muss Eltern von *window* oder ein Nachfahre des Eltern-Widgets sein. Außerdem müssen *container* und *window* Nachfahren desselben Toplevel-Fensters sein. Dies garantiert, dass *window* sichtbar ist, sobald *container* sichtbar ist. Ohne diese Option ist das Bezugsfenster standardmäßig das Eltern-Widget von *window*.
+    : *Container* gibt den Pfadnamen des Fensters an, relativ zu dem *window* platziert wird. *Container* muss entweder das Eltern-Widget von *window* oder ein Nachfahre des Eltern-Widgets sein. Außerdem müssen *container* und *window* Nachfahren desselben Toplevel-Fensters sein. Dies garantiert, dass *window* sichtbar ist, sobald *container* sichtbar ist. Ohne diese Option ist das Bezugsfenster standardmäßig das Eltern-Widget von *window*.
 
     [-relheight]{.lit} [size]{.arg}
     : *Size* legt die Höhe von *window* als Gleitkommazahl relativ zur Container-Höhe fest: 0.5 bedeutet halbe Container-Höhe, 1.0 gleiche Höhe usw. Sind **-height** und **-relheight** gesetzt, werden die Werte addiert. Beispiel: **-relheight 1.0 -height -2** macht den Inhalt 2 Pixel kürzer als den Container.
@@ -86,7 +86,7 @@ Der Placer ist ein Geometriemanager für Tk. Er ermöglicht einfache feste Platz
 : Gibt eine Liste aller Inhaltsfenster zurück, für die *window* der Container ist. Gibt es keinen Inhalt für *window*, wird eine leere Zeichenkette zurückgegeben.
 
 [place]{.cmd} [forget]{.sub} [window]{.arg}
-: Der Placer verwaltet die Geometrie von *window* nicht mehr. Als Nebeneffekt wird *window* unmapped, sodass es nicht auf dem Bildschirm erscheint. Wird *window* nicht vom Placer verwaltet, hat der Befehl keine Wirkung. Rückgabe ist eine leere Zeichenkette.
+: Der Placer verwaltet die Geometrie von *window* nicht mehr. Als Nebeneffekt wird die Abbildung von *window* aufgehoben (unmap), sodass es nicht auf dem Bildschirm erscheint. Wird *window* nicht vom Placer verwaltet, hat der Befehl keine Wirkung. Rückgabe ist eine leere Zeichenkette.
 
 [place]{.cmd} [info]{.sub} [window]{.arg}
 : Gibt eine Liste mit der aktuellen Konfiguration von *window* zurück. Die Liste besteht aus *option-value*-Paaren im gleichen Format wie für **place configure**.
@@ -109,7 +109,7 @@ Ein zweiter Grund für einen von den Eltern verschiedenen Container ist die Verk
 
 Wird das Geschwister später verschoben, wird der Inhalt ebenfalls neu positioniert.
 
-Anders als viele andere Geometriemanager (z. B. der Packer) manipuliert der Placer nicht die Geometrie der Container-Fenster oder der Eltern von Inhaltsfenstern (er setzt deren angeforderte Größen nicht). Um die Größen zu steuern, verwenden Sie Fenster wie **frame** und **canvas**, die Konfigurationsoptionen dafür bieten.
+Anders als viele andere Geometriemanager (z. B. der Packer) manipuliert der Placer nicht die Geometrie der Container-Fenster oder der Eltern von Inhaltsfenstern (er setzt deren angeforderte Größen nicht). Um die Größen zu steuern, verwenden Sie Fenster wie Frames und Canvas-Widgets, die Konfigurationsoptionen dafür bieten.
 
 # Beispiel
 

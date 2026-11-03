@@ -58,7 +58,7 @@ Die Bibliothek **smtp** stellt die Client-Seite des Simple Mail Transfer Protoco
         Informationen zum Verhalten bei Angabe mehrerer Server und Ports finden Sie oben unter der Option **-servers**.
 
     **-client**
-    : Der Name, der als Hostname für die Verbindung zum Server verwendet werden soll. Standardmäßig ist dies entweder „localhost“, wenn einer der Server „localhost“ ist, oder die von **info hostname** zurückgegebene Zeichenfolge.
+    : Der Name, der als Hostname für die Verbindung zum Server verwendet werden soll. Standardmäßig ist dies entweder „localhost“, wenn einer der Server „localhost“ ist, oder die von **info hostname** zurückgegebene Zeichenkette.
 
     **-queue**
     : Gibt an, dass der SMTP-Server aufgefordert werden soll, die Nachricht zur späteren Verarbeitung in die Warteschlange zu stellen. Ein boolescher Wert.
@@ -82,7 +82,7 @@ Die Bibliothek **smtp** stellt die Client-Seite des Simple Mail Transfer Protoco
     : Dieses boolesche Flag ist standardmäßig auf **false** gesetzt. Wenn dieses Flag gesetzt ist, importiert das Paket TLS bei einem erfolgreich geöffneten Kanal. Dies ist für Verbindungen erforderlich, die anstelle von **STARTTLS** eine native TLS-Aushandlung verwenden. Das **tls**-Paket wird bei Bedarf automatisch einbezogen.
 
     **-tlspolicy**
-    : Mit dieser Option können Sie einen Befehl festlegen, der aufgerufen werden soll, wenn während der TLS-Einrichtung ein Fehler auftritt. Der Befehl wird aufgerufen, wobei der SMTP-Code und die Diagnosemeldung angehängt werden. Der Befehl sollte „secure“ oder „insecure“ zurückgeben, wobei „insecure“ dazu führt, dass das Paket über den unverschlüsselten Kanal weitergeleitet wird. Bei der Rückgabe von „secure“ wird der Socket geschlossen und der nächste Server in der Liste **-servers** versucht.
+    : Mit dieser Option können Sie einen Befehl festlegen, der aufgerufen werden soll, wenn während der TLS-Einrichtung ein Fehler auftritt. Der Befehl wird aufgerufen, wobei der SMTP-Code und die Diagnosemeldung angehängt werden. Der Befehl sollte „secure“ oder „insecure“ zurückgeben, wobei „insecure“ dazu führt, dass das Paket auf dem unverschlüsselten Kanal fortfährt. Bei der Rückgabe von „secure“ wird der Socket geschlossen und der nächste Server in der Liste **-servers** versucht.
 
     **-username**
     : siehe unten ...

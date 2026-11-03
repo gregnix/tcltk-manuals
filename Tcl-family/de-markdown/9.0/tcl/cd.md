@@ -30,7 +30,7 @@ cd - Wechselt das Arbeitsverzeichnis
 
 Wechselt das aktuelle Arbeitsverzeichnis zu *dirName* oder, wenn *dirName* nicht angegeben ist, zum Home-Verzeichnis (wie in der Umgebungsvariable HOME festgelegt). Gibt eine leere Zeichenkette zurück.
 
-Das aktuelle Arbeitsverzeichnis ist eine ressourcenbezogene Größe pro Prozess; der Befehl **cd** ändert das Arbeitsverzeichnis für alle Interpreter und alle Threads.
+Beachten Sie, dass das aktuelle Arbeitsverzeichnis eine prozessweite Ressource ist; der Befehl **cd** ändert das Arbeitsverzeichnis für alle Interpreter und alle Threads.
 
 # Beispiele
 

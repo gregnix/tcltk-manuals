@@ -44,7 +44,7 @@ Da der Hull der Klasse **Widget** mit einem Tk-Frame umgesetzt ist, lassen sich 
 
 # Beispiel
 
-Das folgende Beispiel setzt ein einfaches Megawidget **TextDisplay** um. Es erzeugt eine nur lesbare Anzeige von Text mit einem Text-Widget und einem Rollbalken.
+Das folgende Beispiel setzt ein einfaches Megawidget **TextDisplay** um. Es erzeugt eine nur lesbare Anzeige von Text mit einem Text-Widget und einer Scrollbar.
 
 ```
 option add *TextDisplay.wrap none widgetDefault

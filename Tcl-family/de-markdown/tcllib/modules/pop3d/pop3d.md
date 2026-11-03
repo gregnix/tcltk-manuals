@@ -58,7 +58,7 @@ pop3d – Implementierung eines Tcl-POP3-Servers
 Mit dem Befehl **serverName** können verschiedene Operationen auf dem Server aufgerufen werden. Er hat die folgende allgemeine Form:
 
 **serverName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+: *Option* und die Argumente *arg* legen das genaue Verhalten des Befehls fest.
 
 
 Ein POP3-Server kann auf jedem Port gestartet werden, für den der Aufrufer vom Betriebssystem die Berechtigung hat. Der Standardport ist 110, der Port aus dem in RFC 1939 (<http://www.rfc-editor.org/rfc/rfc1939.txt>) festgelegten Standard. Nach dem Erzeugen, Konfigurieren und Starten lauscht das Server-Objekt auf diesem Port, nimmt Verbindungen an und verarbeitet sie gemäß dem POP3-Protokoll.
@@ -68,7 +68,7 @@ Ein POP3-Server kann auf jedem Port gestartet werden, für den der Aufrufer vom 
 Für Server-Objekte sind diese Befehle möglich:
 
 *serverName* **up**
-: Nach diesem Aufruf wartet der Server auf Verbindungen an seinem konfigurierten Port.
+: Nach diesem Aufruf lauscht der Server an seinem konfigurierten Port auf Verbindungen.
 
 *serverName* **down**
 : Nach diesem Aufruf wird der Server keine Verbindungen mehr annehmen. Bestehende Verbindungen sind davon nicht betroffen.

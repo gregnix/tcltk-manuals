@@ -77,7 +77,7 @@ subst -nocommands {[b] $a([b])}
 
 liefert "**\[b\] c**", nicht "**\[b\] tricky**".
 
-Die Ausnahmen continue und break erlauben Befehlsersetzungen, die Ersetzung des restlichen Befehlsteils bzw. des restlichen *string* zu verhindern und Skriptautoren mehr Möglichkeiten bei der Textverarbeitung mit *subst*. Das Skript
+Die Ausnahmen continue und break erlauben Befehlsersetzungen, die Ersetzung des Rests der Befehlsersetzung bzw. des restlichen *string* zu verhindern, und geben Skriptautoren so mehr Möglichkeiten bei der Textverarbeitung mit *subst*. Das Skript
 
 ```
 subst {abc,[break],def}

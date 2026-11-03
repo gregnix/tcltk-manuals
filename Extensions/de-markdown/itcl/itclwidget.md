@@ -62,7 +62,7 @@ Das ist neue Funktionalität in \[incr Tcl\], bei der sich die API noch ändern 
 
 # Beschreibung
 
-Eines der grundlegenden Konstrukte in **\[incr Tcl\]** ist die Widget-Definition. Ein Widget ist wie eine Klasse mit einigen zusätzlichen Merkmalen. Jede Widget dient als Vorlage für tatsächliche Objekte, die erzeugt werden können. Das Widget selbst ist ein Namespace, der enthält, was allen Objekten gemeinsam ist. Jedes Objekt hat sein eigenes Datenbündel, das Instanzen der in der Widget-Definition festgelegten „variables“ enthält. Jedes Objekt hat außerdem eine eingebaute Variable namens „this“, die den Namen des Objekts enthält. Widgets können auch „common“-Datenelemente haben, die allen Objekten eines Widgets gemeinsam sind.
+Eines der grundlegenden Konstrukte in **\[incr Tcl\]** ist die Widget-Definition. Ein Widget ist wie eine Klasse mit einigen zusätzlichen Merkmalen. Jedes Widget dient als Vorlage für tatsächliche Objekte, die erzeugt werden können. Das Widget selbst ist ein Namespace, der enthält, was allen Objekten gemeinsam ist. Jedes Objekt hat sein eigenes Datenbündel, das Instanzen der in der Widget-Definition festgelegten „variables“ enthält. Jedes Objekt hat außerdem eine eingebaute Variable namens „this“, die den Namen des Objekts enthält. Widgets können auch „common“-Datenelemente haben, die allen Objekten eines Widgets gemeinsam sind.
 
 In die Widget-Definition können zwei Arten von Funktionen aufgenommen werden. „Methods“ sind Funktionen, die auf ein bestimmtes Objekt wirken und deshalb Zugriff auf „variables“ und auf „common“-Datenelemente haben. „Procs“ sind gewöhnliche Prozeduren im Namespace des Widgets und haben nur Zugriff auf „common“-Datenelemente.
 
@@ -85,7 +85,7 @@ Die *definition* des Widgets wird als Folge von Tcl-Anweisungen ausgewertet, die
 **inherit** *baseWidget* ?*baseWidget*...?
 : Bewirkt, dass das aktuelle Widget Eigenschaften von einer oder mehreren Basis-Widgets erbt. Die Widgets müssen durch einen vorherigen Befehl **widget** definiert worden sein oder der Einrichtung zum automatischen Laden zur Verfügung stehen (siehe unten **AUTOMATISCHES LADEN**). Eine einzelne Widget-Definition darf höchstens einen Befehl **inherit** enthalten.
 
-    Die Reihenfolge der Namen *baseWidget* in der Liste **inherit** beeinflusst die Namensauflösung für Widget-Mitglieder. Wenn derselbe Mitgliedsname in zwei oder mehr Basis-Widgets vorkommt, hat das Basis-Widget Vorrang, die in der Liste **inherit** zuerst steht. Wenn die Widgets „Foo“ und „Bar“ zum Beispiel beide das Mitglied „x“ enthalten und ein anderes Widget die Anweisung „**inherit**“ hat:
+    Die Reihenfolge der Namen *baseWidget* in der Liste **inherit** beeinflusst die Namensauflösung für Widget-Mitglieder. Wenn derselbe Mitgliedsname in zwei oder mehr Basis-Widgets vorkommt, hat das Basis-Widget Vorrang, das in der Liste **inherit** zuerst steht. Wenn die Widgets „Foo“ und „Bar“ zum Beispiel beide das Mitglied „x“ enthalten und ein anderes Widget die Anweisung „**inherit**“ hat:
 
     ```
     inherit Foo Bar
@@ -110,14 +110,14 @@ Die *definition* des Widgets wird als Folge von Tcl-Anweisungen ausgewertet, die
 
     Wenn die Liste *args* angegeben ist, legt sie die Verwendungsangabe für diese Methode fest. Mit dem Befehl **body** lässt sich der Methodenrumpf neu definieren, die Liste *args* muss aber zu dieser Angabe passen.
 
-    Innerhalb des Rumpfes einer anderen Widget-Methode lässt sich eine Methode wie jeder andere Befehl aufrufen, einfach über ihren Namen. Außerhalb des Widget-Kontexts muss dem Methodennamen ein Objektname vorangestellt werden, der den Kontext für die Daten liefert, die sie bearbeitet. Methoden einer Basis-Widget, die in der aktuellen Widgets neu definiert oder von einer anderen Basis-Widget verdeckt sind, lassen sich mit der Syntax „*widgetName*::*method*“ qualifizieren.
+    Innerhalb des Rumpfes einer anderen Widget-Methode lässt sich eine Methode wie jeder andere Befehl aufrufen, einfach über ihren Namen. Außerhalb des Widget-Kontexts muss dem Methodennamen ein Objektname vorangestellt werden, der den Kontext für die Daten liefert, die sie bearbeitet. Methoden eines Basis-Widgets, die im aktuellen Widget neu definiert oder von einem anderen Basis-Widget verdeckt sind, lassen sich mit der Syntax „*widgetName*::*method*“ qualifizieren.
 
 **proc** *name* ?*args*? ?*body*?
 : Deklariert ein proc namens *name*. Ein proc ist eine gewöhnliche Prozedur im Namespace des Widgets. Anders als eine Methode wird ein proc aufgerufen, ohne sich auf ein bestimmtes Objekt zu beziehen. Wenn der *body* des proc ausgeführt wird, hat er automatischen Zugriff nur auf gemeinsame Datenelemente.
 
     Wenn die Liste *args* angegeben ist, legt sie die Verwendungsangabe für dieses proc fest. Mit dem Befehl **body** lässt sich der Rumpf des proc neu definieren, die Liste *args* muss aber zu dieser Angabe passen.
 
-    Innerhalb des Rumpfes einer anderen Widget-Methode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*widgetName*__::__*proc*“ aufgerufen. Procs einer Basis-Widget, die in der aktuellen Widgets neu definiert oder von einer anderen Basis-Widget verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
+    Innerhalb des Rumpfes einer anderen Widget-Methode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*widgetName***::***proc*“ aufgerufen. Procs eines Basis-Widgets, die im aktuellen Widget neu definiert oder von einem anderen Basis-Widget verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
 
 **variable** *varName* ?*init*? ?*config*?
 : Definiert eine objektspezifische Variable namens *varName*. Alle objektspezifischen Variablen stehen in Widget-Methoden automatisch zur Verfügung. Sie müssen nicht mit etwas wie dem Befehl **global** deklariert werden.
@@ -158,9 +158,9 @@ Die *definition* des Widgets wird als Folge von Tcl-Anweisungen ausgewertet, die
 Sobald ein Widget definiert ist, kann der Widget-Name als Befehl verwendet werden, um neue Objekte zu erzeugen, die zum Widget gehören.
 
 *widgetName objName* ?*args...*?
-: Erzeugt ein neues Objekt des Widgets *widgetName* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor des spezifischsten Widgets übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basis-Widgets weiter, bevor er seinen eigenen Befehlsumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
+: Erzeugt ein neues Objekt des Widgets *widgetName* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor des spezifischsten Widgets übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basis-Widgets weiter, bevor er seinen eigenen Befehlsrumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
 
-    Wenn *objName* die Zeichenkette „**#auto**“ enthält, wird diese Zeichenkette durch einen automatisch erzeugten Namen ersetzt. Namen haben die Form *widgetName<number>*, wobei der Teil *widgetName* so geändert wird, dass er mit einem Kleinbuchstaben beginnt. In des Widgets „Toaster“ würde die Angabe „**#auto**“ zum Beispiel Namen wie toaster0, toaster1 und so weiter erzeugen. „**#auto**“ kann auch mitten in einem Objektnamen stehen:
+    Wenn *objName* die Zeichenkette „**#auto**“ enthält, wird diese Zeichenkette durch einen automatisch erzeugten Namen ersetzt. Namen haben die Form *widgetName<number>*, wobei der Teil *widgetName* so geändert wird, dass er mit einem Kleinbuchstaben beginnt. Im Widget „Toaster“ würde die Angabe „**#auto**“ zum Beispiel Namen wie toaster0, toaster1 und so weiter erzeugen. „**#auto**“ kann auch mitten in einem Objektnamen stehen:
 
     ```
     fileselectiondialog .foo.bar.#auto -background red
@@ -183,11 +183,11 @@ Sobald ein Objekt erzeugt ist, kann der Objektname als Befehl verwendet werden, 
 : Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „cget“ für Tk-Widgets nach. Das Argument *option* ist eine Zeichenkette der Form „**-**_varName_“, und diese Methode gibt den aktuellen Wert der öffentlichen Variablen *varName* zurück.
 
 *objName* **configure** ?*option*? ?*value option value ...*?
-: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, seinen Anfangswert und seinen aktuellen Wert.
+: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, ihren Anfangswert und ihren aktuellen Wert.
 
     Wenn eine einzelne *option* der Form „**-**_varName_“ angegeben ist, gibt diese Methode die Angaben für diese eine Variable zurück.
 
-    Sonst werden die Argumente als Paare *option*/*value* behandelt, die öffentlichen Variablen neue Werte zuweisen. Jede Variable erhält ihren neuen Wert, und wenn ihr „config“-Code zugeordnet ist, wird er im Kontext des Widgets ausgeführt, in der sie definiert wurde. Wenn der „config“-Code einen Fehler erzeugt, wird die Variable auf ihren vorherigen Wert zurückgesetzt, und die Methode **configure** gibt einen Fehler zurück.
+    Sonst werden die Argumente als Paare *option*/*value* behandelt, die öffentlichen Variablen neue Werte zuweisen. Jede Variable erhält ihren neuen Wert, und wenn ihr „config“-Code zugeordnet ist, wird er im Kontext des Widgets ausgeführt, in dem sie definiert wurde. Wenn der „config“-Code einen Fehler erzeugt, wird die Variable auf ihren vorherigen Wert zurückgesetzt, und die Methode **configure** gibt einen Fehler zurück.
 
 *objName* **isa** *widgetName*
 : Gibt einen Wert ungleich null zurück, wenn der gegebene *widgetName* in der Abstammung des Objekts zu finden ist, und sonst null.
@@ -214,7 +214,7 @@ Sobald ein Objekt erzeugt ist, kann der Objektname als Befehl verwendet werden, 
 
 # Verketten von Methoden und Procs
 
-Manchmal hat eine Basis-Widget eine Methode oder ein proc, das in einer abgeleiteten Widgets unter demselben Namen neu definiert wird. So kann die abgeleitetes Widget dieselben Operationen wie die Basis-Widget behandeln, aber mit ihrem eigenen spezialisierten Verhalten. Angenommen, ein Widget Toaster sieht so aus:
+Manchmal hat ein Basis-Widget eine Methode oder ein proc, das in einem abgeleiteten Widget unter demselben Namen neu definiert wird. So kann das abgeleitete Widget dieselben Operationen wie das Basis-Widget behandeln, aber mit ihrem eigenen spezialisierten Verhalten. Angenommen, ein Widget Toaster sieht so aus:
 
 ```
 itcl::widget Toaster {
@@ -231,7 +231,7 @@ itcl::widget Toaster {
 }
 ```
 
-Eine weitere Widget wie SmartToaster könnte die Methode „toast“ neu definieren. Wenn die Methode der Basis-Widget zugänglich sein soll, lässt sie sich mit dem Namen der Basis-Widget qualifizieren, um Mehrdeutigkeit zu vermeiden:
+Ein weiteres Widget wie SmartToaster könnte die Methode „toast“ neu definieren. Wenn die Methode des Basis-Widgets zugänglich sein soll, lässt sie sich mit dem Namen des Basis-Widgets qualifizieren, um Mehrdeutigkeit zu vermeiden:
 
 ```
 itcl::widget SmartToaster {
@@ -245,7 +245,7 @@ itcl::widget SmartToaster {
 }
 ```
 
-Statt den Namen der Basis-Widget fest einzutragen, lässt sich der Befehl „chain“ so verwenden:
+Statt den Namen des Basis-Widgets fest einzutragen, lässt sich der Befehl „chain“ so verwenden:
 
 ```
 itcl::widget SmartToaster {
@@ -265,7 +265,7 @@ Der Befehl chain sucht in der Widget-Hierarchie nach einer etwas allgemeineren U
 
 Widget-Definitionen müssen nicht ausdrücklich geladen werden; sie können bei Bedarf von der gewöhnlichen Tcl-Einrichtung zum automatischen Laden geladen werden. Jedes Verzeichnis mit Dateien von Widget-Definitionen sollte eine begleitende Datei „tclIndex“ haben. Jede Zeile dieser Datei nennt eine Tcl-Prozedur oder eine Widget-Definition von **\[incr Tcl\]** und die Datei, in der die Definition zu finden ist.
 
-Angenommen, ein Verzeichnis enthält die Definitionen des Widgetsn „Toaster“ und „SmartToaster“. Dann sähe die Datei „tclIndex“ für dieses Verzeichnis so aus:
+Angenommen, ein Verzeichnis enthält die Definitionen der Widgets „Toaster“ und „SmartToaster“. Dann sähe die Datei „tclIndex“ für dieses Verzeichnis so aus:
 
 ```
 # Tcl autoload index file, version 2.0 for [incr Tcl]

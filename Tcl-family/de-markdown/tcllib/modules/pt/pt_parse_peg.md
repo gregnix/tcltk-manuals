@@ -50,9 +50,9 @@ Dieses Paket stellt eine Klasse bereit, deren Instanzen Parser für Parsing Expr
 # API für Klassen
 
 **pt::parse::peg** ?*objectName*?
-: Der Klassenbefehl erstellt Parser-Instanzen, d. h. Objekte. Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+: Der Klassenbefehl erstellt Parser-Instanzen, d. h. Objekte. Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
-    Wenn kein *objectName* angegeben wird, generiert die Klasse einen automatischen Namen und verwendet diesen. Wenn der *objectName* zwar angegeben wurde, jedoch nicht vollqualifiziert ist, wird die Instanz im aktuellen Namespace erstellt.
+    Wenn kein *objectName* angegeben wird, generiert die Klasse einen automatischen Namen und verwendet diesen. Wenn der *objectName* zwar angegeben wurde, jedoch nicht vollqualifiziert ist, wird der Befehl im aktuellen Namespace erstellt.
 
 
 # Instanz-API
@@ -75,7 +75,7 @@ Alle Parser-Instanzen stellen mindestens die unten aufgeführten Methoden bereit
 
     Wird ein Syntaxfehler festgestellt, löst der Befehl stattdessen einen Fehler aus. Dieser Fehler ist eine Tcl-Liste mit vier Elementen, die in der unten aufgeführten Reihenfolge Folgendes enthält:
 
-    1. Die Zeichenfolge **pt::rde**, die darauf hinweist, dass es sich um einen Parser-Laufzeitfehler handelt.
+    1. Die Zeichenkette **pt::rde**, die darauf hinweist, dass es sich um einen Parser-Laufzeitfehler handelt.
 
     2. Die Position des Parsing-Fehlers, angegeben als Zeichenversatz vom Anfang der geparsten Eingabe.
 
@@ -85,7 +85,7 @@ Alle Parser-Instanzen stellen mindestens die unten aufgeführten Methoden bereit
 
 
 *objectName* **parset** *text*
-: Diese Methode führt den Parser aus, wobei die Zeichenfolge in *text* als Eingabe verwendet wird. In allen anderen Punkten verhält sie sich wie die oben gezeigte Methode **parse**.
+: Diese Methode führt den Parser aus, wobei die Zeichenkette in *text* als Eingabe verwendet wird. In allen anderen Punkten verhält sie sich wie die oben gezeigte Methode **parse**.
 
 
 # Fehler, Ideen, Rückmeldungen

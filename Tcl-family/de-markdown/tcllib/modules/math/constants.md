@@ -40,7 +40,7 @@ Es definiert zwei Befehle:
 - einen, der anzeigt, welche Konstanten definiert sind und welche Werte sie tatsächlich haben.
 
 
-Der Grund für dieses Paket liegt darin, dass Sie bei (mathematischen) Berechnungen häufig eine gute Näherung benötigen, beispielsweise für das Verhältnis von Grad zu Radiant. Sie können dies natürlich wie folgt definieren:
+Der Grund für dieses Paket liegt darin, dass Sie bei (mathematischen) Berechnungen häufig eine gute Näherung benötigen, beispielsweise für das Verhältnis von Grad zu Bogenmaß. Sie können dies natürlich wie folgt definieren:
 
 ```
     variable radtodeg [expr {180.0/(4.0*atan(1.0))}]
@@ -119,10 +119,10 @@ Das Paket definiert die folgenden öffentlichen Prozeduren:
 : Quadratwurzel aus 3
 
 **radtodeg**
-: Umrechnung von Radiant in Grad
+: Umrechnung von Bogenmaß in Grad
 
 **degtorad**
-: Umrechnung von Grad in Radiant
+: Umrechnung von Grad in Bogenmaß
 
 **onethird**
 : Ein Drittel (0,3333....)

@@ -67,7 +67,7 @@ Dies ist eine der drei öffentlichen Säulen, auf denen die Verwaltung von Schl�
 
 Informationen über [Begriffe] von Schlüsselwortindizes und ihre Bestandteile stehen im gleichnamigen Abschnitt. Informationen über die Datenstruktur, die die wesentliche Eingabe der von diesem Paket bereitgestellten Manager-Objekte ist, stehen im Abschnitt [Serialisierungsformat für Schlüsselwortindizes].
 
-Das Plugin-System unserer Klasse basiert auf dem Paket **pluginmgr** und ist so konfiguriert, dass es nach Plugins sucht, die
+Das Plugin-System unserer Klasse basiert auf dem Paket **pluginmgr** und ist so konfiguriert, dass es an folgenden Stellen nach Plugins sucht:
 
 1. die Umgebungsvariable **DOCTOOLS\_IDX\_EXPORT\_PLUGINS**,
 
@@ -144,7 +144,7 @@ Einige Hinweise
 
 2. URL-Referenzen hingegen sind für Verweise auf alles andere gedacht, etwa Websites. Ihr Ziel ist eine URL.
 
-3. URL- und manpage-Referenzen teilen sich zwar einen Namensraum für ihre Bezeichner, das sollte jedoch kein Problem sein, denn manpage-Bezeichner sind symbolische Dateinamen und sollten daher nie wie URLs aussehen, die Bezeichner der URL-Referenzen.
+3. URL- und manpage-Referenzen teilen sich zwar einen Namespace für ihre Bezeichner, das sollte jedoch kein Problem sein, denn manpage-Bezeichner sind symbolische Dateinamen und sollten daher nie wie URLs aussehen, die Bezeichner der URL-Referenzen.
 
 
 # API
@@ -194,7 +194,7 @@ Alle mit dem Befehl **::doctools::idx::export** erstellten Objekte haben die fol
     Hinweis: Der Benutzer kann zwar die vordefinierten Konfigurationsvariablen **user** und **format** setzen, dies hat jedoch keine Auswirkungen; diese Werte werden intern beim Aufruf eines Import-Plugins überschrieben.
 
 *objectName* **config unset** *pattern*...
-: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen *pattern*s passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
+: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen Glob-Muster *pattern* passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
 
 
 # Referenz zur Export-Plugin-API v2
@@ -232,7 +232,7 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
             : Diese Variable soll, wenn sie vom Benutzer des Index-Objekts definiert wurde, den Namen der Eingabedatei enthalten, für die das Plugin seine Ausgabe generiert.
 
             map
-            : Diese Variable soll, wenn sie vom Benutzer des Indexobjekts definiert wurde, ein Dictionary enthalten, das die in den Referenzen vom Typ **manpage** verwendeten symbolischen Namen den tatsächlichen Pfaden (oder URLs) zuordnet. Ein Plugin muss in der Lage sein, den Fall zu behandeln, dass für einen symbolischen Namen kein Eintrag in diesem Dictionary vorhanden ist.
+            : Diese Variable soll, wenn sie vom Benutzer des Indexobjekts definiert wurde, ein Dictionary enthalten, das die in den Referenzen vom Typ **manpage** verwendeten symbolischen Dateinamen den tatsächlichen Pfaden (oder URLs) zuordnet. Ein Plugin muss in der Lage sein, den Fall zu behandeln, dass für einen symbolischen Namen kein Eintrag in diesem Dictionary vorhanden ist.
 
 
 

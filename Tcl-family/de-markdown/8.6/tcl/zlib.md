@@ -136,7 +136,7 @@ Der Befehl **zlib** stellt Zugriff auf die Komprimierungs- und Prüfsummenfunkti
     **-limit** *readaheadLimit*
     : Die maximale Anzahl von Bytes, die beim Dekomprimieren vorausgelesen werden.
 
-        Diese Option ist **obsolet** geworden. Sie wurde ursprünglich eingeführt, um zu verhindern, dass Tcl in Mehrfachstream-Kanälen über das Ende eines komprimierten Streams hinaus liest, damit die anschließenden Daten für weiteres Lesen unberührt bleiben — auf Kosten der Geschwindigkeit.
+        Diese Option ist **bedeutungslos** geworden. Sie wurde ursprünglich eingeführt, um zu verhindern, dass Tcl in Mehrfachstream-Kanälen über das Ende eines komprimierten Streams hinaus liest, damit die anschließenden Daten für weiteres Lesen unberührt bleiben — auf Kosten der Geschwindigkeit.
 
         Tcl gibt jetzt automatisch alle Bytes, die über das Ende eines komprimierten Streams hinaus gelesen wurden, an den Kanal zurück, sodass sie für nachfolgende Leser als ungelesen erscheinen.
 
@@ -225,7 +225,7 @@ Die vollständige Menge der von einem Streaming-Instanzbefehl *stream* unterstü
 : Gibt bis zu *count* Bytes aus den internen Puffern von *stream* mit angewendeter Transformation zurück. Fehlt *count*, wird der gesamte Pufferinhalt zurückgegeben. *stream* **header** Gibt das Dictionary mit der gzip-Header-Beschreibung zurück, das aus dem Stream extrahiert wurde. Nur unterstützt für Streams, die mit dem *mode*-Parameter **gunzip** erstellt wurden.
 
 *stream* **put** ?*option...*? *data*
-: Hängt den Inhalt der Binärzeichenkette *data* an die internen Puffer von *stream* an und wendet dabei die Transformation an. Folgende *option*en werden unterstützt (oder ein eindeutiges Präfix davon), die die Art der Transformation beeinflussen:
+: Hängt den Inhalt der Binärzeichenkette *data* an die internen Puffer von *stream* an und wendet dabei die Transformation an. Folgende Optionen (*option*) werden unterstützt (oder ein eindeutiges Präfix davon), die die Art der Transformation beeinflussen:
 
     **-dictionary** *binData*
     : [Legt das zu verwendende Komprimierungswörterbuch auf *binData* fest, wenn komprimierende oder dekomprimierende Transformationen angewendet werden.]{version="TIP 400"}
@@ -247,7 +247,7 @@ Die vollständige Menge der von einem Streaming-Instanzbefehl *stream* unterstü
 
 
 *stream* **reset**
-: Setzt jeden Stream, einschließlich finalisierter oder EOF-erreichte, in einen Zustand zurück, in dem er weitere Daten verarbeiten kann. Verwirft alle intern gepufferten Daten.
+: Setzt jeden Stream, einschließlich finalisierter Streams und solcher, die EOF erreicht haben, in einen Zustand zurück, in dem er weitere Daten verarbeiten kann. Verwirft alle intern gepufferten Daten.
 
 
 # Beispiele

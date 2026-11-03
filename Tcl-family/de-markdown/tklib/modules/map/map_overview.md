@@ -12,7 +12,7 @@ Copyright:
 
 # Name
 
-map\_overview – Einleitung zu den Paketen im Modul „Map“
+map\_overview – Überblick über die Pakete im Modul „Map“
 
 # Beschreibung
 

@@ -124,7 +124,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Textmarkierung. Das Argument wird als *konstanter* Wert markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von Konstanten in Freitext.
 
 **copyright** *text*
-: Dokumentinformationen. Überall. Der Befehl registriert das Argument im Klartext als Urheberrechtsabtretung für die Manpage. Bei mehrmaliger Ausführung werden die Abtretungen kumuliert.
+: Dokumentinformationen. Überall. Der Befehl registriert das Argument im Klartext als Urheberrechtsvermerk für die Manpage. Bei mehrmaliger Ausführung werden die Vermerke kumuliert.
 
 **def** *text*
 : Textstruktur. Listenelement. Definitionsliste. Schließt automatisch das vorherige Listenelement. Der Argumenttext ist der Begriff, der durch das neue Listenelement definiert wird. Darauf kann Textauszeichnung angewendet werden.
@@ -213,7 +213,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
     : Abkürzung für **options**.
 
 
-    Zuletzt werden die folgenden Namen zwar aus Gründen der Kompatibilität weiterhin erkannt, gelten aber ansonsten als *deprecated*.
+    Zuletzt werden die folgenden Namen zwar aus Gründen der Kompatibilität weiterhin erkannt, gelten aber ansonsten als *veraltet*.
 
     **arg**
     : *Veraltet*. Siehe **arguments**.
@@ -238,7 +238,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : *Veraltet*. Textstruktur. Listenelement. Definitionsliste. Der kanonische Befehl zum Öffnen eines allgemeinen Listenelements in einer Definitionsliste befindet sich unter **def**.
 
 **manpage\_begin** *command* *section* *version*
-: Dokumentstruktur. Der Befehl zum Beginnen einer Manpage. Die Argumente sind der Name des in der Manpage beschriebenen *command*, der *section* der Manpages, in der diese Manpage steht, sowie die *version* des Moduls, das den Befehl enthält. Alle Argumente müssen aus reinem Text bestehen, ohne Markup.
+: Dokumentstruktur. Der Befehl zum Beginnen einer Manpage. Die Argumente sind der Name des in der Manpage beschriebenen *command*, die *section* der Manpages, in der diese Manpage steht, sowie die *version* des Moduls, das den Befehl enthält. Alle Argumente müssen aus reinem Text bestehen, ohne Markup.
 
 **manpage\_end**
 : Dokumentstruktur. Befehl zum Beenden einer Manpage bzw. eines Dokuments. Alles, was im Dokument nach diesem Befehl folgt, ist ein Fehler.
@@ -259,13 +259,13 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Textauszeichnung. Der Argumenttext wird als *optional* markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung optionaler Argumente; siehe den Befehl arg **arg**.
 
 **opt\_def** *name* ?*arg*?
-: Textstruktur. Listenelement. Optionsliste. Schließt automatisch das vorherige Listenelement. Legt *name* und die Argumente der durch das Listenelement beschriebenen *option* fest. Es wird erwartet, dass der Name mit **option** markiert ist.
+: Textstruktur. Listenelement. Optionsliste. Schließt automatisch das vorherige Listenelement. Legt *name* und die Argumente der durch das Listenelement beschriebenen *Option* fest. Es wird erwartet, dass der Name mit **option** markiert ist.
 
 **option** *text*
 : Textmarkierung. Das Argument wird als *Option* markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von Optionen, auch als Befehlsschalter bezeichnet, entweder in Freitext oder in den Argumenten der Befehle **call** und **usage**.
 
 **package** *text*
-: Textauszeichnung. Das Argument wird als Name eines *package* markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von Paketnamen in Freitext.
+: Textauszeichnung. Das Argument wird als Name eines *Pakets* markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von Paketnamen in Freitext.
 
 **para**
 : Textstruktur. Dieser Befehl unterteilt Freitext in Absätze. Jeder Befehl schließt den ihm vorausgehenden Absatz ab und leitet einen neuen Absatz für den darauf folgenden Text ein. Höherliegende Strukturformen sind Abschnitte und Unterabschnitte.
@@ -313,7 +313,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Textmarkierung. Das Argument wird als *URI* (d. h. als *Uniform Resource Identifier*) markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von URIs in Freitext. Das zweite Argument, sofern vorhanden, wird als die für Menschen lesbare Beschreibung des URIs interpretiert. Mit anderen Worten: als dessen Bezeichnung. Ohne explizite Bezeichnung gilt der URI selbst als seine eigene Bezeichnung.
 
 **usage** *args*
-: Textmarkierung. Die vollständige Beschreibung finden Sie unter **call**; dieser Befehl ist syntaktisch identisch und stellt dieselben Anforderungen an die Markierung seiner Argumente. Im Gegensatz zu **call** ist es jedoch nicht zulässig, eine Ausgabe zu erzeugen, in der dieser Befehl im Text vorkommt. Der Befehl ist *still*. Der formatierte Text darf nur in einem anderen Abschnitt der Ausgabe erscheinen, beispielsweise in einem Inhaltsverzeichnis oder einer Übersicht, je nach Ausgabeformat.
+: Textmarkierung. Die vollständige Beschreibung finden Sie unter **call**; dieser Befehl ist syntaktisch identisch und stellt dieselben Anforderungen an die Markierung seiner Argumente. Im Gegensatz zu **call** ist es jedoch nicht zulässig, an der Stelle, an der dieser Befehl im Text vorkommt, eine Ausgabe zu erzeugen. Der Befehl ist *still*. Der formatierte Text darf nur in einem anderen Abschnitt der Ausgabe erscheinen, beispielsweise in einem Inhaltsverzeichnis oder einer Übersicht, je nach Ausgabeformat.
 
 **var** *text*
 : Textmarkierung. Das Argument wird als Name einer *Variablen* markiert. Der Text kann bereits andere Markierungen enthalten. Die Hauptanwendung besteht in der Hervorhebung von Variablen in Freitext.

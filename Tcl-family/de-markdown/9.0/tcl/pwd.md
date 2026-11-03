@@ -33,7 +33,7 @@ Gibt den absoluten Pfadnamen des aktuellen Arbeitsverzeichnisses zurück.
 
 # Beispiele
 
-Manchmal ist es nützlich, für einen externen Befehl mit [exec] in ein bekanntes Verzeichnis zu wechseln, während die Anwendung normalerweise im Verzeichnis weiterläuft, in dem sie gestartet wurde (sofern der Benutzer nichts anderes angibt), um Verwirrung zu vermeiden. Dazu speichert man das aktuelle Verzeichnis während des externen Befehls und wechselt danach zurück:
+Manchmal ist es nützlich, für einen externen Befehl mit [exec] in ein bekanntes Verzeichnis zu wechseln, wichtig ist aber, dass die Anwendung normalerweise im Verzeichnis weiterläuft, in dem sie gestartet wurde (sofern der Benutzer nichts anderes angibt), um Verwirrung zu vermeiden. Dazu wird das aktuelle Verzeichnis gespeichert, solange der externe Befehl läuft:
 
 ```
 set tarFile [file normalize somefile.tar]

@@ -42,7 +42,7 @@ Das Paket exportiert eine Klasse namens „**cache::async**“, wie im Folgenden
 **::cache::async** *objectName* *commandprefix* ?*options*...?
 : Der Befehl erstellt ein neues *Cache*-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *objectName* lautet. Dieser Befehl kann verwendet werden, um verschiedene Operationen auf dem Objekt auszuführen.
 
-    Das *commandprefix* ist die Aktion, die ausgeführt werden soll, wenn ein Benutzer Daten aus dem Cache anfordert und der Cache den Schlüssel noch nicht kennt. Wenn der Befehl ausgeführt wird, erhält der *commandprefix* drei zusätzliche Argumente: die Zeichenkette **get**, den angeforderten Schlüssel und das Cache-Objekt selbst in Form seines Objektbefehls – in dieser Reihenfolge. Die Ausführung der Aktion erfolgt in einem Idle-Handler, wodurch sie von der ursprünglichen Anfrage entkoppelt wird.
+    Das *commandprefix* ist die Aktion, die ausgeführt werden soll, wenn ein Benutzer Daten aus dem Cache anfordert und der Cache den Schlüssel noch nicht kennt. Wenn der Befehl ausgeführt wird, erhält das *commandprefix* drei zusätzliche Argumente: die Zeichenkette **get**, den angeforderten Schlüssel und das Cache-Objekt selbst in Form seines Objektbefehls – in dieser Reihenfolge. Die Ausführung der Aktion erfolgt in einem Idle-Handler, wodurch sie von der ursprünglichen Anfrage entkoppelt wird.
 
     Die einzige unterstützte Option ist
 
@@ -58,16 +58,16 @@ Die durch die oben genannten Klassenbefehle erstellten Objektbefehle haben folge
 
     Sobald die Informationen verfügbar sind oder werden, wird das *donecmdprefix* ausgeführt, um das Ergebnis an den Aufrufer zu übermitteln. Dieser Befehl wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
 
-    1. Die Zeichenfolge „**set**“, der *key* und der Wert.
+    1. Die Zeichenkette „**set**“, der *key* und der Wert.
 
-    2. Die Zeichenfolge „**unset**“ und der *key*.
+    2. Die Zeichenkette „**unset**“ und der *key*.
 
 
     Diese beiden Möglichkeiten dienen dazu, entweder den Wert für den *key* anzugeben oder zu signalisieren, dass für den *key* kein Wert definiert ist. Letzteres unterscheidet sich von dem Fall, dass der Cache den *key* nicht kennt.
 
     Bei einem Cache-Objekt, das auf vollständige Asynchronität konfiguriert ist (Standard), wird das *donecmdprefix* stets in einem Idle-Handler ausgeführt, wodurch es von der Anfrage entkoppelt wird. Andernfalls wird die Rückruffunktion synchron aufgerufen, wenn der *key* dem Cache zum Zeitpunkt des Aufrufs bekannt ist.
 
-    Ein weiterer wichtiger Aspekt des Verhaltens des Caches: Da er asynchron arbeitet, ist es möglich, dass mehrere **get**-Anfragen für denselben *key* gestellt werden, bevor dieser antworten kann. In diesem Fall sendet der Cache nur eine Datenanfrage an den Anbieter – und zwar für die erste dieser Anfragen –, setzt die anderen aus und benachrichtigt sie alle, wenn die Daten verfügbar sind.
+    Ein weiterer wichtiger Aspekt des Verhaltens des Caches: Da er asynchron arbeitet, ist es möglich, dass mehrere **get**-Anfragen für denselben *key* gestellt werden, bevor der Cache antworten kann. In diesem Fall sendet der Cache nur eine Datenanfrage an den Anbieter – und zwar für die erste dieser Anfragen –, setzt die anderen aus und benachrichtigt sie alle, wenn die Daten verfügbar sind.
 
 *objectName* **set** *key* *value*
 : siehe unten ...
@@ -77,7 +77,7 @@ Die durch die oben genannten Klassenbefehle erstellten Objektbefehle haben folge
 
     Es wird erwartet, dass der Datenanbieter (siehe *commandprefix* des Konstruktors) diese Methoden als Antwort auf Datenanfragen für unbekannte Schlüssel verwendet.
 
-    Hinweis: Dies entspricht der eigenen API des Caches gegenüber seinem Aufrufer: Der Cache ruft das *donecmd* von **get**-Anfragen auf, die an ihn selbst gerichtet wurden – entweder mit „set key value“ oder „unset key“ –, im Gegensatz zur Ausgabe von **get**-Anfragen an seinen eigenen Anbieter sendet, wobei er sich selbst anstelle des *donecmd* einsetzt und erwartet, entweder mit „set key Wert“ oder „unset key“ aufgerufen zu werden.
+    Hinweis: Dies entspricht der eigenen API des Caches gegenüber seinem Aufrufer: Der Cache ruft das *donecmd* von **get**-Anfragen auf, die an ihn selbst gerichtet wurden – entweder mit „set key value“ oder „unset key“ –, während er umgekehrt **get**-Anfragen an seinen eigenen Anbieter sendet, wobei er sich selbst anstelle des *donecmd* einsetzt und erwartet, entweder mit „set key value“ oder „unset key“ aufgerufen zu werden.
 
     Dies bedeutet auch, dass diese Methoden das *donecmd* aller **get**-Anfragen aufrufen, die auf Informationen über den geänderten *key* warten.
 

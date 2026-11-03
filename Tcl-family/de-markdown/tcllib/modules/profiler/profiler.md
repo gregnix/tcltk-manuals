@@ -60,10 +60,10 @@ Das Paket **profiler** stellt einen einfachen Tcl-Quellcode-Profiler bereit. Es 
     : Durchschnittliche Laufzeit von *functionName*.
 
     **descendantTime**
-    : Summe der Zeit, die in den Nachfolgern von *functionName* verbracht wurde.
+    : Summe der Zeit, die in den Nachkommen von *functionName* verbracht wurde.
 
     **averageDescendantTime**
-    : Durchschnittliche Verweildauer in den untergeordneten Elementen von *functionName*.
+    : Durchschnittliche Verweildauer in den Nachkommen von *functionName*.
 
 
 **::profiler::print** ?*pattern*?
@@ -76,7 +76,7 @@ Das Paket **profiler** stellt einen einfachen Tcl-Quellcode-Profiler bereit. Es 
 : Das Profiling für alle Funktionen, die dem Muster *pattern* entsprechen, wird ausgesetzt.  Wenn kein Muster angegeben wird, wird das Profiling für alle Funktionen ausgesetzt. Nach Ausführung dieses Befehls wird die Erfassung von Profiling-Informationen beendet. Bereits zuvor erfasste Profiling-Informationen werden jedoch nicht gelöscht.  Verwenden Sie den Befehl „resume“, um das Profiling wieder zu aktivieren.
 
 **::profiler::resume** ?*pattern*?
-: Fährt die Profilerstellung für alle Funktionen fort, die dem Muster *pattern* entsprechen.  Wenn kein Muster angegeben wird, wird die Profilerstellung für alle Funktionen fortgesetzt. Dieser Befehl sollte aufgerufen werden, nachdem der Profiler im Code angehalten wurde.
+: Setzt die Profilerstellung für alle Funktionen fort, die dem Muster *pattern* entsprechen.  Wenn kein Muster angegeben wird, wird die Profilerstellung für alle Funktionen fortgesetzt. Dieser Befehl sollte aufgerufen werden, nachdem der Profiler im Code angehalten wurde.
 
 **::profiler::new-disabled**
 : Ändert den anfänglichen Profiling-Status für neue Prozeduren. Durch den Aufruf dieses Befehls wird das Profiling für alle Prozeduren deaktiviert, die nach diesem Befehl erstellt werden, bis der Befehl **new-enabled** aufgerufen wird. Aktivieren Sie das Profiling bestimmter Prozeduren über den Befehl **resume**.

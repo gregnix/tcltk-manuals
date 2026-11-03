@@ -31,7 +31,7 @@ udpcluster – UDP-Peer-to-Peer-Cluster
 
 # Beschreibung
 
-Dieses Paket ist eine schlanke Alternative zu Zeroconf. Es nutzt UDP-Pakete, um eine Tabelle der Dienste zu füllen, die jeder Knoten in einem lokalen Netzwerk anbietet. Jeder Teilnehmer sendet per Broadcast eine Schlüssel-Wert-Liste als Klartext in UTF-8. Darin steht, welche Ports offen sind und welche Protokolle an diesen Ports erwartet werden. Entwickler können darüber hinaus beliebige weitere Schlüssel-Wert-Paare hinzufügen.
+Dieses Paket ist eine schlanke Alternative zu Zeroconf. Es nutzt UDP-Pakete, um eine Tabelle der Dienste zu füllen, die jeder Knoten in einem lokalen Netzwerk anbietet. Jeder Teilnehmer sendet per Rundruf eine Schlüssel-Wert-Liste als Klartext in UTF-8. Darin steht, welche Ports offen sind und welche Protokolle an diesen Ports erwartet werden. Entwickler können darüber hinaus beliebige weitere Schlüssel-Wert-Paare hinzufügen.
 
 Verwendung von udpcluster.
 

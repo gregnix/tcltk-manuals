@@ -42,7 +42,7 @@ Dieses Paket enthält eine Tcl-Implementierung des cksum(1)-Algorithmus, die auf
 # Befehle
 
 **::crc::cksum** ?*-format format*? ?*-chunksize size*? \[ *-channel chan* | *-filename file* | *string* \]
-: Der Befehl akzeptiert Zeichenfolgendaten, einen Kanal oder einen Dateinamen und gibt einen Prüfsummenwert zurück, der mithilfe des Algorithmus **cksum(1)** berechnet wurde. Das Ergebnis wird entweder gemäß dem angegebenen Bezeichner *format*(n) formatiert oder standardmäßig als vorzeichenlose Ganzzahl (%u) ausgegeben.
+: Der Befehl akzeptiert Zeichenkettendaten, einen Kanal oder einen Dateinamen und gibt einen Prüfsummenwert zurück, der mithilfe des Algorithmus **cksum(1)** berechnet wurde. Das Ergebnis wird entweder gemäß der angegebenen Formatangabe *format*(n) formatiert oder standardmäßig als vorzeichenlose Ganzzahl (%u) ausgegeben.
 
 
 # Optionen
@@ -65,7 +65,7 @@ Das Paket „cksum“ implementiert die Prüfsumme mithilfe einer Kontextvariabl
 : Eröffnet einen neuen cksum-Kontext. Gibt eine Token-ID zurück, die für die verbleibenden Funktionen verwendet werden muss. Bei Bedarf kann ein optionaler Startwert festgelegt werden.
 
 **::crc::CksumUpdate** *token* *data*
-: Fügt Daten zur durch das Token identifizierten Prüfsumme hinzu. Der Aufruf von *CksumUpdate $token „abcd“* entspricht dem Aufruf von *CksumUpdate $token „ab“*, gefolgt von *CksumUpdate $token „cb“*. Siehe [Beispiele].
+: Fügt Daten zur durch das Token identifizierten Prüfsumme hinzu. Der Aufruf von *CksumUpdate $token "abcd"* entspricht dem Aufruf von *CksumUpdate $token "ab"*, gefolgt von *CksumUpdate $token "cb"*. Siehe [Beispiele].
 
 **::crc::CksumFinal** *token*
 : Gibt den Prüfsummenwert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist ein 32-Bit-Ganzzahlwert.

@@ -119,7 +119,7 @@ Dieses Paket ermöglicht UDP aus Tcl. Es stellt einen neuen Kanaltyp bereit und 
 
 
 **udp\_peek** *channel* ?*buffersize*?
-: Sieht ein Paket an, ohne es aus dem Puffer zu nehmen. Die Option *buffersize* legt die größte Puffergröße fest. Der Wert liegt zwischen 0 und 16.
+: Sieht ein Paket an, ohne es aus dem Puffer zu nehmen. Die Option *buffersize* legt die größte Puffergröße fest. Der Wert muss zwischen 0 und 16 liegen.
 
     Unter Windows gibt es diese Funktion nicht.
 
@@ -221,7 +221,7 @@ exit
 
 # Geschichte
 
-Ein Teil des Codes dieser Erweiterung stammt aus dem Paket tcludp von Michael Miller (http://www.neosoft.com/tcl/ftparchive/sorted/comm/tcludp-1.0/). Gegenüber Michaels UDP-Erweiterung bietet diese Erweiterung Windows und das Lesen und Schreiben des Sockets mit 'gets/puts'. Dazu kommen weitere Einstellungen.
+Ein Teil des Codes dieser Erweiterung stammt aus dem Paket tcludp von Michael Miller (<http://www.neosoft.com/tcl/ftparchive/sorted/comm/tcludp-1.0/>). Gegenüber Michaels UDP-Erweiterung bietet diese Erweiterung Windows und das Lesen und Schreiben des Sockets mit 'gets/puts'. Dazu kommen weitere Einstellungen.
 
 Erweiterungen für Binärdaten und die Einrichtung des Pakets für die Tcl Extension Architecture stammen von Pat Thoyts.
 

@@ -34,7 +34,7 @@ doctools::idx::structure – Docidx-Serialisierungsdienstprogramme
 
 # Beschreibung
 
-Dieses Paket stellt Befehle zur Verfügung, zur Bearbeitung der Serialisierungen von Schlüsselwortindizes, die vom doctools-System v2 verwaltet und im Abschnitt [Serialisierungsformat für Schlüsselwortindizes] beschrieben werden.
+Dieses Paket stellt Befehle zur Bearbeitung der Serialisierungen von Schlüsselwortindizes zur Verfügung, die vom doctools-System v2 verwaltet und im Abschnitt [Serialisierungsformat für Schlüsselwortindizes] beschrieben werden.
 
 Hierbei handelt es sich um ein internes Paket von doctools, das von übergeordneten Paketen genutzt wird, die Schlüsselwortindizes verarbeiten und sie in verschiedene andere Formate und aus ihnen umwandeln, wie beispielsweise Dokumente, die mit *docidx*-Markup erstellt wurden.
 

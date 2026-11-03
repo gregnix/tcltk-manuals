@@ -82,7 +82,7 @@ Der Befehl **scrollbar** erstellt einen neuen Tcl-Befehl, dessen Name *pathName*
 pathName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Scrollbar-Widgets möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Scrollbar-Widgets möglich:
 
 [pathName]{.ins} [activate]{.sub} [element]{.optarg}
 : Markiert das durch *element* angegebene Element als aktiv, wodurch es wie durch die Optionen **-activebackground** und **-activerelief** festgelegt angezeigt wird. Die einzigen Elementwerte, die dieser Befehl versteht, sind **arrow1**, **slider** oder **arrow2**. Wenn ein anderer Wert angegeben ist, ist kein Element der Scrollbar aktiv. Wenn *element* nicht angegeben ist, gibt der Befehl den Namen des derzeit aktiven Elements zurück oder eine leere Zeichenkette, wenn kein Element aktiv ist.
@@ -91,7 +91,7 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
 
 [pathName]{.ins} [delta]{.sub} [deltaX]{.arg} [deltaY]{.arg}
 : Gibt eine reelle Zahl zurück, die die Bruchteilsänderung in der Scrollbar-Einstellung angibt, die einer gegebenen Änderung der Schiebereglerposition entspricht. Wenn die Scrollbar beispielsweise horizontal ist, gibt das Ergebnis an, um wie viel sich die Scrollbar-Einstellung ändern muss, um den Schieberegler *deltaX* Pixel nach rechts zu bewegen (*deltaY* wird in diesem Fall ignoriert). Wenn die Scrollbar vertikal ist, gibt das Ergebnis an, um wie viel sich die Scrollbar-Einstellung ändern muss, um den Schieberegler *deltaY* Pixel nach unten zu bewegen. Die Argumente und das Ergebnis können null oder negativ sein.
@@ -145,19 +145,19 @@ Der zuletzt ausgeführte Widget-Befehl **set** bestimmt, ob die alte Syntax verw
 
 Tk erstellt automatisch Klassen-Bindungen für Scrollbars, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scrollbars unterscheidet, ist das horizontale Verhalten in Klammern beschrieben.
 
-1. Das Drücken von Taste 1 über **arrow1** bewirkt, dass die Ansicht im verknüpften Widget um eine Einheit nach oben (links) verschoben wird, sodass das Dokument um eine Einheit nach unten (rechts) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
+1. Das Drücken von Maustaste 1 über **arrow1** bewirkt, dass die Ansicht im verknüpften Widget um eine Einheit nach oben (links) verschoben wird, sodass das Dokument um eine Einheit nach unten (rechts) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
-2. Das Drücken von Taste 1 über **trough1** bewirkt, dass die Ansicht im verknüpften Widget um eine Bildschirmfüllung nach oben (links) verschoben wird, sodass das Dokument um eine Bildschirmfüllung nach unten (rechts) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
+2. Das Drücken von Maustaste 1 über **trough1** bewirkt, dass die Ansicht im verknüpften Widget um eine Bildschirmfüllung nach oben (links) verschoben wird, sodass das Dokument um eine Bildschirmfüllung nach unten (rechts) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
-3. Das Drücken von Taste 1 über den Schieberegler und Ziehen bewirkt, dass die Ansicht mit dem Schieberegler mitgezogen wird. Wenn die Option **jump** wahr ist, zieht die Ansicht nicht mit dem Schieberegler mit; sie ändert sich erst, wenn die Maustaste losgelassen wird.
+3. Das Drücken von Maustaste 1 über dem Schieberegler und Ziehen bewirkt, dass die Ansicht mit dem Schieberegler mitgezogen wird. Wenn die Option **jump** wahr ist, zieht die Ansicht nicht mit dem Schieberegler mit; sie ändert sich erst, wenn die Maustaste losgelassen wird.
 
-4. Das Drücken von Taste 1 über **trough2** bewirkt, dass die Ansicht im verknüpften Widget um eine Bildschirmfüllung nach unten (rechts) verschoben wird, sodass das Dokument um eine Bildschirmfüllung nach oben (links) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
+4. Das Drücken von Maustaste 1 über **trough2** bewirkt, dass die Ansicht im verknüpften Widget um eine Bildschirmfüllung nach unten (rechts) verschoben wird, sodass das Dokument um eine Bildschirmfüllung nach oben (links) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
-5. Das Drücken von Taste 1 über **arrow2** bewirkt, dass die Ansicht im verknüpften Widget um eine Einheit nach unten (rechts) verschoben wird, sodass das Dokument um eine Einheit nach oben (links) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
+5. Das Drücken von Maustaste 1 über **arrow2** bewirkt, dass die Ansicht im verknüpften Widget um eine Einheit nach unten (rechts) verschoben wird, sodass das Dokument um eine Einheit nach oben (links) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
-6. Wenn Taste 2 über dem Trog oder dem Schieberegler gedrückt wird, setzt sie die Ansicht entsprechend der Mausposition; das Ziehen der Maus mit gedrückter Taste 2 bewirkt, dass die Ansicht mit der Maus mitgezogen wird. Wenn Taste 2 über einem der Pfeile gedrückt wird, bewirkt sie dasselbe Verhalten wie das Drücken von Taste 1.
+6. Wenn Maustaste 2 über dem Trog oder dem Schieberegler gedrückt wird, setzt sie die Ansicht entsprechend der Mausposition; das Ziehen der Maus mit gedrückter Taste 2 bewirkt, dass die Ansicht mit der Maus mitgezogen wird. Wenn Taste 2 über einem der Pfeile gedrückt wird, bewirkt sie dasselbe Verhalten wie das Drücken von Taste 1.
 
-7. Wenn Taste 1 mit gedrückter Steuerungstaste gedrückt wird, ändert sich die Ansicht zum oberen (linken) Rand des Dokuments, wenn die Maus über **arrow1** oder **trough1** ist; wenn die Maus über **arrow2** oder **trough2** ist, ändert sich die Ansicht zum unteren (rechten) Rand des Dokuments; wenn die Maus sonst irgendwo ist, hat der Tastendruck keine Wirkung.
+7. Wenn Maustaste 1 mit gedrückter Steuerungstaste gedrückt wird, ändert sich die Ansicht zum oberen (linken) Rand des Dokuments, wenn die Maus über **arrow1** oder **trough1** ist; wenn die Maus über **arrow2** oder **trough2** ist, ändert sich die Ansicht zum unteren (rechten) Rand des Dokuments; wenn die Maus sonst irgendwo ist, hat der Tastendruck keine Wirkung.
 
 8. Bei vertikalen Scrollbars haben die Auf- und Ab-Tasten dasselbe Verhalten wie Mausklicks über **arrow1** bzw. **arrow2**. Bei horizontalen Scrollbars haben diese Tasten keine Wirkung.
 

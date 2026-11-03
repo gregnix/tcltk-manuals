@@ -31,7 +31,7 @@ term::send – Allgemeine Ausgabe an Terminals
 Dieses Paket stellt die grundlegendsten Befehle zum Senden von Zeichen an ein Terminal bereit. Im Wesentlichen handelt es sich dabei um praktische Wrapper für den integrierten Befehl **puts**.
 
 **::term::send::wrch** *chan* *str*
-: Sendet den Text *str* an den durch das Handle *chan* festgelegten Kanal. Im Gegensatz zum integrierten Befehl **puts** beendet dieser Befehl die Zeichenfolge nicht mit einem Zeilenendezeichen. Außerdem erzwingt er ein Leeren der internen Tcl- und Betriebssystem-Puffer, um sicherzustellen, dass die Zeichen sofort verarbeitet werden.
+: Sendet den Text *str* an den durch das Handle *chan* festgelegten Kanal. Im Gegensatz zum integrierten Befehl **puts** beendet dieser Befehl die Zeichenkette nicht mit einem Zeilenendezeichen. Außerdem erzwingt er ein Leeren der internen Tcl- und Betriebssystem-Puffer, um sicherzustellen, dass die Zeichen sofort verarbeitet werden.
 
 **::term::send::wr** *str*
 : Dieser Befehl entspricht dem Befehl **::term::send::wrch**, mit dem Unterschied, dass der Zielkanal fest auf *stdout* festgelegt ist.

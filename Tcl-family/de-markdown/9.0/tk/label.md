@@ -59,18 +59,18 @@ Der Befehl **label** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist
 pathName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Label-Widgets möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Label-Widgets möglich:
 
 [pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
 
 
 # Bindungen
 
-Wenn ein neues Label erstellt wird, hat es keine Standard-Event-Bindungen: Labels sind nicht für Interaktion gedacht.
+Wenn ein neues Label erstellt wird, hat es keine Standard-Ereignisbindungen: Labels sind nicht für Interaktion gedacht.
 
 # Beispiel
 

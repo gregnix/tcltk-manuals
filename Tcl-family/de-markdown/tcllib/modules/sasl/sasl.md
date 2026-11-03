@@ -46,10 +46,10 @@ Der SASL-Rahmen arbeitet mit einem einfachen, mehrstufigen Challenge-Response-Me
 : Liest oder setzt eine Option des SASL-Kontexts. Weitere Einzelheiten finden Sie unter [Optionen].
 
 **::SASL::step** *context* *challenge* ?*...*?
-: Dies ist die Kern-Prozedur für die Verwendung des SASL-Rahmens. Die Prozedur **step** sollte so lange aufgerufen werden, bis sie den Wert 0 gibt. Jeder Schritt nimmt eine Server-Challenge-Zeichenkette entgegen, die Antwort wird berechnet und im Kontext gespeichert. Jeder Mechanismus kann einen oder mehrere Schritte erfordern. Bei einigen Schritten ist möglicherweise keine Server-Challenge erforderlich; in diesem Fall sollte für diesen Parameter eine leere Zeichenfolge angegeben werden. Alle Mechanismen sollten eine anfänglich leere Challenge akzeptieren.
+: Dies ist die Kern-Prozedur für die Verwendung des SASL-Rahmens. Die Prozedur **step** sollte so lange aufgerufen werden, bis sie den Wert 0 zurückgibt. Jeder Schritt nimmt eine Server-Challenge-Zeichenkette entgegen, die Antwort wird berechnet und im Kontext gespeichert. Jeder Mechanismus kann einen oder mehrere Schritte erfordern. Bei einigen Schritten ist möglicherweise keine Server-Challenge erforderlich; in diesem Fall sollte für diesen Parameter eine leere Zeichenkette angegeben werden. Alle Mechanismen sollten eine anfänglich leere Challenge akzeptieren.
 
 **::SASL::response** *context*
-: Gibt die nächste Antwortzeichenfolge zurück, die an den Server gesendet werden soll.
+: Gibt die nächste Antwortzeichenkette zurück, die an den Server gesendet werden soll.
 
 **::SASL::reset** *context*
 : Initialisiert den SASL-Kontext neu. Dabei werden alle internen Zustände verworfen, und das Token kann wiederverwendet werden.
@@ -58,12 +58,12 @@ Der SASL-Rahmen arbeitet mit einem einfachen, mehrstufigen Challenge-Response-Me
 : Gibt alle mit dem SASL-Kontext verbundenen Ressourcen frei. Das Kontext-Token darf nach dem Aufruf dieser Prozedur nicht mehr verwendet werden.
 
 **::SASL::mechanisms** ?*type*? ?*minimum*?
-: Gibt eine Liste aller verfügbaren SASL-Mechanismen zurück. Die Liste ist nach dem Wert der Präferenz des Mechanismus sortiert (siehe **register**), wobei die bevorzugten Mechanismen am Anfang der Liste stehen. Jeder Mechanismus mit einem Wert für die Präferenz unterhalb des *Mindestwerts* (der standardmäßig auf 0 gesetzt ist) wird aus der zurückgegebenen Liste entfernt. Dies ermöglicht die Festlegung einer Schwelle für die Sicherheit. Mechanismen mit einer Präferenz unter 25, die eine Authentifizierung übertragen, sind besonders anfällig für Abhörversuche und sollten nur bereitgestellt werden, wenn ein sicherer Kanal verwendet wird (z. B. TLS).
+: Gibt eine Liste aller verfügbaren SASL-Mechanismen zurück. Die Liste ist nach dem Wert der Präferenz des Mechanismus sortiert (siehe **register**), wobei die bevorzugten Mechanismen am Anfang der Liste stehen. Jeder Mechanismus mit einem Wert für die Präferenz unterhalb von *minimum* (der standardmäßig auf 0 gesetzt ist) wird aus der zurückgegebenen Liste entfernt. Dies ermöglicht die Festlegung einer Schwelle für die Sicherheit. Mechanismen mit einer Präferenz unter 25, die eine Authentifizierung übertragen, sind besonders anfällig für Abhörversuche und sollten nur bereitgestellt werden, wenn ein sicherer Kanal verwendet wird (z. B. TLS).
 
     Der Parameter *type* kann entweder *client* oder *server* lauten und ist standardmäßig auf *client* gesetzt. Es werden nur Mechanismen zurückgegeben, deren Implementierung mit dem *type* übereinstimmt (dadurch können Server korrekt nur die Unterstützung für Mechanismen deklarieren, für die tatsächlich eine Server-Implementierung vorliegt).
 
 **::SASL::register** *mechanism* *preference* *clientproc* ?*serverproc*?
-: Neue Mechanismen können dem Paket hinzugefügt werden, indem der Mechanismenname und die entsprechenden Implementierungsprozeduren registriert werden. Die Serverprozedur ist optional. Der Präferenzwert ist eine ganze Zahl, die zur Sortierung der vom Befehl **mechanisms** gegebenen Liste verwendet wird. Höhere Werte kennzeichnen einen bevorzugten Mechanismus. Wenn der Mechanismus bereits registriert ist, werden die gespeicherten Werte aktualisiert.
+: Neue Mechanismen können dem Paket hinzugefügt werden, indem der Mechanismenname und die entsprechenden Implementierungsprozeduren registriert werden. Die Serverprozedur ist optional. Der Präferenzwert ist eine Ganzzahl, die zur Sortierung der vom Befehl **mechanisms** zurückgegebenen Liste verwendet wird. Höhere Werte kennzeichnen einen bevorzugten Mechanismus. Wenn der Mechanismus bereits registriert ist, werden die gespeicherten Werte aktualisiert.
 
 
 # Optionen
@@ -86,18 +86,18 @@ Der SASL-Rahmen arbeitet mit einem einfachen, mehrstufigen Challenge-Response-Me
 
 # Callback-Prozedur
 
-Wenn das SASL-Framework Benutzerdaten benötigt, ruft es die bei der Erstellung des Kontexts bereitgestellte Prozedur mit einem Argument auf, das die jeweils benötigte Information angibt.
+Wenn der SASL-Rahmen Benutzerdaten benötigt, ruft es die bei der Erstellung des Kontexts bereitgestellte Prozedur mit einem Argument auf, das die jeweils benötigte Information angibt.
 
-In allen Fällen sollte eine einzige Antwortzeichenfolge gegeben werden.
+In allen Fällen sollte eine einzige Antwortzeichenkette zurückgegeben werden.
 
 login
-: Die Callback-Prozedur sollte die Autorisierungsidentität des Benutzers geben. Geben Sie eine leere Zeichenkette zurück, sofern diese nicht von der Authentifizierungsidentität abweicht. Lesen Sie [1], um mehr über die spezifische Bedeutung von Autorisierungs- und Authentifizierungsidentitäten innerhalb von SASL zu erfahren.
+: Die Rückruffunktion sollte die Autorisierungsidentität des Benutzers zurückgeben. Geben Sie eine leere Zeichenkette zurück, sofern diese nicht von der Authentifizierungsidentität abweicht. Lesen Sie [1], um mehr über die spezifische Bedeutung von Autorisierungs- und Authentifizierungsidentitäten innerhalb von SASL zu erfahren.
 
 username
-: Die Callback-Prozedur sollte die Authentifizierungsidentität des Benutzers geben. Eine Erläuterung der genauen Bedeutung von Autorisierungs- und Authentifizierungsidentitäten im Rahmen von SASL finden Sie unter \[1\].
+: Die Rückruffunktion sollte die Authentifizierungsidentität des Benutzers zurückgeben. Eine Erläuterung der genauen Bedeutung von Autorisierungs- und Authentifizierungsidentitäten im Rahmen von SASL finden Sie unter \[1\].
 
 password
-: Die Callback-Prozedur sollte das Passwort geben, das mit der Authentifizierungsidentität übereinstimmt, wie sie innerhalb des aktuellen Realms verwendet wird.
+: Die Rückruffunktion sollte das Passwort zurückgeben, das mit der Authentifizierungsidentität übereinstimmt, wie sie innerhalb des aktuellen Realms verwendet wird.
 
     Bei Servermechanismen sollte der Passwort-Callback stets mit der Authentifizierungsidentität und dem Realm als ersten beiden Parametern aufgerufen werden.
 

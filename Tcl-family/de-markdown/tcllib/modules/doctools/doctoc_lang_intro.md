@@ -30,7 +30,7 @@ Dieses Dokument bietet anhand zahlreicher Beispiele eine informelle Einleitung i
 
 ## Grundlagen
 
-Zwar ähnelt die *doctoc-Auszeichnungssprache* im weitesten Sinne der *doctools-Auszeichnungssprache*, doch gibt es einen wesentlichen Unterschied. Ein Inhaltsverzeichnis besteht im Wesentlichen ausschließlich aus Auszeichnungsbefehlen, zwischen denen – abgesehen von Leerzeichen – kein einfacher Text eingestreut ist.
+Zwar ähnelt die *doctoc-Auszeichnungssprache* im weitesten Sinne der *doctools-Auszeichnungssprache*, doch gibt es einen wesentlichen Unterschied. Ein Inhaltsverzeichnis besteht im Wesentlichen ausschließlich aus Auszeichnungsbefehlen, zwischen denen – abgesehen von Leerraum – kein einfacher Text eingestreut ist.
 
 Jeder Markup-Befehl ist ein Tcl-Befehl, der von einem passenden Paar aus **\[** und **\]** umgeben ist. Innerhalb dieser Begrenzungszeichen gelten die üblichen Regeln für einen Tcl-Befehl hinsichtlich Wortanführungszeichen, verschachtelter Befehle, Fortsetzungszeilen usw. Das heißt:
 
@@ -155,9 +155,9 @@ Es ist möglich, Einträge und Abschnitte beliebig zu kombinieren und leere Absc
 
 ## Erweiterte Struktur
 
-In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **toc\_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
+In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl [toc\_begin][doctoc_lang_cmdref] zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
 
-Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für das Inhaltsverzeichnis relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
+Anstelle von reinem Leerraum sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für das Inhaltsverzeichnis relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
 
 ```
 [include FILE]
@@ -177,7 +177,7 @@ Noch wichtiger ist, dass diese beiden Befehle überall dort zulässig sind, wo e
 [toc_end]
 ```
 
-Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor **toc\_begin** eingebunden wird, darf nur die Vorlagenbefehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine Datei, die in einen Abschnitt eingebunden wird, darf nur Befehle für Elemente oder Abschnitte enthalten usw.
+Die einzige Einschränkung, die [include][docidx_lang_cmdref] beachten muss, besteht darin, dass der Inhalt der eingebundenen Datei an der Stelle der Einbindung gültig sein muss. Das heißt, eine Datei, die vor [toc\_begin][doctoc_lang_cmdref] eingebunden wird, darf nur die Vorlagenbefehle [vset][docidx_lang_cmdref] und [include][docidx_lang_cmdref] enthalten; eine Datei, die in einen Abschnitt eingebunden wird, darf nur Befehle für Einträge oder Abschnitte enthalten usw.
 
 ## Escapes
 

@@ -46,7 +46,7 @@ Der Hauptbefehl dient zur Erstellung von Suchpfad-Pools:
 Für Pool-Objekte sind folgende Befehle möglich:
 
 *poolName* **add** *path*
-: Fügt den *Pfad* zum Pool hinzu. Es geschieht nichts, wenn der *Pfad* dem Pool bereits bekannt ist. Das Ergebnis des Befehls ist die leere Zeichenkette.
+: Fügt *path* zum Pool hinzu. Es geschieht nichts, wenn *path* dem Pool bereits bekannt ist. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 *poolName* **clear**
 : Leert den gesamten Pool. Mit anderen Worten: Entfernt alle Pfade daraus. Das Ergebnis des Befehls ist die leere Zeichenkette.
@@ -55,7 +55,7 @@ Für Pool-Objekte sind folgende Befehle möglich:
 : Gibt die Liste aller dem Pool bekannten Pfade in der Reihenfolge zurück, in der sie hinzugefügt wurden.
 
 *poolName* **remove** *path*
-: Entfernt den *Pfad* aus dem Pool, wenn dieser dem Pool bekannt ist. Unbekannte Pfade werden ohne Fehlermeldung ignoriert. Das Ergebnis des Befehls ist die leere Zeichenkette.
+: Entfernt *path* aus dem Pool, wenn dieser dem Pool bekannt ist. Unbekannte Pfade werden ohne Fehlermeldung ignoriert. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 
 # Fehler, Ideen, Rückmeldungen

@@ -118,7 +118,7 @@ Wenn ein Objekt zerstört wird, werden alle Destruktoren seiner Extendedclass-Hi
 
     Wenn die Liste *args* angegeben ist, legt sie die Verwendungsangabe für dieses proc fest. Mit dem Befehl **body** lässt sich der Rumpf des proc neu definieren, die Liste *args* muss aber zu dieser Angabe passen.
 
-    Innerhalb des Rumpfes einer anderen Extendedclass-Methode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*extendedclassName*__::__*proc*“ aufgerufen. Procs einer Basis-Extendedclass, die in der aktuellen Extendedclass neu definiert oder von einer anderen Basis-Extendedclass verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
+    Innerhalb des Rumpfes einer anderen Extendedclass-Methode oder eines proc lässt sich ein proc wie jeder andere Befehl aufrufen, einfach über seinen Namen. In jedem anderen Namespace-Kontext wird das proc mit einem qualifizierten Namen wie „*extendedclassName***::***proc*“ aufgerufen. Procs einer Basis-Extendedclass, die in der aktuellen Extendedclass neu definiert oder von einer anderen Basis-Extendedclass verdeckt sind, sind ebenfalls über ihren qualifizierten Namen zugänglich.
 
 **variable** *varName* ?*init*? ?*config*?
 : Definiert eine objektspezifische Variable namens *varName*. Alle objektspezifischen Variablen stehen in Extendedclass-Methoden automatisch zur Verfügung. Sie müssen nicht mit etwas wie dem Befehl **global** deklariert werden.
@@ -159,7 +159,7 @@ Wenn ein Objekt zerstört wird, werden alle Destruktoren seiner Extendedclass-Hi
 Sobald eine Extendedclass definiert ist, kann der Extendedclass-Name als Befehl verwendet werden, um neue Objekte zu erzeugen, die zur Extendedclass gehören.
 
 *extendedclassName objName* ?*args...*?
-: Erzeugt ein neues Objekt der Extendedclass *extendedclassName* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor der spezifischsten Extendedclass übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basis-Extendedclasses weiter, bevor er seinen eigenen Befehlsumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
+: Erzeugt ein neues Objekt der Extendedclass *extendedclassName* mit dem Namen *objName*. Die übrigen Argumente werden an den Konstruktor der spezifischsten Extendedclass übergeben. Der gibt seinerseits Argumente an die Konstruktoren der Basis-Extendedclasses weiter, bevor er seinen eigenen Befehlsrumpf aufruft. Wenn die Konstruktion erfolgreich ist, wird im aktuellen Namespace-Kontext ein Befehl namens *objName* erzeugt, und *objName* wird als Ergebnis dieser Operation zurückgegeben. Wenn während der Konstruktion ein Fehler auftritt, werden die Destruktoren automatisch aufgerufen, um belegte Ressourcen freizugeben, das Objekt wird gelöscht, und ein Fehler wird zurückgegeben.
 
     Wenn *objName* die Zeichenkette „**#auto**“ enthält, wird diese Zeichenkette durch einen automatisch erzeugten Namen ersetzt. Namen haben die Form *extendedclassName<number>*, wobei der Teil *extendedclassName* so geändert wird, dass er mit einem Kleinbuchstaben beginnt. In der Extendedclass „Toaster“ würde die Angabe „**#auto**“ zum Beispiel Namen wie toaster0, toaster1 und so weiter erzeugen. „**#auto**“ kann auch mitten in einem Objektnamen stehen:
 
@@ -184,7 +184,7 @@ Sobald ein Objekt erzeugt ist, kann der Objektname als Befehl verwendet werden, 
 : Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „cget“ für Tk-Widgets nach. Das Argument *option* ist eine Zeichenkette der Form „**-**_varName_“, und diese Methode gibt den aktuellen Wert der öffentlichen Variablen *varName* zurück.
 
 *objName* **configure** ?*option*? ?*value option value ...*?
-: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, seinen Anfangswert und seinen aktuellen Wert.
+: Erlaubt den Zugriff auf öffentliche Variablen als Konfigurationsoptionen. Das ahmt das Verhalten der gewöhnlichen Operation „configure“ für Tk-Widgets nach. Ohne Argumente gibt diese Methode eine Liste von Listen zurück, die alle öffentlichen Variablen beschreibt. Jede Liste hat drei Elemente: den Variablennamen, ihren Anfangswert und ihren aktuellen Wert.
 
     Wenn eine einzelne *option* der Form „**-**_varName_“ angegeben ist, gibt diese Methode die Angaben für diese eine Variable zurück.
 

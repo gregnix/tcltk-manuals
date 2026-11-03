@@ -41,10 +41,10 @@ Dieses Paket enthält eine reine Tcl-Implementierung der Befehle **uuencode(1p)*
     Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::uuencode::decode** *estring*
-: Gibt eine Binärzeichenkette zurück, die aus dem *estring* mit uuencode-Decodierung entschlüsselt wurde, einschließlich etwaiger Padding-NUL-Bytes **\\x00** am Ende.
+: Gibt eine Binärzeichenkette zurück, die aus dem *estring* uuencode-dekodiert wurde, einschließlich etwaiger Padding-NUL-Bytes **\\x00** am Ende.
 
 **::uuencode::uuencode** ?**-name** *string*? ?**-mode** *octal*? (**-file** *filename* |  ?**--**? *bstring*)
-: Gibt als Ergebnis eine umgeschlossene, uuencodierte Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück.
+: Gibt als Ergebnis eine umgeschlossene, uuencodierte Version der Daten in der durch **-file** *filename* angegebenen Datei oder der Binärzeichenkette *bstring* zurück.
 
     Jedes umgeschlossene, uuencodierte Ergebnis besteht aus einem Header, einem Hauptteil und einem Footer. Der Header ist eine Zeile, die mit **begin** beginnt, gefolgt von einem vorgeschlagenen Dateimodus und einem vorgeschlagenen Dateinamen. Der Hauptteil besteht aus Zeilen mit uuencodierten Daten, denen jeweils ein Zeichen für die Zeilenlänge vorangestellt ist. Der Footer ist **end** in einer eigenen Zeile. Siehe **uuencode(1)** <https://www.man7.org/linux/man-pages/man1/uuencode.1p.html>.
 
@@ -55,7 +55,7 @@ Dieses Paket enthält eine reine Tcl-Implementierung der Befehle **uuencode(1p)*
 ## Optionen
 
 **-file** *filename*
-: Bewirkt, dass die Befehle **uuencode** oder **uudecode** ihre Daten aus der angegebenen Datei lesen, anstatt einen binären Zeichenfolgenparameter zu verwenden.
+: Bewirkt, dass die Befehle **uuencode** oder **uudecode** ihre Daten aus der angegebenen Datei lesen, anstatt eine Binärzeichenkette als Parameter zu übernehmen.
 
 **-name** *string*
 : Die uuencodierte Daten-Kopfzeile enthält den vorgeschlagenen Dateinamen, der beim Entpacken der Daten verwendet werden soll. Verwenden Sie diese Option, um den Standardwert „data.dat“ zu ändern.
@@ -66,9 +66,9 @@ Dieses Paket enthält eine reine Tcl-Implementierung der Befehle **uuencode(1p)*
 
 # Beispiele
 
-In den Beispielen wird der Unterbefehl **string trimright** verwendet, um etwaige **\\x00**-NUL-Bytes zu entfernen, die möglicherweise während der Kodierung hinzugefügt wurden. *Hinweis: Wenn die ursprünglichen Binärzeichenfolgen möglicherweise mit* **\\x00**-NUL-Bytes *enden, ist ein ausgefeilterer Ansatz erforderlich.*
+In den Beispielen wird der Unterbefehl **string trimright** verwendet, um etwaige **\\x00**-NUL-Bytes zu entfernen, die möglicherweise während der Kodierung hinzugefügt wurden. *Hinweis: Wenn die ursprünglichen Binärzeichenketten möglicherweise mit* **\\x00**-NUL-Bytes *enden, ist ein ausgefeilterer Ansatz erforderlich.*
 
-Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette mit „uuencode“ und „uudecode“ verarbeitet, wobei zu berücksichtigen ist, dass die „uuencode“-Befehle mit binären Zeichenketten arbeiten.
+Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette mit „uuencode“ und „uudecode“ verarbeiten, wobei zu berücksichtigen ist, dass die „uuencode“-Befehle mit binären Zeichenketten arbeiten.
 
 ```
 const UTF8_LINE "Δ÷ “Utf-8” ♞ℤ"
@@ -93,7 +93,7 @@ puts "uuencode='$encuu' [expr {$ASCII_LINE eq $line}]"
 uuencode='(2`W+6)I="!!4T-)22![?EY]' 1
 ```
 
-Dieses Beispiel zeigt, wie Sie eine uuencodierte Byte-Zeichenkette erstellt und in eine Datei schreibt.
+Dieses Beispiel zeigt, wie Sie eine uuencodierte Byte-Zeichenkette erstellen und in eine Datei schreiben.
 
 ```
 const UTF8_LINE "Δ÷ “Utf-8” ♞ℤ"
@@ -108,7 +108,7 @@ begin 644 test.uu
 end
 ```
 
-Dieses Beispiel zeigt, wie Sie eine Datei liest, die eine oder mehrere uuencodierte Dateien enthält.
+Dieses Beispiel zeigt, wie Sie eine Datei lesen, die eine oder mehrere uuencodierte Dateien enthält.
 
 ```
 foreach lst [::uuencode::uudecode -file test.uu] {

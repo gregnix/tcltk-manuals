@@ -76,10 +76,10 @@ Alle mit dem Befehl **::transfer::data::source** erstellten Objekte haben die fo
 
 
 *objectName* **data**
-: Diese Methode gibt je nach Typ der Daten, auf die sich das Objekt bezieht, einen Wert zurück, über den auf die Daten zugegriffen werden kann. Die Methode löst einen Fehler aus, wenn der Typ **undefined** ist. Beim Typ **string** gibt es als Rückgabewert die Daten selbst, während beim Typ **channel** das Rückgabewert das Handle des Kanals ist, der die Daten enthält.
+: Diese Methode gibt je nach Typ der Daten, auf die sich das Objekt bezieht, einen Wert zurück, über den auf die Daten zugegriffen werden kann. Die Methode löst einen Fehler aus, wenn der Typ **undefined** ist. Beim Typ **string** gibt es als Rückgabewert die Daten selbst, während beim Typ **channel** der Rückgabewert das Handle des Kanals ist, der die Daten enthält.
 
 *objectName* **size**
-: Diese Methode gibt einen Wert zurück, der vom Typ der Daten, auf die sich das Objekt bezieht, sowie von der Größe dieser Daten abhängt. Die Methode löst einen Fehler aus, wenn der Typ „**undefined**“ ist. Die Rückgabe eines negativen Werts signalisiert, dass das Objekt die absolute Größe nicht im Voraus ermitteln kann (wie beispielsweise bei Daten in einem Kanal).
+: Diese Methode gibt, abhängig vom Typ der Daten, auf die sich das Objekt bezieht, die Größe der Daten zurück. Die Methode löst einen Fehler aus, wenn der Typ „**undefined**“ ist. Die Rückgabe eines negativen Werts signalisiert, dass das Objekt die absolute Größe nicht im Voraus ermitteln kann (wie beispielsweise bei Daten in einem Kanal).
 
 *objectName* **valid** *msgvar*
 : Diese Methode überprüft die Konfiguration des Objekts auf Gültigkeit. Sie gibt einen booleschen Wert zurück, dessen Wert „**True**“ lautet, wenn das Objekt gültig ist, und andernfalls „**False**“. Im letzteren Fall wird die Variable, deren Name in *msgvar* gespeichert ist, auf eine Fehlermeldung gesetzt, die das bei der Konfiguration festgestellte Problem beschreibt. Andernfalls bleibt diese Variable unverändert.

@@ -31,7 +31,7 @@ notifywindow – Stellt ein unauffälliges Fenster für Warnmeldungen und Benach
 Dieses Paket stellt ein unauffälliges, diskretes Fenster für Warnmeldungen und Benachrichtigungen aus Tk-Anwendungen bereit, das kurz in der oberen rechten Ecke des Bildschirms erscheint. In Anlehnung an den „Growl“-Rahmen unter Mac OS X wird das Fenster auf Plattformen, die solche Effekte unterstützen, ein- und ausgeblendet, während es auf anderen Plattformen einfach erscheint und wieder verschwindet.
 
 **::notifywindow::notifywindow** *msg* *img*
-: Zeigt das Toplevel-Fenster mit der Zeichenfolge *msg* an, die nicht länger als 40 Zeichen sein sollte, und einem optionalen Bild, das 16x16 Pixel groß sein sollte.
+: Zeigt das Benachrichtigungsfenster (Toplevel) mit der Zeichenkette *msg* an, die nicht länger als 40 Zeichen sein sollte, und einem optionalen Bild, das 16x16 Pixel groß sein sollte.
 
 **::notifywindow::demo**
 : Einfaches Beispiel, das veranschaulicht, wie das Paket funktioniert.

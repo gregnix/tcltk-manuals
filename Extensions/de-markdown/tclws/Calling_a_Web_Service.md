@@ -567,7 +567,7 @@ Im Folgenden werden zuerst die beiden Zugriffsroutinen beschrieben. Danach folgt
 
   Dieser Eintrag darf nicht mit *::WS::Client::Config* verwendet werden.
 
-  Diese Option einschalten, damit Namespace-Präfixe auch in der Typdefinition gesucht werden. Weil sie als globale Präfixe gelten, kann ein doppelt verwendetes Präfix einen Verarbeitungsfehler verursachen, wenn unterschiedliche URIs zugewiesen sind.
+  Schalten Sie diese Option ein, damit Namespace-Präfixe auch in der Typdefinition gesucht werden. Weil sie als globale Präfixe gelten, kann ein doppelt verwendetes Präfix einen Verarbeitungsfehler verursachen, wenn unterschiedliche URIs zugewiesen sind.
 
   Den Fehler würde eine WSDL wie folgt verursachen
 

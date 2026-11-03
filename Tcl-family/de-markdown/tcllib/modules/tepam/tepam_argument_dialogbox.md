@@ -259,7 +259,7 @@ Die Attributliste kann verschiedene Attribute enthalten, um ein Eingabe-Widget z
 TEPAM definiert eine umfangreiche Sammlung von Eingabe-Widgets. Wenn Bedarf besteht, kann diese Sammlung um weitere anwendungsspezifische Eingabe-Widgets erweitert werden (siehe [Anwendungsspezifische Eingabe-Widgets]):
 
 -entry *list*
-: Das Element *-entry* erzeugt das einfachste, aber universellste Dateneingabe-Widget. Es ermöglicht die Eingabe beliebiger Daten in Form von einzeiligen Zeichenfolgen.
+: Das Element *-entry* erzeugt das einfachste, aber universellste Dateneingabe-Widget. Es ermöglicht die Eingabe beliebiger Daten in Form von einzeiligen Zeichenketten.
 
     ```
     tepam::argument_dialogbox \
@@ -456,7 +456,7 @@ Alle Eingabe-Widget-Elemente akzeptieren die folgenden Attribute:
     ```
 
 -label *string*
-: Das Attribut label erstellt links neben dem Eingabe-Widget eine Beschriftung, wobei die angegebene Zeichenfolge als Beschriftungstext verwendet wird:
+: Das Attribut label erstellt links neben dem Eingabe-Widget eine Beschriftung, wobei die angegebene Zeichenkette als Beschriftungstext verwendet wird:
 
     ```
     tepam::argument_dialogbox \

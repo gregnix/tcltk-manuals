@@ -35,7 +35,7 @@ Das Paket **tcl::transform::hex** enthält einen Befehl, mit dem eine Kanaltrans
 
 Eine damit verbundene Transformation in diesem Modul ist **tcl::transform::base64**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

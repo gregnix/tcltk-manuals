@@ -45,7 +45,7 @@ Siehe die Handbuchseite [ttk\_entry][ttk_entry] für Einzelheiten zu den Standar
 # Widget-spezifische Optionen
 
 **-command** (**command**/**Command**)
-: Legt ein Tcl-Skript fest, das ausgewertet wird, wenn eine Spin-Schaltfläche betätigt wird.
+: Legt einen Tcl-Befehl fest, der aufgerufen wird, wann immer eine Spin-Schaltfläche betätigt wird.
 
 **-format** (**format**/**Format**)
 : Legt ein alternatives Format fest, das beim Setzen des Zeichenkettenwerts im Bereich **-from** und **-to** verwendet wird. Es muss ein Formatbezeichner der Form **%<pad>.<pad>f** sein, da damit eine Gleitkommazahl formatiert wird.

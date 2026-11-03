@@ -14,7 +14,7 @@ Copyright:
 
 # Name
 
-getstring – Ein Dialogfeld für Zeichenfolgen
+getstring – Ein Dialogfeld für Zeichenketten
 
 # Übersicht
 

@@ -53,7 +53,7 @@ grammar::me::cpu – Implementierung einer virtuellen Maschine II zur Analyse vo
 
 # Beschreibung
 
-Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument **grammar::me\_intro**, falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
+Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument [grammar::me\_intro][me_intro], falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
 
 Diese Implementierung bietet eine objektbasierte API, und die Maschinen sind nicht wirklich an Tcl gebunden. Eine C-Implementierung derselben API ist durchaus möglich.
 
@@ -69,7 +69,7 @@ Das Paket stellt direkt nur einen einzigen Befehl für die Erstellung von virtue
 : Der Befehl erstellt ein neues ME-Maschinenobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *meName* lautet. Mit diesem Befehl können verschiedene Operationen auf der Maschine aufgerufen werden. Er hat die folgende allgemeine Form:
 
     **meName** **option** ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
     Das Argument *matchcode* enthält die Abgleichanweisungen, die die Maschine beim Parsen des Eingabestroms ausführen muss. Bitte lesen Sie den Abschnitt **Darstellung des Match-Programms** der Dokumentation zum Paket **grammar::me::cpu::core**, um die Struktur dieses Werts zu erfahren.
@@ -106,7 +106,7 @@ Die in diesem Paket enthaltenen Maschinen bieten Methoden für den Betrieb sowoh
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt das aktuelle Token zurück.
 
 *meName* **sv**
-: Dieser Befehl gibt den aktuellen semantischen Wert *SV* zurück, der in der Maschine gespeichert ist. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**, beschrieben ist.
+: Dieser Befehl gibt den aktuellen semantischen Wert *SV* zurück, der in der Maschine gespeichert ist. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**, beschrieben ist.
 
 *meName* **ok**
 : Diese Methode gibt den aktuellen Match-Status *OK* zurück.
@@ -118,10 +118,10 @@ Die in diesem Paket enthaltenen Maschinen bieten Methoden für den Betrieb sowoh
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Positionsstapel zurück.
 
 *meName* **astk** *state*
-: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Stack zurück.
+: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Stapel zurück.
 
 *meName* **mstk** *state*
-: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Marker-Stack zurück.
+: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Marker-Stapel zurück.
 
 *meName* **estk** *state*
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Fehlerstapel zurück.
@@ -133,7 +133,7 @@ Die in diesem Paket enthaltenen Maschinen bieten Methoden für den Betrieb sowoh
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Cache für Nichtterminal-Übereinstimmungen als Dictionary zurück.
 
 *meName* **ast**
-: Diese Methode gibt den aktuellen obersten Eintrag des AST-Stapels *AS* zurück. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**, festgelegt ist.
+: Diese Methode gibt den aktuellen obersten Eintrag des AST-Stapels *AS* zurück. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**, festgelegt ist.
 
 *meName* **halted**
 : Diese Methode gibt einen booleschen Wert zurück, der dem Aufrufer mitteilt, ob die Engine die Ausführung angehalten hat oder nicht. „Halt“ bedeutet, dass kein weiterer Abgleich mehr möglich ist und die über die andere Methode abgerufenen Informationen endgültig sind. Versuche, die Maschine mit **run** auszuführen, werden ignoriert, bis ein **reset** erfolgt.
@@ -153,11 +153,11 @@ Die in diesem Paket enthaltenen Maschinen bieten Methoden für den Betrieb sowoh
 *meName* **run** ?*n*?
 : Diese Methode bewirkt, dass die Maschine Abgleichanweisungen ausführt, bis entweder
 
-    - *n* Anweisungen wurden ausgeführt, oder
+    - *n* Anweisungen ausgeführt wurden oder
 
     - ein Haltebefehl ausgeführt wurde oder
 
-    - Die Eingabewarteschlange ist leer und der Code fordert weitere Token zur Verarbeitung an.
+    - die Eingabewarteschlange leer ist und der Code weitere Token zur Verarbeitung anfordert.
 
 
     Wenn kein Grenzwert *n* festgelegt wurde, werden nur die letzten beiden Bedingungen geprüft.

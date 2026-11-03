@@ -50,11 +50,11 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
 # API
 
 **debug.tag** *message* ?*level*?
-: Für jedes bekannte Tag erstellt das Paket einen Befehl mit dieser Signatur, den der Benutzer anschließend verwenden kann, um die Debug-Beschreibung des Tags bereitzustellen. Die Beschreibung *message* wird als Tcl-Skript bereitgestellt, dessen Wert im Geltungsbereich des Aufrufers nur dann per **subst** eingesetzt wird, wenn die aktuelle Detailstufe für das *tag* der Detailstufe *level* des Aufrufs entspricht oder diese übersteigt.  Dies ist nützlich, da man beliebig komplexe Beschreibungen im Code platzieren kann, ohne diese unnötigerweise auswerten zu müssen.
+: Für jedes bekannte Tag erstellt das Paket einen Befehl mit dieser Signatur, den der Benutzer anschließend verwenden kann, um die Debug-Erzählung des Tags bereitzustellen. Die Erzählung *message* wird als Tcl-Skript bereitgestellt, dessen Wert im Geltungsbereich des Aufrufers nur dann per **subst** eingesetzt wird, wenn die aktuelle Detailstufe für das *tag* der Detailstufe *level* des Aufrufs entspricht oder diese übersteigt.  Dies ist nützlich, da man beliebig komplexe Beschreibungen im Code platzieren kann, ohne diese unnötigerweise auswerten zu müssen.
 
     Siehe die Methoden **level** und **setting** zum Abfragen und Bearbeiten der aktuellen Detailebene für Tags.
 
-    Der tatsächlich ausgegebene Text besteht nicht nur aus der *message*, sondern auch aus globalen und tag-spezifischen Präfixen und Suffixen, sofern vorhanden, wobei jede Zeile der Nachricht die angegebenen Kopfzeilen und Nachspanne enthält.
+    Der tatsächlich ausgegebene Text besteht nicht nur aus der *message*, sondern auch aus globalen und tag-spezifischen Präfixen und Suffixen, sofern vorhanden, wobei jede Zeile der Nachricht die angegebenen Kopfzeilen und Trailer enthält.
 
     Alle diese Teile sind **subst**-fähige Tcl-Skripte, die vor der Zusammenstellung einmal pro Nachricht ersetzt werden.
 
@@ -64,7 +64,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
     Siehe auch die Methode **settings** weiter unten.
 
 **debug** **define** *tag*
-: Diese Methode registriert den benannten *tag* im Paket. Wenn das Tag zuvor noch nicht bekannt gewesen ist, wird es in einen inaktiven Zustand platziert. Der Zustand eines bereits bekannten Tags bleibt unverändert.
+: Diese Methode registriert das benannte *tag* im Paket. Wenn das Tag zuvor noch nicht bekannt gewesen ist, wird es in einen inaktiven Zustand platziert. Der Zustand eines bereits bekannten Tags bleibt unverändert.
 
     Das Ergebnis der Methode ist die leere Zeichenkette.
 
@@ -78,7 +78,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
     Das Ergebnis der Methode ist der angegebene Text.
 
 **debug** **level** *tag* ?*level*? ?*fd*?
-: Diese Methode legt die Detailstufe *level* für das *tag* sowie den Kanal *fd* fest, in den die Beschreibung des Tags geschrieben werden soll. *level* ist ein ganzzahliger Wert >= 0, dessen Standardwert **1** lautet. Der Kanal ist standardmäßig auf **stderr** eingestellt.
+: Diese Methode legt die Detailstufe *level* für das *tag* sowie den Kanal *fd* fest, in den die Debug-Erzählung des Tags geschrieben werden soll. *level* ist ein ganzzahliger Wert >= 0, dessen Standardwert **1** lautet. Der Kanal ist standardmäßig auf **stderr** eingestellt.
 
     Das Ergebnis der Methode ist die neue Detailstufe für das Tag.
 
@@ -86,7 +86,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
 : Diese Methode gibt eine Liste zurück, die die Namen aller dem Paket derzeit bekannten Debug-Tags enthält.
 
 **debug** **off** *tag*
-: Diese Methode registriert den benannten *tag* im Paket und setzt ihn auf inaktiv.
+: Diese Methode registriert das benannte *tag* im Paket und setzt es auf inaktiv.
 
     Das Ergebnis der Methode ist die leere Zeichenkette.
 
@@ -106,7 +106,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
     Dadurch eignet sie sich für die Verwendung in Debug-Meldungen.
 
 **debug** **hexl** *data* ?*prefix*?
-: Dies ist eine Hilfsmethode, die beliebige Daten als Hex-Dump formatiert und gibt die resultierende Zeichenkette zurück.
+: Dies ist eine Hilfsmethode, die beliebige Daten als Hex-Dump formatiert und die resultierende Zeichenkette zurückgibt.
 
     Dadurch eignet sie sich für die Verwendung in Debug-Meldungen.
 
@@ -125,7 +125,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
 
     Darüber hinaus ist das Skript tagabhängig.
 
-    Eine Ausnahme bildet das Skript für den Tag **::**, das auf alle Meldungen angewendet wird.
+    Eine Ausnahme bildet das Skript für das Tag **::**, das auf alle Meldungen angewendet wird.
 
     Wenn sowohl ein globales als auch ein tagabhängiges Präfix vorhanden sind, werden beide angewendet, wobei das globale Präfix vor dem tagabhängigen Präfix steht.
 
@@ -166,7 +166,7 @@ Die für die Fehlersuche relevanten Bereiche werden durch „Tags“ dargestellt
 
     Hinweis: Dies ist tagunabhängig.
 
-    Hinweis: Die Ersetzung des Nachspanns erfolgt nur einmal pro tatsächlich ausgegebener Meldung, d. h., alle Zeilen derselben Meldung erhalten denselben tatsächlichen Nachspann.
+    Hinweis: Die Ersetzung des Trailers erfolgt nur einmal pro tatsächlich ausgegebener Meldung, d. h., alle Zeilen derselben Meldung erhalten denselben tatsächlichen Nachspann.
 
     Das Ergebnis der Methode ist der angegebene Text.
 

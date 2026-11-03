@@ -68,7 +68,7 @@ Dies ist eine der drei öffentlichen Säulen, auf denen die Verwaltung von Schl�
 
 Informationen über [Begriffe] von Schlüsselwortindizes und ihre Bestandteile stehen im gleichnamigen Abschnitt. Informationen über die Datenstruktur, die die wesentliche Ausgabe der von diesem Paket bereitgestellten Manager-Objekte ist, stehen im Abschnitt [Serialisierungsformat für Schlüsselwortindizes].
 
-Das Plugin-System unserer Klasse basiert auf dem Paket **pluginmgr** und ist so konfiguriert, dass es nach Plugins sucht, die
+Das Plugin-System unserer Klasse basiert auf dem Paket **pluginmgr** und ist so konfiguriert, dass es an folgenden Stellen nach Plugins sucht:
 
 1. die Umgebungsvariable **DOCTOOLS\_IDX\_IMPORT\_PLUGINS**,
 
@@ -133,7 +133,7 @@ Einige Hinweise
 
 2. URL-Referenzen hingegen sind für Verweise auf alles andere gedacht, etwa Websites. Ihr Ziel ist eine URL.
 
-3. URL- und manpage-Referenzen teilen sich zwar einen Namensraum für ihre Bezeichner, das sollte jedoch kein Problem sein, denn manpage-Bezeichner sind symbolische Dateinamen und sollten daher nie wie URLs aussehen, die Bezeichner der URL-Referenzen.
+3. URL- und manpage-Referenzen teilen sich zwar einen Namespace für ihre Bezeichner, das sollte jedoch kein Problem sein, denn manpage-Bezeichner sind symbolische Dateinamen und sollten daher nie wie URLs aussehen, die Bezeichner der URL-Referenzen.
 
 
 # API
@@ -189,7 +189,7 @@ Alle mit dem Befehl **::doctools::idx::import** erstellten Objekte haben die fol
     Hinweis: Der Benutzer kann zwar die vordefinierten Konfigurationsvariablen **user** und **format** setzen, dies hat jedoch keine Auswirkungen; diese Werte werden intern beim Aufruf eines Import-Plugins überschrieben.
 
 *objectName* **config unset** *pattern*...
-: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen *pattern*s passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
+: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen Glob-Muster *pattern* passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
 
 *objectName* **includes**
 : Diese Methode gibt eine Liste zurück, die die derzeit festgelegten Pfade enthält, die bei der Verarbeitung der Eingabe zur Suche nach Include-Dateien verwendet werden sollen. Die Reihenfolge der Pfade in der Liste entspricht der Reihenfolge, in der sie verwendet werden – vom ersten bis zum letzten –, und entspricht zudem der Reihenfolge, in der sie dem Objekt hinzugefügt wurden.
@@ -251,7 +251,7 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
             : Die angegebene Datei wurde gefunden, konnte jedoch nicht in den Arbeitsspeicher geladen werden.
 
 
-        5. Eine leere Zeichenfolge im Falle eines Erfolgs oder eines Fehlers mit dem Code **notfound** sowie eine zusätzliche Fehlermeldung, die den Grund für einen Fehler mit dem Code **notread** näher erläutert.
+        5. Eine leere Zeichenkette im Falle eines Erfolgs oder eines Fehlers mit dem Code **notfound** sowie eine zusätzliche Fehlermeldung, die den Grund für einen Fehler mit dem Code **notread** näher erläutert.
 
 
 
@@ -264,7 +264,7 @@ Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten
         : Dieses Argument enthält den Text, der den Index in dem Format kodiert, für das das Plugin bestimmt ist.
 
         dictionary *configuration*
-        : Dieses Argument enthält die beim Parsen anzuwendende Konfiguration, als Dictionary von Variablennamen auf Werte.
+        : Dieses Argument enthält die aktuelle, beim Parsen anzuwendende Konfiguration, als Dictionary von Variablennamen auf Werte.
 
             Die folgenden Konfigurationsvariablen haben eine vorgegebene Bedeutung, an die sich alle Plugins halten müssen, auch wenn sie diese Angabe nach eigenem Ermessen ignorieren können. Jede weitere Konfigurationsvariable, die ein Plugin erkennt, ist in der Handbuchseite dieses Plugins beschrieben.
 

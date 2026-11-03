@@ -34,7 +34,7 @@ smtpd – Tcl-basierte SMTP-Server-Implementierung
 
 # Beschreibung
 
-Das Paket **smtpd** stellt eine einfache, ausschließlich auf Tcl basierende Serverbibliothek für das Simple Mail Transfer Protocol bereit, wie es in RFC 821 (<http://www.rfc-editor.org/rfc/rfc821.txt>) und RFC 2821 (<http://www.rfc-editor.org/rfc/rfc2821.txt>). Standardmäßig bindet der Server an die Standard-Netzwerkadresse und den Standard-SMTP-Port (25).
+Das Paket **smtpd** stellt eine einfache, ausschließlich auf Tcl basierende Serverbibliothek für das Simple Mail Transfer Protocol bereit, wie es in RFC 821 (<http://www.rfc-editor.org/rfc/rfc821.txt>) und RFC 2821 (<http://www.rfc-editor.org/rfc/rfc2821.txt>) beschrieben ist. Standardmäßig bindet der Server an die Standard-Netzwerkadresse und den Standard-SMTP-Port (25).
 
 Dieses Paket wurde entwickelt, um Tests von Mail-User-Agent-Code von der Arbeitsstation eines Entwicklers aus zu ermöglichen. *Es wird nicht versucht, E-Mails an Ihr Postfach zuzustellen.* Stattdessen wird von den Nutzern dieses Pakets erwartet, dass sie eine Prozedur schreiben, die bei Eingang einer E-Mail aufgerufen wird. Sobald diese Prozedur zurückgibt, hat der Server nichts mehr mit der E-Mail zu tun.
 
@@ -42,7 +42,7 @@ Dieses Paket wurde entwickelt, um Tests von Mail-User-Agent-Code von der Arbeits
 
 Auf Unix-Plattformen sind Root-Rechte erforderlich, um eine Bindung zum SMTP-Port durchzuführen. Ich würde davon abraten, einen skriptbasierten Server als Root auszuführen, es sei denn, es gibt eine Methode, die Root-Rechte unmittelbar nach der Bindung des Sockets wieder abzulegen. Auf Windows-Plattformen sind keine Root- oder Administratorrechte erforderlich, um Sockets mit niedrigen Nummern zu binden. Allerdings ist die Sicherheit auf diesen Plattformen ohnehin gering.
 
-Kurz gesagt: Dieser Code sollte wahrscheinlich nicht als dauerhaft laufender Mail Transfer Agent auf einem mit dem Internet verbundenen Server eingesetzt werden, auch wenn wir sorgfältig darauf achten, keine Benutzereingaben von außen zu bewerten. Es gibt viele andere, gründlich getestete und sicherheitsgeprüfte Programme, die als Mailserver für mit dem Internet verbundene Rechner verwendet werden können.
+Kurz gesagt: Dieser Code sollte wahrscheinlich nicht als dauerhaft laufender Mail Transfer Agent auf einem mit dem Internet verbundenen Server eingesetzt werden, auch wenn wir sorgfältig darauf achten, keine Benutzereingaben von außen auszuwerten. Es gibt viele andere, gründlich getestete und sicherheitsgeprüfte Programme, die als Mailserver für mit dem Internet verbundene Rechner verwendet werden können.
 
 # TLS-Sicherheitshinweise
 
@@ -72,7 +72,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 
     Derzeit unterstützt das Paket nur eine einzige Instanz eines SMTP-Servers. Dies könnte bei Bedarf geändert werden, was jedoch zur Folge hätte, dass das Paket etwas schwerer zu verstehen wäre. Wenn es einen triftigen Grund für den Betrieb mehrerer SMTP-Dienste gibt, wäre lediglich eine Anpassung des Arrays „**options**“ und der Verwendung der Variablen „**::smtpd::stopped**“ erforderlich.
 
-    Da der Servercode **fileevent**(n)-Handler zur Verarbeitung der Eingaben über Sockets verwendet, muss die Ereignisschleife laufen. Die Anwendung läuft dazu innerhalb von **wish**(1), oder **vwait**(n) wartet auf die Variable **::smtpd::stopped**, die gesetzt wird, wenn der Server anhält.
+    Da der Servercode **fileevent**(n)-Handler zur Verarbeitung der Eingaben über Sockets verwendet, muss die Ereignisschleife laufen. Dazu muss die Anwendung entweder innerhalb von **wish**(1) laufen oder mit **vwait**(n) auf die Variable **::smtpd::stopped** warten, die gesetzt wird, wenn der Server anhält.
 
 **::smtpd::stop**
 : Hält den Server an und gibt den lauschenden Socket frei. Wenn der Server nicht gestartet wurde, hat dieser Befehl keine Auswirkung. Die Variable **::smtpd::stopped** wird für die Verwendung mit **vwait**(n) gesetzt.
@@ -83,7 +83,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 : Legt die Konfigurationsoptionen für den SMTP-Server fest. Bei den meisten Werten handelt es sich um den Namen einer Callback-Prozedur, die an verschiedenen Stellen im SMTP-Protokoll aufgerufen wird. Einzelheiten zu den Prozeduren finden Sie im Abschnitt [Callbacks].
 
     **-banner** *text*
-    : Hinweis zu einer benutzerdefinierten Banner-Meldung. Das Standard-Banner lautet „tcllib smtpd 1.6“. Beachten Sie, dass eine Änderung des Banners keinen Einfluss auf den Text in Klammern in der vollständigen Begrüßung, die Ausgabe des Status 220, die Serveradresse und den Zeitstempel hat.
+    : Text einer benutzerdefinierten Banner-Meldung. Das Standard-Banner lautet „tcllib smtpd 1.6“. Beachten Sie, dass eine Änderung des Banners keinen Einfluss auf den umgebenden Text der vollständigen Begrüßung hat, der den Status 220, die Serveradresse und den Zeitstempel ausgibt.
 
     **-validate\_host** *proc*
     : Rückruffunktion zur Authentifizierung neuer Verbindungen anhand der IP-Adresse des Clients.
@@ -108,7 +108,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 # Callbacks
 
 **validate\_host** callback
-: Diese Prozedur wird mit der IP-Adresse des Clients aufgerufen, sobald eine Verbindungsanfrage angenommen wurde und bevor Protokollbefehle verarbeitet werden. Wenn Sie einem bestimmten Host den Zugriff verweigern möchten, sollte diese Rückruffunktion einen Fehler geben. Beispiel:
+: Diese Prozedur wird mit der IP-Adresse des Clients aufgerufen, sobald eine Verbindungsanfrage angenommen wurde und bevor Protokollbefehle verarbeitet werden. Wenn Sie einem bestimmten Host den Zugriff verweigern möchten, sollte diese Rückruffunktion einen Fehler zurückgeben. Beispiel:
 
     ```
      proc validate_host {ipnum} {
@@ -158,7 +158,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
     ```
 
 **deliver** callback
-: Der „deliver“-Callback wird aufgerufen, sobald eine E-Mail-Nachricht erfolgreich an den Server übermittelt wurde und die Option -deliverMIME nicht gesetzt ist. Die Prozedur wird mit dem Absender, einer Liste der Empfänger und dem Text der E-Mail als Liste von Zeilen aufgerufen. Beispiel:
+: Die Rückruffunktion „deliver“ wird aufgerufen, sobald eine E-Mail-Nachricht erfolgreich an den Server übermittelt wurde und die Option -deliverMIME nicht gesetzt ist. Die Prozedur wird mit dem Absender, einer Liste der Empfänger und dem Text der E-Mail als Liste von Zeilen aufgerufen. Beispiel:
 
     ```
      proc deliver {sender recipients data} {
@@ -168,7 +168,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
      }
     ```
 
-    Beachten Sie, dass der Befehl „DATA“ eine Fehlermeldung gibt, wenn noch kein Absender oder Empfänger definiert wurde.
+    Beachten Sie, dass der Befehl „DATA“ einen Fehler zurückgibt, wenn noch kein Absender oder Empfänger definiert wurde.
 
 
 # Variablen

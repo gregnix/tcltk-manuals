@@ -98,7 +98,7 @@
 
 BESCHREIBUNG
 
- Das Widget **Tree** verwendet canvas, um eine hierarchische Liste von Einträgen (Knoten genannt) anzuzeigen. Jeder Knoten besteht aus einer Beschriftung mit eigener Schriftart und eigenen Vordergrundattributen und einem optionalen Bild oder Fenster. Jeder Knoten kann eine Liste von Unterknoten haben, die eingeklappt oder ausgeklappt werden können. Jeder Knoten wird in einer einzigen Zeile gezeichnet, deren Höhe die Option **deltay** festlegt, sie dürfen also höchstens diese Höhe haben. Ein Knoten wird eindeutig durch eine Zeichenkette gekennzeichnet, die bei der Erzeugung (durch den Befehl **insert**) angegeben wird. Der Knoten namens *root* ist die Wurzel des Baums und wird nicht gezeichnet. Die Baumstruktur hält das Widget selbst. 
+ Das Widget **Tree** verwendet einen Canvas, um eine hierarchische Liste von Einträgen (Knoten genannt) anzuzeigen. Jeder Knoten besteht aus einer Beschriftung mit eigener Schriftart und eigenen Vordergrundattributen und einem optionalen Bild oder Fenster. Jeder Knoten kann eine Liste von Unterknoten haben, die eingeklappt oder ausgeklappt werden können. Jeder Knoten wird in einer einzigen Zeile gezeichnet, deren Höhe die Option **deltay** festlegt, sie dürfen also höchstens diese Höhe haben. Ein Knoten wird eindeutig durch eine Zeichenkette gekennzeichnet, die bei der Erzeugung (durch den Befehl **insert**) angegeben wird. Der Knoten namens *root* ist die Wurzel des Baums und wird nicht gezeichnet. Die Baumstruktur hält das Widget selbst. 
 
 ---
 
@@ -325,7 +325,7 @@ WIDGET-BEFEHL
 *pathName* **insert** *index* *parent* *node* ?*option value...*? 
 :  Fügt einen neuen Knoten, der durch *node* gekennzeichnet ist, in die Kinderliste von *parent* an der Position *index* ein. 
 
-     Jedes Vorkommen von *#auto* im Knotennamen wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. Die nicht druckbaren Zeichen \\1 to \\5 sind für den internen Gebrauch reserviert und sollen in Knotennamen nicht vorkommen.
+     Jedes Vorkommen von *#auto* im Knotennamen wird durch die Nummer des Eintrags in der Reihenfolge des Einfügens ersetzt. Die nicht druckbaren Zeichen \\1 bis \\5 sind für den internen Gebrauch reserviert und sollen in Knotennamen nicht vorkommen.
 
 
 
@@ -464,6 +464,6 @@ WIDGET-BEFEHL
 
 BINDUNGEN
 
- Ein virtuelles Ereignis **<\<TreeSelect>>** wird jedes Mal erzeugt, wenn sich die Auswahl im Baum ändert. Das ist das Vorgabeverhalten eines Eintrags im Baum, es kann aber mit dem Befehl bindText oder bindImage überschrieben werden. Wenn die Bindung der Taste 1 überschrieben wird, wird dieses Ereignis möglicherweise nicht erzeugt.
+ Ein virtuelles Ereignis **<\<TreeSelect>>** wird jedes Mal erzeugt, wenn sich die Auswahl im Baum ändert. Das ist das Vorgabeverhalten eines Eintrags im Baum, es kann aber mit dem Befehl bindText oder bindImage überschrieben werden. Wenn die Bindung der Maustaste 1 überschrieben wird, wird dieses Ereignis möglicherweise nicht erzeugt.
 
  Der Baum hat alle Standardbindungen des Mausrads, wenn er den Fokus hat.

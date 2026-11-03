@@ -52,7 +52,7 @@ Dieses Paket nutzt **cryptkit** oder **Trf** zur Beschleunigung der Digest-Berec
 
 *ACHTUNG*, hier liegt ein *Tcl-9-Kompatibilitätsproblem* vor.
 
-*Tcl 8.x behandelt* nicht-binäre Eingaben stillschweigend falsch, indem es diese intern auf die gewünschte Länge kürzt. Das heißt, indem nur das niedrige Byte eines höheren Unicode-Punkts verwendet wird. Es wird kein Fehler ausgelöst, das *Ergebnis ist einfach falsch*.
+*Tcl 8.x behandelt* nicht-binäre Eingaben stillschweigend falsch, indem es diese intern auf Bytegröße zurechtschneidet. Das heißt, indem nur das niedrige Byte eines höheren Unicode-Punkts verwendet wird. Es wird kein Fehler ausgelöst, das *Ergebnis ist einfach falsch*.
 
 *Tcl 9 löst stattdessen einen Fehler aus*, d. h.
 
@@ -65,7 +65,7 @@ expected byte sequence but character <location> was ...
 **::ripemd::ripemd160** ?*-hex*? \[ *-channel channel* | *-file filename* | *string* \]
 : Berechnet den RIPEMD-160-Digest der in der Zeichenkette angegebenen Daten. Dieser wird standardmäßig als binäre Zeichenkette zurückgegeben. Bei Angabe der Option *-hex* gibt es eine hexadezimal kodierte Version des Digests zurück.
 
-    Die zu hashenden Daten können entweder als Zeichenfolgenargument des Befehls ripemd160, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
+    Die zu hashenden Daten können entweder als Zeichenkettenargument des Befehls ripemd160, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
 
     Es sollte nur eines der Argumente *-file*, *-channel* oder *string* angegeben werden.
 
@@ -81,7 +81,7 @@ Für den Programmierer lassen sich Hash-Funktionen als ein Behälter betrachten,
 : Startet einen neuen RIPEMD-160-Hash. Gibt eine Token-ID zurück, die für die verbleibenden Funktionen verwendet werden muss.
 
 **::ripemd::RIPEMD160Update** *token* *data*
-: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *RIPEMD160Update $token „abcd“* entspricht dem Aufruf von *RIPEMD160Update $token „ab“*, gefolgt von *RIPEMD160Update $token „cb“*. Siehe [Beispiele].
+: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *RIPEMD160Update $token "abcd"* entspricht dem Aufruf von *RIPEMD160Update $token "ab"*, gefolgt von *RIPEMD160Update $token "cb"*. Siehe [Beispiele].
 
 **::ripemd::RIPEMD160Final** *token*
 : Gibt den Hash-Wert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist eine binäre Zeichenkette mit einer Länge von 16 Byte, die den 160-Bit-RIPEMD-160-Wert darstellt.
@@ -120,7 +120,7 @@ bf0c927231733686731dddb470b64a9c23f7f53b
 
 # Literatur
 
-1. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, eine erweiterte Version von RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
+1. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, eine verstärkte Version von RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
 
 2. Rivest, R., „The MD4 Message Digest Algorithm“, RFC 1320, MIT, April 1992. (<http://www.rfc-editor.org/rfc/rfc1320.txt>)
 

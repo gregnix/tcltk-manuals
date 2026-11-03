@@ -28,7 +28,7 @@ tool::dict\_ensemble – Dictionary-Tools
 Der Befehl **dict\_ensemble** ist ein Schlüsselwort, das durch [tool] hinzugefügt wurde. Er definiert eine öffentliche Variable (die als Dict gespeichert ist) sowie eine Zugriffsfunktion, mit der die in diesem Dict gespeicherten Werte bearbeitet und abgerufen werden können.
 
 *object* *ensemble* **add** *field*
-: \] *value* *Wert ...*\] Fügt Elemente zu einer Liste hinzu, die über das *field* „leaf“ des von diesem Ensemble verwalteten Dicts gepflegt wird. Deklariert eine Variable *name*, die als Array initialisiert wird und mit *contents* für Objekte dieser Klasse sowie für alle Objekte von Klassen, die von dieser Klasse abgeleitet sind, gefüllt wird.
+: \] *value* *value ...*\] Fügt Elemente zu einer Liste hinzu, die im Blatt *field* des von diesem Ensemble verwalteten Dicts gepflegt wird. Deklariert eine Variable *name*, die als Array initialisiert wird und mit *contents* für Objekte dieser Klasse sowie für alle Objekte von Klassen, die von dieser Klasse abgeleitet sind, gefüllt wird.
 
 
 # Autoren

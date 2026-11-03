@@ -162,7 +162,7 @@ Das Paket enthält folgende Algorithmen:
 
 
 **::math::probopt::lipoMax** *function* *bounds* *args*
-: Der Algorithmus „Lipschitz-Optimierung“ nutzt die „Lipschitz“-Eigenschaft der gegebenen Funktion, um ein *Maximum* innerhalb des vorgegebenen Begrenzungsrahmens zu finden. Es gibt zwei Varianten: *lipoMax* geht von einer festen Schätzung für den Lipschitz-Parameter aus.
+: Der Algorithmus „Lipschitz-Optimierung“ nutzt die „Lipschitz“-Eigenschaft der gegebenen Funktion, um ein *Maximum* innerhalb des vorgegebenen umschließenden Rechtecks zu finden. Es gibt zwei Varianten: *lipoMax* geht von einer festen Schätzung für den Lipschitz-Parameter aus.
 
     Er unterstützt die folgenden Optionen:
 
@@ -172,7 +172,7 @@ Das Paket enthält folgende Algorithmen:
 
 
 **::math::probopt::adaLipoMax** *function* *bounds* *args*
-: Der Algorithmus der „adaptiven Lipschitz-Optimierung“ nutzt die „Lipschitz“-Eigenschaft der gegebenen Funktion, um ein *Maximum* innerhalb des vorgegebenen Begrenzungsrahmens zu finden. Die adaptive Variante nutzt tatsächlich zwei Phasen, um eine geeignete Schätzung für den Lipschitz-Parameter zu ermitteln. Dies wird durch den „Bernoulli“-Parameter gesteuert.
+: Der Algorithmus der „adaptiven Lipschitz-Optimierung“ nutzt die „Lipschitz“-Eigenschaft der gegebenen Funktion, um ein *Maximum* innerhalb des vorgegebenen umschließenden Rechtecks zu finden. Die adaptive Variante nutzt tatsächlich zwei Phasen, um eine geeignete Schätzung für den Lipschitz-Parameter zu ermitteln. Dies wird durch den „Bernoulli“-Parameter gesteuert.
 
     Wenn Sie eine große Anzahl von Iterationen festlegen, kann die Ausführung des Algorithmus sehr lange dauern, da er versucht, den Lipschitz-Parameter zu verfeinern, und die Wahrscheinlichkeit, eine bessere Schätzung zu finden, schnell abnimmt.
 

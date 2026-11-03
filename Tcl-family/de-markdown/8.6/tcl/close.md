@@ -60,7 +60,7 @@ Derzeit unterstützen nur Sockets und Befehlspipelines das Halbschließen. Eine 
 
 # Beispiele
 
-So bleiben Dateien auch bei Fehlern geschlossen, wenn [catch], **close** und [return] kombiniert werden:
+So stellen Sie mit Tcl sicher, dass Dateien auch bei Fehlern geschlossen werden, indem Sie [catch], **close** und [return] kombinieren:
 
 ```
 proc withOpenFile {filename channelVar script} {

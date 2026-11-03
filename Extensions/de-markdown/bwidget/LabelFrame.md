@@ -50,7 +50,7 @@
 
 BESCHREIBUNG
 
- LabelFrame ermöglicht, einen Rahmen mit einem [Label](Label.md) zu erzeugen, das an jeder Seite angeordnet ist. LabelFrame wird von [ComboBox](ComboBox.md) und [SpinBox](SpinBox.md) verwendet. 
+ LabelFrame ermöglicht, einen Rahmen mit einem [Label](Label.md) zu erzeugen, das an einer beliebigen Seite angeordnet sein kann. LabelFrame wird von [ComboBox](ComboBox.md) und [SpinBox](SpinBox.md) verwendet. 
 
 ---
 
@@ -65,7 +65,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 WIDGET-BEFEHL
 
 LabelFrame::**align** ?*arg...*? 
-:  Dieser Befehl richtet das Label aller Widgets aus, die *args* angibt und die die Klasse LabelFrame (oder „derived“) haben, indem er ihre Breite auf das Maximum plus 1 setzt 
+:  Dieser Befehl richtet das Label aller Widgets aus, die *args* angibt und die die Klasse LabelFrame (oder eine davon abgeleitete Klasse) haben, indem er ihre Breite auf das Maximum plus 1 setzt 
 
 
 *pathName* **cget** *option* 

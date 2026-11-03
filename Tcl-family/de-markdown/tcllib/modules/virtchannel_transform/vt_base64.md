@@ -32,16 +32,16 @@ tcl::transform::base64 – Transformation der Base64-Kodierung
 
 # Beschreibung
 
-Das Paket „**tcl::transform::base64**“ enthält einen Befehl, mit dem eine Kanal-Transformation erstellt wird, die die in den Kanal geschriebenen Daten in Base64-Code kodiert und die aus dem Kanal gelesenen Daten wieder entschlüsselt.
+Das Paket „**tcl::transform::base64**“ enthält einen Befehl, mit dem eine Kanal-Transformation erstellt wird, die die in den Kanal geschriebenen Daten in Base64-Code kodiert und die aus dem Kanal gelesenen Daten wieder dekodiert.
 
 Eine damit verbundene Transformation in diesem Modul ist **tcl::transform::hex**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 
 **::tcl::transform::base64** *chan*
-: Dieser Befehl erstellt eine Base64-Transformation auf dem Kanal *chan* und gibt dessen Handle zurück.
+: Dieser Befehl erstellt eine Base64-Transformation auf dem Kanal *chan* und gibt deren Handle zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

@@ -160,7 +160,7 @@ Alle von diesem Paket erstellten Objekte stellen die folgenden Methoden zur Bear
     Das Ergebnis der Methode ist die leere Zeichenkette.
 
 *objectName* **deserialize +=** *data* ?*format*?
-: Diese Methode verhält sich im Wesentlichen wie **deserialize =**, mit dem Unterschied, dass sie die Grammatik in *data* mit deren Inhalt zusammenführt, anstatt sie zu ersetzen. Die Methode bricht mit einer Fehlermeldung ab und lässt die Grammatik unverändert, wenn eine Zusammenführung nicht möglich ist, d. h. wenn dadurch eine ungültige Grammatik entstehen würde.
+: Diese Methode verhält sich im Wesentlichen wie **deserialize =**, mit dem Unterschied, dass sie die Grammatik in *data* mit ihrem eigenen Inhalt zusammenführt, anstatt sie zu ersetzen. Die Methode bricht mit einer Fehlermeldung ab und lässt die Grammatik unverändert, wenn eine Zusammenführung nicht möglich ist, d. h. wenn dadurch eine ungültige Grammatik entstehen würde.
 
     Das Ergebnis der Methode ist die leere Zeichenkette.
 
@@ -179,7 +179,7 @@ Alle von diesem Paket erstellten Objekte stellen die folgenden Methoden zur Bear
 : Diese Methode gibt ein Dictionary zurück, das die Menge aller der Grammatik bekannten nichtterminalen Symbole ihren semantischen Modi zuordnet.
 
 *objectName* **modes** *dict*
-: Diese Methode nimmt ein Dictionary entgegen, das eine Menge von der Grammatik bekannter nichtterminaler Symbole ihren semantischen Modi zuordnet, und gibt das neue vollständige Dictionary der nichtterminalen Symbole zu semantischen Modi zurück.
+: Diese Methode nimmt ein Dictionary entgegen, das eine Menge der Grammatik bekannter nichtterminaler Symbole ihren semantischen Modi zuordnet, und gibt das neue vollständige Dictionary der nichtterminalen Symbole zu semantischen Modi zurück.
 
     Die Methode schlägt mit einem Fehler fehl, wenn eines der nichtterminalen Symbole im Dictionary der Grammatik unbekannt ist oder die leere Zeichenkette darstellt, d. h. ein ungültiges nichtterminales Symbol ist, oder wenn einer der gewählten *mode* nicht zu den zulässigen Werten gehört.
 
@@ -187,7 +187,7 @@ Alle von diesem Paket erstellten Objekte stellen die folgenden Methoden zur Bear
 : Diese Methode gibt ein Dictionary zurück, das die Menge aller der Grammatik bekannten nichtterminalen Symbole ihren Parsing-Ausdrücken (Rechtsseiten) zuordnet.
 
 *objectName* **rules** *dict*
-: Diese Methode nimmt ein Dictionary entgegen, das eine Menge der der Grammatik bekannter nichtterminaler Symbole ihren Parsing-Ausdrücken (Rechtsseiten) zuordnet, und gibt das neue vollständige Dictionary der nichtterminalen Symbole zu Parsing-Ausdrücken zurück.
+: Diese Methode nimmt ein Dictionary entgegen, das eine Menge der Grammatik bekannter nichtterminaler Symbole ihren Parsing-Ausdrücken (Rechtsseiten) zuordnet, und gibt das neue vollständige Dictionary der nichtterminalen Symbole zu Parsing-Ausdrücken zurück.
 
     Die Methode schlägt mit einer Fehlermeldung fehl, wenn eines der nichtterminalen Symbole im Dictionary der Grammatik nicht bekannt ist, wenn die leere Zeichenkette – d. h. ein ungültiges nichtterminales Symbol – enthalten ist oder wenn einer der ausgewählten Parsing-Ausdrücke kein gültiger Parsing-Ausdruck im Sinne des Abschnitts [PE-Serialisierungsformat] ist.
 
@@ -224,7 +224,7 @@ Alle von diesem Paket erstellten Objekte stellen die folgenden Methoden zur Bear
     Die folgenden Modi sind zulässig:
 
     **value**
-    : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
+    : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
 
     **leaf**
     : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
@@ -273,7 +273,7 @@ Reguläre Serialisierung
                 : Der Wert kann einer von drei Werten sein, die festlegen, wie ein Parser mit dem durch das Symbol erzeugten semantischen Wert umgehen soll.
 
                     **value**
-                    : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminale selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
+                    : Der semantische Wert des nichtterminalen Symbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal selbst besteht, dessen Kindknoten die ASTs der rechten Seite des Symbols sind.
 
                     **leaf**
                     : Der semantische Wert des Nichtterminalsymbols ist ein abstrakter Syntaxbaum, der aus einem einzigen Knoten für das Nichtterminal besteht, der keine Kindknoten hat. Alle durch die rechte Seite des Symbols erzeugten ASTs werden verworfen.
@@ -296,7 +296,7 @@ Kanonische Serialisierung
 
     1. Die Schlüssel in allen verschachtelten Tcl-Dictionaries sind in aufsteigender Wörterbuchreihenfolge sortiert, wie sie der eingebaute Tcl-Befehl **lsort -increasing -dict** erzeugt.
 
-    2. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    2. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
 
 
@@ -345,37 +345,37 @@ Reguläre Serialisierung
 : siehe unten ...
 
     **Atomare Parsing-Ausdrücke**
-    : 1. Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
+    : 1. Die Zeichenkette **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenkette.
 
-        2. Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
+        2. Die Zeichenkette **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
 
-        3. Die Zeichenfolge **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        3. Die Zeichenkette **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        4. Die Zeichenfolge **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        4. Die Zeichenkette **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        5. Die Zeichenfolge **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        5. Die Zeichenkette **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        6. Die Zeichenfolge **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        6. Die Zeichenkette **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        7. Die Zeichenfolge **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        7. Die Zeichenkette **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        8. Die Zeichenfolge **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        8. Die Zeichenkette **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        9. Die Zeichenfolge **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        9. Die Zeichenkette **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        10. Die Zeichenfolge **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        10. Die Zeichenkette **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        11. Die Zeichenfolge **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        11. Die Zeichenkette **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        12. Die Zeichenfolge **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        12. Die Zeichenkette **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        13. Die Zeichenfolge **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        13. Die Zeichenkette **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        14. Die Zeichenfolge **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        14. Die Zeichenkette **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        15. Die Zeichenfolge **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        15. Die Zeichenkette **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        16. Die Zeichenfolge **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
+        16. Die Zeichenkette **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
 
         17. Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
 
@@ -402,7 +402,7 @@ Reguläre Serialisierung
 Kanonische Serialisierung
 : Die kanonische Serialisierung eines Parsing-Ausdrucks hat das im vorherigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Parsing-Ausdrucks eindeutig ist.
 
-    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    1. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
     2. Terminale werden *nicht* als Bereiche kodiert (bei denen Anfang und Ende des Bereichs identisch sind).
 

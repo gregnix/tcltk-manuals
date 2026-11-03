@@ -74,11 +74,11 @@ Dieses Paket stellt Berichtsobjekte bereit, die von den Formatierungsmethoden de
 
 # Regionen
 
-Die drei Bereiche sind die *obere Beschriftung*, der *Datenbereich* und die *untere Beschriftung*. Dabei handelt es sich, grob gesagt, um den Titel, die zu darstellenden Werte und eine Beschriftung am unteren Rand. Die Größe der Beschriftungsbereiche kann vom Benutzer als Anzahl der Zeilen festgelegt werden, die sie in der zu formatierenden Matrix einnehmen. Die Größe des Datenbereichs wird implizit festgelegt.
+Die drei Bereiche sind die *obere Beschriftung*, der *Datenbereich* und die *untere Beschriftung*. Dabei handelt es sich, grob gesagt, um den Titel, die darzustellenden Werte und eine Beschriftung am unteren Rand. Die Größe der Beschriftungsbereiche kann vom Benutzer als Anzahl der Zeilen festgelegt werden, die sie in der zu formatierenden Matrix einnehmen. Die Größe des Datenbereichs wird implizit festgelegt.
 
 # Zeilen
 
-[Vorlagen] sind den zehn Linienklassen zugeordnet und legen die Formatierung für die jeweilige Linienart fest. Der Benutzer kann die Trennlinien nach Belieben aktivieren und deaktivieren, nicht jedoch die Datenzeilen. Ihre Verwendung richtet sich ausschließlich nach der Anzahl der Zeilen, die in den drei Bereichen enthalten sind. Datenzeilen und alle aktivierten Trennlinien müssen einer Vorlage zugeordnet sein.
+[Vorlagen] sind den zehn Zeilenklassen zugeordnet und legen die Formatierung für die jeweilige Zeilenart fest. Der Benutzer kann die Trennlinien nach Belieben aktivieren und deaktivieren, nicht jedoch die Datenzeilen. Ihre Verwendung richtet sich ausschließlich nach der Anzahl der Zeilen, die in den drei Bereichen enthalten sind. Datenzeilen und alle aktivierten Trennlinien müssen einer Vorlage zugeordnet sein.
 
 Hinweis: Die Datenzeilen in einem Bericht und die Zeilen in der Matrix, aus der der Bericht erstellt wurde, weisen *keine* 1:1-Beziehung auf, wenn eine beliebige Zeile in der Matrix eine Höhe von mehr als eins aufweist.
 
@@ -117,21 +117,21 @@ Die verschiedenen Arten von Zeilen und die Codes, die von den Berichtsmethoden z
 
 # Vorlagen
 
-Jede Vorlage ist eine Liste von Zeichenfolgen, die zur Formatierung der Zeile verwendet werden, der sie zugeordnet ist. Bei einem Bericht, der die Spalten „**n**“ enthält, muss eine Vorlage für eine Datenzeile „**n**+1“ Elemente und eine Vorlage für eine Trennzeile „2\***n**+1“ Elemente enthalten.
+Jede Vorlage ist eine Liste von Zeichenketten, die zur Formatierung der Zeile verwendet werden, der sie zugeordnet ist. Bei einem Bericht, der **n** Spalten enthält, muss eine Vorlage für eine Datenzeile „**n**+1“ Elemente und eine Vorlage für eine Trennzeile „2\***n**+1“ Elemente enthalten.
 
-Die Elemente in einer Datenvorlage legen die Zeichenfolgen fest, die zur Trennung der Informationen über die Spalten verwendet werden. Zusammen mit den entsprechenden Elementen in den Trennzeichenvorlagen bilden sie die vertikalen Linien im Bericht.
+Die Elemente in einer Datenvorlage legen die Zeichenketten fest, die zur Trennung der Informationen über die Spalten verwendet werden. Zusammen mit den entsprechenden Elementen in den Trennzeichenvorlagen bilden sie die vertikalen Linien im Bericht.
 
 *Hinweis*: Die entsprechenden Einträge in allen definierten Vorlagen müssen dieselbe Länge aufweisen. Dies wird vom Berichtsobjekt überprüft. Der erste Eintrag definiert die linke vertikale Linie und der letzte Eintrag die rechte vertikale Linie. Der Eintrag am Index **k** („1“, …, „**n**-2“) trennt die Informationen in den Spalten „**k**-1“ und „**k**“.
 
 Die Einträge in einer Trennzeichenvorlage mit einem geraden Index („0“, „2“, …) legen die Trennzeichen für die Spalten fest. Der Eintrag am Index „2\***k**“ („0“, „2“, …, „2\***n**“) entspricht den Einträgen am Index „**k**“ in den Datenvorlagen.
 
-Die Einträge in einer Trennzeichenvorlage mit ungeraden Indizes („1“, „3“, …) legen die Zeichenfolgen fest, aus denen die horizontalen Linien in den Trennzeilen gebildet werden. Das Element am Index „2\***k**+1“ („1“, „3“, …, „2\***n**+1“) entspricht der Spalte „**k**“. Bei der Erzeugung der horizontalen Linien werden die Elemente so lange dupliziert, bis sie mindestens die Länge ihrer Spalten erreichen, und anschließend auf die exakte Größe zugeschnitten.
+Die Einträge in einer Trennzeichenvorlage mit ungeraden Indizes („1“, „3“, …) legen die Zeichenketten fest, aus denen die horizontalen Linien in den Trennzeilen gebildet werden. Das Element am Index „2\***k**+1“ („1“, „3“, …, „2\***n**+1“) entspricht der Spalte „**k**“. Bei der Erzeugung der horizontalen Linien werden die Elemente so lange dupliziert, bis sie mindestens die Länge ihrer Spalten erreichen, und anschließend auf die exakte Größe zugeschnitten.
 
 # Styles
 
-Mithilfe von Styles kann der Benutzer dieses Pakets allgemeine Konfigurationen für Berichtsobjekte festlegen und diese später bei der eigentlichen Instanziierung der Berichtsobjekte verwenden. Sie werden als TCL-Skripte definiert, die bei ihrer Ausführung das Berichtsobjekt entsprechend der gewünschten Konfiguration einrichten.
+Mithilfe von Styles kann der Benutzer dieses Pakets allgemeine Konfigurationen für Berichtsobjekte festlegen und diese später bei der eigentlichen Instanziierung der Berichtsobjekte verwenden. Sie werden als Tcl-Skripte definiert, die bei ihrer Ausführung das Berichtsobjekt entsprechend der gewünschten Konfiguration einrichten.
 
-Der Befehl zum Definieren von Stilen lautet **::report::defstyle**. Sein letztes Argument ist der TCL-Befehl **script**, der die eigentliche Neukonfiguration des Berichtsobjekts durchführt, um den gewünschten Stil zu erzielen.
+Der Befehl zum Definieren von Stilen lautet **::report::defstyle**. Sein letztes Argument ist das Tcl-Skript **script**, das die eigentliche Neukonfiguration des Berichtsobjekts durchführt, um den gewünschten Stil zu erzielen.
 
 In diesem Skript stehen die Namen aller zuvor definierten Stile als Befehle zur Verfügung, ebenso wie alle Befehle, die in einem sicheren Interpreter zu finden sind, sowie die Methoden der Konfiguration von Berichtsobjekten. Letztere wirken implizit auf das Objekt, das das Stilskript gerade ausführt. Die hier deklarierten **arguments** stehen im **script** als Variablen zur Verfügung. Beim Aufruf des Befehls eines zuvor deklarierten Stils müssen alle von diesem erwarteten Argumente im Aufruf definiert werden.
 
@@ -154,7 +154,7 @@ Für Berichtsobjekte sind folgende Befehle möglich:
 : Gibt die Vorlage zurück, die derzeit dem durch den *templatecode* angegebenen Zeilentyp zugeordnet ist. Hier sind alle bekannten templatecodes zulässig.
 
 *reportName* *templatecode* **set** *templatedata*
-: Legt die Vorlage fest, die mit der durch den *templatecode* bezeichneten Zeilenart verknüpft ist, und setzt sie auf den neuen Wert in *templatedata*. Informationen zu den Constraints hinsichtlich der Länge von Vorlagen finden Sie im Abschnitt [Vorlagen].
+: Legt die Vorlage fest, die mit der durch den *templatecode* bezeichneten Zeilenart verknüpft ist, und setzt sie auf den neuen Wert in *templatedata*. Informationen zu den Einschränkungen hinsichtlich der Länge von Vorlagen finden Sie im Abschnitt [Vorlagen].
 
 *reportName* **tcaption** ?*size*?
 : Legt die *size* des oberen Beschriftungsbereichs als die Anzahl der Zeilen fest, die er in der zu formatierenden Matrix einnimmt. Es sind nur Zahlen größer oder gleich Null zulässig. Wird keine *size* angegeben, gibt der Befehl stattdessen die aktuelle Größe zurück.
@@ -174,24 +174,24 @@ Für Berichtsobjekte sind folgende Befehle möglich:
 *reportName* **sizes** ?*size-list*?
 : Mit dieser Methode kann der Benutzer die Breiten aller Spalten in einem einzigen Aufruf festlegen. Als Argument dient eine Liste, die die den Spalten zuzuordnenden Breiten enthält. Das erste Element wird der Spalte 0 zugeordnet, das nächste der Spalte 1 und so weiter.
 
-    Wird keine *Breitenliste* angegeben, gibt der Befehl stattdessen eine Liste zurück, die die aktuell eingestellten Breiten enthält.
+    Wird keine *size-list* angegeben, gibt der Befehl stattdessen eine Liste zurück, die die aktuell eingestellten Breiten enthält.
 
 *reportName* **pad** *column* ?**left**|**right**|**both** ?*padstring*??
 : Mit dieser Methode kann der Benutzer einen Innenabstand auf der linken, rechten oder beiden Seiten einer *column* festlegen. Wenn das *padstring* nicht angegeben wird, wird standardmäßig ein einzelnes Leerzeichen verwendet. *Hinweis*: Eine alternative Möglichkeit, den Innenabstand festzulegen, besteht darin, in den Vorlagen vertikale Trennzeichen zu verwenden, die länger als ein Zeichen sind (siehe Abschnitt [Vorlagen]).
 
-    Wenn überhaupt keine Ausrichtungsangabe gemacht wird, gibt der Befehl stattdessen den aktuellen Zustand des Innenabstands der Spalten zurück. Dabei handelt es sich um eine Liste mit zwei Elementen, wobei das erste Element die linke Ausrichtung und das zweite die rechte Ausrichtung beschreibt.
+    Wenn überhaupt keine Angabe zum Innenabstand gemacht wird, gibt der Befehl stattdessen den aktuellen Zustand des Innenabstands der Spalte zurück. Dabei handelt es sich um eine Liste mit zwei Elementen, wobei das erste Element den linken Innenabstand und das zweite den rechten Innenabstand beschreibt.
 
 *reportName* **justify** *column* ?**left**|**right**|**center**?
 : Legt fest, wie die Werte der Zellen für eine *column* in den Bericht eingefügt werden, unter Berücksichtigung der angegebenen Spaltenbreite im Bericht.
 
-    Bei den Ausrichtungsarten **left** und **right** wird ein Wert, der kürzer als die Breite der Spalten ist, mit seiner benannten Kante an die entsprechende Kante der Spalten gebunden. Die andere Seite wird mit Leerzeichen aufgefüllt. Im Fall von **center** werden die Leerzeichen auf beiden Seiten des Wertes platziert, wobei die Anzahl der Leerzeichen auf der linken Seite höchstens um eins größer ist als die auf der rechten Seite.
+    Bei den Ausrichtungsarten **left** und **right** wird ein Wert, der kürzer als die Breite der Spalte ist, mit seiner benannten Kante an die entsprechende Kante der Spalte gebunden. Die andere Seite wird mit Leerzeichen aufgefüllt. Im Fall von **center** werden die Leerzeichen auf beiden Seiten des Wertes platziert, wobei die Anzahl der Leerzeichen auf der linken Seite höchstens um eins größer ist als die auf der rechten Seite.
 
-    Bei einem Wert, der länger ist als die Breite der Spalte, wird der Wert an der benannten Kante abgeschnitten. Dies bedeutet bei der Ausrichtung **left**, dass der *Endteil* (d. h. der Teil **right**) des Werts in der Ausgabe sichtbar gemacht wird. Bei „**center**“ wird der Wert an beiden Seiten gekürzt, um in die Spalten zu passen, und die Anzahl der Zeichen, die auf der linken Seite des Werts gekürzt werden, ist höchstens um eins geringer als die Anzahl der Zeichen, die auf der rechten Seite gekürzt werden.
+    Bei einem Wert, der länger ist als die Breite der Spalte, wird der Wert an der benannten Kante abgeschnitten. Dies bedeutet bei der Ausrichtung **left**, dass der *Endteil* (d. h. der Teil **right**) des Werts in der Ausgabe sichtbar gemacht wird. Bei „**center**“ wird der Wert an beiden Seiten gekürzt, um in die Spalte zu passen, und die Anzahl der Zeichen, die auf der linken Seite des Werts gekürzt werden, ist höchstens um eins geringer als die Anzahl der Zeichen, die auf der rechten Seite gekürzt werden.
 
-    Wurde keine Ausrichtung festgelegt, gibt der Befehl stattdessen die aktuelle Ausrichtung der Spalten zurück.
+    Wurde keine Ausrichtung festgelegt, gibt der Befehl stattdessen die aktuelle Ausrichtung der Spalte zurück.
 
 *reportName* **printmatrix** *matrix*
-: Formatiert die *matrix* entsprechend der Konfiguration des Berichts und gibt die resultierende Zeichenfolge zurück. Die Matrix muss dieselbe Anzahl an Spalten wie der Bericht aufweisen. Die Matrix muss zudem über genügend Zeilen verfügen, damit sich die oberen und unteren Beschriftungsbereiche nicht überlappen. Der Datenbereich darf leer sein.
+: Formatiert die *matrix* entsprechend der Konfiguration des Berichts und gibt die resultierende Zeichenkette zurück. Die Matrix muss dieselbe Anzahl an Spalten wie der Bericht aufweisen. Die Matrix muss zudem über genügend Zeilen verfügen, damit sich die oberen und unteren Beschriftungsbereiche nicht überlappen. Der Datenbereich darf leer sein.
 
 *reportName* **printmatrix2channel** *matrix chan*
 : Formatiert die *matrix* entsprechend der Konfiguration des Berichts und schreibt das Ergebnis in den Kanal *chan*. Die Matrix muss dieselbe Anzahl an Spalten wie der Bericht aufweisen. Die Matrix muss zudem über genügend Zeilen verfügen, damit sich die oberen und unteren Beschriftungsbereiche nicht überlappen. Der Datenbereich darf leer sein.
@@ -200,7 +200,7 @@ Für Berichtsobjekte sind folgende Befehle möglich:
 : Gibt die Anzahl der Spalten im Bericht zurück.
 
 
-Die Methoden **size**, **pad** und **justify** nehmen alle einen Index für eine Spalte als erstes Argument entgegen. Dieser Index darf alle Formen eines Indexes verwenden, die vom Befehl **lindex** akzeptiert werden. Der zulässige Bereich für Indizes lautet „0, ...,\[**reportName** Spalten\]-1“.
+Die Methoden **size**, **pad** und **justify** nehmen alle einen Index für eine Spalte als erstes Argument entgegen. Dieser Index darf alle Formen eines Indexes verwenden, die vom Befehl **lindex** akzeptiert werden. Der zulässige Bereich für Indizes lautet „0, ...,\[**reportName** columns\]-1“.
 
 # Beispiele
 

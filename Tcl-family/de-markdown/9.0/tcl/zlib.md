@@ -136,7 +136,7 @@ Der Befehl **zlib** stellt Zugriff auf die Komprimierungs- und Prüfsummenfunkti
     [-limit]{.lit} [readaheadLimit]{.arg}
     : Die maximale Anzahl von Bytes, die beim Dekomprimieren vorausgelesen werden.
 
-        Diese Option ist **obsolet** geworden. Sie wurde ursprünglich eingeführt, um zu verhindern, dass Tcl in Mehrfachstream-Kanälen über das Ende eines komprimierten Streams hinaus liest, damit die anschließenden Daten für weiteres Lesen unberührt bleiben — auf Kosten der Geschwindigkeit.
+        Diese Option ist **bedeutungslos** geworden. Sie wurde ursprünglich eingeführt, um zu verhindern, dass Tcl in Mehrfachstream-Kanälen über das Ende eines komprimierten Streams hinaus liest, damit die anschließenden Daten für weiteres Lesen unberührt bleiben — auf Kosten der Geschwindigkeit.
 
         Tcl gibt jetzt automatisch alle Bytes, die über das Ende eines komprimierten Streams hinaus gelesen wurden, an den Kanal zurück, sodass sie für nachfolgende Leser als ungelesen erscheinen.
 
@@ -228,7 +228,7 @@ Die vollständige Menge der von einem Streaming-Instanzbefehl *stream* unterstü
 : Gibt das Dictionary mit der gzip-Header-Beschreibung zurück, das aus dem Stream extrahiert wurde. Nur unterstützt für Streams, die mit dem *mode*-Parameter **gunzip** erstellt wurden.
 
 [stream]{.ins} [put]{.sub} [option...]{.optarg} [data]{.arg}
-: Hängt den Inhalt der Binärzeichenkette *data* an die internen Puffer von *stream* an und wendet dabei die Transformation an. Folgende *option*en werden unterstützt (oder ein eindeutiges Präfix davon), die die Art der Transformation beeinflussen:
+: Hängt den Inhalt der Binärzeichenkette *data* an die internen Puffer von *stream* an und wendet dabei die Transformation an. Folgende Optionen (*option*) werden unterstützt (oder ein eindeutiges Präfix davon), die die Art der Transformation beeinflussen:
 
     [-dictionary]{.lit} [binData]{.arg}
     : Legt das zu verwendende Komprimierungswörterbuch auf *binData* fest, wenn komprimierende oder dekomprimierende Transformationen angewendet werden.
@@ -250,7 +250,7 @@ Die vollständige Menge der von einem Streaming-Instanzbefehl *stream* unterstü
 
 
 [stream]{.ins} [reset]{.sub}
-: Setzt jeden Stream, einschließlich finalisierter oder EOF-erreichte, in einen Zustand zurück, in dem er weitere Daten verarbeiten kann. Verwirft alle intern gepufferten Daten.
+: Setzt jeden Stream, einschließlich finalisierter Streams und solcher, die EOF erreicht haben, in einen Zustand zurück, in dem er weitere Daten verarbeiten kann. Verwirft alle intern gepufferten Daten.
 
 
 # Beispiele

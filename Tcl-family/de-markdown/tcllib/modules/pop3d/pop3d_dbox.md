@@ -55,7 +55,7 @@ Jedes Postfach-Objekt, das der unten beschriebenen Schnittstelle folgt, kann zus
 Mit dem Befehl **dbName** können verschiedene Operationen auf der Datenbank ausgeführt werden. Er hat die folgende allgemeine Form:
 
 **dbName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+: *Option* und die Argumente *arg* legen das genaue Verhalten des Befehls fest.
 
 
 Für Datenbankobjekte sind folgende Befehle möglich:

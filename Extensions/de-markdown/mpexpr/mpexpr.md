@@ -15,7 +15,7 @@ mpexpr - Einen Ausdruck mit Mehrfachgenauigkeit auswerten
 
  Mpexpr beruht auf dem Tcl-Befehl *expr* und hat mit *expr* viel gemeinsam. Alle Rechnungen laufen über ein Paket für Arithmetik mit beliebiger Genauigkeit. 
 
- Mpexpr hängt die Argumente *arg* aneinander, mit Leerzeichen dazwischen, wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. Die Operatoren in Tcl-Ausdrücken sind eine Teilmenge der Operatoren in C-Ausdrücken, mit derselben Bedeutung und derselben Vorrangstufe. Ausdrücke liefern fast immer Zahlen, ganze Zahlen oder Gleitkommawerte. Zum Beispiel der Ausdruck 
+ Mpexpr hängt die Argumente *arg* aneinander, mit Leerzeichen dazwischen, wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. Die Operatoren in Tcl-Ausdrücken sind eine Teilmenge der Operatoren in C-Ausdrücken, mit derselben Bedeutung und derselben Vorrangstufe. Ausdrücke liefern fast immer Zahlen, Ganzzahlen oder Gleitkommawerte. Zum Beispiel der Ausdruck 
 
  **mpexpr 8.2 + 6**  
 
@@ -23,11 +23,11 @@ mpexpr - Einen Ausdruck mit Mehrfachgenauigkeit auswerten
 
 ## OPERANDEN 
 
- Ein Tcl-Ausdruck besteht aus Operanden, Operatoren und Klammern. Zwischen Operanden, Operatoren und Klammern darf Leerraum stehen. Der Ausdrucksprozessor ignoriert ihn. Wo es geht, werden Operanden als ganze Zahlen gelesen. Ganze Zahlen stehen dezimal, das ist der Normalfall, oktal, wenn das erste Zeichen des Operanden **0** ist, oder hexadezimal, wenn die ersten beiden Zeichen **0x** sind. Passt keines dieser Formate, wird der Operand als Gleitkommazahl gelesen, sofern das möglich ist. Gleitkommazahlen dürfen in jeder Form stehen, die ein ANSI-C-Compiler annimmt. Die Endungen \`\`f'', \`\`F'', \`\`l'' und \`\`L'' sind in den meisten Installationen nicht zulässig. Gültige Gleitkommazahlen sind zum Beispiel 2.1, 3., 6e4 und 7.91e+16. Ist keine numerische Lesart möglich, bleibt der Operand eine Zeichenkette, und nur wenige Operatoren gelten für ihn. 
+ Ein Tcl-Ausdruck besteht aus Operanden, Operatoren und Klammern. Zwischen Operanden, Operatoren und Klammern darf Leerraum stehen. Der Ausdrucksprozessor ignoriert ihn. Wo es geht, werden Operanden als Ganzzahlen gelesen. Ganzzahlen stehen dezimal, das ist der Normalfall, oktal, wenn das erste Zeichen des Operanden **0** ist, oder hexadezimal, wenn die ersten beiden Zeichen **0x** sind. Passt keines dieser Formate, wird der Operand als Gleitkommazahl gelesen, sofern das möglich ist. Gleitkommazahlen dürfen in jeder Form stehen, die ein ANSI-C-Compiler annimmt. Die Endungen \`\`f'', \`\`F'', \`\`l'' und \`\`L'' sind in den meisten Installationen nicht zulässig. Gültige Gleitkommazahlen sind zum Beispiel 2.1, 3., 6e4 und 7.91e+16. Ist keine numerische Lesart möglich, bleibt der Operand eine Zeichenkette, und nur wenige Operatoren gelten für ihn. 
 
 Operanden lassen sich auf eine der folgenden Arten angeben:
 
-1. Als Zahl, ganze Zahl oder Gleitkommazahl. 
+1. Als Zahl, Ganzzahl oder Gleitkommazahl. 
 2. Als Tcl-Variable in der üblichen Schreibweise **\$**. Der Wert der Variablen ist der Operand. 
 3. Als Zeichenkette in doppelten Anführungszeichen. Der Ausdrucksprozessor führt zwischen den Anführungszeichen Backslash-, Variablen- und Befehlsersetzung aus und nimmt den entstandenen Wert als Operanden. 
 4. Als Zeichenkette in geschweiften Klammern. Die Zeichen zwischen der öffnenden Klammer und der passenden schließenden Klammer sind der Operand, ohne Ersetzung. 
@@ -59,16 +59,16 @@ Operanden lassen sich auf eine der folgenden Arten angeben:
 Die gültigen Operatoren stehen unten, nach abnehmender Vorrangstufe:
 
 **- + ~ !**  
-: Unäres Minus, unäres Plus, bitweises NOT, logisches NOT. Keiner dieser Operatoren gilt für Zeichenketten, und bitweises NOT gilt nur für ganze Zahlen. 
+: Unäres Minus, unäres Plus, bitweises NOT, logisches NOT. Keiner dieser Operatoren gilt für Zeichenketten, und bitweises NOT gilt nur für Ganzzahlen. 
 
 **\* / %**  
-: Multiplizieren, dividieren, Rest. Keiner dieser Operatoren gilt für Zeichenketten, und der Rest gilt nur für ganze Zahlen. Der Rest hat immer das Vorzeichen des Divisors und einen Absolutbetrag, der kleiner ist als der Divisor. 
+: Multiplizieren, dividieren, Rest. Keiner dieser Operatoren gilt für Zeichenketten, und der Rest gilt nur für Ganzzahlen. Der Rest hat immer das Vorzeichen des Divisors und einen Absolutbetrag, der kleiner ist als der Divisor. 
 
 **+ -**  
 : Addieren und subtrahieren. Gilt für alle numerischen Operanden. 
 
 **<< >>**  
-: Schieben nach links und nach rechts. Gilt nur für ganzzahlige Operanden. Ganze Zahlen in mpexpr sind nicht auf ein Maschinenwort beschränkt und stehen nicht im Zweierkomplement. Beim Schieben gibt es daher kein Vorzeichenbit. 
+: Schieben nach links und nach rechts. Gilt nur für ganzzahlige Operanden. Ganzzahlen in mpexpr sind nicht auf ein Maschinenwort beschränkt und stehen nicht im Zweierkomplement. Beim Schieben gibt es daher kein Vorzeichenbit. 
 
 **< > <= >=**  
 : Boolesches Kleiner, Größer, Kleiner-oder-gleich und Größer-oder-gleich. Jeder Operator liefert 1, wenn die Bedingung wahr ist, sonst 0. Die Operatoren gelten für Zeichenketten und für Zahlen. Bei Zeichenketten wird als Zeichenkette verglichen. 
@@ -86,10 +86,10 @@ Die gültigen Operatoren stehen unten, nach abnehmender Vorrangstufe:
 : Bitweises ODER. Gilt nur für ganzzahlige Operanden. 
 
 **&&**  
-: Logisches UND. Liefert 1, wenn beide Operanden ungleich null sind, sonst 0. Gilt nur für numerische Operanden, ganze Zahlen oder Gleitkommazahlen. 
+: Logisches UND. Liefert 1, wenn beide Operanden ungleich null sind, sonst 0. Gilt nur für numerische Operanden, Ganzzahlen oder Gleitkommazahlen. 
 
 **||**  
-: Logisches ODER. Liefert 0, wenn beide Operanden null sind, sonst 1. Gilt nur für numerische Operanden, ganze Zahlen oder Gleitkommazahlen. 
+: Logisches ODER. Liefert 0, wenn beide Operanden null sind, sonst 1. Gilt nur für numerische Operanden, Ganzzahlen oder Gleitkommazahlen. 
 
 *x?y:z*  
 : Wenn-dann-sonst, wie in C. Wertet *x* zu ungleich null aus, ist das Ergebnis der Wert von *y*. Sonst ist das Ergebnis der Wert von *z*. Der Operand *x* muss eine Zahl sein. 
@@ -109,7 +109,7 @@ Die gültigen Operatoren stehen unten, nach abnehmender Vorrangstufe:
 
 ## MATHEMATISCHE FUNKTIONEN 
 
- Mpexpr kennt in Ausdrücken die folgenden mathematischen Funktionen. *x* und *y* sind ganze Zahlen oder Gleitkommawerte. *i*, *j* und *c* sind ganze Zahlen. 
+ Mpexpr kennt in Ausdrücken die folgenden mathematischen Funktionen. *x* und *y* sind Ganzzahlen oder Gleitkommawerte. *i*, *j* und *c* sind Ganzzahlen. 
 
 Mathematische Funktionen, die mit *expr* übereinstimmen:
 
@@ -171,16 +171,16 @@ Mathematische Funktionen, die mit *expr* übereinstimmen:
 : Hyperbeltangens von *x*. 
 
 **abs(x)**  
-: Gibt den Absolutbetrag von *x* zurück. *x* darf eine ganze Zahl oder eine Gleitkommazahl sein. Das Ergebnis hat dieselbe Form. 
+: Gibt den Absolutbetrag von *x* zurück. *x* darf eine Ganzzahl oder eine Gleitkommazahl sein. Das Ergebnis hat dieselbe Form. 
 
 **double(x)**  
 : Ist *x* eine Gleitkommazahl, kommt *x* zurück. Sonst wird *x* in eine Gleitkommazahl umgewandelt und dieser Wert zurückgegeben. 
 
 **int(x)**  
-: Ist *x* eine ganze Zahl, kommt *x* zurück. Sonst wird *x* durch Abschneiden in eine ganze Zahl umgewandelt und dieser Wert zurückgegeben. 
+: Ist *x* eine Ganzzahl, kommt *x* zurück. Sonst wird *x* durch Abschneiden in eine Ganzzahl umgewandelt und dieser Wert zurückgegeben. 
 
 **round(x)**  
-: Ist *x* eine ganze Zahl, kommt *x* zurück. Sonst wird *x* durch Runden in eine ganze Zahl umgewandelt und dieser Wert zurückgegeben. 
+: Ist *x* eine Ganzzahl, kommt *x* zurück. Sonst wird *x* durch Runden in eine Ganzzahl umgewandelt und dieser Wert zurückgegeben. 
 
 
 Weitere Funktionen von *mpexpr*:
@@ -244,7 +244,7 @@ Weitere Funktionen von *mpexpr*:
 
 ## TYPEN, ÜBERLAUF UND GENAUIGKEIT 
 
- Gerechnet wird mit Festkomma- und Gleitkommawerten beliebiger Größe. Native Maschinenwerte (*int, long, IEEE 754 Gleitkomma und so weiter*) und Maschinenbefehle werden nicht verwendet. Die Umwandlung zwischen den internen Darstellungen für ganze Zahlen, Gleitkomma und Zeichenketten geschieht bei Bedarf von selbst. In arithmetischen Rechnungen bleiben die Werte ganzzahlig, bis eine Gleitkommazahl vorkommt. Danach wird mit Gleitkomma gerechnet. Zum Beispiel 
+ Gerechnet wird mit Festkomma- und Gleitkommawerten beliebiger Größe. Native Maschinenwerte (*int, long, IEEE 754 Gleitkomma und so weiter*) und Maschinenbefehle werden nicht verwendet. Die Umwandlung zwischen den internen Darstellungen für Ganzzahlen, Gleitkomma und Zeichenketten geschieht bei Bedarf von selbst. In arithmetischen Rechnungen bleiben die Werte ganzzahlig, bis eine Gleitkommazahl vorkommt. Danach wird mit Gleitkomma gerechnet. Zum Beispiel 
 
  **mpexpr 5 / 4**  
 
@@ -253,7 +253,7 @@ Weitere Funktionen von *mpexpr*:
  **mpexpr 5 / 4.0**    
  **mpexpr 5 / ( \[string length "abcd"\] + 0.0 )**  
 
- liefern beide 1.25. Gleitkommawerte kommen immer mit einem \`\`.'' oder einem \`\`e'' zurück, damit sie nicht wie ganze Zahlen aussehen. Zum Beispiel 
+ liefern beide 1.25. Gleitkommawerte kommen immer mit einem \`\`.'' oder einem \`\`e'' zurück, damit sie nicht wie Ganzzahlen aussehen. Zum Beispiel 
 
  **mpexpr 20.0/5.0**  
 
@@ -263,11 +263,11 @@ Weitere Funktionen von *mpexpr*:
 
 ## ZEICHENKETTENOPERATIONEN 
 
- Zeichenketten dürfen Operanden der Vergleichsoperatoren sein. Der Auswerter vergleicht trotzdem ganzzahlig oder als Gleitkomma, wo er kann. Ist ein Operand eines Vergleichs eine Zeichenkette und der andere eine Zahl, wird die Zahl mit dem *sprintf*-Format **%d** (ganze Zahlen) bzw. **%g** (Gleitkommawerte) zurück in eine Zeichenkette gewandelt. Zum Beispiel die Befehle 
+ Zeichenketten dürfen Operanden der Vergleichsoperatoren sein. Der Auswerter vergleicht trotzdem ganzzahlig oder als Gleitkomma, wo er kann. Ist ein Operand eines Vergleichs eine Zeichenkette und der andere eine Zahl, wird die Zahl mit dem *sprintf*-Format **%d** (Ganzzahlen) bzw. **%g** (Gleitkommawerte) zurück in eine Zeichenkette gewandelt. Zum Beispiel die Befehle 
 
  **mpexpr {"0x03" > "2"}**  **mpexpr {"0y" < "0x12"}**  
 
- liefern beide 1. Der erste Vergleich ist ein Vergleich ganzer Zahlen. Der zweite ist ein Zeichenkettenvergleich, nachdem der zweite Operand in die Zeichenkette \`\`18'' gewandelt wurde. Tcl behandelt Werte, wo es geht, als Zahlen. Operatoren wie **==** sind deshalb ungeeignet, wenn wirklich Zeichenketten verglichen werden sollen und die Operanden beliebige Werte haben können. Dann ist der Befehl **string compare** die bessere Wahl. 
+ liefern beide 1. Der erste Vergleich ist ein Ganzzahlvergleich. Der zweite ist ein Zeichenkettenvergleich, nachdem der zweite Operand in die Zeichenkette \`\`18'' gewandelt wurde. Tcl behandelt Werte, wo es geht, als Zahlen. Operatoren wie **==** sind deshalb ungeeignet, wenn wirklich Zeichenketten verglichen werden sollen und die Operanden beliebige Werte haben können. Dann ist der Befehl **string compare** die bessere Wahl. 
 
  **mpformat** formatiert eine Zeichenkette im Stil des Tcl-Befehls *format*. Mpformat liest numerische Argumente als Zahlen beliebiger Genauigkeit. Mpformat kennt nur einen Teil der %-Angaben. Angegeben werden kann: 
 
@@ -283,7 +283,7 @@ Weitere Funktionen von *mpexpr*:
 **Formatzeichen und Ergebnis** 
 
 **d**  
-: Formatiert das nächste Argument als ganze Zahl und schneidet nach dem Dezimalpunkt ab. 
+: Formatiert das nächste Argument als Ganzzahl und schneidet nach dem Dezimalpunkt ab. 
 
 **f**  
 : Formatiert das nächste Argument als dezimale Gleitkommazahl. 

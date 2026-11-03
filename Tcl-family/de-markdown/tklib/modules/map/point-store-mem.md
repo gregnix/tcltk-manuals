@@ -41,7 +41,7 @@ Copyright:
 
 # Name
 
-map::point::store::memory – In-Memory-Speicher für Geo-/Punkt-Definitionen
+map::point::store::memory – In-Memory-Speicher für geo/point-Definitionen
 
 # Übersicht
 

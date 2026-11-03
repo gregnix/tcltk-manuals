@@ -54,32 +54,32 @@ Die Standard-Bindungen ermöglichen das Erstellen, Entfernen und Verschieben von
 3. Durch Klicken auf einen Punkt mit Taste 3 wird ein Ziehvorgang gestartet, der mit dem Loslassen der Taste endet.
 
 
-Mit der Option **-drag-point** können Sie die Taste ändern, mit der Ziehvorgänge ausgelöst werden. Hinweis: Der Wert der Option enthält nicht nur die Tastennummer, sondern auch ein Modifikatorpräfix, das durch einen Bindestrich von der Tastennummer getrennt ist („**-**“). Die unterstützten Modifikatoren sind **Control**, **Shift** und **Alt**.
+Mit der Option **-drag-point** können Sie die Taste ändern, mit der Ziehvorgänge ausgelöst werden. Hinweis: Der Wert der Option kann nicht nur die Tastennummer, sondern auch ein Modifikatorpräfix enthalten, das durch einen Bindestrich von der Tastennummer getrennt ist („**-**“). Die unterstützten Modifikatoren sind **Control**, **Shift** und **Alt**.
 
-Die Option **-add-remove-point** kann verwendet werden, um die Taste zu ändern, mit der Punkte hinzugefügt oder entfernt werden. Dies funktioniert, da das Entfernen eine Bindung ist, während das Hinzufügen global für den Canvas gilt. Die Option erkennt für die Taste dieselbe Syntax wie **-drag-point**.
+Die Option **-add-remove-point** kann verwendet werden, um die Taste zu ändern, mit der Punkte hinzugefügt oder entfernt werden. Dies funktioniert, da das Entfernen eine Bindung an die Elemente ist, während das Hinzufügen global für den Canvas gilt. Die Option erkennt für die Taste dieselbe Syntax wie **-drag-point**.
 
 In der Standardkonfiguration ist das Canvas-Element, das einen Punkt darstellt, ein Kreis, der mithilfe der Darstellungsoptionen **-color**, **-hilit-color** und **-radius** konfiguriert wird. Ihre Standardwerte sind **Skyblue2**, **red** bzw. **3**.
 
-Mit der Option **-kind** lässt sich das Canvas-Element leicht an beliebige Arten anpassen, wobei die Element-Optionen **-width**, **-outline**, **-fill** und **-activefill** akzeptiert.
+Mit der Option **-kind** lässt sich das Canvas-Element leicht an jede Elementart anpassen, die die Element-Optionen **-width**, **-outline**, **-fill** und **-activefill** akzeptiert.
 
-Für eine umfassendere Anpassung ist es erforderlich, mithilfe der Option **-create-cmd** einen Erstellungs-Callback zu konfigurieren. Die Rückruffunktion nimmt den Canvas sowie die x- und y-Koordinaten in dieser Reihenfolge als Argumente entgegen und soll eine Liste der Canvas-Elemente zurückgeben, die den Punkt darstellen.
+Für eine umfassendere Anpassung ist es erforderlich, mithilfe der Option **-create-cmd** eine Erstellungs-Rückruffunktion zu konfigurieren. Die Rückruffunktion nimmt den Canvas sowie die x- und y-Koordinaten in dieser Reihenfolge als Argumente entgegen und soll eine Liste der Canvas-Elemente zurückgeben, die den Punkt darstellen.
 
 Beachten Sie den Plural. Mit der Rückruffunktion ist es möglich, einen Punkt mithilfe einer Gruppe von Elementen darzustellen.
 
-Beachten Sie ferner, dass kein Punkt erstellt wird, wenn die Rückruffunktion eine leere Liste gibt. Mit anderen Worten: Die Rückruffunktion kann auch dazu verwendet werden, zu prüfen, ob ein Punkt an der angegebenen Position erwünscht ist oder nicht. Dies lässt sich mit dem Standardverhalten bei der Erstellung kombinieren, da die Option abgefragt werden kann und ihr Standardwert die Rückruffunktion für das Standardverhalten ist.
+Beachten Sie ferner, dass kein Punkt erstellt wird, wenn die Rückruffunktion eine leere Liste zurückgibt. Mit anderen Worten: Die Rückruffunktion kann auch dazu verwendet werden, zu prüfen, ob ein Punkt an der angegebenen Position erwünscht ist oder nicht. Dies lässt sich mit dem Standardverhalten bei der Erstellung kombinieren, da die Option abgefragt werden kann und ihr Standardwert die Rückruffunktion für das Standardverhalten ist.
 
 Um noch etwas bei der Rückruffunktion zu bleiben: Die Option **-active-cmd** legt eine Rückruffunktion fest, die immer dann aufgerufen wird, wenn sich der Mauszeiger über einem der erstellten Punkte befindet, d. h. wenn dieser aktiv ist. Dies kann zur Steuerung abgeleiteter Anzeigen genutzt werden, beispielsweise zum Hervorheben des Eintrags des Punktes in einer Tabelle oder einem anderen Widget.
 
-Die letzte wichtige Option ist **-tag**. Ihr Wert ist der Name des Canvas-Tags, mit dem alle Elemente gekennzeichnet werden, die einem gehören, d. h. von diesem erstellt und verwaltet werden. Der Standardwert lautet **POINT**.
+Die letzte wichtige Option ist **-tag**. Ihr Wert ist der Name des Canvas-Tags, mit dem alle Elemente gekennzeichnet werden, die einer Instanz gehören, d. h. von ihr erstellt und verwaltet werden. Der Standardwert lautet **POINT**.
 
-Wenn mehrere Instanzen dieses Verhaltens an dieselbe „Canvas“ angehängt werden, muss jede Instanz mit einem eindeutigen Tag konfiguriert werden, um zu verhindern, dass sie sich gegenseitig stören.
+Wenn mehrere Instanzen dieses Verhaltens an denselben Canvas angehängt werden, muss jede Instanz mit einem eindeutigen Tag konfiguriert werden, um zu verhindern, dass sie sich gegenseitig stören.
 
 # API für Klassen
 
 **::canvas::edit** **points** *objectName* *canvas* *options*...
 : Dieser Befehl der Klasse erstellt und konfiguriert eine neue Instanz eines Punktwolken-Editors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Die hier zulässigen Optionen und ihre Werte werden im Abschnitt [Optionen] erläutert.
 
@@ -135,7 +135,7 @@ Instanzen der Punktwolken-Editoren stellen die folgende API bereit:
 
 # Optionen
 
-Der Befehl „class“ akzeptiert die folgenden Optionen
+Der Klassenbefehl akzeptiert die folgenden Optionen
 
 **-active-cmd** *command-prefix*
 : Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn die Maus einen von der Instanz verwalteten Punkt erreicht oder verlässt.
@@ -145,9 +145,9 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Die Signatur dieses Befehlspräfixes lautet
 
     **activeCmd** *editorObj* *id*
-    : Die *id* identifiziert die Position innerhalb des Editors.
+    : Die *id* identifiziert den Punkt innerhalb des Editors.
 
-        Eine leere *id* bedeutet, dass die zuletzt eingegebene Position verlassen wurde.
+        Eine leere *id* bedeutet, dass der zuletzt betretene Punkt verlassen wurde.
 
         Das Ergebnis dieser Methode wird ignoriert.
 
@@ -162,7 +162,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Bei Verwendung dieser Option wird für beide Vorgänge dasselbe Ereignis verwendet. Dies stellt kein Problem dar, da das Hinzufügen als canvas-globales Ereignis gebunden ist, während das Entfernen an die jeweiligen Canvas-Elemente gebunden ist.
 
 **-color** *colorspec*
-: Der Wert dieser Option ist die Farbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
+: Der Wert dieser Option ist die Füllfarbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
 
     Der Standardwert lautet **SkyBlue2**.
 
@@ -229,11 +229,11 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
         Die *id* identifiziert den verschobenen Punkt innerhalb des Editors.
 
-        Das Ergebnis dieser Methode muss ein boolescher Wert sein. Wenn die Methode den Wert **false** gibt, wird die Verschiebung abgelehnt und rückgängig gemacht.
+        Das Ergebnis dieser Methode muss ein boolescher Wert sein. Wenn die Methode den Wert **false** zurückgibt, wird die Verschiebung abgelehnt und rückgängig gemacht.
 
 
 **-drag-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne eckige Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
 
     Diese Option kann nur zur Erstellungszeit festgelegt werden.
 

@@ -70,7 +70,7 @@
 
 BESCHREIBUNG
 
- Das Widget **Label** erweitert das Tk-Label der Vorgabe. Hinzugekommen sind Optionen für eine sichtbare Wirkung je nach Zustand des Labels, Optionen von [DynamicHelp](DynamicHelp.md) sowie [Ziehen ](DragSite.md) und [Ablegen](DropSite.md). 
+ Das Widget **Label** erweitert das Standard-Label von Tk. Hinzugekommen sind Optionen für eine sichtbare Wirkung je nach Zustand des Labels, Optionen von [DynamicHelp](DynamicHelp.md) sowie [Ziehen ](DragSite.md) und [Ablegen](DropSite.md). 
 
 ---
 

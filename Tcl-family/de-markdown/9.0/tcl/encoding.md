@@ -33,13 +33,13 @@ Betriebssystem-Schnittstellen oder Anwendungen können Zeichenketten in anderen 
 
 # Beschreibung
 
-Führt je nach *option* eine von mehreren kodierungsbezogenen Operationen aus. Zulässige *option*en sind:
+Führt je nach *option* eine von mehreren kodierungsbezogenen Operationen aus. Zulässige Werte für *option* sind:
 
 [encoding]{.cmd} [convertfrom]{.sub} [encoding]{.optarg} [data]{.arg}
 : siehe unten ...
 
 [encoding]{.cmd version="TIP607, TIP656"} [convertfrom]{.sub} [[-profile]{.lit} [profile]{.arg}]{.optarg} [-failindex var]{.optlit} [encoding]{.arg} [data]{.arg}
-: Wandelt *data*, das als Binärstring gemäß *encoding* kodiert sein sollte, in eine Tcl-Zeichenkette um. Fehlt *encoding*, wird die aktuelle Systemkodierung verwendet.
+: Wandelt *data*, das als Binärzeichenkette gemäß *encoding* kodiert sein sollte, in eine Tcl-Zeichenkette um. Fehlt *encoding*, wird die aktuelle Systemkodierung verwendet.
 
 
 [Die Option **-profile** bestimmt das Verhalten des Befehls bei Konvertierungsfehlern. Details siehe Abschnitt [Profile] unten. Jeder vorzeitige Abbruch der Verarbeitung wegen Fehlern wird durch eine Exception gemeldet, sofern die Option **-failindex** nicht angegeben ist.]{version="TIP607, TIP656"}
@@ -50,7 +50,7 @@ Ist **-failindex** angegeben, wird bei vorzeitigem Abbruch statt einer Exception
 : siehe unten ...
 
 [encoding]{.cmd} [convertto]{.sub} [[-profile]{.lit} [profile]{.arg}]{.optarg} [-failindex var]{.optlit} [encoding]{.arg} [data]{.arg}
-: Wandelt *string* in die angegebene *encoding* um. Das Ergebnis ist ein Tcl-Binärstring mit der Bytefolge der konvertierten Zeichenkette in der angegebenen Kodierung. Fehlt *encoding*, wird die aktuelle Systemkodierung verwendet.
+: Wandelt *string* in die angegebene *encoding* um. Das Ergebnis ist eine Tcl-Binärzeichenkette mit der Bytefolge der konvertierten Zeichenkette in der angegebenen Kodierung. Fehlt *encoding*, wird die aktuelle Systemkodierung verwendet.
 
 
 [Die Optionen **-profile** und **-failindex** wirken wie beim Befehl **encoding convertfrom** beschrieben.]{version="TIP607, TIP656"}

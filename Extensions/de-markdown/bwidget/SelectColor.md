@@ -32,7 +32,7 @@
 
 BESCHREIBUNG
 
- SelectColor bietet einen einfachen Weg, eine Farbe auszuwählen. Es kann als Dialog oder als Menüschaltfläche angezeigt werden. 
+ SelectColor bietet einen einfachen Weg, eine Farbe auszuwählen. Es kann als Dialog oder als Menubutton angezeigt werden. 
 
 ---
 
@@ -43,7 +43,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-parent**
-:  Elternteil des Dialogs. Der Dialog wird in seinem Elternteil zentriert. Wenn der Wert leer ist, wird er im Wurzel-Fenster zentriert. 
+:  Elternteil des Dialogs. Der Dialog wird in seinem Elternteil zentriert. Wenn der Wert leer ist, wird er im Hauptfenster zentriert. 
 
 
 **-placement**

@@ -40,12 +40,12 @@ Das Paket **tcl::transform::otp** enthält einen Befehl zum Erstellen einer Kana
 
 Eine damit verbundene Transformation in diesem Modul ist **tcl::transform::rot**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 
 **::tcl::transform::otp** *chan* *keychanw* *keychanr*
-: Dieser Befehl erstellt eine auf dem Kanal *chan* basierende Verschlüsselungstransformation nach dem One-Time-Pad-Prinzip und gibt deren Handle zurück.
+: Dieser Befehl erstellt eine Verschlüsselungstransformation nach dem One-Time-Pad-Prinzip auf dem Kanal *chan* und gibt deren Handle zurück.
 
     Die beiden Kanäle *keychanw* und *keychanr* enthalten die One-Time-Pads für die Schreib- bzw. Leserichtung. Ihre Inhalte werden gelesen und mit den Bytes, die in den Kanal geschrieben bzw. aus ihm gelesen werden, XOR-verknüpft.
 

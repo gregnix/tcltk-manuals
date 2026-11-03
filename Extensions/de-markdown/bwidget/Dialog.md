@@ -112,7 +112,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-parent**
-:  Elternteil des Dialogs. Der Dialog wird relativ zu seinem Elternteil platziert. Wenn der Wert leer ist, wird er relativ zum Wurzel-Fenster platziert. Siehe auch die Option **place**. 
+:  Elternteil des Dialogs. Der Dialog wird relativ zu seinem Elternteil platziert. Wenn der Wert leer ist, wird er relativ zum Hauptfenster platziert. Siehe auch die Option **place**. 
 
 
 **-place**

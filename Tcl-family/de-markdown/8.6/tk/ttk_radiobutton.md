@@ -54,7 +54,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify**, **instate** und **state** unterstützen Radiobuttons folgende zusätzliche Widget-Befehle:
 
 *pathname* **invoke**
-: Setzt **-variable** auf **-value**, wählt das Widget aus und wertet **-command** aus. Liefert das Ergebnis von **-command** oder eine leere Zeichenkette, wenn kein **-command** angegeben ist.
+: Setzt **-variable** auf **-value**, wählt das Widget aus und wertet **-command** aus. Gibt das Ergebnis von **-command** zurück oder eine leere Zeichenkette, wenn kein **-command** angegeben ist.
 
 
 # Widget-Zustände

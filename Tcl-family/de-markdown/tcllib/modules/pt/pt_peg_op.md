@@ -50,7 +50,7 @@ pt\_peg\_op – Parser-Tools: Operationen des PE-Grammatik-Dienstprogramms
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
-Dieses Paket enthält eine Reihe von Dienstprogrammen, mit denen sich eine PE-Grammatik (Container) auf verschiedene Weise bearbeiten lässt.
+Dieses Paket enthält eine Reihe von Hilfsbefehlen, mit denen sich eine PE-Grammatik (Container) auf verschiedene Weise bearbeiten lässt.
 
 # API
 

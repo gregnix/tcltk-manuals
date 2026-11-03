@@ -140,7 +140,7 @@ Die Befehle lauten:
 : Eine Zeile, die mit dem Zeichen **d** beginnt, löscht Text aus der Ausgabe. Angewendet löscht sie **n** Zeilen Text; die erste gelöschte Zeile hat den Index **start**.
 
 
-Die Zeilenindizes **start** beziehen sich immer auf den umzuwandelnden Text in seinem ursprünglichen Zustand, ohne die vorhergehenden Änderungen.
+Die Zeilenindizes **start** beziehen sich immer auf den umzuwandelnden Text in seinem ursprünglichen Zustand, ohne die vorhergehenden Änderungen zu berücksichtigen.
 
 Die Anweisungen sind in der Reihenfolge anzuwenden, in der sie im Patch stehen, oder so, dass dasselbe Ergebnis entsteht wie bei der Anwendung in dieser Reihenfolge.
 

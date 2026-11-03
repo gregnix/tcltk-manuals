@@ -34,10 +34,10 @@ Das Paket **Markdown** bietet einen Befehl, um mit Markdown formatierten Text in
     Der Konverter unterstützt zwei Arten der Syntaxhervorhebung für umschlossene Code-Blöcke: Hervorhebung über einen registrierten Konverter (siehe **::Markdown::register**) oder reine JavaScript-Hervorhebung, z. B. über „highlight.js“, wobei der im Markup verwendete Sprachbezeichner als CSS-Klasse des „code“-Elements im zurückgegebenen Markup festgelegt wird.
 
 **::Markdown::register** *langspec* *converter*
-: Registriert einen sprachspezifischen Konverter zur Aufbereitung eines Codeblocks (z. B. Syntaxhervorhebung). Markdown unterstützt umschlossene Codeblöcke mit einer optionalen Sprachangabe (z. B. „tcl“). Wenn der Markdown-Parser einen solchen Code-Block verarbeitet und ein Konverter für die angegebene Sprachangabe registriert ist, wird der Konverter mit dem rohen Code-Block als Argument aufgerufen. Der Konverter soll als Ergebnis die Markup-Darstellung des Code-Blocks geben. Der angegebene Konverter kann ein beliebiger Tcl-Befehl sein; der rohe Textblock wird beim Aufruf als letztes Argument hinzugefügt.
+: Registriert einen sprachspezifischen Konverter zur Aufbereitung eines Codeblocks (z. B. Syntaxhervorhebung). Markdown unterstützt umschlossene Codeblöcke mit einer optionalen Sprachangabe (z. B. „tcl“). Wenn der Markdown-Parser einen solchen Code-Block verarbeitet und ein Konverter für die angegebene Sprachangabe registriert ist, wird der Konverter mit dem rohen Code-Block als Argument aufgerufen. Der Konverter soll als Ergebnis die Markup-Darstellung des Code-Blocks zurückgeben. Der angegebene Konverter kann ein beliebiger Tcl-Befehl sein; der rohe Textblock wird beim Aufruf als letztes Argument hinzugefügt.
 
 **::Markdown::get\_lang\_counter**
-: Gibt ein Wörterbuch zurück, das den Sprachbezeichner und die Anzahl der Vorkommen in umschlossenen Codeblöcken enthält. Diese Funktion kann beispielsweise verwendet werden, um festzustellen, ob bestimmte CSS- oder JavaScript-Header für die Darstellung eingebunden werden sollen, ohne dass das gerenderte Ergebnis nachbearbeitet werden muss.
+: Gibt ein Dictionary zurück, das den Sprachbezeichner und die Anzahl der Vorkommen in umschlossenen Codeblöcken enthält. Diese Funktion kann beispielsweise verwendet werden, um festzustellen, ob bestimmte CSS- oder JavaScript-Header für die Darstellung eingebunden werden sollen, ohne dass das gerenderte Ergebnis nachbearbeitet werden muss.
 
 **::Markdown::reset\_lang\_counter**
 : Setzt die Sprachzähler zurück.
@@ -63,7 +63,7 @@ Dieser Markdown-Konverter unterstützt das ursprüngliche Markdown von Gruber un
 
 - Inline-Code
 
-- Code-Blöcke (mit vier Einrückungszeichen oder einem Tabulator)
+- Code-Blöcke (mit vier Leerzeichen Einrückung oder einem Tabulator)
 
 - Inline-HTML
 

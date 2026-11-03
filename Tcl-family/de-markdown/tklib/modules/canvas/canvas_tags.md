@@ -66,7 +66,7 @@ Die in diesem Paket enthaltenen Befehle verbergen all diese Komplexität vor dem
     Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::canvas::tag** **match** *canvas* *tagOrId* *pattern*
-: Dieser Befehl ermittelt alle Tags für die Elemente, die durch *tagOrId* im *canvas*-Widget identifiziert werden und dem Glob-Muster *pattern* entsprechen.
+: Dieser Befehl ermittelt für die Elemente, die durch *tagOrId* im *canvas*-Widget identifiziert werden, alle Tags, die dem Glob-Muster *pattern* entsprechen.
 
     Das Ergebnis des Befehls ist eine Liste der übereinstimmenden Tags. Diese Liste kann leer sein.
 

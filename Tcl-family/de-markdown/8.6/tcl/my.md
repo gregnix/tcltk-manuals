@@ -33,7 +33,7 @@ my - Ruft eine beliebige Methode des aktuellen Objekts auf
 
 # Beschreibung
 
-Der Befehl **my** ermöglicht es Methoden von Objekten, eine beliebige Methode des Objekts (oder seiner Klasse) aufzurufen. Insbesondere umfasst die Menge gültiger Werte für *methodName* alle Methoden, die ein Objekt und seine Superklassen unterstützen, einschließlich der nicht exportierten. Das Objekt, auf dem die Methode aufgerufen wird, ist stets dasjenige, das der aktuelle Kontext der Methode ist (d. h. das Objekt, das von [self object][self] zurückgegeben wird), aus der der Befehl **my** aufgerufen wird.
+Der Befehl **my** ermöglicht es Methoden von Objekten, eine beliebige Methode des Objekts (oder seiner Klasse) aufzurufen. Insbesondere umfasst die Menge gültiger Werte für *methodName* alle Methoden, die ein Objekt und seine Oberklassen unterstützen, einschließlich der nicht exportierten. Das Objekt, auf dem die Methode aufgerufen wird, ist stets dasjenige, das der aktuelle Kontext der Methode ist (d. h. das Objekt, das von [self object][self] zurückgegeben wird), aus der der Befehl **my** aufgerufen wird.
 
 Jedes Objekt hat seinen eigenen Befehl **my**, der in seinem Instanz-Namespace enthalten ist.
 

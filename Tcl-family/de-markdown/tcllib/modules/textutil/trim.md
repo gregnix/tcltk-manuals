@@ -35,20 +35,20 @@ textutil::trim – Prozeduren zum Kürzen von Zeichenketten
 
 # Beschreibung
 
-Das Paket **textutil::trim** enthält Befehle, mit denen Zeichenfolgen auf verschiedene Weise gekürzt werden können, unter anderem mithilfe beliebiger regulärer Ausdrücke.
+Das Paket **textutil::trim** enthält Befehle, mit denen Zeichenketten auf verschiedene Weise gekürzt werden können, unter anderem mithilfe beliebiger regulärer Ausdrücke.
 
-Um Zeichenfolgen von bestimmten Zeichengruppen (z. B. Leerzeichen) zu entfernen, verwenden Sie die integrierten Unterbefehle **trim**, **trimleft** und **trimright** des Befehls [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html).
+Um Zeichenketten von bestimmten Zeichengruppen (z. B. Leerraum) zu befreien, verwenden Sie die integrierten Unterbefehle **trim**, **trimleft** und **trimright** des Befehls [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html).
 
 # API
 
 **::textutil::trim::trim** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle am Anfang oder Ende stehenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, bzw. aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende und abschließende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle am Anfang oder Ende stehenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, bzw. aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende und abschließende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimleft** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle führenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle führenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimright** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle am Ende stehenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt abschließende Leerzeichen und Tabulatoren aus *string*, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle am Ende stehenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt abschließende Leerzeichen und Tabulatoren aus *string*, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimPrefix** *string* *prefix*
 : Gibt eine Kopie von *string* zurück, wobei *prefix* am Anfang entfernt wird, sofern es vorhanden ist; andernfalls wird *string* unverändert zurückgegeben.
@@ -56,7 +56,7 @@ Um Zeichenfolgen von bestimmten Zeichengruppen (z. B. Leerzeichen) zu entfernen,
     Vergleichen Sie diesen Befehl mit den Unterbefehlen **trim**, **trimleft** und **trimright** des integrierten Befehls [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html), die alle Zeichen aus einer als Zeichenkette übergebenen Zeichenmenge entfernen.
 
 **::textutil::trim::trimEmptyHeading** *string*
-: Gibt eine Kopie von *string* zurück, aus der alle führenden Leerzeilen (einschließlich Zeilen, die ausschließlich Leerzeichen enthalten) entfernt wurden.
+: Gibt eine Kopie von *string* zurück, aus der alle führenden Leerzeilen (einschließlich Zeilen, die ausschließlich Leerraum enthalten) entfernt wurden.
 
 
 # Beispiele
@@ -93,7 +93,7 @@ Alpha→⏎▴Beta▴→⏎▴Gamma▴→⏎
 
 Beachten Sie den subtilen Unterschied im Verhalten zwischen **::textutil::trim::trimEmptyHeading** und **string trimleft**.
 
-Dieses Beispiel veranschaulicht die Verwendung der integrierten Funktion **string trim** in Kombination mit **::textutil::trim::trim**.
+Dieses Beispiel veranschaulicht die Verwendung des integrierten Befehls **string trim** in Kombination mit **::textutil::trim::trim**.
 
 ```
 const LINES2 [string trim "\t\n Delta\t\n Epsilon \t\n Zeta \t\n"]
@@ -107,7 +107,7 @@ Delta→⏎▴Epsilon▴→⏎▴Zeta
 Delta⏎Epsilon⏎Zeta
 ```
 
-In diesen Beispielen wird die integrierte Funktion **string trim** mit **::textutil::trim::trimPrefix** verglichen.
+In diesen Beispielen wird der integrierte Befehl **string trim** mit **::textutil::trim::trimPrefix** verglichen.
 
 ```
 const PATH /home/homer
@@ -129,7 +129,7 @@ string trim $LINE mic=''
 
 Bei den **PATH**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „/home“ enthalten sind, d. h. „/“, „h“, „o“, „m“, „e“. Die Reihenfolge der Zeichen in der Zeichenkette spielt keine Rolle, wie das Beispiel „ehmo/“ zeigt. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Zeichenkette „/home“ wörtlich trimmt.
 
-Bei den **LINE**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „mic“ enthalten sind, d. h. „m“, „i“ und „c“. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Literalzeichenfolge „mic“ trimmt; da die **LINE** jedoch nicht mit „mic“ beginnt, wird nichts getrimmt und die Zeichenfolge wird unverändert gegeben.
+Bei den **LINE**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „mic“ enthalten sind, d. h. „m“, „i“ und „c“. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Zeichenkette „mic“ wörtlich trimmt; da die **LINE** jedoch nicht mit „mic“ beginnt, wird nichts getrimmt und die Zeichenkette wird unverändert zurückgegeben.
 
 # Fehler, Ideen, Rückmeldungen
 

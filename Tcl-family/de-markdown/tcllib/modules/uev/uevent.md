@@ -50,7 +50,7 @@ Dieses Paket bietet eine allgemeine Funktion zur Verarbeitung von Benutzerereign
 
 Der wesentliche Unterschied zum im Tcl/Tk-Kern integrierten Ereignissystem besteht darin, dass dieses lediglich virtuelle Ereignisse erzeugen kann, und zwar ausschließlich für Widgets. Es ist nicht möglich, die integrierten Funktionen zu nutzen, um Ereignisse an beliebige (Pseudo-)Objekte zu binden, und es ist auch nicht in der Lage, Ereignisse für solche Objekte zu erzeugen.
 
-Hier können wir davon ausgehen, dass jedes betreffende Objekt durch ein eigenes Tag dargestellt wird. Dies ist möglich, da wir beliebige Tags zulassen.
+Hier ist das möglich, indem wir annehmen, dass jedes betreffende Objekt durch ein eigenes Tag dargestellt wird. Dies ist möglich, da wir beliebige Tags zulassen.
 
 Weitere Unterschiede:
 
@@ -79,7 +79,7 @@ Das Paket exportiert acht Befehle, wie im Folgenden angegeben. Beachten Sie, das
 **::uevent::generate** *tag* *event* ?*details*?
 : Dieser Befehl generiert ein *event* für das *tag* und löst damit alle Befehle aus, die dieser Kombination zugeordnet sind. Das Argument *details* wird einfach unverändert an alle Ereignisbehandler weitergeleitet. Es liegt in der Verantwortung des Codes, der das Ereignis generiert und verarbeitet, eine Vereinbarung über das Format und den Inhalt der darin enthaltenen Informationen zu treffen. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
-    Beachten Sie, dass alle zugeordneten Befehle unabhängig voneinander ausgelöst werden. Die Ereignisbehandler dürfen keine bestimmte Reihenfolge voraussetzen. Sie werden zudem *nicht* synchron mit dem Aufruf dieses Befehls aufgerufen, sondern lediglich in die Ereigniswarteschlange zur Verarbeitung gestellt, wenn das System zur Ereignisschleife zurückkehrt.
+    Beachten Sie, dass alle zugeordneten Befehle unabhängig voneinander ausgelöst werden. Die Ereignisbehandler dürfen keine bestimmte Reihenfolge voraussetzen. Sie werden zudem *nicht* synchron mit dem Aufruf dieses Befehls aufgerufen, sondern lediglich in die Ereigniswarteschlange gestellt und verarbeitet, wenn das System zur Ereignisschleife zurückkehrt.
 
     Das Erzeugen eines Ereignisses für ein unbekanntes Tag oder für eine <*tag*,*event*>-Kombination, der keine Befehle zugeordnet sind, ist zulässig; solche Aufrufe werden ignoriert.
 
@@ -87,10 +87,10 @@ Das Paket exportiert acht Befehle, wie im Folgenden angegeben. Beachten Sie, das
 : In dieser Form gibt der Befehl eine Liste zurück, die die Namen aller Tags enthält, denen Ereignisse mit zugeordneten Befehlen zugeordnet sind.
 
 **::uevent::list** *tag*
-: In diesem Format gibt der Befehl eine Liste zurück, die die Namen aller Ereignisse für das *tag* enthält, denen Befehle zugeordnet sind. Die Angabe eines unbekannten Tags, d. h. eines Tags ohne Ereignis und ohne Befehle, führt dazu, dass der Befehl eine Fehlermeldung ausgibt.
+: In diesem Format gibt der Befehl eine Liste zurück, die die Namen aller Ereignisse für das *tag* enthält, denen Befehle zugeordnet sind. Die Angabe eines unbekannten Tags, d. h. eines Tags ohne Ereignis und ohne Befehle, führt dazu, dass der Befehl einen Fehler auslöst.
 
 **::uevent::list** *tag* *event*
-: In diesem Format gibt der Befehl eine Liste zurück, die alle Befehle enthält, die dem *event* für das *tag* zugeordnet sind. Die Angabe eines unbekannten Tags oder eines unbekannten Ereignisses führt dazu, dass der Befehl eine Fehlermeldung ausgibt.
+: In diesem Format gibt der Befehl eine Liste zurück, die alle Befehle enthält, die dem *event* für das *tag* zugeordnet sind. Die Angabe eines unbekannten Tags oder eines unbekannten Ereignisses führt dazu, dass der Befehl einen Fehler auslöst.
 
 **::uevent::watch::tag::add** *pattern* *command*
 : Dieser Befehl richtet eine Art umgekehrter Ereignisse ein. Diese Ereignisse werden ausgelöst – d. h., das Präfix *command* wird aufgerufen –, wenn Beobachter an bestimmte Tags gebunden oder von diesen getrennt werden.

@@ -95,15 +95,15 @@ Dabei ist context der Name der IRC-Kontextvariablen (falls er an eine picoirc-Pr
 : wird aufgerufen, wenn eine Systemmeldung empfangen wird
 
 **topic** *channel* *topic*
-: wird aufgerufen, wenn die Zeichenfolge des Kanalthemas erkannt wird. *topic* ist der Text des Kanalthemas.
+: wird aufgerufen, wenn die Zeichenkette des Kanalthemas erkannt wird. *topic* ist der Text des Kanalthemas.
 
 **traffic** *action* *channel* *nick* ?*newnick*?
-: wird aufgerufen, wenn Benutzer beitreten, den Server verlassen oder ihren Namen ändern. *action* ist entweder entered, left oder nickchange, und *nick* ist der Benutzer, der die Aktion ausführt. *newnick* ist der neue Name, wenn *action* nickchange ist.
+: wird aufgerufen, wenn Benutzer beitreten, den Kanal verlassen oder ihren Namen ändern. *action* ist entweder entered, left oder nickchange, und *nick* ist der Benutzer, der die Aktion ausführt. *newnick* ist der neue Name, wenn *action* nickchange ist.
 
     *Hinweis*: *channel* ist bei diesen Meldungen oft leer, da Nickname-Aktionen für den gesamten IRC-Server gelten. Die Nicknames aller verbundenen Kanäle sind selbst zu verwalten.
 
 **version**
-: Diese Funktion wird aufgerufen, um eine Versionszeichenfolge abzufragen, mit der die interne Version überschrieben werden soll. Wenn sie implementiert ist, sollte sie eine durch Doppelpunkte getrennte Zeichenfolge in folgendem Format zurückgeben:
+: Diese Funktion wird aufgerufen, um eine Versionszeichenkette abzufragen, mit der die interne Version überschrieben werden soll. Wenn sie implementiert ist, sollte sie eine durch Doppelpunkte getrennte Zeichenkette in folgendem Format zurückgeben:
 
     Appname:Appversion:LibraryVersion
 

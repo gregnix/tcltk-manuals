@@ -115,7 +115,7 @@ Das Paket **struct::graph** verwaltet Graphen aus Knoten, Bögen und ihren Bezie
 
 Befehle für eine große Zahl üblicher Graphalgorithmen stehen im Paket **struct::graph::ops**.
 
-*Hinweis:* Die Hauptversion von **struct::graph** ist auf Version 2 gewechselt, weil sich die API des Moduls inkompatibel geändert hat. Wer Version 1 nutzt, liest den Abschnitt [Änderungen für v2]. Dort steht die vollständige Liste der Änderungen, einschließlich der Inkompatibilitäten mit Version 1.
+*Hinweis:* Die Hauptversion von **struct::graph** ist auf Version 2 gewechselt, weil sich die API des Moduls inkompatibel geändert hat. Wer Version 1 nutzt, sollte den Abschnitt [Änderungen für v2] lesen. Dort steht die vollständige Liste der Änderungen, einschließlich der Inkompatibilitäten mit Version 1.
 
 Ab Version 2.2 gibt es eine C-Implementierung auf critcl-Basis. Sie verlangt Tcl 8.4 oder neuer.
 
@@ -156,7 +156,7 @@ Ab Version 2.2 gibt es eine C-Implementierung auf critcl-Basis. Sie verlangt Tcl
 
     *aGraph* *method* ?*arg ...*?
 
-    Die *method* und die *arg*s legen fest, welche Operation ausgeführt wird.
+    Die *method* und die Argumente *arg* legen fest, welche Operation ausgeführt wird.
 
 
 ## Methoden
@@ -506,7 +506,7 @@ Ab Version 2.2 gibt es eine C-Implementierung auf critcl-Basis. Sie verlangt Tcl
 *aGraph* **serialize** ?*node*...?
 : Gibt den Graphen (oder einen Teilgraphen) als einzelnen Tcl-Wert serialisiert zurück. Mit der Methode **deserialize** lässt sich der Wert wieder in einen Graphen zurückverwandeln.
 
-    Serialisiert wird der gesamte Graph, es sei denn, ein oder mehrere *node*s sind angegeben; dann wird nur der von diesen Knoten aufgespannte Teilgraph serialisiert.
+    Serialisiert wird der gesamte Graph, es sei denn, ein oder mehrere Knoten *node* sind angegeben; dann wird nur der von diesen Knoten aufgespannte Teilgraph serialisiert.
 
     Ein serialisierter Graph ist ein Tcl-Wert und lässt sich wie jede Tcl-Zeichenkette kopieren, zum Beispiel an einen Kanal senden oder in eine Datei schreiben.
 
@@ -589,11 +589,11 @@ Ab Version 2.2 gibt es eine C-Implementierung auf critcl-Basis. Sie verlangt Tcl
 
     Ist die Ordnung angegeben, muss sie **pre** (Vorordnung; die Vorgabe), **post** (Nachordnung) oder **both** sein.
 
-    Vorordnung heißt, ein Knoten wird besucht, bevor einer seiner Nachbarn besucht wird (festgelegt durch *direction*, siehe unten). Nachordnung heißt, ein Knoten wird besucht, nachdem seine Nachbarn besucht wurden. Bei beiden Ordnungen wird ein Knoten vor *und* nach seinen Nachbarn besucht. Der Breitendurchlauf lässt sich *nur* mit der Vorordnung kombinieren; nur der Tiefendurchlauf ist mit Vorordnung, Nachordnung oder beiden Ordnungen verwendbar.
+    Vorordnung heißt, ein Knoten wird besucht, bevor einer seiner Nachbarn besucht wird (festgelegt durch *direction*, siehe unten). Nachordnung heißt, ein Knoten wird besucht, nachdem seine Nachbarn besucht wurden. Bei der Ordnung **both** wird ein Knoten vor *und* nach seinen Nachbarn besucht. Der Breitendurchlauf lässt sich *nur* mit der Vorordnung kombinieren; nur der Tiefendurchlauf ist mit Vorordnung, Nachordnung oder beiden Ordnungen verwendbar.
 
     Ist die Richtung angegeben, muss sie **backward** (Gegenrichtung der eingehenden Bögen) oder **forward** (Richtung der ausgehenden Bögen) sein.
 
-    Im Verlauf des Durchlaufs wird der Befehl *cmd* an jedem Knoten ausgewertet und erhält drei Argumente. Die Argumente sind der Modus des Aufrufs (**enter** oder **leave**), der Graph selbst (also *aGraph*) und der Name des aktuellen Knotens. Bei einem Durchlauf in Vorordnung werden alle Knoten betreten (Modus **enter** wird an *cmd* übergeben); bei einem Durchlauf in Nachordnung werden alle Knoten verlassen (Modus **leave** wird übergeben). Bei beiden Ordnungen ist der erste Besuch eines Knotens der Eintritt (Modus **enter**) und der zweite Besuch der Austritt (Modus **leave**).
+    Im Verlauf des Durchlaufs wird der Befehl *cmd* an jedem Knoten ausgewertet und erhält drei Argumente. Die Argumente sind der Modus des Aufrufs (**enter** oder **leave**), der Graph selbst (also *aGraph*) und der Name des aktuellen Knotens. Bei einem Durchlauf in Vorordnung werden alle Knoten betreten (Modus **enter** wird an *cmd* übergeben); bei einem Durchlauf in Nachordnung werden alle Knoten verlassen (Modus **leave** wird übergeben). Bei der Ordnung **both** ist der erste Besuch eines Knotens der Eintritt (Modus **enter**) und der zweite Besuch der Austritt (Modus **leave**).
 
 
 # Änderungen für v2

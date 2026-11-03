@@ -37,15 +37,15 @@ Dieses Paket stellt allgemeine Befehle zur Erstellung vollständiger Base32-Zuor
 **::base32::core::valid** *string* *pattern* *mvar*
 : Dieser Befehl prüft, ob die Eingabe *string* eine gültige Base32-kodierte Zeichenkette ist, und zwar anhand des von **::base32::core::define** erzeugten *pattern* ungültiger Zeichen sowie einiger weiterer allgemeiner Regeln.
 
-    Das Ergebnis des Befehls ist ein boolescher Flag. Sein Wert lautet **True** bei einem gültigen *string* und andernfalls **False**. Im letzteren Fall wird eine Fehlermeldung, die das Problem mit der Eingabe beschreibt, in der durch *mvar* benannten Variablen gespeichert. Die Variable wird nicht verändert, wenn die Eingabe als gültig befunden wurde.
+    Das Ergebnis des Befehls ist ein boolesches Flag. Sein Wert lautet **True** bei einem gültigen *string* und andernfalls **False**. Im letzteren Fall wird eine Fehlermeldung, die das Problem mit der Eingabe beschreibt, in der durch *mvar* benannten Variablen gespeichert. Die Variable wird nicht verändert, wenn die Eingabe als gültig befunden wurde.
 
     Die vom Befehl überprüften Regeln gehen über die Ablehnung ungültiger Zeichen hinaus und lauten wie folgt:
 
     1. Die Länge der Eingabe ist kein Vielfaches von acht,
 
-    2. Der Innenabstand erscheint nicht am Ende der Eingabe, sondern in der Mitte,
+    2. Die Auffüllung erscheint nicht am Ende der Eingabe, sondern in der Mitte,
 
-    3. Der Innenabstand hat keine Länge von sechs, vier, drei oder einem Zeichen,
+    3. Die Auffüllung hat keine Länge von sechs, vier, drei oder einem Zeichen,
 
 
 

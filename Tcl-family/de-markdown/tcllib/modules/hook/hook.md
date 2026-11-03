@@ -57,7 +57,7 @@ Der Befehl **hook** verwaltet eine Sammlung von Hook-Bindungen. Eine Hook-Bindun
 
 1. Ein *subject*: Der Name der Entität, die den Hook aufrufen wird.
 
-2. Der *hook* selbst. Ein Hook spiegelt in der Regel ein Ereignis im Leben des *subject* wider, das für andere Entitäten von Interesse sein könnte. Ein *hook* hat einen Namen und kann zudem Argumente haben. Hook-Namen sind beliebige Zeichenfolgen. Jedes *subject* muss die Namen und Argumente der Hooks dokumentieren, die es aufrufen kann.
+2. Der *hook* selbst. Ein Hook spiegelt in der Regel ein Ereignis im Leben des *subject* wider, das für andere Entitäten von Interesse sein könnte. Ein *hook* hat einen Namen und kann zudem Argumente haben. Hook-Namen sind beliebige Zeichenketten. Jedes *subject* muss die Namen und Argumente der Hooks dokumentieren, die es aufrufen kann.
 
 3. Der Name des *observer*, der den *hook* vom *subject* empfangen möchte.
 
@@ -66,13 +66,13 @@ Der Befehl **hook** verwaltet eine Sammlung von Hook-Bindungen. Eine Hook-Bindun
 
 ## Subjekte und Beobachter
 
-Der Einfachheit halber werden in diesem Dokument Subjekte und Beobachter gemeinsam als *Objekte* bezeichnet, wobei keine Anforderungen hinsichtlich der tatsächlichen Implementierung dieser *Objekte* gestellt werden. Ein Objekt kann ein **TclOO**-, **Snit**- oder **XOTcl**-Objekt, ein Tcl-Befehl, ein Namespace, ein Modul, ein von einem anderen Objekt verwaltetes Pseudo-Objekt (so wie Tags vom Tk-Text-Widget verwaltet werden) oder einfach ein bekannter Name.
+Der Einfachheit halber werden in diesem Dokument Subjekte und Beobachter gemeinsam als *Objekte* bezeichnet, wobei keine Anforderungen hinsichtlich der tatsächlichen Implementierung dieser *Objekte* gestellt werden. Ein Objekt kann ein **TclOO**-, **Snit**- oder **XOTcl**-Objekt, ein Tcl-Befehl, ein Namespace, ein Modul, ein von einem anderen Objekt verwaltetes Pseudo-Objekt (so wie Tags vom Tk-Text-Widget verwaltet werden) oder einfach ein bekannter Name sein.
 
-Die Namen von Subjekten und Beobachtern sind beliebige Zeichenfolgen; da „**hook**“ jedoch möglicherweise auf Paketebene verwendet wird, sind Konventionen erforderlich, um Namenskonflikte zwischen Paketen zu vermeiden, die von verschiedenen Personen erstellt wurden.
+Die Namen von Subjekten und Beobachtern sind beliebige Zeichenketten; da „**hook**“ jedoch möglicherweise auf Paketebene verwendet wird, sind Konventionen erforderlich, um Namenskonflikte zwischen Paketen zu vermeiden, die von verschiedenen Personen erstellt wurden.
 
-Daher sollte jeder im Code auf Kern- oder Paketebene verwendete Subjekt- oder Beobachtername wie ein Tcl-Befehlsname aussehen und in einem Namespace definiert sein, der zu dem jeweiligen Paket gehört. Betrachten Sie beispielsweise einen Ensemble-Befehl **::foo**, der eine Reihe von Pseudo-Objekten erstellt und **hook** zum Versenden von Benachrichtigungen verwendet. Die Pseudo-Objekte tragen Namen, die keine Befehle sind, und existieren in einem eigenen Namespace, ähnlich wie Dateihandles. Um Namenskonflikte mit Subjekten zu vermeiden, die von anderen Paketen definiert wurden, sollten Benutzer von **hook** diese **::foo**-Handles Namen wie **::foo::1**, **::foo::2** und so weiter.
+Daher sollte jeder im Code auf Kern- oder Paketebene verwendete Subjekt- oder Beobachtername wie ein Tcl-Befehlsname aussehen und in einem Namespace definiert sein, der zu dem jeweiligen Paket gehört. Betrachten Sie beispielsweise einen Ensemble-Befehl **::foo**, der eine Reihe von Pseudo-Objekten erstellt und **hook** zum Versenden von Benachrichtigungen verwendet. Die Pseudo-Objekte tragen Namen, die keine Befehle sind, und existieren in einem eigenen Namespace, ähnlich wie Dateihandles. Um Namenskonflikte mit Subjekten zu vermeiden, die von anderen Paketen (Benutzern von **hook**) definiert wurden, sollten diese **::foo**-Handles Namen wie **::foo::1**, **::foo::2** und so weiter tragen.
 
-Da Objektnamen beliebige Zeichenfolgen sind, kann der Anwendungscode beliebige zusätzliche Konventionen verwenden, die sich aus den Anforderungen der Anwendung ergeben.
+Da Objektnamen beliebige Zeichenketten sind, kann der Anwendungscode beliebige zusätzliche Konventionen verwenden, die sich aus den Anforderungen der Anwendung ergeben.
 
 # Literatur
 
@@ -87,11 +87,11 @@ Hook stellt die folgenden Befehle zur Verfügung:
 
     Wird er mit zwei Argumenten – einem *subject* und einem *hook* – aufgerufen, gibt er eine Liste der Beobachter zurück, die derzeit an dieses *subject* und diesen *hook* gebunden sind.
 
-    Wird er mit drei Argumenten – einem *subject*, einem *hook* und einem *observer* – aufgerufen, gibt er die eigentliche Bindung, das Befehlspräfix, das wenn der Hook aufgerufen wird, ausgeführt werden soll, oder die leere Zeichenkette zurück, falls keine solche Bindung vorhanden ist.
+    Wird er mit drei Argumenten – einem *subject*, einem *hook* und einem *observer* – aufgerufen, gibt er die eigentliche Bindung, das Befehlspräfix, das ausgeführt werden soll, wenn der Hook aufgerufen wird, oder die leere Zeichenkette zurück, falls keine solche Bindung vorhanden ist.
 
     Wird er mit vier Argumenten aufgerufen, erstellt, aktualisiert oder löscht er eine Bindung. Ist *cmdPrefix* die leere Zeichenkette, werden alle bestehenden Bindungen für das *subject*, den *hook* und den *observer* gelöscht; nichts wird zurückgegeben. Andernfalls muss *cmdPrefix* ein Befehlspräfix sein, das so viele zusätzliche Argumente entgegennimmt, wie für *subject* und *hook* dokumentiert sind. Die Bindung wird hinzugefügt oder aktualisiert, und der Beobachter wird zurückgegeben.
 
-    Wenn der *observer* die leere Zeichenkette „“, ist, wird eine neue Bindung unter Verwendung eines automatisch generierten Beobachternamens der Form **::hook::ob**<**number**> erstellt. Der automatisch generierte Name wird zurückgegeben und kann wie gewohnt zum Abfragen, Aktualisieren und Löschen der Bindung verwendet werden. Werden stets automatische Beobachternamen verwendet, wird der Beobachtername faktisch zu einer eindeutigen Bindungs-ID.
+    Wenn der *observer* die leere Zeichenkette „“ ist, wird eine neue Bindung unter Verwendung eines automatisch generierten Beobachternamens der Form **::hook::ob**<**number**> erstellt. Der automatisch generierte Name wird zurückgegeben und kann wie gewohnt zum Abfragen, Aktualisieren und Löschen der Bindung verwendet werden. Werden stets automatische Beobachternamen verwendet, wird der Beobachtername faktisch zu einer eindeutigen Bindungs-ID.
 
     Es ist möglich, **hook bind** aufzurufen, um eine Bindung an ein *Subjekt* und einen *hook* zu erstellen oder zu löschen, während man sich in einer Beobachterbindung für dasselbe *Subjekt* und denselben *hook* befindet. Die folgenden Regeln legen fest, was geschieht, wenn
 
@@ -120,7 +120,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
             hook call $s $h
         ```
 
-    2. Es wird nicht aufgerufen. (Hinweis: Sie ist möglicherweise bereits aufgerufen worden; und aller Wahrscheinlichkeit nach löscht sie sich gerade selbst.)
+    2. noch nicht aufgerufen wurde, wird sie nicht aufgerufen. (Hinweis: Sie ist möglicherweise bereits aufgerufen worden; und aller Wahrscheinlichkeit nach löscht sie sich gerade selbst.)
 
     3. Wenn **$o** das Befehlspräfix ändert, das an **$s** und **$h** gebunden ist, und wenn die Bindung von **$o** während dieser Ausführung von
 
@@ -128,9 +128,9 @@ Hook stellt die folgenden Befehle zur Verfügung:
             hook call $s $h
         ```
 
-    4. Die neue Bindung wird wenn der Zeitpunkt gekommen ist aufgerufen. (Allerdings ist es wahrscheinlich wieder die Bindung „**$o**“, die die Änderung vornimmt.)
+    4. noch nicht aufgerufen wurde, wird zu gegebener Zeit die neue Bindung aufgerufen. (Allerdings ist es wahrscheinlich wieder die Bindung „**$o**“, die die Änderung vornimmt.)
 
-    5. Wenn ein neuer Beobachter an **$s** und **$h** gebunden wird, wird seine Bindung erst beim nächsten Aufruf von
+    5. Wenn ein neuer Beobachter an **$s** und **$h** gebunden wird, wird seine Bindung erst aufgerufen beim nächsten Aufruf von
 
         ```
             hook call $s $h
@@ -146,7 +146,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
 
     1. **hook call** gibt die leere Zeichenkette zurück.
 
-    2. Normale Werte, die von Beobachter-Bindungen gegeben werden, werden ignoriert.
+    2. Normale Rückgabewerte von Beobachter-Bindungen werden ignoriert.
 
     3. Fehler und andere Ausnahmewerte werden standardmäßig normal weitergegeben. Dies entspricht jedoch selten den Erwartungen, da die Subjekte in der Regel keine Kenntnis von den Beobachtern haben und daher nicht über die erforderlichen Kompetenzen verfügen, um mit deren Fehlern umzugehen. Da es sich hierbei um ein anwendungsspezifisches Problem handelt, werden Anwendungen in der Regel ein **-errorcommand** definieren wollen.
 
@@ -156,7 +156,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
 **hook** **forget** *object*
 : Dieser Befehl löscht alle vorhandenen Bindungen, in denen das genannte *object* entweder als *subject* oder als *observer* auftritt. Durch diese Methode gelöschte Bindungen werden nie wieder aufgerufen. Insbesondere gilt:
 
-    1. Wenn bei einem Aufruf von **hook call** ein Beobachter übersehen wird, werden etwaige noch nicht aufgerufene Bindungen, die dieser möglicherweise zum betreffenden Subjekt und Hook hatte, anschließend *nicht* aufgerufen.
+    1. Wenn bei einem Aufruf von **hook call** ein Beobachter vergessen wird, werden etwaige noch nicht aufgerufene Bindungen, die dieser möglicherweise zum betreffenden Subjekt und Hook hatte, anschließend *nicht* aufgerufen.
 
     2. Wenn ein Subjekt **$s** während eines Aufrufs von
 
@@ -174,13 +174,13 @@ Hook stellt die folgenden Befehle zur Verfügung:
 : Dieser Befehl legt den Wert einer oder mehrerer Konfigurationsoptionen des Befehls „**hook**“ fest:
 
     **-errorcommand** *cmdPrefix*
-    : Wenn der Wert dieser Option die leere Zeichenkette „“, gibt, werden Fehler und andere Ausnahmen, die in Bindungsskripten auftreten, wie gewohnt weitergegeben. Andernfalls muss es sich um ein Befehlspräfix handeln, das drei zusätzliche Argumente entgegennimmt:
+    : Wenn der Wert dieser Option die leere Zeichenkette „“ ist, werden Fehler und andere Ausnahmen, die in Bindungsskripten auftreten, wie gewohnt weitergegeben. Andernfalls muss es sich um ein Befehlspräfix handeln, das drei zusätzliche Argumente entgegennimmt:
 
-        1. eine Liste mit vier Elementen {Thema, Aufhänger, Argumentliste, Beobachter},
+        1. eine Liste mit vier Elementen {subject hook arglist observer},
 
-        2. die Ergebniszeichenfolge und
+        2. die Ergebniszeichenkette und
 
-        3. das Dictionary der Rückgabemöglichkeiten.
+        3. das Dictionary der Rückgabeoptionen.
 
 
         Anhand dieser Informationen kann **-errorcommand** entscheiden, ob der Fehler protokolliert, **interp bgerror** aufgerufen, die fehlerhafte Bindung gelöscht (wodurch verhindert wird, dass der Fehler ein zweites Mal auftritt) oder Ähnliches erfolgen soll.
@@ -188,9 +188,9 @@ Hook stellt die folgenden Befehle zur Verfügung:
     **-tracecommand** *cmdPrefix*
     : Der Wert der Option sollte ein Befehlspräfix sein, das vier Argumente entgegennimmt:
 
-        1. a *subject*,
+        1. ein *subject*,
 
-        2. a *hook*,
+        2. ein *hook*,
 
         3. eine Liste der Werte der Argumente des Hooks sowie
 

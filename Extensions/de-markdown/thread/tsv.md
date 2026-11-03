@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-tsv - Teil der Tcl-Threading-Erweiterung für Daten, die Threads gemeinsam sind
+tsv - Teil der Tcl-Threading-Erweiterung, der Daten, die Threads gemeinsam nutzen, auf Skriptebene bearbeitbar macht
 
 # Übersicht
 

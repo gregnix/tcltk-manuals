@@ -32,11 +32,11 @@ tcl::transform::crc32 – CRC32-Transformation
 
 # Beschreibung
 
-Das Paket **tcl::transform::crc32** stellt einen Befehl zur Verfügung, der eine Kanal-Transformation erstellt, welche die gelesenen und geschriebenen Bytes unverändert durchlässt (wie **tcl::transform::identity**), jedoch zusätzlich kontinuierlich die CRC32-Prüfsummen der Daten berechnet, die es in jeder Richtung verarbeitet hat, und diese in Tcl-Variablen speichert, die bei der Erstellung festgelegt wurden. Bei der betreffenden Prüfsumme handelt es sich um die CRC32-Prüfsumme von zlib.
+Das Paket **tcl::transform::crc32** stellt einen Befehl zur Verfügung, der eine Kanal-Transformation erstellt, welche die gelesenen und geschriebenen Bytes unverändert durchlässt (wie **tcl::transform::identity**), jedoch zusätzlich kontinuierlich die CRC32-Prüfsummen der Daten berechnet, die sie in jeder Richtung verarbeitet hat, und diese in Tcl-Variablen speichert, die bei der Erstellung festgelegt wurden. Bei der betreffenden Prüfsumme handelt es sich um die CRC32-Prüfsumme von zlib.
 
 Zu diesem Modul gehörende Transformationen sind **tcl::transform::adler32**, **tcl::transform::counter**, **tcl::transform::identity** und **tcl::transform::observe**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

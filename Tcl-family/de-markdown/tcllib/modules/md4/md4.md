@@ -43,7 +43,7 @@ md4 – MD4-Message-Digest-Algorithmus
 
 Dieses Paket ist eine Implementierung des MD4-Message-Digest-Algorithmus in Tcl, wie er in RFC 1320 (1) und (2) beschrieben ist. Dieser Algorithmus nimmt eine beliebige Datenmenge entgegen und generiert aus der Eingabe einen 128-Bit-Message-Digest. Der MD4-Algorithmus ist schneller, aber potenziell weniger sicher als der verwandte MD5-Algorithmus (3).
 
-Wenn Sie über **critcl** verfügen und das Paket **tcllibc** erstellt haben, erfolgt die Implementierung der Hash-Funktion durch kompilierten Code. Alternativ wird, wenn **cryptkit** verfügbar ist, dieses verwendet. Kann kein Paket gefunden werden, kommt die reine TCL-Implementierung zum Einsatz. Die Programmierschnittstelle bleibt in allen Fällen unverändert.
+Wenn Sie über **critcl** verfügen und das Paket **tcllibc** erstellt haben, erfolgt die Implementierung der Hash-Funktion durch kompilierten Code. Alternativ wird, wenn **cryptkit** verfügbar ist, dieses verwendet. Kann kein Beschleunigerpaket gefunden werden, kommt die reine TCL-Implementierung zum Einsatz. Die Programmierschnittstelle bleibt in allen Fällen unverändert.
 
 *ACHTUNG* Die Befehle in diesem Paket erwarten Binärdaten als Eingabe. Wird ein **-file** angegeben, wird dies durch die Befehle selbst sichergestellt, da sie die referenzierte Datei im Binärmodus öffnen. Wenn stattdessen Literal-Daten oder ein **-channel** übergeben werden, ist der *Aufrufer des Befehls* dafür verantwortlich, dies sicherzustellen. Der erforderliche Konvertierungsbefehl lautet **encoding convertto utf-8 $string**.
 
@@ -62,7 +62,7 @@ expected byte sequence but character <location> was ...
 **::md4::md4** ?*-hex*? \[ *-channel channel* | *-file filename* | *string* \]
 : Berechnet den MD4-Hash der in der Zeichenkette angegebenen Daten. Dieser wird standardmäßig als Binärzeichenkette zurückgegeben. Bei Angabe der Option *-hex* gibt es eine hexadezimal kodierte Version des Hashs zurück.
 
-    Die zu hashenden Daten können entweder als Zeichenfolgenargument für den Befehl „md4“, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
+    Die zu hashenden Daten können entweder als Zeichenkettenargument für den Befehl „md4“, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
 
     Es sollte nur eines der Argumente *-file*, *-channel* oder *string* angegeben werden.
 
@@ -78,7 +78,7 @@ Für den Programmierer lässt sich der MD4-Hash als ein Behälter betrachten, in
 : Leitet einen neuen MD4-Hash ein. Gibt eine Token-ID zurück, die für die verbleibenden Funktionen verwendet werden muss.
 
 **::md4::MD4Update** *token* *data*
-: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *MD4Update $token „abcd“* entspricht dem Aufruf von *MD4Update $token „ab“*, gefolgt von *MD4Update $token „cb“*. Siehe [Beispiele].
+: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *MD4Update $token "abcd"* entspricht dem Aufruf von *MD4Update $token "ab"*, gefolgt von *MD4Update $token "cb"*. Siehe [Beispiele].
 
 **::md4::MD4Final** *token*
 : Gibt den Hash-Wert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist eine binäre Zeichenkette mit einer Länge von 16 Byte, die den 128-Bit-MD4-Digest-Wert darstellt.

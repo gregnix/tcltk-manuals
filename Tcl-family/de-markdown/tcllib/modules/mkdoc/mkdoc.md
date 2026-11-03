@@ -114,7 +114,7 @@ Die Syntax zeigt das Beispiel unten:
 
 *Hinweis*, die doppelten Anführungszeichen um den Pfad gehören zur Syntax.
 
-*Vorsicht* außerdem, dass relative Pfade relativ zum aktuellen Arbeitsverzeichnis aufgelöst werden und *nicht* relativ zum Ort der einbindenden Datei.
+*Beachten Sie* außerdem, dass relative Pfade relativ zum aktuellen Arbeitsverzeichnis aufgelöst werden und *nicht* relativ zum Ort der einbindenden Datei.
 
 # Fehler, Ideen, Rückmeldungen
 

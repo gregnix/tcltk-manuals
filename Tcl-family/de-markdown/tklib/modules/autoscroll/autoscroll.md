@@ -28,7 +28,7 @@ autoscroll – Sorgt dafür, dass eine Scrollbar je nach Bedarf automatisch ein-
 
 # Beschreibung
 
-Mit diesem Paket können Scrollbars je nach Größe und Inhalt des Widgets, das die Scrollbar verschiebt, nach Bedarf zugeordnet und wieder entfernt werden. Die Scrollbar muss entweder von pack oder grid verwaltet werden; andere Geometriemanager werden nicht unterstützt.
+Mit diesem Paket können Scrollbars je nach Größe und Inhalt des Widgets, das die Scrollbar scrollt, nach Bedarf ein- und ausgeblendet werden. Die Scrollbar muss entweder von pack oder grid verwaltet werden; andere Geometriemanager werden nicht unterstützt.
 
 Bei der Verwaltung durch pack gehen alle Geometrieänderungen verloren, die im Elternwidget der Scrollbar zwischen dem Entfernen und dem erneuten Zuordnen vorgenommen werden. Es ist ein Fehler, eines der Geschwisterwidgets der Scrollbar zu löschen, während sie nicht zugeordnet ist. Bei der Verwaltung durch grid ersetzt die Scrollbar beim erneuten Zuordnen das, was inzwischen mit grid in derselben Zeile und Spalte platziert wurde.
 
@@ -38,10 +38,10 @@ Dieses Paket kann für jedes Widget verwendet werden, das einer Scrollbar ähnel
 : Sorgt dafür, dass die bereits vorhandene Scrollbar **scrollbar** je nach Bedarf ein- und ausgeblendet wird.
 
 **::autoscroll::unautoscroll** *scrollbar*
-: Gibt die angegebene Scrollbar in ihren ursprünglichen statischen Zustand zurück.
+: Versetzt die angegebene Scrollbar in ihren ursprünglichen statischen Zustand zurück.
 
 **::autoscroll::wrap**
-: Stellt sicher, dass alle nach Ausführung dieses Befehls erstellten Scrollbars bei Bedarf automatisch zugeordnet und wieder entfernt werden.
+: Stellt sicher, dass alle nach Ausführung dieses Befehls erstellten Scrollbars bei Bedarf automatisch ein- und ausgeblendet werden.
 
 **::autoscroll::unwrap**
 : Deaktiviert das automatische Scrollen aller neuen Scrollbars. Hat keine Auswirkungen auf bereits vorhandene Scrollbars.

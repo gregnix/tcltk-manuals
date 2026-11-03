@@ -91,7 +91,7 @@ map::slippy – Gemeinsamer Code für auf Slippy basierende Kartenpakete
 
 Dieses Paket bietet eine Reihe von Methoden, die Funktionen bereitstellen, die von allen Arten von auf „slippy“ basierenden Kartenpaketen benötigt werden.
 
-*ACHTUNG*, *Hinweis*: Version *0.9* hat keine Kompatibilität mit Version 0.7 und früheren Versionen. Die gesamte API wurde *grundlegend überarbeitet und geändert*.
+*ACHTUNG*, *Hinweis*: Version *0.9* ist *NICHT abwärtskompatibel* mit Version 0.7 und früheren Versionen. Die gesamte API wurde *grundlegend überarbeitet und geändert*.
 
 *Hinweis:* Informationen zur Darstellung von Positionen in den verschiedenen Koordinatensystemen, die von den Befehlen dieses Pakets verwendet werden, finden Sie im Abschnitt [Koordinatensysteme]. In den Beschreibungen der Befehle werden diese Informationen nicht erneut aufgegriffen; es wird davon ausgegangen, dass sie bereits bekannt sind.
 
@@ -125,15 +125,15 @@ Ein Punkt wird durch eine Liste dargestellt, die die x- und y-Koordinaten des Or
 
 Ein Punktbegrenzungsrahmen wird durch eine Liste dargestellt, die vier Werte enthält: die minimalen x- und y-Koordinaten des Rahmens sowie die maximalen x- und y-Koordinaten des Rahmens, und zwar in dieser Reihenfolge.
 
-Punktpositionen und Kästchen können mithilfe eines zusätzlichen Parameters, der *zoom*-Stufe, in geografische Positionen und die dazugehörigen Kästchen umgewandelt werden. Dieser Parameter gibt die Größe der Karte im Canvas an, auf die die Koordinaten projiziert werden.
+Punktpositionen und Kästchen können mithilfe eines zusätzlichen Parameters, der *zoom*-Stufe, in geografische Positionen und die dazugehörigen Kästchen umgewandelt werden. Dieser Parameter gibt die Größe der Karte im Canvas an, aus der die Koordinaten projiziert werden.
 
 Kachelkoordinaten kommen in der API nur an einer Stelle vor, nämlich in der Signatur des Befehls **map slippy tile valid**. In allen anderen Fällen werden Punktkoordinaten verwendet.
 
-Die Verwendung von Kachel-Koordinaten im Folgenden erleichtert es jedoch, die Struktur der Karte auf den verschiedenen *zoom*-Ebenen (Vergrößerungsfaktoren) zu erläutern.
+Die Verwendung von Kachel-Koordinaten im Folgenden erleichtert es jedoch, die Struktur der Karte auf den verschiedenen *zoom*-Stufen (Vergrößerungsfaktoren) zu erläutern.
 
 Im Allgemeinen geben die ganzzahligen Anteile der Kachelkoordinaten die Zeilen- und Spaltennummer einer Kachel auf der Karte an, während die Bruchanteile angeben, wie weit innerhalb dieser Kachel sich der betreffende Ort befindet, wobei rein ganzzahlige Koordinaten (ohne Bruchanteil) die obere linke Ecke einer Kachel bezeichnen.
 
-Der Nullpunkt der Karte befindet sich in der oberen linken Ecke, unabhängig vom Zoomfaktor, wobei größere Koordinaten nach rechts (Osten) und nach unten (Süden) verlaufen und kleinere Koordinaten nach links (Westen) und nach oben (Norden). Auch dies gilt unabhängig vom Zoomfaktor.
+Der Nullpunkt der Karte befindet sich in der oberen linken Ecke, unabhängig von der Zoomstufe, wobei größere Koordinaten nach rechts (Osten) und nach unten (Süden) verlaufen und kleinere Koordinaten nach links (Westen) und nach oben (Norden). Auch dies gilt unabhängig von der Zoomstufe.
 
 Negative Koordinaten sind nicht zulässig.
 
@@ -161,9 +161,9 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 : Der Befehl gibt die Abmessungen des geografischen Rahmens *geobox* zurück, und zwar in dieser Reihenfolge: Breite und Höhe.
 
 **::map** **slippy geo box fit** *geobox* *canvdim* *zmax* ?*zmin*?
-: Dieser Befehl berechnet den Zoomfaktor so, dass die *geobox* in einen durch *canvdim* vorgegebenen Ansichtsbereich passt (eine Liste mit zwei Elementen, die die Breite und Höhe des genannten Ansichtsbereichs enthalten), und gibt diesen Wert zurück.
+: Dieser Befehl berechnet die Zoomstufe so, dass die *geobox* in einen durch *canvdim* vorgegebenen Ansichtsbereich passt (eine Liste mit zwei Elementen, die die Breite und Höhe des genannten Ansichtsbereichs enthalten), und gibt diesen Wert zurück.
 
-    Der Zoomfaktor wird so angepasst, dass er innerhalb des Bereichs *zmin*…*zmax* liegt. Wenn *zmin* nicht angegeben wird, wird standardmäßig der Wert **0** verwendet.
+    Die Zoomstufe wird so angepasst, dass sie innerhalb des Bereichs *zmin*…*zmax* liegt. Wenn *zmin* nicht angegeben wird, wird standardmäßig der Wert **0** verwendet.
 
 **::map** **slippy geo box inside** *geobox* *geo*
 : Der Befehl testet, ob der geografische Standort *geo* innerhalb des geografischen Bereichs *geobox* liegt oder nicht. Wenn dies der Fall ist, gibt er **true** zurück, andernfalls **false**.
@@ -171,7 +171,7 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 **::map** **slippy geo box limit** *geobox*
 : Dieser Befehl begrenzt den geografischen Bereich auf maximal 6 Dezimalstellen und gibt das Ergebnis zurück.
 
-    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Grid von 11,1 cm.
+    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Raster von 11,1 cm.
 
 **::map** **slippy geo box opposites** *geobox*
 : Dieser Befehl gibt eine Liste zurück, die die beiden wichtigsten Eckpunkte enthält, die sich aus dem geografischen Rahmen *geobox* ergeben. Die beiden Punkte sind der obere linke und der untere rechte Punkt, in dieser Reihenfolge.
@@ -188,7 +188,7 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 **::map** **slippy geo distance** *geo1* *geo2*
 : Dieser Befehl berechnet die Großkreisdistanz zwischen den beiden geografischen Standorten in Metern und gibt diesen Wert zurück.
 
-    Der Code basiert auf der Umsetzung der [Haversine-Formel](](https://en.wikipedia.org/wiki/Haversine_formula)) durch <https://wiki.tcl-lang.org/page/geodesy>.
+    Der Code basiert auf der Umsetzung der [Haversine-Formel](https://en.wikipedia.org/wiki/Haversine_formula) durch <https://wiki.tcl-lang.org/page/geodesy>.
 
 **::map** **slippy geo distance\*** *closed* *geo*...
 : Als Erweiterung von **map slippy geo distance** berechnet dieser Befehl die kumulative Entfernung entlang des durch die geordnete Menge geografischer Standorte festgelegten Pfads in Metern und gibt diese zurück.
@@ -201,7 +201,7 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 **::map** **slippy geo limit** *geo*
 : Dieser Befehl begrenzt die geografische Position auf höchstens 6 Dezimalstellen und gibt das Ergebnis zurück.
 
-    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Grid von 11,1 cm.
+    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Raster von 11,1 cm.
 
 **::map** **slippy geo bbox** *geo*...
 : siehe unten ...
@@ -240,7 +240,7 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 : siehe unten ...
 
 **::map** **slippy geo 2point-list** *zoom* *geo-list*
-: Diese beiden Befehle sind Erweiterungen von **map slippy geo 2point**, die eine Reihe von geografischen Standorten entweder als eine variable Anzahl von Argumenten oder als einzelne Liste entgegennehmen, diese alle gemäß der angegebenen *zoom*-Stufe in Punkte umwandeln und eine Liste der Ergebnisse gibt.
+: Diese beiden Befehle sind Erweiterungen von **map slippy geo 2point**, die eine Reihe von geografischen Standorten entweder als eine variable Anzahl von Argumenten oder als einzelne Liste entgegennehmen, diese alle gemäß der angegebenen *zoom*-Stufe in Punkte umwandeln und eine Liste der Ergebnisse zurückgeben.
 
 **::map** **slippy geo valid** *geo*
 : Dieser Befehl prüft, ob der angegebene geografische Standort ausschließlich gültige Breiten- und Längengrade enthält. Er gibt den Wert **true** zurück, wenn der Standort gültig ist, andernfalls den Wert **false**.
@@ -249,7 +249,7 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 : Dieser Befehl prüft, ob die Liste der geografischen Standorte ausschließlich gültige Breiten- und Längengrade enthält. Er gibt den Wert **true** zurück, wenn alle Standorte gültig sind, andernfalls den Wert **false**.
 
 **::map** **slippy length** *level*
-: Dieser Befehl gibt die Breite / Höhe einer auf „Slippy“ basierenden Karte bei der angegebenen Zoom-*level* in Pixeln zurück. Im Wesentlichen entspricht dies dem Ergebnis von
+: Dieser Befehl gibt die Breite / Höhe einer auf „Slippy“ basierenden Karte bei der angegebenen Zoomstufe *level* in Pixeln zurück. Im Wesentlichen entspricht dies dem Ergebnis von
 
     ```
     expr { [tiles $level] * [tile size] }
@@ -264,10 +264,10 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 **::map** **slippy limit6** *x*
 : Dieser Befehl begrenzt den Wert auf höchstens 2, 3 oder 6 Dezimalstellen und gibt das Ergebnis zurück.
 
-    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Grid von 11,1 cm.
+    Bei geografischen Koordinaten entsprechen 6 Dezimalstellen in etwa einem Raster von 11,1 cm.
 
 **::map** **slippy point box 2geo** *zoom* *pointbox*
-: Der Befehl wandelt den Punktbereich *pointbox* entsprechend der angegebenen *zoom*-Stufe in einen geografischen Bereich auf dem canvas um und gibt diesen Bereich zurück.
+: Der Befehl wandelt den Punktbereich *pointbox* entsprechend der angegebenen *zoom*-Stufe in einen geografischen Bereich auf dem Canvas um und gibt diesen Bereich zurück.
 
 **::map** **slippy point box center** *pointbox*
 : Der Befehl gibt den Mittelpunkt der *pointbox* zurück.
@@ -325,31 +325,31 @@ Das bedeutet, dass die Karte bei der Zoomstufe **N** (horizontal und vertikal) i
 : siehe unten ...
 
 **::map** **slippy point diameter-list** *point-list*
-: Dieser Befehl berechnet den Durchmesser der angegebenen Punktmenge in Pixeln. Der Durchmesser entspricht dem größten der paarweisen Abstände zwischen allen Positionen.
+: Diese beiden Befehle berechnen den Durchmesser der angegebenen Punktmenge in Pixeln. Der Durchmesser entspricht dem größten der paarweisen Abstände zwischen allen Positionen.
 
     Werden weniger als zwei Punkte angegeben, lautet der Durchmesser „**0**“.
 
     Die Positionen werden entweder als eine variable Anzahl von Argumenten oder als einzelne Liste angegeben.
 
 **::map** **slippy point 2geo** *zoom* *point*
-: Dieser Befehl wandelt den *point* auf dem canvas bei der angegebenen *zoom* in einen geografischen Standort um und gibt diesen Standort zurück.
+: Dieser Befehl wandelt den *point* auf dem Canvas bei der angegebenen *zoom*-Stufe in einen geografischen Standort um und gibt diesen Standort zurück.
 
 **::map** **slippy point 2geo\*** *zoom* *point*...
 : siehe unten ...
 
 **::map** **slippy point 2geo-list** *zoom* *point-list*
-: Diese beiden Befehle sind Erweiterungen von **map slippy point 2geo**, die eine Reihe von Punkten entweder als eine variable Anzahl von Argumenten oder als eine einzige Liste entgegennehmen, diese alle entsprechend der angegebenen *zoom*-Stufe in geografische Standorte umwandeln und eine Liste der Ergebnisse gibt.
+: Diese beiden Befehle sind Erweiterungen von **map slippy point 2geo**, die eine Reihe von Punkten entweder als eine variable Anzahl von Argumenten oder als eine einzige Liste entgegennehmen, diese alle entsprechend der angegebenen *zoom*-Stufe in geografische Standorte umwandeln und eine Liste der Ergebnisse zurückgeben.
 
 **::map** **slippy point simplify radial** *threshold* *point-list*
 : Dieser Befehl nimmt eine Punktfolge (als einzelne Liste) entgegen, vereinfacht diesen Pfad mithilfe des Algorithmus „*Radial Distance*“ und gibt den vereinfachten Pfad als Liste zurück.
 
-    Im Wesentlichen behält der Algorithmus von benachbarten Punkten nur denjenigen bei, der näher an diesem ersten Punkt liegt als der festgelegte Schwellenwert, und verwirft die übrigen.
+    Im Wesentlichen behält der Algorithmus von benachbarten Punkten nur den ersten bei, sofern sie näher als der festgelegte Schwellenwert an diesem ersten Punkt liegen, und verwirft die übrigen.
 
 **::map** **slippy point simplify rdp** *point-list*
 : Dieser Befehl nimmt eine Punktgruppe (als einzelne Liste) entgegen, vereinfacht diese mithilfe des *nichtparametrischen* *Ramer-Douglas-Peucker*-Algorithmus und gibt den vereinfachten Pfad als Liste von Punkten zurück.
 
 **::map** **slippy pretty-distance** *x*
-: Diese Methode formatiert die Entfernung *x* (in Metern) für die Anzeige und gibt die resultierende Zeichenfolge (einschließlich der gewählten Einheit) zurück.
+: Diese Methode formatiert die Entfernung *x* (in Metern) für die Anzeige und gibt die resultierende Zeichenkette (einschließlich der gewählten Einheit) zurück.
 
     Entfernungen im Subkilometerbereich werden auf zwei Dezimalstellen begrenzt, d. h. auf Zentimeter, während Entfernungen im Kilometerbereich auf drei Dezimalstellen begrenzt werden, d. h. auf Meter.
 

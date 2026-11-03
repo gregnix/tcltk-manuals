@@ -51,7 +51,7 @@ Ein Objekt **pieBoxLabeler** muss nicht gelöscht werden. Die Klasse pie erledig
 # Optionen
 
 **-font** value
-: Eine Schrift für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schrift systemabhängig.
+: Eine Schriftart für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schriftart systemabhängig.
 
 **-justify** value
 : Ausrichtung der Beschriftungen in der eigenen Spalte. Einer von *left*, *center* oder *right*. Voreingestellt ist *left*. Ist die Ausrichtung *right*, fluchten die rechten Kanten aller Spaltenbeschriftungen.

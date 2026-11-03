@@ -108,7 +108,7 @@ string *class.navbar*
 : Diese Variable enthält den Namen der Klasse für den Navigationsbereich (<div>), der die Navigationsleiste des erzeugten Dokuments umschließt. Der Standardwert lautet **idx-kwnav**.
 
 string *class.contents*
-: Diese Variable enthält den Namen der Klasse <table>, die die Schlüsselwörter und deren Verweise im generierten Dokument enthält. Der Standardwert lautet **idx-contents**.
+: Diese Variable enthält den Namen der Klasse für die Tabelle <table>, die die Schlüsselwörter und deren Verweise im generierten Dokument enthält. Der Standardwert lautet **idx-contents**.
 
 string *class.leader*
 : Diese Variable enthält den Namen der Klasse für die Anker, die das Plugin beim Wechsel von einem Abschnitt zum nächsten in die Schlüsselwort-Tabelle einfügt (jeder Abschnitt enthält alle Schlüsselwörter, die mit einem bestimmten Anfangszeichen beginnen). Der Standardwert lautet **idx-leader**.

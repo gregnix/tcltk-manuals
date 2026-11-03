@@ -69,6 +69,7 @@ Das Widget besteht aus mehreren Text-Widgets und Panedwindow-Widgets, sodass sic
     **list** ?*-full*?
     : Gibt eine Liste aller Benutzernamen aus der Namensansicht zurück. Ist ?-full? angegeben, ist die Liste eine Liste von Listen. Jede Unterliste besteht aus dem nick und danach den Optionen, die an diesem nick-Eintrag gesetzt sind. Damit lassen sich anwendungseigene Optionen prüfen, die **add** an einen nick hängt.
 
+
     - **add** *nick* ?*options*?
     - **delete** *nick*
 

@@ -45,7 +45,7 @@ info - Informationen über den Zustand des Tcl-Interpreters
 
 # Beschreibung
 
-Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpreters. Die zulässigen *option*s (die abgekürzt werden dürfen) sind:
+Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpreters. Die zulässigen *option*-Argumente (die abgekürzt werden dürfen) sind:
 
 **info args** *procname*
 : Gibt eine Liste zurück, die der Reihe nach die Namen der Argumente der Prozedur *procname* enthält. *Procname* muss der Name einer Tcl-Befehlsprozedur sein.
@@ -54,7 +54,7 @@ Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpret
 : Gibt den Rumpf der Prozedur *procname* zurück. *Procname* muss der Name einer Tcl-Befehlsprozedur sein.
 
 **info class** *subcommand class* ?*arg ...*
-: [Gibt Informationen über die Klasse *class* zurück. Die *subcommand*s sind unter [Klassen-Introspection] unten beschrieben.]{version="8.6"}
+: [Gibt Informationen über die Klasse *class* zurück. Die *subcommand*-Argumente sind unter [Klassen-Introspection] unten beschrieben.]{version="8.6"}
 
 **info cmdcount**
 : Gibt die Gesamtzahl der in diesem Interpreter aufgerufenen Befehle zurück.
@@ -160,7 +160,7 @@ Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpret
 : Gibt den vollständigen Pfadnamen der Binärdatei zurück, aus der die Anwendung aufgerufen wurde. Konnte Tcl die Datei nicht ermitteln, wird eine leere Zeichenkette zurückgegeben.
 
 **info object** *subcommand object* ?*arg ...*
-: [Gibt Informationen über das Objekt *object* zurück. Die *subcommand*s sind unter [Objekt-Introspection] unten beschrieben.]{version="8.6"}
+: [Gibt Informationen über das Objekt *object* zurück. Die *subcommand*-Argumente sind unter [Objekt-Introspection] unten beschrieben.]{version="8.6"}
 
 **info patchlevel**
 : Gibt den Wert der globalen Variable [tcl\_patchLevel][tclvars] zurück, die standardmäßig die genaue Version der Tcl-Bibliothek enthält.
@@ -209,7 +209,7 @@ Die folgenden *subcommand*-Werte werden von **info class** unterstützt:
 : [Dieser Unterbefehl gibt eine Liste der Instanzen der Klasse *class* zurück. Ist das optionale Argument *pattern* angegeben, beschränkt es die Liste der zurückgegebenen Instanzen auf diejenigen, die gemäß den Regeln von [string match][string] darauf passen.]{version="8.6"}
 
 **info class methods** *class* ?*options...*?
-: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden der Klasse mit dem Namen *class* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden der Klasse mit dem Namen *class* zurück. Jedes der folgenden *option*-Argumente kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
 
     **-all**
     : [Ist der Schalter **-all** angegeben, enthält die Liste der Methoden nicht nur die von der Klasse definierten Methoden, sondern auch die von den Oberklassen und Mixins der Klasse definierten.]{version="8.6"}
@@ -275,7 +275,7 @@ Die folgenden *subcommand*-Werte werden von **info object** unterstützt:
 
 
 **info object methods** *object* ?*option...*?
-: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden des Objekts mit dem Namen *object* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden des Objekts mit dem Namen *object* zurück. Jedes der folgenden *option*-Argumente kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
 
     **-all**
     : [Ist der Schalter **-all** angegeben, enthält die Liste der Methoden nicht nur die vom Objekt definierten Methoden, sondern auch die von der Klasse und den Mixins des Objekts definierten sowie die der Oberklassen dieser Klassen.]{version="8.6"}

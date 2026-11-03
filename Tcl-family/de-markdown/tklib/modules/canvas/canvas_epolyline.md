@@ -56,7 +56,7 @@ Die Option **-line-config** ermöglicht eine grundlegende Anpassung des Linien-/
 **::canvas::edit** **polyline** *objectName* *canvas* *options*...
 : Dieser Befehl, der Klassenbefehl, erstellt und konfiguriert eine neue Instanz eines Polylinien-Editors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Die hier zulässigen Optionen und ihre Werte werden im Abschnitt [Optionen] erläutert.
 
@@ -100,9 +100,9 @@ Instanzen der Polylinien-Editoren stellen die folgende API bereit:
 
     Beachten Sie, dass diese Methode die gesamte Reihe von Rückruffunktionen durchläuft, die aufgerufen werden, wenn der Benutzer interaktiv einen Eckpunkt erstellt, d. h. **-create-cmd** und, was noch wichtiger ist, **-data-cmd**.
 
-    Es gibt jedoch einen wichtigen Unterschied: Der neue Scheitelpunkt wird stets am Ende der Linie hinzugefügt, während bei der interaktiven Erstellung Heuristiken zum Einsatz kommen, um ihn an einer geeigneten Stelle in die Linie einzufügen.
+    Es gibt jedoch einen wichtigen Unterschied: Der neue Eckpunkt wird stets am Ende der Linie hinzugefügt, während bei der interaktiven Erstellung Heuristiken zum Einsatz kommen, um ihn an einer geeigneten Stelle in die Linie einzufügen.
 
-    Dies ist die Methode, mit der die Scheitelpunkte einer bereits vorhandenen Linie in eine Editor-Instanz geladen werden.
+    Dies ist die Methode, mit der die Eckpunkte einer bereits vorhandenen Linie in eine Editor-Instanz geladen werden.
 
 **objectName** **clear**
 : Diese Methode entfernt programmgesteuert alle Eckpunkte aus dem Editor, wodurch im Wesentlichen die ganze Linie gelöscht wird.
@@ -114,29 +114,29 @@ Instanzen der Polylinien-Editoren stellen die folgende API bereit:
 
 # Optionen
 
-Der Befehl „class“ akzeptiert die folgenden Optionen
+Der Klassenbefehl akzeptiert die folgenden Optionen
 
 **-active-cmd** *command-prefix*
-: Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn die Maus in die Zeile oder an einen von der Instanz verwalteten Punkt ein- bzw. aus diesem herausfährt.
+: Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn die Maus in die Linie oder an einen von der Instanz verwalteten Punkt ein- bzw. aus diesem herausfährt.
 
     Wird kein Wert angegeben, wird standardmäßig ein leerer Befehl verwendet, der keine Aktion ausführt.
 
     Die Signatur dieses Befehlspräfixes lautet
 
     **activeCmd** *editorObj* *id*
-    : Die *id* identifiziert das eingegebene Objekt.
+    : Die *id* identifiziert das Objekt, das die Maus betreten hat.
 
-        Eine leere *id* bedeutet, dass das zuletzt eingegebene Objekt beibehalten wurde.
+        Eine leere *id* bedeutet, dass die Maus das zuletzt betretene Objekt verlassen hat.
 
-        Der Wert **line** gibt an, dass die Linie eingegeben wurde.
+        Der Wert **line** gibt an, dass die Maus die Linie betreten hat.
 
-        Ein numerischer Wert **N** bedeutet, dass der **N**. Scheitelpunkt der Linie eingegeben wurde, gezählt ab **0**.
+        Ein numerischer Wert **N** bedeutet, dass der **N**. Eckpunkt der Linie betreten wurde, gezählt ab **0**.
 
         Das Ergebnis dieser Methode wird ignoriert.
 
 
 **-add-remove-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne Klammerwinkel), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
@@ -145,14 +145,14 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Bei Verwendung dieser Option wird für beide Vorgänge dasselbe Ereignis verwendet. Dies stellt kein Problem dar, da das Hinzufügen als canvas-globales Ereignis gebunden ist, während das Entfernen an die jeweiligen Canvas-Elemente gebunden ist.
 
 **-closed** *boolean*
-: Der Wert dieser Option ist ein boolescher Schalter, der angibt, ob die bearbeitete Polylinie geschlossen ist, d. h. eine Schleife bildet, oder nicht. *Hinweis*: Eine korrekte Schleife erfordert mindestens drei Punkte. Bei weniger als drei Punkten wird eine offene Linie oder sogar nur ein Punkt angezeigt.
+: Der Wert dieser Option ist ein boolescher Schalter, der angibt, ob die bearbeitete Polylinie geschlossen ist, d. h. eine Schleife bildet, oder nicht. *HINWEIS*: Eine korrekte Schleife erfordert mindestens drei Punkte. Bei weniger als drei Punkten wird eine offene Linie oder sogar nur ein Punkt angezeigt.
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
     Wird sie nicht angegeben, gilt standardmäßig der Wert **false**.
 
 **-color** *colorspec*
-: Der Wert dieser Option ist die Farbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
+: Der Wert dieser Option ist die Füllfarbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
 
     Der Standardwert lautet **SkyBlue2**.
 
@@ -190,13 +190,13 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     **dataCmd** *editorObj* *coordinates*
     : Diese Rückruffunktion wird aufgerufen, wenn die Linie entweder interaktiv oder programmgesteuert geändert wurde. Informationen zum letzteren Fall finden Sie in der Instanzmethode **add**.
 
-        Das *editorObj* identifiziert die Instanz, die die Rückruffunktion aufruft, während *coordinates* eine Liste von Scheitelpunktpositionen ist, wobei jede Position aus einem Paar von x- und y-Koordinaten besteht.
+        Das *editorObj* identifiziert die Instanz, die die Rückruffunktion aufruft, während *coordinates* eine Liste von Eckpunktpositionen ist, wobei jede Position aus einem Paar von x- und y-Koordinaten besteht.
 
         Das Ergebnis dieser Methode wird ignoriert.
 
 
 **-drag-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne eckige Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
 
     Diese Option kann nur zur Erstellungszeit festgelegt werden.
 

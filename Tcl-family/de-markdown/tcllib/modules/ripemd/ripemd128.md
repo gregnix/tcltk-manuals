@@ -63,9 +63,9 @@ expected byte sequence but character <location> was ...
 # Befehle
 
 **::ripemd::ripemd128** ?*-hex*? \[ *-channel channel* | *-file filename* | *string* \]
-: Berechnet den RIPEMD-128-Digest der in der Zeichenkette angegebenen Daten. Dieser wird standardmäßig als Binärzeichenkette zurückgegeben. Bei Angabe der Option *-hex* gibt es eine hexadezimal kodierte Version des Digests zurück.
+: Berechnet den RIPEMD-128-Digest der in der Zeichenkette angegebenen Daten. Dieser wird standardmäßig als Binärzeichenkette zurückgegeben. Bei Angabe der Option *-hex* wird eine hexadezimal kodierte Version des Digests zurückgegeben.
 
-    Die zu hashenden Daten können entweder als Zeichenfolgenargument für den Befehl ripemd128, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
+    Die zu hashenden Daten können entweder als Zeichenkettenargument für den Befehl ripemd128, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-filename* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und gehasht, und die Datei wird geschlossen. Wenn das Argument *-channel* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen.
 
     Es sollte nur eines der Argumente *-file*, *-channel* oder *string* angegeben werden.
 
@@ -75,7 +75,7 @@ expected byte sequence but character <location> was ...
 
 # Programmierschnittstelle
 
-Für den Programmierer lassen sich Hash-Funktionen als ein Behälter betrachten, in den man Daten einfüllt. Ist die Eingabe abgeschlossen, wird ein Wert extrahiert, der sich eindeutig aus den Daten ableitet, die in den Behälter eingefüllt wurden. Die Programmierschnittstelle zum Hash arbeitet mit einem Token (das dem Behälter entspricht). **RIPEMD128Init** liefert ein Token, **RIPEMD128Update** nimmt so oft wie erforderlich weitere Daten entgegen. **RIPEMD128Final** gibt die Ressourcen frei und liefert den Hash-Wert. Ein entsprechender Funktionssatz liefert Ihnen einen schlüsselbasierten Digest (HMAC).
+Für den Programmierer lassen sich Hash-Funktionen als ein Behälter betrachten, in den Daten eingefüllt werden. Ist die Eingabe abgeschlossen, wird ein Wert extrahiert, der sich eindeutig aus den Daten ableitet, die in den Behälter eingefüllt wurden. Die Programmierschnittstelle zum Hash arbeitet mit einem Token (das dem Behälter entspricht). **RIPEMD128Init** liefert ein Token, **RIPEMD128Update** nimmt so oft wie erforderlich weitere Daten entgegen. **RIPEMD128Final** gibt die Ressourcen frei und liefert den Hash-Wert. Ein entsprechender Funktionssatz liefert Ihnen einen schlüsselbasierten Digest (HMAC).
 
 Wenn Sie über **critcl** verfügen und das Paket **tcllibc** erstellt haben, erfolgt die Implementierung der Hash-Funktion durch kompilierten Code. Sind hingegen sowohl die Trf- als auch die Memchan-Erweiterung verfügbar, werden diese verwendet. Andernfalls greift das Paket auf eine reine Tcl-Implementierung zurück. Die Programmierschnittstelle bleibt jedoch unverändert.
 
@@ -83,10 +83,10 @@ Wenn Sie über **critcl** verfügen und das Paket **tcllibc** erstellt haben, er
 : Erzeugt einen neuen RIPEMD-128-Hash. Gibt eine Token-ID zurück, die für die verbleibenden Funktionen verwendet werden muss.
 
 **::ripemd::RIPEMD128Update** *token* *data*
-: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *RIPEMD128Update $token „abcd“* entspricht dem Aufruf von *RIPEMD128Update $token „ab“*, gefolgt von *RIPEMD128Update $token „cb“*. Siehe [Beispiele].
+: Fügt Daten zu dem durch das Token identifizierten Hash hinzu. Der Aufruf von *RIPEMD128Update $token "abcd"* entspricht dem Aufruf von *RIPEMD128Update $token "ab"*, gefolgt von *RIPEMD128Update $token "cb"*. Siehe [Beispiele].
 
 **::ripemd::RIPEMD128Final** *token*
-: Gibt den Hash-Wert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist eine binäre Zeichenkette mit einer Länge von 16 Byte, die den 128-Bit-RIPEMD-128-Wert darstellt.
+: Gibt den Hash-Wert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist eine binäre Zeichenkette mit einer Länge von 16 Byte, die den 128-Bit-RIPEMD-128-Digest-Wert darstellt.
 
 **::ripemd::RIPEHMAC128Init** *key*
 : Dies entspricht dem Befehl **::ripemd::RIPEMD128Init**, mit dem Unterschied, dass hierfür der Schlüssel angegeben werden muss, der in den HMAC einbezogen werden soll.
@@ -95,7 +95,7 @@ Wenn Sie über **critcl** verfügen und das Paket **tcllibc** erstellt haben, er
 : siehe unten ...
 
 **::ripemd::RIPEHMAC128Final** *token*
-: Diese Befehle entsprechen den entsprechenden Befehlen des RIPEMD128.
+: Diese Befehle sind identisch mit den entsprechenden RIPEMD128-Befehlen.
 
 
 # Beispiele
@@ -122,7 +122,7 @@ b359dc5971a05beea0be7b106b30e389
 
 # Literatur
 
-1. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, eine erweiterte Version von RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
+1. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, eine verstärkte Version von RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
 
 2. Rivest, R., „The MD4 Message Digest Algorithm“, RFC 1320, MIT, April 1992. (<http://www.rfc-editor.org/rfc/rfc1320.txt>)
 

@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-textutil::repeat – Prozeduren zum Wiederholen von Zeichenfolgen.
+textutil::repeat – Prozeduren zum Wiederholen von Zeichenketten.
 
 # Übersicht
 
@@ -31,7 +31,7 @@ textutil::repeat – Prozeduren zum Wiederholen von Zeichenfolgen.
 
 # Beschreibung
 
-Das Paket **textutil::repeat** enthält Befehle zum Erzeugen von Zeichenfolgen, indem eine Zeichenfolge mehrfach wiederholt wird.
+Das Paket **textutil::repeat** enthält Befehle zum Erzeugen von Zeichenketten, indem eine Zeichenkette mehrfach wiederholt wird.
 
 # API
 
@@ -40,7 +40,7 @@ Das Paket **textutil::repeat** enthält Befehle zum Erzeugen von Zeichenfolgen, 
 
     Die Wiederholungen werden ohne Trennzeichen miteinander verbunden. Ist der Wert von *count* *<= 0*, gibt der Befehl eine leere Zeichenkette zurück.
 
-    Hinweis: Wenn der Tcl-Kern, in den dieses Paket geladen wird, den Befehl **string repeat** bereitstellt, wird dieser Befehl aus Gründen der maximalen Geschwindigkeit in dessen Begriffen implementiert. Andernfalls wird eine schnelle Tcl-Implementierung verwendet.
+    Hinweis: Wenn der Tcl-Kern, in den dieses Paket geladen wird, den Befehl **string repeat** bereitstellt, wird dieser Befehl aus Gründen der maximalen Geschwindigkeit auf dessen Grundlage implementiert. Andernfalls wird eine schnelle Tcl-Implementierung verwendet.
 
 **::textutil::repeat::blank** *count*
 : Gibt eine Zeichenkette zurück, die *count* Leerzeichen enthält.

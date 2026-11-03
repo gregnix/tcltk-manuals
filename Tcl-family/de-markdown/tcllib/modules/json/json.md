@@ -30,7 +30,7 @@ json – JSON-Parser
 
 # Beschreibung
 
-Das **json**-Paket bietet eine einfache, ausschließlich auf Tcl basierende Bibliothek zum Parsen des [JSON](http://www.json.org/)-Datenaustauschformats, wie es in [RFC 4627](http://www.ietf.org/rfc/rfc4627.txt) festgelegt ist. Beim Parsen von JSON bestehen gewisse Unklarheiten, da JSON Typinformationen enthält, die bei der Konvertierung durch dieses Modul nicht beibehalten werden. Außerdem werden JSON-**null**-Werte in das String-Literal „null“ konvertiert (siehe [Ticket](https://core.tcl-lang.org/tcllib/tktview/2aa0cebb88)). Das **json**-Paket gibt Daten entweder als Tcl-**dict** oder als **list** zurück, die wiederum verschachtelte **dict**s oder **list**s enthalten können. (Für die Verwendung ist entweder das **dict**-Paket oder Tcl 8.5 oder höher erforderlich.)
+Das **json**-Paket bietet eine einfache, ausschließlich auf Tcl basierende Bibliothek zum Parsen des [JSON](http://www.json.org/)-Datenaustauschformats, wie es in [RFC 4627](http://www.ietf.org/rfc/rfc4627.txt) festgelegt ist. Beim Parsen von JSON bestehen gewisse Unklarheiten, da JSON Typinformationen enthält, die bei der Konvertierung durch dieses Modul nicht beibehalten werden. Außerdem werden JSON-**null**-Werte in das Zeichenketten-Literal „null“ konvertiert (siehe [Ticket](https://core.tcl-lang.org/tcllib/tktview/2aa0cebb88)). Das **json**-Paket gibt Daten entweder als Tcl-**dict** oder als **list** zurück, die wiederum verschachtelte **dict**s oder **list**s enthalten können. (Für die Verwendung ist entweder das **dict**-Paket oder Tcl 8.5 oder höher erforderlich.)
 
 Eine alternative, ausschließlich auf Tcl basierende, typkonservierende Implementierung finden Sie im Modul [typed-json](https://wiki.tcl-lang.org/page/typed-json).
 
@@ -39,7 +39,7 @@ Eine alternative, ausschließlich auf Tcl basierende, typkonservierende Implemen
 **::json::json2dict** *json\_txt*
 : Gibt ein **dict** oder eine **list** zurück (die wiederum verschachtelte **dict**s und/oder **list**s enthalten können), das bzw. die das Ergebnis der Analyse des in *json\_txt* übergebenen JSON-formatierten Textes ist.
 
-    Wenn *json\_txt* mehr als eine JSON-Entität enthält, gibt es nur die erste zurück.
+    Wenn *json\_txt* mehr als eine JSON-Entität enthält, wird nur die erste zurückgegeben.
 
 **::json::many-json2dict** *json\_txt* ?*max*?
 : Gibt eine **list** zurück (die ihrerseits verschachtelte **dict**s und/oder **list**s enthält), die das Ergebnis der Analyse aller JSON-Entitäten (oder, wenn *max* festgelegt ist, der ersten *max* Entitäten) im JSON-formatierten Text ist, der in *json\_txt* übergeben wurde.
@@ -80,7 +80,7 @@ Ein Beispiel für ein in Tcl konvertiertes JSON-Array. Ein JSON-Array wird als e
 {Country US Latitude 37.7668 precision zip State CA City {SAN FRANCISCO} Address {} Zip 94107 Longitude -122.3959} {Country US Latitude 37.371991 precision zip State CA City SUNNYVALE Address {} Zip 94085 Longitude -122.026020}
 ```
 
-Ein Beispiel für ein JSON-Dikt, das einen Eintrag enthält, dessen Wert eine Liste von Dicts ist.
+Ein Beispiel für ein JSON-Dict, das einen Eintrag enthält, dessen Wert eine Liste von Dicts ist.
 
 ```
 {

@@ -52,12 +52,12 @@ Die folgenden Befehle sind eine Teilmenge des vollständigen Dynamic-Data-Exchan
 [dde]{.cmd} [execute]{.sub} [-async]{.optlit} [-binary]{.optlit} [service]{.arg} [topic]{.arg} [data]{.arg}
 : **dde execute** nimmt *data* und sendet sie an den durch *service* bezeichneten Server mit dem Thema *topic*. Typischerweise ist *service* der Name einer Anwendung und *topic* eine zu bearbeitende Datei. Das Feld *data* geht an die entfernte Anwendung. Typischerweise behandelt die Anwendung *data* als Skript und führt es aus. **-async** verlangt einen asynchronen Aufruf. Der Befehl gibt eine Fehlermeldung zurück, wenn das Skript nicht lief, außer **-async** ist gesetzt; dann kehrt der Befehl sofort ohne Fehler zurück.
 
-    Ohne **-binary** werden alle Daten in Unicode gesendet. DDE-Clients ohne das Zwischenablageformat CF\_UNICODE übersetzen das automatisch in die Systemkodierung. Mit **-binary** und dem Ergebnis von [encoding convertto][encoding] lassen sich Daten in jeder anderen Kodierung senden.
+    Ohne **-binary** werden alle Daten in Unicode gesendet. Für DDE-Clients ohne das Zwischenablageformat CF\_UNICODE werden die Daten automatisch in die Systemkodierung übersetzt. Mit **-binary** und dem Ergebnis von [encoding convertto][encoding] lassen sich Daten in jeder anderen Kodierung senden.
 
 [dde]{.cmd} [poke]{.sub} [-binary]{.optlit} [service]{.arg} [topic]{.arg} [item]{.arg} [data]{.arg}
 : **dde poke** übergibt *data* an den durch *service* bezeichneten Server, mit den angegebenen *topic* und *item*. Typischerweise ist *service* der Name einer Anwendung. *topic* ist anwendungsspezifisch, kann ein Befehl an den Server oder der Name einer zu bearbeitenden Datei sein. *item* ist ebenfalls anwendungsspezifisch und oft unbenutzt, darf aber nie leer sein. Das Feld *data* geht an die entfernte Anwendung.
 
-    Ohne **-binary** werden alle Daten in Unicode gesendet. DDE-Clients ohne das Zwischenablageformat CF\_UNICODE übersetzen das automatisch in die Systemkodierung. Mit **-binary** und dem Ergebnis von [encoding convertto][encoding] lassen sich Daten in jeder anderen Kodierung senden.
+    Ohne **-binary** werden alle Daten in Unicode gesendet. Für DDE-Clients ohne das Zwischenablageformat CF\_UNICODE werden die Daten automatisch in die Systemkodierung übersetzt. Mit **-binary** und dem Ergebnis von [encoding convertto][encoding] lassen sich Daten in jeder anderen Kodierung senden.
 
 [dde]{.cmd} [request]{.sub} [-binary]{.optlit} [service]{.arg} [topic]{.arg} [item]{.arg}
 : **dde request** holt typischerweise den Wert von etwas, etwa den Wert einer Zelle in Microsoft Excel oder den Text einer Auswahl in Microsoft Word. *service* ist typischerweise der Name einer Anwendung, *topic* typischerweise der Dateiname, *item* anwendungsspezifisch. Der Befehl gibt den in der Anwendung definierten Wert von *item* zurück. Normalerweise gilt das als Zeichenkette mit abschließendem Nullbyte. Mit **-binary** kommt das Ergebnis als Bytefeld zurück.
@@ -66,7 +66,7 @@ Die folgenden Befehle sind eine Teilmenge des vollständigen Dynamic-Data-Exchan
 : **dde services** gibt eine Liste der Dienst-Thema-Paare zurück, die auf dem Rechner gerade existieren. Sind *service* und *topic* beide leere Zeichenketten ({}), kommen alle derzeit verfügbaren Paare zurück. Ist *service* leer und *topic* nicht, kommen alle Dienste mit diesem Thema zurück. Ist *service* nicht leer und *topic* leer, kommen alle Themen dieses Dienstes zurück. Sind beide nicht leer und das Paar existiert, wird es zurückgegeben, sonst eine leere Zeichenkette.
 
 [dde]{.cmd} [eval]{.sub} [-async]{.optlit} [topic]{.arg} [cmd]{.arg} [arg arg]{.optdot}
-: **dde eval** wertet einen Befehl und seine Argumente im durch *topic* bezeichneten Interpreter aus. Der DDE-Dienst muss **TclEval** sein. **-async** verlangt einen asynchronen Aufruf. Der Befehl gibt eine Fehlermeldung zurück, wenn das Skript nicht lief, außer **-async** ist gesetzt; dann kehrt der Befehl sofort ohne Fehler zurück. Dieser Befehl kann unter Windows **send** ersetzen.
+: **dde eval** wertet einen Befehl und seine Argumente im durch *topic* bezeichneten Interpreter aus. Der DDE-Dienst muss **TclEval** sein. **-async** verlangt einen asynchronen Aufruf. Der Befehl gibt eine Fehlermeldung zurück, wenn das Skript nicht lief, außer **-async** ist gesetzt; dann kehrt der Befehl sofort ohne Fehler zurück. Dieser Befehl kann unter Windows send ersetzen.
 
 
 # DDE und Tcl
@@ -79,7 +79,7 @@ Verarbeitet Tcl einen Befehl **dde request**, gibt er den Wert der im DDE-Befehl
 
 Eine fremde Anwendung, die ein Skript in Tcl ausführen will, soll das Skript sein Ergebnis in einer Variable speichern lassen, **dde execute** ausführen und danach mit **dde request** den Wert der Variable holen.
 
-Bei DDE muss die Ereignisschleife mit [update] oder [vwait] geleert werden. Das geschieht bei [wish] von selbst, außer ein blockierender Befehl wird aufgerufen (etwa [exec] ohne **&**, das den Prozess in den Hintergrund legt). Wird die Ereignisschleife nicht geleert, können DDE-Befehle hängen, bis sie geleert wird. Das kann eine Verklemmung erzeugen.
+Bei DDE muss die Ereigniswarteschlange mit [update] oder [vwait] geleert werden. Das geschieht bei [wish] von selbst, außer ein blockierender Befehl wird aufgerufen (etwa [exec] ohne **&**, das den Prozess in den Hintergrund legt). Wird die Ereigniswarteschlange aus irgendeinem Grund nicht geleert, können DDE-Befehle hängen, bis sie geleert wird. Das kann eine Verklemmung erzeugen.
 
 # Beispiel
 

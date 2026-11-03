@@ -64,24 +64,24 @@ Das Paket **textutil::adjust** enthält Befehle zum Einrücken, Ausrücken und B
     **-hyphenate** *boolean*
     : Bei der Einstellung **0** (falsch; Standard) erfolgt keine Silbentrennung. Bei der Einstellung **1** (wahr) versucht der Befehl, das letzte Wort jeder Zeile gegebenenfalls zu trennen.
 
-        Wenn **-hyphenate** auf **1** gesetzt ist, *müssen* die Silbentrennungsmuster durch Aufruf des Befehls **::textutil::adjust::readPatterns** Der Befehl geladen worden sein, *bevor* **::textutil::adjust::adjust** aufgerufen wird; andernfalls löst **::textutil::adjust::adjust** einen Fehler aus.
+        Wenn **-hyphenate** auf **1** gesetzt ist, *müssen* die Silbentrennungsmuster durch Aufruf des Befehls **::textutil::adjust::readPatterns** geladen worden sein, *bevor* **::textutil::adjust::adjust** aufgerufen wird; andernfalls löst **::textutil::adjust::adjust** einen Fehler aus.
 
     **-justify** **center|left|plain|right**
-    : Legt die Ausrichtung der zurückgegebenen Zeichenkette auf eine der folgenden Optionen fest: **left** (Standard), **center**, **plain** (blockiert) oder **right**. Die Ausrichtung bedeutet, dass jede Zeile in der zurückgegebenen Zeichenkette (möglicherweise mit Ausnahme der letzten Zeile) entsprechend der angegebenen Ausrichtung ausgerichtet wird.
+    : Legt die Ausrichtung der zurückgegebenen Zeichenkette auf eine der folgenden Optionen fest: **left** (Standard), **center**, **plain** (Blocksatz) oder **right**. Die Ausrichtung bedeutet, dass jede Zeile in der zurückgegebenen Zeichenkette (möglicherweise mit Ausnahme der letzten Zeile) entsprechend der angegebenen Ausrichtung ausgerichtet wird.
 
-        Wenn die Ausrichtung auf **plain** (ausgerichtet) gesetzt ist und die Anzahl der druckbaren Zeichen in der letzten Zeile weniger als 90 % von **-length** beträgt, wird die letzte Zeile **left** ausgerichtet, um den Innenabstand dieser Zeile zu vermeiden, wenn sie zu kurz ist. Die einzelnen Werte haben folgende Bedeutung:
+        Wenn die Ausrichtung auf **plain** (Blocksatz) gesetzt ist und die Anzahl der druckbaren Zeichen in der letzten Zeile weniger als 90 % von **-length** beträgt, wird die letzte Zeile **left** ausgerichtet, um das Auffüllen dieser Zeile zu vermeiden, wenn sie zu kurz ist. Die einzelnen Werte haben folgende Bedeutung:
 
         **center**
-        : Jede *tatsächliche* Zeile wird in der *logischen* Zeile zentriert, indem zwischen der *tatsächlichen* Zeile und der *logischen* Zeile ein Innenabstand mit Leerzeichen eingehalten wird, der bei Bedarf am Anfang und am Ende die *tatsächliche* Zeile auffüllt. Wenn die letzte Zeile weniger als 90 % von **-length** ausmacht, wird sie **left** statt **center** ausgerichtet. (siehe auch die Option **-full**.)
+        : Jede *tatsächliche* Zeile wird in der *logischen* Zeile zentriert, indem zwischen der *tatsächlichen* Zeile und der *logischen* Zeile Leerzeichen eingefügt werden, die bei Bedarf am Anfang und am Ende die *tatsächliche* Zeile auffüllen. Wenn die letzte Zeile weniger als 90 % von **-length** ausmacht, wird sie **left** statt **center** ausgerichtet. (siehe auch die Option **-full**.)
 
         **left**
-        : Jede *tatsächliche* Zeile wird links von der *logischen* Zeile platziert, ohne vorangestellte Leerzeichen. Wenn **-full** den Wert **1** (wahr) hat, wird die *tatsächliche* Zeile am Ende mit Leerzeichen zum Innenabstand aufgefüllt, sodass sie **-length** Zeichen breit ist.
+        : Jede *tatsächliche* Zeile wird am linken Rand der *logischen* Zeile platziert, ohne vorangestellte Leerzeichen. Wenn **-full** den Wert **1** (wahr) hat, wird die *tatsächliche* Zeile am Ende mit Leerzeichen aufgefüllt, sodass sie **-length** Zeichen breit ist.
 
         **plain**
         : Jede Zeile ist vollständig ausgerichtet. Das bedeutet, dass die Wörter jeder *tatsächlichen* Zeile in der *logischen* Zeile platziert werden, getrennt durch ein oder mehrere Leerzeichen, je nach Bedarf, um die Zeile vollständig auszufüllen, ohne dass am Anfang oder Ende Leerzeichen stehen.
 
         **right**
-        : Jede *tatsächliche* Zeile wird rechts neben der *logischen* Zeile platziert, ohne Leerzeichen am Ende, und bei Bedarf mit Innenabstand am Anfang aufgefüllt, damit die *tatsächliche* Zeile eine Breite von **-length** Zeichen hat.
+        : Jede *tatsächliche* Zeile wird am rechten Rand der *logischen* Zeile platziert, ohne Leerzeichen am Ende, und bei Bedarf am Anfang mit Leerzeichen aufgefüllt, damit die *tatsächliche* Zeile eine Breite von **-length** Zeichen hat.
 
 
     **-length** *integer*
@@ -92,7 +92,7 @@ Das Paket **textutil::adjust** enthält Befehle zum Einrücken, Ausrücken und B
 
 
 **::textutil::adjust::readPatterns** *filename*
-: Liest die Silbentrennungsmuster aus der Datei *Dateiname* ein.
+: Liest die Silbentrennungsmuster aus der Datei *filename* ein.
 
     Dieser Befehl wird nur benötigt, wenn der Befehl **::textutil::adjust::adjust** zusammen mit **-hyphenate** **1** (wahr) verwendet wird. In diesem Fall *muss* der Aufruf von **::textutil::adjust::readPatterns** *vor* dem Aufruf von **::textutil::adjust::adjust** erfolgen.
 
@@ -105,7 +105,7 @@ Das Paket **textutil::adjust** enthält Befehle zum Einrücken, Ausrücken und B
 : Gibt den vollständigen Pfad und den Dateinamen der Silbentrennungsdatei *filename* zurück. *Hinweis*: *filename* *muss* unbedingt einer der Namen sein, die von **::textutil::adjust::listPredefined** zurückgegeben werden.
 
 **::textutil::adjust::indent** *string* *prefix* ?*skip*?
-: Gibt eine modifizierte Kopie von *string* zurück, wobei jeder nicht übersprungenen Zeile das Präfix *prefix* sowie Leerzeichen (mit Ausnahme des Zeilenumbruchs) vorangestellt und am Ende abgeschnitten werden. Standardmäßig werden keine Zeilen übersprungen, sodass allen Zeilen das Präfix vorangestellt wird.
+: Gibt eine modifizierte Kopie von *string* zurück, wobei jeder nicht übersprungenen Zeile das Präfix *prefix* vorangestellt und Leerraum (mit Ausnahme des Zeilenumbruchs) am Zeilenende entfernt wird. Standardmäßig werden keine Zeilen übersprungen, sodass allen Zeilen das Präfix vorangestellt wird.
 
     Die Option **skip** legt fest, wie viele Zeilen am Anfang der Zeichenkette übersprungen werden sollen; der Standardwert ist **0**, in diesem Fall wird keine Zeile übersprungen und alle Zeilen erhalten das Präfix. Wenn **skip** auf einen Wert *> 0* gesetzt wird, werden entsprechend viele Zeilen am Anfang der Zeichenkette übersprungen, d. h. nicht mit einem Präfix versehen, während alle nachfolgenden Zeilen mit einem Präfix versehen werden. Wird **skip** auf **1** gesetzt, entsteht ein herkömmlicher hängender Einzug.
 
@@ -132,7 +132,7 @@ const LINES "Four\nsiamese cats\nheard barks\nand bolted."
 
 Der Befehl **replace\_spc** ersetzt jedes Leerzeichen in der übergebenen Zeichenkette durch das Symbol ▴. Die Konstante **LINES** liefert Text, mit dem die Beispiele arbeiten können.
 
-## Begründung
+## Ausrichten
 
 Das folgende Beispiel zeigt alle verfügbaren Ausrichtungsoptionen. Leerzeichen wurden sichtbar gemacht, indem sie mithilfe von **-full** **1** beibehalten und durch das Symbol ▴ ersetzt wurden.
 

@@ -207,7 +207,7 @@ Die folgenden Befehle dienen zur Umrechnung zwischen Weltkoordinaten und Kartenk
 : Konvertiert aus der konformen konischen Lambert-Projektion.
 
 
-Unter den zylindrischen flächentreuen Projektionen gibt es mehrere benannte Standardparallelen:
+Unter den zylindrischen flächentreuen Projektionen gibt es mehrere Varianten mit eigenem Namen, die sich in der Wahl der Standardparallelen unterscheiden:
 
 **::mapproj::toLambertCylindricalEqualArea** *lambda\_0* *phi\_0* *lambda* *phi*
 : Wandelt in die zylindrische flächentreue Lambert-Projektion um. (Die Standardparallele ist der Äquator.)

@@ -95,7 +95,7 @@ Alle von **::doctools::new** erstellten Befehle haben die folgende allgemeine Fo
 : Die Methode verhält sich wie die Methode **cget**, wenn sie mit einem einzigen Argument aufgerufen wird, und gibt den Wert der durch dieses Argument festgelegten Option zurück.
 
 *objectName* **configure** **-option** *value*...
-: Die Methode konfiguriert die angegebenen **option**s des Objekts neu und setzt sie auf die zugehörigen *value*s, wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
+: Die Methode konfiguriert die angegebenen Optionen (**option**) des Objekts neu und setzt sie auf die zugehörigen Werte (*value*), wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
 
     Die zulässigen Optionen sind im Abschnitt [Objekt-Konfiguration] beschrieben.
 
@@ -113,7 +113,7 @@ Alle von **::doctools::new** erstellten Befehle haben die folgende allgemeine Fo
     Die Methode geht davon aus, dass der *text* im *doctools*-Format vorliegt, wie im Begleitdokument *doctools\_fmt* festgelegt. Andernfalls werden Fehler ausgelöst.
 
 *objectName* **map** *symbolic* *actual*
-: Diese Methode fügt dem objektbezogenen Zuordnungsschema von *symbolic* Dateinamen zu den *actual* URIs einen Eintrag hinzu. Das Objekt speichert lediglich diese Zuordnung und stellt sie der konfigurierten Formatierungs-Engine über den Befehl **dt\_fmap** zur Verfügung. Dieser Befehl wird ausführlicher in der *doctools-Plugin-API-Referenz* beschrieben, die die Interaktion zwischen den von diesem Paket erstellten Objekten und den doctools-Formatierungs-Engines festlegt.
+: Diese Methode fügt dem objektbezogenen Zuordnungsschema von *symbolic* Dateinamen zu den *actual* URIs einen Eintrag hinzu. Das Objekt speichert lediglich diese Zuordnung und stellt sie der konfigurierten Formatierungs-Engine über den Befehl [dt\_fmap][docidx_plugin_apiref] zur Verfügung. Dieser Befehl wird ausführlicher in der *doctools-Plugin-API-Referenz* beschrieben, die die Interaktion zwischen den von diesem Paket erstellten Objekten und den doctools-Formatierungs-Engines festlegt.
 
 *objectName* **parameters**
 : Diese Methode gibt eine Liste zurück, die die Namen aller von der konfigurierten Formatierungs-Engine bereitgestellten Parameter enthält. Sie gibt eine leere Liste zurück, wenn das Objekt noch nicht für ein bestimmtes Format konfiguriert ist.
@@ -133,7 +133,7 @@ Alle von **::doctools::new** erstellten Befehle haben die folgende allgemeine Fo
 Alle doctools-Objekte unterstützen die folgenden Konfigurationsoptionen:
 
 **-file** *file*
-: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über die Befehle **dt\_file** und **dt\_mainfile** zur Verfügung gestellt. Diese Befehle werden im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
+: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über die Befehle [dt\_file][doctools_plugin_apiref] und [dt\_mainfile][doctools_plugin_apiref] zur Verfügung gestellt. Diese Befehle werden im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
 
     Der Standardwert dieser Option ist die leere Zeichenkette.
 
@@ -144,10 +144,10 @@ Alle doctools-Objekte unterstützen die folgenden Konfigurationsoptionen:
 
     Hinweis: **-file** und **-ibase**, obwohl sie ähnlich aussehen, unterscheiden sich tatsächlich stark voneinander. Der Wert von **-file** wird von einigen Engines zur Generierung korrekter relativer Verweise zwischen Ausgabedokumenten (HTML) verwendet. Es handelt sich hierbei also um einen *Ziel*-Pfad. **-ibase** hingegen wird zur Auflösung relativer Einbindepfade verwendet und befasst sich somit mit *Quell*-Pfaden.
 
-    Der Wert dieser Option ist eine leere Zeichenkette.
+    Der Standardwert dieser Option ist die leere Zeichenkette.
 
 **-module** *text*
-: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl **dt\_module** zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
+: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl [dt\_module][doctools_plugin_apiref] zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
 
     Der Standardwert dieser Option ist die leere Zeichenkette.
 
@@ -164,13 +164,13 @@ Alle doctools-Objekte unterstützen die folgenden Konfigurationsoptionen:
 : Diese Option ist ein boolesches Flag. Das Objekt erzeugt Warnungen, wenn dieses Flag gesetzt ist und der an die Methode **format** übergebene Text den veralteten Markup-Befehl [strong][doctools_lang_cmdref] enthält. Der Vorgabewert ist **FALSE**. Mit anderen Worten: Es werden keine Warnungen erzeugt.
 
 **-copyright** *text*
-: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl **dt\_copyright** zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
+: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl [dt\_copyright][doctools_plugin_apiref] zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *doctools\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
 
     Der Standardwert dieser Option ist die leere Zeichenkette.
 
     Die konfigurierte Formatierungs-Engine sollte den Wert als Urheberrechtszuweisung für das aktuell verarbeitete Dokument oder das darin beschriebene Paket interpretieren.
 
-    Diese Information darf genau dann verwendet werden, wenn die Engine keine Urheberrechtszuweisungen im Dokument selbst finden kann. Solche werden durch den Formatierungsbefehl [copyright][doctools_lang_cmdref] festgelegt. Dieser Befehl wird im Begleitdokument *doctools\_fmt* näher beschrieben, das das *doctools*-Format selbst festlegt.
+    Diese Information muss genau dann verwendet werden, wenn die Engine keine Urheberrechtszuweisungen im Dokument selbst finden kann. Solche werden durch den Formatierungsbefehl [copyright][doctools_lang_cmdref] festgelegt. Dieser Befehl wird im Begleitdokument *doctools\_fmt* näher beschrieben, das das *doctools*-Format selbst festlegt.
 
 
 ## Formatzuordnung
@@ -198,7 +198,7 @@ html
 : Diese Engine erzeugt HTML-Markup zur Verarbeitung durch Webbrowser und Ähnliches. Diese Engine unterstützt vier Parameter:
 
     footer
-    : Der Wert für diesen Parameter muss gültiges, in sich geschlossenes HTML-Markup für den „body“-Abschnitt eines HTML-Dokuments sein. Der Standardwert ist die leere Zeichenkette. Der Wert wird in die generierte Ausgabe unmittelbar vor dem Tag „**</body>**“ eingefügt und schließt damit den „body“-Abschnitt des generierten HTML-Codes ab.
+    : Der Wert für diesen Parameter muss gültiges, in sich geschlossenes HTML-Markup für den „body“-Abschnitt eines HTML-Dokuments sein. Der Standardwert ist die leere Zeichenkette. Der Wert wird in die generierte Ausgabe unmittelbar vor dem Tag „**</body>**“ eingefügt, das den „body“-Abschnitt des generierten HTML-Codes abschließt.
 
         Dies kann genutzt werden, um Standard-Fußzeilen-Markup in das generierte Dokument einzufügen.
 
@@ -215,7 +215,7 @@ html
     xref
     : Der Wert für diesen Parameter muss eine Liste von Tripeln sein, die Querverweisinformationen enthalten. Diese Informationen werden von der Engine verwendet, um weitere Hyperlinks zu erstellen. Jedes Tripel ist eine Liste, die in dieser Reihenfolge ein Muster, einen symbolischen Dateinamen und eine Fragmentreferenz enthält. Wird ein Muster mehrfach angegeben, wird das zuletzt auftretende Muster verwendet.
 
-        Die Engine fragt bei bestimmten Befehlen die Xref-Datenbank ab und erstellt einen Link, wenn der betreffende Text mit einem der Muster übereinstimmt. Wird keine Übereinstimmung gefunden, wird kein Link erstellt. Der Link führt zu der im entsprechenden Tripel aufgeführten URI „**file#fragment**“, nachdem der symbolische Name über „**dt\_fmap**“ in die tatsächliche URI umgewandelt wurde (siehe die *doctools-Plugin-API-Referenz*). Diese Zuordnung von Dateien zu URIs wurde durch Aufrufe der Methode **map** des doctools-Objekts erstellt (siehe Abschnitt [Objektmethoden]).
+        Die Engine fragt bei bestimmten Befehlen die Xref-Datenbank ab und erstellt einen Link, wenn der betreffende Text mit einem der Muster übereinstimmt. Wird keine Übereinstimmung gefunden, wird kein Link erstellt. Der Link führt zu der im entsprechenden Tripel aufgeführten URI „**file#fragment**“, nachdem der symbolische Dateiname über [dt\_fmap][docidx_plugin_apiref] in die tatsächliche URI umgewandelt wurde (siehe die *doctools-Plugin-API-Referenz*). Diese Zuordnung von Dateien zu URIs wurde durch Aufrufe der Methode **map** des doctools-Objekts erstellt (siehe Abschnitt [Objektmethoden]).
 
         Die folgenden Formatierungsbefehle greifen auf die XRef-Datenbank zu:
 

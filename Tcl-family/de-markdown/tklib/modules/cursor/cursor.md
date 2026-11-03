@@ -44,7 +44,7 @@ Folgende Befehle stehen zur Verfügung:
 : Stellt den ursprünglichen oder zuvor gesetzten Cursor für das angegebene *widget* und alle seine Nachkommen wieder her. Wird *cursor* angegeben, gilt er für jedes Widget, das keinen voreingestellten Cursor hatte (gesetzt durch einen früheren Aufruf von **::cursor::propagate**).
 
 **::cursor::display** ?*parent*?
-: Es wird ein Dialogfeld mit einer listbox angezeigt, die alle Cursor-Namen enthält. Wenn Sie einen Cursor-Namen auswählen, wird dieser in diesem Dialogfeld angezeigt. Dies dient lediglich dazu, alle auf der Plattform verfügbaren Cursor anzuzeigen.
+: Es wird ein Dialogfeld mit einer Listbox angezeigt, die alle Cursor-Namen enthält. Wenn Sie einen Cursor-Namen auswählen, wird dieser in diesem Dialogfeld angezeigt. Dies dient lediglich dazu, alle auf der Plattform verfügbaren Cursor anzuzeigen.
 
 
 # Fehler, Ideen, Rückmeldungen

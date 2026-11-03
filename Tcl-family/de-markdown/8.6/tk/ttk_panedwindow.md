@@ -41,10 +41,10 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Legt die Ausrichtung des Fensters fest. Bei **vertical** werden Unterbereiche von oben nach unten gestapelt; bei **horizontal** von links nach rechts.
 
 **-width** (**width**/**Width**)
-: Wenn vorhanden und größer als null, legt die gewünschte Breite des Widgets in Pixeln fest. Andernfalls wird die angeforderte Breite durch die Breite der verwalteten Fenster bestimmt.
+: Wenn vorhanden und größer als null, legt der Wert die gewünschte Breite des Widgets in Pixeln fest. Andernfalls wird die angeforderte Breite durch die Breite der verwalteten Fenster bestimmt.
 
 **-height** (**height**/**Height**)
-: Wenn vorhanden und größer als null, legt die gewünschte Höhe des Widgets in Pixeln fest. Andernfalls wird die angeforderte Höhe durch die Höhe der verwalteten Fenster bestimmt.
+: Wenn vorhanden und größer als null, legt der Wert die gewünschte Höhe des Widgets in Pixeln fest. Andernfalls wird die angeforderte Höhe durch die Höhe der verwalteten Fenster bestimmt.
 
 
 # Bereichsoptionen
@@ -79,13 +79,13 @@ Unterstützt die Standardbefehle **configure**, **cget**, **state** und **instat
 : Fügt einen Bereich an der angegebenen Position ein. *pos* ist entweder die Zeichenkette **end**, ein ganzzahliger Index oder der Name eines verwalteten Unterfensters. Wenn *subwindow* bereits vom Paned-Window verwaltet wird, wird es an die angegebene Position verschoben. Siehe [Bereichsoptionen] für die Liste der verfügbaren Optionen.
 
 *pathname* **pane** *pane -option* ?*value* ?*-option value...*
-: Fragt die Optionen des angegebenen *pane* ab oder ändert sie, wobei *pane* entweder ein ganzzahliger Index oder der Name eines verwalteten Unterfensters ist. Wenn keine *-option* angegeben ist, gibt ein Dictionary der Bereichs-Optionswerte zurück. Ist eine *-option* angegeben, gibt der Wert dieser *option* zurück. Andernfalls werden die *-option*en auf die entsprechenden *value*s gesetzt.
+: Fragt die Optionen des angegebenen *pane* ab oder ändert sie, wobei *pane* entweder ein ganzzahliger Index oder der Name eines verwalteten Unterfensters ist. Wenn keine *-option* angegeben ist, gibt der Befehl ein Dictionary der Bereichs-Optionswerte zurück. Ist eine *-option* angegeben, gibt er den Wert dieser *option* zurück. Andernfalls werden die Optionen *-option* auf die entsprechenden Werte *value* gesetzt.
 
 *pathname* **panes**
 : Gibt die Liste aller vom Widget verwalteten Fenster in der Indexreihenfolge ihrer zugehörigen Bereiche zurück.
 
 *pathname* **sashpos** *index* ?*newpos*?
-: Wenn *newpos* angegeben ist, setzt die Position des Sash mit der Nummer *index*. Kann die Positionen benachbarter Sashes anpassen, damit die Positionen monoton steigend bleiben. Sash-Positionen sind außerdem auf den Bereich zwischen 0 und der Gesamtgröße des Widgets beschränkt. Gibt die neue Position des Sash mit der Nummer *index* zurück.
+: Wenn *newpos* angegeben ist, setzt der Befehl die Position des Sash mit der Nummer *index*. Kann die Positionen benachbarter Sashes anpassen, damit die Positionen monoton steigend bleiben. Sash-Positionen sind außerdem auf den Bereich zwischen 0 und der Gesamtgröße des Widgets beschränkt. Gibt die neue Position des Sash mit der Nummer *index* zurück.
 
 
 Das Panedwindow-Widget unterstützt außerdem die folgenden generischen [ttk::widget][ttk_widget]-Unterbefehle (siehe *ttk::widget(n)* für Details):

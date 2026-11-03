@@ -51,7 +51,7 @@ Dieser Server unterstützt die Protokollfunktion *Core* sowie seit Version 0.3 a
 Das Paket exportiert fünf Befehle, wie im Folgenden angegeben:
 
 **::nameserv::server::start**
-: Dieser Befehl startet den Server und sorgt dafür, dass er auf dem konfigurierten Port auf eingehende Verbindungen wartet. Von nun an können Clients eine Verbindung herstellen und Anfragen senden. Das Ergebnis des Befehls ist die leere Zeichenkette.
+: Dieser Befehl startet den Server und sorgt dafür, dass er auf dem konfigurierten Port lauscht. Von nun an können Clients eine Verbindung herstellen und Anfragen senden. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
     Hinweis: Eingehende Anfragen werden nur dann bearbeitet, wenn die Anwendung, zu der der Server gehört, nach Ausführung dieses Befehls tatsächlich in eine Ereignisschleife wechselt.
 
@@ -78,13 +78,13 @@ Das Paket exportiert fünf Befehle, wie im Folgenden angegeben:
 
 # Optionen
 
-Die vom Server unterstützten Optionen dienen der Festlegung des TCP-Ports, auf dem der Server auf Verbindungen wartet, sowie der Einstellung, ob nicht-lokale Verbindungen akzeptiert werden sollen oder nicht. Es handelt sich um folgende Optionen:
+Die vom Server unterstützten Optionen dienen der Festlegung des TCP-Ports, auf dem der Server lauscht, sowie der Einstellung, ob nicht-lokale Verbindungen akzeptiert werden sollen oder nicht. Es handelt sich um folgende Optionen:
 
 **-localonly** *bool*
-: Diese Option legt fest, ob nur lokale Verbindungen (-localonly 1) oder auch Remote-Verbindungen (-localonly 0) akzeptiert werden sollen. Standardmäßig werden nur lokale Verbindungen akzeptiert.
+: Diese Option legt fest, ob nur lokale Verbindungen (-localonly 1) oder auch entfernte Verbindungen (-localonly 0) akzeptiert werden sollen. Standardmäßig werden nur lokale Verbindungen akzeptiert.
 
 **-port** *number*
-: Diese Option legt den Port fest, auf dem der Namensdienst nach seinem Start auf eingehende Verbindungen wartet. Es muss sich um eine positive ganze Zahl (> 0) handeln, die nicht größer als 65536 (unsigned short) ist. Der anfängliche Standardwert ist die Zahl, die vom Befehl **::nameserv::server::common::port** zurückgegeben wird, wie sie vom Paket **::nameserv::server::common** bereitgestellt wird.
+: Diese Option legt den Port fest, auf dem der Namensdienst nach seinem Start lauscht. Es muss sich um eine positive Ganzzahl (> 0) handeln, die nicht größer als 65536 (unsigned short) ist. Der anfängliche Standardwert ist die Zahl, die vom Befehl **::nameserv::server::common::port** zurückgegeben wird, wie sie vom Paket **::nameserv::server::common** bereitgestellt wird.
 
 
 # Geschichte

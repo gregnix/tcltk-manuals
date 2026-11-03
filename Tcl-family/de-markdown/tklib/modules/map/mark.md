@@ -28,7 +28,7 @@ map::mark – Map Action Engine – Einen Punkt markieren
 
 # Beschreibung
 
-Dieses Paket enthält einen Zusatz zu [map::display][display], der das Verhalten der Karte erweitert. Mit diesem Zusatz lassen sich Orte markieren, also *geo/point*s. Die markierten Orte werden über eine Rückruffunktion gemeldet.
+Dieses Paket enthält einen Zusatz zu [map::display][display], der das Verhalten der Karte erweitert. Mit diesem Zusatz lassen sich Orte markieren, also Punkte vom Typ *geo/point*. Die markierten Orte werden über eine Rückruffunktion gemeldet.
 
 # API
 

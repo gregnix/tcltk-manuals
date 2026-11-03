@@ -41,7 +41,7 @@ expr - Einen Ausdruck auswerten
 
 # Beschreibung
 
-Fügt *arg*s durch Leerzeichen getrennt zu einem Ausdruck zusammen, wertet diesen aus und gibt seinen Wert zurück. In einem Ausdruck sind eine Teilmenge der in C-Ausdrücken erlaubten Operatoren zulässig. Für Operatoren, die sowohl in Tcl als auch in C vorkommen, gelten dieselbe Bedeutung und dieselbe Priorität wie bei den entsprechenden C-Operatoren. Der Wert eines Ausdrucks ist oft ein numerisches Ergebnis, entweder eine Ganzzahl oder ein Gleitkommawert, kann aber auch ein nicht-numerischer Wert sein. Beispielsweise liefert der Ausdruck
+Fügt *arg*-Argumente durch Leerzeichen getrennt zu einem Ausdruck zusammen, wertet diesen aus und gibt seinen Wert zurück. In einem Ausdruck sind eine Teilmenge der in C-Ausdrücken erlaubten Operatoren zulässig. Für Operatoren, die sowohl in Tcl als auch in C vorkommen, gelten dieselbe Bedeutung und dieselbe Priorität wie bei den entsprechenden C-Operatoren. Der Wert eines Ausdrucks ist oft ein numerisches Ergebnis, entweder eine Ganzzahl oder ein Gleitkommawert, kann aber auch ein nicht-numerischer Wert sein. Beispielsweise liefert der Ausdruck
 
 ```
 expr 8.2 + 6
@@ -107,7 +107,7 @@ expr {{word one} < "word $a"}	0
 
 Bei Operatoren mit numerischem und Zeichenkettenmodus wird der numerische Modus gewählt, wenn alle Operanden numerisch interpretierbar sind. Die Ganzzahl-Interpretation hat Vorrang vor der Gleitkomma-Interpretation. Für Zeichenkettenoperationen auf beliebigen Werten empfiehlt es sich in der Regel, **eq**, **ne** oder den Befehl [string] statt vielseitigerer Operatoren wie **==** zu verwenden.
 
-Sofern nicht anders angegeben, akzeptieren Operatoren auch nicht-numerische Operanden. Der Wert einer booleschen Operation ist 1 bei wahr, sonst 0. Siehe auch [string is][string] **boolean**. Die gültigen Operatoren, von denen die meisten auch als Befehle im Namespace **tcl::mathop** verfügbar sind (siehe [mathop]\(n)), sind unten in abnehmender Priorität aufgeführt:
+Sofern nicht anders angegeben, akzeptieren Operatoren auch nicht-numerische Operanden. Der Wert einer booleschen Operation ist 1 bei wahr, sonst 0. Siehe auch [string is][string] **boolean**. Die gültigen Operatoren, von denen die meisten auch als Befehle im Namespace **::tcl::mathop** verfügbar sind (siehe [mathop]\(n)), sind unten in abnehmender Priorität aufgeführt:
 
 **-  +  ~  !**
 : Unäres Minus, unäres Plus, bitweises NOT, logisches NOT. Diese Operatoren dürfen nur auf numerische Operanden angewendet werden; bitweises NOT nur auf Ganzzahlen.
@@ -130,7 +130,7 @@ Sofern nicht anders angegeben, akzeptieren Operatoren auch nicht-numerische Oper
 : Boolesche, numerisch bevorzugte Vergleiche: kleiner, größer, kleiner gleich, größer gleich. Ist ein Argument nicht numerisch, erfolgt der Vergleich als UNICODE-Zeichenkettenvergleich wie bei den unten genannten Zeichenkettenoperatoren gleicher Priorität.
 
 **lt  gt  le  ge**
-: [Boolesche Zeichenkettenvergleiche: kleiner, größer, kleiner gleich, größer gleich. Vergleichen Werte stets als UNICODE-Zeichenketten (siehe auch [string compare][string]), im Gegensatz zu den obigen numerisch bevorzugten Vergleichen gleicher Priorität.]{version="TIP461"}
+: [Boolesche Zeichenkettenvergleiche: kleiner, größer, kleiner gleich, größer gleich. Diese vergleichen Werte stets als UNICODE-Zeichenketten (siehe auch [string compare][string]), im Gegensatz zu den obigen numerisch bevorzugten Vergleichen gleicher Priorität.]{version="TIP461"}
 
 **==  !=**
 : Boolesches gleich und ungleich.
@@ -160,7 +160,7 @@ Sofern nicht anders angegeben, akzeptieren Operatoren auch nicht-numerische Oper
 : Wenn-dann-sonst wie in C. Ist *x* wahr, ist das Ergebnis der Wert von *y*, sonst der von *z*. Dieser Operator wertet faul aus; er wertet nur *y* oder *z* aus.
 
 
-Der Potenzierungsoperator fördert Typen wie Multiplikation und Division; das Ergebnis entspricht **pow**. Potenzierung gruppiert innerhalb einer Prioritätsstufe von rechts nach links, andere binäre Operatoren von links nach rechts. Beispielsweise ist der Wert von
+Der Potenzierungsoperator wandelt Typen auf dieselbe Weise um wie Multiplikation und Division; das Ergebnis entspricht **pow**. Potenzierung gruppiert innerhalb einer Prioritätsstufe von rechts nach links, andere binäre Operatoren von links nach rechts. Beispielsweise ist der Wert von
 
 ```
 expr {4*2 < 7}
@@ -204,7 +204,7 @@ was wiederum gleichbedeutend ist mit der Auswertung von
 ::tcl::mathfunc::sin [expr {$x+$y}]
 ```
 
-[::tcl::mathfunc::sin][mathfunc] wird wie in **NAMESPACE-AUFLÖSUNG** in [namespace]\(n) beschrieben aufgelöst. Bei Standardwert von [namespace path][namespace] sind **\[namespace current\]::tcl::mathfunc::sin** oder [::tcl::mathfunc::sin][mathfunc] typische Auflösungen.
+[::tcl::mathfunc::sin][mathfunc] wird wie in **NAMESPACE-AUFLÖSUNG** in [namespace]\(n) beschrieben aufgelöst. Beim Standardwert von [namespace path][namespace] sind **\[namespace current\]::tcl::mathfunc::sin** oder [::tcl::mathfunc::sin][mathfunc] typische Auflösungen.
 
 Wie in C kann eine mathematische Funktion mehrere durch Kommas getrennte Argumente haben. So wird
 
@@ -261,9 +261,9 @@ expr $b*4
 
 Wird ein Ausdruck zur Laufzeit erzeugt (wie oben), muss der Bytecode-Compiler bei jeder Auswertung neuen Code erzeugen — der aufwändigste Fall. Dann sind die in [mathfunc]\(n) oder [mathop]\(n) beschriebenen Befehle oft die bessere Wahl als **expr**.
 
-Die meisten Ausdrücke entstehen nicht zur Laufzeit, sondern sind Literale oder enthalten Ersetzungen ohne weitere Ersetzungen. Damit der Bytecode-Compiler zur Kompilierzeit mit einem Zeichenkettenliteral arbeiten kann, darf der Ausdruck keine Ersetzungen enthalten oder muss in Klammern stehen, damit **expr** statt Tcl substituiert.
+Die meisten Ausdrücke entstehen nicht zur Laufzeit, sondern sind Literale oder enthalten Ersetzungen ohne weitere Ersetzungen. Damit der Bytecode-Compiler zur Kompilierzeit mit einem Zeichenkettenliteral arbeiten kann, darf der Ausdruck keine Ersetzungen enthalten oder muss in geschweiften Klammern stehen oder anderweitig quotiert sein, damit **expr** statt Tcl substituiert.
 
-Muss ein nicht-konstanter Ausdruck in einen sonst konstanten Ausdruck, ist ein rekursives **expr** für den variablen Teil am effizientesten: Der äußere Teil kann kompiliert werden, der variable Teil wird separat ausgewertet. Im Beispiel ist das Ergebnis 20; der äußere Ausdruck profitiert von vollständig gecachtem Bytecode.
+Muss ein nicht-konstanter Ausdruck in einen sonst konstanten Ausdruck eingebettet werden, ist ein rekursives **expr** für den variablen Teil am effizientesten: Der äußere Teil kann kompiliert werden, der variable Teil wird separat ausgewertet. Im Beispiel ist das Ergebnis 20; der äußere Ausdruck profitiert von vollständig gecachtem Bytecode.
 
 ```
 set a 3
@@ -271,7 +271,7 @@ set b {$a + 2}
 expr {[expr $b] * 4}
 ```
 
-Setzen Sie Ausdrücke nach Möglichkeit in geschweifte Klammern; wo das nicht geht, sollte das **expr**-Argument möglichst einfach woanders definiert sein. Oft sind Befehle aus **tcl::mathop** effizienter und sicherer als komplexe Ausdrucksgenerierung.
+Setzen Sie Ausdrücke nach Möglichkeit in geschweifte Klammern; wo das nicht geht, sollte das **expr**-Argument möglichst einfach woanders definiert sein. Oft sind Befehle aus dem Namespace **::tcl::mathop** effizienter und sicherer als komplexe Ausdrucksgenerierung.
 
 # Beispiele
 

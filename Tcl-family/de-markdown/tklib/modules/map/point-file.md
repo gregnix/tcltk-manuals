@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-map::point::file – Lesen und Schreiben von tklib-Geo-/Point-Dateien
+map::point::file – Lesen und Schreiben von geo/point-Dateien von tklib
 
 # Übersicht
 

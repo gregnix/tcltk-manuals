@@ -30,7 +30,7 @@ Dieses Dokument bietet anhand zahlreicher Beispiele eine informelle Einleitung i
 
 ## Grundlagen
 
-Zwar ähnelt die *docidx-Markup-Sprache* im weitesten Sinne der *doctools-Markup-Sprache*, doch gibt es einen wesentlichen Unterschied. Ein Index besteht im Wesentlichen ausschließlich aus Markup-Befehlen, zwischen denen – abgesehen von Leerzeichen – kein Klartext eingestreut ist.
+Zwar ähnelt die *docidx-Markup-Sprache* im weitesten Sinne der *doctools-Markup-Sprache*, doch gibt es einen wesentlichen Unterschied. Ein Index besteht im Wesentlichen ausschließlich aus Markup-Befehlen, zwischen denen – abgesehen von Leerraum – kein Klartext eingestreut ist.
 
 Jeder Markup-Befehl ist ein Tcl-Befehl, der von einem passenden Paar aus **\[** und **\]** umgeben ist. Innerhalb dieser Begrenzungszeichen gelten die üblichen Regeln für einen Tcl-Befehl hinsichtlich Wortanführungszeichen, verschachtelter Befehle, Fortsetzungszeilen usw. Das heißt:
 
@@ -89,7 +89,7 @@ Ein wirklich nützlicher Index listet jedoch nicht nur die Schlüsselwortphrasen
 [index_end]
 ```
 
-Im obigen Beispiel wird der Befehl [manpage][docidx_lang_cmdref] verwendet, um Verweise auf Dokumente unter Verwendung symbolischer Namen einzufügen, wobei jeder Befehl dem unmittelbar vorangehenden Befehl [key][docidx_lang_cmdref] zugeordnet ist.
+Im obigen Beispiel wird der Befehl [manpage][docidx_lang_cmdref] verwendet, um Verweise auf Dokumente unter Verwendung symbolischer Dateinamen einzufügen, wobei jeder Befehl dem unmittelbar vorangehenden Befehl [key][docidx_lang_cmdref] zugeordnet ist.
 
 Der andere Befehl zum Einfügen von Verweisen lautet **url**. Im Gegensatz zu [manpage][docidx_lang_cmdref] verwendet er explizite (möglicherweise formatspezifische) URLs, um den Speicherort des referenzierten Dokuments anzugeben. Daher ist dieser Befehl für die Erstellung von Verweisen auf externe Dokumente vorgesehen, die auf keine andere Weise verarbeitet werden konnten.
 
@@ -97,7 +97,7 @@ Der andere Befehl zum Einfügen von Verweisen lautet **url**. Im Gegensatz zu [m
 
 In allen bisherigen Beispielen waren wir hinsichtlich des Markups, das tatsächlich vor dem Befehl **index\_begin** zum Öffnen des Dokuments verwendet werden darf, etwas ungenau.
 
-Anstelle von reinen Leerzeichen sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für den Index relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
+Anstelle von reinem Leerraum sind auch die beiden Vorlagenbefehle [include][docidx_lang_cmdref] und [vset][docidx_lang_cmdref] zulässig, damit der Verfasser für den Index relevante Konfigurationseinstellungen festlegen und/oder importieren kann. Das heißt, es ist möglich, Folgendes zu schreiben:
 
 ```
 [include FILE]

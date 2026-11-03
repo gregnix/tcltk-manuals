@@ -41,7 +41,7 @@ Copyright:
 
 # Name
 
-map::track::store::memory – In-Memory-Speicher für Geo-/Track-Definitionen
+map::track::store::memory – In-Memory-Speicher für geo/track-Definitionen
 
 # Übersicht
 

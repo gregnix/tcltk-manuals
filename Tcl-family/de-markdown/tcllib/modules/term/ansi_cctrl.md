@@ -127,7 +127,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Dieser Befehl dient der Introspektion. Er gibt als Ergebnis eine Liste zurück, die die Namen aller Attributbefehle enthält.
 
 **::term::ansi::code::ctrl::import** ?*ns*? ?*arg*...?
-: Dieser Befehl importiert einige oder alle Attributbefehle in den Namespace *ns*. Standardmäßig ist dies der Namespace *ctrl*. Beachten Sie, dass es sich hierbei um einen relativen Namensraumnamen handelt, wodurch der importierte Befehl in einen Unternamensraum des aktuellen Namensraums eingefügt wird. Standardmäßig werden alle Befehle importiert; dies kann jedoch eingeschränkt werden, indem die Namen der gewünschten Befehle nach dem Namensraum-Argument aufgeführt werden.
+: Dieser Befehl importiert einige oder alle Attributbefehle in den Namespace *ns*. Standardmäßig ist dies der Namespace *ctrl*. Beachten Sie, dass es sich hierbei um einen relativen Namespace-Namen handelt, wodurch der importierte Befehl in einen Kind-Namespace des aktuellen Namespace eingefügt wird. Standardmäßig werden alle Befehle importiert; dies kann jedoch eingeschränkt werden, indem die Namen der gewünschten Befehle nach dem Namespace-Argument aufgeführt werden.
 
 
 ## Sequenzen
@@ -145,19 +145,19 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Nach unten löschen (bis zum Ende)
 
 **::term::ansi::code::ctrl::eu**
-: Nach oben (zurück zum Anfang)
+: Nach oben löschen (bis zum Anfang)
 
 **::term::ansi::code::ctrl::es**
 : Bildschirm löschen
 
 **::term::ansi::code::ctrl::sd**
-: Bitte scrollen Sie nach unten
+: Nach unten scrollen
 
 **::term::ansi::code::ctrl::su**
 : Nach oben scrollen
 
 **::term::ansi::code::ctrl::ch**
-: Cursor Startseite
+: Cursor an den Anfang (Home)
 
 **::term::ansi::code::ctrl::sc**
 : Cursor speichern
@@ -172,7 +172,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Cursor und Attribute wiederherstellen
 
 **::term::ansi::code::ctrl::st**
-: Tabulator setzen (@ aktuelle Position)
+: Tabulatorstopp setzen (@ aktuelle Position)
 
 **::term::ansi::code::ctrl::ct**
 : Tabulatorstopp löschen (an der aktuellen Position)
@@ -208,7 +208,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Standardzeichensatz festlegen
 
 **::term::ansi::code::ctrl::scs1** *tag*
-: Legt den alternativen Zeichensatz fest.
+: Legt den alternativen Zeichensatz fest. Zeichensatz auswählen.
 
     Legt fest, welcher Zeichensatz für die Standardschriftart (scs0) oder die alternative Schriftart (scs1) verwendet wird. Dies hat keinen Einfluss darauf, ob die Standard- oder die alternative Schriftart verwendet wird, sondern betrifft lediglich deren Definitionen.
 
@@ -288,7 +288,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Standardhintergrund festlegen (transparent).
 
 **::term::ansi::code::ctrl::sda\_bold**
-: Weiter so!
+: Fettdruck aktivieren.
 
 **::term::ansi::code::ctrl::sda\_dim**
 : Schaltet die abgeschwächte Darstellung ein.
@@ -300,13 +300,13 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Unterstrich aktivieren.
 
 **::term::ansi::code::ctrl::sda\_blink**
-: Bitte blinken Sie weiter.
+: Blinken aktivieren.
 
 **::term::ansi::code::ctrl::sda\_revers**
-: Rückwärtsgang einlegen.
+: Inversdarstellung aktivieren.
 
 **::term::ansi::code::ctrl::sda\_hidden**
-: Ausgeblendet.
+: Verborgene Darstellung aktivieren.
 
 **::term::ansi::code::ctrl::sda\_strike**
 : Durchstreichen aktiviert.
@@ -324,10 +324,10 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Blinken ausschalten.
 
 **::term::ansi::code::ctrl::sda\_norevers**
-: Bitte fahren Sie rückwärts weg.
+: Inversdarstellung deaktivieren.
 
 **::term::ansi::code::ctrl::sda\_nohidden**
-: Ausgeblendet.
+: Verborgene Darstellung deaktivieren.
 
 **::term::ansi::code::ctrl::sda\_nostrike**
 : Durchstreichung deaktivieren.
@@ -345,7 +345,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Cursor nach unten. *n* ist standardmäßig auf 1 gesetzt.
 
 **::term::ansi::code::ctrl::cf** ?*n*?
-: Cursor Weiterleitung. *n* ist standardmäßig auf 1 gesetzt.
+: Cursor vorwärts. *n* ist standardmäßig auf 1 gesetzt.
 
 **::term::ansi::code::ctrl::cb** ?*n*?
 : Cursor rückwärts. *n* ist standardmäßig auf 1 gesetzt.
@@ -354,7 +354,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Bildschirm scrollen (gesamter Bildschirm oder zwischen den Zeilen „Start“ und „Ende“, einschließlich).
 
 **::term::ansi::code::ctrl::skd** *code* *str*
-: Schlüsseldefinition festlegen.
+: Tastendefinition festlegen.
 
 **::term::ansi::code::ctrl::title** *str*
 : Legt den Titel des Terminals fest.
@@ -399,7 +399,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Zeichengrafik, vertikale Linie.
 
 **::term::ansi::code::ctrl::groptim** *str*
-: Zeichengrafiken optimieren. Die oben genannten Generatorbefehle erzeugen viel zu viele überflüssige Befehle zum Wechseln in den Grafikmodus und zurück. Dieser Befehl entfernt alle nicht benötigten Wechsel. Zu diesem Zweck erkennt er auch, welche Zeichen in beiden Modi gleich aussehen, um Zeichenfolgen zu verarbeiten, die außerhalb dieses Pakets erstellt wurden.
+: Zeichengrafiken optimieren. Die oben genannten Generatorbefehle erzeugen viel zu viele überflüssige Befehle zum Wechseln in den Grafikmodus und zurück. Dieser Befehl entfernt alle nicht benötigten Wechsel. Zu diesem Zweck erkennt er auch, welche Zeichen in beiden Modi gleich aussehen, um Zeichenketten zu verarbeiten, die außerhalb dieses Pakets erstellt wurden.
 
 **::term::ansi::code::ctrl::clear**
 : Bildschirm löschen. Im Wesentlichen eine Abfolge von „CursorHome“ und „EraseDown“.

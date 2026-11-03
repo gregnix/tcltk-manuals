@@ -334,7 +334,7 @@ method **Url\_Decode** *data*
 
 *ancestors*: **httpd::mime**
 
-Eine Klasse, die eine Anfrage durch den Prozess der Antwortgenerierung begleitet. Der mit der Antwort verbundene Socket ist jederzeit über die Variable *chan* verfügbar. Der Prozess der Antwortgenerierung beginnt damit, dass eine **httpd::server** ein **http::class**-Objekt erzeugt, eine Reihe von Verhaltensweisen einbindet und anschließend die **dispatch**-Methode des Antwortobjekts aufruft. Im Normalbetrieb führt die Methode **dispatch** folgende Schritte aus:
+Eine Klasse, die eine Anfrage durch den Prozess der Antwortgenerierung begleitet. Der mit der Antwort verbundene Socket ist jederzeit über die Variable *chan* verfügbar. Der Prozess der Antwortgenerierung beginnt damit, dass ein **httpd::server** ein **http::class**-Objekt erzeugt, eine Reihe von Verhaltensweisen einbindet und anschließend die **dispatch**-Methode des Antwortobjekts aufruft. Im Normalbetrieb führt die Methode **dispatch** folgende Schritte aus:
 
 1. Ruft die Methode **reset** des Objekts auf, um die Standard-Header zu füllen.
 
@@ -417,10 +417,10 @@ variable **reply**
 : Ein Dictionary, das in die MIME-Header der Antwort umgewandelt wird
 
 variable **request**
-: Ein Dictionary, das die durch SCGI durchgeführte Transformation der HTTP-Header für die Anfrage
+: Ein Dictionary, das die durch SCGI umgewandelten HTTP-Header der Anfrage enthält
 
 
-**Delegate** enthält
+**Delegate**
 
 delegate **<server>**
 : Das Server-Objekt, das diese Antwort erzeugt hat
@@ -583,7 +583,7 @@ method **plugin** *slot* ?*class* ?
     *thread* – ein Skript, das in die Methode **Thread\_start** des Servers eingefügt wird.
 
 method **port\_listening**
-: Gibt den Port zurück, auf dem httpd tatsächlich auf Verbindungen wartet.
+: Gibt den Port zurück, an dem httpd tatsächlich lauscht.
 
 method **PrefixNormalize** *prefix*
 : Die Fassung im Auslieferungszustand entfernt abschließende „/“ und „\*“ von einem Präfix. Die Methode kann ersetzt werden, um weitere für die Anwendung nötige Umformungen auszuführen.
@@ -691,7 +691,7 @@ Gibt Daten aus einem Proxy-Prozess zurück.
 - Methode **Dispatch**
 
 
-## Klasse httpd::content.cgi
+## Klasse httpd::content.CGI
 
 *ancestors*: **httpd::content.proxy**
 
@@ -713,7 +713,7 @@ method **DirectoryListing** *local\_file*
 : Bei den meisten CGI-Anwendungen ist eine Verzeichnisauflistung verboten.
 
 
-## Klasse httpd::protocol.scgi
+## Klasse httpd::protocol.SCGI
 
 Gibt Daten aus einem SCGI-Prozess zurück.
 
@@ -722,7 +722,7 @@ Gibt Daten aus einem SCGI-Prozess zurück.
 - Methode **EncodeStatus** *status*
 
 
-## Klasse httpd::content.scgi
+## Klasse httpd::content.SCGI
 
 *ancestors*: **httpd::content.proxy**
 
@@ -734,7 +734,7 @@ Gibt Daten aus einem SCGI-Prozess zurück.
 - Methode **ProxyReply** *chana* *chanb* ?*args*?
 
 
-## Klasse httpd::server.scgi
+## Klasse httpd::server.SCGI
 
 *ancestors*: **httpd::server**
 

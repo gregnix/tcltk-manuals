@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-nnslog – Name Service Facility, Client-Anwendung zur Protokollierung über die Befehlszeile
+nnslog – Namensdienst-Funktion, Client-Anwendung zur Protokollierung über die Befehlszeile
 
 # Übersicht
 
@@ -59,7 +59,7 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
 : Wenn diese Option nicht angegeben wird, wird standardmäßig „**localhost**“ verwendet. Sie legt den Namen oder die IP-Adresse des Hosts fest, auf dem der anzusprechende Namensdienst ausgeführt wird.
 
 **-port** number
-: Wenn diese Option nicht angegeben wird, wird standardmäßig „**38573**“ verwendet. Sie legt den TCP-Port fest, auf dem der anzufragende Namensdienst auf Anfragen wartet.
+: Wenn diese Option nicht angegeben wird, wird standardmäßig „**38573**“ verwendet. Sie legt den TCP-Port fest, auf dem der anzufragende Namensdienst auf Anfragen lauscht.
 
 
 # Fehler, Ideen, Rückmeldungen

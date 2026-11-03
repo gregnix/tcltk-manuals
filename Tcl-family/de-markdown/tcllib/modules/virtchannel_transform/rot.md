@@ -40,7 +40,7 @@ Das Paket **tcl::transform::rot** enthält einen Befehl zum Erstellen einer Kana
 
 Eine damit verbundene Transformation in diesem Modul ist **tcl::transform::otp**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 
@@ -49,7 +49,7 @@ Die interne Klasse „**TclOO**“, die den Handler für Transformationen implem
 
     Der Parameter „*key*“ legt fest, um wie viele Stellen die Zeichen im Alphabet gedreht werden, und wird auf den Bereich „0…25“ umgewandelt.
 
-    Beachten Sie, dass diese Transformation nur Bytes in den Bereichen ASCII 65…90 sowie 97…122, d. h. die Groß- und Kleinbuchstaben „A…Z“ und „a…z“. Alle anderen Bytes werden unverändert weitergeleitet.
+    Beachten Sie, dass diese Transformation nur Bytes in den Bereichen ASCII 65…90 sowie 97…122, d. h. die Groß- und Kleinbuchstaben „A…Z“ und „a…z“, betrifft. Alle anderen Bytes werden unverändert weitergeleitet.
 
 
 # Fehler, Ideen, Rückmeldungen

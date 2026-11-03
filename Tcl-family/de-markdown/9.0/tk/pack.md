@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-pack - Geometrie-Manager, der entlang der Ränder des Hohlraums packt
+pack - Geometriemanager, der entlang der Ränder des Hohlraums packt
 
 # Übersicht
 
@@ -32,7 +32,7 @@ pack - Geometrie-Manager, der entlang der Ränder des Hohlraums packt
 
 # Beschreibung
 
-Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometrie-Manager, der die Kinder eines Eltern-Widgets anordnet, indem er sie der Reihe nach entlang der Ränder des Eltern-Widgets packt. Der Befehl **pack** kann je nach dem *option*-Argument mehrere Formen annehmen:
+Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometriemanager, der die Kinder eines Eltern-Widgets anordnet, indem er sie der Reihe nach entlang der Ränder des Eltern-Widgets packt. Der Befehl **pack** kann je nach dem *option*-Argument mehrere Formen annehmen:
 
 **pack** *window* ?*window ...*? ?*options*?
 : Wenn das erste Argument von **pack** ein Fenstername ist (ein Wert, der mit „.“ beginnt), wird der Befehl auf dieselbe Weise verarbeitet wie **pack configure**.
@@ -56,13 +56,13 @@ Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometrie-Mana
     : Ist das Parcel eines Inhalts größer als dessen angeforderte Abmessungen, kann diese Option verwendet werden, um den Inhalt zu strecken. *Style* muss einen der folgenden Werte haben:
 
         **none**
-        : Dem Inhalt werden seine angeforderten Abmessungen plus jeder mit **-ipadx** oder **-ipady** angeforderten internen Polsterung gegeben. Dies ist der Standardwert.
+        : Dem Inhalt werden seine angeforderten Abmessungen plus jedes mit **-ipadx** oder **-ipady** angeforderten Innenabstands gegeben. Dies ist der Standardwert.
 
         **x**
-        : Den Inhalt horizontal strecken, um die gesamte Breite seines Parcels zu füllen (äußere Polsterung gemäß **-padx** bleibt ausgenommen).
+        : Den Inhalt horizontal strecken, um die gesamte Breite seines Parcels zu füllen (der Außenabstand gemäß **-padx** bleibt ausgenommen).
 
         **y**
-        : Den Inhalt vertikal strecken, um die gesamte Höhe seines Parcels zu füllen (äußere Polsterung gemäß **-pady** bleibt ausgenommen).
+        : Den Inhalt vertikal strecken, um die gesamte Höhe seines Parcels zu füllen (der Außenabstand gemäß **-pady** bleibt ausgenommen).
 
         **both**
         : Den Inhalt sowohl horizontal als auch vertikal strecken.
@@ -72,22 +72,22 @@ Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometrie-Mana
     : Das Fenster am Ende der Packreihenfolge für den durch *container* angegebenen Container einfügen.
 
     [-ipadx]{.lit} [amount]{.arg}
-    : *Amount* legt fest, wie viel horizontale interne Polsterung auf jeder Seite des Inhalts verbleiben soll. *Amount* muss eine gültige Bildschirmabstandseinheit sein, etwa **2** oder **.5c**. Standard ist 0.
+    : *Amount* legt fest, wie viel horizontaler Innenabstand auf jeder Seite des Inhalts verbleiben soll. *Amount* muss eine gültige Bildschirmabstandseinheit sein, etwa **2** oder **.5c**. Standard ist 0.
 
     [-ipady]{.lit} [amount]{.arg}
-    : *Amount* legt fest, wie viel vertikale interne Polsterung auf jeder Seite des Inhalts verbleiben soll. *Amount* hat standardmäßig den Wert 0.
+    : *Amount* legt fest, wie viel vertikaler Innenabstand auf jeder Seite des Inhalts verbleiben soll. *Amount* hat standardmäßig den Wert 0.
 
     [-padx]{.lit} [amount]{.arg}
-    : *Amount* legt fest, wie viel horizontale äußere Polsterung auf jeder Seite des Inhalts verbleiben soll. *Amount* kann eine Liste aus zwei Werten sein, um Polsterung links und rechts getrennt anzugeben. Standard ist 0.
+    : *Amount* legt fest, wie viel horizontaler Außenabstand auf jeder Seite des Inhalts verbleiben soll. *Amount* kann eine Liste aus zwei Werten sein, um den Außenabstand links und rechts getrennt anzugeben. Standard ist 0.
 
     [-pady]{.lit} [amount]{.arg}
-    : *Amount* legt fest, wie viel vertikale äußere Polsterung auf jeder Seite des Inhalts verbleiben soll. *Amount* kann eine Liste aus zwei Werten sein, um Polsterung oben und unten getrennt anzugeben. Standard ist 0.
+    : *Amount* legt fest, wie viel vertikaler Außenabstand auf jeder Seite des Inhalts verbleiben soll. *Amount* kann eine Liste aus zwei Werten sein, um den Außenabstand oben und unten getrennt anzugeben. Standard ist 0.
 
     [-side]{.lit} [side]{.arg}
     : Legt fest, an welcher Seite des Containers der Inhalt gepackt wird. Muss **left**, **right**, **top** oder **bottom** sein. Standard ist **top**.
 
 
-    Wenn keine Option **-in**, **-after** oder **-before** angegeben ist, wird jedes Inhaltsfenster am Ende der Packliste seines Eltern-Elements eingefügt, sofern es nicht bereits vom Packer verwaltet wird (dann bleibt es an seiner Position). Wird eine dieser Optionen angegeben, werden alle Inhalte am angegebenen Punkt eingefügt. Sind einige Inhalte bereits vom Geometrie-Manager verwaltet, behalten nicht angegebene Optionen ihre bisherigen Werte statt Standardwerte zu erhalten.
+    Wenn keine Option **-in**, **-after** oder **-before** angegeben ist, wird jedes Inhaltsfenster am Ende der Packliste seines Eltern-Elements eingefügt, sofern es nicht bereits vom Packer verwaltet wird (dann bleibt es an seiner Position). Wird eine dieser Optionen angegeben, werden alle Inhalte am angegebenen Punkt eingefügt. Sind einige Inhalte bereits vom Geometriemanager verwaltet, behalten nicht angegebene Optionen ihre bisherigen Werte statt Standardwerte zu erhalten.
 
 [pack]{.cmd} [content]{.sub} [window]{.arg}
 : Gibt eine Liste aller Inhaltsfenster in der Packreihenfolge für *window* zurück. Die Reihenfolge der Inhaltsfenster in der Liste entspricht ihrer Reihenfolge in der Packreihenfolge. Hat *window* keinen Inhalt, wird eine leere Zeichenkette zurückgegeben.
@@ -119,7 +119,7 @@ Für jeden Inhalt führt der Packer folgende Schritte aus:
 
 2. Der Packer wählt die Abmessungen des Inhalts. Die Breite ist normalerweise die angeforderte Breite des Inhalts plus das Doppelte seiner Option **-ipadx**, die Höhe normalerweise die angeforderte Höhe plus das Doppelte von **-ipady**. Ist die Option **-fill** jedoch **x** oder **both**, wird die Breite des Inhalts so erweitert, dass sie die Breite des Parcels abzüglich des Doppelten von **-padx** füllt. Ist **-fill** **y** oder **both**, wird die Höhe des Inhalts so erweitert, dass sie die Höhe des Parcels abzüglich des Doppelten von **-pady** füllt.
 
-3. Der Packer positioniert den Inhalt über seinem Parcel. Ist der Inhalt kleiner als das Parcel, legt die Option **-anchor** fest, wo im Parcel der Inhalt platziert wird. Sind **-padx** oder **-pady** ungleich null, bleibt stets die angegebene äußere Polsterung zwischen Inhalt und Parcel-Rändern.
+3. Der Packer positioniert den Inhalt über seinem Parcel. Ist der Inhalt kleiner als das Parcel, legt die Option **-anchor** fest, wo im Parcel der Inhalt platziert wird. Sind **-padx** oder **-pady** ungleich null, bleibt stets der angegebene Außenabstand zwischen Inhalt und Parcel-Rändern.
 
 
 Sobald ein Inhalt gepackt ist, wird die Fläche seines Parcels vom Hohlraum abgezogen, sodass ein kleinerer rechteckiger Hohlraum für den nächsten Inhalt bleibt. Nutzt ein Inhalt sein Parcel nicht vollständig, wird der ungenutzte Platz nicht von nachfolgenden Inhalten verwendet. Wird der Hohlraum zu klein für die Anforderungen eines Inhalts, erhält der Inhalt den verbleibenden Platz im Hohlraum. Schrumpft der Hohlraum auf die Größe null, werden alle verbleibenden Inhalte der Packliste vom Bildschirm entmappt, bis das Container-Fenster wieder groß genug ist.
@@ -130,7 +130,7 @@ Ist ein Container-Fenster so groß, dass nach dem Packen aller Inhalte noch zus�
 
 ## Geometrie-Propagation
 
-Der Packer berechnet normalerweise, wie groß ein Container sein muss, um genau den Bedarf seiner Inhalte zu decken, und setzt die angeforderte Breite und Höhe des Containers auf diese Werte. Dadurch propagieren Geometrieinformationen in der Fensterhierarchie bis zum Top-Level-Fenster, sodass sich der gesamte Unterbaum an die Blattfenster anpasst. Mit **pack propagate** kann die Propagation für einen oder mehrere Container jedoch abgeschaltet werden. Ist Propagation deaktiviert, setzt der Packer die angeforderte Breite und Höhe des Containers nicht. Das ist nützlich, wenn ein Container-Fenster etwa eine von Ihnen festgelegte feste Größe haben soll.
+Der Packer berechnet normalerweise, wie groß ein Container sein muss, um genau den Bedarf seiner Inhalte zu decken, und setzt die angeforderte Breite und Höhe des Containers auf diese Werte. Dadurch propagieren Geometrieinformationen in der Fensterhierarchie bis zum Toplevel-Fenster, sodass sich der gesamte Unterbaum an die Blattfenster anpasst. Mit **pack propagate** kann die Propagation für einen oder mehrere Container jedoch abgeschaltet werden. Ist Propagation deaktiviert, setzt der Packer die angeforderte Breite und Höhe des Containers nicht. Das ist nützlich, wenn ein Container-Fenster etwa eine von Ihnen festgelegte feste Größe haben soll.
 
 # Einschränkungen für Container-Fenster
 

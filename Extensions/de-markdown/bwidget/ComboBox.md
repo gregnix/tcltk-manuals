@@ -26,7 +26,7 @@
     |   -dragtype |   -dropcmd |
     |   -dropenabled |   -dropovercmd |
     |   -droptypes |   -editable |
-    |   -entrybg (siehe **-background**) |   -entryfg (see **-foreground**) |
+    |   -entrybg (siehe **-background**) |   -entryfg (siehe **-foreground**) |
     |   -exportselection |   -font |
     |   -helptext |   -helptype |
     |   -helpvar |   -highlightbackground |

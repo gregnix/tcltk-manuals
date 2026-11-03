@@ -92,11 +92,11 @@ package require httpd::debug
 Debug_Url /debug Debug
 ```
 
-Der Webserver erreicht jedes Tcl-Paket, das mit der Tcl-Installation liegt. Die mitgelieferte HTML-Dokumentation beschreibt das Programmieren des Servers ausführlicher.
+Der Webserver erreicht jedes Tcl-Paket, das zusammen mit der Tcl-Installation installiert ist. Die mitgelieferte HTML-Dokumentation beschreibt das Programmieren des Servers ausführlicher.
 
 # Seitenvorlagen
 
-TclHttpd hat ein Vorlagensystem, das Tcl-Code in die HTML-Seiten einbettet. Der Webserver wertet das Tcl aus. Es erzeugt in der Regel Teile der HTML-Seite, und das Ergebnis geht unverändert an den Client. Die Ergebnisse der Vorlagen lassen sich zwischenspeichern, oder die Seiten werden bei jedem Zugriff neu verarbeitet.
+TclHttpd hat ein Vorlagensystem, das Tcl-Code in die HTML-Seiten einbettet. Der Webserver wertet das Tcl aus. Es erzeugt in der Regel Teile der HTML-Seite, und das Ergebnis geht transparent an den Client. Die Ergebnisse der Vorlagen lassen sich zwischenspeichern, oder die Seiten werden bei jedem Zugriff neu verarbeitet.
 
 Jede Seite, die auf ".tml" endet, gilt als HTML+Tcl-Vorlage. Der Webserver ersetzt mit dem Tcl-Befehl **subst** Befehle in Klammern, \[ und \], und Variablenverweise wie $Phone durch ihren Wert. Auch der Backslash wird verarbeitet. Wörtliche Dollarbeträge in den Vorlagen brauchen einen Backslash vor dem $:
 

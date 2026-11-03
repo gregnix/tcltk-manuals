@@ -83,7 +83,7 @@ Jeder Meldungsgrad ist zudem mit einem Befehl verknüpft, der beim Protokolliere
     log::log notice "Handled by \"toText\""
 ```
 
-Eine weitere von dieser Einrichtung gepflegte Datenbank ist eine Zuordnung von Nachrichtenebenen zu Farben. Die Informationen in dieser Datenbank haben *keinen* Einfluss auf das Verhalten des Moduls. Sie werden lediglich als Service bereitgestellt und in Erwartung der Nutzung dieser Funktion in der **tk**-based-Anwendung, die möglicherweise Meldungsprotokolle in Farben kennzeichnen möchte.
+Eine weitere von dieser Einrichtung gepflegte Datenbank ist eine Zuordnung von Nachrichtenebenen zu Farben. Die Informationen in dieser Datenbank haben *keinen* Einfluss auf das Verhalten des Moduls. Sie werden lediglich als Service bereitgestellt und in Erwartung der Nutzung dieser Funktion in **tk**-basierten Anwendungen, die Meldungsprotokolle möglicherweise farbig darstellen möchten.
 
 # API
 
@@ -93,19 +93,19 @@ Folgende Befehle stehen zur Verfügung:
 : Gibt die Namen aller bekannten Ebenen in alphabetischer Reihenfolge zurück.
 
 **::log::lv2longform** *level*
-: Wandelt jede eindeutige Abkürzung eines Levelnamens in den vollständigen Name des Levels um.
+: Wandelt jede eindeutige Abkürzung eines Levelnamens in den vollständigen Namen des Levels um.
 
 **::log::lv2color** *level*
-: Wandelt jeden Level-Name, einschließlich einzigartiger Abkürzungen, in die entsprechende Farbe um.
+: Wandelt jeden Level-Namen, einschließlich eindeutiger Abkürzungen, in die entsprechende Farbe um.
 
 **::log::lv2priority** *level*
-: Wandelt jeden Level-Name, einschließlich einzigartiger Abkürzungen, in die entsprechende Priorität um.
+: Wandelt jeden Level-Namen, einschließlich eindeutiger Abkürzungen, in die entsprechende Priorität um.
 
 **::log::lv2cmd** *level*
-: Wandelt jeden Level-Namen, einschließlich einzigartiger Abkürzungen, in das Befehlspräfix um, das zum Verfassen von Nachrichten mit diesem Level verwendet wird.
+: Wandelt jeden Level-Namen, einschließlich eindeutiger Abkürzungen, in das Befehlspräfix um, das zum Verfassen von Nachrichten mit diesem Level verwendet wird.
 
 **::log::lv2channel** *level*
-: Wandelt jeden Level-Name, einschließlich einzigartiger Abkürzungen, in den Kanal um, den **::log::Puts** verwendet, um Nachrichten mit diesem Level zu schreiben.
+: Wandelt jeden Level-Namen, einschließlich eindeutiger Abkürzungen, in den Kanal um, den **::log::Puts** verwendet, um Nachrichten mit diesem Level zu schreiben.
 
 **::log::lvCompare** *level1* *level2*
 : Vergleicht zwei Ebenen (einschließlich eindeutiger Abkürzungen) hinsichtlich ihrer Priorität. Dieser Befehl kann über die Option -command von lsort verwendet werden. Das Ergebnis ist entweder -1, 0 oder 1 oder ein Fehler. Ein Ergebnis von -1 bedeutet, dass Ebene1 eine geringere Priorität hat als Ebene2. 0 bedeutet, dass beide Ebenen die gleiche Priorität haben. 1 bedeutet, dass Ebene1 eine höhere Priorität hat als Ebene2.
@@ -123,7 +123,7 @@ Folgende Befehle stehen zur Verfügung:
 : Legt für die angegebene Stufe fest, mit welchem Befehl die Nachrichten dieser Stufe geschrieben werden sollen. Eindeutige Abkürzungen der Stufennamen sind zulässig. Bei dem Befehl handelt es sich eigentlich um ein Befehlspräfix, und diese Funktion fügt vor dem Aufruf zwei Argumente an: die Stufe der Nachricht und die Nachricht selbst, in dieser Reihenfolge.
 
 **::log::lvCmdForall** *cmd*
-: Legt für alle bekannten Ebenen fest, mit welchem Befehl die Nachrichten dieser Ebene geschrieben werden sollen. Der Befehl handelt eigentlich von einem Befehlspräfix, und diese Funktion fügt vor dem Aufruf zwei Argumente an: die Ebene der Nachricht und die Nachricht selbst, in dieser Reihenfolge.
+: Legt für alle bekannten Ebenen fest, mit welchem Befehl die Nachrichten dieser Ebene geschrieben werden sollen. Der Befehl ist eigentlich ein Befehlspräfix, und diese Funktion fügt vor dem Aufruf zwei Argumente an: die Ebene der Nachricht und die Nachricht selbst, in dieser Reihenfolge.
 
 **::log::lvChannel** *level* *chan*
 : Legt für die angegebene Ebene fest, in welchen Kanal **::log::Puts** (der Standardbefehl) die Meldungen dieser Ebene schreiben soll. Eindeutige Abkürzungen der Stufennamen sind zulässig. Der Befehl ist eigentlich ein Befehlspräfix, und diese Funktion fügt vor dem Aufruf zwei Argumente an: die Stufe der Nachricht und die Nachricht selbst, in dieser Reihenfolge.
@@ -141,7 +141,7 @@ Folgende Befehle stehen zur Verfügung:
 : Protokolliert eine Meldung gemäß den Vorgaben für Befehle, Kanäle und Unterdrückung. Mit anderen Worten: Der Befehl führt keine Aktion aus, wenn die angegebene Stufe unterdrückt ist. Ist sie nicht unterdrückt, wird die eigentliche Protokollierung an den angegebenen Befehl weitergeleitet. Ist für die Stufe kein Befehl angegeben, wird die Meldung nicht protokolliert. Der Standardbefehl **::log::Puts** schreibt die Meldung in den für die jeweilige Stufe angegebenen Kanal. Ist für die Stufe kein Kanal angegeben, wird die Meldung nicht protokolliert. Eindeutige Abkürzungen von Level-Namen sind zulässig. Fehler im eigentlichen Protokollierungsbefehl werden *nicht* abgefangen, sondern an den Aufrufer weitergeleitet, da sie auf Fehlkonfigurationen der Protokollierungsfunktion oder Fehler im Code des Aufrufers selbst hinweisen können.
 
 **::log::logarray** *level* *arrayvar* ?*pattern*?
-: Ähnlich wie **::log::log**, protokolliert jedoch den Inhalt der angegebenen Array-Variablen *arrayvar*, gegebenenfalls beschränkt auf Einträge, die dem *Muster* entsprechen. Das Muster ist standardmäßig **\*** (d. h. alle Einträge), sofern kein Muster angegeben wurde.
+: Ähnlich wie **::log::log**, protokolliert jedoch den Inhalt der angegebenen Array-Variablen *arrayvar*, gegebenenfalls beschränkt auf Einträge, die dem *pattern* entsprechen. Das Muster ist standardmäßig **\*** (d. h. alle Einträge), sofern kein Muster angegeben wurde.
 
 **::log::loghex** *level* *text* *data*
 : Ähnlich wie **::log::log**, geht jedoch davon aus, dass *data* Binärdaten enthält. Diese werden in eine gemischte Hex- und ASCII-Darstellung konvertiert, bevor sie in das Protokoll geschrieben werden.
@@ -167,19 +167,19 @@ Folgende Befehle stehen zur Verfügung:
 
 Das Paket definiert derzeit die folgenden Protokollstufen, wobei die Stufe mit der höchsten Priorität an erster Stelle steht.
 
-- Notfall
+- emergency
 
-- Warnung
+- alert
 
-- kritisch
+- critical
 
-- Fehler
+- error
 
-- Fehler
+- warning
 
-- Hinweis
+- notice
 
-- Info
+- info
 
 - debug
 

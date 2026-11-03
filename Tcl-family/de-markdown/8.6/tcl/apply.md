@@ -75,7 +75,7 @@ map {x {expr {$x**2 + 3*$x - 2}}} {-4 -3 -2 -1 0 1 2 3 4}
       → 2 -2 -4 -4 -2 2 8 16 26
 ```
 
-Der Befehl **apply** eignet sich auch zum Definieren von Callbacks für den Befehl [trace]:
+Der Befehl **apply** eignet sich auch zum Definieren von Rückruffunktionen für den Befehl [trace]:
 
 ```
 set vbl "123abc"

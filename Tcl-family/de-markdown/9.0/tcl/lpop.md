@@ -54,9 +54,9 @@ Mit einem Index wird das *index*-te Element geholt, aus der Liste entfernt und z
 
 Ist *index* negativ oder größer oder gleich der Elementanzahl in *varName*, tritt ein Fehler auf.
 
-Die Auslegung jedes einfachen *index* entspricht [string index][string] (Arithmetik, end-relativ).
+Die Auslegung jedes einfachen *index* entspricht [string index][string], einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende.
 
-Weitere *index*-Argumente adressieren wie bei [lindex] und [lset] verschachtelte Unterlisten:
+Weitere *index*-Argumente adressieren nacheinander je ein Element in der Unterliste, die die vorherige Indexoperation bezeichnet; so lassen sich wie bei [lindex] und [lset] Elemente aus Unterlisten entfernen. Der Befehl
 
 ```
 lpop a 1 2

@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-update - Verarbeitet anstehende Events und Idle-Callbacks
+update - Verarbeitet anstehende Ereignisse und Idle-Rückruffunktionen
 
 # Übersicht
 
@@ -32,13 +32,13 @@ update - Verarbeitet anstehende Events und Idle-Callbacks
 
 # Beschreibung
 
-Dieser Befehl bringt die Anwendung „auf den neuesten Stand“, indem er wiederholt die Event-Schleife betritt, bis alle anstehenden Events (einschließlich Idle-Callbacks) verarbeitet wurden.
+Dieser Befehl bringt die Anwendung „auf den neuesten Stand“, indem er wiederholt die Ereignisschleife betritt, bis alle anstehenden Ereignisse (einschließlich Idle-Rückruffunktionen) verarbeitet wurden.
 
-Wird das Schlüsselwort **idletasks** als Argument angegeben, werden keine neuen Events oder Fehler verarbeitet; es werden nur Idle-Callbacks aufgerufen. Dadurch werden normalerweise verzögerte Operationen wie Anzeigeaktualisierungen und Fensterlayout-Berechnungen sofort ausgeführt.
+Wird das Schlüsselwort **idletasks** als Argument angegeben, werden keine neuen Ereignisse oder Fehler verarbeitet; es werden nur Idle-Rückruffunktionen aufgerufen. Dadurch werden normalerweise verzögerte Operationen wie Anzeigeaktualisierungen und Fensterlayout-Berechnungen sofort ausgeführt.
 
-Der Befehl **update idletasks** ist in Skripten nützlich, in denen der Zustand der Anwendung geändert wurde und diese Änderungen sofort auf der Anzeige erscheinen sollen, statt erst nach Abschluss des Skripts. Die meisten Anzeigeaktualisierungen erfolgen als Idle-Callbacks; **update idletasks** lässt sie laufen. Es gibt jedoch Aktualisierungen, die nur als Reaktion auf Events erfolgen, etwa bei Fenstergrößenänderungen; diese erfolgen nicht bei **update idletasks**.
+Der Befehl **update idletasks** ist in Skripten nützlich, in denen der Zustand der Anwendung geändert wurde und diese Änderungen sofort auf der Anzeige erscheinen sollen, statt erst nach Abschluss des Skripts. Die meisten Anzeigeaktualisierungen erfolgen als Idle-Rückruffunktionen; **update idletasks** lässt sie laufen. Es gibt jedoch Aktualisierungen, die nur als Reaktion auf Ereignisse erfolgen, etwa bei Fenstergrößenänderungen; diese erfolgen nicht bei **update idletasks**.
 
-Der Befehl **update** ohne Optionen ist in Skripten nützlich, die lange Berechnungen ausführen, bei denen die Anwendung dennoch auf Events wie Benutzerinteraktionen reagieren soll; ruft man gelegentlich **update** auf, wird Benutzereingabe beim nächsten Aufruf von **update** verarbeitet.
+Der Befehl **update** ohne Optionen ist in Skripten nützlich, die lange Berechnungen ausführen, bei denen die Anwendung dennoch auf Ereignisse wie Benutzerinteraktionen reagieren soll; ruft man gelegentlich **update** auf, wird Benutzereingabe beim nächsten Aufruf von **update** verarbeitet.
 
 # Beispiel
 

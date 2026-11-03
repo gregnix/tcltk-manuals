@@ -36,17 +36,17 @@ Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-D
 # API
 
 **::yencode::encode** *bstring*
-: Gibt als Ergebnis eine yEncoded-Version der Binärzeichenfolge *bstring* zurück.
+: Gibt als Ergebnis eine yEncoded-Version der Binärzeichenkette *bstring* zurück.
 
-    Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+    Der Befehl löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::yencode::decode** *estring*
-: Gibt eine Binärzeichenfolge zurück, die aus dem *estring* mittels yEncode-Dekodierung dekodiert wurde.
+: Gibt eine Binärzeichenkette zurück, die aus dem *estring* mittels yEncode-Dekodierung dekodiert wurde.
 
 **::yencode::yencode** ?**-name** *string*? ?**-line** *integer*? ?**-crc32** *boolean*? (**-file** *filename* | ?**--**? *bstring*)
-: Gibt als Ergebnis eine „wrapped“ yEncoded-Version der Daten im durch **-file** *Dateinamen* oder durch die Binärzeichenfolge *bstring* festgelegten Dateinamen zurück.
+: Gibt als Ergebnis eine „wrapped“ yEncoded-Version der Daten in der durch **-file** *filename* angegebenen Datei oder der Binärzeichenkette *bstring* zurück.
 
-    Jedes „wrapped“ yEncoded-Ergebnis besteht aus einem Header, einem Body und einem Trailer. Der Header ist eine Zeile, die mit **=ybegin** beginnt, gefolgt von einer Zeilenlänge in der Form **line=**_length_, der Größe der Originaldaten (in Byte) in der Form **size=**_size_ sowie dem Name der Originaldatei in der Form **name=**_filename_, alles durch Leerzeichen getrennt. Der Hauptteil besteht aus den yEncoded-Daten. Der Trailer ist eine Zeile, die mit **=yend** beginnt, gefolgt von der Größe der Originaldaten in der Form **size=**_size_ und optional (aber empfohlen) einem CRC32-Prüfsummenwert in der Form **crc32=**_checksum_, alles durch Leerzeichen getrennt.
+    Jedes „wrapped“ yEncoded-Ergebnis besteht aus einem Header, einem Body und einem Trailer. Der Header ist eine Zeile, die mit **=ybegin** beginnt, gefolgt von einer Zeilenlänge in der Form **line=**_length_, der Größe der Originaldaten (in Byte) in der Form **size=**_size_ sowie dem Namen der Originaldatei in der Form **name=**_filename_, alles durch Leerzeichen getrennt. Der Hauptteil besteht aus den yEncoded-Daten. Der Trailer ist eine Zeile, die mit **=yend** beginnt, gefolgt von der Größe der Originaldaten in der Form **size=**_size_ und optional (aber empfohlen) einem CRC32-Prüfsummenwert in der Form **crc32=**_checksum_, alles durch Leerzeichen getrennt.
 
 **::yencode::ydecode** (**-file** *filename* | ?**--**? *estring*)
 : Gibt eine Liste aus Listen mit jeweils drei Elementen zurück, bestehend aus Dateiname, Dateigröße und yEncode-dekodierten Bytes, entweder aus der durch **-file** angegebenen Datei *filename* oder aus dem *estring*.
@@ -55,7 +55,7 @@ Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-D
 ## Optionen
 
 **-file** *filename*
-: Bewirkt, dass die Befehle **yencode** oder **ydecode** ihre Daten aus der angegebenen Datei lesen, anstatt einen binären Zeichenfolgenparameter zu verwenden.
+: Bewirkt, dass die Befehle **yencode** oder **ydecode** ihre Daten aus der angegebenen Datei lesen, anstatt eine Binärzeichenkette als Parameter zu übernehmen.
 
 **-name** *string*
 : Die yEncoded-Daten-Kopfzeile enthält den ursprünglichen Dateinamen, der beim Entpacken der Daten verwendet werden soll. Verwenden Sie diese Option, um den Standardwert „default.bin“ zu ändern.
@@ -64,14 +64,14 @@ Dieses Paket enthält eine rein auf Tcl basierende Implementierung der yEncode-D
 : Die yEncoded-Kopfzeile legt die für die Kodierung verwendete Zeilenlänge fest, deren Standardwert 128 beträgt. Verwenden Sie diese Option, um eine andere Zeilenlänge festzulegen. Hinweis: NNTP legt eine Begrenzung der Zeilenlänge auf 1000 Zeichen fest und einige Systeme haben bei mehr als 255 Zeichen pro Zeile Probleme.
 
 **-crc32** *boolean*
-: Wenn die Kodierung dieses Pakets durchgeführt wird, fügt es gemäß der yEncode-Spezifikation einen CRC-Wert (Cyclic Redundancy Check) in den Trailer ein. Dies lässt sich verhindern, indem Sie diese Option verwendet und für *boolean* einen falschen Wert übergibt, z. B. **0**.
+: Wenn die Kodierung dieses Pakets durchgeführt wird, fügt es gemäß der yEncode-Spezifikation einen CRC-Wert (Cyclic Redundancy Check) in den Trailer ein. Dies lässt sich verhindern, indem Sie diese Option verwenden und für *boolean* einen falschen Wert übergeben, z. B. **0**.
 
 
 # Beispiele
 
 *Die yEncode-Daten werden in den Beispielen nicht gezeigt, weil es nur Rohbytes sind.*
 
-Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette mit „yEncode“ kodiert und wieder dekodiert, wobei zu berücksichtigen ist, dass die „yEncode“-Befehle mit binären Zeichenketten arbeiten.
+Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette mit „yEncode“ kodieren und wieder dekodieren, wobei zu berücksichtigen ist, dass die „yEncode“-Befehle mit binären Zeichenketten arbeiten.
 
 ```
 const UTF8_LINE "Δ÷ “Utf-8” ♞ℤ"
@@ -96,7 +96,7 @@ puts "[expr {$ASCII_LINE eq $line}]"
 1
 ```
 
-Dieses Beispiel zeigt, wie Sie eine yEncoded-Byte-Zeichenkette erstellt und in eine Datei schreibt.
+Dieses Beispiel zeigt, wie Sie eine yEncoded-Byte-Zeichenkette erstellen und in eine Datei schreiben.
 
 ```
 set bytes [encoding convertto utf-8 $UTF8_LINE]
@@ -109,7 +109,7 @@ puts $ency
 =yend size=23 crc32=fc01071
 ```
 
-Dieses Beispiel zeigt, wie Sie eine Datei liest, die eine oder mehrere yEncoded-Dateien enthält.
+Dieses Beispiel zeigt, wie Sie eine Datei lesen, die eine oder mehrere yEncoded-Dateien enthält.
 
 ```
 foreach lst [::yencode::ydecode $ency] {

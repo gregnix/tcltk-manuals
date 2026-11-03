@@ -28,15 +28,15 @@ uri\_urn – URI-Dienstprogramme, URN-Schema
 
 # Beschreibung
 
-Dieses Paket stellt zwei Befehle zum Ein- und Ausklemmen der unzulässigen Zeichen für URLs unter Verwendung des *urn*-Schemas bereit, registriert das Schema beim Paket **uri**, und stellt interne Hilfsfunktionen bereit, die automatisch von den Befehlen [uri::split][uri] und [uri::join][uri] des Pakets **uri** verwendet werden, um URLs nach dem *urn*-Schema zu verarbeiten.
+Dieses Paket stellt zwei Befehle zum Maskieren und Demaskieren der unzulässigen Zeichen für URLs unter Verwendung des *urn*-Schemas bereit, registriert das Schema beim Paket **uri**, und stellt interne Hilfsfunktionen bereit, die automatisch von den Befehlen [uri::split][uri] und [uri::join][uri] des Pakets **uri** verwendet werden, um URLs nach dem *urn*-Schema zu verarbeiten.
 
 # Befehle
 
 **uri::urn::quote** *url*
-: Dieser Befehl setzt die Zeichen, die gemäß dem *urn*-Schema (gemäß RFC 2141, Abschnitt 2.2) in der *url* nicht zulässig sind, in Anführungszeichen und gibt die geänderte URL als Ergebnis zurück.
+: Dieser Befehl maskiert die Zeichen, die gemäß dem *urn*-Schema (RFC 2141, Abschnitt 2.2) in der *url* nicht zulässig sind, und gibt die geänderte URL als Ergebnis zurück.
 
 **uri::urn::unquote** *url*
-: Dieser Befehl führt das Gegenteil von **::uri::urn::quote** aus. Er nimmt eine *urn*-URL entgegen, entfernt die Anführungszeichen um alle unzulässigen Zeichen und gibt die geänderten URLs als Ergebnis zurück.
+: Dieser Befehl führt das Gegenteil von **::uri::urn::quote** aus. Er nimmt eine *urn*-URL entgegen, hebt die Maskierung aller unzulässigen Zeichen auf und gibt die geänderten URLs als Ergebnis zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

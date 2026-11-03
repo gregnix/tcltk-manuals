@@ -27,7 +27,7 @@ Copyright:
 
 # Name
 
-Steuerung – Prozeduren für Kontrollflussstrukturen.
+control – Prozeduren für Kontrollflussstrukturen.
 
 # Übersicht
 
@@ -47,18 +47,18 @@ Das **control**-Paket bietet eine Vielzahl von Befehlen, die über die von Tcl b
 # Befehle
 
 **control::control** *command* *option* ?*arg arg ...*?
-: Der Befehl **control** dient als Konfigurationsbefehl zur Anpassung der anderen öffentlichen Befehle des control-Pakets. Das Argument *command* gibt den Befehl an, der angepasst werden soll. Die gültigen *Optionen* und nachfolgenden Argumente richten sich nach dem anzupassenden Befehl und sind in der Dokumentation zu diesem Befehl aufgeführt.
+: Der Befehl **control** dient als Konfigurationsbefehl zur Anpassung der anderen öffentlichen Befehle des control-Pakets. Das Argument *command* gibt den Befehl an, der angepasst werden soll. Die gültigen Werte für *option* und die nachfolgenden Argumente richten sich nach dem anzupassenden Befehl und sind in der Dokumentation zu diesem Befehl aufgeführt.
 
 **control::assert** *expr* ?*arg arg ...*?
 : Wenn der Befehl **assert** deaktiviert ist, verhält er sich genau wie der Befehl **no-op**.
 
-    Wenn er aktiviert ist, führt der Befehl **assert** die Auswertung von *expr* als Ausdruck durch (genauso wie **expr** sein Argument auswertet). Wenn sich bei der Auswertung herausstellt, dass *expr* kein gültiger boolescher Ausdruck ist (gemäß \[**string is boolean -strict**\]), wird ein Fehler ausgelöst.  Wenn *expr* zu einem wahren booleschen Wert ausgewertet wird (wie von **if** erkannt), gibt **assert** eine leere Zeichenkette zurück.  Andernfalls werden die verbleibenden Argumente von **assert** verwendet, um eine Meldungszeichenfolge zu bilden.  Wenn keine Argumente vorhanden sind, lautet die Meldungszeichenfolge „assertion failed: $expr“.  Wenn Argumente vorhanden sind, werden diese mit **join** zu einer Meldungszeichenfolge zusammengefügt. Die Meldungszeichenfolge wird dann als Argument an einen Callback-Befehl angehängt, und der vervollständigte Callback-Befehl wird im globalen Namespace ausgewertet.
+    Wenn er aktiviert ist, führt der Befehl **assert** die Auswertung von *expr* als Ausdruck durch (genauso wie **expr** sein Argument auswertet). Wenn sich bei der Auswertung herausstellt, dass *expr* kein gültiger boolescher Ausdruck ist (gemäß \[**string is boolean -strict**\]), wird ein Fehler ausgelöst.  Wenn *expr* zu einem wahren booleschen Wert ausgewertet wird (wie von **if** erkannt), gibt **assert** eine leere Zeichenkette zurück.  Andernfalls werden die verbleibenden Argumente von **assert** verwendet, um eine Meldungszeichenkette zu bilden.  Wenn keine Argumente vorhanden sind, lautet die Meldungszeichenkette „assertion failed: $expr“.  Wenn Argumente vorhanden sind, werden diese mit **join** zu einer Meldungszeichenkette zusammengefügt. Die Meldungszeichenkette wird dann als Argument an einen Callback-Befehl angehängt, und der vervollständigte Callback-Befehl wird im globalen Namespace ausgewertet.
 
     Der Befehl **assert** kann durch den Befehl **control** auf zwei Arten angepasst werden:
 
     \[**control::control assert enabled** ?*boolean*?\] fragt ab oder legt fest, ob **control::assert** aktiviert ist.  Wird der Befehl ohne ein *boolean*-Argument aufgerufen, gibt er einen booleschen Wert zurück, der angibt, ob der Befehl **control::assert** aktiviert ist.  Wird der Befehl mit einem gültigen booleschen Wert als *boolean*-Argument aufgerufen, wird der Befehl **control::assert** entsprechend dem Argument aktiviert oder deaktiviert, und es wird eine leere Zeichenkette zurückgegeben.
 
-    \[**control::control assert callback** ?*command*?\] fragt die Rückruffunktion ab oder legt sie fest, die bei einem Assertion-Fehler von einem aktivierten **assert** aufgerufen wird.  Wird die Funktion ohne ein *command*-Argument aufgerufen, gibt sie den aktuellen Befehl der Rückruffunktion zurück. Wird der Befehl mit einem *command*-Argument aufgerufen, wird dieses Argument zum neuen Callback-Befehl für den Fall eines Assertion-Fehlers. Hinweis: Ein Callback-Befehl für den Fall eines Assertion-Fehlers ist immer definiert, auch wenn **assert** deaktiviert ist. Der Standard-Callback-Befehl lautet \[**return -code error**\].
+    \[**control::control assert callback** ?*command*?\] fragt die Rückruffunktion ab oder legt sie fest, die bei einem Assertion-Fehler von einem aktivierten **assert** aufgerufen wird.  Wird der Befehl ohne ein *command*-Argument aufgerufen, gibt er den aktuellen Callback-Befehl zurück. Wird der Befehl mit einem *command*-Argument aufgerufen, wird dieses Argument zum neuen Callback-Befehl für den Fall eines Assertion-Fehlers. Hinweis: Ein Callback-Befehl für den Fall eines Assertion-Fehlers ist immer definiert, auch wenn **assert** deaktiviert ist. Der Standard-Callback-Befehl lautet \[**return -code error**\].
 
     Hinweis: **control::assert** wurde so geschrieben, dass es in Kombination mit \[**namespace import**\] möglich ist, aktivierte **assert**-Befehle in einigen Namespaces und deaktivierte **assert**-Befehle in anderen Namespaces gleichzeitig zu verwenden.  Diese Funktion ist nützlich, um die Fehlersuche modulweise unabhängig voneinander steuern zu können.
 
@@ -74,7 +74,7 @@ Das **control**-Paket bietet eine Vielzahl von Befehlen, die über die von Tcl b
     ```
 
 **control::do** *body* ?*option test*?
-: Der Befehl **do** wertet den Skriptkörper *body* wiederholt aus, *bis* der Ausdruck *test* wahr wird oder solange (*while*) *test* wahr ist, je nachdem, ob der Wert von *option**until** oder **while** lautet. Wenn *option* und *test* weggelassen werden, wird der Körper genau einmal ausgewertet. Nach normaler Ausführung gibt **do** eine leere Zeichenkette zurück. Ausnahmerückgabecodes (**break**, **continue**, **error** usw.) während der Auswertung von *body* werden genauso behandelt wie beim Befehl **while**, mit Ausnahme der unten unter [Einschränkungen] genannten Fälle.
+: Der Befehl **do** wertet den Skriptrumpf *body* wiederholt aus, *bis* der Ausdruck *test* wahr wird oder solange (*while*) *test* wahr ist, je nachdem, ob der Wert von *option* **until** oder **while** lautet. Wenn *option* und *test* weggelassen werden, wird der Rumpf genau einmal ausgewertet. Nach normaler Ausführung gibt **do** eine leere Zeichenkette zurück. Ausnahmerückgabecodes (**break**, **continue**, **error** usw.) während der Auswertung von *body* werden genauso behandelt wie beim Befehl **while**, mit Ausnahme der unten unter [Einschränkungen] genannten Fälle.
 
 **control::no-op** ?*arg arg ...*?
 : Der Befehl **no-op** akzeptiert eine beliebige Anzahl von Argumenten und führt keine Aktion aus. Er gibt eine leere Zeichenkette zurück.
@@ -82,7 +82,7 @@ Das **control**-Paket bietet eine Vielzahl von Befehlen, die über die von Tcl b
 
 # Einschränkungen
 
-Einige der vom **control**-Paket bereitgestellten Befehle akzeptieren Argumente in Form von Skripten, die ausgewertet werden sollen. Aufgrund grundlegender Einschränkungen der Tcl-Befehle **catch** und **return** ist es diesen Befehlen nicht möglich, den Befehl \[**return -code $code**\] innerhalb eines dieser Skript-Argumente für einen beliebigen Wert von *$code* außer *ok* korrekt auszuwerten.  In dieser Hinsicht sind die Befehle des **control**-Pakets im Vergleich zu den in Tcl integrierten Befehlen zur Steuerungsflusssteuerung (wie **if**, **while** usw.) sowie zu den Befehlen zur Steuerungsflusssteuerung, die von in C programmierten Paketen bereitgestellt werden können, eingeschränkt. Ein Beispiel für diesen Unterschied:
+Einige der vom **control**-Paket bereitgestellten Befehle akzeptieren Argumente in Form von Skripten, die ausgewertet werden sollen. Aufgrund grundlegender Einschränkungen der Tcl-Befehle **catch** und **return** ist es diesen Befehlen nicht möglich, den Befehl \[**return -code $code**\] innerhalb eines dieser Skript-Argumente für einen beliebigen Wert von *$code* außer *ok* korrekt auszuwerten.  In dieser Hinsicht sind die Befehle des **control**-Pakets im Vergleich zu den in Tcl integrierten Befehlen zur Steuerung des Programmablaufs (wie **if**, **while** usw.) sowie zu den Befehlen zur Steuerung des Programmablaufs, die von in C programmierten Paketen bereitgestellt werden können, eingeschränkt. Ein Beispiel für diesen Unterschied:
 
 ```
 % package require control

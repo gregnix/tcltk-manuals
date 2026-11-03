@@ -28,7 +28,7 @@ ttk::treeview - Hierarchisches mehrspaltiges Datenanzeige-Widget
 
 Das **ttk::treeview**-Widget zeigt eine hierarchische Sammlung von Elementen an. Jedes Element hat eine Textbeschriftung, ein optionales Bild und eine optionale Liste von Datenwerten. Die Datenwerte werden in aufeinanderfolgenden Spalten nach der Baumspaltenbeschriftung angezeigt.
 
-Die Reihenfolge, in der Datenwerte angezeigt werden, kann über die Widget-Option **-displaycolumns** gesteuert werden. Das Treeview-Widget kann auch Spaltenüberschriften anzeigen. Auf Spalten kann per Nummer oder über die in der Widget-Option **-columns** aufgeführten symbolischen Namen zugegriffen werden; siehe [Spaltenidentifikatoren].
+Die Reihenfolge, in der Datenwerte angezeigt werden, kann über die Widget-Option **-displaycolumns** gesteuert werden. Das Treeview-Widget kann auch Spaltenüberschriften anzeigen. Auf Spalten kann per Nummer oder über die in der Widget-Option **-columns** aufgeführten symbolischen Namen zugegriffen werden; siehe [Spaltenkennungen].
 
 Jedes Element wird durch einen eindeutigen Namen identifiziert. Fehlen Element-IDs vom Aufrufer, erzeugt das Widget sie selbst. Es gibt ein ausgezeichnetes Wurzelelement mit dem Namen **{}**. Das Wurzelelement selbst wird nicht angezeigt; seine Kinder erscheinen auf der obersten Ebene der Hierarchie.
 
@@ -84,15 +84,15 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Gibt den aktuellen Wert der angegebenen *option* zurück; siehe *ttk::widget(n)*.
 
 *pathname* **children** *item* ?*newchildren*?
-: Ist *newchildren* nicht angegeben, gibt die Liste der Kinder von *item* zurück.
+: Ist *newchildren* nicht angegeben, wird die Liste der Kinder von *item* zurückgegeben.
 
-    Ist *newchildren* angegeben, ersetzt die Kinderliste von *item* durch *newchildren*. Elemente der alten Kinderliste, die nicht in der neuen Liste stehen, werden vom Baum getrennt. Keines der Elemente in *newchildren* darf ein Vorfahre von *item* sein.
+    Ist *newchildren* angegeben, wird die Kinderliste von *item* durch *newchildren* ersetzt. Elemente der alten Kinderliste, die nicht in der neuen Liste stehen, werden vom Baum getrennt. Keines der Elemente in *newchildren* darf ein Vorfahre von *item* sein.
 
 *pathname* **column** *column* ?*-option* ?*value -option value...*?
 : Abfragen oder Ändern der Optionen der angegebenen *column*. Ist kein *-option* angegeben, wird ein Dictionary der Option/Wert-Paare zurückgegeben. Ist genau ein *-option* angegeben, wird dessen Wert zurückgegeben. Andernfalls werden die Optionen mit den angegebenen Werten aktualisiert. Für jede Spalte können folgende Optionen gesetzt werden:
 
     **-id** *name*
-    : Der Spaltenname. Schreibgeschützte Option. Beispiel: \\[*$pathname* **column #***n* **-id**\\] liefert die Datenspalte zur Anzeigespalte #*n*.
+    : Der Spaltenname. Schreibgeschützte Option. Beispiel: \[*$pathname* **column #***n* **-id**\] liefert die Datenspalte zur Anzeigespalte #*n*.
 
     **-anchor** *anchor*
     : Legt fest, wie der Text in dieser Spalte relativ zur Zelle ausgerichtet wird. *Anchor* ist einer von **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw** oder **center**.
@@ -101,7 +101,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
     : Mindestbreite der Spalte in Pixeln. Das Treeview-Widget macht die Spalte beim Größenändern oder beim Ziehen eines Spaltentrenners nicht schmaler als **-minwidth**. Standard 20 Pixel.
 
     **-stretch** *boolean*
-    : Legt fest, ob die Spaltenbreite beim Größenändern des Widgets oder beim Ziehen eines Spaltentrenners angepasst wird. *Boolean* kann jede von [Tcl\\_GetBoolean][GetInt] akzeptierte Form haben. Standardmäßig sind Spalten dehnbar.
+    : Legt fest, ob die Spaltenbreite beim Größenändern des Widgets oder beim Ziehen eines Spaltentrenners angepasst wird. *Boolean* kann jede von [Tcl\_GetBoolean][GetInt] akzeptierte Form haben. Standardmäßig sind Spalten dehnbar.
 
     **-width** *width*
     : Breite der Spalte in Pixeln. Standard 200 Pixel. Die angegebene Breite kann von Tk geändert werden, um **-stretch** und/oder **-minwidth** zu berücksichtigen oder bei Größenänderung bzw. Ziehen eines Spaltentrenners.
@@ -122,7 +122,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Gibt 1 zurück, wenn *item* im Baum vorhanden ist, sonst 0.
 
 *pathname* **focus** ?*item*?
-: Ist *item* angegeben, wird das Fokuselement auf *item* gesetzt. Andernfalls das aktuelle Fokuselement oder **{}**, wenn keines gesetzt ist.
+: Ist *item* angegeben, wird das Fokuselement auf *item* gesetzt. Andernfalls wird das aktuelle Fokuselement zurückgegeben oder **{}**, wenn keines gesetzt ist.
 
 *pathname* **heading** *column* ?*-option* ?*value -option value...*?
 : Abfragen oder Ändern der Überschriftenoptionen der angegebenen *column*. Gültige Optionen:
@@ -159,9 +159,9 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 
         cell
         : Eine Datenzelle.
+
+
         *pathname* **identify item** *x y* Liefert die Element-ID des Elements an Position *y*.
-
-
 
     *pathname* **identify column** *x y*
     : Anzeigespaltenkennung der Zelle an Position *x*. Die Baumspalte hat die ID **#0**.
@@ -173,7 +173,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
     : Veraltetes Synonym für *pathname* **identify item**.
 
 
-    Siehe [Spaltenidentifikatoren] zur Unterscheidung von Anzeige- und Datenspalten.
+    Siehe [Spaltenkennungen] zur Unterscheidung von Anzeige- und Datenspalten.
 
 *pathname* **index** *item*
 : Ganzzahliger Index von *item* in der Kinderliste des Elternelements.
@@ -223,16 +223,16 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 
 
 *pathname* **set** *item* ?*column*? ?*value*?
-: Mit einem Argument Dictionary der Spalten/Wert-Paare für *item*. Mit zwei Argumenten aktueller Wert von *column*. Mit drei Argumenten wird der Wert von Spalte *column* in Element *item* auf *value* gesetzt. Siehe auch [Spaltenidentifikatoren].
+: Mit einem Argument Dictionary der Spalten/Wert-Paare für *item*. Mit zwei Argumenten aktueller Wert von *column*. Mit drei Argumenten wird der Wert von Spalte *column* in Element *item* auf *value* gesetzt. Siehe auch [Spaltenkennungen].
 
 *pathname* **state** ?*stateSpec*?
 : Ändert oder fragt den Widget-Zustand ab; siehe *ttk::widget(n)*.
 
 *pathName* **tag** *args...*
 : siehe unten ...
+
     *pathName* **tag bind** *tagName* ?*sequence*? ?*script*?
     : Fügt dem Tag *tagName* ein Tk-Bindungsskript für die Ereignissequenz *sequence* hinzu. Wird ein X-Ereignis an ein Element geliefert, werden die Bindungsskripte für jedes **-tags** des Elements der Reihe nach wie in *bindtags(n)* ausgewertet.
-
 
         **<KeyPress>**, **<KeyRelease>** und virtuelle Ereignisse gehen an das Fokuselement. **<ButtonPress>**, **<ButtonRelease>** und **<Motion>** an das Element unter dem Mauszeiger. Andere Ereignistypen werden nicht unterstützt.
 
@@ -302,7 +302,7 @@ Folgende Optionen können auf Tags gesetzt werden:
 
 Die Tag-Priorität folgt der Erstellungsreihenfolge: zuerst erstellte Tags haben höhere Priorität.
 
-# Spaltenidentifikatoren
+# Spaltenkennungen
 
 Spaltenkennungen können folgende Formen annehmen:
 
@@ -327,10 +327,10 @@ Das Treeview-Widget erzeugt folgende virtuelle Ereignisse.
 : Wird ausgelöst, wenn sich die Auswahl ändert. Kann auch ausgelöst werden, wenn die Auswahl betroffen, aber nicht tatsächlich geändert wurde. Mehrere Auswahländerungen können vor der Ereignisverarbeitung erfolgen und mehrere Ereignisse mit gleicher sichtbarer Auswahl erzeugen.
 
 <<TreeviewOpen>>
-: Kurz bevor das Fokuselement auf **-open true** gesetzt wird.
+: Wird unmittelbar vor dem Setzen des Fokuselements auf **-open true** ausgelöst.
 
 <<TreeviewClose>>
-: Kurz nachdem das Fokuselement auf **-open false** gesetzt wurde.
+: Wird unmittelbar nach dem Setzen des Fokuselements auf **-open false** ausgelöst.
 
 
 Die Widget-Befehle **focus** und **selection** liefern das betroffene Element bzw. die betroffenen Elemente.
@@ -358,7 +358,7 @@ Dynamische Zustände: **disabled**, **selected**.
 **-rowheight** *amount*
 : Standardhöhe eines Elements. Standard 20 Pixel. Der Wert kann jede von [Tk\_GetPixels][GetPixels] akzeptierte Form haben. Ist **-rowheight** im Stil nicht gesetzt, wird sie durch Messen eines Elements und eines Zellenlayouts mit den Stileinstellungen bestimmt — damit werden Schriftart sowie Fokusring oder Innenabstand des Themes übernommen. **-rowheight** muss ggf. gesetzt werden, damit eine Zeile groß genug für Bilder ist.
 
-    Zum Anpassen von **-rowheight** für den Treeview-Stil nach Anwendung von [tk scaling][tk] folgender Code. Auch ohne eigene Unterstützung von [tk scaling][tk] kann der Benutzer es in der .wishrc gesetzt haben.
+    Verwenden Sie zum Anpassen von **-rowheight** für den Treeview-Stil nach Anwendung von [tk scaling][tk] folgenden Code. Auch ohne eigene Unterstützung von [tk scaling][tk] kann der Benutzer es in der .wishrc gesetzt haben.
 
 
 ```

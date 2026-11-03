@@ -36,7 +36,7 @@ Das Paket **tcl::transform::observer** stellt einen Befehl zur Verfügung, mit d
 
 Zu diesem Modul gehörende Transformationen sind **tcl::transform::adler32**, **tcl::transform::counter**, **tcl::transform::crc32** und **tcl::transform::identity**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

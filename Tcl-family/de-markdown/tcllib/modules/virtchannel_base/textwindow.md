@@ -31,9 +31,9 @@ tcl::chan::textwindow – Textfenster-Kanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::textwindow** stellt einen Befehl bereit, mit dem schreibgeschützte Kanäle erstellt werden können, die mit Text-Widgets verbunden sind. Alles, was in den Kanal geschrieben wird, wird im zugehörigen Widget angezeigt.
+Das Paket **tcl::chan::textwindow** stellt einen Befehl bereit, mit dem Nur-Schreib-Kanäle erstellt werden können, die mit Text-Widgets verbunden sind. Alles, was in den Kanal geschrieben wird, wird im zugehörigen Widget angezeigt.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 

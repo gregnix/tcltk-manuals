@@ -52,8 +52,8 @@ DragSite::**register** *path* ?*option value...*?
     : Befehl, der aufgerufen wird, wenn das Ziehen beginnt. Wenn das Ereignis der Option **dragevent** auf *path* eintritt, wird dieser Befehl mit den folgenden Argumenten aufgerufen:
 
             - Pfadname der Ziehquelle (*path*), 
-            - X-Koordinate des Zeigers im Wurzelkoordinatensystem, 
-            - Y-Koordinate des Zeigers im Wurzelkoordinatensystem, 
+            - X-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
+            - Y-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
             - ein Toplevel-Fenster, das erzeugt wird, um die gezogenen Daten darzustellen. Wenn der Befehl zurückkehrt und es keine Kinder hat, wird automatisch eine Bitmap angezeigt. 
 
         Wenn der Befehl eine leere Zeichenkette zurückgibt, wird das Ziehen unterdrückt. Andernfalls muss der Befehl eine Liste mit drei Elementen zurückgeben:

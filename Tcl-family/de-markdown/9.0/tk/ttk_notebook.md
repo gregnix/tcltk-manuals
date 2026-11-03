@@ -127,7 +127,7 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
 : Wählt das angegebene Register aus. Das zugehörige Inhaltsfenster wird angezeigt, das zuvor ausgewählte Fenster (falls abweichend) wird ausgeblendet. Wenn *tabid* weggelassen wird, gibt der Befehl den Widget-Namen des aktuell ausgewählten Bereichs zurück.
 
 [pathname]{.ins} [tab]{.sub} [tabid]{.arg} [-option ?value ...]{.optarg}
-: Fragt die Optionen des angegebenen Registers ab oder ändert sie. Wenn keine *-option* angegeben ist, wird ein Dictionary der Registeroptionswerte zurückgegeben. Ist eine *-option* angegeben, wird der Wert dieser *option* zurückgegeben. Andernfalls werden die *-option*en auf die entsprechenden *value*s gesetzt. Siehe [Registeroptionen] für die verfügbaren Optionen.
+: Fragt die Optionen des angegebenen Registers ab oder ändert sie. Wenn keine *-option* angegeben ist, wird ein Dictionary der Registeroptionswerte zurückgegeben. Ist eine *-option* angegeben, wird der Wert dieser *option* zurückgegeben. Andernfalls werden die *-option*en auf die entsprechenden *value*-Argumente gesetzt. Siehe [Registeroptionen] für die verfügbaren Optionen.
 
 [pathname]{.ins} [tabs]{.sub}
 : Gibt die Liste der vom Notebook verwalteten Fenster in der Indexreihenfolge ihrer zugehörigen Register zurück.

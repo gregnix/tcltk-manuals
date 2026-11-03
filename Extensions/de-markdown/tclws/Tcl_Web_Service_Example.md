@@ -9,7 +9,7 @@ Das Folgende steht in httpdthread.tcl:
    package require WS::Utils
 ```
 
-Das Folgende steht in eine Datei im Verzeichnis custom:
+Das Folgende steht in einer Datei im Verzeichnis custom:
 
 ```
    ##

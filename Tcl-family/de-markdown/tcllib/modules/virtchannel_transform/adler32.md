@@ -32,11 +32,11 @@ tcl::transform::adler32 – Adler32-Transformation
 
 # Beschreibung
 
-Das Paket **tcl::transform::adler32** stellt einen Befehl zur Verfügung, der eine Kanal-Transformation erstellt, welche die gelesenen und geschriebenen Bytes unverändert durchlässt (wie **tcl::transform::identity**), jedoch zusätzlich kontinuierlich die Adler-32-Prüfsummen der Daten berechnet, die es in jeder Richtung verarbeitet hat, und diese in Tcl-Variablen speichert, die bei der Erstellung festgelegt wurden.
+Das Paket **tcl::transform::adler32** stellt einen Befehl zur Verfügung, der eine Kanal-Transformation erstellt, welche die gelesenen und geschriebenen Bytes unverändert durchlässt (wie **tcl::transform::identity**), jedoch zusätzlich kontinuierlich die Adler-32-Prüfsummen der Daten berechnet, die sie in jeder Richtung verarbeitet hat, und diese in Tcl-Variablen speichert, die bei der Erstellung festgelegt wurden.
 
 Zu diesem Modul gehörende Transformationen sind **tcl::transform::counter**, **tcl::transform::crc32**, **tcl::transform::identity** und **tcl::transform::observe**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

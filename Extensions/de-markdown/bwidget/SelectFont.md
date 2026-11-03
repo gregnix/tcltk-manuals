@@ -50,7 +50,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-parent**
-:  Elternteil des Dialogs. Der Dialog wird in seinem Elternteil zentriert. Wenn der Wert leer ist, wird er im Wurzel-Fenster zentriert. 
+:  Elternteil des Dialogs. Der Dialog wird in seinem Elternteil zentriert. Wenn der Wert leer ist, wird er im Hauptfenster zentriert. 
 
 
 **-sampletext**

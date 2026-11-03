@@ -63,7 +63,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 **::pop3::open** ?**-msex** 0|1? ?**-retr-mode** retr|list|slow? ?**-socketcmd** cmdprefix? ?**-stls** 0|1? ?**-tls-callback** stls-callback-command? *host username password* ?*port*?
 : Öffnet eine Socket-Verbindung zu dem durch *host* angegebenen Server und übermittelt *username* und *password* als Anmeldedaten an den Server. Die vorgegebene Portnummer ist **110** und lässt sich mit dem optionalen Argument *port* ändern. Der Rückgabewert ist ein Kanal, den alle anderen ::pop3-Funktionen verwenden.
 
-    Der Befehl erkennt fünf Optionen
+    Der Befehl erkennt drei Optionen
 
     **-msex** boolean
     : Diese Option teilt dem Paket mit, dass der Server ein MS-Exchange-Server ist (mit einigen Eigenheiten, die zu umgehen sind). Die Vorgabe ist **False**.

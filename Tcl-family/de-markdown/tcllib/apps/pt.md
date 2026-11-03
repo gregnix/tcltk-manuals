@@ -101,21 +101,21 @@ Die erstellten Parser lassen sich in drei Kategorien einteilen:
     Ein Nachteil aller Parser in diesem Abschnitt ist die Notwendigkeit, sie über einen C-Compiler zu kompilieren, um sie tatsächlich ausführbar zu machen. Nicht jeder verfügt über die dafür erforderlichen Werkzeuge. Die Parser im nächsten Abschnitt richten sich an Personen, die solchen Einschränkungen unterliegen.
 
 **Specialized parsers implemented in Tcl**
-: Da die Parser in diesem Abschnitt in Tcl implementiert sind, arbeiten sie deutlich langsamer als alle Beispiele aus dem vorherigen Abschnitt. Andererseits ermöglicht dies ihren Einsatz in reinen Tcl-Umgebungen oder in Umgebungen, in denen nur eine begrenzte Anzahl von Paketen zulässig ist. Im letzteren Fall ist es von Vorteil, sich für die Einbindung der C-basierten Laufzeitunterstützung (siehe Hinweise unten) in die Umgebung einzusetzen, um die Auswirkungen von Tcl auf die Geschwindigkeit dieser Parser zu verringern.
+: Da die Parser in diesem Abschnitt in Tcl implementiert sind, arbeiten sie deutlich langsamer als alle Beispiele aus dem vorherigen Abschnitt. Andererseits ermöglicht dies ihren Einsatz in reinen Tcl-Umgebungen oder in Umgebungen, in denen nur eine begrenzte Anzahl von Binärpaketen zulässig ist. Im letzteren Fall ist es von Vorteil, sich für die Einbindung der C-basierten Laufzeitunterstützung (siehe Hinweise unten) in die Umgebung einzusetzen, um die Auswirkungen von Tcl auf die Geschwindigkeit dieser Parser zu verringern.
 
-    Die relevanten Formate sind **snit** und **oo**. Beide place ihr Ergebnis in einem Tcl-Paket, das jeweils ein **snit::type** bzw. TclOO **class** enthält.
+    Die relevanten Formate sind **snit** und **oo**. Beide legen ihr Ergebnis in einem Tcl-Paket ab, das jeweils ein **snit::type** bzw. TclOO **class** enthält.
 
     Von der unterstützenden Laufzeitumgebung, bei der es sich um das Paket **pt::rde** handelt, muss der Benutzer nichts weiter wissen, als dass sie existiert und dass die Parser davon abhängig sind. Kenntnisse über die von der Laufzeitumgebung für die Nutzung durch die Parser exportierte API werden von den Benutzern der Parser *nicht* benötigt.
 
 **Interpreted parsing implemented in Tcl**
-: Die letzte Kategorie: die Grammatikinterpretation. Das bedeutet, dass ein Interpreter für Parsing-Ausdruck-Grammatiken die Beschreibung der Grammatik, anhand derer die Eingabe analysiert werden soll, heranzieht und diese als Leitfaden für den Analyse-Prozess verwendet. Dies ist die langsamste der verfügbaren Optionen, da der Interpreter die konfigurierte Grammatik kontinuierlich durchlaufen muss, während die spezialisierten Parser aus den vorangegangenen Abschnitten das relevante Wissen über die Grammatik bereits fest integriert haben.
+: Die letzte Kategorie: die Grammatikinterpretation. Das bedeutet, dass ein Interpreter für Parsing Expression Grammars die Beschreibung der Grammatik, anhand derer die Eingabe analysiert werden soll, heranzieht und diese als Leitfaden für den Analyse-Prozess verwendet. Dies ist die langsamste der verfügbaren Optionen, da der Interpreter die konfigurierte Grammatik kontinuierlich durchlaufen muss, während die spezialisierten Parser aus den vorangegangenen Abschnitten das relevante Wissen über die Grammatik bereits fest integriert haben.
 
     Der Einsatz der Interpretation ist nur dann sinnvoll, wenn die Grammatik für bestimmte Eingaben vom Benutzer interaktiv geändert werden kann, da die Interpretation nach jeder Änderung eine schnelle Anpassung ermöglicht, während die vorherigen Methoden die Generierung eines völlig neuen Parsers erfordern, was nicht so schnell ist. Ist die zu verwendende Grammatik hingegen feststehend, sind die vorherigen Methoden weitaus vorteilhafter, da die Zeit für die Generierung des Parsers im Vergleich zur Laufzeit des Parser-Codes verschwindend gering ist.
 
     Das entsprechende Ergebnisformat ist **container**. Es generiert (schnell) Grammatikbeschreibungen (anstelle eines vollständigen Parsers), die der vom Grammatik-Interpreter von ParserTools erwarteten API entsprechen. Letzterer wird durch das Paket **pt::peg::interp** bereitgestellt.
 
 
-Alle von **critcl**, **snit** und **oo** generierten Parser sowie der Grammatik-Interpreter nutzen eine gemeinsame API für den Zugriff auf die eigentliche Parsing-Funktionalität, wodurch sie alle über eine hohe Kompatibilität verfügen. Dies wird im Spezifikationsdokument *Parser-API* beschrieben.
+Alle von **critcl**, **snit** und **oo** generierten Parser sowie der Grammatik-Interpreter nutzen eine gemeinsame API für den Zugriff auf die eigentliche Parsing-Funktionalität, wodurch sie alle gegeneinander austauschbar sind. Dies wird im Spezifikationsdokument *Parser-API* beschrieben.
 
 # PEG-Spezifikationssprache
 
@@ -200,7 +200,7 @@ Dieses Ergebnisformat unterstützt die folgenden Optionen:
 **-class** string
 : Der Wert dieser Option ist der Name der zu generierenden Klasse ohne führende Doppelpunkte. Der Standardwert lautet **CLASS**.
 
-    Bei einem einfachen Wert wie **X** ohne Doppelpunkte, beispielsweise Klasse, lautet der Parser-Befehl **X**::**X**. Bei einem Wert mit Namespace wie **X::Y** lautet der Parser-Befehl hingegen **X::Y**.
+    Bei einem einfachen Wert wie **X** ohne Doppelpunkte, beispielsweise CLASS, lautet der Parser-Befehl **X**::**X**. Bei einem Wert mit Namespace wie **X::Y** lautet der Parser-Befehl hingegen **X::Y**.
 
 **-package** string
 : Der Wert dieser Option ist der Name des zu erstellenden Pakets. Der Standardwert lautet **PACKAGE**.
@@ -288,10 +288,10 @@ Dieses Ergebnisformat unterstützt die folgenden Optionen:
 : Der Name des C-Namespaces, in dem sich die Parser-Funktionen (Methoden usw.) befinden sollen, oder ein allgemeines Präfix, das den Funktionsnamen vorangestellt werden soll. Der Standardwert ist die leere Zeichenkette.
 
 **-main** string
-: Der Name der Hauptfunktion (Methode, …), die vom ausgewählten Rahmen (Template) aufgerufen werden soll, um mit der Analyse der Eingabe zu beginnen. Der Standardwert ist **\__main**.
+: Der Name der Hauptfunktion (Methode, …), die vom ausgewählten Rahmen (Template) aufgerufen werden soll, um mit der Analyse der Eingabe zu beginnen. Der Standardwert ist **\_\_main**.
 
 **-string-varname** string
-: Der Name der Variablen, die für die Tabelle der Zeichenfolgen verwendet wird, auf die der generierte Parser zurückgreift, d. h. Fehlermeldungen, Symbolnamen usw. Der Standardwert lautet **p\_string**.
+: Der Name der Variablen, die für die Tabelle der Zeichenketten verwendet wird, auf die der generierte Parser zurückgreift, d. h. Fehlermeldungen, Symbolnamen usw. Der Standardwert lautet **p\_string**.
 
 **-prelude** string
 : Ein Codeausschnitt, der am Anfang jeder generierten Parsing-Funktion eingefügt werden soll. Der Standardwert ist die leere Zeichenkette.

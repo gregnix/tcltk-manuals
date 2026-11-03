@@ -61,7 +61,7 @@ Alle mit dem Befehl **::transfer::connect** erstellten Objekte haben die folgend
 ## Objektmethoden
 
 *objectName* **destroy**
-: Diese Methode löscht das Objekt. Bei einem *aktiven* Objekt ist dies unbedenklich, sobald eine Verbindung hergestellt wurde, da die Rückruffunktion zur Fertigstellung synchron abläuft. Bei einem *passiven* Objekt, das derzeit darauf wartet, dass sein Partner die Verbindung herstellt, ist dies jedoch nicht sicher und führt später zu Fehlern, wenn der Verbindungsaufbau abgeschlossen ist und versucht wird, auf die nun fehlenden Datenstrukturen des zerstörten Objekts zuzugreifen.
+: Diese Methode löscht das Objekt. Bei einem *aktiven* Objekt ist dies unbedenklich, sobald ein Verbindungsaufbau gestartet wurde, da die Rückruffunktion zur Fertigstellung synchron abläuft. Bei einem *passiven* Objekt, das derzeit darauf wartet, dass sein Partner die Verbindung herstellt, ist dies jedoch nicht sicher und führt später zu Fehlern, wenn der Verbindungsaufbau abgeschlossen ist und versucht wird, auf die nun fehlenden Datenstrukturen des zerstörten Objekts zuzugreifen.
 
 *objectName* **connect** *command*
 : Diese Methode leitet den Verbindungsaufbau gemäß der Konfiguration des Objekts ein. Wenn die Verbindung hergestellt ist, wird die Rückruffunktion *command* mit einem zusätzlichen Argument aufgerufen, nämlich dem Kanal-Handle des Sockets, über den Daten übertragen werden können.
@@ -72,9 +72,9 @@ Alle mit dem Befehl **::transfer::connect** erstellten Objekte haben die folgend
     : Der Verbindungsaufbau erfolgt synchron. Das Objekt wartet, bis die Verbindung hergestellt ist. Die Methode gibt als Ergebnis die leere Zeichenkette zurück.
 
     *passive*
-    : Der Verbindungsaufbau erfolgt asynchron. Die Methode gibt sofort zurück, sobald ein lauschenden Socket eingerichtet wurde. Die Verbindung wird im Hintergrund hergestellt. Die Methode gibt die Portnummer des lauschenden Sockets zurück, die vom Aufrufer verwendet werden kann. Eine wichtige Anwendung besteht darin, diese Information an die Gegenstelle weiterzugeben, damit diese weiß, mit welchem Port sie eine Verbindung herstellen muss.
+    : Der Verbindungsaufbau erfolgt asynchron. Die Methode kehrt sofort zurück, sobald ein lauschender Socket eingerichtet wurde. Die Verbindung wird im Hintergrund hergestellt. Die Methode gibt die Portnummer des lauschenden Sockets zurück, die vom Aufrufer verwendet werden kann. Eine wichtige Anwendung besteht darin, diese Information an die Gegenstelle weiterzugeben, damit diese weiß, mit welchem Port sie eine Verbindung herstellen muss.
 
-        Dies ist notwendig, da das Objekt möglicherweise für den Port **0** konfiguriert wurde, wodurch das Betriebssystem den tatsächlichen Port auswählen kann, auf dem es auf Verbindungen wartet.
+        Dies ist notwendig, da das Objekt möglicherweise für den Port **0** konfiguriert wurde, wodurch das Betriebssystem den tatsächlichen Port auswählen kann, auf dem es lauscht.
 
         Der Listening-Port wird sofort geschlossen, wenn die Verbindung durch die Gegenstelle hergestellt wurde, um das Zeitfenster zu minimieren, in dem sich auch Dritte mit dem Port verbinden könnten. Dennoch wird empfohlen, zusätzliche Maßnahmen im Protokoll außerhalb des „connect“- und „transfer“-Objekts zu ergreifen, um sicherzustellen, dass eine Verbindung nicht mit einem nicht identifizierten/nicht autorisierten Partner hergestellt wird. Eine Möglichkeit hierfür ist die Verwendung von SSL/TLS. Informationen dazu finden Sie unter der Option **-socketcmd** und im Abschnitt [Sichere Verbindungen].
 
@@ -91,14 +91,14 @@ Verbindungsobjekte unterstützen die nachfolgend aufgeführten Optionen.
     : In diesem Modus sind die beiden Optionen **-host** und **-port** relevant und legen den Host sowie den TCP-Port fest, mit dem das Objekt eine Verbindung herstellen muss. Der Host wird entweder durch einen Namen oder eine IP-Adresse angegeben.
 
     **passive**
-    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschenden Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
+    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschende Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
 
 
 **-host** *hostname-or-ipaddr*
 : Diese Option legt den Host fest, mit dem im *aktiven* Modus eine Verbindung hergestellt werden soll, entweder anhand des Namens oder der IP-Adresse. Ein für den *passiven* Modus konfiguriertes Objekt ignoriert diese Option.
 
 **-port** *int*
-: Im *aktiven* Modus legt diese Option den Port fest, mit dem das Objekt voraussichtlich eine Verbindung herstellen wird. Im *passiven* Modus hingegen handelt es sich um den Port, an dem das Objekt den lauschenden Socket erstellt, um auf eine Verbindung zu warten. Der Standardwert ist **0**, wodurch das Betriebssystem den tatsächlichen Port für den lauschenden Socket selbst auswählen kann.
+: Im *aktiven* Modus legt diese Option den Port fest, mit dem das Objekt eine Verbindung herstellen soll. Im *passiven* Modus hingegen handelt es sich um den Port, an dem das Objekt den lauschenden Socket erstellt, um auf eine Verbindung zu warten. Der Standardwert ist **0**, wodurch das Betriebssystem den tatsächlichen Port für den lauschenden Socket selbst auswählen kann.
 
 **-socketcmd** *command*
 : Mit dieser Option kann der Benutzer festlegen, welcher Befehl zum Öffnen eines Sockets verwendet werden soll. Standardmäßig wird der integrierte Befehl **::socket** verwendet. Jeder mit diesem Befehl kompatible Befehl ist zulässig.
@@ -119,7 +119,7 @@ Verbindungsobjekte unterstützen die nachfolgend aufgeführten Optionen.
 
 # Sichere Verbindungen
 
-Eine Möglichkeit, die von Objekten dieses Pakets hergestellten Verbindungen zu sichern, besteht darin, das Paket **tls** vorzuschreiben und anschließend die Option **-socketcmd** so zu konfigurieren, dass die Verwendung des Befehls **tls::socket** zum Öffnen des Sockets erzwungen wird.
+Eine Möglichkeit, die von Objekten dieses Pakets hergestellten Verbindungen zu sichern, besteht darin, das Paket **tls** zu laden (**package require**) und anschließend die Option **-socketcmd** so zu konfigurieren, dass die Verwendung des Befehls **tls::socket** zum Öffnen des Sockets erzwungen wird.
 
 ```
     # Load and initialize tls

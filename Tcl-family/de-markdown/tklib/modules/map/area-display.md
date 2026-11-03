@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-map::area::display – Widget zur Anzeige einer einzelnen Geo-/Gebietsdefinition
+map::area::display – Widget zur Anzeige einer einzelnen geo/area-Definition
 
 # Übersicht
 

@@ -85,7 +85,7 @@ Das globale Locale kann bei Bedarf geändert werden, z. B. durch eine vom Benutz
 : Bei mehreren Quellzeichenketten gibt **::msgcat::mcmax** die Länge der längsten übersetzten Zeichenkette zurück. Das ist nützlich beim Entwurf lokalisierter GUIs, die z. B. erfordern können, dass alle Schaltflächen eine feste Breite haben (nämlich die Breite der breitesten Schaltfläche).
 
 [::msgcat::mcexists]{.cmd} [-exactnamespace]{.optlit} [-exactlocale]{.optlit} [[-namespace]{.lit} [namespace]{.arg}]{.optarg} [src-string]{.arg}
-: Gibt **true** zurück, wenn eine Übersetzung für die angegebene *src-string* existiert.
+: Gibt true zurück, wenn eine Übersetzung für die angegebene *src-string* existiert.
 
     Die Suche kann mit der Option **-exactnamespace** auf den aktuellen Namespace beschränkt werden, ohne übergeordnete Namespaces zu prüfen.
 
@@ -167,7 +167,7 @@ Das globale Locale kann bei Bedarf geändert werden, z. B. durch eine vom Benutz
 : Legt die Übersetzung für mehrere Quellzeichenketten in *src-trans-list* im aktuellen Namespace für das Locale fest, das sich aus dem Namen des über **::msgcat::mcload** geladenen Message-Katalogs ergibt. *src-trans-list* muss eine gerade Anzahl von Elementen haben und hat die Form {*src-string translate-string* ?*src-string translate-string ...*?} **::msgcat::mcflmset** kann deutlich schneller sein als mehrere Aufrufe von **::msgcat::mcflset**. Die Funktion gibt die Anzahl der gesetzten Übersetzungen zurück.
 
 [::msgcat::mcunknown]{.cmd} [locale]{.arg} [src-string]{.arg} [arg arg]{.optdot}
-: Diese Routine wird von **::msgcat::mc** aufgerufen, wenn für *src-string* im aktuellen Locale keine Übersetzung definiert ist. Die Standardaktion ist, *src-string* per format zurückzugeben, wenn Argumente vorhanden sind. Diese Prozedur kann von der Anwendung neu definiert werden, z. B. um Fehlermeldungen für jede unbekannte Zeichenkette zu protokollieren. Die Prozedur **::msgcat::mcunknown** wird im gleichen Stack-Kontext wie der Aufruf von **::msgcat::mc** ausgeführt. Der Rückgabewert von **::msgcat::mcunknown** wird als Rückgabewert für den Aufruf von **::msgcat::mc** verwendet.
+: Diese Routine wird von **::msgcat::mc** aufgerufen, wenn für *src-string* im aktuellen Locale keine Übersetzung definiert ist. Die Standardaktion ist, *src-string* zurückzugeben, bei vorhandenen Argumenten mit format aufbereitet. Diese Prozedur kann von der Anwendung neu definiert werden, z. B. um Fehlermeldungen für jede unbekannte Zeichenkette zu protokollieren. Die Prozedur **::msgcat::mcunknown** wird im gleichen Stack-Kontext wie der Aufruf von **::msgcat::mc** ausgeführt. Der Rückgabewert von **::msgcat::mcunknown** wird als Rückgabewert für den Aufruf von **::msgcat::mc** verwendet.
 
     Hinweis: Diese Routine wird nur aufgerufen, wenn das betreffende Paket keinen paketspezifischen Unknown-Befehl gesetzt hat.
 
@@ -323,11 +323,11 @@ msgcat::mc {Produced %1$d at %2$s} $num $city
 # menschenlesbaren Versionen abgebildet wird
 ```
 
-# Paketprivate Locale
+# Paketprivates Locale
 
 Ein Paket, das **msgcat** verwendet, kann ein eigenes paketprivates Locale und eine eigene Menge geladener Locales verwenden, unabhängig vom globalen Locale, das durch **::msgcat::mclocale** gesetzt wird.
 
-So kann ein Paket sein Locale ändern, ohne Locales in anderen Paketen zu laden oder zu entfernen und ohne den globalen Locale-Änderungs-Rückruf aufzurufen (siehe unten).
+So kann ein Paket sein Locale ändern, ohne Locales in anderen Paketen zu laden oder zu entfernen und ohne die globale Rückruffunktion für Locale-Änderungen aufzurufen (siehe unten).
 
 Dieses Verhalten wird durch folgendes Ensemble gesteuert:
 
@@ -342,7 +342,7 @@ Dieses Verhalten wird durch folgendes Ensemble gesteuert:
 [::msgcat::mcpackagelocale]{.cmd} [preferences]{.sub} [locale preference]{.optarg} ...
 : Ohne Parameter gibt dieser Befehl die paketprivaten Präferenzen oder die globalen Präferenzen zurück, wenn kein paketprivates Locale gesetzt ist. Der Paket-Locale-Zustand (gesetzt oder nicht) wird nicht geändert (im Gegensatz zu **::msgcat::mcpackagelocale set**).
 
-    [Wird eine Menge von Locale-Präferenzen angegeben, wird sie als paketlocale Präferenzliste gesetzt. Das Paket-Locale wird auf das erste Element der Präferenzliste gesetzt. Ein Paket-Locale wird aktiviert, falls es bisher nicht gesetzt war.]{version="TIP499"}
+    [Wird eine Menge von Locale-Präferenzen angegeben, wird sie als Präferenzliste des Paket-Locales gesetzt. Das Paket-Locale wird auf das erste Element der Präferenzliste gesetzt. Ein Paket-Locale wird aktiviert, falls es bisher nicht gesetzt war.]{version="TIP499"}
 
     Locale-Präferenzen werden für das Paket jetzt geladen, falls noch nicht geladen.
 
@@ -351,13 +351,13 @@ Dieses Verhalten wird durch folgendes Ensemble gesteuert:
 : Gibt die Liste der für dieses Paket geladenen Locales zurück.
 
 [::msgcat::mcpackagelocale]{.cmd} [isset]{.sub}
-: Gibt **true** zurück, wenn ein paketprivates Locale gesetzt ist.
+: Gibt true zurück, wenn ein paketprivates Locale gesetzt ist.
 
 [::msgcat::mcpackagelocale]{.cmd} [unset]{.sub}
 : Hebt das paketprivate Locale auf und verwendet das globale Locale. Lädt und entfernt Locales, um die Liste der geladenen Locales des Pakets an die globale Liste geladener Locales anzupassen.
 
 [::msgcat::mcpackagelocale]{.cmd} [present]{.sub} [locale]{.arg}
-: Gibt **true** zurück, wenn das angegebene Locale für das Paket geladen ist.
+: Gibt true zurück, wenn das angegebene Locale für das Paket geladen ist.
 
 [::msgcat::mcpackagelocale]{.cmd} [clear]{.sub}
 : Entfernt alle geladenen Locales des Pakets, die nicht in den Paket-Präferenzen enthalten sind.
@@ -392,21 +392,21 @@ Folgende Paketoptionen stehen für jedes Paket zur Verfügung:
     Das Zurücksetzen dieses Werts deaktiviert das Laden von Message-Dateien für das Paket.
 
 **loadcmd**
-: Dieser Rückruf wird aufgerufen, bevor eine Menge von Message-Katalog-Dateien für das Paket geladen wird, das diese Eigenschaft gesetzt hat.
+: Diese Rückruffunktion wird aufgerufen, bevor eine Menge von Message-Katalog-Dateien für das Paket geladen wird, das diese Eigenschaft gesetzt hat.
 
-    Dieser Rückruf kann Vorbereitungsarbeiten für das Laden von Message-Dateien leisten oder Message-Daten aus einer anderen Quelle wie einer Datenbank holen. In diesem Fall werden keine Message-Dateien verwendet (mcfolder ist nicht gesetzt).
+    Diese Rückruffunktion kann Vorbereitungsarbeiten für das Laden von Message-Dateien leisten oder Message-Daten aus einer anderen Quelle wie einer Datenbank holen. In diesem Fall werden keine Message-Dateien verwendet (mcfolder ist nicht gesetzt).
 
-    Siehe Abschnitt [Rückruf-Aufruf] unten. Die an diesen Rückruf angehängte Parameterliste ist die Liste der zu ladenden Locales.
+    Siehe Abschnitt [Rückruf-Aufruf] unten. Die an diese Rückruffunktion angehängte Parameterliste ist die Liste der zu ladenden Locales.
 
-    Wird dieser Rückruf geändert, wird er mit den für das Paket gültigen Präferenzen aufgerufen.
+    Wird diese Rückruffunktion geändert, wird sie mit den für das Paket gültigen Präferenzen aufgerufen.
 
 **changecmd**
-: Dieser Rückruf wird aufgerufen, wenn eine Standard-Locale-Änderung durchgeführt wurde. Er soll einem Paket erlauben, Abhängigkeiten vom Standard-Locale zu aktualisieren, z. B. die GUI in einer anderen Sprache anzuzeigen.
+: Diese Rückruffunktion wird aufgerufen, wenn eine Standard-Locale-Änderung durchgeführt wurde. Er soll einem Paket erlauben, Abhängigkeiten vom Standard-Locale zu aktualisieren, z. B. die GUI in einer anderen Sprache anzuzeigen.
 
-    Siehe den Abschnitt Rückruf-Aufruf unten. Die angehängte Parameterliste ist **mcpreferences**. Die registrierten Rückrufe werden in beliebiger Reihenfolge aufgerufen.
+    Siehe den Abschnitt Rückruf-Aufruf unten. Die angehängte Parameterliste ist **mcpreferences**. Die registrierten Rückruffunktionen werden in beliebiger Reihenfolge aufgerufen.
 
 **unknowncmd**
-: Verwendet eine paketlocale mcunknown-Prozedur statt der von msgcat bereitgestellten Standardversion (**msgcat::mcunknown**).
+: Verwendet eine paketeigene mcunknown-Prozedur statt der von msgcat bereitgestellten Standardversion (**msgcat::mcunknown**).
 
     Die aufgerufene Prozedur muss die formatierte Meldung zurückgeben, die schließlich von **msgcat::mc** zurückgegeben wird.
 
@@ -417,9 +417,9 @@ Folgende Paketoptionen stehen für jedes Paket zur Verfügung:
 
 # Rückruf-Aufruf
 
-Ein Paket kann einen oder mehrere Rückrufe registrieren, wie oben beschrieben.
+Ein Paket kann eine oder mehrere Rückruffunktionen registrieren, wie oben beschrieben.
 
-Rückrufe werden aufgerufen, wenn:
+Rückruffunktionen werden aufgerufen, wenn:
 
 1. der Rückrufbefehl gesetzt ist,
 
@@ -427,7 +427,7 @@ Rückrufe werden aufgerufen, wenn:
 
 3. der registrierende Namespace existiert.
 
-Schlägt eine aufgerufene Routine mit einem Fehler fehl, wird nach Befehlsende die [bgerror]-Routine des Interpreters aufgerufen. Ausnahme ist der Rückruf **unknowncmd**, bei dem ein Fehler den aufrufenden **mc**-Befehl mit diesem Fehler fehlschlagen lässt.
+Schlägt eine aufgerufene Routine mit einem Fehler fehl, wird nach Befehlsende die [bgerror]-Routine des Interpreters aufgerufen. Ausnahme ist die Rückruffunktion **unknowncmd**, bei der ein Fehler den aufrufenden **mc**-Befehl mit diesem Fehler fehlschlagen lässt.
 
 # Objektorientierte Programmierung
 
@@ -476,7 +476,7 @@ Es gibt drei unterstützte Fälle, in denen paketnamespace-sensitive Befehle von
 
 # Beispiele
 
-Pakete mit GUI können ihre Widgets aktualisieren, wenn sich das globale Locale ändert. Zur Registrierung eines Rückrufs:
+Pakete mit GUI können ihre Widgets aktualisieren, wenn sich das globale Locale ändert. Zur Registrierung einer Rückruffunktion:
 
 ```
 namespace eval gui {
@@ -491,7 +491,7 @@ fr
 % New locale is 'fr'.
 ```
 
-Liegen Locales (oder zusätzliche Locales) in einer anderen Quelle wie einer Datenbank, kann ein Paket den Lade-Rückruf statt **mcload** verwenden:
+Liegen Locales (oder zusätzliche Locales) in einer anderen Quelle wie einer Datenbank, kann ein Paket die Lade-Rückruffunktion statt **mcload** verwenden:
 
 ```
 namespace eval db {

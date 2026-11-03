@@ -37,7 +37,7 @@ classvariable - Verknüpft lokale Variable mit Variable in der Klasse
 
 Der Befehl **classvariable** ist innerhalb von Methoden verfügbar. Er nimmt eine Reihe von einem oder mehr Variablennamen und macht sie im Gültigkeitsbereich der Methode verfügbar; diese Namen dürfen nicht qualifiziert sein und dürfen sich nicht auf Array-Elemente beziehen. Der Ursprungs-Gültigkeitsbereich für die Variablen ist der Namespace der Klasse, in der die Methode definiert wurde. Die referenzierten Variablen werden also von allen Instanzen dieser Klasse geteilt.
 
-Beachten Sie, dass dieser Befehl dem Befehl **typevariable** aus dem snit-Paket in tcllib für denselben Zweck entspricht. Wird er in einer direkt auf einer Klasseninstanz definierten Methode verwendet (z. B. über [oo::objdefine][define] **method**), entspricht er im Wesentlichen:
+Beachten Sie, dass dieser Befehl dem Befehl **typevariable** aus dem snit-Paket in tcllib für ungefähr denselben Zweck entspricht. Wird er in einer direkt auf einer Klasseninstanz definierten Methode verwendet (z. B. über [oo::objdefine][define] **method**), entspricht er im Wesentlichen:
 
 ```
 namespace upvar [namespace current] $var $var

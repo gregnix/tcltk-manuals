@@ -33,18 +33,18 @@ khim – Bietet Bindungen zur Eingabe internationaler Zeichen auf einer Tastatur
 
 Dieses Paket stellt Tastenbindungen bereit, mit denen sich beliebige Zeichen auf einer Tastatur eingeben lassen, die sie nicht anbietet. Dafür wird eine selten benutzte Taste zur Compose-Taste bestimmt. Diese Taste ist eine andere als eine Taste, die bereits so beschriftet ist, und ist oft Pause, F12 oder L2. Die Compose-Taste und danach eine Folge aus zwei Tasten fügt ein Zeichen in ein Widget ein. Zweimal hintereinander angeschlagen öffnet die Compose-Taste einen Dialog mit einer Unicode-Zeichentabelle, über den sich beliebige Zeichen einfügen lassen.
 
-Der weitaus größte Teil des Pakets steckt in einem einzigen Bindtag, **KHIM**. Eine Anwendung lässt ein Text- oder Entry-Widget beliebige Zeichen aufnehmen, indem sie diesen Bindtag vor den Bindtag **Text** oder **Entry** des Widgets setzt:
+Der weitaus größte Teil des Pakets steckt in einem einzigen Bindungs-Tag, **KHIM**. Eine Anwendung lässt ein Text- oder Entry-Widget beliebige Zeichen aufnehmen, indem sie dieses Bindungs-Tag vor das Bindungs-Tag **Text** oder **Entry** des Widgets setzt:
 
 ```
 text .t -width 80 -height 24
 bindtags .t {.t KHIM Text . all}
 ```
 
-Der Tag **KHIM** muss vor der Klassenbindung **Text** oder **Entry** stehen, sonst arbeitet das Paket nicht richtig.
+Das Tag **KHIM** muss vor der Klassenbindung **Text** oder **Entry** stehen, sonst arbeitet das Paket nicht richtig.
 
 # Prozeduren
 
-Neben den Befehlen zum Bindtag KHIM exportiert das Paket die folgenden Befehle:
+Neben den Befehlen zum Bindungs-Tag KHIM exportiert das Paket die folgenden Befehle:
 
 **::khim::getOptions** *path*
 : Öffnet einen modalen Toplevel-Dialog mit dem Pfadnamen *path*, der nach den KHIM-Optionen fragt. Die Tastenfolgen für die Compose-Taste lassen sich neu festlegen, die Taste für die Compose-Funktion wechseln, und die KHIM-Tastenbindungen ganz ein- oder ausschalten.

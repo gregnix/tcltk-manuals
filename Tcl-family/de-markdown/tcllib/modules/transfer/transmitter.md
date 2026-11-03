@@ -54,11 +54,11 @@ Dieses Paket fasst Datenquellen und Verbindungseinstellungen in einem gemeinsame
     Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace. Der vollständig qualifizierte Name des Objektbefehls wird als Ergebnis des Befehls zurückgegeben.
 
 **transfer::transmitter** **stream channel** *chan* *host* *port* ?*arg*...?
-: Diese Methode erstellt eine „Fire-and-Forget“-Übertragung für die im Kanal *chan* enthaltenen Daten, beginnend an der aktuellen Suchposition. Der Kanal ist so konfiguriert, dass für die Übertragung eine binäre Übersetzung und Kodierung verwendet wird. Der Kanal wird automatisch geschlossen, wenn die Übertragung abgeschlossen ist.
+: Diese Methode erstellt eine „Fire-and-Forget“-Übertragung für die im Kanal *chan* enthaltenen Daten, beginnend an der aktuellen Position im Kanal. Der Kanal ist so konfiguriert, dass für die Übertragung eine binäre Übersetzung und Kodierung verwendet wird. Der Kanal wird automatisch geschlossen, wenn die Übertragung abgeschlossen ist.
 
     Wenn sowohl *host* als auch *port* angegeben werden, wird eine **active**-Verbindung zum Ziel hergestellt. Wenn nur ein *port* festgelegt wird (wobei *host* die leere Zeichenkette ist), wird stattdessen eine **passive**-Verbindung hergestellt.
 
-    Alle Argumente nach dem Port werden als Optionen behandelt und dienen zur Konfiguration des internen Senderobjekts. Eine Liste der unterstützten Optionen und deren Bedeutung finden Sie im Abschnitt [Optionen]. *Beachten* Sie jedoch, dass sich die Signatur des für die **-command**-Rückruffunktion angegebene Befehlspräfixes von der Signatur derselben Option des Senderobjekts unterscheidet. Diese Rückruffunktion wird lediglich mit der Anzahl der Bytes und der übertragenen Datenmenge sowie gegebenenfalls einer Fehlermeldung übergeben. Es wird kein Verweis auf das intern verwendete Senderobjekt hergestellt.
+    Alle Argumente nach dem Port werden als Optionen behandelt und dienen zur Konfiguration des internen Senderobjekts. Eine Liste der unterstützten Optionen und deren Bedeutung finden Sie im Abschnitt [Optionen]. *Beachten* Sie jedoch, dass sich die Signatur des für die **-command**-Rückruffunktion angegebenen Befehlspräfixes von der Signatur derselben Option des Senderobjekts unterscheidet. Diese Rückruffunktion erhält lediglich die Anzahl der übertragenen Bytes sowie gegebenenfalls eine Fehlermeldung. Es wird kein Verweis auf das intern verwendete Senderobjekt hergestellt.
 
     Das vom Befehl zurückgegebene Ergebnis ist die leere Zeichenkette, wenn dieser so eingestellt war, dass eine *aktive* Verbindung hergestellt wird, und andernfalls der Port, auf dem das interne Senderobjekt auf Verbindungen wartet, d. h. wenn es so konfiguriert ist, dass es *passiv* eine Verbindung herstellt. Siehe auch das Paket [transfer::connect][connect] und die Beschreibung der Methode **connect**, um zu erfahren, woher dieses Verhalten stammt.
 
@@ -96,7 +96,7 @@ Alle Senderobjekte unterstützen die Vereinigung der Optionen, die von ihren „
 : Diese Option legt die Größe der Chunks fest, die in einem Block übertragen werden sollen. Die Verwendung ist optional; der Standardwert lautet **1024**.
 
 **-command** *cmdprefix*
-: Diese Option legt den Befehl fest, der aufgerufen werden soll, wenn die Übertragung der Informationen abgeschlossen ist. Die diesem Befehl übergebenen Argumente entsprechen denen, die an die Rückruffunktion des Befehls [transfer::copy::do][copyops] übergeben werden, die vom Paket **transfer::copy** bereitgestellt wird.
+: Diese Option legt den Befehl fest, der aufgerufen werden soll, wenn die Übertragung der Informationen abgeschlossen ist. Die diesem Befehl übergebenen Argumente entsprechen denen, die an die Abschluss-Rückruffunktion des Befehls [transfer::copy::do][copyops] übergeben werden, die vom Paket **transfer::copy** bereitgestellt wird.
 
 **-mode** *mode*
 : Diese Option legt den Modus fest, in dem sich das Objekt befindet. Sie ist optional und ist standardmäßig auf den Modus **active** eingestellt. Die beiden möglichen Modi sind:
@@ -105,14 +105,14 @@ Alle Senderobjekte unterstützen die Vereinigung der Optionen, die von ihren „
     : In diesem Modus sind die beiden Optionen **-host** und **-port** relevant und legen den Host sowie den TCP-Port fest, mit dem das Objekt eine Verbindung herstellen muss. Der Host wird entweder durch einen Namen oder eine IP-Adresse angegeben.
 
     **passive**
-    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschenden Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
+    : In diesem Modus ist die Option **-host** ohne Bedeutung und wird ignoriert, falls sie konfiguriert sein sollte. Die einzige Option, die das Objekt benötigt, ist **-port**; diese legt den TCP-Port fest, an dem der lauschende Socket geöffnet wird, um auf die Verbindung vom Partner zu warten.
 
 
 **-host** *hostname-or-ipaddr*
 : Diese Option legt den Host fest, mit dem im *aktiven* Modus eine Verbindung hergestellt werden soll, entweder anhand des Namens oder der IP-Adresse. Ein für den *passiven* Modus konfiguriertes Objekt ignoriert diese Option.
 
 **-port** *int*
-: Im *aktiven* Modus legt diese Option den Port fest, mit dem das Objekt voraussichtlich eine Verbindung herstellen wird. Im *passiven* Modus hingegen handelt es sich um den Port, an dem das Objekt den lauschenden Socket erstellt, um auf eine Verbindung zu warten. Der Standardwert ist **0**, wodurch das Betriebssystem den tatsächlichen Port für den lauschenden Socket selbst auswählen kann.
+: Im *aktiven* Modus legt diese Option den Port fest, mit dem das Objekt eine Verbindung herstellen soll. Im *passiven* Modus hingegen handelt es sich um den Port, an dem das Objekt den lauschenden Socket erstellt, um auf eine Verbindung zu warten. Der Standardwert ist **0**, wodurch das Betriebssystem den tatsächlichen Port für den lauschenden Socket selbst auswählen kann.
 
 **-socketcmd** *command*
 : Mit dieser Option kann der Benutzer festlegen, welcher Befehl zum Öffnen eines Sockets verwendet werden soll. Standardmäßig wird der integrierte Befehl **::socket** verwendet. Jeder mit diesem Befehl kompatible Befehl ist zulässig.
@@ -151,7 +151,7 @@ Alle Senderobjekte unterstützen die Vereinigung der Optionen, die von ihren „
 
 # Sichere Verbindungen
 
-Eine Möglichkeit, die von Objekten dieses Pakets hergestellten Verbindungen zu sichern, besteht darin, das Paket **tls** vorzuschreiben und anschließend die Option **-socketcmd** so zu konfigurieren, dass die Verwendung des Befehls **tls::socket** zum Öffnen des Sockets erzwungen wird.
+Eine Möglichkeit, die von Objekten dieses Pakets hergestellten Verbindungen zu sichern, besteht darin, das Paket **tls** zu laden (package require) und anschließend die Option **-socketcmd** so zu konfigurieren, dass die Verwendung des Befehls **tls::socket** zum Öffnen des Sockets erzwungen wird.
 
 ```
     # Load and initialize tls

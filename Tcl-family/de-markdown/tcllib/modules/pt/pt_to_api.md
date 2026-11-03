@@ -60,7 +60,7 @@ Jeder (Grammatik-)Exportkonverter muss die nachstehend aufgeführten Regeln befo
 
 1. Ein Konverter ist ein Paket. Sein Name ist beliebig, es wird jedoch empfohlen, ihn unter dem Namespace „**::pt::peg::to**“ anzulegen.
 
-2. Das Paket stellt entweder einen einzelnen Tcl-Befehl bereit, der der unten beschriebenen Gliederung der API entspricht, oder einen Klassenbefehl, dessen Instanzen derselben API folgen. Die Befehle, die dieser API entsprechen, werden als *Konverterbefehle* bezeichnet.
+2. Das Paket stellt entweder einen einzelnen Tcl-Befehl bereit, der der unten beschriebenen API folgt, oder einen Klassenbefehl, dessen Instanzen derselben API folgen. Die Befehle, die dieser API entsprechen, werden als *Konverterbefehle* bezeichnet.
 
 3. Ein Konverterbefehl muss die folgenden drei Methoden mit den angegebenen Signaturen und Semantiken bereitstellen. Konverterbefehle dürfen weitere eigene Methoden bereitstellen, jedoch nicht weniger, und sie dürfen für die standardisierten Methoden keine abweichende Semantik vorsehen.
 
@@ -76,7 +76,7 @@ Jeder (Grammatik-)Exportkonverter muss die nachstehend aufgeführten Regeln befo
         Bitte lesen Sie den Abschnitt [Optionen], um sich über die Standard-Optionen zu informieren, die jeder Konverter akzeptieren muss. Alle weiteren Optionen, die von einem bestimmten Konverter akzeptiert werden, sind in dessen Manpage beschrieben.
 
     **CONVERTER** **configure** *option* *value*...
-    : Dieser Befehl setzt in dieser Form die angegebenen *option*s des Konverters auf die angegebenen *value*s.
+    : Dieser Befehl setzt in dieser Form die angegebenen Optionen *option* des Konverters auf die angegebenen Werte *value*.
 
         Bitte lesen Sie den Abschnitt [Optionen], um sich über die Standard-Optionen zu informieren, die ein Konverter akzeptieren muss. Alle weiteren Optionen, die von einem bestimmten Konverter akzeptiert werden, sind in dessen Manpage beschrieben.
 
@@ -97,10 +97,10 @@ Jedes (Grammatik-)Export-Plugin muss die nachstehend aufgeführten Regeln einhal
 
     Es wird empfohlen, dass ein Plugin das Vorhandensein dieses Pakets überprüft.
 
-4. Ein Plugin muss im globalen Namespace einen einzigen Befehl mit der unten dargestellten Signatur bereitstellen. Plugins dürfen eigene Befehle hinzufügen, jedoch nicht weniger, und sie dürfen für den standardisierten Befehl keine abweichende Semantik vorgeben.
+4. Ein Plugin muss im globalen Namespace einen einzigen Befehl mit der unten dargestellten Signatur bereitstellen. Plugins dürfen weitere eigene Befehle bereitstellen, jedoch nicht weniger, und sie dürfen für den standardisierten Befehl keine abweichende Semantik vorgeben.
 
     **::export** *serial* *configuration*
-    : Dieser Befehl muss die kanonische Serialisierung einer Parsing-Expression-Grammatik sowie die Konfiguration für den vom Plugin aufgerufenen Konverter entgegennehmen. Das Ergebnis des Befehls muss das Ergebnis des vom Plugin für die Eingabegrammatik und die Konfiguration aufgerufenen Konverters sein.
+    : Dieser Befehl muss die kanonische Serialisierung einer Parsing Expression Grammar sowie die Konfiguration für den vom Plugin aufgerufenen Konverter entgegennehmen. Das Ergebnis des Befehls muss das Ergebnis des vom Plugin für die Eingabegrammatik und die Konfiguration aufgerufenen Konverters sein.
 
         string *serial*
         : Dieses Argument enthält die *kanonische* Serialisierung der Parsing Expression Grammar, für die die Ausgabe erzeugt werden soll. Die Definition dessen, was eine *kanonische* Serialisierung ist, finden Sie im Abschnitt [PEG-Serialisierungsformat].
@@ -214,7 +214,7 @@ Kanonische Serialisierung
 
     1. Die Schlüssel in allen verschachtelten Tcl-Dictionaries sind in aufsteigender Wörterbuchreihenfolge sortiert, wie sie der eingebaute Tcl-Befehl **lsort -increasing -dict** erzeugt.
 
-    2. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    2. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung eines Tcl-Dictionaries. Das heißt, sie enthält keinen überflüssigen Leerraum.
 
 
 
@@ -235,7 +235,7 @@ PEG calculator (Expression)
 END;
 ```
 
-dann lautet seine kanonische Serialisierung (mit Ausnahme von Leerzeichen)
+dann lautet seine kanonische Serialisierung (mit Ausnahme von Leerraum)
 
 ```
 pt::grammar::peg {
@@ -263,37 +263,37 @@ Reguläre Serialisierung
 : siehe unten ...
 
     **Atomare Parsing-Ausdrücke**
-    : 1. Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
+    : 1. Die Zeichenkette **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenkette.
 
-        2. Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
+        2. Die Zeichenkette **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
 
-        3. Die Zeichenfolge **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        3. Die Zeichenkette **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        4. Die Zeichenfolge **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        4. Die Zeichenkette **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        5. Die Zeichenfolge **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        5. Die Zeichenkette **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        6. Die Zeichenfolge **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        6. Die Zeichenkette **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        7. Die Zeichenfolge **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        7. Die Zeichenkette **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        8. Die Zeichenfolge **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        8. Die Zeichenkette **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        9. Die Zeichenfolge **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        9. Die Zeichenkette **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        10. Die Zeichenfolge **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        10. Die Zeichenkette **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        11. Die Zeichenfolge **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        11. Die Zeichenkette **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        12. Die Zeichenfolge **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        12. Die Zeichenkette **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        13. Die Zeichenfolge **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        13. Die Zeichenkette **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        14. Die Zeichenfolge **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        14. Die Zeichenkette **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        15. Die Zeichenfolge **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        15. Die Zeichenkette **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        16. Die Zeichenfolge **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
+        16. Die Zeichenkette **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
 
         17. Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
 
@@ -320,7 +320,7 @@ Reguläre Serialisierung
 Kanonische Serialisierung
 : Die kanonische Serialisierung eines Parsing-Ausdrucks hat das im vorherigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Parsing-Ausdrucks eindeutig ist.
 
-    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    1. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keinen überflüssigen Leerraum.
 
     2. Terminale werden *nicht* als Bereiche kodiert (bei denen Anfang und Ende des Bereichs identisch sind).
 
@@ -334,7 +334,7 @@ Unter der Annahme, dass der auf der rechten Seite der Regel dargestellte Parsing
     Expression <- Term (AddOp Term)*
 ```
 
-dann lautet seine kanonische Serialisierung (mit Ausnahme von Leerzeichen)
+dann lautet seine kanonische Serialisierung (mit Ausnahme von Leerraum)
 
 ```
     {x {n Term} {* {x {n AddOp} {n Term}}}}

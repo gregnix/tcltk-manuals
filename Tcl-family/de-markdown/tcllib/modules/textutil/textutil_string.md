@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-textutil::string – Prozeduren zur Bearbeitung von Texten und Zeichenfolgen.
+textutil::string – Prozeduren zur Bearbeitung von Texten und Zeichenketten.
 
 # Übersicht
 
@@ -40,9 +40,9 @@ textutil::string – Prozeduren zur Bearbeitung von Texten und Zeichenfolgen.
 
 # Beschreibung
 
-Das Paket **textutil::string** bietet verschiedene Befehle zur Zeichenfolgenbearbeitung.
+Das Paket **textutil::string** bietet verschiedene Befehle zur Zeichenkettenbearbeitung.
 
-Wie Sie aus einer Liste von Pfaden einen gemeinsamen Pfad ermittelt, erfahren Sie im letzten der [Beispiele].
+Wie Sie aus einer Liste von Pfaden einen gemeinsamen Pfad ermitteln, erfahren Sie im letzten der [Beispiele].
 
 # API
 
@@ -62,14 +62,14 @@ Wie Sie aus einer Liste von Pfaden einen gemeinsamen Pfad ermittelt, erfahren Si
 : Gibt eine Kopie von *string* zurück, wobei das erste Zeichen in Kleinbuchstaben umgewandelt wird.
 
 **::textutil::string::longestCommonPrefixList** *list*
-: Gibt das längste gemeinsame Präfix der Zeichenketten in der angegebenen *Liste* zurück.
+: Gibt das längste gemeinsame Präfix der Zeichenketten in der angegebenen *list* zurück.
 
     Wird kein Argument angegeben, gibt es die leere Zeichenkette zurück.
 
 **::textutil::string::longestCommonPrefix** ?*string*...?
-: Gibt das längste gemeinsame Präfix der Zeichenfolgenargumente *string*, … zurück.
+: Gibt das längste gemeinsame Präfix der Zeichenkettenargumente *string*, … zurück.
 
-    Wird eine einzelne Zeichenfolge angegeben, wird diese zurückgegeben, da sie ihr eigenes längstes gemeinsames Präfix ist. Wird kein Argument angegeben, wird die leere Zeichenfolge zurückgegeben.
+    Wird eine einzelne Zeichenkette angegeben, wird diese zurückgegeben, da sie ihr eigenes längstes gemeinsames Präfix ist. Wird kein Argument angegeben, wird die leere Zeichenkette zurückgegeben.
 
 
 # Beispiele
@@ -100,7 +100,7 @@ puts "“$line” uncap"
 “as The Σαβ Cog” uncap
 ```
 
-Dieses Beispiel zeigt die Befehle für das längste gemeinsame Präfix, die derzeit verwendet werden.
+Dieses Beispiel zeigt die Befehle für das längste gemeinsame Präfix im Einsatz.
 
 ```
 const LIST [list handbag handcuff handful handle handy]
@@ -113,7 +113,7 @@ puts “[::textutil::string::longestCommonPrefix king kin kind kinks]”
 “kin”
 ```
 
-Dieses Beispiel zeigt, wie Sie mit dem Befehl **::textutil::string::longestCommonPrefixList** den gemeinsamen Pfad aus einer Liste von Pfaden ermittelt.
+Dieses Beispiel zeigt, wie Sie mit dem Befehl **::textutil::string::longestCommonPrefixList** den gemeinsamen Pfad aus einer Liste von Pfaden ermitteln.
 
 ```
 proc longestCommonPath paths {

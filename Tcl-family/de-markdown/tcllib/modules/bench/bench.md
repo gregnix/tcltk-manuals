@@ -67,13 +67,13 @@ Ein Leser, der sich für die Bench-Sprache selbst interessiert, beginnt mit der 
     : Das Argument ist ein boolescher Wert. Wenn dieser Wert gesetzt ist, werden Fehler in Benchmarks an den Befehl weitergeleitet, wodurch die Ausführung des Benchmarks abgebrochen wird. Andernfalls werden sie über einen speziellen Ergebniscode im Zeitmessungsergebnis erfasst. Standardmäßig erfolgt eine Weiterleitung und ein Abbruch.
 
     **-threads** *n*
-    : Das Argument ist ein nicht-negativer Wert für die Anzahl der Threads, die bei der Ausführung der Benchmarks verwendet werden sollen. Der Standardwert ist **0**, was bedeutet, dass keine Threads verwendet werden.
+    : Das Argument ist ein nicht-negativer ganzzahliger Wert für die Anzahl der Threads, die bei der Ausführung der Benchmarks verwendet werden sollen. Der Standardwert ist **0**, was bedeutet, dass keine Threads verwendet werden.
 
     **-match** *pattern*
     : Das Argument ist ein Glob-Muster. Es werden nur Benchmarks ausgeführt, deren Beschreibung mit dem Muster übereinstimmt. Der Standardwert ist die leere Zeichenkette, wodurch alle Benchmarks ausgeführt werden.
 
     **-rmatch** *pattern*
-    : Das Argument ist ein Muster für einen regulären Ausdruck. Es werden nur Benchmarks ausgeführt, deren Beschreibung mit dem Muster übereinstimmt. Der Standardwert ist die leere Zeichenfolge, wodurch alle Benchmarks ausgeführt werden.
+    : Das Argument ist ein Muster für einen regulären Ausdruck. Es werden nur Benchmarks ausgeführt, deren Beschreibung mit dem Muster übereinstimmt. Der Standardwert ist die leere Zeichenkette, wodurch alle Benchmarks ausgeführt werden.
 
     **-iters** *n*
     : Das Argument ist eine positive ganze Zahl, die die maximale Anzahl an Iterationen für einen beliebigen Benchmark angibt. Der Standardwert lautet **1000**. Einzelne Benchmarks können diesen Wert überschreiben.
@@ -81,7 +81,7 @@ Ein Leser, der sich für die Bench-Sprache selbst interessiert, beginnt mit der 
     **-pkgdir** *path*
     : Das Argument ist ein Pfad zu einem vorhandenen, lesbaren Verzeichnis. Es können mehrere Pfade angegeben werden; verwenden Sie dazu die Option einfach mehrmals, wobei Sie jedes Mal einen der zu verwendenden Pfade angeben.
 
-        Wenn keine Pfade angegeben wurden, verhält sich das System wie bisher. Wenn ein oder mehrere Pfade festgelegt werden, beispielsweise **N**, wird jeder der festgelegten Interpreter **N**-mal mit einem der festgelegten Pfade aufgerufen. Der ausgewählte Pfad wird in die Variable **auto\_path** des Interpreters übernommen, wodurch diese bestimmte Versionen eines Pakets finden können.
+        Wenn keine Pfade angegeben wurden, verhält sich das System wie bisher. Wenn ein oder mehrere Pfade festgelegt werden, beispielsweise **N**, wird jeder der festgelegten Interpreter **N**-mal mit einem der festgelegten Pfade aufgerufen. Der ausgewählte Pfad wird in die Variable **auto\_path** des Interpreters übernommen, wodurch dieser bestimmte Versionen eines Pakets finden kann.
 
         Auf diese Weise ermöglicht die Verwendung von **-pkgdir** dem Benutzer, mehrere verschiedene Versionen eines Pakets im Vergleich zu einem oder mehreren Interpretern zu testen.
 
@@ -104,7 +104,7 @@ Ein Leser, der sich für die Bench-Sprache selbst interessiert, beginnt mit der 
     Die Spalten werden durch eine ganzzahlige Nummer identifiziert.
 
 **::bench::edit** *bench\_result* *column* *newvalue*
-: Dieser Befehl benennt eine Spalte im angegebenen Benchmark-Ergebnis um und gibt das geänderte Ergebnis zurück. Das bedeutet, dass der Pfad zum Tcl-Interpreter in der angegebenen Spalte in eine beliebige Zeichenfolge geändert wird.
+: Dieser Befehl benennt eine Spalte im angegebenen Benchmark-Ergebnis um und gibt das geänderte Ergebnis zurück. Das bedeutet, dass der Pfad zum Tcl-Interpreter in der angegebenen Spalte in eine beliebige Zeichenkette geändert wird.
 
     Die Benchmark-Ergebnisse liegen in dem im Abschnitt [Ergebnisformat] beschriebenen Format vor.
 
@@ -116,7 +116,7 @@ Ein Leser, der sich für die Bench-Sprache selbst interessiert, beginnt mit der 
     Alle Benchmark-Ergebnisse liegen in dem im Abschnitt [Ergebnisformat] beschriebenen Format vor.
 
 **::bench::norm** *bench\_result* *column*
-: Dieser Befehl normalisiert die Zeitmessungsergebnisse anhand des angegebenen Benchmark-Ergebnisses und gibt das modifizierte Ergebnis zurück. Das bedeutet, dass die Zellwerte keine Zeitangaben mehr sind, sondern Faktoren, die angeben, um wie viel schneller oder langsamer die Ausführung im Vergleich zur Basislinie war.
+: Dieser Befehl normalisiert die Zeitmessungsergebnisse im angegebenen Benchmark-Ergebnis und gibt das modifizierte Ergebnis zurück. Das bedeutet, dass die Zellwerte keine Zeitangaben mehr sind, sondern Faktoren, die angeben, um wie viel schneller oder langsamer die Ausführung im Vergleich zur Basislinie war.
 
     Die Basislinie, anhand derer der Befehl die Normalisierung vornimmt, sind die Zeitmessungsergebnisse in der ausgewählten Spalte. Das bedeutet, dass nach der Normalisierung die Werte in dieser Spalte alle den Wert **1** annehmen, da diese Benchmarks weder schneller noch langsamer als die Basislinie sind.
 

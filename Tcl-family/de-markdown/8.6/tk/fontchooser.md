@@ -34,7 +34,7 @@ fontchooser - Schriftauswahl-Dialog steuern
 
 Der Befehl [tk fontchooser][tk] steuert den Tk-Schriftauswahl-Dialog. Wo verfügbar, wird der native plattformspezifische Schriftauswahl-Dialog verwendet, andernfalls ein in Tcl implementierter Dialog.
 
-Im Gegensatz zu den meisten anderen Tk-Dialogbefehlen liefert [tk fontchooser][tk] kein unmittelbares Ergebnis zurück, da auf manchen Plattformen (macOS) der Standardschriftdialog modellos ist, auf anderen (Windows) modal. Um diesen Unterschied auszugleichen, wird die gesamte Benutzerinteraktion mit dem Dialog dem Aufrufer über Rückruffunktionen oder virtuelle Ereignisse mitgeteilt.
+Im Gegensatz zu den meisten anderen Tk-Dialogbefehlen liefert [tk fontchooser][tk] kein unmittelbares Ergebnis zurück, da auf manchen Plattformen (macOS) der Standardschriftdialog nicht modal ist, auf anderen (Windows) modal. Um diesen Unterschied auszugleichen, wird die gesamte Benutzerinteraktion mit dem Dialog dem Aufrufer über Rückruffunktionen oder virtuelle Ereignisse mitgeteilt.
 
 Der Befehl [tk fontchooser][tk] kann eine der folgenden Formen haben:
 
@@ -60,7 +60,7 @@ Der Befehl [tk fontchooser][tk] kann eine der folgenden Formen haben:
 : Legt fest bzw. gibt die im Dialog aktuell ausgewählte Schriftart zurück, wenn er sichtbar ist, oder die beim Anzeigen des Dialogs zunächst ausgewählte Schriftart (falls von der Plattform unterstützt). Kann auf die leere Zeichenkette gesetzt werden, um anzuzeigen, dass keine Schriftart ausgewählt sein soll. Schriftarten können in jeder im Abschnitt „SCHRIFTART-BESCHREIBUNG“ der Manpage [font] beschriebenen Form angegeben werden.
 
 [-command]{.lit}
-: Legt fest bzw. gibt das Befehlspräfix zurück, das aufgerufen wird, wenn der Benutzer eine Schriftart gewählt hat. Das Präfix wird auf globaler Ebene ausgewertet, nachdem die Spezifikation der gewählten Schriftart angehängt wurde. Auf Plattformen, deren Schriftauswahl-Dialog weitere Schriftattribute (z. B. Farbe) anbietet, können vor der Auswertung zusätzliche Schlüssel/Wert-Paare angehängt werden. Kann auf die leere Zeichenkette gesetzt werden, um anzuzeigen, dass keine Rückruffunktion aufgerufen werden soll. Schriftarten werden als Liste der Form aus Abschnitt \[3\] „SCHRIFTART-BESCHREIBUNG“ in der Manpage [font] angegeben (d. h. eine Liste der Form *{family size style ?style ...?}*).
+: Legt fest bzw. gibt das Befehlspräfix zurück, das aufgerufen wird, wenn der Benutzer eine Schriftart gewählt hat. Das Präfix wird auf globaler Ebene ausgewertet, nachdem die Spezifikation der gewählten Schriftart angehängt wurde. Auf Plattformen, deren Schriftauswahl-Dialog weitere Schriftattribute (z. B. Farbe) anbietet, können vor der Auswertung zusätzliche Schlüssel/Wert-Paare angehängt werden. Kann auf die leere Zeichenkette gesetzt werden, um anzuzeigen, dass keine Rückruffunktion aufgerufen werden soll. Schriftarten werden als Liste der Form \[3\] aus dem Abschnitt „SCHRIFTART-BESCHREIBUNG“ der Manpage [font] angegeben (d. h. eine Liste der Form *{family size style ?style ...?}*).
 
 [-visible]{.lit}
 : Schreibgeschützte Option; gibt einen booleschen Wert zurück, ob der Schriftauswahl-Dialog derzeit sichtbar ist. Ein Versuch, diese Option zu setzen, führt zu einem Fehler.

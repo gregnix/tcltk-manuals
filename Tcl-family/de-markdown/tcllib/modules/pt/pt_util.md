@@ -61,7 +61,7 @@ Bild: arch\_core\_support
 : Dieser Befehl nimmt die strukturierte Form eines Syntaxfehlers *error*, wie Parser-Laufzeitumgebungen ihn auslösen, und den Eingabetext *text*, der den Fehler verursacht hat, und gibt eine Liste aus zwei Elementen zurück: Zeilennummer und Spaltenindex der Zeichenposition des Fehlers in der Eingabe, in dieser Reihenfolge.
 
 **::pt::util** **error2text** *error*
-: Dieser Befehl nimmt die strukturierte Form eines Syntaxfehlers *error*, wie Parser-Laufzeitumgebungen ihn auslösen, und gibt eine Liste von Zeichenfolgen zurück. Jede beschreibt eine mögliche erwartete Eingabe in einer für Menschen lesbaren Form.
+: Dieser Befehl nimmt die strukturierte Form eines Syntaxfehlers *error*, wie Parser-Laufzeitumgebungen ihn auslösen, und gibt eine Liste von Zeichenketten zurück. Jede beschreibt eine mögliche erwartete Eingabe in einer für Menschen lesbaren Form.
 
 
 # Fehler, Ideen, Rückmeldungen

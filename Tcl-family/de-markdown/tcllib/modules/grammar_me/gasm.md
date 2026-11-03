@@ -47,19 +47,19 @@ grammar::me::cpu::gasm – ME-Assembler
 
 # Beschreibung
 
-Dieses Paket stellt einen einfachen In-Memory-Assembler bereit. Es entstand ursprünglich als Unterstützungspaket für Pakete, die PEG- und andere Grammatiken in einen entsprechenden Matcher auf Basis der virtuellen ME-Maschine konvertieren, wie beispielsweise **page::compiler::peg::mecpu**. Obwohl es hinsichtlich der Befehle weitgehend agnostisch ist, können Anwender jeden beliebigen Befehlssatz wählen.
+Dieses Paket stellt einen einfachen In-Memory-Assembler bereit. Es entstand ursprünglich als Unterstützungspaket für Pakete, die PEG- und andere Grammatiken in einen entsprechenden Matcher auf Basis der virtuellen ME-Maschine konvertieren, wie beispielsweise **page::compiler::peg::mecpu**. Trotzdem ist es hinsichtlich der Befehle weitgehend agnostisch; Anwender können jeden beliebigen Befehlssatz wählen.
 
 Das in der Erstellung befindliche Programm wird während der Assemblierung und der anschließenden Bearbeitung in einer Graphstruktur gespeichert (siehe Paket **struct::graph**), wobei Anweisungen durch Knoten dargestellt werden und der Ausführungsablauf zwischen den Anweisungen explizit in den Kanten zwischen diesen kodiert ist.
 
 In diesem Modell erfolgt die Kodierung von Sprüngen nicht explizit, sondern sie ist implizit in den Bögen enthalten. Die Generierung expliziter Sprünge wird einem beliebigen Code überlassen, der die Graphstruktur in eine konventionellere Darstellung umwandelt. Das Gleiche gilt für Verzweigungen. Sie werden implizit durch alle Anweisungen kodiert, die zwei ausgehende Bögen aufweisen, während alle anderen Anweisungen nur einen ausgehenden Bogen haben. Ihre Bedingtheit wird dadurch gewährleistet, dass ihre ausgehenden Bögen mit Tags über die Bedingungen versehen werden, unter denen sie ausgeführt werden.
 
-Zwar wird die Grafik, auf der der Assembler arbeitet, von außen bereitgestellt, d. h. sie ist extern, doch verwaltet er einen gewissen internen Zustand, und zwar:
+Zwar wird der Graph, auf dem der Assembler arbeitet, von außen bereitgestellt, d. h. sie ist extern, doch verwaltet er einen gewissen internen Zustand, und zwar:
 
 1. Der Handle des Graphenknotens, auf den die meisten Assembler-Operationen angewendet werden können: der *anchor*.
 
-2. Eine Zuordnung beliebiger Zeichenketten auf Befehle. Ein Befehl lässt sich während der Assemblierung *label* und später über dieses Label wieder abrufen.
+2. Eine Zuordnung beliebiger Zeichenketten auf Befehle. Ein Befehl lässt sich während der Assemblierung mit einem *Label* versehen und später über dieses Label wieder abrufen.
 
-3. Der beim Erstellen von Sprüngen zwischen Anweisungen zu verwendende Statuscode, der einer der folgenden Werte sein kann: **always**, **ok** oder **fail**.
+3. Der beim Erstellen von Bögen zwischen Anweisungen zu verwendende Bedingungscode, der einer der folgenden Werte sein kann: **always**, **ok** oder **fail**.
 
 4. Der aktuelle Betriebsmodus: entweder **halt**, **okfail** oder **!okfail**.
 
@@ -70,7 +70,7 @@ Zwar wird die Grafik, auf der der Assembler arbeitet, von außen bereitgestellt,
 
 Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem er verflochten ist, dem Assembler von außen bereitgestellt werden, ist es erforderlich, die von ihnen erwartete API festzulegen und die Strukturen zu beschreiben, die der Assembler in beiden Fällen erwartet und/oder erzeugt.
 
-1. Jeder vom Assembler verwendete Objektbefehl muss die API bereitstellen, wie sie in der Dokumentation zum Paket **struct::graph** angegeben ist.
+1. Jeder vom Assembler verwendete Objektbefehl für Graphobjekte muss die API bereitstellen, wie sie in der Dokumentation zum Paket **struct::graph** angegeben ist.
 
 2. Jeder vom Assembler verwendete Objektbefehl für Baumobjekte muss die API bereitstellen, wie sie in der Dokumentation zum Paket **struct::tree** angegeben ist.
 
@@ -86,10 +86,10 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
         : Ein .NOP, der das Einfügen beliebiger Kommentare in den Befehlsstrom ermöglicht, d. h. ein Kommentarknoten. Ein Argument: der Text des Kommentars.
 
         **BRA**
-        : Ein .NOP, der als explizit codierter bedingter Sprung dient. Keine Argumente.
+        : Ein .NOP, der als explizit codierte bedingte Verzweigung dient. Keine Argumente.
 
 
-        Wir behalten uns jedoch den Speicherplatz aller Befehle vor, deren Namen mit einem „.“ (Punkt) beginnen, für eine zukünftige Verwendung durch den Assembler.
+        Wir behalten uns jedoch den Namensraum aller Befehle vor, deren Namen mit einem „.“ (Punkt) beginnen, für eine zukünftige Verwendung durch den Assembler.
 
     **arguments**
     : Der Wert dieses Attributs ist eine Liste von Zeichenketten, bei denen es sich um die Argumente des Befehls handelt. Der Inhalt hängt vom jeweiligen Befehl ab, und der Assembler kennt diese Argumente nicht und berücksichtigt sie auch nicht. Das bedeutet beispielsweise, dass er kein integriertes Wissen darüber besitzt, welcher Befehl welche Argumente benötigt, und daher keinerlei Überprüfung durchführt.
@@ -113,10 +113,10 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
     : Gilt für alle Modi mit Ausnahme von **okfail**.
 
     **gas::exit::ok**
-    : Verfasst für den Modus **okfail**.
+    : Geschrieben im Modus **okfail**.
 
     **gas::exit::fail**
-    : Verfasst für den Modus **okfail**.
+    : Geschrieben im Modus **okfail**.
 
 
 
@@ -125,7 +125,7 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
 **::grammar::me::cpu::gasm::begin** *g* *n* ?*mode*? ?*note*?
 : Dieser Befehl startet die Assemblierung einer Befehlsfolge und (re-)initialisiert den Zustand des Assemblers. Nach Abschluss der Befehlsfolge verwenden Sie bitte **::grammar::me::cpu::gasm::done**, um den Assembler abzuschließen.
 
-    Er arbeitet mit dem Graphen *g* im angegebenen *Modus* (Standard ist **okfail**). Im Rahmen der Initialisierung wird stets ein Standard-NOP-Befehl erstellt und mit dem Label „entry“ versehen. Die Erstellung der übrigen Standardbefehle erfolgt gemäß *mode*-dependent:
+    Er arbeitet mit dem Graphen *g* im angegebenen *mode* (Standard ist **okfail**). Im Rahmen der Initialisierung wird stets ein Standard-.NOP-Befehl erstellt und mit dem Label „entry“ versehen. Die Erstellung der übrigen Standardbefehle hängt vom *mode* ab:
 
     **halt**
     : Eine „icf\_halt“-Anweisung mit der Bezeichnung „exit/return“.
@@ -137,9 +137,9 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
     : Zwei .NOP-Befehle mit den Bezeichnungen „exit/ok“ bzw. „exit/fail“.
 
 
-    Die *note*, wenn sie festgelegt wird (Standard ist „nicht“), wird dem „entry“-Befehl .NOP zugewiesen.
+    Die *note*, wenn sie festgelegt wird (standardmäßig keine), wird dem „entry“-Befehl .NOP zugewiesen.
 
-    Die Knotenreferenz *n* wird lediglich zur Verwendung durch **::grammar::me::cpu::gasm::done** gespeichert. Sie muss sich auf einen Knoten im Baum *t*-Argument dieses Befehls beziehen.
+    Die Knotenreferenz *n* wird lediglich zur Verwendung durch **::grammar::me::cpu::gasm::done** gespeichert. Sie muss sich auf einen Knoten im Baum aus dem Argument *t* dieses Befehls beziehen.
 
     Nach Abschluss der Initialisierung wird der Befehl „entry“ zum *anchor* und der Bedingungscode wird auf **always** gesetzt.
 
@@ -168,7 +168,7 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
 : Dieser Befehl gibt den aktuellen Status des Assemblers zurück. Sein Format ist nicht dokumentiert und gilt als paketintern.
 
 **::grammar::me::cpu::gasm::state!** *s*
-: Dieser Befehl übernimmt einen serialisierten Assembler-Zustand *s*, wie er von **::grammar::me::cpu::gasm::state** gegeben wird, und macht ihn zum aktuellen Zustand des Assemblers.
+: Dieser Befehl übernimmt einen serialisierten Assembler-Zustand *s*, wie er von **::grammar::me::cpu::gasm::state** zurückgegeben wird, und macht ihn zum aktuellen Zustand des Assemblers.
 
     *Hinweis*: Dadurch können Label-Definitionen überschrieben werden. Alle nicht in Konflikt stehenden Label-Definitionen aus dem vorherigen Zustand bleiben jedoch unberührt und werden mit *s* zusammengeführt.
 
@@ -192,7 +192,7 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
     Der Befehl gibt als Ergebnis die leere Zeichenkette zurück.
 
 **::grammar::me::cpu::gasm::Cmd** *cmd* ?*arg*...?
-: Dies ist der grundlegende Befehl zum Hinzufügen von Anweisungen zum Diagramm. Er erstellt eine neue Anweisung vom Typ *cmd* mit den angegebenen Argumenten *arg*... Wenn *anchor* definiert wurde, wird zudem unter Verwendung des aktuellen Bedingungscodes ein Bogen vom *anchor* zur neuen Anweisung erstellt. Nach dem Aufruf wird die neue Anweisung zum *anchor* und der aktuelle Bedingungscode wird auf **always** gesetzt.
+: Dies ist der grundlegende Befehl zum Hinzufügen von Anweisungen zum Graphen. Er erstellt eine neue Anweisung vom Typ *cmd* mit den angegebenen Argumenten *arg*... Wenn *anchor* definiert wurde, wird zudem unter Verwendung des aktuellen Bedingungscodes ein Bogen vom *anchor* zur neuen Anweisung erstellt. Nach dem Aufruf wird die neue Anweisung zum *anchor* und der aktuelle Bedingungscode wird auf **always** gesetzt.
 
     Der Befehl gibt die leere Zeichenkette als Ergebnis zurück.
 
@@ -206,14 +206,14 @@ Da sowohl der Graph, auf dem der Assembler arbeitet, als auch der Baum, mit dem 
 : Dies ist ein Komfort-Befehl zum Erstellen einer .C-Pseudo-Anweisung, d. h. eines Kommentars. Er nutzt **::grammar::me::cpu::gasm::Cmd**, um die Anweisung tatsächlich zu erstellen, und übernimmt deren Verhalten. Der *text* wird als erstes und einziges Argument der neuen Anweisung gespeichert.
 
 **::grammar::me::cpu::gasm::Jmp** *label*
-: Dieser Befehl erstellt einen Bogen vom *anchor* zur mit *label* gekennzeichneten Anweisung und versieht diese mit dem aktuellen Bedingungscode.
+: Dieser Befehl erstellt einen Bogen vom *anchor* zur mit *label* gekennzeichneten Anweisung und versieht ihn mit dem aktuellen Bedingungscode.
 
     Der Befehl gibt als Ergebnis die leere Zeichenkette zurück.
 
 **::grammar::me::cpu::gasm::Exit**
 : Dieser Befehl erstellt je nach Betriebsmodus (siehe **::grammar::me::cpu::gasm::begin**) einen Bogen vom *anchor* zu einer der Exit-Anweisungen und versieht diesen mit dem aktuellen Bedingungscode.
 
-    Im Modus **okfail** wird je nach aktuellem Bedingungscode eine Verknüpfung zu der Anweisung „exit/ok“ oder „exit/fail“ hergestellt und diese mit dem aktuellen Bedingungscode versehen. In den beiden anderen Modi wird eine Verknüpfung zu der Anweisung „exit/return“ hergestellt, und versieht diesen Befehl **always** mit dem Bedingungscode, unabhängig vom aktuellen Bedingungscode.
+    Im Modus **okfail** wird je nach aktuellem Bedingungscode eine Verknüpfung zu der Anweisung „exit/ok“ oder „exit/fail“ hergestellt und diese mit dem aktuellen Bedingungscode versehen. In den beiden anderen Modi wird eine Verknüpfung zu der Anweisung „exit/return“ hergestellt und diese mit dem Bedingungscode **always** versehen, unabhängig vom aktuellen Bedingungscode.
 
     Der Befehl gibt als Ergebnis die leere Zeichenkette zurück.
 

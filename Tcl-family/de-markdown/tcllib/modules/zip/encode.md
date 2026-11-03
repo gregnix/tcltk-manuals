@@ -40,7 +40,7 @@ Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind für Tcl Version 8.6 oder h
 # API für Klassen
 
 **::zipfile::encode** *objectName*
-: Der Befehl „class“ erstellt Encoder-Instanzen, d. h. Objekte. Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
+: Der Klassenbefehl erstellt Encoder-Instanzen, d. h. Objekte. Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Das Argument *objectName* ist erforderlich. Wenn *objectName* auf **%AUTO%** gesetzt ist, generiert die Klasse einen automatischen Namen im aktuellen Namespace und verwendet diesen. Ist der Wert von *objectName* nicht vollständig qualifiziert, wird der Befehl für die Instanz relativ zum aktuellen Namespace erstellt.
 
@@ -51,7 +51,7 @@ Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind für Tcl Version 8.6 oder h
 : Diese Methode legt den Text des globalen Kommentars für das Archiv fest. Das Ergebnis der Methode ist die leere Zeichenkette. Werden mehrere Aufrufe dieser Methode für denselben Encoder durchgeführt, haben die Daten des letzten Aufrufs Vorrang vor allen vorherigen Texten.
 
 **<encoder>** **file:** *dst* *owned* *src* ?*noCompress*?
-: Diese Methode fügt dem Archiv eine neue Datei hinzu. Der Inhalt der Datei befindet sich im Dateisystem unter *src* und wird im Archiv unter dem Pfad *dst* gespeichert. Wenn die Datei als *Eigentum* des Archivs deklariert ist, wird die Originaldatei beim Erstellen und Schreiben des Archivs gelöscht. Wenn *noCompress* auf **true** gesetzt ist, wird die Datei beim Schreiben nicht komprimiert. Andernfalls (Standardeinstellung) wird die Datei komprimiert, sofern dies vorteilhaft ist. Das Ergebnis der Methode ist eine leere Zeichenkette.
+: Diese Methode fügt dem Archiv eine neue Datei hinzu. Der Inhalt der Datei befindet sich im Dateisystem unter *src* und wird im Archiv unter dem Pfad *dst* gespeichert. Wenn die Datei als Eigentum des Archivs (*owned*) deklariert ist, wird die Originaldatei beim Erstellen und Schreiben des Archivs gelöscht. Wenn *noCompress* auf **true** gesetzt ist, wird die Datei beim Schreiben nicht komprimiert. Andernfalls (Standardeinstellung) wird die Datei komprimiert, sofern dies vorteilhaft ist. Das Ergebnis der Methode ist eine leere Zeichenkette.
 
 **<encoder>** **write** *archive*
 : Diese Methode nimmt den globalen Kommentar und alle hinzugefügten Dateien, kodiert sie als Zip-Archiv und speichert das Ergebnis unter dem Pfad *archive* im Dateisystem. Alle hinzugefügten Dateien, die dem Archiv gehören, werden an dieser Stelle gelöscht. Zur Reihenfolge: Die Dateien werden dem Archiv in derselben Reihenfolge hinzugefügt, in der sie über **file:** angegeben wurden. *Hinweis:* Dieses Verhalten gilt ab Version 0.4. Vor 0.4 war keine bestimmte Reihenfolge dokumentiert. Sortiert wurde lexikografisch. Die Änderung unterstützt **zip**-basierte Dateiformate, die eine bestimmte Dateireihenfolge im Archiv verlangen, zum Beispiel "*.epub*".

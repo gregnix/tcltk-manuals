@@ -42,7 +42,7 @@ Die folgenden Pakete werden verwendet:
 -  uri aus [TclLib](https://core.tcl-lang.org/tcllib)
 -  struct::set aus [TclLib](https://core.tcl-lang.org/tcllib)
 -  http aus [Tcl](http://www.tcl-lang.org/) selbst
--  yajl-tcl von [flightaware github](https://github.com/flightaware/yajl-tcl) (nur für Anforderungen im Rest-Geschmack)
+-  yajl-tcl von [flightaware github](https://github.com/flightaware/yajl-tcl) (nur für Anforderungen im REST-Stil)
 
 Wenn TclHttpd unter Windows läuft, ist die Erweiterung iocpsock sehr zu empfehlen.
 

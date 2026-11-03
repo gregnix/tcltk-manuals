@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-map::area::store::fs – Dateisystembasierte Speicherung von Geo-/Flächendefinitionen
+map::area::store::fs – Dateisystembasierte Speicherung von geo/area-Definitionen
 
 # Übersicht
 

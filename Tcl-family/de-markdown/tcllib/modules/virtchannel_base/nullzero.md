@@ -33,16 +33,16 @@ tcl::chan::nullzero – Kombination aus Null- und Zero-Kanälen
 
 # Beschreibung
 
-Das Paket **tcl::chan::nullzero** enthält einen Befehl zum Erstellen von Kanälen, bei denen es sich um eine Kombination aus Null- und Null-Geräten handelt. Diese vergessen sofort alles, was an sie geschrieben wird, und geben beim Auslesen einen unendlichen Strom von Nullzeichen zurück.
+Das Paket **tcl::chan::nullzero** enthält einen Befehl zum Erstellen von Kanälen, bei denen es sich um eine Kombination aus Null- und Zero-Geräten handelt. Diese vergessen sofort alles, was an sie geschrieben wird, und geben beim Auslesen einen unendlichen Strom von Nullzeichen zurück.
 
-Die entsprechenden Pakete lauten **tcl::chan::null** und **tcl::chan::zero**.
+Verwandte Pakete sind **tcl::chan::null** und **tcl::chan::zero**.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 
 **::tcl::chan::nullzero**
-: Dieser Befehl erstellt einen neuen Null-Null-Kanal und gibt dessen Handle zurück.
+: Dieser Befehl erstellt einen neuen Nullzero-Kanal und gibt dessen Handle zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

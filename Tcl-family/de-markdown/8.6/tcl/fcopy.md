@@ -43,11 +43,11 @@ Das Argument **-command** lässt **fcopy** im Hintergrund arbeiten. Der Befehl k
 
 Während eines **fcopy** im Hintergrund sind andere Eingabeoperationen auf *inchan* und Ausgabeoperationen auf *outchan* nicht zulässig. Die Gegenrichtung ist zulässig, wie das bidirektionale Beispiel unten zeigt.
 
-Wird *inchan* oder *outchan* geschlossen, während die Kopie läuft, stoppt die aktuelle Kopie, und der Rückruf wird *nicht* ausgeführt. Wird *inchan* geschlossen, werden alle für *outchan* schon eingereihten Daten noch geschrieben.
+Wird *inchan* oder *outchan* geschlossen, während die Kopie läuft, stoppt die aktuelle Kopie, und die Rückruffunktion wird *nicht* ausgeführt. Wird *inchan* geschlossen, werden alle für *outchan* schon eingereihten Daten noch geschrieben.
 
 *inchan* kann während einer Hintergrundkopie lesbar werden. [fileevent]-Handler sollten während einer Hintergrundkopie abgeschaltet werden, damit sie die Kopie nicht stören. Ein-/Ausgabe auf der falschen Seite (durch einen [fileevent]-Handler oder sonst) ergibt den Fehler „channel busy“.
 
-**fcopy** übersetzt Zeilenende-Folgen in *inchan* und *outchan* gemäß der Option **-translation** dieser Kanäle. Einzelheiten stehen in der Handbuchseite [fconfigure]. Durch die Übersetzung kann die Zahl der von *inchan* gelesenen Bytes von der Zahl der nach *outchan* geschriebenen Bytes abweichen. Gemeldet wird nur die nach *outchan* geschriebene Bytezahl, entweder als Rückgabewert eines synchronen **fcopy** oder als Argument des Rückrufs eines asynchronen **fcopy**.
+**fcopy** übersetzt Zeilenende-Folgen in *inchan* und *outchan* gemäß der Option **-translation** dieser Kanäle. Einzelheiten stehen in der Handbuchseite [fconfigure]. Durch die Übersetzung kann die Zahl der von *inchan* gelesenen Bytes von der Zahl der nach *outchan* geschriebenen Bytes abweichen. Gemeldet wird nur die nach *outchan* geschriebene Bytezahl, entweder als Rückgabewert eines synchronen **fcopy** oder als Argument der Rückruffunktion eines asynchronen **fcopy**.
 
 **fcopy** beachtet die für die Kanäle eingestellten Kodierungen und Zeichenübersetzungen. Eingehende Zeichen werden intern zuerst nach UTF-8 und dann in die Kodierung des Kanals umgewandelt, in den **fcopy** schreibt. Einzelheiten zu **-encoding** und **-translation** stehen in der Handbuchseite [fconfigure]. Stehen beide Kanäle auf der Kodierung „binary“ und passen die Übersetzungen zusammen, findet keine Umwandlung statt. Steht nur der Ausgabekanal auf „binary“, schreibt das System die interne UTF-8-Darstellung der eingehenden Zeichen. Steht nur der Eingabekanal auf „binary“, nimmt das System an, dass die eingehenden Bytes gültige UTF-8-Zeichen sind, und wandelt sie gemäß der Ausgabekodierung um. Das Verhalten bei Bytes, die keine gültigen UTF-8-Zeichen sind, ist in diesem Fall undefiniert.
 
@@ -61,7 +61,7 @@ fconfigure $out -translation binary
 fcopy $in $out
 ```
 
-Das zweite Beispiel zeigt, wie der Rückruf die Zahl der übertragenen Bytes erhält. Es verwendet vwait, damit die Anwendung in die Ereignisschleife geht. Dieses vereinfachte Beispiel käme auch ohne den Befehlsrückruf aus.
+Das zweite Beispiel zeigt, wie die Rückruffunktion die Zahl der übertragenen Bytes erhält. Es verwendet vwait, damit die Anwendung in die Ereignisschleife geht. Dieses vereinfachte Beispiel käme auch ohne die Rückruffunktion aus.
 
 ```
 proc Cleanup {in out bytes {error {}}} {
@@ -79,7 +79,7 @@ fcopy $in $out -command [list Cleanup $in $out]
 vwait total
 ```
 
-Das dritte Beispiel kopiert in Stücken und prüft im Befehlsrückruf auf Dateiende.
+Das dritte Beispiel kopiert in Stücken und prüft in der Rückruffunktion auf Dateiende.
 
 ```
 proc CopyMore {in out chunk bytes {error {}}} {

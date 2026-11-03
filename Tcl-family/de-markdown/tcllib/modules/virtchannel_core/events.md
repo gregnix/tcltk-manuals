@@ -34,7 +34,7 @@ tcl::chan::events – Ereignisunterstützung für reflektierte/virtuelle Kanäle
 
 # Beschreibung
 
-Das Paket „**tcl::chan::events**“ enthält die Klasse „**TclOO**“, die ein allgemeines Verhalten implementiert, das von nahezu jedem reflektierten oder virtuellen Kanal benötigt wird, der ereignisgesteuerte E/A unterstützt. Es handelt sich um eine Unterklasse von „**tcl::chan::core**“, die deren gesamtes Verhalten übernimmt.
+Das Paket „**tcl::chan::events**“ enthält eine **TclOO**-Klasse, die ein allgemeines Verhalten implementiert, das von nahezu jedem reflektierten oder virtuellen Kanal benötigt wird, der ereignisgesteuerte E/A unterstützt. Es handelt sich um eine Unterklasse von „**tcl::chan::core**“, die deren gesamtes Verhalten übernimmt.
 
 Diese Klasse ist dafür vorgesehen, entweder als Oberklasse einer konkreten Kanal-Klasse verwendet oder in eine solche Klasse eingemischt zu werden.
 
@@ -46,10 +46,10 @@ Diese Klasse ist dafür vorgesehen, entweder als Oberklasse einer konkreten Kana
 
 # Instanz-API
 
-Die API der Channel-Event-Core-Instanzen stellt lediglich vier Methoden bereit, von denen zwei den Befehlen des Ereignisbehandlers entsprechen (siehe dazu [TIP 219](http:/tip.tcl.tk/219)) und die anderen beiden von Unterklassen zur Steuerung der Ereignisgenerierung verwendet werden. Erstere erwarten, dass sie von der Objekt-Instanz aufgerufen werden, in die der Kanal-Ereignis-Kern integriert wurde.
+Die API der Channel-Event-Core-Instanzen stellt lediglich vier Methoden bereit, von denen zwei den Befehlen des Kanalhandlers entsprechen (siehe dazu [TIP 219](http:/tip.tcl.tk/219)) und die anderen beiden von Unterklassen zur Steuerung der Ereignisgenerierung verwendet werden. Erstere erwarten, dass sie von der Objekt-Instanz aufgerufen werden, in die der Kanal-Ereignis-Kern integriert wurde.
 
 *objectName* **finalize** *thechannel*
-: Diese Methode implementiert das Standardverhalten für die Methode „**finalize**“ von Kanal-Handlern. Sie überschreibt das von „**tcl::chan::core**“ geerbte Verhalten und deaktiviert darüber hinaus jegliche Ereignisgenerierung, bevor sie sich selbst beendet.
+: Diese Methode implementiert das Standardverhalten für die Methode „**finalize**“ von Kanal-Handlern. Sie überschreibt das von „**tcl::chan::core**“ geerbte Verhalten und deaktiviert darüber hinaus jegliche Ereignisgenerierung, bevor sie sich selbst zerstört.
 
 *objectName* **watch** *thechannel* *eventmask*
 : Diese Methode implementiert das Standardverhalten für die Methode **watch** der Kanalhandler. Sie wird vom E/A-System aufgerufen, sobald sich das Interesse an einem Ereignis ändert, und aktualisiert den Instanzzustand, um die Erzeugung der (nicht) relevanten Ereignisse zu aktivieren bzw. zu unterdrücken.

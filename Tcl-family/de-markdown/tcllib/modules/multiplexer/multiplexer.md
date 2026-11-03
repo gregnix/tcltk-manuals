@@ -52,7 +52,7 @@ Es ist möglich, dass verschiedene Multiplexer gleichzeitig laufen.
     ```
 
 **${multiplexer\_instance}::Init** *port*
-: Dadurch wird der Multiplexer gestartet, der auf dem angegebenen Port auf eingehende Daten wartet.
+: Dadurch wird der Multiplexer gestartet, der auf dem angegebenen Port lauscht.
 
 **${multiplexer\_instance}::Config** *key* *value*
 : Verwenden Sie „**Config**“, um die Multiplexer-Instanz zu konfigurieren. Zu den derzeit verfügbaren Konfigurationsoptionen gehören:
@@ -65,10 +65,10 @@ Es ist möglich, dass verschiedene Multiplexer gleichzeitig laufen.
 
 
 **${multiplexer\_instance}::AddFilter** *cmdprefix*
-: Befehl zum Hinzufügen eines Filters für Daten, die die Multiplexer-Instanz durchlaufen. Das registrierte *cmdprefix* wird aufgerufen, sobald Daten bei einer Multiplexer-Instanz eintreffen. Sind bei der Instanz mehrere Filter-Befehle registriert, werden diese in der Reihenfolge ihrer Registrierung aufgerufen, wobei jeder Filter das Ergebnis des vorhergehenden Filters als Argument erhält. Der erste Filter erhält die eingehenden Daten als Argument. Das vom letzten Filter zurückgegebene Ergebnis sind die Daten, die an alle Clients der Multiplexer-Instanz gesendet werden. Der Befehl wird wie folgt aufgerufen:
+: Befehl zum Hinzufügen eines Filters für Daten, die die Multiplexer-Instanz durchlaufen. Das registrierte *cmdprefix* wird aufgerufen, sobald Daten bei einer Multiplexer-Instanz eintreffen. Sind bei der Instanz mehrere Filter-Befehle registriert, werden diese in der Reihenfolge ihrer Registrierung aufgerufen, wobei jeder Filter das Ergebnis des vorhergehenden Filters als Argument erhält. Der erste Filter erhält die eingehenden Daten als Argument. Das vom letzten Filter zurückgegebene Ergebnis sind die Daten, die an alle Clients der Multiplexer-Instanz gesendet werden. Das Befehlspräfix wird wie folgt aufgerufen:
 
     **cmdprefix** *data* *chan* *clientaddress* *clientport*
-    : Nimmt die eingehenden *data* entgegen, verändert sie und gibt das Ergebnis zurück. Die letzten drei Argumente enthalten Informationen über den Client, der die Daten an den Filter gesendet hat: den Kanal, über den die Verbindung zum Client besteht, dessen IP-Adresse und dessen IP-Port.
+    : Nimmt die eingehenden *data* entgegen, verändert sie und gibt das Ergebnis zurück. Die letzten drei Argumente enthalten Informationen über den Client, der die zu filternden Daten gesendet hat: den Kanal, über den die Verbindung zum Client besteht, dessen IP-Adresse und dessen IP-Port.
 
 
 **${multiplexer\_instance}::AddAccessFilter** *cmdprefix*
@@ -79,7 +79,7 @@ Es ist möglich, dass verschiedene Multiplexer gleichzeitig laufen.
 
 
 **${multiplexer\_instance}::AddExitFilter** *cmdprefix*
-: Fügt einen Filter hinzu, der ausgeführt wird, wenn ein Client-Socket einen EOF-Zustand erzeugt. Das registrierte *cmdprefix* wird aufgerufen, wenn ein Client-Socket des Multixers EOF signalisiert. Sind bei der Instanz mehrere Exit-Filter-Befehle registriert, werden diese in der Reihenfolge ihrer Registrierung aufgerufen. Von einem Exit-Filter ausgelöste Fehler werden ignoriert, jedoch protokolliert. Alle Ergebnisse, die von einem Exit-Filter gegeben werden, werden ignoriert. Der Befehlsvorhang wird wie folgt aufgerufen:
+: Fügt einen Filter hinzu, der ausgeführt wird, wenn ein Client-Socket einen EOF-Zustand erzeugt. Das registrierte *cmdprefix* wird aufgerufen, wenn ein Client-Socket des Multixers EOF signalisiert. Sind bei der Instanz mehrere Exit-Filter-Befehle registriert, werden diese in der Reihenfolge ihrer Registrierung aufgerufen. Von einem Exit-Filter ausgelöste Fehler werden ignoriert, jedoch protokolliert. Alle Ergebnisse, die von einem Exit-Filter zurückgegeben werden, werden ignoriert. Das Befehlspräfix wird wie folgt aufgerufen:
 
     **cmdprefix** *chan* *clientaddress* *clientport*
     : Die Argumente enthalten Informationen über den Client, der das EOF signalisiert hat: den Kanal, über den wir mit dem Client verbunden sind, dessen IP-Adresse und dessen IP-Port.

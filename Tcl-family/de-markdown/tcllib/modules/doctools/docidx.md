@@ -68,7 +68,7 @@ Sollte der Leser hingegen eine eigene Formatierungs-Engine für ein bestimmtes F
 ## Paketbefehle
 
 **::doctools::idx::new** *objectName* ?**-option** *value* ...?
-: Dieser Befehl erstellt ein neues docidx-Objekt mit einem zugehörigen Tcl-Befehl, dessen Name *objectName* lautet. Dieser *object*-Befehl wird in den Abschnitten [Objektbefehl] und [Objektmethoden] ausführlich erläutert. Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace.
+: Dieser Befehl erstellt ein neues docidx-Objekt mit einem zugehörigen Tcl-Befehl, dessen Name *objectName* lautet. Dieser *Objekt*befehl wird in den Abschnitten [Objektbefehl] und [Objektmethoden] ausführlich erläutert. Der Objektbefehl wird im aktuellen Namespace erstellt, wenn *objectName* nicht vollständig qualifiziert ist; andernfalls erfolgt die Erstellung im angegebenen Namespace.
 
     Die Optionen und ihre Werte, die auf den Namen des Objekts folgen, dienen dazu, die Anfangskonfiguration des Objekts festzulegen.
 
@@ -100,7 +100,7 @@ Alle von **::doctools::idx::new** erstellten Befehle haben die folgende allgemei
 : Die Methode verhält sich wie die Methode **cget**, wenn sie mit einem einzigen Argument aufgerufen wird, und gibt den Wert der durch dieses Argument festgelegten Option zurück.
 
 *objectName* **configure** **-option** *value*...
-: Die Methode konfiguriert die angegebenen **option**s des Objekts neu und setzt sie auf die zugehörigen *value*s, wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
+: Die Methode konfiguriert die angegebenen Optionen **option** des Objekts neu und setzt sie auf die zugehörigen Werte *value*, wenn sie mit einer geraden Anzahl von Argumenten (mindestens zwei) aufgerufen wird.
 
     Die zulässigen Optionen sind im Abschnitt [Objekt-Konfiguration] beschrieben.
 
@@ -113,18 +113,18 @@ Alle von **::doctools::idx::new** erstellten Befehle haben die folgende allgemei
 : Diese Methode löscht das Objekt, für das sie aufgerufen wird.
 
 *objectName* **format** *text*
-: Diese Methode verarbeitet den *text* mithilfe der konfigurierten Formatierungs-Engine und gibt die generierte Zeichenfolge als Ergebnis zurück. Es wird ein Fehler ausgelöst, wenn für das Objekt keine Konfiguration von **-format** vorhanden ist.
+: Diese Methode verarbeitet den *text* mithilfe der konfigurierten Formatierungs-Engine und gibt die generierte Zeichenkette als Ergebnis zurück. Es wird ein Fehler ausgelöst, wenn für das Objekt keine Konfiguration von **-format** vorhanden ist.
 
     Die Methode geht davon aus, dass der *text* im *docidx*-Format vorliegt, wie im Begleitdokument *docidx\_fmt* festgelegt. Andernfalls werden Fehler ausgelöst.
 
 *objectName* **map** *symbolic* *actual*
-: Diese Methode fügt dem objektbezogenen Zuordnungsschema von *symbolic* Dateinamen zu den *actual* URIs einen Eintrag hinzu. Das Objekt speichert lediglich diese Zuordnung und stellt sie der konfigurierten Formatierungs-Engine über den Befehl **dt\_fmap** zur Verfügung. Dieser Befehl wird ausführlicher in der *docidx-Plugin-API-Referenz* beschrieben, die die Interaktion zwischen den von diesem Paket erstellten Objekten und den Index-Formatierungs-Engines festlegt.
+: Diese Methode fügt dem objektbezogenen Zuordnungsschema von *symbolic* Dateinamen zu den *actual* URIs einen Eintrag hinzu. Das Objekt speichert lediglich diese Zuordnung und stellt sie der konfigurierten Formatierungs-Engine über den Befehl [dt\_fmap][docidx_plugin_apiref] zur Verfügung. Dieser Befehl wird ausführlicher in der *docidx-Plugin-API-Referenz* beschrieben, die die Interaktion zwischen den von diesem Paket erstellten Objekten und den Index-Formatierungs-Engines festlegt.
 
 *objectName* **parameters**
 : Diese Methode gibt eine Liste zurück, die die Namen aller von der konfigurierten Formatierungs-Engine bereitgestellten Parameter enthält. Sie gibt eine leere Liste zurück, wenn das Objekt noch nicht für ein bestimmtes Format konfiguriert ist.
 
 *objectName* **search** *path*
-: Diese Methode erweitert die objektbezogene Liste der Pfade, die von den Indexformatierungs-Engines durchsucht werden. Siehe auch den Befehl **::doctools::idx::search** zur Erweiterung der paketbezogenen Pfadliste. Beachten Sie, dass der zuletzt eingegebene Pfad zuerst durchsucht wird. Weitere Einzelheiten finden Sie im Abschnitt [Formatzuordnung].
+: Diese Methode erweitert die objektbezogene Liste der Pfade, die nach Index-Formatierungs-Engines durchsucht werden. Siehe auch den Befehl **::doctools::idx::search** zur Erweiterung der paketbezogenen Pfadliste. Beachten Sie, dass der zuletzt eingegebene Pfad zuerst durchsucht wird. Weitere Einzelheiten finden Sie im Abschnitt [Formatzuordnung].
 
 *objectName* **setparam** *name* *value*
 : Diese Methode setzt den mit *name* bezeichneten Engine-Parameter auf den angegebenen *value*. Es wird ein Fehler ausgelöst, wenn das Objekt entweder noch nicht für ein bestimmtes Format konfiguriert ist oder wenn die Formatierungs-Engine für das konfigurierte Format keinen Parameter mit dem angegebenen *name* bereitstellt. Die Liste der von der konfigurierten Formatierungs-Engine bereitgestellten Parameter kann über die Methode **parameters** abgerufen werden.
@@ -138,7 +138,7 @@ Alle von **::doctools::idx::new** erstellten Befehle haben die folgende allgemei
 Alle docidx-Objekte unterstützen die folgenden Konfigurationsoptionen:
 
 **-file** *file*
-: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl **dt\_file** zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *docidx\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
+: Das Argument dieser Option wird im Objekt gespeichert und der konfigurierten Formatierungs-Engine über den Befehl [dt\_file][doctools_plugin_apiref] zur Verfügung gestellt. Dieser Befehl wird im Begleitdokument *docidx\_api* näher beschrieben, das die API zwischen dem Objekt und den Formatierungs-Engines festlegt.
 
     Der Standardwert dieser Option ist die leere Zeichenkette.
 
@@ -160,7 +160,7 @@ Das Paket und das Objekt führen den folgenden Algorithmus aus, wenn versucht wi
 
 2. Wenn dies nicht der Fall ist, wird die Liste der objektbezogenen Suchpfade durchsucht. Für jedes Verzeichnis in der Liste prüft das Paket, ob dieses Verzeichnis eine Datei „*idx.foo*“ enthält. Ist dies der Fall, wird diese Datei als Implementierung herangezogen.
 
-    Hinweise: Diese Liste von Pfaden ist zunächst leer und kann über die Objektmethode **search** erweitert werden.
+    Beachten Sie, dass diese Liste von Pfaden zunächst leer ist und über die Objektmethode **search** erweitert werden kann.
 
 3. Ist dies nicht der Fall, wird die Liste der Paketpfade durchsucht. Für jedes Verzeichnis in der Liste prüft das Paket, ob dieses Verzeichnis eine Datei „*idx.foo*“ enthält. Ist dies der Fall, wird diese Datei als Implementierung herangezogen.
 

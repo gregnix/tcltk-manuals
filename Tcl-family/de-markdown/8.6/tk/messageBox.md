@@ -49,7 +49,7 @@ Die folgenden Option-Wert-Paare werden unterstützt:
 : Legt eine Zeichenkette als Titel der Meldungsbox fest. Standard ist eine leere Zeichenkette.
 
 **-type** *predefinedType*
-: Ordnet eine vordefinierte Menge von Buttons an. Folgende Werte sind für *predefinedType* möglich:
+: Sorgt dafür, dass eine vordefinierte Menge von Buttons angezeigt wird. Folgende Werte sind für *predefinedType* möglich:
 
     **abortretryignore**
     : Zeigt drei Buttons mit den symbolischen Namen **abort**, **retry** und **ignore**.

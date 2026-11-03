@@ -50,7 +50,7 @@ Dieses Paket stellt eine einheitliche Schnittstelle bereit, um Software zu schre
     ```
 
 **::nmea::open\_port** *port* ?speed?
-: Öffnet die angegebene COM-Schnittstelle und liest NMEA-Sätze, sobald welche anliegen. Die Geschwindigkeit ist 4800 bps oder *speed*.
+: Öffnet die angegebene COM-Schnittstelle und liest NMEA-Sätze, sobald welche anliegen. Die Geschwindigkeit ist standardmäßig 4800 bps oder, falls angegeben, *speed*.
 
 **::nmea::close\_port**
 : Schließt die COM-Verbindung, wenn eine offen ist.
@@ -80,7 +80,7 @@ Dieses Paket stellt eine einheitliche Schnittstelle bereit, um Software zu schre
 : Wenn derzeit ein Port geöffnet ist, schreibt dieser Befehl den angegebenen Satz und die Daten im korrekten NMEA-Format mit Prüfsumme an den Port.
 
 **::nmea::event** *setence* ?command?
-: Registriert eine Handler-Prozedur für einen gegebenen NMEA-*sentence*. Je Satz gibt es höchstens einen Handler; ein vorhandener wird ersetzt. Ohne Befehl gibt er den Namen des aktuellen Handlers für den gegebenen *setence* zurück, oder eine leere Zeichenkette, wenn keiner existiert. Neben den eingehenden Sätzen gibt es zwei eingebaute Typen, EOF und DEFAULT. Der Handler für den DEFAULT-*setence* läuft, wenn es für diesen Satz keinen eigenen Handler gibt. Der EOF-Handler läuft, wenn an der offenen Datei oder Schnittstelle das Dateiende erreicht ist.
+: Registriert eine Handler-Prozedur für einen gegebenen NMEA-*sentence*. Je Satz gibt es höchstens einen Handler; ein vorhandener wird ersetzt. Ohne Befehl gibt er den Namen des aktuellen Handlers für den gegebenen *setence* zurück, oder eine leere Zeichenkette, wenn keiner existiert. Neben den eingehenden Sätzen gibt es zwei eingebaute Typen, EOF und DEFAULT. Der Handler für den DEFAULT-Satz läuft, wenn es für diesen Satz keinen eigenen Handler gibt. Der EOF-Handler läuft, wenn an der offenen Datei oder Schnittstelle das Dateiende erreicht ist.
 
     Die Handler-Prozeduren, mit Ausnahme der eingebauten Typen, müssen genau ein Argument nehmen, eine Liste der Datenwerte. Der DEFAULT-Handler soll zwei Argumente haben, den Satztyp und die Datenwerte. Der EOF-Handler hat keine Argumente.
 

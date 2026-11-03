@@ -51,7 +51,7 @@ Ein Objekt **piePeripheralLabeler** muss nicht gelöscht werden. Die Klasse pie 
 # Optionen
 
 **-font** value
-: Eine Schrift für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schrift systemabhängig.
+: Eine Schriftart für die Segmentbeschriftungen. Fehlt die Angabe, ist die Schriftart systemabhängig.
 
 **-justify** value
 : Ausrichtung der Beschriftungen in der eigenen Spalte. Einer von *left*, *center* oder *right*. Voreingestellt ist *left*. Ist die Ausrichtung *right*, fluchten die rechten Kanten aller Spaltenbeschriftungen.
@@ -60,7 +60,7 @@ Ein Objekt **piePeripheralLabeler** muss nicht gelöscht werden. Die Klasse pie 
 : Abstand zwischen der Kreisdiagrammgrafik und der nächsten Segmentbeschriftung. Der Wert hat eine der Formen aus dem Abschnitt *KOORDINATEN* der Handbuchseite **canvas**.
 
 **-smallfont**
-: Eine Schrift für die Segmentwerte. Gewöhnlich eine kleine Schrift, damit sich die Werte nicht überdecken, wenn zwei Segmente sehr nah beieinander liegen. Fehlt die Angabe, gilt die Schrift der Beschreibungsbeschriftung, Option **-font**.
+: Eine Schriftart für die Segmentwerte. Gewöhnlich eine kleine Schriftart, damit sich die Werte nicht überdecken, wenn zwei Segmente sehr nah beieinander liegen. Fehlt die Angabe, gilt die Schrift der Beschreibungsbeschriftung, Option **-font**.
 
 **-widestvaluetext**
 : Eine Zeichenkette maximaler Breite für die Segmentwerte, die um das Kreisdiagramm neben den Segmenten stehen, damit beim Setzen von Breite und Höhe genug Platz für diese Wertbeschriftungen bleibt. Voreingestellt ist 00.0. Zum Beispiel kann der Wert „00.00 %“ sein.

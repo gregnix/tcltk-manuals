@@ -264,7 +264,7 @@ Er exportiert nur einen einzigen Befehl: **struct::list**. Alle hier bereitgeste
     ```
 
 **::struct::list** **split** *sequence* *cmdprefix* ?*passVar* *failVar*?
-: Dies ist eine Variante der Methode **filter**, siehe oben. Statt nur die Elemente zurückzugeben, die den Test bestehen, liefert er Listen sowohl der Elemente, die den Test bestehen, als auch derer, die ihn nicht bestehen.
+: Dies ist eine Variante der Methode **filter**, siehe oben. Statt nur die Elemente zurückzugeben, die den Test bestehen, liefert sie Listen sowohl der Elemente, die den Test bestehen, als auch derer, die ihn nicht bestehen.
 
     Sind keine Variablennamen angegeben, ist das Ergebnis des Befehls eine Liste aus der Liste der bestehenden und der Liste der nicht bestehenden Elemente, in dieser Reihenfolge. Andernfalls werden die Listen der Elemente, die den Test bestanden haben, und der Elemente, die den Test nicht bestanden haben, in den beiden angegebenen Variablen gespeichert, und das Ergebnis ist eine Liste, die zwei Zahlen enthält: die Anzahl der Elemente, die den Test bestanden haben, und die Anzahl der Elemente, die den Test nicht bestanden haben, in dieser Reihenfolge.
 
@@ -365,7 +365,7 @@ Er exportiert nur einen einzigen Befehl: **struct::list**. Alle hier bereitgeste
 
     Die *table*-Argumente stellen eine Tabelle oder Matrix aus Zeilen und Spalten mit Werten dar. Wir verwenden dieselbe Darstellung, wie sie von den Methoden **get rect** und **set rect** von **matrix**-Objekten generiert und verarbeitet wird. Mit anderen Worten: Jedes Argument ist eine Liste, die die gesamte Matrix darstellt. Ihre Elemente sind ebenfalls Listen, von denen jede eine einzelne Zeile der Matrix darstellt. Die Elemente der Zeilenlisten sind die Werte der Spalten.
 
-    Die aus der Verknüpfungsoperation resultierende Tabelle wird als Ergebnis des Befehls zurückgegeben. Wir verwenden dieselbe Darstellung wie oben für die Eingabe-*table*s beschrieben.
+    Die aus der Verknüpfungsoperation resultierende Tabelle wird als Ergebnis des Befehls zurückgegeben. Wir verwenden dieselbe Darstellung wie oben für die Eingabetabellen (*table*) beschrieben.
 
 **::struct::list** **dbJoinKeyed** ?**-inner**|**-left**|**-right**|**-full**? ?**-keys** *varname*? *table*...
 : Die mit dieser Methode durchgeführten Vorgänge entsprechen den oben für **dbJoin** beschriebenen. Der einzige Unterschied besteht in der Angabe der zu verwendenden Schlüssel. Anstatt hier von der Tabelle getrennte Spaltenindizes zu verwenden, werden die Schlüssel innerhalb der Tabelle selbst bereitgestellt. Die Zeilenelemente in jeder *table* sind keine Listen von Spaltenwerten, sondern eine Liste mit zwei Elementen, wobei das zweite Element die reguläre Liste der Spaltenwerte und das erste Element der zu verwendende Schlüssel ist.

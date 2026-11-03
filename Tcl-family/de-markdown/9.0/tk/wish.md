@@ -54,10 +54,10 @@ wish - Einfache Fenster-Shell
 : *name* wird der Fenstertitel und der Name des Interpreters für [send]-Befehle.
 
 **-sync**
-: Alle Befehle an den X-Server laufen synchron, Fehler werden sofort gemeldet. Die Ausführung wird deutlich langsamer, das hilft beim Debuggen.
+: Alle Befehle an den X-Server laufen synchron, Fehler werden sofort gemeldet. Die Ausführung wird deutlich langsamer, ist aber beim Debuggen nützlich.
 
 **-use** *id*
-: Legt fest, dass das Hauptfenster der Anwendung in das Fenster mit der Kennung *id* eingebettet wird und nicht als eigenständiges Toplevel-Fenster entsteht. *Id* hat dieselbe Form wie der Wert der Option **-use** bei Toplevel-Widgets, also die Form, die [winfo id][winfo] liefert. Auf manchen Plattformen funktioniert das nur, wenn *id* einen Tk-[frame] oder ein [toplevel] mit gesetzter Option **-container** bezeichnet.
+: Legt fest, dass das Hauptfenster der Anwendung in das Fenster mit der Kennung *id* eingebettet wird und nicht als eigenständiges Toplevel-Fenster entsteht. *Id* muss in derselben Form angegeben werden wie der Wert der Option **-use** bei Toplevel-Widgets, also die Form, die [winfo id][winfo] liefert. Auf manchen Plattformen funktioniert das nur dann korrekt, wenn *id* einen Tk-[frame] oder ein [toplevel] mit gesetzter Option **-container** bezeichnet.
 
 **-visual** *visual*
 : Legt das Visual für das Fenster fest. *Visual* darf jede Form haben, die die Prozedur [Tk\_GetVisual][GetVisual] unterstützt.
@@ -124,7 +124,7 @@ Besser beginnen Skriptdateien mit diesen drei Zeilen:
 exec wish "$0" ${1+"$@"}
 ```
 
-Das hat gegenüber dem vorigen Absatz drei Vorteile. Erstens muss der Ort der **wish**-Binärdatei nicht fest im Skript stehen: sie darf irgendwo im Suchpfad der Shell liegen. Zweitens entfällt die Grenze von etwa 30 Zeichen für den Dateinamen. Drittens funktioniert das auch, wenn **wish** selbst ein Shell-Skript ist (auf manchen Systemen wählt das **wish**-Skript eine von mehreren Binärdateien, um mehrere Architekturen oder Betriebssysteme zu bedienen). Die drei Zeilen lassen sowohl **sh** als auch **wish** das Skript verarbeiten, [exec] führt aber nur **sh** aus. **sh** verarbeitet das Skript zuerst, behandelt die zweite Zeile als Kommentar und führt die dritte aus. [exec] beendet die Verarbeitung durch die Shell und startet **wish**, das das ganze Skript erneut verarbeitet. Beim Start von **wish** gelten alle drei Zeilen als Kommentar, weil der Backslash am Ende der zweiten Zeile die dritte Zeile zum Kommentar der zweiten macht.
+Das hat gegenüber dem vorigen Absatz drei Vorteile. Erstens muss der Ort der **wish**-Binärdatei nicht fest im Skript stehen: sie darf irgendwo im Suchpfad der Shell liegen. Zweitens entfällt die Grenze von etwa 30 Zeichen für den Dateinamen. Drittens funktioniert das auch, wenn **wish** selbst ein Shell-Skript ist (auf manchen Systemen wählt das **wish**-Skript eine von mehreren Binärdateien, um mehrere Architekturen oder Betriebssysteme zu bedienen). Die drei Zeilen lassen sowohl **sh** als auch **wish** das Skript verarbeiten, [exec] wird aber nur von **sh** ausgeführt. **sh** verarbeitet das Skript zuerst, behandelt die zweite Zeile als Kommentar und führt die dritte aus. [exec] beendet die Verarbeitung durch die Shell und startet **wish**, das das ganze Skript erneut verarbeitet. Beim Start von **wish** gelten alle drei Zeilen als Kommentar, weil der Backslash am Ende der zweiten Zeile die dritte Zeile zum Kommentar der zweiten macht.
 
 Das Ende einer Skriptdatei ist das physische Ende des Mediums oder das Zeichen „\\032“ („\\u001a“, Strg-Z). Steht dieses Zeichen in der Datei, liest **wish** den Text bis unmittelbar vor dieses Zeichen. Eine Anwendung, die das Zeichen in der Datei braucht, kann es als „\\032“, „\\x1a“ oder „\\u001a“ kodieren oder mit Befehlen wie [format] oder [binary] erzeugen.
 
@@ -134,7 +134,7 @@ Interaktives **wish** fordert jeden Befehl mit „**%** “ an. Die Variablen **
 
 # Zipvfs
 
-Wird eine Zip-Datei an das Ende von **wish** angehängt, wird ihr Inhalt beim Start unter dem virtuellen Dateisystem **//zipfs:/** eingehängt. Liegt im Archiv ein Verzeichnis [tk\_library][tkvars] auf oberster Ebene, wird es als env(TK\_LIBRARY) geladen. Liegt im obersten Verzeichnis des Archivs eine Datei **main.tcl**, wird sie geladen statt der üblichen Befehlszeilenverarbeitung der Shell.
+Wird eine Zip-Datei an das Ende von **wish** angehängt, wird ihr Inhalt beim Start unter dem virtuellen Dateisystem **//zipfs:/** eingehängt. Liegt im Archiv ein Verzeichnis [tk\_library][tkvars] auf oberster Ebene, wird es als env(TK\_LIBRARY) geladen. Liegt im obersten Verzeichnis des Archivs eine Datei **main.tcl**, wird sie mittels `source` eingelesen statt der üblichen Befehlszeilenverarbeitung der Shell.
 
 An das Ende eines Programmbilds (tclsh oder wish) kann nur eine Zip-Datei angehängt werden. Sind mehrere angehängt, gilt nur die letzte.
 

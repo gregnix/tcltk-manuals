@@ -60,7 +60,7 @@ fileutil – Prozeduren zur Implementierung einiger Dateidienste
 Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
 
 **::fileutil::lexnormalize** *path*
-: Dieser Befehl führt eine rein lexikalische Normalisierung des *Pfads* durch und gibt den geänderten Pfad als Ergebnis zurück. Symbolische Links im Pfad werden *nicht* aufgelöst.
+: Dieser Befehl führt eine rein lexikalische Normalisierung von *path* durch und gibt den geänderten Pfad als Ergebnis zurück. Symbolische Links im Pfad werden *nicht* aufgelöst.
 
     Beispiele:
 
@@ -73,12 +73,12 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     ```
 
 **::fileutil::fullnormalize** *path*
-: Dieser Befehl löst alle symbolischen Links im *Pfad* auf und gibt den geänderten Pfad als Ergebnis zurück. Im Gegensatz zum integrierten Befehl **file normalize** löst dieser Befehl auch einen symbolischen Link im letzten Element des Pfads auf.
+: Dieser Befehl löst alle symbolischen Links in *path* auf und gibt den geänderten Pfad als Ergebnis zurück. Im Gegensatz zum integrierten Befehl **file normalize** löst dieser Befehl auch einen symbolischen Link im letzten Element des Pfads auf.
 
 **::fileutil::test** *path* *codes* ?*msgvar*? ?*label*?
-: Ein Befehl zum Testen verschiedener Eigenschaften eines *Pfads*. Die zu testenden Eigenschaften werden in *codes* angegeben, entweder als Liste von Schlüsselwörtern, die die Eigenschaften beschreiben, oder als Zeichenkette, in der jeder Buchstabe eine Abkürzung für eine zu testende Eigenschaft darstellt. Die erkannten Schlüsselwörter, Abkürzungen und die zugehörigen Eigenschaften sind in der folgenden Liste aufgeführt. Die Tests werden in der Reihenfolge ausgeführt, in der sie dem Befehl übergeben wurden.
+: Ein Befehl zum Testen verschiedener Eigenschaften von *path*. Die zu testenden Eigenschaften werden in *codes* angegeben, entweder als Liste von Schlüsselwörtern, die die Eigenschaften beschreiben, oder als Zeichenkette, in der jeder Buchstabe eine Abkürzung für eine zu testende Eigenschaft darstellt. Die erkannten Schlüsselwörter, Abkürzungen und die zugehörigen Eigenschaften sind in der folgenden Liste aufgeführt. Die Tests werden in der Reihenfolge ausgeführt, in der sie dem Befehl übergeben wurden.
 
-    Das Ergebnis des Befehls ist ein boolescher Wert. Er ist genau dann wahr, wenn der *Pfad* alle angegebenen Tests besteht. Falls der *Pfad* einen oder mehrere Tests nicht besteht, hinterlässt der erste fehlgeschlagene Test eine Meldung in der Variable, auf die *msgvar* verweist, wenn diese festgelegt ist. Der Meldung wird *label* vorangestellt, wenn dieses festgelegt ist. *Hinweis*: Die Variable, auf die *msgvar* verweist, wird überhaupt nicht verändert, wenn alle Tests bestanden werden.
+    Das Ergebnis des Befehls ist ein boolescher Wert. Er ist genau dann wahr, wenn *path* alle angegebenen Tests besteht. Falls *path* einen oder mehrere Tests nicht besteht, hinterlässt der erste fehlgeschlagene Test eine Meldung in der Variable, auf die *msgvar* verweist, wenn diese festgelegt ist. Der Meldung wird *label* vorangestellt, wenn dieses festgelegt ist. *Hinweis*: Die Variable, auf die *msgvar* verweist, wird überhaupt nicht verändert, wenn alle Tests bestanden werden.
 
     *r*ead
     : **file readable**
@@ -107,20 +107,20 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     Jede Datei kann ihre eigenen Optionen vorangestellt haben, und für alles, was nicht direkt angegeben ist, werden die Standardwerte aus den Optionen der vorherigen Datei übernommen. Die erste Datei übernimmt die Systemstandardwerte für nicht angegebene Optionen.
 
 **::fileutil::writeFile** ?*options*? *file* *data*
-: Der Befehl ersetzt den aktuellen Inhalt der angegebenen *Datei* durch *Daten*, wobei der Prozess durch die Optionen konfiguriert wird. Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**. Die Angabe einer nicht vorhandenen Datei ist zulässig und bewirkt, dass der Befehl die Datei (sowie alle erforderlichen, aber fehlenden Verzeichnisse) erstellt.
+: Der Befehl ersetzt den aktuellen Inhalt der angegebenen Datei *file* durch *data*, wobei der Prozess durch die Optionen konfiguriert wird. Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**. Die Angabe einer nicht vorhandenen Datei ist zulässig und bewirkt, dass der Befehl die Datei (sowie alle erforderlichen, aber fehlenden Verzeichnisse) erstellt.
 
 **::fileutil::appendToFile** ?*options*? *file* *data*
-: Dieser Befehl verhält sich ähnlich wie **::fileutil::writeFile**, mit dem Unterschied, dass der bisherige Inhalt von *file* nicht ersetzt, sondern angehängt wird. Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
+: Dieser Befehl verhält sich ähnlich wie **::fileutil::writeFile**, mit dem Unterschied, dass der bisherige Inhalt von *file* nicht ersetzt, sondern ergänzt wird (die Daten werden angehängt). Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
 
 **::fileutil::insertIntoFile** ?*options*? *file* *at* *data*
-: Dieser Befehl ähnelt **::fileutil::appendToFile**, mit dem Unterschied, dass die neuen Daten nicht am Ende angehängt, sondern an einer bestimmten Stelle innerhalb der Datei eingefügt werden. Außerdem muss bei diesem Befehl der Pfad zu einer vorhandenen Datei angegeben werden. Eine nicht vorhandene Datei wird nicht erstellt, sondern es wird stattdessen eine Fehlermeldung ausgegeben.
+: Dieser Befehl ähnelt **::fileutil::appendToFile**, mit dem Unterschied, dass die neuen Daten nicht am Ende angehängt, sondern an einer bestimmten Stelle innerhalb der Datei eingefügt werden. Außerdem muss bei diesem Befehl der Pfad zu einer vorhandenen Datei angegeben werden. Eine nicht vorhandene Datei wird nicht erstellt, sondern es wird stattdessen ein Fehler ausgelöst.
 
-    Die angegebene Position *at* muss eine ganze Zahl im Bereich von **0** bis \[Dateigröße *Datei*\] sein. **0** bewirkt das Einfügen der neuen Daten vor dem ersten Zeichen des vorhandenen Inhalts, während \[Dateigröße *Datei*\] das Einfügen nach dem letzten Zeichen des vorhandenen Inhalts bewirkt, d. h. das Anhängen.
+    Die angegebene Position *at* muss eine ganze Zahl im Bereich von **0** bis \[file size *file*\] sein. **0** bewirkt das Einfügen der neuen Daten vor dem ersten Zeichen des vorhandenen Inhalts, während \[file size *file*\] das Einfügen nach dem letzten Zeichen des vorhandenen Inhalts bewirkt, d. h. das Anhängen.
 
     Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
 
 **::fileutil::removeFromFile** ?*options*? *file* *at* *n*
-: Dieser Befehl ist das Gegenstück zu **::fileutil::insertIntoFile** und entfernt *n* Zeichen aus der *Datei*, beginnend an der Position *at*. Die angegebene Position *at* muss eine ganze Zahl im Bereich von **0** bis \[Dateigröße *Datei*\] sein - *n*. Bei **0** beginnt das Entfernen der neuen Daten mit dem ersten Zeichen des vorhandenen Inhalts, während \[Dateigröße *Datei*\] - *n* das Entfernen des Endes des vorhandenen Inhalts bewirkt, d. h. das Kürzen der Datei.
+: Dieser Befehl ist das Gegenstück zu **::fileutil::insertIntoFile** und entfernt *n* Zeichen aus *file*, beginnend an der Position *at*. Die angegebene Position *at* muss eine ganze Zahl im Bereich von **0** bis \[file size *file*\] - *n* sein. Bei **0** beginnt das Entfernen der neuen Daten mit dem ersten Zeichen des vorhandenen Inhalts, während \[file size *file*\] - *n* das Entfernen des Endes des vorhandenen Inhalts bewirkt, d. h. das Kürzen der Datei.
 
     Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
 
@@ -130,14 +130,14 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
 
 **::fileutil::updateInPlace** ?*options*? *file* *cmd*
-: Dieser Befehl kann als die allgemeine Kernfunktionalität von **::fileutil::replaceInFile** betrachtet werden. Er liest zunächst den Inhalt der angegebenen *Datei*, führt dann den Befehl *cmd* aus, wobei diese Daten angehängt werden, und schreibt schließlich das Ergebnis dieses Aufrufs als neuen Inhalt der Datei zurück.
+: Dieser Befehl kann als die allgemeine Kernfunktionalität von **::fileutil::replaceInFile** betrachtet werden. Er liest zunächst den Inhalt der angegebenen *Datei*, führt dann das Befehlspräfix *cmd* aus, an das diese Daten angehängt werden, und schreibt schließlich das Ergebnis dieses Aufrufs als neuen Inhalt der Datei zurück.
 
     Wenn der ausgeführte Befehl einen Fehler auslöst, wird die *Datei* nicht verändert.
 
     Der Befehl akzeptiert dieselben Optionen wie **::fileutil::cat**.
 
 **::fileutil::fileType** *filename*
-: Eine Implementierung des UNIX-Befehls **file**, die verschiedene Heuristiken verwendet, um den Dateityp zu ermitteln.  Gibt eine Liste zurück, die so viele Typinformationen wie möglich über die Datei enthält, von den allgemeinsten (z. B. „binary“ oder „text“) bis zu den spezifischsten (z. B. „gif“). Der Rückgabewert für eine GIF-Datei wäre beispielsweise „binary graphic gif“.  Der Befehl erkennt die folgenden Dateitypen: Verzeichnis, leer, binär, Text, Skript (mit Interpreter), ausführbare ELF-Datei, ausführbare DOS-Datei, ausführbare NE-Datei, ausführbare PE-Datei, Grafik-GIF, Grafik-JPEG, Grafik-PNG, Grafik-TIFF, Grafik-Bitmap, HTML, XML (mit Doctype, wenn verfügbar), PGP-Nachricht, binäres PDF, Text-PS, Text-EPS, binäres Gravity_Wave_Data_Frame, komprimiertes Bzip, komprimiertes Gzip, komprimiertes Zip, komprimiertes Tar, Audio-Wave, Audio-MPEG und Link. Außerdem erkennt es „doctools“, „doctoc“ und „docidx“-Dokumentationsdateien sowie „tklib“-Diagramme.
+: Eine Implementierung des UNIX-Befehls **file**, die verschiedene Heuristiken verwendet, um den Dateityp zu ermitteln.  Gibt eine Liste zurück, die so viele Typinformationen wie möglich über die Datei enthält, von den allgemeinsten (z. B. „binary“ oder „text“) bis zu den spezifischsten (z. B. „gif“). Der Rückgabewert für eine GIF-Datei wäre beispielsweise „binary graphic gif“.  Der Befehl erkennt die folgenden Dateitypen: Verzeichnis, leer, binär, Text, Skript (mit Interpreter), ausführbare ELF-Datei, ausführbare DOS-Datei, ausführbare NE-Datei, ausführbare PE-Datei, Grafik-GIF, Grafik-JPEG, Grafik-PNG, Grafik-TIFF, Grafik-Bitmap, HTML, XML (mit Doctype, wenn verfügbar), PGP-Nachricht, binäres PDF, Text-PS, Text-EPS, binäres Gravity_Wave_Data_Frame, komprimiertes Bzip, komprimiertes Gzip, komprimiertes Zip, komprimiertes Tar, Audio-Wave, Audio-MPEG und Link. Außerdem erkennt er „doctools“, „doctoc“ und „docidx“-Dokumentationsdateien sowie „tklib“-Diagramme.
 
 **::fileutil::find** ?*basedir* ?*filtercmd*??
 : Eine Implementierung des Unix-Befehls **find**. Adaptiert aus dem Tcler-Wiki. Nimmt höchstens zwei Argumente entgegen: den Pfad zu dem Verzeichnis, in dem die Suche beginnen soll, und einen Befehl, mit dem die Auswertung des Interesses an jeder Datei durchgeführt wird. Der Pfad ist standardmäßig „*.*“, d. h. das aktuelle Verzeichnis. Der Befehl ist standardmäßig die leere Zeichenkette, was bedeutet, dass alle Dateien von Interesse sind. Der Befehl sorgt dafür, dass er sich bei zirkulären Verknüpfungsstrukturen *nicht* in Endlosschleifen verliert. Das Ergebnis des Befehls ist eine Liste, die die Pfade zu den relevanten Dateien enthält.
@@ -156,35 +156,35 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     ```
 
 **::fileutil::findByPattern** *basedir* ?**-regexp**|**-glob**? ?**--**? *patterns*
-: Dieser Befehl basiert auf dem **TclX**-Befehl **recursive\_glob**, mit dem Unterschied, dass er keine Rekursion über mehr als ein Verzeichnis gleichzeitig zulässt. Er nutzt intern **::fileutil::find** und ist daher in der Lage, symbolische Links zu verfolgen – was der **TclX**-Befehl nicht tut. Das erste Argument ist das Verzeichnis, in dem die Suche beginnen soll, das zweite Argument ist eine Liste von *Mustern*. Der Befehl gibt eine Liste aller Dateien zurück, die über *basedir* erreichbar sind und deren Namen mit mindestens einem der Muster übereinstimmen. Die Optionen vor der Musterliste legen den Abgleichstil fest, entweder reguläre Ausdrücke (regexp) oder Glob-Muster. Der Glob-Abgleich ist die Standardeinstellung, wenn keine Optionen angegeben werden. Die Verwendung der Option **--** beendet den Optionsprozess. Dies ermöglicht die Verwendung eines führenden „-“ in den Mustern.
+: Dieser Befehl basiert auf dem **TclX**-Befehl **recursive\_glob**, mit dem Unterschied, dass er keine Rekursion über mehr als ein Verzeichnis gleichzeitig zulässt. Er nutzt intern **::fileutil::find** und ist daher in der Lage, symbolischen Links zu folgen, und tut dies auch – was der **TclX**-Befehl nicht tut. Das erste Argument ist das Verzeichnis, in dem die Suche beginnen soll, das zweite Argument ist eine Liste von Mustern *patterns*. Der Befehl gibt eine Liste aller Dateien zurück, die über *basedir* erreichbar sind und deren Namen mit mindestens einem der Muster übereinstimmen. Die Optionen vor der Musterliste legen den Abgleichstil fest, entweder reguläre Ausdrücke (regexp) oder Glob-Muster. Der Glob-Abgleich ist die Standardeinstellung, wenn keine Optionen angegeben werden. Die Verwendung der Option **--** beendet den Optionsprozess. Dies ermöglicht die Verwendung eines führenden „-“ in den Mustern.
 
 **::fileutil::foreachLine** *var filename cmd*
-: Der Befehl liest die Datei *Dateiname* ein und führt für jede Zeile in der Datei das Skript *cmd* aus. Während der Ausführung des Skripts wird die Variable *var* auf den Inhalt der aktuellen Zeile gesetzt. Der Wert dieses Befehls ist das Ergebnis des letzten Aufrufs des Skripts *cmd* oder die leere Zeichenkette, wenn die Datei leer war.
+: Der Befehl liest die Datei *filename* ein und führt für jede Zeile in der Datei das Skript *cmd* aus. Während der Ausführung des Skripts wird die Variable *var* auf den Inhalt der aktuellen Zeile gesetzt. Der Rückgabewert dieses Befehls ist das Ergebnis des letzten Aufrufs des Skripts *cmd* oder die leere Zeichenkette, wenn die Datei leer war.
 
 **::fileutil::grep** *pattern* ?*files*?
-: Implementierung von **grep**. Adaptiert aus dem Tcler-Wiki. Das erste Argument definiert das *Muster*, nach dem gesucht werden soll. Darauf folgt eine Liste der *Dateien*, die durchsucht werden sollen. Die Liste ist optional; fehlt sie, wird **stdin** verwendet. Das Ergebnis der Prozedur ist eine Liste, die die Treffer enthält. Jeder Treffer ist ein einzelnes Element der Liste und enthält den Dateinamen, die Nummer und den Inhalt der übereinstimmenden Zeile, getrennt durch Doppelpunkte.
+: Implementierung von **grep**. Adaptiert aus dem Tcler-Wiki. Das erste Argument definiert das Muster *pattern*, nach dem gesucht werden soll. Darauf folgt eine Liste der Dateien *files*, die durchsucht werden sollen. Die Liste ist optional; fehlt sie, wird **stdin** verwendet. Das Ergebnis der Prozedur ist eine Liste, die die Treffer enthält. Jeder Treffer ist ein einzelnes Element der Liste und enthält den Dateinamen, die Nummer und den Inhalt der übereinstimmenden Zeile, getrennt durch Doppelpunkte.
 
 **::fileutil::install** ?**-m** *mode*? *source* *destination*
-: Der Befehl **install** ähnelt in seiner Funktionsweise dem Befehl **install**, der auf vielen Unix-Systemen zu finden ist, oder dem Shell-Skript, das mit vielen Quellcode-Distributionen mitgeliefert wird (beispielsweise „unix/install-sh“ in den Tcl-Quellcodes).  Er kopiert *Quelle* – bei der es sich entweder um eine Datei oder ein Verzeichnis handeln kann – nach *Ziel*, das ein Verzeichnis sein sollte, es sei denn, *Quelle* ist ebenfalls eine einzelne Datei.  Mit der Option „-m“ kann der Benutzer einen Modus im Unix-Stil festlegen (entweder oktal oder symbolisch – siehe **file attributes**).
+: Der Befehl **install** ähnelt in seiner Funktionsweise dem Befehl **install**, der auf vielen Unix-Systemen zu finden ist, oder dem Shell-Skript, das mit vielen Quellcode-Distributionen mitgeliefert wird (beispielsweise „unix/install-sh“ in den Tcl-Quellcodes).  Er kopiert *source* – bei der es sich entweder um eine Datei oder ein Verzeichnis handeln kann – nach *destination*, das ein Verzeichnis sein sollte, es sei denn, *source* ist ebenfalls eine einzelne Datei.  Mit der Option „-m“ kann der Benutzer einen Modus im Unix-Stil festlegen (entweder oktal oder symbolisch – siehe **file attributes**).
 
 **::fileutil::stripN** *path* *n*
-: Entfernt die ersten *n* Elemente aus dem angegebenen *Pfad* und gibt den geänderten Pfad zurück. Wenn *n* größer ist als die Anzahl der Komponenten in *Pfad*, wird eine leere Zeichenkette gegeben. Die Anzahl der Komponenten in einem bestimmten Pfad lässt sich ermitteln, indem Sie die Funktion **llength** auf die von **file split** zurückgegebene Liste anwendet.
+: Entfernt die ersten *n* Elemente aus dem angegebenen Pfad *path* und gibt den geänderten Pfad zurück. Wenn *n* größer ist als die Anzahl der Komponenten in *path*, wird eine leere Zeichenkette zurückgegeben. Die Anzahl der Komponenten in einem bestimmten Pfad lässt sich ermitteln, indem Sie den Befehl **llength** auf die von **file split** zurückgegebene Liste anwenden.
 
 **::fileutil::stripPwd** *path*
-: Genau dann, wenn sich der *Pfad* innerhalb des von \[**pwd**\] gegebenen Verzeichnisses (oder des aktuellen Arbeitsverzeichnisses selbst) befindet, wird er relativ zu diesem Verzeichnis umgewandelt. Mit anderen Worten: Das aktuelle Verzeichnis wird aus dem *Pfad* entfernt. Der gegebenenfalls modifizierte Pfad wird als Ergebnis des Befehls zurückgegeben. Wenn das aktuelle Verzeichnis selbst für *Pfad* festgelegt wurde, gibt der Befehl die Zeichenkette „**.**“ zurück.
+: Genau dann, wenn sich *path* innerhalb des von \[**pwd**\] zurückgegebenen Verzeichnisses (oder des aktuellen Arbeitsverzeichnisses selbst) befindet, wird er relativ zu diesem Verzeichnis umgewandelt. Mit anderen Worten: Das aktuelle Verzeichnis wird aus *path* entfernt. Der gegebenenfalls modifizierte Pfad wird als Ergebnis des Befehls zurückgegeben. Wenn das aktuelle Verzeichnis selbst für *path* festgelegt wurde, gibt der Befehl die Zeichenkette „**.**“ zurück.
 
 **::fileutil::stripPath** *prefix* *path*
-: Nur wenn sich der *Pfad* innerhalb des Verzeichnisses „*Präfix*“ (oder im Präfixverzeichnis selbst) befindet, wird er relativ zu diesem Verzeichnis umgewandelt. Mit anderen Worten: Das Präfixverzeichnis wird aus dem *Pfad* entfernt. Der gegebenenfalls geänderte Pfad wird als Ergebnis des Befehls zurückgegeben. Wenn das Präfixverzeichnis selbst für *Pfad* festgelegt wurde, gibt der Befehl die Zeichenkette „**.**“ zurück.
+: Genau dann, wenn sich *path* innerhalb des Verzeichnisses „*prefix*“ (oder im Präfixverzeichnis selbst) befindet, wird er relativ zu diesem Verzeichnis umgewandelt. Mit anderen Worten: Das Präfixverzeichnis wird aus dem *Pfad* entfernt. Der gegebenenfalls geänderte Pfad wird als Ergebnis des Befehls zurückgegeben. Wenn das Präfixverzeichnis selbst für *Pfad* festgelegt wurde, gibt der Befehl die Zeichenkette „**.**“ zurück.
 
 **::fileutil::jail** *jail* *path*
-: Dieser Befehl stellt sicher, dass der *Pfad* nicht aus dem Verzeichnis *jail* herausführt. Er gibt stets einen absoluten Pfad zurück, der aus *Pfad* abgeleitet wurde und sich innerhalb von *jail* befindet.
+: Dieser Befehl stellt sicher, dass der *Pfad* nicht aus dem Verzeichnis *jail* herausführt. Er gibt stets einen absoluten Pfad zurück, der aus *path* abgeleitet wurde und sich innerhalb von *jail* befindet.
 
-    Ist *Pfad* ein absoluter Pfad und befindet er sich bereits innerhalb von *jail*, wird er unverändert zurückgegeben.
+    Ist *path* ein absoluter Pfad und befindet er sich bereits innerhalb von *jail*, wird er unverändert zurückgegeben.
 
-    Ein absoluter Pfad außerhalb von *jail* wird um sein Stammverzeichnis gekürzt und dann in *jail* eingefügt, indem ihm dieses vorangestellt wird. Dasselbe geschieht, wenn *path* relativ ist, mit dem Unterschied, dass in diesem Fall nichts davon entfernt wird. Vor dem Hinzufügen des Präfixes *jail* wird *Pfad* lexikalisch normalisiert, um zu verhindern, dass der Aufrufer **..**-Segmente in *Pfad* verwendet, um aus dem *jail* zu entkommen.
+    Ein absoluter Pfad außerhalb von *jail* wird um sein Stammverzeichnis gekürzt und dann in *jail* eingefügt, indem ihm dieses vorangestellt wird. Dasselbe geschieht, wenn *path* relativ ist, mit dem Unterschied, dass in diesem Fall nichts davon entfernt wird. Vor dem Hinzufügen des Präfixes *jail* wird *path* lexikalisch normalisiert, um zu verhindern, dass der Aufrufer **..**-Segmente in *path* verwendet, um aus dem *jail* zu entkommen.
 
 **::fileutil::touch** ?**-a**? ?**-c**? ?**-m**? ?**-r** *ref\_file*? ?**-t** *time*? *filename* ?*...*?
-: Implementierung von **touch**. Ändert die atime und mtime der angegebenen Dateien. Wenn **-c** gesetzt ist, werden keine Dateien erstellt, sofern diese nicht bereits vorhanden sind. Wenn **-r**, werden die atime- und mtime-Werte aus *ref\_file* verwendet. Wenn **-t** verwendet wird, wird der ganzzahlige Wert *time* verwendet. Es ist unzulässig, sowohl **-r** als auch **-t** festzulegen. Wenn **-a** erreicht wird, wird nur die atime geändert. Wenn **-m** erreicht wird, wird nur die mtime geändert.
+: Implementierung von **touch**. Ändert die atime und mtime der angegebenen Dateien. Wenn **-c** gesetzt ist, werden keine Dateien erstellt, sofern diese nicht bereits vorhanden sind. Wenn **-r**, werden die atime- und mtime-Werte aus *ref\_file* verwendet. Wenn **-t** verwendet wird, wird der ganzzahlige Uhrzeitwert *time* verwendet. Es ist unzulässig, sowohl **-r** als auch **-t** festzulegen. Wenn **-a** angegeben ist, wird nur die atime geändert. Wenn **-m** angegeben ist, wird nur die mtime geändert.
 
     *Dieser Befehl ist für Tcl-Versionen unter 8.3 nicht verfügbar.*
 
@@ -193,9 +193,9 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
 
     1. Das Verzeichnis, das durch einen Aufruf von **::fileutil::tempdir** mit einem Argument festgelegt wurde. Wenn dieses vorhanden ist, wird ausschließlich dieses Verzeichnis geprüft, und keines der folgenden Elemente wird berücksichtigt.
 
-    2. Das Verzeichnis, das in der Variable TMPDIR angegeben ist.
+    2. Das Verzeichnis, das in der Umgebungsvariablen TMPDIR angegeben ist.
 
-    3. Das Verzeichnis, das in der Variable TEMP angegeben ist.
+    3. Das Verzeichnis, das in der Umgebungsvariablen TEMP angegeben ist.
 
     4. Das Verzeichnis, das in der Umgebungsvariablen TMP angegeben ist.
 
@@ -205,7 +205,7 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
         : „*C:\\TEMP*“, „*C:\\TMP*“, „*\\TEMP*“ und „*\\TMP*“ werden in dieser Reihenfolge geprüft.
 
         (classic) Macintosh
-        : Es wird die Variable TRASH\_FOLDER verwendet. Dies ist höchstwahrscheinlich nicht korrekt.
+        : Es wird die Umgebungsvariable TRASH\_FOLDER verwendet. Dies ist höchstwahrscheinlich nicht korrekt.
 
         Unix
         : Die Verzeichnisse „*/tmp*“, „*/var/tmp*“ und „*/usr/tmp*“ werden in dieser Reihenfolge geprüft.
@@ -215,7 +215,7 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     Der verwendete Algorithmus entspricht im Wesentlichen dem in der Python-Standardbibliothek verwendeten. Die einzige Ausnahme bildet der erste Punkt, nämlich die Möglichkeit, die Suche durch ein benutzerdefiniertes Verzeichnis zu überschreiben.
 
 **::fileutil::tempdir** *path*
-: In diesem Modus legt der Befehl den *Pfad* als erstes und einziges Verzeichnis fest, das als temporäres Verzeichnis verwendet werden soll. Informationen zur Verwendung des Verzeichnisses „set“ finden Sie im vorherigen Punkt. Der Befehl gibt die leere Zeichenkette zurück.
+: In diesem Modus legt der Befehl den *Pfad* als erstes und einziges Verzeichnis fest, das als temporäres Verzeichnis verwendet werden soll. Informationen zur Verwendung des festgelegten Verzeichnisses finden Sie im vorherigen Punkt. Der Befehl gibt die leere Zeichenkette zurück.
 
 **::fileutil::tempdirReset**
 : Durch die Ausführung dieses Befehls werden die Informationen gelöscht, die beim letzten Aufruf von \[**::fileutil::tempdir** *Pfad*\] festgelegt wurden. Siehe auch den letzten Punkt.
@@ -245,7 +245,7 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
 **::fileutil::relative** *base* *dst*
 : Dieser Befehl nimmt zwei Verzeichnispfade entgegen, die beide entweder absolut oder relativ sind, und berechnet den Pfad von *dst* relativ zu *base*. Dieser relative Pfad wird als Ergebnis des Befehls zurückgegeben. Wie aus dem vorigen Satz hervorgeht, kann der Befehl diese Beziehung zwischen den Argumenten nicht berechnen, wenn einer der Pfade absolut und der andere relativ ist.
 
-    *Hinweis:* Der Prozess durch diesen Befehl erfolgt rein lexikalisch. Symbolische Verknüpfungen werden *nicht* berücksichtigt.
+    *Hinweis:* Die Verarbeitung durch diesen Befehl erfolgt rein lexikalisch. Symbolische Verknüpfungen werden *nicht* berücksichtigt.
 
 **::fileutil::relativeUrl** *base* *dst*
 : Dieser Befehl nimmt zwei Dateipfade entgegen, die beide entweder absolut oder relativ sind, und berechnet den Pfad von *dst* relativ zu *base*, aus der Perspektive von *base* betrachtet. Dies entspricht dem Algorithmus, mit dem ein Browser einen relativen Link in der aktuell angezeigten Datei auflöst.
@@ -255,7 +255,7 @@ Dieses Paket enthält Implementierungen von Standard-Unix-Dienstprogrammen.
     *Hinweis:* Die Verarbeitung durch diesen Befehl erfolgt rein lexikalisch. Symbolische Links werden *nicht* berücksichtigt.
 
 
-# Fehler und Inkompatibilitäten
+# Warnungen und Inkompatibilitäten
 
 **1.14.9**
 : In dieser Version wurde das fehlerhafte System von **fileutil::find** zur Verarbeitung von Symlinks durch ein korrekt funktionierendes System ersetzt, das alle zulässigen, nicht zyklischen Pfade unter einem Basis-Verzeichnis ordnungsgemäß auflistet.

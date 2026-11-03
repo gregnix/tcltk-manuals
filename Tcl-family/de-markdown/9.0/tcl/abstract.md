@@ -48,7 +48,7 @@ Beachten Sie, dass **oo::abstract** selbst keine Instanz von **oo::abstract** is
 
 ## Konstruktor
 
-Die Klasse **oo::abstract** definiert keinen expliziten Konstruktor; das bedeutet, dass sie effektiv identisch mit dem Konstruktor der Klasse [oo::class][class] ist.
+Die Klasse **oo::abstract** definiert keinen expliziten Konstruktor; das bedeutet, dass ihr Konstruktor effektiv identisch mit dem Konstruktor der Klasse [oo::class][class] ist.
 
 ## Destruktor
 

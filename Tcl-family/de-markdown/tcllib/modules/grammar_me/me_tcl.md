@@ -61,7 +61,7 @@ grammar::me::tcl – Implementierung virtueller Maschinen I zur Analyse von Toke
 
 # Beschreibung
 
-Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument **grammar::me\_intro**, falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
+Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument [grammar::me\_intro][me_intro], falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
 
 Diese Implementierung ist sehr stark an Tcl gebunden. Alle Stacks im Maschinenzustand werden über den Tcl-Stack verwaltet, der gesamte Kontrollfluss wird durch Tcl-Befehle gesteuert, und die übrigen Maschinenbefehle werden direkt auf Tcl-Befehle abgebildet. Insbesondere die Abgleichung von Nichtterminalsymbolen erfolgt ebenfalls über Tcl-Prozeduren, wodurch die Maschinenimplementierung im Wesentlichen um benutzerdefinierte Befehle erweitert wird.
 
@@ -101,13 +101,13 @@ Die in diesem Abschnitt dokumentierten Befehle implementieren keinen der Befehle
 : Dieser Befehl gibt die Anzahl der Token zurück, die der virtuellen ME-Maschine derzeit bekannt sind.
 
 **::grammar::me::tcl** **sv**
-: Dieser Befehl gibt den aktuellen semantischen Wert *SV* zurück, der in der Maschine gespeichert ist. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**, beschrieben ist.
+: Dieser Befehl gibt den aktuellen semantischen Wert *SV* zurück, der in der Maschine gespeichert ist. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**, beschrieben ist.
 
 **::grammar::me::tcl** **ast**
-: Diese Methode gibt den abstrakten Syntaxbaum zurück, der sich derzeit an der Spitze des AST-Stapels der virtuellen ME-Maschine befindet. Es handelt sich hierbei um einen abstrakten Syntaxbaum gemäß der Spezifikation im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**.
+: Diese Methode gibt den abstrakten Syntaxbaum zurück, der sich derzeit an der Spitze des AST-Stapels der virtuellen ME-Maschine befindet. Es handelt sich hierbei um einen abstrakten Syntaxbaum gemäß der Spezifikation im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**.
 
 **::grammar::me::tcl** **astall**
-: Diese Methode gibt den gesamten Stapel der abstrakten Syntaxbäume zurück, die der virtuellen ME-Maschine derzeit bekannt sind. Jedes Element der zurückgegebenen Liste ist ein abstrakter Syntaxbaum, wie im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**, festgelegt. Das oberste Element des Stacks befindet sich am Ende der Liste.
+: Diese Methode gibt den gesamten Stapel der abstrakten Syntaxbäume zurück, die der virtuellen ME-Maschine derzeit bekannt sind. Jedes Element der zurückgegebenen Liste ist ein abstrakter Syntaxbaum, wie im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**, festgelegt. Das oberste Element des Stacks befindet sich am Ende der Liste.
 
 **::grammar::me::tcl** **ctok**
 : Diese Methode gibt das aktuelle Token zurück, das von der virtuellen ME-Maschine verarbeitet wird.
@@ -124,13 +124,13 @@ Die in diesem Abschnitt dokumentierten Befehle implementieren keinen der Befehle
 
 # Maschinenstatus
 
-Bitte lesen Sie zunächst das Dokument **grammar::me\_vm**, um sich über die Spezifikationen der virtuellen ME-Maschine und deren Zustand zu informieren.
+Bitte lesen Sie zunächst das Dokument [grammar::me\_vm][me_vm], um sich über die Spezifikationen der virtuellen ME-Maschine und deren Zustand zu informieren.
 
 Diese Implementierung verwaltet den in jenem Dokument beschriebenen Zustand, mit Ausnahme der Stacks – abgesehen vom AST-Stack. Mit anderen Worten: Der Positionsstack, der Fehlerstack, der Rückgabestack und der AST-Marker-Stack werden implizit über den Standard-Tcl-Gültigkeitsbereich verwaltet, d. h. über Tcl-Variablen in Prozeduren außerhalb dieser Implementierung.
 
 # Maschinenbefehle
 
-Bitte lesen Sie zunächst das Dokument **grammar::me\_vm**, um sich über die Spezifikationen der virtuellen ME-Maschine und ihres Befehlssatzes zu informieren.
+Bitte lesen Sie zunächst das Dokument [grammar::me\_vm][me_vm], um sich über die Spezifikationen der virtuellen ME-Maschine und ihres Befehlssatzes zu informieren.
 
 Diese Implementierung ordnet alle Anweisungen Tcl-Befehlen im Namespace „::grammar::me::tcl“ zu, mit Ausnahme der stapelbezogenen Befehle, der nichtterminalen Symbole und der Kontrollflussanweisungen. Hier werden lediglich die Befehle aufgelistet und gegebenenfalls die Unterschiede zu den angegebenen Befehlen erläutert. Informationen zu ihrer Semantik finden Sie in der oben genannten Spezifikation. Die Maschinenbefehle sind über den Ensemble-Befehl **::grammar::me::tcl** *nicht* erreichbar.
 
@@ -186,7 +186,7 @@ Diese Implementierung ordnet alle Anweisungen Tcl-Befehlen im Namespace „::gra
 : Der Befehl nimmt die Position als Argument entgegen, da diese aus dem Tcl-Stack stammt und nicht aus dem Maschinenzustand.
 
 **icl\_pop**
-: Da sie nicht zugeordnet sind, werden die Stacks nicht vom Paket verwaltet.
+: Nicht zugeordnet, da die Stacks nicht vom Paket verwaltet werden.
 
 **::grammar::me::tcl::ier\_get**
 : Dieser Befehl gibt den aktuellen Fehlerstatus *ER* zurück. Er ersetzt *ier\_push*.

@@ -18,7 +18,7 @@ Willkommen bei Tcllib, der Tcl-Standardbibliothek. Beachten Sie, dass Tcllib sel
 
 Dieses Dokument richtet sich an den Release-Manager von Tcllib, dessen Stellvertreter sowie an alle weiteren Personen, die an der Erstellung einer offiziellen Version von Tcllib zur Verbreitung interessiert sind.
 
-Bitte lesen Sie zunächst *Tcllib – So erhalten Sie die Quellcodes*, falls das noch nicht geschehen ist. Hier wird davon ausgegangen, dass die Quelltexte bereits in einem Verzeichnis der Wahl vorliegen.
+Bitte lesen Sie zunächst *Tcllib – So erhalten Sie die Quellcodes*, falls das noch nicht geschehen ist. Hier wird davon ausgegangen, dass die Quelltexte bereits in einem Verzeichnis Ihrer Wahl vorliegen.
 
 # Werkzeuge
 
@@ -41,15 +41,15 @@ Weitere Einzelheiten finden Sie in den Erläuterungen zu den verschiedenen [Aufg
 
 ## Einen Release Candidate starten
 
-Aufgabe: Einen Kandidaten für die Veröffentlichung freigeben
+TODO: Einen Kandidaten für die Veröffentlichung eröffnen
 
 ## Den Kandidaten fertigstellen
 
-Aufgaben: Testen, Validierung und Prüfen, ob die Version zur Veröffentlichung geeignet ist; Testsuiten korrigieren, ggf. Pakete korrigieren; Dokumentation neu generieren; sich mit den Paketbetreuern bezüglich der Korrekturen abstimmen; Wichtig: Die Pakete durchgehen und die Änderungen seit der letzten Version klassifizieren, um eine übersichtliche README-Datei zu erstellen.
+TODO: Testen, Validierung und Prüfen, ob die Version zur Veröffentlichung geeignet ist; Testsuiten korrigieren, ggf. Pakete korrigieren; Dokumentation neu generieren; sich mit den Paketbetreuern bezüglich der Korrekturen abstimmen; Wichtig: Die Pakete durchgehen und die Änderungen seit der letzten Version klassifizieren, um eine übersichtliche README-Datei zu erstellen.
 
 ## Offiziell machen
 
-Aufgabe: Veröffentlichung abschließen, Kandidatenversion offiziell machen
+TODO: Veröffentlichung abschließen, Kandidatenversion offiziell machen
 
 ## Das Release verteilen
 

@@ -510,7 +510,7 @@ Im Text dieser Handbuchseite meint "Expect" mit großem "E" das Programm **Expec
 
     Aktionen wie **break** und **continue** lassen Steuerstrukturen, also **for** und **proc**, sich wie üblich verhalten. **return** lässt interpreter dagegen zu seinem Aufrufer zurückkehren, während **inter\_return** **interpreter** eine Rückkehr in seinem Aufrufer auslösen lässt. Hat zum Beispiel "proc foo" **interpreter** aufgerufen und dieses dann die Aktion **inter\_return** ausgeführt, würde **proc foo** zurückkehren. Jeder andere Befehl lässt **interpreter** weiter nach neuen Befehlen fragen.
 
-    In der Vorgabe enthält die Eingabeaufforderung zwei ganze Zahlen. Die erste beschreibt die Tiefe des Auswertungsstapels, also wie oft Tcl\_Eval aufgerufen wurde. Die zweite ist der Tcl-Verlaufskennzeichner. Die Eingabeaufforderung lässt sich setzen, indem eine Prozedur "prompt1" definiert wird, deren Rückgabewert die nächste Eingabeaufforderung wird. Hat eine Anweisung offene Anführungszeichen, Klammern, geschweifte oder eckige Klammern, erscheint bei einem Zeilenumbruch eine zweite Eingabeaufforderung, in der Vorgabe "+> ". Die zweite Eingabeaufforderung lässt sich setzen, indem eine Prozedur "prompt2" definiert wird.
+    In der Vorgabe enthält die Eingabeaufforderung zwei Ganzzahlen. Die erste beschreibt die Tiefe des Auswertungsstapels, also wie oft Tcl\_Eval aufgerufen wurde. Die zweite ist der Tcl-Verlaufsbezeichner. Die Eingabeaufforderung lässt sich setzen, indem eine Prozedur "prompt1" definiert wird, deren Rückgabewert die nächste Eingabeaufforderung wird. Hat eine Anweisung offene Anführungszeichen, Klammern, geschweifte oder eckige Klammern, erscheint bei einem Zeilenumbruch eine zweite Eingabeaufforderung, in der Vorgabe "+> ". Die zweite Eingabeaufforderung lässt sich setzen, indem eine Prozedur "prompt2" definiert wird.
 
     Während **interpreter** gilt der kanonische Modus, auch wenn sein Aufrufer den Rohmodus verwendet hat.
 
@@ -577,11 +577,11 @@ Im Text dieser Handbuchseite meint "Expect" mit großem "E" das Programm **Expec
 
     Die Markierung **-i** legt fest, dass die Zeichenkette an die genannte spawn\_id gesendet wird. Ist die spawn\_id *user\_spawn\_id* und steht das Terminal im Rohmodus, werden Zeilenumbrüche in der Zeichenkette in Folgen aus Return und Zeilenumbruch übersetzt, sodass sie aussehen, als stünde das Terminal im kanonischen Modus. Die Markierung **-raw** schaltet diese Übersetzung aus.
 
-    Die Markierung **-null** sendet Nullzeichen, 0 Bytes. In der Vorgabe wird eine Null gesendet. Auf **-null** darf eine ganze Zahl folgen, die angibt, wie viele Nullen gesendet werden.
+    Die Markierung **-null** sendet Nullzeichen, 0 Bytes. In der Vorgabe wird eine Null gesendet. Auf **-null** darf eine Ganzzahl folgen, die angibt, wie viele Nullen gesendet werden.
 
     Die Markierung **-break** erzeugt eine Break-Bedingung. Das ist nur sinnvoll, wenn die Spawn-Id ein tty-Gerät meint, das über "spawn -open" geöffnet wurde. Wurde ein Prozess wie tip gestartet, gilt zum Erzeugen eines Breaks die Konvention von tip.
 
-    Die Markierung **-s** erzwingt, dass die Ausgabe "langsam" gesendet wird, und vermeidet so den häufigen Fall, dass ein Rechner einen Eingabepuffer schneller füllt, als ein Mensch denselben Puffer tippen würde. Diese Ausgabe steuert der Wert der Variable "send\_slow", die eine Liste aus zwei Elementen annimmt. Das erste Element ist eine ganze Zahl, die angibt, wie viele Bytes unteilbar gesendet werden. Das zweite Element ist eine reelle Zahl, die angibt, wie viele Sekunden die unteilbaren Sendungen trennen müssen. "set send\_slow {10 .001}" würde zum Beispiel "send -s" zwingen, Zeichenketten mit 1 Millisekunde Abstand zwischen jeweils 10 gesendeten Zeichen zu senden.
+    Die Markierung **-s** erzwingt, dass die Ausgabe "langsam" gesendet wird, und vermeidet so den häufigen Fall, dass ein Rechner einen Eingabepuffer überrennt, der für einen Menschen ausgelegt ist, der denselben Puffer nie überrennen würde. Diese Ausgabe steuert der Wert der Variable "send\_slow", die eine Liste aus zwei Elementen annimmt. Das erste Element ist eine Ganzzahl, die angibt, wie viele Bytes unteilbar gesendet werden. Das zweite Element ist eine reelle Zahl, die angibt, wie viele Sekunden die unteilbaren Sendungen trennen müssen. "set send\_slow {10 .001}" würde zum Beispiel "send -s" zwingen, Zeichenketten mit 1 Millisekunde Abstand zwischen jeweils 10 gesendeten Zeichen zu senden.
 
     Die Markierung **-h** erzwingt, dass die Ausgabe einigermaßen so gesendet wird, wie ein Mensch wirklich tippt. Zwischen den Zeichen erscheinen menschenähnliche Verzögerungen. Der Algorithmus beruht auf einer Weibull-Verteilung, mit Änderungen für diese Anwendung. Diese Ausgabe steuert der Wert der Variable "send\_human", die eine Liste aus fünf Elementen annimmt. Die ersten beiden Elemente sind die mittlere Zwischenankunftszeit der Zeichen in Sekunden. Das erste gilt in der Vorgabe. Das zweite gilt an Wortenden, um die feinen Pausen nachzubilden, die an solchen Übergängen gelegentlich auftreten. Der dritte Parameter misst die Streuung: 0,1 ist sehr veränderlich, 1 ist einigermaßen veränderlich, und 10 ist sehr gleichmäßig. Die Extreme sind 0 bis unendlich. Die letzten beiden Parameter sind eine kleinste und eine größte Zwischenankunftszeit. Minimum und Maximum werden zuletzt angewendet und schneiden die endgültige Zeit ab. Der endgültige Mittelwert kann sich deutlich vom angegebenen Mittelwert unterscheiden, wenn Minimum und Maximum genug Werte abschneiden.
 
@@ -788,7 +788,7 @@ Im Text dieser Handbuchseite meint "Expect" mit großem "E" das Programm **Expec
 **wait** *\[args\]*
 : Wartet, bis ein gestarteter Prozess endet, oder der aktuelle Prozess, wenn keiner genannt ist.
 
-    **wait** gibt gewöhnlich eine Liste aus vier ganzen Zahlen zurück. Die erste ist die pid des Prozesses, auf den gewartet wurde. Die zweite ist die zugehörige Spawn-Id. Die dritte ist -1, wenn ein Fehler des Betriebssystems auftrat, sonst 0. War die dritte Zahl 0, ist die vierte der Status, den der gestartete Prozess zurückgegeben hat. War die dritte Zahl -1, ist die vierte der Wert von errno, den das Betriebssystem gesetzt hat. Die globale Variable errorCode wird ebenfalls gesetzt.
+    **wait** gibt gewöhnlich eine Liste aus vier Ganzzahlen zurück. Die erste ist die pid des Prozesses, auf den gewartet wurde. Die zweite ist die zugehörige Spawn-Id. Die dritte ist -1, wenn ein Fehler des Betriebssystems auftrat, sonst 0. War die dritte Zahl 0, ist die vierte der Status, den der gestartete Prozess zurückgegeben hat. War die dritte Zahl -1, ist die vierte der Wert von errno, den das Betriebssystem gesetzt hat. Die globale Variable errorCode wird ebenfalls gesetzt.
 
     Am Ende des Rückgabewerts von **wait** können weitere Elemente stehen. Ein optionales fünftes Element nennt eine Klasse von Angaben. Derzeit ist der einzige mögliche Wert dieses Elements CHILDKILLED. Dann sind die nächsten beiden Werte der Signalname im C-Stil und eine kurze Textbeschreibung.
 
@@ -829,7 +829,7 @@ Lässt sich die Fähigkeit nicht einschalten, mehrere Prozesse zu starten, weil 
 
 Terminalparameter können Skripte stark beeinflussen. Ist ein Skript zum Beispiel auf Echo geschrieben, verhält es sich falsch, wenn das Echo ausgeschaltet ist. Deshalb erzwingt Expect in der Vorgabe Terminalparameter im Zustand sane. Das kann andere Programme stören. Die emacs-Shell will zum Beispiel die „üblichen“ Zuordnungen ändern: Zeilenumbrüche werden auf Zeilenumbrüche abgebildet statt auf Zeilenumbrüche mit Wagenrücklauf, und das Echo ist ausgeschaltet. So lässt sich die Eingabezeile mit emacs bearbeiten. Expect kann das unmöglich erraten.
 
-Expect kann angewiesen werden, seine Vorgabe für die Terminalparameter nicht zu überschreiben. Dann ist beim Schreiben von Skripten für solche Umgebungen große Vorsicht nötig. Im Fall von emacs wird nicht auf Echo und Zuordnungen am Zeilenende gebaut.
+Expect kann angewiesen werden, seine Vorgabe für die Terminalparameter nicht zu überschreiben. Dann ist beim Schreiben von Skripten für solche Umgebungen große Vorsicht nötig. Im Fall von emacs sollte nicht auf Echo und Zuordnungen am Zeilenende gebaut werden.
 
 Die Befehle, die Argumente in einer einzigen Liste mit geschweiften Klammern annehmen, die Varianten von **expect** und **interact**, verwenden eine Heuristik, um zu entscheiden, ob die Liste tatsächlich ein Argument oder viele ist. Die Heuristik kann nur fehlschlagen, wenn die Liste wirklich ein einziges Argument darstellt, das mehrere eingebettete \\n mit Zeichen dazwischen enthält, die kein Leerraum sind. Das erscheint hinreichend unwahrscheinlich. Das Argument "-nobrace" kann trotzdem erzwingen, dass ein einziges Argument als ein einziges Argument behandelt wird. Das kann bei maschinell erzeugtem Expect-Code nützlich sein. Ebenso erzwingt -brace, dass ein einziges Argument als mehrere Muster und Aktionen behandelt wird.
 
@@ -837,7 +837,7 @@ Die Befehle, die Argumente in einer einzigen Liste mit geschweiften Klammern ann
 
 Es war sehr verlockend, das Programm "sex" zu nennen, für "Smart EXec" oder "Send-EXpect". Die Vernunft, oder vielleicht nur der Puritanismus, hat sich durchgesetzt.
 
-Auf manchen Systemen beklagt sich eine gestartete Shell, das tty nicht erreichen zu können, läuft aber trotzdem. Das System hat dann einen Mechanismus, das steuernde tty zu erlangen, den **Expect** nicht kennt. Ist er bekannt, soll die Angabe an den Autor zurückgehen.
+Auf manchen Systemen beklagt sich eine gestartete Shell, das tty nicht erreichen zu können, läuft aber trotzdem. Das System hat dann einen Mechanismus, das steuernde tty zu erlangen, den **Expect** nicht kennt. Bitte ermitteln Sie, welcher es ist, und schicken Sie die Angabe an den Autor.
 
 Ultrix 4.1, zumindest die letzten Versionen hier, behandelt Zeitspannen über 1000000 als gleichwertig mit 0.
 
@@ -900,7 +900,7 @@ Ein häufiges Problem von expect ist, Shell-Eingabeaufforderungen zu erkennen. D
 
 Muster für **expect** sollten das Ende dessen enthalten, was erwartet wird. So wird vermieden, eine Frage zu beantworten, bevor sie ganz gesehen wurde. Fragen lassen sich zwar beantworten, bevor sie ganz sichtbar sind. Wird früh geantwortet, kann die Antwort mitten in der Frage zurückgesendet erscheinen. Der entstehende Dialog ist dann richtig, sieht aber durcheinander aus.
 
-Die meisten Eingabeaufforderungen enden mit einem Leerzeichen. Die Eingabeaufforderung von ftp ist zum Beispiel 'f', 't', 'p', '>' und <blank>. Damit dieses Muster passt, muss jedes dieser Zeichen berücksichtigt werden. Ein häufiger Fehler ist, das Leerzeichen wegzulassen. Das Leerzeichen wird ausdrücklich ins Muster geschrieben.
+Die meisten Eingabeaufforderungen enden mit einem Leerzeichen. Die Eingabeaufforderung von ftp ist zum Beispiel 'f', 't', 'p', '>' und <blank>. Damit ein Muster auf diese Eingabeaufforderung passt, muss jedes dieser Zeichen berücksichtigt werden. Ein häufiger Fehler ist, das Leerzeichen wegzulassen. Das Leerzeichen wird ausdrücklich ins Muster geschrieben.
 
 Wird ein Muster der Form X\* verwendet, passt das \* auf die ganze Ausgabe vom Ende von X bis zum zuletzt Empfangenen. Das klingt naheliegend, kann aber verwirren, weil „zuletzt Empfangenes“ je nach Geschwindigkeit des Rechners und der Ein-/Ausgabe-Verarbeitung durch Kern und Gerätetreiber verschieden sein kann.
 

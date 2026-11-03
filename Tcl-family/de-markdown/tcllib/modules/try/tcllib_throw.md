@@ -29,7 +29,7 @@ throw - throw - Löst eine Fehlerausnahme mit einer Meldung aus
 
 # Beschreibung
 
-Dieses Paket bietet eine Paket-Implementierung des Befehls **throw** aus Tcl 8.6 (TIP 329) für Tcl 8.5. Der Code wurde direkt aus der Revision ? von Tcl 8.6 übernommen, als „try/finally“ noch als Tcl-Prozedur statt in C implementiert war.
+Dieses Paket bietet eine vorwärtskompatible Implementierung des Befehls **throw** aus Tcl 8.6 (TIP 329) für Tcl 8.5. Der Code wurde direkt aus der Revision ? von Tcl 8.6 übernommen, als „try/finally“ noch als Tcl-Prozedur statt in C implementiert war.
 
 **::throw** *error\_code* *error\_message*
 : „throw“ dient lediglich dazu, die Reihenfolge der Argumente des Befehls „error“ neu zu ordnen. Es löst einen Fehler mit dem angegebenen Fehlercode und der angegebenen Fehlermeldung aus.

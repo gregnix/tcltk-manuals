@@ -62,7 +62,7 @@ namespace eval someNS {
 }
 ```
 
-Variablen in Namespaces aus einer Prozedur heraus zugreifen:
+Aus einer Prozedur heraus auf Variablen in Namespaces zugreifen:
 
 ```
 namespace eval foo {

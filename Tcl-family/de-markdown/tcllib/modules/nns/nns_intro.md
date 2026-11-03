@@ -39,7 +39,7 @@ Die Anwendung **nnsd** stellt einen einfachen Nameserver bereit, der von jedem a
 
 Ergänzend zu diesem Server gibt es die Client-Anwendung **nns**. Eine mögliche, wenn auch nicht besonders sinnvolle Anwendung wäre die Eingabe von Name-Port-Bindungen in einen Server über ein Shell-Skript. Dies ist nicht sinnvoll, da Shell-Skripte in der Regel keinen auf **comm** basierenden Dienst bereitstellen.
 
-Der einzige Fall, in dem dies einen gewissen Sinn ergeben würde, wäre ein Shell-Skript, das ein Tcl-Skript FOO umschließt, das **comm** verwendet, um den von FOO genutzten Listening-Port zu registrieren. Doch selbst in diesem Fall wäre es weitaus sinnvoller, FOO so zu erweitern, dass es den Namensdienst direkt nutzt. Wie das geht, kann **nns** sowohl als Beispiel als auch als Vorlage dienen. Darüber hinaus kann es ebenfalls nützlich sein, Nameservice-Abfragen aus Shell-Skripten heraus durchzuführen.
+Der einzige Fall, in dem dies einen gewissen Sinn ergeben würde, wäre ein Shell-Skript, das ein Tcl-Skript FOO umschließt, das **comm** verwendet, und den von FOO genutzten Listening-Port registriert. Doch selbst in diesem Fall wäre es weitaus sinnvoller, FOO so zu erweitern, dass es den Namensdienst direkt nutzt. Dafür, wie das geht, kann **nns** sowohl als Beispiel als auch als Vorlage dienen. Darüber hinaus kann es ebenfalls nützlich sein, Nameservice-Abfragen aus Shell-Skripten heraus durchzuführen.
 
 Die dritte Anwendung, **nnslog**, ist eine abgespeckte Version der Client-Anwendung **nns**. Sie ist darauf beschränkt, kontinuierlich nach allen Änderungen zu suchen und alle empfangenen Ereignisse auf stdout zu protokollieren.
 

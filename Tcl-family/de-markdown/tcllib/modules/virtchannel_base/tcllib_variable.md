@@ -30,11 +30,11 @@ tcl::chan::variable – In-Memory-Kanal unter Verwendung einer Variablen zur Spe
 
 # Beschreibung
 
-Das Paket **tcl::chan::variable** stellt einen Befehl zur Verfügung, mit dem Kanäle erstellt werden können, die ausschließlich im Arbeitsspeicher liegen. Diese ermöglichen einen Direktzugriff, d. h., sie sind durchsuchbar. Im Gegensatz zu den von **tcl::chan::memchan** erstellten Kanälen werden die Daten jedoch nicht im Kanal selbst verborgen, sondern in einer zugehörigen Variable gespeichert, die zum Zeitpunkt der Erstellung festgelegt wird.
+Das Paket **tcl::chan::variable** stellt einen Befehl zur Verfügung, mit dem Kanäle erstellt werden können, die ausschließlich im Arbeitsspeicher liegen. Diese ermöglichen einen Direktzugriff, d. h., sie sind positionierbar. Im Gegensatz zu den von **tcl::chan::memchan** erstellten Kanälen werden die Daten jedoch nicht im Kanal selbst verborgen, sondern in einer zugehörigen Variable gespeichert, die zum Zeitpunkt der Erstellung festgelegt wird.
 
 Die entsprechenden Pakete lauten **tcl::chan::memchan** und **tcl::chan::string**.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 

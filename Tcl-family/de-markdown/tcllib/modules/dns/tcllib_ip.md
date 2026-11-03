@@ -78,7 +78,7 @@ Dieses Paket enthält eine Reihe von Befehlen, die beim Analysieren, Anzeigen un
 : Wandelt eine IPv4- oder IPv6-Adresse in eine vollständig ausgeschriebene Version um. Es gibt verschiedene Kurzschreibweisen für Internetadressen, bei denen überflüssige Teile oder Ziffern weggelassen werden. Diese Prozedur ist das Gegenteil von **contract**.
 
 **::ip::contract** *address*
-: Wandelt die Internetadresse „**normalize**d“ in eine kompaktere Form um, die für die Anzeige gegenüber den Benutzern geeignet ist.
+: Wandelt eine mit **normalize** normalisierte Internetadresse in eine kompaktere Form um, die für die Anzeige gegenüber den Benutzern geeignet ist.
 
 **::ip::distance** *ipaddr1* *ipaddr2*
 : Dieser Befehl berechnet den (ganzzahligen) Abstand zwischen der IPv4-Adresse *ipaddr1* und der IPv4-Adresse *ipaddr2*, d. h. „ipaddr2 – ipaddr1“
@@ -106,7 +106,7 @@ Dieses Paket enthält eine Reihe von Befehlen, die beim Analysieren, Anzeigen un
 : Wenn die angegebene Adresse eine Maske enthält, gibt sie diese zurück; andernfalls gibt sie eine leere Zeichenkette zurück.
 
 **::ip::prefixToNative** *prefix*
-: Dieser Befehl konvertiert die Zeichenfolge *prefix* aus der Punktnotation (im Format <ipaddr>/<mask>) in die native (hexadezimale) Form. Gibt eine Liste zurück, die zwei Elemente – „ipaddress“ und „mask“ – in dieser Reihenfolge in hexadezimaler Schreibweise enthält.
+: Dieser Befehl konvertiert die Zeichenkette *prefix* aus der Punktnotation (im Format <ipaddr>/<mask>) in die native (hexadezimale) Form. Gibt eine Liste zurück, die zwei Elemente – „ipaddress“ und „mask“ – in dieser Reihenfolge in hexadezimaler Schreibweise enthält.
 
     ```
        % ip::prefixToNative 1.1.1.0/24
@@ -117,10 +117,10 @@ Dieses Paket enthält eine Reihe von Befehlen, die beim Analysieren, Anzeigen un
 : Dieser Befehl wandelt die native (Hexadezimal-)Darstellung in die Punktnotation um. Er ist das Gegenstück zu **::ip::prefixToNative**.
 
     list *nativeList* (in)
-    : Liste mehrerer IP-Adressen in nativer Form. Die native Form ist eine Liste, wie sie von der Funktion **::ip::prefixToNative** zurückgegeben wird.
+    : Liste mehrerer IP-Adressen in nativer Form. Die native Form ist eine Liste, wie sie von **::ip::prefixToNative** zurückgegeben wird.
 
     list *native* (in)
-    : Eine Liste, wie sie von der Funktion **::ip::prefixToNative** zurückgegeben wird.
+    : Eine Liste, wie sie von **::ip::prefixToNative** zurückgegeben wird.
 
 
     Der Befehl gibt eine Liste von Adressen in Punktnotation zurück, wenn er mit einer Liste von Adressen aufgerufen wurde. Andernfalls wird eine einzelne Adresse in Punktnotation zurückgegeben.
@@ -200,7 +200,7 @@ Dieses Paket enthält eine Reihe von Befehlen, die beim Analysieren, Anzeigen un
     Das Ergebnis wird im Hexadezimalformat ausgegeben.
 
 **::ip::isOverlap** *prefix* *prefix*...
-: Dieser Befehl prüft, ob sich die angegebenen IP-Präfixe überschneiden. Alle Argumente liegen im Format „Adresse/Maske“ mit Punkttrennung vor. Alle Argumente nach dem ersten Präfix werden mit dem ersten Präfix verglichen. Das Ergebnis ist ein boolescher Wert. Er ist wahr, wenn bei einem der Präfixe eine Überschneidung festgestellt wurde.
+: Dieser Befehl prüft, ob sich die angegebenen IP-Präfixe überschneiden. Alle Argumente liegen in Punktnotation im Format „addr/mask“ vor. Alle Argumente nach dem ersten Präfix werden mit dem ersten Präfix verglichen. Das Ergebnis ist ein boolescher Wert. Er ist wahr, wenn bei einem der Präfixe eine Überschneidung festgestellt wurde.
 
     ```
       % ::ip::isOverlap 1.1.1.0/24 2.1.0.1/32

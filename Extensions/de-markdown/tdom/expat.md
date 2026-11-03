@@ -17,7 +17,7 @@ Copyright:
 
 # Name
 
-expat - Eine Instanz eines expat-Parserobjekts anlegen
+expat - Legt eine Instanz eines expat-Parserobjekts an
 
 # Übersicht
 
@@ -31,7 +31,7 @@ expat - Eine Instanz eines expat-Parserobjekts anlegen
 
 # Beschreibung
 
-Der mit *expat* oder *xml::parser* angelegte Parser, nur ein anderer Name desselben Befehls in einem eigenen Namensraum, kann jede Art von wohlgeformtem XML lesen. Die Parser sind stromorientierte XML-Parser. Vor dem Lesen werden Handler-Skripte beim Parser angemeldet. Diese Skripte werden aufgerufen, wenn der Parser die zugehörigen Strukturen im gelesenen Dokument findet. Eine Startmarke ist ein Beispiel für eine Struktur, für die sich ein Handler-Skript anmelden lässt.
+Der mit *expat* oder *xml::parser* angelegte Parser, nur ein anderer Name desselben Befehls in einem eigenen Namespace, kann jede Art von wohlgeformtem XML lesen. Die Parser sind stromorientierte XML-Parser. Vor dem Lesen werden Handler-Skripte beim Parser angemeldet. Diese Skripte werden aufgerufen, wenn der Parser die zugehörigen Strukturen im gelesenen Dokument findet. Eine Startmarke ist ein Beispiel für eine Struktur, für die sich ein Handler-Skript anmelden lässt.
 
 Die Parser prüfen die Eingabe immer auf XML-Wohlgeformtheit und melden einen Fehler, wenn die Eingabe nicht wohlgeformt ist. Sie lesen die interne DTD und auf Wunsch die externe DTD und externe Entitäten, wenn der Bezeichner der externen Entitäten mit dem Skript -externalentitycommand aufgelöst wird, siehe dort. Mit der Option -validateCmd, siehe dort, wird die Eingabe zusätzlich geprüft.
 
@@ -164,7 +164,7 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
  **-externalentitycommand**  *script*
 : Legt einen Tcl-Befehl fest, der zu Verweisen auf externe Entitäten im Dokument gehört. Der tatsächliche Befehl besteht aus dieser Option und drei Argumenten: der Basis-URI, dem Systembezeichner der Entität und dem öffentlichen Bezeichner der Entität. Die Basis-URI und der öffentliche Bezeichner können die leere Liste sein.
 
-    Dieses Handler-Skript gibt eine Tcl-Liste aus drei Elementen zurück. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string", "channel" und "filename" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals, bei Typ "filename" der Pfad der zu lesenden externen Entität. Hinter den Kulissen wird die externe Entität, auf die der zurückgegebene Tcl-Kanal, die Zeichenkette oder der Dateiname zeigt, mit einem expat-Parser für externe Entitäten gelesen, mit denselben Handlersätzen wie der Hauptparser. Schlägt das Lesen der externen Entität fehl, stoppt das gesamte Lesen mit einer Fehlermeldung. Kann ein als externalentitycommand angemeldeter Tcl-Befehl eine externe Entität nicht auflösen, darf er TCL\_CONTINUE zurückgeben. Dann versucht der Wrapper den nächsten angemeldeten externalentitycommand. Kann keiner die externe Entität behandeln, stoppt das Lesen mit einem Fehler.
+    Dieses Handler-Skript muss eine Tcl-Liste aus drei Elementen zurückgeben. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string", "channel" und "filename" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals, bei Typ "filename" der Pfad der zu lesenden externen Entität. Hinter den Kulissen wird die externe Entität, auf die der zurückgegebene Tcl-Kanal, die Zeichenkette oder der Dateiname zeigt, mit einem expat-Parser für externe Entitäten gelesen, mit denselben Handlersätzen wie der Hauptparser. Schlägt das Lesen der externen Entität fehl, stoppt das gesamte Lesen mit einer Fehlermeldung. Kann ein als externalentitycommand angemeldeter Tcl-Befehl eine externe Entität nicht auflösen, darf er TCL\_CONTINUE zurückgeben. Dann versucht der Wrapper den nächsten angemeldeten externalentitycommand. Kann keiner die externe Entität behandeln, stoppt das Lesen mit einem Fehler.
 
     Beispiel:
 
@@ -277,7 +277,7 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
     ```
 
  **-attlistdeclcommand**  *script*
-: Legt einen Tcl-Befehl fest, der zu Attlist-Deklarationen gehört. Der tatsächliche Befehl besteht aus dieser Option und fünf Argumenten. Der Handler der Attlist-Deklaration wird für \*jedes\* Attribut aufgerufen. Eine einzelne Attlist-Deklaration mit mehreren Attributen erzeugt also mehrere Aufrufe dieses Handlers. Die Argumente sind der Elementname, zu dem das Attribut gehört, der Name des Attributs, der Typ des Attributs, der Vorgabewert, der die leere Liste sein kann, und eine Marke required. Ist diese Marke wahr und der Vorgabewert nicht die leere Liste, ist das eine Vorgabe "#FIXED".
+: Legt einen Tcl-Befehl fest, der zu Attlist-Deklarationen gehört. Der tatsächliche Befehl besteht aus dieser Option und fünf Argumenten. Der Handler der Attlist-Deklaration wird für \*jedes\* Attribut aufgerufen. Eine einzelne Attlist-Deklaration mit mehreren Attributen erzeugt also mehrere Aufrufe dieses Handlers. Die Argumente sind der Elementname, zu dem das Attribut gehört, der Name des Attributs, der Typ des Attributs, der Vorgabewert, der die leere Liste sein kann, und ein Flag required. Ist dieses Flag wahr und der Vorgabewert nicht die leere Liste, ist das eine Vorgabe "#FIXED".
 
     Beispiel:
 
@@ -305,7 +305,7 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
     ```
 
  **-startdoctypedeclcommand**  *script*
-: Legt einen Tcl-Befehl fest, der zum Beginn der DOCTYPE-Deklaration gehört. Dieser Befehl wird aufgerufen, bevor eine DTD oder die interne Teilmenge gelesen wird. Der tatsächliche Befehl besteht aus dieser Option und vier Argumenten: dem Doctype-Namen, dem Systembezeichner, dem öffentlichen Bezeichner und einem Booleschen, das angibt, ob der DOCTYPE eine interne Teilmenge hat.
+: Legt einen Tcl-Befehl fest, der zum Beginn der DOCTYPE-Deklaration gehört. Dieser Befehl wird aufgerufen, bevor eine DTD oder die interne Teilmenge gelesen wird. Der tatsächliche Befehl besteht aus dieser Option und vier Argumenten: dem Doctype-Namen, dem Systembezeichner, dem öffentlichen Bezeichner und einem booleschen Wert, der angibt, ob der DOCTYPE eine interne Teilmenge hat.
 
  **-enddoctypedeclcommand**  *script*
 : Legt einen Tcl-Befehl fest, der zum Ende der DOCTYPE-Deklaration gehört. Dieser Befehl wird nach der Verarbeitung einer externen Teilmenge aufgerufen. Der Aufruf hat keine weiteren Argumente.
@@ -314,10 +314,10 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
 : "never" schaltet das Auflösen von Parameterentitäten aus, "always" löst immer auf, und "notstandalone" nur, wenn das Dokument nicht "standalone='no'" ist. Die Vorgabe ist "never".
 
  **-entitydeclcommand**  *script*
-: Legt einen Tcl-Befehl fest, der zu jeder Entitätsdeklaration gehört. Der tatsächliche Befehl besteht aus dieser Option und sieben Argumenten: dem Entitätsnamen, einem Booleschen, das Parameterentitäten kennzeichnet, dem Wert der Entität, der Basis-URI, dem Systembezeichner, dem öffentlichen Bezeichner und dem Notationsnamen. Je nach Art der Entitätsdeklaration können einige dieser Argumente die leere Liste sein.
+: Legt einen Tcl-Befehl fest, der zu jeder Entitätsdeklaration gehört. Der tatsächliche Befehl besteht aus dieser Option und sieben Argumenten: dem Entitätsnamen, einem booleschen Wert, der Parameterentitäten kennzeichnet, dem Wert der Entität, der Basis-URI, dem Systembezeichner, dem öffentlichen Bezeichner und dem Notationsnamen. Je nach Art der Entitätsdeklaration können einige dieser Argumente die leere Liste sein.
 
  **-ignorewhitecdata**  *boolean*
-: Ist diese Marke gesetzt, wird Elementinhalt, der nur aus Leerraum besteht, nicht mit **-characterdatacommand** gemeldet.
+: Ist dieses Flag gesetzt, wird Elementinhalt, der nur aus Leerraum besteht, nicht mit **-characterdatacommand** gemeldet.
 
  **-ignorewhitespace**  *boolean*
 : Ein anderer Name für *-ignorewhitecdata*, siehe dort.
@@ -332,19 +332,19 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
 : Ist <boolean> wahr und hat das Dokument keine externe Teilmenge, ruft der Parser das Skript -externalentitycommand mit leeren Werten für die Argumente systemId und publicID auf. Diese Option muss gesetzt sein, bevor das erste Stück Daten gelesen wird. Sie nach Beginn des Lesens zu setzen, hat keine Wirkung. Voreingestellt wird keine fremde DTD verwendet. Die Vorgabe wird nach einem Zurücksetzen des Parsers wiederhergestellt. Ein Wert "never" von -paramentityparsing, das ist die Vorgabe, unterdrückt jeden Aufruf des Skripts -externalentitycommand. Hat das Dokument auch keine interne Teilmenge, werden die Skripte -startdoctypedeclcommand und enddoctypedeclcommand, sofern gesetzt, nicht aufgerufen.
 
 **-billionLaughsAttackProtectionMaximumAmplification**  *<float>*
-: <URL: https://en.wikipedia.org/wiki/Billion_laughs_attack> ["https://en.wikipedia.org/wiki/Billion_laughs_attack"]("https://en.wikipedia.org/wiki/Billion_laughs_attack") Diese Option steuert zusammen mit *-billionLaughsAttackProtectionActivationThreshold* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine Gleitkommazahl >= 1.0. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+: <https://en.wikipedia.org/wiki/Billion_laughs_attack> Diese Option steuert zusammen mit *-billionLaughsAttackProtectionActivationThreshold* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine Gleitkommazahl >= 1.0. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
 **-billionLaughsAttackProtectionActivationThreshold**  *<long>*
-: <URL: https://en.wikipedia.org/wiki/Billion_laughs_attack> ["https://en.wikipedia.org/wiki/Billion_laughs_attack"]("https://en.wikipedia.org/wiki/Billion_laughs_attack") Diese Option steuert zusammen mit *-billionLaughsAttackProtectionMaximumAmplification* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 8388608 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+: <https://en.wikipedia.org/wiki/Billion_laughs_attack> Diese Option steuert zusammen mit *-billionLaughsAttackProtectionMaximumAmplification* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 8388608 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
 **-setReparseDeferralEnabled**  *<boolean>*
 : Expat schützt sich gegen quadratische Lesezeit durch lange Token in böswillig gebauten Dokumenten. Als Nebenwirkung kann ein Leseereignis nicht direkt nach dem Ende des betreffenden Tokens ausgelöst werden, sondern erst, nachdem der Parser weitere Bytes der Eingabe verarbeitet hat. Diese Option schaltet dieses Verhalten ab.
 
 **-allocTrackerActivationThreshold**  *<float>*
-: Diese Option steuert zusammen mit *-allocTrackerMaximumAmplification* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+: Diese Option steuert zusammen mit *-allocTrackerMaximumAmplification* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
 **-allocTrackerMaximumAmplification**  *<long>*
-: Diese Option steuert zusammen mit *-allocTrackerActivationThreshold* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 67108864, das sind 64 MiB, reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+: Diese Option steuert zusammen mit *-allocTrackerActivationThreshold* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 67108864, das sind 64 MiB, reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
 
 # Befehlsmethoden
@@ -376,7 +376,7 @@ Für die meisten Ereignisse lassen sich beliebig viele verschiedene Handler-Skri
     : Gibt den Index des ID-Attributs zurück, das beim letzten Aufruf von XML\_StartElementHandler übergeben wurde, oder -1, wenn es kein ID-Attribut gibt. Jedes Attribut-Wert-Paar zählt als 2. Das entspricht einem Index in die Attributliste, die an elementstartcommand übergeben wird.
 
     **-currentbytecount**
-    : Gibt die Anzahl der Bytes im aktuellen Ereignis zurück. Kommt 0 zurück, liegt das Ereignis in einer internen Entität.
+    : Gibt die Anzahl der Bytes im aktuellen Ereignis zurück. Liegt das Ereignis in einer internen Entität, wird 0 zurückgegeben.
 
         Bei dieser Option ist zu prüfen, ob die Parseroption *-keepTextStart* gebraucht wird.
 

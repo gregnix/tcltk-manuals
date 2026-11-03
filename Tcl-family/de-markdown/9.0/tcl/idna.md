@@ -42,7 +42,7 @@ Dieses Paket stellt eine Implementierung des in internationalisierten Domainname
 : Nimmt einen Hostnamen *hostname*, wie er einem Benutzer angezeigt werden könnte, und gibt die Variante zurück, in der in einfachen Hostnamen nicht zulässige Zeichen mit Punycode kodiert sind.
 
 [tcl::idna]{.cmd} [puny]{.sub} [subcommand]{.arg} [...]{.arg}
-: Bietet direkten Zugriff auf den grundlegenden Punycode-Encoder und -Decoder. Unterstützt zwei *subcommand*s:
+: Bietet direkten Zugriff auf den grundlegenden Punycode-Encoder und -Decoder. Unterstützt zwei *subcommand*-Argumente:
 
     [tcl::idna]{.cmd} [puny]{.sub} [decode]{.lit} [string]{.arg} [case]{.optarg}
     : Dekodiert die punycode-kodierte Zeichenkette *string* und gibt das Ergebnis zurück. Ist *case* angegeben, ist es ein boolescher Wert: bei true wird die Schreibweise während der Dekodierung in Großbuchstaben, bei false in Kleinbuchstaben gefaltet; fehlt er, findet keine Schreibweisen-Transformation statt.

@@ -31,7 +31,7 @@ canvas::highlight – Verwaltung der Hervorhebung von Canvas-Elementen oder Elem
 
 # Beschreibung
 
-Dieses Paket enthält Hilfsprogramme für Befehle zum Ein- und Ausschalten von Hervorhebungen für Canvas-Elemente oder Elementgruppen, wobei letztere durch einen Tag gekennzeichnet sind.
+Dieses Paket enthält Hilfsbefehle zum Ein- und Ausschalten von Hervorhebungen für Canvas-Elemente oder Elementgruppen, wobei letztere durch einen Tag gekennzeichnet sind.
 
 # API
 
@@ -57,10 +57,10 @@ Dieses Paket enthält Hilfsprogramme für Befehle zum Ein- und Ausschalten von H
 
 ## Callback für die Hervorhebung
 
-Der „Highlight“-Callback ist ein Befehlspräfix, das auf die folgenden zwei Arten aufgerufen wird:
+Die Rückruffunktion für die Hervorhebung ist ein Befehlspräfix, das auf die folgenden zwei Arten aufgerufen wird:
 
 **{\*}cmd** **on** *canvas* *item*
-: Diese Funktion wird aufgerufen, wenn die Maus in eines der Elemente gelangt ist, für die die Hervorhebung eingerichtet wurde. Die Rückruffunktion muss nun alle notwendigen Neukonfigurationen vornehmen, um das Element (die Gruppe) hervorzuheben.
+: Diese Form wird aufgerufen, wenn die Maus in eines der Elemente gelangt ist, für die die Hervorhebung eingerichtet wurde. Die Rückruffunktion muss nun alle notwendigen Neukonfigurationen vornehmen, um das Element (die Gruppe) hervorzuheben.
 
     Das Ergebnis des Befehls kann beliebig sein. Es wird vom System als Client-Information gespeichert und unverändert an die Rückruffunktion zum Aufheben der Hervorhebung zur weiteren Verwendung übergeben. Auf diese Weise kann die Rückruffunktion zur Hervorhebung einen benutzerdefinierten Zustand vom Hervorheben bis zum Aufheben der Hervorhebung beibehalten.
 

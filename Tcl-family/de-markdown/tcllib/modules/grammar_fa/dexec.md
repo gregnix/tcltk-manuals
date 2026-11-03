@@ -60,7 +60,7 @@ Das Paket exportiert die hier beschriebene API.
 : Erstellt einen neuen deterministischen Executor mit einem zugehörigen globalen Tcl-Befehl, dessen Name *daName* lautet. Dieser Befehl kann verwendet werden, um verschiedene Operationen auf dem Executor auszuführen. Er hat die folgende allgemeine Form:
 
     **daName** *option* ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Weitere Erläuterungen finden Sie im Abschnitt [Executor-Methoden].
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Weitere Erläuterungen finden Sie im Abschnitt [Executor-Methoden].
 
         Der Executor basiert auf dem deterministischen endlichen Automaten, der im Objekt *fa* gespeichert ist. Er bewahrt eine Kopie der relevanten Daten des FA in seinem eigenen Speicher auf, und zwar in einer Form, die für seine Zwecke leicht zu verwenden ist. Dies bedeutet auch, dass Änderungen, die nach der Erstellung des Executors am *fa* vorgenommen werden, den Executor *nicht* beeinflussen.
 
@@ -81,7 +81,7 @@ Alle Executors stellen die folgenden Methoden für deren Bearbeitung bereit:
     Wenn ein Fehler gemeldet wird, führen alle weiteren Aufrufe von **put** keine Aktion aus, bis die Fehlerbedingung durch einen Aufruf der Methode **reset** behoben wurde.
 
 *daName* **reset**
-: Setzt den Executor bedingungslos in den Startzustand der zugrunde liegenden FA. Dadurch werden zudem etwaige Fehlerzustände, auf die **put** möglicherweise gestoßen ist, zurückgesetzt.
+: Setzt den Executor bedingungslos in den Startzustand des zugrunde liegenden FA. Dadurch werden zudem etwaige Fehlerzustände, auf die **put** möglicherweise gestoßen ist, zurückgesetzt.
 
 *daName* **state**
 : Gibt den aktuellen Zustand des zugrunde liegenden FA zurück. Dies ermöglicht eine Introspektion, ohne dass Daten aus der Rückruffunktion übergeben werden müssen.

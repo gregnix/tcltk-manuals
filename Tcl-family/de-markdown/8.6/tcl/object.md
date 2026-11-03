@@ -59,7 +59,7 @@ Die Klasse **oo::object** definiert keinen expliziten Destruktor.
 Die Klasse **oo::object** unterstützt folgende exportierte Methoden:
 
 *obj* **destroy**
-: Diese Methode zerstört das Objekt *obj*, auf dem sie aufgerufen wird, und ruft dabei Destruktoren der Klasse des Objekts auf. Sie entspricht [rename], um den Objektbefehl zu löschen. Das Ergebnis dieser Methode ist stets die leere Zeichenkette.
+: Diese Methode zerstört das Objekt *obj*, auf dem sie aufgerufen wird, und ruft dabei Destruktoren der Klasse des Objekts auf. Sie entspricht der Verwendung von [rename] zum Löschen des Objektbefehls. Das Ergebnis dieser Methode ist stets die leere Zeichenkette.
 
 
 ## Nicht exportierte Methoden
@@ -81,7 +81,7 @@ Die Klasse **oo::object** unterstützt folgende nicht exportierte Methoden:
 : Diese Methode gibt den global qualifizierten Namen der Variable *varName* im eindeutigen Namespace des Objekts *obj* zurück.
 
 *obj* **<cloned>** *sourceObjectName*
-: [Diese Methode wird vom Befehl **oo::object** verwendet, um den Zustand eines Objekts auf ein anderes zu kopieren. Sie kopiert die Prozeduren und Variablen des Namespace von *sourceObjectName* in das aktuelle Objekt. Andere Befehlstypen oder Spuren auf Variablen werden nicht kopiert; das kann durch Überschreiben dieser Methode in einer Unterklasse ergänzt werden.]{version=""}
+: [Diese Methode wird vom Befehl **oo::object** verwendet, um den Zustand eines Objekts auf ein anderes zu kopieren. Sie kopiert die Prozeduren und Variablen des Namespace von *sourceObjectName* in das aktuelle Objekt. Andere Befehlstypen oder Traces auf Variablen werden nicht kopiert; das kann durch Überschreiben dieser Methode in einer Unterklasse ergänzt werden.]{version=""}
 
 
 # Beispiele

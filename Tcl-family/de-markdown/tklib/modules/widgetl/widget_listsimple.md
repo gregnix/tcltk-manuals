@@ -97,23 +97,23 @@ In diesem Abschnitt werden alle Optionen erläutert, die für Instanzen von **wi
 ## Optionen, die ausschließlich zur Erstellungszeit des Widgets gelten
 
 **-values** cmdprefix
-: Diese Option legt eine Rückruffunktion für die Verwaltung einer vordefinierten Liste von Zeichenfolgen fest, die ein Benutzer eingeben kann.
+: Diese Option legt eine Rückruffunktion für die Verwaltung einer vordefinierten Liste von Zeichenketten fest, die ein Benutzer eingeben kann.
 
     Wenn diese Option angegeben wird, verwendet das Widget anstelle eines einfachen Eingabefeldes eine Combobox und füllt deren Liste während der Erstellung des Widgets mit den von dieser Rückruffunktion gelieferten Daten. Die Rückruffunktion wird zudem jedes Mal aufgerufen, wenn ein neuer Wert in die Hauptliste eingegeben wird, um die erweiterte Liste der vordefinierten Werte zu speichern.
 
     Die Signatur dieser Rückruffunktion lautet
 
     *{\*}cmdprefix* **get**
-    : In dieser Form soll die Rückruffunktion eine Liste von Zeichenfolgen geben. Die Zeichenfolgen werden in die Liste der internen Combobox geladen, um dem Benutzer einen schnellen Zugriff zu ermöglichen.
+    : In dieser Form soll die Rückruffunktion eine Liste von Zeichenketten zurückgeben. Die Zeichenketten werden in die Liste der internen Combobox geladen, um dem Benutzer einen schnellen Zugriff zu ermöglichen.
 
-        Die Funktion wird einmalig während der Erstellung des Widgets aufgerufen, um die Liste der vordefinierten Zeichenfolgen zu laden, die ein Benutzer eingeben kann.
+        Die Funktion wird einmalig während der Erstellung des Widgets aufgerufen, um die Liste der vordefinierten Zeichenketten zu laden, die ein Benutzer eingeben kann.
 
     *{\*}cmdprefix* **set** *values*
-    : In dieser Form erhält die Rückruffunktion eine Liste neuer Zeichenfolgen und soll diese für die spätere Verwendung an einem Ort speichern.
+    : In dieser Form erhält die Rückruffunktion eine Liste neuer Zeichenketten und soll diese für die spätere Verwendung an einem Ort speichern.
 
         Der Rückgabewert der Rückruffunktion wird ignoriert.
 
-        Diese Form wird immer dann aufgerufen, wenn der Benutzer eine neue Zeichenfolge in die Hauptliste eingegeben hat. Die Reihenfolge der Zeichenfolgen in *values* entspricht der Reihenfolge, in der sie in der Liste der Combobox angezeigt werden.
+        Diese Form wird immer dann aufgerufen, wenn der Benutzer eine neue Zeichenkette in die Hauptliste eingegeben hat. Die Reihenfolge der Zeichenketten in *values* entspricht der Reihenfolge, in der sie in der Liste der Combobox angezeigt werden.
 
 
 **-validate** cmdprefix
@@ -122,12 +122,12 @@ In diesem Abschnitt werden alle Optionen erläutert, die für Instanzen von **wi
     *{\*}cmdprefix* *text* *errvar*
     : wobei *text* die zu validierende Zeichenkette und *errvar* der Name einer Variablen ist, in der die Rückruffunktion eine Fehlermeldung speichern kann, wenn sie ungültige Daten feststellt.
 
-        Das System erwartet, dass die Rückruffunktion einen booleschen Wert gibt, wobei **true** angibt, dass *text* gültig ist.
+        Das System erwartet, dass die Rückruffunktion einen booleschen Wert zurückgibt, wobei **true** angibt, dass *text* gültig ist.
 
 
     Die Standardvalidierung behandelt – sofern keine Rückruffunktion festgelegt wurde – eine leere Zeichenkette als ungültig und alle anderen Eingaben als gültig.
 
-    *Bitte beachten Sie*, dass das Widget die Eingabe doppelter Werte in die Hauptliste verhindert, unabhängig von der ansonsten bestehenden Gültigkeit der Eingabe. Dies steht im Einklang mit der Tatsache, dass dieses Widget für die Eingabe ungeordneter Listen vorgesehen ist, also im Wesentlichen für eine Reihe von Zeichenfolgen.
+    *Beachten Sie*, dass das Widget die Eingabe doppelter Werte in die Hauptliste verhindert, unabhängig von der ansonsten bestehenden Gültigkeit der Eingabe. Dies steht im Einklang mit der Tatsache, dass dieses Widget für die Eingabe ungeordneter Listen vorgesehen ist, also im Wesentlichen für eine Menge von Zeichenketten.
 
 
 ## Allgemeine Optionen für Widgets
@@ -177,9 +177,9 @@ In diesem Abschnitt werden alle Optionen erläutert, die für Instanzen von **wi
 **-skin-invalid-color** color
 : Diese Optionen ändern alle das Erscheinungsbild des Widgets, d. h. dessen Skin.
 
-    Alle Optionen, die ein Zeichenfolgenargument entgegennehmen, beeinflussen die verschiedenen angezeigten Beschriftungen, wobei insbesondere die Optionen vom Typ **-skin-tip-\*** die Tooltips beeinflussen, die beim Bewegen des Mauszeigers über verschiedene Bereiche angezeigt werden.
+    Alle Optionen, die ein Zeichenkettenargument entgegennehmen, beeinflussen die verschiedenen angezeigten Beschriftungen, wobei insbesondere die Optionen vom Typ **-skin-tip-\*** die Tooltips beeinflussen, die beim Bewegen des Mauszeigers über verschiedene Bereiche angezeigt werden.
 
-    Alle Zeichenfolgen werden zunächst durch **msgcat** geleitet, wodurch die Lokalisierung von Text über Meldungskataloge ermöglicht wird. Die Standardwerte sind Schlüssel in den Meldungskatalogen, die Teil des Pakets selbst sind.
+    Alle Zeichenketten werden zunächst durch **msgcat** geleitet, wodurch die Lokalisierung von Text über Meldungskataloge ermöglicht wird. Die Standardwerte sind Schlüssel in den Meldungskatalogen, die Teil des Pakets selbst sind.
 
     Die Optionen, die Bilder als Argument annehmen, ändern die Bilder, die auf den Schaltflächen zum Hinzufügen und Entfernen von Elementen der Liste angezeigt werden. Standardmäßig werden die mit dem Paket selbst ausgelieferten PNG-Bilder verwendet.
 

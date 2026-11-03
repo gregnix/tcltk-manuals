@@ -69,7 +69,7 @@ huddle – Erstellen und Bearbeiten eines „huddle“-Objekts
 
 Huddle stellt ein generisches, Tcl-basiertes Serialisierungs- bzw. Zwischenformat bereit. Derzeit wird jeder Knoten in ein Tag mit einfachen Typinformationen eingeschlossen.
 
-Wenn die Huddle-Notation in andere Serialisierungsformate wie JSON oder YAML konvertiert wird, werden diese Typinformationen verwendet, um die richtige Notation auszuwählen. Und wenn die Huddle-Notation von JSON/YAML/… in Huddle konvertiert wird, kann deren Notation verwendet werden, um den richtigen Huddle-Typ auszuwählen.
+Wenn die Huddle-Notation in andere Serialisierungsformate wie JSON oder YAML konvertiert wird, werden diese Typinformationen verwendet, um die richtige Notation auszuwählen. Und wenn von JSON/YAML/… in Huddle konvertiert wird, kann deren Notation verwendet werden, um den richtigen Huddle-Typ auszuwählen.
 
 Auf diese Weise kann „Huddle“ als gemeinsames Vermittlungsformat dienen.
 
@@ -103,7 +103,7 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
 : Erstellt ein „Huddle“-Objekt als Zahl.
 
 **huddle string** *string*
-: Erstellt ein „Huddle“-Objekt als Zeichenfolge.
+: Erstellt ein „Huddle“-Objekt als Zeichenkette.
 
 **huddle boolean** *expression to evaluate as true or false*
 : Erstellt ein Huddle-Objekt als Booleschen Wert, der einen Ausdruck als „wahr“ oder „falsch“ auswertet –
@@ -180,7 +180,7 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
 : Gibt den Elementtyp zurück, der durch die Schlüssel festgelegt ist. Wenn „key“ nicht angegeben ist, gibt es den Typ des Wurzelknotens zurück.
 
     **string**
-    : Der Knoten ist eine TCL-Zeichenkette.
+    : Der Knoten ist eine Tcl-Zeichenkette.
 
     **dict**
     : Der Knoten ist ein Dict.
@@ -208,7 +208,7 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
     ```
 
 **huddle strip** *object*
-: Alle Tags wurden entfernt. In normale Tcl-Listen/Dictionaries konvertiert.
+: Entfernt alle Tags und konvertiert in normale Tcl-Listen/Dictionaries.
 
 **huddle jsondump** *object* ?*offset*? ?*newline*? ?*begin\_offset*?
 : Einen JSON-Stream aus dem Huddle-Objekt ausgeben.
@@ -248,22 +248,22 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
     : Die Daten sind einfach eine Zeichenkette.
 
     **list**
-    : „data“ ist eine TCL-Liste aus Zeichenketten
+    : „data“ ist eine Tcl-Liste aus Zeichenketten
 
     **dict**
-    : „data“ ist ein TCL-Dict aus Zeichenketten
+    : „data“ ist ein Tcl-Dict aus Zeichenketten
 
     list list
-    : „data“ ist eine TCL-Liste von Listen
+    : „data“ ist eine Tcl-Liste von Listen
 
     list dict
-    : „data“ ist eine TCL-Liste aus Dictionaries
+    : „data“ ist eine Tcl-Liste aus Dictionaries
 
     dict xx list
-    : „data“ ist ein TCL-Dict, bei dem der Wert des Schlüssels „xx“ eine TCL-Liste ist.
+    : „data“ ist ein Tcl-Dict, bei dem der Wert des Schlüssels „xx“ eine Tcl-Liste ist.
 
     dict \* list
-    : „data“ ist ein TCL-Dict aus Listen; „*data*“ sind einfache TCL-Werte.
+    : „data“ ist ein Tcl-Dict aus Listen; „*data*“ sind einfache Tcl-Werte.
 
 
     ```
@@ -274,13 +274,13 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
     ```
 
 **huddle isHuddle** *object*
-: Wenn *Objekt* ein „Huddle“ ist, gibt es 1 zurück. Andernfalls gibt es 0 zurück.
+: Wenn *object* ein „Huddle“ ist, gibt es 1 zurück. Andernfalls gibt es 0 zurück.
 
 **huddle checkHuddle** *object*
-: Wenn *Objekt* kein Huddle ist, wird ein Fehler ausgelöst.
+: Wenn *object* kein Huddle ist, wird ein Fehler ausgelöst.
 
 **huddle to\_node** *object* ?*tag*?
-: Für Typ-Callbacks.
+: Für Typ-Rückruffunktionen.
 
     Wenn *object* ein „Huddle“ ist, gibt es den Stammknoten zurück. Andernfalls gibt es **\[list s $object\]** zurück.
 
@@ -296,9 +296,9 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
     ```
 
 **huddle wrap** *tag* *src*
-: für Typ-Callbacks.
+: für Typ-Rückruffunktionen.
 
-    Erstellt ein Huddle-Objekt aus *src* mit dem angegebenen *Tag*.
+    Erstellt ein Huddle-Objekt aus *src* mit dem angegebenen *tag*.
 
     ```
     % huddle wrap "" str
@@ -308,9 +308,9 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
     ```
 
 **huddle call** *tag* *command* *args*
-: für Typ-Callbacks.
+: für Typ-Rückruffunktionen.
 
-    *Befehl* wird an das Standard-*Tag* -callback weitergeleitet
+    *command* wird an die Standard-Rückruffunktion für *tag* weitergeleitet
 
 **huddle addType** *callback*
 : Fügt der Huddle-Bibliothek einen benutzerdefinierten Typ/Tag hinzu. Siehe „Zusätzlicher Typ“.
@@ -320,9 +320,9 @@ Das **huddle**-Paket gibt Daten als Tcl-**dict** zurück. Für die Verwendung is
 
 
 
-# Rückruffunktion eingeben
+# Typ-Rückruffunktion
 
-Die Definition von „Callback“ für den Typ „user“.
+Die Definition der Rückruffunktion für einen benutzerdefinierten Typ.
 
 **callback** *command* ?*args*?
 : siehe unten ...
@@ -335,10 +335,10 @@ Die Definition von „Callback“ für den Typ „user“.
 
 
 
-Die Rückruffunktion sollte die folgenden Unterbefehle zurückgeben.
+Die Rückruffunktion sollte auf die folgenden Unterbefehle antworten.
 
 **setting**
-: gibt lediglich ein festes Wörterbuch mit den Typinformationen zum Setzen des Benutzer-Tags zurück.
+: gibt lediglich ein festes Dictionary mit den Typinformationen zum Setzen des Benutzer-Tags zurück.
 
     **type** typename
     : Typname des Typs
@@ -347,7 +347,7 @@ Die Rückruffunktion sollte die folgenden Unterbefehle zurückgeben.
     : Methodenliste als „huddle“-Unterbefehl. Anschließend können Sie **\[huddle method1 ...\]** aufrufen
 
     **tag** {tag1 child/parent tag2 child/parent ...}
-    : Tag-Liste für „huddle-node“ als Wörterbuch. Wenn der Typ untergeordnete Knoten hat, verwende „parent“, andernfalls „child“.
+    : Tag-Liste für „huddle-node“ als Dictionary. Wenn der Typ untergeordnete Knoten hat, verwenden Sie „parent“, andernfalls „child“.
 
 
 **get\_sub** *src* *key*
@@ -549,7 +549,7 @@ HUDDLE {L {{D {bb {D {a {s b} c {s kkk}}} cc {L {{s e} {s f} {s g} {s h}}}}} {s 
 
 # Einschränkungen
 
-Wird gerade gedruckt.
+In Vorbereitung.
 
 # Fehler, Ideen, Rückmeldungen
 

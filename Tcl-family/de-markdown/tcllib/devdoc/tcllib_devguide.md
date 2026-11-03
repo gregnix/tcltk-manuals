@@ -35,7 +35,7 @@ Bitte lesen Sie
 
 zunächst, wenn Sie dies noch nicht getan haben.
 
-Wir gehen hier davon aus, dass die Quelltexte bereits in einem Verzeichnis Ihrer Wahl verfügbar sind und dass Sie nicht nur wissen, wie man sie kompiliert und installiert, sondern auch über alle notwendigen Voraussetzungen verfügen, um dies tatsächlich zu tun. Insbesondere die Anleitung zu den Quelltexten erläutert auch, welches Quellcode-Verwaltungssystem verwendet wird, wo Sie es finden, wie Sie es einrichten usw.
+Wir gehen hier davon aus, dass die Quelltexte bereits in einem Verzeichnis Ihrer Wahl verfügbar sind und dass Sie nicht nur wissen, wie Sie sie kompilieren und installieren, sondern auch über alle notwendigen Voraussetzungen verfügen, um dies tatsächlich zu tun. Insbesondere die Anleitung zu den Quelltexten erläutert auch, welches Quellcode-Verwaltungssystem verwendet wird, wo Sie es finden, wie Sie es einrichten usw.
 
 # Verpflichtungen
 
@@ -99,7 +99,7 @@ Was Pakete und die Abhängigkeiten zwischen ihnen betrifft, nimmt Tcllib eine mi
 
 2. Auf der anderen Seite steht die Welt der halbunabhängigen Projekte zahlreicher verschiedener Autoren, in der die Autoren zwar wissen, von welchen Paketen ihre eigenen Entwicklungen abhängen, jedoch in der Regel nicht wissen, wer sonst noch von diesen Paketen abhängig ist.
 
-    Das Beste, was ein Autor tun kann, der eine (inkompatible) Änderung an seinem Projekt vornimmt, ist erstens, solche Änderungen in irgendeiner Form anzukündigen, und zweitens, mithilfe der Versionsverwaltung den Code vor und nach der Änderung zu unterscheiden.
+    Das Beste, was ein Autor tun kann, der eine (inkompatible) Änderung an seinem Projekt vornimmt, ist erstens, solche Änderungen in irgendeiner Form anzukündigen, und zweitens, mithilfe der Versionierung den Code vor und nach der Änderung zu unterscheiden.
 
     Es obliegt dann der Community, sich anzupassen, sei es durch die Aktualisierung der eigenen Projekte auf die neue Version oder durch das Festhalten an der alten.
 
@@ -118,38 +118,38 @@ Die Verwaltung und Nutzung von Zweigen ist ein wichtiger Bestandteil der Arbeit 
 
 Bei Tcllib ist der Hauptzweig der Sammlung *trunk*. In *git* würde dieser Zweig *master* heißen, und genau dies ist im [GitHub-Mirror](https://github.com/tcltk/tcllib/) von Tcllib der Fall.
 
-Um das Debugging angemessen zu unterstützen, *muss jeder einzelne Commit* in diesem Zweig *die gesamte Testsuite* der Sammlung bestehen. Die Verwendung der Bisektionsmethode zur Ermittlung des Zeitpunkts, zu dem ein Problem aufgetreten ist, ist ein Beispiel für eine Maßnahme, die durch diese Constraint vereinfacht wird.
+Um das Debugging angemessen zu unterstützen, *muss jeder einzelne Commit* in diesem Zweig *die gesamte Testsuite* der Sammlung bestehen. Die Verwendung der Bisektionsmethode zur Ermittlung des Zeitpunkts, zu dem ein Problem aufgetreten ist, ist ein Beispiel für eine Maßnahme, die durch diese Bedingung vereinfacht wird.
 
 Dies ist Teil unserer gemeinsamen Verantwortung für die allgemeine Nutzbarkeit von Tcllib gegenüber der Außenwelt. Da *fossil* über keinen Mechanismus verfügt, um diese Bedingung durchzusetzen, beruht dies auf dem Vertrauensprinzip seitens der Entwickler und Betreuer.
 
 Um Ihnen die Arbeit zu erleichtern, enthält Tcllib ein Tool („*sak.tcl*“), das eine Reihe von Befehlen zur Unterstützung bereitstellt. Diese Befehle werden in den folgenden Abschnitten dieses Leitfadens erläutert.
 
-Zwar ist es möglich und zulässig, direkt in den Trunk zu Committen, doch beachten Sie bitte die oben genannte Constraint bezüglich der Testsuite sowie die nachfolgenden Hinweise zu weiteren möglichen Problemen bei einem Commit.
+Zwar ist es möglich und zulässig, direkt in den Trunk zu committen, doch beachten Sie bitte die oben genannte Bedingung bezüglich der Testsuite sowie die nachfolgenden Hinweise zu weiteren möglichen Problemen bei einem Commit.
 
 ## Zweige
 
-Angesichts der Constraints, die für den *trunk*-Zweig des Repositorys gelten, wird (dringend) empfohlen, alle Entwicklungsarbeiten, die über geringfügige Änderungen hinausgehen, in einem anderen Zweig als dem *trunk*-Zweig durchzuführen.
+Angesichts der Einschränkungen, die für den *trunk*-Zweig des Repositorys gelten, wird (dringend) empfohlen, alle Entwicklungsarbeiten, die über geringfügige Änderungen hinausgehen, in einem anderen Zweig als dem *trunk*-Zweig durchzuführen.
 
-Außerhalb des Trunks ist es Entwicklern gestattet, Zwischenzustände ihrer Arbeit, die noch Fehler enthalten, zu Committen. Erst am Ende eines Entwicklungszyklus, wenn der betreffende Branch als bereit für die Zusammenführung angesehen wird, ist es erforderlich, alle Validierungen durchzuführen, um sicherzustellen, dass die bevorstehende Zusammenführung zu einem fehlerfreien Commit im Trunk führt.
+Außerhalb des Trunks ist es Entwicklern gestattet, Zwischenzustände ihrer Arbeit, die noch Fehler enthalten, zu committen. Erst am Ende eines Entwicklungszyklus, wenn der betreffende Branch als bereit für die Zusammenführung angesehen wird, ist es erforderlich, alle Validierungen durchzuführen, um sicherzustellen, dass die bevorstehende Zusammenführung zu einem fehlerfreien Commit im Trunk führt.
 
 Hinweis: Eine Überprüfung durch einen zweiten Entwickler ist zwar keine zwingende Anforderung für das Zusammenführen eines Zweigs, es ist jedoch empfehlenswert, eine solche unabhängige Meinung einzuholen, um die Arbeit einer Gegenprüfung zu unterziehen.
 
-Außerdem wurde empfohlen, jedem neuen Zweig einen Namen zu geben, der dabei hilft, weitere Details darüber zu ermitteln. Beispiele für geeignete Angaben, die in einen Zweignamen aufgenommen werden sollten, wären
+Außerdem wird empfohlen, jedem neuen Zweig einen Namen zu geben, der dabei hilft, weitere Details darüber zu ermitteln. Beispiele für geeignete Angaben, die in einen Zweignamen aufgenommen werden sollten, wären
 
 - (Spitz-)Name des Entwicklers
 
 - Ticket-Hash/Referenz
 
-- Ein oder zwei Schlüsselwörter, die auf das Werk zutreffen
+- Ein oder zwei Schlüsselwörter, die auf die Arbeit zutreffen
 
 - ...
 
 
-... Darüber hinaus sind die meisten Entwicklungszweige zwar wahrscheinlich von relativ kurzer Dauer, doch gibt es kein Verbot, auch länger bestehende Zweige anzulegen. Die Ersteller sollten sich jedoch bewusst sein, dass solche Zweige umso stärker vom Stammzweig abweichen, je länger sie ohne Zusammenführung bestehen bleiben, was mit einem entsprechenden Anstieg des Aufwands einhergeht, der entweder für die Zusammenführung aus dem Zweig in den Stammzweig oder umgekehrt aufgewendet werden muss.
+Darüber hinaus sind die meisten Entwicklungszweige zwar wahrscheinlich von relativ kurzer Dauer, doch gibt es kein Verbot, auch länger bestehende Zweige anzulegen. Die Ersteller sollten sich jedoch bewusst sein, dass solche Zweige umso stärker vom Stammzweig abweichen, je länger sie ohne Zusammenführung bestehen bleiben, was mit einem entsprechenden Anstieg des Aufwands einhergeht, der entweder für die Zusammenführung aus dem Zweig in den Stammzweig oder umgekehrt aufgewendet werden muss.
 
 ## Arbeiten mit Zweigen
 
-In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele, die Verzweigungen erzeugen, sowie die dazugehörigen „fossil“-Befehle (Sequenzen).
+In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispielvorgänge, die bei der Arbeit mit Zweigen vorkommen, sowie die dazugehörigen „fossil“-Befehle (Sequenzen).
 
 *Awareness*
 : Bei der Entwicklung müssen wir uns stets des Kontexts unserer Arbeit bewusst sein. Auf welchem Zweig befinden wir uns? Welche Dateien haben wir geändert? Welche neuen Dateien sind dem Repository noch nicht bekannt? Was ist auf dem Server geschehen, seit wir unseren Checkout verwendet haben? Die Antworten auf diese Fragen sind besonders wichtig, wenn Sie einen langfristig genutzten Checkout verwenden und nach einer längeren Pause wieder darauf zurückkommen.
@@ -157,9 +157,9 @@ In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele,
     Befehle zur Beantwortung solcher Fragen sind:
 
     **fossil pull**
-    : Führen Sie alle Änderungen durch, die seit dem letzten Abruf oder der letzten Synchronisierung vom Remote-Repository vorgenommen wurden. Dies muss zuerst erfolgen, bevor Sie einen der folgenden Befehle ausführen.
+    Holt alle Änderungen ab, die seit dem letzten Abruf oder der letzten Synchronisierung vom Remote-Repository vorgenommen wurden. Dies muss zuerst erfolgen, bevor Sie einen der folgenden Befehle ausführen.
 
-        Selbst wenn sich der Commit in unserem Checkout auf den gewünschten Zweig bezieht, könnten durch am Remote-Repository vorgenommene Commits die Situation hinter unserem Rücken verändert haben.
+        Selbst wenn sich der Commit in unserem Checkout auf den gewünschten Zweig bezieht, könnten am Remote-Repository festgeschriebene Steuervorgänge die Situation hinter unserem Rücken verändert haben.
 
     **fossil info | grep tags**
     : siehe unten ...
@@ -214,7 +214,7 @@ In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele,
         fossil branch new NAME_OF_NEW_BRANCH
     ```
 
-    und mit der Entwicklung beginnen. Der Vorteil dabei ist, dass Sie nicht vergessen können, den Zweig anzulegen. Die Nachteile bestehen darin, dass wir einen Commit im Zweig haben, der gegenüber dem Ausgangspunkt unverändert ist, und dass wir drastische Maßnahmen wie das Ausblenden oder Ignorieren ergreifen müssen, um den Commit zu entfernen, sollten wir beschließen, die Arbeit vor dem ersten tatsächlichen Commit in diesem Zweig aufzugeben.
+    und mit der Entwicklung beginnen. Der Vorteil dabei ist, dass Sie nicht vergessen können, den Zweig anzulegen. Die Nachteile bestehen darin, dass wir einen Commit im Zweig haben, der gegenüber dem Ausgangspunkt unverändert ist, und dass wir drastische Maßnahmen wie das Ausblenden oder Ächten (Shunning) ergreifen müssen, um den Commit zu entfernen, sollten wir beschließen, die Arbeit vor dem ersten tatsächlichen Commit in diesem Zweig aufzugeben.
 
     Die andere Möglichkeit, den Zweig zu erstellen, besteht darin, mit der Entwicklung zu beginnen und dann beim ersten Commit die Option **--branch** zu verwenden, um **fossil** mitzuteilen, dass wir nun einen Zweig starten. Führen Sie also folgenden Befehl aus:
 
@@ -230,14 +230,14 @@ In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele,
 
     Es kann vorkommen, dass wir vergessen, **--branch NAME\_OF\_NEW\_BRANCH** zu verwenden, und dieses Versehen dann über die Fossil-Weboberfläche korrigieren müssen (mir sind derzeit keine Möglichkeiten bekannt, dies über die Befehlszeile zu bewerkstelligen, obwohl eine „magische Formel“ wie **fossil tag create** möglicherweise funktionieren könnte).
 
-    Es ist hilfreich, stets aufmerksam zu bleiben, beispielsweise indem man vor jedem Commit überprüft, ob man sich auf dem gewünschten Branch befindet.
+    Es ist hilfreich, stets aufmerksam zu bleiben, beispielsweise indem Sie vor jedem Commit überprüfen, ob Sie sich auf dem gewünschten Branch befinden.
 
 *Merging a branch into trunk*
 : Achten Sie darauf, wo Sie sich befinden (siehe erste Definition).
 
     Stellen Sie sicher, dass Ihr Checkout sauber ist (siehe zweite Definition). In der vollständigen Abfolge (Zickzack) ist dies aufgrund der Zusammenführung aus dem Trunk *eine Anforderung*. In der kürzeren Abfolge ist es lediglich wünschenswert. Dennoch halte ich es für eine gute Angewohnheit, den Checkout vor größeren Vorgängen sauber zu halten.
 
-    Die vollständige Abfolge mit durchgehenden Überprüfungen dient dazu,
+    Die vollständige Abfolge mit durchgehenden Überprüfungen sieht so aus:
 
     1. Überprüfen Sie den Checkout, d. h. den letzten Commit in Ihrem Branch. Führen Sie die vollständige Testsuite sowie weitere Validierungen durch und beheben Sie alle aufgetretenen Probleme.
 
@@ -258,7 +258,7 @@ In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele,
             fossil commit ...
         ```
 
-    6. Dies sollte nun ausreichen, um den Merge zurückzuentfernen und den Branch zu schließen (aufgrund des **--integrate**, den wir beim Merge verwendet haben).
+    6. aus, um den Merge zurück in den Trunk zu committen und den Branch zu schließen (aufgrund des **--integrate**, den wir beim Merge verwendet haben).
 
         Wer besonders vorsichtig ist, kann den Checkout vor dem Commit ein drittes Mal validieren.
 
@@ -316,9 +316,9 @@ In der Hoffnung, gute Arbeitspraktiken zu fördern, folgen nun einige Beispiele,
 
 ## Versionsnummern
 
-In Tcllib müssen alle Änderungen an einem Paket mit einer Erhöhung der Versionsnummern einhergehen. Welcher Teil erhöht wird (Patch-Level, Minor- oder Major-Version), hängt von der Art der vorgenommenen Änderung ab. Bei mehreren Änderungen in einem Commit „gewinnt“ diejenige mit der höchsten Versionsnummer.
+In Tcllib müssen alle Änderungen an einem Paket mit einer Erhöhung der Versionsnummern einhergehen. Welcher Teil erhöht wird (Patch-Level, Minor- oder Major-Version), hängt von der Art der vorgenommenen Änderung ab. Bei mehreren Änderungen in einem Commit „gewinnt“ die höchste Erhöhung.
 
-Wenn man in einem Entwicklungszweig arbeitet, kann die Versionsänderung bis zum Zeitpunkt des Zusammenführens aufgeschoben werden; dann muss sie alle Änderungen in diesem Zweig abdecken.
+Wenn Sie in einem Entwicklungszweig arbeiten, kann die Versionsänderung bis zum Zeitpunkt des Zusammenführens aufgeschoben werden; dann muss sie alle Änderungen in diesem Zweig abdecken.
 
 Nachfolgend finden Sie eine Liste der verschiedenen Arten von Änderungen und der damit verbundenen Versionserhöhungen:
 
@@ -344,7 +344,7 @@ Nachfolgend finden Sie eine Liste der verschiedenen Arten von Änderungen und de
 : Major-Version
 
 
-Beachten Sie, dass ein Commit, das eine Versionserhöhung enthält, in seiner Commit-Meldung sowohl die neue Versionsnummer als auch die Art der Änderung, die dazu geführt hat, angeben muss.
+Beachten Sie, dass ein Commit, der eine Versionserhöhung enthält, in seiner Commit-Meldung sowohl die neue Versionsnummer als auch die Art der Änderung, die dazu geführt hat, angeben muss.
 
 Beachten Sie ferner, dass die Versionsnummer eines Pakets derzeit an drei Stellen vorhanden ist. Bei einer Versionserhöhung müssen alle diese Stellen aktualisiert werden:
 
@@ -367,16 +367,16 @@ um deren Dokumentation einzusehen.
 
 ## Hauptverzeichnisse
 
-Die wichtigsten Verzeichnisse im Toplevel-Fenster von „Tcllib“, die für Entwickler von Interesse sind, lauten:
+Die wichtigsten Verzeichnisse im obersten Verzeichnis von Tcllib, die für Entwickler von Interesse sind, lauten:
 
 "*modules*"
-: Jedes Verzeichnis steht für ein oder mehrere Pakete. Im letzteren Fall stehen die Pakete in der Regel in irgendeiner Weise miteinander in Zusammenhang. Beispiele hierfür sind „*base64*“, „*math*“ und „*struct*“, wobei die Beziehungen zwischen den Paketen in dem jeweiligen Verzeichnis von locker (base64) bis eng (math) reichen.
+: Jedes Unterverzeichnis steht für ein oder mehrere Pakete. Im letzteren Fall stehen die Pakete in der Regel in irgendeiner Weise miteinander in Zusammenhang. Beispiele hierfür sind „*base64*“, „*math*“ und „*struct*“, wobei die Beziehungen zwischen den Paketen in dem jeweiligen Verzeichnis von locker (base64) bis eng (math) reichen.
 
 "*apps*"
 : Dieses Verzeichnis enthält alle installierbaren Anwendungen samt ihrer Dokumentation. Es gibt derzeit keine Unterverzeichnisse in diesem Verzeichnis.
 
 "*examples*"
-: Jedes Verzeichnis „*foo*“ enthält eine oder mehrere Beispiele für die Pakete in „*modules/foo*“. Diese Beispiele sind in der Regel noch nicht ausgereift genug, um für eine Installation in Betracht gezogen zu werden.
+: Jedes Unterverzeichnis „*foo*“ enthält eine oder mehrere Beispielanwendungen für die Pakete in „*modules/foo*“. Diese Beispiele sind in der Regel noch nicht ausgereift genug, um für eine Installation in Betracht gezogen zu werden.
 
 
 ## Weitere Verzeichnisse
@@ -393,7 +393,7 @@ Die wichtigsten Verzeichnisse im Toplevel-Fenster von „Tcllib“, die für Ent
     Es handelt sich hierbei um die Dokumentation, auf die Sie vom Tcllib-Stammverzeichnis aus zugreifen können und die im Repository als „*embedded/index.md*“ vorliegt.
 
 "*idoc*"
-: Dieses Verzeichnis enthält die gesamte Dokumentation, formatiert für *nroff* und *HTML*, wobei letztere ohne jegliche Formatierung vorliegt. Dies ist die Dokumentation, die installiert wird.
+: Dieses Verzeichnis enthält die gesamte Dokumentation, formatiert für *nroff* und *HTML*, wobei letztere ohne jegliche Gestaltung (Styling) vorliegt. Dies ist die Dokumentation, die installiert wird.
 
 "*support*"
 : Dieses Verzeichnis enthält die Quellcodes der internen Pakete und Dienstprogramme, die bei der Implementierung der Skripte bzw. Tools „*installer.tcl*“ und „*sak.tcl*“ verwendet werden.
@@ -423,7 +423,7 @@ Die wichtigsten Verzeichnisse im Toplevel-Fenster von „Tcllib“, die für Ent
 : Dies ist das wichtigste Werkzeug für Entwickler und Release-Manager, das *Schweizer Taschenmesser* für Verwaltungsaufgaben im Zusammenhang mit der Sammlung.
 
 "*ChangeLog*"
-: Das Protokoll der Änderungen am globalen Support, wenn die Quelltexte noch in *CVS* verwaltet wurden. Mit der Umstellung auf das SCM *fossil* nicht mehr relevant.
+: Das Protokoll der Änderungen am globalen Support, als die Quelltexte noch in *CVS* verwaltet wurden. Mit der Umstellung auf das SCM *fossil* nicht mehr relevant.
 
 "*license.terms*"
 : Die Lizenz im einfachen ASCII-Format. Siehe auch *Tcllib – Lizenz* für die übersichtliche Darstellung. Der Text ist identisch.
@@ -496,7 +496,7 @@ or
   ./sak.tcl test run modules/foo
 ```
 
-um die Testsuiten aufzurufen, die sich in einem bestimmten Modul „*foo*“ befinden.
+auf, um die Testsuiten aufzurufen, die sich in einem bestimmten Modul „*foo*“ befinden.
 
 ## Die Testsuiten aller Module aufrufen
 
@@ -522,7 +522,7 @@ Zum einen:
 
 Zwar wird dabei wie zuvor derselbe kurze Protokollauszug auf dem Terminal angezeigt, doch wird zudem ein detailliertes Protokoll in die Datei „*LOG.log*“ geschrieben und Auszüge in weitere Dateien („*LOG.summary*“, „*LOG.failures*“ usw.) ausgegeben.
 
-Für zwei Personen:
+Zum anderen:
 
 ```
   ./sak.tcl test run -v foo
@@ -554,7 +554,7 @@ um die ausführliche Hilfe zu allen Methoden von **test** sowie die zugehörigen
 
 # Dokumentationswerkzeuge
 
-Das Standardformat für die Dokumentation von Paketen und anderen Elementen in Tcllib ist *doctools*. Die dazugehörigen Pakete sind Teil von Tcllib; siehe die Verzeichnisse „*modules/doctools*“ und „*modules/dtplite*“. Letzteres ist ein Paket, wobei die eigentliche Anwendung „*apps/dtplite*“ einen schlanken Wrapper darum bildet.
+Das Standardformat für die Dokumentation von Paketen und anderen Elementen in Tcllib ist *doctools*. Die dazugehörigen Pakete sind Teil von Tcllib; siehe die Verzeichnisse „*modules/doctools*“ und „*modules/dtplite*“. Letzteres ist ein Anwendungspaket, wobei die eigentliche Anwendung „*apps/dtplite*“ einen schlanken Wrapper darum bildet.
 
 Tcllib-Entwickler erhalten über die Methode **doc** des Tools „*sak.tcl*“ Zugriff darauf; dabei handelt es sich um einen weiteren (internen) Wrapper um das Paket „*modules/dtplite*“.
 
@@ -572,7 +572,7 @@ or
   ./sak.tcl doc html modules/foo
 ```
 
-um HTML für die Dokumentation im Modul „*foo*“ zu generieren. Anstelle von **html** kann hier natürlich jedes andere unterstützte Format verwendet werden.
+auf, um HTML für die Dokumentation im Modul „*foo*“ zu generieren. Anstelle von **html** kann hier natürlich jedes andere unterstützte Format verwendet werden.
 
 Die generierte, formatierte Dokumentation wird im Verzeichnis „*doc*“ im aktuellen Arbeitsverzeichnis platziert.
 
@@ -622,7 +622,7 @@ um entweder die Pakete eines bestimmten Moduls oder alle Pakete zu überprüfen.
 
 Während in den vorangegangenen Abschnitten die Ausführung der Testsuiten für ein Modul und die darin enthaltenen Pakete behandelt wurde, hat dies keinerlei Bedeutung, wenn das betreffende Modul überhaupt keine Testsuiten enthält.
 
-Dieser Abschnitt bietet eine sehr grundlegende Einleitung zu möglichen Methoden zum Erstellen von Tests und Testsuiten.
+Dieser Abschnitt bietet einen sehr grundlegenden Überblick über mögliche Methoden zum Erstellen von Tests und Testsuiten.
 
 Zunächst gibt es sogenannte „Routinetests“. Diese dienen dazu, absolut grundlegende Annahmen zu überprüfen, die unter keinen Umständen fehlschlagen dürfen.
 
@@ -630,7 +630,7 @@ Beispielsweise für einen Befehl FOO, der zwei Argumente erwartet: drei Tests, b
 
 Danach folgen die Tests, die anhand unseres Wissens über den Befehl dessen Eigenschaften und Annahmen überprüfen. Einige Beispiele, die auf den im Rahmen des „Google Summer of Code 2009“ hinzugefügten Graphoperationen basieren, sind:
 
-- Der Befehl „BellmanFord“ in struct::graph::ops nimmt einen *Startknoten* als Argument entgegen, und dieser Knoten sollte ein Knoten des Graphen sein. Dies entspricht einem Testfall, der das Verhalten überprüft, wenn der angegebene Knoten kein Knoten des Graphen ist.
+- Der Befehl „BellmanFord“ in struct::graph::ops nimmt einen *startnode* als Argument entgegen, und dieser Knoten sollte ein Knoten des Graphen sein. Dies entspricht einem Testfall, der das Verhalten überprüft, wenn der angegebene Knoten kein Knoten des Graphen ist.
 
     Dies führt in der Implementierung häufig dazu, dass Code geschrieben wird, der diese Annahme explizit überprüft und einen nachvollziehbaren Fehler auslöst, anstatt zuzulassen, dass der Algorithmus später auf seltsame, nicht deterministische Weise fehlschlägt.
 
@@ -655,7 +655,7 @@ Danach folgen die Tests, die anhand unseres Wissens über den Befehl dessen Eige
 
     Daraus ergeben sich zudem drei Testfälle:
 
-    1. Graph mit allen Kanten und expliziten Gewichten.
+    1. Graph, dessen Kanten alle explizite Gewichte haben.
 
     2. Ein Graph ohne jegliche Gewichte.
 
@@ -679,11 +679,11 @@ In der Praxis werden Testfälle und Dokumentation oft gleichzeitig verfasst, wob
 
 Ein letzter Punkt, den man berücksichtigen sollte, wenn ein neues Paket zur Sammlung hinzukommt, ist die Installation.
 
-Die *Verwendung* des Skripts „*installer.tcl*“ ist in *Tcllib – Anleitung für Installateure* dokumentiert.
+Die *Verwendung* des Skripts „*installer.tcl*“ ist in *Tcllib – Das Installationshandbuch* dokumentiert.
 
 Hier beschreiben wir, wie Sie das genannte Installationsprogramm so erweitern können, dass es neue Pakete und/oder Anwendungen installieren kann.
 
-In den meisten Fällen muss lediglich eine einzige Datei geändert werden, nämlich die Datei „*support/installation/modules.tcl*“, die je nach zu installierendem Modul und Anwendung jeweils einen Befehl enthält.
+In den meisten Fällen muss lediglich eine einzige Datei geändert werden, nämlich die Datei „*support/installation/modules.tcl*“, die für jedes zu installierende Modul und jede Anwendung je einen Befehl enthält.
 
 Die entsprechenden Befehle lauten:
 
@@ -696,25 +696,25 @@ Die entsprechenden Befehle lauten:
     : Kopiert alle im Verzeichnis „*modules/name*“ gefundenen „*.tcl*“-Dateien in das Installationsverzeichnis.
 
     **\_tcr**
-    : Kopieren Sie ebenso wie bei **\_tcl** die „*.tcl*“-Dateien, die sich in den Unterverzeichnissen von „*modules/Name*“ befinden.
+    : Wie **\_tcl**; kopiert zusätzlich auch die „*.tcl*“-Dateien in den Unterverzeichnissen von „*modules/name*“.
 
     **\_tci**
-    : Nennen Sie die Datei „**\_tcl**“ und kopieren Sie außerdem die Datei „*tclIndex.tcl*“.
+    : Wie **\_tcl**; kopiert zusätzlich die Datei „*tclIndex.tcl*“.
 
     **\_msg**
-    : Als **\_tcl**, und kopieren Sie bitte auch das Unterverzeichnis „*msgs*“.
+    : Wie **\_tcl**; kopiert zusätzlich das Unterverzeichnis „*msgs*“.
 
     **\_doc**
-    : Geben Sie „**\_tcl**“ ein und kopieren Sie zudem das Unterverzeichnis „*mpformats*“.
+    : Wie **\_tcl**; kopiert zusätzlich das Unterverzeichnis „*mpformats*“.
 
     **\_tex**
-    : Als **\_tcl** und kopieren Sie zudem die „*.tex*“-Dateien.
+    : Wie **\_tcl**; kopiert zusätzlich die „*.tex*“-Dateien.
 
 
     Die *doc-action* ist für die Installation der Paketdokumentation zuständig. Das System stellt derzeit Folgendes bereit:
 
     **\_null**
-    : Es liegt keine Dokumentation vor; bitte unternehmen Sie nichts.
+    : Es liegt keine Dokumentation vor; es wird nichts unternommen.
 
     **\_man**
     : Verarbeiten Sie die im Verzeichnis „*modules/name*“ befindlichen „*.man*“-Dateien und installieren Sie die Ergebnisse (nroff und/oder HTML) an dem dem Installationsprogramm angegebenen Speicherort.
@@ -725,10 +725,10 @@ Die entsprechenden Befehle lauten:
     Die *example-action* ist für die Installation der Beispiele zuständig. Das System stellt derzeit Folgendes bereit:
 
     **\_null**
-    : Es sind keine Beispiele verfügbar; bitte unternehmen Sie nichts.
+    : Es sind keine Beispiele verfügbar; es wird nichts unternommen.
 
     **\_exa**
-    : Kopieren Sie das Verzeichnis „*examples/Name*“ rekursiv in den Installationsordner für die Beispiele.
+    : Kopiert das Verzeichnis „*examples/name*“ rekursiv in den Installationsordner für die Beispiele.
 
 
 **Application** *name*

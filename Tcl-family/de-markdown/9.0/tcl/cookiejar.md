@@ -95,7 +95,7 @@ Die folgenden Methoden werden von Instanzen unterstützt:
 : Diese Methode ermittelt die Cookies für eine bestimmte HTTP-Anfrage. *Sie implementiert das http-Cookie-Jar-Protokoll.*
 
 [cookiejar]{.ins} [policyAllow]{.sub} [operation]{.arg} [domain]{.arg} [path]{.arg}
-: Diese Methode wird von der Methode **storeCookie** aufgerufen, um zu entscheiden, ob *operation* für *domain* und *path* ausgeführt werden darf. Die Prüfung erfolgt unmittelbar vor der Aktualisierung der Datenbank, nachdem die eingebauten Sicherheitsprüfungen durchgeführt wurden, und soll einen booleschen Wert zurückgeben; ist der Wert falsch, wird die Operation abgelehnt und die Datenbank nicht geändert. Unterstützte *operation*en sind:
+: Diese Methode wird von der Methode **storeCookie** aufgerufen, um zu entscheiden, ob *operation* für *domain* und *path* ausgeführt werden darf. Die Prüfung erfolgt unmittelbar vor der Aktualisierung der Datenbank, nachdem die eingebauten Sicherheitsprüfungen durchgeführt wurden, und soll einen booleschen Wert zurückgeben; ist der Wert falsch, wird die Operation abgelehnt und die Datenbank nicht geändert. Unterstützte Werte für *operation* sind:
 
     **delete**
     : Die *domain* möchte ein Cookie löschen.

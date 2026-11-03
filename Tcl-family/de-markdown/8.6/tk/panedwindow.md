@@ -35,10 +35,10 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 # Widget-spezifische Optionen
 
 **-handlepad** (**handlePad**/**HandlePad**)
-: Wenn Sash-Griffe gezeichnet werden, legt dies den Abstand vom oberen oder linken Ende des Sash (je nach Ausrichtung des Widgets) fest, an dem der Griff gezeichnet wird. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein.
+: Wenn Sash-Griffe gezeichnet werden, legt dies den Abstand vom oberen oder linken Ende des Sash (je nach Ausrichtung des Widgets) fest, an dem der Griff gezeichnet wird. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein.
 
 **-handlesize** (**handleSize**/**HandleSize**)
-: Legt die Seitenlänge eines Sash-Griffs fest. Griffe werden stets als Quadrate gezeichnet. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein.
+: Legt die Seitenlänge eines Sash-Griffs fest. Griffe werden stets als Quadrate gezeichnet. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein.
 
 **-height** (**height**/**Height**)
 : Legt eine gewünschte Höhe für das gesamte Panedwindow-Widget fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein. Wenn eine leere Zeichenkette, wird das Widget hoch genug gemacht, damit alle enthaltenen Widgets ihre natürliche Höhe haben können.
@@ -50,7 +50,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Hintergrundfarbe zum Zeichnen des Proxys. Wenn eine leere Zeichenkette, wird der Wert der Option **-background** verwendet.
 
 **-proxyborderwidth** (**proxyBorderWidth**/**ProxyBorderWidth**)
-: Legt die Rahmenbreite des Proxys fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein.
+: Legt die Rahmenbreite des Proxys fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein.
 
 **-proxyrelief** (**proxyRelief**/**ProxyRelief**)
 : Relief zum Zeichnen des Proxys. Kann einer der Standard-Tk-Relief-Werte sein. Wenn eine leere Zeichenkette, wird der Wert der Option **-sashrelief** verwendet.
@@ -59,19 +59,19 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Mauszeiger, der über einem Sash verwendet wird. Wenn null, wird **sb\_h\_double\_arrow** für horizontale Panedwindows und **sb\_v\_double\_arrow** für vertikale Panedwindows verwendet.
 
 **-sashpad** (**sashPad**/**SashPad**)
-: Legt den Innenabstand fest, der auf jeder Seite eines Sash verbleiben soll. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein.
+: Legt den Innenabstand fest, der auf jeder Seite eines Sash verbleiben soll. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein.
 
 **-sashrelief** (**sashRelief**/**SashRelief**)
 : Relief zum Zeichnen eines Sash. Kann einer der Standard-Tk-Relief-Werte sein.
 
 **-sashwidth** (**sashWidth**/**SashWidth**)
-: Legt die Breite jedes Sash fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein.
+: Legt die Breite jedes Sash fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein.
 
 **-showhandle** (**showHandle**/**ShowHandle**)
 : Legt fest, ob Sash-Griffe angezeigt werden sollen. Kann jeder gültige Tcl-Boolesche Wert sein.
 
 **-width** (**width**/**Width**)
-: Legt eine gewünschte Breite für das gesamte Panedwindow-Widget fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierten Wert sein. Wenn eine leere Zeichenkette, wird das Widget breit genug gemacht, damit alle enthaltenen Widgets ihre natürliche Breite haben können.
+: Legt eine gewünschte Breite für das gesamte Panedwindow-Widget fest. Kann jeder von [Tk\_GetPixels][GetPixels] akzeptierte Wert sein. Wenn eine leere Zeichenkette, wird das Widget breit genug gemacht, damit alle enthaltenen Widgets ihre natürliche Breite haben können.
 
 
 # Beschreibung
@@ -88,7 +88,7 @@ Der Befehl **panedwindow** erstellt einen neuen Tcl-Befehl, dessen Name derselbe
 pathName option ?arg arg ...?
 ```
 
-*PathName* ist der Name des Befehls, der mit dem Pfadnamen des Panedwindow-Widgets identisch ist. *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Panedwindow-Widgets möglich:
+*PathName* ist der Name des Befehls, der mit dem Pfadnamen des Panedwindow-Widgets identisch ist. *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Panedwindow-Widgets möglich:
 
 *pathName* **add** *window* ?*window ...*? ?*option value ...*?
 : Fügt ein oder mehrere Fenster zum Panedwindow hinzu, jeweils in einem separaten Bereich. Die Argumente bestehen aus den Namen eines oder mehrerer Fenster gefolgt von Argumentpaaren, die angeben, wie die Fenster verwaltet werden sollen. *Option* kann jeden der vom Unterbefehl **configure** akzeptierten Werte haben.
@@ -97,7 +97,7 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **panedwindow** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **panedwindow** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **panedwindow** akzeptierten Werte haben.
 
 *pathName* **forget** *window* ?*window ...*?
 : Entfernt den Bereich, der *window* enthält, aus dem Panedwindow. Alle Geometrieverwaltungsoptionen für *window* werden vergessen.
@@ -109,7 +109,7 @@ pathName option ?arg arg ...?
 : Abfrage einer Verwaltungsoption für *window*. *Option* kann jeder vom Unterbefehl **paneconfigure** erlaubte Wert sein.
 
 *pathName* **paneconfigure** *window* ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Verwaltungsoptionen für *window*. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. Folgende Optionen werden unterstützt:
+: Abfrage oder Änderung der Verwaltungsoptionen für *window*. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. Folgende Optionen werden unterstützt:
 
     **-after** *window*
     : Fügt das Fenster nach dem angegebenen Fenster ein. *window* sollte der Name eines Fensters sein, das bereits von *pathName* verwaltet wird.
@@ -191,7 +191,7 @@ pathName option ?arg arg ...?
 
 
 
-# Bereiche Größe ändern
+# Größe von Bereichen ändern
 
 Ein Bereich wird skaliert, indem der Sash (oder der Sash-Griff, falls vorhanden) gegriffen und mit der Maus gezogen wird. Dies geschieht über Mausbewegungs-Bindungen am Widget. Wenn ein Sash verschoben wird, werden die Größen der Bereiche auf beiden Seiten des Sash und damit die Widgets in diesen Bereichen angepasst.
 

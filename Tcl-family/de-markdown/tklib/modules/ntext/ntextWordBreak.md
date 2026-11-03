@@ -114,7 +114,7 @@ Durch einen Doppelklick mit der ersten Maustaste wird ein Wort im Text ausgewäh
 
 Traditionell hat Tcl nur eine Wortklasse und eine Nicht-Wortklasse definiert: Unter Windows ist die Nicht-Wortklasse Leerraum, sodass Buchstaben, Ziffern und Satzzeichen derselben Klasse angehören. Auf anderen Plattformen gehören Satzzeichen zusammen mit dem Leerraum zu den „Nicht-Wort“-Zeichen.  In beiden Fällen sind die Navigation und die Auswahl von Text unnötig grob granuliert und führen manchmal zu wenig hilfreichen Ergebnissen.
 
-Die Verwendung von drei Zeichenklassen könnte die Auswahl zu detailliert gestalten; in diesem Fall ist die Taste *Shift* gedrückt halten und ein anderes Wort doppelklicken jedoch eine hervorragende Möglichkeit, einen längeren Textabschnitt auszuwählen (eine nützliche Bindung, die Tcl/Tk schon seit langem bietet, die jedoch in anderen Systemen fehlt).
+Die Verwendung von drei Zeichenklassen könnte die Auswahl zu detailliert gestalten; in diesem Fall ist das Gedrückthalten der Taste *Shift* beim Doppelklick auf ein anderes Wort jedoch eine hervorragende Möglichkeit, einen längeren Textabschnitt auszuwählen (eine nützliche Bindung, die Tcl/Tk schon seit langem bietet, die jedoch in anderen Systemen fehlt).
 
 Neben den Standardeinstellungen ermöglicht *Ntext* dem Entwickler, eigene Klassen von Zeichen zu definieren, auf die klassischen *Text*-Definitionen zurückzugreifen oder eigene reguläre Ausdrücke für die Muster des Abgleichs festzulegen.
 

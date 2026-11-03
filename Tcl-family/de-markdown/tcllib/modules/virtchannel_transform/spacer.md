@@ -31,16 +31,16 @@ tcl::transform::spacer – Einsetzen und Entnehmen von Zwischenstücken
 
 # Beschreibung
 
-Das Paket **tcl::transform::spacer** enthält einen Befehl zum Erstellen einer Kanal-Transformation, die den in den Kanal geschriebenen Daten Leerzeichen hinzufügt und diese Leerzeichen aus den aus dem Kanal gelesenen Daten entfernt.
+Das Paket **tcl::transform::spacer** enthält einen Befehl zum Erstellen einer Kanal-Transformation, die den in den Kanal geschriebenen Daten Abstände hinzufügt und diese Abstände aus den aus dem Kanal gelesenen Daten entfernt.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 
 **::tcl::transform::spacer** *chan* *n* ?*space*?
 : Dieser Befehl erstellt eine Spacer-Transformation auf dem Kanal *chan* und gibt deren Handle zurück.
 
-    Die Zeichenfolge *space* wird alle *n* geschriebenen Datenbytes eingefügt; auf der Leseseite erfolgt der Vorgang in umgekehrter Reihenfolge, wobei die Abstände entfernt werden. Wenn *space* nicht festgelegt wird, wird standardmäßig ein einzelnes Leerzeichen (ASCII 32) verwendet.
+    Die Zeichenfolge *space* wird alle *n* geschriebenen Datenbytes eingefügt; auf der Leseseite wird der Vorgang umgekehrt, die Abstände werden also entfernt. Wenn *space* nicht festgelegt wird, wird standardmäßig ein einzelnes Leerzeichen (ASCII 32) verwendet.
 
 
 # Fehler, Ideen, Rückmeldungen

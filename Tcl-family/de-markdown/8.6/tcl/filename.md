@@ -90,7 +90,7 @@ Zusätzlich zu den oben beschriebenen Dateinamensregeln unterstützt Tcl *csh*-a
 
 # Portabilitätsfragen
 
-Nicht alle Dateisysteme unterscheiden Groß-/Kleinschreibung; Skripte sollten Code vermeiden, der von der Schreibweise in Dateinamen abhängt. Zudem können erlaubte Zeichensätze je Gerät variieren; Skripte sollten Dateinamen ohne Sonderzeichen wie **<>:?"/\|** wählen. Am sichersten sind Namen nur aus alphanumerischen Zeichen. Vorsicht bei Dateinamen mit Leerzeichen (häufig unter Windows) und bei Dateinamen, bei denen Backslash das Verzeichnistrennzeichen ist (native Windows-Pfade).
+Nicht alle Dateisysteme unterscheiden Groß-/Kleinschreibung; Skripte sollten Code vermeiden, der von der Schreibweise in Dateinamen abhängt. Zudem können erlaubte Zeichensätze je Gerät variieren; Skripte sollten Dateinamen ohne Sonderzeichen wie **<>:?"/\\|** wählen. Am sichersten sind Namen nur aus alphanumerischen Zeichen. Vorsicht bei Dateinamen mit Leerzeichen (häufig unter Windows) und bei Dateinamen, bei denen Backslash das Verzeichnistrennzeichen ist (native Windows-Pfade).
 
 Unter Windows gelten Längenbeschränkungen für Dateien und Pfade. Vollständige Pfade oder Dateinamen länger als etwa 260 Zeichen führen bei den meisten Dateioperationen zu Fehlern.
 

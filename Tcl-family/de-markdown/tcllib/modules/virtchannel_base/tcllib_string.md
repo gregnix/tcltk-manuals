@@ -30,16 +30,16 @@ tcl::chan::string – Schreibgeschützter In-Memory-Kanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::string** stellt einen Befehl zur Verfügung, mit dem Kanäle erstellt werden können, die ausschließlich im Arbeitsspeicher existieren. Diese ermöglichen einen Direktzugriff, d. h., sie sind durchsuchbar. Im Gegensatz zu den von **tcl::chan::memchan** erstellten Kanälen sind sie jedoch schreibgeschützt; ihr Inhalt wird zum Zeitpunkt der Erstellung bereitgestellt und ist danach unveränderlich.
+Das Paket **tcl::chan::string** stellt einen Befehl zur Verfügung, mit dem Kanäle erstellt werden können, die ausschließlich im Arbeitsspeicher existieren. Diese ermöglichen einen Direktzugriff, d. h., sie sind positionierbar. Im Gegensatz zu den von **tcl::chan::memchan** erstellten Kanälen sind sie jedoch schreibgeschützt; ihr Inhalt wird zum Zeitpunkt der Erstellung bereitgestellt und ist danach unveränderlich.
 
-Die entsprechenden Pakete lauten **tcl::chan::memchan** und **tcl::chan::variable**.
+Verwandte Pakete sind **tcl::chan::memchan** und **tcl::chan::variable**.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 
 **::tcl::chan::string** *content*
-: Dieser Befehl erstellt einen neuen Zeichenfolgenkanal und gibt dessen Handle zurück. Der Kanal ermöglicht einen zufälligen, schreibgeschützten Zugriff auf die Zeichenfolge *content*.
+: Dieser Befehl erstellt einen neuen String-Kanal und gibt dessen Handle zurück. Der Kanal ermöglicht einen wahlfreien, schreibgeschützten Zugriff auf die Zeichenkette *content*.
 
 
 # Fehler, Ideen, Rückmeldungen

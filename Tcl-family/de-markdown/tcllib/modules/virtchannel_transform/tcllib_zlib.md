@@ -36,12 +36,12 @@ tcl::transform::zlib – (De-)Komprimierung mit zlib
 
 Das Paket **tcl::transform::zlib** enthält einen Befehl, mit dem eine Kanal-Transformation erstellt wird, die die geschriebenen Daten mit zlib komprimiert und beim Lesen wieder dekomprimiert.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 
 **::tcl::transform::zlib** *chan* ?*level*?
-: Dieser Befehl erstellt eine zlib-Komprimierungstransformation für den Kanal *chan* und gibt dessen Handle zurück.
+: Dieser Befehl erstellt eine zlib-Komprimierungstransformation für den Kanal *chan* und gibt deren Handle zurück.
 
     Der Parameter *level* legt fest, wie intensiv die Komprimierung erfolgen soll, wobei die Werte von **0** bis **9** reichen; der Standardwert ist **4**.
 

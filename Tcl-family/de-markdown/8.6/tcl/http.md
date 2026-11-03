@@ -66,16 +66,16 @@ Ist die Option **-command** angegeben, wird die HTTP-Operation im Hintergrund au
 # Befehle
 
 **::http::config** ?*options*?
-: Der Befehl **::http::config** dient zum Setzen und Abfragen des Namens des Proxy-Servers und -Ports sowie des in den HTTP-Anfragen verwendeten User-Agent-Namens. Sind keine Optionen angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist ein einzelnes Argument angegeben, sollte es eine der unten beschriebenen Flags sein; in diesem Fall wird der aktuelle Wert dieser Einstellung zurückgegeben. Andernfalls sollten die Optionen eine Menge von Flags und Werten sein, die die Konfiguration definieren:
+: Der Befehl **::http::config** dient zum Setzen und Abfragen des Namens des Proxy-Servers und -Ports sowie des in den HTTP-Anfragen verwendeten User-Agent-Namens. Sind keine Optionen angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist ein einzelnes Argument angegeben, sollte es eines der unten beschriebenen Flags sein; in diesem Fall wird der aktuelle Wert dieser Einstellung zurückgegeben. Andernfalls sollten die Optionen eine Menge von Flags und Werten sein, die die Konfiguration definieren:
 
     **-accept** *mimetypes*
     : Der Accept-Header der Anfrage. Der Standardwert ist \*/\*, was bedeutet, dass alle Dokumenttypen akzeptiert werden. Andernfalls können Sie eine durch Kommas getrennte Liste von MIME-Typ-Mustern angeben, die Sie empfangen möchten. Zum Beispiel "image/gif, image/jpeg, text/\*".
 
     **-pipeline** *boolean*
-    : Legt fest, ob HTTP/1.1-Transaktionen auf einem persistenten Socket gepipelined werden. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 1.
+    : Legt fest, ob HTTP/1.1-Transaktionen auf einem persistenten Socket per Pipelining gesendet werden. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 1.
 
     **-postfresh** *boolean*
-    : Legt fest, ob Anfragen, die die Methode **POST** verwenden, stets einen frischen Socket nutzen und damit die Option **-keepalive** des Befehls **http::geturl** überschreiben. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 0.
+    : Legt fest, ob Anfragen, die die Methode **POST** verwenden, stets einen frischen Socket nutzen und damit die Option **-keepalive** des Befehls **http::geturl** überschreiben. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 0.
 
     **-proxyhost** *hostname*
     : Der Name des Proxy-Hosts, falls vorhanden. Ist dieser Wert die leere Zeichenkette, wird der URL-Host direkt kontaktiert.
@@ -89,7 +89,7 @@ Ist die Option **-command** angegeben, wird die HTTP-Operation im Hintergrund au
         Der Befehl **::http::geturl** führt die **-proxyfilter**-Rückruffunktion innerhalb eines [catch]-Befehls aus. Ein Fehler in der Rückruffunktion ruft daher nicht den [bgerror]-Handler auf. Siehe Abschnitt [Fehler] für Details.
 
     **-repost** *boolean*
-    : Legt fest, was zu tun ist, wenn eine POST-Anfrage über eine persistente Verbindung fehlschlägt, weil der Server die Verbindung halb geschlossen hat. Ist der boolesche Wert **true**, wird die Anfrage automatisch wiederholt; ist er **false**, nicht, und die Anwendung, die **http::geturl** verwendet, soll vor einer erneuten POST-Anfrage eine Bestätigung des Benutzers einholen. Der Wert **true** sollte nur unter bestimmten Bedingungen verwendet werden. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 0.
+    : Legt fest, was zu tun ist, wenn eine POST-Anfrage über eine persistente Verbindung fehlschlägt, weil der Server die Verbindung halb geschlossen hat. Ist der boolesche Wert **true**, wird die Anfrage automatisch wiederholt; ist er **false**, nicht, und die Anwendung, die **http::geturl** verwendet, soll vor einer erneuten POST-Anfrage eine Bestätigung des Benutzers einholen. Der Wert **true** sollte nur unter bestimmten Bedingungen verwendet werden. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 0.
 
     **-urlencoding** *encoding*
     : Die *encoding*, die zum Erstellen von x-url-kodierten URLs mit **::http::formatQuery** und **::http::quoteString** verwendet wird. Der Standardwert ist **utf-8**, wie in RFC 2718 angegeben. Vor http 2.5 war dies nicht festgelegt; dieses Verhalten kann durch Angabe der leeren Zeichenkette (**{}**) wiederhergestellt werden, obwohl *iso8859-1* empfohlen wird, um ein ähnliches Verhalten wiederherzustellen, aber ohne dass **::http::formatQuery** oder **::http::quoteString** beim Verarbeiten von Zeichen außerhalb von Latin-1 einen Fehler werfen.
@@ -195,7 +195,7 @@ Ist die Option **-command** angegeben, wird die HTTP-Operation im Hintergrund au
     : Ob für die Anfrage eine URL-Validierung gemäß RFC 3986 erzwungen werden soll. Standard ist 1.
 
     **-timeout** *milliseconds*
-    : Ist *milliseconds* ungleich null, richtet **::http::geturl** einen Timeout nach der angegebenen Anzahl Millisekunden ein. Ein Timeout führt zu einem Aufruf von **::http::reset** und zur **-command**-Rückruffunktion, falls angegeben. Der Rückgabewert von **::http::status** ist **timeout**, nachdem ein Timeout aufgetreten ist.
+    : Ist *milliseconds* ungleich null, richtet **::http::geturl** einen Timeout nach der angegebenen Anzahl Millisekunden ein. Ein Timeout führt zu einem Aufruf von **::http::reset** und der **-command**-Rückruffunktion, falls angegeben. Der Rückgabewert von **::http::status** ist **timeout**, nachdem ein Timeout aufgetreten ist.
 
     **-type** *mime-type*
     : Verwendet *mime-type* als Wert von **Content-Type** statt des Standardwerts (**application/x-www-form-urlencoded**) während einer POST-Operation.
@@ -214,7 +214,7 @@ Ist die Option **-command** angegeben, wird die HTTP-Operation im Hintergrund au
 : Dieser Befehl setzt die durch *token* identifizierte HTTP-Transaktion zurück, falls vorhanden. Dabei wird **state(status)** auf *why* gesetzt, standardmäßig **reset**, und die registrierte **-command**-Rückruffunktion aufgerufen.
 
 **::http::wait** *token*
-: Dies ist eine Komfortprozedur, die blockiert und auf den Abschluss der Transaktion wartet. Dies funktioniert nur in vertrauenswürdigem Code, weil [vwait] verwendet wird. Außerdem ist es nicht nützlich, wenn **::http::geturl** *ohne* die Option **-command** aufgerufen wird, da in diesem Fall der Aufruf von **::http::geturl** erst zurückkehrt, wenn die HTTP-Transaktion abgeschlossen ist, und es nichts zu erwarten gibt.
+: Dies ist eine Komfortprozedur, die blockiert und auf den Abschluss der Transaktion wartet. Dies funktioniert nur in vertrauenswürdigem Code, weil [vwait] verwendet wird. Außerdem ist es nicht nützlich, wenn **::http::geturl** *ohne* die Option **-command** aufgerufen wird, da in diesem Fall der Aufruf von **::http::geturl** erst zurückkehrt, wenn die HTTP-Transaktion abgeschlossen ist, und es somit nichts gibt, worauf gewartet werden könnte.
 
 **::http::data** *token*
 : Dies ist eine Komfortprozedur, die das Element **body** (d. h. die URL-Daten) des Status-Arrays zurückgibt.
@@ -371,7 +371,7 @@ Siehe RFC 7230 Abschnitt 6, der RFC 2616 Abschnitt 8.1 ablöst.
 
 Eine persistente Verbindung ermöglicht mehrere HTTP/1.1-Transaktionen über dieselbe TCP-Verbindung. Pipelining ermöglicht es einem Client, mehrere Anfragen über eine persistente Verbindung zu senden, ohne auf jede Antwort zu warten. Der Server sendet Antworten in derselben Reihenfolge, in der die Anfragen empfangen wurden.
 
-Schlägt eine POST-Anfrage fehl, ist typischerweise eine Bestätigung des Benutzers nötig, bevor die Anfrage erneut gesendet wird. Der Benutzer möchte prüfen, ob der Server durch die fehlgeschlagene POST-Anfrage verändert wurde, bevor dieselbe Anfrage erneut gesendet wird.
+Schlägt eine POST-Anfrage fehl, ist typischerweise eine Bestätigung des Benutzers nötig, bevor die Anfrage erneut gesendet wird. Der Benutzer möchte möglicherweise prüfen, ob der Server durch die fehlgeschlagene POST-Anfrage verändert wurde, bevor dieselbe Anfrage erneut gesendet wird.
 
 Eine HTTP-Anfrage verwendet einen persistenten Socket, wenn der Aufruf von **http::geturl** die Option **-keepalive true** hat. Pipelining wird angewendet, wo erlaubt, wenn die **http::config**-Option **-pipeline** boolesch **true** ist (ihr Standardwert).
 
@@ -383,11 +383,11 @@ Das http-Paket unterstützt keine HTTP/1.0-persistenten Verbindungen, die durch 
 
 Dieser Unterabschnitt behandelt Fragen im Zusammenhang mit dem Schließen der persistenten Verbindung durch den Server, automatische Wiederholung fehlgeschlagener Anfragen, die besondere Behandlung von POST-Anfragen und die Optionen zum Umgang mit diesen Fällen.
 
-Gemäß RFC 7230 pipelined **http::geturl** keine Anfragen mit der POST-Methode. Nutzt eine POST-Anfrage eine persistente Verbindung und ist nicht die erste Anfrage auf dieser Verbindung, wartet **http::geturl**, bis die Antwort auf die vorherige Anfrage empfangen wurde; oder (wenn die **http::config**-Option **-postfresh** boolesch **true** ist) verwendet es für jede POST-Anfrage eine neue Verbindung.
+Gemäß RFC 7230 sendet **http::geturl** Anfragen mit der POST-Methode nicht per Pipelining. Nutzt eine POST-Anfrage eine persistente Verbindung und ist nicht die erste Anfrage auf dieser Verbindung, wartet **http::geturl**, bis die Antwort auf die vorherige Anfrage empfangen wurde; oder (wenn die **http::config**-Option **-postfresh** boolesch **true** ist) verwendet es für jede POST-Anfrage eine neue Verbindung.
 
-Verarbeitet der Server mehrere gepipelinete Anfragen und sendet er mit einer der Antworten (außer der letzten) einen Antwort-Header "**Connection: close**", bleiben nachfolgende Antworten unerfüllt. **http::geturl** sendet die unerfüllten Anfragen erneut über eine neue Verbindung.
+Verarbeitet der Server mehrere per Pipelining gesendete Anfragen und sendet er mit einer der Antworten (außer der letzten) einen Antwort-Header "**Connection: close**", bleiben nachfolgende Antworten unerfüllt. **http::geturl** sendet die unerfüllten Anfragen erneut über eine neue Verbindung.
 
-Eine Schwierigkeit entsteht, wenn ein HTTP-Client eine Anfrage über eine persistente Verbindung sendet, die eine Weile untätig war. Der HTTP-Server kann eine scheinbar untätige Verbindung halb schließen, während der Client eine Anfrage sendet, aber bevor die Anfrage den Server erreicht: in diesem Fall (ein **asynchronous close event**) schlägt die Anfrage fehl. Die Schwierigkeit entsteht, weil der Client nicht sicher sein kann, ob die POST den Zustand des Servers verändert hat. Bei HEAD- oder GET-Anfragen öffnet **http::geturl** eine weitere Verbindung und sendet die fehlgeschlagene Anfrage erneut. War die Anfrage jedoch eine POST-Anfrage, verbietet RFC 7230 standardmäßig eine automatische Wiederholung und schlägt entweder eine Benutzerbestätigung oder eine Bestätigung durch User-Agent-Software mit semantischem Verständnis der Anwendung vor. Die **http::config**-Option **-repost** ermöglicht beide Möglichkeiten.
+Eine Schwierigkeit entsteht, wenn ein HTTP-Client eine Anfrage über eine persistente Verbindung sendet, die eine Weile untätig war. Der HTTP-Server kann eine scheinbar untätige Verbindung halb schließen, während der Client eine Anfrage sendet, aber bevor die Anfrage den Server erreicht: in diesem Fall (ein "asynchronous close event") schlägt die Anfrage fehl. Die Schwierigkeit entsteht, weil der Client nicht sicher sein kann, ob die POST-Anfrage den Zustand des Servers verändert hat. Bei HEAD- oder GET-Anfragen öffnet **http::geturl** eine weitere Verbindung und sendet die fehlgeschlagene Anfrage erneut. War die Anfrage jedoch eine POST-Anfrage, verbietet RFC 7230 standardmäßig eine automatische Wiederholung und schlägt entweder eine Benutzerbestätigung oder eine Bestätigung durch User-Agent-Software mit semantischem Verständnis der Anwendung vor. Die **http::config**-Option **-repost** ermöglicht beide Möglichkeiten.
 
 Asynchrone Schließ-Ereignisse können nur in einem kurzen Zeitintervall auftreten. Das Paket **http** überwacht jede persistente Verbindung auf Schließung durch den Server. Nach Erkennung wird die Verbindung auch auf der Client-Seite geschlossen; nachfolgende Anfragen verwenden eine frische Verbindung.
 
@@ -395,7 +395,7 @@ Wird **http::geturl** mit der Option **-keepalive true** aufgerufen, versucht es
 
 Die **http::config**-Optionen **-pipeline**, **-postfresh** und **-repost** betreffen persistente Verbindungen.
 
-Ist die Option **-pipeline** boolesch **true**, werden GET- und HEAD-Anfragen über eine persistente Verbindung gepipelined. POST-Anfragen werden nicht gepipelined — ist die POST-Anfrage nicht die erste Transaktion auf der Verbindung, wird ihre Anfrage erst gesendet, wenn die vorherige Antwort abgeschlossen ist. GET- und HEAD-Anfragen nach einer POST-Anfrage werden erst gesendet, wenn die POST-Antwort geliefert wurde, und nicht, wenn die POST-Anfrage fehlschlägt.
+Ist die Option **-pipeline** boolesch **true**, werden GET- und HEAD-Anfragen über eine persistente Verbindung per Pipelining gesendet. POST-Anfragen werden nicht per Pipelining gesendet — ist die POST-Anfrage nicht die erste Transaktion auf der Verbindung, wird ihre Anfrage erst gesendet, wenn die vorherige Antwort abgeschlossen ist. GET- und HEAD-Anfragen nach einer POST-Anfrage werden erst gesendet, wenn die POST-Antwort geliefert wurde, und nicht, wenn die POST-Anfrage fehlschlägt.
 
 Ist die Option **-postfresh** boolesch **true**, überschreibt sie die Option **-keepalive** von **http::geturl** und öffnet für jede POST-Anfrage stets eine frische Verbindung.
 
@@ -413,7 +413,7 @@ Derzeit gibt es keine native Tcl-Client-Bibliothek für HTTP/2.
 
 Der **Upgrade**-Mechanismus wird in Webbrowsern nicht verwendet, um TLS anzufordern, weil **http** und **https** über unterschiedliche Ports laufen. Er wird von Protokollen wie Internet Printing Protocol (IPP) verwendet, die auf **http(s)** aufbauen und dieselbe TCP-Portnummer für sichere und unsichere Verbindungen nutzen.
 
-In Browsern wird opportunistische Verschlüsselung stattdessen durch den Client-Header **Upgrade-Insecure-Requests** umgesetzt. Ist ein sicherer Dienst verfügbar, lautet der Server-Antwortcode eine 307-Weiterleitung, und der Antwort-Header **Location** gibt die Ziel-URL an. Der Browser muss **http::geturl** erneut aufrufen, um diese URL abzurufen. Siehe <https://w3c.github.io/webappsec-upgrade-insecure-requests/>
+In Browsern wird opportunistische Verschlüsselung stattdessen durch den Client-Header **Upgrade-Insecure-Requests** umgesetzt. Ist ein sicherer Dienst verfügbar, ist der Server-Antwortcode 307 (Weiterleitung), und der Antwort-Header **Location** gibt die Ziel-URL an. Der Browser muss **http::geturl** erneut aufrufen, um diese URL abzurufen. Siehe <https://w3c.github.io/webappsec-upgrade-insecure-requests/>
 
 # Beispiele
 

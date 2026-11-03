@@ -20,7 +20,7 @@ Dieses Dokument richtet sich an alle, die sich entweder lediglich den Quellcode 
 
 Für alle, die die Pakete bauen oder entwickeln, gibt es darüber hinaus:
 
-1. *Tcllib - The Installer's Guide*.
+1. *Tcllib – Das Installationshandbuch*,
 
 2. *Tcllib – Das Entwicklerhandbuch*,
 
@@ -71,7 +71,7 @@ Ohne bekannte Commit-ID dauert der Prozess erneut länger:
 
 Die Quellen werden mit [Fossil SCM](http://www.fossil-scm.org) verwaltet. Binärdateien für gängige Plattformen liegen auf der [Download-Seite](http://www.fossil-scm.org/download.html).
 
-Mit diesem Tool lässt sich die vollständige Geschichte wie folgt abrufen:
+Mit diesem Tool lässt sich der vollständige Verlauf wie folgt abrufen:
 
 ```
     fossil clone  http://core.tcl-lang.org/tcllib  tcllib.fossil

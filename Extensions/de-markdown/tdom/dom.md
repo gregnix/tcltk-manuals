@@ -99,13 +99,13 @@ Die gültigen Methoden sind:
     : Mit *-baseurl <baseURI>* ist die baseURI die Basis-URI des Dokuments. Verweise auf externe Entitäten im Dokument werden relativ zu dieser Basis-URI aufgelöst. Diese Basis-URI wird auch im DOM-Baum gespeichert.
 
     **-feedbackAfter**  *<#bytes>*
-    : Mit *-feedbackAfter <#bytes>* wird der Tcl-Befehl aus *-feedbackcmd* beim ersten Elementanfang im Dokument oder in einer externen Entität ausgewertet, nach dem Beginn des Dokuments oder der externen Entität oder nach dem letzten solchen Aufruf nach #bytes. Aus Gründen der Verträglichkeit wird, wenn -feedbackcmd fehlt, aber eine Tcl-Prozedur ::dom::domParseFeedback existiert, diese Prozedur als -feedbackcmd verwendet. Gibt es diese Prozedur nicht und wird -feedbackAfter verwendet, ist es ein Fehler, -feedbackcmd nicht ebenfalls zu verwenden. Löst das aufgerufene Skript einen Fehler aus, bricht das Lesen ab. Der Aufruf *dom parse* gibt den Fehler zurück, mit der Fehlermeldung des Skripts. Führt das aufgerufene Skript *return -code break* aus, bricht das Lesen ab, und der Aufruf *dom parse* gibt die leere Zeichenkette zurück.
+    : Mit *-feedbackAfter <#bytes>* wird der Tcl-Befehl aus *-feedbackcmd* beim ersten Elementanfang im Dokument oder in einer externen Entität ausgewertet, nach dem Beginn des Dokuments oder der externen Entität oder nach dem letzten solchen Aufruf nach #bytes. Aus Gründen der Abwärtskompatibilität wird, wenn -feedbackcmd fehlt, aber eine Tcl-Prozedur ::dom::domParseFeedback existiert, diese Prozedur als -feedbackcmd verwendet. Gibt es diese Prozedur nicht und wird -feedbackAfter verwendet, ist es ein Fehler, -feedbackcmd nicht ebenfalls zu verwenden. Löst das aufgerufene Skript einen Fehler aus, bricht das Lesen ab. Der Aufruf *dom parse* gibt den Fehler zurück, mit der Fehlermeldung des Skripts. Führt das aufgerufene Skript *return -code break* aus, bricht das Lesen ab, und der Aufruf *dom parse* gibt die leere Zeichenkette zurück.
 
     **-feedbackcmd**  *<script>*
     : Mit *-feedbackcmd <script>* wird das Skript *script* beim ersten Elementanfang im Dokument oder in einer externen Entität ausgewertet, nach dem Beginn des Dokuments oder der externen Entität oder nach dem letzten solchen Aufruf nach dem Wert #bytes aus der Option *-feedbackAfter*. Fehlt *-feedbackAfter*, hat diese Option keine Wirkung. Löst das aufgerufene Skript einen Fehler aus, bricht das Lesen ab. Der Aufruf *dom parse* gibt den Fehler zurück, mit der Fehlermeldung des Skripts. Führt das aufgerufene Skript *return -code break* aus, bricht das Lesen ab, und der Aufruf *dom parse* gibt die leere Zeichenkette zurück.
 
     **-externalentitycommand**  *<script>*
-    : Mit *-externalentitycommand <script>* wird das angegebene Tcl-Skript aufgerufen, um externe Entitäten des Dokuments aufzulösen. Der tatsächlich ausgewertete Befehl besteht aus dieser Option und drei Argumenten: der Basis-URI, dem Systembezeichner der Entität und dem öffentlichen Bezeichner der Entität. Die Basis-URI und der öffentliche Bezeichner können die leere Liste sein. Das Skript gibt eine Tcl-Liste aus drei Elementen zurück. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string" und "channel" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals. Gibt das Skript einen Tcl-Kanal zurück, schließt der Prozessor ihn nicht. Er muss getrennt geschlossen werden, wenn er nicht mehr gebraucht wird.
+    : Mit *-externalentitycommand <script>* wird das angegebene Tcl-Skript aufgerufen, um externe Entitäten des Dokuments aufzulösen. Der tatsächlich ausgewertete Befehl besteht aus dieser Option und drei Argumenten: der Basis-URI, dem Systembezeichner der Entität und dem öffentlichen Bezeichner der Entität. Die Basis-URI und der öffentliche Bezeichner können die leere Liste sein. Das Skript muss eine Tcl-Liste aus drei Elementen zurückgeben. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string" und "channel" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals. Gibt das Skript einen Tcl-Kanal zurück, schließt der Prozessor ihn nicht. Er muss getrennt geschlossen werden, wenn er nicht mehr gebraucht wird.
 
     **-useForeignDTD**  *<boolean>*
     : Ist <boolean> wahr und hat das Dokument keine externe Teilmenge, ruft der Parser das Skript -externalentitycommand mit leeren Werten für die Argumente systemId und publicID auf. Hat das Dokument auch keine interne Teilmenge, werden die Skripte -startdoctypedeclcommand und -enddoctypedeclcommand, sofern gesetzt, nicht aufgerufen.
@@ -123,19 +123,19 @@ Die gültigen Methoden sind:
     :  Befehlsmethode **selectNodes**.
 
     **-billionLaughsAttackProtectionMaximumAmplification**  *<float>*
-    : <URL: https://en.wikipedia.org/wiki/Billion_laughs_attack> ["https://en.wikipedia.org/wiki/Billion_laughs_attack"]("https://en.wikipedia.org/wiki/Billion_laughs_attack") Diese Option steuert zusammen mit *-billionLaughsAttackProtectionActivationThreshold* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine Gleitkommazahl >= 1.0. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+    : <https://en.wikipedia.org/wiki/Billion_laughs_attack> Diese Option steuert zusammen mit *-billionLaughsAttackProtectionActivationThreshold* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine Gleitkommazahl >= 1.0. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
     **-billionLaughsAttackProtectionActivationThreshold**  *<long>*
-    : <URL: https://en.wikipedia.org/wiki/Billion_laughs_attack> ["https://en.wikipedia.org/wiki/Billion_laughs_attack"]("https://en.wikipedia.org/wiki/Billion_laughs_attack") Diese Option steuert zusammen mit *-billionLaughsAttackProtectionMaximumAmplification* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 8388608 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+    : <https://en.wikipedia.org/wiki/Billion_laughs_attack> Diese Option steuert zusammen mit *-billionLaughsAttackProtectionMaximumAmplification* die Parsergrenzen gegen Billion-Laughs-Angriffe (). Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 8388608 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
     **-setReparseDeferralEnabled**  *<boolean>*
     : Expat schützt sich gegen quadratische Lesezeit durch lange Token in böswillig gebauten Dokumenten. Als Nebenwirkung kann ein Leseereignis nicht direkt nach dem Ende des betreffenden Tokens ausgelöst werden, sondern erst, nachdem der Parser weitere Bytes der Eingabe verarbeitet hat. Diese Option schaltet dieses Verhalten ab.
 
     **-allocTrackerActivationThreshold**  *<float>*
-    : Diese Option steuert zusammen mit *-allocTrackerMaximumAmplification* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+    : Diese Option steuert zusammen mit *-allocTrackerMaximumAmplification* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 100.0 reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
     **-allocTrackerMaximumAmplification**  *<long>*
-    : Diese Option steuert zusammen mit *-allocTrackerActivationThreshold* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive ganze Zahl. Die Option sollte nie nötig sein, die Vorgabe 67108864, das sind 64 MiB, reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
+    : Diese Option steuert zusammen mit *-allocTrackerActivationThreshold* die Parsergrenzen gegen unverhältnismäßig viel dynamischen Speicher durch böswillig gebaute Dokumente. Erwartet wird eine positive Ganzzahl. Die Option sollte nie nötig sein, die Vorgabe 67108864, das sind 64 MiB, reicht für wirkliche Daten. Muss der Wert für eine Nutzlast erhöht werden, die kein Angriff ist, bitte melden.
 
 
 **dom** **createDocument** *docElemName* **?***objVar***?**
@@ -153,11 +153,11 @@ Die gültigen Methoden sind:
     Das Argument *typedList* muss eine Tcl-Liste sein und dem Format der Ausgabe der Dokumentbefehlsmethode *asTypedList* folgen, siehe dort.
 
 **dom** **createNodeCmd**           *?-returnNodeCmd?* *?-tagName name?* *?-jsonType jsonType?* *?-namespace URI?* *?-noNamespacedAttributes?* *?-notempty?* *(element|comment|text|cdata|pi)Node* *commandName*
-: Diese Methode legt Tcl-Befehle an, die wiederum tDOM-Knoten anlegen. Die so angelegten Tcl-Befehle gibt es nur in einem Skript, das den domNode-Methoden *appendFromScript* oder *insertBeforeFromScript* übergeben wird. Wird ein mit *createNodeCmd* angelegter Befehl in einem anderen Zusammenhang aufgerufen, kommt ein Fehler zurück. Der angelegte Befehl *commandName* ersetzt einen vorhandenen Befehl oder eine vorhandene Prozedur dieses Namens. Enthält *commandName* Tcl-Namensraum-Qualifizierer, wird er in diesem Namensraum angelegt. Die Option *-tagName* ist nur für den Typ elementNode erlaubt. Die Option *-jsonType* ist nur für die Typen elementNode und textNode erlaubt.
+: Diese Methode legt Tcl-Befehle an, die wiederum tDOM-Knoten anlegen. Die so angelegten Tcl-Befehle gibt es nur in einem Skript, das den domNode-Methoden *appendFromScript* oder *insertBeforeFromScript* übergeben wird. Wird ein mit *createNodeCmd* angelegter Befehl in einem anderen Zusammenhang aufgerufen, kommt ein Fehler zurück. Der angelegte Befehl *commandName* ersetzt einen vorhandenen Befehl oder eine vorhandene Prozedur dieses Namens. Enthält *commandName* Tcl-Namespace-Qualifizierer, wird er in diesem Namespace angelegt. Die Option *-tagName* ist nur für den Typ elementNode erlaubt. Die Option *-jsonType* ist nur für die Typen elementNode und textNode erlaubt.
 
     Wird ein solcher Befehl in einem Skript aufgerufen, das der domNode-Methode *appendFromScript* oder *insertBeforeFromScript* als Argument übergeben wurde, legt er einen neuen Knoten an und hängt ihn ans Ende der Kindliste des aufrufenden Elementknotens. War die Option *-returnNodeCmd* angegeben, gibt der Befehl den angelegten Knoten als Tcl-Befehl zurück. Fehlt die Option, gibt der Befehl nichts zurück. Jeder Befehl legt immer denselben Knotentyp an. Welcher Typ entsteht, bestimmt das erste Argument von *createNodeCmd*. Die Syntax des angelegten Befehls hängt vom Typ des Knotens ab, den er anlegt.
 
-    Ist der anzulegende Befehlstyp *elementNode*, legt der Befehl beim Aufruf einen Elementknoten an. Wurde beim Anlegen des Knotenbefehls die Marke *-notempty* verwendet, entsteht der Elementknoten nur, wenn er nicht leer ist. Ohne die Option *-tagName* ist der Elementname des angelegten Knotens *commandName* ohne Tcl-Namensraum-Qualifizierer. War *-tagName* angegeben, haben die angelegten Elemente den Wert dieser Option als Elementnamen. War *-jsonType* angegeben, haben die angelegten Elementknoten den angegebenen JSON-Typ. Ist *-namespace* angegeben, liegt der angelegte Elementknoten im XML-Namensraum dieser Option. Der Elementname bleibt wörtlich so, wie ihn der Befehlsname oder, falls angegeben, die Option *-tagname* vorgibt. Eine passende XML-Namensraumdeklaration wird von selbst ergänzt. Sie bindet den Präfix, wenn der Elementname einen hat, oder den Vorgabe-Namensraum, wenn der Elementname keinen Präfix hat, an den Namensraum, sofern eine solche Bindung nicht gilt.
+    Ist der anzulegende Befehlstyp *elementNode*, legt der Befehl beim Aufruf einen Elementknoten an. Wurde beim Anlegen des Knotenbefehls die Marke *-notempty* verwendet, entsteht der Elementknoten nur, wenn er nicht leer ist. Ohne die Option *-tagName* ist der Elementname des angelegten Knotens *commandName* ohne Tcl-Namespace-Qualifizierer. War *-tagName* angegeben, haben die angelegten Elemente den Wert dieser Option als Elementnamen. War *-jsonType* angegeben, haben die angelegten Elementknoten den angegebenen JSON-Typ. Ist *-namespace* angegeben, liegt der angelegte Elementknoten im XML-Namensraum dieser Option. Der Elementname bleibt wörtlich so, wie ihn der Befehlsname oder, falls angegeben, die Option *-tagname* vorgibt. Eine passende XML-Namensraumdeklaration wird von selbst ergänzt. Sie bindet den Präfix, wenn der Elementname einen hat, oder den Vorgabe-Namensraum, wenn der Elementname keinen Präfix hat, an den Namensraum, sofern eine solche Bindung nicht gilt.
 
     Die Syntax des angelegten Befehls ist:
 
@@ -181,7 +181,7 @@ Die gültigen Methoden sind:
 
     Ist der JSON-Typ des angelegten Textknotens NULL, TRUE oder FALSE, ist das Argument *data* optional. Sonst muss dieses Argument angegeben werden.
 
-    Ist der JSON-Typ des angelegten Textknotens der virtuelle Typ BOOLEAN und erkennt Tcl\_GetBooleanFromObj() den Textwert als boolesch, wird der JSON-Wert der entsprechende JSON-Boolesche. Versteht Tcl den Textknotenwert nicht als boolesch, wird der Wert als JSON-Zeichenkette geschrieben.
+    Ist der JSON-Typ des angelegten Textknotens der virtuelle Typ BOOLEAN und erkennt Tcl\_GetBooleanFromObj() den Textwert als boolesch, wird der JSON-Wert der entsprechende boolesche JSON-Wert. Versteht Tcl den Textknotenwert nicht als boolesch, wird der Wert als JSON-Zeichenkette geschrieben.
 
     Mit der optionalen Marke *-disableOutputEscaping* entfällt die Maskierung des Und-Zeichens (&) und der linken spitzen Klammer (<) in den Daten. Diese Marke ist mit Vorsicht zu verwenden.
 
@@ -271,13 +271,13 @@ Die gültigen Methoden sind:
     : Gibt die Version des zugrunde liegenden expat als Zeichenkette zurück, etwa "exapt\_2.1.0". Das ist die Rückgabe der expat-API-Funktion XML\_ExpatVersion().
 
     **expatmajorversion**
-    : Gibt die Hauptversion des zur Bauzeit verwendeten expat als ganze Zahl zurück.
+    : Gibt die Hauptversion des zur Bauzeit verwendeten expat als Ganzzahl zurück.
 
     **expatminorversion**
-    : Gibt die Nebenversion des zur Bauzeit verwendeten expat als ganze Zahl zurück.
+    : Gibt die Nebenversion des zur Bauzeit verwendeten expat als Ganzzahl zurück.
 
     **expatmicroversion**
-    : Gibt die Mikroversion des zur Bauzeit verwendeten expat als ganze Zahl zurück.
+    : Gibt die Mikroversion des zur Bauzeit verwendeten expat als Ganzzahl zurück.
 
     **dtd**
     : Gibt als booleschen Wert zurück, ob mit *--enable-dtd* gebaut wurde.
@@ -295,7 +295,7 @@ Die gültigen Methoden sind:
     : Gibt als booleschen Wert zurück, ob mit *--enable-lessns* gebaut wurde.
 
     **TCL\_UTF\_MAX**
-    : Gibt den Wert TCL\_UTF\_MAX des Tcl-Kerns als ganze Zahl zurück, mit dem tDOM gebaut wurde.
+    : Gibt den Wert TCL\_UTF\_MAX des Tcl-Kerns als Ganzzahl zurück, mit dem tDOM gebaut wurde.
 
     **html5**
     : Gibt als booleschen Wert zurück, ob mit *--enable-html5* gebaut wurde.

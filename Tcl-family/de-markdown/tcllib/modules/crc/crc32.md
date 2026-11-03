@@ -38,12 +38,12 @@ crc32 – Durchführung einer 32-Bit-zyklischen Redundanzprüfung
 
 # Beschreibung
 
-Dieses Paket enthält eine Tcl-Implementierung des CRC-32-Algorithmus, die auf den unter http://www.naaccr.org/standard/crc32/ bereitgestellten Informationen basiertdocument.html. Wenn entweder das Paket **critcl** oder das Paket **Trf** verfügbar ist, kann intern eine kompilierte Version verwendet werden, um die Berechnung der Prüfsumme zu beschleunigen.
+Dieses Paket enthält eine Tcl-Implementierung des CRC-32-Algorithmus, die auf den unter <http://www.naaccr.org/standard/crc32/document.html> bereitgestellten Informationen basiert. Wenn entweder das Paket **critcl** oder das Paket **Trf** verfügbar ist, kann intern eine kompilierte Version verwendet werden, um die Berechnung der Prüfsumme zu beschleunigen.
 
 # Befehle
 
 **::crc::crc32** ?-format *format*? ?-seed *value*? \[ *-channel chan* | *-filename file* | *message* \]
-: Der Befehl akzeptiert entweder Zeichenfolgen, einen Kanal oder einen Dateinamen und gibt einen Prüfsummenwert zurück, der mithilfe des CRC-32-Algorithmus berechnet wurde. Das Ergebnis wird anhand des angegebenen Bezeichners *format*(n) formatiert. Standardmäßig wird der Wert als vorzeichenlose Ganzzahl zurückgegeben (Format %u).
+: Der Befehl akzeptiert entweder Zeichenketten-Daten, einen Kanal oder einen Dateinamen und gibt einen Prüfsummenwert zurück, der mithilfe des CRC-32-Algorithmus berechnet wurde. Das Ergebnis wird anhand des angegebenen Bezeichners *format*(n) formatiert. Standardmäßig wird der Wert als vorzeichenlose Ganzzahl zurückgegeben (Format %u).
 
 
 # Optionen
@@ -58,18 +58,18 @@ Dieses Paket enthält eine Tcl-Implementierung des CRC-32-Algorithmus, die auf d
 : Gibt die Prüfsumme unter Verwendung einer alternativen Formatvorlage zurück.
 
 -seed *value*
-: Wählt einen alternativen Wert für die CRC-Berechnung aus. Der Standardwert ist 0xffffffff. Dies kann nützlich sein, um den CRC für Datenstrukturen zu berechnen, ohne zuvor die gesamte Struktur in eine Zeichenkette umwandeln zu müssen. Der CRC des vorherigen Elements kann als Wert für die Berechnung des CRC des nächsten Elements verwendet werden. Hinweis: Der CRC32-Algorithmus beinhaltet einen abschließenden XOR-Schritt. Wenn eine inkrementelle Verarbeitung gewünscht ist, muss dieser Schritt rückgängig gemacht werden, bevor die Ausgabe des Algorithmus als Startwert für die weitere Verarbeitung verwendet wird. Eine einfachere Alternative ist die Verwendung der [Programmierschnittstelle], die für diesen Betriebsmodus vorgesehen ist.
+: Wählt einen alternativen Startwert für die CRC-Berechnung aus. Der Standardwert ist 0xffffffff. Dies kann nützlich sein, um den CRC für Datenstrukturen zu berechnen, ohne zuvor die gesamte Struktur in eine Zeichenkette umwandeln zu müssen. Der CRC des vorherigen Elements kann als Startwert für die Berechnung des CRC des nächsten Elements verwendet werden. Hinweis: Der CRC32-Algorithmus beinhaltet einen abschließenden XOR-Schritt. Wenn eine inkrementelle Verarbeitung gewünscht ist, muss dieser Schritt rückgängig gemacht werden, bevor die Ausgabe des Algorithmus als Startwert für die weitere Verarbeitung verwendet wird. Eine einfachere Alternative ist die Verwendung der [Programmierschnittstelle], die für diesen Betriebsmodus vorgesehen ist.
 
 
 # Programmierschnittstelle
 
-Das CRC-32-Paket implementiert die Prüfsumme mithilfe einer Kontextvariablen, der jederzeit zusätzliche Daten hinzugefügt werden können. Dies ist besonders nützlich in einer ereignisgesteuerten Umgebung, wie beispielsweise einer Tk-Anwendung oder einem Webserver-Paket. Die Daten, für die eine Prüfsumme berechnet werden soll, können während eines **fileevent**-Handlers schrittweise in einzelnen Blöcken verarbeitet werden. Dies kann die Interaktivität einer GUI-Anwendung verbessern und dazu beitragen, einen übermäßigen Speicherverbrauch zu vermeiden.
+Das CRC-32-Paket implementiert die Prüfsumme mithilfe einer Kontextvariablen, der jederzeit zusätzliche Daten hinzugefügt werden können. Dies ist besonders nützlich in einer ereignisgesteuerten Umgebung, wie beispielsweise einer Tk-Anwendung oder einem Webserver-Paket. Die Daten, für die eine Prüfsumme berechnet werden soll, können während eines **fileevent**-Ereignisbehandlers schrittweise in einzelnen Blöcken verarbeitet werden. Dies kann die Interaktivität einer GUI-Anwendung verbessern und dazu beitragen, einen übermäßigen Speicherverbrauch zu vermeiden.
 
 **::crc::Crc32Init** ?*seed*?
 : Eröffnet einen neuen CRC32-Kontext. Gibt eine Token-ID zurück, die für die verbleibenden Funktionen verwendet werden muss. Bei Bedarf kann ein optionaler Startwert festgelegt werden.
 
 **::crc::Crc32Update** *token* *data*
-: Fügt Daten zur durch das Token identifizierten Prüfsumme hinzu. Der Aufruf von *Crc32Update $token „abcd“* entspricht dem Aufruf von *Crc32Update $token „ab“*, gefolgt von *Crc32Update $token „cb“*. Siehe [Beispiele].
+: Fügt Daten zur durch das Token identifizierten Prüfsumme hinzu. Der Aufruf von *Crc32Update $token "abcd"* entspricht dem Aufruf von *Crc32Update $token "ab"*, gefolgt von *Crc32Update $token "cb"*. Siehe [Beispiele].
 
 **::crc::Crc32Final** *token*
 : Gibt den Prüfsummenwert zurück und gibt alle von diesem Token belegten Ressourcen frei. Sobald dieser Befehl abgeschlossen ist, verliert das Token seine Gültigkeit. Das Ergebnis ist ein 32-Bit-Ganzzahlwert.

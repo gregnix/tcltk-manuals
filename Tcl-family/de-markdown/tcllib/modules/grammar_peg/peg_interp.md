@@ -27,7 +27,7 @@ Copyright:
 
 # Name
 
-grammar::peg::interp – Interpreter zum Parsen von Ausdrucksgrammatiken
+grammar::peg::interp – Interpreter für Parsing Expression Grammars
 
 # Übersicht
 

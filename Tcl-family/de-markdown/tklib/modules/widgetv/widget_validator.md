@@ -41,7 +41,7 @@ Es liegt in der Verantwortung des verwendenden Pakets oder der Anwendung, zu ent
 **widget::validator** **attach** *w* *color* *cmdprefix*
 : Diese Methode fügt dem Widget *w* ein Verhalten zur Validierung hinzu.
 
-    Immer wenn sich der Inhalt des Eingabefelds des Widgets ändert, wird das angegebene *cmdprefix* aufgerufen und muss einen booleschen Wert geben, wobei **true** bedeutet, dass der Inhalt in Ordnung ist, und **false**, dass der Inhalt ungültig ist. Zum Befehlspräfix siehe den Abschnitt [Validierung]. Im letzteren Fall wird die Hintergrundfarbe des Eingabefeldes in *color* geändert, um die Ungültigkeit anzuzeigen.
+    Immer wenn sich der Inhalt des Eingabefelds des Widgets ändert, wird das angegebene *cmdprefix* aufgerufen und muss einen booleschen Wert zurückgeben, wobei **true** bedeutet, dass der Inhalt in Ordnung ist, und **false**, dass der Inhalt ungültig ist. Zum Befehlspräfix siehe den Abschnitt [Validierung]. Im letzteren Fall wird die Hintergrundfarbe des Eingabefeldes in *color* geändert, um die Ungültigkeit anzuzeigen.
 
     Das System unterstützt weder die Verschachtelung von Validatoren auf einem Widget noch das Anhängen mehrerer Validatoren. Zum Ändern der Bedingungen zuerst den aktuellen Validator mit **detach** lösen und dann den neuen anhängen.
 
@@ -73,7 +73,7 @@ Der für die Validierung verwendete Befehls-Präfix muss die folgende Signatur a
 {\*}*cmdprefix* *text*
 : Das Argument ist der zu prüfende Text.
 
-    Das Ergebnis des Rückrufs muss ein boolescher Wert sein. **true** bedeutet, dass *text* in Ordnung ist, **false**, dass *text* ungültig ist.
+    Das Ergebnis der Rückruffunktion muss ein boolescher Wert sein. **true** bedeutet, dass *text* in Ordnung ist, **false**, dass *text* ungültig ist.
 
 
 # Beispiel

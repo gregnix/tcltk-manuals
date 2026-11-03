@@ -97,13 +97,13 @@ Der Befehl **scale** erstellt einen neuen Tcl-Befehl, dessen Name *pathName* ist
 pathName option ?arg arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Scale-Widgets möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Scale-Widgets möglich:
 
 *pathName* **cget** *option*
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
 
 *pathName* **coords** ?*value*?
 : Gibt eine Liste zurück, deren Elemente die x- und y-Koordinaten des Punkts entlang der Mittellinie der Rinne sind, der *value* entspricht. Wenn *value* weggelassen wird, wird der aktuelle Wert der Scale verwendet.
@@ -122,13 +122,13 @@ pathName option ?arg arg ...?
 
 Tk erstellt automatisch Klassen-Bindungen für Scales, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scales unterscheidet, wird das horizontale Verhalten in Klammern beschrieben.
 
-1. Wenn Taste 1 in der Rinne gedrückt wird, wird der Wert der Scale um den Wert der Option **-resolution** erhöht oder verringert, sodass sich der Schieberegler in Richtung des Mauszeigers bewegt. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
+1. Wenn Maustaste 1 in der Rinne gedrückt wird, wird der Wert der Scale um den Wert der Option **-resolution** erhöht oder verringert, sodass sich der Schieberegler in Richtung des Mauszeigers bewegt. Wenn die Maustaste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
-2. Wenn Taste 1 über dem Schieberegler gedrückt wird, kann der Schieberegler mit der Maus gezogen werden.
+2. Wenn Maustaste 1 über dem Schieberegler gedrückt wird, kann der Schieberegler mit der Maus gezogen werden.
 
-3. Wenn Taste 1 in der Rinne mit gedrückter Steuerungstaste gedrückt wird, bewegt sich der Schieberegler bis zum Ende seines Bereichs in Richtung des Mauszeigers.
+3. Wenn Maustaste 1 in der Rinne mit gedrückter Steuerungstaste gedrückt wird, bewegt sich der Schieberegler bis zum Ende seines Bereichs in Richtung des Mauszeigers.
 
-4. Wenn Taste 2 gedrückt wird, wird der Wert der Scale auf die Mausposition gesetzt. Wenn die Maus mit gedrückter Taste 2 gezogen wird, ändert sich der Wert der Scale mit dem Ziehen.
+4. Wenn Maustaste 2 gedrückt wird, wird der Wert der Scale auf die Mausposition gesetzt. Wenn die Maus mit gedrückter Maustaste 2 gezogen wird, ändert sich der Wert der Scale mit dem Ziehen.
 
 5. Die Tasten Pfeil-hoch und Pfeil-links bewegen den Schieberegler nach oben (links) um den Wert der Option **-resolution**.
 
@@ -143,7 +143,7 @@ Tk erstellt automatisch Klassen-Bindungen für Scales, die ihnen folgendes Stand
 10. Ende bewegt den Schieberegler zum unteren (rechten) Ende seines Bereichs.
 
 
-Wenn die Scale mit der Option **-state** deaktiviert ist, haben keine der obigen Bindungen Wirkung.
+Wenn die Scale mit der Option **-state** deaktiviert ist, hat keine der obigen Bindungen eine Wirkung.
 
 Das Verhalten von Scales kann geändert werden, indem neue Bindungen für einzelne Widgets definiert werden oder indem die Klassen-Bindungen neu definiert werden.
 

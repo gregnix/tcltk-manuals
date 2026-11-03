@@ -21,7 +21,7 @@ Copyright:
 
 # Name
 
-map::box::entry – Map Action Engine – Box-Eintrag
+map::box::entry – Map Action Engine – Box-Eingabe
 
 # Übersicht
 

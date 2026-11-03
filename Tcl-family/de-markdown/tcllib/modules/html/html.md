@@ -102,49 +102,49 @@ Das Paket **html** stellt Befehle zur Verfügung, die HTML generieren. Diese Bef
 Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul zu initialisieren. Mit dieser Prozedur können Sie auch Standardwerte für HTML-Tag-Parameter festlegen.
 
 **::html::author** *author*
-: *Nur als Nebeneffekt*.  Rufen Sie diese Funktion vor **::html::head** auf, um einen Autor für die Seite festzulegen.  Der Autor wird in einem Hinweis im HEAD-Bereich vermerkt.
+: *Nur als Nebeneffekt*.  Rufen Sie diese Prozedur vor **::html::head** auf, um einen Autor für die Seite festzulegen.  Der Autor wird in einem Kommentar im HEAD-Bereich vermerkt.
 
 **::html::bodyTag** *args*
-: Erzeugt ein *body*-Tag. Die Tag-Parameter werden aus *args* oder aus dem Text des *body*-Tags übernommen. Die Attribute sind mit **::html::init** definiert.
+: Erzeugt ein *body*-Tag. Die Tag-Parameter werden aus *args* oder aus den mit **::html::init** definierten Attributen body.\* übernommen.
 
 **::html::cell** *param value* ?*tag*?
-: Erzeugt ein *td*- (oder *th*-)Tag, einen Wert und ein schließendes *td*- (oder *th*-)Tag. Die Tag-Parameter stammen aus *param* oder aus TD.\*-Attributen, die mit **::html::init** definiert wurden.  Hierbei wird **::html::font** verwendet, um ein Standard-*Schriftart*-Tag in die Tabellenzelle einzufügen. Das Argument *tag* ist standardmäßig auf „td“ gesetzt.
+: Erzeugt ein *td*- (oder *th*-)Tag, einen Wert und ein schließendes *td*- (oder *th*-)Tag. Die Tag-Parameter stammen aus *param* oder aus TD.\*-Attributen, die mit **::html::init** definiert wurden.  Hierbei wird **::html::font** verwendet, um ein Standard-*font*-Tag in die Tabellenzelle einzufügen. Das Argument *tag* ist standardmäßig auf „td“ gesetzt.
 
 **::html::checkbox** *name value*
-: Erzeugt ein *Checkbox*-Formularelement mit dem angegebenen Name und Wert. Dabei wird **::html::checkValue** verwendet.
+: Erzeugt ein *Checkbox*-Formularelement mit dem angegebenen Namen und Wert. Dabei wird **::html::checkValue** verwendet.
 
 **::html::checkSet** *key sep list*
-: Erstellt eine Reihe von *Checkbox*-Formularelementen und zugehörigen Beschriftungen. Die *Liste* sollte abwechselnd Beschriftungen und Werte enthalten. Dabei wird **::html::checkbox** verwendet. Alle *Checkbox*-Schaltflächen haben denselben *key* als Name. Das *sep* ist Text, der zur Trennung der Elemente verwendet wird.
+: Erstellt eine Reihe von *Checkbox*-Formularelementen und zugehörigen Beschriftungen. Die *list* sollte abwechselnd Beschriftungen und Werte enthalten. Dabei wird **::html::checkbox** verwendet. Alle *Checkbox*-Schaltflächen haben denselben *key* als Name. Das *sep* ist Text, der zur Trennung der Elemente verwendet wird.
 
 **::html::checkValue** *name* ?*value*?
 : Erzeugt den Eintrag „name=*name* value=*value*“ für ein *Checkbox*-Formularelement. Wenn die CGI-Variable *name* den Wert *value* hat, wird dem Rückgabewert „SELECTED“ hinzugefügt. Der Standardwert für *value* ist „1“.
 
 **::html::closeTag**
-: Entnimmt ein Tag aus dem von **::html::openTag** erstellten Stapel und generiert das entsprechende schließende Tag (z. B. </BODY>).
+: Entnimmt ein Tag aus dem von **::html::openTag** erstellten Stapel und generiert das entsprechende schließende Tag (z. B. </body>).
 
 **::html::default** *key* ?*param*?
-: Diese Prozedur wird von **::html::tagParam** verwendet, um den Namen und die Werteliste der Parameter für einen Tag zu generieren. Die Prozedur **::html::default** dient dazu, Standardwerte für diejenigen Elemente zu generieren, die noch nicht in *param* enthalten sind.  Wenn der durch *key* identifizierte Wert mit einem Wert in *param* übereinstimmt, gibt diese Prozedur die leere Zeichenkette zurück. Andernfalls gibt sie eine Zeichenkette im Format „parameter=value“ für ein durch *key* identifiziertes Formularelement zurück. Der *key* hat die Form „tag.parameter“ (z. B. body.bgcolor).  Verwenden Sie **::html::init**, um Standardwerte zu registrieren. *param* ist standardmäßig die leere Zeichenkette.
+: Diese Prozedur wird von **::html::tagParam** verwendet, um die Name-Wert-Liste der Parameter für ein Tag zu generieren. Die Prozedur **::html::default** dient dazu, Standardwerte für diejenigen Elemente zu generieren, die noch nicht in *param* enthalten sind.  Wenn der durch *key* identifizierte Wert mit einem Wert in *param* übereinstimmt, gibt diese Prozedur die leere Zeichenkette zurück. Andernfalls gibt sie eine Zeichenkette im Format „parameter=value“ für ein durch *key* identifiziertes Formularelement zurück. Der *key* hat die Form „tag.parameter“ (z. B. body.bgcolor).  Verwenden Sie **::html::init**, um Standardwerte zu registrieren. *param* ist standardmäßig die leere Zeichenkette.
 
 **::html::description** *description*
-: *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *Meta*-Tag mit einer Beschreibung für die Seite zu definieren.  Dieses Tag wird später beim Aufruf von **::html::head** generiert.
+: *Nur als Nebeneffekt*. Rufen Sie diese Prozedur vor **::html::head** auf, um ein *meta*-Tag mit einer Beschreibung für die Seite zu definieren.  Dieses Tag wird später beim Aufruf von **::html::head** generiert.
 
 **::html::end**
-: Alle offenen Tags aus dem Stapel entfernen und die entsprechenden schließenden HTML-Tags generieren (z. B. </BODY></HTML>).
+: Entfernt alle offenen Tags vom Stapel und erzeugt die entsprechenden schließenden HTML-Tags (z. B. </body></html>).
 
 **::html::eval** *arg* ?*args*?
-: Diese Prozedur ähnelt dem integrierten Tcl-Befehl **eval**. Der einzige Unterschied besteht darin, dass sie „“ gibt zurück, sodass sie aus einer HTML-Vorlagendatei aufgerufen werden kann, ohne dass unerwünschte Ergebnisse angehängt werden.
+: Diese Prozedur ähnelt dem integrierten Tcl-Befehl **eval**. Der einzige Unterschied besteht darin, dass sie „“ zurückgibt, sodass sie aus einer HTML-Vorlagendatei aufgerufen werden kann, ohne dass unerwünschte Ergebnisse angehängt werden.
 
 **::html::extractParam** *param key* ?*varName*?
 : Dies ist eine Parsing-Prozedur, die den Wert von *key* aus *param* extrahiert, wobei es sich um eine Liste im HTML-Stil vom Typ „name=quotedvalue“ handelt. *varName* wird als Name einer Tcl-Variablen verwendet, deren Wert auf den in den Parametern gefundenen Wert gesetzt wird. Die Funktion gibt 1 zurück, wenn der Parameter in *param* gefunden wurde, andernfalls gibt sie 0 zurück. Wenn *varName* nicht angegeben ist, wird *key* als Variablenname verwendet.
 
 **::html::font** *args*
-: Erzeugt ein Standard-*Schriftart*-Tag. Die Parameter für das Tag werden aus *args* und den mit **::html::init** definierten HTML-Standardwerten übernommen.
+: Erzeugt ein Standard-*font*-Tag. Die Parameter für das Tag werden aus *args* und den mit **::html::init** definierten HTML-Standardwerten übernommen.
 
 **::html::for** *start test next body*
-: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **for**. Anstatt den Körper auszuwerten, gibt sie den durch „subst“ ersetzten *Körper* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Wert angehängt.
+: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **for**. Anstatt den Rumpf auszuwerten, gibt sie den mit **subst** ersetzten *body* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Ergebniswert angehängt.
 
 **::html::foreach** *varlist1 list1* ?*varlist2 list2 ...*? *body*
-: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **foreach**. Anstatt die Auswertung des Körpers durchzuführen, gibt sie den durch „subst“ bearbeiteten *Körper* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Wert angehängt.
+: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **foreach**. Anstatt den Rumpf auszuwerten, gibt sie den mit **subst** ersetzten *body* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Ergebniswert angehängt.
 
 **::html::formValue** *name* ?*defvalue*?
 : Gibt ein Name-Wert-Paar zurück, wobei der Wert – sofern vorhanden – anhand vorhandener CGI-Daten initialisiert wird. Das Ergebnis hat folgende Form:
@@ -154,10 +154,10 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
     ```
 
 **::html::getFormInfo** *args*
-: Erzeugt versteckte Felder, um Formularwerte zu erfassen. Wenn *args* leer ist, werden für alle CGI-Werte versteckte Felder erzeugt. Andernfalls ist *args* eine Liste von Zeichenfolgenmustern, die mit den Namen von Formularelementen übereinstimmen sollen.
+: Erzeugt versteckte Felder, um Formularwerte zu erfassen. Wenn *args* leer ist, werden für alle CGI-Werte versteckte Felder erzeugt. Andernfalls ist *args* eine Liste von **string match**-Mustern für die Namen von Formularelementen.
 
 **::html::getTitle**
-: Gibt die Titelzeichenfolge ohne das umgebende *title*-Tag zurück, das durch einen vorherigen Aufruf von **::html::title** gesetzt wurde.
+: Gibt die durch einen vorherigen Aufruf von **::html::title** gesetzte Titelzeichenkette ohne das umgebende *title*-Tag zurück.
 
 **::html::h** *level string* ?*param*?
 : Erzeugt einen Überschriften-Tag (z. B. *h*__level__). Der *string* wird in die Überschrift eingebettet, und *param* wird für die Tag-Parameter verwendet.
@@ -184,34 +184,34 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erzeugt eine Tabellenzeile einschließlich der *tr*- und *th*-Tags. Jeder Wert in *args* wird in eine eigene Tabellenzelle eingefügt. Dabei wird **::html::cell** verwendet.
 
 **::html::head** *title*
-: Erstellt den *head*-Abschnitt, der den *Titel* der Seite enthält. Wenn zuvor Aufrufe an **::html::author**, **::html::keywords**, **::html::description** oder **::html::meta** aufgerufen wurden, werden zusätzliche Tags in den *head*-Bereich eingefügt. Dadurch verbleibt ein offener *html*-Tag, der mit **::html::openTag** auf den Stack geschoben wurde.
+: Erstellt den *head*-Abschnitt, der den *title* der Seite enthält. Wenn zuvor **::html::author**, **::html::keywords**, **::html::description** oder **::html::meta** aufgerufen wurden, werden zusätzliche Tags in den *head*-Bereich eingefügt. Dadurch verbleibt ein offener *html*-Tag, der mit **::html::openTag** auf den Stapel gelegt wurde.
 
 **::html::headTag** *string*
 : Speichert einen Tag zur Einbindung in den von **::html::head** generierten *head*-Abschnitt. Die Zeichenkette *string* umfasst den gesamten Inhalt des Tags mit Ausnahme der umschließenden spitzen Klammern < >.
 
 **::html::html\_entities** *string*
-: Dieser Befehl ersetzt alle Sonderzeichen in der *Zeichenkette* durch ihre HTML-Entitäten und gibt den geänderten Text zurück.
+: Dieser Befehl ersetzt alle Sonderzeichen in *string* durch ihre HTML-Entitäten und gibt den geänderten Text zurück.
 
 **::html::if** *expr1 body1* ?**elseif** *expr2 body2 ...*? ?**else** *bodyN*?
-: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **if**. Anstatt den Hauptteil des tatsächlich ausgeführten Zweigs zu bewerten, gibt sie den durch „subst“ ersetzten *Hauptteil* zurück. Hinweis: Die Syntax ist etwas restriktiver als die der integrierten Tcl-Kontrollstruktur **if**.
+: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **if**. Anstatt den Rumpf des tatsächlich ausgeführten Zweigs auszuwerten, gibt sie den mit **subst** ersetzten *body* zurück. Hinweis: Die Syntax ist etwas restriktiver als die der integrierten Tcl-Kontrollstruktur **if**.
 
 **::html::init** ?*list*?
 : **::html::init** akzeptiert eine Name-Wert-Liste im Tcl-Stil, die Werte für Elemente mit einem Namen der Form „tag.parameter“ definiert. Ein Standardwert mit dem Schlüssel „body.bgcolor“ definiert beispielsweise die Hintergrundfarbe für das *body*-Tag.
 
 **::html::keywords** *args*
-: *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um einen *Meta*-Tag mit Schlüsselwörtern für die Seite zu definieren.  Der *Meta*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
+: *Nur als Nebeneffekt*. Rufen Sie diese Prozedur vor **::html::head** auf, um einen *meta*-Tag mit Schlüsselwörtern für die Seite zu definieren.  Der *Meta*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
 
 **::html::mailto** *email* ?*subject*?
 : Erstellt einen Hypertext-Link zu einer „mailto:“-URL.
 
 **::html::meta** *args*
-: Name der Kompatibilität für **html::meta\_name**.
+: Kompatibilitätsname für **html::meta\_name**.
 
 **::html::meta\_name** *args*
-: *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **name=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** eingebunden.
+: *Nur als Nebeneffekt*. Rufen Sie diese Prozedur vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **name=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** eingebunden.
 
 **::html::meta\_equiv** *args*
-: *Nur als Nebeneffekt*. Rufen Sie diese Funktion vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **http-equiv=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
+: *Nur als Nebeneffekt*. Rufen Sie diese Prozedur vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die für die Attribute **http-equiv=** und **content=** des *meta*-Tags verwendet wird. Das *meta*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
 
 **::html::meta\_charset** *charset*
 : *Nur als Nebeneffekt*. Rufen Sie dies vor **::html::head** auf, um ein *meta*-Tag für die Seite zu definieren. Der *charset* wird mit dem Attribut **charset=** des *meta*-Tags verwendet. Der *meta*-Tag ist im Ergebnis von **::html::head** enthalten.
@@ -227,7 +227,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
     Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::css** dazwischenliegt, hat dies jedoch keine weitere Auswirkung.
 
 **::html::js** *href*
-: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *Skript*-Tag für ein verknüpftes JavaScript-Dokument zu definieren. Das *href* ist eine HTTP-URL zu einem JavaScript-Dokument. Das *script*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
+: *Nur als Nebenwirkung*. Rufen Sie diesen Befehl vor **::html::head** auf, um ein *script*-Tag für ein verknüpftes JavaScript-Dokument zu definieren. Das *href* ist eine HTTP-URL zu einem JavaScript-Dokument. Das *script*-Tag wird in das Ergebnis von **::html::head** aufgenommen.
 
     Mehrere Aufrufe dieses Befehls sind zulässig, wodurch die Verwendung mehrerer Verweise auf JavaScript-Dokumente ermöglicht wird. Mit anderen Worten: Die Argumente mehrerer Aufrufe werden kumuliert und überschreiben sich nicht gegenseitig.
 
@@ -237,13 +237,13 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
     Mehrere Aufrufe dieses Befehls sind zulässig; nach dem ersten Aufruf in einer Folge, in der kein **::html::js** dazwischenliegt, hat der Befehl jedoch keine weitere Wirkung.
 
 **::html::minorList** *list* ?*ordered*?
-: Erzeugt eine nummerierte oder unnummerierte Liste von Links. Der Name der *list* ist eine Liste im Tcl-Stil, bestehend aus Bezeichnungen und URLs für die Links. *ordered* ist ein boolescher Wert, mit dem zwischen einer nummerierten und einer unnummerierten Liste gewählt werden kann. Der Standardwert ist **false**.
+: Erzeugt eine nummerierte oder unnummerierte Liste von Links. Die *list* ist eine Name-Wert-Liste im Tcl-Stil aus Bezeichnungen und URLs für die Links. *ordered* ist ein boolescher Wert, mit dem zwischen einer nummerierten und einer unnummerierten Liste gewählt werden kann. Der Standardwert ist **false**.
 
 **::html::minorMenu** *list* ?*sep*?
 : Erzeugt eine Reihe von Hypertext-Links. Die *list* ist eine Liste im Tcl-Stil, bestehend aus Namen und URLs für die Links. *sep* ist der Text, der zwischen den einzelnen Links eingefügt werden soll. Der Standardwert ist „ | “.
 
 **::html::nl2br** *string*
-: Dieser Befehl ersetzt alle Zeilenenden in der *Zeichenkette* durch ein *br*-Tag und gibt den geänderten Text zurück.
+: Dieser Befehl ersetzt alle Zeilenenden in *string* durch ein *br*-Tag und gibt den geänderten Text zurück.
 
 **::html::openTag** *tag* ?*param*?
 : Legt *tag* auf einen Stapel und erzeugt das Eröffnungstag für *tag*. Verwenden Sie **::html::closeTag**, um das Tag vom Stapel zu entfernen. Das zweite Argument liefert alle Tag-Argumente als Liste, deren Elemente im Format „**key**=**value**“ formatiert sind.
@@ -252,13 +252,13 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erzeugt eine Tabellenzeile einschließlich der Tags *tr* und *td*. Jeder Wert in *list* wird in eine eigene Tabellenzelle eingefügt. Dabei wird **::html::cell** verwendet. Der Wert von *rparam* wird als Parameter für das *tr*-Tag verwendet. Der Wert von *cparam* wird als Parameter für die *td*-Tags an **::html::cell** übergeben.
 
 **::html::passwordInput** ?*name*?
-: Erstellt ein *input*-Tag vom Typ *password*. Der *Name* lautet standardmäßig „password“.
+: Erstellt ein *input*-Tag vom Typ *password*. Der *name* lautet standardmäßig „password“.
 
 **::html::passwordInputRow** *label* ?*name*?
-: Formatiert eine Zeile der Tabelle, die eine Beschriftung und ein *input*-Tag vom Typ *password* enthält. Der *Name* lautet standardmäßig „password“.
+: Formatiert eine Zeile der Tabelle, die eine Beschriftung und ein *input*-Tag vom Typ *password* enthält. Der *name* lautet standardmäßig „password“.
 
 **::html::quoteFormValue** *value*
-: Setzt Sonderzeichen im Wert in Anführungszeichen, indem er sie durch HTML-Entitäten für Anführungszeichen, das Und-Zeichen und spitze Klammern ersetzt.
+: Maskiert Sonderzeichen in *value*, indem er sie durch HTML-Entitäten für Anführungszeichen, das Und-Zeichen und spitze Klammern ersetzt.
 
 **::html::radioSet** *key sep list*
 : Erzeugt eine Reihe von *input*-Tags vom Typ *radio* und eine zugehörige Textbeschriftung. Alle Optionsfelder haben denselben *key* als Name. Der *sep* ist der Text, der zur Trennung der Elemente verwendet wird. Die *list* ist eine Liste aus Beschriftung und Wert im Tcl-Stil.
@@ -267,28 +267,28 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erzeugt das Format „name=*name* value=*value*“ für ein *Radio*-Formularelement. Wenn die CGI-Variable *name* den Wert *value* hat, wird dem Rückgabewert „SELECTED“ hinzugefügt.
 
 **::html::refresh** *seconds url*
-: Richtet einen *Meta*-Tag zum Aktualisieren ein. Rufen Sie diesen vor **::html::head** auf, und der HEAD-Abschnitt enthält einen *Meta*-Tag, der bewirkt, dass das Dokument in *seconds* Sekunden aktualisiert wird. Die *URL* ist optional. Wenn sie angegeben wird, legt sie eine neue Seite fest, die nach Ablauf des Aktualisierungsintervalls geladen werden soll.
+: Richtet einen *Meta*-Tag zum Aktualisieren ein. Rufen Sie diese Prozedur vor **::html::head** auf, und der HEAD-Abschnitt enthält einen *Meta*-Tag, der bewirkt, dass das Dokument in *seconds* Sekunden aktualisiert wird. Die *url* ist optional. Wenn sie angegeben wird, legt sie eine neue Seite fest, die nach Ablauf des Aktualisierungsintervalls geladen werden soll.
 
 **::html::row** *args*
 : Erzeugt eine Tabellenzeile einschließlich der Tags *tr* und *td*. Jeder Wert in *args* wird in eine eigene Tabellenzelle eingefügt. Dabei wird **::html::cell** verwendet. Über **::html::init** festgelegte Standardinformationen werden ignoriert.
 
 **::html::select** *name param choices* ?*current*?
-: Erzeugt ein *select*-Formularelement und verschachtelte *option*-Tags. Die Attribute *name* und *param* werden zur Erzeugung des *select*-Tags verwendet. Die Liste *choices* ist eine Liste aus Namen und Werten im Tcl-Stil.
+: Erzeugt ein *select*-Formularelement und verschachtelte *option*-Tags. Die Argumente *name* und *param* werden zur Erzeugung des *select*-Tags verwendet. Die Liste *choices* ist eine Liste aus Namen und Werten im Tcl-Stil.
 
 **::html::selectPlain** *name param choices* ?*current*?
-: Ähnlich wie **::html::select**, mit dem Unterschied, dass *choices* eine Tcl-Liste mit Werten ist, die für die *Option*-Tags verwendet werden. Die Bezeichnung und der Wert für jede *Option* sind identisch.
+: Ähnlich wie **::html::select**, mit dem Unterschied, dass *choices* eine Tcl-Liste mit Werten ist, die für die *option*-Tags verwendet werden. Die Bezeichnung und der Wert für jedes *option*-Tag sind identisch.
 
 **::html::set** *var val*
-: Diese Prozedur ähnelt dem integrierten Tcl-Befehl **set**. Der Hauptunterschied besteht darin, dass sie „“ gibt, sodass sie aus einer HTML-Vorlagendatei aufgerufen werden kann, ohne dass unerwünschte Ergebnisse angehängt werden. Ein weiterer Unterschied ist, dass sie zwei Argumente benötigt.
+: Diese Prozedur ähnelt dem integrierten Tcl-Befehl **set**. Der Hauptunterschied besteht darin, dass sie „“ zurückgibt, sodass sie aus einer HTML-Vorlagendatei aufgerufen werden kann, ohne dass unerwünschte Ergebnisse angehängt werden. Ein weiterer Unterschied ist, dass sie immer zwei Argumente erwartet.
 
 **::html::submit** *label* ?*name*? ?*title*?
 : Erzeugt ein *input*-Tag vom Typ *submit*. Der Standardwert für *name* lautet „submit“. Wenn eine nicht leere *title*-Zeichenkette festgelegt wird, erhält die Schaltfläche ein **title=**-Attribut mit diesem Wert.
 
 **::html::tableFromArray** *arrname* ?*param*? ?*pat*?
-: Erzeugt eine zweispaltige *Tabelle* mit verschachtelten Zeilen zur Darstellung eines Tcl-Arrays. Die Tabelle erhält eine Überschrift, die dem Namen des Arrays entspricht, und jede generierte Zeile enthält ein Name-Wert-Paar. Die Array-Namen werden sortiert (**lsort** ohne spezielle Optionen). Das Argument *param* ist für das *table*-Tag vorgesehen und muss eine vorformatierte Zeichenkette enthalten. *pat* ist ein **string match**-Muster, mit dem die Array-Elemente ausgewählt werden, die in der Tabelle angezeigt werden sollen. Der Standardwert ist **\***, d. h., das gesamte Array wird angezeigt.
+: Erzeugt eine zweispaltige *table* mit verschachtelten Zeilen zur Darstellung eines Tcl-Arrays. Die Tabelle erhält eine Überschrift, die dem Namen des Arrays entspricht, und jede generierte Zeile enthält ein Name-Wert-Paar. Die Array-Namen werden sortiert (**lsort** ohne spezielle Optionen). Das Argument *param* ist für das *table*-Tag vorgesehen und muss eine vorformatierte Zeichenkette enthalten. *pat* ist ein **string match**-Muster, mit dem die Array-Elemente ausgewählt werden, die in der Tabelle angezeigt werden sollen. Der Standardwert ist **\***, d. h., das gesamte Array wird angezeigt.
 
 **::html::tableFromList** *querylist* ?*param*?
-: Erzeugt eine zweispaltige *Tabelle* mit verschachtelten Zeilen, um *querylist* anzuzeigen, bei dem es sich um ein Tcl-Dictionary handelt. Jede generierte Zeile enthält ein Name-Wert-Paar. Die Informationen werden in derselben Reihenfolge angezeigt, wie sie im Dictionary angegeben sind. Das Argument *param* ist für das *table*-Tag bestimmt und muss eine vorformatierte Zeichenkette enthalten.
+: Erzeugt eine zweispaltige *table* mit verschachtelten Zeilen, um *querylist* anzuzeigen, bei dem es sich um ein Tcl-Dictionary handelt. Jede generierte Zeile enthält ein Name-Wert-Paar. Die Informationen werden in derselben Reihenfolge angezeigt, wie sie im Dictionary angegeben sind. Das Argument *param* ist für das *table*-Tag bestimmt und muss eine vorformatierte Zeichenkette enthalten.
 
 **::html::textarea** *name* ?*param*? ?*current*?
 : Erzeugt ein *textarea*-Tag, das die aktuellen Werte umschließt.
@@ -300,13 +300,13 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erzeugt ein *input*-Formular-Tag vom Typ *text*, das als Zeile einer Tabelle mit einer zugehörigen Beschriftung formatiert ist. Bei „args“ handelt es sich um beliebige zusätzliche Tag-Attribute, die Sie in das *input*-Tag einfügen möchten.
 
 **::html::varEmpty** *name*
-: Diese Funktion gibt 1 zurück, wenn die angegebene Variable entweder nicht existiert oder als Wert die leere Zeichenkette hat.
+: Diese Prozedur gibt 1 zurück, wenn die angegebene Variable entweder nicht existiert oder als Wert die leere Zeichenkette hat.
 
 **::html::while** *test body*
-: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **while**. Anstatt die Auswertung des Körpers durchzuführen, gibt sie den durch „subst“ ersetzten *Körper* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Wert angehängt.
+: Diese Prozedur ähnelt der integrierten Tcl-Kontrollstruktur **while**. Anstatt den Rumpf auszuwerten, gibt sie den mit **subst** ersetzten *body* zurück. Bei jeder Iteration der Schleife wird eine weitere Zeichenkette an den Ergebniswert angehängt.
 
 **::html::doctype** *id*
-: Mit dieser Prozedur lässt sich die Standard-DOCTYPE-Deklarationszeichenfolge erstellen. Sie gibt die Standard-Deklarationszeichenfolge für die jeweilige ID zurück oder löst einen Fehler aus, wenn die ID unbekannt ist. Folgende IDs sind definiert:
+: Mit dieser Prozedur lässt sich die Standard-DOCTYPE-Deklarationszeichenkette erstellen. Sie gibt die Standard-Deklarationszeichenkette für die jeweilige ID zurück oder löst einen Fehler aus, wenn die ID unbekannt ist. Folgende IDs sind definiert:
 
     1. HTML32
 
@@ -334,7 +334,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 
 
 **::html::wrapTag** *tag* ?*text*? ?*args*?
-: Eine Hilfsfunktion, um einen *Text* in ein Paar aus öffnendem und schließendem *Tag* einzufassen. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die dazu dient, dem öffnenden Tag Attribute und zugehörige Werte zuzuweisen. Das Ergebnis ist eine Zeichenkette, die aus dem öffnenden *Tag* zusammen mit den optionalen Attributen, dem optionalen Text und dem schließenden Tag besteht.
+: Eine Hilfsfunktion, um einen *text* in ein Paar aus öffnendem und schließendem *tag* einzufassen. Die Argumente (*args*) sind eine Liste aus Namen und Werten im Tcl-Stil, die dazu dient, dem öffnenden Tag Attribute und zugehörige Werte zuzuweisen. Das Ergebnis ist eine Zeichenkette, die aus dem öffnenden *tag* zusammen mit den optionalen Attributen, dem optionalen Text und dem schließenden Tag besteht.
 
 
 # Fehler, Ideen, Rückmeldungen

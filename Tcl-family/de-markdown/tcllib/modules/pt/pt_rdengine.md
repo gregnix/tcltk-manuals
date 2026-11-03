@@ -169,7 +169,7 @@ Das Paket exportiert die hier beschriebene API.
 
 ## Objekt-API
 
-Alle von diesem Paket erstellten Objekte stellen die folgenden 63 Methoden zur Bearbeitung und Abfrage ihres Zustands bereit, bei dem es sich im Wesentlichen um den architektonischen Zustand eines PARAM handelt.
+Alle von diesem Paket erstellten Objekte stellen die folgenden 63 Methoden zur Bearbeitung und Abfrage ihres Zustands bereit, bei dem es sich im Wesentlichen um den architektonischen Zustand einer PARAM handelt.
 
 Zuerst einige allgemeine Methoden und die Zugriffe auf den Zustand.
 

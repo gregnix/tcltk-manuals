@@ -120,7 +120,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 **::term::ansi::send::import** ?*ns*? *...*
 : Importiert die Befehle dieses Pakets in den Namespace *ns*. Wird kein Namespace festgelegt, wird standardmäßig *send* verwendet. Hinweis: Es handelt sich bei diesem Standardwert um einen relativen Namespace-Namen, d. h., der eigentliche Namespace wird unter dem aktuellen Namespace angelegt.
 
-    Standardmäßig werden alle Befehle importiert; dies kann jedoch auf bestimmte Befehle beschränkt werden, indem diese hinter dem zu importierenden Namespace aufgeführt werden.
+    Standardmäßig werden alle Befehle importiert; dies kann jedoch auf bestimmte Befehle beschränkt werden, indem diese hinter dem Namespace aufgeführt werden, in den sie importiert werden.
 
 **::term::ansi::send::eeol**
 : Löschen bis zum Zeilenende.
@@ -135,19 +135,19 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Nach unten löschen (bis zum Ende).
 
 **::term::ansi::send::eu**
-: Nach oben (zum Anfang).
+: Nach oben löschen (bis zum Anfang).
 
 **::term::ansi::send::es**
 : Bildschirm löschen.
 
 **::term::ansi::send::sd**
-: Bitte scrollen Sie nach unten.
+: Nach unten scrollen.
 
 **::term::ansi::send::su**
-: Bitte scrollen Sie nach oben.
+: Nach oben scrollen.
 
 **::term::ansi::send::ch**
-: Cursor auf „Startseite“.
+: Cursor in die Ausgangsposition (Home).
 
 **::term::ansi::send::sc**
 : Cursor speichern. Hinweis: Es kann jeweils nur eine gespeicherte Position verwaltet werden. Es handelt sich hierbei nicht um einen unbegrenzten Stapel. Ein Speichern vor dem Wiederherstellen überschreibt die gespeicherten Daten.
@@ -162,7 +162,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Cursor und Attribute wiederherstellen.
 
 **::term::ansi::send::st**
-: Tabulator setzen (@ aktuelle Position).
+: Tabulatorstopp setzen (an der aktuellen Position).
 
 **::term::ansi::send::ct**
 : Tabulatorstopp löschen (an der aktuellen Position).
@@ -177,7 +177,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Gerätestatus abfragen.
 
 **::term::ansi::send::qcp**
-: Position des Abfragecursors abfragen.
+: Cursorposition abfragen.
 
 **::term::ansi::send::rd**
 : Gerät zurücksetzen.
@@ -278,7 +278,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Standardhintergrund festlegen (transparent).
 
 **::term::ansi::send::sda\_bold**
-: Weiter so!
+: Fettdruck einschalten.
 
 **::term::ansi::send::sda\_dim**
 : Schaltet die abgeschwächte Darstellung ein.
@@ -290,13 +290,13 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Unterstrich aktivieren.
 
 **::term::ansi::send::sda\_blink**
-: Bitte blinken Sie weiter.
+: Blinken einschalten.
 
 **::term::ansi::send::sda\_revers**
-: Rückwärtsgang einlegen.
+: Inverse Darstellung einschalten.
 
 **::term::ansi::send::sda\_hidden**
-: Ausgeblendet.
+: Verborgene Darstellung einschalten.
 
 **::term::ansi::send::sda\_strike**
 : Durchstreichen aktiviert.
@@ -314,10 +314,10 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Blinken ausschalten.
 
 **::term::ansi::send::sda\_norevers**
-: Bitte fahren Sie rückwärts weg.
+: Inverse Darstellung ausschalten.
 
 **::term::ansi::send::sda\_nohidden**
-: Ausgeblendet.
+: Verborgene Darstellung ausschalten.
 
 **::term::ansi::send::sda\_nostrike**
 : Durchstreichung deaktivieren.
@@ -335,7 +335,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Cursor nach unten. *n* ist standardmäßig auf 1 gesetzt.
 
 **::term::ansi::send::cf** ?*n*?
-: Cursor Weiterleitung. *n* ist standardmäßig auf 1 gesetzt.
+: Cursor vorwärts. *n* ist standardmäßig auf 1 gesetzt.
 
 **::term::ansi::send::cb** ?*n*?
 : Cursor rückwärts. *n* ist standardmäßig auf 1 gesetzt.
@@ -344,7 +344,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Bildschirm scrollen (gesamter Bildschirm oder zwischen den Zeilen „Start“ und „Ende“, einschließlich).
 
 **::term::ansi::send::skd** *code* *str*
-: Schlüsseldefinition festlegen.
+: Tastendefinition festlegen.
 
 **::term::ansi::send::title** *str*
 : Legt den Titel des Terminals fest.
@@ -389,7 +389,7 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Zeichengrafik, vertikale Linie.
 
 **::term::ansi::send::groptim** *str*
-: Zeichengrafiken optimieren. Die oben genannten Generatorbefehle erzeugen viel zu viele überflüssige Befehle zum Wechseln in den Grafikmodus und zurück. Dieser Befehl entfernt alle nicht benötigten Wechsel. Zu diesem Zweck erkennt er auch, welche Zeichen in beiden Modi gleich aussehen, um Zeichenfolgen zu verarbeiten, die außerhalb dieses Pakets erstellt wurden.
+: Zeichengrafiken optimieren. Die oben genannten Generatorbefehle erzeugen viel zu viele überflüssige Befehle zum Wechseln in den Grafikmodus und zurück. Dieser Befehl entfernt alle nicht benötigten Wechsel. Zu diesem Zweck erkennt er auch, welche Zeichen in beiden Modi gleich aussehen, um Zeichenketten zu verarbeiten, die außerhalb dieses Pakets erstellt wurden.
 
 **::term::ansi::send::clear**
 : Bildschirm löschen. Im Wesentlichen eine Abfolge von „CursorHome“ und „EraseDown“.

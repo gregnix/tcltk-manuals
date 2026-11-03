@@ -31,9 +31,9 @@ tcl::chan::random – Zufälliger Kanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::random** stellt einen Befehl zur Verfügung, mit dem zufällige Kanäle erstellt werden können, d. h. schreibgeschützte Kanäle, die beim Auslesen einen unendlichen Strom pseudozufälliger Zeichen geben. Dies ähnelt den Zufallskanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist und zudem einen wesentlich einfacheren Generator verwendet. Andererseits ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie TclOO erfordert.
+Das Paket **tcl::chan::random** stellt einen Befehl zur Verfügung, mit dem zufällige Kanäle erstellt werden können, d. h. schreibgeschützte Kanäle, die beim Auslesen einen unendlichen Strom pseudozufälliger Zeichen zurückgeben. Dies ähnelt den Zufallskanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist und zudem einen wesentlich einfacheren Generator verwendet. Andererseits ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie TclOO erfordert.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 

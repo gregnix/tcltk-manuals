@@ -52,7 +52,7 @@ Befehlszeilen-Name: **-labelanchor**
 Datenbank-Name: **labelAnchor**
 Datenbank-Klasse: **Anchor**
 
-Legt fest, wie der Inhalt der Spaltenbeschriftung angezeigt wird. Einer der Werte **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw** oder **center**. nw zeigt den Inhalt so, dass seine linke obere Ecke in der linken oberen Ecke der Spaltenbeschriftung liegt.
+Legt fest, wie der Inhalt der Spaltenbeschriftung angezeigt wird. Muss einer der Werte **n**, **ne**, **e**, **se**, **s**, **sw**, **w**, **nw** oder **center** sein. nw zeigt den Inhalt so, dass seine linke obere Ecke in der linken oberen Ecke der Spaltenbeschriftung liegt.
 
 Befehlszeilen-Name: **-labelbackground** oder **-labelbg**
 Datenbank-Name: **labelBackground**
@@ -70,7 +70,7 @@ Befehlszeilen-Name: **-labelfont**
 Datenbank-Name: **labelFont**
 Datenbank-Klasse: **Font**
 
-Legt die Schrift fest, mit der Text in der Spaltenbeschriftung gezeichnet wird.
+Legt die Schriftart fest, mit der Text in der Spaltenbeschriftung gezeichnet wird.
 
 Befehlszeilen-Name: **-labelforeground**
 Datenbank-Name: **labelForeground**
@@ -118,7 +118,7 @@ Legt einen von mehreren Stilen für die Auswahl fest. Der Wert der Option darf b
 
 ## BESCHREIBUNG
 
-Der Befehl **mclistbox** erzeugt ein neues Fenster, gegeben durch das Argument *pathName*, und macht es zu einem mclistbox-Widget. Weitere Optionen, oben beschrieben, können auf der Befehlszeile Aspekte der mclistbox festlegen, etwa Farben, Schrift, Text und Relief. Der Befehl mclistbox gibt sein Argument pathName zurück. Beim Aufruf darf noch kein Fenster namens pathName bestehen. Das Elternfenster von pathName muss bestehen.
+Der Befehl **mclistbox** erzeugt ein neues Fenster, gegeben durch das Argument *pathName*, und macht es zu einem mclistbox-Widget. Weitere Optionen, oben beschrieben, können auf der Befehlszeile Aspekte der mclistbox festlegen, etwa Farben, Schriftart, Text und Relief. Der Befehl mclistbox gibt sein Argument pathName zurück. Beim Aufruf darf noch kein Fenster namens pathName bestehen. Das Elternfenster von pathName muss bestehen.
 
 Eine mclistbox zeigt eine Liste von Zeichenketten, eine je Zeile. Eine neue mclistbox hat anfangs keine Elemente und keine Spalten. Spalten und Elemente werden mit den Widget-Befehlen unten hinzugefügt oder gelöscht. Ein oder mehrere Elemente lassen sich auswählen, wie unten beschrieben. Wird ein Element in einer Spalte ausgewählt, werden die Elemente in allen Spalten ausgewählt.
 
@@ -159,7 +159,7 @@ Dazu kommen einige Befehle, die es nur bei der mclistbox gibt:
 
             -font
 
-            Legt die Schrift dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Schrift. Werden für getrennte Spalten Schriften mit verschiedener Zeilenhöhe verwendet, stehen die Daten der Spalten nicht auf einer Linie.
+            Legt die Schriftart dieser Spalte fest. Ist der Wert die leere Zeichenkette, erhält die Spalte die voreingestellte Schriftart. Werden für getrennte Spalten Schriften mit verschiedener Zeilenhöhe verwendet, stehen die Daten der Spalten nicht auf einer Linie.
 
             -foreground
 
@@ -279,17 +279,17 @@ Die Bindungen des mclistbox-Widgets sind dieselben wie bei einem gewöhnlichen L
 
 **ButtonPress-1** beginnt eine Größenänderung der Spalte, wenn der Zeiger über einem Spaltenkopf und wenige Pixel vom linken oder rechten Rand der Beschriftung entfernt ist. **B1-Motion** ändert die Spalten beiderseits des Zeigers entsprechend der Bewegung des Zeigers. **ButtonRelease-1** beendet die Größenänderung.
 
-Ist über **label bind** eine Bindung auf einer Beschriftung gesetzt und **-resizablecolumns** ist gesetzt, feuert die Bindung nicht, wenn das Ereignis in den wenigen Pixeln am linken und rechten Rand der Beschriftung liegt, in denen eine Größenänderung möglich ist. So lösen eine Beschriftungsbindung und eine Größenänderung nicht denselben Tastendruck aus.
+Ist über **label bind** eine Bindung auf einer Beschriftung gesetzt und **-resizablecolumns** ist gesetzt, feuert die Bindung nicht, wenn das Ereignis in den wenigen Pixeln am linken und rechten Rand der Beschriftung liegt, in denen eine Größenänderung möglich ist. So werden nicht durch einen einzigen Maustastendruck sowohl die Beschriftungsbindung als auch die Größenänderung ausgelöst.
 
 
 
 ## FEHLER
 
-Werden für verschiedene Spalten verschiedene Schriften verwendet, stehen die Daten nicht auf einer Linie, wenn diese Schriften nicht dieselbe Zeilenhöhe haben. Derzeit hilft nur, Schriften mit derselben Zeilenhöhe zu verwenden.
+Werden für verschiedene Spalten verschiedene Schriftarten verwendet, stehen die Daten nicht auf einer Linie, wenn diese Schriftarten nicht dieselbe Zeilenhöhe haben. Derzeit hilft nur, Schriften mit derselben Zeilenhöhe zu verwenden.
 
 Beschriftungen und Bilder gemischt in den Spaltenköpfen ergeben ungleich hohe Köpfe. Dadurch stehen die Daten in den Spalten nicht auf einer Linie.
 
-Ereignisbindungen, die feuern, während der Mauszeiger über einer Spalte ist, liefern falsche Werte für %W, `%x` und %y. Die Werte beziehen sich auf die internen Widgets unter dem Klick und nicht auf das mclistbox-Widget. In Tk gibt es dafür bis 8.1b2 keinen Ausweg. Ein Wert zum Schlüsselwort `%W` lässt sich mit der Funktion ::mclistbox::convert umrechnen. Eine eigene Beschreibung fehlt. Das Beispiel example.tcl dieser Verteilung zeigt den Aufruf.
+Ereignisbindungen, die feuern, während der Mauszeiger über einer Spalte ist, liefern falsche Werte für %W, `%x` und %y. Die Werte beziehen sich auf die internen Widgets unter dem Klick und nicht auf das mclistbox-Widget. In Tk gibt es dafür bis 8.1b2 keinen Ausweg. Ein Wert zum Schlüsselwort `%W` lässt sich mit der Funktion ::mclistbox::convert umrechnen. Eine eigene Beschreibung fehlt. Das Beispiel example.tcl dieser Distribution zeigt den Aufruf.
 
 Der Befehl \`\`\<pathName> xview index'' funktioniert nicht.
 

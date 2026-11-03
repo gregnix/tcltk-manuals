@@ -40,7 +40,7 @@ Dieser Befehl führt eine von mehreren Operationen an der Variablen aus, die *ar
 [array]{.cmd} [default]{.sub} [subcommand]{.arg} [arrayName]{.arg} [args...]{.arg}
 : [Verwaltet den Standardwert des Arrays. Arrays haben anfangs keinen Standardwert, aber mit diesem Befehl können Sie einen festlegen. Der Standardwert wird beim Lesen eines Elements des Arrays *arrayName* zurückgegeben, wenn das Lesen sonst zu einem Fehler führen würde. Beachten Sie, dass sich dadurch das Verhalten der Befehle [append], [dict], [incr] und [lappend] gegenüber nicht vorhandenen Arrayelementen ändern kann.]{version="TIP508"}
 
-    Das Argument *subcommand* steuert, welche Operation genau am Standardwert von *arrayName* ausgeführt wird. Die unterstützten *subcommand*s sind:
+    Das Argument *subcommand* steuert, welche Operation genau am Standardwert von *arrayName* ausgeführt wird. Die unterstützten *subcommand*-Argumente sind:
 
     [array]{.cmd} [default]{.sub} [exists]{.lit} [arrayName]{.arg}
     : [Gibt einen booleschen Wert zurück, der angibt, ob für das Array *arrayName* ein Standardwert festgelegt wurde. Gibt einen falschen Wert zurück, wenn *arrayName* nicht existiert. Löst einen Fehler aus, wenn *arrayName* eine vorhandene Variable ist, die kein Array ist.]{version="TIP508"}

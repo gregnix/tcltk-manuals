@@ -29,7 +29,7 @@ Hinweis: Die Bibliotheksversionen können in der tatsächlichen Ausgabe abweiche
 
 Die Funktion Expect\_Init fügt dem genannten Interpreter expect-Befehle hinzu. Vorhandene Befehle werden nicht überschrieben. Aliase, die mit "exp\_" beginnen, werden für expect-Befehle aber immer angelegt. "send" kann zum Beispiel als "exp\_send" verwendet werden.
 
-Expect-Befehle werden nur über Tcl\_Eval aufgerufen. Bestimmte Hilfsfunktionen dürfen unmittelbar aufgerufen werden. Die Hilfsfunktionen sind unten zusammengefasst. Das kann nützlich sein, um eine eigene main zu bauen. Die Datei exp\_main\_exp.c in der Expect-Distribution ist eine main als Vorbild. Ein weiteres Vorbild ist tclAppInit.c in der Tcl-Distribution. Ein Vorbild für die Arbeit mit Tk steht in exp\_main\_tk.c in der Expect-Distribution.
+Expect-Befehle sollten im Allgemeinen nur über Tcl\_Eval aufgerufen werden. Bestimmte Hilfsfunktionen dürfen unmittelbar aufgerufen werden. Die Hilfsfunktionen sind unten zusammengefasst. Das kann nützlich sein, um eine eigene main zu bauen. Die Datei exp\_main\_exp.c in der Expect-Distribution ist eine main als Vorbild. Ein weiteres Vorbild ist tclAppInit.c in der Tcl-Distribution. Ein Vorbild für die Arbeit mit Tk steht in exp\_main\_tk.c in der Expect-Distribution.
 
 ```
 int exp_cmdlinecmds;
@@ -192,9 +192,9 @@ Die Funktionen warten, bis die Ausgabe eines Prozesses auf eines der Muster pass
 
 Das erste Argument jeder Funktion ist entweder ein Dateideskriptor oder ein Strom. Die folgenden Argumentgruppen beschreiben Muster und zugehörige ganze Zahlen, die zurückgegeben werden, wenn das Muster passt.
 
-Das Argument type ist einer von mehreren Werten. exp\_end zeigt, dass keine weiteren Muster folgen. exp\_glob zeigt, dass das Muster eine Zeichenkette im Glob-Stil ist. exp\_exact zeigt, dass das Muster eine genaue Zeichenkette ist. exp\_regexp zeigt, dass das Muster eine Zeichenkette im Regexp-Stil ist. exp\_compiled zeigt, dass das Muster eine Zeichenkette im Regexp-Stil ist und dass seine kompilierte Form ebenfalls angegeben wird. exp\_null zeigt, dass das Muster eine Null ist. Zur Fehlersuche muss danach auch ein Zeichenkettenmuster folgen.
+Das Argument type ist einer von vier Werten. exp\_end zeigt, dass keine weiteren Muster folgen. exp\_glob zeigt, dass das Muster eine Zeichenkette im Glob-Stil ist. exp\_exact zeigt, dass das Muster eine genaue Zeichenkette ist. exp\_regexp zeigt, dass das Muster eine Zeichenkette im Regexp-Stil ist. exp\_compiled zeigt, dass das Muster eine Zeichenkette im Regexp-Stil ist und dass seine kompilierte Form ebenfalls angegeben wird. exp\_null zeigt, dass das Muster eine Null ist. Zur Fehlersuche muss danach auch ein Zeichenkettenmuster folgen.
 
-Wird die kompilierte Form bei den Funktionen **exp\_expectl** und **exp\_fexpectl** nicht angegeben, wird jede intern vorgenommene Musterkompilierung verworfen, nachdem die Funktion zurückgekehrt ist. Die Funktionen **exp\_expectv** und **exp\_fexpectv** kompilieren Muster automatisch und verwerfen sie nicht. Stattdessen werden sie verworfen, indem für jedes Muster free aufgerufen wird. Verwerfen ist nur beim letzten Verwenden der Fälle nötig.
+Wird die kompilierte Form bei den Funktionen **exp\_expectl** und **exp\_fexpectl** nicht angegeben, wird jede intern vorgenommene Musterkompilierung verworfen, nachdem die Funktion zurückgekehrt ist. Die Funktionen **exp\_expectv** und **exp\_fexpectv** kompilieren Muster automatisch und verwerfen sie nicht. Stattdessen muss der Benutzer sie verwerfen, indem er für jedes Muster free aufruft. Verwerfen ist nur beim letzten Verwenden der Fälle nötig.
 
 Passende Regexp-Teilmuster werden in der kompilierten regexp gespeichert. Enthält "re" eine kompilierte regexp, steht die passende Zeichenkette in re->startp\[0\]. Die passenden Teilzeichenketten, nach den Klammern im ursprünglichen Muster, stehen in re->startp\[1\], re->startp\[2\] und so weiter bis re->startp\[9\]. Die zugehörigen Enden der Zeichenketten sind re->endp\[x\], wobei x derselbe Index ist wie beim Anfang der Zeichenkette.
 
@@ -208,7 +208,7 @@ Ist die Variable exp\_full\_buffer 1, kommt EXP\_FULLBUFFER zurück, wenn exp\_b
 
 Kehrt die expect-Funktion zurück, zeigt **exp\_buffer** auf den Puffer der Zeichen, die für den Vergleich betrachtet wurden. **exp\_buffer\_end** zeigt auf die Stelle ein Zeichen hinter dem letzten Zeichen in exp\_buffer. Ist eine Übereinstimmung entstanden, zeigt **exp\_match** in **exp\_buffer** auf den Anfang der Übereinstimmung. **exp\_match\_end** zeigt auf das Zeichen hinter dem Ende der Übereinstimmung.
 
-Kommt neue Eingabe, wird sie mit jedem Muster in der aufgeführten Reihenfolge verglichen. Das Fehlen einer Übereinstimmung lässt sich prüfen, indem das letzte Muster etwas ist, das sicher erscheint, etwa eine Eingabeaufforderung. Gibt es keine Eingabeaufforderung, ist auf **EXP\_TIMEOUT** zu prüfen, so wie bei der Arbeit von Hand. Weitere Überlegungen und Vorgehensweisen zum Angeben von Mustern für **expect** stehen in der Dokumentation des Programms **expect** selbst. Weitere Angaben stehen unter SEE ALSO weiter unten.
+Kommt neue Eingabe, wird sie mit jedem Muster in der aufgeführten Reihenfolge verglichen. Das Fehlen einer Übereinstimmung lässt sich prüfen, indem das letzte Muster etwas ist, das sicher erscheint, etwa eine Eingabeaufforderung. Gibt es keine Eingabeaufforderung, ist auf **EXP\_TIMEOUT** zu prüfen, so wie bei der Arbeit von Hand. Weitere Überlegungen und Vorgehensweisen zum Angeben von Mustern für **expect** stehen in der Dokumentation des Programms **expect** selbst. Weitere Angaben stehen unter „Siehe auch“ weiter unten.
 
 Muster sind die üblichen regulären Ausdrücke im C-Shell-Stil. Das folgende Fragment sucht zum Beispiel eine erfolgreiche Anmeldung, etwa aus einem Telnet-Dialog.
 
@@ -258,7 +258,7 @@ int fd;
 int enable;
 ```
 
-Das Einfangen der Pty geschieht gewöhnlich automatisch durch die expect-Funktionen. Soll zum Beispiel ein ioctl unmittelbar auf dem Slave-Gerät abgesetzt werden, wird das Einfangen vorübergehend ausgeschaltet.
+Das Einfangen der Pty geschieht gewöhnlich automatisch durch die expect-Funktionen. Soll zum Beispiel ein ioctl unmittelbar auf dem Slave-Gerät abgesetzt werden, sollte das Einfangen vorübergehend ausgeschaltet werden.
 
 Das Einfangen der Pty lässt sich mit exp\_slave\_control steuern. Das erste Argument ist der Dateideskriptor des gestarteten Prozesses. Das zweite Argument ist 0, wenn das Einfangen ausgeschaltet werden soll, und 1, wenn es eingeschaltet werden soll.
 
@@ -314,13 +314,13 @@ Beides zusammen geht: Schreiben mit den üblichen Stromfunktionen und Lesen mit 
 
 Zu exp\_popen gibt es kein passendes exp\_pclose, anders als bei popen und pclose. Eine Verbindung zu schließen, braucht nur zwei Funktionen, fclose() und danach das Warten auf die pid. Diese beiden Schritte liegen aber nicht selten weit auseinander, sodass die Funktion wenig Wert zu haben scheint.
 
-Läuft das auf einem Cray unter Unicos, das ist das, was aus Erfahrung sicher ist, muss das kompilierte Programm als root oder setuid laufen. Das Problem ist, dass der Cray nur root-Prozessen erlaubt, Ptys zu öffnen. Die Vorsicht sollte so groß wie möglich sein. Werden die Rechte nicht gebraucht, steht setuid(0) nur unmittelbar vor dem Aufruf einer spawn-Funktion, und unmittelbar danach wird es zurückgesetzt.
+Läuft das Programm auf einem Cray unter Unicos (das einzige System, für das das aus Erfahrung sicher ist), muss das kompilierte Programm als root oder setuid laufen. Das Problem ist, dass der Cray nur root-Prozessen erlaubt, Ptys zu öffnen. Die Vorsicht sollte so groß wie möglich sein. Werden die Rechte nicht gebraucht, steht setuid(0) nur unmittelbar vor dem Aufruf einer spawn-Funktion, und unmittelbar danach wird es zurückgesetzt.
 
 Gewöhnlich braucht **spawn** wenig Zeit. Dauert spawn auffällig lange, trifft es vermutlich auf festgefahrene Ptys. Auf Ptys laufen mehrere Prüfungen, damit es keine Verwicklung mit fehlgeleiteten Prozessen gibt. Das dauert 10 Sekunden je festgefahrener Pty. Läuft expect mit der Option -d, zeigt sich, ob **expect** viele Ptys in merkwürdigen Zuständen trifft. Lassen sich die Prozesse nicht beenden, an denen diese Ptys hängen, bleibt als einziger Ausweg ein Neustart.
 
 # Bugs
 
-Die Funktionen **exp\_fexpect** arbeiten unter HP-UX gar nicht. Das scheint ein Fehler in getc zu sein. Es gilt der Rat weiter oben, die Funktionen **exp\_expect** zu verwenden. Die brauchen getc nicht. Wird der Fehler behoben, und die letzte Ausgabe ist geprüft, soll das dem Autor mitgeteilt werden.
+Die Funktionen **exp\_fexpect** arbeiten unter HP-UX gar nicht. Das scheint ein Fehler in getc zu sein. Es gilt der Rat weiter oben, die Funktionen **exp\_expect** zu verwenden. Die brauchen getc nicht. Wer den Fehler behebt (bevor der Autor es tut – bitte zuerst die neueste Ausgabe prüfen), möge das dem Autor mitteilen.
 
 # Siehe auch
 

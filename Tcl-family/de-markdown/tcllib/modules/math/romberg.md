@@ -76,7 +76,7 @@ Für die Romberg-Integration stehen folgende Prozeduren zur Verfügung:
 : Obergrenze des Integrationsbereichs. Für die Prozeduren **romberg\_sqrtSingLower**, **romberg\_sqrtSingUpper**, **romberg\_powerLawLower**, **romberg\_powerLawUpper**, **romberg\_expLower** und **romberg\_expUpper** muss die Untergrenze echt kleiner sein als die Obergrenze.  Bei den übrigen Prozeduren können die Grenzen in beliebiger Reihenfolge angegeben werden.
 
 *gamma*
-: Potenz, die für eine Singularität nach einem Potenzgesetz verwendet wird; Einzelheiten finden Sie im Abschnitt [Uneigentliche Integrale].
+: Potenz, die für eine Potenzgesetz-Singularität verwendet wird; Einzelheiten finden Sie im Abschnitt [Uneigentliche Integrale].
 
 
 # Optionen
@@ -100,7 +100,7 @@ Die Prozedur **romberg** führt eine Romberg-Integration unter Verwendung der mo
 
 Sobald das Intervall mindestens *d* Mal unterteilt wurde, wird ein Polynom an die in den letzten *d*+1 Unterteilungen geschätzten Integrale angepasst.  Die Integrale werden als Funktion des Quadrats der Breite der Teilintervalle betrachtet (jedes gute Lehrbuch der numerischen Mathematik behandelt diesen Prozess unter dem Begriff „Romberg-Integration“). Das Polynom wird auf eine Schrittweite von Null extrapoliert, wodurch ein Wert für das Integral sowie eine Schätzung des Fehlers berechnet werden.
 
-Dieser Prozess verläuft nur dann einwandfrei, wenn die Funktion im Integrationsbereich analytisch ist; an beiden Enden des Bereichs dürfen hebbare Singularitäten auftreten, sofern der Grenzwert der Funktion (und aller ihrer Ableitungen) bei Annäherung an die Endpunkte existiert. Somit kann **romberg** verwendet werden, um eine Funktion wie f(x)=sin(x)/x über ein Intervall zu integrieren, das bei Null beginnt oder endet.
+Dieser Prozess ist nur dann gutartig, wenn die Funktion im Integrationsbereich analytisch ist; an beiden Enden des Bereichs dürfen hebbare Singularitäten auftreten, sofern der Grenzwert der Funktion (und aller ihrer Ableitungen) bei Annäherung an die Endpunkte existiert. Somit kann **romberg** verwendet werden, um eine Funktion wie f(x)=sin(x)/x über ein Intervall zu integrieren, das bei Null beginnt oder endet.
 
 Beachten Sie, dass **romberg** entweder nicht konvergiert oder falsche Fehlerschätzungen zurückgibt, wenn die Funktion oder eine ihrer Ableitungen irgendwo im Integrationsbereich eine Singularität hat (mit Ausnahme des oben genannten Falls).  Daher ist bei der Integration einer Funktion wie 1/(1-x\*\*2) Vorsicht geboten, um die Stellen zu vermeiden, an denen die Ableitung singulär ist.
 
@@ -111,8 +111,8 @@ Die Romberg-Integration eignet sich auch zur Integration von Funktionen über ha
 **romberg\_infinity**
 : Integriert eine Funktion über ein halbunendliches Intervall; entweder *a* oder *b* kann unendlich sein. *a* und *b* müssen das gleiche Vorzeichen haben; wenn Sie über die Achse integrieren müssen, beispielsweise von einem negativen Wert bis zur positiven Unendlichkeit, verwenden Sie **romberg**, um vom negativen Wert bis zu einem kleinen positiven Wert zu integrieren, und anschließend **romberg\_infinity**, um vom positiven Wert bis zur positiven Unendlichkeit zu integrieren.  Die Prozedur **romberg\_infinity** arbeitet mit dem Variablenwechsel u=1/x, sodass das Integral von a bis b über f(x) als das Integral von 1/a bis 1/b über f(1/u)/u\*\*2 ausgewertet wird.
 
-**romberg\_powerLawLower** and **romberg\_powerLawUpper**
-: Integriert eine Funktion, die entweder an der unteren oder an der oberen Grenze des Integrationsbereichs eine integrierbare Singularität in Form eines Potenzgesetzes aufweist (oder dort eine Ableitung mit einer Singularität in Form eines Potenzgesetzes besitzt). Diese Prozeduren erfordern einen ersten Parameter, *gamma*, der das Potenzgesetz angibt.  Es wird angenommen, dass die Funktion oder ihre erste Ableitung wie (x-*a*)\*\*(-*gamma*) oder (*b*-x)\*\*(-*gamma*) divergiert.  *gamma* muss größer als Null und kleiner als 1 sein.
+**romberg\_powerLawLower** und **romberg\_powerLawUpper**
+: Integriert eine Funktion, die entweder an der unteren oder an der oberen Grenze des Integrationsbereichs eine integrierbare Potenzgesetz-Singularität aufweist (oder dort eine Ableitung mit einer Potenzgesetz-Singularität besitzt). Diese Prozeduren erfordern einen ersten Parameter, *gamma*, der das Potenzgesetz angibt.  Es wird angenommen, dass die Funktion oder ihre erste Ableitung wie (x-*a*)\*\*(-*gamma*) oder (*b*-x)\*\*(-*gamma*) divergiert.  *gamma* muss größer als Null und kleiner als 1 sein.
 
     Diese Prozeduren sind nicht nur bei der Integration von Funktionen nützlich, die an einem Ende des Integrationsbereichs gegen unendlich streben, sondern auch bei Funktionen, deren Ableitungen am Ende des Bereichs nicht existieren.  Beispielsweise führt die Integration von f(x)=pow(x,0.25) mit dem Ursprung als einem Ende des Integrationsbereichs dazu, dass die Prozedur **romberg** den Fehler im Integral erheblich unterschätzt. Das Problem lässt sich beheben, indem man berücksichtigt, dass die erste Ableitung von f(x), f'(x)=x\*\*(-3/4)/4, am Ursprung gegen unendlich geht.  Die Integration mit **romberg\_powerLawLower** mit *gamma* gleich 0.75 führt zu einer wesentlich geordneteren Konvergenz.
 
@@ -125,10 +125,10 @@ Die Romberg-Integration eignet sich auch zur Integration von Funktionen über ha
     - Wenn f'(x) ~ x\*\*(-b) (0 < b < 1) gilt, verwenden Sie gamma = b
 
 
-**romberg\_sqrtSingLower** and **romberg\_sqrtSingUpper**
+**romberg\_sqrtSingLower** und **romberg\_sqrtSingUpper**
 : Diese Prozeduren verhalten sich im häufigen Fall *gamma*=0.5 identisch zu **romberg\_powerLawLower** und **romberg\_powerLawUpper**; das heißt, sie integrieren eine Funktion mit einer Singularität in Form einer inversen Quadratwurzel an einem Ende des Intervalls.  Ihre Implementierung ist einfacher, da sie Quadratwurzeln anstelle beliebiger Potenzen verwenden.
 
-**romberg\_expLower** and **romberg\_expUpper**
+**romberg\_expLower** und **romberg\_expUpper**
 : Diese Prozeduren dienen der Integration einer Funktion, die über ein halbunendliches Intervall exponentiell ansteigt oder abfällt. **romberg\_expLower** behandelt exponentiell ansteigende Funktionen und ermöglicht es, die untere Integrationsgrenze als beliebig große negative Zahl festzulegen.  **romberg\_expUpper** behandelt exponentiell abklingende Funktionen und erlaubt, dass die obere Integrationsgrenze eine beliebig große positive Zahl ist. Die Funktionen nehmen den Variablenwechsel u=exp(-x) bzw. u=exp(x) vor.
 
 

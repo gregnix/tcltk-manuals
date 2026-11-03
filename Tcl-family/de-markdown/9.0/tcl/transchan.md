@@ -70,7 +70,7 @@ Die folgenden Unterbefehle sind für alle Kanaltypen relevant.
 
 ## Lesebezogene Unterbefehle
 
-Diese Unterbefehle werden für Transformationen auf lesbaren Kanälen verwendet; streng genommen ist **read** optional, muss aber unterstützt werden, wenn einer der anderen unterstützt wird, sonst wird der Kanal nicht lesbar gemacht.
+Diese Unterbefehle werden für Transformationen auf lesbaren Kanälen verwendet; streng genommen ist **read** optional, muss aber unterstützt werden, wenn einer der anderen unterstützt wird, sonst wird der Kanal als nicht lesbar eingestuft.
 
 [cmdPrefix]{.ins} [drain]{.sub} [handle]{.arg}
 : Dieser optionale Unterbefehl wird aufgerufen, wenn Daten im Eingabe- (d. h. Lese-)Puffer der Transformation nach oben, d. h. zum Benutzer oder Skript, erzwungen werden müssen. Das von der Methode zurückgegebene Ergebnis wird als die *binären* Daten interpretiert, die nach oben an die Ebene über dieser Transformation (den Leser oder eine Transformation höherer Ebene) weitergereicht werden.
@@ -88,7 +88,7 @@ Diese Unterbefehle werden für Transformationen auf lesbaren Kanälen verwendet;
 
 ## Schreibbezogene Unterbefehle
 
-Diese Unterbefehle werden für Transformationen auf beschreibbaren Kanälen verwendet; streng genommen ist **write** optional, muss aber unterstützt werden, wenn einer der anderen unterstützt wird, sonst wird der Kanal nicht beschreibbar gemacht.
+Diese Unterbefehle werden für Transformationen auf beschreibbaren Kanälen verwendet; streng genommen ist **write** optional, muss aber unterstützt werden, wenn einer der anderen unterstützt wird, sonst wird der Kanal als nicht beschreibbar eingestuft.
 
 [cmdPrefix]{.ins} [flush]{.sub} [handle]{.arg}
 : Dieser optionale Unterbefehl wird aufgerufen, wenn Daten im Schreibpuffer der Transformation nach unten, d. h. zum Basiskanal, erzwungen werden müssen. Der Rückgabewert des Unterbefehls wird als die binären Daten interpretiert, die an die Transformation unterhalb der aktuellen Transformation geschrieben werden. Das kann auch der Basiskanal sein.

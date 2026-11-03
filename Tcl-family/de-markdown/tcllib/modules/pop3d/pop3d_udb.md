@@ -58,7 +58,7 @@ Für Datenbankobjekte sind folgende Befehle möglich:
 : Löscht das Datenbankobjekt.
 
 *dbName* **add** *user pwd storage*
-: Fügt einen neuen Benutzer hinzu oder ändert die Daten eines vorhandenen Benutzers. Speichert das Passwort und die *storage*-Referenz für den angegebenen *user*.
+: Fügt einen neuen Benutzer hinzu oder ändert die Daten eines vorhandenen Benutzers. Speichert *password* und die *storage*-Referenz für den angegebenen *user*.
 
 *dbName* **remove** *user*
 : Entfernt den angegebenen *user* aus der Datenbank.

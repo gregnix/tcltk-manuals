@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-canvas::snap – Momentaufnahme der Canvas als Tk-Foto-Image
+canvas::snap – Momentaufnahme des Canvas als Tk-Foto-Image
 
 # Übersicht
 

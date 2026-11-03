@@ -26,7 +26,7 @@ destroy - Zerstört ein oder mehrere Fenster
 
 # Beschreibung
 
-Dieser Befehl löscht die durch die *window*-Argumente angegebenen Fenster sowie alle ihre Nachkommen. Wird das Fenster „.“ gelöscht, werden alle Fenster zerstört und die Anwendung beendet (normalerweise) sich. Die Fenster werden in der angegebenen Reihenfolge zerstört; tritt beim Zerstören eines Fensters ein Fehler auf, bricht der Befehl ab, ohne die verbleibenden Fenster zu zerstören. Existiert *window* nicht, wird kein Fehler zurückgegeben.
+Dieser Befehl löscht die durch die *window*-Argumente angegebenen Fenster sowie alle ihre Nachkommen. Wird das Fenster „.“ gelöscht, werden alle Fenster zerstört und die Anwendung beendet sich (normalerweise). Die Fenster werden in der angegebenen Reihenfolge zerstört; tritt beim Zerstören eines Fensters ein Fehler auf, bricht der Befehl ab, ohne die verbleibenden Fenster zu zerstören. Existiert *window* nicht, wird kein Fehler zurückgegeben.
 
 # Beispiele
 

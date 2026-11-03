@@ -24,7 +24,7 @@ Copyright:
 
 # Name
 
-Coroutine – Coroutinen-basierte Ereignis- und E/A-Verarbeitung
+coroutine – Coroutinen-basierte Ereignis- und E/A-Verarbeitung
 
 # Übersicht
 
@@ -64,7 +64,7 @@ Alle unten aufgeführten Befehle laufen synchron zur Coroutine ab, die sie aufru
 : Dieser Befehl verzögert die Coroutine, die ihn aufruft, um *delay* Millisekunden.
 
 **coroutine::util await** *varname*...
-: Dieser Befehl ist eine Erweiterung des Befehls **coroutine::util vwait** (siehe unten), der auf einen Schreibvorgang in eine von mehreren benannten Namespace-Variablen wartet.
+: Dieser Befehl ist eine erweiterte Form des Befehls **coroutine::util vwait** (siehe unten); er wartet auf einen Schreibvorgang in eine von mehreren benannten Namespace-Variablen wartet.
 
 **coroutine::util create** *arg*...
 : Dieser Befehl erstellt eine neue Coroutine mit einem automatisch zugewiesenen Namen und sorgt dafür, dass diese den durch die Argumente angegebenen Code ausführt.
@@ -82,10 +82,10 @@ Alle unten aufgeführten Befehle laufen synchron zur Coroutine ab, die sie aufru
 : Dieser Befehl importiert die benannten globalen Variablen der Coroutine in den aktuellen Gültigkeitsbereich. Aus technischer Sicht befinden sich diese Variablen auf Ebene **#1** des Tcl-Stacks. Das heißt, es handelt sich nicht um reguläre globale Variablen im globalen Namespace, und jede Coroutine kann ihren eigenen Satz haben, unabhängig von allen anderen.
 
 **coroutine::util puts** ?**-nonewline**? *channel* *string*
-: Dieser Befehl schreibt die Zeichenkette in den angegebenen *Kanal*. Im Gegensatz zur integrierten Funktion **puts** wartet dieser Befehl, bis der *Kanal* beschreibbar ist, bevor er tatsächlich darin schreibt.
+: Dieser Befehl schreibt die Zeichenkette in den angegebenen *channel*. Im Gegensatz zum integrierten Befehl **puts** wartet dieser Befehl, bis *channel* beschreibbar ist, bevor er tatsächlich darin schreibt.
 
 **coroutine::util read** **-nonewline** *chan* ?*n*?
-: Dieser Befehl liest *n* Zeichen aus dem Kanal *chan* und gibt sie als Ergebnis zurück. Wenn *n* nicht festgelegt wird, liest der Befehl so lange aus dem Kanal, bis das EOF erreicht ist.
+: Dieser Befehl liest *n* Zeichen aus dem Kanal *chan* und gibt sie als Ergebnis zurück. Wenn *n* nicht festgelegt wird, liest der Befehl so lange aus dem Kanal, bis das Dateiende erreicht ist.
 
 **coroutine::util socket** ?*options...*? *host* *port*
 : Dieser Befehl stellt eine Verbindung zum angegebenen Host und Port her und gibt zurück, sobald dies geschehen ist. Im Gegensatz zum integrierten Befehl führt er eine nicht-blockierende Verbindung im Hintergrund durch. Daher wird zwar die aufrufende Coroutine blockiert, die gesamte Anwendung wird jedoch nicht blockiert.

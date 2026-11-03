@@ -121,7 +121,7 @@ dem Widget
 
 .a.b.c
 
-.  Befehlszeilenschalter können abgekürzt werden,
+festzulegen.  Befehlszeilenschalter können abgekürzt werden,
 solange die Abkürzung eindeutig ist.
 \`\`Datenbankname'' bezeichnet den Namen der Option in der Optionsdatenbank (zum Beispiel
 in .Xdefaults-Dateien).  \`\`Datenbankklasse'' bezeichnet den Klassenwert der Option
@@ -214,7 +214,7 @@ Datenbankklasse: **Foreground**
 
     Befehlszeilenname: -jump Name der Datenbank: jump Datenbankklasse: Jump
 
-    Bei Widgets mit einem Schieber, der gezogen werden kann, um einen Wert zu verstellen, wie bei Scrollbars, bestimmt diese Option, wann Benachrichtigungen über Änderungen des Wertes erfolgen. Der Wert der Option muss ein boolescher Wert der Form sein, die **Tcl_GetBoolean** akzeptiert. Wenn der Wert false ist, erfolgen Aktualisierungen fortlaufend, während der Schieber gezogen wird. Wenn der Wert true ist, werden Aktualisierungen aufgeschoben, bis die Maustaste losgelassen wird, um das Ziehen zu beenden; dann erfolgt eine einzige Benachrichtigung (der Wert \`\`jumps'', anstatt sich gleichmäßig zu ändern).
+    Bei Widgets mit einem Schieber, der gezogen werden kann, um einen Wert zu verstellen, wie bei Scrollbars, bestimmt diese Option, wann Benachrichtigungen über Änderungen des Wertes erfolgen. Der Wert der Option muss ein boolescher Wert der Form sein, die **Tcl_GetBoolean** akzeptiert. Wenn der Wert false ist, erfolgen Aktualisierungen fortlaufend, während der Schieber gezogen wird. Wenn der Wert true ist, werden Aktualisierungen aufgeschoben, bis die Maustaste losgelassen wird, um das Ziehen zu beenden; dann erfolgt eine einzige Benachrichtigung (der Wert \`\`springt'', anstatt sich gleichmäßig zu ändern).
 
     Befehlszeilenname: -justify Name der Datenbank: justify Datenbankklasse: Justify
 
@@ -226,11 +226,11 @@ Datenbankklasse: **Foreground**
 
     Befehlszeilenname: -padx Name der Datenbank: padX Datenbankklasse: Pad
 
-    Legt einen nicht negativen Wert fest, der angibt, wie viel zusätzlicher Platz für das Widget in X-Richtung angefordert wird. Der Wert kann jede Form haben, die **Tk_GetPixels** akzeptiert. Wenn das Widget berechnet, wie groß ein Fenster sein muss, addiert es diesen Betrag zu der Breite, die es gewöhnlich braucht (bestimmt durch die Breite dessen, was im Widget angezeigt wird); wenn der Geometriemanager diese Anforderung erfüllen kann, erhält das Widget zusätzlichen inneren Platz links und/oder rechts von dem, was es innen anzeigt. Die meisten Widgets verwenden diese Option nur für den Abstand um Text: wenn sie eine Bitmap oder ein Bild anzeigen, ignorieren sie Abstandsoptionen gewöhnlich.
+    Legt einen nicht negativen Wert fest, der angibt, wie viel zusätzlicher Platz für das Widget in X-Richtung angefordert wird. Der Wert kann jede Form haben, die **Tk_GetPixels** akzeptiert. Wenn das Widget berechnet, wie groß ein Fenster sein muss, addiert es diesen Betrag zu der Breite, die es gewöhnlich braucht (bestimmt durch die Breite dessen, was im Widget angezeigt wird); wenn der Geometriemanager diese Anforderung erfüllen kann, erhält das Widget zusätzlichen inneren Platz links und/oder rechts von dem, was es innen anzeigt. Die meisten Widgets verwenden diese Option nur für den Innenabstand um Text: wenn sie eine Bitmap oder ein Bild anzeigen, ignorieren sie Optionen für den Innenabstand gewöhnlich.
 
     Befehlszeilenname: -pady Name der Datenbank: padY Datenbankklasse: Pad
 
-    Legt einen nicht negativen Wert fest, der angibt, wie viel zusätzlicher Platz für das Widget in Y-Richtung angefordert wird. Der Wert kann jede Form haben, die **Tk_GetPixels** akzeptiert. Wenn das Widget berechnet, wie groß ein Fenster sein muss, addiert es diesen Betrag zu der Höhe, die es gewöhnlich braucht (bestimmt durch die Höhe dessen, was im Widget angezeigt wird); wenn der Geometriemanager diese Anforderung erfüllen kann, erhält das Widget zusätzlichen inneren Platz oberhalb und/oder unterhalb von dem, was es innen anzeigt. Die meisten Widgets verwenden diese Option nur für den Abstand um Text: wenn sie eine Bitmap oder ein Bild anzeigen, ignorieren sie Abstandsoptionen gewöhnlich.
+    Legt einen nicht negativen Wert fest, der angibt, wie viel zusätzlicher Platz für das Widget in Y-Richtung angefordert wird. Der Wert kann jede Form haben, die **Tk_GetPixels** akzeptiert. Wenn das Widget berechnet, wie groß ein Fenster sein muss, addiert es diesen Betrag zu der Höhe, die es gewöhnlich braucht (bestimmt durch die Höhe dessen, was im Widget angezeigt wird); wenn der Geometriemanager diese Anforderung erfüllen kann, erhält das Widget zusätzlichen inneren Platz oberhalb und/oder unterhalb von dem, was es innen anzeigt. Die meisten Widgets verwenden diese Option nur für den Innenabstand um Text: wenn sie eine Bitmap oder ein Bild anzeigen, ignorieren sie Optionen für den Innenabstand gewöhnlich.
 
     Befehlszeilenname: -relief Name der Datenbank: relief Datenbankklasse: Relief
 
@@ -238,7 +238,7 @@ Datenbankklasse: **Foreground**
 
     Befehlszeilenname: -repeatdelay Name der Datenbank: repeatDelay Datenbankklasse: RepeatDelay
 
-    Legt die Anzahl der Millisekunden fest, die eine Schaltfläche oder Taste gehalten werden muss, bevor die automatische Wiederholung beginnt. Wird zum Beispiel bei den Auf- und Ab-Pfeilen in Scrollbars verwendet.
+    Legt die Anzahl der Millisekunden fest, die eine Maustaste oder Taste gedrückt gehalten werden muss, bevor die automatische Wiederholung beginnt. Wird zum Beispiel bei den Auf- und Ab-Pfeilen in Scrollbars verwendet.
 
     Befehlszeilenname: -repeatinterval Name der Datenbank: repeatInterval Datenbankklasse: RepeatInterval
 

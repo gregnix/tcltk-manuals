@@ -38,7 +38,7 @@ otp – Einmalpasswörter
 
 # Beschreibung
 
-Dieses Paket ist eine Implementierung des in RFC 2289 (1) beschriebenen Einmalpasswort-Systems in Tcl. Dieses System verwendet Message-Digest-Algorithmen, um eine Passphrase schrittweise zu hashen und so Einmalpasswörter zu erzeugen. Die resultierenden Daten werden dem Benutzer dann entweder als Hexadezimalziffern oder – durch Kodierung mit einem Dictionary mit 2048 Wörtern – bereitgestellt. Dieses System wird von OpenBSD für die Sicherheit der Anmeldung verwendet und kann als SASL-Mechanismus zur Authentifizierung von Benutzern eingesetzt werden.
+Dieses Paket ist eine Implementierung des in RFC 2289 (1) beschriebenen Einmalpasswort-Systems in Tcl. Dieses System verwendet Message-Digest-Algorithmen, um eine Passphrase schrittweise zu hashen und so Einmalpasswörter zu erzeugen. Die resultierenden Daten werden dem Benutzer dann entweder als Hexadezimalziffern oder – durch Kodierung mit einem Wörterbuch mit 2048 Wörtern – bereitgestellt. Dieses System wird von OpenBSD für die Sicherheit der Anmeldung verwendet und kann als SASL-Mechanismus zur Authentifizierung von Benutzern eingesetzt werden.
 
 In dieser Implementierung bieten wir Unterstützung für vier Algorithmen, die in der tcllib-Distribution enthalten sind: MD5 (2), MD4 (3), RIPE-MD160 (4) und SHA-1 (5).
 
@@ -69,7 +69,7 @@ e249b58257c80087
 
 3. Rivest, R., „The MD4 Message Digest Algorithm“, RFC 1320, MIT, April 1992. (<http://www.rfc-editor.org/rfc/rfc1320.txt>)
 
-4. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, eine erweiterte Version von RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
+4. H. Dobbertin, A. Bosselaers, B. Preneel, „RIPEMD-160, a strengthened version of RIPEMD“ <http://www.esat.kuleuven.ac.be/~cosicart/pdf/AB-9601/AB-9601.pdf>
 
 5. „Secure Hash Standard“, National Institute of Standards and Technology, US-Handelsministerium, April 1995. (<http://www.itl.nist.gov/fipspubs/fip180-1.htm>)
 

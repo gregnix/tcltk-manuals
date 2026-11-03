@@ -53,7 +53,7 @@ BESCHREIBUNG
  *number* 
 :  Bezeichnet den Button numerisch, wobei 0 dem zuerst hinzugefügten Button entspricht, 1 dem nächsten, und so weiter. 
 
- **end** or **last** 
+ **end** oder **last** 
 :  Bezeichnet den zuletzt hinzugefügten Eintrag. 
 
 **default** 
@@ -75,7 +75,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-default**
-:  Legt die Vorgabeschaltfläche der Schaltflächenleiste fest. Der Wert ist eine ganze Zahl, die die n-te hinzugefügte Schaltfläche bezeichnet, beginnend bei 0. Wenn dieser Wert -1 ist (die Vorgabe), werden alle Schaltflächen mit ihrer Option -default auf disabled gezeichnet, und dieser Wert kann nicht geändert werden.   
+:  Legt die Vorgabeschaltfläche der Schaltflächenleiste fest. Der Wert ist eine Ganzzahl, die die n-te hinzugefügte Schaltfläche bezeichnet, beginnend bei 0. Wenn dieser Wert -1 ist (die Vorgabe), werden alle Schaltflächen mit ihrer Option -default auf disabled gezeichnet, und dieser Wert kann nicht geändert werden.   
   Wenn dieser Wert nicht -1 ist, wird die zugehörige Schaltfläche mit der Option -default auf active gezeichnet und die anderen mit der Option -default auf normal. Der Wert kann mit configure geändert werden. 
 
 

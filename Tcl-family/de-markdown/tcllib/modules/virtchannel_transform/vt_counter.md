@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-tcl::transform::counter – Transformation
+tcl::transform::counter – Zählertransformation
 
 # Übersicht
 
@@ -35,7 +35,7 @@ Das Paket **tcl::transform::counterr** stellt einen Befehl bereit, der eine Kana
 
 Zu diesem Modul gehörende Transformationen sind **tcl::transform::adler32**, **tcl::transform::crc32**, **tcl::transform::identity** und **tcl::transform::observe**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

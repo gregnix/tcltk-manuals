@@ -32,11 +32,11 @@ Das Paket „**lazyset**“ bietet eine Möglichkeit, die Ausführung von Code s
 **::lazyset::variable** ?*-array boolean*? ?*-appendArgs boolean*? *someVar* *commandPrefix*
 : Sorgt dafür, dass der als *commandPrefix* angegebene Code ausgeführt wird, wenn die Variable, deren Name durch *someVar* festgelegt wird, zum ersten Mal gelesen wird.
 
-    Wenn das optionale Argument *-array boolean* auf „true“ gelegt wird, wird die als *someVar* angegebene Variable als Array behandelt, und jeder Versuch, einen beliebigen Index des Arrays auszulesen, bewirkt, dass dieser Index beim Auslesen durch *commandPrefix* gesetzt wird.
+    Wenn das optionale Argument *-array boolean* auf „true“ gesetzt wird, wird die als *someVar* angegebene Variable als Array behandelt, und jeder Versuch, einen beliebigen Index des Arrays auszulesen, bewirkt, dass dieser Index beim Auslesen durch *commandPrefix* gesetzt wird.
 
     Wenn das optionale Argument *-appendArgs boolean* als „false“ festgelegt wird, werden der Name der Variable und die Unternamen nicht an das *commandPrefix* angehängt, bevor die Auswertung durchgeführt wird.
 
-    Wenn das Argument *-appendArgs boolean* nicht angegeben wird oder auf „true“ gelegt wird, werden dem *commandPrefix* 1 oder 2 zusätzliche Argumente angehängt. Wenn *-array boolean* als „true“ festgelegt wird, werden 2 Argumente angehängt, die dem Namen der Variablen und dem Index entsprechen; andernfalls wird 1 Argument angehängt, das den Namen der Variablen enthält.
+    Wenn das Argument *-appendArgs boolean* nicht angegeben wird oder auf „true“ gesetzt wird, werden dem *commandPrefix* 1 oder 2 zusätzliche Argumente angehängt. Wenn *-array boolean* als „true“ festgelegt wird, werden 2 Argumente angehängt, die dem Namen der Variablen und dem Index entsprechen; andernfalls wird 1 Argument angehängt, das den Namen der Variablen enthält.
 
     Der *commandPrefix*-Code wird im selben Geltungsbereich ausgeführt wie die Variable, die ausgelesen wird.
 
@@ -75,7 +75,7 @@ Das Paket „**lazyset**“ bietet eine Möglichkeit, die Ausführung von Code s
 
 # Autoren
 
-Roy Keane
+Roy Keene
 
 # Fehler, Ideen, Rückmeldungen
 

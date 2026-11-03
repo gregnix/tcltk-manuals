@@ -32,7 +32,7 @@ Ein Bitmap ist ein Bild, dessen Pixel entweder eine von zwei Farben anzeigen ode
 
 # Erstellen von Bitmaps
 
-Wie alle Bilder werden Bitmaps mit dem Befehl [image create][image] erzeugt. Bitmaps unterstützen folgende *Optionen*:
+Wie alle Bilder werden Bitmaps mit dem Befehl [image create][image] erzeugt. Bitmaps unterstützen folgende *options*:
 
 [-background]{.lit} [color]{.arg}
 : Legt eine Hintergrundfarbe für das Bild auf eine der von Tk akzeptierten Standardarten fest. Ist diese Option auf eine leere Zeichenkette gesetzt, sind die Hintergrundpixel transparent. Der Effekt entsteht, indem das Quell-Bitmap als Masken-Bitmap verwendet wird; Optionen **-maskdata** und **-maskfile** werden ignoriert.
@@ -67,7 +67,7 @@ imageName option ?arg ...?
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück. *Option* kann einen der von [image create][image] **bitmap** akzeptierten Werte haben.
 
 [imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Fragt die Konfigurationsoptionen des Bildes ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste aller verfügbaren Optionen für *imageName* zurück (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, liefert der Befehl eine Liste zur benannten Option (identisch mit der entsprechenden Teilliste ohne *option*). Sind eine oder mehrere *option-value*-Paare angegeben, setzt der Befehl die Option(en) auf die angegebenen Werte und gibt eine leere Zeichenkette zurück. *Option* kann einen der von [image create][image] **bitmap** akzeptierten Werte haben.
+: Fragt die Konfigurationsoptionen des Bildes ab oder ändert sie. Ist keine *option* angegeben, gibt der Befehl eine Liste aller verfügbaren Optionen für *imageName* zurück (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, liefert der Befehl eine Liste zur benannten Option (identisch mit der entsprechenden Teilliste des Werts, der ohne Angabe von *option* zurückgegeben wird). Sind eine oder mehrere *option-value*-Paare angegeben, setzt der Befehl die Option(en) auf die angegebenen Werte und gibt eine leere Zeichenkette zurück. *Option* kann einen der von [image create][image] **bitmap** akzeptierten Werte haben.
 
 
 [ConfigWidg]: ../tk-c/ConfigWidg.md

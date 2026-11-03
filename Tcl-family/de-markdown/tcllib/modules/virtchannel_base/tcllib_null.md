@@ -31,11 +31,11 @@ tcl::chan::null – Nullkanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::null** stellt einen Befehl zur Erstellung von Nullkanälen bereit, d. h. von schreibgeschützten Kanälen, die alles, was in sie geschrieben wird, sofort wieder vergessen. Dies entspricht den Nullkanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist. Andererseits ist ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie **TclOO** erfordert.
+Das Paket **tcl::chan::null** stellt einen Befehl zur Erstellung von Nullkanälen bereit, d. h. von Nur-Schreib-Kanälen, die alles, was in sie geschrieben wird, sofort wieder vergessen. Dies entspricht den Nullkanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist. Andererseits ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie **TclOO** erfordert.
 
-Die entsprechenden Pakete lauten **tcl::chan::zero** und **tcl::chan::nullzero**.
+Verwandte Pakete sind **tcl::chan::zero** und **tcl::chan::nullzero**.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 

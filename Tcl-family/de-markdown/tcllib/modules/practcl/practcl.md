@@ -637,7 +637,7 @@ Das Konzept von Practcl besteht darin, dass es sich um ein Paket aus einer einzi
 
 Practcl wird als einzelne Datei ausgeliefert und weist, abgesehen von einem Tcl 8.6-Interpreter, keine externen Abhängigkeiten auf.
 
-Ein praxisorientiertes Projekt erstellen
+Ein Practcl-Projekt erstellen
 
 # Befehle
 
@@ -648,7 +648,7 @@ proc **practcl::docstrip** *text*
 : Entfernt die globalen Kommentare aus dem Tcl-Code. Dies dient dazu, zu verhindern, dass die Kommentare zur Dokumentation Dateien überladen, die für die Verbreitung in einem maschinenlesbaren Format vorgesehen sind.
 
 proc **putb** ?*map*? *text*
-: Fügt einer Variable eine Textzeile hinzu. Wendet optional eine Zeichenfolgenzuordnung an.
+: Fügt einer Variable eine Textzeile hinzu. Wendet optional eine Zeichenkettenersetzung (`string map`) an.
 
 proc **Proc** *name* *arglist* *body*
 : Erstellt eine Prozedur, falls noch kein Befehl mit diesem Namen vorhanden ist
@@ -687,28 +687,28 @@ proc **practcl::mkzip** *exename* *barekit* *vfspath*
 : Erstellt eine ZIP-Datei. Unter Tcl 8.6 wird dabei die native ZIP-Implementierung aufgerufen; bei älteren Interpretern wird ZIP über „exec“ aufgerufen.
 
 proc **practcl::sort\_dict** *list*
-: Sortieren einer Schlüssel-Wert-Liste nach Dictionary-Reihenfolge. Dies ist erforderlich, da Tcl-Versionen vor 8.6 nicht über *lsort -stride 2*
+: Sortieren einer Schlüssel-Wert-Liste nach Dictionary-Reihenfolge. Dies ist erforderlich, da Tcl-Versionen vor 8.6 nicht über *lsort -stride 2* verfügen
 
 proc **practcl::local\_os**
 : Gibt ein Dictionary zurück, das das lokale Betriebssystem beschreibt. Zu den zurückgegebenen Feldern gehören:
 
     - download – Dateisystempfad, in den Fossil-Repositorys und Quellcode-Tarballs für den aktuellen Benutzer heruntergeladen werden
 
-    - EXEEXT – Die Erweiterung, die ausführbaren Dateien zuweisen soll. (z. B. .exe unter Windows)
+    - EXEEXT – Die Erweiterung, die ausführbare Dateien erhalten sollen. (z. B. .exe unter Windows)
 
     - fossil\_mirror – Eine URI für einen Webserver im lokalen Netzwerk, der als Spiegel eines Fossil-Repositorys fungiert
 
     - local\_install – Pfad zum Dateisystem, in dem Pakete für die lokale Nutzung durch den aktuellen Benutzer installiert werden
 
-    - Präfix – Das Präfix, das dem Tcl-Kern/TEA bei der Installation in „local\_install“ in „./configure“ angegeben wurde
+    - prefix – Das Präfix, das dem Tcl-Kern/TEA bei der Installation in „local\_install“ in „./configure“ angegeben wurde
 
-    - Sandbox – Der Speicherort, an dem dieses Projekt externe Projekte entpackt
+    - sandbox – Der Speicherort, an dem dieses Projekt externe Projekte entpackt
 
     - TEACUP\_PROFILE – Der kanonische Name von ActiveState/Teacup für diese Plattform (d. h. win32-ix86 macosx10.5-i386-x86\_84)
 
-    - TEACUP\_OS – Das lokale Betriebssystem (Windows, macOS, OpenBSD usw.). Liefert dieselbe Antwort wie „tcl.m4“, mit der Ausnahme, dass „macOS“ anstelle von „Darwin“ angegeben wird.
+    - TEACUP\_OS – Das lokale Betriebssystem (windows, macosx, openbsd usw.). Liefert dieselbe Antwort wie „tcl.m4“, mit der Ausnahme, dass „macosx“ anstelle von „Darwin“ angegeben wird.
 
-    - TEA\_PLATFORM – Die von „uname“ zurückgegebene Plattform: -s-uname, -r (unter Unix) oder „windows“ unter Windows
+    - TEA\_PLATFORM – Die von uname -s-uname -r zurückgegebene Plattform (unter Unix) oder „windows“ unter Windows
 
     - TEACUP\_ARCH – Die Prozessorarchitektur für das lokale Betriebssystem (d. h. ix86, x86\_64)
 
@@ -743,7 +743,7 @@ proc **practcl::read\_configuration** *path*
     - ::env(VisualStudioVersion) – Unter Windows ein Wert der Umgebungsvariablen, der angibt, dass MS Visual Studio installiert ist
 
 
-    Dieser Befehl gibt ein Dictionary zurück, das alle aus den oben genannten Quellen bereinigten Daten enthält. Sofern keine weiteren Angaben gemacht werden, liefert dieser Befehl dieselbe Ausgabe wie ::practcl::local\_os. In diesem Modus stellt dieser Befehl, wenn die Umgebungsvariable „VisualStudioVersion“ vorhanden ist, eine Vorlage mit Feldern bereit, die für die Kompilierung unter Windows mit Microsoft Visual Studio geeignet sind. Das USEMSVC-Flag im Dictionary ist ein boolesches Flag, das angibt, ob dies tatsächlich der Fall ist.
+    Dieser Befehl gibt ein Dictionary zurück, das alle aus den oben genannten Quellen gewonnenen Daten enthält. Sofern keine weiteren Angaben gemacht werden, liefert dieser Befehl dieselbe Ausgabe wie ::practcl::local\_os. In diesem Modus stellt dieser Befehl, wenn die Umgebungsvariable „VisualStudioVersion“ vorhanden ist, eine Vorlage mit Feldern bereit, die für die Kompilierung unter Windows mit Microsoft Visual Studio geeignet sind. Das USEMSVC-Flag im Dictionary ist ein boolesches Flag, das angibt, ob dies tatsächlich der Fall ist.
 
 proc **practcl::tcllib\_require** *pkg* ?*args*?
 : Versucht, ein Paket zu laden, und ruft bei einem Fehlschlag „tcllib“ ab.
@@ -777,7 +777,7 @@ proc **practcl::read\_Makefile** *filename*
 : Eine vereinfachte Version von „read\_sh\_file“, die speziell auf das Abrufen von Daten aus einer Makefile-Datei zugeschnitten ist
 
 proc **practcl::cputs** *varname* ?*args*?
-: Argumente an einen Puffer anhängen. Der Befehl funktioniert ähnlich wie „puts“, da bei jedem Aufruf zusätzlich ein Zeilenvorschub eingefügt wird. Im Gegensatz zu „puts“ werden jedoch Leerzeichen im Zwischentext unterdrückt.
+: Argumente an einen Puffer anhängen. Der Befehl funktioniert ähnlich wie „puts“, da bei jedem Aufruf zusätzlich ein Zeilenvorschub eingefügt wird. Im Gegensatz zu „puts“ werden jedoch Leerzeilen dazwischen unterdrückt.
 
 proc **practcl::tcl\_to\_c** *body*
 : siehe unten ...
@@ -808,7 +808,7 @@ proc **practcl::findByPattern** *basedir* *patterns*
 : siehe unten ...
 
 proc **practcl::log** *fname* *comment*
-: Ein Ereignis im Praxisprotokoll eintragen
+: Ein Ereignis im Practcl-Protokoll eintragen
 
 proc **practcl::\_pkgindex\_simpleIndex** *path*
 : siehe unten ...
@@ -832,7 +832,7 @@ proc **practcl::buildModule** *modpath*
 : siehe unten ...
 
 proc **practcl::installModule** *modpath* *DEST*
-: Installiert ein Modul aus MODPATH in das angegebene Verzeichnis. Es wird davon ausgegangen, dass *dpath* der vollständig qualifizierte Pfad ist, in dem das Modul platziert werden soll. Alle bereits vorhandenen Dateien unter diesem Pfad werden gelöscht. Wenn es sich bei dem Pfad um einen symbolischen Link handelt, gibt der Prozess ohne Fehlermeldung und ohne weitere Aktion zurück. Enthält das Modul im Verzeichnis build/ Inhalte, die neuer sind als die .tcl-Dateien im Quellverzeichnis des Moduls, und existiert eine Datei build/build.tcl, wird diese Datei ausgeführt. Wenn das Quellverzeichnis eine Datei mit dem Namen „index.tcl“ enthält, wird davon ausgegangen, dass es sich um ein Modul im TAO-Stil handelt, und das gesamte Verzeichnis (sowie alle Unterverzeichnisse) wird unverändert kopiert. Wenn keine Datei „index.tcl“ vorhanden ist, werden alle .tcl-Dateien aus dem Modul-Quellverzeichnis kopiert, und es wird eine Datei „pkgIndex.tcl“ generiert, sofern diese noch nicht existiert. Existiert im Quellverzeichnis ein Verzeichnis namens „htdocs“, wird dieses Verzeichnis unverändert in das Zielverzeichnis kopiert.
+: Installiert ein Modul aus MODPATH in das angegebene Verzeichnis. Es wird davon ausgegangen, dass *dpath* der vollständig qualifizierte Pfad ist, in dem das Modul platziert werden soll. Alle bereits vorhandenen Dateien unter diesem Pfad werden gelöscht. Wenn es sich bei dem Pfad um einen symbolischen Link handelt, kehrt der Vorgang ohne Fehler und ohne Aktion zurück. Enthält das Modul im Verzeichnis build/ Inhalte, die neuer sind als die .tcl-Dateien im Quellverzeichnis des Moduls, und existiert eine Datei build/build.tcl, wird diese Datei ausgeführt. Wenn das Quellverzeichnis eine Datei mit dem Namen „index.tcl“ enthält, wird davon ausgegangen, dass es sich um ein Modul im TAO-Stil handelt, und das gesamte Verzeichnis (sowie alle Unterverzeichnisse) wird unverändert kopiert. Wenn keine Datei „index.tcl“ vorhanden ist, werden alle .tcl-Dateien aus dem Modul-Quellverzeichnis kopiert, und es wird eine Datei „pkgIndex.tcl“ generiert, sofern diese noch nicht existiert. Existiert im Quellverzeichnis ein Verzeichnis namens „htdocs“, wird dieses Verzeichnis unverändert in das Zielverzeichnis kopiert.
 
 proc **practcl::trigger** ?*args*?
 : Build-Ziele auslösen und Abhängigkeiten neu berechnen
@@ -911,9 +911,9 @@ method **constructor**
 : siehe unten ...
 
 method **argspec** *argspec*
-: Verarbeitet eine Argumentliste zu einem Informationswörterbuch. Diese Methode versteht auch nicht-positionale Argumente, die in der Notation von Tipp 471 <https://core.tcl-lang.org/tips/doc/trunk/tip/479.md> ausgedrückt werden.
+: Verarbeitet eine Argumentliste zu einem Informations-Dictionary. Diese Methode versteht auch nicht-positionale Argumente, die in der Notation von TIP 471 <https://core.tcl-lang.org/tips/doc/trunk/tip/479.md> ausgedrückt werden.
 
-    Die Ausgabe ist ein Dictionary, das alle Felder enthält und angibt, ob es sich bei den Feldern um **positional**, **mandatory**, and whether they have a **default** aufweisen.
+    Die Ausgabe ist ein Dictionary, das alle Felder enthält und angibt, ob die Felder **positional** und **mandatory** sind und ob sie einen Vorgabewert (**default**) haben.
 
     Beispiele:
 
@@ -924,7 +924,7 @@ method **argspec** *argspec*
     ```
 
 method **comment** *block*
-: Wandelt einen Kommentarblock in ein InformationsDictionary um. Wenn Zeilen im Kommentar mit einem einzelnen Wort beginnen, das mit einem Doppelpunkt endet, werden alle nachfolgenden Zeilen an ein Dictionary-Feld mit diesem Namen angehängt. Wenn keine Felder angegeben sind, wird der gesamte Text an das Feld **description** angehängt.
+: Wandelt einen Kommentarblock in ein Informations-Dictionary um. Wenn Zeilen im Kommentar mit einem einzelnen Wort beginnen, das mit einem Doppelpunkt endet, werden alle nachfolgenden Zeilen an ein Dictionary-Feld mit diesem Namen angehängt. Wenn keine Felder angegeben sind, wird der gesamte Text an das Feld **description** angehängt.
 
     Beispiel:
 
@@ -958,10 +958,10 @@ method **keyword.Class\_Method** *resultvar* *commentblock* *name* ?*args*?
 : Eine Anweisung für eine Methode der Klasse im Clay-Stil verarbeiten
 
 method **keyword.method** *resultvar* *commentblock* *name* ?*args*?
-: Den Prozess für eine Anweisung für eine Objektmethode im TCLOO-Stil durchführen
+: Eine Anweisung für eine Objektmethode im TclOO-Stil verarbeiten
 
 method **keyword.proc** *commentblock* *name* *argspec*
-: Eine PROC-Anweisung ausführen
+: Eine proc-Anweisung verarbeiten
 
 method **reset**
 : Den Zustand des Objekts und seiner eingebetteten Coroutine zurücksetzen
@@ -982,7 +982,7 @@ method **section.command** *procinfo*
 : Erstellt den Text für die Handbuchseite im Abschnitt „Befehle“
 
 method **manpage** ?**header** *value*? ?**footer** *value*? ?**authors** *list*?
-: Erstellt die Handbuchseite. Gibt den fertigen Text zurück, der zum Speichern in einer .man-Datei geeignet ist. Das Argument „header“ ist ein Block aus Doctools-Text, der vor dem maschinell generierten Abschnitt eingefügt werden soll. „footer“ ist ein Block aus Doctools-Text, der nach dem maschinell generierten Abschnitt eingefügt werden soll. „authors“ ist eine Liste einzelner Autoren und E-Mail-Adressen im Format AUTOR E-MAIL ?AUTOR E-MAIL?...
+: Erstellt die Handbuchseite. Gibt den fertigen Text zurück, der zum Speichern in einer .man-Datei geeignet ist. Das Argument „header“ ist ein Block aus Doctools-Text, der vor dem maschinell generierten Abschnitt eingefügt werden soll. „footer“ ist ein Block aus Doctools-Text, der nach dem maschinell generierten Abschnitt eingefügt werden soll. „authors“ ist eine Liste einzelner Autoren und E-Mail-Adressen im Format AUTHOR EMAIL ?AUTHOR EMAIL?...
 
 method **scan\_text** *text*
 : Einen Textblock scannen
@@ -1015,7 +1015,7 @@ Eine Klasse ohne übergeordnete Klasse, die als Mixin konzipiert ist und eine Re
 **Klassenmethoden**
 
 classmethod **select** *object*
-: Führt die Auswahl für das Toolset-Mixin
+: Führt die Auswahl für das Toolset-Mixin durch
 
 
 **Methods** durch
@@ -1193,7 +1193,7 @@ method **implement** *path*
 : siehe unten ...
 
 method **initialize**
-: Praktische Grundlagen
+: Interna von Practcl
 
 method **linktype**
 : siehe unten ...
@@ -1214,7 +1214,7 @@ method **Collate\_Source** *CWD*
 : siehe unten ...
 
 method **select**
-: Sobald sich ein Objekt als eine Form von „dynamisch“ kennzeichnet, sollten Sie nicht länger versuchen, es in etwas anderes umzuwandeln.
+: Sobald sich ein Objekt als eine Form von „dynamisch“ kennzeichnet, wird nicht länger versucht, es in etwas anderes umzuwandeln.
 
 
 ## Klasse practcl::product
@@ -1304,7 +1304,7 @@ method **generate-tcl-loader**
 : siehe unten ...
 
 method **generate-tcl-pre**
-: Diese Methode generiert eine beliebige Tcl-Skriptdatei, die zur Vorinitialisierung der C-Bibliothek erforderlich ist.
+: Diese Methode generiert jede Tcl-Skriptdatei, die zur Vorinitialisierung der C-Bibliothek erforderlich ist.
 
 method **generate-tcl-post**
 : siehe unten ...
@@ -1411,13 +1411,13 @@ method **make {} object** *name*
 : Gibt das Objekt zurück, das mit dem Handle *name* verknüpft ist.
 
 method **make {} reset**
-: Alle untergeordneten Objekte zurücksetzen
+: Alle Stellvertreterobjekte zurücksetzen
 
 method **make {} trigger** ?*args*?
 : Wendet die „triggers“-Methode auf alle aufgeführten Handles an
 
 method **make {} depends** ?*args*?
-: Führt die Prüfmethode für alle aufgeführten Handles durch
+: Führt die Methode „check“ für alle aufgeführten Handles aus
 
 method **make {} filename** *name*
 : Gibt den Namen des Build-Produkts für das angegebene Handle zurück
@@ -1429,7 +1429,7 @@ method **make {} todo**
 : Gibt eine Liste von Handles für Objekte zurück, die bei der Methode „do“ den Wert „true“ zurückgeben
 
 method **make {} do**
-: Für jede Zielübung wird die in der *action*-Definition angegebene Aktion ausgeführt, wenn die *do*-Methode den Wert „true“ gibt.
+: Für jedes Ziel wird die in der *action*-Definition angegebene Aktion ausgeführt, wenn die *do*-Methode den Wert „true“ zurückgibt.
 
 method **child** *which*
 : siehe unten ...
@@ -1518,7 +1518,7 @@ method **linktype**
 : siehe unten ...
 
 method **package-ifneeded** ?*args*?
-: Erstellt ein „Paket ifneeded“. Die Argumente sind eine Liste von Aliasen, auf die dieses Paket reagieren soll.
+: Erstellt ein „package ifneeded“. Die Argumente sind eine Liste von Aliasen, auf die dieses Paket reagieren soll.
 
 
 - Methode **shared\_library** ?*filename* ?
@@ -1678,7 +1678,7 @@ method **linker-extra** *configdict*
 : siehe unten ...
 
 method **env-bootstrap**
-: Methoden für Pakete/Tools, die heruntergeladen, gegebenenfalls kompiliert und intern von diesem Practcl-Prozess verwendet werden können. Laden Sie die Funktion in den Interpreter.
+: Methoden für Pakete/Tools, die heruntergeladen, gegebenenfalls kompiliert und intern von diesem Practcl-Prozess verwendet werden können. Lädt die Funktionalität in den Interpreter.
 
 method **env-exec**
 : Gibt einen Dateipfad zurück, den „exec“ aufrufen kann
@@ -1687,7 +1687,7 @@ method **env-install**
 : Installiert das Tool in der lokalen Umgebung
 
 method **env-load**
-: Tun Sie alles Notwendige, um das Tool in die lokale Umgebung zu integrieren
+: Tut alles Notwendige, um das Tool in die lokale Umgebung zu integrieren
 
 method **env-present**
 : Prüft, ob das Werkzeug zum Laden verfügbar ist bzw. bereits geladen wurde
@@ -1715,7 +1715,7 @@ Ein Projekt, bei dem das Kit den Quellcode selbst kompiliert und integriert
 
 *ancestors*: **practcl::subproject**
 
-ein Schluck aus der Teekanne
+eine Kopie aus dem Teapot
 
 **Methoden**
 
@@ -1773,7 +1773,7 @@ ein Schluck aus der Teekanne
 
 *ancestors*: **practcl::subproject**
 
-Ein untergeordnetes Paket
+Ein untergeordnetes Binärpaket
 
 **Methoden**
 
@@ -1790,11 +1790,11 @@ Ein untergeordnetes Paket
 - Methode **install** *DEST*
 
 
-## Klasse practcl::subproject.tea
+## Klasse practcl::subproject.TEA
 
 *ancestors*: **practcl::subproject.binary**
 
-Ein untergeordnetes TEA-basiertes Paket
+Ein untergeordnetes TEA-basiertes Binärpaket
 
 ## Klasse practcl::subproject.library
 

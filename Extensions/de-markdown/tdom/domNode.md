@@ -39,7 +39,7 @@ Die gültigen Methoden sind:
 : Gibt den Knotentyp dieses Knotenobjekts zurück. Das kann sein: ELEMENT\_NODE, TEXT\_NODE, CDATA\_SECTION\_NODE, COMMENT\_NODE oder PROCESSING\_INSTRUCTION\_NODE.
 
 **nodeName**
-: Gibt den Knotennamen dieses Knotenobjekts zurück. Das ist der Elementname für Elementknoten (Typ ELEMENT\_NODE), das Ziel der Verarbeitungsanweisung, "#text" für einen Textknoten, "#comment" für Kommentarknoten oder "#cdata" für CDATA-Abschnittknoten.
+: Gibt den Knotennamen dieses Knotenobjekts zurück. Das ist der Elementname für Elementknoten (Typ ELEMENT\_NODE), bei Verarbeitungsanweisungen deren Ziel, "#text" für einen Textknoten, "#comment" für Kommentarknoten oder "#cdata" für CDATA-Abschnittknoten.
 
 **nodeValue** *?newValue?*
 : Gibt den Wert dieses Knotenobjekts zurück. Das ist der Text oder die Daten für Knoten der Typen TEXT\_NODE, COMMENT\_NODE, PROCESSING\_INSTRUCTION\_NODE oder CDATA\_SECTION\_NODE). Sonst ist der Wert leer. Ist der Knoten ein TEXT\_NODE, COMMENT\_NODE oder PROCESSING\_INSTRUCTION\_NODE und ist das optionale Argument *newValue* angegeben, wird der Knoten auf diesen Wert gesetzt.
@@ -84,7 +84,7 @@ Die gültigen Methoden sind:
 : Gibt den Wert des Attributs *attributeName* zurück. Fehlt das Attribut, kommt *defaultValue* zurück.
 
 **setAttribute** *attributeName newValue  ?attributeName newValue ...?*
-: Setzt den Wert eines oder mehrerer Attribute. Jeder *attributeName* wird auf den zugehörigen *newValue* gesetzt. Fehlt zu einem *attributeName* das Attribut, wird es angelegt. Von Attributen, die wie XML-Namensraumdeklarationen aussehen, ist abzuraten.
+: Setzt den Wert eines oder mehrerer Attribute. Jeder *attributeName* wird auf den zugehörigen *newValue* gesetzt. Fehlt zu einem *attributeName* das Attribut, wird es angelegt. Vom Setzen von Attributen, die wie XML-Namensraumdeklarationen aussehen, ist abzuraten.
 
 **removeAttribute** *attributeName*
 : Entfernt das Attribut *attributeName*.
@@ -108,7 +108,7 @@ Die gültigen Methoden sind:
     $node setAttributeNS "" attri "some Value"
     ```
 
-    Außer bei den besonderen Präfixen "xmlns" und "xml" muss *uri* nicht leer sein, wenn *qualifiedName* einen Präfix hat. Von XML-Namensraumdeklarationen ist abzuraten. Die Wirkungen sind verwickelt und nicht immer offensichtlich, bis hin zu Serialisierungen, die nach weiterer Verarbeitung nicht wohlgeformt sind.
+    Außer bei den besonderen Präfixen "xmlns" und "xml" muss *uri* immer angegeben und nicht leer sein, wenn *qualifiedName* einen Präfix hat. Vom Setzen von XML-Namensraumdeklarationen ist abzuraten. Die Wirkungen sind verwickelt und nicht immer offensichtlich, bis hin zu Serialisierungen, die nach weiterer Verarbeitung nicht wohlgeformt sind.
 
 **removeAttributeNS** *uri* *localName*
 : Entfernt das Attribut mit dem lokalen Namen *localName* im Namensraum *uri*.
@@ -316,7 +316,7 @@ Die gültigen Methoden sind:
 : Nur Element- und Textknoten können einen JSON-Typ haben, und nur diese Knotentypen kennen die Methode *jsonType*. Die anderen Knotentypen geben einen Fehler zurück, wenn die Methode an ihnen aufgerufen wird. Gibt den jsonType des Knotens zurück. Ist das optionale Argument angegeben, wird der JSON-Typ des Knotens auf den angegebenen Typ gesetzt und zurückgegeben. Gültige Typargumente für Elementknoten sind OBJECT, ARRAY und NONE. Gültige Typargumente für Textknoten sind STRING, NUMBER, TRUE, FALSE, NULL und NONE.
 
 
-Ist sonst ein unbekannter Methodenname angegeben, wird versucht, den Befehl dieses Namens im Namensraum **::dom::domNode** auszuführen. So lassen sich auf Tcl-Ebene schnell Methoden ergänzen.
+Ist sonst ein unbekannter Methodenname angegeben, wird versucht, den Befehl dieses Namens im Namespace **::dom::domNode** auszuführen. So lassen sich auf Tcl-Ebene schnell Methoden ergänzen.
 
 
 [domDoc]: domDoc.md

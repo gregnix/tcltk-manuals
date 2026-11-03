@@ -40,7 +40,7 @@ linsert - Fügt Elemente in eine Liste ein
 
 Der Befehl erzeugt aus *list* eine neue Liste, indem alle *element*-Argumente unmittelbar vor dem *index*-ten Element von *list* eingefügt werden. Jedes *element* wird ein separates Element der neuen Liste. Ist *index* kleiner oder gleich null, kommen die neuen Elemente an den Anfang; ist *index* größer oder gleich der Listenlänge, gilt es wie **end**. Wie bei [string index][string] unterstützt *index* Indexarithmetik und end-relative Indizes.
 
-Unter der Voraussetzung, dass Indizes gültige Positionen in der Liste bezeichnen und die *element*s in der angegebenen Reihenfolge eingefügt werden, gilt: bei start-relativem *index* steht das erste *element* an diesem Index in der Ergebnisliste; bei end-relativem *index* steht das letzte *element* an diesem Index.
+Unter der Voraussetzung, dass Indizes gültige Positionen in der Liste bezeichnen und die *element*-Argumente in der angegebenen Reihenfolge eingefügt werden, gilt: bei start-relativem *index* steht das erste *element* an diesem Index in der Ergebnisliste; bei end-relativem *index* steht das letzte *element* an diesem Index.
 
 # Beispiele
 

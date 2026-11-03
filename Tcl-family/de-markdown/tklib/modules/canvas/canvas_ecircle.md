@@ -43,16 +43,16 @@ Dieses Paket stellt eine Klasse bereit, deren Instanzen die Bearbeitung eines Kr
 
 Der Kreis-Editor verwendet intern eine Instanz des Pakets **canvas::edit::points** und übernimmt alle damit verbundenen Optionen und Verhaltensweisen. Die Optionen zur Farbe werden zusätzlich auf das Kreis-Element dieses Editors angewendet.
 
-Darüber hinaus bietet es die Option „**-circle-config**“, mit der Sie das Kreisobjekt, das zur Darstellung des Kreises anhand seiner Hauptpunkte verwendet wird, individuell anpassen können. Beachten Sie, dass damit die vererbten Farboptionen nicht überschrieben werden können.
+Darüber hinaus bietet es die Option „**-circle-config**“, mit der Sie das Kreis-Element, das zur Darstellung des Kreises anhand seiner Hauptpunkte verwendet wird, individuell anpassen können. Beachten Sie, dass damit die vererbten Farboptionen nicht überschrieben werden können.
 
-Während einer Instanz wird eine Zustandsmaschine ausgeführt, in der der Benutzer zwei Punkte legt; daraufhin vervollständigt das System den Kreis und meldet dies. Ab diesem Zeitpunkt verhindert das System das Hinzufügen weiterer Punkte. Das Ziehen der Punkte ist weiterhin möglich, wodurch eine Größenänderung und das Verschieben des Kreises ermöglicht werden. Wird einer der Hauptpunkte gelöscht, wird der gesamte Kreis gelöscht; daraufhin ist das System wieder bereit für die Erstellung eines neuen Kreises aus zwei Punkten.
+Während der Interaktion führen Instanzen eine Zustandsmaschine aus, in der der Benutzer zwei Punkte legt; daraufhin vervollständigt das System den Kreis und meldet dies. Ab diesem Zeitpunkt verhindert das System das Hinzufügen weiterer Punkte. Das Ziehen der Punkte ist weiterhin möglich, wodurch eine Größenänderung und das Verschieben des Kreises ermöglicht werden. Wird einer der Hauptpunkte gelöscht, wird der gesamte Kreis gelöscht; daraufhin ist das System wieder bereit für die Erstellung eines neuen Kreises aus zwei Punkten.
 
 # API für Klassen
 
 **::canvas::edit** **circle** *objectName* *canvas* *options*...
-: Dieser Befehl „class“ erstellt und konfiguriert eine neue Instanz eines Kreiseditors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
+: Dieser Befehl, der Klassenbefehl, erstellt und konfiguriert eine neue Instanz eines Kreiseditors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Die hier zulässigen Optionen und ihre Werte werden im Abschnitt [Optionen] erläutert.
 
@@ -108,7 +108,7 @@ Die Instanzen der Kreis-Editoren stellen die folgende API bereit:
 
 # Optionen
 
-Der Befehl „class“ akzeptiert die folgenden Optionen
+Der Klassenbefehl akzeptiert die folgenden Optionen
 
 **-active-cmd** *command-prefix*
 : Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn die Maus den Kreis oder einen der von der Instanz verwalteten Hauptpunkte berührt oder verlässt.
@@ -118,11 +118,11 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Die Signatur dieses Befehlspräfixes lautet
 
     **activeCmd** *editorObj* *id*
-    : Die *id* identifiziert das eingegebene Objekt.
+    : Die *id* identifiziert das Objekt, das die Maus betreten hat.
 
-        Eine leere *id* bedeutet, dass das zuletzt eingegebene Objekt beibehalten wurde.
+        Eine leere *id* bedeutet, dass die Maus das zuletzt betretene Objekt verlassen hat.
 
-        Der Wert **circle** gibt an, dass die Gliederung des Kreises eingegeben wurde.
+        Der Wert **circle** gibt an, dass die Maus den Umriss des Kreises betreten hat.
 
         Jeder andere Wert ist ein Code für einen der Hauptpunkte des Kreises, d. h. **center** und **edge**.
 
@@ -130,7 +130,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
 
 **-add-remove-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne Klammerwinkel), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
@@ -139,12 +139,12 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Bei Verwendung dieser Option wird für beide Vorgänge dasselbe Ereignis verwendet. Dies stellt kein Problem dar, da das Hinzufügen als canvas-globales Ereignis gebunden ist, während das Entfernen an die jeweiligen Canvas-Elemente gebunden ist.
 
 **-circle-config** *list*
-: Der Wert dieser Option ist eine Liste von Optionen und deren Werten, die auf das Element „interner Kreis“ angewendet werden sollen, sobald dieses nach Änderungen neu generiert wird. Hinweis: Diese Optionen können die durch die Hauptoptionen **-color** und **-hilit-color** festgelegte Farbe des Kreises *nicht* überschreiben.
+: Der Wert dieser Option ist eine Liste von Optionen und deren Werten, die auf das interne Kreis-Element angewendet werden sollen, sobald dieses nach Änderungen neu generiert wird. Hinweis: Diese Optionen können die durch die Hauptoptionen **-color** und **-hilit-color** festgelegte Farbe des Kreises *nicht* überschreiben.
 
     Wird kein Wert angegeben, wird standardmäßig eine leere Liste verwendet.
 
 **-color** *colorspec*
-: Der Wert dieser Option ist die Farbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
+: Der Wert dieser Option ist die Füllfarbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
 
     Der Standardwert lautet **SkyBlue2**.
 
@@ -153,7 +153,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
     Obwohl diese Option auch nach der Erstellung festgelegt werden kann, wird empfohlen, diese Funktion ausschließlich dazu zu nutzen, benutzerdefinierte Verarbeitungsschritte einzufügen, die zum Zeitpunkt der Erstellung ausgeführt werden sollen und dabei den vorherigen Wert der Option speichern und aufrufen.
 
-    Wird kein Wert festgelegt, wird standardmäßig ein Befehl verwendet, der einen blau umrandeten Kreis mit einem Radius von 3 und dem Mittelpunkt an der Position des neuen Punktes erstellt.
+    Wird kein Wert festgelegt, wird standardmäßig ein Befehl verwendet, der einen blauen Kreis mit schwarzem Rahmen und einem Radius von 3 und dem Mittelpunkt an der Position des neuen Punktes erstellt.
 
     Die Signatur dieses Befehlspräfixes lautet
 
@@ -181,7 +181,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
 
 **-drag-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne eckige Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
 
     Diese Option kann nur zur Erstellungszeit festgelegt werden.
 

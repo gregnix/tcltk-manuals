@@ -50,13 +50,13 @@ Dieses Paket stellt ein erweitertes Canvas-Widget für die Darstellung von Karte
 ## Optionen
 
 **-grid-cell-width**
-: Der Wert für diese Option ist eine nicht-negative ganze Zahl. Er legt die Breite der Zellen fest, aus denen sich der Hintergrund zusammensetzt.
+: Der Wert für diese Option ist eine nicht-negative Ganzzahl. Er legt die Breite der Zellen fest, aus denen sich der Hintergrund zusammensetzt.
 
 **-grid-cell-height**
-: Der Wert für diese Option ist eine nicht-negative ganze Zahl. Er legt die Höhe der Zellen fest, aus denen sich der Hintergrund zusammensetzt.
+: Der Wert für diese Option ist eine nicht-negative Ganzzahl. Er legt die Höhe der Zellen fest, aus denen sich der Hintergrund zusammensetzt.
 
 **-grid-cell-command**
-: Der Wert für diese Option ist ein Befehlspräfix. Er wird immer dann aufgerufen, wenn der Canvas das Bild für eine bestimmte Zelle des Hintergrunds benötigt, und zwar mit zwei zusätzlichen Argumenten: der ID der Zelle und einem Befehlspräfix, das aufgerufen werden soll, sobald das Bild bereitsteht oder feststeht, dass es nicht vorhanden ist.
+: Der Wert für diese Option ist ein Befehlspräfix. Es wird immer dann aufgerufen, wenn der Canvas das Bild für eine bestimmte Zelle des Hintergrunds benötigt, und zwar mit zwei zusätzlichen Argumenten: der ID der Zelle und einem Befehlspräfix, das aufgerufen werden soll, sobald das Bild bereitsteht oder feststeht, dass es nicht vorhanden ist.
 
     Die ID der Zelle ist eine Liste mit zwei Elementen, die die Zeilen- und Spaltennummer der Zelle in dieser Reihenfolge enthält. Das resultierende Befehlspräfix (im folgenden Beispiel „$result“ genannt) muss entweder mit zwei oder drei Argumenten aufgerufen werden, d. h.
 
@@ -68,7 +68,7 @@ Dieses Paket stellt ein erweitertes Canvas-Widget für die Darstellung von Karte
     Diese Option kann undefiniert bleiben, d. h., der Canvas kann auch ohne sie funktionieren. In diesem Fall werden in den Rasterzellen nur jene Bilder angezeigt, die explizit mit der Methode **image set** festgelegt wurden; siehe den nächsten Abschnitt. Alle anderen Rasterzellen bleiben einfach leer.
 
 **-viewport-command**
-: Diese Option legt ein Befehlspräfix fest, das wenn der Ansichtsbereich des canvases geändert wird, aufgerufen wird, damit Benutzer jederzeit den Überblick darüber behalten können, an welcher Stelle im Bildlaufbereich sie sich gerade befinden. Dies kann beispielsweise dazu verwendet werden, abgeleitete Anzeigen zu steuern oder Elemente im Blickfeld zu halten, indem sie entsprechend der Bewegung des Ansichtsbereichs verschoben werden.
+: Diese Option legt ein Befehlspräfix fest, das aufgerufen wird, wenn der Ansichtsbereich des Canvas geändert wird, damit Benutzer jederzeit den Überblick darüber behalten können, an welcher Stelle im Bildlaufbereich sie sich gerade befinden. Dies kann beispielsweise dazu verwendet werden, abgeleitete Anzeigen zu steuern oder Elemente im Blickfeld zu halten, indem sie entsprechend der Bewegung des Ansichtsbereichs verschoben werden.
 
 **-image-on-load**
 : Der Wert für diese Option ist ein Bild. Wird dieses Bild angegeben, wird es in einer Zelle angezeigt, während das eigentliche Bild für diese Zelle über die durch **-grid-cell-command** festgelegte Rückruffunktion geladen wird.
@@ -88,12 +88,12 @@ Dieses Paket stellt ein erweitertes Canvas-Widget für die Darstellung von Karte
 : Durch den Aufruf dieser Methode wird die angegebene *cell* des Hintergrunds als leer deklariert; ein in dieser Zelle angezeigtes Bild wird dabei verworfen. Die Zelle wird als Liste mit zwei Elementen angegeben, die in dieser Reihenfolge die Zeilen- und Spaltennummer enthält.
 
 *canvasName* **flush**
-: Durch den Aufruf dieser Methode wird das Canvas dazu gezwungen, die Bilder für alle Zellen vollständig neu zu laden. Verwenden Sie diese Methode nicht, wenn der Canvas ohne **-grid-cell-command** betrieben wird, da das Canvas in diesem Fall einfach alle Bilder vergisst, ohne sie neu laden zu können.
+: Durch den Aufruf dieser Methode wird der Canvas dazu gezwungen, die Bilder für alle Zellen vollständig neu zu laden. Verwenden Sie diese Methode nicht, wenn der Canvas ohne **-grid-cell-command** betrieben wird, da der Canvas in diesem Fall einfach alle Bilder vergisst, ohne sie neu laden zu können.
 
 
 # Besitz der Bilder
 
-Beachten Sie, dass das Canvas *keinen* Besitzanspruch auf die Bilder erhebt, die es im Hintergrund anzeigt. Mit anderen Worten: Wenn wir sagen, dass der Canvas ein Bild „vergisst“, bedeutet dies lediglich, dass die Zuordnung zwischen einer Rasterzelle und dem angezeigten Bild aufgehoben wird. Das Bild wird *nicht* gelöscht. Die Verwaltung des Lebenszyklus der vom Canvas angezeigten Bilder liegt in der Verantwortung des Canvas-Nutzers.
+Beachten Sie, dass der Canvas *keinen* Besitzanspruch auf die Bilder erhebt, die er im Hintergrund anzeigt. Mit anderen Worten: Wenn wir sagen, dass der Canvas ein Bild „vergisst“, bedeutet dies lediglich, dass die Zuordnung zwischen einer Rasterzelle und dem angezeigten Bild aufgehoben wird. Das Bild wird *nicht* gelöscht. Die Verwaltung des Lebenszyklus der vom Canvas angezeigten Bilder liegt in der Verantwortung des Canvas-Nutzers.
 
 # Fehler, Ideen, Rückmeldungen
 

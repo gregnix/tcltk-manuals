@@ -15,7 +15,7 @@ Copyright:
 
 # Name
 
-itkvars - Variablen, die \[incr\\ Tk\] verwendet
+itkvars - Variablen, die \[incr Tk\] verwendet
 
 # Beschreibung
 

@@ -104,24 +104,24 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
     **-hyphenate** *boolean*
     : Bei der Einstellung **0** (falsch; Standard) erfolgt keine Silbentrennung. Bei der Einstellung **1** (wahr) versucht der Befehl, das letzte Wort jeder Zeile gegebenenfalls zu trennen.
 
-        Wenn **-hyphenate** auf **1** gesetzt ist, *müssen* die Silbentrennungsmuster durch Aufruf des Befehls **::textutil::adjust::readPatterns** Der Befehl geladen worden sein, *bevor* **::textutil::adjust::adjust** aufgerufen wird; andernfalls löst **::textutil::adjust::adjust** einen Fehler aus.
+        Wenn **-hyphenate** auf **1** gesetzt ist, *müssen* die Silbentrennungsmuster durch Aufruf des Befehls **::textutil::adjust::readPatterns** geladen worden sein, *bevor* **::textutil::adjust::adjust** aufgerufen wird; andernfalls löst **::textutil::adjust::adjust** einen Fehler aus.
 
     **-justify** **center|left|plain|right**
-    : Legt die Ausrichtung der zurückgegebenen Zeichenkette auf eine der folgenden Optionen fest: **left** (Standard), **center**, **plain** (blockiert) oder **right**. Die Ausrichtung bedeutet, dass jede Zeile in der zurückgegebenen Zeichenkette (möglicherweise mit Ausnahme der letzten Zeile) entsprechend der angegebenen Ausrichtung ausgerichtet wird.
+    : Legt die Ausrichtung der zurückgegebenen Zeichenkette auf eine der folgenden Optionen fest: **left** (Standard), **center**, **plain** (Blocksatz) oder **right**. Die Ausrichtung bedeutet, dass jede Zeile in der zurückgegebenen Zeichenkette (möglicherweise mit Ausnahme der letzten Zeile) entsprechend der angegebenen Ausrichtung ausgerichtet wird.
 
-        Wenn die Ausrichtung auf **plain** (ausgerichtet) gesetzt ist und die Anzahl der druckbaren Zeichen in der letzten Zeile weniger als 90 % von **-length** beträgt, wird die letzte Zeile **left** ausgerichtet, um den Innenabstand dieser Zeile zu vermeiden, wenn sie zu kurz ist. Die einzelnen Werte haben folgende Bedeutung:
+        Wenn die Ausrichtung auf **plain** (Blocksatz) gesetzt ist und die Anzahl der druckbaren Zeichen in der letzten Zeile weniger als 90 % von **-length** beträgt, wird die letzte Zeile **left** ausgerichtet, um das Auffüllen dieser Zeile zu vermeiden, wenn sie zu kurz ist. Die einzelnen Werte haben folgende Bedeutung:
 
         **center**
-        : Jede *tatsächliche* Zeile wird in der *logischen* Zeile zentriert, indem zwischen der *tatsächlichen* Zeile und der *logischen* Zeile ein Innenabstand mit Leerzeichen eingehalten wird, der bei Bedarf am Anfang und am Ende die *tatsächliche* Zeile auffüllt. Wenn die letzte Zeile weniger als 90 % von **-length** ausmacht, wird sie **left** statt **center** ausgerichtet. (siehe auch die Option **-full**.)
+        : Jede *tatsächliche* Zeile wird in der *logischen* Zeile zentriert, indem die *tatsächliche* Zeile bei Bedarf am Anfang und am Ende mit Leerzeichen aufgefüllt wird. Wenn die letzte Zeile weniger als 90 % von **-length** ausmacht, wird sie **left** statt **center** ausgerichtet. (siehe auch die Option **-full**.)
 
         **left**
-        : Jede *tatsächliche* Zeile wird links von der *logischen* Zeile platziert, ohne vorangestellte Leerzeichen. Wenn **-full** den Wert **1** (wahr) hat, wird die *tatsächliche* Zeile am Ende mit Leerzeichen zum Innenabstand aufgefüllt, sodass sie **-length** Zeichen breit ist.
+        : Jede *tatsächliche* Zeile wird am linken Rand der *logischen* Zeile platziert, ohne vorangestellte Leerzeichen. Wenn **-full** den Wert **1** (wahr) hat, wird die *tatsächliche* Zeile am Ende mit Leerzeichen aufgefüllt, sodass sie **-length** Zeichen breit ist.
 
         **plain**
         : Jede Zeile ist vollständig ausgerichtet. Das bedeutet, dass die Wörter jeder *tatsächlichen* Zeile in der *logischen* Zeile platziert werden, getrennt durch ein oder mehrere Leerzeichen, je nach Bedarf, um die Zeile vollständig auszufüllen, ohne dass am Anfang oder Ende Leerzeichen stehen.
 
         **right**
-        : Jede *tatsächliche* Zeile wird rechts neben der *logischen* Zeile platziert, ohne Leerzeichen am Ende, und bei Bedarf mit Innenabstand am Anfang aufgefüllt, damit die *tatsächliche* Zeile eine Breite von **-length** Zeichen hat.
+        : Jede *tatsächliche* Zeile wird am rechten Rand der *logischen* Zeile platziert, ohne Leerzeichen am Ende, und bei Bedarf am Anfang mit Leerzeichen aufgefüllt, damit die *tatsächliche* Zeile eine Breite von **-length** Zeichen hat.
 
 
     **-length** *integer*
@@ -132,7 +132,7 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 
 
 **::textutil::adjust::readPatterns** *filename*
-: Liest die Silbentrennungsmuster aus der Datei *Dateiname* ein.
+: Liest die Silbentrennungsmuster aus der Datei *filename* ein.
 
     Dieser Befehl wird nur benötigt, wenn der Befehl **::textutil::adjust::adjust** zusammen mit **-hyphenate** **1** (wahr) verwendet wird. In diesem Fall *muss* der Aufruf von **::textutil::adjust::readPatterns** *vor* dem Aufruf von **::textutil::adjust::adjust** erfolgen.
 
@@ -145,16 +145,16 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 : Gibt den vollständigen Pfad und den Dateinamen der Silbentrennungsdatei *filename* zurück. *Hinweis*: *filename* *muss* unbedingt einer der Namen sein, die von **::textutil::adjust::listPredefined** zurückgegeben werden.
 
 **::textutil::adjust::indent** *string* *prefix* ?*skip*?
-: Gibt eine modifizierte Kopie von *string* zurück, wobei jeder nicht übersprungenen Zeile das Präfix *prefix* sowie Leerzeichen (mit Ausnahme des Zeilenumbruchs) vorangestellt und am Ende abgeschnitten werden. Standardmäßig werden keine Zeilen übersprungen, sodass allen Zeilen das Präfix vorangestellt wird.
+: Gibt eine modifizierte Kopie von *string* zurück, wobei jeder nicht übersprungenen Zeile das Präfix *prefix* vorangestellt und Leerraum (mit Ausnahme des Zeilenumbruchs) am Ende abgeschnitten wird. Standardmäßig werden keine Zeilen übersprungen, sodass allen Zeilen das Präfix vorangestellt wird.
 
     Die Option **skip** legt fest, wie viele Zeilen am Anfang der Zeichenkette übersprungen werden sollen; der Standardwert ist **0**, in diesem Fall wird keine Zeile übersprungen und alle Zeilen erhalten das Präfix. Wenn **skip** auf einen Wert *> 0* gesetzt wird, werden entsprechend viele Zeilen am Anfang der Zeichenkette übersprungen, d. h. nicht mit einem Präfix versehen, während alle nachfolgenden Zeilen mit einem Präfix versehen werden. Wird **skip** auf **1** gesetzt, entsteht ein herkömmlicher hängender Einzug.
 
     In Verbindung mit **::textutil::adjust::adjust** ist es möglich, korrekt umgebrochene Absätze mit beliebigen Einzügen zu erstellen.
 
 **::textutil::adjust::undent** *string*
-: Gibt eine geänderte Kopie von *string* zurück, bei der aus jeder Zeile ein etwaiges gemeinsames Präfix aus Leerzeichen entfernt wurde.
+: Gibt eine geänderte Kopie von *string* zurück, bei der aus jeder Zeile ein etwaiges gemeinsames Präfix aus Leerraum entfernt wurde.
 
-    Leere Zeilen und Zeilen, die ausschließlich aus Leerzeichen bestehen, werden bei der Berechnung des Präfixes ignoriert, und alle diese Zeilen werden als leere Zeilen zurückgegeben.
+    Leere Zeilen und Zeilen, die ausschließlich aus Leerraum bestehen, werden bei der Berechnung des Präfixes ignoriert, und alle diese Zeilen werden als leere Zeilen zurückgegeben.
 
     *Beachten Sie, dass der Name dieses Befehls* **undent** *lautet und nicht unindent.*
 
@@ -164,7 +164,7 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 
     Die Wiederholungen werden ohne Trennzeichen miteinander verbunden. Ist der Wert von *count* *<= 0*, gibt der Befehl eine leere Zeichenkette zurück.
 
-    Hinweis: Wenn der Tcl-Kern, in den dieses Paket geladen wird, den Befehl **string repeat** bereitstellt, wird dieser Befehl aus Gründen der maximalen Geschwindigkeit in dessen Begriffen implementiert. Andernfalls wird eine schnelle Tcl-Implementierung verwendet.
+    Hinweis: Wenn der Tcl-Kern, in den dieses Paket geladen wird, den Befehl **string repeat** bereitstellt, wird dieser Befehl aus Gründen der maximalen Geschwindigkeit mit dessen Hilfe implementiert. Andernfalls wird eine schnelle Tcl-Implementierung verwendet.
 
 **::textutil::repeat::blank** *count*
 : Gibt eine Zeichenkette zurück, die *count* Leerzeichen enthält.
@@ -173,16 +173,16 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 
 
 **::textutil::split::splitn** *string* ?*size*?
-: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenfolgen von *string* enthalten, die jeweils *size* Zeichen lang sind – mit Ausnahme der letzten, die kürzer ist, wenn die Länge von *string* kein genaues Vielfaches von *size* ist. Der Standardwert für *size* ist **1**, d. h., es wird eine Liste der Zeichen von *string* zurückgegeben; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
+: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenketten von *string* enthalten, die jeweils *size* Zeichen lang sind – mit Ausnahme der letzten, die kürzer ist, wenn die Länge von *string* kein genaues Vielfaches von *size* ist. Der Standardwert für *size* ist **1**, d. h., es wird eine Liste der Zeichen von *string* zurückgegeben; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
 
-    Wenn *string* leer ist, gibt es eine leere Liste zurück. Wenn *size* *<= 0*, wird ein Fehler ausgelöst.
+    Wenn *string* leer ist, wird eine leere Liste zurückgegeben. Wenn *size* *<= 0* ist, wird ein Fehler ausgelöst.
 
 **::textutil::split::splitx** *string* ?*regexp*?
-: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenfolgen von *string* enthalten, die gemäß dem regulären Ausdruck *regexp* aufgeteilt wurden, dessen Standardwert *\[\\t \\r\\n\]+* ist (Tabulatoren, Leerzeichen, Zeilenumbrüche).
+: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenketten von *string* enthalten, die gemäß dem regulären Ausdruck *regexp* aufgeteilt wurden, dessen Standardwert *\[\\t \\r\\n\]+* ist (Tabulatoren, Leerzeichen, Zeilenumbrüche).
 
     *Hinweis*: Wenn *regexp* erfassende Klammern enthält, werden die erfassten Gruppen als zusätzliche Elemente in die Ergebnisliste aufgenommen.
 
-    Ist *string* leer, gibt es eine leere Liste zurück. Wenn *regexp* leer ist, wird *string* an jedem Zeichen aufgeteilt; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
+    Ist *string* leer, wird eine leere Liste zurückgegeben. Wenn *regexp* leer ist, wird *string* an jedem Zeichen aufgeteilt; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
 
 
 **::textutil::string::chop** *string*
@@ -201,21 +201,21 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 : Gibt eine Kopie von *string* zurück, wobei das erste Zeichen in Kleinbuchstaben umgewandelt wird.
 
 **::textutil::string::longestCommonPrefixList** *list*
-: Gibt das längste gemeinsame Präfix der Zeichenketten in der angegebenen *Liste* zurück.
+: Gibt das längste gemeinsame Präfix der Zeichenketten in der angegebenen *list* zurück.
 
-    Wird kein Argument angegeben, gibt es die leere Zeichenkette zurück.
+    Wird kein Argument angegeben, wird die leere Zeichenkette zurückgegeben.
 
 **::textutil::string::longestCommonPrefix** ?*string*...?
-: Gibt das längste gemeinsame Präfix der Zeichenfolgenargumente *string*, … zurück.
+: Gibt das längste gemeinsame Präfix der Zeichenkettenargumente *string*, … zurück.
 
-    Wird eine einzelne Zeichenfolge angegeben, wird diese zurückgegeben, da sie ihr eigenes längstes gemeinsames Präfix ist. Wird kein Argument angegeben, wird die leere Zeichenfolge zurückgegeben.
+    Wird eine einzelne Zeichenkette angegeben, wird diese zurückgegeben, da sie ihr eigenes längstes gemeinsames Präfix ist. Wird kein Argument angegeben, wird die leere Zeichenkette zurückgegeben.
 
 
 **::textutil::tabify::tabify** *string* ?*count*?
-: Gibt eine Kopie von *string* zurück, wobei jede Teilzeichenfolge aus *count* Leerzeichen durch ein horizontales Tabulatorzeichen ersetzt wird. Der Standardwert für *count* ist 8.
+: Gibt eine Kopie von *string* zurück, wobei jede Teilzeichenkette aus *count* Leerzeichen durch ein horizontales Tabulatorzeichen ersetzt wird. Der Standardwert für *count* ist 8.
 
 **::textutil::tabify::tabify2** *string* ?*count*?
-: Gibt eine Kopie von *string* zurück, in der Teilzeichenfolgen mit *count* *oder weniger* Leerzeichen durch einen horizontalen Tabulator ersetzt wurden, wobei ein Texteditor-ähnlicher Algorithmus verwendet wird. Der Standardwert für *count* ist 8.
+: Gibt eine Kopie von *string* zurück, in der Teilzeichenketten mit *count* *oder weniger* Leerzeichen durch einen horizontalen Tabulator ersetzt wurden, wobei ein Texteditor-ähnlicher Algorithmus verwendet wird. Der Standardwert für *count* ist 8.
 
     Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, dann bei Spalten **8**, **16**, **24**, …) Nur Folgen von *zwei oder mehr* Leerzeichen, die unmittelbar vor einem fiktiven Tabulator-Stopp auftreten, werden durch einen Tabulator ersetzt.
 
@@ -225,19 +225,19 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
 **::textutil::tabify::untabify2** *string* ?*count*?
 : Gibt eine Kopie von *string* zurück, wobei horizontale Tabulatoren durch *count* *oder weniger* Leerzeichen ersetzt werden – nach einem Prinzip, das dem eines Texteditors ähnelt. Der Standardwert für *count* ist 8.
 
-    Dieser Befehl ist das Gegenstück zu **::textutil::tabify::tabify2**. Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, werden an den Spalten **8**, **16**, **24**, …) wird anstelle einer blinden Ersetzung jedes horizontalen Tabulatorzeichens durch *count* Leerzeichen jedes horizontale Tabulatorzeichen an einer fiktiven Tabulatorposition durch so viele Leerzeichen ersetzt, dass die nächste fiktive Tabulatorposition erreicht wird.
+    Dieser Befehl ist das Gegenstück zu **::textutil::tabify::tabify2**. Der von diesem Befehl verwendete Algorithmus behandelt jede Zeile in *string* so, als hätte sie fiktive Tabulatorpositionen alle *count* Spalten. (Wenn also *count* **8** ist, an den Spalten **8**, **16**, **24**, ….) Anstelle einer blinden Ersetzung jedes horizontalen Tabulatorzeichens durch *count* Leerzeichen wird jedes horizontale Tabulatorzeichen an einer fiktiven Tabulatorposition durch so viele Leerzeichen ersetzt, dass die nächste fiktive Tabulatorposition erreicht wird.
 
     Es gibt jedoch eine Asymmetrie: Ein Tabulatorzeichen kann durch ein einzelnes Leerzeichen ersetzt werden, aber nicht umgekehrt.
 
 
 **::textutil::trim::trim** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle am Anfang oder Ende stehenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, bzw. aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende und abschließende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle am Anfang oder Ende stehenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, bzw. aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende und abschließende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimleft** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle führenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle führenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt führende Leerzeichen und Tabulatoren aus *string*, wenn dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, wenn dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimright** *string* ?*regexp*?
-: Gibt eine Kopie von *string* zurück, wobei alle am Ende stehenden Teilzeichenfolgen, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt abschließende Leerzeichen und Tabulatoren aus *string*, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält.
+: Gibt eine Kopie von *string* zurück, wobei alle am Ende stehenden Teilzeichenketten, die mit *regexp* übereinstimmen, aus *string* entfernt werden, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält. Der Standardwert für *regexp* ist *\[ \\t\]+*. Dieser Standardwert entfernt abschließende Leerzeichen und Tabulatoren aus *string*, sofern dieser keine Zeilenumbrüche enthält, oder aus *jeder Zeile* innerhalb von *string*, sofern dieser Zeilenumbrüche enthält.
 
 **::textutil::trim::trimPrefix** *string* *prefix*
 : Gibt eine Kopie von *string* zurück, wobei *prefix* am Anfang entfernt wird, sofern es vorhanden ist; andernfalls wird *string* unverändert zurückgegeben.
@@ -245,7 +245,7 @@ Die oben aufgeführten Befehle des Namespaces **textutil** werden ausschließlic
     Vergleichen Sie diesen Befehl mit den Unterbefehlen **trim**, **trimleft** und **trimright** des integrierten Befehls [string](https://www.tcl-lang.org/man/tcl/TclCmd/string.html), die alle Zeichen aus einer als Zeichenkette übergebenen Zeichenmenge entfernen.
 
 **::textutil::trim::trimEmptyHeading** *string*
-: Gibt eine Kopie von *string* zurück, aus der alle führenden Leerzeilen (einschließlich Zeilen, die ausschließlich Leerzeichen enthalten) entfernt wurden.
+: Gibt eine Kopie von *string* zurück, aus der alle führenden Leerzeilen (einschließlich Zeilen, die ausschließlich Leerraum enthalten) entfernt wurden.
 
 
 # Beispiele
@@ -263,7 +263,7 @@ const LINES "Four\nsiamese cats\nheard barks\nand bolted."
 
 Der Befehl **replace\_spc** ersetzt jedes Leerzeichen in der übergebenen Zeichenkette durch das Symbol ▴. Die Konstante **LINES** liefert Text, mit dem die Beispiele arbeiten können.
 
-## Begründung
+## Ausrichten
 
 Das folgende Beispiel zeigt alle verfügbaren Ausrichtungsoptionen. Leerzeichen wurden sichtbar gemacht, indem sie mithilfe von **-full** **1** beibehalten und durch das Symbol ▴ ersetzt wurden.
 
@@ -352,7 +352,7 @@ Die folgenden Beispiele veranschaulichen einige Befehle des Pakets **::textutil:
 
 Um die Auswirkungen der Beispiele besser sichtbar zu machen, wird jedes Element der zurückgegebenen Listen mit ❬ und ❭ in Klammern gesetzt. Bei Editoren, die UTF-8 nicht unterstützen, können diese durch **\\u276C** und **\\u276D** ersetzt werden.
 
-Dieses erste Beispiel zeigt, wie Sie Zeichenfolgen nach ihrer Länge aufteilt.
+Dieses erste Beispiel zeigt, wie Sie Zeichenketten nach ihrer Länge aufteilen.
 
 ```
 const LINE1 "α and ℤ"
@@ -368,7 +368,7 @@ puts ❬[join $chunks "❭ ❬"]❭
 ❬α a❭ ❬nd ❭ ❬ℤ❭
 ```
 
-Dieses zweite Beispiel zeigt, wie Sie Zeichenfolgen mithilfe regulärer Ausdrücke aufteilt.
+Dieses zweite Beispiel zeigt, wie Sie Zeichenketten mithilfe regulärer Ausdrücke aufteilen.
 
 ```
 const LINE2 "a, be , cat, done , eagle"
@@ -412,7 +412,7 @@ puts "“$line” uncap"
 “as The Σαβ Cog” uncap
 ```
 
-Dieses Beispiel zeigt die Befehle für das längste gemeinsame Präfix, die derzeit verwendet werden.
+Dieses Beispiel zeigt die Befehle für das längste gemeinsame Präfix im Einsatz.
 
 ```
 const LIST [list handbag handcuff handful handle handy]
@@ -425,7 +425,7 @@ puts “[::textutil::string::longestCommonPrefix king kin kind kinks]”
 “kin”
 ```
 
-Dieses Beispiel zeigt, wie Sie mit dem Befehl **::textutil::string::longestCommonPrefixList** den gemeinsamen Pfad aus einer Liste von Pfaden ermittelt.
+Dieses Beispiel zeigt, wie Sie mit dem Befehl **::textutil::string::longestCommonPrefixList** den gemeinsamen Pfad aus einer Liste von Pfaden ermitteln.
 
 ```
 proc longestCommonPath paths {
@@ -520,7 +520,7 @@ Alpha→⏎▴Beta▴→⏎▴Gamma▴→⏎
 
 Beachten Sie den subtilen Unterschied im Verhalten zwischen **::textutil::trim::trimEmptyHeading** und **string trimleft**.
 
-Dieses Beispiel veranschaulicht die Verwendung der integrierten Funktion **string trim** in Kombination mit **::textutil::trim::trim**.
+Dieses Beispiel veranschaulicht die Verwendung des integrierten Befehls **string trim** in Kombination mit **::textutil::trim::trim**.
 
 ```
 const LINES2 [string trim "\t\n Delta\t\n Epsilon \t\n Zeta \t\n"]
@@ -534,7 +534,7 @@ Delta→⏎▴Epsilon▴→⏎▴Zeta
 Delta⏎Epsilon⏎Zeta
 ```
 
-In diesen Beispielen wird die integrierte Funktion **string trim** mit **::textutil::trim::trimPrefix** verglichen.
+In diesen Beispielen wird der integrierte Befehl **string trim** mit **::textutil::trim::trimPrefix** verglichen.
 
 ```
 const PATH /home/homer
@@ -556,7 +556,7 @@ string trim $LINE mic=''
 
 Bei den **PATH**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „/home“ enthalten sind, d. h. „/“, „h“, „o“, „m“, „e“. Die Reihenfolge der Zeichen in der Zeichenkette spielt keine Rolle, wie das Beispiel „ehmo/“ zeigt. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Zeichenkette „/home“ wörtlich trimmt.
 
-Bei den **LINE**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „mic“ enthalten sind, d. h. „m“, „i“ und „c“. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Literalzeichenfolge „mic“ trimmt; da die **LINE** jedoch nicht mit „mic“ beginnt, wird nichts getrimmt und die Zeichenfolge wird unverändert gegeben.
+Bei den **LINE**-Beispielen entfernt der Befehl **string trim** alle einzelnen Zeichen, die in der Zeichenkette „mic“ enthalten sind, d. h. „m“, „i“ und „c“. Vergleichen Sie dies mit **::textutil::trim::trimPrefix**, das die Zeichenkette „mic“ wörtlich trimmt; da die **LINE** jedoch nicht mit „mic“ beginnt, wird nichts getrimmt und die Zeichenkette wird unverändert zurückgegeben.
 
 # Fehler, Ideen, Rückmeldungen
 

@@ -31,7 +31,7 @@ concat - Verbindet Listen miteinander
 
 # Beschreibung
 
-Der Befehl verbindet die Argumente mit Leerzeichen, nachdem führende und nachfolgende Leerraumzeichen an jedem Argument entfernt wurden. Sind alle Argumente Listen, entspricht das dem Zusammenfügen zu einer Liste. Leere Argumente (nach dem Trimmen) werden ignoriert. Beliebig viele Argumente; ohne *arg*s: leere Zeichenkette.
+Der Befehl verbindet die Argumente mit Leerzeichen, nachdem führende und nachfolgende Leerraumzeichen an jedem Argument entfernt wurden. Sind alle Argumente Listen, entspricht das dem Zusammenfügen zu einer Liste. Leere Argumente (nach dem Trimmen) werden ignoriert. Beliebig viele Argumente; ohne *arg*-Argumente: leere Zeichenkette.
 
 # Beispiele
 
@@ -58,7 +58,7 @@ a   b   c d e f
 
 (drei Leerzeichen zwischen **a**, **b** und **c**).
 
-Für echte Listenverkettung [list] mit Expansion:
+Für echte Listenverkettung sollte [list] mit Expansion jeder Eingabeliste verwendet werden:
 
 ```
 % list {*}"a   b   c" {*}{ d e f }

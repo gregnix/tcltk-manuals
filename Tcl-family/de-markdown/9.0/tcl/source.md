@@ -34,7 +34,7 @@ source - Wertet eine Datei oder Ressource als Tcl-Skript aus
 
 Der Befehl liest die angegebene Datei oder Ressource und übergibt den Inhalt dem Tcl-Interpreter als Textskript. Der Rückgabewert von **source** ist der des zuletzt im Skript ausgeführten Befehls. Tritt bei der Auswertung ein Fehler auf, gibt **source** diesen zurück. Wird im Skript [return] aufgerufen, wird der Rest der Datei übersprungen und **source** kehrt normal mit dem Ergebnis von [return] zurück.
 
-Das Dateiende-Zeichen ist auf allen Plattformen „\\32“ (^Z). **source** liest bis zu diesem Zeichen. [read] und [gets] kennen diese Einschränkung nicht (Skripte mit Code- und Datensegmenten). Für einen Literal-Vergleich mit ^Z im Code: „\\x1A“ — der Interpreter wandelt das sicher in ^Z um.
+Das Dateiende-Zeichen ist auf allen Plattformen „\\32“ (^Z). **source** liest bis zu diesem Zeichen. [read] und [gets] kennen diese Einschränkung nicht; so sind Dateien möglich, die Code- und Datensegmente enthalten (Skriptdokumente). Für einen Literal-Vergleich mit ^Z im Code: „\\x1A“ — der Interpreter wandelt das sicher in ^Z um.
 
 Eine führende BOM (Byte Order Mark) in der Datei wird bei Unicode-Kodierungen (utf-8, utf-16, ucs-2) ignoriert.
 

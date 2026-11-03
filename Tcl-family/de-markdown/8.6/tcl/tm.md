@@ -53,12 +53,12 @@ Dieses Dokument beschreibt die Einrichtungen zum Auffinden und Laden von Tcl-Mod
 
     Dieser Befehl wird intern vom System verwendet, um die systemspezifischen Standardpfade einzurichten.
 
-    Der Befehl wurde exponiert, damit ein Build-System zusätzliche Wurzelpfade über die in diesem Dokument beschriebenen hinaus definieren kann.
+    Der Befehl wurde öffentlich zugänglich gemacht, damit ein Build-System zusätzliche Wurzelpfade über die in diesem Dokument beschriebenen hinaus definieren kann.
 
 
 # Moduldefinition
 
-Ein Tcl-Modul ist ein Tcl-Paket in einer einzigen Datei, ohne weitere von ihm benötigte Dateien. Diese Datei muss [source]-bar sein. Mit anderen Worten wird ein Tcl-Modul immer so importiert:
+Ein Tcl-Modul ist ein Tcl-Paket in einer einzigen Datei, ohne weitere von ihm benötigte Dateien. Diese Datei muss mittels [source] eingelesen werden können. Mit anderen Worten wird ein Tcl-Modul immer so importiert:
 
 ```
 source module_file
@@ -100,7 +100,7 @@ Danach wird das Paket in allen Modulpfaden gesucht, indem sie nacheinander, vom 
 
 Der Algorithmus fällt auf den vorherigen unknown-Handler zurück, wenn keine gefundene Moduldatei die Anfrage erfüllt. Wurde die Anfrage erfüllt, wird der Fallback ignoriert.
 
-Beachten Sie, dass Pakete in Modulform *keine* Kontrolle über die in die Paketdatenbank eingetragenen *index*- und *provide script*s haben. Für eine Moduldatei **MF** ist das *index script* immer:
+Beachten Sie, dass Pakete in Modulform *keine* Kontrolle über die in die Paketdatenbank eingetragenen *index scripts* und *provide scripts* haben. Für eine Moduldatei **MF** ist das *index script* immer:
 
 ```
 package ifneeded PNAME PVERSION [list source MF]
@@ -120,9 +120,9 @@ MF = /module_path/PNAME'-PVERSION.tm
 
 Dabei ist **PNAME'** der Teilpfad des Moduls wie im Abschnitt [Modulsuche] definiert und wird in **PNAME** übersetzt, indem alle Verzeichnistrennzeichen durch „**::**“ ersetzt werden; **module\_path** ist der Pfad (aus der Suchliste), unter dem die Moduldatei gefunden wurde.
 
-Beachten Sie außerdem, dass hier eine Verbindung zwischen Paketnamen und Pfaden entsteht. Tcl vergleicht Paketnamen case-sensitiv, es gibt jedoch Dateisysteme, die das nicht tun, wie NTFS. Glücklicherweise speichern diese Dateisysteme die Groß-/Kleinschreibung des Namens, obwohl sie die Information beim Vergleichen nicht nutzen.
+Beachten Sie außerdem, dass hier eine Verbindung zwischen Paketnamen und Pfaden entsteht. Tcl unterscheidet beim Vergleich von Paketnamen Groß- und Kleinschreibung, es gibt jedoch Dateisysteme, die das nicht tun, wie NTFS. Glücklicherweise speichern diese Dateisysteme die Groß-/Kleinschreibung des Namens, obwohl sie die Information beim Vergleichen nicht nutzen.
 
-Daraus erlauben wir gemischte Schreibweise für Paketnamen in Tcl-Modulen, verlangen aber, dass es keine Kollisionen gibt, wenn Namen case-insensitiv verglichen werden. Ist ein Paket **Foo** als Tcl-Modul bereitgestellt, sind Pakete wie **foo**, **fOo** usw. nicht mehr erlaubt.
+Daher erlauben wir gemischte Schreibweise für Paketnamen in Tcl-Modulen, verlangen aber, dass es keine Kollisionen gibt, wenn Namen ohne Unterscheidung von Groß-/Kleinschreibung verglichen werden. Ist ein Paket **Foo** als Tcl-Modul bereitgestellt, sind Pakete wie **foo**, **fOo** usw. nicht mehr erlaubt.
 
 # Standardpfade
 
@@ -167,7 +167,7 @@ Die Pfade werden in der unten aufgeführten Reihenfolge hinzugefügt; bei Listen
 : Eine Liste von Pfaden, getrennt durch **:** (Unix) oder **;** (Windows). Das ist benutzer- und site-spezifisch, da diese Umgebungsvariable nicht nur im Benutzerprofil, sondern auch durch Systemkonfigurationsskripte gesetzt werden kann.
 
 **$::env(TCL***X***.***y***\_TM\_PATH)**
-: Gleiche Bedeutung und gleicher Inhalt wie die vorherige Variable. Die Verwendung von Punkt ‚.‘ zur Trennung von Haupt- und Nebenversion macht den Namen jedoch weniger bis nicht portabel; die Verwendung wird abgeraten. Die Unterstützung wurde nur aus Kompatibilität mit der ursprünglichen Spezifikation beibehalten, d. h. TIP 189.
+: Gleiche Bedeutung und gleicher Inhalt wie die vorherige Variable. Die Verwendung von Punkt ‚.‘ zur Trennung von Haupt- und Nebenversion macht den Namen jedoch weniger bis nicht portabel; von der Verwendung wird abgeraten. Die Unterstützung wurde nur aus Kompatibilität mit der ursprünglichen Spezifikation beibehalten, d. h. TIP 189.
 
 
 Diese Pfade werden von allen Tcl-Shells im **$::env(PATH)** des Benutzers gesehen und damit geteilt.

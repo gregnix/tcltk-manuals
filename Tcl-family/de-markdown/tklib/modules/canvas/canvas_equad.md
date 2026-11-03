@@ -48,7 +48,7 @@ Dieses Paket stellt eine Klasse bereit, deren Instanzen die Bearbeitung eines Vi
 **::canvas::edit** **quadrilateral** *objectName* *canvas* *options*...
 : Dieser Befehl der Klasse erstellt und konfiguriert eine neue Instanz eines Viereck-Editors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Die hier zulässigen Optionen und ihre Werte werden im Abschnitt [Optionen] erläutert.
 
@@ -86,27 +86,27 @@ Die Instanzen der Viereck-Editoren stellen die folgende API bereit:
     Die Methoden zum Ändern des Status lauten **enable** und **disable**.
 
 **objectName** **add** *x* *y*
-: Diese Methode fügt dem Viereck programmgesteuert einen Scheitelpunkt an der festgelegten Position hinzu.
+: Diese Methode fügt dem Viereck programmgesteuert einen Eckpunkt an der festgelegten Position hinzu.
 
     Das Ergebnis der Methode ist eine leere Zeichenkette.
 
-    Hinweis: Diese Methode durchläuft die gesamte Reihe von Rückruffunktionen, die aufgerufen werden, wenn der Benutzer interaktiv einen Scheitelpunkt erstellt, d. h. **-create-cmd** und, was noch wichtiger ist, **-data-cmd**.
+    Hinweis: Diese Methode durchläuft die gesamte Reihe von Rückruffunktionen, die aufgerufen werden, wenn der Benutzer interaktiv einen Eckpunkt erstellt, d. h. **-create-cmd** und, was noch wichtiger ist, **-data-cmd**.
 
     Dies ist die Methode, mit der die Eckpunkte eines bereits vorhandenen Vierecks in eine Editor-Instanz geladen werden.
 
-    Es gibt Hinweise darauf, dass höchstens 4 Eckpunkte angegeben werden können und mindestens 4 angegeben werden müssen, damit das Viereck vollständig ist.
+    Beachten Sie, dass höchstens 4 Eckpunkte angegeben werden können und mindestens 4 angegeben werden müssen, damit das Viereck vollständig ist.
 
 **objectName** **clear**
-: Diese Methode hebt die Auswahl des Vierecks im Editor programmgesteuert auf.
+: Diese Methode entfernt das Viereck im Editor programmgesteuert.
 
     Das Ergebnis der Methode ist eine leere Zeichenkette.
 
-    Hinweis: Diese Methode durchläuft die gleiche Rückruffunktion, die auch dann aufgerufen wird, wenn der Benutzer einen Scheitelpunkt interaktiv entfernt, d. h. **-data-cmd**.
+    Hinweis: Diese Methode durchläuft die gleiche Rückruffunktion, die auch dann aufgerufen wird, wenn der Benutzer einen Eckpunkt interaktiv entfernt, d. h. **-data-cmd**.
 
 
 # Optionen
 
-Der Befehl „class“ akzeptiert die folgenden Optionen
+Der Klassenbefehl akzeptiert die folgenden Optionen
 
 **-convex** *boolean*
 : Der Wert dieser Option ist ein boolescher Schalter. Wenn das Flag gesetzt ist, akzeptiert der Editor ausschließlich konvexe Vierecke und lehnt alle Operationen ab, die zu einer Verletzung der Konvexität führen würden.
@@ -123,7 +123,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Wird sie nicht angegeben, lautet der Standardwert „**QUADRILATERAL**“.
 
 **-create-cmd** *command-prefix*
-: Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn er einen neuen Scheitelpunkt erstellen muss.
+: Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn er einen neuen Eckpunkt erstellen muss.
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
@@ -140,12 +140,12 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
-    Wird sie nicht angegeben, wird standardmäßig ein Befehl verwendet, der das zu markierende Element rot einfärbt (und die Farbe beim Aufheben der Markierung wiederherstellt).
+    Wird sie nicht angegeben, wird standardmäßig ein Befehl verwendet, der das hervorzuhebende Element rot einfärbt (und die Farbe beim Aufheben der Hervorhebung wiederherstellt).
 
     Die beiden Signaturen dieses Befehlspräfixes lauten
 
     **highlightCmd** **on** *canvas* *item*
-    : Diese Methode des Befehlspräfixes muss alle erforderlichen Schritte ausführen, um den Scheitelpunkt hervorzuheben, zu dem das *item* gehört (beachten Sie dabei den obigen Hinweis, dass ein Viereck aus mehreren Canvas-Elementen zusammengesetzt sein darf).
+    : Diese Methode des Befehlspräfixes muss alle erforderlichen Schritte ausführen, um den Eckpunkt hervorzuheben, zu dem das *item* gehört (beachten Sie dabei den obigen Hinweis, dass ein Viereck aus mehreren Canvas-Elementen zusammengesetzt sein darf).
 
         Das Ergebnis des Befehls kann beliebig sein und wird unverändert als Argument *state* an die Methode **off** übergeben.
 

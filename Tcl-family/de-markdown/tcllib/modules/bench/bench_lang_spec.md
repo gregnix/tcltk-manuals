@@ -40,7 +40,7 @@ Dieses Dokument legt sowohl die Namen als auch die Syntax aller Befehle fest, di
 : Dieser Befehl löscht die als Argumente festgelegten Dateien ohne Rückmeldung und gibt anschließend die leere Zeichenkette als Ergebnis zurück. Der Befehl gilt als *vertrauenswürdig*; es wird nicht überprüft, ob sich die festgelegten Dateien außerhalb des eingeschränkten Bereichs befinden, in dem die Benchmarks ausgeführt werden.
 
 **bench\_tmpfile**
-: Dieser Befehl gibt den Pfad zu einer benchspezifischen, eindeutigen temporären Datei zurück. Die Eindeutigkeit bedeutet, dass mehrere Aufrufe unterschiedliche Pfade zurückgeben. Der Pfad kann zwar aus früheren Ausführungen stammen, der Befehl selbst erstellt jedoch *keine* Dateien.
+: Dieser Befehl gibt den Pfad zu einer benchspezifischen, eindeutigen temporären Datei zurück. Die Eindeutigkeit bedeutet, dass mehrere Aufrufe unterschiedliche Pfade zurückgeben. Der Pfad kann zwar aus früheren Läufen bereits existieren, der Befehl selbst erstellt jedoch *keine* Dateien.
 
     Der Speicherort der temporären Dateien ist plattformabhängig:
 

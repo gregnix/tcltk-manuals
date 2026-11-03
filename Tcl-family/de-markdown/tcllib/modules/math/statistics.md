@@ -846,7 +846,7 @@ Hinweis: Diese Prozeduren setzen das Paket math::linearalgebra voraus.
     ```
 
 **::math::statistics::mv-ols** *values*
-: Führt eine lineare Regression nach der Methode der kleinsten Quadrate für die angegebenen Datenpunkte durch.
+: Führt eine gewöhnliche lineare Regression nach der Methode der kleinsten Quadrate für die angegebenen Datenpunkte durch.
 
     Diese Prozedur ruft lediglich ::mvlinreg::wls mit den Gewichten 1,0 auf und gibt dieselben Informationen zurück.
 
@@ -1040,7 +1040,7 @@ Die folgenden Prozeduren wurden implementiert:
 
 
 **::math::statistics::pdf-student-t** *df* *value*
-: Gibt die Wahrscheinlichkeit eines bestimmten Wertes für eine Student-t-Verteilung mit den angegebenen Freiheitsgraden zurück
+: Gibt die Wahrscheinlichkeit eines bestimmten Wertes für eine Studentsche t-Verteilung mit den angegebenen Freiheitsgraden zurück
 
     float *df*
     : - Freiheitsgrade
@@ -1242,7 +1242,7 @@ Die folgenden Prozeduren wurden implementiert:
 
 
 **::math::statistics::cdf-students-t** *degrees* *value*
-: Gibt die kumulative Wahrscheinlichkeit eines bestimmten Wertes für eine Student-t-Verteilung mit einer vorgegebenen Anzahl von Freiheitsgraden zurück.
+: Gibt die kumulative Wahrscheinlichkeit eines bestimmten Wertes für eine Studentsche t-Verteilung mit einer vorgegebenen Anzahl von Freiheitsgraden zurück.
 
     int *degrees*
     : - Anzahl der Freiheitsgrade
@@ -1507,7 +1507,7 @@ Die folgenden Prozeduren wurden implementiert:
 
 
 **::math::statistics::random-student-t** *df* *number*
-: Gibt eine Liste mit "number" Zufallswerten zurück, die einer Student-t-Verteilung mit den angegebenen Freiheitsgraden entsprechen.
+: Gibt eine Liste mit "number" Zufallswerten zurück, die einer Studentschen t-Verteilung mit den angegebenen Freiheitsgraden entsprechen.
 
     float *df*
     : - Freiheitsgrade
@@ -1679,7 +1679,7 @@ Die folgenden Prozeduren wurden implementiert:
 
 
 **::math::statistics::estimate-exponential** *values*
-: Schätzt den Parameter der Exponentialverteilung, der den angegebenen Werten am nächsten kommt. Gibt eine Schätzung des einen Parameters sowie des Standardfehlers zurück.
+: Schätzt den Parameter der Exponentialverteilung, die den angegebenen Werten am nächsten kommt. Gibt eine Schätzung des einen Parameters sowie des Standardfehlers zurück.
 
     list *values*
     : - Liste von Werten, von denen angenommen wird, dass sie einer Exponentialverteilung folgen

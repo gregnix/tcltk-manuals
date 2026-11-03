@@ -32,7 +32,7 @@ tar – Erstellen, Entpacken und Bearbeiten von Tar-Dateien
 
 # Beschreibung
 
-*Hinweis*: Ab Version 0.8 unterstützen die Befehle des tar-Readers (contents, stats, get, untar) die GNU-LongName-Erweiterung (Header-Typ \\'L') für lange Pfade.
+*Hinweis*: Ab Version 0.8 unterstützen die Befehle des tar-Readers (contents, stats, get, untar) die GNU-LongName-Erweiterung (Header-Typ 'L') für lange Pfade.
 
 # Vorsicht!
 
@@ -46,11 +46,11 @@ Bei allen Befehlen gilt bei Verwendung von **-chan** ...
 
 4. Die Befehle schließen den Kanal *nicht*.
 
-5. Mit anderen Worten: Die Befehle hinterlassen den Kanal in einem Zustand, der höchstwahrscheinlich für die Verwendung durch weitere **tar**-Befehle ungeeignet ist. Wenn Sie dies dennoch tut, führt dies höchstwahrscheinlich zu Fehlern, fehlerhaften Daten usw. usw.
+5. Mit anderen Worten: Die Befehle hinterlassen den Kanal in einem Zustand, der höchstwahrscheinlich für die Verwendung durch weitere **tar**-Befehle ungeeignet ist. Wenn Sie dies dennoch tun, führt dies höchstwahrscheinlich zu Fehlern, fehlerhaften Daten usw. usw.
 
 6. Es liegt in der Verantwortung des Nutzers, den Kanal wieder auf eine geeignete Position einzustellen.
 
-7. Wenn eine Kanal-Transformation verwendet wird, die grundsätzlich nicht durchsuchbar ist, beispielsweise **gunzip**, obliegt es dem Benutzer, (a) die Transformation aufzuheben, bevor er den Kanal an eine geeignete Position zurückspringt, und (b) sie anschließend wieder anzuwenden.
+7. Wenn eine Kanal-Transformation verwendet wird, die grundsätzlich nicht positionierbar ist, beispielsweise **gunzip**, obliegt es dem Benutzer, (a) die Transformation aufzuheben, bevor er den Kanal an eine geeignete Position zurücksetzt, und (b) sie anschließend wieder anzuwenden.
 
 
 Zur Unterstützung der gzip-Komprimierung:
@@ -74,7 +74,7 @@ Zur Unterstützung der gzip-Komprimierung:
     Wenn die Option **-chan** vorhanden ist, wird *tarball* als offener Kanal interpretiert. Es wird davon ausgegangen, dass der Kanal zum Lesen geöffnet und für binäre Eingaben konfiguriert wurde. Der Befehl schließt den Kanal *nicht*.
 
 **::tar::stat** *tarball* ?file? ?**-chan**? ?**-gzip**?
-: Gibt ein verschachteltes Wörterbuch zurück, das Informationen zur genannten „Datei“ in *tarball* enthält, oder zu allen Dateien, wenn keine angegeben wurde. Die oberste Ebene besteht aus Paaren aus Dateinamen und Informationen. Die Informationen bestehen aus einem Dict mit den Schlüsseln „**mode** **uid** **gid** **size** **mtime** **type** **linkname** **uname** **gname** **devmajor** **devminor**“.
+: Gibt ein verschachteltes Dictionary zurück, das Informationen zur genannten ?file? in *tarball* enthält, oder zu allen Dateien, wenn keine angegeben wurde. Die oberste Ebene besteht aus Paaren aus Dateinamen und Informationen. Die Informationen bestehen aus einem Dict mit den Schlüsseln „**mode** **uid** **gid** **size** **mtime** **type** **linkname** **uname** **gname** **devmajor** **devminor**“.
 
     ```
     % ::tar::stat tarball.tar
@@ -84,13 +84,13 @@ Zur Unterstützung der gzip-Komprimierung:
     Wenn die Option **-chan** vorhanden ist, wird *tarball* als offener Kanal interpretiert. Es wird davon ausgegangen, dass der Kanal zum Lesen geöffnet und für binäre Eingaben konfiguriert wurde. Der Befehl schließt den Kanal *nicht*.
 
 **::tar::untar** *tarball* *args*
-: Entpackt den *Tarball*. *-file* und *-glob* beschränken das Entpacken auf Dateien, die genau mit dem angegebenen Argument übereinstimmen oder dessen Muster erfüllen. Es wird kein Fehler ausgelöst, wenn keine Dateien übereinstimmen. Gibt eine Liste der extrahierten Dateinamen und die Dateigröße zurück. Bei nicht regulären Dateien ist die Größe null. Führende Pfadtrennzeichen werden entfernt, sodass Pfade immer relativ sind.
+: Entpackt *tarball*. *-file* und *-glob* beschränken das Entpacken auf Dateien, die genau mit dem angegebenen Argument übereinstimmen oder dessen Muster erfüllen. Es wird kein Fehler ausgelöst, wenn keine Dateien übereinstimmen. Gibt eine Liste der extrahierten Dateinamen und die Dateigröße zurück. Bei nicht regulären Dateien ist die Größe null. Führende Pfadtrennzeichen werden entfernt, sodass Pfade immer relativ sind.
 
     **-dir** dirName
     : Verzeichnis, in das extrahiert werden soll. Verwendet **pwd**, wenn kein Verzeichnis angegeben wurde.
 
     **-file** fileName
-    : Entpackt nur die Datei mit diesem Name. Der Name wird mit dem im Archiv gespeicherten vollständigen Pfad einschließlich der Verzeichnisse abgeglichen.
+    : Entpackt nur die Datei mit diesem Namen. Der Name wird mit dem im Archiv gespeicherten vollständigen Pfad einschließlich der Verzeichnisse abgeglichen.
 
     **-glob** pattern
     : Es werden nur Dateien extrahiert, die diesem „Glob“-Muster entsprechen. Das Muster wird mit dem vollständigen, im Archiv gespeicherten Pfad abgeglichen.
@@ -102,7 +102,7 @@ Zur Unterstützung der gzip-Komprimierung:
     : Behält den Zeitpunkt der Dateiänderung als aktuellen Zeitpunkt bei, anstatt ihn auf den Wert im Archiv zu setzen.
 
     **-noperms**
-    : Unter Unix sollten Sie die Dateiberechtigungen auf die aktuelle umask belassen, anstatt sie auf die im Archiv enthaltenen Werte festzulegen.
+    : Unter Unix werden die Dateiberechtigungen gemäß der aktuellen umask belassen, anstatt sie auf die im Archiv enthaltenen Werte festzulegen.
 
     **-chan**
     : Wenn diese Option angegeben ist, wird *tarball* als geöffneter Kanal interpretiert. Es wird davon ausgegangen, dass der Kanal zum Lesen geöffnet und für binäre Eingaben konfiguriert wurde. Der Befehl schließt den Kanal *nicht*.
@@ -115,7 +115,7 @@ Zur Unterstützung der gzip-Komprimierung:
     ```
 
 **::tar::get** *tarball* *fileName* ?**-chan**? ?**-gzip**?
-: Gibt den Inhalt von *Dateiname* aus dem *Tarball* zurück.
+: Gibt den Inhalt von *fileName* aus dem *tarball* zurück.
 
     ```
     % set readme [::tar::get tarball.tar doc/README] {
@@ -125,13 +125,13 @@ Zur Unterstützung der gzip-Komprimierung:
 
     Wenn die Option **-chan** vorhanden ist, wird *tarball* als offener Kanal interpretiert. Es wird davon ausgegangen, dass der Kanal zum Lesen geöffnet und für binäre Eingaben konfiguriert wurde. Der Befehl schließt den Kanal *nicht*.
 
-    Es wird ein Fehler ausgelöst, wenn der Dateiname im tar-Archiv nicht gefunden wird.
+    Es wird ein Fehler ausgelöst, wenn *fileName* im tar-Archiv nicht gefunden wird.
 
 **::tar::create** *tarball* *files* *args*
-: Erstellt eine neue TAR-Datei, die die *Dateien* enthält. *Dateien* muss als einzelnes Argument festgelegt werden, das eine gültige Liste von Dateinamen darstellt.
+: Erstellt eine neue TAR-Datei, die die *files* enthält. *files* muss als einzelnes Argument festgelegt werden, das eine gültige Liste von Dateinamen darstellt.
 
     **-dereference**
-    : Normalerweise speichert **create** Links als tatsächliche Verweise auf eine Datei, die im Archiv vorhanden sein kann oder auch nicht. Wenn Sie diese Option legen, wird stattdessen die Datei gespeichert, auf die der Link verweist.
+    : Normalerweise speichert **create** Links als tatsächliche Verweise auf eine Datei, die im Archiv vorhanden sein kann oder auch nicht. Wenn Sie diese Option angeben, wird stattdessen die Datei gespeichert, auf die der Link verweist.
 
     **-chan**
     : Wenn diese Option angegeben ist, wird *tarball* als offener Kanal interpretiert. Es wird davon ausgegangen, dass der Kanal zum Schreiben geöffnet und für binäre Ausgabe konfiguriert wurde. Der Befehl schließt den Kanal *nicht*.
@@ -144,20 +144,20 @@ Zur Unterstützung der gzip-Komprimierung:
     ```
 
 **::tar::add** *tarball* *files* *args*
-: Fügt *Dateien* am Ende des vorhandenen *Tarballs* an. *Dateien* müssen als einzelnes Argument angegeben werden, das eine gültige Liste von Dateinamen darstellt.
+: Fügt *files* am Ende des vorhandenen *tarball* an. *files* muss als einzelnes Argument angegeben werden, das eine gültige Liste von Dateinamen darstellt.
 
     **-dereference**
-    : Normalerweise speichert **add** Links als tatsächliche Links, die auf eine Datei verweisen, die im Archiv vorhanden sein kann oder auch nicht. Wenn Sie diese Option legen, wird stattdessen die Datei gespeichert, auf die der Link verweist.
+    : Normalerweise speichert **add** Links als tatsächliche Links, die auf eine Datei verweisen, die im Archiv vorhanden sein kann oder auch nicht. Wenn Sie diese Option angeben, wird stattdessen die Datei gespeichert, auf die der Link verweist.
 
     **-prefix** string
-    : Normalerweise speichert **add** Dateien unter genau dem Namen, der als Argument angegeben wurde. Durch die Angabe von „-prefix“ wird jedem Namen die *Zeichenkette* vorangestellt.
+    : Normalerweise speichert **add** Dateien unter genau dem Namen, der als Argument angegeben wurde. Durch die Angabe von „-prefix“ wird jedem Namen *string* vorangestellt.
 
     **-quick**
-    : Die einzige sichere Methode, die Position im *Tarball* zu finden, an der neue Dateien hinzugefügt werden können, besteht darin, ihn von Anfang an zu lesen. Wenn der *Tarball* jedoch mit einer „Blocksize“ von 1 geschrieben wurde (wie es bei diesem Paket der Fall ist), können Sie diese Position alternativ auch durch Suchen vom Ende aus ermitteln. Die Option „-quick“ weist **add** an, Letzteres zu tun.
+    : Die einzige sichere Methode, die Position in *tarball* zu finden, an der neue Dateien hinzugefügt werden können, besteht darin, ihn von Anfang an zu lesen. Wenn *tarball* jedoch mit einer „Blocksize“ von 1 geschrieben wurde (wie es bei diesem Paket der Fall ist), können Sie diese Position alternativ auch durch Suchen vom Ende aus ermitteln. Die Option „-quick“ weist **add** an, Letzteres zu tun.
 
 
 **::tar::remove** *tarball* *files*
-: Entfernt *Dateien* aus dem *Tarball*. Es wird kein Fehler ausgegeben, wenn die Datei im Tarball nicht vorhanden ist. Es sind Schreibrechte für das Verzeichnis sowie freier Speicherplatz in einer Größe erforderlich, die mindestens der Größe des Tarballs entspricht.
+: Entfernt *files* aus *tarball*. Es wird kein Fehler ausgegeben, wenn die Datei im Tarball nicht vorhanden ist. Es sind Schreibrechte für das Verzeichnis sowie freier Speicherplatz in einer Größe erforderlich, die mindestens der Größe des Tarballs entspricht.
 
     ```
     % ::tar::remove new.tar {file2 file3}

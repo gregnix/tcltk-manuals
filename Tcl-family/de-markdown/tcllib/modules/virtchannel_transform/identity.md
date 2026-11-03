@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-tcl::transform::identity – Transformation der Identität
+tcl::transform::identity – Identitätstransformation
 
 # Übersicht
 
@@ -35,7 +35,7 @@ Das Paket **tcl::transform::identity** enthält einen Befehl zur Erstellung eine
 
 Die in diesem Modul enthaltenen Transformationen, die aus dem Code von „Identity“ abgeleitet wurden, lauten **tcl::transform::adler32**, **tcl::transform::counter**, **tcl::transform::crc32** und **tcl::transform::observe**.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

@@ -56,10 +56,10 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt eine gewünschte Fensterbreite fest, die das Canvas-Widget von seinem Geometriemanager anfordern soll. Der Wert kann in einer der im Abschnitt [Koordinaten] unten beschriebenen Formen angegeben werden.
 
 **-xscrollincrement** (**xScrollIncrement**/**ScrollIncrement**)
-: Legt ein Inkrement für horizontales Scrollen fest, in einer der üblichen für Bildschirmabstände zulässigen Formen. Ist der Wert größer als null, wird die horizontale Ansicht so beschränkt, dass die Canvas-x-Koordinate am linken Fensterrand stets ein gerades Vielfaches von **xScrollIncrement** ist; außerdem sind die Scroll-Einheiten (z.B. die Ansichtsänderung bei Auswahl der linken und rechten Pfeile einer Scrollbar) ebenfalls **xScrollIncrement**. Ist der Wert kleiner oder gleich null, ist horizontales Scrollen unbeschränkt.
+: Legt ein Inkrement für horizontales Scrollen fest, in einer der üblichen für Bildschirmabstände zulässigen Formen. Ist der Wert größer als null, wird die horizontale Ansicht so beschränkt, dass die Canvas-x-Koordinate am linken Fensterrand stets ein ganzzahliges Vielfaches von **xScrollIncrement** ist; außerdem sind die Scroll-Einheiten (z.B. die Ansichtsänderung bei Auswahl der linken und rechten Pfeile einer Scrollbar) ebenfalls **xScrollIncrement**. Ist der Wert kleiner oder gleich null, ist horizontales Scrollen unbeschränkt.
 
 **-yscrollincrement** (**yScrollIncrement**/**ScrollIncrement**)
-: Legt ein Inkrement für vertikales Scrollen fest, in einer der üblichen für Bildschirmabstände zulässigen Formen. Ist der Wert größer als null, wird die vertikale Ansicht so beschränkt, dass die Canvas-y-Koordinate am oberen Fensterrand stets ein gerades Vielfaches von **yScrollIncrement** ist; außerdem sind die Scroll-Einheiten (z.B. die Ansichtsänderung bei Auswahl der oberen und unteren Pfeile einer Scrollbar) ebenfalls **yScrollIncrement**. Ist der Wert kleiner oder gleich null, ist vertikales Scrollen unbeschränkt.
+: Legt ein Inkrement für vertikales Scrollen fest, in einer der üblichen für Bildschirmabstände zulässigen Formen. Ist der Wert größer als null, wird die vertikale Ansicht so beschränkt, dass die Canvas-y-Koordinate am oberen Fensterrand stets ein ganzzahliges Vielfaches von **yScrollIncrement** ist; außerdem sind die Scroll-Einheiten (z.B. die Ansichtsänderung bei Auswahl der oberen und unteren Pfeile einer Scrollbar) ebenfalls **yScrollIncrement**. Ist der Wert kleiner oder gleich null, ist vertikales Scrollen unbeschränkt.
 
 
 # Einleitung
@@ -125,7 +125,7 @@ Text-Elemente unterstützen das Konzept eines *Index*, mit dem bestimmte Positio
 : Bezeichnet das Zeichen oder die Koordinate unmittelbar nach dem letzten im Element (entspricht der Anzahl der Zeichen bzw. Koordinaten im Element).
 
 **insert**
-: Bezeichnet das Zeichen, unmittelbar vor dem in diesem Element die Einfügemarke gezeichnet wird. Diese Form ist für Linien und Polygone nicht gültig.
+: Bezeichnet das Zeichen, unmittelbar vor dem in diesem Element die Einfügemarke gezeichnet wird. Für Linien und Polygone nicht gültig.
 
 **sel.first**
 : Bezeichnet das erste ausgewählte Zeichen im Element. Liegt die Auswahl nicht in diesem Element, ist diese Form unzulässig.
@@ -399,7 +399,7 @@ pathName option ?arg arg ...?
 
 
 
-# Übersicht der Elementtypen
+# Überblick über die Elementtypen
 
 Die folgenden Abschnitte beschreiben die verschiedenen Elementtypen, die Canvas-Widgets unterstützen. Jeder Elementtyp ist durch zwei Dinge gekennzeichnet: erstens durch die Form des **create**-Befehls, mit dem Instanzen des Typs erzeugt werden, und zweitens durch eine Menge von Konfigurationsoptionen für Elemente dieses Typs, die in den Widget-Befehlen **create** und **itemconfigure** verwendet werden können. Die meisten Elemente unterstützen weder Indexierung noch Auswahl noch die zugehörigen Befehle wie **index** und **insert**. Wo Elemente diese Funktionen unterstützen, ist das in den Beschreibungen unten ausdrücklich vermerkt. Derzeit bieten Text-, Linien- und Polygon-Elemente diese Unterstützung. Bei Linien und Polygonen dient die Indexierung dazu, die Koordinaten des Elements zu bearbeiten.
 

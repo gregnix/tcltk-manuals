@@ -44,9 +44,9 @@ dns – Tcl-Client für den Domain Name Service
 
 # Beschreibung
 
-Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client (Domain Name Service) bereit. Informationen zum DNS-Protokoll finden Sie unter (1) und (2); lesen Sie die Dokumentation zu resolver(3), um zu erfahren, wie die C-Bibliothek Domänennamen auflöst. Dieses Paket soll Tcl-Skripte vor Problemen schützen, die bei der Verwendung des System-Resolvers für langsame Namensserver auftreten können. Es kann von praktischem Nutzen sein oder auch nicht. Die Namensauflösung im Internet ist ein komplexes Unterfangen, und DNS ist nur ein Teil des Resolvers. Möglicherweise stellen Sie fest, dass Sie Hosts-Dateien, NIS oder WINS verwenden sollten, um nur einige andere Systeme zu nennen. Dieses Paket ist keine Ersetzung für den Resolver der C-Bibliothek – es implementiert jedoch die Namensauflösung über DNS. Das Paket erweitert zudem das Paket **uri** um die Unterstützung von DNS-URIs (4) der Form *dns:what.host.com* oder *dns://my.nameserver/what.host.com*. Der Befehl **dns::resolve** kann sowohl DNS-URIs als auch einfache Domänennamen als Abfrage verarbeiten.
+Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client (Domain Name Service) bereit. Informationen zum DNS-Protokoll finden Sie unter (1) und (2); lesen Sie die Dokumentation zu resolver(3), um zu erfahren, wie die C-Bibliothek Domänennamen auflöst. Dieses Paket soll Tcl-Skripte vor Problemen schützen, die bei der Verwendung des System-Resolvers für langsame Namensserver auftreten können. Es kann von praktischem Nutzen sein oder auch nicht. Die Namensauflösung im Internet ist ein komplexes Unterfangen, und DNS ist nur ein Teil des Resolvers. Möglicherweise stellen Sie fest, dass Sie Hosts-Dateien, NIS oder WINS verwenden sollten, um nur einige andere Systeme zu nennen. Dieses Paket ist kein Ersatz für den Resolver der C-Bibliothek – es implementiert jedoch die Namensauflösung über DNS. Das Paket erweitert zudem das Paket **uri** um die Unterstützung von DNS-URIs (4) der Form *dns:what.host.com* oder *dns://my.nameserver/what.host.com*. Der Befehl **dns::resolve** kann sowohl DNS-URIs als auch einfache Domänennamen als Abfrage verarbeiten.
 
-*Hinweis:* Das Paket verwendet standardmäßig DNS über TCP-Verbindungen. Wenn Sie UDP verwenden möchten, müssen Sie das Paket **tcludp** installiert haben und über eine Version verfügen, die Binärdaten korrekt verarbeitet (> 1.0.4). Dieses ist unter http://tcludp.sourceforge.net/ verfügbar. Wenn das Paket **udp** vorhanden ist, wird standardmäßig UDP verwendet.
+*Hinweis:* Das Paket verwendet standardmäßig DNS über TCP-Verbindungen. Wenn Sie UDP verwenden möchten, müssen Sie das Paket **tcludp** installiert haben und über eine Version verfügen, die Binärdaten korrekt verarbeitet (> 1.0.4). Dieses ist unter <http://tcludp.sourceforge.net/> verfügbar. Wenn das Paket **udp** vorhanden ist, wird standardmäßig UDP verwendet.
 
 *Hinweis:* Das Paket unterstützt DNS über TLS (RFC 7858) für einen besseren Datenschutz bei DNS-Abfragen. Für die Nutzung dieser Funktion ist das TLS-Paket erforderlich.
 
@@ -56,7 +56,7 @@ Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client 
 : Löst einen Domänennamen mithilfe des *DNS*-Protokolls auf. *query* ist der Domänenname, der abgefragt werden soll. Dabei sollte es sich entweder um einen vollqualifizierten Domänennamen oder um eine DNS-URI handeln.
 
     **-nameserver** *hostname* or **-server** *hostname*
-    : Legt einen alternativen Namen für den Nameserver für diese Anfrage fest.
+    : Legt einen alternativen Nameserver für diese Anfrage fest.
 
     **-protocol** *tcp|udp*
     : Legt das für diese Anfrage zu verwendende Netzwerkprotokoll fest. Mögliche Werte sind *tcp* oder *udp*.
@@ -71,7 +71,7 @@ Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client 
     : Überschreibt die Standard-Zeitüberschreitung.
 
     **-type** *TYPE*
-    : Legt den Typ des DNS-Eintrags fest, der Sie interessiert. Gültige Werte sind A, NS, MD, MF, CNAME, SOA, MB, MG, MR, NULL, WKS, PTR, HINFO, MINFO, MX, TXT, SPF, SRV, AAAA, AXFR, MAILB, MAILA und \*. Einzelheiten zu den Werten, die zurückgegeben werden, finden Sie in RFC 1035. Informationen zu SPF finden Sie unter http://spf.pobox.com/. Informationen zu AAAA-Einträgen finden Sie unter (3) und Einzelheiten zu SRV-Einträgen in RFC 2782.
+    : Legt den Typ des DNS-Eintrags fest, der Sie interessiert. Gültige Werte sind A, NS, MD, MF, CNAME, SOA, MB, MG, MR, NULL, WKS, PTR, HINFO, MINFO, MX, TXT, SPF, SRV, AAAA, AXFR, MAILB, MAILA und \*. Einzelheiten zu den Werten, die zurückgegeben werden, finden Sie in RFC 1035. Informationen zu SPF finden Sie unter <http://spf.pobox.com/>. Informationen zu AAAA-Einträgen finden Sie unter (3) und Einzelheiten zu SRV-Einträgen in RFC 2782.
 
     **-class** *CLASS*
     : Legt die Klasse des Domainnamens fest. In der Regel ist dies „IN“, es kann sich jedoch auch um „IN“ für Internet-Domainnamen, „CS“, „CH“, „HS“ oder „\*“ für eine beliebige Klasse handeln.
@@ -93,10 +93,10 @@ Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client 
 
 
 **::dns::configure** ?*options*?
-: Der Befehl **::dns::configure** dient zur Konfiguration des DNS-Pakets. Der abzufragende Server, das Protokoll und der Pfad für Domänen werden alle über diesen Befehl festgelegt. Werden keine Argumente angegeben, gibt der Befehl eine Liste aller aktuellen Einstellungen zurück. Wird nur ein Argument angegeben, muss es sich um den Namen einer Option handeln, und der Wert dieser Option wird zurückgegeben.
+: Der Befehl **::dns::configure** dient zur Konfiguration des DNS-Pakets. Der abzufragende Server, das Protokoll und der Suchpfad für Domänen werden alle über diesen Befehl festgelegt. Werden keine Argumente angegeben, gibt der Befehl eine Liste aller aktuellen Einstellungen zurück. Wird nur ein Argument angegeben, muss es sich um den Namen einer Option handeln, und der Wert dieser Option wird zurückgegeben.
 
     **-nameserver** *hostname*
-    : Legt den Standard-Name des Nameservers fest, der für alle Abfragen verwendet werden soll. Die Standardeinstellung lautet *localhost*.
+    : Legt den Standard-Nameserver fest, der für alle Abfragen verwendet werden soll. Die Standardeinstellung lautet *localhost*.
 
     **-protocol** *tcp|udp*
     : Legt das standardmäßig zu verwendende Netzwerkprotokoll fest. Die Standardeinstellung ist *tcp*.
@@ -114,10 +114,10 @@ Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client 
     : Legt die Protokollstufe fest, die für die Ausgabe von Diagnosemeldungen aus diesem Paket verwendet wird. Die Standardeinstellung ist *warn*. Einzelheiten zu den verfügbaren Stufen finden Sie im Paket **log**.
 
     **-cafile** *filepath*
-    : Legt den Standard-Pfad für die Option „**-cafile**“ auf „**dns::resolve**“ fest.
+    : Legt den Standardpfad fest, der für die Option **-cafile** von **dns::resolve** verwendet wird.
 
     **-cadir** *dirpath*
-    : Legt den Standard-Verzeichnis-Pfad, der für die Option „**-cadir**“ verwendet werden soll, auf „**dns::resolve**“ fest.
+    : Legt den Standard-Verzeichnispfad fest, der für die Option **-cadir** von **dns::resolve** verwendet werden soll.
 
 
 **::dns::name** *token*
@@ -139,7 +139,7 @@ Das Paket „dns“ stellt einen ausschließlich auf Tcl basierenden DNS-Client 
 : Gibt die Fehlermeldung zu Anfragen mit dem Status *error* zurück. Liegt keine Fehlermeldung vor, kommt eine leere Zeichenkette zurück.
 
 **::dns::reset** *token*
-: Eine DNS-Abfrage zurücksetzen oder abbrechen.
+: Setzt eine DNS-Abfrage zurück oder bricht sie ab.
 
 **::dns::wait** *token*
 : Wartet, bis eine DNS-Abfrage abgeschlossen ist, und gibt danach den Status zurück.

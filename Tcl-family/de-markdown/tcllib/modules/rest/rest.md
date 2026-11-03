@@ -75,7 +75,7 @@ Im einfachen Anwendungsfall führen Sie Aufrufe mithilfe der HTTP-Prozeduren dur
 
     Zwei kurze Beispiele:
 
-    Beispiel 1, Yahoo-Chef:
+    Beispiel 1, Yahoo Boss:
 
     ```
         set appid APPID
@@ -101,7 +101,7 @@ Im einfachen Anwendungsfall führen Sie Aufrufe mithilfe der HTTP-Prozeduren dur
 
 Eine Schnittstelle zu einer REST-API besteht aus einer Reihe von Definitionen von REST-Aufrufen, die in einem Array enthalten sind. Der Name dieses Arrays wird zu einem Namespace, der die definierten Befehle enthält. Jeder Schlüssel des Arrays legt den Namen des Aufrufs fest, wobei die zugehörige Konfiguration aus einem Dictionary, d. h. Schlüssel-Wert-Paaren, besteht. Die zulässigen Schlüssel, d. h. die gültigen Konfigurationsoptionen, werden im Folgenden beschrieben. Nachdem Sie die Definitionen im Array erstellt haben, rufen Sie einfach **rest::create\_interface** mit dem Array als Argument auf, um die gewünschten Befehle zu erstellen.
 
-Beispiele: Yahoo Wetter:
+Beispiel, Yahoo Weather:
 
 ```
     package require rest
@@ -126,7 +126,7 @@ Beispiele: Yahoo Wetter:
     Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::rest::parameters** *url* ?*key*?
-: Dieser Befehl analysiert eine *url*-Abfragezeichenfolge und wandelt sie in ein Dictionary um; anschließend gibt er dieses Dictionary als Ergebnis zurück.
+: Dieser Befehl analysiert eine *url*-Abfragezeichenkette und wandelt sie in ein Dictionary um; anschließend gibt er dieses Dictionary als Ergebnis zurück.
 
     Wenn *key* festgelegt wird, gibt der Befehl nicht das gesamte Dictionary zurück, sondern lediglich den Wert des festgelegten *key*.
 
@@ -134,7 +134,7 @@ Beispiele: Yahoo Wetter:
 : Dieser Befehl implementiert einen benutzerdefinierten Parser für Befehlsoptionen.
 
     dict *static*
-    : Ein Verzeichnis von Optionen und deren Werten, die stets in der Ausgabe enthalten sind.
+    : Ein Dictionary von Optionen und deren Werten, die stets in der Ausgabe enthalten sind.
 
     list *required*
     : Eine Liste von Optionen, die durch *words* angegeben werden müssen
@@ -149,7 +149,7 @@ Beispiele: Yahoo Wetter:
         : Sofern vorhanden, erfordert diese Option ein Argument.
 
         name:value
-        : Wenn dieser nicht vorhanden ist, verwenden Sie bitte **value** als Standardwert.
+        : Ist die Option nicht vorhanden, wird **value** als Vorgabewert verwendet.
 
 
     list *words*
@@ -159,7 +159,7 @@ Beispiele: Yahoo Wetter:
     Das Ergebnis des Befehls ist eine Liste mit zwei Elementen. Das erste Element ist ein Dictionary, das die analysierten Optionen und deren Werte enthält. Das zweite Element ist eine Liste der verbleibenden Wörter.
 
 **::rest::substitute** *string* *var*
-: Dieser Befehl nimmt eine *string* entgegen, ersetzt darin alle gefundenen Optionsbezeichner durch Werte und gibt die geänderte Zeichenkette als Ergebnis zurück.
+: Dieser Befehl nimmt eine Zeichenkette *string* entgegen, ersetzt darin alle gefundenen Optionsbezeichner durch Werte und gibt die geänderte Zeichenkette als Ergebnis zurück.
 
     Die zu ersetzenden Werte befinden sich in der Variablen *var*, die ein Dictionary enthalten soll, das die zu ersetzenden Optionsbezeichner ihren jeweiligen Werten zuordnet. *Hinweis*: Optionen-Bezeichner, für die in *var* kein Schlüssel vorhanden ist, werden durch die leere Zeichenkette ersetzt.
 
@@ -171,10 +171,10 @@ Beispiele: Yahoo Wetter:
     Der Name dieses Arrays wird zu einem Namespace, der die definierten Befehle enthält. Jeder Schlüssel des Arrays legt den Namen des Aufrufs fest, wobei die zugehörige Konfiguration aus einem Dictionary besteht, d. h. aus Schlüssel-Wert-Paaren. Die zulässigen Schlüssel und ihre Bedeutungen lauten wie folgt:
 
     **url**
-    : Der Wert dieser *required* Option muss das Ziel der HTTP-Anfrage sein.
+    : Der Wert dieser *erforderlichen* Option muss das Ziel der HTTP-Anfrage sein.
 
     **description**
-    : Der Wert dieser Option muss eine kurze Zeichenfolge sein, die den Aufruf beschreibt. Wenn kein Wert angegeben wird, gilt standardmäßig die leere Zeichenfolge. Wird ausschließlich von **::rest::describe** verwendet.
+    : Der Wert dieser Option muss eine kurze Zeichenkette sein, die den Aufruf beschreibt. Wenn kein Wert angegeben wird, gilt standardmäßig die leere Zeichenkette. Wird ausschließlich von **::rest::describe** verwendet.
 
     **body**
     : Der Wert dieser Option gibt an, ob für den Anforderungstext des Aufrufs Argumente erforderlich sind oder nicht. Die zulässigen Werte sind nachstehend aufgeführt. Sofern nicht anders angegeben, lautet der Standardwert **optional**.
@@ -189,7 +189,7 @@ Beispiele: Yahoo Wetter:
         : Es muss ein Request-Body angegeben werden.
 
         **argument**
-        : Auf diesen Wert muss der Name einer Option folgen, wobei die gesamte Zeichenfolge als Liste behandelt wird. Der Request-Body wird als Wert dieser Option verwendet.
+        : Auf diesen Wert muss der Name einer Option folgen, wobei die gesamte Zeichenkette als Liste behandelt wird. Der Request-Body wird als Wert dieser Option verwendet.
 
         **mime\_multipart**
         : Ein Anfragetext muss angegeben werden und wird so interpretiert, dass jedes Argument einen Teil eines MIME/Multipart-Dokuments darstellt. Argumente müssen Listen mit zwei Elementen sein: einer Liste von Header-Schlüsseln und -Werten sowie dem MIME-Teiltext, und zwar in dieser Reihenfolge.
@@ -205,7 +205,7 @@ Beispiele: Yahoo Wetter:
     : Wenn der Wert dieser Option angegeben ist, legt er den Namen eines zuvor definierten Aufrufs fest. Die Definition dieses Aufrufs wird in den aktuellen Aufruf übernommen, mit Ausnahme der Optionen, die vom aktuellen Aufruf selbst angegeben wurden.
 
     **unset**
-    : Wenn der Wert dieser Option vorhanden ist, enthält er eine Liste der Optionen im aktuellen Aufruf. Diese Optionen werden aus den Definitionen entfernt. Verwenden Sie diese Option, nachdem Sie eine bestehende Definition mit **copy** bearbeitet haben, um Optionen zu entfernen, anstatt deren Wert zu überschreiben.
+    : Wenn der Wert dieser Option vorhanden ist, enthält er eine Liste der Optionen im aktuellen Aufruf. Diese Optionen werden aus den Definitionen entfernt. Verwenden Sie diese Option, nachdem Sie eine bestehende Definition mit **copy** übernommen haben, um Optionen zu entfernen, anstatt deren Wert zu überschreiben.
 
     **headers**
     : Angabe zusätzlicher Header-Felder. Der Wert dieser Option muss ein Dictionary sein, das die neuen Header-Felder und deren Werte enthält. Standardmäßig werden keine zusätzlichen Header hinzugefügt.
@@ -226,7 +226,7 @@ Beispiele: Yahoo Wetter:
     : Der Wert dieser Option legt fest, wie die Aufrufe authentifiziert werden sollen. Wird die Option nicht angegeben, findet keine Authentifizierung statt.
 
         **basic**
-        : Der Benutzer kann die *Basisauthentifizierung* konfigurieren, indem er die Prozedur **basic\_auth** im Namespace „interface“ überschreibt. Diese Prozedur benötigt zwei Argumente: den Benutzernamen und das Passwort, in dieser Reihenfolge.
+        : Der Benutzer kann die *Basisauthentifizierung* konfigurieren, indem er die Prozedur **basic\_auth** im Namespace der Schnittstelle überschreibt. Diese Prozedur benötigt zwei Argumente: den Benutzernamen und das Passwort, in dieser Reihenfolge.
 
         **bearer**
         : Der Benutzer kann ein Bearer-Token als Authentifizierung konfigurieren. Der Wert entspricht dem Token, das an den HTTP-Autorisierungsheader übergeben wird.
@@ -236,7 +236,7 @@ Beispiele: Yahoo Wetter:
 
 
     **callback**
-    : Wenn diese Option vorhanden ist, wird die Methode als *asynchroner* Aufruf erstellt. Solche Aufrufe geben sofort den Wert des zugehörigen HTTP-Tokens zurück, anstatt das Ergebnis des Aufrufs zu geben. Die Ereignisschleife muss aktiv sein, um diese Option nutzen zu können.
+    : Wenn diese Option vorhanden ist, wird die Methode als *asynchroner* Aufruf erstellt. Solche Aufrufe geben sofort den Wert des zugehörigen HTTP-Tokens zurück, anstatt das Ergebnis des Aufrufs zurückzugeben. Die Ereignisschleife muss aktiv sein, um diese Option nutzen zu können.
 
         Der Wert dieser Option wird als Befehlspräfix behandelt, das aufgerufen wird, sobald der HTTP-Aufruf abgeschlossen ist. Das Präfix erhält mindestens zwei zusätzliche Argumente: den Namen der aufrufenden Prozedur und den Status des Ergebnisses (entweder **OK** oder **ERROR**) in dieser Reihenfolge.
 
@@ -254,7 +254,7 @@ Beispiele: Yahoo Wetter:
 
         Wird kein Wert angegeben, erfolgt keine Transformation.
 
-        Der Befehl (Präfix) muss ein einzelnes Argument akzeptieren – nämlich die zu transformierende Abfrage (ein Dictionary) – und muss die modifizierte Abfrage (ebenfalls als Dictionary) als Ergebnis geben. Auf den Request-Body kann im Befehl zur Transformation über **upvar body body** zugegriffen werden.
+        Der Befehl (Präfix) muss ein einzelnes Argument akzeptieren – nämlich die zu transformierende Abfrage (ein Dictionary) – und muss die modifizierte Abfrage (ebenfalls als Dictionary) als Ergebnis zurückgeben. Auf den Request-Body kann im Befehl zur Transformation über **upvar body body** zugegriffen werden.
 
     **format**
     : siehe unten ...
@@ -287,7 +287,7 @@ Beispiele: Yahoo Wetter:
 
         Wird nichts angegeben, erfolgt keine Transformation.
 
-        Der Befehl (Präfix) muss ein einzelnes Argument – das zu transformierende Ergebnis – akzeptieren und das geänderte Ergebnis als Rückgabewert geben.
+        Der Befehl (Präfix) muss ein einzelnes Argument – das zu transformierende Ergebnis – akzeptieren und das geänderte Ergebnis zurückgeben.
 
         Der HTTP-Request-Header ist im Transformationsbefehl über **upvar token token** zugänglich.
 
@@ -296,19 +296,19 @@ Beispiele: Yahoo Wetter:
 
         Wenn nichts festgelegt wird, erfolgt keine Transformation.
 
-        Der Befehl (Präfix) muss ein einzelnes Argument – das zu transformierende Ergebnis – akzeptieren und das geänderte Ergebnis als Rückgabewert geben.
+        Der Befehl (Präfix) muss ein einzelnes Argument – das zu transformierende Ergebnis – akzeptieren und das geänderte Ergebnis zurückgeben.
 
         Der HTTP-Request-Header ist im Transformationsbefehl über **upvar token token** zugänglich.
 
     **check\_result**
     : Der Wert dieser Option muss eine Liste aus zwei Ausdrücken sein, von denen jeder leer sein kann.
 
-        Der erste Ausdruck prüft die OK-Bedingung; er gibt den Wert **true** zurück, wenn das Ergebnis zufriedenstellend ist, und andernfalls den Wert **false**.
+        Der erste Ausdruck prüft die OK-Bedingung; er muss den Wert **true** zurückgeben, wenn das Ergebnis zufriedenstellend ist, und andernfalls den Wert **false**.
 
-        Der zweite Ausdruck stellt die ERROR-Bedingung dar; er gibt den Wert **false** zurück, sofern kein Fehler vorliegt; liegt ein Fehler vor, gibt er den Wert **true** zurück.
+        Der zweite Ausdruck stellt die ERROR-Bedingung dar; er muss den Wert **false** zurückgeben, sofern kein Fehler vorliegt; liegt ein Fehler vor, muss er den Wert **true** zurückgeben.
 
     **error\_body**
-    : Der Wert dieser Option legt fest, ob bei Auftreten eines HTTP-Fehlers die Antwort gegeben wird oder nicht. Standardmäßig wird der Antworttext bei einem Fehler nicht gegeben.
+    : Der Wert dieser Option legt fest, ob bei Auftreten eines HTTP-Fehlers die Antwort zurückgegeben wird oder nicht. Standardmäßig wird der Antworttext bei einem Fehler nicht zurückgegeben.
 
         Weitere Informationen finden Sie unter **callback** weiter oben.
 
@@ -343,7 +343,7 @@ set gdocs(upload) {
 gdocs::upload [list {Content-Type application/atom+xml} $xml] [list {Content-Type image/jpeg} $filedata]
 ```
 
-Köstlich:
+Delicious:
 
 ```
 set delicious(updated) {
@@ -392,7 +392,7 @@ Beachten Sie bitte auch die Entwicklerdokumentation auf den jeweiligen Websites.
 
 # TLS
 
-Das Paket „**rest**“ kann mit *https*-secured-Diensten verwendet werden, indem das [TLS]-Paket angefordert und anschließend bei dem Paket „**http**“, auf dem es aufbaut, registriert wird. Beispiele
+Das Paket „**rest**“ kann mit *https*-gesicherten Diensten verwendet werden, indem das [TLS]-Paket angefordert und anschließend bei dem Paket „**http**“, auf dem es aufbaut, registriert wird. Beispiele
 
 ```
     package require tls

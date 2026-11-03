@@ -53,7 +53,7 @@ Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann l
 
 Dieses Paket stellt Befehle zur Verfügung, mit denen Sie die von den Parser-Tools verwalteten und im Abschnitt [AST-Serialisierungsformat] beschriebenen Serialisierungen abstrakter Syntaxbäume bearbeiten können.
 
-Dies ist ein unterstützendes Paket in der Kernschicht der Parser-Tools.
+Dies ist ein Unterstützungspaket in der Kernschicht der Parser-Tools.
 
 IMAGE: arch\_core\_support
 
@@ -91,9 +91,9 @@ IMAGE: arch\_core\_support
     Das Befehlspräfix hat die Signatur
 
     **cmdprefix** *ast*
-    : Das heißt, er wird mit dem AST-Knoten aufgerufen, an dem sich der Durchlauf gerade befindet.
+    : Das heißt, es wird mit dem AST-Knoten aufgerufen, an dem sich der Durchlauf gerade befindet.
 
-        Das vom Befehlspräfix gegebene Ergebnis ersetzt *ast* in dem Knoten, dessen Kindknoten es war, wodurch Transformationen des Baums ermöglicht werden.
+        Das vom Befehlspräfix zurückgegebene Ergebnis ersetzt *ast* in dem Knoten, dessen Kindknoten es war, wodurch Transformationen des Baums ermöglicht werden.
 
         Dies bedeutet auch, dass für jeden inneren Knoten der Inhalt der Kindknoten den Ergebnissen der Befehlspräfixe entspricht, die für die Kindknoten dieses Knotens aufgerufen wurden.
 
@@ -103,7 +103,7 @@ IMAGE: arch\_core\_support
 
     Das Befehlspräfix hat dieselbe Signatur wie bei **bottomup** (siehe oben).
 
-    Das vom Befehlspräfix gegebene Ergebnis wird *ignoriert*.
+    Das vom Befehlspräfix zurückgegebene Ergebnis wird *ignoriert*.
 
 **::pt::ast** **equal** *seriala* *serialb*
 : Dieser Befehl prüft die beiden abstrakten Syntaxbäume *seriala* und *serialb* auf strukturelle Übereinstimmung. Das Ergebnis des Befehls ist ein boolescher Wert. Er wird auf **true** gesetzt, wenn die Bäume identisch sind, andernfalls auf **false**.
@@ -146,7 +146,7 @@ Reguläre Serialisierung
 Kanonische Serialisierung
 : Die kanonische Serialisierung eines abstrakten Syntaxbaums hat das im vorigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Baums eindeutig ist.
 
-    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    1. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
 
 

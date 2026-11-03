@@ -31,23 +31,23 @@ textutil::split – Prozeduren zum Aufteilen von Texten
 
 # Beschreibung
 
-Das Paket **textutil::split** enthält Befehle, mit denen Zeichenfolgen nach Länge oder anhand regulärer Ausdrücke in Teilzeichenfolgen aufgeteilt werden können.
+Das Paket **textutil::split** enthält Befehle, mit denen Zeichenketten nach Länge oder anhand regulärer Ausdrücke in Teilzeichenketten aufgeteilt werden können.
 
-Um an einem bestimmten Zeichen oder einer Zeichenfolge zu trennen, verwenden Sie den integrierten Befehl [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html). Um eine Zeichenfolge in ihre einzelnen Zeichen zu zerlegen, verwenden Sie den integrierten Befehl [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
+Um an einem bestimmten Zeichen oder einer Menge von Zeichen zu trennen, verwenden Sie den integrierten Befehl [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html). Um eine Zeichenkette in ihre einzelnen Zeichen zu zerlegen, verwenden Sie den integrierten Befehl [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
 
 # API
 
 **::textutil::split::splitn** *string* ?*size*?
-: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenfolgen von *string* enthalten, die jeweils *size* Zeichen lang sind – mit Ausnahme der letzten, die kürzer ist, wenn die Länge von *string* kein genaues Vielfaches von *size* ist. Der Standardwert für *size* ist **1**, d. h., es wird eine Liste der Zeichen von *string* zurückgegeben; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
+: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenketten von *string* enthalten, die jeweils *size* Zeichen lang sind – mit Ausnahme der letzten, die kürzer ist, wenn die Länge von *string* kein genaues Vielfaches von *size* ist. Der Standardwert für *size* ist **1**, d. h., es wird eine Liste der Zeichen von *string* zurückgegeben; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
 
-    Wenn *string* leer ist, gibt es eine leere Liste zurück. Wenn *size* *<= 0*, wird ein Fehler ausgelöst.
+    Wenn *string* leer ist, wird eine leere Liste zurückgegeben. Wenn *size* *<= 0*, wird ein Fehler ausgelöst.
 
 **::textutil::split::splitx** *string* ?*regexp*?
-: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenfolgen von *string* enthalten, die gemäß dem regulären Ausdruck *regexp* aufgeteilt wurden, dessen Standardwert *\[\\t \\r\\n\]+* ist (Tabulatoren, Leerzeichen, Zeilenumbrüche).
+: Gibt eine Liste von Zeichenketten zurück, die aufeinanderfolgende Teilzeichenketten von *string* enthalten, die gemäß dem regulären Ausdruck *regexp* aufgeteilt wurden, dessen Standardwert *\[\\t \\r\\n\]+* ist (Tabulatoren, Leerzeichen, Zeilenumbrüche).
 
     *Hinweis*: Wenn *regexp* erfassende Klammern enthält, werden die erfassten Gruppen als zusätzliche Elemente in die Ergebnisliste aufgenommen.
 
-    Ist *string* leer, gibt es eine leere Liste zurück. Wenn *regexp* leer ist, wird *string* an jedem Zeichen aufgeteilt; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
+    Ist *string* leer, wird eine leere Liste zurückgegeben. Wenn *regexp* leer ist, wird *string* an jedem Zeichen aufgeteilt; dies entspricht dem Aufruf des integrierten Befehls [split](https://www.tcl-lang.org/man/tcl/TclCmd/split.html) mit dem zweiten Argument **""**.
 
 
 # Beispiele
@@ -56,7 +56,7 @@ Die folgenden Beispiele veranschaulichen einige Befehle des Pakets **::textutil:
 
 Um die Auswirkungen der Beispiele besser sichtbar zu machen, wird jedes Element der zurückgegebenen Listen mit ❬ und ❭ in Klammern gesetzt. Bei Editoren, die UTF-8 nicht unterstützen, können diese durch **\\u276C** und **\\u276D** ersetzt werden.
 
-Dieses erste Beispiel zeigt, wie Sie Zeichenfolgen nach ihrer Länge aufteilt.
+Dieses erste Beispiel zeigt, wie Sie Zeichenketten nach ihrer Länge aufteilen.
 
 ```
 const LINE1 "α and ℤ"
@@ -72,7 +72,7 @@ puts ❬[join $chunks "❭ ❬"]❭
 ❬α a❭ ❬nd ❭ ❬ℤ❭
 ```
 
-Dieses zweite Beispiel zeigt, wie Sie Zeichenfolgen mithilfe regulärer Ausdrücke aufteilt.
+Dieses zweite Beispiel zeigt, wie Sie Zeichenketten mithilfe regulärer Ausdrücke aufteilen.
 
 ```
 const LINE2 "a, be , cat, done , eagle"

@@ -127,7 +127,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 **file link** ?*-linktype*? *linkName* ?*target*?
 : Wird nur ein Argument übergeben, wird dieses als *linkName* angenommen, und der Befehl gibt den Wert des Links *linkName* zurück (d. h. den Namen der Datei, auf die er verweist). Ist *linkName* kein Link oder kann sein Wert nicht gelesen werden (wie z. B. bei Hardlinks, die wie normale Dateien aussehen), wird ein Fehler zurückgegeben.
 
-    Werden zwei Argumente übergeben, werden diese als *linkName* und *target* angenommen. Existiert *linkName* bereits oder existiert *target* nicht, wird ein Fehler zurückgegeben. Andernfalls erstellt Tcl einen neuen Link *linkName*, der auf das vorhandene Dateisystemobjekt bei *target* verweist (dies ist auch der Rückgabewert); der Linktyp ist plattformspezifisch (unter Unix standardmäßig ein symbolischer Link). Das ist nützlich, wenn der Benutzer einen Link plattformübergreifend anlegen will, ohne den konkreten Linktyp zu kennen.
+    Werden zwei Argumente übergeben, werden diese als *linkName* und *target* angenommen. Existiert *linkName* bereits oder existiert *target* nicht, wird ein Fehler zurückgegeben. Andernfalls erstellt Tcl einen neuen Link *linkName*, der auf das vorhandene Dateisystemobjekt bei *target* verweist (dies ist auch der Rückgabewert); der Linktyp ist plattformspezifisch (unter Unix standardmäßig ein symbolischer Link). Das ist nützlich, wenn der Benutzer einen Link plattformübergreifend anlegen will, ohne dass es auf den konkreten Linktyp ankommt.
 
     Soll nur ein Link eines bestimmten Typs erstellt werden (mit Fehler, falls das nicht möglich ist), ist das optionale Argument *-linktype* anzugeben. Zulässige Werte für *-linktype* sind „**-symbolic**“ und „**-hard**“.
 
@@ -152,7 +152,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Gibt **1** zurück, wenn die Datei *name* dem aktuellen Benutzer gehört, sonst **0**.
 
 **file pathtype** *name*
-: Gibt einen der Werte **absolute**, **relative**, **volumerelative** zurück. Verweist *name* auf eine bestimmte Datei auf einem bestimmten Volume, ist der Pfadtyp **absolute**. Verweist *name* relativ zum aktuellen Arbeitsverzeichnis, ist der Typ **relative**. Verweist *name* relativ zum aktuellen Arbeitsverzeichnis auf einem angegebenen Volume oder auf eine bestimmte Datei auf dem aktuellen Arbeits-Volume, ist der Typ **volumerelative**.
+: Gibt einen der Werte **absolute**, **relative**, **volumerelative** zurück. Verweist *name* auf eine bestimmte Datei auf einem bestimmten Volume, ist der Pfadtyp **absolute**. Verweist *name* auf eine Datei relativ zum aktuellen Arbeitsverzeichnis, ist der Typ **relative**. Verweist *name* auf eine Datei relativ zum aktuellen Arbeitsverzeichnis auf einem angegebenen Volume oder auf eine bestimmte Datei auf dem aktuellen Arbeits-Volume, ist der Typ **volumerelative**.
 
 **file readable** *name*
 : Gibt **1** zurück, wenn die Datei *name* für den aktuellen Benutzer lesbar ist, sonst **0**.
@@ -167,7 +167,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Die erste Form benennt die Datei oder das Verzeichnis *source* in *target* um und verschiebt sie, wenn *target* einen Namen in einem anderen Verzeichnis angibt. Ist *target* ein vorhandenes Verzeichnis, wird die zweite Form verwendet. Die zweite Form verschiebt jede *source*-Datei oder jedes *source*-Verzeichnis in *targetDir*. Vorhandene Dateien werden nicht überschrieben, sofern **-force** nicht angegeben ist. Innerhalb eines einzelnen Dateisystems benennt Tcl symbolische Links um, nicht deren Ziele. Der Versuch, ein nicht leeres Verzeichnis zu überschreiben, ein Verzeichnis mit einer Datei zu überschreiben oder eine Datei mit einem Verzeichnis zu überschreiben, führt zu Fehlern. Die Argumente werden in der angegebenen Reihenfolge verarbeitet und beim ersten Fehler abgebrochen. Ein **--** markiert das Ende der Schalter; das Argument nach **--** wird als *source* behandelt, auch wenn es mit **-** beginnt.
 
 **file rootname** *name*
-: Gibt alle Zeichen in *name* bis, aber ohne das letzte „.“-Zeichen im letzten Komponenten von *name* zurück. Enthält die letzte Komponente von *name* keinen Punkt, wird *name* zurückgegeben.
+: Gibt alle Zeichen in *name* bis, aber ohne das letzte „.“-Zeichen in der letzten Komponente von *name* zurück. Enthält die letzte Komponente von *name* keinen Punkt, wird *name* zurückgegeben.
 
 **file separator** ?*name*?
 : Ohne Argument gibt der Befehl das Zeichen zurück, das Pfadsegmente nativer Dateien auf dieser Plattform trennt. Ist ein Pfad angegeben, wird das zuständige Dateisystem nach seinem Trennzeichen befragt. Akzeptiert kein Dateisystem *name*, wird ein Fehler erzeugt.
@@ -194,7 +194,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 : Gibt alle Zeichen der letzten Dateisystemkomponente von *name* zurück. Ein abschließender Verzeichnistrenner in *name* wird ignoriert. Enthält *name* keine Trennzeichen, wird *name* zurückgegeben. Also liefern **file tail a/b**, **file tail a/b/** und **file tail b** alle **b**.
 
 **file tempfile** ?*nameVar*? ?*template*?
-: [Erstellt eine temporäre Datei und gibt einen Lese-Schreib-Kanal zurück, der auf dieser Datei geöffnet ist. Ist *nameVar* angegeben, wird der Name der temporären Datei in diese Variable geschrieben; fehlt sie, versucht Tcl, die temporäre Datei zu löschen, sobald sie nicht mehr benötigt wird. Ist *template* vorhanden, legt es Teile der Vorlage des Dateinamens fest (z. B. Verzeichnis, Basisname oder Erweiterung); einige Plattformen ignorieren Teile davon und verwenden einen eingebauten Standard.]{version="8.6"}
+: [Erstellt eine temporäre Datei und gibt einen Lese-Schreib-Kanal zurück, der auf dieser Datei geöffnet ist. Ist *nameVar* angegeben, wird der Name der temporären Datei in diese Variable geschrieben; fehlt sie, versucht Tcl, die temporäre Datei zu löschen, sobald sie nicht mehr benötigt wird. Ist *template* vorhanden, legt es Teile der Vorlage des Dateinamens fest (z. B. Verzeichnis, Basisname oder Erweiterung); einige Plattformen ignorieren jedoch möglicherweise einige oder alle dieser Teile und verwenden stattdessen einen eingebauten Standard.]{version="8.6"}
 
     Temporäre Dateien werden *nur* auf dem nativen Dateisystem erstellt. Sie eignen sich daher für Betriebssystem-APIs und externe Programme, die einen Dateinamen benötigen.
 

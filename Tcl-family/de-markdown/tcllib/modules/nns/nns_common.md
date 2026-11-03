@@ -32,7 +32,7 @@ nameserv::common – Namensdienst-Funktion, gemeinsame Definitionen
 
 Bitte lesen Sie zunächst *Namensdienst-Funktion, Einleitung*.
 
-Dieses Paket ist intern und für Benutzer nicht von Interesse. Es stellt die Befehle der Namensdienstfunktion bereit, die sowohl vom Client als auch vom Server genutzt werden und durch die Pakete **nameserv::server** und **nameserv** (der Client) implementiert werden.
+Dieses Paket ist intern und für Benutzer nicht von Interesse. Es stellt die Befehle der Namensdienst-Funktion bereit, die sowohl vom Client als auch vom Server genutzt werden und durch die Pakete **nameserv::server** und **nameserv** (der Client) implementiert werden.
 
 Dieser Dienst wurde auf der Grundlage des Pakets **comm** entwickelt und ist für dieses bestimmt. Er hat nichts mit dem Domain Name System des Internets zu tun. Wenn Sie nach einem Paket suchen, das sich damit befasst, sehen Sie sich bitte die Tcllib-Pakete **dns** und **resolv** an.
 
@@ -41,7 +41,7 @@ Dieser Dienst wurde auf der Grundlage des Pakets **comm** entwickelt und ist fü
 Das Paket exportiert einen einzigen Befehl, wie im Folgenden festgelegt:
 
 **::nameserv::common::port**
-: Das vom Befehl zurückgegebene Ergebnis ist die Kennung des Standard-TCP/IP-Ports, auf dem ein Namensdienstserver auf eingehende Verbindungen wartet und zu dem ein Namensdienst-Client eine Verbindung herzustellen versucht.
+: Das vom Befehl zurückgegebene Ergebnis ist die Kennung des Standard-TCP/IP-Ports, an dem ein Namensdienstserver lauscht und zu dem ein Namensdienst-Client eine Verbindung herzustellen versucht.
 
 
 # Fehler, Ideen, Rückmeldungen

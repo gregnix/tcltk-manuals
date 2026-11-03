@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-uevent::onidle – Antrag auf Zusammenlegung und Verschiebung in die Leerlaufzeit
+uevent::onidle – Zusammenfassen von Anfragen und Verschiebung in die Leerlaufzeit
 
 # Übersicht
 

@@ -23,7 +23,7 @@ Copyright:
 
 # Name
 
-re\_syntax - Syntax von Tcl-Regulären Ausdrücken
+re\_syntax - Syntax regulärer Ausdrücke in Tcl
 
 # Beschreibung
 
@@ -37,7 +37,7 @@ Diese Manualseite beschreibt vor allem AREs. BREs existieren meist nur zur Abwä
 
 # Syntax regulärer Ausdrücke
 
-Tcl-Reguläre Ausdrücke werden mit dem Paket von Henry Spencer implementiert, basierend auf der Spezifikation 1003.2 und einigen (nicht allen) Perl5-Erweiterungen (danke, Henry!). Vieles der folgenden Beschreibung regulärer Ausdrücke ist wörtlich aus seinem Manual-Eintrag übernommen.
+Reguläre Ausdrücke in Tcl werden mit dem Paket von Henry Spencer implementiert, basierend auf der Spezifikation 1003.2 und einigen (nicht allen) Perl5-Erweiterungen (danke, Henry!). Vieles der folgenden Beschreibung regulärer Ausdrücke ist wörtlich aus seinem Manual-Eintrag übernommen.
 
 Ein ARE besteht aus einem oder mehreren *Zweigen*, getrennt durch „**|**“, und trifft alles, was irgendeinen der Zweige trifft.
 
@@ -69,7 +69,7 @@ Ein quantifiziertes Atom ist ein *Atom*, optional gefolgt von einem einzelnen *Q
 : *nicht-gierige* Quantifizierer, die dieselben Möglichkeiten treffen, aber die kleinste statt der größten Anzahl von Übereinstimmungen bevorzugen (siehe [Abgleich])
 
 
-Die Formen mit **{** und **}** heißen *Grenzen*. Die Zahlen *m* und *n* sind vorzeichenlose Dezimalzahlen mit zulässigen Werten von 0 bis 255 einschließlich.
+Die Formen mit **{** und **}** heißen *Grenzen*. Die Zahlen *m* und *n* sind vorzeichenlose dezimale Ganzzahlen mit zulässigen Werten von 0 bis 255 einschließlich.
 
 ## Atome
 
@@ -137,7 +137,7 @@ Ein *Klammerausdruck* ist eine Liste von Zeichen in „**\[\]**“. Er trifft no
 
 Stehen zwei Zeichen in der Liste durch „**-**“ getrennt, ist das eine Abkürzung für den vollen *Bereich* der Zeichen zwischen diesen beiden (einschließlich) in der Sortierfolge, z. B. trifft „**\[0-9\]**“ in Unicode jede übliche Dezimalziffer. Zwei Bereiche dürfen keinen gemeinsamen Endpunkt haben, z. B. ist „**a-c-e**“ unzulässig. Bereiche in Tcl verwenden stets die Unicode-Sortierfolge; andere Programme können andere Sortierfolgen verwenden — das kann zu Inkompatibilitäten zwischen Programmen führen.
 
-Um ein wörtliches **\]** oder **-** in die Liste aufzunehmen, umschließt man es am einfachsten mit **\[.** und **.\]**, um ein Sortierelement daraus zu machen (siehe unten). Alternativ macht man es zum ersten Zeichen (nach einem möglichen „**^**“) oder (nur AREs) setzt „**\\**“ davor. Für „**-**“ alternativ: letztes Zeichen oder zweiter Endpunkt eines Bereichs. Soll „**-**“ wörtlich erster Endpunkt eines Bereichs sein, macht man es ein Sortierelement oder (nur AREs) setzt „**\\**“ davor. Mit Ausnahme dieser Fälle, einiger Kombinationen mit **\[** (siehe nächste Absätze) und Escapes verlieren alle anderen Sonderzeichen in einem Klammerausdruck ihre Sonderbedeutung.
+Um ein wörtliches **\]** oder **-** in die Liste aufzunehmen, umschließen Sie es am einfachsten mit **\[.** und **.\]**, um ein Sortierelement daraus zu machen (siehe unten). Alternativ machen Sie es zum ersten Zeichen (nach einem möglichen „**^**“) oder setzen (nur AREs) „**\\**“ davor. Für „**-**“ alternativ: letztes Zeichen oder zweiter Endpunkt eines Bereichs. Soll „**-**“ wörtlich erster Endpunkt eines Bereichs sein, machen Sie es zu einem Sortierelement oder setzen (nur AREs) „**\\**“ davor. Mit Ausnahme dieser Fälle, einiger Kombinationen mit **\[** (siehe nächste Absätze) und Escapes verlieren alle anderen Sonderzeichen in einem Klammerausdruck ihre Sonderbedeutung.
 
 ## Zeichenklassen
 
@@ -186,7 +186,7 @@ Ein Gebietsschema kann weitere bereitstellen. Eine Zeichenklasse darf nicht Endp
 
 ## Klammerausdrücke als Einschränkungen
 
-Es gibt zwei Sonderfälle von Klammerausdrücken: die Klammerausdrücke „**\[\[:<:\]\]**“ und „**\[\[:>:\]\]**“ sind Einschränkungen und treffen leere Zeichenketten am Anfang bzw. Ende eines Wortes. Ein Wort ist eine Folge von Wortzeichen, der weder vorher noch nachher Wortzeichen folgen. Ein Wortzeichen ist ein *alnum*-Zeichen oder ein Unterstrich („**\_**“). Diese speziellen Klammerausdrücke sind veraltet; ARE-Nutzer sollten stattdessen Einschränkungs-Escapes verwenden (siehe unten).
+Es gibt zwei Sonderfälle von Klammerausdrücken: die Klammerausdrücke „**\[\[:<:\]\]**“ und „**\[\[:>:\]\]**“ sind Einschränkungen und treffen leere Zeichenketten am Anfang bzw. Ende eines Wortes. Ein Wort ist eine Folge von Wortzeichen, der weder Wortzeichen vorangehen noch folgen. Ein Wortzeichen ist ein *alnum*-Zeichen oder ein Unterstrich („**\_**“). Diese speziellen Klammerausdrücke sind veraltet; ARE-Nutzer sollten stattdessen Einschränkungs-Escapes verwenden (siehe unten).
 
 ## Sortierelemente
 
@@ -198,7 +198,7 @@ Nehmen wir an, die Sortierfolge enthält ein mehrzeicheniges Sortierelement **ch
 
 ## Äquivalenzklassen
 
-In einem Klammerausdruck ist ein Sortierelement in **\[=** und **=\]** eine Äquivalenzklasse und steht für die Zeichenfolgen aller Sortierelemente, die diesem äquivalent sind, einschließlich es selbst. (Gibt es keine anderen äquivalenten Sortierelemente, wird behandelt, als ob die umschließenden Begrenzer „**\[.**“ und „**.\]**“ wären.) Sind z. B. **o** und **ô** Mitglieder einer Äquivalenzklasse, sind „**\[\[=o=\]\]**“, „**\[\[=ô=\]\]**“ und „**\[oô\]**“ synonym. Eine Äquivalenzklasse darf nicht Endpunkt eines Bereichs sein.
+In einem Klammerausdruck ist ein Sortierelement in **\[=** und **=\]** eine Äquivalenzklasse und steht für die Zeichenfolgen aller Sortierelemente, die diesem äquivalent sind, einschließlich seiner selbst. (Gibt es keine anderen äquivalenten Sortierelemente, wird behandelt, als ob die umschließenden Begrenzer „**\[.**“ und „**.\]**“ wären.) Sind z. B. **o** und **ô** Mitglieder einer Äquivalenzklasse, sind „**\[\[=o=\]\]**“, „**\[\[=ô=\]\]**“ und „**\[oô\]**“ synonym. Eine Äquivalenzklasse darf nicht Endpunkt eines Bereichs sein.
 
 (*Hinweis:* Tcl implementiert nur das Unicode-Gebietsschema. Es definiert keine Äquivalenzklassen. Die Beispiele oben dienen nur zur Veranschaulichung.)
 
@@ -372,7 +372,7 @@ Ein ARE kann mit *eingebetteten Optionen* beginnen: eine Folge **(?***xyz***)** 
 
 Eingebettete Optionen gelten ab der **)**, die die Folge beendet. Sie sind nur am Anfang eines ARE verfügbar und dürfen später im ARE nicht verwendet werden.
 
-Neben der üblichen (*straffen*) RE-Syntax, in der alle Zeichen bedeutsam sind, gibt es eine *erweiterte* Syntax, in allen RE-Varianten mit dem Schalter **-expanded** oder in AREs mit der eingebetteten Option x. In der erweiterten Syntax werden Leerraumzeichen ignoriert und alle Zeichen zwischen **#** und dem folgenden Zeilenumbruch (oder dem Ende des RE) ignoriert — so lassen sich komplexe REs gliedern und kommentieren. Drei Ausnahmen:
+Neben der üblichen (*straffen*) RE-Syntax, in der alle Zeichen bedeutsam sind, gibt es eine *erweiterte* Syntax, verfügbar in allen RE-Varianten mit dem Schalter **-expanded** oder in AREs mit der eingebetteten Option x. In der erweiterten Syntax werden Leerraumzeichen ignoriert und alle Zeichen zwischen **#** und dem folgenden Zeilenumbruch (oder dem Ende des RE) ignoriert — so lassen sich komplexe REs gliedern und kommentieren. Drei Ausnahmen:
 
 - ein Leerraumzeichen oder „**#**“ mit vorangehendem „**\\**“ bleibt erhalten
 
@@ -383,7 +383,7 @@ Neben der üblichen (*straffen*) RE-Syntax, in der alle Zeichen bedeutsam sind, 
 
 Leerraumzeichen der erweiterten Syntax sind Leerzeichen, Tabulator, Zeilenumbruch und jedes Zeichen der Zeichenklasse *space*.
 
-Schließlich ist in einem ARE außerhalb von Klammerausdrücken die Folge „**(?#***ttt***)**“ (wobei *ttt* beliebiger Text ohne „**)**“ ist) ein Kommentar, der völlig ignoriert wird. Auch das ist nicht zwischen den Zeichen mehrzeicheniger Symbole wie „**(?:**“ erlaubt. Solche Kommentare sind eher historisches Artefakt als nützliche Einrichtung; ihre Verwendung ist veraltet — stattdessen die erweiterte Syntax verwenden.
+Schließlich ist in einem ARE außerhalb von Klammerausdrücken die Folge „**(?#***ttt***)**“ (wobei *ttt* beliebiger Text ohne „**)**“ ist) ein Kommentar, der völlig ignoriert wird. Auch das ist nicht zwischen den Zeichen mehrzeicheniger Symbole wie „**(?:**“ erlaubt. Solche Kommentare sind eher historisches Artefakt als nützliche Einrichtung; ihre Verwendung ist veraltet — verwenden Sie stattdessen die erweiterte Syntax.
 
 *Keine* dieser Metasyntax-Erweiterungen ist verfügbar, wenn die Anwendung (oder ein anfänglicher „**\*\*\*=**“-Direktor) festlegt, dass die Eingabe als wörtliche Zeichenkette und nicht als RE behandelt wird.
 
@@ -395,9 +395,9 @@ Die meisten Atome und alle Einschränkungen haben keine Präferenz. Ein geklamme
 
 Unter den Einschränkungen der Regeln für den Abgleich des gesamten RE treffen Unterausdrücke ebenfalls die längstmöglichen oder kürzestmöglichen Teilzeichenketten gemäß ihrer Präferenz; Unterausdrücke, die im RE früher beginnen, haben Vorrang vor späteren. Äußere Unterausdrücke haben damit Vorrang vor ihren Bestandteilen.
 
-Die Quantifizierer **{1,1}** und **{1,1}?** können verwendet werden, um auf einen Unterausdruck oder ein ganzes RE jeweils längste bzw. kürzeste Präferenz zu erzwingen.
+Die Quantifizierer **{1,1}** und **{1,1}?** können verwendet werden, um auf einen Unterausdruck oder einen ganzen RE jeweils längste bzw. kürzeste Präferenz zu erzwingen.
 
-**HINWEIS:** Man kann einen RE meist insgesamt nicht-gierig machen, indem man **{1,1}?** nach einem der ersten Nicht-Einschränkungs-Atome oder geklammerten Unterausdrücke setzt. *Es lohnt sich zu experimentieren* mit der Platzierung dieser Nicht-Gierigkeits-Überschreibung an geeigneten Eingabetexten, wenn man einen RE dieser Komplexität schreibt.
+**HINWEIS:** Sie können einen RE meist insgesamt nicht-gierig machen, indem Sie **{1,1}?** nach einem der ersten Nicht-Einschränkungs-Atome oder geklammerten Unterausdrücke setzt. *Es lohnt sich zu experimentieren* mit der Platzierung dieser Nicht-Gierigkeits-Überschreibung an geeigneten Eingabetexten, wenn Sie einen RE dieser Komplexität schreiben.
 
 Z. B. ist dieser reguläre Ausdruck nicht-gierig und trifft die kürzestmögliche Teilzeichenkette, wobei „**abc**“ so früh wie möglich getroffen wird (der Quantifizierer ändert das nicht):
 
@@ -423,7 +423,7 @@ Für die Länge von REs gibt es keine besondere Grenze. Hoch portable Programme 
 
 Das einzige Merkmal von AREs, das tatsächlich mit POSIX-EREs inkompatibel ist: **\\** verliert in Klammerausdrücken nicht seine Sonderbedeutung. Alle anderen ARE-Merkmale nutzen Syntax, die in POSIX-EREs unzulässig ist oder undefinierte bzw. nicht spezifizierte Wirkung hat; die „**\*\*\***“-Syntax der Direktoren liegt ebenfalls außerhalb der POSIX-Syntax für BREs und EREs.
 
-Viele ARE-Erweiterungen stammen aus Perl; einige wurden bereinigt, einige Perl-Erweiterungen fehlen. Bemerkenswerte Inkompatibilitäten: „**\\b**“, „**\\B**“, fehlende Sonderbehandlung eines abschließenden Zeilenumbruchs, Ergänzung komplementierter Klammerausdrücke bei zeilenumbruch-sensitivem Abgleich, Einschränkungen für Klammern und Rückverweise in Lookahead-Einschränkungen sowie längster/kürzester-Treffer-Semantik (statt erster Treffer).
+Viele ARE-Erweiterungen stammen aus Perl; einige wurden bereinigt, einige Perl-Erweiterungen fehlen. Bemerkenswerte Inkompatibilitäten: „**\\b**“, „**\\B**“, fehlende Sonderbehandlung eines abschließenden Zeilenumbruchs, die Aufnahme komplementierter Klammerausdrücke in das, was vom zeilenumbruch-sensitiven Abgleich betroffen ist, Einschränkungen für Klammern und Rückverweise in Lookahead-Einschränkungen sowie längster/kürzester-Treffer-Semantik (statt erster Treffer).
 
 Die Abgleichregeln für REs mit normalen und nicht-gierigen Quantifizierern haben sich seit frühen Beta-Versionen dieses Pakets geändert. (Die neuen Regeln sind einfacher und klarer, raten aber weniger die wirklichen Absichten des Nutzers.)
 
@@ -435,7 +435,7 @@ Henry Spencers ursprüngliches *regexp*-Paket von 1986, noch weit verbreitet (z.
 
 - In AREs bleibt **\\** innerhalb von „**\[\]**“ ein Sonderzeichen; ein wörtliches **\\** in **\[\]** muss „**\\\\**“ geschrieben werden. **\\\\** liefert in RREs ebenfalls ein wörtliches **\\** in **\[\]**, aber nur wirklich Paranoide verdoppelten routinemäßig den Backslash.
 
-- AREs melden den längsten/kürzesten Treffer für den RE, nicht den ersten in einer festgelegten Suchreihenfolge. Das kann RREs betreffen, die darauf ausgelegt waren, dass der erste Treffer gemeldet wird. (Die sorgfältige Ausgestaltung von RREs zur Optimierung der Suchreihenfolge ist obsolet — AREs prüfen alle möglichen Treffer parallel, ihre Leistung hängt wenig von der Komplexität ab — Fälle, in denen die Suchreihenfolge genutzt wurde, um absichtlich einen Treffer zu finden, der *nicht* der längste/kürzeste ist, müssen umgeschrieben werden.)
+- AREs melden den längsten/kürzesten Treffer für den RE, nicht den ersten in einer festgelegten Suchreihenfolge. Das kann RREs betreffen, die darauf ausgelegt waren, dass der erste Treffer gemeldet wird. (Die sorgfältige Ausgestaltung von RREs zur Optimierung der Suchreihenfolge ist obsolet — AREs prüfen alle möglichen Treffer parallel, ihre Leistung hängt wenig von der Komplexität ab —, aber Fälle, in denen die Suchreihenfolge genutzt wurde, um absichtlich einen Treffer zu finden, der *nicht* der längste/kürzeste ist, müssen umgeschrieben werden.)
 
 
 # Einfache reguläre Ausdrücke

@@ -28,9 +28,9 @@ tk\_focusNext, tk\_focusPrev, tk\_focusFollowsMouse - Hilfsprozeduren zur Verwal
 
 # Beschreibung
 
-**tk\_focusNext** ist eine Hilfsprozedur für die Tastatur-Navigation. Sie liefert das „nächste“ Fenster nach *window* in der Fokusreihenfolge. Die Fokusreihenfolge ergibt sich aus der Stapelreihenfolge der Fenster und der Fensterhierarchie. Unter Geschwistern entspricht die Fokusreihenfolge der Stapelreihenfolge; das unterste Fenster ist zuerst. Hat ein Fenster Kinder, wird zuerst das Fenster selbst besucht, dann rekursiv die Kinder, danach das nächste Geschwister. Andere **toplevel**-Fenster als *window* werden übersprungen — **tk\_focusNext** liefert nie ein Fenster in einem anderen Toplevel als *window*.
+**tk\_focusNext** ist eine Hilfsprozedur für die Tastatur-Navigation. Sie liefert das „nächste“ Fenster nach *window* in der Fokusreihenfolge. Die Fokusreihenfolge ergibt sich aus der Stapelreihenfolge der Fenster und der Fensterhierarchie. Unter Geschwistern entspricht die Fokusreihenfolge der Stapelreihenfolge; das unterste Fenster ist zuerst. Hat ein Fenster Kinder, wird zuerst das Fenster selbst besucht, dann rekursiv die Kinder, danach das nächste Geschwister. Andere Toplevel-Fenster als *window* werden übersprungen — **tk\_focusNext** liefert nie ein Fenster in einem anderen Toplevel als *window*.
 
-Nach dem nächsten Fenster prüft **tk\_focusNext** die Option **-takefocus**, ob es übersprungen werden soll. Ist das der Fall, geht **tk\_focusNext** zum nächsten Fenster in der Fokusreihenfolge, bis ein Fenster gefunden wird, das den Fokus annimmt, oder wieder *window* erreicht ist.
+Nachdem **tk\_focusNext** das nächste Fenster ermittelt hat, prüft es dessen Option **-takefocus**, um festzustellen, ob es übersprungen werden soll. Ist das der Fall, geht **tk\_focusNext** zum nächsten Fenster in der Fokusreihenfolge, bis ein Fenster gefunden wird, das den Fokus annimmt, oder wieder *window* erreicht ist.
 
 **tk\_focusPrev** entspricht **tk\_focusNext**, liefert aber das Fenster unmittelbar vor *window* in der Fokusreihenfolge.
 

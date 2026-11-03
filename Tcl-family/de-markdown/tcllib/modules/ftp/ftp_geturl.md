@@ -32,7 +32,7 @@ ftp::geturl – URI-Handler für FTP-URLs
 
 # Beschreibung
 
-Dieses Paket stellt einen Befehl bereit, der die clientseitige Implementierung des *ftp*-Protokolls, das vom Paket **ftp** bereitgestellt wird, umsetzt, um das Abrufen von URLs unter Verwendung des *ftp*-Schemas zu ermöglichen.
+Dieses Paket stellt einen Befehl bereit, der die clientseitige Implementierung des *ftp*-Protokolls, das vom Paket **ftp** bereitgestellt wird, kapselt, um das Abrufen von URLs unter Verwendung des *ftp*-Schemas zu ermöglichen.
 
 # API
 

@@ -67,12 +67,12 @@ Der Befehl **treeql** ist vom Typ **snit**::type und implementiert die Treeql-Ab
 
 ## Treeql-Objekt-API
 
-Da **treeql** in **snit** implementiert wurde, stehen dem Benutzer alle Standardmethoden der auf **snit** basierenden Basisklassen zur Verfügung und werden daher hier nicht aufgeführt. Bitte lesen Sie die Dokumentation zu **snit**, um zu erfahren, um welche es sich dabei handelt und welche Funktionen sie bieten.
+Da **treeql** in **snit** implementiert wurde, stehen dem Benutzer alle Standardmethoden der auf **snit** basierenden Klassen zur Verfügung und werden daher hier nicht aufgeführt. Bitte lesen Sie die Dokumentation zu **snit**, um zu erfahren, um welche es sich dabei handelt und welche Funktionen sie bieten.
 
 Die vom Paket **treeql** bereitgestellten Methoden werden im Folgenden aufgeführt und erläutert.
 
 *qo* **query** *args*...
-: Diese Methode interpretiert ihre Argumente als eine Reihe von TreeQL-Operatoren und wertet diese von links nach rechts (d. h. vom ersten bis zum letzten) aus. Beachten Sie, dass der erste Operator die dem Objekt aktuell bekannten *Knotenmenge* verwendet, um seine Aktionen auszuführen. Mit anderen Worten: Die *Knotenmenge* wird vor der Ausführung der Abfrage *nicht* gelöscht oder anderweitig verändert. Dies ermöglicht es dem Benutzer, mehrere Abfragen nacheinander auszuführen, wobei jede Abfrage die Ergebnisse der vorherigen nutzt. Jegliche Initialisierung muss von der jeweiligen Abfrage selbst unter Verwendung von TreeQL-Operatoren vorgenommen werden. Das Ergebnis der Methode ist die *Knotenmenge* nach Ausführung des letzten Operators der Abfrage.
+: Diese Methode interpretiert ihre Argumente als eine Reihe von TreeQL-Operatoren und wertet diese von links nach rechts (d. h. vom ersten bis zum letzten) aus. Beachten Sie, dass der erste Operator die dem Objekt aktuell bekannte *Knotenmenge* verwendet, um seine Aktionen auszuführen. Mit anderen Worten: Die *Knotenmenge* wird vor der Ausführung der Abfrage *nicht* gelöscht oder anderweitig verändert. Dies ermöglicht es dem Benutzer, mehrere Abfragen nacheinander auszuführen, wobei jede Abfrage die Ergebnisse der vorherigen nutzt. Jegliche Initialisierung muss von der jeweiligen Abfrage selbst unter Verwendung von TreeQL-Operatoren vorgenommen werden. Das Ergebnis der Methode ist die *Knotenmenge* nach Ausführung des letzten Operators der Abfrage.
 
     *Hinweis*: Nicht abgefangene Fehler belassen die *Knotenmenge* des Objekts in einem Zwischenzustand, der den TreeQL-Operatoren entspricht, die vor dem Auftreten des Fehlers erfolgreich ausgeführt wurden.
 
@@ -191,7 +191,7 @@ Wenn die Beschreibung eines Operators erfolgt, wird die Variable **N** verwendet
     Der Name der Methode ist eine Abkürzung für *Earlier SIBling*.
 
 **next**
-: Ersetzt die aktuelle Knotenmenge durch alle nächsten/rechten Geschwisterknoten des Knotens **N** für alle Knoten **N** in der Knotenmenge, sofern **N** Geschwisterknoten auf der rechten Seite besitzt. Mit anderen Worten: Knoten ohne Geschwister rechts tragen nicht zur neuen Knotenmenge bei. Das rechts angrenzende Geschwisterknoten des Knotens wird zuerst hinzugefügt, das ganz rechts liegende Geschwisterknoten zuletzt (in Baumreihenfolge).
+: Ersetzt die aktuelle Knotenmenge durch alle nächsten/rechten Geschwisterknoten des Knotens **N** für alle Knoten **N** in der Knotenmenge, sofern **N** Geschwisterknoten auf der rechten Seite besitzt. Mit anderen Worten: Knoten ohne Geschwister rechts tragen nicht zur neuen Knotenmenge bei. Der rechts angrenzende Geschwisterknoten des Knotens wird zuerst hinzugefügt, der ganz rechts liegende Geschwisterknoten zuletzt (in Baumreihenfolge).
 
 **root**
 : Ersetzt die aktuelle Knotenmenge durch eine Knotenmenge, die einen einzigen Knoten enthält, nämlich die Wurzel des Baums.
@@ -222,7 +222,7 @@ Wenn die Beschreibung eines Operators erfolgt, wird die Variable **N** verwendet
 : Dies ist ein Alias für den Operator **forward**.
 
 **backward**
-: Ersetzt die aktuelle Knotenmenge durch die Knoten der abgeflachten vorherigen Teilbäume in umgekehrter Baumstruktur.
+: Ersetzt die aktuelle Knotenmenge durch die Knoten der abgeflachten vorherigen Teilbäume in umgekehrter Baumreihenfolge.
 
     Dies entspricht nahezu der Operatorfolge
 
@@ -259,9 +259,9 @@ Diese Operatoren filtern die Knotenmenge anhand von Attributen der Knoten und de
 : Reduziert die Knotenmenge auf jene Knoten, die ein Attribut namens *attr* besitzen und bei denen der Wert dieses Attributs in der Liste *vals* der zulässigen Werte enthalten ist. Der hier verwendete Operator für das Enthaltensein führt eine Glob-Übereinstimmung durch (wobei der Attributwert als Muster dient) und ignoriert die Groß-/Kleinschreibung des Attributwerts, *jedoch nicht* bei den Elementen von *vals*.
 
 **attmatch** *attr* *match*
-: Genau wie bei **withatt**, jedoch wird bei **string match** der Operator „==“ verwendet, und *match* ist das Muster, auf das geprüft wird.
+: Genau wie bei **withatt**, jedoch wird **string match** als Operator „==“ verwendet, und *match* ist das Muster, auf das geprüft wird.
 
-    *Hinweis*: *match* wird als unvollständige Argument*liste* für **string match** interpretiert. Das bedeutet, dass es als Liste interpretiert wird, die das Muster enthält, und dem Musterelement können Optionen vorangestellt werden, die von **string match** verstanden werden, wie beispielsweise **-nocase**. Dies ist besonders wichtig, falls das Muster Leerzeichen enthält. Es muss in eine Liste eingeschlossen werden, damit der Interpreter es korrekt interpretieren kann.
+    *Hinweis*: *match* wird als unvollständige Argument*liste* für **string match** interpretiert. Das bedeutet, dass es als Liste interpretiert wird, die das Muster enthält, und dem Musterelement können Optionen vorangestellt werden, die von **string match** verstanden werden, wie beispielsweise **-nocase**. Dies ist besonders wichtig, falls das Muster Leerzeichen enthält. Es muss in eine Liste eingeschlossen werden, damit dieser Operator es korrekt interpretieren kann.
 
 
 ## Attribut-Mutatoren
@@ -284,7 +284,7 @@ Mit anderen Worten: Sie definieren die Semantik der vom Abfrageobjekt gespeicher
 Der Interpreter wird beendet, sobald er die Verarbeitung eines dieser Operatoren abgeschlossen hat, wobei alle nachfolgenden Abfrageelemente stillschweigend verworfen werden. Dies bedeutet auch, dass unsere Ausführungen zur Pflege einer Knotenmenge nicht ganz zutreffend sind. Es handelt sich zwar um eine Knotenmenge, solange der Interpreter Befehle verarbeitet, doch kann sie am Ende der Abfrageverarbeitung als Wertmenge für Attribute belassen werden.
 
 **string** *op* *attr*
-: Wendet den Zeichenfolgenoperator *op* auf das Attribut *attr* für alle Knoten **N** in der Knotenmenge an, sammelt die Ergebnisse dieser Anwendung und legt sie in der Knotenmenge ab.
+: Wendet den Zeichenkettenoperator *op* auf das Attribut *attr* für alle Knoten **N** in der Knotenmenge an, sammelt die Ergebnisse dieser Anwendung und legt sie in der Knotenmenge ab.
 
     Der Operator schlägt fehl, wenn ein Knoten kein Attribut namens *attr* besitzt.
 
@@ -334,7 +334,7 @@ Diese Operatoren ändern die Knotenmenge direkt, ohne auf den Baum zurückzugrei
 : Ersetzt die aktuelle Knotenmenge durch eine Knotenmenge, die ausschließlich den ersten Knoten der aktuellen Knotenmenge enthält
 
 **transform** *query* *var* *body*
-: Zunächst interpretiert es die Unterabfrage *query* und verwendet dabei die aktuelle Knotenmenge als Ausgangsknotenmenge. Anschließend durchläuft es das Ergebnis dieser Abfrage, wobei es den Handle jedes Knotens an die in *var* benannte Variable bindet und das Skript *body* ausführt. Die gesammelten Ergebnisse dieser Ausführungen bilden die neue Knotenmenge, die die aktuelle ersetzt.
+: Zunächst interpretiert der Operator die Unterabfrage *query* und verwendet dabei die aktuelle Knotenmenge als Ausgangsknotenmenge. Anschließend durchläuft es das Ergebnis dieser Abfrage, wobei es den Handle jedes Knotens an die in *var* benannte Variable bindet und das Skript *body* ausführt. Die gesammelten Ergebnisse dieser Ausführungen bilden die neue Knotenmenge, die die aktuelle ersetzt.
 
     Das Skript *body* wird im Kontext des Aufrufers ausgeführt.
 
@@ -347,7 +347,7 @@ Diese Operatoren ändern die Knotenmenge direkt, ohne auf den Baum zurückzugrei
 : Fügt den Literalwert *val* an die aktuelle Knotenmenge an.
 
 **replace** *val*
-: Ersetzt die aktuelle Knotenmenge durch den Literalwert *val*.
+: Ersetzt die aktuelle Knotenmenge durch den literalen Listenwert *val*.
 
 
 ## Iteratoren für Knotenmengen

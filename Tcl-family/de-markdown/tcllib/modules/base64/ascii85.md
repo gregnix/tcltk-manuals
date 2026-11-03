@@ -27,7 +27,7 @@ ascii85 – Binärdaten mit ascii85 kodieren/dekodieren
 
 # Beschreibung
 
-Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenfolgen in die bzw. aus der ASCII85-Kodierung. (Diese Kodierung ist auch als Base85 bekannt.)
+Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenketten in die bzw. aus der ASCII85-Kodierung. (Diese Kodierung ist auch als Base85 bekannt.)
 
 # API
 
@@ -36,15 +36,15 @@ Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenfolge
 
     Die Ergebniszeichenkette enthält nach jeweils *maxlen* Zeichen der Ausgabe das Zeichen *wrapchar*. Der Standardwert für *wrapchar* ist ein Zeilenumbruch, der Standardwert für *maxlen* ist 76. Um einen Zeilenumbruch zu verhindern, setzen Sie *maxlen* auf **0**.
 
-    Der Befehl löst einen Fehler aus, wenn *maxlen* keine ganze Zahl oder negativ ist oder wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+    Der Befehl löst einen Fehler aus, wenn *maxlen* keine Ganzzahl oder negativ ist oder wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::ascii85::decode** *estring*
-: Gibt eine Binärzeichenkette zurück, die aus *estring* ASCII85-dekodiert wurde. Alle Leerzeichen (Leerzeichen, Tabulatoren, Zeilenumbrüche) in *estring* werden ignoriert.
+: Gibt eine Binärzeichenkette zurück, die aus *estring* ASCII85-dekodiert wurde. Jeglicher Leerraum (Leerzeichen, Tabulatoren, Zeilenumbrüche) in *estring* werden ignoriert.
 
 
 # Beispiele
 
-Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette in ascii85 kodiert und aus ascii85 dekodiert, wobei berücksichtigt wird, dass die ascii85-Befehle mit binären Zeichenketten arbeiten.
+Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette in ascii85 kodieren und aus ascii85 dekodieren, wobei berücksichtigt wird, dass die ascii85-Befehle mit binären Zeichenketten arbeiten.
 
 ```
 const UTF8_LINE "Δ÷ “Utf-8” ♞ℤ"
@@ -69,7 +69,7 @@ puts "ascii85='$enc85' [expr {$ASCII_LINE eq $line}]"
 ascii85='+Wr]q@VKp,5uU-B8K`A/?@;' 1
 ```
 
-Ein Zeilenumbruch kann verhindert werden, sodass keine Leerzeichen eingefügt werden:
+Ein Zeilenumbruch kann verhindert werden, sodass kein Leerraum eingefügt wird:
 
 ```
 ascii85::encode [string repeat xyz 24]

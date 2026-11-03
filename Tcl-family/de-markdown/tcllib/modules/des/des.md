@@ -59,7 +59,7 @@ Die tcllib-Implementierung von DES und 3DES basiert auf einer Implementierung vo
 
 # Programmierschnittstelle
 
-Der interne Zustand wird in einer undurchsichtigen Struktur verwaltet, die von der Funktion **Init** gegeben wird. Im ECB-Modus wird der Zustand durch die Eingabe nicht beeinflusst; in anderen Modi wird jedoch ein gewisser eingabebedingter Zustand verwaltet, der durch den Aufruf der Funktion **Reset** mit einem neuen Wert für den Initialisierungsvektor zurückgesetzt werden kann.
+Der interne Zustand wird in einer undurchsichtigen Struktur verwaltet, die von der Funktion **Init** zurückgegeben wird. Im ECB-Modus wird der Zustand durch die Eingabe nicht beeinflusst; in anderen Modi wird jedoch ein gewisser eingabebedingter Zustand verwaltet, der durch den Aufruf der Funktion **Reset** mit einem neuen Wert für den Initialisierungsvektor zurückgesetzt werden kann.
 
 **::DES::Init** *mode* *keydata* *iv* ?*weak*?
 : Erstellt ein neues DES-Schlüsselschema unter Verwendung der angegebenen Schlüsseldaten und des vorgegebenen Initialisierungsvektors. Der Initialisierungsvektor wird im ECB-Modus nicht verwendet, ist jedoch für andere Betriebsmodi von Bedeutung. Siehe [Betriebsarten].
@@ -70,7 +70,7 @@ Der interne Zustand wird in einer undurchsichtigen Struktur verwaltet, die von d
 : Verschlüsselt die bereitgestellten Daten mit einem vorbereiteten Schlüssel aus **Init**. Das Argument „data“ sollte ein binäres Array sein, dessen Größe ein Vielfaches der DES-Blockgröße von 8 Byte beträgt. Das Ergebnis ist ein binäres Array, dessen Größe der der Eingabedaten entspricht.
 
 **::DES::Decrypt** *Key* *data*
-: Hinweis: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
+: Entschlüsselt Daten mit dem Schlüssel. Beachten Sie: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
 
 **::DES::Reset** *Key* *iv*
 : Setzt den Initialisierungsvektor zurück. Dies ermöglicht es dem Programmierer, einen Schlüssel wiederzuverwenden und den Aufwand für die Neugenerierung des Schlüsselschemas zu vermeiden, wenn dieselben Schlüsseldaten mehrfach verwendet werden.
@@ -82,7 +82,7 @@ Der interne Zustand wird in einer undurchsichtigen Struktur verwaltet, die von d
 # Betriebsarten
 
 Electronic Code Book (ECB)
-: Der ECB-Modus ist der Grundmodus aller Blockchiffren. Jeder Block wird unabhängig verschlüsselt, sodass identischer Klartext bei der Verschlüsselung mit demselben Schlüssel zu identischem Ergebnis führt. Etwaige Verschlüsselungsfehler wirken sich zwar nur auf einen einzelnen Block aus, dieser ist jedoch anfällig für Angriffe mit bekanntem Klartext.
+: Der ECB-Modus ist der Grundmodus aller Blockchiffren. Jeder Block wird unabhängig verschlüsselt, sodass identischer Klartext bei der Verschlüsselung mit demselben Schlüssel zu identischem Ergebnis führt. Etwaige Verschlüsselungsfehler wirken sich zwar nur auf einen einzelnen Block aus, der Modus ist jedoch anfällig für Angriffe mit bekanntem Klartext.
 
 Cipher Block Chaining (CBC)
 : Im CBC-Modus wird die Ausgabe der Verschlüsselung des letzten Blocks zur Beeinflussung des aktuellen Blocks herangezogen. Für die Verarbeitung des ersten Blocks wird ein Initialisierungsvektor verwendet, dessen Größe der Chiffreblockgröße entspricht. Der Initialisierungsvektor sollte zufällig ausgewählt und als erster Block der Ausgabe übertragen werden. Fehler bei der Verschlüsselung wirken sich auf den aktuellen Block und den nächsten Block aus; danach korrigiert sich die Chiffre von selbst. CBC ist der am häufigsten verwendete Modus bei der Softwareverschlüsselung.
@@ -115,7 +115,7 @@ DES::Final $Key
 
 1. „Data Encryption Standard“, Federal Information Processing Standards Publication 46-3, 1999, (<http://csrc.nist.gov/publications/fips/fips46-3/fips46-3.pdf>)
 
-2. „TclDES: Tcl-Skripting auf höchstem Niveau“ *http://tcldes.sourceforge.net//*
+2. „TclDES: munitions-grade Tcl scripting“ <http://tcldes.sourceforge.net/>
 
 
 # Autoren

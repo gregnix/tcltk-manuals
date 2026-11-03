@@ -256,7 +256,7 @@ Die folgenden *subcommand*-Werte werden von **info class** unterstützt:
 : Dieser Unterbefehl gibt eine Liste der Instanzen der Klasse *class* zurück. Ist das optionale Argument *pattern* angegeben, beschränkt es die Liste der zurückgegebenen Instanzen auf diejenigen, die gemäß den Regeln von [string match][string] darauf passen.
 
 [info]{.cmd} [class]{.sub} [methods]{.lit} [class]{.arg} [options...]{.optarg}
-: Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden der Klasse mit dem Namen *class* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:
+: Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden der Klasse mit dem Namen *class* zurück. Jedes der folgenden *option*-Argumente kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:
 
     [-all]{.lit}
     : Ist der Schalter **-all** angegeben [und der Schalter **-scope** nicht angegeben]{version="TIP500"}, enthält die Liste der Methoden nicht nur die von der Klasse definierten Methoden, sondern auch die von den Oberklassen und Mixins der Klasse definierten.
@@ -353,7 +353,7 @@ Die folgenden *subcommand*-Werte werden von **info object** unterstützt:
 
 
 [info]{.cmd} [object]{.sub} [methods]{.lit} [object]{.arg} [option...]{.optarg}
-: Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden des Objekts mit dem Namen *object* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:
+: Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden des Objekts mit dem Namen *object* zurück. Jedes der folgenden *option*-Argumente kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:
 
     [-all]{.lit}
     : Ist der Schalter **-all** angegeben [und der Schalter **-scope** nicht angegeben]{version="TIP500"}, enthält die Liste der Methoden nicht nur die vom Objekt definierten Methoden, sondern auch die von der Klasse und den Mixins des Objekts definierten sowie die der Oberklassen dieser Klassen.

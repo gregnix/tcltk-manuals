@@ -79,9 +79,9 @@ Das Paket exportiert die hier beschriebene API. Alle Befehle ändern ihr erstes 
 
     Zu beachten: Wenn ein FA über Epsilon-Übergänge verfügt, können Übergänge über ein Symbol für einen Zustand S indirekt sein, d. h. nicht direkt an S, sondern an einen Zustand in der Epsilon-Hülle von S gekoppelt. Die Symbole für solche indirekten Übergänge werden bei der Berechnung der Vollständigkeit eines Zustands berücksichtigt. Mit anderen Worten: Diese indirekt erreichbaren Symbole fehlen *nicht*.
 
-    Das Argument *sink* liefert den Namen für den neuen Zustand und darf, wenn angegeben, nicht bereits in der *fa* vorhanden sein. Wenn der Name nicht angegeben wird, benennt der Befehl den Zustand „sink**n**“, wobei **n** so festgelegt wird, dass keine Kollisionen mit bestehenden Zuständen auftreten.
+    Das Argument *sink* liefert den Namen für den neuen Zustand und darf, wenn angegeben, nicht bereits im *fa* vorhanden sein. Wenn der Name nicht angegeben wird, benennt der Befehl den Zustand „sink**n**“, wobei **n** so festgelegt wird, dass keine Kollisionen mit bestehenden Zuständen auftreten.
 
-    Hinweis: Der Sink-Zustand ist per Definition *nicht nützlich*. Mit anderen Worten: Zwar wird der FA dadurch vollständig, doch ist er im strengen Sinne *nicht nützlich*, da sie einen Zustand enthält, von dem aus kein Endzustand erreicht werden kann.
+    Hinweis: Der Sink-Zustand ist per Definition *nicht nützlich*. Mit anderen Worten: Zwar wird der FA dadurch vollständig, doch ist er im strengen Sinne *nicht nützlich*, da er einen Zustand enthält, von dem aus kein Endzustand erreicht werden kann.
 
 **::grammar::fa::op::remove\_eps** *fa*
 : Entfernt alle Epsilon-Übergänge aus *fa* in einer Weise, dass die Sprache von *fa* unverändert bleibt. Es erfolgt jedoch keine Änderung, wenn *fa* bereits *epsilon-frei* ist. Dies bedeutet, dass nur die erste einer Reihe mehrerer aufeinanderfolgender remove_eps-Operationen auf *fa* eine Änderung bewirkt. Die übrigen Operationen sind Nulloperationen.
@@ -113,18 +113,18 @@ Das Paket exportiert die hier beschriebene API. Alle Befehle ändern ihr erstes 
 **::grammar::fa::op::determinize** *fa* ?*mapvar*?
 : Macht den *fa* deterministisch, ohne die von dem *fa* akzeptierte Sprache zu ändern. Es erfolgt jedoch keine Aktion, wenn der *fa* bereits *deterministisch* ist. Dies bedeutet, dass nur die erste einer Reihe mehrerer aufeinanderfolgender determinize-Operationen am *fa* eine Aktion ausführt. Die übrigen Operationen sind Nulloperationen.
 
-    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen der resultierenden DFA und den Zuständen der Eingabe-NFA beschreibt, in *mapvar*, wenn dieses festgelegt wurde. Die Schlüssel des Dictionary sind die Handles für die Zustände der resultierenden DFA, die Werte sind Mengen von Zuständen aus der Eingabe-NFA.
+    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen des resultierenden DFA und den Zuständen des Eingabe-NFA beschreibt, in *mapvar*, wenn dieses festgelegt wurde. Die Schlüssel des Dictionary sind die Handles für die Zustände des resultierenden DFA, die Werte sind Mengen von Zuständen aus dem Eingabe-NFA.
 
-    *Hinweis*: Ein leeres Dictionary signalisiert, dass der Befehl den *fa* deterministisch machen konnte, ohne eine vollständige Teilmengenkonstruktion durchzuführen, sondern lediglich durch das Entfernen von Zuständen und das Umordnen von Übergängen (als Teil der Epsilon-Freiheit des FA).
+    *Hinweis*: Ein leeres Dictionary signalisiert, dass der Befehl den *fa* deterministisch machen konnte, ohne eine vollständige Teilmengenkonstruktion durchzuführen, sondern lediglich durch das Entfernen von Zuständen und das Umordnen von Übergängen (im Zuge dessen, den FA epsilon-frei zu machen).
 
-    *Hinweis*: Der Algorithmus kann die FA im technischen Sinne nicht deterministisch machen, wenn der FA keine Startzustände besitzt, da Determinismus erfordert, dass der FA genau einen Startzustand aufweist. In diesem Fall bemühen wir uns nach besten Kräften; der fehlende Startzustand ist dann die einzige Bedingung, die verhindert, dass das erzeugte Ergebnis *deterministisch* ist. Zu beachten ist außerdem, dass in diesem Fall die Möglichkeiten zum Entfernen von Zuständen aus dem FA ebenfalls stark eingeschränkt sind, da wir keine Zustände als unerreichbar deklarieren können.
+    *Hinweis*: Der Algorithmus kann den FA im technischen Sinne nicht deterministisch machen, wenn der FA keine Startzustände besitzt, da Determinismus erfordert, dass der FA genau einen Startzustand aufweist. In diesem Fall bemühen wir uns nach besten Kräften; der fehlende Startzustand ist dann die einzige Bedingung, die verhindert, dass das erzeugte Ergebnis *deterministisch* ist. Zu beachten ist außerdem, dass in diesem Fall die Möglichkeiten zum Entfernen von Zuständen aus dem FA ebenfalls stark eingeschränkt sind, da wir keine Zustände als unerreichbar deklarieren können.
 
 **::grammar::fa::op::minimize** *fa* ?*mapvar*?
 : Erzeugt einen FA, der dieselbe Sprache wie *fa* akzeptiert, jedoch eine minimale Anzahl von Zuständen aufweist. Dazu wird die Methode von Brzozowski verwendet.
 
-    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen der resultierenden minimalen FA und den Zuständen der Eingabe-FA beschreibt, in *mapvar*, wenn dies festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände der resultierenden minimalen FA, Werte sind Mengen von Zuständen aus der Eingabe-FA.
+    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen des resultierenden minimalen FA und den Zuständen des Eingabe-FA beschreibt, in *mapvar*, wenn dies festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände des resultierenden minimalen FA, Werte sind Mengen von Zuständen aus dem Eingabe-FA.
 
-    *Hinweis*: Ein leeres Dictionary signalisiert, dass der Befehl den *fa* minimieren konnte, ohne neue Zustände berechnen zu müssen. Dies sollte genau dann der Fall sein, wenn die Eingabe-FA bereits minimal war.
+    *Hinweis*: Ein leeres Dictionary signalisiert, dass der Befehl den *fa* minimieren konnte, ohne neue Zustände berechnen zu müssen. Dies sollte genau dann der Fall sein, wenn der Eingabe-FA bereits minimal war.
 
     *Hinweis*: Wenn der Algorithmus keine Start- oder Endzustände hat, mit denen er arbeiten kann, ist das Ergebnis zwar technisch minimal, weist jedoch möglicherweise eine sehr unerwartete Struktur auf. Es ist zudem zu beachten, dass in diesem Fall die Möglichkeiten zum Entfernen von Zuständen aus dem FA erheblich eingeschränkt sind, da wir keine Zustände als unerreichbar deklarieren können.
 
@@ -132,12 +132,12 @@ Das Paket exportiert die hier beschriebene API. Alle Befehle ändern ihr erstes 
 *Sprachoperationen* Alle Operationen in diesem Abschnitt setzen voraus, dass alle Eingabe-FAs mindestens einen Start- und mindestens einen Endzustand aufweisen. Andernfalls ist die Sprache des FA nicht definiert, wodurch die Operation sinnlos wird (da sie auf definierte Weise auf den Sprachen der FAs operiert).
 
 **::grammar::fa::op::complement** *fa*
-: Bildet das Komplement von *fa*. Das ist genau dann möglich, wenn *fa* *complete* und *deterministic* ist. Die resultierende FA akzeptiert die komplementäre Sprache von *fa*. Mit anderen Worten: Alle Eingaben, die von *fa* nicht akzeptiert werden, werden von der resultierenden FA akzeptiert, und umgekehrt.
+: Bildet das Komplement von *fa*. Das ist genau dann möglich, wenn *fa* *complete* und *deterministic* ist. Der resultierende FA akzeptiert die komplementäre Sprache von *fa*. Mit anderen Worten: Alle Eingaben, die von *fa* nicht akzeptiert werden, werden vom resultierenden FA akzeptiert, und umgekehrt.
 
     Der resultierende Automat verfügt über alle Zustände und Übergänge des Eingabeautomaten sowie über andere Endzustände.
 
 **::grammar::fa::op::kleene** *fa*
-: Wendet den Kleene-Abschluss auf *fa* an. Der resultierende FA akzeptiert alle Zeichenfolgen **S**, für die wir eine natürliche Zahl **n** (einschließlich 0) und Zeichenfolgen **A1** … **An** in der Sprache von *fa* finden können, sodass **S** die Verkettung von **A1** … **An** ist. Mit anderen Worten: Die Sprache des Ergebnisses ist die unendliche Vereinigung aller Verkettungen endlicher Länge über der Sprache von *fa*.
+: Wendet den Kleene-Abschluss auf *fa* an. Der resultierende FA akzeptiert alle Zeichenketten **S**, für die wir eine natürliche Zahl **n** (einschließlich 0) und Zeichenketten **A1** … **An** in der Sprache von *fa* finden können, sodass **S** die Verkettung von **A1** … **An** ist. Mit anderen Worten: Die Sprache des Ergebnisses ist die unendliche Vereinigung aller Verkettungen endlicher Länge über der Sprache von *fa*.
 
     Das Ergebnis enthält alle Zustände und Übergänge der Eingabe sowie neue Start- und Endzustände.
 
@@ -156,17 +156,17 @@ Das Paket exportiert die hier beschriebene API. Alle Befehle ändern ihr erstes 
 **::grammar::fa::op::intersect** *fa* *fb* ?*mapvar*?
 : Kombiniert die endlichen Automaten *fa* und *fb* so, dass der resultierende endliche Automat die Schnittmenge der Sprachen der beiden endlichen Automaten akzeptiert. Mit anderen Worten: Das Ergebnis akzeptiert ein Wort genau dann, wenn es sowohl von *fa* als auch von *fb* akzeptiert wird. Das Ergebnis ist nützlich, jedoch nicht zwangsläufig deterministisch oder minimal.
 
-    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen der resultierenden FA und den Zustandspaaren der Eingabe-FAs beschreibt, in *mapvar*, wenn dieses festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände der resultierenden FA, Werte sind Zustandspaare aus den Eingabe-FAs. Paare werden durch Listen dargestellt. Das erste Element jedes Paares ist ein Zustand in *fa*, das zweite Element stammt aus *fb*.
+    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen des resultierenden FA und den Zustandspaaren der Eingabe-FAs beschreibt, in *mapvar*, wenn dieses festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände des resultierenden FA, Werte sind Zustandspaare aus den Eingabe-FAs. Paare werden durch Listen dargestellt. Das erste Element jedes Paares ist ein Zustand in *fa*, das zweite Element stammt aus *fb*.
 
 **::grammar::fa::op::difference** *fa* *fb* ?*mapvar*?
 : Kombiniert die endlichen Automaten *fa* und *fb* derart, dass der resultierende endliche Automat die Differenz der Sprachen der beiden endlichen Automaten akzeptiert. Mit anderen Worten: Das Ergebnis akzeptiert ein Wort genau dann, wenn das Wort von *fa* akzeptiert, von *fb* jedoch nicht akzeptiert wird. Dies lässt sich auch als Schnittmenge von *fa* mit dem Komplement von *fb* ausdrücken. Das Ergebnis ist zwar nützlich, aber nicht zwangsläufig deterministisch oder minimal.
 
-    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen der resultierenden FA und den Zustandspaaren der Eingabe-FAs beschreibt, in *mapvar*, wenn dies festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände der resultierenden FA, Werte sind Zustands-Paare aus den Eingabe-FAs. Paare werden durch Listen dargestellt. Das erste Element jedes Paares ist ein Zustand in *fa*, das zweite Element stammt aus *fb*.
+    Der Befehl speichert ein Dictionary, das die Beziehung zwischen den neuen Zuständen des resultierenden FA und den Zustandspaaren der Eingabe-FAs beschreibt, in *mapvar*, wenn dies festgelegt wurde. Schlüssel des Dictionary sind die Handles für die Zustände des resultierenden FA, Werte sind Zustands-Paare aus den Eingabe-FAs. Paare werden durch Listen dargestellt. Das erste Element jedes Paares ist ein Zustand in *fa*, das zweite Element stammt aus *fb*.
 
 **::grammar::fa::op::concatenate** *fa* *fb* ?*mapvar*?
-: Kombiniert die endlichen Automaten *fa* und *fb* derart, dass der resultierende endliche Automat die Verkettung der Sprachen der beiden endlichen Automaten akzeptiert. Das heißt, ein Wort W wird von der resultierenden FA akzeptiert, wenn es zwei Wörter A und B gibt, die jeweils von *fa* bzw. *fb* akzeptiert werden, und W die Verkettung von A und B ist.
+: Kombiniert die endlichen Automaten *fa* und *fb* derart, dass der resultierende endliche Automat die Verkettung der Sprachen der beiden endlichen Automaten akzeptiert. Das heißt, ein Wort W wird vom resultierenden FA akzeptiert, wenn es zwei Wörter A und B gibt, die jeweils von *fa* bzw. *fb* akzeptiert werden, und W die Verkettung von A und B ist.
 
-    Die resultierende FA ist nichtdeterministisch.
+    Der resultierende FA ist nichtdeterministisch.
 
 **::grammar::fa::op::fromRegex** *fa* *regex* ?*over*?
 : Erzeugt einen nichtdeterministischen endlichen Automaten (FA), der dieselbe Sprache akzeptiert wie der reguläre Ausdruck *regex*. Wenn *over* festgelegt wird, wird dieser als die Menge der Symbole behandelt, über die der reguläre Ausdruck und der Automat definiert sind. Der Befehl berechnet die Menge aus den „S“-Konstruktoren in *regex*, wenn *over* nicht angegeben wurde. Diese Menge ist genau dann von Bedeutung, wenn der Komplementoperator „!“ in *regex* verwendet wird, da sich die Komplementsprache eines FA je nach Symbolmenge erheblich unterscheidet.

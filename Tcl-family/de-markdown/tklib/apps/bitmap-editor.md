@@ -17,7 +17,7 @@ Copyright:
 
 # Name
 
-Bitmap-Editor – Editor für XBM-Bilder
+bitmap-editor – Editor für XBM-Bilder
 
 # Übersicht
 

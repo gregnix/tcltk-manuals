@@ -32,7 +32,7 @@ Diese Prozedur blendet ein Menü an einer gegebenen Bildschirmposition ein und k
 
 # Beispiel
 
-So bindet man ein einfaches Popup-Menü an ein Widget.
+So wird ein einfaches Popup-Menü an ein Widget gebunden.
 
 ```
 # Create a menu

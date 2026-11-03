@@ -30,7 +30,7 @@ refchan - API des Befehlshandlers für reflektierte Kanäle
 
 # Beschreibung
 
-Der Tcl-Ebenen-Handler für einen reflektierten Kanal muss ein Befehl mit Unterbefehlen sein (als *Ensemble* bezeichnet, wie ein Befehl, der durch [namespace ensemble][namespace] **create** erzeugt wird; die Implementierung von Handlern für reflektierte Kanäle ist jedoch in keiner Weise an [namespace ensemble][namespace] gebunden; siehe [Beispiele] unten, wie man eine [oo::class][class] aufbaut, die die API unterstützt). *cmdPrefix* ist das, was beim Aufruf von [chan create][chan] angegeben wurde, und kann aus mehreren Argumenten bestehen; es wird an Stelle des Präfixes zu mehreren Wörtern expandiert.
+Der Tcl-Ebenen-Handler für einen reflektierten Kanal muss ein Befehl mit Unterbefehlen sein (als *Ensemble* bezeichnet, wie ein Befehl, der durch [namespace ensemble][namespace] **create** erzeugt wird; die Implementierung von Handlern für reflektierte Kanäle ist jedoch in keiner Weise an [namespace ensemble][namespace] gebunden; siehe [Beispiele] unten, wie Sie eine [oo::class][class] aufbauen, die die API unterstützt). *cmdPrefix* ist das, was beim Aufruf von [chan create][chan] angegeben wurde, und kann aus mehreren Argumenten bestehen; es wird an Stelle des Präfixes zu mehreren Wörtern expandiert.
 
 Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize** und **watch** unterstützen. Die Unterstützung der übrigen Unterbefehle ist optional.
 
@@ -71,7 +71,7 @@ Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize**
 *cmdPrefix* **read** *channelId count*
 : Dieser *optionale* Unterbefehl wird aufgerufen, wenn der Benutzer Daten vom Kanal *channelId* anfordert. *count* gibt an, wie viele *Bytes* angefordert wurden. Wird der Unterbefehl nicht unterstützt, ist ein Lesen vom durch den Befehl verwalteten Kanal nicht möglich.
 
-    Der Rückgabewert dieses Unterbefehls wird als die angeforderten Daten-*Bytes* interpretiert. Enthält die zurückgegebenen Daten mehr Bytes als angefordert, wird ein Fehler signalisiert und später vom Befehl geworfen, der das Lesen ausgeführt hat (üblicherweise [gets] oder [read]). Weniger Bytes als angefordert zurückzugeben ist jedoch zulässig.
+    Der Rückgabewert dieses Unterbefehls wird als die angeforderten Daten-*Bytes* interpretiert. Enthalten die zurückgegebenen Daten mehr Bytes als angefordert, wird ein Fehler signalisiert und später vom Befehl geworfen, der das Lesen ausgeführt hat (üblicherweise [gets] oder [read]). Weniger Bytes als angefordert zurückzugeben ist jedoch zulässig.
 
     Beachten Sie, dass das Zurückgeben von nichts (0 Bytes) den höheren Schichten signalisiert, dass auf dem Kanal **EOF** erreicht wurde. Um zu signalisieren, dass der Kanal derzeit keine Daten hat, **EOF** aber noch nicht erreicht ist, muss der Fehler „EAGAIN“ geworfen werden, also entweder
 
@@ -99,7 +99,7 @@ Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize**
     error -11
     ```
 
-    den obigen Beispielen äquivalent, wenn die lesbarere Zeichenkette „EAGAIN“ verwendet wird; unter BSD ist das nicht der Fall, dort ist die äquivalente Zahl -35.
+    den obigen Beispielen äquivalent, die die lesbarere Zeichenkette „EAGAIN“ verwenden; unter BSD ist das nicht der Fall, dort ist die äquivalente Zahl -35.
 
     Die symbolische Zeichenkette ist jedoch systemübergreifend dieselbe und wird intern in die richtige Zahl übersetzt. Kein anderer Fehlerwert hat eine solche Zuordnung zu einer symbolischen Zeichenkette.
 
@@ -108,7 +108,7 @@ Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize**
 *cmdPrefix* **write** *channelId data*
 : Dieser *optionale* Unterbefehl wird aufgerufen, wenn der Benutzer Daten in den Kanal *channelId* schreibt. Das Argument *data* enthält *Bytes*, keine Zeichen. Jede für den Kanal konfigurierte Transformation (EOL, Kodierung) wurde zu diesem Zeitpunkt bereits angewendet. Wird dieser Unterbefehl nicht unterstützt, ist ein Schreiben in den durch den Befehl verwalteten Kanal nicht möglich.
 
-    Der Rückgabewert des Unterbefehls wird als die vom Kanal geschriebene Byte-Anzahl interpretiert. Jeder nicht numerische Wert führt zu einem Fehler, der später vom Befehl geworfen wird, der das Schreiben ausgeführt hat. Ein negativer Wert bedeutet, dass das Schreiben fehlgeschlagen ist. Ein Wert größer als die dem Handler übergebenen Bytes oder Null ist verboten und führt dazu, dass der Tcl-Kern einen Fehler wirft.
+    Der Rückgabewert des Unterbefehls wird als die vom Kanal geschriebene Byte-Anzahl interpretiert. Jeder nicht numerische Wert führt zu einem Fehler, der später vom Befehl geworfen wird, der das Schreiben ausgeführt hat. Ein negativer Wert bedeutet, dass das Schreiben fehlgeschlagen ist. Ein Wert größer als die Anzahl der dem Handler übergebenen Bytes oder ein Wert von null ist verboten und führt dazu, dass der Tcl-Kern einen Fehler wirft.
 
     Um zu signalisieren, dass der Kanal derzeit keine Daten zum Schreiben annehmen kann, muss der Fehler „EAGAIN“ geworfen werden, also entweder
 
@@ -136,7 +136,7 @@ Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize**
     error -11
     ```
 
-    den obigen Beispielen äquivalent, wenn die lesbarere Zeichenkette „EAGAIN“ verwendet wird; unter BSD ist das nicht der Fall, dort ist die äquivalente Zahl -35.
+    den obigen Beispielen äquivalent, die die lesbarere Zeichenkette „EAGAIN“ verwenden; unter BSD ist das nicht der Fall, dort ist die äquivalente Zahl -35.
 
     Die symbolische Zeichenkette ist jedoch systemübergreifend dieselbe und wird intern in die richtige Zahl übersetzt. Kein anderer Fehlerwert hat eine solche Zuordnung zu einer symbolischen Zeichenkette.
 
@@ -157,7 +157,7 @@ Von allen möglichen Unterbefehlen muss der Handler **initialize**, **finalize**
     : Die Positionierung ist relativ zum Ende des Kanals.
 
 
-    *offset* ist eine Ganzzahl, die angibt, um wie viele **Bytes** vor- oder zurückgesucht werden soll. Eine positive Zahl soll vorwärts suchen, eine negative rückwärts. Ein Kanal kann nur eingeschränktes Suchen anbieten. Sockets können beispielsweise nur vorwärts suchen, nicht rückwärts.
+    *offset* ist eine Ganzzahl, die angibt, um wie viele **Bytes** vor- oder zurückpositioniert werden soll. Eine positive Zahl soll vorwärts positionieren, eine negative rückwärts. Ein Kanal kann nur eingeschränktes Positionieren anbieten. Sockets können beispielsweise nur vorwärts positionieren, nicht rückwärts.
 
     Der Rückgabewert des Unterbefehls wird als die (neue) Position des Kanals vom Anfang an gezählt genommen. Das muss eine Ganzzahl größer oder gleich null sein. Wirft der Unterbefehl einen Fehler, erscheint es, als hätte der Aufruf, der seine Ausführung auslöste (üblicherweise [chan seek][chan] oder [chan tell][chan]), diesen Fehler geworfen. Jede Ausnahme außer [error] (z. B. [break] usw.) wird als Fehler behandelt und in einen Fehler umgewandelt.
 
@@ -206,7 +206,7 @@ Die Funktion **Tcl\_DriverFlushProc** wird nicht unterstützt. Das liegt daran, 
 
 # Beispiele
 
-Dies zeigt, wie man einen Kanal erzeugt, der aus einer Zeichenkette liest.
+Dies zeigt, wie Sie einen Kanal erzeugen, der aus einer Zeichenkette liest.
 
 ```
 oo::class create stringchan {

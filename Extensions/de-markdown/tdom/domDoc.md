@@ -93,7 +93,7 @@ Die gültigen Methoden sind:
 
     Soll die kanonische XML-Serialisierung der XML-Datei entstehen, aus der der DOM-Baum gelesen wurde, gelten ein paar Voraussetzungen. Die XML-Daten müssen mit der Option *-keepEmpties* gelesen werden. Enthalten die XML-Daten eine DTD, die Attributvorgaben oder Verweise auf externe gelesene Entitäten definiert, ist der expat-Parser nötig, nicht der mit *-simple*. Enthalten die XML-Daten bei einer unterstützten Tcl-Version kleiner als 9.0 Zeichen außerhalb der BMP, ist ein Tcl-Bau mit TCL\_UTF\_MAX gleich 6 und ein tDOM-Bau mit diesem Tcl nötig.
 
-    Ist die Option -channel angegeben, geht die Ausgabe direkt an den als Argument angegebenen Tcl-Kanal. Der Aufrufer muss sicherstellen, dass der Kanal richtig konfiguriert ist. Fehlt diese Option, gibt der Befehl die Serialisierung als Zeichenkette zurück.
+    Ist die Option -channel angegeben, geht die Ausgabe direkt an den als Argument angegebenen Tcl-Kanal. Der Aufrufer muss sicherstellen, dass der Kanal mit `fconfigure` richtig konfiguriert ist. Fehlt diese Option, gibt der Befehl die Serialisierung als Zeichenkette zurück.
 
     Ist die Option *-comments* mit einem wahren Wert angegeben, enthält die Serialisierung Kommentare nach den Regeln der Empfehlung. Ist der Wert falsch oder fehlt die Option, werden Kommentare aus der Serialisierung entfernt.
 
@@ -130,7 +130,7 @@ Die gültigen Methoden sind:
 
     Ist die Option *-channel* angegeben, kommt die Serialisierung nicht als Zeichenkette zurück, sondern geht direkt an den Kanal, der der Option als Argument angegeben ist.
 
-    Ist die Option *-indent* angegeben und ist das Argument dieser Option nicht "none", wird die zurückgegebene JSON-Zeichenkette "pretty-printed". Das numerische Argument dieser Option bestimmt die Anzahl der Leerzeichen je Einrückungsebene. In der Vorgabe wird kein zusätzlicher Leerraum ausgegeben.
+    Ist die Option *-indent* angegeben und ist das Argument dieser Option nicht "none", wird die zurückgegebene JSON-Zeichenkette eingerückt formatiert ("pretty-printed"). Das numerische Argument dieser Option bestimmt die Anzahl der Leerzeichen je Einrückungsebene. In der Vorgabe wird kein zusätzlicher Leerraum ausgegeben.
 
 **asTclValue** **?typevariable?**
 : Enthält der DOM-Baum JSON-Typangaben, gibt diese Methode die JSON-Daten als verschachtelte Tcl-Datenstruktur zurück.
@@ -172,7 +172,7 @@ Die gültigen Methoden sind:
 
     Ist die Option *-ignoreUndeclaredParameters* angegeben, werden Parameternamen in der *parameterList* der Option *-parameters*, die im Stylesheet nicht als Parameter der obersten Ebene deklariert sind, still übergangen. Ohne diese Option wird ein Fehler ausgelöst, wenn ein Parameter der obersten Ebene gesetzt wird, der im Stylesheet nicht deklariert ist.
 
-    Die Option *-maxApplyDepth* erwartet als Argument eine positive ganze Zahl. In der Vorgabe erlaubt die XSLT-Maschine, dass sich XSLT-Templates bis zu 3000 Ebenen schachteln, und löst einen Fehler aus, wenn sie tiefer schachteln. Diese Grenze lässt sich mit der Option *-maxApplyDepth* setzen.
+    Die Option *-maxApplyDepth* erwartet als Argument eine positive Ganzzahl. In der Vorgabe erlaubt die XSLT-Maschine, dass sich XSLT-Templates bis zu 3000 Ebenen schachteln, und löst einen Fehler aus, wenn sie tiefer schachteln. Diese Grenze lässt sich mit der Option *-maxApplyDepth* setzen.
 
     Die Option *-xsltmessagecmd* setzt eine Rückruffunktion für Elemente xslt:message im Stylesheet. Der tatsächliche Befehl besteht aus dem Skript, das der Option als Argument angegeben ist, angehängt das XML-Fragment aus der Instanziierung des Elementinhalts von xsl:message als Zeichenkette, als wäre die XPath-Funktion string() auf das XML-Fragment angewandt worden, und eine Markierung, die anzeigt, ob xsl:message ein Attribut "terminate" mit dem Wert "yes" hat. Gibt das aufgerufene Skript etwas anderes als TCL\_OK zurück, wird die XSLT-Transformation abgebrochen und ein Fehler zurückgegeben. Gibt das aufgerufene Skript -code break zurück, ist die Fehlermeldung leer, sonst wird der Ergebniscode gemeldet. Bei abgebrochener Transformation wird outputVar, falls angegeben, auf die leere Zeichenkette gesetzt.
 
@@ -194,7 +194,7 @@ Die gültigen Methoden sind:
 
         Ist die Option *-ignoreUndeclaredParameters* angegeben, werden Parameternamen in der *parameterList* der Option *-parameters*, die im Stylesheet nicht als Parameter der obersten Ebene deklariert sind, still übergangen. Ohne diese Option wird ein Fehler ausgelöst, wenn ein Parameter der obersten Ebene gesetzt wird, der im Stylesheet nicht deklariert ist.
 
-        Die Option *-maxApplyDepth* erwartet als Argument eine positive ganze Zahl. In der Vorgabe erlaubt die XSLT-Maschine, dass sich XSLT-Templates bis zu 3000 Ebenen schachteln, und löst einen Fehler aus, wenn sie tiefer schachteln. Diese Grenze lässt sich mit der Option *-maxApplyDepth* setzen.
+        Die Option *-maxApplyDepth* erwartet als Argument eine positive Ganzzahl. In der Vorgabe erlaubt die XSLT-Maschine, dass sich XSLT-Templates bis zu 3000 Ebenen schachteln, und löst einen Fehler aus, wenn sie tiefer schachteln. Diese Grenze lässt sich mit der Option *-maxApplyDepth* setzen.
 
         Die Option *-xsltmessagecmd* setzt eine Rückruffunktion für Elemente xslt:message im Stylesheet. Der tatsächliche Befehl besteht aus dem Skript, das der Option als Argument angegeben ist, angehängt das XML-Fragment aus der Instanziierung des Elementinhalts von xsl:message als Zeichenkette, als wäre die XPath-Funktion string() auf das XML-Fragment angewandt worden, und eine Markierung, die anzeigt, ob xsl:message ein Attribut "terminate" mit dem Wert "yes" hat.
 
@@ -249,7 +249,7 @@ Die gültigen Methoden sind:
 **selectNodes** **?-namespaces prefixUriList?** **?-cache <boolean>?** **?-list?** *xpathQuery* **?typeVar?**
 : Gibt das Ergebnis der Anwendung der XPath-Abfrage *xpathQuery* auf das Dokument zurück. Der Kontextknoten der Abfrage ist der Wurzelknoten im Sinn der XPath-Empfehlung, nicht das Dokumentelement. Das Ergebnis kann eine Zeichenkette oder ein Wert, eine Liste von Zeichenketten, eine Liste von Knoten oder eine Liste aus Paaren von Attributname und Wert sein. Ist *typeVar* angegeben, wird der Name des Ergebnistyps in dieser Variable gespeichert: empty, bool, number, string, nodes, attrnodes oder mixed.
 
-    Die genaue Beschreibung der Argumente steht in der Dokumentation der der
+    Die genaue Beschreibung der Argumente steht in der Dokumentation der
 
     [domNode]
     :  Befehlsmethode **selectNodes**.
@@ -268,7 +268,7 @@ Die gültigen Methoden sind:
 : Ohne das optionale Argument werden alle zwischengespeicherten XPath-Ausdrücke des Dokuments freigegeben. Mit dem optionalen Argument *xpathQuery* wird diese einzelne XPath-Abfrage aus dem Zwischenspeicher entfernt, wenn sie dort liegt. Die Methode gibt immer eine leere Zeichenkette zurück.
 
 
-Wird sonst ein unbekannter Methodenname angegeben, wird versucht, den Befehl desselben Namens wie die angegebene Methode im Namensraum **::dom::domDoc** auszuführen. Das erlaubt schnelles Ergänzen von Methoden auf Tcl-Ebene.
+Wird sonst ein unbekannter Methodenname angegeben, wird versucht, den Befehl desselben Namens wie die angegebene Methode im Namespace **::dom::domDoc** auszuführen. Das erlaubt schnelles Ergänzen von Methoden auf Tcl-Ebene.
 
 Neu angelegte Knoten werden an eine versteckte Fragmentliste angehängt. Werden sie nicht in den Baum verschoben, werden sie automatisch gelöscht, sobald das ganze Dokument gelöscht wird.
 

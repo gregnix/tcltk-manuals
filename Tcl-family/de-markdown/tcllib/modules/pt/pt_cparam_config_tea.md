@@ -44,7 +44,7 @@ Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann l
 
 Dieses Paket dient als Ergänzung zu [pt::peg::to::cparam][pt_peg_to_cparam] und soll die Verwendung dieses in hohem Maße konfigurierbaren Pakets durch die Bereitstellung einer vorgefertigten Konfiguration vereinfachen. Wenn diese Konfiguration angewendet wird, generiert das Paket [pt::peg::to::cparam][pt_peg_to_cparam] bloßen Parser-Code, der zur Einbindung in eine auf *TEA* basierende C-Erweiterung bereit ist.
 
-Es handelt sich um ein unterstützendes Paket in der Kernschicht der Parser-Tools.
+Es handelt sich um ein Unterstützungspaket in der Kernschicht der Parser-Tools.
 
 IMAGE: arch\_core\_support
 

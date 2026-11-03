@@ -174,7 +174,7 @@ Die Option **-validate** legt fest, wann validiert wird; sie kann auf einen der 
 : Die Validierung wird bei allen obigen Bedingungen durchgeführt.
 
 
-**-invalidcommand** wird ausgewertet, wann immer **-validatecommand** einen falschen Wert zurückgibt.
+**-invalidcommand** wird ausgewertet, wann immer **-validatecommand** einen Wert zurückgibt, der als falsch (false) gilt.
 
 **-validatecommand** und **-invalidcommand** können den Wert des Entry-Widgets über die Widget-Befehle **insert** oder **delete** oder durch Setzen der verknüpften **-textvariable** ändern. Tut eines von beiden dies während der Prävalidierung, wird die Bearbeitung abgelehnt, unabhängig vom von **-validatecommand** zurückgegebenen Wert.
 
@@ -188,7 +188,7 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Ersetzungen mögli
 : Art der Aktion: 1 für Prävalidierung bei **insert**, 0 für Prävalidierung bei **delete**, oder -1 für Revalidierung.
 
 **%i**
-: Index des einzufügenden/zu löschenden Zeichenstrings, falls vorhanden, sonst -1.
+: Index der einzufügenden/zu löschenden Zeichenkette, falls vorhanden, sonst -1.
 
 **%P**
 : Bei Prävalidierung der neue Wert des Entrys, wenn die Bearbeitung angenommen wird. Bei Revalidierung der aktuelle Wert des Entrys.
@@ -197,13 +197,13 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Ersetzungen mögli
 : Der aktuelle Wert des Entrys vor der Bearbeitung.
 
 **%S**
-: Der einzufügende/zu löschende Textstring, falls vorhanden, sonst {}.
+: Die einzufügende/zu löschende Zeichenkette, falls vorhanden, sonst {}.
 
 **%v**
 : Der aktuelle Wert der Option **-validate**.
 
 **%V**
-: Die Validierungsbedingung, die den Rückruf ausgelöst hat (**key**, **focusin**, **focusout** oder **forced**).
+: Die Validierungsbedingung, die die Rückruffunktion ausgelöst hat (**key**, **focusin**, **focusout** oder **forced**).
 
 **%W**
 : Der Name des Entry-Widgets.
@@ -215,9 +215,9 @@ Das Standard-Tk-Entry-Widget deaktiviert die Validierung automatisch (durch Setz
 
 Außerdem ruft das Standard-Entry-Widget die Validierung auf, wann immer die verknüpfte **-textvariable** geändert wird; das Ttk-Entry-Widget tut dies nicht.
 
-# Bindungen
+# Standardbindungen
 
-Die Standard-Bindungen des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
+Die Standardbindungen des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
 - Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit gedrückter Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
@@ -227,7 +227,7 @@ Die Standard-Bindungen des Entry-Widgets ermöglichen folgendes Verhalten. In de
 
 - Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
 
-- Klick mit Maustaste 1 bei gedrückter Steuerung positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
+- Klick mit Maustaste 1 bei gedrückter Steuerungstaste positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
 
 - Werden normale druckbare Zeichen in einem Entry eingegeben, werden sie an der Position des Einfügecursors eingefügt.
 

@@ -45,7 +45,7 @@ Beginnen die ersten Argumente des Befehls mit „-", werden sie als Optionen beh
 
 # Anwendungsnamen
 
-Der Name einer Anwendung wird zunächst aus dem Namen des Programms oder Skripts gesetzt, das die Anwendung erzeugt hat. Name abfragen und ändern lässt sich mit dem Befehl [tk appname][tk].
+Der Name einer Anwendung wird zunächst aus dem Namen des Programms oder Skripts gesetzt, das die Anwendung erzeugt hat. Sie können den Namen einer Anwendung mit dem Befehl [tk appname][tk] abfragen und ändern.
 
 # Deaktivierung von send
 

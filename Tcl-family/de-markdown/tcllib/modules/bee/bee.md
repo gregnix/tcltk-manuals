@@ -77,18 +77,18 @@ Dieses Paket stellt für jeden Werttyp (Zeichenkette und Ganzzahl) einen Encoder
 
 ## Decoder
 
-Dieses Paket stellt Befehle zur Dekodierung von „bee“-kodierten Zeichenfolgen sowie von über einen Kanal empfangenen „bee“-kodierten Daten bereit.
+Dieses Paket stellt Befehle zur Dekodierung von „bee“-kodierten Zeichenketten sowie von über einen Kanal empfangenen „bee“-kodierten Daten bereit.
 
-Die Befehle zum Dekodieren einer „bee“-kodierten Zeichenkette setzen voraus, dass die Zeichenkette einen oder mehrere vollständige „bee“-kodierte Werte enthält (die ihrerseits verschachtelte „bee“-kodierte Listen und Wörterbücher enthalten können).
+Die Befehle zum Dekodieren einer „bee“-kodierten Zeichenkette setzen voraus, dass die Zeichenkette einen oder mehrere vollständige „bee“-kodierte Werte enthält (die ihrerseits verschachtelte „bee“-kodierte Listen und Dictionarys enthalten können).
 
 Der Befehl zur inkrementellen Dekodierung von Bee-Werten, die über einen Kanal eingehen, arbeitet asynchron und stellt die vollständig dekodierten Werte über eine Rückruffunktion bereit.
 
 **::bee::decode** *beestring* ?*endVar*? ?*start*?
 : Gibt einen aus dem *beestring* dekodierten Wert zurück, beginnend bei der Indexposition *start*, sofern angegeben – andernfalls bei der Standardposition **0** – und setzt *endVar*, sofern angegeben.
 
-    Wenn der „bee“-kodierte Wert eine Zeichenkette oder eine Ganzzahl ist, gibt es die entsprechende Tcl-Zeichenkette bzw. Ganzzahl zurück.
+    Wenn der „bee“-kodierte Wert eine Zeichenkette oder eine Ganzzahl ist, wird die entsprechende Tcl-Zeichenkette bzw. Ganzzahl zurückgegeben.
 
-    Wenn der „bee“-kodierte Wert eine Sammlung (eine „bee“-Liste oder ein „bee“-Dict) ist, gibt es die entsprechende Tcl-Liste bzw. ein Tcl-Dict zurück. In beiden Fällen werden alle enthaltenen Werte (einschließlich verschachtelter Bee-Listen und Bee-Dictionarys) vollständig bee-dekodiert, sodass das Ergebnis eine Tcl-Liste oder ein Tcl-Dictionary ist, in der bzw. dem alle verschachtelten Werte entsprechend vollständig in Tcl-Listen, Tcl-Dictionarys, Zeichenketten oder Ganzzahlen bee-dekodiert sind.
+    Wenn der „bee“-kodierte Wert eine Sammlung (eine „bee“-Liste oder ein „bee“-Dict) ist, wird die entsprechende Tcl-Liste bzw. das entsprechende Tcl-Dictionary zurückgegeben. In beiden Fällen werden alle enthaltenen Werte (einschließlich verschachtelter Bee-Listen und Bee-Dictionarys) vollständig bee-dekodiert, sodass das Ergebnis eine Tcl-Liste oder ein Tcl-Dictionary ist, in der bzw. dem alle verschachtelten Werte entsprechend vollständig in Tcl-Listen, Tcl-Dictionarys, Zeichenketten oder Ganzzahlen bee-dekodiert sind.
 
     Wenn die Option *endVar* angegeben wird, handelt es sich dabei um den Namen einer Variablen, in der die Indexposition des ersten Zeichens in *beestring* gespeichert wird, das auf den gerade dekodierten Wert *folgt*, d. h. die Startposition des nächsten zu dekodierenden Werts. Dies ist nützlich, wenn der *beestring* zwei oder mehr miteinander verkettete „bee“-kodierte Werte enthält (im Gegensatz zu einer einzelnen „bee“-kodierten Liste von „bee“-kodierten Werten). Siehe das letzte Beispiel im Abschnitt [Beispiele].
 
@@ -104,7 +104,7 @@ Der Befehl zur inkrementellen Dekodierung von Bee-Werten, die über einen Kanal 
     string
     : Eine Liste mit drei Elementen:
 
-        - Eine konstante Zeichenfolge, die den Typ des Werts angibt; bei Zeichenfolgen lautet sie **string**.
+        - Eine konstante Zeichenkette, die den Typ des Werts angibt; bei Zeichenketten lautet sie **string**.
 
         - Die Indexposition (*>= 0*) des ersten Zeichens des „bee“-Werts im angegebenen *beestring*.
 
@@ -128,7 +128,7 @@ Der Befehl zur inkrementellen Dekodierung von Bee-Werten, die über einen Kanal 
 
 
 **::bee::decodeChannel** *chan* **-command** *on\_decode* ?**-exact**? ?**-prefix** *data*?
-: Dieser Befehl erstellt einen Decoder für eine Reihe von Bee-Werten, die über den Kanal *chan* eingehen, und gibt ein Decoder-Handle zurück. Jedes Dekodierungsereignis wird an den erforderlichen Rückrufbefehl *on\_decode* gemeldet.
+: Dieser Befehl erstellt einen Decoder für eine Reihe von Bee-Werten, die über den Kanal *chan* eingehen, und gibt ein Decoder-Handle zurück. Jedes Dekodierungsereignis wird an den erforderlichen Callback-Befehl *on\_decode* gemeldet.
 
     Das zurückgegebene Handle kann verwendet werden, um Daten in den Decoder zu schieben oder den Decoder abzubrechen.
 
@@ -173,13 +173,13 @@ String *S*
 : Eine Zeichenkette *S* der Länge *L* wird durch die Zeichenkette "*L*__:__*S*" kodiert, wobei die Länge in Textform angegeben wird. So würde beispielsweise die Zeichenkette **"Bencode format"** als **"14:Bencode format"** kodiert.
 
 Integer *N*
-: Eine Ganzzahl *N* wird durch die Zeichenfolge "**i**_N_**e**" kodiert. Beispielsweise würde die Ganzzahl **-482** als **"i-482e"** kodiert.
+: Eine Ganzzahl *N* wird durch die Zeichenkette "**i**_N_**e**" kodiert. Beispielsweise würde die Ganzzahl **-482** als **"i-482e"** kodiert.
 
 List *v1* ... *vn*
-: Eine Liste der Werte *v1* bis *vn* wird durch die Zeichenfolge "**l**_BV1_...*BVn*__e__" kodiert, wobei "BV**i**" die Bee-Kodierung des Werts "v**i**" ist.
+: Eine Liste der Werte *v1* bis *vn* wird durch die Zeichenkette "**l**_BV1_...*BVn*__e__" kodiert, wobei "BV**i**" die Bee-Kodierung des Werts "v**i**" ist.
 
 Dict *k1* -> *v1* ...
-: Ein Dictionary, das den Zeichenkettenschlüssel *k*__i__ dem Wert *v*__i__ zuordnet, für **i** in **1** ... **n**, wird durch die Zeichenfolge "**d**_BK_**i**_BV_**i**...**e**" kodiert, für i in **1** ... **n**, wobei "BK**i**" die Bee-Kodierung der Schlüsselzeichenfolge "k**i**" ist und "BV**i**" die Bee-Kodierung des Werts "v**i**" ist.
+: Ein Dictionary, das den Zeichenkettenschlüssel *k*__i__ dem Wert *v*__i__ zuordnet, für **i** in **1** ... **n**, wird durch die Zeichenkette "**d**_BK_**i**_BV_**i**...**e**" kodiert, für i in **1** ... **n**, wobei "BK**i**" die Bee-Kodierung der Schlüsselzeichenkette "k**i**" ist und "BV**i**" die Bee-Kodierung des Werts "v**i**" ist.
 
     *Hinweis*: Die Bee-Kodierung behält die Reihenfolge der Schlüssel in der Eingabe nicht bei, sondern speichert sie in schlüsselsortierter Reihenfolge.
 

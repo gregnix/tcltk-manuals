@@ -363,7 +363,7 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
 
 
 
-*Notes:*
+*Hinweise:*
 
 Einige der oben genannten Prozeduren nehmen die *Namen* von Prozeduren als Argumente entgegen. Um Probleme mit der *Sichtbarkeit* dieser Prozeduren zu vermeiden, wird der vollqualifizierte Name dieser Prozeduren innerhalb der calculus-Routinen ermittelt. Für den Benutzer hat dies nur eine Konsequenz: Die benannte Prozedur muss in der aufrufenden Prozedur sichtbar sein. Zum Beispiel:
 

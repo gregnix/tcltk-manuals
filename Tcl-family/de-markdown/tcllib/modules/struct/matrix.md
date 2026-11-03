@@ -71,7 +71,7 @@ struct::matrix – Matrixobjekte erzeugen und bearbeiten
 
 Dieses Paket stellt einen Befehl zum Erzeugen von Matrizen bereit und Unterbefehle, mit denen sich erzeugte Matrizen bearbeiten lassen.
 
-Eine Matrix ist eine rechteckige Anordnung von Zellen in Zeilen und Spalten. Jede Zelle enthält einen einzelnen Wert beliebiger Art. Jede Zelle lässt sich über ein Paar bei **0** beginnender ganzer Zahlen ansprechen, in der Form {column, row}.
+Eine Matrix ist eine rechteckige Anordnung von Zellen in Zeilen und Spalten. Jede Zelle enthält einen einzelnen Wert beliebiger Art. Jede Zelle lässt sich über ein Paar bei **0** beginnender Ganzzahlen ansprechen, in der Form {column, row}.
 
 Der besondere nichtnumerische Index **end** spricht je nach Zusammenhang die letzte Zeile oder die letzte Spalte einer Matrix an. Indizes der Form **end**-**number** werden vom Ende der Zeile oder Spalte gezählt, genau wie bei gewöhnlichen Tcl-Listen.
 
@@ -87,7 +87,7 @@ Der Hauptbefehl dieses Pakets ist:
 : Dieser Befehl erzeugt ein neues Matrixobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *aMatrix* ist. Mit diesem Befehl lassen sich verschiedene Operationen auf der Matrix ausführen. Er hat die folgende allgemeine Form:
 
     **aMatrix** *option* ?*arg arg ...*?
-    : *option* und die *arg*s legen fest, was der Befehl tut.
+    : *option* und die Argumente *arg* legen fest, was der Befehl tut.
 
 
     Ist *aMatrix* nicht angegeben, erzeugt das Paket selbst einen eindeutigen Namen. Ist eine *source* angegeben, wird die neue Matrix daraus initialisiert. Bei den Operatoren **=**, **:=** und **as** gilt das Argument *source* als Name eines anderen Matrixobjekts, und der Zuweisungsoperator **=** wird ausgeführt. Bei **deserialize** ist *source* ein serialisiertes Matrixobjekt, und **deserialize** wird ausgeführt.
@@ -254,7 +254,7 @@ Matrixobjekte stellen die folgenden Befehle bereit:
 
     Das Ergebnis ist eine Liste mit genau drei Elementen.
 
-    Die ersten beiden Elemente der Liste geben die Zahl der Zeilen und der Spalten der Matrix an, in dieser Reihenfolge. Die Werte sind ganze Zahlen größer oder gleich null.
+    Die ersten beiden Elemente der Liste geben die Zahl der Zeilen und der Spalten der Matrix an, in dieser Reihenfolge. Die Werte sind Ganzzahlen größer oder gleich null.
 
     Das letzte Element der Liste enthält die Werte der serialisierten Matrixzellen, in der Form eines Wertes, wie ihn **get rect** zurückgibt. Leere Zellen rechts und unten in der Matrix dürfen in diesem Wert jedoch fehlen, weil die Größenangabe in der Serialisierung dem Empfänger erlaubt, trotz der fehlenden Werte eine Matrix der richtigen Größe zu erzeugen.
 

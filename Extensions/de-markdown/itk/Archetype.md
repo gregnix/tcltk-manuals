@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-Archetype - Basisklasse für alle Megawidgets von \[incr\\ Tk\]
+Archetype - Basisklasse für alle Megawidgets von \[incr Tk\]
 
 # Vererbung
 

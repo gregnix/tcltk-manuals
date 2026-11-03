@@ -56,9 +56,9 @@ Wenn eine Methode eines Objekts aufgerufen wird, geschieht dies in mehreren Schr
 
 Beim Aufbau der Methodenkette werden Methodenimplementierungen in folgender Reihenfolge gesucht:
 
-1. In die Objekte eingemischten Klassen, in Traversierungsreihenfolge der Klassen. Die Liste der Mixins wird in natürlicher Reihenfolge geprüft.
+1. In den in das Objekt eingemischten Klassen, in Traversierungsreihenfolge der Klassen. Die Liste der Mixins wird in natürlicher Reihenfolge geprüft.
 
-2. In die Klassen des Objekts eingemischten Klassen, wobei Quellen des Einschmischens in Traversierungsreihenfolge der Klassen gesucht werden. Innerhalb jeder Klasse wird die Liste der Mixins in natürlicher Reihenfolge verarbeitet.
+2. In den in die Klassen des Objekts eingemischten Klassen, wobei Quellen des Einmischens in Traversierungsreihenfolge der Klassen gesucht werden. Innerhalb jeder Klasse wird die Liste der Mixins in natürlicher Reihenfolge verarbeitet.
 
 3. Im Objekt selbst.
 

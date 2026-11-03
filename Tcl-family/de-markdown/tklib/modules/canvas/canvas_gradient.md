@@ -36,7 +36,7 @@ canvas::gradient – Canvas mit Farbverlaufshintergrund
 
 Dieses Paket enthält einen Befehl zum Festlegen von Hintergrundverläufen auf Canvas.
 
-*NOTE!* Dieses Paket reserviert das Canvas-Tag **canvas::gradient** für sich.
+*HINWEIS!* Dieses Paket reserviert das Canvas-Tag **canvas::gradient** für sich.
 
 # API
 

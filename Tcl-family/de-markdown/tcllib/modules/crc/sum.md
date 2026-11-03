@@ -41,7 +41,7 @@ Dieses Paket enthält eine ausschließlich in Tcl geschriebene Implementierung d
 # Befehle
 
 **::crc::sum** ?*-bsd* | *-sysv*? ?*-format fmt*? ?*-chunksize size*? \[ *-filename file* | *-channel chan* | *string* \]
-: Der Befehl akzeptiert Zeichenfolgen, einen Dateinamen oder einen Kanal als Eingabe und gibt einen Prüfsummenwert zurück, der mithilfe des Algorithmus **sum(1)** berechnet wurde. Das Ergebnis wird entweder gemäß dem angegebenen Bezeichner *format*(n) oder standardmäßig als vorzeichenlose Ganzzahl (%u) formatiert.
+: Der Befehl akzeptiert Zeichenkettendaten, einen Dateinamen oder einen Kanal als Eingabe und gibt einen Prüfsummenwert zurück, der mithilfe des Algorithmus **sum(1)** berechnet wurde. Das Ergebnis wird entweder gemäß der angegebenen *format*(n)-Formatangabe oder standardmäßig als vorzeichenlose Ganzzahl (%u) formatiert.
 
 
 # Optionen

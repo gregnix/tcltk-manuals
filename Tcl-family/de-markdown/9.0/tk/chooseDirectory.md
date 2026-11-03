@@ -32,7 +32,7 @@ tk\_chooseDirectory - Zeigt einen Dialog zur Verzeichnisauswahl an
 Die Prozedur **tk\_chooseDirectory** zeigt einen Dialog an, in dem der Benutzer ein Verzeichnis auswählen kann. Folgende *option-value*-Paare sind als Befehlszeilenargumente möglich:
 
 [-command]{.lit} [string]{.arg}
-: Legt das Präfix eines Tcl-Befehls fest, der ausgeführt wird, wenn der Benutzer den Dialog nach einer Auswahl schließt. Dieser Rückruf wird nicht aufgerufen, wenn der Benutzer den Dialog abbricht. Der tatsächliche Befehl besteht aus *string*, gefolgt von einem Leerzeichen und dem vom Benutzer im Dialog gewählten Wert. Nur unter macOS verfügbar.
+: Legt das Präfix eines Tcl-Befehls fest, der ausgeführt wird, wenn der Benutzer den Dialog nach einer Auswahl schließt. Diese Rückruffunktion wird nicht aufgerufen, wenn der Benutzer den Dialog abbricht. Der tatsächliche Befehl besteht aus *string*, gefolgt von einem Leerzeichen und dem vom Benutzer im Dialog gewählten Wert. Nur unter macOS verfügbar.
 
 [-initialdir]{.lit} [dirname]{.arg}
 : Legt fest, dass beim Öffnen des Dialogs die Verzeichnisse in *directory* angezeigt werden. Wird dieser Parameter nicht angegeben, ist das Anfangsverzeichnis auf Nicht-Windows-Systemen und auf Windows vor Vista das aktuelle Arbeitsverzeichnis. Unter Vista und neuer ist es das zuletzt vom Benutzer für die Anwendung gewählte Verzeichnis. Gibt der Parameter einen relativen Pfad an, wandelt der Rückgabewert diesen in einen absoluten Pfad um.

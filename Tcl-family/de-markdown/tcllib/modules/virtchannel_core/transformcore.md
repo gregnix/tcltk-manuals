@@ -31,7 +31,7 @@ tcl::transform::core – Grundlegende Unterstützung für reflektierte/virtuelle
 
 # Beschreibung
 
-Das Paket „**tcl::transform::core**“ enthält die Klasse „**TclOO**“, die das allgemeine Verhalten implementiert, das für nahezu jede reflektierte oder virtuelle Transformation des Kanals erforderlich ist (Initialisierung, Finalisierung).
+Das Paket „**tcl::transform::core**“ enthält eine **TclOO**-Klasse, die das allgemeine Verhalten implementiert, das für nahezu jede reflektierte oder virtuelle Transformation des Kanals erforderlich ist (Initialisierung, Finalisierung).
 
 Diese Klasse ist dafür vorgesehen, entweder als Oberklasse einer konkreten Kanal-Klasse verwendet oder in eine solche Klasse eingemischt zu werden.
 
@@ -54,7 +54,7 @@ Die API der Transform-Core-Instanzen stellt lediglich zwei Methoden bereit, die 
 : Diese Methode implementiert das Standardverhalten für die Methode **finalize** der Kanalhandler. Sie löscht sich lediglich selbst.
 
 *objectName* **destroy**
-: Durch das Löschen der Transformationskern-Instanz wird der Kanal geschlossen, für den die Transformation initialisiert wurde; siehe dazu die Methode **initialize**. Wird die Instanz im Rahmen eines Aufrufs von **finalize** gelöscht, geschieht dies nicht, da davon ausgegangen wird, dass der Kanal und die Transformation von Tcl gelöscht werden.
+: Durch das Löschen der Transformationskern-Instanz werden der Kanal und die Transformation geschlossen, für die sie initialisiert wurde; siehe dazu die Methode **initialize**. Wird die Instanz im Rahmen eines Aufrufs von **finalize** gelöscht, geschieht dies nicht, da davon ausgegangen wird, dass der Kanal und die Transformation von Tcl gelöscht werden.
 
 
 # Fehler, Ideen, Rückmeldungen

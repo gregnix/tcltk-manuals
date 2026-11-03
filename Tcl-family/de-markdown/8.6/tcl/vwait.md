@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-vwait - Verarbeitet Events bis eine Variable geschrieben wird
+vwait - Verarbeitet Ereignisse, bis eine Variable geschrieben wird
 
 # Übersicht
 
@@ -29,15 +29,15 @@ vwait - Verarbeitet Events bis eine Variable geschrieben wird
 
 # Beschreibung
 
-Dieser Befehl betritt die Tcl-Event-Schleife zur Verarbeitung von Events und blockiert die Anwendung, wenn keine Events bereitstehen. Er verarbeitet Events weiter, bis ein Event-Handler den Wert der globalen Variable *varName* setzt. Sobald *varName* gesetzt wurde, kehrt der Befehl **vwait** zurück, sobald der Event-Handler, der *varName* geändert hat, abgeschlossen ist. Das Argument *varName* wird stets als Variablenname bezogen auf den globalen Namespace interpretiert, kann aber auf Variablen beliebiger Namespaces verweisen, wenn der vollqualifizierte Name angegeben ist.
+Dieser Befehl tritt in die Tcl-Ereignisschleife ein, um Ereignisse zu verarbeiten, und blockiert die Anwendung, wenn keine Ereignisse bereitstehen. Er verarbeitet Ereignisse weiter, bis ein Ereignisbehandler den Wert der globalen Variable *varName* setzt. Sobald *varName* gesetzt wurde, kehrt der Befehl **vwait** zurück, sobald der Ereignisbehandler, der *varName* geändert hat, abgeschlossen ist. Das Argument *varName* wird stets als Variablenname bezogen auf den globalen Namespace interpretiert, kann aber auf Variablen beliebiger Namespaces verweisen, wenn der vollqualifizierte Name angegeben ist.
 
-In manchen Fällen kehrt **vwait** nicht sofort zurück, nachdem *varName* gesetzt wurden. Das passiert, wenn der Event-Handler, der *varName* setzt, nicht sofort abgeschlossen wird. Setzt etwa ein Event-Handler *varName* und ruft anschließend selbst **vwait** auf, um auf eine andere Variable zu warten, kann er lange nicht zurückkehren. In dieser Zeit ist der oberste **vwait** blockiert und wartet auf den Abschluss des Event-Handlers, er kann also ebenfalls nicht zurückkehren. (Siehe [Verschachtelte vwaits anhand eines Beispiels] unten.)
+In manchen Fällen kehrt **vwait** nicht sofort zurück, nachdem *varName* gesetzt wurde. Das passiert, wenn der Ereignisbehandler, der *varName* setzt, nicht sofort abgeschlossen wird. Setzt etwa ein Ereignisbehandler *varName* und ruft anschließend selbst **vwait** auf, um auf eine andere Variable zu warten, kann er lange nicht zurückkehren. In dieser Zeit ist der oberste **vwait** blockiert und wartet auf den Abschluss des Ereignisbehandlers, er kann also ebenfalls nicht zurückkehren. (Siehe [Verschachtelte vwaits anhand eines Beispiels] unten.)
 
-Zur Klarstellung: *mehrere* **vwait**-*Aufrufe verschachteln sich und laufen nicht parallel*. Der äußerste Aufruf von **vwait** kehrt erst zurück, wenn alle inneren zurückgekehrt sind. Es wird empfohlen, **vwait**-Aufrufe nie zu verschachteln (indem man sie nicht in Event-Callbacks platziert); wenn das nicht möglich ist, sollte man Sperrvariablen einbauen, um alle nicht *strikt* notwendigen reentranten **vwait**-Aufrufe zu verhindern. Beachten Sie, dass synchrone Betriebsarten einiger Tcl-Pakete (z. B. **http**) **vwait** intern verwenden; bei Nutzung der Event-Schleife sind nach Möglichkeit die asynchronen, callback-basierten Betriebsarten dieser Pakete zu bevorzugen.
+Zur Klarstellung: *mehrere* **vwait**-*Aufrufe verschachteln sich und laufen nicht parallel*. Der äußerste Aufruf von **vwait** kehrt erst zurück, wenn alle inneren zurückgekehrt sind. Es wird empfohlen, **vwait**-Aufrufe nie zu verschachteln (indem man sie nicht in Rückruffunktionen für Ereignisse platziert); wenn das nicht möglich ist, sollte man Sperrvariablen einbauen, um alle nicht *strikt* notwendigen reentranten **vwait**-Aufrufe zu verhindern. Beachten Sie, dass synchrone Betriebsarten einiger Tcl-Pakete (z. B. **http**) **vwait** intern verwenden; bei Nutzung der Ereignisschleife sind nach Möglichkeit die asynchronen, auf Rückruffunktionen basierenden Betriebsarten dieser Pakete zu bevorzugen.
 
 # Beispiele
 
-Die Event-Schleife dauerhaft laufen lassen, bis ein Event [exit] aufruft. (Sie können jede Variable verwenden, die sonst nicht vorkommt; der Name *forever* erinnert auf den ersten Blick an die Absicht.)
+Die Ereignisschleife dauerhaft laufen lassen, bis ein Ereignis [exit] aufruft. (Sie können jede Variable verwenden, die sonst nicht vorkommt; der Name *forever* erinnert auf den ersten Blick an die Absicht.)
 
 ```
 vwait forever
@@ -91,7 +91,7 @@ namespace eval example {
 }
 ```
 
-Läuft der Code in einer [coroutine], ist eine Alternative zu **vwait**, mit [yield][coroutine] an eine äußere Event-Schleife zu übergeben und fortgesetzt zu werden, wenn die Variable gesetzt wird oder danach in einem Idle-Moment.
+Läuft der Code in einer [coroutine], ist eine Alternative zu **vwait**, mit [yield][coroutine] an eine äußere Ereignisschleife zu übergeben und fortgesetzt zu werden, wenn die Variable gesetzt wird oder danach in einem Idle-Moment.
 
 ```
 coroutine task apply {{} {

@@ -34,7 +34,7 @@ Mit den **defer**-Befehlen kann ein Entwickler Aktionen so planen, dass sie im R
 # Befehle
 
 **::defer::defer** ?*command*? ?*arg1*? ?*arg2*? ?*argN...*?
-: Verschiebt die Ausführung eines Teils des Codes bis zum Ende des aktuellen Variablenbereichs. Jedes Argument wird mit den anderen verkettet, um das Skript zu bilden, das zum Zeitpunkt der Verschiebung ausgeführt wird. Es können mehrere defer-Anweisungen verwendet werden; diese werden in der Reihenfolge „Last-In, First-Out“ ausgeführt. Der Wert ist ein Bezeichner, der später mit **defer::cancel** verwendet werden kann.
+: Verschiebt die Ausführung eines Teils des Codes bis zum Ende des aktuellen Variablenbereichs. Jedes Argument wird mit den anderen verkettet, um das Skript zu bilden, das zum Zeitpunkt der Verschiebung ausgeführt wird. Es können mehrere defer-Anweisungen verwendet werden; diese werden in der Reihenfolge „Last-In, First-Out“ ausgeführt. Der Rückgabewert ist ein Bezeichner, der später mit **defer::cancel** verwendet werden kann.
 
 **::defer::with** *variableList* *script*
 : Verschiebt die Ausführung eines Skripts und kopiert dabei den aktuellen Wert einiger Variablen, deren Namen in *variableList* festgelegt sind, in das Skript. Das Skript verhält sich wie ein Lambda, wird jedoch auf derselben Ebene wie der Aufruf von **defer::with** ausgeführt. Der Wert wird wie bei **::defer::defer** zurückgegeben
@@ -63,7 +63,7 @@ Mit den **defer**-Befehlen kann ein Entwickler Aktionen so planen, dass sie im R
 
 # Autoren
 
-Roy Keane
+Roy Keene
 
 # Fehler, Ideen, Rückmeldungen
 

@@ -51,7 +51,7 @@ Die folgenden Tcl-Variablen werden von Tk zu verschiedenen Zeitpunkten während 
 Diese Variablen sollten normalerweise nicht vom Anwendungscode gesetzt werden.
 
 **tk::Priv**
-: Diese Variable ist ein Array mit mehreren für Tk private Informationen. Die Elemente von **tk::Priv** werden von Tk-Bibliotheksprozeduren und Standard-Bindungen verwendet. Sie dürfen von keinem Code außerhalb von Tk zugegriffen werden.
+: Diese Variable ist ein Array mit mehreren für Tk private Informationen. Die Elemente von **tk::Priv** werden von Tk-Bibliotheksprozeduren und Standard-Bindungen verwendet. Kein Code außerhalb von Tk darf auf sie zugreifen.
 
 **tk\_textRedraw**
 : siehe unten ...

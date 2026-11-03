@@ -58,7 +58,7 @@ Zur Syntax der (E)BNF selbst
 
 2. Das Konstrukt \[ X \] steht für kein oder ein Vorkommen von X.
 
-3. Das Konstrukt LIST\_BEGIN<X> steht für den Markup-Befehl **list\_begin** mit **X** als Typ-Argument.
+3. Das Konstrukt LIST\_BEGIN<X> steht für den Markup-Befehl [list\_begin][doctools_lang_cmdref] mit **X** als Typ-Argument.
 
 
 Die Syntax:

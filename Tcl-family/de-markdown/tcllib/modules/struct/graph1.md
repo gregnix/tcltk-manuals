@@ -68,7 +68,7 @@ struct::graph\_v1 – Gerichtete Graphobjekte erzeugen und bearbeiten
 Der Befehl [::struct::graph][graph] erzeugt ein neues Graphobjekt mit einem zugehörigen globalen Tcl-Befehl namens *graphName*. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Graphen ausführen. Er hat die folgende allgemeine Form:
 
 **graphName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest.
+: *Option* und die Argumente *arg* legen das genaue Verhalten des Befehls fest.
 
 
 Ein gerichteter Graph ist eine Struktur mit zwei Mengen von Elementen, *Knoten* und *Bögen*, zusammen mit einer Beziehung („Verbundenheit“), die Knoten und Bögen eine allgemeine Struktur gibt.

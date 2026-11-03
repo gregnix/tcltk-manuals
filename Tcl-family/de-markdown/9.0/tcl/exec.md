@@ -49,7 +49,7 @@ Beginnen die anfänglichen Argumente von **exec** mit **-**, werden sie als Befe
 : Markiert das Ende der Schalter. Das folgende Argument wird als erstes *arg* behandelt, auch wenn es mit **-** beginnt.
 
 
-Hat ein *arg* (oder ein Paar von *arg*s) eine der unten beschriebenen Formen, verwendet **exec** es zur Steuerung des Ein- und Ausgabeflusses zwischen den Unterprozessen. Solche Argumente werden nicht an die Unterprozesse übergeben. Bei Formen wie „**<** *fileName*“ kann *fileName* entweder in einem separaten Argument von „**<**“ stehen oder im selben Argument ohne Leerzeichen dazwischen (d. h. „**<***fileName*“).
+Hat ein *arg* (oder ein Paar von *arg*-Argumenten) eine der unten beschriebenen Formen, verwendet **exec** es zur Steuerung des Ein- und Ausgabeflusses zwischen den Unterprozessen. Solche Argumente werden nicht an die Unterprozesse übergeben. Bei Formen wie „**<** *fileName*“ kann *fileName* entweder in einem separaten Argument von „**<**“ stehen oder im selben Argument ohne Leerzeichen dazwischen (d. h. „**<***fileName*“).
 
 **|**
 : Trennt eigenständige Befehle in der Pipeline. Die Standardausgabe des vorhergehenden Befehls wird in die Standardeingabe des nächsten Befehls geleitet.
@@ -97,7 +97,7 @@ Hat ein *arg* (oder ein Paar von *arg*s) eine der unten beschriebenen Formen, ve
 : *FileId* muss der Bezeichner einer geöffneten Datei sein, etwa der Rückgabewert eines früheren Aufrufs von [open]. Sowohl die Standardausgabe des letzten Befehls als auch der Standardfehler aller Befehle werden in die Datei von *fileId* umgeleitet. Die Datei muss zum Schreiben geöffnet worden sein.
 
 
-Wurde die Standardausgabe nicht umgeleitet, gibt der Befehl **exec** die Standardausgabe des letzten Befehls in der Pipeline zurück, sofern nicht „2>@1“ angegeben wurde — in diesem Fall ist auch der Standardfehler enthalten. Beendet ein Befehl in der Pipeline abnormal, wird beendet oder angehalten, gibt **exec** einen Fehler zurück; die Fehlermeldung enthält die Ausgabe der Pipeline, gefolgt von Fehlermeldungen zu den abnormalen Beendigungen; die Rückgabeoption **-errorcode** enthält zusätzliche Informationen zur zuletzt aufgetretenen abnormalen Beendigung. Schreibt ein Befehl auf seine Standardfehlerdatei und ist der Standardfehler nicht umgeleitet und **-ignorestderr** nicht angegeben, gibt **exec** einen Fehler zurück; die Fehlermeldung enthält die Standardausgabe der Pipeline, gefolgt von Meldungen zu abnormalen Beendigungen (falls vorhanden), gefolgt von der Standardfehlerausgabe.
+Wurde die Standardausgabe nicht umgeleitet, gibt der Befehl **exec** die Standardausgabe des letzten Befehls in der Pipeline zurück, sofern nicht „2>@1“ angegeben wurde — in diesem Fall ist auch der Standardfehler enthalten. Wird ein Befehl in der Pipeline abnormal beendet, abgebrochen (killed) oder angehalten, gibt **exec** einen Fehler zurück; die Fehlermeldung enthält die Ausgabe der Pipeline, gefolgt von Fehlermeldungen zu den abnormalen Beendigungen; die Rückgabeoption **-errorcode** enthält zusätzliche Informationen zur zuletzt aufgetretenen abnormalen Beendigung. Schreibt ein Befehl auf seine Standardfehlerdatei und ist der Standardfehler nicht umgeleitet und **-ignorestderr** nicht angegeben, gibt **exec** einen Fehler zurück; die Fehlermeldung enthält die Standardausgabe der Pipeline, gefolgt von Meldungen zu abnormalen Beendigungen (falls vorhanden), gefolgt von der Standardfehlerausgabe.
 
 Ist das letzte Zeichen des Ergebnisses oder der Fehlermeldung ein Zeilenende, wird dieses Zeichen normalerweise aus dem Ergebnis oder der Fehlermeldung entfernt. Das entspricht anderen Tcl-Rückgabewerten, die normalerweise nicht mit Zeilenenden enden. Ist jedoch **-keepnewline** angegeben, bleibt das abschließende Zeilenende erhalten.
 
@@ -105,12 +105,12 @@ Wird die Standardeingabe nicht mit „<“, „<<“ oder „<@“ umgeleitet, s
 
 Ist das letzte *arg* „&“, wird die Pipeline im Hintergrund ausgeführt. In diesem Fall gibt **exec** eine Liste zurück, deren Elemente die Prozesskennungen aller Unterprozesse in der Pipeline sind. Die Standardausgabe des letzten Befehls in der Pipeline geht auf die Standardausgabe der Anwendung, sofern nicht umgeleitet; die Fehlerausgabe aller Befehle in der Pipeline geht auf die Standardfehlerdatei der Anwendung, sofern nicht umgeleitet.
 
-Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen Schrägstrich, werden die Verzeichnisse in der PATH-Umgebungsvariable nach einem ausführbaren Programm mit diesem Namen durchsucht. Enthält der Name einen Schrägstrich, muss er auf ein aus der aktuellen Verzeichnisstruktur erreichbares ausführbares Programm verweisen. Auf die Befehlsargumente werden keine „glob“-Erweiterungen oder andere shell-ähnliche Ersetzungen angewendet.
+Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen Schrägstrich, werden die Verzeichnisse in der PATH-Umgebungsvariable nach einem ausführbaren Programm mit diesem Namen durchsucht. Enthält der Name einen Schrägstrich, muss er auf ein vom aktuellen Verzeichnis aus erreichbares ausführbares Programm verweisen. Auf die Befehlsargumente werden keine „glob“-Erweiterungen oder andere shell-ähnliche Ersetzungen angewendet.
 
 # Portabilitätsfragen
 
 **Windows** (alle Versionen)
-: Lesen von oder Schreiben auf einen Socket mit der Notation „**@** *fileId*“ funktioniert nicht. Beim Lesen von einem Socket hängt eine 16-Bit-DOS-Anwendung, eine 32-Bit-Anwendung kehrt sofort mit Dateiende zurück. Schreibt eine der beiden Anwendungstypen auf einen Socket, werden die Informationen stattdessen an die Konsole gesendet, falls vorhanden, oder verworfen.
+: Lesen von oder Schreiben auf einen Socket mit der Notation „**@** *fileId*“ funktioniert nicht. Beim Lesen von einem Socket hängt eine 16-Bit-DOS-Anwendung, eine 32-Bit-Anwendung kehrt sofort mit Dateiende zurück. Schreibt einer der beiden Anwendungstypen auf einen Socket, werden die Informationen stattdessen an die Konsole gesendet, falls vorhanden, oder verworfen.
 
     Beachten Sie, dass die derzeitige Escape- bzw. Quoting-Behandlung von Argumenten unter Windows nur mit ausführbaren Programmen funktioniert, die CommandLineToArgv, die CRT-Bibliothek oder Ähnliches verwenden, sowie mit Windows-Batchdateien (außer dem Zeilenende, siehe unten). Obwohl es der übliche Escape-Algorithmus ist, ist in Wirklichkeit entscheidend, wie das ausführbare Programm die Befehlszeile parst (bzw. in einzelne Argumente aufteilt).
 
@@ -118,7 +118,7 @@ Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen 
 
     **Argument-Quoting**
 
-    Die Argumente des Befehls **exec** werden den Argumenten des aufgerufenen Programms zugeordnet. Zusätzliche Anführungszeichen (**"**) werden bei Bedarf automatisch um Argumente gesetzt. Sonderzeichen werden durch Einfügen von Backslash-Zeichen escaped.
+    Die Argumente des Befehls **exec** werden den Argumenten des aufgerufenen Programms zugeordnet. Zusätzliche Anführungszeichen (**"**) werden bei Bedarf automatisch um Argumente gesetzt. Sonderzeichen werden durch vorangestellte Backslash-Zeichen maskiert.
 
     Die MS-Windows-Umgebung führt in den Argumenten genannte Programme aus, und aufgerufene Batchdateien (conspec) ersetzen Umgebungsvariablen, was Nebenwirkungen (Sicherheitslücken) haben oder bestehendes Quoting zerstören kann (z. B. wenn die Umgebungsvariable ein Sonderzeichen wie **"** enthält). Beispiele:
 
@@ -130,9 +130,9 @@ Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen 
       ENV X: CONTENT OF X
     ```
 
-    Folgende Formatierung wird automatisch auf jedes Argumentelement angewendet, um die Ausführung von Unterprogrammen zu vermeiden: Jedes Argument, das ein Sonderzeichen (**&**, **|**, **^**, **<**, **>**, **!**, **(**, **)**, **(**, **%**) enthält, wird automatisch in Anführungszeichen (**"**) gesetzt. Jedes Daten-Anführungszeichen wird durch Einfügen von Backslash-Zeichen escaped.
+    Folgende Formatierung wird automatisch auf jedes Argumentelement angewendet, um die Ausführung von Unterprogrammen zu vermeiden: Jedes Argument, das ein Sonderzeichen (**&**, **|**, **^**, **<**, **>**, **!**, **(**, **)**, **(**, **%**) enthält, wird automatisch in Anführungszeichen (**"**) gesetzt. Jedes Daten-Anführungszeichen wird durch vorangestellte Backslash-Zeichen maskiert.
 
-    Die automatische Auflösung von Umgebungsvariablen mit „**%var%**“ ist kritisch, hat aber mehr Nutzen als Gefahr und wird nicht escaped.
+    Die automatische Auflösung von Umgebungsvariablen mit „**%var%**“ ist kritisch, hat aber mehr Nutzen als Gefahr und wird nicht maskiert.
 
     Das Tk-Konsolen-Text-Widget bietet keine echten Standard-E/A-Fähigkeiten. Unter Tk sehen alle Anwendungen bei Umleitung von der Standardeingabe sofort Dateiende; auf Standardausgabe oder Standardfehler umgeleitete Informationen werden verworfen.
 
@@ -162,7 +162,7 @@ Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen 
     - Die in PATH aufgeführten Verzeichnisse.
 
 
-    Um Shell-eingebaute Befehle wie **dir** und **copy** auszuführen, muss der Aufrufer den gewünschten Befehl mit „**cmd.exe /c** “ voranstellen, weil eingebaute Befehle nicht als ausführbare Programme implementiert sind.
+    Um Shell-eingebaute Befehle wie **dir** und **copy** auszuführen, muss der Aufrufer dem gewünschten Befehl „**cmd.exe /c** “ voranstellen, weil eingebaute Befehle nicht als ausführbare Programme implementiert sind.
 
 **Unix** (einschließlich macOS)
 : Der Befehl **exec** ist voll funktionsfähig und arbeitet wie beschrieben.
@@ -220,7 +220,7 @@ exec awk {{sum += $1} END {print sum}} numbers.list
 
 ## Mit Globbing arbeiten
 
-Bei Aufrufen mit Shell-Globbing ist zu bedenken, dass Tcl standardmäßig kein Globbing durchführt und Dinge nicht in mehrere Argumente expandiert. Stattdessen schreibt man z. B.:
+Bei Aufrufen mit Shell-Globbing ist zu bedenken, dass Tcl standardmäßig kein Globbing durchführt und Dinge nicht in mehrere Argumente expandiert. Schreiben Sie stattdessen z. B.:
 
 ```
 exec ls -l {*}[glob *.tcl]
@@ -228,7 +228,7 @@ exec ls -l {*}[glob *.tcl]
 
 ## Mit vom Benutzer gelieferten Shell-Skriptfragmenten arbeiten
 
-Eine nützliche Technik ist, Benutzern eines Skripts ein Shell-Skriptfragment ausführen zu lassen, dem auf der Standardeingabe vom Tcl-Programm erzeugte Daten übergeben werden. Das ist bei *lpr* zum Drucken üblich. Am einfachsten übergibt man das Benutzerskript der Shell des Benutzers zur Verarbeitung — das vermeidet viel Komplexität beim Parsen anderer Sprachen.
+Eine nützliche Technik ist, Benutzern eines Skripts die Möglichkeit zu geben, ein auszuführendes Shell-Skriptfragment anzugeben, dem auf der Standardeingabe vom Tcl-Programm erzeugte Daten übergeben werden. Das ist bei *lpr* zum Drucken üblich. Am einfachsten übergeben Sie das Benutzerskript der Shell des Benutzers zur Verarbeitung — das vermeidet viel Komplexität beim Parsen anderer Sprachen.
 
 ```
 set lprScript [get from user...]
@@ -283,7 +283,7 @@ exec {*}[auto_execok dir] *.tcl
 
 ## Mit nativen Dateinamen arbeiten
 
-Viele Windows-Programme verlangen Dateinamen mit Backslashes als Pfadtrenner. Dazu dient [file nativename][file]. Um ein Verzeichnis (auf NTFS) zu verschlüsseln, sodass nur der aktuelle Benutzer darauf zugreifen kann, braucht man *CIPHER*, etwa so:
+Viele Windows-Programme verlangen Dateinamen mit Backslashes als Pfadtrenner. Dazu dient [file nativename][file]. Um ein Verzeichnis (auf NTFS) zu verschlüsseln, sodass nur der aktuelle Benutzer darauf zugreifen kann, benötigen Sie den Befehl *CIPHER*, etwa so:
 
 ```
 set secureDir [file join [file home] Desktop/SecureDirectory]

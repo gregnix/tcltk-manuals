@@ -75,11 +75,11 @@ BESCHREIBUNG
 WIDGET-SPEZIFISCHE OPTIONEN
 
 **-modifycmd**
-:  Legt einen Tcl-Befehl fest, der aufgerufen wird, wenn der Wert der SpinBox geändert wird. 
+:  Legt einen Tcl-Befehl fest, der aufgerufen wird, wenn der Benutzer den Wert der SpinBox ändert. 
 
 
 **-range**
-:  Legt eine Liste aus drei ganzen Zahlen (oder reellen Zahlen) fest, die Minimum, Maximum und Inkrement der SpinBox beschreiben. 
+:  Legt eine Liste aus drei Ganzzahlen (oder reellen Zahlen) fest, die Minimum, Maximum und Inkrement der SpinBox beschreiben. 
 
 
 **-values**

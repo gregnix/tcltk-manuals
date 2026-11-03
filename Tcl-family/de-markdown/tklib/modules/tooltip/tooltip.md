@@ -44,7 +44,7 @@ Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden 
     : Fragt die Konfigurationsoptionen des Tooltips ab oder ändert sie. Unterstützt werden **-backgroud**, **-foreground** und **-font**. Ohne *option* gibt der Befehl ein Dictionary der Optionswerte zurück. Mit einer *option* ohne Wert gibt er den Wert dieser Option zurück. Sonst setzt er die angegebenen *option*s auf die zugehörigen *value*s.
 
     **delay** ?*millisecs*?
-    : Fragt die Hover-Verzögerung ab oder setzt sie. Das ist die Zeit, die der Zeiger über dem Widget bleiben muss, bevor der Tooltip erscheint. Die Verzögerung wird in Millisekunden angegeben und muss mindestens 50 ms betragen. Ohne Argument wird die aktuelle Verzögerung zurückgegeben.
+    : Fragt die Hover-Verzögerung ab oder setzt sie. Das ist die Zeit, die der Mauszeiger über dem Widget bleiben muss, bevor der Tooltip erscheint. Die Verzögerung wird in Millisekunden angegeben und muss mindestens 50 ms betragen. Ohne Argument wird die aktuelle Verzögerung zurückgegeben.
 
     **fade** ?*boolean*?
     : Schaltet das Ausblenden des Tooltips ein oder aus. Unter Win32 und Aqua ist das Ausblenden vorgegeben. Bei Leave-Ereignissen blendet der Tooltip aus, anstatt zu verschwinden.
@@ -53,7 +53,7 @@ Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden 
     : siehe unten ...
 
     **off**
-    : Alle Tooltips deaktivieren
+    : Deaktiviert alle Tooltips
 
     **enable**
     : siehe unten ...
@@ -80,7 +80,7 @@ Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden 
     : Der angegebene Text *info* erscheint als zusätzliche Angabe unter der primären Tooltip-*message*.
 
     **-items** *items*
-    : Diese Option dient dazu, einen Tooltip für Elemente im Canvas, in der listbox oder ttk::treview festzulegen. Beim Canvas-Widget muss das Element bereits im Canvas vorhanden sein und wird über eine **find withtag**-Abfrage ermittelt. Bei Listbox- und ttk::treview-Widgets können die Elemente zu einem späteren Zeitpunkt erstellt werden; der Programmierer ist jedoch dafür verantwortlich, die Verknüpfung zwischen dem Index des Listbox- oder ttk::treview-Elements und dem entsprechenden Tooltip zu verwalten. Wenn die Elemente der Listbox oder von ttk::treview neu angeordnet werden, müssen die Tooltips angepasst werden.
+    : Diese Option dient dazu, einen Tooltip für Elemente im Canvas, in der Listbox oder in ttk::treview festzulegen. Beim Canvas-Widget muss das Element bereits im Canvas vorhanden sein und wird über eine **find withtag**-Abfrage ermittelt. Bei Listbox- und ttk::treview-Widgets können die Elemente zu einem späteren Zeitpunkt erstellt werden; der Programmierer ist jedoch dafür verantwortlich, die Verknüpfung zwischen dem Index des Listbox- oder ttk::treview-Elements und dem entsprechenden Tooltip zu verwalten. Wenn die Elemente der Listbox oder von ttk::treview neu angeordnet werden, müssen die Tooltips angepasst werden.
 
         Handelt es sich bei dem Widget nicht um ein Canvas-, Listbox- oder ttk::treview-Widget, wird ein Fehler ausgelöst.
 

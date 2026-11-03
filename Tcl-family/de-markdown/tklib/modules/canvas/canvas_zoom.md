@@ -27,7 +27,7 @@ canvas::zoom – Zoom-Steuerung für canvas::sqmap
 
 # Beschreibung
 
-Dieses Paket enthält ein Widget, mit dem der Benutzer einer Kartenanzeige den Zoomfaktor steuern kann.
+Dieses Paket enthält ein Widget, mit dem der Benutzer einer Kartenanzeige die Zoomstufe steuern kann.
 
 # API
 
@@ -43,7 +43,7 @@ Dieses Paket enthält ein Widget, mit dem der Benutzer einer Kartenanzeige den Z
 : Der Wert für diese Option lautet entweder **vertical** oder **horizontal** und legt die Ausrichtung der Hauptachse des Widgets fest. Der Standardwert ist **vertical**.
 
 **-levels**
-: Der Wert für diese Option ist eine nicht-negative ganze Zahl. Er legt die Anzahl der zu unterstützenden Zoomstufen fest.
+: Der Wert für diese Option ist eine nicht-negative Ganzzahl. Er legt die Anzahl der zu unterstützenden Zoomstufen fest.
 
 **-variable**
 : Der Wert für diese Option ist der Name einer globalen oder einer in einem Namespace definierten Variable, die mit dem Widget verknüpft ist. Änderungen der Zoomstufe, die am Widget vorgenommen werden, werden an diese Variable weitergegeben, und umgekehrt werden Änderungen an der Variablen in das Widget übernommen.

@@ -76,14 +76,14 @@ Die folgenden Befehle stellt das Paket TclTLS bereit. Beispiele stehen unter [Be
 : Setzt optional die Vorgaben, die **tls::socket** verwendet. Ein direkter Aufruf von **tls::import** lässt die Werte dieses Befehls ohne Wirkung. Der Befehl kennt dieselben Optionen wie **tls::socket**. Die Optionen sollten auf die TLS-bezogenen beschränkt bleiben.
 
 **tls::socket** ?*-option*? ?*value*? ?*-option value ...*? *host* *port*
-: Hilfsfunktion. Die Funktion stellt die Verbindung über die Befehle **socket** und **tls::import** her, verhält sich wie der Tcl-Befehl **socket** und kennt zusätzlich die Optionen von **tls::import** sowie eine weitere Option. Zurück kommt die Kanal-Kennung des neuen Sockets. Die zusätzliche Option:
+: Hilfsfunktion. Die Funktion stellt die Verbindung über die Befehle **socket** und **tls::import** her, verhält sich wie der Tcl-Befehl **socket** und kennt zusätzlich die Optionen von **tls::import** sowie eine weitere Option. Zurück kommt der Kanalbezeichner des neuen Sockets. Die zusätzliche Option:
 
     **-autoservername** *bool*
     : Bei **true** wird das Argument **-servername** automatisch auf das Argument *host* gesetzt. Vor TclTLS 2.0 ist die Vorgabe **false**. Ab TclTLS 2.0 ist die Vorgabe **true**, sofern **-servername** nicht ebenfalls angegeben ist.
 
 
 **tls::socket** **-server** *command* ?*-option*? ?*value*? ?*-option value ...*? *port*
-: Wie der vorige Befehl, legt aber einen Server-Socket an, an den sich Klienten verbinden, analog zu **socket -server**. Zurück kommt die Kanal-Kennung des neuen Sockets.
+: Wie der vorige Befehl, legt aber einen Server-Socket an, an den sich Klienten verbinden, analog zu **socket -server**. Zurück kommt der Kanalbezeichner des neuen Sockets.
 
 **tls::import** *channel* ?*-option*? ?*value*? ?*-option value ...*?
 : siehe unten ...
@@ -116,7 +116,7 @@ Die folgenden Befehle stellt das Paket TclTLS bereit. Beispiele stehen unter [Be
     : Legt die Liste der Cipher-Suites für TLS 1.3 fest, als mit Doppelpunkt "**:**" getrennte Liste von Suite-Namen. Die vollständige Liste gültiger Werte steht in der Dokumentation von [OpenSSL](https://docs.openssl.org/master/man1/openssl-ciphers/#options). Diese Option ist neu in TclTLS 1.8.
 
     **-command** *callback*
-    : Legt den Rückrufbefehl fest, der während des Handshakes an mehreren Stellen aufgerufen wird und Fehler, Ablaufinformationen und Protokollnachrichten übergibt. Einzelheiten stehen unter [Rückrufoptionen].
+    : Legt den Callback-Befehl fest, der während des Handshakes an mehreren Stellen aufgerufen wird und Fehler, Ablaufinformationen und Protokollnachrichten übergibt. Einzelheiten stehen unter [Rückrufoptionen].
 
     **-dhparams** *filename*
     : Legt die Datei mit den Parametern für Diffie-Hellman (DH) fest.
@@ -131,7 +131,7 @@ Die folgenden Befehle stellt das Paket TclTLS bereit. Beispiele stehen unter [Be
     : Erzwingt, dass dieser Kanal dieselbe Struktur *SSL\_CTX* nutzt wie der angegebene Kanal *channel* und damit Konfiguration, Rückruffunktionen und Weiteres teilt.
 
     **-password** *callback*
-    : Legt den Rückrufbefehl fest, den OpenSSL aufruft, wenn ein Passwort gebraucht wird. Üblich ist das zum Entsperren des privaten Schlüssels eines Zertifikats. Die Rückruffunktion gibt eine Passwort-Zeichenkette zurück. Diese Option hat sich in TclTLS 1.8 geändert. Einzelheiten stehen unter [Rückrufoptionen].
+    : Legt den Callback-Befehl fest, den OpenSSL aufruft, wenn ein Passwort gebraucht wird. Üblich ist das zum Entsperren des privaten Schlüssels eines Zertifikats. Die Rückruffunktion gibt eine Passwort-Zeichenkette zurück. Diese Option hat sich in TclTLS 1.8 geändert. Einzelheiten stehen unter [Rückrufoptionen].
 
     **-post\_handshake** *bool*
     : Erlaubt Aktualisierungen des Sitzungstickets nach dem Handshake. Diese Option ist neu in TclTLS 1.8.
@@ -173,7 +173,7 @@ Die folgenden Befehle stellt das Paket TclTLS bereit. Beispiele stehen unter [Be
     : Schaltet TLS v1.3 ein. Die Vorgabe ist **true**. Verfügbar erst ab OpenSSL 1.1.1 und TclTLS 1.7.
 
     **-validatecommand** *callback*
-    : Legt den Rückrufbefehl fest, der während der Protokollverhandlung die Zertifikate der Gegenstelle und weitere Konfiguration prüft. Tcl-Skripte können damit eine eigene Zertifikatsprüfung zusätzlich zur Vorgabe von OpenSSL ausführen. Das Skript gibt den booleschen Wert wahr zurück, damit die Verhandlung weiterläuft. Einzelheiten stehen unter [Rückrufoptionen]. Diese Option ist neu in TclTLS 1.8.
+    : Legt den Callback-Befehl fest, der während der Protokollverhandlung die Zertifikate der Gegenstelle und weitere Konfiguration prüft. Tcl-Skripte können damit eine eigene Zertifikatsprüfung zusätzlich zur Vorgabe von OpenSSL ausführen. Das Skript gibt den booleschen Wert wahr zurück, damit die Verhandlung weiterläuft. Einzelheiten stehen unter [Rückrufoptionen]. Diese Option ist neu in TclTLS 1.8.
 
 
 **tls::handshake** *channel*
@@ -421,7 +421,7 @@ Die folgenden Befehle stellt das Paket TclTLS bereit. Beispiele stehen unter [Be
 
 ## PKI und Zertifikate
 
-Mit der Public Key Infrastructure (PKI) erzeugt jeder Benutzer einen privaten Schlüssel, den nur er kennt, und einen öffentlichen Schlüssel, den er mit anderen zum Ver- und Entschlüsseln austauscht. Der Ablauf ist: der Absender verschlüsselt seine Daten mit seinem privaten Schlüssel und dem öffentlichen Schlüssel des Empfängers. Die Daten gehen dann an den Empfänger. Entsprechend entschlüsselt der Empfänger mit seinem privaten Schlüssel und dem öffentlichen Schlüssel des Absenders. Das sichert die Unversehrtheit der Daten, damit sie unterwegs nicht gelesen oder verändert werden können. Der private Schlüssel steht in den Optionen **-key** und **-keyfile**. Das Passwort steht in der Option **-password**.
+Mit der Public Key Infrastructure (PKI) erzeugt jeder Benutzer einen privaten Schlüssel, den nur er kennt, und einen öffentlichen Schlüssel, den er mit anderen zum Ver- und Entschlüsseln austauscht. Der Ablauf ist: der Absender verschlüsselt seine Daten mit seinem privaten Schlüssel und dem öffentlichen Schlüssel des Empfängers. Die Daten gehen dann an den Empfänger. Entsprechend entschlüsselt der Empfänger mit seinem privaten Schlüssel und dem öffentlichen Schlüssel des Absenders. Das sichert die Unversehrtheit der Daten, damit sie unterwegs nicht gelesen oder verändert werden können. Der private Schlüssel steht in den Optionen **-key** und **-keyfile**. Wie das Passwort bereitgestellt wird, beschreibt die Option **-password**.
 
 Für die Authentisierung, also dafür, dass jemand der ist, der er zu sein behauptet, liegen der öffentliche Schlüssel und die Identitätsangaben in einem X.509-Zertifikat, und eine Zertifizierungsstelle (CA) authentisiert dieses Zertifikat, das heißt, sie signiert es. Die Zertifikate werden beim TLS-Start ausgetauscht und gegen die Wurzelzertifikate der CA geprüft. Das erledigt OpenSSL über die Optionen **-request** und **-require**. Wo die CA-Zertifikate liegen, steht in den Optionen **-cadir**, **-cadir** und **-castore**. In einer späteren Ausgabe können sie zusätzlich gegen die Certificate Revocation List (CRL) widerrufener Zertifikate geprüft werden. Zertifikate können auch selbst signiert sein. Voreingestellt gelten sie nicht als vertrauenswürdig, solange sie nicht in den Zertifikatsspeicher aufgenommen sind.
 
@@ -457,7 +457,7 @@ In TclTLS 1.8 und älter ist die Zertifikatsprüfung voreingestellt *nicht* eing
 
 - Unter MS Windows kann OpenSSL ab Version 3.2 den eingebauten Windows-Zertifikatsspeicher ansprechen. Dafür steht die Option **-castore** auf "**org.openssl.winstore://**". In TclTLS 2.0 ist das der Vorgabewert, wenn **-cadir**, **-cadir** und **-castore** nicht angegeben sind.
 
-- Ist OpenSSL nicht installiert oder liegen die CA-Zertifikate nicht im PEM-Format vor, müssen die CA-Zertifikate geladen und mit der Software installiert werden. Das CURL-Team stellt sie unter [CA-Zertifikate aus Mozilla](https://curl.se/docs/caextract.html) in der Datei "*cacert.pem*" bereit. Danach zeigen die Umgebungsvariablen **SSL\_CERT\_DIR** und/oder **SSL\_CERT\_FILE** oder die Optionen **-cadir** oder **-cafile** auf den Installationsort dieser Datei. Die Datei aktuell zu halten, liegt beim Anwender.
+- Ist OpenSSL nicht installiert oder liegen die CA-Zertifikate nicht im PEM-Format vor, müssen die CA-Zertifikate geladen und mit der Software installiert werden. Das CURL-Team stellt sie unter [CA-Zertifikate aus Mozilla](https://curl.se/docs/caextract.html) in der Datei "*cacert.pem*" bereit. Danach müssen die Umgebungsvariablen **SSL\_CERT\_DIR** und/oder **SSL\_CERT\_FILE** oder die Optionen **-cadir** oder **-cafile** auf den Installationsort dieser Datei zeigen. Die Datei aktuell zu halten, liegt beim Anwender.
 
 
 # Rückrufoptionen
@@ -537,16 +537,16 @@ Die Rückruffunktion der Option **-password** ruft TclTLS auf, wenn OpenSSL ein 
 
 ## Werte für den Prüfrückruf
 
-Die Rückruffunktion der Option **-validatecommand** wird während des Handshakes aufgerufen, damit die Anwendung die übergebenen Werte prüft. Die möglichen Argumente des Rückrufskripts stehen unten. Ist keiner angegeben, nimmt OpenSSL alle gültigen Zertifikate und Erweiterungen an. Zum Ablehnen des Wertes und Abbrechen der Verbindung gibt die Rückruffunktion 0 zurück. Zum Annehmen und Fortsetzen gibt er 1 zurück. Zum Ablehnen bei fortgesetzter Verbindung gibt er 2 zurück. Diese Form ist neu in TclTLS 1.8.
+Die Rückruffunktion der Option **-validatecommand** wird während des Handshakes aufgerufen, damit die Anwendung die übergebenen Werte prüft. Die möglichen Argumente des Rückrufskripts stehen unten. Ist keine angegeben, nimmt OpenSSL alle gültigen Zertifikate und Erweiterungen an. Zum Ablehnen des Wertes und Abbrechen der Verbindung gibt die Rückruffunktion 0 zurück. Zum Annehmen und Fortsetzen gibt sie 1 zurück. Zum Ablehnen bei fortgesetzter Verbindung gibt sie 2 zurück. Diese Form ist neu in TclTLS 1.8.
 
 **alpn** *channelId protocol match*
-: Auf Servern wird diese Form aufgerufen, wenn die ALPN-Erweiterung des Klienten ankommt. Ist *match* wahr, ist *protocol* die erste Option **-alpn**, die Klient und Server gemeinsam haben. Sonst wird das erste vom Klienten angegebene Protokoll verwendet. Diese Form kommt nach den Formen **hello** und **sni**.
+: Auf Servern wird diese Form aufgerufen, wenn die ALPN-Erweiterung des Klienten ankommt. Ist *match* wahr, ist *protocol* die erste Option **-alpn**, die Klient und Server gemeinsam haben. Sonst wird das erste vom Klienten angegebene Protokoll verwendet. Diese Form kommt nach den Formen hello und SNI.
 
 **hello** *channelId servername session\_id*
-: Auf Servern wird diese Form bei der Verarbeitung der Client-Hello-Nachricht aufgerufen. Der Server kann damit das passende Zertifikat für den Klienten wählen und die Konfiguration zu diesem Servernamen anpassen. Diese Form kommt vor den Formen **sni** und **alpn**.
+: Auf Servern wird diese Form bei der Verarbeitung der Client-Hello-Nachricht aufgerufen. Der Server kann damit das passende Zertifikat für den Klienten wählen und die Konfiguration zu diesem Servernamen anpassen. Diese Form kommt vor den Formen SNI und ALPN.
 
 **sni** *channelId servername*
-: Auf Servern wird diese Form aufgerufen, wenn die Erweiterung Server Name Indication (SNI) ankommt. Das Argument *servername* ist der vom Klienten angegebene Servername aus der Option **-servername**. Unterstützt ein Server mehrere Namen, kann so das richtige Zertifikat verwendet werden. Diese Form kommt nach **hello** und vor **alpn**.
+: Auf Servern wird diese Form aufgerufen, wenn die Erweiterung Server Name Indication (SNI) ankommt. Das Argument *servername* ist der vom Klienten angegebene Servername aus der Option **-servername**. Unterstützt ein Server mehrere Namen, kann so das richtige Zertifikat verwendet werden. Diese Form kommt nach hello und vor ALPN.
 
 **verify** *channelId depth cert status error*
 : Diese Form wird von OpenSSL aufgerufen, wenn von der Gegenstelle ein neues Zertifikat ankommt. Der Klient kann das Prüfergebnis ansehen und entscheiden, ob es weitergeht. Die Rückruffunktion läuft für jedes Zertifikat der Kette. Diese Form lag vor TclTLS 1.8 bei **-command**. Die Argumente:

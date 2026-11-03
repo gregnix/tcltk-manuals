@@ -38,7 +38,7 @@ coroutine, yield, yieldto, coroinject, coroprobe - Coroutinen erzeugen und Werte
 
 Der Befehl **coroutine** erzeugt einen neuen Coroutine-Kontext (mit zugehörigem Befehl) namens *name* und führt diesen Kontext aus, indem er *command* aufruft und die übrigen Argumente ohne weitere Interpretation übergibt. Kehrt *command* normal oder mit einer Ausnahme zurück (z. B. einem Fehler), wird der Coroutine-Kontext *name* gelöscht.
 
-Innerhalb des Kontexts können mit **yield** Werte als Ergebnisse erzeugt werden; fehlt *value*, wird die leere Zeichenkette verwendet. Beim Aufruf von **yield** wird die Ausführung des Kontexts ausgesetzt und der Befehl **coroutine** gibt das Argument von **yield** zurück. Die Ausführung des Kontexts kann fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit dem *einen* Wert, der als Ergebnis des **yield**-Aufrufs gelten soll, der den Kontext ausgesetzt hat. Liefert der Coroutine-Kontext nie **yield** und kehrt stattdessen konventionell zurück, ist das Ergebnis von **coroutine** das Ergebnis der Auswertung des Kontexts.
+Innerhalb des Kontexts können mit **yield** Werte als Ergebnisse erzeugt werden; fehlt *value*, wird die leere Zeichenkette verwendet. Beim Aufruf von **yield** wird die Ausführung des Kontexts ausgesetzt und der Befehl **coroutine** gibt das Argument von **yield** zurück. Die Ausführung des Kontexts kann fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit dem *einen* Wert, der als Ergebnis des **yield**-Aufrufs gelten soll, der den Kontext ausgesetzt hat. Führt der Coroutine-Kontext nie **yield** aus und kehrt stattdessen konventionell zurück, ist das Ergebnis von **coroutine** das Ergebnis der Auswertung des Kontexts.
 
 Die Coroutine kann die Ausführung auch mit **yieldto** aussetzen, der statt zurückzukehren die Ausführung an einen Befehl *command* (im Kontext der Coroutine aufgelöst) übergibt, dem *beliebig viele* Argumente übergeben werden können. Da jede Coroutine einen Kontextbefehl hat, kann **yieldto** die Kontrolle direkt von einer Coroutine zur anderen übergeben (sinnvoll nur, wenn beide Coroutinen das erwarten), aber *jeder* Befehl kann Ziel sein. Wurde eine Coroutine auf diese Weise ausgesetzt, kann die Coroutine-Verarbeitung fortgesetzt werden, indem der Kontextbefehl aufgerufen wird — optional mit beliebig vielen Argumenten. Der Rückgabewert des **yieldto**-Aufrufs ist die Liste der Argumente, die an den Kontextbefehl übergeben wurden; der Aufrufer entscheidet, was damit geschieht.
 
@@ -50,7 +50,7 @@ proc yieldMultiple {value} {
 }
 ```
 
-Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit [info coroutine][info] abfragen. Gibt es Lösch-Spuren auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
+Die Coroutine kann auch gelöscht werden, indem der Befehl *name* zerstört wird; der Name der aktuellen Coroutine lässt sich mit [info coroutine][info] abfragen. Gibt es Lösch-Traces (siehe trace) auf Variablen in der Coroutine-Implementierung, werden sie ausgelöst, wenn die Coroutine explizit gelöscht wird (oder natürlich, wenn der Befehl konventionell zurückkehrt).
 
 Zum Zeitpunkt des Aufrufs von *command* ist der aktuelle Namespace der globale Namespace, und es gibt keine Stackframes darüber (im Sinne von [upvar] und [uplevel]). Welcher Befehl aufgerufen wird, wird jedoch im Namespace bestimmt, aus dem **coroutine** aufgerufen wurde.
 
@@ -103,7 +103,7 @@ for {set i 0} {$i < 10} {incr i} {
 }
 ```
 
-Dieses Beispiel zeigt Coroutinen zur Implementierung des klassischen Sieb des Eratosthenes zur Primzahlsuche. Beachten Sie die Erzeugung von Coroutinen innerhalb einer Coroutine.
+Dieses Beispiel zeigt Coroutinen zur Implementierung des klassischen Siebs des Eratosthenes zur Primzahlsuche. Beachten Sie die Erzeugung von Coroutinen innerhalb einer Coroutine.
 
 ```
 proc filterByFactor {source n} {
@@ -147,7 +147,7 @@ coroutine j1 juggler Larry [
         coroutine j3 juggler Moe j1]] "Nyuck!Nyuck!Nyuck!"
 ```
 
-[Dieses Beispiel zeigt eine einfache Coroutine, die nicht-leere Werte sammelt und ohne Argument eine Liste davon zurückgibt. Es zeigt auch, wie man in die Coroutine hineinschauen und die Eingabe einmalig ändern kann.]{version="TIP383"}
+[Dieses Beispiel zeigt eine einfache Coroutine, die nicht-leere Werte sammelt und ohne Argument eine Liste davon zurückgibt. Es zeigt auch, wie sich in die Coroutine hineinschauen und die Eingabe einmalig ändern lässt.]{version="TIP383"}
 
 ```
 proc collectorImpl {} {
@@ -207,7 +207,7 @@ namespace eval demo {
 }
 ```
 
-Das erzeugt die unten stehende Ausgabe. Insbesondere ist Stack-Manipulation erfolgt (Vergleich der Ebenen der ersten und zweiten Zeile), und die übergeordnete Ebene in der Coroutine ist der globale Namespace. Coroutine-Namen sind ohne Qualifizierung lokal zum aktuellen Namespace, und Coroutinen können in der Tiefe **yield**en (z. B. in aufgerufenen Prozeduren).
+Das erzeugt die unten stehende Ausgabe. Insbesondere ist Stack-Manipulation erfolgt (Vergleich der Ebenen der ersten und zweiten Zeile), und die übergeordnete Ebene in der Coroutine ist der globale Namespace. Coroutine-Namen sind ohne Qualifizierung lokal zum aktuellen Namespace, und Coroutinen können in der Tiefe **yield** ausführen (z. B. in aufgerufenen Prozeduren).
 
 ```
 making from 2

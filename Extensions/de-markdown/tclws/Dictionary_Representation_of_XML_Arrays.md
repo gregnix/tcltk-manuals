@@ -8,7 +8,9 @@ Nehmen wir an, ein Element hat die folgende Definition:
     <xs:element minOccurs="0" maxOccurs="unbounded" name="Primes" type="xs:integer" />
 ```
 
-Nehmen wir außerdem an, dass dieses Element in unserem Dictionary die ersten vier Primzahlen enthält. Die Dictionary-Darstellung dieses Elements sähe dann so aus:
+Nehmen wir außerdem an, dass dieses Element
+in unserem Dictionary die ersten vier Primzahlen enthält.
+Die Dictionary-Darstellung dieses Elements sähe dann so aus:
 
 ```
     Primes {2 3 5 7}

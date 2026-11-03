@@ -69,7 +69,7 @@ Fast alle diese Befehle kehren entweder ordnungsgemäß zurück (auf C-Ebene mit
 Die Befehle im Einzelnen (*r-r-a* steht für das übliche Argumenttripel *root*, *relative* und *actualpath*):
 
 *command* *access* *r-r-a* *mode*
-: Gibt TCL\_OK zurück oder wirft einen POSIX-Fehler, je nachdem, ob der angegebene Zugriffsmodus (eine ganze Zahl) zur Datei passt.
+: Gibt TCL\_OK zurück oder wirft einen POSIX-Fehler, je nachdem, ob der angegebene Zugriffsmodus (eine Ganzzahl) zur Datei passt.
 
 *command* *createdirectory* *r-r-a*
 : Legt ein Verzeichnis mit dem angegebenen Namen an. Der Befehl darf annehmen, dass alle Unterverzeichnisse im Pfad vorhanden und gültig sind und dass der gewünschte Pfad noch nicht existiert. Darum kümmert sich Tcl.
@@ -87,7 +87,7 @@ Die Befehle im Einzelnen (*r-r-a* steht für das übliche Argumenttripel *root*,
 : *mode* ist einer der Werte "r", "w", "a", "w+", "a+". Wird dabei eine Datei angelegt, bestimmen *permissions* die Modi dafür. Schlägt das Öffnen fehl, ist ein Fehler zu werfen. Gelingt es, gibt der Befehl eine Liste mit einem oder zwei Elementen zurück. Das erste Element ist Pflicht und der Name des angelegten Kanals. Das zweite Element, falls vorhanden, ist eine Tcl-Rückruffunktion für das Schließen des Kanals, damit das vfs aufräumen kann. Tcl wertet diese Rückruffunktion unmittelbar vor dem Schließen des Kanals aus. Der Kanal besteht noch, und alle vorhandenen Daten sind hineingeschrieben. Die Rückruffunktion kann zum Beispiel an den Anfang des Kanals gehen, den Inhalt lesen und ihn anderswo ablegen, etwa komprimiert oder auf einem entfernten FTP-Server. Rückgabecode und Fehler der Rückruffunktion werden ignoriert, es sei denn, das Skript 'internalerror' ist angegeben; dann gehen sie an dieses Skript. Will die Rückruffunktion einen Fehler melden, muss sie das asynchron tun, zum Beispiel mit bgerror.
 
 *command* *removedirectory* *r-r-a* *recursive*
-: Löscht das angegebene Verzeichnis. *recursive* ist 0 oder 1. Bei 1 wird auch ein nicht leeres Verzeichnis mitsamt Inhalt rekursiv gelöscht. Bei 0 und einem nicht leeren Verzeichnis ist ein POSIX-Fehler (EEXIST) zu werfen.
+: Löscht das angegebene Verzeichnis. *recursive* ist 0 oder 1. Bei 1 soll auch bei einem nicht leeren Verzeichnis versucht werden, es mitsamt Inhalt rekursiv zu löschen. Bei 0 und einem nicht leeren Verzeichnis ist ein POSIX-Fehler (EEXIST) zu werfen.
 
 *command* *stat* *r-r-a*
 : Gibt eine Liste gerader Länge mit Paaren aus Feldname und Wert für den Inhalt einer stat-Struktur zurück. Die Reihenfolge ist gleichgültig. Die Optionsnamen sind dev (long), ino (long), mode (int), nlink (long), uid (long), gid (long), size (long), atime (long), mtime (long), ctime (long), type (eine Zeichenkette, entweder "directory" oder "file"). Der Typ jedes Arguments steht in Klammern. Die Prozedur kehrt daher etwa so zurück: *return \[list dev 0 type file mtime 1234 ...\]*.

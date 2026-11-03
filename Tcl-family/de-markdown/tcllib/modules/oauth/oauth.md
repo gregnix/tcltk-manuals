@@ -63,7 +63,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
     : Dies ist das geheime Token des Benutzers.
 
     **-consumerkey** *string*
-    : Dies ist der öffentliche Token Ihrer App.
+    : Dies ist das öffentliche Token Ihrer App.
 
     **-consumersecret** *string*
     : Dies ist das private Token Ihrer App.

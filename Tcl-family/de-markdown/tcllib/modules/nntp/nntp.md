@@ -69,7 +69,7 @@ Das Paket **nntp** stellt eine einfache, ausschließlich auf Tcl basierende Clie
     Der Zugriffsbefehl *nntpName* hat die folgende allgemeine Form:
 
     *nntpName* **method** ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
 *nntpName* **article** ?*msgid*?
@@ -127,7 +127,7 @@ Das Paket **nntp** stellt eine einfache, ausschließlich auf Tcl basierende Clie
 : Fragt den Server nach einer Liste aller Nachrichten (Nachrichtennummern) in der Gruppe, die das Argument *group* angibt, oder in der aktuellen Gruppe, wenn *group* nicht übergeben wurde.
 
 *nntpName* **mode\_reader**
-: Fragt den Server nach seiner NNTP-Antwortzeichenfolge für 'MODE READER'.
+: Fragt den Server nach seiner NNTP-Antwortzeichenkette für 'MODE READER'.
 
 *nntpName* **newgroups** *since*
 : Fragt den Server nach einer Liste aller neuen Newsgroups, die seit dem Zeitpunkt im Argument *since* angelegt wurden. *since* kann jede Zeitangabe sein, die **clock scan** versteht. Die Tcl-Liste der Newsgroups kommt in ähnlicher Form zurück wie die Gruppenliste des Befehls **nntpName list**. Jedes Element der Liste hat die Form:
@@ -210,7 +210,7 @@ Das Paket **nntp** stellt eine einfache, ausschließlich auf Tcl basierende Clie
 
 
 *nntpName* **xpat** *field* *range* ?*pattern\_list*?
-: Gibt den Wert des angegebenen Kopffeldes für eine bestimmte Nachricht oder für eine Liste von Nachrichten der aktuellen Gruppe zurück, deren Nachrichten zu den Mustern in pattern\_list passen. *field* ist der Titel eines Feldes in der Kopfzeile, etwa from, subject, date. Die Angaben kommen als Tcl-Liste zurück, jedes Element in der Form:
+: Gibt den Wert des angegebenen Kopffeldes für eine bestimmte Nachricht oder für eine Liste von Nachrichten der aktuellen Gruppe zurück, die zu den Mustern in pattern\_list passen. *field* ist der Titel eines Feldes in der Kopfzeile, etwa from, subject, date. Die Angaben kommen als Tcl-Liste zurück, jedes Element in der Form:
 
     ```
         msgid value

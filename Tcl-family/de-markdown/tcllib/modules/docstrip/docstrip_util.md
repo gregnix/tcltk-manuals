@@ -55,7 +55,7 @@ docstrip\_util – Dienstprogramme im Zusammenhang mit Docstrip
 
 # Beschreibung
 
-Das Paket „**docstrip::util**“ dient der Zusammenstellung verschiedener Hilfsprozeduren, die vor allem während der Installation oder der Entwicklungsphase nützlich sind. Es ist vom Basispaket getrennt, um einen Mehraufwand zu vermeiden, wenn dieses zur Kompilierung von „**source**“-Code verwendet wird.
+Das Paket „**docstrip::util**“ dient der Zusammenstellung verschiedener Hilfsprozeduren, die vor allem während der Installation oder der Entwicklungsphase nützlich sind. Es ist vom Basispaket getrennt, um einen Mehraufwand zu vermeiden, wenn dieses dazu verwendet wird, Code mittels **source** einzulesen.
 
 # Befehle zur Paketindizierung
 
@@ -67,7 +67,7 @@ Die folgenden Sonderbefehle stehen innerhalb eines Katalogs zur Verfügung:
 : Legt fest, dass der Code für ein Paket mit dem Namen *name* und der Version *version* aus jenen Modulen in der Quelldatei besteht, die durch die Liste *terminals* der Terminale des Schutzausdrucks ausgewählt werden. Dieser Code sollte vorzugsweise keinen Befehl **package** **provide** für das Paket enthalten, da ein solcher durch die Mechanismen zum Laden des Pakets bereitgestellt wird.
 
 **pkgIndex** ?*terminal* ...?
-: Gibt an, dass sich der Code für ein Paket aus jenen Modulen in der Quelldatei zusammensetzt, die durch die aufgeführten *terminal*-Ausdrücke der Schutzklausel ausgewählt werden. Der Name und die Version dieses Pakets werden anhand der in diesem Code gefundenen Befehle **package** und **provide** ermittelt (daher muss ein solcher Befehl darin enthalten sein).
+: Gibt an, dass sich der Code für ein Paket aus jenen Modulen in der Quelldatei zusammensetzt, die durch die aufgeführten *terminal*-Ausdrücke der Schutzklausel ausgewählt werden. Der Name und die Version dieses Pakets werden anhand der in diesem Code gefundenen Befehle **package** **provide** ermittelt (daher muss ein solcher Befehl darin enthalten sein).
 
 **fileoptions** ?*option* *value* ...?
 : Legt die **fconfigure**-Optionen fest, die beim Einlesen der Quelle gelten sollen; bei reinen ASCII-Dateien kann dies in der Regel ignoriert werden. Wenn die Datei jedoch gemäß einer anderen **-encoding**-Einstellung interpretiert werden muss, kann dies auf diese Weise festgelegt werden. Der Befehl sollte normalerweise an erster Stelle im Katalog stehen, da er nur für die darauf folgenden Befehle wirksam ist.
@@ -147,22 +147,22 @@ namespace eval foo::bar {
 **docstrip::util::index\_from\_catalogue** *dir* *pattern* ?*option* *value* ...?
 : Dieser Befehl ist dem Standardbefehl **pkg\_mkIndex** insofern ähnlich, als er Paketeinträge zu den Dateien „*pkgIndex.tcl*“ hinzufügt. Der Unterschied besteht darin, dass er Quelldateien im **docstrip**-Format indexiert und nicht rohe „*.tcl*“-Dateien oder ladbare Bibliotheksdateien. Es werden nur Pakete berücksichtigt, die im Katalog einer Datei aufgeführt sind.
 
-    Das Argument *dir* ist das Verzeichnis, in dem nach Dateien gesucht werden soll (und dessen „*pkgIndex.tcl*“-Datei entsprechend angepasst werden sollte). Das Argument *pattern* ist ein Muster im Format **glob** für die zu durchsuchenden Dateien; ein typischer Wert wäre **\*.dtx** or **\*.{dtx,ddt}**. Die übrigen Argumente sind Option-Wert-Paare, wobei folgende Optionen unterstützt werden:
+    Das Argument *dir* ist das Verzeichnis, in dem nach Dateien gesucht werden soll (und dessen „*pkgIndex.tcl*“-Datei entsprechend angepasst werden sollte). Das Argument *pattern* ist ein Muster im Format **glob** für die zu durchsuchenden Dateien; ein typischer Wert wäre **\*.dtx** oder **\*.{dtx,ddt}**. Die übrigen Argumente sind Option-Wert-Paare, wobei folgende Optionen unterstützt werden:
 
     **-recursein** *dirpattern*
     : Wenn diese Option angegeben wird, wird die Operation **index\_from\_catalogue** in jedem Unterverzeichnis wiederholt, dessen Name mit dem Muster *dirpattern* übereinstimmt. **-recursein** **\*** bewirkt, dass der gesamte Unterverzeichnisbaum mit *dir* als Stammverzeichnis in den Index aufgenommen wird.
 
     **-sourceconf** *dictionary*
-    : Gibt **fileoptions** an, wenn Sie die Dateikataloge lesen (sowie beim Lesen der Pakete, wenn der Katalog keinen Befehl „**fileoptions**“ enthält). Standardmäßig ist das Feld leer. Dies ist vor allem dann nützlich, wenn sich die Kodierung Ihres Systems stark von der der Quelldatei unterscheidet (z. B. wenn es sich bei der einen um eine Zwei-Byte-Kodierung und bei der anderen um eine Ein-Byte-Kodierung handelt). **ascii** und **utf-8** unterscheiden sich in dieser Hinsicht nicht wesentlich.
+    : Legt die **fileoptions** fest, die beim Einlesen der Kataloge der Dateien verwendet werden (sowie beim Lesen der Pakete, wenn der Katalog keinen Befehl „**fileoptions**“ enthält). Standardmäßig ist das Feld leer. Dies ist vor allem dann nützlich, wenn sich die Kodierung Ihres Systems stark von der der Quelldatei unterscheidet (z. B. wenn es sich bei der einen um eine Zwei-Byte-Kodierung und bei der anderen um eine Ein-Byte-Kodierung handelt). **ascii** und **utf-8** unterscheiden sich in dieser Hinsicht nicht wesentlich.
 
     **-options** *terminals*
-    : Die *terminals* sind eine Liste von Terminals zusätzlich zu **docstrip.tcl::catalogue**, die beim Extrahieren des Katalogs als „wahr“ markiert werden sollen. Standardmäßig ist diese Liste leer. Dies ermöglicht die Verwendung von „Variantenabschnitten“ im Katalog selbst, z. B. um bestimmte Einträge mit einem zusätzlichen „experimentellen“ Kennzeichen zu kennzeichnen und so zu verhindern, dass sie im Index erscheinen, es sei denn, dieser wird mit „experimentell“ in der Liste **-options** generiert.
+    : Die *terminals* sind eine Liste von Terminals zusätzlich zu **docstrip.tcl::catalogue**, die beim Extrahieren des Katalogs als „wahr“ markiert werden sollen. Standardmäßig ist diese Liste leer. Dies ermöglicht die Verwendung von „Variantenabschnitten“ im Katalog selbst, z. B. um bestimmte Einträge mit einem zusätzlichen „experimentellen“ Kennzeichen zu kennzeichnen und so zu verhindern, dass sie im Index erscheinen, es sei denn, dieser wird mit „experimental“ in der Liste **-options** generiert.
 
     **-report** *boolean*
-    : Wenn der *boolean* „true“ ist, dann gibt der Programmcode einen textuellen, wahrscheinlich mehrzeiligen Bericht darüber zurück, was ausgeführt wurde. Der Standardwert ist „false“; in diesem Fall gibt es keinen bestimmten Rückgabewert.
+    : Wenn der *boolean* „true“ ist, dann ist der Rückgabewert ein textueller, wahrscheinlich mehrzeiliger Bericht darüber, was ausgeführt wurde. Der Standardwert ist „false“; in diesem Fall gibt es keinen bestimmten Rückgabewert.
 
     **-reportcmd** *commandPrefix*
-    : Jeder Eintrag im Bericht wird als zusätzliches Argument an das Befehlspräfix übergeben. Da „**index\_from\_catalogue**“ in der Regel auf einer relativ hohen Ebene in Installationsskripten und dergleichen verwendet wird, ist der Standardwert für *commandPrefix* „**puts** **stdout**“. Verwenden Sie **list**, um diese Funktion effektiv zu deaktivieren. Die Werte des Präfixes werden ignoriert.
+    : Jeder Eintrag im Bericht wird als zusätzliches Argument an das Befehlspräfix übergeben. Da „**index\_from\_catalogue**“ in der Regel auf einer relativ hohen Ebene in Installationsskripten und dergleichen verwendet wird, ist der Standardwert für *commandPrefix* „**puts** **stdout**“. Verwenden Sie **list**, um diese Funktion effektiv zu deaktivieren. Die Rückgabewerte des Präfixes werden ignoriert.
 
 
     Die generierten **package ifneeded**-Skripte enthalten einen **package require docstrip**-Befehl und einen [docstrip::sourcefrom][docstrip]-Befehl. Wenn es sich bei dem Katalogeintrag um den Typ **pkgProvide** handelt, enthält das Skript **package ifneeded** zudem den Befehl **package provide**.
@@ -184,7 +184,7 @@ namespace eval foo::bar {
     : Legt die **fileoptions** fest, die beim Einlesen des Katalogs der *source* verwendet werden (und auch beim Einlesen der Pakete, wenn der Katalog keinen Befehl **fileoptions** enthält). Standardmäßig ist das Feld leer. Dies ist vor allem dann nützlich, wenn sich die Kodierung Ihres Systems stark von der der Quelldatei unterscheidet (z. B. wenn es sich bei der einen um eine Zwei-Byte-Kodierung und bei der anderen um eine Ein-Byte-Kodierung handelt). **ascii** und **utf-8** unterscheiden sich in dieser Hinsicht nicht wesentlich.
 
     **-options** *terminals*
-    : Die *terminals* ist eine Liste von Terminals zusätzlich zu **docstrip.tcl::catalogue**, die beim Extrahieren des Katalogs als „wahr“ behandelt werden sollen. Standardmäßig ist diese Liste leer. Dies ermöglicht die Verwendung von „Variantenabschnitten“ im Katalog selbst, z. B. um bestimmte Einträge mit einer zusätzlichen „experimentellen“ Schutzklausel abzusichern und somit zu verhindern, dass diese Pakete beitragen, es sei denn, diese werden mit „experimentell“ in der Liste **-options** generiert.
+    : Die *terminals* ist eine Liste von Terminals zusätzlich zu **docstrip.tcl::catalogue**, die beim Extrahieren des Katalogs als „wahr“ behandelt werden sollen. Standardmäßig ist diese Liste leer. Dies ermöglicht die Verwendung von „Variantenabschnitten“ im Katalog selbst, z. B. um bestimmte Einträge mit einer zusätzlichen „experimentellen“ Schutzklausel abzusichern und somit zu verhindern, dass diese Pakete beitragen, es sei denn, diese werden mit „experimental“ in der Liste **-options** generiert.
 
     **-formatpreamble** *commandPrefix*
     : Befehlspräfix, das zur eigentlichen Formatierung der Präambel verwendet wird. Es nimmt vier zusätzliche Argumente entgegen: *message*, *targetFilename*, *sourceFilename* und *terminalList* und gibt eine vollständig formatierte Präambel zurück. Standardmäßig wird **classical\_preamble** mit einem *metaprefix* von „##“ verwendet.
@@ -193,7 +193,7 @@ namespace eval foo::bar {
     : Befehlspräfix, das zur eigentlichen Formatierung des Postambels verwendet wird. Es nimmt vier zusätzliche Argumente entgegen: *message*, *targetFilename*, *sourceFilename* und *terminalList* und gibt ein vollständig formatiertes Postambel zurück. Standardmäßig wird **classical\_postamble** mit einem *metaprefix* von „##“ verwendet.
 
     **-report** *boolean*
-    : Wenn der *boolean* „true“ (was die Standardeinstellung ist), so gibt der Programmcode einen textuellen, wahrscheinlich mehrzeiligen Bericht darüber zurück, was ausgeführt wurde. Wenn er „false“ ist, gibt es keinen bestimmten Wert.
+    : Wenn der *boolean* „true“ ist (was die Standardeinstellung ist), so ist der Rückgabewert ein textueller, wahrscheinlich mehrzeiliger Bericht darüber, was ausgeführt wurde. Wenn er „false“ ist, gibt es keinen bestimmten Rückgabewert.
 
     **-reportcmd** *commandPrefix*
     : Jeder Eintrag im Bericht wird als zusätzliches Argument an dieses Befehlspräfix übergeben. Der Standardwert ist **list**, wodurch diese Funktion effektiv deaktiviert wird. Die Rückgabewerte des Präfixes werden ignoriert. Verwenden Sie beispielsweise „**puts** **stdout**“, um Berichtselemente sofort auf das Terminal auszugeben.
@@ -218,7 +218,7 @@ namespace eval foo::bar {
     ## line3
     ```
 
-    Wenn …
+    So sieht das Ergebnis aus, wenn der Befehl wie folgt aufgerufen wird:
 
     ```
     docstrip::util::classical_preamble {##}\
@@ -238,7 +238,7 @@ namespace eval foo::bar {
     ## End of file `TARGET'.
     ```
 
-    Wenn …
+    So sieht das Ergebnis aus, wenn der Befehl wie folgt aufgerufen wird:
 
     ```
     docstrip::util::classical_postamble {##}\
@@ -248,9 +248,9 @@ namespace eval foo::bar {
     Mit anderen Worten: Die Argumente *source* und *terminals* werden ignoriert, werden jedoch aus Gründen der Symmetrie gegenüber **classical\_preamble** unterstützt.
 
 **docstrip::util::packages\_provided** *text* ?*setup-script*?
-: Dieser Befehl gibt eine Liste zurück, in der jedes Element mit geradem Index den Namen eines Pakets **provide**d von *text* enthält, wenn dieses als Tcl-Skript ausgewertet wird, und das darauf folgende Element mit ungeradem Index die entsprechende Version angibt. Er dient zur Indexierung von Paketen mit extrahiertem Code, ähnlich wie bei **pkg\_mkIndex**.
+: Dieser Befehl gibt eine Liste zurück, in der jedes Element mit geradem Index den Namen eines Pakets enthält, das *text* mit **provide** bereitstellt, wenn dieses als Tcl-Skript ausgewertet wird, und das darauf folgende Element mit ungeradem Index die entsprechende Version angibt. Er dient zur Indexierung von Paketen mit extrahiertem Code, ähnlich wie bei **pkg\_mkIndex**.
 
-    Ein Unterschied zu **pkg\_mkIndex** besteht darin, dass der *text* in einem sicheren Interpreter ausgewertet wird. Befehle vom Typ **package require** werden stillschweigend ignoriert, ebenso wie unbekannte Befehle (darunter **source** und **load**). Andere Fehler führen dazu, dass der Prozess des *text* abgebrochen wird; in diesem Fall werden nur jene Paketdeklarationen in den Rückgabewert aufgenommen, die vor dem Fehler angetroffen wurden.
+    Ein Unterschied zu **pkg\_mkIndex** besteht darin, dass der *text* in einem sicheren Interpreter ausgewertet wird. Befehle vom Typ **package require** werden stillschweigend ignoriert, ebenso wie unbekannte Befehle (darunter **source** und **load**). Andere Fehler führen dazu, dass die Verarbeitung von *text* abgebrochen wird; in diesem Fall werden nur jene Paketdeklarationen in den Rückgabewert aufgenommen, die vor dem Fehler angetroffen wurden.
 
     Das Argument *setup-script* kann verwendet werden, um die Umgebung der Auswertung anzupassen, wenn der Code in *text* ganz besondere Anforderungen stellt. Das *setup-Skript* wird im lokalen Kontext der Prozedur **packages\_provided** unmittelbar vor der Verarbeitung von *text* ausgewertet. Zu diesem Zeitpunkt wird der Name des Slave-Befehls für den sicheren Interpreter, der diese Verarbeitung durchführt, in der lokalen Variablen **c** gespeichert. Um beispielsweise den Inhalt des Arrays **::env** in den sicheren Interpreter zu kopieren, könnte man ein *setup-Skript* mit folgendem Inhalt verwenden:
 
@@ -279,7 +279,7 @@ Im Gegensatz zur vorherigen Befehlsgruppe, die mit dem Befehl [docstrip::extract
     : Diese werden wie gewohnt im Prozess verarbeitet, sodass sie im Ergebnis nicht erscheinen; jede Zeile in einem Verbatim-Block wird jedoch als Codezeile behandelt.
 
     other guards
-    : Diese werden als Codezeilen behandelt, mit der Ausnahme, dass die eigentliche Schutzklausel auf „**emph**“ basiert.
+    : Diese werden als Codezeilen behandelt, mit der Ausnahme, dass die eigentliche Schutzklausel mit **emph** hervorgehoben wird.
 
 
     Zum Zeitpunkt der Erstellung dieses Dokuments hat noch kein Projekt die **doctools**-Markups in den Master-Quelldateien verwendet, sodass noch keine Erfahrungen darüber vorliegen, was gut funktioniert. Eine Quelldatei könnte jedoch wie folgt aussehen
@@ -349,9 +349,9 @@ Im Gegensatz zur vorherigen Befehlsgruppe, die mit dem Befehl [docstrip::extract
 **docstrip::util::patch** *source-var* *terminals* *fromtext* *diff* ?*option* *value* ...?
 : Dieser Befehl versucht, eine **diff**-Datei (beispielsweise einen eingereichten Patch), die für eine generierte Datei berechnet wurde, auf die **docstrip**-Quelldatei anzuwenden. Dies kann nützlich sein, wenn jemand eine generierte Datei bearbeitet und sie dabei fälschlicherweise für die Quelldatei gehalten hat. Dieser Befehl trifft keine spezifischen Annahmen für den Fall, dass es sich bei der generierten Datei um ein Tcl-Skript handelt.
 
-    **patch** setzt voraus, dass die zu patchen Quelldatei als Liste von Zeilen in einer Variablen gespeichert ist, und der Name dieser Variablen im Aufrufkontext wird in das Argument *source-var* übergeben. *terminals* ist die Liste der Terminals, die zum Extrahieren der gepatchten Datei verwendet werden. *diff* ist der tatsächlich anzuwendende Diff (in einem Format, wie unten erläutert), und *fromtext* ist der Inhalt der Datei, die bei der Berechnung des Diffs als „Ausgangsdatei“ diente. Mithilfe von Optionen lässt sich der Prozess weiter steuern.
+    **patch** setzt voraus, dass die zu patchende Quelldatei als Liste von Zeilen in einer Variablen gespeichert ist, und der Name dieser Variablen im Aufrufkontext wird in das Argument *source-var* übergeben. *terminals* ist die Liste der Terminals, die zum Extrahieren der gepatchten Datei verwendet werden. *diff* ist der tatsächlich anzuwendende Diff (in einem Format, wie unten erläutert), und *fromtext* ist der Inhalt der Datei, die bei der Berechnung des Diffs als „Ausgangsdatei“ diente. Mithilfe von Optionen lässt sich der Prozess weiter steuern.
 
-    Der Prozess funktioniert, indem die „Hunks“ im *diff* von der generierten in die Quelldatei „übertragen“ und anschließend auf die Elemente der *source-var* angewendet werden. Um diese Übertragung durchzuführen, muss festgelegt werden, wie Zeilen im *fromtext* den Elementen der *source-var* entsprechen, und genau hier kommen die *terminals* ins Spiel; Die Quelldatei wird zunächst unter den angegebenen *terminals*extract**extract** verarbeitet, und das Ergebnis dieser Verarbeitung wird anschließend mit dem *fromtext* abgeglichen. Dadurch entsteht eine Zuordnung, die die im *diff* angegebenen Zeilennummern in Elementnummern in *source-var* übersetzt – genau das ist für das Übertragen der Blöcke erforderlich.
+    Der Prozess funktioniert, indem die „Hunks“ im *diff* von der generierten in die Quelldatei „übertragen“ und anschließend auf die Elemente der *source-var* angewendet werden. Um diese Übertragung durchzuführen, muss festgelegt werden, wie Zeilen im *fromtext* den Elementen der *source-var* entsprechen, und genau hier kommen die *terminals* ins Spiel; Die Quelldatei wird zunächst unter den angegebenen *terminals* mit **extract** extrahiert, und das Ergebnis dieser Verarbeitung wird anschließend mit dem *fromtext* abgeglichen. Dadurch entsteht eine Zuordnung, die die im *diff* angegebenen Zeilennummern in Elementnummern in *source-var* übersetzt – genau das ist für das Übertragen der Blöcke erforderlich.
 
     Es gibt zwei Gründe, warum sowohl die *terminals* als auch der *fromtext* angegeben werden müssen. Erstens ist es sehr schwierig, den Überblick darüber zu behalten, wie viele Zeilen der Präambel auf andere Weise als durch das Kopieren von Zeilen aus Quelldateien bereitgestellt werden. Zweitens kann eine generierte Datei Material aus mehreren Quelldateien enthalten. Beides macht es unmöglich, vorherzusagen, welche Zeilennummer eine extrahierte Datei in der generierten Datei haben würde; daher sucht der Algorithmus zur Berechnung der Zeilennummernzuordnung stattdessen nach einem Zeilenblock im *fromtext*, der mit dem übereinstimmt, was aus der Quelle extrahiert werden kann. Dieser Abgleich wird durch die folgenden Optionen beeinflusst:
 
@@ -359,13 +359,13 @@ Im Gegensatz zur vorherigen Befehlsgruppe, die mit dem Befehl [docstrip::extract
     : Wie ähnlich müssen zwei Zeilen sein, damit sie übereinstimmen? Die unterstützten *mode* sind:
 
         **exact**
-        : Zeilen müssen als Zeichenfolgen identisch sein. Dies ist die Standardeinstellung.
+        : Zeilen müssen als Zeichenketten identisch sein. Dies ist die Standardeinstellung.
 
         **anyspace**
-        : Alle Folgen von Leerzeichen werden vor dem Vergleich in einzelne Leerzeichen umgewandelt.
+        : Alle Folgen von Leerraumzeichen werden vor dem Vergleich in einzelne Leerzeichen umgewandelt.
 
         **nonspace**
-        : Wenn der Vergleich durchgeführt wird, werden ausschließlich Zeichen berücksichtigt, die keine Leerzeichen sind.
+        : Wenn der Vergleich durchgeführt wird, werden ausschließlich Zeichen berücksichtigt, die kein Leerraum sind.
 
         **none**
         : Zwei beliebige Zeilen gelten als gleich.
@@ -378,7 +378,7 @@ Im Gegensatz zur vorherigen Befehlsgruppe, die mit dem Befehl [docstrip::extract
     : Der Wert „**-trimlines**“, der beim Extrahieren verwendet werden soll. Der Standardwert ist „true“.
 
 
-    Der Wert wird in Form eines „Unified Diff“ gegeben und enthält ausschließlich jene Blöcke, die nicht oder nur teilweise übernommen wurden; ein Kommentar im Kopf jedes Blocks legt fest, welcher Fall vorliegt. In der Regel ist es erforderlich, sowohl den Wert von **patch** als auch den gepatchten Text selbst manuell zu überprüfen, da dieser Befehl Kommentarzeilen nicht an den neuen Inhalt anpassen kann.
+    Der Rückgabewert hat die Form eines „Unified Diff“ und enthält ausschließlich jene Blöcke, die nicht oder nur teilweise übernommen wurden; ein Kommentar im Kopf jedes Blocks legt fest, welcher Fall vorliegt. In der Regel ist es erforderlich, sowohl den Wert von **patch** als auch den gepatchten Text selbst manuell zu überprüfen, da dieser Befehl Kommentarzeilen nicht an den neuen Inhalt anpassen kann.
 
     Ein Beispiel würde wie folgt aussehen:
 

@@ -33,7 +33,7 @@ selection - X-Auswahl steuern
 
 # Beschreibung
 
-Dieser Befehl bietet eine Tcl-Schnittstelle zum X-Selection-Mechanismus und implementiert die vollständige Selection-Funktionalität aus dem X Inter-Client Communication Conventions Manual (ICCCM).
+Dieser Befehl bietet eine Tcl-Schnittstelle zum X-Auswahlmechanismus und implementiert die vollständige Auswahlfunktionalität aus dem X Inter-Client Communication Conventions Manual (ICCCM).
 
 Zur Verwaltung der **CLIPBOARD**-Selection (siehe unten) kann auch der Befehl [clipboard] verwendet werden.
 
@@ -43,7 +43,7 @@ Das erste Argument von **selection** legt das Format der weiteren Argumente und 
 : Existiert *selection* irgendwo auf dem Display von *window*, wird sie gelöscht, sodass kein Fenster die Selection mehr besitzt. *Selection* gibt die zu löschende X-Selection an und sollte ein Atom-Name wie **PRIMARY** oder **CLIPBOARD** sein; Details im Inter-Client Communication Conventions Manual. *Selection* standardmäßig **PRIMARY**, *window* standardmäßig „.“. Gibt eine leere Zeichenkette zurück.
 
 [selection]{.cmd} [get]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-selection]{.lit} [selection]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg}
-: Liest den Wert von *selection* vom Display von *window* und gibt ihn zurück. *Selection* standardmäßig **PRIMARY**, *window* standardmäßig „.“. *Type* legt die Rückgabeform fest (gewünschtes ICCCM-„target“ für die Konvertierung) und sollte ein Atom-Name wie **STRING** oder **FILE\_NAME** sein; Details im ICCCM. *Type* standardmäßig **STRING**. Der Selection-Besitzer kann die Selection in verschiedenen Darstellungsformaten zurückgeben, z. B. **STRING**, **UTF8\_STRING**, **ATOM**, **INTEGER** usw. (dieses Format unterscheidet sich vom Selection-Typ; Details im ICCCM). Wird die Selection in einem Format, das keine Zeichenkette ist, wie **INTEGER** oder **ATOM** geliefert, wandelt **selection** sie in eine Zeichenkette aus durch Leerzeichen getrennten Feldern um: Atome werden in ihre Textnamen, alles andere in hexadezimale Ganzzahlen. **selection get** liest die Selection nicht im Format **UTF8\_STRING**, sofern nicht angefordert.
+: Liest den Wert von *selection* vom Display von *window* und gibt ihn zurück. *Selection* standardmäßig **PRIMARY**, *window* standardmäßig „.“. *Type* legt die Rückgabeform fest (gewünschtes ICCCM-„target“ für die Konvertierung) und sollte ein Atom-Name wie **STRING** oder **FILE\_NAME** sein; Details im ICCCM. *Type* standardmäßig **STRING**. Der Selection-Besitzer kann die Selection in verschiedenen Darstellungsformaten zurückgeben, z. B. **STRING**, **UTF8\_STRING**, **ATOM**, **INTEGER** usw. (dieses Format unterscheidet sich vom Selection-Typ; Details im ICCCM). Wird die Selection in einem Format, das keine Zeichenkette ist, wie **INTEGER** oder **ATOM** geliefert, wandelt **selection** sie in eine Zeichenkette aus durch Leerzeichen getrennten Feldern um: Atome werden in ihre Textnamen, alles andere in hexadezimale Ganzzahlen umgewandelt. **selection get** liest die Selection nicht im Format **UTF8\_STRING**, sofern nicht angefordert.
 
 [selection]{.cmd} [handle]{.sub} [[-selection]{.lit} [s]{.arg}]{.optarg} [[-type]{.lit} [t]{.arg}]{.optarg} [[-format]{.lit} [f]{.arg}]{.optarg} [window]{.arg} [command]{.arg}
 : Erzeugt einen Handler für Selection-Anfragen: *command* wird ausgeführt, wenn *window* die Selection *s* besitzt und jemand sie in der durch Typ *t* angegebenen Form abruft (z. B. *t* in **selection get**). *S* standardmäßig **PRIMARY**, *t* standardmäßig **STRING**, *f* standardmäßig **STRING**. Ist *command* eine leere Zeichenkette, wird ein vorhandener Handler für *window*, *t* und *s* entfernt. Wird die Selection als Typ **STRING** behandelt, geschieht das automatisch auch für **UTF8\_STRING**.
@@ -52,9 +52,9 @@ Das erste Argument von **selection** legt das Format der weiteren Argumente und 
 
     Liefert *command* einen Fehler, wird die Abfrage abgelehnt, als ob die Selection nicht existierte.
 
-    *format* legt die Übertragungsdarstellung fest (ICCCM Tabelle 2, Spalte 2), Standard **STRING**. Bei **STRING**: 8-Bit-ASCII (wie von *command* zurückgegeben, in der System-[encoding]; **UTF8\_STRING** nutzt stets UTF-8). Bei **ATOM**: Rückgabe von *command* in durch Leerzeichen getrennte Felder, jedes Feld zum Atom-Wert, 32-Bit-Atom-Wert statt Name. Bei anderem *format*: Felder zu 32-Bit-Ganzzahlen, Array an den Anforderer.
+    *format* legt die Übertragungsdarstellung fest (ICCCM Tabelle 2, Spalte 2), Standard **STRING**. Bei **STRING**: 8-Bit-ASCII (wie von *command* zurückgegeben, in der System-[encoding]; **UTF8\_STRING** nutzt stets UTF-8). Bei **ATOM** wird der Rückgabewert von *command* in durch Leerraum getrennte Felder zerlegt, jedes Feld in seinen Atom-Wert umgewandelt und der 32-Bit-Atom-Wert statt des Atom-Namens übertragen. Bei jedem anderen *format* wird der Rückgabewert in durch Leerraum getrennte Felder zerlegt, jedes Feld in eine 32-Bit-Ganzzahl umgewandelt und ein Array von Ganzzahlen an den Anforderer übertragen.
 
-    *format* ist nur für Kompatibilität mit Anfragern nötig, die kein Tk verwenden. Bei Tk-Abfrage wird am Ende wieder eine Zeichenkette geliefert — *format* ist irrelevant.
+    *format* ist nur für Kompatibilität mit Anfragern nötig, die kein Tk verwenden. Wird die Selection mit Tk abgefragt, wird der Wert auf der anfragenden Seite wieder in eine Zeichenkette umgewandelt; *format* ist daher irrelevant.
 
 [selection]{.cmd} [own]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-selection]{.lit} [selection]{.arg}]{.optarg}
 : ...siehe nächstes...
@@ -75,7 +75,7 @@ Ein GUI-Ereignis, z. B. **<<PasteSelection>>**, kann die **PRIMARY**-Selection i
 
 Unter X11 ist die **PRIMARY**-Selection eine systemweite Funktion des X-Servers und ermöglicht Kommunikation zwischen verschiedenen X11-Client-Prozessen.
 
-Unter Windows stellt das System keine **PRIMARY**-Selection bereit, sondern nur Tk; sie wird nur zwischen Fenstern eines Eltern-Interpreters und seiner Kind-Interpreter geteilt, nicht zwischen Interpretern in verschiedenen Prozessen oder Threads. Jeder Eltern-Interpreter hat eine eigene **PRIMARY**-Selection, die nur mit seinen Kind-Interpreter geteilt wird, die keine sicheren Interpreter sind.
+Unter Windows stellt das System keine **PRIMARY**-Selection bereit, sondern nur Tk; sie wird nur zwischen Fenstern eines Eltern-Interpreters und seiner Kind-Interpreter geteilt, nicht zwischen Interpretern in verschiedenen Prozessen oder Threads. Jeder Eltern-Interpreter hat eine eigene **PRIMARY**-Selection, die nur mit seinen Kind-Interpretern geteilt wird, die keine sicheren Interpreter sind.
 
 # Sicherheit
 
@@ -87,7 +87,7 @@ Das sind Sicherheitsmerkmale. In einem sicheren Interpreter können nicht vertra
 
 # Beispiele
 
-Auf X11-Plattformen ist eine der Standard-Selections die **SECONDARY**-Selection. Sie wird kaum genutzt; so liest man sie mit Tk:
+Auf X11-Plattformen ist eine der Standard-Selections die **SECONDARY**-Selection. Sie wird kaum genutzt; so lesen Sie sie mit Tk:
 
 ```
 set selContents [selection get -selection SECONDARY]

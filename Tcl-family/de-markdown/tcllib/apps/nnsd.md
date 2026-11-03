@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-nnsd – Name Service Facility, Serveranwendung für die Befehlszeile
+nnsd – Namensdienst-Funktion, Serveranwendung für die Befehlszeile
 
 # Übersicht
 
@@ -57,7 +57,7 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
 : Wenn diese Option nicht festgelegt wird, gilt standardmäßig die Einstellung **true**, d. h., es werden nur lokale Verbindungen akzeptiert. Der Server akzeptiert Fernverbindungen, d. h. Verbindungen von anderen Hosts, genau dann, wenn diese Option auf **false** konfiguriert ist.
 
 **-port** number
-: Wenn diese Option nicht angegeben wird, wird standardmäßig „**38573**“ verwendet. Sie legt den TCP-Port fest, auf dem der Server auf Anfragen warten soll.
+: Wenn diese Option nicht angegeben wird, wird standardmäßig „**38573**“ verwendet. Sie legt den TCP-Port fest, auf dem der Server auf Anfragen lauschen soll.
 
 
 # Fehler, Ideen, Rückmeldungen

@@ -18,7 +18,7 @@ grammar::me\_ast – Verschiedene Darstellungen von ASTs
 
 # Beschreibung
 
-Dieses Dokument legt verschiedene Darstellungsformen für die *abstrakten Syntaxbäume* (kurz *AST*), die von Instanzen virtueller ME-Maschinen generiert werden, fest, unabhängig von der jeweiligen Variante. Bitte lesen Sie zunächst das Dokument **grammar::me\_intro**, wenn Sie nicht wissen, was eine virtuelle ME-Maschine ist.
+Dieses Dokument legt verschiedene Darstellungsformen für die *abstrakten Syntaxbäume* (kurz *AST*), die von Instanzen virtueller ME-Maschinen generiert werden, fest, unabhängig von der jeweiligen Variante. Bitte lesen Sie zunächst das Dokument [grammar::me\_intro][me_intro], wenn Sie nicht wissen, was eine virtuelle ME-Maschine ist.
 
 ASTs und alle von uns festgelegten Darstellungen unterscheiden zwischen zwei Arten von Knoten, nämlich:
 

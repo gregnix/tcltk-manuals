@@ -33,7 +33,7 @@ persistentSelection – Erweiterte PRIMARY-Auswahl
 
 Nehmen wir ein **Tk**-Widget, das seine Option **-exportselection** auf den booleschen Wert **true** setzt und dadurch seine Auswahl exportiert.  Wenn die Auswahl im Widget aufgehoben wird, hebt **Tk** standardmäßig auch die Auswahl **PRIMARY** auf.  In dieser Situation schlägt ein Versuch, die Auswahl **PRIMARY** auszulesen – beispielsweise durch ein **<<PasteSelection>>**-Ereignis – fehl.
 
-Das Paket „**persistentSelection**“ bietet ein komfortableres Verhalten. Es behält – wie bei der Auswahl „**PRIMARY**“ – den letzten nicht leeren Wert bei, der von einem der von ihm überwachten „**Tk**“-Widgets gesetzt wurde, solange die Auswahl „**PRIMARY**“ nicht von einem anderen Prozess oder von einem Widget beansprucht wird, das es nicht überwacht.
+Das Paket „**persistentSelection**“ bietet ein komfortableres Verhalten. Es hält den letzten nicht leeren Wert als Auswahl „**PRIMARY**“ aufrecht, der von einem der von ihm überwachten „**Tk**“-Widgets gesetzt wurde, solange die Auswahl „**PRIMARY**“ nicht von einem anderen Prozess oder von einem Widget beansprucht wird, das es nicht überwacht.
 
 Das Paket „**persistentSelection**“ funktioniert, indem es eine Bindung an das Ereignis „**<<Selection>>**“ der betreffenden Widgets herstellt und diese Bindung nutzt, um jede Änderung der Auswahl im Widget zu überwachen.  Seine Befehle sind auf den Namespace **::persistentSelection** beschränkt.
 
@@ -52,13 +52,13 @@ Das Paket „**persistentSelection**“ funktioniert, indem es eine Bindung an d
     - *withOthers* – Gibt an, ob die Auswahl „**PRIMARY**“ zurückgegeben werden soll, wenn sie einem anderen Prozess oder Interpreter gehört (optional, boolescher Wert, Standardwert: **false**)
 
 
-    Ein Befehl, der die klassische (nicht persistente) Form der Auswahl „**PRIMARY**“ gibt. Wenn die Auswahl nicht existiert oder ausschließlich durch „**persistentSelection**“ aufrechterhalten wird, gibt der Befehl die leere Zeichenkette zurück.
+    Ein Befehl, der die klassische (nicht persistente) Form der Auswahl „**PRIMARY**“ zurückgibt. Wenn die Auswahl nicht existiert oder ausschließlich durch „**persistentSelection**“ aufrechterhalten wird, gibt der Befehl die leere Zeichenkette zurück.
 
 **persistentSelection::getPrimarySel** ?*displayOf*?
 : - *displayOf* – ein **Tk**-Fenster auf dem abzufragenden Display (optional, voreingestellt {**.**})
 
 
-    Ein Befehl, der den Wert der Auswahl „**PRIMARY**“ gibt. Wenn die Auswahl nicht existiert, gibt der Befehl die leere Zeichenkette zurück. Die üblichen „**Tk**“-Befehle sind zwar durchaus gültig, lösen jedoch einen Fehler aus, wenn die Auswahl nicht existiert.
+    Ein Befehl, der den Wert der Auswahl „**PRIMARY**“ zurückgibt. Wenn die Auswahl nicht existiert, gibt der Befehl die leere Zeichenkette zurück. Die üblichen „**Tk**“-Befehle sind zwar durchaus gültig, lösen jedoch einen Fehler aus, wenn die Auswahl nicht existiert.
 
 **persistentSelection::report** *type* *pathName*
 : - *type* – (Wert **text** oder **entry**) Einordnung des Widgets, dessen Auswahl sich geändert hat
@@ -75,7 +75,7 @@ Das Paket „**persistentSelection**“ funktioniert, indem es eine Bindung an d
 
 Für jedes Widget, das von **persistentSelection** überwacht werden soll, muss der Befehl **persistentSelection::report** in einem der Bindungs-Tags des Widgets an das Ereignis **<<Selection>>** gebunden werden.
 
-Beispielsweise möchte der Entwickler möglicherweise **persistentSelection** mit jedem **text**- und **entryPlus**-Widget in einer Anwendung verwenden: Dies lässt sich erreichen, indem die Bindung „**<<Selection>>**“ zu den Bindungen „**Text**“ und „**EntryPlus**“ hinzugefügt wird.  Siehe [Beispiele].
+Beispielsweise möchte der Entwickler möglicherweise **persistentSelection** mit jedem **text**- und **entryPlus**-Widget in einer Anwendung verwenden: Dies lässt sich erreichen, indem die Bindung „**<<Selection>>**“ zu den Bindungs-Tags „**Text**“ und „**EntryPlus**“ hinzugefügt wird.  Siehe [Beispiele].
 
 Wenn **persistentSelection** nicht für alle Widgets einer bestimmten Klasse erforderlich ist, kann die Bindung den Bindtags der einzelnen Widgets hinzugefügt werden. Siehe [Beispiele].
 
@@ -98,7 +98,7 @@ In Versionen von **Tk**, die älter sind als **8.6.9**, löst das **text**-Widge
 
 Zudem verarbeiten Versionen von **Tk**, die älter sind als **8.6.6**, Ereignisse der Auswahl etwas anders als neuere Versionen, und in Kombination mit den **Text**-Bindungen verwirrt das **persistentSelection**.  Wenn ein Upgrade auf die aktuelle Version von **Tcl/Tk** nicht möglich ist, lässt sich dieses Problem durch eine geringfügige Anpassung der Widget-Bindungen beheben, um die dritte Anforderung der [Anforderungen an Widgets] zu erfüllen.
 
-Entweder sollte das Skript den Befehl „**persistentSelection::fixText**“ aufrufen, um die **Text**-Bindungen und die von diesen aufgerufenen Befehle anzupassen; oder das Widget kann anstelle der standardmäßigen Bindung **Text** das Bindungs-Tag **Ntext** (für **ntext** Version 1.0 oder höher) verwenden.
+Entweder sollte das Skript den Befehl „**persistentSelection::fixText**“ aufrufen, um die **Text**-Bindungen und die von diesen aufgerufenen Befehle anzupassen; oder das Widget kann anstelle des standardmäßigen Bindungs-Tags **Text** das Bindungs-Tag **Ntext** (für **ntext** Version 1.0 oder höher) verwenden.
 
 In beiden Fällen soll das Argument *type* für **persistentSelection::report** den Wert **text** haben.
 
@@ -121,7 +121,7 @@ Für das Widget „**listbox**“, bei dem die Auswahl mehrerer Elemente möglic
 
 # Bugs
 
-Diese Version von **persistentSelection** bietet Kompatibilität mit allen Ausgaben von **Tk** 8.5- und 8.6 sowie mit den Zweigen *core-8-5-branch*, *core-8-6-branch*, *revised\_text* und *trunk* im Quellcode-Repository von **Tk**. Jede Unverträglichkeit mit einer dieser Versionen, für jedes Fenstersystem von **Tk**, ist als Fehler zu melden. Bitte melden Sie solche Fehler in der Kategorie *persistentSelection* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist).
+Diese Version von **persistentSelection** soll kompatibel sein mit allen Ausgaben von **Tk** 8.5- und 8.6 sowie mit den Zweigen *core-8-5-branch*, *core-8-6-branch*, *revised\_text* und *trunk* im Quellcode-Repository von **Tk**. Jede Unverträglichkeit mit einer dieser Versionen, für jedes Fenstersystem von **Tk**, ist als Fehler zu melden. Bitte melden Sie solche Fehler in der Kategorie *persistentSelection* der [Tklib-Tracker](http://core.tcl-lang.org/tklib/reportlist).
 
 # Beispiele
 

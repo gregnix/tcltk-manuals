@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-map::track::file – Lesen und Schreiben von tklib-Geo-/Track-Dateien
+map::track::file – Lesen und Schreiben von geo/track-Dateien von tklib
 
 # Übersicht
 

@@ -45,7 +45,7 @@ Die Befehle in diesem Paket ändern den **::argc**-Begleiter *nicht*, wenn sie m
 # API
 
 **::cmdline::getopt** *argvVar* *optstring* *optVar* *valVar*
-: Dieser Befehl funktioniert ähnlich wie die auf C basierende Standardfunktion **getopt**. Bei Angabe einer Optionszeichenfolge und eines Zeigers auf ein Array mit Argumenten verarbeitet dieser Befehl das *erste Argument* und gibt Informationen darüber zurück, wie weiter vorzugehen ist. Der Befehl gibt 1 zurück, wenn eine Option gefunden wurde, 0, wenn keine weiteren Optionen gefunden wurden, und -1, wenn ein Fehler aufgetreten ist.
+: Dieser Befehl funktioniert ähnlich wie die auf C basierende Standardfunktion **getopt**. Bei Angabe einer Optionszeichenkette und eines Zeigers auf ein Array mit Argumenten verarbeitet dieser Befehl das *erste Argument* und gibt Informationen darüber zurück, wie weiter vorzugehen ist. Der Befehl gibt 1 zurück, wenn eine Option gefunden wurde, 0, wenn keine weiteren Optionen gefunden wurden, und -1, wenn ein Fehler aufgetreten ist.
 
     *argvVar* enthält den Namen der Liste der zu verarbeitenden Argumente. Wenn Optionen gefunden werden, wird die Liste geändert und die verarbeiteten Argumente werden vom Anfang der Liste entfernt.
 
@@ -59,13 +59,13 @@ Die Befehle in diesem Paket ändern den **::argc**-Begleiter *nicht*, wenn sie m
 : Ähnlich wie **::cmdline::getopt**, mit dem Unterschied, dass unbekannte Optionen in der Eingabe ignoriert werden.
 
 **::cmdline::getoptions** *argvVar* *optlist* ?*usage*?
-: Verarbeitet den gesamten Satz an Befehlszeilenoptionen, die in der durch *argvVar* benannten Listenvariablen enthalten sind, und setzt für nicht angegebene Optionen Standardwerte ein. Außerdem wird eine Fehlermeldung ausgegeben, in der die zulässigen Flags aufgelistet sind, falls ein falsches Flag angegeben wurde. Das optionale *usage*-argument enthält eine Zeichenkette, die vor der generierten Meldung eingefügt werden soll. Ist es nicht vorhanden, lautet der Standardwert „Optionen:“.
+: Verarbeitet den gesamten Satz an Befehlszeilenoptionen, die in der durch *argvVar* benannten Listenvariablen enthalten sind, und setzt für nicht angegebene Optionen Standardwerte ein. Außerdem wird eine Fehlermeldung ausgegeben, in der die zulässigen Flags aufgelistet sind, falls ein falsches Flag angegeben wurde. Das optionale Argument *usage* enthält eine Zeichenkette, die vor der generierten Meldung eingefügt werden soll. Ist es nicht vorhanden, lautet der Standardwert „options:“.
 
     *argvVar* enthält den Namen der Liste der zu verarbeitenden Argumente. Wenn Optionen gefunden werden, wird die Liste geändert und die verarbeiteten Argumente werden vom Anfang der Liste entfernt.
 
-    *optlist* enthält eine Liste von Listen, wobei jedes Element eine Option in der Form *flag* *default* *comment* legt.
+    *optlist* enthält eine Liste von Listen, wobei jedes Element eine Option in der Form *flag* *default* *comment* festlegt.
 
-    Wenn *flag* auf „.arg“ endet, wird der Wert aus der Befehlszeile übernommen. Andernfalls handelt es sich um einen booleschen Wert, der im Ergebnis erscheint, sofern er in der Befehlszeile vorhanden ist. Endet *flag* auf „.secret“, wird es in der Verwendung nicht angezeigt.
+    Wenn *flag* auf „.arg“ endet, wird der Wert aus der Befehlszeile übernommen. Andernfalls handelt es sich um einen booleschen Wert, der im Ergebnis erscheint, sofern er in der Befehlszeile vorhanden ist. Endet *flag* auf „.secret“, wird es in der Hilfemeldung (usage) nicht angezeigt.
 
     Die Optionen **-?**, **-help** und **--** werden implizit berücksichtigt. Die ersten beiden brechen den Prozess der Optionenverarbeitung durch Auslösen eines Fehlers ab und erzwingen die Ausgabe der Hilfe, während die letzte die Optionenverarbeitung ohne Fehler abbricht und alle nachfolgenden Argumente der regulären Verarbeitung überlässt, selbst wenn sie mit einem Bindestrich beginnen.
 
@@ -75,12 +75,12 @@ Die Befehle in diesem Paket ändern den **::argc**-Begleiter *nicht*, wenn sie m
 : Ähnlich wie **::cmdline::getoptions**, ignoriert jedoch alle unbekannten Optionen in der Eingabe.
 
 **::cmdline::usage** *optlist* ?*usage*?
-: Erzeugt und gibt eine Fehlermeldung zurück, in der die zulässigen Flags aufgeführt sind. *optlist* ist wie bei **::cmdline::getoptions** definiert. Das optionale *usage*-argument enthält eine Zeichenkette, die vor der generierten Meldung eingefügt werden soll. Ist es nicht vorhanden, wird standardmäßig „Optionen:“ verwendet.
+: Erzeugt und gibt eine Fehlermeldung zurück, in der die zulässigen Flags aufgeführt sind. *optlist* ist wie bei **::cmdline::getoptions** definiert. Das optionale Argument *usage* enthält eine Zeichenkette, die vor der generierten Meldung eingefügt werden soll. Ist es nicht vorhanden, wird standardmäßig „options:“ verwendet.
 
 **::cmdline::getfiles** *patterns* *quiet*
-: Anhand einer Liste von Datei-*Mustern* ermittelt dieser Befehl die Menge der gültigen Dateien. Unter Windows wird für jedes Argument eine Dateisuche durchgeführt. Unter Unix wird lediglich geprüft, ob die Datei existiert. Wenn ein Datei-Argument keine gültigen Dateien liefert, wird optional eine Warnung ausgegeben (set *quiet* auf „true“ setzen).
+: Anhand einer Liste von Datei-*Mustern* ermittelt dieser Befehl die Menge der gültigen Dateien. Unter Windows wird für jedes Argument eine Dateisuche durchgeführt. Unter Unix wird lediglich geprüft, ob die Datei existiert. Wenn ein Datei-Argument keine gültigen Dateien liefert, wird optional eine Warnung ausgegeben (*quiet* auf „true“ setzen).
 
-    Dieser Code verwendet außerdem den vollständigen Pfad für jede Datei.  Wird dieser nicht angegeben, wird dem Dateinamen das aktuelle Verzeichnis vorangestellt. Dadurch wird sichergestellt, dass diese Dateien niemals mit Dateien in einer umschlossenen ZIP-Datei in Konflikt geraten. Der letzte Satz bezieht sich auf die Pro Tools.
+    Dieser Code verwendet außerdem den vollständigen Pfad für jede Datei.  Wird dieser nicht angegeben, wird dem Dateinamen das aktuelle Verzeichnis vorangestellt. Dadurch wird sichergestellt, dass diese Dateien niemals mit Dateien in einer umschlossenen ZIP-Datei in Konflikt geraten. Der letzte Satz bezieht sich auf die TclPro-Werkzeuge.
 
 **::cmdline::getArgv0**
 : Dieser Befehl gibt die „bereinigte“ Version von *argv0* zurück. Dabei wird der führende Pfad entfernt und die Erweiterung „.bin“ gestrichen. Letzteres wird von den TclPro-Anwendungen verwendet, da diese von einem Shell-Skript umschlossen werden müssen.
@@ -94,7 +94,7 @@ Ab Version 1.5 verfügen alle vom Paket ausgelösten Fehler über einen korrekte
 
 ## Cmdline::getoptions
 
-Dieses Beispiel, das aus dem Paket **fileutil** stammt und leicht angepasst wurde, veranschaulicht die Verwendung von **cmdline::getoptions**. Zunächst wird eine Liste mit Optionen erstellt, anschließend wird die „args“-Liste zur Verarbeitung an **cmdline** übergeben. Danach werden verschiedene Optionen überprüft, um festzustellen, ob sie an das Skript übergeben wurden und welchen Wert sie haben.
+Dieses Beispiel, das aus dem Paket **fileutil** stammt und leicht angepasst wurde, veranschaulicht die Verwendung von **cmdline::getoptions**. Zunächst wird eine Liste mit Optionen erstellt, anschließend wird die „args“-Liste zur Verarbeitung an cmdline übergeben. Danach werden verschiedene Optionen überprüft, um festzustellen, ob sie an das Skript übergeben wurden und welchen Wert sie haben.
 
 ```
         package require Tcl 8.5

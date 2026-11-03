@@ -27,13 +27,13 @@ encoding - Verwaltet Kodierungen
 
 # Einleitung
 
-Zeichenketten in Tcl sind logisch eine Folge von 16-Bit-Unicode-Zeichen. Im Speicher werden sie als Bytefolge in einer von mehreren Kodierungen dargestellt: modifiziertes UTF-8 (1 bis 3 Bytes pro Zeichen), 16-Bit-„Unicode“ (2 Bytes pro Zeichen, Endianness abhängig von der Host-Architektur) und binär (ein Byte pro Zeichen, aber nur eingeschränkter Zeichenbereich). Tcl garantiert nicht, dieselbe Kodierung für dieselbe Zeichenkette zu verwenden.
+Zeichenketten in Tcl sind logisch eine Folge von 16-Bit-Unicode-Zeichen. Im Speicher werden sie als Bytefolge in einer von mehreren Kodierungen dargestellt: modifiziertes UTF-8 (1 bis 3 Bytes pro Zeichen), 16-Bit-„Unicode“ (2 Bytes pro Zeichen, Endianness abhängig von der Host-Architektur) und binär (ein Byte pro Zeichen, aber nur eingeschränkter Zeichenbereich). Tcl garantiert nicht, immer dieselbe Kodierung für dieselbe Zeichenkette zu verwenden.
 
 Betriebssystem-Schnittstellen oder Anwendungen können Zeichenketten in anderen Kodierungen wie Shift-JIS erzeugen. Der Befehl **encoding** überbrückt die Lücke zwischen Unicode und diesen anderen Formaten.
 
 # Beschreibung
 
-Führt je nach *option* eine von mehreren kodierungsbezogenen Operationen aus. Zulässige *option*en sind:
+Führt je nach *option* eine von mehreren kodierungsbezogenen Operationen aus. Zulässige Werte für *option* sind:
 
 [encoding]{.cmd} [convertfrom]{.sub} [encoding]{.optarg} [data]{.arg}
 : Wandelt *data* von der angegebenen *encoding* nach Unicode um. Die Zeichen in *data* werden als Binärdaten behandelt, wobei die unteren 8 Bits jedes Zeichens als ein Byte gelten. Die resultierende Bytefolge wird als Zeichenkette in der angegebenen *encoding* interpretiert. Fehlt *encoding*, wird die aktuelle Systemkodierung verwendet.

@@ -34,7 +34,7 @@ tcl::transform::limitsize – Eingabebeschränkung
 
 Das Paket **tcl::transform::limitsize** enthält einen Befehl zur Erstellung einer Kanaltransformation, die die Anzahl der Zeichen begrenzt, die aus dem Kanal gelesen werden können. Ein Generator für ein künstliches EOF.
 
-Die interne Klasse „**TclOO**“, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
+Die interne **TclOO**-Klasse, die den Handler für Transformationen implementiert, ist eine Unterklasse des Rahmens „**tcl::transform::core**“.
 
 # API
 

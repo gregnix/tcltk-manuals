@@ -163,14 +163,14 @@ Das Paket definiert die folgenden öffentlichen Prozeduren:
 : Gibt die Euler-Zahl mit dem Index *index* zurück (Hinweis: Es handelt sich hierbei um ganzzahlige Werte). Da die Größe dieser Zahlen sehr schnell zunimmt, steht nur eine begrenzte Anzahl zur Verfügung.
 
     int *index*
-    : Index der zurückzugebenden Zahl (muss zwischen 0 und 54 liegen)
+    : Index der zurückzugebenden Zahl (sollte zwischen 0 und 54 liegen)
 
 
 **::math::special::bernoulliNumber** *index*
 : Gibt die Bernoulli-Zahl mit dem Index *index* zurück. Da die Größe dieser Zahlen sehr schnell zunimmt, steht nur eine begrenzte Anzahl zur Verfügung.
 
     int *index*
-    : Index der zurückzugebenden Zahl (muss zwischen 0 und 52 liegen)
+    : Index der zurückzugebenden Zahl (sollte zwischen 0 und 52 liegen)
 
 
 **::math::special::Beta** *x* *y*

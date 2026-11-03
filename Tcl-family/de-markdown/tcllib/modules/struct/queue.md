@@ -49,7 +49,7 @@ Er exportiert einen einzigen Befehl: **::struct::queue**. Alle hier bereitgestel
 Der Befehl **::struct::queue** erzeugt ein neues Warteschlangenobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *queueName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf der Warteschlange aufrufen. Er hat die folgende allgemeine Form:
 
 *queueName* **option** ?*arg arg ...*?
-: *Option* und die *arg*s legen das genaue Verhalten des Befehls fest. Für Warteschlangenobjekte sind folgende Befehle möglich:
+: *Option* und die Argumente *arg* legen das genaue Verhalten des Befehls fest. Für Warteschlangenobjekte sind folgende Befehle möglich:
 
 *queueName* **clear**
 : Entfernt alle Elemente aus der Warteschlange.

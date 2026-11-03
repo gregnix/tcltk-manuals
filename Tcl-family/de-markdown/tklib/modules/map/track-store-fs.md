@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-map::track::store::fs – Dateisystembasierte Speicherung von Geo-/Track-Definitionen
+map::track::store::fs – Dateisystembasierte Speicherung von geo/track-Definitionen
 
 # Übersicht
 

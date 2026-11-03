@@ -51,9 +51,9 @@ tk::mac - Mac-spezifische Funktionen unter macOS aus Tk nutzen
 [::tk::mac::iconBitmap]{.cmd} [name]{.arg} [width]{.arg} [height]{.arg} [-kind]{.arg} [value]{.arg}
 :::
 
-# Ereignisbehandler-Rückrufungen
+# Ereignisbehandler-Rückruffunktionen
 
-Die Aqua/macOS-Anwendungsumgebung definiert zusätzliche Ereignisse, auf die Anwendungen reagieren sollten. Tk mappt diese Ereignisse auf Aufrufe von Befehlen im Namespace **::tk::mac**; sofern nicht anders angegeben, erfolgt keine Aktion, wenn der Befehl fehlt.
+Die Aqua/macOS-Anwendungsumgebung definiert zusätzliche Ereignisse, auf die Anwendungen reagieren sollten. Tk bildet diese Ereignisse auf Aufrufe von Befehlen im Namespace **::tk::mac** ab; sofern nicht anders angegeben, erfolgt keine Aktion, wenn der Befehl fehlt.
 
 [::tk::mac::DoScriptFile]{.cmd}
 : Standard-Apple-Event-Handler für AEDoScriptHandler. Dieser Befehl führt eine Tcl-Datei aus, wenn ein AppleScript einen „do script“-Befehl an Wish mit einem Dateipfad als Parameter sendet.
@@ -62,7 +62,7 @@ Die Aqua/macOS-Anwendungsumgebung definiert zusätzliche Ereignisse, auf die Anw
 : Standard-Apple-Event-Handler für AEDoScriptHandler. Dieser Befehl führt Tcl-Code aus, wenn ein AppleScript einen „do script“-Befehl an Wish mit Tcl-Code oder einer Tcl-Prozedur als Parameter sendet.
 
 [::tk::mac::ShowPreferences]{.cmd}
-: Standard-Apple-Event-Handler für kAEShowPreferences, „pref“. Der Menüeintrag „Einstellungen“ im Anwendungsmenü ist nur aktiv, wenn diese Prozedur definiert ist. Typischerweise umschließt der Befehl eine eigene Einstellungsfunktion, die ein Einstellungsfenster öffnet, etwa:
+: Standard-Apple-Event-Handler für kAEShowPreferences, „pref“. Der Menüeintrag „Einstellungen“ im Anwendungsmenü ist nur aktiv, wenn diese Prozedur definiert ist. Typischerweise umschließt der Befehl einen eigenen Einstellungsbefehl, die ein Einstellungsfenster öffnet, etwa:
 
     ```
     proc ::tk::mac::ShowPreferences {} {
@@ -100,7 +100,7 @@ Die Aqua/macOS-Anwendungsumgebung definiert zusätzliche Ereignisse, auf die Anw
 : Ist eine Prozedur dieses Namens definiert, ist sie der Standard-Apple-Event-Handler für kAEPrintDocuments, „pdoc“, wenn die Anwendung zum Drucken eines Dokuments aufgefordert wird. Sie erhält einen absoluten Dateipfad als Argument.
 
 [::tk::mac::Quit]{.cmd}
-: Ist eine Prozedur dieses Namens definiert, ist sie der Standard-Apple-Event-Handler für kAEQuitApplication, „quit“, z. B. über Beenden im Anwendungs- oder Dock-Menü oder beim Abmelden/Neustart/Herunterfahren. Ist sie nicht definiert, wird stattdessen [exit] aufgerufen.
+: Ist eine Prozedur dieses Namens definiert, ist sie der Standard-Apple-Event-Handler für kAEQuitApplication, „quit“, das Apple Event, das gesendet wird, wenn die Anwendung beendet werden soll, z. B. über Beenden im Anwendungs- oder Dock-Menü oder beim Abmelden/Neustart/Herunterfahren. Ist sie nicht definiert, wird stattdessen [exit] aufgerufen.
 
 [::tk::mac::OnHide]{.cmd}
 : Wenn definiert, wird sie bei kEventAppHidden aufgerufen, z. B. über „Ausblenden“ im Anwendungs- oder Dock-Menü.
@@ -124,7 +124,7 @@ Die Aqua/macOS-Anwendungsumgebung definiert zusätzliche Ereignisse, auf die Anw
     Die Daten werden über die Zwischenablage bezogen; es gibt keinen anderen unterstützten Weg. Sollen Dienste nicht genutzt werden, können die NSServices-Schlüssel aus der Info.plist entfernt werden. Der zugrunde liegende Code erlaubt text-, entry- und ttk::entry-Widgets den Zugriff auf Dienste anderer Anwendungen über das Dienste-Menü. Der NSPortName-Schlüssel in Wishs Info.plist ist derzeit „Wish“; ändert ein Entwickler den Namen der Wish-Ausführungsdatei, sollte dieser Schlüssel entsprechend angepasst werden.
 
 [::tk::mac::LaunchURL]{.cmd} [URL...]{.arg}
-: Wenn definiert, startet eine URL innerhalb von Tk, z. B. wenn die Anwendung eine URL selbst verarbeiten soll (RSS-Anzeige) statt die Standardanwendung zu nutzen — kann aber auch so definiert werden. Wish enthält ein Platzhalter-URL-Schema „foo://“ in CFBundleURLSchemes; das sollte für das gewünschte URL-Schema angepasst werden.
+: Wenn definiert, startet sie eine URL innerhalb von Tk, z. B. wenn die Anwendung eine URL selbst verarbeiten soll (RSS-Anzeige) statt die Standardanwendung zu nutzen — kann aber auch so definiert werden. Wish enthält ein Platzhalter-URL-Schema „foo://“ in CFBundleURLSchemes; das sollte für das gewünschte URL-Schema angepasst werden.
 
 **::tk::mac::GetAppPath**
 : Gibt den Dateipfad der aktuellen Anwendung zurück.
@@ -146,7 +146,7 @@ Es gibt globale Konfigurationsoptionen, die steuern, wie Tk standardmäßig rend
 : Erhält Kompatibilität mit älteren Tk/Aqua-Metriken; auf **false** für nativere Abstände setzen.
 
 [::tk::mac::CGAntialiasLimit]{.cmd} [limit]{.arg}
-: Setzt die Antialiasing-Grenze; Linien dünner als *limit* Pixel werden nicht antialiased. Ganzzahl, Standard 0 (alle Linien antialiased).
+: Setzt die Antialiasing-Grenze; Linien dünner als *limit* Pixel werden ohne Antialiasing gezeichnet. Ganzzahl, Standard 0 (alle Linien mit Antialiasing).
 
 [::tk::mac::antialiasedtext]{.cmd} [number]{.arg}
 : Steuert Text-Antialiasing. Mögliche Werte für *number*: -1 (Standard, Systemvorgabe), 0 (kein Text-AA), 1 (Text-AA).

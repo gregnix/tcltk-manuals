@@ -39,7 +39,7 @@ map::slippy::fetcher – Zugriff auf einen Server, der Kacheln für auf Slippy b
 
 Dieses Paket enthält eine Klasse für den Zugriff auf HTTP-Server, die Kacheln für Slippy-basierte Karten bereitstellen.
 
-*ACHTUNG*, *Hinweis*: Die Version *0.7* hat keine abwärtskompatible Kompatibilität mit Version 0.5 und früheren Versionen. Dies ist darauf zurückzuführen, dass die internen Abläufe dieses Pakets auf die Verwendung der Version 0.8 von **map::slippy** umgestellt wurden.
+*ACHTUNG*, *Hinweis*: Die Version *0.7* ist *NICHT abwärtskompatibel* mit Version 0.5 und früheren Versionen. Dies ist darauf zurückzuführen, dass die internen Abläufe dieses Pakets auf die Verwendung der Version 0.8 von **map::slippy** umgestellt wurden.
 
 # API
 
@@ -63,11 +63,11 @@ Dieses Paket enthält eine Klasse für den Zugriff auf HTTP-Server, die Kacheln 
 *fetcherName* **get** *tile* *donecmd*
 : Dies ist die Hauptmethode des Fetchers, die das Bild für die angegebene *tile* abruft. Die Kachel-Kennung ist eine Liste mit drei Elementen: der Zoomstufe sowie den Zeilen- und Spaltennummern der Kachel, in dieser Reihenfolge.
 
-    Der Befehl „refix *donecmd*“ wird aufgerufen, wenn der Fetcher entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild mehr bereitgestellt wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
+    Das Befehlspräfix *donecmd* wird aufgerufen, wenn der Fetcher entweder das Bild für die Kachel kennt oder feststellt, dass kein Bild mehr bereitgestellt wird. Er wird entweder mit 2 oder 3 Argumenten aufgerufen, d. h.
 
-    1. Die Zeichenfolge „**set**“, die *tile* und das Bild.
+    1. Die Zeichenkette „**set**“, die *tile* und das Bild.
 
-    2. Die Zeichenfolge „**unset**“ und die *tile*.
+    2. Die Zeichenkette „**unset**“ und die *tile*.
 
 
     Diese beiden Möglichkeiten dienen dazu, entweder das Bild für die *tile* anzugeben oder zu signalisieren, dass für die *tile* kein Bild definiert ist.

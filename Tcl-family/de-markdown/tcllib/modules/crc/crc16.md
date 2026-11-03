@@ -181,7 +181,7 @@ Dieses Paket bietet eine rein auf Tcl basierende Implementierung der CRC-Algorit
 : siehe unten ...
 
 **::crc::cms** ?-format *format*? ?-seed *value*? ?-implementation *procname*? -filename *file*
-: Der Befehl akzeptiert entweder Zeichenfolgendaten oder einen Dateinamen und gibt einen mithilfe des CRC-Algorithmus berechneten Prüfsummenwert zurück. Der verwendete Befehl legt das CRC-Polynom, den Startwert und die Bitreihenfolge für die gewünschte Standard-Prüfsummenberechnung fest. Das Ergebnis wird anhand des angegebenen Spezifikators *format*(n) formatiert oder standardmäßig als vorzeichenlose Ganzzahl (%u) ausgegeben.
+: Der Befehl akzeptiert entweder Zeichenkettendaten oder einen Dateinamen und gibt einen mithilfe des CRC-Algorithmus berechneten Prüfsummenwert zurück. Der verwendete Befehl legt das CRC-Polynom, den Startwert und die Bitreihenfolge für die gewünschte Standard-Prüfsummenberechnung fest. Das Ergebnis wird anhand des angegebenen Spezifikators *format*(n) formatiert oder standardmäßig als vorzeichenlose Ganzzahl (%u) ausgegeben.
 
     Für den CRC-Algorithmus werden eine Reihe gängiger Polynome verwendet, von denen die am häufigsten verwendeten in diesem Paket enthalten sind. Der Einfachheit halber verfügt jedes dieser Polynome über einen Befehlsalias im crc-Namespace.
 
@@ -197,7 +197,7 @@ Dieses Paket bietet eine rein auf Tcl basierende Implementierung der CRC-Algorit
 : Gibt die Prüfsumme unter Verwendung einer alternativen Formatvorlage zurück.
 
 -seed *value*
-: Wählt einen alternativen Wert für die CRC-Berechnung aus. Der Standardwert ist 0 für die CRC16-Berechnung und 0xFFFF für die CCITT-Version. Dies kann nützlich sein, um den CRC für Datenstrukturen zu berechnen, ohne zuvor die gesamte Struktur in eine Zeichenkette umwandeln zu müssen. Der CRC des vorherigen Elements kann als Startwert für die Berechnung des CRC des nächsten Elements verwendet werden. Er dient außerdem dazu, eine Prüfsumme aus Fragmenten einer großen Nachricht (oder Datei) zu bilden.
+: Wählt einen alternativen Startwert für die CRC-Berechnung aus. Der Standardwert ist 0 für die CRC16-Berechnung und 0xFFFF für die CCITT-Version. Dies kann nützlich sein, um den CRC für Datenstrukturen zu berechnen, ohne zuvor die gesamte Struktur in eine Zeichenkette umwandeln zu müssen. Der CRC des vorherigen Elements kann als Startwert für die Berechnung des CRC des nächsten Elements verwendet werden. Er dient außerdem dazu, eine Prüfsumme aus Fragmenten einer großen Nachricht (oder Datei) zu bilden.
 
 -implementation *procname*
 : Dieser Hook wird bereitgestellt, damit Benutzer ihre eigene Implementierung bereitstellen können (beispielsweise eine in C kompilierte Erweiterung). Die angegebene Prozedur wird mit zwei Parametern aufgerufen. Der erste Parameter sind die Daten, für die eine Prüfsumme berechnet werden soll, und der zweite ist der Startwert. Als Ergebnis wird eine Ganzzahl erwartet.
@@ -205,7 +205,7 @@ Dieses Paket bietet eine rein auf Tcl basierende Implementierung der CRC-Algorit
     Das Paket stellt einige Implementierungen von Standard-CRC-Polynomen für XMODEM, CCITT und die übliche CRC-16-Prüfsumme bereit. Der Einfachheit halber wurden zusätzliche Befehle bereitgestellt, die diese Implementierungen nutzen.
 
 --
-: Beendet die Optionsverarbeitung. Beachten Sie, dass die Verwendung des Optionsbeendigungsflags bei der Verarbeitung von Daten aus Parametern wichtig ist. Wenn die Binärdaten einer der oben genannten Optionen ähneln, werden die Daten als Option interpretiert, sofern dieses Kennzeichen nicht enthalten ist. Verwenden Sie stets das Optionsbeendigungsflag *--* vor der Angabe des Argumentes.
+: Beendet die Optionsverarbeitung. Beachten Sie, dass die Verwendung des Optionsbeendigungsflags bei der Verarbeitung von Daten aus Parametern wichtig ist. Wenn die Binärdaten einer der oben genannten Optionen ähneln, werden die Daten als Option interpretiert, sofern dieses Kennzeichen nicht enthalten ist. Verwenden Sie stets das Optionsbeendigungsflag *--* vor der Angabe des Datenarguments.
 
 
 # Beispiele

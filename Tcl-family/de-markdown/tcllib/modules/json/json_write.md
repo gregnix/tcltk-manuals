@@ -36,7 +36,7 @@ json::write – JSON-Generierung
 
 # Beschreibung
 
-Das **json::write** Das Paket bietet eine einfache, ausschließlich auf Tcl basierende Bibliothek zur Generierung von Text im JSON-Datenaustauschformat <http://www.json.org/>, wie in RFC 4627 <http://www.ietf.org/rfc/rfc4627.txt> festgelegt.
+Das Paket **json::write** bietet eine einfache, ausschließlich auf Tcl basierende Bibliothek zur Generierung von Text im JSON-Datenaustauschformat <http://www.json.org/>, wie in RFC 4627 <http://www.ietf.org/rfc/rfc4627.txt> festgelegt.
 
 # Befehle
 
@@ -44,9 +44,9 @@ Das **json::write** Das Paket bietet eine einfache, ausschließlich auf Tcl basi
 : Diese Methode gibt den aktuellen Status der Einrückungseinstellung zurück.
 
 **::json::write** **indented** *flag*
-: Diese Option und die Methode **aligned** legen das Layout des vom Paket generierten JSON fest.
+: Diese Methode und die Methode **aligned** legen das Layout des vom Paket generierten JSON fest.
 
-    Ist dieses *Flag* gesetzt (Standard), teilt das Paket den generierten JSON-Code in Zeilen auf und rückt ihn entsprechend seiner inneren Struktur ein, wobei jeder Schlüssel eines Objekts in einer eigenen Zeile steht.
+    Ist dieses *flag* gesetzt (Standard), teilt das Paket den generierten JSON-Code in Zeilen auf und rückt ihn entsprechend seiner inneren Struktur ein, wobei jeder Schlüssel eines Objekts in einer eigenen Zeile steht.
 
     Ist dieses Flag nicht gesetzt, wird das gesamte JSON-Objekt in einer einzigen Zeile geschrieben, wobei der Abstand zwischen allen Elementen minimal ist.
 
@@ -54,11 +54,11 @@ Das **json::write** Das Paket bietet eine einfache, ausschließlich auf Tcl basi
 : Diese Methode gibt den aktuellen Status der Einstellung für die Ausrichtung zurück.
 
 **::json::write** **aligned** *flag*
-: Diese Option und die Methode **indented** legen das Layout des vom Paket generierten JSON fest.
+: Diese Methode und die Methode **indented** legen das Layout des vom Paket generierten JSON fest.
 
-    Ist dieses *Flag* gesetzt (Standard), sorgt das Paket dafür, dass die Werte der Schlüssel in einem Objekt vertikal zueinander ausgerichtet sind, was einen ansprechenden Tabelleneffekt erzeugt. Damit dies funktioniert, muss auch **indented** gesetzt sein.
+    Ist dieses *flag* gesetzt (Standard), sorgt das Paket dafür, dass die Werte der Schlüssel in einem Objekt vertikal zueinander ausgerichtet sind, was einen ansprechenden Tabelleneffekt erzeugt. Damit dies funktioniert, wird damit zugleich auch **indented** gesetzt.
 
-    Ist dieses Flag nicht gesetzt, wird die Ausgabe entsprechend dem Wert von **indented** formatiert, ohne dass versucht wird, die Werte der Objektschlüssel zu richten.
+    Ist dieses Flag nicht gesetzt, wird die Ausgabe entsprechend dem Wert von **indented** formatiert, ohne dass versucht wird, die Werte der Objektschlüssel auszurichten.
 
 **::json::write** **string** *s*
 : Diese Methode nimmt die Zeichenkette *s* entgegen und gibt sie als Ergebnis mit den für JSON korrekten Anführungszeichen zurück.
@@ -73,7 +73,7 @@ Das **json::write** Das Paket bietet eine einfache, ausschließlich auf Tcl basi
 : Diese Methode nimmt eine Reihe von Schlüssel-Wert-Argumenten entgegen, wobei die Werte bereits im JSON-Format vorliegen, und gibt sie als ordnungsgemäß formatiertes JSON-Objekt zurück, wobei die Schlüssel als JSON-Zeichenketten formatiert sind.
 
 **::json::write** **object-strings** *key* *value*...
-: Dies ist eine Komfortvariante von **object**. Sie geht davon aus, dass alle *Wert*-Argumente einfache Zeichenketten sind, und formatiert sie als JSON-Zeichenketten, bevor sie an **object** übergeben werden.
+: Dies ist eine Komfortvariante von **object**. Sie geht davon aus, dass alle *value*-Argumente einfache Zeichenketten sind, und formatiert sie als JSON-Zeichenketten, bevor sie an **object** übergeben werden.
 
 
 # Verwandte Themen

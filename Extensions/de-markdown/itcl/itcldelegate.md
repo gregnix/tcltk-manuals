@@ -83,13 +83,13 @@ Der Befehl **delegate** wird innerhalb einer Definition extendedclass/widget/wid
     Ersetzungen:
 
     **%%**
-    : Das wird durch ein einzelnes „%“ ersetzt. Um die Zeichenkette „%c“ als Argument an den Befehl zu geben, steht hier „%%c“.
+    : Das wird durch ein einzelnes „%“ ersetzt. Um die Zeichenkette „%c“ als Argument an den Befehl zu übergeben, schreiben Sie „%%c“.
 
     **%c**
     : Das wird durch den Befehl der genannten Komponente ersetzt.
 
     **%j**
-    : Das wird durch den Methodennamen ersetzt; besteht der Name aus mehreren Token, werden sie durch Unterstriche verbunden ("\").
+    : Das wird durch den Methodennamen ersetzt; besteht der Name aus mehreren Token, werden sie durch Unterstriche verbunden ("\_").
 
     **%m**
     : Das wird durch das letzte Token des Methodennamens ersetzt; hat der Methodenname ein Token, ist das identisch mit **%M**.
@@ -113,7 +113,7 @@ Der Befehl **delegate** wird innerhalb einer Definition extendedclass/widget/wid
 **delegate method** *\** ?**to** *componentName*? ?**using** *pattern*? ?**except** *methodName methodName ...*?
 : In dieser Form werden alle unbekannten Methodennamen an die angegebene Komponente weitergeleitet. Die Klausel except kann eine Liste von Ausnahmen angeben, also Methodennamen, die nicht so weitergeleitet werden. Die Klausel using ist wie oben definiert. In dieser Form muss die Anweisung die Klausel to, die Klausel using oder beide enthalten.
 
-    Tatsächlich kann das „\“ eine Liste aus zwei oder mehr Token sein, deren letztes Element „\“ ist, wie im folgenden Beispiel:
+    Tatsächlich kann das „\*“ eine Liste aus zwei oder mehr Token sein, deren letztes Element „\*“ ist, wie im folgenden Beispiel:
 
     ```
     delegate method {tail *} to tail

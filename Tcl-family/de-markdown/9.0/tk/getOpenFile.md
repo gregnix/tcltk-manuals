@@ -33,7 +33,7 @@ Der Befehl **tk\_getSaveFile** ist üblicherweise dem Menübefehl **Save as** im
 Die folgenden *Option-Wert*-Paare sind als Befehlszeilenargumente für diese beiden Befehle möglich:
 
 [-command]{.lit} [string]{.arg}
-: Legt das Präfix eines Tcl-Befehls fest, der ausgeführt wird, wenn der Benutzer den Dialog nach einer Auswahl schließt. Dieser Rückruf wird nicht aufgerufen, wenn der Benutzer den Dialog abbricht. Der tatsächliche Befehl besteht aus *string*, gefolgt von einem Leerzeichen und dem vom Benutzer im Dialog gewählten Wert. Nur unter macOS verfügbar.
+: Legt das Präfix eines Tcl-Befehls fest, der ausgeführt wird, wenn der Benutzer den Dialog nach einer Auswahl schließt. Diese Rückruffunktion wird nicht aufgerufen, wenn der Benutzer den Dialog abbricht. Der tatsächliche Befehl besteht aus *string*, gefolgt von einem Leerzeichen und dem vom Benutzer im Dialog gewählten Wert. Nur unter macOS verfügbar.
 
 [-confirmoverwrite]{.lit} [boolean]{.arg}
 : Legt fest, wie der Speichern-Dialog reagiert, wenn die gewählte Datei bereits existiert und das Speichern sie überschreiben würde. Ein wahrer Wert fordert einen Bestätigungsdialog. Ein falscher Wert überschreibt ohne Bestätigung. Standardwert ist true.
@@ -42,7 +42,7 @@ Die folgenden *Option-Wert*-Paare sind als Befehlszeilenargumente für diese bei
 : Legt eine Zeichenkette fest, die an den Dateinamen angehängt wird, wenn der Benutzer einen Dateinamen ohne Erweiterung eingibt. Standard ist die leere Zeichenkette, d. h. es wird in keinem Fall eine Erweiterung angehängt. Diese Option wird unter macOS ignoriert, wo Dateinamen keine Erweiterung benötigen; die UNIX-Implementierung leitet vernünftige Werte aus **-filetypes** ab, wenn nichts angegeben ist.
 
 [-filetypes]{.lit} [filePatternList]{.arg}
-: Existiert auf der Plattform eine **File types**-Listbox im Dateidialog, gibt diese Option die *filetype*s in dieser Listbox an. Wählt der Benutzer einen Dateityp, werden nur Dateien dieses Typs aufgelistet. Ist die Option nicht angegeben, leer oder wird die **File types**-Listbox von der Plattform nicht unterstützt, werden alle Dateien unabhängig vom Typ aufgelistet. Siehe Abschnitt [Dateimuster festlegen] unten zur Struktur von *filePatternList*.
+: Existiert auf der Plattform eine **File types**-Listbox im Dateidialog, gibt diese Option die *filetype*-Argumente in dieser Listbox an. Wählt der Benutzer einen Dateityp, werden nur Dateien dieses Typs aufgelistet. Ist die Option nicht angegeben, leer oder wird die **File types**-Listbox von der Plattform nicht unterstützt, werden alle Dateien unabhängig vom Typ aufgelistet. Siehe Abschnitt [Dateimuster festlegen] unten zur Struktur von *filePatternList*.
 
 [-initialdir]{.lit} [directory]{.arg}
 : Legt fest, dass beim Öffnen des Dialogs die Dateien in *directory* angezeigt werden. Ist der Parameter nicht angegeben, ist das Startverzeichnis auf Nicht-Windows-Systemen das aktuelle Arbeitsverzeichnis; unter Windows vor Vista ebenfalls. Unter Vista und später ist es das zuletzt vom Benutzer für die Anwendung gewählte Verzeichnis. Gibt der Parameter einen relativen Pfad an, wandelt der Rückgabewert ihn in einen absoluten Pfad um.
@@ -76,13 +76,13 @@ Der von **-filetypes** angegebene Wert *filePatternList* ist eine Liste von Date
 typeName {extension ?extension ...?} ?{macType ?macType ...?}?
 ```
 
-*typeName* ist der Name des durch dieses Muster beschriebenen Dateityps und der Text in der **File types**-Listbox. *extension* ist eine Dateierweiterung für dieses Muster. *macType* ist ein vierstelliges Macintosh-Dateityp-Kürzel. Die Liste der *macType*s ist optional und kann für Anwendungen ohne Macintosh-Bedarf weggelassen werden.
+*typeName* ist der Name des durch dieses Muster beschriebenen Dateityps und der Text in der **File types**-Listbox. *extension* ist eine Dateierweiterung für dieses Muster. *macType* ist ein vierstelliges Macintosh-Dateityp-Kürzel. Die Liste der *macType*-Argumente ist optional und kann für Anwendungen ohne Macintosh-Bedarf weggelassen werden.
 
 Mehrere Dateimuster können denselben *typeName* haben; sie bezeichnen dann denselben Dateityp und teilen sich einen Listbox-Eintrag. Wählt der Benutzer einen Eintrag, werden alle Dateien aufgelistet, die mindestens einem der zugehörigen Muster entsprechen. Üblicherweise entspricht jedes Muster einem eigenen Dateityp. Mehrere Muster für einen Typ sind nur auf der Macintosh-Plattform nötig.
 
 Auf Macintosh passt eine Datei zu einem Muster, wenn ihr Name mindestens einer *extension* entspricht UND sie zu mindestens einem *macType* des Musters gehört. Das Muster **C Source Files** im Beispielcode passt zu Dateien mit Erweiterung **.c** UND *macType* **TEXT**. Für die ODER-Regel verwenden Sie zwei Muster, eines nur mit *extensions*, eines nur mit *macType*. Der Dateityp **GIF Files** im Beispielcode passt zu Dateien, die *entweder* die Erweiterung **.gif** haben ODER zum *macType* **GIFF** gehören.
 
-Auf Unix und Windows passt eine Datei, wenn ihr Name mindestens einer *extension* des Musters entspricht. Die *macType*s werden ignoriert.
+Auf Unix und Windows passt eine Datei, wenn ihr Name mindestens einer *extension* des Musters entspricht. Die *macType*-Argumente werden ignoriert.
 
 # Erweiterungen festlegen
 
@@ -95,7 +95,7 @@ Auf Unix und Macintosh werden Erweiterungen per Glob-Muster abgeglichen. Unter W
 3. jede Zeichenkette ohne Platzhalter (\* und ?).
 
 
-Wegen unterschiedlicher Abgleichregeln auf den Plattformen sind Platzhalter in Erweiterungen zur Portierbarkeit nicht erlaubt, außer bei der Sondererweiterung „\*“. Erweiterungen ohne Punkt (z. B. „~“) sind erlaubt, funktionieren aber nicht auf allen Plattformen.
+Wegen unterschiedlicher Abgleichregeln auf den Plattformen sind Platzhalter in Erweiterungen zur Portierbarkeit nicht erlaubt, außer bei der Sondererweiterung „\*“. Erweiterungen ohne Punkt (z. B. „~“) sind erlaubt, funktionieren aber möglicherweise nicht auf allen Plattformen.
 
 # Beispiel
 

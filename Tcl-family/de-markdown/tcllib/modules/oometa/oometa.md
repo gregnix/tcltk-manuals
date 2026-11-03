@@ -78,7 +78,7 @@ Das Konzept hinter **oo::meta** besteht darin, dass jede Klasse einen Ausschnitt
 # Befehle
 
 **oo::meta::info**
-: **oo::meta::info** ist darauf ausgelegt, die Metadaten einer Klasse auf ähnliche Weise zu bearbeiten, wenn die einzelnen Elemente zu einem einzigen Dict zusammengefügt worden sind. Das System unterstützt alle Standard-Befehle für Dicts und bietet darüber hinaus folgende zusätzliche Funktionen:
+: **oo::meta::info** ist darauf ausgelegt, die Metadaten einer Klasse auf ähnliche Weise zu bearbeiten, als ob die einzelnen Elemente zu einem einzigen Dict zusammengefügt worden wären. Das System unterstützt alle Standard-Befehle für Dicts und bietet darüber hinaus folgende zusätzliche Funktionen:
 
 **oo::meta::info branchget** ?*key*? ?...?
 : Gibt eine Dict-Darstellung des Elements an der Position *args* zurück, wobei jedoch alle abschließenden „:“ aus den Feldnamen entfernt werden.
@@ -137,7 +137,7 @@ Das Konzept hinter **oo::meta** besteht darin, dass jede Klasse einen Ausschnitt
 : Das Paket fügt eine neue Methode **meta** in **oo::object** ein. **oo::object** kombiniert die Daten für seine Klasse (wie von **oo::meta::metadata** bereitgestellt) mit einer lokalen Variablen *meta*, um ein lokales Abbild der Metadaten zu erstellen. Diese Methode stellt die folgenden zusätzlichen Befehle bereit:
 
 **oo::object method meta cget** ?*field*? ?*...*? *field*
-: Versucht, ein einzelnes Blatt zu finden und dessen Wert zurückzugeben. Bei der Suche nach einer einzelnen Option ist dies schneller als **my meta getnull** ?*field*? ?*...*? *field*\], da hier direkt eine Suche durchgeführt wird, anstatt zunächst das rekursive Merge-Produkt zwischen den Klassenmetadaten, der lokalen *meta*-Variablen zu erzeugen und erst danach die Suche durchzuführen.
+: Versucht, ein einzelnes Blatt zu finden und dessen Wert zurückzugeben. Bei der Suche nach einer einzelnen Option ist dies schneller als **my meta getnull** ?*field*? ?*...*? *field*\], da hier direkt eine Suche durchgeführt wird, anstatt zunächst das rekursive Merge-Produkt zwischen den Klassenmetadaten und der lokalen *meta*-Variablen zu erzeugen und erst danach die Suche durchzuführen.
 
 
 # Fehler, Ideen, Rückmeldungen

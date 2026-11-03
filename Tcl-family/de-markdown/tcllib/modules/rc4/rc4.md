@@ -37,14 +37,14 @@ rc4 – Implementierung der RC4-Stromverschlüsselung
 
 # Beschreibung
 
-Dieses Paket ist eine Implementierung der von Ron Rivest von RSA Data Security Inc. entwickelten RC4-Stromverschlüsselung in Tcl. Die Verschlüsselung war ein Geschäftsgeheimnis von RSA, wurde jedoch rückentwickelt und 1994 im Internet veröffentlicht. Sie wird in einer Reihe von Netzwerkprotokollen zur Sicherung der Kommunikation eingesetzt. Um markenrechtlichen Beschränkungen zu umgehen, wird diese Verschlüsselung manchmal als ARCFOUR bezeichnet.
+Dieses Paket ist eine Implementierung der von Ron Rivest von RSA Data Security Inc. entwickelten RC4-Stromverschlüsselung in Tcl. Die Verschlüsselung war ein Geschäftsgeheimnis von RSA, wurde jedoch rückentwickelt und 1994 im Internet veröffentlicht. Sie wird in einer Reihe von Netzwerkprotokollen zur Sicherung der Kommunikation eingesetzt. Um markenrechtliche Beschränkungen zu umgehen, wird diese Verschlüsselung manchmal als ARCFOUR bezeichnet.
 
 # Befehle
 
 **::rc4::rc4** ?*-hex*? *-key keyvalue* ?*-command lst*? ?*-out channel*? \[ *-in channel* | *-infile filename* | *string* \]
-: Wendet den RC4-Algorithmus entweder auf die durch das Argument bereitgestellten Daten oder auf die aus dem Kanal *-in* gelesenen Daten an. Wird ein Kanal *-out* angegeben, wird das Ergebnis in diesen Kanal geschrieben. Bei Angabe der Option *-hex* gibt es eine hexadezimal kodierte Version des Ergebnisses zurück, wenn kein *-out*-Kanal verwendet wird.
+: Wendet den RC4-Algorithmus entweder auf die durch das Argument bereitgestellten Daten oder auf die aus dem Kanal *-in* gelesenen Daten an. Wird ein Kanal *-out* angegeben, wird das Ergebnis in diesen Kanal geschrieben. Bei Angabe der Option *-hex* gibt der Befehl eine hexadezimal kodierte Version des Ergebnisses zurück, wenn kein *-out*-Kanal verwendet wird.
 
-    Die zu verarbeitenden Daten können entweder als Zeichenfolgenargument für den Befehl rc4, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-infile* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und verarbeitet, und die Datei wird geschlossen. Wenn das Argument *-in* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen. Wenn das Argument *-out* angegeben wird, wird das Verarbeitungsergebnis in diesen Kanal geschrieben.
+    Die zu verarbeitenden Daten können entweder als Zeichenkettenargument für den Befehl rc4, als Dateiname oder als zuvor geöffneter Kanal angegeben werden. Wenn das Argument *-infile* angegeben wird, wird die Datei geöffnet, die Daten werden gelesen und verarbeitet, und die Datei wird geschlossen. Wenn das Argument *-in* angegeben wird, werden Daten aus dem Kanal bis zum Dateiende gelesen. Der Kanal wird nicht geschlossen. Wenn das Argument *-out* angegeben wird, wird das Verarbeitungsergebnis in diesen Kanal geschrieben.
 
     Wenn *-command* angegeben wird, gibt der Befehl „rc4“ nichts zurück. Stattdessen wird der angegebene Befehl aufgerufen, wobei die Ergebnisdaten von „rc4“ als letzter Parameter angehängt werden. Dies ist besonders nützlich beim Lesen aus Tcl-Kanälen, da auf dem Kanal ein „fileevent“ eingerichtet ist und die Daten in Blöcken verarbeitet werden.
 
@@ -57,7 +57,7 @@ Dieses Paket ist eine Implementierung der von Ron Rivest von RSA Data Security I
 : Initialisiert einen neuen RC4-Schlüssel. Bei *keydata* handelt es sich um eine beliebige Menge an Binärdaten, die zur Initialisierung des internen Zustands der Verschlüsselungsfunktion verwendet wird.
 
 **::rc4::RC4** *Key* *data*
-: Verschlüsseln oder entschlüsseln Sie die Eingabedaten mit dem Schlüssel, den Sie durch den Aufruf von **RC4Init** erhalten haben.
+: Verschlüsselt oder entschlüsselt die Eingabedaten mit dem Schlüssel, der durch den Aufruf von **RC4Init** erhalten wurde.
 
 **::rc4::RC4Final** *Key*
 : Diese Funktion sollte aufgerufen werden, um die mit *Key* verbundenen Ressourcen zu bereinigen. Sobald diese Funktion aufgerufen wurde, wird der Schlüssel gelöscht.

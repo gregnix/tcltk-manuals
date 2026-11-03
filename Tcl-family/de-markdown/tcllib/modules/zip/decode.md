@@ -57,7 +57,7 @@ Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind nicht erforderlich, wenn TC
 : Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den globalen Kommentar des Archivs zurück.
 
 **::zipfile::decode::content** *archive*
-: Dies ist ein Komfortbefehl, der die angegebene ZIP-*Archiv*-Datei entpackt und als Ergebnis die Liste der darin enthaltenen Pfade gibt.
+: Dies ist ein Komfortbefehl, der die angegebene ZIP-Archivdatei *archive* entpackt und als Ergebnis die Liste der darin enthaltenen Pfade zurückgibt.
 
 **::zipfile::decode::copyfile** *adict* *path* *dst*
 : Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und kopiert den entpackten Inhalt der Datei mit dem Pfad *path* im Archiv in die Datei *dst*. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
@@ -66,31 +66,31 @@ Hinweis: Die Pakete „Trf“ und „zlibtcl“ sind nicht erforderlich, wenn TC
 : Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt die Liste der im Archiv enthaltenen Dateien zurück.
 
 **::zipfile::decode::filetime** *adict* *path*
-: Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den Zeitstempel der Datei *Pfad* im Archiv zurück.
+: Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den Zeitstempel der Datei *path* im Archiv zurück.
 
 **::zipfile::decode::getfile** *zdict* *path*
 : Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den entpackten Inhalt der Datei mit dem Pfad *path* im Archiv zurück. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
 
 **::zipfile::decode::hasfile** *adict* *path*
-: Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie es **::zipfile::decode::archive** gibt, und prüft, ob der angegebene *Pfad* im Archiv gefunden wird. Das Ergebnis des Befehls ist ein boolescher Wert: **true**, wenn der Pfad gefunden wird, andernfalls **false**.
+: Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie es **::zipfile::decode::archive** zurückgibt, und prüft, ob der angegebene Pfad *path* im Archiv gefunden wird. Das Ergebnis des Befehls ist ein boolescher Wert: **true**, wenn der Pfad gefunden wird, andernfalls **false**.
 
 **::zipfile::decode::filesize** *zdict* *path*
-: Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt die entpackte Größe der Datei *Pfad* im Archiv zurück. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
+: Dieser Befehl nimmt ein Dictionary entgegen, das die aktuell geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt die entpackte Größe der Datei *path* im Archiv zurück. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
 
 **::zipfile::decode::filecomment** *zdict* *path*
-: Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den dateispezifischen Kommentar der Datei *pfad* im Archiv zurück. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
+: Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie sie von **::zipfile::decode::archive** zurückgegeben wird, und gibt den dateispezifischen Kommentar der Datei *path* im Archiv zurück. Wenn die Datei im Archiv nicht gefunden wird, wird ein Fehler ausgelöst.
 
 **::zipfile::decode::iszip** *archive*
-: Dieser Befehl nimmt den Pfad einer vermeintlichen ZIP-*Archiv*-Datei entgegen und gibt als Ergebnis ein boolesches Flag zurück, das angibt, ob es sich tatsächlich um ein ZIP-Archiv handelt (**true**) oder nicht (**false**).
+: Dieser Befehl nimmt den Pfad einer vermeintlichen ZIP-Archivdatei *archive* entgegen und gibt als Ergebnis ein boolesches Flag zurück, das angibt, ob es sich tatsächlich um ein ZIP-Archiv handelt (**true**) oder nicht (**false**).
 
 **::zipfile::decode::open** *archive*
-: Dieser Befehl nimmt den Pfad einer ZIP-*Archiv*-Datei entgegen und bereitet diese für die Entpackung vor. Das Ergebnis des Befehls ist die leere Zeichenkette. Alle wichtigen Informationen werden im globalen Status gespeichert. Werden mehrere „open“-Aufrufe nacheinander ausgeführt, steht den anderen Befehlen nur der Status des letzten Aufrufs zur Verfügung.
+: Dieser Befehl nimmt den Pfad einer ZIP-Archivdatei *archive* entgegen und bereitet diese für die Entpackung vor. Das Ergebnis des Befehls ist die leere Zeichenkette. Alle wichtigen Informationen werden im globalen Status gespeichert. Werden mehrere „open“-Aufrufe nacheinander ausgeführt, steht den anderen Befehlen nur der Status des letzten Aufrufs zur Verfügung.
 
 **::zipfile::decode::unzip** *adict* *dstdir*
 : Dieser Befehl nimmt ein Dictionary entgegen, das die derzeit geöffnete ZIP-Archivdatei beschreibt, wie es **::zipfile::decode::archive** zurückgibt, und entpackt das Archiv in das angegebene Zielverzeichnis *dstdir*. Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::zipfile::decode::unzipfile** *archive* *dstdir*
-: Dies ist ein Komfort-Befehl, der die angegebene ZIP-*Archiv*-Datei in das angegebene Ziel-Verzeichnis *dstdir* entpackt.
+: Dies ist ein Komfort-Befehl, der die angegebene ZIP-Archivdatei *archive* in das angegebene Ziel-Verzeichnis *dstdir* entpackt.
 
     Das Ergebnis des Befehls ist die leere Zeichenkette.
 

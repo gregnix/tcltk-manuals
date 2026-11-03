@@ -52,7 +52,7 @@ Ist *first* oder *last* kleiner als null, bezieht es sich auf die Position vor d
 
 Steht *first* oder *last* für eine Position größer als der Index des letzten Elements, wird es behandelt als Index um eins hinter dem letzten Element. So können Elemente angehängt werden.
 
-Ist *last* kleiner als *first*, werden die *element*s vor dem von *first* bezeichneten Element eingefügt, ohne dass etwas gelöscht wird.
+Ist *last* kleiner als *first*, werden die *value*-Argumente vor dem von *first* bezeichneten Element eingefügt, ohne dass etwas gelöscht wird.
 
 Die Argumente *value* legen null oder mehr neue Elemente fest, die anstelle der gelöschten in die Liste eingefügt werden. Jedes *value* wird ein separates Listenelement. Sind keine *value*-Argumente angegeben, werden die Elemente zwischen *first* und *last* nur gelöscht.
 

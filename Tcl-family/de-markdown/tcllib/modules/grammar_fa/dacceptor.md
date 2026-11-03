@@ -50,7 +50,7 @@ Das Paket exportiert die hier beschriebene API.
 : Erstellt einen neuen deterministischen Akzeptor mit einem zugehörigen globalen Tcl-Befehl, dessen Name *daName* lautet. Mit diesem Befehl können verschiedene Operationen auf dem Akzeptor aufgerufen werden. Er hat die folgende allgemeine Form:
 
     **daName** *option* ?*arg arg ...*?
-    : *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Weitere Erläuterungen finden Sie im Abschnitt [Akzeptormethoden].
+    : *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Weitere Erläuterungen finden Sie im Abschnitt [Akzeptormethoden].
 
         Der Akzeptor basiert auf dem deterministischen endlichen Automaten, der im Objekt *fa* gespeichert ist. Er bewahrt eine Kopie der relevanten Daten des FA in seinem eigenen Speicher auf, und zwar in einer Form, die für seine Zwecke leicht zu verwenden ist. Dies bedeutet auch, dass Änderungen, die nach der Erstellung des Akzeptors am *fa* vorgenommen werden, den Akzeptor *nicht* beeinflussen.
 

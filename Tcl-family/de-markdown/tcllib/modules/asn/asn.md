@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-asn – ASN.1-BER-Kodierer/Dekodierer für die Kodierung und Dekodierung
+asn – ASN.1-BER-Kodierer/Dekodierer
 
 # Übersicht
 
@@ -84,7 +84,7 @@ asn – ASN.1-BER-Kodierer/Dekodierer für die Kodierung und Dekodierung
 
 Das Paket **asn** stellt *teilweise* Dekodier- und Kodierbefehle für BER-kodierte ASN.1-Daten bereit. Es kann auch zur Dekodierung von DER verwendet werden, bei dem es sich um eine eingeschränkte Teilmenge von BER handelt.
 
-ASN.1 ist ein Standard für die *Abstract Syntax Notation*, und BER sind die dazugehörigen *Basic Kodierungen*.
+ASN.1 ist ein Standard für die *Abstract Syntax Notation*, und BER sind die dazugehörigen *Basic Encoding Rules*.
 
 Weitere Informationen zu dieser Norm finden Sie unter <http://asn1.elibel.tm.fr/en/standards/index.htm>.
 
@@ -143,10 +143,10 @@ Siehe auch <http://luca.ntop.org/Teaching/Appunti/asn1.html> für *A Layman’s 
 : Gibt die NULL-Kodierung zurück.
 
 **::asn::asnBitString** *string*
-: Gibt die kodierte Form der angegebenen *string* zurück.
+: Gibt die kodierte Form der angegebenen Zeichenkette *string* zurück.
 
 **::asn::asnOctetString** *string*
-: Gibt die kodierte Form der angegebenen *string* zurück.
+: Gibt die kodierte Form der angegebenen Zeichenkette *string* zurück.
 
 **::asn::asnNumericString** *string*
 : Gibt den als ASN.1-NumericString kodierten *string* zurück. Löst einen Fehler aus, wenn der *string* andere Zeichen als Dezimalziffern und Leerzeichen enthält.
@@ -158,13 +158,13 @@ Siehe auch <http://luca.ntop.org/Teaching/Appunti/asn1.html> für *A Layman’s 
 : Gibt den als ASN.1 IA5String kodierten *string* zurück. Löst einen Fehler aus, wenn der *string* Zeichen enthält, die außerhalb des US-ASCII-Zeichenbereichs liegen.
 
 **::asn::asnBMPString** *string*
-: Gibt die als ASN.1-Zeichenkette der Basic Multilingual Plane durchführte Kodierung der *string* zurück (die im Wesentlichen Big-Endian-UCS2 entspricht).
+: Gibt *string* als ASN.1-Zeichenkette der Basic Multilingual Plane kodiert zurück (die im Wesentlichen Big-Endian-UCS2 entspricht).
 
 **::asn::asnUTF8String** *string*
-: Gibt die als UTF-8-Kodierung kodierte *string* zurück. Es gibt Hinweise darauf, dass einige ältere Anwendungen, wie beispielsweise die Windows CryptoAPI, mit UTF-8-Zeichenketten möglicherweise nicht korrekt funktionieren. Am sichersten ist es daher, BMPStrings zu verwenden.
+: Gibt *string* als UTF8 String kodiert zurück. Beachten Sie, dass einige ältere Anwendungen, wie beispielsweise die Windows CryptoAPI, mit UTF-8-Zeichenketten möglicherweise nicht korrekt funktionieren. Am sichersten ist es möglicherweise, BMPStrings zu verwenden.
 
 **::asn::asnString** *string*
-: Gibt eine kodierte Form von *string* zurück, wobei der möglichst restriktivste ASN.1-Zeichenkettentyp ausgewählt wird. Wenn die Zeichenkette Nicht-ASCII-Zeichen enthält, stehen mehrere Zeichenkettentypen zur Auswahl. Siehe **::asn::defaultStringType**.
+: Gibt eine kodierte Form von *string* zurück, wobei der restriktivste mögliche ASN.1-Zeichenkettentyp ausgewählt wird. Wenn die Zeichenkette Nicht-ASCII-Zeichen enthält, stehen mehrere Zeichenkettentypen zur Auswahl. Siehe **::asn::defaultStringType**.
 
 **::asn::defaultStringType** ?*type*?
 : Wählt den Zeichenkettentyp aus, der für die Kodierung von Nicht-ASCII-Zeichenketten verwendet werden soll. Gibt den aktuellen Standardwert zurück, wenn die Funktion ohne Argument aufgerufen wird. Wird das Argument *type* übergeben, sollte es entweder **UTF8** oder **BMP** lauten, um jeweils UTF8String oder BMPString auszuwählen.
@@ -195,10 +195,10 @@ Allgemeine Hinweise:
 : Dekodiert den Wert der Enumerations-ID, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die Enumerations-ID wird in der Variable *enumVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte Enumerations-ID ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetOctetString** *dataVar* *stringVar*
-: Dekodiert den Wert der Zeichenfolge, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den Wert der Zeichenkette, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetString** *dataVar* *stringVar* ?*typeVar*?
-: Dekodiert den lesbaren Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den lesbaren Zeichenkettenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte Zeichenkette ist, wird ein Fehler ausgelöst.
 
     Hierbei handelt es sich um eine Komfortfunktion, die in der Lage ist, alle unterstützten ASN.1-Zeichenkettentypen automatisch zu unterscheiden und den Eingabewert entsprechend zu konvertieren.
 
@@ -206,61 +206,61 @@ Allgemeine Hinweise:
 
     Wenn das optionale dritte Argument *typeVar* angegeben wird, wird der Typ der eingehenden Zeichenkette in der damit benannten Variable gespeichert.
 
-    Die Funktion löst den Fehler „Ungültiger Name des Befehls asnGetSome**UnsupportedString**“ aus, wenn auf den nicht unterstützten Zeichenfolgen-Typ **Unsupported** gestoßen wird. Wenn es nötig ist, können Sie die entsprechende Funktion „asn::asnGetSome**UnsupportedString**“ in Ihrer Anwendung erstellen.
+    Die Funktion löst den Fehler "invalid command name asnGetSome**UnsupportedString**" aus, wenn auf den nicht unterstützten Zeichenketten-Typ **Unsupported** gestoßen wird. Wenn es nötig ist, können Sie die entsprechende Funktion „asn::asnGetSome**UnsupportedString**“ in Ihrer Anwendung erstellen.
 
 **::asn::asnGetNumericString** *dataVar* *stringVar*
-: Dekodiert den numerischen Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die numerische Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte numerische Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den numerischen Zeichenkettenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung kodiert ist. Die numerische Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte numerische Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetPrintableString** *dataVar* *stringVar*
-: Dekodiert den druckbaren Zeichenfolgenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die druckbare Zeichenfolge wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte druckbare Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den druckbaren Zeichenkettenwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die druckbare Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Wenn der Wert am Anfang keine kodierte druckbare Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetIA5String** *dataVar* *stringVar*
-: Dekodiert den IA5-Zeichenfolgenwert (US-ASCII), der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die IA5-Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte IA5-Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den IA5-Zeichenkettenwert (US-ASCII), der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die IA5-Zeichenkette wird in der Variable *stringVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte IA5-Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetBMPString** *dataVar* *stringVar*
-: Dekodiert den BMP-Zeichenfolgenwert (Zwei-Byte-Unicode – UCS2), der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die BMP-Zeichenkette wird in eine korrekte Tcl-Zeichenkette umgewandelt, die anschließend in der Variable *stringVar* gespeichert wird; die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte BMP-Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den BMP-Zeichenkettenwert (Zwei-Byte-Unicode – UCS2), der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die BMP-Zeichenkette wird in eine korrekte Tcl-Zeichenkette umgewandelt, die anschließend in der Variable *stringVar* gespeichert wird; die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte BMP-Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetUTF8String** *dataVar* *stringVar*
-: Dekodiert den UTF-8-Zeichenfolgenwert, der am Anfang der in der Variablen *dataVar* gespeicherten Daten durch Kodierung erzeugt wurde. Die UTF-8-Zeichenkette wird in eine korrekte Tcl-Zeichenkette umgewandelt, die anschließend in der Variable *stringVar* gespeichert wird; die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit ist. Wenn der Wert am Anfang keine kodierte UTF-8-Zeichenkette ist, wird ein Fehler ausgelöst.
+: Dekodiert den UTF-8-Zeichenkettenwert, der am Anfang der in der Variablen *dataVar* gespeicherten Daten durch Kodierung erzeugt wurde. Die UTF-8-Zeichenkette wird in eine korrekte Tcl-Zeichenkette umgewandelt, die anschließend in der Variable *stringVar* gespeichert wird; die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang keine kodierte UTF-8-Zeichenkette ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetUTCTime** *dataVar* *utcVar*
-: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durchführenden Prozess der Kodierung des UTC-Zeitwerts. Der UTC-Zeitwert wird in der Variable *utcVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *utcVar* gespeicherte Wert ist eine Zeichenkette; um einen tatsächlichen Zeitwert zu erhalten, verwenden Sie den Befehl **clock scan**. Wenn der Wert am Anfang kein kodierter UTC-Zeitwert ist, wird ein Fehler ausgelöst.
+: Dekodiert den UTC-Zeitwert, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Der UTC-Zeitwert wird in der Variable *utcVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *utcVar* gespeicherte Wert ist eine Zeichenkette; um einen tatsächlichen Zeitwert zu erhalten, verwenden Sie den Befehl **clock scan**. Wenn der Wert am Anfang kein kodierter UTC-Zeitwert ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetBitString** *dataVar* *bitsVar*
 : Dekodiert den Wert der Bitzeichenfolge, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die Bitzeichenfolge wird in der Variable *bitsVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für den nächsten zu dekodierenden Wert bereit sind. Der in *bitsVar* gespeicherte Wert ist eine Zeichenkette, die ausschließlich die Zeichen **"0"** und **"1"** enthält. Wenn der Wert am Anfang keine kodierte Bitfolge ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetObjectIdentifier** *dataVar* *oidVar*
-: Dekodiert den Wert des Objektidentifikators (OID), der am Anfang der in der Variablen *dataVar* gespeicherten Daten kodiert ist. Die OID wird in der Variablen *oidVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *oidVar* gespeicherte Wert ist eine Liste von Ganzzahlen. Wenn der Wert am Anfang kein kodierter OID ist, wird ein Fehler ausgelöst.
+: Dekodiert den Wert des Objektidentifikators (OID), der am Anfang der in der Variablen *dataVar* gespeicherten Daten kodiert ist. Die OID wird in der Variablen *oidVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *oidVar* gespeicherte Wert ist eine Liste von Ganzzahlen. Wenn der Wert am Anfang keine kodierte OID ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetBoolean** *dataVar* *boolVar*
-: Dekodiert den am Anfang der in der Variablen *dataVar* gespeicherten Daten durchgeführten Booleschen Wert. Der Boolesche Wert wird in der Variablen *boolVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *boolVar* gespeicherte Wert lautet entweder **0** oder **1**. Wenn der Wert am Anfang kein kodierter Boolescher Wert ist, wird ein Fehler ausgelöst.
+: Dekodiert den am Anfang der in der Variablen *dataVar* gespeicherten Daten kodierten booleschen Wert. Der Boolesche Wert wird in der Variablen *boolVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Der in *boolVar* gespeicherte Wert lautet entweder **0** oder **1**. Wenn der Wert am Anfang kein kodierter Boolescher Wert ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetNull** *dataVar*
 : Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten kodierten NULL-Wert und entfernt die dekodierten Bytes vom Anfang der Daten in *dataVar*, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodierter NULL-Wert ist, wird ein Fehler ausgelöst.
 
 **::asn::asnGetSequence** *dataVar* *sequenceVar*
-: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durch Kodierung erzeugte ASN-Sequenzwert. Die ASN-Sequenz wird in der Variable *sequenceVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang keine kodierte ASN-Sequenz ist, wird ein Fehler ausgelöst.
+: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten kodierten ASN-Sequenzwert. Die ASN-Sequenz wird in der Variable *sequenceVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang keine kodierte ASN-Sequenz ist, wird ein Fehler ausgelöst.
 
     Der Wert in *sequenceVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
 
 **::asn::asnGetSet** *dataVar* *setVar*
-: Dekodiert den am Anfang der in der Variable *dataVar* gespeicherten Daten durchführenden Prozess der Kodierung des ASN-Sets. Das ASN-Set wird in der Variable *setVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodierter ASN-Satz ist, wird ein Fehler ausgelöst.
+: Dekodiert den ASN-Set-Wert, der am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Das ASN-Set wird in der Variable *setVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodiertes ASN-Set ist, wird ein Fehler ausgelöst.
 
     Der Wert in *setVar* ist binär kodiert und muss gemäß den Definitionen der Sequenz mithilfe der anderen „asnGet…“-Befehle des Dekodierers weiter dekodiert werden.
 
 **::asn::asnGetApplication** *dataVar* *appNumberVar* ?*contentVar*? ?*encodingTypeVar*?
 : Dekodiert den Wert des ASN-Anwendungskonstrukts, der am Anfang der in der Variablen *dataVar* gespeicherten Daten kodiert ist. Die ID des ASN-Anwendungskonstrukts wird in der Variablen *appNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass der nächste Wert dekodiert werden kann. Wenn der Wert am Anfang kein kodiertes ASN-Anwendungskonstrukt ist, wird ein Fehler ausgelöst.
 
-    Wenn eine *contentVar* festgelegt ist, place alle mit dem ASN-Anwendungskonstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Dekodierbefehlen dieses Pakets verarbeitet werden kann.
+    Wenn eine *contentVar* festgelegt ist, legt der Befehl alle mit dem ASN-Anwendungskonstrukt verbundenen Daten in der genannten Variable ab in binärer Form, die mit den Dekodierbefehlen dieses Pakets verarbeitet werden kann.
 
     Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt.
 
     Ohne die optionalen Argumente obliegt es dem Aufrufer, den Rest des ASN-Anwendungskonstrukts auf der Grundlage der von diesem Befehl abgerufenen ID mithilfe der Decodierbefehle des Pakets zu decodieren.
 
 **::asn::asnGetContext** *dataVar* *contextNumberVar* ?*contentVar*? ?*encodingTypeVar*?
-: Dekodiert das ASN-Kontext-Tag-Konstrukt, das am Anfang der in der Variable *dataVar* gespeicherten Daten durchgeführt wird. Die ID des ASN-Kontext-Tag-Konstrukts wird in der Variable *contextNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodiertes ASN-Kontext-Tag-Konstrukt ist, wird ein Fehler ausgelöst.
+: Dekodiert das ASN-Kontext-Tag-Konstrukt, das am Anfang der in der Variable *dataVar* gespeicherten Daten kodiert ist. Die ID des ASN-Kontext-Tag-Konstrukts wird in der Variable *contextNumberVar* gespeichert, und die dekodierten Bytes werden vom Anfang der Daten in *dataVar* entfernt, sodass diese für die Dekodierung des nächsten Werts bereit sind. Wenn der Wert am Anfang kein kodiertes ASN-Kontext-Tag-Konstrukt ist, wird ein Fehler ausgelöst.
 
-    Wenn eine *contentVar* festgelegt wird, so place alle mit dem ASN-Kontext-Tag-Konstrukt verbundenen Daten in der genannten Variable in binärer Form, die mit den Paketbefehlen verarbeitet werden kann.
+    Wenn eine *contentVar* festgelegt wird, so legt der Befehl alle mit dem ASN-Kontext-Tag-Konstrukt verbundenen Daten in der genannten Variable in binärer Form ab, die mit den Paketbefehlen verarbeitet werden kann.
 
     Wenn eine *encodingTypeVar* festgelegt wird, wird diese Variable auf **1** gesetzt, wenn es sich um eine konstruierte Kodierung handelt, und auf **0**, wenn es sich um eine primitive Kodierung handelt.
 
@@ -275,7 +275,7 @@ Wenn Sie mit ASN.1 arbeiten, müssen Sie häufig getaggte Werte dekodieren, dere
 : Mit dem Befehl **::asn::asnPeekTag** können Sie einen Blick auf die Daten werfen und den Wert des Tags entschlüsseln, ohne ihn aus den Daten zu entfernen. Die Variable *tagVar* wird auf die Tag-Nummer gesetzt. Die Variable *tagtypeVar* wird auf die Klasse des Tags gesetzt, die einer der folgenden Werte sein kann: **UNIVERSAL**, **CONTEXT**, **APPLICATION** oder **PRIVATE**. Die Variable *constrVar* wird auf 1 gesetzt, wenn das Tag für einen zusammengesetzten Wert steht, oder auf 0 für einen primitiven Wert. Der Befehl gibt die Länge des Tags zurück.
 
 **::asn::asnTag** *tagnumber* ?*class*? ?*tagstyle*?
-: Der Befehl **::asn::asnTag** dient zum Erstellen eines Tag-Werts. Die *tagnumber* legt die Nummer des Tags fest. Wenn angegeben, muss die *class* des Tags einer der folgenden Werte sein: **UNIVERSAL**, **CONTEXT**, **APPLICATION** oder **PRIVATE**; oder lediglich der erste Buchstabe als Abkürzung (**U**, **C**, **A** oder **P**). Die Standardklasse ist **UNIVERSAL**. Wenn angegeben, muss der *tagstyle* bei einer konstruierten Kodierung entweder **C** oder **1** lauten, bei einer primitiven Kodierung hingegen **P** oder **0**. Der Standardwert ist **P**. (Die Verwendung von **1** und **0** erleichtert die Nutzung dieses Befehls mit den von **::asn::asnPeekTag** gegebenen Werten.)
+: Der Befehl **::asn::asnTag** dient zum Erstellen eines Tag-Werts. Die *tagnumber* legt die Nummer des Tags fest. Wenn angegeben, muss die *class* des Tags einer der folgenden Werte sein: **UNIVERSAL**, **CONTEXT**, **APPLICATION** oder **PRIVATE**; oder lediglich der erste Buchstabe als Abkürzung (**U**, **C**, **A** oder **P**). Die Standardklasse ist **UNIVERSAL**. Wenn angegeben, muss der *tagstyle* bei einer konstruierten Kodierung entweder **C** oder **1** lauten, bei einer primitiven Kodierung hingegen **P** oder **0**. Der Standardwert ist **P**. (Die Verwendung von **1** und **0** erleichtert die Nutzung dieses Befehls mit den von **::asn::asnPeekTag** zurückgegebenen Werten.)
 
 **::asn::asnRetag** *dataVar* *newTag*
 : Ersetzt das Tag am Anfang der Daten in *dataVar* durch *newTag*. Das neue Tag kann mit dem Befehl **::asn::asnTag** erstellt werden.
@@ -285,7 +285,7 @@ Wenn Sie mit ASN.1 arbeiten, müssen Sie häufig getaggte Werte dekodieren, dere
 
 Beispiele für die Verwendung dieses Pakets finden Sie in der Implementierung des Pakets **ldap**.
 
-Wenn Text kodiert wird, ist **::asn::asnUTF8String** am besten zu *vermeiden*, da es in seltenen Fällen möglicherweise nicht korrekt funktioniert. Für reines 7-Bit-ASCII ist die Kodierung mit **::asn::asnIA5String** am einfachsten. Außerhalb des 7-Bit-ASCII-Bereichs wandeln Sie Tcl-Zeichenketten in UCS2 (d. h. utf-16le) um und führen Sie die Kodierung mit **::asn::asnBMPString** durch. Verwenden Sie zum Dekodieren beliebiger Zeichenfolgen **::asn::asnGetString**; denken Sie jedoch daran, jede UCS2-Zeichenfolge anschließend wieder in eine Tcl-Zeichenfolge zurückzuwandeln.
+Wenn Text kodiert wird, ist **::asn::asnUTF8String** am besten zu *vermeiden*, da es in seltenen Fällen möglicherweise nicht korrekt funktioniert. Für reines 7-Bit-ASCII ist die Kodierung mit **::asn::asnIA5String** am einfachsten. Außerhalb des 7-Bit-ASCII-Bereichs wandeln Sie Tcl-Zeichenketten in UCS2 (d. h. utf-16le) um und führen Sie die Kodierung mit **::asn::asnBMPString** durch. Verwenden Sie zum Dekodieren beliebiger Zeichenketten **::asn::asnGetString**; denken Sie jedoch daran, jede UCS2-Zeichenkette anschließend wieder in eine Tcl-Zeichenkette zurückzuwandeln.
 
 ```
 # Encode

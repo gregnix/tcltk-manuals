@@ -34,9 +34,9 @@ tcl::chan::fifo2 – Im Speicher verbundene FIFO-Kanäle
 
 # Beschreibung
 
-Das Paket **tcl::chan::fifo2** stellt einen Befehl bereit, mit dem Paare von Kanälen erstellt werden können, die ausschließlich im Speicher existieren und nach dem FIFO-Prinzip miteinander verbunden sind. Was in die eine Hälfte des Paares geschrieben wird, kann in derselben Reihenfolge aus der anderen Hälfte gelesen werden. Eine besondere Anwendungsmöglichkeit hierfür ist die Kommunikation zwischen Threads, wobei eine Hälfte des Paares in den Thread verschoben wird, mit dem kommuniziert werden soll. Dies entspricht den „fifo2“-Kanälen, die vom Paket **Memchan** bereitgestellt werden, mit dem Unterschied, dass dies in reinem Tcl und nicht in C geschrieben ist. Andererseits ist ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie **TclOO** erfordert.
+Das Paket **tcl::chan::fifo2** stellt einen Befehl bereit, mit dem Paare von Kanälen erstellt werden können, die ausschließlich im Speicher existieren und nach dem FIFO-Prinzip miteinander verbunden sind. Was in die eine Hälfte des Paares geschrieben wird, kann in derselben Reihenfolge aus der anderen Hälfte gelesen werden. Eine besondere Anwendungsmöglichkeit hierfür ist die Kommunikation zwischen Threads, wobei eine Hälfte des Paares in den Thread verschoben wird, mit dem kommuniziert werden soll. Dies entspricht den „fifo2“-Kanälen, die vom Paket **Memchan** bereitgestellt werden, mit dem Unterschied, dass dies in reinem Tcl und nicht in C geschrieben ist. Andererseits ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie **TclOO** erfordert.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 

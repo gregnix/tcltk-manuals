@@ -43,16 +43,16 @@ Dieses Paket stellt eine Klasse bereit, deren Instanzen die Bearbeitung eines Re
 
 Der Rechteck-Editor verwendet intern eine Instanz des Pakets **canvas::edit::points** und übernimmt alle damit verbundenen Optionen und Verhaltensweisen. Die Optionen zur Farbe werden zusätzlich auf das Rechteck-Element dieses Editors angewendet.
 
-Darüber hinaus bietet es die Option „**-rect-config**“, mit der Sie das Rechteck-Element, das zur Darstellung des Rechtecks verwendet wird, anhand seiner Ecken anpassen können. Beachten Sie, dass damit die vererbten Farboptionen nicht überschrieben werden können.
+Darüber hinaus bietet es die Option „**-rect-config**“, mit der Sie das Rechteck-Element, das zur Darstellung des Rechtecks anhand seiner Ecken verwendet wird, anpassen können. Beachten Sie, dass damit die vererbten Farboptionen nicht überschrieben werden können.
 
-Während einer Instanz wird eine Zustandsmaschine ausgeführt, in der der Benutzer zwei Punkte festlegt; daraufhin vervollständigt das System das Rechteck mit den fehlenden Ecken und meldet dies. Ab diesem Zeitpunkt verhindert das System das Hinzufügen weiterer Punkte. Das Ziehen der Punkte ist weiterhin möglich, wodurch eine Größenänderung und das Verschieben des Rechtecks ermöglicht werden. Das Löschen einer beliebigen Ecke löscht das gesamte Rechteck; daraufhin ist das System wieder bereit für die Erstellung eines neuen Rechtecks aus zwei Punkten.
+Während der Interaktion führen Instanzen eine Zustandsmaschine aus, in der der Benutzer zwei Punkte festlegt; daraufhin vervollständigt das System das Rechteck mit den fehlenden Ecken und meldet dies. Ab diesem Zeitpunkt verhindert das System das Hinzufügen weiterer Punkte. Das Ziehen der Punkte ist weiterhin möglich, wodurch eine Größenänderung und das Verschieben des Rechtecks ermöglicht werden. Das Löschen einer beliebigen Ecke löscht das gesamte Rechteck; daraufhin ist das System wieder bereit für die Erstellung eines neuen Rechtecks aus zwei Punkten.
 
 # API für Klassen
 
 **::canvas::edit** **rectangle** *objectName* *canvas* *options*...
-: Dieser Befehl, der „class“-Befehl, erstellt und konfiguriert eine neue Instanz eines Rechteck-Editors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
+: Dieser Befehl, der Klassenbefehl, erstellt und konfiguriert eine neue Instanz eines Rechteck-Editors mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
     Die hier zulässigen Optionen und ihre Werte werden im Abschnitt [Optionen] erläutert.
 
@@ -108,7 +108,7 @@ Instanzen der Rechteck-Editoren stellen die folgende API bereit:
 
 # Optionen
 
-Der Befehl „class“ akzeptiert die folgenden Optionen
+Der Klassenbefehl akzeptiert die folgenden Optionen
 
 **-active-cmd** *command-prefix*
 : Der Wert dieser Option ist ein Befehlspräfix, das der Editor aufruft, wenn die Maus in das von der Instanz verwaltete Rechteck oder eine Ecke hinein- oder aus diesem herausbewegt wird.
@@ -118,11 +118,11 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Die Signatur dieses Befehlspräfixes lautet
 
     **activeCmd** *editorObj* *id*
-    : Die *id* identifiziert das eingegebene Objekt.
+    : Die *id* identifiziert das Objekt, das die Maus betreten hat.
 
-        Eine leere *id* bedeutet, dass das zuletzt eingegebene Objekt beibehalten wurde.
+        Eine leere *id* bedeutet, dass die Maus das zuletzt betretene Objekt verlassen hat.
 
-        Der Wert **rect** gibt an, dass die Gliederung des Rechtecks eingegeben wurde.
+        Der Wert **rect** gibt an, dass die Maus den Umriss des Rechtecks betreten hat.
 
         Jeder andere Wert ist ein Code für eine der Ecken des Rechtecks, d. h. **tl**, **tr**, **bl** und **br**.
 
@@ -130,7 +130,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
 
 **-add-remove-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne Klammerwinkel), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis das Hinzufügen bzw. Entfernen eines Punktes auslöst.
 
     Diese Option kann nur bei der Erstellung festgelegt werden.
 
@@ -139,7 +139,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
     Bei Verwendung dieser Option wird für beide Vorgänge dasselbe Ereignis verwendet. Dies stellt kein Problem dar, da das Hinzufügen als canvas-globales Ereignis gebunden ist, während das Entfernen an die jeweiligen Canvas-Elemente gebunden ist.
 
 **-color** *colorspec*
-: Der Wert dieser Option ist die Farbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
+: Der Wert dieser Option ist die Füllfarbe für das Standardelement, das beim Hinzufügen eines Punktes erstellt wird, sofern kein **-create-cmd** angegeben ist.
 
     Der Standardwert lautet **SkyBlue2**.
 
@@ -176,7 +176,7 @@ Der Befehl „class“ akzeptiert die folgenden Optionen
 
 
 **-drag-point** *eventspec*
-: Der Wert dieser Option ist eine Ereignisspezifikation (ohne eckige Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
+: Der Wert dieser Option ist eine Ereignisspezifikation (ohne spitze Klammern), die festlegt, welches Ereignis eine Drag-Aktion an Punkten auslöst.
 
     Diese Option kann nur zur Erstellungszeit festgelegt werden.
 

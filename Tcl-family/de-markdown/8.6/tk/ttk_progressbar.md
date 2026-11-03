@@ -49,10 +49,10 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Nur-Lese-Option. Das Widget erhöht diesen Wert periodisch, wenn **-value** größer als 0 und im Modus *determinate* kleiner als **-maximum** ist. Das aktuelle Theme kann damit zusätzliche Animationen steuern.
 
 **-value** (**value**/**Value**)
-: Aktueller Wert. Im Modus *determinate*: erledigter Anteil. Im Modus *indeterminate*: modulo **-maximum**; ein „Zyklus“ ist abgeschlossen, wenn **-value** um **-maximum** steigt. Ist **-variable** gesetzt, hat **-value** keine Wirkung (Variable hat Vorrang).
+: Aktueller Wert. Im Modus *determinate*: erledigter Anteil. Im Modus *indeterminate*: modulo **-maximum**; ein „Zyklus“ ist abgeschlossen, wenn **-value** um **-maximum** steigt. Ist **-variable** auf eine bestehende Variable gesetzt, hat **-value** keine Wirkung (Variable hat Vorrang).
 
 **-variable** (**variable**/**Variable**)
-: Name einer globalen Tcl-Variable, verknüpft mit **-value**. Bei bestehender Variable wird **-value** automatisch bei Änderung der Variable gesetzt.
+: Name einer globalen Tcl-Variable, verknüpft mit **-value**. Bei bestehender Variable wird **-value** bei jeder Änderung der Variable automatisch auf deren Wert gesetzt.
 
 
 # Widget-Befehl

@@ -25,7 +25,7 @@ buildinfo - Build-Informationen
 
 # Beschreibung
 
-Dieser Befehl liefert Informationen darüber, wie Tcl gebaut wurde. Ohne Argumente: Tcl-Patchlevel, dann „+“, dann die Fossil-Commit-ID, gefolgt von einer Liste punktgetrennter Tags. Ist *field* angegeben, wird das entsprechende Feld extrahiert (siehe unten). Jeder andere *field*-Wert, der unten nicht genannt ist, liefert „0“. Bei offiziellen Tcl-Releases gelten folgende *field*-Werte:
+Dieser Befehl liefert Informationen darüber, wie Tcl gebaut wurde. Ohne Optionen gibt der Befehl den Tcl-Patchlevel zurück, dann „+“, dann die Fossil-Commit-ID, gefolgt von einer Liste punktgetrennter Tags. Ist *field* angegeben, wird das entsprechende Feld extrahiert (siehe unten). Jeder andere *field*-Wert, der unten nicht genannt ist, liefert „0“. Bei offiziellen Tcl-Releases gelten folgende *field*-Werte:
 
 [::tcl::build-info]{.cmd} [clang]{.sub}
 : Clang-Versionsnummer (4 Ziffern), wenn Tcl mit Clang kompiliert wurde, sonst 0.

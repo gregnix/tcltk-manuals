@@ -36,8 +36,8 @@ Die Prozedur **tk\_chooseColor** zeigt einen Dialog an, in dem der Benutzer eine
 [-title]{.lit} [titleString]{.arg}
 : Legt eine Zeichenkette fest, die als Titel des Dialogfelds angezeigt wird. Wird diese Option nicht angegeben, wird ein Standardtitel angezeigt.
 
-Wenn der Benutzer eine Farbe auswählt, gibt **tk\_chooseColor** den Namen der Farbe in einer für [Tk\_GetColor][GetColor] akzeptablen Form zurück. Bricht der Benutzer den Vorgang ab, gibt der Befehl eine leere Zeichenkette zurück.
 
+Wenn der Benutzer eine Farbe auswählt, gibt **tk\_chooseColor** den Namen der Farbe in einer für [Tk\_GetColor][GetColor] akzeptablen Form zurück. Bricht der Benutzer den Vorgang ab, gibt der Befehl eine leere Zeichenkette zurück.
 
 # Beispiel
 

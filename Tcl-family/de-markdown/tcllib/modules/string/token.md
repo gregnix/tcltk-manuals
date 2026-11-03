@@ -37,9 +37,9 @@ Dieses Paket enthält Befehle für die auf regulären Ausdrücken basierende Lex
 **::string token text** *lex* *string*
 : Dieser Befehl nimmt ein Dictionary *lex* entgegen, das reguläre Ausdrücke („regexps“) auf Bezeichnungen abbilden muss, und zerlegt die Zeichenkette *string* gemäß diesem Dictionary in Token.
 
-    Der Befehl testet jeden regulären Ausdruck im *lex*-Dictionary der Reihe nach. Da Tcl-**dict**s in Einfügungsreihenfolge sortiert sind, wird empfohlen, die regulären Ausdrücke vom spezifischsten zum allgemeinsten zu legen.
+    Der Befehl testet jeden regulären Ausdruck im *lex*-Dictionary der Reihe nach. Da Tcl-**dict**s in Einfügungsreihenfolge sortiert sind, wird empfohlen, die regulären Ausdrücke vom spezifischsten zum allgemeinsten anzugeben.
 
-    Der Befehl gibt eine Liste von Tokens zurück. Jedes Token ist eine Liste mit drei Elementen, die die Bezeichnung (aus dem *lex*-**dict**) sowie den Start- und Endindex der Übereinstimmung in der *string* enthält.
+    Der Befehl gibt eine Liste von Tokens zurück. Jedes Token ist eine Liste mit drei Elementen, die die Bezeichnung (aus dem *lex*-**dict**) sowie den Start- und Endindex der Übereinstimmung in *string* enthält.
 
     Der Befehl löst einen Fehler aus, wenn er nicht in der Lage ist, die gesamte Zeichenkette zu tokenisieren.
 
@@ -69,7 +69,7 @@ Dieses Paket enthält Befehle für die auf regulären Ausdrücken basierende Lex
     : Das Ende der Zeichenkette ist erreicht.
 
 
-    Wenn ein Token erkannt wurde (Status **1**), aktualisiert der Befehl den Index in *startVar* auf das Zeichen, das unmittelbar *auf* das lexikalisch analysierte Token folgt. Außerdem wird an *resultVar* das lexikalisch analysierte Token angehängt, das selbst eine Liste mit drei Elementen ist, die die Bezeichnung (aus dem *lex*-**dict**) sowie den Start- und End-Index der Übereinstimmung in der *Zeichenkette* enthält.
+    Wenn ein Token erkannt wurde (Status **1**), aktualisiert der Befehl den Index in *startVar* auf das Zeichen, das unmittelbar *auf* das lexikalisch analysierte Token folgt. Außerdem wird an *resultVar* das lexikalisch analysierte Token angehängt, das selbst eine Liste mit drei Elementen ist, die die Bezeichnung (aus dem *lex*-**dict**) sowie den Start- und End-Index der Übereinstimmung in *string* enthält.
 
     Wenn ein Token nicht erkannt wurde (Status **0** oder **2**), werden weder *startVar* noch *resultVar* aktualisiert.
 
@@ -80,7 +80,7 @@ Dieses Paket enthält Befehle für die auf regulären Ausdrücken basierende Lex
 
 # Beispiele
 
-Dieses Beispiel zeigt, wie Sie mit dem Befehl **string token text** ein einfaches zeilenorientiertes *.ini*-Dateiformat lexikalisch analysiert. (Informationen zur umfassenden Bearbeitung von *.ini*-Dateien finden Sie unter [inifile](https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/tcllib/files/modules/inifile/ini.md).)
+Dieses Beispiel zeigt, wie Sie mit dem Befehl **string token text** ein einfaches zeilenorientiertes *.ini*-Dateiformat lexikalisch analysieren. (Informationen zur umfassenden Bearbeitung von *.ini*-Dateien finden Sie unter [inifile](https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/tcllib/files/modules/inifile/ini.md).)
 
 ```
 const INI_EG "; example.ini

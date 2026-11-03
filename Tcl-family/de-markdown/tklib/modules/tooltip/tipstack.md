@@ -40,7 +40,7 @@ Dieses Paket erweitert die Funktionalität des Pakets **tooltip**. Es stellt ein
 # Befehle
 
 **::tipstack::push** *widget* ?**-index** *index*? *text*
-: Legt einen neuen *text* auf den Tooltip des *widget*. Bei einem Listen-Widget gilt
+: Legt einen neuen *text* auf den Tooltip des *widget*. Bei einem Listen-Widget verwenden Sie
 
     ```
     -index ...
@@ -49,10 +49,10 @@ Dieses Paket erweitert die Funktionalität des Pakets **tooltip**. Es stellt ein
 um den betreffenden Eintrag anzusprechen, für den der
 : Tooltip geändert werden soll.
 
-    Das Ergebnis des Befehls ist die leere Zeichenfolge
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::tipstack::pop** *widget* ?**-index** *index*?
-: Nimmt den aktuellen Tooltip des *widget* vom Stapel und stellt den vorherigen Text wieder her. Das ist eine leere Operation, wenn der Stapel dadurch leer würde. Der Basistext des Tooltips kann nicht entnommen werden. Bei einem Listen-Widget gilt
+: Nimmt den aktuellen Tooltip des *widget* vom Stapel und stellt den vorherigen Text wieder her. Das ist eine leere Operation, wenn der Stapel dadurch leer würde. Der Basistext des Tooltips kann nicht entnommen werden. Bei einem Listen-Widget verwenden Sie
 
     ```
     -index ...
@@ -61,10 +61,10 @@ um den betreffenden Eintrag anzusprechen, für den der
 um den betreffenden Eintrag anzusprechen, für den der
 : Tooltip geändert werden soll.
 
-    Das Ergebnis des Befehls ist die leere Zeichenfolge
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::tipstack::clear** *widget* ?**-index** *index*?
-: Leert den Stapel des *widget* und stellt den Basiszustand wieder her. Bei einem Listen-Widget gilt
+: Leert den Stapel des *widget* und stellt den Basiszustand wieder her. Bei einem Listen-Widget verwenden Sie
 
     ```
     -index ...
@@ -73,17 +73,17 @@ um den betreffenden Eintrag anzusprechen, für den der
 um den betreffenden Eintrag anzusprechen, für den der
 : Tooltip geändert werden soll.
 
-    Das Ergebnis des Befehls ist die leere Zeichenfolge
+    Das Ergebnis des Befehls ist die leere Zeichenkette.
 
 **::tipstack::def** *widget* *text* ...
-: Legt in einem Aufruf Texte auf mehrere unabhängige *widget*s. Für Listen-Widgets geht das nicht, weil die nötige Indexangabe fehlt. Auch mit Menüs geht es nicht.
+: Legt in einem Aufruf Texte auf mehrere unabhängige Widgets (*widget*). Für Listen-Widgets geht das nicht, weil die nötige Indexangabe fehlt. Auch mit Menüs geht es nicht.
 
     Das Ergebnis ist die leere Zeichenkette.
 
 **::tipstack::defsub** *base* *widget* *text* ...
 : Variante von **::tipstack::def**, bei der alle Widgets, auf die ein Text gelegt wird, Unterwidgets von *base* sind. Das passt zu Megawidgets.
 
-    Entweder beginnt jedes *widget* mit einem Punkt (**.**), oder *base* endet mit einem Punkt.
+    Entweder muss jedes *widget* mit einem Punkt (**.**) beginnen, oder *base* muss mit einem Punkt enden.
 
     Das Ergebnis ist die leere Zeichenkette.
 

@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-nns – Name Service Facility, Befehlszeilen-Client-Anwendung
+nns – Namensdienst-Funktion, Befehlszeilen-Client-Anwendung
 
 # Übersicht
 

@@ -31,7 +31,7 @@ tcl::chan::core – Grundlegende Unterstützung für reflektierte/virtuelle Kan�
 
 # Beschreibung
 
-Das Paket „**tcl::chan::core**“ enthält die Klasse „**TclOO**“, die allgemeine Funktionen bereitstellt, die praktisch jeder reflektierte oder virtuelle Kanal benötigt (Initialisierung, Finalisierung).
+Das Paket „**tcl::chan::core**“ enthält eine **TclOO**-Klasse, die allgemeine Funktionen bereitstellt, die praktisch jeder reflektierte oder virtuelle Kanal benötigt (Initialisierung, Finalisierung).
 
 Diese Klasse ist dafür vorgesehen, entweder als Oberklasse einer konkreten Kanal-Klasse verwendet oder in eine solche Klasse eingemischt zu werden.
 

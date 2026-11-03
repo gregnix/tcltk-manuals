@@ -291,7 +291,7 @@ Von Reader-Plugins wird erwartet, dass sie die nachfolgend beschriebenen Befehle
 Reader-Plugins erwarten, dass die Umgebung die folgenden speziellen Befehle bereitstellt.
 
 **page\_read** *num*
-: Dieser Befehl wird aufgerufen, um *num* Zeichen/Bytes aus der Eingabe zu lesen. Das Ergebnis muss aus *num* Zeichen/Bytes bestehen.
+: Dieser Befehl wird aufgerufen, um *num* Zeichen/Bytes aus der Eingabe zu lesen. Das Ergebnis müssen die gelesenen Zeichen/Bytes sein.
 
 **page\_read\_done**
 : Dieser Befehl wird aufgerufen, um zu signalisieren, dass das Plugin die Verarbeitung der Eingabe abgeschlossen hat.

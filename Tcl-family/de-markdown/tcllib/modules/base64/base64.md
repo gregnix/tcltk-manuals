@@ -28,7 +28,7 @@ base64 – Binärdaten in Base64 kodieren/dekodieren
 
 # Beschreibung
 
-Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenfolgen in die bzw. aus der Standard-Base64-Kodierung, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) festgelegt.
+Dieses Paket enthält Befehle zum Kodieren und Dekodieren von Binärzeichenketten in die bzw. aus der Standard-Base64-Kodierung, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) festgelegt.
 
 *Es wird empfohlen, bei neuem Code die integrierten* [binary](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) *Unterbefehle zur Kodierung und Dekodierung von Base64 (eingeführt in Tcl 8.6) den Befehlen dieses Pakets vorzuziehen.*
 
@@ -45,7 +45,7 @@ Beachten Sie, dass diese Unterbefehle zwar dieselben Signaturen wie die von dies
 
 Der integrierte Unterbefehl [binary decode base64](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) akzeptiert die Option **-strict**, mit der der Benutzer zwischen dem strengen und dem nicht-strengen Modus wählen kann. Im strengen Modus werden ungültige Zeichen und unvollständige Daten am Ende der Eingabe als Fehler gemeldet. Im nicht-strengen Modus werden sie ignoriert. (Siehe [RFC 2045](https://www.rfc-editor.org/rfc/rfc2045#section-6.8).)
 
-Die in diesem Paket bereitgestellten Implementierungen bieten keine Möglichkeit, die Strenge zu steuern. Stattdessen werden strenge und nicht-strenge Werte gemischt. Unvollständige Daten am Ende der Eingabe werden als Fehler gemeldet, ungültige Zeichen werden jedoch ignoriert.
+Die in diesem Paket bereitgestellten Implementierungen bieten keine Möglichkeit, die Strenge zu steuern. Stattdessen werden strenges und nicht-strenges Verhalten gemischt. Unvollständige Daten am Ende der Eingabe werden als Fehler gemeldet, ungültige Zeichen werden jedoch ignoriert.
 
 Standardmäßig führt der Encoder dieses Pakets nach jeweils 76 Zeichen in der Ausgabe einen Zeilenumbruch durch. Der integrierte Unterbefehl [binary encode base64](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) ist standardmäßig so eingestellt, dass kein Zeilenumbruch erfolgt, unterstützt jedoch den Zeilenumbruch mithilfe der Option **-maxlen**.
 
@@ -56,10 +56,10 @@ Standardmäßig führt der Encoder dieses Pakets nach jeweils 76 Zeichen in der 
 
     Die Ergebniszeichenkette enthält nach jeweils *maxlen* Zeichen der Ausgabe das Zeichen *wrapchar*. Der Standardwert für *wrapchar* ist ein Zeilenumbruch, der Standardwert für *maxlen* ist 76. Um einen Zeilenumbruch zu verhindern, setzen Sie *maxlen* auf **0**.
 
-    Der Befehl löst einen Fehler aus, wenn *maxlen* keine ganze Zahl oder negativ ist oder wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+    Der Befehl löst einen Fehler aus, wenn *maxlen* keine ganze Zahl oder negativ ist oder wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::base64::decode** *estring*
-: Gibt eine Binärzeichenkette zurück, die aus *estring* Base64-dekodiert wurde. Ungültige Zeichen oder Leerzeichen (Leerzeichen, Tabulatoren, Zeilenumbrüche) in *estring* werden ignoriert.
+: Gibt eine Binärzeichenkette zurück, die aus *estring* Base64-dekodiert wurde. Ungültige Zeichen oder Leerraum (Leerzeichen, Tabulatoren, Zeilenumbrüche) in *estring* werden ignoriert.
 
 
 # Hinweise zur Umsetzung
@@ -77,7 +77,7 @@ Alle drei Implementierungen verhalten sich gleich. Siehe auch [Achtung: Abweichu
 
 # Beispiele
 
-Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette in Base64 kodiert und aus Base64 dekodiert, wobei zu berücksichtigen ist, dass die Base64-Befehle mit binären Zeichenketten arbeiten.
+Dieses Beispiel zeigt, wie Sie eine Tcl-Zeichenkette in Base64 kodieren und aus Base64 dekodieren, wobei zu berücksichtigen ist, dass die Base64-Befehle mit binären Zeichenketten arbeiten.
 
 ```
 const UTF8_LINE "Δ÷ “Utf-8” ♞ℤ"
@@ -119,7 +119,7 @@ puts "base64='$enc64' [expr {$ASCII_LINE eq $line}]"
 base64='ISA3LWJpdCBBU0NJSSB7fl59' 1
 ```
 
-Ein Zeilenumbruch kann verhindert werden, sodass keine Leerzeichen eingefügt werden:
+Ein Zeilenumbruch kann verhindert werden, sodass kein Leerraum eingefügt wird:
 
 ```
 base64::encode [string repeat xyz 20]
@@ -131,7 +131,7 @@ base64::encode -maxlen 0 [string repeat xyz 20]
 eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6eHl6
 ```
 
-Hinweis: Der integrierte Unterbefehl [binary encode base64](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) standardmäßig einfügt keine Zeilenumbrüche, dies jedoch tut, wenn die Option **-maxlen** verwendet wird.
+Hinweis: Der integrierte Unterbefehl [binary encode base64](https://www.tcl-lang.org/man/tcl/TclCmd/binary.html) fügt standardmäßig keine Zeilenumbrüche ein, tut dies jedoch, wenn die Option **-maxlen** verwendet wird.
 
 # Fehler, Ideen, Rückmeldungen
 

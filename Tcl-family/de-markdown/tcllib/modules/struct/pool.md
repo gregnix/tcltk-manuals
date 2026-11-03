@@ -40,7 +40,7 @@ struct::pool – Pool-Objekte (aus einzelnen Elementen) anlegen und bearbeiten
 Dieses Paket stellt Pool-Objekte bereit, mit denen sich endliche Sammlungen diskreter Elemente verwalten lassen.
 
 **::struct::pool** ?*poolName*? ?*maxsize*?
-: Erstellt ein neues Pool-Objekt. Wird kein *poolName* angegeben, erhält der neue Pool den Namen „pool**X**“, wobei X eine positive ganze Zahl ist. Das optionale zweite Argument *maxsize* muss eine positive ganze Zahl sein, die die maximale Größe des Pools angibt; dies ist die maximale Anzahl von Elementen, die der Pool enthalten darf. Der Standardwert hierfür lautet **10**.
+: Erstellt ein neues Pool-Objekt. Wird kein *poolName* angegeben, erhält der neue Pool den Namen „pool**X**“, wobei X eine positive Ganzzahl ist. Das optionale zweite Argument *maxsize* muss eine positive Ganzzahl sein, die die maximale Größe des Pools angibt; dies ist die maximale Anzahl von Elementen, die der Pool enthalten darf. Der Standardwert hierfür lautet **10**.
 
     Dem Pool-Objekt ist ein globaler Tcl-Befehl zugeordnet, dessen Name *poolName* lautet. Mit diesem Befehl lassen sich verschiedene Konfigurationsoperationen auf dem Pool aufrufen. Er hat die folgende allgemeine Form:
 
@@ -49,7 +49,7 @@ Dieses Paket stellt Pool-Objekte bereit, mit denen sich endliche Sammlungen disk
 
 
 
-# Pools und Zuteilung
+# Pools und Zuweisung
 
 Der Befehl pool und der von ihm erzeugte Pool-Objektbefehl dienen dazu, Pools aus einzelnen Elementen zu verwalten. Beispiele für einen Pool aus einzelnen Elementen sind:
 
@@ -132,7 +132,7 @@ Die folgenden Unterbefehle und die dazugehörigen Argumente stehen für jeden Po
 
     **poolName info maxsize**.
 
-    Das Argument *maxsize* muss eine positive ganze Zahl sein.
+    Das Argument *maxsize* muss eine positive Ganzzahl sein.
 
 *poolName* **release** *itemName*
 : Gibt das zuvor zugewiesene Element mit dem Namen *itemName* frei. Es wird ein Fehler ausgelöst, wenn das Element zum Zeitpunkt der Befehlsausführung nicht zugewiesen war.

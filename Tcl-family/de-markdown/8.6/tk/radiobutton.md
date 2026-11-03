@@ -60,7 +60,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt ein Bild fest, das (anstelle der Option **-image**) angezeigt wird, wenn der Radiobutton ausgewählt ist. Diese Option wird ignoriert, sofern die Option **-image** nicht angegeben wurde.
 
 **-state** (**state**/**State**)
-: Legt einen von drei Zuständen für den Radiobutton fest: **normal**, **active** oder **disabled**. Im normalen Zustand wird der Radiobutton mit den Optionen **-foreground** und **-background** angezeigt. Der aktive Zustand wird typischerweise verwendet, wenn der Zeiger über dem Radiobutton ist. Im aktiven Zustand wird der Radiobutton mit den Optionen **-activeforeground** und **-activebackground** angezeigt. Der deaktivierte Zustand bedeutet, dass der Radiobutton unempfindlich sein sollte: Die Standard-Bindungen weigern sich, das Widget zu aktivieren und ignorieren Mausklicks. In diesem Zustand bestimmen die Optionen **-disabledforeground** und **-background**, wie der Radiobutton angezeigt wird.
+: Legt einen von drei Zuständen für den Radiobutton fest: **normal**, **active** oder **disabled**. Im normalen Zustand wird der Radiobutton mit den Optionen **-foreground** und **-background** angezeigt. Der aktive Zustand wird typischerweise verwendet, wenn der Mauszeiger über dem Radiobutton ist. Im aktiven Zustand wird der Radiobutton mit den Optionen **-activeforeground** und **-activebackground** angezeigt. Der deaktivierte Zustand bedeutet, dass der Radiobutton unempfindlich sein sollte: Die Standard-Bindungen weigern sich, das Widget zu aktivieren und ignorieren Mausklicks. In diesem Zustand bestimmen die Optionen **-disabledforeground** und **-background**, wie der Radiobutton angezeigt wird.
 
 **-tristateimage** (**tristateImage**/**TristateImage**)
 : Legt ein Bild fest, das (anstelle der Option **-image**) angezeigt wird, wenn der Radiobutton ausgewählt ist. Diese Option wird ignoriert, sofern die Option **-image** nicht angegeben wurde.
@@ -94,13 +94,13 @@ Der Befehl **radiobutton** erstellt einen neuen Tcl-Befehl, dessen Name *pathNam
 pathName option ?arg arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Radiobutton-Widgets möglich:
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Radiobutton-Widgets möglich:
 
 *pathName* **cget** *option*
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **radiobutton** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **radiobutton** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **radiobutton** akzeptierten Werte haben.
 
 *pathName* **deselect**
 : Wählt den Radiobutton ab und setzt die zugehörige Variable auf eine leere Zeichenkette. Wenn dieser Radiobutton derzeit nicht ausgewählt war, hat der Befehl keine Wirkung.

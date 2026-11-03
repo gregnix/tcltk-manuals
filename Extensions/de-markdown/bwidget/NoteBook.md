@@ -1,5 +1,5 @@
 *NAME*
-: **NoteBook** - Widget zur Notizbuchverwaltung 
+: **NoteBook** - Widget zur Verwaltung eines Notebooks (Register) 
 
 
 *ERZEUGUNG*
@@ -75,7 +75,7 @@ BESCHREIBUNG
 WIDGET-SPEZIFISCHE OPTIONEN
 
 **-arcradius**
-:  Legt die Stärke der Abrundung an den Ecken eines Reiters fest. Dieser Wert kann von 0 bis 8 Pixel eingestellt werden, die Vorgabe ist 2 Pixel. Gewöhnlich sind kleine Werte vorzuziehen. 
+:  Legt die Stärke der Abrundung an den Ecken eines Registers fest. Dieser Wert kann von 0 bis 8 Pixel eingestellt werden, die Vorgabe ist 2 Pixel. Gewöhnlich sind kleine Werte vorzuziehen. 
 
 
 **-height**
@@ -91,11 +91,11 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-tabbevelsize**
-:  Legt die Stärke der Abschrägung der Reiter fest. Dieser Wert kann von 0 bis 8 Pixel eingestellt werden, die Vorgabe ist 0 Pixel. Eine Abschrägung von null Pixel ist im Wesentlichen rechteckig, eine von ungleich null sieht trapezförmig aus. 
+:  Legt die Stärke der Abschrägung der Register fest. Dieser Wert kann von 0 bis 8 Pixel eingestellt werden, die Vorgabe ist 0 Pixel. Eine Abschrägung von null Pixel ist im Wesentlichen rechteckig, eine von ungleich null sieht trapezförmig aus. 
 
 
 **-tabpady**
-:  Legt den Abstand zwischen dem Text im Reiter und dem oberen und unteren Rand des Reiters fest. Der Abstand kann eine Liste aus zwei Werten sein, die den Abstand oben und unten getrennt angeben. Der Vorgabeabstand ist {0 6}. 
+:  Legt den Abstand zwischen dem Text im Register und dem oberen und unteren Rand des Registers fest. Der Abstand kann eine Liste aus zwei Werten sein, die den Abstand oben und unten getrennt angeben. Der Vorgabeabstand ist {0 6}. 
 
 
 **-width**
@@ -107,7 +107,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 WIDGET-BEFEHL
 
 *pathName* **bindtabs** *event* *script* 
-:  Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf einem Reiter eintritt. Der Seitenbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt. 
+:  Dieser Befehl ordnet einen Befehl zu, der ausgeführt wird, wenn die von *event* angegebene Ereignisfolge auf einem Register eintritt. Der Seitenbezeichner, auf dem das Ereignis eintritt, wird an den Befehl angehängt. 
 
 
 *pathName* **cget** *option* 
@@ -165,7 +165,7 @@ WIDGET-BEFEHL
 
 
 *pathName* **move** *page* *index* 
-:  Verschiebt den Reiter *page* zum Index *index*. 
+:  Verschiebt das Register *page* zum Index *index*. 
 
 
 *pathName* **page** *first* ?*last*? 

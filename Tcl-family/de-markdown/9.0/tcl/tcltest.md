@@ -72,7 +72,7 @@ tcltest - Unterstützungscode und Hilfsbefehle für Test-Harness
 
 # Beschreibung
 
-Das Paket **tcltest** stellt mehrere Hilfsbefehle bereit, die beim Aufbau von Test-Suites für Code nützlich sind, der durch Auswertung von Tcl-Befehlen getestet werden soll. Insbesondere werden die eingebauten Befehle der Tcl-Bibliothek selbst mit einer Test-Suite getestet, die das Paket tcltest verwendet.
+Das Paket **tcltest** stellt mehrere Hilfsbefehle bereit, die beim Aufbau von Test-Suites für Code nützlich sind, der so instrumentiert ist, dass er durch Auswertung von Tcl-Befehlen ausgeführt werden kann. Insbesondere werden die eingebauten Befehle der Tcl-Bibliothek selbst mit einer Test-Suite getestet, die das Paket tcltest verwendet.
 
 Alle vom Paket **tcltest** bereitgestellten Befehle sind im Namespace **::tcltest** definiert und werden von dort exportiert, wie in der [Übersicht] oben angegeben. In den folgenden Abschnitten werden alle Befehle der Kürze halber mit ihren einfachen Namen beschrieben.
 
@@ -129,7 +129,7 @@ Siehe [Test-Suites mit tcltest erstellen] unten für ein ausführliches Beispiel
     Existiert die Umgebungsvariable **::env(TCLTEST\_OPTIONS)**, wenn das Paket **tcltest** geladen wird (durch [package require][package] **tcltest**), wird deren Wert als Argumentliste für **configure** verwendet. So können Standardwerte der Konfigurationsoptionen über die Umgebung gesetzt werden.
 
 [customMatch]{.cmd} [mode]{.arg} [script]{.arg}
-: Registriert *mode* als neuen gültigen Wert der **-match**-Option von **test**. Wird die Option **-match** *mode* an **test** übergeben, wird das Skript *script* ausgewertet, um das tatsächliche Ergebnis der Auswertung des Testkörpers mit dem erwarteten Ergebnis zu vergleichen. Für den Abgleich wird das *script* um zwei zusätzliche Wörter ergänzt — das erwartete und das tatsächliche Ergebnis — und das vollständige Skript im globalen Namespace ausgewertet. Das vollständige Skript soll einen booleschen Wert zurückgeben, der angibt, ob die Ergebnisse übereinstimmen. Die eingebauten Abgleichsmodi von **test** sind **exact**, [glob] und [regexp].
+: Registriert *mode* als neuen gültigen Wert der **-match**-Option von **test**. Wird die Option **-match** *mode* an **test** übergeben, wird das Skript *script* ausgewertet, um das tatsächliche Ergebnis der Auswertung des Testrumpfs mit dem erwarteten Ergebnis zu vergleichen. Für den Abgleich wird das *script* um zwei zusätzliche Wörter ergänzt — das erwartete und das tatsächliche Ergebnis — und das vollständige Skript im globalen Namespace ausgewertet. Das vollständige Skript soll einen booleschen Wert zurückgeben, der angibt, ob die Ergebnisse übereinstimmen. Die eingebauten Abgleichsmodi von **test** sind **exact**, [glob] und [regexp].
 
 [testConstraint]{.cmd} [constraint]{.arg} [boolean]{.optarg}
 : Setzt oder gibt den booleschen Wert zurück, der der benannten *constraint* zugeordnet ist. Siehe [Test-Einschränkungen] unten für weitere Informationen.
@@ -209,7 +209,7 @@ Die übrigen von **tcltest** bereitgestellten Befehle haben bessere Alternativen
 : Setzt oder gibt das aktuelle Arbeitsverzeichnis während der Ausführung der Test-Suite zurück. Der Standardwert für workingDirectory ist das Verzeichnis, in dem die Test-Suite gestartet wurde. Die Tcl-Befehle [cd] und [pwd] sind ausreichende Ersatzlösungen.
 
 [normalizeMsg]{.cmd} [msg]{.arg}
-: Gibt das Ergebnis zurück, *msg* von „überflüssigen“ Zeilenumbrüchen zu befreien — wobei „überflüssig“ recht unpräzise ist. Tcl bietet zahlreiche String-Befehle zur beliebigen Änderung von Zeichenketten, und **customMatch** ermöglicht flexiblen Abgleich tatsächlicher und erwarteter Ergebnisse.
+: Gibt das Ergebnis zurück, *msg* von „überflüssigen“ Zeilenumbrüchen zu befreien — wobei „überflüssig“ recht unpräzise ist. Tcl bietet zahlreiche Befehle zur Zeichenkettenverarbeitung zur beliebigen Änderung von Zeichenketten, und **customMatch** ermöglicht flexiblen Abgleich tatsächlicher und erwarteter Ergebnisse.
 
 [normalizePath]{.cmd} [pathVar]{.arg}
 : Löst symbolische Links in einem Pfad auf und erzeugt so einen Pfad ohne interne Umleitungen. Es wird angenommen, dass *pathVar* absolut ist. *pathVar* wird an Ort und Stelle geändert. Der Tcl-Befehl [file normalize][file] ist eine ausreichende Ersatzlösung.
@@ -297,7 +297,7 @@ Jeder **test** sollte die **-constraints** enthalten, die ihn auf passende Umgeb
 Folgende Einschränkungen sind im Paket **tcltest** selbst vordefiniert:
 
 *singleTestInterp*
-: Dieser Test kann nur ausgeführt werden, wenn alle Testdateien in einen einzigen Interpreter geladen werden.
+: Dieser Test kann nur ausgeführt werden, wenn alle Testdateien mittels `source` in einen einzigen Interpreter eingelesen werden.
 
 *unix*
 : Dieser Test kann nur auf einer Unix-Plattform ausgeführt werden.
@@ -351,7 +351,7 @@ Folgende Einschränkungen sind im Paket **tcltest** selbst vordefiniert:
 : Dieser Test kann nur ausgeführt werden, wenn der Interpreter im interaktiven Modus ist (wenn die globale Variable **::tcl\_interactive** auf 1 gesetzt ist).
 
 *nonBlockFiles*
-: Dieser Test kann nur ausgeführt werden, wenn die Plattform Dateien im nicht-blockierenden Modus setzen kann.
+: Dieser Test kann nur ausgeführt werden, wenn die Plattform Dateien in den nicht-blockierenden Modus versetzen kann.
 
 *asyncPipeClose*
 : Dieser Test kann nur ausgeführt werden, wenn die Plattform asynchrones Leeren und Schließen von Pipes unterstützt.
@@ -372,10 +372,10 @@ Folgende Einschränkungen sind im Paket **tcltest** selbst vordefiniert:
 : Dieser Test kann nur ausgeführt werden, wenn die Anwendung eine funktionierende sprintf-Version für das "e"-Format von Gleitkommazahlen hat.
 
 *stdio*
-: Dieser Test kann nur ausgeführt werden, wenn **interpreter** als Pipe [open] werden kann.
+: Dieser Test kann nur ausgeführt werden, wenn **interpreter** mit [open] als Pipe geöffnet werden kann.
 
 
-Der alternative Modus wird mit **configure -limitconstraints** true aktiviert. Dann werden alle Bedingungen außer denen in der von **configure -constraints** zurückgegebenen Liste auf false gesetzt. Beim Setzen von **configure -constraints** werden diese Bedingungen auf true gesetzt. Mit beiden Optionen laufen nur Tests, deren Bedingungen ausschließlich aus der **configure -constraints**-Liste stammen; alle anderen werden übersprungen. Beispielkonfiguration:
+Der alternative Modus wird mit **configure -limitconstraints** true aktiviert. Dann werden alle Bedingungen außer denen in der von **configure -constraints** zurückgegebenen Liste auf false gesetzt. Beim Setzen von **configure -constraints** werden diese Bedingungen auf true gesetzt. Mit beiden Optionen laufen nur Tests, deren Bedingungen ausschließlich aus der **configure -constraints**-Liste stammen; alle anderen werden übersprungen. Beispielsweise lässt sich eine Konfiguration einrichten mit
 
 ```
 configure -constraints knownBug \
@@ -389,11 +389,11 @@ um genau die Tests mit bekannten Fehlern auszuführen und zu prüfen, ob einer b
 
 Der Befehl **runAllTests** führt eine gesamte Test-Suite über viele Dateien und Verzeichnisse aus. Die Konfigurationsoptionen von **tcltest** steuern die genauen Abläufe. **runAllTests** gibt zuerst eine Zusammenfassung der Konfiguration auf **outputChannel** aus.
 
-Zu auswertende Testdateien werden in **configure -testdir** gesucht. Es wird eine sortierte Liste der Dateien erzeugt, die **configure -file** treffen und **configure -notfile** nicht. Jede Datei wird nacheinander ausgewertet. Bei **configure -singleproc** true wird jede Datei im Kontext des Aufrufers [source]d. Bei false startet eine Kopie von **interpreter** per [exec] je Datei. Der Mehrprozess-Modus hilft, wenn Tests Prozesse beenden können: Der Hauptprozess setzt die Suite fort. Die **tcltest**-Konfiguration des Hauptprozesses wird als Kommandozeilenargumente an Kindprozesse übergeben, außer **configure -outfile**. **runAllTests** im Hauptprozess sammelt Kindausgaben zu einem Gesamtbericht. Einzelne Fehlermeldungen oder **configure -verbose**-Meldungen gehen direkt an **outputChannel**.
+Auszuwertende Testdateien werden in **configure -testdir** gesucht. Es wird eine sortierte Liste der Dateien erzeugt, die **configure -file** treffen und **configure -notfile** nicht. Jede Datei wird nacheinander ausgewertet. Bei **configure -singleproc** true wird jede Datei im Kontext des Aufrufers mittels [source] eingelesen. Bei false wird je Datei eine Kopie von **interpreter** per [exec] gestartet. Der Mehrprozess-Modus hilft, wenn Tests Prozesse beenden können: Der Hauptprozess setzt die Suite fort. Die **tcltest**-Konfiguration des Hauptprozesses wird als Kommandozeilenargumente an Kindprozesse übergeben, außer **configure -outfile**. **runAllTests** im Hauptprozess sammelt Kindausgaben zu einem Gesamtbericht. Meldungen über einzelne fehlgeschlagene Tests oder **configure -verbose**-Meldungen gibt der Hauptprozess direkt an **outputChannel** weiter.
 
-Nach allen ausgewählten Testdateien folgt eine Zusammenfassung auf **outputChannel**: Gesamtzahl der **test**-Auswertungen, aufgeteilt in übersprungene, bestandene und fehlgeschlagene; Anzahl der Dateien; Namen fehlerhafter Dateien; Bedingungen mit Übersprungszahlen; Hinweise, wenn Testdateien temporäre Dateien in **configure -tmpdir** hinterlassen haben.
+Nach allen ausgewählten Testdateien folgt eine Zusammenfassung auf **outputChannel**: Gesamtzahl der **test**-Auswertungen, aufgeteilt in übersprungene, bestandene und fehlgeschlagene; Anzahl der Dateien; Namen der Dateien mit fehlgeschlagenen Tests oder Fehlern; Bedingungen mit Übersprungszahlen; Hinweise, wenn Testdateien temporäre Dateien in **configure -tmpdir** hinterlassen haben.
 
-Nach Abschluss wertet **runAllTests** Unterverzeichnisse von **configure -testdir** rekursiv aus. Unterverzeichnisse, die **configure -relateddir** treffen und **configure -asidefromdir** nicht, werden untersucht. Enthält ein Verzeichnis **all.tcl**, wird es im Kontext des Aufrufers [source]d. Mit oder ohne **all.tcl** werden Unterverzeichnisse weiter geprüft. So kann ein **runAllTests**-Aufruf Testdateien in vielen Verzeichnissen eines Baums auswerten.
+Nach Abschluss wertet **runAllTests** Unterverzeichnisse von **configure -testdir** rekursiv aus. Unterverzeichnisse, die **configure -relateddir** treffen und **configure -asidefromdir** nicht, werden untersucht. Enthält ein Verzeichnis **all.tcl**, wird diese Datei im Kontext des Aufrufers mittels [source] eingelesen. Mit oder ohne **all.tcl** werden Unterverzeichnisse weiter geprüft. So kann ein **runAllTests**-Aufruf Testdateien in vielen Verzeichnissen eines Baums auswerten.
 
 # Konfigurierbare Optionen
 
@@ -409,20 +409,20 @@ Der Befehl **configure** setzt und fragt die konfigurierbaren Optionen von **tcl
     : Keine Debug-Informationen anzeigen.
 
     1
-    : Informationen, ob ein Test wegen **configure -match** (userSpecifiedNonMatch) oder **configure -skip** (userSpecifiedSkip) übersprungen wird; Warnungen zu fehlendem Aufräumen oder Ungleichgewicht in Testdateien; Warnungen bei Wiederverwendung von Testnamen.
+    : Informationen, ob ein Test übersprungen wird, weil er keinem mit **configure -match** angegebenen Muster entspricht (userSpecifiedNonMatch) oder **configure -skip** (userSpecifiedSkip) übersprungen wird; Warnungen zu fehlendem Aufräumen oder Ungleichgewicht in Testdateien; Warnungen bei Wiederverwendung von Testnamen.
 
     2
     : Flag-Array des Kommandozeilenprozessors, Inhalt des globalen [env][tclvars]-Arrays und alle benutzerdefinierten Variablen im aktuellen Namespace bei Verwendung.
 
     3
-    : Informationen, was einzelne Procs im Test-Harness tun.
+    : Informationen, was einzelne Prozeduren im Test-Harness tun.
 
 
 [-verbose]{.lit} [level]{.arg}
 : Setzt die gewünschte Ausgabeausführlichkeit *level* als Liste aus null oder mehr Elementen **body**, **pass**, **skip**, **start**, **error**, **line**, **msec** und **usec**. Standardwert ist "**body error**". Stufen:
 
     body (**b**)
-    : Körper fehlgeschlagener Tests anzeigen
+    : Rumpf fehlgeschlagener Tests anzeigen
 
     pass (**p**)
     : Ausgabe, wenn ein Test besteht
@@ -446,7 +446,7 @@ Der Befehl **configure** setzt und fragt die konfigurierbaren Optionen von **tcl
     : Ausführungszeit jedes Tests in Mikrosekunden ausgeben
 
 
-    Die Stufen **msec** und **usec** sind nur indikative Maße. Sie lösen nicht das Problem der Wiederholbarkeit bei Performance-Tests oder Benchmarks. Für gründliche Verfolgung von Leistungseinbußen Testkörper mit [time] umschließen.
+    Die Stufen **msec** und **usec** sind nur indikative Maße. Sie lösen nicht das Problem der Wiederholbarkeit bei Performance-Tests oder Benchmarks. Um Leistungseinbußen gründlich zu verfolgen, sollten Sie die Testrümpfe mit [time] umschließen.
 
     Die Einbuchstaben-Abkürzungen gelten ebenfalls, sodass "**configure -verbose pt**" dasselbe ist wie "**configure -verbose {pass start}**".
 
@@ -454,7 +454,7 @@ Der Befehl **configure** setzt und fragt die konfigurierbaren Optionen von **tcl
 : Setzt die Core-Erhaltungsstufe *level*, die bestimmt, wie streng Core-Dateien geprüft werden. Standardwert ist 0. Stufen:
 
     0
-    : Keine Prüfung — keine Core-Dateien am Ende jedes Testbefehls; Prüfung in **runAllTests** nach allen Testdateien.
+    : Keine Prüfung — am Ende jedes Testbefehls wird nicht auf Core-Dateien geprüft, wohl aber in **runAllTests**, nachdem alle Testdateien ausgewertet sind.
 
     1
     : Zusätzlich Core-Dateien am Ende jedes **test**-Befehls prüfen.
@@ -500,17 +500,17 @@ Der Befehl **configure** setzt und fragt die konfigurierbaren Optionen von **tcl
 : Setzt den Dateinamen für ein von **loadTestedCommands** auszuwertendes Skript. Alternative zu **-load**; nicht gemeinsam verwendbar.
 
 [-outfile]{.lit} [filename]{.arg}
-: Setzt die Datei für alle von tcltest erzeugten Ausgaben. Die Datei *filename* wird zum Schreiben [open]et; der Kanal wird als **outputChannel** gesetzt.
+: Setzt die Datei für alle von tcltest erzeugten Ausgaben. Die Datei *filename* wird mit [open] zum Schreiben geöffnet; der Kanal wird als **outputChannel** gesetzt.
 
 [-errfile]{.lit} [filename]{.arg}
-: Setzt die Datei für alle Fehlerausgaben von tcltest. Die Datei *filename* wird zum Schreiben [open]et; der Kanal wird als **errorChannel** gesetzt.
+: Setzt die Datei für alle Fehlerausgaben von tcltest. Die Datei *filename* wird mit [open] zum Schreiben geöffnet; der Kanal wird als **errorChannel** gesetzt.
 
 
 # Test-Suites mit tcltest erstellen
 
 Das grundlegende Element einer Test-Suite ist der einzelne Befehl **test**. Wir beginnen mit mehreren Beispielen.
 
-1. Test eines Skripts mit normalem Rückgabewert.
+1. Test eines Skripts, das normal zurückkehrt.
 
     ```
     test example-1.0 {normal return} {
@@ -518,7 +518,7 @@ Das grundlegende Element einer Test-Suite ist der einzelne Befehl **test**. Wir 
     } value
     ```
 
-2. Test eines Skripts mit Kontext-Setup und -Aufräumen. Beachten Sie Klammerung und Einrückung ohne Zeilenfortsetzung.
+2. Test eines Skripts mit Kontext-Setup und -Aufräumen. Beachten Sie die Klammerung und Einrückung, die Zeilenfortsetzungen überflüssig machen.
 
     ```
     test example-1.1 {test file existence} -setup {
@@ -577,7 +577,7 @@ Der Großteil einer Testdatei sollte **test**-Befehle sein. Tests per Bedingunge
     ```
 
 
-Verwenden Sie **-setup** und **-cleanup**, um den Kontext des Testkörpers herzustellen und freizugeben. Tests nicht von vorherigen Tests in der Datei abhängig machen — diese können übersprungen sein. Benötigen mehrere Tests denselben Kontext, können Setup- und Cleanup-Skripte in Variablen für **-setup** und **-cleanup** jedes Tests gespeichert werden. Besser als Setup außerhalb von **test**: Setup nur bei Bedarf; Setup-Fehler werden gemeldet und brechen die Datei nicht ab.
+Verwenden Sie **-setup** und **-cleanup**, um den Kontext des Testrumpfs herzustellen und freizugeben. Tests nicht von vorherigen Tests in der Datei abhängig machen — diese können übersprungen sein. Benötigen mehrere Tests denselben Kontext, können Setup- und Cleanup-Skripte in Variablen für **-setup** und **-cleanup** jedes Tests gespeichert werden. Besser als Setup außerhalb von **test**: Setup nur bei Bedarf; Setup-Fehler werden gemeldet und brechen die Datei nicht ab.
 
 Eine Testdatei sollte sich mit anderen kombinieren lassen, ohne sie zu stören — auch wenn **configure -singleproc 1** alle Dateien in einem Interpreter auswertet. Definieren Sie Befehle und Variablen in einem Namespace, der nach der Testdatei gelöscht wird. Geeignet ist ein Kind-Namespace **test** des Modul-Namespaces.
 
@@ -627,7 +627,7 @@ Die nächste Ebene ist eine vollständige Test-Suite aus mehreren Testdateien. E
 
 # Kompatibilität
 
-Einige Befehle und Variablen im Namespace **::tcltest** früherer **tcltest**-Versionen sind hier nicht dokumentiert. Sie gehören nicht mehr zur unterstützten öffentlichen Schnittstelle und sollten in neuen Test-Suites nicht verwendet werden. Zur Unterstützung bestehender Suites funktionieren viele veraltete Befehle und Variablen noch. So wird **configure** oft kurz nach erfolgreichen [package require][package] **tcltest 2.1** automatisch mit Argumenten aus **::argv** aufgerufen — für Suites, die auf automatische Konfiguration aus Kommandozeilenargumenten angewiesen sind. Neue Testdateien sollten das nicht voraussetzen, sondern explizit enthalten:
+Einige Befehle und Variablen im Namespace **::tcltest** früherer **tcltest**-Versionen sind hier nicht dokumentiert. Sie gehören nicht mehr zur unterstützten öffentlichen Schnittstelle und sollten in neuen Test-Suites nicht verwendet werden. Zur Unterstützung bestehender Suites funktionieren viele veraltete Befehle und Variablen noch. So wird **configure** oft kurz nach erfolgreichem [package require][package] **tcltest 2.1** automatisch mit Argumenten aus **::argv** aufgerufen — für Suites, die auf automatische Konfiguration aus Kommandozeilenargumenten angewiesen sind. Neue Testdateien sollten das nicht voraussetzen, sondern explizit enthalten:
 
 ```
 ::tcltest::configure {*}$::argv
@@ -652,7 +652,7 @@ jedes in level-2.1 ausgeführte Skript kann auf derselben Stack-Ebene wie das Sk
 
 Zudem meldet **cleanupTests** nach zwei **test**-Läufen Ergebnisse nur für Tests auf derselben Ebene wie level-1.1. Ergebnisse aller Tests vor level-1.1 sind verfügbar, wenn level-2.1 läuft. Beim Zugriff auf Ergebnisse von level-2.1 kann stehen, dass „m“ Tests liefen, „n“ übersprungen, „o“ bestanden und „p“ fehlschlugen — wobei m, n, o und p Tests auf derselben Ebene wie level-1.1 meinen.
 
-Ausgabe- und Fehlervergleich in **test** hängen von [puts] in der Anwendung ab. Ausgabe wird abgefangen, indem [puts] global neu definiert wird. Von C-Prozeduren geworfene oder direkt gedruckte Fehler erfasst **test** nicht. **-output** und **-errorOutput** sind daher nur für reine Tcl-Anwendungen mit [puts]-Ausgabe sinnvoll.
+Ausgabe- und Fehlervergleich in **test** hängen von [puts] in der Anwendung ab. Ausgabe wird abgefangen, indem [puts] global neu definiert wird, während das Testskript läuft. Von C-Prozeduren geworfene oder direkt aus C-Anwendungen ausgegebene Fehler erfasst **test** nicht. **-output** und **-errorOutput** sind daher nur für reine Tcl-Anwendungen mit [puts]-Ausgabe sinnvoll.
 
 
 [cd]: cd.md

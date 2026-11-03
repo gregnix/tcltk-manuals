@@ -110,10 +110,10 @@ MENU ENTRY
 : Ein Menü enthält eine geordnete Liste von Einträgen. Menüeinträge haben einen Typ. Die Klasse menubar unterstützt diese sechs Eintragstypen: *Command*, *Checkbutton*, *Radiobutton*, *Separator*, *Group* und *Menu*.
 
 ENTRY LABEL
-: Jeder Menüeintrag verfügt über eine sichtbare Zeichenfolge, die als Eintragsbezeichnung bezeichnet wird.
+: Jeder Menüeintrag verfügt über eine sichtbare Zeichenkette, die als Eintragsbezeichnung bezeichnet wird.
 
 TAG
-: Ein Tag ist ein Name, der normalerweise verwendet wird, um auf einen Eintrag in einem Menübaum zu verweisen. Ein Tag-Name ist eine alphanumerische Zeichenfolge, die das Unterstrichzeichen enthalten darf. Menübaum-Tags werden für alle Knoten und Endelemente in einem Menübaum definiert. Dies bietet eine flache Abstraktion des Baums und vereinfacht die Referenzierung von Elementen in Menüleisten-Methoden. Ohne diese Abstraktion wäre es notwendig, auf Menüelemente über einen Pfad zu verweisen, der sich zur Laufzeit ändern könnte. Die Menubar-Klasse verfügt zudem über eine Methode, mit der ein benutzerdefiniertes Tag erstellt werden kann. Benutzerdefinierte Tags speichern Werte, die sich je nach dem aktuell aktiven Toplevel-Fenster ändern. Benutzerdefinierte Tags können verwendet werden, um Widget-Pfadnamen zu speichern, die von Rückruffunktionen verwendet werden, sodass die Ausgabe an das entsprechende Toplevel-Fenster weitergeleitet werden kann.
+: Ein Tag ist ein Name, der normalerweise verwendet wird, um auf einen Eintrag in einem Menübaum zu verweisen. Ein Tag-Name ist eine alphanumerische Zeichenkette, die das Unterstrichzeichen enthalten darf. Menübaum-Tags werden für alle Knoten und Endelemente in einem Menübaum definiert. Dies bietet eine flache Abstraktion des Baums und vereinfacht die Referenzierung von Elementen in Menüleisten-Methoden. Ohne diese Abstraktion wäre es notwendig, auf Menüelemente über einen Pfad zu verweisen, der sich zur Laufzeit ändern könnte. Die Menubar-Klasse verfügt zudem über eine Methode, mit der ein benutzerdefiniertes Tag erstellt werden kann. Benutzerdefinierte Tags speichern Werte, die sich je nach dem aktuell aktiven Toplevel-Fenster ändern. Benutzerdefinierte Tags können verwendet werden, um Widget-Pfadnamen zu speichern, die von Rückruffunktionen verwendet werden, sodass die Ausgabe an das entsprechende Toplevel-Fenster weitergeleitet werden kann.
 
 
 # Methoden
@@ -149,7 +149,7 @@ TAG
     : Ein Menüeintrag vom Typ R verhält sich weitgehend wie ein Tk-Radiobutton. Jeder Radiobutton-Eintrag gehört zu einer Radiobutton-Gruppe, die das Verhalten der Radiobuttons in der Gruppe steuert. Alle Radiobuttons einer Gruppe haben denselben Tag-Namen. Im Beispiel unten haben Red, Green und Blue denselben Tag und gehören damit zur selben Gruppe. Ein Plus (+) hinter dem Tag-Namen macht den Eintrag zum anfangs ausgewählten. Den Gültigkeitsbereich beschreibt der Abschnitt **STEUERUNG DES GÜLTIGKEITSBEREICHS**.
 
     S - Separator
-    : Ein Menüeintrag vom Typ „S“ ist ein Eintrag, der entweder als horizontale Trennlinie oder als Beschriftung angezeigt wird. Trennzeichen sind keine aktiven Elemente eines Menüs und lösen beim Aufruf kein bestimmtes Verhalten aus. Ist <stext> zwei Bindestriche, also '--', erscheint das Trennzeichen als waagerechte Linie. Sonst erscheint <stext> als fette Beschriftung zwischen doppelten Bindestrichen, zum Beispiel "-- <stext> --", mit dem Hintergrund lightgray.
+    : Ein Menüeintrag vom Typ „S“ ist ein Eintrag, der entweder als horizontale Trennlinie oder als Beschriftung angezeigt wird. Trenneinträge sind keine aktiven Elemente eines Menüs und lösen beim Aufruf kein bestimmtes Verhalten aus. Ist <stext> zwei Bindestriche, also '--', erscheint der Trenneintrag als waagerechte Linie. Sonst erscheint <stext> als fette Beschriftung zwischen doppelten Bindestrichen, zum Beispiel "-- <stext> --", mit dem Hintergrund lightgray.
 
     G - Command Group
     : Der Menüeintrag vom Typ „G“ kennzeichnet eine Stelle im Menübaum, an der Einträge dynamisch hinzugefügt und entfernt werden können. Eine Menüerweiterung kann nur am Ende eines Menüs erfolgen, daher müssen Einträge vom Typ „G“ der letzte Eintrag in einem Menü sein. Ein Eintrag vom Typ „G“ wird als Trennlinie dargestellt. Die Unterbefehle *group.<xxx>* dienen zur Bearbeitung von Befehlsgruppeneinträgen.
@@ -185,7 +185,7 @@ TAG
 
 
 *mBarInst* **menu.namespace** *tag namespace*
-: Ändert den Namespace eines Teilbaums der Menüleiste ab dem Eintrag *tag*. Der neue Wert ist *namespace*. Jeder Eintrag im Baum hat einen Namespace für seine Rückrufprozedur. Voreingestellt ist der Namespace, in dem *install* ausgeführt wurde. Mit dieser Methode lässt sich der Namespace der Rückrufe in einem Teilbaum ändern. Sie gilt nur in einem *install*-Skript.
+: Ändert den Namespace eines Teilbaums der Menüleiste ab dem Eintrag *tag*. Der neue Wert ist *namespace*. Jeder Eintrag im Baum hat einen Namespace für seine Rückrufprozedur. Voreingestellt ist der Namespace, in dem *install* ausgeführt wurde. Mit dieser Methode lässt sich der Namespace der Rückruffunktionen in einem Teilbaum ändern. Sie gilt nur in einem *install*-Skript.
 
 
 *mBarInst* **menu.hide** *tag*
@@ -198,7 +198,7 @@ TAG
 # Methoden – tag.xxx
 
 *mBarInst* **tag.add** *tag value*
-: Fügt einen benutzerdefinierten Wert *tag* hinzu. *tag.add* ergänzt die für eine Menüleiste definierten Tags um ein Tag-Wert-Paar. Benutzerdefinierte Tags unterscheiden sich von den Tags aus *define*. *tag.add* gilt nur in einem *install*-Skript, und der Wert hängt am Toplevel, in dem die Menüleiste eingesetzt ist. Das Tag ist damit kontextabhängig: Rückrufcode, der den Tag-Wert abfragt, erhält den Wert des Fensters, das den Rückruf ausgeführt hat.
+: Fügt einen benutzerdefinierten Wert *tag* hinzu. *tag.add* ergänzt die für eine Menüleiste definierten Tags um ein Tag-Wert-Paar. Benutzerdefinierte Tags unterscheiden sich von den Tags aus *define*. *tag.add* gilt nur in einem *install*-Skript, und der Wert hängt am Toplevel, in dem die Menüleiste eingesetzt ist. Das Tag ist damit kontextabhängig: Rückrufcode, der den Tag-Wert abfragt, erhält den Wert des Fensters, das die Rückruffunktion ausgeführt hat.
 
 
 *mBarInst* **tag.configure** *pathName tag ?option value ...option value?*
@@ -243,20 +243,20 @@ TAG
 
 
         **-command** cmdprefix
-        : Der Wert der Option *-command* ist ein Befehlspräfix, das beim Aufruf des Menüeintrags ausgewertet wird. Voreingestellt wird der Rückruf in dem Namespace ausgewertet, in dem *install* ausgeführt wurde. Weitere Werte werden an *cmdprefix* angehängt und so als Argumente an den Rückrufbefehl übergeben. Diese zusätzlichen Argumente stehen in der folgenden Liste.
+        : Der Wert der Option *-command* ist ein Befehlspräfix, das beim Aufruf des Menüeintrags ausgewertet wird. Voreingestellt wird die Rückruffunktion in dem Namespace ausgewertet, in dem *install* ausgeführt wurde. Weitere Werte werden an *cmdprefix* angehängt und so als Argumente an den Rückrufbefehl übergeben. Diese zusätzlichen Argumente stehen in der folgenden Liste.
 
             command entry
             : 1) Der Pfadname des Toplevel-Fensters, das die Rückruffunktion ausgelöst hat.
 
             checkbutton entry
-            : 1) Der Pfadname des Toplevel-Fensters, das den Rückruf ausgelöst hat.
+            : 1) Der Pfadname des Toplevel-Fensters, das die Rückruffunktion ausgelöst hat.
 
                 2) Der Tag-Name des Checkbuttons.
 
                 3) Der neue Wert des Checkbuttons.
 
             radiobutton entry
-            : 1) Der Pfadname des Toplevel-Fensters, das den Rückruf ausgelöst hat.
+            : 1) Der Pfadname des Toplevel-Fensters, das die Rückruffunktion ausgelöst hat.
 
                 2) Der Tag-Name des Radiobuttons.
 
@@ -311,7 +311,7 @@ TAG
 
 
 *mBarInst* **group.serialize** *tag*
-: Gibt eine Zeichenfolgen-Serialisierung der Einträge in einer Befehlsgruppe zurück. Das Argument *tag* ist der Tag-Name der Gruppe, die serialisiert werden soll. Die resultierende Serialisierung ist eine Liste, die drei Elemente enthält: (1) den Namen des Tags der Gruppe, (2) ein Dictionary mit Optionen auf Gruppenebene und (3) eine Liste aus null oder mehr ähnlichen Dreierlisten, die die Einträge in der Gruppe beschreiben.
+: Gibt eine Zeichenketten-Serialisierung der Einträge in einer Befehlsgruppe zurück. Das Argument *tag* ist der Tag-Name der Gruppe, die serialisiert werden soll. Die resultierende Serialisierung ist eine Liste, die drei Elemente enthält: (1) den Namen des Tags der Gruppe, (2) ein Dictionary mit Optionen auf Gruppenebene und (3) eine Liste aus null oder mehr ähnlichen Dreierlisten, die die Einträge in der Gruppe beschreiben.
 
 
 *mBarInst* **group.deserialize** *tag stream*
@@ -329,11 +329,11 @@ TAG
 
 
 *mBarInst* **notebook.setTabValue** *pathname tag*
-: Diese Methode gehört in den Rückruf von Checkbuttons oder Radiobuttons der Menüleiste mit Gültigkeitsbereich eines Notebook-Registers. Der Aufruf schiebt den zum Tag gehörenden Wert in den Speicher des durch den Pfadnamen bezeichneten Registers.
+: Diese Methode gehört in die Rückruffunktion von Checkbuttons oder Radiobuttons der Menüleiste mit Gültigkeitsbereich eines Notebook-Registers. Der Aufruf schiebt den zum Tag gehörenden Wert in den Speicher des durch den Pfadnamen bezeichneten Registers.
 
 
 *mBarInst* **notebook.restoreTabValues** *pathname*
-: Diese Methode gehört in ein Bindskript, das das Ereignis <<NotebookTabChanged>> eines Notebooks auslöst.
+: Diese Methode gehört in ein Bindskript, das vom Ereignis <<NotebookTabChanged>> eines Notebooks ausgelöst wird.
 
 
 # Steuerung des Gültigkeitsbereichs
@@ -350,7 +350,7 @@ Die Klasse menubar erlaubt eine feinere Steuerung des Gültigkeitsbereichs bei C
 
 Wenn das Zeichen für den lokalen Geltungsbereich (@) zur Definition einer Schaltfläche hinzugefügt wird, erhält die Schaltfläche für jedes installierte Toplevel-Fenster eine neue Variable. Dies bewirkt, dass der Zustand der Schaltfläche auf das jeweilige Fenster beschränkt ist (d. h. lokaler Geltungsbereich). Ein Beispiel ist eine Statusleiste, die ein Checkbutton ein- und ausschaltet. Der Entwickler möchte dem Benutzer möglicherweise ermöglichen, die Sichtbarkeit der Statusleiste für jedes Fenster einzeln zu steuern. In diesem Fall würde dem Selektor der Statusleiste ein lokaler Modifikator hinzugefügt, sodass die Rückruffunktion einen entsprechenden Wert basierend auf dem aktuellen Toplevel-Fenster erhält.
 
-Das Zeichen für den Gültigkeitsbereich eines Notebook-Registers (=) wirkt ähnlich wie das Zeichen für den lokalen Gültigkeitsbereich, nur dass auch die Auswahl eines Notebook-Registers den Zustand einer Schaltfläche führen kann. Der Zusatz schaltet diese Steuerung ein. Die Unterbefehle notebook.xxxx müssen die Zustandswerte dann führen, wenn Register hinzukommen, gelöscht oder ausgewählt werden.
+Das Zeichen für den Gültigkeitsbereich eines Notebook-Registers (=) wirkt ähnlich wie das Zeichen für den lokalen Gültigkeitsbereich, nur dass auch die Auswahl eines Notebook-Registers den Zustand einer Schaltfläche führen kann. Der Zusatz schaltet diese Steuerung ein. Der Entwickler muss dann jedoch mit den Unterbefehlen notebook.xxxx die Zustandswerte aktiv verwalten, wenn Register hinzukommen, gelöscht oder ausgewählt werden.
 
 # Beispiel
 

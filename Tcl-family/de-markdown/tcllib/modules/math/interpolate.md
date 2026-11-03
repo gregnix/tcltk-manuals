@@ -142,7 +142,7 @@ Das Interpolationspaket definiert die folgenden öffentlichen Prozeduren:
 
 
 **::math::interpolate::interp-spatial** *xyvalues* *coord*
-: Verwendet eine einfache Interpolationsmethode mit Gewichten als Funktion des Kehrwerts des Abstands, um im 2D- und N-dimensionalen Raum zu interpolieren.
+: Verwendet eine einfache Interpolationsmethode mit Gewichten als Funktion des inversen Abstands, um im 2D- und N-dimensionalen Raum zu interpolieren.
 
     Die Liste xyvalues ist eine Liste von Listen:
 
@@ -155,7 +155,7 @@ Das Interpolationspaket definiert die folgenden öffentlichen Prozeduren:
 
     Das letzte Element jeder inneren Liste ist entweder eine einzelne Zahl oder selbst eine Liste. Im letzteren Fall gibt die Methode einen Wert zurück, der eine Liste mit derselben Anzahl von Elementen enthält.
 
-    Die Methode wird durch den Suchradius und die Potenz des inversen Abstands beeinflusst.
+    Die Methode wird durch den Suchradius und den Exponenten des inversen Abstands beeinflusst.
 
     list *xyvalues* (in)
     : Liste von Listen, wobei jede Unterliste eine Liste von Koordinaten und abhängigen Werten darstellt.

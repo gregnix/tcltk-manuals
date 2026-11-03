@@ -34,7 +34,7 @@ autoproxy – Automatische Nutzung und Authentifizierung eines HTTP-Proxys
 
 # Beschreibung
 
-Dieses Paket dient dazu, die Verwendung von HTTP-Proxy-Servern im Tcl-HTTP-Client-Code zu automatisieren. Es versucht, die Einstellungen für den Webzugriff aus den Standardverzeichnissen des Systems zu initialisieren, und kann bei Bedarf so konfiguriert werden, dass es die Authentifizierung mit dem Proxy aushandelt.
+Dieses Paket dient dazu, die Verwendung von HTTP-Proxy-Servern im Tcl-HTTP-Client-Code zu automatisieren. Es versucht, die Einstellungen für den Webzugriff von den Standardorten des Systems zu initialisieren, und kann bei Bedarf so konfiguriert werden, dass es die Authentifizierung mit dem Proxy aushandelt.
 
 Unter Unix scheint es Standard zu sein, den lokalen HTTP-Proxy-Server über die Umgebungsvariablen http\_proxy oder ftp\_proxy zu identifizieren und die Domänen, die vom Proxy-Einsatz ausgeschlossen werden sollen, über no\_proxy aufzulisten. Unter Windows können wir die Werte der Interneteinstellungen aus der Registrierung abrufen, um nahezu dieselben Informationen zu erhalten. Mit diesen Informationen können wir eine geeignete Filter-Prozedur für das Tcl-HTTP-Paket einrichten und die automatische Nutzung des Proxys veranlassen.
 
@@ -63,7 +63,7 @@ Angesichts des kürzlich von Google entdeckten [POODLE-Angriffs](http://googleon
 : Initialisiert das Autoproxy-Paket anhand der Systemressourcen. Unter Unix bedeutet dies, dass wir nach Umgebungsvariablen suchen. Unter Windows suchen wir nach denselben Umgebungsvariablen, prüfen aber zusätzlich die von Internet Explorer verwendeten Registrierungseinstellungen.
 
 **::autoproxy::cget** *-option*
-: Einzelne Konfigurationsoptionen des Pakets abrufen. Siehe [Optionen].
+: Ruft einzelne Konfigurationsoptionen des Pakets ab. Siehe [Optionen].
 
 **::autoproxy::configure** ?-option *value*?
 : Konfiguriert das Autoproxy-Paket. Wenn Sie **configure** ohne Optionen aufrufen, gibt es eine Liste aller Optionsnamen und Werte zurück. Siehe [Optionen].

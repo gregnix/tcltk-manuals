@@ -142,7 +142,7 @@ Diese Klasse definiert keine Option.
 : Diese Methode gibt den RDN-Teil des DN des Eintrags zurück.
 
 *e* **superior**
-: Diese Methode gibt den übergeordneten Teil des DN des Eintrags zurück.
+: Diese Methode gibt den Superior-Teil des DN des Eintrags zurück.
 
 *e* **print**
 : Diese Methode gibt den Eintrag als druckfertige Zeichenkette zurück.
@@ -168,13 +168,13 @@ Bei allen Methoden werden Attributnamen in Kleinbuchstaben umgewandelt.
 : Diese Methode setzt die Werte des Attributs *attr* auf den einzigen Wert *value*. Etwaige bisherige Werte werden durch den neuen Wert ersetzt.
 
 *se* **add** *attr* *values*
-: Diese Methode fügt alle Elemente der list *values* den Werten des Attributs *attr* hinzu.
+: Diese Methode fügt alle Elemente der Liste *values* den Werten des Attributs *attr* hinzu.
 
 *se* **add1** *attr* *value*
 : Diese Methode fügt dem Attribut *attr* einen einzelnen Wert hinzu, der durch den Parameter *value* vorgegeben wird.
 
 *se* **del** *attr* ?*values*?
-: Ist die optionale list *values* angegeben, löscht diese Methode alle angegebenen Werte aus dem Attribut *attr*. Ist das Argument *values* nicht angegeben, löscht diese Methode alle Werte.
+: Ist die optionale Liste *values* angegeben, löscht diese Methode alle angegebenen Werte aus dem Attribut *attr*. Ist das Argument *values* nicht angegeben, löscht diese Methode alle Werte.
 
 *se* **del1** *attr* *value*
 : Diese Methode löscht einen einzelnen Wert *value* aus dem Attribut *attr*.

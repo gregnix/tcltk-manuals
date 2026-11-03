@@ -86,24 +86,24 @@ Das Paket stellt einen einzigen Befehl bereit, **::struct::disjointset**, der al
 
     *aDisjointSet* *method* ?*arg ...*?
 
-    Die *Methode* und die *Argumente* legen fest, welche Operation ausgeführt werden soll.
+    Die *method* und die *arg* legen fest, welche Operation ausgeführt werden soll.
 
 
 ## Methoden
 
 *aDisjointSet* **add-element** *element*
-: Erstellt eine neue Partition im *aDisjointSet* und fügt das einzelne *Element* zur neuen Partition hinzu. Der Befehl gewährleistet die Integrität der disjunkten Menge, d. h., wenn *element* bereits in der disjunkten Menge enthalten ist – unabhängig davon, in welcher Partition –, löst diese Methode einen Fehler aus.
+: Erstellt eine neue Partition im *aDisjointSet* und fügt das einzelne *element* zur neuen Partition hinzu. Der Befehl gewährleistet die Integrität der disjunkten Menge, d. h., wenn *element* bereits in der disjunkten Menge enthalten ist – unabhängig davon, in welcher Partition –, löst diese Methode einen Fehler aus.
 
     Diese Methode gibt die leere Zeichenkette zurück.
 
     Diese Methode läuft in konstanter Zeit, *O(1)*.
 
 *aDisjointSet* **add-partition** *elements*
-: Erstellt eine neue Partition im *aDisjointSet* und fügt alle angegebenen *Elemente* zur neuen Partition hinzu. Der Befehl gewährleistet die Integrität der disjunkten Menge, d. h., wenn eines der Elemente in *Elemente* bereits in der disjunkten Menge enthalten ist – unabhängig davon, in welcher Partition –, löst diese Methode einen Fehler aus.
+: Erstellt eine neue Partition im *aDisjointSet* und fügt alle angegebenen *elements* zur neuen Partition hinzu. Der Befehl gewährleistet die Integrität der disjunkten Menge, d. h., wenn eines der Elemente in *elements* bereits in der disjunkten Menge enthalten ist – unabhängig davon, in welcher Partition –, löst diese Methode einen Fehler aus.
 
     Diese Methode gibt die leere Zeichenkette zurück.
 
-    Die Laufzeit dieser Methode ist proportional zur Größe von *Elementen*, *O(N)*, wobei *N* die Anzahl der *Elemente* ist.
+    Die Laufzeit dieser Methode ist proportional zur Größe von *elements*, *O(N)*, wobei *N* die Anzahl der Elemente in *elements* ist.
 
 *aDisjointSet* **partitions**
 : Gibt die Partitionen des *aDisjointSet* als Liste von Listen zurück. Die äußeren Listen sind die Partitionen, die inneren Listen enthalten die Elemente der jeweiligen Partition.
@@ -116,7 +116,7 @@ Das Paket stellt einen einzigen Befehl bereit, **::struct::disjointset**, der al
     Diese Methode läuft in konstanter Zeit.
 
 *aDisjointSet* **equal** *a* *b*
-: Gibt **1** (wahr) zurück, wenn die Elemente *a* und *b* in der *aDisjointSet* in derselben Partition liegen; andernfalls gibt es **0** (falsch) zurück.
+: Gibt **1** (wahr) zurück, wenn die Elemente *a* und *b* im *aDisjointSet* in derselben Partition liegen; andernfalls gibt es **0** (falsch) zurück.
 
     Wenn eines oder beide Argumente überhaupt nicht in der disjunkten Menge enthalten sind, löst diese Methode einen Fehler aus.
 
@@ -175,7 +175,7 @@ proc dump_disjointset name {
 }
 ```
 
-In diesen Beispielen wird eine neue disjunkte Menge namens *colors* erstellt und es werden eine Partition mit dem einzigen Element *black* sowie eine weitere Partition mit den Elementen *cyan*, *magenta* und *yellow* hinzugefügt.
+In diesem Beispiel wird eine neue disjunkte Menge namens *colors* erstellt und es werden eine Partition mit dem einzigen Element *black* sowie eine weitere Partition mit den Elementen *cyan*, *magenta* und *yellow* hinzugefügt.
 
 ```
 struct::disjointset colors
@@ -192,7 +192,7 @@ colors:
   partition {cyan magenta yellow}
 ```
 
-In diesen Beispielen werden einige Funktionen der Disjoint-Set-API anhand des oben erstellten Disjoint-Sets *colors* vorgestellt.
+In diesem Beispiel werden einige Funktionen der Disjoint-Set-API anhand des oben erstellten Disjoint-Sets *colors* vorgestellt.
 
 ```
 puts "colors equal black yellow=[colors equal black yellow]"

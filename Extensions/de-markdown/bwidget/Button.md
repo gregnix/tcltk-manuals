@@ -60,7 +60,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-disarmcommand**
-:  Legt einen Tcl-Befehl fest, der dem Button zugeordnet wird, wenn Maustaste 1 losgelassen wird. Dieser Befehl wird auch aufgerufen, wenn der Zeiger nicht über dem Button ist, und immer vor dem Befehl der Option **command**. Er wird gewöhnlich zusammen mit **armcommand**, **repeatdelay** und **repeatinterval** verwendet. 
+:  Legt einen Tcl-Befehl fest, der dem Button zugeordnet wird, wenn Maustaste 1 losgelassen wird. Dieser Befehl wird auch aufgerufen, wenn der Mauszeiger nicht über dem Button ist, und immer vor dem Befehl der Option **command**. Er wird gewöhnlich zusammen mit **armcommand**, **repeatdelay** und **repeatinterval** verwendet. 
 
 
 **-height**
@@ -84,11 +84,11 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-relief**
-:  Legt den gewünschten 3D-Effekt für das Widget fest. Zulässige Werte sind die Standardwerte für das Button-Relief (**raised**, **sunken**, **flat**, **ridge**, **solid** und **groove**) und **link**, das festlegt, dass das Button-Relief **flat** ist, wenn der Zeiger außerhalb der Schaltfläche ist, und **raised**, wenn der Zeiger innerhalb ist. 
+:  Legt den gewünschten 3D-Effekt für das Widget fest. Zulässige Werte sind die Standardwerte für das Button-Relief (**raised**, **sunken**, **flat**, **ridge**, **solid** und **groove**) und **link**, das festlegt, dass das Button-Relief **flat** ist, wenn der Mauszeiger außerhalb der Schaltfläche ist, und **raised**, wenn der Mauszeiger innerhalb ist. 
 
 
 **-state**
-:  Legt einen von drei Zuständen für den Button fest: **normal**, **active** oder **disabled**. Im Zustand normal wird der Button mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem Button ist. Im Zustand active wird der Button mit den Optionen **activeforeground** und **activebackground** angezeigt. Der Zustand disabled bedeutet, dass der Button unempfindlich sein soll: die Vorgabebindungen weigern sich, das Widget zu aktivieren, und ignorieren das Drücken der Maustasten. In diesem Zustand bestimmen die Optionen **disabledforeground** und **background**, wie der Button angezeigt wird. 
+:  Legt einen von drei Zuständen für den Button fest: **normal**, **active** oder **disabled**. Im Zustand normal wird der Button mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Mauszeiger über dem Button ist. Im Zustand active wird der Button mit den Optionen **activeforeground** und **activebackground** angezeigt. Der Zustand disabled bedeutet, dass der Button unempfindlich sein soll: die Vorgabebindungen weigern sich, das Widget zu aktivieren, und ignorieren das Drücken der Maustasten. In diesem Zustand bestimmen die Optionen **disabledforeground** und **background**, wie der Button angezeigt wird. 
 
 
 **-underline**

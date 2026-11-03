@@ -14,7 +14,7 @@ Copyright:
 
 # Name
 
-tk\_optionMenu - Erstellt ein Options-Menubutton und zugehöriges Menü
+tk\_optionMenu - Erstellt einen Options-Menubutton und zugehöriges Menü
 
 # Übersicht
 

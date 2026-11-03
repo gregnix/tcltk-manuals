@@ -31,7 +31,7 @@ string::token::shell – Analyse der Shell-Befehlszeile
 
 # Beschreibung
 
-Dieses Paket enthält einen Befehl, der eine Textzeile mithilfe von grundlegenden **sh**-syntax in eine Liste von Wörtern zerlegt.
+Dieses Paket enthält einen Befehl, der eine Textzeile mithilfe grundlegender **sh**-Syntax in eine Liste von Wörtern zerlegt.
 
 # API
 
@@ -43,10 +43,10 @@ Dieses Paket enthält einen Befehl, der eine Textzeile mithilfe von grundlegende
     Das Verhalten des Befehls kann durch Angabe einer der beiden Optionen **-indices** und **-partial** geändert werden.
 
     **--**
-    : Wenn diese Option festgelegt ist, wird die Auswertung an dieser Stelle beendet. Diese Option ist erforderlich, wenn die Eingabe *string* mit einem Bindestrich beginnen kann. Mit anderen Worten: Dies ist so gut wie zwingend erforderlich, wenn *string* eine Benutzereingabe ist.
+    : Wenn diese Option festgelegt ist, wird die Optionsauswertung an dieser Stelle beendet. Diese Option ist erforderlich, wenn die Eingabe *string* mit einem Bindestrich beginnen kann. Mit anderen Worten: Dies ist so gut wie zwingend erforderlich, wenn *string* eine Benutzereingabe ist.
 
     **-indices**
-    : Wenn dieser Befehl festgelegt wird, gibt er eine Liste von Listen mit jeweils 4 Elementen zurück. Jede dieser Listen enthält den Typ des Wortes, dessen Start- und Endindex im *string* sowie das Wort selbst (aus dem *string* kopiert).
+    : Wenn diese Option festgelegt ist, gibt der Befehl eine Liste von Listen mit jeweils 4 Elementen zurück. Jede dieser Listen enthält den Typ des Wortes, dessen Start- und Endindex im *string* sowie das Wort selbst (aus dem *string* kopiert).
 
         Bei jeder beliebigen Liste mit vier Elementen stimmt die Länge des Wortes, die anhand der Differenz zwischen den Indizes berechnet wird, möglicherweise nicht mit der Länge des Wortes im letzten Element überein. Dies liegt daran, dass die Indizes Trennzeichen, Anführungszeichen innerhalb des Wortes usw. enthalten, während diese im Wort im letzten Element entfernt wurden.
 
@@ -69,19 +69,19 @@ Dieses Paket enthält einen Befehl, der eine Textzeile mithilfe von grundlegende
 
 
     **-partial**
-    : Wenn diese Option festgelegt ist, akzeptiert der Parser ein unvollständiges Wort in Anführungszeichen (d. h. mit einem öffnenden Anführungszeichen, aber ohne passendes schließendes Anführungszeichen) am Ende der *Zeichenkette*, ohne einen Fehler auszugeben.
+    : Wenn diese Option festgelegt ist, akzeptiert der Parser ein unvollständiges Wort in Anführungszeichen (d. h. mit einem öffnenden Anführungszeichen, aber ohne passendes schließendes Anführungszeichen) am Ende von *string*, ohne einen Fehler auszugeben.
 
 
-    Die von diesem Befehl akzeptierte grundlegende Shell-Syntax besteht aus Wörtern ohne Anführungszeichen sowie Wörtern in einfachen und doppelten Anführungszeichen, die durch Leerzeichen voneinander getrennt sind. Leerzeichen am Anfang und am Ende sind ebenfalls zulässig und werden, sofern vorhanden, entfernt.
+    Die von diesem Befehl akzeptierte grundlegende Shell-Syntax besteht aus Wörtern ohne Anführungszeichen sowie Wörtern in einfachen und doppelten Anführungszeichen, die durch Leerraum voneinander getrennt sind. Leerraum am Anfang und am Ende sind ebenfalls zulässig und werden, sofern vorhanden, entfernt.
 
     Shell-Variablen in ihren verschiedenen Formen werden *nicht* erkannt, ebenso wenig wie Sub-Shells.
 
-    Hier sind die anerkannten Wortformen:
+    Hier sind die erkannten Wortformen:
 
     **single-quoted word**
     : Ein in einfache Anführungszeichen gesetztes Wort beginnt mit einem einfachen Anführungszeichen, d. h. **'** (ASCII 39; U+0027), gefolgt von null oder mehr Unicode-Zeichen (mit Ausnahme des einfachen Anführungszeichens) und endet mit einem einfachen Anführungszeichen.
 
-        Auf das Wort muss entweder das Ende der *Zeichenkette* oder ein Leerzeichen folgen. Ein Wort darf nicht direkt auf ein anderes Wort folgen, ohne dass etwas dazwischen steht.
+        Auf das Wort muss entweder das Ende von *string* oder Leerraum folgen. Ein Wort darf nicht direkt auf ein anderes Wort folgen, ohne dass etwas dazwischen steht.
 
     **double-quoted word**
     : Ein in doppelte Anführungszeichen gesetztes Wort beginnt mit einem doppelten Anführungszeichen, d. h. **"** (ASCII 34; U+0022), gefolgt von null oder mehr Unicode-Zeichen (mit Ausnahme des doppelten Anführungszeichens) und endet mit einem doppelten Anführungszeichen.
@@ -89,12 +89,12 @@ Dieses Paket enthält einen Befehl, der eine Textzeile mithilfe von grundlegende
         Anders als bei Wörtern in einfachen Anführungszeichen können doppelte Anführungszeichen in Wörtern in doppelten Anführungszeichen eingebettet werden, indem sie mit einem Backslash **\\** (ASCII 92; U+005C) maskiert werden, z. B. **"…\\"…"**. Ebenso kann jeder literale Backslash durch eine Backslash-Escape-Sequenz eingebettet werden, z. B. **"…\\\\…"**.
 
     **unquoted word**
-    : Nicht in Anführungszeichen gesetzte Wörter werden nicht durch Anführungszeichen begrenzt und dürfen daher keine Leerzeichen oder einfache Anführungszeichen enthalten. Doppelte Anführungszeichen und Backslashes können jedoch in nicht in Anführungszeichen gesetzte Wörter eingefügt werden, indem sie wie bei Wörtern in doppelten Anführungszeichen mit einem Escape-Zeichen versehen werden.
+    : Nicht in Anführungszeichen gesetzte Wörter werden nicht durch Anführungszeichen begrenzt und dürfen daher keinen Leerraum oder einfache Anführungszeichen enthalten. Doppelte Anführungszeichen und Backslashes können jedoch in nicht in Anführungszeichen gesetzte Wörter eingefügt werden, indem sie wie bei Wörtern in doppelten Anführungszeichen mit einem Escape-Zeichen versehen werden.
 
     **whitespace**
-    : Ein Leerzeichen ist jedes Unicode-Leerzeichen, d. h. jedes Zeichen, das [string is space](https://www.tcl-lang.org/man/tcl/TclCmd/string.html) den Wert **1** (wahr) gibt oder das dem regulären Ausdruck **\\\\s** entspricht.
+    : Leerraum ist jedes Unicode-Leerraumzeichen, d. h. jedes Zeichen, das [string is space](https://www.tcl-lang.org/man/tcl/TclCmd/string.html) **1** (wahr) zurückgibt oder das dem regulären Ausdruck **\\\\s** entspricht.
 
-        Leerzeichen *können* vor dem ersten Wort und nach dem letzten Wort vorkommen. Leerzeichen *müssen* zwischen benachbarten Wörtern vorkommen.
+        Leerraum *kann* vor dem ersten Wort und nach dem letzten Wort vorkommen. Leerraum *muss* zwischen benachbarten Wörtern vorkommen.
 
 
 
@@ -120,7 +120,7 @@ word=«-v»
 word=«The Cloud»
 ```
 
-Ein Beispiel für dieselbe Befehlszeile wie oben, zerlegt in ihre einzelnen Wörter, mit Tokens und Zeichenfolgen-Indizes.
+Ein Beispiel für dieselbe Befehlszeile wie oben, zerlegt in ihre einzelnen Wörter, mit Tokens und Zeichenkettenindizes.
 
 ```
 foreach element [string token shell -indices $CMDLINE] {

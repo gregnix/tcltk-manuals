@@ -56,7 +56,7 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
 **::mime::initialize** ?**-canonical** *type/subtype* ?**-param** {*key value*}...? ?**-encoding** *value*? ?**-header** {*key value*}...?? (**-file** *name* | **-string** *value* | **-parts** {*token1* ... *tokenN*})
 : Erstellt einen MIME-Teil und gibt ein Token zurück, das diesen repräsentiert.
 
-    - Wenn die Option **-canonical** vorhanden ist, liegt der Text in kanonischer (Roh-)Form vor und kann durch Abfrage der Option **-file**, **-string** oder **-parts** ermittelt.
+    - Wenn die Option **-canonical** vorhanden ist, liegt der Text in kanonischer (Roh-)Form vor und kann durch Abfrage der Option **-file**, **-string** oder **-parts** ermittelt werden.
 
         Darüber hinaus können sowohl die Optionen **-param** als auch **-header** Optionen nullmal oder mehrmals vorkommen, um **Content-Type**-Parameter (z. B. **charset**) bzw. Header-Schlüsselwörter und -Werte (z. B. **Content-Disposition**) festzulegen.
 
@@ -66,12 +66,12 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
 
 
 **::mime::finalize** *token* ?**-subordinates** **all** | **dynamic** | **none**?
-: Löscht den durch *token* dargestellten MIME-Teil. Die Funktion gibt eine leere Zeichenkette zurück.
+: Löscht den durch *token* dargestellten MIME-Teil. Der Befehl gibt eine leere Zeichenkette zurück.
 
     Wenn die Option **-subordinates** vorhanden ist, legt sie fest, welche untergeordneten Elemente ebenfalls gelöscht werden sollen. Der Standardwert ist **dynamic**; dabei werden alle untergeordneten Elemente, die durch **::mime::initialize** erstellt wurden, zusammen mit dem sie enthaltenden Container gelöscht.
 
 **::mime::getproperty** *token* ?*property* | **-names**?
-: Gibt eine Zeichenkette oder eine Liste von Zeichenketten zurück, die die Eigenschaften eines MIME-Teils enthalten. Wenn der Befehl mit dem Namen einer bestimmten Eigenschaft aufgerufen wird, gibt er den entsprechenden Wert zurück; wenn stattdessen **-names** gelegt wird, gibt er eine Liste aller Eigenschaften zurück; andernfalls gibt er ein serialisiertes Array aus Eigenschaften und Werten zurück.
+: Gibt eine Zeichenkette oder eine Liste von Zeichenketten zurück, die die Eigenschaften eines MIME-Teils enthalten. Wenn der Befehl mit dem Namen einer bestimmten Eigenschaft aufgerufen wird, gibt er den entsprechenden Wert zurück; wenn stattdessen **-names** angegeben wird, gibt er eine Liste aller Eigenschaften zurück; andernfalls gibt er ein serialisiertes Array aus Eigenschaften und Werten zurück.
 
     Die möglichen Eigenschaften sind:
 
@@ -88,7 +88,7 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     : Eine Liste von Tokens für die untergeordneten Elemente des Teils. Diese Eigenschaft ist nur vorhanden, wenn der MIME-Teil untergeordnete Elemente enthält.
 
     **size**
-    : Die ungefähre Größe des Inhalts (unverschlüsselt)
+    : Die ungefähre Größe des Inhalts (nicht kodiert)
 
 
 **::mime::getheader** *token* ?*key* | **-names**?
@@ -99,24 +99,24 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     Wird **-names** angegeben, wird eine Liste aller Schlüssel zurückgegeben.
 
 **::mime::setheader** *token* *key value* ?**-mode** **write** | **append** | **delete**?
-: Wenn **append** angegeben wird, wird ein neuer Header mit dem Name *key* erstellt und der Wert *value* hinzugefügt. Wenn **write** angegeben wird, werden alle vorhandenen Header, deren Name mit *key* übereinstimmt, gelöscht und anschließend ein neuer Header mit dem Name *key* und dem Wert *value* erstellt. Wird **delete** angegeben, werden alle vorhandenen Header, deren Name mit *key* übereinstimmt, gelöscht. Gibt eine Liste von Zeichenketten zurück, die den zuvor mit dem Schlüssel verknüpften Wert enthalten.
+: Wenn **append** angegeben wird, wird ein neuer Header mit dem Namen *key* erstellt und der Wert *value* hinzugefügt. Wenn **write** angegeben wird, werden alle vorhandenen Header, deren Name mit *key* übereinstimmt, gelöscht und anschließend ein neuer Header mit dem Name *key* und dem Wert *value* erstellt. Wird **delete** angegeben, werden alle vorhandenen Header, deren Name mit *key* übereinstimmt, gelöscht. Gibt eine Liste von Zeichenketten zurück, die den zuvor mit dem Schlüssel verknüpften Wert enthalten.
 
     Der Wert für **-mode** ist einer der folgenden:
 
     **write**
-    : Der *Schlüssel*/*Wert* wird entweder angelegt oder überschrieben (Standard).
+    : Der *key*/*value* wird entweder angelegt oder überschrieben (Standard).
 
     **append**
-    : Dem *Schlüssel* wird ein neuer *Wert* angehängt (der bei Bedarf angelegt wird).
+    : Dem *key* wird ein neuer *value* angehängt (der bei Bedarf angelegt wird).
 
     **delete**
     : Alle mit dem Schlüssel verknüpften Werte werden entfernt (der Parameter *value* wird ignoriert).
 
 
 **::mime::getbody** *token* ?**-decode**? ?**-command** *callback* ?**-blocksize** *octets*??
-: Gibt eine Zeichenkette zurück, die den Hauptteil des durch *token* dargestellten MIME-Teils in kanonischer Form enthält.
+: Gibt eine Zeichenkette zurück, die den Hauptteil des durch *token* dargestellten Blatt-MIME-Teils in kanonischer Form enthält.
 
-    Wenn die Option **-command** gesetzt ist, wird die Funktion wiederholt mit jeweils einem Fragment des Hauptteils wie folgt aufgerufen:
+    Wenn die Option **-command** gesetzt ist, wird die Rückruffunktion wiederholt mit jeweils einem Fragment des Hauptteils wie folgt aufgerufen:
 
     ```
       uplevel #0 $callback [list "data" $fragment]
@@ -143,10 +143,10 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     Wenn die Option **-decode** fehlt, wird der oben berechnete Wert zurückgegeben, ohne dass er verändert wird. Das bedeutet, dass er in dem für das Token angegebenen Zeichensatz vorliegt und nicht im üblichen UTF-8. Wenn die Option **-decode** jedoch vorhanden ist, verwendet der Befehl die mit dem Token verknüpften Zeichensatzinformationen, um die Zeichenkette vor der Rückgabe aus ihrer ursprünglichen Kodierung in UTF-8 zu konvertieren.
 
 **::mime::copymessage** *token* *channel*
-: Kopiert den durch den Teil *token* dargestellten MIME-Inhalt in den angegebenen *Kanal*. Der Befehl wird synchron ausgeführt und nutzt „fileevent“, damit asynchrone Vorgänge unabhängig davon fortgesetzt werden können. Er gibt eine leere Zeichenkette zurück.
+: Kopiert den durch den Teil *token* dargestellten MIME-Inhalt in den angegebenen *channel*. Der Befehl wird synchron ausgeführt und nutzt „fileevent“, damit asynchrone Vorgänge unabhängig davon fortgesetzt werden können. Er gibt eine leere Zeichenkette zurück.
 
 **::mime::buildmessage** *token*
-: Gibt den durch *token* dargestellten MIME-Teil als Zeichenkette zurück. Dies ähnelt **::mime::copymessage**, nur dass die Daten als Rückgabekette zurückgegeben werden, anstatt in einen Kanal geschrieben zu werden.
+: Gibt den durch *token* dargestellten MIME-Teil als Zeichenkette zurück. Dies ähnelt **::mime::copymessage**, nur dass die Daten als Zeichenkette zurückgegeben werden, anstatt in einen Kanal geschrieben zu werden.
 
 **::mime::parseaddress** *string*
 : Nimmt eine Zeichenkette entgegen, die eine oder mehrere Adressangaben im 822-Format enthält, und gibt eine Liste serialisierter Arrays zurück, wobei jedes Element einer der im Argument festgelegten Adressen entspricht. Wenn die Zeichenkette mehr als eine Adresse enthält, werden diese durch Kommas getrennt.
@@ -196,10 +196,10 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     : 0 .. 23
 
     **lmonth**
-    : Januar, Februar, …, Dezember
+    : January, February, …, December
 
     **lweekday**
-    : Sonntag, Montag, … Samstag
+    : Sunday, Monday, … Saturday
 
     **mday**
     : 1 .. 31
@@ -211,7 +211,7 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     : 1 .. 12
 
     **month**
-    : Jan, Feb, …, Dez
+    : Jan, Feb, …, Dec
 
     **proper**
     : Datums- und Zeitangabe im 822-Format
@@ -226,7 +226,7 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
     : 0 .. 6 (So .. Mo)
 
     **weekday**
-    : So, Mo, …, Sa
+    : Sun, Mon, …, Sat
 
     **yday**
     : 1 .. 366
@@ -239,7 +239,7 @@ Das Bibliothekspaket **mime** stellt Befehle zum Erstellen und Bearbeiten von MI
 
 
 **::mime::mapencoding** *encoding\_name*
-: Maps ordnet TCL-Kodierungen den für ihren MIME-Zeichensatztyp entsprechenden Name zu. Dies geschieht nur für Kodierungen, deren Zeichensatztypen bekannt waren. Die übrigen Kodierungen geben vorerst „“ zurück.
+: Ordnet Tcl-Kodierungen den für ihren MIME-Zeichensatztyp entsprechenden Namen zu. Dies geschieht nur für Kodierungen, deren Zeichensatztypen bekannt waren. Die übrigen Kodierungen geben vorerst „“ zurück.
 
 **::mime::reversemapencoding** *charset\_type*
 : Ordnet MIME-Zeichensatztypen den Tcl-Kodierungsnamen zu. Unbekannte Typen geben „“ zurück.
@@ -252,7 +252,7 @@ Tcllib Bug #447037
 
     Das Problem hätte grundsätzlich gelöst werden können, indem für dieses Paket die Verwendung von Tcl 8.4 vorgeschrieben worden wäre. Wir haben uns jedoch gegen diese Lösung entschieden, da sie eine große Anzahl nicht betroffener Nutzer dazu zwingen würde, ihren Tcl-Interpreter ohne triftigen Grund zu aktualisieren.
 
-    Weitere Informationen finden Sie unter *Ticket 447037* Name \[/tktview?Name=447037\].
+    Weitere Informationen finden Sie unter *Ticket 447037* \[/tktview?name=447037\].
 
 
 # Fehler, Ideen, Rückmeldungen

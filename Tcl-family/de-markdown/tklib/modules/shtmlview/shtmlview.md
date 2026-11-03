@@ -53,7 +53,7 @@ shtmlview – Erweitertes Tcl/Tk-Text-Widget mit grundlegender Unterstützung f�
 
 # Beschreibung
 
-Das Paket **shtmlview::shtmlview** stellt ein reines Tcl/Tk-Widget mit dem gleichen Namen bereit, um einfache HTML- und Markdown-Dateien sowie Zeichenfolgen zu rendern und anzuzeigen.
+Das Paket **shtmlview::shtmlview** stellt ein reines Tcl/Tk-Widget mit dem gleichen Namen bereit, um einfache HTML- und Markdown-Dateien sowie Zeichenketten zu rendern und anzuzeigen.
 
 Ein kurzer historischer Rückblick: Das Widget basiert auf der Bibliothek **htmllib**, die in den 90er Jahren von Stephen Uhler und Clif Flynt entwickelt wurde. Im Jahr 2009 integrierte Robert Heller diese Bibliothek in den hervorragenden Megawidget-Rahmen **snit**. Das daraus resultierende Widget war jedoch direkt in ein Hilfesystem eingebunden. Der Verfasser dieses Dokuments hat zunächst lediglich den Anzeigeteil isoliert und anschließend einige Funktionen hinzugefügt, wie beispielsweise die Änderung der Schriftgröße und einige Schaltflächen in der Symbolleiste. Später wurde eine rudimentäre Darstellung von Datentabellen hinzugefügt. Noch später wurden Unterstützung für Inline-Bilder, erweiterte Tastenkombinationen sowie Markdown-Unterstützung integriert.
 
@@ -224,7 +224,7 @@ n
 : Weiter. Bewegt den Cursor zum nächsten Suchtreffer.
 
 q
-: Entfernt die aktuelle Seite aus dem Verlauf. Das setzt **f** voraus.
+: Entfernt die aktuelle Seite aus dem Verlauf. Schließt **f** ein.
 
 r
 : Suche rückwärts starten

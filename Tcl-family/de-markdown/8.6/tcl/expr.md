@@ -40,7 +40,7 @@ expr - Einen Ausdruck auswerten
 
 # Beschreibung
 
-Verkettet die *arg*s (wobei zwischen ihnen trennende Leerzeichen eingefügt werden), wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. Die in Tcl-Ausdrücken zulässigen Operatoren sind eine Teilmenge der in C-Ausdrücken zulässigen Operatoren. Für die Operatoren, die Tcl und C gemeinsam haben, verwendet Tcl dieselbe Bedeutung und Priorität wie bei den entsprechenden C-Operatoren. Ausdrücke liefern fast immer numerische Ergebnisse (Ganzzahl- oder Gleitkommawerte). Zum Beispiel ergibt der Ausdruck
+Verkettet die Argumente *arg* (wobei zwischen ihnen trennende Leerzeichen eingefügt werden), wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. Die in Tcl-Ausdrücken zulässigen Operatoren sind eine Teilmenge der in C-Ausdrücken zulässigen Operatoren. Für die Operatoren, die Tcl und C gemeinsam haben, verwendet Tcl dieselbe Bedeutung und Priorität wie bei den entsprechenden C-Operatoren. Ausdrücke liefern fast immer numerische Ergebnisse (Ganzzahl- oder Gleitkommawerte). Zum Beispiel ergibt der Ausdruck
 
 ```
 expr 8.2 + 6
@@ -202,7 +202,7 @@ Die Umwandlung zwischen den internen Darstellungen für Ganzzahl-, Gleitkomma- u
 expr {5 / 4}
 ```
 
-1 zurück, während
+1, während
 
 ```
 expr {5 / 4.0}
@@ -215,7 +215,7 @@ beide 1.25 zurückgeben. Gleitkommawerte werden immer mit einem „**.**“ oder
 expr {20.0/5.0}
 ```
 
-**4.0** zurück, nicht **4**.
+**4.0**, nicht **4**.
 
 ## Zeichenkettenoperationen
 
@@ -244,7 +244,7 @@ expr $b*4
 
 Die meisten Ausdrücke benötigen keine zweite Ersetzungsrunde. Entweder sind sie in geschweifte Klammern eingeschlossen, oder ihre Variablen- und Befehlsersetzungen ergeben Zahlen oder Zeichenketten, die selbst keine Ersetzungen erfordern. Weil jedoch einige Ausdrücke ohne geschweifte Klammern zwei Ersetzungsrunden benötigen, muss der Bytecode-Compiler zusätzliche Anweisungen erzeugen, um diesen Fall zu behandeln. Der aufwendigste Code ist für Ausdrücke ohne geschweifte Klammern nötig, die Befehlsersetzungen enthalten. Solche Ausdrücke müssen umgesetzt werden, indem bei jeder Ausführung des Ausdrucks neuer Code erzeugt wird.
 
-Muss eine nicht konstante Ausdruckszeichenkette in den größeren Zusammenhang eines ansonsten konstanten Ausdrucks eingefügt werden, ist es am effizientesten, den veränderlichen Teil in ein rekursives **expr** zu setzen. So kann zumindest der äußere Teil kompiliert werden, auch wenn der veränderliche Teil dann selbst als eigener Ausdruck ausgewertet werden muss. In diesem Beispiel ist das Ergebnis also 20, und der äußere Ausdruck profitiert von einer vollständig zwischengespeicherten Bytecode-Kompilierung.
+Muss ein nicht-konstanter Ausdruck in einen sonst konstanten Ausdruck eingebettet werden, ist ein rekursives **expr** für den variablen Teil am effizientesten: Der äußere Teil kann kompiliert werden, der variable Teil wird separat ausgewertet. Im Beispiel ist das Ergebnis 20; der äußere Ausdruck profitiert von vollständig gecachtem Bytecode.
 
 ```
 set a 3
@@ -256,7 +256,7 @@ Wird ein Ausdruck ohne geschweifte Klammern geschrieben, damit eine Funktion ode
 
 # Beispiele
 
-Definiert eine Prozedur, die eine „interessante“ mathematische Funktion berechnet:
+Prozedur für eine „interessante“ mathematische Funktion:
 
 ```
 proc tcl::mathfunc::calc {x y} {
@@ -264,7 +264,7 @@ proc tcl::mathfunc::calc {x y} {
 }
 ```
 
-Rechnet Polarkoordinaten in kartesische Koordinaten um:
+Polarkoordinaten in kartesische umrechnen:
 
 ```
 # Umrechnung von ($radius,$angle)
@@ -272,7 +272,7 @@ set x [expr { $radius * cos($angle) }]
 set y [expr { $radius * sin($angle) }]
 ```
 
-Rechnet kartesische Koordinaten in Polarkoordinaten um:
+Kartesische in Polarkoordinaten umrechnen:
 
 ```
 # Umrechnung von ($x,$y)
@@ -280,7 +280,7 @@ set radius [expr { hypot($y, $x) }]
 set angle  [expr { atan2($y, $x) }]
 ```
 
-Gibt eine Meldung aus, die beschreibt, in welcher Beziehung zwei Zeichenkettenwerte zueinander stehen:
+Meldung über die Beziehung zweier Zeichenkettenwerte:
 
 ```
 puts "a and b are [expr {$a eq $b ? {equal} : {different}}]"
@@ -295,7 +295,7 @@ set isTrue [expr {
 }]
 ```
 
-Erzeugt eine zufällige Ganzzahl im Bereich 0..99 einschließlich:
+Zufällige Ganzzahl im Bereich 0..99 einschließlich:
 
 ```
 set randNum [expr { int(100 * rand()) }]

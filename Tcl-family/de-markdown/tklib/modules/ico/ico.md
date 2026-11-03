@@ -38,7 +38,7 @@ ico – Windows-Symbole lesen und schreiben
 
 # Beschreibung
 
-Dieses Paket bietet Funktionen zum Lesen und Schreiben von Windows-Symbolen aus ICO-, EXE-, DLL-, ICL- und BMP-Dateien. Im Sinne dieses Moduls ist ein Symbol eine visuelle Darstellung eines Objekts. Ein Symbol besteht aus einem oder mehreren Bildern, die in der Regel unterschiedliche Auflösungen und Farbtiefen aufweisen. Jedes Symbol und jedes Bild verfügt über eine Ressourcen-ID, bei der es sich um eine Textzeichenfolge oder einen positiven ganzzahligen Wert handeln kann. Die meisten Befehle verwenden diese ID, um festzulegen, auf welches Symbol oder Bild sie angewendet werden sollen.
+Dieses Paket bietet Funktionen zum Lesen und Schreiben von Windows-Symbolen aus ICO-, EXE-, DLL-, ICL- und BMP-Dateien. Im Sinne dieses Moduls ist ein Symbol eine visuelle Darstellung eines Objekts. Ein Symbol besteht aus einem oder mehreren Bildern, die in der Regel unterschiedliche Auflösungen und Farbtiefen aufweisen. Jedes Symbol und jedes Bild verfügt über einen Ressourcenbezeichner, bei dem es sich um eine Zeichenkette oder einen positiven ganzzahligen Wert handeln kann. Die meisten Befehle verwenden diesen Bezeichner, um festzulegen, auf welches Symbol oder Bild sie angewendet werden sollen.
 
 # API
 
@@ -66,7 +66,7 @@ Dieses Paket bietet Funktionen zum Lesen und Schreiben von Windows-Symbolen aus 
 
 
 **::ico::getIconByName** *file* *name* ?*option* *value*...?
-: Extrahiert das Bild mit der ID *name* aus *file*. Dieser Name sollte der Name eines bestimmten Bildes sein, wie er von **::ico::iconMembers** gegeben wird, und nicht der Name eines Symbols, der von **::ico::icons** gegeben wird. Wenn in *file* keine passende Ressourcen-ID vorhanden ist, wird ein Fehler ausgelöst. Die folgenden Optionen werden unterstützt:
+: Extrahiert das Bild mit der ID *name* aus *file*. Dieser Name sollte der Name eines bestimmten Bildes sein, wie er von **::ico::iconMembers** zurückgegeben wird, und nicht der Name eines Symbols, der von **::ico::icons** zurückgegeben wird. Wenn in *file* keine passende Ressourcen-ID vorhanden ist, wird ein Fehler ausgelöst. Die folgenden Optionen werden unterstützt:
 
     - **-type** fileFormat
     - **-format** value
@@ -115,7 +115,7 @@ Dieses Paket bietet Funktionen zum Lesen und Schreiben von Windows-Symbolen aus 
 
 
 **::ico::clearCache** ?file?
-: Der Befehl **::ico::getIconList** speichert Symbolversätze in EXE-, DLL-, ICL- und ICO-Dateien, damit das Extrahieren schneller geht. Dieser Befehl leert den Speicher für die angegebene ?file? oder für alle Dateien.
+: Der Befehl **::ico::getIconList** speichert Symbolversätze in EXE-, DLL-, ICL- und ICO-Dateien, damit das Extrahieren schneller geht. Dieser Befehl leert den Cache für die angegebene ?file? oder für alle Dateien.
 
 **::ico::transparentColor** *image* *color*
 : Wenn *image* aus einem einzigen Wort besteht, wird davon ausgegangen, dass es sich um den Namen eines Tk-Bildes handelt. Alle Pixel im *image*, die der Farbe *color* entsprechen, werden mit Transparenz gesetzt. Alternativ kann *image* auch eine Farbliste sein; in diesem Fall wird eine modifizierte Liste zurückgegeben.
@@ -145,7 +145,7 @@ Symbole mit 8bpp oder weniger müssen Schwarz in der Palette haben. Enthält das
 
 Derzeit gibt es keine Möglichkeit, Alphakanal-Informationen aus 32-bpp-Symbolen auszulesen.
 
-Tk-Bilder haben keinen Alphakanal. Ein echtes 32bpp-Symbol lässt sich deshalb nur aus einer Farbliste schreiben. Ein 32bpp-Symbol aus einem Tk-Bild zu schreiben ist dasselbe wie ein 24bpp-Symbol.
+Tk-Bilder haben keinen Alphakanal. Ein echtes 32bpp-Symbol lässt sich deshalb nur aus einer Farbliste schreiben. Ein 32bpp-Symbol aus einem Tk-Bild zu schreiben ist dasselbe, wie ein 24bpp-Symbol zu schreiben.
 
 # Fehler, Ideen, Rückmeldungen
 

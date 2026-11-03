@@ -47,7 +47,7 @@ Ein Photo ist ein Bild, dessen Pixel jede Farbe mit variabler Transparenz (Alpha
 Wie alle Images werden Photos mit [image create][image] erzeugt. Photos unterstützen folgende *Optionen*:
 
 [-data]{.lit} [string]{.arg}
-: Legt den Bildinhalt als Zeichenkette fest. [Die Zeichenkette soll Daten in der Standardform Liste-von-Listen,]{version="9.0"} Binärdaten oder — für manche Formate — Base64-kodierte Daten enthalten (derzeit garantiert für PNG- und GIF-Bilder). Das Format der Zeichenkette muss eines der Formate sein, für die ein Bilddateiformat-Handler Stringdaten akzeptiert. Sind sowohl **-data** als auch **-file** angegeben, hat **-file** Vorrang.
+: Legt den Bildinhalt als Zeichenkette fest. [Die Zeichenkette soll Daten in der Standardform Liste-von-Listen,]{version="9.0"} Binärdaten oder — für manche Formate — Base64-kodierte Daten enthalten (derzeit garantiert für PNG- und GIF-Bilder). Das Format der Zeichenkette muss eines der Formate sein, für die ein Bilddateiformat-Handler Zeichenkettendaten akzeptiert. Sind sowohl **-data** als auch **-file** angegeben, hat **-file** Vorrang.
 
 [-format]{.lit} [{format-name ?option value ...?}]{.arg}
 : Legt den Namen des Dateiformats für die mit **-data** oder **-file** angegebenen Daten fest und optionale Argumente für den Format-Handler. Der Wert dieser Option muss eine Tcl-Liste sein. Bei einem Wort können die geschweiften Klammern entfallen; statt Klammern können Anführungszeichen zur Quotierung verwendet werden.
@@ -65,7 +65,7 @@ Wie alle Images werden Photos mit [image create][image] erzeugt. Photos unterst�
 : [Setzt das Metadaten-Dictionary des Images. Weitere Schlüssel können im Metadaten-Dictionary des Images gesetzt werden, wenn Bilddaten wegen der Optionen **-file** oder **-data** verarbeitet werden und der Treiber Metadaten-Schlüssel liefert. Siehe Abschnitt [Metadaten-Dictionary] unten.]{version="9.0"}
 
 [-palette]{.lit} [palette-spec]{.arg}
-: Legt die Auflösung des zuzuweisenden Farbwürfels und damit die Anzahl der aus den Farbtabellen der Anzeigefenster genutzten Farben fest. *palette-spec* kann eine einzelne Dezimalzahl (Anzahl Graustufen) oder drei durch Schrägstriche (/) getrennte Dezimalzahlen (Anzahl Rot-, Grün- und Blautöne) sein. Bei der ersten Form wird das Bild monochrom (Graustufen) angezeigt.
+: Legt die Auflösung des zuzuweisenden Farbwürfels und damit die Anzahl der aus den Farbkarten der Anzeigefenster genutzten Farben fest. *palette-spec* kann eine einzelne Dezimalzahl (Anzahl Graustufen) oder drei durch Schrägstriche (/) getrennte Dezimalzahlen (Anzahl Rot-, Grün- und Blautöne) sein. Bei der ersten Form wird das Bild monochrom (Graustufen) angezeigt.
 
 [-width]{.lit} [number]{.arg}
 : Legt die Bildbreite in Pixeln fest. Die Option ist vor allem nützlich, wenn der Benutzer den Bildinhalt stückweise aufbauen möchte. Null (Standard) erlaubt horizontales Anpassen an die gespeicherten Daten.
@@ -79,7 +79,7 @@ Beim Erzeugen eines Foto-Images legt Tk auch einen neuen Befehl an, dessen Name 
 imageName option ?arg ...?
 ```
 
-*Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+*Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 Optionen, die Daten in das Bild schreiben, vergrößern das Bild bei Bedarf, um die geschriebenen Daten aufzunehmen — es sei denn, der Benutzer hat für die Konfigurationsoptionen **-width** und/oder **-height** von null abweichende Werte gesetzt; dann ändern sich Breite und/oder Höhe des Images nicht.
 
@@ -92,7 +92,7 @@ Folgende Befehle sind für Foto-Images möglich:
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben.
 
 [imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Fragt Konfigurationsoptionen ab oder ändert sie. Ohne *option* wird eine Liste aller verfügbaren Optionen für *imageName* zurückgegeben (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Mit *option* ohne *value* eine Liste nur für diese Option (identisch mit dem entsprechenden Teillisten-Eintrag der vollständigen Liste). Bei *option-value*-Paaren werden die Optionen gesetzt; Rückgabe ist eine leere Zeichenkette. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben. [Nur die Option **-metadata** setzen, ohne weitere Option, ruft den Bildformat-Treiber nicht auf, um das Bitmap neu zu erzeugen.]{version="9.0"}
+: Fragt Konfigurationsoptionen ab oder ändert sie. Ohne *option* wird eine Liste aller verfügbaren Optionen für *imageName* zurückgegeben (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Mit *option* ohne *value* eine Liste nur für diese Option (identisch mit dem entsprechenden Teillisten-Eintrag der vollständigen Liste). Bei *option-value*-Paaren werden die Optionen gesetzt; Rückgabe ist eine leere Zeichenkette. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben. [Wird nur die Option **-metadata** ohne weitere Option gesetzt, ruft das den Bildformat-Treiber nicht auf, um das Bitmap neu zu erzeugen.]{version="9.0"}
 
 [imageName]{.ins} [copy]{.sub} [sourceImage]{.arg} [option value(s)]{.optdot}
 : Kopiert eine Region vom Image *sourceImage* (muss ein Foto-Image sein) nach *imageName*, optional mit Pixel-Zoom und/oder -Unterabtastung. Ohne Optionen wird ganz *sourceImage* ab (0,0) in *imageName* kopiert. Mögliche Optionen:
@@ -101,7 +101,7 @@ Folgende Befehle sind für Foto-Images möglich:
     : Rechteckige Teilregion der Quelle. (*x1,y1*) und (*x2,y2*) sind diagonal gegenüberliegende Ecken. Fehlen *x2* und *y2*, ist die Standardeinstellung die untere rechte Ecke der Quelle. Kopierte Pixel umfassen linke und obere Kante des Rechtecks, nicht untere und rechte. Ohne **-from** wird die ganze Quelle verwendet.
 
     [-to]{.lit} [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg}
-    : Rechteckige Teilregion des Ziel-Images. (*x1,y1*) und (*x2,y2*) sind diagonal gegenüberliegende Ecken. Fehlen *x2* und *y2*, Standard ist (*x1,y1*) plus Größe der Quellregion (nach Unterabtastung/Zoom). Sind *x2* und *y2* angegeben, wird die Quellregion bei Bedarf gekachelt, um die Zielregion zu füllen.
+    : Rechteckige Teilregion des Ziel-Images. (*x1,y1*) und (*x2,y2*) sind diagonal gegenüberliegende Ecken. Fehlen *x2* und *y2*, ist der Standard (*x1,y1*) plus Größe der Quellregion (nach Unterabtastung/Zoom). Sind *x2* und *y2* angegeben, wird die Quellregion bei Bedarf gekachelt, um die Zielregion zu füllen.
 
     [-shrink]{.lit}
     : Verkleinert das Ziel-Image bei Bedarf, sodass die kopierte Region in der unteren rechten Ecke liegt. Die Option ändert Breite/Höhe nicht, wenn der Benutzer **-width** bzw. **-height** ungleich null gesetzt hat.
@@ -129,10 +129,10 @@ Folgende Befehle sind für Foto-Images möglich:
     : Rechteckige Region von *imageName*, die zurückgegeben wird. Nur *x1* und *y1*: von *(x1,y1)* bis zur unteren rechten Ecke. Alle vier Koordinaten: diagonal gegenüberliegende Ecken, einschließlich x1,y1, ausschließlich x2,y2. Standard: ganzes Bild.
 
     [-grayscale]{.lit}
-    : Die Daten enthalten keine Farbinformation; alle Pixel werden in Graustufen umgewandelt.
+    : Ist diese Option angegeben, enthalten die Daten keine Farbinformation; alle Pixel werden in Graustufen umgewandelt.
 
     [-metadata]{.lit} [metadata]{.arg}
-    : [Der Bildformat-Handler kann Metadaten in den zurückgegebenen Datenstring aufnehmen. Die angegebenen *metadata* werden an den Treiber übergeben. Ohne **-metadata** werden die aktuellen Metadaten des Images verwendet.]{version="9.0"}
+    : [Der Bildformat-Handler kann Metadaten in die zurückgegebene Datenzeichenkette aufnehmen. Die angegebenen *metadata* werden an den Treiber übergeben. Ohne **-metadata** werden die aktuellen Metadaten des Images verwendet.]{version="9.0"}
 
 
 [imageName]{.ins} [get]{.sub} [x]{.arg} [y]{.arg} [-withalpha]{.optlit}
@@ -196,7 +196,7 @@ Folgende Befehle sind für Foto-Images möglich:
     : Rechteckige Region von *imageName*, die in die Bilddatei geschrieben wird. Nur *x1* und *y1*: von *(x1,y1)* bis zur unteren rechten Ecke von *imageName*. Alle vier Koordinaten: diagonal gegenüberliegende Ecken. Standard: ganzes Bild.
 
     [-grayscale]{.lit}
-    : Die Daten enthalten keine Farbinformation; alle Pixel werden in Graustufen umgewandelt.
+    : Ist diese Option angegeben, enthalten die Daten keine Farbinformation; alle Pixel werden in Graustufen umgewandelt.
 
     [-metadata]{.lit} [metadata]{.arg}
     : [Der Bildformat-Handler kann Metadaten in die geschriebene Datei aufnehmen. Die angegebenen *metadata* werden an den Treiber übergeben. Ohne **-metadata** werden die aktuellen Metadaten des Images verwendet.]{version="9.0"}
@@ -207,15 +207,15 @@ Folgende Befehle sind für Foto-Images möglich:
 
 Der Photo-Image-Code ist so strukturiert, dass Handler für weitere Bilddateiformate leicht ergänzt werden können. Der Photo-Image-Code verwaltet eine Liste dieser Handler. Handler werden der Liste durch Registrierung mit einem Aufruf von [Tk\_CreatePhotoImageFormat][CrtPhImgFmt] hinzugefügt. Die Standard-Tk-Distribution enthält Handler für PPM/PGM, PNG, GIF und (nur lesend) SVG, [sowie den Handler **default** zum Kodieren/Dekodieren von Bilddaten in menschenlesbarer Form.]{version="9.0"} Diese Handler werden bei der Initialisierung automatisch registriert.
 
-Beim Lesen einer Bilddatei oder Verarbeiten von Stringdaten, die mit der Konfigurationsoption **-data** angegeben wurden, ruft der Photo-Image-Code Handler nacheinander auf, bis einer die Daten in der Datei oder Zeichenkette lesen kann. Meist findet das den richtigen Handler; andernfalls kann der Benutzer mit **-format** einen Formatnamen vorgeben. Dann werden Handler versucht, deren Name mit der für **-format** angegebenen Zeichenkette beginnt (Groß-/Kleinschreibung irrelevant). Bei **-format gif** können z. B. Handler namens GIF87 oder GIF89 aufgerufen werden, JPEG nicht (sofern registriert).
+Beim Lesen einer Bilddatei oder Verarbeiten von Zeichenkettendaten, die mit der Konfigurationsoption **-data** angegeben wurden, ruft der Photo-Image-Code Handler nacheinander auf, bis einer die Daten in der Datei oder Zeichenkette lesen kann. Meist findet das den richtigen Handler; andernfalls kann der Benutzer mit **-format** einen Formatnamen vorgeben. Dann werden Handler versucht, deren Name mit der für **-format** angegebenen Zeichenkette beginnt (Groß-/Kleinschreibung irrelevant). Bei **-format gif** können z. B. Handler namens GIF87 oder GIF89 aufgerufen werden, JPEG nicht (sofern registriert).
 
-Beim Schreiben von Bilddaten in eine Datei ist die Verarbeitung von **-format** etwas anders: Der Stringwert für **-format** muss mit dem vollständigen Namen des gewünschten Handlers beginnen und kann weitere Informationen enthalten, die der Handler nutzen kann, z. B. um eine Variante der vom Handler unterstützten Formate zu wählen. Nicht alle Bildhandler unterstützen das Schreiben von Transparenzdaten in eine Datei, auch wenn das Zielformat es theoretisch erlaubt.
+Beim Schreiben von Bilddaten in eine Datei ist die Verarbeitung von **-format** etwas anders: Der Zeichenkettenwert für **-format** muss mit dem vollständigen Namen des gewünschten Handlers beginnen und kann weitere Informationen enthalten, die der Handler nutzen kann, z. B. um eine Variante der vom Handler unterstützten Formate zu wählen. Nicht alle Bildhandler unterstützen das Schreiben von Transparenzdaten in eine Datei, auch wenn das Zielformat es theoretisch erlaubt.
 
 ## Standard-Bildhandler
 
-Der Handler **default** kann keine Daten aus Dateien lesen oder in Dateien schreiben. Sein einziger Zweck ist die Kodierung und Dekodierung von Bilddaten in Stringform in klarer, menschenlesbarer Form. Der Unterbefehl *imageName* **data** nutzt diesen Handler, wenn kein anderes Format angegeben ist. Beim Lesen von Bilddaten aus einer Zeichenkette mit *imageName* **put** oder der Option **-data** wird der Standard-Handler wie die anderen Handler behandelt.
+Der Handler **default** kann keine Daten aus Dateien lesen oder in Dateien schreiben. Sein einziger Zweck ist die Kodierung und Dekodierung von Bilddaten als Zeichenkette in klarer, menschenlesbarer Form. Der Unterbefehl *imageName* **data** nutzt diesen Handler, wenn kein anderes Format angegeben ist. Beim Lesen von Bilddaten aus einer Zeichenkette mit *imageName* **put** oder der Option **-data** wird der Standard-Handler wie die anderen Handler behandelt.
 
-Bilddaten im **default**-Stringformat sind eine (von oben nach unten) Liste von Scanlines, wobei jede Scanline eine (von links nach rechts) Liste von Pixeldaten ist. Jede Scanline hat dieselbe Länge. Farbe und optional Alpha-Wert jedes Pixels werden in einer der im Abschnitt [Farbformate] unten beschriebenen Formen angegeben.
+Bilddaten im **default**-Zeichenkettenformat sind eine (von oben nach unten) Liste von Scanlines, wobei jede Scanline eine (von links nach rechts) Liste von Pixeldaten ist. Jede Scanline hat dieselbe Länge. Farbe und optional Alpha-Wert jedes Pixels werden in einer der im Abschnitt [Farbformate] unten beschriebenen Formen angegeben.
 
 ## Format-Unteroptionen
 
@@ -242,7 +242,7 @@ Bilddaten im **default**-Stringformat sind eine (von oben nach unten) Liste von 
     : width, height, viewBox, preserveAspectRatio mit none, xMin, xMid, xMax, yMin, yMid, yMax, slice
 
     **gradient attributes:**
-    : gradientUnits mit objectBoundingBox, gradientTransform, cx, cy, r fx, fy x1, y1, x2, y2 spreadMethod mit pad, reflect or repeat, xlink:href
+    : gradientUnits mit objectBoundingBox, gradientTransform, cx, cy, r fx, fy x1, y1, x2, y2 spreadMethod mit pad, reflect oder repeat, xlink:href
 
     **poly attributes:**
     : points
@@ -263,10 +263,10 @@ Bilddaten im **default**-Stringformat sind eine (von oben nach unten) Liste von 
     : d mit m, M, l, L, h, H, v, V, c, C, s, S, q, Q, t, T, a, A, z, Z
 
     **style attributes:**
-    : display mit none, visibility, hidden, visible, fill mit nonzero and evenodd, opacity, fill-opacity, stroke, stroke-width, stroke-dasharray, stroke-dashoffset, stroke-opacity, stroke-linecap mit butt, round and square, stroke-linejoin mit miter, round and  bevel, stroke-miterlimit fill-rule, font-size, transform mit matrix, translate, scale, rotate, skewX and  skewY, stop-color, stop-opacity, offset, id, class
+    : display mit none, visibility, hidden, visible, fill mit nonzero und evenodd, opacity, fill-opacity, stroke, stroke-width, stroke-dasharray, stroke-dashoffset, stroke-opacity, stroke-linecap mit butt, round und square, stroke-linejoin mit miter, round und  bevel, stroke-miterlimit fill-rule, font-size, transform mit matrix, translate, scale, rotate, skewX und  skewY, stop-color, stop-opacity, offset, id, class
 
 
-    Derzeit nur Lesen von SVG und Konvertierung in pixelbasierte Photos; Einbetten von Photos in SVG-Vektorgrafik wird (noch) nicht unterstützt.
+    Derzeit werden nur das Lesen von SVG und die Konvertierung in pixelbasierte Photos unterstützt; Einbetten von Photos in SVG-Vektorgrafik wird (noch) nicht unterstützt.
 
 
 # Farbformate

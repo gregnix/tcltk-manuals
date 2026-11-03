@@ -41,7 +41,7 @@ Das Paket **processman** enthält eine Reihe von Pure-Tcl-Dienstprogrammen zur p
 # Befehle
 
 **::processman::find\_exe** *name*
-: Sucht im Systempfad nach einer ausführbaren Datei mit dem Namen *name*. Fügen Sie unter Windows zusätzlich die Dateiendung .exe hinzu, wenn diese nicht angegeben ist.
+: Sucht im Systempfad nach einer ausführbaren Datei mit dem Namen *name*. Fügt unter Windows zusätzlich die Dateiendung .exe hinzu, wenn diese nicht angegeben ist.
 
 **::processman::kill** *id*
 : Beendet den untergeordneten Prozess mit der ID *id*.

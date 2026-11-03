@@ -81,7 +81,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
 # Befehle
 
 [::http::config]{.cmd} [options]{.optarg}
-: Der Befehl **::http::config** dient zum Setzen und Abfragen des Namens des Proxy-Servers und -Ports sowie des in den HTTP-Anfragen verwendeten User-Agent-Namens. Sind keine Optionen angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist ein einzelnes Argument angegeben, sollte es eine der unten beschriebenen Flags sein; in diesem Fall wird der aktuelle Wert dieser Einstellung zurückgegeben. Andernfalls sollten die Optionen eine Menge von Flags und Werten sein, die die Konfiguration definieren:
+: Der Befehl **::http::config** dient zum Setzen und Abfragen des Namens des Proxy-Servers und -Ports sowie des in den HTTP-Anfragen verwendeten User-Agent-Namens. Sind keine Optionen angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist ein einzelnes Argument angegeben, sollte es eines der unten beschriebenen Flags sein; in diesem Fall wird der aktuelle Wert dieser Einstellung zurückgegeben. Andernfalls sollten die Optionen eine Menge von Flags und Werten sein, die die Konfiguration definieren:
 
     [-accept]{.lit} [mimetypes]{.arg}
     : Der Accept-Header der Anfrage. Der Standardwert ist \*/\*, was bedeutet, dass alle Dokumenttypen akzeptiert werden. Andernfalls können Sie eine durch Kommas getrennte Liste von MIME-Typ-Mustern angeben, die Sie empfangen möchten. Zum Beispiel "image/gif, image/jpeg, text/\*".
@@ -90,10 +90,10 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
     : [Der Cookie-Speicher, den das Paket zur Verwaltung von HTTP-Cookies verwenden soll. *command* ist eine Befehlspräfix-Liste; wird die leere Liste (der Standardwert) verwendet, senden Anfragen keine Cookies und speichern keine aus Antworten. Der durch *command* angegebene Befehl muss, falls angegeben, dem unten beschriebenen [Cookie-Jar-Protokoll] entsprechen.]{version="TIP406"}
 
     [-pipeline]{.lit} [boolean]{.arg}
-    : Legt fest, ob HTTP/1.1-Transaktionen auf einem persistenten Socket gepipelined werden. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 1.
+    : Legt fest, ob HTTP/1.1-Transaktionen auf einem persistenten Socket per Pipelining gesendet werden. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 1.
 
     [-postfresh]{.lit} [boolean]{.arg}
-    : Legt fest, ob Anfragen, die die Methode **POST** verwenden, stets einen frischen Socket nutzen und damit die Option **-keepalive** des Befehls **http::geturl** überschreiben. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 0.
+    : Legt fest, ob Anfragen, die die Methode **POST** verwenden, stets einen frischen Socket nutzen und damit die Option **-keepalive** des Befehls **http::geturl** überschreiben. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 0.
 
     [-proxyauth]{.lit} [string]{.arg}
     : Ist die Zeichenkette nicht leer, wird sie dem Proxy-Server als Wert des Anfrage-Headers Proxy-Authorization übergeben. Diese Option kann für HTTP Basic Authentication verwendet werden. Erfordert der Proxy-Server eine Authentifizierung mit einer anderen Technik, z. B. Digest Authentication, ist die Option **-proxyauth** nicht nützlich. In diesem Fall muss der Aufrufer mit einer 407-Antwort des Proxys rechnen, den bereitzustellenden Authentifizierungswert berechnen und über die Option **-headers** als Wert des Headers Proxy-Authorization liefern.
@@ -101,7 +101,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
     [-proxyfilter]{.lit} [command]{.arg}
     : Der Befehl ist eine Rückruffunktion, die während **::http::geturl** aufgerufen wird, um zu ermitteln, ob für einen bestimmten Host ein Proxy erforderlich ist. Beim Aufruf wird dem *command* ein Argument, ein Hostname, angehängt. Ist ein Proxy erforderlich, soll die Rückruffunktion eine zweielementige Liste mit Proxy-Server und Proxy-Port zurückgeben. Andernfalls soll der Filterbefehl eine leere Liste zurückgeben.
 
-        Der Standardwert von **-proxyfilter** ist **http::ProxyRequired**; dieser Befehl gibt die Werte der Einstellungen **-proxyhost** und **-proxyport** zurück, sofern sie nicht leer sind. Die Optionen **-proxyhost**, **-proxyport** und **-proxynot** werden nur von **http::ProxyRequired** verwendet und sonst nirgends in **::http::geturl**. Ein benutzerdefinierter **-proxyfilter**-Befehl kann diese Optionen nutzen oder Werte aus anderer Stelle im aufrufenden Skript beziehen. Im letzteren Fall bleiben alle für **-proxyhost**, **-proxyport** und **-proxynot** angegebenen Werte ungenutzt.
+        Der Standardwert von **-proxyfilter** ist **http::ProxyRequired**; dieser Befehl gibt die Werte der Einstellungen **-proxyhost** und **-proxyport** zurück, sofern sie nicht leer sind. Die Optionen **-proxyhost**, **-proxyport** und **-proxynot** werden nur von **http::ProxyRequired** verwendet und sonst nirgends in **::http::geturl**. Ein benutzerdefinierter **-proxyfilter**-Befehl kann diese Optionen nutzen oder Werte von anderer Stelle im aufrufenden Skript beziehen. Im letzteren Fall bleiben alle für **-proxyhost**, **-proxyport** und **-proxynot** angegebenen Werte ungenutzt.
 
         Der Befehl **::http::geturl** führt die **-proxyfilter**-Rückruffunktion innerhalb eines [catch]-Befehls aus. Ein Fehler in der Rückruffunktion ruft daher nicht den [bgerror]-Handler auf. Siehe Abschnitt [Fehler] für Details.
 
@@ -115,7 +115,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
     : Die Portnummer des Proxy-Servers. Siehe **-proxyfilter** zur Verwendung des Werts.
 
     [-repost]{.lit} [boolean]{.arg}
-    : Legt fest, was zu tun ist, wenn eine POST-Anfrage über eine persistente Verbindung fehlschlägt, weil der Server die Verbindung halb geschlossen hat. Ist der boolesche Wert **true**, wird die Anfrage automatisch wiederholt; ist er **false**, nicht, und die Anwendung, die **http::geturl** verwendet, soll vor einer erneuten POST-Anfrage eine Bestätigung des Benutzers einholen. Der Wert **true** sollte nur unter bestimmten Bedingungen verwendet werden. Siehe Abschnitt **PERSISTENTE SOCKETS** für Details. Der Standardwert ist 0.
+    : Legt fest, was zu tun ist, wenn eine POST-Anfrage über eine persistente Verbindung fehlschlägt, weil der Server die Verbindung halb geschlossen hat. Ist der boolesche Wert **true**, wird die Anfrage automatisch wiederholt; ist er **false**, nicht, und die Anwendung, die **http::geturl** verwendet, soll vor einer erneuten POST-Anfrage eine Bestätigung des Benutzers einholen. Der Wert **true** sollte nur unter bestimmten Bedingungen verwendet werden. Siehe Abschnitt **Persistente Verbindungen** für Details. Der Standardwert ist 0.
 
     [-threadlevel]{.lit} [level]{.arg}
     : Legt fest, ob und wie das Paket **Thread** verwendet wird. Mögliche Werte von *level* sind 0, 1 oder 2.
@@ -133,7 +133,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
         Der Tcl-Befehl [socket -async][socket] kann in ungünstigen Fällen blockieren (z. B. bei einer langsamen DNS-Abfrage). Die Verwendung des Thread-Pakets umgeht dieses Problem sowohl bei HTTP- als auch bei HTTPS-Transaktionen. Werte von *level* ungleich 0 stehen nur dem Haupt-Interpreter in jedem Thread zur Verfügung. Siehe Abschnitt [Threads] für weitere Informationen.
 
     [-urlencoding]{.lit} [encoding]{.arg}
-    : Die *encoding*, die zum Erzeugen x-url-kodierter URLs mit **::http::formatQuery** und **::http::quoteString** verwendet wird. Der Standardwert ist **utf-8**, wie in RFC 2718 festgelegt.
+    : Die Kodierung *encoding*, die zum Erzeugen x-url-kodierter URLs mit **::http::formatQuery** und **::http::quoteString** verwendet wird. Der Standardwert ist **utf-8**, wie in RFC 2718 festgelegt.
 
     [-useragent]{.lit} [string]{.arg}
     : Der Wert des User-Agent-Headers in der HTTP-Anfrage. In einem unsicheren Interpreter hängt der Standardwert vom Betriebssystem sowie von den Versionsnummern von **http** und **Tcl** ab und lautet (zum Beispiel) "**Mozilla/5.0 (Windows; U; Windows NT 10.0) http/2.10.3 Tcl/9.0.4**". Ein sicherer Interpreter kann sein Betriebssystem nicht ermitteln; der Standardwert in einem sicheren Interpreter ist daher ein Windows-10-Wert mit den aktuellen Versionsnummern von **http** und **Tcl**.
@@ -169,10 +169,10 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
         Der Befehl **::http::geturl** führt die **-command**-Rückruffunktion innerhalb eines [catch]-Befehls aus. Ein Fehler in der Rückruffunktion ruft daher nicht den [bgerror]-Handler auf. Siehe Abschnitt [Fehler] für Details.
 
     [-guesstype]{.lit} [boolean]{.arg}
-    : Versucht, **Content-Type** und Zeichensatz zu erraten, wenn ein falsch konfigurierter Server keine Angaben liefert. Der Standardwert ist *false* (nichts tun). Ist der boolesche Wert *true* und sendet der Server keinen **Content-Type**-Header oder sendet er den Wert "application/octet-stream", versucht **http::geturl**, passende Werte zu erraten. Dies ist nicht als allgemeines Werkzeug gedacht und derzeit auf die Erkennung von XML-Dokumenten beschränkt, die mit einer XML-Deklaration beginnen. In diesem Fall wird **Content-Type** auf "application/xml" geändert, die Binär-Flag state(binary) auf 0 gesetzt und der Zeichensatz auf den in der XML-Zeile angegebenen Wert des Tags "encoding" oder auf utf-8, falls keine Kodierung angegeben ist. Wird nicht verwendet, wenn **-channel** angegeben ist.
+    : Versucht, **Content-Type** und Zeichensatz zu erraten, wenn ein falsch konfigurierter Server keine Angaben liefert. Der Standardwert ist *false* (nichts tun). Ist der boolesche Wert *true* und sendet der Server keinen **Content-Type**-Header oder sendet er den Wert "application/octet-stream", versucht **http::geturl**, passende Werte zu erraten. Dies ist nicht als allgemeines Werkzeug gedacht und derzeit auf die Erkennung von XML-Dokumenten beschränkt, die mit einer XML-Deklaration beginnen. In diesem Fall wird **Content-Type** auf "application/xml" geändert, das Binär-Flag state(binary) auf 0 gesetzt und der Zeichensatz auf den in der XML-Zeile angegebenen Wert des Tags "encoding" oder auf utf-8, falls keine Kodierung angegeben ist. Wird nicht verwendet, wenn **-channel** angegeben ist.
 
     [-handler]{.lit} [callback]{.arg}
-    : Fehlt diese Option, verarbeitet **http::geturl** eingehende Daten selbst, entweder durch Anhängen an die Variable state(body) oder durch Schreiben in den -channel. Ist die Option **-handler** gesetzt, führt **http::geturl** diese Verarbeitung nicht durch; stattdessen wird *callback* aufgerufen. Sobald HTTP-Daten verfügbar sind, wird *callback* expandiert, zwei zusätzliche Argumente angehängt und der resultierende Befehl ausgewertet. Die beiden zusätzlichen Argumente sind: der Socket für die HTTP-Daten und der von **::http::geturl** zurückgegebene *token*. Der Token ist der Name eines globalen Arrays, das im Abschnitt [Status-Array] beschrieben ist. Die Prozedur soll die Anzahl der vom Socket gelesenen Bytes zurückgeben. Hier ist eine Vorlage für die Rückruffunktion:
+    : Fehlt diese Option, verarbeitet **http::geturl** eingehende Daten selbst, entweder durch Anhängen an die Variable state(body) oder durch Schreiben in den -channel. Ist die Option **-handler** gesetzt, führt **http::geturl** diese Verarbeitung nicht durch; stattdessen wird *callback* aufgerufen. Sobald HTTP-Daten verfügbar sind, wird *callback* expandiert, werden zwei zusätzliche Argumente angehängt und der resultierende Befehl ausgewertet. Die beiden zusätzlichen Argumente sind: der Socket für die HTTP-Daten und der von **::http::geturl** zurückgegebene *token*. Der Token ist der Name eines globalen Arrays, das im Abschnitt [Status-Array] beschrieben ist. Die Prozedur soll die Anzahl der vom Socket gelesenen Bytes zurückgeben. Hier ist eine Vorlage für die Rückruffunktion:
 
         ```
         proc httpHandlerCallback {socket token} {
@@ -216,7 +216,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
     : Übergibt eine bestimmte lokale Adresse an den zugrunde liegenden [socket]-Aufruf, falls mehrere Schnittstellen verfügbar sind.
 
     [-progress]{.lit} [callback]{.arg}
-    : Ist die Option **-progress** gesetzt, wird *callback* nach jedem Datenübertrag vom URL aufgerufen. *callback* wird expandiert, drei zusätzliche Argumente angehängt und der resultierende Befehl ausgewertet. Die drei zusätzlichen Argumente sind: der von **::http::geturl** zurückgegebene *token*, die erwartete Gesamtgröße des Inhalts aus dem Antwort-Header **Content-Length** und die bisher übertragene Byteanzahl. Der Token ist der Name eines globalen Arrays, das im Abschnitt [Status-Array] beschrieben ist. Die erwartete Gesamtgröße kann unbekannt sein; dann wird 0 an die Rückruffunktion übergeben. Hier ist eine Vorlage für die Fortschritts-Rückruffunktion:
+    : Ist die Option **-progress** gesetzt, wird *callback* nach jedem Datenübertrag vom URL aufgerufen. *callback* wird expandiert, es werden drei zusätzliche Argumente angehängt und der resultierende Befehl ausgewertet. Die drei zusätzlichen Argumente sind: der von **::http::geturl** zurückgegebene *token*, die erwartete Gesamtgröße des Inhalts aus dem Antwort-Header **Content-Length** und die bisher übertragene Byteanzahl. Der Token ist der Name eines globalen Arrays, das im Abschnitt [Status-Array] beschrieben ist. Die erwartete Gesamtgröße kann unbekannt sein; dann wird 0 an die Rückruffunktion übergeben. Hier ist eine Vorlage für die Fortschritts-Rückruffunktion:
 
         ```
         proc httpProgress {token total current} {
@@ -267,7 +267,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
 : Dieser Befehl setzt die durch *token* identifizierte HTTP-Transaktion zurück, falls vorhanden. Dabei wird **state(status)** auf *why* gesetzt, standardmäßig **reset**, und die registrierte **-command**-Rückruffunktion aufgerufen.
 
 [::http::wait]{.cmd} [token]{.arg}
-: Dieser Befehl blockiert und wartet auf den Abschluss der Transaktion. Dies funktioniert nur in vertrauenswürdigem Code, weil [vwait] verwendet wird. Außerdem ist es nicht nützlich, wenn **::http::geturl** *ohne* die Option **-command** aufgerufen wird, da in diesem Fall der Aufruf von **::http::geturl** erst zurückkehrt, wenn die HTTP-Transaktion abgeschlossen ist, und es nichts zu erwarten gibt.
+: Dieser Befehl blockiert und wartet auf den Abschluss der Transaktion. Dies funktioniert nur in vertrauenswürdigem Code, weil [vwait] verwendet wird. Außerdem ist es nicht nützlich, wenn **::http::geturl** *ohne* die Option **-command** aufgerufen wird, da in diesem Fall der Aufruf von **::http::geturl** erst zurückkehrt, wenn die HTTP-Transaktion abgeschlossen ist, und es nichts gibt, worauf gewartet werden könnte.
 
 [::http::status]{.cmd} [token]{.arg}
 : Dieser Befehl gibt eine Beschreibung des Status der HTTP-Transaktion zurück. Der Rückgabewert ist die leere Zeichenkette, bis die HTTP-Transaktion abgeschlossen ist; danach hat er einen der Werte ok, eof, error, timeout und reset. Die Bedeutung dieser Werte wird im Abschnitt [Fehler] (unten) beschrieben.
@@ -301,8 +301,8 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
 : Dieser Befehl gibt die erste Zeile der Serverantwort zurück: die HTTP-"status line". Die "status line" hat drei durch Leerzeichen getrennte Elemente: die HTTP-Version, einen dreistelligen numerischen "status code" und eine "reason phrase". Nur die reason phrase darf Leerzeichen enthalten. Beispiele:
 
     HTTP/1.1 200 OK HTTP/1.0 404 Not Found
-    Der "status code" ist eine dreistellige Zahl im Bereich 100 bis 599. Ein Wert von 200 ist die normale Rückgabe einer GET-Anfrage; die zugehörige "reason phrase" ist "OK". Codes, die mit 4 oder 5 beginnen, weisen auf Fehler hin. Codes, die mit 3 beginnen, sind Weiterleitungsfehler. In diesem Fall gibt der Antwort-Header **Location** eine neue URL an, die die angeforderten Informationen enthält.
 
+    Der "status code" ist eine dreistellige Zahl im Bereich 100 bis 599. Ein Wert von 200 ist die normale Rückgabe einer GET-Anfrage; die zugehörige "reason phrase" ist "OK". Codes, die mit 4 oder 5 beginnen, weisen auf Fehler hin. Codes, die mit 3 beginnen, sind Weiterleitungsfehler. In diesem Fall gibt der Antwort-Header **Location** eine neue URL an, die die angeforderten Informationen enthält.
 
     Die "reason phrase" ist eine textuelle Beschreibung des "status code": sie kann von Server zu Server variieren und kann ohne Auswirkung auf das HTTP-Protokoll geändert werden. Die empfohlenen Werte (RFC 7231 und IANA-Zuweisungen) für jeden Code liefert der Befehl **::http::reasonPhrase**.
 
@@ -337,7 +337,7 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
 [::http::register]{.cmd} [proto]{.arg} [port]{.arg} [command]{.arg} [socketCmdVarName]{.optarg} [useSockThread]{.optarg} [endToEndProxy]{.optarg}
 : Diese Prozedur ermöglicht benutzerdefinierte HTTP-Transporttypen wie HTTPS durch Registrierung eines Präfixes, des Standardports und des Befehls zum Erzeugen des Tcl-**channel**. Die optionalen Argumente konfigurieren, wie **http** den benutzerdefinierten Transport nutzt, und haben Standardwerte, die mit älteren Versionen von **http** kompatibel sind, in denen **::http::register** keine optionalen Argumente hat.
 
-    Das Argument *socketCmdVarName* ist der Name einer vom Transport bereitgestellten Variablen, deren Wert der Befehl ist, mit dem der Transport einen Socket öffnet. Sein Standardwert wird vom Transport gesetzt und lautet "::socket"; wird der Variablenname an **::http::register** übergeben, setzt **http** einen neuen Wert, um optionale Einrichtungen verfügbar zu machen. Diese werden durch die optionalen Argumente *useSockThread* und *endToEndProxy* aktiviert, die boolesche Werte mit Standardwert *false* annehmen.
+    Das Argument *socketCmdVarName* ist der Name einer vom Transport bereitgestellten Variablen, deren Wert der Befehl ist, mit dem der Transport einen Socket öffnet. Ihr Standardwert wird vom Transport gesetzt und lautet "::socket"; wird der Variablenname an **::http::register** übergeben, setzt **http** einen neuen Wert, um optionale Einrichtungen verfügbar zu machen. Diese werden durch die optionalen Argumente *useSockThread* und *endToEndProxy* aktiviert, die boolesche Werte mit Standardwert *false* annehmen.
 
     Ist das Argument *useSockThread* angegeben und boolesch *true*, und erlaubt es der Wert von \[**http::config** *-threadlevel*\] sowie die Verfügbarkeit des Pakets **Thread**, werden für den Transport erzeugte Sockets in einem anderen Thread geöffnet, damit eine langsame DNS-Abfrage das Skript nicht blockiert.
 
@@ -377,9 +377,9 @@ Hat der HTTP-Server auf die Anfrage geantwortet, rufen Sie den Befehl **::http::
 
 Die Prozedur **::http::geturl** löst in folgenden Fällen Fehler aus: ungültige Befehlszeilenoptionen oder eine ungültige URL. Diese Fehler bedeuten, dass die Netzwerktransaktion gar nicht erst gestartet werden kann. Bei synchronen Aufrufen von **::http::geturl** (wenn **-command** nicht angegeben ist) wird ein Fehler ausgelöst, wenn die URL auf einem nicht existierenden Host liegt oder auf einem bestehenden Host an einem ungültigen Port. Es wird auch ein Fehler bei I/O-Fehlern beim Schreiben der HTTP-Anfragezeile und -Header oder beim Lesen der HTTP-Antwort-Header oder -Daten ausgelöst. Da **::http::geturl** in diesen Fällen keinen Token zurückgibt, führt es die erforderliche Bereinigung selbst durch; die Anwendung muss **::http::cleanup** nicht aufrufen.
 
-Bei asynchronen Aufrufen von **::http::geturl** gelten alle obigen Fehlersituationen, außer dass beim Lesen der HTTP-Antwort-Header oder -Daten keine Ausnahme geworfen wird. Nach dem Schreiben der HTTP-Header kehrt **::http::geturl** zurück; der Rest der HTTP-Transaktion läuft im Hintergrund. Die Befehls-Rückruffunktion kann mit **::http::responseInfo** prüfen, ob beim Lesen ein Fehler aufgetreten ist.
+Bei asynchronen Aufrufen von **::http::geturl** gelten alle obigen Fehlersituationen, außer dass beim Lesen der HTTP-Antwort-Header oder -Daten keine Ausnahme geworfen wird. Das liegt daran, dass **::http::geturl** nach dem Schreiben der HTTP-Header zurückkehrt; der Rest der HTTP-Transaktion läuft im Hintergrund. Die Befehls-Rückruffunktion kann mit **::http::responseInfo** prüfen, ob beim Lesen ein Fehler aufgetreten ist.
 
-Alternativ kann der Hauptprogrammfluss an einer Stelle **::http::wait** aufrufen und dann Status und Fehler prüfen, wie beim synchronen Aufruf.
+Erreicht der Hauptprogrammfluss eine Stelle, an der er das Ergebnis der asynchronen HTTP-Anfrage kennen muss, kann er alternativ **::http::wait** aufrufen und dann Status und Fehler prüfen, wie beim synchronen Aufruf.
 
 Der Befehl **::http::geturl** führt die Rückruffunktionen **-command**, **-handler** und **-proxyfilter** innerhalb eines [catch]-Befehls aus. Ein Fehler in der Rückruffunktion ruft daher nicht den [bgerror]-Handler auf. Beim Debuggen einer dieser Rückruffunktionen kann es praktisch sein, Fehler innerhalb der Rückruffunktion selbst mit einem [catch]-Befehl zu melden, z. B. um eine Fehlermeldung nach stdout zu schreiben.
 
@@ -388,7 +388,7 @@ In jedem Fall müssen Sie dennoch **::http::cleanup** aufrufen, um das Status-Ar
 Weitere mögliche Ergebnisse der HTTP-Transaktion ergeben sich aus dem Status von **::http::status** (oder dem Wert des Schlüssels *status* im von **::http::responseInfo** zurückgegebenen Dictionary). Diese werden unten beschrieben.
 
 **ok**
-: Schließt die HTTP-Transaktion vollständig ab, ist der Status **ok**. Sie sollten dennoch den Wert von **::http::responseLine** prüfen, um den HTTP-Status zu erhalten. Die Prozedur **::http::responseCode** liefert nur den numerischen Code (z. B. 200, 404 oder 500), während **::http::responseLine** einen Wert wie "HTTP 404 Datei nicht gefunden" zurückgibt.
+: Wird die HTTP-Transaktion vollständig abgeschlossen, ist der Status **ok**. Sie sollten dennoch den Wert von **::http::responseLine** prüfen, um den HTTP-Status zu erhalten. Die Prozedur **::http::responseCode** liefert nur den numerischen Code (z. B. 200, 404 oder 500), während **::http::responseLine** einen Wert wie "HTTP 404 File not found" zurückgibt.
 
 [eof]
 : Schließt der Server den Socket ohne Antwort, wird kein Fehler ausgelöst, aber der Status der Transaktion ist [eof].
@@ -434,7 +434,7 @@ Die wichtigsten Metadaten sind mit dem Befehl **::http::responseInfo** zugängli
 : Der Wert des Antwort-Headers **Content-Type** oder, falls der Header nicht geliefert wurde, der Standardwert "application/octet-stream".
 
 **binary**
-: Dieser boolesche, von **::http::geturl** gesetzte Wert beschreibt, wie der Befehl die vom Server zurückgegebene Entität (nach Dekodierung einer in **Content-Encoding** angegebenen Kompression) interpretiert hat. Auf diese dekodierte Entität greift der Rückgabewert von **::http::responseBody** zu.
+: Dieser boolesche, von **::http::geturl** gesetzte Wert beschreibt, wie der Befehl die vom Server zurückgegebene Entität (nach Dekodierung einer in **Content-Encoding** angegebenen Kompression) interpretiert hat. Diese dekodierte Entität ist als Rückgabewert von **::http::responseBody** zugänglich.
 
     Der Wert ist **true**, wenn **http** die dekodierte Entität als Binärdaten interpretiert hat. Der Rückgabewert von **::http::responseBody** ist dann eine Tcl-Binärzeichenkette. Das eignet sich für Bilddaten, Zip-Dateien usw. **::http::geturl** wählt diesen Wert, wenn der Benutzer die Option **-binary** übergeben hat, der Server einen binären Content-Type in einem **Content-Type**-Antwort-Header geliefert hat oder keinen **Content-Type**-Header gesendet hat.
 
@@ -446,13 +446,13 @@ Die wichtigsten Metadaten sind mit dem Befehl **::http::responseInfo** zugängli
 : Die URL, die Ziel der Weiterleitung ist. Der Wert stammt vom Antwort-Header **Location**. Dieser Header wird gesendet, wenn die Antwort den Statuscode 3XX (Weiterleitung) hat.
 
 **upgrade**
-: Ist der Wert nicht leer, gibt er die Protokoll(e) an, auf die der Server nach Abschluss dieser Transaktion bei weiterhin derselben Verbindung wechseln wird. Will der Server das Protokoll wechseln, sendet er außerdem "101" als Statuscode (Schlüssel **responseCode**), das Wort "upgrade" als Element des Antwort-Headers **Connection** (Schlüssel **connectionResponse**) und keinen Antwortkörper. Siehe Abschnitt [Protokoll-Upgrades] für weitere Informationen.
+: Ist der Wert nicht leer, gibt er das Protokoll oder die Protokolle an, auf die der Server nach Abschluss dieser Transaktion bei weiterhin derselben Verbindung wechseln wird. Will der Server das Protokoll wechseln, sendet er außerdem "101" als Statuscode (Schlüssel **responseCode**), das Wort "upgrade" als Element des Antwort-Headers **Connection** (Schlüssel **connectionResponse**) und keinen Antwortkörper. Siehe Abschnitt [Protokoll-Upgrades] für weitere Informationen.
 
 **error**
 : Die Fehlermeldung, falls vorhanden. Weitere Informationen einschließlich Stack-Trace und Fehlercode liefert **::http::error**.
 
 **postError**
-: Die Fehlermeldung (falls vorhanden), die entsteht, wenn eine HTTP-POST-Anfrage ihren Anfragekörper an den Server sendet. Weitere Informationen liefert **::http::postError**. Eine POST-Transaktion kann laut den Schlüsseln **stage**, **status** und **responseCode** abgeschlossen erscheinen; es ist jedoch wichtig, **postError** zu prüfen, falls beim Hochladen des Anfragekörpers ein Fehler aufgetreten ist.
+: Die Fehlermeldung (falls vorhanden), die entsteht, wenn eine HTTP-POST-Anfrage ihren Anfragekörper an den Server sendet. Weitere Informationen einschließlich Stack-Trace und Fehlercode liefert **::http::postError**. Eine POST-Transaktion kann laut den Schlüsseln **stage**, **status** und **responseCode** abgeschlossen erscheinen; es ist jedoch wichtig, **postError** zu prüfen, falls beim Hochladen des Anfragekörpers ein Fehler aufgetreten ist.
 
     **===== Informative Werte =====**
 
@@ -530,7 +530,7 @@ Einige der Header-Namen (Metadaten-Schlüssel) sind unten aufgeführt; der HTTP-
 : Der Wert kann als durch Kommas getrennte Liste oder durch mehrere Header geliefert werden. Die Liste hat oft nur ein Element, entweder "close" oder "keep-alive". Der Wert "upgrade" zeigt eine erfolgreiche Upgrade-Anfrage an und wird typischerweise mit Statuscode 101, einem **Upgrade**-Antwort-Header und ohne Antwortkörper kombiniert. Dictionary-Schlüssel *connectionResponse*.
 
 **Upgrade**
-: Der Wert gibt die Protokoll(e) an, auf die der Server unmittelbar nach der leeren Zeile, die die 101-Antwort-Header beendet, wechselt. Dictionary-Schlüssel *upgrade*.
+: Der Wert gibt das Protokoll oder die Protokolle an, auf die der Server unmittelbar nach der leeren Zeile, die die 101-Antwort-Header beendet, wechselt. Dictionary-Schlüssel *upgrade*.
 
 
 ## Noch weitere Metadaten
@@ -644,7 +644,7 @@ Siehe RFC 7230 Abschnitt 6, der RFC 2616 Abschnitt 8.1 ablöst.
 
 Eine persistente Verbindung ermöglicht mehrere HTTP/1.1-Transaktionen über dieselbe TCP-Verbindung. Pipelining ermöglicht es einem Client, mehrere Anfragen über eine persistente Verbindung zu senden, ohne auf jede Antwort zu warten. Der Server sendet Antworten in derselben Reihenfolge, in der die Anfragen empfangen wurden.
 
-Schlägt eine POST-Anfrage fehl, ist typischerweise eine Bestätigung des Benutzers nötig, bevor die Anfrage erneut gesendet wird. Der Benutzer möchte prüfen, ob der Server durch die fehlgeschlagene POST-Anfrage verändert wurde, bevor dieselbe Anfrage erneut gesendet wird.
+Schlägt eine POST-Anfrage fehl, ist typischerweise eine Bestätigung des Benutzers nötig, bevor die Anfrage erneut gesendet wird. Der Benutzer möchte möglicherweise prüfen, ob der Server durch die fehlgeschlagene POST-Anfrage verändert wurde, bevor dieselbe Anfrage erneut gesendet wird.
 
 Eine HTTP-Anfrage verwendet einen persistenten Socket, wenn der Aufruf von **http::geturl** die Option **-keepalive true** hat. Pipelining wird angewendet, wo erlaubt, wenn die **http::config**-Option **-pipeline** boolesch **true** ist (ihr Standardwert).
 
@@ -656,11 +656,11 @@ Das http-Paket unterstützt keine HTTP/1.0-persistenten Verbindungen, die durch 
 
 Dieser Unterabschnitt behandelt Fragen im Zusammenhang mit dem Schließen der persistenten Verbindung durch den Server, automatische Wiederholung fehlgeschlagener Anfragen, die besondere Behandlung von POST-Anfragen und die Optionen zum Umgang mit diesen Fällen.
 
-Gemäß RFC 7230 pipelined **http::geturl** keine Anfragen mit der POST-Methode. Nutzt eine POST-Anfrage eine persistente Verbindung und ist nicht die erste Anfrage auf dieser Verbindung, wartet **http::geturl**, bis die Antwort auf die vorherige Anfrage empfangen wurde; oder (wenn die **http::config**-Option **-postfresh** boolesch **true** ist) verwendet es für jede POST-Anfrage eine neue Verbindung.
+Gemäß RFC 7230 sendet **http::geturl** Anfragen mit der POST-Methode nicht per Pipelining. Nutzt eine POST-Anfrage eine persistente Verbindung und ist nicht die erste Anfrage auf dieser Verbindung, wartet **http::geturl**, bis die Antwort auf die vorherige Anfrage empfangen wurde; oder (wenn die **http::config**-Option **-postfresh** boolesch **true** ist) verwendet es für jede POST-Anfrage eine neue Verbindung.
 
-Verarbeitet der Server mehrere gepipelinete Anfragen und sendet er mit einer der Antworten (außer der letzten) einen Antwort-Header "**Connection: close**", bleiben nachfolgende Antworten unerfüllt. **http::geturl** sendet die unerfüllten Anfragen erneut über eine neue Verbindung.
+Verarbeitet der Server mehrere per Pipelining gesendete Anfragen und sendet er mit einer der Antworten (außer der letzten) einen Antwort-Header "**Connection: close**", bleiben nachfolgende Antworten unerfüllt. **http::geturl** sendet die unerfüllten Anfragen erneut über eine neue Verbindung.
 
-Eine Schwierigkeit entsteht, wenn ein HTTP-Client eine Anfrage über eine persistente Verbindung sendet, die eine Weile untätig war. Der HTTP-Server kann eine scheinbar untätige Verbindung halb schließen, während der Client eine Anfrage sendet, aber bevor die Anfrage den Server erreicht: in diesem Fall (ein **asynchronous close event**) schlägt die Anfrage fehl. Die Schwierigkeit entsteht, weil der Client nicht sicher sein kann, ob die POST den Zustand des Servers verändert hat. Bei HEAD- oder GET-Anfragen öffnet **http::geturl** eine weitere Verbindung und sendet die fehlgeschlagene Anfrage erneut. War die Anfrage jedoch eine POST-Anfrage, verbietet RFC 7230 standardmäßig eine automatische Wiederholung und schlägt entweder eine Benutzerbestätigung oder eine Bestätigung durch User-Agent-Software mit semantischem Verständnis der Anwendung vor. Die **http::config**-Option **-repost** ermöglicht beide Möglichkeiten.
+Eine Schwierigkeit entsteht, wenn ein HTTP-Client eine Anfrage über eine persistente Verbindung sendet, die eine Weile untätig war. Der HTTP-Server kann eine scheinbar untätige Verbindung halb schließen, während der Client eine Anfrage sendet, aber bevor die Anfrage den Server erreicht: in diesem Fall (ein "asynchronous close event") schlägt die Anfrage fehl. Die Schwierigkeit entsteht, weil der Client nicht sicher sein kann, ob die POST-Anfrage den Zustand des Servers verändert hat. Bei HEAD- oder GET-Anfragen öffnet **http::geturl** eine weitere Verbindung und sendet die fehlgeschlagene Anfrage erneut. War die Anfrage jedoch eine POST-Anfrage, verbietet RFC 7230 standardmäßig eine automatische Wiederholung und schlägt entweder eine Benutzerbestätigung oder eine Bestätigung durch User-Agent-Software mit semantischem Verständnis der Anwendung vor. Die **http::config**-Option **-repost** ermöglicht beide Möglichkeiten.
 
 Asynchrone Schließ-Ereignisse können nur in einem kurzen Zeitintervall auftreten. Das Paket **http** überwacht jede persistente Verbindung auf Schließung durch den Server. Nach Erkennung wird die Verbindung auch auf der Client-Seite geschlossen; nachfolgende Anfragen verwenden eine frische Verbindung.
 
@@ -668,19 +668,19 @@ Wird **http::geturl** mit der Option **-keepalive true** aufgerufen, versucht es
 
 Die **http::config**-Optionen **-pipeline**, **-postfresh** und **-repost** betreffen persistente Verbindungen.
 
-Ist die Option **-pipeline** boolesch **true**, werden GET- und HEAD-Anfragen über eine persistente Verbindung gepipelined. POST-Anfragen werden nicht gepipelined — ist die POST-Anfrage nicht die erste Transaktion auf der Verbindung, wird ihre Anfrage erst gesendet, wenn die vorherige Antwort abgeschlossen ist. GET- und HEAD-Anfragen nach einer POST-Anfrage werden erst gesendet, wenn die POST-Antwort geliefert wurde, und nicht, wenn die POST-Anfrage fehlschlägt.
+Ist die Option **-pipeline** boolesch **true**, werden GET- und HEAD-Anfragen über eine persistente Verbindung per Pipelining gesendet. POST-Anfragen werden nicht per Pipelining gesendet — ist die POST-Anfrage nicht die erste Transaktion auf der Verbindung, wird ihre Anfrage erst gesendet, wenn die vorherige Antwort abgeschlossen ist. GET- und HEAD-Anfragen nach einer POST-Anfrage werden erst gesendet, wenn die POST-Antwort geliefert wurde, und nicht, wenn die POST-Anfrage fehlschlägt.
 
 Ist die Option **-postfresh** boolesch **true**, überschreibt sie die Option **-keepalive** von **http::geturl** und öffnet für jede POST-Anfrage stets eine frische Verbindung.
 
-Ist die Option **-repost** **true**, ist die automatische Wiederholung einer POST-Anfrage erlaubt, die fehlschlägt, weil sie eine persistente Verbindung nutzt, die der Server halb geschlossen hat (ein **asynchronous close event**). Nachfolgende GET- und HEAD-Anfragen in einer fehlgeschlagenen Pipeline werden ebenfalls wiederholt. *Die Option **-repost** sollte nur verwendet werden, wenn die Anwendung versteht*, dass die Wiederholung angemessen ist — die Anwendung muss wissen, dass eine Wiederholung der POST-Anfrage keine nachteiligen Auswirkungen hat, falls die fehlgeschlagene POST den Serverzustand erfolgreich verändert hat.
+Ist die Option **-repost** **true**, ist die automatische Wiederholung einer POST-Anfrage erlaubt, die fehlschlägt, weil sie eine persistente Verbindung nutzt, die der Server halb geschlossen hat (ein "asynchronous close event"). Nachfolgende GET- und HEAD-Anfragen in einer fehlgeschlagenen Pipeline werden ebenfalls wiederholt. *Die Option **-repost** sollte nur verwendet werden, wenn die Anwendung versteht*, dass die Wiederholung angemessen ist — die Anwendung muss wissen, dass eine Wiederholung der POST-Anfrage keine nachteiligen Auswirkungen hat, falls die fehlgeschlagene POST-Anfrage den Serverzustand erfolgreich verändert hat.
 
 # Cookie-Jar-Protokoll
 
 Cookies sind kurze Schlüssel-Wert-Paare zur Implementierung von Sitzungen im ansonsten zustandslosen HTTP-Protokoll. (Details siehe RFC 6265; Tcl implementiert das Cookie2-Protokoll nicht, da es in der Praxis selten vorkommt.)
 
-Cookie-Speicherverwaltungsbefehle — **cookie jars** — müssen diese Unterbefehle unterstützen, die das HTTP-Cookie-Speicherverwaltungsprotokoll bilden. *cookieJar* unten muss kein Befehlsname sein; es ist ein Befehlspräfix (eine Tcl-Liste von Wörtern, die an Ort und Stelle expandiert wird) und lässt viele Implementierungen zu.
+Cookie-Speicherverwaltungsbefehle — "cookie jars" — müssen diese Unterbefehle unterstützen, die das HTTP-Cookie-Speicherverwaltungsprotokoll bilden. *cookieJar* unten muss kein Befehlsname sein; es ist ein Befehlspräfix (eine Tcl-Liste von Wörtern, die an Ort und Stelle expandiert wird) und lässt viele Implementierungen zu.
 
-Obwohl nicht formell Teil des Protokolls, wird erwartet, dass bestimmte Werte von *cookieJar* Sitzungen entsprechen; es liegt beim Aufrufer von **::http::config**, welche Sitzung gilt und wann diese Sitzungen gelöscht werden, wenn sie nicht mehr gewünscht sind (was der Fall sein sollte, wenn sie nicht mehr als aktueller Cookie-Jar konfiguriert sind).
+Obwohl nicht formell Teil des Protokolls, wird erwartet, dass bestimmte Werte von *cookieJar* Sitzungen entsprechen; es liegt beim Aufrufer von **::http::config**, zu entscheiden, welche Sitzung gilt, und das Löschen dieser Sitzungen zu verwalten, wenn sie nicht mehr gewünscht sind (was der Fall sein sollte, wenn sie nicht mehr als aktueller Cookie-Jar konfiguriert sind).
 
 [cookieJar]{.ins} [getCookies]{.sub} [protocol]{.arg} [host]{.arg} [requestPath]{.arg}
 : Dieser Befehl fragt den Cookie-Jar, welche Cookies für eine bestimmte Anfrage geliefert werden sollen. Er soll *protocol* (typischerweise **http** oder **https**), *host* und *requestPath* (aus dem *url*-Argument von **::http::geturl** geparst) entgegennehmen und eine Liste von Cookie-Schlüsseln und -Werten zurückgeben, die die an den Remote-Host zu sendenden Cookies beschreiben. Die Liste muss eine gerade Anzahl von Elementen haben.
@@ -733,21 +733,21 @@ Derzeit gibt es keine native Tcl-Client-Bibliothek für HTTP/2.
 
 Der **Upgrade**-Mechanismus wird in Webbrowsern nicht verwendet, um TLS anzufordern, weil **http** und **https** über unterschiedliche Ports laufen. Er wird von Protokollen wie Internet Printing Protocol (IPP) verwendet, die auf **http(s)** aufbauen und dieselbe TCP-Portnummer für sichere und unsichere Verbindungen nutzen.
 
-In Browsern wird opportunistische Verschlüsselung stattdessen durch den Client-Header **Upgrade-Insecure-Requests** umgesetzt. Ist ein sicherer Dienst verfügbar, lautet der Server-Antwortcode eine 307-Weiterleitung, und der Antwort-Header **Location** gibt die Ziel-URL an. Der Browser muss **http::geturl** erneut aufrufen, um diese URL abzurufen. Siehe <https://w3c.github.io/webappsec-upgrade-insecure-requests/>
+In Browsern wird opportunistische Verschlüsselung stattdessen durch den Client-Header **Upgrade-Insecure-Requests** umgesetzt. Ist ein sicherer Dienst verfügbar, ist der Server-Antwortcode 307 (Weiterleitung), und der Antwort-Header **Location** gibt die Ziel-URL an. Der Browser muss **http::geturl** erneut aufrufen, um diese URL abzurufen. Siehe <https://w3c.github.io/webappsec-upgrade-insecure-requests/>
 
 # Threads
 
 ## Zweck
 
-Der Befehl **::http::geturl** verwendet den Tcl-Befehl **::socket** mit der Option **-async**, um eine Verbindung zu einem Remote-Server herzustellen; die Rückkehr dieses Befehls kann in ungünstigen Fällen verzögert sein (z. B. bei einer langsamen DNS-Abfrage) und verhindert, dass die Ereignisschleife andere Ereignisse verarbeitet. Diese Verzögerung entfällt, wenn **::socket** in einem anderen Thread ausgewertet wird. Das Thread-Paket ist nicht Teil von Tcl, wird aber in "Batteries Included"-Distributionen mitgeliefert. Statt **::socket** verwendet das http-Paket **::http::socket**, das Verbindungen gemäß dem Wert von **-threadlevel** und der Verfügbarkeit des Pakets Thread herstellt.
+Der Befehl **::http::geturl** verwendet den Tcl-Befehl **::socket** mit der Option **-async**, um eine Verbindung zu einem Remote-Server herzustellen; die Rückkehr dieses Befehls kann in ungünstigen Fällen verzögert sein (z. B. bei einer langsamen DNS-Abfrage) und dadurch verhindern, dass die Ereignisschleife andere Ereignisse verarbeitet. Diese Verzögerung entfällt, wenn **::socket** in einem anderen Thread ausgewertet wird. Das Thread-Paket ist nicht Teil von Tcl, wird aber in "Batteries Included"-Distributionen mitgeliefert. Statt **::socket** verwendet das http-Paket **::http::socket**, das Verbindungen gemäß dem Wert von **-threadlevel** und der Verfügbarkeit des Pakets Thread herstellt.
 
 ## Mit TLS (HTTPS)
 
-Dieselbe **-threadlevel**-Konfiguration gilt für HTTP- und HTTPS-Verbindungen. HTTPS wird durch **http::register** aktiviert, typischerweise durch Angabe des Befehls **::tls::socket** des tls-Pakets für TLS-Kryptografie. **::tls::socket** verbindet zum Remote-Server mit dem Befehl, der durch den Wert der Variable **::tls::socketCmd** angegeben ist; dieser Standardwert ist "::socket". Findet http::geturl, dass **::tls::socketCmd** diesen Wert hat, ersetzt es ihn durch "::http::socket". Hat **::tls::socketCmd** einen anderen Wert als "::socket", d. h. hat das Skript oder die Tcl-Installation den Wert "::socket" durch einen anderen Befehlsnamen ersetzt, ändert http den Wert nicht. Das Skript oder die Installation, die **::tls::socketCmd** geändert hat, ist dafür verantwortlich, **::http::socket** in den eigenen Ersatzbefehl zu integrieren.
+Dieselbe **-threadlevel**-Konfiguration gilt für HTTP- und HTTPS-Verbindungen. HTTPS wird durch **http::register** aktiviert, typischerweise durch Angabe des Befehls **::tls::socket** des tls-Pakets für TLS-Kryptografie. **::tls::socket** verbindet zum Remote-Server mit dem Befehl, der durch den Wert der Variable **::tls::socketCmd** angegeben ist; ihr Standardwert ist "::socket". Findet http::geturl, dass **::tls::socketCmd** diesen Wert hat, ersetzt es ihn durch "::http::socket". Hat **::tls::socketCmd** einen anderen Wert als "::socket", d. h. hat das Skript oder die Tcl-Installation den Wert "::socket" durch einen anderen Befehlsnamen ersetzt, ändert http den Wert nicht. Das Skript oder die Installation, die **::tls::socketCmd** geändert hat, ist dafür verantwortlich, **::http::socket** in den eigenen Ersatzbefehl zu integrieren.
 
 ## Mit einem Unter-Interpreter
 
-Der Peer-Thread kann den Socket nur an den Haupt-Interpreter des Threads des Skripts übertragen. Daher funktioniert der thread-basierte **::http::socket** mit **-threadlevel**-Werten ungleich 0 nur, wenn das Skript im Haupt-Interpreter läuft. Ein Unter-Interpreter muss **-threadlevel 0** verwenden, sofern der Eltern-Interpreter keine alternativen Einrichtungen bereitgestellt hat. Der Haupt-Eltern-Interpreter kann einem Unter-Interpreter volle **-threadlevel**-Einrichtungen gewähren, z. B. durch Aliasierung von **::http::socket** im Kind auf einen Befehl, der **http::socket** im Eltern ausführt und den Socket dann an das Kind überträgt.
+Der Peer-Thread kann den Socket nur an den Haupt-Interpreter des Threads des Skripts übertragen. Daher funktioniert der thread-basierte **::http::socket** mit **-threadlevel**-Werten ungleich 0 nur, wenn das Skript im Haupt-Interpreter läuft. Ein Unter-Interpreter muss **-threadlevel 0** verwenden, sofern der Eltern-Interpreter keine alternativen Einrichtungen bereitgestellt hat. Der Haupt-Eltern-Interpreter kann einem Unter-Interpreter volle **-threadlevel**-Einrichtungen gewähren, z. B. durch Aliasierung von **::http::socket** im Kind auf einen Befehl, der **http::socket** im Eltern-Interpreter ausführt und den Socket dann an das Kind überträgt.
 
 # Beispiele
 

@@ -94,7 +94,7 @@ Das Format der Parsing-Fehlermeldungen, die bei Verstößen gegen die *docidx*-M
 
 1. Der Fehlercode ist eine Liste, wobei jedes Element einen einzelnen in der Eingabe gefundenen Fehler beschreibt. Die Liste enthält mindestens ein Element, möglicherweise auch mehrere.
 
-2. Jedes Fehlerelement ist eine Liste, die sechs Zeichenfolgen enthält, welche einen Fehler detailliert beschreiben. Die Zeichenfolgen lauten
+2. Jedes Fehlerelement ist eine Liste, die sechs Zeichenketten enthält, welche einen Fehler detailliert beschreiben. Die Zeichenketten lauten
 
     1. Der Pfad der Datei, in der der Fehler aufgetreten ist. Dieser kann leer sein.
 

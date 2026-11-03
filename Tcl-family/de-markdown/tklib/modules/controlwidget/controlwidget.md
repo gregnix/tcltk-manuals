@@ -58,11 +58,11 @@ Ein letzter Hinweis: Einige Teile wurden in keiner der Optionen berücksichtigt,
 
 Das Paket unterscheidet zwischen verschiedenen Arten von Widgets:
 
-- Vertikale Anzeigen: Der Wert der Variable wird in eine vertikale Position umgewandelt, ähnlich wie bei den farbigen Balken einer Stereoanlage.
+- Senkrechte Messgeräte: Der Wert der Variable wird in eine vertikale Position umgewandelt, ähnlich wie bei den farbigen Balken einer Stereoanlage.
 
 - Winkelanzeigen: Der Wert der Variable steht in Zusammenhang mit dem Winkel einer Nadel, ähnlich wie bei Drehzahlmessern.
 
-- Interaktive Widgets: Die meisten Widgets ändern den Wert der Variablen, wenn die Maustaste auf der Nadel liegt und die Nadel nach oben und unten oder nach links und rechts geschoben wird.
+- Interaktive Widgets: Bei den meisten Widgets können Sie den Wert der Variablen ändern, indem Sie die Maustaste auf der Nadel drücken und die Nadel nach oben und unten oder nach links und rechts geschoben wird.
 
 - Nicht-interaktive Widgets: Einige Widgets, wie beispielsweise das Thermometer-Widget, lassen eine solche Interaktion nicht zu.
 
@@ -75,10 +75,10 @@ Erscheinungsbild und Verhalten folgen einer oder mehreren Optionen, die sich bei
 
 # Befehle
 
-Derzeit enthält das Paket folgende Widgets vom Typ *vertikaler Messbalken*:
+Derzeit enthält das Paket folgende Widgets vom Typ *senkrechtes Messgerät*:
 
 **::controlwidget::meter** *w* *args*
-: Erzeugt eine vertikale Anzeige, die aus einer Achse und einem beweglichen Pfeil besteht.
+: Erzeugt ein senkrechtes Messgerät, das aus einer Achse und einem beweglichen Pfeil besteht.
 
     widget *w* (in)
     : Name des zu erstellenden Widgets.
@@ -87,7 +87,7 @@ Derzeit enthält das Paket folgende Widgets vom Typ *vertikaler Messbalken*:
     : Liste der Schlüssel-Wert-Paare, die das Erscheinungsbild und das Verhalten des Widgets steuern:
 
         **variable** name
-        : Name der Variable, die dem Zähler zugeordnet werden soll
+        : Name der Variable, die dem Messgerät zugeordnet werden soll
 
         **background** color
         : Hintergrundfarbe für das Widget
@@ -178,7 +178,7 @@ Derzeit enthält das Paket folgende Widgets vom Typ *vertikaler Messbalken*:
         : Farbe für Werte unterhalb der Warnschwelle
 
         **warningcolor** color
-        : Farbe für Werte, die über dem Wert für den Fehler liegen
+        : Farbe für Werte, die über der Warnschwelle liegen
 
         **warninglevel** double
         : Schwellenwert; legt fest, ab welchem Wert sich die Farbe ändert
@@ -218,7 +218,7 @@ Derzeit enthält das Paket folgende Widgets vom Typ *vertikaler Messbalken*:
 Diese Widgets verwenden alle eine vertikale Achse und verfügen über die folgenden gemeinsamen Optionen zur Konfiguration der Achse:
 
 **axisformat** string
-: Formatzeichenfolge zur Formatierung der Zahlen entlang der Achse
+: Formatzeichenkette zur Formatierung der Zahlen entlang der Achse
 
 **axisfont** string
 : Name der Schriftart, die für die Zahlen verwendet werden soll
@@ -254,10 +254,10 @@ Das Paket enthält das folgende Widget für Winkelanzeigen:
     : Liste der Schlüssel-Wert-Paare, die das Erscheinungsbild und das Verhalten des Widgets steuern:
 
         **variable** name
-        : Name der Variable, die dem Zähler zugeordnet werden soll
+        : Name der Variable, die dem Messgerät zugeordnet werden soll
 
         **value** value
-        : Wert für den Zähler (sofern er keiner Variable zugeordnet ist)
+        : Wert für das Messgerät (sofern es keiner Variable zugeordnet ist)
 
         **min** value
         : Der Mindestwert für die Werte in der Anzeige
@@ -319,10 +319,10 @@ Das Paket enthält das folgende Widget für Winkelanzeigen:
     : Liste der Schlüssel-Wert-Paare, die das Erscheinungsbild und das Verhalten des Widgets steuern. Zusätzlich zu den für das Voltmeter-Widget angegebenen:
 
         **variable** name
-        : Name der Variable, die dem Zähler zugeordnet werden soll
+        : Name der Variable, die dem Messgerät zugeordnet werden soll
 
         **value** value
-        : Wert für den Zähler (sofern er keiner Variable zugeordnet ist)
+        : Wert für das Messgerät (sofern es keiner Variable zugeordnet ist)
 
         **dangerlevel** value
         : Wert, ab dem die Werte in einer anderen Farbe angezeigt werden
@@ -334,7 +334,7 @@ Das Paket enthält das folgende Widget für Winkelanzeigen:
         : Breite des farbigen Streifens, der die „Gefahrenstufe“ anzeigt
 
         **pincolor** color
-        : Farbe für die Nadel und die Stecknadel
+        : Farbe für die Nadel und den Zapfen
 
 
 
@@ -351,13 +351,13 @@ Das Paket enthält das folgende Widget für Winkelanzeigen:
         : Name der Variablen, die dem Drehregler zugeordnet werden soll
 
         **value** value
-        : Wert für das Dial-Element (sofern es keiner Variable zugeordnet ist)
+        : Wert für den Drehregler (sofern er keiner Variable zugeordnet ist)
 
         **orient** string
         : Ob eine waagerechte Scheibe („horizontal“) oder eine senkrechte („vertical“) gebraucht wird.
 
         **step** value
-        : Erster Schritt zum Erhöhen oder Verringern des Wertes
+        : Anfängliche Schrittweite zum Erhöhen oder Verringern des Wertes
 
         **bindwheel** value
         : Schrittweite für den Wert über das Mausrad.

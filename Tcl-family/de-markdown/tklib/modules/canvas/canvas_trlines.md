@@ -15,7 +15,7 @@ Copyright:
 
 # Name
 
-canvas::track::lines – Verwaltung einer Gruppe von Gummiband-Leinen
+canvas::track::lines – Verwaltung einer Gruppe von Gummibandlinien
 
 # Übersicht
 
@@ -37,9 +37,9 @@ Dieses Paket enthält eine Klasse, die das Zeichnen einer Reihe von Halbkreuzlin
 # API für Klassen
 
 **::canvas::track** **lines** *objectName* *canvas*
-: Dieser Befehl („Klasse“) erstellt und konfiguriert eine neue Instanz des Trackers mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
+: Dieser Befehl, der Klassenbefehl, erstellt und konfiguriert eine neue Instanz des Trackers mit dem Namen *objectName*. Die Instanz wird mit dem angegebenen *canvas*-Widget verbunden.
 
-    Das Ergebnis des Befehls ist der vollqualifizierte Name der Instanz.
+    Das Ergebnis des Befehls ist der vollqualifizierte Name des Instanzbefehls.
 
 
 # Instanz-API
@@ -54,7 +54,7 @@ Instanzen dieser Klasse stellen die folgende API bereit:
     Das Ergebnis der Methode ist eine leere Zeichenkette.
 
 **objectName** **start** *current* *p*...
-: Diese Methode startet die Verfolgung einer Reihe von Linien, wobei jede Linie einem Punkt *p* zugeordnet ist, der den Zielendpunkt der jeweiligen Linie legt. Alle Linien haben *current* als gemeinsamen Endpunkt.
+: Diese Methode startet die Verfolgung einer Reihe von Linien, wobei jede Linie einem Punkt *p* zugeordnet ist, der den Zielendpunkt der jeweiligen Linie festlegt. Alle Linien haben *current* als gemeinsamen Endpunkt.
 
     Beachten Sie, dass eine zuvor verfolgte Gruppe von Linien entfernt wird.
 
@@ -70,7 +70,7 @@ Instanzen dieser Klasse stellen die folgende API bereit:
     Der Punkt wird durch eine Liste mit zwei Elementen festgelegt, die seine x- und y-Koordinaten in dieser Reihenfolge enthält.
 
 **objectName** **done**
-: Diese Methode beendet die Verfolgung der aktuellen Zeilengruppe und entfernt diese aus dem Canvas.
+: Diese Methode beendet die Verfolgung der aktuellen Gruppe von Linien und entfernt diese aus dem Canvas.
 
 
 # Fehler, Ideen, Rückmeldungen

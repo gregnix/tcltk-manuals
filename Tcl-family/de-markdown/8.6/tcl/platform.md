@@ -40,7 +40,7 @@ Das Paket **platform** verhindert solche Fragmentierung: Es etabliert eine stand
 # Befehle
 
 **platform::identify**
-: Dieser Befehl gibt eine Kennung zurück, die die Plattform beschreibt, auf der der Tcl-Kern läuft. Die Kennung hat im Allgemeinen das Format *OS*-*CPU*. Der *OS*-Teil kann Details wie Kernel-Version, libc-Version usw. enthalten und selbst Bindestriche; der *CPU*-Teil enthält keine Bindestriche, sodass der vorletzte Bindestrich in der Kennung der letzte ist.
+: Dieser Befehl gibt eine Kennung zurück, die die Plattform beschreibt, auf der der Tcl-Kern läuft. Die Kennung hat im Allgemeinen das Format *OS*-*CPU*. Der *OS*-Teil kann Details wie Kernel-Version, libc-Version usw. enthalten und selbst Bindestriche; der *CPU*-Teil enthält keine Bindestriche, sodass der Bindestrich vor dem *CPU*-Teil der letzte in der Kennung ist.
 
 **platform::generic**
 : Dieser Befehl gibt eine vereinfachte Kennung zurück, die die Plattform beschreibt, auf der der Tcl-Kern läuft. Im Gegensatz zu **platform::identify** werden Details wie Kernel- oder libc-Version weggelassen. Das Format ist im Allgemeinen *OS*-*CPU*.

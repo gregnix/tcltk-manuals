@@ -135,7 +135,7 @@ Dieses Paket stellt symbolische Namen für die ANSI-Attribut-Steuercodes bereit.
 : Standardhintergrund festlegen (transparent).
 
 **::term::ansi::code::attr::bold**
-: Weiter so!
+: Schaltet Fettdruck ein.
 
 **::term::ansi::code::attr::dim**
 : Schaltet die abgeschwächte Darstellung ein.
@@ -147,13 +147,13 @@ Dieses Paket stellt symbolische Namen für die ANSI-Attribut-Steuercodes bereit.
 : Unterstrich aktivieren.
 
 **::term::ansi::code::attr::blink**
-: Bitte blinken Sie weiter.
+: Schaltet Blinken ein.
 
 **::term::ansi::code::attr::revers**
-: Rückwärtsgang einlegen.
+: Schaltet die inverse Darstellung ein.
 
 **::term::ansi::code::attr::hidden**
-: Ausgeblendet.
+: Schaltet die verborgene Darstellung ein.
 
 **::term::ansi::code::attr::strike**
 : Durchstreichen aktiviert.
@@ -171,10 +171,10 @@ Dieses Paket stellt symbolische Namen für die ANSI-Attribut-Steuercodes bereit.
 : Blinken ausschalten.
 
 **::term::ansi::code::attr::norevers**
-: Bitte fahren Sie rückwärts weg.
+: Schaltet die inverse Darstellung aus.
 
 **::term::ansi::code::attr::nohidden**
-: Ausgeblendet.
+: Schaltet die verborgene Darstellung aus.
 
 **::term::ansi::code::attr::nostrike**
 : Durchstreichung deaktivieren.

@@ -20,7 +20,7 @@ Copyright:
 
 # Name
 
-ftp – Clientseitige TCL-Implementierung des FTP-Protokolls
+ftp – Clientseitige Tcl-Implementierung des FTP-Protokolls
 
 # Übersicht
 
@@ -55,9 +55,9 @@ Das Paket „ftp“ stellt die Client-Seite des FTP-Protokolls bereit, wie es in
 
 Mit dem Befehl **::ftp::Open** wird eine neue FTP-Sitzung gestartet. Um eine bestehende FTP-Sitzung zu beenden, verwenden Sie **::ftp::Close**. Alle anderen Befehle dürfen ausschließlich innerhalb einer geöffneten FTP-Sitzung verwendet werden. Werden sie außerhalb dieses Kontexts eingesetzt, führen sie zu Fehlern.  Das FTP-Paket enthält Befehle zur Bearbeitung von Dateien und Verzeichnissen auf Remote-Systemen. Um dieselben Vorgänge auf dem lokalen System durchzuführen, verwenden Sie in den Kern integrierte Befehle wie **cd** oder **file**.
 
-Die Ausgabe des Pakets wird durch zwei Statusvariablen gesteuert: **::ftp::VERBOSE** und **::ftp::DEBUG**. Wenn Sie **::ftp::VERBOSE** auf „1“ setzen, wird das Paket dazu gezwungen, alle Antworten eines Remote-Servers anzuzeigen. Der Standardwert ist „0“. Durch Setzen von **::ftp::DEBUG** auf „1“ wird das Debugging aktiviert und das Paket dazu veranlasst, alle Rückgabecodes, Zustände, Zustandsänderungen und „echte“ FTP-Befehle anzuzeigen. Der Standardwert ist „0“.
+Die Ausgabe des Pakets wird durch zwei Zustandsvariablen gesteuert: **::ftp::VERBOSE** und **::ftp::DEBUG**. Wenn Sie **::ftp::VERBOSE** auf „1“ setzen, wird das Paket dazu gezwungen, alle Antworten eines Remote-Servers anzuzeigen. Der Standardwert ist „0“. Durch Setzen von **::ftp::DEBUG** auf „1“ wird das Debugging aktiviert und das Paket dazu veranlasst, alle Rückgabecodes, Zustände, Zustandsänderungen und „echte“ FTP-Befehle anzuzeigen. Der Standardwert ist „0“.
 
-Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der FTP-Sitzung anzuzeigen. Die Einstellung von **::ftp::VERBOSE** legt fest, ob dieser Befehl aufgerufen wird oder nicht. Die aktuelle Implementierung des Befehls nutzt das Paket **log** von tcllib, um die Meldungen an ihren endgültigen Speicherort zu schreiben. Dies bedeutet, dass das Verhalten von **::ftp::DisplayMsg** angepasst werden kann, ohne dessen Implementierung zu ändern. Für grundlegendere Änderungen ist es natürlich weiterhin möglich, die Implementierung durch die Anwendung zu überschreiben. Beachten Sie, dass die Standardimplementierung die Optionen **-output** bis **::ftp::Open** für einen sitzungsspezifischen Protokollbefehl berücksichtigt.
+Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der FTP-Sitzung anzuzeigen. Die Einstellung von **::ftp::VERBOSE** legt fest, ob dieser Befehl aufgerufen wird oder nicht. Die aktuelle Implementierung des Befehls nutzt das Paket **log** von tcllib, um die Meldungen an ihren endgültigen Speicherort zu schreiben. Dies bedeutet, dass das Verhalten von **::ftp::DisplayMsg** angepasst werden kann, ohne dessen Implementierung zu ändern. Für grundlegendere Änderungen ist es natürlich weiterhin möglich, die Implementierung durch die Anwendung zu überschreiben. Beachten Sie, dass die Standardimplementierung die Option **-output** von **::ftp::Open** für einen sitzungsspezifischen Protokollbefehl berücksichtigt.
 
 *Achtung*: Die Standardimplementierung protokolliert Fehlermeldungen wie alle anderen Meldungen auch. Wenn dieses Verhalten dahingehend geändert wird, dass stattdessen ein Fehler ausgelöst wird, ändert sich auch das Verhalten aller Befehle in der API. In einem solchen Fall geben sie keinen Fehlercode, wie unten beschrieben, zurück, sondern leiten den ausgelösten Fehler an den Aufrufer weiter.
 
@@ -66,7 +66,7 @@ Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der
 **::ftp::Open** *server* *user* *passwd* ?*options*?
 : Dieser Befehl dient dazu, eine FTP-Sitzung zu starten, indem eine Steuerverbindung zum FTP-Server hergestellt wird. Für alle vom Aufrufer nicht angegebenen Optionen werden die Standardwerte verwendet.
 
-    Der Befehl nimmt als Parameter einen Hostnamen *server*, einen Benutzernamen *user* und ein Passwort *password* entgegen und gibt ein Sitzungs-Handle zurück, das eine ganze Zahl größer oder gleich „0“ ist, wenn die Verbindung erfolgreich hergestellt wurde. Andernfalls wird „-1“ zurückgegeben. Der Parameter *server* muss den Namen oder die Internetadresse (in Dezimalschreibweise mit Punkten) des FTP-Servers enthalten, mit dem eine Verbindung hergestellt werden soll. Die Parameter *user* und *passwd* müssen einen gültigen Benutzernamen und ein gültiges Passwort enthalten, um den Anmeldevorgang abzuschließen.
+    Der Befehl nimmt als Parameter einen Hostnamen *server*, einen Benutzernamen *user* und ein Passwort *password* entgegen und gibt ein Sitzungs-Handle zurück, das eine Ganzzahl größer oder gleich „0“ ist, wenn die Verbindung erfolgreich hergestellt wurde. Andernfalls wird „-1“ zurückgegeben. Der Parameter *server* muss den Namen oder die Internetadresse (in Dezimalschreibweise mit Punkten) des FTP-Servers enthalten, mit dem eine Verbindung hergestellt werden soll. Die Parameter *user* und *passwd* müssen einen gültigen Benutzernamen und ein gültiges Passwort enthalten, um den Anmeldevorgang abzuschließen.
 
     Die Optionen überschreiben einige Standardwerte oder legen spezielle Funktionen fest:
 
@@ -93,24 +93,24 @@ Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der
         Bei der Auswertung des *callback* werden dem Callback-Skript mehrere Argumente angehängt, nämlich das Schlüsselwort des abgeschlossenen Vorgangs sowie etwaige zusätzliche, für den Vorgang spezifische Argumente. Sollte während der Ausführung des Vorgangs ein Fehler aufgetreten sein, erhält die Rückruffunktion das Schlüsselwort **error**.
 
     **-output** *callback*
-    : Diese Option hat keinen Standardwert. Wird sie gesetzt, verwendet die Standardimplementierung von **::ftp::DisplayMsg** ihren Wert als Befehlspräfix, um alle internen Meldungen zu protokollieren. Die Rückruffunktion wird vor der Auswertung mit drei Argumenten angehängt: die ID der Sitzung, die Meldung selbst und der Verbindungsstatus, und zwar in dieser Reihenfolge.
+    : Diese Option hat keinen Standardwert. Wird sie gesetzt, verwendet die Standardimplementierung von **::ftp::DisplayMsg** ihren Wert als Befehlspräfix, um alle internen Meldungen zu protokollieren. An die Rückruffunktion werden vor der Auswertung drei Argumente angehängt: die ID der Sitzung, die Meldung selbst und der Verbindungsstatus, und zwar in dieser Reihenfolge.
 
 
 **::ftp::Close** *handle*
 : Dieser Befehl beendet die angegebene FTP-Sitzung. Wenn gerade keine Dateiübertragung stattfindet, schließt der Server die Steuerverbindung sofort. Findet jedoch gerade eine Dateiübertragung statt, bleibt die Steuerverbindung offen, bis die Übertragung abgeschlossen ist. Sobald dies der Fall ist, schreibt der Server die Ergebnisantwort für die Übertragung in die Verbindung und schließt diese anschließend.
 
 **::ftp::Cd** *handle* *directory*
-: Dieser Befehl ändert das aktuelle Arbeitsverzeichnis auf dem FTP-Server in ein festgelegtes Ziel-*directory*. Der Befehl gibt den Wert 1 zurück, wenn das aktuelle Arbeitsverzeichnis erfolgreich in das festgelegte Verzeichnis geändert wurde, oder den Wert 0, falls der Vorgang fehlschlägt. Das festgelegte Verzeichnis kann
+: Dieser Befehl ändert das aktuelle Arbeitsverzeichnis auf dem FTP-Server in ein festgelegtes Ziel-*directory*. Der Befehl gibt den Wert 1 zurück, wenn das aktuelle Arbeitsverzeichnis erfolgreich in das festgelegte Verzeichnis geändert wurde, oder den Wert 0, falls der Vorgang fehlschlägt. Das Zielverzeichnis kann Folgendes sein:
 
     - ein Unterverzeichnis des aktuellen Verzeichnisses,
 
     - Zwei Punkte, **..**  (als Kennzeichnung für das übergeordnete Verzeichnis des aktuellen Verzeichnisses)
 
-    - oder einen vollqualifizierten Pfad zu einem neuen Verzeichnis.
+    - oder ein vollqualifizierter Pfad zu einem neuen Arbeitsverzeichnis.
 
 
 **::ftp::Pwd** *handle*
-: Dieser Befehl gibt den vollständigen Pfad des aktuellen Arbeitsverzeichnisses auf dem FTP-Server zurück oder im Fehlerfall eine leere Zeichenfolge.
+: Dieser Befehl gibt den vollständigen Pfad des aktuellen Arbeitsverzeichnisses auf dem FTP-Server zurück oder im Fehlerfall eine leere Zeichenkette.
 
 **::ftp::Type** *handle* ?**ascii|binary|tenex**?
 : Dieser Befehl legt den FTP-Dateiübertragungstyp entweder auf **ascii**, **binary** oder **tenex** fest. Der Befehl gibt stets den aktuell eingestellten Typ zurück. Wird er ohne Angabe eines Typs aufgerufen, erfolgt keine Änderung.
@@ -120,12 +120,12 @@ Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der
 **::ftp::List** *handle* ?*pattern*?
 : Dieser Befehl gibt eine für Menschen lesbare Liste von Dateien zurück. Platzhalterausdrücke wie „*\*.tcl*“ sind zulässig.  Wenn *pattern* auf ein bestimmtes Verzeichnis verweist, gibt der Befehl den Inhalt dieses Verzeichnisses zurück. Ist *pattern* kein vollständig qualifizierter Pfadname, listet der Befehl Einträge relativ zum aktuellen Remote-Verzeichnis auf. Wird kein *pattern* festgelegt, gibt der Befehl den Inhalt des aktuellen Remote-Verzeichnisses zurück.
 
-    Die Auflistung enthält alle systemabhängigen Informationen, die der Server bereitstellt. Beispielsweise erzeugen die meisten UNIX-Systeme eine Ausgabe des Befehls **ls -l**. Der Befehl gibt die abgerufenen Informationen als TCL-Liste mit einem Element pro Eintrag zurück. Leere Zeilen und die „Total“-Zeilen von UNIX werden ignoriert und nicht in das von diesem Befehl ausgegebene Ergebnis aufgenommen.
+    Die Auflistung enthält alle systemabhängigen Informationen, die der Server bereitstellt. Beispielsweise erzeugen die meisten UNIX-Systeme eine Ausgabe des Befehls **ls -l**. Der Befehl gibt die abgerufenen Informationen als Tcl-Liste mit einem Element pro Eintrag zurück. Leere Zeilen und die „Total“-Zeilen von UNIX werden ignoriert und nicht in das von diesem Befehl ausgegebene Ergebnis aufgenommen.
 
     Wenn der Befehl fehlschlägt, wird eine leere Liste zurückgegeben.
 
 **::ftp::NList** *handle* ?*directory*?
-: Dieser Befehl verhält sich genauso wie der Befehl **::ftp::List**, mit dem Unterschied, dass er lediglich eine gekürzte Auflistung gibt. Das bedeutet, dass in einer sortierten Liste ausschließlich Dateinamen angezeigt werden.
+: Dieser Befehl verhält sich genauso wie der Befehl **::ftp::List**, mit dem Unterschied, dass er lediglich eine gekürzte Auflistung abruft. Das bedeutet, dass in einer sortierten Liste ausschließlich Dateinamen zurückgegeben werden.
 
 **::ftp::FileSize** *handle* *file*
 : Dieser Befehl gibt die Größe der angegebenen *file* auf dem FTP-Server zurück. Wenn der Befehl fehlschlägt, wird eine leere Zeichenkette zurückgegeben.
@@ -178,13 +178,13 @@ Der Befehl **::ftp::DisplayMsg** dient dazu, die verschiedenen Meldungen aus der
     Im Gegensatz zu den anderen Befehlen in diesem Paket wertet dieser Befehl die vom FTP-Server erhaltene Antwort nicht aus, sondern gibt sie unverändert an den Aufrufer zurück.
 
 **::ftp::DisplayMsg** *handle* *msg* ?*state*?
-: Dieser Befehl wird vom Paket selbst verwendet, um die verschiedenen Meldungen aus den FTP-Sitzungen anzuzeigen. Das Paket selbst implementiert diesen Befehl sehr einfach, indem es die Meldungen in „**stdout**“ schreibt (wenn „**::ftp::VERBOSE**“ gesetzt wurde, siehe unten) und bei Fehlermeldungen TCL-Fehler auslöst. Es liegt in der Verantwortung der Anwendung, diesen Befehl bei Bedarf zu überschreiben. Der Autor empfiehlt die Verwendung einer Variablen für verschiedene Zustände, denen unterschiedliche Farben zugewiesen sind. Das Paket **log** ist hierfür nützlich.
+: Dieser Befehl wird vom Paket selbst verwendet, um die verschiedenen Meldungen aus den FTP-Sitzungen anzuzeigen. Das Paket selbst implementiert diesen Befehl sehr einfach, indem es die Meldungen in „**stdout**“ schreibt (wenn „**::ftp::VERBOSE**“ gesetzt wurde, siehe unten) und bei Fehlermeldungen Tcl-Fehler auslöst. Es liegt in der Verantwortung der Anwendung, diesen Befehl bei Bedarf zu überschreiben. Der Autor empfiehlt die Verwendung einer Variablen für verschiedene Zustände, denen unterschiedliche Farben zugewiesen sind. Das Paket **log** ist hierfür nützlich.
 
 **::ftp::VERBOSE**
-: Eine Variable, die die Ausgabe des Pakets steuert. Wenn Sie **::ftp::VERBOSE** auf „1“ setzen, wird das Paket dazu veranlasst, alle Antworten eines Remote-Servers anzuzeigen. Der Standardwert ist „0“.
+: Eine Zustandsvariable, die die Ausgabe des Pakets steuert. Wenn Sie **::ftp::VERBOSE** auf „1“ setzen, wird das Paket dazu veranlasst, alle Antworten eines Remote-Servers anzuzeigen. Der Standardwert ist „0“.
 
 **::ftp::DEBUG**
-: Eine Statusvariable, die die Ausgabe von ftp steuert. Wenn Sie **::ftp::DEBUG** auf „1“ setzen, wird das Debugging aktiviert und das Paket wird dazu veranlasst, alle Rückgabecodes, Zustände, Zustandsänderungen und „echte“ FTP-Befehle anzuzeigen. Der Standardwert ist „0“.
+: Eine Zustandsvariable, die die Ausgabe von ftp steuert. Wenn Sie **::ftp::DEBUG** auf „1“ setzen, wird das Debugging aktiviert und das Paket wird dazu veranlasst, alle Rückgabecodes, Zustände, Zustandsänderungen und „echte“ FTP-Befehle anzuzeigen. Der Standardwert ist „0“.
 
 
 # Bugs

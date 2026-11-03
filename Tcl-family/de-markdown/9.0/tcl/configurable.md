@@ -93,7 +93,7 @@ Der Befehl **property** erwartet zuerst den Namen einer zu definierenden Propert
 
 Instanzen einer von **oo::configurable** erzeugten Klasse unterstützen ebenfalls **property**-Definitionen; die Semantik ist wie oben, die Properties werden jedoch nur auf der Instanz definiert.
 
-Die von **property** definierten Implementierungsmethoden sollten nicht privat sein, da sie sonst für die **configure**-Implementierung unzugänglich sind (absichtlich; der Property-Konfigurationsmechanismus ist vor allem für die Nutzung außerhalb einer Klasse gedacht, während eine Klasse Variablen direkt zugreifen kann). Die von den Standardimplementierungen der Properties genutzten Variablen *dürfen* privat sein, wenn so deklariert.
+Die von **property** definierten Implementierungsmethoden sollten nicht privat sein, da sie sonst für die **configure**-Implementierung unzugänglich sind (absichtlich; der Property-Konfigurationsmechanismus ist vor allem für die Nutzung außerhalb einer Klasse gedacht, während eine Klasse direkt auf Variablen zugreifen kann). Die von den Standardimplementierungen der Properties genutzten Variablen *dürfen* privat sein, wenn so deklariert.
 
 # Erweiterte Verwendung
 
@@ -103,10 +103,10 @@ Das System konfigurierbarer Klassen besteht aus mehreren Teilen. Die Metaklasse 
 : Klasse, die die **configure**-Methode bereitstellt (beschrieben unter [Configure-Methode]).
 
 **oo::configuresupport::configurableclass**
-: Namespace mit dem Definitionsdialekt, der die **property**-Deklaration für Klassen bereitstellt (über [oo::define][define] und Klassenkonstruktoren), wie unter [Property-Definitionen] beschrieben. Er [namespace export][namespace]iert den Befehl **property** für einfache Nutzung in benutzerdefinierten Definitionsdialekten.
+: Namespace mit dem Definitionsdialekt, der die **property**-Deklaration für Klassen bereitstellt (über [oo::define][define] und, unter normalen Umständen, Klassenkonstruktoren), wie unter [Property-Definitionen] beschrieben. Er exportiert den Befehl **property** mit [namespace export][namespace] für einfache Nutzung in benutzerdefinierten Definitionsdialekten.
 
 **oo::configuresupport::configurableobject**
-: Namespace mit dem Definitionsdialekt, der die **property**-Deklaration für Instanzobjekte bereitstellt (über [oo::objdefine][define] und die [self]-Deklaration in [oo::define][define]), wie unter [Property-Definitionen] beschrieben. Er [namespace export][namespace]iert den Befehl **property** für einfache Nutzung in benutzerdefinierten Definitionsdialekten.
+: Namespace mit dem Definitionsdialekt, der die **property**-Deklaration für Instanzobjekte bereitstellt (über [oo::objdefine][define] und die [self]-Deklaration in [oo::define][define]), wie unter [Property-Definitionen] beschrieben. Er exportiert den Befehl **property** mit [namespace export][namespace] für einfache Nutzung in benutzerdefinierten Definitionsdialekten.
 
 
 Der zugrunde liegende Property-Erkennungsmechanismus nutzt vier Slots (siehe [oo::define][define] für die Bedeutung), die konfigurierbare Properties auflisten. Diese Slots legen selbst keine Semantik fest außer eindeutigen Namen, fehlender wichtiger Reihenfolge, Vererbbarkeit und Auffindbarkeit auf Klassen und Instanzen.
@@ -175,7 +175,7 @@ puts [$pt2 configure]
              # -x 2 -y 3 -z 4
 ```
 
-Hat man eine konfigurierbare Klasse, können auch Instanz-Properties hinzugefügt werden. (Die hinterlegten Variablen aller Properties starten unset.) Unten wird ein eindeutiges Präfix eines Property-Namens beim Setzen verwendet; das ist für alle Properties möglich, vollständige Namen werden jedoch empfohlen, weil Unterklassen ein eindeutiges Präfix nicht mehr eindeutig machen.
+Haben Sie eine konfigurierbare Klasse, können Sie auch Instanz-Properties hinzufügen. (Die hinterlegten Variablen aller Properties sind anfangs nicht gesetzt.) Unten wird ein eindeutiges Präfix eines Property-Namens beim Setzen verwendet; das ist für alle Properties möglich, vollständige Namen werden jedoch empfohlen, weil Unterklassen einen vollständigen Namen nicht mehrdeutig machen können.
 
 ```
 oo::objdefine $pt {

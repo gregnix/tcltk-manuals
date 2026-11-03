@@ -51,14 +51,14 @@ Dieses Paket implementiert eine Reihe gängiger Befehle, die von den Validierung
 : Dieser Befehl löst einen **INVALID LENGTH**-Fehler mit dem angegebenen *text* aus, sofern vorhanden, ergänzt um den Standardtext „falsche Länge, erwartet wurden … Zeichen“. Das erste Argument ist eine Liste von Codes, die Details liefern. Diese werden zwischen den Codes **INVALID** und **LENGTH** eingefügt. Das Argument *lengths* ist eine Liste der erwarteten Eingabelängen, d. h. dies sind die gültigen Längen.
 
 **valtype::common::badprefix** *code* *prefixes* ?*text*?
-: Dieser Befehl löst einen **INVALID PREFIX**-Fehler mit dem angegebenen *text* aus, sofern vorhanden, ergänzt um den Standardtext „Falsches Präfix, erwartet wurde …“. Das erste Argument ist eine Liste von Codes, die weitere Details liefern. Diese werden zwischen den Codes **INVALID** und **PREFIX** eingefügt. Das Argument *prefixes* ist eine Liste der erwarteten Eingabeprefixe, d. h., dies sind die gültigen Präfixe.
+: Dieser Befehl löst einen **INVALID PREFIX**-Fehler mit dem angegebenen *text* aus, sofern vorhanden, ergänzt um den Standardtext „Falsches Präfix, erwartet wurde …“. Das erste Argument ist eine Liste von Codes, die weitere Details liefern. Diese werden zwischen den Codes **INVALID** und **PREFIX** eingefügt. Das Argument *prefixes* ist eine Liste der erwarteten Eingabepräfixe, d. h., dies sind die gültigen Präfixe.
 
 
 # Fehlercodes
 
-Die von den Befehlen dieses Pakets ausgelösten Fehler verwenden durchweg die Codes **-errorcode** und **INVALID**, um die von ihnen dargestellten Fehler bei der Validierung der Eingaben von pakketinternen Fehlern zu unterscheiden.
+Die von den Befehlen dieses Pakets ausgelösten Fehler verwenden durchweg den **-errorcode** **INVALID**, um die von ihnen dargestellten Fehler bei der Validierung der Eingaben von paketinternen Fehlern zu unterscheiden.
 
-Um detailliertere Informationen darüber zu liefern, warum die Validierung fehlgeschlagen ist, geht der Fehlercode **-errorCode** tatsächlich noch einen Schritt weiter. Zunächst enthält er einen Code, der den Typ selbst beschreibt. Dieser wird vom Aufrufer bereitgestellt. Darauf folgen Werte, die den Grund für den Fehler näher erläutern. Die vollständige Liste der **-errorCode**-Fehler, die von diesem Paket ausgelöst werden können, ist unten aufgeführt, wobei **<>** als Platzhalter sowohl für die vom Aufrufer bereitgestellten Typinformationen als auch für die Typbeschreibung dient.
+Um detailliertere Informationen darüber zu liefern, warum die Validierung fehlgeschlagen ist, geht der Fehlercode **-errorCode** tatsächlich noch einen Schritt weiter. Zunächst enthält er einen Code, der den Typ selbst beschreibt. Dieser wird vom Aufrufer bereitgestellt. Darauf folgen Werte, die den Grund für den Fehler näher erläutern. Die vollständige Liste der **-errorCode**-Fehler, die von diesem Paket ausgelöst werden können, ist unten aufgeführt, wobei **<>** als Platzhalter für die vom Aufrufer bereitgestellte Typinformation, also die Typbeschreibung, dient.
 
 INVALID **<>** CHARACTER
 : Der Eingabewert enthielt ein oder mehrere unzulässige Zeichen, d. h. Zeichen, die in der Eingabe nicht vorkommen dürfen, damit es sich um einen **<>** handelt.

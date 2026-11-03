@@ -78,7 +78,7 @@ In diesem Abschnitt wird die Reihe von Befehlen festgelegt, mit denen ein Plugin
 
 Das heißt, eine Indexformatierungs-Engine kann davon ausgehen, dass alle folgenden Befehle vorhanden sind, wenn einer ihrer eigenen Befehle (wie im Abschnitt [Plugin-Befehle] festgelegt) ausgeführt wird.
 
-Darüber hinaus kann davon ausgegangen werden, dass er uneingeschränkten Zugriff auf seinen eigenen sicheren Interpreter hat und somit weder die anderen Teile des Prozessors noch das Dateisystem beschädigen kann. Er kann den gesamten Prozess jedoch beenden oder hängen lassen, indem er ihn beendet oder eine Endlosschleife ausführt.
+Darüber hinaus kann sie auch davon ausgehen, dass sie uneingeschränkten Zugriff auf ihren eigenen sicheren Interpreter hat und somit weder die anderen Teile des Verarbeiters noch das Dateisystem beschädigen kann. Sie kann den gesamten Prozess jedoch beenden oder hängen lassen, indem sie sich beendet oder eine Endlosschleife ausführt.
 
 Um auf die importierten Befehle zurückzukommen: Alle Befehle mit dem Präfix *dt\_* bieten eingeschränkten Zugriff auf bestimmte Teile des Frontends, während die Befehle mit dem Präfix *ex\_* Zugriff auf den Zustand des Objekts **textutil::expander** gewähren, das die Hauptanalyse der Eingabe innerhalb des Frontends durchführt. Diese Befehle sollten nur unter ganz besonderen Umständen verwendet werden.
 
@@ -112,7 +112,7 @@ Um auf die importierten Befehle zurückzukommen: Alle Befehle mit dem Präfix *d
 : Entnimmt einen Kontext aus dem Kontextstapel und gibt die gesamte in diesem Kontext gesammelte Ausgabe zurück. Der Kontext muss den Namen *cname* tragen; andernfalls tritt ein Fehler auf.
 
 **ex\_cpush** *cname*
-: Fügt einen Kontext mit dem Namen *cname* auf den Kontextstapel ein. Der Kontext muss vor Abschluss der Erweiterung durch **cpop** vom Stapel entfernt werden, andernfalls tritt ein Fehler auf.
+: Fügt einen Kontext mit dem Namen *cname* auf den Kontextstapel ein. Der Kontext muss vor Abschluss der Expansion durch **cpop** vom Stapel entfernt werden, andernfalls tritt ein Fehler auf.
 
 **ex\_cset** *varname* *value*
 : Setzt die Variable *varname* im aktuellen Kontext auf den Wert *value*.

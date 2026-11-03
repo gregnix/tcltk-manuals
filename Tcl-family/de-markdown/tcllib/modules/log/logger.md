@@ -83,10 +83,10 @@ Um das Logger-Paket zu nutzen, gehen wir wie folgt vor:
 Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 
 **logger::init** *service*
-: Initialisiert den Dienst *service* für die Protokollierung. Die Dienstnamen sind eigentlich Tcl-Namespace-Namen und werden daher durch „::“ getrennt. Der Dienstname darf weder eine leere Zeichenkette noch ausschließlich aus „:“ bestehen. Wenn ein Logger-Dienst initialisiert wird, „erbt“ er Eigenschaften von seinen übergeordneten Diensten.  Wenn es beispielsweise einen Dienst *foo* gäbe und wir **logger::init** *foo::bar* (um unter *foo* einen *bar*-Dienst anzulegen), würde *bar* die aktuelle Konfiguration des *foo*-Dienstes übernehmen, obwohl es natürlich auch möglich wäre, *bar* anschließend separat zu konfigurieren. Wenn ein Logger-Dienst initialisiert wird und der übergeordnete Dienst noch nicht existiert, wird dieser ebenfalls erstellt. Der neue Logger-Dienst wird mit dem Standard-Loglevel initialisiert, der mit **logger::setlevel** festgelegt wurde.
+: Initialisiert den Dienst *service* für die Protokollierung. Die Dienstnamen sind eigentlich Tcl-Namespace-Namen und werden daher durch „::“ getrennt. Der Dienstname darf weder eine leere Zeichenkette sein noch ausschließlich aus „:“ bestehen. Wenn ein Logger-Dienst initialisiert wird, „erbt“ er Eigenschaften von seinen übergeordneten Diensten.  Wenn es beispielsweise einen Dienst *foo* gäbe und wir **logger::init** *foo::bar* aufriefen (um unter *foo* einen *bar*-Dienst anzulegen), würde *bar* die aktuelle Konfiguration des *foo*-Dienstes übernehmen, obwohl es natürlich auch möglich wäre, *bar* anschließend separat zu konfigurieren. Wenn ein Logger-Dienst initialisiert wird und der übergeordnete Dienst noch nicht existiert, wird dieser ebenfalls erstellt. Der neue Logger-Dienst wird mit dem Standard-Loglevel initialisiert, der mit **logger::setlevel** festgelegt wurde.
 
 **logger::import** ?**-all**? ?**-force**? ?**-prefix** *prefix*? ?**-namespace** *namespace*? *service*
-: Importiert die Befehle des Logger-Dienstes in den aktuellen Namespace. Ohne die Option **-all** werden nur die Befehle importiert, die den Protokollstufen entsprechen. Wird **-all** angegeben, werden alle Befehle im Format **${log}::cmd** importiert. Wenn der Import einen Befehl überschreiben würde, wird ein Fehler gegeben und kein Befehl importiert. Verwenden Sie die Option **-force**, um den Import zu erzwingen und vorhandene Befehle ohne Fehlermeldung zu überschreiben. Wenn die Option **-prefix** angegeben wird, werden die Befehle importiert, wobei ihren Namen das angegebene *Präfix* vorangestellt wird. Wenn die Option **-namespace** angegeben wird, werden die Befehle in den angegebenen Namespace importiert. Existiert der Namespace nicht, wird er angelegt. Wenn ein Namespace ohne vorangestelltes :: angegeben wird, wird er als untergeordneter Namespace des aktuellen Namespaces interpretiert.
+: Importiert die Befehle des Logger-Dienstes in den aktuellen Namespace. Ohne die Option **-all** werden nur die Befehle importiert, die den Protokollstufen entsprechen. Wird **-all** angegeben, werden alle Befehle im Format **${log}::cmd** importiert. Wenn der Import einen Befehl überschreiben würde, wird ein Fehler zurückgegeben und kein Befehl importiert. Verwenden Sie die Option **-force**, um den Import zu erzwingen und vorhandene Befehle ohne Fehlermeldung zu überschreiben. Wenn die Option **-prefix** angegeben wird, werden die Befehle importiert, wobei ihren Namen das angegebene Präfix *prefix* vorangestellt wird. Wenn die Option **-namespace** angegeben wird, werden die Befehle in den angegebenen Namespace importiert. Existiert der Namespace nicht, wird er angelegt. Wenn ein Namespace ohne vorangestelltes :: angegeben wird, wird er als untergeordneter Namespace des aktuellen Namespaces interpretiert.
 
 **logger::initNamespace** *ns* ?*level*?
 : Befehl zum Einrichten eines Namespace für die Protokollierung. Erstellt einen Logger-Dienst, der nach dem Namespace *ns* benannt ist (das Präfix :: wird entfernt), importiert alle Log-Befehle in den Namespace und legt die Standard-Protokollierungsstufe fest – entweder wie durch *level* angegeben, oder übernommen von einem Dienst im übergeordneten Namespace, oder als festgelegter Standardwert **warn**.
@@ -131,10 +131,10 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 : siehe unten ...
 
 **${log}::emergency** *message*
-: Dies sind die Befehle, die aufgerufen werden, um tatsächlich eine Meldung zu einem Ereignis zu protokollieren. **${log}** ist die Variable, die aus **logger::init** abgeleitet wird.
+: Dies sind die Befehle, die aufgerufen werden, um tatsächlich eine Meldung zu einem Ereignis zu protokollieren. **${log}** ist die Variable, die man von **logger::init** erhält.
 
 **${log}::setlevel** *level*
-: Aktiviert die Protokollierung in dem Dienst, auf den **${log}** verweist, sowie in dessen untergeordneten Elementen ab der angegebenen Ebene und deaktivieren Sie die Protokollierung unterhalb dieser Ebene.
+: Aktiviert die Protokollierung in dem Dienst, auf den **${log}** verweist, sowie in dessen untergeordneten Diensten ab der angegebenen Ebene und deaktiviert die Protokollierung unterhalb dieser Ebene.
 
 **${log}::enable** *level*
 : Aktiviert die Protokollierung in dem Dienst, auf den **${log}** verweist, sowie in dessen untergeordneten Diensten ab der angegebenen Ebene. Beachten Sie, dass dadurch die Protokollierung unterhalb dieser Ebene *nicht* deaktiviert wird; daher sollten Sie stattdessen wahrscheinlich **setlevel** verwenden.
@@ -146,7 +146,7 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 : siehe unten ...
 
 **${log}::lvlchangeproc**
-: Legt das Skript so fest, dass es aufgerufen wird, wenn die betreffende Instanz ihre Protokollstufe ändert. Wird es ohne Befehl aufgerufen, gibt es den aktuell registrierten Befehl zurück. Dem Befehl werden zwei Argumente angehängt: die alte und die neue Protokollstufe. Die Rückruffunktion wird aufgerufen, nachdem alle Änderungen vorgenommen wurden. Sind untergeordnete Logger betroffen, werden deren Rückruffunktionen vor den Rückruffunktionen ihrer übergeordneten Logger aufgerufen.
+: Legt das Skript fest, das aufgerufen wird, wenn die betreffende Instanz ihre Protokollstufe ändert. Wird es ohne Befehl aufgerufen, gibt es den aktuell registrierten Befehl zurück. Dem Befehl werden zwei Argumente angehängt: die alte und die neue Protokollstufe. Die Rückruffunktion wird aufgerufen, nachdem alle Änderungen vorgenommen wurden. Sind untergeordnete Logger betroffen, werden deren Rückruffunktionen vor den Rückruffunktionen ihrer übergeordneten Logger aufgerufen.
 
     ```
      	proc lvlcallback {old new} {
@@ -162,7 +162,7 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 : siehe unten ...
 
 **${log}::logproc** *level* *argname* *body*
-: Dieser Befehl gibt es in drei Varianten – die dritte, ältere Variante ist veraltet und wird möglicherweise aus zukünftigen Versionen des Logger-Pakets entfernt. Die aktuell verwendete Version erwartet ein Argument: einen Befehl, der wenn die Stufe aufgerufen wird, ausgeführt werden soll. Der Callback-Befehl erwartet ein Argument: den zu protokollierenden Text. Wird **logproc** nur mit einer gültigen Stufe aufgerufen, gibt es den Namen des Befehls zurück, der derzeit als Callback-Befehl registriert ist. **logproc** legt fest, welcher Befehl die eigentliche Protokollierung für eine bestimmte Stufe durchführt.  Das Logger-Paket enthält Standardbefehle für alle Protokollierungsstufen, doch mit **logproc** ist es möglich, diese durch benutzerdefinierten Code zu ersetzen.  Auf diese Weise könnten Sie Ihre Protokolle über das Netzwerk an eine Datenbank oder an einen anderen Ort senden.  Beispiel:
+: Diesen Befehl gibt es in drei Varianten – die dritte, ältere Variante ist veraltet und wird möglicherweise aus zukünftigen Versionen des Logger-Pakets entfernt. Die aktuell verwendete Version erwartet ein Argument: einen Befehl, der, wenn die Stufe aufgerufen wird, ausgeführt werden soll. Der Callback-Befehl erwartet ein Argument: den zu protokollierenden Text. Wird **logproc** nur mit einer gültigen Stufe aufgerufen, gibt es den Namen des Befehls zurück, der derzeit als Callback-Befehl registriert ist. **logproc** legt fest, welcher Befehl die eigentliche Protokollierung für eine bestimmte Stufe durchführt.  Das Logger-Paket enthält Standardbefehle für alle Protokollierungsstufen, doch mit **logproc** ist es möglich, diese durch benutzerdefinierten Code zu ersetzen.  Auf diese Weise könnten Sie Ihre Protokolle über das Netzwerk, an eine Datenbank oder an einen anderen Ort senden.  Beispiel:
 
     ```
         proc logtoserver {txt} {
@@ -187,7 +187,7 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 
     - **status** – Der Tcl-Rückgabecode (z. B. **ok**, **continue** usw.) (nur bei **leave**).
 
-    - **result** – Der von der Prozedur zurückgegebene Wert (nur bei **leave**-Spuren).
+    - **result** – Der von der Prozedur zurückgegebene Wert (nur bei **leave**-Traces).
 
 
 **${log}::services**
@@ -203,14 +203,14 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 : siehe unten ...
 
 **${log}::delproc**
-: Legt das Skript so fest, dass es aufgerufen wird, wenn die betreffende Protokollinstanz gelöscht wird. Wird es ohne Befehl aufgerufen, gibt es den aktuell registrierten Befehl zurück. Beispiel:
+: Legt das Skript fest, das aufgerufen wird, wenn die betreffende Protokollinstanz gelöscht wird. Wird es ohne Befehl aufgerufen, gibt es den aktuell registrierten Befehl zurück. Beispiel:
 
     ```
         ${log}::delproc [list closesock $logsock]
     ```
 
 **${log}::delete**
-: Dieser Befehl löscht einen bestimmten Protokollierungsdienst sowie dessen untergeordnete Elemente. Sie müssen diesen Befehl aufrufen, um die von einem Dienst genutzten Ressourcen zu bereinigen.
+: Dieser Befehl löscht einen bestimmten Protokollierungsdienst sowie dessen untergeordnete Dienste. Sie müssen diesen Befehl aufrufen, um die von einem Dienst genutzten Ressourcen zu bereinigen.
 
 **${log}::trace** *command*
 : Dieser Befehl steuert die Protokollierung von Ein- und Ausstiegsverfolgungen für bestimmte Prozeduren. Er dient dazu, die Verfolgung zu aktivieren und zu deaktivieren, den Verfolgungsstatus abzufragen und festzulegen, welche Prozeduren verfolgt werden sollen. Wenn die Verfolgung deaktiviert wird, werden die Verfolgungshandler deregistriert. Daher hat die Deaktivierung der Verfolgung keine Auswirkungen auf die Leistung einer Bibliothek, genau wie bei anderen Befehlen zur Protokollierungsstufe.
@@ -261,7 +261,7 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 : siehe unten ...
 
 **${log}::trace** **add** ?-ns? *nsName* ?...?
-: Dieser Befehl registriert eine oder mehrere Prozeduren für die Protokollierung von Ein- und Ausstiegsverläufen. Prozeduren können über eine Liste von Prozedurnamen oder Namespaces angegeben werden (in diesem Fall betrifft der Vorgang alle Prozeduren innerhalb des Namespaces).  Standardmäßig wird jeder Name zunächst als Name einer Prozedur oder als Suchmuster im Glob-Stil interpretiert; wird er nicht gefunden, wird er als Name eines Namespaces interpretiert. Mit der Option *-ns* kann die Interpretation aller angegebenen Argumente als Namespace-Namen erzwungen werden. Prozeduren müssen definiert sein, bevor sie mit dem Befehl **trace** **add** zur Protokollierung registriert werden können. Alle Prozedur- oder Namespace-Namen bzw. -Muster, die mit keiner vorhandenen Prozedur übereinstimmen, werden stillschweigend ignoriert.
+: Dieser Befehl registriert eine oder mehrere Prozeduren für die Protokollierung von Ein- und Ausstiegsverfolgungen. Prozeduren können über eine Liste von Prozedurnamen oder Namespaces angegeben werden (in diesem Fall betrifft der Vorgang alle Prozeduren innerhalb des Namespaces).  Standardmäßig wird jeder Name zunächst als Name einer Prozedur oder als Suchmuster im Glob-Stil interpretiert; wird er nicht gefunden, wird er als Name eines Namespaces interpretiert. Mit der Option *-ns* kann die Interpretation aller angegebenen Argumente als Namespace-Namen erzwungen werden. Prozeduren müssen definiert sein, bevor sie mit dem Befehl **trace** **add** zur Protokollierung registriert werden können. Alle Prozedur- oder Namespace-Namen bzw. -Muster, die mit keiner vorhandenen Prozedur übereinstimmen, werden stillschweigend ignoriert.
 
 **${log}::trace** **remove** *procName* ?...?
 : siehe unten ...
@@ -272,7 +272,7 @@ Im obigen Code geschieht nach dem Laden des Pakets Folgendes:
 
 # Umsetzung
 
-Das Logger-Paket ist so implementiert, dass (unter Tcl 8.4 und neuer) deaktivierte Protokollierungsprozeduren optimiert werden. Sie werden auf eine Prozedur verweist, die keinen Körper hat und im Bytecode zu einem No-Op kompiliert wird. Dadurch sollte der Leistungseinbruch minimal sein.  Wenn Sie wirklich alle Register ziehen wollen, können Sie das Token ${log} in Ihrem Code durch den tatsächlichen Namespace und Befehl ersetzen (${log}::warn wird zu ::logger::tree::myservice::warn), sodass keine Suche nach Variablen durchgeführt wird. Dadurch liegt die Leistung deaktivierter Logger-Befehle fast auf dem Niveau einer vollständigen Deaktivierung der Protokollierung.
+Das Logger-Paket ist so implementiert, dass (unter Tcl 8.4 und neuer) deaktivierte Protokollierungsprozeduren optimiert werden. Sie werden als Alias auf eine Prozedur gesetzt, die keinen Rumpf hat und im Bytecode zu einem No-Op kompiliert wird. Dadurch sollte der Leistungseinbruch minimal sein.  Wenn Sie wirklich alle Register ziehen wollen, können Sie das Token ${log} in Ihrem Code durch den tatsächlichen Namespace und Befehl ersetzen (${log}::warn wird zu ::logger::tree::myservice::warn), sodass keine Suche nach Variablen durchgeführt wird. Dadurch liegt die Leistung deaktivierter Logger-Befehle fast auf dem Niveau einer vollständigen Deaktivierung der Protokollierung.
 
 Die „Objektorientierung“ erfolgt über eine Hierarchie von Namespaces. Die Verwendung eines echten objektorientierten Systems wäre wahrscheinlich die bessere Vorgehensweise oder würde zumindest eine übersichtlichere Implementierung ermöglichen.
 

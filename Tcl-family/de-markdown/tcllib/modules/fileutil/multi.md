@@ -30,7 +30,7 @@ fileutil::multi – Bearbeitung mehrerer Dateien, Scatter/Gather, Standardobjekt
 
 # Beschreibung
 
-Dieses Paket bietet einen einzigen Befehl, um Aktionen an mehreren Dateien durchzuführen, die anhand von Glob-Mustern ausgewählt wurden. Es handelt sich um eine dünne Schicht über dem Paket **fileutil::multi::op**, das Objekte für denselben Zweck bereitstellt. Dieses Paket erstellt lediglich ein einziges solches Objekt und leitet alle Dateibefhle an dieses weiter.
+Dieses Paket bietet einen einzigen Befehl, um Aktionen an mehreren Dateien durchzuführen, die anhand von Glob-Mustern ausgewählt wurden. Es handelt sich um eine dünne Schicht über dem Paket **fileutil::multi::op**, das Objekte für denselben Zweck bereitstellt. Dieses Paket erstellt lediglich ein einziges solches Objekt und leitet alle Dateibefehle an dieses weiter.
 
 Im Mittelpunkt steht eine domänenspezifische Sprache, die die einfache Spezifizierung von Operationen zum Kopieren und/oder Verschieben und/oder Löschen mehrerer Dateien ermöglicht. Alternative Namen wären „Scatter/Gather-Prozessor“ oder vielleicht sogar „Assembler“. Die detaillierte Spezifikation dieser Sprache sowie Beispiele finden Sie in der Dokumentation zum Paket **fileutil::multi::op**.
 

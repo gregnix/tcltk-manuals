@@ -32,7 +32,7 @@ incr - Erhöht den Wert einer Variable
 
 Erhöht den in der Variable *varName* gespeicherten Wert. Der Variablenwert muss eine Ganzzahl sein. Ist *increment* angegeben, wird dessen Wert (ebenfalls eine Ganzzahl) zum Wert von *varName* addiert; andernfalls wird 1 addiert. Der neue Wert wird als Dezimalzeichenkette in *varName* gespeichert und auch als Ergebnis zurückgegeben.
 
-Ab Tcl 8.5 darf *varName* unset sein; dann wird sie auf den Wert *increment* oder den Standard-Inkrementwert **1** gesetzt.
+Ab Tcl 8.5 darf *varName* nicht gesetzt sein; dann wird sie auf den Wert *increment* oder den Standard-Inkrementwert **1** gesetzt.
 
 # Beispiele
 

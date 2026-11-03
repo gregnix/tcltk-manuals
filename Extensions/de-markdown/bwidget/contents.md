@@ -23,7 +23,7 @@ Manager-Widgets
 | [PanedWindow](PanedWindow.md) | Widget zur gekachelten Anordnung (stattdessen Tk 8.4+ panedwindow erwägen) |
 | [ButtonBox](ButtonBox.md) | Menge von Schaltflächen mit waagerechter oder senkrechter Anordnung |
 | [PagesManager](PagesManager.md) | Widget zur Seitenverwaltung |
-| [NoteBook](NoteBook.md) | Widget zur Notizbuchverwaltung |
+| [NoteBook](NoteBook.md) | Widget zur Verwaltung eines Notebooks (Register) |
 | [Dialog](Dialog.md) | Dialogabstraktion mit eigenen Schaltflächen |
 | [StatusBar](StatusBar.md) | Statusleisten-Widget mit Steuerung der Größenänderung |
 

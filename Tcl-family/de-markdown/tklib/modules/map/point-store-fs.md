@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-map::point::store::fs – Dateisystembasierte Speicherung von Geo-/Punkt-Definitionen
+map::point::store::fs – Dateisystembasierte Speicherung von geo/point-Definitionen
 
 # Übersicht
 

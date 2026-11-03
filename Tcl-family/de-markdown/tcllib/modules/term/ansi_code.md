@@ -34,10 +34,10 @@ term::ansi::code – Hilfsmittel für Steuersequenzen
 Dieses Paket enthält Befehle, mit denen sich Steuersequenzen auf einfache Weise definieren lassen.
 
 **::term::ansi::code::esc** *str*
-: Dieser Befehl gibt die Argumentzeichenfolge zurück, der das ANSI-Escape-Zeichen „\\033“ vorangestellt ist.
+: Dieser Befehl gibt die Argumentzeichenkette zurück, der das ANSI-Escape-Zeichen „\\033“ vorangestellt ist.
 
 **::term::ansi::code::escb** *str*
-: Dieser Befehl gibt die Argumentzeichenfolge zurück, der eine gängige ANSI-Escape-Sequenz, nämlich „\\033\[“, vorangestellt ist.
+: Dieser Befehl gibt die Argumentzeichenkette zurück, der eine gängige ANSI-Escape-Sequenz, nämlich „\\033\[“, vorangestellt ist.
 
 **::term::ansi::code::define** *name* *escape* *code*
 : Dieser Befehl definiert eine Prozedur *name*, die die Steuersequenz *code* zurückgibt, beginnend mit der angegebenen Escape-Sequenz, entweder **esc** oder **escb**.

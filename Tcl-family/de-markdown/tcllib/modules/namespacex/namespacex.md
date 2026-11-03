@@ -21,7 +21,7 @@ Copyright:
 
 # Name
 
-namespacex – Befehle für Namespace-Dienstprogramme
+namespacex – Hilfsbefehle für Namespaces
 
 # Übersicht
 
@@ -45,7 +45,7 @@ namespacex – Befehle für Namespace-Dienstprogramme
 
 # Beschreibung
 
-Dieses Paket enthält eine Reihe von Hilfsprogrammen für die Arbeit mit Namespaces. Die Befehle lassen sich in vier Kategorien einteilen:
+Dieses Paket enthält eine Reihe von Hilfsbefehlen für die Arbeit mit Namespaces. Die Befehle lassen sich in vier Kategorien einteilen:
 
 1. Hook-Befehle stellen eine Befehlskette bereit und bearbeiten diese, wodurch der einzelne reguläre **namespace unknown**-Handler ersetzt wird.
 
@@ -59,25 +59,25 @@ Dieses Paket enthält eine Reihe von Hilfsprogrammen für die Arbeit mit Namespa
 # Befehle
 
 **::namespacex hook add** ?*namespace*? *cmdprefix*
-: Fügt das *cmdprefix* zur Kette der Handler für unbekannte Befehle hinzu, die aufgerufen werden, wenn der *namespace* andernfalls seinen eigenen Handler für unbekannte Befehle aufrufen würde. Wenn *namespace* nicht angegeben ist, wird *cmdprefix* zur Kette der Handler für den Namensraum des Aufrufers hinzugefügt.
+: Fügt das *cmdprefix* zur Kette der Handler für unbekannte Befehle hinzu, die aufgerufen werden, wenn der *namespace* andernfalls seinen eigenen Handler für unbekannte Befehle aufrufen würde. Wenn *namespace* nicht angegeben ist, wird *cmdprefix* zur Kette der Handler für den Namespace des Aufrufers hinzugefügt.
 
     Die Kette der *cmdprefix*-Befehle wird in umgekehrter Reihenfolge ihrer Hinzufügung ausgeführt, d. h., der zuletzt hinzugefügte *cmdprefix* wird zuerst ausgeführt. Bei der Ausführung werden *cmdprefix* zusätzliche Argumente angehängt, wie dies bei jedem Handler für unbekannte Befehle eines Namespace der Fall wäre.
 
 **::namespacex hook proc** ?*namespace*? *arguments* *body*
-: Fügt der Kette der Handler für den Namespace *namespace* eine anonyme Prozedur hinzu.
+: Fügt der Kette der Handler für unbekannte Befehle des Namespace *namespace* eine anonyme Prozedur hinzu.
 
     Wenn *namespace* nicht festgelegt wird, wird der Handler der Kette der Handler für den Namespace des Aufrufers hinzugefügt.
 
     Die *arguments* und *body* werden wie beim Kernbefehl **proc** festgelegt.
 
 **::namespacex hook on** ?*namespace*? *guardcmdprefix* *actioncmdprefix*
-: Fügt der Kette der Handler für den Namespace *namespace* eine geschützte Aktion hinzu.
+: Fügt der Kette der Handler für unbekannte Befehle des Namespace *namespace* eine geschützte Aktion hinzu.
 
     Wenn *namespace* nicht festgelegt wird, wird der Handler der Kette der Handler für den Namespace des Aufrufers hinzugefügt.
 
-    Zunächst wird *guardcmdprefix* ausgeführt. Wenn dieser einen Wert gibt, der als „falsch“ interpretiert werden kann, wird der nächste Handler für unbekannte Namenräume in der Kette ausgeführt. Andernfalls wird *actioncmdprefix* ausgeführt, und der Wert, der vom Handler zurückgegeben wird, entspricht dem Wert, der von *actioncmdprefix* zurückgegeben wird.
+    Zunächst wird *guardcmdprefix* ausgeführt. Wenn dieser einen Wert zurückgibt, der als „falsch“ interpretiert werden kann, wird der nächste Handler für unbekannte Befehle in der Kette ausgeführt. Andernfalls wird *actioncmdprefix* ausgeführt, und der Wert, der vom Handler zurückgegeben wird, entspricht dem Wert, der von *actioncmdprefix* zurückgegeben wird.
 
-    Bei der Ausführung werden sowohl *guardcmdprefix* als auch *actioncmdprefix* mit denselben zusätzlichen Argumenten versehen wie bei jedem Handler für unbekannte Namespaces.
+    Bei der Ausführung werden sowohl *guardcmdprefix* als auch *actioncmdprefix* mit denselben zusätzlichen Argumenten versehen wie bei jedem Handler für unbekannte Befehle eines Namespace.
 
 **::namespacex hook next** *arg*...
 : Dieser Befehl steht Namespace-Hooks zur Verfügung, um den nächsten Hook in der Kette der Handler für den Namespace auszuführen.
@@ -96,7 +96,7 @@ Dieses Paket enthält eine Reihe von Hilfsprogrammen für die Arbeit mit Namespa
 : Gibt eine Liste zurück, die die Namen aller Variablen im angegebenen *namespace* und dessen untergeordneten Namespaces enthält. Die Namen sind alle relativ zum *namespace* angegeben und *nicht* vollständig qualifiziert.
 
 **::namespacex normalize** *namespace*
-: Gibt den absoluten Namen von *namespace* zurück, der relativ zum Namensraum des Aufrufers aufgelöst wird, wobei alle nicht benötigten Doppelpunkte entfernt werden.
+: Gibt den absoluten Namen von *namespace* zurück, der relativ zum Namespace des Aufrufers aufgelöst wird, wobei alle nicht benötigten Doppelpunkte entfernt werden.
 
 **::namespacex info vars** *namespace* ?*pattern*?
 : Gibt eine Liste zurück, die die Namen aller Variablen im angegebenen *namespace* enthält. Wenn das Argument *pattern* festgelegt wird, werden nur Variablen zurückgegeben, die mit *pattern* übereinstimmen. Die Übereinstimmung wird nach denselben Regeln ermittelt wie bei **string match**.

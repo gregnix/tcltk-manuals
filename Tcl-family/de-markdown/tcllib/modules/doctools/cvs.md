@@ -53,12 +53,12 @@ Die Befehle **::doctools::cvs::scanLog** und **::doctools::cvs::toChangeLog** st
         Jedes Element der Liste ist eine Liste, die zwei Elemente enthält: das Datum des Eintrags und dessen Autor, in dieser Reihenfolge. Das Datum ist im Format **year**/**month**/**day** formatiert.
 
     varname *cvar* (in)
-    : Muss sich auf eine Array-Variable beziehen. Die Schlüssel sind Zeichenfolgen, die das Datum und den Autor der Protokolleinträge in dieser Reihenfolge enthalten und durch ein Komma getrennt sind.
+    : Muss sich auf eine Array-Variable beziehen. Die Schlüssel sind Zeichenketten, die das Datum und den Autor der Protokolleinträge in dieser Reihenfolge enthalten und durch ein Komma getrennt sind.
 
         Die Werte sind Listen mit Kommentaren zu dem jeweiligen Eintrag.
 
     varname *fvar* (in)
-    : Muss sich auf eine Array-Variable beziehen. Die Schlüssel sind Zeichenfolgen, die in dieser Reihenfolge das Datum, den Autor eines Protokolleintrags und einen Kommentar zu diesem Eintrag enthalten und durch Kommas getrennt sind.
+    : Muss sich auf eine Array-Variable beziehen. Die Schlüssel sind Zeichenketten, die in dieser Reihenfolge das Datum, den Autor eines Protokolleintrags und einen Kommentar zu diesem Eintrag enthalten und durch Kommas getrennt sind.
 
         Die Werte sind Listen der Dateien, die der Eintrag berührt.
 

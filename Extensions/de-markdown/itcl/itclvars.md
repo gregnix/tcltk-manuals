@@ -14,7 +14,7 @@ Copyright:
 
 # Name
 
-itclvars - Variablen, die \[incr\\ Tcl\] verwendet
+itclvars - Variablen, die \[incr Tcl\] verwendet
 
 # Beschreibung
 

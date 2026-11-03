@@ -24,7 +24,7 @@ Copyright:
 
 # Name
 
-coroutine::auto – Automatische Erkennung von Ereignissen und IO-Coroutinen
+coroutine::auto – Automatische Coroutine-Tauglichkeit für Ereignisse und E/A
 
 # Übersicht
 

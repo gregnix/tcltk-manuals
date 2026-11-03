@@ -50,9 +50,9 @@ Dieses Paket enthält eine Implementierung des Passwortverschlüsselungsalgorith
 
 # Salt
 
-Das an eines der hier implementierten Verschlüsselungsverfahren übergebene Salt wird daraufhin überprüft, ob es mit der Magic-String des jeweiligen Verschlüsselungsverfahrens beginnt (entweder „$1$“ für MD5-crypt oder „$apr1$“ für Apache crypt). Wenn dies der Fall ist, wird dieser Teil entfernt. Die verbleibenden Zeichen bis zum nächsten $ und bis zu einer maximalen Länge von 8 Zeichen werden dann als Salt verwendet. Der Salt-Text sollte wahrscheinlich auf die Menge der alphanumerischen ASCII-Zeichen sowie „./“ (Punkt und Schrägstrich) beschränkt werden – dies dient der Gewährleistung einer maximalen Kompatibilität mit dem Unix-Passwortdateiformat.
+Das an eines der hier implementierten Verschlüsselungsverfahren übergebene Salt wird daraufhin überprüft, ob es mit der Magic-Zeichenkette des jeweiligen Verschlüsselungsverfahrens beginnt (entweder „$1$“ für MD5-crypt oder „$apr1$“ für Apache crypt). Wenn dies der Fall ist, wird dieser Teil entfernt. Die verbleibenden Zeichen bis zum nächsten $ und bis zu einer maximalen Länge von 8 Zeichen werden dann als Salt verwendet. Der Salt-Text sollte wahrscheinlich auf die Menge der alphanumerischen ASCII-Zeichen sowie „./“ (Punkt und Schrägstrich) beschränkt werden – dies dient der Gewährleistung einer maximalen Kompatibilität mit dem Unix-Passwortdateiformat.
 
-Wenn ein Passwort generiert wird, anstatt es aus einer Passwortdatei abzurufen, kann der Befehl **salt** verwendet werden, um ein zufälliges Salt zu generieren.
+Wenn ein Passwort generiert wird, anstatt es anhand einer Passwortdatei zu prüfen, kann der Befehl **salt** verwendet werden, um ein zufälliges Salt zu generieren.
 
 # Beispiele
 

@@ -48,7 +48,7 @@ Die Unterschiede werden im Folgenden in den Abschnitten [Optionen] und [Ereignis
 Dieses Paket unterstützt alle Optionen des Pakets **nameserv** sowie eine weitere Option. Mit dieser zusätzlichen Option kann der Benutzer das Zeitintervall festlegen, in dem versucht wird, eine unterbrochene Verbindung wiederherzustellen.
 
 **-delay** *milliseconds*
-: Der Wert dieser Option ist eine ganze Zahl größer als 0, die das Intervall in Millisekunden festlegt, das zwischen den Versuchen zur Wiederherstellung einer unterbrochenen Verbindung gewartet werden soll. Der Standardwert lautet **1000**, d. h. eine Sekunde.
+: Der Wert dieser Option ist eine Ganzzahl größer als 0, die das Intervall in Millisekunden festlegt, das zwischen den Versuchen zur Wiederherstellung einer unterbrochenen Verbindung gewartet werden soll. Der Standardwert lautet **1000**, d. h. eine Sekunde.
 
 
 # Ereignisse
@@ -68,11 +68,11 @@ Dieses Paket generiert alle Ereignisse des Pakets **nameserv** sowie zwei weiter
 
 # Design
 
-Das Paket wird auf Basis des regulären Nameservice-Clients, d. h. des Pakets **nameserv**, implementiert. Es erkennt den Verbindungsverlust, indem es auf *lost-connection*-Ereignisse am Tag *nameserv* überwacht.
+Das Paket wird auf Basis des regulären Nameservice-Clients, d. h. des Pakets **nameserv**, implementiert. Es erkennt den Verbindungsverlust, indem es auf *lost-connection*-Ereignisse am Tag *nameserv* lauscht.
 
-Es reagiert auf solche Ereignisse, indem es einen periodischen Timer startet und versucht, die Verbindung zum Server wiederherzustellen, sobald dieser Timer ausgelöst wird. Bei Erfolg wird der Timer abgebrochen, ein *re-connection*-Ereignis generiert, und das Paket gibt die gespeicherten gebundenen Namen und die kontinuierlichen Suchvorgänge erneut ein.
+Es reagiert auf solche Ereignisse, indem es einen periodischen Timer startet und versucht, die Verbindung zum Server wiederherzustellen, sobald dieser Timer ausgelöst wird. Bei Erfolg wird der Timer abgebrochen, ein *re-connection*-Ereignis generiert, und das Paket trägt die gespeicherten gebundenen Namen und die laufenden Suchvorgänge erneut beim Server ein.
 
-Ein weiterer Abbruch der Verbindung – sei es während oder nach der erneuten Eingabe der gespeicherten Informationen – führt lediglich dazu, dass der Timer neu gestartet wird und weitere Verbindungsversuche unternommen werden.
+Ein weiterer Abbruch der Verbindung – sei es während oder nach dem erneuten Eintragen der gespeicherten Informationen – führt lediglich dazu, dass der Timer neu gestartet wird und weitere Verbindungsversuche unternommen werden.
 
 # Fehler, Ideen, Rückmeldungen
 

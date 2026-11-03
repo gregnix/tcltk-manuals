@@ -19,7 +19,7 @@ Copyright:
 
 # Name
 
-labelframe - Erstellt und manipuliert 'labelframe'-beschriftete Container-Widgets
+labelframe - Erstellt und manipuliert beschriftete Container-Widgets vom Typ 'labelframe'
 
 # Übersicht
 
@@ -42,7 +42,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt eine Klasse für das Fenster fest. Diese Klasse wird verwendet, wenn die Optionsdatenbank für die anderen Optionen des Fensters abgefragt wird, und sie wird später auch für andere Zwecke wie Bindungen verwendet. Die Option **-class** kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-colormap** (**colormap**/**Colormap**)
-: Legt eine Farbkarte fest, die für das Fenster verwendet werden soll. Der Wert kann entweder **new** sein, in welchem Fall eine neue Farbkarte für das Fenster und seine Kinder erstellt wird, oder der Name eines anderen Fensters (das auf dem gleichen Bildschirm und mit der gleichen visuellen Darstellung wie *pathName* sein muss), in welchem Fall das neue Fenster die Farbkarte vom angegebenen Fenster verwendet. Wenn die Option **-colormap** nicht angegeben ist, verwendet das neue Fenster die gleiche Farbkarte wie sein Eltern-Element. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden.
+: Legt eine Farbkarte fest, die für das Fenster verwendet werden soll. Der Wert kann entweder **new** sein, in welchem Fall eine neue Farbkarte für das Fenster und seine Kinder erstellt wird, oder der Name eines anderen Fensters (das auf dem gleichen Bildschirm und mit demselben Visual wie *pathName* sein muss), in welchem Fall das neue Fenster die Farbkarte vom angegebenen Fenster verwendet. Wenn die Option **-colormap** nicht angegeben ist, verwendet das neue Fenster die gleiche Farbkarte wie sein Eltern-Element. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-height** (**height**/**Height**)
 : Legt die gewünschte Höhe für das Fenster in einer der von [Tk\_GetPixels][GetPixels] akzeptierten Formen fest. Wenn diese Option negativ oder null ist, fordert das Fenster überhaupt keine Größe an.
@@ -54,7 +54,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt ein Widget fest, das als Beschriftung verwendet wird. Dies überschreibt jede **-text**-Option. Das Widget muss existieren, bevor es als **-labelwidget** verwendet wird, und wenn es kein Nachfahre dieses Fensters ist, wird es in der Stapelreihenfolge darüber angehoben.
 
 **-visual** (**visual**/**Visual**)
-: Legt visuelle Informationen für das neue Fenster in einer der von [Tk\_GetVisual][GetVisual] akzeptierten Formen fest. Wenn diese Option nicht angegeben ist, verwendet das neue Fenster die gleiche visuelle Darstellung wie sein Eltern-Element. Die Option **-visual** kann nicht mit dem Widget-Befehl **configure** geändert werden.
+: Legt visuelle Informationen für das neue Fenster in einer der von [Tk\_GetVisual][GetVisual] akzeptierten Formen fest. Wenn diese Option nicht angegeben ist, verwendet das neue Fenster dasselbe Visual wie sein Eltern-Element. Die Option **-visual** kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-width** (**width**/**Width**)
 : Legt die gewünschte Breite für das Fenster in einer der von [Tk\_GetPixels][GetPixels] akzeptierten Formen fest. Wenn diese Option negativ oder null ist, fordert das Fenster überhaupt keine Größe an.
@@ -74,18 +74,18 @@ Der Befehl **labelframe** erstellt einen neuen Tcl-Befehl, dessen Name identisch
 pathName option ?arg ...?
 ```
 
-*PathName* ist der Name des Befehls, der identisch mit dem Pfadnamen des labelframe-Widgets ist. *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Frame-Widgets möglich:
+*PathName* ist der Name des Befehls, der identisch mit dem Pfadnamen des labelframe-Widgets ist. *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls. Die folgenden Befehle sind für Frame-Widgets möglich:
 
 [pathName]{.ins} [cget]{.sub} [option]{.arg}
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
 
 
 # Bindungen
 
-Wenn ein neues labelframe erstellt wird, hat es keine Standard-Event-Bindungen: labelframes sind nicht für Interaktion gedacht.
+Wenn ein neues labelframe erstellt wird, hat es keine Standard-Ereignisbindungen: labelframes sind nicht für Interaktion gedacht.
 
 # Beispiel
 

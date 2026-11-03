@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-widget\_dateentry – Dateentry-Megawidget
+widget\_dateentry – Datumseingabe-Megawidget
 
 # Übersicht
 
@@ -32,7 +32,7 @@ widget\_dateentry – Dateentry-Megawidget
 
 # Beschreibung
 
-Dieses Paket stellt ein Dateentry-Megawidget (snidget) bereit. Es basiert auf einem ttk::entry. Alle Widget-Befehle des ttk::entry stehen für das Dateentry zur Verfügung.
+Dieses Paket stellt ein Datumseingabe-Megawidget (snidget) bereit. Es basiert auf einem ttk::entry. Alle Widget-Befehle des ttk::entry stehen für das Dateentry zur Verfügung.
 
 - **widget::dateentry** *pathname* ?options?
 

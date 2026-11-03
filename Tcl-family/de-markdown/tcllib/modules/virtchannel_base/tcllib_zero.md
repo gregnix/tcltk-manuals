@@ -17,7 +17,7 @@ Copyright:
 
 # Name
 
-tcl::chan::zero – Zero Kanal
+tcl::chan::zero – Zero-Kanal
 
 # Übersicht
 
@@ -31,16 +31,16 @@ tcl::chan::zero – Zero Kanal
 
 # Beschreibung
 
-Das Paket **tcl::chan::zero** stellt einen Befehl zur Erstellung von Nullkanälen bereit, d. h. von schreibgeschützten Kanälen, die beim Lesen einen unendlichen Strom von Nullzeichen geben. Dies entspricht den Nullkanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist. Andererseits ist ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie TclOO erfordert.
+Das Paket **tcl::chan::zero** stellt einen Befehl zur Erstellung von Zero-Kanälen bereit, d. h. von schreibgeschützten Kanälen, die beim Lesen einen unendlichen Strom von Nullzeichen zurückgeben. Dies entspricht den Zero-Kanälen des Pakets **Memchan**, mit dem Unterschied, dass dieses in reinem Tcl und nicht in C geschrieben ist. Andererseits ist **Memchan** mit Tcl 8.4 und früheren Versionen kompatibel, während dieses Paket Tcl 8.5 oder höher sowie TclOO erfordert.
 
-Die entsprechenden Pakete lauten **tcl::chan::null** und **tcl::chan::nullzero**.
+Verwandte Pakete sind **tcl::chan::null** und **tcl::chan::nullzero**.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 
 **::tcl::chan::zero**
-: Dieser Befehl erstellt einen neuen Nullkanal und gibt dessen Handle zurück.
+: Dieser Befehl erstellt einen neuen Zero-Kanal und gibt dessen Handle zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

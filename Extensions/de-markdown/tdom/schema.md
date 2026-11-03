@@ -46,7 +46,7 @@ Die Methoden der angelegten Befehle sind:
 : Diese Methode definiert einen, möglicherweise komplexen, Inhaltspartikel mit dem *name* im Schema, optional im Namensraum *namespace*, zur Verwendung in anderen Definitionsskripten mit dem Definitionsbefehl *ref*. Das *definition script* wird ausgewertet und definiert das Inhaltsmodell des Inhaltspartikels. Ist das Argument *namespace* angegeben, werden Verweise *element* oder *ref* im Definitionsskript, die nicht in einem Befehl *namespace* stehen, in diesem Namensraum aufgelöst. Gibt es für die Kombination aus Name und Namensraum schon eine Musterdefinition, löst der Befehl einen Fehler aus.
 
 **deftexttype** *name* *<constraint script>*
-: Diese Methode definiert ein Bündel von Texteinschränkungen, auf das sich bei Einschränkungen von Textelementen oder Attributwerten mit *name* verweisen lässt. Gibt es schon eine Texttypdefinition dieses Namens, löst der Befehl einen Fehler aus. Auf einen Texttyp darf verwiesen werden, bevor er im Schema definiert ist. Ist ein verwiesener Texttyp nirgends im Schema definiert, passt bei der Prüfung jeder Text auf diesen Typ.
+: Diese Methode definiert ein Bündel von Texteinschränkungen, auf das sich bei Einschränkungen von Textelementen oder Attributwerten mit *name* verweisen lässt. Gibt es schon eine Texttypdefinition dieses Namens, löst der Befehl einen Fehler aus. Auf einen Texttyp darf verwiesen werden, bevor er im Schema definiert ist. Ist ein Texttyp, auf den verwiesen wird, nirgends im Schema definiert, passt bei der Prüfung jeder Text auf diesen Typ.
 
 **start** *documentElement* *?namespace?*
 : Diese Methode definiert Name und Namensraum des Wurzelelements eines zu prüfenden Baums. Wird die Methode verwendet, muss das Wurzelelement für die Gültigkeit passen. Fehlt *start*, darf jedes mit *defelement* definierte Element die Wurzel eines gültigen Dokuments sein. Die Methode *start* darf während der Lebensdauer eines Prüfbefehls mehrmals mit wechselnden Argumenten verwendet werden. Wird der Befehl nur mit der leeren Zeichenkette und ohne Namensraum-Argument aufgerufen, entfällt die Prüfeinschränkung für das Wurzelelement, und jedes definierte Element ist als Wurzel eines zu prüfenden Baums gültig.
@@ -76,7 +76,7 @@ Die Methoden der angelegten Befehle sind:
     : Mit *-baseurl <baseURI>* ist die baseURI die Basis-URI des Dokuments. Verweise auf externe Entitäten im Dokument werden relativ zu dieser Basis-URI aufgelöst. Diese Basis-URI wird auch im DOM-Baum gespeichert.
 
     **-externalentitycommand**  *<script>*
-    : Mit *-externalentitycommand <script>* wird das angegebene Tcl-Skript aufgerufen, um externe Entitäten des Dokuments aufzulösen. Die Vorgabe ist "::tdom::extRefHandler", ein einfacher Auflöser für Datei-URLs, definiert im Skriptteil des Pakets. Der leere Zeichenkettenwert schaltet das Auflösen externer Entitäten aus. Der tatsächlich ausgewertete Befehl besteht aus dieser Option und drei Argumenten: der Basis-URI, dem Systembezeichner der Entität und dem öffentlichen Bezeichner der Entität. Die Basis-URI und der öffentliche Bezeichner können die leere Liste sein. Das Skript gibt eine Tcl-Liste aus drei Elementen zurück. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string" und "channel" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals. Gibt das Skript einen Tcl-Kanal zurück, schließt der Prozessor ihn nicht. Er muss getrennt geschlossen werden, wenn er nicht mehr gebraucht wird.
+    : Mit *-externalentitycommand <script>* wird das angegebene Tcl-Skript aufgerufen, um externe Entitäten des Dokuments aufzulösen. Die Vorgabe ist "::tdom::extRefHandler", ein einfacher Auflöser für Datei-URLs, definiert im Skriptteil des Pakets. Der leere Zeichenkettenwert schaltet das Auflösen externer Entitäten aus. Der tatsächlich ausgewertete Befehl besteht aus dieser Option und drei Argumenten: der Basis-URI, dem Systembezeichner der Entität und dem öffentlichen Bezeichner der Entität. Die Basis-URI und der öffentliche Bezeichner können die leere Liste sein. Das Skript muss eine Tcl-Liste aus drei Elementen zurückgeben. Das erste Element sagt, wie die externe Entität an den Prozessor zurückgegeben wird. Derzeit sind die Typen "string" und "channel" erlaubt. Das zweite Element muss die absolute Basis-URI der zu lesenden externen Entität sein. Das dritte Element sind die Daten: bei Typ "string" die bereits gelesenen Daten der externen Entität als Zeichenkette, bei Typ "channel" der Name eines Tcl-Kanals. Gibt das Skript einen Tcl-Kanal zurück, schließt der Prozessor ihn nicht. Er muss getrennt geschlossen werden, wenn er nicht mehr gebraucht wird.
 
     **-paramentityparsing**  *<always|never|notstandalone>*
     : Die Option *-paramentityparsing* steuert, ob der Parser beim Aufbau des DOM-Baums die externen Entitäten des Dokuments aufzulösen versucht, einschließlich der externen DTD-Teilmenge. *-paramentityparsing* braucht ein Argument, entweder "always", "never" oder "notstandalone". Der Wert "always" heißt: der Parser versucht, alle externen Entitäten der XML-Quelle aufzulösen, auch rekursiv. Das ist die Vorgabe, wenn *-paramentityparsing* fehlt. Der Wert "never" heißt: nur die angegebene XML-Quelle wird gelesen, keine externe Entität und nicht die externe Teilmenge wird aufgelöst und gelesen. Der Wert "notstandalone" heißt: alle externen Entitäten werden aufgelöst und gelesen, außer bei Dokumenten, die in der XML-Deklaration ausdrücklich standalone="yes" angeben.
@@ -150,10 +150,10 @@ Die Methoden der angelegten Befehle sind:
     : Prüft der Schemabefehl gerade, gibt diese Methode die Byteposition der Leseposition zurück, sonst die leere Zeichenkette. Prüft der Schemabefehl gerade einen DOM-Baum nach, kann an manchen oder allen Knoten keine Positionsangabe gespeichert sein. In diesen Fällen kommt die leere Zeichenkette zurück.
 
     [domNode]
-    : Prüft der Schemabefehl gerade keinen DOM-Baum nach, gibt diese Methode die leere Zeichenkette zurück. Wartet der Schemabefehl sonst, während er sich von einem Prüffehler erholt, auf das Ende des Skripts reportcmd, kommt der Knoten zurück, den die Prüfmaschine gerade ansieht, wenn der Knoten ein ELEMENT\_NODE ist, sonst sein Elternknoten. Von dieser Methode ist abzuraten. Wird sie doch verwendet, bleibt der DOM-Baum unangetastet und wird nur gelesen.
+    : Prüft der Schemabefehl gerade keinen DOM-Baum nach, gibt diese Methode die leere Zeichenkette zurück. Wartet der Schemabefehl sonst, während er sich von einem Prüffehler erholt, auf das Ende des Skripts reportcmd, kommt der Knoten zurück, den die Prüfmaschine gerade ansieht, wenn der Knoten ein ELEMENT\_NODE ist, sonst sein Elternknoten. Von dieser Methode ist abzuraten. Wird sie doch verwendet, sollte der DOM-Baum unangetastet bleiben und nur gelesen werden.
 
     **nrForwardDefinitions**
-    : Gibt zurück, wie viele Elemente, Elementtypen und ref-Muster verwiesen sind, die noch nicht definiert sind, als Summe.
+    : Gibt zurück, wie viele Elemente, Elementtypen und ref-Muster, auf die verwiesen wird, noch nicht definiert sind, als Summe.
 
     **definedElements**
     : Gibt die definierten Elemente der Grammatik als Liste zurück, ohne bestimmte Reihenfolge. Hat ein Element einen Namensraum, ist sein Listeneintrag selbst eine Liste aus zwei Elementen, zuerst der Name, dann der Namensraum.
@@ -238,7 +238,7 @@ Die Methoden der angelegten Befehle sind:
 
 # Schema-Definitionsskripte
 
-Schema-Definitionsskripte sind gewöhnliche Tcl-Skripte, die im Namensraum tdom::schema ausgewertet werden. Die unten aufgeführten Befehle der Schemadefinition in diesem Tcl-Namensraum erlauben die Definition sehr verschiedener Dokumentstrukturen. Jeder Befehl der Schemadefinition stellt eine Prüfeinschränkung an den Inhalt, der passen muss oder optional sein muss, damit der Inhalt als gültig gilt. Weiterer, nicht passender Inhalt ist ein Prüffehler. Nur aus Leerraum bestehender Text, im XML-Sinn von Leerraum, zwischen verschiedenen Tags wird übergangen, außer bei reinen Textelementen, bei denen auch nur aus Leerraum bestehender Text als bedeutsamer Inhalt gilt.
+Schema-Definitionsskripte sind gewöhnliche Tcl-Skripte, die im Namespace tdom::schema ausgewertet werden. Die unten aufgeführten Befehle der Schemadefinition in diesem Tcl-Namespace erlauben die Definition sehr verschiedener Dokumentstrukturen. Jeder Befehl der Schemadefinition stellt eine Prüfeinschränkung an den Inhalt, der passen muss oder optional sein muss, damit der Inhalt als gültig gilt. Weiterer, nicht passender Inhalt ist ein Prüffehler. Nur aus Leerraum bestehender Text, im XML-Sinn von Leerraum, zwischen verschiedenen Tags wird übergangen, außer bei reinen Textelementen, bei denen auch nur aus Leerraum bestehender Text als bedeutsamer Inhalt gilt.
 
 Die Befehle der Schemadefinition sind:
 
@@ -247,10 +247,10 @@ Die Befehle der Schemadefinition sind:
 
     Sind die Zeichenkette "type" und ein *typename* angegeben, beschreibt das mit *defelementtype* definierte Inhaltsmodell mit dem Namen *typename* im aktuellen Kontextnamensraum den Inhalt des Elements.
 
-    Ist das Argument *defelement script* angegeben, erwartet die Prüfeinschränkung ein Element mit dem Namen *name* im aktuellen Namensraum, dessen Inhalt das *definition script* örtlich definiert. Vorwärtsverweise auf noch nicht definierte Elemente oder Muster oder andere örtliche Definitionen desselben Namens innerhalb des *definition script* sind erlaubt. Ist ein vorwärts verwiesenes Element bis zur Prüfung nicht definiert, passt nur ein leeres Element mit dem Namen *name*, dem Namensraum *namespace* und ohne Attribute.
+    Ist das Argument *defelement script* angegeben, erwartet die Prüfeinschränkung ein Element mit dem Namen *name* im aktuellen Namensraum, dessen Inhalt das *definition script* örtlich definiert. Vorwärtsverweise auf noch nicht definierte Elemente oder Muster oder andere örtliche Definitionen desselben Namens innerhalb des *definition script* sind erlaubt. Ist ein Element, auf das vorwärts verwiesen wird, bis zur Prüfung nicht definiert, passt nur ein leeres Element mit dem Namen *name*, dem Namensraum *namespace* und ohne Attribute.
 
 **ref** *name* *?quant?*
-: Dieser Befehl verweist auf den mit *defpattern* definierten Inhaltspartikel mit dem Namen *name* im aktuellen Kontextnamensraum. Vorwärtsverweise auf ein noch nicht definiertes Muster und rekursive Verweise sind erlaubt. Ist ein vorwärts verwiesenes Muster bis zur Prüfung nicht definiert, wird keinerlei Inhalt erwartet, ein leerer Treffer.
+: Dieser Befehl verweist auf den mit *defpattern* definierten Inhaltspartikel mit dem Namen *name* im aktuellen Kontextnamensraum. Vorwärtsverweise auf ein noch nicht definiertes Muster und rekursive Verweise sind erlaubt. Ist ein Muster, auf das vorwärts verwiesen wird, bis zur Prüfung nicht definiert, wird keinerlei Inhalt erwartet, ein leerer Treffer.
 
 **group** *?quant?* *<definition script>*
 : Diese Methode gruppiert eine Folge von Inhaltspartikeln, die das *definition script* definiert und die in dieser Reihenfolge passen müssen.
@@ -348,19 +348,19 @@ Mehrere Befehle der Schemadefinition erwarten einen Quantor als eines ihrer Argu
 : Der Inhaltspartikel darf in gültigen Dokumenten einmal oder öfter hintereinander vorkommen.
 
 **n**
-: Der Inhaltspartikel muss in gültigen Dokumenten n-mal hintereinander vorkommen. Der Quantor muss eine ganze Zahl größer als null sein.
+: Der Inhaltspartikel muss in gültigen Dokumenten n-mal hintereinander vorkommen. Der Quantor muss eine Ganzzahl größer als null sein.
 
 **{n m}**
-: Der Inhaltspartikel muss in gültigen Dokumenten mindestens n-mal und höchstens m-mal hintereinander vorkommen. Der Quantor muss eine Tcl-Liste mit zwei Elementen sein. Das erste Element dieser Liste muss eine ganze Zahl mit n >= 0 sein. Ist das zweite Listenelement das Zeichen \*, gibt es keine obere Grenze. Sonst muss das zweite Listenelement eine ganze Zahl mit n < m sein.
+: Der Inhaltspartikel muss in gültigen Dokumenten mindestens n-mal und höchstens m-mal hintereinander vorkommen. Der Quantor muss eine Tcl-Liste mit zwei Elementen sein. Das erste Element dieser Liste muss eine Ganzzahl mit n >= 0 sein. Ist das zweite Listenelement das Zeichen \*, gibt es keine obere Grenze. Sonst muss das zweite Listenelement eine Ganzzahl mit n < m sein.
 
 
 Fehlt ein optionaler Quantor, ist die Vorgabe \* beim Befehl *mixed* und ! bei allen anderen Befehlen.
 
 # Text-Einschränkungsskripte
 
-Text, von XML parsed character data genannt, muss manchmal von einer bestimmten Art sein oder bestimmten Regeln folgen, um gültig zu sein. Die Argumente des Texteinschränkungsskripts der Befehle text, attribute, nsattribute und deftexttype werden im Tcl-Namensraum *tdom::schema::text* ausgewertet und erlauben den folgenden Befehlen der Texteinschränkung, Text auf bestimmte Eigenschaften zu prüfen. Die Befehle sind im Tcl-Namensraum *tdom::schema::text* definiert. Ein Aufruf außerhalb eines Texteinschränkungsskripts löst einen Fehler aus.
+Text, von XML parsed character data genannt, muss manchmal von einer bestimmten Art sein oder bestimmten Regeln folgen, um gültig zu sein. Die Argumente des Texteinschränkungsskripts der Befehle text, attribute, nsattribute und deftexttype werden im Tcl-Namespace *tdom::schema::text* ausgewertet und erlauben den folgenden Befehlen der Texteinschränkung, Text auf bestimmte Eigenschaften zu prüfen. Die Befehle sind im Tcl-Namespace *tdom::schema::text* definiert. Ein Aufruf außerhalb eines Texteinschränkungsskripts löst einen Fehler aus.
 
-Einige der folgenden Texttyp-Befehle stehen als allgemeine Tcl-Befehle zur Verfügung. Definiert sind sie im Namensraum tdom::type und werden wie unten beschrieben aufgerufen, mit dem zu prüfenden Text an die Argumentliste angehängt. Der Rückgabewert ist logisch. Die Befehle müssen führenden oder abschließenden Leerraum nicht annehmen. Ob ein Befehl im Namensraum tdom::type zur Verfügung steht, steht in seiner Beschreibung.
+Einige der folgenden Texttyp-Befehle stehen als allgemeine Tcl-Befehle zur Verfügung. Definiert sind sie im Namespace tdom::type und werden wie unten beschrieben aufgerufen, mit dem zu prüfenden Text an die Argumentliste angehängt. Der Rückgabewert ist logisch. Die Befehle nehmen führenden oder abschließenden Leerraum möglicherweise nicht an. Ob ein Befehl im Namespace tdom::type zur Verfügung steht, steht in seiner Beschreibung.
 
 ## Der Tcl-Text-Einschränkungsbefehl
 
@@ -373,25 +373,25 @@ Der Texteinschränkungsbefehl *tcl* gibt die Prüfung an einen beliebigen Tcl-Be
 ## Grundlegende XML-Typen
 
 **name**
-: <URL: https://www.w3.org/TR/xml/#NT-Name> ["https://www.w3.org/TR/xml/#NT-Name"]("https://www.w3.org/TR/xml/#NT-Name") Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion name passt . Der Textwert muss also mit einem Buchstaben, einem Unterstrich (\_) oder einem Doppelpunkt (:) beginnen und darf nur Buchstaben, Ziffern, Unterstriche (\_), Doppelpunkte (:), Bindestriche (-) und Punkte (.) enthalten.
+: <https://www.w3.org/TR/xml/#NT-Name> Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion name passt . Der Textwert muss also mit einem Buchstaben, einem Unterstrich (\_) oder einem Doppelpunkt (:) beginnen und darf nur Buchstaben, Ziffern, Unterstriche (\_), Doppelpunkte (:), Bindestriche (-) und Punkte (.) enthalten.
 
 **ncname**
-: <URL: https://www.w3.org/TR/xml-names/#NT-NCName> ["https://www.w3.org/TR/xml-names/#NT-NCName"]("https://www.w3.org/TR/xml-names/#NT-NCName") Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion ncname passt . Der Textwert muss also mit einem Buchstaben oder einem Unterstrich (\_) beginnen und darf nur Buchstaben, Ziffern, Unterstriche (\_), Bindestriche (-) und Punkte (.) enthalten. Der einzige Unterschied zur Einschränkung name ist, dass Doppelpunkte nicht erlaubt sind.
+: <https://www.w3.org/TR/xml-names/#NT-NCName> Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion ncname passt . Der Textwert muss also mit einem Buchstaben oder einem Unterstrich (\_) beginnen und darf nur Buchstaben, Ziffern, Unterstriche (\_), Bindestriche (-) und Punkte (.) enthalten. Der einzige Unterschied zur Einschränkung name ist, dass Doppelpunkte nicht erlaubt sind.
 
 **qname**
-: <URL: https://www.w3.org/TR/xml-names/#NT-QName> ["https://www.w3.org/TR/xml-names/#NT-QName"]("https://www.w3.org/TR/xml-names/#NT-QName") Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion qname passt . Der Textwert ist also entweder ein ncname oder zwei durch einen Doppelpunkt (:) verbundene ncnames.
+: <https://www.w3.org/TR/xml-names/#NT-QName> Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion qname passt . Der Textwert ist also entweder ein ncname oder zwei durch einen Doppelpunkt (:) verbundene ncnames.
 
 **nmtoken**
-: <URL: https://www.w3.org/TR/xml/#NT-Nmtoken> ["https://www.w3.org/TR/xml/#NT-Nmtoken"]("https://www.w3.org/TR/xml/#NT-Nmtoken") Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion nmtoken passt
+: <https://www.w3.org/TR/xml/#NT-Nmtoken> Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion nmtoken passt
 
 **nmtokens**
-: <URL: https://www.w3.org/TR/xml/#NT-Nmtokens> ["https://www.w3.org/TR/xml/#NT-Nmtokens"]("https://www.w3.org/TR/xml/#NT-Nmtokens") Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion nmtokens passt
+: <https://www.w3.org/TR/xml/#NT-Nmtokens> Diese Texteinschränkung passt, wenn der Textwert auf die XML-Produktion nmtokens passt
 
 
 ## Grundlegende Typtests
 
 **integer** *?(xsd|tcl)?*
-: Diese Texteinschränkung passt, wenn der Textwert als ganze Zahl gelesen werden könnte. Ist das optionale Argument des Befehls *tcl*, passt alles, was TCL\_OK zurückgibt, wenn es an Tcl\_GetInt() geht. Ist das optionale Argument des Befehls *xsd*, passt die Einschränkung, wenn der Wert ein gültiges xsd:integer ist. Ohne Argument ist *xsd* die Vorgabe.
+: Diese Texteinschränkung passt, wenn der Textwert als Ganzzahl gelesen werden könnte. Ist das optionale Argument des Befehls *tcl*, passt alles, was TCL\_OK zurückgibt, wenn es an Tcl\_GetInt() geht. Ist das optionale Argument des Befehls *xsd*, passt die Einschränkung, wenn der Wert ein gültiges xsd:integer ist. Ohne Argument ist *xsd* die Vorgabe.
 
 **negativeInteger** *?(xsd|tcl)?*
 : Diese Texteinschränkung passt auf dieselben Textwerte wie die Texteinschränkung *integer*, siehe dort, mit der zusätzlichen Einschränkung, dass der Wert < null sein muss.
@@ -421,7 +421,7 @@ Der Texteinschränkungsbefehl *tcl* gibt die Prüfung an einen beliebigen Tcl-Be
 : Diese Texteinschränkung passt, wenn der Textwert ein xsd:dateTime ist, im Wesentlichen eine ISO-8601-Datumszeit der Form YYYY-MM-DDThh:mm:ss mit optionalem Zeitzonenanteil. Die Anteile Datum und Zeitzone folgen den Regeln der Befehle *date* und *time*, siehe dort. Der Zeitanteil einschließlich des kennzeichnenden Zeichens 'T' ist erforderlich. Verfügbar als allgemeiner Tcl-Befehl tdom::type::dateTime.
 
 **duration**
-: Diese Texteinschränkung passt, wenn der Textwert eine xsd:duration ist, im Wesentlichen eine ISO-8601-Dauer der Form PnYnMnDTnHnMnS. Alle Teile außer dem beginnenden P und, wenn eines von H, M oder S angegeben ist, T sind optional. Ist der folgende Kennbuchstabe S, darf n eine Dezimalzahl sein, mit mindestens einer Ziffer vor und nach dem Punkt, sonst muss es eine positive ganze Zahl sein. Verfügbar als allgemeiner Tcl-Befehl tdom::type::duration.
+: Diese Texteinschränkung passt, wenn der Textwert eine xsd:duration ist, im Wesentlichen eine ISO-8601-Dauer der Form PnYnMnDTnHnMnS. Alle Teile außer dem beginnenden P und, wenn eines von H, M oder S angegeben ist, T sind optional. Ist der folgende Kennbuchstabe S, darf n eine Dezimalzahl sein, mit mindestens einer Ziffer vor und nach dem Punkt, sonst muss es eine positive Ganzzahl sein. Verfügbar als allgemeiner Tcl-Befehl tdom::type::duration.
 
 **base64**
 : Diese Texteinschränkung passt, wenn der Text nach RFC 4648 gültig ist. Verfügbar als allgemeiner Tcl-Befehl tdom::type::base64.
@@ -430,28 +430,28 @@ Der Texteinschränkungsbefehl *tcl* gibt die Prüfung an einen beliebigen Tcl-Be
 : Diese Texteinschränkung passt, wenn der Text eine Folge binärer Oktette in hexadezimaler Kodierung ist, wobei jedes binäre Oktett eine zweistellige Hexadezimalzahl ist. Klein- und Großbuchstaben A bis F sind erlaubt.
 
 **unsignedByte**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedByte ist. Das ist eine ganze Zahl zwischen 0 und 255, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedByte ist. Das ist eine Ganzzahl zwischen 0 und 255, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
 
 **unsignedShort**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedShort ist. Das ist eine ganze Zahl zwischen 0 und 65535, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedShort ist. Das ist eine Ganzzahl zwischen 0 und 65535, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
 
 **unsignedInt**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedInt ist. Das ist eine ganze Zahl zwischen 0 und 4294967295, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedInt ist. Das ist eine Ganzzahl zwischen 0 und 4294967295, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
 
 **unsignedLong**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedLong ist. Das ist eine ganze Zahl zwischen 0 und 18446744073709551615, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:unsignedLong ist. Das ist eine Ganzzahl zwischen 0 und 18446744073709551615, beide eingeschlossen, optional mit vorangestelltem Pluszeichen und führenden Nullen.
 
 **byte**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:byte ist. Das ist eine ganze Zahl zwischen -128 und 127, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:byte ist. Das ist eine Ganzzahl zwischen -128 und 127, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
 
 **short**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:short ist. Das ist eine ganze Zahl zwischen -32768 und 32767, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:short ist. Das ist eine Ganzzahl zwischen -32768 und 32767, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
 
 **int**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:int ist. Das ist eine ganze Zahl zwischen -2147483648 und 2147483647, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:int ist. Das ist eine Ganzzahl zwischen -2147483648 und 2147483647, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
 
 **long**
-: Diese Texteinschränkung passt, wenn der Textwert ein xsd:long ist. Das ist eine ganze Zahl zwischen -9223372036854775808 und 9223372036854775807, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
+: Diese Texteinschränkung passt, wenn der Textwert ein xsd:long ist. Das ist eine Ganzzahl zwischen -9223372036854775808 und 9223372036854775807, beide eingeschlossen, optional mit vorangestelltem Plus- oder Minuszeichen und führenden Nullen.
 
 
 ## Logische Verknüpfungen
@@ -501,25 +501,25 @@ Der Texteinschränkungsbefehl *tcl* gibt die Prüfung an einen beliebigen Tcl-Be
 : Diese Texteinschränkung passt, wenn der Textwert einem Element des Arguments *list* gleicht, unter Beachtung von Groß- und Kleinschreibung und jedem Leerraum. *list* muss eine gültige Tcl-Liste sein.
 
 **match** *?-nocase?* *glob\_style\_match\_pattern>*
-: <URL: https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm#M35> ["https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm#M35"]("https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm#M35") Diese Texteinschränkung passt, wenn der Textwert auf das als Argument angegebene Glob-Muster passt. Es gelten die Regeln des Tcl-Befehls \[string match\], siehe .
+: <https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm#M35> Diese Texteinschränkung passt, wenn der Textwert auf das als Argument angegebene Glob-Muster passt. Es gelten die Regeln des Tcl-Befehls \[string match\], siehe .
 
 **regexp** *expression*
-: <URL: https://www.tcl.tk/man/tcl8.6/TclCmd/re_syntax.htm> ["https://www.tcl.tk/man/tcl8.6/TclCmd/re_syntax.htm"]("https://www.tcl.tk/man/tcl8.6/TclCmd/re_syntax.htm") Diese Texteinschränkung passt, wenn der Textwert auf den als Argument angegebenen regulären Ausdruck passt.  beschreibt die Syntax des regulären Ausdrucks
+: <https://www.tcl.tk/man/tcl8.6/TclCmd/re_syntax.htm> Diese Texteinschränkung passt, wenn der Textwert auf den als Argument angegebenen regulären Ausdruck passt.  beschreibt die Syntax des regulären Ausdrucks
 
 **length** *length*
-: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, *length* ist. Das Argument length muss eine positive ganze Zahl oder null sein.
+: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, *length* ist. Das Argument length muss eine positive Ganzzahl oder null sein.
 
 **maxLength** *length*
-: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, höchstens *length* ist. Das Argument length muss eine ganze Zahl größer als null sein.
+: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, höchstens *length* ist. Das Argument length muss eine Ganzzahl größer als null sein.
 
 **minLength** *length*
-: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, mindestens *length* ist. Das Argument length muss eine ganze Zahl größer als null sein.
+: Diese Texteinschränkung passt, wenn die Länge des Textwerts, in Zeichen und nicht in Bytes, mindestens *length* ist. Das Argument length muss eine Ganzzahl größer als null sein.
 
 **id** *?keySpace?*
 : Dieser Texteinschränkungsbefehl markiert den Text als dokumentweite ID, auf die ein idref verweisen kann. Jeder ID-Wert innerhalb eines Dokuments muss eindeutig sein. Es ist kein Fehler, wenn auf die ID im Dokument tatsächlich nicht verwiesen wird. Das optionale Argument *keySpace* tut all das für einen benannten Schlüsselraum. Der Schlüsselraum "" (die leere Zeichenkette) ist ein anderer Schlüsselraum als der Befehl *id* ohne Argument keySpace.
 
 **idref** *?keySpace?*
-: Dieser Texteinschränkungsbefehl erwartet, dass der Text ein Verweis auf eine ID innerhalb des Dokuments ist. Die verwiesene ID darf im Dokument später stehen als der Verweis. Mehrere Verweise innerhalb des Dokuments auf eine ID sind möglich. Zum optionalen Argument *keySpace* siehe *id*.
+: Dieser Texteinschränkungsbefehl erwartet, dass der Text ein Verweis auf eine ID innerhalb des Dokuments ist. Die ID, auf die verwiesen wird, darf im Dokument später stehen als der Verweis. Mehrere Verweise innerhalb des Dokuments auf eine ID sind möglich. Zum optionalen Argument *keySpace* siehe *id*.
 
 **jsontype** *<JSON text type>*
 : Wird ein DOM-Baum nicht mit *domvalidate* nachträglich geprüft, passt diese Einschränkung immer. Beim Nachprüfen muss der zu prüfende TEXT\_NODE den JSON-Texttyp haben, der dem Texteinschränkungsbefehl als Argument angegeben ist. Die möglichen Typen sind *NULL*, *TRUE*, *FALSE*, *STRING* und *NUMBER*.
@@ -560,13 +560,13 @@ Mehrere der Prüffehlercodes, die den Aufrufen von *reportcmd* als zweites Argum
 
 Tritt ein struktureller Prüffehler auf, ist die Vorgabe der Wiederaufnahme, jeden folgenden oder fehlenden Inhalt innerhalb des aktuellen Teilbaums zu übergehen und mit dem Ereignis Elementende des Teilbaums weiterzumachen.
 
-Die Rückgabe "ignore" aus dem Wiederaufnahme-Skript beim Fehlertyp MISSING\_ELEMENT erholt sich, indem die fehlgeschlagene Einschränkung übergangen wird, und passt das Ereignis weiter gegen das Schema.
+Gibt das Wiederaufnahme-Skript beim Fehlertyp MISSING\_ELEMENT "ignore" zurück, erholt sich die Prüfung, indem die fehlgeschlagene Einschränkung übergangen wird, und passt das Ereignis weiter gegen das Schema.
 
-Die Rückgabe "vanish" aus dem Wiederaufnahme-Skript bei den Fehlertypen MISSING\_ELEMENT und UNEXPECTED\_ELEMENT erholt sich, indem das Ereignis übergangen wird.
+Gibt das Wiederaufnahme-Skript bei den Fehlertypen MISSING\_ELEMENT und UNEXPECTED\_ELEMENT "vanish" zurück, erholt sich die Prüfung, indem das Ereignis übergangen wird.
 
 # Beispiele
 
-[<URL: https://www.w3.org/TR/xmlschema-0/>]("https://www.w3.org/TR/xmlschema-0/") XML Schema Part 0: Primer Second Edition () beginnt mit diesem Beispielschema:
+<https://www.w3.org/TR/xmlschema-0/> XML Schema Part 0: Primer Second Edition () beginnt mit diesem Beispielschema:
 
 ```
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -682,7 +682,7 @@ schema define {
 }
 ```
 
-[<URL: http://relaxng.org/tutorial-20011203.html>]("http://relaxng.org/tutorial-20011203.html") Das RELAX NG Tutorial () beginnt mit diesem Beispiel:
+<http://relaxng.org/tutorial-20011203.html> Das RELAX NG Tutorial () beginnt mit diesem Beispiel:
 
 ```
 Consider a simple XML representation of an email address book:

@@ -34,7 +34,7 @@ tcldocstrip – Tcl-basierter Docstrip-Prozessor
 
 # Beschreibung
 
-Die in diesem Dokument beschriebene Anwendung, **tcldocstrip**, ist eine Weiterentwicklung von **docstrip**, einem einfachen Werkzeug zur literaten Programmierung für LaTeX.
+Die in diesem Dokument beschriebene Anwendung, **tcldocstrip**, ist ein Verwandter von **docstrip**, einem einfachen Werkzeug zur literaten Programmierung für LaTeX.
 
 **tcldocstrip** basiert auf dem Paket **docstrip**.
 
@@ -46,7 +46,7 @@ Die in diesem Dokument beschriebene Anwendung, **tcldocstrip**, ist eine Weitere
 
 2. Das Zusammenfügen, d. h. die Zusammenstellung einer Ausgabe aus mehreren Schutzgruppen in einer bestimmten Reihenfolge und möglicherweise aus verschiedenen Dateien. Dies ist der zweite häufige Fall. Ein Dokument, das sich über mehrere Eingaben und/oder über verschiedene Schutzgruppen erstreckt.
 
-3. Extraktion und Auflistung aller eindeutigen Ausdrücke und Schutzmechanismen, die innerhalb eines Dokuments verwendet werden, um einer Person, die das betreffende Dokument nicht verfasst hat, dabei zu helfen, sich mit diesem vertraut zu machen.
+3. Extraktion und Auflistung aller eindeutigen Guard-Ausdrücke und Guards, die innerhalb eines Dokuments verwendet werden, um einer Person, die das betreffende Dokument nicht verfasst hat, dabei zu helfen, sich mit diesem vertraut zu machen.
 
 
 ## Befehlszeile
@@ -66,10 +66,10 @@ Die in diesem Dokument beschriebene Anwendung, **tcldocstrip**, ist eine Weitere
 **tcldocstrip** ?options? *output* (?options? *input* *guards*)...
 : Dies ist die Form für den Anwendungsfall \[2\]. Sie unterscheidet sich von der Form für den Anwendungsfall \[1\] dadurch, dass Optionen vor der Ausgabedatei angegeben werden können, die allgemein gelten, und dass mehr als eine Eingabedatei angegeben werden kann, wobei jede über eigene, eingabespezifische Optionen und Guards verfügt.
 
-    Sie extrahiert Daten aus den verschiedenen Dateien *input* gemäß den angegebenen *options* und *guards* und schreibt das Ergebnis in die angegebene Datei *output*, und zwar in der Reihenfolge, in der sie in der Befehlszeile angegeben wurden. Vor der Ausgabedatei angegebene Optionen sind globale Einstellungen, während die vor jeder Eingabedatei angegebenen Optionen nur für diese jeweilige Eingabedatei gelten. Nicht angegebene Werte werden aus den globalen Einstellungen oder den Standardwerten übernommen. Bei der Form \[1\] führt die Verwendung der Zeichenfolge **-** als Ausgabe dazu, dass die Anwendung auf stdout schreibt. Die Verwendung der Zeichenfolge **.** für eine Eingabedatei signalisiert, dass die letzte Eingabedatei erneut verwendet werden soll. Dies ermöglicht die Zusammenstellung der Ausgabe aus einer Eingabedatei unter Verwendung mehrerer unterschiedlicher Schutzsätze, ohne dass jedes Mal der vollständige Name der Datei angegeben werden muss.
+    Sie extrahiert Daten aus den verschiedenen Dateien *input* gemäß den angegebenen *options* und *guards* und schreibt das Ergebnis in die angegebene Datei *output*, und zwar in der Reihenfolge, in der sie in der Befehlszeile angegeben wurden. Vor der Ausgabedatei angegebene Optionen sind globale Einstellungen, während die vor jeder Eingabedatei angegebenen Optionen nur für diese jeweilige Eingabedatei gelten. Nicht angegebene Werte werden aus den globalen Einstellungen oder den Standardwerten übernommen. Wie bei der Form \[1\] führt die Verwendung der Zeichenkette **-** als Ausgabe dazu, dass die Anwendung auf stdout schreibt. Die Verwendung der Zeichenfolge **.** für eine Eingabedatei signalisiert, dass die letzte Eingabedatei erneut verwendet werden soll. Dies ermöglicht die Zusammenstellung der Ausgabe aus einer Eingabedatei unter Verwendung mehrerer unterschiedlicher Schutzsätze, ohne dass jedes Mal der vollständige Name der Datei angegeben werden muss.
 
 **tcldocstrip** **-guards** *input*
-: Dies ist die Form für den Anwendungsfall \[3\]. Es ermittelt die Guard-Bedingungen sowie die eindeutigen Guard-Ausdrücke, die im angegebenen *input*-Dokument verwendet werden. Die gefundenen Zeichenfolgen werden in die Standardausgabe geschrieben, wobei pro Zeile eine Zeichenfolge ausgegeben wird.
+: Dies ist die Form für den Anwendungsfall \[3\]. Sie ermittelt die Guard-Bedingungen sowie die eindeutigen Guard-Ausdrücke, die im angegebenen *input*-Dokument verwendet werden. Die gefundenen Zeichenfolgen werden in die Standardausgabe geschrieben, wobei pro Zeile eine Zeichenfolge ausgegeben wird.
 
 
 ## Optionen
@@ -99,7 +99,7 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
 **-trimlines** bool
 : Diese Option wird vom Befehl **docstrip::extract** übernommen, der vom Paket **docstrip** bereitgestellt wird.
 
-    Legt fest, ob *Leerzeichen* am Zeilenende vor dem Prozess der Zeile entfernt werden sollen. Der Standardwert ist **true**.
+    Legt fest, ob *Leerzeichen* am Zeilenende vor der Verarbeitung der Zeile entfernt werden sollen. Der Standardwert ist **true**.
 
 **-preamble** text
 : siehe unten ...

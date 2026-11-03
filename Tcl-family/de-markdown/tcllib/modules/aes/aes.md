@@ -65,7 +65,7 @@ Der interne Zustand wird in einer undurchsichtigen Struktur verwaltet, die von d
 : Verschlüsselt die bereitgestellten Daten mit einem vorbereiteten Schlüssel aus **Init**. Das Argument „data“ sollte ein binäres Array sein, dessen Größe ein Vielfaches der AES-Blockgröße von 16 Byte beträgt. Das Ergebnis ist ein binäres Array, dessen Größe der der Eingabedaten entspricht.
 
 **::aes::Decrypt** *Key* *data*
-: Hinweis: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
+: Entschlüsselt Daten mit dem Schlüssel. Hinweis: Der gleiche Schlüssel kann sowohl zum Verschlüsseln als auch zum Entschlüsseln von Daten verwendet werden, sofern der Initialisierungsvektor für den CBC-Modus entsprechend zurückgesetzt wird.
 
 **::aes::Reset** *Key* *iv*
 : Setzt den Initialisierungsvektor zurück. Dies ermöglicht es dem Programmierer, einen Schlüssel wiederzuverwenden und den Aufwand für die Neugenerierung des Schlüsselschemas zu vermeiden, wenn dieselben Schlüsseldaten mehrfach verwendet werden.

@@ -48,7 +48,7 @@ BESCHREIBUNG
 WIDGET-SPEZIFISCHE OPTIONEN
 
 **-aspect**
-:  Legt eine nichtnegative ganze Zahl fest, die das gewünschte Seitenverhältnis des Textes angibt. Das Seitenverhältnis ist als 100\*width/height angegeben. 100 bedeutet, der Text soll so breit wie hoch sein, 200 bedeutet, der Text soll doppelt so breit wie hoch sein, 50 bedeutet, der Text soll doppelt so hoch wie breit sein, und so weiter. Dient dazu, die Zeilenlänge des Textes zu wählen, wenn die Option **width** nicht angegeben ist. Voreingestellt ist 150. 
+:  Legt eine nichtnegative Ganzzahl fest, die das gewünschte Seitenverhältnis des Textes angibt. Das Seitenverhältnis ist als 100\*width/height angegeben. 100 bedeutet, der Text soll so breit wie hoch sein, 200 bedeutet, der Text soll doppelt so breit wie hoch sein, 50 bedeutet, der Text soll doppelt so hoch wie breit sein, und so weiter. Dient dazu, die Zeilenlänge des Textes zu wählen, wenn die Option **width** nicht angegeben ist. Voreingestellt ist 150. 
 
 
 **-buttons**

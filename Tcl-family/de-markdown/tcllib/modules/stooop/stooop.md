@@ -43,7 +43,7 @@ Dieses Handbuch ist sehr prägnant und dient als kurze Übersicht für den Progr
 : Dieser Befehl erzeugt eine Klasse. Der Klassenrumpf, inhaltlich einem Tcl-Namespace vergleichbar (eine Klasse ist tatsächlich auch einer), enthält Definitionen von Member-Prozeduren. Member-Prozeduren lassen sich auch außerhalb des Klassenrumpfs definieren, indem ihrem Namen das Präfix **class::** vorangestellt wird, so wie bei Namespace-Prozeduren.
 
     **proc** *class* {**this** ?*arg arg ...*?} ?*base* {?*arg arg ...*?} ...? *body*
-    : Dies ist die Konstruktor-Prozedur für die Klasse. Sie wird nach einem Aufruf von **new** für die Klasse aufgerufen. Sie muss denselben Namen wie die Klasse tragen und ein erstes Argument mit dem Namen **this** enthalten. Vor dem eigentlichen Prozedurkörper sind beliebig viele Angaben zu Basisklassen zulässig, einschließlich der an deren Konstruktor zu übergebenden Argumente.
+    : Dies ist die Konstruktor-Prozedur für die Klasse. Sie wird nach einem Aufruf von **new** für die Klasse aufgerufen. Sie muss denselben Namen wie die Klasse tragen und ein erstes Argument mit dem Namen **this** enthalten. Vor dem eigentlichen Prozedurrumpf sind beliebig viele Angaben zu Basisklassen zulässig, einschließlich der an deren Konstruktor zu übergebenden Argumente.
 
     **proc** ~*class* {**this**} *body*
     : Dies ist die Destruktor-Prozedur der Klasse. Sie wird nach einem Aufruf von **delete** aufgerufen. Ihr Name muss aus einem einzelnen Zeichen **~** gefolgt vom Klassennamen bestehen (wie in C++). Sie muss ein einziges Argument namens **this** haben.
@@ -70,7 +70,7 @@ Dieses Handbuch ist sehr prägnant und dient als kurze Übersicht für den Progr
 : Dieser Befehl erzeugt ein Objekt. Das erste Argument ist der Klassenname, danach folgen die Argumente, die der Konstruktor der entsprechenden Klasse benötigt. Zurückgegeben wird eine eindeutige Kennung für das soeben erzeugte Objekt.
 
 **::stooop::delete** *object* ?*object ...*?
-: Dieser Befehl dient zum Löschen eines oder mehrerer Objekte. Er benötigt ein oder mehrere Objektkennungen als Argument(e).
+: Dieser Befehl dient zum Löschen eines oder mehrerer Objekte. Er benötigt einen oder mehrere Objektbezeichner als Argument(e).
 
 **::stooop::virtual** **proc** *name* {**this** ?*arg arg ...*?} ?*body*?
 : Der Spezifizierer **virtual** kann bei Member-Prozeduren verwendet werden, um dynamische Bindung zu erreichen. Eine Prozedur einer Basisklasse kann dann in der abgeleiteten Klasse bzw. den abgeleiteten Klassen neu definiert (überladen) werden. Wird die Prozedur der Basisklasse für ein Objekt aufgerufen, wird tatsächlich die Prozedur der abgeleiteten Klasse aufgerufen, sofern sie vorhanden ist. Hat die Prozedur der Basisklasse keinen Prozedurrumpf, gilt sie als rein virtuell, und es wird stets die Prozedur der abgeleiteten Klasse aufgerufen.
@@ -119,7 +119,7 @@ Umgebungsvariablen
 
 
 **::stooop::printObjects** ?*pattern*?
-: Gibt eine geordnete Liste der vorhandenen Objekte in der Reihenfolge ihrer Erstellung aus, wobei das älteste Objekt an erster Stelle steht. Jede Ausgabezeile enthält den Klassennamen, die Objektkennung und die Prozedur, in der die Erstellung erfolgte. Das optionale Musterargument (wie im Tcl-Befehl **string match**) kann verwendet werden, um die Ausgabe auf übereinstimmende Klassennamen zu beschränken.
+: Gibt eine geordnete Liste der vorhandenen Objekte in der Reihenfolge ihrer Erstellung aus, wobei das älteste Objekt an erster Stelle steht. Jede Ausgabezeile enthält den Klassennamen, den Objektbezeichner und die Prozedur, in der die Erstellung erfolgte. Das optionale Musterargument (wie im Tcl-Befehl **string match**) kann verwendet werden, um die Ausgabe auf übereinstimmende Klassennamen zu beschränken.
 
 **::stooop::record**
 : Beim Aufruf wird eine Momentaufnahme aller vorhandenen stooop-Objekte genommen. Mit report lässt sich später feststellen, welche Objekte in der Zwischenzeit erzeugt oder gelöscht wurden.

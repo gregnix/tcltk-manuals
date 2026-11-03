@@ -38,18 +38,18 @@ canvasLabel – tkpiechart-Klasse für Canvas-Beschriftungen
 
 Die Klasse canvasLabel gibt dem Text-Element des Canvas einige Fähigkeiten des Tk-Label-Widgets, etwa einen Hintergrund und einen Rand.
 
-Ein canvasLabel besteht aus einem Bullet-Rechteck links vom Text. Das Relief folgt dem Auswahlzustand, bei Auswahl das übliche Relief sunken.
+Ein canvasLabel besteht aus einem Farbrechteck links vom Text. Das Relief folgt dem Auswahlzustand, bei Auswahl das übliche Relief sunken.
 
 Die Beschriftung hat ein eigenes Tag. Damit lassen sich über die Canvas-Funktionen die Koordinaten des Objekts holen oder es verschieben.
 
 **stooop::new** **canvasLabel** *canvas* ?options?
-: Erstellt ein „canvasLabel“-Objekt in der angegebenen Tk-Canvas. Die Objekt-ID des „canvasLabel“-Objekts wird zurückgegeben (in diesem Dokument als *canvasLabelObject* bezeichnet).
+: Erstellt ein „canvasLabel“-Objekt im angegebenen Tk-Canvas. Der Objektbezeichner des „canvasLabel“-Objekts wird zurückgegeben (in diesem Dokument als *canvasLabelObject* bezeichnet).
 
 **switched::configure** *canvasLabelObject* ?options?
 : Konfiguriert ein „canvasLabel“-Objekt oder gibt alle Optionen mit ihren aktuellen Werten zurück, wenn keine Optionen als Parameter übergeben werden.
 
 **switched::cget** *canvasLabelObject* *option*
-: Gibt einen Wert für das angegebene „canvasLabel“-Objekt zurück.
+: Gibt den Wert einer Option des angegebenen „canvasLabel“-Objekts zurück.
 
 **stooop::delete** *canvasLabelObject*
 : Löscht das angegebene „canvasLabel“-Objekt.
@@ -61,7 +61,7 @@ Die Beschriftung hat ein eigenes Tag. Damit lassen sich über die Canvas-Funktio
 : Ankerposition von Rechteck und Text, relativ zum Positionierungspunkt. Das Verhalten entspricht der Option **-anchor** des *text*-Elements von **canvas**, nur dass das Rechteck mitzählt. Voreingestellt ist *center*.
 
 **-background** color
-: Hintergrundfarbe des Bullet-Rechtecks, wie die Option **-fill** des *rectangle*-Elements von **canvas**. Voreingestellt ist durchsichtig, die leere Zeichenkette.
+: Hintergrundfarbe des Farbrechtecks, wie die Option **-fill** des *rectangle*-Elements von **canvas**. Voreingestellt ist durchsichtig, die leere Zeichenkette.
 
 **-bordercolor** color
 : Randfarbe des Rechtecks, wie die Option **-outline** des *rectangle*-Elements von **canvas**. Voreingestellt ist schwarz.

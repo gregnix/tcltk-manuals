@@ -178,9 +178,9 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
 *diagramObject* **new element** *name* *attributes* *cmdprefix*
 : Diese Methode definiert ein neues Grafikelement für die Zeichensprache. Das heißt, *name* wird zu einem neuen Befehl in der Sprache, und das angegebene Befehlspräfix (*cmdprefix*) wird aufgerufen, um die eigentliche Zeichnung auszuführen.
 
-    *attributes* legt die Menge der Attribute fest, für die Daten verfügbar sein müssen. Das heißt, das System führt für diese Attribute die Methode …-callbacks aus. Weitere Informationen zu Attributdefinitionen finden Sie in der Methode **new attribute**.
+    *attributes* legt die Menge der Attribute fest, für die Daten verfügbar sein müssen. Das heißt, das System führt für diese Attribute die …-Rückruffunktionen aus. Weitere Informationen zu Attributdefinitionen finden Sie in der Methode **new attribute**.
 
-    Der Befehls-Präfix muss der folgenden Signatur entsprechen:
+    Das Befehlspräfix muss der folgenden Signatur entsprechen:
 
     **cmdprefix** *canvas* *attributes*
     : Dabei ist *canvas* der Handle des Canvas-Widgets, auf dem gezeichnet werden soll, und *attributes* ein Dictionary, das die Attribute des Elements enthält, unabhängig davon, ob es sich um benutzerdefinierte oder um Standardwerte handelt.
@@ -189,9 +189,9 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
 
         1. Die Liste der Canvas-Elemente, aus denen das gezeichnete Element besteht.
 
-        2. Das Dictionary der benannten Positionen innerhalb der Elemente, seine *Ecken*.
+        2. Das Dictionary der benannten Positionen innerhalb des Elements, seine *Ecken*.
 
-        3. Ein optionaler Modus, entweder „relativ“ oder „absolut“. Wird kein Wert gegeben, wird „relativ“ angenommen. Bei einer relativen Elementposition werden die Attribute „with“ und „at“ verwendet, um die endgültige Position des neuen Elements zu bestimmen.
+        3. Ein optionaler Modus, entweder „relative“ oder „absolute“. Wird kein Wert gegeben, wird „relative“ angenommen. Bei einer relativen Elementposition werden die Attribute „with“ und „at“ verwendet, um die endgültige Position des neuen Elements zu bestimmen.
 
         4. Ein optionaler Name für eine Ausrichtung. Wenn es sich nicht um eine leere Zeichenkette handelt, wird dieser Wert dem automatischen Layout-Modul als neue Ausrichtung übergeben.
 
@@ -223,7 +223,7 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
         Die Signatur des Befehlspräfixes lautet
 
         **cmdprefix** *wordqueue*
-        : Dabei ist *wordqueue* das Handle eines Warteschlangenobjekts, das der API der vom Paket **struct::queue** bereitgestellten Warteschlangen entspricht. Diese Warteschlange enthält den noch nicht verarbeiteten Teil der Attributdefinitionen, wobei pro Wort ein Eintrag vorhanden ist und der erste Eintrag den Namen des Attributs *nach* dem Wort enthält. Mit anderen Worten: Der Name des Attributs wurde bereits aus der Warteschlange entfernt.
+        : Dabei ist *wordqueue* das Handle eines Warteschlangenobjekts, das der API der vom Paket **struct::queue** bereitgestellten Warteschlangen entspricht. Diese Warteschlange enthält den noch nicht verarbeiteten Teil der Attributdefinitionen, wobei pro Wort ein Eintrag vorhanden ist und der erste Eintrag das Wort *nach* dem Namen des Attributs ist. Mit anderen Worten: Der Name des Attributs wurde bereits aus der Warteschlange entfernt.
 
             Das Ergebnis des Befehls ist der Wert des Attributs, der möglicherweise aus der Warteschlange entnommen wurde – oder auch nicht.
 
@@ -254,7 +254,7 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
         **cmdprefix** *value* *dict*
         : Dabei ist *value* der einzufügende Wert und *dict* das bisher gesammelte Dictionary aus Attributen und Werten.
 
-            Das Ergebnis des Befehls ist das neue Dictionary.
+            Das Ergebnis des Befehls ist das neue Dictionary der Attribute.
 
 
     **aggregate**
@@ -276,12 +276,12 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
         Die Signatur des Befehlspräfixes lautet
 
         **cmdprefix** **init**
-        : Diese Methode wird ausgeführt, wenn das Attribut definiert wird. Ihre Aufgabe besteht darin, alle Elemente im Namespace für das Attribut zu initialisieren und die Standardverarbeitung durchzuführen.
+        : Diese Methode wird ausgeführt, wenn das Attribut definiert wird. Ihre Aufgabe besteht darin, alles im Namespace der Sprache zu initialisieren, was für das Attribut und die Standardverarbeitung nötig ist.
 
             Das Ergebnis dieser Methode wird ignoriert.
 
         **cmdprefix** **fill** *varname*
-        : Diese Methode wird ausgeführt, um Standardwerte oder abgeleitete Werte in das durch *varname* benannte AttributDictionary einzutragen. Diese Variable wird im aufrufenden Kontext gesucht.
+        : Diese Methode wird ausgeführt, um Standardwerte oder abgeleitete Werte in das durch *varname* benannte Attribut-Dictionary einzutragen. Diese Variable wird im aufrufenden Kontext gesucht.
 
             Das Ergebnis dieser Methode wird ignoriert.
 
@@ -311,7 +311,7 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
 
         1. Ersetzt das Attribut (und die Argumente) durch ein anderes Attribut und andere Argumente.
 
-        2. Weitere Wörter am Anfang setzen den allgemeinen Prozess wieder in Gang.
+        2. Fügt vorne weitere Wörter ein, um die allgemeine Verarbeitung wieder in Gang zu bringen.
 
 
 
@@ -328,7 +328,7 @@ Instanzen der Diagrammklasse unterstützen die folgenden Methoden:
 In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, auch „Formen“ genannt, aufgeführt. Diese Befehle sind alle im Kontext der Sprache definiert. Alle Befehle dieses Abschnitts geben als Ergebnis den Handle des neu erstellten Elements zurück. Dieser Handle existiert auch als Befehl, mit dem die Eckpunkte des Elements (Namen, Werte) abgefragt werden können. Siehe Abschnitt [Verschiedene Befehle]. BILD: figure-02-basic-shapes
 
 **arc** *attr*...
-: BILD: figure-02-arc Ein offenes Element mit den entsprechenden Eckpunkten, d. h. „Start“, „Ende“ und „Mitte“. Hinweis: Es weist auch die Windrose geschlossener Elemente als Eckpunkte auf, wobei der Mittelpunkt des Kreises, zu dem der Bogen gehört, als Mittelpunkt der Windrose dient und die anderen Punkte auf dem Kreis, zu dem der Bogen gehört. Es unterstützt die Attribute
+: BILD: figure-02-arc Ein offenes Element mit den entsprechenden Eckpunkten, d. h. „start“, „end“ und „center“. Hinweis: Es weist auch die Windrose geschlossener Elemente als Eckpunkte auf, wobei der Mittelpunkt des Kreises, zu dem der Bogen gehört, als Mittelpunkt der Windrose dient und die anderen Punkte auf dem Kreis liegen, zu dem der Bogen gehört. Es unterstützt die Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -346,16 +346,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **clockwise**
@@ -377,7 +377,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-21-style-colors Legt die Farbe fest, mit der der Innenbereich des Elements gezeichnet wird. Wird keine Angabe gemacht, greift das System auf den Wert der Sprachvariablen **fillcolor** zurück, deren Standardwert die leere Zeichenkette ist, was „keine Füllung“ bedeutet.
 
     **from** *location*
-    : Legt fest, welche Stelle das Element „**arc**“ hat. Standardmäßig ist dies die aktuelle Position, wie sie vom Layout-System verwaltet wird.
+    : Legt die Position fest, an der das Element „**arc**“ beginnt. Standardmäßig ist dies die aktuelle Position, wie sie vom Layout-System verwaltet wird.
 
     **justify** **left**|**center**|**right**
     : Legt fest, wie mehrzeiliger Text, der dem Element zugeordnet ist, innerhalb seines Rahmens positioniert wird. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **justify** entnommen wird, deren Standardwert wiederum **left** ist. Die zulässigen Werte sind **left**, **right** und **center**.
@@ -401,16 +401,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -432,19 +432,19 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 : siehe unten ...
 
 **<-->** *attr*...
-: BILD: figure-02-arrow Ein Alias für das Element **line** (siehe unten), bei dem das Attribut **arrowhead** auf **->** voreingestellt ist, **<->** oder **<-** voreingestellt ist.  Das Element **arrow** entspricht dem Element **-->**.
+: BILD: figure-02-arrow Ein Alias für das Element **line** (siehe unten), bei dem das Attribut **arrowhead** auf **->**, **<->** oder **<-** voreingestellt ist.  Das Element **arrow** entspricht dem Element **-->**.
 
 **block** *script* *attr*...
-: Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie einem „Mittelpunkt“. Der Haupteffekt besteht in der Zusammenfassung aller durch das *script* erstellten Elemente zu einem einzigen Element. Dies bedeutet auch, dass die vom Skript erstellten Elemente zwar während der Ausführung des Skripts im Verlauf sichtbar sind, der Verlauf danach jedoch nur noch den Block selbst enthält und nicht mehr die Elemente, aus denen er besteht.
+: Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Der Haupteffekt besteht in der Zusammenfassung aller durch das *script* erstellten Elemente zu einem einzigen Element. Dies bedeutet auch, dass die vom Skript erstellten Elemente zwar während der Ausführung des Skripts im Verlauf sichtbar sind, der Verlauf danach jedoch nur noch den Block selbst enthält und nicht mehr die Elemente, aus denen er besteht.
 
-    Das Skript hat Zugriff auf den aktuellen Zustand aller Variablen im Sprachkontext. Alle Änderungen an den Variablen werden nach der Ausführung des Blocks rückgängig gemacht. Allerdings werden auch alle im Skript festgelegten Variablen als Ecken der Elemente exportiert, sodass Benutzer ihre eigenen benannten Positionen im Block definieren können.
+    Das Skript hat Zugriff auf den aktuellen Zustand aller Variablen im Sprachkontext. Alle Änderungen an den Variablen werden nach der Ausführung des Blocks rückgängig gemacht. Allerdings werden auch alle im Skript festgelegten Variablen als Ecken des Elements exportiert, sodass Benutzer ihre eigenen benannten Positionen im Block definieren können.
 
-    Was den Layout-Mechanismus betrifft, so werden alle durch das Skript vorgenommenen Änderungen rückgängig gemacht, sobald das Element fertiggestellt ist. Mit anderen Worten: Ein Block ist ein implizites **group**.
+    Was den Layout-Mechanismus betrifft, so werden alle durch das Skript vorgenommenen Änderungen rückgängig gemacht, sobald das Element fertiggestellt ist. Mit anderen Worten: Ein Block ist implizit eine **group**.
 
     Blöcke verarbeiten alle Attribute und geben deren Einstellungen als Standardwerte an das Skript weiter, die während der Skriptausführung aktiv sind.
 
 **box** *attr*...
-: BILD: figure-02-box Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie dem „Mittelpunkt“. Es verwaltet die Attribute
+: BILD: figure-02-box Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Es verwaltet die Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -462,16 +462,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **at** *location*
@@ -511,16 +511,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -542,7 +542,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 : siehe unten ...
 
 **O** *attr*...
-: BILD: figure-02-circle Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie einem „Mittelpunkt“. Es verfügt über folgende Attribute:
+: BILD: figure-02-circle Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Es verfügt über folgende Attribute:
 
     **anchor** *name*
     : siehe unten ...
@@ -560,16 +560,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **at** *location*
@@ -612,16 +612,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -637,7 +637,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 : siehe unten ...
 
 **<>** *attr*...
-: BILD: figure-02-diamond Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie einem „Mittelpunkt“. Es verwaltet die Attribute
+: BILD: figure-02-diamond Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Es verwaltet die Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -655,16 +655,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **aspect** *number*
@@ -717,16 +717,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -750,7 +750,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 
 
 **drum** *attr*...
-: BILD: figure-02-drum Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie einem „Mittelpunkt“. Es verwaltet die Attribute
+: BILD: figure-02-drum Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Es verwaltet die Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -768,16 +768,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **aspect** *number*
@@ -817,16 +817,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -845,7 +845,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 
 
 **ellipse** *attr*...
-: BILD: figure-02-ellipse Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, und einem „Mittelpunkt“. Es unterstützt die folgenden Attribute
+: BILD: figure-02-ellipse Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, und „center“. Es unterstützt die folgenden Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -863,16 +863,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **at** *location*
@@ -909,16 +909,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -958,20 +958,20 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **arrowhead** *spec*
-    : BILD: figure-19-style-arrowheads Legt fest, wo am Element **line** Pfeilspitzen gezeichnet werden sollen: am Anfang, am Ende, an beiden Enden oder gar nicht. Wenn kein Wert festgelegt wird, greift das System auf den Wert zurück, der aus der Sprachvariablen **arrowhead** übernommen wird, deren Standardwert **keine** ist. Die zulässigen Werte sind
+    : BILD: figure-19-style-arrowheads Legt fest, wo am Element **line** Pfeilspitzen gezeichnet werden sollen: am Anfang, am Ende, an beiden Enden oder gar nicht. Wenn kein Wert festgelegt wird, greift das System auf den Wert zurück, der aus der Sprachvariablen **arrowhead** übernommen wird, deren Standardwert **none** ist. Die zulässigen Werte sind
 
         **none**, **-**
         : Zeichnen Sie an keinem der beiden Enden der Linie Pfeilspitzen ein.
@@ -986,13 +986,13 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie an beiden Enden der Linie Pfeilspitzen.
 
 
-        Hinweis: Die Werte „start“, „end“, „-“, „->“, „<-“ und „<->“ werden alle als Kurzformen für den Befehl **arrowhead** akzeptiert und als Argumente verwendet.
+        Hinweis: Die Werte „start“, „end“, „-“, „->“, „<-“ und „<->“ werden alle als Kurzformen für den Befehl **arrowhead** akzeptiert, wenn sie als Argument verwendet werden.
 
     **at** *location*
     : **Line**-Elemente werden normalerweise absolut positioniert, wobei die über die Attribute **from**, **then** und **to** festgelegten Positionen verwendet werden. Wenn **at** festgelegt wird, werden diese Positionen ein letztes Mal verschoben, wobei die durch das Attribut **with** benannte Ecke der Linie an die durch dieses Attribut angegebene Position verschoben wird.
 
     **chop** ?*length*?
-    : Legt die Länge des Elements „**line**“ fest, die am Anfang und/oder am Ende entfernt werden soll. Standardmäßig ist kein Wert festgelegt. Wenn einmal angegeben, gilt die Kürzung sowohl für den Anfang als auch für das Ende der Zeile. Wenn zweimal oder mehrmalig angegeben, werden die letzten beiden Angaben verwendet und in dieser Reihenfolge auf den Anfang und das Ende der Zeile angewendet. Wird das Attribut ohne explizite Längenangabe festgelegt, greift das System auf den Wert zurück, der aus der Sprachvariablen **circleradius** entnommen wird, deren Standardwert wiederum dem Pixeläquivalent von **1 cm** entspricht.
+    : Legt die Länge des Elements „**line**“ fest, die am Anfang und/oder am Ende entfernt werden soll. Standardmäßig ist kein Wert festgelegt. Wenn einmal angegeben, gilt die Kürzung sowohl für den Anfang als auch für das Ende der Linie. Wenn zweimal oder mehrmalig angegeben, werden die letzten beiden Angaben verwendet und in dieser Reihenfolge auf den Anfang und das Ende der Linie angewendet. Wird das Attribut ohne explizite Längenangabe festgelegt, greift das System auf den Wert zurück, der aus der Sprachvariablen **circleradius** entnommen wird, deren Standardwert wiederum dem Pixeläquivalent von **1 cm** entspricht.
 
     **color** *spec*
     : BILD: figure-21-style-colors Legt die Farbe fest, mit der die Linien des Elements gezeichnet werden. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **linecolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -1028,16 +1028,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
         : Zeichnen Sie eine gepunktete Linie.
 
         **dash-dot**, **-.**
-        : Zeichnen Sie eine gestrichelte Linie
+        : Zeichnen Sie eine Strich-Punkt-Linie
 
         **dash-dot-dot**, **-..**
-        : Zeichnen Sie eine gestrichelte Linie.
+        : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
         Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -1076,7 +1076,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
 : BILD: figure-02-spline Ein Alias für das Element **line** (siehe oben), bei dem das Attribut **smooth** voreingestellt ist.
 
 **text** *attr*...
-: BILD: figure-02-text Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie dem „Mittelpunkt“. Es unterstützt die folgenden Attribute
+: BILD: figure-02-text Ein geschlossenes Element mit den entsprechenden Ecken, d. h. den acht Himmelsrichtungen der Windrose, sowie „center“. Es unterstützt die folgenden Attribute
 
     **anchor** *name*
     : siehe unten ...
@@ -1094,16 +1094,16 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
         **ljust**
-        : „Anker West“
+        : „anchor west“
 
         **rjust**
-        : „Anker Ost“
+        : „anchor east“
 
         **above**
-        : „Anker Süd“
+        : „anchor south“
 
         **below**
-        : „Anker Nord“
+        : „anchor north“
 
 
     **at** *location*
@@ -1116,7 +1116,7 @@ In diesem Abschnitt werden die Befehle für die vordefinierten Zeichenelemente, 
     : Legt fest, wie mehrzeiliger Text, der dem Element zugeordnet ist, innerhalb seines Rahmens positioniert wird. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **justify** entnommen wird, deren Standardwert wiederum **left** ist. Die zulässigen Werte sind **left**, **right** und **center**.
 
     **text** *string*
-    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+    : Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
     **textcolor** *spec*
     : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -1138,7 +1138,7 @@ Nachstehend ist die Gesamtheit aller Attribute aufgeführt, die von allen Elemen
 
 Hinweis: Einige der Attributnamen sind überladen, d. h. sie weisen mehrere unterschiedliche Definitionen auf. Bei der Verarbeitung der Attribute eines Elements wird die tatsächlich verwendete Definition anhand des Typs des Elements ausgewählt, für das der Prozess erfolgt.
 
-Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß den nachstehenden Definitionen verarbeitet werden konnte, als Argument eines impliziten **text**-Attributs behandelt wird.
+Darüber hinaus gilt als Auffangklausel, dass jedes Attribut, das nicht gemäß den nachstehenden Definitionen verarbeitet werden konnte, als Argument eines impliziten **text**-Attributs behandelt wird.
 
 **anchor** *name*
 : siehe unten ...
@@ -1156,20 +1156,20 @@ Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß d
 : BILD: figure-22-text-anchoring-3 Legt den Anker des Textes fest, der in der Mitte des Elements platziert werden soll, anhand seines Namens. Das heißt, dieses Attribut definiert die Position des Textes relativ zur Mitte des Elements. Der Wert wird ignoriert, wenn für das Element kein Text angegeben wurde. Wird kein Wert angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **anchor** entnommen wird, deren Standardwert wiederum **center** ist. Zulässige Werte sind alle, die von [Tk\_GetAnchor](http://www.tcl-lang.org/man/tcl8.5/TkLib/GetAnchor.htm) akzeptiert werden. Die Befehle ohne Argumente sind allesamt Kurzformen, bei denen der Anker impliziert ist. Beachten Sie, dass sie sich nicht kombinieren lassen; es wird nur der letzte Befehl verwendet. Für kombinierte Ausrichtungen muss der Hauptattributbefehl **anchor** verwendet werden.
 
     **ljust**
-    : „Anker West“
+    : „anchor west“
 
     **rjust**
-    : „Anker Ost“
+    : „anchor east“
 
     **above**
-    : „Anker Süd“
+    : „anchor south“
 
     **below**
-    : „Anker Nord“
+    : „anchor north“
 
 
 **arrowhead** *spec*
-: BILD: figure-19-style-arrowheads Legt fest, wo am Element **line** Pfeilspitzen gezeichnet werden sollen: am Anfang, am Ende, an beiden Enden oder gar nicht. Wenn kein Wert festgelegt wird, greift das System auf den Wert der Sprachvariablen **arrowhead** zurück, deren Standardwert **keine** ist. Die zulässigen Werte sind
+: BILD: figure-19-style-arrowheads Legt fest, wo am Element **line** Pfeilspitzen gezeichnet werden sollen: am Anfang, am Ende, an beiden Enden oder gar nicht. Wenn kein Wert festgelegt wird, greift das System auf den Wert der Sprachvariablen **arrowhead** zurück, deren Standardwert **none** ist. Die zulässigen Werte sind
 
     **none**, **-**
     : Zeichnen Sie an keinem der beiden Enden der Linie Pfeilspitzen ein.
@@ -1184,7 +1184,7 @@ Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß d
     : Zeichnen Sie an beiden Enden der Linie Pfeilspitzen.
 
 
-    Hinweis: Die Werte „start“, „end“, „-“, „->“, „<-“ und „<->“ werden alle als Kurzformen für den Befehl **arrowhead** akzeptiert und als Argumente verwendet.
+    Hinweis: Die Werte „start“, „end“, „-“, „->“, „<-“ und „<->“ werden alle als Kurzformen für den Befehl **arrowhead** akzeptiert, wenn sie als Argument verwendet werden.
 
 **aspect** *number*
 : Legt das Seitenverhältnis, d. h. das Verhältnis von Breite zu Höhe, des Elements **diamond** fest. Die Art und Weise, wie ein Standardwert berechnet wird, wenn keine Angabe erfolgt, hängt zudem von den Angaben der Attribute **width** und **height** ab, sofern vorhanden.
@@ -1207,7 +1207,7 @@ Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß d
 : **Line**-Elemente werden normalerweise absolut positioniert, wobei die über die Attribute **from**, **then** und **to** festgelegten Positionen verwendet werden. Wenn **at** festgelegt wird, werden diese Positionen ein letztes Mal verschoben, wobei die durch das Attribut **with** benannte Ecke der Linie an die durch dieses Attribut angegebene Position verschoben wird.
 
 **chop** ?*length*?
-: Legt die Länge des Elements „**line**“ fest, die am Anfang und/oder am Ende entfernt werden soll. Standardmäßig ist kein Wert festgelegt. Wenn einmal angegeben, gilt die Kürzung sowohl für den Anfang als auch für das Ende der Zeile. Wenn zweimal oder mehrmalig angegeben, werden die letzten beiden Angaben verwendet und in dieser Reihenfolge auf den Anfang und das Ende der Zeile angewendet. Wird das Attribut ohne explizite Längenangabe festgelegt, greift das System auf den Wert zurück, der aus der Sprachvariablen **circleradius** entnommen wird, deren Standardwert wiederum dem Pixeläquivalent von **1 cm** entspricht.
+: Legt die Länge des Elements „**line**“ fest, die am Anfang und/oder am Ende entfernt werden soll. Standardmäßig ist kein Wert festgelegt. Wenn einmal angegeben, gilt die Kürzung sowohl für den Anfang als auch für das Ende der Linie. Wenn zweimal oder mehrmalig angegeben, werden die letzten beiden Angaben verwendet und in dieser Reihenfolge auf den Anfang und das Ende der Linie angewendet. Wird das Attribut ohne explizite Längenangabe festgelegt, greift das System auf den Wert zurück, der aus der Sprachvariablen **circleradius** entnommen wird, deren Standardwert wiederum dem Pixeläquivalent von **1 cm** entspricht.
 
 **clockwise**
 : siehe unten ...
@@ -1296,16 +1296,16 @@ Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß d
     : Zeichnen Sie eine gepunktete Linie.
 
     **dash-dot**, **-.**
-    : Zeichnen Sie eine gestrichelte Linie
+    : Zeichnen Sie eine Strich-Punkt-Linie
 
     **dash-dot-dot**, **-..**
-    : Zeichnen Sie eine gestrichelte Linie.
+    : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
     Hinweis: Die Werte „solid“, „dot(ted)“, „dash(ed)“, „dash-dot“ und „dash-dot-dot“ werden alle als Kurzformen für den Befehl **style** akzeptiert, wenn sie als Argument verwendet werden.
 
 **text** *string*
-: Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenfolgen, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenfolge ganz oben steht.
+: Legt den Text fest, der dem Element zugeordnet werden soll. Standardmäßig ist kein Text angegeben. Bei mehrfacher Angabe entspricht der tatsächlich angezeigte Text der Verkettung der einzelnen Zeichenketten, die vertikal übereinandergestapelt werden, wobei die zuerst angegebene Zeichenkette ganz oben steht.
 
 **textcolor** *spec*
 : Legt die Farbe fest, mit der der Text eines Elements dargestellt wird. Wird ignoriert, wenn kein Text vorhanden ist. Wird dieser Wert nicht angegeben, greift das System auf den Wert zurück, der aus der Sprachvariablen **textcolor** entnommen wird, deren Standardwert wiederum **black** ist.
@@ -1367,19 +1367,19 @@ Darüber hinaus gilt als Auffangklause, dass jedes Attribut, das nicht gemäß d
 
 Ecken sind Namen für Werte in Elementen, in der Regel Positionen.
 
-- Die *geschlossenen* Elemente definieren die Ecken der Windrose, einschließlich des „Zentrums“, sowie deren „Breite“ und „Höhe“.
+- Die *geschlossenen* Elemente definieren die Ecken der Windrose, einschließlich „center“, sowie „width“ und „height“.
 
     BILD: figure-27-corners-closed
 
-- Die Elemente „**block**“ exportieren zusätzlich alle Variablen, die bei ihren Definitionen als Eckpunkte festgelegt wurden.
+- Die Elemente „**block**“ exportieren zusätzlich alle Variablen, die bei ihrer Definition festgelegt wurden, als Ecken.
 
 - Die *open*-Elemente hingegen definieren „start“, „end“ und „center“. Die ersten beiden werden den Positionen zugeordnet, die ursprünglich über die Attribute **from** und **to** des Elements angegeben wurden.
 
     BILD: figure-28-corners-open
 
-- Der Mittelpunkt der Elemente **line** und **move** befindet sich auf halbem Weg zwischen der „Start“- und der „End“-Ecke, und zwar unabhängig von etwaigen Zwischenpunkten, die das Element aufweisen mag.
+- Der Mittelpunkt der Elemente **line** und **move** befindet sich auf halbem Weg zwischen den Ecken „start“ und „end“, und zwar unabhängig von etwaigen Zwischenpunkten, die das Element aufweisen mag.
 
-- Die Elemente **line** und **move** bezeichnen zudem alle ihre Positionen als Ecken, wobei sie Nummern als Namen verwenden, beginnend mit **1** (entspricht „start“), in der Reihenfolge der Abtastung.
+- Die Elemente **line** und **move** bezeichnen zudem alle ihre Positionen als Ecken, wobei sie Nummern als Namen verwenden, beginnend mit **1** (entspricht „start“), in der Reihenfolge, in der sie durchlaufen werden.
 
     BILD: figure-15-spline-1
 
@@ -1390,7 +1390,7 @@ Ecken sind Namen für Werte in Elementen, in der Regel Positionen.
 
 ## Benannte Richtungen
 
-Die genannten Richtungen sind Befehle, die dem Layout-System mitteilen, in welche Richtung es beim Platzieren des nächsten Elements ohne explizite Positionsangabe vorgehen soll. Sie können auch als Argumente für das Attribut **then** sowie für den Befehl **by** bei relativen Punkten verwendet werden; die entsprechende Syntax finden Sie dort.
+Die benannten Richtungen sind Befehle, die dem Layout-System mitteilen, in welche Richtung es beim Platzieren des nächsten Elements ohne explizite Positionsangabe vorgehen soll. Sie können auch als Argumente für das Attribut **then** sowie für den Befehl **by** bei relativen Punkten verwendet werden; die entsprechende Syntax finden Sie dort.
 
 Der Diagrammkern definiert die Richtungen der Windrose sowie eine Reihe von Aliasen. Die vollständige Liste finden Sie weiter unten.
 
@@ -1453,7 +1453,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
 *number* **pt**
 : Mit diesen Befehlen können Abstände und Koordinaten in metrischen und imperialen Einheiten angegeben werden; als Ergebnis gibt der Befehl den entsprechenden Abstand bzw. die entsprechende Koordinate in Pixeln zurück, da dies die Einheit ist, die intern für alle Berechnungen verwendet wird.
 
-    Die Umrechnungsfaktoren basieren auf dem Ergebnis von **tk scaling** und werden einmalig zum Zeitpunkt des Einladens des Pakets berechnet; spätere Änderungen des Faktors **tk scaling** haben keine Auswirkungen.
+    Die Umrechnungsfaktoren basieren auf dem Ergebnis von **tk scaling** und werden einmalig zu dem Zeitpunkt berechnet, zu dem das Paket mittels `source` eingelesen wird; spätere Änderungen des Faktors **tk scaling** haben keine Auswirkungen.
 
 *number* *number*
 : BILD: figure-50-point-cons-absolute
@@ -1525,7 +1525,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
 **intersect** *elem1* *elem2*
 : BILD: figure-32-point-intersection
 
-    Dieser Befehl nimmt zwei *offene* Elemente entgegen, berechnet die Geraden, die durch deren „Start“- und „End“--corners verlaufen, und gibt den Schnittpunkt dieser beiden Geraden zurück. Der Befehl löst einen Fehler aus, wenn sich die Geraden nicht schneiden oder zusammenfallen.
+    Dieser Befehl nimmt zwei *offene* Elemente entgegen, berechnet die Geraden, die durch deren Ecken „start“ und „end“ verlaufen, und gibt den Schnittpunkt dieser beiden Geraden zurück. Der Befehl löst einen Fehler aus, wenn sich die Geraden nicht schneiden oder zusammenfallen.
 
 *element* **names** ?*pattern*?
 : Dieser Befehl gibt eine Liste zurück, die die Namen aller Ecken des *element* enthält. Wird ein Muster festgelegt, werden nur die Namen zurückgegeben, die diesem Muster entsprechen (über **string match**). Andernfalls werden alle Namen zurückgegeben (entspricht einem Standardmuster von **\***).
@@ -1546,7 +1546,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
      [$elem $corner1]
     ```
 
-    .IP usw. ist wiederum ein Element.
+    , usw. wiederum ein Element ist.
 
 *element* ?*corner1*... ?**names** ?*pattern*??\]?
 : Dies ist eine praktische Kurzform für
@@ -1561,7 +1561,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
      [$elem $corner1]
     ```
 
-    .IP usw. ist wiederum ein Element.
+    , usw. wiederum ein Element ist.
 
 **n**th ?*corner*?
 : Dieser Befehl fragt den Diagrammverlauf nach dem **n**. erstellten Element ab, wobei er vom Anfang des Verlaufs (gezählt ab 1) aus sucht, und gibt dieses als Ergebnis zurück. Wenn die *corner* festgelegt wird, wird stattdessen der Wert für diese Ecke zurückgegeben.
@@ -1579,7 +1579,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
 : siehe unten ...
 
 **last** *shape* ?*corner*?
-: Die Convenience-Befehle erfordern eine Zuordnung zu „**1st last**“ und „**1st last** *shape*“.
+: Komfortbefehle, die „**1st last**“ und „**1st last** *shape*“ entsprechen.
 
 **1st**
 : siehe unten ...
@@ -1588,7 +1588,7 @@ Dies überschneidet sich mit den vordefinierten Ecken für geschlossene Elemente
 : siehe unten ...
 
 **3rd**
-: Aliase für **1th**, **2th** und **3th**, die der besseren Lesbarkeit dienen und überall dort verwendet werden können, wo **n** vorkommen kann.
+: Aliase für **1th**, **2th** und **3th**, die der besseren Lesbarkeit dienen und überall dort verwendet werden können, wo **n**th vorkommen kann.
 
 
 ## Variablen
@@ -1654,10 +1654,10 @@ Der Sprachkontext enthält eine Reihe vordefinierter Variablen, die die Standard
     : Zeichnen Sie eine gepunktete Linie.
 
     **dash-dot**, **-.**
-    : Zeichnen Sie eine gestrichelte Linie
+    : Zeichnen Sie eine Strich-Punkt-Linie
 
     **dash-dot-dot**, **-..**
-    : Zeichnen Sie eine gestrichelte Linie.
+    : Zeichnen Sie eine Strich-Punkt-Punkt-Linie.
 
 
 **linewidth**
@@ -1678,9 +1678,9 @@ Der Sprachkontext enthält eine Reihe vordefinierter Variablen, die die Standard
 
 # Diagrammklassen
 
-Dieser Abschnitt richtet sich an Entwickler, die an den internen Abläufen des Diagramm-Pakets arbeiten möchten. Regelmäßige Nutzer von **diagram** können diesen Abschnitt überspringen, ohne etwas zu verpassen.
+Dieser Abschnitt richtet sich an Entwickler, die an den internen Abläufen des Diagramm-Pakets arbeiten möchten. Normale Nutzer von **diagram** können diesen Abschnitt überspringen, ohne etwas zu verpassen.
 
-Die wichtigste Information, die Sie hier sehen, ist die nachstehende Abbildung, die die Klassenhierarchie im Implementierungsdiagramm darstellt.
+Die wichtigste Information, die Sie hier sehen, ist die nachstehende Abbildung, die die Hierarchie der Klassen darstellt, die diagram implementieren.
 
 BILD: figure-00-dependencies
 
@@ -1695,7 +1695,7 @@ Darüber befindet sich die Gruppe der Diagrammklassen, die die verschiedenen Asp
 : Die Kern-Engine, die selbst auf vier Hilfsklassen verteilt ist.
 
 **diagram::basic**
-: Die Implementierung der Standards wie Rechteck, Kreis usw. basiert auf den Erweiterungen des Kerns.
+: Die Implementierung der Standardformen wie box, circle usw., aufbauend auf den Erweiterungsfunktionen des Kerns.
 
 **diagram::element**
 : Kernklasse zur Unterstützung, die Datenbank der erstellten Elemente. Sie verwaltet zudem den Verlauf, d. h. die Reihenfolge, in der die Elemente erstellt wurden.

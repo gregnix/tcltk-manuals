@@ -121,7 +121,7 @@ BWidget::**place** *path* *w* *h* ?*arg...*?
     : Platziert das Widget *path* links oder rechts vom Bezugs-Widget (oder vom Wurzel-Widget, wenn *widget* nicht angegeben ist). Wenn die Position des Bezugs-Widgets so ist, dass das neu platzierte Fenster verdeckt sein könnte, wird die gegenüberliegende Seite versucht.
 
     **below** *?widget?*
-    : Wie bei links/rechts oben bewirkt diese Option, dass das Widget entweder über oder unter dem Bezugs-Widget platziert wird; die gegenüberliegende Platzierung wird versucht, wenn das neu platzierte Widget nicht sichtbar wäre. 
+    : Wie oben bei links/rechts bewirkt diese Option, dass das Widget entweder über oder unter dem Bezugs-Widget platziert wird; die gegenüberliegende Platzierung wird versucht, wenn das neu platzierte Widget nicht sichtbar wäre. 
 
 
 BWidget::**write** *filename* ?*mode*? 

@@ -68,12 +68,12 @@ Wenn als einzige Zeichenaufbereitung die Unicode-Normalisierung nötig ist, reic
     Mögliche Fehler sind: *invalid\_profile* – das angegebene *profile* ist nicht definiert; *prohibited\_character* – die angegebene *string* enthält ein unzulässiges Zeichen; *prohibited\_bidi* – die angegebene *string* enthält eine unzulässige bidirektionale Zeichenfolge.
 
 **::stringprep::compare** *profile* *string1* *string2*
-: Führt einen Vergleich der beiden angegebenen Zeichenfolgen durch, indem das Ergebnis der jeweiligen Zeichenfolgenvorbereitung gemäß dem angegebenen *profile* verglichen wird. Gibt **0** zurück, wenn die Zeichenfolgen (gemäß dem angegebenen *profile*) gleich sind, oder **-1**, wenn *string1* lexikografisch kleiner ist als *string2*, bzw. **1**, wenn *string1* lexikografisch größer ist als *string2*.
+: Führt einen Vergleich der beiden angegebenen Zeichenketten durch, indem das Ergebnis der jeweiligen Zeichenaufbereitung gemäß dem angegebenen *profile* verglichen wird. Gibt **0** zurück, wenn die Zeichenketten (gemäß dem angegebenen *profile*) gleich sind, oder **-1**, wenn *string1* lexikografisch kleiner ist als *string2*, bzw. **1**, wenn *string1* lexikografisch größer ist als *string2*.
 
 
 # Beispiele
 
-Dieses Beispiel zeigt, wie sich mit **stringprep** Zeichenfolgen vergleichen lassen.
+Dieses Beispiel zeigt, wie sich mit **stringprep** Zeichenketten vergleichen lassen.
 
 ```
 ::stringprep::register basicprep -mapping {B.1 B.2} -normalization KC

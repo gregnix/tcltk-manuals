@@ -47,9 +47,9 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 
 **ttk::style element** *args*
 : siehe unten ...
+
     **ttk::style element create** *elementName* *type* ?*args...*?
     : Erstellt ein neues Element im aktuellen Theme vom Typ *type*. Der einzige plattformübergreifende eingebaute Elementtyp ist *image* (siehe [ttk\_image][ttk_image](n)); Themes können weitere Elementtypen definieren (siehe **Ttk\_RegisterElementFactory**). Auf geeigneten Windows-Versionen ist eine Elementfabrik registriert, die Windows-Theme-Elemente erzeugt (siehe [ttk\_vsapi][ttk_vsapi](n)).
-
 
     **ttk::style element names**
     : Gibt die Liste der im aktuellen Theme definierten Elemente zurück.
@@ -69,9 +69,9 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 
 **ttk::style theme** *args*
 : siehe unten ...
+
     **ttk::style theme create** *themeName* ?**-parent** *basedon*? ?**-settings** *script...* ?
     : Erstellt ein neues Theme. Existiert *themeName* bereits, ist das ein Fehler. Ist **-parent** angegeben, erbt das neue Theme Styles, Elemente und Layouts vom Eltern-Theme *basedon*. Ist **-settings** vorhanden, wird *script* im Kontext des neuen Themes gemäß **ttk::style theme settings** ausgewertet.
-
 
     **ttk::style theme names**
     : Gibt eine Liste aller bekannten Themes zurück.
@@ -86,7 +86,7 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 
 # Layouts
 
-Ein *layout* legt eine Liste von Elementen fest, jedes gefolgt von einer oder mehreren Optionen zur Anordnung des Elements. Der Layout-Mechanismus verwendet eine vereinfachte Variante des Geometriemanagers [pack]: Ausgehend von einem anfänglichen Hohlraum (*cavity*) erhält jedes Element ein *parcel* (Zuweisungsbereich). Anschließend wird das vom Element tatsächlich genutzte *parcel* innerhalb des zugewiesenen Bereichs angepasst. Gültige Optionen sind:
+Ein *Layout* legt eine Liste von Elementen fest, jedes gefolgt von einer oder mehreren Optionen zur Anordnung des Elements. Der Layout-Mechanismus verwendet eine vereinfachte Variante des Geometriemanagers [pack]: Ausgehend von einem anfänglichen Hohlraum (*cavity*) erhält jedes Element ein *parcel* (Zuweisungsbereich). Anschließend wird das vom Element tatsächlich genutzte *parcel* innerhalb des zugewiesenen Bereichs angepasst. Gültige Optionen sind:
 
 **-children {** *sublayout...* **}**
 : Legt eine Liste von Elementen fest, die innerhalb des Elements platziert werden.

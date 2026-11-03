@@ -45,7 +45,7 @@ Darüber hinaus bieten die Fassaden die folgenden zusätzlichen Konfigurationsop
 : Das TclOO-Objekt, das die Fassade verwaltet.
 
 **-fd**
-: Der Griff des untergeordneten, d. h. umwickelten Kanals.
+: Das Handle des untergeordneten, d. h. eingehüllten Kanals.
 
 **-used**
 : Der Zeitpunkt, zu dem der verpackte Kanal zuletzt von der Fassade gelesen oder beschrieben wurde, gemäß **clock milliseconds**. Der Wert **0** bedeutet, dass auf den untergeordneten Kanal bisher noch gar nicht zugegriffen wurde.

@@ -47,7 +47,7 @@ lassign - Weist Listenelemente Variablen zu
 
 # Beschreibung
 
-Der Befehl behandelt *list* als Liste und weist aufeinanderfolgende Elemente der *varName*-Argumente in Reihenfolge zu. Gibt es mehr Variablen als Elemente, erhalten die übrigen Variablen eine leere Zeichenkette. Gibt es mehr Elemente als Variablen, wird eine Liste der nicht zugewiesenen Elemente zurückgegeben.
+Der Befehl behandelt *list* als Liste und weist aufeinanderfolgende Elemente dieser Liste der Reihe nach den durch die *varName*-Argumente angegebenen Variablen zu. Gibt es mehr Variablen als Elemente, erhalten die übrigen Variablen eine leere Zeichenkette. Gibt es mehr Elemente als Variablen, wird eine Liste der nicht zugewiesenen Elemente zurückgegeben.
 
 # Beispiele
 
@@ -69,7 +69,7 @@ puts $x                     ;# Gibt f aus
 puts $y                     ;# Gibt g aus
 ```
 
-Analog zu „shift“ in Shell-Sprachen:
+Der Befehl **lassign** hat weitere Verwendungen. So lässt sich damit ein Gegenstück zum Befehl „shift“ vieler Shell-Sprachen bilden:
 
 ```
 set ::argv [lassign $::argv argumentToReadOff]

@@ -49,7 +49,7 @@ lrange - Gibt ein oder mehrere benachbarte Listenelemente zurück
 
 *list* muss eine gültige Tcl-Liste sein. Der Befehl gibt eine neue Liste aus den Elementen *first* bis *last* einschließlich zurück. *first* und *last* werden wie Indizes bei [string index][string] ausgelegt, einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende. Ist *first* kleiner als null, gilt es als 0. Ist *last* größer oder gleich der Elementanzahl, gilt es als **end**. Ist *first* größer als *last*, wird eine leere Zeichenkette zurückgegeben.
 
-„**lrange** *list first first*“ liefert nicht immer dasselbe wie „[lindex] *list first*“ (bei einfachen, nicht in Klammern stehenden Feldern oft schon); es entspricht aber genau „[list \[lindex][list] *list first***\]**“.
+„**lrange** *list first first*“ liefert nicht immer dasselbe wie „[lindex] *list first*“ (bei einfachen, nicht in geschweiften Klammern stehenden Feldern oft schon); es entspricht aber genau „[list \[lindex][list] *list first***\]**“.
 
 # Beispiele
 
@@ -74,7 +74,7 @@ Alles außer erstem und letztem Element:
 b c d
 ```
 
-Ein Element mit **lrange** statt [lindex]:
+Ein einzelnes Element mit **lrange** auszuwählen ist nicht dasselbe wie mit [lindex]:
 
 ```
 % set var {some {elements to} select}

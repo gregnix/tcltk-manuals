@@ -33,7 +33,7 @@ throw - Erzeugt einen maschinenlesbaren Fehler
 
 Dieser Befehl bricht die aktuelle Auswertung mit einem Fehler ab. Der Fehler wird durch die Argumente *type* und *message* beschrieben: *type* muss eine Liste von Wörtern enthalten, die den Fehler in maschinenlesbarer Form beschreiben (und den error-code-Teil des Ergebnis-Dictionarys bilden), *message* soll Text für die Anzeige an Menschen enthalten.
 
-Der Stack wird entwunden, bis der Fehler von einem passenden [catch]- oder [try]-Befehl abgefangen wird. Erreicht er die Event-Schleife ungefangen, wird er über den Mechanismus [bgerror] gemeldet. Erreicht er in [tclsh] die oberste Skriptebene, wird er auf der Konsole ausgegeben und beendet im nicht-interaktiven Fall das Programm (in anderen Programmen hängt das Verhalten von der Einbettung von Tcl ab).
+Der Stack wird entwunden, bis der Fehler von einem passenden [catch]- oder [try]-Befehl abgefangen wird. Erreicht er die Ereignisschleife ungefangen, wird er über den Mechanismus [bgerror] gemeldet. Erreicht er in [tclsh] die oberste Skriptebene, wird er auf der Konsole ausgegeben und beendet im nicht-interaktiven Fall das Programm (in anderen Programmen hängt das Verhalten von der Einbettung von Tcl ab).
 
 Üblicherweise gehen die Wörter in *type* vom Allgemeinsten zum Spezifischsten.
 

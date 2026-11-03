@@ -53,7 +53,7 @@ Dieses Paket stellt das Frontend eines Compilers bereit, der magic(5)-Dateien in
 **::fileutil::magic::cfront::generate** ?*compressed*
 : **boolean**? -- *path*... Dieser Befehl verhält sich hinsichtlich der angegebenen *path*-Argumente wie **::fileutil::magic::cfront::compile**, packt das entstehende Erkenner-Skript dann in eine Variable namens **named** und eine Prozedur namens **analyzer** und gibt das entstehende Skript zurück.
 
-    Das Argument *compressed* hat die Vorgabe **boolean** **true**, das heißt, Leerzeichen im zurückgegebenen Skript werden minimiert.
+    Das Argument *compressed* hat die Vorgabe **boolean** **true**, das heißt, Leerraum im zurückgegebenen Skript wird minimiert.
 
     Das Argument *--* ist immer erforderlich.
 

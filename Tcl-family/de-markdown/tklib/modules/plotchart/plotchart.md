@@ -253,10 +253,10 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     list *xaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite steht, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite steht, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *yaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *args* (in)
     : Null oder mehr Optionen, die das Erscheinungsbild der Grafik beeinflussen:
@@ -289,7 +289,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Hinweis: Eine invertierte x-Achse wird bei dieser Art von Diagramm *nicht* unterstützt.
 
     list *yaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *args* (in)
     : Null oder mehr Optionen – weitere Informationen stehen beim XY-Diagramm.
@@ -305,7 +305,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Eine Liste mit drei Elementen, die in dieser Reihenfolge das anzuzeigende Mindest- und Höchstdatum bzw. die Mindest- und Höchstuhrzeit sowie die Schrittweite (*in Tagen*) für die Zeitachse enthält. Hinweis: Eine umgekehrte Zeitachse wird *nicht* unterstützt.
 
     list *xaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die vertikale Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die vertikale Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert unten erscheint, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *args* (in)
     : Null oder mehr Optionen – weitere Informationen stehen beim XY-Diagramm.
@@ -320,7 +320,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     list *xaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite steht, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite steht, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *yaxis* (in)
     : Eine Liste mit zwei Elementen, die den Minimal- und den Maximalwert für die y-Achse in dieser Reihenfolge enthält. Hinweis: Eine invertierte logarithmische Achse wird *nicht* unterstützt.
@@ -341,7 +341,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Eine Liste mit zwei Elementen, die den Minimal- und den Maximalwert für die x-Achse in dieser Reihenfolge enthält. Hinweis: Eine invertierte logarithmische Achse wird *nicht* unterstützt.
 
     list *yaxis* (in)
-    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite erscheint, dafür: Maximalwert, Minimalwert und eine *negative* Schrittweite.
+    : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält. Für eine umgekehrte Achse, bei der der Maximalwert auf der linken Seite erscheint, verwenden Sie: Maximalwert, Minimalwert und eine *negative* Schrittweite.
 
     list *args* (in)
     : Null oder mehr Optionen – weitere Informationen stehen beim XY-Diagramm.
@@ -486,9 +486,9 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
 
         - *lines* – Standardeinstellung: Die Daten werden als unabhängige Polylinien dargestellt.
 
-        - *cumulative* – Zeichnen Sie die Daten als Polylinien, wobei die Daten kumuliert werden.
+        - *cumulative* – Die Daten werden als Polylinien gezeichnet, wobei die Daten kumuliert werden.
 
-        - *filled* – Zeichnen Sie die Daten als gefüllte Polygone an den Stellen, an denen die Daten kumuliert sind.
+        - *filled* – Die Daten werden als gefüllte Polygone gezeichnet, wobei die Daten kumuliert werden.
 
 
 
@@ -512,7 +512,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Die Anzahl der Datenreihen, die dargestellt werden sollen. Dies muss eine ganze Zahl größer als Null sein (wenn **stacked** nicht verwendet wird).
 
     string *args* (in)
-    : Ein oder mehrere Schlüssel-Wert-Paare, die die Optionen definieren. Speziell für Balkendiagramme: Der Wert „**-xlabelangle**“ gibt den Winkel an, in dem die Beschriftungen gezeichnet werden sollen. Der Standardwert ist 0 – horizontaler Text. Diese Option ist besonders nützlich, wenn Sie relativ lange Beschriftungen haben.
+    : Ein oder mehrere Schlüssel-Wert-Paare, die die Optionen definieren. Speziell für Balkendiagramme: Die Option **-xlabelangle** *value* gibt den Winkel an, in dem die Beschriftungen gezeichnet werden sollen. Der Standardwert ist 0 – horizontaler Text. Diese Option ist besonders nützlich, wenn Sie relativ lange Beschriftungen haben.
 
 
 **::Plotchart::createHorizontalBarchart** *w* *xaxis* *ylabel* *noseries*
@@ -572,10 +572,10 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     list *xdata* (in)
-    : Hierbei handelt es sich entweder um eine Liste mit drei Elementen, die in dieser Reihenfolge (bei horizontaler Ausrichtung) den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält, oder um eine Liste von Beschriftungen für die x-Achse (bei vertikaler Ausrichtung). Die Länge der Beschriftungsliste bestimmt zudem die Anzahl der Felder, die gezeichnet werden können. Die Beschriftungen werden auch im Unterbefehl „plot“ verwendet.
+    : Hierbei handelt es sich entweder um eine Liste mit drei Elementen, die in dieser Reihenfolge (bei horizontaler Ausrichtung) den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält, oder um eine Liste von Beschriftungen für die x-Achse (bei vertikaler Ausrichtung). Die Länge der Beschriftungsliste bestimmt zudem die Anzahl der Boxen, die gezeichnet werden können. Die Beschriftungen werden auch im Unterbefehl „plot“ verwendet.
 
     list *ydata* (in)
-    : Hierbei handelt es sich entweder um eine Liste mit drei Elementen, die in dieser Reihenfolge (bei vertikaler Ausrichtung) den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält, oder um eine Liste von Beschriftungen für die y-Achse (bei horizontaler Ausrichtung). Die Länge der Beschriftungsliste bestimmt zudem die Anzahl der Felder, die gezeichnet werden können. Die Beschriftungen werden auch im Unterbefehl „plot“ verwendet.
+    : Hierbei handelt es sich entweder um eine Liste mit drei Elementen, die in dieser Reihenfolge (bei vertikaler Ausrichtung) den Minimalwert, den Maximalwert und die Schrittweite für die y-Achse enthält, oder um eine Liste von Beschriftungen für die y-Achse (bei horizontaler Ausrichtung). Die Länge der Beschriftungsliste bestimmt zudem die Anzahl der Boxen, die gezeichnet werden können. Die Beschriftungen werden auch im Unterbefehl „plot“ verwendet.
 
     string *orientation* (in)
     : Sind „horizontal“ oder „vertical“ angegeben, bestimmen sie die Ausrichtung der Boxen. Dieser optionale Wert (Standard: horizontal) bestimmt zudem die Interpretation der Argumente „xdata“ und „ydata“.
@@ -588,10 +588,10 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     string *time\_begin* (in)
-    : Die Startzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1. Januar 2004“).
+    : Die Startzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1 january 2004“).
 
     string *time\_end* (in)
-    : Die Endzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1. Januar 2004“).
+    : Die Endzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1 january 2004“).
 
     arguments *args* (in)
     : Die übrigen Argumente können wie folgt lauten:
@@ -611,10 +611,10 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     string *time\_begin* (in)
-    : Die Startzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1. Januar 2004“).
+    : Die Startzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1 january 2004“).
 
     string *time\_end* (in)
-    : Die Endzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1. Januar 2004“).
+    : Die Endzeit in einem Format, das vom Befehl **clock scan** erkannt wird (z. B. „1 january 2004“).
 
     arguments *args* (in)
     : Die übrigen Argumente können wie folgt lauten:
@@ -651,7 +651,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Die Überschriften der Spalten in der Tabelle. Die Anzahl der Elemente bestimmt die Anzahl der Spalten.
 
     list *widths* (in)
-    : Wird ein Wert angegeben, so handelt es sich entweder um einen einzelnen Wert – die Breite in Pixeln für alle Spalten – oder um die Breite der jeweiligen Spalten. Wird kein Wert angegeben, erstreckt sich die Tabelle über die gesamte Breite des canvases (abzüglich der Außenabstände).
+    : Wird ein Wert angegeben, so handelt es sich entweder um einen einzelnen Wert – die Breite in Pixeln für alle Spalten – oder um die Breite der jeweiligen Spalten. Wird kein Wert angegeben, erstreckt sich die Tabelle über die gesamte Breite des Canvas (abzüglich der Außenabstände).
 
 
 **::Plotchart::createTernaryDiagram** *w* *args*
@@ -661,7 +661,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Name des Canvas-Widgets, in dem das ternäre Diagramm angezeigt werden soll.
 
     list *args* (in)
-    : Null oder mehr Optionen-Wert-Paare zur Steuerung der Position und der Darstellung des Diagramms. Zusätzlich zu den Positionierungsoptionen (-box und -axesbox) unterstützt das Diagramm: *-fractions ja/nein*, um die Zahlen 0 bis 1 anstelle von 0 bis 100 % anzuzeigen, sowie *-steps Zahl*, um die Anzahl der Beschriftungen entlang der drei Seiten zu beeinflussen.
+    : Null oder mehr Optionen-Wert-Paare zur Steuerung der Position und der Darstellung des Diagramms. Zusätzlich zu den Positionierungsoptionen (-box und -axesbox) unterstützt das Diagramm: *-fractions yes/no*, um die Zahlen 0 bis 1 anstelle von 0 bis 100 % anzuzeigen, sowie *-steps number*, um die Anzahl der Beschriftungen entlang der drei Seiten zu beeinflussen.
 
 
 **::Plotchart::createNormalPlot** *w* *xscale* *args*
@@ -672,13 +672,13 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     Da die Implementierung dieses Diagrammtyps auf dem Paket *math::statistics* basiert, ist sie nur verfügbar, wenn dieses Paket geladen werden kann.
 
     widget *w* (in)
-    : Name des Canvas-Widgets, in dem die normale Darstellung angezeigt werden soll.
+    : Name des Canvas-Widgets, in dem das Normalverteilungsdiagramm angezeigt werden soll.
 
     list *xscale* (in)
     : Eine Liste mit drei Elementen, die in dieser Reihenfolge den Minimalwert, den Maximalwert und die Schrittweite für die x-Achse enthält. Daraus wird die Skalierung der y-Achse bestimmt. *Wichtig:* Die Skalierung ist in Bezug auf die normierten Daten anzugeben, d. h.: 0 steht für den Mittelwert der Daten, 1 für eine Standardabweichung vom Mittelwert usw.
 
     list *args* (in)
-    : Null oder mehr Paare mit Optionen zur Steuerung der Position und der Darstellung des Diagramms – weitere Einzelheiten stehen beim XY-Diagramm.
+    : Null oder mehr Option-Wert-Paare zur Steuerung der Position und der Darstellung des Diagramms – weitere Einzelheiten stehen beim XY-Diagramm.
 
 
 **::Plotchart::createStatusTimeline** *w* *xaxis* *ylabel* *args*
@@ -694,7 +694,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
     : Liste der Beschriftungen für die y-Achse. Ihre Länge bestimmt zudem die Anzahl der Balken, die pro Reihe dargestellt werden.
 
     list *args* (in)
-    : Null oder mehr Paare mit Werten für Optionen zur Anpassung der Position und der Darstellung des Diagramms. Zusätzlich zu den Positionierungsoptionen (-box und -axesbox) unterstützt das Diagramm: *-xaxis ja/nein*, um die Anzeige der numerischen Beschriftungen ein- oder auszuschalten.
+    : Null oder mehr Paare mit Werten für Optionen zur Anpassung der Position und der Darstellung des Diagramms. Zusätzlich zu den Positionierungsoptionen (-box und -axesbox) unterstützt das Diagramm: *-xaxis yes/no*, um die Anzeige der numerischen Beschriftungen ein- oder auszuschalten.
 
 
 **::Plotchart::createDendrogram** *w* *args*
@@ -706,7 +706,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
          \$dendrogram plot data { {"Label1"  "Label2"} {F {A B} {C {D E}}} }
     ```
 
-    Unterlisten mit mehr als einem Element gelten als Verzweigung und werden entsprechend dargestellt. Unterlisten mit nur einem Element gelten als Blatt und werden als Text dargestellt. Da sich eine Zeichenfolge mit zwei oder mehr Wörtern nicht von einer Liste mit zwei oder mehr Elementen unterscheiden lässt, wurde für diesen Fall eine Regelung getroffen: Wenn das erste Element „LEAF“ ist, wird davon ausgegangen, dass die Liste ausschließlich aus Blättern besteht, und alle Elemente – selbst wenn es sich tatsächlich um verschachtelte Listen handelt – werden als Text dargestellt:
+    Unterlisten mit mehr als einem Element gelten als Verzweigung und werden entsprechend dargestellt. Unterlisten mit nur einem Element gelten als Blatt und werden als Text dargestellt. Da sich eine Zeichenkette mit zwei oder mehr Wörtern nicht von einer Liste mit zwei oder mehr Elementen unterscheiden lässt, wurde für diesen Fall eine Regelung getroffen: Wenn das erste Element „LEAF“ ist, wird davon ausgegangen, dass die Liste ausschließlich aus Blättern besteht, und alle Elemente – selbst wenn es sich tatsächlich um verschachtelte Listen handelt – werden als Text dargestellt:
 
     ```
          \$dendrogram plot data { {LEAF "Label 1"  "Label 2"} {F {A B} {C {D E}}} }
@@ -727,7 +727,7 @@ Das Diagramm entsteht mit einem einzigen Befehl und wird danach mit Daten gefül
 
 # Diagrammmethoden
 
-Jeder der im letzten Abschnitt erläuterte Befehl zur Erstellung gibt den Namen eines neuen Objektbefehls zurück, mit dem sich die Grafik oder das Diagramm bearbeiten lässt. Welche Unterbefehle für einen Diagrammbefehl verfügbar sind, hängt vom Typ des Diagramms ab.
+Jeder der im letzten Abschnitt erläuterten Befehle zur Erstellung gibt den Namen eines neuen Objektbefehls zurück, mit dem sich die Grafik oder das Diagramm bearbeiten lässt. Welche Unterbefehle für einen Diagrammbefehl verfügbar sind, hängt vom Typ des Diagramms ab.
 
 Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellungsbefehl zurückgegebene Befehl:
 
@@ -749,7 +749,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
 
 
 **$anyplot** canvas
-: Gibt den Namen der Canvas zurück (bzw. den Alias, falls Sie innerhalb eines Canvas mehrere Diagramme verwenden). Verwenden Sie diesen Wert für die Transformationen der Koordinaten.
+: Gibt den Namen des Canvas zurück (bzw. den Alias, falls Sie innerhalb eines Canvas mehrere Diagramme verwenden). Verwenden Sie diesen Wert für die Transformationen der Koordinaten.
 
 **$anyplot** saveplot *filename* *args*
 : Zeichnet die Grafik mithilfe von PostScript in eine Datei.
@@ -782,10 +782,10 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
 
 
 **$anyplot** vtext *text*
-: Zeichnet eine Beschriftung *vertical* an die y-Achse. Hinweis: Hierfür ist Tk 8.6 oder höher erforderlich; bei älteren Versionen hat dies keine Auswirkung.
+: Zeichnet eine *vertikale* Beschriftung an die y-Achse. Hinweis: Hierfür ist Tk 8.6 oder höher erforderlich; bei älteren Versionen hat dies keine Auswirkung.
 
     string *text* (in)
-    : Der Text soll an der y-Achse ausgerichtet werden
+    : Text, der an der y-Achse gezeichnet werden soll
 
 
 **$anyplot** xsubtext *text*
@@ -809,7 +809,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
 **$anyplot** vsubtext *text*
 : Legt den Untertext der (vertikalen) y-Achse für jene Diagramme fest, die eine gerade y-Achse aufweisen. Dieser Text wird *rechts* vom Haupttext eingezeichnet, sowohl für die linke als auch für die rechte Achse.
 
-    Da hierfür die Positionierung des Haupttextes und die Festlegung der Außenabstände erforderlich sind, müssen Sie die Option „usesubtext“ für die linke oder rechte Achse über den Befehl „plotstyle“ festlegen. Die entsprechenden Optionen lauten: usevsubtext, vsubtextcolor und vsubtextfont. (Beachten Sie den Hinweis „v“, um diese Option von dem Text am oberen Rand einer vertikalen Achse zu unterscheiden, der über *$anyplot ytext* oder *$anyplot ysubtext* gezeichnet wird.)
+    Da hierfür die Positionierung des Haupttextes und die Festlegung der Außenabstände erforderlich sind, müssen Sie die Option „usesubtext“ für die linke oder rechte Achse über den Befehl „plotstyle“ festlegen. Die entsprechenden Optionen lauten: usevsubtext, vsubtextcolor und vsubtextfont. (Beachten Sie das „v“, das diese Option vom Text am oberen Rand einer vertikalen Achse unterscheidet, der über *$anyplot ytext* oder *$anyplot ysubtext* gezeichnet wird.)
 
     string *text* (in)
     : Der sekundäre (vertikale) Text der zu zeichnenden y-Achsenbeschriftung.
@@ -837,7 +837,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
 : Legt einen oder mehrere Konfigurationsparameter für die y-Achse fest. Diese Methode akzeptiert dieselben Optionen und Werte wie die Methode **xconfig**.
 
 **$anyplot** background *part* *colour\_or\_image* *dir* ?brightness?
-: Den Hintergrund eines Teils des Diagramms festlegen
+: Legt den Hintergrund eines Teils des Diagramms fest
 
     string *part*
     : Welcher Teil des Diagramms: „axes“ für den Achsenbereich und „plot“ für den inneren Teil. Die Interpretation hängt von der Art des Diagramms ab. Zwei weitere Möglichkeiten sind:
@@ -891,7 +891,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
 
 
 **$anyplot** removefromlegend *series*
-: Entfernt einen Eintrag für eine Reihe aus der Legende und zeichnet ihn erneut.
+: Entfernt einen Eintrag für eine Reihe aus der Legende und zeichnet sie erneut.
 
     string *series*
     : Name der zu löschenden Datenreihe.
@@ -938,7 +938,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
     : Text, der in die Sprechblase eingefügt werden soll.
 
     string *dir*
-    : Pfeilrichtung, eine der folgenden: Norden, Nordosten, Osten, Südosten, Süden, Südwesten, Westen oder Nordwesten.
+    : Pfeilrichtung, eine der folgenden: north, north-east, east, south-east, south, south-west, west oder north-west.
 
 
 **$anyplot** balloonconfig *args*
@@ -954,16 +954,16 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
     : Farbe für den Text (Synonym: textcolor)
 
     **background** colour
-    : Farbe für den Ballon
+    : Hintergrundfarbe für den Ballon
 
     **outline** colour
-    : Farbe der Gliederung des Ballons
+    : Farbe des Umrisses des Ballons
 
     **margin** value
     : Außenabstand um den Text herum (in Pixeln)
 
     **rimwidth** value
-    : Breite der Gliederung des Ballons (in Pixeln)
+    : Breite des Umrisses des Ballons (in Pixeln)
 
     **arrowsize** value
     : Längenfaktor für den Pfeil (in Pixeln)
@@ -982,11 +982,11 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
     : Zu zeichnender Text.
 
     string *dir*
-    : Anker für den Text in eine der folgenden Richtungen: Norden, Nordosten, Osten, Südosten, Süden, Südwesten, Westen oder Nordwesten.
+    : Anker für den Text in eine der folgenden Richtungen: north, north-east, east, south-east, south, south-west, west oder north-west.
 
 
 **$anyplot** plaintextconfig *args*
-: Konfiguriert die Klartext-Anmerkung für die Grafik. Die neuen Einstellungen werden für den nächsten Klartext verwendet.
+: Konfiguriert die Anmerkung mit einfachem Text für die Grafik. Die neuen Einstellungen werden für den nächsten einfachen Text verwendet.
 
     **font** fontname
     : Für den Text zu verwendende Schriftart
@@ -1009,7 +1009,7 @@ Allgemeine Unterbefehle für alle Diagrammtypen. \\$anyplot ist der vom Erstellu
     : Name eines Standard-Canvas-Elements oder „circle“, „dot“ oder „cross“
 
     string *series* (in)
-    : Die Datenreihe, zu der sie gehört und die zur Festlegung der Standard-Zeichen-Optionen verwendet wird
+    : Die Datenreihe, zu der es gehört und die zur Festlegung der Standard-Zeichen-Optionen verwendet wird
 
     list *args* (in)
     : Liste der Koordinaten und Zeichenoptionen
@@ -1043,7 +1043,7 @@ Für *XY-Diagramme*, *Streifendiagramme*, *Histogramme* und *Zeit-X-Diagramme*:
 
 
 
-Für *normale Handlungen*:
+Für *Normalverteilungsdiagramme*:
 
 **$normalplot** plot *series* *mean* *stdev* *data*
 : Stellt den Datensatz unter Verwendung des angegebenen Mittelwerts und der Standardabweichung grafisch dar.
@@ -1060,7 +1060,7 @@ Für *normale Handlungen*:
     : Angenommene Standardabweichung des Datensatzes.
 
     list *data* (in)
-    : Verzeichnis der Daten, aus denen sich der Datensatz zusammensetzt
+    : Liste der Daten, aus denen sich der Datensatz zusammensetzt
 
 
 **$normalplot** diagonal
@@ -1070,10 +1070,10 @@ Für *normale Handlungen*:
 Für *xy-, x-log-y-, log-x-y- und log-x-log-y-Diagramme* steht der zusätzliche Befehl *plotlist* zur Verfügung, der sich besonders für die Darstellung großer Datenmengen eignet:
 
 **$xyplot** plotlist *series* *xlist* *ylist* *every*
-: Stellt eine Datenreihe als Ganzes dar. Wenn Symbole verlangt werden, zeichnen Sie diese nur für jeden N-ten Datenpunkt ein.
+: Stellt eine Datenreihe als Ganzes dar. Wenn Symbole verlangt werden, werden diese nur für jeden N-ten Datenpunkt gezeichnet.
 
     string *series* (in)
-    : Name der Datenreihe, zu der die neue Zeile gehört.
+    : Name der Datenreihe, zu der die neue Linie gehört.
 
     float *xlist* (in)
     : Liste der X-Koordinaten für die Datenreihe.
@@ -1082,7 +1082,7 @@ Für *xy-, x-log-y-, log-x-y- und log-x-log-y-Diagramme* steht der zusätzliche 
     : Liste der Y-Koordinaten für die Datenreihe.
 
     int *every* (in)
-    : Optionales Argument, das angibt, wie oft ein Symbol (falls vorhanden) gezeichnet werden soll. Wird es weggelassen, wird eine einfache Heuristik verwendet: N = √(Anzahl der Datenpunkte).
+    : Optionales Argument, das angibt, wie oft ein Symbol (falls vorhanden) gezeichnet werden soll. Wird es weggelassen, wird eine einfache Heuristik verwendet: N = sqrt(Anzahl der Datenpunkte).
 
 
 
@@ -1104,7 +1104,7 @@ Weitere Befehle für *xy-, x-log-y-, log-x-y- und log-x-log-y-Diagramme* sind *r
 **$xyplot** minmax *series* *xcrd* *ymin* *ymax*
 : Zeichnet einen ausgefüllten Streifen, der ein Minimum und ein Maximum darstellt. Die Konfiguration der Reihe wirkt sich wie folgt auf das Polygon aus: *-fillcolour* wird zum Ausfüllen des Polygons verwendet, *-colour* wird für die Begrenzung verwendet (setzen Sie den Wert auf {}, wenn keine Begrenzung erforderlich ist), und *-width* bestimmt die Breite der Begrenzung.
 
-    Die Argumente *ymin* und *ymax* können leer gelassen werden, um einen zusätzlichen Scheitelpunkt im Streifen zu erhalten. Wenn beide leer sind, wird ein neuer Streifen begonnen. Für optimale Ergebnisse sollte die x-Koordinate in aufsteigender Reihenfolge festgelegt werden.
+    Die Argumente *ymin* und *ymax* können leer gelassen werden, um einen zusätzlichen Eckpunkt im Streifen zu erhalten. Wenn beide leer sind, wird ein neuer Streifen begonnen. Für optimale Ergebnisse sollte die x-Koordinate in aufsteigender Reihenfolge festgelegt werden.
 
     string *series* (in)
     : Name der Datenreihe, zu der der neue Min/Max-Streifen gehört.
@@ -1135,7 +1135,7 @@ Die Argumente haben genau dieselbe Bedeutung wie beim Befehl **plot**, jedoch we
 Für *xy-Diagramme*:
 
 **$xyplot** trend *series* *xcrd* *ycrd*
-: Zeichnet anhand der bisher angegebenen Daten eine Trendlinie ein bzw. aktualisieren Sie diese.
+: Zeichnet anhand der bisher angegebenen Daten eine Trendlinie ein bzw. aktualisiert diese.
 
     string *series* (in)
     : Name der Datenreihe, zu der die Trendlinie gehört.
@@ -1148,7 +1148,7 @@ Für *xy-Diagramme*:
 
 
 **$xyplot** rchart *series* *xcrd* *ycrd*
-: Zeichnet die Daten auf dieselbe Weise wie bei der Methode „plot“ ein, fügen Sie jedoch zwei Linien hinzu, die den erwarteten Bereich (+/- 3\*Standardabweichung) der Daten anzeigen.
+: Zeichnet die Daten auf dieselbe Weise wie bei der Methode „plot“ ein, fügt jedoch zwei Linien hinzu, die den erwarteten Bereich (+/- 3\*Standardabweichung) der Daten anzeigen.
 
     string *series* (in)
     : Name der Datenreihe, zu der der Datenpunkt gehört.
@@ -1186,7 +1186,7 @@ Für *xy-Diagramme*:
 
     Die Option -boxwidth des Befehls „dataconfig“ legt die Breite (bzw. Höhe) des Kastens fest (Standard: 10 Pixel).
 
-    Die Option -whiskers des Befehls „dataconfig“ legt fest, ob die Whisker bis zu den Extremwerten (Wert: „extremes“), bis zum 1,5-fachen des Interquartilsabstands (Wert: „IQR“ oder „iqr“) oder gar nicht (Wert: „none“) gezeichnet werden. Wenn der Wert bei „IQR“ (Großbuchstaben) liegt, werden auch Extremwerte angezeigt (vom 1,5- bis zum 3-fachen des IQR als Punkte, oberhalb des 3-fachen IQR als Sterne). Wenn der Wert „iqr“ (Kleinbuchstaben) vorhanden ist, werden keine Extremwerte angezeigt (Standardwert: IQR).
+    Die Option -whiskers des Befehls „dataconfig“ legt fest, ob die Whisker bis zu den Extremwerten (Wert: „extremes“), bis zum 1,5-fachen des Interquartilsabstands (Wert: „IQR“ oder „iqr“) oder gar nicht (Wert: „none“) gezeichnet werden. Ist der Wert „IQR“ (Großbuchstaben), werden auch Extremwerte angezeigt (vom 1,5- bis zum 3-fachen des IQR als Punkte, oberhalb des 3-fachen IQR als Sterne). Ist der Wert „iqr“ (Kleinbuchstaben), werden keine Extremwerte angezeigt (Standardwert: IQR).
 
     Die Option -whiskerwidth des Befehls „dataconfig“ legt die Dicke der Linie fest, mit der die Whisker gezeichnet werden (Standard: 1 Pixel).
 
@@ -1198,10 +1198,10 @@ Für *xy-Diagramme*:
     : Name der Datenreihe, zu der das Box-and-Whiskers-Diagramm gehört.
 
     float *xcrd* (in)
-    : X-Koordinate des Rechtecks oder eine Liste von Werten.
+    : X-Koordinate der Box oder eine Liste von Werten.
 
     float *ymin* (in)
-    : Y-Koordinate des Rechtecks oder eine Liste von Werten.
+    : Y-Koordinate der Box oder eine Liste von Werten.
 
 
     Der Kasten endet am 1. und 3. Quartil, während die Whisker standardmäßig so dargestellt werden, dass sie sich über 1,5 IQR (Interquartilsabstand) vom 1. und 3. Quartil erstrecken.
@@ -1213,20 +1213,20 @@ Für *xy-Diagramme*:
 
     Die Option -violinwidth des Befehls „dataconfig“ legt die Breite (oder Höhe) der Violine fest (Standard: 50 Pixel).
 
-    Die Option -colour (-color) legt die Farbe der Gliederung fest, und die Option -fillcolour (-fillcolor) bestimmt die Farbe, mit der die Violine ausgefüllt wird (Vorgaben: black und nicht gefüllt).
+    Die Option -colour (-color) legt die Farbe des Umrisses fest, und die Option -fillcolour (-fillcolor) bestimmt die Farbe, mit der die Violine ausgefüllt wird (Vorgaben: black und nicht gefüllt).
 
     string *series* (in)
     : Name der zu verwendenden Datenreihe.
 
     float *xcrd* (in)
-    : X-Koordinate der Geige oder eine Liste von Werten.
+    : X-Koordinate der Violine oder eine Liste von Werten.
 
     float *ymin* (in)
-    : Y-Koordinate der Geige oder eine Liste von Werten.
+    : Y-Koordinate der Violine oder eine Liste von Werten.
 
 
 **$xyplot** vector *series* *xcrd* *ycrd* *ucmp* *vcmp*
-: Zeichnet einen Vektor in die Grafik ein. Der Vektor kann entweder als kartesische Koordinaten oder als Länge/Winkel angegeben werden, wobei der Winkel in Grad angegeben wird und entweder nach der mathematischen Konvention oder nach nautical. (Siehe den Unterbefehl „vectorconfig“)
+: Zeichnet einen Vektor in die Grafik ein. Der Vektor kann entweder als kartesische Koordinaten oder als Länge/Winkel angegeben werden, wobei der Winkel in Grad angegeben wird und entweder nach der mathematischen oder nach der nautischen Konvention interpretiert wird. (Siehe den Unterbefehl „vectorconfig“)
 
     string *series* (in)
     : Name der Serie, zu der der Vektor gehört. Bestimmt das Erscheinungsbild und die Interpretation.
@@ -1254,7 +1254,7 @@ Für *xy-Diagramme*:
     Die Optionen können eine der folgenden sein:
 
     **colour**
-    : Die Farbe des Pfeils (Standard: schwarz; Synonym: Farbe)
+    : Die Farbe des Pfeils (Standard: black; Synonym: color)
 
     **scale** value
     : Der Skalierungsfaktor, der zur Umrechnung der Pfeillänge in eine Pixelanzahl verwendet wird (Standardwert: 1,0)
@@ -1279,7 +1279,7 @@ Für *xy-Diagramme*:
     : Y-Koordinate des Punktes, an dem der Pfeil erscheint
 
     float *value* (in)
-    : Wert, der von Größe und Farbe abhängt
+    : Wert, der Größe und Farbe bestimmt
 
 
 **$xyplot** dotconfig *series* **-option** *value* ...
@@ -1304,7 +1304,7 @@ Für *xy-Diagramme*:
     : Legt fest, ob alle Punkte dieselbe Größe haben oder ob ihre Größe vom angegebenen Wert abhängt (Voreinstellung on).
 
     **outline** onoff
-    : Zeichnet einen Kreis in black um den Punkt oder nicht (Voreinstellung on).
+    : Zeichnet einen schwarzen Kreis um den Punkt oder nicht (Voreinstellung on).
 
     **classes** list
     : Legt die Grenzwerte und die entsprechenden Farben fest. Zum Beispiel:
@@ -1352,13 +1352,13 @@ Für *xy-Diagramme*:
     : Liste der x-Koordinaten in aufsteigender Reihenfolge.
 
     list *yvec* (in)
-    : Listen Sie die y-Koordinaten in aufsteigender Reihenfolge auf.
+    : Liste der y-Koordinaten in aufsteigender Reihenfolge.
 
     list *valuesmat* (in)
-    : Eine Liste aus ny Listen mit nx Werten, wobei jeder Wert den Wert an einer Ecke einer Grid-Zelle angibt. Die Gesamtzahl der Werte (valuesmat) beträgt nx × ny.
+    : Eine Liste aus ny Listen mit nx Werten, wobei jeder Wert den Wert an einer Ecke einer Grid-Zelle angibt. Die Gesamtzahl der Werte (valuesmat) beträgt nx \* ny.
 
     list *classes* (in)
-    : Eine Liste von Klassenwerten oder eine Liste von Listen mit jeweils zwei Elementen (jede innere Liste enthält den Wert der Klasse und die zu verwendende Farbe). Wenn diese Liste leer oder fehlt, werden die Klassen automatisch festgelegt.
+    : Eine Liste von Klassenwerten oder eine Liste von Listen mit jeweils zwei Elementen (jede innere Liste enthält den Wert der Klasse und die zu verwendende Farbe). Wenn diese Liste leer ist oder fehlt, werden die Klassen automatisch festgelegt.
 
         *Hinweis:* Die Klassenwerte müssen den gesamten Wertebereich abdecken.
 
@@ -1377,7 +1377,7 @@ Für *xy-Diagramme*:
 : Legt die Farben fest, die bei den Konturierungsmethoden verwendet werden sollen. Das Argument ist entweder eine vordefinierte Farbpalette (grey/gray, jet, hot oder cool) oder eine Liste von Farben. Bei der Auswahl der Farben für die eigentliche Darstellung der Konturen werden die angegebenen Farben interpoliert (basierend auf dem HLS-Schema).
 
     list *colours* (in)
-    : Eine Liste von Farbnamen oder Farbwerten oder eine der vordefinierten Zuordnungen:
+    : Eine Liste von Farbnamen oder Farbwerten oder eine der vordefinierten Farbpaletten:
 
         - grey oder gray: graue Farben von dunkel nach hell
 
@@ -1410,7 +1410,7 @@ Für *xy-Diagramme*:
 
 
 **$xyplot** grid *xcrd* *ycrd*
-: Zeichnet die Grid-Zellen als Linien, die die (gültigen) Grid-Points miteinander verbinden.
+: Zeichnet die Grid-Zellen als Linien, die die (gültigen) Gitterpunkte miteinander verbinden.
 
     list *xcrd* (in)
     : Liste von Listen, wobei jeder Wert eine x-Koordinate für eine Ecke einer Grid-Zelle darstellt
@@ -1420,7 +1420,7 @@ Für *xy-Diagramme*:
 
 
 **$xyplot** xband *ymin* *ymax*
-: Zeichnet ein hellgraues Band über die ganze x-Achse. Es kann einen „typical“-Bereich der Daten anzeigen.
+: Zeichnet ein hellgraues Band über die ganze x-Achse. Es kann einen „typischen“ Bereich der Daten anzeigen.
 
     float *ymin* (in)
     : Untergrenze für das Band
@@ -1430,7 +1430,7 @@ Für *xy-Diagramme*:
 
 
 **$xyplot** yband *xmin* *xmax*
-: Zeichnet ein hellgraues Band über die ganze y-Achse. Es kann einen „typical“-Bereich der Daten anzeigen.
+: Zeichnet ein hellgraues Band über die ganze y-Achse. Es kann einen „typischen“ Bereich der Daten anzeigen.
 
     float *xmin* (in)
     : Untergrenze für das Band
@@ -1451,7 +1451,7 @@ Für *xy-Diagramme*:
     : Y-Koordinate des zu zeichnenden Symbols
 
     string *text* (in)
-    : Text für das Etikett
+    : Text für die Beschriftung
 
     string *orient* (in)
     : Optionale Ausrichtung (eine der Optionen „w“, „e“, „n“ oder „s“), die die Position der Beschriftung relativ zum Symbol festlegt. Die Standardeinstellung ist „w“ (sodass die Beschriftung links vom Symbol erscheint).
@@ -1470,7 +1470,7 @@ Für *Polardiagramme*:
     : Radialkoordinate des neuen Punktes.
 
     float *angle* (in)
-    : Koordinate des neuen Punktes (in Grad).
+    : Winkelkoordinate des neuen Punktes (in Grad).
 
 
 
@@ -1497,7 +1497,7 @@ Für *3D-Diagramme*:
 
 
 **$plot3d** plotfuncont *function* *contours*
-: Stellt eine über die beiden Variablen **x** und **y** definierte Funktion dar und verwenden Sie dabei die Konturwerte aus **contours**, um die Oberfläche in Farben einzufärben. Die Auflösung wird durch die festgelegten Grid-Größen bestimmt (weitere Informationen finden Sie in der Methode **gridsize**).
+: Stellt eine über die beiden Variablen **x** und **y** definierte Funktion dar und verwendet dabei die Konturwerte aus **contours**, um die Oberfläche in Farben einzufärben. Die Auflösung wird durch die festgelegten Grid-Größen bestimmt (weitere Informationen finden Sie in der Methode **gridsize**).
 
     string *function* (in)
     : Name der Prozedur, die den z-Wert für die angegebenen x- und y-Koordinaten berechnet. Die Prozedur muss zwei Float-Argumente entgegennehmen (x ist das erste Argument, y das zweite) und einen Gleitkomma-Wert zurückgeben.
@@ -1520,7 +1520,7 @@ Für *3D-Diagramme*:
 : Stellt eine Datenmatrix grafisch dar.
 
     list *data* (in)
-    : Die zu darstellenden Daten. Die Daten müssen als verschachtelte Liste mit zwei Ebenen bereitgestellt werden. Die äußere Liste enthält Zeilen, die in y-Richtung dargestellt werden, und jede Zeile ist eine Liste, deren Elemente in x-Richtung dargestellt werden und die Spalten bilden. Beispiele:
+    : Die darzustellenden Daten. Die Daten müssen als verschachtelte Liste mit zwei Ebenen bereitgestellt werden. Die äußere Liste enthält Zeilen, die in y-Richtung dargestellt werden, und jede Zeile ist eine Liste, deren Elemente in x-Richtung dargestellt werden und die Spalten bilden. Beispiele:
 
         ```
             set data {
@@ -1531,10 +1531,10 @@ Für *3D-Diagramme*:
 
 
 **$plot3d** interpolatedata *data* *contours*
-: Stellt die Daten mittels bilinearer Interpolation dar und verwenden Sie dabei die Konturwerte aus **contours**, um die Oberfläche in Farben einzufärben. Die Auflösung wird durch die festgelegten Gittergrößen bestimmt (weitere Informationen finden Sie in der Methode **gridsize**).
+: Stellt die Daten mittels bilinearer Interpolation dar und verwendet dabei die Konturwerte aus **contours**, um die Oberfläche in Farben einzufärben. Die Auflösung wird durch die festgelegten Gittergrößen bestimmt (weitere Informationen finden Sie in der Methode **gridsize**).
 
     list *data* (in)
-    : Die zu darstellenden Daten, genau wie beim Unterbefehl „plotdata“.
+    : Die darzustellenden Daten, genau wie beim Unterbefehl „plotdata“.
 
     list *contours* (in)
     : Liste der Werte in aufsteigender Reihenfolge, die die Konturstufen darstellen (die Grenzen zwischen den Farben in der Konturkarte).
@@ -1595,7 +1595,7 @@ Für *XY-Diagramme*, *Streifendiagramme*, *Histogramme*, *Polardiagramme* und *t
     : Die Größe des Radius des Symbols. Die Gesamtbreite des Symbols beträgt das Zweifache des Radius. Der Standardradius beträgt 4.
 
     **width** integer
-    : Die Breite der Linie (wenn gezeichnet) oder die Breite der Polygon-Gliederung (im Fall von -filled).
+    : Die Breite der Linie (wenn gezeichnet) oder die Breite des Polygonumrisses (im Fall von -filled).
 
     **filled** enum
     : Ob der Bereich oberhalb oder unterhalb der Datenlinie ausgefüllt werden soll oder nicht. Mögliche Werte sind: **no**, **up** oder **down** ([Spezialeffekte])
@@ -1606,15 +1606,15 @@ Für *XY-Diagramme*, *Streifendiagramme*, *Histogramme*, *Polardiagramme* und *t
     **style** enum
     : Der für Histogramme zu verwendende Stil:
 
-        - **filled**: Den Bereich unter den Datenpunkten mit Balken ausfüllen (Standard)
+        - **filled**: Füllt den Bereich unter den Datenpunkten mit Balken (Standard)
 
-        - **spike**: Zeichnen Sie vertikale Linien von der y-Achse (untere Begrenzung) zum Datenpunkt
+        - **spike**: Zeichnet vertikale Linien von der y-Achse (untere Begrenzung) zum Datenpunkt
 
-        - **symbol**: Zeichnen Sie ein Symbol am Datenpunkt
+        - **symbol**: Zeichnet ein Symbol am Datenpunkt
 
-        - **plateau**: Zeichnen Sie eine horizontale Linie auf Höhe des Datenpunkts
+        - **plateau**: Zeichnet eine horizontale Linie auf Höhe des Datenpunkts
 
-        - **stair**: Zeichnen Sie eine durchgehende, treppenartige Linie als Verbindung der Datenpunkte
+        - **stair**: Zeichnet eine durchgehende, treppenartige Linie als Verbindung der Datenpunkte
 
 
     **smooth** boolean
@@ -1625,7 +1625,7 @@ Für *XY-Diagramme*, *Streifendiagramme*, *Histogramme*, *Polardiagramme* und *t
 Für *Kreisdiagramme* und *Spiralkreisdiagramme*:
 
 **$pie** plot *data*
-: Füllen Sie ein Kreisdiagramm aus.
+: Füllt ein Kreisdiagramm.
 
     list *data* (in)
     : Eine Liste von Paaren (Bezeichnungen und Werte). Die Werte bestimmen die relative Größe der Kreissegmente. Die Bezeichnungen werden neben dem Kreis dargestellt.
@@ -1642,7 +1642,7 @@ Für *Kreisdiagramme* und *Spiralkreisdiagramme*:
 
 
 **$pie** explode *segment*
-: Ein Segment herausrücken (d. h.: ein Segment aus dem Kreis herausziehen). Wenn das Segment mit „auto“ gekennzeichnet ist, können Sie auf ein Segment klicken. Dieses wird dann anstelle eines zuvor herausgerückten Segments herausgerückt.
+: Rückt ein Segment heraus (d. h.: zieht ein Segment aus dem Kreis heraus). Wenn das Segment mit „auto“ gekennzeichnet ist, können Sie auf ein Segment klicken. Dieses wird dann anstelle eines zuvor herausgerückten Segments herausgerückt.
 
     int *segment*
     : Das Segment, das herausgerückt werden soll, oder „auto“, wenn Sie dies interaktiv durchführen möchten.
@@ -1655,7 +1655,7 @@ Für *Radialdiagramme*:
 : Zeichnet eine neue Linie im Radialdiagramm ein
 
     list *data* (in)
-    : Eine Liste von Daten (jeweils eine für jede Speiche). Die Werte geben den Abstand vom Mittelpunkt der Verbindung zwischen den Speichen an.
+    : Eine Liste von Daten (jeweils eine für jede Speiche). Die Werte geben den Abstand der Verbindungslinie zwischen den Speichen vom Mittelpunkt an.
 
     color *colour* (in)
     : Die Farbe der Linie.
@@ -1690,10 +1690,10 @@ Für *vertikale Balkendiagramme*:
     : Die Farbe der Balken.
 
     string *dir* (in)
-    : Falls angegeben: „Top-down“ oder „Bottom-up“, um die Richtung anzugeben, in die sich die Farbe ändert. (Falls nicht angegeben, wird eine einheitliche Farbe verwendet.)
+    : Falls angegeben: „top-down“ oder „bottom-up“, um die Richtung anzugeben, in die sich die Farbe ändert. (Falls nicht angegeben, wird eine einheitliche Farbe verwendet.)
 
     string *brightness* (in)
-    : Falls angegeben, „bright“ oder „dark“ (Voreinstellung „bright“). Die Farbe geht je nach Richtung nach white oder nach black.
+    : Falls angegeben, „bright“ oder „dark“ (Voreinstellung „bright“). Die Farbe geht je nach Richtung in Weiß bzw. Schwarz über.
 
 
 **$barchart** config **-option** *value* ...
@@ -1709,7 +1709,7 @@ Für *vertikale Balkendiagramme*:
     : Farbe für die Werte
 
     **valueformat** format
-    : Formatzeichenfolge, die zur Formatierung der Werte verwendet werden soll
+    : Formatzeichenkette, die zur Formatierung der Werte verwendet werden soll
 
 
 
@@ -1731,7 +1731,7 @@ Für *horizontale Balkendiagramme*:
     : Falls angegeben, „left-right“ oder „right-left“, um die Richtung anzugeben, in der sich die Farbe ändert. (Wird dies nicht angegeben, wird eine einheitliche Farbe verwendet.)
 
     string *brightness* (in)
-    : Falls angegeben, „bright“ oder „dark“ (Voreinstellung „bright“). Die Farbe geht je nach Richtung nach white oder nach black.
+    : Falls angegeben, „bright“ oder „dark“ (Voreinstellung „bright“). Die Farbe geht je nach Richtung in Weiß bzw. Schwarz über.
 
 
 **$barchart** config **-option** *value* ...
@@ -1747,7 +1747,7 @@ Für *horizontale Balkendiagramme*:
     : Farbe für die Werte
 
     **valueformat** format
-    : Formatzeichenfolge, die zur Formatierung der Werte verwendet werden soll
+    : Formatzeichenkette, die zur Formatierung der Werte verwendet werden soll
 
 
 
@@ -1912,17 +1912,17 @@ Für *Zeitdiagramme*:
 
 
 **$timechart** hscroll *scrollbar*
-: Verbindet eine waagerechte Bildlaufleiste mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
+: Verbindet eine waagerechte Scrollbar mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
 
     widget *scrollbar* (in)
-    : Die horizontale Bildlaufleiste, die eine Verbindung zum Diagramm hat
+    : Die horizontale Scrollbar, die mit dem Diagramm verbunden werden soll
 
 
 **$timechart** vscroll *scrollbar*
-: Verbindet eine senkrechte Bildlaufleiste mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
+: Verbindet eine senkrechte Scrollbar mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
 
     widget *scrollbar* (in)
-    : Die senkrechte Bildlaufleiste, die mit dem Diagramm verbunden wird.
+    : Die senkrechte Scrollbar, die mit dem Diagramm verbunden wird.
 
 
 
@@ -1971,7 +1971,7 @@ Für *Gantt-Diagramme*:
 : Fügt einen Pfeil ein, der die Aufgabe *from* mit der Aufgabe *to* verbindet.
 
     list *from* (in)
-    : Die Liste der Elemente, die vom Befehl „task“ gegeben wird und die die Aufgabe darstellt, von der aus der Pfeil ausgeht.
+    : Die Liste der Elemente, die vom Befehl „task“ zurückgegeben wird und die die Aufgabe darstellt, von der aus der Pfeil ausgeht.
 
     string *text* (in)
     : Der Text, der die Aufgaben zusammenfasst
@@ -2038,24 +2038,24 @@ Für *Gantt-Diagramme*:
 
 
 **$ganttchart** hscroll *scrollbar*
-: Verbindet eine waagerechte Bildlaufleiste mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
+: Verbindet eine waagerechte Scrollbar mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
 
     widget *scrollbar* (in)
-    : Die horizontale Bildlaufleiste, die eine Verbindung zum Diagramm hat
+    : Die horizontale Scrollbar, die mit dem Diagramm verbunden werden soll
 
 
 **$ganttchart** vscroll *scrollbar*
-: Verbindet eine senkrechte Bildlaufleiste mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
+: Verbindet eine senkrechte Scrollbar mit dem Diagramm. Siehe auch den Abschnitt zum Bildlauf.
 
     widget *scrollbar* (in)
-    : Die senkrechte Bildlaufleiste, die mit dem Diagramm verbunden wird.
+    : Die senkrechte Scrollbar, die mit dem Diagramm verbunden wird.
 
 
 
 Für *isometrische Darstellungen* (wird noch erweitert):
 
 **$isoplot** plot rectangle *x1* *y1* *x2* *y2* *colour*
-: Zeichnet die Gliederungen eines Rechtecks ein.
+: Zeichnet die Umrisse eines Rechtecks ein.
 
     float *x1* (in)
     : Minimale x-Koordinate des zu zeichnenden Rechtecks.
@@ -2093,7 +2093,7 @@ Für *isometrische Darstellungen* (wird noch erweitert):
 
 
 **$isoplot** plot circle *xc* *yc* *radius* *colour*
-: Zeichnet die Gliederung eines Kreises ein.
+: Zeichnet den Umriss eines Kreises ein.
 
     float *xc* (in)
     : X-Koordinate des Kreismittelpunkts.
@@ -2141,7 +2141,7 @@ Für *Tabellen* können Sie die folgenden Unterbefehle verwenden:
         proc procname {table widget row column value} {...}
         ```
 
-        Nutzt den Unterbefehl „cellconfigure“, um die Attribute pro Zelle festzulegen.
+        Nutzen Sie den Unterbefehl „cellconfigure“, um die Attribute pro Zelle festzulegen.
 
 
 **$table** cellconfigure *args*
@@ -2173,7 +2173,7 @@ Für *ternäre Diagramme* stehen Ihnen die folgenden Unterbefehle zur Verfügung
     : Bezeichnung, die den Datenpunkt beschreibt.
 
     string *dir* (in)
-    : Optionaler String, der die Richtung angibt, in der die Beschriftung dargestellt werden soll (e, n usw.)
+    : Optionale Zeichenkette, die die Richtung angibt, in der die Beschriftung dargestellt werden soll (e, n usw.)
 
 
 **$ternary** line *series* *coords*
@@ -2223,20 +2223,20 @@ Für *Status-Zeitreihen-Diagramme* können Sie die folgenden Unterbefehle verwen
 : Zeichnet für das Element *item* einen Balken in der angegebenen Farbe von *start* bis *stop*. Das Element dient lediglich als Bezeichner – es besteht kein Zusammenhang zu den Beschriftungen entlang der Achse. Die Elemente werden von unten nach oben gezeichnet.
 
     string *item* (in)
-    : Name zur Identifizierung der Leiste. Siehe Anmerkung oben.
+    : Name zur Identifizierung des Balkens. Siehe Anmerkung oben.
 
     float *start* (in)
     : X-Koordinate (bzw. Zeitpunkt), an dem der Balken beginnt
 
     float *stop* (in)
-    : X-Koordinate (bzw. Zeitpunkt), an der der Balken zum Stillstand kommt
+    : X-Koordinate (bzw. Zeitpunkt), an der der Balken endet
 
     string *color* (in)
-    : Für die Leiste zu verwendende Farbe. Vorgabe ist black.
+    : Für den Balken zu verwendende Farbe. Vorgabe ist black.
 
 
 **$timeline** vertline *text* *time* *args*
-: Ziehen Sie eine vertikale Linie, um einen wichtigen Moment zu markieren.
+: Zeichnet eine vertikale Linie, um einen wichtigen Moment zu markieren.
 
     string *text* (in)
     : Text zur Beschreibung des Augenblicks.
@@ -2255,7 +2255,7 @@ Für *Dendrogramme* gibt es einen speziellen Unterbefehl:
 : Zeichnet ein Dendrogramm gemäß den Optionen, die bei der Erstellung des Dendrogramm-Befehls angegeben oder impliziert wurden. Über den Namen „series“ können Sie die Farbe der Zweige (-colour/-color) sowie die Farbe und Schriftart der Beschriftungen auswählen (-labelcolour/-labelcolor und -labelfont).
 
     string *series* (in)
-    : Name der Optionen, mit denen das Dendrogramm gezeichnet werden soll.
+    : Name des Optionssatzes, mit dem das Dendrogramm gezeichnet werden soll.
 
     list *data* (in)
     : Verschachtelte Liste, die die Baumstruktur beschreibt. Siehe den Befehl *createDendrogram*.
@@ -2314,7 +2314,7 @@ Neben den Befehlen, die sich direkt auf die Darstellungen und Diagramme beziehen
     : X-Koordinate, die auf die Vorderseite des 3D-Ansichtsfensters abgebildet werden soll.
 
     float *ymin* (in)
-    : Y-Koordinaten, die auf die linke Seite des Ansichtsfensters abgebildet werden sollen.
+    : Y-Koordinate, die auf die linke Seite des Ansichtsfensters abgebildet werden soll.
 
     float *zmin* (in)
     : Z-Koordinate, die auf den unteren Rand des Ansichtsfensters abgebildet werden soll.
@@ -2333,36 +2333,36 @@ Neben den Befehlen, die sich direkt auf die Darstellungen und Diagramme beziehen
 : Gibt eine Liste von Pixelkoordinaten zurück, die für das angegebene Fenster gültig sind.
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben).
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben).
 
     float *x* (in)
-    : Zu abgebildende X-Koordinate.
+    : Abzubildende X-Koordinate.
 
     float *y* (in)
-    : Zu abgebildende Y-Koordinate.
+    : Abzubildende Y-Koordinate.
 
 
 **::Plotchart::coords3DToPixel** *w* *x* *y* *z*
 : Gibt eine Liste von Pixelkoordinaten zurück, die für das angegebene Fenster gültig sind.
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben).
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben).
 
     float *x* (in)
-    : Zu abgebildende X-Koordinate.
+    : Abzubildende X-Koordinate.
 
     float *y* (in)
-    : Zu abgebildende Y-Koordinate.
+    : Abzubildende Y-Koordinate.
 
     float *y* (in)
-    : Zu abgebildende Z-Koordinate.
+    : Abzubildende Z-Koordinate.
 
 
 **::Plotchart::polarCoordinates** *w* *radmax*
 : Legt die äußersten Polarkoordinaten für das Fenster *w* fest. Der Winkel reicht stets von 0 bis 360 Grad, und der Radius beginnt bei 0. Daher müssen Sie lediglich den maximalen Radius angeben. *Hinweis:* Wenn der Darstellungsbereich nicht quadratisch ist, werden die Extremwerte bei dieser Prozedur nicht angepasst, was zu einer elliptischen Darstellung führen würde. Die Erstellungsroutine für eine polare Darstellung legt stets einen quadratischen Darstellungsbereich fest.
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben).
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben).
 
     float *radmax* (in)
     : Maximaler Radius.
@@ -2372,7 +2372,7 @@ Neben den Befehlen, die sich direkt auf die Darstellungen und Diagramme beziehen
 : Wrapper für einen Aufruf von **::Plotchart::coordsToPixel**. *Hinweis:* Diese Prozedur ist veraltet – bitte verwenden Sie stattdessen die Prozedur **::Plotchart::coordsToPixel**.
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben).
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben).
 
     float *rad* (in)
     : Radius des Punktes.
@@ -2385,26 +2385,26 @@ Neben den Befehlen, die sich direkt auf die Darstellungen und Diagramme beziehen
 : Gibt eine Liste von Weltkoordinaten zurück, die für das angegebene Fenster gültig sind.
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben).
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben).
 
     float *x* (in)
-    : X Pixel sollen abgebildet werden.
+    : Abzubildendes X-Pixel.
 
     float *y* (in)
-    : Zu abgebildendes Y-Pixel.
+    : Abzubildendes Y-Pixel.
 
 
 **::Plotchart::pixelToIndex** *w* *x* *y*
 : Gibt den Index des Kreissegments zurück, das die Pixelkoordinaten (x, y) enthält
 
     widget *w* (in)
-    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] gegeben), der ein Kreisdiagramm enthält.
+    : Name des betreffenden Canvas-Alias (wie von \[\\$anyplot canvas\] zurückgegeben), der ein Kreisdiagramm enthält.
 
     float *x* (in)
-    : X Pixel sollen abgebildet werden.
+    : Abzubildendes X-Pixel.
 
     float *y* (in)
-    : Zu abgebildendes Y-Pixel.
+    : Abzubildendes Y-Pixel.
 
 
 
@@ -2414,23 +2414,23 @@ Darüber hinaus gibt es eine Routine zur Ermittlung „pretty“-Zahlen für die
 : Ermittelt „pretty“-Zahlen aus dem angegebenen Bereich und gibt eine Liste zurück, die das Minimum, das Maximum und die Schrittweite enthält, die für eine (lineare) Achse verwendet werden können.
 
     float *xmin* (in)
-    : Ungefährer Wert für die Skalierung
+    : Ungefährer Minimalwert für die Skalierung
 
     float *xmax* (in)
-    : Ungefährer Wert für die Skalierung.
+    : Ungefährer Maximalwert für die Skalierung.
 
     boolean *inverted* (in)
-    : Optionales Argument: Wenn der Wert 1 ist, gibt die zurückgegebene Liste eine umgekehrte Achse zurück. Der Standardwert ist 0 (die Achse verläuft vom Minimum zum Maximum).
+    : Optionales Argument: Wenn der Wert 1 ist, ergibt die zurückgegebene Liste eine umgekehrte Achse. Der Standardwert ist 0 (die Achse verläuft vom Minimum zum Maximum).
 
 
 **::Plotchart::determineScaleFromList** *values* *inverted*
 : Ermittelt aus der vorgegebenen Werteliste „pretty“-Zahlen und gibt eine Liste zurück, die das Minimum, das Maximum und die Schrittweite enthält, die für eine (lineare) Achse verwendet werden können.
 
     float *values* (in)
-    : Liste der Werte, die überprüft werden sollen. Kann fehlende Werte (leere Zeichenfolgen) enthalten.
+    : Liste der Werte, die überprüft werden sollen. Kann fehlende Werte (leere Zeichenketten) enthalten.
 
     boolean *inverted* (in)
-    : Optionales Argument: Wenn der Wert 1 ist, gibt die zurückgegebene Liste eine umgekehrte Achse zurück. Der Standardwert ist 0 (die Achse verläuft vom Minimum zum Maximum).
+    : Optionales Argument: Wenn der Wert 1 ist, ergibt die zurückgegebene Liste eine umgekehrte Achse. Der Standardwert ist 0 (die Achse verläuft vom Minimum zum Maximum).
 
 
 
@@ -2460,7 +2460,7 @@ Die Wirkung hängt von der Art der Darstellung ab:
 
 # Weitere Ausgabeformate
 
-Neben der Ausgabe auf das Canvas ist das Modul in der Lage, über **canvas postscript** PostScript-Dateien zu erzeugen. Man mag sich fragen, ob es möglich ist, diese Auswahl an Ausgabeformaten zu erweitern, und die Antwort lautet „yes“. In diesem Abschnitt wird versucht, die Aspekte der Nutzung dieses Moduls für eine andere Art der Ausgabe zusammenzufassen.
+Neben der Ausgabe auf den Canvas am Bildschirm ist das Modul in der Lage, über **canvas postscript** PostScript-Dateien zu erzeugen. Man mag sich fragen, ob es möglich ist, diese Auswahl an Ausgabeformaten zu erweitern, und die Antwort lautet „ja“. In diesem Abschnitt wird versucht, die Aspekte der Nutzung dieses Moduls für eine andere Art der Ausgabe zusammenzufassen.
 
 Eine Möglichkeit, Ausgabedateien in einem anderen Format zu erstellen, besteht darin, den Inhalt des Canvases zu überprüfen, nachdem alles gezeichnet wurde, und diesen Inhalt in der richtigen Form darzustellen. Dies ist wahrscheinlich der einfachste Weg, da er lediglich die Neuerstellung aller bereits vorhandenen Elemente in der Zeichnung erfordert.
 
@@ -2564,7 +2564,7 @@ proc doResize {} {
 }
 ```
 
-*Bitte beachten Sie:* Der obige Code funktioniert einwandfrei für Balkendiagramme und viele andere Diagrammtypen; da **Plotchart** jedoch bei XY-Diagrammen bestimmte vertrauliche Informationen speichert, sind in diesen Fällen zusätzliche Maßnahmen erforderlich. Hierfür ist tatsächlich der Befehl „destroyPlot“ erforderlich, um solche Details zu regeln. Eine nächste Version von **Plotchart** könnte diese Funktion enthalten.
+*Bitte beachten Sie:* Der obige Code funktioniert einwandfrei für Balkendiagramme und viele andere Diagrammtypen; da **Plotchart** jedoch bei XY-Diagrammen bestimmte interne Informationen speichert, sind in diesen Fällen zusätzliche Maßnahmen erforderlich. Hierfür ist tatsächlich der Befehl „destroyPlot“ erforderlich, um solche Details zu regeln. Eine nächste Version von **Plotchart** könnte diese Funktion enthalten.
 
 Alternativ können Sie das Paket **xyplot** verwenden, das auf Plotchart aufbaut. Dieses Paket unterstützt das Vergrößern und Verkleinern sowie die Größenanpassung der gesamten Darstellung. Hier ist ein kleines Demonstrationsprogramm:
 
@@ -2603,7 +2603,7 @@ set s3 [$xyp2 add_data sf3 $xydata3]
 set s4 [$xyp2 add_data sf4 $xydata4]
 ```
 
-Zum Vergrößern wird bei gedrückter linker Maustaste ein Rechteck aufgezogen. Zum Verkleinern dient die rechte Maustaste. Ändert sich die Fenstergröße, ändern sich auch die Canvas-Widgets darin. Nach dem Vergrößern lässt sich die Darstellung über die automatisch angebrachten Bildlaufleisten verschieben.
+Zum Vergrößern wird bei gedrückter linker Maustaste ein Rechteck aufgezogen. Zum Verkleinern dient die rechte Maustaste. Ändert sich die Fenstergröße, ändern sich auch die Canvas-Widgets darin. Nach dem Vergrößern lässt sich die Darstellung über die automatisch angebrachten Scrollbars verschieben.
 
 # Vergrößern
 
@@ -2622,7 +2622,7 @@ Die Methode funktioniert ganz einfach:
 Mit den Befehlen **plotconfig** und **plotstyle** lassen sich verschiedene Optionen festlegen. Der Befehl **eraseplot** löscht eine Darstellung oder ein Diagramm vollständig. Die Syntax dieser Befehle lautet:
 
 **::Plotchart::plotconfig** *charttype* *component* *property* *value*
-: Legt einen neuen Wert für die Eigenschaft einer Komponente in einem bestimmten Diagramm- oder Darstellungstyp fest oder fragen Sie deren aktuellen Wert ab. Geänderte Eigenschaften wirken sich nur auf die nachfolgenden Darstellungen aus, nicht auf bereits erstellte. Jedes Argument ist optional.
+: Legt einen neuen Wert für die Eigenschaft einer Komponente in einem bestimmten Diagramm- oder Darstellungstyp fest oder fragt deren aktuellen Wert ab. Geänderte Eigenschaften wirken sich nur auf die nachfolgenden Darstellungen aus, nicht auf bereits erstellte. Jedes Argument ist optional.
 
     *Hinweis:* Der Befehl **plotstyle** bietet eine flexiblere Möglichkeit zur Steuerung der Konfigurationsoptionen.
 
@@ -2660,7 +2660,7 @@ Mit den Befehlen **plotconfig** und **plotstyle** lassen sich verschiedene Optio
     : Der Name des Diagrammstils, der bearbeitet werden soll
 
     list *args* (in)
-    : Die neuen Optionen für das Design. Jede Option wird wie folgt beschrieben: Diagrammtyp, Komponente des Diagramms, Eigenschaft der Komponente und der neue Wert für die Eigenschaft – Einzelheiten finden Sie im Befehl **plotconfig**.
+    : Die neuen Optionen für den Stil. Jede Option wird wie folgt beschrieben: Diagrammtyp, Komponente des Diagramms, Eigenschaft der Komponente und der neue Wert für die Eigenschaft – Einzelheiten finden Sie im Befehl **plotconfig**.
 
 
 
@@ -2724,9 +2724,9 @@ Nachstehend finden Sie eine detaillierte Auflistung der Komponenten und Eigensch
 
     - shownumbers – Die Bezeichnungen werden gemäß dem Format mit den Zahlen kombiniert
 
-    - format – das zu verwendende Format (Standardwert: „%s (%g)“), wenn die Zahlen angezeigt werden sollen. Der Befehl „format“ gibt zunächst die Bezeichnung und anschließend die Zahl an.
+    - format – das zu verwendende Format (Standardwert: „%s (%g)“), wenn die Zahlen angezeigt werden sollen. Der Befehl „format“ erhält zunächst die Bezeichnung und anschließend die Zahl.
 
-    - formatright – Falls angegeben, das Format, das für Beschriftungen und Zahlen rechts neben dem Kreisdiagramm verwendet werden soll. Der Befehl „format“ gibt zuerst die Zahl und dann die Beschriftung an. (Standardwert: „“)
+    - formatright – Falls angegeben, das Format, das für Beschriftungen und Zahlen rechts neben dem Kreisdiagramm verwendet werden soll. Der Befehl „format“ erhält zuerst die Zahl und dann die Beschriftung. (Standardwert: „“)
 
 
 - Die Komponente *slice* verfügt über Eigenschaften, mit denen sich das Erscheinungsbild der Segmente im Kreisdiagramm steuern lässt:
@@ -2755,10 +2755,10 @@ Nachstehend finden Sie eine detaillierte Auflistung der Komponenten und Eigensch
 
 
 **::Plotchart::eraseplot** *anyplot*
-: Löschen Sie die Kurve/das Diagramm samt aller Verbindungen zu den damit verbundenen Ressourcen.
+: Löscht die Darstellung/das Diagramm samt allen damit verbundenen Ressourcen.
 
     string *anyplot* (in)
-    : Der Befehl „plot/chart“. Alle mit diesem Befehl verknüpften Canvas-Elemente sowie alle internen Ressourcen werden entfernt, einschließlich des Befehls „plot/chart“ selbst.
+    : Der Befehl der Darstellung bzw. des Diagramms. Alle mit diesem Befehl verknüpften Canvas-Elemente sowie alle internen Ressourcen werden entfernt, einschließlich des Befehls „plot/chart“ selbst.
 
 
 
@@ -2766,9 +2766,9 @@ Beispiele für die Verwendung finden Sie in der Datei „plotdemos7.tcl“.
 
 # Scrollen bei Zeitdiagrammen und Gantt-Diagrammen
 
-Für zwei Arten von Diagrammen wurde eine automatische Bildlaufsteuerung implementiert: Zeitdiagramme und Gantt-Diagramme. Die Unterbefehle *hscroll* und *vscroll* ordnen dem Diagramm (vorhandene) Bildlaufleisten zu, ähnlich wie dies bei Text- und Canvas-Widgets der Fall ist.
+Für zwei Arten von Diagrammen wurde eine automatische Bildlaufsteuerung implementiert: Zeitdiagramme und Gantt-Diagramme. Die Unterbefehle *hscroll* und *vscroll* ordnen dem Diagramm (vorhandene) Scrollbars zu, ähnlich wie dies bei Text- und Canvas-Widgets der Fall ist.
 
-Sobald die Zuordnung hergestellt ist, werden die Bildlaufleisten automatisch aktualisiert, wenn:
+Sobald die Zuordnung hergestellt ist, werden die Scrollbars automatisch aktualisiert, wenn:
 
 - Ein Eintrag kommt hinzu, dessen Zeitraum länger ist als der aktuelle.
 
@@ -2814,11 +2814,11 @@ $s vscroll .y
 $s hscroll .x
 ```
 
-Der ursprüngliche Zeitraum des Diagramms erstreckt sich vom 1. Januar 2004 bis zum 31. Dezember 2004. Da jedoch im Jahr 2005 vertikale Linien hinzugefügt wurden und mehr Elemente vorhanden sind, als bei der Erstellung des Diagramms festgelegt waren, werden sowohl die horizontale als auch die vertikale Bildlaufleiste aktiviert.
+Der ursprüngliche Zeitraum des Diagramms erstreckt sich vom 1. Januar 2004 bis zum 31. Dezember 2004. Da jedoch im Jahr 2005 vertikale Linien hinzugefügt wurden und mehr Elemente vorhanden sind, als bei der Erstellung des Diagramms festgelegt waren, werden sowohl die horizontale als auch die vertikale Scrollbar aktiviert.
 
 # Spezielle Diagramme
 
-Die meisten der oben beschriebenen Diagramm- und Grafiktypen sind relativ allgemein einsetzbar, und Sie bereiten die zu darstellenden Daten einfach selbst vor. In diesem Abschnitt werden mehrere Diagrammtypen beschrieben, die insofern spezialisierter sind, als sie spezifische Zwecke erfüllen und Sie Rohdaten übergeben, die dann in den Darstellungsroutinen verarbeitet werden.
+Die meisten der oben beschriebenen Diagramm- und Grafiktypen sind relativ allgemein einsetzbar, und Sie bereiten die darzustellenden Daten einfach selbst vor. In diesem Abschnitt werden mehrere Diagrammtypen beschrieben, die insofern spezialisierter sind, als sie spezifische Zwecke erfüllen und Sie Rohdaten übergeben, die dann in den Darstellungsroutinen verarbeitet werden.
 
 Derzeit gibt es folgende Typen:
 
@@ -2866,10 +2866,10 @@ Die meisten allgemeinen Methoden für XY-Diagramme lassen sich auch auf diese Di
     : Name der Serie (wird als Symbol dargestellt, das über den Befehl *$target dataconfig* konfiguriert wird (siehe die entsprechende XY-Darstellung zur Erläuterung))
 
     list *xvalues* (in)
-    : Liste der Modellergebnisse (fehlende Werte werden als leere Zeichenfolgen dargestellt)
+    : Liste der Modellergebnisse (fehlende Werte werden als leere Zeichenketten dargestellt)
 
     list *yvalues* (in)
-    : Liste der Werte (fehlende Werte werden als leere Zeichenfolgen dargestellt; nur wenn sowohl der x- als auch der y-Wert angegeben sind, wird das Paar in den Berechnungen berücksichtigt)
+    : Liste der Messwerte (fehlende Werte werden als leere Zeichenketten dargestellt; nur wenn sowohl der x- als auch der y-Wert angegeben sind, wird das Paar in den Berechnungen berücksichtigt)
 
 
 **::Plotchart::createPerformanceProfile** *w* *max*
@@ -2881,7 +2881,7 @@ Die meisten allgemeinen Methoden für XY-Diagramme lassen sich auch auf diese Di
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     float *max* (in)
-    : Maximaler Wert für die x-Achse (die x-Achse stellt den skalierten Wert der Reihe dar).
+    : Maximaler Wert für die x-Achse (die x-Achse stellt die skalierte Leistung der Reihe dar).
 
 
 **$performance** plot *series\_and\_data\_pairs*
@@ -2900,7 +2900,7 @@ Die meisten allgemeinen Methoden für XY-Diagramme lassen sich auch auf diese Di
     : Name des *vorhandenen* Canvas-Widgets, in dem die Grafik angezeigt werden soll.
 
     list *radius\_data* (in)
-    : Eine Liste der maximalen Radien für die Standardabweichung und die Schrittweite. Es werden Viertelkreise mit den Achsenbeschriftungen eingezeichnet.
+    : Eine Liste aus dem maximalen Radius für die Standardabweichung und der Schrittweite. Es werden Viertelkreise mit den Achsenbeschriftungen eingezeichnet.
 
 
     Derzeit wird eine Option unterstützt:
@@ -2923,18 +2923,18 @@ Die meisten allgemeinen Methoden für XY-Diagramme lassen sich auch auf diese Di
 
 
 **::Plotchart::createHeatmap** *w* *rowlabels* *columnlabels* *args*
-: Erzeugt eine Heatmap, d. h. eine Tabelle aus Rechtecken, deren Farben von bestimmten Daten abhängen. Die Zeilen- und Spalte-Bezeichnungen dienen beim Einfügen der Daten als Kennungen. Ihre Anzahl bestimmt die Größe der Tabelle.
+: Erzeugt eine Heatmap, d. h. eine Tabelle aus Rechtecken, deren Farben von bestimmten Daten abhängen. Die Zeilen- und Spaltenbezeichnungen dienen beim Einfügen der Daten als Bezeichner. Ihre Anzahl bestimmt die Größe der Tabelle.
 
-    Die Daten werden zeilenweise, spaltenweise oder zelleweise übergeben.
+    Die Daten werden zeilenweise, spaltenweise oder zellenweise übergeben.
 
     widget *w* (in)
     : Name des *vorhandenen* Canvas-Widgets, in dem die Heatmap angezeigt werden soll.
 
     list *rowlabels* (in)
-    : Liste der Bezeichnungen, die in jeder Zeile angezeigt werden sollen. Die Bezeichnungen dienen zudem als Kennungen.
+    : Liste der Bezeichnungen, die in jeder Zeile angezeigt werden sollen. Die Bezeichnungen dienen zudem als Bezeichner.
 
     list *columnlabels* (in)
-    : Liste der Bezeichnungen, die in jeder Spalte angezeigt werden sollen. Die Bezeichnungen dienen zudem als Kennungen.
+    : Liste der Bezeichnungen, die in jeder Spalte angezeigt werden sollen. Die Bezeichnungen dienen zudem als Bezeichner.
 
     list *args* (in)
     : Null oder mehr Argumente zur Festlegung der Größe der Heatmap. Weitere Informationen finden Sie unter „XY-Diagramm“.
@@ -3009,7 +3009,7 @@ Die meisten allgemeinen Methoden für XY-Diagramme lassen sich auch auf diese Di
 
 
 **$circleplot** connect *label1* *label2* *colour* *width*
-: Schaffen Sie eine Verbindung zwischen den beiden Beschriftungen durch einen farbigen Bogen mit einer vorgegebenen Breite (der Bogen ist eigentlich eine Parabel).
+: Verbindet die beiden Beschriftungen durch einen farbigen Bogen mit einer vorgegebenen Breite (der Bogen ist eigentlich eine Parabel).
 
     string *label1* (in)
     : Zeichenkette, die die erste zu verbindende Beschriftung angibt.
@@ -3158,20 +3158,20 @@ foreach {x y} {0 0 2 5 5 2 9 9 12 10} {
 }
 ```
 
-Der Unterbefehl *plot* interpretiert die x- und y-Daten lediglich als reine Zahlen, die Umrechnung von Datum und Uhrzeit in „clock seconds“ bleibt außen vor.
+Der Unterbefehl *plot* interpretiert die x- und y-Daten lediglich als reine Zahlen, die Umrechnung von Datum und Uhrzeit in „clock seconds“ müssen Sie selbst vornehmen.
 
 # Anordnung mehrerer Diagramme auf einem Canvas
 
 Mit dem Befehl *plotpack* können Sie den Inhalt einer Grafik in ein anderes Canvas-Widget kopieren. Dieses Canvas-Widget fungiert nicht als zusammengesetzte Grafik, kann jedoch beispielsweise als PostScript-Datei gespeichert werden: Hinweis: Der Befehl erstellt lediglich eine Momentaufnahme der Grafiken, wie sie zu diesem Zeitpunkt aussehen.
 
 **::Plotchart::plotpack** *w* *dir* *args*
-: Kopieren Sie den Inhalt der Diagramme/Grafiken in ein anderes Widget, ähnlich wie beim Geometriemanager *pack*.
+: Kopiert den Inhalt der Diagramme/Grafiken in ein anderes Widget, ähnlich wie beim Geometriemanager *pack*.
 
     widget *w* (in)
     : Der Name des Canvas-Widgets, in das die Diagramme/Grafiken kopiert werden sollen
 
     string *dir* (in)
-    : Die Ausrichtung der Anordnung – oben, links, unten oder rechts
+    : Die Ausrichtung der Anordnung – top, left, bottom oder right
 
     list *args* (in)
     : Liste der zu kopierenden Diagramme/Grafiken.
@@ -3212,7 +3212,7 @@ Durch die Angabe von Breite und Höhe lässt sich der Bereich leichter im Verhä
 
 Die Option *-axesbox* soll die Ausrichtung der Achsen eines Diagramms an denen anderer Diagramme erleichtern. Die Option erwartet eine Liste mit sechs Argumenten:
 
-- Identifikation des Plots, in Bezug auf den er positioniert werden soll (der vom Befehl „create“ zurückgegebene Befehl).
+- Identifikation des Plots, in Bezug auf den er positioniert werden soll (der vom Erzeugungsbefehl zurückgegebene Befehl).
 
 - Die zu verwendende Position des Ankers (n, nw, …)
 
@@ -3243,7 +3243,7 @@ Erzeugt ein zweites Diagramm, dessen linke Achse mit der rechten Achse des Diagr
 
 - Mit den Befehlen *bindplot* und *bindlast* können Sie Aktionen definieren, die ausgeführt werden sollen, wenn der Benutzer auf ein Element der Darstellung oder des Diagramms klickt. (siehe unten, siehe auch den Beispielcode in plotdemos12.tcl)
 
-- *Piecharts* können ein Segment „exploded“ anzeigen, das sich mit Maustaste 1 wählen lässt.
+- *Piecharts* können ein herausgerücktes Segment anzeigen, das sich mit Maustaste 1 wählen lässt.
 
 
 Andere Interaktion, die *Plotchart* selbst nicht bietet, lässt sich über die Tags der Canvas-Elemente mit weiteren Bindungen einrichten.
@@ -3251,7 +3251,7 @@ Andere Interaktion, die *Plotchart* selbst nicht bietet, lässt sich über die T
 *bindplot* und *bindlast* sind so definiert:
 
 **$anyplot** bindplot *event* *command* *args*
-: Registrieren Sie einen Befehl, der immer dann ausgeführt wird, wenn das angegebene Ereignis im Diagramm eintritt.
+: Registriert einen Befehl, der immer dann ausgeführt wird, wenn das angegebene Ereignis im Diagramm eintritt.
 
     string *event*
     : Das Ereignis, an das Sie den Befehl binden möchten
@@ -3267,7 +3267,7 @@ Andere Interaktion, die *Plotchart* selbst nicht bietet, lässt sich über die T
 
 
 **$anyplot** bindlast *series* *event* *command*
-: Registrieren Sie einen Befehl, der ausgeführt wird, wenn das Ereignis in der Nähe des zuletzt zur angegebenen Reihe hinzugefügten Punktes eintritt. (Sie können dies unmittelbar nach dem Einfügen eines Datenpunkts tun. Alle derartigen Befehle bleiben aktiv.)
+: Registriert einen Befehl, der ausgeführt wird, wenn das Ereignis in der Nähe des zuletzt zur angegebenen Reihe hinzugefügten Punktes eintritt. (Sie können dies unmittelbar nach dem Einfügen eines Datenpunkts tun. Alle derartigen Befehle bleiben aktiv.)
 
     string *event*
     : Das Ereignis, an das Sie den Befehl binden möchten
@@ -3347,7 +3347,7 @@ Die Implementierung von *Plotchart* stützt sich in hohem Maße auf die Fähigke
 
 - *xaxis*, *yaxis* – Tags für alle Objekte einer waagerechten oder senkrechten Achse, sowohl bei numerischen Achsen als auch bei Achsen mit Beschriftungen wie in Balkendiagrammen. Der *text* entlang der Achsen hat kein eigenes Tag.
 
-- *raxis* – Tag, der für alle Objekte verwendet wird, die sich auf eine *rechte* Achse beziehen.
+- *raxis* – Tag, das für alle Objekte verwendet wird, die sich auf eine *rechte* Achse beziehen.
 
 - *taxis* – Tag für alle Objekte einer Achse *time*.
 
@@ -3371,7 +3371,7 @@ Beschriftete Punkte tragen nur das Tag „data“.
 
 *Kreisdiagramme und Spiralkreisdiagramme:*
 
-- *segment\_segmentnumber* – Das Tag zur Identifizierung des Segments; die Zeichenfolge „segmentnumber“ sollte durch die tatsächliche Nummer ersetzt werden. Dieses Tag zieht die Segmente heraus.
+- *segment\_segmentnumber* – Das Tag zur Identifizierung des Segments; die Zeichenkette „segmentnumber“ sollte durch die tatsächliche Nummer ersetzt werden. Dieses Tag zieht die Segmente heraus.
 
 
 *Balkendiagramme:*
@@ -3392,7 +3392,7 @@ Zusätzlich zu den für Zeitdiagramme beschriebenen Tags werden folgende Tags ve
 
 *Radialdiagramme und Polardiagramme:*
 
-Derzeit haben die radialen Linien, die das Grid anzeigen, keine Tags. Die mit Daten verbundenen grafischen Objekte besitzen lediglich das Tag „data“.
+Derzeit haben die radialen Linien, die das Gitter anzeigen, keine Tags. Die mit Daten verbundenen grafischen Objekte besitzen lediglich das Tag „data“.
 
 *Windrosen:*
 

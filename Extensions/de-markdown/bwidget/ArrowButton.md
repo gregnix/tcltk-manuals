@@ -92,7 +92,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-disarmcommand**
-:  Legt einen Tcl-Befehl fest, der dem ArrowButton zugeordnet wird, wenn Maustaste 1 losgelassen wird. Dieser Befehl wird auch aufgerufen, wenn der Zeiger nicht über dem ArrowButton ist, und immer vor dem Befehl der Option **command**. Er wird gewöhnlich zusammen mit **armcommand**, **repeatdelay** und **repeatinterval** verwendet. 
+:  Legt einen Tcl-Befehl fest, der dem ArrowButton zugeordnet wird, wenn Maustaste 1 losgelassen wird. Dieser Befehl wird auch aufgerufen, wenn der Mauszeiger nicht über dem ArrowButton ist, und immer vor dem Befehl der Option **command**. Er wird gewöhnlich zusammen mit **armcommand**, **repeatdelay** und **repeatinterval** verwendet. 
 
 
 **-height**
@@ -123,10 +123,10 @@ WIDGET-SPEZIFISCHE OPTIONEN
 : Legt einen von drei Zuständen für den ArrowButton fest: **normal**, **active** oder **disabled**.
 
     Wenn der **type** des ArrowButton *button* ist:
-    : Im Zustand normal wird der ArrowButton mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit den Optionen **activeforeground** und **activebackground** angezeigt. Im Zustand disabled bestimmen die Optionen **disabledforeground** und **background**, wie der ArrowButton angezeigt wird. 
+    : Im Zustand normal wird der ArrowButton mit den Optionen **foreground** und **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Mauszeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit den Optionen **activeforeground** und **activebackground** angezeigt. Im Zustand disabled bestimmen die Optionen **disabledforeground** und **background**, wie der ArrowButton angezeigt wird. 
 
     Wenn der **type** des ArrowButton *arrow* ist:
-    : Nur die Farben des Pfeils ändern sich. Der Hintergrund des ArrowButton wird immer mit der Option **troughcolor** angezeigt. Im Zustand normal wird der ArrowButton mit der Option **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Zeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit der Option **activebackground** angezeigt. Im Zustand disabled wird der ArrowButton mit einer dunklen Schraffur angezeigt. 
+    : Nur die Farben des Pfeils ändern sich. Der Hintergrund des ArrowButton wird immer mit der Option **troughcolor** angezeigt. Im Zustand normal wird der ArrowButton mit der Option **background** angezeigt. Der Zustand active wird gewöhnlich verwendet, wenn der Mauszeiger über dem ArrowButton ist. Im Zustand active wird der ArrowButton mit der Option **activebackground** angezeigt. Im Zustand disabled wird der ArrowButton mit einer dunklen Schraffur angezeigt. 
 
     Der Zustand disabled bedeutet, dass der ArrowButton unempfindlich sein soll: die Vorgabebindungen weigern sich, das Widget zu aktivieren, und ignorieren das Drücken der Maustasten.
 

@@ -174,7 +174,7 @@ Widget::**declare** *class* *optlist*
       Wenn *value* leer ist, wird es mit dem Vorgabewert des BWidget initialisiert. 
 
     **Int**
-    : *value* von *option* ist eine ganze Zahl. *args* kann *{?min? ?max?}* sein, um sie in einen Bereich zu zwingen. Die Prüfung ist *\[expr \$option > \$min\] && \[expr \$option < \$max\]*, wenn args also *{0 10}* ist, muss der Wert zwischen 0 und 10 liegen, die Grenzen ausgeschlossen, wenn *args* *{=0 =10}* ist, muss der Wert zwischen 0 und 10 liegen, die Grenzen eingeschlossen. 
+    : *value* von *option* ist eine Ganzzahl. *args* kann *{?min? ?max?}* sein, um sie in einen Bereich zu zwingen. Die Prüfung ist *\[expr \$option > \$min\] && \[expr \$option < \$max\]*, wenn args also *{0 10}* ist, muss der Wert zwischen 0 und 10 liegen, die Grenzen ausgeschlossen, wenn *args* *{=0 =10}* ist, muss der Wert zwischen 0 und 10 liegen, die Grenzen eingeschlossen. 
 
     **Boolean**
     : *value* von *option* ist ein boolescher Wert. Wahre Werte können **1**, **true** oder **yes** sein. Falsche Werte können **0**, **false** oder **no** sein. **Widget::cget** gibt immer 0 oder 1 zurück. 
@@ -277,7 +277,7 @@ Widget::**tkinclude** *class* *tkwidget* *subpath* ?*arg...*?
         - *include {option option ...}*   
       Liste der aufzunehmenden Optionen (alle, wenn nicht definiert) 
         - *remove {option option ...}*   
-      list of options to remove 
+      Liste der zu entfernenden Optionen 
         - *rename {option name option name ...}*   
       Liste der umzubenennenden Optionen 
         - *prefix {prefix option option ...}*   

@@ -89,9 +89,9 @@ Behandelt der Handler jeden Fall, für den er aufgerufen wird, passend, entsteht
 # Handler-Methoden
 
 **vfshandler** **access** *root* *relative* *actualpath* *mode*
-: Meldet einen POSIX-Fehler, wenn der angegebene Zugriffsmodus *mode* (eine ganze Zahl) nicht zur Datei oder zum Verzeichnis des Pfads passt. Die allgemeine Schicht ignoriert jeden nicht leeren Rückgabewert.
+: Meldet einen POSIX-Fehler, wenn der angegebene Zugriffsmodus *mode* (eine Ganzzahl) nicht zur Datei oder zum Verzeichnis des Pfads passt. Die allgemeine Schicht ignoriert jeden nicht leeren Rückgabewert.
 
-    Der Befehl **vfs::accessMode** (siehe Abschnitt [Handler-Umgebung]) wandelt die ganze Zahl *mode* in eine leichter zu prüfende Zeichenkette um.
+    Der Befehl **vfs::accessMode** (siehe Abschnitt [Handler-Umgebung]) wandelt die Ganzzahl *mode* in eine leichter zu prüfende Zeichenkette um.
 
 **vfshandler** **createdirectory** *root* *relative* *actualpath*
 : Legt ein Verzeichnis mit dem angegebenen Namen an. Der Befehl darf annehmen, dass alle Unterverzeichnisse im Pfad vorhanden und gültig sind und dass der gewünschte Pfad noch nicht existiert. Darum kümmert sich Tcl.
@@ -107,7 +107,7 @@ Behandelt der Handler jeden Fall, für den er aufgerufen wird, passend, entsteht
     Sind *index* und *value* angegeben, setzt der Befehl das *index*-te Attribut auf *value*.
 
 **vfshandler** **matchindirectory** *root* *relative* *actualpath* *pattern* *types*
-: Gibt die Liste der Dateien oder Verzeichnisse im angegebenen Pfad zurück, die zum Glob-Muster *pattern* passen und zur angegebenen Liste *types*. Der Pfad ist immer der Name eines vorhandenen Verzeichnisses.
+: Gibt die Liste der Dateien oder Verzeichnisse im angegebenen Pfad zurück, die zum Glob-Muster *pattern* und zur angegebenen Liste *types* passen. Der Pfad ist immer der Name eines vorhandenen Verzeichnisses.
 
     *Hinweis:* Bei jedem rekursiven Globbing erzeugt Tcl bei den beteiligten Dateisystemen Anforderungen, die nur Verzeichnisse treffen. Dieser Unterbefehl muss solche Anforderungen und solche nur für Dateien richtig behandeln, sonst geht es schief.
 
@@ -134,7 +134,7 @@ Behandelt der Handler jeden Fall, für den er aufgerufen wird, passend, entsteht
 
 
 **vfshandler** **removedirectory** *root* *relative* *actualpath* *recursive*
-: Löscht das angegebene Verzeichnis. Das Argument *recursive* ist ein boolescher Wert. Ist der Wert **true**, wird auch ein nicht leeres Verzeichnis mitsamt Inhalt rekursiv gelöscht. Ist der Wert **false** und das Verzeichnis nicht leer, ist ein POSIX-Fehler (**EEXIST**) zu werfen.
+: Löscht das angegebene Verzeichnis. Das Argument *recursive* ist ein boolescher Wert. Ist der Wert **true**, muss auch bei einem nicht leeren Verzeichnis versucht werden, es mitsamt Inhalt rekursiv zu löschen. Ist der Wert **false** und das Verzeichnis nicht leer, ist ein POSIX-Fehler (**EEXIST**) zu werfen.
 
 **vfshandler** **stat** *root* *relative* *actualpath*
 : Das Ergebnis ist eine Liste aus Schlüsseln und Werten in einer Form, die der eingebaute Befehl **array set** annimmt. Sie beschreibt den Inhalt einer stat-Struktur. Die Reihenfolge der Schlüssel ist gleichgültig.
@@ -150,36 +150,36 @@ Behandelt der Handler jeden Fall, für den er aufgerufen wird, passend, entsteht
     Das Dateisystem liefert die folgenden Schlüssel und ihre Werte:
 
     **dev**
-    : Eine lange ganze Zahl, die Gerätenummer des Pfads, für den stat aufgerufen wurde.
+    : Eine lange Ganzzahl, die Gerätenummer des Pfads, für den stat aufgerufen wurde.
 
     **ino**
-    : Eine lange ganze Zahl, die Inode-Nummer des Pfads, für den stat aufgerufen wurde. Jeder Pfad, den das Dateisystem behandelt, soll durch die Kombination aus Gerätenummer und Inode-Nummer eindeutig sein. Wird das verletzt, scheitern Algorithmen höherer Ebenen, die Gerät und Inode verfolgen müssen, auf jede erdenkliche Weise.
+    : Eine lange Ganzzahl, die Inode-Nummer des Pfads, für den stat aufgerufen wurde. Jeder Pfad, den das Dateisystem behandelt, soll durch die Kombination aus Gerätenummer und Inode-Nummer eindeutig sein. Wird das verletzt, scheitern Algorithmen höherer Ebenen, die Gerät und Inode verfolgen müssen, auf jede erdenkliche Weise.
 
         Ein Beispiel ist ein Verzeichnisdurchlauf, der sich mit Gerät und Inode aus Endlosschleifen durch symbolische Links heraushält. Nicht eindeutige Angaben zu Gerät und Inode lassen einen solchen Durchlauf Pfade überspringen, weil er sie fälschlich schon gesehen hat.
 
     **mode**
-    : Eine ganze Zahl, der Zugriffsmodus des Pfads. Diesen Modus prüft der Unterbefehl **access**.
+    : Eine Ganzzahl, der Zugriffsmodus des Pfads. Diesen Modus prüft der Unterbefehl **access**.
 
     **nlink**
-    : Eine lange ganze Zahl, die Zahl der harten Links auf den angegebenen Pfad.
+    : Eine lange Ganzzahl, die Zahl der harten Links auf den angegebenen Pfad.
 
     **uid**
-    : Eine lange ganze Zahl, die Kennung des Benutzers, dem der virtuelle Pfad gehört.
+    : Eine lange Ganzzahl, die Kennung des Benutzers, dem der virtuelle Pfad gehört.
 
     **gid**
-    : Eine lange ganze Zahl, die Kennung der Benutzergruppe, zu der der virtuelle Pfad gehört.
+    : Eine lange Ganzzahl, die Kennung der Benutzergruppe, zu der der virtuelle Pfad gehört.
 
     **size**
-    : Eine lange ganze Zahl, die wirkliche Größe des virtuellen Pfads in Bytes.
+    : Eine lange Ganzzahl, die wirkliche Größe des virtuellen Pfads in Bytes.
 
     **atime**
-    : Eine lange ganze Zahl, der Zeitpunkt des letzten Zugriffs auf den Pfad, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
+    : Eine lange Ganzzahl, der Zeitpunkt des letzten Zugriffs auf den Pfad, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
 
     **mtime**
-    : Eine lange ganze Zahl, der Zeitpunkt der letzten Änderung des Pfads, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
+    : Eine lange Ganzzahl, der Zeitpunkt der letzten Änderung des Pfads, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
 
     **ctime**
-    : Eine lange ganze Zahl, der Zeitpunkt, zu dem der Pfad angelegt wurde, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
+    : Eine lange Ganzzahl, der Zeitpunkt, zu dem der Pfad angelegt wurde, in Sekunden seit der Epoche. Der Befehl **clock format** macht daraus ein lesbares Datum.
 
     **type**
     : Eine Zeichenkette, entweder **directory** oder **file**, die den Typ des Pfads beschreibt.
@@ -194,7 +194,7 @@ Behandelt der Handler jeden Fall, für den er aufgerufen wird, passend, entsteht
 Die Umsetzung eines Dateisystem-Handlers kann sich auf die folgenden Hilfsbefehle stützen:
 
 **vfs::accessMode** *mode*
-: Dieser Befehl wandelt einen Zugriffsmodus *mode* als ganze Zahl in eine Zeichenkette um, eine von **F**, **X**, **W**, **XW**, **R**, **RX** und **RW**.
+: Dieser Befehl wandelt einen Zugriffsmodus *mode* als Ganzzahl in eine Zeichenkette um, eine von **F**, **X**, **W**, **XW**, **R**, **RX** und **RW**.
 
 **vfs::matchDirectories** *types*
 : Prüft, ob die Glob-Typangabe Verzeichnisse einschließen will. Das Ergebnis ist boolesch. **true** kommt zurück, wenn types Verzeichnisse verlangt, sonst **false**.

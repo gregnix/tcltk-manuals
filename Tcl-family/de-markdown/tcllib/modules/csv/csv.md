@@ -59,7 +59,7 @@ Folgende Befehle stehen zur Verfügung:
 : Nimmt eine Liste von Listen mit Werten entgegen und gibt eine Zeichenkette im CSV-Format zurück, die diese Werte enthält. Das Trennzeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist „,“. Das Anführungszeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist '"'. Standardmäßig ist der Anführungsmodus *delMode* auf „auto“ gesetzt, sodass Werte nur bei Bedarf mit *delChar* umschlossen werden. Bei der Einstellung „always“ werden die Werte stattdessen jedoch immer mit *delChar* umschlossen. Jedes Element der äußeren Liste wird als Datensatz betrachtet; diese werden im Ergebnis durch Zeilenumbrüche getrennt. Die Elemente jedes Datensatzes werden wie üblich formatiert (über **::csv::join**).
 
 **::csv::joinmatrix** *matrix* ?*sepChar*? ?*delChar*? ?*delMode*?
-: Nimmt ein *Matrix*-Objekt entgegen, das der für das Paket struct::matrix festgelegten API entspricht, und gibt eine Zeichenkette im CSV-Format zurück, die diese Werte enthält. Das Trennzeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist „,“. Das Anführungszeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist \\'"'. Standardmäßig ist der Anführungsmodus *delMode* auf „auto“ gesetzt, sodass Werte nur bei Bedarf mit *delChar* umschlossen werden. Wenn die Einstellung „always“ gewählt ist, werden die Werte jedoch stattdessen immer von *delChar* umschlossen. Jede Zeile der Matrix wird als Datensatz betrachtet; diese sind im Ergebnis durch Zeilenumbrüche voneinander getrennt. Die Elemente jedes Datensatzes werden wie gewohnt formatiert (über **::csv::join**).
+: Nimmt ein *matrix*-Objekt entgegen, das der für das Paket struct::matrix festgelegten API entspricht, und gibt eine Zeichenkette im CSV-Format zurück, die diese Werte enthält. Das Trennzeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist „,“. Das Anführungszeichen kann vom Aufrufer festgelegt werden, dies ist jedoch optional. Der Standardwert ist '"'. Standardmäßig ist der Anführungsmodus *delMode* auf „auto“ gesetzt, sodass Werte nur bei Bedarf mit *delChar* umschlossen werden. Wenn die Einstellung „always“ gewählt ist, werden die Werte jedoch stattdessen immer von *delChar* umschlossen. Jede Zeile der Matrix wird als Datensatz betrachtet; diese sind im Ergebnis durch Zeilenumbrüche voneinander getrennt. Die Elemente jedes Datensatzes werden wie gewohnt formatiert (über **::csv::join**).
 
 **::csv::read2matrix** ?**-alternate**? *chan m* {*sepChar* ,} {*expand* none}
 : Ein Wrapper um **::csv::split2matrix** (siehe unten), der Zeilen im CSV-Format aus dem angegebenen Kanal liest (bis zum EOF) und sie der angegebenen Matrix hinzufügt. Eine Erläuterung des Arguments *expand* finden Sie unter **::csv::split2matrix**.
@@ -71,7 +71,7 @@ Folgende Befehle stehen zur Verfügung:
 : Ein Befehl, der von den Matrixmethoden **format 2string** und **format 2chan** verwendet werden kann. Bei letzterer leitet dieser Befehl die Aufgabe an **::csv::writematrix** weiter. *cmd* muss entweder **printmatrix** oder **printmatrix2channel** lauten. Das Kanal-Argument *chan* muss bei letzterem vorhanden sein, bei ersterem darf es nicht vorhanden sein.
 
 **::csv::split** ?**-alternate**? *line* ?*sepChar*? ?*delChar*?
-: Wandelt eine *Zeile* im CSV-Format in eine Liste der in dieser Zeile enthaltenen Werte um. Das Zeichen, mit dem die Werte voneinander getrennt werden, kann vom Aufrufer über *sepChar* festgelegt werden; dies ist jedoch optional. Der Standardwert ist „,“. Das Anführungszeichen kann vom Aufrufer festgelegt werden; dies ist jedoch optional. Der Standardwert ist '"'.
+: Wandelt eine *line* im CSV-Format in eine Liste der in dieser Zeile enthaltenen Werte um. Das Zeichen, mit dem die Werte voneinander getrennt werden, kann vom Aufrufer über *sepChar* festgelegt werden; dies ist jedoch optional. Der Standardwert ist „,“. Das Anführungszeichen kann vom Aufrufer festgelegt werden; dies ist jedoch optional. Der Standardwert ist '"'.
 
     Wenn die Option **-alternate** festgelegt ist, wird zum Parsen der Eingabe eine leicht abweichende Syntax verwendet. Diese Syntax wird weiter unten im Abschnitt [Format] erläutert.
 
@@ -104,14 +104,14 @@ Das Format regulärer CSV-Dateien wird wie folgt festgelegt:
 
 1. Jeder Datensatz einer CSV-Datei (Comma-Separated Values, wie sie z. B. von Excel exportiert werden) besteht aus einer Reihe von ASCII-Werten, die durch „,“ getrennt sind. In anderen Sprachen kann das Trennzeichen jedoch auch „;“ sein; dies spielt in diesem Fall jedoch keine Rolle, da die hier bereitgestellten Funktionen jedes beliebige Trennzeichen zulassen.
 
-2. Genau dann, wenn ein Wert das Trennzeichen „,“ enthält, muss er (der Wert) in Anführungszeichen „“ gesetzt werden. Enthält der Wert das Trennzeichen nicht, ist die Verwendung von Anführungszeichen optional.
+2. Genau dann, wenn ein Wert das Trennzeichen „,“ enthält, muss er (der Wert) in Anführungszeichen "" gesetzt werden. Enthält der Wert das Trennzeichen nicht, ist die Verwendung von Anführungszeichen optional.
 
 3. Wenn ein Wert das Zeichen ", enthält, wird dieses Zeichen durch "" dargestellt.
 
-4. Die Ausgabekette "" steht für den Wert ". Mit anderen Worten: Es wird davon ausgegangen, dass sie ausschließlich durch Regel 3 erzeugt wurde, d. h., dass der Wert nicht in Anführungszeichen gesetzt wurde.
+4. Die Ausgabezeichenkette "" steht für den Wert ". Mit anderen Worten: Es wird davon ausgegangen, dass sie ausschließlich durch Regel 3 erzeugt wurde, d. h., dass der Wert nicht in Anführungszeichen gesetzt wurde.
 
 
-Eine alternative Formatdefinition, die vor allem von MS-Produkten verwendet wird, legt fest, dass die Ausgabekette "" eine Darstellung der leeren Zeichenkette ist. Mit anderen Worten: Es wird davon ausgegangen, dass die Ausgabe durch Einfügen von Anführungszeichen in die leere Zeichenkette (d. h. Regel 2) und nicht durch Regel 3 erzeugt wurde. Dies ist der einzige Unterschied zwischen dem regulären und dem alternativen Format.
+Eine alternative Formatdefinition, die vor allem von MS-Produkten verwendet wird, legt fest, dass die Ausgabezeichenkette "" eine Darstellung der leeren Zeichenkette ist. Mit anderen Worten: Es wird davon ausgegangen, dass die Ausgabe durch Einfügen von Anführungszeichen in die leere Zeichenkette (d. h. Regel 2) und nicht durch Regel 3 erzeugt wurde. Dies ist der einzige Unterschied zwischen dem regulären und dem alternativen Format.
 
 Das alternative Format wird durch die Angabe der Option **-alternate** bei den verschiedenen Split-Befehlen aktiviert.
 
@@ -141,7 +141,7 @@ c) Mary says "Hello, I am Mary"
 d) (the empty string)
 ```
 
-stattdessen. Wie Sie sehen, unterscheidet sich nur Punkt (d): Anstelle eines „.“ steht nun die leere Zeichenfolge.
+stattdessen. Wie Sie sehen, unterscheidet sich nur Punkt (d): Anstelle eines " steht nun die leere Zeichenkette.
 
 # Fehler, Ideen, Rückmeldungen
 

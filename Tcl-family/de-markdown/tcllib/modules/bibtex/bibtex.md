@@ -37,7 +37,7 @@ bibtex – BibTeX-Dateien parsen
 Dieses Paket enthält Befehle zum Parsen von Literaturverzeichnissen im BibTeX-Format.
 
 **::bibtex::parse** ?*options*? ?*text*?
-: Dies ist die allgemeine Form des Befehls zum Parsen eines Literaturverzeichnisses. Je nach den Optionen beim Aufruf gibt er entweder ein Token für den Parser oder die geparsten Einträge des eingegebenen Literaturverzeichnisses zurück. Statt sofort zu parsen und ein vorgegebenes Format zurückzugeben, kann der Befehl auch in einen ereignisbasierten Parse-Stil wechseln. Alle relevanten Einträge der Eingabe werden dann über Rückrufbefehle gemeldet, im Stil von SAX.
+: Dies ist die allgemeine Form des Befehls zum Parsen eines Literaturverzeichnisses. Je nach den Optionen beim Aufruf gibt er entweder ein Token für den Parser oder die geparsten Einträge des eingegebenen Literaturverzeichnisses zurück. Statt sofort zu parsen und ein vorgegebenes Format zurückzugeben, kann der Befehl auch in einen ereignisbasierten Parse-Stil wechseln. Alle relevanten Einträge der Eingabe werden dann über Callback-Befehle gemeldet, im Stil von SAX.
 
 **::bibtex::parse** *text*
 : In dieser Form nimmt der Befehl an, dass der angegebene *text* ein Literaturverzeichnis im BibTeX-Format ist, parst ihn und gibt eine Liste mit einem Element je Datensatz im Literaturverzeichnis zurück. Kommentare, String-Definitionen, Präambeln usw. erscheinen im Ergebnis nicht. Jedes Element ist eine Liste aus Datensatztyp, Bibliographieschlüssel und Datensatzdaten, in dieser Reihenfolge. Die Datensatzdaten sind ein Dictionary; seine Schlüssel sind die Schlüssel des Datensatzes, mit den zugehörigen Werten.
@@ -54,7 +54,7 @@ Dieses Paket enthält Befehle zum Parsen von Literaturverzeichnissen im BibTeX-F
     *Hinweis*: Der Parser schließt den Kanal *nicht*, nachdem er ihn vollständig gelesen hat. Das bleibt Aufgabe des Nutzers des Parsers.
 
 **::bibtex::parse** ?**-recordcommand**   *recordcmd*? ?**-preamblecommand** *preamblecmd*? ?**-stringcommand**   *stringcmd*? ?**-commentcommand**  *commentcmd*? ?**-progresscommand** *progresscmd*? ?**-casesensitivestrings** *bool*? (*text* | **-channel** *chan*)
-: Dies ist die Form des Parsers auf der niedrigsten Ebene. Zurückgegeben wird ein Handle für den Parser. Während der Verarbeitung ruft er die angegebenen Rückrufbefehle für jede im Literaturverzeichnis gefundene Art von Daten auf.
+: Dies ist die Form des Parsers auf der niedrigsten Ebene. Zurückgegeben wird ein Handle für den Parser. Während der Verarbeitung ruft er die angegebenen Callback-Befehle für jede im Literaturverzeichnis gefundene Art von Daten auf.
 
     Die Verarbeitung läuft inkrementell im Hintergrund, genau dann und nur dann, wenn ein Tcl-Kanal *chan* angegeben ist. Bei einem *text* erfolgt die Verarbeitung sofort, und alle Rückruffunktionen werden aufgerufen, bevor der Befehl selbst zurückkehrt.
 

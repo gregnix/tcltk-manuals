@@ -74,9 +74,9 @@ generator – Prozeduren zum Erstellen und Verwenden von Generatoren.
 
 # Beschreibung
 
-Das Paket **generator** stellt Befehle zur Definition und Durchlaufung von Generatorausdrücken bereit. Ein *Generator* ist ein Befehl, der eine Folge von Werten gibt. Im Gegensatz zu einem gewöhnlichen Befehl, der eine Liste gibt, *gibt* ein Generator jedoch jeden Wert einzeln aus und wird anschließend unterbrochen, sodass nachfolgende Werte bei Bedarf abgerufen werden können. Auf diese Weise lassen sich Generatoren nutzen, um eine Reihe von Werten effizient zu durchlaufen, ohne alle Ergebnisse im Arbeitsspeicher generieren zu müssen. Generatoren können verwendet werden, um Elemente einer Datenstruktur oder Zeilen in der Ergebnismenge einer Datenbankabfrage zu durchlaufen, um Produzenten- und Konsumenten-Softwareentwürfe wie Parser und Tokenizer voneinander zu entkoppeln oder um ausgefeilte benutzerdefinierte Steuerungsstrategien wie die Backtracking-Suche zu implementieren. Generatoren verringern die Notwendigkeit, benutzerdefinierte Kontrollstrukturen zu implementieren, da viele dieser Strukturen als Generatoren umgestaltet werden können, was sowohl zu einer einfacheren Implementierung als auch zu einer standardisierteren Schnittstelle führt. Der Generatormechanismus baut auf dem Coroutinen-Mechanismus von Tcl 8.6 auf.
+Das Paket **generator** stellt Befehle zur Definition und Durchlaufung von Generatorausdrücken bereit. Ein *Generator* ist ein Befehl, der eine Folge von Werten zurückgibt. Im Gegensatz zu einem gewöhnlichen Befehl, der eine Liste zurückgibt, *gibt* ein Generator jedoch jeden Wert einzeln aus und wird anschließend unterbrochen, sodass nachfolgende Werte bei Bedarf abgerufen werden können. Auf diese Weise lassen sich Generatoren nutzen, um eine Reihe von Werten effizient zu durchlaufen, ohne alle Ergebnisse im Arbeitsspeicher generieren zu müssen. Generatoren können verwendet werden, um Elemente einer Datenstruktur oder Zeilen in der Ergebnismenge einer Datenbankabfrage zu durchlaufen, um Produzenten- und Konsumenten-Softwareentwürfe wie Parser und Tokenizer voneinander zu entkoppeln oder um ausgefeilte benutzerdefinierte Steuerungsstrategien wie die Backtracking-Suche zu implementieren. Generatoren verringern die Notwendigkeit, benutzerdefinierte Kontrollstrukturen zu implementieren, da viele dieser Strukturen als Generatoren umgestaltet werden können, was sowohl zu einer einfacheren Implementierung als auch zu einer standardisierteren Schnittstelle führt. Der Generatormechanismus baut auf dem Coroutinen-Mechanismus von Tcl 8.6 auf.
 
-Das Paket exportiert einen einzigen Ensemble-Befehl: **generator**. Alle Funktionen werden als Unterbefehle dieses Befehls bereitgestellt. Die zentralen Unterbefehle des Pakets sind **define**, **yield** und **foreach**. Der Befehl **define** funktioniert wie der Tcl-Befehl **proc**, erstellt jedoch eine Generator-Prozedur, d. h. eine Prozedur, die bei Aufruf einen Generator gibt. Der Generator selbst ist ein Befehl, der mehrfach aufgerufen werden kann: Bei jedem Aufruf gibt er den nächsten Wert der generierten Folge zurück. Wenn die Folge erschöpft ist, gibt der Generatorbefehl eine leere Liste zurück und löscht sich anschließend selbst. Anstatt einen Generator manuell aufzurufen, bietet das Paket jedoch auch einen flexiblen Befehl **foreach**, der die Werte eines oder mehrerer Generatoren durchläuft. Diese Schleifenkonstruktion ahmt die Funktionalität des integrierten Tcl-Befehls **foreach** nach, einschließlich der Verarbeitung mehrerer Werte und der gleichzeitigen Durchlaufung mehrerer Generatoren. Das Schreiben eines Generators ist ebenfalls eine einfache Aufgabe, ähnlich wie das Schreiben einer normalen Prozedur: Verwenden Sie einfach den Befehl **define**, um den Generator zu definieren, und rufen Sie anschließend **yield** anstelle von **return** auf. Beispielsweise können wir einen Generator definieren, der die ganzen Zahlen in einem bestimmten Bereich durchläuft:
+Das Paket exportiert einen einzigen Ensemble-Befehl: **generator**. Alle Funktionen werden als Unterbefehle dieses Befehls bereitgestellt. Die zentralen Unterbefehle des Pakets sind **define**, **yield** und **foreach**. Der Befehl **define** funktioniert wie der Tcl-Befehl **proc**, erstellt jedoch eine Generator-Prozedur, d. h. eine Prozedur, die bei Aufruf einen Generator zurückgibt. Der Generator selbst ist ein Befehl, der mehrfach aufgerufen werden kann: Bei jedem Aufruf gibt er den nächsten Wert der generierten Folge zurück. Wenn die Folge erschöpft ist, gibt der Generatorbefehl eine leere Liste zurück und löscht sich anschließend selbst. Anstatt einen Generator manuell aufzurufen, bietet das Paket jedoch auch einen flexiblen Befehl **foreach**, der die Werte eines oder mehrerer Generatoren durchläuft. Diese Schleifenkonstruktion ahmt die Funktionalität des integrierten Tcl-Befehls **foreach** nach, einschließlich der Verarbeitung mehrerer Rückgabewerte und der gleichzeitigen Durchlaufung mehrerer Generatoren. Das Schreiben eines Generators ist ebenfalls eine einfache Aufgabe, ähnlich wie das Schreiben einer normalen Prozedur: Verwenden Sie einfach den Befehl **define**, um den Generator zu definieren, und rufen Sie anschließend **yield** anstelle von **return** auf. Beispielsweise können wir einen Generator definieren, der die ganzen Zahlen in einem bestimmten Bereich durchläuft:
 
 ```
     generator define range {n m} {
@@ -101,7 +101,7 @@ Das obige Beispiel gibt, wie zu erwarten, die Zahlen von 1 bis 10 der Reihe nach
 # Befehle
 
 **generator** **define** *name* *params* *body*
-: Erstellt eine neue Generatorprozedur. Die Argumente des Befehls entsprechen denen von **proc**: ein *name*, eine Liste von Parametern und ein Hauptteil. Das Format der Parameterliste entspricht dem einer Prozedur. Insbesondere können Standardwerte und die „?args“-Syntax wie gewohnt verwendet werden. Bei jedem Aufruf der resultierenden Generator-Prozedur wird ein neuer Generator-Befehl (Koroutine) erstellt, der bei jedem Aufruf eine Liste von Werten liefert. Jedes Ergebnis eines Generators ist garantiert eine nicht leere Liste von Werten. Wenn ein Generator erschöpft ist, gibt er eine leere Liste zurück und löscht sich anschließend selbst, um Ressourcen freizugeben. Der Versuch, einen erschöpften Generator aufzurufen, führt zu einem Fehler, da der Befehl nicht mehr existiert.
+: Erstellt eine neue Generatorprozedur. Die Argumente des Befehls entsprechen denen von **proc**: ein *name*, eine Liste von Parametern und ein Rumpf. Das Format der Parameterliste entspricht dem einer Prozedur. Insbesondere können Standardwerte und die „?args?“-Syntax wie gewohnt verwendet werden. Bei jedem Aufruf der resultierenden Generator-Prozedur wird ein neuer Generator-Befehl (Koroutine) erstellt, der bei jedem Aufruf eine Liste von Werten liefert. Jedes Ergebnis eines Generators ist garantiert eine nicht leere Liste von Werten. Wenn ein Generator erschöpft ist, gibt er eine leere Liste zurück und löscht sich anschließend selbst, um Ressourcen freizugeben. Der Versuch, einen erschöpften Generator aufzurufen, führt zu einem Fehler, da der Befehl nicht mehr existiert.
 
 **generator** **yield** *arg* ?*args..*?
 : Wird dieser Befehl bei der Definition eines Generators verwendet, gibt er die nächste Wertemenge an den Verbraucher zurück. Sobald der Befehl **yield** aufgerufen wurde, unterbricht der Generator seine Ausführung, damit der Verbraucher diesen Wert verarbeiten kann. Wenn der nächste Wert angefordert wird, setzt der Generator die Ausführung fort, als ob der Befehl „yield“ gerade zurückgekehrt wäre, und kann die Verarbeitung fortsetzen, um das nächste Ergebnis auszugeben. Der Befehl **yield** muss mit mindestens einem Argument aufgerufen werden, kann jedoch auch mit mehreren Argumenten aufgerufen werden; in diesem Fall entspricht dies einem einmaligen Aufruf von **yield** für jedes Argument.
@@ -144,7 +144,7 @@ Das obige Beispiel gibt, wie zu erwarten, die Zahlen von 1 bis 10 der Reihe nach
         # File will be closed even on early exit
     ```
 
-    Wenn Sie einen Generator erstellen, der einen anderen Generator nutzt (wie beispielsweise die später definierten Standards **map** und **filter**), sollten Sie den Befehl **finally** verwenden, um sicherzustellen, dass dieser Generator zusammen mit seinem übergeordneten Generator zerstört wird. Der Generator **map** ist beispielsweise wie folgt definiert:
+    Wenn Sie einen Generator erstellen, der einen anderen Generator nutzt (wie beispielsweise die später definierten Standardgeneratoren **map** und **filter**), sollten Sie den Befehl **finally** verwenden, um sicherzustellen, dass dieser Generator zusammen mit seinem übergeordneten Generator zerstört wird. Der Generator **map** ist beispielsweise wie folgt definiert:
 
     ```
         generator define map {f xs} {
@@ -154,7 +154,7 @@ Das obige Beispiel gibt, wie zu erwarten, die Zahlen von 1 bis 10 der Reihe nach
     ```
 
 **generator** **from** *format* *value*
-: Erstellt einen Generator aus einer Datenstruktur. Derzeit werden die Formate **list**, **dict** oder **string** unterstützt. Das Listenformat gibt jedes Element nacheinander zurück. Bei Dictionarys werden jeder Schlüssel und jeder Wert separat zurückgegeben. Schließlich werden Zeichenfolgen Zeichen für Zeichen zurückgegeben.
+: Erstellt einen Generator aus einer Datenstruktur. Derzeit werden die Formate **list**, **dict** oder **string** unterstützt. Das Listenformat gibt jedes Element nacheinander zurück. Bei Dictionarys werden jeder Schlüssel und jeder Wert separat zurückgegeben. Schließlich werden Zeichenketten Zeichen für Zeichen zurückgegeben.
 
 **generator** **to** *format* *generator*
 : Wandelt einen Generator in eine Datenstruktur um. Dies ist die umgekehrte Operation des Befehls **from** und unterstützt dieselben Datenstrukturen. Die beiden Operationen erfüllen die folgenden Identitätsgesetze (wobei **=** entsprechend interpretiert wird):
@@ -167,7 +167,7 @@ Das obige Beispiel gibt, wie zu erwarten, die Zahlen von 1 bis 10 der Reihe nach
 
 # Präludium
 
-Die folgenden Befehle werden als Standardbibliothek mit Generator-Kombinatoren und Funktionen bereitgestellt, die praktische Operationen auf Generatoren ausführen. Die Funktionen in diesem Abschnitt orientieren sich lose an den entsprechenden Funktionen aus dem Haskell-Prelude. *Fehlersicht:* Die meisten Funktionen in diesem Prelude zerstören als Nebeneffekt alle ihnen übergebenen Generator-Argumente. Wenn Sie persistente Generatoren verwenden möchten, sehen Sie sich bitte die Streams-Bibliothek an.
+Die folgenden Befehle werden als Standardbibliothek mit Generator-Kombinatoren und Funktionen bereitgestellt, die praktische Operationen auf Generatoren ausführen. Die Funktionen in diesem Abschnitt orientieren sich lose an den entsprechenden Funktionen aus dem Haskell-Prelude. *Warnung:* Die meisten Funktionen in diesem Prelude zerstören als Nebeneffekt alle ihnen übergebenen Generator-Argumente. Wenn Sie persistente Generatoren verwenden möchten, sehen Sie sich bitte die Streams-Bibliothek an.
 
 **generator** **map** *function* *generator*
 : Wendet eine Funktion auf jedes Element eines Generators an und gibt einen neuen Generator mit den Ergebnissen zurück. Dies ist die klassische „map“-Funktion aus der funktionalen Programmierung, die hier auf Generatoren angewendet wird. So können wir beispielsweise mit dem folgenden Code alle Quadratzahlen generieren (wobei **nats** wie zuvor definiert ist):
@@ -181,7 +181,7 @@ Die folgenden Befehle werden als Standardbibliothek mit Generator-Kombinatoren u
     ```
 
 **generator** **filter** *predicate* *generator*
-: Ein weiteres Juwel der funktionalen Programmierung. Dieser Befehl gibt einen Generator zurück, der nur jene Elemente aus dem Argumentgenerator liefert, die das Prädikat (eine boolesche Funktion) erfüllen. Hätten wir beispielsweise einen Generator namens **employees**, der einen Strom von Dictionarys gibt, die Personen darstellen, könnten wir mit einem einfachen Filter alle Personen herausfiltern, deren Gehalt über 100.000 Dollar (oder einer Währung Ihrer Wahl) liegt:
+: Ein weiteres Juwel der funktionalen Programmierung. Dieser Befehl gibt einen Generator zurück, der nur jene Elemente aus dem Argumentgenerator liefert, die das Prädikat (eine boolesche Funktion) erfüllen. Hätten wir beispielsweise einen Generator namens **employees**, der einen Strom von Dictionarys zurückgibt, die Personen darstellen, könnten wir mit einem einfachen Filter alle Personen herausfiltern, deren Gehalt über 100.000 Dollar (oder einer Währung Ihrer Wahl) liegt:
 
     ```
         proc salary> {amount person} { expr {[dict get $person salary] > $amount} }
@@ -305,7 +305,7 @@ Die folgenden Befehle werden als Standardbibliothek mit Generator-Kombinatoren u
 : Gibt einen Generator der ersten Elemente des Argumentgenerators zurück, die das Prädikat erfüllen.
 
 **generator** **splitWhen** *predicate* *generator*
-: Teilt den Generator mithilfe des Prädikats zur Erkennung von Trennzeichen in Listen von Elementen auf. Die resultierenden Listen werden als Generator zurückgegeben. Elemente, die dem Trennzeichen-Prädikat entsprechen, werden verworfen. Um beispielsweise einen Generator unter Verwendung des Zeichenstrings „|“ als Trennzeichen aufzuteilen:
+: Teilt den Generator mithilfe des Prädikats zur Erkennung von Trennzeichen in Listen von Elementen auf. Die resultierenden Listen werden als Generator zurückgegeben. Elemente, die dem Trennzeichen-Prädikat entsprechen, werden verworfen. Um beispielsweise einen Generator unter Verwendung der Zeichenkette „|“ als Trennzeichen aufzuteilen:
 
     ```
         set xs [generator from list {a | b | c}]
@@ -313,7 +313,7 @@ Die folgenden Befehle werden als Standardbibliothek mit Generator-Kombinatoren u
     ```
 
 **generator** **scanl** *function* *zero* *generator*
-: Ähnlich wie **foldl**, gibt jedoch einen Generator zurück, der alle Werte für das Argument „accumulator“ enthält. Das letzte Element dieses Generators entspricht der Funktion **foldl**, die mit denselben Argumenten aufgerufen wurde.
+: Ähnlich wie **foldl**, gibt jedoch einen Generator zurück, der alle Zwischenwerte für das Akkumulator-Argument enthält. Das letzte Element dieses Generators entspricht der Funktion **foldl**, die mit denselben Argumenten aufgerufen wurde.
 
 
 # Fehler, Ideen, Rückmeldungen

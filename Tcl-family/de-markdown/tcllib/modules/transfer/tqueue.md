@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-transfer::copy::queue – In der Warteschlange befindliche Überweisungen
+transfer::copy::queue – Übertragungen über eine Warteschlange
 
 # Übersicht
 
@@ -40,7 +40,7 @@ Dieses Paket stellt Objekte bereit, die Übertragungsanforderungen für einen ei
 
 Wenn eine Anfrage einen Übertragungsfehler verursacht, wird die Ausführung angehalten, und alle nachfolgenden Anfragen werden nicht bearbeitet. Derzeit bedeutet dies, dass deren Rückruffunktionen zur Abschlussbestätigung überhaupt nicht ausgelöst werden.
 
-*HINWEIS*: Ich bin mir nicht ganz sicher, ob es sinnvoll ist, die Rückruffunktionen zur Fertigstellung der nicht bearbeiteten Anfragen nach einem Fehler, der das Warteschlangenobjekt stoppt, nicht auszulösen. Dies zwingt den Nutzer der Warteschlange dazu, sich ebenfalls an die Rückruffunktionen zu erinnern und diese auszuführen. Denn andernfalls würde alles im System, was auf eine Benachrichtigung über den Status einer Anfrage angewiesen ist, in der Schwebe bleiben. Ich komme langsam zu der Überzeugung, dass es sinnvoller ist, die entsprechenden Abschluss-Callbacks mit einer Fehlermeldung über den Abbruch der Warteschlange und einer übertragenen Datenmenge von 0 Byte auszulösen.
+*HINWEIS*: Ich bin mir nicht ganz sicher, ob es sinnvoll ist, die Rückruffunktionen zur Fertigstellung der nicht bearbeiteten Anfragen nach einem Fehler, der das Warteschlangenobjekt stoppt, nicht auszulösen. Dies zwingt den Nutzer der Warteschlange dazu, sich ebenfalls an die Rückruffunktionen zu erinnern und diese auszuführen. Denn andernfalls würde alles im System, was auf eine Benachrichtigung über den Status einer Anfrage angewiesen ist, in der Schwebe bleiben. Ich komme langsam zu der Überzeugung, dass es sinnvoller ist, die entsprechenden Rückruffunktionen zur Fertigstellung mit einer Fehlermeldung über den Abbruch der Warteschlange und einer übertragenen Datenmenge von 0 Byte auszulösen.
 
 Alle Transferanfragen haben folgende Form:
 
@@ -74,7 +74,7 @@ Alle mit dem Befehl **::transfer::copy::queue** erstellten Objekte haben die fol
 : Diese Methode löscht das Objekt. Wenn Sie dies tun, während das Objekt gerade beschäftigt ist, kommt es später zu Fehlern, wenn die aktuell ausgeführte Anfrage abgeschlossen ist und versucht, auf die nun fehlenden Datenstrukturen des gelöschten Objekts zuzugreifen.
 
 *objectName* **busy**
-: Diese Methode gibt einen booleschen Wert zurück, der angibt, ob das Objekt derzeit eine Anfrage bearbeitet (d. h. *busy*, Wert **True**) oder nicht (d. h. *im Leerlauf*, Wert **False**).
+: Diese Methode gibt einen booleschen Wert zurück, der angibt, ob das Objekt derzeit eine Anfrage bearbeitet (d. h. *busy*, Wert **True**) oder nicht (d. h. *idle*, Wert **False**).
 
 *objectName* **pending**
 : Diese Methode gibt die Anzahl der Anfragen zurück, die derzeit in der Warteschlange auf ihre Ausführung warten. Eine Anfrage, die gerade bearbeitet wird, wird nicht als wartend gezählt.

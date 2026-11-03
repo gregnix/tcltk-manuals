@@ -66,7 +66,7 @@ würde zu folgendem Ergebnis führen:
 
 Das Paket implementiert alle oder die meisten grundlegenden Operationen und elementaren Funktionen.
 
-*The arithmetic operations are:*
+*Die arithmetischen Operationen sind:*
 
 **::math::complexnumbers::+** *z1* *z2*
 : Addiert die beiden Argumente und gibt die resultierende komplexe Zahl zurück
@@ -116,7 +116,7 @@ Das Paket implementiert alle oder die meisten grundlegenden Operationen und elem
 
 
 
-*Conversion/inquiry procedures:*
+*Prozeduren zur Umwandlung und Abfrage:*
 
 **::math::complexnumbers::real** *z1*
 : Gibt den Realteil der angegebenen komplexen Zahl zurück
@@ -164,7 +164,7 @@ Das Paket implementiert alle oder die meisten grundlegenden Operationen und elem
 
 
 
-*Elementary functions:*
+*Elementare Funktionen:*
 
 **::math::complexnumbers::exp** *z1*
 : Berechnet die Exponentialfunktion für das angegebene komplexe Argument und gibt das Ergebnis zurück

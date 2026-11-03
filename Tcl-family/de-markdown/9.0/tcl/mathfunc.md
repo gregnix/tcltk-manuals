@@ -136,25 +136,25 @@ Zusätzlich zu diesen vordefinierten Funktionen können Anwendungen weitere Funk
 : Das Argument kann ein beliebiger numerischer Wert sein. Der Ganzzahl-Anteil von *arg* wird ermittelt; anschließend werden die niederwertigen Bits dieses Ganzzahl-Werts bis zur Maschinenwortgröße als Ganzzahl-Wert zurückgegeben. Zur Referenz: Die Anzahl der Bytes im Maschinenwort ist im Element **wordSize** des Arrays [tcl\_platform][tclvars] gespeichert.
 
 [isfinite]{.cmd} [arg]{.arg}
-: [Gibt **1** zurück, wenn die Gleitkommazahl *arg* endlich ist, d. h. Null, subnormal oder normal. Gibt **0** zurück, wenn die Zahl unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn die Gleitkommazahl *arg* endlich ist, d. h. Null, subnormal oder normal. Gibt 0 zurück, wenn die Zahl unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [isinf]{.cmd} [arg]{.arg}
-: [Gibt **1** zurück, wenn die Gleitkommazahl *arg* unendlich ist. Gibt **0** zurück, wenn die Zahl endlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn die Gleitkommazahl *arg* unendlich ist. Gibt 0 zurück, wenn die Zahl endlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [isnan]{.cmd} [arg]{.arg}
-: [Gibt **1** zurück, wenn die Gleitkommazahl *arg* Not-a-Number (NaN) ist. Gibt **0** zurück, wenn die Zahl endlich oder unendlich ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn die Gleitkommazahl *arg* Not-a-Number (NaN) ist. Gibt 0 zurück, wenn die Zahl endlich oder unendlich ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [isnormal]{.cmd} [arg]{.arg}
-: [Gibt **1** zurück, wenn die Gleitkommazahl *arg* normal ist. Gibt **0** zurück, wenn die Zahl Null, subnormal, unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn die Gleitkommazahl *arg* normal ist. Gibt 0 zurück, wenn die Zahl Null, subnormal, unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [isqrt]{.cmd} [arg]{.arg}
 : Berechnet den Ganzzahl-Anteil der Quadratwurzel von *arg*. *Arg* muss ein positiver Wert sein, Ganzzahl oder Gleitkommazahl. Im Gegensatz zu **sqrt**, das auf die Genauigkeit einer Gleitkommazahl beschränkt ist, liefert *isqrt* ein Ergebnis beliebiger Genauigkeit.
 
 [issubnormal]{.cmd} [arg]{.arg}
-: [Gibt **1** zurück, wenn die Gleitkommazahl *arg* subnormal ist, d. h. das Ergebnis graduellen Underflows. Gibt **0** zurück, wenn die Zahl Null, normal, unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn die Gleitkommazahl *arg* subnormal ist, d. h. das Ergebnis graduellen Underflows. Gibt 0 zurück, wenn die Zahl Null, normal, unendlich oder NaN ist. Löst einen Fehler aus, wenn *arg* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [isunordered]{.cmd} [x]{.arg} [y]{.arg}
-: [Gibt **1** zurück, wenn *x* und *y* nicht vergleichbar geordnet werden können, d. h. wenn mindestens einer NaN ist. Gibt **0** zurück, wenn beide Werte geordnet werden können, d. h. wenn beide aus der Menge Null, subnormal, normal und unendlich stammen. Löst einen Fehler aus, wenn *x* oder *y* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
+: [Gibt 1 zurück, wenn *x* und *y* nicht vergleichbar geordnet werden können, d. h. wenn mindestens einer NaN ist. Gibt 0 zurück, wenn beide Werte geordnet werden können, d. h. wenn beide aus der Menge Null, subnormal, normal und unendlich stammen. Löst einen Fehler aus, wenn *x* oder *y* nicht in einen Gleitkommawert umgewandelt werden kann.]{version="TIP521"}
 
 [log]{.cmd} [arg]{.arg}
 : Gibt den natürlichen Logarithmus von *arg* zurück. *Arg* muss ein positiver Wert sein.
@@ -184,7 +184,7 @@ Zusätzlich zu diesen vordefinierten Funktionen können Anwendungen weitere Funk
 : Gibt den hyperbolischen Sinus von *arg* zurück. Würde das Ergebnis einen Überlauf verursachen, wird ein Fehler zurückgegeben.
 
 [sqrt]{.cmd} [arg]{.arg}
-: Das Argument kann ein beliebiger nicht-negativer numerischer Wert sein. Gibt einen Gleitkommawert zurück, der die Quadratwurzel von *arg* ist. Kann **Inf** zurückgeben, wenn das Argument den Quadrat des maximalen Gleitkommawerts überschreitet.
+: Das Argument kann ein beliebiger nicht-negativer numerischer Wert sein. Gibt einen Gleitkommawert zurück, der die Quadratwurzel von *arg* ist. Kann **Inf** zurückgeben, wenn das Argument das Quadrat des maximalen Gleitkommawerts überschreitet.
 
 [srand]{.cmd} [arg]{.arg}
 : Das *arg*, das eine Ganzzahl sein muss, setzt den Startwert des Zufallszahlengenerators von **rand** zurück. Gibt die erste Zufallszahl (siehe **rand**) aus diesem Startwert zurück. Jeder Interpreter hat seinen eigenen Startwert.

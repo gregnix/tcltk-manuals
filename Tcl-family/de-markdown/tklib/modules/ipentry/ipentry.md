@@ -52,16 +52,16 @@ Jedes so erzeugte Widget unterstützt die folgenden Methoden:
 : Gibt den Inhalt des Entry als Liste aus 4 oder 8 Elementen zurück.
 
 *pathName* **insert** *iplist*
-: IPv4 übernimmt eine Liste von 4 Elementen und fügt der Reihe nach je eines in jedes Quad des Entry ein. Alle Werte der Liste müssen leer oder ganze Zahlen sein. Werte außerhalb des Bereichs 0 bis 255 werden in den Bereich verschoben. IPv6 übernimmt eine Liste von 8 Elementen und fügt der Reihe nach je eines in jedes Quad des Entry ein. Alle Werte der Liste müssen leer oder 1 bis 4 Hexadezimalziffern sein.
+: IPv4 übernimmt eine Liste von 4 Elementen und fügt der Reihe nach je eines in jedes Feld des Entry ein. Alle Werte der Liste müssen leer oder Ganzzahlen sein. Werte außerhalb des Bereichs 0 bis 255 werden in den Bereich verschoben. IPv6 übernimmt eine Liste von 8 Elementen und fügt der Reihe nach je eines in jedes Feld des Entry ein. Alle Werte der Liste müssen leer oder 1 bis 4 Hexadezimalziffern sein.
 
 *pathName* **icursor** *index*
-: Setzt die Position des Einfügecursors des Widgets. Für ipentry gelten nur ganze Zahlen von 0 bis 15, für ipentry6 von 0 bis 31. Das Setzen des icursor wirkt nur, wenn das Widget bereits den Eingabefokus hat.
+: Setzt die Position des Einfügecursors des Widgets. Für ipentry gelten nur Ganzzahlen von 0 bis 15, für ipentry6 von 0 bis 31. Das Setzen des icursor wirkt nur, wenn das Widget bereits den Eingabefokus hat.
 
 *pathName* **configure** *option* *value*...
-: Ändert die Konfiguration des Widgets. Zu den Optionen und ihrer Bedeutung siehe den Abschnitt **WIDGET-OPTIONEN**.
+: Ändert die Konfiguration des Widgets. Zu den Optionen und ihrer Bedeutung siehe den Abschnitt [Widget-Optionen].
 
 *pathName* **cget** *option*
-: Gibt zur angegebenen Option die aktuelle Konfiguration des Widgets zurück. Zu den Optionen und ihrer Bedeutung siehe den Abschnitt **WIDGET-OPTIONEN**.
+: Gibt zur angegebenen Option die aktuelle Konfiguration des Widgets zurück. Zu den Optionen und ihrer Bedeutung siehe den Abschnitt [Widget-Optionen].
 
 
 # Widget-Optionen

@@ -32,7 +32,7 @@ logger::utils – Dienstprogramme für den Logger
 Dieses Paket fügt vorlagenbasierte *Appender* hinzu.
 
 **::logger::utils::createFormatCmd** *formatString*
-: Dieser Befehl wandelt *formatString* in eine erweiterbare Befehlszeichenfolge um. Die folgenden Zeichenfolgen sind die bekannten Ersetzungen (aus log4perl), die in *formatString* vorkommen dürfen:
+: Dieser Befehl wandelt *formatString* in eine erweiterbare Befehlszeichenkette um. Die folgenden Zeichenketten sind die bekannten Ersetzungen (aus log4perl), die in *formatString* vorkommen dürfen:
 
     %c
     : Kategorie des Protokollierungsereignisses
@@ -50,7 +50,7 @@ Dieses Paket fügt vorlagenbasierte *Appender* hinzu.
     : Zu protokollierende Meldung
 
     %M
-    : Methode, mit der das Protokoll-Ereignis ausgelöst wurde
+    : Methode, in der das Protokollierungsereignis ausgelöst wurde
 
     %p
     : Priorität des Protokollierungsereignisses
@@ -66,16 +66,16 @@ Dieses Paket fügt vorlagenbasierte *Appender* hinzu.
     : Der Name der zu erstellenden Prozedur.
 
     **-conversionPattern** pattern
-    : Die im *Muster* zulässigen Ersetzungen finden Sie unter **::logger::utils::createFormatCmd**.
+    : Die in *pattern* zulässigen Ersetzungen finden Sie unter **::logger::utils::createFormatCmd**.
 
     **-category** category
-    : Die Kategorie (Dienstleistung).
+    : Die Kategorie (Dienst).
 
     **-priority** priority
     : Die Priorität (Stufe).
 
     **-outputChannel** channel
-    : Kanal (standardmäßig stdout)
+    : Kanal für die Ausgabe (standardmäßig stdout)
 
 
 **::logger::utils::applyAppender** **-appender** *appenderType* ?*options*...?

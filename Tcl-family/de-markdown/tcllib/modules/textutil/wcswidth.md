@@ -21,7 +21,7 @@ Copyright:
 
 # Name
 
-textutil::wcswidth – Prozeduren zur Berechnung der Endbreite von Zeichenketten
+textutil::wcswidth – Prozeduren zur Berechnung der Terminalbreite von Zeichenketten
 
 # Übersicht
 
@@ -35,24 +35,24 @@ textutil::wcswidth – Prozeduren zur Berechnung der Endbreite von Zeichenketten
 
 # Beschreibung
 
-Das Paket **textutil::wcswidth** enthält Befehle, die Zeichentypen, Zeichenbreiten und Zeichenfolgenbreiten im Zusammenhang mit der Ausgabe auf dem Terminal (der Konsole) anzeigen.
+Das Paket **textutil::wcswidth** enthält Befehle, die Zeichentypen, Zeichenbreiten und Zeichenkettenbreiten im Zusammenhang mit der Ausgabe auf dem Terminal (der Konsole) ermitteln.
 
 Die Daten dieses Pakets und damit auch die zugrunde liegende Funktionalität basieren auf der Unicode-Datenbankdatei <http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>.
 
 # API
 
-Die Befehle dieses Pakets berücksichtigen Zeichen doppelter Breite aus den verschiedenen asiatischen und anderen Skripten.
+Die Befehle dieses Pakets berücksichtigen Zeichen doppelter Breite aus den verschiedenen asiatischen und anderen Schriftsystemen.
 
 **::textutil::wcswidth** *string*
-: Gibt die Anzahl der Zeichenzellen zurück, die für die Ausgabe der angegebenen *Zeichenkette* auf einem Terminal benötigt werden.
+: Gibt die Anzahl der Zeichenzellen zurück, die für die Ausgabe des angegebenen *string* auf einem Terminal benötigt werden.
 
 **::textutil::wcswidth\_char** *codepoint*
-: Gibt die Anzahl der Zeichenzellen zurück, die für das angegebene Unicode-Zeichen mit dem *Codepoint* bei der Ausgabe auf einem Terminal benötigt werden.
+: Gibt die Anzahl der Zeichenzellen zurück, die für das angegebene Unicode-Zeichen *codepoint* bei der Ausgabe auf einem Terminal benötigt werden.
 
-    *Wichtig*: Das Unicode-Zeichen mit dem *Codepoint* muss als Ganzzahl festgelegt werden.
+    *Wichtig*: Das Unicode-Zeichen *codepoint* muss als Ganzzahl festgelegt werden.
 
 **::textutil::wcswidth\_type** *codepoint*
-: Gibt den Zeichentyp des angegebenen Unicode-Zeichens mit dem *Codepunkt* zurück.
+: Gibt den Zeichentyp des angegebenen Unicode-Zeichens *codepoint* zurück.
 
     Der Wert ist eine Zeichenkette, die eine der folgenden Konstanten enthält: **A**, **F**, **H**, **N**, **Na** oder **W**, wie in <http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt> festgelegt.
 

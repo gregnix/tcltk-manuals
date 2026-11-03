@@ -62,10 +62,10 @@ Dies ist eine der drei öffentlichen Säulen, auf denen die Verwaltung von Inhal
 
 1. *Importieren von Inhaltsverzeichnissen*, und
 
-2. *Aufnehmen von Inhaltsverzeichnissen*
+2. *Halten von Inhaltsverzeichnissen*
 
 
-Zu den [Begriffe] der Inhaltsverzeichnisse und ihrer Teile siehe den gleichnamigen Abschnitt. Zur Datenstruktur, die den von diesem Paket bereitgestellten Manager-Objekten im Wesentlichen als Eingabe dient, siehe den Abschnitt [Serialisierungsformat für Inhaltsverzeichnisse].
+Zu den Begriffen der Inhaltsverzeichnisse und ihrer Teile siehe den gleichnamigen Abschnitt [Begriffe]. Zur Datenstruktur, die den von diesem Paket bereitgestellten Manager-Objekten im Wesentlichen als Eingabe dient, siehe den Abschnitt [Serialisierungsformat für Inhaltsverzeichnisse].
 
 Das Plugin-System der Klasse beruht auf dem Paket **pluginmgr** und sucht Plugins über
 
@@ -146,7 +146,7 @@ Einige Anmerkungen
 ## Paketbefehle
 
 **::doctools::toc::export** *objectName*
-: Dieser Befehl erzeugt ein neues Export-Manager-Objekt mit einem zugehörigen Tcl-Befehl namens *objectName*. Dieser Befehl *object* ist in den Abschnitten [Objektbefehl] und [Objektmethoden] vollständig beschrieben. Der Objektbefehl entsteht im aktuellen Namespace, wenn *objectName* nicht vollqualifiziert ist, sonst im angegebenen Namespace.
+: Dieser Befehl erzeugt ein neues Export-Manager-Objekt mit einem zugehörigen Tcl-Befehl namens *objectName*. Dieser *Objekt*befehl ist in den Abschnitten [Objektbefehl] und [Objektmethoden] vollständig beschrieben. Der Objektbefehl entsteht im aktuellen Namespace, wenn *objectName* nicht vollqualifiziert ist, sonst im angegebenen Namespace.
 
 
 ## Objektbefehl
@@ -188,12 +188,12 @@ Alle mit dem Befehl **::doctools::toc::export** erstellten Objekte haben die fol
     Der Benutzer kann die vordefinierten Konfigurationsvariablen **user** und **format** zwar setzen, das bleibt aber ohne Wirkung; diese Werte werden beim Aufruf eines Export-Plugins intern überschrieben.
 
 *objectName* **config unset** *pattern*...
-: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen *pattern*s passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
+: Diese Methode löscht alle Konfigurationsvariablen, auf die die angegebenen Glob-Muster *pattern* passen. Wird kein Muster angegeben, löscht sie alle derzeit definierten Konfigurationsvariablen.
 
 
 # Referenz zur Export-Plugin-API v2
 
-Plugins verwalten in diesem Paket die Unterstützung für jedes Ausgabeformat jenseits des [Serialisierungsformat für Inhaltsverzeichnisse]. Hier ist die API festgelegt, über die die von diesem Paket erzeugten Objekte mit ihren Plugins verkehren.
+Plugins verwalten in diesem Paket die Unterstützung für jedes Ausgabeformat jenseits des Formats aus [Serialisierungsformat für Inhaltsverzeichnisse]. Hier ist die API festgelegt, über die die von diesem Paket erzeugten Objekte mit ihren Plugins verkehren.
 
 Ein Plugin für dieses Paket muss die nachfolgend aufgeführten Regeln einhalten:
 

@@ -35,20 +35,20 @@ Dieses Paket erweitert den integrierten Befehl [dict](https://www.tcl-lang.org/m
 # API
 
 **ladd** *dictVar* ?*key value ...*?
-: Dieser Befehl fügt jedes Paar von *Schlüssel-Wert*-Elementen zu *dictVar* hinzu, jedoch nur, wenn dieses Element noch nicht vorhanden ist (weder als Schlüssel noch als Wert). Dieser Befehl *muss* mit Paaren von *Schlüssel-Wert*-Elementen aufgerufen werden, damit *dictVar* als **dict** erhalten bleibt.
+: Dieser Befehl fügt jedes Paar von *key value*-Elementen zu *dictVar* hinzu, jedoch nur, wenn dieses Element noch nicht vorhanden ist (weder als Schlüssel noch als Wert). Dieser Befehl *muss* mit Paaren von *key value*-Elementen aufgerufen werden, damit *dictVar* als **dict** erhalten bleibt.
 
 **ldelete** *dictVar* ?*key value ...*?
-: Dieser Befehl löscht jedes Paar von *Schlüssel-Wert*-Elementen aus *dictVar*. Er führt keine Aktion durch, wenn das Paar nicht bereits in *dictVar* vorhanden ist. Dieser Befehl *muss* mit Paaren von *Schlüssel-Wert*-Elementen aufgerufen werden, um *dictVar* als **dict** zu erhalten.
+: Dieser Befehl löscht jedes Paar von *key value*-Elementen aus *dictVar*. Er führt keine Aktion durch, wenn das Paar nicht bereits in *dictVar* vorhanden ist. Dieser Befehl *muss* mit Paaren von *key value*-Elementen aufgerufen werden, um *dictVar* als **dict** zu erhalten.
 
     Verwenden Sie den Unterbefehl **dict remove** des integrierten Befehls [dict](https://www.tcl-lang.org/man/tcl/TclCmd/dict.html), um Elemente allein anhand des Schlüssels zu entfernen.
 
 **dict getnull** *key*
-: Funktioniert wie **dict get**; wenn der Schlüssel *key* jedoch nicht vorhanden ist, gibt es eine leere Liste zurück, anstatt einen Fehler auszulösen.
+: Funktioniert wie **dict get**; wenn der Schlüssel *key* jedoch nicht vorhanden ist, gibt er eine leere Liste zurück, anstatt einen Fehler auszulösen.
 
     Eine Alternative zu diesem Befehl ist der integrierte Unterbefehl **dict getwithdefault** des Befehls [dict](https://www.tcl-lang.org/man/tcl/TclCmd/dict.html) *oder dessen Alias* **dict getdef**. Die Verwendung von **dict getdef** mit einer leeren Liste *{}* als Standardwert entspricht der Verwendung von **dict getnull**.
 
 **dict print** *aDict*
-: Gibt eine „übersichtlich formatierte“ Zeichenfolgendarstellung von **dict** *aDict* zurück, wobei jeder verschachtelte Zweig in einer neuen Zeile steht und auf jeder Ebene um zwei Leerzeichen eingerückt ist.
+: Gibt eine „übersichtlich formatierte“ Zeichenkettendarstellung von **dict** *aDict* zurück, wobei jeder verschachtelte Zweig in einer neuen Zeile steht und auf jeder Ebene um zwei Leerzeichen eingerückt ist.
 
 **dict is\_dict** *value*
 : Gibt **1** (true) zurück, wenn *value* als **dict** interpretiert werden kann; andernfalls **0** (false).
@@ -80,7 +80,7 @@ Dieses Paket erweitert den integrierten Befehl [dict](https://www.tcl-lang.org/m
     }
     ```
 
-    Wenn oben der Unterbefehl „**dict merge**“ des integrierten Befehls „dict](https://www.tcl-lang.org/man/tcl/TclCmd/dict.html)“ verwendet worden wäre, wäre der Schlüssel-Wert-Eintrag „*default*“ des Eintrags „*fruit*“ verloren gegangen.
+    Wenn oben der Unterbefehl **dict merge** des integrierten Befehls [dict](https://www.tcl-lang.org/man/tcl/TclCmd/dict.html) verwendet worden wäre, wäre der Schlüssel-Wert-Eintrag „*default*“ des Eintrags „*fruit*“ verloren gegangen.
 
 
 # Fehler, Ideen, Rückmeldungen

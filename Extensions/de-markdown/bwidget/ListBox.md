@@ -199,7 +199,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-selectfill**
-:  Wenn true, zeichnet die Listbox ein Auswahlrechteck, das die Listbox von links nach rechts füllt, anstatt nur einen Rahmen um den ausgewählten Eintrag zu zeichnen. Das entspricht eher der Tk-Listbox der Vorgabe. 
+:  Wenn true, zeichnet die Listbox ein Auswahlrechteck, das die Listbox von links nach rechts füllt, anstatt nur einen Rahmen um den ausgewählten Eintrag zu zeichnen. Das entspricht eher der Standard-Listbox von Tk. 
 
 
 **-selectmode**

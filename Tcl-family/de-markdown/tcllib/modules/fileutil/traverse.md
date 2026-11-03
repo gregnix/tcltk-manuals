@@ -51,14 +51,14 @@ Für Traversierungsobjekte sind folgende Befehle möglich:
 : Diese Methode ist die oberste Ebene, die von Durchlaufobjekten bereitgestellt wird. Bei ihrer Ausführung gibt sie eine Liste zurück, die die Namen aller Dateien und Verzeichnisse enthält, die der aktuellen Konfiguration des Durchlaufobjekts entsprechen.
 
 **$traverser** **foreach** *filevar* *script*
-: Die übergeordnete Methode [files][multiop] (siehe oben) basiert auf dieser Methode der mittleren Ebene. Bei ihrer Aufrufung ermittelt sie alle Dateien und Verzeichnisse, die der aktuellen Konfiguration entsprechen, und führt für jeden Pfad das *Skript* aus. Der aktuell betrachtete Pfad wird in der Variable gespeichert, die mit *filevar* benannt ist. Sowohl die Variable als auch das Skript befinden sich im Kontext des Aufrufers der Methode und werden dort ausgeführt. In der Methode [files][multiop] speichert das Skript die gefundenen Pfade lediglich in der Liste, die zurückgegeben wird.
+: Die übergeordnete Methode **files** (siehe oben) basiert auf dieser Methode der mittleren Ebene. Bei ihrer Aufrufung ermittelt sie alle Dateien und Verzeichnisse, die der aktuellen Konfiguration entsprechen, und führt für jeden Pfad das *script* aus. Der aktuell betrachtete Pfad wird in der Variable gespeichert, die mit *filevar* benannt ist. Sowohl die Variable als auch das Skript befinden sich im Kontext des Aufrufers der Methode und werden dort ausgeführt. In der Methode [files][multiop] speichert das Skript die gefundenen Pfade lediglich in der Liste, die zurückgegeben wird.
 
 **$traverser** **next** *filevar*
 : Dies ist die unterste Schnittstelle zum Traverser, auf der alle übergeordneten Methoden aufbauen. Bei Aufruf gibt sie einen booleschen Wert zurück, der angibt, ob ein Pfad gefunden wurde, der der aktuellen Konfiguration entspricht (**True**), oder nicht (**False**). Wurde ein Pfad gefunden, wird dieser im Kontext des Aufrufers in der durch *filevar* benannten Variablen gespeichert.
 
-    Die **foreach**-Methode ruft diese Methode einfach in einer Schleife auf, bis sie **False** gibt. Diese Methode wird bereitgestellt, damit wir eine Verzeichnishierarchie auch schrittweise und ereignisgesteuert durchlaufen können.
+    Die **foreach**-Methode ruft diese Methode einfach in einer Schleife auf, bis sie **False** zurückgibt. Diese Methode wird bereitgestellt, damit wir eine Verzeichnishierarchie auch schrittweise und ereignisgesteuert durchlaufen können.
 
-    Beachten Sie, dass der Durchlaufer symbolische Links verfolgt, es sei denn, dies würde dazu führen, dass er in einen Link-Zyklus gerät. Mit anderen Worten: Der Befehl sorgt dafür, dass er sich beim Auftreffen auf zirkuläre Link-Strukturen *nicht* in Endlosschleifen verliert. Beachten Sie, dass auch Links, denen nicht gefolgt wird, dennoch im Ergebnis erscheinen.
+    Beachten Sie, dass der Traverser symbolische Links verfolgt, es sei denn, dies würde dazu führen, dass er in einen Link-Zyklus gerät. Mit anderen Worten: Der Befehl sorgt dafür, dass er sich beim Auftreffen auf zirkuläre Link-Strukturen *nicht* in Endlosschleifen verliert. Beachten Sie, dass auch Links, denen nicht gefolgt wird, dennoch im Ergebnis erscheinen.
 
 
 # Optionen
@@ -67,10 +67,10 @@ Für Traversierungsobjekte sind folgende Befehle möglich:
 : Diese Rückruffunktion wird für Verzeichnisse ausgeführt. Ihr Ergebnis bestimmt, ob der Traverser das Verzeichnis rekursiv durchläuft oder nicht. Standardmäßig werden alle Verzeichnisse rekursiv durchsucht. Die Rückruffunktion wird mit einem einzigen Argument aufgerufen, dem *absoluten* Pfad des Verzeichnisses, und muss einen booleschen Wert zurückgeben: **True**, wenn das Verzeichnis den Filter passiert, und **False**, wenn nicht.
 
 **-filter** command\_prefix
-: Diese Rückruffunktion wird für alle Pfade ausgeführt. Ihr Ergebnis bestimmt, ob der aktuelle Pfad ein gültiges Ergebnis ist, und wird von **next** zurückgegeben. Standardmäßig werden alle Pfade als gültig akzeptiert. Die Rückruffunktion wird mit einem einzigen Argument aufgerufen, dem zu prüfenden *absoluten* Pfad, und muss einen booleschen Wert zurückgeben: **True**, wenn der Pfad den Filter passiert, und **False**, wenn nicht.
+: Diese Rückruffunktion wird für alle Pfade ausgeführt. Ihr Ergebnis bestimmt, ob der aktuelle Pfad ein gültiges Ergebnis ist und von **next** zurückgegeben wird. Standardmäßig werden alle Pfade als gültig akzeptiert. Die Rückruffunktion wird mit einem einzigen Argument aufgerufen, dem zu prüfenden *absoluten* Pfad, und muss einen booleschen Wert zurückgeben: **True**, wenn der Pfad den Filter passiert, und **False**, wenn nicht.
 
 **-errorcmd** command\_prefix
-: Diese Rückruffunktion wird für alle Pfade ausgeführt, bei denen der Traverser Probleme hat. Dazu gehören beispielsweise Fälle, in denen er nicht in diese Pfade wechseln oder deren Status abrufen kann usw. Standardmäßig werden solche Probleme ignoriert. Die Rückruffunktion wird mit zwei Argumenten aufgerufen: dem *absoluten* Pfad, bei dem der Fehler aufgetreten ist, und der Fehlermeldung. Auch Fehler, die von den Filter-Callbacks ausgelöst werden, werden über diese Rückruffunktion behandelt. Fehler, die vom Fehler-Callback selbst ausgelöst werden, werden nicht abgefangen und ignoriert, sondern an den Aufrufer weitergeleitet, also an den, der **next** aufgerufen hat. Alle anderen Ergebnisse der Rückruffunktion werden ignoriert.
+: Diese Rückruffunktion wird für alle Pfade ausgeführt, bei denen der Traverser Probleme hat. Dazu gehören beispielsweise Fälle, in denen er nicht in diese Pfade wechseln oder deren Status abrufen kann usw. Standardmäßig werden solche Probleme ignoriert. Die Rückruffunktion wird mit zwei Argumenten aufgerufen: dem *absoluten* Pfad, bei dem der Fehler aufgetreten ist, und der Fehlermeldung. Auch Fehler, die von den Filter-Rückruffunktionen ausgelöst werden, werden über diese Rückruffunktion behandelt. Fehler, die von der Fehler-Rückruffunktion selbst ausgelöst werden, werden nicht abgefangen und ignoriert, sondern an den Aufrufer weitergeleitet, also an den, der **next** aufgerufen hat. Alle anderen Ergebnisse der Rückruffunktion werden ignoriert.
 
 
 # Fehler und Inkompatibilitäten
@@ -95,7 +95,7 @@ Für Traversierungsobjekte sind folgende Befehle möglich:
     	/sys/dev/tty2/subsystem --> ../../class/tty
     ```
 
-    Wenn Sie es mit einer solchen pathologischen Hierarchie zu tun hat, empfiehlt es sich, die Option **-prefilter** zu verwenden, um zu verhindern, dass der Traverser symbolische Links verfolgt, und zwar wie folgt:
+    Wenn Sie es mit einer solchen pathologischen Hierarchie zu tun haben, empfiehlt es sich, die Option **-prefilter** zu verwenden, um zu verhindern, dass der Traverser symbolische Links verfolgt, und zwar wie folgt:
 
     ```
         package require fileutil::traverse

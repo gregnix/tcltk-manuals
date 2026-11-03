@@ -133,12 +133,12 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
 
     *mailbox* – Name oder Pfad der Mailbox; Standardwert ist *INBOX*.
 
-    Vor der Auswahl oder dem „Select“-Befehl muss eine geöffnete Mailbox geschlossen werden – siehe: **::imap4::close**.
+    Vor der Auswahl/Überprüfung muss ein geöffnetes Postfach geschlossen werden – siehe: **::imap4::close**.
 
 **::imap4::fetch** *chan* *range* ?*-inline*? ?*attr ...*?
-: Attribute aus Nachrichten abrufen.
+: Ruft Attribute aus Nachrichten ab.
 
-    Die Attribute werden abgerufen und im internen Status gespeichert, der mit dem Befehl **::imap4::msginfo** abgerufen werden kann; bei Erfolg gibt er 0 zurück. Wenn **-inline** festgelegt wird, geben wir alle Datensätze als Liste in der im Argument *attr* definierten Reihenfolge zurück.
+    Die Attribute werden abgerufen und im internen Status gespeichert, der mit dem Befehl **::imap4::msginfo** abgerufen werden kann; bei Erfolg gibt der Befehl 0 zurück. Wenn **-inline** festgelegt wird, werden alle Datensätze als Liste in der im Argument *attr* definierten Reihenfolge zurückgegeben.
 
     *chan* – IMAP-Kanal
 
@@ -154,7 +154,7 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
     *chan* – IMAP-Kanal
 
 **::imap4::check** *chan*
-: Sendet den Befehl „CHECK“ an den Server. Die Festplatte leeren.
+: Sendet den Befehl „CHECK“ an den Server. Schreibt die Daten auf die Festplatte (Flush).
 
     *chan* – IMAP-Kanal
 
@@ -184,7 +184,7 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
 
     *info* – IMAP-Schlüsselwort zum Abrufen
 
-    *defval* – Standardwert, der gegeben wird, wenn „info“ leer ist
+    *defval* – Standardwert, der zurückgegeben wird, wenn „info“ leer ist
 
     *Hinweis:* Alle Nachrichten-Indexbereiche beginnen bei 1.
 
@@ -209,7 +209,7 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
     ```
 
 **::imap4::isableto** *chan* ?*capability*?
-: Prüfung der Funktion. Die Funktion gibt 1 zurück, wenn die angeforderte Funktion unterstützt wird, andernfalls 0. Wird *capability* weggelassen, werden alle IMAP-Funktionscodes als Liste zurückgegeben.
+: Prüft auf eine Fähigkeit (Capability). Der Befehl gibt 1 zurück, wenn die angeforderte Fähigkeit unterstützt wird, andernfalls 0. Wird *capability* weggelassen, werden alle IMAP-Funktionscodes als Liste zurückgegeben.
 
     *chan* – IMAP-Kanal
 
@@ -225,14 +225,14 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
     *mailbox* – Name des Postfachs
 
 **::imap4::delete** *chan* *mailbox*
-: Ein neues Postfach löschen.
+: Löscht ein neues Postfach.
 
     *chan* – IMAP-Kanal
 
     *mailbox* – Name des Postfachs
 
 **::imap4::rename** *chan* *oldname* *newname*
-: Ein neues Postfach umbenennen.
+: Benennt ein neues Postfach um.
 
     *chan* – IMAP-Kanal
 
@@ -241,14 +241,14 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
     *mailbox* – neuer Name des Postfachs
 
 **::imap4::subscribe** *chan* *mailbox*
-: Ein neues Postfach abonnieren.
+: Abonniert ein neues Postfach.
 
     *chan* – IMAP-Kanal
 
     *mailbox* – Name des Postfachs
 
 **::imap4::unsubscribe** *chan* *mailbox*
-: Ein neues Postfach abmelden.
+: Meldet ein neues Postfach ab.
 
     *chan* – IMAP-Kanal
 
@@ -280,21 +280,21 @@ Dieses Paket definiert die folgenden öffentlichen Prozeduren:
     ```
 
 **::imap4::close** *chan*
-: Schließt das Postfach. Die Nachrichten im Ordner „\\Deleted“ werden endgültig gelöscht, und der Status wird auf „AUTH“ zurückgegeben.
+: Schließt das Postfach. Nachrichten mit dem Flag „\\Deleted“ werden endgültig gelöscht, und der Client kehrt in den Zustand „AUTH“ zurück.
 
     *chan* – IMAP-Kanal
 
 **::imap4::cleanup** *chan*
-: Eine IMAP-Verbindung trennen und den belegten Speicherplatz freigeben. Das Postfach schließen. Die Nachrichten im Ordner „Gelöscht“ werden endgültig entfernt, und der Status gibt zurück zu „AUTH“.
+: Trennt eine IMAP-Verbindung und gibt den belegten Speicher frei. Schließt das Postfach. Nachrichten mit dem Flag „\\Deleted“ werden endgültig entfernt, und der Client kehrt in den Zustand „AUTH“ zurück.
 
     *chan* – IMAP-Kanal
 
 **::imap4::debugmode** *chan* ?*errormsg*?
 : Schaltet den Client in den Debug-Modus der Befehlszeile um.
 
-    Hierbei handelt es sich um einen reinen Entwicklermodus, der die Kontrolle an den Programmierer übergibt. Jede eingegebene Zeile wird unverändert an den Server gesendet (nach Hinzufügung der Anfrage-ID). Die Variable ::imap4::debug wird bei der Eingabe automatisch auf „1“ gesetzt.
+    Hierbei handelt es sich um einen reinen Entwicklermodus, der die Kontrolle an den Programmierer übergibt. Jede eingegebene Zeile wird unverändert an den Server gesendet (nach Hinzufügung der Anfrage-ID). Die Variable ::imap4::debug wird beim Eintritt in diesen Modus automatisch auf „1“ gesetzt.
 
-    Es ist möglich, Tcl-Befehle auszuführen, die mit einem Schrägstrich beginnen.
+    Es ist möglich, Tcl-Befehle auszuführen, indem Sie die Zeile mit einem Schrägstrich beginnen.
 
     *chan* – IMAP-Kanal
 

@@ -40,7 +40,7 @@ Dieses Paket bietet eine Schnittstelle zur einfachen Bearbeitung von Windows-INI
 **::ini::open** *file* ?**-encoding** *encoding*? ?*access*?
 : Öffnet eine INI-Datei und gibt ein Handle zurück, das von anderen Befehlen verwendet wird. *access* entspricht der ersten (nicht POSIX-konformen) Form des Befehls **open**, mit der Ausnahme, dass der Modus **a** nicht unterstützt wird. Der Standardmodus ist **r+**.
 
-    Die Standard-*Kodierung* ist die Systemkodierung.
+    Der Standardwert für *encoding* ist die Systemkodierung.
 
 **::ini::close** *ini*
 : Schließt das angegebene Handle. Falls Änderungen vorgenommen, aber nicht mit **commit** gespeichert wurden, gehen diese verloren.
@@ -76,10 +76,10 @@ Dieses Paket bietet eine Schnittstelle zur einfachen Bearbeitung von Windows-INI
 : Entfernt den Schlüssel oder den gesamten Abschnitt samt aller darin enthaltenen Schlüssel. Ein Abschnitt wird nicht automatisch gelöscht, wenn er keine Schlüssel mehr enthält.
 
 **::ini::comment** *ini* *section* ?*key*? ?*text*?
-: Liest und ändert Kommentare für Abschnitte und Schlüssel. Um einen Abschnitts-Kommentar zu schreiben, verwenden Sie eine leere Zeichenkette für den *Schlüssel*. Um alle Kommentare zu entfernen, verwenden Sie eine leere Zeichenkette für *text*. *text* kann aus einer Liste von Zeilen oder einer einzelnen Zeile bestehen. Alle in *text* enthaltenen Zeilenumbrüche werden korrekt verarbeitet. Kommentare können für nicht vorhandene Abschnitte oder Schlüssel geschrieben werden und führen nicht zu einem Fehler. Das Lesen eines Kommentars aus einem nicht vorhandenen Abschnitt oder Schlüssel gibt eine leere Zeichenkette zurück.
+: Liest und ändert Kommentare für Abschnitte und Schlüssel. Um einen Abschnitts-Kommentar zu schreiben, verwenden Sie eine leere Zeichenkette für *key*. Um alle Kommentare zu entfernen, verwenden Sie eine leere Zeichenkette für *text*. *text* kann aus einer Liste von Zeilen oder einer einzelnen Zeile bestehen. Alle in *text* enthaltenen Zeilenumbrüche werden korrekt verarbeitet. Kommentare können für nicht vorhandene Abschnitte oder Schlüssel geschrieben werden und führen nicht zu einem Fehler. Das Lesen eines Kommentars aus einem nicht vorhandenen Abschnitt oder Schlüssel gibt eine leere Zeichenkette zurück.
 
 **::ini::commentchar** ?char?
-: Liest das Kommentarzeichen aus und legt es fest. Zeilen, die mit diesem Zeichen beginnen, werden als Kommentare behandelt. Wenn Kommentare ausgegeben werden, wird jedem Satz dieses Zeichen vorangestellt. Die Standardeinstellung ist **;**.
+: Liest das Kommentarzeichen aus und legt es fest. Zeilen, die mit diesem Zeichen beginnen, werden als Kommentare behandelt. Wenn Kommentare ausgegeben werden, wird jeder Zeile dieses Zeichen vorangestellt. Die Standardeinstellung ist **;**.
 
 
 # Fehler, Ideen, Rückmeldungen

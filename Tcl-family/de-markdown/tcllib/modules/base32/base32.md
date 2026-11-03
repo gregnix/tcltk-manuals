@@ -30,31 +30,31 @@ base32 – Standard-Kodierung nach base32
 
 # Beschreibung
 
-Dieses Paket stellt Befehle zur Kodierung und Dekodierung von Binärzeichenfolgen in die bzw. aus der Standard-Base32-Kodierung bereit, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) *(sowie in der älteren* [RFC 3548](https://datatracker.ietf.org/doc/html/rfc3548))* festgelegt.*
+Dieses Paket stellt Befehle zur Kodierung und Dekodierung von Binärzeichenketten in die bzw. aus der Standard-Base32-Kodierung bereit, wie in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) *(sowie in der älteren* [RFC 3548](https://datatracker.ietf.org/doc/html/rfc3548)) festgelegt.
 
 # API
 
 **::base32::encode** *bstring*
-: Gibt als Ergebnis eine Base32-kodierte Version der Binärzeichenfolge *bstring* zurück.
+: Gibt als Ergebnis eine Base32-kodierte Version der Binärzeichenkette *bstring* zurück.
 
-    Das Ergebnis wird möglicherweise am Ende mit den Zeichen „**=**“ durch Innenabstand aufgefüllt, um sicherzustellen, dass die Länge des Ergebnisses ein Vielfaches von acht ist.
+    Das Ergebnis wird möglicherweise am Ende mit den Zeichen „**=**“ durch Padding aufgefüllt, um sicherzustellen, dass die Länge des Ergebnisses ein Vielfaches von acht ist.
 
-    Der Encoder löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenfolge noch eine Zeichenfolge ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
+    Der Encoder löst einen Fehler aus, wenn *bstring* weder eine Binärzeichenkette noch eine Zeichenkette ist, die ausschließlich aus 7-Bit-ASCII-Zeichen besteht.
 
 **::base32::decode** *estring*
 : Gibt eine Binärzeichenkette zurück, die aus dem *estring* mittels Base32-Dekodierung gewonnen wurde.
 
     Beachten Sie, dass der Encoder zwar ausschließlich Großbuchstaben erzeugt, dieser Dekoder jedoch nicht zwischen Groß- und Kleinschreibung unterscheidet, d. h., er ist toleranter.
 
-    Der Dekoder kann bei ungültiger Eingabe einen Fehler auslösen. Beispielsweise wenn:
+    Der Dekoder kann bei ungültiger Eingabe einen Fehler auslösen. Beispielsweise in folgenden Fällen:
 
     - Die Eingabe enthält Zeichen, die für Base32-kodierte Daten nicht zulässig sind;
 
     - Die Länge der Eingabe ist kein Vielfaches von acht;
 
-    - Der Innenabstand erscheint in der Mitte und nicht am Ende der Eingabe;
+    - Das Auffüllzeichen (Padding) erscheint in der Mitte und nicht am Ende der Eingabe;
 
-    - Die Länge des Innenabstands beträgt nicht genau ein, drei, vier oder sechs Zeichen.
+    - Die Länge der Auffüllung (Padding) beträgt nicht genau ein, drei, vier oder sechs Zeichen.
 
 
 

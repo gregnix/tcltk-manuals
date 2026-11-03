@@ -54,7 +54,7 @@ struct::tree\_v1 – Baumobjekte anlegen und bearbeiten
 Der Befehl [::struct::tree][struct_tree] erzeugt ein neues Baumobjekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *treeName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf dem Baum aufrufen. Er hat die folgende allgemeine Form:
 
 **treeName** **option** ?*arg arg ...*?
-: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+: *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
 Ein Baum ist eine Sammlung benannter Elemente, Knoten genannt, von denen einer als Wurzel ausgezeichnet ist, zusammen mit einer Beziehung („Elternschaft“), die den Knoten eine hierarchische Struktur gibt. (Data Structures and Algorithms; Aho, Hopcroft und Ullman; Addison-Wesley, 1987).  Neben der Verwaltung der Knotenbeziehungen erlaubt diese Baumimplementierung, jedem Knoten beliebig viele Werte unter Schlüsseln zuzuordnen.

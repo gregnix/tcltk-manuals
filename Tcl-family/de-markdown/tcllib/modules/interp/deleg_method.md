@@ -17,7 +17,7 @@ Copyright:
 
 # Name
 
-deleg\_method – Erstellung von Kommunikationsdelegaten (snit-Methoden)
+deleg\_method – Erstellung von comm-Delegaten (snit-Methoden)
 
 # Übersicht
 
@@ -30,16 +30,16 @@ deleg\_method – Erstellung von Kommunikationsdelegaten (snit-Methoden)
 
 # Beschreibung
 
-Dieses Paket stellt einen einzigen Befehl zur Verwendung innerhalb einer Definition vom Typ **snit** (d. h. eigentlich **snit::macro**) bereit, zur bequemen Erstellung von Methoden, die die eigentliche Arbeit über einen vom Paket **comm** erstellten „Kanal“ an einen entfernten Standort weiterleiten.
+Dieses Paket stellt einen einzigen Befehl zur Verwendung innerhalb einer **snit**-Typdefinition (d. h. eigentlich **snit::macro**) bereit, zur bequemen Erstellung von Methoden, die die eigentliche Arbeit über einen vom Paket **comm** erstellten „Kanal“ an einen entfernten Standort weiterleiten.
 
 # API
 
 **::interp::delegate::method** ?**-async**? *name* *arguments* *comm* *id*
-: Dieser Befehl erstellt eine Methode mit dem Namen *name*. Alle Aufrufe dieser Methode leiten die eigentliche Arbeit an den Remote-Standort weiter, der durch den Kanal *comm* und die Endpunkt-ID *id* identifiziert wird.
+: Dieser Befehl erstellt eine Methode mit dem Namen *name*. Alle Aufrufe dieser Methode leiten die eigentliche Arbeit an den entfernten Standort weiter, der durch den comm-Kanal *comm* und die Endpunkt-ID *id* identifiziert wird.
 
-    Der Name der vom Delegator aufgerufenen Remote-Methode ist identisch mit dem Namen der Methode selbst.
+    Der Name der vom Delegator aufgerufenen entfernten Methode ist identisch mit dem Namen der Methode selbst.
 
-    Normalerweise marshallt die generierte Methode die *arguments* und gibt das Ergebnis der Remote-Methode als ihr eigenes Ergebnis zurück. Wenn jedoch die Option **-async** festgelegt wurde, wartet die generierte Methode nicht auf ein Ergebnis und gibt es sofort zurück.
+    Normalerweise marshallt die generierte Methode die *arguments* und gibt das Ergebnis der Remote-Methode als ihr eigenes Ergebnis zurück. Wenn jedoch die Option **-async** festgelegt wurde, wartet die generierte Methode nicht auf ein Ergebnis und kehrt sofort zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

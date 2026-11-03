@@ -38,9 +38,9 @@ dtplite – Ein schlanker DocTools-Markup-Prozessor
 
 # Beschreibung
 
-Die in diesem Dokument beschriebene Anwendung **dtplite** ist der Nachfolger des äußerst einfachen **mpexpand**. In ihrer Funktionalität ist sie vom doctools-Prozessor **dtp** beeinflusst und damit wesentlich leistungsfähiger als **mpexpand**, und dennoch genauso benutzerfreundlich; auf jeden Fall einfacher als **dtp** mit seiner Vielzahl an Unterbefehlen und Optionen.
+Die in diesem Dokument beschriebene Anwendung **dtplite** ist der Nachfolger des äußerst einfachen **mpexpand**. In ihrer Funktionalität ist sie vom doctools-Verarbeiter **dtp** beeinflusst und damit wesentlich leistungsfähiger als **mpexpand**, und dennoch genauso benutzerfreundlich; auf jeden Fall einfacher als **dtp** mit seiner Vielzahl an Unterbefehlen und Optionen.
 
-**dtplite** basiert, ebenso wie die beiden anderen Prozessoren, auf dem Paket **doctools**.
+**dtplite** basiert, ebenso wie die beiden anderen Verarbeiter, auf dem Paket **doctools**.
 
 ## Anwendungsfälle
 
@@ -48,9 +48,9 @@ Die in diesem Dokument beschriebene Anwendung **dtplite** ist der Nachfolger des
 
 1. Validierung eines einzelnen Dokuments, d. h. Überprüfung, ob es im gültigen doctools-Format verfasst wurde. Dieser Modus kann auch verwendet werden, um eine vorläufige Version der formatierten Ausgabe für ein einzelnes Dokument zu erhalten, die in einem Browser, mit nroff usw. angezeigt werden kann, wodurch eine Korrekturlesung der Formatierung ermöglicht wird.
 
-2. Erstellung der formatierten Dokumentation für ein einzelnes Paket, d. h. aller Manpages sowie einer Tabelle mit Inhaltsverzeichnis und einem Index mit Schlüsselwörtern.
+2. Erstellung der formatierten Dokumentation für ein einzelnes Paket, d. h. aller Manpages sowie eines Inhaltsverzeichnisses und eines Schlüsselwortindexes.
 
-3. Eine Erweiterung der bisherigen Vorgehensweise, eine Methode zur einfachen Erstellung eines Dokumentationsbaums für mehrere Pakete und insbesondere einer einheitlichen Tabelle mit Inhaltsverzeichnis und Index für Schlüsselwörter.
+3. Eine Erweiterung der bisherigen Vorgehensweise, eine Methode zur einfachen Erstellung eines Dokumentationsbaums für mehrere Pakete und insbesondere eines einheitlichen Inhaltsverzeichnisses und Schlüsselwortindexes.
 
 
 Darüber hinaus möchten wir auch die vom HTML-Formatierer bereitgestellten Anpassungsfunktionen nutzen. Es ist zwar nicht das einzige Format, das die Anwendung generieren können sollte, doch gehen wir davon aus, dass es am häufigsten verwendet wird, und es ist eines der wenigen, die Anpassungsmöglichkeiten bieten.
@@ -85,7 +85,7 @@ Wir ermöglichen es dem Aufrufer, eine Kopfzeile, eine Fußzeile, ein Stylesheet
 **dtplite** **-merge** **-o** *output* ?options? *format* *inputdirectory*
 : Dies ist die Form für den Anwendungsfall \[3\]. Der einzige Unterschied zur Form für den Anwendungsfall \[2\] besteht in der zusätzlichen Option **-merge**.
 
-    Bei jedem solchen Aufruf werden die generierten Dokumente, die aus dem Prozess der Eingabedokumente unter *inputdirectory* oder einem seiner Unterverzeichnisse stammen, mit den Dateien unter *output* zusammengeführt. Auf diese Weise ist es möglich, die einheitliche Dokumentation für eine beliebige Anzahl von Paketen schrittweise aufzubauen. Beachten Sie, dass alle Pakete zweimal durchlaufen werden müssen, um vollständig korrekte Querverweise zu erhalten (bei Formaten, die diese unterstützen).
+    Bei jedem solchen Aufruf werden die generierten Dokumente, die aus der Verarbeitung der Eingabedokumente unter *inputdirectory* oder einem seiner Unterverzeichnisse stammen, mit den Dateien unter *output* zusammengeführt. Auf diese Weise ist es möglich, die einheitliche Dokumentation für eine beliebige Anzahl von Paketen schrittweise aufzubauen. Beachten Sie, dass alle Pakete zweimal durchlaufen werden müssen, um vollständig korrekte Querverweise zu erhalten (bei Formaten, die diese unterstützen).
 
 
 ## Optionen
@@ -101,7 +101,7 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
     Bei mehrfacher Verwendung ist nur die letzte Definition maßgeblich.
 
 **-header** file
-: Diese Option kann genau dann verwendet werden, wenn die Auswahl das *format* ausgewählt hat, das einen Engine-Parameter namens „header“ bereitstellt. Sie übernimmt den Inhalt der angegebenen Datei und weist ihn diesem Parameter zu, damit die Engine ihn entsprechend nutzen kann. Die HTML-Engine fügt den Text unmittelbar nach dem Tag **<body>** ein. Sind Navigationsschaltflächen vorhanden (siehe Option **-nav** weiter unten), wird der für diese generierte HTML-Code vor der endgültigen Zuweisung an den Parameter an die hier stammenden Header-Daten angehängt.
+: Diese Option kann genau dann verwendet werden, wenn das ausgewählte *format* einen Engine-Parameter namens „header“ bereitstellt. Sie übernimmt den Inhalt der angegebenen Datei und weist ihn diesem Parameter zu, damit die Engine ihn entsprechend nutzen kann. Die HTML-Engine fügt den Text unmittelbar nach dem Tag **<body>** ein. Sind Navigationsschaltflächen vorhanden (siehe Option **-nav** weiter unten), wird der für diese generierte HTML-Code vor der endgültigen Zuweisung an den Parameter an die aus dieser Option stammenden Header-Daten angehängt.
 
     Bei mehrfacher Verwendung ist nur die letzte Definition relevant.
 
@@ -111,7 +111,7 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
     Bei mehrfacher Verwendung ist nur die letzte Definition relevant.
 
 **-style** file
-: Diese Option kann genau dann verwendet werden, wenn die Auswahl das *format* ausgewählt hat, das einen Engine-Parameter mit dem Namen „meta“ bereitstellt. Wenn dies der Fall ist, wird ein HTML-Codeabschnitt generiert, der die *file* als Stylesheet für das generierte Dokument deklariert, und dieser wird dem Parameter zugewiesen. Die HTML-Engine fügt diesen Code unmittelbar nach dem Tag **<head>** in das Dokument ein.
+: Diese Option kann genau dann verwendet werden, wenn das ausgewählte *format* einen Engine-Parameter mit dem Namen „meta“ bereitstellt. Wenn die Option angegeben ist, wird ein HTML-Codeabschnitt generiert, der die *file* als Stylesheet für das generierte Dokument deklariert, und dieser wird dem Parameter zugewiesen. Die HTML-Engine fügt diesen Code unmittelbar nach dem Tag **<head>** in das Dokument ein.
 
     Bei der Verarbeitung eines Eingabeverzeichnisses wird die Stylesheet-Datei in das Ausgabeverzeichnis kopiert, und der generierte HTML-Code verweist auf diese Kopie, um das Ergebnis in sich geschlossener zu gestalten. Bei der Verarbeitung einer Eingabedatei gibt es keinen Speicherort, an den das Stylesheet kopiert werden könnte, weshalb einfach wie angegeben auf die Datei verwiesen wird.
 
@@ -138,44 +138,44 @@ In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwen
 
     Bei mehrfacher Verwendung werden alle Angaben gesammelt und eine Navigationsleiste erzeugt, die erste Angabe am linken Rand und die letzte am rechten.
 
-    Die URL kann relativ sein. In diesem Fall wird davon ausgegangen, dass sie relativ zu den Hauptdateien (Inhaltsverzeichnis und Index für Schlüsselwörter) ist, und sie wird durch eine Transformation so umgewandelt, dass alle anderen Verweise weiterhin korrekt funktionieren.
+    Die URL kann relativ sein. In diesem Fall wird davon ausgegangen, dass sie relativ zu den Hauptdateien (Inhaltsverzeichnis und Schlüsselwortindex) ist, und sie wird für alle anderen Dateien so umgewandelt, dass sie weiterhin korrekt verweist.
 
 **-postnav** label url
-: Legt eine Navigationsschaltfläche mit der anzuzeigenden *label* und der *url* fest, auf die verwiesen wird. Diese Option kann nur dann verwendet werden, wenn das ausgewählte *format* einen Engine-Parameter namens „header“ bereitstellt. Der dafür erzeugte HTML-Code wird an die Daten aus der Option **-header** angehängt, bevor er in die erzeugten Dokumente eingefügt wird.
+: Legt eine Navigationsschaltfläche mit der anzuzeigenden *label* und der *url* fest, auf die verwiesen wird. Diese Option kann genau dann verwendet werden, wenn das ausgewählte *format* einen Engine-Parameter namens „header“ bereitstellt. Der dafür erzeugte HTML-Code wird an die Daten aus der Option **-header** angehängt, bevor er in die erzeugten Dokumente eingefügt wird.
 
     Bei mehrfacher Verwendung werden alle Angaben gesammelt und eine Navigationsleiste erzeugt, die letzte Angabe am rechten Rand und die erste am linken.
 
-    Die URL kann relativ sein. In diesem Fall wird davon ausgegangen, dass sie relativ zu den Hauptdateien (Inhaltsverzeichnis und Index für Schlüsselwörter) ist, und sie unterliegt einer Transformation, damit alle anderen Verweise weiterhin korrekt funktionieren.
+    Die URL kann relativ sein. In diesem Fall wird davon ausgegangen, dass sie relativ zu den Hauptdateien (Inhaltsverzeichnis und Schlüsselwortindex) ist, und sie wird für alle anderen Dateien so umgewandelt, dass sie weiterhin korrekt verweist.
 
 
 ## Formate
 
 Zunächst wird das Argument *format* als Pfad zu einer TCL-Datei interpretiert, die den Code für die angeforderte Formatierungs-Engine enthält. Das Argument wird genau dann als Name eines der unten aufgeführten vordefinierten Formate interpretiert, wenn der Pfad nicht existiert.
 
-*Beachten Sie eine Einschränkung*: Wenn die Interpretation des Formats als Pfad zu dem Tcl-Skript, das die Engine implementiert, erfolgreich war, muss dieses Skript nicht nur die Engine-API für doctools, d. h. *doctools\_api*, sondern auch die APIs für *doctoc\_api* und *docidx\_api* implementieren. Andernfalls schlägt die Erstellung einer Tabelle mit Inhaltsverzeichnis und einem Index für Schlüsselwörter fehl.
+*Beachten Sie eine Einschränkung*: Wenn die Interpretation des Formats als Pfad zu dem Tcl-Skript, das die Engine implementiert, erfolgreich war, muss dieses Skript nicht nur die Engine-API für doctools, d. h. *doctools\_api*, sondern auch die APIs für *doctoc\_api* und *docidx\_api* implementieren. Andernfalls schlägt die Erstellung eines Inhaltsverzeichnisses und eines Schlüsselwortindexes fehl.
 
 Liste der vordefinierten Formate, d. h. derjenigen, die vom Paket **doctools** bereitgestellt werden:
 
 **nroff**
-: Der Prozessor erzeugt eine \*roff-Ausgabe, das Standardformat für Unix-Manpages.
+: Der Verarbeiter erzeugt eine \*roff-Ausgabe, das Standardformat für Unix-Manpages.
 
 **html**
-: Der Prozessor erzeugt HTML-Ausgabe, die in Webbrowsern verwendet und dort angezeigt wird. Diese Engine ist derzeit die einzige, die die verschiedenen Engine-Parameter bereitstellt, die für die zusätzliche Anpassung der Ausgabe erforderlich sind.
+: Der Verarbeiter erzeugt HTML-Ausgabe, die in Webbrowsern verwendet und dort angezeigt wird. Diese Engine ist derzeit die einzige, die die verschiedenen Engine-Parameter bereitstellt, die für die zusätzliche Anpassung der Ausgabe erforderlich sind.
 
 **tmml**
-: Der Prozessor erzeugt TMML-Ausgaben, die Tcl Manpage Markup Language, eine Ableitung von XML.
+: Der Verarbeiter erzeugt TMML-Ausgaben, die Tcl Manpage Markup Language, eine Ableitung von XML.
 
 **latex**
-: Der Prozessor erzeugt eine LaTeX-Ausgabe.
+: Der Verarbeiter erzeugt eine LaTeX-Ausgabe.
 
 **wiki**
-: Der Prozessor erzeugt Wiki-Markup, wie es **wikit** versteht.
+: Der Verarbeiter erzeugt Wiki-Markup, wie es **wikit** versteht.
 
 **list**
-: Der Prozessor extrahiert die von **manpage\_begin** bereitgestellten Informationen. Dieses Format wird intern verwendet, um die Metadaten zu extrahieren, aus denen sowohl das Inhaltsverzeichnis als auch der Index für Schlüsselwörter abgeleitet werden.
+: Der Verarbeiter extrahiert die von **manpage\_begin** bereitgestellten Informationen. Dieses Format wird intern verwendet, um die Metadaten zu extrahieren, aus denen sowohl das Inhaltsverzeichnis als auch der Schlüsselwortindex abgeleitet werden.
 
 **null**
-: Der Prozessor erzeugt keine Ausgabe. Dies entspricht dem Fehlercode **validate**.
+: Der Verarbeiter erzeugt keine Ausgabe. Dies entspricht **validate**.
 
 
 ## Verzeichnisstrukturen

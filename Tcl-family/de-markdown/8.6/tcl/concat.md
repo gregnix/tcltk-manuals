@@ -30,7 +30,7 @@ concat - Verbindet Listen miteinander
 
 # Beschreibung
 
-Der Befehl verbindet die Argumente mit Leerzeichen, nachdem führende und nachfolgende Leerraumzeichen an jedem Argument entfernt wurden. Sind alle Argumente Listen, entspricht das dem Zusammenfügen zu einer Liste. Leere Argumente (nach dem Trimmen) werden ignoriert. Beliebig viele Argumente; ohne *arg*s: leere Zeichenkette.
+Der Befehl verbindet die Argumente mit Leerzeichen, nachdem führende und nachfolgende Leerraumzeichen an jedem Argument entfernt wurden. Sind alle Argumente Listen, entspricht das dem Zusammenfügen zu einer Liste. Leere Argumente (nach dem Trimmen) werden ignoriert. Beliebig viele Argumente; ohne *arg*-Argumente: leere Zeichenkette.
 
 # Beispiele
 

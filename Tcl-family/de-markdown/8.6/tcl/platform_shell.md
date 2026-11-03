@@ -35,7 +35,7 @@ Das Paket erlaubt die Identifikation der Architektur einer Tcl-Shell, die sich v
 
 Auf den meisten Plattformen ist die Architektur der abgefragten Shell mit der der laufenden Shell identisch; das gilt nicht allgemein. Gegenbeispiel sind Plattformen mit 32- und 64-Bit-Varianten, auf denen ein 64-Bit-System 32-Bit-Code ausführen kann: Laufende und abgefragte Shell können unterschiedliche 32/64-Bit-Einstellungen und damit unterschiedliche Kennungen haben.
 
-Für Anwendungen wie ein Code-Repository ist es wichtig, die Architektur der Shell zu kennen, die installierte Pakete tatsächlich ausführt — nicht nur die Architektur der Shell, die die Repository-Software betreibt.
+Für Anwendungen wie ein Code-Repository ist es wichtig, die Architektur der Shell zu kennen, die installierte Pakete tatsächlich ausführt — im Unterschied zur Architektur der Shell, die die Repository-Software betreibt.
 
 # Befehle
 

@@ -75,12 +75,12 @@ boolean *newlines*
     Ist dieses Flag nicht gesetzt (Standardeinstellung), wird das gesamte Dokument in einer einzigen Zeile geschrieben, wobei der Abstand zwischen allen Elementen so gering wie möglich gehalten wird.
 
 boolean *indented*
-: Ist dieses Flag gesetzt, rückt das Plugin die Markup-Befehle entsprechend der Struktur der Indizes ein. Damit dies funktioniert, muss zudem **newlines** gesetzt sein. Dieser Effekt ist jedoch unabhängig vom Wert für **aligned**.
+: Ist dieses Flag gesetzt, rückt das Plugin die Markup-Befehle entsprechend der Struktur der Indizes ein. Damit dies funktioniert, wird dabei zudem **newlines** als gesetzt angenommen. Dieser Effekt ist jedoch unabhängig vom Wert für **aligned**.
 
     Wenn dieses Flag nicht gesetzt ist (Standardeinstellung), wird die Ausgabe gemäß den Werten von **newlines** und **aligned** formatiert, und es erfolgt keine Einrückung.
 
 boolean *aligned*
-: Ist dieses Flag gesetzt, sorgt der Generator dafür, dass die Argumente für die Befehle **manpage** und **url** in einem Abschnitt mit Schlüsselwörtern vertikal ausgerichtet werden, um einen ansprechenden Tabelleneffekt zu erzielen. Damit dies funktioniert, muss zudem **newlines** gesetzt sein. Dieser Effekt ist jedoch unabhängig vom Wert für **indented**.
+: Ist dieses Flag gesetzt, sorgt der Generator dafür, dass die Argumente für die Befehle **manpage** und **url** in einem Abschnitt mit Schlüsselwörtern vertikal ausgerichtet werden, um einen ansprechenden Tabelleneffekt zu erzielen. Damit dies funktioniert, wird dabei zudem **newlines** als gesetzt angenommen. Dieser Effekt ist jedoch unabhängig vom Wert für **indented**.
 
     Ist dieses Flag nicht gesetzt (Standardeinstellung), wird die Ausgabe gemäß den Werten von **newlines** und **indented** formatiert, und es erfolgt keine Ausrichtung.
 

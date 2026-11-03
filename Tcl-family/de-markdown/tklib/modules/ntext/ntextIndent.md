@@ -39,7 +39,7 @@ ntextIndent – Einrückung für das Text-Widget
 
 Das Paket **ntext** stellt ein Bindungs-Tag namens *Ntext* zur Verfügung, das von Text-Widgets anstelle des standardmäßigen Bindungs-Tags *Text* verwendet werden kann.
 
-Das Text-Widget von Tk kann so konfiguriert werden, dass Textzeilen, die länger sind als die Breite des Textbereichs, umgebrochen werden – eine Funktion, die man aus Texteditoren und Textverarbeitungsprogrammen kennt.  Eine vollständige Textzeile (abgegrenzt durch Zeilenumbrüche oder durch den Anfang bzw. das Ende des Dokuments) wird als „logische Zeile“ bezeichnet. Wenn eine logische Zeile auf mehrere Zeilen des Anzeigebereichs umgebrochen wird, werden diese Fragmente der logischen Zeile als „Anzeigzeilen“ bezeichnet.
+Das Text-Widget von Tk kann so konfiguriert werden, dass Textzeilen, die länger sind als die Breite des Textbereichs, umgebrochen werden – eine Funktion, die man aus Texteditoren und Textverarbeitungsprogrammen kennt.  Eine vollständige Textzeile (abgegrenzt durch Zeilenumbrüche oder durch den Anfang bzw. das Ende des Dokuments) wird als „logische Zeile“ bezeichnet. Wenn eine logische Zeile auf mehrere Zeilen des Anzeigebereichs umgebrochen wird, werden diese Fragmente der logischen Zeile als „Anzeigezeilen“ bezeichnet.
 
 Beginnt eine logische Zeile mit Leerraum, beginnen die umbrochenen Anzeigezeilen weiter links als die erste Anzeigezeile. Das Layout kann dadurch unordentlich und schwer lesbar werden. Das Bindungs-Tag *Ntext* kann ein Text-Widget im Modus *-wrap* *word* so einrichten, dass die Anzeigezeilen außer der ersten automatisch zum anfänglichen Leerraum der ersten Anzeigezeile eingerückt werden.
 
@@ -101,7 +101,7 @@ So verwenden Sie die Einrückung der Anzeigezeile von *Ntext*:
 
 2. Das Programm kann den Textinhalt ändern, z. B. mit dem Befehl „.text insert“. Eine solche Änderung löst keine Bindung aus; daher sollte das Programm nach dem Einfügen von Text explizit die Funktion **::ntext::wrapIndent** aufrufen.
 
-3. Eine automatische Einrückung erfolgt nur, wenn sich das Widget im Modus *-wrap* *word* befindet.  Wenn das Programm in den Modus *-wrap* *word* wechselt oder zurückkehrt, während das Widget nicht leer ist, sollte es die Funktion **::ntext::wrapIndent** aufrufen, um den Text des Widgets zu formatieren.
+3. Eine automatische Einrückung erfolgt nur, wenn sich das Widget im Modus *-wrap* *word* befindet.  Wenn das Programm in den Modus *-wrap* *word* wechselt oder ihn verlässt, während das Widget nicht leer ist, sollte es die Funktion **::ntext::wrapIndent** aufrufen, um den Text des Widgets zu formatieren.
 
 4. Wenn Einrückungen verwendet werden und diese anschließend durch die Einstellung von **::ntext::classicWrap** auf **1** deaktiviert werden, rufen Sie bitte **::ntext::wrapIndent** auf, um die Einrückungen zu entfernen.
 
@@ -110,22 +110,22 @@ So verwenden Sie die Einrückung der Anzeigezeile von *Ntext*:
 
 **::ntext::wrapIndent** *textWidget* ?index1? ?index2?
 
-- Passen Sie den Einzug eines Text-Widgets an. Im Folgenden werden verschiedene Fälle erläutert.
+- Passt den Einzug eines Text-Widgets an. Im Folgenden werden verschiedene Fälle erläutert.
 
 
 **::ntext::wrapIndent** *textWidget*
 
-- Passen Sie den Einzug des gesamten Textes im Text-Widget *textWidget* an.
+- Passt den Einzug des gesamten Textes im Text-Widget *textWidget* an.
 
 
 **::ntext::wrapIndent** *textWidget* *index1*
 
-- Passen Sie den Einzug einer einzelnen logischen Zeile eines Text-Widgets an – der Zeile von *textWidget*, die den Index *index1* enthält.
+- Passt den Einzug einer einzelnen logischen Zeile eines Text-Widgets an – der Zeile von *textWidget*, die den Index *index1* enthält.
 
 
 **::ntext::wrapIndent** *textWidget* *index1* *index2*
 
-- Passen Sie den Einzug eines Bereichs logischer Zeilen eines Text-Widgets an – also der Zeilen von *textWidget*, die die Indizes *index1* bis *index2* enthalten.
+- Passt den Einzug eines Bereichs logischer Zeilen eines Text-Widgets an – also der Zeilen von *textWidget*, die die Indizes *index1* bis *index2* enthalten.
 
 
 *Verwendung*
@@ -156,7 +156,7 @@ text .t -wrap word
 bindtags .t {.t Ntext . all}
 ```
 
-So aktivieren Sie die Einrückung von *Ntext* und verwenden diese in der Widget-Datei .t ohne farbige Einrückungen:
+So aktivieren Sie die Einrückung von *Ntext* und verwenden diese im Widget .t ohne farbige Einrückungen:
 
 ```
 package require ntext
@@ -166,7 +166,7 @@ text .t -wrap word
 bindtags .t {.t Ntext . all}
 ```
 
-So aktivieren Sie die Einrückung von *Ntext* und verwenden diese in der Widget-Datei .t, wobei die Einrückungen die Farbe Schwarz haben:
+So aktivieren Sie die Einrückung von *Ntext* und verwenden diese im Widget .t, wobei die Einrückungen die Farbe Schwarz haben:
 
 ```
 package require ntext
@@ -198,7 +198,7 @@ set foo [.t index end]
 ::ntext::wrapIndent .t $foo end
 ```
 
-So ändern Sie die Farbe der Einrückung, wenn ein Widget vom Typ „.t“ bereits Text enthält:
+So ändern Sie die Farbe der Einrückung, wenn das Widget .t bereits Text enthält:
 
 ```
 set ::ntext::indentColor black

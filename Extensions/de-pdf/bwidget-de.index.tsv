@@ -49,7 +49,7 @@
 -drawcross	95
 -dropcmd	25,32,37,45,92
 -dropenabled	33,37,45,92
--dropovercmd	26,33,37,45,92
+-dropovercmd	26,33,37,46,92
 -dropovermode	46,92
 -droptypes	27,33,37,46,93
 -editable	33

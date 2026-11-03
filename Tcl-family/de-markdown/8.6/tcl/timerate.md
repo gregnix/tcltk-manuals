@@ -56,7 +56,7 @@ Folgende Optionen kann **timerate** erhalten:
     Die Kalibrierung ist in der derzeitigen Implementierung nicht thread-sicher.
 
 **-overhead** *double*
-: **-overhead** gibt eine Schätzung (in Mikrosekunden) des Messaufwands je Durchlauf des getesteten Skripts an. Der übergebene Wert ersetzt für diesen Aufruf von **timerate** den durch eine frühere Kalibrierung geschätzten Aufwand. Solche Ersetzungen lassen sich selbst mit **timerate** messen, wie ein späteres Beispiel zeigt.
+: **-overhead** gibt eine Schätzung (in Mikrosekunden) des Messaufwands je Durchlauf des getesteten Skripts an. Der übergebene Wert ersetzt für diesen Aufruf von **timerate** den durch eine frühere Kalibrierung geschätzten Aufwand. Solche Ersatzwerte lassen sich ihrerseits mit **timerate** messen, wie ein späteres Beispiel zeigt.
 
 **-direct**
 : **-direct** führt das angegebene Skript direkt aus, ohne Kompilierung, ähnlich dem Befehl [time]. Damit lässt sich der Aufwand von [Tcl\_EvalObjEx][Eval], des Aufrufs kanonischer Listen und der unkompilierten Fassungen bytecodierter Befehle messen.

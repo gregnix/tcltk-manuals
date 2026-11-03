@@ -78,7 +78,7 @@ Das Paket implementiert fünf relativ einfache Prozeduren. Eine parst, eine dien
     : Gibt eine Verkettung aller Inhalte der direkten Kindknoten dieses Knotens zurück, deren Tag %PCDATA lautet. Es wird ein Fehler ausgelöst, wenn keine solchen Kindknoten gefunden werden. Das heißt, part=%PCDATA bedeutet, dass der Textinhalt dieses Knotens zurückgegeben wird, nicht jedoch der seiner Kindknoten.
 
     %PCDATA?
-    : verhält sich wie %PCDATA, gibt jedoch eine leere Zeichenfolge zurück, wenn keine PCDATA-Daten gefunden werden.
+    : verhält sich wie %PCDATA, gibt jedoch eine leere Zeichenkette zurück, wenn keine PCDATA-Daten gefunden werden.
 
 
     Um beispielsweise den ersten fett gesetzten Text aus dem fünften Absatz des body der HTML-Datei abzurufen,

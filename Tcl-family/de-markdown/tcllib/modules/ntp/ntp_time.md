@@ -45,7 +45,7 @@ Dieses Paket implementiert einen Client für das RFC 868 TIME-Protokoll (<http:/
 # Befehle
 
 **::time::gettime** ?*options*? *timeserver* ?*port*?
-: Holt die Zeit von *timeserver*. Hier dürfen die Optionen stehen, die der Befehl **configure** kennt. Der Befehl gibt ein Token zurück; die übrigen Befehle dieses Pakets brauchen es. Danach gibt **cleanup** alle Ressourcen frei. Der voreingestellte Port ist **37**.
+: Holt die Zeit von *timeserver*. Hier dürfen die Optionen stehen, die der Befehl **configure** kennt. Der Befehl gibt ein Token zurück; die übrigen Befehle dieses Pakets brauchen es. Wenn Sie fertig sind, sollten Sie mit **cleanup** alle Ressourcen freigeben. Der voreingestellte Port ist **37**.
 
 **::time::getsntp** ?*options*? *timeserver* ?*port*?
 : Holt die Zeit von einem SNTP-Server. Dieser Befehl akzeptiert genau dieselben Argumente wie **::time::gettime**, nur ist der voreingestellte Port **123**. Das Ergebnis ist ein Token wie bei **::time::gettime** und wird genauso verwendet.
@@ -65,7 +65,7 @@ Dieses Paket implementiert einen Client für das RFC 868 TIME-Protokoll (<http:/
     : Legt den voreingestellten Timeout in Millisekunden fest. Die Vorgabe ist 10 Sekunden.
 
     **-command** *number*
-    : Legt eine Befehlsprozedur fest, die bei einer Antwort läuft. Die Prozedur wird aufgerufen, das Zeit-Token hängt an der Argumentliste.
+    : Legt eine Befehlsprozedur fest, die bei einer Antwort läuft. Die Prozedur wird mit dem an die Argumentliste angehängten Zeit-Token aufgerufen.
 
     **-loglevel** *number*
     : Legt die Protokollierungsstufe fest. Die Vorgabe ist 'warning'.

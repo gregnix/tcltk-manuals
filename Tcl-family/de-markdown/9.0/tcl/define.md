@@ -64,15 +64,15 @@ Die folgenden Befehle werden im *defScript* für **oo::define** unterstützt; je
     In einem privaten Definitionskontext sind die Methoden bei Aufruf auf Klassen *nicht* privat, die Methoden bei Aufruf auf Instanzen von Klassen jedoch schon.
 
 [constructor]{.cmd} [argList]{.arg} [bodyScript]{.arg}
-: Erzeugt oder aktualisiert den Konstruktor einer Klasse. Die formalen Argumente des Konstruktors (definiert im gleichen Format wie beim Tcl-Befehl [proc]) sind *argList*, und der Rumpf des Konstruktors ist *bodyScript*. Wird der Rumpf des Konstruktors ausgewertet, ist der aktuelle Namespace des Konstruktors ein Namespace, der für das zu konstruierende Objekt eindeutig ist. Innerhalb des Konstruktors sollte der Befehl [next] verwendet werden, um die Konstruktoren der Superklassen aufzurufen. Ist *bodyScript* die leere Zeichenkette, wird der Konstruktor gelöscht.
+: Erzeugt oder aktualisiert den Konstruktor einer Klasse. Die formalen Argumente des Konstruktors (definiert im gleichen Format wie beim Tcl-Befehl [proc]) sind *argList*, und der Rumpf des Konstruktors ist *bodyScript*. Wird der Rumpf des Konstruktors ausgewertet, ist der aktuelle Namespace des Konstruktors ein Namespace, der für das zu konstruierende Objekt eindeutig ist. Innerhalb des Konstruktors sollte der Befehl [next] verwendet werden, um die Konstruktoren der Oberklassen aufzurufen. Ist *bodyScript* die leere Zeichenkette, wird der Konstruktor gelöscht.
 
-    Klassen müssen keinen Konstruktor definieren. Ist keiner angegeben, wird stattdessen der Konstruktor der Superklasse verwendet.
+    Klassen müssen keinen Konstruktor definieren. Ist keiner angegeben, wird stattdessen der Konstruktor der Oberklasse verwendet.
 
 [destructor]{.cmd} [bodyScript]{.arg}
-: Erzeugt oder aktualisiert den Destruktor einer Klasse. Destruktoren nehmen keine Argumente entgegen, und der Rumpf des Destruktors ist *bodyScript*. Der Destruktor wird aufgerufen, wenn Objekte der Klasse gelöscht werden; beim Aufruf ist der eindeutige Namespace des Objekts der aktuelle Namespace. Destruktoren sollten den Befehl [next] verwenden, um die Destruktoren der Superklassen aufzurufen. Beachten Sie, dass Destruktoren nicht in allen Situationen aufgerufen werden (z. B. wenn der Interpreter zerstört wird). Ist *bodyScript* die leere Zeichenkette, wird der Destruktor gelöscht. Beachten Sie, dass Fehler während der Auswertung eines Destruktors *nicht* an den Code zurückgegeben werden, der die Zerstörung eines Objekts verursacht. Stattdessen werden sie an den aktuell definierten [bgerror]-Handler weitergegeben.
+: Erzeugt oder aktualisiert den Destruktor einer Klasse. Destruktoren nehmen keine Argumente entgegen, und der Rumpf des Destruktors ist *bodyScript*. Der Destruktor wird aufgerufen, wenn Objekte der Klasse gelöscht werden; beim Aufruf ist der eindeutige Namespace des Objekts der aktuelle Namespace. Destruktoren sollten den Befehl [next] verwenden, um die Destruktoren der Oberklassen aufzurufen. Beachten Sie, dass Destruktoren nicht in allen Situationen aufgerufen werden (z. B. wenn der Interpreter zerstört wird). Ist *bodyScript* die leere Zeichenkette, wird der Destruktor gelöscht. Beachten Sie, dass Fehler während der Auswertung eines Destruktors *nicht* an den Code zurückgegeben werden, der die Zerstörung eines Objekts verursacht. Stattdessen werden sie an den aktuell definierten [bgerror]-Handler weitergegeben.
 
 [export]{.cmd} [name]{.arg} [name]{.optdot}
-: Legt fest, dass jede der benannten Methoden *name* von der definierten Klasse exportiert wird (d. h. außerhalb einer Instanz über den Befehl des Instanzobjekts nutzbar). Beachten Sie, dass die Methoden selbst tatsächlich von einer Superklasse definiert sein können; Exporte von Unterklassen überschreiben die Sichtbarkeit der Superklasse und können wiederum von Instanzen überschrieben werden.
+: Legt fest, dass jede der benannten Methoden *name* von der definierten Klasse exportiert wird (d. h. außerhalb einer Instanz über den Befehl des Instanzobjekts nutzbar). Beachten Sie, dass die Methoden selbst tatsächlich von einer Oberklasse definiert sein können; Exporte von Unterklassen überschreiben die Sichtbarkeit der Oberklasse und können wiederum von Instanzen überschrieben werden.
 
 [forward]{.cmd} [name]{.arg} [cmdName]{.arg} [arg]{.optdot}
 : Erzeugt oder aktualisiert eine weitergeleitete Methode namens *name*. Die Methode wird an den Befehl *cmdName* weitergeleitet; zusätzliche Argumente *arg* usw. werden vor den vom Aufrufer der Methode angegebenen Argumenten eingefügt. *cmdName* wird stets nach den Regeln der Namespaces der aufrufenden Objekte aufgelöst, d. h. wenn *cmdName* nicht voll qualifiziert ist, wird der Befehl im Namespace jedes Objekts gesucht — über den Namespace-Pfad der Instanz oder im globalen Namespace. Die Methode wird exportiert, wenn *name* mit einem Kleinbuchstaben beginnt, andernfalls nicht exportiert.
@@ -94,7 +94,7 @@ Die folgenden Befehle werden im *defScript* für **oo::define** unterstützt; je
 : ...siehe nächstes...
 
 [private]{.cmd} [script]{.arg}
-: [Wertet das *script* (oder die Liste aus Befehl und Argumenten, gegeben durch *cmd* und *arg*s) in einem Kontext aus, in dem die am aktuellen Objekt vorgenommenen Definitionen private Definitionen sind.]{version="TIP500"}
+: [Wertet das *script* (oder die Liste aus Befehl und Argumenten, gegeben durch *cmd* und *arg*-Argumente) in einem Kontext aus, in dem die an der aktuellen Klasse vorgenommenen Definitionen private Definitionen sind.]{version="TIP500"}
 
     Die folgenden Klassendefinitionsbefehle sind von **private** betroffen: **forward**, **method**, **self** und **variable**. Verschachteltes **private** innerhalb von **private** hat keinen kumulativen Effekt; der innerste Definitionskontext ist lediglich ein privater Definitionskontext. Alle anderen Definitionsbefehle verhalten sich in einem privaten Definitionskontext nicht anders.
 
@@ -110,13 +110,13 @@ Die folgenden Befehle werden im *defScript* für **oo::define** unterstützt; je
     [Werden überhaupt keine Argumente verwendet, liefert er den Namen der gerade konfigurierten Klasse.]{version="TIP470"} [In einem privaten Definitionskontext (siehe den Definitionsbefehl **private** unten) werden die Definitionen am Klassenobjekt ebenfalls in einem privaten Definitionskontext vorgenommen.]{version="TIP500"}
 
 [superclass]{.cmd} [-slotOperation]{.optarg} [className]{.optdot}
-: Dieser Slot (siehe [Slot-Definitionen] unten) ermöglicht die Änderung der Superklassen der definierten Klasse. Jedes Argument *className* benennt eine Klasse, die Superklasse der definierten Klasse sein soll. Beachten Sie, dass Objekte nicht von Klassen zu Nicht-Klassen oder umgekehrt geändert werden dürfen, dass eine leere Elternklasse [oo::object][object] entspricht und dass die Elternklassen von [oo::object][object] und [oo::class][class] nicht geändert werden dürfen. Standardmäßig arbeitet dieser Slot durch Ersetzung.
+: Dieser Slot (siehe [Slot-Definitionen] unten) ermöglicht die Änderung der Oberklassen der definierten Klasse. Jedes Argument *className* benennt eine Klasse, die Oberklasse der definierten Klasse sein soll. Beachten Sie, dass Objekte nicht von Klassen zu Nicht-Klassen oder umgekehrt geändert werden dürfen, dass eine leere Elternklasse [oo::object][object] entspricht und dass die Elternklassen von [oo::object][object] und [oo::class][class] nicht geändert werden dürfen. Standardmäßig arbeitet dieser Slot durch Ersetzung.
 
 [unexport]{.cmd} [name]{.arg} [name]{.optdot}
-: Legt fest, dass jede der benannten Methoden *name* von der definierten Klasse nicht exportiert wird (d. h. nicht außerhalb der Instanz über den Befehl des Instanzobjekts nutzbar, sondern nur über den in jedem Objektkontext sichtbaren Befehl [my]). Beachten Sie, dass die Methoden selbst tatsächlich von einer Superklasse definiert sein können; Unexporte von Unterklassen überschreiben die Sichtbarkeit der Superklasse und können von Instanz-Unexporten überschrieben werden.
+: Legt fest, dass jede der benannten Methoden *name* von der definierten Klasse nicht exportiert wird (d. h. nicht außerhalb der Instanz über den Befehl des Instanzobjekts nutzbar, sondern nur über den in jedem Objektkontext sichtbaren Befehl [my]). Beachten Sie, dass die Methoden selbst tatsächlich von einer Oberklasse definiert sein können; Unexporte von Unterklassen überschreiben die Sichtbarkeit der Oberklasse und können von Instanz-Unexporten überschrieben werden.
 
 [variable]{.cmd} [-slotOperation]{.optarg} [name]{.optdot}
-: Dieser Slot (siehe [Slot-Definitionen] unten) sorgt dafür, dass jede der benannten Variablen in den von der definierten Klasse deklarierten Methoden, im Konstruktor und im Destruktor automatisch verfügbar gemacht wird. Jeder Variablenname darf keine Namespace-Trenner enthalten und darf nicht wie ein Array-Zugriff aussehen. Alle Variablen sind tatsächlich im Namespace des Instanzobjekts vorhanden, auf dem die Methode ausgeführt wird. Beachten Sie, dass die von einer Super- oder Unterklasse deklarierten Variablenlisten vollständig disjunkt sind, ebenso wie von Instanzen deklarierte Variablenlisten; die Liste der Variablennamen gilt nur für von dieser Klasse deklarierte Methoden (sowie Konstruktoren und Destruktoren). Standardmäßig arbeitet dieser Slot durch Anhängen.
+: Dieser Slot (siehe [Slot-Definitionen] unten) sorgt dafür, dass jede der benannten Variablen in den von der definierten Klasse deklarierten Methoden, im Konstruktor und im Destruktor automatisch verfügbar gemacht wird. Jeder Variablenname darf keine Namespace-Trenner enthalten und darf nicht wie ein Array-Zugriff aussehen. Alle Variablen sind tatsächlich im Namespace des Instanzobjekts vorhanden, auf dem die Methode ausgeführt wird. Beachten Sie, dass die von einer Ober- oder Unterklasse deklarierten Variablenlisten vollständig disjunkt sind, ebenso wie von Instanzen deklarierte Variablenlisten; die Liste der Variablennamen gilt nur für von dieser Klasse deklarierte Methoden (sowie Konstruktoren und Destruktoren). Standardmäßig arbeitet dieser Slot durch Anhängen.
 
     [In einem privaten Definitionskontext (siehe den Definitionsbefehl **private** unten) verwaltet dieser Slot die Liste der privaten Variablenbindungen für diese Klasse. Bei einer privaten Variablenbindung unterscheidet sich der Name der Variable im Instanzobjekt vom in der Definition angegebenen Namen; der in der Definition verwendete Name ist der Name, mit dem Sie in den Methoden dieser Klasse auf die Variable zugreifen, und der Name der Variable im Instanz-Namespace hat ein eindeutiges Präfix, das versehentliche Verwendung aus anderen Klassen extrem unwahrscheinlich macht.]{version="TIP500"}
 
@@ -126,14 +126,14 @@ Die folgenden Befehle werden im *defScript* für **oo::define** unterstützt; je
 Die folgenden Definitionen werden ebenfalls unterstützt, sind in einfachen Programmen aber nicht erforderlich:
 
 [definitionnamespace]{.cmd} [kind]{.optarg} [namespaceName]{.arg}
-: [Ermöglicht die Steuerung, welcher Namespace von den Befehlen **oo::define** und **oo::objdefine** zum Nachschlagen der verwendeten Definitionsbefehle genutzt wird. Wird an einem Objekt eine Definitionsoperation ausgeführt, wird *die Klasse, deren Instanz es ist* (und deren Superklassen und Mixins) konsultiert, welcher Definitions-Namespace zu verwenden ist. **oo::define** erhält den Klassen-Definitions-Namespace, und **::oo::objdefine** den Instanz-Definitions-Namespace; ansonsten ist die Nachschlageoperation identisch.]{version="TIP524"}
+: [Ermöglicht die Steuerung, welcher Namespace von den Befehlen **oo::define** und **oo::objdefine** zum Nachschlagen der verwendeten Definitionsbefehle genutzt wird. Wird an einem Objekt eine Definitionsoperation ausgeführt, wird *die Klasse, deren Instanz es ist* (und deren Oberklassen und Mixins) konsultiert, welcher Definitions-Namespace zu verwenden ist. **oo::define** erhält den Klassen-Definitions-Namespace, und **::oo::objdefine** den Instanz-Definitions-Namespace; ansonsten ist die Nachschlageoperation identisch.]{version="TIP524"}
 
     Setzt den Definitions-Namespace der Art *kind*, bereitgestellt von der aktuellen Klasse, auf *namespaceName*. *namespaceName* muss auf einen existierenden Namespace verweisen oder die leere Zeichenkette sein (damit die aktuelle Klasse keinen solchen Namespace mehr verbunden hat). *kind*, falls angegeben, muss entweder **-class** (Standard) oder **-instance** sein, um festzulegen, ob der Namespace für **oo::define** bzw. **oo::objdefine** gesetzt wird.
 
     Die Klasse [oo::object][object] hat ihren Instanz-Namespace auf **::oo::objdefine** festgelegt, und die Klasse [oo::class][class] hat ihren Klassen-Namespace auf **::oo::define** festgelegt. Eine Folge davon ist, dass die effektive Nutzung dieses Merkmals für Klassen die Definition einer Metaklasse erfordert.
 
 [deletemethod]{.cmd} [name]{.arg} [name]{.optdot}
-: Löscht jede der Methoden namens *name* aus einer Klasse. Die Methoden müssen zuvor in dieser Klasse existiert haben. Beeinflusst nicht die Superklassen der Klasse, noch Unterklassen oder Instanzen der Klasse (außer wenn sie eine Aufrufkette durch die geänderte Klasse haben) oder das Klassenobjekt selbst.
+: Löscht jede der Methoden namens *name* aus einer Klasse. Die Methoden müssen zuvor in dieser Klasse existiert haben. Beeinflusst nicht die Oberklassen der Klasse, noch Unterklassen oder Instanzen der Klasse (außer wenn sie eine Aufrufkette durch die geänderte Klasse haben) oder das Klassenobjekt selbst.
 
 [filter]{.cmd} [-slotOperation]{.optarg} [methodName]{.optdot}
 : Dieser Slot (siehe [Slot-Definitionen] unten) setzt oder aktualisiert die Liste von Methodennamen, die steuern, ob Methodenaufrufe an Instanzen der Klasse durchgeführt werden dürfen und welche Ergebnisse die Methoden liefern. Jedes *methodName* benennt eine einzelne Filtermethode (exportiert oder nicht exportiert); es ist kein Fehler, eine nicht existierende Methode zu benennen, da sie von Unterklassen definiert sein kann. Standardmäßig arbeitet dieser Slot durch Anhängen.
@@ -142,7 +142,7 @@ Die folgenden Definitionen werden ebenfalls unterstützt, sind in einfachen Prog
 : Dieser Slot (siehe [Slot-Definitionen] unten) setzt oder aktualisiert die Liste zusätzlicher Klassen, die in alle Instanzen der definierten Klasse eingemischt werden sollen. Jedes Argument *className* benennt eine einzelne einzumischende Klasse. Standardmäßig arbeitet dieser Slot durch Ersetzung.
 
 [renamemethod]{.cmd} [fromName]{.arg} [toName]{.arg}
-: Benennt die in einer Klasse *fromName* genannte Methode in *toName* um. Die Methode muss zuvor in der Klasse existiert haben, und *toName* darf zuvor nicht auf eine Methode in dieser Klasse verweisen. Beeinflusst nicht die Superklassen der Klasse, noch Unterklassen oder Instanzen der Klasse (außer wenn sie eine Aufrufkette durch die geänderte Klasse haben) oder das Klassenobjekt selbst. Ändert nicht den Exportstatus der Methode; war sie zuvor exportiert, ist sie es danach auch.
+: Benennt die in einer Klasse *fromName* genannte Methode in *toName* um. Die Methode muss zuvor in der Klasse existiert haben, und *toName* darf zuvor nicht auf eine Methode in dieser Klasse verweisen. Beeinflusst nicht die Oberklassen der Klasse, noch Unterklassen oder Instanzen der Klasse (außer wenn sie eine Aufrufkette durch die geänderte Klasse haben) oder das Klassenobjekt selbst. Ändert nicht den Exportstatus der Methode; war sie zuvor exportiert, ist sie es danach auch.
 
 
 # Konfigurieren von Objekten
@@ -150,7 +150,7 @@ Die folgenden Definitionen werden ebenfalls unterstützt, sind in einfachen Prog
 Die folgenden Befehle werden im *defScript* für **oo::objdefine** unterstützt; jeder kann auch in der *subcommand*-Form verwendet werden:
 
 [export]{.cmd} [name]{.arg} [name]{.optdot}
-: Legt fest, dass jede der benannten Methoden *name* von dem definierten Objekt exportiert wird (d. h. außerhalb des Objekts über den Befehl des Objekts nutzbar). Beachten Sie, dass die Methoden selbst tatsächlich von einer Klasse oder Superklasse definiert sein können; Objekt-Exporte überschreiben die Klassensichtbarkeit.
+: Legt fest, dass jede der benannten Methoden *name* von dem definierten Objekt exportiert wird (d. h. außerhalb des Objekts über den Befehl des Objekts nutzbar). Beachten Sie, dass die Methoden selbst tatsächlich von einer Klasse oder Oberklasse definiert sein können; Objekt-Exporte überschreiben die Klassensichtbarkeit.
 
 [forward]{.cmd} [name]{.arg} [cmdName]{.arg} [arg]{.optdot}
 : Erzeugt oder aktualisiert eine weitergeleitete Objekt-Methode namens *name*. Die Methode wird an den Befehl *cmdName* weitergeleitet; zusätzliche Argumente *arg* usw. werden vor den vom Aufrufer der Methode angegebenen Argumenten eingefügt. Weitergeleitete Methoden sollten mit dem Unterbefehl **method** gelöscht werden. Die Methode wird exportiert, wenn *name* mit einem Kleinbuchstaben beginnt, andernfalls nicht exportiert.
@@ -169,7 +169,7 @@ Die folgenden Befehle werden im *defScript* für **oo::objdefine** unterstützt;
 : ...siehe nächstes...
 
 [private]{.cmd} [script]{.arg}
-: [Wertet das *script* (oder die Liste aus Befehl und Argumenten, gegeben durch *cmd* und *arg*s) in einem Kontext aus, in dem die am aktuellen Objekt vorgenommenen Definitionen private Definitionen sind.]{version="TIP500"}
+: [Wertet das *script* (oder die Liste aus Befehl und Argumenten, gegeben durch *cmd* und *arg*-Argumente) in einem Kontext aus, in dem die am aktuellen Objekt vorgenommenen Definitionen private Definitionen sind.]{version="TIP500"}
 
     Die folgenden Klassendefinitionsbefehle sind von **private** betroffen: **forward**, **method** und **variable**. Verschachteltes **private** innerhalb von **private** hat keinen kumulativen Effekt; der innerste Definitionskontext ist lediglich ein privater Definitionskontext. Alle anderen Definitionsbefehle verhalten sich in einem privaten Definitionskontext nicht anders.
 
@@ -179,7 +179,7 @@ Die folgenden Befehle werden im *defScript* für **oo::objdefine** unterstützt;
 [variable]{.cmd} [-slotOperation]{.optarg} [name]{.optdot}
 : Dieser Slot (siehe [Slot-Definitionen] unten) sorgt dafür, dass jede der benannten Variablen in den von dem definierten Objekt deklarierten Methoden automatisch verfügbar gemacht wird. Jeder Variablenname darf keine Namespace-Trenner enthalten und darf nicht wie ein Array-Zugriff aussehen. Alle Variablen sind tatsächlich im Namespace des Objekts vorhanden, auf dem die Methode ausgeführt wird. Beachten Sie, dass die von den Klassen und Mixins, deren Instanz das Objekt ist, deklarierten Variablenlisten vollständig disjunkt sind; die Liste der Variablennamen gilt nur für von diesem Objekt deklarierte Methoden. Standardmäßig arbeitet dieser Slot durch Anhängen.
 
-    [In einem privaten Definitionskontext (siehe den Definitionsbefehl **private** unten) verwaltet dieser Slot die Liste der privaten Variablenbindungen für dieses Objekt. Bei einer privaten Variablenbindung unterscheidet sich der Name der Variable im Instanzobjekt vom in der Definition angegebenen Namen; der in der Definition verwendete Name ist der Name, mit dem Sie in den Methoden dieses Instanzobjekts auf die Variable zugreifen, und der Name der Variable im Instanz-Namespace hat ein eindeutiges Präfix, das versehentliche Verwendung aus Superklassen-Methoden extrem unwahrscheinlich macht.]{version="TIP500"}
+    [In einem privaten Definitionskontext (siehe den Definitionsbefehl **private** unten) verwaltet dieser Slot die Liste der privaten Variablenbindungen für dieses Objekt. Bei einer privaten Variablenbindung unterscheidet sich der Name der Variable im Instanzobjekt vom in der Definition angegebenen Namen; der in der Definition verwendete Name ist der Name, mit dem Sie in den Methoden dieses Instanzobjekts auf die Variable zugreifen, und der Name der Variable im Instanz-Namespace hat ein eindeutiges Präfix, das versehentliche Verwendung aus Oberklassen-Methoden extrem unwahrscheinlich macht.]{version="TIP500"}
 
 
 ## Erweiterte Konfigurationsoptionen für Objekte
@@ -204,7 +204,7 @@ Die folgenden Definitionen werden ebenfalls unterstützt, sind in einfachen Prog
 
 # Private Methoden
 
-[Hat eine Klasse oder Instanz eine private Methode, kann diese private Methode nur innerhalb von Methoden dieser Klasse bzw. Instanz aufgerufen werden. Andere Aufrufer der Methoden des Objekts *können* private Methoden nicht aufrufen; es ist, als ob die privaten Methoden nicht existieren. Eine private Methode einer Klasse *kann* jedoch aus den Methoden der Klasse aufgerufen werden, wenn diese Methoden auf einem anderen Instanzobjekt verwendet werden; das bedeutet, dass eine Klasse sie nutzen kann, um das Verhalten mehrerer Instanzen von sich selbst zu koordinieren, ohne zu beeinträchtigen, wie andere Klassen (insbesondere Unter- oder Superklassen) interagieren. Private Methoden stehen in der Methodenaufrufreihenfolge (wie von **self call** gemeldet) vor allen eingemischten Klassen.]{version="TIP500"}
+[Hat eine Klasse oder Instanz eine private Methode, kann diese private Methode nur innerhalb von Methoden dieser Klasse bzw. Instanz aufgerufen werden. Andere Aufrufer der Methoden des Objekts *können* private Methoden *nicht* aufrufen; es ist, als ob die privaten Methoden nicht existieren. Eine private Methode einer Klasse *kann* jedoch aus den Methoden der Klasse aufgerufen werden, wenn diese Methoden auf einem anderen Instanzobjekt verwendet werden; das bedeutet, dass eine Klasse sie nutzen kann, um das Verhalten mehrerer Instanzen von sich selbst zu koordinieren, ohne zu beeinträchtigen, wie andere Klassen (insbesondere Unter- oder Oberklassen) interagieren. Private Methoden stehen in der Methodenaufrufreihenfolge (wie von [self call][self] gemeldet) vor allen eingemischten Klassen.]{version="TIP500"}
 
 # Slot-Definitionen
 
@@ -257,9 +257,9 @@ Intern definieren Slot-Objekte auch eine Methode **--default-operation**, die an
 
 Die Implementierung dieser Methoden hängt vom Slot ab (und ist dafür verantwortlich, auf den richtigen Teil der Klassen- oder Objektdefinition zuzugreifen). Slots haben auch einen Unknown-Methoden-Handler, der all diese Teile zusammenführt, und verbergen ihre Methode **destroy**, damit sie nicht versehentlich aufgerufen wird. Es wird *empfohlen*, Benutzeränderungen am Slot-Mechanismus selbst auf die Definition neuer Operationen zu beschränken, deren Namen mit einem Bindestrich beginnen.
 
-Beachten Sie, dass Slot-Instanzen nicht erwartungsgemäß den Speicher für den von ihnen verwalteten Slot enthalten; der befindet sich in oder ist an die verwaltete Klasse bzw. das verwaltete Objekt angehängt. Diese Instanzen sollten eigene Implementierungen der Methoden **Get** und **Set** bereitstellen (optional **Resolve**; standardmäßig eine durchreichende No-Op-Implementierung).
+Beachten Sie, dass von Slot-Instanzen nicht erwartet wird, den Speicher für den von ihnen verwalteten Slot zu enthalten; der befindet sich in oder ist an die verwaltete Klasse bzw. das verwaltete Objekt angehängt. Diese Instanzen sollten eigene Implementierungen der Methoden **Get** und **Set** bereitstellen (optional **Resolve**; standardmäßig eine durchreichende No-Op-Implementierung).
 
-[Die meisten Slot-Operationen wenden zunächst **Resolve** auf ihre Argumentliste an, kombinieren das Ergebnis mit den Ergebnissen der Methode **Get** und rufen anschließend **Set** auf. Manche Operationen lassen einen oder beide der ersten Schritte weg; das Weglassen des dritten würde zu einer idempotenten schreibgeschützten Operation führen (der Standardmechanismus zum Lesen von Slots erfolgt über **info class** und [info object][info]).]{version="TIP516"}
+[Die meisten Slot-Operationen wenden zunächst **Resolve** auf ihre Argumentliste an, kombinieren das Ergebnis mit den Ergebnissen der Methode **Get** und rufen anschließend **Set** auf. Manche Operationen lassen einen oder beide der ersten Schritte weg; das Weglassen des dritten würde zu einer idempotenten schreibgeschützten Operation führen (der Standardmechanismus zum Lesen von Slots erfolgt über [info class][info] und [info object][info]).]{version="TIP516"}
 
 # Beispiele
 
@@ -390,7 +390,7 @@ $g update "emailaddress=admins"
         → DB: update row ::oo::Obj125 with emailaddress=admins
 ```
 
-[Dieses Beispiel zeigt, wie eine benutzerdefinierte Definition für eine Klasse erstellt wird. Beachten Sie, dass es ausdrücklich die Delegation an die vorhandenen Definitionsbefehle über **namespace path** einschließt.]{version="TIP524"}
+[Dieses Beispiel zeigt, wie eine benutzerdefinierte Definition für eine Klasse erstellt wird. Beachten Sie, dass es ausdrücklich die Delegation an die vorhandenen Definitionsbefehle über [namespace path][namespace] einschließt.]{version="TIP524"}
 
 ```
 namespace eval myDefinitions {

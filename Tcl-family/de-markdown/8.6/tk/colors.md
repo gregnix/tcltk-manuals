@@ -793,7 +793,7 @@ YellowGreen	154	205 	50
 # Portabilität
 
 **macOS**
-: Unter macOS sind die folgenden zusätzlichen Systemfarben verfügbar. Diese erste Gruppe enthält alle HIBrush-Farben, die in der HIToolbox-Bibliothek verfügbar sind. Beachten Sie, dass unter macOS 10.14 (Mojave) und später diese Farben wahrscheinlich nicht mit der Farbe übereinstimmen, die tatsächlich für den durch den Farbnamen angedeuteten Zweck verwendet wird..
+: Unter macOS sind die folgenden zusätzlichen Systemfarben verfügbar. Diese erste Gruppe enthält alle HIBrush-Farben, die in der HIToolbox-Bibliothek verfügbar sind. Beachten Sie, dass unter macOS 10.14 (Mojave) und später diese Farben wahrscheinlich nicht mit der Farbe übereinstimmen, die tatsächlich für den durch den Farbnamen angedeuteten Zweck verwendet wird.
 
     ::: {.info DISPLAY="yes"}
     systemActiveAreaFill\
@@ -872,7 +872,7 @@ YellowGreen	154	205 	50
     systemWindowBody
     :::
 
-    Tk unterstützt alle NSColors in der macOS System ColorList. Die Namenskonvention für diese Farben ist, dass der Tk-Name durch Großschreibung des macOS-Namens und Hinzufügen des Präfixes „system" erzeugt wird. Unter macOS 10.14 (Mojave) und später erscheinen viele dieser „semantischen" Farben unterschiedlich, je nachdem, ob das NSWindow, in dem sie verwendet werden, das Aqua- oder DarkAqua-Erscheinungsbild hat. Die System ColorList unterscheidet sich zwischen macOS-Versionen, und einige Farben, wie systemLinkColor und systemControlAccentColor, werden auf älteren Systemen simuliert, die sie nicht bereitstellten. Alle unten aufgeführten Farben sind auf allen unterstützten macOS-Versionen verfügbar, aber neuere Systeme unterstützen zusätzliche Farben..
+    Tk unterstützt alle NSColors in der macOS System ColorList. Die Namenskonvention für diese Farben ist, dass der Tk-Name durch Großschreibung des macOS-Namens und Hinzufügen des Präfixes „system“ erzeugt wird. Unter macOS 10.14 (Mojave) und später erscheinen viele dieser „semantischen“ Farben unterschiedlich, je nachdem, ob das NSWindow, in dem sie verwendet werden, das Aqua- oder DarkAqua-Erscheinungsbild hat. Die System ColorList unterscheidet sich zwischen macOS-Versionen, und einige Farben, wie systemLinkColor und systemControlAccentColor, werden auf älteren Systemen simuliert, die sie nicht bereitstellten. Alle unten aufgeführten Farben sind auf allen unterstützten macOS-Versionen verfügbar, aber neuere Systeme unterstützen zusätzliche Farben.
 
     ::: {.info DISPLAY="yes"}
     systemControlAccentColor\
@@ -888,7 +888,7 @@ YellowGreen	154	205 	50
     systemTextColor
     :::
 
-    Die nummerierten systemWindowBackgroundColors unten werden in den Widgets [ttk::notebook][ttk_notebook] und [ttk::labelframe][ttk_labelframe] verwendet, um einen kontrastierenden Hintergrund bereitzustellen. Jede nummerierte Farbe kontrastiert mit ihrem Vorgänger..
+    Die nummerierten systemWindowBackgroundColors unten werden in den Widgets [ttk::notebook][ttk_notebook] und [ttk::labelframe][ttk_labelframe] verwendet, um einen kontrastierenden Hintergrund bereitzustellen. Jede nummerierte Farbe kontrastiert mit ihrem Vorgänger.
 
     ::: {.info DISPLAY="yes"}
     systemWindowBackgroundColor\
@@ -902,7 +902,7 @@ YellowGreen	154	205 	50
     :::
 
 **Windows**
-: Unter Windows sind die folgenden zusätzlichen Systemfarben verfügbar (beachten Sie, dass die tatsächlichen Farbwerte vom derzeit aktiven Betriebssystem-Design abhängen):.
+: Unter Windows sind die folgenden zusätzlichen Systemfarben verfügbar (beachten Sie, dass die tatsächlichen Farbwerte vom derzeit aktiven Betriebssystem-Theme abhängen):
 
     ::: {.info DISPLAY="yes"}
     system3dDarkShadow	systemHighlight\

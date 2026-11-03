@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-tcl::chan::std – Standards-E/A, Zusammenführung von stdin und stdout
+tcl::chan::std – Standard-E/A, Zusammenführung von stdin und stdout
 
 # Übersicht
 
@@ -32,9 +32,9 @@ tcl::chan::std – Standards-E/A, Zusammenführung von stdin und stdout
 
 # Beschreibung
 
-Das Paket **tcl::chan::std** stellt einen Befehl bereit, mit dem ein Standardkanal erstellt wird, der stdin und stdout zu einem einzigen les- und schreibbaren Kanal zusammenfasst. Das Ergebnis lässt sich nicht wie die ursprünglichen Standardkanäle durchsuchbar machen.
+Das Paket **tcl::chan::std** stellt einen Befehl bereit, mit dem ein Standardkanal erstellt wird, der stdin und stdout zu einem einzigen les- und schreibbaren Kanal zusammenfasst. Wie die ursprünglichen Standardkanäle ist das Ergebnis nicht positionierbar.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::core**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::core**“.
 
 # API
 

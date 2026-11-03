@@ -38,7 +38,7 @@ Merkmale der *Ntext*-Bindungen, die sich von den Standard-*Text*-Bindungen unter
 
 - Wenn Sie nahe dem Ende einer (logischen) Zeile klicken, springt der Cursor an das Ende dieser Zeile *(nicht an den Anfang der nächsten Zeile)*. Befindet sich das Widget im Modus *-wrap* *word*, gilt dieselbe Regel für die Anzeigezeilen.
 
-- Durch einen Doppelklick oder das Ziehen nahe dem Ende einer (logischen) Zeile werden Zeichen ab dem Ende dieser Zeile markiert bzw. ausgewählt *(nicht die nächste Zeile oder der Bereich am Zeilenende, in dem sich keine Zeichen befinden)*.  Wenn das Widget im Modus *-wrap* *word* ist, gilt dieselbe Regel für die Anzeige von Zeilen.
+- Durch einen Doppelklick oder das Ziehen nahe dem Ende einer (logischen) Zeile werden Zeichen ab dem Ende dieser Zeile markiert bzw. ausgewählt *(nicht die nächste Zeile oder der Bereich am Zeilenende, in dem sich keine Zeichen befinden)*.  Wenn das Widget im Modus *-wrap* *word* ist, gilt dieselbe Regel für Anzeigezeilen.
 
 - Auf anderen Fenstersystemen als macOS Aqua führt die *Home*-Taste die Funktion „Smart Home“ aus (durch wiederholtes Drücken der Taste wird der Cursor zunächst an den Anfang der Anzeigezeile, dann zum ersten Nicht-Leerzeichen am Anfang der logischen Zeile bewegt und schließlich zwischen dem Anfang und dem Ende der führenden Leerzeichen umgeschaltet); die *End*-Taste implementiert „Smart End“ (das ähnlich wie „Smart Home“ funktioniert).  Unter macOS Aqua wird diese Funktionalität durch die Operationen <Command-Left> und <Command-Right> bereitgestellt.
 
@@ -52,7 +52,7 @@ Merkmale der *Ntext*-Bindungen, die sich von den Standard-*Text*-Bindungen unter
 
 - Im macOS-Aqua-Fenstersystem hält sich *Ntext* an die Aqua-Konventionen für die Platzierung der Einfügemarke, wenn eine Auswahl durch die Tastaturnavigation aufgehoben wird.  Dieses Verhalten kann deaktiviert werden, indem **::ntext::classicSelection** auf **1** gesetzt wird (siehe Abschnitt [Konfigurationsoptionen]).
 
-- Wenn Sie <Shift-Button1> auswählen, erfolgt die Auswahl an der vorherigen Position des Einfügecursors. *(Im Tag „Text binding“ kann der Anker der Auswahl die Position des letzten Mausklicks sein.)*
+- Wenn Sie mit <Shift-Button1> auswählen, reicht die Auswahl ab der vorherigen Position des Einfügecursors. *(Im Bindungs-Tag Text kann der Anker der Auswahl die Position des letzten Mausklicks sein.)*
 
 - <Shift-Button1>-Operationen haben keinen Einfluss auf den Anker der Auswahl. *(Im Text-Bindungs-Tag ist dies jedoch der Fall.)*
 
@@ -61,16 +61,16 @@ Merkmale der *Ntext*-Bindungen, die sich von den Standard-*Text*-Bindungen unter
 
 In den letzten drei Fällen ist das Verhalten von *Text* oft nützlich, daher bietet Ihnen *Ntext* die Option, es beizubehalten, indem Sie die im Namespace ::ntext definierten Variablen auf 1 setzen (anstelle ihres Standardwerts 0).  Eine ausführlichere Erläuterung dieser Funktionen:
 
-- Wenn Sie an Position A mit der Maus klicken, anschließend den Cursor mithilfe der Tastatur zu B bewegen, dann die Taste Shift gedrückt halten und an Position C mit der Maus klicken, ergibt das Bindungs-Tag *Text* eine Auswahl von A bis C; gibt *Ntext* eine Auswahl von B bis C an.  Wenn Sie möchten, dass sich *Ntext* in dieser Hinsicht wie *Text* verhält, setzen Sie **::ntext::classicMouseSelect** auf 1.
+- Wenn Sie an Position A mit der Maus klicken, anschließend den Cursor mithilfe der Tastatur zu B bewegen, dann die Taste Shift gedrückt halten und an Position C mit der Maus klicken, ergibt das Bindungs-Tag *Text* eine Auswahl von A bis C; *Ntext* ergibt eine Auswahl von B bis C.  Wenn Sie möchten, dass sich *Ntext* in dieser Hinsicht wie *Text* verhält, setzen Sie **::ntext::classicMouseSelect** auf 1.
 
-- Das Bindungs-Tag *Text* ermöglicht es, dass aufeinanderfolgende <Shift-Button-1>-Ereignisse beide Enden der Auswahl verändern, indem der Anker der Auswahl an das Ende der Auswahl verschoben wird, das am weitesten vom Mausklick entfernt ist.  Im Gegensatz dazu fixiert das Bindungs-Tag *Ntext* den Anker, und mehrere Ereignisse Shift-Button-1 können nur das nicht verankerte Ende der Auswahl verschieben. Soll sich *Ntext* darin wie *Text* verhalten, setzt man **::ntext::classicAnchor** auf 1. Bei *Text* und bei *Ntext* verändert die Tastaturnavigation bei gedrückter Taste Shift die Auswahl und hält den Auswahlanker fest.
+- Das Bindungs-Tag *Text* ermöglicht es, dass aufeinanderfolgende <Shift-Button-1>-Ereignisse beide Enden der Auswahl verändern, indem der Anker der Auswahl an das Ende der Auswahl verschoben wird, das am weitesten vom Mausklick entfernt ist.  Im Gegensatz dazu fixiert das Bindungs-Tag *Ntext* den Anker, und mehrere Ereignisse Shift-Button-1 können nur das nicht verankerte Ende der Auswahl verschieben. Soll sich *Ntext* darin wie *Text* verhalten, setzen Sie **::ntext::classicAnchor** auf 1. Bei *Text* und bei *Ntext* verändert die Tastaturnavigation bei gedrückter Taste Shift die Auswahl und hält den Auswahlanker fest.
 
 - Die folgenden „zusätzlichen“ *Text*-Bindungen sind standardmäßig deaktiviert, können jedoch in *Ntext* aktiviert werden, indem Sie **::ntext::classicExtras** auf 1 setzen: <Control-a>, <Control-b>, <Control-d>, <Control-e>, <Control-f>, <Control-h>, <Control-i>, <Control-k>, <Control-n>, <Control-o>, <Control-p>, <Control-t>, <Control-space>, <Control-Shift-space>.
 
 
 # Konfigurationsoptionen
 
-*Ntext* bietet Alternativen zu einer Reihe von Verhaltensweisen des klassischen *Text*-Bindungs-Tags. Sofern eine Option vorhanden ist, ist das *Ntext*-Verhalten standardmäßig aktiviert, mit Ausnahme der Einrückung von Zeilen, die auf einer separaten Seite unter *ntextIndent* erläutert wird.
+*Ntext* bietet Alternativen zu einer Reihe von Verhaltensweisen des klassischen *Text*-Bindungs-Tags. Sofern eine Option vorhanden ist, ist das *Ntext*-Verhalten standardmäßig aktiviert, mit Ausnahme der Einrückung von Anzeigezeilen, die auf einer separaten Seite unter *ntextIndent* erläutert wird.
 
 Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die Werte einer Reihe von Namespace-Variablen festgelegt werden:
 
@@ -129,11 +129,11 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 # Interne Abläufe
 
-Um unabhängig von der Version von **Tk** (8.5 oder 8.6) zu bleiben, definiert **ntext** eigene virtuelle Ereignisse.  Diese neuen virtuellen Ereignisse werden ausschließlich im Tag für Bindungen *Ntext* verwendet und beeinträchtigen daher nicht die in anderem Code verwendeten realen oder virtuellen Ereignisse.
+Um unabhängig von der Version von **Tk** (8.5 oder 8.6) zu bleiben, definiert **ntext** eigene virtuelle Ereignisse.  Diese neuen virtuellen Ereignisse werden ausschließlich im Bindungs-Tag *Ntext* verwendet und beeinträchtigen daher nicht die in anderem Code verwendeten realen oder virtuellen Ereignisse.
 
 Zu diesen Ereignissen gehören <<NtextCut>>, <<NtextCopy>>, <<NtextPaste>>, die jeweils anstelle von <<Cut>>, <<Copy>> und <<Paste>> verwendet werden.
 
-Die Definitionen der virtuellen Ereignisse <<NtextCut>> (usw.) entsprechen den Definitionen der <<Cut>> (usw.) in **Tk** 8.6.
+Die Definitionen der virtuellen Ereignisse <<NtextCut>> (usw.) ähneln den Definitionen von <<Cut>> (usw.) in **Tk** 8.6.
 
 # Bugs
 

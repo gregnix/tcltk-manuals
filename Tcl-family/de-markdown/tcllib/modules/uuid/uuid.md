@@ -27,12 +27,12 @@ uuid – Erzeugung und Vergleich von UUIDs
 
 # Beschreibung
 
-Dieses Paket stellt einen Generator für universell eindeutige Identifikatoren (UUID) bereit, die auch als global eindeutige Identifikatoren (GUID) bezeichnet werden. Diese Implementierung folgt dem Spezifikationsentwurf aus (1), obwohl es sich dabei eigentlich um einen abgelaufenen Entwurf handelt.
+Dieses Paket stellt einen Generator für universell eindeutige Bezeichner (UUID) bereit, die auch als global eindeutige Bezeichner (GUID) bezeichnet werden. Diese Implementierung folgt dem Spezifikationsentwurf aus (1), obwohl es sich dabei eigentlich um einen abgelaufenen Entwurf handelt.
 
 # Befehle
 
 **::uuid::uuid generate**
-: Erzeugt eine UUID vom Typ 4, indem eine bestimmte Anzahl von Bits verschiedener Daten, darunter die Uhrzeit und der Hostname, mit einem MD5-Hash-Algorithmus verarbeitet wird. Gibt die Zeichenfolgenrepräsentation der neuen UUID zurück.
+: Erzeugt eine UUID vom Typ 4, indem eine bestimmte Anzahl von Bits verschiedener Daten, darunter die Uhrzeit und der Hostname, mit einem MD5-Hash-Algorithmus verarbeitet wird. Gibt die Zeichenkettendarstellung der neuen UUID zurück.
 
 **::uuid::uuid equal** *id1* *id2*
 : Vergleicht zwei UUIDs und gibt „true“ zurück, wenn beide Argumente dieselbe UUID sind.

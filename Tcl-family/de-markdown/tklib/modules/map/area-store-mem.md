@@ -41,7 +41,7 @@ Copyright:
 
 # Name
 
-map::area::store::memory – In-Memory-Speicher für Geo-/Flächendefinitionen
+map::area::store::memory – In-Memory-Speicher für geo/area-Definitionen
 
 # Übersicht
 

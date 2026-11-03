@@ -124,7 +124,7 @@ Der Befehl [fconfigure] kann verwendet werden, um zusätzliche, serielle Ports b
 : Diese Option ist ein Satz aus vier durch Kommas getrennten Werten: Baudrate, Parität, Anzahl der Datenbits und Anzahl der Stoppbits für diesen seriellen Port. Die *baud*-Rate ist eine einfache Ganzzahl, die die Verbindungsgeschwindigkeit angibt. *Parity* ist einer der Buchstaben **n**, **o**, **e**, **m**, **s**; sie stehen für die Paritätsoptionen „none“, „odd“, „even“, „mark“ bzw. „space“. *Data* ist die Anzahl der Datenbits und sollte eine Ganzzahl von 5 bis 8 sein, *stop* ist die Anzahl der Stoppbits und sollte die Ganzzahl 1 oder 2 sein.
 
 **-handshake** *type*
-: (Windows und Unix). Diese Option dient zur Einrichtung der automatischen Handshake-Steuerung. Beachten Sie, dass nicht alle Handshake-Typen von Ihrem Betriebssystem unterstützt werden. Der Parameter *type* ist unabhängig von der Groß-/Kleinschreibung.
+: (Windows und Unix). Diese Option dient zur Einrichtung der automatischen Handshake-Steuerung. Beachten Sie, dass möglicherweise nicht alle Handshake-Typen von Ihrem Betriebssystem unterstützt werden. Der Parameter *type* ist unabhängig von der Groß-/Kleinschreibung.
 
     Ist *type* **none**, ist jeder Handshake ausgeschaltet. **rtscts** aktiviert den Hardware-Handshake. Die Hardware-Handshake-Signale sind unten beschrieben. Für den Software-Handshake **xonxoff** können die Handshake-Zeichen mit **-xchar** neu definiert werden. Ein zusätzlicher Hardware-Handshake **dtrdsr** ist nur unter Windows verfügbar. Es gibt keine Standard-Handshake-Konfiguration; der Anfangswert hängt von den Betriebssystemeinstellungen ab. Die Option **-handshake** kann nicht abgefragt werden.
 
@@ -144,7 +144,7 @@ Der Befehl [fconfigure] kann verwendet werden, um zusätzliche, serielle Ports b
 : (Windows und Unix). Diese Option dient zum Abfragen oder Ändern der Software-Handshake-Zeichen. Normalerweise sollten die Betriebssystem-Standardwerte DC1 (0x11) und DC3 (0x13) sein, die den ASCII-Standardzeichen XON und XOFF entsprechen.
 
 **-pollinterval** *msec*
-: (nur Windows). Diese Option legt die maximale Zeit zwischen Abfragen auf Datei-Events fest. Das betrifft das Intervall zwischen Ereignisprüfungen im gesamten Tcl-Interpreter (der kleinste Wert gewinnt immer). Verwenden Sie diese Option nur, wenn Sie den seriellen Port häufiger oder seltener als alle 10 ms (Standard) abfragen möchten.
+: (nur Windows). Diese Option legt die maximale Zeit zwischen Abfragen auf Dateiereignisse fest. Das betrifft das Intervall zwischen Ereignisprüfungen im gesamten Tcl-Interpreter (der kleinste Wert gewinnt immer). Verwenden Sie diese Option nur, wenn Sie den seriellen Port häufiger oder seltener als alle 10 ms (Standard) abfragen möchten.
 
 **-sysbuffer** *inSize*
 : siehe unten ...
@@ -190,7 +190,7 @@ RS-232 ist die am häufigsten verwendete standardisierte elektrische Schnittstel
 
 # Fehlercodes (nur Windows)
 
-Bei seriellen Leseoperationen oder bei der Ereignisabfrage im Hintergrund können viele verschiedene Fehler auftreten. Das externe Gerät kann ausgeschaltet sein, die Datenleitungen können verrauscht sein, Systempuffer können überlaufen oder Ihre Moduseinstellungen können falsch sein. Deshalb sollte zuverlässige Software serielle Leseoperationen immer [catch]en. Im Fehlerfall gibt Tcl einen allgemeinen Datei-E/A-Fehler zurück. Dann kann [fconfigure] **-lasterror** helfen, das Problem einzugrenzen. Folgende Fehlercodes können zurückgegeben werden.
+Bei seriellen Leseoperationen oder bei der Ereignisabfrage im Hintergrund können viele verschiedene Fehler auftreten. Das externe Gerät kann ausgeschaltet sein, die Datenleitungen können verrauscht sein, Systempuffer können überlaufen oder Ihre Moduseinstellungen können falsch sein. Deshalb sollte zuverlässige Software serielle Leseoperationen immer mit [catch] absichern. Im Fehlerfall gibt Tcl einen allgemeinen Datei-E/A-Fehler zurück. Dann kann [fconfigure] **-lasterror** helfen, das Problem einzugrenzen. Folgende Fehlercodes können zurückgegeben werden.
 
 **RXOVER**
 : Überlauf des Windows-Eingabepuffers. Die Daten kommen schneller an, als Ihr Skript sie liest, oder Ihr System ist überlastet. Verwenden Sie [fconfigure] **-sysbuffer**, um einen temporären Engpass zu vermeiden und/oder beschleunigen Sie Ihr Skript.

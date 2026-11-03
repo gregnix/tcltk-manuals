@@ -210,7 +210,7 @@ Die Konfigurationsoptionen, die beim Erzeugen der Verbindung und beim Objektbefe
 Die zulässigen Werte für die Konfigurationsoption **-isolation** sind:
 
 **readuncommitted**
-: Erlaubt der Transaktion, „dirty“, also unbestätigte Daten zu lesen. Diese Isolationsstufe kann die Datenintegrität gefährden, garantiert nicht, dass Fremdschlüssel oder Eindeutigkeitsbedingungen erfüllt sind, und garantiert allgemein keine Datenkonsistenz.
+: Erlaubt der Transaktion, „dirty“, also nicht festgeschriebene Daten zu lesen. Diese Isolationsstufe kann die Datenintegrität gefährden, garantiert nicht, dass Fremdschlüssel oder Eindeutigkeitsbedingungen erfüllt sind, und garantiert allgemein keine Datenkonsistenz.
 
 **readcommitted**
 : Verbietet der Transaktion, „dirty“-Daten zu lesen, garantiert aber keine wiederholbaren Lesevorgänge. Liest eine Transaktion zu einem Zeitpunkt eine Zeile der Datenbank, gibt es keine Garantie, dass dieselbe Zeile später in derselben Transaktion noch verfügbar ist.

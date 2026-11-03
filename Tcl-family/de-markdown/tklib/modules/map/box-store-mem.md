@@ -41,7 +41,7 @@ Copyright:
 
 # Name
 
-map::box::store::memory – In-Memory-Speicher für Geo-/Box-Definitionen
+map::box::store::memory – In-Memory-Speicher für geo/box-Definitionen
 
 # Übersicht
 

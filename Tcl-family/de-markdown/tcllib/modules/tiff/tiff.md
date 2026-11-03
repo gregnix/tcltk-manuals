@@ -154,7 +154,7 @@ In einer einzelnen TIFF-Datei können mehrere Bilder gespeichert sein. Die Argum
 
 # Variablen
 
-Für die Zuordnung von vierstelligen Tag-Namen zu Zeichenfolgen-Namen wird das Array ::tiff::tiff\_tags verwendet. Für die umgekehrte Zuordnung wird das Array ::tiff::tiff\_sgat verwendet.
+Für die Zuordnung von vierstelligen Tag-Namen zu Zeichenkettennamen wird das Array ::tiff::tiff\_tags verwendet. Für die umgekehrte Zuordnung wird das Array ::tiff::tiff\_sgat verwendet.
 
 # Einschränkungen
 

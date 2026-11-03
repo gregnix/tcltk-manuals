@@ -137,7 +137,7 @@ Das Abbilden und Entfernen von Busy-Fenstern erzeugt Enter/Leave-Ereignisse für
 
 ## Tastaturereignisse
 
-Wenn ein Widget als beschäftigt markiert ist, verhindert das Busy-Fenster, dass der Benutzer durch Anklicken den Tastaturfokus auf das Widget setzen kann. Hatte das Widget jedoch bereits den Fokus, kann es weiterhin Tastaturereignisse empfangen. Das Widget kann den Fokus auch weiterhin per Tastatur-Traversal erhalten. Um das zu verhindern, müssen Sie den Fokus auf ein anderes Fenster verschieben und sicherstellen, dass der Fokus nicht zu den als beschäftigt markierten Widgets zurückkehren kann (z. B. durch Beschränkung des Fokus auf einen Abbrechen-Button).
+Wenn ein Widget als beschäftigt markiert ist, verhindert das Busy-Fenster, dass der Benutzer durch Anklicken den Tastaturfokus auf das Widget setzen kann. Hatte das Widget jedoch bereits den Fokus, kann es weiterhin Tastaturereignisse empfangen. Das Widget kann den Fokus auch weiterhin per Tastaturnavigation erhalten. Um das zu verhindern, müssen Sie den Fokus auf ein anderes Fenster verschieben und sicherstellen, dass der Fokus nicht zu den als beschäftigt markierten Widgets zurückkehren kann (z. B. durch Beschränkung des Fokus auf einen Abbrechen-Button).
 
 ```
 pack [frame .frame]

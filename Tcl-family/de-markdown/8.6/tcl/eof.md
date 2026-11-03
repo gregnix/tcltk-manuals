@@ -51,7 +51,7 @@ while {1} {
 }
 ```
 
-Liest den Inhalt einer Datei in Datensätzen fester Größe:
+Liest den Inhalt einer Datei in Datensätzen fester Größe und gibt ihn aus:
 
 ```
 set f [open somefile.dat]

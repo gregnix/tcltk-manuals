@@ -35,7 +35,7 @@ Die in diesem Dokument beschriebene Anwendung, **diagram-viewer**, ist ein schla
 
 **diagram-viewer** wurde unter Berücksichtigung der folgenden beiden Anwendungsfälle entwickelt.
 
-1. Prozess der Verarbeitung und Anzeige einer oder mehrerer Diagrammdateien.
+1. Verarbeitung und Anzeige einer oder mehrerer Diagrammdateien.
 
 2. Stapelkonvertierung einer oder mehrerer Diagrammdateien in Rasterbilder.
 

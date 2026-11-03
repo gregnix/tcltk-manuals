@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-Seite – Parser-Generator
+page – Parser-Generator
 
 # Übersicht
 
@@ -35,14 +35,14 @@ Seine Vielseitigkeit beruht auf der Verwendung von *Plugins* zum Lesen, zur Tran
 ## Befehlszeile
 
 **page** ?*options*...? ?*input* ?*output*??
-: Dies ist die allgemeine Form zum Aufruf von **page**. Die Anwendung liest den Inhalt der Datei *input*, führt einen Prozess unter Berücksichtigung der festgelegten *options* durch und schreibt das Ergebnis anschließend in die Datei *output*.
+: Dies ist die allgemeine Form zum Aufruf von **page**. Die Anwendung liest den Inhalt der Datei *input*, verarbeitet ihn unter Steuerung der festgelegten *options* und schreibt das Ergebnis anschließend in die Datei *output*.
 
-    Wenn *input* die Zeichenfolge **-** ist, werden die zu verarbeitenden Daten statt aus einer Datei aus **stdin** gelesen. Analog dazu wird das Ergebnis in die Datei **stdout** statt in eine Datei geschrieben, wenn *output* die Zeichenfolge **-** ist. Fehlt eine Angabe für die Ausgabe oder Eingabe, geht die Anwendung von „**-**“ aus.
+    Wenn *input* die Zeichenkette **-** ist, werden die zu verarbeitenden Daten statt aus einer Datei aus **stdin** gelesen. Analog dazu wird das Ergebnis statt in eine Datei nach **stdout** geschrieben, wenn *output* die Zeichenkette **-** ist. Fehlt eine Angabe für die Ausgabe oder Eingabe, geht die Anwendung von „**-**“ aus.
 
     Die detaillierten Spezifikationen der unterstützten *options* finden Sie im Abschnitt [Optionen].
 
     path *input* (in)
-    : Dieses Argument legt den Pfad zu der Datei fest, die von der Anwendung verarbeitet werden soll, oder „**-**“. Der letzte Wert bewirkt, dass die Anwendung den Text aus der Datei „**stdin**“ liest. Andernfalls muss die Datei vorhanden und lesbar sein. Wenn das Argument fehlt, wird „**-**“ angenommen.
+    : Dieses Argument legt den Pfad zu der Datei fest, die von der Anwendung verarbeitet werden soll, oder „**-**“. Der letzte Wert bewirkt, dass die Anwendung den Text aus „**stdin**“ liest. Andernfalls muss die Datei vorhanden und lesbar sein. Wenn das Argument fehlt, wird „**-**“ angenommen.
 
     path *output* (in)
     : Dieses Argument legt fest, wohin der generierte Text geschrieben werden soll. Es kann sich dabei um den Pfad zu einer Datei oder um „**-**“ handeln. Der letztgenannte Wert bewirkt, dass die Anwendung das generierte Dokument in „**stdout**“ schreibt.
@@ -61,7 +61,7 @@ Seine Vielseitigkeit beruht auf der Verwendung von *Plugins* zum Lesen, zur Tran
 
 In diesem Abschnitt werden alle Optionen beschrieben, die dem Benutzer der Anwendung zur Verfügung stehen. Die Optionen werden stets der Reihe nach verarbeitet. Das heißt, wenn sowohl **--help** als auch **--version** angegeben sind, hat die zuerst gefundene Option Vorrang.
 
-Unbekannte Optionen, die vor einer der Optionen **-rd**, **-wr** oder **-tr** festgelegt werden, führen dazu, dass der Prozess mit einer Fehlermeldung abgebrochen wird. Unbekannte Optionen, die zwischen diesen Optionen oder nach der letzten davon stehen, werden so behandelt, als würden sie stets ein einzelnes Argument erwarten, und werden der letzten vor ihnen stehenden Plugin-Option zugeordnet. Sie werden erst geprüft, nachdem alle relevanten Plugins – und damit die von ihnen unterstützten Optionen – bekannt sind. Das heißt, solche unbekannten Optionen führen genau dann zu einem Fehler, wenn die Plugin-Option, der sie zugeordnet sind, diese nicht versteht und nicht durch eine nachfolgende Plugin-Option ersetzt wurde.
+Unbekannte Optionen, die vor einer der Optionen **-rd**, **-wr** oder **-tr** festgelegt werden, führen dazu, dass die Verarbeitung mit einem Fehler abgebrochen wird. Unbekannte Optionen, die zwischen diesen Optionen oder nach der letzten davon stehen, werden so behandelt, als würden sie stets ein einzelnes Argument erwarten, und werden der letzten vor ihnen stehenden Plugin-Option zugeordnet. Sie werden erst geprüft, nachdem alle relevanten Plugins – und damit die von ihnen unterstützten Optionen – bekannt sind. Das heißt, solche unbekannten Optionen führen genau dann zu einem Fehler, wenn die Plugin-Option, der sie zugeordnet sind, diese nicht versteht und nicht durch eine nachfolgende Plugin-Option ersetzt wurde.
 
 Die Standardoptionen kommen genau dann zur Anwendung, wenn die Befehlszeile keinerlei Optionen enthielt. Sie richten die Anwendung als PEG-basierten Parsergenerator ein. Die genaue Liste der Optionen lautet
 
@@ -90,7 +90,7 @@ Und nun die unterstützten Optionen und ihre Argumente, sofern vorhanden:
 : Diese Option weist die Anwendung an, während des Einlesens der Eingabe eine visuelle Rückmeldung zu aktivieren.
 
 **-T**
-: Diese Option weist die Anwendung an, während des Einlesens der Eingabe Statistiken zu erfassen und diese nach Abschluss des Einlesevorgangs, jedoch vor Beginn des Prozesses, auszugeben.
+: Diese Option weist die Anwendung an, während des Einlesens der Eingabe Statistiken zu erfassen und diese nach Abschluss des Einlesevorgangs, jedoch vor Beginn der Verarbeitung, auszugeben.
 
 **-D**
 : Diese Option weist die Anwendung an, die Protokollierung in der „Safe“-Basis zu aktivieren, um Probleme mit Plugins zu beheben.
@@ -120,7 +120,7 @@ Und nun die unterstützten Optionen und ihre Argumente, sofern vorhanden:
 : siehe unten ...
 
 **--transform** process
-: Diese Optionen legen ein Plugin fest, das auf die Eingabe angewendet werden soll. Im Gegensatz zu Lese- und Schreiboperationen überschreibt jede Verwendung die vorherigen Verwendungen *nicht*, sondern fügt jedes ausgewählte Plugin einer Liste von Transformationen hinzu – entweder am Anfang oder am Ende –, je nachdem, welche der beiden Optionen **-p** oder **-a** zuletzt verwendet wurde. Standardmäßig werden die neuen Transformationen angehängt.
+: Diese Optionen legen ein Plugin fest, das auf die Eingabe angewendet werden soll. Im Gegensatz zu Readern und Writern überschreibt jede Verwendung die vorherigen Verwendungen *nicht*, sondern fügt jedes ausgewählte Plugin einer Liste von Transformationen hinzu – entweder am Anfang oder am Ende –, je nachdem, welche der beiden Optionen **-p** oder **-a** zuletzt verwendet wurde. Standardmäßig werden die neuen Transformationen angehängt.
 
 **-a**
 : siehe unten ...
@@ -143,7 +143,7 @@ Und nun die unterstützten Optionen und ihre Argumente, sofern vorhanden:
 **--configuration** file
 : Diese Option bewirkt, dass die Anwendung eine Konfigurationsdatei und/oder ein Plugin lädt. Dabei handelt es sich um ein Plugin, das im Wesentlichen einen vordefinierten Satz von Befehlszeilenoptionen bereitstellt. Diese werden genau so verarbeitet, als wären sie anstelle der Option und ihrer Argumente angegeben worden. Das bedeutet, dass unbekannte Optionen, die am Anfang der Konfigurationsdatei gefunden werden, dem letzten Plugin zugeordnet werden, selbst wenn dieses Plugin vor der Konfigurationsdatei selbst angegeben wurde. Umgekehrt können unbekannte Optionen, die nach der Konfigurationsdatei folgen, einem in der Datei angegebenen Plugin zugeordnet werden.
 
-    Wenn es sich bei dem Argument um eine Datei handelt, die nicht als Plugin geladen werden kann, geht die Anwendung davon aus, dass ihr Inhalt eine Liste von Optionen und deren Argumenten ist, getrennt durch Leerzeichen, Tabulatoren und Zeilenumbrüche. Optionen und Argumente, die Leerzeichen enthalten, können durch doppelte Anführungszeichen (") und einfache Anführungszeichen (') in Anführungszeichen gesetzt werden. Das Anführungszeichen kann innerhalb einer in Anführungszeichen gesetzten Zeichenfolge durch Verdopplung angegeben werden. Zeilenumbrüche in einer in Anführungszeichen gesetzten Zeichenfolge werden unverändert akzeptiert.
+    Wenn es sich bei dem Argument um eine Datei handelt, die nicht als Plugin geladen werden kann, geht die Anwendung davon aus, dass ihr Inhalt eine Liste von Optionen und deren Argumenten ist, getrennt durch Leerzeichen, Tabulatoren und Zeilenumbrüche. Optionen und Argumente, die Leerzeichen enthalten, können durch doppelte Anführungszeichen (") und einfache Anführungszeichen (') in Anführungszeichen gesetzt werden. Das Anführungszeichen kann innerhalb einer in Anführungszeichen gesetzten Zeichenkette durch Verdopplung angegeben werden. Zeilenumbrüche in einer in Anführungszeichen gesetzten Zeichenkette werden unverändert akzeptiert.
 
 
 ## Plugins
@@ -160,7 +160,7 @@ Jedes dieser Argumente wird zunächst als Name einer Datei behandelt, und diese 
     Wir verfügen über ein vordefiniertes Plugin:
 
     *peg*
-    : Es richtet die Anwendung als Parser-Generator ein, der Parsing-Ausdrucksgrammatiken akzeptiert und einen Packrat-Parser in Tcl erstellt. Die tatsächlich festgelegten Argumente lauten:
+    : Es richtet die Anwendung als Parser-Generator ein, der Parsing Expression Grammars akzeptiert und einen Packrat-Parser in Tcl erstellt. Die tatsächlich festgelegten Argumente lauten:
 
         ```
         	--reset
@@ -173,12 +173,12 @@ Jedes dieser Argumente wird zunächst als Name einer Datei behandelt, und diese 
 
 
 **-r** *name*
-: Sehr geehrte Leserinnen und Leser. Der Name des Pakets für das Plugin *name* lautet „page::reader::*name*“.
+: Reader. Der Name des Pakets für das Plugin *name* lautet „page::reader::*name*“.
 
     Wir verfügen über fünf vordefinierte Plugins:
 
     *peg*
-    : Interpretiert die Eingabe als Parsing-Ausdruck-Grammatik (*PEG*) und generiert dafür eine Baumdarstellung. Sowohl die Syntax von PEGs als auch die Struktur der Baumdarstellung werden in den jeweiligen Manpages erläutert.
+    : Interpretiert die Eingabe als Parsing Expression Grammar (*PEG*) und generiert dafür eine Baumdarstellung. Sowohl die Syntax von PEGs als auch die Struktur der Baumdarstellung werden in den jeweiligen Manpages erläutert.
 
     *hb*
     : Interpretiert die Eingabe als Tcl-Code, wie er vom Writer-Plugin *hb* generiert wird, und erzeugt dessen Baumdarstellung.
@@ -190,22 +190,22 @@ Jedes dieser Argumente wird zunächst als Name einer Datei behandelt, und diese 
     : Interpretiert die Eingabe als Grammatikbeschreibung, wie sie der von Richard Hipp entwickelte Parsergenerator *LEMON* versteht, und erzeugt daraus eine Baumdarstellung. Sowohl die Eingabesyntax als auch die Struktur der Baumdarstellung sind in den jeweiligen Handbuchseiten erklärt.
 
     *treeser*
-    : Der Interpreter interpretiert die Eingabe als Serialisierung eines **struct::tree**. Sie wird als solche validiert, jedoch nicht darüber hinaus. Es wird *nicht* davon ausgegangen, dass es sich um die Baumdarstellung einer Grammatik handelt.
+    : Interpretiert die Eingabe als Serialisierung eines **struct::tree**. Sie wird als solche validiert, jedoch nicht darüber hinaus. Es wird *nicht* davon ausgegangen, dass es sich um die Baumdarstellung einer Grammatik handelt.
 
 
 **-w** *name*
-: Autoren. Der Name des Pakets für das Plugin *name* lautet „page::writer::*name*“.
+: Writer. Der Name des Pakets für das Plugin *name* lautet „page::writer::*name*“.
 
     Wir verfügen über acht vordefinierte Plugins:
 
     *identity*
-    : Schreibt die eingehenden Daten einfach unverändert weiter, ohne Änderungen vorzunehmen. Dies eignet sich gut zur Überprüfung des Rohdatenergebnisses eines Lesers oder einer Transformation.
+    : Schreibt die eingehenden Daten einfach unverändert weiter, ohne Änderungen vorzunehmen. Dies eignet sich gut zur Überprüfung des Rohdatenergebnisses eines Readers oder einer Transformation.
 
     *null*
     : Erzeugt nichts und ignoriert die eingehende Datenstruktur.
 
     *tree*
-    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um ein „**struct::tree**“ handelt, und generiert eine eingerückte textuelle Darstellung aller Knoten, ihrer übergeordneten Beziehungen sowie ihrer Attributinformationen.
+    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um ein „**struct::tree**“ handelt, und generiert eine eingerückte textuelle Darstellung aller Knoten, ihrer Eltern-Kind-Beziehungen sowie ihrer Attributinformationen.
 
     *peg*
     : Geht davon aus, dass die eingehende Datenstruktur eine Baumdarstellung einer *PEG* oder einer anderen Grammatik ist, und gibt sie als PEG aus. Das Ergebnis ist übersichtlich formatiert und teilweise vereinfacht (Zeichenketten als Zeichenfolgen). Im Wesentlichen handelt es sich um einen „Pretty Printer“, der jedoch auch dazu verwendet werden kann, eine kanonische Darstellung der Eingabegrammatik zu erhalten.
@@ -214,17 +214,17 @@ Jedes dieser Argumente wird zunächst als Name einer Datei behandelt, und diese 
     : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um eine Baumdarstellung einer *PEG* oder einer anderen Grammatik handelt, und generiert Tcl-Code, der ein Paket definiert, welches ein **grammar::peg**-Objekt enthält, das die Grammatik umfasst, wenn dieses in einen Interpreter geladen wird.
 
     *hb*
-    : Dies ähnelt dem Writer-Plugin *tpc*, schreibt jedoch nur die Anweisungen, die statische Ausdrücke und Grammatikregeln definieren. Der Code, der das Ergebnis zu einem Paket macht, wird weggelassen.
+    : Dies ähnelt dem Writer-Plugin *tpc*, schreibt jedoch nur die Anweisungen, die den Startausdruck und die Grammatikregeln definieren. Der Code, der das Ergebnis zu einem Paket macht, wird weggelassen.
 
     *ser*
-    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um eine Baumdarstellung einer *PEG* oder einer anderen Grammatik handelt, führt eine Transformation auf der internen Ebene in ein **grammar::peg**-Objekt durch und schreibt deren Serialisierung aus.
+    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um eine Baumdarstellung einer *PEG* oder einer anderen Grammatik handelt, führt eine Transformation auf der internen Ebene in ein **grammar::peg**-Objekt durch und schreibt dessen Serialisierung aus.
 
     *me*
-    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um eine Baumdarstellung einer *PEG* oder einer anderen Grammatik handelt, und generiert Tcl-Code zur Definition eines Pakets, das einen rekursiven Abstiegsparser mit Memoization implementiert, der auf der vom Paket **grammar::mengine** bereitgestellten Match-Engine (ME) basiert.
+    : Geht davon aus, dass es sich bei der eingehenden Datenstruktur um eine Baumdarstellung einer *PEG* oder einer anderen Grammatik handelt, und generiert Tcl-Code zur Definition eines Pakets, das einen rekursiven Abstiegsparser mit Memoisierung implementiert, der auf der vom Paket **grammar::mengine** bereitgestellten Match-Engine (ME) basiert.
 
 
 **-t** *name*
-: Transformers. Der Name des Pakets für das Plugin *name* lautet „page::transform::*name*“.
+: Transformationen. Der Name des Pakets für das Plugin *name* lautet „page::transform::*name*“.
 
     Wir verfügen über zwei vordefinierte Plugins:
 
@@ -242,14 +242,14 @@ Die anwendungsspezifischen Pfade, die von **page** durchsucht werden, sind entwe
 
 1. Das Verzeichnis „*~/.page/plugin*“
 
-2. Die Variable *PAGE\_PLUGINS*
+2. Die Umgebungsvariable *PAGE\_PLUGINS*
 
 3. Der Registrierungseintrag *HKEY\_LOCAL\_MACHINE\\SOFTWARE\\PAGE\\PLUGINS*
 
 4. Der Registrierungseintrag *HKEY\_CURRENT\_USER\\SOFTWARE\\PAGE\\PLUGINS*
 
 
-Die von **page** durchsuchten typspezifischen Pfade sind entweder:
+Die von **page** durchsuchten typspezifischen Pfade sind entweder folgende oder stammen aus:
 
 1. Das Verzeichnis „*~/.page/plugin/<TYPE>*“
 

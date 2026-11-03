@@ -30,7 +30,7 @@ Zusammenfassung der Tcl-Sprachsyntax.
 Die folgenden Regeln definieren Syntax und Semantik der Tcl-Sprache:
 
 \[1\] **Befehle.**
-: Ein Tcl-Skript ist eine Zeichenkette mit einem oder mehreren Befehlen. Semikolons und Zeilenumbrüche sind Befehlstrenner, sofern sie nicht wie unten beschrieben in Anführungszeichen stehen. Schließende eckige Klammern sind während der Befehlsersetzung (siehe unten) Befehlsablaufmarker, sofern sie nicht in Anführungszeichen stehen.
+: Ein Tcl-Skript ist eine Zeichenkette mit einem oder mehreren Befehlen. Semikolons und Zeilenumbrüche sind Befehlstrenner, sofern sie nicht wie unten beschrieben in Anführungszeichen stehen. Schließende eckige Klammern sind während der Befehlsersetzung (siehe unten) Befehlsabschlusszeichen, sofern sie nicht in Anführungszeichen stehen.
 
 \[2\] **Auswertung.**
 : Ein Befehl wird in zwei Schritten ausgewertet. Zuerst zerlegt der Tcl-Interpreter den Befehl in *Wörter* und führt die unten beschriebenen Ersetzungen durch. Diese Ersetzungen erfolgen für alle Befehle auf gleiche Weise. Zweitens wird das erste Wort verwendet, um eine Befehlsprozedur zur Ausführung des Befehls zu finden; anschließend werden alle Wörter des Befehls an die Befehlsprozedur übergeben. Die Befehlsprozedur kann jedes ihrer Wörter beliebig interpretieren, etwa als Ganzzahl, Variablenname, Liste oder Tcl-Skript. Verschiedene Befehle interpretieren ihre Wörter unterschiedlich.
@@ -39,13 +39,13 @@ Die folgenden Regeln definieren Syntax und Semantik der Tcl-Sprache:
 : Die Wörter eines Befehls werden durch Leerzeichen getrennt (ausgenommen Zeilenumbrüche, die Befehlstrenner sind).
 
 \[4\] **Doppelte Anführungszeichen.**
-: Steht das erste Zeichen eines Wortes in doppelten Anführungszeichen ("""), wird das Wort durch das nächste doppelte Anführungszeichen abgeschlossen. Stehen Semikolons, schließende eckige Klammern oder Leerzeichen (einschließlich Zeilenumbrüche) zwischen den Anführungszeichen, werden sie als gewöhnliche Zeichen behandelt und zum Wort gezählt. Auf die Zeichen zwischen den Anführungszeichen werden Befehls-, Variablen- und Backslash-Ersetzungen wie unten beschrieben angewendet. Die doppelten Anführungszeichen gehören nicht zum Wort.
+: Ist das erste Zeichen eines Wortes ein doppeltes Anführungszeichen ("""), wird das Wort durch das nächste doppelte Anführungszeichen abgeschlossen. Stehen Semikolons, schließende eckige Klammern oder Leerzeichen (einschließlich Zeilenumbrüche) zwischen den Anführungszeichen, werden sie als gewöhnliche Zeichen behandelt und zum Wort gezählt. Auf die Zeichen zwischen den Anführungszeichen werden Befehls-, Variablen- und Backslash-Ersetzungen wie unten beschrieben angewendet. Die doppelten Anführungszeichen gehören nicht zum Wort.
 
 \[5\] **Argument-Erweiterung.**
 : Beginnt ein Wort mit der Zeichenkette "{\*}", gefolgt von einem Nicht-Leerzeichen, wird das führende "{\*}" entfernt und der Rest des Wortes wie jedes andere Wort geparst und substituiert. Nach der Ersetzung wird das Wort als Liste geparst (ohne Befehls- oder Variablenersetzungen; Backslash-Ersetzungen erfolgen wie üblich für eine Liste, und einzelne innere Wörter können in geschweiften Klammern oder doppelten Anführungszeichen stehen), und seine Wörter werden dem substituierten Befehl hinzugefügt. Beispielsweise ist "cmd a {\*}{b \[c\]} d {\*}{$e f {g h}}" gleichwertig zu "cmd a b {\[c\]} d {$e} f {g h}".
 
 \[6\] **Geschweifte Klammern.**
-: Steht das erste Zeichen eines Wortes in einer öffnenden geschweiften Klammer ("{") und gilt Regel \[5\] nicht, wird das Wort durch die passende schließende geschweifte Klammer ("}") abgeschlossen. Geschweifte Klammern können im Wort verschachtelt sein: Für jede zusätzliche öffnende geschweifte Klammer muss eine zusätzliche schließende vorhanden sein (steht jedoch eine öffnende oder schließende geschweifte Klammer im Wort in Backslash-Anführung, zählt sie nicht bei der Suche nach der passenden schließenden Klammer). Auf die Zeichen zwischen den geschweiften Klammern werden keine Ersetzungen angewendet, außer den unten beschriebenen Backslash-Zeilenumbruch-Ersetzungen; Semikolons, Zeilenumbrüche, schließende eckige Klammern oder Leerzeichen erhalten keine besondere Bedeutung. Das Wort besteht genau aus den Zeichen zwischen den äußeren geschweiften Klammern, ohne die Klammern selbst.
+: Ist das erste Zeichen eines Wortes eine öffnende geschweifte Klammer ("{") und gilt Regel \[5\] nicht, wird das Wort durch die passende schließende geschweifte Klammer ("}") abgeschlossen. Geschweifte Klammern können im Wort verschachtelt sein: Für jede zusätzliche öffnende geschweifte Klammer muss eine zusätzliche schließende vorhanden sein (steht jedoch eine öffnende oder schließende geschweifte Klammer im Wort in Backslash-Anführung, zählt sie nicht bei der Suche nach der passenden schließenden Klammer). Auf die Zeichen zwischen den geschweiften Klammern werden keine Ersetzungen angewendet, außer den unten beschriebenen Backslash-Zeilenumbruch-Ersetzungen; Semikolons, Zeilenumbrüche, schließende eckige Klammern oder Leerzeichen erhalten keine besondere Bedeutung. Das Wort besteht genau aus den Zeichen zwischen den äußeren geschweiften Klammern, ohne die Klammern selbst.
 
 \[7\] **Befehlsersetzung.**
 : Enthält ein Wort eine öffnende eckige Klammer ("\["), führt Tcl *Befehlsersetzung* durch. Dazu ruft es den Tcl-Interpreter rekursiv auf, um die Zeichen nach der öffnenden eckigen Klammer als Tcl-Skript zu verarbeiten. Das Skript kann beliebig viele Befehle enthalten und muss mit einer schließenden eckigen Klammer ("\]") abgeschlossen werden. Das Ergebnis des Skripts (d. h. das Ergebnis seines letzten Befehls) wird an Stelle der eckigen Klammern und aller Zeichen dazwischen in das Wort substituiert. In einem einzelnen Wort können beliebig viele Befehlsersetzungen vorkommen. Befehlsersetzung wird bei Wörtern in geschweiften Klammern nicht durchgeführt.
@@ -129,7 +129,7 @@ Die folgenden Regeln definieren Syntax und Semantik der Tcl-Sprache:
     wird die Variable *y* immer auf den Wert *012* setzen.
 
 \[12\] **Ersetzung und Wortgrenzen.**
-: Ersetzungen beeinflussen die Wortgrenzen eines Befehls nicht, außer bei Argument-Erweiterung gemäß Regel \[5\]. Wird beispielsweise während der Variablenersetzung der gesamte Wert der Variable Teil eines einzelnen Wortes, auch wenn der Variablenwert Leerzeichen enthält.
+: Ersetzungen beeinflussen die Wortgrenzen eines Befehls nicht, außer bei Argument-Erweiterung gemäß Regel \[5\]. Beispielsweise wird während der Variablenersetzung der gesamte Wert der Variable Teil eines einzelnen Wortes, auch wenn der Variablenwert Leerzeichen enthält.
 
 
 [set]: set.md

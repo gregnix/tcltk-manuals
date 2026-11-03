@@ -228,17 +228,17 @@ method **InitializePublic**
 
 # Beschreibung
 
-Clay führt sowohl für **oo::class** als auch für **oo::object** ein Ensemble namens „clay“ ein. Dieses Ensemble verwaltet alle übergeordneten Interaktionen innerhalb des Rahmens. Clay speichert strukturierte Daten. Clan verwaltet die Weiterleitung der Methoden. Clay verfügt über Funktionen zur Verwaltung der komplexen Interaktionen, die durch Mixins entstehen.
+Clay führt sowohl für **oo::class** als auch für **oo::object** ein Methoden-Ensemble namens „clay“ ein. Dieses Ensemble verwaltet alle übergeordneten Interaktionen innerhalb des Rahmens. Clay speichert strukturierte Daten. Clan verwaltet die Weiterleitung der Methoden. Clay verfügt über Funktionen zur Verwaltung der komplexen Interaktionen, die durch Mixins entstehen.
 
 Das zentrale Konzept besteht darin, dass sich im Inneren jedes Objekts und jeder Klasse (die ja eigentlich ebenfalls Objekte sind) ein Dict namens „clay“ befindet. Was in diesem Dict gespeichert ist, bleibt der Fantasie überlassen. Da dieses Dict jedoch über eine öffentliche Methode zugänglich gemacht wird, können wir strukturierte Daten zwischen Objekten, Klassen und Mixins austauschen.
 
 ## Strukturierte Daten
 
-Clay nutzt einen standardisierten Satz von Methodeninteraktionen und Introspektion, den TclOO bereits bereitstellt, um Suchvorgänge in Echtzeit durchzuführen. Suchvorgänge in Echtzeit bedeuten, dass die Daten stets aktuell sind, und wir vermeiden viele der Konflikte, die entstehen würden, wenn sich Objekte während des Betriebs mit denen anderer Klassen vermischen würden.
+Clay nutzt einen standardisierten Satz von Methodeninteraktionen und Introspektion, den TclOO bereits bereitstellt, um Suchvorgänge in Echtzeit durchzuführen. Suchvorgänge in Echtzeit bedeuten, dass die Daten stets aktuell sind, und wir vermeiden viele der Konflikte, die entstehen würden, wenn Objekte während des Betriebs beginnen, andere Klassen einzumischen.
 
-Die **clay**-Methoden verfügen sowohl für Klassen als auch für Objekte über eine „get“- und eine „set“-Methode. Bei Objekten durchsucht die „get“-Methode das lokale „clay“-Dict. Wenn das angeforderte Blatt nicht gefunden wird oder wenn die Abfrage auf einen Zweig bezieht, beginnt das System damit, die „clay“-Methoden aller Klassen abzufragen, die das Objekt implementieren, sowie aller Vorfahren dieser Klassen und aller Klassen, die in dieses Objekt „gemischt“ wurden, einschließlich aller ihrer Vorfahren.
+Die **clay**-Methoden verfügen sowohl für Klassen als auch für Objekte über eine „get“- und eine „set“-Methode. Bei Objekten durchsucht die „get“-Methode das lokale „clay“-Dict. Wenn das angeforderte Blatt nicht gefunden wird oder wenn sich die Abfrage auf einen Zweig bezieht, beginnt das System damit, die „clay“-Methoden aller Klassen abzufragen, die das Objekt implementieren, sowie aller Vorfahren dieser Klassen und aller Klassen, die in dieses Objekt „gemischt“ wurden, einschließlich aller ihrer Vorfahren.
 
-Als Zweige vorgesehene Einträge in einem Baum enden mit einem Verzeichnis-Shrug (/). Als Blätter vorgesehene Einträge bleiben unverändert. Dies dient dem Tool, das die Suchergebnisse erstellt, als Orientierungshilfe, um zu erkennen, welche Teile eines Dicts als Zweige und welche als Blätter vorgesehen sind. In einfachen Fällen kann die Kennzeichnung als Zweig ignoriert werden:
+Als Zweige vorgesehene Einträge in einem Baum enden mit einem Verzeichnis-Schrägstrich (/). Als Blätter vorgesehene Einträge bleiben unverändert. Dies dient dem Tool, das die Suchergebnisse erstellt, als Orientierungshilfe, um zu erkennen, welche Teile eines Dicts als Zweige und welche als Blätter vorgesehen sind. In einfachen Fällen kann die Kennzeichnung als Zweig ignoriert werden:
 
 ```
 ::oo::class create ::foo { }
@@ -292,7 +292,7 @@ Clay basiert auf dem Modul oo::dialect aus Tcllib. Mit oo::dialect können Sie e
 
 ## Methoden-Weiterleitung
 
-Methoden-Weiterleitung: Manchmal ist es sinnvoll, über ein externes Objekt zu verfügen, das so aufgerufen werden kann, als wäre es eine Methode des Objekts. Clay bietet eine Ensemble-Methode namens „delegate“ an, um diese Weiterleitung durchzuführen und um zu ermitteln, welche Methoden auf diese Weise delegiert sind. Alle delegierten Methoden sind durch HTML-ähnliche Tags (< >) gekennzeichnet.
+Methoden-Weiterleitung: Manchmal ist es sinnvoll, über ein externes Objekt zu verfügen, das so aufgerufen werden kann, als wäre es eine Methode des Objekts. Clay bietet eine Ensemble-Methode namens „delegate“ an, um diese Weiterleitung durchzuführen und um zu ermitteln, welche Methoden auf diese Weise weitergeleitet werden. Alle weitergeleiteten Methoden sind durch HTML-ähnliche Tags (< >) gekennzeichnet.
 
 ```
 ::clay::define counter {
@@ -367,10 +367,10 @@ proc **clay::K** *a* *b*
 : siehe unten ...
 
 proc **clay::noop** ?*args*?
-: Führt einen Noop aus. Dies ist beim Prototyping nützlich, um Code-Blöcke zu kommentieren, ohne sie tatsächlich auskommentieren zu müssen. Außerdem dient es als praktische Standardoption für die Weiterleitung der Methoden, wenn noch kein Delegat zugewiesen wurde.
+: Führt einen Noop aus. Dies ist beim Prototyping nützlich, um Code-Blöcke auszukommentieren, ohne sie tatsächlich auskommentieren zu müssen. Außerdem dient es als praktische Standardoption für die Weiterleitung der Methoden, wenn noch kein Delegat zugewiesen wurde.
 
 proc **clay::cleanup**
-: Verarbeitet den Prozess der Löschung der zu löschenden Objekte
+: Verarbeitet die Warteschlange der zu löschenden Objekte
 
 proc **clay::object\_create** *objname* ?*class* ?
 : siehe unten ...
@@ -385,7 +385,7 @@ proc **clay::path** ?*args*?
 : siehe unten ...
 
 proc **clay::putb** ?*map*? *text*
-: Fügt einer Variable eine Textzeile hinzu. Wenden Sie optional eine Zeichenfolgenzuordnung an.
+: Fügt einer Variable eine Textzeile hinzu. Wendet optional eine Zeichenkettenzuordnung (string map) an.
 
 proc **clay::script\_path**
 : siehe unten ...
@@ -403,19 +403,19 @@ proc **clay::uuid::tostring** *uuid*
 : siehe unten ...
 
 proc **clay::uuid::fromstring** *uuid*
-: Konvertiert eine Zeichenfolgendarstellung einer UUID in ihr binary format.
+: Konvertiert eine Zeichenkettendarstellung einer UUID in ihr Binärformat.
 
 proc **clay::uuid::equal** *left* *right*
 : Vergleicht zwei UUIDs auf Gleichheit.
 
 proc **clay::uuid** *cmd* ?*args*?
-: UUID generieren -> Zeichenfolgenrepräsentation einer neuen UUID; UUID entspricht UUID1 und UUID2
+: uuid generate -> Zeichenkettendarstellung einer neuen UUID; uuid equal uuid1 uuid2
 
 proc **clay::tree::sanitize** *dict*
-: Gibt ein Dictionary aus, aus dem alle von **clay::tree::merge** hinzugefügten Einträge entfernt wurden.
+: Gibt ein Dictionary aus, aus dem alle von **clay::tree::merge** hinzugefügten „.“-Einträge entfernt wurden.
 
 proc **clay::tree::\_sanitizeb** *path* *varname* *dict*
-: Hilfsfunktion für ::clay::tree::sanitize: Formatiert die Zeichenfolgendarstellung eines Dictionary-Elements innerhalb eines für Menschen lesbaren Zeilenstroms und ermittelt, ob die Funktion sich selbst mit weiterer Einrückung aufrufen muss, um einen Unterzweig als Ausdruck darzustellen
+: Hilfsfunktion für ::clay::tree::sanitize: Formatiert die Zeichenkettendarstellung eines Dictionary-Elements innerhalb eines für Menschen lesbaren Zeilenstroms und ermittelt, ob die Funktion sich selbst mit weiterer Einrückung aufrufen muss, um einen Unterzweig als Ausdruck darzustellen
 
 proc **clay::tree::storage** *rawpath*
 : Gibt den Pfad als Speicherpfad für clay::tree zurück, wobei alle Verzweigungsbegrenzer entfernt werden. Dieser Befehl teilt Argumente zudem auf, wenn sie ein „/“ enthalten.
@@ -453,7 +453,7 @@ proc **clay::tree::dictset** *varname* ?*args*?
     ```
 
 proc **clay::tree::dictmerge** *varname* ?*args*?
-: Eine rekursive Form der Zusammenführung von Wörterbüchern, die dazu dient, Variablen direkt an Ort und Stelle zu ändern.
+: Eine rekursive Form der Zusammenführung von Dictionarys, die dazu dient, Variablen direkt an Ort und Stelle zu ändern.
 
     Beispiele:
 
@@ -470,9 +470,9 @@ proc **clay::tree::dictmerge** *varname* ?*args*?
     ```
 
 proc **clay::tree::merge** ?*args*?
-: Eine rekursive Methode zum Zusammenführen von Wörterbüchern
+: Eine rekursive Form des Zusammenführens von Dictionarys
 
-    Eine Routine zum rekursiven Durchsuchen von Wörterbüchern und deren Zusammenführung, adaptiert von <http://stevehavelka.com/tcl-dict-operation-nested-merge/>
+    Eine Routine zum rekursiven Durchsuchen von Dictionarys und deren Zusammenführung, adaptiert von <http://stevehavelka.com/tcl-dict-operation-nested-merge/>
 
     Beispiele:
 
@@ -531,7 +531,7 @@ proc **clay::dynamic\_methods\_class** *thisclass*
 : siehe unten ...
 
 proc **clay::define::Array** *name* ?*values* ?
-: Neue OO-Schlüsselwörter für Ton
+: Neue OO-Schlüsselwörter für clay
 
 proc **clay::define::Delegate** *name* *info*
 : Eine Anmerkung, die angibt, dass Objekte dieser Klasse mit delegierten Methoden interagieren. Die Anmerkung ist als Dictionary konzipiert, und der einzige reservierte Schlüssel ist *description*, eine für Menschen lesbare Beschreibung.
@@ -543,7 +543,7 @@ proc **clay::define::Class\_Method** *name* *arglist* *body*
 : Legt eine Methode für das Klassenobjekt selbst fest, anstatt für Objekte dieser Klasse
 
 proc **clay::define::class\_method** *name* *arglist* *body*
-: Und ein Alias für das neue Schlüsselwort „Class\_Method“
+: Ein Alias für das neue Schlüsselwort „Class\_Method“
 
 proc **clay::define::clay** ?*args*?
 : siehe unten ...
@@ -573,7 +573,7 @@ proc **clay::define::Variable** *name* ?*default* ?
     Variablen, die in der Eigenschaft „variable“ registriert sind, werden ebenfalls initialisiert (sofern sie fehlen), wenn das Objekt über die Methode *morph* die Klasse wechselt.
 
 proc **clay::ensemble\_methodbody** *ensemble* *einfo*
-: Erstellt den Hauptteil der öffentlichen Dispatch-Methode eines Ensembles. „ensemble“ ist der Name des Ensembles. „einfo“ ist ein Dictionary mit Methoden für das Ensemble, und jeder Wert ist ein Skript, das beim Dispatch ausgeführt werden soll.
+: Erstellt den Rumpf der öffentlichen Dispatch-Methode eines Ensembles. „ensemble“ ist der Name des Ensembles. „einfo“ ist ein Dictionary mit Methoden für das Ensemble, und jeder Wert ist ein Skript, das beim Dispatch ausgeführt werden soll.
 
     Beispiele:
 
@@ -599,7 +599,7 @@ proc **clay::event::nextid**
 : siehe unten ...
 
 proc **clay::event::Notification\_list** *self* *event* ?*stackvar* ?
-: Wird rekursiv aufgerufen, um eine Liste der Personen zu erstellen, die Benachrichtigungen erhalten
+: Wird rekursiv aufgerufen, um eine Liste der Empfänger zu erstellen, die Benachrichtigungen erhalten
 
 proc **clay::event::notify** *rcpt* *sender* *event* *eventinfo*
 : Endgültige Zustellung an den vorgesehenen Empfänger als Objekt
@@ -633,10 +633,10 @@ method **clay dump**
 : Gibt einen vollständigen Auszug der Clay-Daten dieses Objekts zurück, jedoch ausschließlich die Clay-Daten dieses Objekts.
 
 method **clay find** *path* ?**path...**?
-: Ruft einen Datenblock aus dem Clay-System ab. Wenn das letzte Element von *path* ein Zweig ist, gibt es eine rekursive Zusammenführung aller Daten dieses Objekts und seiner Klassen mit den Daten in diesem Zweig zurück. Wenn das letzte Element ein Blatt ist, wird dieses Objekt nach einem passenden Blatt durchsucht oder es werden alle zugehörigen Klassen nach einem passenden Blatt durchsucht und der erste gefundene Wert gegeben. Wird kein Wert gefunden, gibt es eine leere Zeichenkette zurück. Wird ein Zweig zurückgegeben, wird der oberste Eintrag weggelassen.
+: Ruft einen Datenblock aus dem Clay-System ab. Wenn das letzte Element von *path* ein Zweig ist, gibt es eine rekursive Zusammenführung aller Daten dieses Objekts und seiner Klassen mit den Daten in diesem Zweig zurück. Wenn das letzte Element ein Blatt ist, wird dieses Objekt nach einem passenden Blatt durchsucht oder es werden alle zugehörigen Klassen nach einem passenden Blatt durchsucht und der erste gefundene Wert zurückgegeben. Wird kein Wert gefunden, gibt es eine leere Zeichenkette zurück. Wird ein Zweig zurückgegeben, wird der oberste „.“-Eintrag weggelassen.
 
 method **clay get** *path* ?**path...**?
-: Ruft einen Datenblock aus dem „Clay“-System der Klasse ab. Wird kein Wert gefunden, gibt es eine leere Zeichenkette zurück. Wird ein Zweig zurückgegeben, wird der oberste Eintrag weggelassen.
+: Ruft einen Datenblock aus dem „Clay“-System der Klasse ab. Wird kein Wert gefunden, gibt es eine leere Zeichenkette zurück. Wird ein Zweig zurückgegeben, wird der oberste „.“-Eintrag weggelassen.
 
 method **clay GET** *path* ?**path...**?
 : Ruft einen Datenblock aus dem „Clay“-System der Klasse ab. Wird kein Wert gefunden, gibt es eine leere Zeichenkette zurück.
@@ -648,10 +648,10 @@ method **clay replace** *dictionary*
 : Ersetzt den Inhalt des internen Clay-Speichers durch das angegebene Dictionary.
 
 method **clay search** *path* ?**path...**?
-: Gibt den ersten übereinstimmenden Wert für den Pfad entweder in den Clay-Daten dieser Klasse oder in denen eines ihrer übergeordneten Elemente zurück
+: Gibt den ersten übereinstimmenden Wert für den Pfad entweder in den Clay-Daten dieser Klasse oder in denen eines ihrer Vorfahren zurück
 
 method **clay set** *path* ?**path...**? *value*
-: Fügt den Inhalt von **value** mit dem Speicherplatz des Objekts unter **path** zusammen.
+: Fügt den Inhalt von **value** mit dem Clay-Speicher des Objekts unter **path** zusammen.
 
 
 ## Klasse clay::object
@@ -664,7 +664,7 @@ method **clay ancestors**
 : Gibt die Klasse, zu der dieses Objekt gehört, alle in dieses Objekt gemischten Klassen sowie alle Vorfahren dieser Klassen in Suchreihenfolge zurück.
 
 method **clay cache** *path* *value*
-: Speichert „VALUE“ so, dass eine Abfrage nach „Pfad“ in „SEARCH“ diesen Wert stets gibt, bis der Cache geleert wird.
+: Speichert „VALUE“ so, dass eine Abfrage nach „PATH“ in „SEARCH“ diesen Wert stets zurückgibt, bis der Cache geleert wird.
 
 method **clay cget** *field*
 : Entnimmt einen Wert entweder aus der „clay“-Struktur des Objekts oder aus einer seiner Teilklassen, der mit dem Feldnamen übereinstimmt. Die Reihenfolge der Suche lautet wie folgt:
@@ -680,7 +680,7 @@ method **clay cget** *field*
     5. Als Blattknoten in einem beliebigen Vorfahren mit dem Feldnamen **option** *field* **default**
 
 method **clay delegate** ?*stub*? ?*object*?
-: Introspektion oder Weiterleitung von Methoden. Ohne Argumente gibt die Methode eine Schlüssel-Wert-Liste aus Stubs und Objekten zurück. Mit nur dem Argument *stub* gibt die Methode das Objekt (falls vorhanden) zurück, das mit dem Stub verknüpft ist. Mit einem *stub* und einem *object* leitet dieser Befehl alle Aufrufe der Methode *stub* an das *object* weiter.
+: Introspektion oder Steuerung der Weiterleitung von Methoden. Ohne Argumente gibt die Methode eine Schlüssel-Wert-Liste aus Stubs und Objekten zurück. Mit nur dem Argument *stub* gibt die Methode das Objekt (falls vorhanden) zurück, das mit dem Stub verknüpft ist. Mit einem *stub* und einem *object* leitet dieser Befehl alle Aufrufe der Methode *stub* an das *object* weiter.
 
 method **clay dump**
 : Gibt einen vollständigen Auszug der Clay-Daten dieses Objekts sowie die Daten aller rekursiv eingebundenen Klassen zurück.
@@ -689,7 +689,7 @@ method **clay ensemble\_map**
 : Gibt ein Dictionary zurück, das die für dieses Objekt zusammenzustellenden Methodenensembles beschreibt
 
 method **clay eval** *script*
-: Ein Skript im Namespace dieses Objekts wurde ausgewertet
+: Wertet ein Skript im Namespace dieses Objekts aus
 
 method **clay evolve**
 : Löst die private Methode **InitializePublic** aus
@@ -720,7 +720,7 @@ method **clay mixin** *class* ?**class...**?
 : Führt \[oo::objdefine \[self\] mixin\] für dieses Objekt aus, wobei folgende zusätzliche Regeln gelten: Vor dem Aufruf wird für jede Klasse, die zuvor eingemischt wurde, aber nicht im neuen Ergebnis enthalten ist, das unter mixin/unmap-script registrierte Skript ausgeführt (sofern vorhanden). Für alle neuen Klassen, die vor diesem Aufruf noch nicht vorhanden waren, wird nach dem Aufruf des nativen TclOO-Mixins das unter mixin/map-script registrierte Skript ausgeführt (sofern vorhanden). Für alle Klassen, die nun vorhanden und eingemischt sind, wird das unter mixin/react-script registrierte Skript ausgeführt (sofern vorhanden).
 
 method **clay mixinmap** ?*stub*? ?*classes*?
-: Wird kein Argument angegeben, gibt die Map der Stubs und Klassen zurück, die in das aktuelle Objekt eingemischt wurden. Wird nur ein Stub angegeben, gibt die Map der Klassen zurück, die in diesen Stub eingemischt wurden. Werden ein Stub und eine Klassenliste angegeben, werden die derzeit in diesem Stub enthaltenen Klassen durch die angegebenen Klassen ersetzt und das Verfahren „clay mixin“ auf die neue Matrix der eingemischten Klassen angewendet.
+: Wird kein Argument angegeben, gibt die Methode die Map der Stubs und Klassen zurück, die in das aktuelle Objekt eingemischt wurden. Wird nur ein Stub angegeben, gibt die Map der Klassen zurück, die in diesen Stub eingemischt wurden. Werden ein Stub und eine Klassenliste angegeben, werden die derzeit in diesem Stub enthaltenen Klassen durch die angegebenen Klassen ersetzt und das Verfahren „clay mixin“ auf die neue Matrix der eingemischten Klassen angewendet.
 
 method **clay provenance** *path* ?**path...**?
 : Gibt entweder **self** zurück, falls dieser Pfad im aktuellen Objekt vorhanden ist, oder die erste Klasse (sofern vorhanden) entlang des Clay-Suchpfads, die dieses Element enthält.
@@ -729,10 +729,10 @@ method **clay replace** *dictionary*
 : Ersetzt den Inhalt des internen Clay-Speichers durch das angegebene Dictionary.
 
 method **clay search** *path* *valuevar* *isleafvar*
-: Gibt true zurück und setzt *valuevar* auf den Wert sowie *isleafvar* auf true oder false, je nachdem, ob *path* im Cache gefunden wurde.
+: Gibt true zurück und setzt *valuevar* auf den Wert sowie *isleafvar* auf true oder false, wenn *path* im Cache gefunden wurde.
 
 method **clay source** *filename*
-: Wertet die angegebene Datei im Namespace des Objekts aus
+: Liest die angegebene Datei mittels `source` im Namespace des Objekts ein
 
 method **clay set** *path* ?**path...**? *value*
 : Fügt den Inhalt von **value** mit dem „Clay“-Speicher des Objekts unter **path** zusammen.

@@ -63,7 +63,7 @@ Dieses Paket nutzt die zlib-Funktionen in Tcl 8.6, um ZIP-Archive zu erstellen.
     : Diese Option legt einen globalen Kommentar fest, der in das generierte Archiv eingefügt werden soll.
 
     **-directory** path
-    : Diese Option legt das Verzeichnis fest, das in das generierte Archiv placed werden soll. Wenn angegeben, werden alle *Pfad*-Argumente *ignoriert*.
+    : Diese Option legt das Verzeichnis fest, das in das generierte Archiv aufgenommen werden soll. Wenn angegeben, werden alle *path*-Argumente *ignoriert*.
 
     **-prepend-base-directory** bool
     : Wenn diese Option aktiviert ist, wird allen Pfaden, die dem Archiv hinzugefügt werden, der Endteil des Pfads **-directory** vorangestellt.

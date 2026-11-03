@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-map::box::file – Lesen und Schreiben von tklib-Geo-/Box-Dateien
+map::box::file – Lesen und Schreiben von geo/box-Dateien von tklib
 
 # Übersicht
 

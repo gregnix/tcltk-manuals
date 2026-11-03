@@ -37,7 +37,7 @@ Dieses Paket erstellt Dokumentationen zu TEPAM-Prozeduren (Prozeduren, die mit [
 Das Paket **TEPAM Doc Gen** stellt die folgenden Befehle bereit:
 
 **tepam::doc\_gen::generate** ?-format *format*? ?-style *style*? ?-header\_footer? ?-dest\_file *dest\_file*? *name*
-: Dieser Befehl generiert die Dokumentation für eine angegebene Prozedur (*name*) in einem der unterstützten Formate (TXT, HTML, POD (Perl Doc), DT (TclLib DocTool)) oder in einem benutzerdefinierten Format. Das Format wird über ?format? angegeben. Das Flag ?-header\_footer? fügt der Dokumentation Dateikopf und -fuß hinzu. Wenn ?dest\_file? angegeben ist, wird die Dokumentation in einer Datei gespeichert (Dateikopf und -fuß werden in diesem Fall automatisch hinzugefügt) und der Dateiname zurückgegeben. Andernfalls gibt **generate** die Dokumentationszeichenfolge zurück.
+: Dieser Befehl generiert die Dokumentation für eine angegebene Prozedur (*name*) in einem der unterstützten Formate (TXT, HTML, POD (Perl Doc), DT (TclLib DocTool)) oder in einem benutzerdefinierten Format. Das Format wird über ?format? angegeben. Das Flag ?-header\_footer? fügt der Dokumentation Dateikopf und -fuß hinzu. Wenn ?dest\_file? angegeben ist, wird die Dokumentation in einer Datei gespeichert (Dateikopf und -fuß werden in diesem Fall automatisch hinzugefügt) und der Dateiname zurückgegeben. Andernfalls gibt **generate** die Dokumentationszeichenkette zurück.
 
 **tepam::doc\_gen::patch** ?-format *format*? ?-style *style*? ?-search\_pattern *search\_pattern*? ?-src\_string *src\_string* | -src\_file *src\_file*? ?-dest\_file *dest\_file*? ?name?
 : Dieser Befehl fügt Prozedurdokumentationen an den Stellen in ein bestehendes Masterdokument ein, die durch Einfügeplatzhalter gekennzeichnet sind, welche dem Muster ?search\_pattern? entsprechen. Das vorhandene Masterdokument wird entweder als Daten über das Argument (?src\_string?) oder über eine Datei (?src\_file?) bereitgestellt. Das endgültige Dokument wird von **patch** zurückgegeben, wenn keine Zieldatei definiert ist (?dest\_file?). Andernfalls wird das Dokument in der angegebenen Datei gespeichert, und die Anzahl der Einfügeplatzhalter, die erfolgreich verarbeitet werden konnten, wird zurückgegeben.
@@ -65,7 +65,7 @@ Das Paket **TEPAM Doc Gen** stellt die folgenden Befehle bereit:
 : Die Dokumentation wird standardmäßig im Tcl-Stil generiert (z. B. **command arg1 arg2 ...**). Eine Dokumentation im C-Stil kann generiert werden, indem Sie dieses Argument auf „C“ setzen (z. B. **command(arg1,arg2,...)**).
 
 ?-dest\_file *dest\_file*?
-: Wenn ?dest\_file? definiert ist, wird die Dokumentation in die angegebene Zieldatei geschrieben. Andernfalls geben die Befehle **generate** und **patch** die Dokumentationszeichenfolge zurück.
+: Wenn ?dest\_file? definiert ist, wird die Dokumentation in die angegebene Zieldatei geschrieben. Andernfalls geben die Befehle **generate** und **patch** die Dokumentationszeichenkette zurück.
 
 *name* / ?name?
 : Dies ist der Name der Prozedur, für die die Dokumentation erstellt werden soll. Für **generate** ist es ein obligatorisches Argument, für **patch** ein optionales.
@@ -74,7 +74,7 @@ Das Paket **TEPAM Doc Gen** stellt die folgenden Befehle bereit:
 : **Generate** fügt der generierten Prozedurdokumentation Dateikopf und -fuß nur dann hinzu, wenn eine Datei generiert wird. Mit dem Flag ?-header\_footer? werden Kopf und Fuß auch dann generiert, wenn **generate** die Dokumentation als Zeichenkette zurückgibt.
 
 ?-src\_string *src\_string* | -src\_file *src\_file*?
-: **Patch** fügt Prozedurdokumentationen in ein bestehendes Dokument ein, das entweder als Zeichenfolge an das Argument (?src\_string?) oder als Datei (?src\_file?) übergeben wird. Eines dieser beiden Argumente muss festgelegt werden.
+: **Patch** fügt Prozedurdokumentationen in ein bestehendes Dokument ein, das entweder als Zeichenkette an das Argument (?src\_string?) oder als Datei (?src\_file?) übergeben wird. Eines dieser beiden Argumente muss festgelegt werden.
 
 ?-search\_pattern *search\_pattern*?
 : Das Argument ?search\_pattern? definiert den in einem Dokument verwendeten Einfügeplatzhalter für die Dokumentation. Es handelt sich um einen regulären Ausdruck, der von **regexp** akzeptiert wird, und er muss einen in Klammern gesetzten Teilausdruck enthalten, der den Namen der Prozedur angibt, für die die Dokumentation eingefügt werden soll.
@@ -212,7 +212,7 @@ Die folgende Gruppe von Prozeduren muss definiert werden, um ein neues Dokumentf
 : Erzeugt den Abschnitt „Name“ (ohne Titel). Der Rohtext des Abschnitts wird als Parameter übergeben.
 
 *40* - **gen($Format,Synopsis)** {*Text*}
-: Erzeugt den Abschnitt „Synopsis“ (ohne Titel). Der als Parameter übergebene Abschnittstext ist vorformatiert (die Argumentzeichenfolgen werden von **gen($Format,ArgumentString)** generiert).
+: Erzeugt den Abschnitt „Synopsis“ (ohne Titel). Der als Parameter übergebene Abschnittstext ist vorformatiert (die Argumentzeichenketten werden von **gen($Format,ArgumentString)** generiert).
 
 *50* - **gen($Format,Description)** {*Text*}
 : Erzeugt einen Beschreibungsabsatz. Der Rohtext des Absatzes wird als Parameter übergeben.
@@ -229,13 +229,13 @@ Die folgende Gruppe von Prozeduren muss definiert werden, um ein neues Dokumentf
 *54* - **gen($Format,DescriptionSynopsis)** {*Text*}
 : Erzeugt die Synopsis-Zeile am Anfang des Beschreibungsabschnitts. Der Befehl kann eine leere Zeichenkette zurückgeben, wenn an dieser Stelle keine Synopsis-Zeile erforderlich ist.
 
-    Einige Formate (z. B. Tcl DocTools) erfordern, dass die Synopsis-Zeile im Beschreibungsabschnitt definiert wird, um daraus automatisch den Synopsis-Abschnitt zu erstellen. Der als Parameter übergebene Abschnittstext ist vorformatiert (die Argumentzeichenfolgen werden von **gen($Format,ArgumentString)** generiert).
+    Einige Formate (z. B. Tcl DocTools) erfordern, dass die Synopsis-Zeile im Beschreibungsabschnitt definiert wird, um daraus automatisch den Synopsis-Abschnitt zu erstellen. Der als Parameter übergebene Abschnittstext ist vorformatiert (die Argumentzeichenketten werden von **gen($Format,ArgumentString)** generiert).
 
 *60* - **gen($Format,ArgumentListBegin)** {}
 : Erzeugt den Prolog der Argumentliste (Definitionsliste ohne Aufzählungszeichen). Dieser Prolog ist in der Regel der Startcode einer Definitionsliste.
 
 *61* - **gen($Format,ArgumentListEnd)** {}
-: Erzeugt den Epilog der Argumentliste. Dieser Epilog ist in der Regel die Abschlusszeichenfolge einer Listenstruktur.
+: Erzeugt den Epilog der Argumentliste. Dieser Epilog ist in der Regel die Abschlusszeichenkette einer Listenstruktur.
 
 *62* - **gen($Format,ArgumentListItem)** {Name IsOptional IsNamed Type}
 : Erzeugt eine Argumentzeile innerhalb der Argumentliste. Dieser Befehl kann auf **gen($Format,ArgumentDetailBegin)** zurückgreifen, da die Parameter identisch sind.
@@ -273,14 +273,14 @@ Die folgende Gruppe von Prozeduren muss definiert werden, um ein neues Dokumentf
     : Name des Arguments
 
     *IsOptional*
-    : Falls wahr (=**1**), ist das Argument optional, was durch die generierte Zeichenfolge kenntlich gemacht werden sollte (beispielsweise durch Einfügen des Arguments in Klammern {\[\]} oder in Fragezeichen '?'):
+    : Falls wahr (=**1**), ist das Argument optional, was durch die generierte Zeichenkette kenntlich gemacht werden sollte (beispielsweise durch Einfügen des Arguments in Klammern {\[\]} oder in Fragezeichen '?'):
 
         ```
         gen(TXT,ArgumentString) mtype 1 0 string -> "[mtype]"
         ```
 
     *IsNamed*
-    : Wenn dieser Wert wahr ist (=**1**), handelt es sich bei einem Argument um ein benanntes Argument (Option). Die generierte Zeichenfolge sollte in diesem Fall den Namen des Arguments bzw. der Option enthalten, gefolgt vom Argument selbst:
+    : Wenn dieser Wert wahr ist (=**1**), handelt es sich bei einem Argument um ein benanntes Argument (Option). Die generierte Zeichenkette sollte in diesem Fall den Namen des Arguments bzw. der Option enthalten, gefolgt vom Argument selbst:
 
         ```
         gen(TXT,ArgumentString) mtype 0 1 string -> "-mtype <mtype>"
@@ -293,7 +293,7 @@ Die folgende Gruppe von Prozeduren muss definiert werden, um ein neues Dokumentf
         ```
 
     *Type*
-    : Gibt den Typ des Arguments an. Wenn der Typ auf **none** gesetzt ist, handelt es sich bei dem Argument um ein Flag, das durch die generierte Zeichenfolge gekennzeichnet werden muss. Beispiel:
+    : Gibt den Typ des Arguments an. Wenn der Typ auf **none** gesetzt ist, handelt es sich bei dem Argument um ein Flag, das durch die generierte Zeichenkette gekennzeichnet werden muss. Beispiel:
 
         ```
         gen(TXT,ArgumentString) close 1 1 none -> "[-close]"

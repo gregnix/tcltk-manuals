@@ -28,7 +28,7 @@ Copyright:
 
 # Name
 
-comm – Eine Fernkommunikationsfunktion für Tcl (ab Version 8.5)
+comm – Eine Einrichtung zur entfernten Kommunikation für Tcl (ab Version 8.5)
 
 # Übersicht
 
@@ -497,7 +497,7 @@ Die für diese Lösung erforderliche Unterstützung wurde seit Version 4.5 in Fo
     package require comm 3
 ```
 
-Beachten Sie, dass auch ohne Versionsangabe (oder mit einer bestimmten Version) angefordert werden kann.
+Beachten Sie, dass **comm** auch ohne Versionsangabe (oder mit einer bestimmten Version) angefordert werden kann.
 
 Die Versionshistorie von **comm** umfasst folgende Versionen:
 

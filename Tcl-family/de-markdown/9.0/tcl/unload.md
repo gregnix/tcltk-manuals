@@ -52,7 +52,7 @@ Wird eine Datei mit einer Shared Library über den Befehl [load] geladen, führt
 
 **unload** arbeitet in die entgegengesetzte Richtung. Zunächst prüft **unload**, ob die Bibliothek entladbar ist: eine entladbare Bibliothek exportiert eine spezielle Entladeprozedur. Der Name der Entladeprozedur wird durch *prefix* und davon abhängig, ob der Zielinterpreter ein Safe-Interpreter ist, bestimmt. Für normale Interpreter hat die Initialisierungsprozedur die Form *pfx*__\_Unload__, wobei *pfx* dasselbe wie *prefix* ist, außer dass der erste Buchstabe groß und alle übrigen klein geschrieben werden. Ist *prefix* beispielsweise **foo** oder **FOo**, lautet der Name der Initialisierungsprozedur **Foo\_Unload**. Ist der Zielinterpreter ein Safe-Interpreter, lautet der Name der Initialisierungsprozedur *pkg*__\_SafeUnload__ statt *pkg*__\_Unload__.
 
-Stellt **unload** fest, dass eine Bibliothek nicht entladbar ist (oder die Entladefunktionalität bei der Kompilierung deaktiviert wurde), wird ein Fehler zurückgegeben. Ist die Bibliothek entladbar, ruft **unload** die Entladeprozedur auf. Gibt die Entladeprozedur [TCL\_OK][catch] zurück, setzt **unload** fort und verringert den jeweiligen Referenzzähler (je nach Zielinterpreter-Typ). Haben beide Referenzzähler 0 erreicht, wird die Bibliothek vom Prozess getrennt.
+Stellt **unload** fest, dass eine Bibliothek nicht entladbar ist (oder die Entladefunktionalität bei der Kompilierung deaktiviert wurde), wird ein Fehler zurückgegeben. Ist die Bibliothek entladbar, ruft **unload** die Entladeprozedur auf. Gibt die Entladeprozedur [TCL\_OK][catch] zurück, fährt **unload** fort und verringert den jeweiligen Referenzzähler (je nach Zielinterpreter-Typ). Haben beide Referenzzähler 0 erreicht, wird die Bibliothek vom Prozess getrennt.
 
 ## Prototyp der Entlade-Hook-Funktion
 
@@ -82,7 +82,7 @@ Fehlt *prefix* oder ist es eine leere Zeichenkette, versucht Tcl das Präfix zu 
 
 # Bugs
 
-Wird dieselbe Datei mit verschiedenen *fileName*s mit [load] geladen, wird sie mehrfach in den Adressraum des Prozesses geladen. Das Verhalten variiert je nach System (manche Systeme erkennen redundante Ladungen, andere nicht). Wurde eine Bibliothek vom Betriebssystem still entladen (und Tcl hält sie daher noch für geladen), kann **unload** auf einer solchen Bibliothek gefährlich sein (die Bibliothek wird vollständig vom Prozess getrennt, während einige Interpreter sie weiter nutzen).
+Wird dieselbe Datei mit verschiedenen *fileName*-Argumenten mit [load] geladen, wird sie mehrfach in den Adressraum des Prozesses geladen. Das Verhalten variiert je nach System (manche Systeme erkennen redundante Ladungen, andere nicht). Wurde eine Bibliothek vom Betriebssystem still entladen (und Tcl hält sie daher noch für geladen), kann **unload** auf einer solchen Bibliothek gefährlich sein (die Bibliothek wird vollständig vom Prozess getrennt, während einige Interpreter sie weiter nutzen).
 
 # Beispiele
 

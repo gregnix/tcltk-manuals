@@ -79,7 +79,7 @@ Das Paket **math** enthält Implementierungen verschiedener Funktionen, die bei 
 
     Für ganzzahlige Werte von *x* im Bereich 13 <= *x* <= 21 wird auf Rechnern mit IEEE-Gleitkommastandard ein exaktes Gleitkommaergebnis zurückgegeben.
 
-    Für ganze Zahlen *x* mit 22 <= *x* <= 170 ist das Ergebnis auf 1 ULP genau.
+    Für ganzzahlige Werte von *x* im Bereich 22 <= *x* <= 170 ist das Ergebnis auf 1 ULP genau.
 
     Für reelle Zahlen *x* mit *x* >= 0 wird das Ergebnis durch Berechnung von *Gamma(x+1)* unter Verwendung der Funktion **::math::ln\_Gamma** approximiert; das Ergebnis wird voraussichtlich auf mehr als neun signifikante Stellen genau sein.
 
@@ -92,7 +92,7 @@ Das Paket **math** enthält Implementierungen verschiedener Funktionen, die bei 
        C(n,k) = n! / k! (n-k)!
     ```
 
-    Wenn beide Parameter ganze Zahlen sind und das Ergebnis in 32 Bit passt, wird das Ergebnis auf eine ganze Zahl gerundet.
+    Wenn beide Parameter Ganzzahlen sind und das Ergebnis in 32 Bit passt, wird das Ergebnis auf eine Ganzzahl gerundet.
 
     Ganzzahlige Ergebnisse sind bis mindestens *n* = 34 exakt. Gleitkommaergebnisse sind auf mehr als neun signifikante Stellen genau.
 
@@ -106,7 +106,7 @@ Das Paket **math** enthält Implementierungen verschiedener Funktionen, die bei 
     Die Ergebnisse werden als Gleitkommazahl mit einer Genauigkeit von mehr als neun signifikanten Stellen zurückgegeben, sofern *w* und *z* beide mindestens 1 betragen.
 
 **::math::combinatorics::permutations** *n*
-: Gibt die Anzahl der Permutationen von n Elementen zurück. Der Rückgabewert ist stets eine ganze Zahl; er unterliegt nicht der Beschränkung auf den Bereich von 32- oder 64-Bit-Ganzzahlen, da in Tcl 8.5 und späteren Versionen Ganzzahlen mit beliebiger Genauigkeit verwendet werden.
+: Gibt die Anzahl der Permutationen von n Elementen zurück. Der Rückgabewert ist stets eine Ganzzahl; er unterliegt nicht der Beschränkung auf den Bereich von 32- oder 64-Bit-Ganzzahlen, da in Tcl 8.5 und späteren Versionen Ganzzahlen mit beliebiger Genauigkeit verwendet werden.
 
     int *n*
     : Die Anzahl der Elemente, die permutiert werden sollen.

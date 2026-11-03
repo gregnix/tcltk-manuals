@@ -63,7 +63,7 @@ Das Paket exportiert die hier beschriebene API.
 **::pt::peg::interp** *objectName* *grammar*
 : Der Befehl erstellt ein neues Parser-Objekt und gibt den vollqualifizierten Namen des Objektbefehls als Ergebnis zurück. Die API dieses Objektbefehls wird im Abschnitt [Objekt-API] beschrieben. Er kann verwendet werden, um verschiedene Operationen auf dem Objekt auszuführen.
 
-    Dieser neue Parser ist für die Ausführung eines leeren PEG konfiguriert. Zur Konfiguration für eine andere PEG dient die Methode **use** der [Objekt-API].
+    Dieser neue Parser ist für die Ausführung einer leeren PEG konfiguriert. Zur Konfiguration für eine andere PEG dient die Methode **use** der [Objekt-API].
 
 
 ## Objekt-API
@@ -71,7 +71,7 @@ Das Paket exportiert die hier beschriebene API.
 Alle durch dieses Paket erstellten Objekte stellen die folgenden Methoden bereit.
 
 *objectName* **use** *grammar*
-: Diese Methode konfiguriert den Grammatik-Interpreter bzw. -Parser für die Ausführung der in *grammar* gespeicherten PEG, einem Objekt, das API-kompatibel mit Instanzen von **pt::peg::container** ist. Der Parser kopiert die relevanten Informationen der Grammatik und übernimmt das Objekt *nicht*.
+: Diese Methode konfiguriert den Grammatik-Interpreter bzw. -Parser für die Ausführung der in *grammar* gespeicherten PEG, einem Objekt, das API-kompatibel mit Instanzen von **pt::peg::container** ist. Der Parser kopiert die relevanten Informationen der Grammatik und übernimmt *nicht* den Besitz des Objekts.
 
     Die Informationen einer zuvor verwendeten Grammatik werden überschrieben.
 
@@ -93,7 +93,7 @@ Alle durch dieses Paket erstellten Objekte stellen die folgenden Methoden bereit
 
     Wenn ein Syntaxfehler auftritt, löst der Befehl stattdessen einen Fehler aus. Dieser Fehler ist eine Tcl-Liste mit vier Elementen, die in der unten aufgeführten Reihenfolge Folgendes enthält:
 
-    1. Die Zeichenfolge **pt::rde**, die darauf hinweist, dass es sich um einen Parser-Laufzeitfehler handelt.
+    1. Die Zeichenkette **pt::rde**, die darauf hinweist, dass es sich um einen Parser-Laufzeitfehler handelt.
 
     2. Die Position des Parsing-Fehlers, angegeben als Zeichenversatz vom Anfang der geparsten Eingabe.
 
@@ -103,7 +103,7 @@ Alle durch dieses Paket erstellten Objekte stellen die folgenden Methoden bereit
 
 
 *objectName* **parset** *text*
-: Diese Methode führt den Parser aus, wobei die Zeichenfolge in *text* als Eingabe verwendet wird. In allen anderen Punkten verhält sie sich wie die oben gezeigte Methode **parse**.
+: Diese Methode führt den Parser aus, wobei die Zeichenkette in *text* als Eingabe verwendet wird. In allen anderen Punkten verhält sie sich wie die oben gezeigte Methode **parse**.
 
 
 # AST-Serialisierungsformat
@@ -128,14 +128,14 @@ Reguläre Serialisierung
             2. Die Endposition muss mindestens so groß sein wie die Startposition.
 
 
-        3. Alle Elemente nach den ersten drei sind die Kindknoten des Knotens, selbst wieder Knoten. Die Serialisierung eines Knotens ohne Kindknoten, also eines Blattknotens, hat daher genau drei Elemente. In der Liste steht der linke Kindknoten zuerst und der rechte zuletzt.
+        3. Alle Elemente nach den ersten drei sind die Kindknoten des Knotens, selbst wieder Knoten. Die Serialisierung eines Knotens ohne Kindknoten, also eines Blattknotens, hat daher genau drei Elemente. In der Liste steht der am weitesten links stehende Kindknoten zuerst und der am weitesten rechts stehende zuletzt.
 
 
 
 Kanonische Serialisierung
 : Die kanonische Serialisierung eines abstrakten Syntaxbaums hat das im vorigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Baums eindeutig ist.
 
-    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    1. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
 
 
@@ -208,37 +208,37 @@ Reguläre Serialisierung
 : siehe unten ...
 
     **Atomare Parsing-Ausdrücke**
-    : 1. Die Zeichenfolge **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenfolge.
+    : 1. Die Zeichenkette **epsilon** ist ein atomarer Parsing-Ausdruck. Sie passt auf die leere Zeichenkette.
 
-        2. Die Zeichenfolge **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
+        2. Die Zeichenkette **dot** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Zeichen.
 
-        3. Die Zeichenfolge **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        3. Die Zeichenkette **alnum** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen und jede Unicode-Ziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        4. Die Zeichenfolge **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        4. Die Zeichenkette **alpha** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes alphabetische Unicode-Zeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        5. Die Zeichenfolge **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        5. Die Zeichenkette **ascii** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Zeichen unterhalb von U0080. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        6. Die Zeichenfolge **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        6. Die Zeichenkette **control** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Steuerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        7. Die Zeichenfolge **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        7. Die Zeichenkette **digit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Unicode-Ziffer. Das schließt auch Zeichen außerhalb des Bereichs \[0..9\] ein. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        8. Die Zeichenfolge **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        8. Die Zeichenkette **graph** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen außer dem Leerzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        9. Die Zeichenfolge **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        9. Die Zeichenkette **lower** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Kleinbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        10. Die Zeichenfolge **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        10. Die Zeichenkette **print** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes druckbare Unicode-Zeichen einschließlich des Leerzeichens. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        11. Die Zeichenfolge **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        11. Die Zeichenkette **punct** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Satzzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        12. Die Zeichenfolge **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        12. Die Zeichenkette **space** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Leerraumzeichen. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        13. Die Zeichenfolge **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        13. Die Zeichenkette **upper** ist ein atomarer Parsing-Ausdruck. Sie passt auf jeden Unicode-Großbuchstaben. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        14. Die Zeichenfolge **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        14. Die Zeichenkette **wordchar** ist ein atomarer Parsing-Ausdruck. Sie passt auf jedes Unicode-Wortzeichen. Das ist jedes alphanumerische Zeichen (siehe alnum) und jedes Verbindungssatzzeichen (zum Beispiel der Unterstrich). Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        15. Die Zeichenfolge **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
+        15. Die Zeichenkette **xdigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Hexadezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **string is**.
 
-        16. Die Zeichenfolge **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
+        16. Die Zeichenkette **ddigit** ist ein atomarer Parsing-Ausdruck. Sie passt auf jede Dezimalziffer. Das ist eine eigene Erweiterung der Parsing-Ausdrücke auf der Grundlage des eingebauten Tcl-Befehls **regexp**.
 
         17. Der Ausdruck \[list t **x**\] ist ein atomarer Parsing-Ausdruck. Er passt auf die Terminalzeichenkette **x**.
 
@@ -265,7 +265,7 @@ Reguläre Serialisierung
 Kanonische Serialisierung
 : Die kanonische Serialisierung eines Parsing-Ausdrucks hat das im vorherigen Punkt festgelegte Format und erfüllt darüber hinaus die nachstehenden Einschränkungen, wodurch sie unter allen möglichen Serialisierungen dieses Parsing-Ausdrucks eindeutig ist.
 
-    1. Die Zeichenfolgendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
+    1. Die Zeichenkettendarstellung des Werts entspricht der kanonischen Darstellung einer reinen Tcl-Liste. Das heißt, sie enthält keine überflüssigen Leerzeichen.
 
     2. Terminale werden *nicht* als Bereiche kodiert (bei denen Anfang und Ende des Bereichs identisch sind).
 

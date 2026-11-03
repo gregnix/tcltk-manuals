@@ -34,7 +34,7 @@ trace - Überwacht Variablenzugriffe, Befehlsnutzung und Befehlsausführungen
 
 # Beschreibung
 
-Dieser Befehl sorgt dafür, dass Tcl-Befehle ausgeführt werden, sobald bestimmte Operationen aufgerufen werden. Die zulässigen *option*s (sie dürfen abgekürzt werden) sind:
+Dieser Befehl sorgt dafür, dass Tcl-Befehle ausgeführt werden, sobald bestimmte Operationen aufgerufen werden. Die zulässigen *option*-Argumente (sie dürfen abgekürzt werden) sind:
 
 [trace]{.cmd} [add]{.sub} [type]{.arg} [name]{.arg} [ops]{.arg} [args]{.optarg}
 : Dabei ist *type* **command**, **execution** oder **variable**.

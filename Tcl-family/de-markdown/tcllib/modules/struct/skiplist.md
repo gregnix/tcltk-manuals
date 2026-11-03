@@ -34,7 +34,7 @@ struct::skiplist – Skiplisten anlegen und bearbeiten
 Der Befehl **::struct::skiplist** erzeugt ein neues Skiplist-Objekt mit einem zugehörigen globalen Tcl-Befehl, dessen Name *skiplistName* lautet. Mit diesem Befehl lassen sich verschiedene Operationen auf der Skiplist aufrufen. Er hat die folgende allgemeine Form:
 
 **skiplistName** *option* ?*arg arg ...*?
-: *Option* und die *arg*s bestimmen das genaue Verhalten des Befehls.
+: *Option* und die Argumente *arg* bestimmen das genaue Verhalten des Befehls.
 
 
 Skiplisten sind eine Alternative zu Binärbäumen als Datenstruktur. Mit ihnen lassen sich geordnete Listen über beliebige Folgen von Einfügungen und Löschungen hinweg pflegen. Skiplisten erreichen durch Zufall eine probabilistische Balancierung; daher sind die Algorithmen zum Einfügen und Löschen in Skiplisten wesentlich einfacher und schneller als die für Binärbäume.

@@ -121,7 +121,7 @@ DynamicHelp::**register** *path* *type* ?*arg...*?
 
     Wenn eine der Optionen fehlt oder leer ist, wird die Hilfe für dieses Widget entfernt.
 
-     Wenn *tagOrItem* angegeben ist, ist *path* ein canvas oder ein text. Bei einem canvas ist *tagOrItem* der Name eines Tags oder Elemente auf dem canvas, an das die Hilfe gebunden wird. Bei einem text ist *tagOrItem* der Name eines Tags auf dem text, an das die Hilfe gebunden wird. 
+     Wenn *tagOrItem* angegeben ist, ist *path* ein canvas oder ein text. Bei einem canvas ist *tagOrItem* der Name eines Tags oder Elements auf dem canvas, an das die Hilfe gebunden wird. Bei einem text ist *tagOrItem* der Name eines Tags auf dem text, an das die Hilfe gebunden wird. 
 
     Für einen Typ außer *balloon* ist *varName* gewöhnlich eine Variable, die mit einem Label verknüpft ist.   
     Für ein Menü gibt es keine Hilfe vom Typ balloon. Um eine Hilfe für ein Menü zu deklarieren, wird zuerst das Menü deklariert und danach die Einträge dieses Menüs.   

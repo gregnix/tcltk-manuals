@@ -204,7 +204,7 @@ Für jeden Datensatzbefehl stehen die folgenden Unterbefehle und die zugehörige
 
     Dieser Objektbefehl dient dem Zugriff auf die Datenelemente der Instanz. Während der Instanziierung können zwar Werte für diese Instanz angegeben werden; am Ende müssen jedoch *alle* Werte angegeben werden, und zwar als Schlüssel-Wert-Paare, wie bei der Methode **configure**. Verschachtelte Datensätze müssen im Listenformat vorliegen.
 
-    Anstelle von *instanceName* kann auch **#auto** angegeben werden. Wird **#auto** verwendet, wird der Name der Instanz automatisch erzeugt und hat die Form **recordNameN**, wobei **N** eine erzeugte eindeutige ganze Zahl ist (beginnend bei 0).
+    Anstelle von *instanceName* kann auch **#auto** angegeben werden. Wird **#auto** verwendet, wird der Name der Instanz automatisch erzeugt und hat die Form **recordNameN**, wobei **N** eine erzeugte eindeutige Ganzzahl ist (beginnend bei 0).
 
 
 # Instanzbefehl

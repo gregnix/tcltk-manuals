@@ -38,9 +38,9 @@ Dieses Paket stellt einen einzigen Befehl bereit, der einen Patch im [unified di
 # API
 
 **::textutil::patch::apply** *basedirectory* *striplevel* *patch* *reportcmd*
-: Wendet den *Patch* (d. h. den Text des eigentlichen Patches, nicht einen Dateinamen) unter Verwendung des angegebenen *striplevel* auf die Dateien im *basedirectory* an und meldet Aktionen durch Aufrufe des Befehlspräfixes *reportcmd*. Gibt eine leere Zeichenkette zurück.
+: Wendet *patch* (d. h. den Text des eigentlichen Patches, nicht einen Dateinamen) unter Verwendung des angegebenen *striplevel* auf die Dateien im *basedirectory* an und meldet Aktionen durch Aufrufe des Befehlspräfixes *reportcmd*. Gibt eine leere Zeichenkette zurück.
 
-    Das Argument *striplevel* entspricht dem Befehl **-p** (oder **--strip**) der Option [patch](https://www.man7.org/linux/man-pages/man1/patch.1.html) mit dem Wert *striplevel*.
+    Das Argument *striplevel* entspricht der Option **-p** (oder **--strip**) des Befehls [patch](https://www.man7.org/linux/man-pages/man1/patch.1.html) mit dem Wert *striplevel*.
 
     Löst einen Fehler aus, wenn *patch* nicht geparst werden kann oder wenn an den Dateien im *basedirectory* keine Änderungen vorgenommen werden.
 
@@ -49,13 +49,13 @@ Dieses Paket stellt einen einzigen Befehl bereit, der einen Patch im [unified di
     Jeder Aufruf des Befehlspräfixes kann eine von drei möglichen Formen annehmen:
 
     **{\*}reportcmd** **apply** *filename*
-    : Dieser Aufruf erfolgt zu Beginn jeder Patch-Anwendung, wobei der *Dateiname* der zu patchenden Datei übergeben wird. Es wird versucht, alle für den *Dateinamen* gesammelten Hunks anzuwenden.
+    : Dieser Aufruf erfolgt zu Beginn jeder Patch-Anwendung, wobei *filename* der zu patchenden Datei übergeben wird. Es wird versucht, alle für *filename* gesammelten Hunks anzuwenden.
 
     **{\*}reportcmd** **fail** *filename* *hunk* *expected* *seen*
-    : Dieser Aufruf erfolgt jedes Mal, wenn die Anwendung eines „Hunks“ fehlschlägt. Dem Befehl werden der gerade verarbeitete *Dateiname*, die *Hunk*-Nummer, der *erwartete* Text sowie der tatsächlich *erkannte* Text übergeben.
+    : Dieser Aufruf erfolgt jedes Mal, wenn die Anwendung eines „Hunks“ fehlschlägt. Dem Befehl werden der gerade verarbeitete Dateiname *filename*, die *hunk*-Nummer, der erwartete Text *expected* sowie der tatsächlich gesehene Text *seen* übergeben.
 
     **{\*}reportcmd** **fail-already** *filename* *hunk*
-    : Dieser Aufruf erfolgt jedes Mal, wenn die Anwendung eines „Hunks“ fehlschlägt, weil die angegebene *Hunk*-Nummer *bereits* auf den *Dateinamen* angewendet wurde.
+    : Dieser Aufruf erfolgt jedes Mal, wenn die Anwendung eines „Hunks“ fehlschlägt, weil die angegebene *Hunk*-Nummer *bereits* auf *filename* angewendet wurde.
 
 
 

@@ -33,7 +33,7 @@ Bevor Tcllib kompiliert und verwendet werden kann, müssen einige Voraussetzunge
 
 1. Die Skriptsprache Tcl. Weitere Informationen finden Sie unter [Tcl].
 
-2. Optional das Paket [Critcl] (C-Einbettung) für [Tcl]. Einzelheiten finden Sie unter **CriTcl**.
+2. Optional das Paket **critcl** (C-Einbettung) für [Tcl]. Einzelheiten finden Sie unter [Critcl].
 
 
 Diese Liste geht davon aus, dass der Rechner, auf dem Tcllib installiert werden soll, im Wesentlichen leer ist. Wenn Teile der unten aufgeführten Abhängigkeiten bereits installiert sind, können die entsprechenden Schritte natürlich übersprungen werden. Es wird jedoch weiterhin empfohlen, die entsprechenden Abschnitte zu lesen, um sicherzustellen, dass die dort genannten Abhängigkeiten tatsächlich installiert sind.
@@ -46,7 +46,7 @@ Wählen Sie aus den zahlreichen Möglichkeiten diejenige aus, mit der Sie am bes
 
 *Beachten Sie*, dass die Pakete in Tcllib mittlerweile die Versionen 8.4, 8.5 und sogar 8.6 erfordern. Ältere Tcl-Versionen können solche Pakete nicht verwenden. Der Versuch, sie zu nutzen, führt zu Fehlern der Art *Paket nicht gefunden*, da ihre Indexdateien diese Pakete in Kernversionen, die sie nicht unterstützen, nicht registrieren.
 
-Ich selbst habe während der Entwicklung die [ActiveState's](http://www.activestate.com) ActiveTcl 8.5-Distribution verwendet (und tue dies nach wie vor), da ich mit dieser am besten vertraut bin.
+Ich selbst habe während der Entwicklung die ActiveTcl-8.5-Distribution von [ActiveState](http://www.activestate.com) verwendet (und tue dies nach wie vor), da ich mit dieser am besten vertraut bin.
 
 *(Offenlegung: Ich, Andreas Kupries, war bis 2016 bei ActiveState beschäftigt und habe dort die Pflege von ActiveTcl und TclDevKit übernommen).*. Derzeit bin ich bei SUSE Software Canada ULC tätig, allerdings nicht in Bereichen, die mit Tcl zu tun haben.
 
@@ -90,15 +90,15 @@ Die Anleitung dazu wird hier nicht wiederholt. Wenn bei dieser Anleitung Problem
 
 Da es sich bei Tcllib im Wesentlichen um eine Sammlung von Paketen handelt, die in reinem Tcl geschrieben sind, entspricht das Erstellen derselben der Installation. Die Ausnahmen hiervon werden später in einem eigenen Unterabschnitt, [Critcl und Beschleuniger], behandelt.
 
-Zuvor gilt jedoch der Standardfall, der sich je nach Plattform durch wesentliche Unterschiede in der Anleitung auszeichnet, d. h. *Unix*-like im Vergleich zu *Windows*.
+Zuvor gilt jedoch der Standardfall, der sich je nach Plattform durch wesentliche Unterschiede in der Anleitung auszeichnet, d. h. *Unix*-ähnlich im Vergleich zu *Windows*.
 
-In Bezug auf Letzteres gibt es zudem einen Hinweis: Es ist möglich, eine *Unix*-like-Umgebung mithilfe von Projekten wie *MSYS*, *Cygwin* und anderen einzurichten. In diesem Fall hat der Benutzer die Wahl, welche Anweisungen er befolgen möchte.
+In Bezug auf Letzteres gibt es zudem einen Hinweis: Es ist möglich, eine *Unix*-ähnliche Umgebung mithilfe von Projekten wie *MSYS*, *Cygwin* und anderen einzurichten. In diesem Fall hat der Benutzer die Wahl, welche Anweisungen er befolgen möchte.
 
 Unabhängig von der Umgebung oder der Plattform muss ein geeignetes *Tcl* installiert sein, und dessen **tclsh** sollte (*Unix*) im Suchpfad liegen oder mit „*.tcl*“-Dateien (*Windows*) verknüpft sein.
 
 ## Installation unter Unix
 
-In *Unix*-like-Umgebungen wird Tcllib mit dem Standard-Dateisatz ausgeliefert, um
+In *Unix*-ähnlichen Umgebungen wird Tcllib mit dem Standard-Dateisatz ausgeliefert, um
 
 ```
   ./configure
@@ -109,7 +109,7 @@ In *Unix*-like-Umgebungen wird Tcllib mit dem Standard-Dateisatz ausgeliefert, u
 
 eine geeignete Methode zur Installation. Hierbei handelt es sich um eine standardmäßige, nicht-interaktive Installation, bei der automatisch ermittelt wird, wo alles platziert werden soll, d. h. Pakete, Anwendungen und die Manpages.
 
-*Dies umfasst das Tcllibc-Paket*. Daher ist eine Installation von Critcl erforderlich.
+*Dies umfasst das binäre Paket Tcllibc*. Daher ist eine Installation von Critcl erforderlich.
 
 Um nur bestimmte Teile des Projekts zu installieren, verwenden Sie
 
@@ -207,7 +207,7 @@ Dadurch wird eine kurze Liste aller verfügbaren Optionen auf den Standard-Ausga
 
 Die Befehle, die den verschiedenen *install*-Zielen im *Makefile.in* für Unix zugeordnet sind, können ebenfalls als weitere Beispiele für die Verwendung dieses Tools herangezogen werden.
 
-Das Installationsprogramm kann im GUI- und im CLI-Modus ausgeführt werden. Standardmäßig wählt es den Modus automatisch aus, wenn das Tcl-Paket **Tk** verwendet werden kann oder nicht. Mit der Option **-no-gui** können Sie den CLI-Modus erzwingen.
+Das Installationsprogramm kann im GUI- und im CLI-Modus ausgeführt werden. Standardmäßig wählt es den Modus automatisch aus, je nachdem, ob das Tcl-Paket **Tk** verwendet werden kann oder nicht. Mit der Option **-no-gui** können Sie den CLI-Modus erzwingen.
 
 Beachten Sie, dass Optionen über die Befehlszeile festgelegt werden können, selbst wenn das Installationsprogramm am Ende den GUI-Modus wählt. In diesem Fall bestimmen die fest vorgegebenen Standardwerte und die Optionen, welche Daten dem Benutzer zur Bearbeitung angezeigt werden.
 

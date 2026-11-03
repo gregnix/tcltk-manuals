@@ -74,7 +74,7 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt die Geometrie für *window* in der Form *width***x***height***+***x***+***y* zurück. Alle Abmessungen sind in Pixeln.
 
 **winfo height** *window*
-: Gibt eine Dezimalzeichenkette zurück, die die Höhe von *window* in Pixeln angibt. Wenn ein Fenster neu erzeugt wird, beträgt seine Höhe zunächst 1 Pixel; die Höhe wird später vom Geometrie-Manager geändert, um den Anforderungen des Fensters zu genügen. Benötigen Sie die tatsächliche Höhe unmittelbar nach dem Erzeugen eines Widgets, rufen Sie [update] auf, um den Geometrie-Manager zur Anordnung zu zwingen, oder verwenden Sie **winfo reqheight**, um die angeforderte statt der tatsächlichen Höhe des Fensters zu erhalten.
+: Gibt eine Dezimalzeichenkette zurück, die die Höhe von *window* in Pixeln angibt. Wenn ein Fenster neu erzeugt wird, beträgt seine Höhe zunächst 1 Pixel; die Höhe wird später vom Geometriemanager geändert, um den Anforderungen des Fensters zu genügen. Benötigen Sie die tatsächliche Höhe unmittelbar nach dem Erzeugen eines Widgets, rufen Sie [update] auf, um den Geometriemanager zur Anordnung zu zwingen, oder verwenden Sie **winfo reqheight**, um die angeforderte statt der tatsächlichen Höhe des Fensters zu erhalten.
 
 **winfo id** *window*
 : Gibt eine hexadezimale Zeichenkette zurück, die einen plattformspezifischen Bezeichner auf niedriger Ebene für *window* angibt. Auf Unix-Plattformen ist dies der X-Fensterbezeichner. Unter Windows ist dies die Windows-HWND. Auf dem Macintosh hat der Wert außerhalb von Tk keine Bedeutung.
@@ -86,7 +86,7 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt **1** zurück, wenn *window* derzeit gemappt ist, andernfalls **0**.
 
 **winfo manager** *window*
-: Gibt den Namen des Geometrie-Managers zurück, der derzeit für *window* verantwortlich ist, oder eine leere Zeichenkette, wenn *window* von keinem Geometrie-Manager verwaltet wird. Der Name ist in der Regel der Name des Tcl-Befehls für den Geometrie-Manager, z. B. [pack] oder [place]. Ist der Geometrie-Manager ein Widget, z. B. Canvas oder Text, ist der Name der Klassenbefehl des Widgets, z. B. [canvas].
+: Gibt den Namen des Geometriemanagers zurück, der derzeit für *window* verantwortlich ist, oder eine leere Zeichenkette, wenn *window* von keinem Geometriemanager verwaltet wird. Der Name ist in der Regel der Name des Tcl-Befehls für den Geometriemanager, z. B. [pack] oder [place]. Ist der Geometriemanager ein Widget, z. B. Canvas oder Text, ist der Name der Klassenbefehl des Widgets, z. B. [canvas].
 
 **winfo name** *window*
 : Gibt den Namen von *window* zurück (d. h. seinen Namen innerhalb des Eltern-Widgets, im Gegensatz zum vollständigen Pfadnamen). Der Befehl **winfo name .** gibt den Namen der Anwendung zurück.
@@ -101,19 +101,19 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt die Anzahl der Pixel in *window* zurück, die der durch *number* gegebenen Entfernung entsprechen. *Number* kann in jeder für [Tk\_GetPixels][GetPixels] zulässigen Form angegeben werden, z. B. „2.0c“ oder „1i“. Das Ergebnis wird auf den nächsten ganzzahligen Wert gerundet; für ein gebrochenes Ergebnis verwenden Sie **winfo fpixels**.
 
 **winfo pointerx** *window*
-: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt er die x-Koordinate des Zeigers zurück, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root gemessen. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, wird -1 zurückgegeben.
+: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt der Befehl die x-Koordinate des Zeigers zurück, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root gemessen. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, wird -1 zurückgegeben.
 
 **winfo pointerxy** *window*
-: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt er eine Liste mit zwei Elementen zurück: die x- und y-Koordinaten des Zeigers, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root berechnet. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, sind beide zurückgegebenen Koordinaten -1.
+: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt der Befehl eine Liste mit zwei Elementen zurück: die x- und y-Koordinaten des Zeigers, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root berechnet. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, sind beide zurückgegebenen Koordinaten -1.
 
 **winfo pointery** *window*
-: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt er die y-Koordinate des Zeigers zurück, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root berechnet. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, wird -1 zurückgegeben.
+: Befindet sich der Mauszeiger auf demselben Bildschirm wie *window*, gibt der Befehl die y-Koordinate des Zeigers zurück, gemessen in Pixeln im Root-Fenster des Bildschirms. Ist auf dem Bildschirm ein virtuelles Root-Fenster in Verwendung, wird die Position im virtuellen Root berechnet. Befindet sich der Mauszeiger nicht auf demselben Bildschirm wie *window*, wird -1 zurückgegeben.
 
 **winfo reqheight** *window*
-: Gibt eine Dezimalzeichenkette zurück, die die angeforderte Höhe von *window* in Pixeln angibt. Dies ist der Wert, den der Geometrie-Manager von *window* zur Berechnung der Geometrie verwendet.
+: Gibt eine Dezimalzeichenkette zurück, die die angeforderte Höhe von *window* in Pixeln angibt. Dies ist der Wert, den der Geometriemanager von *window* zur Berechnung der Geometrie verwendet.
 
 **winfo reqwidth** *window*
-: Gibt eine Dezimalzeichenkette zurück, die die angeforderte Breite von *window* in Pixeln angibt. Dies ist der Wert, den der Geometrie-Manager von *window* zur Berechnung der Geometrie verwendet.
+: Gibt eine Dezimalzeichenkette zurück, die die angeforderte Breite von *window* in Pixeln angibt. Dies ist der Wert, den der Geometriemanager von *window* zur Berechnung der Geometrie verwendet.
 
 **winfo rgb** *window color*
 : Gibt eine Liste mit drei Dezimalwerten im Bereich 0 bis 65535 zurück, die die Rot-, Grün- und Blau-Intensitäten darstellen, die *color* im durch *window* gegebenen Fenster entsprechen. *Color* kann in jeder für eine Farboption zulässigen Form angegeben werden.
@@ -179,7 +179,7 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt den y-Versatz des mit *window* verknüpften virtuellen Root-Fensters relativ zum Root-Fenster seines Bildschirms zurück. Dies ist normalerweise null oder negativ. Gibt 0 zurück, wenn es kein virtuelles Root-Fenster für *window* gibt.
 
 **winfo width** *window*
-: Gibt eine Dezimalzeichenkette zurück, die die Breite von *window* in Pixeln angibt. Wenn ein Fenster neu erzeugt wird, beträgt seine Breite zunächst 1 Pixel; die Breite wird später vom Geometrie-Manager geändert, um den Anforderungen des Fensters zu genügen. Benötigen Sie die tatsächliche Breite unmittelbar nach dem Erzeugen eines Widgets, rufen Sie [update] auf, um den Geometrie-Manager zur Anordnung zu zwingen, oder verwenden Sie **winfo reqwidth**, um die angeforderte statt der tatsächlichen Breite des Fensters zu erhalten.
+: Gibt eine Dezimalzeichenkette zurück, die die Breite von *window* in Pixeln angibt. Wenn ein Fenster neu erzeugt wird, beträgt seine Breite zunächst 1 Pixel; die Breite wird später vom Geometriemanager geändert, um den Anforderungen des Fensters zu genügen. Benötigen Sie die tatsächliche Breite unmittelbar nach dem Erzeugen eines Widgets, rufen Sie [update] auf, um den Geometriemanager zur Anordnung zu zwingen, oder verwenden Sie **winfo reqwidth**, um die angeforderte statt der tatsächlichen Breite des Fensters zu erhalten.
 
 **winfo x** *window*
 : Gibt eine Dezimalzeichenkette zurück, die die x-Koordinate der oberen linken Ecke des Rahmens von *window* (oder von *window*, wenn es keinen Rahmen hat) im Eltern-Widget von *window* angibt.

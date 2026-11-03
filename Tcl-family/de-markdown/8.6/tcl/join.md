@@ -43,7 +43,7 @@ join $data ", "
      → 1, 2, 3, 4, 5
 ```
 
-Verwendet **join**, um eine Liste um eine Ebene zu flachen:
+Verwendet **join**, um eine Liste um eine Ebene abzuflachen:
 
 ```
 set data {1 {2 3} 4 {5 {6 7} 8}}

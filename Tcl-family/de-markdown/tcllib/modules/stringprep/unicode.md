@@ -33,7 +33,7 @@ unicode – Implementierung der Unicode-Normalisierung
 
 Dies ist eine Tcl-Implementierung der Unicode-Normalisierungsbefehle.
 
-*Hinweis*: Das Paket **stringprep** kann sich als nützlich erweisen, wenn die Normalisierung allein nicht ausreicht (z. B. bei Zeichenfolgenvergleichen).
+*Hinweis*: Das Paket **stringprep** kann sich als nützlich erweisen, wenn die Normalisierung allein nicht ausreicht (z. B. bei Zeichenkettenvergleichen).
 
 # API
 
@@ -47,7 +47,7 @@ Das Argument *form* in den unten aufgeführten Befehlen muss eine Zeichenkette s
 **::unicode::fromstring** *string*
 : Gibt eine Liste von ganzzahligen Unicode-Codepunkten zurück, die die Zeichen in *string* darstellen.
 
-    (Diese ganzzahligen Codepunkte werden in **unicode** für die interne Darstellung von Zeichenfolgen verwendet.)
+    (Diese ganzzahligen Codepunkte werden in **unicode** für die interne Darstellung von Zeichenketten verwendet.)
 
 **::unicode::tostring** *codepointsList*
 : Gibt eine Zeichenkette zurück, deren Zeichen den in *codepointsList* enthaltenen Ganzzahlen entsprechen.

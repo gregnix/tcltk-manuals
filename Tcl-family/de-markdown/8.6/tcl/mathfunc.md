@@ -73,7 +73,7 @@ Tcl unterstützt in Ausdrücken die folgenden mathematischen Funktionen, die —
 **tan**	**tanh**	**wide**
 :::
 
-Zusätzlich zu diesen vordefinierten Funktionen können Anwendungen weitere Funktionen definieren, indem sie mit [proc] (oder auf andere Weise, z. B. [interp alias][interp] oder [Tcl\_CreateObjCommand][CrtObjCmd]) neue Befehle im Namespace **tcl::mathfunc** anlegen. Zusätzlich steht Erweiterungen in C eine veraltete Schnittstelle [Tcl\_CreateMathFunc][CrtMathFnc]() zur Verfügung. Letztere Schnittstelle wird für neue Implementierungen nicht empfohlen.
+Zusätzlich zu diesen vordefinierten Funktionen können Anwendungen weitere Funktionen definieren, indem sie mit [proc] (oder auf andere Weise, z. B. [interp alias][interp] oder [Tcl\_CreateObjCommand][CrtObjCmd]) neue Befehle im Namespace **tcl::mathfunc** anlegen. Zusätzlich steht Erweiterungen in C eine obsolete Schnittstelle [Tcl\_CreateMathFunc][CrtMathFnc]() zur Verfügung. Letztere Schnittstelle wird für neue Implementierungen nicht empfohlen.
 
 ## Detaillierte Definitionen
 
@@ -156,7 +156,7 @@ Zusätzlich zu diesen vordefinierten Funktionen können Anwendungen weitere Funk
 : Gibt den hyperbolischen Sinus von *arg* zurück. Würde das Ergebnis einen Überlauf verursachen, wird ein Fehler zurückgegeben.
 
 **sqrt** *arg*
-: Das Argument kann ein beliebiger nicht-negativer numerischer Wert sein. Gibt einen Gleitkommawert zurück, der die Quadratwurzel von *arg* ist. Kann **Inf** zurückgeben, wenn das Argument den Quadrat des maximalen Gleitkommawerts überschreitet.
+: Das Argument kann ein beliebiger nicht-negativer numerischer Wert sein. Gibt einen Gleitkommawert zurück, der die Quadratwurzel von *arg* ist. Kann **Inf** zurückgeben, wenn das Argument das Quadrat des maximalen Gleitkommawerts überschreitet.
 
 **srand** *arg*
 : Das *arg*, das eine Ganzzahl sein muss, setzt den Startwert des Zufallszahlengenerators von **rand** zurück. Gibt die erste Zufallszahl (siehe **rand**) aus diesem Startwert zurück. Jeder Interpreter hat seinen eigenen Startwert.

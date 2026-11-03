@@ -570,7 +570,7 @@ Die Operationen dieses Pakets lassen sich auf *jedes* Graphobjekt anwenden, das 
 
 
 **struct::graph::op::MaximumFlowByDinic** *g* *s* *t* *blockingFlowAlg*
-: Der Algorithmus findet den **maximalen Fluss** für das durch *g* dargestellte Flussnetz. Er beruht auf Verfahren zum Finden blockierender Flüsse. Die unterschiedlichen Komplexitäten passen dadurch besser zu verschiedenen Graphen.
+: Der Algorithmus findet den **maximalen Fluss** für das durch *g* dargestellte Flussnetz. Er beruht auf Verfahren zum Finden blockierender Flüsse. Diese Verfahren haben unterschiedliche Komplexitäten und passen daher unterschiedlich gut zu verschiedenen Graphen.
 
     Argumente:
     : siehe unten ...

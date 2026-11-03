@@ -148,7 +148,7 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
     Der *definition*-Block von **snit::type** ist ein Skript, das die folgenden Definitionen enthalten kann:
 
     **typevariable** *name* ?**-array**? ?*value*?
-    : Definiert eine Typvariable namens *name* und optional mit dem Wert *value*.  Typvariablen werden von allen Instanzen des Typs gemeinsam genutzt.  Wenn die Option **-array** angegeben wird, sollte *value* ein Dictionary sein; er wird der Variablen mithilfe von **array set** zugewiesen.
+    : Definiert eine Typvariable namens *name* und optional mit dem Wert *value*.  Typvariablen werden von allen Instanzen des Typs gemeinsam genutzt.  Wenn die Option **-array** angegeben wird, sollte *value* ein Dictionary sein; es wird der Variablen mithilfe von **array set** zugewiesen.
 
     **typemethod** *name* *arglist* *body*
     : Definiert eine Typmethode – einen Unterbefehl des neuen Typbefehls – mit dem angegebenen Namen, der angegebenen Argumentliste und dem angegebenen Rumpf.  Die *arglist* ist eine normale Tcl-Argumentliste und darf Standardargumente sowie das Argument **args** enthalten; sie darf jedoch nicht die Argumentnamen **type**, **self**, **selfns** oder **win** enthalten.
@@ -407,7 +407,7 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
 
         Eine Methode kann nicht zugleich lokal definiert und weitergeleitet sein.
 
-        **Hinweis:** Alle Formen von **delegate method** können sowohl an Instanzkomponenten als auch an Typkomponenten weitergeleitet werden.
+        **Hinweis:** Alle Formen von **delegate method** können sowohl an Instanzkomponenten als auch an Typkomponenten weiterleiten.
 
     **delegate** **method** *name* ?**to** *comp*? **using** *pattern*
     : In dieser Form der Anweisung **delegate** wird die Klausel **using** verwendet, um die genaue Form des Befehls festzulegen, an den die Methode *name* weitergeleitet wird.  In dieser Form ist die **to**-Klausel optional, da der gewählte Befehl möglicherweise keine bestimmte Komponente beinhaltet.
@@ -424,7 +424,7 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
         Ersetzungen:
 
         **%%**
-        : Dies wird durch ein einzelnes „%“ ersetzt. Um also die Zeichenfolge „%c“ als Argument an den Befehl zu übergeben, würden Sie „%%c“ schreiben.
+        : Dies wird durch ein einzelnes „%“ ersetzt. Um also die Zeichenkette „%c“ als Argument an den Befehl zu übergeben, würden Sie „%%c“ schreiben.
 
         **%c**
         : Das wird durch den Befehl der genannten Komponente ersetzt.
@@ -436,7 +436,7 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
         : Dies wird durch die Methode *name* ersetzt; wenn *name* aus mehreren Tokens besteht, werden diese durch Leerzeichen verbunden.
 
         **%j**
-        : An deren Stelle tritt die Methode *name*; wenn *name* aus mehreren Tokens besteht, werden diese durch Unterstriche („\_“) verbunden.
+        : Dies wird durch die Methode *name* ersetzt; wenn *name* aus mehreren Tokens besteht, werden diese durch Unterstriche („\_“) verbunden.
 
         **%t**
         : Das wird durch den voll qualifizierten Typnamen ersetzt.
@@ -552,7 +552,7 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
         Ersetzungen:
 
         **%%**
-        : Dies wird durch ein einzelnes „%“ ersetzt. Um also die Zeichenfolge „%c“ als Argument an den Befehl zu übergeben, würden Sie „%%c“ schreiben.
+        : Dies wird durch ein einzelnes „%“ ersetzt. Um also die Zeichenkette „%c“ als Argument an den Befehl zu übergeben, würden Sie „%%c“ schreiben.
 
         **%c**
         : Dies wird durch den Befehl der benannten Typkomponente ersetzt.
@@ -561,10 +561,10 @@ Snit stellt die folgenden Befehle zur Definition neuer Typen bereit:
         : Dies wird durch das letzte Token der Typmethode *name* ersetzt; wenn die Typmethode *name* aus einem Token besteht, entspricht dies **%M**.
 
         **%M**
-        : An deren Stelle tritt die Typmethode *name*; wenn *name* aus mehreren Tokens besteht, werden diese durch Leerzeichen verbunden.
+        : Dies wird durch die Typmethode *name* ersetzt; wenn *name* aus mehreren Tokens besteht, werden diese durch Leerzeichen verbunden.
 
         **%j**
-        : An deren Stelle tritt die Typmethode *name*; wenn *name* aus mehreren Tokens besteht, werden diese durch Unterstriche („\_“) verbunden.
+        : Dies wird durch die Typmethode *name* ersetzt; wenn *name* aus mehreren Tokens besteht, werden diese durch Unterstriche („\_“) verbunden.
 
         **%t**
         : Das wird durch den voll qualifizierten Typnamen ersetzt.
@@ -743,7 +743,7 @@ Eine Typ- oder Widget-Definition erzeugt einen Typbefehl, der zum Erstellen von 
 **$type** *typemethod* *args*...
 : Die *typemethod* kann eine beliebige der [Standard-Typmethoden] (z. B. **create**) oder eine beliebige in der Typdefinition definierte Typmethode sein. Die nachfolgenden *args* hängen von der jeweils gewählten *typemethod* ab.
 
-    Der Typbefehl wird meist zum Erstellen neuer Instanzen des Typs verwendet; daher wird die Methode **create** angenommen, wenn das erste Argument des Typbefehls keine gültige Typmethode angibt, es sei denn, die Typdefinition enthält **delegate typemethod \*** oder das Pragma **-hasinstances** auf „false“ gesetzt ist.
+    Der Typbefehl wird meist zum Erstellen neuer Instanzen des Typs verwendet; daher wird die Methode **create** angenommen, wenn das erste Argument des Typbefehls keine gültige Typmethode angibt, es sei denn, die Typdefinition enthält **delegate typemethod \*** oder das Pragma **-hasinstances** ist auf „false“ gesetzt.
 
     Wenn das Pragma **-hastypemethods** zudem auf „false“ gesetzt ist, können Snit-Typbefehle auch ganz ohne Argumente aufgerufen werden; in diesem Fall erstellt der Typbefehl eine Instanz mit einem automatisch generierten Namen.  Mit anderen Worten: Sofern das Pragma **-hastypemethods** auf „false“ gesetzt ist und der Typ Instanzen besitzt, sind die folgenden Befehle gleichbedeutend:
 
@@ -775,7 +775,7 @@ Zusätzlich zu den Typmethoden in der Definition des Typs verfügen alle Typ- un
 
     Enthält *name* die Zeichenkette **%AUTO%**, wird sie durch die Zeichenkette **$type$counter** ersetzt; dabei ist **$type** der Typname und **$counter** ein Zähler, der bei jeder Verwendung von **%AUTO%** für diesen Typ hochgezählt wird.
 
-    Standardmäßig sind die Argumente nach *name* eine Liste von *option*-Namen und ihren *value*s; der Konstruktor eines Typs kann jedoch eine andere Argumentliste festlegen.
+    Standardmäßig sind die Argumente nach *name* eine Liste von *option*-Namen und ihren Werten *value*; der Konstruktor eines Typs kann jedoch eine andere Argumentliste festlegen.
 
     Seit Snit V0.95 löst **create** einen Fehler aus, wenn *name* gleich dem Namen eines bestehenden Befehls ist; für **snit::widget**s und **snit::widgetadaptor**s galt das schon immer.  Das frühere Verhalten lässt sich mit dem Pragma **-canreplace** wiederherstellen.
 
@@ -967,7 +967,7 @@ Snit definiert die folgenden Befehle zur Verwendung in Ihrem Objektcode: Das hei
     Weitere Informationen zu **snit::widgetadaptor**s und der Tk-Optionsdatenbank finden Sie unter [Tk-Optionsdatenbank].
 
 **variable** *name*
-: Normalerweise werden Instanzvariablen zusammen mit den Optionen, Methoden usw. in der Typdefinition definiert; solche Instanzvariablen sind automatisch in sämtlichem Instanzcode (z. B. in Methodenkörpern) sichtbar.  Instanzcode kann jedoch den Befehl **variable** verwenden, um Instanzvariablen zu deklarieren, die nicht in der Typdefinition erscheinen, und um Variablen aus anderen Namespaces auf die übliche Weise in den Gültigkeitsbereich zu bringen.
+: Normalerweise werden Instanzvariablen zusammen mit den Optionen, Methoden usw. in der Typdefinition definiert; solche Instanzvariablen sind automatisch in sämtlichem Instanzcode (z. B. in Methodenrümpfen) sichtbar.  Instanzcode kann jedoch den Befehl **variable** verwenden, um Instanzvariablen zu deklarieren, die nicht in der Typdefinition erscheinen, und um Variablen aus anderen Namespaces auf die übliche Weise in den Gültigkeitsbereich zu bringen.
 
     Im Allgemeinen ist es am übersichtlichsten, alle Instanzvariablen in der Typdefinition zu definieren und auf deren Deklaration in Methoden usw. zu verzichten.
 
@@ -1406,7 +1406,7 @@ Snit definiert die folgenden Validierungstypen:
 : Überprüft, ob ein Wert aus einer Aufzählungsliste stammt. Der Basistyp ist für sich genommen kaum von Nutzen, da nur Untertypen tatsächlich über eine Aufzählungsliste verfügen, anhand derer eine Validierung erfolgen kann. Untertypen können mit den folgenden Optionen erstellt werden:
 
     **-values** *list*
-    : Legt fest, welche Werte gültig sind. Ein Wert ist genau dann gültig, wenn er in der Liste enthalten ist.
+    : Legt eine Liste gültiger Werte fest. Ein Wert ist genau dann gültig, wenn er in der Liste enthalten ist.
 
 
 **snit::fpixels** **validate** ?*value*?
@@ -1493,10 +1493,10 @@ Snit definiert die folgenden Validierungstypen:
 : Überprüft Tcl-Zeichenketten auf Gültigkeit. Der Basistyp ist für sich genommen kaum von Nutzen, da jeder Tcl-Wert gleichzeitig eine gültige Zeichenkette ist. Mit den folgenden Optionen können Untertypen erstellt werden:
 
     **-minlen** *min*
-    : Legt eine Mindestlänge für die Zeichenfolge fest; der Wert ist ungültig, wenn er weniger als *min* Zeichen enthält. Der Standardwert ist 0.
+    : Legt eine Mindestlänge für die Zeichenkette fest; der Wert ist ungültig, wenn er weniger als *min* Zeichen enthält. Der Standardwert ist 0.
 
     **-maxlen** *max*
-    : Legt eine maximale Zeichenfolgenlänge fest; der Wert ist ungültig, wenn er mehr als *max* Zeichen enthält.
+    : Legt eine maximale Zeichenkettenlänge fest; der Wert ist ungültig, wenn er mehr als *max* Zeichen enthält.
 
     **-glob** *pattern*
     : Legt ein **string match**-Muster fest; der Wert ist ungültig, wenn er nicht mit dem Muster übereinstimmt.
@@ -1619,7 +1619,7 @@ Ein Bereich, den Sie besonders im Auge behalten sollten, ist die Verwendung von 
 
 # Geschichte
 
-Im Zuge der Entwicklung von „Notebook“ (siehe <http://www.wjduquette.com/notebook>), meiner auf Tcl basierenden persönlichen Notizbuchanwendung, stellte ich fest, dass ich diese als eine Sammlung von Objekten programmierte.  Ich verwendete keinen bestimmten objektorientierten Rahmen; ich schrieb lediglich Objekte in reinem Tcl, wobei ich mich an die Richtlinien in meinem „Guide to Object Commands“ (siehe <http://www.wjduquette.com/tcl/objects.html>) hielt und einige weitere Tricks anwandte, die ich mir seitdem angeeignet hatte.  Und obwohl es gut funktionierte, wurde es aufgrund der Menge an Boilerplate-Code, die mit jedem neuen Objekt verbunden war, schnell mühsam.
+Im Zuge der Entwicklung von „Notebook“ (siehe <http://www.wjduquette.com/notebook>), meiner auf Tcl basierenden persönlichen Notizbuchanwendung, stellte ich fest, dass ich diese als eine Sammlung von Objekten programmierte.  Ich verwendete keinen bestimmten objektorientierten Rahmen; ich schrieb lediglich Objekte in reinem Tcl, wobei ich mich an die Richtlinien in meinem „Guide to Object Commands“ (siehe <http://www.wjduquette.com/tcl/objects.html>) hielt und einige weitere Tricks anwandte, die ich mir seitdem angeeignet hatte.  Und obwohl es gut funktionierte, wurde es aufgrund der Menge an Boilerplate-Code, die mit jedem neuen Objekttyp verbunden war, schnell mühsam.
 
 Das war also der eine Punkt – Langeweile ist ein starker Motivationsfaktor. Der andere Punkt, der mir auffiel, war, dass ich Vererbung überhaupt nicht nutzte und sie mir auch nicht fehlte. Stattdessen setzte ich auf Weiterleitung: Objekte, die andere Objekte erzeugten und Methoden an diese weiterleiteten.
 

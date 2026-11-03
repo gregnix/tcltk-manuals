@@ -35,12 +35,12 @@ tcl::chan::halfpipe – In-Memory-Kanal, eine Hälfte eines FIFO2
 
 Das Paket „**tcl::chan::halfpipe**“ stellt einen Befehl bereit, mit dem eine Hälfte eines „**tcl::chan::fifo2**“-Paares erstellt wird. Das Schreiben in einen solchen Kanal löst eine Reihe von Rückruffunktionen aus, die die Daten anschließend verarbeiten. Dies ähnelt einem Kanal-Handler, verfügt jedoch über eine wesentlich einfachere API.
 
-Die interne Klasse „**TclOO**“, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
+Die interne **TclOO**-Klasse, die den Kanal-Handler implementiert, ist eine Unterklasse des Rahmens „**tcl::chan::events**“.
 
 # API
 
 **::tcl::chan::halfpipe** ?**-option** *value*...?
-: Dieser Befehl erstellt einen Halfpipe-Kanal und konfiguriert ihn mit den Rückruffunktionen, die ausgeführt werden sollen, wenn der Kanal geschlossen wird, Daten in ihn geschrieben wurden oder er leer ist. Eine Liste der Optionen und der zugehörigen Semantik finden Sie im Abschnitt [Optionen]. Das Ergebnis des Befehls ist eine Liste mit zwei Elementen: dem Handle des neuen Kanals und dem Objektbefehl des Kanalhandlers, in dieser Reihenfolge. Letzteres wird dem Aufrufer übergeben, um ihm Zugriff auf die Methode **put** zum Hinzufügen von Daten zum Kanal zu gewähren.
+: Dieser Befehl erstellt einen Halfpipe-Kanal und konfiguriert ihn mit den Rückruffunktionen, die ausgeführt werden sollen, wenn der Kanal geschlossen wird, Daten in ihn geschrieben wurden oder er leer ist. Eine Liste der Optionen und der zugehörigen Semantik finden Sie im Abschnitt [Optionen]. Das Ergebnis des Befehls ist eine Liste mit zwei Elementen: dem Handle des neuen Kanals und dem Objektbefehl des Kanalhandlers, in dieser Reihenfolge. Letzterer wird dem Aufrufer übergeben, um ihm Zugriff auf die Methode **put** zum Hinzufügen von Daten zum Kanal zu gewähren.
 
     Zwei Halfpipes mit etwas Verbindungslogik in den Rückruffunktionen ergeben zusammen ein **tcl::chan::fifo2**.
 

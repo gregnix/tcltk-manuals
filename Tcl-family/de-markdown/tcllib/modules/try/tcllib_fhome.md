@@ -11,7 +11,7 @@ Copyright:
 
 # Name
 
-file::home – file home – Das Home-Verzeichnis des aktuellen oder eines anderen Benutzers gibt zurück
+file::home – file home – Gibt das Home-Verzeichnis des aktuellen oder eines anderen Benutzers zurück
 
 # Übersicht
 
@@ -23,10 +23,10 @@ file::home – file home – Das Home-Verzeichnis des aktuellen oder eines ander
 
 # Beschreibung
 
-Dieses Paket bietet eine Paket-Implementierung des Tcl-9-Unterbefehls [file home](https://www.tcl-lang.org/man/tcl/TclCmd/file.html) (TIP 602) für Tcl 8.x.
+Dieses Paket bietet eine vorwärtskompatible Implementierung des Tcl-9-Unterbefehls [file home](https://www.tcl-lang.org/man/tcl/TclCmd/file.html) (TIP 602) für Tcl 8.x.
 
 **file** **home** ?*user*?
-: Gibt das Home-Verzeichnis des aktuellen Benutzers oder, wenn angegeben, des angegebenen *Benutzers* zurück.
+: Gibt das Home-Verzeichnis des aktuellen Benutzers oder, wenn angegeben, des angegebenen Benutzers *user* zurück.
 
 
 # Fehler, Ideen, Rückmeldungen

@@ -45,7 +45,7 @@ Beginnen die ersten Argumente von **regexp** mit **-**, werden sie als Schalter 
 : Ermöglicht die erweiterte Syntax für reguläre Ausdrücke, bei der Leerraum und Kommentare ignoriert werden. Dies entspricht der Angabe der eingebetteten Option **(?x)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-indices**
-: Ändert, was in *matchVar* und den *subMatchVar*s gespeichert wird. Statt der passenden Zeichen aus *string* enthält jede Variable eine Liste aus zwei dezimalen Zeichenketten. Sie geben die Indizes des ersten und des letzten Zeichens des passenden Zeichenbereichs in *string* an.
+: Ändert, was in *matchVar* und den *subMatchVar*-Argumenten gespeichert wird. Statt der passenden Zeichen aus *string* enthält jede Variable eine Liste aus zwei dezimalen Zeichenketten. Sie geben die Indizes des ersten und des letzten Zeichens des passenden Zeichenbereichs in *string* an.
 
 **-line**
 : Aktiviert einen zeilenumbruchsensitiven Abgleich. Standardmäßig ist der Zeilenumbruch ein völlig gewöhnliches Zeichen ohne besondere Bedeutung. Mit diesem Schalter passen Klammerausdrücke der Form „\[^“ und „.“ niemals auf einen Zeilenumbruch. „^“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette nach jedem Zeilenumbruch, und „$“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette vor jedem Zeilenumbruch. Dieser Schalter entspricht der Angabe von **-linestop** und **-lineanchor** zusammen oder der eingebetteten Option **(?n)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
@@ -79,7 +79,7 @@ Beginnen die ersten Argumente von **regexp** mit **-**, werden sie als Schalter 
 : Markiert das Ende der Schalter. Das darauf folgende Argument wird als *exp* behandelt, auch wenn es mit einem **-** beginnt.
 
 
-Gibt es mehr *subMatchVar*s als geklammerte Unterausdrücke in *exp* oder passt ein bestimmter Unterausdruck in *exp* nicht auf die Zeichenkette (etwa weil er in einem Teil des Ausdrucks lag, der nicht abgeglichen wurde), wird die entsprechende *subMatchVar* auf „**-1 -1**“ gesetzt, wenn **-indices** angegeben wurde, andernfalls auf eine leere Zeichenkette.
+Gibt es mehr *subMatchVar*-Argumente als geklammerte Unterausdrücke in *exp* oder passt ein bestimmter Unterausdruck in *exp* nicht auf die Zeichenkette (etwa weil er in einem Teil des Ausdrucks lag, der nicht abgeglichen wurde), wird die entsprechende *subMatchVar* auf „**-1 -1**“ gesetzt, wenn **-indices** angegeben wurde, andernfalls auf eine leere Zeichenkette.
 
 # Beispiele
 

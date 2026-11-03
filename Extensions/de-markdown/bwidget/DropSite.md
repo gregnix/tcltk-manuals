@@ -42,8 +42,8 @@ DropSite::**register** *path* ?*option value...*?
 
             - Pfadname des Ablegeziels (das Widget selbst), 
             - Pfadname der Ziehquelle, 
-            - X-Koordinate des Zeigers im Wurzelkoordinatensystem, 
-            - Y-Koordinate des Zeigers im Wurzelkoordinatensystem, 
+            - X-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
+            - Y-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
             - Operation, 
             - Typ der gezogenen Daten, 
             - gezogene Daten. 
@@ -56,8 +56,8 @@ DropSite::**register** *path* ?*option value...*?
             - Pfadname des Ablegeziels (das Widget selbst), 
             - Pfadname der Ziehquelle, 
             - Ereignis über dem Ablegeziel: *enter*, *motion* oder *leave*, 
-            - X-Koordinate des Zeigers im Wurzelkoordinatensystem, 
-            - Y-Koordinate des Zeigers im Wurzelkoordinatensystem, 
+            - X-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
+            - Y-Koordinate des Mauszeigers im Wurzelkoordinatensystem, 
             - Operation, 
             - Typ der gezogenen Daten, 
             - gezogene Daten. 

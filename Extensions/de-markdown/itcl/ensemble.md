@@ -30,7 +30,7 @@ itcl::ensemble - einen zusammengesetzten Befehl erzeugen oder ändern
 [...]{.ins}
 :::
 
-oder
+oder     } }
 
 # Beschreibung
 

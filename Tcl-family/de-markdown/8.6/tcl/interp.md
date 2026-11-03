@@ -37,7 +37,7 @@ interp - Erstellt und manipuliert Tcl-Interpreter
 
 Dieser Befehl ermöglicht das Erstellen eines oder mehrerer neuer Tcl-Interpreter, die zusammen mit dem erstellenden Interpreter in derselben Anwendung koexistieren. Der erstellende Interpreter heißt *parent* (Eltern-Interpreter) und der neue Interpreter heißt *child* (Kind-Interpreter). Ein Eltern-Interpreter kann beliebig viele Kinder erstellen, und jedes Kind kann selbst weitere Kinder erstellen, für die es Eltern-Interpreter ist — so entsteht eine Hierarchie von Interpretern.
 
-Jeder Interpreter ist unabhängig von den anderen: Er hat seinen eigenen Namensraum für Befehle, Prozeduren und globale Variablen. Ein Eltern-Interpreter kann Verbindungen zwischen seinen Kindern und sich selbst über einen Mechanismus namens *Alias* herstellen. Ein *Alias* ist ein Befehl in einem Kind-Interpreter, der bei Aufruf dazu führt, dass ein Befehl im Eltern-Interpreter oder in einem anderen Kind-Interpreter aufgerufen wird. Die einzigen weiteren Verbindungen zwischen Interpretern bestehen über Umgebungsvariablen (die Variable [env][tclvars]), die normalerweise von allen Interpretern in der Anwendung gemeinsam genutzt werden, sowie über Callbacks bei überschrittenen Ressourcenlimits. Beachten Sie, dass der Namensraum für Dateien (wie die von [open] zurückgegebenen Namen) zwischen Interpretern nicht mehr gemeinsam genutzt wird. Explizite Befehle ermöglichen das Teilen von Dateien und das Übertragen von Referenzen auf geöffnete Dateien von einem Interpreter zu einem anderen.
+Jeder Interpreter ist unabhängig von den anderen: Er hat seinen eigenen Namensraum für Befehle, Prozeduren und globale Variablen. Ein Eltern-Interpreter kann Verbindungen zwischen seinen Kindern und sich selbst über einen Mechanismus namens *Alias* herstellen. Ein *Alias* ist ein Befehl in einem Kind-Interpreter, der bei Aufruf dazu führt, dass ein Befehl im Eltern-Interpreter oder in einem anderen Kind-Interpreter aufgerufen wird. Die einzigen weiteren Verbindungen zwischen Interpretern bestehen über Umgebungsvariablen (die Variable [env][tclvars]), die normalerweise von allen Interpretern in der Anwendung gemeinsam genutzt werden, sowie über Rückruffunktionen bei überschrittenen Ressourcenlimits. Beachten Sie, dass der Namensraum für Dateien (wie die von [open] zurückgegebenen Namen) zwischen Interpretern nicht mehr gemeinsam genutzt wird. Explizite Befehle ermöglichen das Teilen von Dateien und das Übertragen von Referenzen auf geöffnete Dateien von einem Interpreter zu einem anderen.
 
 Der Befehl **interp** unterstützt auch *sichere* Interpreter. Ein sicherer Interpreter ist ein Kind, dessen Funktionen stark eingeschränkt sind, sodass nicht vertrauenswürdige Skripte ausgeführt werden können, ohne dass andere Interpreter oder die Umgebung der Anwendung beschädigt werden. Beispielsweise sind alle Befehle zur Erstellung von IO-Kanälen und zur Erstellung von Unterprozessen für sichere Interpreter nicht zugänglich. Siehe [Sichere Interpreter] unten für weitere Informationen, welche Funktionen in einem sicheren Interpreter vorhanden sind. Die gefährliche Funktionalität wird nicht aus dem sicheren Interpreter entfernt; stattdessen wird sie *verborgen*, sodass nur vertrauenswürdige Interpreter Zugriff darauf erhalten. Eine ausführliche Erklärung verborgener Befehle finden Sie unter [Verborgene Befehle] unten. Der Alias-Mechanismus kann für geschützte Kommunikation (analog zu einem Kernel-Aufruf) zwischen einem Kind-Interpreter und seinem Eltern-Interpreter verwendet werden. Siehe [Alias-Aufruf] unten für Details zum Alias-Mechanismus.
 
@@ -65,10 +65,10 @@ Der Befehl **interp** dient zum Erstellen, Löschen und Manipulieren von Kind-In
 : Dieser Befehl liest oder setzt den aktuellen Handler für Hintergrund-Ausnahmen des durch *path* identifizierten Interpreters. Fehlt *cmdPrefix*, wird der aktuelle Handler zurückgegeben; ist er vorhanden, ist es eine Liste von Wörtern (mindestens Länge eins), die beschreibt, womit der Hintergrund-Ausnahme-Handler des Interpreters gesetzt werden soll. Siehe den Abschnitt [Hintergrund-Ausnahmebehandlung] für weitere Details.
 
 **interp** **cancel** ?**-unwind**? ?**--**? ?*path*? ?*result*?
-: [Bricht die Auswertung des Skripts im durch *path* identifizierten Interpreter ab. Ohne den Schalter **-unwind** wird der Auswertungsstack des Interpreters entladen, bis ein umschließender [catch]-Befehl gefunden wird oder keine weiteren Aufrufe des Interpreters auf dem Call-Stack verbleiben. Mit **-unwind** wird der Auswertungsstack ohne Rücksicht auf zwischenliegende [catch]-Befehle entladen, bis keine weiteren Aufrufe des Interpreters auf dem Call-Stack verbleiben. Der Schalter **-\|-** markiert das Ende der Schalter; er kann nötig sein, wenn *path* ein unüblicher Wert wie **-safe** ist. Ist *result* angegeben, wird es als Fehlermeldung verwendet; andernfalls eine Standard-Fehlermeldung.]{version="8.6"}
+: [Bricht die Auswertung des Skripts im durch *path* identifizierten Interpreter ab. Ohne den Schalter **-unwind** wird der Auswertungsstack des Interpreters entladen, bis ein umschließender [catch]-Befehl gefunden wird oder keine weiteren Aufrufe des Interpreters auf dem Call-Stack verbleiben. Mit **-unwind** wird der Auswertungsstack ohne Rücksicht auf zwischenliegende [catch]-Befehle entladen, bis keine weiteren Aufrufe des Interpreters auf dem Call-Stack verbleiben. Der Schalter **--** markiert das Ende der Schalter; er kann nötig sein, wenn *path* ein unüblicher Wert wie **-safe** ist. Ist *result* angegeben, wird es als Fehlermeldung verwendet; andernfalls eine Standard-Fehlermeldung.]{version="8.6"}
 
 **interp** **create** ?**-safe**? ?**--**? ?*path*?
-: Erstellt einen Kind-Interpreter *path* und einen neuen Befehl, den *Child-Befehl*. Der Name des Child-Befehls ist die letzte Komponente von *path*. Der neue Kind-Interpreter und der Child-Befehl werden im Interpreter erstellt, der durch den Pfad identifiziert wird, der durch Entfernen der letzten Komponente von *path* entsteht. Ist *path* beispielsweise **a b c**, werden ein neuer Kind-Interpreter und ein Child-Befehl **c** im Interpreter mit Pfad **a b** erstellt. Der Child-Befehl kann den neuen Interpreter wie unten beschrieben steuern. Fehlt *path*, erzeugt Tcl einen eindeutigen Namen der Form **interp***x*, wobei *x* eine Ganzzahl ist, und verwendet ihn für Interpreter und Child-Befehl. Ist der Schalter **-safe** gesetzt (oder ist der Eltern-Interpreter ein sicherer Interpreter), wird der neue Kind-Interpreter als sicherer Interpreter mit eingeschränkter Funktionalität erstellt; andernfalls enthält das Kind den vollen Satz Tcl-Builtin-Befehle und -Variablen. **-\|-** markiert das Ende der Schalter; nötig, wenn *path* ein unüblicher Wert wie **-safe** ist. Das Ergebnis ist der Name des neuen Interpreters. Der Name eines Kind-Interpreters muss unter allen Kindern seines Eltern-Interpreters eindeutig sein; existiert bereits ein Kind mit diesem Namen, tritt ein Fehler auf. Das anfängliche Rekursionslimit des Kind-Interpreters entspricht dem aktuellen Rekursionslimit seines Eltern-Interpreters.
+: Erstellt einen Kind-Interpreter *path* und einen neuen Befehl, den *Child-Befehl*. Der Name des Child-Befehls ist die letzte Komponente von *path*. Der neue Kind-Interpreter und der Child-Befehl werden im Interpreter erstellt, der durch den Pfad identifiziert wird, der durch Entfernen der letzten Komponente von *path* entsteht. Ist *path* beispielsweise **a b c**, werden ein neuer Kind-Interpreter und ein Child-Befehl **c** im Interpreter mit Pfad **a b** erstellt. Der Child-Befehl kann den neuen Interpreter wie unten beschrieben steuern. Fehlt *path*, erzeugt Tcl einen eindeutigen Namen der Form **interp***x*, wobei *x* eine Ganzzahl ist, und verwendet ihn für Interpreter und Child-Befehl. Ist der Schalter **-safe** gesetzt (oder ist der Eltern-Interpreter ein sicherer Interpreter), wird der neue Kind-Interpreter als sicherer Interpreter mit eingeschränkter Funktionalität erstellt; andernfalls enthält das Kind den vollen Satz Tcl-Builtin-Befehle und -Variablen. **--** markiert das Ende der Schalter; er kann nötig sein, wenn *path* ein unüblicher Wert wie **-safe** ist. Das Ergebnis ist der Name des neuen Interpreters. Der Name eines Kind-Interpreters muss unter allen Kindern seines Eltern-Interpreters eindeutig sein; existiert bereits ein Kind mit diesem Namen, tritt ein Fehler auf. Das anfängliche Rekursionslimit des Kind-Interpreters entspricht dem aktuellen Rekursionslimit seines Eltern-Interpreters.
 
 **interp** **debug** *path* ?**-frame** ?*bool*??
 : Steuert, ob Frame-Level-Stack-Informationen im durch *path* identifizierten Kind-Interpreter erfasst werden. Ohne Argumente werden Option und aktuelle Einstellung zurückgegeben. Mit **-frame** wird die Debug-Einstellung auf den angegebenen booleschen Wert gesetzt (falls angegeben) und die aktuelle Einstellung zurückgegeben. Dies betrifft nur die Ausgabe von [info frame][info]: exakte Frame-Level-Informationen für Befehlsaufrufe auf Bytecode-Ebene werden nur mit dieser Einstellung erfasst.
@@ -113,13 +113,13 @@ Der Befehl **interp** dient zum Erstellen, Löschen und Manipulieren von Kind-In
 : Gibt eine Liste der Namen aller verborgenen Befehle im durch *path* identifizierten Interpreter zurück.
 
 **interp** **invokehidden** *path* ?*-option ...*? *hiddenCmdName* ?*arg ...*?
-: Ruft den verborgenen Befehl *hiddenCmdName* mit den übergebenen Argumenten im durch *path* bezeichneten Interpreter auf. Auf die Argumente werden keine Ersetzungen oder Auswertungen angewendet. Drei *-option*en werden unterstützt, alle beginnend mit **-**: **-namespace** (mit einem folgenden Argument *nsName*), **-global** und **-\|-**. Ist **-namespace** gesetzt, wird der verborgene Befehl im Namespace *nsName* im Ziel-Interpreter aufgerufen. Ist **-global** gesetzt, wird er auf globaler Ebene im Ziel-Interpreter aufgerufen; andernfalls im aktuellen Call-Frame mit Zugriff auf lokale Variablen in diesem und äußeren Frames. **-\|-** erlaubt, dass *hiddenCmdName* mit „-“ beginnt, und ist sonst unnötig. Sind **-namespace** und **-global** gesetzt, wird **-namespace** ignoriert. Der verborgene Befehl wird (standardmäßig) im aktuellen Kontext-Stack-Frame des *path*-Interpreters ausgeführt. Verborgene Befehle werden unter [Verborgene Befehle] unten ausführlicher erklärt.
+: Ruft den verborgenen Befehl *hiddenCmdName* mit den übergebenen Argumenten im durch *path* bezeichneten Interpreter auf. Auf die Argumente werden keine Ersetzungen oder Auswertungen angewendet. Drei *-option*en werden unterstützt, alle beginnend mit **-**: **-namespace** (mit einem folgenden Argument *nsName*), **-global** und **--**. Ist **-namespace** gesetzt, wird der verborgene Befehl im Namespace *nsName* im Ziel-Interpreter aufgerufen. Ist **-global** gesetzt, wird er auf globaler Ebene im Ziel-Interpreter aufgerufen; andernfalls im aktuellen Call-Frame mit Zugriff auf lokale Variablen in diesem und äußeren Frames. **--** erlaubt, dass *hiddenCmdName* mit „-“ beginnt, und ist sonst unnötig. Sind **-namespace** und **-global** gesetzt, wird **-namespace** ignoriert. Der verborgene Befehl wird (standardmäßig) im aktuellen Kontext-Stack-Frame des *path*-Interpreters ausgeführt. Verborgene Befehle werden unter [Verborgene Befehle] unten ausführlicher erklärt.
 
 **interp issafe** ?*path*?
 : Gibt **1** zurück, wenn der durch *path* identifizierte Interpreter sicher ist, sonst **0**.
 
 **interp** **limit** *path* *limitType* ?*-option*? ?*value* *...*?
-: Richtet die Konfiguration des Ressourcenlimits *limitType* für den durch *path* bezeichneten Interpreter ein, manipuliert und abfragt sie. Ist keine *-option* angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist *-option* das einzige Argument, der Wert dieser Option. Andernfalls muss eine Liste von *-option*/*value*-Paaren angegeben werden. Siehe [Ressourcenlimits] unten für Limits und Optionen.
+: Richtet die Konfiguration des Ressourcenlimits *limitType* für den durch *path* bezeichneten Interpreter ein, manipuliert sie und fragt sie ab. Ist keine *-option* angegeben, wird die aktuelle Konfiguration zurückgegeben. Ist *-option* das einzige Argument, wird der Wert dieser Option zurückgegeben. Andernfalls muss eine Liste von *-option*/*value*-Paaren angegeben werden. Siehe [Ressourcenlimits] unten für Limits und Optionen.
 
 **interp marktrusted** *path*
 : Markiert den durch *path* identifizierten Interpreter als vertrauenswürdig. Macht verborgene Befehle nicht sichtbar. Der Befehl kann nur aus einem vertrauenswürdigen Interpreter aufgerufen werden. Hat keine Wirkung, wenn der Interpreter bereits vertrauenswürdig ist.
@@ -130,7 +130,7 @@ Der Befehl **interp** dient zum Erstellen, Löschen und Manipulieren von Kind-In
     Der Befehl begrenzt nur die Größe des Tcl-Call-Stacks. Er verhindert allein keine Stack-Überläufe auf dem vom Programm genutzten C-Stack. Hat Ihr System ein Limit für die C-Stack-Größe, können Überläufe auftreten, bevor das durch den Befehl gesetzte Limit erreicht ist. Prüfen Sie in diesem Fall, ob sich die maximale C-Stack-Größe erhöhen lässt.
 
 **interp** **share** *srcPath channelId destPath*
-: Bewirkt, dass der IO-Kanal *channelId* zwischen dem durch *srcPath* und *destPath* identifizierten Interpreter geteilt wird. Beide haben dieselben Berechtigungen auf dem Kanal. Beide müssen schließen, um den zugrunde liegenden Kanal zu schließen; in einem Interpreter zugängliche Kanäle werden beim Zerstören des Interpreters automatisch geschlossen.
+: Bewirkt, dass der IO-Kanal *channelId* zwischen den durch *srcPath* und *destPath* identifizierten Interpretern geteilt wird. Beide haben dieselben Berechtigungen auf dem Kanal. Beide müssen ihn schließen, um den zugrunde liegenden Kanal zu schließen; in einem Interpreter zugängliche Kanäle werden beim Zerstören des Interpreters automatisch geschlossen.
 
 **interp** **slaves** ?*path*?
 : Gibt eine Tcl-Liste der Namen aller Kind-Interpreter zurück, die mit dem durch *path* identifizierten Interpreter verknüpft sind. Fehlt *path*, wird der aufrufende Interpreter verwendet.
@@ -153,7 +153,7 @@ Für jeden mit **interp** erstellten Kind-Interpreter wird im Eltern-Interpreter
 child command ?arg arg ...?
 ```
 
-*child* ist der Interpretername; *command* und die *arg*s bestimmen das Verhalten. Gültige Formen:
+*child* ist der Interpretername; *command* und die Argumente *arg* bestimmen das Verhalten. Gültige Formen:
 
 *child* **aliases**
 : Gibt eine Tcl-Liste der Tokens aller Aliase in *child* zurück. Die Tokens entsprechen den bei Erstellung zurückgegebenen Werten (die von den aktuellen Befehlsnamen abweichen können).
@@ -177,27 +177,27 @@ child command ?arg arg ...?
 : Macht den verborgenen Befehl *hiddenName* in *child* sichtbar und stellt ihn gegebenenfalls unter *exposedCmdName* wieder her (nur gültiger globaler Namensraumname ohne ::). Existiert bereits ein sichtbarer Befehl mit dem Zielnamen, schlägt der Befehl fehl. Siehe [Verborgene Befehle] unten.
 
 *child* **hide** *exposedCmdName* ?*hiddenCmdName*?
-: Verbirgt *exposedCmdName* in *child*, benennt ihn in *hiddenCmdName* um oder behält den Namen. Existiert bereits ein verborgener Befehl mit dem Zielnamen, schlägt der Befehl fehl. Derzeit dürfen weder *exposedCmdName* noch *hiddenCmdName* Namespace-Qualifizierer enthalten. Zu verbergende Befehle werden im globalen Namespace gesucht, auch wenn der aktuelle Namespace nicht global ist — damit Kinder den Eltern-Interpreter nicht zum Verbergen des falschen Befehls verleiten. Siehe [Verborgene Befehle] unten.
+: Verbirgt *exposedCmdName* in *child*, benennt ihn in *hiddenCmdName* um oder behält den Namen. Existiert bereits ein verborgener Befehl mit dem Zielnamen, schlägt der Befehl fehl. Derzeit dürfen weder *exposedCmdName* noch *hiddenCmdName* Namespace-Qualifizierer enthalten, sonst wird ein Fehler ausgelöst. Zu verbergende Befehle werden im globalen Namespace gesucht, auch wenn der aktuelle Namespace nicht global ist — damit Kinder den Eltern-Interpreter nicht zum Verbergen des falschen Befehls verleiten. Siehe [Verborgene Befehle] unten.
 
 *child* **hidden**
 : Gibt eine Liste aller verborgenen Befehlsnamen in *child* zurück.
 
 *child* **invokehidden** ?*-option ...*? *hiddenName* ?*arg ..*?
-: Ruft *hiddenName* in *child* mit den übergebenen Argumenten auf. Keine Ersetzungen oder Auswertungen auf den Argumenten. Drei *-option*en: **-namespace** (mit *nsName*), **-global**, **-\|-**. Mit **-namespace** Aufruf im angegebenen Namespace im Kind; mit **-global** auf globaler Ebene; sonst im aktuellen Call-Frame mit Zugriff auf lokale Variablen. **-\|-** erlaubt Befehlsnamen mit führendem „-“. Sind **-namespace** und **-global** gesetzt, wird **-namespace** ignoriert. Der verborgene Befehl läuft (standardmäßig) im aktuellen Kontext-Stack-Frame von *child*. Siehe [Verborgene Befehle] unten.
+: Ruft *hiddenName* in *child* mit den übergebenen Argumenten auf. Keine Ersetzungen oder Auswertungen auf den Argumenten. Drei *-option*en: **-namespace** (mit *nsName*), **-global**, **--**. Mit **-namespace** Aufruf im angegebenen Namespace im Kind; mit **-global** auf globaler Ebene; sonst im aktuellen Call-Frame mit Zugriff auf lokale Variablen in diesem oder äußeren Call-Frames. **--** erlaubt Befehlsnamen mit führendem „-“ und ist sonst unnötig. Sind **-namespace** und **-global** gesetzt, wird **-namespace** ignoriert. Der verborgene Befehl läuft (standardmäßig) im aktuellen Kontext-Stack-Frame von *child*. Siehe [Verborgene Befehle] unten.
 
 *child* **issafe**
 : Gibt **1** zurück, wenn der Kind-Interpreter sicher ist, sonst **0**.
 
 *child* **limit** *limitType* ?*-option*? ?*value* *...*?
-: Richtet die Konfiguration des Ressourcenlimits *limitType* für *child* ein, manipuliert und abfragt sie. Ohne *-option* die aktuelle Konfiguration; nur *-option* der Optionswert; sonst *-option*/*value*-Paare. Siehe [Ressourcenlimits] unten.
+: Richtet die Konfiguration des Ressourcenlimits *limitType* für *child* ein, manipuliert sie und fragt sie ab. Ohne *-option* wird die aktuelle Konfiguration zurückgegeben; ist *-option* das einzige Argument, der Wert dieser Option; andernfalls müssen *-option*/*value*-Paare angegeben werden. Siehe [Ressourcenlimits] unten.
 
 *child* **marktrusted**
 : Markiert den Kind-Interpreter als vertrauenswürdig. Nur aus vertrauenswürdigem Interpreter aufrufbar. Macht keine verborgenen Befehle sichtbar. Keine Wirkung, wenn das Kind bereits vertrauenswürdig ist.
 
 *child* **recursionlimit** ?*newlimit*?
-: Gibt die maximal zulässige Verschachtelungstiefe für *child* zurück. Mit *newlimit* wird das Rekursionslimit so gesetzt, dass mehr als *newlimit* Aufrufe von **[Tcl\_Eval][Eval]()** und verwandten Prozeduren in *child* einen Fehler ergeben. *newlimit* wird zurückgegeben; muss eine positive Ganzzahl zwischen 1 und dem Plattform-Maximum sein.
+: Gibt die maximal zulässige Verschachtelungstiefe für *child* zurück. Mit *newlimit* wird das Rekursionslimit so gesetzt, dass mehr als *newlimit* Aufrufe von **[Tcl\_Eval][Eval]()** und verwandten Prozeduren in *child* einen Fehler ergeben. *newlimit* wird zurückgegeben; muss eine positive Ganzzahl zwischen 1 und dem Maximalwert eines non-long-Integer auf der Plattform sein.
 
-    Begrenzt nur den Tcl-Call-Stack, nicht C-Stack-Überläufe. Bei C-Stack-Limits des Systems können Überläufe vor Erreichen des gesetzten Limits auftreten; prüfen Sie dann eine Erhöhung der maximalen C-Stack-Größe.
+    Begrenzt nur die Größe des Tcl-Call-Stacks und verhindert allein keine Überläufe des C-Stacks. Bei C-Stack-Limits des Systems können Überläufe vor Erreichen des gesetzten Limits auftreten; prüfen Sie dann eine Erhöhung der maximalen C-Stack-Größe.
 
 
 # Sichere Interpreter
@@ -241,14 +241,14 @@ Folgende Befehle verbirgt **interp create** beim Erzeugen eines sicheren Interpr
 
 Diese Befehle können später als Tcl-Prozeduren oder Aliase neu erstellt oder mit **interp expose** wieder sichtbar gemacht werden.
 
-Folgende Befehle aus Tcl's Bibliothek von Hilfsprozeduren fehlen in einem sicheren Interpreter:
+Folgende Befehle aus Tcls Bibliothek von Hilfsprozeduren fehlen in einem sicheren Interpreter:
 
 ::: {.info DISPLAY="yes"}
 **auto\_exec\_ok**	[auto\_import][library]	[auto\_load][library]\
 **auto\_load\_index**	[auto\_qualify][library]	[unknown]
 :::
 
-Insbesondere haben sichere Interpreter keinen Standard-[unknown]-Befehl; Tcl's Autoload-Funktionen stehen nicht zur Verfügung. Autoload-Zugriff auf normalerweise per Autoload geladene Tcl-Befehle:
+Insbesondere haben sichere Interpreter keinen Standard-[unknown]-Befehl; die Autoload-Funktionen von Tcl stehen nicht zur Verfügung. Autoload-Zugriff auf normalerweise per Autoload geladene Tcl-Befehle:
 
 ::: {.info DISPLAY="yes"}
 [auto\_mkindex][library]	**auto\_mkindex\_old**\
@@ -263,7 +263,7 @@ Insbesondere haben sichere Interpreter keinen Standard-[unknown]-Befehl; Tcl's A
 [tcl\_wordBreakAfter][library]	[tcl\_wordBreakBefore][library]
 :::
 
-ist nur durch explizite Definition eines [unknown]-Befehls im sicheren Interpreter möglich — dazu muss [source] sichtbar gemacht werden. Am einfachsten durch Erstellung des sicheren Interpreters mit Tcl's **Safe-Tcl**-Mechanismus; **Safe-Tcl** liefert sichere Varianten von [source], [load] und weiteren Befehlen für Autoload und Paketladen.
+ist nur durch explizite Definition eines [unknown]-Befehls im sicheren Interpreter möglich — dazu muss [source] sichtbar gemacht werden. Am einfachsten durch Erstellung des sicheren Interpreters mit dem **Safe-Tcl**-Mechanismus von Tcl; **Safe-Tcl** liefert sichere Varianten von [source], [load] und weiteren Befehlen für Autoload und Paketladen.
 
 Außerdem fehlt die Variable [env][tclvars] im sicheren Interpreter; Umgebungsvariablen können nicht mit anderen Interpretern geteilt werden. [env][tclvars] birgt ein Sicherheitsrisiko, da Nutzer sensible Daten in Umgebungsvariablen ablegen können — z. B. empfiehlt das PGP-Handbuch das Passwort zum Schutz des privaten Schlüssels in *PGPPASS*. Diese Variable für nicht vertrauenswürdigen Code in einem sicheren Interpreter verfügbar zu machen, wäre ein Sicherheitsrisiko.
 
@@ -273,11 +273,11 @@ Ein sicherer Interpreter darf das Rekursionslimit keines Interpreters ändern, a
 
 # Alias-Aufruf
 
-Der Alias-Mechanismus ist so ausgelegt, dass er sicher in nicht vertrauenswürdigen Skripten in einem sicheren Interpreter verwendet werden kann, selbst wenn das Alias-Ziel kein sicherer Interpreter ist. Entscheidend für die Sicherheit ist, dass vom Kind an den Eltern übergebene Informationen im Eltern-Interpreter nie ausgewertet oder substituiert werden; sonst könnte ein bösartiges Kind-Skript beliebige Funktionen im Eltern aufrufen und die Sicherheit gefährden.
+Der Alias-Mechanismus ist so ausgelegt, dass er sicher in nicht vertrauenswürdigen Skripten in einem sicheren Interpreter verwendet werden kann, selbst wenn das Alias-Ziel kein sicherer Interpreter ist. Entscheidend für die Sicherheit ist, dass vom Kind an den Eltern-Interpreter übergebene Informationen im Eltern-Interpreter nie ausgewertet oder ersetzt werden; sonst könnte ein bösartiges Kind-Skript beliebige Funktionen im Eltern-Interpreter aufrufen und die Sicherheit gefährden.
 
-Wird die Alias-Quelle im Kind-Interpreter aufgerufen, erfolgen beim Parsen die üblichen Tcl-Ersetzungen im Quell-Interpreter wie bei jedem anderen Befehl. Die Befehlsprozedur der Quelle führt ihre Argumente mit *targetCmd* und *arg* des Alias zu einem neuen Argumentarray zusammen. Waren die Wörter von *srcCmd* „*srcCmd arg1 arg2 ... argN*“, lautet die neue Wortfolge „*targetCmd arg arg ... arg arg1 arg2 ... argN*“, wobei *targetCmd* und *arg* die bei Alias-Erstellung gesetzten Werte sind. *TargetCmd* wird verwendet, um die Befehlsprozedur im Ziel-Interpreter zu finden; diese wird mit den neuen Argumenten aufgerufen. Fehlt ein Befehl *targetCmd* im Ziel-Interpreter, tritt ein Fehler auf. Auf den Wörtern erfolgen keine weiteren Ersetzungen: Die Zielbefehlsprozedur wird direkt aufgerufen, ohne den normalen Tcl-Auswertungsmechanismus. Jede Ersetzungsrunde erfolgt genau einmal: *targetCmd* und *args* beim Parsen des Alias-Erstellungsbefehls, *arg1* bis *argN* beim Parsen des Alias-Quellbefehls im Quell-Interpreter.
+Wird die Alias-Quelle im Kind-Interpreter aufgerufen, erfolgen beim Parsen die üblichen Tcl-Ersetzungen im Quell-Interpreter wie bei jedem anderen Befehl. Die Befehlsprozedur der Quelle führt ihre Argumente mit *targetCmd* und *arg* des Alias zu einem neuen Argumentarray zusammen. Waren die Wörter von *srcCmd* „*srcCmd arg1 arg2 ... argN*“, lautet die neue Wortfolge „*targetCmd arg arg ... arg arg1 arg2 ... argN*“, wobei *targetCmd* und *arg* die bei Alias-Erstellung gesetzten Werte sind. *TargetCmd* wird verwendet, um die Befehlsprozedur im Ziel-Interpreter zu finden; diese wird mit den neuen Argumenten aufgerufen. Fehlt ein Befehl *targetCmd* im Ziel-Interpreter, tritt ein Fehler auf. Auf den Wörtern erfolgen keine weiteren Ersetzungen: Die Zielbefehlsprozedur wird direkt aufgerufen, ohne den normalen Tcl-Auswertungsmechanismus. Ersetzungen werden somit auf jedes Wort genau einmal angewendet: *targetCmd* und *args* beim Parsen des Alias-Erstellungsbefehls, *arg1* bis *argN* beim Parsen des Alias-Quellbefehls im Quell-Interpreter.
 
-Beim Schreiben von *targetCmd* für Aliase in sicheren Interpretern dürfen die Argumente dieses Befehls nie ausgewertet oder substituiert werden — sonst entstünde ein Ausweg, über den das Kind beliebigen Code im Eltern ausführen könnte und die Systemsicherheit gefährdet wäre.
+Beim Schreiben von *targetCmd* für Aliase in sicheren Interpretern dürfen die Argumente dieses Befehls nie ausgewertet oder ersetzt werden — sonst entstünde ein Ausweg, über den das Kind beliebigen Code im Eltern-Interpreter ausführen könnte und die Systemsicherheit gefährdet wäre.
 
 # Verborgene Befehle
 
@@ -285,7 +285,7 @@ Sichere Interpreter schränken die für Tcl-Programme verfügbare Funktionalitä
 
 Der Befehl **interp** löst das mit *verborgenen Befehlen*. Statt gefährliche Befehle vollständig zu entfernen, werden sie verborgen und sind Tcl-Skripten im Interpreter nicht verfügbar. Vertrauenswürdige Vorfahren des sicheren Interpreters können sie jedoch im Kontext des sicheren Interpreters mit **interp invoke** aufrufen. Verborgene und sichtbare Befehle liegen in getrennten Namensräumen; im selben Interpreter können verborgener und sichtbarer Befehl denselben Namen tragen.
 
-Verborgene Befehle in einem Kind können im Rumpf von Prozeduren im Eltern während Alias-Aufrufen ausgeführt werden. Beispiel: Alias für [source] im Kind — beim Aufruf prüft eine Prozedur im Eltern, ob die Operation erlaubt ist (z. B. ob die Datei für das Kind zugänglich ist), und ruft dann den verborgenen [source]-Befehl im Kind auf, um den Inhalt zu laden. Im Kind existieren zwei Befehle [source]: der Alias und der verborgene Befehl.
+Verborgene Befehle in einem Kind können im Rumpf von Prozeduren im Eltern-Interpreter während Alias-Aufrufen ausgeführt werden. Beispiel: Alias für [source] im Kind — beim Aufruf prüft eine Prozedur im Eltern-Interpreter, ob die Operation erlaubt ist (z. B. ob die Datei für das Kind zugänglich ist), und ruft dann den verborgenen [source]-Befehl im Kind auf, um den Inhalt zu laden. Im Kind existieren zwei Befehle [source]: der Alias und der verborgene Befehl.
 
 Da der Eltern-Interpreter verborgene Befehle beim Alias-Handling aufrufen kann, dürfen über den Alias übergebene Argumente nicht ausgewertet werden — sonst könnten bösartige Kinder vertrauenswürdige Eltern zu gefährlichen Befehlen verleiten. Siehe [Alias-Aufruf]. Zur Vermeidung werden auf Argumente von **interp invokehidden** keine Ersetzungen oder Auswertungen angewendet.
 
@@ -293,20 +293,20 @@ Sichere Interpreter dürfen verborgene Befehle weder in sich selbst noch in Nach
 
 Die Menge verborgener Befehle kann von einem vertrauenswürdigen Interpreter mit **interp expose** und **interp hide** geändert werden. **interp expose** verschiebt einen verborgenen Befehl in die sichtbaren Befehle des durch *path* identifizierten Interpreters, ggf. mit Umbenennung; existiert bereits ein sichtbarer Befehl mit dem Zielnamen, schlägt die Operation fehl. **interp hide** verschiebt einen sichtbaren Befehl in die verborgenen. Sichere Interpreter dürfen Befehle weder bei sich noch bei Nachkommen zwischen verborgen und sichtbar verschieben.
 
-Derzeit dürfen Namen verborgener Befehle keine Namespace-Qualifizierer enthalten; ein Befehl in einem Namespace muss zuerst in den globalen Namespace umbenannt werden, bevor er verborgen werden kann. Von **interp hide** gesuchte Befehle werden im globalen Namespace aufgelöst, auch wenn der aktuelle Namespace nicht global ist — damit Kinder den Eltern nicht zum Verbergen des falschen Befehls verleiten.
+Derzeit dürfen Namen verborgener Befehle keine Namespace-Qualifizierer enthalten; ein Befehl in einem Namespace muss zuerst in den globalen Namespace umbenannt werden, bevor er verborgen werden kann. Von **interp hide** gesuchte Befehle werden im globalen Namespace aufgelöst, auch wenn der aktuelle Namespace nicht global ist — damit Kinder den Eltern-Interpreter nicht zum Verbergen des falschen Befehls verleiten.
 
 # Ressourcenlimits
 
 Jeder Interpreter hat zwei Arten von Ressourcenlimits, die ein Eltern-Interpreter seinen Kindern auferlegen kann. Befehlslimits (Typ **command**) begrenzen die Gesamtzahl ausführbarer Tcl-Befehle (prüfbar mit [info cmdcount][info]); Zeitlimits (Typ **time**) legen fest, bis wann die Ausführung im Interpreter abgeschlossen sein muss. Zeitlimits sind *absolute* Zeiten (wie [clock seconds][clock]), nicht relative (wie [after]), da sie nach Erstellung geändert werden können.
 
-Wird ein Limit überschritten, werden zuerst Handler-Callbacks der Eltern-Interpreter aufgerufen. Erhöhen oder entfernen diese das Limit, läuft die Ausführung im (zuvor) limitierten Interpreter weiter. Bleibt das Limit aktiv, wird ein Fehler erzeugt und die normale Fehlerbehandlung im Interpreter (durch [catch]) deaktiviert; der Fehler breitet sich nach außen aus (mit Stack-Trace) bis zum Punkt, an dem der limitierte Interpreter aufgerufen wurde (z. B. **interp eval**), wo der aufrufende Code fangen und behandeln muss.
+Wird ein Limit überschritten, werden zuerst die von Eltern-Interpretern definierten Handler-Rückruffunktionen aufgerufen. Erhöhen oder entfernen diese das Limit, läuft die Ausführung im (zuvor) limitierten Interpreter weiter. Bleibt das Limit aktiv, wird ein Fehler erzeugt und die normale Fehlerbehandlung im Interpreter (durch [catch]) deaktiviert; der Fehler breitet sich nach außen aus (mit Stack-Trace) bis zum Punkt, an dem der limitierte Interpreter aufgerufen wurde (z. B. **interp eval**), wo der aufrufende Code ihn abfangen und behandeln muss.
 
 ## Limit-Optionen
 
 Jedes Limit hat Optionen — einige für alle Limittypen, andere typspezifisch.
 
 **-command**
-: Diese Option (für alle Limittypen) legt (falls nicht leer) ein Tcl-Skript fest, das im globalen Namespace des Interpreters ausgeführt wird, der die Option liest/schreibt, wenn das jeweilige Limit im limitierten Interpreter überschritten wird. Der Callback kann das Limit ändern, damit der limitierte Interpreter weiterläuft. Erzeugt der Callback eine Ausnahme, wird sie über den Hintergrund-Ausnahme-Mechanismus gemeldet (siehe [Hintergrund-Ausnahmebehandlung]). Beachten Sie, dass die von einem Interpreter definierten Callbacks vollständig von den Callbacks eines anderen isoliert sind und dass die Reihenfolge, in der diese Callbacks aufgerufen werden, undefiniert ist.
+: Diese Option (für alle Limittypen) legt (falls nicht leer) ein Tcl-Skript fest, das im globalen Namespace des Interpreters ausgeführt wird, der die Option liest/schreibt, wenn das jeweilige Limit im limitierten Interpreter überschritten wird. Die Rückruffunktion kann das Limit ändern, damit der limitierte Interpreter weiterläuft. Erzeugt die Rückruffunktion eine Ausnahme, wird sie über den Hintergrund-Ausnahme-Mechanismus gemeldet (siehe [Hintergrund-Ausnahmebehandlung]). Beachten Sie, dass die von einem Interpreter definierten Rückruffunktionen vollständig von den Rückruffunktionen eines anderen isoliert sind und dass die Reihenfolge, in der diese Rückruffunktionen aufgerufen werden, undefiniert ist.
 
 **-granularity**
 : Diese Option (für alle Limittypen) legt fest, wie häufig (an Punkten konsistenten Interpreter-Zustands, an denen Limits geprüft werden können) das Limit tatsächlich geprüft wird. Damit lässt sich die Prüfhäufigkeit und der Prüf-Overhead (bei Zeitlimits ggf. erheblich) abstimmen.
@@ -321,11 +321,11 @@ Jedes Limit hat Optionen — einige für alle Limittypen, andere typspezifisch.
 : Anzahl Befehle, die der Interpreter ausführen darf, bevor das Befehlslimit auslöst. Kann die leere Zeichenkette sein (kein Befehlslimit).
 
 
-Erzeugt ein Interpreter mit gesetztem Ressourcenlimit ein Kind, erhält dieses mindestens so restriktive Limits wie der erzeugende Eltern-Interpreter. Will der Eltern-Interpreter des limitierten Eltern die Bedingungen lockern, soll er **interp** im Kind verbergen und über Aliase sowie **interp invokehidden** den limitierten Eltern den gewünschten **interp**-Zugriff geben.
+Erzeugt ein Interpreter mit gesetztem Ressourcenlimit ein Kind, erhält dieses mindestens so restriktive Limits wie der erzeugende Eltern-Interpreter. Will der Eltern-Interpreter des limitierten Eltern-Interpreters die Bedingungen lockern, soll er **interp** im Kind verbergen und über Aliase sowie **interp invokehidden** dem limitierten Eltern-Interpreter den gewünschten **interp**-Zugriff geben.
 
 # Hintergrund-Ausnahmebehandlung
 
-Tritt eine Ausnahme auf, die nicht direkt den Stack hinauf gemeldet werden kann (z. B. bei Event-Verarbeitung in [update] oder [vwait]), erfolgt die Meldung über den Mechanismus für Hintergrund-Ausnahmen. Jeder Interpreter hat einen registrierten Handler; der Standard ruft [bgerror] im globalen Namespace auf, andere Handler können Hintergrund-Ausnahmen anders verarbeiten.
+Tritt eine Ausnahme auf, die nicht direkt den Stack hinauf gemeldet werden kann (z. B. bei der Ereignisverarbeitung in [update] oder [vwait]), erfolgt die Meldung über den Mechanismus für Hintergrund-Ausnahmen. Jeder Interpreter hat einen registrierten Handler; der Standard ruft [bgerror] im globalen Namespace auf, andere Handler können Hintergrund-Ausnahmen anders verarbeiten.
 
 Ein Hintergrund-Ausnahme-Handler ist eine nicht leere Wortliste, der beim Aufruf zwei weitere Wörter angehängt werden: das Interpreter-Ergebnis zum Zeitpunkt der Ausnahme (typischerweise eine Fehlermeldung) und das Dictionary der Return-Optionen — dieselben Werte, die [catch] in Nicht-Hintergrund-Situationen erfassen kann. Die resultierende Liste wird im globalen Namespace ohne weitere Ersetzungen ausgeführt.
 

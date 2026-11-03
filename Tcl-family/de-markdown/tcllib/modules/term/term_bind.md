@@ -55,7 +55,7 @@ Das Paket exportiert einen einzigen Befehl, den Befehl „class“, der die Erst
 Die durch den Befehl „class“ erstellten Objekte stellen die nachfolgend aufgeführten Methoden bereit:
 
 *object* **map** *str* *cmd*
-: Diese Methode fügt eine zusätzliche Zuordnung von der Zeichenkette *str* zur Aktion *cmd* hinzu. Die Zuordnung wird sofort wirksam, sobald sich der Prozessor in einem Präfix von *str* befindet, oder beim nächsten Reset-Vorgang. Die Aktion ist ein Befehlspräfix und wird mit einem angehängten Argument aufgerufen, nämlich der Zeichenfolge, die den Aufruf auslöst. Sie wird im globalen Namespace ausgeführt.
+: Diese Methode fügt eine zusätzliche Zuordnung von der Zeichenkette *str* zur Aktion *cmd* hinzu. Die Zuordnung wird sofort wirksam, falls sich der Prozessor in einem Präfix von *str* befindet, oder beim nächsten Reset-Vorgang. Die Aktion ist ein Befehlspräfix und wird mit einem angehängten Argument aufgerufen, nämlich der Zeichenfolge, die den Aufruf auslöst. Sie wird im globalen Namespace ausgeführt.
 
 *object* **default** *cmd*
 : Diese Methode definiert eine Standardaktion *cmd*, die immer dann aufgerufen wird, wenn eine unbekannte Zeichenfolge auftritt. Der Befehlspräfix wird genauso behandelt wie die reguläre Aktion, die über die Methode **map** definiert wurde.

@@ -62,7 +62,7 @@ Jedes der obigen Schlüsselwörter darf abgekürzt werden. Zusätzlich können P
 
 # Musterformat
 
-Muster bestehen aus einer Folge von Wörtern, getrennt durch entweder Punkte „." oder Sternchen „\*". Das gesamte Muster kann optional auch von einem Sternchen vorangestellt werden.
+Muster bestehen aus einer Folge von Wörtern, getrennt durch entweder Punkte „." oder Sternchen „\*". Dem gesamten Muster kann optional auch ein Sternchen vorangestellt werden.
 
 Jedes Wort im Muster beginnt üblicherweise entweder mit einem Großbuchstaben (in diesem Fall bezeichnet es die Klasse eines Widgets oder einer Option) oder mit einem anderen Zeichen, wenn es den Namen eines Widgets oder einer Option bezeichnet. Das letzte Wort im Muster gibt immer die Option an; die vorhergehenden schränken ein, in welchen Widgets nach dieser Option gesucht wird.
 

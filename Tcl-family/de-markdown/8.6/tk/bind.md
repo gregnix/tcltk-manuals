@@ -33,7 +33,7 @@ bind - Verknüpft X-Ereignisse mit Tcl-Skripten
 
 # Einleitung
 
-Der Befehl **bind** verknüpft Tcl-Skripte mit X-Ereignissen. Wenn alle drei Argumente angegeben sind, sorgt **bind** dafür, dass *script* (ein Tcl-Skript, das "Bindungsskript" genannt wird) ausgewertet wird, wann immer das/die durch *sequence* gegebene(n) Ereignis(se) in dem/den durch *tag* identifizierten Fenster(n) auftreten. Wenn *script* mit einem "+" vorangestellt ist, wird es an eine vorhandene Bindung für *sequence* angehängt; andernfalls ersetzt *script* eine vorhandene Bindung. Wenn *script* eine leere Zeichenkette ist, wird die aktuelle Bindung für *sequence* zerstört, sodass *sequence* ungebunden bleibt. In allen Fällen, in denen ein *script*-Argument bereitgestellt wird, gibt **bind** eine leere Zeichenkette zurück.
+Der Befehl **bind** verknüpft Tcl-Skripte mit X-Ereignissen. Wenn alle drei Argumente angegeben sind, sorgt **bind** dafür, dass *script* (ein Tcl-Skript, das "Bindungsskript" genannt wird) ausgewertet wird, wann immer das/die durch *sequence* gegebene(n) Ereignis(se) in dem/den durch *tag* identifizierten Fenster(n) auftreten. Wenn *script* ein "+" vorangestellt ist, wird es an eine vorhandene Bindung für *sequence* angehängt; andernfalls ersetzt *script* eine vorhandene Bindung. Wenn *script* eine leere Zeichenkette ist, wird die aktuelle Bindung für *sequence* zerstört, sodass *sequence* ungebunden bleibt. In allen Fällen, in denen ein *script*-Argument bereitgestellt wird, gibt **bind** eine leere Zeichenkette zurück.
 
 Wenn *sequence* ohne *script* angegeben ist, wird das aktuell an *sequence* gebundene Skript zurückgegeben, oder eine leere Zeichenkette wird zurückgegeben, wenn es keine Bindung für *sequence* gibt. Wenn weder *sequence* noch *script* angegeben ist, ist der Rückgabewert eine Liste, deren Elemente alle Sequenzen sind, für die Bindungen für *tag* existieren.
 
@@ -85,7 +85,7 @@ Modifizierer bestehen aus einem der folgenden Werte:
 **Button5**, **B5**
 :::
 
-Wenn mehr als ein Wert aufgeführt ist, getrennt durch Kommas, sind die Werte gleichwertig. Die meisten Modifizierer haben die offensichtliche X-Bedeutung. Zum Beispiel erfordert **Button1**, dass Taste 1 gedrückt ist, wenn das Ereignis auftritt. Damit eine Bindung auf ein gegebenes Ereignis passt, müssen die Modifizierer im Ereignis alle diejenigen enthalten, die im Ereignismuster angegeben sind. Ein Ereignis kann auch zusätzliche Modifizierer enthalten, die in der Bindung nicht angegeben sind. Wenn zum Beispiel Taste 1 gedrückt wird, während die Umschalt- und Steuerungstasten gedrückt sind, passt das Muster **<Control-Button-1>** auf das Ereignis, **<Mod1-Button-1>** jedoch nicht. Wenn keine Modifizierer angegeben sind, kann im Ereignis jede Kombination von Modifizierern vorhanden sein.
+Wenn mehr als ein Wert aufgeführt ist, getrennt durch Kommas, sind die Werte gleichwertig. Die meisten Modifizierer haben die offensichtliche X-Bedeutung. Zum Beispiel erfordert **Button1**, dass Maustaste 1 gedrückt ist, wenn das Ereignis auftritt. Damit eine Bindung auf ein gegebenes Ereignis passt, müssen die Modifizierer im Ereignis alle diejenigen enthalten, die im Ereignismuster angegeben sind. Ein Ereignis kann auch zusätzliche Modifizierer enthalten, die in der Bindung nicht angegeben sind. Wenn zum Beispiel Maustaste 1 gedrückt wird, während die Umschalt- und Steuerungstasten gedrückt sind, passt das Muster **<Control-Button-1>** auf das Ereignis, **<Mod1-Button-1>** jedoch nicht. Wenn keine Modifizierer angegeben sind, kann im Ereignis jede Kombination von Modifizierern vorhanden sein.
 
 **Meta** und **M** beziehen sich auf denjenigen der Modifizierer **M1** bis **M5**, der mit der/den Meta-Taste(n) auf der Tastatur verknüpft ist (keysyms **Meta\_R** und **Meta\_L**). Wenn es keine Meta-Tasten gibt oder wenn sie mit keinen Modifizierern verknüpft sind, passen **Meta** und **M** auf kein Ereignis. Entsprechend bezieht sich der Modifizierer **Alt** auf den Modifizierer, der mit der/den Alt-Taste(n) auf der Tastatur verknüpft ist (keysyms **Alt\_L** und **Alt\_R**).
 
@@ -118,7 +118,7 @@ Die meisten der obigen Ereignisse haben dieselben Felder und Verhaltensweisen wi
 : Diese beiden Ereignisse werden an jedes Unterfenster eines Toplevel gesendet, wenn sich dessen Zustand ändert. Zusätzlich zum Fokus-Fenster kennen die Macintosh- und Windows-Plattformen den Begriff eines aktiven Fensters (das oft, aber nicht zwingend den Fokus hat). Auf dem Macintosh haben Widgets im aktiven Fenster ein anderes Erscheinungsbild als Widgets in inaktiven Fenstern. Das Ereignis **Activate** wird an alle Unterfenster eines Toplevel gesendet, wenn es vom inaktiven zum aktiven Zustand wechselt. Entsprechend wird das Ereignis **Deactivate** gesendet, wenn sich der Fensterzustand von aktiv zu inaktiv ändert. Für Bindungen auf diese Ereignisse gibt es keine nützlichen Prozent-Ersetzungen.
 
 **MouseWheel**
-: Viele moderne Mäuse haben ein Mausrad, mit dem Dokumente ohne Scrollleisten gescrollt werden können. Durch Drehen des Rads erzeugt das System **MouseWheel**-Ereignisse, die die Anwendung zum Scrollen nutzen kann. Das Ereignis wird an das Fenster unter dem Mauszeiger weitergeleitet. Beim Empfang des Ereignisses kann die Ersetzung **%D** verwendet werden, um das *delta*-Feld des Ereignisses zu erhalten — einen ganzzahligen Wert, der beschreibt, wie weit das Mausrad bewegt wurde. Der kleinste Wert, den das System meldet, ist vom Betriebssystem abhängig. Das Vorzeichen des Werts bestimmt, in welche Richtung das Widget scrollen soll. Positive Werte bedeuten Scrollen nach oben, negative nach unten.
+: Viele moderne Mäuse haben ein Mausrad, mit dem Dokumente ohne Scrollbars gescrollt werden können. Durch Drehen des Rads erzeugt das System **MouseWheel**-Ereignisse, die die Anwendung zum Scrollen nutzen kann. Das Ereignis wird an das Fenster unter dem Mauszeiger weitergeleitet. Beim Empfang des Ereignisses kann die Ersetzung **%D** verwendet werden, um das *delta*-Feld des Ereignisses zu erhalten — einen ganzzahligen Wert, der beschreibt, wie weit das Mausrad bewegt wurde. Der kleinste Wert, den das System meldet, ist vom Betriebssystem abhängig. Das Vorzeichen des Werts bestimmt, in welche Richtung das Widget scrollen soll. Positive Werte bedeuten Scrollen nach oben, negative nach unten.
 
     Horizontales Scrollen verwendet **Shift-MouseWheel**-Ereignisse; eine positive **%D**-*delta*-Ersetzung bedeutet Scrollen nach links, eine negative nach rechts. Nur Windows und macOS Aqua erzeugen typischerweise **MouseWheel**- und **Shift-MouseWheel**-Ereignisse. Unter X11 wird vertikales Scrollen eher über **Button-4**- und **Button-5**-Ereignisse unterstützt, horizontales Scrollen über **Shift-Button-4**- und **Shift-Button-5**-Ereignisse. Horizontale Scroll-Ereignisse können von vielen verschiedenen Hardware-Einheiten wie Kipp-Rädern oder Touchpads stammen. Horizontales Scrollen kann auch emuliert werden, indem Shift gedrückt gehalten und vertikal gescrollt wird.
 
@@ -128,7 +128,7 @@ Die meisten der obigen Ereignisse haben dieselben Felder und Verhaltensweisen wi
 **ButtonPress**, **ButtonRelease**, **Motion**
 : Die Ereignisse **ButtonPress** und **ButtonRelease** werden erzeugt, wenn der Benutzer eine Maustaste drückt oder loslässt. **Motion**-Ereignisse werden erzeugt, wann immer der Zeiger bewegt wird. **ButtonPress**-, **ButtonRelease**- und **Motion**-Ereignisse werden normalerweise an das Fenster gesendet, das den Zeiger enthält.
 
-    Wenn eine Maustaste gedrückt wird, erhält das Fenster mit dem Zeiger automatisch einen temporären Pointer-Grab. Nachfolgende **ButtonPress**-, **ButtonRelease**- und **Motion**-Ereignisse werden an dieses Fenster gesendet, unabhängig davon, welches Fenster den Zeiger enthält, bis alle Tasten losgelassen wurden.
+    Wenn eine Maustaste gedrückt wird, erhält das Fenster mit dem Zeiger automatisch einen temporären Pointer-Grab. Nachfolgende **ButtonPress**-, **ButtonRelease**- und **Motion**-Ereignisse werden an dieses Fenster gesendet, unabhängig davon, welches Fenster den Zeiger enthält, bis alle Maustasten losgelassen wurden.
 
 **Configure**
 : Ein **Configure**-Ereignis wird an ein Fenster gesendet, wann immer sich dessen Größe, Position oder Rahmenbreite ändert, und manchmal, wenn sich seine Position in der Stapelreihenfolge geändert hat.
@@ -136,9 +136,9 @@ Die meisten der obigen Ereignisse haben dieselben Felder und Verhaltensweisen wi
 **Map**, **Unmap**
 : Die Ereignisse **Map** und **Unmap** werden erzeugt, wann immer sich der Mapping-Zustand eines Fensters ändert.
 
-    Fenster werden im unmapped-Zustand erzeugt. Toplevel-Fenster werden gemappt, wenn sie in den Zustand **normal** wechseln, und unmapped im Zustand **withdrawn** und **iconic**. Andere Fenster werden gemappt, wenn sie unter Kontrolle eines Geometry-Managers (z.B. [pack] oder [grid]) gestellt werden.
+    Fenster werden im unmapped-Zustand erzeugt. Toplevel-Fenster werden gemappt, wenn sie in den Zustand **normal** wechseln, und unmapped im Zustand **withdrawn** und **iconic**. Andere Fenster werden gemappt, wenn sie unter Kontrolle eines Geometriemanagers (z.B. [pack] oder [grid]) gestellt werden.
 
-    Ein Fenster ist nur dann *sichtbar* (*viewable*), wenn es und alle seine Vorfahren gemappt sind. Geometry-Manager mappen ihre Kinder typischerweise erst, wenn sie selbst gemappt wurden, und unmapen alle Kinder, wenn sie unmapped werden; daher zeigen **Map**- und **Unmap**-Ereignisse in Tk an, ob ein Fenster sichtbar ist oder nicht.
+    Ein Fenster ist nur dann *sichtbar* (*viewable*), wenn es und alle seine Vorfahren gemappt sind. Geometriemanager mappen ihre Kinder typischerweise erst, wenn sie selbst gemappt wurden, und unmapen alle Kinder, wenn sie unmapped werden; daher zeigen **Map**- und **Unmap**-Ereignisse in Tk an, ob ein Fenster sichtbar ist oder nicht.
 
 **Visibility**
 : Ein Fenster gilt als *verdeckt* (*obscured*), wenn ein anderes Fenster darüber in der Stapelreihenfolge es vollständig oder teilweise überlappt. **Visibility**-Ereignisse werden erzeugt, wann immer sich der Verdeckungszustand eines Fensters ändert; das Feld *state* (**%s**) gibt den neuen Zustand an.
@@ -171,7 +171,7 @@ Die meisten der obigen Ereignisse haben dieselben Felder und Verhaltensweisen wi
 **Colormap**
 : Ein **Colormap**-Ereignis wird erzeugt, wann immer die mit einem Fenster verknüpfte Colormap geändert, installiert oder deinstalliert wurde.
 
-    Widgets können eine private Colormap durch Angabe der Option **-colormap** zugewiesen bekommen; der Fenstermanager ist für die Installation und Deinstallation von Colormaps verantwortlich.
+    Widgets können eine private Colormap durch Angabe der Option **-colormap** zugewiesen bekommen; der Fenstermanager ist dafür verantwortlich, Colormaps nach Bedarf zu installieren und zu deinstallieren.
 
     Tk liefert für diesen Ereignistyp keine nützlichen Details.
 
@@ -186,7 +186,7 @@ Die meisten der obigen Ereignisse haben dieselben Felder und Verhaltensweisen wi
 
 ## Ereignisdetails
 
-Der letzte Teil einer langen Ereignisspezifikation ist *detail*. Bei einem **ButtonPress**- oder **ButtonRelease**-Ereignis ist es die Nummer einer Taste (1-5). Wenn eine Tastennummer angegeben ist, passt nur ein Ereignis auf genau diese Taste; wenn keine Tastennummer angegeben ist, passt ein Ereignis auf jede Taste. Hinweis: Eine bestimmte Tastennummer anzugeben unterscheidet sich von der Angabe eines Button-Modifizierers; im ersten Fall bezieht es sich auf eine Taste, die gedrückt oder losgelassen wird, im zweiten auf eine andere Taste, die bereits gedrückt ist, wenn das passende Ereignis auftritt. Wenn eine Tastennummer angegeben ist, kann *type* weggelassen werden; es wird standardmäßig **ButtonPress** angenommen. Zum Beispiel ist der Spezifizierer **<1>** äquivalent zu **<ButtonPress-1>**.
+Der letzte Teil einer langen Ereignisspezifikation ist *detail*. Bei einem **ButtonPress**- oder **ButtonRelease**-Ereignis ist es die Nummer einer Maustaste (1-5). Wenn eine Tastennummer angegeben ist, passt nur ein Ereignis auf genau diese Taste; wenn keine Tastennummer angegeben ist, passt ein Ereignis auf jede Taste. Hinweis: Eine bestimmte Tastennummer anzugeben unterscheidet sich von der Angabe eines Button-Modifizierers; im ersten Fall bezieht es sich auf eine Taste, die gedrückt oder losgelassen wird, im zweiten auf eine andere Taste, die bereits gedrückt ist, wenn das passende Ereignis auftritt. Wenn eine Tastennummer angegeben ist, kann *type* weggelassen werden; es wird standardmäßig **ButtonPress** angenommen. Zum Beispiel ist der Spezifizierer **<1>** äquivalent zu **<ButtonPress-1>**.
 
 Wenn der Ereignistyp **KeyPress** oder **KeyRelease** ist, kann *detail* in Form eines X-Keysym angegeben werden. Keysym sind textuelle Spezifikationen für bestimmte Tasten auf der Tastatur; sie umfassen alle alphanumerischen ASCII-Zeichen (z. B. ist „a“ der Keysym für das ASCII-Zeichen „a“), Beschreibungen für nicht-alphanumerische Zeichen („comma“ ist der Keysym für das Kommazeichen) sowie Beschreibungen für alle nicht-ASCII-Tasten (z. B. ist „Shift\_L“ der Keysym für die linke Umschalttaste und „F1“ der Keysym für die F1-Funktionstaste, falls vorhanden). Die vollständige Keysym-Liste wird hier nicht aufgeführt; sie ist in anderer X-Dokumentation verfügbar und kann von System zu System variieren. Bei Bedarf kann die unten beschriebene Notation **%K** verwendet werden, um den Keysym-Namen für eine bestimmte Taste auszugeben. Wenn ein Keysym als *detail* angegeben ist, kann das Feld *type* weggelassen werden; es wird standardmäßig **KeyPress** angenommen. Zum Beispiel ist **<Control-comma>** äquivalent zu **<Control-KeyPress-comma>**.
 
@@ -204,7 +204,7 @@ Das *script*-Argument von **bind** ist ein Tcl-Skript, das „Bindungsskript“ 
 : Das Feld *above* aus dem Ereignis, formatiert als hexadezimale Zahl. Nur gültig für **Configure**-Ereignisse. Gibt das Geschwisterfenster unmittelbar unter dem empfangenden Fenster in der Stapelreihenfolge an, oder **0**, wenn das empfangende Fenster unten ist.
 
 **%b**
-: Die Nummer der gedrückten oder losgelassenen Taste. Nur gültig für **ButtonPress**- und **ButtonRelease**-Ereignisse.
+: Die Nummer der gedrückten oder losgelassenen Maustaste. Nur gültig für **ButtonPress**- und **ButtonRelease**-Ereignisse.
 
 **%c**
 : Das Feld *count* aus dem Ereignis. Nur gültig für **Expose**-Ereignisse. Zeigt an, dass *count* ausstehende **Expose**-Ereignisse vorliegen, die dem Fenster noch nicht zugestellt wurden.
@@ -278,7 +278,7 @@ Das *script*-Argument von **bind** ist ein Tcl-Skript, das „Bindungsskript“ 
 : Der dem Ereignis entsprechende Keysym, substituiert als Textzeichenkette. Nur gültig für **KeyPress**- und **KeyRelease**-Ereignisse.
 
 **%M**
-: Die Anzahl der bisher für das Ereignis passenden script-basierten Bindungs-Muster. Gültig für alle Ereignistypen.
+: Die Anzahl der bisher für das Ereignis passenden skriptbasierten Bindungs-Muster. Gültig für alle Ereignistypen.
 
 **%N**
 : Der dem Ereignis entsprechende Keysym, substituiert als Dezimalzahl. Nur gültig für **KeyPress**- und **KeyRelease**-Ereignisse.
@@ -287,10 +287,10 @@ Das *script*-Argument von **bind** ist ein Tcl-Skript, das „Bindungsskript“ 
 : Der Name der aktualisierten oder gelöschten Property (kann mit [winfo atom][winfo] in ein XAtom umgewandelt werden). Nur gültig für **Property**-Ereignisse.
 
 **%R**
-: Die *root*-Fensterkennung aus dem Ereignis. Nur gültig für Ereignisse mit einem *root*-Feld.
+: Der *root*-Fensterbezeichner aus dem Ereignis. Nur gültig für Ereignisse mit einem *root*-Feld.
 
 **%S**
-: Die *subwindow*-Fensterkennung aus dem Ereignis, formatiert als hexadezimale Zahl. Nur gültig für Ereignisse mit einem *subwindow*-Feld.
+: Der *subwindow*-Fensterbezeichner aus dem Ereignis, formatiert als hexadezimale Zahl. Nur gültig für Ereignisse mit einem *subwindow*-Feld.
 
 **%T**
 : Das Feld *type* aus dem Ereignis. Gültig für alle Ereignistypen.
@@ -308,7 +308,7 @@ Die Ersetzungszeichenkette für eine %-Ersetzung wird als gültiges Tcl-Listenel
 insert %A
 ```
 
-ist und die eingegebene Taste eine öffnende eckige Klammer ist, wird tatsächlich ausgeführt:
+ist und das eingegebene Zeichen eine öffnende eckige Klammer ist, wird tatsächlich ausgeführt:
 
 ```
 insert \[
@@ -354,13 +354,13 @@ bind Entry <<Paste>> {puts Paste}
 bind Entry <<Scroll>> {puts Scroll}
 ```
 
-Tippt der Benutzer Control-y, wird die Bindung **<<Paste>>** aufgerufen; drückt er Taste 2, wird eine der Bindungen **<<Paste>>** oder **<<Scroll>>** aufgerufen — welche genau, ist undefiniert.
+Tippt der Benutzer Control-y, wird die Bindung **<<Paste>>** aufgerufen; drückt er Maustaste 2, wird eine der Bindungen **<<Paste>>** oder **<<Scroll>>** aufgerufen — welche genau, ist undefiniert.
 
 Passt ein X-Ereignis auf keine der vorhandenen Bindungen, wird es ignoriert. Ein ungebundenes Ereignis gilt nicht als Fehler.
 
-# Mehrere-Ereignis-Sequenzen und ignorierte Ereignisse
+# Sequenzen aus mehreren Ereignissen und ignorierte Ereignisse
 
-Enthält eine in einem **bind**-Befehl angegebene *sequence* mehr als ein Ereignismuster, wird ihr Skript ausgeführt, wann immer die jüngsten Ereignisse (bis einschließlich des aktuellen) auf die gegebene Sequenz passen. Das bedeutet z. B., dass bei wiederholtem Klick auf Taste 1 die Sequenz **<Double-ButtonPress-1>** auf jeden Tastendruck außer den ersten passt. Treten in der Mitte einer Ereignissequenz überflüssige Ereignisse auf, die eine Übereinstimmung verhindern würden, werden diese ignoriert, es sei denn, es sind **KeyPress**- oder **ButtonPress**-Ereignisse. Zum Beispiel passt **<Double-ButtonPress-1>** auf eine Folge von Drücken von Taste 1, auch wenn zwischen den **ButtonPress**-Ereignissen **ButtonRelease**-Ereignisse (und ggf. **Motion**-Ereignisse) liegen. Außerdem kann ein **KeyPress**-Ereignis von beliebig vielen anderen **KeyPress**-Ereignissen für Modifizierungstasten vorangehen, ohne dass diese eine Übereinstimmung verhindern. Die Ereignissequenz **aB** passt z. B. auf Drücken von **a**, Loslassen von **a**, Drücken von **Shift** und Drücken von **b**: Das Drücken von **Shift** wird ignoriert, weil es eine Modifizierungstaste ist. Treten schließlich mehrere **Motion**-Ereignisse hintereinander auf, wird nur das letzte zum Abgleich von Bindungs-Sequenzen verwendet.
+Enthält eine in einem **bind**-Befehl angegebene *sequence* mehr als ein Ereignismuster, wird ihr Skript ausgeführt, wann immer die jüngsten Ereignisse (bis einschließlich des aktuellen) auf die gegebene Sequenz passen. Das bedeutet z. B., dass bei wiederholtem Klick auf Maustaste 1 die Sequenz **<Double-ButtonPress-1>** auf jeden Tastendruck außer den ersten passt. Treten in der Mitte einer Ereignissequenz überflüssige Ereignisse auf, die eine Übereinstimmung verhindern würden, werden diese ignoriert, es sei denn, es sind **KeyPress**- oder **ButtonPress**-Ereignisse. Zum Beispiel passt **<Double-ButtonPress-1>** auf eine Folge von Drücken von Maustaste 1, auch wenn zwischen den **ButtonPress**-Ereignissen **ButtonRelease**-Ereignisse (und ggf. **Motion**-Ereignisse) liegen. Außerdem können einem **KeyPress**-Ereignis beliebig viele andere **KeyPress**-Ereignisse für Modifizierungstasten vorangehen, ohne dass diese eine Übereinstimmung verhindern. Die Ereignissequenz **aB** passt z. B. auf Drücken von **a**, Loslassen von **a**, Drücken von **Shift** und Drücken von **b**: Das Drücken von **Shift** wird ignoriert, weil es eine Modifizierungstaste ist. Treten schließlich mehrere **Motion**-Ereignisse hintereinander auf, wird nur das letzte zum Abgleich von Bindungs-Sequenzen verwendet.
 
 # Fehler
 

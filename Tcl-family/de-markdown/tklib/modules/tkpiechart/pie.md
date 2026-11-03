@@ -84,10 +84,10 @@ Die Klasse „pie“ ist Teil der Erweiterung „tkpiechart“, die es dem Progr
 : Gesamthöhe des Kreisdiagramms, einschließlich des Platzes für die Beschriftungen des Labelers. Die Segmente werden in der Größe angepasst, wenn Beschriftungen hinzukommen oder wegfallen, also beim Erzeugen oder Löschen von Segmenten, sodass die Gesamthöhe gleich bleibt. Der Wert hat eine der Formen aus dem Abschnitt *KOORDINATEN* der Handbuchseite **canvas**.
 
 **-labeler** object
-: Ein Platzierungsobjekt für die Segmentbeschriftungen, sodass zum Beispiel die Segmentwerte daneben stehen können. Fehlt die Angabe, wird *pieBoxLabeler* verwendet, siehe die zugehörige Handbuchseite. Die andere Möglichkeit ist die Klasse *piePeripheralLabeler*. Jeder Labeler hat ein eigenes Verhalten, das seine Optionen setzen. Das Labeler-Objekt wird mit dem Kreisdiagramm-Objekt gelöscht. Nach dem Erzeugen des Kreisdiagramms lässt sich der Labeler nicht mehr wechseln.
+: Ein Platzierungsobjekt für die Segmentbeschriftungen, sodass zum Beispiel die Segmentwerte daneben stehen können. Fehlt die Angabe, wird *pieBoxLabeler* verwendet, siehe die zugehörige Handbuchseite. Die andere Möglichkeit ist die Klasse *piePeripheralLabeler*. Jeder Labeler hat ein eigenes Verhalten, das sich über seine Optionen einstellen lässt. Das Labeler-Objekt wird mit dem Kreisdiagramm-Objekt gelöscht. Nach dem Erzeugen des Kreisdiagramms lässt sich der Labeler nicht mehr wechseln.
 
 **-selectable** boolean
-: Boolescher Wert. Legt fest, ob Segmente auswählbar sind. Zulässig sind die booleschen Werte von Tcl. Auswählbare Segmente lassen sich mit der ersten Maustaste wählen, durch einen Klick auf das Segment oder seine Beschriftung. Die Auswahl lässt sich mit den üblichen Klicks *control* oder *shift* erweitern. Die Liste der gerade ausgewählten Segmente liefert jederzeit die Elementprozedur **selectedSlices** der Klasse pie.
+: Boolescher Wert. Legt fest, ob Segmente auswählbar sind. Zulässig sind die booleschen Werte von Tcl. Auswählbare Segmente lassen sich mit der ersten Maustaste wählen, durch einen Klick auf das Segment oder seine Beschriftung. Die Auswahl lässt sich mit den üblichen Klicks *control* oder *shift* erweitern. Die Liste der gerade ausgewählten Segmente liefert jederzeit die Member-Prozedur **selectedSlices** der Klasse pie.
 
 **-title** text
 : Titeltext über dem Kreisdiagramm.
@@ -116,7 +116,7 @@ pie::deleteSlice *pieObject* *sliceObject*
 : Löscht ein Segment. Die folgenden Segmente im Uhrzeigersinn rücken nach, sodass die Lücke verschwindet.
 
 pie::sizeSlice *pieObject* *sliceObject* *unitShare* ?displayedValue?
-: Setzt oder ändert die Größe eines Segments. Das Segment wird neu berechnet, sodass es den passenden Anteil am ganzen Kreisdiagramm einnimmt. *unitShare* ist eine Gleitkommazahl als Anteil am ganzen Kreisdiagramm, zwischen 0 und 1. Die folgenden Segmente im Uhrzeigersinn rücken auf die neue Größe. Der Größenwert neben der Segmentbeschriftung wird der neue Anteil oder, wenn angegeben, *displayedValue*.
+: Setzt oder ändert die Größe eines Segments. Das Segment wird neu berechnet, sodass es den passenden Anteil am ganzen Kreisdiagramm einnimmt. *unitShare* ist eine Gleitkommazahl als Anteil am ganzen Kreisdiagramm, zwischen 0 und 1. Die folgenden Segmente im Uhrzeigersinn rücken entsprechend der neuen Größe nach. Der Größenwert neben der Segmentbeschriftung wird der neue Anteil oder, wenn angegeben, *displayedValue*.
 
 pie::labelSlice *pieObject* *sliceObject* *string*
 : Aktualisiert eine Segmentbeschriftung. Der Aufruf ist jederzeit möglich.

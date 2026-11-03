@@ -27,7 +27,7 @@ systray - Erzeugt ein Symbol in der plattformspezifischen Systemleiste
 
 # Beschreibung
 
-Der Befehl **tk systray create** erzeugt ein Symbol in der plattformspezifischen Leiste. Das Widget erhält ein Tk-Bild für die Anzeige, optional eine Zeichenkette für einen Tooltip und optionale Rückrufe, die an <Button-1> und <Button-3> gebunden sind.
+Der Befehl **tk systray create** erzeugt ein Symbol in der plattformspezifischen Leiste. Das Widget erhält ein Tk-Bild für die Anzeige, optional eine Zeichenkette für einen Tooltip und optionale Rückruffunktionen, die an <Button-1> und <Button-3> gebunden sind.
 
 Der Befehl **tk systray configure** setzt eine oder mehrere Optionen des Leistensymbols. Die einstellbaren Optionen sind dieselben wie beim Unterbefehl **create**. Ist nur ein Optionsname angegeben, gibt der Befehl den aktuellen Wert dieser Option zurück. Ohne Option gibt er die Liste aller Optionen und ihrer aktuellen Werte zurück.
 
@@ -63,7 +63,7 @@ tk systray configure -image book_page -text "Updated sample" \
 
 Die X11-Implementierung wird nach bestem Bemühen unterstützt, weil sie vom Fenstermanager abhängt. Die Option „text“, umgesetzt als Tooltip, erscheint nicht immer, wenn der Fenstermanager das nicht kann; bei manchen Fenstermanagern erscheint das Leistensymbol selbst nicht.
 
-Unter Windows muss das in **-image** angegebene Tk-Bild ein Photo-Image sein. Auf anderen Plattformen ist ein Bitmap- oder ein Photo-Image zulässig.
+Unter Windows muss das in **-image** angegebene Tk-Bild ein Foto-Image sein. Auf anderen Plattformen ist ein Bitmap- oder ein Foto-Image zulässig.
 
 
 [tk]: tk.md

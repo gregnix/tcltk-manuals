@@ -30,32 +30,32 @@ split - Teilt eine Zeichenkette in eine gültige Tcl-Liste
 
 # Beschreibung
 
-Gibt eine Liste zurück, die entsteht, wenn *string* an jedem Zeichen aus *splitChars* geteilt wird. Jedes Listenelement besteht aus den Zeichen von *string* zwischen solchen Trennzeichen. Leere Elemente entstehen bei benachbarten Trennzeichen oder wenn *string* mit einem Trennzeichen beginnt oder endet. Ist *splitChars* leer, wird jedes Zeichen von *string* ein eigenes Element. Standard: übliche Leerraumzeichen.
+Gibt eine Liste zurück, die entsteht, wenn *string* an jedem Zeichen aus *splitChars* geteilt wird. Jedes Listenelement besteht aus den Zeichen von *string* zwischen solchen Trennzeichen. Leere Elemente entstehen bei benachbarten Trennzeichen oder wenn *string* mit einem Trennzeichen beginnt oder endet. Ist *splitChars* leer, wird jedes Zeichen von *string* ein eigenes Element. Ohne *splitChars* gelten die üblichen Leerraumzeichen als Trennzeichen.
 
 # Beispiele
 
-USENET-Gruppenname in Hierarchieebenen:
+USENET-Gruppennamen in seine Hierarchieebenen zerlegen:
 
 ```
 split "comp.lang.tcl" .
       → comp lang tcl
 ```
 
-**split** trennt an jedem Zeichen in *splitChars* — bei unpassender Wahl Informationsverlust:
+**split** trennt an jedem Zeichen in *splitChars* ; ohne Sorgfalt kann das zu Informationsverlust führen:
 
 ```
 split "alpha beta gamma" "temp"
       → al {ha b} {} {a ga} {} a
 ```
 
-Wörter aus einer nicht wohlgeformten Liste:
+Die Listenwörter aus einer Zeichenkette extrahieren, die keine wohlgeformte Liste ist:
 
 ```
 split "Example with {unbalanced brace character"
       → Example with \{unbalanced brace character
 ```
 
-Zeichenkette in Einzelzeichen:
+Zeichenkette in ihre Einzelzeichen zerlegen:
 
 ```
 split "Hello world" {}
@@ -64,7 +64,7 @@ split "Hello world" {}
 
 ## Zeilenorientierte Dateien parsen
 
-Unix-/etc/passwd (Zeilen mit Doppelpunkt-Feldern):
+Eine Unix-Datei /etc/passwd parsen, die einen Eintrag je Zeile enthält; jede Zeile ist eine durch Doppelpunkte getrennte Liste von Feldern:
 
 ```
 ## Datei lesen

@@ -23,7 +23,7 @@ Copyright:
 
 # Beschreibung
 
-Die XPath-Maschine von tDOM unterstützt eigene XPath-Funktionen, die Tcl-Befehle ausführen. Trifft sie auf einen Funktionsaufruf mit unbekanntem Funktionsnamen ohne Namensraum-Qualifikator, sucht die XPath-Maschine im Namensraum **::dom::xpathFunc** einen Tcl-Befehl desselben Namens. Trifft sie auf einen unbekannten Funktionsaufruf mit Namensraum, sucht sie innerhalb von **::dom::xpathFunc** einen Tcl-Namensraum, dessen Name dem vollen Namensraum-URI der Funktion gleicht, und darin einen Tcl-Befehl, der nach dem lokalen Teil des Funktionsnamens benannt ist. Findet sie einen solchen Tcl-Befehl, wird er mit mindestens den folgenden Argumenten ausgeführt, die den aktuellen XPath-Kontext beschreiben:
+Die XPath-Maschine von tDOM unterstützt eigene XPath-Funktionen, die durch Tcl-Befehle umgesetzt sind. Trifft sie auf einen Funktionsaufruf mit unbekanntem Funktionsnamen ohne Namensraum-Qualifikator, sucht die XPath-Maschine im Namespace **::dom::xpathFunc** einen Tcl-Befehl desselben Namens. Trifft sie auf einen unbekannten Funktionsaufruf mit Namensraum, sucht sie innerhalb von **::dom::xpathFunc** einen Tcl-Namespace, dessen Name dem vollen Namensraum-URI der Funktion gleicht, und darin einen Tcl-Befehl, der nach dem lokalen Teil des Funktionsnamens benannt ist. Findet sie einen solchen Tcl-Befehl, wird er mit mindestens den folgenden Argumenten ausgeführt, die den aktuellen XPath-Kontext beschreiben:
 
 ctxNode
 : Der Objektbefehl [domNode] des XPath-Kontextknotens.
@@ -47,7 +47,7 @@ val
 : Der Wert des Arguments, wie **selectNodes** ihn in der Ergebnismenge eines XPath-Ausdrucks zurückgäbe.
 
 
-Der Befehl muss eine Tcl-Liste mit einem oder zwei Elementen zurückgeben, die das Ergebnis des XPath-Funktionsaufrufs liefert. Hat die Ergebnisliste zwei Elemente, ist das erste der XPath-Typname des Ergebnisses und das zweite ein passend kodierter Wert. Der Typname *attrnodes* wird nicht unterstützt:
+Der Befehl muss eine Tcl-Liste mit einem oder zwei Elementen zurückgeben, die das Ergebnis des XPath-Funktionsaufrufs liefert. Hat die Ergebnisliste zwei Elemente, ist das erste der XPath-Typname des Ergebnisses und das zweite ein passend kodierter Wert (der Typname *attrnodes* wird nicht unterstützt):
 
 bool
 : Tcl-Wahrheitswert, den **Tcl\_GetBooleanFromObj** annimmt.
@@ -84,7 +84,7 @@ proc ::dom::xpathFunc::regmatch {
 
 # Hilfsprozeduren
 
-Der Namensraum **::dom::xpathFuncHelper** enthält Hilfsprozeduren für XPath-Funktionen in Tcl:
+Der Namespace **::dom::xpathFuncHelper** enthält Hilfsprozeduren für XPath-Funktionen in Tcl:
 
 **coerce2number** *type* *val*
 :  Aus einem *type* und einem *val*, wie sie XPath-Funktionen in Tcl in ihrer Argumentliste bekommen, wird *val* auf eine für seinen *type* passende Weise in eine Zahl umgewandelt:
@@ -133,7 +133,7 @@ Der Namensraum **::dom::xpathFuncHelper** enthält Hilfsprozeduren für XPath-Fu
 
 # Grenzen
 
-Namen eigener XPath-Funktionen sind auf 200 Zeichen begrenzt, einschließlich eines Namensraum-URI und des Tcl-Namensraumtrenners **::** zwischen ihm und dem lokalen Teil. Funktionsaufrufe dürfen höchstens 22 Argumente haben. Die Argumentwerte selbst dürfen große Knotenmengen sein. Werden mehr gebraucht, lassen sich diese Grenzen zur Bauzeit über Defines anpassen. Tcl-Befehle, die mit der veralteten Schnittstelle **Tcl\_CreateCommand** angelegt wurden, lassen sich nicht als XPath-Funktionen in Tcl verwenden.
+Namen eigener XPath-Funktionen sind auf 200 Zeichen begrenzt, einschließlich eines Namensraum-URI und des Tcl-Namespace-Trenners **::** zwischen ihm und dem lokalen Teil. Funktionsaufrufe dürfen höchstens 22 Argumente haben. Die Argumentwerte selbst dürfen große Knotenmengen sein. Werden mehr gebraucht, lassen sich diese Grenzen zur Bauzeit über Defines anpassen. Tcl-Befehle, die mit der veralteten Schnittstelle **Tcl\_CreateCommand** angelegt wurden, lassen sich nicht als XPath-Funktionen in Tcl verwenden.
 
 Die DOM-Bäume, aus denen Knoten einer XPath-Funktion in Tcl als Argument übergeben werden, dürfen **nicht** verändert werden. Das gilt für das Argument ctxNode und für die Knoten im Argument nodeList. Sie werden streng nur gelesen. Wird das missachtet, sind beliebige unvorhersehbare Folgen möglich, einschließlich Speicherzugriffsfehlern oder Sicherheitsproblemen.
 

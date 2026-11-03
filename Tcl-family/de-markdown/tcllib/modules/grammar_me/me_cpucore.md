@@ -50,22 +50,22 @@ grammar::me::cpu::core – Manipulation des Zustands einer virtuellen ME-Maschin
 
 # Beschreibung
 
-Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument **grammar::me\_intro**, falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
+Dieses Paket enthält eine Implementierung der virtuellen ME-Maschine. Bitte lesen Sie zunächst das Dokument [grammar::me\_intro][me_intro], falls Sie nicht wissen, was eine virtuelle ME-Maschine ist.
 
 Diese Implementierung stellt jede virtuelle ME-Maschine als Tcl-Wert dar und bietet Befehle zur Bearbeitung und Abfrage solcher Werte, um die Auswirkungen der Ausführung von Anweisungen, des Hinzufügens von Tokens, des Abrufens des Zustands usw. zu veranschaulichen.
 
-Die Werte folgen vollständig dem Tcl-Paradigma, wonach jeder Wert eine Zeichenkette ist, ermöglichen jedoch gleichzeitig C-Implementierungen für einen geeigneten Tcl\_ObjType, um alle wichtigen Daten in nativen Datenstrukturen zu speichern. Aus diesem Grund wird empfohlen, auf die Zustandswerte *ausschließlich* über die Befehle dieses Pakets zuzugreifen, um sicherzustellen, dass die interne Darstellung nicht verfälscht wird.
+Die Werte folgen vollständig dem Tcl-Paradigma, wonach jeder Wert eine Zeichenkette ist, ermöglichen jedoch gleichzeitig C-Implementierungen für einen geeigneten Tcl\_ObjType, um alle wichtigen Daten in nativen Datenstrukturen zu speichern. Aus diesem Grund wird empfohlen, auf die Zustandswerte *ausschließlich* über die Befehle dieses Pakets zuzugreifen, um sicherzustellen, dass die interne Darstellung nicht durch Shimmering verloren geht.
 
-Die tatsächliche Struktur, die von allen Werten verwendet wird, wird im Abschnitt [CPU-Zustand] beschrieben.
+Die tatsächliche Struktur, die von allen Zustandswerten verwendet wird, wird im Abschnitt [CPU-Zustand] beschrieben.
 
 # API
 
 Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funktionsumfang wird über dessen Methoden zur Verfügung gestellt.
 
 **::grammar::me::cpu::core** **disasm** *asm*
-: Diese Methode gibt eine Liste zurück, die eine Disassemblierung der Match-Anweisungen im Format *asm* enthält. Das Format von *asm* ist im Abschnitt [Darstellung des Match-Programms] festgelegt.
+: Diese Methode gibt eine Liste zurück, die eine Disassemblierung der Match-Anweisungen in *asm* enthält. Das Format von *asm* ist im Abschnitt [Darstellung des Match-Programms] festgelegt.
 
-    Jedes Element des Ergebnisses enthält in dieser Reihenfolge das Befehlslabel, den Befehlsnamen und die Befehlsargumente. Das Label kann eine leere Zeichenkette sein. Sprungziele werden als Labels, Zeichenketten und Tokens ohne Kodierung dargestellt. Tokennamen werden mit ihrer numerischen ID vorangestellt, genau dann, wenn eine Token-Zuordnung definiert ist. Die beiden Komponenten werden durch einen Doppelpunkt getrennt.
+    Jedes Element des Ergebnisses enthält in dieser Reihenfolge das Befehlslabel, den Befehlsnamen und die Befehlsargumente. Das Label kann eine leere Zeichenkette sein. Sprungziele werden als Labels, Zeichenketten und Tokens ohne Kodierung dargestellt. Tokennamen wird ihre numerische ID vorangestellt, genau dann, wenn eine Token-Zuordnung definiert ist. Die beiden Komponenten werden durch einen Doppelpunkt getrennt.
 
 **::grammar::me::cpu::core** **asm** *asm*
 : Diese Methode gibt Code in dem im Abschnitt [Darstellung des Match-Programms] angegebenen Format zurück, der aus dem ME-Assemblercode *asm* generiert wurde, der wiederum in dem Format vorliegt, wie er von der Methode **disasm** zurückgegeben wird.
@@ -102,7 +102,7 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt das aktuelle Token zurück.
 
 **::grammar::me::cpu::core** **sv** *state*
-: Diese Methode ruft den Statuswert einer virtuellen ME-Maschine ab und gibt den darin gespeicherten aktuellen semantischen Wert zurück. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**, festgelegt ist.
+: Diese Methode ruft den Statuswert einer virtuellen ME-Maschine ab und gibt den darin gespeicherten aktuellen semantischen Wert zurück. Dabei handelt es sich um einen abstrakten Syntaxbaum, wie er im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**, festgelegt ist.
 
 **::grammar::me::cpu::core** **ok** *state*
 : Diese Methode ruft den Wert einer virtuellen ME-Maschine ab und gibt den darin gespeicherten Abgleichstatus zurück.
@@ -114,10 +114,10 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Positionsstapel zurück.
 
 **::grammar::me::cpu::core** **astk** *state*
-: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Stack zurück.
+: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Stapel zurück.
 
 **::grammar::me::cpu::core** **mstk** *state*
-: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Marker-Stack zurück.
+: Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den AST-Marker-Stapel zurück.
 
 **::grammar::me::cpu::core** **estk** *state*
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Fehlerstapel zurück.
@@ -129,7 +129,7 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 : Diese Methode nimmt den Statuswert einer virtuellen ME-Maschine entgegen und gibt den Cache für Nichtterminal-Übereinstimmungen als Dictionary zurück.
 
 **::grammar::me::cpu::core** **ast** *state*
-: Diese Methode ruft den Wert einer virtuellen ME-Maschine ab und gibt den abstrakten Syntaxbaum zurück, der sich derzeit an der Spitze des darin gespeicherten AST-Stapels befindet. Dabei handelt es sich um einen abstrakten Syntaxbaum gemäß der Spezifikation im Dokument **grammar::me\_ast**, Abschnitt **AST-WERTE**.
+: Diese Methode ruft den Wert einer virtuellen ME-Maschine ab und gibt den abstrakten Syntaxbaum zurück, der sich derzeit an der Spitze des darin gespeicherten AST-Stapels befindet. Dabei handelt es sich um einen abstrakten Syntaxbaum gemäß der Spezifikation im Dokument [grammar::me\_ast][me_ast], Abschnitt **AST-WERTE**.
 
 **::grammar::me::cpu::core** **halted** *state*
 : Diese Methode ruft den Wert einer virtuellen ME-Maschine ab und gibt den darin gespeicherten aktuellen Haltezustand zurück, d. h., ob die Maschine angehalten wurde oder nicht.
@@ -141,7 +141,7 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 : Diese Methode übernimmt den Wert des Status einer virtuellen ME-Maschine, wie er in der durch *statevar* bezeichneten Variable gespeichert ist, und ändert ihn so, dass das darin enthaltene EOF-Flag gesetzt wird. Dies signalisiert der Maschine, dass die in der Eingabewarteschlange befindlichen Token die letzten sind, die verarbeitet werden. Es werden keine weiteren mehr folgen.
 
 **::grammar::me::cpu::core** **put** *statevar* *tok* *lex* *line* *col*
-: Diese Methode übernimmt den Wert einer virtuellen ME-Maschine, wie er in der durch *statevar* benannten Variable gespeichert ist, und modifiziert ihn so, dass das Token *tok* am Ende der Eingabewarteschlange angehängt wird, zusammen mit den zugehörigen Lexemdaten *lex* und den Zeilen- und Spaltenangaben *line*/*col*umn.
+: Diese Methode übernimmt den Wert einer virtuellen ME-Maschine, wie er in der durch *statevar* benannten Variable gespeichert ist, und modifiziert ihn so, dass das Token *tok* am Ende der Eingabewarteschlange angehängt wird, zusammen mit den zugehörigen Lexemdaten *lex* und den Zeilen- und Spaltenangaben *line*/*col*.
 
     Der Vorgang schlägt mit einer Fehlermeldung fehl, wenn das EOF-Flag der Maschine über die Methode **eof** gesetzt wurde.
 
@@ -150,11 +150,11 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 
     Die Ausführungsschleife läuft so lange, bis entweder
 
-    - *n* Anweisungen wurden ausgeführt, oder
+    - *n* Anweisungen ausgeführt wurden oder
 
     - ein Haltebefehl ausgeführt wurde oder
 
-    - Die Eingabewarteschlange ist leer und der Code fordert weitere Token zur Verarbeitung an.
+    - die Eingabewarteschlange leer ist und der Code weitere Token zur Verarbeitung anfordert.
 
 
     Wenn kein Grenzwert *n* festgelegt wurde, werden nur die letzten beiden Bedingungen geprüft.
@@ -164,9 +164,9 @@ Das Paket stellt direkt nur einen einzigen Befehl bereit, und der gesamte Funkti
 
 Ein Match-Programm wird durch eine verschachtelte Tcl-Liste dargestellt. Das erste Element, *asm*, ist eine Liste von Ganzzahlen, die die auszuführenden Befehle und deren Argumente enthalten. Das zweite Element, *pool*, ist eine Liste von Zeichenketten, auf die in den Befehlen verwiesen wird und die Fehlermeldungen, Token-Namen usw. enthalten. Das dritte Element, *tokmap*, enthält Informationen zur Reihenfolge der Token und ordnet deren Namen ihren numerischen Rängen zu. Dieses Element kann leer sein, wodurch beim Abgleich von Bereichen ein lexikografischer Vergleich erzwungen wird.
 
-Alle ME-Befehle werden als Ganzzahlen kodiert, wobei die Zuordnung wie unten angegeben erfolgt. Einigen Befehlen – nämlich jenen, die Fehlermeldungen verarbeiten – wurde ein zusätzliches Argument zugewiesen, um diese Meldung explizit anzugeben, anstatt sie aus Token-Namen usw. zu konstruieren. Dadurch kann der Maschinenzustand statt der vollständigen Zeichenfolgen lediglich die Meldungs-IDs speichern.
+Alle ME-Befehle werden als Ganzzahlen kodiert, wobei die Zuordnung wie unten angegeben erfolgt. Einigen Befehlen – nämlich jenen, die Fehlermeldungen verarbeiten – wurde ein zusätzliches Argument zugewiesen, um diese Meldung explizit anzugeben, anstatt sie aus Token-Namen usw. zu konstruieren. Dadurch kann der Maschinenzustand statt der vollständigen Zeichenketten lediglich die Meldungs-IDs speichern.
 
-Argumente für Sprungziele sind absolute Indizes innerhalb des *asm*-Elements, die sich auf den Befehl beziehen, zu dem gesprungen werden soll. Alle Zeichenfolgenargumente sind absolute Indizes innerhalb des *pool*-Elements. Zu suchende Token, Zeichen, Meldungen und Token- (bzw. Zeichen-)Klassen werden ebenfalls als Verweise auf das *pool*-Element kodiert.
+Argumente für Sprungziele sind absolute Indizes innerhalb des *asm*-Elements, die sich auf den Befehl beziehen, zu dem gesprungen werden soll. Alle Zeichenkettenargumente sind absolute Indizes innerhalb des *pool*-Elements. Zu suchende Token, Zeichen, Meldungen und Token- (bzw. Zeichen-)Klassen werden ebenfalls als Verweise auf das *pool*-Element kodiert.
 
 1. "**ict\_advance** *message*"
 
@@ -233,7 +233,7 @@ Argumente für Sprungziele sind absolute Indizes innerhalb des *asm*-Elements, d
 
 # CPU-Zustand
 
-Ein Wert ist eine Liste, die die folgenden Elemente in der unten angegebenen Reihenfolge enthält:
+Ein Zustandswert ist eine Liste, die die folgenden Elemente in der unten angegebenen Reihenfolge enthält:
 
 1. *code*: Match-Anweisungen, siehe [Darstellung des Match-Programms].
 
@@ -257,9 +257,9 @@ Ein Wert ist eine Liste, die die folgenden Elemente in der unten angegebenen Rei
 
 11. *ls*:   Positionsstapel, *list*.
 
-12. *as*:   AST-Stack, *list*.
+12. *as*:   AST-Stapel, *list*.
 
-13. *ms*:   AST-Marker-Stack, *list*.
+13. *ms*:   AST-Marker-Stapel, *list*.
 
 14. *es*:   Fehlerstapel, *list*.
 
@@ -268,9 +268,9 @@ Ein Wert ist eine Liste, die die folgenden Elemente in der unten angegebenen Rei
 16. *nc*: Nichtterminal-Cache, *dictionary*.
 
 
-*tc*, die Eingabewarteschlange mit den zur Verarbeitung anstehenden Tokens und der terminale Cache, der die bereits verarbeiteten Tokens enthält, bilden eine einheitliche Datenstruktur, die lediglich alle Tokens und deren Informationen enthält, wobei die aktuelle Position die bereits verarbeiteten Elemente von den noch anstehenden trennt. Jedes Element der Warteschlange/des Caches ist eine Liste, die das Token, dessen Lexem-Informationen, die Zeilennummer und den Index der Spalten in dieser Reihenfolge enthält.
+*tc*, die Eingabewarteschlange mit den zur Verarbeitung anstehenden Tokens und der Terminal-Cache, der die bereits verarbeiteten Tokens enthält, bilden eine einheitliche Datenstruktur, die lediglich alle Tokens und deren Informationen enthält, wobei die aktuelle Position die bereits verarbeiteten Elemente von den noch anstehenden trennt. Jedes Element der Warteschlange/des Caches ist eine Liste, die das Token, dessen Lexem-Informationen, die Zeilennummer und den Index der Spalten in dieser Reihenfolge enthält.
 
-Bei allen Stacks befindet sich das oberste Element am Ende; das Einfügen eines Elements entspricht also dem Anhängen an die Liste, die den Stack darstellt, und das Entfernen eines Elements entfernt das letzte Element.
+Bei allen Stapeln befindet sich das oberste Element am Ende; das Einfügen eines Elements entspricht also dem Anhängen an die Liste, die den Stapel darstellt, und das Entfernen eines Elements entfernt das letzte Element.
 
 *er*: Der Fehlerstatus ist entweder leer oder eine Liste mit zwei Elementen – einer Position in der Eingabe und einer Liste von Meldungen, die als Verweise auf das *pool*-Element des *code* kodiert sind.
 

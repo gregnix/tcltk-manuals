@@ -196,7 +196,7 @@ Ja.
     namespace import [namespace parent]::*
     ```
 
-- in einem Typkonstruktor. Dies ist jedoch weniger nützlich, da dabei nur jene Befehle erfasst werden, die zum Zeitpunkt der Typdefinition bereits vom übergeordneten Namespace exportiert wurden.
+- in einen Typkonstruktor einfügt. Dies ist jedoch weniger nützlich, da dabei nur jene Befehle erfasst werden, die zum Zeitpunkt der Typdefinition bereits vom übergeordneten Namespace exportiert wurden.
 
 
 # Objekte
@@ -347,7 +347,7 @@ Wenn Sie möchten, dass Snit einen Namen für ein Objekt generiert, verwenden Si
 %
 ```
 
-Das Schlüsselwort „**%AUTO%**“ kann in eine längere Zeichenfolge eingebettet werden:
+Das Schlüsselwort „**%AUTO%**“ kann in eine längere Zeichenkette eingebettet werden:
 
 ```
 % set d [dog obj_%AUTO%]
@@ -371,7 +371,7 @@ Alle Snit-Objekte (einschließlich *Widgets* und *Widgetadapter*) können umbena
 
 - In einer Instanzmethode enthält das implizite Argument **self** stets den aktuellen Namen des Objekts, sodass Instanzmethoden andere Instanzmethoden stets über **$self** aufrufen können.
 
-- Wenn das Objekt umbenannt wird, ändert sich der Wert von **$self**. Verwenden Sie daher **$self** nicht für etwas, das bei einer Änderung von **$self** nicht mehr funktionieren würde. Übergeben Sie beispielsweise keinen Rückrufbefehl wie folgt an ein anderes Objekt:
+- Wenn das Objekt umbenannt wird, ändert sich der Wert von **$self**. Verwenden Sie daher **$self** nicht für etwas, das bei einer Änderung von **$self** nicht mehr funktionieren würde. Übergeben Sie beispielsweise keinen Callback-Befehl wie folgt an ein anderes Objekt:
 
     ```
         .btn configure -command [list $self ButtonPress]
@@ -379,7 +379,7 @@ Alle Snit-Objekte (einschließlich *Widgets* und *Widgetadapter*) können umbena
 
 - Es wird eine Fehlermeldung angezeigt, wenn **.btn** Ihren Befehl aufruft, nachdem Ihr Objekt umbenannt wurde.
 
-- Stattdessen sollte Ihr Objekt seinen Rückrufbefehl wie folgt definieren:
+- Stattdessen sollte Ihr Objekt seinen Callback-Befehl wie folgt definieren:
 
     ```
         .btn configure -command [mymethod ButtonPress]
@@ -387,14 +387,14 @@ Alle Snit-Objekte (einschließlich *Widgets* und *Widgetadapter*) können umbena
 
 - Der Befehl [mymethod][snit] gibt einen Code zurück, der die gewünschte Methode sicher aufruft; der Aufrufer der Rückruffunktion kann wie gewohnt zusätzliche Argumente an das Ende des Befehls anhängen.
 
-- Jedes Objekt verfügt über einen privaten Namespace; der Name dieses Namespaces steht in Methodenkörpern usw. als Wert des impliziten Arguments **selfns** zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant.  Verwenden Sie **$selfns** anstelle von **$self**, wenn Sie ein eindeutiges Kennzeichen zur Identifizierung des Objekts benötigen.
+- Jedes Objekt verfügt über einen privaten Namespace; der Name dieses Namespaces steht in Methodenrümpfen usw. als Wert des impliziten Arguments **selfns** zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant.  Verwenden Sie **$selfns** anstelle von **$self**, wenn Sie ein eindeutiges Kennzeichen zur Identifizierung des Objekts benötigen.
 
 - Wenn der Befehl einer „[snit::widget][snit]“-Instanz umbenannt wird, bleibt der Name seines Tk-Fensters unverändert – und ist nach wie vor von großer Bedeutung. Folglich steht der Name des Tk-Fensters in Methoden als Wert des impliziten Arguments „**win**“ zur Verfügung. Dieser Wert bleibt während der gesamten Lebensdauer des Objekts konstant. Beim Erstellen von untergeordneten Fenstern empfiehlt es sich, **$win.child** anstelle von **$self.child** als Namen für das untergeordnete Fenster zu verwenden.
 
 
 ## Wie kann ich ein Snit-Objekt löschen?
 
-Jedes Snit-Objekt beliebigen Typs kann gelöscht werden, indem man es mithilfe des Tcl-Befehls **rename** in die leere Zeichenfolge umbenennt.
+Jedes Snit-Objekt beliebigen Typs kann gelöscht werden, indem man es mithilfe des Tcl-Befehls **rename** in die leere Zeichenkette umbenennt.
 
 Snit-Megawidgets (d. h. Instanzen von [snit::widget][snit] und [snit::widgetadaptor][snit]) können wie jedes andere Widget zerstört werden: durch Verwendung des Tk-Befehls **destroy** auf das Widget selbst oder auf eines seiner übergeordneten Elemente in der Fensterhierarchie.
 
@@ -646,7 +646,7 @@ Wenn Sie also **win** verwenden, wann immer der Name des Tk-Fensters benötigt w
 
 Das hängt vom Kontext ab.
 
-Angenommen, ich habe in meiner Anwendung ein **dog**-Objekt mit dem Namen **fido**, und ich möchte, dass „**fido**“ bellt, wenn eine Tk-Schaltfläche namens „**.bark**“ gedrückt wird. In diesem Fall erstelle ich den Rückrufbefehl wie gewohnt unter Verwendung von „**list**“:
+Angenommen, ich habe in meiner Anwendung ein **dog**-Objekt mit dem Namen **fido**, und ich möchte, dass „**fido**“ bellt, wenn eine Tk-Schaltfläche namens „**.bark**“ gedrückt wird. In diesem Fall erstelle ich den Callback-Befehl wie gewohnt unter Verwendung von „**list**“:
 
 ```
     button .bark -text "Bark!" -command [list fido bark]
@@ -684,7 +684,7 @@ Es gibt eine sicherere Vorgehensweise, und die sieht folgendermaßen aus:
 %
 ```
 
-Der Befehl [mymethod][snit] akzeptiert eine beliebige Anzahl von Argumenten und kann wie **list** zum Erstellen eines Rückrufbefehls verwendet werden; der einzige Unterschied besteht darin, dass [mymethod][snit] eine Form des Befehls zurückgibt, die sich auch dann nicht ändert, wenn sich der Name der Instanz ändert.
+Der Befehl [mymethod][snit] akzeptiert eine beliebige Anzahl von Argumenten und kann wie **list** zum Erstellen eines Callback-Befehls verwendet werden; der einzige Unterschied besteht darin, dass [mymethod][snit] eine Form des Befehls zurückgibt, die sich auch dann nicht ändert, wenn sich der Name der Instanz ändert.
 
 Andererseits möchten Sie vielleicht lieber zulassen, dass ein Widget-Adapter eine Methode überschreibt, sodass Ihr umbenanntes Widget die Methode des Widget-Adapters anstelle seiner eigenen aufruft.  In diesem Fall wird die Verwendung von **\[list $self bark\]** das gewünschte Ergebnis erzielen … allerdings handelt es sich hierbei um eine Technik, die nur unter sorgfältig kontrollierten Umständen angewendet werden sollte.
 
@@ -1206,7 +1206,7 @@ button .btn -text "Pedigrees" -command [list dog printPedigrees]
 pack .btn
 ```
 
-Alternativ können Sie aus einer Methode oder einer Typmethode den Befehl [mytypemethod][snit] verwenden, genauso wie Sie [mymethod][snit] verwenden würden, um einen Rückrufbefehl für [Instanzmethoden] zu definieren.
+Alternativ können Sie aus einer Methode oder einer Typmethode den Befehl [mytypemethod][snit] verwenden, genauso wie Sie [mymethod][snit] verwenden würden, um einen Callback-Befehl für [Instanzmethoden] zu definieren.
 
 ## Können Typmethoden hierarchisch sein?
 
@@ -1259,13 +1259,13 @@ snit::type mytype {
 
 ## Wie kann ich eine Prozedur als Rückruffunktion an ein anderes Objekt übergeben?
 
-Der Befehl [myproc][snit] gibt einen Rückrufbefehl für die [proc][snit] zurück, genau wie [mymethod][snit] dies für eine Methode tut.
+Der Befehl [myproc][snit] gibt einen Callback-Befehl für die [proc][snit] zurück, genau wie [mymethod][snit] dies für eine Methode tut.
 
 # Typkonstruktoren
 
 ## Was ist ein Typkonstruktor?
 
-Ein Typkonstruktor ist ein Codeabschnitt, der den Typ als Ganzes initialisiert, ähnlich wie ein statischer Initialisierer in C++. Der Codeabschnitt eines Typkonstruktors wird einmalig bei der Definition des Typs ausgeführt und danach nie wieder.
+Ein Typkonstruktor ist ein Codeabschnitt, der den Typ als Ganzes initialisiert, ähnlich wie ein statischer Initialisierer in C++. Der Rumpf eines Typkonstruktors wird einmalig bei der Definition des Typs ausgeführt und danach nie wieder.
 
 Ein Typ kann höchstens einen Typkonstruktor haben.
 
@@ -1418,7 +1418,7 @@ Ja; ein Destruktor hat keine expliziten Argumente.
 
 ## Welche impliziten Argumente werden an den Destruktor übergeben?
 
-Der Destruktor erhält dieselben impliziten Argumente, die an **INSTANZMETHODEN** übergeben werden: **type**, **selfns**, **win** und **self**.
+Der Destruktor erhält dieselben impliziten Argumente, die an [Instanzmethoden] übergeben werden: **type**, **selfns**, **win** und **self**.
 
 ## Müssen Komponenten explizit zerstört werden?
 
@@ -1597,7 +1597,7 @@ Erstens: Wenn es sich bei dem Komponententyp um „[snit::type][snit]“ handelt
     install mytail using tail %AUTO%
 ```
 
-Wenn der Komponententyp nicht „[snit::type][snit]“ lautet, können Sie die Komponente im Namespace der Instanz des Objekts anlegen:
+Wenn der Komponententyp kein [snit::type][snit] ist, können Sie die Komponente im Namespace der Instanz des Objekts anlegen:
 
 ```
     install mytail using tail ${selfns}::mytail
@@ -1621,7 +1621,7 @@ Es gibt jedoch Fälle, in denen es angebracht – und obendrein einfacher – is
 
 Geben Sie bei der Deklaration der Komponente die Option „**-public**“ der Anweisung „[component][snit]“ an. Der Wert dieser Option ist der Name einer Methode, die an den Objektbefehl Ihrer Komponente weitergeleitet wird.
 
-Nehmen wir beispielsweise an, Sie haben ein Combobox-Megawidget erstellt, das ein listbox-Widget enthält, und Sie möchten die gesamte Schnittstelle der Listbox öffentlich machen. Das können Sie wie folgt bewerkstelligen:
+Nehmen wir beispielsweise an, Sie haben ein Combobox-Megawidget erstellt, das ein Listbox-Widget enthält, und Sie möchten die gesamte Schnittstelle der Listbox öffentlich machen. Das können Sie wie folgt bewerkstelligen:
 
 ```
 snit::widget combobox {
@@ -1636,7 +1636,7 @@ combobox .mycombo
 .mycombo listbox configure -width 30
 ```
 
-Ihr Combobox-Widget „**.mycombo**“ verfügt nun über die Methode „**listbox**“, die dieselben Unterbefehle wie das listbox-Widget selbst enthält. Der obige Code legt somit die Breite der Listbox-Komponente auf 30 fest.
+Ihr Combobox-Widget „**.mycombo**“ verfügt nun über die Methode „**listbox**“, die dieselben Unterbefehle wie das Listbox-Widget selbst enthält. Der obige Code legt somit die Breite der Listbox-Komponente auf 30 fest.
 
 In der Regel wählen Sie als Namen der Methode denselben Namen wie den der Komponente; Sie können die Methode jedoch beliebig benennen.
 
@@ -1790,7 +1790,7 @@ snit::type tail {
 
 Bei der normalen Weiterleitung einer Methode wird davon ausgegangen, dass Sie eine Methode (einen Unterbefehl eines Objektbefehls) an eine Methode eines anderen Objekts (einen Unterbefehl eines anderen Objektbefehls) weiterleiten. Allerdings folgen nicht alle Tcl-Objekte den Tk-Konventionen, und nicht alles, an das Sie eine Methode weiterleiten möchten, ist zwangsläufig ein Objekt.  Daher ermöglicht Snit es Ihnen, mithilfe der Klausel **using** der Anweisung [delegate][snit] eine Methode ganz einfach an nahezu alles weiterzuleiten, was Sie möchten.
 
-Angenommen, Ihre Hundesimulation speichert Hunde in einer Datenbank, wobei jeder Hund als einzelner Datensatz vorliegt. Die von Ihnen verwendete Datenbank-API stellt eine Reihe von Befehlen zur Verwaltung von Datensätzen bereit; jeder davon nimmt die Datensatz-ID (eine von Ihnen gewählte Zeichenfolge) als erstes Argument entgegen. Beispielsweise speichert der Befehl „**saverec**“ einen Datensatz.  Wenn Sie die Datensatz-ID als Namen des Hundeobjekts verwenden, können Sie die Methode **save** des Hundes wie folgt an den Befehl **saverec** weiterleiten:
+Angenommen, Ihre Hundesimulation speichert Hunde in einer Datenbank, wobei jeder Hund als einzelner Datensatz vorliegt. Die von Ihnen verwendete Datenbank-API stellt eine Reihe von Befehlen zur Verwaltung von Datensätzen bereit; jeder davon nimmt die Datensatz-ID (eine von Ihnen gewählte Zeichenkette) als erstes Argument entgegen. Beispielsweise speichert der Befehl „**saverec**“ einen Datensatz.  Wenn Sie die Datensatz-ID als Namen des Hundeobjekts verwenden, können Sie die Methode **save** des Hundes wie folgt an den Befehl **saverec** weiterleiten:
 
 ```
 snit::type dog {
@@ -1955,7 +1955,7 @@ Ein [snit::widget][snit] ist ebenfalls eine besondere Art von [snit::type][snit]
 
 **snit::widgets** werden mit dem Befehl [snit::widget][snit] definiert, ebenso wie **snit::types** mit dem Befehl [snit::type][snit] definiert werden.
 
-Der Hauptteil der Definition kann dieselben Arten von Anweisungen enthalten sowie einige weitere, auf die im Folgenden eingegangen wird.
+Der Rumpf der Definition kann dieselben Arten von Anweisungen enthalten sowie einige weitere, auf die im Folgenden eingegangen wird.
 
 ## Inwiefern unterscheiden sich snit::widgets von snit::types?
 

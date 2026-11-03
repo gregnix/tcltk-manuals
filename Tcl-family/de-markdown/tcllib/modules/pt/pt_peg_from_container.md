@@ -40,7 +40,7 @@ pt::peg::from::container – PEG-Konvertierung. Aus dem CONTAINER-Format
 
 Sind Sie ratlos? Haben Sie Schwierigkeiten, dieses Dokument zu verstehen? Dann lesen Sie bitte die Übersicht in der *Introduction to Parser Tools*. Dieses Dokument ist der Einstiegspunkt in das Gesamtsystem, zu dem das aktuelle Paket gehört.
 
-Dieses Paket existiert nicht. Es besteht kein Bedarf dafür. Das CONTAINER-Format für Parsing Expression Grammars ist ein Stück Tcl-Code, das nach dem Einlesen mit source eine Klasse bereitstellt, deren Instanzen die zu importierende Grammatik bereits geladen haben. Man könnte es auch so betrachten: Die CONTAINER-Ausgabe ist ihr eigenes Importpaket.
+Dieses Paket existiert nicht. Es besteht kein Bedarf dafür. Das CONTAINER-Format für Parsing Expression Grammars ist ein Stück Tcl-Code, das nach dem Einlesen mittels `source` eine Klasse bereitstellt, deren Instanzen die zu importierende Grammatik bereits geladen haben. Man könnte es auch so betrachten: Die CONTAINER-Ausgabe ist ihr eigenes Importpaket.
 
 # Fehler, Ideen, Rückmeldungen
 

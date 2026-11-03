@@ -36,7 +36,7 @@ lappend - Hängt Listenelemente an eine Variable an
 
 # Beschreibung
 
-Der Befehl behandelt die Variable *varName* als Liste und hängt jedes *value*-Argument als separates Element mit Leerzeichen dazwischen an. Existiert *varName* nicht, wird sie als Liste mit den *value*-Argumenten als Elementen angelegt. **lappend** ähnelt [append], hängt die *value*s aber als Listenelemente an, nicht als Rohtext. Der Befehl eignet sich relativ effizient zum Aufbau großer Listen. Beispielsweise ist „**lappend a \$b**“ deutlich effizienter als „**set a \[concat \$a \[list \$b\]\]**“, wenn **\$a** lang ist.
+Der Befehl behandelt die Variable *varName* als Liste und hängt jedes *value*-Argument als separates Element mit Leerzeichen dazwischen an. Existiert *varName* nicht, wird sie als Liste mit den *value*-Argumenten als Elementen angelegt. **lappend** ähnelt [append], hängt die *value*-Argumente aber als Listenelemente an, nicht als Rohtext. Der Befehl eignet sich relativ effizient zum Aufbau großer Listen. Beispielsweise ist „**lappend a \$b**“ deutlich effizienter als „**set a \[concat \$a \[list \$b\]\]**“, wenn **\$a** lang ist.
 
 # Beispiele
 

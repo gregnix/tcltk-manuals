@@ -231,7 +231,7 @@ Die Prozeduraufrufe können optional in einer Variablen protokolliert werden. Di
 
 # Flexible Argument-Dialogbox
 
-Der Formulargenerator, der im vorangegangenen Beispiel die Argument-Dialogbox für den interaktiven Aufruf einer Prozedur erstellt, steht auch für andere Zwecke als die Definition von Prozedurargumenten zur Verfügung. Wenn Tk geladen wurde, stellt TEPAM eine Argument-Dialogbox bereit, mit dem sich komplexe Parameterdefinitionsformulare auf sehr effiziente Weise erstellen lassen.
+Der Formulargenerator, der im vorangegangenen Beispiel die Argument-Dialogbox für den interaktiven Aufruf einer Prozedur erstellt, steht auch für andere Zwecke als die Definition von Prozedurargumenten zur Verfügung. Wenn Tk geladen wurde, stellt TEPAM eine Argument-Dialogbox bereit, mit der sich komplexe Parameterdefinitionsformulare auf sehr effiziente Weise erstellen lassen.
 
 Das folgende Beispiel soll veranschaulichen, wie einfach es ist, komplexe Eingabeformulare zu erstellen. Es erstellt eine Eingabemaske, über die eine zu kopierende Datei sowie ein Zielverzeichnis angegeben werden können, und enthält zudem eine Checkbox, mit der festgelegt werden kann, ob eine eventuell bereits vorhandene Datei überschrieben werden darf. Zur Auswahl von Dateien und Verzeichnissen stehen benutzerfreundliche Browser zur Verfügung. Und schließlich bietet das Formular auch die Möglichkeit, die Auswahl zu bestätigen oder abzulehnen. Hier ist der Codeausschnitt, der all dies umsetzt:
 
@@ -246,7 +246,7 @@ Der Befehl **argument\_dialogbox** gibt **ok** zurück, wenn die eingegebenen Da
 
 Der Befehl **argument\_dialogbox** benötigt für jede Variable, die er verarbeiten soll, ein Argumentpaar. Das erste Argument definiert den Typ des Eingabe-Widgets, mit dem der Wert der Variable ausgewählt wird, und das zweite Argument ist eine Liste von Attributen, die sich auf die Variable und das Eingabe-Widget beziehen.
 
-Es stehen zahlreiche Arten von Eingabe-Widgets zur Verfügung: Neben den einfachen generischen Eingabefeldern gibt es verschiedene Arten von Listen- und Kombinationsfeldern, Browser für vorhandene und neue Dateien und Verzeichnisse, Check- und Radioboxen und -buttons sowie Farb- und Schriftartenauswahlfelder. Bei Bedarf können zusätzliche Eingabe-Widgets definiert werden.
+Es stehen zahlreiche Arten von Eingabe-Widgets zur Verfügung: Neben den einfachen generischen Eingabefeldern gibt es verschiedene Arten von Listboxen und Comboboxen, Browser für vorhandene und neue Dateien und Verzeichnisse, Check- und Radioboxen und -buttons sowie Farb- und Schriftartenauswahlfelder. Bei Bedarf können zusätzliche Eingabe-Widgets definiert werden.
 
 Die Attributliste enthält Paare aus Attributnamen und Attributdaten. Das primäre Attribut ist *-variable*, mit dem die Variable im aufrufenden Kontext festgelegt wird, in der die eingegebenen Daten gespeichert werden sollen. Ein weiteres häufig verwendetes Attribut ist *-label*, mit dem dem Dateneingabe-Widget eine Beschriftung hinzugefügt werden kann. Es stehen weitere Attribute zur Verfügung, mit denen Vorgabewerte, die erwarteten Datentypen, gültige Datenbereiche usw. festgelegt werden können.
 

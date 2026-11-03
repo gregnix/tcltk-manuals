@@ -37,12 +37,12 @@ page\_util\_peg – page-Hilfsprogramme für PEG-Transformationen
 
 # Beschreibung
 
-Dieses Paket stellt einige gängige Operationen für PEG-Transformationen bereit. Als Eingabe wird ein *normalisierter PE-Grammatikbaum* vorausgesetzt; siehe dazu das Paket **page::util::norm::peg**, der gegebenenfalls um Attribute ergänzt werden kann, die aus Transformationen stammen, die nicht im Widerspruch zur Basisdefinition stehen.
+Dieses Paket stellt einige gängige Operationen für PEG-Transformationen bereit. Als Eingabe wird ein *normalisierter PE-Grammatikbaum* vorausgesetzt (siehe dazu das Paket **page::util::norm::peg**), der gegebenenfalls um Attribute ergänzt werden kann, die aus Transformationen stammen, die nicht im Widerspruch zur Basisdefinition stehen.
 
 # API
 
 **::page::util::peg::symbolNodeOf** *tree* *node*
-: Zu einem beliebigen Ausdrucksknoten *node* im AST *tree* ermittelt diese Funktion den Knoten (den Knoten selbst oder einen Vorfahren), der den Namen des Nichtterminals enthält, zu dem der Knoten gehört, und gibt dessen ID zurück. Das Ergebnis ist entweder die Wurzel des Baums (beim Startausdruck) oder ein Definitionsknoten.
+: Zu einem beliebigen Ausdrucksknoten *node* im AST *tree* ermittelt dieser Befehl den Knoten (den Knoten selbst oder einen Vorfahren), der den Namen des Nichtterminals enthält, zu dem der Knoten gehört, und gibt dessen ID zurück. Das Ergebnis ist entweder die Wurzel des Baums (beim Startausdruck) oder ein Definitionsknoten.
 
 **::page::util::peg::symbolOf** *tree* *node*
 : Wie **::page::util::peg::symbolNodeOf**, gibt jedoch anstelle des Knotens den Namen des Symbols zurück.
@@ -72,7 +72,7 @@ Dieses Paket stellt einige gängige Operationen für PEG-Transformationen bereit
 **::page::util::peg::printWarnings** *msg*
 : Das Argument des Befehls ist ein Dictionary, das Nichtterminalnamen ihren Warnungen zuordnet, wie es zum Beispiel der Befehl **::page::util::peg::getWarnings** erzeugt.
 
-    Die darin enthaltenen Warnungen werden formatiert und dann über den Protokollbefehl **page\_info** ausgegeben. Dieser Befehl kann daher nur innerhalb eines Plugins verwendet werden, das vom Paket **page::pluginmgr** verwaltet wird.
+    Die darin enthaltenen Warnungen werden formatiert und dann über den Protokollbefehl [page\_info][page_pluginmgr] ausgegeben. Dieser Befehl kann daher nur innerhalb eines Plugins verwendet werden, das vom Paket **page::pluginmgr** verwaltet wird.
 
 **::page::util::peg::peOf** *tree* *eroot*
 : Dieser Befehl wandelt den Parsing-Ausdruck, der am Knoten *eroot* im AST *tree* beginnt, in eine verschachtelte Liste um. Die genaue Syntax dieser Liste wird durch das Paket **grammar::peg** festgelegt.
