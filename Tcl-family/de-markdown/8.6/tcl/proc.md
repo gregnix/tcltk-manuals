@@ -28,19 +28,19 @@ proc - Erzeugt eine Tcl-Prozedur
 
 # Beschreibung
 
-Der Befehl **proc** erzeugt eine neue Tcl-Prozedur *name* und ersetzt einen vorhandenen Befehl oder eine Prozedur gleichen Namens. Bei jedem Aufruf führt der Interpreter *body* aus. Normalerweise ist *name* unqualifiziert; die Prozedur entsteht im aktuellen Namespace. Enthält *name* Namespace-Qualifizierer, entsteht sie im angegebenen Namespace. *args* listet die formalen Argumente (möglicherweise leer). Jedes Element ist eine Liste mit einem oder zwei Feldern: nur Name, oder Name und Standardwert. Argumente mit Standardwert, denen nicht-standardisierte Argumente folgen, werden faktisch erforderlich — es müssen genug tatsächliche Argumente geliefert werden, um alle formalen Argumente bis einschließlich des letzten erforderlichen abzudecken. Portable Skripte sollten alle optionalen Argumente nach allen erforderlichen platzieren.
+Der Befehl **proc** erzeugt eine neue Tcl-Prozedur mit dem Namen *name* und ersetzt dabei einen eventuell vorhandenen Befehl oder eine Prozedur dieses Namens. Bei jedem Aufruf des neuen Befehls führt der Tcl-Interpreter den Inhalt von *body* aus. Normalerweise ist *name* unqualifiziert (enthält also keine Namen umgebender Namespaces), und die neue Prozedur wird im aktuellen Namespace erzeugt. Enthält *name* Namespace-Qualifizierer, wird die Prozedur im angegebenen Namespace erzeugt. *args* legt die formalen Argumente der Prozedur fest. Es besteht aus einer, möglicherweise leeren, Liste, deren Elemente jeweils ein Argument festlegen. Jede Argumentangabe ist ebenfalls eine Liste mit einem oder zwei Feldern. Enthält die Angabe nur ein Feld, ist es der Name des Arguments. Enthält sie zwei Felder, ist das erste der Name des Arguments und das zweite sein Vorgabewert. Argumente mit Vorgabewert, auf die Argumente ohne Vorgabewert folgen, werden zu erforderlichen Argumenten. Es müssen so viele tatsächliche Argumente übergeben werden, dass alle Argumente bis einschließlich des letzten erforderlichen formalen Arguments abgedeckt sind.
 
-Beim Aufruf von *name* entsteht pro formales Argument eine lokale Variable mit dem Wert des Aufrufarguments oder dem Standardwert. Zuweisung strikt in Reihenfolge; optionale Argumente können weggelassen werden, aber es dürfen weder zu wenige noch zu viele tatsächliche Argumente übergeben werden.
+Wenn *name* aufgerufen wird, wird für jedes formale Argument der Prozedur eine lokale Variable erzeugt. Ihr Wert ist der Wert des entsprechenden Arguments im aufrufenden Befehl oder der Vorgabewert des Arguments. Tatsächliche Argumente werden den formalen Argumenten streng der Reihe nach zugewiesen. Argumente mit Vorgabewert müssen beim Aufruf einer Prozedur nicht angegeben werden. Es muss jedoch genügend tatsächliche Argumente für alle formalen Argumente ohne Vorgabewert geben, und es darf keine überzähligen tatsächlichen Argumente geben. Argumente mit Vorgabewert, auf die Argumente ohne Vorgabewert folgen, werden de facto zu erforderlichen Argumenten; dies kann sich allerdings in einer künftigen Version von Tcl ändern. Portierbarer Code sollte sicherstellen, dass alle optionalen Argumente nach allen erforderlichen Argumenten stehen.
 
-Sonderfall variable Argumentanzahl: heißt das letzte formale Argument **args**, darf der Aufruf mehr tatsächliche als formale Argumente haben; ab dem **args** zugewiesenen Argument werden alle restlichen tatsächlichen Argumente zu einer Liste kombiniert (wie mit [list]) und **args** zugewiesen.
+Es gibt einen Sonderfall, der Prozeduren mit variabler Argumentanzahl ermöglicht. Hat das letzte formale Argument den Namen „**args**“, darf ein Aufruf der Prozedur mehr tatsächliche Argumente enthalten, als die Prozedur formale Argumente hat. In diesem Fall werden alle tatsächlichen Argumente ab dem, das **args** zugewiesen würde, zu einer Liste zusammengefasst (so, als wäre der Befehl [list] verwendet worden). Dieser zusammengefasste Wert wird der lokalen Variablen **args** zugewiesen.
 
-Während *body* läuft, beziehen sich Variablennamen auf lokale Variablen (automatisch erzeugt und beim Verlassen der Prozedur gelöscht); pro Argument eine lokale Variable. Andere Variablen nur über [global], [variable], [upvar] oder [namespace upvar][namespace]. Der aktuelle Namespace während *body* ist der des Prozedurnamens (Erstellungs-Namespace, sofern [rename] nicht geändert hat).
+Während *body* ausgeführt wird, beziehen sich Variablennamen normalerweise auf lokale Variablen. Diese werden beim ersten Zugriff automatisch erzeugt und gelöscht, wenn die Prozedur zurückkehrt. Für jedes Argument der Prozedur wird automatisch eine lokale Variable erzeugt. Auf andere Variablen kann nur zugegriffen werden, indem einer der Befehle [global], [variable], [upvar] oder [namespace upvar][namespace] aufgerufen wird. Der aktuelle Namespace während der Ausführung von *body* ist der Namespace, in dem der Name der Prozedur existiert. Das ist der Namespace, in dem die Prozedur erzeugt wurde, sofern er nicht mit [rename] geändert wurde.
 
-**proc** gibt eine leere Zeichenkette zurück. Der Rückgabewert der Prozedur ist der Wert eines [return]-Befehls; ohne explizites [return] der Wert des letzten Befehls in *body*. Tritt in *body* ein Fehler auf, gibt die Prozedur denselben Fehler zurück.
+Der Befehl **proc** gibt eine leere Zeichenkette zurück. Wenn eine Prozedur aufgerufen wird, ist ihr Rückgabewert der Wert, der in einem [return]-Befehl angegeben ist. Führt die Prozedur kein explizites [return] aus, ist ihr Rückgabewert der Wert des letzten Befehls, der im Rumpf der Prozedur ausgeführt wurde. Tritt beim Ausführen des Prozedurrumpfs ein Fehler auf, gibt die Prozedur als Ganzes denselben Fehler zurück.
 
 # Beispiele
 
-Summe und Produkt zweier Argumente ausgeben; explizites Ergebnis **OK**:
+Dies ist eine Prozedur, die zwei Argumente entgegennimmt und sowohl deren Summe als auch deren Produkt ausgibt. Außerdem gibt sie die Zeichenkette „OK“ als explizites Ergebnis an den Aufrufer zurück.
 
 ```
 proc printSumProduct {x y} {
@@ -51,7 +51,7 @@ proc printSumProduct {x y} {
 }
 ```
 
-Beliebig viele Argumente ausgeben:
+Dies ist eine Prozedur, die beliebig viele Argumente entgegennimmt und sie nacheinander ausgibt.
 
 ```
 proc printArguments args {
@@ -61,7 +61,7 @@ proc printArguments args {
 }
 ```
 
-Variable mit dem Faktor multiplizieren (Standard 2), ähnlich [incr]:
+Diese Prozedur ähnelt ein wenig dem Befehl [incr], multipliziert aber den Inhalt der benannten Variablen mit dem Wert, dessen Vorgabe **2** ist:
 
 ```
 proc mult {varName {multiplier 2}} {

@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-package - Paketladen und Versionskontrolle
+package - Funktionen zum Laden von Paketen und zur Versionskontrolle
 
 # Übersicht
 
@@ -40,113 +40,113 @@ package - Paketladen und Versionskontrolle
 
 # Beschreibung
 
-Der Befehl verwaltet eine einfache Datenbank der für den aktuellen Interpreter verfügbaren Pakete und wie sie geladen werden. Mehrere Versionen pro Paket werden unterstützt; die passende Version wird anhand der Anforderungen der Anwendung geladen. Versionskonflikte werden erkannt und gemeldet. In normalen Tcl-Skripten werden meist nur **package require** und **package provide** verwendet; die übrigen Unterbefehle dienen vor allem Systemskripten zur Pflege der Paketdatenbank.
+Dieser Befehl führt eine einfache Datenbank der Pakete, die der aktuelle Interpreter verwenden kann, und hält fest, wie sie in den Interpreter geladen werden. Er unterstützt mehrere Versionen jedes Pakets und sorgt dafür, dass die richtige Version eines Pakets geladen wird, je nachdem, was die Anwendung benötigt. Außerdem erkennt und meldet der Befehl Versionskonflikte. In normalen Tcl-Skripten werden meist nur die Befehle **package require** und **package provide** aufgerufen. Die übrigen Befehle verwenden vor allem Systemskripte, die die Paketdatenbank pflegen.
 
-Das Verhalten wird durch das erste Argument bestimmt. Zulässige Formen:
+Das Verhalten des Befehls **package** hängt von seinem ersten Argument ab. Die folgenden Formen sind zulässig:
 
 **package forget** ?*package package ...*?
-: Entfernt alle Informationen zu jedem angegebenen Paket aus diesem Interpreter, einschließlich **package ifneeded** und **package provide**.
+: Entfernt aus diesem Interpreter alle Informationen über jedes angegebene Paket, auch die Informationen, die mit **package ifneeded** und mit **package provide** bereitgestellt wurden.
 
 [package]{.cmd} [ifneeded]{.sub} [package]{.arg} [version]{.arg} [script]{.optarg}
-: Typischerweise nur in System-Konfigurationsskripten. Kennzeichnet, dass *version* von *package* bei Bedarf verfügbar ist und per *script* geladen werden kann. *script* wird für spätere **package require** gespeichert; üblicherweise richtet *script* Auto-Loading ein (oder [load]/[source]) und ruft **package provide** auf. Für ein Paket können mehrere Versionen eingetragen sein. Existiert bereits ein Eintrag für *package* und *version*, ersetzt *script* den alten. Ohne *script*: Rückgabe des aktuellen Skripts für diese Version, oder leerer String wenn kein **package ifneeded** gesetzt wurde.
+: Dieser Befehl steht normalerweise nur in Skripten zur Systemkonfiguration, die die Paketdatenbank einrichten. Er gibt an, dass eine bestimmte Version eines bestimmten Pakets bei Bedarf verfügbar ist und dass das Paket dem Interpreter hinzugefügt werden kann, indem *script* ausgeführt wird. Das Skript wird in einer Datenbank gespeichert, damit spätere **package require**-Befehle es verwenden können. Normalerweise richtet *script* das Auto-Load für die Befehle des Pakets ein (oder ruft direkt [load] und/oder [source] auf) und ruft danach **package provide** auf, um anzuzeigen, dass das Paket vorhanden ist. Die Datenbank kann Informationen zu mehreren verschiedenen Versionen eines einzigen Pakets enthalten. Enthält die Datenbank bereits Informationen zu *package* und *version*, ersetzt das neue *script* das vorhandene. Wird das Argument *script* weggelassen, wird das aktuelle Skript für die Version *version* des Pakets *package* zurückgegeben, oder eine leere Zeichenkette, wenn für dieses *package* und diese *version* noch kein **package ifneeded**-Befehl aufgerufen wurde.
 
 [package]{.cmd} [names]{.sub}
-: Liste aller Paketnamen, für die eine Version bereitgestellt wurde (**package provide**) oder ein **package ifneeded**-Skript existiert. Reihenfolge beliebig.
+: Gibt eine Liste der Namen aller Pakete im Interpreter zurück, für die eine Version bereitgestellt wurde (mit **package provide**) oder für die ein **package ifneeded**-Skript verfügbar ist. Die Reihenfolge der Elemente in der Liste ist beliebig.
 
 [package]{.cmd} [present]{.sub} [-exact]{.optlit} [package]{.arg} [requirement...]{.optarg}
-: Wie **package require**, lädt das Paket aber nicht, wenn es noch nicht geladen ist.
+: Dieser Befehl entspricht **package require**, versucht aber nicht, das Paket zu laden, wenn es noch nicht geladen ist.
 
 [package]{.cmd} [provide]{.sub} [package]{.arg} [version]{.optarg}
-: Kennzeichnet, dass *version* von *package* im Interpreter vorhanden ist. Wird typischerweise im **ifneeded**-Skript und beim endgültigen Laden des Pakets aufgerufen. Fehler, wenn eine andere Version bereits per **package provide** gemeldet wurde. Ohne *version*: aktuell bereitgestellte Versionsnummer, oder leerer String wenn nie **package provide** für *package* aufgerufen wurde.
+: Dieser Befehl wird aufgerufen, um anzuzeigen, dass die Version *version* des Pakets *package* jetzt im Interpreter vorhanden ist. Normalerweise wird er einmal im Rahmen eines **ifneeded**-Skripts aufgerufen und ein weiteres Mal vom Paket selbst, wenn es schließlich geladen ist. Wurde mit einem früheren **package provide**-Befehl eine andere Version von *package* bereitgestellt, tritt ein Fehler auf. Wird das Argument *version* weggelassen, gibt der Befehl die derzeit bereitgestellte Versionsnummer zurück, oder eine leere Zeichenkette, wenn in diesem Interpreter für *package* noch kein **package provide**-Befehl aufgerufen wurde.
 
 [package]{.cmd} [require]{.sub} [package]{.arg} [requirement...]{.optarg}
-: Wird von Tcl-Code aufgerufen, der eine bestimmte Paketversion braucht. Bei Erfolg: geladene Versionsnummer; sonst Fehler.
+: Dieser Befehl wird normalerweise von Tcl-Code aufgerufen, der eine bestimmte Version eines bestimmten Pakets verwenden will. Die Argumente geben an, welches Paket gewünscht ist, und der Befehl stellt sicher, dass eine passende Version des Pakets in den Interpreter geladen wird. Ist der Befehl erfolgreich, gibt er die geladene Versionsnummer zurück. Andernfalls erzeugt er einen Fehler.
 
-    Eine passende Version erfüllt mindestens eine *requirement* (Abschnitt [Anforderung]). Bei mehreren passenden Versionen wird die höchste gewählt, zusätzlich beeinflusst durch **package prefer**.
+    Eine passende Version des Pakets ist jede Version, die mindestens eine der Anforderungen erfüllt, wie sie unten im Abschnitt [Anforderung] definiert sind. Sind mehrere Versionen passend, wird die Implementierung mit der höchsten Version gewählt. Dieser letzte Schritt wird zusätzlich vom Auswahlmodus beeinflusst, der mit **package prefer** festgelegt wird.
 
-    Modus **stable**: höchste stabile passende Version; falls keine, höchste instabile. Modus **latest**: höchste passende Version unabhängig von Stabilität.
+    Im Auswahlmodus „stable“ wählt der Befehl die höchste stabile Version, die die Anforderungen erfüllt, sofern es eine gibt. Erfüllt keine stabile Version die Anforderungen, wird die höchste instabile Version gewählt, die die Anforderungen erfüllt. Im Auswahlmodus „latest“ akzeptiert der Befehl die höchste Version, die alle Anforderungen erfüllt, unabhängig davon, ob sie stabil ist.
 
-    Ist *package* bereits bereitgestellt (**package provide**), muss die Version die *requirement*s erfüllen — sofortige Rückkehr. Sonst Suche in der **package ifneeded**-Datenbank; bei Treffer Auswertung des Skripts der höchsten passenden Version im globalen Namespace (inkl. **package provide**). Fehlt ein passender Eintrag und ist **package unknown** gesetzt, wird dieser ausgewertet; danach erneute Prüfung. Scheitern aller Schritte: Fehler.
+    Wurde bereits eine Version von *package* bereitgestellt (durch Aufruf des Befehls **package provide**), muss ihre Versionsnummer die *requirement*s erfüllen, und der Befehl kehrt sofort zurück. Andernfalls durchsucht der Befehl die Datenbank mit den Informationen aus früheren **package ifneeded**-Befehlen, um festzustellen, ob eine annehmbare Version des Pakets verfügbar ist. Ist das der Fall, wird das Skript für die höchste annehmbare Versionsnummer im globalen Namespace ausgewertet. Es muss alles Nötige tun, um das Paket zu laden, einschließlich des Aufrufs von **package provide** für das Paket. Enthält die **package ifneeded**-Datenbank keine annehmbare Version des Pakets und wurde für den Interpreter ein **package unknown**-Befehl festgelegt, wird dieser Befehl im globalen Namespace ausgewertet. Wenn er abgeschlossen ist, prüft Tcl erneut, ob das Paket jetzt bereitgestellt ist oder ob es ein **package ifneeded**-Skript dafür gibt. Liefert keiner dieser Schritte eine annehmbare Version des Pakets, gibt der Befehl einen Fehler zurück.
 
 [package]{.cmd} [require]{.sub} [-exact]{.lit} [package]{.arg} [version]{.arg}
-: Nur die angegebene *version* ist akzeptabel. Äquivalent zu **package require** *package version*-*version*.
+: Diese Form des Befehls wird verwendet, wenn für den Aufrufer nur die angegebene *version* von *package* annehmbar ist. Dieser Befehl entspricht **package require** *package version*-*version*.
 
 [package]{.cmd} [unknown]{.sub} [command]{.optarg}
-: „Letzter Ausweg“ bei **package require**, wenn in **package ifneeded** nichts Passendes steht. Mit *command*: Präfix eines Befehls; Tcl hängt Paketname und Anforderungen an (z. B. **foo bar** + **package require test 2.4** → **foo bar test 2.4**). Ohne Anforderungen nur der Name. Ohne *command*: aktuelles **package unknown**-Skript oder leerer String. *command* als leerer String entfernt das Skript.
+: Dieser Befehl legt einen Befehl als „letzten Ausweg“ fest, der bei **package require** aufgerufen wird, wenn in der **package ifneeded**-Datenbank keine passende Version eines Pakets zu finden ist. Wird das Argument *command* angegeben, enthält es den ersten Teil eines Befehls. Wird dieser Befehl während eines **package require**-Befehls aufgerufen, hängt Tcl ein oder mehrere zusätzliche Argumente an, die den gewünschten Paketnamen und die Anforderungen angeben. Ist *command* zum Beispiel **foo bar** und wird später der Befehl **package require test 2.4** aufgerufen, führt Tcl den Befehl **foo bar test 2.4** aus, um das Paket zu laden. Werden dem Befehl **package require** keine Anforderungen übergeben, wird dem aufgerufenen Befehl nur der Name hinzugefügt. Wird der Befehl **package unknown** ohne das Argument *command* aufgerufen, wird das aktuelle **package unknown**-Skript zurückgegeben, oder eine leere Zeichenkette, wenn es keines gibt. Wird *command* als leere Zeichenkette angegeben, wird das aktuelle **package unknown**-Skript entfernt, sofern es eines gibt.
 
 [package]{.cmd} [vcompare]{.sub} [version1]{.arg} [version2]{.arg}
-: Vergleicht zwei Versionsnummern. Rückgabe -1 (früher), 0 (gleich), 1 (später).
+: Vergleicht die beiden Versionsnummern *version1* und *version2*. Gibt -1 zurück, wenn *version1* eine frühere Version als *version2* ist, 0, wenn beide gleich sind, und 1, wenn *version1* später als *version2* ist.
 
 [package]{.cmd} [versions]{.sub} [package]{.arg}
-: Liste aller Versionsnummern von *package* mit **package ifneeded**-Einträgen.
+: Gibt eine Liste aller Versionsnummern von *package* zurück, für die mit **package ifneeded**-Befehlen Informationen bereitgestellt wurden.
 
 [package]{.cmd} [vsatisfies]{.sub} [version]{.arg} [requirement...]{.arg}
-: 1 wenn *version* mindestens eine Anforderung erfüllt, sonst 0. Anforderungen: Abschnitt [Anforderung].
+: Gibt 1 zurück, wenn *version* mindestens eine der angegebenen Anforderungen erfüllt, sonst 0. Die *requirements* sind unten im Abschnitt [Anforderung] definiert.
 
 [package]{.cmd} [prefer]{.sub} [latest|stable]{.optlit}
-: Ohne Argument: **latest** oder **stable** — aktueller Auswahlmodus für **package require**.
+: Ohne Argumente gibt der Befehl entweder „latest“ oder „stable“ zurück, je nachdem, welcher Wert den aktuellen Modus der Auswahllogik von **package require** beschreibt.
 
-    **latest**: Modus auf „latest“ setzen.
+    Mit dem Argument „latest“ setzt er den Modus der Auswahllogik auf „latest“.
 
-    **stable**: Wenn bereits **stable**, bleibt es; von **latest** zurück auf **stable** ist wirkungslos — Modus bleibt **latest**.
+    Mit dem Argument „stable“ bleibt der Wert erhalten, wenn der Modus bereits „stable“ ist. Ist der Modus bereits „latest“, bleibt der Versuch wirkungslos, ihn auf „stable“ zurückzusetzen, und der Modus bleibt „latest“.
 
-    Anderes Argument: Fehler „invalid argument“.
+    Mit jedem anderen Wert als Argument wird ein Fehler wegen eines ungültigen Arguments ausgelöst.
 
-    Neuer Interpreter: initial **stable**, außer die Umgebungsvariable **TCL\_PKG\_PREFER\_LATEST** ist gesetzt (beliebiger Wert) — dann initial und dauerhaft **latest**.
+    Wenn ein Interpreter erzeugt wird, wird sein anfänglicher Auswahlmodus auf „stable“ gesetzt, sofern die Umgebungsvariable **TCL\_PKG\_PREFER\_LATEST** nicht gesetzt ist (auf einen beliebigen Wert). Andernfalls wird der anfängliche (und dauerhafte) Auswahlmodus auf „latest“ gesetzt.
 
 
 # Versionsnummern
 
-Versionsnummern bestehen aus einer oder mehreren durch Punkte getrennten Dezimalzahlen (z. B. 2, 1.162, 3.1.13.1). Die erste Zahl ist die Hauptversionsnummer; größere Zahlen = spätere Versionen, links mehr Signifikanz. Fehlende Felder = Nullen: 1.3 = 1.3.0 = 1.3.0.0, früher als 1.3.1. Die Buchstaben „a“ (alpha) und „b“ (beta) dürfen je einmal einen Punkt ersetzen und fügen semantisch einen negativen Anteil ein („a“ = -2, „b“ = -1); nur einmal, gegenseitig ausschließend. 1.3a1 → 1.3.-2.1, 1.3b1 → 1.3.-1.1. Negative Zahlen sind in Spezifizierern nicht direkt erlaubt. Ohne „a“/„b“: **stable**; mit Buchstaben: **unstable**. Spätere Versionen gelten als aufwärtskompatibel zur früheren, solange die Hauptversionsnummer gleich ist. Änderung der Hauptversion: inkompatible Änderungen.
+Versionsnummern bestehen aus einer oder mehreren Dezimalzahlen, die durch Punkte getrennt sind, etwa 2, 1.162 oder 3.1.13.1. Die erste Zahl heißt Hauptversionsnummer. Größere Zahlen entsprechen späteren Versionen eines Pakets, wobei die Zahlen weiter links mehr Gewicht haben. So ist zum Beispiel Version 2.1 später als 1.3, und Version 3.4.6 ist später als 3.3.5. Fehlende Felder entsprechen Nullen: Version 1.3 ist dasselbe wie Version 1.3.0 und 1.3.0.0 und damit früher als 1.3.1 oder 1.3.0.2. Außerdem dürfen die Buchstaben „a“ (alpha) und/oder „b“ (beta) genau einmal anstelle eines Punkts als Trennzeichen stehen. Diese Buchstaben fügen der Version semantisch eine negative Angabe hinzu, wobei „a“ für -2 und „b“ für -1 steht. Jeder darf nur einmal angegeben werden, und „a“ und „b“ schließen sich in einer Angabe gegenseitig aus. So wird 1.3a1 (semantisch) zu 1.3.-2.1, und 1.3b1 ist 1.3.-1.1. Negative Zahlen sind in Versionsangaben nicht direkt erlaubt. Eine Versionsnummer, die die Buchstaben „a“ oder „b“ wie oben beschrieben nicht enthält, heißt **stable** (stabile Version). Enthält sie die Buchstaben, heißt die Version **unstable** (instabil). Eine spätere Versionsnummer gilt als aufwärtskompatibel zu einer früheren, solange beide Versionen dieselbe Hauptversionsnummer haben. So sollten Tcl-Skripte, die für Version 2.3 eines Pakets geschrieben wurden, unverändert unter den Versionen 2.3.2, 2.4 und 2.5.1 funktionieren. Änderungen der Hauptversionsnummer bedeuten inkompatible Änderungen: Ist Code für Version 2.1 eines Pakets geschrieben, ist nicht garantiert, dass er ohne Änderungen mit Version 1.7.3 oder Version 3.1 funktioniert.
 
 # Paket-Indizes
 
-Empfohlen: **package require** und **package provide** in Skripten, [pkg\_mkIndex][pkgMkIndex] für Indexdateien — Pakete laden dann automatisch bei **package require**. Siehe [pkg\_mkIndex][pkgMkIndex].
+Für Pakete in Tcl wird empfohlen, in Skripten die Befehle **package require** und **package provide** aufzurufen und mit der Prozedur [pkg\_mkIndex][pkgMkIndex] Paketindexdateien zu erzeugen. Danach werden Pakete automatisch geladen, wenn **package require**-Befehle sie anfordern. Einzelheiten finden Sie in der Dokumentation zu [pkg\_mkIndex][pkgMkIndex].
 
 # Anforderung
 
-Eine *requirement*-Zeichenkette prüft, ob eine kompatible Paketversion vorhanden ist. Die meisten Befehle akzeptieren eine Liste von Anforderungen; die höchste passende Version wird gewählt.
+Eine *requirement*-Zeichenkette prüft, ob eine kompatible Versionsnummer eines Pakets vorhanden ist. Die meisten Befehle akzeptieren eine Liste von Anforderungszeichenketten, wobei die höchste passende Version gewählt wird.
 
-Formen:
+Jede *requirement* darf eine der folgenden Formen haben:
 
 *min*
-: „min-bounded“ (untere Grenze).
+: Diese Form heißt „min-bounded“.
 
 *min***-**
-: „min-unbound“ (nur untere Grenze, offen nach oben).
+: Diese Form heißt „min-unbound“.
 
 *min***-***max*
-: „bounded“ (Intervall).
+: Diese Form heißt „bounded“.
 
 
-wobei *min* und *max* gültige Versionsnummern sind. Legacy-Syntax ist Spezialfall der erweiterten Syntax. Regeln:
+wobei „*min*“ und „*max*“ gültige Versionsnummern sind. Die ältere Syntax ist ein Sonderfall der erweiterten Syntax, sodass die Abwärtskompatibilität erhalten bleibt. Für die Erfüllung gelten folgende Regeln:
 
-1. Die *version* muss mindestens eine *requirement* erfüllen.
+1. Die *version* muss mindestens eine der aufgeführten *requirement*s erfüllen, damit sie passt.
 
-2. „bounded“: erfüllt wenn
+2. Eine Version erfüllt eine „bounded“-Anforderung unter folgenden Bedingungen:
 
     \[a\]
-    : *min* gleich *max* genau dann, wenn *version* gleich *min* ist.
+    : Ist *min* gleich *max*, dann genau dann, wenn die *version* gleich *min* ist.
 
     \[b\]
-    : sonst genau dann, wenn *version* ≥ *min* und *version* < *max* (intern beide mit „a0“ aufgefüllt). Vergleich zu *min* inklusiv, zu *max* exklusiv.
+    : Andernfalls genau dann, wenn die *version* größer oder gleich *min* und kleiner als *max* ist, wobei *min* und *max* intern beide mit „a0“ aufgefüllt werden. Beachten Sie, dass der Vergleich mit *min* inklusiv ist, der Vergleich mit *max* dagegen exklusiv.
 
 
-3. „min-bounded“: „bounded“ mit implizitem *max* = nächste höhere Hauptversion von *min*.
+3. Eine „min-bounded“-Anforderung ist eine verkappte „bounded“-Anforderung, deren *max*-Teil implizit die nächsthöhere Hauptversionsnummer des *min*-Teils ist. Ob eine Version sie erfüllt, richtet sich nach den obigen Regeln.
 
-4. „min-unbound“: *version* ≥ *min* (*min* intern mit „a0“ aufgefüllt), keine Obergrenze.
+4. Eine *version* erfüllt eine „min-unbound“-Anforderung genau dann, wenn sie größer oder gleich *min* ist, wobei *min* intern mit „a0“ aufgefüllt wird. Eine Obergrenze gibt es nicht.
 
 
 # Beispiele
 
-Tk und http am Skriptanfang anfordern:
+Um festzulegen, dass ein Tcl-Skript die Pakete Tk und http benötigt, setzen Sie Folgendes an den Anfang des Skripts:
 
 ```
 package require Tk
 package require http
 ```
 
-Snack optional laden:
+Um zu prüfen, ob das Paket Snack verfügbar ist, und es gegebenenfalls zu laden, gehen Sie so vor (das ist oft nützlich für optionale Erweiterungen von Programmen, bei denen der Verlust der Funktionalität nicht kritisch ist):
 
 ```
 if {[catch {package require Snack}]} {

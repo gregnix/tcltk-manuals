@@ -74,9 +74,9 @@ Einige Optionen sind nur für bestimmte Themes verfügbar.
 
 Siehe die Handbuch-Seite [ttk::style][ttk_style] für Informationen zur Konfiguration von ttk-Stilen.
 
-# Bindings
+# Bindungen
 
-Beim Erzeugen eines neuen **ttk::frame** gibt es keine Standard-Ereignis-Bindings; **ttk::frame**-Widgets sind nicht für Interaktion gedacht.
+Beim Erzeugen eines neuen **ttk::frame** gibt es keine Standard-Ereignis-Bindungen; **ttk::frame**-Widgets sind nicht für Interaktion gedacht.
 
 
 [frame]: frame.md

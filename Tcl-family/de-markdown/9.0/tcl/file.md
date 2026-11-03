@@ -223,7 +223,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
     Temporäre Dateien werden *nur* auf dem nativen Dateisystem erstellt. Sie eignen sich daher für Betriebssystem-APIs und externe Programme, die einen Dateinamen benötigen.
 
 [file]{.cmd} [tildeexpand]{.sub} [name]{.arg}
-: [Gibt das Ergebnis der Tilden-Substitution für *name* zurück. Beginnt der Name mit einer Tilde, wird der Dateiname so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Pfadtrenner, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls gelten die Zeichen zwischen Tilde und dem nächsten Trenner als Benutzername, dessen Home-Verzeichnis für die Substitution verwendet wird. Ist die Umgebungsvariable **$HOME** oder der Benutzer nicht vorhanden, wird ein Fehler ausgelöst.]{version="TIP602"}
+: [Gibt das Ergebnis der Tilden-Ersetzung für *name* zurück. Beginnt der Name mit einer Tilde, wird der Dateiname so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Pfadtrenner, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls gelten die Zeichen zwischen Tilde und dem nächsten Trenner als Benutzername, dessen Home-Verzeichnis für die Ersetzung verwendet wird. Ist die Umgebungsvariable **$HOME** oder der Benutzer nicht vorhanden, wird ein Fehler ausgelöst.]{version="TIP602"}
 
     Beginnt der Dateiname nicht mit einer Tilde, wird er unverändert zurückgegeben.
 

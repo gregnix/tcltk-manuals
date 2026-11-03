@@ -34,58 +34,58 @@ regsub - Ersetzungen auf Basis regulärer Ausdrücke
 
 # Beschreibung
 
-Matcht den regulären Ausdruck *exp* gegen *string* und kopiert *string* entweder in die Variable *varName* oder gibt *string* zurück, wenn *varName* fehlt. (Reguläre Ausdrücke: Referenzseite [re\_syntax][re_syntax].) Bei einem Treffer wird beim Kopieren von *string* nach *varName* (bzw. als Rückgabewert ohne *varName*) der zu *exp* passende Teil von *string* durch *subSpec* ersetzt. Enthält *subSpec* „&“ oder „\\0“, wird es in der Ersetzung durch den zu *exp* passenden Teil von *string* ersetzt. Enthält *subSpec* „\\*n*“, wobei *n* eine Ziffer von 1 bis 9 ist, wird es durch den Teil von *string* ersetzt, der zum *n*. geklammerten Unterausdruck von *exp* passte. Zusätzliche Backslashes in *subSpec* verhindern die Sonderbedeutung von „&“, „\\0“, „\\*n*“ und Backslashes. Backslashes in *subSpec* kollidieren oft mit der Tcl-Parser-Verarbeitung; *subSpec* daher am besten in geschweifte Klammern setzen, wenn Backslashes vorkommen.
+Dieser Befehl vergleicht den regulären Ausdruck *exp* mit *string* und kopiert *string* entweder in die Variable, deren Name in *varName* angegeben ist, oder gibt *string* zurück, wenn *varName* fehlt. (Der Vergleich mit regulären Ausdrücken ist auf der Referenzseite [re\_syntax][re_syntax] beschrieben.) Gibt es einen Treffer, wird beim Kopieren von *string* nach *varName* (bzw. in das Ergebnis dieses Befehls, wenn *varName* fehlt) der Teil von *string*, auf den *exp* gepasst hat, durch *subSpec* ersetzt. Enthält *subSpec* ein „&“ oder „\\0“, wird dieses bei der Ersetzung durch den Teil von *string* ersetzt, auf den *exp* gepasst hat. Enthält *subSpec* ein „\\*n*“, wobei *n* eine Ziffer zwischen 1 und 9 ist, wird es bei der Ersetzung durch den Teil von *string* ersetzt, auf den der *n*-te geklammerte Unterausdruck von *exp* gepasst hat. In *subSpec* können zusätzliche Backslashes verwendet werden, um die Sonderbedeutung von „&“, „\\0“, „\\*n*“ und Backslashes aufzuheben. Backslashes in *subSpec* vertragen sich oft schlecht mit der Backslash-Verarbeitung des Tcl-Parsers. Daher ist es im Allgemeinen am sichersten, *subSpec* in geschweifte Klammern zu setzen, wenn es Backslashes enthält.
 
-Beginnen die ersten Argumente von **regsub** mit **-**, gelten sie als Schalter. Unterstützt werden:
+Beginnen die ersten Argumente von **regsub** mit **-**, werden sie als Schalter behandelt. Derzeit werden folgende Schalter unterstützt:
 
 **-all**
-: Alle in *string* zu *exp* passenden Bereiche werden gefunden und ersetzt. Ohne diesen Schalter nur der erste Treffer. Mit **-all** werden „&“- und „\\*n*“-Sequenzen pro Ersetzung mit den Daten des jeweiligen Treffers aufgelöst.
+: Alle Bereiche in *string*, auf die *exp* passt, werden gefunden, und für jeden dieser Bereiche wird eine Ersetzung durchgeführt. Ohne diesen Schalter wird nur der erste passende Bereich gefunden und ersetzt. Ist **-all** angegeben, werden die Sequenzen „&“ und „\\*n*“ bei jeder Ersetzung mit den Angaben des jeweiligen Treffers behandelt.
 
 **-expanded**
-: Erweiterte RE-Syntax: Leerraum und Kommentare werden ignoriert. Entspricht **(?x)** (siehe [re\_syntax][re_syntax]).
+: Ermöglicht die erweiterte Syntax für reguläre Ausdrücke, bei der Leerraum und Kommentare ignoriert werden. Das entspricht der Angabe der eingebetteten Option **(?x)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-line**
-: Zeilenumbruch-sensitives Matching. Standard: Zeilenumbruch ist ein normales Zeichen. Mit diesem Flag: „\[^“-Klammerausdrücke und „.“ treffen keinen Zeilenumbruch; „^“ zusätzlich leere Zeichenkette nach jedem Zeilenumbruch; „$“ zusätzlich davor. Entspricht **-linestop** und **-lineanchor** zusammen oder **(?n)** (siehe [re\_syntax][re_syntax]).
+: Aktiviert den zeilenumbruchsensitiven Vergleich. Standardmäßig ist der Zeilenumbruch ein völlig gewöhnliches Zeichen ohne besondere Bedeutung. Mit diesem Schalter passen Klammerausdrücke mit „\[^“ und „.“ nie auf einen Zeilenumbruch, „^“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette nach jedem Zeilenumbruch, und „$“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette vor jedem Zeilenumbruch. Dieser Schalter entspricht der gemeinsamen Angabe von **-linestop** und **-lineanchor** oder der eingebetteten Option **(?n)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-linestop**
-: „\[^“ und „.“ stoppen an Zeilenumbrüchen. Wie **(?p)** (siehe [re\_syntax][re_syntax]).
+: Ändert das Verhalten von Klammerausdrücken mit „\[^“ und von „.“ so, dass sie an Zeilenumbrüchen enden. Das entspricht der Angabe der eingebetteten Option **(?p)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-lineanchor**
-: „^“ und „$“ (Anker) treffen Zeilenanfang bzw. -ende. Wie **(?w)** (siehe [re\_syntax][re_syntax]).
+: Ändert das Verhalten von „^“ und „$“ (den „Ankern“) so, dass sie auf den Anfang bzw. das Ende einer Zeile passen. Das entspricht der Angabe der eingebetteten Option **(?w)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-nocase**
-: Großbuchstaben in *string* werden vor dem Match gegen *exp* in Kleinbuchstaben umgewandelt; Ersetzungen aus *subSpec* beziehen sich aber auf die unveränderte Form von *string*.
+: Großbuchstaben in *string* werden vor dem Vergleich mit *exp* in Kleinbuchstaben umgewandelt; die in *subSpec* angegebenen Ersetzungen verwenden jedoch die ursprüngliche, nicht umgewandelte Form von *string*.
 
 **-start** *index*
-: Zeichenindex-Offset in *string*, ab dem gematcht wird (wie [string index][string]). Mit diesem Schalter trifft „^“ nicht den Zeilenanfang; \\A trifft weiter den Stringanfang bei *index*. *index* wird auf die Stringgrenzen beschränkt.
+: Legt einen Zeichenindex in der Zeichenkette fest, ab dem der Vergleich mit dem regulären Ausdruck beginnt. Der Wert *index* wird genauso interpretiert wie das Argument *index* von [string index][string]. Bei Verwendung dieses Schalters passt „^“ nicht auf den Zeilenanfang, und \\A passt weiterhin auf den Anfang der Zeichenkette bei *index*. *index* wird auf die Grenzen der Eingabezeichenkette beschränkt.
 
 **--**
-: Ende der Schalter; das folgende Argument gilt als *exp*, auch wenn es mit **-** beginnt.
+: Markiert das Ende der Schalter. Das darauf folgende Argument wird als *exp* behandelt, auch wenn es mit **-** beginnt.
 
 
-Ist *varName* angegeben, gibt der Befehl die Anzahl der gefundenen und ersetzten Trefferbereiche zurück, sonst die Zeichenkette nach der Ersetzung. Details zur Interpretation regulärer Ausdrücke: Manpage [regexp].
+Ist *varName* angegeben, gibt der Befehl die Anzahl der gefundenen und ersetzten Trefferbereiche zurück, andernfalls wird die Zeichenkette nach der Ersetzung zurückgegeben. Einzelheiten zur Interpretation regulärer Ausdrücke finden Sie auf der Handbuchseite [regexp].
 
 # Beispiele
 
-Jedes eigenständige Wort **foo** in der Variable *string* durch **bar** ersetzen:
+In der Zeichenkette in der Variablen *string* jedes Vorkommen von **foo**, das ein eigenständiges Wort ist, durch **bar** ersetzen:
 
 ```
 regsub -all {\mfoo\M} $string bar string
 ```
 
-oder (Syntax *basic regular expression*):
+oder (mit der Syntax für „grundlegende reguläre Ausdrücke“):
 
 ```
 regsub -all {(?b)\<foo\>} $string bar string
 ```
 
-Das erste Vorkommen des Worts **interesting** (beliebige Schreibweise) in Anführungszeichen setzen:
+Das erste Vorkommen des Wortes **interesting** in doppelte Anführungszeichen setzen, unabhängig von seiner Groß- und Kleinschreibung.
 
 ```
 regsub -nocase {\yinteresting\y} $string {"&"} string
 ```
 
-Alle Nicht-ASCII- und Tcl-relevanten Zeichen per **regsub** und [subst] in \\u-Escapes umwandeln:
+Alle Nicht-ASCII-Zeichen und alle für Tcl bedeutsamen Zeichen mit **regsub** und [subst] zusammen in \\u-Escape-Sequenzen umwandeln:
 
 ```
 # This RE is just a character class for almost everything "bad"

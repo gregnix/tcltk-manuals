@@ -23,7 +23,7 @@ keysyms - von Tk erkannte Keysyms
 
 # Beschreibung
 
-Tk erkennt viele Keysyms beim Festlegen von Tasten-Bindings (z. B. „[bind] **. <Key-***keysym***>**“). Die folgende Liste führt die Keysyms auf, die von Tk erkannt werden. Beachten Sie, dass nicht alle Keysyms auf allen Plattformen gültig sind und einige Keysyms auch auf Plattformen verfügbar sind, die für diese Taste einen anderen nativen Namen haben. Auf Unix-Systemen hängt z. B. die Verfügbarkeit eines bestimmten Keysyms von der Konfiguration der Tastatur-Modifier-Map ab. Die Liste zeigt Keysyms zusammen mit ihren Dezimal- und Hexadezimalwerten.
+Tk erkennt viele Keysyms beim Festlegen von Tasten-Bindungen (z. B. „[bind] **. <Key-***keysym***>**“). Die folgende Liste führt die Keysyms auf, die von Tk erkannt werden. Beachten Sie, dass nicht alle Keysyms auf allen Plattformen gültig sind und einige Keysyms auch auf Plattformen verfügbar sind, die für diese Taste einen anderen nativen Namen haben. Auf Unix-Systemen hängt z. B. die Verfügbarkeit eines bestimmten Keysyms von der Konfiguration der Tastatur-Modifier-Map ab. Die Liste zeigt Keysyms zusammen mit ihren Dezimal- und Hexadezimalwerten.
 
 ```
 space                               32     0x20

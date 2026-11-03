@@ -42,13 +42,13 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt das Präfix eines Tcl-Befehls fest, der aufgerufen wird, wenn sich der Wert der Scale über einen Widget-Befehl ändert. Der tatsächliche Befehl besteht aus dieser Option gefolgt von einem Leerzeichen und einer reellen Zahl, die den neuen Wert der Scale angibt.
 
 **-digits** (**digits**/**Digits**)
-: Eine Ganzzahl, die angibt, wie viele signifikante Stellen beim Umwandeln des Werts der Scale in einen String beibehalten werden sollen. Wenn die Zahl kleiner oder gleich null ist, wählt die Scale den kleinsten Wert, der garantiert, dass jede mögliche Schiebereglerposition als unterschiedlicher String ausgegeben wird.
+: Eine Ganzzahl, die angibt, wie viele signifikante Stellen beim Umwandeln des Werts der Scale in eine Zeichenkette beibehalten werden sollen. Wenn die Zahl kleiner oder gleich null ist, wählt die Scale den kleinsten Wert, der garantiert, dass jede mögliche Schiebereglerposition als unterschiedliche Zeichenkette ausgegeben wird.
 
 **-from** (**from**/**From**)
 : Ein reeller Wert, der dem linken oder oberen Ende der Scale entspricht.
 
 **-label** (**label**/**Label**)
-: Ein String, der als Beschriftung für die Scale angezeigt wird. Bei vertikalen Scales wird die Beschriftung direkt rechts vom oberen Ende der Scale angezeigt. Bei horizontalen Scales wird die Beschriftung direkt über dem linken Ende der Scale angezeigt. Wenn die Option als leerer String angegeben ist, wird keine Beschriftung angezeigt.
+: Eine Zeichenkette, die als Beschriftung für die Scale angezeigt wird. Bei vertikalen Scales wird die Beschriftung direkt rechts vom oberen Ende der Scale angezeigt. Bei horizontalen Scales wird die Beschriftung direkt über dem linken Ende der Scale angezeigt. Wenn die Option als leere Zeichenkette angegeben ist, wird keine Beschriftung angezeigt.
 
 **-length** (**length**/**Length**)
 : Legt die gewünschte Längenabmessung der Scale in Bildschirmeinheiten fest (d.h. alle von [Tk\_GetPixels][GetPixels] akzeptierten Formen). Bei vertikalen Scales ist dies die Höhe der Scale; bei horizontalen Scales ist es die Breite der Scale.
@@ -85,7 +85,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 
 Der Befehl **scale** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Scale-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte der Scale wie Farben, Ausrichtung und Relief zu konfigurieren. Der Befehl **scale** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Eine Scale ist ein Widget, das eine rechteckige *Rinne* (*trough*) und einen kleinen *Schieberegler* (*slider*) anzeigt. Die Rinne entspricht einem Bereich reeller Werte (bestimmt durch die Optionen **-from**, **-to** und **-resolution**), und die Position des Schiebereglers wählt einen bestimmten reellen Wert aus. Die Position des Schiebereglers (und damit der Wert der Scale) kann mit Maus oder Tastatur angepasst werden, wie im Abschnitt [Standard-Bindings] unten beschrieben. Wenn sich der Wert der Scale ändert, wird ein Tcl-Befehl aufgerufen (über die Option **-command**), um andere interessierte Widgets über die Änderung zu informieren. Zusätzlich kann der Wert der Scale mit einer Tcl-Variable verknüpft werden (über die Option **-variable**), sodass Änderungen in der einen in der anderen widergespiegelt werden.
+Eine Scale ist ein Widget, das eine rechteckige *Rinne* (*trough*) und einen kleinen *Schieberegler* (*slider*) anzeigt. Die Rinne entspricht einem Bereich reeller Werte (bestimmt durch die Optionen **-from**, **-to** und **-resolution**), und die Position des Schiebereglers wählt einen bestimmten reellen Wert aus. Die Position des Schiebereglers (und damit der Wert der Scale) kann mit Maus oder Tastatur angepasst werden, wie im Abschnitt [Standard-Bindungen] unten beschrieben. Wenn sich der Wert der Scale ändert, wird ein Tcl-Befehl aufgerufen (über die Option **-command**), um andere interessierte Widgets über die Änderung zu informieren. Zusätzlich kann der Wert der Scale mit einer Tcl-Variable verknüpft werden (über die Option **-variable**), sodass Änderungen in der einen in der anderen widergespiegelt werden.
 
 In einem Scale-Widget können drei Anmerkungen angezeigt werden: eine Beschriftung oben rechts im Widget (oben links bei horizontalen Scales), eine Zahl direkt links vom Schieberegler (direkt über dem Schieberegler bei horizontalen Scales) und eine Sammlung numerischer Markierungen direkt links vom aktuellen Wert (direkt unter der Rinne bei horizontalen Scales). Jede dieser drei Anmerkungen kann über die Konfigurationsoptionen aktiviert oder deaktiviert werden.
 
@@ -103,7 +103,7 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scale** akzeptierten Werte haben.
 
 *pathName* **coords** ?*value*?
 : Gibt eine Liste zurück, deren Elemente die x- und y-Koordinaten des Punkts entlang der Mittellinie der Rinne sind, der *value* entspricht. Wenn *value* weggelassen wird, wird der aktuelle Wert der Scale verwendet.
@@ -112,15 +112,15 @@ pathName option ?arg arg ...?
 : Wenn *x* und *y* weggelassen werden, gibt der Befehl den aktuellen Wert der Scale zurück. Wenn *x* und *y* angegeben sind, geben sie Pixelkoordinaten innerhalb des Widgets an; der Befehl gibt den Scale-Wert zurück, der dem gegebenen Pixel entspricht. Nur eines von *x* oder *y* wird verwendet: Bei horizontalen Scales wird *y* ignoriert, bei vertikalen Scales wird *x* ignoriert.
 
 *pathName* **identify** *x y*
-: Gibt einen String zurück, der angibt, welcher Teil der Scale unter den durch *x* und *y* gegebenen Koordinaten liegt. Ein Rückgabewert **slider** bedeutet, dass der Punkt über dem Schieberegler liegt; **trough1** bedeutet, dass der Punkt über dem Teil der Rinne oberhalb oder links vom Schieberegler liegt; und **trough2** bedeutet, dass der Punkt über dem Teil der Rinne unterhalb oder rechts vom Schieberegler liegt. Wenn der Punkt über keinem dieser Elemente liegt, wird ein leerer String zurückgegeben.
+: Gibt eine Zeichenkette zurück, die angibt, welcher Teil der Scale unter den durch *x* und *y* gegebenen Koordinaten liegt. Ein Rückgabewert **slider** bedeutet, dass der Punkt über dem Schieberegler liegt; **trough1** bedeutet, dass der Punkt über dem Teil der Rinne oberhalb oder links vom Schieberegler liegt; und **trough2** bedeutet, dass der Punkt über dem Teil der Rinne unterhalb oder rechts vom Schieberegler liegt. Wenn der Punkt über keinem dieser Elemente liegt, wird eine leere Zeichenkette zurückgegeben.
 
 *pathName* **set** *value*
 : Dieser Befehl wird aufgerufen, um den aktuellen Wert der Scale zu ändern und damit die Position, an der der Schieberegler angezeigt wird. *Value* gibt den neuen Wert für die Scale an. Der Befehl hat keine Wirkung, wenn die Scale deaktiviert ist.
 
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Tk erstellt automatisch Klassen-Bindings für Scales, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scales unterscheidet, wird das horizontale Verhalten in Klammern beschrieben.
+Tk erstellt automatisch Klassen-Bindungen für Scales, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scales unterscheidet, wird das horizontale Verhalten in Klammern beschrieben.
 
 1. Wenn Taste 1 in der Rinne gedrückt wird, wird der Wert der Scale um den Wert der Option **-resolution** erhöht oder verringert, sodass sich der Schieberegler in Richtung des Mauszeigers bewegt. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 
@@ -143,9 +143,9 @@ Tk erstellt automatisch Klassen-Bindings für Scales, die ihnen folgendes Standa
 10. Ende bewegt den Schieberegler zum unteren (rechten) Ende seines Bereichs.
 
 
-Wenn die Scale mit der Option **-state** deaktiviert ist, haben keine der obigen Bindings Wirkung.
+Wenn die Scale mit der Option **-state** deaktiviert ist, haben keine der obigen Bindungen Wirkung.
 
-Das Verhalten von Scales kann geändert werden, indem neue Bindings für einzelne Widgets definiert werden oder indem die Klassen-Bindings neu definiert werden.
+Das Verhalten von Scales kann geändert werden, indem neue Bindungen für einzelne Widgets definiert werden oder indem die Klassen-Bindungen neu definiert werden.
 
 
 [ConfigWidg]: ../tk-c/ConfigWidg.md

@@ -51,9 +51,9 @@ Tcl-Module senden Benachrichtigungen an andere Module in der Regel auf zwei Arte
 
 Eine lose Kopplung zwischen Sender und Empfänger ist jedoch häufig wünschenswert. Im Sinne des Model-View-Controller-Musters kann eine Ansicht einen Befehl (der auf einer Benutzereingabe beruht) an den Controller senden, der daraufhin das Modell aktualisiert. Das Modell kann dann einen Hook aufrufen, *den alle relevanten Ansichten abonnieren.* Das Model ist von den Views entkoppelt und muss tatsächlich nicht wissen, ob überhaupt Views existieren. Derzeit verfügt Tcl/Tk über keinen Standardmechanismus zur Implementierung einer derartigen losen Kopplung. Dieses Paket definiert einen neuen Befehl, **hook**, der genau einen solchen Mechanismus implementiert.
 
-## Bindings
+## Bindungen
 
-Der Befehl **hook** verwaltet eine Sammlung von Hook-Bindings. Ein Hook-Binding besteht aus vier Elementen:
+Der Befehl **hook** verwaltet eine Sammlung von Hook-Bindungen. Eine Hook-Bindung besteht aus vier Elementen:
 
 1. Ein *subject*: Der Name der Entität, die den Hook aufrufen wird.
 
@@ -91,7 +91,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
 
     Wird er mit vier Argumenten aufgerufen, erstellt, aktualisiert oder löscht er eine Bindung. Ist *cmdPrefix* die leere Zeichenkette, werden alle bestehenden Bindungen für das *subject*, den *hook* und den *observer* gelöscht; nichts wird zurückgegeben. Andernfalls muss *cmdPrefix* ein Befehlspräfix sein, das so viele zusätzliche Argumente entgegennimmt, wie für *subject* und *hook* dokumentiert sind. Die Bindung wird hinzugefügt oder aktualisiert, und der Beobachter wird zurückgegeben.
 
-    Wenn der *observer* die leere Zeichenkette „“, ist, wird ein neues Binding unter Verwendung eines automatisch generierten Beobachternamens der Form **::hook::ob**<**number**> erstellt. Der automatisch generierte Name wird zurückgegeben und kann wie gewohnt zum Abfragen, Aktualisieren und Löschen der Bindung verwendet werden. Werden stets automatische Beobachternamen verwendet, wird der Beobachtername faktisch zu einer eindeutigen Bindungs-ID.
+    Wenn der *observer* die leere Zeichenkette „“, ist, wird eine neue Bindung unter Verwendung eines automatisch generierten Beobachternamens der Form **::hook::ob**<**number**> erstellt. Der automatisch generierte Name wird zurückgegeben und kann wie gewohnt zum Abfragen, Aktualisieren und Löschen der Bindung verwendet werden. Werden stets automatische Beobachternamen verwendet, wird der Beobachtername faktisch zu einer eindeutigen Bindungs-ID.
 
     Es ist möglich, **hook bind** aufzurufen, um eine Bindung an ein *Subjekt* und einen *hook* zu erstellen oder zu löschen, während man sich in einer Beobachterbindung für dasselbe *Subjekt* und denselben *hook* befindet. Die folgenden Regeln legen fest, was geschieht, wenn
 
@@ -109,7 +109,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
 
     2. Wenn eine Bindung aufgerufen wird, wird stets das zuletzt angegebene Befehlspräfix verwendet.
 
-    3. Die Menge der Beobachter, deren Bindings aufgerufen werden sollen, wird zu Beginn der Ausführung dieser Methode festgelegt und ändert sich danach nicht mehr, mit der Ausnahme, dass gelöschte Bindings nicht aufgerufen werden.
+    3. Die Menge der Beobachter, deren Bindungen aufgerufen werden sollen, wird zu Beginn der Ausführung dieser Methode festgelegt und ändert sich danach nicht mehr, mit der Ausnahme, dass gelöschte Bindungen nicht aufgerufen werden.
 
 
     Insbesondere:
@@ -140,7 +140,7 @@ Hook stellt die folgenden Befehle zur Verfügung:
 **hook** **call** *subject* *hook* ?*args*...?
 : Dieser Befehl wird aufgerufen, wenn das benannte *subject* den benannten *hook* aufrufen möchte. Alle relevanten Bindungen werden mit den angegebenen Argumenten im globalen Namespace aufgerufen. Hinweis: Die Bindungen werden synchron aufgerufen, bevor der Befehl zurückgibt; dadurch können die *args* Verweise auf Entitäten enthalten, die sofort nach dem Aufruf des Hooks bereinigt werden.
 
-    Die Reihenfolge, in der die Bindungen aufgerufen werden, ist nicht garantiert. Wenn die Reihenfolge unter den Beobachtern gewahrt bleiben soll, definieren Sie einen Beobachter und lassen Sie dessen Bindings die anderen Rückruffunktionen direkt in der richtigen Reihenfolge aufrufen.
+    Die Reihenfolge, in der die Bindungen aufgerufen werden, ist nicht garantiert. Wenn die Reihenfolge unter den Beobachtern gewahrt bleiben soll, definieren Sie einen Beobachter und lassen Sie dessen Bindungen die anderen Rückruffunktionen direkt in der richtigen Reihenfolge aufrufen.
 
     Da der Mechanismus **hook** darauf ausgelegt ist, eine lose Kopplung zu unterstützen, wird davon ausgegangen, dass das *Subjekt* weder Kenntnis von den Beobachtern hat noch Erwartungen hinsichtlich der Rückgabewerte hegt. Dies hat eine Reihe von Konsequenzen:
 
@@ -223,7 +223,7 @@ Später wird das Megawidget „**.view**“ zerstört. In seinem Destruktor teil
      hook forget .view
 ```
 
-Alle Bindings, die **.view** betreffen, werden gelöscht.
+Alle Bindungen, die **.view** betreffen, werden gelöscht.
 
 # Danksagungen
 

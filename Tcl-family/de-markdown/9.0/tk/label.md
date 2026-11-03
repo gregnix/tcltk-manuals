@@ -49,7 +49,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 
 Der Befehl **label** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Label-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte des Labels wie Farben, Schriftart, Text und anfängliches Relief zu konfigurieren. Der Befehl **label** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Ein Label ist ein Widget, das einen Text-String, ein Bitmap oder ein Bild anzeigt. Wenn Text angezeigt wird, muss er in einer einzigen Schriftart sein, kann aber mehrere Zeilen auf dem Bildschirm einnehmen (wenn er Zeilenumbrüche enthält oder wenn ein Umbruch wegen der Option **-wraplength** erfolgt), und eines der Zeichen kann optional mit der Option **-underline** unterstrichen werden. Das Label kann auf einige einfache Arten manipuliert werden, wie z.B. das Ändern seines Reliefs oder Textes, unter Verwendung der unten beschriebenen Befehle.
+Ein Label ist ein Widget, das einen Text, ein Bitmap oder ein Bild anzeigt. Wenn Text angezeigt wird, muss er in einer einzigen Schriftart sein, kann aber mehrere Zeilen auf dem Bildschirm einnehmen (wenn er Zeilenumbrüche enthält oder wenn ein Umbruch wegen der Option **-wraplength** erfolgt), und eines der Zeichen kann optional mit der Option **-underline** unterstrichen werden. Das Label kann auf einige einfache Arten manipuliert werden, wie z.B. das Ändern seines Reliefs oder Textes, unter Verwendung der unten beschriebenen Befehle.
 
 # Widget-Befehl
 
@@ -65,12 +65,12 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **label** akzeptierten Werte haben.
 
 
-# Bindings
+# Bindungen
 
-Wenn ein neues Label erstellt wird, hat es keine Standard-Event-Bindings: Labels sind nicht für Interaktion gedacht.
+Wenn ein neues Label erstellt wird, hat es keine Standard-Event-Bindungen: Labels sind nicht für Interaktion gedacht.
 
 # Beispiel
 

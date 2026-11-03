@@ -34,7 +34,7 @@ mentry::fixedPointMentry pathName count1 count2 ?-comma? ?options?
 ```
 
 **BESCHREIBUNG**
-: Dieser Befehl erstellt ein neues mentry-Widget `pathName` zur Anzeige und Bearbeitung von reellen Zahlen im Festkommaformat, mit `count1` Zeichen vor und `count2` Ziffern nach dem Dezimalpunkt.  Sowohl `count1` als auch `count2` müssen positive ganze Zahlen sein.  Das Mentry verfügt über zwei Eingabekomponenten, die standardmäßig durch eine Beschriftung mit einem `"."`-Zeichen getrennt sind; der optionale Schalter `-comma` ändert den Beschriftungstext in `","`.  Die unterstützten `options` entsprechen denen des Befehls `mentry::mentry`.
+: Dieser Befehl erstellt ein neues mentry-Widget `pathName` zur Anzeige und Bearbeitung von reellen Zahlen im Festkommaformat, mit `count1` Zeichen vor und `count2` Ziffern nach dem Dezimalpunkt.  Sowohl `count1` als auch `count2` müssen positive Ganzzahlen sein.  Das Mentry verfügt über zwei Eingabekomponenten, die standardmäßig durch eine Beschriftung mit einem `"."`-Zeichen getrennt sind; der optionale Schalter `-comma` ändert den Beschriftungstext in `","`.  Die unterstützten `options` entsprechen denen des Befehls `mentry::mentry`.
 
 : Der Befehl setzt das Attribut `type` des Widgets auf den Wert `"FixedPoint"` und gibt den Namen des neu erstellten Widgets zurück.
 
@@ -86,7 +86,7 @@ mentry::getReal pathName
 **BESCHREIBUNG**
 : Dieser Befehl gibt die Zahl zurück, die im Mentry-Widget `pathName` enthalten ist, das mit dem Befehl `mentry::fixedPointMentry` erstellt worden sein muss (dies wird durch Überprüfung des Attributs `type` des Widgets überprüft, das den Wert `"FixedPoint"` haben muss).
 
-: Wenn beide Eingabekomponenten des Widgets leer sind, setzt der Befehl den Fokus auf die erste Eingabekomponente, löst einen Fehler aus und gibt die Zeichenfolge `"EMPTY"` zurück.
+: Wenn beide Eingabekomponenten des Widgets leer sind, setzt der Befehl den Fokus auf die erste Eingabekomponente, löst einen Fehler aus und gibt die Zeichenkette `"EMPTY"` zurück.
 
 **SCHLÜSSELWÖRTER**
 : mentry, widget, real number

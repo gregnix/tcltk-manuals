@@ -22,6 +22,6 @@ csaba.nemethi@t-online.de
 
 [Mehrfeld-Eingabe-Widgets für IPv6-Adressen](mentryIPv6Addr.md)
 
-[Befehle zu Tile-Themen](mentryThemes.md)
+[Befehle zu Tile-Themes](mentryThemes.md)
 
 [Wcb-Befehlsreferenz](wcbRef.md)

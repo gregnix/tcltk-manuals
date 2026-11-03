@@ -34,7 +34,7 @@ Nach dem nächsten Fenster prüft **tk\_focusNext** die Option **-takefocus**, o
 
 **tk\_focusPrev** entspricht **tk\_focusNext**, liefert aber das Fenster unmittelbar vor *window* in der Fokusreihenfolge.
 
-**tk\_focusFollowsMouse** stellt die Anwendung auf ein implizites Fokusmodell um: Das Fenster unter dem Mauszeiger erhält den Fokus. Nach dem Aufruf gibt Tk dem Fenster automatisch den Eingabefokus, sobald die Maus hineinbewegt wird. Mit dem Befehl [focus] kann der Fokus auf ein anderes Fenster als das unter der Maus gesetzt werden; bewegt sich die Maus in ein neues Fenster, springt der Fokus dorthin. Derzeit gibt es keine eingebaute Unterstützung, zur expliziten Fokussteuerung zurückzukehren; dazu muss ein Skript die von **tk\_focusFollowsMouse** angelegten Bindings entfernen.
+**tk\_focusFollowsMouse** stellt die Anwendung auf ein implizites Fokusmodell um: Das Fenster unter dem Mauszeiger erhält den Fokus. Nach dem Aufruf gibt Tk dem Fenster automatisch den Eingabefokus, sobald die Maus hineinbewegt wird. Mit dem Befehl [focus] kann der Fokus auf ein anderes Fenster als das unter der Maus gesetzt werden; bewegt sich die Maus in ein neues Fenster, springt der Fokus dorthin. Derzeit gibt es keine eingebaute Unterstützung, zur expliziten Fokussteuerung zurückzukehren; dazu muss ein Skript die von **tk\_focusFollowsMouse** angelegten Bindungen entfernen.
 
 
 [focus]: focus.md

@@ -165,10 +165,10 @@ Die Befehle werden mithilfe der vom Paket **term::ansi::code::ctrl** bereitgeste
 : Tabulator setzen (@ aktuelle Position).
 
 **::term::ansi::send::ct**
-: Registerkarte löschen (an der aktuellen Position).
+: Tabulatorstopp löschen (an der aktuellen Position).
 
 **::term::ansi::send::cat**
-: Alle Registerkarten löschen.
+: Alle Tabulatorstopps löschen.
 
 **::term::ansi::send::qdc**
 : Gerätecode abfragen.

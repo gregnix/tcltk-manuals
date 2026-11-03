@@ -42,7 +42,7 @@ Das Paket „**persistentSelection**“ funktioniert, indem es eine Bindung an d
 **persistentSelection::fixText**
 : Einmal aufrufen, um Probleme mit **text**-Widgets zu beheben, die den voreingestellten Bindtag **Text** benutzen und nicht **Ntext**. Die Erklärung steht unter [Text-Widgets].
 
-    Der Befehl passt einige **Text**-Bindings so an, dass **<<Selection>>**-Ereignisse generiert werden; und ordnet die Aufrufe des Befehls **tag** für das **text**-Widget im privaten Befehl **::tk::TextSelectTo** neu an, damit dieser Befehl besser mit **persistentSelection** zusammenarbeitet.
+    Der Befehl passt einige **Text**-Bindungen so an, dass **<<Selection>>**-Ereignisse generiert werden; und ordnet die Aufrufe des Befehls **tag** für das **text**-Widget im privaten Befehl **::tk::TextSelectTo** neu an, damit dieser Befehl besser mit **persistentSelection** zusammenarbeitet.
 
     Diese Anpassungen sind nur bei älteren Versionen von **Tk** erforderlich.  Der Befehl **persistentSelection::fixText** hat bei ausreichend aktuellen Versionen keine Auswirkungen. Er kann bei jeder Version von **Tk** bedenkenlos aufgerufen werden.
 
@@ -75,7 +75,7 @@ Das Paket „**persistentSelection**“ funktioniert, indem es eine Bindung an d
 
 Für jedes Widget, das von **persistentSelection** überwacht werden soll, muss der Befehl **persistentSelection::report** in einem der Bindungs-Tags des Widgets an das Ereignis **<<Selection>>** gebunden werden.
 
-Beispielsweise möchte der Entwickler möglicherweise **persistentSelection** mit jedem **text**- und **entryPlus**-Widget in einer Anwendung verwenden: Dies lässt sich erreichen, indem die Bindung „**<<Selection>>**“ zu den Bindings „**Text**“ und „**EntryPlus**“ hinzugefügt wird.  Siehe [Beispiele].
+Beispielsweise möchte der Entwickler möglicherweise **persistentSelection** mit jedem **text**- und **entryPlus**-Widget in einer Anwendung verwenden: Dies lässt sich erreichen, indem die Bindung „**<<Selection>>**“ zu den Bindungen „**Text**“ und „**EntryPlus**“ hinzugefügt wird.  Siehe [Beispiele].
 
 Wenn **persistentSelection** nicht für alle Widgets einer bestimmten Klasse erforderlich ist, kann die Bindung den Bindtags der einzelnen Widgets hinzugefügt werden. Siehe [Beispiele].
 
@@ -94,11 +94,11 @@ Die **Tk**- und **Ttk**-Widgets, die ihre Auswahl exportieren können, sind **te
 
 ## Text-Widgets
 
-In Versionen von **Tk**, die älter sind als **8.6.9**, löst das **text**-Widget in einigen „Sonderfällen“, in denen sich seine Auswahl ändert, keine **<<Selection>>**-Ereignisse aus.  Diese Auslassungen lassen sich durch Änderungen an den **Text**-Bindings beheben, um die zweite Bedingung der [Anforderungen an Widgets] zu erfüllen.
+In Versionen von **Tk**, die älter sind als **8.6.9**, löst das **text**-Widget in einigen „Sonderfällen“, in denen sich seine Auswahl ändert, keine **<<Selection>>**-Ereignisse aus.  Diese Auslassungen lassen sich durch Änderungen an den **Text**-Bindungen beheben, um die zweite Bedingung der [Anforderungen an Widgets] zu erfüllen.
 
 Zudem verarbeiten Versionen von **Tk**, die älter sind als **8.6.6**, Ereignisse der Auswahl etwas anders als neuere Versionen, und in Kombination mit den **Text**-Bindungen verwirrt das **persistentSelection**.  Wenn ein Upgrade auf die aktuelle Version von **Tcl/Tk** nicht möglich ist, lässt sich dieses Problem durch eine geringfügige Anpassung der Widget-Bindungen beheben, um die dritte Anforderung der [Anforderungen an Widgets] zu erfüllen.
 
-Entweder sollte das Skript den Befehl „**persistentSelection::fixText**“ aufrufen, um die **Text**-Bindings und die von diesen aufgerufenen Befehle anzupassen; oder das Widget kann anstelle des standardmäßigen Bindings **Text** das Binding-Tag **Ntext** (für **ntext** Version 1.0 oder höher) verwenden.
+Entweder sollte das Skript den Befehl „**persistentSelection::fixText**“ aufrufen, um die **Text**-Bindungen und die von diesen aufgerufenen Befehle anzupassen; oder das Widget kann anstelle der standardmäßigen Bindung **Text** das Bindungs-Tag **Ntext** (für **ntext** Version 1.0 oder höher) verwenden.
 
 In beiden Fällen soll das Argument *type* für **persistentSelection::report** den Wert **text** haben.
 
@@ -138,7 +138,7 @@ package require persistentSelection
 bind EntryPlus <<Selection>> {::persistentSelection::report entry %W}
 ```
 
-Alle **text**-Widgets überwachen, die die voreingestellten Bindings **Text** benutzen.
+Alle **text**-Widgets überwachen, die die voreingestellten Bindungen **Text** benutzen.
 
 ```
 text .t
@@ -149,7 +149,7 @@ package require persistentSelection
 bind Text <<Selection>> {::persistentSelection::report text %W}
 ```
 
-Alle **text**-Widgets mit den voreingestellten Bindings **Text** und alle Widgets **entryPlus** überwachen.
+Alle **text**-Widgets mit den voreingestellten Bindungen **Text** und alle Widgets **entryPlus** überwachen.
 
 ```
 text .t
@@ -165,7 +165,7 @@ bind Text <<Selection>> {::persistentSelection::report text %W}
 bind EntryPlus <<Selection>> {::persistentSelection::report entry %W}
 ```
 
-Alle **text**-Widgets überwachen, die Bindings **Ntext** benutzen.
+Alle **text**-Widgets überwachen, die Bindungen **Ntext** benutzen.
 
 ```
 text .t

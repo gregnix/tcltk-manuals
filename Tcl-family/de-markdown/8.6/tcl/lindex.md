@@ -54,7 +54,7 @@ lindex list {}
 
 In diesem Fall ist der Rückgabewert von **lindex** einfach der Wert des Parameters *list*.
 
-Bei einem einzelnen Index behandelt **lindex** *list* als Tcl-Liste und gibt das *index*-te Element zurück (0 bezeichnet das erste Element). Beim Extrahieren gelten dieselben Regeln für geschweifte Klammern, Anführungszeichen und Backslashes wie beim Tcl-Befehlsinterpreter; Variablen- und Befehlssubstitution finden jedoch nicht statt. Ist *index* negativ oder größer oder gleich der Elementanzahl in *list*, wird eine leere Zeichenkette zurückgegeben. Die Auslegung jedes einfachen *index*-Werts entspricht [string index][string], einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende.
+Bei einem einzelnen Index behandelt **lindex** *list* als Tcl-Liste und gibt das *index*-te Element zurück (0 bezeichnet das erste Element). Beim Extrahieren gelten dieselben Regeln für geschweifte Klammern, Anführungszeichen und Backslashes wie beim Tcl-Befehlsinterpreter; Variablen- und Befehlsersetzung finden jedoch nicht statt. Ist *index* negativ oder größer oder gleich der Elementanzahl in *list*, wird eine leere Zeichenkette zurückgegeben. Die Auslegung jedes einfachen *index*-Werts entspricht [string index][string], einschließlich einfacher Indexarithmetik und Indizes relativ zum Listenende.
 
 Weitere *index*-Argumente wählen nacheinander aus dem Ergebnis der vorherigen Indexoperation ein Element — damit lassen sich Elemente aus Unterlisten wählen. Der Befehl
 

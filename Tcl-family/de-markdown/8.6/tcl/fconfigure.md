@@ -53,54 +53,54 @@ Der Befehl **fconfigure** legt Kanaloptionen fest und gibt sie zurück.
 
 Werden keine Argumente *name* oder *value* übergeben, gibt der Befehl eine Liste mit abwechselnd Optionsnamen und Werten für den Kanal zurück. Ist *name* angegeben, aber kein *value*, liefert der Befehl den aktuellen Wert der genannten Option. Werden ein oder mehrere Paare *name* und *value* übergeben, setzt der Befehl jede genannte Option auf den zugehörigen *value*; der Rückgabewert ist dann eine leere Zeichenkette.
 
-Die unten beschriebenen Optionen werden für alle Kanäle unterstützt. Zusätzlich kann jeder Kanaltyp eigene Optionen anbieten. Siehe die Manpage des Befehls, der den jeweiligen Kanaltyp erzeugt; z. B. die Manpage von [socket] für Socket-Optionen und [open] für serielle Geräte.
+Die unten beschriebenen Optionen werden für alle Kanäle unterstützt. Zusätzlich kann jeder Kanaltyp Optionen hinzufügen, die nur er unterstützt. Welche Optionen ein bestimmter Kanaltyp unterstützt, entnehmen Sie der Manpage des Befehls, der Kanäle dieses Typs erzeugt. Zusätzliche Optionen für Sockets finden Sie zum Beispiel in der Manpage des Befehls [socket], zusätzliche Optionen für serielle Geräte in der Manpage des Befehls [open].
 
 **-blocking** *boolean*
-: Die Option **-blocking** legt fest, ob E/A-Operationen auf dem Kanal den Prozess unbegrenzt blockieren können. Der Wert muss ein gültiger boolescher Wert sein. Kanäle sind normalerweise blockierend; im nicht-blockierenden Modus ändern sich [gets], [read], [puts], [flush] und [close] — sie können asynchron arbeiten; siehe deren Dokumentation. Damit der nicht-blockierende Modus korrekt funktioniert, muss die Anwendung die Tcl-Ereignisschleife nutzen (z. B. durch Aufruf von [Tcl\_DoOneEvent][DoOneEvent] oder [vwait]).
+: Die Option **-blocking** legt fest, ob E/A-Operationen auf dem Kanal den Prozess unbegrenzt blockieren können. Der Wert der Option muss ein gültiger boolescher Wert sein. Kanäle sind normalerweise im blockierenden Modus. Wird ein Kanal in den nicht-blockierenden Modus versetzt, wirkt sich das auf die Befehle [gets], [read], [puts], [flush] und [close] aus: Sie können dann asynchron arbeiten. Einzelheiten finden Sie in der Dokumentation dieser Befehle. Damit der nicht-blockierende Modus korrekt funktioniert, muss die Anwendung die Tcl-Ereignisschleife verwenden (z. B. durch Aufruf von [Tcl\_DoOneEvent][DoOneEvent] oder des Befehls [vwait]).
 
 **-buffering** *newValue*
-: Ist *newValue* **full**, puffert das E/A-System die Ausgabe, bis der interne Puffer voll ist oder [flush] aufgerufen wird. Ist *newValue* **line**, wird die Ausgabe automatisch geschrieben, sobald ein Zeilenumbruch ausgegeben wird. Ist *newValue* **none**, wird nach jeder Ausgabeoperation geschrieben. Standard ist **full**, außer bei Kanälen zu terminalähnlichen Geräten; dort ist der Anfangswert **line**. Zusätzlich sind **stdin** und **stdout** anfangs **line**, **stderr** ist **none**.
+: Ist *newValue* **full**, puffert das E/A-System die Ausgabe, bis sein interner Puffer voll ist oder der Befehl [flush] aufgerufen wird. Ist *newValue* **line**, leert das E/A-System die Ausgabe für den Kanal automatisch, sobald ein Zeilenumbruchzeichen ausgegeben wird. Ist *newValue* **none**, leert das E/A-System nach jeder Ausgabeoperation automatisch. Standardmäßig ist **-buffering** auf **full** gesetzt, außer bei Kanälen, die mit terminalähnlichen Geräten verbunden sind; für diese Kanäle ist die Anfangseinstellung **line**. Zusätzlich sind **stdin** und **stdout** anfangs auf **line** gesetzt und **stderr** auf **none**.
 
 **-buffersize** *newSize*
-: *Newvalue* muss eine Ganzzahl sein; sie legt die Größe in Bytes der für diesen Kanal angelegten Ein-/Ausgabepuffer fest. *Newvalue* muss zwischen eins und einer Million liegen (Puffer von einem Byte bis einer Million Bytes).
+: *Newvalue* muss eine Ganzzahl sein; ihr Wert legt die Größe der Puffer in Bytes fest, die für diesen Kanal anschließend zum Speichern von Ein- oder Ausgaben angelegt werden. *Newvalue* muss zwischen eins und einer Million liegen, sodass Puffer von einem bis zu einer Million Bytes Größe möglich sind.
 
 **-encoding** *name*
-: Diese Option legt die Kanal-Kodierung fest, damit Daten für Tcl in Unicode umgewandelt werden können. Soll Tcl z. B. Zeichen aus einer japanischen Datei in **shiftjis** lesen und verarbeiten, wird die Kodierung auf **shiftjis** gesetzt; beim Lesen werden die Bytes in Unicode umgewandelt. Beim Schreiben werden Tcl-Zeichenketten beim Ausgeben in die gewählte Kodierung umgewandelt.
+: Mit dieser Option legen Sie die Kodierung des Kanals fest, damit die Daten für die Verwendung in Tcl nach Unicode und aus Unicode umgewandelt werden können. Damit Tcl beispielsweise Zeichen aus einer japanischen Datei in **shiftjis** lesen und den Inhalt korrekt verarbeiten und anzeigen kann, würde die Kodierung auf **shiftjis** gesetzt. Danach werden beim Lesen vom Kanal die Bytes der japanischen Datei bereits beim Einlesen nach Unicode umgewandelt. Schreiben wird ebenfalls unterstützt: Tcl-Zeichenketten, die auf den Kanal geschrieben werden, werden bei der Ausgabe automatisch in die angegebene Kodierung umgewandelt.
 
-    Enthält eine Datei reine Binärdaten (z. B. ein JPEG), sollte die Kodierung [binary] sein. Tcl interpretiert die Daten dann nicht und liest oder schreibt rohe Bytes. Der Befehl [binary] kann diese byteorientierten Daten bearbeiten. Oft ist **-translation** [binary] beim Übertragen von Binärdaten besser, weil damit weitere automatische Interpretationen der Bytes im Strom abgeschaltet werden.
+    Enthält eine Datei reine Binärdaten (z. B. ein JPEG-Bild), sollte die Kodierung des Kanals auf [binary] eingestellt werden. Tcl interpretiert die Daten in der Datei dann nicht, sondern liest oder schreibt einfach rohe Bytes. Mit dem Tcl-Befehl [binary] lassen sich diese byteorientierten Daten bearbeiten. Wenn Sie Binärdaten übertragen wollen, ist es in der Regel besser, die Option **-translation** auf [binary] zu setzen, da damit auch die anderen automatischen Interpretationen der Bytes im Strom abgeschaltet werden.
 
-    Die Standard-Kodierung neu geöffneter Kanäle ist die plattform- und locale-abhängige Systemkodierung von [encoding system][encoding].
+    Die Standardkodierung für neu geöffnete Kanäle ist dieselbe plattform- und localeabhängige Systemkodierung, die für die Schnittstelle zum Betriebssystem verwendet wird und die [encoding system][encoding] zurückgibt.
 
 **-eofchar** *char*
 : siehe unten ...
 
 **-eofchar** **{***inChar outChar***}**
-: Diese Option unterstützt DOS-Dateisysteme, die Control-z (\\x1A) als Dateiende-Marker verwenden. Ist *char* nicht die leere Zeichenkette, signalisiert dieses Zeichen beim Lesen Dateiende. Beim Schreiben wird das Dateiende-Zeichen beim Schließen des Kanals ausgegeben. Ist *char* leer, gibt es keinen speziellen Dateiende-Marker. Bei Lese-Schreib-Kanälen legt eine zweielementige Liste getrennte Marker für Eingabe und Ausgabe fest. Beim Setzen für Lese-Schreib-Kanäle kann ein einzelner Wert für beide Richtungen angegeben werden. Beim Abfragen wird stets eine zweielementige Liste zurückgegeben. Standard für **-eofchar** ist die leere Zeichenkette, außer unter Windows: dort ist **-eofchar** beim Lesen Control-z (\\x1A) und beim Schreiben leer. Zulässig sind Werte von \\x01 - \\x7F; Werte außerhalb dieses Bereichs erzeugen einen Fehler.
+: Diese Option unterstützt DOS-Dateisysteme, die Control-z (\\x1A) als Dateiende-Markierung verwenden. Ist *char* keine leere Zeichenkette, signalisiert dieses Zeichen das Dateiende, wenn es bei der Eingabe auftritt. Bei der Ausgabe wird das Dateiende-Zeichen ausgegeben, wenn der Kanal geschlossen wird. Ist *char* die leere Zeichenkette, gibt es keine besondere Dateiende-Markierung. Bei Lese-Schreib-Kanälen gibt eine Liste mit zwei Elementen die Dateiende-Markierung für die Eingabe bzw. für die Ausgabe an. Der Einfachheit halber können Sie beim Setzen des Dateiende-Zeichens für einen Lese-Schreib-Kanal einen einzelnen Wert angeben, der für Lesen und Schreiben gilt. Beim Abfragen des Dateiende-Zeichens eines Lese-Schreib-Kanals wird immer eine Liste mit zwei Elementen zurückgegeben. Der Standardwert für **-eofchar** ist in allen Fällen die leere Zeichenkette, außer bei Dateien unter Windows. Dort ist **-eofchar** beim Lesen Control-z (\\x1A) und beim Schreiben die leere Zeichenkette. Der zulässige Bereich für **-eofchar**-Werte ist \\x01 - \\x7F; der Versuch, **-eofchar** auf einen Wert außerhalb dieses Bereichs zu setzen, erzeugt einen Fehler.
 
 **-translation** *mode*
 : siehe unten ...
 
 **-translation** **{***inMode outMode***}**
-: In Tcl-Skripten steht das Zeilenende stets als ein einzelnes Newline (\\n). In Dateien und Geräten kann es je nach Plattform oder Gerät unterschiedlich dargestellt sein (z. B. unter UNIX Newlines in Dateien, in Netzwerkverbindungen oft Wagenrücklauf-Zeilenvorschub). Beim Lesen ([gets], [read]) wandelt das Tcl-E/A-System die externe Darstellung in Newlines um; beim Schreiben ([puts]) umgekehrt. Der Standardmodus **auto** behandelt die üblichen Fälle; **-translation** erlaubt explizite Steuerung.
+: In Tcl-Skripten wird das Ende einer Zeile immer durch ein einzelnes Newline-Zeichen (\\n) dargestellt. In tatsächlichen Dateien und Geräten kann das Zeilenende jedoch auf verschiedenen Plattformen oder sogar für verschiedene Geräte auf derselben Plattform unterschiedlich dargestellt sein. Unter UNIX werden in Dateien beispielsweise Newlines verwendet, während in Netzwerkverbindungen normalerweise Wagenrücklauf-Zeilenvorschub-Sequenzen verwendet werden. Bei der Eingabe (d. h. mit [gets] und [read]) übersetzt das Tcl-E/A-System die externe Zeilenende-Darstellung automatisch in Newline-Zeichen. Bei der Ausgabe (d. h. mit [puts]) übersetzt das E/A-System Newlines in die externe Zeilenende-Darstellung. Der Standardübersetzungsmodus **auto** behandelt alle gängigen Fälle automatisch, aber die Option **-translation** bietet explizite Kontrolle über die Zeilenende-Übersetzungen.
 
-    Der Wert von **-translation** ist bei Nur-Lese- und Nur-Schreib-Kanälen ein einzelnes Element, bei Lese-Schreib-Kanälen eine zweielementige Liste (Lesen, dann Schreiben). Beim Setzen für Lese-Schreib-Kanäle kann ein Wert für beide Richtungen gelten; beim Abfragen wird stets eine Liste zurückgegeben. Unterstützt werden derzeit:
+    Der mit **-translation** verknüpfte Wert ist ein einzelnes Element für Nur-Lese- und Nur-Schreib-Kanäle. Für Lese-Schreib-Kanäle ist der Wert eine Liste mit zwei Elementen; der Leseübersetzungsmodus ist das erste Element der Liste, der Schreibübersetzungsmodus das zweite. Der Einfachheit halber können Sie beim Setzen des Übersetzungsmodus für einen Lese-Schreib-Kanal einen einzelnen Wert angeben, der für Lesen und Schreiben gilt. Beim Abfragen des Übersetzungsmodus eines Lese-Schreib-Kanals wird immer eine Liste mit zwei Elementen zurückgegeben. Derzeit werden folgende Werte unterstützt:
 
     **auto**
     : Als Eingabeübersetzungsmodus behandelt **auto** jedes von Newline (**lf**), Wagenrücklauf (**cr**) oder Wagenrücklauf gefolgt von einem Zeilenvorschub (**crlf**) als Zeilenende-Darstellung. Die Zeilenende-Darstellung kann sogar von Zeile zu Zeile wechseln; alle Fälle werden in ein Newline übersetzt. Als Ausgabeübersetzungsmodus wählt **auto** eine plattformspezifische Darstellung; für Sockets auf allen Plattformen wählt Tcl **crlf**, für alle Unix-Varianten **lf** und für die verschiedenen Windows-Varianten **crlf**. Die Standardeinstellung für **-translation** ist **auto** sowohl für Eingabe als auch Ausgabe.
 
     [binary]
-    : Es erfolgen keine Zeilenende-Übersetzungen. Das entspricht fast dem Modus **lf**, setzt zusätzlich aber **-eofchar** auf die leere Zeichenkette (deaktiviert) und **-encoding** auf [binary] (deaktiviert Kodierungsfilter). Siehe **-eofchar** und **-encoding**.
+    : Es werden keine Zeilenende-Übersetzungen durchgeführt. Das ist nahezu identisch mit dem Modus **lf**, außer dass der Modus [binary] zusätzlich das Dateiende-Zeichen auf die leere Zeichenkette setzt (wodurch es deaktiviert wird) und die Kodierung auf [binary] setzt (wodurch die Kodierungsfilterung deaktiviert wird). Weitere Informationen finden Sie in der Beschreibung von **-eofchar** und **-encoding**.
 
-        Intern verhält sich dieser Wert beim Übersetzer **wie** **lf** und wird deshalb beim Abfragen als solcher gemeldet — auch wenn die Übersetzung mit [binary] gesetzt wurde.
+        Intern, d. h. was das tatsächliche Verhalten des Übersetzers betrifft, **ist** dieser Wert identisch mit **lf** und wird deshalb beim Abfragen auch als solcher gemeldet, selbst wenn die Übersetzung mit [binary] gesetzt wurde.
 
     **cr**
-    : Das Zeilenende in der zugrunde liegenden Datei oder dem Gerät ist ein Wagenrücklauf. Im Eingabemodus **cr** werden Wagenrückläufe in Newlines umgewandelt; im Ausgabemodus werden Newlines in Wagenrückläufe umgewandelt.
+    : Das Ende einer Zeile in der zugrunde liegenden Datei oder dem Gerät wird durch ein einzelnes Wagenrücklauf-Zeichen dargestellt. Als Eingabeübersetzungsmodus wandelt der Modus **cr** Wagenrückläufe in Newline-Zeichen um. Als Ausgabeübersetzungsmodus übersetzt der Modus **cr** Newline-Zeichen in Wagenrückläufe.
 
     **crlf**
-    : Das Zeilenende ist Wagenrücklauf gefolgt von Zeilenvorschub. Im Eingabemodus **crlf** werden solche Sequenzen in Newlines umgewandelt; im Ausgabemodus werden Newlines in Wagenrücklauf-Zeilenvorschub umgewandelt. Typisch unter Windows und in Netzwerkverbindungen.
+    : Das Ende einer Zeile in der zugrunde liegenden Datei oder dem Gerät wird durch ein Wagenrücklauf-Zeichen gefolgt von einem Zeilenvorschub-Zeichen dargestellt. Als Eingabeübersetzungsmodus wandelt der Modus **crlf** Wagenrücklauf-Zeilenvorschub-Sequenzen in Newline-Zeichen um. Als Ausgabeübersetzungsmodus übersetzt der Modus **crlf** Newline-Zeichen in Wagenrücklauf-Zeilenvorschub-Sequenzen. Dieser Modus wird typischerweise auf Windows-Plattformen und für Netzwerkverbindungen verwendet.
 
     **lf**
-    : Das Zeilenende ist ein einzelnes Newline (Zeilenvorschub). Es erfolgt keine Übersetzung bei Eingabe oder Ausgabe. Typisch unter UNIX.
+    : Das Ende einer Zeile in der zugrunde liegenden Datei oder dem Gerät wird durch ein einzelnes Newline- (Zeilenvorschub-)Zeichen dargestellt. In diesem Modus erfolgen weder bei der Eingabe noch bei der Ausgabe Übersetzungen. Dieser Modus wird typischerweise auf UNIX-Plattformen verwendet.
 
 
 
@@ -110,7 +110,7 @@ Die Tcl-Standardkanäle (**stdin**, **stdout** und **stderr**) lassen sich wie j
 
 # Beispiele
 
-Weisen Sie Tcl an, Ausgabe auf **stdout** sofort zu senden, unabhängig davon, ob es an ein Terminal geht:
+Tcl anweisen, Ausgaben auf **stdout** immer sofort zu senden, unabhängig davon, ob sie an ein Terminal gehen:
 
 ```
 fconfigure stdout -buffering none

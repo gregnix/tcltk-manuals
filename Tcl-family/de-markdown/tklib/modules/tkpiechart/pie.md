@@ -136,7 +136,7 @@ Das gesamte Kreisdiagramm, die Grafiken des Kreisdiagramms (alle Segmente) sowie
 - **slice(sliceObject)**
 
 
-Zum Beispiel lässt sich das ganze Kreisdiagramm mit dem Befehl **move** von **canvas** am pie-Tag verschieben, und Bindings an Segmenten lassen sich über die Segment-Tags setzen. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*.
+Zum Beispiel lässt sich das ganze Kreisdiagramm mit dem Befehl **move** von **canvas** am pie-Tag verschieben, und Bindungen an Segmenten lassen sich über die Segment-Tags setzen. Einzelheiten stehen auf der Handbuchseite **canvas** im Abschnitt *ITEM-IDS UND TAGS*.
 
 # Größen
 

@@ -57,7 +57,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-window**
-:  Legt das Fenster fest, das angezeigt wird. Dieses Widget muss die Optionen **-xscrollcommand** und **-yscrollcommand** haben und auf die Befehle **xview** und **yview** antworten. Damit ScrollView mit einer anderen Bildlaufleiste zusammenarbeitet, müssen die Optionen **-xscrollcommand** und **-yscrollcommand** des Widgets gesetzt werden, bevor das Widget an die Option **-window** des ScrollView übergeben wird (wenn das Widget zum Beispiel von einem ScrolledWindow verwaltet wird, **setwidget** aufrufen, bevor die Option **-window** gesetzt wird). 
+:  Legt das Fenster fest, das angezeigt wird. Dieses Widget muss die Optionen **-xscrollcommand** und **-yscrollcommand** haben und auf die Befehle **xview** und **yview** antworten. Damit ScrollView mit einer anderen Scrollbar zusammenarbeitet, müssen die Optionen **-xscrollcommand** und **-yscrollcommand** des Widgets gesetzt werden, bevor das Widget an die Option **-window** des ScrollView übergeben wird (wenn das Widget zum Beispiel von einem ScrolledWindow verwaltet wird, **setwidget** aufrufen, bevor die Option **-window** gesetzt wird). 
 
 
 ---

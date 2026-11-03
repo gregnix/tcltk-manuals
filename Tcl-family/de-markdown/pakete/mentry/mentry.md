@@ -39,7 +39,7 @@ csaba.nemethi@t-online.de
 Mentry ist ein Paket für Tcl/Tk ab Version 8.4, das in reinem Tcl/Tk-Code geschrieben ist. Es enthält:
 
 - die Implementierung des [Mehrfeld-Eingabe-Megawidgets mentry](mentryWidget.md), einschließlich eines allgemeinen Dienstprogrammmoduls für Megawidgets;
-- Prozeduren, die die Verwendung von Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von [Datum und Uhrzeit](mentryDateTime.md) in einer Vielzahl von Formaten, [reellen Zahlen im Festkommaformat](mentryFixedPoint.md), sowie [IP(v4)-Adressen](mentryIPAddr.md) und [IPv6-Adressen](mentryIPv6Addr.md);
+- Prozeduren, die die Verwendung von Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von [Datum und Uhrzeit](mentryDateTime.md) in einer Vielzahl von Formaten, [reellen Zahlen im Festkommaformat](mentryFixedPoint.md), sowie [IP(v4)-Adressen](mentryIPAddr.md) und [IPv6-Adressen](mentryIPv6Addr.md) erleichtern;
 - drei ausführlich kommentierte Demo-Skripte, die die typischen Schritte enthalten, die zur Erstellung und Handhabung eines Mentry-Widgets für einen bestimmten Zweck erforderlich sind;
 - zwei Beispielskripte, die die Verwendung der Prozeduren für Datum und Uhrzeit veranschaulichen;
 - auf Tile aufbauende Entsprechungen der oben genannten Demo-Skripte;
@@ -54,13 +54,13 @@ Einige der oben genannten Funktionen werden mithilfe des Widget-Rückruffunktion
 
 https://www.nemethi.de
 
-Es ist ganz einfach, ein Mehrfeld-Eingabe-Widget zu erstellen. Zum Beispiel der Befehl
+Es ist ganz einfach, ein Mehrfeld-Eingabe-Widget zu erstellen. Zum Beispiel erstellt der Befehl
 
 ```
 mentry::mentry .me -body {3 - 3 - 4}
 ```
 
-wird ein Mentry-Widget erstellt, das aus zwei Einträgen mit der Breite 3 und einem Eintrag mit der Breite 4 besteht, die durch die Zeichenfolge `"-"` voneinander getrennt sind. Mit dem Befehl
+ein Mentry-Widget, das aus zwei Einträgen mit der Breite 3 und einem Eintrag mit der Breite 4 besteht, die durch `"-"`-Zeichen voneinander getrennt sind. Mit dem Befehl
 
 ```
 foreach w [.me entries] {
@@ -104,7 +104,7 @@ Beachten Sie, dass in tklib das Mentry-Verzeichnis `demos` durch das Unterverzei
 
 ### Wie verwende ich es?
 
-Die Mentry-Distribution umfasst zwei Pakete: **Mentry** und **Mentry_tile**. Der Hauptunterschied zwischen den beiden besteht darin, dass Mentry_tile die auf Tile aufbauende, themenspezifische Darstellung von Mentry-Widgets ermöglicht; dieses Paket erfordert Tile 0.6 oder höher.  Es ist nicht möglich, beide Pakete in ein und derselben Anwendung zu verwenden, da beide im selben Namespace `mentry` implementiert sind und identische Befehle bereitstellen.
+Die Mentry-Distribution umfasst zwei Pakete: **Mentry** und **Mentry_tile**. Der Hauptunterschied zwischen den beiden besteht darin, dass Mentry_tile die auf Tile aufbauende, themespezifische Darstellung von Mentry-Widgets ermöglicht; dieses Paket erfordert Tile 0.6 oder höher.  Es ist nicht möglich, beide Pakete in ein und derselben Anwendung zu verwenden, da beide im selben Namespace `mentry` implementiert sind und identische Befehle bereitstellen.
 
 Um auf die Befehle und Variablen des Mentry-Pakets zugreifen zu können, müssen Ihre Skripte eine der folgenden Zeilen enthalten:
 
@@ -134,30 +134,30 @@ package provide mentry_tile ...
 package provide Mentry_tile ...
 ```
 
-Es steht Ihnen frei, jeweils eine der oben genannten Zeilen aus `mentry.tcl` bzw. `mentry_tile.tcl` zu entfernen, wenn Sie verhindern möchten, dass die entsprechenden Pakete jeweils unter zwei verschiedenen Beschreibungen angezeigt werden.  Dadurch beschränken Sie natürlich das Argument von ``package require`` auf einen einzigen Namen pro Paket.
+Es steht Ihnen frei, jeweils eine der oben genannten Zeilen aus `mentry.tcl` bzw. `mentry_tile.tcl` zu entfernen, wenn Sie verhindern möchten, dass die entsprechenden Pakete sich jeweils unter zwei verschiedenen Namen bekannt machen.  Dadurch beschränken Sie natürlich das Argument von ``package require`` auf einen einzigen Namen pro Paket.
 
-Da die Pakete „Mentry“ und „Mentry_tile“ im Namespace `mentry` implementiert sind, müssen Sie entweder die
+Da die Pakete „Mentry“ und „Mentry_tile“ im Namespace `mentry` implementiert sind, müssen Sie entweder den
 
 ```
 namespace import mentry::pattern ?mentry::pattern ...?
 ```
 
-Befehl zum Importieren der benötigten *Prozeduren* oder verwenden Sie qualifizierte Namen wie `mentry::mentry`. In den folgenden Beispielen haben wir uns für den letzteren Ansatz entschieden.
+Befehl zum Importieren der benötigten *Prozeduren* aufrufen oder qualifizierte Namen wie `mentry::mentry` verwenden. In den folgenden Beispielen haben wir uns für den letzteren Ansatz entschieden.
 
 Um auf Mentry-*Variablen* zuzugreifen, *müssen* Sie qualifizierte Namen verwenden. Es gibt nur drei Mentry-Variablen (und eine weitere bei Verwendung von Mentry_tile), die für den Zugriff außerhalb des Namespaces `mentry` vorgesehen sind:
 
 - Die Variable `mentry::version` enthält die aktuelle Versionsnummer des Mentry-Pakets.
 - Die Variable `mentry::library` enthält den Pfad zum Mentry-Installationsverzeichnis.
 - Die schreibgeschützte Variable `mentry::usingTile` hat im Paket „Mentry“ den Wert `0` und in „Mentry_tile“ den Wert `1`.
-- In „Mentry_tile“ enthält das Array `mentry::themeDefaults` die themenspezifischen Standardwerte einer Reihe von Mentry-Konfigurationsoptionen.
+- In „Mentry_tile“ enthält das Array `mentry::themeDefaults` die themespezifischen Standardwerte einer Reihe von Mentry-Konfigurationsoptionen.
 
 ### Mehr zu Mentry_tile
 
-Wie oben erwähnt, besteht ein Mentry-Widget aus Entry- und Label-Widgets, die in einen Frame eingebettet sind.  Während im Mentry-Paket alle diese Komponenten Tk-Widgets sind, verwendet das Mentry_tile-Paket sowohl Tk-Frame- und Tile-Entry- als auch Tk-Label-Widgets. Aufgrund mehrerer Inkompatibilitäten zwischen Tk und Tile ist es derzeit nicht möglich, alle Tk-Widgets, aus denen ein Mentry besteht, durch ihre Tile-Entsprechungen zu ersetzen.  Tatsächlich sind die „Entry“-Komponenten eines Tile-basierten Mentry in Tk-„Frame“-Widgets eingebettet, die wiederum zusammen mit den „Label“-Widgets in ein speziell konstruiertes „Tile-Entry“-Widget statt in einen „Frame“ gepackt sind. Dieses etwas komplizierte Layout ist erforderlich, da es in einigen Themen nicht möglich ist, flache, randlose „Tile-Entry“-Widgets zu zeichnen.
+Wie oben erwähnt, besteht ein Mentry-Widget aus Entry- und Label-Widgets, die in einen Frame eingebettet sind.  Während im Mentry-Paket alle diese Komponenten Tk-Widgets sind, verwendet das Mentry_tile-Paket sowohl Tk-Frame- und Tile-Entry- als auch Tk-Label-Widgets. Aufgrund mehrerer Inkompatibilitäten zwischen Tk und Tile ist es derzeit nicht möglich, alle Tk-Widgets, aus denen ein Mentry besteht, durch ihre Tile-Entsprechungen zu ersetzen.  Tatsächlich sind die „Entry“-Komponenten eines Tile-basierten Mentry in Tk-„Frame“-Widgets eingebettet, die wiederum zusammen mit den „Label“-Widgets in ein speziell konstruiertes „Tile-Entry“-Widget statt in einen „Frame“ gepackt sind. Dieses etwas komplizierte Layout ist erforderlich, da es in einigen Themes nicht möglich ist, flache, randlose „Tile-Entry“-Widgets zu zeichnen.
 
-Daraus folgt, dass **das Mentry_tile-Paket nur dann wie erwartet funktioniert, wenn die Tk-Befehle „frame“ und „label“ nicht durch den Befehl Namespace import -force ttk::\* im globalen Geltungsbereich überschrieben wurden**.  Während in früheren Tile-Versionen empfohlen wurde, diesen Befehl im globalen Geltungsbereich zu verwenden – für die wirklich Abenteuerlustigen –, gilt dies in neueren Tile-Versionen als wirklich schlechte Idee, die zu zahlreichen Fehlfunktionen führt.  Stattdessen **sollten Sie explizit ttk::frame, ttk::label usw. aufrufen, wann immer Sie ein Tile-Widget verwenden möchten**.
+Daraus folgt, dass **das Mentry_tile-Paket nur dann wie erwartet funktioniert, wenn die Tk-Befehle „frame“ und „label“ nicht durch den Befehl namespace import -force ttk::\* im globalen Geltungsbereich überschrieben wurden**.  Während in früheren Tile-Versionen empfohlen wurde, diesen Befehl im globalen Geltungsbereich zu verwenden – für die wirklich Abenteuerlustigen –, gilt dies in neueren Tile-Versionen als wirklich schlechte Idee, die zu zahlreichen Fehlfunktionen führt.  Stattdessen **sollten Sie explizit ttk::frame, ttk::label usw. aufrufen, wann immer Sie ein Tile-Widget verwenden möchten**.
 
-Eine weitere Einschränkung, die zu berücksichtigen ist, ergibt sich daraus, dass in früheren Tile-Versionen der Befehl  `(ttk::)style theme use`  nur zum Festlegen des aktuellen Themas verwendet werden konnte, nicht jedoch zum Abrufen desselben.  Aus diesem Grund greift das Mentry_tile-Paket, wenn es das aktuelle Thema nicht mithilfe von  `ttk::style theme use`  abrufen kann, auf die Variable `ttk::currentTheme` oder `tile::currentTheme` (je nach Tile-Version) zurück, die durch den Befehl `ttk::setTheme` oder `tile::setTheme` gesetzt wird.  Daraus folgt, dass **, wenn die verwendete Tile-Version den Befehl ttk::style ohne Argument nicht unterstützt, die auf Tile aufbauenden Mentry-Widgets nur dann das erwartete Erscheinungsbild aufweisen, wenn das plattformspezifische Standardthema entweder unverändert bleibt oder durch Aufruf der Prozedur der Bibliothek ttk::setTheme oder tile::setTheme – je nach Tile-Version – durch ein anderes Thema ersetzt wird**.  (Siehe auch den Befehl `mentry::setTheme`.)
+Eine weitere Einschränkung, die zu berücksichtigen ist, ergibt sich daraus, dass in früheren Tile-Versionen der Befehl  `(ttk::)style theme use`  nur zum Festlegen des aktuellen Themes verwendet werden konnte, nicht jedoch zum Abrufen desselben.  Aus diesem Grund greift das Mentry_tile-Paket, wenn es das aktuelle Theme nicht mithilfe von  `ttk::style theme use`  abrufen kann, auf die Variable `ttk::currentTheme` oder `tile::currentTheme` (je nach Tile-Version) zurück, die durch den Befehl `ttk::setTheme` oder `tile::setTheme` gesetzt wird.  Daraus folgt, dass **, wenn die verwendete Tile-Version den Befehl ttk::style theme use ohne Argument nicht unterstützt, die auf Tile aufbauenden Mentry-Widgets nur dann das erwartete Erscheinungsbild aufweisen, wenn das plattformspezifische Standard-Theme entweder unverändert bleibt oder durch Aufruf der Prozedur der Bibliothek ttk::setTheme oder tile::setTheme – je nach Tile-Version – durch ein anderes Theme ersetzt wird**.  (Siehe auch den Befehl `mentry::setTheme`.)
 
 Nach diesen Hinweisen zur Verwendung von „tile“ werden im weiteren Verlauf dieses Abschnitts die Unterschiede zwischen den Paketen „Mentry“ und „Mentry_tile“ beschrieben.
 
@@ -174,9 +174,9 @@ Der zweite Befehl oben spiegelt die Tatsache wider, dass „Tile“ ab Tk 8.5a6 
 
 Abgesehen davon und vom Suffix `_tile` im Befehl `package require` besteht der einzige Unterschied (aus Sicht des Programmierers) zwischen den Paketen „Mentry“ und „Mentry_tile“ in den unterstützten Konfigurationsoptionen:  Die folgenden Tk-(Entry-)Widget-Optionen, die im Mentry-Paket vorhanden sind, werden von Mentry_tile nicht unterstützt, da sie für Tile-(Entry-)Widgets nicht verfügbar sind: `-borderwidth`, `-disabledbackground`, `-disabledforeground`, `-highlightbackground`, `-highlightcolor`, `-highlightthickness`, `-insertbackground`, `-insertborderwidth`, `-insertofftime`, `-insertontime`, `-insertwidth`, `-readonlybackground`, `-relief`, `-selectbackground`, `-selectborderwidth` und `-selectforeground`.
 
-Beachten Sie, dass die Option `-background` nicht wie erwartet funktioniert, wenn das aktuelle Thema `Arc`, `plastik`, `tileqt`, `vista` oder `xpnative` ist, da diese Themen jeden Versuch, die Farbe des Hintergrunds eines Tile-entry-Widgets zu ändern, stillschweigend ignorieren.
+Beachten Sie, dass die Option `-background` nicht wie erwartet funktioniert, wenn das aktuelle Theme `Arc`, `plastik`, `tileqt`, `vista` oder `xpnative` ist, da diese Themes jeden Versuch, die Farbe des Hintergrunds eines Tile-entry-Widgets zu ändern, stillschweigend ignorieren.
 
-Beachten Sie abschließend, dass wenn das Thema `tileqt` verwendet wird, die Versionsnummer des Pakets `tile::theme::tileqt` mindestens 0.4 betragen muss, und dass `tileqt` selbst nicht mit Tile-Versionen vor 0.7 kompatibel ist.
+Beachten Sie abschließend, dass wenn das Theme `tileqt` verwendet wird, die Versionsnummer des Pakets `tile::theme::tileqt` mindestens 0.4 betragen muss, und dass `tileqt` selbst nicht mit Tile-Versionen vor 0.7 kompatibel ist.
 
 [Inhalt](#inhalt)     [Startseite](index.md)
 
@@ -222,13 +222,13 @@ proc phoneNumberMentry {win args} {
 }
 ```
 
-Das erste Argument `win` ist der Name des Widgets, und das Schlüsselwort `args` steht für eine Liste von Konfigurationsoptionen und deren Werten, genau wie bei den Standard-Tk-Widgets.  Der Wert  `{3 - 3 - 4}`  der Option `-body` legt fest, dass der mentry aus zwei Einträgen mit der Breite 3 und einem mit der Breite 4 bestehen soll, getrennt durch Beschriftungen, die das Zeichen `"-"` anzeigen.
+Das erste Argument `win` ist der Name des Widgets, und das Schlüsselwort `args` steht für eine Liste von Konfigurationsoptionen und deren Werten, genau wie bei den Standard-Tk-Widgets.  Der Wert  `{3 - 3 - 4}`  der Option `-body` legt fest, dass das Mentry aus zwei Einträgen mit der Breite 3 und einem mit der Breite 4 bestehen soll, getrennt durch Beschriftungen, die das Zeichen `"-"` anzeigen.
 
 Jedes Mentry-Widget kann eine beliebige Anzahl privater **Attribute** besitzen, die mithilfe des Unterbefehls `attrib` der dem Widget entsprechenden Tcl-Prozedur gesetzt und abgerufen werden können.  Wir verwenden diesen Unterbefehl, um das Attribut `type` des neu erstellten Widgets zu definieren und es auf den Wert `"PhoneNumber"` zu setzen.  Dies ist zwar nicht unbedingt erforderlich, ermöglicht es uns jedoch, ein „mentry“-Widget für Telefonnummern von anderen Mehrfeld-Eingabe-Widgets zu unterscheiden.
 
-Der Befehl `mentry::mentry` registriert die Rückruffunktion `wcb::checkEntryLen` für jede Eingabekomponente des mentry-Widgets, um die Anzahl der Zeichen, die dort eingegeben werden können, auf die in der Option `-body` festgelegte Anfangsbreite zu beschränken. Neben dieser Einschränkung sollen unsere Eingabefelder nur Dezimalziffern akzeptieren; daher verwenden wir den Befehl `wcb::cbappend`, um die Prozedur `wcb::checkStrForNum` zur Rückruffunktion jeder Eingabekomponente *hinzuzufügen*.  Durch den Aufruf von `wcb::callback` anstelle von `wcb::cbappend` (oder `wcb::cbprepend`) würden wir die Liste der Rückruffunktionen durch diejenige *ersetzen*, die aus dem einzigen Element `wcb::checkStrForNum` besteht.
+Der Befehl `mentry::mentry` registriert die Rückruffunktion `wcb::checkEntryLen` für jede Eingabekomponente des mentry-Widgets, um die Anzahl der Zeichen, die dort eingegeben werden können, auf die in der Option `-body` festgelegte Anfangsbreite zu beschränken. Neben dieser Einschränkung sollen unsere Eingabefelder nur Dezimalziffern akzeptieren; daher verwenden wir den Befehl `wcb::cbappend`, um die Prozedur `wcb::checkStrForNum` zur Liste der Rückruffunktionen jeder Eingabekomponente *hinzuzufügen*.  Durch den Aufruf von `wcb::callback` anstelle von `wcb::cbappend` (oder `wcb::cbprepend`) würden wir die Liste der Rückruffunktionen durch diejenige *ersetzen*, die aus dem einzigen Element `wcb::checkStrForNum` besteht.
 
-Nun wissen wir, dass jede Eingabekomponente des „mentry“-Widgets nur eine begrenzte Anzahl von Dezimalstellen akzeptiert.  Aber sind die Breiten der Eingabefelder groß genug, um die maximale Anzahl von jeweils 3 bzw. 4 Dezimalstellen aufzunehmen?  Bei einer Schriftart mit fester Zeichenbreite lautet die Antwort eindeutig „Ja“, und dasselbe gilt für die meisten proportionalen Schriftarten.  Es gibt jedoch Schriftarten, bei denen nicht alle Dezimalziffern die gleiche Breite haben.  Aus diesem Grund rufen wir für jede Eingabekomponente den Unterbefehl `adjustentry` auf und übergeben ihm als letztes Argument eine Zeichenkette, die aus den zulässigen Zeichen besteht – in diesem Beispiel sind das die Dezimalziffern.  Dieser Unterbefehl vergrößert bei Bedarf die Breite des Eingabe-Widgets, sodass es gerade groß genug für Texte der komponenten-spezifischen maximalen Länge ist, die aus den durch diese Zeichenkette festgelegten Zeichen bestehen.
+Nun wissen wir, dass jede Eingabekomponente des „mentry“-Widgets nur eine begrenzte Anzahl von Dezimalziffern akzeptiert.  Aber sind die Breiten der Eingabefelder groß genug, um die maximale Anzahl von jeweils 3 bzw. 4 Dezimalziffern aufzunehmen?  Bei einer Schriftart mit fester Zeichenbreite lautet die Antwort eindeutig „Ja“, und dasselbe gilt für die meisten proportionalen Schriftarten.  Es gibt jedoch Schriftarten, bei denen nicht alle Dezimalziffern die gleiche Breite haben.  Aus diesem Grund rufen wir für jede Eingabekomponente den Unterbefehl `adjustentry` auf und übergeben ihm als letztes Argument eine Zeichenkette, die aus den zulässigen Zeichen besteht – in diesem Beispiel sind das die Dezimalziffern.  Dieser Unterbefehl vergrößert bei Bedarf die Breite des Eingabe-Widgets, sodass es gerade groß genug für Texte der komponenten-spezifischen maximalen Länge ist, die aus den durch diese Zeichenkette festgelegten Zeichen bestehen.
 
 Unsere zweite Prozedur gibt eine Telefonnummer an ein Mentry-Widget aus, dessen Attributwert `type` den Wert `"PhoneNumber"` hat:
 
@@ -256,9 +256,9 @@ proc putPhoneNumber {num win} {
 }
 ```
 
-Wir verwenden den Unterbefehl `put` der Tcl-Prozedur, die dem „mentry“-Widget entspricht, um die drei Teilzeichenfolgen der angegebenen Telefonnummer in den entsprechenden Einträgen anzuzeigen, beginnend mit dem Eintrag, dessen Index als erstes Argument nach dem Wort `put` festgelegt ist.
+Wir verwenden den Unterbefehl `put` der Tcl-Prozedur, die dem „mentry“-Widget entspricht, um die drei Teilzeichenketten der angegebenen Telefonnummer in den entsprechenden Einträgen anzuzeigen, beginnend mit dem Eintrag, dessen Index als erstes Argument nach dem Wort `put` festgelegt ist.
 
-Als Nächstes benötigen wir eine Prozedur, die die Telefonnummer gibt, die in einem „mentry“-Widget enthalten ist, dessen Attributwert `type` den Wert `"PhoneNumber"` hat:
+Als Nächstes benötigen wir eine Prozedur, die die Telefonnummer zurückgibt, die in einem „mentry“-Widget enthalten ist, dessen Attributwert `type` den Wert `"PhoneNumber"` hat:
 
 ```
 #------------------------------------------------------------------------------
@@ -296,9 +296,9 @@ proc getPhoneNumber win {
 }
 ```
 
-Die Prozedur durchläuft die INDIZES der Eintragskomponenten des angegebenen „mentry“-Widgets und ruft die Unterbefehle `isempty` und `isfull` des Tcl-Befehls auf, der dem angegebenen „mentry“-Widget entspricht.  Wenn festgestellt wird, dass einer der Einträge leer oder unvollständig ist, ermittelt die Prozedur dessen Pfadnamen durch Aufruf des Unterbefehls `entrypath`, setzt den Fokus auf diesen Eintrag, löst einen Fehler aus und gibt den Wert `"EMPTY"` bzw. `"INCOMPL"` zurück.  Die Anwendung, die diese Prozedur aufruft, sollte dann eine dem Wert der Rückgabe entsprechende Fehlermeldung anzeigen.
+Die Prozedur durchläuft die Indizes der Eingabekomponenten des angegebenen „mentry“-Widgets und ruft die Unterbefehle `isempty` und `isfull` des Tcl-Befehls auf, der dem angegebenen „mentry“-Widget entspricht.  Wenn festgestellt wird, dass einer der Einträge leer oder unvollständig ist, ermittelt die Prozedur dessen Pfadnamen durch Aufruf des Unterbefehls `entrypath`, setzt den Fokus auf diesen Eintrag, löst einen Fehler aus und gibt den Wert `"EMPTY"` bzw. `"INCOMPL"` zurück.  Die Anwendung, die diese Prozedur aufruft, sollte dann eine dem Wert der Rückgabe entsprechende Fehlermeldung anzeigen.
 
-Beachten Sie, dass die Nummer `3` in der obigen Schleife `for` nichts anderes ist als `[$win entrycount]`.  Außerdem würde es ausreichen, zu prüfen, ob alle Komponenten eines Eintrags vollständig sind, da ein leerer Eintrag gleichzeitig unvollständig ist. Die vorläufige Prüfung, ob ein Eintrag leer ist, dient lediglich der Benutzerfreundlichkeit.
+Beachten Sie, dass die Nummer `3` in der obigen Schleife `for` nichts anderes ist als `[$win entrycount]`.  Außerdem würde es ausreichen, zu prüfen, ob alle Eingabekomponenten voll sind, da ein leerer Eintrag gleichzeitig unvollständig ist. Die vorläufige Prüfung, ob ein Eintrag leer ist, dient lediglich der Benutzerfreundlichkeit.
 
 Um aus den in den Eingabekomponenten enthaltenen Werten die Telefonnummer zu bilden, verwenden wir eine temporäre Array-Variable und rufen den Unterbefehl `getarray` auf, der den Inhalt der Einträge in die entsprechenden Array-Elemente kopiert.
 
@@ -325,7 +325,7 @@ proc checkIfPhoneNumberMentry win {
 
 Diese Prozedur ruft den Wert des Attributs `type` ihres Arguments ab, um zu prüfen, ob es sich bei diesem um ein Mentry-Widget für Telefonnummern handelt (beachten Sie, dass dieses Attribut in der Prozedur `phoneNumberMentry` auf den Wert `"PhoneNumber"` gesetzt wurde).
 
-Denken Sie abschließend daran, dass wir in der Prozedur `phoneNumberMentry` das Bindungs-Tag `MentryPhoneNumber` in die Liste der Bindungs-Tags der Eintragskomponenten des Mentrys eingefügt haben, und zwar direkt hinter deren Pfadnamen.  Das im folgenden Code gezeigte Skript für die Bindung dieses Tags verarbeitet die Ereignisse `<<Paste>>` (`<Control-v>` oder `<Command-v>`) bei diesen Widgets, indem er den aktuellen Inhalt der Zwischenablage in den Mentry einfügt, vorausgesetzt, es handelt sich um eine gültige 10-stellige Telefonnummer:
+Denken Sie abschließend daran, dass wir in der Prozedur `phoneNumberMentry` das Bindungs-Tag `MentryPhoneNumber` in die Liste der Bindungs-Tags der Eingabekomponenten des Mentrys eingefügt haben, und zwar direkt hinter deren Pfadnamen.  Das im folgenden Code gezeigte Skript für die Bindung dieses Tags verarbeitet die Ereignisse `<<Paste>>` (`<Control-v>` oder `<Command-v>`) bei diesen Widgets, indem es den aktuellen Inhalt der Zwischenablage in das Mentry einfügt, vorausgesetzt, es handelt sich um eine gültige 10-stellige Telefonnummer:
 
 ```
 bind MentryPhoneNumber <<Paste>> { pastePhoneNumber %W }
@@ -411,7 +411,7 @@ focus [.f.me entrypath 0]
 
 ### Ein Mentry-Widget für Ethernet-Adressen
 
-Ethernet-Adressen werden in der Regel in der Form `"XX:XX:XX:XX:XX:XX"` geschrieben, wobei jedes `"X"` eine hexadezimale Ziffer ist.  Die Datei `ethernetaddr.tcl` im Verzeichnis `demos` enthält die erforderlichen Schritte zum Erstellen und Verwenden eines Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von Ethernet-Adressen.  Sie implementiert die Prozeduren `ethernetAddrMentry`, `putEthernetAddr` und `getEthernetAddr`; wobei die beiden letzten die Prozedur `checkIfEthernetAddrMentry` aufrufen, während die erste wie folgt implementiert ist:
+Ethernet-Adressen werden in der Regel in der Form `"XX:XX:XX:XX:XX:XX"` geschrieben, wobei jedes `"X"` eine hexadezimale Ziffer ist.  Die Datei `ethernetaddr.tcl` im Verzeichnis `demos` enthält die erforderlichen Schritte zum Erstellen und Verwenden eines Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von Ethernet-Adressen.  Sie implementiert die Prozeduren `ethernetAddrMentry`, `putEthernetAddr` und `getEthernetAddr`; die beiden letzten rufen die Hilfsprozedur `checkIfEthernetAddrMentry` auf, während die erste wie folgt implementiert ist:
 
 ```
 #------------------------------------------------------------------------------
@@ -493,7 +493,7 @@ proc putEthernetAddr {addr win} {
 }
 ```
 
-Die Prozedur `getEthernetAddr` löst einen Fehler aus, wenn eine der Komponenten des angegebenen Mentry-Widgets leer ist. Sie akzeptiert zwar auch Eingabezeichenfolgen der Länge eins, im Rückgabewert haben jedoch alle Komponenten genau zwei Ziffern:
+Die Prozedur `getEthernetAddr` löst einen Fehler aus, wenn eine der Komponenten des angegebenen Mentry-Widgets leer ist. Sie akzeptiert zwar auch Eingabezeichenketten der Länge eins, im Rückgabewert haben jedoch alle Komponenten genau zwei Ziffern:
 
 ```
 #------------------------------------------------------------------------------
@@ -534,7 +534,7 @@ Den restlichen Code werden wir hier nicht zeigen, da er dem im vorangegangenen A
 
 ### Ein Mentry-Widget für Franking-IDs
 
-Die Deutsche Post verwendet 20-stellige Frankier-IDs zur Nachverfolgung und Sortierung von Postsendungen.  Frankier-IDs werden in der Regel als Zeichenfolgen der Form `"XX XXXX XXXX XX XXXX XXXX"` geschrieben, wobei jedes `"X"` eine hexadezimale Ziffer in Großbuchstaben ist und die letzte Ziffer eine CRC-Prüfsumme vom Typ CCITT (CRC-4) darstellt.  Die Datei `frankingid.tcl` im Verzeichnis `demos` enthält die erforderlichen Schritte zum Erstellen und Verwenden eines Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von Frankier-IDs.  Sie implementiert die Hauptprozeduren `frankingIdMentry`, `putFrankingId` und `getFrankingId` sowie die Hilfsprozeduren `checkIfFrankingIdMentry`, `crc4` und `pasteFrankingId`.
+Die Deutsche Post verwendet 20-stellige Frankier-IDs zur Nachverfolgung und Sortierung von Postsendungen.  Frankier-IDs werden in der Regel als Zeichenketten der Form `"XX XXXX XXXX XX XXXX XXXX"` geschrieben, wobei jedes `"X"` eine hexadezimale Ziffer in Großbuchstaben ist und die letzte Ziffer eine CRC-Prüfsumme vom Typ CCITT (CRC-4) darstellt.  Die Datei `frankingid.tcl` im Verzeichnis `demos` enthält die erforderlichen Schritte zum Erstellen und Verwenden eines Mehrfeld-Eingabe-Widgets zur Anzeige und Bearbeitung von Frankier-IDs.  Sie implementiert die Hauptprozeduren `frankingIdMentry`, `putFrankingId` und `getFrankingId` sowie die Hilfsprozeduren `checkIfFrankingIdMentry`, `crc4` und `pasteFrankingId`.
 
 Die Prozedur `frankingIdMentry`, die ein Mentry-Widget für Frankier-IDs anlegt, ist wie folgt implementiert:
 
@@ -670,17 +670,17 @@ proc getFrankingId {win {formatted 1}} {
 
 Wie im obigen Code zu sehen ist, berechnet die Prozedur die Prüfsumme und hängt sie an das Ergebnis an, wenn der letzte Eintrag nur 3 Zeichen enthält.  Andernfalls prüft sie, ob das letzte Zeichen mit der aus den ersten 24 Zeichen (von denen nur 19 aussagekräftig sind) gebildeten Prüfsumme übereinstimmt, und löst einen Fehler aus, wenn dies nicht der Fall ist.  (Beachten Sie, dass der Prüfsummenalgorithmus Leerzeichen ignoriert.)
 
-Auch hier werden wir den restlichen Code nicht zeigen. Das Eingabe-Widget für Franking-IDs sieht wie im folgenden Screenshot aus:
+Auch hier werden wir den restlichen Code nicht zeigen. Das Mentry-Widget für Frankier-IDs sieht wie im folgenden Screenshot aus:
 
-![Frankierung ID](frankingid.png)
+![Frankier-ID](frankingid.png)
 
 ### Verwendung von Mentry-Widgets für Datum und Uhrzeit
 
-Mit Widgets für mehrere Einträge lassen sich Datum und Uhrzeit in einer Vielzahl von Formaten anzeigen und bearbeiten. Das Mentry-Paket enthält hierfür gebrauchsfertige Befehle:
+Mit Mehrfeld-Eingabe-Widgets lassen sich Datum und Uhrzeit in einer Vielzahl von Formaten anzeigen und bearbeiten. Das Mentry-Paket enthält hierfür gebrauchsfertige Befehle:
 
-- Die Prozedur `mentry::dateMentry` erstellt ein neues Mentry-Widget zur Anzeige und Bearbeitung eines Datums gemäß dem Format, das dem Befehl als dreistelliger String übergeben wird, bestehend aus den Felddeskriptorzeichen `"d"`, `"m"` sowie `"y"` oder `"Y"`, die aus dem Befehl `clock format` bekannt sind.  Ein weiteres Argument, das von der Prozedur erwartet wird, ist die Zeichenkette (in der Regel ein einzelnes Zeichen), die in den Trennzeichen zwischen den drei Komponenten des Datums angezeigt werden soll.
-- Ebenso erstellt die Prozedur `mentry::timeMentry` ein neues Mentry-Widget zur Anzeige und Bearbeitung einer Uhrzeit gemäß dem Format, das dem Befehl als zwei- oder dreistelliger String übergeben wird, bestehend aus den folgenden Feldbeschreibungszeichen des Befehls `clock format`: `"H"` oder `"I"`, gefolgt von `"M"` und optional dem Buchstaben `"S"`.  Ein `"H"` als erstes Zeichen legt das Zeitformat `"%H:%M"` oder `"%H:%M:%S"` fest (d. h. mit einer Stunde zwischen `0` und `23`), während der Buchstabe `"I"` für `"%I:%M %p"` oder `"%I:%M:%S %p"` steht (d. h. mit AM/PM-Angabe).  Die Prozedur erwartet die Trennzeichenfolge (in der Regel das Zeichen `":"`) als weiteres Argument der Befehlszeile.
-- Schließlich erstellt die Prozedur `mentry::dateTimeentry` ein neues Mentry-Widget zur Anzeige und Bearbeitung von Datum und Uhrzeit gemäß dem Format, das als 5- oder 6-stellige Zeichenkette an den Befehl übergeben wird, wobei die ersten drei Zeichen aus den Buchstaben `"d"` bestehen, `"m"`, und `"y"` oder `"Y"` bestehen, gefolgt von zwei oder drei weiteren Feldbeschreibungszeichen des Befehls `clock format`, die wie folgt lauten müssen: `"H"` oder `"I"`, dann `"M"` und optional der Buchstabe `"S"` lauten müssen.  Die Prozedur erwartet zwei weitere Argumente, die die Trennzeichen festlegen, die jeweils im Datums- und im Zeitteil des „mentry“-Widgets verwendet werden sollen.
+- Die Prozedur `mentry::dateMentry` erstellt ein neues Mentry-Widget zur Anzeige und Bearbeitung eines Datums gemäß dem Format, das dem Befehl als dreistellige Zeichenkette übergeben wird, bestehend aus den Felddeskriptorzeichen `"d"`, `"m"` sowie `"y"` oder `"Y"`, die aus dem Befehl `clock format` bekannt sind.  Ein weiteres Argument, das von der Prozedur erwartet wird, ist die Zeichenkette (in der Regel ein einzelnes Zeichen), die in den Beschriftungen zwischen den drei Komponenten des Datums angezeigt werden soll.
+- Ebenso erstellt die Prozedur `mentry::timeMentry` ein neues Mentry-Widget zur Anzeige und Bearbeitung einer Uhrzeit gemäß dem Format, das dem Befehl als zwei- oder dreistellige Zeichenkette übergeben wird, bestehend aus den folgenden Feldbeschreibungszeichen des Befehls `clock format`: `"H"` oder `"I"`, gefolgt von `"M"` und optional dem Buchstaben `"S"`.  Ein `"H"` als erstes Zeichen legt das Zeitformat `"%H:%M"` oder `"%H:%M:%S"` fest (d. h. mit einer Stunde zwischen `0` und `23`), während der Buchstabe `"I"` für `"%I:%M %p"` oder `"%I:%M:%S %p"` steht (d. h. mit AM/PM-Angabe).  Die Prozedur erwartet die Trennzeichenkette (in der Regel das Zeichen `":"`) als weiteres Argument der Befehlszeile.
+- Schließlich erstellt die Prozedur `mentry::dateTimeentry` ein neues Mentry-Widget zur Anzeige und Bearbeitung von Datum und Uhrzeit gemäß dem Format, das als 5- oder 6-stellige Zeichenkette an den Befehl übergeben wird, wobei die ersten drei Zeichen aus den Buchstaben `"d"`, `"m"` und `"y"` oder `"Y"` bestehen, gefolgt von zwei oder drei weiteren Feldbeschreibungszeichen des Befehls `clock format`, die wie folgt lauten müssen: `"H"` oder `"I"`, dann `"M"` und optional der Buchstabe `"S"`.  Die Prozedur erwartet zwei weitere Argumente, die die Trennzeichen festlegen, die jeweils im Datums- und im Zeitteil des „mentry“-Widgets verwendet werden sollen.
 
 Bevor wir die weiteren Befehle des Mentry-Pakets beschreiben, die sich auf Datum und Uhrzeit beziehen, wollen wir uns zunächst ansehen, wie die ersten beiden der oben genannten Befehle in der Datei `datetime1.tcl` im Verzeichnis `demos` aufgerufen werden:
 
@@ -739,7 +739,7 @@ mentry::timeMentry .f.time $timeFmts($timeIdx) $timeSeps($timeIdx) \
 pack .f.lDate .f.date .f.gap .f.lTime .f.time -side left
 ```
 
-Bevor das Hauptfenster angezeigt wird, lässt das Skript den Benutzer eines von drei Datums- und eines von zwei Zeitformaten auswählen.  Die entsprechenden Befehlszeilenargumente, die an `mentry::dateMentry` und `mentry::timeMentry` übergeben werden, stammen aus den Arrays `dateFmts`, `dateSeps`, `timeFmts` und `timeSeps` entnommen.
+Bevor das Hauptfenster angezeigt wird, lässt das Skript den Benutzer eines von drei Datums- und eines von zwei Zeitformaten auswählen.  Die entsprechenden Befehlszeilenargumente, die an `mentry::dateMentry` und `mentry::timeMentry` übergeben werden, werden den Arrays `dateFmts`, `dateSeps`, `timeFmts` und `timeSeps` entnommen.
 
 Die folgende Abbildung entspricht den Auswahlmöglichkeiten  `dateIdx = 2`  und  `timeIdx = 1`:
 
@@ -763,8 +763,8 @@ pack .f.l .f.me
 
 Das Mentry-Paket stellt zwei weitere Befehle für Datums-, Zeit- sowie Datums- und Zeit-Mentrys bereit:
 
-- Die Prozedur `mentry::putClockVal` gibt das Datum, die Uhrzeit oder Datum und Uhrzeit aus, die einem als erstes Argument festgelegten ganzzahligen Wert entsprechen, und übergibt diese Werte an ein Widget für Datum, Uhrzeit oder Datum und Uhrzeit, das als zweiter Parameter übergeben wird.  Wie der Befehl `clock format` akzeptiert die Prozedur das optionale Argumentpaar `-gmt boolean`.
-- Die Prozedur `mentry::getClockVal` gibt den Wert der Uhrzeit zurück, der dem Datum, der Uhrzeit oder dem Datum und der Uhrzeit entspricht, die in dem als erstes Argument angegebenen Datums-, Uhrzeit- oder Datums- und Uhrzeiteintrag enthalten sind.  Wie der Befehl `clock scan` akzeptiert die Prozedur die optionalen Argumentpaare `-base clockValue` und `-gmt boolean`.  Im Fehlerfall setzt die Prozedur den Fokus auf die erste fehlerhafte Eintragskomponente, löst einen Fehler aus und gibt einen der Werte zurück, die im folgenden Codefragment aus den Skripten `datetime1.tcl` und `datetime2.tcl` enthalten sind:
+- Die Prozedur `mentry::putClockVal` gibt das Datum, die Uhrzeit oder Datum und Uhrzeit aus, die einem als erstes Argument festgelegten ganzzahligen Uhrzeitwert entsprechen, und übergibt diese Werte an ein Widget für Datum, Uhrzeit oder Datum und Uhrzeit, das als zweiter Parameter übergeben wird.  Wie der Befehl `clock format` akzeptiert die Prozedur das optionale Argumentpaar `-gmt boolean`.
+- Die Prozedur `mentry::getClockVal` gibt den Wert der Uhrzeit zurück, der dem Datum, der Uhrzeit oder dem Datum und der Uhrzeit entspricht, die in dem als erstes Argument angegebenen Mentry für Datum, Uhrzeit oder Datum und Uhrzeit enthalten sind.  Wie der Befehl `clock scan` akzeptiert die Prozedur die optionalen Argumentpaare `-base clockValue` und `-gmt boolean`.  Im Fehlerfall setzt die Prozedur den Fokus auf die erste fehlerhafte Eingabekomponente, löst einen Fehler aus und gibt einen der Werte zurück, die im folgenden Codefragment aus den Skripten `datetime1.tcl` und `datetime2.tcl` enthalten sind:
 
   ```
   #
@@ -779,7 +779,7 @@ Das Mentry-Paket stellt zwei weitere Befehle für Datums-, Zeit- sowie Datums- u
   }
   ```
 
-  Die Zeichenfolge `"EMPTY"` wird gegeben, wenn eine der Eintragskomponenten (mit Ausnahme derjenigen, die die Sekunden enthält) leer war.  Der Wert `"BAD"` bedeutet, dass ein Tag-, Monats- oder Stundenwert von `0` vorliegt (die Stunde darf nicht `0` sein, wenn das AM/PM-Kennzeichen vorhanden ist).  Die Zeichenkette `"BAD_DATE"` wird zurückgegeben, wenn das Tripel \<JAHR, Monat, Tag> ungültig ist (beachten Sie, dass die Prozedur Schaltjahre berücksichtigt).  Selbst wenn dieses Tripel gültig ist, kann die Konvertierung (die mit Hilfe des Befehls `clock scan` erfolgt) aufgrund eines nicht unterstützten Werts für das Jahr (z. B. zwischen `38` und `70`) fehlschlagen; in diesem Fall gibt die Prozedur die Zeichenkette `"BAD_YEAR"` zurück.
+  Die Zeichenkette `"EMPTY"` wird zurückgegeben, wenn eine der Eingabekomponenten (mit Ausnahme derjenigen, die die Sekunden enthält) leer war.  Der Wert `"BAD"` bedeutet, dass ein Tag-, Monats- oder Stundenwert von `0` vorliegt (die Stunde darf nicht `0` sein, wenn das AM/PM-Kennzeichen vorhanden ist).  Die Zeichenkette `"BAD_DATE"` wird zurückgegeben, wenn das Tripel \<Jahr, Monat, Tag> ungültig ist (beachten Sie, dass die Prozedur Schaltjahre berücksichtigt).  Selbst wenn dieses Tripel gültig ist, kann die Konvertierung (die mit Hilfe des Befehls `clock scan` erfolgt) aufgrund eines nicht unterstützten Werts für das Jahr (z. B. zwischen `38` und `70`) fehlschlagen; in diesem Fall gibt die Prozedur die Zeichenkette `"BAD_YEAR"` zurück.
 
 
 Das Demo-Skript `datetime1.tcl` führt die letzten beiden Befehle wie folgt aus:
@@ -848,7 +848,7 @@ focus [.f.me entrypath 0]
 
 ### Auf Tile aufbauende Demo-Skripte
 
-Die Mentry-Distribution enthält auch auf Tile aufbauende Entsprechungen der oben besprochenen Demo-Skripte. Wie im Abschnitt [Mehr zu Mentry_tile](#mehr-zu-mentry-tile) dieses Tutorials beschrieben, ist es recht einfach, eine Anwendung, die das Mentry-Paket verwendet, auf eine auf Mentry_tile aufbauende Anwendung umzustellen. Sehen Sie sich zum Beispiel an, wie Sie das Demo-Skript `phonenumber.tcl` in ein auf Tile aufbauendes Skript namens `phonenumber_tile.tcl` umwandeln.  Die Änderungen sind unten in der Farbe [red]{.red} dargestellt:
+Die Mentry-Distribution enthält auch auf Tile aufbauende Entsprechungen der oben besprochenen Demo-Skripte. Wie im Abschnitt [Mehr zu Mentry_tile](#mehr-zu-mentry-tile) dieses Tutorials beschrieben, ist es recht einfach, eine Anwendung, die das Mentry-Paket verwendet, auf eine auf Mentry_tile aufbauende Anwendung umzustellen. Sehen Sie sich zum Beispiel an, wie Sie das Demo-Skript `phonenumber.tcl` in ein auf Tile aufbauendes Skript namens `phonenumber_tile.tcl` umwandeln.  Die Änderungen sind unten in [roter]{.red} Farbe dargestellt:
 
 ```
 package require mentry_tile
@@ -923,10 +923,10 @@ putPhoneNumber 1234567890 .base.f.me
 focus [.base.f.me entrypath 0]
 ```
 
-Das war's schon! Das daraufhin angezeigte Fenster hat ein ansprechendes, themenspezifisches Erscheinungsbild:
+Das war's schon! Das daraufhin angezeigte Fenster hat ein ansprechendes, themespezifisches Erscheinungsbild:
 
 ![Telefonnummer](phonenumber_tile.png)
 
-Die einzigen für Mentry spezifischen Änderungen im obigen Code bestehen in der Verwendung des Suffixes `_tile` in `mentry_tile` und einem zweiten Aufruf von `winfo parent` in der Prozedur `pastePhoneNumber` (aus technischen Gründen sind die Komponenten eines auf Tile aufbauenden Mentry-Widgets *Enkel* des Mentry).
+Die einzigen für Mentry spezifischen Änderungen im obigen Code bestehen in der Verwendung des Suffixes `_tile` in `mentry_tile` und einem zweiten Aufruf von `winfo parent` in der Prozedur `pastePhoneNumber` (aus technischen Gründen sind die Eingabekomponenten eines auf Tile aufbauenden Mentry-Widgets *Enkel* des Mentry).
 
 [Inhalt](#inhalt)     [Startseite](index.md)

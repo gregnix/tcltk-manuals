@@ -42,7 +42,7 @@ Der Befehl **history** kann eine der folgenden Formen annehmen:
 : Fügt das Argument *command* als neues Ereignis zur Verlaufsliste hinzu. Ist **exec** angegeben (oder abgekürzt), wird der Befehl auch ausgeführt und sein Ergebnis zurückgegeben. Ist **exec** nicht angegeben, wird als Ergebnis eine leere Zeichenkette zurückgegeben.
 
 **history change** *newValue* ?*event*?
-: Ersetzt den für ein Ereignis gespeicherten Wert durch *newValue*. *Event* gibt das zu ersetzende Ereignis an und standardmäßig das *aktuelle* Ereignis (nicht Ereignis **-1**). Der Befehl ist für Befehle gedacht, die neue Formen der Verlaufssubstitution implementieren und das aktuelle Ereignis (das die Substitution auslöst) durch den durch Substitution erzeugten Befehl ersetzen wollen. Der Rückgabewert ist eine leere Zeichenkette.
+: Ersetzt den für ein Ereignis gespeicherten Wert durch *newValue*. *Event* gibt das zu ersetzende Ereignis an und standardmäßig das *aktuelle* Ereignis (nicht Ereignis **-1**). Der Befehl ist für Befehle gedacht, die neue Formen der Verlaufsersetzung implementieren und das aktuelle Ereignis (das die Ersetzung auslöst) durch den durch Ersetzung erzeugten Befehl ersetzen wollen. Der Rückgabewert ist eine leere Zeichenkette.
 
 **history clear**
 : Löscht die Verlaufsliste. Das aktuelle Behalte-Limit bleibt erhalten. Die Ereignisnummern werden zurückgesetzt.

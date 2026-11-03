@@ -33,7 +33,7 @@ break - Bricht eine Schleife ab
 
 # Beschreibung
 
-Dieser Befehl wird typischerweise im Rumpf eines Schleifenbefehls wie [for], [foreach] oder [while] aufgerufen. Er liefert den Ergebniscode 3 ([TCL\_BREAK][catch]), wodurch eine Break-Ausnahme ausgelöst wird. Die Ausnahme bricht die aktuelle Skriptausführung bis zum innersten enthaltenden Schleifenbefehl ab, der seine Ausführung dann beendet und normal zurückkehrt. Break-Ausnahmen werden auch in einigen anderen Situationen behandelt, etwa beim Befehl [catch], in Tk-Event-Bindings und in den äußersten Skripten von Prozedurrümpfen.
+Dieser Befehl wird typischerweise im Rumpf eines Schleifenbefehls wie [for], [foreach] oder [while] aufgerufen. Er liefert den Ergebniscode 3 ([TCL\_BREAK][catch]), wodurch eine Break-Ausnahme ausgelöst wird. Die Ausnahme bricht die aktuelle Skriptausführung bis zum innersten enthaltenden Schleifenbefehl ab, der seine Ausführung dann beendet und normal zurückkehrt. Break-Ausnahmen werden auch in einigen anderen Situationen behandelt, etwa beim Befehl [catch], in Tk-Event-Bindungen und in den äußersten Skripten von Prozedurrümpfen.
 
 # Beispiele
 

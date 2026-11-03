@@ -23,7 +23,7 @@ Copyright:
 
 # Name
 
-ntext – Alternative Bindings für das Text-Widget
+ntext – Alternative Bindungen für das Text-Widget
 
 # Übersicht
 
@@ -44,11 +44,11 @@ Das **ntext**-Paket dient dazu, das Verhalten des Text-Widgets stärker an das a
 
 Das Paket stellt ein Bindungs-Tag namens *Ntext* bereit, das von Text-Widgets anstelle des standardmäßigen Bindungs-Tags *Text* verwendet werden kann.
 
-Die Funktionen und Variablen des Pakets **ntext** sind vollständig im Namespace **::ntext** enthalten; der übrige Code befindet sich im Binding-Tag *Ntext*.  **ntext** enthält keine Exporte in den globalen oder anderen Namespaces und keine neuen Widget-Befehle. Es verwendet modifizierte Kopien des **Tk**-Codes, wobei der ursprüngliche Code und das Binding-Tag *Text* unverändert bleiben.
+Die Funktionen und Variablen des Pakets **ntext** sind vollständig im Namespace **::ntext** enthalten; der übrige Code befindet sich im Bindungs-Tag *Ntext*.  **ntext** enthält keine Exporte in den globalen oder anderen Namespaces und keine neuen Widget-Befehle. Es verwendet modifizierte Kopien des **Tk**-Codes, wobei der ursprüngliche Code und das Bindungs-Tag *Text* unverändert bleiben.
 
 Die Unterschiede zwischen dem Bindungs-Tag *Ntext* und dem Standard-Bindungs-Tag *Text* lassen sich in drei Kategorien einteilen:
 
-- Einige *Text*-Bindings verhalten sich anders als in den meisten Textbearbeitungsprogrammen. *Ntext* gibt diesen Bindings ein vertrauteres Verhalten. Einzelheiten stehen in *ntextBindings*.
+- Einige *Text*-Bindungen verhalten sich anders als in den meisten Textbearbeitungsprogrammen. *Ntext* gibt diesen Bindungen ein vertrauteres Verhalten. Einzelheiten stehen in *ntextBindings*.
 
 - Wird eine logische Zeile mit führendem Leerraum im Wortumbruch auf mehrere Anzeigezeilen umbrochen, beginnen die umbrochenen Anzeigezeilen weiter links als die erste Anzeigezeile. Das Layout kann dadurch unordentlich und schwer lesbar werden. *Ntext* kann die umbrochenen Zeilen so einrücken, dass sie zum führenden Leerraum der ersten Anzeigezeile passen (diese Möglichkeit ist vorgegeben ausgeschaltet). Einzelheiten stehen in *ntextIndent*.
 
@@ -96,7 +96,7 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 - **0** – (Standardwert) wählt das *Ntext*-Verhalten aus, d. h., mehrere herkömmliche *Text*-Bindungen werden deaktiviert
 
-- **1** – wählt das klassische *Text*-Verhalten, das heißt, alle *Text*-Bindings sind aktiviert
+- **1** – wählt das klassische *Text*-Verhalten, das heißt, alle *Text*-Bindungen sind aktiviert
 
 - Weitere Informationen finden Sie unter *ntextBindings*
 
@@ -112,9 +112,9 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 **::ntext::classicParagraphs**
 
-- **0** – (Vorgabe) Unter macOS Aqua verhalten sich bestimmte Tastatur-Bindings wie in der Mac-Anwendung TextEdit. Die Bindings betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
+- **0** – (Vorgabe) Unter macOS Aqua verhalten sich bestimmte Tastatur-Bindungen wie in der Mac-Anwendung TextEdit. Die Bindungen betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
 
-- **1** – Unter macOS Aqua verhalten sich bestimmte Bindings wie klassisches *Text* und ignorieren die Konventionen von Aqua. Die Bindings betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
+- **1** – Unter macOS Aqua verhalten sich bestimmte Bindungen wie klassisches *Text* und ignorieren die Konventionen von Aqua. Die Bindungen betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
 
 - Weitere Informationen finden Sie unter *ntextBindings*
 

@@ -84,7 +84,7 @@ Die Regeln für native Namen hängen vom Wert des Tcl-Elements **platform** im A
 
 # Tilde-Ersetzung
 
-Zusätzlich zu den oben beschriebenen Dateinamensregeln unterstützt Tcl *csh*-artige Tilde-Ersetzung. Beginnt ein Dateiname mit einer Tilde, wird er so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Trennzeichen, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls werden die Zeichen zwischen Tilde und dem nächsten Trennzeichen als Benutzername genommen, um das Home-Verzeichnis für die Substitution zu ermitteln. Das funktioniert unter Unix, macOS und Windows (außer sehr alten Versionen).
+Zusätzlich zu den oben beschriebenen Dateinamensregeln unterstützt Tcl *csh*-artige Tilde-Ersetzung. Beginnt ein Dateiname mit einer Tilde, wird er so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Trennzeichen, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls werden die Zeichen zwischen Tilde und dem nächsten Trennzeichen als Benutzername genommen, um das Home-Verzeichnis für die Ersetzung zu ermitteln. Das funktioniert unter Unix, macOS und Windows (außer sehr alten Versionen).
 
 Ältere Windows-Plattformen unterstützen keine Tilde-Ersetzung, wenn ein Benutzername der Tilde folgt. Dort führt der Versuch, eine Tilde mit Benutzernamen zu verwenden, zu einem Fehler, dass der Benutzer nicht existiert, wenn Tcl diesen Pfadteil interpretiert oder sonst auf die Datei zugreift. Das Verhalten solcher Pfade ohne Interpretationsversuch entspricht Unix. Dateinamen mit Tilde ohne Benutzernamen werden korrekt über **$HOME** substituiert, wie unter Unix.
 

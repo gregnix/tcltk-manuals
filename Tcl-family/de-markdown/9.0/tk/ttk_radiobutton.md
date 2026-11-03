@@ -51,10 +51,10 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 
 # Widget-Befehl
 
-Zusätzlich zu **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Radiobutton-Widgets:
+Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Radiobutton-Widgets folgende zusätzliche Befehle:
 
 [pathname]{.ins} [invoke]{.sub}
-: Setzt **-variable** auf **-value**, wählt das Widget aus und wertet **-command** aus. Liefert das Ergebnis von **-command** oder einen leeren String, wenn kein **-command** angegeben ist.
+: Setzt **-variable** auf **-value**, wählt das Widget aus und wertet **-command** aus. Gibt das Ergebnis von **-command** zurück oder eine leere Zeichenkette, wenn kein **-command** angegeben ist.
 
 
 # Widget-Zustände

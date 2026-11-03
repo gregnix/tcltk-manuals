@@ -39,50 +39,50 @@ lsort - Sortiert die Elemente einer Liste
 
 # Beschreibung
 
-Der Befehl sortiert die Elemente von *list* und gibt eine neue, sortierte Liste zurück. Die Implementierung nutzt Merge-Sort — stabil, O(n log n).
+Dieser Befehl sortiert die Elemente von *list* und gibt eine neue Liste in sortierter Reihenfolge zurück. Die Implementierung des Befehls **lsort** verwendet den Merge-Sort-Algorithmus. Dieser sortiert stabil und hat ein Laufzeitverhalten von O(n log n).
 
-Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können Optionen stehen (Abkürzungen erlaubt):
+Standardmäßig wird ASCII-Sortierung verwendet, und das Ergebnis wird in aufsteigender Reihenfolge zurückgegeben. Sie können jedoch vor *list* jede der folgenden Optionen angeben, um den Sortiervorgang zu steuern (eindeutige Abkürzungen werden akzeptiert):
 
 **-ascii**
-: Zeichenkettenvergleich in Unicode-Codepoint-Reihenfolge (Name aus Kompatibilitätsgründen). Standard.
+: Verwendet einen Zeichenkettenvergleich mit der Sortierreihenfolge der Unicode-Codepoints (der Name ist aus Gründen der Abwärtskompatibilität so gewählt). Dies ist die Voreinstellung.
 
 **-dictionary**
-: Wörterbuch-Vergleich. Wie **-ascii**, aber (a) Groß-/Klein nur als Tie-Breaker und (b) eingebettete Zahlen vergleichen als Ganzzahlen. Beispiel: **bigBoy** zwischen **bigbang** und **bigboy**; **x10y** zwischen **x9y** und **x11y**. Überschreibt **-nocase**.
+: Verwendet einen Vergleich im Wörterbuchstil. Dieser entspricht **-ascii**, mit zwei Ausnahmen: (a) Die Groß-/Kleinschreibung wird nur zur Entscheidung bei Gleichstand herangezogen, und (b) wenn zwei Zeichenketten eingebettete Zahlen enthalten, werden die Zahlen als Ganzzahlen verglichen, nicht als Zeichen. Im Modus **-dictionary** wird zum Beispiel **bigBoy** zwischen **bigbang** und **bigboy** einsortiert und **x10y** zwischen **x9y** und **x11y**. Diese Option setzt die Option **-nocase** außer Kraft.
 
 **-integer**
-: Elemente als Ganzzahlen vergleichen.
+: Wandelt die Listenelemente in Ganzzahlen um und verwendet einen ganzzahligen Vergleich.
 
 **-real**
-: Elemente als Fließkommazahlen vergleichen.
+: Wandelt die Listenelemente in Gleitkommawerte um und verwendet einen Gleitkommavergleich.
 
 **-command** *command*
-: *command* als Vergleichsbefehl. Zwei Elemente werden verglichen, indem ein Tcl-Skript aus *command* mit den beiden Elementen als zusätzliche Argumente ausgewertet wird. Rückgabe: Ganzzahl < 0, = 0 oder > 0, wenn das erste Element kleiner, gleich oder größer sein soll.
+: Verwendet *command* als Vergleichsbefehl. Um zwei Elemente zu vergleichen, wird ein Tcl-Skript ausgewertet, das aus *command* besteht, an das die beiden Elemente als zusätzliche Argumente angehängt sind. Das Skript sollte eine Ganzzahl kleiner als, gleich oder größer als null zurückgeben, wenn das erste Element als kleiner als, gleich oder größer als das zweite gelten soll.
 
 **-increasing**
-: Aufsteigend sortieren („kleinste“ zuerst). Standard.
+: Sortiert die Liste in aufsteigender Reihenfolge (die „kleinsten“ Elemente zuerst). Dies ist die Voreinstellung.
 
 **-decreasing**
-: Absteigend sortieren („größte“ zuerst).
+: Sortiert die Liste in absteigender Reihenfolge (die „größten“ Elemente zuerst).
 
 **-indices**
-: Liste der Indizes in *list* in sortierter Reihenfolge statt der Werte.
+: Gibt statt der Werte selbst eine Liste der Indizes in *list* in sortierter Reihenfolge zurück.
 
 **-index** *indexList*
-: Jedes Element von *list* muss eine Tcl-Unterliste sein (außer mit **-stride**). Sortierung nach dem *indexList*-ten Element jeder Unterliste (wie [lindex]). Beispiel:
+: Wenn diese Option angegeben ist, muss jedes Element von *list* selbst eine korrekte Tcl-Unterliste sein (sofern nicht **-stride** verwendet wird). Statt anhand der ganzen Unterlisten zu sortieren, entnimmt **lsort** jeder Unterliste das *indexList*-te Element (so, als würden das jeweilige Gesamtelement und *indexList* an [lindex] übergeben) und sortiert anhand dieses Elements. Zum Beispiel gibt
 
     ```
     lsort -integer -index 1 \
           {{First 24} {Second 18} {Third 30}}
     ```
 
-    liefert **{Second 18} {First 24} {Third 30}**,
+    **{Second 18} {First 24} {Third 30}** zurück,
 
     ```
     lsort -index end-1 \
             {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
     ```
 
-    liefert **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}**, und
+    gibt **{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}** zurück, und
 
     ```
     lsort -index {0 1} {
@@ -92,57 +92,57 @@ Standard ist ASCII-Sortierung in aufsteigender Reihenfolge. Vor *list* können O
     }
     ```
 
-    liefert **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** (weil **e** vor **i** vor **o**). Effizienter als **-command** für denselben Effekt.
+    gibt **{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}** zurück (weil **e** vor **i** einsortiert wird, das wiederum vor **o** einsortiert wird). Diese Option ist wesentlich effizienter, als dieselbe Wirkung mit **-command** zu erreichen.
 
 **-stride** *strideLength*
-: Die Liste gilt als Gruppen zu je *strideLength* Elementen; Gruppen werden am ersten Element oder (mit **-index**) am durch den ersten **-index** bezeichneten Element der Gruppe sortiert (**-index** ignoriert diesen Teil). Elemente bleiben innerhalb der Gruppe an ihrer Position.
+: Wenn diese Option angegeben ist, wird die Liste so behandelt, als bestünde sie aus Gruppen von je *strideLength* Elementen. Die Gruppen werden entweder nach ihrem ersten Element sortiert oder, wenn die Option **-index** verwendet wird, nach dem Element innerhalb jeder Gruppe, das der erste an **-index** übergebene Index bezeichnet (dieser Index wird dann von **-index** ignoriert). Die Elemente bleiben stets an derselben Position innerhalb ihrer Gruppe.
 
-    Listenlänge muss Vielfaches von *strideLength* sein (mindestens 2).
+    Die Listenlänge muss ein ganzzahliges Vielfaches von *strideLength* sein; dieser Wert muss seinerseits mindestens 2 betragen.
 
-    Beispiel:
+    Zum Beispiel gibt
 
     ```
     lsort -stride 2 {carrot 10 apple 50 banana 25}
     ```
 
-    liefert „apple 50 banana 25 carrot 10“, und
+    „apple 50 banana 25 carrot 10“ zurück, und
 
     ```
     lsort -stride 2 -index 1 -integer {carrot 10 apple 50 banana 25}
     ```
 
-    liefert „carrot 10 banana 25 apple 50“.
+    gibt „carrot 10 banana 25 apple 50“ zurück.
 
 **-nocase**
-: Vergleich ohne Groß-/Kleinschreibung. Keine Wirkung mit **-dictionary**, **-integer** oder **-real**.
+: Bewirkt, dass Vergleiche ohne Berücksichtigung der Groß-/Kleinschreibung durchgeführt werden. Hat keine Wirkung, wenn die Option mit **-dictionary**, **-integer** oder **-real** kombiniert wird.
 
 **-unique**
-: Nur die letzte Gruppe doppelter Elemente bleibt. Duplikate relativ zum verwendeten Vergleich; mit **-index 0** gelten **{1 a}** und **{1 b}** als Duplikat — nur **{1 b}** bleibt.
+: Wenn diese Option angegeben ist, wird von jeder Gruppe doppelter Elemente in der Liste nur das zuletzt gefundene behalten. Beachten Sie, dass Duplikate anhand des beim Sortieren verwendeten Vergleichs bestimmt werden. Wird also **-index 0** verwendet, gelten **{1 a}** und **{1 b}** als Duplikate, und nur das zweite Element, **{1 b}**, wird behalten.
 
 
 # Hinweise
 
-Die **lsort**-Optionen steuern nur die Vergleichsart, nicht zwingend den tatsächlichen Typ der Werte. Das fällt nur bei Listen mit weniger als zwei Elementen auf.
+Die Optionen von **lsort** steuern nur, welche Art von Vergleich verwendet wird. Sie schränken nicht zwangsläufig ein, was die Werte selbst tatsächlich sind. Dieser Unterschied fällt nur auf, wenn die zu sortierende Liste weniger als zwei Elemente hat.
 
-**lsort** ist reentrant — sicher als Implementierung eines in **-command** verwendeten Befehls.
+Der Befehl **lsort** ist reentrant. Er kann also gefahrlos in der Implementierung eines Befehls verwendet werden, der in der Option **-command** benutzt wird.
 
 # Beispiele
 
-ASCII-Sortierung:
+Eine Liste mit ASCII-Sortierung sortieren:
 
 ```
 % lsort {a10 B2 b1 a1 a2}
 B2 a1 a10 a2 b1
 ```
 
-Wörterbuch-Sortierung:
+Eine Liste mit Wörterbuch-Sortierung sortieren:
 
 ```
 % lsort -dictionary {a10 B2 b1 a1 a2}
 a1 a2 a10 b1 B2
 ```
 
-Ganzzahllisten:
+Listen von Ganzzahlen sortieren:
 
 ```
 % lsort -integer {5 3 1 2 11 4}
@@ -151,7 +151,7 @@ Ganzzahllisten:
 -1 0 1 2 4 0x5 7
 ```
 
-Fließkommalisten:
+Listen von Gleitkommazahlen sortieren:
 
 ```
 % lsort -real {5 3 1 2 11 4}
@@ -160,7 +160,7 @@ Fließkommalisten:
 0.4 .5 6e-1 0.07e1
 ```
 
-Sortieren mit Indizes:
+Mit Indizes sortieren:
 
 ```
 % # Leerzeichen vor dem c beachten
@@ -172,7 +172,7 @@ Sortieren mit Indizes:
 {e 1} {d 2} { c 3} {b 4} {a 5}
 ```
 
-[Dictionary sortieren:]{version="8.6"}
+[Ein Dictionary sortieren:]{version="8.6"}
 
 ```
 % set d [dict create c d a b h i f g c e]
@@ -181,7 +181,7 @@ c e a b h i f g
 a b c e f g h i
 ```
 
-Stride und mehrere Indizes:
+Mit Gruppen (Stride) und mehreren Indizes sortieren:
 
 ```
 % # Erster Indexwert ist relativ zur Gruppe
@@ -190,14 +190,14 @@ Stride und mehrere Indizes:
 {{Jane Doe} 40 Ford {Bob Smith} 25 Audi}
 ```
 
-Duplikate entfernen durch Sortieren:
+Doppelte Werte durch Sortieren entfernen:
 
 ```
 % lsort -unique {a b c a b c a b c}
 a b c
 ```
 
-Vergleichsfunktion:
+Komplexeres Sortieren mit einer Vergleichsfunktion:
 
 ```
 % proc compare {a b} {

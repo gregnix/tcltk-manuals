@@ -45,7 +45,7 @@ Dieses Paket stellt eine Klasse bereit, deren Instanzen die Bearbeitung einer An
 
 # Interaktion
 
-Die Standard-Bindings ermöglichen das Erstellen, Entfernen und Verschieben von Punkten (Markern) mithilfe der Maustasten 1, 2 und 3. Im Einzelnen:
+Die Standard-Bindungen ermöglichen das Erstellen, Entfernen und Verschieben von Punkten (Markern) mithilfe der Maustasten 1, 2 und 3. Im Einzelnen:
 
 1. Wenn Sie mit Taste 1 auf eine beliebige Stelle klicken, wird ein neuer Punkt hinzugefügt.
 

@@ -31,48 +31,48 @@ switch - Wertet eines von mehreren Skripten aus, abhängig von einem Wert
 
 # Beschreibung
 
-**switch** vergleicht sein Argument *string* nacheinander mit jedem *pattern*. Sobald ein *pattern* zu *string* passt, wird das folgende *body* rekursiv ausgewertet; dessen Ergebnis liefert **switch**. Ist das letzte *pattern* **default**, passt es auf alles. Passt kein *pattern* und gibt es kein **default**, gibt **switch** eine leere Zeichenkette zurück.
+Der Befehl **switch** vergleicht sein Argument *string* der Reihe nach mit jedem der Argumente *pattern*. Sobald er ein *pattern* findet, das zu *string* passt, wertet er das folgende Argument *body* aus, indem er es rekursiv an den Tcl-Interpreter übergibt, und gibt das Ergebnis dieser Auswertung zurück. Ist das letzte Argument *pattern* **default**, passt es auf alles. Passt kein Argument *pattern* zu *string* und ist kein Vorgabezweig angegeben, gibt der Befehl **switch** eine leere Zeichenkette zurück.
 
-Beginnen die ersten Argumente mit **-**, gelten sie als Optionen — außer es gibt genau zwei Argumente (dann ist das erste *string*, das zweite die *pattern*/*body*-Liste). Unterstützte Optionen:
+Beginnen die ersten Argumente von **switch** mit **-**, werden sie als Optionen behandelt. Das gilt nicht, wenn **switch** genau zwei Argumente erhält; dann muss das erste *string* und das zweite die *pattern*/*body*-Liste sein. Derzeit werden die folgenden Optionen unterstützt:
 
 **-exact**
-: Exakter Vergleich von *string* mit dem Muster (Standard).
+: Verwendet beim Vergleich von *string* mit einem Muster einen exakten Vergleich. Das ist die Voreinstellung.
 
 **-glob**
-: Glob-Vergleich (wie [string match][string]).
+: Verwendet beim Vergleich von *string* mit den Mustern einen Glob-Vergleich, d. h. denselben, den der Befehl [string match][string] implementiert.
 
 **-regexp**
-: Reguläre Ausdrücke (siehe [re\_syntax][re_syntax]).
+: Verwendet beim Vergleich von *string* mit den Mustern reguläre Ausdrücke, wie auf der Referenzseite [re\_syntax][re_syntax] beschrieben.
 
 **-nocase**
-: Vergleich ohne Berücksichtigung der Groß-/Kleinschreibung.
+: Bewirkt, dass bei den Vergleichen Groß- und Kleinschreibung nicht unterschieden wird.
 
 **-matchvar** *varName*
-: Nur mit **-regexp**: Variable erhält die Trefferliste der Engine (gesamtes Match, dann Capturing Groups). Bei **default**: leere Liste. Kombinierbar mit **-indexvar**.
+: Diese Option ist nur zulässig, wenn auch **-regexp** angegeben ist. Sie legt den Namen einer Variablen fest, in die die Liste der Treffer geschrieben wird, die die Engine für reguläre Ausdrücke gefunden hat. Das erste Element dieser Liste ist die gesamte passende Teilzeichenkette der Eingabezeichenkette (d. h. des Arguments *string* von **switch**). Das zweite Element ist die Teilzeichenkette, die zur ersten einfangenden Klammer des passenden regulären Ausdrucks passt, und so weiter. Wird der Zweig **default** gewählt, wird die leere Liste in die Variable geschrieben. Diese Option kann zusammen mit der Option **-indexvar** angegeben werden.
 
 **-indexvar** *varName*
-: Nur mit **-regexp**: Indizes der Treffer (zwei Elemente Start/Ende pro Teilstring, analog zur Option **-indices** von [regexp]). Bei **default**: leere Liste. Kombinierbar mit **-matchvar**.
+: Diese Option ist nur zulässig, wenn auch **-regexp** angegeben ist. Sie legt den Namen einer Variablen fest, in die die Liste der Indizes geschrieben wird, die auf die von der Engine für reguläre Ausdrücke gefundenen passenden Teilzeichenketten verweisen. Das erste Element dieser Liste ist eine Liste mit zwei Elementen: dem Index des Anfangs und dem Index des ersten Zeichens nach dem Ende der gesamten passenden Teilzeichenkette der Eingabezeichenkette (d. h. des Arguments *string* von **switch**), ähnlich wie bei der Option **-indices** von [regexp]. Entsprechend verweist das zweite Element der Liste auf die erste einfangende Klammer des passenden regulären Ausdrucks, und so weiter. Wird der Zweig **default** gewählt, wird die leere Liste in die Variable geschrieben. Diese Option kann zusammen mit der Option **-matchvar** angegeben werden.
 
 **--**
-: Ende der Optionen; das folgende Argument ist *string*, auch wenn es mit **-** beginnt. Nicht nötig, wenn Muster und Körper in einem Listenargument stehen.
+: Markiert das Ende der Optionen. Das darauf folgende Argument wird als *string* behandelt, auch wenn es mit einem **-** beginnt. Das ist nicht nötig, wenn die Muster und Rümpfe zusammen in einem einzigen Argument gruppiert sind.
 
 
-Zwei Syntaxen für *pattern* und *body*: getrennte Argumente (Substitutionen in Mustern/Körpern möglich) oder eine Liste aller Paare (mehrzeilige **switch**-Befehle; Muster in geschweiften Klammern ohne Substitution — Verhalten kann abweichen).
+Für die Argumente *pattern* und *body* gibt es zwei Syntaxen. Die erste verwendet für jedes Muster und jeden Befehl ein eigenes Argument; diese Form ist praktisch, wenn auf einige der Muster oder Befehle Ersetzungen angewendet werden sollen. Die zweite Form fasst alle Muster und Befehle in einem einzigen Argument zusammen. Dieses Argument muss eine gültige Listenstruktur haben, deren Elemente die Muster und Befehle sind. Mit der zweiten Form lassen sich mehrzeilige switch-Befehle leicht schreiben: Die geschweiften Klammern um die ganze Liste machen einen Backslash am Ende jeder Zeile überflüssig. Da die Argumente *pattern* in der zweiten Form in geschweiften Klammern stehen, wird auf sie keine Befehls- oder Variablenersetzung angewendet. Dadurch verhält sich die zweite Form in manchen Fällen anders als die erste.
 
-Ist *body* als **-** angegeben, gilt der *body* des nächsten Musters auch hier (Kette von **-** möglich). So teilen sich mehrere Muster einen *body*.
+Ist ein *body* als „**-**“ angegeben, wird der *body* des nächsten Musters auch als Rumpf für dieses Muster verwendet. Hat auch das nächste Muster den Rumpf „**-**“, wird der Rumpf danach verwendet, und so weiter. So können sich mehrere Muster einen einzigen *body* teilen.
 
-Kommentare in **switch** nur **innerhalb** des Ausführungskörpers eines Musters, nicht zwischen den Mustern.
+Achten Sie darauf, wie Sie Kommentare in **switch**-Befehle setzen. Kommentare sollten nur **innerhalb** des ausgeführten Rumpfs eines der Muster stehen und nicht zwischen die Muster gemischt werden.
 
 # Beispiele
 
-Abgleich mit Variablen (Ergebnis *2*):
+Der Befehl **switch** kann nicht nur mit Literalen, sondern auch mit Variablen vergleichen, wie hier gezeigt (das Ergebnis ist *2*):
 
 ```
 set foo "abc"
 switch abc a - b {expr {1}} $foo {expr {2}} default {expr {3}}
 ```
 
-Glob und Durchfall (**-** als *body*); Ergebnis *1*:
+Ein Glob-Vergleich mit dem durchfallenden Rumpf ist eine Alternative zu regulären Ausdrücken mit Alternativen, wie hier zu sehen (das Ergebnis ist *1*):
 
 ```
 switch -glob aaab {
@@ -83,7 +83,7 @@ switch -glob aaab {
 }
 ```
 
-**default** (muss zuletzt stehen); Ergebnis *3*:
+Wenn nichts passt, wird die Klausel **default** gewählt (sie muss zuletzt stehen). Dieses Beispiel hat das Ergebnis *3*:
 
 ```
 switch xyz {
@@ -101,7 +101,7 @@ switch xyz {
 }
 ```
 
-**-matchvar** bei regulären Ausdrücken:
+Beim Vergleich mit regulären Ausdrücken lässt sich mit der Option **-matchvar** leicht ermitteln, was genau gepasst hat:
 
 ```
 switch -regexp -matchvar foo -- $bar {

@@ -89,7 +89,7 @@ Die Regeln für native Namen hängen vom Wert des Tcl-Elements **platform** im A
 
 Anders als frühere Tcl-Versionen führt Tcl 9 keine implizite Tilde-Ersetzung in Dateipfaden durch — mit der unten genannten Ausnahme. Die Befehle [file home][file] und [file tildeexpand][file] können dasselbe explizit leisten.
 
-Die Ausnahme betrifft die Initialisierung der Variable [auto\_path][tclvars] und der Tcl-Modul-Suchpfade wie in den Manpages [tclvars] und [tm] dokumentiert. Beginnt ein Pfad in einer Umgebungsvariable für diese Initialisierung mit einer Tilde, wird er so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Trennzeichen, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls werden die Zeichen zwischen Tilde und dem nächsten Trennzeichen als Benutzername genommen, um das Home-Verzeichnis für die Substitution zu ermitteln. Das gilt auf POSIX-, macOS- und Windows-Plattformen.
+Die Ausnahme betrifft die Initialisierung der Variable [auto\_path][tclvars] und der Tcl-Modul-Suchpfade wie in den Manpages [tclvars] und [tm] dokumentiert. Beginnt ein Pfad in einer Umgebungsvariable für diese Initialisierung mit einer Tilde, wird er so interpretiert, als wäre das erste Element durch das Home-Verzeichnis des angegebenen Benutzers ersetzt. Folgt der Tilde unmittelbar ein Trennzeichen, wird die Umgebungsvariable **$HOME** substituiert. Andernfalls werden die Zeichen zwischen Tilde und dem nächsten Trennzeichen als Benutzername genommen, um das Home-Verzeichnis für die Ersetzung zu ermitteln. Das gilt auf POSIX-, macOS- und Windows-Plattformen.
 
 # Portabilitätsfragen
 

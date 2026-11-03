@@ -30,95 +30,95 @@ scan - Zeichenkette mit Konvertierungsspezifizierern im sscanf-Stil parsen
 
 # Einleitung
 
-Der Befehl parst Teilstrings aus einer Eingabezeichenkette analog zu ANSI-C **sscanf** und gibt die Anzahl erfolgreicher Konvertierungen zurück, oder -1, wenn das Ende von *string* erreicht wird, bevor eine Konvertierung gelang. *string* ist die Eingabe, *format* legt das Muster fest (**%** wie bei **sscanf**). Jedes *varName* benennt eine Variable; passt ein Teilstring zu einem Spezifizierer, wird er der Variable zugewiesen. Ohne *varName* arbeitet **scan** inline und gibt die Werte als Liste zurück; am Ende ohne Konvertierung: leerer String.
+Dieser Befehl parst Teilzeichenketten aus einer Eingabezeichenkette ähnlich wie die ANSI-C-Prozedur **sscanf** und gibt die Anzahl der durchgeführten Konvertierungen zurück; wird das Ende der Eingabezeichenkette erreicht, bevor eine Konvertierung durchgeführt wurde, gibt er -1 zurück. *string* enthält die zu parsende Eingabe, und *format* gibt an, wie sie geparst wird; dazu dienen **%**-Konvertierungsspezifizierer wie bei **sscanf**. Jedes *varName* gibt den Namen einer Variablen an. Wird aus *string* eine Teilzeichenkette gelesen, die zu einem Konvertierungsspezifizierer passt, wird sie der entsprechenden Variablen zugewiesen. Sind keine *varName*-Variablen angegeben, arbeitet **scan** inline: Er gibt die Daten, die sonst in den Variablen gespeichert würden, als Liste zurück. Im Inline-Fall wird eine leere Zeichenkette zurückgegeben, wenn das Ende der Eingabezeichenkette erreicht wird, bevor eine Konvertierung durchgeführt wurde.
 
 # Details zum Scannen
 
-**scan** durchläuft *string* und *format* gemeinsam. Ist das nächste Zeichen in *format* Leerzeichen oder Tab, entspricht es beliebig viel Leerraum in *string* (auch null). Sonst, wenn es kein **%** ist, muss es mit dem nächsten Zeichen von *string* übereinstimmen. **%** beginnt einen Konvertierungsspezifizierer mit bis zu vier Feldern: XPG3-Position (oder **\*** zum Verwerfen), maximale Teilstringbreite, Größenmodifikator, Konvertierungszeichen (Pflicht). Reihenfolge wie oben.
+**scan** arbeitet, indem er *string* und *format* gemeinsam durchläuft. Ist das nächste Zeichen in *format* ein Leerzeichen oder ein Tabulator, passt es zu beliebig vielen Leerraumzeichen in *string* (auch zu keinem). Ist es sonst kein **%**-Zeichen, muss es mit dem nächsten Zeichen von *string* übereinstimmen. Ein **%** in *format* kennzeichnet den Beginn eines Konvertierungsspezifizierers. Ein Konvertierungsspezifizierer enthält nach dem **%** bis zu vier Felder: eine XPG3-Positionsangabe (oder ein **\***, das anzeigt, dass der konvertierte Wert verworfen und keiner Variablen zugewiesen wird), eine Zahl für die maximale Breite der Teilzeichenkette, einen Größenmodifikator und ein Konvertierungszeichen. Alle diese Felder sind optional, mit Ausnahme des Konvertierungszeichens. Die vorhandenen Felder müssen in der oben genannten Reihenfolge stehen.
 
-Bei einem Spezifizierer überspringt **scan** zunächst Leerraum in *string* (außer bei **\[** oder **c**), konvertiert dann die nächsten Zeichen und speichert das Ergebnis in der nächsten Variable.
+Findet **scan** einen Konvertierungsspezifizierer in *format*, überspringt er zunächst alle Leerraumzeichen in *string* (außer wenn das Konvertierungszeichen **\[** oder **c** ist). Dann konvertiert er die nächsten Eingabezeichen gemäß dem Konvertierungsspezifizierer und speichert das Ergebnis in der Variablen, die das nächste Argument von **scan** angibt.
 
 ## Optionale Positionsangabe
 
-**%** gefolgt von Zahl und **$** (z. B. **%2$d**): Variable nicht sequenziell, sondern vom angegebenen *varName* (1 = erstes). Sind Positionsangaben vorhanden, müssen alle positional sein. Jedes *varName* muss genau einem Spezifizierer entsprechen, sonst Fehler; inline darf jede Position höchstens einmal vorkommen, leere Positionen werden mit leeren Strings gefüllt.
+Folgen auf das **%** eine Dezimalzahl und ein **$**, wie in „**%2$d**“, wird die zu verwendende Variable nicht dem nächsten Argument der Reihe entnommen. Stattdessen stammt sie aus dem Argument, das die Zahl angibt; dabei entspricht 1 dem ersten *varName*. Enthält *format* Positionsangaben, müssen alle Spezifizierer Positionsangaben sein. Jedes *varName* in der Argumentliste muss genau einem Konvertierungsspezifizierer entsprechen, sonst wird ein Fehler erzeugt. Im Inline-Fall darf jede Position höchstens einmal angegeben werden, und die leeren Positionen werden mit leeren Zeichenketten gefüllt.
 
 ## Optionaler Größenmodifikator
 
-Das Feld für den Größenmodifikator wird nur beim Einlesen eines Teilstrings in einen Tcl-Ganzzahlwert verwendet. Es bestimmt den Ganzzahlbereich, der in einer Variable (bzw. im Inline-Fall an einer Position der Ergebnisliste) gespeichert werden darf. Syntaktisch gültig sind **h**, **L**, **l** und **ll**. **h** entspricht dem Fehlen eines Größenmodifikators; beide begrenzen den Bereich auf den der Funktion **int()** von [expr]. **L** entspricht **l**; beide begrenzen den Bereich auf den der Funktion **wide()** von [expr]. **ll** bedeutet einen unbegrenzten Ganzzahlbereich.
+Das Feld für den Größenmodifikator wird nur verwendet, wenn eine Teilzeichenkette in einen der Ganzzahlwerte von Tcl eingelesen wird. Der Größenmodifikator bestimmt den Ganzzahlbereich, der in einer Variablen gespeichert werden darf, oder im Inline-Fall an einer Position der Ergebnisliste. Syntaktisch gültige Werte für den Größenmodifikator sind **h**, **L**, **l** und **ll**. Der Größenmodifikator **h** entspricht dem Fehlen eines Größenmodifikators im Konvertierungsspezifizierer. Beide geben an, dass der zu speichernde Ganzzahlbereich auf denselben Bereich begrenzt ist, den die Funktion **int()** des Befehls [expr] liefert. Der Größenmodifikator **L** entspricht dem Größenmodifikator **l**. Beide geben an, dass der zu speichernde Ganzzahlbereich auf denselben Bereich begrenzt ist, den die Funktion **wide()** des Befehls [expr] liefert. Der Größenmodifikator **ll** gibt an, dass der zu speichernde Ganzzahlbereich unbegrenzt ist.
 
 ## Pflicht-Konvertierungszeichen
 
 Folgende Konvertierungszeichen werden unterstützt:
 
 **d**
-: Dezimalganzzahl; Wert in Variable, gekürzt gemäß Größenmodifikator.
+: Die Eingabe-Teilzeichenkette muss eine dezimale Ganzzahl sein. Sie wird eingelesen, und der Ganzzahlwert wird in der Variablen gespeichert, gekürzt nach den Vorgaben des Größenmodifikators.
 
 **o**
-: Oktalganzzahl; wie oben.
+: Die Eingabe-Teilzeichenkette muss eine oktale Ganzzahl sein. Sie wird eingelesen, und der Ganzzahlwert wird in der Variablen gespeichert, gekürzt nach den Vorgaben des Größenmodifikators.
 
 **x** oder **X**
-: Hexadezimalganzzahl; wie oben.
+: Die Eingabe-Teilzeichenkette muss eine hexadezimale Ganzzahl sein. Sie wird eingelesen, und der Ganzzahlwert wird in der Variablen gespeichert, gekürzt nach den Vorgaben des Größenmodifikators.
 
 **b**
-: Binärganzzahl; wie oben.
+: Die Eingabe-Teilzeichenkette muss eine binäre Ganzzahl sein. Sie wird eingelesen, und der Ganzzahlwert wird in der Variablen gespeichert, gekürzt nach den Vorgaben des Größenmodifikators.
 
 **u**
-: Der Eingabe-Teilstring muss eine Dezimalganzzahl sein. Der Wert wird gemäß dem Größenmodifikator gekürzt; der zugehörige vorzeichenlose Wert für den gekürzten Bereich wird berechnet und als Dezimalstring in der Variable gespeichert. Ohne Bezug auf einen Kürzungsbereich ist diese Umwandlung sinnlos; daher ist der Größenmodifikator **ll** zusammen mit dem Umwandlungszeichen **u** nicht erlaubt.
+: Die Eingabe-Teilzeichenkette muss eine dezimale Ganzzahl sein. Der Ganzzahlwert wird so gekürzt, wie es der Größenmodifikator verlangt, und der entsprechende vorzeichenlose Wert für diesen gekürzten Bereich wird berechnet und als dezimale Zeichenkette in der Variablen gespeichert. Ohne Bezug auf einen Kürzungsbereich ist diese Konvertierung sinnlos; daher ist der Größenmodifikator **ll** zusammen mit dem Konvertierungszeichen **u** nicht erlaubt.
 
 **i**
-: Ganzzahl; Basis per C-Konvention (führende 0 Oktal, **0x** Hex); Kürzung wie oben.
+: Die Eingabe-Teilzeichenkette muss eine Ganzzahl sein. Die Basis (also dezimal, oktal oder hexadezimal) wird nach der C-Konvention bestimmt (führende 0 für oktal, Präfix 0x für hexadezimal). Der Ganzzahlwert wird in der Variablen gespeichert, gekürzt nach den Vorgaben des Größenmodifikators.
 
 **c**
-: Ein Zeichen; Unicode-Wert als Ganzzahl in der Variable. Kein Überspringen von Leerraum; Teilstring kann Leerzeichen sein.
+: Ein einzelnes Zeichen wird eingelesen, und sein Unicode-Wert wird als Ganzzahlwert in der Variablen gespeichert. Führender Leerraum wird in diesem Fall nicht übersprungen; die Eingabe-Teilzeichenkette kann also ein Leerraumzeichen sein.
 
 **s**
-: Alle Zeichen bis zum nächsten Leerraum; Kopie in die Variable.
+: Die Eingabe-Teilzeichenkette besteht aus allen Zeichen bis zum nächsten Leerraumzeichen; diese Zeichen werden in die Variable kopiert.
 
 **e** oder **f** oder **g** oder **E** oder **G**
-: Gleitkommazahl mit optionalem Vorzeichen, Dezimalziffern optional mit Punkt, optionaler Exponent **e**/**E** mit Vorzeichen und Ziffern; intern als Gleitkomma.
+: Die Eingabe-Teilzeichenkette muss eine Gleitkommazahl sein. Sie besteht aus einem optionalen Vorzeichen, einer Folge von Dezimalziffern, die einen Dezimalpunkt enthalten kann, und einem optionalen Exponenten. Der Exponent besteht aus einem **e** oder **E**, gefolgt von einem optionalen Vorzeichen und einer Folge von Dezimalziffern. Die Zahl wird eingelesen und als Gleitkommawert in der Variablen gespeichert.
 
 **\[***chars***\]**
-: Ein oder mehr Zeichen aus *chars*; Treffer in Variable. Steht **\]** zuerst in *chars*, gehört es zu *chars*. Bereich *a***-***b* inklusive. Führendes oder abschließendes **-** in *chars* ist Literal, kein Bereich.
+: Die Eingabe-Teilzeichenkette besteht aus einem oder mehreren Zeichen aus *chars*. Die passende Zeichenkette wird in der Variablen gespeichert. Ist das erste Zeichen zwischen den Klammern ein **\]**, wird es als Teil von *chars* behandelt und nicht als schließende Klammer der Menge. Enthält *chars* eine Folge der Form *a***-***b*, passt jedes Zeichen zwischen *a* und *b* (einschließlich). Ist das erste oder letzte Zeichen zwischen den Klammern ein **-**, wird es als Teil von *chars* behandelt und gibt keinen Bereich an.
 
 **\[^***chars***\]**
-: Zeichen nicht in *chars*; Treffer in Variable. **^** gefolgt von **\]**: **\]** gehört zur Menge. Bereiche und **-** wie oben.
+: Die Eingabe-Teilzeichenkette besteht aus einem oder mehreren Zeichen, die nicht in *chars* enthalten sind. Die passende Zeichenkette wird in der Variablen gespeichert. Ist das Zeichen unmittelbar nach dem **^** ein **\]**, wird es als Teil der Menge behandelt und nicht als schließende Klammer der Menge. Enthält *chars* eine Folge der Form *a***-***b*, wird jedes Zeichen zwischen *a* und *b* (einschließlich) aus der Menge ausgeschlossen. Ist das erste oder letzte Zeichen zwischen den Klammern ein **-**, wird es als Teil von *chars* behandelt und gibt keinen Bereich an.
 
 **n**
-: Kein Verbrauch aus *string*; bisher gescannte Zeichenanzahl in die Variable.
+: Aus der Eingabezeichenkette wird nichts verbraucht. Stattdessen wird die Gesamtzahl der bisher aus der Eingabezeichenkette gelesenen Zeichen in der Variablen gespeichert.
 
 
-Gelesen wird jeweils die längste sinnvolle Folge (**%d**: Dezimalziffern, **%o**: Oktal, usw.). Abbruch bei Leerzeichen oder maximaler Breite. **\*** im Spezifizierer: keine Zuweisung, nächstes Scan-Argument wird nicht verbraucht.
+Die Anzahl der für eine Konvertierung gelesenen Eingabezeichen ist die größte Anzahl, die für die jeweilige Konvertierung sinnvoll ist (z. B. so viele Dezimalziffern wie möglich bei **%d**, so viele Oktalziffern wie möglich bei **%o** usw.). Die Eingabe-Teilzeichenkette einer Konvertierung endet, sobald ein Leerraumzeichen auftritt oder die maximale Breite der Teilzeichenkette erreicht ist, je nachdem, was zuerst eintritt. Enthält der Konvertierungsspezifizierer ein **\***, wird keiner Variablen etwas zugewiesen, und das nächste Argument von **scan** wird nicht verbraucht.
 
 # Unterschiede zu ANSI sscanf
 
-Wie **sscanf**, außer:
+Das Verhalten des Befehls **scan** entspricht dem der ANSI-C-Prozedur **sscanf**, mit folgenden Unterschieden:
 
-1. **%p** wird nicht unterstützt.
+1. Der Konvertierungsspezifizierer **%p** wird nicht unterstützt.
 
-2. Bei **%c** wird ein Zeichen in einen Dezimalstring umgewandelt und zugewiesen; keine Teilstringbreite.
+2. Bei **%c**-Konvertierungen wird ein einzelner Zeichenwert in eine dezimale Zeichenkette umgewandelt, die dann dem entsprechenden *varName* zugewiesen wird; für diese Konvertierung kann keine Breite der Teilzeichenkette angegeben werden.
 
-3. **h** wird ignoriert; **l** und **L** bei reellen Werten ignoriert (intern **double**). **ll** hat kein **sscanf**-Äquivalent.
+3. Der Modifikator **h** wird immer ignoriert, und die Modifikatoren **l** und **L** werden bei der Konvertierung reeller Werte ignoriert (für die interne Darstellung wird also der Typ **double** verwendet). Der Modifikator **ll** hat keine Entsprechung in **sscanf**.
 
-4. Ende von *string* vor Konvertierungen ohne Variablen: leerer String.
+4. Wird das Ende der Eingabezeichenkette erreicht, bevor eine Konvertierung durchgeführt wurde, und sind keine Variablen angegeben, wird eine leere Zeichenkette zurückgegeben.
 
 
 # Beispiele
 
-Unicode-Zeichen in numerischen Wert:
+Ein Unicode-Zeichen in seinen numerischen Wert umwandeln:
 
 ```
 set char "x"
 set value [scan $char %c]
 ```
 
-Farbe *#RRGGBB* mit Hex und Feldgrößen:
+Eine einfache Farbangabe der Form *#RRGGBB* mit hexadezimalen Konvertierungen und Größen für die Teilzeichenketten parsen:
 
 ```
 set string "#08D03F"
 scan $string "#%2x%2x%2x" r g b
 ```
 
-Eine Zeitangabe *HH:MM* einlesen; dabei werden Probleme mit Oktalzahlen vermieden, weil die Werte als Dezimalzahlen gelesen werden (wäre das egal, würde man stattdessen die Umwandlung **%i** verwenden):
+Eine Zeitangabe *HH:MM* einlesen; dabei werden Probleme mit Oktalzahlen vermieden, weil die Werte zwingend als Dezimalzahlen gelesen werden (spielte das keine Rolle, würden wir stattdessen die Konvertierung **%i** verwenden):
 
 ```
 set string "08:08"   ;# *Not* octal!
@@ -131,7 +131,7 @@ if {$minutes < 0 || $minutes > 59} {
 }
 ```
 
-Nicht-Leerwort-Sequenzen (**%n** für korrektes Überspringen von Leerraum):
+Eine Zeichenkette in Folgen von Nicht-Leerraumzeichen zerlegen (beachten Sie die Verwendung der Konvertierung **%n**, damit das Überspringen von führendem Leerraum korrekt funktioniert):
 
 ```
 set string " a string {with braced words} + leading space "
@@ -142,7 +142,7 @@ while {[scan $string %s%n word length] == 2} {
 }
 ```
 
-Koordinatenstring mit explizitem Abschlusszeichen:
+Eine einfache Koordinatenangabe parsen und prüfen, ob sie vollständig ist, indem ausdrücklich nach dem abschließenden Zeichen gesucht wird:
 
 ```
 set string "(5.2,-4e-2)"
@@ -158,7 +158,7 @@ if {
 puts "X=$x, Y=$y"
 ```
 
-Kürzung durch Größenmodifikatoren:
+Eine interaktive Sitzung, die zeigt, wie Ganzzahlwerte abhängig vom Größenmodifikator gekürzt werden:
 
 ```
 % set tcl_platform(wordSize)

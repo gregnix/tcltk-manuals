@@ -187,7 +187,7 @@ Der Befehl **::html::init** sollte frühzeitig aufgerufen werden, um das Modul z
 : Erstellt den *head*-Abschnitt, der den *Titel* der Seite enthält. Wenn zuvor Aufrufe an **::html::author**, **::html::keywords**, **::html::description** oder **::html::meta** aufgerufen wurden, werden zusätzliche Tags in den *head*-Bereich eingefügt. Dadurch verbleibt ein offener *html*-Tag, der mit **::html::openTag** auf den Stack geschoben wurde.
 
 **::html::headTag** *string*
-: Speichert einen Tag zur Einbindung in den von **::html::head** generierten *head*-Abschnitt. Der *String* umfasst den gesamten Inhalt des Tags mit Ausnahme der umschließenden spitzen Klammern < >.
+: Speichert einen Tag zur Einbindung in den von **::html::head** generierten *head*-Abschnitt. Die Zeichenkette *string* umfasst den gesamten Inhalt des Tags mit Ausnahme der umschließenden spitzen Klammern < >.
 
 **::html::html\_entities** *string*
 : Dieser Befehl ersetzt alle Sonderzeichen in der *Zeichenkette* durch ihre HTML-Entitäten und gibt den geänderten Text zurück.

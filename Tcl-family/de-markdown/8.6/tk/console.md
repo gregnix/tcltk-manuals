@@ -65,11 +65,11 @@ Der Befehl **consoleinterp** im Konsolen-Interpreter erlaubt die Auswertung von 
 
 Im Konsolen-Interpreter gibt es mehrere zusätzliche Befehle, die als Reaktion auf Aktivität im Haupt-Interpreter aufgerufen werden. *Sie sind hier nur der Vollständigkeit halber dokumentiert; sie gehören zur internen Implementierung der Konsole und können ohne Vorwarnung geändert werden.*
 
-Ausgaben des Haupt-Interpreters an die Konsole über die Kanäle stdout und stderr werden durch Aufruf des Befehls **tk::ConsoleOutput** im Konsolen-Interpreter mit zwei Argumenten behandelt. Das erste Argument ist der Name des beschriebenen Kanals, das zweite der String, der in den Kanal geschrieben wird (nach Kodierungs- und Zeilenend-Verarbeitung).
+Ausgaben des Haupt-Interpreters an die Konsole über die Kanäle stdout und stderr werden durch Aufruf des Befehls **tk::ConsoleOutput** im Konsolen-Interpreter mit zwei Argumenten behandelt. Das erste Argument ist der Name des beschriebenen Kanals, das zweite die Zeichenkette, die in den Kanal geschrieben wird (nach Kodierungs- und Zeilenend-Verarbeitung).
 
 Wenn das Fenster **.** des Haupt-Interpreters zerstört wird, wird der Befehl **tk::ConsoleExit** im Konsolen-Interpreter aufgerufen (sofern der Konsolen-Interpreter nicht bereits selbst gelöscht wurde).
 
-# Standard-Bindings
+# Standard-Bindungen
 
 Das Standardskript erzeugt ein Konsolenfenster (implementiert mit einem Text-Widget) mit folgendem Verhalten:
 

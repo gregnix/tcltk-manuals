@@ -66,7 +66,7 @@ Unterstützt die Standardbefehle **configure**, **cget**, **state** und **instat
 : Entfernt den angegebenen Unterbereich aus dem Widget. *pane* ist entweder ein ganzzahliger Index oder der Name eines verwalteten Unterfensters.
 
 *pathname* **identify** *component x y*
-: Gibt den Namen des Elements unter dem Punkt *x* und *y* zurück oder den leeren String, wenn an dieser Position kein Element vorhanden ist. Wenn *component* weggelassen wird, ist der Standardwert **sash**. Folgende Unterbefehle werden unterstützt:
+: Gibt den Namen des Elements unter dem Punkt *x* und *y* zurück oder die leere Zeichenkette, wenn an dieser Position kein Element vorhanden ist. Wenn *component* weggelassen wird, ist der Standardwert **sash**. Folgende Unterbefehle werden unterstützt:
 
     *pathname* **identify element** *x y*
     : Gibt den Namen des Elements an der angegebenen Position zurück.
@@ -76,7 +76,7 @@ Unterstützt die Standardbefehle **configure**, **cget**, **state** und **instat
 
 
 *pathname* **insert** *pos subwindow options...*
-: Fügt einen Bereich an der angegebenen Position ein. *pos* ist entweder der String **end**, ein ganzzahliger Index oder der Name eines verwalteten Unterfensters. Wenn *subwindow* bereits vom Paned-Window verwaltet wird, wird es an die angegebene Position verschoben. Siehe [Bereichsoptionen] für die Liste der verfügbaren Optionen.
+: Fügt einen Bereich an der angegebenen Position ein. *pos* ist entweder die Zeichenkette **end**, ein ganzzahliger Index oder der Name eines verwalteten Unterfensters. Wenn *subwindow* bereits vom Paned-Window verwaltet wird, wird es an die angegebene Position verschoben. Siehe [Bereichsoptionen] für die Liste der verfügbaren Optionen.
 
 *pathname* **pane** *pane -option* ?*value* ?*-option value...*
 : Fragt die Optionen des angegebenen *pane* ab oder ändert sie, wobei *pane* entweder ein ganzzahliger Index oder der Name eines verwalteten Unterfensters ist. Wenn keine *-option* angegeben ist, gibt ein Dictionary der Bereichs-Optionswerte zurück. Ist eine *-option* angegeben, gibt der Wert dieser *option* zurück. Andernfalls werden die *-option*en auf die entsprechenden *value*s gesetzt.

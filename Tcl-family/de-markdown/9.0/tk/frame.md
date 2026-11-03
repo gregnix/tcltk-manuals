@@ -36,19 +36,19 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 # Widget-spezifische Optionen
 
 **-background** (**background**/**Background**)
-: Diese Option ist identisch mit der Standard-Option **-background**, außer dass ihr Wert auch als leerer String angegeben werden kann. In diesem Fall zeigt das Widget keinen Hintergrund oder Rahmen an, und es werden keine Farben aus seiner Farbkarte für Hintergrund und Rahmen verbraucht. [Ein leerer Hintergrund deaktiviert das Zeichnen des Hintergrundbildes.]{version="9.0, TIP262"}
+: Diese Option ist identisch mit der Standard-Option **-background**, außer dass ihr Wert auch als leere Zeichenkette angegeben werden kann. In diesem Fall zeigt das Widget keinen Hintergrund oder Rahmen an, und es werden keine Farben aus seiner Farbkarte für Hintergrund und Rahmen verbraucht. [Ein leerer Hintergrund deaktiviert das Zeichnen des Hintergrundbildes.]{version="9.0, TIP262"}
 
 [**-backgroundimage** (**backgroundImage**/**BackgroundImage**)]{version="9.0, TIP262"}
-: [Dies gibt ein Bild an, das im Hintergrund des Frames innerhalb des Rahmens angezeigt werden soll (d.h. das Bild wird durch den Hervorhebungsring und den Rahmen des Frames abgeschnitten, falls vorhanden); Unter-Widgets des Frames werden darüber gezeichnet. Das Bild muss mit dem Befehl [image create][image] erstellt worden sein. Wenn als leerer String angegeben, wird kein Bild angezeigt.]{version="9.0, TIP262"}
+: [Dies gibt ein Bild an, das im Hintergrund des Frames innerhalb des Rahmens angezeigt werden soll (d.h. das Bild wird durch den Hervorhebungsring und den Rahmen des Frames abgeschnitten, falls vorhanden); Unter-Widgets des Frames werden darüber gezeichnet. Das Bild muss mit dem Befehl [image create][image] erstellt worden sein. Wenn als leere Zeichenkette angegeben, wird kein Bild angezeigt.]{version="9.0, TIP262"}
 
 **-class** (**class**/**Class**)
-: Legt eine Klasse für das Fenster fest. Diese Klasse wird verwendet, wenn die Optionsdatenbank für die anderen Optionen des Fensters abgefragt wird, und sie wird später auch für andere Zwecke wie Bindings verwendet. Die Option **-class** kann nicht mit dem Widget-Befehl **configure** geändert werden.
+: Legt eine Klasse für das Fenster fest. Diese Klasse wird verwendet, wenn die Optionsdatenbank für die anderen Optionen des Fensters abgefragt wird, und sie wird später auch für andere Zwecke wie Bindungen verwendet. Die Option **-class** kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-colormap** (**colormap**/**Colormap**)
 : Legt eine Farbkarte fest, die für das Fenster verwendet werden soll. Der Wert kann entweder **new** sein, in welchem Fall eine neue Farbkarte für das Fenster und seine Kinder erstellt wird, oder der Name eines anderen Fensters (das auf dem gleichen Bildschirm und mit der gleichen visuellen Darstellung wie *pathName* sein muss), in welchem Fall das neue Fenster die Farbkarte vom angegebenen Fenster verwendet. Wenn die Option **-colormap** nicht angegeben ist, verwendet das neue Fenster die gleiche Farbkarte wie sein Eltern-Element. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-container** (**container**/**Container**)
-: Der Wert muss ein Boolean sein. Wenn wahr, bedeutet dies, dass dieses Fenster als Container verwendet wird, in dem eine andere Anwendung eingebettet wird (zum Beispiel kann ein Tk-Toplevel mit der Option **-use** eingebettet werden). Das Fenster unterstützt die entsprechenden Window-Manager-Protokolle für Dinge wie Geometrieanforderungen. Das Fenster sollte in dieser Anwendung keine eigenen Kinder haben. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden. Beachten Sie, dass **-borderwidth**, **-padx** und **-pady** ignoriert werden, wenn als Container konfiguriert, da ein Container keinen Rahmen hat.
+: Der Wert muss ein Boolean sein. Wenn wahr, bedeutet dies, dass dieses Fenster als Container verwendet wird, in dem eine andere Anwendung eingebettet wird (zum Beispiel kann ein Tk-Toplevel mit der Option **-use** eingebettet werden). Das Fenster unterstützt die entsprechenden Fenstermanager-Protokolle für Dinge wie Geometrieanforderungen. Das Fenster sollte in dieser Anwendung keine eigenen Kinder haben. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden. Beachten Sie, dass **-borderwidth**, **-padx** und **-pady** ignoriert werden, wenn als Container konfiguriert, da ein Container keinen Rahmen hat.
 
 **-height** (**height**/**Height**)
 : Legt die gewünschte Höhe für das Fenster in einer der von [Tk\_GetPixels][GetPixels] akzeptierten Formen fest. Wenn diese Option negativ oder null ist, fordert das Fenster überhaupt keine Größe an. Beachten Sie, dass dies die Gesamthöhe des Frames festlegt, **-borderwidth** oder ähnliches wird nicht hinzugefügt. Normalerweise sollte **-height** nicht verwendet werden, wenn ein propagierender Geometrie-Manager wie [grid] oder [pack] innerhalb des Frames verwendet wird, da der Geometrie-Manager die Höhe des Frames überschreibt.
@@ -83,12 +83,12 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **frame** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **frame** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **frame** akzeptierten Werte haben.
 
 
-# Bindings
+# Bindungen
 
-Wenn ein neuer Frame erstellt wird, hat er keine Standard-Event-Bindings: Frames sind nicht für Interaktion gedacht.
+Wenn ein neuer Frame erstellt wird, hat er keine Standard-Event-Bindungen: Frames sind nicht für Interaktion gedacht.
 
 
 [ConfigWidg]: ../tk-c/ConfigWidg.md

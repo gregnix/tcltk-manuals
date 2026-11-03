@@ -59,7 +59,7 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt 1 zurück, wenn die Farbtabelle für *window* als voll bekannt ist, andernfalls 0. Die Farbtabelle eines Fensters gilt als „voll bekannt“, wenn der letzte Versuch, auf diesem Fenster eine neue Farbe zu allozieren, fehlgeschlagen ist und diese Anwendung seit der fehlgeschlagenen Allozierung keine Farben in der Farbtabelle freigegeben hat.
 
 **winfo containing** ?**-displayof** *window*? *rootX rootY*
-: Gibt den Pfadnamen des Fensters zurück, das den durch *rootX* und *rootY* gegebenen Punkt enthält. *RootX* und *rootY* sind in Bildschirmeinheiten angegeben (d. h. in jeder für [Tk\_GetPixels][GetPixels] zulässigen Form) im Koordinatensystem des Root-Fensters (bei Verwendung eines Virtual-Root-Window-Managers wird das Koordinatensystem des virtuellen Root-Fensters verwendet). Ist die Option **-displayof** angegeben, beziehen sich die Koordinaten auf den Bildschirm, der *window* enthält; andernfalls auf den Bildschirm des Hauptfensters der Anwendung. Enthält kein Fenster in dieser Anwendung den Punkt, wird ein leerer String zurückgegeben. Ein leerer String wird auch zurückgegeben, wenn der Punkt in der Titelleiste oder im Rahmen des höchsten enthaltenden Toplevel in dieser Anwendung liegt. (Beachten Sie, dass bei manchen Window-Managern die Rahmen unsichtbar sein können.) Bei der Auswahl des enthaltenden Fensters haben Kinder höhere Priorität als Eltern, und unter Geschwistern wird das höchste in der Stapelreihenfolge gewählt.
+: Gibt den Pfadnamen des Fensters zurück, das den durch *rootX* und *rootY* gegebenen Punkt enthält. *RootX* und *rootY* sind in Bildschirmeinheiten angegeben (d. h. in jeder für [Tk\_GetPixels][GetPixels] zulässigen Form) im Koordinatensystem des Root-Fensters (bei Verwendung eines Virtual-Root-Fenstermanagers wird das Koordinatensystem des virtuellen Root-Fensters verwendet). Ist die Option **-displayof** angegeben, beziehen sich die Koordinaten auf den Bildschirm, der *window* enthält; andernfalls auf den Bildschirm des Hauptfensters der Anwendung. Enthält kein Fenster in dieser Anwendung den Punkt, wird eine leere Zeichenkette zurückgegeben. Eine leere Zeichenkette wird auch zurückgegeben, wenn der Punkt in der Titelleiste oder im Rahmen des höchsten enthaltenden Toplevel in dieser Anwendung liegt. (Beachten Sie, dass bei manchen Fenstermanagern die Rahmen unsichtbar sein können.) Bei der Auswahl des enthaltenden Fensters haben Kinder höhere Priorität als Eltern, und unter Geschwistern wird das höchste in der Stapelreihenfolge gewählt.
 
 **winfo depth** *window*
 : Gibt eine Dezimalzeichenkette zurück, die die Tiefe von *window* angibt (Anzahl der Bits pro Pixel).
@@ -86,13 +86,13 @@ Der Befehl **winfo** dient dazu, Informationen über von Tk verwaltete Fenster a
 : Gibt **1** zurück, wenn *window* derzeit gemappt ist, andernfalls **0**.
 
 **winfo manager** *window*
-: Gibt den Namen des Geometrie-Managers zurück, der derzeit für *window* verantwortlich ist, oder einen leeren String, wenn *window* von keinem Geometrie-Manager verwaltet wird. Der Name ist in der Regel der Name des Tcl-Befehls für den Geometrie-Manager, z. B. [pack] oder [place]. Ist der Geometrie-Manager ein Widget, z. B. Canvas oder Text, ist der Name der Klassenbefehl des Widgets, z. B. [canvas].
+: Gibt den Namen des Geometrie-Managers zurück, der derzeit für *window* verantwortlich ist, oder eine leere Zeichenkette, wenn *window* von keinem Geometrie-Manager verwaltet wird. Der Name ist in der Regel der Name des Tcl-Befehls für den Geometrie-Manager, z. B. [pack] oder [place]. Ist der Geometrie-Manager ein Widget, z. B. Canvas oder Text, ist der Name der Klassenbefehl des Widgets, z. B. [canvas].
 
 **winfo name** *window*
 : Gibt den Namen von *window* zurück (d. h. seinen Namen innerhalb des Eltern-Widgets, im Gegensatz zum vollständigen Pfadnamen). Der Befehl **winfo name .** gibt den Namen der Anwendung zurück.
 
 **winfo parent** *window*
-: Gibt den Pfadnamen des Eltern-Widgets von *window* zurück oder einen leeren String, wenn *window* das Hauptfenster der Anwendung ist.
+: Gibt den Pfadnamen des Eltern-Widgets von *window* zurück oder eine leere Zeichenkette, wenn *window* das Hauptfenster der Anwendung ist.
 
 **winfo pathname** ?**-displayof** *window*? *id*
 : Gibt den Pfadnamen des Fensters zurück, dessen X-Bezeichner *id* ist. *Id* muss eine Dezimal-, Hexadezimal- oder Oktalzahl sein und einem Fenster in der aufrufenden Anwendung entsprechen. Ist die Option **-displayof** angegeben, wird der Bezeichner auf dem Display von *window* nachgeschlagen; andernfalls auf dem Display des Hauptfensters der Anwendung.

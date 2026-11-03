@@ -1,75 +1,75 @@
 # pdf	mentry-en.pdf
 # label	Mentry
 # title	Mentry
-A mentry Widget for Ethernet Addresses	14
-A mentry Widget for Franking IDs	17
+A mentry Widget for Ethernet Addresses	13
+A mentry Widget for Franking IDs	16
 A mentry Widget for Phone Numbers	7
-adjustentry	48
-attrib	48
-Before-insert Callbacks for text and ctext Widgets	61
-cget	49
-clear	49
-configure	49
-DEFAULT BINDINGS	29,35,37,51
-entries	49
-entrycount	49
-entrylimit	49
-entrypath	49
-getarray	49
-getlist	49
-getstring	49
-hasattrib	49
+adjustentry	46
+attrib	47
+Before-insert Callbacks for text and ctext Widgets	60
+cget	47
+clear	47
+configure	47
+DEFAULT BINDINGS	28,34,36,49
+entries	47
+entrycount	47
+entrylimit	47
+entrypath	47
+getarray	47
+getlist	48
+getstring	48
+hasattrib	48
 index	3
-INDICES	47
-isempty	49
-isfull	50
-labelcount	50
-labelpath	50
-labels	50
+INDICES	46
+isempty	48
+isfull	48
+labelcount	48
+labelpath	48
+labels	48
 mentry	3
-mentry::dateMentry	29
-mentry::dateTimeMentry	30
-mentry::fixedPointMentry	33
-mentry::getClockVal	32
-mentry::getCurrentTheme	39
-mentry::getIPAddr	36
-mentry::getIPv6Addr	38
-mentry::getReal	34
-mentry::getThemes	40
-mentry::ipAddrMentry	35
-mentry::ipv6AddrMentry	37
-mentry::putClockVal	32
-mentry::putIPAddr	36
-mentry::putIPv6Addr	37
-mentry::putReal	34
-mentry::setTheme	39
-mentry::setThemeDefaults	40
-mentry::timeMentry	30
-mentryDateTime	28
-mentryFixedPoint	33
-mentryIPAddr	34
-mentryIPv6Addr	36
-mentryThemes	38
-mentryWidget	42
+mentry::dateMentry	27
+mentry::dateTimeMentry	29
+mentry::fixedPointMentry	32
+mentry::getClockVal	31
+mentry::getCurrentTheme	38
+mentry::getIPAddr	34
+mentry::getIPv6Addr	36
+mentry::getReal	33
+mentry::getThemes	38
+mentry::ipAddrMentry	33
+mentry::ipv6AddrMentry	35
+mentry::putClockVal	30
+mentry::putIPAddr	34
+mentry::putIPv6Addr	36
+mentry::putReal	32
+mentry::setTheme	37
+mentry::setThemeDefaults	38
+mentry::timeMentry	28
+mentryDateTime	27
+mentryFixedPoint	31
+mentryIPAddr	33
+mentryIPv6Addr	35
+mentryThemes	37
+mentryWidget	40
 More on Mentry_tile	6
-OPTIONS FOR ALL ENTRY COMPONENTS	45
-put	50
-setentryextrawidth	50
-setentryfont	50
-setentrywidth	50
-Tile-Based Demo Scripts	26
-unsetattrib	51
-Using mentry Widgets for Date and Time	21
-wcb::callback	52
-wcb::cancel	56
-wcb::canceled	57
-wcb::cbappend	56
-wcb::cbprepend	56
-wcb::changeEntryText	58
-wcb::extend	57
-wcb::pathname	58
-wcb::postDeleteEntryText	59
-wcb::postInsertEntryLen	59
-wcb::postInsertEntryText	59
-wcb::replace	57
-wcbRef	52
+OPTIONS FOR ALL ENTRY COMPONENTS	44
+put	48
+setentryextrawidth	48
+setentryfont	49
+setentrywidth	49
+Tile-Based Demo Scripts	25
+unsetattrib	49
+Using mentry Widgets for Date and Time	20
+wcb::callback	51
+wcb::cancel	54
+wcb::canceled	55
+wcb::cbappend	54
+wcb::cbprepend	54
+wcb::changeEntryText	56
+wcb::extend	55
+wcb::pathname	56
+wcb::postDeleteEntryText	58
+wcb::postInsertEntryLen	57
+wcb::postInsertEntryText	57
+wcb::replace	56
+wcbRef	50

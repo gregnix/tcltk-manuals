@@ -41,7 +41,7 @@ Das Paket **ntext** stellt ein Bindungs-Tag namens *Ntext* zur Verfügung, das v
 
 Das Text-Widget von Tk kann so konfiguriert werden, dass Textzeilen, die länger sind als die Breite des Textbereichs, umgebrochen werden – eine Funktion, die man aus Texteditoren und Textverarbeitungsprogrammen kennt.  Eine vollständige Textzeile (abgegrenzt durch Zeilenumbrüche oder durch den Anfang bzw. das Ende des Dokuments) wird als „logische Zeile“ bezeichnet. Wenn eine logische Zeile auf mehrere Zeilen des Anzeigebereichs umgebrochen wird, werden diese Fragmente der logischen Zeile als „Anzeigzeilen“ bezeichnet.
 
-Beginnt eine logische Zeile mit Leerraum, beginnen die umbrochenen Anzeigezeilen weiter links als die erste Anzeigezeile. Das Layout kann dadurch unordentlich und schwer lesbar werden. Das Binding-Tag *Ntext* kann ein Text-Widget im Modus *-wrap* *word* so einrichten, dass die Anzeigezeilen außer der ersten automatisch zum anfänglichen Leerraum der ersten Anzeigezeile eingerückt werden.
+Beginnt eine logische Zeile mit Leerraum, beginnen die umbrochenen Anzeigezeilen weiter links als die erste Anzeigezeile. Das Layout kann dadurch unordentlich und schwer lesbar werden. Das Bindungs-Tag *Ntext* kann ein Text-Widget im Modus *-wrap* *word* so einrichten, dass die Anzeigezeilen außer der ersten automatisch zum anfänglichen Leerraum der ersten Anzeigezeile eingerückt werden.
 
 Diese Einrückung steht Text-Widgets nur im *-wrap* *word*-Modus zur Verfügung.
 
@@ -95,7 +95,7 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 So verwenden Sie die Einrückung der Anzeigezeile von *Ntext*:
 
-1. Setzen Sie die Variable **::ntext::classicWrap** auf **0** (der Standardwert lautet **1**).  Dadurch werden Bindings aktiviert, die die Einrückung beibehalten, wenn der Benutzer den Inhalt des Widgets über Tastatur und Maus ändert.  Wenn das Widget bereits Text enthält, rufen Sie **::ntext::wrapIndent** auf, um die Einrückung zu initialisieren.
+1. Setzen Sie die Variable **::ntext::classicWrap** auf **0** (der Standardwert lautet **1**).  Dadurch werden Bindungen aktiviert, die die Einrückung beibehalten, wenn der Benutzer den Inhalt des Widgets über Tastatur und Maus ändert.  Wenn das Widget bereits Text enthält, rufen Sie **::ntext::wrapIndent** auf, um die Einrückung zu initialisieren.
 
     Weitere Anweisungen gelten, wenn das Programm den Inhalt des Widgets, die Zeilenumbruch-Konfiguration oder die Einrückungskonfiguration ändert.
 

@@ -73,9 +73,9 @@ Dieses Paket enthält ein Kalender-Megawidget (snidget).
 
 Gibt einen Teil des ausgewählten Datums oder all zurück. Das Argument *what* wählt den Teil. Zulässige Werte für *what* sind day, month, year und all. all ist die Vorgabe und gibt das vollständige Datum in dem mit -dateformat angegebenen Format zurück.
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Beim Erstellen des Kalender-Widgets werden die folgenden Bindings eingerichtet. Beim Drücken einer Taste wird der Befehl aufgerufen und die Textvariable aktualisiert. aktualisiert.
+Beim Erstellen des Kalender-Widgets werden die folgenden Bindungen eingerichtet. Beim Drücken einer Taste wird der Befehl aufgerufen und die Textvariable aktualisiert. aktualisiert.
 
 - Home – Zum aktuellen Datum wechseln
 

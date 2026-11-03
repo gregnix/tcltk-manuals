@@ -38,105 +38,105 @@ dict - Verarbeitet Dictionaries
 
 # Beschreibung
 
-Führt je nach *option* eine von mehreren Operationen auf Dictionary-Werten oder Variablen mit Dictionary-Werten aus (siehe Abschnitt [Dictionary-Werte]). Zulässige *option*s (abkürzbar):
+Führt abhängig von *option* eine von mehreren Operationen auf Dictionary-Werten oder auf Variablen aus, die Dictionary-Werte enthalten (eine Beschreibung finden Sie unten im Abschnitt [Dictionary-Werte]). Die zulässigen Werte für *option* (sie dürfen abgekürzt werden) sind:
 
 **dict append** *dictionaryVariable key* ?*string ...*?
-: Hängt die angegebenen Zeichenketten an den Wert an, den *key* im Dictionary in *dictionaryVariable* abbildet, und schreibt das resultierende Dictionary zurück in die Variable. Fehlende Schlüssel gelten als leere Zeichenkette. Gibt das aktualisierte Dictionary zurück.
+: Hängt die angegebene Zeichenkette (oder die angegebenen Zeichenketten) an den Wert an, auf den der angegebene Schlüssel im Dictionary-Wert der angegebenen Variable abgebildet wird, und schreibt den resultierenden Dictionary-Wert in diese Variable zurück. Nicht existierende Schlüssel werden so behandelt, als würden sie auf eine leere Zeichenkette abgebildet. Der aktualisierte Dictionary-Wert wird zurückgegeben.
 
 **dict create** ?*key value ...*?
-: Gibt ein neues Dictionary mit allen als Argumente angegebenen Schlüssel/Wert-Paaren zurück (Schlüssel und Werte abwechselnd).
+: Gibt ein neues Dictionary zurück, das jede der als Argumente aufgeführten Schlüssel/Wert-Abbildungen enthält (Schlüssel und Werte wechseln sich ab, wobei auf jeden Schlüssel der zugehörige Wert folgt).
 
 **dict exists** *dictionaryValue key* ?*key ...*?
-: Gibt einen booleschen Wert zurück, ob der Schlüssel (oder Pfad durch verschachtelte Dictionaries) in *dictionaryValue* existiert — genau dann, wenn **dict get** auf diesem Pfad erfolgreich wäre.
+: Gibt einen booleschen Wert zurück, der angibt, ob der angegebene Schlüssel (oder ein Pfad von Schlüsseln durch mehrere verschachtelte Dictionaries) im angegebenen Dictionary-Wert existiert. Der Wert ist genau dann wahr, wenn **dict get** auf diesem Pfad erfolgreich wäre.
 
 **dict filter** *dictionaryValue filterType arg* ?*arg ...*?
-: Nimmt ein Dictionary und gibt ein neues zurück, das nur die passenden Schlüssel/Wert-Paare enthält. Unterstützte *filterType* (abkürzbar):
+: Nimmt einen Dictionary-Wert entgegen und gibt ein neues Dictionary zurück, das nur die Schlüssel/Wert-Paare enthält, die dem angegebenen Filtertyp entsprechen (der Filtertyp darf abgekürzt werden). Unterstützte Filtertypen sind:
 
     **dict filter** *dictionaryValue* **key** ?*globPattern ...*?
-    : [Die key-Regel behält Paare, deren Schlüssel einem der Muster entsprechen (Stil von [string match][string]).]{version="8.6"}
+    : [Die key-Regel trifft nur auf die Schlüssel/Wert-Paare zu, deren Schlüssel einem der angegebenen Muster entsprechen (im Stil von [string match][string]).]{version="8.6"}
 
     **dict filter** *dictionaryValue* **script {***keyVariable valueVariable***}** *script*
-    : Die script-Regel weist Schlüssel und Wert den Variablen zu und wertet *script* aus (boolesches Ergebnis). Das erste Argument nach der Regel ist eine zweielementige Liste. [TCL\_BREAK][catch] beendet die weitere Prüfung; [TCL\_CONTINUE][catch] entspricht „falsch“. Paare werden in Einfügereihenfolge getestet.
+    : Die script-Regel prüft auf Übereinstimmung, indem sie den Schlüssel der Variable *keyVariable* und den Wert der Variable *valueVariable* zuweist und dann das angegebene Skript auswertet, das einen booleschen Wert ergeben soll (das Schlüssel/Wert-Paar wird nur dann in das Ergebnis von **dict filter** aufgenommen, wenn ein wahrer Wert zurückgegeben wird). Beachten Sie, dass das erste Argument nach dem Wort, das die Regel auswählt, eine Liste mit zwei Elementen ist. Endet *script* mit dem Status [TCL\_BREAK][catch], werden keine weiteren Schlüssel/Wert-Paare für die Aufnahme in das resultierende Dictionary geprüft; der Status [TCL\_CONTINUE][catch] entspricht einem falschen Ergebnis. Die Schlüssel/Wert-Paare werden in der Reihenfolge geprüft, in der die Schlüssel in das Dictionary eingefügt wurden.
 
     **dict filter** *dictionaryValue* **value** ?*globPattern ...*?
-    : [Die value-Regel behält Paare, deren Werte einem der Muster entsprechen ([string match][string]).]{version="8.6"}
+    : [Die value-Regel trifft nur auf die Schlüssel/Wert-Paare zu, deren Werte einem der angegebenen Muster entsprechen (im Stil von [string match][string]).]{version="8.6"}
 
 
 **dict for {***keyVariable valueVariable***}** *dictionaryValue body*
-: Drei Argumente: zweielementige Liste von Variablennamen, Dictionary-Wert, Skript (wie [foreach]). Ergebnis: leere Zeichenkette. [TCL\_BREAK][catch] beendet die Iteration sofort erfolgreich; [TCL\_CONTINUE][catch] wie [TCL\_OK][catch]. Iterationsreihenfolge = Einfügereihenfolge der Schlüssel.
+: Dieser Befehl nimmt drei Argumente entgegen: als erstes eine Liste mit zwei Variablennamen (für den Schlüssel bzw. den Wert jeder Abbildung im Dictionary), als zweites den Dictionary-Wert, über den iteriert wird, und als drittes ein Skript, das für jede Abbildung ausgewertet wird, wobei die Schlüssel- und die Wertvariable jeweils passend gesetzt sind (nach Art von [foreach]). Das Ergebnis des Befehls ist eine leere Zeichenkette. Liefert eine Auswertung des Rumpfs das Ergebnis [TCL\_BREAK][catch], wird über keine weiteren Paare des Dictionarys iteriert, und der Befehl **dict for** endet sofort erfolgreich. Liefert eine Auswertung des Rumpfs das Ergebnis [TCL\_CONTINUE][catch], wird es genau wie ein normales Ergebnis [TCL\_OK][catch] behandelt. Die Iterationsreihenfolge ist die Reihenfolge, in der die Schlüssel in das Dictionary eingefügt wurden.
 
 **dict get** *dictionaryValue* ?*key ...*?
-: Liest den Wert zu *key* aus *dictionaryValue*. Mehrere *key*s: wie **dict get \[dict get $dictVal $key\] …** mit den restlichen Schlüsseln — Nachschlagen in verschachtelten Dictionaries. Beispiel, äquivalent:
+: Liest zu einem Dictionary-Wert (erstes Argument) und einem Schlüssel (zweites Argument) den Wert für diesen Schlüssel aus. Werden mehrere Schlüssel angegeben, verhält sich der Befehl so, als würde das Ergebnis von **dict get $dictVal $key** als erstes Argument an **dict get** übergeben, mit den übrigen Argumenten als zweitem (und gegebenenfalls weiteren) Argument. Das erleichtert das Nachschlagen in verschachtelten Dictionaries. Zum Beispiel sind die folgenden beiden Befehle gleichwertig:
 
     ```
     dict get $dict foo bar spong
     dict get [dict get [dict get $dict foo] bar] spong
     ```
 
-    Ohne Schlüssel: Liste von Paaren wie [array get][array] (Schlüssel, Wert, …).
+    Werden keine Schlüssel angegeben, gibt **dict get** eine Liste mit Paaren von Elementen zurück, ähnlich wie [array get][array]. Das heißt, das erste Element jedes Paars ist der Schlüssel und das zweite Element der Wert für diesen Schlüssel.
 
-    Fehler, wenn ein Schlüssel fehlt.
+    Es ist ein Fehler, den Wert für einen Schlüssel abrufen zu wollen, der im Dictionary nicht vorhanden ist.
 
 **dict incr** *dictionaryVariable key* ?*increment*?
-: Addiert *increment* (Ganzzahl, Standard 1) zum Wert von *key* in *dictionaryVariable* und schreibt zurück. Fehlende Schlüssel gelten als 0. Fehler, wenn der bestehende Wert keine Ganzzahl ist. Gibt das aktualisierte Dictionary zurück.
+: Addiert den angegebenen Inkrementwert (eine Ganzzahl, die standardmäßig 1 ist, wenn sie nicht angegeben wird) zu dem Wert, auf den der angegebene Schlüssel im Dictionary-Wert der angegebenen Variable abgebildet wird, und schreibt den resultierenden Dictionary-Wert in diese Variable zurück. Nicht existierende Schlüssel werden so behandelt, als würden sie auf 0 abgebildet. Es ist ein Fehler, den Wert eines vorhandenen Schlüssels zu erhöhen, wenn dieser Wert keine Ganzzahl ist. Der aktualisierte Dictionary-Wert wird zurückgegeben.
 
 **dict info** *dictionaryValue*
-: Informationen zum Dictionary (für Menschen); Format implementationsabhängig. Bei Hash-Tabellen oft [Tcl\_HashStats][Hash], analog [array statistics][array].
+: Gibt Informationen über das angegebene Dictionary zurück (zur Anzeige für Menschen gedacht). Das Format dieser Daten hängt jedoch von der Implementierung des Dictionarys ab. Für Dictionaries, die mit Hash-Tabellen implementiert sind, wird erwartet, dass die von [Tcl\_HashStats][Hash] erzeugte Zeichenkette zurückgegeben wird, ähnlich wie bei [array statistics][array].
 
 **dict keys** *dictionaryValue* ?*globPattern*?
-: Liste aller Schlüssel; mit Muster nur passende ([string match][string]). Reihenfolge = Einfügereihenfolge.
+: Gibt eine Liste aller Schlüssel im angegebenen Dictionary-Wert zurück. Wird ein Muster angegeben, werden nur die Schlüssel zurückgegeben, die ihm entsprechen (nach den Regeln von [string match][string]). Die zurückgegebenen Schlüssel stehen in der Reihenfolge, in der sie in das Dictionary eingefügt wurden.
 
 **dict lappend** *dictionaryVariable key* ?*value ...*?
-: Hängt die angegebenen Elemente an den Listenwert an, den *key* im Dictionary in *dictionaryVariable* abbildet, und schreibt das resultierende Dictionary zurück in die Variable. Fehlende Schlüssel gelten als leere Liste; es dürfen auch keine Elemente angegeben werden. Fehler, wenn der Wert des Schlüssels nicht als Liste darstellbar ist. Gibt das aktualisierte Dictionary zurück.
+: Hängt die angegebenen Elemente an den Listenwert an, auf den der angegebene Schlüssel im Dictionary-Wert der angegebenen Variable abgebildet wird, und schreibt den resultierenden Dictionary-Wert in diese Variable zurück. Nicht existierende Schlüssel werden so behandelt, als würden sie auf eine leere Liste abgebildet. Es ist zulässig, keine Elemente zum Anhängen anzugeben. Es ist ein Fehler, wenn sich der Wert, auf den der Schlüssel abgebildet wird, nicht als Liste darstellen lässt. Der aktualisierte Dictionary-Wert wird zurückgegeben.
 
 **dict map** {*keyVariable valueVariable*} *dictionaryValue body*
-: Transformation je Mapping; neues Dictionary (wie [lmap]). Bei normalem [TCL\_OK][catch] (im Gegensatz zu [error] usw.) landet das Skriptergebnis im Akkumulator unter dem aktuellen *keyVariable*-Inhalt.
+: Dieser Befehl wendet eine Transformation auf jedes Element eines Dictionarys an und gibt ein neues Dictionary zurück. Er nimmt drei Argumente entgegen: als erstes eine Liste mit zwei Variablennamen (für den Schlüssel bzw. den Wert jeder Abbildung im Dictionary), als zweites den Dictionary-Wert, über den iteriert wird, und als drittes ein Skript, das für jede Abbildung ausgewertet wird, wobei die Schlüssel- und die Wertvariable jeweils passend gesetzt sind (nach Art von [lmap]). In einer Iteration, in der das ausgewertete Skript normal endet ([TCL\_OK][catch], im Gegensatz etwa zu einem [error]), wird das Ergebnis des Skripts in ein Sammel-Dictionary aufgenommen, und zwar unter dem Schlüssel, der zu diesem Zeitpunkt der aktuelle Inhalt der Variable *keyVariable* ist. Das Ergebnis des Befehls **dict map** ist das Sammel-Dictionary, nachdem über alle Schlüssel iteriert wurde.
 
-    [break] beendet sofort; [continue] überspringt die aktuelle Iteration ohne Änderung am Akkumulator. Reihenfolge wie **dict for**.
+    Erzeugt die Auswertung des Rumpfs in einem Schritt ein [break], wird über keine weiteren Paare des Dictionarys iteriert, und der Befehl **dict map** endet sofort erfolgreich. Erzeugt die Auswertung des Rumpfs in einem Schritt das Ergebnis [continue], wird die aktuelle Iteration abgebrochen, und das Sammel-Dictionary bleibt unverändert. Die Iterationsreihenfolge ist die natürliche Reihenfolge des Dictionarys (in der Regel die Reihenfolge, in der die Schlüssel zum Dictionary hinzugefügt wurden; es ist dieselbe Reihenfolge wie bei **dict for**).
 
 **dict merge** ?*dictionaryValue ...*?
-: Dictionary mit allen Inhalten der Argumente; bei gleichem Schlüssel gewinnt der Wert aus dem letzten Dictionary mit diesem Schlüssel.
+: Gibt ein Dictionary zurück, das den Inhalt aller *dictionaryValue*-Argumente enthält. Enthalten zwei (oder mehr) Dictionaries eine Abbildung für denselben Schlüssel, bildet das resultierende Dictionary diesen Schlüssel auf den Wert aus dem letzten Dictionary in der Befehlszeile ab, das eine Abbildung für diesen Schlüssel enthält.
 
 **dict remove** *dictionaryValue* ?*key ...*?
-: Kopie ohne die genannten Schlüssel; kein Schlüssel nötig; fehlende Schlüssel sind unkritisch.
+: Gibt ein neues Dictionary zurück, das eine Kopie des als erstes Argument übergebenen alten Dictionarys ist, jedoch ohne Abbildungen für die aufgeführten Schlüssel. Es ist zulässig, keine zu entfernenden Schlüssel anzugeben. Ebenso ist es zulässig, dass einer der zu entfernenden Schlüssel im Eingabe-Dictionary gar nicht vorhanden ist.
 
 **dict replace** *dictionaryValue* ?*key value ...*?
-: Kopie mit geänderten oder neuen Paaren; ohne Paare erlaubt; Schlüssel ohne Wert ist Fehler.
+: Gibt ein neues Dictionary zurück, das eine Kopie des als erstes Argument übergebenen alten Dictionarys ist, jedoch mit einigen geänderten Werten oder einigen zusätzlichen Schlüssel/Wert-Paaren. Es ist zulässig, diesen Befehl ohne Schlüssel/Wert-Paare aufzurufen, aber unzulässig, ihn mit einem Schlüssel ohne Wert aufzurufen.
 
 **dict set** *dictionaryVariable key* ?*key ...*? *value*
-: Setzt in *dictionaryVariable* die Abbildung von *key* (bzw. verschachtelter Pfad) auf *value*; erzeugt bei Bedarf verschachtelte Dictionaries. Gibt das aktualisierte Dictionary zurück.
+: Diese Operation nimmt den Namen einer Variable entgegen, die einen Dictionary-Wert enthält, und legt in dieser Variable einen aktualisierten Dictionary-Wert ab, der eine Abbildung vom angegebenen Schlüssel auf den angegebenen Wert enthält. Sind mehrere Schlüssel angegeben, erzeugt oder aktualisiert diese Operation eine Kette verschachtelter Dictionaries. Der aktualisierte Dictionary-Wert wird zurückgegeben.
 
 **dict size** *dictionaryValue*
-: Anzahl der Schlüssel/Wert-Paare.
+: Gibt die Anzahl der Schlüssel/Wert-Abbildungen im angegebenen Dictionary-Wert zurück.
 
 **dict unset** *dictionaryVariable key* ?*key ...*?
-: Entfernt die Abbildung für *key* (Pfad durch verschachtelte Dictionaries); mindestens ein *key*; der letzte auf dem Pfad darf fehlen, alle anderen müssen existieren. Gibt das aktualisierte Dictionary zurück.
+: Diese Operation (das Gegenstück zu **dict set**) nimmt den Namen einer Variable entgegen, die einen Dictionary-Wert enthält, und legt in dieser Variable einen aktualisierten Dictionary-Wert ab, der keine Abbildung für den angegebenen Schlüssel enthält. Sind mehrere Schlüssel angegeben, beschreiben sie einen Pfad durch verschachtelte Dictionaries zu der Abbildung, die entfernt werden soll. Mindestens ein Schlüssel muss angegeben werden, der letzte Schlüssel auf dem Schlüsselpfad muss jedoch nicht existieren. Alle anderen Bestandteile des Pfads müssen existieren. Der aktualisierte Dictionary-Wert wird zurückgegeben.
 
 **dict update** *dictionaryVariable key varName* ?*key varName ...*? *body*
-: Führt *body* aus, wobei jeder *key* (aus *dictionaryVariable*) der Variable *varName* zugeordnet ist. Fehlender Schlüssel = unset *varName*. Nach *body* (auch bei Fehler oder Ausnahme) werden Änderungen an den *varName*s zurück ins Dictionary geschrieben — außer *dictionaryVariable* wird unlesbar, dann werden Updates verworfen. Ergebnis von **dict update** ist (ohne Fehler) das Ergebnis von *body*.
+: Führt das Tcl-Skript in *body* aus, wobei der Wert jedes *key* (wie er beim Lesen des Dictionary-Werts in *dictionaryVariable* gefunden wird) der Variable *varName* zugeordnet ist. Es darf mehrere *key*/*varName*-Paare geben. Hat ein *key* keine Abbildung, entspricht das einer nicht gesetzten Variable *varName*. Wenn *body* endet, werden alle Änderungen an den *varName*s in das Dictionary in *dictionaryVariable* zurückübertragen (es sei denn, *dictionaryVariable* selbst ist nicht mehr lesbar; dann werden alle Aktualisierungen stillschweigend verworfen). Das gilt auch, wenn *body* mit einem Fehler oder auf eine andere außergewöhnliche Weise endet. Das Ergebnis von **dict update** ist (sofern kein Fehler auftritt) das Ergebnis der Auswertung von *body*.
 
-    Jede *varName* liegt im umschließenden Gültigkeitsbereich von **dict update**; empfohlen nur lokal ([proc], Lambda für [apply], Methode). Die Variablen existieren nach dem Befehl weiter (sofern nicht [unset]). Die Zuordnung von Werten zu Variablen verwendet keine Traces; der Inhalt von *dictionaryVariable* ändert sich erst, wenn *body* endet.
+    Jede *varName* wird im Gültigkeitsbereich zugeordnet, der **dict update** umschließt. Es wird empfohlen, diesen Befehl nur in einem lokalen Gültigkeitsbereich zu verwenden ([proc]-Prozedur, Lambda-Ausdruck für [apply] oder Methode). Deshalb bestehen die von **dict update** gesetzten Variablen auch nach dem Ende des Befehls weiter (sofern sie nicht ausdrücklich mit [unset] entfernt werden). Beachten Sie, dass die Zuordnung von Werten zu Variablen keine Traces verwendet; der Inhalt von *dictionaryVariable* ändert sich erst, wenn *body* endet.
 
 **dict values** *dictionaryValue* ?*globPattern*?
-: Liste aller Werte; mit Muster nur passende Werte ([string match][string]). Reihenfolge der Werte = Einfügereihenfolge der zugehörigen Schlüssel.
+: Gibt eine Liste aller Werte im angegebenen Dictionary-Wert zurück. Wird ein Muster angegeben, werden nur die Werte zurückgegeben, die ihm entsprechen (nach den Regeln von [string match][string]). Die zurückgegebenen Werte stehen in der Reihenfolge, in der die zugehörigen Schlüssel in das Dictionary eingefügt wurden.
 
 **dict with** *dictionaryVariable* ?*key ...*? *body*
-: Führt *body* aus; jeder Schlüssel in *dictionaryVariable* wird einer gleichnamigen Variable zugeordnet (ähnlich **dict update**). Mit *key*s: Pfad durch verschachtelte Dictionaries; innerstes Dictionary wird geöffnet. Wie bei **dict update**: unlesbare Variable oder zerstörte Pfadkette verwirft Updates. Ergebnis ist (ohne Fehler) das Ergebnis von *body*.
+: Führt das Tcl-Skript in *body* aus, wobei der Wert jedes Schlüssels in *dictionaryVariable* (ähnlich wie bei **dict update**) einer gleichnamigen Variable zugeordnet ist. Sind ein oder mehrere *key*s angegeben, bezeichnen sie eine Kette verschachtelter Dictionaries; geöffnet wird dann für die Ausführung von *body* das innerste Dictionary. Wie bei **dict update** führt eine nicht mehr lesbare *dictionaryVariable* dazu, dass die Aktualisierungen des Dictionarys verworfen werden. Das geschieht auch, wenn der Inhalt von *dictionaryVariable* so geändert wird, dass die Kette der Dictionaries nicht mehr existiert. Das Ergebnis von **dict with** ist (sofern kein Fehler auftritt) das Ergebnis der Auswertung von *body*.
 
-    Die Variablen liegen im umschließenden Gültigkeitsbereich von **dict with**; empfohlen nur lokal ([proc], Lambda für [apply], Methode). Die Variablen bleiben nach dem Befehl bestehen (sofern nicht [unset]). Die Zuordnung von Werten zu Variablen verwendet keine Traces; der Inhalt von *dictionaryVariable* ändert sich erst, wenn *body* endet.
+    Die Variablen werden im Gültigkeitsbereich zugeordnet, der **dict with** umschließt. Es wird empfohlen, diesen Befehl nur in einem lokalen Gültigkeitsbereich zu verwenden ([proc]-Prozedur, Lambda-Ausdruck für [apply] oder Methode). Deshalb bestehen die von **dict with** gesetzten Variablen auch nach dem Ende des Befehls weiter (sofern sie nicht ausdrücklich mit [unset] entfernt werden). Beachten Sie, dass die Zuordnung von Werten zu Variablen keine Traces verwendet; der Inhalt von *dictionaryVariable* ändert sich erst, wenn *body* endet.
 
-    Ist der Inhalt von *dictionaryVariable* beim Beenden von *body* kein Dictionary (z. B. wenn der Name mit einem Schlüssel kollidiert), tritt ein Fehler auf — nicht empfohlen, wenn Schlüssel mit *dictionaryVariable* kollidieren können. Mappt der Schlüssel auf ein Dictionary, wird das innere in das äußere eingefügt; siehe [Beispiele].
+    Enthält *dictionaryVariable* zu dem Zeitpunkt, an dem *body* endet, einen Wert, der kein Dictionary ist, tritt an dieser Stelle ein Fehler auf. Das kann leicht passieren, wenn der Variablenname mit einem der Schlüssel im Dictionary übereinstimmt. Dieser Befehl wird daher nicht empfohlen, wenn zu erwarten ist, dass Schlüssel im Dictionary mit dem Namen von *dictionaryVariable* selbst kollidieren. Wird der enthaltene Schlüssel tatsächlich auf ein Dictionary abgebildet, wird im Endeffekt dieses innere Dictionary mit dem äußeren zusammengeführt; ein Beispiel dazu finden Sie unten unter [Beispiele].
 
 
 # Dictionary-Werte
 
-Dictionaries sind Werte mit effizienter, reihenfolgetreuer Abbildung beliebiger Schlüssel auf beliebige Werte; jeder Schlüssel mappt auf genau einen Wert. Textuell entsprechen sie einer Liste mit gerader Elementanzahl (je Mapping zwei Elemente). Erzeugt ein Befehl aus einem Dictionary ein neues (Rückgabe oder Zurückschreiben in die Ausgangsvariable), bleibt die Schlüsselreihenfolge erhalten — gelöschte Schlüssel entfallen, neue kommen ans Ende. Bei doppelten Schlüsseln in der Zeichenkettendarstellung zählt nur der letzte Wert; „apple banana“ und „apple carrot apple banana“ sind äquivalente Dictionaries (unterschiedliche Darstellung).
+Dictionaries sind Werte, die eine effiziente, reihenfolgeerhaltende Abbildung von beliebigen Schlüsseln auf beliebige Werte enthalten. Jeder Schlüssel im Dictionary wird auf genau einen Wert abgebildet. Ihr Textformat ist genau das einer beliebigen Liste mit einer geraden Anzahl von Elementen, wobei jede Abbildung im Dictionary durch zwei Elemente der Liste dargestellt wird. Nimmt ein Befehl ein Dictionary entgegen und erzeugt daraus ein neues Dictionary (das er entweder zurückgibt oder in die Variable zurückschreibt, aus der das Ausgangs-Dictionary gelesen wurde), hat das neue Dictionary dieselbe Schlüsselreihenfolge; ausgenommen sind gelöschte Schlüssel, und neue Schlüssel werden am Ende angefügt. Wird eine Zeichenkette als Dictionary interpretiert und enthielte sie sonst doppelte Schlüssel, wird für einen bestimmten Schlüssel nur der letzte Wert verwendet; die anderen werden ignoriert. Daher sind „apple banana“ und „apple carrot apple banana“ gleichwertige Dictionaries (mit unterschiedlichen Zeichenkettendarstellungen).
 
-Operationen, die ein neues Dictionary aus einem alten ableiten (**dict set**, **dict unset**, …), erhalten die Schlüsselreihenfolge; neue Schlüssel werden angehängt, entfernte gestrichen.
+Operationen, die ein neues Dictionary aus einem alten ableiten (z. B. Aktualisierungen wie **dict set** und **dict unset**), erhalten die Reihenfolge der Schlüssel im Dictionary. Ausgenommen davon sind neu hinzugefügte Schlüssel, die an die Folge angehängt werden, sowie entfernte Schlüssel, die aus der Reihenfolge herausgenommen werden.
 
 # Beispiele
 
-Grundlegende Dictionary-Nutzung:
+Grundlegende Verwendung von Dictionaries:
 
 ```
 # Dictionary: Endungen -> Beschreibungen
@@ -162,7 +162,7 @@ foreach filename [glob *] {
 }
 ```
 
-Verschachtelte Dictionaries:
+Verschachtelte Dictionaries erzeugen und verwenden:
 
 ```
 # Data for one employee
@@ -196,7 +196,7 @@ foreach id [dict keys $employeeInfo] {
 }
 ```
 
-Lokalisierbare Variante von [string toupper][string]:
+Eine lokalisierbare Variante von [string toupper][string]:
 
 ```
 # Set up the basic C locale
@@ -217,7 +217,7 @@ set upperCaseMap [dict get $capital $env(LANG)]
 set upperCase [string map $upperCaseMap $string]
 ```
 
-Detail von **dict with**:
+Die Arbeitsweise von **dict with** im Detail:
 
 ```
 proc sumDictionary {varName} {
@@ -246,7 +246,7 @@ puts "dictionary is now \"$myDict\""
 #    prints: dictionary is now "a {total 6} b {total 15}"
 ```
 
-**dict with** bei kollidierendem Schlüssel und Variablennamen:
+Wenn **dict with** mit einem Schlüssel verwendet wird, der mit dem Namen der Dictionary-Variable kollidiert:
 
 ```
 set foo {foo {a b} bar 2 baz 3}

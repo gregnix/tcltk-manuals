@@ -39,7 +39,7 @@ Die folgenden *Option-Wert*-Paare sind als Befehlszeilenargumente für diese bei
 : Legt fest, wie der Speichern-Dialog reagiert, wenn die gewählte Datei bereits existiert und das Speichern sie überschreiben würde. Ein wahrer Wert fordert einen Bestätigungsdialog. Ein falscher Wert überschreibt ohne Bestätigung. Standardwert ist true.
 
 [-defaultextension]{.lit} [extension]{.arg}
-: Legt einen String fest, der an den Dateinamen angehängt wird, wenn der Benutzer einen Dateinamen ohne Erweiterung eingibt. Standard ist der leere String, d. h. es wird in keinem Fall eine Erweiterung angehängt. Diese Option wird unter macOS ignoriert, wo Dateinamen keine Erweiterung benötigen; die UNIX-Implementierung leitet vernünftige Werte aus **-filetypes** ab, wenn nichts angegeben ist.
+: Legt eine Zeichenkette fest, die an den Dateinamen angehängt wird, wenn der Benutzer einen Dateinamen ohne Erweiterung eingibt. Standard ist die leere Zeichenkette, d. h. es wird in keinem Fall eine Erweiterung angehängt. Diese Option wird unter macOS ignoriert, wo Dateinamen keine Erweiterung benötigen; die UNIX-Implementierung leitet vernünftige Werte aus **-filetypes** ab, wenn nichts angegeben ist.
 
 [-filetypes]{.lit} [filePatternList]{.arg}
 : Existiert auf der Plattform eine **File types**-Listbox im Dateidialog, gibt diese Option die *filetype*s in dieser Listbox an. Wählt der Benutzer einen Dateityp, werden nur Dateien dieses Typs aufgelistet. Ist die Option nicht angegeben, leer oder wird die **File types**-Listbox von der Plattform nicht unterstützt, werden alle Dateien unabhängig vom Typ aufgelistet. Siehe Abschnitt [Dateimuster festlegen] unten zur Struktur von *filePatternList*.
@@ -60,13 +60,13 @@ Die folgenden *Option-Wert*-Paare sind als Befehlszeilenargumente für diese bei
 : Macht *window* zum logischen Elternfenster des Dateidialogs. Der Dialog wird über dem Elternfenster angezeigt. Unter macOS wird der Dialog zu einem Sheet am Elternfenster.
 
 [-title]{.lit} [titleString]{.arg}
-: Legt einen String als Titel des Dialogs fest. Ist die Option nicht angegeben, wird ein Standardtitel angezeigt.
+: Legt eine Zeichenkette als Titel des Dialogs fest. Ist die Option nicht angegeben, wird ein Standardtitel angezeigt.
 
 [-typevariable]{.lit} [variableName]{.arg}
 : Die globale Variable *variableName* wählt beim Öffnen des Dialogs den Filter aus *filterList* vor und wird beim Schließen auf den zuletzt gewählten Filter aktualisiert. Die Variable wird einmal zu Beginn gelesen. Existiert sie nicht, passt ihr Wert keinem Filter-Typnamen oder ist leer (**{}**), wählt der Dialog standardmäßig den ersten Filter. Wird der Dialog abgebrochen, bleibt die Variable unverändert.
 
 
-Wählt der Benutzer eine Datei, geben **tk\_getOpenFile** und **tk\_getSaveFile** den vollständigen Pfadnamen zurück. Bricht der Benutzer ab, geben beide Befehle den leeren String zurück.
+Wählt der Benutzer eine Datei, geben **tk\_getOpenFile** und **tk\_getSaveFile** den vollständigen Pfadnamen zurück. Bricht der Benutzer ab, geben beide Befehle die leere Zeichenkette zurück.
 
 # Dateimuster festlegen
 

@@ -1,5 +1,5 @@
-# Das `scrollutil::scrollsync` und  
- `scrollutil::getscrollsync` BEFEHLE
+# Die Befehle `scrollutil::scrollsync` und  
+ `scrollutil::getscrollsync`
 
 ## Für Scrollutil Version 2.11
 
@@ -45,7 +45,7 @@ scrollutil::scrollsync pathName ?options?
 [WIDGET-SPEZIFISCHE OPTIONEN](#der-befehl-scrollutil-scrollsync-ausf-hrliche-referenz)
 : `-takefocus 0|1|""|command`
 
-[Widget COMMAND](#der-befehl-scrollutil-scrollsync-ausf-hrliche-referenz)
+[WIDGET-BEFEHL](#der-befehl-scrollutil-scrollsync-ausf-hrliche-referenz)
 : `pathName attrib ?name ?value name value ...??`
 
 : `pathName cget option`
@@ -79,7 +79,7 @@ scrollutil::scrollsync pathName ?options?
 
 
 [SCHLÜSSELWÖRTER](#der-befehl-scrollutil-scrollsync-ausf-hrliche-referenz)
-: Scrollsync, Widget, Bildlauf
+: scrollsync, widget, scrolling
 
 
 [Inhalt](#inhalt)     [Startseite](index.md)
@@ -146,7 +146,7 @@ pack $sa -expand yes -fill both
 | Name der Datenbank: | ` takeFocus` |
 | Datenbankklasse: | ` TakeFocus` |
 
-Diese Option legt fest, ob das Scrollsync-Widget während der Tastaturnavigation den Fokus annimmt. Sie ist nahezu identisch mit der gleichnamigen Standardoption (Einzelheiten finden Sie im Handbucheintrag **options**).  Der einzige Unterschied besteht darin, dass nicht das „scrollsync“-Widget selbst, sondern das erste Element der Widget-Liste, die an den Unterbefehl `setwidgets` des zugehörigen Tcl-Befehls übergeben wird, den Fokus während der Tastaturnavigation mit den Standardtasten (`Tab` und `Shift-Tab`).  Die Standardeinstellung ist `0`, da ein „scrollsync“-Widget im Wesentlichen ein Container ist, der die oben genannten Widgets enthält.
+Diese Option legt fest, ob das Scrollsync-Widget während der Tastaturnavigation den Fokus annimmt. Sie ist nahezu identisch mit der gleichnamigen Standardoption (Einzelheiten finden Sie im Handbucheintrag **options**).  Der einzige Unterschied besteht darin, dass nicht das „scrollsync“-Widget selbst, sondern das erste Element der Widget-Liste, die an den Unterbefehl `setwidgets` des zugehörigen Tcl-Befehls übergeben wird, den Fokus während der Tastaturnavigation mit den Standardtasten (`Tab` und `Shift-Tab`) erhält.  Die Standardeinstellung ist `0`, da ein „scrollsync“-Widget im Wesentlichen ein Container ist, der die oben genannten Widgets enthält.
 
 **WIDGET-BEFEHL**
 : Der Befehl `scrollutil::scrollsync` erstellt einen neuen Tcl-Befehl mit dem Namen `pathName`. Dieser Befehl kann verwendet werden, um verschiedene Operationen auf dem Widget auszuführen. Er hat die folgende allgemeine Form:
@@ -165,18 +165,18 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch `option` angegebenen Konfigurationsoption zurück, die einen der vom Befehl `scrollutil::scrollsync` akzeptierten Werte annehmen kann.
 
 `pathName configure ?option ?value option value ...??`
-: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie.  Wenn kein `option` festgelegt ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für `pathName` beschreibt (Informationen zum Format dieser Liste finden Sie unter `Tk_ConfigureInfo`).  Wenn `option` ohne `value` festgelegt wird, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste entspricht der entsprechenden Unterliste des gegebenen Werts, wenn kein `option` festgelegt wurde).  Wenn ein oder mehrere Paare aus `option` und `value` festgelegt werden, ändert der Befehl die festgelegten Widget-Optionen so, dass sie die festgelegten Werte annehmen; in diesem Fall ist der Rückgabewert eine leere Zeichenkette.  `option` kann jeden der vom Befehl `scrollutil::scrollsync` akzeptierten Werte annehmen.
+: Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie.  Wenn kein `option` festgelegt ist, gibt der Befehl eine Liste zurück, die alle verfügbaren Optionen für `pathName` beschreibt (Informationen zum Format dieser Liste finden Sie unter `Tk_ConfigureInfo`).  Wenn `option` ohne `value` festgelegt wird, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste entspricht der entsprechenden Unterliste des zurückgegebenen Werts, wenn kein `option` festgelegt wurde).  Wenn ein oder mehrere Paare aus `option` und `value` festgelegt werden, ändert der Befehl die festgelegten Widget-Optionen so, dass sie die festgelegten Werte annehmen; in diesem Fall ist der Rückgabewert eine leere Zeichenkette.  `option` kann jeden der vom Befehl `scrollutil::scrollsync` akzeptierten Werte annehmen.
 
 `pathName hasattrib name`
 : Gibt `1` zurück, wenn das Attribut `name` vorhanden ist, andernfalls `0`.
 
 `pathName setwidgets widgetList`
-: Legt die Widgets fest, in deren Fenstern die Position der Ansicht synchronisiert werden soll. Das Argument `widgetList` muss eine gültige Liste sein, die aus Pfadnamen vorhandener Widgets besteht.  Immer wenn sich die horizontale/vertikale Position der Ansicht im Fenster eines der in dieser Liste enthaltenen, horizontal/vertikal scrollbaren Widgets ändert, wird die Ansicht in den Fenstern aller anderen horizontal/vertikal scrollbaren Elemente der Liste automatisch entsprechend angepasst, wodurch sichergestellt wird, dass die Position der Ansicht in diesen Fenstern synchron bleibt. Der Wert wird als Argument beim letzten erfolgreichen Aufruf dieses Unterbefehls übergeben, oder eine leere Liste, falls zuvor kein erfolgreicher Aufruf von `setwidgets` stattgefunden hat.
+: Legt die Widgets fest, in deren Fenstern die Position der Ansicht synchronisiert werden soll. Das Argument `widgetList` muss eine gültige Liste sein, die aus Pfadnamen vorhandener Widgets besteht.  Immer wenn sich die horizontale/vertikale Position der Ansicht im Fenster eines der in dieser Liste enthaltenen, horizontal/vertikal scrollbaren Widgets ändert, wird die Ansicht in den Fenstern aller anderen horizontal/vertikal scrollbaren Elemente der Liste automatisch entsprechend angepasst, wodurch sichergestellt wird, dass die Position der Ansicht in diesen Fenstern synchron bleibt. Der Rückgabewert ist das Argument, das beim vorherigen erfolgreichen Aufruf dieses Unterbefehls übergeben wurde, oder eine leere Liste, falls zuvor kein erfolgreicher Aufruf von `setwidgets` stattgefunden hat.
 
 : **HINWEIS:**  Wenn eines der Widgets, dessen Pfadname in `widgetList` enthalten ist, zerstört wird, wird dieses Widget automatisch aus der internen Liste der Widgets entfernt, in deren Fenstern die Position der Ansicht synchronisiert wird.
 
 `pathName unsetattrib name`
-: Hebt das Attribut `name` auf. Gibt eine leere Zeichenfolge zurück.
+: Hebt das Attribut `name` auf. Gibt eine leere Zeichenkette zurück.
 
 `pathName widgets`
 : Gibt das Argument zurück, das beim letzten erfolgreichen Aufruf des Unterbefehls `setwidgets` übergeben wurde, oder eine leere Liste, falls dieser Unterbefehl noch nicht erfolgreich aufgerufen wurde.
@@ -197,11 +197,11 @@ pathName option ?arg arg ...?
 
 : `pathName yview scroll number units|pages`
 
-: Dieser Befehl übergibt seine Argumente an den Befehl `yview` des aktuellen **Master-Widgets für die y-Achse** und gibt das Ergebnis dieses Befehlsaufrufs zurück.  Das Master-Widget für die y-Achse ist das Element der an den Unterbefehl `setwidgets` übergebenen Widget-Liste, das unter den vertikal scrollbaren Widgets in dieser Liste die geringste relative Ansichtshöhe aufweist, d. h. die geringste Differenz zwischen dem letzten und dem ersten Element der aus zwei Elementen bestehenden Liste, die von seinem Befehl `yview` gegeben wird. Dieses Master-Widget kann sich während der Programmausführung ändern.
+: Dieser Befehl übergibt seine Argumente an den Befehl `yview` des aktuellen **Master-Widgets für die y-Achse** und gibt das Ergebnis dieses Befehlsaufrufs zurück.  Das Master-Widget für die y-Achse ist das Element der an den Unterbefehl `setwidgets` übergebenen Widget-Liste, das unter den vertikal scrollbaren Widgets in dieser Liste die geringste relative Ansichtshöhe aufweist, d. h. die geringste Differenz zwischen dem letzten und dem ersten Element der aus zwei Elementen bestehenden Liste, die von seinem Befehl `yview` zurückgegeben wird. Dieses Master-Widget kann sich während der Programmausführung ändern.
 
 
 **VORGABEBINDUNGEN**
-: Wenn ein neues „scrollsync“-Widget erstellt wird, verfügt es über keine VORGABEBINDUNGEN für Ereignisse: „scrollsync“-Widgets sind nicht dafür vorgesehen, interaktiv zu sein.
+: Wenn ein neues „scrollsync“-Widget erstellt wird, verfügt es über keine Vorgabebindungen für Ereignisse: „scrollsync“-Widgets sind nicht dafür vorgesehen, interaktiv zu sein.
 
 **SCHLÜSSELWÖRTER**
 : scrollsync, widget, scrolling

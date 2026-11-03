@@ -30,7 +30,7 @@ tooltip – Verwaltung von Tooltips
 
 # Beschreibung
 
-Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden können, wenn der Mauszeiger über ein Widget, einen Menüpunkt, ein Canvas-Element, einen Listbox-Eintrag, einen Eintrag oder eine Spaltenüberschrift von ttk::treeview, eine Registerkarte von ttk::notebook oder ein Text-Widget-Tag bewegt wird.
+Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden können, wenn der Mauszeiger über ein Widget, einen Menüpunkt, ein Canvas-Element, einen Listbox-Eintrag, einen Eintrag oder eine Spaltenüberschrift von ttk::treeview, ein Register von ttk::notebook oder ein Text-Widget-Tag bewegt wird.
 
 # Befehle
 
@@ -65,7 +65,7 @@ Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden 
 **::tooltip::tooltip** *pathName* ?*option value*...? ?**--**? *message*
 : Sorgt dafür, dass das Widget *pathName* einen Tooltip mit *message* anzeigt.
 
-    Ist das Widget ein **menu**, **canvas**, **listbox**, **ttk::treeview**, **ttk::notebook** oder **text**, binden zusätzliche Optionen den Tooltip an bestimmte Menü-, Canvas- oder Listbox-Einträge, ttk::treeview-Einträge oder Spaltenüberschriften, ttk::notebook-Registerkarten oder Text-Tags.
+    Ist das Widget ein **menu**, **canvas**, **listbox**, **ttk::treeview**, **ttk::notebook** oder **text**, binden zusätzliche Optionen den Tooltip an bestimmte Menü-, Canvas- oder Listbox-Einträge, ttk::treeview-Einträge oder Spaltenüberschriften, ttk::notebook-Register oder Text-Tags.
 
     **-heading** *columnId*
     : Setzt einen Tooltip für eine Spaltenüberschrift eines ttk::treeview. Die Spalte muss noch nicht vorhanden sein. Dieselben Bezeichner sollten nicht zugleich für Spalten und Einträge eines Widgets verwendet werden, sonst vermischen sich die Tooltips. Das Widget muss ein ttk::treeview sein.
@@ -85,7 +85,7 @@ Dieses Paket bietet Tooltips, d. h. kurze Textmeldungen, die angezeigt werden 
         Handelt es sich bei dem Widget nicht um ein Canvas-, Listbox- oder ttk::treview-Widget, wird ein Fehler ausgelöst.
 
     **-tab** *tabId*
-    : Setzt einen Tooltip für eine Registerkarte eines ttk::notebook. Die Registerkarte muss beim Aufruf schon vorhanden sein, sonst wird ein Fehler zurückgegeben. Das Widget muss ein ttk::notebook sein.
+    : Setzt einen Tooltip für ein Register eines ttk::notebook. Das Register muss beim Aufruf schon vorhanden sein, sonst wird ein Fehler zurückgegeben. Das Widget muss ein ttk::notebook sein.
 
     **-tag** *name*
     : Setzt einen Tooltip für ein Tag eines Text-Widgets. Das Tag muss beim Aufruf schon vorhanden sein, sonst wird ein Fehler zurückgegeben. Das Widget muss ein Text-Widget sein.

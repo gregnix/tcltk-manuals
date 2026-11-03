@@ -46,9 +46,9 @@ lset - Ändert ein Element in einer Liste
 
 # Beschreibung
 
-**lset** nimmt *varName* als Namen einer Variable mit einer Tcl-Liste, null oder mehr Indizes in die Liste und einen neuen Wert *newValue* für ein Element. Die Indizes können entweder nacheinander auf der Befehlszeile oder als Tcl-Liste gruppiert in einem einzigen Argument angegeben werden.
+Der Befehl **lset** nimmt einen Parameter *varName* entgegen, den er als Namen einer Variablen interpretiert, die eine Tcl-Liste enthält. Außerdem nimmt er null oder mehr *Indizes* in die Liste entgegen. Die Indizes können entweder nacheinander auf der Befehlszeile angegeben oder in einer Tcl-Liste zusammengefasst als ein einziges Argument übergeben werden. Schließlich nimmt er einen neuen Wert für ein Element von *varName* entgegen.
 
-Ohne Indizes:
+Werden keine Indizes angegeben, hat der Befehl die Form:
 
 ```
 lset varName newValue
@@ -60,17 +60,17 @@ oder
 lset varName {} newValue
 ```
 
-Dann ersetzt *newValue* den alten Inhalt von *varName*.
+In diesem Fall ersetzt *newValue* den alten Wert der Variablen *varName*.
 
-Bei einem Index behandelt **lset** den Inhalt von *varName* als Tcl-Liste und adressiert das *index*-te Element (0 = erstes Element). Beim Interpretieren gelten dieselben Regeln für Klammern, Anführungszeichen und Backslashes wie beim Interpreter; Variablen- und Befehlssubstitution finden nicht statt. Es entsteht eine neue Liste mit ersetztem Element, wird in *varName* geschrieben und ist der Rückgabewert.
+Wird ein einzelner Index angegeben, behandelt der Befehl **lset** den Inhalt der Variablen *varName* als Tcl-Liste. Er adressiert darin das *index*-te Element (0 bezeichnet das erste Element der Liste). Beim Interpretieren der Liste beachtet **lset** dieselben Regeln für geschweifte Klammern, Anführungszeichen und Backslashes wie der Tcl-Befehlsinterpreter; Variablenersetzung und Befehlsersetzung finden jedoch nicht statt. Der Befehl baut eine neue Liste auf, in der das bezeichnete Element durch *newValue* ersetzt ist. Diese neue Liste wird in der Variablen *varName* gespeichert und ist zugleich der Rückgabewert des Befehls **lset**.
 
-Ist *index* negativ oder größer als die Elementanzahl in *$varName*, tritt ein Fehler auf.
+Ist *index* negativ oder größer als die Anzahl der Elemente in *$varName*, tritt ein Fehler auf.
 
-Ist *index* gleich der Elementanzahl in *$varName*, wird das gegebene Element angehängt.
+Ist *index* gleich der Anzahl der Elemente in *$varName*, wird das angegebene Element an die Liste angehängt.
 
-Die Auslegung jedes einfachen *index* entspricht [string index][string] (Arithmetik, end-relativ).
+Jeder einfache *index*-Wert wird genauso interpretiert wie beim Befehl [string index][string]; einfache Indexarithmetik und Indizes relativ zum Ende der Liste werden unterstützt.
 
-Weitere *index*-Argumente adressieren nacheinander Elemente in Unterlisten der vorherigen Indexoperation — Änderung oder Anhängen in Unterlisten. Der Befehl
+Werden weitere *index*-Argumente angegeben, dient jedes Argument der Reihe nach dazu, ein Element innerhalb der Unterliste zu adressieren, die die vorherige Indexoperation bezeichnet hat. So kann das Skript Elemente in Unterlisten ändern (oder Elemente an Unterlisten anhängen). Der Befehl
 
 ```
 lset a 1 2 newValue
@@ -84,18 +84,18 @@ lset a {1 2} newValue
 
 ersetzt Element 2 der Unterliste 1 durch *newValue*.
 
-Jede Ganzzahl in einem *index* muss ≥ 0 und ≤ der Länge der zugehörigen Liste sein. **lset** kann die Listengröße nur durch Anhängen (Setzen des Elements hinter dem aktuellen Ende) vergrößern. Liegt ein Index außerhalb, wird ein Fehler gemeldet.
+Die Ganzzahl in jedem *index*-Argument muss größer oder gleich null sein. Die Ganzzahl in jedem *index*-Argument muss kleiner oder gleich der Länge der entsprechenden Liste sein. Mit anderen Worten: Der Befehl **lset** kann die Größe einer Liste nur ändern, indem er ein Element anhängt (also das Element nach dem aktuellen Ende setzt). Liegt ein Index außerhalb des zulässigen Bereichs, wird ein Fehler gemeldet.
 
 # Beispiele
 
-Anfangswert von *x* in jedem Beispiel:
+In jedem dieser Beispiele ist der Anfangswert von *x*:
 
 ```
 set x [list [list a b c] [list d e f] [list g h i]]
       → {a b c} {d e f} {g h i}
 ```
 
-Der angegebene Rückgabewert wird neuer Wert von *x* (außer beim letzten Fall — Fehler, *x* unverändert):
+Der angegebene Rückgabewert wird außerdem zum neuen Wert von *x* (außer im letzten Fall; dieser ist ein Fehler, der den Wert von *x* unverändert lässt).
 
 ```
 lset x {j k l}
@@ -120,7 +120,7 @@ lset x {2 4} j
       → list index out of range
 ```
 
-Weitere Beispiele; Anfangswert von *x*:
+In den folgenden Beispielen ist der Anfangswert von *x*:
 
 ```
 set x [list [list [list a b] [list c d]] \
@@ -128,7 +128,7 @@ set x [list [list [list a b] [list c d]] \
       → {{a b} {c d}} {{e f} {g h}}
 ```
 
-Der angegebene Rückgabewert wird neuer Wert von *x*.
+Der angegebene Rückgabewert wird außerdem zum neuen Wert von *x*.
 
 ```
 lset x 1 1 0 j

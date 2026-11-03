@@ -61,7 +61,7 @@
 
 BESCHREIBUNG
 
- ArrowButton kann je nach Option **type** von zwei Typen sein: beim Typ **button** ist es eine Standardschaltfläche mit einem darauf gezeichneten Pfeil; beim Typ **arrow** ist es ein Pfeil wie der Pfeil einer Bildlaufleiste. 
+ ArrowButton kann je nach Option **type** von zwei Typen sein: beim Typ **button** ist es eine Standardschaltfläche mit einem darauf gezeichneten Pfeil; beim Typ **arrow** ist es ein Pfeil wie der Pfeil einer Scrollbar. 
 
 ---
 
@@ -132,7 +132,7 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-type**
-:  Bestimmt den Typ des ArrowButton: **button** für das Aussehen einer Standardschaltfläche oder **arrow** für das Aussehen des Pfeils einer Bildlaufleiste. 
+:  Bestimmt den Typ des ArrowButton: **button** für das Aussehen einer Standardschaltfläche oder **arrow** für das Aussehen des Pfeils einer Scrollbar. 
 
 
 **-width**

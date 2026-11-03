@@ -12,7 +12,7 @@ csaba.nemethi@t-online.de
 
 ## Inhalt
 
-- [Übersicht](#berblick)
+- [Überblick](#berblick)
 - [Der Befehl tablelist::addBWidgetEntry](#der-befehl-tablelist-addbwidgetentry)
 - [Der Befehl tablelist::addBWidgetSpinBox](#der-befehl-tablelist-addbwidgetspinbox)
 - [Der Befehl tablelist::addBWidgetComboBox](#der-befehl-tablelist-addbwidgetcombobox)
@@ -23,7 +23,7 @@ csaba.nemethi@t-online.de
 
 ## Überblick
 
-Das BWidget-Paket ist eine Erweiterung für die Bibliothek Tcl/Tk ab Version 8.1.1, die in reinem Tcl/Tk-Code geschrieben ist.  Es kann hier heruntergeladen werden:
+Das BWidget-Paket ist eine Bibliothekserweiterung für Tcl/Tk ab Version 8.1.1, die in reinem Tcl/Tk-Code geschrieben ist.  Es kann hier heruntergeladen werden:
 
 https://sourceforge.net/projects/tcllib/files
 
@@ -41,7 +41,7 @@ Tablelist unterstützt die interaktive Bearbeitung von Zellen mithilfe der Widge
 ## Der Befehl `tablelist::addBWidgetEntry`
 
 **NAME**
-: `tablelist::addBWidgetEntry` – Registrieren Sie das „Entry“-Widget aus dem BWidget-Paket für die interaktive Bearbeitung von Zellen
+: `tablelist::addBWidgetEntry` – Das „Entry“-Widget aus dem BWidget-Paket für die interaktive Bearbeitung von Zellen registrieren
 
 **ÜBERSICHT**
 : 
@@ -51,7 +51,7 @@ tablelist::addBWidgetEntry ?name?
 ```
 
 **BESCHREIBUNG**
-: Dieser Befehl registriert das „Entry“-Widget aus dem BWidget-Paket für die interaktive Zellenbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das „Entry“-Widget als Wert der Spalten- oder Zellenkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster [Tk core](tablelistTkCore.md) und [tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `Entry`.  Der Befehl gibt sein Argument `name` zurück.
+: Dieser Befehl registriert das „Entry“-Widget aus dem BWidget-Paket für die interaktive Zellenbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das „Entry“-Widget als Wert der Spalten- oder Zellenkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster im [Tk-Kern](tablelistTkCore.md) und in [Tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `Entry`.  Der Befehl gibt sein Argument `name` zurück.
 
 **SCHLÜSSELWÖRTER**
 : tablelist, editing, BWidget, Entry
@@ -64,7 +64,7 @@ tablelist::addBWidgetEntry ?name?
 ## Der Befehl `tablelist::addBWidgetSpinBox`
 
 **NAME**
-: `tablelist::addBWidgetSpinBox` – Registrieren Sie das SpinBox-Widget aus dem BWidget-Paket für die interaktive Bearbeitung von Zellen
+: `tablelist::addBWidgetSpinBox` – Das SpinBox-Widget aus dem BWidget-Paket für die interaktive Bearbeitung von Zellen registrieren
 
 **ÜBERSICHT**
 : 
@@ -74,9 +74,9 @@ tablelist::addBWidgetSpinBox ?name?
 ```
 
 **BESCHREIBUNG**
-: Dieser Befehl registriert das SpinBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das SpinBox-Widget als Wert der Spalten- oder Zellkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster [Tk core](tablelistTkCore.md) und [tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `SpinBox`.  Der Befehl gibt sein Argument `name` zurück.
+: Dieser Befehl registriert das SpinBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das SpinBox-Widget als Wert der Spalten- oder Zellkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster im [Tk-Kern](tablelistTkCore.md) und in [Tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `SpinBox`.  Der Befehl gibt sein Argument `name` zurück.
 
-: Das temporäre, eingebettete SpinBox-Widget, das mit dem oben genannten `name` verknüpft ist, wird erstellt, wobei die Option `-editable` auf `1` gesetzt ist.  Sie können das Skript verwenden, das der Konfigurationsoption `-editstartcommand` der Tablelist entspricht, um die SpinBox nicht editierbar zu machen oder VALIDIERUNGEN dafür zu definieren sowie deren Werte (bzw. Wertebereich) und die Option `-wrap` festzulegen.
+: Das temporäre, eingebettete SpinBox-Widget, das mit dem oben genannten `name` verknüpft ist, wird erstellt, wobei die Option `-editable` auf `1` gesetzt ist.  Sie können das Skript verwenden, das der Konfigurationsoption `-editstartcommand` der Tablelist entspricht, um die SpinBox nicht editierbar zu machen oder Validierungen dafür zu definieren sowie deren Werte (bzw. Wertebereich) und die Option `-wrap` festzulegen.
 
 **SCHLÜSSELWÖRTER**
 : tablelist, editing, BWidget, SpinBox
@@ -89,7 +89,7 @@ tablelist::addBWidgetSpinBox ?name?
 ## Der Befehl `tablelist::addBWidgetComboBox`
 
 **NAME**
-: `tablelist::addBWidgetComboBox` – Registrieren Sie das ComboBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung
+: `tablelist::addBWidgetComboBox` – Das ComboBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung registrieren
 
 **ÜBERSICHT**
 : 
@@ -99,9 +99,9 @@ tablelist::addBWidgetComboBox ?name?
 ```
 
 **BESCHREIBUNG**
-: Dieser Befehl registriert das ComboBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das ComboBox-Widget als Wert der Spalten- oder Zellkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster [Tk core](tablelistTkCore.md) und [tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `ComboBox`.  Der Befehl gibt sein Argument `name` zurück.
+: Dieser Befehl registriert das ComboBox-Widget aus dem BWidget-Paket für die interaktive Zellbearbeitung in Tablelist-Widgets. Das optionale Argument legt den Namen fest, der für das ComboBox-Widget als Wert der Spalten- oder Zellkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster im [Tk-Kern](tablelistTkCore.md) und in [Tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `ComboBox`.  Der Befehl gibt sein Argument `name` zurück.
 
-: Das temporäre, eingebettete ComboBox-Widget, das mit dem oben genannten `name` verknüpft ist, wird erstellt, wobei die Option `-editable` auf `1` gesetzt ist.  Sie können das Skript verwenden, das der Konfigurationsoption `-editstartcommand` für die Tablelist entspricht, um die ComboBox nicht bearbeitbar zu machen oder VALIDIERUNGEN dafür zu definieren, sowie zum Befüllen ihrer listbox-Komponente (mithilfe der Option `-values` des ComboBox-Widgets).
+: Das temporäre, eingebettete ComboBox-Widget, das mit dem oben genannten `name` verknüpft ist, wird erstellt, wobei die Option `-editable` auf `1` gesetzt ist.  Sie können das Skript verwenden, das der Konfigurationsoption `-editstartcommand` für die Tablelist entspricht, um die ComboBox nicht bearbeitbar zu machen oder Validierungen dafür zu definieren, sowie zum Befüllen ihrer listbox-Komponente (mithilfe der Option `-values` des ComboBox-Widgets).
 
 **SCHLÜSSELWÖRTER**
 : tablelist, editing, BWidget, ComboBox

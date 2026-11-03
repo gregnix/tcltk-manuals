@@ -28,7 +28,7 @@ ttk::scrollbar - Steuert den Viewport eines scrollbaren Widgets
 
 # Beschreibung
 
-**ttk::scrollbar**-Widgets sind typischerweise mit einem zugehörigen Fenster verknüpft, das ein Dokument anzeigt, etwa eine bearbeitete Datei oder eine Zeichnung. Eine Scrollbar zeigt einen *Thumb* im mittleren Bereich an, dessen Position und Größe Auskunft über den im zugehörigen Fenster sichtbaren Dokumentanteil geben. Der Benutzer kann den Thumb ziehen, um den sichtbaren Bereich zu steuern. Je nach Theme können zwei oder mehr Pfeilbuttons vorhanden sein; diese dienen zum Scrollen des sichtbaren Bereichs in diskreten Einheiten. Standardoptionen (siehe **ttk\_widget**): **-class**, **-cursor**, **-style**, **-takefocus**.
+**ttk::scrollbar**-Widgets sind typischerweise mit einem zugehörigen Fenster verknüpft, das ein Dokument anzeigt, etwa eine bearbeitete Datei oder eine Zeichnung. Eine Scrollbar zeigt einen *Thumb* im mittleren Bereich an, dessen Position und Größe Auskunft über den im zugehörigen Fenster sichtbaren Dokumentanteil geben. Der Benutzer kann den Thumb ziehen, um den sichtbaren Bereich zu steuern. Je nach Theme können zwei oder mehr Pfeilbuttons vorhanden sein; diese dienen zum Scrollen des sichtbaren Bereichs in diskreten Einheiten.
 
 # Standardoptionen
 
@@ -55,7 +55,7 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element*
 : Gibt die Scrollbar-Einstellungen in Form einer Liste zurück, deren Elemente die Argumente des zuletzt ausgeführten Widget-Befehls **set** sind.
 
 [pathName]{.ins} [set]{.sub} [first]{.arg} [last]{.arg}
-: Dieser Befehl wird normalerweise vom mit der Scrollbar verknüpften Widget aus einem **-xscrollcommand**- oder **-yscrollcommand**-Callback aufgerufen. Legt den anzuzeigenden sichtbaren Bereich fest. *first* und *last* sind reelle Bruchteile zwischen 0 und 1.
+: Dieser Befehl wird normalerweise vom mit der Scrollbar verknüpften Widget aus einer **-xscrollcommand**- oder **-yscrollcommand**-Rückruffunktion aufgerufen. Legt den anzuzeigenden sichtbaren Bereich fest. *first* und *last* sind reelle Bruchteile zwischen 0 und 1.
 
 
 # Interne Befehle
@@ -71,7 +71,7 @@ Die folgenden Widget-Befehle werden intern von den Bindungen der Widget-Klasse *
 
 # Scroll-Befehle
 
-Wenn der Benutzer mit der Scrollbar interagiert, etwa durch Ziehen des Thumbs, benachrichtigt die Scrollbar das zugehörige Widget, dass es seine Ansicht ändern muss. Die Scrollbar erfolgt dies durch Auswertung eines Tcl-Befehls, der aus der **-command**-Option der Scrollbar erzeugt wird. Der Befehl kann eine der folgenden Formen annehmen. In jedem Fall ist *prefix* der Inhalt der **-command**-Option, der üblicherweise die Form **.t yview** hat
+Wenn der Benutzer mit der Scrollbar interagiert, etwa durch Ziehen des Thumbs, benachrichtigt die Scrollbar das zugehörige Widget, dass es seine Ansicht ändern muss. Die Scrollbar tut dies durch Auswertung eines Tcl-Befehls, der aus der **-command**-Option der Scrollbar erzeugt wird. Der Befehl kann eine der folgenden Formen annehmen. In jedem Fall ist *prefix* der Inhalt der **-command**-Option, der üblicherweise die Form **.t yview** hat
 
 *prefix* **moveto** *fraction*
 : *Fraction* ist eine reelle Zahl zwischen 0 und 1. Das Widget soll seine Ansicht so anpassen, dass der durch *fraction* angegebene Punkt am Anfang des Widgets erscheint. Ist *fraction* 0, bezeichnet dies den Anfang des Dokuments. 1.0 bezeichnet das Ende, 0.333 einen Punkt ein Drittel durch das Dokument usw.

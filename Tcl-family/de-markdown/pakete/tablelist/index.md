@@ -1,4 +1,4 @@
-# Das Paket „Tablelist 7.12“ mit mehrspaltigen listboxes und Baumwidgets
+# Das Paket „Tablelist 7.12“ mit mehrspaltigen Listbox- und Baum-Widgets
 
 ### von
 
@@ -18,7 +18,7 @@ csaba.nemethi@t-online.de
 
 [Befehle im Zusammenhang mit Bindungsskripten](tablelistBinding.md)
 
-[Befehle im Zusammenhang mit Tile-Themen](tablelistThemes.md)
+[Befehle im Zusammenhang mit Tile-Themes](tablelistThemes.md)
 
 [Interaktive Bearbeitung von Tabellenzellen mit Tk-Core-Widgets](tablelistTkCore.md)
 

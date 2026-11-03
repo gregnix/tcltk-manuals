@@ -175,10 +175,10 @@ Dieses Paket stellt symbolische Namen für die ANSI-Steuersequenzen bereit. Für
 : Tabulator setzen (@ aktuelle Position)
 
 **::term::ansi::code::ctrl::ct**
-: Registerkarte löschen (an der aktuellen Position)
+: Tabulatorstopp löschen (an der aktuellen Position)
 
 **::term::ansi::code::ctrl::cat**
-: Alle Registerkarten löschen
+: Alle Tabulatorstopps löschen
 
 **::term::ansi::code::ctrl::qdc**
 : Gerätecode abfragen

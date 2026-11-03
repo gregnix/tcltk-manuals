@@ -321,15 +321,15 @@ TAG
 # Methoden – notebook.xxx
 
 *mBarInst* **notebook.addTabStore** *pathname*
-: Diese Methode gehört in Code, der eine neue Notebook-Registerkarte erzeugt. Der Aufruf legt einen Zustandsspeicher für die neue Registerkarte an. Der Pfadname der Notebook-Registerkarte ist das Argument.
+: Diese Methode gehört in Code, der ein neues Notebook-Register erzeugt. Der Aufruf legt einen Zustandsspeicher für das neue Register an. Der Pfadname des Notebook-Registers ist das Argument.
 
 
 *mBarInst* **notebook.deleteTabStore** *pathname*
-: Gibt den Zustandsspeicher einer Notebook-Registerkarte frei. Der Pfadname der Registerkarte ist das Argument.
+: Gibt den Zustandsspeicher eines Notebook-Registers frei. Der Pfadname des Registers ist das Argument.
 
 
 *mBarInst* **notebook.setTabValue** *pathname tag*
-: Diese Methode gehört in den Rückruf von Checkbuttons oder Radiobuttons der Menüleiste mit Gültigkeitsbereich einer Notebook-Registerkarte. Der Aufruf schiebt den zum Tag gehörenden Wert in den Speicher der durch den Pfadnamen bezeichneten Registerkarte.
+: Diese Methode gehört in den Rückruf von Checkbuttons oder Radiobuttons der Menüleiste mit Gültigkeitsbereich eines Notebook-Registers. Der Aufruf schiebt den zum Tag gehörenden Wert in den Speicher des durch den Pfadnamen bezeichneten Registers.
 
 
 *mBarInst* **notebook.restoreTabValues** *pathname*
@@ -350,7 +350,7 @@ Die Klasse menubar erlaubt eine feinere Steuerung des Gültigkeitsbereichs bei C
 
 Wenn das Zeichen für den lokalen Geltungsbereich (@) zur Definition einer Schaltfläche hinzugefügt wird, erhält die Schaltfläche für jedes installierte Toplevel-Fenster eine neue Variable. Dies bewirkt, dass der Zustand der Schaltfläche auf das jeweilige Fenster beschränkt ist (d. h. lokaler Geltungsbereich). Ein Beispiel ist eine Statusleiste, die ein Checkbutton ein- und ausschaltet. Der Entwickler möchte dem Benutzer möglicherweise ermöglichen, die Sichtbarkeit der Statusleiste für jedes Fenster einzeln zu steuern. In diesem Fall würde dem Selektor der Statusleiste ein lokaler Modifikator hinzugefügt, sodass die Rückruffunktion einen entsprechenden Wert basierend auf dem aktuellen Toplevel-Fenster erhält.
 
-Das Zeichen für den Gültigkeitsbereich einer Notebook-Registerkarte (=) wirkt ähnlich wie das Zeichen für den lokalen Gültigkeitsbereich, nur dass auch die Auswahl einer Notebook-Registerkarte den Zustand einer Schaltfläche führen kann. Der Zusatz schaltet diese Steuerung ein. Die Unterbefehle notebook.xxxx müssen die Zustandswerte dann führen, wenn Registerkarten hinzukommen, gelöscht oder ausgewählt werden.
+Das Zeichen für den Gültigkeitsbereich eines Notebook-Registers (=) wirkt ähnlich wie das Zeichen für den lokalen Gültigkeitsbereich, nur dass auch die Auswahl eines Notebook-Registers den Zustand einer Schaltfläche führen kann. Der Zusatz schaltet diese Steuerung ein. Die Unterbefehle notebook.xxxx müssen die Zustandswerte dann führen, wenn Register hinzukommen, gelöscht oder ausgewählt werden.
 
 # Beispiel
 

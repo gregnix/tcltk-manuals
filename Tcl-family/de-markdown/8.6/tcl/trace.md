@@ -34,160 +34,160 @@ trace - Überwacht Variablenzugriffe, Befehlsnutzung und Befehlsausführungen
 
 # Beschreibung
 
-Dieser Befehl führt Tcl-Befehle aus, sobald bestimmte Operationen ausgelöst werden. Die zulässigen *option*s (abkürzbar) sind:
+Dieser Befehl sorgt dafür, dass Tcl-Befehle ausgeführt werden, sobald bestimmte Operationen aufgerufen werden. Die zulässigen *option*s (sie dürfen abgekürzt werden) sind:
 
 **trace add** *type name ops ?args?*
 : Dabei ist *type* **command**, **execution** oder **variable**.
 
     **trace add command** *name ops commandPrefix*
-    : *commandPrefix* wird (mit zusätzlichen Argumenten) ausgeführt, sobald der Befehl *name* auf eine der in der Liste *ops* genannten Weisen geändert wird. *Name* wird mit den üblichen Namespace-Auflösungsregeln für Befehle aufgelöst. Existiert der Befehl nicht, wird ein Fehler ausgelöst.
+    : Sorgt dafür, dass *commandPrefix* (mit zusätzlichen Argumenten) ausgeführt wird, sobald der Befehl *name* auf eine der Arten geändert wird, die die Liste *ops* angibt. *Name* wird nach den üblichen Regeln der Namespace-Auflösung für Befehle aufgelöst. Existiert der Befehl nicht, wird ein Fehler ausgelöst.
 
-        *Ops* gibt an, welche Operationen von Interesse sind, als Liste aus einem oder mehreren der folgenden Einträge:
+        *Ops* gibt an, welche Operationen von Interesse sind. Es ist eine Liste aus einem oder mehreren der folgenden Einträge:
 
         **rename**
-        : *commandPrefix* wird aufgerufen, sobald der überwachte Befehl umbenannt wird. Umbenennung in die leere Zeichenkette gilt als Löschen und wird nicht mit „**rename**“ überwacht.
+        : Ruft *commandPrefix* auf, sobald der überwachte Befehl umbenannt wird. Beachten Sie, dass das Umbenennen in die leere Zeichenkette als Löschen gilt und nicht mit „**rename**“ überwacht wird.
 
         **delete**
-        : *commandPrefix* wird aufgerufen, wenn der überwachte Befehl gelöscht wird. Befehle können explizit mit **rename** auf eine leere Zeichenkette gelöscht werden. Befehle werden auch gelöscht, wenn der Interpreter gelöscht wird; Traces werden dann nicht aufgerufen, weil kein Interpreter zur Ausführung existiert.
+        : Ruft *commandPrefix* auf, wenn der überwachte Befehl gelöscht wird. Befehle lassen sich explizit löschen, indem Sie sie mit dem Befehl **rename** in eine leere Zeichenkette umbenennen. Befehle werden auch gelöscht, wenn der Interpreter gelöscht wird. Die Traces werden dann aber nicht aufgerufen, weil es keinen Interpreter mehr gibt, in dem sie ausgeführt werden könnten.
 
 
-        Beim Auslösen des Traces werden je nach überwachter Operation Argumente an *commandPrefix* angehängt, sodass der tatsächliche Befehl lautet:
+        Wenn der Trace auslöst, werden je nach überwachter Operation einige Argumente an *commandPrefix* angehängt, sodass der tatsächliche Befehl so lautet:
 
         ```
         commandPrefix oldName newName op
         ```
 
-        *OldName* und *newName* sind der aktuelle (alte) Name des überwachten Befehls bzw. der Zielname der Umbenennung (leere Zeichenkette bei „delete“). *Op* ist **rename** oder **delete** wie oben. Der Trace kann das Löschen eines Befehls nicht verhindern; Tcl entfernt den Befehl nach Abschluss des Traces. Rekursives Umbenennen oder Löschen löst keine weiteren Traces desselben Typs aus; ein Delete-Trace, der den Befehl selbst löscht, oder ein Rename-Trace, der selbst umbenennt, führt nicht zu weiteren Trace-Auswertungen. *oldName* und *newName* sind vollständig mit allen Namespaces qualifiziert.
+        *OldName* und *newName* geben den aktuellen (alten) Namen des überwachten Befehls an und den Namen, in den er umbenannt wird (die leere Zeichenkette bei einer „delete“-Operation). *Op* gibt an, welche Operation an dem Befehl ausgeführt wird. Es ist **rename** oder **delete**, wie oben definiert. Mit der Trace-Operation lässt sich nicht verhindern, dass ein Befehl gelöscht wird. Tcl entfernt den Befehl immer, sobald der Trace abgeschlossen ist. Rekursives Umbenennen oder Löschen führt nicht dazu, dass weitere Traces desselben Typs ausgewertet werden. Ein Delete-Trace, der selbst den Befehl löscht, oder ein Rename-Trace, der selbst den Befehl umbenennt, löst also keine weiteren Trace-Auswertungen aus. *oldName* und *newName* sind beide vollständig mit den Namespaces qualifiziert, in denen sie vorkommen.
 
     **trace add execution** *name ops commandPrefix*
-    : *commandPrefix* wird (mit zusätzlichen Argumenten) ausgeführt, sobald der Befehl *name* ausgeführt wird; die Traces erfolgen an den in *ops* genannten Punkten. *Name* wird mit den üblichen Namespace-Auflösungsregeln aufgelöst. Existiert der Befehl nicht, wird ein Fehler ausgelöst.
+    : Sorgt dafür, dass *commandPrefix* (mit zusätzlichen Argumenten) ausgeführt wird, sobald der Befehl *name* ausgeführt wird. Die Traces erfolgen an den Stellen, die die Liste *ops* angibt. *Name* wird nach den üblichen Regeln der Namespace-Auflösung für Befehle aufgelöst. Existiert der Befehl nicht, wird ein Fehler ausgelöst.
 
-        *Ops* ist eine Liste aus einem oder mehreren der folgenden Einträge:
+        *Ops* gibt an, welche Operationen von Interesse sind. Es ist eine Liste aus einem oder mehreren der folgenden Einträge:
 
         **enter**
-        : *commandPrefix* wird aufgerufen, sobald der Befehl *name* ausgeführt wird, unmittelbar vor der eigentlichen Ausführung.
+        : Ruft *commandPrefix* auf, sobald der Befehl *name* ausgeführt wird, und zwar unmittelbar bevor die eigentliche Ausführung stattfindet.
 
         **leave**
-        : *commandPrefix* wird aufgerufen, sobald der Befehl *name* ausgeführt wird, unmittelbar nach der eigentlichen Ausführung.
+        : Ruft *commandPrefix* auf, sobald der Befehl *name* ausgeführt wird, und zwar unmittelbar nachdem die eigentliche Ausführung stattgefunden hat.
 
         **enterstep**
-        : *commandPrefix* wird für jeden Tcl-Befehl aufgerufen, der von Beginn der Ausführung der Prozedur *name* bis zu deren Ende ausgeführt wird. *commandPrefix* wird unmittelbar vor der Ausführung des gemeldeten Tcl-Befehls aufgerufen. Hat man z. B. „proc foo {} { puts "hello" }“, wird ein *enterstep*-Trace unmittelbar vor der Ausführung von „*puts "hello"*“ aufgerufen. Ein *enterstep*-Trace auf einen *name*, der keine Prozedur bezeichnet, führt nicht zu einem Fehler und wird ignoriert.
+        : Ruft *commandPrefix* für jeden Tcl-Befehl auf, der vom Beginn der Ausführung der Prozedur *name* bis zu deren Ende ausgeführt wird. *CommandPrefix* wird unmittelbar vor der eigentlichen Ausführung des gemeldeten Tcl-Befehls aufgerufen. Gibt es zum Beispiel „proc foo {} { puts "hello" }“, dann wird ein *enterstep*-Trace unmittelbar vor der Ausführung von „*puts "hello"*“ aufgerufen. Ein *enterstep*-Trace auf einen Befehl *name*, der keine Prozedur bezeichnet, führt nicht zu einem Fehler, sondern wird einfach ignoriert.
 
         **leavestep**
-        : *commandPrefix* wird für jeden Tcl-Befehl aufgerufen, der von Beginn der Ausführung der Prozedur *name* bis zu deren Ende ausgeführt wird. *commandPrefix* wird unmittelbar nach der Ausführung des gemeldeten Tcl-Befehls aufgerufen. Ein *leavestep*-Trace auf einen *name*, der keine Prozedur bezeichnet, führt nicht zu einem Fehler und wird ignoriert.
+        : Ruft *commandPrefix* für jeden Tcl-Befehl auf, der vom Beginn der Ausführung der Prozedur *name* bis zu deren Ende ausgeführt wird. *CommandPrefix* wird unmittelbar nach der eigentlichen Ausführung des gemeldeten Tcl-Befehls aufgerufen. Ein *leavestep*-Trace auf einen Befehl *name*, der keine Prozedur bezeichnet, führt nicht zu einem Fehler, sondern wird einfach ignoriert.
 
 
-        Beim Auslösen werden je nach Operation Argumente an *commandPrefix* angehängt:
+        Wenn der Trace auslöst, werden je nach überwachter Operation einige Argumente an *commandPrefix* angehängt, sodass der tatsächliche Befehl so lautet:
 
-        Bei **enter** und **enterstep**:
+        Bei den Operationen **enter** und **enterstep**:
 
         ```
         commandPrefix command-string op
         ```
 
-        *Command-string* ist der vollständige aktuelle Befehl (der überwachte Befehl bei **enter**, ein beliebiger Befehl bei **enterstep**), einschließlich aller Argumente in voll expandierter Form. *Op* ist **enter** oder **enterstep** wie oben. Der Trace kann die Ausführung stoppen, indem der betreffende Befehl gelöscht wird; bei späterer Ausführung tritt ein „invalid command“-Fehler auf.
+        *Command-string* gibt den vollständigen aktuellen Befehl an, der gerade ausgeführt wird (bei einer **enter**-Operation den überwachten Befehl, bei einer **enterstep**-Operation einen beliebigen Befehl), einschließlich aller Argumente in vollständig expandierter Form. *Op* gibt an, welche Operation bei der Befehlsausführung stattfindet. Es ist **enter** oder **enterstep**, wie oben definiert. Mit der Trace-Operation lässt sich die Ausführung des Befehls verhindern, indem der betreffende Befehl gelöscht wird. Wird der Befehl danach ausgeführt, tritt natürlich ein „invalid command“-Fehler auf.
 
-        Bei **leave** und **leavestep**:
+        Bei den Operationen **leave** und **leavestep**:
 
         ```
         commandPrefix command-string code result op
         ```
 
-        *Command-string* ist der vollständige aktuelle Befehl (der überwachte Befehl bei **enter**, ein beliebiger Befehl bei **enterstep**), einschließlich aller Argumente in voll expandierter Form. *Code* ist der Ergebniscode der Ausführung, *result* die Ergebniszeichenkette. *Op* ist **leave** oder **leavestep** wie oben. Beachten Sie, dass viele **enterstep**- oder **leavestep**-Traces zu unerwarteten Ergebnissen führen können, da die von einem Trace aufgerufenen Befehle ihrerseits weitere Befehlsaufrufe für andere Traces auslösen können.
+        *Command-string* gibt den vollständigen aktuellen Befehl an, der gerade ausgeführt wird (bei einer **enter**-Operation den überwachten Befehl, bei einer **enterstep**-Operation einen beliebigen Befehl), einschließlich aller Argumente in vollständig expandierter Form. *Code* gibt den Ergebniscode dieser Ausführung an und *result* die Ergebniszeichenkette. *Op* gibt an, welche Operation bei der Befehlsausführung stattfindet. Es ist **leave** oder **leavestep**, wie oben definiert. Beachten Sie, dass das Anlegen vieler **enterstep**- oder **leavestep**-Traces zu unerwarteten Ergebnissen führen kann, da die von einem Trace aufgerufenen Befehle ihrerseits weitere Befehlsaufrufe für andere Traces auslösen können.
 
-        *commandPrefix* läuft im gleichen Kontext wie der Code, der die überwachte Operation auslöste: wird er aus einer Prozedur aufgerufen, hat er Zugriff auf dieselben lokalen Variablen. Der Kontext kann vom Erstellungskontext des Traces abweichen. Ruft *commandPrefix* eine Prozedur auf (üblich), muss diese [upvar] oder [uplevel] nutzen, um auf lokale Variablen des auslösenden Codes zuzugreifen.
+        *CommandPrefix* wird im selben Kontext ausgeführt wie der Code, der die überwachte Operation aufgerufen hat. Wird *commandPrefix* aus einer Prozedur heraus aufgerufen, hat *commandPrefix* also Zugriff auf dieselben lokalen Variablen wie der Code in der Prozedur. Dieser Kontext kann sich von dem Kontext unterscheiden, in dem der Trace angelegt wurde. Ruft *commandPrefix* eine Prozedur auf (was normalerweise der Fall ist), muss diese Prozedur die Befehle [upvar] oder [uplevel] verwenden, wenn sie auf die lokalen Variablen des Codes zugreifen will, der die Trace-Operation ausgelöst hat.
 
-        Während *commandPrefix* bei einem Execution-Trace läuft, sind Traces auf *name* vorübergehend deaktiviert. So kann *commandPrefix* *name* im Rumpf ausführen, ohne weitere Traces auszulösen. Tritt beim Ausführen von *commandPrefix* ein Fehler auf, liefert der Befehl *name* insgesamt denselben Fehler.
+        Während *commandPrefix* im Rahmen eines Execution-Traces ausgeführt wird, sind die Traces auf *name* vorübergehend deaktiviert. So kann *commandPrefix* in seinem Rumpf *name* ausführen, ohne erneut andere Traces aufzurufen. Tritt bei der Ausführung von *commandPrefix* ein Fehler auf, gibt der Befehl *name* insgesamt denselben Fehler zurück.
 
-        Sind mehrere Traces auf *name* gesetzt, werden bei *enter* und *enterstep* die Trace-Befehle in umgekehrter Erstellungsreihenfolge aufgerufen; bei *leave* und *leavestep* in der ursprünglichen Erstellungsreihenfolge.
+        Sind mehrere Traces auf *name* gesetzt, werden bei den Operationen *enter* und *enterstep* die Trace-Befehle in umgekehrter Reihenfolge ihrer Erstellung aufgerufen. Bei den Operationen *leave* und *leavestep* werden die Trace-Befehle in der ursprünglichen Reihenfolge ihrer Erstellung aufgerufen.
 
-        Das Verhalten von Execution-Traces ist für einen in einen anderen Namespace importierten Befehlsnamen *name* derzeit undefiniert.
+        Das Verhalten von Execution-Traces ist für einen Befehl *name*, der in einen anderen Namespace importiert wurde, derzeit undefiniert.
 
     **trace add variable** *name ops commandPrefix*
-    : *commandPrefix* wird ausgeführt, sobald auf die Variable *name* auf eine der in *ops* genannten Weisen zugegriffen wird. *Name* kann eine normale Variable, ein Arrayelement oder ein ganzes Array sein (d. h. *name* nur der Arrayname ohne Index in Klammern). Verweist *name* auf ein ganzes Array, wird *commandPrefix* bei jeder Manipulation eines Elements aufgerufen. Existiert die Variable nicht, wird sie erzeugt, aber ohne Wert; sie ist für [namespace which][namespace] sichtbar, nicht für [info exists][info].
+    : Sorgt dafür, dass *commandPrefix* ausgeführt wird, sobald auf die Variable *name* auf eine der Arten zugegriffen wird, die die Liste *ops* angibt. *Name* kann eine normale Variable bezeichnen, ein Element eines Arrays oder ein Array als Ganzes (das heißt, *name* kann auch nur der Name eines Arrays ohne Index in Klammern sein). Bezeichnet *name* ein ganzes Array, wird *commandPrefix* aufgerufen, sobald irgendein Element des Arrays bearbeitet wird. Existiert die Variable nicht, wird sie angelegt, erhält aber keinen Wert. Sie ist dann für Abfragen mit [namespace which][namespace] sichtbar, aber nicht für Abfragen mit [info exists][info].
 
-        *Ops* ist eine Liste aus einem oder mehreren der folgenden Einträge:
+        *Ops* gibt an, welche Operationen von Interesse sind. Es ist eine Liste aus einem oder mehreren der folgenden Einträge:
 
         [array]
-        : *commandPrefix* wird aufgerufen, wenn auf die Variable über den Befehl [array] zugegriffen oder sie darüber geändert wird, sofern *name* zum Zeitpunkt des [array]-Aufrufs kein Skalar ist. Ist *name* ein Skalar, löst Zugriff über [array] den Trace nicht aus.
+        : Ruft *commandPrefix* auf, sobald über den Befehl [array] auf die Variable zugegriffen oder sie darüber geändert wird. Voraussetzung ist, dass *name* zum Zeitpunkt des Aufrufs von [array] keine skalare Variable ist. Ist *name* eine skalare Variable, löst der Zugriff über den Befehl [array] den Trace nicht aus.
 
         **read**
-        : *commandPrefix* wird aufgerufen, wenn die Variable gelesen wird.
+        : Ruft *commandPrefix* auf, sobald die Variable gelesen wird.
 
         **write**
-        : *commandPrefix* wird aufgerufen, wenn die Variable geschrieben wird.
+        : Ruft *commandPrefix* auf, sobald die Variable geschrieben wird.
 
         **unset**
-        : *commandPrefix* wird aufgerufen, wenn die Variable entfernt wird. Variablen können explizit mit **unset** oder implizit beim Prozedurrückkehr entfernt werden. Variablen werden auch entfernt, wenn Interpreter gelöscht werden; Traces werden dann nicht aufgerufen.
+        : Ruft *commandPrefix* auf, sobald die Variable entfernt wird. Variablen können explizit mit dem Befehl **unset** entfernt werden oder implizit, wenn Prozeduren zurückkehren (dabei werden alle ihre lokalen Variablen entfernt). Variablen werden auch entfernt, wenn Interpreter gelöscht werden. Die Traces werden dann aber nicht aufgerufen, weil es keinen Interpreter mehr gibt, in dem sie ausgeführt werden könnten.
 
 
-        Beim Auslösen werden drei Argumente an *commandPrefix* angehängt:
+        Wenn der Trace auslöst, werden drei Argumente an *commandPrefix* angehängt, sodass der tatsächliche Befehl so lautet:
 
         ```
         commandPrefix name1 name2 op
         ```
 
-        *Name1* und *name2* geben die Namen der Variablen an, auf die zugegriffen wird: ist die Variable ein Skalar, ist *name1* der Variablenname und *name2* leer; ist es ein Arrayelement, ist *name1* der Arrayname und *name2* der Index im Array; wird ein ganzes Array gelöscht und der Trace auf das gesamte Array (nicht ein einzelnes Element) registriert, ist *name1* der Arrayname und *name2* leer. *Name1* und *name2* sind nicht notwendigerweise dieselben Namen wie im Befehl **trace variable**: [upvar] erlaubt einer Prozedur, eine Variable unter anderem Namen zu referenzieren. *Op* ist **read**, **write** oder **unset** wie oben.
+        *Name1* und *name2* geben den oder die Namen der Variablen an, auf die zugegriffen wird: Ist die Variable ein Skalar, gibt *name1* den Namen der Variablen an, und *name2* ist eine leere Zeichenkette. Ist die Variable ein Arrayelement, gibt *name1* den Namen des Arrays an und name2 den Index in das Array. Wird ein ganzes Array gelöscht und wurde der Trace auf das gesamte Array statt auf ein einzelnes Element registriert, gibt *name1* den Namen des Arrays an, und *name2* ist eine leere Zeichenkette. *Name1* und *name2* stimmen nicht unbedingt mit dem Namen überein, der im Befehl **trace variable** verwendet wurde: Der Befehl [upvar] erlaubt es einer Prozedur, eine Variable unter einem anderen Namen anzusprechen. *Op* gibt an, welche Operation an der Variablen ausgeführt wird. Es ist **read**, **write** oder **unset**, wie oben definiert.
 
-        *commandPrefix* läuft im gleichen Kontext wie der auslösende Code: wurde die Variable in einer Tcl-Prozedur verwendet, hat *commandPrefix* Zugriff auf dieselben lokalen Variablen. Der Kontext kann vom Erstellungskontext abweichen. Ruft *commandPrefix* eine Prozedur auf, muss diese [upvar] oder [uplevel] nutzen, um auf die überwachte Variable zuzugreifen. *name1* kann vom beim Setzen des Traces verwendeten Namen abweichen, z. B. bei Zugriff über mit [upvar] definierte Variablen.
+        *CommandPrefix* wird im selben Kontext ausgeführt wie der Code, der die überwachte Operation aufgerufen hat. Wurde auf die Variable innerhalb einer Tcl-Prozedur zugegriffen, hat *commandPrefix* Zugriff auf dieselben lokalen Variablen wie der Code in der Prozedur. Dieser Kontext kann sich von dem Kontext unterscheiden, in dem der Trace angelegt wurde. Ruft *commandPrefix* eine Prozedur auf (was normalerweise der Fall ist), muss diese Prozedur [upvar] oder [uplevel] verwenden, wenn sie auf die überwachte Variable zugreifen will. Beachten Sie auch, dass *name1* nicht unbedingt derselbe Name ist, mit dem der Trace auf die Variable gesetzt wurde. Unterschiede können entstehen, wenn der Zugriff über eine Variable erfolgt, die mit dem Befehl [upvar] definiert wurde.
 
-        Bei Lese- und Schreib-Traces kann *commandPrefix* die Variable ändern und so das Ergebnis der überwachten Operation beeinflussen. Ändert *commandPrefix* den Wert während eines Lese- oder Schreib-Traces, wird der neue Wert als Ergebnis der überwachten Operation zurückgegeben. Der Rückgabewert von *commandPrefix* wird ignoriert, außer liefert er einen Fehler — dann liefert auch die überwachte Operation denselben Fehlertext (z. B. für schreibgeschützte Variablen). Bei Schreib-Traces wird *commandPrefix* nach der Wertänderung aufgerufen; er kann einen neuen Wert setzen und den ursprünglichen überschreiben. Für schreibgeschützte Variablen muss *commandPrefix* den alten Wert wiederherstellen.
+        Bei Lese- und Schreib-Traces kann *commandPrefix* die Variable ändern und so das Ergebnis der überwachten Operation beeinflussen. Ändert *commandPrefix* während eines Lese- oder Schreib-Traces den Wert einer Variablen, wird der neue Wert als Ergebnis der überwachten Operation zurückgegeben. Der Rückgabewert von *commandPrefix* wird ignoriert. Gibt *commandPrefix* jedoch einen Fehler irgendeiner Art zurück, gibt auch die überwachte Operation einen Fehler zurück, und zwar mit derselben Fehlermeldung, die der Trace-Befehl zurückgegeben hat (mit diesem Mechanismus lassen sich zum Beispiel schreibgeschützte Variablen umsetzen). Bei Schreib-Traces wird *commandPrefix* aufgerufen, nachdem der Wert der Variablen geändert wurde. *CommandPrefix* kann einen neuen Wert in die Variable schreiben und so den ursprünglichen Wert überschreiben, den die Schreiboperation angegeben hat. Um schreibgeschützte Variablen umzusetzen, muss *commandPrefix* den alten Wert der Variablen wiederherstellen.
 
-        Während *commandPrefix* bei einem Lese- oder Schreib-Trace läuft, sind Traces auf die Variable vorübergehend deaktiviert: Lese- und Schreibzugriffe in *commandPrefix* erfolgen direkt ohne erneuten Aufruf von *commandPrefix* (oder anderer Traces). Entfernt *commandPrefix* die Variable, werden Unset-Traces aufgerufen.
+        Während *commandPrefix* im Rahmen eines Lese- oder Schreib-Traces ausgeführt wird, sind die Traces auf die Variable vorübergehend deaktiviert. Lese- und Schreibzugriffe, die *commandPrefix* auslöst, erfolgen also direkt, ohne dass *commandPrefix* (oder ein anderer Trace) erneut aufgerufen wird. Entfernt *commandPrefix* die Variable jedoch, werden die Unset-Traces aufgerufen.
 
-        Bei einem Unset-Trace ist die Variable bereits gelöscht: sie erscheint undefiniert ohne Traces. Erfolgt das Unset wegen Prozedurrückkehr, läuft der Trace im Variablenkontext der Zielprozedur; der Stack-Frame der zurückkehrenden Prozedur existiert nicht mehr. Unset-Traces werden nicht deaktiviert; legt ein Unset-Trace einen neuen Trace an und greift auf die Variable zu, wird der Trace aufgerufen. Fehler in Unset-Traces werden ignoriert.
+        Wenn ein Unset-Trace aufgerufen wird, ist die Variable bereits gelöscht: Sie erscheint als undefiniert und hat keine Traces. Wird eine Variable entfernt, weil eine Prozedur zurückkehrt, wird der Trace im Variablenkontext der Prozedur aufgerufen, zu der zurückgekehrt wird: Der Stack-Frame der zurückkehrenden Prozedur existiert dann nicht mehr. Während Unset-Traces werden Traces nicht deaktiviert. Legt ein Unset-Trace-Befehl also einen neuen Trace an und greift auf die Variable zu, wird dieser Trace aufgerufen. Fehler in Unset-Traces werden ignoriert.
 
-        Gibt es mehrere Traces auf einer Variable, werden sie in Erstellungsreihenfolge aufgerufen, zuletzt erstellter zuerst. Liefert ein Trace einen Fehler, werden keine weiteren Traces für die Variable aufgerufen. Hat ein Arrayelement einen Trace und das Array als Ganzes ebenfalls, wird zuerst der Trace auf dem gesamten Array aufgerufen.
+        Gibt es mehrere Traces auf einer Variablen, werden sie in der Reihenfolge ihrer Erstellung aufgerufen, der zuletzt angelegte zuerst. Gibt ein Trace einen Fehler zurück, werden für die Variable keine weiteren Traces aufgerufen. Hat ein Arrayelement einen Trace und gibt es auch einen Trace auf das Array als Ganzes, wird der Trace auf das gesamte Array vor dem Trace auf das Element aufgerufen.
 
-        Der Trace bleibt bis zum Entfernen mit **trace remove variable** (unten), bis zum Unset der Variable oder bis zum Löschen des Interpreters aktiv. Entfernen eines Arrayelements entfernt Traces auf diesem Element, nicht auf dem gesamten Array.
+        Ein einmal angelegter Trace bleibt wirksam, bis er mit dem unten beschriebenen Befehl **trace remove variable** entfernt wird, bis die Variable entfernt wird oder bis der Interpreter gelöscht wird. Wird ein Element eines Arrays entfernt, werden alle Traces auf diesem Element entfernt, nicht aber die Traces auf dem gesamten Array.
 
-        Der Befehl gibt eine leere Zeichenkette zurück.
+        Dieser Befehl gibt eine leere Zeichenkette zurück.
 
 
 **trace remove** *type name opList commandPrefix*
-: *type* ist **command**, **execution** oder **variable**.
+: Dabei ist *type* **command**, **execution** oder **variable**.
 
     **trace remove command** *name opList commandPrefix*
-    : Gibt es einen Trace auf den Befehl *name* mit den Operationen und dem Befehl aus *opList* und *commandPrefix*, wird er entfernt; *commandPrefix* wird nicht mehr aufgerufen. Gibt eine leere Zeichenkette zurück. Existiert *name* nicht, wird ein Fehler ausgelöst.
+    : Ist auf den Befehl *name* ein Trace mit den Operationen und dem Befehl gesetzt, die *opList* und *commandPrefix* angeben, wird dieser Trace entfernt, sodass *commandPrefix* nie wieder aufgerufen wird. Gibt eine leere Zeichenkette zurück. Existiert *name* nicht, löst der Befehl einen Fehler aus.
 
     **trace remove execution** *name opList commandPrefix*
-    : Wie bei **trace remove command**; *commandPrefix* wird nicht mehr aufgerufen. Leere Zeichenkette. Existiert *name* nicht, Fehler.
+    : Ist auf den Befehl *name* ein Trace mit den Operationen und dem Befehl gesetzt, die *opList* und *commandPrefix* angeben, wird dieser Trace entfernt, sodass *commandPrefix* nie wieder aufgerufen wird. Gibt eine leere Zeichenkette zurück. Existiert *name* nicht, löst der Befehl einen Fehler aus.
 
     **trace remove variable** *name opList commandPrefix*
-    : Gibt es einen Trace auf die Variable *name* mit *opList* und *commandPrefix*, wird er entfernt. Leere Zeichenkette.
+    : Ist auf die Variable *name* ein Trace mit den Operationen und dem Befehl gesetzt, die *opList* und *commandPrefix* angeben, wird dieser Trace entfernt, sodass *commandPrefix* nie wieder aufgerufen wird. Gibt eine leere Zeichenkette zurück.
 
 
 **trace info** *type name*
-: *type* ist **command**, **execution** oder **variable**.
+: Dabei ist *type* **command**, **execution** oder **variable**.
 
     **trace info command** *name*
-    : Gibt eine Liste zurück mit einem Element pro Trace auf dem Befehl *name*. Jedes Element ist eine Liste mit *opList* und *commandPrefix*. Hat *name* keine Traces, leere Zeichenkette. Existiert *name* nicht, Fehler.
+    : Gibt eine Liste zurück, die für jeden derzeit auf den Befehl *name* gesetzten Trace ein Element enthält. Jedes Element der Liste ist selbst eine Liste aus zwei Elementen: der *opList* und dem *commandPrefix*, die zu dem Trace gehören. Sind auf *name* keine Traces gesetzt, ist das Ergebnis des Befehls eine leere Zeichenkette. Existiert *name* nicht, löst der Befehl einen Fehler aus.
 
     **trace info execution** *name*
-    : Wie **trace info command**.
+    : Gibt eine Liste zurück, die für jeden derzeit auf den Befehl *name* gesetzten Trace ein Element enthält. Jedes Element der Liste ist selbst eine Liste aus zwei Elementen: der *opList* und dem *commandPrefix*, die zu dem Trace gehören. Sind auf *name* keine Traces gesetzt, ist das Ergebnis des Befehls eine leere Zeichenkette. Existiert *name* nicht, löst der Befehl einen Fehler aus.
 
     **trace info variable** *name*
-    : Gibt eine Liste zurück mit einem Element pro Trace auf der Variable *name*. Jedes Element enthält *opList* und *commandPrefix*. Existiert *name* nicht oder hat keine Traces, leere Zeichenkette.
+    : Gibt eine Liste zurück, die für jeden derzeit auf die Variable *name* gesetzten Trace ein Element enthält. Jedes Element der Liste ist selbst eine Liste aus zwei Elementen: der *opList* und dem *commandPrefix*, die zu dem Trace gehören. Existiert *name* nicht oder sind darauf keine Traces gesetzt, ist das Ergebnis des Befehls eine leere Zeichenkette.
 
 
 
 Zur Abwärtskompatibilität stehen drei weitere Unterbefehle zur Verfügung:
 
 **trace variable** *name ops command*
-: Entspricht **trace add variable** *name ops command*.
+: Dies entspricht **trace add variable** *name ops command*.
 
 **trace vdelete** *name ops command*
-: Entspricht **trace remove variable** *name ops command*
+: Dies entspricht **trace remove variable** *name ops command*
 
 **trace vinfo** *name*
-: Entspricht **trace info variable** *name*
+: Dies entspricht **trace info variable** *name*
 
 
 Diese Unterbefehle sind veraltet und werden in einer zukünftigen Tcl-Version wahrscheinlich entfernt. Sie verwenden eine ältere Syntax, in der [array], **read**, **write**, **unset** durch **a**, **r**, **w** und **u** ersetzt sind und das Argument *ops* keine Liste ist, sondern eine Zeichenkette aus aneinandergereihten Operationen, z. B. **rwua**.
 
 # Beispiele
 
-Eine Meldung ausgeben, sobald eine der globalen Variablen **foo** oder **bar** aktualisiert wird, auch bei anderem lokalem Namen (z. B. mit [upvar]):
+Eine Meldung ausgeben, sobald eine der globalen Variablen **foo** und **bar** aktualisiert wird, auch wenn sie zu diesem Zeitpunkt einen anderen lokalen Namen haben (was mit dem Befehl [upvar] möglich ist):
 
 ```
 proc tracer {varname args} {
@@ -198,7 +198,7 @@ trace add variable foo write "tracer foo"
 trace add variable bar write "tracer bar"
 ```
 
-Sicherstellen, dass die globale Variable **foobar** stets das Produkt von **foo** und **bar** enthält:
+Sicherstellen, dass die globale Variable **foobar** immer das Produkt der globalen Variablen **foo** und **bar** enthält:
 
 ```
 proc doMult args {
@@ -209,7 +209,7 @@ trace add variable foo write doMult
 trace add variable bar write doMult
 ```
 
-Ausgabe, welche Befehle während der Verarbeitung einer Tcl-Prozedur ausgeführt werden:
+Protokollieren, welche Befehle bei der Verarbeitung einer Tcl-Prozedur ausgeführt werden:
 
 ```
 proc x {} { y }

@@ -33,15 +33,15 @@ foreach - Iteriert über alle Elemente einer oder mehrerer Listen
 
 # Beschreibung
 
-**foreach** implementiert eine Schleife, in der die Schleifenvariable(n) Werte aus einer oder mehreren Listen annehmen. Im einfachsten Fall gibt es *varname* und *list*. Das Argument *body* ist ein Tcl-Skript. Für jedes Element von *list* (von vorne nach hinten) wird der Inhalt *varname* zugewiesen (wie mit [lindex]) und *body* ausgeführt.
+Der Befehl **foreach** implementiert eine Schleife, in der die Schleifenvariable(n) Werte aus einer oder mehreren Listen annehmen. Im einfachsten Fall gibt es eine Schleifenvariable *varname* und eine Liste *list*, die eine Liste von Werten ist, die *varname* zugewiesen werden. Das Argument *body* ist ein Tcl-Skript. Für jedes Element von *list* (der Reihe nach vom ersten bis zum letzten) weist **foreach** den Inhalt des Elements *varname* zu, so als wäre das Element mit dem Befehl [lindex] entnommen worden. Anschließend ruft es den Tcl-Interpreter auf, um *body* auszuführen.
 
-Allgemein können mehrere Wertelisten (*list1*, *list2*, …) jeweils mit Variablenlisten (*varlist1*, *varlist2*, …) verknüpft sein. Pro Iteration erhalten die Variablen jeder *varlist* aufeinanderfolgende Werte aus der zugehörigen Liste; Werte werden der Reihe nach verbraucht, jeder genau einmal. Die Iterationsanzahl reicht aus, alle Wertelisten zu erschöpfen. Reicht eine Liste für ihre Variablen in einer Iteration nicht, werden fehlende Elemente leer gesetzt.
+Im allgemeinen Fall kann es mehr als eine Werteliste geben (z. B. *list1* und *list2*), und jeder Werteliste kann eine Liste von Schleifenvariablen zugeordnet sein (z. B. *varlist1* und *varlist2*). Bei jedem Schleifendurchlauf werden den Variablen jeder *varlist* aufeinanderfolgende Werte aus der zugehörigen *list* zugewiesen. Die Werte in jeder *list* werden der Reihe nach vom ersten bis zum letzten verwendet, und jeder Wert wird genau einmal verwendet. Die Gesamtzahl der Schleifendurchläufe ist so groß, dass alle Werte aus allen Wertelisten verbraucht werden. Enthält eine Werteliste in einem Durchlauf nicht genügend Elemente für jede ihrer Schleifenvariablen, werden für die fehlenden Elemente leere Werte verwendet.
 
-[break] und [continue] in *body* wirken wie bei [for]. **foreach** gibt eine leere Zeichenkette zurück.
+Die Anweisungen [break] und [continue] können innerhalb von *body* aufgerufen werden und haben dieselbe Wirkung wie beim Befehl [for]. **foreach** gibt eine leere Zeichenkette zurück.
 
 # Beispiele
 
-Jeden Wert mit Quadrat und Kubik ausgeben:
+Diese Schleife gibt jeden Wert einer Liste zusammen mit seinem Quadrat und seiner dritten Potenz aus:
 
 ```
 set values {1 3 5 7 2 4 6 8}	;# Ungerade zuerst
@@ -51,7 +51,7 @@ foreach x $values {	;# Now loop and print...
 }
 ```
 
-*i* und *j* iterieren über Paare einer Liste:
+Die folgende Schleife verwendet i und j als Schleifenvariablen, um über Paare von Elementen einer einzelnen Liste zu iterieren.
 
 ```
 set x {}
@@ -62,7 +62,7 @@ foreach {i j} {a b c d e f} {
 # There are 3 iterations of the loop.
 ```
 
-Parallele Iteration über zwei Listen:
+Die nächste Schleife verwendet i und j, um parallel über zwei Listen zu iterieren.
 
 ```
 set x {}
@@ -73,7 +73,7 @@ foreach i {a b c} j {d e f g} {
 # There are 4 iterations of the loop.
 ```
 
-Kombination beider Formen:
+Im folgenden Beispiel werden beide Formen kombiniert.
 
 ```
 set x {}

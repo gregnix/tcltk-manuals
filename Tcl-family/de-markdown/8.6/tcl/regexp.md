@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-regexp - Regulären Ausdruck gegen eine Zeichenkette prüfen
+regexp - Prüft einen regulären Ausdruck gegen eine Zeichenkette
 
 # Übersicht
 
@@ -32,38 +32,38 @@ regexp - Regulären Ausdruck gegen eine Zeichenkette prüfen
 
 # Beschreibung
 
-Prüft, ob der reguläre Ausdruck *exp* einen Teil oder die gesamte *string* trifft, und gibt 1 zurück, wenn ja, sonst 0 — außer **-inline** ist angegeben (siehe unten). (Reguläre Ausdrücke werden auf der Referenzseite [re\_syntax][re_syntax] beschrieben.)
+Stellt fest, ob der reguläre Ausdruck *exp* auf einen Teil von *string* oder auf die ganze Zeichenkette passt. Der Befehl gibt 1 zurück, wenn dies der Fall ist, und 0, wenn nicht, sofern nicht **-inline** angegeben ist (siehe unten). (Der Abgleich mit regulären Ausdrücken ist auf der Referenzseite [re\_syntax][re_syntax] beschrieben.)
 
-Werden nach *string* weitere Argumente angegeben, gelten sie als Namen von Variablen, in denen Informationen darüber zurückgegeben wird, welche Teil(e) von *string* zu *exp* passten. *matchVar* erhält den Bereich von *string*, der ganz zu *exp* passte. Die erste *subMatchVar* enthält die Zeichen in *string*, die zur linken geklammerten Unterausdrucks in *exp* passten, die nächste *subMatchVar* die zum nächsten geklammerten Unterausdruck rechts davon usw.
+Werden nach *string* weitere Argumente angegeben, gelten sie als Namen von Variablen, in denen Informationen darüber zurückgegeben werden, welche Teile von *string* auf *exp* gepasst haben. *matchVar* wird auf den Bereich von *string* gesetzt, der auf den gesamten Ausdruck *exp* gepasst hat. Die erste *subMatchVar* enthält die Zeichen in *string*, die auf den am weitesten links stehenden geklammerten Unterausdruck in *exp* gepasst haben. Die nächste *subMatchVar* enthält die Zeichen, die auf den nächsten geklammerten Unterausdruck rechts davon in *exp* gepasst haben, und so weiter.
 
-Beginnen die ersten Argumente von **regexp** mit **-**, werden sie als Schalter behandelt. Unterstützt werden:
+Beginnen die ersten Argumente von **regexp** mit **-**, werden sie als Schalter behandelt. Derzeit werden folgende Schalter unterstützt:
 
 **-about**
-: Statt zu matchen wird eine Liste mit Informationen über den regulären Ausdruck zurückgegeben. Erstes Element: Anzahl der Unterausdrücke. Zweites: Liste von Eigenschaftsnamen zu Attributen des Ausdrucks. Vor allem für Debugging.
+: Statt zu versuchen, den regulären Ausdruck abzugleichen, gibt der Befehl eine Liste mit Informationen über den regulären Ausdruck zurück. Das erste Element der Liste ist die Anzahl der Unterausdrücke. Das zweite Element ist eine Liste von Eigenschaftsnamen, die verschiedene Merkmale des regulären Ausdrucks beschreiben. Dieser Schalter ist vor allem zur Fehlersuche gedacht.
 
 **-expanded**
-: Erweiterte RE-Syntax: Leerraum und Kommentare werden ignoriert. Entspricht der eingebetteten Option **(?x)** (siehe [re\_syntax][re_syntax]).
+: Ermöglicht die erweiterte Syntax für reguläre Ausdrücke, bei der Leerraum und Kommentare ignoriert werden. Dies entspricht der Angabe der eingebetteten Option **(?x)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-indices**
-: Ändert, was in *matchVar* und *subMatchVar* gespeichert wird: statt der passenden Zeichen je zwei Dezimalstrings mit den Indizes des ersten und letzten Zeichens des Trefferbereichs in *string*.
+: Ändert, was in *matchVar* und den *subMatchVar*s gespeichert wird. Statt der passenden Zeichen aus *string* enthält jede Variable eine Liste aus zwei dezimalen Zeichenketten. Sie geben die Indizes des ersten und des letzten Zeichens des passenden Zeichenbereichs in *string* an.
 
 **-line**
-: Zeilenumbruch-sensitives Matching. Standard: Zeilenumbruch ist ein normales Zeichen. Mit diesem Flag: „[^“-Klammerausdrücke und „.“ treffen keinen Zeilenumbruch; „^“ zusätzlich leere Zeichenkette nach jedem Zeilenumbruch; „$“ zusätzlich davor. Entspricht **-linestop** und **-lineanchor** zusammen oder **(?n)** (siehe [re\_syntax][re_syntax]).
+: Aktiviert einen zeilenumbruchsensitiven Abgleich. Standardmäßig ist der Zeilenumbruch ein völlig gewöhnliches Zeichen ohne besondere Bedeutung. Mit diesem Schalter passen Klammerausdrücke der Form „\[^“ und „.“ niemals auf einen Zeilenumbruch. „^“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette nach jedem Zeilenumbruch, und „$“ passt zusätzlich zu seiner normalen Funktion auf eine leere Zeichenkette vor jedem Zeilenumbruch. Dieser Schalter entspricht der Angabe von **-linestop** und **-lineanchor** zusammen oder der eingebetteten Option **(?n)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-linestop**
-: „[^“ und „.“ stoppen an Zeilenumbrüchen. Wie **(?p)** (siehe [re\_syntax][re_syntax]).
+: Ändert das Verhalten von Klammerausdrücken der Form „\[^“ und von „.“ so, dass sie an Zeilenumbrüchen anhalten. Dies entspricht der Angabe der eingebetteten Option **(?p)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-lineanchor**
-: „^“ und „$“ (Anker) treffen Zeilenanfang bzw. -ende. Wie **(?w)** (siehe [re\_syntax][re_syntax]).
+: Ändert das Verhalten von „^“ und „$“ (den „Ankern“) so, dass sie auf den Anfang beziehungsweise das Ende einer Zeile passen. Dies entspricht der Angabe der eingebetteten Option **(?w)** (siehe die Handbuchseite [re\_syntax][re_syntax]).
 
 **-nocase**
-: Großbuchstaben in *string* werden beim Matching wie Kleinbuchstaben behandelt.
+: Bewirkt, dass Großbuchstaben in *string* beim Abgleich wie Kleinbuchstaben behandelt werden.
 
 **-all**
-: So oft wie möglich matchen; Rückgabe der Gesamtzahl der Treffer. Mit Match-Variablen: nur Informationen zum letzten Treffer.
+: Bewirkt, dass der reguläre Ausdruck so oft wie möglich in der Zeichenkette abgeglichen wird. Der Befehl gibt die Gesamtzahl der gefundenen Treffer zurück. Werden dabei Match-Variablen angegeben, enthalten sie nur Informationen über den letzten Treffer.
 
 **-inline**
-: Gibt als Liste die Daten zurück, die sonst in Match-Variablen landen würden. Mit **-inline** keine Match-Variablen. Mit **-all** wird die Liste pro Iteration angehängt (flache Liste). Pro Treffer: Gesamttreffer plus je ein Element pro Unterausdruck. Beispiele:
+: Bewirkt, dass der Befehl die Daten, die sonst in den Match-Variablen abgelegt würden, als Liste zurückgibt. Bei Verwendung von **-inline** dürfen keine Match-Variablen angegeben werden. Zusammen mit **-all** wird die Liste bei jedem Durchlauf verkettet, sodass stets eine flache Liste zurückgegeben wird. Bei jedem Treffer hängt der Befehl die Daten des Gesamttreffers sowie ein Element für jeden Unterausdruck des regulären Ausdrucks an. Beispiele:
 
     ```
     regexp -inline -- {\w(\w)} " inlined "
@@ -73,43 +73,43 @@ Beginnen die ersten Argumente von **regexp** mit **-**, werden sie als Schalter 
     ```
 
 **-start** *index*
-: Zeichenindex-Offset in *string*, ab dem gematcht wird (wie [string index][string]). Mit diesem Schalter trifft „^“ nicht den Zeilenanfang; \A trifft weiter den Stringanfang bei *index*. Mit **-indices** Indizes relativ zum absoluten Anfang von *string*. *index* wird auf die Stringgrenzen beschränkt.
+: Legt einen Zeichenindex in der Zeichenkette fest, ab dem der Abgleich des regulären Ausdrucks beginnt. Der Wert *index* wird genauso interpretiert wie das Argument *index* von [string index][string]. Bei Verwendung dieses Schalters passt „^“ nicht auf den Zeilenanfang, und \\A passt weiterhin auf den Anfang der Zeichenkette bei *index*. Wenn **-indices** angegeben ist, werden die Indizes ab dem absoluten Anfang der Eingabezeichenkette gezählt. *index* wird auf die Grenzen der Eingabezeichenkette beschränkt.
 
 **--**
-: Ende der Schalter; das folgende Argument gilt als *exp*, auch wenn es mit **-** beginnt.
+: Markiert das Ende der Schalter. Das darauf folgende Argument wird als *exp* behandelt, auch wenn es mit einem **-** beginnt.
 
 
-Gibt es mehr *subMatchVar* als geklammerte Unterausdrücke in *exp*, oder trifft ein Unterausdruck nicht (weil er in einem nicht gematchten Teil lag), wird die *subMatchVar* auf „**-1 -1**“ gesetzt bei **-indices**, sonst auf leeren String.
+Gibt es mehr *subMatchVar*s als geklammerte Unterausdrücke in *exp* oder passt ein bestimmter Unterausdruck in *exp* nicht auf die Zeichenkette (etwa weil er in einem Teil des Ausdrucks lag, der nicht abgeglichen wurde), wird die entsprechende *subMatchVar* auf „**-1 -1**“ gesetzt, wenn **-indices** angegeben wurde, andernfalls auf eine leere Zeichenkette.
 
 # Beispiele
 
-Erstes Vorkommen eines Worts, das mit **foo** beginnt, aber kein **foobar** ist; Buchstaben danach bis Wortende in eine Variable:
+Das erste Vorkommen eines Worts finden, das mit **foo** beginnt, aber nicht tatsächlich **foobar** ist, und die darauf folgenden Buchstaben bis zum Wortende in einer Variablen ablegen:
 
 ```
 regexp {\mfoo(?!bar\M)(\w*)} $string -> restOfWord
 ```
 
-Die gesamte Trefferzeichenkette liegt in „**->**“ — ein Name, der gut aussieht, obwohl der Inhalt uninteressant ist.
+Beachten Sie, dass die gesamte passende Teilzeichenkette in der Variablen „**->**“ abgelegt wurde. Dieser Name wurde gewählt, weil er gut aussieht, da uns der Inhalt dieser Variablen eigentlich nicht interessiert.
 
-Index des Worts **badger** (beliebige Schreibweise) in **location**:
+Den Index des Worts **badger** (in beliebiger Schreibung) in einer Zeichenkette finden und in der Variablen **location** speichern:
 
 ```
 regexp -indices {(?i)\mbadger\M} $string location
 ```
 
-Als *basic* regular expression (statt Standard *advanced*):
+Dies lässt sich auch als Abgleich mit einem *einfachen* regulären Ausdruck schreiben (statt der voreingestellten Syntax der *erweiterten* regulären Ausdrücke), indem dem Ausdruck ein passendes Flag vorangestellt wird:
 
 ```
 regexp -indices {(?ib)\<badger\>} $string location
 ```
 
-Anzahl der Oktalziffern in einer Zeichenkette:
+Dies zählt die Oktalziffern in einer Zeichenkette:
 
 ```
 regexp -all {[0-7]} $string
 ```
 
-Alle Wörter (Nicht-Leerzeichen-Sequenzen) als Liste — mächtigere Variante von [split]:
+Dies listet alle Wörter (also alle Folgen von Zeichen, die kein Leerraum sind) in einer Zeichenkette auf. Es ist als leistungsfähigere Variante des Befehls [split] nützlich:
 
 ```
 regexp -all -inline {\S+} $string

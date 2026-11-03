@@ -42,34 +42,34 @@
 
 BESCHREIBUNG
 
- ScrolledWindow ermöglicht, leicht ein Widget mit seiner Bildlaufleiste zu erzeugen. Die Bildlaufleisten erzeugt ScrolledWindow, und die Scrollbefehle werden mit **ScrolledWindow::setwidget** automatisch einem scrollbaren Widget zugeordnet. 
+ ScrolledWindow ermöglicht, leicht ein Widget mit seiner Scrollbar zu erzeugen. Die Scrollbars erzeugt ScrolledWindow, und die Scrollbefehle werden mit **ScrolledWindow::setwidget** automatisch einem scrollbaren Widget zugeordnet. 
 
 ---
 
 WIDGET-SPEZIFISCHE OPTIONEN
 
 **-auto**
-:  Legt die gewünschte automatisch verwaltete Bildlaufleiste fest: none bedeutet, die Bildlaufleisten werden immer gezeichnet, horizontal bedeutet, die waagerechte Bildlaufleiste wird bei Bedarf gezeichnet, vertical bedeutet, die senkrechte Bildlaufleiste wird bei Bedarf gezeichnet, both bedeutet, waagerechte und senkrechte Bildlaufleisten werden bei Bedarf gezeichnet (Vorgabewert) 
+:  Legt die gewünschte automatisch verwaltete Scrollbar fest: none bedeutet, die Scrollbars werden immer gezeichnet, horizontal bedeutet, die waagerechte Scrollbar wird bei Bedarf gezeichnet, vertical bedeutet, die senkrechte Scrollbar wird bei Bedarf gezeichnet, both bedeutet, waagerechte und senkrechte Scrollbars werden bei Bedarf gezeichnet (Vorgabewert) 
 
 
 **-ipad (nur lesbar)**
-:  Abstand in Pixeln zwischen dem Client-Widget und den Bildlaufleisten. Vorgabewert: **1**. 
+:  Abstand in Pixeln zwischen dem Client-Widget und den Scrollbars. Vorgabewert: **1**. 
 
 
 **-managed (nur lesbar)**
-:  Wenn true, werden die Bildlaufleisten bei der Erzeugung verwaltet, ihre Größe geht also in die verlangte Größe des ScrolledWindow ein. Wenn false, dann nicht. Vorgabewert: **true**. 
+:  Wenn true, werden die Scrollbars bei der Erzeugung verwaltet, ihre Größe geht also in die verlangte Größe des ScrolledWindow ein. Wenn false, dann nicht. Vorgabewert: **true**. 
 
 
 **-scrollbar**
-:  Legt die gewünschte Bildlaufleiste fest: **none**, **horizontal**, **vertical** oder **both** (Vorgabewert). 
+:  Legt die gewünschte Scrollbar fest: **none**, **horizontal**, **vertical** oder **both** (Vorgabewert). 
 
 
 **-sides (nur lesbar)**
-:  Seite der Bildlaufleisten. Mögliche Werte sind: **ne**, **en**, **nw**, **wn**, **se** (Vorgabewert), **es**, **sw**, **ws**. 
+:  Seite der Scrollbars. Mögliche Werte sind: **ne**, **en**, **nw**, **wn**, **se** (Vorgabewert), **es**, **sw**, **ws**. 
 
 
 **-size (nur lesbar)**
-:  Größe der Bildlaufleisten in Pixeln. 0 steht für die Standardgröße (Vorgabewert). 
+:  Größe der Scrollbars in Pixeln. 0 steht für die Standardgröße (Vorgabewert). 
 
 
 ---
@@ -89,4 +89,4 @@ WIDGET-BEFEHL
 
 
 *pathName* **setwidget** *widget* 
-:  Ordnet *widget* den Bildlaufleisten zu. *widget* wird vom ScrolledWindow verwaltet. *widget* sollte nicht selbst verwaltet werden, solange das ScrolledWindow es verwaltet. *widget* muss ein scrollbares Widget sein, das heißt die Optionen **xscrollcommand**/**yscrollcommand** und die Befehle **xview**/**yview** haben, wie canvas oder text.
+:  Ordnet *widget* den Scrollbars zu. *widget* wird vom ScrolledWindow verwaltet. *widget* sollte nicht selbst verwaltet werden, solange das ScrolledWindow es verwaltet. *widget* muss ein scrollbares Widget sein, das heißt die Optionen **xscrollcommand**/**yscrollcommand** und die Befehle **xview**/**yview** haben, wie canvas oder text.

@@ -40,38 +40,38 @@ expr - Einen Ausdruck auswerten
 
 # Beschreibung
 
-Fügt *arg*s zusammen (mit Leerzeichen dazwischen), wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. In Tcl-Ausdrücken sind eine Teilmenge der in C erlaubten Operatoren zulässig. Für gemeinsame Operatoren gelten dieselbe Bedeutung und Priorität wie in C. Ausdrücke liefern fast immer numerische Ergebnisse (Ganzzahl oder Gleitkomma). Beispielsweise liefert
+Verkettet die *arg*s (wobei zwischen ihnen trennende Leerzeichen eingefügt werden), wertet das Ergebnis als Tcl-Ausdruck aus und gibt den Wert zurück. Die in Tcl-Ausdrücken zulässigen Operatoren sind eine Teilmenge der in C-Ausdrücken zulässigen Operatoren. Für die Operatoren, die Tcl und C gemeinsam haben, verwendet Tcl dieselbe Bedeutung und Priorität wie bei den entsprechenden C-Operatoren. Ausdrücke liefern fast immer numerische Ergebnisse (Ganzzahl- oder Gleitkommawerte). Zum Beispiel ergibt der Ausdruck
 
 ```
 expr 8.2 + 6
 ```
 
-den Wert 14.2. Tcl-Ausdrücke unterscheiden sich von C in der Operandenangabe und unterstützen nicht-numerische Operanden, Zeichenkettenvergleiche sowie zusätzliche Operatoren ohne C-Entsprechung.
+den Wert 14.2. Tcl-Ausdrücke unterscheiden sich von C-Ausdrücken in der Art, wie Operanden angegeben werden. Außerdem unterstützen Tcl-Ausdrücke nicht-numerische Operanden und Zeichenkettenvergleiche sowie einige zusätzliche Operatoren, die es in C nicht gibt.
 
 ## Operanden
 
-Ein Tcl-Ausdruck besteht aus Operanden, Operatoren, Klammern und Kommas. Leerraum zwischen Operanden, Operatoren und Klammern (oder Kommas) ist erlaubt und wird ignoriert. Operanden werden nach Möglichkeit als Ganzzahlen interpretiert. Ganzzahlen können dezimal (Normalfall), binär (wenn die ersten zwei Zeichen **0b** sind), oktal (**0o**) oder hexadezimal (**0x**) angegeben werden. Zur Kompatibilität mit älteren Tcl-Versionen gilt ein oktaler Wert auch, wenn das erste Zeichen **0** ist, unabhängig davon, ob das zweite **o** ist. Hat ein Operand keines der Ganzzahlformate und ist Gleitkomma möglich, wird er als Gleitkommazahl behandelt. Gültige Formate nutzen Dezimalziffern, **.**, **e**/**E** für die wissenschaftliche Notation und **+**/**-**. Beispiele: 2.1, 3., 6e4, 7.91e+16. **Inf** und **NaN** in beliebiger Schreibweise gelten als Gleitkomma. Ist keine numerische Interpretation möglich (nicht-numerische oder nicht-boolesche Literale müssen in Klammern oder Anführungszeichen stehen), bleibt der Operand eine Zeichenkette (nur ein begrenzter Operatorsatz ist anwendbar).
+Ein Tcl-Ausdruck besteht aus einer Kombination von Operanden, Operatoren, Klammern und Kommas. Zwischen Operanden, Operatoren und Klammern (oder Kommas) darf Leerraum stehen; die Anweisungen des Ausdrucks ignorieren ihn. Wo möglich, werden Operanden als Ganzzahlwerte interpretiert. Ganzzahlwerte können dezimal (der Normalfall), binär (wenn die ersten beiden Zeichen des Operanden **0b** sind), oktal (wenn die ersten beiden Zeichen des Operanden **0o** sind) oder hexadezimal (wenn die ersten beiden Zeichen des Operanden **0x** sind) angegeben werden. Zur Kompatibilität mit älteren Tcl-Versionen wird ein oktaler Ganzzahlwert auch schon dann angenommen, wenn das erste Zeichen des Operanden **0** ist, unabhängig davon, ob das zweite Zeichen ebenfalls **o** ist. Hat ein Operand keines der oben genannten Ganzzahlformate, wird er als Gleitkommazahl behandelt, sofern das möglich ist. Gleitkommazahlen können in mehreren gängigen Formaten angegeben werden, die die Dezimalziffern, den Dezimalpunkt **.**, die Zeichen **e** oder **E** für die wissenschaftliche Notation und die Vorzeichen **+** oder **-** verwenden. Zum Beispiel sind alle folgenden Werte gültige Gleitkommazahlen: 2.1, 3., 6e4, 7.91e+16. Ebenfalls als Gleitkommawerte erkannt werden die Zeichenketten **Inf** und **NaN**, wobei jedes Zeichen groß oder klein geschrieben sein darf. Ist keine numerische Interpretation möglich (beachten Sie, dass alle literalen Operanden, die weder numerisch noch boolesch sind, entweder mit geschweiften Klammern oder mit doppelten Anführungszeichen quotiert werden müssen), bleibt ein Operand eine Zeichenkette, und nur eine begrenzte Menge von Operatoren kann auf ihn angewendet werden.
 
-Operanden können so angegeben werden:
+Operanden können auf jede der folgenden Arten angegeben werden:
 
-1. Als numerischer Wert, Ganzzahl oder Gleitkomma.
+1. Als numerischer Wert, entweder als Ganzzahl oder als Gleitkommazahl.
 
-2. Als boolescher Wert in jeder von [string is][string] **boolean** verstandenen Form.
+2. Als boolescher Wert in jeder Form, die [string is][string] **boolean** versteht.
 
-3. Als Tcl-Variable mit **$**-Notation; der Variablenwert ist der Operand.
+3. Als Tcl-Variable in der üblichen **$**-Notation. Der Wert der Variablen wird als Operand verwendet.
 
-4. Als Zeichenkette in doppelten Anführungszeichen. Der Parser führt Backslash-, Variablen- und Befehlssubstitution zwischen den Anführungszeichen aus und nutzt das Ergebnis als Operand.
+4. Als Zeichenkette in doppelten Anführungszeichen. Der Ausdrucksparser führt auf dem Inhalt zwischen den Anführungszeichen Backslash-, Variablen- und Befehlsersetzung aus und verwendet den resultierenden Wert als Operand.
 
-5. Als Zeichenkette in geschweiften Klammern. Die Zeichen zwischen öffnender und schließender Klammer werden ohne Substitution als Operand verwendet.
+5. Als Zeichenkette in geschweiften Klammern. Die Zeichen zwischen der öffnenden und der zugehörigen schließenden Klammer werden ohne jede Ersetzung als Operand verwendet.
 
-6. Als Tcl-Befehl in eckigen Klammern. Der Befehl wird ausgeführt; sein Ergebnis ist der Operand.
+6. Als Tcl-Befehl in eckigen Klammern. Der Befehl wird ausgeführt, und sein Ergebnis wird als Operand verwendet.
 
-7. Als mathematische Funktion mit Argumenten in einer der obigen Formen, z. B. **sin($x)**. Siehe [Mathematische Funktionen] unten.
+7. Als mathematische Funktion, deren Argumente eine der obigen Formen für Operanden haben, etwa **sin($x)**. Wie mathematische Funktionen behandelt werden, ist unten unter [Mathematische Funktionen] beschrieben.
 
 
-Wo obige Substitutionen vorkommen (z. B. in Anführungszeichen), führt sie der Ausdruck aus. Der Befehlsparser kann jedoch bereits eine Substitutionsrunde ausgeführt haben, bevor der Ausdruck verarbeitet wird. Wie unten beschrieben, empfiehlt es sich, Ausdrücke in geschweifte Klammern zu setzen.
+Wo die obigen Ersetzungen vorkommen (z. B. innerhalb von Zeichenketten in Anführungszeichen), werden sie von den Anweisungen des Ausdrucks ausgeführt. Der Befehlsparser kann jedoch bereits eine Ersetzungsrunde ausgeführt haben, bevor der Ausdrucksprozessor aufgerufen wurde. Wie unten erläutert, ist es meist am besten, Ausdrücke in geschweifte Klammern zu setzen, damit der Befehlsparser keine Ersetzungen am Inhalt vornimmt.
 
-Beispiele: **a** ist 3, **b** ist 6. Links steht der Befehl, rechts das Ergebnis:
+Nehmen Sie für einige Beispiele einfacher Ausdrücke an, dass die Variable **a** den Wert 3 und die Variable **b** den Wert 6 hat. Dann liefert der Befehl auf der linken Seite jeder der folgenden Zeilen den Wert auf der rechten Seite der Zeile:
 
 ```
 expr {3.1 + $a}	6.1
@@ -82,157 +82,157 @@ expr {{word one} < "word $a"}	0
 
 ## Operatoren
 
-Die gültigen Operatoren (die meisten auch als Befehle im Namespace **tcl::mathop**; siehe [mathop]\(n)) sind unten in abnehmender Priorität aufgeführt:
+Die gültigen Operatoren (die meisten davon sind auch als Befehle im Namespace **tcl::mathop** verfügbar; Einzelheiten finden Sie auf der Handbuchseite [mathop]\(n)) sind unten aufgeführt, gruppiert in absteigender Reihenfolge der Priorität:
 
 **-  +  ~  !**
-: Unäres Minus, unäres Plus, bitweises NOT, logisches NOT. Keiner dieser Operatoren darf auf Zeichenketten angewendet werden; bitweises NOT nur auf Ganzzahlen.
+: Unäres Minus, unäres Plus, bitweises NOT, logisches NOT. Keiner dieser Operatoren darf auf Zeichenkettenoperanden angewendet werden, und bitweises NOT darf nur auf Ganzzahlen angewendet werden.
 
 **\*\***
-: Potenzierung. Gültig für numerische Operanden. Maximaler Exponent bei Ganzzahl > 1 als erster Operand: 268435455.
+: Potenzierung. Gültig für alle numerischen Operanden. Ist die erste Zahl eine Ganzzahl > 1, ist der größte Exponent, den Tcl verarbeiten kann, 268435455.
 
 **\*  /  %**
-: Multiplikation, Division, Rest. Keiner darf auf Zeichenketten angewendet werden; Rest nur auf Ganzzahlen. Der Rest hat dasselbe Vorzeichen wie der Divisor und einen absoluten Betrag kleiner als der Divisor.
+: Multiplikation, Division, Rest. Keiner dieser Operatoren darf auf Zeichenkettenoperanden angewendet werden, und der Rest darf nur auf Ganzzahlen angewendet werden. Der Rest hat immer dasselbe Vorzeichen wie der Divisor und einen Betrag, der kleiner ist als der Betrag des Divisors.
 
-    Bei Ganzzahlen kann man Division und Rest als Aufteilung der Zahlengeraden in gleich große, aneinandergrenzende Intervalle der Divisorgröße auffassen; der Quotient gibt das Intervall des Dividenden an, der Rest die Position darin. Folglich ist „-57 **/** 10“ immer -6 und „-57 **%** 10“ immer 3.
+    Bei Ganzzahlen lassen sich die Divisions- und Restoperatoren so auffassen, dass sie die Zahlengerade in eine Folge gleich großer, aneinandergrenzender, sich nicht überlappender Abschnitte aufteilen, von denen jeder so groß ist wie der Divisor. Das Ergebnis der Division gibt an, in welchem Abschnitt der Dividend liegt, und das Ergebnis des Rests gibt an, an welcher Stelle innerhalb dieses Abschnitts er liegt. Daraus folgt, dass das Ergebnis von „-57 **/** 10“ immer -6 und das Ergebnis von „-57 **%** 10“ immer 3 ist.
 
 **+  -**
-: Addition und Subtraktion. Gültig für numerische Operanden.
+: Addition und Subtraktion. Gültig für alle numerischen Operanden.
 
 **<<  >>**
-: Links- und Rechtsshift. Nur für Ganzzahlen. Rechtsshift überträgt das Vorzeichenbit.
+: Links- und Rechtsverschiebung. Nur für Ganzzahloperanden gültig. Eine Rechtsverschiebung überträgt immer das Vorzeichenbit.
 
 **<  >  <=  >=**
-: Boolesch kleiner, größer, kleiner gleich, größer gleich. Ergebnis 1 bei wahrer Bedingung, sonst 0. Anwendbar auf Zeichenketten und Zahlen; bei Zeichenketten Zeichenkettenvergleich.
+: Boolesches Kleiner, Größer, Kleiner-gleich und Größer-gleich. Jeder Operator liefert 1, wenn die Bedingung wahr ist, andernfalls 0. Diese Operatoren können sowohl auf Zeichenketten als auch auf numerische Operanden angewendet werden; bei Zeichenketten wird ein Zeichenkettenvergleich verwendet.
 
 **==  !=**
-: Boolesches gleich und ungleich. Ergebnis 0/1. Gültig für alle Operandentypen.
+: Boolesches Gleich und Ungleich. Jeder Operator liefert als Ergebnis null oder eins. Gültig für alle Operandentypen.
 
 **eq  ne**
-: Boolesches Zeichenketten-gleich und -ungleich. Ergebnis 0/1. Operanden nur als Zeichenketten.
+: Boolesches Zeichenketten-Gleich und Zeichenketten-Ungleich. Jeder Operator liefert als Ergebnis null oder eins. Die Operanden werden ausschließlich als Zeichenketten interpretiert.
 
 **in  ni**
-: Listenelement und Negation. Ergebnis 0/1; erstes Argument Zeichenkette, zweites Tcl-Liste. **in** prüft Zugehörigkeit; **ni** kehrt das Ergebnis um.
+: Enthaltensein in einer Liste und dessen Verneinung. Jeder Operator liefert als Ergebnis null oder eins und behandelt sein erstes Argument als Zeichenkette und sein zweites Argument als Tcl-Liste. Der Operator **in** gibt an, ob das erste Argument ein Element der Liste im zweiten Argument ist; der Operator **ni** kehrt das Ergebnis um.
 
 **&**
-: Bitweises AND. Nur Ganzzahlen.
+: Bitweises AND. Nur für Ganzzahloperanden gültig.
 
 **^**
-: Bitweises exklusives OR. Nur Ganzzahlen.
+: Bitweises exklusives OR. Nur für Ganzzahloperanden gültig.
 
 **|**
-: Bitweises OR. Nur Ganzzahlen.
+: Bitweises OR. Nur für Ganzzahloperanden gültig.
 
 **&&**
-: Logisches AND. Ergebnis 1, wenn beide Operanden ungleich null, sonst 0. Nur für boolesche und numerische Operanden. Faule Auswertung des zweiten Operanden nur bei Bedarf.
+: Logisches AND. Liefert 1, wenn beide Operanden ungleich null sind, andernfalls 0. Nur für boolesche und numerische Operanden (Ganzzahlen oder Gleitkommazahlen) gültig. Dieser Operator wertet faul aus: Er wertet seinen zweiten Operanden nur aus, wenn das zur Bestimmung des Ergebnisses nötig ist.
 
 **||**
-: Logisches OR. Ergebnis 0, wenn beide Operanden null, sonst 1. Nur für boolesche und numerische Operanden. Faule Auswertung des zweiten Operanden nur bei Bedarf.
+: Logisches OR. Liefert 0, wenn beide Operanden null sind, andernfalls 1. Nur für boolesche und numerische Operanden (Ganzzahlen oder Gleitkommazahlen) gültig. Dieser Operator wertet faul aus: Er wertet seinen zweiten Operanden nur aus, wenn das zur Bestimmung des Ergebnisses nötig ist.
 
 *x* **?** *y* **:** *z*
-: Wenn-dann-sonst wie in C. Ist *x* ungleich null, Ergebnis von *y*, sonst von *z*. *x* muss boolesch oder numerisch sein. Faule Auswertung: nur *y* oder *z*.
+: Wenn-dann-sonst wie in C. Ergibt die Auswertung von *x* einen Wert ungleich null, ist das Ergebnis der Wert von *y*. Andernfalls ist das Ergebnis der Wert von *z*. Der Operand *x* muss einen booleschen oder numerischen Wert haben. Dieser Operator wertet faul aus: Er wertet nur entweder *y* oder *z* aus.
 
 
-Einzelheiten zu den Operatoren siehe die C-Dokumentation. Potenzierung fördert Typen wie Multiplikation/Division; das Ergebnis entspricht **pow** (nach Typumwandlung). Alle binären Operatoren außer Potenzierung gruppieren links-rechts auf gleicher Priorität; Potenzierung rechts-links. Beispiel:
+Weitere Einzelheiten zu den Ergebnissen der einzelnen Operatoren finden Sie in der C-Dokumentation. Der Potenzierungsoperator wandelt Typen wie die Multiplikations- und Divisionsoperatoren um und liefert dasselbe Ergebnis wie die Funktion **pow** (nach etwaigen Typumwandlungen). Alle binären Operatoren außer der Potenzierung gruppieren innerhalb derselben Prioritätsstufe von links nach rechts; die Potenzierung gruppiert von rechts nach links. Zum Beispiel gibt der Befehl
 
 ```
 expr {4*2 < 7}
 ```
 
-liefert 0, während
+0 zurück, während
 
 ```
 expr {2**3**2}
 ```
 
-512 liefert.
+512 zurückgibt.
 
-**&&**, **||** und **?:** werten faul aus wie in C. In
+Die Operatoren **&&**, **||** und **?:** werten wie in C „faul“ aus. Das bedeutet, dass Operanden nicht ausgewertet werden, wenn sie zur Bestimmung des Ergebnisses nicht benötigt werden. Zum Beispiel wird im Befehl
 
 ```
 expr {$v?[a]:[b]}
 ```
 
-wird nur „**\[a\]**“ oder „**\[b\]**“ ausgewertet, je nach **$v** — aber nur, wenn der gesamte Ausdruck in Klammern steht; sonst wertet der Tcl-Parser beide aus, bevor **expr** läuft.
+nur entweder „**\[a\]**“ oder „**\[b\]**“ tatsächlich ausgewertet, abhängig vom Wert von **$v**. Beachten Sie jedoch, dass dies nur gilt, wenn der gesamte Ausdruck in geschweifte Klammern eingeschlossen ist; andernfalls wertet der Tcl-Parser sowohl „**\[a\]**“ als auch „**\[b\]**“ aus, bevor er den Befehl **expr** aufruft.
 
 ## Mathematische Funktionen
 
-Trifft der Parser auf eine Funktion wie **sin($x)**, ersetzt er sie durch einen Tcl-Befehl im Namespace **tcl::mathfunc**. Die Verarbeitung von
+Trifft der Ausdrucksparser auf eine mathematische Funktion wie **sin($x)**, ersetzt er sie durch den Aufruf eines gewöhnlichen Tcl-Befehls im Namespace **tcl::mathfunc**. Die Verarbeitung eines Ausdrucks wie:
 
 ```
 expr {sin($x+$y)}
 ```
 
-entspricht in jeder Hinsicht der Verarbeitung von
+ist in jeder Hinsicht dieselbe wie die Verarbeitung von:
 
 ```
 expr {[tcl::mathfunc::sin [expr {$x+$y}]]}
 ```
 
-was wiederum gleichbedeutend ist mit der Verarbeitung von
+was wiederum dasselbe ist wie die Verarbeitung von:
 
 ```
 tcl::mathfunc::sin [expr {$x+$y}]
 ```
 
-Der Ausführer sucht **tcl::mathfunc::sin** nach den üblichen Namespace-Regeln. [::tcl::mathfunc::sin][mathfunc] oder **\[namespace current\]::tcl::mathfunc::sin** erfüllen die Anforderung; weitere sind je nach [namespace path][namespace] möglich.
+Der Ausführer sucht **tcl::mathfunc::sin** nach den üblichen Regeln für die Auflösung von Funktionen in Namespaces. Sowohl [::tcl::mathfunc::sin][mathfunc] als auch **\[namespace current\]::tcl::mathfunc::sin** erfüllen die Anforderung, und je nach der aktuellen Einstellung von [namespace path][namespace] können es auch andere tun.
 
-Manche Funktionen haben mehrere durch Kommas getrennte Argumente wie in C:
+Einige mathematische Funktionen haben mehrere Argumente, die wie in C durch Kommas getrennt werden. So wird
 
 ```
 expr {hypot($x,$y)}
 ```
 
-wird zu
+letztlich zu
 
 ```
 tcl::mathfunc::hypot $x $y
 ```
 
-Standard-Mathefunktionen siehe [mathfunc]\(n).
+Die standardmäßig verfügbaren mathematischen Funktionen sind auf der Handbuchseite [mathfunc]\(n) beschrieben.
 
 ## Typen, Überlauf und Genauigkeit
 
-Alle internen Ganzzahl-Berechnungen nutzen bei Bedarf die LibTomMath-Bibliothek für mehrstellige Ganzzahlen, sodass Ganzzahlrechnungen exakt sind. In Tcl vor 8.5 wurden Ganzzahlen mit *long int* oder *Tcl\_WideInt* gerechnet; Überlauf führte zu stiller Kürzung. Code, der darauf angewiesen war, muss an den betreffenden Stellen explizit **int()** oder **wide()** verwenden.
+Alle internen Berechnungen mit Ganzzahlen werden bei Bedarf mit der Bibliothek LibTomMath für Ganzzahlen beliebiger Genauigkeit ausgeführt, sodass alle Ganzzahlberechnungen exakt erfolgen. Beachten Sie, dass in Tcl-Versionen vor 8.5 Ganzzahlberechnungen mit einem der C-Typen *long int* oder *Tcl\_WideInt* ausgeführt wurden. Bei Berechnungen, deren Werte den Bereich dieser Typen überschritten, führte das zu einer impliziten Kürzung auf diesen Bereich. Code, der sich auf diese impliziten Kürzungen verlassen hat, muss an den Stellen, an denen eine solche Kürzung stattfinden soll, ausdrücklich Aufrufe der Funktionen **int()** oder **wide()** in die Ausdrücke einfügen.
 
-Gleitkomma intern mit C-Typ *double*. Exponentenüberlauf beim Umwandeln einer Zeichenkette liefert **Inf** bzw. **-Inf**. Über- und Unterlauf werden hardwareabhängig erkannt, in der Regel zuverlässig.
+Alle internen Berechnungen mit Gleitkommazahlen werden mit dem C-Typ *double* ausgeführt. Beim Umwandeln einer Zeichenkette in eine Gleitkommazahl wird ein Exponentenüberlauf erkannt und ergibt je nach Fall den *double*-Wert **Inf** oder **-Inf**. Gleitkomma-Überlauf und -Unterlauf werden in dem Maß erkannt, in dem die Hardware es unterstützt; das ist im Allgemeinen recht zuverlässig.
 
-Umwandlung zwischen Ganzzahl, Gleitkomma und Zeichenkette erfolgt automatisch. Bei Arithmetik werden Ganzzahlen verwendet, bis Gleitkomma eingeführt wird. Beispielsweise liefert
+Die Umwandlung zwischen den internen Darstellungen für Ganzzahl-, Gleitkomma- und Zeichenkettenoperanden erfolgt bei Bedarf automatisch. Bei arithmetischen Berechnungen werden Ganzzahlen verwendet, bis eine Gleitkommazahl hinzukommt; danach wird mit Gleitkommazahlen gerechnet. Zum Beispiel gibt
 
 ```
 expr {5 / 4}
 ```
 
-1, während
+1 zurück, während
 
 ```
 expr {5 / 4.0}
 expr {5 / ( [string length "abcd"] + 0.0 )}
 ```
 
-beide 1.25 liefern. Gleitkomma-Ergebnisse enthalten immer „**.**“ oder „**e**“, damit sie nicht wie Ganzzahlen aussehen. Beispielsweise liefert
+beide 1.25 zurückgeben. Gleitkommawerte werden immer mit einem „**.**“ oder einem „**e**“ zurückgegeben, damit sie nicht wie Ganzzahlwerte aussehen. Zum Beispiel gibt
 
 ```
 expr {20.0/5.0}
 ```
 
-**4.0**, nicht **4**.
+**4.0** zurück, nicht **4**.
 
 ## Zeichenkettenoperationen
 
-Zeichenketten können Vergleichsoperatoren nutzen; der Auswerter vergleicht nach Möglichkeit als Ganzzahl oder Gleitkomma, wenn alle Operanden numerisch interpretierbar sind — außer bei **eq** und **ne**. Ist ein Operand eine Zeichenkette und der andere numerisch, wird für den numerischen Operanden eine kanonische Zeichenkettenform erzeugt. Ganzzahlen: Dezimalstring. Gleitkomma: Ausgabe von **%g** in [format]. Beispiele:
+Zeichenkettenwerte können als Operanden der Vergleichsoperatoren verwendet werden. Der Ausdrucksauswerter versucht jedoch, Vergleiche als Ganzzahl- oder Gleitkommavergleiche auszuführen, wenn er kann, d. h. wenn alle Argumente des Operators eine numerische Interpretation zulassen; ausgenommen sind die Operatoren **eq** und **ne**. Ist einer der Operanden eines Vergleichs eine Zeichenkette und hat der andere einen numerischen Wert, wird eine kanonische Zeichenkettendarstellung des numerischen Operanden erzeugt, die mit dem Zeichenkettenoperanden verglichen wird. Die kanonische Zeichenkettendarstellung für Ganzzahlwerte ist eine Dezimalzahl als Zeichenkette. Die kanonische Zeichenkettendarstellung für Gleitkommawerte ist diejenige, die der Formatbezeichner **%g** des Tcl-Befehls [format] erzeugt. Zum Beispiel geben die Befehle
 
 ```
 expr {"0x03" > "2"}
 expr {"0y" > "0x12"}
 ```
 
-liefern beide 1. Der erste Vergleich ist ganzzahlig, der zweite Zeichenkettenvergleich. Da Tcl Werte möglichst als Zahlen behandelt, sollte man bei beliebigen Operanden und gewünschtem Zeichenkettenvergleich **eq**, **ne** oder [string] statt **==** verwenden.
+beide 1 zurück. Der erste Vergleich erfolgt als Ganzzahlvergleich, der zweite als Zeichenkettenvergleich. Weil Tcl dazu neigt, Werte wann immer möglich als Zahlen zu behandeln, ist es im Allgemeinen keine gute Idee, Operatoren wie **==** zu verwenden, wenn Sie eigentlich einen Zeichenkettenvergleich wollen und die Werte der Operanden beliebig sein können. In diesen Fällen ist es besser, stattdessen die Operatoren **eq** oder **ne** oder den Befehl [string] zu verwenden.
 
 # Leistungshinweise
 
-Setzen Sie Ausdrücke in geschweifte Klammern für beste Geschwindigkeit und geringsten Speicherbedarf; so kann der Tcl-Bytecode-Compiler optimalen Code erzeugen.
+Setzen Sie Ausdrücke in geschweifte Klammern, um die beste Geschwindigkeit und den geringsten Speicherbedarf zu erreichen. So kann der Tcl-Bytecode-Compiler den besten Code erzeugen.
 
-Wie oben werden Ausdrücke zweimal substituiert: einmal vom Tcl-Parser, einmal von **expr**. Beispiel:
+Wie oben erwähnt, werden Ausdrücke zweimal ersetzt: einmal vom Tcl-Parser und einmal vom Befehl **expr**. Zum Beispiel geben die Befehle
 
 ```
 set a 3
@@ -240,11 +240,11 @@ set b {$a + 2}
 expr $b*4
 ```
 
-liefert 11, kein Vielfaches von 4: Der Parser ersetzt zuerst „**$a + 2**“ für **b**, dann wertet **expr** „**$a + 2\*4**“ aus.
+11 zurück und kein Vielfaches von 4. Das liegt daran, dass der Tcl-Parser zuerst „**$a + 2**“ für die Variable **b** einsetzt und der Befehl **expr** dann den Ausdruck „**$a + 2\*4**“ auswertet.
 
-Die meisten Ausdrücke brauchen keine zweite Substitutionsrunde — sie stehen in Klammern oder liefern Zahlen/Zeichenketten ohne weitere Substitution. Weil einige ungeklammerte Ausdrücke zwei Runden brauchen, muss der Compiler zusätzlichen Code erzeugen; am teuersten sind ungeklammerte Ausdrücke mit Befehlssubstitution (neuer Code bei jeder Auswertung).
+Die meisten Ausdrücke benötigen keine zweite Ersetzungsrunde. Entweder sind sie in geschweifte Klammern eingeschlossen, oder ihre Variablen- und Befehlsersetzungen ergeben Zahlen oder Zeichenketten, die selbst keine Ersetzungen erfordern. Weil jedoch einige Ausdrücke ohne geschweifte Klammern zwei Ersetzungsrunden benötigen, muss der Bytecode-Compiler zusätzliche Anweisungen erzeugen, um diesen Fall zu behandeln. Der aufwendigste Code ist für Ausdrücke ohne geschweifte Klammern nötig, die Befehlsersetzungen enthalten. Solche Ausdrücke müssen umgesetzt werden, indem bei jeder Ausführung des Ausdrucks neuer Code erzeugt wird.
 
-Muss ein nicht-konstanter Ausdruck in einen sonst konstanten Ausdruck, ist ein rekursives **expr** für den variablen Teil am effizientesten: Der äußere Teil kann kompiliert werden, der variable Teil wird separat ausgewertet. Im Beispiel ist das Ergebnis 20; der äußere Ausdruck profitiert von vollständig gecachtem Bytecode.
+Muss eine nicht konstante Ausdruckszeichenkette in den größeren Zusammenhang eines ansonsten konstanten Ausdrucks eingefügt werden, ist es am effizientesten, den veränderlichen Teil in ein rekursives **expr** zu setzen. So kann zumindest der äußere Teil kompiliert werden, auch wenn der veränderliche Teil dann selbst als eigener Ausdruck ausgewertet werden muss. In diesem Beispiel ist das Ergebnis also 20, und der äußere Ausdruck profitiert von einer vollständig zwischengespeicherten Bytecode-Kompilierung.
 
 ```
 set a 3
@@ -252,11 +252,11 @@ set b {$a + 2}
 expr {[expr $b] * 4}
 ```
 
-Ist der Ausdruck ungeklammert, um Funktion oder Operator zu substituieren, erwägen Sie die Befehle in [mathfunc]\(n) oder [mathop]\(n) direkt.
+Wird ein Ausdruck ohne geschweifte Klammern geschrieben, damit eine Funktion oder ein Operator ersetzt werden kann, sollten Sie in Erwägung ziehen, stattdessen direkt die Befehle zu verwenden, die auf den Handbuchseiten [mathfunc]\(n) oder [mathop]\(n) beschrieben sind.
 
 # Beispiele
 
-Prozedur für eine „interessante“ mathematische Funktion:
+Definiert eine Prozedur, die eine „interessante“ mathematische Funktion berechnet:
 
 ```
 proc tcl::mathfunc::calc {x y} {
@@ -264,7 +264,7 @@ proc tcl::mathfunc::calc {x y} {
 }
 ```
 
-Polarkoordinaten in kartesische umrechnen:
+Rechnet Polarkoordinaten in kartesische Koordinaten um:
 
 ```
 # Umrechnung von ($radius,$angle)
@@ -272,7 +272,7 @@ set x [expr { $radius * cos($angle) }]
 set y [expr { $radius * sin($angle) }]
 ```
 
-Kartesische in Polarkoordinaten umrechnen:
+Rechnet kartesische Koordinaten in Polarkoordinaten um:
 
 ```
 # Umrechnung von ($x,$y)
@@ -280,13 +280,13 @@ set radius [expr { hypot($y, $x) }]
 set angle  [expr { atan2($y, $x) }]
 ```
 
-Meldung über die Beziehung zweier Zeichenkettenwerte:
+Gibt eine Meldung aus, die beschreibt, in welcher Beziehung zwei Zeichenkettenwerte zueinander stehen:
 
 ```
 puts "a and b are [expr {$a eq $b ? {equal} : {different}}]"
 ```
 
-Variable setzen, ob eine Umgebungsvariable existiert und einen booleschen Wahrheitswert hat:
+Setzt eine Variable darauf, ob eine Umgebungsvariable überhaupt definiert ist und zugleich einen wahren booleschen Wert hat:
 
 ```
 set isTrue [expr {
@@ -295,7 +295,7 @@ set isTrue [expr {
 }]
 ```
 
-Zufällige Ganzzahl im Bereich 0..99 einschließlich:
+Erzeugt eine zufällige Ganzzahl im Bereich 0..99 einschließlich:
 
 ```
 set randNum [expr { int(100 * rand()) }]

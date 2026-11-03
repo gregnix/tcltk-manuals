@@ -173,6 +173,9 @@ foreach pkg {mdstack::parser docir::mdSource docir::md docir::pdf} {
         exit 1
     }
 }
+# Which docir renders: version and file, so a run shows the copy it used.
+set pdfFile [lindex [package ifneeded docir::pdf [package present docir::pdf]] end]
+puts "docir::pdf [package present docir::pdf]: [string trim $pdfFile {]}]"
 # Manual pages are full of "$var": no $...$ math (mdstack::parser 0.9.1;
 # older versions ignore the variable)
 set ::mdstack::parser::inlineMath 0

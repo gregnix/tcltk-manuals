@@ -65,11 +65,11 @@ Der Befehl **consoleinterp** im Konsolen-Interpreter erlaubt die Auswertung von 
 
 Im Konsolen-Interpreter gibt es mehrere zusätzliche Befehle, die als Reaktion auf Aktivität im Haupt-Interpreter aufgerufen werden. *Sie sind hier nur der Vollständigkeit halber dokumentiert; sie gehören zur internen Implementierung der Konsole und können ohne Vorwarnung geändert werden.*
 
-Ausgabe der Konsole aus dem Haupt-Interpreter über die Kanäle stdout und stderr wird durch Aufruf des Befehls **tk::ConsoleOutput** im Konsolen-Interpreter mit zwei Argumenten behandelt. Das erste Argument ist der Name des beschriebenen Kanals, das zweite der String, der in den Kanal geschrieben wird (nach Kodierungs- und Zeilenend-Verarbeitung).
+Ausgabe der Konsole aus dem Haupt-Interpreter über die Kanäle stdout und stderr wird durch Aufruf des Befehls **tk::ConsoleOutput** im Konsolen-Interpreter mit zwei Argumenten behandelt. Das erste Argument ist der Name des beschriebenen Kanals, das zweite die Zeichenkette, die in den Kanal geschrieben wird (nach Kodierungs- und Zeilenend-Verarbeitung).
 
 Wenn das Fenster **.** des Haupt-Interpreters zerstört wird, wird der Befehl **tk::ConsoleExit** im Konsolen-Interpreter aufgerufen (sofern der Konsolen-Interpreter nicht bereits selbst gelöscht wurde).
 
-# Standard-Bindings
+# Standard-Bindungen
 
 Das Standardskript erzeugt ein Konsolenfenster (implementiert mit einem Text-Widget) mit folgendem Verhalten:
 
@@ -77,7 +77,7 @@ Das Standardskript erzeugt ein Konsolenfenster (implementiert mit einem Text-Wid
 
     Nur dieser Typ wird danach verwendet. Gibt es darin mehr als einen Treffer, wird die längste gemeinsame Übereinstimmung eingesetzt; die vollständige Liste erscheint erst, wenn die Vervollständigung erneut versucht wird und nichts mehr zu verlängern ist.
 
-    Eigene Vervollständigungs-Bindings für Dateien, Befehle und Variablen stehen unten (Punkte 12–14).
+    Eigene Vervollständigungs-Bindungen für Dateien, Befehle und Variablen stehen unten (Punkte 12–14).
 
 2. Return-Taste übergibt die aktuelle Zeile (wenn sie nach den Regeln von [info complete][info] vollständig ist) zur Auswertung an den Haupt-Interpreter.
 

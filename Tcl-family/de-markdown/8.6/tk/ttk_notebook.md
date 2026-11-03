@@ -57,13 +57,13 @@ Die folgenden Optionen können für einzelne Notebook-Bereiche angegeben werden:
 : Entweder **normal**, **disabled** oder **hidden**. Bei **disabled** ist der Tab nicht auswählbar. Bei **hidden** wird der Tab nicht angezeigt.
 
 **-sticky** (**sticky**/**Sticky**)
-: Legt fest, wie das Inhaltsfenster innerhalb des Bereichs positioniert wird. Der Wert ist ein String mit null oder mehr der Zeichen **n**, **s**, **e** oder **w**. Jeder Buchstabe bezeichnet eine Seite (Norden, Süden, Osten oder Westen), an der das Inhaltsfenster „klebt“, entsprechend dem Geometriemanager [grid].
+: Legt fest, wie das Inhaltsfenster innerhalb des Bereichs positioniert wird. Der Wert ist eine Zeichenkette mit null oder mehr der Zeichen **n**, **s**, **e** oder **w**. Jeder Buchstabe bezeichnet eine Seite (Norden, Süden, Osten oder Westen), an der das Inhaltsfenster „klebt“, entsprechend dem Geometriemanager [grid].
 
 **-padding** (**padding**/**Padding**)
 : Legt fest, wie viel zusätzlicher Platz zwischen dem Notebook und diesem Bereich hinzugefügt wird. Die Syntax entspricht der Widget-Option **-padding**.
 
 **-text** (**text**/**Text**)
-: Legt einen String fest, der im Tab angezeigt wird.
+: Legt eine Zeichenkette fest, die im Tab angezeigt wird.
 
 **-image** (**image**/**Image**)
 : Legt ein Bild fest, das im Tab angezeigt wird. Siehe *ttk\_widget(n)* für Details.
@@ -108,7 +108,7 @@ Das Argument *tabid* der folgenden Befehle kann eine der folgenden Formen annehm
 : Blendet den durch *tabid* angegebenen Tab aus. Der Tab wird nicht angezeigt, das zugehörige Fenster bleibt aber vom Notebook verwaltet und seine Konfiguration wird gespeichert. Ausgeblendete Tabs können mit dem Befehl **add** wiederhergestellt werden.
 
 *pathname* **identify** *component x y*
-: Gibt den Namen des Elements unter dem Punkt *x* und *y* zurück oder den leeren String, wenn an dieser Position kein Element vorhanden ist. Folgende Unterbefehle werden unterstützt:
+: Gibt den Namen des Elements unter dem Punkt *x* und *y* zurück oder die leere Zeichenkette, wenn an dieser Position kein Element vorhanden ist. Folgende Unterbefehle werden unterstützt:
 
     *pathname* **identify element** *x y*
     : Gibt den Namen des Elements an der angegebenen Position zurück.
@@ -118,10 +118,10 @@ Das Argument *tabid* der folgenden Befehle kann eine der folgenden Formen annehm
 
 
 *pathname* **index** *tabid*
-: Gibt den numerischen Index des durch *tabid* angegebenen Tabs zurück oder die Gesamtanzahl der Tabs, wenn *tabid* der String „**end**“ ist.
+: Gibt den numerischen Index des durch *tabid* angegebenen Tabs zurück oder die Gesamtanzahl der Tabs, wenn *tabid* die Zeichenkette „**end**“ ist.
 
 *pathname* **insert** *pos subwindow options...*
-: Fügt einen Bereich an der angegebenen Position ein. *pos* ist entweder der String **end**, ein ganzzahliger Index oder der Name eines verwalteten Unterfensters. Wenn *subwindow* bereits vom Notebook verwaltet wird, wird es an die angegebene Position verschoben. Siehe [Tab-Optionen] für die Liste der verfügbaren Optionen.
+: Fügt einen Bereich an der angegebenen Position ein. *pos* ist entweder die Zeichenkette **end**, ein ganzzahliger Index oder der Name eines verwalteten Unterfensters. Wenn *subwindow* bereits vom Notebook verwaltet wird, wird es an die angegebene Position verschoben. Siehe [Tab-Optionen] für die Liste der verfügbaren Optionen.
 
 *pathname* **instate** *statespec* ?*script...*?
 : Siehe *ttk::widget(n)*.
@@ -195,11 +195,11 @@ Dynamische Zustände: **active**, **disabled**, **selected**.
 **-tabmargins** *padding*
 
 **-tabposition** *position*
-: Legt die Position der Tab-Zeile oder -Spalte als String der Länge 1 oder 2 fest. Das erste Zeichen gibt die Seite als **n**, **s**, **w** oder **e** an, das zweite Zeichen (falls vorhanden) ist der Sticky-Bit (angegeben als **w**, **e**, **n** oder **s**) innerhalb der Tab-Position. Die Standardposition ist **n** für das Theme **aqua** und **nw** für alle anderen eingebauten Themes.
+: Legt die Position der Tab-Zeile oder -Spalte als Zeichenkette der Länge 1 oder 2 fest. Das erste Zeichen gibt die Seite als **n**, **s**, **w** oder **e** an, das zweite Zeichen (falls vorhanden) ist der Sticky-Bit (angegeben als **w**, **e**, **n** oder **s**) innerhalb der Tab-Position. Die Standardposition ist **n** für das Theme **aqua** und **nw** für alle anderen eingebauten Themes.
 
 
 **-tabplacement** *placement*
-: Legt die Platzierung (den Anker) der Tabs innerhalb der Tab-Zeile oder -Spalte als String der Länge 1 oder 2 fest. Das erste Zeichen gibt die Seite als **w**, **e**, **n** oder **s** an, das zweite Zeichen (falls vorhanden) ist der Sticky-Bit (angegeben als **s**, **n**, **e** oder **w**) innerhalb der Tab-Platzierung. Die Platzierung **ws** heißt zum Beispiel: die Westseite (links) jedes Tabs an den vorherigen hängen und die Südkanten (unten) aneinander ausrichten. Entsprechend hängt **se** die Südseite (unten) jedes Tabs an den vorherigen und richtet die Ostkanten (rechts) aneinander aus. Die Standardplatzierung hängt vom ersten Zeichen der Tab-Position ab: **ws** für **n\***, **wn** für **s\***, **ne** für **w\*** und **nw** für **e\***.
+: Legt die Platzierung (den Anker) der Tabs innerhalb der Tab-Zeile oder -Spalte als Zeichenkette der Länge 1 oder 2 fest. Das erste Zeichen gibt die Seite als **w**, **e**, **n** oder **s** an, das zweite Zeichen (falls vorhanden) ist der Sticky-Bit (angegeben als **s**, **n**, **e** oder **w**) innerhalb der Tab-Platzierung. Die Platzierung **ws** heißt zum Beispiel: die Westseite (links) jedes Tabs an den vorherigen hängen und die Südkanten (unten) aneinander ausrichten. Entsprechend hängt **se** die Südseite (unten) jedes Tabs an den vorherigen und richtet die Ostkanten (rechts) aneinander aus. Die Standardplatzierung hängt vom ersten Zeichen der Tab-Position ab: **ws** für **n\***, **wn** für **s\***, **ne** für **w\*** und **nw** für **e\***.
 
 
 **TNotebook.Tab**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:

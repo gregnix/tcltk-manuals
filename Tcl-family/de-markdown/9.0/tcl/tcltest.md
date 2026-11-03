@@ -83,7 +83,7 @@ Siehe [Test-Suites mit tcltest erstellen] unten für ein ausführliches Beispiel
 # Befehle
 
 [test]{.cmd} [name]{.arg} [description]{.arg} [-option value]{.optdot}
-: Definiert und führt gegebenenfalls einen Test mit dem Namen *name* und der Beschreibung *description* aus. Name und Beschreibung eines Tests werden in von **test** während des Tests gemeldeten Meldungen verwendet, wie durch die Optionen von **tcltest** konfiguriert. Die übrigen *option value*-Argumente von **test** definieren den Test, einschließlich der auszuführenden Skripte, der Bedingungen für deren Ausführung, des erwarteten Ergebnisses und der Art, wie erwartete und tatsächliche Ergebnisse verglichen werden sollen. Siehe [Tests] unten für eine vollständige Beschreibung der gültigen Optionen und wie sie einen Test definieren. Der Befehl **test** gibt einen leeren String zurück.
+: Definiert und führt gegebenenfalls einen Test mit dem Namen *name* und der Beschreibung *description* aus. Name und Beschreibung eines Tests werden in von **test** während des Tests gemeldeten Meldungen verwendet, wie durch die Optionen von **tcltest** konfiguriert. Die übrigen *option value*-Argumente von **test** definieren den Test, einschließlich der auszuführenden Skripte, der Bedingungen für deren Ausführung, des erwarteten Ergebnisses und der Art, wie erwartete und tatsächliche Ergebnisse verglichen werden sollen. Siehe [Tests] unten für eine vollständige Beschreibung der gültigen Optionen und wie sie einen Test definieren. Der Befehl **test** gibt eine leere Zeichenkette zurück.
 
 [test]{.cmd} [name]{.arg} [description]{.arg} [constraints]{.optarg} [body]{.arg} [result]{.arg}
 : Diese Form von **test** unterstützt Test-Suites, die für Version 1 des Pakets **tcltest** geschrieben wurden, und bietet außerdem eine einfachere Schnittstelle für häufige Verwendung. Sie entspricht „**test** *name description* **-constraints** *constraints* **-body** *body* **-result** *result*“. Alle anderen Optionen von **test** behalten ihre Standardwerte. Wenn *constraints* weggelassen wird, lässt sich diese Form von **test** von der ersten unterscheiden, weil alle *option*-Namen mit „-“ beginnen.
@@ -95,13 +95,13 @@ Siehe [Test-Suites mit tcltest erstellen] unten für ein ausführliches Beispiel
 : Erstellt eine Datei namens *name* relativ zum Verzeichnis *directory* und schreibt *contents* mit der Kodierung [encoding system][encoding] in diese Datei. Endet *contents* nicht mit einem Zeilenumbruch, wird einer angehängt, sodass die Datei *name* mit einem Zeilenumbruch endet. Da die Systemkodierung verwendet wird, eignet sich dieser Befehl nur zum Erzeugen von Textdateien. Die Datei wird bei der nächsten Auswertung von **cleanupTests** entfernt, sofern sie nicht zuvor mit **removeFile** gelöscht wurde. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt den vollständigen Pfad der erstellten Datei zurück. Verwenden Sie diesen Befehl, um beliebige vom Test benötigte Textdateien mit passendem Inhalt zu erzeugen.
 
 [removeFile]{.cmd} [name]{.arg} [directory]{.optarg}
-: Erzwingt das Entfernen der durch *name* referenzierten Datei. Der Dateiname sollte relativ zu *directory* sein. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt einen leeren String zurück. Verwenden Sie diesen Befehl, um mit **makeFile** erstellte Dateien zu löschen.
+: Erzwingt das Entfernen der durch *name* referenzierten Datei. Der Dateiname sollte relativ zu *directory* sein. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt eine leere Zeichenkette zurück. Verwenden Sie diesen Befehl, um mit **makeFile** erstellte Dateien zu löschen.
 
 [makeDirectory]{.cmd} [name]{.arg} [directory]{.optarg}
 : Erstellt ein Verzeichnis namens *name* relativ zum Verzeichnis *directory*. Das Verzeichnis wird bei der nächsten Auswertung von **cleanupTests** entfernt, sofern es nicht zuvor mit **removeDirectory** gelöscht wurde. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt den vollständigen Pfad des erstellten Verzeichnisses zurück. Verwenden Sie diesen Befehl, um alle von einem Test benötigten Verzeichnisse zu erzeugen.
 
 [removeDirectory]{.cmd} [name]{.arg} [directory]{.optarg}
-: Erzwingt das Entfernen des durch *name* referenzierten Verzeichnisses. Das Verzeichnis sollte relativ zu *directory* sein. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt einen leeren String zurück. Verwenden Sie diesen Befehl, um mit **makeDirectory** erstellte Verzeichnisse zu löschen.
+: Erzwingt das Entfernen des durch *name* referenzierten Verzeichnisses. Das Verzeichnis sollte relativ zu *directory* sein. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Gibt eine leere Zeichenkette zurück. Verwenden Sie diesen Befehl, um mit **makeDirectory** erstellte Verzeichnisse zu löschen.
 
 [viewFile]{.cmd} [file]{.arg} [directory]{.optarg}
 : Gibt den Inhalt von *file* zurück, ohne einen abschließenden Zeilenumbruch, wie [read -nonewline][read] ihn liefern würde. Der Dateiname sollte relativ zu *directory* sein. Der Standardwert von *directory* ist das Verzeichnis **configure -tmpdir**. Verwenden Sie diesen Befehl, um den Inhalt einer vom Test erzeugten Datei bequem als Testergebnis für den Abgleich mit einem erwarteten Ergebnis zu verwenden. Der Dateiinhalt wird mit der Systemkodierung gelesen; die Nützlichkeit beschränkt sich daher auf Textdateien.
@@ -109,7 +109,7 @@ Siehe [Test-Suites mit tcltest erstellen] unten für ein ausführliches Beispiel
 [cleanupTests]{.cmd}
 : Dient dazu, nach mehreren ausgeführten Tests aufzuräumen und zusammenzufassen. Wird typischerweise einmal pro Testdatei am Ende der Datei aufgerufen, nachdem alle Tests abgeschlossen sind. Damit er zuverlässig wirkt, sollte **cleanupTests** auch dann ausgewertet werden, wenn zuvor bei der Auswertung der Testdatei ein Fehler auftrat.
 
-    Gibt Statistiken über die ausgeführten Tests aus und entfernt Dateien, die seit dem letzten **cleanupTests** mit **makeDirectory** und **makeFile** erstellt wurden. Namen von Dateien und Verzeichnissen im Verzeichnis **configure -tmpdir**, die seit dem letzten **cleanupTests** entstanden, aber nicht mit **makeFile** oder **makeDirectory** erzeugt wurden, werden auf **outputChannel** ausgegeben. Der Befehl stellt außerdem die ursprüngliche Shell-Umgebung wieder her, wie im globalen Array [env][tclvars] beschrieben. Gibt einen leeren String zurück.
+    Gibt Statistiken über die ausgeführten Tests aus und entfernt Dateien, die seit dem letzten **cleanupTests** mit **makeDirectory** und **makeFile** erstellt wurden. Namen von Dateien und Verzeichnissen im Verzeichnis **configure -tmpdir**, die seit dem letzten **cleanupTests** entstanden, aber nicht mit **makeFile** oder **makeDirectory** erzeugt wurden, werden auf **outputChannel** ausgegeben. Der Befehl stellt außerdem die ursprüngliche Shell-Umgebung wieder her, wie im globalen Array [env][tclvars] beschrieben. Gibt eine leere Zeichenkette zurück.
 
 [runAllTests]{.cmd}
 : Hauptbefehl zum Ausführen einer gesamten Test-Suite über mehrere Dateien und/oder Verzeichnisse, gesteuert durch die konfigurierbaren Optionen von **tcltest**. Siehe [Alle Tests ausführen] unten für eine vollständige Beschreibung der vielen Varianten mit **runAllTests**.
@@ -209,7 +209,7 @@ Die übrigen von **tcltest** bereitgestellten Befehle haben bessere Alternativen
 : Setzt oder gibt das aktuelle Arbeitsverzeichnis während der Ausführung der Test-Suite zurück. Der Standardwert für workingDirectory ist das Verzeichnis, in dem die Test-Suite gestartet wurde. Die Tcl-Befehle [cd] und [pwd] sind ausreichende Ersatzlösungen.
 
 [normalizeMsg]{.cmd} [msg]{.arg}
-: Gibt das Ergebnis zurück, *msg* von „überflüssigen“ Zeilenumbrüchen zu befreien — wobei „überflüssig“ recht unpräzise ist. Tcl bietet zahlreiche String-Befehle zur beliebigen Modifikation von Strings, und **customMatch** ermöglicht flexiblen Abgleich tatsächlicher und erwarteter Ergebnisse.
+: Gibt das Ergebnis zurück, *msg* von „überflüssigen“ Zeilenumbrüchen zu befreien — wobei „überflüssig“ recht unpräzise ist. Tcl bietet zahlreiche String-Befehle zur beliebigen Änderung von Zeichenketten, und **customMatch** ermöglicht flexiblen Abgleich tatsächlicher und erwarteter Ergebnisse.
 
 [normalizePath]{.cmd} [pathVar]{.arg}
 : Löst symbolische Links in einem Pfad auf und erzeugt so einen Pfad ohne interne Umleitungen. Es wird angenommen, dass *pathVar* absolut ist. *pathVar* wird an Ort und Stelle geändert. Der Tcl-Befehl [file normalize][file] ist eine ausreichende Ersatzlösung.
@@ -235,7 +235,7 @@ test name description
         ?-match mode?
 ```
 
-Der *name* kann ein beliebiger String sein. Üblich ist die Wahl eines *name* nach dem Muster:
+Der *name* kann eine beliebige Zeichenkette sein. Üblich ist die Wahl eines *name* nach dem Muster:
 
 ```
 target-majorNum.minorNum
@@ -243,7 +243,7 @@ target-majorNum.minorNum
 
 Bei White-Box-(Regressions-)Tests sollte das Ziel der Name der getesteten C-Funktion oder Tcl-Prozedur sein. Bei Black-Box-Tests sollte das Ziel der Name des getesteten Merkmals sein. Einige Konventionen verlangen für Black-Box-Tests das Suffix **\_bb**. Verwandte Tests sollten dieselbe Hauptnummer teilen. Mit der Entwicklung einer Test-Suite ist es am besten, wenn derselbe Testname weiterhin demselben Test entspricht, sodass Aussagen wie „Test foo-1.3 bestand in allen Versionen bis 3.4, schlug aber ab Version 3.5 fehl“ sinnvoll bleiben.
 
-Bei der Auswertung von **test** wird der *name* mit den von **configure -match** und **configure -skip** zurückgegebenen Listen von String-Abgleichmustern verglichen. Der Test wird nur ausgeführt, wenn *name* mindestens einem Muster von **configure -match** entspricht und keinem Muster von **configure -skip**.
+Bei der Auswertung von **test** wird der *name* mit den von **configure -match** und **configure -skip** zurückgegebenen Listen von Abgleichmustern für Zeichenketten verglichen. Der Test wird nur ausgeführt, wenn *name* mindestens einem Muster von **configure -match** entspricht und keinem Muster von **configure -skip**.
 
 Die *description* sollte eine kurze textuelle Beschreibung des Tests sein. Die *description* erscheint in der vom Test erzeugten Ausgabe, typischerweise in Fehlermeldungen bei Testfehlern. Gute *description*-Werte erklären Nutzern einer Test-Suite kurz den Zweck des Tests. Bei Regressions-Tests sollte der Name der getesteten Tcl- oder C-Funktion in der Beschreibung stehen. Existiert der Testfall, um einen Fehler zu reproduzieren, gehört die Fehler-ID in die Beschreibung.
 
@@ -269,7 +269,7 @@ Gültige Attribute und zugehörige Werte sind:
 : Das Attribut **-match** legt fest, wie die von **-result**, **-output** und **-errorOutput** gelieferten erwarteten Antworten verglichen werden. Gültige Werte für *mode* sind [regexp], [glob], **exact** und jeder durch einen früheren Aufruf von **customMatch** registrierte Wert. Standardwert ist **exact**.
 
 [-result]{.lit} [expectedValue]{.arg}
-: Das Attribut **-result** liefert den *expectedValue*, mit dem der Rückgabewert des Skripts verglichen wird. Standardwert ist ein leerer String.
+: Das Attribut **-result** liefert den *expectedValue*, mit dem der Rückgabewert des Skripts verglichen wird. Standardwert ist eine leere Zeichenkette.
 
 [-output]{.lit} [expectedValue]{.arg}
 : Das Attribut **-output** liefert den *expectedValue*, mit dem jede während der Auswertung der Skripte an **stdout** oder **outputChannel** gesendete Ausgabe verglichen wird. Beachten Sie, dass nur Ausgabe des globalen Befehls [puts] zum Vergleich verwendet wird. Ist **-output** nicht angegeben, wird an **stdout** und **outputChannel** gesendete Ausgabe nicht zum Vergleich verarbeitet.
@@ -290,7 +290,7 @@ Solange **test** mit gültiger Syntax und legalen Werten für alle Attribute auf
 
 ## Test-Einschränkungen
 
-Einschränkungen bestimmen, ob ein Test übersprungen werden soll. Jede Einschränkung hat einen Namen (beliebiger String) und einen booleschen Wert. Jeder **test** hat einen **-constraints**-Wert als Liste von Einschränkungsnamen. Es gibt zwei Modi der Einschränkungssteuerung. Am häufigsten wird der Standardmodus verwendet, angezeigt durch **configure -limitconstraints** false. Der Test läuft nur, wenn alle Einschränkungen in der Liste true sind. Die **-constraints**-Option von **test** ist daher eine bequeme, symbolische Möglichkeit, Bedingungen für einen sinnvollen oder möglichen Test zu definieren. Ein **test** mit **-constraints unix** läuft nur, wenn die Einschränkung **unix** true ist, was anzeigt, dass die Test-Suite auf einer Unix-Plattform läuft.
+Einschränkungen bestimmen, ob ein Test übersprungen werden soll. Jede Einschränkung hat einen Namen (beliebige Zeichenkette) und einen booleschen Wert. Jeder **test** hat einen **-constraints**-Wert als Liste von Einschränkungsnamen. Es gibt zwei Modi der Einschränkungssteuerung. Am häufigsten wird der Standardmodus verwendet, angezeigt durch **configure -limitconstraints** false. Der Test läuft nur, wenn alle Einschränkungen in der Liste true sind. Die **-constraints**-Option von **test** ist daher eine bequeme, symbolische Möglichkeit, Bedingungen für einen sinnvollen oder möglichen Test zu definieren. Ein **test** mit **-constraints unix** läuft nur, wenn die Einschränkung **unix** true ist, was anzeigt, dass die Test-Suite auf einer Unix-Plattform läuft.
 
 Jeder **test** sollte die **-constraints** enthalten, die ihn auf passende Umgebungen beschränken. Mehrere Einschränkungen sind im Paket **tcltest** vordefiniert (unten aufgelistet). Benutzerdefinierte Einschränkungen werden mit **testConstraint** registriert. Sie können in einer Testdatei oder im Skript von **configure -load** bzw. **configure -loadfile** stehen.
 
@@ -342,7 +342,7 @@ Folgende Einschränkungen sind im Paket **tcltest** selbst vordefiniert:
 : Dieser Test ist als fehlschlagend bekannt; der Fehler ist noch nicht behoben. Diese Bedingung ist false, damit Tests übersprungen werden, sofern der Nutzer nichts anderes angibt.
 
 *nonPortable*
-: Dieser Test kann nur in einer bekannten Entwicklungsumgebung ausgeführt werden. Manche Tests sind von Natur aus nicht portabel (Wortlänge, Dateisystem, Window-Manager usw.). Diese Bedingung ist false, damit Tests übersprungen werden, sofern der Nutzer nichts anderes angibt.
+: Dieser Test kann nur in einer bekannten Entwicklungsumgebung ausgeführt werden. Manche Tests sind von Natur aus nicht portabel (Wortlänge, Dateisystem, Fenstermanager usw.). Diese Bedingung ist false, damit Tests übersprungen werden, sofern der Nutzer nichts anderes angibt.
 
 *userInteraction*
 : Dieser Test erfordert Benutzerinteraktion. Diese Bedingung ist false, damit Tests übersprungen werden, sofern der Nutzer nichts anderes angibt.

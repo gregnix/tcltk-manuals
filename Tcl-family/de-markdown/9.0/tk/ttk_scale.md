@@ -29,7 +29,7 @@ ttk::scale - Schieberegler-Widget erzeugen und steuern
 
 # Beschreibung
 
-Ein **ttk::scale**-Widget steuert typischerweise den numerischen Wert einer verknüpften Variable über einen Bereich. Es zeigt einen *Schieberegler* auf einer *Rinne*; die relative Position gibt den Wert an.
+Ein **ttk::scale**-Widget steuert typischerweise den numerischen Wert einer verknüpften Variable der sich gleichmäßig über einen Bereich ändert. Es zeigt einen *Schieberegler*, der entlang einer *Rinne* bewegt werden kann; die relative Position des Schiebereglers auf der Rinne gibt den Wert der Variable an.
 
 # Standardoptionen
 
@@ -46,7 +46,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Reeller Wert für das linke bzw. obere Ende der Skala.
 
 **-length** (**length**/**Length**)
-: Gewünschte Längenmaß der langen Dimension in Bildschirmeinheiten ([Tk\_GetPixels][GetPixels]). Bei vertikaler Ausrichtung die Höhe, bei horizontaler die Breite.
+: Legt die gewünschte Länge der Scale in Bildschirmeinheiten fest (also in jeder von [Tk\_GetPixels][GetPixels] akzeptierten Form). Bei vertikaler Ausrichtung die Höhe, bei horizontaler die Breite.
 
 **-orient** (**orient**/**Orient**)
 : **horizontal** oder **vertical** (oder Abkürzung) — Layout-Ausrichtung.
@@ -55,27 +55,27 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Reeller Wert für das rechte bzw. untere Ende; kann kleiner oder größer als **-from** sein.
 
 **-value** (**value**/**Value**)
-: Aktueller Gleitkommawert. Ist **-variable** gesetzt, hat **-value** keine Wirkung (Variable hat Vorrang).
+: Legt den aktuellen Gleitkommawert der Variable fest. Ist **-variable** auf eine existierende Variable gesetzt, hat die Angabe von **-value** keine Wirkung (der Wert der Variable hat Vorrang).
 
 **-variable** (**variable**/**Variable**)
-: Name einer globalen Variable; bei Änderung aktualisiert sich die Skala; bei interaktiver Bedienung wird die Variable angepasst.
+: Legt den Namen einer globalen Variable fest, die mit der Scale verknüpft wird. Ändert sich der Wert der Variable, wird die Scale aktualisiert; wird die Scale interaktiv bedient, wird die Variable auf den neuen Wert der Scale gesetzt.
 
 
 # Widget-Befehl
 
-Zusätzlich zu **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]):
+Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Scale-Widgets folgende zusätzliche Befehle:
 
 [pathName]{.ins} [get]{.sub} [x y]{.optarg}
-: Aktuellen **-value** oder den Wert zu den Pixelkoordinaten *x*, *y* (relativ zum Widget-Ursprung).
+: Gibt den aktuellen Wert der Option **-value** zurück oder, falls *x* und *y* angegeben sind, den Wert zu diesen Koordinaten. *X* und *y* sind Pixelkoordinaten relativ zum Ursprung des Scale-Widgets.
 
 [pathName]{.ins} [set]{.sub} [value]{.arg}
-: **-value** auf *value* setzen, begrenzt auf **-from**/**-to**. Setzen der verknüpften Variable führt nicht zu dieser Begrenzung.
+: Setzt den Wert des Widgets (also die Option **-value**) auf *value*. Der Wert wird auf den durch **-from** und **-to** gegebenen Bereich begrenzt. Beachten Sie, dass das Setzen der verknüpften Variable (der in **-variable** genannten Variable) nicht zu dieser Begrenzung führt.
 
 
 # Interne Befehle
 
 [pathName]{.ins} [coords]{.sub} [value]{.optarg}
-: Koordinaten zu *value* oder zum aktuellen **-value**, falls *value* fehlt.
+: Gibt die Koordinaten zu *value* zurück oder, falls *value* weggelassen wird, die Koordinaten zum aktuellen Wert der Option **-value**.
 
 
 # Styling-Optionen

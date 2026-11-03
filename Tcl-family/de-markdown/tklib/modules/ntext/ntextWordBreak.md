@@ -35,7 +35,7 @@ ntextWordBreak – Erkennung von Wortgrenzen in ntext für das Text-Widget
 
 Das Paket **ntext** stellt ein Bindungs-Tag namens *Ntext* zur Verfügung, das von Text-Widgets anstelle des standardmäßigen Bindungs-Tags *Text* verwendet werden kann.
 
-Die Navigation und Auswahl in einem Text-Widget erfordern die Erkennung von Wörtern und deren Grenzen. Die von Tcl/Tk über das Binding-Tag *Text* bereitgestellten Funktionen zur Wortgrenzenerkennung sind eingeschränkt, da sie nur eine Klasse von „Wort“-Zeichen und eine Klasse von „Nicht-Wort“-Zeichen definieren.  Das Binding-Tag *Ntext* verwendet allgemeinere Regeln für die Wortgrenzenerkennung, die *zwei* Klassen von „Wort“-Zeichen und eine Klasse von „Nicht-Wort“-Zeichen definieren.
+Die Navigation und Auswahl in einem Text-Widget erfordern die Erkennung von Wörtern und deren Grenzen. Die von Tcl/Tk über das Bindungs-Tag *Text* bereitgestellten Funktionen zur Wortgrenzenerkennung sind eingeschränkt, da sie nur eine Klasse von „Wort“-Zeichen und eine Klasse von „Nicht-Wort“-Zeichen definieren.  Das Bindungs-Tag *Ntext* verwendet allgemeinere Regeln für die Wortgrenzenerkennung, die *zwei* Klassen von „Wort“-Zeichen und eine Klasse von „Nicht-Wort“-Zeichen definieren.
 
 # Konfigurationsoptionen
 
@@ -66,7 +66,7 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 Diese Variablen enthalten die regulären Muster, die von *Ntext* zur Suche nach Wortgrenzen verwendet werden. Werden sie geändert, wirkt sich dies sofort auf nachfolgende Suchvorgänge aus.  In vielen Fällen ist es nicht erforderlich, die Werte dieser Variablen direkt zu ändern: Rufen Sie stattdessen eine der Funktionen **::ntext::initializeMatchPatterns** oder **::ntext::createMatchPatterns** auf.
 
-Im Binding-Tag *Text* können Sie die Suchregeln ändern, indem Sie die Werte der globalen Variablen **tcl\_wordchars** und **tcl\_nonwordchars** anpassen.  Die entsprechende Operation im *Ntext*-Binding-Tag besteht darin, **::ntext::createMatchPatterns** mit den entsprechenden Argumenten aufzurufen.
+Im Bindungs-Tag *Text* können Sie die Suchregeln ändern, indem Sie die Werte der globalen Variablen **tcl\_wordchars** und **tcl\_nonwordchars** anpassen.  Die entsprechende Operation im *Ntext*-Bindungs-Tag besteht darin, **::ntext::createMatchPatterns** mit den entsprechenden Argumenten aufzurufen.
 
 # Funktionen (fortgeschrittene Anwendung)
 

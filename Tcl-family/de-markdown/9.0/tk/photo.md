@@ -92,7 +92,7 @@ Folgende Befehle sind für Foto-Images möglich:
 : Gibt den aktuellen Wert der Konfigurationsoption *option* zurück. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben.
 
 [imageName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Fragt Konfigurationsoptionen ab oder ändert sie. Ohne *option* wird eine Liste aller verfügbaren Optionen für *imageName* zurückgegeben (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Mit *option* ohne *value* eine Liste nur für diese Option (identisch mit dem entsprechenden Teillisten-Eintrag der vollständigen Liste). Bei *option-value*-Paaren werden die Optionen gesetzt; Rückgabe ist ein leerer String. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben. [Nur die Option **-metadata** setzen, ohne weitere Option, ruft den Bildformat-Treiber nicht auf, um das Bitmap neu zu erzeugen.]{version="9.0"}
+: Fragt Konfigurationsoptionen ab oder ändert sie. Ohne *option* wird eine Liste aller verfügbaren Optionen für *imageName* zurückgegeben (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Mit *option* ohne *value* eine Liste nur für diese Option (identisch mit dem entsprechenden Teillisten-Eintrag der vollständigen Liste). Bei *option-value*-Paaren werden die Optionen gesetzt; Rückgabe ist eine leere Zeichenkette. *Option* kann jeden von [image create][image] **photo** akzeptierten Wert haben. [Nur die Option **-metadata** setzen, ohne weitere Option, ruft den Bildformat-Treiber nicht auf, um das Bitmap neu zu erzeugen.]{version="9.0"}
 
 [imageName]{.ins} [copy]{.sub} [sourceImage]{.arg} [option value(s)]{.optdot}
 : Kopiert eine Region vom Image *sourceImage* (muss ein Foto-Image sein) nach *imageName*, optional mit Pixel-Zoom und/oder -Unterabtastung. Ohne Optionen wird ganz *sourceImage* ab (0,0) in *imageName* kopiert. Mögliche Optionen:
@@ -123,7 +123,7 @@ Folgende Befehle sind für Foto-Images möglich:
     : Ist die Farbe angegeben, enthalten die Daten keine Transparenzinformationen. In allen transparenten Pixeln wird die Farbe durch die angegebene Farbe ersetzt.
 
     [-format]{.lit} [{format-name ?option value ...?}]{.arg}
-    : Legt den Namen des Bilddateiformat-Handlers fest und optional Argumente dafür. Konkret sucht dieser Unterbefehl den ersten Handler, dessen Name mit einem Anfangs-Substring von *format-name* übereinstimmt und der einen String mit diesen Bilddaten schreiben kann. [Ohne diese Option wird das Standardformat verwendet: eine Liste (ein Element pro Zeile) von Listen (ein Element pro Pixel/Spalte) mit Farben im Format „**#***rrggbb*“ (siehe [Bildformate] unten).]{version="9.0"} Der Wert muss eine Tcl-Liste sein; bei einem Wort können geschweifte Klammern entfallen; Anführungszeichen sind möglich.
+    : Legt den Namen des Bilddateiformat-Handlers fest und optional Argumente dafür. Konkret sucht dieser Unterbefehl den ersten Handler, dessen Name mit einem Anfangs-Substring von *format-name* übereinstimmt und der eine Zeichenkette mit diesen Bilddaten schreiben kann. [Ohne diese Option wird das Standardformat verwendet: eine Liste (ein Element pro Zeile) von Listen (ein Element pro Pixel/Spalte) mit Farben im Format „**#***rrggbb*“ (siehe [Bildformate] unten).]{version="9.0"} Der Wert muss eine Tcl-Liste sein; bei einem Wort können geschweifte Klammern entfallen; Anführungszeichen sind möglich.
 
     [-from]{.lit} [x1]{.arg} [y1]{.arg} [x2]{.arg} [y2]{.arg}
     : Rechteckige Region von *imageName*, die zurückgegeben wird. Nur *x1* und *y1*: von *(x1,y1)* bis zur unteren rechten Ecke. Alle vier Koordinaten: diagonal gegenüberliegende Ecken, einschließlich x1,y1, ausschließlich x2,y2. Standard: ganzes Bild.
@@ -207,7 +207,7 @@ Folgende Befehle sind für Foto-Images möglich:
 
 Der Photo-Image-Code ist so strukturiert, dass Handler für weitere Bilddateiformate leicht ergänzt werden können. Der Photo-Image-Code verwaltet eine Liste dieser Handler. Handler werden der Liste durch Registrierung mit einem Aufruf von [Tk\_CreatePhotoImageFormat][CrtPhImgFmt] hinzugefügt. Die Standard-Tk-Distribution enthält Handler für PPM/PGM, PNG, GIF und (nur lesend) SVG, [sowie den Handler **default** zum Kodieren/Dekodieren von Bilddaten in menschenlesbarer Form.]{version="9.0"} Diese Handler werden bei der Initialisierung automatisch registriert.
 
-Beim Lesen einer Bilddatei oder Verarbeiten von Stringdaten, die mit der Konfigurationsoption **-data** angegeben wurden, ruft der Photo-Image-Code Handler nacheinander auf, bis einer die Daten in der Datei oder Zeichenkette lesen kann. Meist findet das den richtigen Handler; andernfalls kann der Benutzer mit **-format** einen Formatnamen vorgeben. Dann werden Handler versucht, deren Name mit dem für **-format** angegebenen String beginnt (Groß-/Kleinschreibung irrelevant). Bei **-format gif** können z. B. Handler namens GIF87 oder GIF89 aufgerufen werden, JPEG nicht (sofern registriert).
+Beim Lesen einer Bilddatei oder Verarbeiten von Stringdaten, die mit der Konfigurationsoption **-data** angegeben wurden, ruft der Photo-Image-Code Handler nacheinander auf, bis einer die Daten in der Datei oder Zeichenkette lesen kann. Meist findet das den richtigen Handler; andernfalls kann der Benutzer mit **-format** einen Formatnamen vorgeben. Dann werden Handler versucht, deren Name mit der für **-format** angegebenen Zeichenkette beginnt (Groß-/Kleinschreibung irrelevant). Bei **-format gif** können z. B. Handler namens GIF87 oder GIF89 aufgerufen werden, JPEG nicht (sofern registriert).
 
 Beim Schreiben von Bilddaten in eine Datei ist die Verarbeitung von **-format** etwas anders: Der Stringwert für **-format** muss mit dem vollständigen Namen des gewünschten Handlers beginnen und kann weitere Informationen enthalten, die der Handler nutzen kann, z. B. um eine Variante der vom Handler unterstützten Formate zu wählen. Nicht alle Bildhandler unterstützen das Schreiben von Transparenzdaten in eine Datei, auch wenn das Zielformat es theoretisch erlaubt.
 
@@ -219,10 +219,10 @@ Bilddaten im **default**-Stringformat sind eine (von oben nach unten) Liste von 
 
 ## Format-Unteroptionen
 
-[Bildformate können Unteroptionen unterstützen, die über zusätzliche Wörter im Wert von **-format** angegeben werden. Diese Unteroptionen können beeinflussen, wie Bilddaten aus Datei oder String gelesen oder geschrieben werden. Art und Werte dieser Optionen liegen beim Format-Handler. Die eingebauten Handler unterstützen diese Unteroptionen:]{version="8.6"}
+[Bildformate können Unteroptionen unterstützen, die über zusätzliche Wörter im Wert von **-format** angegeben werden. Diese Unteroptionen können beeinflussen, wie Bilddaten aus Datei oder Zeichenkette gelesen oder geschrieben werden. Art und Werte dieser Optionen liegen beim Format-Handler. Die eingebauten Handler unterstützen diese Unteroptionen:]{version="8.6"}
 
 [default]{.cmd version="9.0"} [-colorformat]{.sub} [formatType]{.arg}
-: [Die Option ist beim Schreiben von Bilddaten in einen String mit *imageName* **data** erlaubt. Legt das Format für die Farbzeichenkette jedes Pixels fest. *formatType* kann sein: **rgb** für Pixeldaten als **#***RRGGBB*, **rgba** als **#***RRGGBBAA* oder [list] als Liste mit vier Elementen. Details siehe [Farbformate] unten. Standard ist **rgb**.]{version="9.0"}
+: [Die Option ist beim Schreiben von Bilddaten in eine Zeichenkette mit *imageName* **data** erlaubt. Legt das Format für die Farbzeichenkette jedes Pixels fest. *formatType* kann sein: **rgb** für Pixeldaten als **#***RRGGBB*, **rgba** als **#***RRGGBBAA* oder [list] als Liste mit vier Elementen. Details siehe [Farbformate] unten. Standard ist **rgb**.]{version="9.0"}
 
 [gif]{.cmd} [-index]{.sub} [indexValue]{.arg}
 : Die Option wirkt beim Lesen von Bilddaten aus einer Datei. Beim Parsen eines mehrteiligen GIF-Images greift Tk normalerweise nur auf das erste Bild zu. Mit der Unteroption **-index** kann stattdessen das *indexValue*. Bild verwendet werden. *indexValue* muss eine Ganzzahl von 0 bis zur Anzahl der Bildteile in den GIF-Daten sein.
@@ -273,7 +273,7 @@ Bilddaten im **default**-Stringformat sind eine (von oben nach unten) Liste von 
 
 Der Standard-Bildhandler kann Farb- und Alpha-Werte eines Pixels in einem der unten aufgeführten Formate darstellen oder parsen. Enthält ein Farbformat keine Transparenzinformation, wird volle Deckkraft angenommen. Verfügbare Farbformate:
 
-- Leerer String — wird als volle Transparenz interpretiert; der Farbwert ist undefiniert.
+- Leere Zeichenkette — wird als volle Transparenz interpretiert; der Farbwert ist undefiniert.
 
 - Jeder von [Tk\_GetColor][GetColor] akzeptierte Wert, optional gefolgt von einem Alpha-Suffix. Das Alpha-Suffix kann eines von Folgendem sein:
 

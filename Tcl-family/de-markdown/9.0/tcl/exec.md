@@ -105,7 +105,7 @@ Wird die Standardeingabe nicht mit „<“, „<<“ oder „<@“ umgeleitet, s
 
 Ist das letzte *arg* „&“, wird die Pipeline im Hintergrund ausgeführt. In diesem Fall gibt **exec** eine Liste zurück, deren Elemente die Prozesskennungen aller Unterprozesse in der Pipeline sind. Die Standardausgabe des letzten Befehls in der Pipeline geht auf die Standardausgabe der Anwendung, sofern nicht umgeleitet; die Fehlerausgabe aller Befehle in der Pipeline geht auf die Standardfehlerdatei der Anwendung, sofern nicht umgeleitet.
 
-Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen Schrägstrich, werden die Verzeichnisse in der PATH-Umgebungsvariable nach einem ausführbaren Programm mit diesem Namen durchsucht. Enthält der Name einen Schrägstrich, muss er auf ein aus der aktuellen Verzeichnisstruktur erreichbares ausführbares Programm verweisen. Auf die Befehlsargumente werden keine „glob“-Erweiterungen oder andere shell-ähnliche Substitutionen angewendet.
+Das erste Wort jedes Befehls gilt als Befehlsname; enthält das Ergebnis keinen Schrägstrich, werden die Verzeichnisse in der PATH-Umgebungsvariable nach einem ausführbaren Programm mit diesem Namen durchsucht. Enthält der Name einen Schrägstrich, muss er auf ein aus der aktuellen Verzeichnisstruktur erreichbares ausführbares Programm verweisen. Auf die Befehlsargumente werden keine „glob“-Erweiterungen oder andere shell-ähnliche Ersetzungen angewendet.
 
 # Portabilitätsfragen
 

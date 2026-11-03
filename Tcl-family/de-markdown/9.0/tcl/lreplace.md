@@ -46,31 +46,31 @@ lreplace - Ersetzt Elemente in einer Liste durch neue Elemente
 
 # Beschreibung
 
-**lreplace** gibt eine neue Liste zurück, die entsteht, wenn null oder mehr Elemente von *list* durch die *element*-Argumente ersetzt werden. *first* und *last* begrenzen den zu ersetzenden Bereich; ihre Auslegung entspricht [string index][string] (Arithmetik, end-relativ). 0 ist das erste Element, **end** das letzte.
+**lreplace** gibt eine neue Liste zurück, die entsteht, indem null oder mehr Elemente von *list* durch die *element*-Argumente ersetzt werden. *first* und *last* sind Indexwerte, die das erste und das letzte Element des zu ersetzenden Bereichs festlegen. Die Indexwerte *first* und *last* werden genauso interpretiert wie Indexwerte beim Befehl [string index][string]; einfache Indexarithmetik und Indizes relativ zum Ende der Liste werden unterstützt. 0 bezeichnet das erste Element der Liste, und **end** bezeichnet das letzte Element der Liste.
 
-Ist *first* oder *last* kleiner als null, gilt die Position vor dem ersten Element — so können Elemente vorangestellt werden. Liegt *first* oder *last* hinter dem letzten Index, gilt Index „eins hinter dem letzten“ — so können Elemente angehängt werden.
+Ist *first* oder *last* kleiner als null, gilt es als Verweis auf die Stelle vor dem ersten Element der Liste. Dadurch kann **lreplace** Elemente am Anfang von *list* einfügen. Bezeichnet *first* oder *last* eine Position, die größer ist als der Index des letzten Elements der Liste, wird der Wert so behandelt, als wäre er ein Index, der um eins größer ist als der des letzten Elements. Dadurch kann **lreplace** Elemente an *list* anhängen.
 
-Ist *last* kleiner als *first*, werden die *element*s vor dem von *first* bezeichneten Element eingefügt, ohne dass etwas gelöscht wird.
+Ist *last* kleiner als *first*, werden alle angegebenen Elemente vor dem durch *first* bezeichneten Element in die Liste eingefügt, ohne dass Elemente gelöscht werden.
 
-Die *element*-Argumente sind die neuen Elemente an Stelle der gelöschten; jedes wird ein separates Listenelement. Ohne *element* werden nur die Elemente von *first* bis *last* entfernt.
+Die *element*-Argumente legen null oder mehr neue Elemente fest, die anstelle der gelöschten Elemente in die Liste aufgenommen werden. Jedes *element*-Argument wird zu einem eigenen Element der Liste. Wird kein *element*-Argument angegeben, werden die Elemente zwischen *first* und *last* einfach gelöscht.
 
 # Beispiele
 
-Ein Element ersetzen:
+Ein Element einer Liste durch ein anderes ersetzen:
 
 ```
 % lreplace {a b c d e} 1 1 foo
 a foo c d e
 ```
 
-Zwei Elemente durch drei ersetzen:
+Zwei Elemente einer Liste durch drei ersetzen:
 
 ```
 % lreplace {a b c d e} 1 2 three more elements
 a three more elements d e
 ```
 
-Letztes Element aus einer Variablenliste entfernen:
+Das letzte Element aus einer Liste in einer Variablen löschen:
 
 ```
 % set var {a b c d e}
@@ -79,7 +79,7 @@ a b c d e
 a b c d
 ```
 
-Prozedur zum Entfernen eines Werts:
+Eine Prozedur, die ein bestimmtes Element aus einer Liste löscht:
 
 ```
 proc lremove {listVariable value} {
@@ -89,7 +89,7 @@ proc lremove {listVariable value} {
 }
 ```
 
-Anhängen; **end+2** wird zunächst wie 6 behandelt, liegt aber hinter dem letzten Index und verhält sich wie ein Index hinter dem Ende:
+Elemente an die Liste anhängen. Beachten Sie, dass **end+2** hier zunächst so behandelt wird, als wäre es **6**. Dieser Wert und **12345** sind jedoch beide größer als der Index des letzten Elements und verhalten sich daher gleich:
 
 ```
 % set var {a b c d e}

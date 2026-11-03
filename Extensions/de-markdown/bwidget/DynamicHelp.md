@@ -36,7 +36,7 @@ DynamicHelp::**add** ?*option value ...*?
     :  Wenn angegeben, verweist das auf einen Menüindex, an den die Hilfe gebunden wird, anstelle eines Widgets. Wenn **-type** nicht menu ist, wird diese Option ignoriert. 
 
     **-item**
-    :  Wenn angegeben, verweist das auf ein Item oder ein Tag eines Canvas-Widgets oder auf ein Tag in einem Text-Widget, an das die Hilfe gebunden wird, anstelle eines Widgets. 
+    :  Wenn angegeben, verweist das auf ein Element oder ein Tag eines Canvas-Widgets oder auf ein Tag in einem Text-Widget, an das die Hilfe gebunden wird, anstelle eines Widgets. 
 
     **-type**
     :  Legt den Typ der Hilfe fest. Kann sein: **balloon**, **variable** oder **menu**. Vorgabe ist **balloon**. 
@@ -121,7 +121,7 @@ DynamicHelp::**register** *path* *type* ?*arg...*?
 
     Wenn eine der Optionen fehlt oder leer ist, wird die Hilfe für dieses Widget entfernt.
 
-     Wenn *tagOrItem* angegeben ist, ist *path* ein canvas oder ein text. Bei einem canvas ist *tagOrItem* der Name eines Tags oder Items auf dem canvas, an das die Hilfe gebunden wird. Bei einem text ist *tagOrItem* der Name eines Tags auf dem text, an das die Hilfe gebunden wird. 
+     Wenn *tagOrItem* angegeben ist, ist *path* ein canvas oder ein text. Bei einem canvas ist *tagOrItem* der Name eines Tags oder Elemente auf dem canvas, an das die Hilfe gebunden wird. Bei einem text ist *tagOrItem* der Name eines Tags auf dem text, an das die Hilfe gebunden wird. 
 
     Für einen Typ außer *balloon* ist *varName* gewöhnlich eine Variable, die mit einem Label verknüpft ist.   
     Für ein Menü gibt es keine Hilfe vom Typ balloon. Um eine Hilfe für ein Menü zu deklarieren, wird zuerst das Menü deklariert und danach die Einträge dieses Menüs.   

@@ -99,13 +99,13 @@ tsw::toggleswitch pathName ?options?
 **BESCHREIBUNG**
 : Der Befehl `tsw::toggleswitch` erzeugt ein neues Fenster namens `pathName` und macht es zu einem **toggleswitch**-Widget. Weitere Optionen, die unten beschrieben sind, können auf der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Eigenschaften des toggleswitch-Widgets festzulegen, etwa seine Größe und das Tcl-Skript, das jedes Mal läuft, wenn der Schaltzustand des Widgets umgeschaltet wird. Der Befehl `tsw::toggleswitch` gibt sein Argument `pathName` zurück. Wenn dieser Befehl aufgerufen wird, darf noch kein Fenster namens `pathName` existieren, das Elternfenster von `pathName` muss aber existieren.
 
-: Ein toggleswitch ist ein Megawidget, das im Wesentlichen aus einer waagerechten **Laufschiene** und einem **Schieber** besteht, genau wie ein ttk::scale-Widget. Diese Elemente gehören tatsächlich zu einem ttk::scale, das im Widget enthalten ist. Die Laufschiene ist ein vollständig abgerundetes gefülltes Rechteck, und der Schieber ist ein gefüllter Kreis oder ein vollständig abgerundetes gefülltes Rechteck in der Laufschiene. Beide Elemente werden mit skalierungsbewussten SVG-Bildern gezeichnet. Ihre Abmessungen hängen vom Wert der Konfigurationsoption `-size` ab, vom aktuellen Thema, von der Skalierungsstufe der Anzeige und vom Skalierungsfaktor von Tk, den `[tk scaling]` zum Zeitpunkt angibt, an dem das erste toggleswitch-Widget erzeugt wird. Das Widget enthält außerdem ein ttk::label, das einen optionalen Text links von der Skala anzeigt; dieses Kindwidget wird nur verwaltet, wenn der mit der Option `-text` oder `-textvariable` angegebene Text eine nichtleere Zeichenkette ist.
+: Ein toggleswitch ist ein Megawidget, das im Wesentlichen aus einer waagerechten **Laufschiene** und einem **Schieber** besteht, genau wie ein ttk::scale-Widget. Diese Elemente gehören tatsächlich zu einem ttk::scale, das im Widget enthalten ist. Die Laufschiene ist ein vollständig abgerundetes gefülltes Rechteck, und der Schieber ist ein gefüllter Kreis oder ein vollständig abgerundetes gefülltes Rechteck in der Laufschiene. Beide Elemente werden mit skalierungsbewussten SVG-Bildern gezeichnet. Ihre Abmessungen hängen vom Wert der Konfigurationsoption `-size` ab, vom aktuellen Theme, von der Skalierungsstufe der Anzeige und vom Skalierungsfaktor von Tk, den `[tk scaling]` zum Zeitpunkt angibt, an dem das erste toggleswitch-Widget erzeugt wird. Das Widget enthält außerdem ein ttk::label, das einen optionalen Text links von der Skala anzeigt; dieses Kindwidget wird nur verwaltet, wenn der mit der Option `-text` oder `-textvariable` angegebene Text eine nichtleere Zeichenkette ist.
 
 : Wie ein Lichtschalter kann ein toggleswitch-Widget einen von zwei möglichen **Schaltzuständen** haben: ein oder aus. Im Zustand ein liegt der Schieber am Ende der Laufschiene, und im Zustand aus an ihrem Anfang. Wie der Abschnitt [VORGABEBINDUNGEN](#ausf-hrliche-referenz) unten beschreibt, schaltet der Benutzer mit der Maus oder der Taste `space` zwischen diesen beiden Zuständen um.
 
 : Der Tcl-Befehl, der zu einem toggleswitch-Widget gehört, hat eine sehr einfache API. Mit dem Unterbefehl `switchstate` ändern oder fragen Sie den Schaltzustand des Widgets ab. Mit der Konfigurationsoption `-command` geben Sie ein Skript an, das jedes Mal läuft, wenn der Schaltzustand des Widgets umgeschaltet wird. Wie (ttk::)checkbutton unterstützen toggleswitch-Widgets auch die Optionen `-offvalue`, `-onvalue` und `-variable`.
 
-: Die Farben, mit denen Laufschiene und Schieber in den verschiedenen Widget-Zuständen gezeichnet werden (etwa `active`, `background`, `disabled`, `pressed` und `selected`), hängen vom aktuellen Thema ab. Die Implementierung erzeugt diese Elemente bei Bedarf mit Hilfe allgemeiner Prozeduren für beliebige Themen und themenspezifischer Prozeduren für einige eingebaute Themen. Anwendungen können für ein beliebiges Thema `theme` *ausdrückliche* Unterstützung hinzufügen, indem sie einen passenden Befehl namens `tsw::createElements_theme` bereitstellen.
+: Die Farben, mit denen Laufschiene und Schieber in den verschiedenen Widget-Zuständen gezeichnet werden (etwa `active`, `background`, `disabled`, `pressed` und `selected`), hängen vom aktuellen Theme ab. Die Implementierung erzeugt diese Elemente bei Bedarf mit Hilfe allgemeiner Prozeduren für beliebige Themes und themespezifischer Prozeduren für einige eingebaute Themes. Anwendungen können für ein beliebiges Theme `theme` *ausdrückliche* Unterstützung hinzufügen, indem sie einen passenden Befehl namens `tsw::createElements_theme` bereitstellen.
 
 **STANDARDOPTIONEN**
 : 
@@ -117,7 +117,7 @@ tsw::toggleswitch pathName ?options?
 -foreground  -textvariable
 ```
 
-: Einzelheiten zu den Standardoptionen stehen im Handbucheintrag **ttk_widget**. Der Vorgabewert der Option `-class` ist `Toggleswitch`. Der Wert der Option `-style` ist voreingestellt auf `Toggleswitch2`, passend zum Vorgabewert `2` der Option `-size`. Je nach dem Wert der Option `-size` ist der Standardwert von `-style` einer der Werte `Toggleswitch1`, `Toggleswitch2` oder `Toggleswitch3` (siehe unten). Der Vorgabewert der Option `-takefocus` ist `"ttk::takefocus"` (wie bei den meisten Tk-Themenwidgets).
+: Einzelheiten zu den Standardoptionen stehen im Handbucheintrag **ttk_widget**. Der Vorgabewert der Option `-class` ist `Toggleswitch`. Der Wert der Option `-style` ist voreingestellt auf `Toggleswitch2`, passend zum Vorgabewert `2` der Option `-size`. Je nach dem Wert der Option `-size` ist der Standardwert von `-style` einer der Werte `Toggleswitch1`, `Toggleswitch2` oder `Toggleswitch3` (siehe unten). Der Vorgabewert der Option `-takefocus` ist `"ttk::takefocus"` (wie bei den meisten Ttk-Widgets).
 
 **WIDGET-SPEZIFISCHE OPTIONEN**
 : 
@@ -155,7 +155,7 @@ Der Wert, der in der zugehörigen Variablen gespeichert wird, wenn der Schaltzus
 | Name der Datenbank: | ` size` |
 | Datenbankklasse: | ` Size` |
 
-Legt den Größenbezeichner des toggleswitch-Widgets fest. Die unterstützten Werte sind die Zeichenketten `1`, `2` (die Vorgabe) und `3`. Ist das aktuelle Thema `aqua`, entsprechen diese Größenkennungen den Steuergrößen „mini“, „small“ und „large“ der nativen Kippschalter unter macOS. Für macOS bis Version 15 (Sequoia) steht der Wert `1` für die Laufschienengröße von 26 x 15 Pixeln, der Wert `2` für die Laufschienengröße von 32 x 18 Pixeln, und der Wert `3` bezeichnet die Laufschienengröße von 38 x 22 Pixeln. Ab macOS 26 (Tahoe) betragen die Laufschienengrößen 29 x 13, 36 x 16 und 44 x 20 Pixel. Bei allen anderen Themen steht auf einem unskalierten Bildschirm der Wert `1` für die Laufschienengröße von 32 x 16 Pixeln, der Wert `2` für die Laufschienengröße von 40 x 20 Pixeln, und der Wert `3` bezeichnet die Laufschienengröße von 48 x 24 Pixeln. Ausnahme: unter Windows 10 und früher ist aus Kompatibilität mit dem nativen Kippschalter bei den Themen `vista`, `winnative` und `xpnative` die unskalierte Laufschienenbreite 35, 44 und 53 Pixel.
+Legt den Größenbezeichner des toggleswitch-Widgets fest. Die unterstützten Werte sind die Zeichenketten `1`, `2` (die Vorgabe) und `3`. Ist das aktuelle Theme `aqua`, entsprechen diese Größenbezeichner den Steuergrößen „mini“, „small“ und „large“ der nativen Kippschalter unter macOS. Für macOS bis Version 15 (Sequoia) steht der Wert `1` für die Laufschienengröße von 26 x 15 Pixeln, der Wert `2` für die Laufschienengröße von 32 x 18 Pixeln, und der Wert `3` bezeichnet die Laufschienengröße von 38 x 22 Pixeln. Ab macOS 26 (Tahoe) betragen die Laufschienengrößen 29 x 13, 36 x 16 und 44 x 20 Pixel. Bei allen anderen Themes steht auf einem unskalierten Bildschirm der Wert `1` für die Laufschienengröße von 32 x 16 Pixeln, der Wert `2` für die Laufschienengröße von 40 x 20 Pixeln, und der Wert `3` bezeichnet die Laufschienengröße von 48 x 24 Pixeln. Ausnahme: unter Windows 10 und früher ist aus Kompatibilität mit dem nativen Kippschalter bei den Themes `vista`, `winnative` und `xpnative` die unskalierte Laufschienenbreite 35, 44 und 53 Pixel.
 
 Beachten Sie: Wird diese Option auf einen Wert `size` gesetzt, wechselt der Wert der Option `-style` automatisch zu `Toggleswitchsize`, wenn sein bisheriger oder angeforderter Wert einer der Werte `Toggleswitch1`, `Toggleswitch2` oder `Toggleswitch3` war, und zu `prefix.Toggleswitchsize`, wenn sein bisheriger oder angeforderter Wert einer der Werte `prefix.Toggleswitch1`, `prefix.Toggleswitch2` oder `prefix.Toggleswitch3` war.
 
@@ -199,7 +199,7 @@ Beachten Sie: Wie bei (ttk::)checkbutton führt das Umschalten des Schaltzustand
 pathName option ?arg arg ...?
 ```
 
-: `option` und die `arg`s bestimmen das genaue Verhalten des Befehls. Für toggleswitch-Widgets sind die folgenden Befehle möglich:
+: `option` und die Argumente `arg` bestimmen das genaue Verhalten des Befehls. Für toggleswitch-Widgets sind die folgenden Befehle möglich:
 
 
 `pathName attrib ?name ?value name value ...??`
@@ -224,7 +224,7 @@ pathName option ?arg arg ...?
 : Siehe den Handbucheintrag zu **ttk_widget**.
 
 `pathName style`
-: Gibt den Stil zurück, den das zugrunde liegende ttk::scale-Widget verwendet. Bei Tk-Themenwidgets wurde dieser Unterbefehl in Tk 8.7a4 eingeführt, das toggleswitch-Widget stellt ihn aber für alle unterstützten Tk-Versionen bereit.
+: Gibt den Stil zurück, den das zugrunde liegende ttk::scale-Widget verwendet. Bei Ttk-Widgets wurde dieser Unterbefehl in Tk 8.7a4 eingeführt, das toggleswitch-Widget stellt ihn aber für alle unterstützten Tk-Versionen bereit.
 
 `pathName switchstate ?boolean?`
 : Ändert den Schaltzustand des Widgets oder fragt ihn ab. Ist das optionale Argument vorhanden, muss es ein boolescher Wert sein (ein numerischer Wert, bei dem `0` falsch ist und alles andere wahr, oder eine Zeichenkette wie `true/yes/on` oder `false/no/off`). Ist das Zustandsflag `disabled` des Widgets gesetzt, gibt der Befehl unmittelbar nach der Prüfung des Arguments eine leere Zeichenkette zurück. Sonst setzt der Befehl, wenn das Argument wahr ist, den Schaltzustand des Widgets auf ein, indem er das Flag `selected` des zugrunde liegenden ttk::scale-Widgets setzt, den Schieber an das Ende der Laufschiene bewegt und die zugehörige Variable auf den Wert setzt, den die Option `-onvalue` angibt. Ist das Argument falsch, setzt der Befehl den Schaltzustand des Widgets auf aus, indem er das Flag `selected` löscht, den Schieber an den Anfang der Laufschiene bewegt und die zugehörige Variable auf den Wert setzt, den die Option `-offvalue` angibt.
@@ -237,19 +237,19 @@ pathName option ?arg arg ...?
 : Dieser bequeme Unterbefehl schaltet den Schaltzustand des Widgets um. Er entspricht logisch dem Aufruf des Befehls `switchstate` mit dem Argument `0`, wenn der aktuelle Schaltzustand ein ist, und sonst mit dem Argument `1`.
 
 `pathName unsetattrib name`
-: Hebt das Attribut `name` auf. Gibt eine leere Zeichenfolge zurück.
+: Hebt das Attribut `name` auf. Gibt eine leere Zeichenkette zurück.
 
 
 **VORGABEBINDUNGEN**
 : Das Paket Tsw ersetzt die Vorgabebindungen des ttk::scale, das in einem toggleswitch-Widget enthalten ist, durch eigene Bindungen, und zwar so:
 
-: Ist das aktuelle Thema `aqua`:
+: Ist das aktuelle Theme `aqua`:
 
   1. Wird die Maustaste 1 über dem Schieber gedrückt und die Maus dann bei gehaltener Taste 1 gezogen, bis der Zeiger die Laufschiene betritt, bewegt sich der Schieber gleichmäßig zur gegenüberliegenden Kante der Laufschiene, und der Schaltzustand des Widgets wird umgeschaltet. Dasselbe geschieht, wenn die Maustaste 1 außerhalb des Schiebers gedrückt wird und der Zeiger das Widget dann bei gehaltener Taste 1 waagerecht verlässt.
   2. Wird die Maustaste 1 irgendwo im Widget gedrückt und dann über dem Widget losgelassen, ohne dass der Schieber vorher bewegt wurde, bewegt sich dieser gleichmäßig zur gegenüberliegenden Kante der Laufschiene, und der Schaltzustand des Widgets wird umgeschaltet.
   3. Hat das Widget den Eingabefokus, schaltet die Taste `space` seinen Schaltzustand um.
 
-: Ist das aktuelle Thema nicht `aqua`:
+: Ist das aktuelle Theme nicht `aqua`:
 
   1. Wird die Maustaste 1 irgendwo im Widget gedrückt und die Maus dann bei gehaltener Taste 1 gezogen, bewegt sich der Schieber in derselben (waagerechten) Richtung wie der Zeiger. Beim Loslassen der Taste wird der Schaltzustand auf aus oder ein gesetzt, je nach der Lage des Schiebers relativ zur Mitte des Widgets.
   2. Wird die Maustaste 1 irgendwo im Widget gedrückt und dann über dem Widget losgelassen, ohne dass die Maus vorher waagerecht gezogen wurde, wird der Schaltzustand des Widgets umgeschaltet.
@@ -277,19 +277,19 @@ Vorgabe ist
 
 .
 
-: Das ttk::scale und das ttk::label, das einen optionalen Text anzeigt, sind Kinder eines ttk:frame mit dem Layout `ToggleswitchHull`, das für alle Themen außer `aqua` ein Element `focus` enthält. Stiloptionen, die mit `ttk::style` für `ToggleswitchHull` eingestellt werden können:
+: Das ttk::scale und das ttk::label, das einen optionalen Text anzeigt, sind Kinder eines ttk:frame mit dem Layout `ToggleswitchHull`, das für alle Themes außer `aqua` ein Element `focus` enthält. Stiloptionen, die mit `ttk::style` für `ToggleswitchHull` eingestellt werden können:
 
 -focuscolor
 
 color
 
-Die Vorgabe hängt vom Thema ab.
+Die Vorgabe hängt vom Theme ab.
 
 -focussolid
 
 boolean
 
-Vorgabe ist true für das Thema
+Vorgabe ist true für das Theme
 
 classic
 
@@ -311,7 +311,7 @@ Tk_GetPixels
 
 akzeptiert.
 
-: Beim Thema `aqua` werden diese fokusbezogenen Optionen einfach ignoriert.
+: Beim Theme `aqua` werden diese fokusbezogenen Optionen einfach ignoriert.
 
 : Wie ttk-Stile konfiguriert werden, steht auf der Handbuchseite **ttk_style**. SCHLÜSSELWÖRTER toggleswitch, trough, slider, widget 
 

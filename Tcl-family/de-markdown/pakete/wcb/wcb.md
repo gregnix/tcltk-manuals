@@ -110,7 +110,7 @@ package provide Wcb ...
 
 Sie können eine der beiden Zeilen aus `wcb.tcl` entfernen, wenn das Paket sich nicht unter zwei verschiedenen Namen bekannt machen soll. Damit beschränken Sie das Argument von `package require` natürlich auf einen einzigen Namen.
 
-Weil das Paket Wcb in einem eigenen Namensraum namens `wcb` liegt, müssen Sie entweder den Befehl
+Weil das Paket Wcb in einem eigenen Namespace namens `wcb` liegt, müssen Sie entweder den Befehl
 
 ```
 namespace import wcb::pattern ?wcb::pattern ...?
@@ -118,7 +118,7 @@ namespace import wcb::pattern ?wcb::pattern ...?
 
 aufrufen, um die benötigten *Prozeduren* zu importieren, oder qualifizierte Namen wie `wcb::callback` verwenden. In den Beispielen unten ist der zweite Weg gewählt.
 
-Auf Wcb-*Variablen* müssen Sie mit qualifizierten Namen zugreifen. Nur zwei Wcb-Variablen sind dafür gedacht, außerhalb des Namensraums `wcb` gelesen zu werden:
+Auf Wcb-*Variablen* *müssen* Sie mit qualifizierten Namen zugreifen. Nur zwei Wcb-Variablen sind dafür gedacht, außerhalb des Namespace `wcb` gelesen zu werden:
 
 - Die Variable `wcb::version` enthält die aktuelle Versionsnummer des Pakets Wcb.
 - Die Variable `wcb::library` enthält den Ort des Wcb-Installationsverzeichnisses.
@@ -142,7 +142,7 @@ wcb::callback .e1 before insert wcb::checkStrForAlnum \
                                 wcb::convStrToUpper
 ```
 
-Damit das zweite entry-Widget `.e2` nur ganze Zahlen mit höchstens 10 Zeichen annimmt, verwenden wir wieder zwei before-`insert`-Rückruffunktionen aus Wcb:
+Damit das zweite entry-Widget `.e2` nur Ganzzahlen mit höchstens 10 Zeichen annimmt, verwenden wir wieder zwei before-`insert`-Rückruffunktionen aus Wcb:
 
 ```
 wcb::callback .e2 before insert {wcb::checkEntryLen 10} \
@@ -226,7 +226,7 @@ Zur Erinnerung: Die listbox-Operation `selection set` nimmt ein oder zwei Indize
 
 ### Eine `activate`-Rückruffunktion für ein listbox-Widget
 
-Die listbox des vorigen Beispiels hat den Vorgabe-Auswahlmodus `browse`. Die before-`selset`-Rückruffunktion `showBitmap` läuft deshalb jedes Mal, wenn die Maus bei gedrückter Taste 1 von einem Element zu einem anderen gezogen wird. Was aber, wenn wir nicht nur die Bitmaps anzeigen wollen, sondern auch die Fotobilder im Unterverzeichnis `images` des Wcb-Verzeichnisses `demos`? Ein Fotobild zu laden ist deutlich aufwendiger als eine Bitmap zu laden. Einige Bilder lassen sich dann nicht schnell genug anzeigen, um der Maus zu folgen, wenn man mit ihr in der listbox blättert.
+Die listbox des vorigen Beispiels hat den Vorgabe-Auswahlmodus `browse`. Die before-`selset`-Rückruffunktion `showBitmap` läuft deshalb jedes Mal, wenn die Maus bei gedrückter Taste 1 von einem Element zu einem anderen gezogen wird. Was aber, wenn wir nicht nur die Bitmaps anzeigen wollen, sondern auch die Foto-Images im Unterverzeichnis `images` des Wcb-Verzeichnisses `demos`? Ein Foto-Image zu laden ist deutlich aufwendiger als eine Bitmap zu laden. Einige Bilder lassen sich dann nicht schnell genug anzeigen, um der Maus zu folgen, wenn man mit ihr in der listbox blättert.
 
 ![listboxtest2](listboxtest2.png)
 

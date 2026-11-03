@@ -18,7 +18,7 @@ Copyright:
 
 # Name
 
-ntextBindings – Alternative Bindings für das Text-Widget
+ntextBindings – Alternative Bindungen für das Text-Widget
 
 # Übersicht
 
@@ -32,9 +32,9 @@ ntextBindings – Alternative Bindings für das Text-Widget
 
 Das Paket **ntext** stellt ein Bindungs-Tag namens *Ntext* zur Verfügung, das von Text-Widgets anstelle des standardmäßigen Bindungs-Tags *Text* verwendet werden kann.
 
-Das Bindungs-Tag *Text* bietet etwa hundert Bindings für das Text-Widget (die genaue Anzahl ist plattformabhängig). Einige davon verhalten sich anders als die meisten modernen Textverarbeitungsprogramme. *Ntext* zielt darauf ab, ein vertrauteres Verhalten zu bieten.
+Das Bindungs-Tag *Text* bietet etwa hundert Bindungen für das Text-Widget (die genaue Anzahl ist plattformabhängig). Einige davon verhalten sich anders als die meisten modernen Textverarbeitungsprogramme. *Ntext* zielt darauf ab, ein vertrauteres Verhalten zu bieten.
 
-Merkmale der *Ntext*-Bindings, die sich von den Standard-*Text*-Bindings unterscheiden:
+Merkmale der *Ntext*-Bindungen, die sich von den Standard-*Text*-Bindungen unterscheiden:
 
 - Wenn Sie nahe dem Ende einer (logischen) Zeile klicken, springt der Cursor an das Ende dieser Zeile *(nicht an den Anfang der nächsten Zeile)*. Befindet sich das Widget im Modus *-wrap* *word*, gilt dieselbe Regel für die Anzeigezeilen.
 
@@ -44,28 +44,28 @@ Merkmale der *Ntext*-Bindings, die sich von den Standard-*Text*-Bindings untersc
 
 - Wenn eine Auswahl markiert ist, überschreibt eine Operation „Paste“ (zum Beispiel <Control-v>) die Auswahl (wie es bei den meisten Editoren der Fall ist), und zwar auf allen Plattformen.
 
-- Bei anderen Fenstersystemen als macOS Aqua schaltet die Taste *Insert* zwischen den Modi Insert und Overwrite für die Tastatureingabe um. *(Das Binding-Tag Text benutzt *Insert* dagegen, um die primäre Auswahl einzufügen. Das geht auch mit einem Klick der mittleren Maustaste.)*
+- Bei anderen Fenstersystemen als macOS Aqua schaltet die Taste *Insert* zwischen den Modi Insert und Overwrite für die Tastatureingabe um. *(Das Bindungs-Tag Text benutzt *Insert* dagegen, um die primäre Auswahl einzufügen. Das geht auch mit einem Klick der mittleren Maustaste.)*
 
 - Mit der *Escape*-Taste wird die Auswahl aufgehoben.
 
-- Im macOS-Aqua-Fenstersystem hält sich *Ntext* an die Aqua-Konventionen für die Tastaturnavigation.  Bestimmte Bindings für das vertikale Scrollen können so eingestellt werden, dass sie sich genauso verhalten wie bei den Windows- und X11-Fenstersystemen, indem Sie **::ntext::classicParagraphs** auf **1** setzen (siehe Abschnitt [Konfigurationsoptionen]).
+- Im macOS-Aqua-Fenstersystem hält sich *Ntext* an die Aqua-Konventionen für die Tastaturnavigation.  Bestimmte Bindungen für das vertikale Scrollen können so eingestellt werden, dass sie sich genauso verhalten wie bei den Windows- und X11-Fenstersystemen, indem Sie **::ntext::classicParagraphs** auf **1** setzen (siehe Abschnitt [Konfigurationsoptionen]).
 
 - Im macOS-Aqua-Fenstersystem hält sich *Ntext* an die Aqua-Konventionen für die Platzierung der Einfügemarke, wenn eine Auswahl durch die Tastaturnavigation aufgehoben wird.  Dieses Verhalten kann deaktiviert werden, indem **::ntext::classicSelection** auf **1** gesetzt wird (siehe Abschnitt [Konfigurationsoptionen]).
 
 - Wenn Sie <Shift-Button1> auswählen, erfolgt die Auswahl an der vorherigen Position des Einfügecursors. *(Im Tag „Text binding“ kann der Anker der Auswahl die Position des letzten Mausklicks sein.)*
 
-- <Shift-Button1>-Operationen haben keinen Einfluss auf den Anker der Auswahl. *(Im Text-Binding-Tag ist dies jedoch der Fall.)*
+- <Shift-Button1>-Operationen haben keinen Einfluss auf den Anker der Auswahl. *(Im Text-Bindungs-Tag ist dies jedoch der Fall.)*
 
 - Standardmäßig bietet das Bindungs-Tag *Ntext* einige der durch das Bindungs-Tag *Text* bereitgestellten Strg-Tastenkombinationen nicht an.  Moderne Tastaturen bieten Alternativen, wie beispielsweise die Cursortasten zur Navigation; moderne Anwendungen nutzen die Strg-Tasten-Bindungen häufig für andere Zwecke (z. B. <Control-p> für „Drucken“).
 
 
 In den letzten drei Fällen ist das Verhalten von *Text* oft nützlich, daher bietet Ihnen *Ntext* die Option, es beizubehalten, indem Sie die im Namespace ::ntext definierten Variablen auf 1 setzen (anstelle ihres Standardwerts 0).  Eine ausführlichere Erläuterung dieser Funktionen:
 
-- Wenn Sie an Position A mit der Maus klicken, anschließend den Cursor mithilfe der Tastatur zu B bewegen, dann die Taste Shift gedrückt halten und an Position C mit der Maus klicken, ergibt das Binding-Tag *Text* eine Auswahl von A bis C; gibt *Ntext* eine Auswahl von B bis C an.  Wenn Sie möchten, dass sich *Ntext* in dieser Hinsicht wie *Text* verhält, setzen Sie **::ntext::classicMouseSelect** auf 1.
+- Wenn Sie an Position A mit der Maus klicken, anschließend den Cursor mithilfe der Tastatur zu B bewegen, dann die Taste Shift gedrückt halten und an Position C mit der Maus klicken, ergibt das Bindungs-Tag *Text* eine Auswahl von A bis C; gibt *Ntext* eine Auswahl von B bis C an.  Wenn Sie möchten, dass sich *Ntext* in dieser Hinsicht wie *Text* verhält, setzen Sie **::ntext::classicMouseSelect** auf 1.
 
-- Das Binding-Tag *Text* ermöglicht es, dass aufeinanderfolgende <Shift-Button-1>-Ereignisse beide Enden der Auswahl verändern, indem der Anker der Auswahl an das Ende der Auswahl verschoben wird, das am weitesten vom Mausklick entfernt ist.  Im Gegensatz dazu fixiert das Bindung-Tag *Ntext* den Anker, und mehrere Ereignisse Shift-Button-1 können nur das nicht verankerte Ende der Auswahl verschieben. Soll sich *Ntext* darin wie *Text* verhalten, setzt man **::ntext::classicAnchor** auf 1. Bei *Text* und bei *Ntext* verändert die Tastaturnavigation bei gedrückter Taste Shift die Auswahl und hält den Auswahlanker fest.
+- Das Bindungs-Tag *Text* ermöglicht es, dass aufeinanderfolgende <Shift-Button-1>-Ereignisse beide Enden der Auswahl verändern, indem der Anker der Auswahl an das Ende der Auswahl verschoben wird, das am weitesten vom Mausklick entfernt ist.  Im Gegensatz dazu fixiert das Bindungs-Tag *Ntext* den Anker, und mehrere Ereignisse Shift-Button-1 können nur das nicht verankerte Ende der Auswahl verschieben. Soll sich *Ntext* darin wie *Text* verhalten, setzt man **::ntext::classicAnchor** auf 1. Bei *Text* und bei *Ntext* verändert die Tastaturnavigation bei gedrückter Taste Shift die Auswahl und hält den Auswahlanker fest.
 
-- Die folgenden „zusätzlichen“ *Text*-Bindings sind standardmäßig deaktiviert, können jedoch in *Ntext* aktiviert werden, indem Sie **::ntext::classicExtras** auf 1 setzen: <Control-a>, <Control-b>, <Control-d>, <Control-e>, <Control-f>, <Control-h>, <Control-i>, <Control-k>, <Control-n>, <Control-o>, <Control-p>, <Control-t>, <Control-space>, <Control-Shift-space>.
+- Die folgenden „zusätzlichen“ *Text*-Bindungen sind standardmäßig deaktiviert, können jedoch in *Ntext* aktiviert werden, indem Sie **::ntext::classicExtras** auf 1 setzen: <Control-a>, <Control-b>, <Control-d>, <Control-e>, <Control-f>, <Control-h>, <Control-i>, <Control-k>, <Control-n>, <Control-o>, <Control-p>, <Control-t>, <Control-space>, <Control-Shift-space>.
 
 
 # Konfigurationsoptionen
@@ -85,7 +85,7 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 - **0** – (Standardwert) wählt das *Ntext*-Verhalten aus, d. h., mehrere „zusätzliche“ *Text*-Bindungen werden deaktiviert
 
-- **1** – wählt das klassische *Text*-Verhalten aus, d. h., die „zusätzlichen“ *Text*-Bindings werden aktiviert
+- **1** – wählt das klassische *Text*-Verhalten aus, d. h., die „zusätzlichen“ *Text*-Bindungen werden aktiviert
 
 
 **::ntext::classicMouseSelect**
@@ -97,9 +97,9 @@ Das Verhalten von *Ntext* lässt sich anwendungsweit konfigurieren, indem die We
 
 **::ntext::classicParagraphs**
 
-- **0** – (Vorgabe) Unter macOS Aqua verhalten sich bestimmte Tastatur-Bindings wie in der Mac-Anwendung TextEdit. Die Bindings betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
+- **0** – (Vorgabe) Unter macOS Aqua verhalten sich bestimmte Tastatur-Bindungen wie in der Mac-Anwendung TextEdit. Die Bindungen betreffen das vertikale Verschieben des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
 
-- **1** – Unter macOS Aqua verhalten sich bestimmte Bindings so, wie sie es unter den Windows- und X11-Fenstersystemen sowie im klassischen *Text* tun, wobei die Konventionen von Aqua außer Acht gelassen werden.  Die Bindings betreffen das vertikale Scrollen des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
+- **1** – Unter macOS Aqua verhalten sich bestimmte Bindungen so, wie sie es unter den Windows- und X11-Fenstersystemen sowie im klassischen *Text* tun, wobei die Konventionen von Aqua außer Acht gelassen werden.  Die Bindungen betreffen das vertikale Scrollen des Bildschirms und lauten <?Shift-?Option-(Up|Down)>.
 
 
 **::ntext::classicSelection**

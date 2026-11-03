@@ -200,7 +200,7 @@ Die folgenden Elemente werden dieser Gruppe zugeordnet:
     ```
 
 -yscroll **0**|**1**|**auto**
-: Mit diesem Attribut lässt sich eine eventuell vorhandene vertikale Bildlaufleiste steuern. Durch die Einstellung auf **0** wird die Bildlaufleiste dauerhaft deaktiviert, durch die Einstellung auf **1** wird sie aktiviert. Standardmäßig ist der Wert auf **auto** gesetzt. Die Bildlaufleiste wird in diesem Modus nur dann aktiviert, wenn die vertikale Größe des Dateneingabeformulars 66 % der Bildschirmhöhe überschreitet.
+: Mit diesem Attribut lässt sich eine eventuell vorhandene vertikale Scrollbar steuern. Durch die Einstellung auf **0** wird die Scrollbar dauerhaft deaktiviert, durch die Einstellung auf **1** wird sie aktiviert. Standardmäßig ist der Wert auf **auto** gesetzt. Die Scrollbar wird in diesem Modus nur dann aktiviert, wenn die vertikale Größe des Dateneingabeformulars 66 % der Bildschirmhöhe überschreitet.
 
     ```
     tepam::argument_dialogbox \

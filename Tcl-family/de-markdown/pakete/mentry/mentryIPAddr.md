@@ -53,7 +53,7 @@ mentry::ipAddrMentry pathName ?options?
 ## Der Befehl `mentry::putIPAddr`
 
 **NAME**
-: `mentry::putIPAddr` – Eine IP-Adresse in eine Mentry vom Typ `"IPAddr"` ausgeben
+: `mentry::putIPAddr` – Eine IP-Adresse in ein Mentry vom Typ `"IPAddr"` ausgeben
 
 **ÜBERSICHT**
 : 
@@ -78,7 +78,7 @@ mentry::putIPAddr address pathName
 ## Der Befehl `mentry::getIPAddr`
 
 **NAME**
-: `mentry::getIPAddr` – Eine IP-Adresse aus einer Mentry vom Typ `"IPAddr"` abrufen
+: `mentry::getIPAddr` – Eine IP-Adresse aus einem Mentry vom Typ `"IPAddr"` abrufen
 
 **ÜBERSICHT**
 : 
@@ -90,7 +90,7 @@ mentry::getIPAddr pathName
 **BESCHREIBUNG**
 : Dieser Befehl gibt die IP-Adresse zurück, die im Mentry-Widget `pathName` enthalten ist, das mit dem Befehl `mentry::ipAddrMentry` erstellt worden sein muss (dies wird durch Überprüfung des Attributs `type` des Widgets überprüft, das den Wert `"IPAddr"` haben muss).
 
-: Ist eine der Eingabekomponenten des Widgets leer, setzt der Befehl den Fokus auf die erste dieser Eingaben, löst einen Fehler aus und gibt die Zeichenfolge `"EMPTY"` zurück.
+: Ist eine der Eingabekomponenten des Widgets leer, setzt der Befehl den Fokus auf die erste dieser Eingaben, löst einen Fehler aus und gibt die Zeichenkette `"EMPTY"` zurück.
 
 **SCHLÜSSELWÖRTER**
 : mentry, widget, IP address

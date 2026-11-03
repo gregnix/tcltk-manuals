@@ -29,100 +29,100 @@ glob - Dateinamen zurückgeben, die Mustern entsprechen
 
 # Beschreibung
 
-Führt Dateinamen-„Globbing“ ähnlich wie in csh oder bash aus. Gibt eine Liste der Dateien zurück, deren Namen einem der *pattern*-Argumente entsprechen. Die Reihenfolge ist nicht garantiert; für eine sortierte Liste [lsort] verwenden.
+Dieser Befehl führt ein „Globbing“ von Dateinamen durch, ähnlich wie die Shells csh oder bash. Er gibt eine Liste der Dateien zurück, deren Namen zu einem der *pattern*-Argumente passen. Eine bestimmte Reihenfolge der Liste ist nicht garantiert; wenn eine sortierte Liste benötigt wird, sollte der Aufrufer daher [lsort] verwenden.
 
 ## Optionen
 
-Beginnen die ersten Argumente von **glob** mit **-**, gelten sie als Schalter. Unterstützt werden:
+Beginnen die ersten Argumente von **glob** mit **-**, werden sie als Schalter behandelt. Derzeit werden folgende Schalter unterstützt:
 
 **-directory** *directory*
-: Suche nach passenden Mustern ab dem angegebenen *directory*. Ermöglicht das Durchsuchen von Verzeichnissen, deren Name Glob-Sonderzeichen enthält, ohne diese explizit zu quoten. Nicht zusammen mit **-path** (Suche nach vollständigen Pfaden mit Glob-Sonderzeichen im Namen).
+: Sucht ab dem angegebenen Verzeichnis *directory* nach Dateien, die zu den angegebenen Mustern passen. So lassen sich Verzeichnisse durchsuchen, deren Name für Glob bedeutsame Zeichen enthält, ohne dass diese Zeichen ausdrücklich maskiert werden müssen. Diese Option kann nicht zusammen mit **-path** verwendet werden; **-path** dient dazu, nach vollständigen Dateipfaden zu suchen, deren Namen für Glob bedeutsame Zeichen enthalten können.
 
 **-join**
-: Die verbleibenden Musterargumente nach der Optionenverarbeitung werden als ein einziges Muster behandelt, das durch Verkettung mit Verzeichnistrennzeichen entsteht.
+: Die nach der Verarbeitung der Optionen verbleibenden Musterargumente werden als ein einziges Muster behandelt, das entsteht, indem die Argumente mit Verzeichnistrennzeichen verbunden werden.
 
 **-nocomplain**
 : Erlaubt die Rückgabe einer leeren Liste ohne Fehler; ohne diesen Schalter wird ein Fehler zurückgegeben, wenn die Ergebnisliste leer wäre.
 
 **-path** *pathPrefix*
-: Suche nach Dateien mit dem angegebenen *pathPrefix*, deren Rest dem Muster entspricht. Ermöglicht Suche nach Dateien mit Namen ähnlich einer gegebenen Datei (nicht nur einem Verzeichnis), auch wenn der Name Glob-Sonderzeichen enthält. Nicht zusammen mit **-directory**. Beispiel: alle Dateien mit gleichem Stamm wie $path, aber anderer Endung: „**glob -path \[file rootname $path\] .\***“ — funktioniert auch bei vielen Glob-Sonderzeichen in **$path**.
+: Sucht nach Dateien mit dem angegebenen *pathPrefix*, bei denen der Rest des Namens zu den angegebenen Mustern passt. So lässt sich nach Dateien suchen, deren Namen einer gegebenen Datei (im Gegensatz zu einem Verzeichnis) ähneln, auch wenn die Namen für Glob bedeutsame Zeichen enthalten. Diese Option kann nicht zusammen mit **-directory** verwendet werden. Um zum Beispiel alle Dateien zu finden, die denselben Stammnamen wie $path, aber andere Endungen haben, sollten Sie „**glob -path \[file rootname $path\] .\***“ verwenden; das funktioniert auch dann, wenn **$path** zahlreiche für Glob bedeutsame Zeichen enthält.
 
 **-tails**
-: Nur der Teil jedes Treffers, der auf das zuletzt in einer **-directory**- oder **-path**-Angabe genannte Verzeichnis folgt. „**glob -tails -directory $dir \***“ entspricht „**set pwd \[pwd\]; cd $dir; glob \*; cd $pwd**“. Bei **-path** enthält der Rückgabename das letzte Pfadsegment, z. B. liefert „**glob -tails -path \[file rootname ~/foo.tex\] .\***“ Pfade wie **foo.aux foo.bib foo.tex** usw.
+: Gibt von jeder gefundenen Datei nur den Teil zurück, der auf das letzte Verzeichnis folgt, das in einer Pfadangabe mit **-directory** oder **-path** genannt ist. Daher ist „**glob -tails -directory $dir \***“ gleichwertig mit „**set pwd \[pwd\]; cd $dir; glob \*; cd $pwd**“. Bei Angaben mit **-path** enthalten die zurückgegebenen Namen das letzte Pfadsegment. So gibt „**glob -tails -path \[file rootname ~/foo.tex\] .\***“ Pfade wie **foo.aux foo.bib foo.tex** usw. zurück.
 
 **-types** *typeList*
-: Nur Dateien oder Verzeichnisse listen, die *typeList* entsprechen. Die Listeneinträge haben zwei Formen. Erste Form wie die -type-Option von Unix find: *b* (Blockgerät), *c* (Zeichengerät), *d* (Verzeichnis), *f* (normale Datei), *l* (symbolischer Link), *p* (Named Pipe), *s* (Socket); mehrere Typen möglich. **Glob** liefert alle Dateien, die mindestens einem Typ entsprechen. Symbolische Links werden zurückgegeben, wenn **-types l** gesetzt ist oder das Linkziel den gewünschten Typ hat (Link auf Verzeichnis bei **-types d**).
+: Listet nur Dateien oder Verzeichnisse auf, die zu *typeList* passen; die Elemente dieser Liste können zwei Formen haben. Die erste Form entspricht der Option -type des Unix-Befehls find: *b* (blockorientierte Gerätedatei), *c* (zeichenorientierte Gerätedatei), *d* (Verzeichnis), *f* (normale Datei), *l* (symbolischer Link), *p* (Named Pipe) oder *s* (Socket); in der Liste können mehrere Typen angegeben werden. **Glob** gibt alle Dateien zurück, die zu mindestens einem der angegebenen Typen passen. Beachten Sie, dass symbolische Links sowohl dann zurückgegeben werden, wenn **-types l** angegeben ist, als auch dann, wenn das Ziel eines Links dem gewünschten Typ entspricht. Ein Link auf ein Verzeichnis wird also zurückgegeben, wenn **-types d** angegeben wurde.
 
-    Zweite Form: alle angegebenen Typen müssen zutreffen — *r*, *w*, *x* als Dateirechte sowie *readonly*, *hidden*. Auf dem Macintosh werden macOS-Typen und -Erzeuger unterstützt; vier Zeichen lang = macOS-Typ (z. B. **TEXT**). *{macintosh type XXXX}* bzw. *{macintosh creator XXXX}* matchen Typ bzw. Erzeuger. Unbekannte Typen oder mehrere macOS-Typen/Erzeuger in einer Spezifikation: Fehler.
+    Die zweite Form gibt Typen an, die alle zutreffen müssen. Das sind *r*, *w*, *x* als Dateirechte sowie *readonly* und *hidden* als besondere Fälle von Rechten. Auf dem Macintosh werden außerdem macOS-Typen und -Erzeuger unterstützt; dabei wird jedes Element, das vier Zeichen lang ist, als macOS-Typ angesehen (z. B. **TEXT**). Elemente der Form *{macintosh type XXXX}* oder *{macintosh creator XXXX}* passen auf Typen bzw. Erzeuger. Nicht erkannte Typen oder die Angabe mehrerer macOS-Typen bzw. -Erzeuger lösen einen Fehler aus.
 
-    Beide Formen sind mischbar; **-types {d f r w}** findet normale Dateien ODER Verzeichnisse mit Lese- UND Schreibrecht. Äquivalent:
+    Die beiden Formen können gemischt werden; **-types {d f r w}** findet also alle normalen Dateien ODER Verzeichnisse, die Lese- UND Schreibrechte haben. Folgende Aufrufe sind gleichwertig:
 
     ```
     glob -type d *
     glob */
     ```
 
-    außer dass der erste Fall kein abschließendes „/“ liefert und plattformunabhängiger ist.
+    mit dem Unterschied, dass der erste Fall kein abschließendes „/“ zurückgibt und plattformunabhängiger ist.
 
 **--**
-: Ende der Schalter; das folgende Argument gilt als *pattern*, auch wenn es mit **-** beginnt.
+: Markiert das Ende der Schalter. Das darauf folgende Argument wird als *pattern* behandelt, auch wenn es mit **-** beginnt.
 
 
 ## Glob-Muster
 
-Die *pattern*-Argumente können folgende Sonderzeichen enthalten (Obermenge von [string match][string]):
+Die *pattern*-Argumente können jedes der folgenden Sonderzeichen enthalten; sie bilden eine Obermenge der Zeichen, die [string match][string] unterstützt:
 
 **?**
-: Ein beliebiges Zeichen.
+: Passt auf ein beliebiges einzelnes Zeichen.
 
 **\***
-: Null oder mehr beliebige Zeichen.
+: Passt auf eine beliebige Folge von null oder mehr Zeichen.
 
 **\[***chars***\]**
-: Ein Zeichen aus *chars*. Enthält *chars* *a***-***b*, jedes Zeichen von *a* bis *b* (einschließlich).
+: Passt auf ein beliebiges einzelnes Zeichen aus *chars*. Enthält *chars* eine Sequenz der Form *a***-***b*, passt jedes Zeichen zwischen *a* und *b* (einschließlich).
 
 **\\***x*
-: Das Zeichen *x*.
+: Passt auf das Zeichen *x*.
 
 **{***a***,***b***,***...*}
-: Eines der Teilmuster *a*, *b*, …
+: Passt auf jedes der Teilmuster *a*, *b* usw.
 
 
-Unter Unix muss wie bei csh ein „.“ am Anfang des Dateinamens oder direkt nach „/“ explizit oder mit {} getroffen werden, außer **-types hidden** ist gesetzt („.“ = versteckt). Auf anderen Plattformen keine Sonderbehandlung, außer „.“ und „..“ müssen explizit getroffen werden (verhindert Rekursion nach oben bei „glob -join \* \* \* \*“). Alle „/“ müssen explizit gematcht werden.
+Unter Unix muss, wie bei csh, ein „.“ am Anfang eines Dateinamens oder direkt nach einem „/“ ausdrücklich oder mit einem {}-Konstrukt angegeben werden, sofern nicht der Schalter **-types hidden** angegeben ist (denn ein „.“ am Anfang eines Dateinamens zeigt an, dass die Datei versteckt ist). Auf anderen Plattformen werden Dateien, die mit einem „.“ beginnen, nicht anders behandelt als alle anderen, mit Ausnahme der besonderen Verzeichnisse „.“ und „..“, die ausdrücklich angegeben werden müssen (damit ein rekursives Muster wie „glob -join \* \* \* \*“ in der Verzeichnishierarchie nicht nur nach unten, sondern auch nach oben wandert). Außerdem müssen alle „/“-Zeichen ausdrücklich angegeben werden.
 
-Beginnt ein *pattern* mit „~“, verweist es auf das Home-Verzeichnis des Benutzers, dessen Name auf „~“ folgt. Folgt „~“ unmittelbar „/“, wird die Umgebungsvariable HOME verwendet.
+Ist das erste Zeichen eines *pattern* ein „~“, verweist es auf das Home-Verzeichnis des Benutzers, dessen Name auf das „~“ folgt. Folgt auf das „~“ unmittelbar ein „/“, wird der Wert der Umgebungsvariablen HOME verwendet.
 
-**glob** unterscheidet sich vom csh-Globbing: keine Sortierung der Ergebnisliste ([lsort] bei Bedarf); **glob** liefert nur Namen existierender Dateien — csh prüft die Existenz nur bei ?, \*, \[\] im Muster.
+Der Befehl **glob** unterscheidet sich in zwei Punkten vom Globbing der csh. Erstens sortiert er seine Ergebnisliste nicht (verwenden Sie den Befehl [lsort], wenn Sie die Liste sortiert haben möchten). Zweitens gibt **glob** nur die Namen von Dateien zurück, die tatsächlich existieren; in der csh wird die Existenz nur geprüft, wenn ein Muster ein ?-, \*- oder \[\]-Konstrukt enthält.
 
-Liefert **glob** relative Pfade, deren Dateinamen mit „~“ beginnen (z. B. über **glob \*** oder **glob -tails**), wird die Tilde nicht mit „./“ quotiert. Bei späterer Verwendung mit [file join][file] ist Vorsicht geboten, damit sie nicht als absolute Pfade ins Home-Verzeichnis eines Benutzers interpretiert werden.
+Wenn der Befehl **glob** relative Pfade zurückgibt, deren Dateinamen mit einer Tilde „~“ beginnen (zum Beispiel über **glob \*** oder **glob -tails**), wird die Tilde in der zurückgegebenen Liste nicht mit „./“ maskiert. Sollen diese Namen später mit [file join][file] verwendet werden, ist daher Vorsicht geboten, damit sie nicht als absolute Pfade interpretiert werden, die auf das Home-Verzeichnis eines bestimmten Benutzers verweisen.
 
 # Portabilität unter Windows
 
-Bei Windows-UNC-Namen dürfen Server- und Freigabename keine Konstrukte ?, \* oder \[\] enthalten. Unter Windows NT verweist *pattern* der Form „**~***username***@***domain*“ auf das Home-Verzeichnis des Benutzers, dessen Kontoinformationen auf dem angegebenen NT-Domain-Server liegen; sonst werden Kontoinformationen vom lokalen Rechner bezogen.
+Bei Windows-UNC-Namen dürfen die Bestandteile Servername und Freigabename des Pfads keine Konstrukte ?, \* oder \[\] enthalten. Hat *pattern* unter Windows NT die Form „**~***username***@***domain*“, verweist es auf das Home-Verzeichnis des Benutzers, dessen Kontoinformationen auf dem angegebenen NT-Domänenserver liegen. Andernfalls werden die Kontoinformationen des Benutzers vom lokalen Rechner bezogen.
 
-Da Backslash für glob speziell ist, brauchen Windows-Pfadmuster Sorgfalt. „*C:\\\\foo\\\\\**“ wird als „*C:\\foo\\\**“ gelesen, „*\\f*“ matcht ein „*f*“, „*\\\**“ ein „*\**“, nicht als Wildcard. Lösung: Unix-Schrägstrich als Trenner; Windows-Pfade mit „[file join][file] **$path**“ oder „[file normalize][file] **$path**“ umwandeln.
+Da der Backslash für den Befehl glob eine besondere Bedeutung hat, ist bei Glob-Mustern mit Pfadtrennzeichen im Windows-Stil besondere Vorsicht geboten. Das Muster „*C:\\\\foo\\\\\**“ wird als „*C:\\foo\\\**“ interpretiert, wobei „*\\f*“ auf das einzelne Zeichen „*f*“ passt und „*\\\**“ auf das einzelne Zeichen „*\**“ passt und nicht als Platzhalterzeichen interpretiert wird. Eine Lösung dieses Problems besteht darin, den Schrägstrich im Unix-Stil als Pfadtrennzeichen zu verwenden. Pfade im Windows-Stil lassen sich mit dem Befehl „[file join][file] **$path**“ oder „[file normalize][file] **$path**“ in Pfade im Unix-Stil umwandeln.
 
 # Beispiele
 
-Alle Tcl-Dateien im aktuellen Verzeichnis:
+Alle Tcl-Dateien im aktuellen Verzeichnis finden:
 
 ```
 glob *.tcl
 ```
 
-Alle Tcl-Dateien im Home-Verzeichnis des Benutzers, unabhängig vom aktuellen Verzeichnis:
+Alle Tcl-Dateien im Home-Verzeichnis des Benutzers finden, unabhängig davon, welches das aktuelle Verzeichnis ist:
 
 ```
 glob -directory ~ *.tcl
 ```
 
-Alle Unterverzeichnisse des aktuellen Verzeichnisses:
+Alle Unterverzeichnisse des aktuellen Verzeichnisses finden:
 
 ```
 glob -type d *
 ```
 
-Alle Dateien, deren Name „a“, „b“ oder die Sequenz „cde“ enthält:
+Alle Dateien finden, deren Name ein „a“, ein „b“ oder die Sequenz „cde“ enthält:
 
 ```
 glob -type f *{a,b,cde}*

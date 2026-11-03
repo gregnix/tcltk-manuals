@@ -118,7 +118,7 @@ Um auf Tsw-*Variablen* zuzugreifen, *müssen* Sie qualifizierte Namen verwenden.
 
 ### Tsw-Demo
 
-Das Skript `TswDemo.tcl` im Verzeichnis `demos` erzeugt vier [toggleswitch](toggleswitch.md)-Widgets und zeigt, wie ihr Aussehen vom aktuellen Thema abhängt. Das Thema wählen Sie über das Menü, das zu einem ttk::menubutton-Widget gehört. Außerdem zeigt es, wie Sie ein Skript angeben, das jedes Mal läuft, wenn der Schaltzustand eines toggleswitch umgeschaltet wird.
+Das Skript `TswDemo.tcl` im Verzeichnis `demos` erzeugt vier [toggleswitch](toggleswitch.md)-Widgets und zeigt, wie ihr Aussehen vom aktuellen Theme abhängt. Das Theme wählen Sie über das Menü, das zu einem ttk::menubutton-Widget gehört. Außerdem zeigt es, wie Sie ein Skript angeben, das jedes Mal läuft, wenn der Schaltzustand eines toggleswitch umgeschaltet wird.
 
 |   |   |   |
 | --- | --- | --- |
@@ -156,7 +156,7 @@ $sw4 switchstate 1
 $sw4 configure -command [list toggleWidgetsState $sw4]
 ```
 
-Die toggleswitch-Widgets entstehen durch den Aufruf des Befehls `tsw::toggleswitch`. Bei den ersten drei toggleswitch-Widgets wird die Option `-size` auf `1`, `2` und `3` gesetzt. Beim letzten toggleswitch wird diese Option nicht ausdrücklich gesetzt, sie hat also ihren Vorgabewert `2`. Wie die Bildschirmfotos zeigen, hängen beim Thema `aqua` die Farben der toggleswitch-Widgets auch vom Erscheinungsbild des Systems ab (heller oder dunkler Modus) und von der Akzentfarbe. Die ersten beiden Bildschirmfotos stammen von macOS 15 (Sequoia), das dritte von macOS 26 (Tahoe).
+Die toggleswitch-Widgets entstehen durch den Aufruf des Befehls `tsw::toggleswitch`. Bei den ersten drei toggleswitch-Widgets wird die Option `-size` auf `1`, `2` und `3` gesetzt. Beim letzten toggleswitch wird diese Option nicht ausdrücklich gesetzt, sie hat also ihren Vorgabewert `2`. Wie die Bildschirmfotos zeigen, hängen beim Theme `aqua` die Farben der toggleswitch-Widgets auch vom Erscheinungsbild des Systems ab (heller oder dunkler Modus) und von der Akzentfarbe. Die ersten beiden Bildschirmfotos stammen von macOS 15 (Sequoia), das dritte von macOS 26 (Tahoe).
 
 Bei zwei der vier toggleswitch-Widgets wechselt der Schaltzustand vom Vorgabewert `0` (aus) auf `1` (ein), indem der Unterbefehl `switchstate` des zugehörigen Tcl-Befehls aufgerufen wird. Zusätzlich wird beim letzten toggleswitch die Option `-command` auf ein Skript gesetzt, das jedes Mal läuft, wenn der Schaltzustand des Widgets umgeschaltet wird. Dieses Skript ruft die Prozedur `toggleWidgetsState` auf, die so implementiert ist:
 
@@ -178,7 +178,7 @@ proc toggleWidgetsState sw {
 
 Diesmal wird der Unterbefehl `switchstate` ohne das optionale Argument aufgerufen und gibt deshalb den aktuellen Schaltzustand des toggleswitch-Widgets zurück.
 
-Beim Thema `default` sieht das Fenster, nachdem der Schaltzustand des letzten toggleswitch von ein auf aus gewechselt hat, aus wie im Bildschirmfoto unten:
+Beim Theme `default` sieht das Fenster, nachdem der Schaltzustand des letzten toggleswitch von ein auf aus gewechselt hat, aus wie im Bildschirmfoto unten:
 
 ![Tsw-Demo](TswDemo_default_2.png)
 
@@ -186,7 +186,7 @@ Der Rest des Codes gehört nicht zu Tsw und wird deshalb hier nicht gezeigt.
 
 ### Tablelist-Bearbeitungsoptionen
 
-Das Skript `EditingOpts.tcl` im Verzeichnis `demos` ist eine leicht angepasste Fassung des Tablelist-Demo-Skripts `tileWidgets2.tcl`. Es zeigt die interaktive Zellbearbeitung von tablelist mit verschiedenen Ttk-Widgets und dem toggleswitch-Widget. Die zusätzliche Funktion in dieser Fassung steckt in den Prozeduren `configEditing` und `applySwitchState`. Die erste, ausgelöst durch die Schaltfläche „Configure Editing“, öffnet ein Toplevel-Fenster mit [toggleswitch](toggleswitch.md)-Widgets, um die bearbeitungsbezogenen tablelist-Optionen mit booleschen Werten einzustellen, die Tablelist-Benutzer im Lauf der Jahre vorgeschlagen haben. So lässt sich bequem prüfen, welche Wirkung das Setzen und Löschen dieser booleschen Optionen hat.
+Das Skript `EditingOpts.tcl` im Verzeichnis `demos` ist eine leicht angepasste Fassung des Tablelist-Demo-Skripts `tileWidgets2.tcl`. Es zeigt die interaktive Zellenbearbeitung von tablelist mit verschiedenen Ttk-Widgets und dem toggleswitch-Widget. Die zusätzliche Funktion in dieser Fassung steckt in den Prozeduren `configEditing` und `applySwitchState`. Die erste, ausgelöst durch die Schaltfläche „Configure Editing“, öffnet ein Toplevel-Fenster mit [toggleswitch](toggleswitch.md)-Widgets, um die bearbeitungsbezogenen tablelist-Optionen mit booleschen Werten einzustellen, die Tablelist-Benutzer im Lauf der Jahre vorgeschlagen haben. So lässt sich bequem prüfen, welche Wirkung das Setzen und Löschen dieser booleschen Optionen hat.
 
 |   |   |
 | --- | --- |

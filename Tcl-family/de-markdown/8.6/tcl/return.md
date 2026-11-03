@@ -45,72 +45,72 @@ return - Kehrt aus einer Prozedur zurück oder setzt den Rückgabecode eines Skr
 
 # Beschreibung
 
-In der einfachsten Form beendet **return** ohne Optionen im Prozedurrumpf sofort die Ausführung und gibt die Kontrolle an den Aufrufer zurück. Mit *result* wird dieser Wert zum Ergebnis der Prozedur; ohne *result* eine leere Zeichenkette.
+In der einfachsten Verwendung steht der Befehl **return** ohne Optionen im Rumpf einer Prozedur und gibt die Kontrolle sofort an den Aufrufer der Prozedur zurück. Ist ein Argument *result* angegeben, wird sein Wert zum Ergebnis der Prozedur, das an den Aufrufer zurückgegeben wird. Ist *result* nicht angegeben, wird dem Aufrufer eine leere Zeichenkette als Ergebnis der Prozedur zurückgegeben.
 
-In von [source] ausgewerteten Skriptdateien beendet **return** die Skriptauswertung; *result* (oder eine leere Zeichenkette) wird Ergebnis von [source].
+In Skriptdateien, die mit dem Befehl [source] ausgewertet werden, erfüllt der Befehl **return** eine ähnliche Aufgabe. Wenn [source] den Inhalt einer Datei als Skript auswertet, beendet ein Aufruf des Befehls **return** die Skriptauswertung sofort, und der Wert *result* (oder eine leere Zeichenkette) wird als Ergebnis des Befehls [source] zurückgegeben.
 
 # Ausnahmerückgabecodes
 
-Mit **-code** kann die Prozedur außergewöhnlich zurückkehren. *code* kann sein:
+Neben dem Ergebnis einer Prozedur kann **return** über die Option **-code** auch den Rückgabecode der Prozedur festlegen. Im üblichen Fall, wenn die Option **-code** nicht angegeben ist, kehrt die Prozedur normal zurück. Mit der Option **-code** lässt sich jedoch eine außergewöhnliche Rückkehr aus der Prozedur erzeugen. *Code* kann einen der folgenden Werte haben:
 
 **ok** (oder **0**)
-: Normaler Return; Rückgabecode 0 ([TCL\_OK][catch]).
+: Normale Rückkehr: wie wenn die Option weggelassen wird. Der Rückgabecode der Prozedur ist 0 ([TCL\_OK][catch]).
 
 [error] (oder **1**)
-: Fehler-Return; Rückgabecode 1 ([TCL\_ERROR][catch]). Der Prozedurbefehl verhält sich im Aufrufkontext wie [error] *result*. Weitere Optionen siehe unten.
+: Rückkehr mit Fehler: Der Rückgabecode der Prozedur ist 1 ([TCL\_ERROR][catch]). Der Prozeduraufruf verhält sich in seinem Aufrufkontext so, als wäre er der Befehl [error] *result*. Weitere Optionen siehe unten.
 
 **return** (oder **2**)
-: Rückgabecode 2 ([TCL\_RETURN][catch]); Verhalten wie **return** ohne Argumente.
+: Der Rückgabecode der Prozedur ist 2 ([TCL\_RETURN][catch]). Der Prozeduraufruf verhält sich in seinem Aufrufkontext so, als wäre er der Befehl **return** (ohne Argumente).
 
 [break] (oder **3**)
-: Rückgabecode 3 ([TCL\_BREAK][catch]); Verhalten wie [break].
+: Der Rückgabecode der Prozedur ist 3 ([TCL\_BREAK][catch]). Der Prozeduraufruf verhält sich in seinem Aufrufkontext so, als wäre er der Befehl [break].
 
 [continue] (oder **4**)
-: Rückgabecode 4 ([TCL\_CONTINUE][catch]); Verhalten wie [continue].
+: Der Rückgabecode der Prozedur ist 4 ([TCL\_CONTINUE][catch]). Der Prozeduraufruf verhält sich in seinem Aufrufkontext so, als wäre er der Befehl [continue].
 
 *value*
 : *Value* muss eine Ganzzahl sein; sie wird als Rückgabecode der aktuellen Prozedur zurückgegeben.
 
 
-Ungültige Argumente vom Aufrufer melden mit **return -code error** und passender Meldung in *result*. **return -code** dient sonst vor allem neuen Kontrollstrukturen.
+Will eine Prozedur melden, dass sie von ihrem Aufrufer ungültige Argumente erhalten hat, kann sie **return -code error** verwenden und *result* auf eine passende Fehlermeldung setzen. Ansonsten beschränkt sich die Verwendung der Option **return -code** meist auf Prozeduren, die eine neue Kontrollstruktur implementieren.
 
-**return -code** in von [source] ausgewerteten Dateien setzt den Rückgabecode von [source] auf *code*.
+In Skriptdateien, die mit dem Befehl [source] ausgewertet werden, wirkt der Befehl **return -code** ähnlich. Während [source] den Inhalt einer Datei als Skript auswertet, bewirkt ein Aufruf des Befehls **return -code** *code*, dass der Rückgabecode von [source] *code* ist.
 
 # Rückgabeoptionen
 
-Neben Ergebnis und Rückgabecode liefert jede Befehlsauswertung ein Dictionary von Rückgabeoptionen. Alle *option value*-Paare von **return** werden Einträge (mit Ausnahmen unten). [catch] kann Rückgabecode, Ergebnis und Dictionary erfassen.
+Neben einem Ergebnis und einem Rückgabecode erzeugt die Auswertung eines Befehls in Tcl auch ein Dictionary von Rückgabeoptionen. Im Allgemeinen werden alle *option value*-Paare, die **return** als Argumente erhält, zu Einträgen im Dictionary der Rückgabeoptionen, und jeder beliebige Wert ist zulässig, mit den unten genannten Ausnahmen. Mit dem Befehl [catch] lassen sich alle diese Informationen erfassen, die bei der Auswertung eines Skripts entstehen: der Rückgabecode, das Ergebnis und das Dictionary der Rückgabeoptionen.
 
-**-code** wird von Tcl speziell behandelt. Weitere spezielle Optionen:
+Wie oben beschrieben, behandelt Tcl den Eintrag **-code** im Dictionary der Rückgabeoptionen besonders. Tcl erkennt und behandelt noch weitere Rückgabeoptionen besonders. Diese sind:
 
 [-errorcode]{.lit} [list]{.arg}
-: Nur bei **-code** [TCL\_ERROR][catch]. Zusatzinformation als Tcl-Liste für Programme. Ohne Angabe bei **-code error**: Standard **NONE**; auch in [errorCode][tclvars].
+: Die Option **-errorcode** wird nur besonders behandelt, wenn der Wert der Option **-code** [TCL\_ERROR][catch] ist. Dann ist der Wert *list* als zusätzliche Information über den Fehler gedacht, dargestellt als Tcl-Liste zur weiteren Verarbeitung durch Programme. Wird **return** die Option **-code error** übergeben, aber keine Option **-errorcode**, setzt Tcl den Wert des Eintrags **-errorcode** im Dictionary der Rückgabeoptionen auf den Vorgabewert **NONE**. Die Rückgabeoption **-errorcode** wird außerdem in der globalen Variablen [errorCode][tclvars] gespeichert.
 
 [-errorinfo]{.lit} [info]{.arg}
-: Nur bei [TCL\_ERROR][catch]. Dann ist *info* der anfängliche Stack-Trace mit Zusatzinformationen zum Fehlerkontext für Menschen; er wird auch in [errorInfo][tclvars] gespeichert. Ohne **-errorinfo** bei **-code error** setzt Tcl einen eigenen anfänglichen Stack-Trace: nur der Prozeduraufruf; beim Unwinden kommen höhere Ebenen hinzu, nicht der Kontext innerhalb der Prozedur. Typisch stammt *info* aus **-errorinfo** eines von [catch] erfassten Rückgabeoptionen-Dictionarys (oder aus [errorInfo][tclvars]).
+: Die Option **-errorinfo** wird nur besonders behandelt, wenn der Wert der Option **-code** [TCL\_ERROR][catch] ist. Dann ist *info* der anfängliche Stack-Trace, der einem menschlichen Leser zusätzliche Informationen über den Kontext liefern soll, in dem der Fehler aufgetreten ist. Der Stack-Trace wird außerdem in der globalen Variablen [errorInfo][tclvars] gespeichert. Wird **return** die Option **-code error** übergeben, aber keine Option **-errorinfo**, trägt Tcl einen eigenen anfänglichen Stack-Trace in den Eintrag **-errorinfo** ein. Dieser enthält nur den Aufruf der Prozedur; beim Abbau des Stacks werden Informationen über höhere Stack-Ebenen angehängt, aber es gibt keine Informationen über den Kontext des Fehlers innerhalb der Prozedur. Üblicherweise stammt der Wert *info* aus dem Wert von **-errorinfo** in einem Dictionary von Rückgabeoptionen, das der Befehl [catch] erfasst hat (oder aus der Kopie dieser Information in der globalen Variablen [errorInfo][tclvars]).
 
 [-errorstack]{.lit} [list]{.arg}
-: [Nur bei [TCL\_ERROR][catch]. Dann ist *list* der anfängliche Fehler-Stack mit den tatsächlich übergebenen Argumentwerten je Prozedurebene; erreichbar auch über [info errorstack][info]. Ohne **-errorstack** bei **-code error** liefert Tcl einen eigenen anfänglichen Fehler-Stack (nur Prozeduraufruf; Unwinden ergänzt höhere Ebenen). Typisch stammt *list* aus **-errorstack** eines von [catch] erfassten Dictionarys (oder von [info errorstack][info]).]{version="8.6"}
+: [Die Option **-errorstack** wird nur besonders behandelt, wenn der Wert der Option **-code** [TCL\_ERROR][catch] ist. Dann ist *list* der anfängliche Fehler-Stack, der die tatsächlichen Argumentwerte festhält, die an jede Prozedurebene übergeben wurden. Der Fehler-Stack ist außerdem über [info errorstack][info] erreichbar. Wird **return** die Option **-code error** übergeben, aber keine Option **-errorstack**, trägt Tcl einen eigenen anfänglichen Fehler-Stack in den Eintrag **-errorstack** ein. Dieser enthält nur den Aufruf der Prozedur; beim Abbau des Stacks werden Informationen über höhere Stack-Ebenen angehängt, aber es gibt keine Informationen über den Kontext des Fehlers innerhalb der Prozedur. Üblicherweise stammt der Wert *list* aus dem Wert von **-errorstack** in einem Dictionary von Rückgabeoptionen, das der Befehl [catch] erfasst hat (oder aus der Kopie dieser Information, die [info errorstack][info] liefert).]{version="8.6"}
 
 [-level]{.lit} [level]{.arg}
-: **-level** und **-code** setzen gemeinsam den Rückgabecode eines der gerade ausgewerteten Befehle. *level* ist eine nicht-negative Ganzzahl: Anzahl Ebenen auf dem Aufrufstack, auf denen der Rückgabecode *code* gelten soll. Ohne **-level** ist der Standard 1 — **return** setzt den Code, den die aktuelle Prozedur an ihren Aufrufer zurückgibt. Details siehe unten.
+: Die Optionen **-level** und **-code** legen zusammen den Rückgabecode fest, den einer der gerade ausgewerteten Befehle zurückgibt. Der Wert *level* muss eine nicht-negative Ganzzahl sein, die eine Anzahl von Ebenen auf dem Aufrufstack angibt. Er legt fest, wie viele Ebenen weiter oben auf dem Stack der Rückgabecode eines gerade ausgewerteten Befehls *code* sein soll. Ist keine Option **-level** angegeben, ist der Vorgabewert von *level* 1. Dann legt **return** den Rückgabecode fest, den die aktuelle Prozedur an ihren Aufrufer zurückgibt, eine Ebene höher auf dem Aufrufstack. Wie diese Optionen zusammenwirken, wird unten ausführlicher beschrieben.
 
 [-options]{.lit} [options]{.arg}
-: Gültiges Dictionary; Einträge werden zusätzliche *option value*-Paare für **return**.
+: Der Wert *options* muss ein gültiges Dictionary sein. Seine Einträge werden als zusätzliche *option value*-Paare für den Befehl **return** behandelt.
 
 
 # Rückgabecode-Behandlung
 
-Rückgabecodes steuern den Programmfluss in Tcl. Ein Skript ist eine Folge von Befehlen. Liefert jede Auswertung [TCL\_OK][catch], geht es zum nächsten Befehl. Jeder außergewöhnliche Code (ungleich [TCL\_OK][catch]) unterbricht den weiteren Ablauf: die Skriptauswertung endet, und der Code wird Ergebnis der gesamten Auswertung. So führen Fehler zum Unterbrechen und Unwinden des Aufrufstapels; so bewirken [break], [continue] und **return**, dass nicht alle Befehle nacheinander laufen.
+Rückgabecodes steuern in Tcl den Programmablauf. Ein Tcl-Skript ist eine Folge von Tcl-Befehlen. Solange jede Befehlsauswertung den Rückgabecode [TCL\_OK][catch] liefert, wird die Auswertung mit dem nächsten Befehl im Skript fortgesetzt. Jeder außergewöhnliche Rückgabecode (ungleich [TCL\_OK][catch]), den eine Befehlsauswertung liefert, unterbricht den Übergang zum nächsten Befehl. Die Skriptauswertung endet, und der außergewöhnliche Rückgabecode des Befehls wird zum Rückgabecode der gesamten Skriptauswertung. Über diesen Mechanismus führen Fehler während der Skriptauswertung zu einer Unterbrechung und zum Abbau des Aufrufstacks. Über denselben Mechanismus bewirken Befehle wie [break], [continue] und **return**, dass die Skriptauswertung endet, ohne alle Befehle der Reihe nach auszuwerten.
 
-Einige eingebaute Befehle werten Skripte aus und nutzen außergewöhnliche Codes für Sonderfunktionen. Schleifenbefehle wie [while], [for] und [foreach] werten den Schleifenrumpf aus; liefert der Rumpf [TCL\_BREAK][catch] oder [TCL\_CONTINUE][catch], reagieren sie so, dass [break] und [continue] in Schleifen ihre dokumentierte Wirkung haben.
+Einige eingebaute Befehle von Tcl werten im Rahmen ihrer Arbeit Skripte aus. Diese Befehle können außergewöhnliche Rückgabecodes nutzen, um besondere Funktionen zu ermöglichen. So werten zum Beispiel die eingebauten Schleifenbefehle von Tcl, etwa [while], [for] und [foreach], ein Skript aus, das den Rumpf der Schleife bildet. Liefert die Auswertung des Schleifenrumpfs den Rückgabecode [TCL\_BREAK][catch] oder [TCL\_CONTINUE][catch], kann der Schleifenbefehl so reagieren, dass die Befehle [break] und [continue] in Schleifen ihre dokumentierte Bedeutung erhalten.
 
-Prozeduraufrufe werten den Prozedurrumpf aus. Liefert der Rumpf [TCL\_RETURN][catch], wird der Eintrag **-level** im Rückgabeoptionen-Dictionary dekrementiert. Ist **-level** danach 0, wird **-code** zum Rückgabecode der Prozedur. Ist **-level** danach größer als 0, bleibt der Prozedur-Rückgabecode [TCL\_RETURN][catch]. Erfolgte der Aufruf während der Auswertung einer anderen Prozedur, wiederholt sich der Vorgang aufwärts: **-level** wird je Ebene dekrementiert, bis *code* der Rückgabecode des Befehls *level* Ebenen höher ist. [source] behandelt [TCL\_RETURN][catch] analog — daher ähnelt **return** in [source] dem **return** in einer Prozedur.
+Auch der Aufruf einer Prozedur umfasst die Auswertung eines Skripts, nämlich des Prozedurrumpfs. Liefert die Auswertung des Prozedurrumpfs den Rückgabecode [TCL\_RETURN][catch], wird dies beim Prozeduraufruf besonders behandelt. In diesem Fall wird der Eintrag **-level** im Dictionary der Rückgabeoptionen um eins verringert. Ist der Wert des Eintrags **-level** danach 0, wird der Wert des Eintrags **-code** zum Rückgabecode der Prozedur. Ist der Wert des Eintrags **-level** danach größer als null, ist der Rückgabecode der Prozedur [TCL\_RETURN][catch]. Fand der Prozeduraufruf während der Auswertung des Rumpfs einer anderen Prozedur statt, wiederholt sich der Vorgang aufwärts im Aufrufstack, wobei der Wert des Eintrags **-level** auf jeder Ebene verringert wird. So wird *code* zum Rückgabecode des aktuellen Befehls *level* Ebenen weiter oben auf dem Aufrufstack. Der Befehl [source] behandelt den Rückgabecode [TCL\_RETURN][catch] auf dieselbe Weise. Das erklärt, warum sich ein Aufruf von **return** während [source] ähnlich verhält wie ein Aufruf von **return** in einer Prozedur.
 
-Der Rückgabecode des **return**-Befehls selbst löst dieselbe Sonderbehandlung aus. Mit **return -level 0** ist der Rückgabecode des **return**-Befehls *code* aus **-code** (Standard [TCL\_OK][catch]). Jeder andere **-level**-Wert (einschließlich Standard 1) macht den Rückgabecode des **return**-Befehls zu [TCL\_RETURN][catch] und löst Return aus der umgebenden Prozedur aus.
+Der Rückgabecode des Befehls **return** selbst löst diese Sonderbehandlung beim Prozeduraufruf aus. Erhält **return** die Option **-level 0**, ist der Rückgabecode des Befehls **return** selbst der Wert *code* der Option **-code** (oder als Vorgabe [TCL\_OK][catch]). Jeder andere Wert der Option **-level** (einschließlich des Vorgabewerts 1) bewirkt, dass der Rückgabecode des Befehls **return** selbst [TCL\_RETURN][catch] ist; das löst eine Rückkehr aus der umgebenden Prozedur aus.
 
 # Beispiele
 
-Vorzeitiger Return aus einer Prozedur:
+Zunächst ein einfaches Beispiel, in dem **return** aus einer Prozedur zurückkehrt und dabei den Prozedurrumpf unterbricht.
 
 ```
 proc printOneLine {} {
@@ -120,14 +120,14 @@ proc printOneLine {} {
 }
 ```
 
-Rückgabewert setzen:
+Als Nächstes ein Beispiel, in dem **return** den Wert festlegt, den die Prozedur zurückgibt.
 
 ```
 proc returnX {} {return X}
 puts [returnX]    ;# gibt X aus
 ```
 
-Ungültige Argumente mit **return -code error**:
+Als Nächstes ein vollständigeres Beispiel, in dem **return -code error** ungültige Argumente meldet.
 
 ```
 proc factorial {n} {
@@ -145,7 +145,7 @@ proc factorial {n} {
 }
 ```
 
-Ersatz für [break]:
+Als Nächstes eine Prozedur als Ersatz für [break].
 
 ```
 proc myBreak {} {
@@ -153,13 +153,13 @@ proc myBreak {} {
 }
 ```
 
-Mit **return -level 0** und [interp alias][interp] als [break]-Ersatz:
+Mit der Option **-level 0** kann **return** selbst mit Hilfe von [interp alias][interp] als Ersatz für [break] dienen.
 
 ```
 interp alias {} Break {} return -level 0 -code break
 ```
 
-Fehler mit [catch] und **return -options** erneut auslösen:
+Ein Beispiel, in dem [catch] und **return -options** einen abgefangenen Fehler erneut auslösen:
 
 ```
 proc doSomething {} {
@@ -173,7 +173,7 @@ proc doSomething {} {
 }
 ```
 
-Erweitert: Prozedur-Ersatz für **return** selbst:
+Zum Schluss ein Beispiel für eine fortgeschrittene Verwendung der Optionen von **return**, um eine Prozedur als Ersatz für **return** selbst zu erstellen:
 
 ```
 proc myReturn {args} {

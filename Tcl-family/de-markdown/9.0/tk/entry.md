@@ -35,16 +35,16 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 # Widget-spezifische Optionen
 
 **-disabledbackground** (**disabledBackground**/**DisabledBackground**)
-: Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option der leere String ist, wird die normale Hintergrundfarbe verwendet.
+: Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option die leere Zeichenkette ist, wird die normale Hintergrundfarbe verwendet.
 
 **-disabledforeground** (**disabledForeground**/**DisabledForeground**)
-: Legt die Vordergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option der leere String ist, wird die normale Vordergrundfarbe verwendet.
+: Legt die Vordergrundfarbe fest, die verwendet wird, wenn das Entry deaktiviert ist. Wenn diese Option die leere Zeichenkette ist, wird die normale Vordergrundfarbe verwendet.
 
 **-invalidcommand**, **-invcmd** (invalidCommand/InvalidCommand)
-: Legt ein Script fest, das ausgeführt wird, wenn **-validatecommand** 0 zurückgibt. Das Setzen auf {} deaktiviert diese Funktion (Standard). Die beste Verwendung dieser Option ist, sie auf *bell* zu setzen. Siehe [Validierung] unten für weitere Informationen.
+: Legt ein Skript fest, das ausgeführt wird, wenn **-validatecommand** 0 zurückgibt. Das Setzen auf {} deaktiviert diese Funktion (Standard). Die beste Verwendung dieser Option ist, sie auf *bell* zu setzen. Siehe [Validierung] unten für weitere Informationen.
 
 **-readonlybackground** (**readonlyBackground**/**ReadonlyBackground**)
-: Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry schreibgeschützt ist. Wenn diese Option der leere String ist, wird die normale Hintergrundfarbe verwendet.
+: Legt die Hintergrundfarbe fest, die verwendet wird, wenn das Entry schreibgeschützt ist. Wenn diese Option die leere Zeichenkette ist, wird die normale Hintergrundfarbe verwendet.
 
 **-show** (**show**/**Show**)
 : Wenn diese Option angegeben ist, wird der wahre Inhalt des Entrys nicht im Fenster angezeigt. Stattdessen wird jedes Zeichen im Wert des Entrys als das erste Zeichen im Wert dieser Option angezeigt, wie z.B. "\*". Dies ist nützlich, wenn das Entry beispielsweise zur Eingabe eines Passworts verwendet werden soll. Wenn Zeichen im Entry ausgewählt und anderswo kopiert werden, werden die angezeigten Informationen kopiert, nicht der wahre Inhalt des Entrys.
@@ -56,7 +56,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Der Standard ist **none**. Wenn Sie Validierung wünschen, müssen Sie explizit angeben, welchen Modus Sie verwenden möchten. Siehe [Validierung] unten für weitere Informationen.
 
 **-validatecommand**, **-vcmd** (validateCommand/ValidateCommand)
-: Legt ein Script fest, das ausgeführt wird, wenn Sie die Eingabe in das Entry-Widget validieren möchten. Das Setzen auf {} deaktiviert diese Funktion (Standard). Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Wenn er 0 zurückgibt (oder das gültige Tcl-Boolean-Äquivalent), bedeutet dies, dass Sie die neue Bearbeitung ablehnen und sie nicht erfolgt und das **-invalidcommand** ausgewertet wird, falls gesetzt. Wenn er 1 zurückgibt, erfolgt die neue Bearbeitung. Siehe [Validierung] unten für weitere Informationen.
+: Legt ein Skript fest, das ausgeführt wird, wenn Sie die Eingabe in das Entry-Widget validieren möchten. Das Setzen auf {} deaktiviert diese Funktion (Standard). Dieser Befehl muss einen gültigen Tcl-Boolean-Wert zurückgeben. Wenn er 0 zurückgibt (oder das gültige Tcl-Boolean-Äquivalent), bedeutet dies, dass Sie die neue Bearbeitung ablehnen und sie nicht erfolgt und das **-invalidcommand** ausgewertet wird, falls gesetzt. Wenn er 1 zurückgibt, erfolgt die neue Bearbeitung. Siehe [Validierung] unten für weitere Informationen.
 
 **-width** (**width**/**Width**)
 : Legt einen ganzzahligen Wert fest, der die gewünschte Breite des Entry-Fensters angibt, in Zeichen durchschnittlicher Größe der Schriftart des Widgets. Wenn der Wert negativ oder null ist, wählt das Widget eine Größe, die gerade groß genug ist, um seinen aktuellen Text zu halten.
@@ -66,13 +66,13 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 
 Der Befehl **entry** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Entry-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte des Entrys wie Farben, Schriftart und Relief zu konfigurieren. Der Befehl **entry** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Ein Entry ist ein Widget, das einen einzeiligen Text-String anzeigt und es erlaubt, diesen String mit unten beschriebenen Widget-Befehlen zu bearbeiten, die typischerweise an Tastendrücke und Mausaktionen gebunden sind. Wenn es erstellt wird, ist der String des Entrys leer. Ein Teil des Entrys kann wie unten beschrieben ausgewählt werden. Wenn ein Entry seine Auswahl exportiert (siehe die Option **-exportselection**), beachtet es die Standard-X11-Protokolle für die Behandlung der Auswahl; Entry-Auswahlen sind als Typ **STRING** verfügbar. Entrys beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Wenn ein Entry den Eingabefokus hat, zeigt es einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
+Ein Entry ist ein Widget, das einen einzeiligen Text anzeigt und es erlaubt, diesen Text mit unten beschriebenen Widget-Befehlen zu bearbeiten, die typischerweise an Tastendrücke und Mausaktionen gebunden sind. Wenn es erstellt wird, ist der Text des Entrys leer. Ein Teil des Entrys kann wie unten beschrieben ausgewählt werden. Wenn ein Entry seine Auswahl exportiert (siehe die Option **-exportselection**), beachtet es die Standard-X11-Protokolle für die Behandlung der Auswahl; Entry-Auswahlen sind als Typ **STRING** verfügbar. Entrys beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Wenn ein Entry den Eingabefokus hat, zeigt es einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
 
-Entrys können Strings anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil des Strings angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details). Sie unterstützen auch das Scannen, wie unten beschrieben.
+Entrys können Zeichenketten anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil der Zeichenkette angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details). Sie unterstützen auch das Scannen, wie unten beschrieben.
 
 # Validierung
 
-Die Validierung funktioniert, indem die Option **-validatecommand** auf ein Script (*validateCommand*) gesetzt wird, das gemäß der Option **-validate** wie folgt ausgewertet wird:
+Die Validierung funktioniert, indem die Option **-validatecommand** auf ein Skript (*validateCommand*) gesetzt wird, das gemäß der Option **-validate** wie folgt ausgewertet wird:
 
 **none**
 : Standard. Es findet keine Validierung statt.
@@ -93,7 +93,7 @@ Die Validierung funktioniert, indem die Option **-validatecommand** auf ein Scri
 : *validateCommand* wird bei allen obigen Bedingungen aufgerufen.
 
 
-Es ist möglich, Prozent-Substitutionen auf den Werten der Optionen **-validatecommand** und **-invalidcommand** durchzuführen, genau wie in einem [bind]-Script. Folgende Substitutionen werden erkannt:
+Es ist möglich, Prozent-Ersetzungen auf den Werten der Optionen **-validatecommand** und **-invalidcommand** durchzuführen, genau wie in einem [bind]-Skript. Folgende Ersetzungen werden erkannt:
 
 **%d**
 : Art der Aktion: 1 für **insert**, 0 für **delete** oder -1 für Fokus-, erzwungene oder **textvariable**-Validierung.
@@ -122,7 +122,7 @@ Es ist möglich, Prozent-Substitutionen auf den Werten der Optionen **-validatec
 
 Im Allgemeinen können die Optionen **-textvariable** und **-validatecommand** problematisch sein, wenn sie gemischt werden. Alle Probleme wurden behoben, sodass die Verwendung von **-validatecommand** das traditionelle Verhalten des Entry-Widgets nicht stört. Die Verwendung von **-textvariable** nur zu Lesezwecken verursacht nie Probleme. Die Gefahr entsteht, wenn Sie versuchen, **-textvariable** auf etwas zu setzen, was **-validatecommand** nicht akzeptieren würde; dadurch wird **-validate** auf *none* gesetzt (**-invalidcommand** wird nicht ausgelöst). Dasselbe geschieht, wenn beim Auswerten von **-validatecommand** ein Fehler auftritt.
 
-Vor allem tritt ein Fehler auf, wenn **-validatecommand** oder **-invalidcommand** beim Auswerten einen Fehler in seinem Script hat oder **-validatecommand** keinen gültigen Tcl-Boolean-Wert zurückgibt. Die Option **-validate** setzt sich außerdem auf **none**, wenn Sie das Entry-Widget innerhalb von **-validatecommand** oder **-invalidcommand** bearbeiten. Solche Bearbeitungen überschreiben die gerade validierte. Wenn Sie das Entry-Widget während der Validierung bearbeiten möchten (z. B. auf {} setzen) und die Option **-validate** gesetzt bleiben soll, sollten Sie den Befehl
+Vor allem tritt ein Fehler auf, wenn **-validatecommand** oder **-invalidcommand** beim Auswerten einen Fehler in seinem Skript hat oder **-validatecommand** keinen gültigen Tcl-Boolean-Wert zurückgibt. Die Option **-validate** setzt sich außerdem auf **none**, wenn Sie das Entry-Widget innerhalb von **-validatecommand** oder **-invalidcommand** bearbeiten. Solche Bearbeitungen überschreiben die gerade validierte. Wenn Sie das Entry-Widget während der Validierung bearbeiten möchten (z. B. auf {} setzen) und die Option **-validate** gesetzt bleiben soll, sollten Sie den Befehl
 
 ```
 after idle {%W config -validate %v}
@@ -142,16 +142,16 @@ pathName subcommand ?arg ...?
 
 ## Indizes
 
-Viele Widget-Befehle für Entrys nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im String des Entrys, auf eine der folgenden Arten:
+Viele Widget-Befehle für Entrys nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im Text des Entrys, auf eine der folgenden Arten:
 
 *number*
-: Bezeichnet das Zeichen als numerischen Index, wobei 0 dem ersten Zeichen im String entspricht.
+: Bezeichnet das Zeichen als numerischen Index, wobei 0 dem ersten Zeichen im Text entspricht.
 
 **anchor**
 : Bezeichnet den Ankerpunkt für die Auswahl, der mit den Widget-Befehlen **select from** und **select adjust** gesetzt wird.
 
 **end**
-: Bezeichnet das Zeichen unmittelbar nach dem letzten im String des Entrys. Entspricht einem numerischen Index gleich der Länge des Strings des Entrys.
+: Bezeichnet das Zeichen unmittelbar nach dem letzten im Text des Entrys. Entspricht einem numerischen Index gleich der Länge des Texts des Entrys.
 
 **insert**
 : Bezeichnet das Zeichen neben und unmittelbar nach dem Einfügecursor.
@@ -179,44 +179,44 @@ Folgende Befehle sind für Entry-Widgets möglich:
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **entry** akzeptierten Werte haben.
 
 [pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
-: Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Wenn *last* nicht angegeben ist, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt einen leeren String zurück.
+: Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Wenn *last* nicht angegeben ist, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt eine leere Zeichenkette zurück.
 
 [pathName]{.ins} [get]{.sub}
-: Gibt den String des Entrys zurück.
+: Gibt den Text des Entrys zurück.
 
 [pathName]{.ins} [icursor]{.sub} [index]{.arg}
-: Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* gegebenen Zeichen angezeigt wird. Gibt einen leeren String zurück.
+: Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* gegebenen Zeichen angezeigt wird. Gibt eine leere Zeichenkette zurück.
 
 [pathName]{.ins} [index]{.sub} [index]{.arg}
 : Gibt den numerischen Index zurück, der *index* entspricht.
 
 [pathName]{.ins} [insert]{.sub} [index]{.arg} [string]{.arg}
-: Fügt die Zeichen von *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt einen leeren String zurück.
+: Fügt die Zeichen von *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt eine leere Zeichenkette zurück.
 
 [pathName]{.ins} [scan]{.sub} [option]{.arg} [args]{.arg}
 : Dieser Befehl implementiert das Scannen auf Entrys. Er hat zwei Formen, abhängig von *option*:
 
     [pathName]{.ins} [scan]{.sub} [mark]{.lit} [x]{.arg}
-    : Speichert *x* und die aktuelle Ansicht im Entry-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Maustastendruck im Widget verknüpft. Er gibt einen leeren String zurück.
+    : Speichert *x* und die aktuelle Ansicht im Entry-Fenster; wird zusammen mit späteren **scan dragto**-Befehlen verwendet. Typischerweise ist dieser Befehl mit einem Maustastendruck im Widget verknüpft. Er gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg}
-    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
+    : Dieser Befehl berechnet die Differenz zwischen seinem *x*-Argument und dem *x*-Argument des letzten **scan mark**-Befehls für das Widget. Anschließend wird die Ansicht um das Zehnfache der Differenz der x-Koordinaten nach links oder rechts verschoben. Typischerweise ist dieser Befehl mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, das Entry mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist eine leere Zeichenkette.
 
 
 [pathName]{.ins} [selection]{.sub} [option]{.arg} [arg]{.arg}
 : Dieser Befehl passt die Auswahl innerhalb eines Entrys an. Er hat mehrere Formen, abhängig von *option*:
 
     [pathName]{.ins} [selection]{.sub} [adjust]{.lit} [index]{.arg}
-    : Findet das Ende der Auswahl, das dem durch *index* gegebenen Zeichen am nächsten liegt, und passt dieses Ende der Auswahl auf *index* an (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für zukünftige **select to**-Befehle. Befindet sich die Auswahl derzeit nicht im Entry, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt einen leeren String zurück.
+    : Findet das Ende der Auswahl, das dem durch *index* gegebenen Zeichen am nächsten liegt, und passt dieses Ende der Auswahl auf *index* an (d. h. einschließlich, aber nicht über *index* hinaus). Das andere Ende der Auswahl wird zum Ankerpunkt für zukünftige **select to**-Befehle. Befindet sich die Auswahl derzeit nicht im Entry, wird eine neue Auswahl erstellt, die die Zeichen zwischen *index* und dem zuletzt gesetzten Auswahl-Ankerpunkt einschließt. Gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [selection]{.sub} [clear]{.lit}
-    : Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt einen leeren String zurück.
+    : Löscht die Auswahl, wenn sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [selection]{.sub} [from]{.lit} [index]{.arg}
-    : Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt einen leeren String zurück.
+    : Setzt den Auswahl-Ankerpunkt unmittelbar vor das durch *index* gegebene Zeichen. Ändert die Auswahl nicht. Gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [selection]{.sub} [present]{.lit}
     : Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
@@ -225,7 +225,7 @@ Folgende Befehle sind für Entry-Widgets möglich:
     : Setzt die Auswahl so, dass sie die Zeichen ab dem durch *start* indizierten bis vor dem durch *end* indizierten einschließt. Verweist *end* auf dasselbe Zeichen wie *start* oder ein früheres, wird die Auswahl des Entrys gelöscht.
 
     [pathName]{.ins} [selection]{.sub} [to]{.lit} [index]{.arg}
-    : Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt einen leeren String zurück.
+    : Liegt *index* vor dem Ankerpunkt, wird die Auswahl auf die Zeichen von *index* bis vor den Ankerpunkt gesetzt. Ist *index* gleich dem Ankerpunkt, geschieht nichts. Liegt *index* nach dem Ankerpunkt, wird die Auswahl auf die Zeichen vom Ankerpunkt bis vor *index* gesetzt. Der Ankerpunkt wird durch den zuletzt in diesem Widget ausgeführten Befehl **select from** oder **select adjust** bestimmt. Liegt die Auswahl nicht in diesem Widget, wird eine neue Auswahl mit dem zuletzt für das Widget angegebenen Ankerpunkt erstellt. Gibt eine leere Zeichenkette zurück.
 
 
 [pathName]{.ins} [validate]{.sub}
@@ -248,9 +248,9 @@ Folgende Befehle sind für Entry-Widgets möglich:
 
 
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Tk erstellt automatisch Klassen-Bindings für Entrys, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
+Tk erstellt automatisch Klassen-Bindungen für Entrys, die ihnen folgendes Standardverhalten geben. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
 1. Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
@@ -301,7 +301,7 @@ Tk erstellt automatisch Klassen-Bindings für Entrys, die ihnen folgendes Standa
 
 Ist das Entry mit der Option **-state** deaktiviert, kann die Ansicht des Entrys weiterhin angepasst und Text im Entry weiterhin ausgewählt werden, aber es wird kein Einfügecursor angezeigt und es finden keine Textänderungen statt, außer wenn das Entry über die Option **-textvariable** mit einer Variable verknüpft ist; in diesem Fall spiegelt das Entry jede Änderung der Variable wider, unabhängig vom Wert seiner Option **-state**.
 
-Das Verhalten von Entrys kann geändert werden, indem neue Bindings für einzelne Widgets definiert oder die Klassen-Bindings neu definiert werden.
+Das Verhalten von Entrys kann geändert werden, indem neue Bindungen für einzelne Widgets definiert oder die Klassen-Bindungen neu definiert werden.
 
 
 [bind]: bind.md

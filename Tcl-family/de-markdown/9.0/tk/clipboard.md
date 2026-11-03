@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-clipboard - Tk-Zwischenablage steuern
+clipboard - Bearbeitet die Tk-Zwischenablage
 
 # Übersicht
 
@@ -32,33 +32,33 @@ clipboard - Tk-Zwischenablage steuern
 
 # Beschreibung
 
-Dieser Befehl bietet eine Tcl-Schnittstelle zur Tk-Zwischenablage, die Daten für spätere Abfrage über die Selection-Mechanismen speichert (Option **-selection CLIPBOARD**). Zum Kopieren: zuerst **clipboard clear**, dann eine oder mehrere **clipboard append**-Aufrufe. Für atomare Updates alle Appends vor der Rückkehr in die Ereignisschleife abschließen.
+Dieser Befehl stellt eine Tcl-Schnittstelle zur Tk-Zwischenablage bereit. Die Zwischenablage speichert Daten, die später über den Auswahlmechanismus (mit der Option **-selection CLIPBOARD**) abgerufen werden können. Um Daten in die Zwischenablage zu kopieren, muss zuerst **clipboard clear** aufgerufen werden, gefolgt von einem oder mehreren Aufrufen von **clipboard append**. Damit die Zwischenablage atomar aktualisiert wird, sollten alle Anhängevorgänge abgeschlossen sein, bevor die Kontrolle an die Ereignisschleife zurückgeht.
 
-Das erste Argument von **clipboard** legt Format der weiteren Argumente und Verhalten fest. Unterstützt werden:
+Das erste Argument von **clipboard** bestimmt das Format der übrigen Argumente und das Verhalten des Befehls. Derzeit werden die folgenden Formen unterstützt:
 
 [clipboard]{.cmd} [append]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-format]{.lit} [format]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg} [--]{.optlit} [data]{.arg}
-: Hängt *data* an die Zwischenablage auf dem Display von *window* an, in der Form *type* mit Darstellung *format*, und beansprucht die Zwischenablage auf diesem Display.
+: Hängt *data* an die Zwischenablage auf dem Display von *window* an, und zwar in der durch *type* gegebenen Form mit der durch *format* gegebenen Darstellung. Außerdem übernimmt der Befehl den Besitz der Zwischenablage auf dem Display von *window*.
 
-    *Type* ist die Rückgabeform der Selection (ICCCM-„target“), z. B. **STRING** oder **FILE\_NAME**; Details im Inter-Client Communication Conventions Manual. Standard **STRING**.
+    *type* legt fest, in welcher Form die Auswahl zurückgegeben werden soll (das gewünschte „Ziel“ der Umwandlung, in der Terminologie des ICCCM). Der Wert sollte ein Atomname wie **STRING** oder **FILE\_NAME** sein; alle Einzelheiten finden Sie im Inter-Client Communication Conventions Manual. Die Voreinstellung für *type* ist **STRING**.
 
-    *format* ist die Übertragungsdarstellung (ICCCM Tabelle 2, Spalte 2), Standard **STRING**. Bei **STRING**: 8-Bit-ASCII. Bei **ATOM**: *data* in Felder durch Leerzeichen geteilt, jedes Feld zum Atom-Wert, 32-Bit-Atom-Wert statt Name. Sonst: Felder zu 32-Bit-Integer, Array an den Anforderer. Strings an **clipboard append** werden vor der Konvertierung verkettet — passende Trennung beachten. Gleicher *type* erfordert gleichen *format*.
+    Das Argument *format* legt die Darstellung fest, in der die Auswahl an den Anforderer übertragen werden soll (die zweite Spalte von Tabelle 2 des ICCCM). Die Voreinstellung ist **STRING**. Ist *format* **STRING**, wird die Auswahl als 8-Bit-ASCII-Zeichen übertragen. Ist *format* **ATOM**, wird *data* in durch Leerraum getrennte Felder aufgeteilt. Jedes Feld wird in seinen Atomwert umgewandelt, und statt des Atomnamens wird der 32-Bit-Atomwert übertragen. Bei jedem anderen *format* wird *data* in durch Leerraum getrennte Felder aufgeteilt, und jedes Feld wird in eine 32-Bit-Ganzzahl umgewandelt; an den Anforderer der Auswahl wird ein Array von Ganzzahlen übertragen. Beachten Sie, dass die an **clipboard append** übergebenen Zeichenketten vor der Umwandlung verkettet werden. Der Aufrufer muss also selbst für passende Abstände an den Grenzen zwischen den Zeichenketten sorgen. Alle Elemente, die mit demselben *type* an die Zwischenablage angehängt werden, müssen dasselbe *format* haben.
 
-    *format* nur für Nicht-Tk-Anforderer nötig; bei Tk-Abfrage der **CLIPBOARD**-Selection wird am Ende wieder ein String geliefert — *format* irrelevant.
+    Das Argument *format* wird nur für die Kompatibilität mit Anforderern der Zwischenablage benötigt, die nicht Tk verwenden. Wird die Auswahl **CLIPBOARD** mit dem Tk-Toolkit abgerufen, wird der Wert auf der anfordernden Seite wieder in eine Zeichenkette umgewandelt; *format* spielt dann keine Rolle.
 
-    **--** markiert Optionenende: nächstes Argument ist immer *data* (z. B. wenn *data* mit **-** beginnt).
+    Ein Argument **--** kann angegeben werden, um das Ende der Optionen zu markieren: Das nächste Argument wird dann immer als *data* verwendet. Das kann praktisch sein, wenn *data* zum Beispiel mit einem **-** beginnt.
 
 [clipboard]{.cmd} [clear]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg}
-: Beansprucht die Zwischenablage auf dem Display von *window* und entfernt frühere Inhalte. *window* standardmäßig „.“. Leerer String als Rückgabe.
+: Übernimmt den Besitz der Zwischenablage auf dem Display von *window* und entfernt alle bisherigen Inhalte. Die Voreinstellung für *window* ist „.“. Gibt eine leere Zeichenkette zurück.
 
 [clipboard]{.cmd} [get]{.sub} [[-displayof]{.lit} [window]{.arg}]{.optarg} [[-type]{.lit} [type]{.arg}]{.optarg}
-: Daten aus der Zwischenablage auf dem Display von *window*. *window* standardmäßig „.“. *type* z. B. **STRING** oder **FILE\_NAME**, Standard **STRING**. Entspricht „[selection get][selection] **-selection CLIPBOARD**“.
+: Ruft Daten aus der Zwischenablage auf dem Display von *window* ab. Die Voreinstellung für *window* ist „.“. *type* legt fest, in welcher Form die Daten zurückgegeben werden sollen, und sollte ein Atomname wie **STRING** oder **FILE\_NAME** sein. Die Voreinstellung für *type* ist **STRING**. Dieser Befehl entspricht „[selection get][selection] **-selection CLIPBOARD**“.
 
-    Auf modernen X11-Systemen für Text oft **UTF8\_STRING** statt **STRING** sinnvoller.
+    Beachten Sie, dass auf modernen X11-Systemen der nützlichste Typ zum Abrufen übertragener Zeichenketten nicht **STRING** ist, sondern **UTF8\_STRING**.
 
 
 # Beispiele
 
-Aktuellen Zwischenablage-Inhalt lesen:
+Den aktuellen Inhalt der Zwischenablage abrufen.
 
 ```
 if {[catch {clipboard get} contents]} {
@@ -66,14 +66,14 @@ if {[catch {clipboard get} contents]} {
 }
 ```
 
-Zwischenablage mit festem String setzen:
+Die Zwischenablage auf eine feste Zeichenkette setzen.
 
 ```
 clipboard clear
 clipboard append "some fixed string"
 ```
 
-Eigene Daten per **-type** (nicht unbedingt portabel, aber nützlich). Tcl-Skripte so zu übergeben ist wirksam; in Produktion mit Safe-Interpretern kombinieren.
+Mit einer eigenen Option **-type** können Sie eigene Daten in die Zwischenablage legen. Das ist nicht unbedingt portierbar, kann aber sehr nützlich sein. Tcl-Skripte auf diese Weise zu übergeben ist wirksam, sollte in Produktionscode aber mit sicheren Interpretern kombiniert werden.
 
 ```
 # This is a very simple canvas serializer;

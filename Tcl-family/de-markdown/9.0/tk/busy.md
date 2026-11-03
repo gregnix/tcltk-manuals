@@ -119,7 +119,7 @@ Für den Befehl [tk busy][tk] stehen folgende Operationen zur Verfügung:
 
 # Ereignisbehandlung
 
-## Bindings
+## Bindungen
 
 Die Ereignisblockierung wird implementiert, indem ein transparentes Fenster erzeugt und abgebildet wird, das das Widget vollständig abdeckt. Wenn das Busy-Fenster abgebildet ist, schirmt es das Widget und seine Hierarchie unsichtbar von allen möglicherweise gesendeten Ereignissen ab. Wie Tk-Widgets haben Busy-Fenster Widget-Namen in der Tk-Fensterhierarchie. Das bedeutet, dass Sie den Befehl [bind] verwenden können, um Ereignisse im Busy-Fenster zu behandeln:
 

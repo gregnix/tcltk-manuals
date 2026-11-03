@@ -38,7 +38,7 @@ list - Erstellt eine Liste
 
 # Beschreibung
 
-Dieser Befehl gibt eine Liste zurück, die aus allen *arg*s besteht, oder einen leeren String, wenn keine *arg*s angegeben sind. Geschweifte Klammern und Backslashes werden bei Bedarf hinzugefügt, sodass der Befehl [lindex] auf das Ergebnis angewendet werden kann, um die ursprünglichen Argumente wieder zu extrahieren, und sodass [eval] verwendet werden kann, um die resultierende Liste auszuführen, wobei *arg1* den Namen des Befehls und die anderen *arg*s dessen Argumente bilden. **list** erzeugt leicht andere Ergebnisse als [concat]: [concat] entfernt eine Ebene der Gruppierung, bevor die Liste gebildet wird, während **list** direkt mit den ursprünglichen Argumenten arbeitet.
+Dieser Befehl gibt eine Liste zurück, die aus allen *arg*s besteht, oder eine leere Zeichenkette, wenn keine *arg*s angegeben sind. Geschweifte Klammern und Backslashes werden bei Bedarf hinzugefügt, sodass der Befehl [lindex] auf das Ergebnis angewendet werden kann, um die ursprünglichen Argumente wieder zu extrahieren, und sodass [eval] verwendet werden kann, um die resultierende Liste auszuführen, wobei *arg1* den Namen des Befehls und die anderen *arg*s dessen Argumente bilden. **list** erzeugt leicht andere Ergebnisse als [concat]: [concat] entfernt eine Ebene der Gruppierung, bevor die Liste gebildet wird, während **list** direkt mit den ursprünglichen Argumenten arbeitet.
 
 # Beispiel
 

@@ -337,7 +337,7 @@ Die Widget-Befehle **focus** und **selection** liefern das betroffene Element bz
 
 # Stiloptionen
 
-Der Klassenname für **ttk::treeview** ist **Treeview**. Der Klassenname der Treeview-Überschrift ist **Heading**. Der Klassenname eines Treeview-Elements ist **Item**. Der Klassenname einer Treeview-Zelle ist **Cell**.
+Der Klassenname für **ttk::treeview** ist **Treeview**. Der Klassenname der Treeview-Überschrift ist **Heading**. Der Klassenname eines Treeview-Elements ist **Element**. Der Klassenname einer Treeview-Zelle ist **Cell**.
 
 Dynamische Zustände: **disabled**, **selected**.
 
@@ -374,7 +374,7 @@ ttk::style configure Treeview \
 
 **-relief** *relief*
 
-**Item**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
+**Element**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
 
 **-foreground** *color*
 

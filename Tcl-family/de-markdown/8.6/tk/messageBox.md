@@ -40,13 +40,13 @@ Die folgenden Option-Wert-Paare werden unterstützt:
 : Legt ein anzuzeigendes Symbol fest. *iconImage* muss einer der folgenden Werte sein: **error**, **info**, **question** oder **warning**. Ist diese Option nicht angegeben, wird das Info-Symbol angezeigt.
 
 **-message** *string*
-: Legt die in dieser Meldungsbox anzuzeigende Nachricht fest. Standard ist ein leerer String.
+: Legt die in dieser Meldungsbox anzuzeigende Nachricht fest. Standard ist eine leere Zeichenkette.
 
 **-parent** *window*
 : Macht *window* zum logischen Elternfenster der Meldungsbox. Die Meldungsbox wird über ihrem Elternfenster angezeigt.
 
 **-title** *titleString*
-: Legt einen String als Titel der Meldungsbox fest. Standard ist ein leerer String.
+: Legt eine Zeichenkette als Titel der Meldungsbox fest. Standard ist eine leere Zeichenkette.
 
 **-type** *predefinedType*
 : Ordnet eine vordefinierte Menge von Buttons an. Folgende Werte sind für *predefinedType* möglich:

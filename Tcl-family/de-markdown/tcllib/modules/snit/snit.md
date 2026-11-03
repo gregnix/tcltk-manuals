@@ -962,7 +962,7 @@ Snit definiert die folgenden Befehle zur Verwendung in Ihrem Objektcode: Das hei
 
     Die erste Form legt den *widgetType* und die *args...* (d. h. die fest codierte Liste der Optionen) fest, die bei der Erstellung des Hulls verwendet werden sollen. In dieser Form erstellt **installhull** das Hull-Widget und initialisiert alle an den Hull weitergeleiteten Optionen aus der Tk-Optionsdatenbank.
 
-    In der zweiten Form wurde das Hull-Widget bereits erstellt; beachten Sie, dass dessen Name „$win“ lauten muss.  In diesem Fall wird die Tk-Optionsdatenbank *nicht* nach Optionen abgefragt, die an den Hull weitergeleitet wurden. Die längere Form wird bevorzugt; die kürzere Form ermöglicht es dem Programmierer jedoch, ein an anderer Stelle erstelltes Widget anzupassen, was mitunter nützlich ist.  Beispielsweise kann sie verwendet werden, um ein „page“-Widget anzupassen, das von einem **BWidgets**-Notebook mit Registerkarten oder einem Seitenmanager-Widget erstellt wurde.
+    In der zweiten Form wurde das Hull-Widget bereits erstellt; beachten Sie, dass dessen Name „$win“ lauten muss.  In diesem Fall wird die Tk-Optionsdatenbank *nicht* nach Optionen abgefragt, die an den Hull weitergeleitet wurden. Die längere Form wird bevorzugt; die kürzere Form ermöglicht es dem Programmierer jedoch, ein an anderer Stelle erstelltes Widget anzupassen, was mitunter nützlich ist.  Beispielsweise kann sie verwendet werden, um ein „page“-Widget anzupassen, das von einem **BWidgets**-Notebook mit Registern oder einem Seitenmanager-Widget erstellt wurde.
 
     Weitere Informationen zu **snit::widgetadaptor**s und der Tk-Optionsdatenbank finden Sie unter [Tk-Optionsdatenbank].
 
@@ -1608,7 +1608,7 @@ Sollten Sie Probleme haben, Fehler entdecken oder neue Ideen haben, sind Sie hie
 
 Darüber hinaus möchten Sie sich vielleicht in die Snit-Mailingliste eintragen; weitere Informationen finden Sie unter <http://www.wjduquette.com/snit>.
 
-Ein Bereich, den Sie besonders im Auge behalten sollten, ist die Verwendung von **snit::widgetadaptor** zur Anpassung von Megawidgets, die von anderen Megawidget-Paketen erstellt wurden; die korrekte Zerstörung der Widgets hängt von der Reihenfolge der <Destroy>-Bindings ab. Am sinnvollsten ist es, dies einfach zu unterlassen.
+Ein Bereich, den Sie besonders im Auge behalten sollten, ist die Verwendung von **snit::widgetadaptor** zur Anpassung von Megawidgets, die von anderen Megawidget-Paketen erstellt wurden; die korrekte Zerstörung der Widgets hängt von der Reihenfolge der <Destroy>-Bindungen ab. Am sinnvollsten ist es, dies einfach zu unterlassen.
 
 # Bekannte Fehler
 

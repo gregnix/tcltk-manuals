@@ -47,7 +47,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 
 Der Befehl **message** erstellt ein neues Fenster (gegeben durch das *pathName*-Argument) und macht es zu einem Message-Widget. Zusätzliche Optionen, wie oben beschrieben, können in der Befehlszeile oder in der Optionsdatenbank angegeben werden, um Aspekte der Message wie Farben, Schriftart, Text und anfängliches Relief zu konfigurieren. Der Befehl **message** gibt sein *pathName*-Argument zurück. Zum Zeitpunkt des Aufrufs dieses Befehls darf kein Fenster mit dem Namen *pathName* existieren, aber das Eltern-Element von *pathName* muss existieren.
 
-Eine Message ist ein Widget, das einen Text-String anzeigt. Ein Message-Widget hat drei besondere Merkmale, die es von einem [label]-Widget unterscheiden. Erstens teilt es seinen String in Zeilen auf, um ein bestimmtes Seitenverhältnis für das Fenster zu erzeugen. Die Zeilenumbrüche werden nach Möglichkeit an Wortgrenzen gewählt (wenn nicht einmal ein einzelnes Wort in eine Zeile passt, wird das Wort über Zeilen hinweg geteilt). Zeilenumbruchzeichen im String erzwingen Zeilenumbrüche; sie können beispielsweise verwendet werden, um Leerzeilen in der Anzeige zu hinterlassen.
+Eine Message ist ein Widget, das einen Text anzeigt. Ein Message-Widget hat drei besondere Merkmale, die es von einem [label]-Widget unterscheiden. Erstens teilt es seinen Text in Zeilen auf, um ein bestimmtes Seitenverhältnis für das Fenster zu erzeugen. Die Zeilenumbrüche werden nach Möglichkeit an Wortgrenzen gewählt (wenn nicht einmal ein einzelnes Wort in eine Zeile passt, wird das Wort über Zeilen hinweg geteilt). Zeilenumbruchzeichen im Text erzwingen Zeilenumbrüche; sie können beispielsweise verwendet werden, um Leerzeilen in der Anzeige zu hinterlassen.
 
 Das zweite Merkmal eines Message-Widgets ist die Ausrichtung. Der Text kann linksbündig angezeigt werden (jede Zeile beginnt am linken Rand des Fensters), zeilenweise zentriert oder rechtsbündig (jede Zeile endet am rechten Rand des Fensters).
 
@@ -67,12 +67,12 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **message** akzeptierten Werte haben.
 
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Wenn eine neue Message erstellt wird, hat sie keine Standard-Event-Bindings: Messages sind nur für Ausgabe-Zwecke gedacht.
+Wenn eine neue Message erstellt wird, hat sie keine Standard-Event-Bindungen: Messages sind nur für Ausgabe-Zwecke gedacht.
 
 # Fehler
 

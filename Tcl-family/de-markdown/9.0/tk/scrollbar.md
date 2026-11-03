@@ -52,7 +52,7 @@ Der Befehl **scrollbar** erstellt ein neues Fenster (gegeben durch das *pathName
 
 Eine Scrollbar ist ein Widget, das zwei Pfeile anzeigt, einen an jedem Ende der Scrollbar, und einen *Schieberegler* im mittleren Teil der Scrollbar. Sie liefert Informationen darüber, was in einem *verknüpften Fenster* sichtbar ist, das ein Dokument irgendeiner Art anzeigt (wie eine bearbeitete Datei oder eine Zeichnung). Position und Größe des Schiebereglers geben an, welcher Teil des Dokuments im verknüpften Fenster sichtbar ist. Wenn beispielsweise der Schieberegler in einer vertikalen Scrollbar das obere Drittel des Bereichs zwischen den beiden Pfeilen abdeckt, bedeutet dies, dass das verknüpfte Fenster das obere Drittel seines Dokuments anzeigt.
 
-Scrollbars können verwendet werden, um die Ansicht im verknüpften Fenster durch Klicken oder Ziehen mit der Maus anzupassen. Siehe den Abschnitt [Bindings] unten für Details.
+Scrollbars können verwendet werden, um die Ansicht im verknüpften Fenster durch Klicken oder Ziehen mit der Maus anzupassen. Siehe den Abschnitt [Bindungen] unten für Details.
 
 # Elemente
 
@@ -91,7 +91,7 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **scrollbar** akzeptierten Werte haben.
 
 [pathName]{.ins} [delta]{.sub} [deltaX]{.arg} [deltaY]{.arg}
 : Gibt eine reelle Zahl zurück, die die Bruchteilsänderung in der Scrollbar-Einstellung angibt, die einer gegebenen Änderung der Schiebereglerposition entspricht. Wenn die Scrollbar beispielsweise horizontal ist, gibt das Ergebnis an, um wie viel sich die Scrollbar-Einstellung ändern muss, um den Schieberegler *deltaX* Pixel nach rechts zu bewegen (*deltaY* wird in diesem Fall ignoriert). Wenn die Scrollbar vertikal ist, gibt das Ergebnis an, um wie viel sich die Scrollbar-Einstellung ändern muss, um den Schieberegler *deltaY* Pixel nach unten zu bewegen. Die Argumente und das Ergebnis können null oder negativ sein.
@@ -123,9 +123,9 @@ Wenn der Benutzer mit der Scrollbar interagiert, beispielsweise durch Ziehen des
 : Das Widget soll seine Ansicht um *number* Einheiten anpassen. Die Einheiten sind widget-spezifisch definiert, etwa Zeichen oder Zeilen in einem Text-Widget. *Number* ist entweder 1 (eine Einheit scrollt oben oder links aus dem Fenster) oder -1 (eine Einheit scrollt unten oder rechts aus dem Fenster). Bruchzahlen werden von 0 weg gerundet, sodass das Scrollen um 0,001 Einheiten dieselbe Wirkung hat wie das Scrollen um 1 Einheit.
 
 
-# Bindings
+# Bindungen
 
-Tk erstellt automatisch Klassen-Bindings für Scrollbars, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scrollbars unterscheidet, ist das horizontale Verhalten in Klammern beschrieben.
+Tk erstellt automatisch Klassen-Bindungen für Scrollbars, die ihnen folgendes Standardverhalten geben. Wenn sich das Verhalten für vertikale und horizontale Scrollbars unterscheidet, ist das horizontale Verhalten in Klammern beschrieben.
 
 1. Das Drücken von Taste 1 über **arrow1** bewirkt, dass die Ansicht im verknüpften Widget um eine Einheit nach oben (links) verschoben wird, sodass das Dokument um eine Einheit nach unten (rechts) zu wandern scheint. Wenn die Taste gedrückt gehalten wird, wiederholt sich die Aktion automatisch.
 

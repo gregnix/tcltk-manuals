@@ -2,7 +2,7 @@
 # label	Extensions
 # title	Extensions
 -activator	63
--anchor	23,94
+-anchor	23,93
 -arcradius	58
 -areaheight	74
 -areawidth	74
@@ -12,158 +12,158 @@
 -aspect	55
 -auto	76
 -autocomplete	19
--autofocus	46
+-autofocus	45
 -autopost	19
--background	15,219
--baseline	87
+-background	15,216
+-baseline	86
 -bitmap	23
 -borderwidth	31
--buttons	56
--buttonwidth	56
+-buttons	55
+-buttonwidth	55
 -bwlistbox	19
 -cancel	23
 -clean	7
--closecmd	90
--color	78
--command	7,12,30,34,68,71,80
--constrainedheight	75
--constrainedwidth	75
--createcmd	60
--crossclosebitmap	90
--crosscloseimage	90
--crossfill	90
--crossopenbitmap	90
--crossopenimage	90
--data	49,94
+-closecmd	89
+-color	77
+-command	7,12,30,33,67,71,79
+-constrainedheight	74
+-constrainedwidth	74
+-createcmd	59
+-crossclosebitmap	89
+-crosscloseimage	89
+-crossfill	89
+-crossopenbitmap	89
+-crossopenimage	89
+-data	48,93
 -default	13,15,23
 -delay	31
--deltax	46,90
--deltay	46,90
+-deltax	45,89
+-deltay	45,89
 -dir	8
 -disarmcommand	8,13
--dragenabled	34,38,46,90
--dragendcmd	25,34,38,46,90
--dragevent	25,34,38,46,90
--draginitcmd	25,34,38,46,90
+-dragenabled	33,38,45,89
+-dragendcmd	25,33,38,45,89
+-dragevent	25,33,38,45,89
+-draginitcmd	25,33,38,45,89
 -dragtype	34,38,46,90
--drawcross	94
--dropcmd	27,34,38,46,91
--dropenabled	35,39,47,91
--dropovercmd	27,35,39,47,91
--dropovermode	47,91
+-drawcross	93
+-dropcmd	27,34,38,46,90
+-dropenabled	34,38,46,90
+-dropovercmd	27,34,38,46,90
+-dropovermode	47,90
 -droptypes	28,35,39,47,91
 -editable	35
--expand	19,66
--fill	49,66,73,94
+-expand	19,65
+-fill	48,65,72,93
 -focus	39
--font	49,94
--foreground	73
+-font	48,93
+-foreground	72
 -geometry	23
--height	8,13,19,39,47,52,59,62,65,69,72,73,75,85,92
--helpcmd	94
--helptext	8,13,35,39,94
--helptype	8,13,35,39,94
--helpvar	8,13,35,39,94
--homogeneous	16,59
--icon	56
--image	23,49,60,94
+-height	8,13,19,39,47,51,58,61,64,68,71,72,74,84,91
+-helpcmd	93
+-helptext	8,13,35,39,93
+-helptype	8,13,35,39,93
+-helpvar	8,13,35,39,93
+-homogeneous	16,58
+-icon	55
+-image	23,49,59,93
 -indent	49
 -index	30
--initialcolor	80
--ipad	65,76,85,87
+-initialcolor	79
+-ipad	64,76,84,86
 -ipadx	8
 -ipady	8
 -item	30
--justify	56
--leavecmd	60
--linesfill	92
--linestipple	92
--managed	77
+-justify	55
+-leavecmd	59
+-linesfill	91
+-linestipple	91
+-managed	76
 -maximum	69
--menu	52
--message	56
--minsize	64
+-menu	51
+-message	55
+-minsize	63
 -modal	23
--modifycmd	19,83
--multicolumn	48
+-modifycmd	19,82
+-multicolumn	47
 -name	13,39
--nosizes	80
+-nosizes	79
 -open	94
--opencmd	92
+-opencmd	91
 -orient	16
--pad	63,66,85
--padx	16,48,92
+-pad	63,65,84
+-padx	16,47,91
 -pady	16
 -panelbackground	65
 -panelforeground	65
--parent	23,78,80
+-parent	23,77,79
 -place	23
--placement	78
+-placement	77
 -postcommand	19
--raisecmd	60
--range	83
--redraw	48,92
--relief	13,81
--sampletext	80
--scrollbar	77
--selectable	95
--selectcommand	92
--selectfill	48,92
--selectmode	48
--separator	23,53,85
+-raisecmd	59
+-range	82
+-redraw	47,91
+-relief	13,80
+-sampletext	79
+-scrollbar	76
+-selectable	94
+-selectcommand	91
+-selectfill	47,91
+-selectmode	47
+-separator	23,52,85
 -show	35
--showlines	92
--showresize	85
--side	23,43,59,64,66,87
--sides	77
--size	77
+-showlines	91
+-showresize	84
+-side	23,43,58,63,65,86
+-sides	76
+-size	76
 -spacing	16
--state	8,13,16,31,36,40,60
+-state	8,13,16,31,35,39,59
 -sticky	85
--stop	72
--tabbevelsize	59
--tabpady	59
--text	30,49,60,95
--textvariable	53
--title	23,56,78,80
+-stop	71
+-tabbevelsize	58
+-tabpady	58
+-text	30,49,59,94
+-textvariable	52
+-title	23,55,77,79
 -topbackground	31
 -transient	23
--type	8,30,56,68,69,78,80
--underline	13,40
--values	19,83
--variable	30,70
--weight	64,85
--weights	64
--width	9,14,36,40,48,53,57,59,62,64,65,70,72,73,75,85,92
--window	49,73,95
--xscrollincrement	75
--yscrollincrement	75
+-type	8,30,56,67,69,77,79
+-underline	13,39
+-values	19,82
+-variable	30,69
+-weight	63,85
+-weights	63
+-width	9,14,35,39,47,53,56,58,61,63,65,69,71,72,74,84,91
+-window	49,72,94
+-xscrollincrement	74
+-yscrollincrement	74
 abortretryignore	56
-abs	226
-Access Routine	298
-acos	225
-add	16,24,50,62,64,65,85,96
-addindicator	54
-addtoolbar	54
-Archetype	204,209,211,215
-Array of Complex Type	288
-Array of Simple Type	288
+abs	223
+Access Routine	290
+acos	222
+add	16,24,50,61,63,65,84,95
+addindicator	53
+addtoolbar	53
+Archetype	201,206,208,212
+Array of Complex Type	280
+Array of Simple Type	280
 ArrowButton	6
-asin	225
-Asynchronous Call with separate success and error callbacks	269
-asynchronous I/O	233,247
+asin	222
+Asynchronous Call with separate success and error callbacks	264
+asynchronous I/O	229,244
 at	11
-atan	225
-atan2	225
+atan	222
+atan2	222
 below	11
-bind	20,42,83,233,247
-bindArea	92
-bindImage	48,92
-bindtabs	59
-bindText	48,93
-body	151
-Boolean	100
-bound variable	308,310
+bind	20,41,82,229,244
+bindArea	91
+bindImage	47,91
+bindtabs	58
+bindText	47,92
+body	150
+Boolean	99
+bound variable	299,301
 Button	11
 ButtonBox	14
 BWidget	9
@@ -184,68 +184,68 @@ BWidget::place	11
 BWidget::write	11
 BWidget::wrongNumArgsString	11
 BWidget::XLFDfont	10
-BwResource	100
-C handler set	360,386
-call	308,310
-callback	161
-Calling_a_Web_Service	263
-ceil	225
+BwResource	98
+C handler set	351,376
+call	299,301
+callback	160
+Calling_a_Web_Service	259
+ceil	222
 center	11
-certificate	233
-cget	9,14,16,20,24,36,40,42,43,48,54,59,62,64,66,68,70,72,73,75,77,78,80,81,83,86,87,93
-channel	233,247
-Class	198
-class	151,153,162,168,169,170,195,201,213
-clear	50,96
+certificate	229
+cget	9,14,16,20,24,35,39,41,43,48,53,58,61,63,65,67,69,71,72,74,76,78,79,80,82,85,86,92
+channel	229,244
+Class	195
+class	150,152,161,166,167,168,193,198,210
+clear	49,95
 clearvalue	20
-Client Side	293,296
-Close a port	290
-Close all ports	290
-closetree	93
-code	161,197
-column	219
-column add	219
-comb	227
+Client Side	285,288
+Close a port	282
+Close all ports	283
+closetree	92
+code	160,194
+column	216
+column add	216
+comb	224
 ComboBox	17
-command tracing	408
-component	172,215
-compute_size	59,62
-configbody	162
-configure	9,14,16,20,24,36,40,42,44,48,54,59,62,64,66,68,70,72,73,75,77,79,80,81,83,86,87,93,162
-Configuring a Service	272
-connection	233,247,301,302,308,310,314,317,320,322
-connectivity	301,302,308,310,314,317,320,322
-contents	102
-cos	225
-cosh	225
-Creating_a_Tcl_Web_Service	276
-Creating_a_Web_Service_Type	281
-database	301,302,307,308,310,312,313,314,317,320,322
-Dealing With Casting Abstract Types to Concrete Types	275
-Declaring Complex Types	281
+command tracing	398
+component	170,212
+compute_size	58,61
+configbody	161
+configure	9,14,16,20,24,35,39,41,43,48,53,59,61,63,65,67,69,71,72,74,76,78,79,80,83,85,86,92,161
+Configuring a Service	266
+connection	229,244,293,299,301,306,308,311,313
+connectivity	293,299,301,306,308,311,313
+contents	101
+cos	222
+cosh	222
+Creating_a_Tcl_Web_Service	270
+Creating_a_Web_Service_Type	275
+database	293,299,301,304,306,308,311,313
+Dealing With Casting Abstract Types to Concrete Types	270
+Declaring Complex Types	275
 default	15,22
-DEFAULT BINDINGS	222
-Defining a derived type	283,286
-Defining a REST based service by hand	267
-Defining a Service	276
-Defining a type	282,285
-Defining an Operation (aka a Service Procedure)	280
-Defining Transforms	268
-Defining_Types	284
-delegation	173
-delete	16,49,59,62,66,86,93,165
+DEFAULT BINDINGS	218
+Defining a derived type	276,278
+Defining a REST based service by hand	262
+Defining a Service	271
+Defining a type	275,278
+Defining an Operation (aka a Service Procedure)	274
+Defining Transforms	263
+Defining_Types	277
+delegation	171
+delete	16,48,59,61,65,85,92,163
 Dialog	21
-Dictionary_Representation_of_XML_Arrays	288
-document	323,341
-document element	332
-DOM	341,366,386
-dom	323
-DOM node creation	332
-domain	247
-domain name	233
-domDoc	332
-domNode	341
-double	226
+Dictionary_Representation_of_XML_Arrays	280
+document	314,333
+document element	324
+DOM	333,356,376
+dom	314
+DOM node creation	324
+domain	244
+domain name	229
+domDoc	324
+domNode	333
+double	223
 DragSite	25
 DragSite::include	25
 DragSite::register	25
@@ -257,7 +257,7 @@ DropSite::register	27
 DropSite::setcursor	29
 DropSite::setdrop	29
 DropSite::setoperation	29
-DTD	387
+DTD	376
 DynamicHelp	29
 DynamicHelp::add	30
 DynamicHelp::configure	31
@@ -265,319 +265,319 @@ DynamicHelp::delete	31
 DynamicHelp::include	31
 DynamicHelp::register	31
 DynamicHelp::sethelp	32
-edit	49,93
-Embedded_Web_Service	289
-Embedding in a Standalone Application	276
+edit	48,92
+Embedded_Web_Service	281
+Embedding in a Standalone Application	271
 end	15,22
 enddialog	24
-ensemble	165
+ensemble	163,164
 Entry	32
-Enum	100
-events	391
-exists	49,93
-exp	226
-expat	349
-expatapi	360
-expect	114
-EXPORTS	217
-extendedclass	172,176,184
-fact	227
-fib	227
-file	252,253,258,262
-filesystem	252,253,258,262
-find	93,168,198
-first	20,84
-Flag	100
-floor	226
-fmod	226
-free	199,200
-frem	226
-ftp	252,262
-gcd	227
-gcdrem	227
-Generating a Template Dictionary	271
-Generating a template dictionary for a type definition	284,287
-genOutAttr	298
-get	20,50,96
-getframe	24,44,54,60,62,64,66,75,77,86,87
-getindicator	54
+Enum	99
+events	380
+exists	48,92
+exp	222
+expat	341
+expatapi	351
+expect	113
+EXPORTS	213
+extendedclass	170,174,182
+fact	223
+fib	223
+file	248,249,254,258
+filesystem	248,249,254,258
+find	92,166,195
+first	20,83
+Flag	99
+floor	222
+fmod	222
+free	197
+frem	223
+ftp	248,258
+gcd	223
+gcdrem	223
+Generating a Template Dictionary	266
+Generating a template dictionary for a type definition	277,280
+genOutAttr	290
+get	20,50,95
+getframe	24,43,53,59,62,64,65,74,76,85,86
+getindicator	53
 getlistbox	20
-getmenu	54
-getmenustate	54
-Getting a type definition	283,286
-gettoolbar	54
-getvalue	20,84
-host	233,247
-HTTP	230
-http	252,262
-httpd	230
-https	233
-hypot	226
-I/O	233,247
+getmenu	53
+getmenustate	53
+Getting a type definition	276,279
+gettoolbar	53
+getvalue	20,83
+host	229,244
+HTTP	226
+http	248,258
+httpd	226
+https	229
+hypot	222
+I/O	229,244
 icursor	20
-import	168
-includeDirectory	299
-includes	96
-index	16,49,60,94,103,300
-info	165
-insert	16,49,60,94
-Int	100
-int	226
-introspection	408
+import	166
+includeDirectory	290
+includes	95
+index	16,48,59,93,102,292
+info	164
+insert	16,48,59,93
+Int	99
+int	223
+introspection	398
 invoke	9,14,17,24,36
-IP Address	233,247
-iroot	227
-is	169
-itcl	170,186,215
-itclcomponent	172
-itcldelegate	173
-itclextendedclass	176
-itcloption	184
-itclvars	186
-itclwidget	187
+IP Address	229,244
+iroot	223
+is	167
+itcl	168,184,211
+itclcomponent	170
+itcldelegate	171
+itclextendedclass	174
+itcloption	182
+itclvars	184
+itclwidget	185
 item	49
-itemcget	17,24,50,60,95
-itemconfigure	17,24,50,60,95
-items	50,66,86
-itk	204,209,211,213,215
-itkvars	215
+itemcget	17,24,49,59,94
+itemconfigure	17,24,49,59,94
+items	49,65,85
+itk	201,206,208,210,211,212
+itkvars	211
 Label	36
 LabelEntry	40
 LabelFrame	42
 LabelFrame::align	43
-last	15,20,22,84
-lcm	227
-lfactor	227
-libexpect	142
-line	95
-List	198
-ListBox	44
-Loading a pre-parsed WSDL	266
-Loading the Webservices Client Package	264
-Loading the Webservices Server Package	276,289
-Loading the Webservices Utilities Package	298
-Loading the Webservices Utility Package	282,285
-local	195
-locking	403
-log	226
-log10	226
-MainFrame	51
-MATH FUNCTIONS	225
-max	227
-mclistbox	216
-mega-widget	170,204,209,211,213,215
-memory	199,200
-message passing	391
-MessageDlg	55
-metakit	252
-method	173
-Method Definition	267
-min	227
-minv	226
-move	50,60,95
-mpexpr	223
-mutex	391
-MySQL	314
-name	247
-namespace	161,165,170,197,252,262
-navtree	103
-network	233,247
-network address	233,247
-networking	247
-next	20,84
-node	323,341
-nodes	95
-NoteBook	57
-nsOnChangeOnly	299
-Object	199
-object	151,153,162,168,169,170,176,187,195,201,213
-object-oriented	153,170,176,187,213
-ODBC	317
-ok	68
-OpenSSL	233
-opentree	95
-OPERANDS	223
-OPERATORS	224
-option	173,184
-options	104
-Packages Required	301
+last	15,20,22,83
+lcm	223
+lfactor	223
+libexpect	140
+line	94
+List	196
+ListBox	43
+Loading a pre-parsed WSDL	262
+Loading the Webservices Client Package	260
+Loading the Webservices Server Package	270,281
+Loading the Webservices Utilities Package	289
+Loading the Webservices Utility Package	275,278
+local	193
+locking	393
+log	222
+log10	222
+MainFrame	50
+MATH FUNCTIONS	222
+max	223
+mclistbox	213
+mega-widget	168,201,206,208,210,212
+memory	197
+message passing	380
+MessageDlg	54
+metakit	248
+method	171
+Method Definition	263
+min	223
+minv	223
+move	49,60,94
+mpexpr	219
+mutex	380
+MySQL	306
+name	244
+namespace	160,163,168,194,248,258
+navtree	102
+network	229,244
+network address	229,244
+networking	244
+next	20,83
+node	314,333
+nodes	94
+NoteBook	56
+nsOnChangeOnly	290
+Object	197
+object	150,152,161,166,167,168,174,185,193,198,210
+object-oriented	152,168,174,185,210
+ODBC	308
+ok	67
+OpenSSL	229
+opentree	94
+OPERANDS	220
+OPERATORS	220
+option	171,182
+options	103
+Packages Required	292
 page	60,62
 pages	60,62
-PagesManager	61
-PanedWindow	63
+PagesManager	60
+PanedWindow	62
 PanelFrame	64
-parent	95
-parseInAttr	299
-parsing	323,341,364
-Parsing a saved WSDL	265
-part	165
-PasswdDlg	66
-perm	227
-pfact	227
-pi	227
+parent	94
+parseInAttr	290
+parsing	314,333,354
+Parsing a saved WSDL	261
+part	164
+PasswdDlg	65
+perm	223
+pfact	223
+pi	223
 post	20
-Postgres	320
-Postvalidation	366
-pow	226
-Preserve	200
-previous	20,84
-prime	227
-private	161
-proc	165,173
-procedure	151,195
+Postgres	311
+Postvalidation	356
+pow	222
+Preserve	197
+previous	20,83
+prime	224
+private	160
+proc	163,171
+procedure	150,193
 ProgressBar	68
-ProgressDlg	70
-protected	161
-public	161
-pull	364
-pullparser	364
-push	349
-pushparser	349
-queryTimeout	299
-raise	61,63
-range	96
-RegisterC	201
-relprime	227
-remove	50,96
-reorder	50,95
-Rest_flavor_service_response	291
-resultset	301,302,308,310
+ProgressDlg	69
+protected	160
+public	160
+pull	354
+pullparser	354
+push	341
+pushparser	341
+queryTimeout	291
+raise	60,62
+range	95
+RegisterC	198
+relprime	224
+remove	50,95
+reorder	49,94
+Rest_flavor_service_response	283
+resultset	293,299,301
 right	11
-Rivet Example	291
-root	226
-round	226
-Run the event queue	290
-SAX	349,366,386
-schema	366
-scope	161,197
+Rivet Example	283
+root	223
+round	223
+Run the event queue	282
+SAX	341,356,376
+schema	356
+scope	160,194
 ScrollableFrame	73
 ScrolledWindow	75
-ScrollView	72
-search	168
-see	50,61,75,95
+ScrollView	71
+search	166
+see	49,60,74,95
 SelectColor	77
-SelectColor::dialog	79
-SelectColor::menu	79
-SelectColor::setcolor	79
-SelectFont	79
+SelectColor::dialog	78
+SelectColor::menu	78
+SelectColor::setcolor	78
+SelectFont	78
 SelectFont::loadfont	80
-selection	50,95
-Separator	81
-Server Side	292,294
-Service Definition	267
-set	50,96
+selection	49,95
+Separator	80
+Server Side	284,286
+Service Definition	262
+set	50,95
 setfocus	17,24,40
-setmenustate	54
-setvalue	20,84
-setwidget	77
+setmenustate	53
+setvalue	20,83
+setwidget	76
 showstatusbar	54
 showtoolbar	54
-sin	226
-sinh	226
-socket	233,247
-Specify a Port to Receive Request on	289
+sin	222
+sinh	222
+socket	229,244
+Specify a Port to Receive Request on	282
 SpinBox	81
-SQL	301,302,307,308,310,312,313,314,317,320,322
-SQLite3	322
-sqrt	226
-SSL	233
-Stack	203
-state	307
-statement	301,302,308,310
-StatusBar	84
-stored procedure	308,310
-StrictMode	299
-String	100
-STRING OPERATIONS	228
-suppressNS	300
-synchronization	391,403
-Synchronous Call returning a dictionary object	268
-Synchronous Call returning the raw XML	270
-Synonym	100
-tan	226
-tanh	226
-tar	252,262
-Tcl_Web_Service_Example	292
-Tcl_Web_Service_Math_Example	294
-TclHttpd	230
-TclTLS	233
-TclUDP	247
-TCP	233
-TDBC	302,307,308,310,312,313,314,317,320,322
-tdbc	301
-tdbc_connection	302
-Tdbc_Init	313
-tdbc_mapSqlState	307
-tdbc_mysql	314
-tdbc_odbc	317
-tdbc_postgres	320
-tdbc_resultset	308
-tdbc_sqlite3	322
-tdbc_statement	310
-tdbc_tokenize	312
-tdomcmd	386
-thread	391,399
-thread shared data	403
-threadpool	399
-threads	403
-TitleFrame	86
-TkResource	99
-tls	233
-tnc	387
-toggle	96
-tokenize	312,313
-Toplevel	204,209
-tpool	399
-Tree	87
-tsv	403
-ttrace	408
-TYPES, OVERFLOW, AND PRECISION	227
-udp	247
+SQL	293,299,301,304,306,308,311,313
+SQLite3	313
+sqrt	222
+SSL	229
+Stack	200
+state	299
+statement	293,299,301
+StatusBar	83
+stored procedure	299,301
+StrictMode	291
+String	99
+STRING OPERATIONS	224
+suppressNS	291
+synchronization	380,393
+Synchronous Call returning a dictionary object	264
+Synchronous Call returning the raw XML	266
+Synonym	99
+tan	222
+tanh	222
+tar	248,258
+Tcl_Web_Service_Example	284
+Tcl_Web_Service_Math_Example	286
+TclHttpd	226
+TclTLS	229
+TclUDP	244
+TCP	229
+TDBC	293,299,301,304,306,308,311,313
+tdbc	293
+tdbc_connection	293
+Tdbc_Init	304
+tdbc_mapSqlState	299
+tdbc_mysql	306
+tdbc_odbc	308
+tdbc_postgres	311
+tdbc_resultset	299
+tdbc_sqlite3	313
+tdbc_statement	301
+tdbc_tokenize	304
+tdomcmd	376
+thread	380,389
+thread shared data	393
+threadpool	389
+threads	393
+TitleFrame	85
+TkResource	98
+tls	229
+tnc	376
+toggle	95
+tokenize	304
+Toplevel	201,206
+tpool	389
+Tree	86
+tsv	393
+ttrace	398
+TYPES, OVERFLOW, AND PRECISION	224
+udp	244
 unpost	21
-UseNS	300
-useTypeNs	300
-Using as part of TclHttpd	276
-Using with Apache Rivet	276
-Using_Options	297
-usual	215
-Validation	366,387
-valueAttrCompatiblityMode	300
-variable	162,165,197
-variables	186,215
-vfs	252,253,258,262
-vfs-filesystems	252
-vfs-fsapi	253
-vfslib	252,262
-visible	96
-Web Server	230
-webdav	252,262
-Widget	96,204,209,211
-widget	172,184,187
-Widget::addmap	98
-Widget::bwinclude	99
-Widget::cget	99
-Widget::configure	99
-Widget::create	99
-Widget::declare	99
-Widget::define	100
-Widget::destroy	100
-Widget::focusNext	100
-Widget::focusOK	101
-Widget::focusPrev	101
-Widget::getoption	101
-Widget::getVariable	101
-Widget::hasChanged	101
-Widget::init	101
-Widget::setoption	101
-Widget::subcget	101
-Widget::syncoptions	101
-Widget::tkinclude	101
-widgetadaptor	172,184
-width.precision	228
+UseNS	291
+useTypeNs	291
+Using as part of TclHttpd	271
+Using with Apache Rivet	271
+Using_Options	288
+usual	212
+Validation	356,376
+valueAttrCompatiblityMode	292
+variable	161,163,194
+variables	184,211
+vfs	248,249,254,258
+vfs-filesystems	248
+vfs-fsapi	249
+vfslib	248,258
+visible	95
+Web Server	226
+webdav	248,258
+Widget	95,201,206,208
+widget	170,182,185
+Widget::addmap	97
+Widget::bwinclude	97
+Widget::cget	98
+Widget::configure	98
+Widget::create	98
+Widget::declare	98
+Widget::define	99
+Widget::destroy	99
+Widget::focusNext	99
+Widget::focusOK	99
+Widget::focusPrev	99
+Widget::getoption	100
+Widget::getVariable	100
+Widget::hasChanged	100
+Widget::init	100
+Widget::setoption	100
+Widget::subcget	100
+Widget::syncoptions	100
+Widget::tkinclude	100
+widgetadaptor	170,182
+width.precision	225
 withdraw	24
-XML	323,341,364
-XPath	388
-xpathFunc	388
-xview	50,75,96
-yview	50,75,96
-zip	252,262
+XML	314,333,354
+XPath	378
+xpathFunc	378
+xview	50,75,95
+yview	50,75,95
+zip	248,258

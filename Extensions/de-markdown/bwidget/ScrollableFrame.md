@@ -63,11 +63,11 @@ WIDGET-SPEZIFISCHE OPTIONEN
 
 
 **-constrainedheight**
-:  Legt fest, ob der scrollbare Bereich dieselbe Höhe wie das gescrollte Fenster haben soll. Wenn true, wird keine senkrechte Bildlaufleiste gebraucht. 
+:  Legt fest, ob der scrollbare Bereich dieselbe Höhe wie das gescrollte Fenster haben soll. Wenn true, wird keine senkrechte Scrollbar gebraucht. 
 
 
 **-constrainedwidth**
-:  Legt fest, ob der scrollbare Bereich dieselbe Breite wie das gescrollte Fenster haben soll. Wenn true, wird keine waagerechte Bildlaufleiste gebraucht. 
+:  Legt fest, ob der scrollbare Bereich dieselbe Breite wie das gescrollte Fenster haben soll. Wenn true, wird keine waagerechte Scrollbar gebraucht. 
 
 
 **-height**

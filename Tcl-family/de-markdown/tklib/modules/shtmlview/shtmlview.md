@@ -204,7 +204,7 @@ Jedes mit dem oben genannten Befehl erstellte shtmlview-Widget unterstützt die 
 : Gibt die aktuell angezeigte URL zurück.
 
 
-# Bindings für das Widget
+# Bindungen für das Widget
 
 Dem Widget sind die folgenden Tasten für die Navigation und andere Aktionen zugewiesen:
 
@@ -316,7 +316,7 @@ Und natürlich ist es mit diesem Paket auch möglich, Konvertierungsbefehle dire
 
 
 2022-03-06 version 0.9.3
-: - Unterstützung für Mausrad-Bindings
+: - Unterstützung für Mausrad-Bindungen
 
     - Korrektur von Hyperlinks auf http(s)-Links
 
@@ -346,7 +346,7 @@ Und natürlich ist es mit diesem Paket auch möglich, Konvertierungsbefehle dire
 
     - Verbesserte Aufrufzeile und Installationsoption
 
-    - Bindings für die nächste und die vorherige Suche
+    - Bindungen für die nächste und die vorherige Suche
 
     - Return und Tab für Links
 

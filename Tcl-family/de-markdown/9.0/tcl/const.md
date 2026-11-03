@@ -31,7 +31,7 @@ const - Konstante erzeugen und initialisieren
 
 # Beschreibung
 
-Der Befehl wird üblicherweise im Körper einer Prozedur (oder Methode, oder in einem Lambda-Term) verwendet, um dort eine Konstante anzulegen, oder im Körper von [namespace eval][namespace], um eine Konstante im Namespace zu erzeugen. Die Konstante ist eine nicht veränderbare Variable *varName*, initialisiert mit *value*. Bei Erfolg liefert **const** stets einen leeren String.
+Der Befehl wird üblicherweise im Körper einer Prozedur (oder Methode, oder in einem Lambda-Term) verwendet, um dort eine Konstante anzulegen, oder im Körper von [namespace eval][namespace], um eine Konstante im Namespace zu erzeugen. Die Konstante ist eine nicht veränderbare Variable *varName*, initialisiert mit *value*. Bei Erfolg liefert **const** stets eine leere Zeichenkette.
 
 Existiert *varName* noch nicht, wird sie mit Wert *value* erzeugt und als Konstante markiert: andere Befehle ([set], [append], [incr], [unset]) dürfen die Variable weder ändern noch entfernen; vor Traces wird geprüft, ob eine Variable Konstante ist. Existiert *varName* bereits, ist das ein Fehler — außer die Variable ist bereits als Konstante markiert (dann ist **const** eine No-Op).
 

@@ -41,7 +41,7 @@ Dieses Paket nutzt die zlib-Funktionen in Tcl 8.6, um ZIP-Archive zu erstellen.
     ::mkzip::mkzip mystuff.tm -zipkit -directory mystuff.vfs
     ```
 
-    Es packt Ihren virtuellen Dateisystembaum „*mystuff.vfs/*“ in ein ZIP-Archiv mit einem geeigneten Header, sodass Sie es unter Unix als ausführbar kennzeichnen können und es mit tclkit laufen sollte. Alternativ kannst du es auch mit **tclsh** oder **wish** 8.6 ausführen, wenn du möchtest.
+    Es packt Ihren virtuellen Dateisystembaum „*mystuff.vfs/*“ in ein ZIP-Archiv mit einem geeigneten Header, sodass Sie es unter Unix als ausführbar kennzeichnen können und es mit tclkit laufen sollte. Alternativ können Sie es auch mit **tclsh** oder **wish** 8.6 ausführen.
 
     Um den Header der ausführbaren Datei zu ändern, legen Sie das **-runtime** „*preface*“ fest, wobei „preface“ eine Datei ist, deren Inhalt Sie voranstellen möchten. Unter Windows können Sie beispielsweise ein selbstextrahierendes ZIP-Archiv erstellen, indem Sie
 

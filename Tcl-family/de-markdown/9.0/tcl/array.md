@@ -22,7 +22,7 @@ Copyright:
 
 # Name
 
-array - Array-Variablen bearbeiten
+array - Bearbeitet Array-Variablen
 
 # Übersicht
 
@@ -32,61 +32,61 @@ array - Array-Variablen bearbeiten
 
 # Beschreibung
 
-Der Befehl führt eine von mehreren Operationen an der Variable *arrayName* aus. Sofern unten nicht anders angegeben, muss *arrayName* eine bestehende Array-Variable sein. *option* bestimmt die Aktion (Abkürzungen erlaubt):
+Dieser Befehl führt eine von mehreren Operationen an der Variablen aus, die *arrayName* angibt. Sofern bei den einzelnen Befehlen unten nichts anderes angegeben ist, muss *arrayName* der Name einer vorhandenen Array-Variablen sein. Das Argument *option* bestimmt, welche Aktion der Befehl ausführt. Die zulässigen *options* (sie dürfen abgekürzt werden) sind:
 
 [array]{.cmd} [anymore]{.sub} [arrayName]{.arg} [searchId]{.arg}
-: Gibt 1 zurück, wenn in einer Arraysuche noch Elemente übrig sind, sonst 0. *searchId* bezeichnet die Suche (Rückgabewert von **array startsearch**). Nützlich bei leerem Elementnamen, da **array nextelement** allein nicht anzeigt, ob die Suche abgeschlossen ist.
+: Gibt 1 zurück, wenn bei einer Arraysuche noch Elemente zu verarbeiten sind, und 0, wenn bereits alle Elemente zurückgegeben wurden. *SearchId* gibt an, welche Suche in *arrayName* geprüft werden soll. Es muss der Rückgabewert eines früheren Aufrufs von **array startsearch** sein. Diese Option ist besonders nützlich, wenn ein Array ein Element mit leerem Namen hat, weil der Rückgabewert von **array nextelement** dann nicht anzeigt, ob die Suche abgeschlossen ist.
 
 [array]{.cmd} [default]{.sub} [subcommand]{.arg} [arrayName]{.arg} [args...]{.arg}
-: [Verwaltet den Standardwert des Arrays. Arrays haben zunächst keinen Standardwert; nach dem Setzen wird er beim Lesen eines Elements geliefert, wenn das Lesen sonst einen Fehler ergeben würde. Das kann das Verhalten von [append], [dict], [incr] und [lappend] bei nicht existierenden Elementen ändern.]{version="TIP508"}
+: [Verwaltet den Standardwert des Arrays. Arrays haben anfangs keinen Standardwert, aber mit diesem Befehl können Sie einen festlegen. Der Standardwert wird beim Lesen eines Elements des Arrays *arrayName* zurückgegeben, wenn das Lesen sonst zu einem Fehler führen würde. Beachten Sie, dass sich dadurch das Verhalten der Befehle [append], [dict], [incr] und [lappend] gegenüber nicht vorhandenen Arrayelementen ändern kann.]{version="TIP508"}
 
-    *subcommand* steuert die Operation am Standardwert von *arrayName*. Unterstützte Unterbefehle:
+    Das Argument *subcommand* steuert, welche Operation genau am Standardwert von *arrayName* ausgeführt wird. Die unterstützten *subcommand*s sind:
 
     [array]{.cmd} [default]{.sub} [exists]{.lit} [arrayName]{.arg}
-    : [Gibt einen booleschen Wert zurück, ob ein Standardwert gesetzt ist. Falsch, wenn *arrayName* nicht existiert. Fehler, wenn *arrayName* existiert, aber kein Array ist.]{version="TIP508"}
+    : [Gibt einen booleschen Wert zurück, der angibt, ob für das Array *arrayName* ein Standardwert festgelegt wurde. Gibt einen falschen Wert zurück, wenn *arrayName* nicht existiert. Löst einen Fehler aus, wenn *arrayName* eine vorhandene Variable ist, die kein Array ist.]{version="TIP508"}
 
     [array]{.cmd} [default]{.sub} [get]{.lit} [arrayName]{.arg}
-    : [Gibt den aktuellen Standardwert zurück. Fehler, wenn *arrayName* kein Array ist oder keinen Standardwert hat.]{version="TIP508"}
+    : [Gibt den aktuellen Standardwert des Arrays *arrayName* zurück. Löst einen Fehler aus, wenn *arrayName* eine vorhandene Variable ist, die kein Array ist, oder wenn *arrayName* ein Array ohne Standardwert ist.]{version="TIP508"}
 
     [array]{.cmd} [default]{.sub} [set]{.lit} [arrayName]{.arg} [value]{.arg}
-    : [Setzt den Standardwert auf *value*, Rückgabe leerer String. Fehler bei ungültigem Arraynamen oder wenn *arrayName* keine Array-Variable ist. Existiert *arrayName* nicht, wird ein leeres Array mit Standardwert angelegt.]{version="TIP508"}
+    : [Setzt den Standardwert des Arrays *arrayName* auf *value*. Gibt die leere Zeichenkette zurück. Löst einen Fehler aus, wenn *arrayName* eine vorhandene Variable ist, die kein Array ist, oder wenn *arrayName* kein zulässiger Name für ein Array ist. Existiert *arrayName* noch nicht, wird es als leeres Array angelegt und erhält zugleich den Standardwert.]{version="TIP508"}
 
     [array]{.cmd} [default]{.sub} [unset]{.lit} [arrayName]{.arg}
-    : [Entfernt den Standardwert, Rückgabe leerer String. Ohne Wirkung, wenn kein Standardwert gesetzt ist. Fehler, wenn *arrayName* keine Array-Variable ist.]{version="TIP508"}
+    : [Entfernt den Standardwert des Arrays *arrayName* und gibt die leere Zeichenkette zurück. Hat *arrayName* keinen Standardwert, geschieht nichts. Löst einen Fehler aus, wenn *arrayName* eine vorhandene Variable ist, die kein Array ist.]{version="TIP508"}
 
 
 [array]{.cmd} [donesearch]{.sub} [arrayName]{.arg} [searchId]{.arg}
-: Beendet eine Arraysuche und gibt den zugehörigen Zustand frei. *searchId* stammt von **array startsearch**. Rückgabe leerer String.
+: Dieser Befehl beendet eine Arraysuche und verwirft den gesamten Zustand, der zu dieser Suche gehört. *SearchId* gibt an, welche Suche in *arrayName* verworfen werden soll. Es muss der Rückgabewert eines früheren Aufrufs von **array startsearch** sein. Gibt eine leere Zeichenkette zurück.
 
 [array]{.cmd} [exists]{.sub} [arrayName]{.arg}
-: 1, wenn *arrayName* ein Array ist; 0, wenn die Variable fehlt oder skalar ist.
+: Gibt 1 zurück, wenn *arrayName* eine Array-Variable ist, und 0, wenn es keine Variable dieses Namens gibt oder wenn es eine skalare Variable ist.
 
 [array]{.cmd} [for]{.sub} [{keyVariable valueVariable}]{.arg} [arrayName]{.arg} [body]{.arg}
-: Erstes Argument: zweielementige Liste mit Variablennamen für Schlüssel und Wert jedes Eintrags. Zweites: Arrayname. Drittes: auszuführender Code. Schlüsselreihenfolge undefiniert. Wird während *array for* ein Element gelöscht oder neu eingefügt, bricht der Befehl mit Fehler ab.
+: Das erste Argument ist eine Liste aus zwei Variablennamen für den Schlüssel und den Wert jedes Eintrags im Array. Das zweite Argument ist der Name des Arrays, über das iteriert wird. Das dritte Argument ist der Rumpf, der für jedes zurückgegebene Paar aus Schlüssel und Wert ausgeführt wird. Die Reihenfolge der zurückgegebenen Schlüssel ist undefiniert. Wird während des Durchlaufs von *array for* ein Arrayelement gelöscht oder ein neues eingefügt, bricht der Befehl mit einem Fehler ab.
 
 [array]{.cmd} [get]{.sub} [arrayName]{.arg} [pattern]{.optarg}
-: Liste aus Paaren: ungerade Position = Elementname, gerade = Wert. Paarreihenfolge undefiniert. Ohne *pattern* alle Elemente. Mit *pattern* nur passende Namen ([string match][string]). Kein Array oder leeres Array: leere Liste. Ändern Traces die Elementliste während des Aufrufs, werden nur Elemente zurückgegeben, die vor und nach **array get** existieren.
+: Gibt eine Liste aus Paaren von Elementen zurück. Das erste Element jedes Paars ist der Name eines Elements in *arrayName*, das zweite Element jedes Paars ist der Wert dieses Arrayelements. Die Reihenfolge der Paare ist undefiniert. Ist *pattern* nicht angegeben, sind alle Elemente des Arrays im Ergebnis enthalten. Ist *pattern* angegeben, sind nur die Elemente enthalten, deren Namen auf *pattern* passen (nach den Regeln von [string match][string]). Ist *arrayName* nicht der Name einer Array-Variablen oder enthält das Array keine Elemente, wird eine leere Liste zurückgegeben. Ändern Traces auf dem Array die Liste der Elemente, werden die Elemente zurückgegeben, die sowohl vor als auch nach dem Aufruf von **array get** existieren.
 
 [array]{.cmd} [names]{.sub} [arrayName]{.arg} [mode]{.optarg} [pattern]{.optarg}
-: Liste der Elementnamen, die *pattern* entsprechen. *mode*: **-exact**, **-glob** oder **-regexp** (Standard **-glob**). Siehe [string match][string] und [regexp]. Ohne *pattern* alle Namen. Keine Treffer oder kein Array: leerer String.
+: Gibt eine Liste mit den Namen aller Elemente des Arrays zurück, die auf *pattern* passen. *Mode* kann **-exact**, **-glob** oder **-regexp** sein. Ist *mode* angegeben, legt es fest, nach welchen Regeln *pattern* mit den Namen der Arrayelemente verglichen wird. Ist *mode* nicht angegeben, gilt **-glob**. Informationen zum Mustervergleich im Glob-Stil finden Sie in der Dokumentation zu [string match][string], Informationen zum Vergleich mit regulären Ausdrücken in der Dokumentation zu [regexp]. Wird *pattern* weggelassen, gibt der Befehl alle Elementnamen des Arrays zurück. Enthält das Array keine (passenden) Elemente oder ist *arrayName* nicht der Name einer Array-Variablen, wird eine leere Zeichenkette zurückgegeben.
 
 [array]{.cmd} [nextelement]{.sub} [arrayName]{.arg} [searchId]{.arg}
-: Name des nächsten Elements oder leerer String, wenn die Suche erschöpft ist. *searchId* von **array startsearch**. Warnung: werden Elemente während der Suche hinzugefügt oder gelöscht, werden alle Suchen beendet wie bei **array donesearch**; **array nextelement** schlägt dann für diese Suchen fehl.
+: Gibt den Namen des nächsten Elements in *arrayName* zurück, oder eine leere Zeichenkette, wenn bei dieser Suche bereits alle Elemente von *arrayName* zurückgegeben wurden. Das Argument *searchId* bezeichnet die Suche und muss der Rückgabewert eines **array startsearch**-Befehls sein. Warnung: Werden dem Array Elemente hinzugefügt oder daraus gelöscht, werden alle Suchen automatisch beendet, als wäre **array donesearch** aufgerufen worden. Dadurch schlagen **array nextelement**-Operationen für diese Suchen fehl.
 
 [array]{.cmd} [set]{.sub} [arrayName]{.arg} [list]{.arg}
-: Setzt ein oder mehrere Elemente. *list* wie von **array get**: gerade Anzahl von Elementen, ungerade = Name, folgendes = Wert. Existiert *arrayName* nicht und ist *list* leer, entsteht ein leeres Array.
+: Setzt die Werte eines oder mehrerer Elemente in *arrayName*. *list* muss eine Form haben wie die Rückgabe von **array get**, also aus einer geraden Anzahl von Elementen bestehen. Jedes Element von *list* an ungerader Position wird als Elementname in *arrayName* behandelt, und das darauf folgende Element von *list* wird als neuer Wert dieses Arrayelements verwendet. Existiert die Variable *arrayName* noch nicht und ist *list* leer, wird *arrayName* mit einem leeren Array als Wert angelegt.
 
 [array]{.cmd} [size]{.sub} [arrayName]{.arg}
-: Dezimalstring mit der Elementanzahl. Kein Array: 0.
+: Gibt eine Zeichenkette mit der Anzahl der Elemente im Array als Dezimalzahl zurück. Ist *arrayName* nicht der Name eines Arrays, wird 0 zurückgegeben.
 
 [array]{.cmd} [startsearch]{.sub} [arrayName]{.arg}
-: Startet elementweise Suche; **array nextelement** liefert die Namen. Abschluss mit **array donesearch**. Rückgabe: Such-ID für parallele Suchen im selben Array. Für die meisten Arrays sind **array get** oder **array names** mit [foreach] effizienter (siehe Beispiele).
+: Dieser Befehl beginnt eine Suche Element für Element durch das Array *arrayName*, sodass Aufrufe des Befehls **array nextelement** die Namen der einzelnen Elemente des Arrays zurückgeben. Ist die Suche abgeschlossen, sollte der Befehl **array donesearch** aufgerufen werden. Der Rückgabewert ist ein Suchbezeichner, der in den Befehlen **array nextelement** und **array donesearch** verwendet werden muss. Damit können mehrere Suchen im selben Array gleichzeitig laufen. Derzeit ist es effizienter und einfacher, für das Durchlaufen aller Arrays außer sehr großen entweder **array get** oder **array names** zusammen mit [foreach] zu verwenden. Wie das geht, zeigen die Beispiele unten.
 
 [array]{.cmd} [statistics]{.sub} [arrayName]{.arg}
-: Statistik zur Datenverteilung in der Hashtable des Arrays: Einträge, Buckets, Auslastung.
+: Gibt Statistiken über die Verteilung der Daten in der Hashtabelle zurück, die das Array darstellt. Diese Angaben umfassen die Anzahl der Einträge in der Tabelle, die Anzahl der Buckets und die Auslastung der Buckets.
 
 [array]{.cmd} [unset]{.sub} [arrayName]{.arg} [pattern]{.optarg}
-: Entfernt alle Elemente, deren Namen *pattern* entsprechen ([string match][string]). Kein Array oder keine Treffer: kein Fehler. Ohne *pattern* bei Array-Variable: gesamtes Array löschen. Rückgabe immer leerer String.
+: Entfernt alle Elemente des Arrays, die auf *pattern* passen (nach den Regeln von [string match][string]). Ist *arrayName* nicht der Name einer Array-Variablen oder enthält das Array keine passenden Elemente, wird kein Fehler ausgelöst. Wird *pattern* weggelassen und ist *arrayName* eine Array-Variable, entfernt der Befehl das gesamte Array. Der Befehl gibt immer eine leere Zeichenkette zurück.
 
 
 # Beispiele

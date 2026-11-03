@@ -90,7 +90,7 @@ Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometrie-Mana
     Wenn keine Option **-in**, **-after** oder **-before** angegeben ist, wird jedes Inhaltsfenster am Ende der Packliste seines Eltern-Elements eingefügt, sofern es nicht bereits vom Packer verwaltet wird (dann bleibt es an seiner Position). Wird eine dieser Optionen angegeben, werden alle Inhalte am angegebenen Punkt eingefügt. Sind einige Inhalte bereits vom Geometrie-Manager verwaltet, behalten nicht angegebene Optionen ihre bisherigen Werte statt Standardwerte zu erhalten.
 
 [pack]{.cmd} [content]{.sub} [window]{.arg}
-: Gibt eine Liste aller Inhaltsfenster in der Packreihenfolge für *window* zurück. Die Reihenfolge der Inhaltsfenster in der Liste entspricht ihrer Reihenfolge in der Packreihenfolge. Hat *window* keinen Inhalt, wird ein leerer String zurückgegeben.
+: Gibt eine Liste aller Inhaltsfenster in der Packreihenfolge für *window* zurück. Die Reihenfolge der Inhaltsfenster in der Liste entspricht ihrer Reihenfolge in der Packreihenfolge. Hat *window* keinen Inhalt, wird eine leere Zeichenkette zurückgegeben.
 
 [pack]{.cmd} [forget]{.sub} [window]{.arg} [window]{.optdot}
 : Entfernt jedes der *window* aus der Packreihenfolge seines Containers und entmappt die Fenster. Der Inhalt wird nicht mehr vom Packer verwaltet.
@@ -101,7 +101,7 @@ Der Befehl **pack** dient der Kommunikation mit dem Packer, einem Geometrie-Mana
 : Gibt eine Liste zurück, deren Elemente den aktuellen Konfigurationszustand des durch *window* angegebenen Fensters in derselben Option-Wert-Form enthalten, die auch an **pack configure** übergeben werden könnte. Die ersten beiden Elemente der Liste sind „**-in** *container*“, wobei *container* der Container des Fensters ist.
 
 [pack]{.cmd} [propagate]{.sub} [container]{.arg} [boolean]{.optarg}
-: Hat *boolean* einen wahren booleschen Wert wie **1** oder **on**, ist die Propagation für *container* aktiviert; *container* muss ein Fenstername sein (siehe [Geometrie-Propagation] weiter unten). Hat *boolean* einen falschen booleschen Wert, ist die Propagation für *container* deaktiviert. In beiden Fällen wird ein leerer String zurückgegeben. Wird *boolean* weggelassen, gibt der Befehl **0** oder **1** zurück, je nachdem, ob Propagation für *container* derzeit aktiviert ist. Propagation ist standardmäßig aktiviert.
+: Hat *boolean* einen wahren booleschen Wert wie **1** oder **on**, ist die Propagation für *container* aktiviert; *container* muss ein Fenstername sein (siehe [Geometrie-Propagation] weiter unten). Hat *boolean* einen falschen booleschen Wert, ist die Propagation für *container* deaktiviert. In beiden Fällen wird eine leere Zeichenkette zurückgegeben. Wird *boolean* weggelassen, gibt der Befehl **0** oder **1** zurück, je nachdem, ob Propagation für *container* derzeit aktiviert ist. Propagation ist standardmäßig aktiviert.
 
 [pack]{.cmd} [slaves]{.sub} [window]{.arg}
 : Synonym für **pack content** *window*.

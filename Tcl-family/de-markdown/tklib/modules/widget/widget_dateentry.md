@@ -78,9 +78,9 @@ Dieses Paket stellt ein Dateentry-Megawidget (snidget) bereit. Es basiert auf ei
     Der gleiche Effekt lässt sich auch durch die Einstellung einer verknüpften Option **-textvariable** erzielen.
 
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Beim Erstellen des Widgets dateentry werden die folgenden Bindings eingerichtet. Zur Navigation im Kalender siehe dessen Handbuchseite.
+Beim Erstellen des Widgets dateentry werden die folgenden Bindungen eingerichtet. Zur Navigation im Kalender siehe dessen Handbuchseite.
 
 - Button-1 – Auswahl übernehmen, das Datum auswählen und das Kalenderfenster schließen.
 

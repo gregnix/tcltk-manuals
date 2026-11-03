@@ -1,5 +1,5 @@
 # Das `scrollutil::scrollableframe` und  
- `scrollutil::adaptBtn2EventHandling` BEFEHLE
+ `scrollutil::adaptBtn2EventHandling` Befehle
 
 ## Für Scrollutil Version 2.11
 
@@ -62,7 +62,7 @@ scrollutil::scrollableframe pathName ?options?
 
 : `-yscrollincrement screenDistance`
 
-[Widget COMMAND](#der-befehl-scrollutil-scrollableframe-ausf-hrliche-referenz)
+[WIDGET-BEFEHL](#der-befehl-scrollutil-scrollableframe-ausf-hrliche-referenz)
 : `pathName attrib ?name ?value name value ...??`
 
 : `pathName autofillx ?boolean?`
@@ -243,7 +243,7 @@ Diese Option legt fest, ob das „scrollableframe“-Widget während der Tastatu
 | Name der Datenbank: | ` width` |
 | Datenbankklasse: | ` Width` |
 
-Legt die gewünschte Breite für das „scrollableframe“-Widget in einem der von `Tk_GetPixels` akzeptierten Formate fest.  HINWEIS: Hiermit wird die *innere* Breite festgelegt, ohne den Rahmen und das Hervorhebungsrechteck (falls vorhanden), die um das Widget herum gezeichnet werden. Der Standardwert ist `10c`, der durch einen geeigneten anwendungsspezifischen Wert überschrieben werden sollte.
+Legt die gewünschte Breite für das „scrollableframe“-Widget in einem der von `Tk_GetPixels` akzeptierten Formate fest.  Beachten Sie, dass hiermit die *innere* Breite festgelegt wird, ohne den Rahmen und das Hervorhebungsrechteck (falls vorhanden), die um das Widget herum gezeichnet werden. Der Standardwert ist `10c`, der durch einen geeigneten anwendungsspezifischen Wert überschrieben werden sollte.
 
 
 |   |   |
@@ -277,15 +277,15 @@ pathName option ?arg arg ...?
 : Fragt die Attribute des Widgets ab oder ändert sie.  Wenn kein `name` angegeben ist, gibt der Befehl eine Liste von Paaren zurück, von denen jedes den Namen und den Wert eines Attributs für `pathName` enthält.  Wenn `name` ohne `value` festgelegt wird, gibt der Befehl den Wert des genannten Attributs zurück oder eine leere Zeichenkette, falls kein entsprechender Wert vorhanden ist (mit dem Unterbefehl `hasattrib` können Sie diesen Fall von dem unterscheiden, bei dem der Wert eines *vorhandenen* Attributs eine leere Zeichenkette ist).  Wenn ein oder mehrere Paare aus `name` und `value` angegeben werden, legt der Befehl das/die angegebene(n) Widget-Attribut(e) auf den/die angegebenen Wert(e) fest; in diesem Fall ist der Rückgabewert eine leere Zeichenkette.  Jedes `name` kann eine beliebige Zeichenkette sein.
 
 `pathName autofillx ?boolean?`
-: Prüft oder fragt ab, ob der Inhaltsrahmen die gesamte innere Breite des Widgets ausfüllt.  Wenn das optionale boolesche Argument „true“ ist, setzt der Befehl die Option `-fitcontentwidth` auf „true“, wenn die angeforderte Breite des Inhaltsrahmens kleiner ist als die innere Breite des scrollbaren Rahmens, andernfalls auf „false“.  Außerdem stellt der Befehl sicher, dass diese Aktion wiederholt wird, sobald sich die angeforderte Breite des Inhaltsrahmens oder die Innenbreite des scrollbaren Rahmens ändert.  Wenn das optionale Argument „false“ ist, löscht der Befehl das Flag, das diese dynamische Aktion steuert. In beiden Fällen ist der Rückgabewert eine leere Zeichenkette. Ohne das optionale Argument gibt der Befehl den aktuellen Wert des oben genannten Flags zurück.
+: Steuert oder fragt ab, ob der Inhaltsrahmen die gesamte innere Breite des Widgets ausfüllt.  Wenn das optionale boolesche Argument „true“ ist, setzt der Befehl die Option `-fitcontentwidth` auf „true“, wenn die angeforderte Breite des Inhaltsrahmens kleiner ist als die innere Breite des scrollbaren Rahmens, andernfalls auf „false“.  Außerdem stellt der Befehl sicher, dass diese Aktion wiederholt wird, sobald sich die angeforderte Breite des Inhaltsrahmens oder die Innenbreite des scrollbaren Rahmens ändert.  Wenn das optionale Argument „false“ ist, löscht der Befehl das Flag, das diese dynamische Aktion steuert. In beiden Fällen ist der Rückgabewert eine leere Zeichenkette. Ohne das optionale Argument gibt der Befehl den aktuellen Wert des oben genannten Flags zurück.
 
 `pathName autofilly ?boolean?`
-: Prüft oder fragt ab, ob der Inhaltsrahmen die gesamte innere Höhe des Widgets ausfüllt.  Wenn das optionale boolesche Argument „true“ ist, setzt der Befehl die Option `-fitcontentheight` auf „true“, wenn die angeforderte Höhe des Inhaltsrahmens kleiner ist als die innere Höhe des scrollbaren Rahmens, andernfalls auf „false“.  Außerdem stellt der Befehl sicher, dass diese Aktion immer dann wiederholt wird, wenn sich die angeforderte Höhe des Inhaltsrahmens oder die innere Höhe des scrollbaren Rahmens ändert.  Wenn das optionale Argument „false“ ist, löscht der Befehl das Flag, das diese dynamische Aktion steuert. In beiden Fällen ist der Rückgabewert eine leere Zeichenkette. Ohne das optionale Argument gibt der Befehl den aktuellen Wert des oben genannten Flags zurück.
+: Steuert oder fragt ab, ob der Inhaltsrahmen die gesamte innere Höhe des Widgets ausfüllt.  Wenn das optionale boolesche Argument „true“ ist, setzt der Befehl die Option `-fitcontentheight` auf „true“, wenn die angeforderte Höhe des Inhaltsrahmens kleiner ist als die innere Höhe des scrollbaren Rahmens, andernfalls auf „false“.  Außerdem stellt der Befehl sicher, dass diese Aktion immer dann wiederholt wird, wenn sich die angeforderte Höhe des Inhaltsrahmens oder die innere Höhe des scrollbaren Rahmens ändert.  Wenn das optionale Argument „false“ ist, löscht der Befehl das Flag, das diese dynamische Aktion steuert. In beiden Fällen ist der Rückgabewert eine leere Zeichenkette. Ohne das optionale Argument gibt der Befehl den aktuellen Wert des oben genannten Flags zurück.
 
 `pathName autosize ?dimensions?`
-: Dieser Befehl setzt die Option `-width` und/oder `-height` des scrollableframe auf die gewünschte Breite und/oder Höhe seines Inhaltsrahmens, entsprechend dem optionalen Argument `dimensions`, dessen mögliche Werte `w` (Breite), `h` (Höhe) und `wh` (Breite / Höhe).  Der Standardwert ist eine leere Zeichenkette, was bedeutet, dass weder die Breite noch die Höhe *explizit* festgelegt werden soll.  Beachten Sie, dass der Befehl, wenn der Wert der Option `-fitcontentwidth` „true“ ist, die innere Breite des Widgets auf die angeforderte Breite seines Inhaltsrahmens setzt, unabhängig davon, ob diese *explizit* angegeben wurde oder nicht.  Ebenso setzt der Befehl, wenn der Wert der Option `-fitcontentheight` „true“ ist, die innere Höhe des Widgets auf die angeforderte Höhe seines Inhaltsrahmens, auch wenn diese nicht *explizit* angegeben wurde.
+: Dieser Befehl setzt die Option `-width` und/oder `-height` des scrollableframe auf die gewünschte Breite und/oder Höhe seines Inhaltsrahmens, entsprechend dem optionalen Argument `dimensions`, dessen mögliche Werte `w` (Breite), `h` (Höhe) und `wh` (Breite und Höhe) sind.  Der Standardwert ist eine leere Zeichenkette, was bedeutet, dass weder die Breite noch die Höhe *explizit* festgelegt werden soll.  Beachten Sie, dass der Befehl, wenn der Wert der Option `-fitcontentwidth` „true“ ist, die innere Breite des Widgets auf die angeforderte Breite seines Inhaltsrahmens setzt, unabhängig davon, ob diese *explizit* angegeben wurde oder nicht.  Ebenso setzt der Befehl, wenn der Wert der Option `-fitcontentheight` „true“ ist, die innere Höhe des Widgets auf die angeforderte Höhe seines Inhaltsrahmens, auch wenn diese nicht *explizit* angegeben wurde.
 
-: **HINWEIS:**  Das Festlegen der inneren Breite und/oder Höhe des Widgets im Rahmen dieses Unterbefehls wird als  `"after 100"`  -Callback ausgeführt, um sicherzustellen, dass die Berechnungen zur Geometrieverwaltung im Inhaltsrahmen des Widgets abgeschlossen sind, bevor dessen Breite und/oder Höhe festgelegt werden.
+: **HINWEIS:**  Das Festlegen der inneren Breite und/oder Höhe des Widgets im Rahmen dieses Unterbefehls wird als  `"after 100"`-Rückruffunktion ausgeführt, um sicherzustellen, dass die Berechnungen zur Geometrieverwaltung im Inhaltsrahmen des Widgets abgeschlossen sind, bevor dessen Breite und/oder Höhe festgelegt werden.
 
 `pathName cget option`
 : Gibt den aktuellen Wert der durch `option` angegebenen Konfigurationsoption zurück, die einen beliebigen der vom Befehl `scrollutil::scrollableframe` akzeptierten Werte annehmen kann.
@@ -314,23 +314,23 @@ pathName option ?arg arg ...?
 
 
 `pathName scan mark x y`
-: Speichert die Datensätze `x` und `y` sowie die aktuelle Ansicht im ScrollableFrame-Fenster; wird in Verbindung mit den nachfolgenden Befehlen `scan dragto` verwendet.  In der Regel ist dieser Befehl mit einem Mausklick im Widget verknüpft, wobei `x` und `y` die Koordinaten der Maus darstellen. Er gibt eine leere Zeichenkette zurück.
+: Speichert `x` und `y` sowie die aktuelle Ansicht im ScrollableFrame-Fenster; wird in Verbindung mit den nachfolgenden Befehlen `scan dragto` verwendet.  In der Regel ist dieser Befehl mit einem Mausklick im Widget verknüpft, wobei `x` und `y` die Koordinaten der Maus darstellen. Er gibt eine leere Zeichenkette zurück.
 
 `pathName scan dragto x y ?gain?`
 : Dieser Befehl berechnet die Differenz zwischen seinen Argumenten `x` und `y` (bei denen es sich in der Regel um Mauskoordinaten handelt) und den Argumenten `x` und `y` des letzten  `scan mark`-Befehls für das Widget.  Anschließend passt er die Ansicht um das `gain`-fache der Differenz der Koordinaten an, wobei `gain` standardmäßig auf `10` gesetzt ist, außer auf Android, wo der Standardwert `2` ist, da dieser Wert besser zur Emulation von Ereignissen der Maustaste 2 mit Ein-Finger-Gesten geeignet ist.  Dieser Befehl wird typischerweise mit Mausbewegungsereignissen im Widget verknüpft, um den Effekt zu erzeugen, dass der Inhaltsrahmen mit hoher Geschwindigkeit durch das Fenster gezogen wird. Der Rückgabewert ist eine leere Zeichenkette.
 
 
 `pathName see widget ?corner?`
-: Dieser Befehl passt die Ansicht im Fenster des ScrollableFrame so an, dass `widget` darin sichtbar wird. Das angegebene Widget muss ein Nachkomme des Inhaltsrahmen sein und dieselbe Toplevel-Fenster-Ebene haben. Außerdem muss es von einem Geometriemanager verwaltet werden (wie beispielsweise `grid`, `pack`, `place`, `text` oder `canvas`) verwaltet werden.  Das optionale Argument `corner` legt fest, welche Ecke von `widget` sichtbar werden soll, wenn es zu groß ist, um in das Fenster zu passen. Mögliche Werte sind `nw` (Nordwesten), `ne` (Nordosten), `sw` (Südwesten) und `se` (Südosten).  Die Standardecke ist `nw`.
+: Dieser Befehl passt die Ansicht im Fenster des ScrollableFrame so an, dass `widget` darin sichtbar wird. Das angegebene Widget muss ein Nachkomme des Inhaltsrahmens sein und dieselbe Toplevel-Fenster-Ebene haben. Außerdem muss es von einem Geometriemanager verwaltet werden (wie beispielsweise `grid`, `pack`, `place`, `text` oder `canvas`).  Das optionale Argument `corner` legt fest, welche Ecke von `widget` sichtbar werden soll, wenn es zu groß ist, um in das Fenster zu passen. Mögliche Werte sind `nw` (Nordwesten), `ne` (Nordosten), `sw` (Südwesten) und `se` (Südosten).  Die Standardecke ist `nw`.
 
-: **HINWEIS:**  Mit diesem Unterbefehl können Sie die Tastaturnavigation im Inhaltsrahmen benutzerfreundlicher gestalten, wie im folgenden Beispiel, in dem `$w` ein untergeordneter Element des Inhaltsrahmens des ScrollableFrame-Widgets `$sf` ist (es wird davon ausgegangen, dass `$sf` keine Zeichen von `%` enthält):
+: **HINWEIS:**  Mit diesem Unterbefehl können Sie die Tastaturnavigation im Inhaltsrahmen benutzerfreundlicher gestalten, wie im folgenden Beispiel, in dem `$w` ein untergeordnetes Element des Inhaltsrahmens des ScrollableFrame-Widgets `$sf` ist (es wird davon ausgegangen, dass `$sf` keine Zeichen von `%` enthält):
 
 
 ```
 bind $w <<TraverseIn>> [list $sf see %W]
 ```
 
-: Wenn das Widget `$w` über dessen Unterbefehl `setwidget` in einen [scrollarea](scrollarea.md) eingebettet wurde und der Scrollbereich wiederum ein Nachkomme des Inhaltsrahmens ist, dann ist es benutzerfreundlicher, den Scrollbereich in den sichtbaren Bereich zu bringen, anstatt nur das Widget:
+: Wenn das Widget `$w` über den Unterbefehl `setwidget` des Scrollbereichs in einen [scrollarea](scrollarea.md) eingebettet wurde und der Scrollbereich wiederum ein Nachkomme des Inhaltsrahmens ist, dann ist es benutzerfreundlicher, den Scrollbereich in den sichtbaren Bereich zu bringen, anstatt nur das Widget:
 
 
 ```
@@ -340,20 +340,20 @@ proc seeScrollarea {sf w} { $sf see [scrollutil::getscrollarea $w] }
 ```
 
 `pathName seerect x1 y1 x2 y2 ?corner?`
-: Dieser Befehl passt die Ansicht im Fenster des ScrollableFrame so an, dass das durch `x1`, `y1`, `x2` und `y2` darin sichtbar werden.  Diese Koordinaten beziehen sich auf den Inhaltsrahmen und legen zwei diagonal gegenüberliegende Ecken des Rechtecks fest (das seine obere und linke Kante, nicht jedoch seine untere oder rechte Kante umfasst).  Das optionale Argument `corner` legt fest, welche Ecke des Rechtecks sichtbar werden soll, wenn es zu groß ist, um in das Fenster zu passen. Die möglichen Werte sind `nw` (Nordwesten), `ne` (Nordosten), `sw` (Südwesten) und `se` (Südosten).  Die Standardecke ist `nw`.
+: Dieser Befehl passt die Ansicht im Fenster des ScrollableFrame so an, dass das durch `x1`, `y1`, `x2` und `y2` angegebene Rechteck darin sichtbar wird.  Diese Koordinaten beziehen sich auf den Inhaltsrahmen und legen zwei diagonal gegenüberliegende Ecken des Rechtecks fest (das seine obere und linke Kante, nicht jedoch seine untere oder rechte Kante umfasst).  Das optionale Argument `corner` legt fest, welche Ecke des Rechtecks sichtbar werden soll, wenn es zu groß ist, um in das Fenster zu passen. Die möglichen Werte sind `nw` (Nordwesten), `ne` (Nordosten), `sw` (Südwesten) und `se` (Südosten).  Die Standardecke ist `nw`.
 
 `pathName unsetattrib name`
-: Hebt das Attribut `name` auf. Gibt eine leere Zeichenfolge zurück.
+: Hebt das Attribut `name` auf. Gibt eine leere Zeichenkette zurück.
 
 `pathName xview ?args?`
 : Dieser Befehl dient dazu, die horizontale Position der im Fenster des Widgets angezeigten Informationen abzufragen und zu ändern. Er kann eine der folgenden Formen annehmen:
 
 
 `pathName xview`
-: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen `0` und `1`; zusammen beschreiben sie den horizontalen Bereich, der im Fenster sichtbar ist.  Wenn beispielsweise das erste Element `0.2` und das zweite Element `0.6` ist, liegen 20 % des Inhaltsrahmens links außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar, und 40 % des Inhaltsrahmens befinden sich rechts außerhalb des Bildschirms.  Dies sind dieselben Werte, die über die Option `-xscrollcommand` an die Bildlaufleisten übergeben werden.
+: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen `0` und `1`; zusammen beschreiben sie den horizontalen Bereich, der im Fenster sichtbar ist.  Wenn beispielsweise das erste Element `0.2` und das zweite Element `0.6` ist, liegen 20 % des Inhaltsrahmens links außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar, und 40 % des Inhaltsrahmens befinden sich rechts außerhalb des Bildschirms.  Dies sind dieselben Werte, die über die Option `-xscrollcommand` an die Scrollbars übergeben werden.
 
 `pathName xview units`
-: Passt die Ansicht im Fenster so an, dass die durch `units` angegebene Position des Inhaltsrahmens am linken Rand des Fensters angezeigt wird.  Dieses Argument legt die Anzahl der Einheiten der Option `xScrollIncrement` fest, wenn der Wert größer als Null ist; andernfalls entspricht es einem Zehntel der inneren Breite des Fensters.
+: Passt die Ansicht im Fenster so an, dass die durch `units` angegebene Position des Inhaltsrahmens am linken Rand des Fensters angezeigt wird.  Dieses Argument legt die Anzahl der Einheiten der Option `xScrollIncrement` fest, wenn der Wert größer als Null ist; andernfalls in Einheiten von einem Zehntel der inneren Breite des Fensters.
 
 `pathName xview moveto fraction`
 : Passt die Ansicht im Fenster so an, dass `fraction` der Gesamtbreite des Inhaltsrahmens links außerhalb des Bildschirms liegt.  `fraction` muss ein Bruchwert zwischen `0` und `1` sein.
@@ -367,10 +367,10 @@ proc seeScrollarea {sf w} { $sf see [scrollutil::getscrollarea $w] }
 
 
 `pathName yview`
-: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen `0` und `1`; zusammen beschreiben sie den vertikalen Bereich, der im Fenster sichtbar ist.  Wenn beispielsweise das erste Element `0.2` und das zweite Element `0.6` ist, liegen 20 % des Inhaltsrahmens oben außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar, und 40 % des Inhaltsrahmens liegen am unteren Rand außerhalb des Bildschirms.  Dies sind dieselben Werte, die über die Option `-yscrollcommand` an die Bildlaufleisten übergeben werden.
+: Gibt eine Liste mit zwei Elementen zurück. Jedes Element ist ein reeller Bruch zwischen `0` und `1`; zusammen beschreiben sie den vertikalen Bereich, der im Fenster sichtbar ist.  Wenn beispielsweise das erste Element `0.2` und das zweite Element `0.6` ist, liegen 20 % des Inhaltsrahmens oben außerhalb des Bildschirms, die mittleren 40 % sind im Fenster sichtbar, und 40 % des Inhaltsrahmens liegen am unteren Rand außerhalb des Bildschirms.  Dies sind dieselben Werte, die über die Option `-yscrollcommand` an die Scrollbars übergeben werden.
 
 `pathName yview units`
-: Passt die Ansicht im Fenster so an, dass die durch `units` angegebene Position des Inhaltsrahmens am oberen Rand des Fensters angezeigt wird.  Dieses Argument legt eine Anzahl von Einheiten der Option `yScrollIncrement` fest, wenn diese größer als Null ist; andernfalls legt es ein Zehntel der inneren Höhe des Fensters fest.
+: Passt die Ansicht im Fenster so an, dass die durch `units` angegebene Position des Inhaltsrahmens am oberen Rand des Fensters angezeigt wird.  Dieses Argument legt eine Anzahl von Einheiten der Option `yScrollIncrement` fest, wenn diese größer als Null ist; andernfalls in Einheiten von einem Zehntel der inneren Höhe des Fensters.
 
 `pathName yview moveto fraction`
 : Passt die Ansicht im Fenster so an, dass `fraction` der Gesamthöhe des Inhaltsrahmens oben außerhalb des Bildschirms liegt.  `fraction` muss ein Bruch zwischen `0` und `1` sein.
@@ -381,9 +381,9 @@ proc seeScrollarea {sf w} { $sf see [scrollutil::getscrollarea $w] }
 
 
 **VORGABEBINDUNGEN**
-: Mausknopf 2 kann zum Scrollen verwendet werden.  Wenn er gedrückt und über einen freien Bereich des „scrollableframe“-Fensters gezogen wird, bewegt sich der Rahmen des Inhalts mit hoher Geschwindigkeit in die Richtung, in die die Maus bewegt wird.  Das Gleiche geschieht, wenn auf ein untergeordnetes Element geklickt wurde, das entweder keine Bindungen für Ereignisse der Maustaste 2 hat oder an den Befehl `scrollutil::adaptBtn2EventHandling` übergeben wurde, und sich der Fokus außerhalb des Fensters `[focusCheckWindow descendant]` befindet.
+: Maustaste 2 kann zum Scannen verwendet werden.  Wenn er gedrückt und über einen freien Bereich des „scrollableframe“-Fensters gezogen wird, bewegt sich der Rahmen des Inhalts mit hoher Geschwindigkeit in die Richtung, in die die Maus bewegt wird.  Das Gleiche geschieht, wenn auf ein untergeordnetes Element geklickt wurde, das entweder keine Bindungen für Ereignisse der Maustaste 2 hat oder an den Befehl `scrollutil::adaptBtn2EventHandling` übergeben wurde, und sich der Fokus außerhalb des Fensters `[focusCheckWindow descendant]` befindet.
 
-: **HINWEIS:**  Unter Android bedeutet die Unterstützung für das Scannen mit der rechten Maustaste, dass das Scannen auch über Ein-Finger-Gesten möglich ist, da schnelle Wischbewegungen mit einem Finger von AndroWish in die Ereignisse `<Button-2>`, `<B2-Motion>` und `<ButtonRelease-2>` als Ereignisse umgewandelt.
+: **HINWEIS:**  Unter Android bedeutet die Unterstützung für das Scannen mit Maustaste 2, dass das Scannen auch über Ein-Finger-Gesten möglich ist, da schnelle Wischbewegungen mit einem Finger von AndroWish in die Ereignisse `<Button-2>`, `<B2-Motion>` und `<ButtonRelease-2>` umgewandelt werden.
 
 **SCHLÜSSELWÖRTER**
 : scrollableframe, widget, frame, scrollable
@@ -412,17 +412,17 @@ scrollutil::adaptBtn2EventHandling ?widget widget ...?
   -  Wenn `widget` der Pfadname eines [tablelist](https://www.nemethi.de/tablelist/)-Widgets ist, setzt dieser Befehl dessen Option `-button2window` auf den Pfadnamen des Toplevel-Fensters, vorausgesetzt, die Tablelist-Version ist 7.6 oder höher (bei früheren Tablelist-Versionen ignoriert der Befehl stillschweigend jedes Tablelist-Widget, das ihm als Argument übergeben wird).  Infolgedessen wird ein an den Hauptbereich oder das Bearbeitungsfenster der Tablelist gesendetes Ereignis vom Typ `<Button-2>`, `<B2-Motion>` oder `<ButtonRelease-2>` (genauer gesagt: ein Ereignis der Maustaste 2, das an eine beliebige Komponente der Tablelist gesendet wird, die das Tag `TablelistBody` oder `TablelistEdit` trägt), wie folgt behandelt:  
   -  Andernfalls wird das (erste) Bindungs-Tag gesucht, das Ereignisbindungen für Maustaste 2 enthält und sich sowohl vom Pfadnamen des Toplevel-Fensters als auch von `all` unterscheidet.  Wenn die Suche nach diesem Tag erfolgreich ist, ändert der Befehl die Liste der Bindungs-Tags des Widgets, indem er diesem Bindungs-Tag das Tag `Btn2EventRedir` voranstellt und das Tag `Btn2EventBreak` anhängt.  Infolgedessen wird ein an dieses Widget gesendetes Ereignis vom Typ `<Button-2>`, `<B2-Motion>` oder `<ButtonRelease-2>` wie folgt behandelt:  
 
-    - Wenn der Fokus innerhalb des „tablelist“-Widgets liegt, löst das Ereignis eine Überprüfung des Inhalts der „tablelist“ oder ihres Bearbeitungsfensters aus, und es erfolgt keine weitere Verarbeitung des Ereignisses.
-    - Wenn der Fokus außerhalb des „tablelist“-Widgets liegt, findet kein Scanvorgang innerhalb des Hauptbereichs oder des Bearbeitungsfensters der „tablelist“ statt. Stattdessen wird das Ereignis über `event generate` an das übergeordnete Toplevel-Fenster weitergeleitet.  Dies löst wiederum eine Überprüfung des Inhalts des (innersten) „scrollableframe“-Widgets aus, das ein Vorfahr von `widget` ist und das gleiche Toplevel-Fenster hat (sofern ein solches „scrollableframe“-Widget vorhanden ist).
+    - Wenn der Fokus innerhalb des „tablelist“-Widgets liegt, löst das Ereignis ein Scannen des Inhalts der „tablelist“ oder ihres Bearbeitungsfensters aus, und es erfolgt keine weitere Verarbeitung des Ereignisses.
+    - Wenn der Fokus außerhalb des „tablelist“-Widgets liegt, findet kein Scanvorgang innerhalb des Hauptbereichs oder des Bearbeitungsfensters der „tablelist“ statt. Stattdessen wird das Ereignis über `event generate` an das übergeordnete Toplevel-Fenster weitergeleitet.  Dies löst wiederum ein Scannen des Inhalts des (innersten) „scrollableframe“-Widgets aus, das ein Vorfahr von `widget` ist und das gleiche Toplevel-Fenster hat (sofern ein solches „scrollableframe“-Widget vorhanden ist).
 
     - Wenn der Fokus auf oder innerhalb des Fensters  `[focusCheckWindow widget]` ist, wird das Ereignis durch das diesem Tag zugeordnete Skript der Bindung verarbeitet, und es erfolgt keine weitere Verarbeitung des Ereignisses.
-    - Wenn der Fokus außerhalb des Fensters  `[focusCheckWindow widget]` ist, wird das Ereignis über  `event generate` an das Toplevel-Fenster weitergeleitet, anstatt vom Skript der Bindung verarbeitet zu werden, das dem oben genannten Tag zugeordnet ist.  Dies löst wiederum eine Überprüfung des Inhalts des (innersten) „scrollableframe“-Widgets aus, das ein Vorfahr von `widget` ist und das gleiche Toplevel-Fenster hat (wenn ein solches „scrollableframe“-Widget vorhanden ist).
+    - Wenn der Fokus außerhalb des Fensters  `[focusCheckWindow widget]` ist, wird das Ereignis über  `event generate` an das Toplevel-Fenster weitergeleitet, anstatt vom Skript der Bindung verarbeitet zu werden, das dem oben genannten Tag zugeordnet ist.  Dies löst wiederum ein Scannen des Inhalts des (innersten) „scrollableframe“-Widgets aus, das ein Vorfahr von `widget` ist und das gleiche Toplevel-Fenster hat (wenn ein solches „scrollableframe“-Widget vorhanden ist).
 
-: **ANMERKUNG 1:** Dieser Befehl ist dafür vorgesehen, für Widgets aufgerufen zu werden, die Bindungen für Ereignisse der Maustaste 2 haben und Nachkommen eines scrollableframe sind. Die Tk- und Tile-Widgets, die Klassenbindungen für Ereignisse der Maustaste 2 haben, sind: Tk-Core-Entry, ttk::entry, ttk::combobox, listbox, PanedWindow, Tk-Core-Scale, ttk::scale, Tk-Core-Spinbox, ttk::spinbox, Tk-Core-Scrollbar, ttk::scrollbar und Text.  Beispiele für Widgets mit anderen Bindungs-Tags als ihren Namen der Klasse, die Ereignisse für die rechte Maustaste aufweisen, sind ctext- und tablelist-Widgets.  (Im Fall eines ctext-Widgets `w` beziehen sich die in der obigen BESCHREIBUNG genannten Bindungs-Tags auf das untergeordnete Haupttext-Widget des Widgets `w.t` und nicht auf das Widget selbst.)
+: **HINWEIS 1:** Dieser Befehl ist dafür vorgesehen, für Widgets aufgerufen zu werden, die Bindungen für Ereignisse der Maustaste 2 haben und Nachkommen eines scrollableframe sind. Die Tk- und Tile-Widgets, die Klassenbindungen für Ereignisse der Maustaste 2 haben, sind: Tk-Core-Entry, ttk::entry, ttk::combobox, listbox, PanedWindow, Tk-Core-Scale, ttk::scale, Tk-Core-Spinbox, ttk::spinbox, Tk-Core-Scrollbar, ttk::scrollbar und Text.  Beispiele für Widgets mit anderen Bindungs-Tags als ihren Namen der Klasse, die Bindungen für Ereignisse der Maustaste 2 aufweisen, sind ctext- und tablelist-Widgets.  (Im Fall eines ctext-Widgets `w` beziehen sich die in der obigen BESCHREIBUNG genannten Bindungs-Tags auf das untergeordnete Haupttext-Widget des Widgets `w.t` und nicht auf das Widget selbst.)
 
-: **ANMERKUNG 2:**  Wie oben erwähnt, verfügen die Tk-Core-Scrollbar- und ttk::scrollbar-Widgets über Klassenbindungen für Ereignisse der Maustaste 2; daher sollte dieser Befehl für sie aufgerufen werden, falls sie Nachkommen eines ScrollableFrame-Widgets sind.  Da diese Aufgabe mühsam werden kann, sorgt Scrollutil dafür, dass, wenn Sie diesem Befehl ein Widget übergeben und dieses Widget in ein [scrollarea](scrollarea.md) über dessen Unterbefehl `setwidget` eingebettet ist, wird dieser Befehl automatisch auch für die Bildlaufleisten dieses scrollarea aufgerufen.
+: **HINWEIS 2:**  Wie oben erwähnt, verfügen die Tk-Core-Scrollbar- und ttk::scrollbar-Widgets über Klassenbindungen für Ereignisse der Maustaste 2; daher sollte dieser Befehl für sie aufgerufen werden, falls sie Nachkommen eines ScrollableFrame-Widgets sind.  Da diese Aufgabe mühsam werden kann, sorgt Scrollutil dafür, dass, wenn Sie diesem Befehl ein Widget übergeben und dieses Widget in ein [scrollarea](scrollarea.md) über dessen Unterbefehl `setwidget` eingebettet ist, dieser Befehl automatisch auch für die Scrollbars dieses scrollarea aufgerufen wird.
 
-: **ANMERKUNG 3:**  Bei der Verarbeitung eines Mausklick-2-Ereignisses, das an eine Tk-Core- oder Tile-Bildlaufleiste gesendet wird, deren Pfadname an diesen Befehl übergeben wurde, wird das Ereignis von der Bildlaufleiste verarbeitet, anstatt an das übergeordnete Toplevel-Fenster weitergeleitet zu werden, sofern sich der Fokus auf oder innerhalb des zugehörigen Widgets befindet – genau so, als befände sich der Fokus auf der Bildlaufleiste selbst.
+: **HINWEIS 3:**  Bei der Verarbeitung eines Ereignisses der Maustaste 2, das an eine Tk-Core- oder Tile-Scrollbar gesendet wird, deren Pfadname an diesen Befehl übergeben wurde, wird das Ereignis von der Scrollbar verarbeitet, anstatt an das übergeordnete Toplevel-Fenster weitergeleitet zu werden, sofern sich der Fokus auf oder innerhalb des zugehörigen Widgets befindet – genau so, als befände sich der Fokus auf der Scrollbar selbst.
 
 **SCHLÜSSELWÖRTER**
 : mouse button 2 event, binding, event handling, scanning, scrollableframe, focus
@@ -434,7 +434,7 @@ scrollutil::adaptBtn2EventHandling ?widget widget ...?
 
 ## Vergleich mit BWidget ScrollableFrame und iwidgets::scrolledframe
 
-Das Widget „scrollutil::scrollableframe“ wurde als schlanker, an das jeweilige Thema anpassbarer und voll ausgestatteter Ersatz für „BWidget ScrollableFrame“ und „iwidgets::scrolledframe“ entwickelt. Die folgende Tabelle enthält einen Vergleich der Optionen und Befehle, die von den drei Widgets bereitgestellt werden:
+Das Widget „scrollutil::scrollableframe“ wurde als schlanker, an das jeweilige Theme anpassbarer und voll ausgestatteter Ersatz für „BWidget ScrollableFrame“ und „iwidgets::scrolledframe“ entwickelt. Die folgende Tabelle enthält einen Vergleich der Optionen und Befehle, die von den drei Widgets bereitgestellt werden:
 
 | scrollutil::scrollableframe | BWidget ScrollableFrame | iwidgets::scrolledframe |
 | --- | --- | --- |
@@ -445,13 +445,13 @@ Das Widget „scrollutil::scrollableframe“ wurde als schlanker, an das jeweili
 | `-contentwidth` | `-areawidth` | `[pathName component canvas] \ itemconfigure frameTag -width ...` |
 | `-fitcontentheight` | `-constrainedheight` | `bind [pathName component canvas] <Configure> \ { %W itemconfigure frameTag -height %h }` |
 | `-fitcontentwidth` | `-constrainedwidth` | `bind [pathName component canvas] <Configure> \ { %W itemconfigure frameTag -width %w }` |
-| `-height`  (legt die *innere* Höhe fest, ohne den Rahmen und das Hervorhebungsrechteck, falls vorhanden) | `-height`  (Innenhöhe = Gesamthöhe) | `-height`  (legt die *Gesamthöhe* fest, einschließlich    des Rahmens und der horizontalen Bildlaufleiste, falls vorhanden) |
+| `-height`  (legt die *innere* Höhe fest, ohne den Rahmen und das Hervorhebungsrechteck, falls vorhanden) | `-height`  (Innenhöhe = Gesamthöhe) | `-height`  (legt die *Gesamthöhe* fest, einschließlich    des Rahmens und der horizontalen Scrollbar, falls vorhanden) |
 | `-highlightbackground` |  |  |
 | `-highlightcolor` |  |  |
 | `-highlightthickness` |  |  |
 | `-relief` |  | `-relief` |
 | `-takefocus` |  |  |
-| `-width`  (legt die *innere* Breite fest, ohne den Rahmen und das Hervorhebungsrechteck, wenn sie vorhanden sind) | `-width`  (Innenbreite = Gesamtbreite) | `-width`  (legt die *Gesamtbreite* fest, einschließlich    des Rahmens und der vertikalen Bildlaufleiste, wenn vorhanden) |
+| `-width`  (legt die *innere* Breite fest, ohne den Rahmen und das Hervorhebungsrechteck, wenn sie vorhanden sind) | `-width`  (Innenbreite = Gesamtbreite) | `-width`  (legt die *Gesamtbreite* fest, einschließlich    des Rahmens und der vertikalen Scrollbar, wenn vorhanden) |
 | `-xscrollcommand` | `-xscrollcommand` |  |
 | `-xscrollincrement` | `-xscrollincrement` | `-xscrollincrement` für `[pathName component canvas]` |
 | `-yscrollcommand` | `-yscrollcommand` |  |
@@ -476,8 +476,8 @@ Das Widget „scrollutil::scrollableframe“ wurde als schlanker, an das jeweili
 | `xview\|yview units` |  |  |
 | `xview\|yview moveto 0\|1` | `xview\|yview moveto 0\|1` | `justify left\|right\|top\|bottom`    (Kurzbezeichnung für  `xview\|yview moveto 0\|1`) |
 
-**ANMERKUNG 1:** Beim Befehl `see` des BWidget-Widgets „ScrollableFrame“ kann die horizontale Seite nicht ohne Angabe der vertikalen Seite festgelegt werden.  Noch ärgerlicher ist jedoch, dass bei einem positiven Wert für `-xscrollincrement` oder `-yscrollincrement` Widgets, die klein genug sind, um in das Fenster zu passen, häufig nur teilweise sichtbar sind.  Zudem funktioniert der Befehl nur für direkte untergeordnete Elemente des Inhaltsrahmens des ScrollableFrame-Widgets.
+**HINWEIS 1:** Beim Befehl `see` des BWidget-Widgets „ScrollableFrame“ kann die horizontale Seite nicht ohne Angabe der vertikalen Seite festgelegt werden.  Noch ärgerlicher ist jedoch, dass bei einem positiven Wert für `-xscrollincrement` oder `-yscrollincrement` Widgets, die klein genug sind, um in das Fenster zu passen, häufig nur teilweise sichtbar sind.  Zudem funktioniert der Befehl nur für direkte untergeordnete Elemente des Inhaltsrahmens des ScrollableFrame-Widgets.
 
-**ANMERKUNG 2:**  Das Widget iwidgets::scrolledframe verfügt über keine Entsprechungen zu den Optionen scrollutil::scrollableframe, `-contentheight`, `-contentwidth`, `-fitcontentheight` und `-fitcontentwidth`, diese lassen sich jedoch (unter Verwendung undokumentierter interner Informationen!) wie oben gezeigt nachbilden.  Es bietet einen Befehl `justify`, der jedoch lediglich eine Abkürzung für `xview|yview moveto 0|1` ist.  Was diesem Widget wirklich fehlt, ist ein Befehl `see`, um einzelne Widgets im Fenster sichtbar zu machen (was für eine benutzerfreundliche Tastaturnavigation wichtig ist).
+**HINWEIS 2:**  Das Widget iwidgets::scrolledframe verfügt über keine Entsprechungen zu den scrollutil::scrollableframe-Optionen `-contentheight`, `-contentwidth`, `-fitcontentheight` und `-fitcontentwidth`, diese lassen sich jedoch (unter Verwendung undokumentierter interner Informationen!) wie oben gezeigt nachbilden.  Es bietet einen Befehl `justify`, der jedoch lediglich eine Abkürzung für `xview|yview moveto 0|1` ist.  Was diesem Widget wirklich fehlt, ist ein Befehl `see`, um einzelne Widgets im Fenster sichtbar zu machen (was für eine benutzerfreundliche Tastaturnavigation wichtig ist).
 
 [Inhalt](#inhalt)     [Startseite](index.md)

@@ -80,7 +80,7 @@ Das optionale Argument *-mode* gibt an, mit welcher Registrierung gearbeitet wer
 
 # Unterstützte Typen
 
-Jeder Wert unter einem Schlüssel in der Registrierung enthält Daten eines bestimmten Typs in einer typspezifischen Darstellung. Der Befehl **registry** konvertiert zwischen dieser internen Darstellung und einer, die von Tcl-Skripten manipuliert werden kann. In den meisten Fällen werden die Daten einfach als Tcl-String zurückgegeben. Der Typ gibt die beabsichtigte Verwendung der Daten an, ändert aber nicht die Darstellung selbst. Für einige Typen gibt der Befehl **registry** die Daten in einer anderen Form zurück, um die Manipulation zu erleichtern. Die folgenden Typen werden vom Befehl **registry** erkannt:
+Jeder Wert unter einem Schlüssel in der Registrierung enthält Daten eines bestimmten Typs in einer typspezifischen Darstellung. Der Befehl **registry** konvertiert zwischen dieser internen Darstellung und einer, die von Tcl-Skripten manipuliert werden kann. In den meisten Fällen werden die Daten einfach als Tcl-Zeichenkette zurückgegeben. Der Typ gibt die beabsichtigte Verwendung der Daten an, ändert aber nicht die Darstellung selbst. Für einige Typen gibt der Befehl **registry** die Daten in einer anderen Form zurück, um die Manipulation zu erleichtern. Die folgenden Typen werden vom Befehl **registry** erkannt:
 
 [binary]
 : Der Registrierungswert enthält beliebige Binärdaten. Die Daten werden in Tcl exakt dargestellt, einschließlich eingebetteter Nullen.
@@ -89,10 +89,10 @@ Jeder Wert unter einem Schlüssel in der Registrierung enthält Daten eines best
 : Der Registrierungswert enthält beliebige Binärdaten ohne definierten Typ. Die Daten werden in Tcl exakt dargestellt, einschließlich eingebetteter Nullen.
 
 **sz**
-: Der Registrierungswert enthält eine nullterminierte Zeichenkette. Die Daten werden in Tcl als String dargestellt.
+: Der Registrierungswert enthält eine nullterminierte Zeichenkette. Die Daten werden in Tcl als Zeichenkette dargestellt.
 
 **expand\_sz**
-: Der Registrierungswert enthält eine nullterminierte Zeichenkette mit nicht expandierten Verweisen auf Umgebungsvariablen im üblichen Windows-Stil (zum Beispiel „%PATH%“). Die Daten werden in Tcl als String dargestellt.
+: Der Registrierungswert enthält eine nullterminierte Zeichenkette mit nicht expandierten Verweisen auf Umgebungsvariablen im üblichen Windows-Stil (zum Beispiel „%PATH%“). Die Daten werden in Tcl als Zeichenkette dargestellt.
 
 **dword**
 : Der Registrierungswert enthält eine 32-Bit-Zahl in Little-Endian-Darstellung. Die Daten werden in Tcl als Dezimalstring dargestellt.
@@ -104,7 +104,7 @@ Jeder Wert unter einem Schlüssel in der Registrierung enthält Daten eines best
 : Der Registrierungswert enthält einen symbolischen Link. Die Daten werden in Tcl exakt dargestellt, einschließlich eingebetteter Nullen.
 
 **multi\_sz**
-: Der Registrierungswert enthält ein Array nullterminierter Zeichenketten. Die Daten werden in Tcl als Liste von Strings dargestellt.
+: Der Registrierungswert enthält ein Array nullterminierter Zeichenketten. Die Daten werden in Tcl als Liste von Zeichenketten dargestellt.
 
 **resource\_list**
 : Der Registrierungswert enthält eine Gerätetreiber-Ressourcenliste. Die Daten werden in Tcl exakt dargestellt, einschließlich eingebetteter Nullen.

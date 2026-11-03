@@ -30,7 +30,7 @@ ttk::entry - Bearbeitbares Einzeilen-Textfeld-Widget
 
 # Beschreibung
 
-Ein **ttk::entry**-Widget zeigt einen einzeiligen Text-String an und erlaubt dem Benutzer, diesen String zu bearbeiten. Der Wert des Strings kann mit der Option **-textvariable** an eine Tcl-Variable gebunden werden. Entry-Widgets unterstützen horizontales Scrollen mit der Standardoption **-xscrollcommand** und dem Widget-Befehl **xview**.
+Ein **ttk::entry**-Widget zeigt einen einzeiligen Text an und erlaubt dem Benutzer, diesen Text zu bearbeiten. Der Wert des Texts kann mit der Option **-textvariable** an eine Tcl-Variable gebunden werden. Entry-Widgets unterstützen horizontales Scrollen mit der Standardoption **-xscrollcommand** und dem Widget-Befehl **xview**.
 
 # Standardoptionen
 
@@ -62,7 +62,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Legt den Modus fest, in dem die Validierung arbeiten soll: **none**, **focus**, **focusin**, **focusout**, **key** oder **all**. Standard ist **none**, d. h. die Validierung ist deaktiviert. Siehe [Validierung] unten.
 
 **-validatecommand** (**validateCommand**/**ValidateCommand**)
-: Eine Skript-Vorlage, die ausgewertet wird, wann immer eine Validierung ausgelöst wird. Ist sie auf den leeren String gesetzt (Standard), ist die Validierung deaktiviert. Das Skript muss einen booleschen Wert zurückgeben. Siehe [Validierung] unten.
+: Eine Skript-Vorlage, die ausgewertet wird, wann immer eine Validierung ausgelöst wird. Ist sie auf die leere Zeichenkette gesetzt (Standard), ist die Validierung deaktiviert. Das Skript muss einen booleschen Wert zurückgeben. Siehe [Validierung] unten.
 
 **-width** (**width**/**Width**)
 : Ganzzahl für die gewünschte Breite des Eingabefensters in Zeichen durchschnittlicher Größe der Widget-Schriftart.
@@ -72,20 +72,20 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 
 Ein Teil des Entrys kann wie unten beschrieben ausgewählt werden. Exportiert ein Entry seine Auswahl (siehe die Option **-exportselection**), beachtet es die Standard-X11-Protokolle für die Behandlung der Selection; Entry-Auswahlen sind als Typ **STRING** verfügbar. Entrys beachten auch die Standard-Tk-Regeln für den Umgang mit dem Eingabefokus. Hat ein Entry den Eingabefokus, zeigt es einen *Einfügecursor* an, um anzuzeigen, wo neue Zeichen eingefügt werden.
 
-Entrys können Strings anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil des Strings angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details).
+Entrys können Zeichenketten anzeigen, die zu lang sind, um vollständig in das Fenster des Widgets zu passen. In diesem Fall wird nur ein Teil der Zeichenkette angezeigt; unten beschriebene Befehle können verwendet werden, um die Ansicht im Fenster zu ändern. Entrys verwenden den Standard-Mechanismus **-xscrollcommand** für die Interaktion mit Scrollbars (siehe die Beschreibung der Option **-xscrollcommand** für Details).
 
 # Indizes
 
-Viele der [entry]-Widget-Befehle nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im String des Entrys, auf eine der folgenden Arten:
+Viele der [entry]-Widget-Befehle nehmen einen oder mehrere Indizes als Argumente. Ein Index bezeichnet ein bestimmtes Zeichen im Text des Entrys, auf eine der folgenden Arten:
 
 *number*
-: Bezeichnet das Zeichen als numerischen Index, wobei 0 dem ersten Zeichen im String entspricht.
+: Bezeichnet das Zeichen als numerischen Index, wobei 0 dem ersten Zeichen im Text entspricht.
 
 **@***number*
 : In dieser Form wird *number* als x-Koordinate im Fenster des Entrys behandelt; das Zeichen, das diese x-Koordinate überspannt, wird verwendet. Beispielsweise bezeichnet „**@0**“ das linkeste Zeichen im Fenster.
 
 **end**
-: Bezeichnet das Zeichen unmittelbar nach dem letzten im String des Entrys. Entspricht einem numerischen Index gleich der Länge des Strings des Entrys.
+: Bezeichnet das Zeichen unmittelbar nach dem letzten im Text des Entrys. Entspricht einem numerischen Index gleich der Länge des Texts des Entrys.
 
 **insert**
 : Bezeichnet das Zeichen neben und unmittelbar nach dem Einfügecursor.
@@ -107,25 +107,25 @@ Zusätzlich zu den Standard-Befehlen **cget**, **configure**, **identify element
 : Gibt eine Liste von vier Zahlen zurück, die die Begrenzungsbox des durch *index* angegebenen Zeichens beschreiben. Die ersten beiden Elemente der Liste geben die x- und y-Koordinaten der oberen linken Ecke des vom Zeichen bedeckten Bildschirmbereichs an (in Pixeln relativ zum Widget), die letzten beiden geben Breite und Höhe des Zeichens in Pixeln an. Die Begrenzungsbox kann sich auf einen Bereich außerhalb des sichtbaren Fensterbereichs beziehen.
 
 [pathName]{.ins} [delete]{.sub} [first]{.arg} [last]{.optarg}
-: Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Ist *last* nicht angegeben, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt den leeren String zurück.
+: Löscht ein oder mehrere Elemente des Entrys. *First* ist der Index des ersten zu löschenden Zeichens, *last* der Index des Zeichens unmittelbar nach dem letzten zu löschenden. Ist *last* nicht angegeben, entspricht es *first*+1, d. h. es wird ein einzelnes Zeichen gelöscht. Dieser Befehl gibt die leere Zeichenkette zurück.
 
 [pathName]{.ins} [get]{.sub}
-: Gibt den String des Entrys zurück.
+: Gibt den Text des Entrys zurück.
 
 [pathName]{.ins} [icursor]{.sub} [index]{.arg}
-: Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* angegebenen Zeichen angezeigt wird. Gibt den leeren String zurück.
+: Sorgt dafür, dass der Einfügecursor unmittelbar vor dem durch *index* angegebenen Zeichen angezeigt wird. Gibt die leere Zeichenkette zurück.
 
 [pathName]{.ins} [index]{.sub} [index]{.arg}
 : Gibt den numerischen Index zurück, der *index* entspricht.
 
 [pathName]{.ins} [insert]{.sub} [index]{.arg} [string]{.arg}
-: Fügt *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt den leeren String zurück.
+: Fügt *string* unmittelbar vor dem durch *index* angegebenen Zeichen ein. Gibt die leere Zeichenkette zurück.
 
 [pathName]{.ins} [selection]{.sub} [option]{.arg} [arg]{.arg}
 : Dieser Befehl passt die Auswahl innerhalb eines Entrys an. Er hat mehrere Formen, abhängig von *option*:
 
     [pathName]{.ins} [selection]{.sub} [clear]{.lit}
-    : Löscht die Auswahl, falls sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt den leeren String zurück.
+    : Löscht die Auswahl, falls sie derzeit in diesem Widget liegt. Liegt die Auswahl nicht in diesem Widget, hat der Befehl keine Wirkung. Gibt die leere Zeichenkette zurück.
 
     [pathName]{.ins} [selection]{.sub} [present]{.lit}
     : Gibt 1 zurück, wenn im Entry Zeichen ausgewählt sind, 0 wenn nichts ausgewählt ist.
@@ -167,21 +167,21 @@ Die Option **-validate** legt fest, wann validiert wird; sie kann auf einen der 
 : Die Validierung wird bei allen obigen Bedingungen durchgeführt.
 
 
-**-invalidcommand** wird ausgewertet, wann immer **-validatecommand** einen falschen Wert zurückgibt.
+**-invalidcommand** wird ausgewertet, wann immer **-validatecommand** einen Wert zurückgibt, der als falsch (false) gilt.
 
 **-validatecommand** und **-invalidcommand** können den Wert des Entry-Widgets über die Widget-Befehle **insert** oder **delete** oder durch Setzen der verknüpften **-textvariable** ändern. Tut eines von beiden dies während der Prävalidierung, wird die Bearbeitung abgelehnt, unabhängig vom von **-validatecommand** zurückgegebenen Wert.
 
 Ist **-validatecommand** leer (Standard), ist die Validierung immer erfolgreich.
 
-## Prozent-Substitutionen in Validierungsskripten
+## Prozent-Ersetzungen in Validierungsskripten
 
-Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen möglich, wie in einem [bind]-Skript. Folgende Substitutionen werden erkannt:
+Auf **-validatecommand** und **-invalidcommand** sind Prozent-Ersetzungen möglich, wie in einem [bind]-Skript. Folgende Ersetzungen werden erkannt:
 
 **%d**
 : Art der Aktion: 1 für Prävalidierung bei **insert**, 0 für Prävalidierung bei **delete**, oder -1 für Revalidierung.
 
 **%i**
-: Index des einzufügenden/zu löschenden Zeichenstrings, falls vorhanden, sonst -1.
+: Index der einzufügenden/zu löschenden Zeichenkette, falls vorhanden, sonst -1.
 
 **%P**
 : Bei Prävalidierung der neue Wert des Entrys, wenn die Bearbeitung angenommen wird. Bei Revalidierung der aktuelle Wert des Entrys.
@@ -190,13 +190,13 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen mö
 : Der aktuelle Wert des Entrys vor der Bearbeitung.
 
 **%S**
-: Der einzufügende/zu löschende Textstring, falls vorhanden, sonst {}.
+: Die einzufügende/zu löschende Zeichenkette, falls vorhanden, sonst {}.
 
 **%v**
 : Der aktuelle Wert der Option **-validate**.
 
 **%V**
-: Die Validierungsbedingung, die den Rückruf ausgelöst hat (**key**, **focusin**, **focusout** oder **forced**).
+: Die Validierungsbedingung, die die Rückruffunktion ausgelöst hat (**key**, **focusin**, **focusout** oder **forced**).
 
 **%W**
 : Der Name des Entry-Widgets.
@@ -204,13 +204,13 @@ Auf **-validatecommand** und **-invalidcommand** sind Prozent-Substitutionen mö
 
 ## Unterschiede zur Validierung des Tk-Entry-Widgets
 
-Das Standard-Tk-Entry-Widget deaktiviert die Validierung automatisch (durch Setzen von **-validate** auf **none**), wenn **-validatecommand** oder **-invalidcommand** den Wert des Entrys ändert. Das Tk-Themen-Entry-Widget deaktiviert die Validierung nur, wenn eines der Validierungsskripte einen Fehler auslöst oder **-validatecommand** keinen gültigen booleschen Wert zurückgibt. (Es ist also nicht nötig, die Validierung nach Änderung des Entry-Werts in einem Validierungsskript wieder zu aktivieren.)
+Das Standard-Tk-Entry-Widget deaktiviert die Validierung automatisch (durch Setzen von **-validate** auf **none**), wenn **-validatecommand** oder **-invalidcommand** den Wert des Entrys ändert. Das Ttk-Entry-Widget deaktiviert die Validierung nur, wenn eines der Validierungsskripte einen Fehler auslöst oder **-validatecommand** keinen gültigen booleschen Wert zurückgibt. (Es ist also nicht nötig, die Validierung nach Änderung des Entry-Werts in einem Validierungsskript wieder zu aktivieren.)
 
-Außerdem ruft das Standard-Entry-Widget die Validierung auf, wann immer die verknüpfte **-textvariable** geändert wird; das Tk-Themen-Entry-Widget tut dies nicht.
+Außerdem ruft das Standard-Entry-Widget die Validierung auf, wann immer die verknüpfte **-textvariable** geändert wird; das Ttk-Entry-Widget tut dies nicht.
 
-# Bindings
+# Standardbindungen
 
-Die Standard-Bindings des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
+Die Standardbindungen des Entry-Widgets ermöglichen folgendes Verhalten. In den Beschreibungen unten bezeichnet „Wort“ eine zusammenhängende Gruppe aus Buchstaben, Ziffern oder „\_“-Zeichen oder ein einzelnes anderes Zeichen.
 
 - Ein Klick mit Maustaste 1 positioniert den Einfügecursor unmittelbar vor dem Zeichen unter dem Mauszeiger, setzt den Eingabefokus auf dieses Widget und löscht jede Auswahl im Widget. Ziehen mit gedrückter Maustaste 1 erzeugt eine Auswahl zwischen Einfügecursor und dem Zeichen unter der Maus.
 
@@ -220,7 +220,7 @@ Die Standard-Bindings des Entry-Widgets ermöglichen folgendes Verhalten. In den
 
 - Die Enden der Auswahl können durch Ziehen mit Maustaste 1 bei gedrückter Umschalttaste angepasst werden. Wurde vor dem Ziehen doppelgeklickt, wird die Auswahl in Einheiten ganzer Wörter angepasst.
 
-- Klick mit Maustaste 1 bei gedrückter Steuerung positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
+- Klick mit Maustaste 1 bei gedrückter Steuerungstaste positioniert den Einfügecursor im Entry, ohne die Auswahl zu beeinflussen.
 
 - Werden normale druckbare Zeichen in einem Entry eingegeben, werden sie an der Position des Einfügecursors eingefügt.
 

@@ -45,10 +45,10 @@ info - Informationen über den Zustand des Tcl-Interpreters
 
 # Beschreibung
 
-Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpreters. Die zulässigen *option*s (abkürzbar) sind:
+Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpreters. Die zulässigen *option*s (die abgekürzt werden dürfen) sind:
 
 **info args** *procname*
-: Gibt eine Liste mit den Namen der Argumente der Prozedur *procname* in Reihenfolge zurück. *Procname* muss der Name einer Tcl-Befehlsprozedur sein.
+: Gibt eine Liste zurück, die der Reihe nach die Namen der Argumente der Prozedur *procname* enthält. *Procname* muss der Name einer Tcl-Befehlsprozedur sein.
 
 **info body** *procname*
 : Gibt den Rumpf der Prozedur *procname* zurück. *Procname* muss der Name einer Tcl-Befehlsprozedur sein.
@@ -60,249 +60,249 @@ Dieser Befehl liefert Informationen über verschiedene Interna des Tcl-Interpret
 : Gibt die Gesamtzahl der in diesem Interpreter aufgerufenen Befehle zurück.
 
 **info commands** ?*pattern*?
-: Ohne *pattern* eine Liste aller Tcl-Befehlsnamen, die im aktuellen Namespace sichtbar sind (ohne qualifizierten Namen ausführbar), einschließlich in C geschriebener eingebauter Befehle und per **proc** definierter Befehlsprozeduren. Mit *pattern* nur passende Namen; Abgleich wie bei [string match][string]. *pattern* kann ein qualifizierter Name wie **Foo::print\*** sein — Namespace-Kette mit **::** und am Ende Glob-Sonderzeichen für Befehle in diesem Namespace. Bei qualifiziertem *pattern* ist jeder Befehlsname mit dem Namespace qualifiziert; zurückgegeben werden nur Befehle des genannten Namespace.
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste der Namen aller Tcl-Befehle zurück, die im aktuellen Namespace sichtbar sind (d. h. ohne qualifizierten Namen ausführbar). Dazu gehören sowohl die in C geschriebenen eingebauten Befehle als auch die mit dem Befehl **proc** definierten Befehlsprozeduren. Ist *pattern* angegeben, werden nur die Namen zurückgegeben, die *pattern* entsprechen. Der Abgleich folgt denselben Regeln wie bei [string match][string]. *pattern* kann ein qualifizierter Name wie **Foo::print\*** sein. Das heißt, es kann mit einer Folge von Namespace-Namen, die durch doppelte Doppelpunkte (**::**) getrennt sind, einen bestimmten Namespace angeben und am Ende Sonderzeichen für den Musterabgleich enthalten, um eine Menge von Befehlen in diesem Namespace auszuwählen. Ist *pattern* ein qualifizierter Name, ist in der zurückgegebenen Liste jeder Befehlsname mit dem Namen des angegebenen Namespace qualifiziert, und es werden nur die Befehle zurückgegeben, die im genannten Namespace definiert sind.
 
 **info complete** *command*
-: Gibt **1** zurück, wenn *command* ein vollständiger Tcl-Befehl ist (keine ungeschlossenen Anführungszeichen, Klammern, eckigen Klammern oder Array-Elementnamen). Sonst **0**. Typischerweise in zeilenorientierten Eingabeumgebungen, damit Benutzer mehrzeilige Befehle eingeben können; ist der Befehl unvollständig, kann das Skript die Auswertung verzögern, bis weitere Zeilen den Befehl vervollständigen.
+: Gibt **1** zurück, wenn *command* ein vollständiger Tcl-Befehl ist, d. h. keine nicht geschlossenen Anführungszeichen, geschweiften Klammern, eckigen Klammern oder Array-Elementnamen enthält. Scheint der Befehl nicht vollständig zu sein, wird **0** zurückgegeben. Dieser Befehl wird typischerweise in zeilenorientierten Eingabeumgebungen verwendet, damit Benutzer Befehle eingeben können, die sich über mehrere Zeilen erstrecken. Ist der Befehl nicht vollständig, kann das Skript seine Auswertung aufschieben, bis weitere Zeilen eingegeben wurden, die den Befehl vervollständigen.
 
 **info coroutine**
-: [Gibt den Namen der gerade ausführenden **coroutine** zurück oder die leere Zeichenkette, wenn keine Coroutine läuft oder die aktuelle Coroutine gelöscht wurde (aber seit dem Löschen noch nicht zurückgekehrt ist oder ein yield ausgeführt hat).]{version="8.6"}
+: [Gibt den Namen der gerade ausgeführten **coroutine** zurück oder die leere Zeichenkette, wenn entweder gerade keine Coroutine ausgeführt wird oder die aktuelle Coroutine gelöscht wurde (seit dem Löschen aber noch nicht zurückgekehrt ist und auch kein yield ausgeführt hat).]{version="8.6"}
 
 **info default** *procname arg varname*
 : *Procname* muss der Name einer Tcl-Befehlsprozedur sein und *arg* der Name eines Arguments dieser Prozedur. Hat *arg* keinen Standardwert, gibt der Befehl **0** zurück. Andernfalls gibt er **1** zurück und legt den Standardwert von *arg* in der Variable *varname* ab.
 
 **info errorstack** ?*interp*?
-: [Gibt in programmatisch leicht parsebarer Form die Funktionsnamen und Argumente jeder Ebene aus dem Aufrufstack des letzten Fehlers im angegebenen *interp* zurück, oder im aktuellen, falls nicht angegeben.]{version="8.6"}
+: [Gibt in einer Form, die sich programmatisch leicht auswerten lässt, die Funktionsnamen und Argumente jeder Ebene des Aufrufstacks des letzten Fehlers im angegebenen *interp* zurück oder, falls *interp* nicht angegeben ist, im aktuellen Interpreter.]{version="8.6"}
 
-    Die Form ist eine Liste gerader Länge aus abwechselnden Token und Parametern. Token sind derzeit **CALL**, **UP** oder **INNER**; weitere Werte können künftig eingeführt werden. **CALL** kennzeichnet einen Prozeduraufruf; der Parameter ist das entsprechende **info level** **0**. **UP** kennzeichnet einen durch [uplevel] oder Ähnliches erzeugten Wechsel der Variablenframes und bezieht sich auf das vorherige **CALL**-Element; der Parameter ist der Ebenenversatz. **INNER** bezeichnet den „inneren Kontext“ — den innersten atomaren Befehl oder Bytecode-Befehl, der den Fehler auslöste, samt Argumenten, sofern verfügbar. Während **CALL** und **UP** komplexe Aufrufpfade abbilden, fokussiert **INNER** die fehlerhafte Operation im innersten Prozeduraufruf, bis auf Subausdruck-Ebene.
+    Diese Form ist eine Liste gerader Länge, in der sich Token und Parameter abwechseln. Token sind derzeit entweder **CALL**, **UP** oder **INNER**, doch künftig können weitere Werte hinzukommen. **CALL** kennzeichnet einen Prozeduraufruf; sein Parameter ist das entsprechende **info level** **0**. **UP** kennzeichnet einen Wechsel der Variablen-Frames, der durch [uplevel] oder Ähnliches entsteht, und bezieht sich auf das vorherige **CALL**-Element. Sein Parameter ist der Ebenenversatz. **INNER** bezeichnet den „inneren Kontext“. Das ist der innerste atomare Befehl oder die innerste Bytecode-Instruktion, die den Fehler ausgelöst hat, samt ihren Argumenten, sofern verfügbar. Während **CALL** und **UP** es ermöglichen, komplexen Aufrufpfaden zu folgen, zielt **INNER** genau auf die fehlerhafte Operation im innersten Prozeduraufruf, sogar bis auf die Ebene von Teilausdrücken.
 
-    Diese Information steht auch im Eintrag **-errorstack** des Options-Dictionarys von [catch] mit drei Argumenten; **info errorstack** ist eine bequeme Möglichkeit, sie für nicht abgefangene Fehler auf oberster Ebene in einer interaktiven [tclsh] abzurufen.
+    Diese Information ist auch im Eintrag **-errorstack** des Options-Dictionarys enthalten, das [catch] mit drei Argumenten zurückgibt; **info errorstack** ist ein bequemer Weg, sie bei nicht abgefangenen Fehlern auf oberster Ebene in einer interaktiven [tclsh] abzurufen.
 
 **info exists** *varName*
-: Gibt **1** zurück, wenn die Variable *varName* im aktuellen Kontext (global oder lokal) existiert und durch Zuweisung eines Werts definiert wurde, sonst **0**.
+: Gibt **1** zurück, wenn die Variable mit dem Namen *varName* im aktuellen Kontext (entweder als globale oder als lokale Variable) existiert und definiert wurde, indem ihr ein Wert zugewiesen wurde; andernfalls gibt der Befehl **0** zurück.
 
 **info frame** ?*number*?
-: Zugriff auf alle Frames des Stacks, auch die für **info level** verborgenen. Ohne *number* eine Zahl mit der Frame-Ebene des Befehls (**1** bei Aufruf auf oberster Ebene). Mit *number* ein Dictionary mit Positionsinformationen für den Befehl auf der *number*-ten Stack-Ebene.
+: Dieser Befehl bietet Zugriff auf alle Frames des Stacks, auch auf diejenigen, die vor **info level** verborgen sind. Ist *number* nicht angegeben, gibt der Befehl eine Zahl zurück, die die Frame-Ebene des Befehls angibt. Sie ist 1, wenn der Befehl auf oberster Ebene aufgerufen wird. Ist *number* angegeben, ist das Ergebnis ein Dictionary mit den Positionsinformationen für den Befehl auf der Stack-Ebene *number*.
 
-    Ist *number* positiv (> 0), wählt es eine bestimmte Stack-Ebene (**1** = äußerster aktiver Befehl, **2** = von ihm aufgerufener Befehl usw. bis zur aktuellen Frame-Ebene, die **info frame** selbst bezeichnet); andernfalls eine Ebene relativ zum aktuellen Befehl (**0** = aktueller Befehl, also **info frame** selbst, **-1** = sein Aufrufer usw.).
+    Ist *number* positiv (> 0), wählt es eine bestimmte Stack-Ebene aus (1 bezeichnet den äußersten aktiven Befehl, 2 den Befehl, den dieser aufgerufen hat, und so weiter bis zur aktuellen Frame-Ebene, die **info frame** selbst bezeichnet). Andernfalls gibt es eine Ebene relativ zum aktuellen Befehl an (0 bezeichnet den aktuellen Befehl, d. h. **info frame** selbst, -1 seinen Aufrufer und so weiter).
 
-    Ähnlich wie **info level**, meldet dieser Unterbefehl aber alle Frames, etwa per [source] geladene Skripte, [eval]s, [uplevel]s usw.
+    Das entspricht der Arbeitsweise von **info level**, nur meldet dieser Unterbefehl alle Frames, etwa mittels [source] eingelesene Skripte, Aufrufe von [eval] und [uplevel] usw.
 
-    Bei verschachtelten Befehlen wie „foo \[bar \[x\]\]“ sieht ein innerhalb von „x“ aufgerufenes **info frame** nur „x“ — wie bei **info level** und Fehler-Stack-Traces.
+    Beachten Sie, dass bei verschachtelten Befehlen wie „foo \[bar \[x\]\]“ ein innerhalb von „x“ aufgerufenes **info frame** nur „x“ sieht. Das ist genauso wie bei **info level** und bei Fehler-Stack-Traces.
 
-    Das Ergebnis-Dictionary kann folgende Schlüssel mit den angegebenen Bedeutungen enthalten:
+    Das Ergebnis-Dictionary kann die unten aufgeführten Schlüssel enthalten; ihre Werte haben die jeweils angegebene Bedeutung:
 
     **type**
-    : Immer vorhanden; beschreibt die Art der Befehlsposition. Erkannte Werte: [source], **proc**, **eval** und **precompiled**.
+    : Dieser Eintrag ist immer vorhanden und beschreibt die Art der Position des Befehls. Die erkannten Werte sind [source], **proc**, **eval** und **precompiled**.
 
         [source]
-        : Der Befehl steht in einem per [source] geladenen Skript.
+        : Bedeutet, dass der Befehl in einem Skript steht, das mit dem Befehl [source] geladen wurde.
 
         **proc**
-        : Der Befehl steht im dynamisch erzeugten Rumpf einer Prozedur.
+        : Bedeutet, dass der Befehl in einem dynamisch erzeugten Prozedurrumpf steht.
 
         [eval]
-        : Der Befehl wird von [eval] oder [uplevel] ausgeführt.
+        : Bedeutet, dass der Befehl von [eval] oder [uplevel] ausgeführt wird.
 
         **precompiled**
-        : Der Befehl steht in einem vorkompilierten Skript (ladbar mit dem Paket **tbcload**); weitere Informationen sind nicht verfügbar.
+        : Bedeutet, dass der Befehl in einem vorkompilierten Skript steht (das mit dem Paket **tbcload** geladen werden kann) und dass keine weiteren Informationen verfügbar sind.
 
 
     **line**
-    : Zeilennummer des Befehls innerhalb des Skripts, zu dem er gehört. Nicht vorhanden bei Typ **precompiled**. Bei Typ [source] relativ zum Dateianfang, bei den letzten beiden Typen relativ zum Skriptanfang.
+    : Dieser Eintrag liefert die Nummer der Zeile, in der der Befehl innerhalb des Skripts steht, zu dem er gehört. Für den Typ **precompiled** ist diese Information nicht vorhanden. Beim Typ [source] wird sie relativ zum Anfang der Datei gezählt, bei den letzten beiden Typen dagegen relativ zum Anfang des Skripts.
 
     [file]
-    : Nur bei Typ [source]: normalisierter Pfad der Datei, in der der Befehl steht.
+    : Dieser Eintrag ist nur beim Typ [source] vorhanden. Er liefert den normalisierten Pfad der Datei, in der der Befehl steht.
 
     **cmd**
-    : Zeichenketten-Darstellung des Befehls, meist unsubstituiert; bei kanonisch konstruierten Listen (z. B. von [list]), die [eval] ausführt, die substituierte Form, da keine andere Darstellung existiert. Die Kanonizität bleibt dabei erhalten.
+    : Dieser Eintrag liefert die Zeichenkettendarstellung des Befehls. Das ist normalerweise die Form ohne Ersetzungen. Bei Befehlen, die eine kanonisch aufgebaute Liste sind (z. B. vom Befehl [list] erzeugt) und von [eval] ausgeführt werden, ist es jedoch die Form nach den Ersetzungen, da sie keine andere Zeichenkettendarstellung haben. Dabei wird darauf geachtet, dass die Kanonizität einer solchen Liste nicht verloren geht.
 
     **proc**
-    : Nur wenn der Befehl im Rumpf einer regulären Tcl-Prozedur steht: Name dieser Prozedur.
+    : Dieser Eintrag ist nur vorhanden, wenn der Befehl im Rumpf einer regulären Tcl-Prozedur steht. Er liefert dann den Namen dieser Prozedur.
 
     **lambda**
-    : Nur im Rumpf einer anonymen Tcl-Prozedur (Lambda): vollständige Definition dieses Lambdas.
+    : Dieser Eintrag ist nur vorhanden, wenn der Befehl im Rumpf einer anonymen Tcl-Prozedur, d. h. eines Lambdas, steht. Er liefert dann die vollständige Definition dieses Lambdas.
 
     **level**
-    : Nur wenn der abgefragte Frame einem von **info level** zurückgegebenen Frame entspricht: Index dieses Frames relativ zur aktuellen Ebene (**0** und negative Zahlen).
+    : Dieser Eintrag ist nur vorhanden, wenn es zum abgefragten Frame einen entsprechenden Frame gibt, den **info level** zurückgibt. Er liefert den Index dieses Frames relativ zur aktuellen Ebene (0 und negative Zahlen).
 
 
-    Bei in Dateien statisch definierten Prozeduren werden Befehle in ihren Rümpfen mit Typ [source] und absoluten Zeilennummern gemeldet, nicht als Typ **proc**. Gleiches gilt für in statischen Prozeduren verschachtelte Prozeduren und wörtliche eval-Skripte in Dateien oder statischen Prozeduren.
+    Bemerkenswert ist, dass bei Prozeduren, die statisch in Dateien definiert sind, die Positionen der Befehle in ihren Rümpfen mit dem Typ [source] und absoluten Zeilennummern gemeldet werden und nicht mit dem Typ **proc**. Dasselbe gilt für Prozeduren, die in statisch definierten Prozeduren verschachtelt sind, und für wörtliche eval-Skripte in Dateien oder in statisch definierten Prozeduren.
 
-    Prozedurdefinitionen und [eval] in einer dynamisch [eval]uierten Umgebung zählen Zeilennummern relativ zum Skriptanfang, auch wenn sie relativ zum äußeren dynamischen Skript zählen könnten. Diese Art von Nummer ist meist aussagekräftiger.
+    Im Gegensatz dazu zählen Prozedurdefinitionen und [eval] innerhalb einer dynamisch mit [eval] ausgewerteten Umgebung die Zeilennummern relativ zum Anfang ihres Skripts, selbst wenn sie relativ zum Anfang des äußeren dynamischen Skripts zählen könnten. Diese Art der Nummerierung ist meist sinnvoller.
 
-    Anders formuliert: dateibasierte Positionen werden so tief wie möglich verfolgt; wo das nicht möglich ist, werden Zeilen relativ zum kleinstmöglichen [eval]- oder Prozedurrumpf gezählt — dieser Gültigkeitsbereich ist meist leichter zu finden als ein dynamischer äußerer.
+    Anders beschrieben: Dateibasierte Positionen werden so tief wie möglich verfolgt. Wo das nicht möglich ist, werden die Zeilen relativ zum kleinstmöglichen [eval]- oder Prozedurrumpf gezählt, da dieser Gültigkeitsbereich meist leichter zu finden ist als ein dynamischer äußerer Gültigkeitsbereich.
 
-    Die syntaktische Form **{\*}** wird wie [eval] behandelt: Bei wörtlichem Listenargument verfolgt das System die Zeilennummer innerhalb der Listenelemente; andernfalls werden alle Zeilennummern relativ zum Anfang jedes Worts gezählt (kleinster Gültigkeitsbereich).
+    Die syntaktische Form **{\*}** wird wie [eval] behandelt. Das heißt: Erhält sie ein wörtliches Listenargument, verfolgt das System auch die Zeilennummer innerhalb der Listenwörter; andernfalls werden alle Zeilennummern relativ zum Anfang jedes Worts gezählt (kleinster Gültigkeitsbereich).
 
 **info functions** ?*pattern*?
-: Ohne *pattern* alle derzeit definierten mathematischen Funktionen. Mit *pattern* nur Funktionen, deren Name *pattern* entspricht; Abgleich wie bei [string match][string].
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste aller derzeit definierten mathematischen Funktionen zurück. Ist *pattern* angegeben, werden nur die Funktionen zurückgegeben, deren Name *pattern* entspricht. Der Abgleich folgt denselben Regeln wie bei [string match][string].
 
 **info globals** ?*pattern*?
-: Ohne *pattern* alle Namen derzeit definierter globaler Variablen (Variablen im globalen Namespace). Mit *pattern* nur passende Namen; Abgleich wie bei [string match][string].
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste aller Namen der derzeit definierten globalen Variablen zurück. Globale Variablen sind Variablen im globalen Namespace. Ist *pattern* angegeben, werden nur die Namen zurückgegeben, die *pattern* entsprechen. Der Abgleich folgt denselben Regeln wie bei [string match][string].
 
 **info hostname**
-: Gibt den Namen des Rechners zurück, auf dem diese Ausführung läuft. Dieser Name ist nicht garantiert der vollqualifizierte Domainname. Haben Rechner mehrere Namen (häufig bei TCP/IP (DNS) und NetBIOS), wird der für TCP/IP-Netzwerke geeignete Name zurückgegeben.
+: Gibt den Namen des Rechners zurück, auf dem dieser Aufruf ausgeführt wird. Beachten Sie, dass nicht garantiert ist, dass dieser Name der vollqualifizierte Domainname des Rechners ist. Haben Rechner mehrere verschiedene Namen (wie es auf Systemen mit installiertem TCP/IP (DNS) und NetBIOS-basiertem Netzwerk üblich ist), wird der Name zurückgegeben, der für TCP/IP-Netzwerke geeignet ist.
 
 **info level** ?*number*?
-: Ohne *number* eine Zahl mit der Stack-Ebene der aufrufenden Prozedur, oder **0** bei Aufruf auf oberster Ebene. Mit *number* eine Liste aus Name und Argumenten des Prozeduraufrufs auf Ebene *number*. Ist *number* positiv, wählt es eine Stack-Ebene (**1** = oberste aktive Prozedur, **2** = von ihr aufgerufene, …); andernfalls relativ zur aktuellen Ebene (**0** = aktuelle Prozedur, **-1** = Aufrufer, …). Siehe [uplevel] zur Bedeutung der Stack-Ebenen.
+: Ist *number* nicht angegeben, gibt der Befehl eine Zahl zurück, die die Stack-Ebene der aufrufenden Prozedur angibt, oder 0, wenn der Befehl auf oberster Ebene aufgerufen wird. Ist *number* angegeben, ist das Ergebnis eine Liste aus dem Namen und den Argumenten des Prozeduraufrufs auf der Stack-Ebene *number*. Ist *number* positiv, wählt es eine bestimmte Stack-Ebene aus (1 bezeichnet die oberste aktive Prozedur, 2 die Prozedur, die diese aufgerufen hat, und so weiter); andernfalls gibt es eine Ebene relativ zur aktuellen Ebene an (0 bezeichnet die aktuelle Prozedur, -1 ihren Aufrufer und so weiter). Weitere Informationen zur Bedeutung der Stack-Ebenen finden Sie beim Befehl [uplevel].
 
 **info library**
-: Name des Bibliotheksverzeichnisses mit Standard-Tcl-Skripten — tatsächlich der Wert der Variable [tcl\_library][tclvars], änderbar durch Setzen von [tcl\_library][tclvars].
+: Gibt den Namen des Bibliotheksverzeichnisses zurück, in dem die Standard-Tcl-Skripte gespeichert sind. Das ist tatsächlich der Wert der Variable [tcl\_library][tclvars]; er kann durch Setzen von [tcl\_library][tclvars] geändert werden.
 
 **info loaded** ?*interp*?
-: Liste aller mit [load] in *interp* geladenen Pakete. Jedes Listenelement ist eine Zweierliste aus Dateiname und Paketname. Bei statisch geladenen Paketen ist der Dateiname leer. Ohne *interp* Informationen zu allen in einem beliebigen Interpreter des Prozesses geladenen Paketen. Für nur den aktuellen Interpreter leere Zeichenkette für *interp* angeben.
+: Gibt eine Liste zurück, die alle Pakete beschreibt, die mit dem Befehl [load] in *interp* geladen wurden. Jedes Listenelement ist eine Teilliste mit zwei Elementen: dem Namen der Datei, aus der das Paket geladen wurde, und dem Namen des Pakets. Bei statisch geladenen Paketen ist der Dateiname eine leere Zeichenkette. Ist *interp* weggelassen, werden Informationen zu allen Paketen zurückgegeben, die in irgendeinem Interpreter des Prozesses geladen wurden. Um eine Liste nur der Pakete im aktuellen Interpreter zu erhalten, geben Sie für das Argument *interp* eine leere Zeichenkette an.
 
 **info locals** ?*pattern*?
-: Ohne *pattern* alle Namen derzeit definierter lokaler Variablen, einschließlich Argumente der aktuellen Prozedur. Mit [global], [upvar] und [variable] definierte Variablen werden nicht zurückgegeben. Mit *pattern* nur passende Namen; Abgleich wie bei [string match][string].
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste aller Namen der derzeit definierten lokalen Variablen zurück, einschließlich der Argumente der aktuellen Prozedur, falls vorhanden. Variablen, die mit den Befehlen [global], [upvar] und [variable] definiert wurden, werden nicht zurückgegeben. Ist *pattern* angegeben, werden nur die Namen zurückgegeben, die *pattern* entsprechen. Der Abgleich folgt denselben Regeln wie bei [string match][string].
 
 **info nameofexecutable**
-: Vollständiger Pfadname der Binärdatei, mit der die Anwendung gestartet wurde. Konnte Tcl die Datei nicht identifizieren, leere Zeichenkette.
+: Gibt den vollständigen Pfadnamen der Binärdatei zurück, aus der die Anwendung aufgerufen wurde. Konnte Tcl die Datei nicht ermitteln, wird eine leere Zeichenkette zurückgegeben.
 
 **info object** *subcommand object* ?*arg ...*
 : [Gibt Informationen über das Objekt *object* zurück. Die *subcommand*s sind unter [Objekt-Introspection] unten beschrieben.]{version="8.6"}
 
 **info patchlevel**
-: Wert der globalen Variable [tcl\_patchLevel][tclvars], die standardmäßig die exakte Version der Tcl-Bibliothek enthält.
+: Gibt den Wert der globalen Variable [tcl\_patchLevel][tclvars] zurück, die standardmäßig die genaue Version der Tcl-Bibliothek enthält.
 
 **info procs** ?*pattern*?
-: Ohne *pattern* alle Namen von Tcl-Befehlsprozeduren im aktuellen Namespace. Mit *pattern* nur passende im aktuellen Namespace; Abgleich wie bei [string match][string]. Enthält *pattern* Namespace-Trenner, wählen sie relativ zum aktuellen Namespace (oder global bei **::** am Anfang) den Namespace; das Muster ist der Teil nach dem letzten Trenner.
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste aller Namen von Tcl-Befehlsprozeduren im aktuellen Namespace zurück. Ist *pattern* angegeben, werden nur die Prozedurnamen im aktuellen Namespace zurückgegeben, die *pattern* entsprechen. Der Abgleich folgt denselben Regeln wie bei [string match][string]. Enthält *pattern* Namespace-Trenner, wählen diese den Namespace aus, in dem gesucht wird, und zwar relativ zum aktuellen Namespace (oder relativ zum globalen Namespace, wenn *pattern* mit **::** beginnt); als Suchmuster gilt der Teil nach dem letzten Namespace-Trenner.
 
 **info script** ?*filename*?
-: Wird gerade eine Tcl-Skriptdatei ausgewertet ([Tcl\_EvalFile][Eval] aktiv oder [source]), Name der innersten verarbeiteten Datei. Mit *filename* wird der Rückgabewert für die Dauer des aktiven Aufrufs auf diesen Namen geändert — nützlich in virtuellen Dateisystemen. Sonst leere Zeichenkette.
+: Wird gerade eine Tcl-Skriptdatei ausgewertet (d. h. ist ein Aufruf von [Tcl\_EvalFile][Eval] aktiv oder gibt es einen aktiven Aufruf des Befehls [source]), gibt dieser Befehl den Namen der innersten Datei zurück, die gerade verarbeitet wird. Ist *filename* angegeben, wird der Rückgabewert dieses Befehls für die Dauer des aktiven Aufrufs so geändert, dass er diesen Namen zurückgibt. Das ist in Anwendungen mit virtuellen Dateisystemen nützlich. Andernfalls gibt der Befehl eine leere Zeichenkette zurück.
 
 **info sharedlibextension**
-: Erweiterung für Dateinamen mit Shared Libraries auf dieser Plattform (z. B. **.so** unter Solaris). Leere Zeichenkette, wenn Shared Libraries nicht unterstützt werden.
+: Gibt die Erweiterung zurück, die auf dieser Plattform für die Namen von Dateien mit gemeinsam genutzten Bibliotheken verwendet wird (zum Beispiel **.so** unter Solaris). Werden gemeinsam genutzte Bibliotheken auf dieser Plattform nicht unterstützt, wird eine leere Zeichenkette zurückgegeben.
 
 **info tclversion**
-: Wert der globalen Variable [tcl\_version][tclvars], die standardmäßig Haupt- und Nebenversion der Tcl-Bibliothek enthält.
+: Gibt den Wert der globalen Variable [tcl\_version][tclvars] zurück, die standardmäßig die Haupt- und Nebenversion der Tcl-Bibliothek enthält.
 
 **info vars** ?*pattern*?
-: Ohne *pattern* alle derzeit sichtbaren Variablennamen (lokale und sichtbare globale). Mit *pattern* nur passende; Abgleich wie bei [string match][string]. *pattern* kann ein qualifizierter Name wie **Foo::option\*** sein — Namespace-Kette mit **::** und am Ende Glob-Sonderzeichen für Variablen in diesem Namespace. Bei qualifiziertem *pattern* ist jede passende Namespace-Variable mit ihrem Namespace qualifiziert. Eine sichtbare Variable kann noch nicht „existieren“, wenn sie nicht gesetzt wurde (z. B. per [variable] deklariert, aber nicht gesetzt).
+: Ist *pattern* nicht angegeben, gibt der Befehl eine Liste aller Namen der derzeit sichtbaren Variablen zurück. Dazu gehören lokale Variablen und derzeit sichtbare globale Variablen. Ist *pattern* angegeben, werden nur die Namen zurückgegeben, die *pattern* entsprechen. Der Abgleich folgt denselben Regeln wie bei [string match][string]. *pattern* kann ein qualifizierter Name wie **Foo::option\*** sein. Das heißt, es kann mit einer Folge von Namespace-Namen, die durch doppelte Doppelpunkte (**::**) getrennt sind, einen bestimmten Namespace angeben und am Ende Sonderzeichen für den Musterabgleich enthalten, um eine Menge von Variablen in diesem Namespace auszuwählen. Ist *pattern* ein qualifizierter Name, ist in der zurückgegebenen Liste jede passende Namespace-Variable mit dem Namen ihres Namespace qualifiziert. Beachten Sie, dass eine derzeit sichtbare Variable möglicherweise noch nicht „existiert“, wenn sie nicht gesetzt wurde (z. B. eine Variable, die mit [variable] deklariert, aber nicht gesetzt wurde).
 
 
 ## Klassen-Introspection
 
-Folgende *subcommand*-Werte unterstützt **info class**:
+Die folgenden *subcommand*-Werte werden von **info class** unterstützt:
 
 **info class call** *class method*
-: [Beschreibung der Methodenimplementierungen, die eine stereotype Instanz der Implementierung von *method* in *class* liefern (stereotype Instanzen: von der Klasse erzeugte Objekte ohne objektspezifische Definitionen). Das Ergebnis ist eine Liste von Viererlisten; jede besteht aus einem Wort für die Art der Implementierung (**method** für eine normale Methode, **filter** für einen angewendeten Filter, [unknown] für eine im Rahmen der Behandlung unbekannter Methoden aufgerufene Methode), dem Namen der aufgerufenen Methode (bei **method** stets *method*, bei [unknown] „[unknown]“), dem vollqualifizierten Namen der definierenden Klasse und einem Wort zum Implementierungstyp (siehe **info class methodtype**).]{version=""}
+: [Gibt eine Beschreibung der Methodenimplementierungen zurück, mit denen eine stereotype Instanz die Implementierung von *method* durch *class* erhält (stereotype Instanzen sind Objekte, die von einer Klasse instanziiert wurden, ohne dass objektspezifische Definitionen hinzugefügt wurden). Das ist eine Liste von Listen mit je vier Elementen. Jede Teilliste besteht aus einem Wort, das die allgemeine Art der Methodenimplementierung beschreibt (**method** für eine gewöhnliche Methode, **filter** für einen angewendeten Filter und [unknown] für eine Methode, die bei der Behandlung unbekannter Methoden aufgerufen wird), einem Wort mit dem Namen der jeweils aufgerufenen Methode (bei der Art **method** immer gleich *method*, bei der Art [unknown] „[unknown]“), einem Wort mit dem vollqualifizierten Namen der Klasse, die die Methode definiert hat, und einem Wort, das die Art der Methodenimplementierung beschreibt (siehe **info class methodtype**).]{version=""}
 
-    Es wird nicht geprüft, ob die Implementierungen tatsächlich [next] zur Weitergabe entlang der Aufrufkette nutzen.
+    Beachten Sie, dass nicht geprüft wird, ob die Methodenimplementierungen tatsächlich [next] verwenden, um die Kontrolle entlang der Aufrufkette weiterzugeben.
 
 **info class constructor** *class*
-: [Beschreibung der Konstruktordefinition von *class* als Zweierliste: erstes Element die Argumentliste (geeignet für **proc** oder Methodendefinition), zweites der Konstruktorrumpf. Ohne Konstruktor die leere Liste.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Beschreibung der Definition des Konstruktors der Klasse *class* zurück. Die Definition wird als Liste mit zwei Elementen beschrieben: Das erste Element ist die Liste der Argumente des Konstruktors in einer Form, die sich für die Übergabe an einen weiteren Aufruf von **proc** oder an eine Methodendefinition eignet, und das zweite Element ist der Rumpf des Konstruktors. Ist kein Konstruktor vorhanden, gibt der Unterbefehl die leere Liste zurück.]{version="8.6"}
 
 **info class definition** *class method*
-: [Beschreibung der Definition der Methode *method* von *class* als Zweierliste (Argumentliste und Methodenrumpf).]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Beschreibung der Definition der Methode mit dem Namen *method* der Klasse *class* zurück. Die Definition wird als Liste mit zwei Elementen beschrieben: Das erste Element ist die Liste der Argumente der Methode in einer Form, die sich für die Übergabe an einen weiteren Aufruf von **proc** oder an eine Methodendefinition eignet, und das zweite Element ist der Rumpf der Methode.]{version="8.6"}
 
 **info class destructor** *class*
-: [Rumpf des Destruktors von *class*. Ohne Destruktor die leere Zeichenkette.]{version="8.6"}
+: [Dieser Unterbefehl gibt den Rumpf des Destruktors der Klasse *class* zurück. Ist kein Destruktor vorhanden, gibt er die leere Zeichenkette zurück.]{version="8.6"}
 
 **info class filters** *class*
-: [Liste der auf der Klasse gesetzten Filtermethoden.]{version="8.6"}
+: [Dieser Unterbefehl gibt die Liste der Filtermethoden zurück, die auf der Klasse gesetzt sind.]{version="8.6"}
 
 **info class forward** *class method*
-: [Argumentliste der Methodenweiterleitung *method* auf der Klasse *class*.]{version="8.6"}
+: [Dieser Unterbefehl gibt die Argumentliste der Methodenweiterleitung mit dem Namen *method* zurück, die auf der Klasse mit dem Namen *class* gesetzt ist.]{version="8.6"}
 
 **info class instances** *class* ?*pattern*?
-: [Liste der Instanzen von *class*. Mit optionalem *pattern* nur passende Instanzen gemäß [string match][string].]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste der Instanzen der Klasse *class* zurück. Ist das optionale Argument *pattern* angegeben, beschränkt es die Liste der zurückgegebenen Instanzen auf diejenigen, die gemäß den Regeln von [string match][string] darauf passen.]{version="8.6"}
 
 **info class methods** *class* ?*options...*?
-: [Liste aller öffentlichen (exportierten) Methoden von *class*. Folgende *option*s steuern die Auswahl:]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden der Klasse mit dem Namen *class* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
 
     **-all**
-    : [Mit **-all** auch Methoden, die nicht von der Klasse selbst, sondern von ihren Superklassen und Mixins definiert sind.]{version="8.6"}
+    : [Ist der Schalter **-all** angegeben, enthält die Liste der Methoden nicht nur die von der Klasse definierten Methoden, sondern auch die von den Oberklassen und Mixins der Klasse definierten.]{version="8.6"}
 
     **-private**
-    : [Mit **-private** auch private (nicht exportierte) Methoden der Klasse (und bei **-all** der Superklassen und Mixins).]{version="8.6"}
+    : [Ist der Schalter **-private** angegeben, enthält die Liste der Methoden auch die privaten (d. h. nicht exportierten) Methoden der Klasse (sowie der Oberklassen und Mixins, wenn auch **-all** angegeben ist).]{version="8.6"}
 
 
 **info class methodtype** *class method*
-: [Beschreibung des Implementierungstyps der Methode *method* von *class*. Bei Ergebnis **method** weitere Infos mit **info class definition**, bei **forward** mit **info class forward**.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Beschreibung der Art der Implementierung zurück, die für die Methode mit dem Namen *method* der Klasse *class* verwendet wird. Ist das Ergebnis **method**, lassen sich mit **info class definition** weitere Informationen ermitteln; ist das Ergebnis **forward**, lassen sich mit **info class forward** weitere Informationen ermitteln.]{version="8.6"}
 
 **info class mixins** *class*
-: [Liste aller in *class* gemischten Klassen.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller Klassen zurück, die in die Klasse mit dem Namen *class* eingemischt wurden.]{version="8.6"}
 
 **info class subclasses** *class* ?*pattern*?
-: [Liste direkter Unterklassen von *class*. Mit *pattern* nur passende Klassen gemäß [string match][string].]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste der direkten Unterklassen der Klasse *class* zurück. Ist das optionale Argument *pattern* angegeben, beschränkt es die Liste der zurückgegebenen Klassen auf diejenigen, die gemäß den Regeln von [string match][string] darauf passen.]{version="8.6"}
 
 **info class superclasses** *class*
-: [Liste direkter Superklassen von *class* in Vererbungsreihenfolge.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste der direkten Oberklassen der Klasse *class* in der Reihenfolge des Vererbungsvorrangs zurück.]{version="8.6"}
 
 **info class variables** *class*
-: [Liste aller für *class* deklarierten Variablen (automatisch in Methoden, Konstruktor und Destruktor der Klasse vorhanden).]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller Variablen zurück, die für die Klasse mit dem Namen *class* deklariert wurden (d. h. die in den Methoden, im Konstruktor und im Destruktor der Klasse automatisch vorhanden sind).]{version="8.6"}
 
 
 ## Objekt-Introspection
 
-Folgende *subcommand*-Werte unterstützt **info object**:
+Die folgenden *subcommand*-Werte werden von **info object** unterstützt:
 
 **info object call** *object method*
-: [Beschreibung der Methodenimplementierungen für die Implementierung von *method* in *object*. Viererlisten wie bei **info class call**: Art der Implementierung (**method**, **filter** oder [unknown]), Name der aufgerufenen Methode (bei **method** stets *method*, bei [unknown] „[unknown]“), was die Methode definierte (vollqualifizierter Klassenname oder die Zeichenkette **object** bei Instanzimplementierung) und Implementierungstyp (siehe **info object methodtype**).]{version="8.6"}
+: [Gibt eine Beschreibung der Methodenimplementierungen zurück, mit denen *object* die Methode *method* implementiert. Das ist eine Liste von Listen mit je vier Elementen. Jede Teilliste besteht aus einem Wort, das die allgemeine Art der Methodenimplementierung beschreibt (**method** für eine gewöhnliche Methode, **filter** für einen angewendeten Filter und [unknown] für eine Methode, die bei der Behandlung unbekannter Methoden aufgerufen wird), einem Wort mit dem Namen der jeweils aufgerufenen Methode (bei der Art **method** immer gleich *method*, bei der Art [unknown] „[unknown]“), einem Wort, das angibt, was die Methode definiert hat (der vollqualifizierte Name der Klasse oder die wörtliche Zeichenkette **object**, wenn die Methodenimplementierung an einer Instanz liegt), und einem Wort, das die Art der Methodenimplementierung beschreibt (siehe **info object methodtype**).]{version="8.6"}
 
-    Es wird nicht geprüft, ob die Implementierungen tatsächlich [next] zur Weitergabe entlang der Aufrufkette nutzen.
+    Beachten Sie, dass nicht geprüft wird, ob die Methodenimplementierungen tatsächlich [next] verwenden, um die Kontrolle entlang der Aufrufkette weiterzugeben.
 
 **info object class** *object* ?*className*?
-: [Ohne *className* die Klasse von *object*. Mit *className* ein boolescher Wert, ob *object* von dieser Klasse ist.]{version="8.6"}
+: [Ist *className* nicht angegeben, gibt dieser Unterbefehl die Klasse des Objekts *object* zurück. Ist *className* angegeben, gibt dieser Unterbefehl einen booleschen Wert zurück, der angibt, ob *object* zu dieser Klasse gehört.]{version="8.6"}
 
 **info object definition** *object method*
-: [Beschreibung der Definition der Methode *method* von *object* als Zweierliste (Argumentliste und Methodenrumpf).]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Beschreibung der Definition der Methode mit dem Namen *method* des Objekts *object* zurück. Die Definition wird als Liste mit zwei Elementen beschrieben: Das erste Element ist die Liste der Argumente der Methode in einer Form, die sich für die Übergabe an einen weiteren Aufruf von **proc** oder an eine Methodendefinition eignet, und das zweite Element ist der Rumpf der Methode.]{version="8.6"}
 
 **info object filters** *object*
-: [Liste der auf dem Objekt gesetzten Filtermethoden.]{version="8.6"}
+: [Dieser Unterbefehl gibt die Liste der Filtermethoden zurück, die auf dem Objekt gesetzt sind.]{version="8.6"}
 
 **info object forward** *object method*
-: [Argumentliste der Methodenweiterleitung *method* auf *object*.]{version="8.6"}
+: [Dieser Unterbefehl gibt die Argumentliste der Methodenweiterleitung mit dem Namen *method* zurück, die auf dem Objekt mit dem Namen *object* gesetzt ist.]{version="8.6"}
 
 **info object isa** *category object* ?*arg*?
-: [Prüft, ob ein Objekt zu einer Kategorie gehört; boolescher Wert. Unterstützte Kategorien:]{version="8.6"}
+: [Dieser Unterbefehl prüft, ob ein Objekt zu einer bestimmten Kategorie gehört, und gibt einen booleschen Wert zurück, der angibt, ob das Argument *object* die Kriterien der Kategorie erfüllt. Die unterstützten Kategorien sind:]{version="8.6"}
 
     **info object isa class** *object*
-    : [Ob *object* eine Klasse ist (Instanz von [oo::class][class] oder Unterklasse).]{version="8.6"}
+    : [Gibt zurück, ob *object* eine Klasse ist (d. h. eine Instanz von [oo::class][class] oder einer ihrer Unterklassen).]{version="8.6"}
 
     **info object isa metaclass** *object*
-    : [Ob *object* eine Klasse ist, die Klassen erzeugen kann ([oo::class][class] oder Unterklasse).]{version="8.6"}
+    : [Gibt zurück, ob *object* eine Klasse ist, die Klassen erzeugen kann (d. h. ob es [oo::class][class] oder eine Unterklasse davon ist).]{version="8.6"}
 
     **info object isa mixin** *object class*
-    : [Ob *class* direkt in *object* gemischt ist.]{version="8.6"}
+    : [Gibt zurück, ob *class* direkt in *object* eingemischt ist.]{version="8.6"}
 
     **info object isa object** *object*
-    : [Ob *object* wirklich ein Objekt ist.]{version="8.6"}
+    : [Gibt zurück, ob *object* wirklich ein Objekt ist.]{version="8.6"}
 
     **info object isa typeof** *object class*
-    : [Ob *class* der Typ von *object* ist (*object* Instanz von *class* oder Unterklasse, direkt oder indirekt).]{version="8.6"}
+    : [Gibt zurück, ob *class* der Typ von *object* ist (d. h. ob *object* eine Instanz von *class* oder einer ihrer Unterklassen ist, direkt oder indirekt).]{version="8.6"}
 
 
 **info object methods** *object* ?*option...*?
-: [Liste aller öffentlichen (exportierten) Methoden von *object*. Folgende *option*s steuern die Auswahl:]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller öffentlichen (d. h. exportierten) Methoden des Objekts mit dem Namen *object* zurück. Jede der folgenden *option*s kann angegeben werden; sie legen genau fest, welche Methodennamen zurückgegeben werden:]{version="8.6"}
 
     **-all**
-    : [Mit **-all** auch Methoden von Klasse und Mixins des Objekts sowie deren Superklassen.]{version="8.6"}
+    : [Ist der Schalter **-all** angegeben, enthält die Liste der Methoden nicht nur die vom Objekt definierten Methoden, sondern auch die von der Klasse und den Mixins des Objekts definierten sowie die der Oberklassen dieser Klassen.]{version="8.6"}
 
     **-private**
-    : [Mit **-private** auch private (nicht exportierte) Methoden des Objekts (und bei **-all** der Klassen).]{version="8.6"}
+    : [Ist der Schalter **-private** angegeben, enthält die Liste der Methoden auch die privaten (d. h. nicht exportierten) Methoden des Objekts (sowie der Klassen, wenn auch **-all** angegeben ist).]{version="8.6"}
 
 
 **info object methodtype** *object method*
-: [Implementierungstyp der Methode *method* von *object*. Bei **method** → **info object definition**, bei **forward** → **info object forward**.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Beschreibung der Art der Implementierung zurück, die für die Methode mit dem Namen *method* des Objekts *object* verwendet wird. Ist das Ergebnis **method**, lassen sich mit **info object definition** weitere Informationen ermitteln; ist das Ergebnis **forward**, lassen sich mit **info object forward** weitere Informationen ermitteln.]{version="8.6"}
 
 **info object mixins** *object*
-: [Liste aller in *object* gemischten Klassen.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller Klassen zurück, die in das Objekt mit dem Namen *object* eingemischt wurden.]{version="8.6"}
 
 **info object namespace** *object*
-: [Name des internen Namespace von *object*.]{version="8.6"}
+: [Dieser Unterbefehl gibt den Namen des internen Namespace des Objekts mit dem Namen *object* zurück.]{version="8.6"}
 
 **info object variables** *object*
-: [Liste aller für *object* deklarierten Variablen (automatisch in den Methoden des Objekts vorhanden).]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller Variablen zurück, die für das Objekt mit dem Namen *object* deklariert wurden (d. h. die in den Methoden des Objekts automatisch vorhanden sind).]{version="8.6"}
 
 **info object vars** *object* ?*pattern*?
-: [Liste aller Variablen im privaten Namespace von *object*. Mit *pattern* ein Filter ([string match][string]-Glob). Anders als **info object variables**: jene kann noch nicht gesetzte Variablen enthalten; dieser Befehl Variablen, die von keiner Methode von *object* (oder Klasse, Superklassen, Mixins) automatisch eingebunden werden.]{version="8.6"}
+: [Dieser Unterbefehl gibt eine Liste aller Variablen im privaten Namespace des Objekts mit dem Namen *object* zurück. Ist das optionale Argument *pattern* angegeben, ist es ein Filter (in der Syntax eines Glob-Musters von [string match][string]), der die Liste der zurückgegebenen Variablen einschränkt. Beachten Sie, dass sich diese Liste von der Liste unterscheidet, die **info object variables** zurückgibt: Jene kann Variablen enthalten, die derzeit nicht gesetzt sind, während diese Variablen enthalten kann, die von keiner der Methoden von *object* (oder denen seiner Klasse, Oberklassen oder Mixins) automatisch eingebunden werden.]{version="8.6"}
 
 
 # Beispiele
 
-Dieser Befehl gibt eine zum Speichern in einem Tcl-Skript geeignete Prozedur aus:
+Dieser Befehl gibt eine Prozedur in einer Form aus, die sich zum Speichern in einem Tcl-Skript eignet:
 
 ```
 proc printProc {procName} {
@@ -323,7 +323,7 @@ proc printProc {procName} {
 
 ## Beispiele mit Objekten
 
-Jedes Objekt kennt seine Klasse; diese Information ist per Introspection leicht abrufbar:
+Jedes Objekt kennt notwendigerweise seine Klasse; diese Information lässt sich durch Introspektion ganz einfach ermitteln:
 
 ```
 oo::class create c
@@ -334,7 +334,7 @@ puts [info object class c]
                      → prints "::oo::class"
 ```
 
-Die Introspection kann ermitteln, welche Klasse eine Methode implementiert und wie sie definiert ist:
+Mit den Möglichkeiten der Introspektion lässt sich herausfinden, welche Klasse eine Methode implementiert und wie sie definiert ist. Diese Prozedur zeigt, wie das geht:
 
 ```
 proc getDef {obj method} {
@@ -352,7 +352,7 @@ proc getDef {obj method} {
 }
 ```
 
-Alternativ durch manuelles Durchlaufen der Vererbungskette (einfache Einzelvererbung, keine komplexen Mixins; dann ist **info object call** deutlich einfacher):
+Dies ist ein alternativer Weg, die Definition nachzuschlagen; er durchsucht von Hand die Liste der Methoden entlang des Vererbungsbaums nach oben. Dieser Code geht davon aus, dass nur Einfachvererbung verwendet wird und dass eingemischte Klassen nicht auf komplexe Weise genutzt werden (in solchen Fällen ist **info object call** wie oben bei Weitem der einfachste Weg):
 
 ```
 proc getDef {obj method} {

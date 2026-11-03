@@ -43,7 +43,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt den Namen einer globalen Variable fest. Der Wert der Variable ist eine Liste, die innerhalb des Widgets angezeigt werden soll; wenn sich der Variablenwert ändert, aktualisiert sich das Widget automatisch, um den neuen Wert widerzuspiegeln. Versuche, einer Variable mit einem ungültigen Listenwert **-listvariable** zuzuweisen, führen zu einem Fehler. Versuche, eine als **-listvariable** verwendete Variable zu entfernen, schlagen fehl, erzeugen aber keinen Fehler.
 
 **-selectmode** (**selectMode**/**SelectMode**)
-: Legt einen von mehreren Stilen für die Manipulation der Auswahl fest. Der Wert der Option kann beliebig sein, aber die Standard-Bindings erwarten **single**, **browse**, **multiple** oder **extended**; der Standardwert ist **browse**.
+: Legt einen von mehreren Stilen für die Manipulation der Auswahl fest. Der Wert der Option kann beliebig sein, aber die Standard-Bindungen erwarten **single**, **browse**, **multiple** oder **extended**; der Standardwert ist **browse**.
 
 **-state** (**state**/**State**)
 : Legt einen von zwei Zuständen für die Listbox fest: **normal** oder **disabled**. Wenn die Listbox deaktiviert ist, können keine Elemente eingefügt oder gelöscht werden, Elemente werden in der Farbe **-disabledforeground** gezeichnet, und die Auswahl kann nicht geändert werden und wird nicht angezeigt (Auswahlinformationen bleiben jedoch erhalten).
@@ -102,7 +102,7 @@ pathName option ?arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
 
 [pathName]{.ins} [configure]{.sub} [option]{.optarg} [value option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **listbox** akzeptierten Werte haben.
 
 [pathName]{.ins} [curselection]{.sub}
 : Gibt eine Liste zurück, die die numerischen Indizes aller Elemente in der Listbox enthält, die derzeit ausgewählt sind. Wenn in der Listbox keine Elemente ausgewählt sind, wird eine leere Zeichenkette zurückgegeben.
@@ -117,25 +117,25 @@ pathName option ?arg ...?
 : Gibt den ganzzahligen Indexwert zurück, der *index* entspricht. Wenn *index* **end** ist, ist der Rückgabewert eine Anzahl der Elemente in der Listbox (nicht der Index des letzten Elements).
 
 [pathName]{.ins} [insert]{.sub} [index]{.arg} [element element]{.optdot}
-: Fügt null oder mehr neue Elemente in die Liste direkt vor dem durch *index* gegebenen Element ein. Wenn *index* als **end** angegeben ist, werden die neuen Elemente am Ende der Liste hinzugefügt. Gibt einen leeren String zurück.
+: Fügt null oder mehr neue Elemente in die Liste direkt vor dem durch *index* gegebenen Element ein. Wenn *index* als **end** angegeben ist, werden die neuen Elemente am Ende der Liste hinzugefügt. Gibt eine leere Zeichenkette zurück.
 
 [pathName]{.ins} [itemcget]{.sub} [index]{.arg} [option]{.arg}
-: Gibt den aktuellen Wert der durch *option* gegebenen Item-Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **itemconfigure** akzeptierten Werte haben.
+: Gibt den aktuellen Wert der durch *option* gegebenen Element-Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **itemconfigure** akzeptierten Werte haben.
 
 [pathName]{.ins} [itemconfigure]{.sub} [index]{.arg} [option]{.optarg} [value]{.optarg} [option value]{.optdot}
-: Abfrage oder Änderung der Konfigurationsoptionen eines Items in der Listbox. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für das Item beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. Die folgenden Optionen werden derzeit für Items unterstützt:
+: Abfrage oder Änderung der Konfigurationsoptionen eines Elements in der Listbox. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für das Element beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. Die folgenden Optionen werden derzeit für Elemente unterstützt:
 
     [-background]{.lit} [color]{.arg}
-    : *Color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
+    : *Color* legt die Hintergrundfarbe fest, die beim Anzeigen des Elements verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
     [-foreground]{.lit} [color]{.arg}
-    : *Color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
+    : *Color* legt die Vordergrundfarbe fest, die beim Anzeigen des Elements verwendet wird. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
     [-selectbackground]{.lit} [color]{.arg}
-    : *color* legt die Hintergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
+    : *color* legt die Hintergrundfarbe fest, die beim Anzeigen des Elements verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
     [-selectforeground]{.lit} [color]{.arg}
-    : *color* legt die Vordergrundfarbe fest, die beim Anzeigen des Items verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
+    : *color* legt die Vordergrundfarbe fest, die beim Anzeigen des Elements verwendet wird, während es ausgewählt ist. Sie kann eine der von [Tk\_GetColor][GetColor] akzeptierten Formen haben.
 
 
 [pathName]{.ins} [nearest]{.sub} [y]{.arg}
@@ -145,10 +145,10 @@ pathName option ?arg ...?
 : Dieser Befehl wird verwendet, um Scanning auf Listboxes zu implementieren. Er hat zwei Formen, abhängig von *option*:
 
     [pathName]{.ins} [scan]{.sub} [mark]{.lit} [x]{.arg} [y]{.arg}
-    : Speichert *x* und *y* sowie die aktuelle Ansicht im Listbox-Fenster; wird in Verbindung mit späteren **scan dragto**-Befehlen verwendet. Typischerweise wird dieser Befehl mit einem Maustastendruck im Widget verknüpft. Gibt einen leeren String zurück.
+    : Speichert *x* und *y* sowie die aktuelle Ansicht im Listbox-Fenster; wird in Verbindung mit späteren **scan dragto**-Befehlen verwendet. Typischerweise wird dieser Befehl mit einem Maustastendruck im Widget verknüpft. Gibt eine leere Zeichenkette zurück.
 
     [pathName]{.ins} [scan]{.sub} [dragto]{.lit} [x]{.arg} [y]{.arg}.
-    : Dieser Befehl berechnet die Differenz zwischen seinen *x*- und *y*-Argumenten und den *x*- und *y*-Argumenten des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das Zehnfache der Koordinatendifferenz an. Dieser Befehl wird typischerweise mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, die Liste mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist ein leerer String.
+    : Dieser Befehl berechnet die Differenz zwischen seinen *x*- und *y*-Argumenten und den *x*- und *y*-Argumenten des letzten **scan mark**-Befehls für das Widget. Anschließend passt er die Ansicht um das Zehnfache der Koordinatendifferenz an. Dieser Befehl wird typischerweise mit Mausbewegungs-Events im Widget verknüpft, um den Effekt zu erzeugen, die Liste mit hoher Geschwindigkeit durch das Fenster zu ziehen. Der Rückgabewert ist eine leere Zeichenkette.
 
 
 [pathName]{.ins} [see]{.sub} [index]{.arg}
@@ -206,9 +206,9 @@ pathName option ?arg ...?
 
 
 
-# Standard-Bindings
+# Standard-Bindungen
 
-Tk erstellt automatisch Klassen-Bindings für Listboxes, die ihnen Motif-ähnliches Verhalten geben. Ein Großteil des Verhaltens einer Listbox wird durch ihre Option **-selectmode** bestimmt, die eine von vier Arten der Behandlung der Auswahl auswählt.
+Tk erstellt automatisch Klassen-Bindungen für Listboxes, die ihnen Motif-ähnliches Verhalten geben. Ein Großteil des Verhaltens einer Listbox wird durch ihre Option **-selectmode** bestimmt, die eine von vier Arten der Behandlung der Auswahl auswählt.
 
 Wenn der Auswahlmodus **single** oder **browse** ist, kann höchstens ein Element in der Listbox gleichzeitig ausgewählt sein. In beiden Modi wählt ein Klick mit Taste 1 auf ein Element es aus und hebt die Auswahl aller anderen ausgewählten Elemente auf. Im Modus **browse** ist es auch möglich, die Auswahl mit Taste 1 zu ziehen. Bei Taste 1 erhält die Listbox auch den Fokus, wenn sie den Zustand **normal** hat.
 
@@ -216,9 +216,9 @@ Wenn der Auswahlmodus **multiple** oder **extended** ist, können beliebig viele
 
 Die meisten Benutzer werden wahrscheinlich den Modus **browse** für Einzelauswahlen und den Modus **extended** für Mehrfachauswahlen verwenden wollen; die anderen Modi scheinen nur in besonderen Situationen nützlich zu sein.
 
-Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Event **<<ListboxSelect>>** erzeugt. Dieses virtuelle Event wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* [selection] angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
+Jedes Mal, wenn die Menge der ausgewählten Elemente in der Listbox vom Benutzer über Tastatur oder Maus aktualisiert wird, wird das virtuelle Ereignis **<<ListboxSelect>>** erzeugt. Dieses virtuelle Ereignis wird nicht erzeugt, wenn die Auswahl mit dem Befehl *pathName* [selection] angepasst wird. Am einfachsten ist es, an dieses Event zu binden, um über Benutzeränderungen der Listbox-Auswahl informiert zu werden.
 
-Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindings folgendes weiteres Verhalten definiert:
+Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindungen folgendes weiteres Verhalten definiert:
 
 1. Im Modus **extended** kann der ausgewählte Bereich angepasst werden, indem Taste 1 mit gedrückter Umschalttaste gedrückt wird: dies ändert die Auswahl so, dass sie aus den Elementen zwischen dem Anker und dem Element unter der Maus einschließlich besteht. Das nicht verankerte Ende dieser neuen Auswahl kann ebenfalls mit gedrückter Taste gezogen werden.
 
@@ -259,7 +259,7 @@ Zusätzlich zu dem obigen Verhalten wird durch die Standard-Bindings folgendes w
 19. Die F16-Taste (auf vielen Sun-Arbeitsplätzen mit Copy beschriftet) oder Meta-w kopiert die Auswahl im Widget in die Zwischenablage, sofern eine Auswahl vorhanden ist.
 
 
-Das Verhalten von Listboxes kann geändert werden, indem neue Bindings für einzelne Widgets definiert werden oder indem die Klassen-Bindings neu definiert werden.
+Das Verhalten von Listboxes kann geändert werden, indem neue Bindungen für einzelne Widgets definiert werden oder indem die Klassen-Bindungen neu definiert werden.
 
 
 [ConfigWidg]: ../tk-c/ConfigWidg.md

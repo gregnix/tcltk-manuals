@@ -28,7 +28,7 @@ ttk::treeview - Hierarchisches mehrspaltiges Datenanzeige-Widget
 
 Das **ttk::treeview**-Widget zeigt eine hierarchische Sammlung von Elementen an. Jedes Element hat eine Textbeschriftung, ein optionales Bild und eine optionale Liste von Datenwerten. Die Datenwerte werden in aufeinanderfolgenden Spalten nach der Baumspaltenbeschriftung angezeigt.
 
-Die Reihenfolge, in der Datenwerte angezeigt werden, kann über die Widget-Option **-displaycolumns** gesteuert werden. Das Treeview-Widget kann auch Spaltenüberschriften anzeigen. Auf Spalten kann per Nummer oder über die in der Widget-Option **-columns** aufgeführten symbolischen Namen zugegriffen werden; siehe [Spaltenidentifikatoren].
+Die Reihenfolge, in der Datenwerte angezeigt werden, kann über die Widget-Option **-displaycolumns** gesteuert werden. Das Treeview-Widget kann auch Spaltenüberschriften anzeigen. Auf Spalten kann per Nummer oder über die in der Widget-Option **-columns** aufgeführten symbolischen Namen zugegriffen werden; siehe [Spaltenkennungen].
 
 Jedes Element wird durch einen eindeutigen Namen identifiziert. Fehlen Element-IDs vom Aufrufer, erzeugt das Widget sie selbst. Es gibt ein ausgezeichnetes Wurzelelement mit dem Namen **{}**. Das Wurzelelement selbst wird nicht angezeigt; seine Kinder erscheinen auf der obersten Ebene der Hierarchie.
 
@@ -123,9 +123,9 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
 
 
 [pathname]{.ins} [children]{.sub} [item]{.arg} [newchildren]{.optarg}
-: Ist *newchildren* nicht angegeben, gibt die Liste der Kinder von *item* zurück.
+: Ist *newchildren* nicht angegeben, wird die Liste der Kinder von *item* zurückgegeben.
 
-    Ist *newchildren* angegeben, ersetzt die Kinderliste von *item* durch *newchildren*. Elemente der alten Kinderliste, die nicht in der neuen Liste stehen, werden vom Baum getrennt. Keines der Elemente in *newchildren* darf ein Vorfahre von *item* sein.
+    Ist *newchildren* angegeben, wird die Kinderliste von *item* durch *newchildren* ersetzt. Elemente der alten Kinderliste, die nicht in der neuen Liste stehen, werden vom Baum getrennt. Keines der Elemente in *newchildren* darf ein Vorfahre von *item* sein.
 
 [pathname]{.ins} [column]{.sub} [column]{.arg} [-option ?value -option value...]{.optarg}
 : Abfragen oder Ändern der Optionen der angegebenen *column*. Ist kein *-option* angegeben, wird ein Dictionary der Option/Wert-Paare zurückgegeben. Ist genau ein *-option* angegeben, wird dessen Wert zurückgegeben. Andernfalls werden die Optionen mit den angegebenen Werten aktualisiert. Für jede Spalte können folgende Optionen gesetzt werden:
@@ -158,13 +158,13 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
 : Trennt alle angegebenen Elemente in *itemList* vom Baum. Die Elemente und alle Nachkommen bleiben vorhanden und können mit **move** an anderer Stelle wieder eingefügt werden, werden aber erst dann angezeigt. Das Wurzelelement darf nicht getrennt werden. Siehe auch: **delete**.
 
 [pathname]{.ins} [detached]{.sub} [item]{.optarg}
-: Ist *item* angegeben, gibt einen booleschen Wert zurück, ob es der Name eines getrennten Elements ist (siehe **detach**). Andernfalls eine Liste aller getrennten Elemente (in beliebiger Reihenfolge). Das Wurzelelement ist nie getrennt.
+: Ist *item* angegeben, wird ein boolescher Wert zurückgegeben, der angibt, ob es der Name eines getrennten Elements ist (siehe **detach**). Andernfalls wird eine Liste aller getrennten Elemente (in beliebiger Reihenfolge) zurückgegeben. Das Wurzelelement ist nie getrennt.
 
 [pathname]{.ins} [exists]{.sub} [item]{.arg}
 : Gibt 1 zurück, wenn *item* im Baum vorhanden ist, sonst 0.
 
 [pathname]{.ins} [focus]{.sub} [item]{.optarg}
-: Ist *item* angegeben, wird das Fokuselement auf *item* gesetzt. Andernfalls das aktuelle Fokuselement oder **{}**, wenn keines gesetzt ist.
+: Ist *item* angegeben, wird das Fokuselement auf *item* gesetzt. Andernfalls wird das aktuelle Fokuselement zurückgegeben oder **{}**, wenn keines gesetzt ist.
 
 [pathname]{.ins} [heading]{.sub} [column]{.arg} [-option ?value -option value...]{.optarg}
 : Abfragen oder Ändern der Überschriftenoptionen der angegebenen *column*. Gültige Optionen:
@@ -219,7 +219,7 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
     : Veraltetes Synonym für *pathname* **identify item**.
 
 
-    Siehe [Spaltenidentifikatoren] zur Unterscheidung von Anzeige- und Datenspalten.
+    Siehe [Spaltenkennungen] zur Unterscheidung von Anzeige- und Datenspalten.
 
 [pathname]{.ins} [index]{.sub} [item]{.arg}
 : Ganzzahliger Index von *item* in der Kinderliste des Elternelements.
@@ -250,7 +250,7 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
 : Stellt sicher, dass *item* sichtbar ist: setzt alle Vorfahren von *item* auf **-open true** und scrollt bei Bedarf, sodass *item* im sichtbaren Baumbereich liegt.
 
 [pathname]{.ins} [selection]{.sub} [selop itemList]{.optarg}
-: Verwaltet die Elementauswahl. Unabhängig von der Zellauswahl des Befehls **cellselection**. Ist *selop* nicht angegeben, Liste der ausgewählten Elemente. Andernfalls ist *selop* einer der folgenden:
+: Verwaltet die Elementauswahl. Unabhängig von der Zellauswahl des Befehls **cellselection**. Ist *selop* nicht angegeben, wird die Liste der ausgewählten Elemente zurückgegeben. Andernfalls ist *selop* einer der folgenden:
 
     [pathname]{.ins} [selection]{.sub} [set]{.lit} [itemList]{.arg}
     : *itemList* wird die neue Auswahl.
@@ -266,7 +266,7 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
 
 
 [pathname]{.ins} [set]{.sub} [item]{.arg} [column]{.optarg} [value]{.optarg}
-: Mit einem Argument Dictionary der Spalten/Wert-Paare für *item*. Mit zwei Argumenten aktueller Wert von *column*. Mit drei Argumenten wird der Wert von Spalte *column* in Element *item* auf *value* gesetzt. Siehe auch [Spaltenidentifikatoren].
+: Mit einem Argument Dictionary der Spalten/Wert-Paare für *item*. Mit zwei Argumenten aktueller Wert von *column*. Mit drei Argumenten wird der Wert von Spalte *column* in Element *item* auf *value* gesetzt. Siehe auch [Spaltenkennungen].
 
 [pathName]{.ins} [tag]{.sub} [args...]{.arg}
 : Verwaltet Tags. Tags können auf Elementen und Zellen gesetzt werden. Die Tag-Menge ist für Elemente und Zellen gemeinsam. Element-Tagging und Zellen-Tagging sind jedoch unabhängig (ein Tag auf einem Element gilt nicht automatisch für dessen Zellen). Zellen-Tags haben beim Zeichnen Vorrang vor Element-Tags. Folgende Unterbefehle werden unterstützt:
@@ -275,11 +275,11 @@ Zusätzlich zu den Standardbefehlen **cget**, **configure**, **instate**, **stat
     : Fügt *tag* jedem der aufgeführten *items* hinzu. Ist *tag* für ein Element bereits vorhanden, bleiben die **-tags** unverändert.
 
     [pathName]{.ins} [tag]{.sub} [bind]{.lit} [tagName]{.arg} [sequence]{.optarg} [script]{.optarg}
-    : Tk-Bindungsskript für die Ereignissequenz *sequence* auf Tag *tagName*. Bei X-Ereignissen an einem Element werden Bindungen für jedes **-tags** des Elements der Reihe nach wie in *bindtags(n)* ausgewertet. Lässt sich das Ereignis einer Zelle zuordnen (z. B. Mausereignisse), werden auch Bindungen der **-tags** der Zelle ausgewertet.
+    : Fügt dem Tag *tagName* ein Tk-Bindungsskript für die Ereignissequenz *sequence* hinzu. Bei X-Ereignissen an einem Element werden Bindungen für jedes **-tags** des Elements der Reihe nach wie in *bindtags(n)* ausgewertet. Lässt sich das Ereignis einer Zelle zuordnen (z. B. Mausereignisse), werden auch Bindungen der **-tags** der Zelle ausgewertet.
 
         **<Key>**, **<KeyRelease>** und virtuelle Ereignisse gehen an das Fokuselement. **<Button>**, **<ButtonRelease>** und **<Motion>** an das Element unter dem Mauszeiger. Andere Ereignistypen werden nicht unterstützt.
 
-        Das Bindungsskript *script* durchläuft **%-Ersetzungen** vor der Auswertung; siehe **bind**(n).
+        Das Bindungsskript *script* durchläuft vor der Auswertung **%**-Ersetzungen; siehe **bind**(n).
 
     [pathName]{.ins} [tag]{.sub} [cell]{.lit} [subcommand...]{.arg}
     : Verwaltet Tags auf einzelnen Zellen. *cellList* kann eine Zelle oder eine Liste von Zellen sein.
@@ -365,7 +365,7 @@ Folgende Optionen können auf Tags gesetzt werden:
 : Innenabstand der Zelle. Standard für Datenzellen {4 0}
 
 **-stripedbackground**
-: Hintergrundfarbe für abwechselnde Zeilen, wenn **-striped** true ist.
+: Hintergrundfarbe der Zelle oder des Elements für abwechselnde Zeilen, wenn **-striped** true ist.
 
 
 Tags auf Zellen haben Vorrang vor Tags auf Elementen. Die Tag-Priorität folgt der Erstellungsreihenfolge: zuerst erstellte Tags haben höhere Priorität. Elementoptionen wie **-image** und **-imageanchor** haben Vorrang vor Tags.
@@ -374,7 +374,7 @@ Tags auf Zellen haben Vorrang vor Tags auf Elementen. Die Tag-Priorität folgt d
 
 Die Option **-image** auf einem Element und auf einem Element-Tag steuert das Bild neben der Beschriftung in der Baumspalte. Andere Zellen können Bilder über die Zellen-Tag-Option **-image** erhalten.
 
-# Spaltenidentifikatoren
+# Spaltenkennungen
 
 Spaltenkennungen können folgende Formen annehmen:
 
@@ -401,17 +401,17 @@ Das Treeview-Widget erzeugt folgende virtuelle Ereignisse.
 : Wird ausgelöst, wenn sich Auswahl oder Zellauswahl ändert. Kann auch ausgelöst werden, wenn die Auswahl betroffen, aber nicht tatsächlich geändert wurde. Mehrere Auswahländerungen können vor der Ereignisverarbeitung erfolgen und mehrere Ereignisse mit gleicher sichtbarer Auswahl erzeugen.
 
 <<TreeviewOpen>>
-: Kurz bevor das Fokuselement auf **-open true** gesetzt wird.
+: Wird unmittelbar vor dem Setzen des Fokuselements auf **-open true** ausgelöst.
 
 <<TreeviewClose>>
-: Kurz nachdem das Fokuselement auf **-open false** gesetzt wurde.
+: Wird unmittelbar nach dem Setzen des Fokuselements auf **-open false** ausgelöst.
 
 
 Die Widget-Befehle **focus** und **selection** liefern das betroffene Element bzw. die betroffenen Elemente.
 
 # Stiloptionen
 
-Der Klassenname für **ttk::treeview** ist **Treeview**. Der Klassenname der Treeview-Überschrift ist **Heading**. Der Klassenname eines Treeview-Elements ist **Item**. Der Klassenname einer Treeview-Zelle ist **Cell**.
+Der Klassenname für **ttk::treeview** ist **Treeview**. Der Klassenname der Treeview-Überschrift ist **Heading**. Der Klassenname eines Treeview-Elements ist **Element**. Der Klassenname einer Treeview-Zelle ist **Cell**.
 
 Dynamische Zustände: **disabled**, **selected**.
 
@@ -454,7 +454,7 @@ ttk::style configure Treeview \
 
 **-relief** *relief*
 
-**Item**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
+**Element**-Styling-Optionen, die mit [ttk::style][ttk_style] konfiguriert werden können, sind:
 
 **-foreground** *color*
 

@@ -12,7 +12,7 @@ csaba.nemethi@t-online.de
 
 ## Inhalt
 
-- [Kurzanleitung](#kurzreferenz)
+- [Kurzreferenz](#kurzreferenz)
 - [Ausführliche Referenz](#ausf-hrliche-referenz)
 
 [Startseite](index.md)
@@ -22,7 +22,7 @@ csaba.nemethi@t-online.de
 ## Kurzreferenz
 
 [NAME](#ausf-hrliche-referenz)
-: `scrollutil::pagesman` – Seiten-Widgets erstellen und bearbeiten
+: `scrollutil::pagesman` – pagesman-Widgets erstellen und bearbeiten
 
 [ÜBERSICHT](#ausf-hrliche-referenz)
 : 
@@ -51,12 +51,12 @@ scrollutil::pagesman pathName ?options?
 
 : `-width screenDistance`
 
-[SEITE KONFIGURATION OPTIONS](#ausf-hrliche-referenz)
+[SEITENKONFIGURATIONSOPTIONEN](#ausf-hrliche-referenz)
 : `-padding padding`
 
 : `-sticky stickyness`
 
-[Widget COMMAND](#ausf-hrliche-referenz)
+[WIDGET-BEFEHL](#ausf-hrliche-referenz)
 : `pathName add window ?option value option value ...?`
 
 : `pathName adjustsize`
@@ -106,7 +106,7 @@ scrollutil::pagesman pathName ?options?
 ## Ausführliche Referenz
 
 **NAME**
-: `scrollutil::pagesman` – Seiten-Widgets erstellen und bearbeiten
+: `scrollutil::pagesman` – pagesman-Widgets erstellen und bearbeiten
 
 **ÜBERSICHT**
 : 
@@ -145,7 +145,7 @@ scrollutil::pagesman pathName ?options?
 | Name der Datenbank: | ` forgetCommand` |
 | Datenbankklasse: | ` ForgetCommand` |
 
-Legt einen Befehl fest, der aufgerufen werden soll, wenn versucht wird, ein Fenster mithilfe des Unterbefehls `forget` aus der Verwaltung zu entfernen.  Wenn der Wert der Option eine nicht leere Zeichenkette ist, wird diese mit dem Pfadnamen des „pagesman“-Widgets und dem des Fensters, dessen Verwaltung aufgehoben werden soll, verkettet, und das resultierende Skript, das einen booleschen Wert geben muss, wird im globalen Geltungsbereich ausgewertet.  Wenn der Wert dieses Skripts „false“ ist, wird der Unterbefehl `forget` abgebrochen, d. h., das Fenster wird nicht aus der Verwaltung entfernt. Der Standardwert ist eine leere Zeichenkette.
+Legt einen Befehl fest, der aufgerufen werden soll, wenn versucht wird, ein Fenster mithilfe des Unterbefehls `forget` aus der Verwaltung zu entfernen.  Wenn der Wert der Option eine nicht leere Zeichenkette ist, wird diese mit dem Pfadnamen des „pagesman“-Widgets und dem des Fensters, dessen Verwaltung aufgehoben werden soll, verkettet, und das resultierende Skript, das einen booleschen Wert zurückgeben muss, wird im globalen Geltungsbereich ausgewertet.  Wenn der Wert dieses Skripts „false“ ist, wird der Unterbefehl `forget` abgebrochen, d. h., das Fenster wird nicht aus der Verwaltung entfernt. Der Standardwert ist eine leere Zeichenkette.
 
 
 |   |   |
@@ -191,7 +191,7 @@ Wenn vorhanden und größer als Null, legt dieser Wert die gewünschte Gesamtbre
 : Legt fest, wie viel zusätzlicher Abstand zwischen dem Widget und dieser Seite eingefügt werden soll.  `padding` muss eine Liste mit bis zu vier nicht-negativen Bildschirmabständen  `{left top right bottom}` sein.  Wenn weniger als vier Elemente festgelegt werden, wird `bottom` standardmäßig auf `top` gesetzt, `right` auf `left` und `top` auf `left`.  Ein als leere Liste festgelegter Innenabstand entspricht `0`, was dem Standardwert entspricht.
 
 `-sticky stickyness`
-: Legt fest, wie das Seitenfenster innerhalb des Widgets positioniert wird. `stickyness` muss eine Zeichenkette sein, die null oder mehr der Zeichen `n`, `s`, `e` oder `w` enthalten.  Jeder Buchstabe bezieht sich auf eine Seite (Norden, Süden, Osten oder Westen), an der das Seitenfenster gemäß dem Geometriemanager `grid` „haften“ wird.  Die Standard-Haftung ist `nsew`.
+: Legt fest, wie das Seitenfenster innerhalb des Widgets positioniert wird. `stickyness` muss eine Zeichenkette sein, die null oder mehr der Zeichen `n`, `s`, `e` oder `w` enthält.  Jeder Buchstabe bezieht sich auf eine Seite (Norden, Süden, Osten oder Westen), an der das Seitenfenster gemäß dem Geometriemanager `grid` „haften“ wird.  Die Standard-Haftung ist `nsew`.
 
 
 **WIDGET-BEFEHL**
@@ -201,16 +201,16 @@ Wenn vorhanden und größer als Null, legt dieser Wert die gewünschte Gesamtbre
 pathName option ?arg arg ...?
 ```
 
-: `option` und die `arg`s bestimmen das genaue Verhalten des Befehls.  In den folgenden Beschreibungen der Unterbefehle bezeichnet `pageIndex` stets einen numerischen Index der Seiten, der – mit Ausnahme des Unterbefehls `insert` – größer oder gleich Null und kleiner als die Seitenanzahl sein muss.  Für Pagesman-Widgets sind die folgenden Unterbefehle möglich:
+: `option` und die Argumente `arg` bestimmen das genaue Verhalten des Befehls.  In den folgenden Beschreibungen der Unterbefehle bezeichnet `pageIndex` stets einen numerischen Index der Seiten, der – mit Ausnahme des Unterbefehls `insert` – größer oder gleich Null und kleiner als die Seitenanzahl sein muss.  Für Pagesman-Widgets sind die folgenden Unterbefehle möglich:
 
 
 `pathName add window ?option value option value ...?`
-: Fügt dem „pagesman“-Widget eine neue Seite hinzu, die aus dem angegebenen Fenster besteht. Eine Liste der verfügbaren Optionen finden Sie im Abschnitt [SEITENKONFIGURATIONSOPTIONEN](#ausf-hrliche-referenz) für eine Liste der verfügbaren Optionen.  Wenn `window` bereits vom „pagesman“-Widget verwaltet wird, verwendet der Unterbefehl seine optionalen Argumente, um die Optionen der entsprechenden Seite zu aktualisieren.
+: Fügt dem „pagesman“-Widget eine neue Seite hinzu, die aus dem angegebenen Fenster besteht. Eine Liste der verfügbaren Optionen finden Sie im Abschnitt [SEITENKONFIGURATIONSOPTIONEN](#ausf-hrliche-referenz).  Wenn `window` bereits vom „pagesman“-Widget verwaltet wird, verwendet der Unterbefehl seine optionalen Argumente, um die Optionen der entsprechenden Seite zu aktualisieren.
 
 `pathName adjustsize`
 : Setzt die Option `-height` des Pagesman-Widgets auf die maximale angeforderte Höhe aller Seiten und die Option `-width` auf die maximale angeforderte Breite aller Seiten.
 
-: **HINWEIS:**  Wenn alle Seiten des „pagesman“-Widgets „plainnotebooks“ sind, deren Optionen `-height` und `-width` den Standardwert `0` haben, ist es in vielen Fällen nicht erforderlich, einem Aufruf dieser Unterbefehl für das „pagesman“-Widget durch Aufrufe des gleichen Namens für dessen Seiten voranzustellen, da jedes „plainnotebook“ seine angeforderte Größe automatisch an die maximal angeforderte Größe seiner Teilflächen anpasst.  Beispielsweise könnte eine Änderung der Schriftart in einigen Teilflächen bestimmter Seiten es erforderlich machen, diesen Unterbefehl für das „pagesman“-Widget aufzurufen, und zum Zeitpunkt des Aufrufs werden die angeforderten Größen seiner Seiten bereits automatisch an die neue Schriftart angepasst sein.
+: **HINWEIS:**  Wenn alle Seiten des „pagesman“-Widgets „plainnotebooks“ sind, deren Optionen `-height` und `-width` den Standardwert `0` haben, ist es in vielen Fällen nicht erforderlich, einem Aufruf dieses Unterbefehls für das „pagesman“-Widget Aufrufe des gleichnamigen Unterbefehls für dessen Seiten voranzustellen, da jedes „plainnotebook“ seine angeforderte Größe automatisch an die maximal angeforderte Größe seiner Teilflächen anpasst.  Beispielsweise könnte eine Änderung der Schriftgröße in einigen Teilflächen bestimmter Seiten es erforderlich machen, diesen Unterbefehl für das „pagesman“-Widget aufzurufen, und zum Zeitpunkt des Aufrufs werden die angeforderten Größen seiner Seiten bereits automatisch an die neue Schriftgröße angepasst sein.
 
 `pathName attrib ?name ?value name value ...??`
 : Fragt die Attribute des Widgets ab oder ändert sie.  Wenn kein `name` angegeben ist, gibt der Befehl eine Liste von Paaren zurück, von denen jedes den Namen und den Wert eines Attributs für `pathName` enthält.  Wenn `name` ohne `value` festgelegt wird, gibt der Befehl den Wert des genannten Attributs zurück oder eine leere Zeichenkette, falls kein entsprechender Wert vorhanden ist (mit dem Unterbefehl `hasattrib` können Sie diesen Fall von dem unterscheiden, bei dem der Wert eines *vorhandenen* Attributs eine leere Zeichenkette ist).  Wenn ein oder mehrere Paare aus `name` und `value` angegeben werden, legt der Befehl das/die angegebene(n) Widget-Attribut(e) auf den/die angegebenen Wert(e) fest; in diesem Fall ist der Rückgabewert eine leere Zeichenkette.  Jedes `name` kann eine beliebige Zeichenkette sein.
@@ -237,7 +237,7 @@ pathName option ?arg arg ...?
 : Fügt eine neue Seite ein, die aus dem angegebenen Fenster besteht, und zwar an der durch `pageIndex` angegebenen Position. Eine Liste der verfügbaren Optionen finden Sie im Abschnitt [SEITENKONFIGURATIONSOPTIONEN](#ausf-hrliche-referenz).  Wenn `window` bereits vom „pagesman“-Widget verwaltet wird, verschiebt der Unterbefehl es an die angegebene Position und verwendet seine optionalen Argumente, um die Optionen der entsprechenden Seite zu aktualisieren.  Wenn `pageIndex` kleiner oder gleich Null ist, wird das Fenster an den Anfang der Liste der Seiten eingefügt; wenn es größer oder gleich der Anzahl der Seiten ist, wird das Fenster an das Ende der Liste der Seiten angehängt.
 
 `pathName pageattrib pageIndex ?name ?value name value ...??`
-: Fragt die Attribute der durch `pageIndex` angegebenen Seite ab oder ändert sie. Wenn kein `name` gelegt ist, gibt der Befehl eine Liste von Paaren zurück, von denen jedes den Namen und den Wert eines Attributs der Seite enthält.  Wenn `name` ohne `value` festgelegt wird, gibt der Befehl den Wert des einen benannten Seitenattributs zurück oder eine leere Zeichenkette, falls kein entsprechender Wert vorhanden ist (Sie können den Unterbefehl `haspageattrib` verwenden, um diesen Fall von dem zu unterscheiden, bei dem der Wert eines *vorhandenen* Seitenattributs eine leere Zeichenkette ist).  Wenn ein oder mehrere Paare aus `name` und `value` angegeben werden, legt der Befehl das/die angegebene(n) Seitenattribut(e) auf den/die angegebenen Wert(e) fest; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück.  Jedes `name` kann eine beliebige Zeichenkette sein.
+: Fragt die Attribute der durch `pageIndex` angegebenen Seite ab oder ändert sie. Wenn kein `name` angegeben ist, gibt der Befehl eine Liste von Paaren zurück, von denen jedes den Namen und den Wert eines Attributs der Seite enthält.  Wenn `name` ohne `value` festgelegt wird, gibt der Befehl den Wert des einen benannten Seitenattributs zurück oder eine leere Zeichenkette, falls kein entsprechender Wert vorhanden ist (Sie können den Unterbefehl `haspageattrib` verwenden, um diesen Fall von dem zu unterscheiden, bei dem der Wert eines *vorhandenen* Seitenattributs eine leere Zeichenkette ist).  Wenn ein oder mehrere Paare aus `name` und `value` angegeben werden, legt der Befehl das/die angegebene(n) Seitenattribut(e) auf den/die angegebenen Wert(e) fest; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück.  Jedes `name` kann eine beliebige Zeichenkette sein.
 
 `pathName pagecget pageIndex option`
 : Gibt den aktuellen Wert der durch `option` angegebenen Seitenkonfigurationsoption für die durch `pageIndex` angegebene Seite zurück.  `option` kann einen beliebigen Wert annehmen, der vom Befehl `pageconfigure` akzeptiert wird.
@@ -249,13 +249,13 @@ pathName option ?arg arg ...?
 : Gibt die Liste aller vom „pagesman“-Widget verwalteten Fenster in der Reihenfolge ihrer numerischen Seitenindizes zurück.
 
 `pathName select ?pageIndex?`
-: Wenn `pageIndex` weggelassen wird, gibt der Unterbefehl den Pfadnamen des aktuell ausgewählten Fensters zurück. Andernfalls wählt er die angegebene Seite aus, indem er das entsprechende Fenster zuordnet und die Zuordnung des zuvor ausgewählten Fensters (sofern es sich um ein anderes handelt) aufhebt.  In diesem Fall gibt der Befehl, der als Wert der Option `-leavecommand` angegeben wurde, den Wert `0` zurück, wenn der Vorgang der Auswahl eines anderen Fensters abgebrochen wurde, und andernfalls den Wert `1`.
+: Wenn `pageIndex` weggelassen wird, gibt der Unterbefehl den Pfadnamen des aktuell ausgewählten Fensters zurück. Andernfalls wählt er die angegebene Seite aus, indem er das entsprechende Fenster zuordnet und die Zuordnung des zuvor ausgewählten Fensters (sofern es sich um ein anderes handelt) aufhebt.  In diesem Fall gibt der Unterbefehl den Wert `0` zurück, wenn der Vorgang der Auswahl eines anderen Fensters durch den als Wert der Option `-leavecommand` angegebenen Befehl abgebrochen wurde, und andernfalls den Wert `1`.
 
 `pathName size`
 : Gibt die Anzahl der Seiten zurück, d. h. die Anzahl der Fenster, die vom „pagesman“-Widget verwaltet werden.
 
 `pathName unsetattrib name`
-: Hebt das Attribut `name` auf. Gibt eine leere Zeichenfolge zurück.
+: Hebt das Attribut `name` auf. Gibt eine leere Zeichenkette zurück.
 
 `pathName unsetpageattrib pageIndex name`
 : Hebt das Attribut `name` für die durch `pageIndex` angegebene Seite auf. Gibt eine leere Zeichenkette zurück.

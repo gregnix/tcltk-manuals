@@ -35,7 +35,7 @@ Die folgenden Optionen werden von allen Tk-Themed-Widgets unterstützt:
 : Legt den für das Widget zu verwendenden Mauszeiger fest. Siehe [Tk\_GetCursor][GetCursor] und *cursors(n)* im Tk-Referenzhandbuch für die zulässigen Werte. Ist er die leere Zeichenkette (Standard), wird der Zeiger vom Eltern-Widget geerbt.
 
 **-takefocus** (**takeFocus**/**TakeFocus**)
-: Legt fest, ob das Fenster den Fokus bei Tastaturtraversierung annimmt. Entweder **0**, **1**, ein Befehlspräfix (dem der Widget-Pfad angehängt wird und der **0** oder **1** zurückgeben soll) oder die leere Zeichenkette. Siehe *options(n)* im Tk-Referenzhandbuch für die vollständige Beschreibung.
+: Legt fest, ob das Fenster den Fokus bei der Tastaturnavigation annimmt. Entweder **0**, **1**, ein Befehlspräfix (dem der Widget-Pfad angehängt wird und der **0** oder **1** zurückgeben soll) oder die leere Zeichenkette. Siehe *options(n)* im Tk-Referenzhandbuch für die vollständige Beschreibung.
 
 **-style** (**style**/**Style**)
 : Kann verwendet werden, um einen benutzerdefinierten Widget-Stil anzugeben.
@@ -46,7 +46,7 @@ Die folgenden Optionen werden von allen Tk-Themed-Widgets unterstützt:
 Die folgenden Optionen werden von Widgets unterstützt, die mit einer Scrollbar gesteuert werden können. Siehe *scrollbar(n)* für Details.
 
 **-xscrollcommand** (**xScrollCommand**/**ScrollCommand**)
-: Ein Befehlspräfix zur Kommunikation mit horizontalen Scrollbars. Ändert sich die Ansicht im Widget-Fenster, erzeugt das Widget einen Tcl-Befehl durch Anhängen des Scroll-Befehls und zweier Zahlen. Jede Zahl ist ein Bruchteil zwischen 0 und 1 und gibt eine Position im Dokument an; 0 ist der Anfang, 1 das Ende. Der erste Bruchteil ist die erste im Fenster sichtbare Information, der zweite die Information unmittelbar nach dem letzten sichtbaren Teil.
+: Ein Befehlspräfix zur Kommunikation mit horizontalen Scrollbars. Ändert sich die Ansicht im Widget-Fenster, erzeugt das Widget einen Tcl-Befehl, indem es den Scroll-Befehl und zwei Zahlen verkettet. Jede Zahl ist ein Bruchteil zwischen 0 und 1 und gibt eine Position im Dokument an; 0 ist der Anfang, 1 das Ende. Der erste Bruchteil ist die erste im Fenster sichtbare Information, der zweite die Information unmittelbar nach dem letzten sichtbaren Teil.
 
     Typischerweise besteht **-xscrollcommand** aus dem Pfadnamen einer [scrollbar] gefolgt von „set“, z. B. „.x.scrollbar set“. Die Scrollbar wird dann bei jeder Ansichtsänderung aktualisiert.
 
@@ -107,7 +107,7 @@ Die folgenden Optionen werden von Labels, Buttons und anderen button-ähnlichen 
 : Legt den inneren Abstand des Widgets fest. Die Liste enthält bis zu vier Längenangaben *left top right bottom*. Bei weniger als vier Elementen gilt: *bottom* = *top*, *right* = *left*, *top* = *left*. Drei Zahlen: links, vertikal, rechts; zwei Zahlen: horizontal und vertikal; eine Zahl: gleicher Abstand ringsum.
 
 **-text** (**text**/**Text**)
-: Zeichenkette im Widget (sofern nicht durch **-textvariable** überschrieben, bei Widgets mit dieser Option).
+: Legt eine im Widget anzuzeigende Zeichenkette fest (sofern nicht durch **-textvariable** überschrieben, bei Widgets mit dieser Option).
 
 **-textvariable** (**textVariable**/**Variable**)
 : Name einer globalen Variable, deren Wert anstelle der **-text**-Resource verwendet wird.
@@ -116,10 +116,10 @@ Die folgenden Optionen werden von Labels, Buttons und anderen button-ähnlichen 
 : Wenn gesetzt, Index (0-basiert) des zu unterstreichenden Zeichens in der Textzeichenkette. **end** entspricht dem letzten Zeichen, **end**-1 dem vorletzten usw. Das unterstrichene Zeichen dient der Mnemonik-Aktivierung.
 
 **-width** (**width**/**Width**)
-: Ist der Wert größer als null, legt er den Platz in Zeichenbreiten für die Textbeschriftung fest. Ist er kleiner als null, eine Mindestbreite. Bei null oder ohne Angabe wird die natürliche Textbreite verwendet. Manche Themes setzen im Stil eine von Null verschiedene **-width**.
+: Ist der Wert größer als null, legt er den Platz in Zeichenbreiten für die Textbeschriftung fest. Ist er kleiner als null, legt er eine Mindestbreite fest. Bei null oder ohne Angabe wird die natürliche Textbreite verwendet. Manche Themes setzen im Stil eine von Null verschiedene **-width**.
 
 **-wraplength** (**wrapLength**/**WrapLength**)
-: Maximale Zeilenlänge. Der Wert kann jede von [Tk\_GetPixels][GetPixels] akzeptierte Form haben. Ist die Option kleiner oder gleich null, erfolgt kein automatischer Umbruch; sonst wird der Text so geteilt, dass keine Zeile länger ist.
+: Maximale Zeilenlänge. Der Wert kann jede von [Tk\_GetPixels][GetPixels] akzeptierte Form haben. Ist die Option kleiner oder gleich null, erfolgt kein automatischer Umbruch; sonst wird der Text so geteilt, dass keine Zeile länger als der angegebene Wert ist.
 
 
 # Entry-Optionen
@@ -138,7 +138,7 @@ Die folgenden Optionen werden von entry, spinbox und combobox unterstützt:
 Diese Option ist nur bei Themed-Widgets mit „entsprechenden“ klassischen Tk-Widgets verfügbar.
 
 **-state** (**state**/**State**)
-: Kann auf **normal** oder **disabled** gesetzt werden, um das **disabled**-Zustandsbit zu steuern. Schreiboption: das Setzen ändert den Widget-Zustand; der Widget-Befehl **state** beeinflusst **-state** nicht.
+: Kann auf **normal** oder **disabled** gesetzt werden, um das **disabled**-Zustandsbit zu steuern. Option, die nur geschrieben werden kann: das Setzen ändert den Widget-Zustand; der Widget-Befehl **state** beeinflusst **-state** nicht.
 
 
 # Befehle
@@ -150,7 +150,7 @@ Diese Option ist nur bei Themed-Widgets mit „entsprechenden“ klassischen Tk-
 : Fragt die Konfigurationsoptionen des Widgets ab oder ändert sie. Bei *option-value*-Paaren werden die Optionen gesetzt; der Befehl gibt dann eine leere Zeichenkette zurück. Ist nur *option* ohne *value* angegeben, gibt er eine Liste zur benannten Option zurück: Optionsname, Datenbankname, Datenbankklasse, Standardwert und aktueller Wert. Ohne *option* eine Liste aller verfügbaren Optionen für *pathName*.
 
 [pathName]{.ins} [identify]{.sub} [element]{.lit} [x]{.arg} [y]{.arg}
-: Gibt den Namen des Elements unter dem Punkt *x*, *y* zurück, oder eine leere Zeichenkette, wenn kein Element getroffen wird. *x* und *y* sind Pixelkoordinaten relativ zum Widget. Manche Widgets akzeptieren weitere **identify**-Unterbefehle in ihrer eigenen Dokumentation.
+: Gibt den Namen des Elements unter dem Punkt *x*, *y* zurück, oder eine leere Zeichenkette, wenn kein Element getroffen wird. *x* und *y* sind Pixelkoordinaten relativ zum Widget. Manche Widgets akzeptieren weitere **identify**-Unterbefehle, die in ihrer eigenen Dokumentation beschrieben sind.
 
 [pathName]{.ins} [instate]{.sub} [statespec]{.arg} [script]{.optarg}
 : Prüft den Widget-Zustand. Ohne *script*: 1, wenn der Zustand *statespec* entspricht, sonst 0. Mit *script* äquivalent zu
@@ -192,16 +192,16 @@ Diese Option ist nur bei Themed-Widgets mit „entsprechenden“ klassischen Tk-
 : Wie **xview**, aber vertikal. Mögliche Formen:
 
     [pathName]{.ins} [yview]{.sub}
-    : Zwei Bruchteile für den vertikal sichtbaren Bereich; dieselben Werte wie über **-yscrollcommand**.
+    : Gibt eine Liste mit zwei Elementen zurück, je ein Bruchteil zwischen 0 und 1; beschreibt den vertikal sichtbaren Bereich. Z. B. .2 und .6: 20 % oben außerhalb, 40 % sichtbar, 40 % unten außerhalb — dieselben Werte wie an Scrollbars über **-yscrollcommand**.
 
     [pathName]{.ins} [yview]{.sub} [index]{.arg}
-    : Inhalt *index* am oberen Fensterrand.
+    : Passt die Ansicht so an, dass der Inhalt *index* am oberen Fensterrand liegt.
 
     [pathName]{.ins} [yview]{.sub} [moveto]{.lit} [fraction]{.arg}
-    : Element an Position *fraction* am oberen Rand. *fraction* zwischen 0 und 1.
+    : Passt die Ansicht so an, dass das Element an Position *fraction* am oberen Rand erscheint. *fraction* zwischen 0 und 1.
 
     [pathName]{.ins} [yview]{.sub} [scroll]{.lit} [number]{.arg} [what]{.arg}
-    : Verschiebt vertikal. *number* Ganzzahl oder Gleitkommazahl (bei Gleitkomma gerundet). *what* **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter oben, positiv: weiter unten. Bei **units** um *number* durchschnittliche Zeichenbreiten.
+    : Verschiebt vertikal. *number* Ganzzahl oder Gleitkommazahl (bei Gleitkomma auf Ganzzahl gerundet, weg von 0). *what* **pages** oder **units**. Bei **pages** um *number* Bildschirmseiten; negativ: weiter oben, positiv: weiter unten. Bei **units** um *number* durchschnittliche Zeichenbreiten.
 
 
 
@@ -237,7 +237,7 @@ Der Widget-Zustand ist eine Bitmap-Menge unabhängiger Zustandsflags. Dazu gehö
 : Widget-Wert ist ungültig (z. B. Scale außerhalb der Grenzen, Entry-Validierung fehlgeschlagen).
 
 **hover**
-: Mauszeiger im Widget. Ähnlich **active**; in manchen Themes zusätzliches visuelles Feedback neben dem aktiven Element.
+: Mauszeiger im Widget. Ähnlich **active**; wird in manchen Themes für Widgets verwendet, die für das aktive Widget zusätzlich zum aktiven Element im Widget eine eigene visuelle Rückmeldung geben.
 
 **user1**-**user6**
 : Frei für andere Zwecke nutzbar

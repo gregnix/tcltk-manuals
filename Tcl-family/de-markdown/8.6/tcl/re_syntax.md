@@ -116,7 +116,7 @@ Eine *Einschränkung* trifft eine leere Zeichenkette, wenn bestimmte Bedingungen
 **$**
 : trifft am Ende der Zeichenkette oder einer Zeile (je nachdem, ob der Abgleich zeilenumbruch-sensitiv ist oder nicht, wie unter [Abgleich] unten beschrieben).
 
-    Der Unterschied zwischen String- und Zeilen-Abgleichmodus ist bedeutungslos, wenn die Zeichenkette kein Zeilenumbruchzeichen enthält. Die Einschränkungs-Escapes **\\A** und **\\Z** haben einen ähnlichen Zweck, sind aber stets Einschränkungen für die gesamte Zeichenkette.
+    Der Unterschied zwischen Zeichenketten- und Zeilen-Abgleichmodus ist bedeutungslos, wenn die Zeichenkette kein Zeilenumbruchzeichen enthält. Die Einschränkungs-Escapes **\\A** und **\\Z** haben einen ähnlichen Zweck, sind aber stets Einschränkungen für die gesamte Zeichenkette.
 
     Die Standard-Zeilenumbruch-Sensitivität hängt vom Befehl ab, der den regulären Ausdruck verwendet, und kann wie unter [Metasyntax] unten überschrieben werden.
 

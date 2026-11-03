@@ -42,7 +42,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 # Widget-spezifische Optionen
 
 **-command** (**command**/**Command**)
-: Tcl-Skript bei jedem Aufruf des Widgets.
+: Tcl-Skript, das bei jedem Aufruf des Widgets ausgeführt wird.
 
 **-offvalue** (**offValue**/**OffValue**)
 : Wert in der zugehörigen **-variable**, wenn das Widget abgewählt ist. Standard **0**.
@@ -56,15 +56,15 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 
 # Widget-Befehl
 
-Zusätzlich zu **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Checkbutton-Widgets:
+Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Checkbutton-Widgets folgende zusätzliche Befehle:
 
 [pathname]{.ins} [invoke]{.sub}
-: Wechselt zwischen ausgewählt und abgewählt und wertet **-command** aus. Ist das Widget ausgewählt, setzt **-variable** auf **-offvalue** und wählt ab; andernfalls **-onvalue**. Liefert das Ergebnis von **-command**.
+: Wechselt zwischen ausgewählt und abgewählt und wertet **-command** aus. Ist das Widget ausgewählt, setzt es **-variable** auf **-offvalue** und wählt sich ab; andernfalls setzt es **-variable** auf **-onvalue**. Gibt das Ergebnis von **-command**.
 
 
 # Widget-Zustände
 
-Bei **disabled** reagiert das Widget nicht auf Benutzereingaben. **selected** wird gesetzt, wenn **-variable** dem **-onvalue** entspricht, sonst gelöscht. **alternate** wird gesetzt, wenn **-variable** nicht gesetzt ist (Drei-Zustand / unbestimmt).
+Bei **disabled** reagiert das Widget nicht auf Benutzereingaben. **selected** wird gesetzt, wenn **-variable** dem **-onvalue** entspricht, sonst gelöscht. **alternate** wird gesetzt, wenn **-variable** nicht gesetzt ist. (Der Zustand **alternate** kann eine „Drei-Zustands“- oder „unbestimmte“ Auswahl anzeigen.)
 
 # Standardstile
 

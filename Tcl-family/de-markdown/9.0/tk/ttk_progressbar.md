@@ -25,7 +25,7 @@ ttk::progressbar - Fortschrittsanzeige
 
 Ein **ttk::progressbar**-Widget zeigt den Status einer länger dauernden Operation. Es gibt zwei Modi: *determinate* zeigt den erledigten Anteil relativ zur Gesamtarbeit; *indeterminate* liefert eine Animation, damit der Benutzer sieht, dass etwas läuft.
 
-Ist **-orient** **horizontal**, kann innerhalb der Fortschrittsleiste ein Text angezeigt werden — konfigurierbar mit **-anchor**, **-font**, **-foreground**, **-justify**, **-text** und **-wraplength**. Bei **vertical** werden diese Optionen ignoriert. Standardoptionen (siehe **ttk\_widget**): **-anchor**, **-class**, **-cursor**, **-font**, **-foreground**, **-justify**, **-style**, **-takefocus**, **-text**, **-wraplength**.
+Ist **-orient** **horizontal**, kann innerhalb der Fortschrittsleiste ein Text angezeigt werden — konfigurierbar mit **-anchor**, **-font**, **-foreground**, **-justify**, **-text** und **-wraplength**. Bei **vertical** werden diese Optionen ignoriert.
 
 # Standardoptionen
 
@@ -51,15 +51,15 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Nur-Lese-Option. Das Widget erhöht diesen Wert periodisch, wenn **-value** größer als 0 und im Modus *determinate* kleiner als **-maximum** ist. Das aktuelle Theme kann damit zusätzliche Animationen steuern.
 
 **-value** (**value**/**Value**)
-: Aktueller Wert. Im Modus *determinate*: erledigter Anteil. Im Modus *indeterminate*: modulo **-maximum**; ein „Zyklus“ ist abgeschlossen, wenn **-value** um **-maximum** steigt. Ist **-variable** gesetzt, hat **-value** keine Wirkung (Variable hat Vorrang).
+: Aktueller Wert. Im Modus *determinate*: erledigter Anteil. Im Modus *indeterminate*: modulo **-maximum**; ein „Zyklus“ ist abgeschlossen, wenn **-value** um **-maximum** steigt. Ist **-variable** auf eine bestehende Variable gesetzt, hat **-value** keine Wirkung (Variable hat Vorrang).
 
 **-variable** (**variable**/**Variable**)
-: Name einer globalen Tcl-Variable, verknüpft mit **-value**. Bei bestehender Variable wird **-value** automatisch bei Änderung der Variable gesetzt.
+: Name einer globalen Tcl-Variable, verknüpft mit **-value**. Bei bestehender Variable wird **-value** bei jeder Änderung der Variable automatisch auf deren Wert gesetzt.
 
 
 # Widget-Befehl
 
-Zusätzlich zu **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Progressbar-Widgets:
+Zusätzlich zu den Standardbefehlen **cget**, **configure**, **identify element**, **instate**, **state** und **style** (siehe [ttk::widget][ttk_widget]) unterstützen Progressbar-Widgets folgende zusätzliche Befehle:
 
 [pathName]{.ins} [start]{.sub} [interval]{.optarg}
 : Startet Auto-Inkrement: periodischer Timer ruft **step** alle *interval* Millisekunden auf. Fehlt *interval*, Standard 50 ms (20 Schritte/s).

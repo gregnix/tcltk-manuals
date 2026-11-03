@@ -43,7 +43,7 @@ file - Manipuliert Dateinamen und Dateiattribute
 
 # Beschreibung
 
-Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Datei bereit. *Name* ist der Name einer Datei; beginnt er mit einer Tilde, wird vor Ausführung des Befehls eine Tilden-Substitution durchgeführt (Details in der Manpage [filename]). *Option* gibt an, was mit dem Dateinamen geschehen soll. Jede eindeutige Abkürzung für *option* ist zulässig. Die gültigen Optionen sind:
+Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Datei bereit. *Name* ist der Name einer Datei; beginnt er mit einer Tilde, wird vor Ausführung des Befehls eine Tilden-Ersetzung durchgeführt (Details in der Manpage [filename]). *Option* gibt an, was mit dem Dateinamen geschehen soll. Jede eindeutige Abkürzung für *option* ist zulässig. Die gültigen Optionen sind:
 
 **file atime** *name* ?*time*?
 : Gibt eine Dezimalzeichenkette zurück, die den Zeitpunkt angibt, zu dem auf die Datei *name* zuletzt zugegriffen wurde. Ist *time* angegeben, handelt es sich um eine Zugriffszeit, die für die Datei gesetzt werden soll. Die Zeit wird in der üblichen POSIX-Weise als Sekunden seit einem festen Startzeitpunkt (oft der 1. Januar 1970) gemessen. Existiert die Datei nicht oder kann ihre Zugriffszeit weder abgefragt noch gesetzt werden, wird ein Fehler erzeugt. Unter Windows unterstützen FAT-Dateisysteme keine Zugriffszeit.
@@ -84,7 +84,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
 
     gibt **c:/** zurück.
 
-    Beachten Sie, dass eine Tilden-Substitution nur durchgeführt wird, wenn sie zum Vervollständigen des Befehls nötig ist. Beispiel:
+    Beachten Sie, dass eine Tilden-Ersetzung nur durchgeführt wird, wenn sie zum Vervollständigen des Befehls nötig ist. Beispiel:
 
     ```
     file dirname ~/src/foo.c
@@ -182,7 +182,7 @@ Dieser Befehl stellt mehrere Operationen am Namen oder den Attributen einer Date
     file split /foo/~bar/baz
     ```
 
-    gibt „**/  foo  ./~bar  baz**“ zurück, damit spätere Befehle, die die dritte Komponente verwenden, keine Tilden-Substitution versuchen.
+    gibt „**/  foo  ./~bar  baz**“ zurück, damit spätere Befehle, die die dritte Komponente verwenden, keine Tilden-Ersetzung versuchen.
 
 **file stat**  *name varName*
 : Ruft den Kernel-Aufruf **stat** für *name* auf und verwendet die Variable *varName*, um die vom Kernel zurückgegebenen Informationen zu halten. *VarName* wird als Array-Variable behandelt; folgende Elemente werden gesetzt: **atime**, **ctime**, **dev**, **gid**, **ino**, **mode**, **mtime**, **nlink**, **size**, **type**, **uid**. Jedes Element außer **type** ist eine Dezimalzeichenkette mit dem Wert des entsprechenden Felds aus der **stat**-Rückgabestruktur; Details zu den Bedeutungen stehen in der Manpage **stat**. Das Element **type** gibt den Dateityp in derselben Form zurück wie der Befehl **file type**. Der Befehl gibt die leere Zeichenkette zurück.

@@ -49,7 +49,7 @@ Siehe die Handbuchseite [ttk\_widget][ttk_widget] für Einzelheiten zu den Stand
 : Legt bei Angabe die gewünschte Widget-Breite in Pixeln fest.
 
 **-height** (**height**/**Height**)
-: Ist angegeben, die gewünschte Widget-Höhe in Pixeln.
+: Legt bei Angabe die gewünschte Widget-Höhe in Pixeln fest.
 
 
 # Widget-Befehl
@@ -58,7 +58,7 @@ Frame-Widgets unterstützen die Standardbefehle **cget**, **configure**, **ident
 
 # Hinweise
 
-Werden [pack], [grid] oder andere Geometrie-Manager für die Kinder des [frame] verwendet, hat die vom Manager gewünschte Größe meist Vorrang vor den Optionen **-width** und **-height** des [frame]. Mit [pack propagate][pack] und [grid propagate][grid] lässt sich das ändern.
+Werden [pack], [grid] oder andere Geometriemanager für die Kinder des [frame] verwendet, hat die vom Manager gewünschte Größe meist Vorrang vor den Optionen **-width** und **-height** des [frame]. Mit [pack propagate][pack] und [grid propagate][grid] lässt sich das ändern.
 
 # Styling-Optionen
 
@@ -74,9 +74,9 @@ Einige Optionen sind nur für bestimmte Themes verfügbar.
 
 Siehe die Handbuch-Seite [ttk::style][ttk_style] für Informationen zur Konfiguration von ttk-Stilen.
 
-# Bindings
+# Bindungen
 
-Beim Erzeugen eines neuen **ttk::frame** gibt es keine Standard-Ereignis-Bindings; **ttk::frame**-Widgets sind nicht für Interaktion gedacht.
+Beim Erzeugen eines neuen **ttk::frame** gibt es keine Standard-Ereignisbindungen; **ttk::frame**-Widgets sind nicht für Interaktion gedacht.
 
 
 [frame]: frame.md

@@ -159,7 +159,7 @@ verwendet werden, um den Wert **black** für die Option im Widget **.a.b.c** fes
 : Legt die Farbe fest, die für die rechteckigen Trog-Bereiche in Widgets wie Scrollleisten und Skalen verwendet wird. Diese Option wird für Scrollleisten unter Windows ignoriert (das native Widget erkennt diese Option nicht).
 
 **-underline** (**underline**/**Underline**)
-: Legt den ganzzahligen Index eines Zeichens fest, das im Widget unterstrichen werden soll. Diese Option wird von den Standard-Bindings verwendet, um die Tastatur-Traversierung für Menü-Buttons und Menüeinträge zu implementieren. 0 entspricht dem ersten Zeichen des im Widget angezeigten Textes, 1 dem nächsten Zeichen und so weiter. **end** entspricht dem letzten Zeichen, **end**-1 dem vorletzten Zeichen und so weiter.
+: Legt den ganzzahligen Index eines Zeichens fest, das im Widget unterstrichen werden soll. Diese Option wird von den Standard-Bindungen verwendet, um die Tastatur-Traversierung für Menü-Buttons und Menüeinträge zu implementieren. 0 entspricht dem ersten Zeichen des im Widget angezeigten Textes, 1 dem nächsten Zeichen und so weiter. **end** entspricht dem letzten Zeichen, **end**-1 dem vorletzten Zeichen und so weiter.
 
 **-wraplength** (**wrapLength**/**WrapLength**)
 : Bei Widgets, die Zeilenumbrüche durchführen können, legt diese Option die maximale Zeilenlänge fest. Zeilen, die diese Länge überschreiten würden, werden auf die nächste Zeile umgebrochen, sodass keine Zeile länger als die angegebene Länge ist. Der Wert kann in einer der Standardformen für Bildschirmabstände angegeben werden. Wenn dieser Wert negativ oder null ist, erfolgt kein Umbruch: Zeilen werden nur an Zeilenumbruchzeichen im Text getrennt.

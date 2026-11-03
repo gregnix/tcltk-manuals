@@ -16,7 +16,7 @@ Copyright:
 
 # Name
 
-khim – Bietet Bindings zur Eingabe internationaler Zeichen auf einer Tastatur, die diese nicht unterstützt
+khim – Bietet Bindungen zur Eingabe internationaler Zeichen auf einer Tastatur, die diese nicht unterstützt
 
 # Übersicht
 

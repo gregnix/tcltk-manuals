@@ -80,19 +80,19 @@ Jeder Operand hat eine der folgenden Formen:
 : Mit der üblichen **$**-Notation. Der Wert der Variable ist der Wert des Operanden.
 
 **Zeichenkette in doppelten Anführungszeichen**
-: Backslash-, Variablen- und Befehlssubstitution erfolgen gemäß den Regeln für [Tcl].
+: Backslash-, Variablen- und Befehlsersetzung erfolgen gemäß den Regeln für [Tcl].
 
 **Zeichenkette in geschweiften Klammern**
 : Der Operand wird als Wert in geschweiften Klammern gemäß der Klammerregel in [Tcl] behandelt.
 
 **Tcl-Befehl in eckigen Klammern**
-: Befehlssubstitution erfolgt gemäß der Substitutionsregel für Befehle in [Tcl].
+: Befehlsersetzung erfolgt gemäß der Ersetzungsregel für Befehle in [Tcl].
 
 **Funktionsaufruf**
 : Mathematische Funktion wie **sin($x)**, deren Argumente eine der obigen Operandenformen haben können. Siehe [Mathematische Funktionen] unten.
 
 
-Da **expr** Werte parst und Substitutionen vornimmt, die [Tcl] bereits geparst und substituiert hat, empfiehlt es sich in der Regel, Ausdrücke in geschweifte Klammern zu setzen, damit [Tcl] die erste Substitutionsrunde vermeidet.
+Da **expr** Werte parst und Ersetzungen vornimmt, die [Tcl] bereits geparst und substituiert hat, empfiehlt es sich in der Regel, Ausdrücke in geschweifte Klammern zu setzen, damit [Tcl] die erste Ersetzungsrunde vermeidet.
 
 Unten einige einfache Ausdrücke, wenn **a** den Wert 3 und **b** den Wert 6 hat. Der Befehl links erzeugt den Wert rechts.
 
@@ -249,7 +249,7 @@ expr {20.0/5.0}
 
 # Leistungshinweise
 
-Enthält ein Ausdruck Syntax, die Tcl sonst substituieren würde, erlauben geschweifte Klammern oder sonstige Anführung als statischer Wert dem Tcl-Compiler, Bytecode für den Ausdruck zu erzeugen — bessere Geschwindigkeit, geringerer Speicherbedarf. Das vermeidet auch Probleme, wenn Tcl die Substitution vor dem Aufruf von **expr** ausführt.
+Enthält ein Ausdruck Syntax, die Tcl sonst substituieren würde, erlauben geschweifte Klammern oder sonstige Anführung als statischer Wert dem Tcl-Compiler, Bytecode für den Ausdruck zu erzeugen — bessere Geschwindigkeit, geringerer Speicherbedarf. Das vermeidet auch Probleme, wenn Tcl die Ersetzung vor dem Aufruf von **expr** ausführt.
 
 Im folgenden Beispiel ist der Ausdruckswert 11, weil der Tcl-Parser zuerst **$b** und **expr** dann **$a** beim Auswerten von „$a + 2\*4“ substituiert. Klammern um den Ausdruck führten zu einem Syntaxfehler, da **$b** keinen numerischen Wert liefert.
 
@@ -261,7 +261,7 @@ expr $b*4
 
 Wird ein Ausdruck zur Laufzeit erzeugt (wie oben), muss der Bytecode-Compiler bei jeder Auswertung neuen Code erzeugen — der aufwändigste Fall. Dann sind die in [mathfunc]\(n) oder [mathop]\(n) beschriebenen Befehle oft die bessere Wahl als **expr**.
 
-Die meisten Ausdrücke entstehen nicht zur Laufzeit, sondern sind Literale oder enthalten Substitutionen ohne weitere Substitutionen. Damit der Bytecode-Compiler zur Kompilierzeit mit einem Zeichenkettenliteral arbeiten kann, darf der Ausdruck keine Substitutionen enthalten oder muss in Klammern stehen, damit **expr** statt Tcl substituiert.
+Die meisten Ausdrücke entstehen nicht zur Laufzeit, sondern sind Literale oder enthalten Ersetzungen ohne weitere Ersetzungen. Damit der Bytecode-Compiler zur Kompilierzeit mit einem Zeichenkettenliteral arbeiten kann, darf der Ausdruck keine Ersetzungen enthalten oder muss in Klammern stehen, damit **expr** statt Tcl substituiert.
 
 Muss ein nicht-konstanter Ausdruck in einen sonst konstanten Ausdruck, ist ein rekursives **expr** für den variablen Teil am effizientesten: Der äußere Teil kann kompiliert werden, der variable Teil wird separat ausgewertet. Im Beispiel ist das Ergebnis 20; der äußere Ausdruck profitiert von vollständig gecachtem Bytecode.
 

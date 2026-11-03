@@ -12,12 +12,12 @@ csaba.nemethi@t-online.de
 
 ## Inhalt
 
-#### Übersicht
+#### Überblick
 
 - [Was ist Tablelist?](#was-ist-tablelist)
-- [So erhalten Sie es:](#wie-bekomme-ich-es)
+- [Wie bekomme ich es?](#wie-bekomme-ich-es)
 - [Wie wird es installiert?](#wie-wird-es-installiert)
-- [Anleitung](#wie-wird-es-angewendet)
+- [Wie wird es angewendet?](#wie-wird-es-angewendet)
 - [Mehr zu tablelist::scalingpct](#mehr-zu-tablelist-scalingpct)
 - [Die Prozedur tablelist::getScalingPct und der Skalierungsfaktor von Tk](#die-prozedur-tablelist-getscalingpct-und-der-skalierungsfaktor-von-tk)
 - [Mehr zu tablelist::svgfmt](#weitere-informationen-zu-tablelist-svgfmt)
@@ -29,7 +29,7 @@ csaba.nemethi@t-online.de
 - [Zwei skalierbare Widget-Browser auf Basis einer Tablelist](#zwei-skalierbare-widget-browser-auf-basis-einer-tablelist)
 - [Ein skalierbarer Verzeichnis-Viewer auf Basis einer Tablelist](#ein-skalierbarer-verzeichnis-viewer-auf-basis-einer-tablelist)
 - [Verbesserung des Erscheinungsbilds eines Tablelist-Widgets](#das-erscheinungsbild-eines-tablelist-widgets-verbessern)
-- [Erweiterte, skalierbare, interaktive Tabellenbearbeitung](#erweiterte-skalierbare-und-interaktive-bearbeitung-von-tabellenzellen)
+- [Erweiterte, skalierbare und interaktive Bearbeitung von Tabellenzellen](#erweiterte-skalierbare-und-interaktive-bearbeitung-von-tabellenzellen)
 - [Ein Tablelist-Widget mit skalierbaren eingebetteten Fenstern](#ein-tablelist-widget-mit-skalierbaren-eingebetteten-fenstern)
 - [Demo-Skripte auf Tile-Basis](#tile-basierte-demo-skripte)
 
@@ -43,13 +43,13 @@ csaba.nemethi@t-online.de
 
 Tablelist ist ein Paket für Tcl/Tk ab Version 8.4, das in reinem Tcl/Tk-Code geschrieben ist. Es enthält:
 
-- die Implementierung des [tablelist Megawidget](tablelistWidget.md), einschließlich eines allgemeinen Dienstprogrammmoduls für Megawidgets;
+- die Implementierung des [tablelist-Megawidgets](tablelistWidget.md), einschließlich eines allgemeinen Dienstprogrammmoduls für Megawidgets;
 - ein Demo-Skript, das eine nützliche Prozedur enthält, welche die Konfigurationsoptionen eines beliebigen Widgets in einer Tablelist anzeigt und es Ihnen ermöglicht, deren Werte interaktiv zu bearbeiten;
 - ein Demo-Skript zur Implementierung eines Widget-Browsers auf Basis einer Tablelist, die als mehrspaltige listbox verwendet wird;
 - ein Demo-Skript zur Implementierung eines Widget-Browsers auf Basis einer Tablelist, die als mehrspaltiges Baum-Widget verwendet wird;
 - ein Demo-Skript zur Implementierung eines Verzeichnis-Viewers auf Basis einer Tablelist, die als mehrspaltiges Baum-Widget verwendet wird;
 - ein Demo-Skript, das verschiedene Möglichkeiten zur Verbesserung der Darstellung eines Tablelist-Widgets zeigt;
-- fünf weitere Demo-Skripte, die die interaktive Bearbeitung von Zellen mithilfe verschiedener Widgets aus dem Tk-Kern sowie aus den Paketen „tile“, „BWidget“, „Iwidgets“, „combobox“ (von Bryan Oakley), „mentry“ und „Tsw“ veranschaulichen;
+- fünf weitere Demo-Skripte, die die interaktive Bearbeitung von Zellen mithilfe verschiedener Widgets aus dem Tk-Kern sowie aus den Paketen „tile“, „BWidget“, „Iwidgets“, „combobox“ (von Bryan Oakley), „Mentry“ und „Tsw“ veranschaulichen;
 - ein weiteres Demo-Skript mit einem „Tablelist“-Widget, das eingebettete Fenster enthält;
 - auf Tile aufbauende Entsprechungen der oben genannten Demo-Skripte;
 - dieses Tutorial;
@@ -65,7 +65,7 @@ Die interaktive Bearbeitung der Elemente eines Tablelist-Widgets kann für einze
 
 Der Tcl-Befehl für ein Tablelist-Widget ist dem für eine normale listbox sehr ähnlich.  Es gibt spalten-, zeilen- und zellenspezifische Entsprechungen der Unterbefehle `configure` und `cget` (`columnconfigure`, `rowconfigure`, `cellconfigure`, ...).  Sie können unter anderem dazu verwendet werden, Bilder und eingebettete Fenster in die Zellen und die Kopfzeilenbeschriftungen einzufügen.  Die Befehlsoptionen `index`, `nearest` und `see` beziehen sich auf die Zeilen, doch für die Spalten und Zellen stehen ähnliche Unterbefehle zur Verfügung (`columnindex`, `cellindex`, ...).  Die Elemente können mit den Optionen `sort`, `sortbycolumn` und `sortbycolumnlist` sortiert werden.
 
-Durch die für den Hauptteil eines Tablelist-Widgets definierten Bindungen verhält sich dieses genau wie eine normale listbox. Dazu gehört auch die Unterstützung des virtuellen Ereignisses `<<ListboxSelect>>` (das dem Ereignis `<<TablelistSelect>>` entspricht).  Darüber hinaus können Versionen 2.3 oder höher des Widget-Callback-Pakets Wcb (ebenfalls in reinem Tcl/Tk-Code geschrieben) verwendet werden, um Callbacks für die Befehle `activate`,  `selection set` und `selection clear` zu definieren; Wcb-Versionen ab 3.0 unterstützen zudem Rückruffunktionen für die Befehle `activatecell`,  `cellselection set` und `cellselection clear`. Der Download-Ort von Wcb ist
+Durch die für den Datenbereich eines Tablelist-Widgets definierten Bindungen verhält sich dieses genau wie eine normale listbox. Dazu gehört auch die Unterstützung des virtuellen Ereignisses `<<ListboxSelect>>` (das dem Ereignis `<<TablelistSelect>>` entspricht).  Darüber hinaus können Versionen 2.3 oder höher des Widget-Callback-Pakets Wcb (ebenfalls in reinem Tcl/Tk-Code geschrieben) verwendet werden, um Rückruffunktionen für die Befehle `activate`,  `selection set` und `selection clear` zu definieren; Wcb-Versionen ab 3.0 unterstützen zudem Rückruffunktionen für die Befehle `activatecell`,  `cellselection set` und `cellselection clear`. Der Download-Ort von Wcb ist
 
 https://www.nemethi.de
 
@@ -81,7 +81,7 @@ https://core.tcl-lang.org/tklib
 
 Installieren Sie das Paket als Unterverzeichnis eines der Verzeichnisse, die durch die Variable `auto_path` angegeben sind. Sie können es beispielsweise als Unterverzeichnis des Verzeichnisses `lib` innerhalb Ihrer Tcl/Tk-Installation installieren.
 
-Um Tablelist *unter UNIX* zu installieren, kopieren Sie `cd` in das gewünschte Verzeichnis und entpacken Sie die Distributionsdatei `tablelist7.12.tar.gz`:
+Um Tablelist *unter UNIX* zu installieren, wechseln Sie mit `cd` in das gewünschte Verzeichnis und entpacken Sie die Distributionsdatei `tablelist7.12.tar.gz`:
 
 ```
 gunzip -c tablelist7.12.tar.gz | tar -xf -
@@ -99,11 +99,11 @@ Beide Befehle erstellen ein Verzeichnis mit dem Namen `tablelist7.12`, das die U
 
 Die Datei `tablelistEdit.tcl` im Verzeichnis `scripts` wird nur für Anwendungen benötigt, die die interaktive Zellbearbeitung nutzen.  Ebenso wird die Datei `tablelistMove.tcl` im selben Verzeichnis nur für Skripte benötigt, die den Befehl `move` oder `movecolumn` aufrufen.  Schließlich wird die Datei `tablelistThemes.tcl` nur für Anwendungen benötigt, die das Paket „Tablelist_tile“ verwenden (siehe nächster Abschnitt).
 
-Beachten Sie, dass in tklib das Verzeichnis „Tablelist `demos`“ durch das Unterverzeichnis `tablelist` des Verzeichnisses `examples` ersetzt wird.  Bitte berücksichtigen Sie dies, wenn Sie die folgenden [Beispiele](#beispiele) lesen.
+Beachten Sie, dass in tklib das Tablelist-Verzeichnis `demos` durch das Unterverzeichnis `tablelist` des Verzeichnisses `examples` ersetzt wird.  Bitte berücksichtigen Sie dies, wenn Sie die folgenden [Beispiele](#beispiele) lesen.
 
 ### Wie wird es angewendet?
 
-Die Tablelist-Distribution enthält zwei Pakete: **Tablelist** und **Tablelist_tile**. Der Hauptunterschied zwischen den beiden besteht darin, dass Tablelist_tile die tilebasierte, themenspezifische Darstellung von Tablelist-Widgets ermöglicht; dieses Paket erfordert Tile 0.6 oder höher.  Es ist nicht möglich, beide Pakete in ein und derselben Anwendung zu verwenden, da beide im selben Namespace `tablelist` implementiert sind und identische Befehle bereitstellen.
+Die Tablelist-Distribution enthält zwei Pakete: **Tablelist** und **Tablelist_tile**. Der Hauptunterschied zwischen den beiden besteht darin, dass Tablelist_tile die tilebasierte, themespezifische Darstellung von Tablelist-Widgets ermöglicht; dieses Paket erfordert Tile 0.6 oder höher.  Es ist nicht möglich, beide Pakete in ein und derselben Anwendung zu verwenden, da beide im selben Namespace `tablelist` implementiert sind und identische Befehle bereitstellen.
 
 Um auf die Befehle und Variablen des Tablelist-Pakets zugreifen zu können, müssen Ihre Skripte eine der folgenden Zeilen enthalten:
 
@@ -135,13 +135,13 @@ package provide Tablelist_tile ...
 
 Es steht Ihnen frei, jeweils eine der oben genannten Zeilen aus `tablelist.tcl` bzw. `tablelist_tile.tcl` zu entfernen, wenn Sie verhindern möchten, dass die entsprechenden Pakete jeweils unter zwei verschiedenen Namen erscheinen.  Dadurch beschränken Sie natürlich das Argument von `package require` auf einen einzigen Namen pro Paket.
 
-Da die Pakete „Tablelist“ und „Tablelist_tile“ im Namespace `tablelist` implementiert sind, müssen Sie entweder die
+Da die Pakete „Tablelist“ und „Tablelist_tile“ im Namespace `tablelist` implementiert sind, müssen Sie entweder den
 
 ```
 namespace import tablelist::pattern ?tablelist::pattern ...?
 ```
 
-Befehl zum Importieren der benötigten *Prozeduren* oder verwenden Sie qualifizierte Namen wie `tablelist::tablelist`. In den folgenden Beispielen haben wir uns für den letzteren Ansatz entschieden.
+Befehl aufrufen, um die benötigten *Prozeduren* zu importieren, oder qualifizierte Namen wie `tablelist::tablelist` verwenden. In den folgenden Beispielen haben wir uns für den letzteren Ansatz entschieden.
 
 Um auf Tablelist-*Variablen* zuzugreifen, *müssen* Sie qualifizierte Namen verwenden. Es gibt nur 6 Tablelist-Variablen (und eine weitere bei Verwendung von Tablelist_tile), die für den Zugriff außerhalb des Namespaces `tablelist` vorgesehen sind:
 
@@ -149,28 +149,28 @@ Um auf Tablelist-*Variablen* zuzugreifen, *müssen* Sie qualifizierte Namen verw
 - Die Variable `tablelist::library` enthält den Pfad zum Verzeichnis der Tablelist-Installation.
 - Die schreibgeschützte Variable `tablelist::scalingpct` wird beim Laden des Pakets „Tablelist“ oder „Tablelist_tile“ über `package require` auf den Skalierungsprozentsatz gesetzt, der der DPI-Skalierungsstufe des Bildschirms entspricht.  Tablelist passt unter anderem den Standardstil der Sortierpfeile unter X11 und Windows Vista, 7, 8 und 10+ sowie die Größen der Baumstile `vistaAero`, `vistaClassic`, `win7Aero`, `win7Classic` und `win10` an den Wert dieser Variablen an.  Die derzeit unterstützten Werte sind `100`, `125`, `150`, `175` und `200`.  Sie können diese Variable beispielsweise verwenden, wenn Sie je nach DPI-Skalierungsstufe Bilder unterschiedlicher Größe erstellen möchten.  Wenn Ihre Anwendung beispielsweise auf einem nicht skalierten Display Bilder mit der Größe 16 x 16 verwendet und `tablelist::scalingpct` den Wert `150` hat, sollte die Bildgröße für dieses Display 24 x 24 betragen.
 - Wenn die Tk-Version entweder mindestens 8.7 (mit integrierter SVG-Unterstützung) ist oder 8.6 und die Erweiterung „tksvg“ in den Interpreter geladen werden kann, dann wird die Variable `tablelist::svgfmt` auf eine Tcl-Liste gesetzt, die Sie an die Befehle übergeben können, die SVG-Bilder erstellen oder bearbeiten, und zwar als Wert ihrer Option `-format`, um sicherzustellen, dass Ihre Bilder korrekt skaliert werden.
-- Die boolesche Variable `tablelist::strictTk` (mit dem Wert `0`) steuert die strikte Listbox-Kompatibilität der VORGABEBINDUNGEN.
+- Die boolesche Variable `tablelist::strictTk` (mit dem Standardwert `0`) steuert die strikte Listbox-Kompatibilität der Vorgabebindungen.
 - Die schreibgeschützte boolesche Variable `tablelist::usingTile` hat im Paket „Tablelist“ den Wert `0` und in „Tablelist_tile“ den Wert `1`.
-- In „Tablelist_tile“ enthält das Array `tablelist::themeDefaults` die themenspezifischen Standardwerte für eine Reihe von Tablelist-Konfigurationsoptionen.
+- In „Tablelist_tile“ enthält das Array `tablelist::themeDefaults` die themespezifischen Standardwerte für eine Reihe von Tablelist-Konfigurationsoptionen.
 
 ### Mehr zu `tablelist::scalingpct`
 
-Der Tablelist-Code setzt die Variable `tablelist::scalingpct` auf den Wert, der von der öffentlichen Prozedur `scaleutil::scalingPercentage` des Pakets „scaleutil“ gegeben wird, das im Lieferumfang von Tablelist enthalten ist. Die Art und Weise, wie dieser Wert berechnet wird, hängt vom Fenstersystem ab:
+Der Tablelist-Code setzt die Variable `tablelist::scalingpct` auf den Wert, der von der öffentlichen Prozedur `scaleutil::scalingPercentage` des Pakets „scaleutil“ zurückgegeben wird, das im Lieferumfang von Tablelist enthalten ist. Die Art und Weise, wie dieser Wert berechnet wird, hängt vom Fenstersystem ab:
 
 *Unter Windows und Mac OS X/11+* wird der Skalierungsprozentsatz anhand des von Tk vorgegebenen Skalierungsfaktors `[tk scaling]` berechnet.  HINWEIS: Unter Mac OS X/11+ ist das Ergebnis unabhängig von der Skalierungsstufe des Bildschirms immer `100`. Auf diesem System skaliert die Desktop-Engine alles automatisch nach Bedarf.
 
 *Unter X11* erfolgt die Berechnung des Skalierungsprozentsatzes aus  `[tk scaling]`  nur als Ausweichmethode, da die Implementierung der Bildschirmskalierung stark von der Desktop-Umgebung abhängt und größtenteils Systemressourcen nutzt, die außerhalb von Xlib liegen, auf der Tk basiert.  (Auch herkömmliche X-Anwendungen wie `bitmap` und `xmag` sind davon betroffen.)  Mit der teilweisen Ausnahme von Xfce und MATE (siehe unten) berechnet die Prozedur den Skalierungsprozentsatz anhand des Werts der X-Ressource `Xft.dpi`, indem die Anwendung `xrdb` ausgeführt wird.  Auf GNOME-basierten Systemen, auf denen `xrdb` nicht standardmäßig installiert ist (z. B. Solus GNOME und Solus Budgie), werden stattdessen die Anwendung `xrandr` und die Datei `~/.config/monitors.xml` verwendet.
 
-- Unter *Xfce* kann der Anzeigenskalierungsmodus, der als *Fensterskalierung* bezeichnet wird, auf „1x“ oder „2x“ eingestellt werden und im Dialogfeld *Darstellung* ausgewählt werden. Xfce-Versionen ab 4.16 unterstützen zudem eine fraktionierte Skalierung, deren Parameter im Dialogfeld *Anzeige* konfiguriert werden können.  Wenn der Modus „2x“ ausgewählt wurde, wird der Skalierungsprozentsatz durch die Prozedur `scaleutil::scalingPercentage` bis `200` festgelegt; ansonsten wird er anhand des Werts der Schriftart-DPI berechnet, der durch die X-Ressource `Xft.dpi` vorgegeben wird.  Der Wert der Schriftart-DPI kann auf der Registerkarte *Schriftarten* des Dialogs *Darstellung* oder (unter Linux Lite 5+) über den Dialog *HiDPI-Einstellungen* festgelegt werden.
-- Unter *MATE* kann der Anzeigenskalierungsmodus, der als *Fenster-Skalierungsfaktor* bezeichnet wird, auf „Automatische Erkennung“, „Normal“ oder „HiDPI“ eingestellt werden und im Dialogfeld *MATE Tweak* ausgewählt werden.  Der gleiche Effekt lässt sich erzielen, indem Sie im Dialogfeld *Monitor-Einstellungen* einen der möglichen Skalierungswerte „Auto-Detect“, „100 %“ und „200 %“ auswählt.  Wenn Bedarf besteht, erkennt die Prozedur `scaleutil::scalingPercentage` automatisch, welcher der Modi „Normal“ („100 %“) und „HiDPI“ („200 %“) dem voreingestellten Modus „Auto-detect“ („automatische Erkennung“) entspricht.  Wenn der Modus „HiDPI“ („200 %“) vom Benutzer ausgewählt wurde oder von der Prozedur automatisch erkannt wurde, wird der Skalierungsprozentsatz auf `200` gesetzt; andernfalls wird er anhand des Werts der Schriftart-DPI berechnet, der durch die X-Ressource `Xft.dpi` vorgegeben ist.  Der Wert der Schriftart-DPI kann über das Dialogfeld *Font Rendering Details* eingestellt werden, das wiederum über die Registerkarte *Schriftarten* im Dialogfeld *Darstellungseinstellungen* geöffnet werden kann.
+- Unter *Xfce* kann der Anzeigenskalierungsmodus, der als *Fensterskalierung* bezeichnet wird, auf „1x“ oder „2x“ eingestellt werden und im Dialogfeld *Darstellung* ausgewählt werden. Xfce-Versionen ab 4.16 unterstützen zudem eine fraktionierte Skalierung, deren Parameter im Dialogfeld *Anzeige* konfiguriert werden können.  Wenn der Modus „2x“ ausgewählt wurde, wird der Skalierungsprozentsatz durch die Prozedur `scaleutil::scalingPercentage` auf `200` festgelegt; ansonsten wird er anhand des Werts der Schriftart-DPI berechnet, der durch die X-Ressource `Xft.dpi` vorgegeben wird.  Der Wert der Schriftart-DPI kann auf der Registerkarte *Schriftarten* des Dialogs *Darstellung* oder (unter Linux Lite 5+) über den Dialog *HiDPI-Einstellungen* festgelegt werden.
+- Unter *MATE* kann der Anzeigenskalierungsmodus, der als *Fenster-Skalierungsfaktor* bezeichnet wird, auf „Automatische Erkennung“, „Normal“ oder „HiDPI“ eingestellt werden und im Dialogfeld *MATE Tweak* ausgewählt werden.  Der gleiche Effekt lässt sich erzielen, indem Sie im Dialogfeld *Monitor-Einstellungen* einen der möglichen Skalierungswerte „Auto-Detect“, „100 %“ und „200 %“ auswählen.  Wenn Bedarf besteht, erkennt die Prozedur `scaleutil::scalingPercentage` automatisch, welcher der Modi „Normal“ („100 %“) und „HiDPI“ („200 %“) dem voreingestellten Modus „Auto-detect“ („automatische Erkennung“) entspricht.  Wenn der Modus „HiDPI“ („200 %“) vom Benutzer ausgewählt wurde oder von der Prozedur automatisch erkannt wurde, wird der Skalierungsprozentsatz auf `200` gesetzt; andernfalls wird er anhand des Werts der Schriftart-DPI berechnet, der durch die X-Ressource `Xft.dpi` vorgegeben ist.  Der Wert der Schriftart-DPI kann über das Dialogfeld *Font Rendering Details* eingestellt werden, das wiederum über die Registerkarte *Schriftarten* im Dialogfeld *Darstellungseinstellungen* geöffnet werden kann.
 - Bei *GNOME unter Xorg, Budgie und Cinnamon in Versionen vor 4.6* kann die Bildschirmskalierung entweder 100 % oder 200 % betragen, und die Prozedur legt den Skalierungsprozentsatz entsprechend auf `100` oder `200` fest.  In neueren GNOME- und Budgie-Versionen unter Ubuntu können Sie `x11-randr-fractional-scaling` als experimentelles Feature aktivieren, wodurch (mindestens) 125 %, 150 % und 175 % zur Liste der unterstützten Skalierungsprozentsätze hinzugefügt werden.  HINWEIS: Aufgrund der Art und Weise, wie diese fraktionierte Skalierung implementiert ist, gibt `scaleutil::scalingPercentage` einen Wert zurück, der unabhängig von der gewählten Bildschirmskalierung `200` lautet.  Cinnamon ab Version 4.6 unterstützt ebenfalls die fraktionierte Skalierung; ist diese aktiviert, lautet der von der Prozedur zurückgegebene Skalierungsprozentsatz `200`, unabhängig von der Auswahl der Bildschirmskalierung.
 - *GNOME auf Wayland* unterstützt traditionell die Werte für die Bildschirmskalierung 100 % und 200 %, und der Skalierungsprozentsatz wird entsprechend auf `100` oder `200` festgelegt.  In neueren GNOME-Versionen können Sie die experimentelle Funktion `scale-monitor-framebuffer` aktivieren, die (mindestens) 125 %, 150 % und 175 % zur Liste der unterstützten Skalierungsprozentsätze hinzufügt.  Ist diese Funktion aktiviert, gibt `scaleutil::scalingPercentage` den Wert `100` bei älteren GNOME-Versionen zurück und `200` bei neueren Versionen, unabhängig vom Skalierungsgrad, da in diesem Fall nicht der Fensterinhalt, sondern die Monitor-Framebuffer in einem logischen Pixelkoordinatenraum skaliert werden.
 - *KDE Plasma unter Xorg* bietet Unterstützung für die fraktionierte Skalierung. Auf diesem Desktop gibt die Prozedur je nach Skalierungsstufe des Bildschirms `100`, `125`, `150`, `175` oder `200` zurück.
-- *KDE Plasma auf Wayland* unterstützt ebenfalls die fraktionelle Skalierung.  In diesem Fall gibt die Prozedur bei älteren KDE-Versionen immer den Wert `100` zurück, unabhängig vom Skalierungsgrad des Bildschirms, während sie bei neueren KDE-Versionen den Wert `100` gibt, `125`, `150`, `175` oder `200`.
+- *KDE Plasma auf Wayland* unterstützt ebenfalls die fraktionelle Skalierung.  In diesem Fall gibt die Prozedur bei älteren KDE-Versionen immer den Wert `100` zurück, unabhängig vom Skalierungsgrad des Bildschirms, während sie bei neueren KDE-Versionen den Wert `100`, `125`, `150`, `175` oder `200` zurückgibt.
 
 Unter GNOME und Budgie lässt sich die Bildschirmskalierung auf der Seite *Bildschirme* des Dialogfelds *Einstellungen* einstellen, der Wert der X-Ressource `Xft.dpi`, die von der Prozedur `scaleutil::scalingPercentage` verwendet wird, kann jedoch auch durch Einstellen des Skalierungsfaktors der Schriftarten über die Anwendung *Tweaks* angepasst werden.  Ebenso lässt sich unter Cinnamon die Bildschirmskalierung auf der Seite *Bildschirm* des Dialogfelds *Systemeinstellungen* einstellen, doch der Wert der X-Ressource `Xft.dpi` kann auch durch Einstellen des Textskalierungsfaktors über die Seite *Schriftartauswahl* des Dialogfelds *Systemeinstellungen* angepasst werden.  Schließlich lässt sich unter KDE Plasma die Bildschirmskalierung auf der Seite *Bildschirmkonfiguration* des Dialogs *Systemeinstellungen* einstellen, und unter KDE Plasma auf Xorg kann der Wert der Schriftart-DPI, der durch die X-Ressource `Xft.dpi` vorgegeben wird, ebenfalls über die Seite *Schriftarten* im Dialog *Systemeinstellungen* eingestellt werden.
 
-Neben der Berechnung des Skalierungsprozentsatzes führt die Prozedur `scaleutil::scalingPercentage` eine Reihe weiterer Aufgaben aus.  Unter anderem ändert es die Standardhöhe der ttk::treeview-Zeilen vom fest codierten Wert von 20 Pixeln auf einen sinnvolleren Wert, basierend auf den Schriftmetriken der vom `Treeview`-Stil verwendeten Schriftart (in der Regel `TkDefaultFont`), und stellt sicher, dass dieser Schritt jedes Mal wiederholt wird, wenn das virtuelle Ereignis `<<ThemeChanged>>` empfangen wird (z. B. weil sich der Wert der Option `-font` des Stils `Treeview` geändert hat), oder das virtuelle Ereignis `<<TkWorldChanged>>` empfangen wird, bei dem das Feld `user_data` (`%d`) auf `FontChanged` gesetzt ist.  Wenn die Tk-Version höher als 8.6.11 oder 8.7a5 ist, wird dieses virtuelle Ereignis von der Tk-Engine an alle Widgets gesendet, wenn eine Schriftart geändert wird, beispielsweise durch den Aufruf von `font configure`  (siehe [TIP 608](https://core.tcl-lang.org/tips/doc/trunk/tip/608.md)).
+Neben der Berechnung des Skalierungsprozentsatzes führt die Prozedur `scaleutil::scalingPercentage` eine Reihe weiterer Aufgaben aus.  Unter anderem ändert sie die Standardhöhe der ttk::treeview-Zeilen vom fest codierten Wert von 20 Pixeln auf einen sinnvolleren Wert, basierend auf den Schriftmetriken der vom `Treeview`-Stil verwendeten Schriftart (in der Regel `TkDefaultFont`), und stellt sicher, dass dieser Schritt jedes Mal wiederholt wird, wenn das virtuelle Ereignis `<<ThemeChanged>>` empfangen wird (z. B. weil sich der Wert der Option `-font` des Stils `Treeview` geändert hat), oder das virtuelle Ereignis `<<TkWorldChanged>>` empfangen wird, bei dem das Feld `user_data` (`%d`) auf `FontChanged` gesetzt ist.  Wenn die Tk-Version höher als 8.6.11 oder 8.7a5 ist, wird dieses virtuelle Ereignis von der Tk-Engine an alle Widgets gesendet, wenn eine Schriftart geändert wird, beispielsweise durch den Aufruf von `font configure`  (siehe [TIP 608](https://core.tcl-lang.org/tips/doc/trunk/tip/608.md)).
 
 Die im weiteren Verlauf dieses Abschnitts beschriebenen zusätzlichen Schritte werden nur ausgeführt, wenn der Skalierungsprozentsatz größer ist als `100`.
 
@@ -180,32 +180,32 @@ Unter X11 synchronisiert die Prozedur den von Tk verwendeten Skalierungsfaktor f
 namespace eval ::scaleutil { set keepTkScaling 1 }
 ```
 
-bevor „Tablelist“ oder „Tablelist_tile“ über `package require` geladen wird.
+einfügen, bevor „Tablelist“ oder „Tablelist_tile“ über `package require` geladen wird.
 
-Die Prozedur `scaleutil::scalingPercentage` korrigiert bei Bedarf auch die Größen der Standardschriften.  Diese Schriftarten (`TkDefaultFont`, `TkTextFont` usw.) sind in der Datei `$tk_library/ttk/fonts.tcl` definiert.  Lange Zeit waren die in dieser Datei angegebenen Schriftarten für X11 in Pixeln angegeben, was für die Verwendung auf HiDPI-Bildschirmen nicht geeignet war.  Dies führte dazu, dass mehrere Linux-Distributionen gepatchte Versionen dieser Datei mitlieferten, in denen die Größenangaben in Pixeln durch Größenangaben in Punkten ersetzt wurden.  Die gleiche Korrektur wurde im Februar 2020 in das Tk-Core-Repository Commit und ist nun in Tk 8.7a5 und späteren Versionen enthalten.  Um sicherzustellen, dass die Schriftgrößen unabhängig von der Tk-Version zum Skalierungsgrad des Bildschirms passen, überprüft die Prozedur diese Bibliotheksdatei und setzt, wenn diese Größen in Pixeln enthalten sind, die Option `-size` der Standardschriften auf entsprechende Größen in Punkten (ohne die Datei zu verändern).  Zudem verdoppelt die Prozedur für den „2x“-Modus unter Xfce die Größen (in Punkten) der Standardschriften (die Funktionsweise der Bildschirmskalierung auf diesem Desktop macht dies erforderlich).
+Die Prozedur `scaleutil::scalingPercentage` korrigiert bei Bedarf auch die Größen der Standardschriften.  Diese Schriftarten (`TkDefaultFont`, `TkTextFont` usw.) sind in der Datei `$tk_library/ttk/fonts.tcl` definiert.  Lange Zeit waren die in dieser Datei angegebenen Schriftgrößen für X11 in Pixeln angegeben, was für die Verwendung auf HiDPI-Bildschirmen nicht geeignet war.  Dies führte dazu, dass mehrere Linux-Distributionen gepatchte Versionen dieser Datei mitlieferten, in denen die Größenangaben in Pixeln durch Größenangaben in Punkten ersetzt wurden.  Die gleiche Korrektur wurde im Februar 2020 in das Tk-Core-Repository committet und ist nun in Tk 8.7a5 und späteren Versionen enthalten.  Um sicherzustellen, dass die Schriftgrößen unabhängig von der Tk-Version zum Skalierungsgrad des Bildschirms passen, überprüft die Prozedur diese Bibliotheksdatei und setzt, wenn diese Größen in Pixeln enthalten sind, die Option `-size` der Standardschriften auf entsprechende Größen in Punkten (ohne die Datei zu verändern).  Zudem verdoppelt die Prozedur für den „2x“-Modus unter Xfce die Größen (in Punkten) der Standardschriften (die Funktionsweise der Bildschirmskalierung auf diesem Desktop macht dies erforderlich).
 
 Die Prozedur skaliert außerdem:
 
 - die Standardparameter des Trenngriffs (sash) des Tk-Core-panedwindow;
 - die Standardgröße des Tk-Core-Scale-Widgets und seines Schiebereglers;
-- die Standardbreite der Tk-Core-Bildlaufleisten unter X11;
+- die Standardbreite der Tk-Core-Scrollbars unter X11;
 - die Standardlänge der Widgets ttk::scale und ttk::progressbar;
-- für die eingebauten Themen `alt` und `default` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
-- für das eingebaute Thema `clam` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow, ttk::treeview und ttk::labelframe;
-- für das eingebaute Thema `classic` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
-- für das eingebaute Thema `vista` einige Stiloptionen der Widgets ttk::combobox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
-- für das eingebaute Thema `winnative` einige Stiloptionen der Widgets ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
-- für das eingebaute Thema `xpnative` einige Stiloptionen der Widgets ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview.
+- für die eingebauten Themes `alt` und `default` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
+- für das eingebaute Theme `clam` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow, ttk::treeview und ttk::labelframe;
+- für das eingebaute Theme `classic` einige Stiloptionen der Widgets ttk::scrollbar, ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
+- für das eingebaute Theme `vista` einige Stiloptionen der Widgets ttk::combobox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
+- für das eingebaute Theme `winnative` einige Stiloptionen der Widgets ttk::scale, ttk::progressbar, ttk::combobox, ttk::spinbox, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview;
+- für das eingebaute Theme `xpnative` einige Stiloptionen der Widgets ttk::combobox, ttk::spinbox, ttk::button, toolbutton, ttk::menubutton, ttk::checkbutton, ttk::radiobutton, ttk::notebook, ttk::panedwindow und ttk::treeview.
 
-Darüber hinaus stellt die Prozedur `scaleutil::scalingPercentage` sicher, dass in den Themen `vista` und `xpnative` die Indikatoren der Widgets ttk::checkbutton und ttk::radiobutton korrekt skaliert angezeigt werden, unabhängig von der verwendeten Tk-Version.  (Ein seit Langem bestehender Fehler in der Implementierung dieser Widgets wurde im Mai 2020 behoben und ist nun sowohl in Tk 8.6.11 und höher als auch in 8.7a5 und höher enthalten; die Prozedur bietet jedoch eine automatische Abhilfe für die Tk-Versionen, die noch von diesem Fehler betroffen sind.)
+Darüber hinaus stellt die Prozedur `scaleutil::scalingPercentage` sicher, dass in den Themes `vista` und `xpnative` die Indikatoren der Widgets ttk::checkbutton und ttk::radiobutton korrekt skaliert angezeigt werden, unabhängig von der verwendeten Tk-Version.  (Ein seit Langem bestehender Fehler in der Implementierung dieser Widgets wurde im Mai 2020 behoben und ist nun sowohl in Tk 8.6.11 und höher als auch in 8.7a5 und höher enthalten; die Prozedur bietet jedoch eine automatische Abhilfe für die Tk-Versionen, die noch von diesem Fehler betroffen sind.)
 
-HINWEIS: In Tk-Versionen vor Version 9 sind die Tk-Core-Widgets „checkbutton“ und „radiobutton“ enthalten. sowie die Indikatoren der Widgets „ttk::checkbutton“ und „ttk::radiobutton“ der Themen `alt` und `winnative` nicht skalierbar sind (in Tk 9 und höher werden sie automatisch skaliert).  Das Gleiche gilt für das Widget „ttk::sizegrip“ in den integrierten Themen.
+HINWEIS: In Tk-Versionen vor Version 9 sind die Tk-Core-Widgets „checkbutton“ und „radiobutton“ sowie die Indikatoren der Widgets „ttk::checkbutton“ und „ttk::radiobutton“ der Themes `alt` und `winnative` nicht skalierbar (in Tk 9 und höher werden sie automatisch skaliert).  Das Gleiche gilt für das Widget „ttk::sizegrip“ in den integrierten Themes.
 
 ### Die Prozedur `tablelist::getScalingPct` und der Skalierungsfaktor von Tk
 
-Das Paket „Tablelist“ stellt die Hilfsprozedur `tablelist::getScalingPct` bereit, die keine Argumente erwartet und den Skalierungsprozentsatz der Anwendung gibt, der aus dem *aktuellen* Skalierungsfaktor von Tk abgeleitet wird, der durch `[tk scaling]` angegeben wird.  Der Wert, den die Prozedur zurückgibt, ist auf Vielfache von `25` beschränkt, beträgt mindestens `100` und kann größer als `200` sein, insbesondere wenn AndroWish auf einem Tablet oder Smartphone ausgeführt wird.  Tablelist nutzt diese Prozedur, um sicherzustellen, dass die Größen seiner GUI-Komponenten dem aktuellen Skalierungsfaktor von Tk entsprechen (der möglicherweise über `tk scaling` geändert wurde), und es wird empfohlen, dies auch im Anwendungscode zu tun.
+Das Paket „Tablelist“ stellt die Hilfsprozedur `tablelist::getScalingPct` bereit, die keine Argumente erwartet und den Skalierungsprozentsatz der Anwendung zurückgibt, der aus dem *aktuellen* Skalierungsfaktor von Tk abgeleitet wird, der durch `[tk scaling]` angegeben wird.  Der Wert, den die Prozedur zurückgibt, ist auf Vielfache von `25` beschränkt, beträgt mindestens `100` und kann größer als `200` sein, insbesondere wenn AndroWish auf einem Tablet oder Smartphone ausgeführt wird.  Tablelist nutzt diese Prozedur, um sicherzustellen, dass die Größen seiner GUI-Komponenten dem aktuellen Skalierungsfaktor von Tk entsprechen (der möglicherweise über `tk scaling` geändert wurde), und es wird empfohlen, dies auch im Anwendungscode zu tun.
 
-Wenn die Tk-Version 9 oder höher ist, ist die im vorherigen Abschnitt beschriebene Funktionalität der Prozedur `scaleutil::scalingPercentage` in den Kern integriert.  Als Teil dieser Funktionalität setzt Tk 9+ die Variable `tk::scalingPct` bei der Initialisierung auf den Skalierungsprozentsatz, der der DPI-Skalierungsstufe des Bildschirms entspricht, und die Prozedur `scaleutil::scalingPercentage` gibt lediglich das Minimum aus dem aktuellen Wert von `tk::scalingPct` und `200` zurück.  Zur Erinnerung: In Tk 9+ wird der Wert der Variablen `tk::scalingPct` automatisch aktualisiert, sobald der Skalierungsfaktor über `tk scaling` geändert wird.  Folglich wird, wenn die Anwendung den Skalierungsfaktor von Tk *vor dem Laden von „Tablelist“ oder „Tablelist_tile“* über `package require` ändert,  wird die Variable `tablelist::scalingpct` auf den kleinsten Wert aus dem automatisch aktualisierten Wert von `tk::scalingPct` und `200` gesetzt.  Diese Tatsachen führen zu Folgendem
+Wenn die Tk-Version 9 oder höher ist, ist die im vorherigen Abschnitt beschriebene Funktionalität der Prozedur `scaleutil::scalingPercentage` in den Kern integriert.  Als Teil dieser Funktionalität setzt Tk 9+ die Variable `tk::scalingPct` bei der Initialisierung auf den Skalierungsprozentsatz, der der DPI-Skalierungsstufe des Bildschirms entspricht, und die Prozedur `scaleutil::scalingPercentage` gibt lediglich das Minimum aus dem aktuellen Wert von `tk::scalingPct` und `200` zurück.  Zur Erinnerung: In Tk 9+ wird der Wert der Variablen `tk::scalingPct` automatisch aktualisiert, sobald der Skalierungsfaktor über `tk scaling` geändert wird.  Folglich wird, wenn die Anwendung den Skalierungsfaktor von Tk *vor dem Laden von „Tablelist“ oder „Tablelist_tile“* über `package require` ändert,  die Variable `tablelist::scalingpct` auf den kleinsten Wert aus dem automatisch aktualisierten Wert von `tk::scalingPct` und `200` gesetzt.  Diese Tatsachen führen zu Folgendem
 
 **Empfehlung:** Wenn Ihre Anwendung den Skalierungsfaktor von Tk durch den Aufruf von `tk scaling` ändert, sollte dies *vor dem Laden von Tablelist oder Tablelist_tile* geschehen.
 
@@ -223,13 +223,13 @@ Es wird empfohlen, den Wert der Variablen `tablelist::svgfmt` an die Befehle `im
 
 ### Mehr zu Tablelist_tile
 
-Ein Tablelist-Widget besteht aus einem Hauptteil (der die Elemente enthält) und einer Kopfzeile (in der die Spaltentitel und optionale Kopfzeilenelemente angezeigt werden). Beide Komponenten sind in einem Rahmen enthalten, der als Frame implementiert ist. Die Kopfzeile weist eine recht komplexe Struktur auf und besteht unter anderem aus Frame- und Label-Widgets.  Während im Tablelist-Paket alle diese Komponenten-Widgets Tk-Widgets sind, verwendet das Tablelist_tile-Paket sowohl Tk- als auch Tile-Frame- und Label-Widgets. Aufgrund mehrerer Inkompatibilitäten zwischen Tk und Tile ist es derzeit nicht möglich, alle Tk-Widgets, aus denen eine Tablelist besteht, durch ihre Tile-Entsprechungen zu ersetzen.
+Ein Tablelist-Widget besteht aus einem Datenbereich (der die Elemente enthält) und einem Kopfbereich (in der die Spaltentitel und optionale Kopfzeilenelemente angezeigt werden). Beide Komponenten sind in einem Rahmen enthalten, der als Frame implementiert ist. Die Kopfzeile weist eine recht komplexe Struktur auf und besteht unter anderem aus Frame- und Label-Widgets.  Während im Tablelist-Paket alle diese Komponenten-Widgets Tk-Widgets sind, verwendet das Tablelist_tile-Paket sowohl Tk- als auch Tile-Frame- und Label-Widgets. Aufgrund mehrerer Inkompatibilitäten zwischen Tk und Tile ist es derzeit nicht möglich, alle Tk-Widgets, aus denen eine Tablelist besteht, durch ihre Tile-Entsprechungen zu ersetzen.
 
 Daraus folgt, dass **das Paket „Tablelist_tile“ nur dann wie erwartet funktioniert, wenn die Tk-Befehle „frame“ und „label“ nicht durch den Befehl  namespace import -force ttk::\*  im globalen Geltungsbereich überschrieben wurden**.  Während in früheren Tile-Versionen empfohlen wurde, diesen Befehl im globalen Geltungsbereich zu verwenden – für die wirklich Abenteuerlustigen –, gilt dies in neueren Tile-Versionen als wirklich schlechte Idee, die zu zahlreichen Fehlfunktionen führt.  Stattdessen **sollten Sie ttk::frame, ttk::label usw. explizit aufrufen, wann immer Sie ein Tile-Widget verwenden möchten**.
 
-**Das Überschreiben einiger anderer Tk-Widgets im globalen Bereich kann ebenso gefährlich sein, wenn verschiedene Widgets aus dem Tk-Kern sowie aus den Paketen BWidget, Iwidgets, combobox (von Bryan Oakley), ctext und Mentry für die interaktive Zellenbearbeitung**, da diese Pakete Tk-Widgets erwarten, die möglicherweise nicht immer durch ihre „Tile“-Entsprechungen ersetzt werden können.
+**Das Überschreiben einiger anderer Tk-Widgets im globalen Bereich kann ebenso gefährlich sein, wenn verschiedene Widgets aus dem Tk-Kern sowie aus den Paketen BWidget, Iwidgets, combobox (von Bryan Oakley), ctext und Mentry für die interaktive Zellenbearbeitung verwendet werden**, da diese Pakete Tk-Widgets erwarten, die möglicherweise nicht immer durch ihre „Tile“-Entsprechungen ersetzt werden können.
 
-Eine weitere Einschränkung, die zu berücksichtigen ist, ergibt sich daraus, dass in früheren Tile-Versionen der Befehl  `(ttk::)style theme use`  nur zum Festlegen des aktuellen Themas verwendet werden konnte, nicht jedoch zum Abrufen desselben.  Aus diesem Grund greift das Tablelist_tile-Paket, wenn es das aktuelle Thema nicht mithilfe von  `ttk::style theme use`  abrufen kann, auf die Variable `ttk::currentTheme` oder `tile::currentTheme` (je nach Tile-Version), die durch den Befehl `ttk::setTheme` oder `tile::setTheme` gesetzt wird.  Daraus folgt: **Wenn die verwendete Tile-Version den Befehl ttk::style theme use ohne Argument nicht unterstützt, haben die Tile-basierten Tablelist-Widgets nur dann das erwartete Erscheinungsbild, wenn das plattformspezifische Vorgabethema entweder unverändert bleibt oder durch Aufruf der Prozedur ttk::setTheme oder tile::setTheme – je nach Tile-Version – durch ein anderes Thema ersetzt wird**.  (Siehe auch den Befehl `tablelist::setTheme`.)
+Eine weitere Einschränkung, die zu berücksichtigen ist, ergibt sich daraus, dass in früheren Tile-Versionen der Befehl  `(ttk::)style theme use`  nur zum Festlegen des aktuellen Themes verwendet werden konnte, nicht jedoch zum Abrufen desselben.  Aus diesem Grund greift das Tablelist_tile-Paket, wenn es das aktuelle Theme nicht mithilfe von  `ttk::style theme use`  abrufen kann, auf die Variable `ttk::currentTheme` oder `tile::currentTheme` (je nach Tile-Version), die durch den Befehl `ttk::setTheme` oder `tile::setTheme` gesetzt wird, zurück.  Daraus folgt: **Wenn die verwendete Tile-Version den Befehl ttk::style theme use ohne Argument nicht unterstützt, haben die Tile-basierten Tablelist-Widgets nur dann das erwartete Erscheinungsbild, wenn das plattformspezifische Vorgabe-Theme entweder unverändert bleibt oder durch Aufruf der Prozedur ttk::setTheme oder tile::setTheme – je nach Tile-Version – durch ein anderes Theme ersetzt wird**.  (Siehe auch den Befehl `tablelist::setTheme`.)
 
 Nach diesen Hinweisen zur Verwendung von „Tile“ werden im weiteren Verlauf dieses Abschnitts die Unterschiede zwischen den Paketen „Tablelist“ und „Tablelist_tile“ beschrieben.
 
@@ -244,11 +244,11 @@ if {$::tk_version < 8.5 || [regexp {^8\.5a[1-5]$} $::tk_patchLevel]} {
 
 Der zweite Befehl oben spiegelt die Tatsache wider, dass „Tile“ ab Tk 8.5a6 in den Tk-Kern integriert ist und daher nur bei Verwendung einer früheren Tk-Version explizit geladen werden sollte.
 
-Abgesehen davon und vom Suffix `_tile` im Befehl `package require` besteht der einzige Unterschied (aus Sicht des Programmierers) zwischen den Paketen „Tablelist“ und „Tablelist_tile“ in den unterstützten Konfigurationsoptionen:  `-highlightbackground`, `-highlightcolor`, `-highlightthickness`, `-labelbackground`, `-labelactivebackground`, `-labelactiveforeground`, `-labeldisabledforeground` und `-labelheight` (letztere sowie `-labelbackground` sowohl auf Widget- als auch auf Ebene der Spalten), die im Tablelist-Paket enthalten sind, werden von Tablelist_tile nicht unterstützt.  Die ersten drei sind Standard-Tk-Widget-Optionen, die für Tile-Widgets nicht verfügbar sind.  Die Option `-labelbackground` entspricht der Option `-background` für die Spaltenbeschriftungen, und aktuelle Versionen der Tile-Engine unterstützen keine Einstellung der Hintergrundfarbe für diese Widgets mit einem speziellen Header-Layout.  Die übrigen Optionen entsprechen den Optionen `-activebackground`, `-activeforeground`, `-disabledforeground` und `-height` der Spaltenbeschriftungen, und diese Konfigurationsoptionen werden für Tile-Widgets nicht unterstützt.
+Abgesehen davon und vom Suffix `_tile` im Befehl `package require` besteht der einzige Unterschied (aus Sicht des Programmierers) zwischen den Paketen „Tablelist“ und „Tablelist_tile“ in den unterstützten Konfigurationsoptionen:  `-highlightbackground`, `-highlightcolor`, `-highlightthickness`, `-labelbackground`, `-labelactivebackground`, `-labelactiveforeground`, `-labeldisabledforeground` und `-labelheight` (letztere sowie `-labelbackground` sowohl auf Widget- als auch auf Ebene der Spalten), die im Tablelist-Paket enthalten sind, werden von Tablelist_tile nicht unterstützt.  Die ersten drei sind Standard-Tk-Widget-Optionen, die für Tile-Widgets nicht verfügbar sind.  Die Option `-labelbackground` entspricht der Option `-background` für die Spaltenbeschriftungen, und aktuelle Versionen der Tile-Engine unterstützen keine Einstellung der Hintergrundfarbe für diese Widgets mit einem speziellen Header-Layout.  Die übrigen Optionen entsprechen den Optionen `-activebackground`, `-activeforeground`, `-disabledforeground` und `-height` der Spaltenbeschriftungen, und diese Konfigurationsoptionen werden für Tile-Label-Widgets nicht unterstützt.
 
-Beachten Sie außerdem, dass bei einigen Themen die Einstellung der Option `-labelborderwidth` (auf Widget- oder Spaltenebene) auf einen anderen Wert als den Standardwert von Tile möglicherweise ignoriert wird und somit zu Problemen bei der Ausrichtung führen kann.  Dies liegt daran, dass der Rahmen von Tile-Widgets mit themenspezifischen Methoden gezeichnet wird, die nicht immer zu den aus Tk-Widgets bekannten Ergebnissen führen.
+Beachten Sie außerdem, dass bei einigen Themes die Einstellung der Option `-labelborderwidth` (auf Widget- oder Spaltenebene) auf einen anderen Wert als den Standardwert möglicherweise von Tile ignoriert wird und somit zu Problemen bei der Ausrichtung führen kann.  Dies liegt daran, dass der Rahmen von Tile-Widgets mit themespezifischen Methoden gezeichnet wird, die nicht immer zu den aus Tk-Widgets bekannten Ergebnissen führen.
 
-Beachten Sie abschließend, dass wenn das Thema `tileqt` verwendet wird, die Versionsnummer des Pakets `tile::theme::tileqt` mindestens 0.4 betragen muss, und dass `tileqt` selbst nicht mit Tile-Versionen vor 0.7 kompatibel ist.
+Beachten Sie abschließend, dass wenn das Theme `tileqt` verwendet wird, die Versionsnummer des Pakets `tile::theme::tileqt` mindestens 0.4 betragen muss, und dass `tileqt` selbst nicht mit Tile-Versionen vor 0.7 kompatibel ist.
 
 [Inhalt](#inhalt)     [Startseite](index.md)
 
@@ -288,7 +288,7 @@ To display the configuration options of an arbitrary widget, enter
 demo::displayConfig .
 ```
 
-Dann werden Sie sehen, dass ein Tablelist-Widget mit der Bezeichnung `.configTop.tf.tbl` in einem neuen Toplevel-Fenster erstellt wird und dessen Name als `stdout` ausgegeben wird. Wenn Sie dann Folgendes eingeben
+Dann werden Sie sehen, dass ein Tablelist-Widget mit der Bezeichnung `.configTop.tf.tbl` in einem neuen Toplevel-Fenster erstellt wird und dessen Name auf `stdout` ausgegeben wird. Wenn Sie dann Folgendes eingeben
 
 ```
 demo::displayConfig .configTop.tf.tbl
@@ -298,7 +298,7 @@ Dann erscheint ein weiteres Toplevel-Fenster, das das Tablelist-Widget `.configT
 
 ![Konfigurationsoptionen](config.png)
 
-Es wird davon ausgegangen, dass der Tcl-Befehl, der dem durch `<widgetName>` angegebenen Widget zugeordnet ist, über einen Unterbefehl `configure` verfügt, der, wenn er ohne Argumente aufgerufen wird, eine Liste gibt, die alle verfügbaren Konfigurationsoptionen für das Widget beschreibt, und zwar in dem von den Standard-Tk-Widgets bekannten Format. Die Prozedur `demo::displayConfig` fügt die Elemente dieser Liste in eine scrollbare Tablelist mit 5 Spalten dynamischer Breite und interaktiver Sortierfunktion ein und gibt den Namen des neu erstellten Tablelist-Widgets zurück:
+Es wird davon ausgegangen, dass der Tcl-Befehl, der dem durch `<widgetName>` angegebenen Widget zugeordnet ist, über einen Unterbefehl `configure` verfügt, der, wenn er ohne Argumente aufgerufen wird, eine Liste zurückgibt, die alle verfügbaren Konfigurationsoptionen für das Widget beschreibt, und zwar in dem von den Standard-Tk-Widgets bekannten Format. Die Prozedur `demo::displayConfig` fügt die Elemente dieser Liste in eine scrollbare Tablelist mit 5 Spalten dynamischer Breite und interaktiver Sortierfunktion ein und gibt den Namen des neu erstellten Tablelist-Widgets zurück:
 
 ```
 package require tablelist
@@ -424,7 +424,7 @@ proc demo::displayConfig w {
 }
 ```
 
-Die Prozedur ruft den Befehl `tablelist::tablelist` auf, um ein Tablelist-Widget zu erstellen. Der an diesen Befehl übergebene Wert der Option `-columns` legt die Breiten, Titel und Ausrichtungen der 5 Spalten fest.  Die Breite jeder Spalte wird als `0` angegeben, was festlegt, dass die Spaltenbreite gerade so groß sein soll, dass alle Elemente der Spalte Platz finden, einschließlich ihres Titels, der als Zeichenfolge auf die Breitenangabe folgt.  Wir haben die Angaben zur Ausrichtung (die optional auf die Titel folgen können) weggelassen, da alle Spalten linksbündig ausgerichtet werden sollen.
+Die Prozedur ruft den Befehl `tablelist::tablelist` auf, um ein Tablelist-Widget zu erstellen. Der an diesen Befehl übergebene Wert der Option `-columns` legt die Breiten, Titel und Ausrichtungen der 5 Spalten fest.  Die Breite jeder Spalte wird als `0` angegeben, was festlegt, dass die Spaltenbreite gerade so groß sein soll, dass alle Elemente der Spalte Platz finden, einschließlich ihres Titels, der als Zeichenkette auf die Breitenangabe folgt.  Wir haben die Angaben zur Ausrichtung (die optional auf die Titel folgen können) weggelassen, da alle Spalten linksbündig ausgerichtet werden sollen.
 
 Da alle Spalten eine dynamische Breite haben und linksbündig ausgerichtet sind, hätten wir anstelle von `-columns` auch die Option `-columntitles` wie folgt verwenden können:
 
@@ -442,17 +442,17 @@ Der Befehl `tablelist::sortByColumn`, der als Wert der Option `-labelcommand` fe
 
 Wie aus der Erstellung der Schaltfläche mit dem Text  `"Sort as Set"` ersichtlich ist, werden die Elemente auch durch Aufruf des Unterbefehls `sort` sortiert.  Daher muss als Wert der Option `-sortcommand` ein Befehl angegeben werden, der für den Vergleich der Elemente verwendet werden soll. In unserem Beispiel ist dies die unten gezeigte Prozedur `demo::compareAsSet`.
 
-Die Option `-editendcommand` legt den Befehl fest, der automatisch aufgerufen werden soll, sobald die interaktive Bearbeitung des Inhalts einer Zelle abgeschlossen ist und sich der endgültige Inhalt des für die Bearbeitung verwendeten temporären eingebetteten Eingabe-Widgets vom ursprünglichen Inhalt unterscheidet.  Standardmäßig können die Elemente eines „Tablelist“-Widgets nur programmgesteuert bearbeitet werden, doch wir aktivieren die interaktive Bearbeitung für die Zellen der letzten Spalte mithilfe der Konfigurationsoptionen `-editable`.
+Die Option `-editendcommand` legt den Befehl fest, der automatisch aufgerufen werden soll, sobald die interaktive Bearbeitung des Inhalts einer Zelle abgeschlossen ist und sich der endgültige Inhalt des für die Bearbeitung verwendeten temporären eingebetteten Eingabe-Widgets vom ursprünglichen Inhalt unterscheidet.  Standardmäßig können die Elemente eines „Tablelist“-Widgets nur programmgesteuert bearbeitet werden, doch wir aktivieren die interaktive Bearbeitung für die Zellen der letzten Spalte mithilfe der Spaltenkonfigurationsoption `-editable`.
 
 Indem wir für die Konfigurationsoption `-stretch` den Wert `all` festlegen, stellen wir sicher, dass alle Spalten gestreckt werden, um den Leerraum zu beseitigen, der möglicherweise rechts neben der Tabelle erscheint.
 
-Wenn der Wert der Option `-selectborderwidth` `0` ist (dies ist auf Windows- und Macintosh-Plattformen sowie in einer X11-Umgebung mit Tk 8.5 oder höher der Fall), dann verwenden wir die Option `-spacing`, um oben und unten an den Zeilen etwas zusätzlichen Abstand zu schaffen.
+Wenn der Standardwert der Option `-selectborderwidth` `0` ist (dies ist auf Windows- und Macintosh-Plattformen sowie in einer X11-Umgebung mit Tk 8.5 oder höher der Fall), dann verwenden wir die Option `-spacing`, um oben und unten an den Zeilen etwas zusätzlichen Abstand zu schaffen.
 
 Für die letzten beiden Spalten der Tablelist verwenden wir die Spaltenkonfigurationsoption `-maxwidth`, um sicherzustellen, dass die dynamischen Breiten dieser Spalten 30 Zeichen (Durchschnittsbreite) nicht überschreiten.
 
 Neben den in der Befehlszeile angegebenen Optionen übernimmt unser Tablelist-Widget automatisch die Optionen, die in den Einträgen der Tk-Optionsdatenbank enthalten sind, die bei der Namespace-Initialisierung vor der Prozedur `demo::displayConfig` festgelegt wurden.  Der Datenbankname `stripeBackground` entspricht der Konfigurationsoption `-stripebackground`.  Gemäß diesem Eintrag wird jede zweite Zeile des Tablelist-Widgets in der Hintergrundfarbe `#f0f0f0` angezeigt, was die Lesbarkeit der Einträge verbessert und dem Widget ein ansprechendes Erscheinungsbild verleiht.
 
-Die Einträge in der Datenbank für Optionen für `*DemoTop.tf.borderWidth`, `*DemoTop.tf.relief`, `*DemoTop.tf.tbl.borderWidth` und `*DemoTop.tf.tbl.highlightThickness` werden implizit verwendet, wenn das Tablelist-Widget und die beiden Bildlaufleisten mithilfe von `grid` verwaltet werden.  Beachten Sie, wie der Unterbefehl `cornerpath` es uns ermöglicht, ein natives Look & Feel in Bezug auf die vertikale Bildlaufleiste auf anderen Fenstersystemen als `win32` (d. h. `aqua` und `x11`).
+Die Einträge in der Datenbank für Optionen für `*DemoTop.tf.borderWidth`, `*DemoTop.tf.relief`, `*DemoTop.tf.tbl.borderWidth` und `*DemoTop.tf.tbl.highlightThickness` werden implizit verwendet, wenn das Tablelist-Widget und die beiden Scrollbars mithilfe von `grid` verwaltet werden.  Beachten Sie, wie der Unterbefehl `cornerpath` es uns ermöglicht, ein natives Look & Feel in Bezug auf die vertikale Scrollbar auf anderen Fenstersystemen als `win32` (d. h. `aqua` und `x11`) zu erzielen.
 
 Wir füllen die Tablelist, indem wir die im Folgenden beschriebene Prozedur `demo::putConfig` aufrufen. Das gleiche Skript ist der Schaltfläche „Aktualisieren“ zugeordnet, und zwar als Wert der Konfigurationsoption `-command`. Diese Prozedur ist wie folgt implementiert:
 
@@ -506,7 +506,7 @@ proc demo::putConfig {w tbl} {
 }
 ```
 
-Nach dem Löschen der aktuellen Elemente des Tabellisten-Widgets `tbl` fügt die Prozedur die Einträge der Liste ein, die vom Unterbefehl `configure` des Tcl-Befehls zurückgegeben wird, der dem Widget `w` zugeordnet ist.  Für jede Option, die lediglich eine abgekürzte Form einer anderen Option ist, verwenden wir den Tablelist-Unterbefehl `rowconfigure`, um die normalen und die Auswahl-Vordergrundfarben des gerade angehängten Eintrags zu ändern, und deaktivieren die interaktive Bearbeitung in der zuletzt eingefügten Zelle mithilfe der Konfigurationsoptionen `-editable`.  Die „tablelist“-Operation `cellconfigure` wird ebenfalls für jede echte Option aufgerufen, deren aktueller Wert vom Standardwert abweicht, um die Werte der Optionen `-foreground` und `-selectforeground` der Zellen Nr. 0 und 4 zu ändern, die den Namen der Option und ihren aktuellen Wert enthalten.
+Nach dem Löschen der aktuellen Elemente des Tablelist-Widgets `tbl` fügt die Prozedur die Einträge der Liste ein, die vom Unterbefehl `configure` des Tcl-Befehls zurückgegeben wird, der dem Widget `w` zugeordnet ist.  Für jede Option, die lediglich eine abgekürzte Form einer anderen Option ist, verwenden wir den Tablelist-Unterbefehl `rowconfigure`, um die normalen und die Auswahl-Vordergrundfarben des gerade angehängten Eintrags zu ändern, und deaktivieren die interaktive Bearbeitung in der zuletzt eingefügten Zelle mithilfe der Zellenkonfigurationsoption `-editable`.  Die „tablelist“-Operation `cellconfigure` wird ebenfalls für jede echte Option aufgerufen, deren aktueller Wert vom Standardwert abweicht, um die Werte der Optionen `-foreground` und `-selectforeground` der Zellen Nr. 0 und 4 zu ändern, die den Befehlszeilennamen der Option und ihren aktuellen Wert enthalten.
 
 Jedes Tablelist-Widget kann eine beliebige Anzahl privater **Attribute** besitzen, die mithilfe des Unterbefehls `attrib` des dem Widget entsprechenden Tcl-Befehls gesetzt und abgerufen werden können.  Die Prozedur `demo::putConfig` setzt das Attribut `widget` auf den Namen des Widgets, dessen Optionen in der Tablelist angezeigt werden.
 
@@ -586,11 +586,11 @@ proc demo::applyValue {tbl row col text} {
 }
 ```
 
-Die Prozedur ruft den Namen des Widgets ab, dessen Optionen in der Tablelist angezeigt werden, und zwar als Wert seines Attributs `widget`, und ruft den Tablelist-Unterbefehl `cellcget` auf, um den Namen der Option abzurufen, die in der ersten Zelle der Zeile angegeben ist, deren letztes Element gerade bearbeitet wurde.  Anschließend versucht es, den neuen Wert der Option auf das Widget anzuwenden, und ruft den Unterbefehl `rejectinput` auf, wenn der Versuch fehlschlägt.  Andernfalls ersetzt es den neuen Optionswert durch seine kanonische Form und aktualisiert die normalen und die Auswahl-Vordergrundfarben der Zellen Nr. 0 und 4. Die kanonische Form des Optionswerts wird durch den Unterbefehl `cget` des diesem Widget zugeordneten Tcl-Befehls vorgegeben.  Beispielsweise wird ein boolescher Wert immer durch `1` oder `0` ersetzt, selbst wenn die Eingabe die Zeichenfolge `yes` oder `no` enthält. Die Prozedur gibt diesen kanonischen Wert für die Option zurück und stellt so sicher, dass dieser zum neuen Inhalt der soeben bearbeiteten Zelle wird.
+Die Prozedur ruft den Namen des Widgets ab, dessen Optionen in der Tablelist angezeigt werden, und zwar als Wert seines Attributs `widget`, und ruft den Tablelist-Unterbefehl `cellcget` auf, um den Namen der Option abzurufen, die in der ersten Zelle der Zeile angegeben ist, deren letztes Element gerade bearbeitet wurde.  Anschließend versucht sie, den neuen Wert der Option auf das Widget anzuwenden, und ruft den Unterbefehl `rejectinput` auf, wenn der Versuch fehlschlägt.  Andernfalls ersetzt sie den neuen Optionswert durch seine kanonische Form und aktualisiert die normalen und die Auswahl-Vordergrundfarben der Zellen Nr. 0 und 4. Die kanonische Form des Optionswerts wird durch den Unterbefehl `cget` des diesem Widget zugeordneten Tcl-Befehls vorgegeben.  Beispielsweise wird ein boolescher Wert immer durch `1` oder `0` ersetzt, selbst wenn die Eingabe die Zeichenkette `yes` oder `no` enthält. Die Prozedur gibt diesen kanonischen Wert für die Option zurück und stellt so sicher, dass dieser zum neuen Inhalt der soeben bearbeiteten Zelle wird.
 
 ### Zwei skalierbare Widget-Browser auf Basis einer Tablelist
 
-Die Dateien `browse.tcl` und `browseTree.tcl` im Verzeichnis `demos` enthalten eine Prozedur `demo::displayChildren`, die Informationen über die untergeordneten Elemente eines beliebigen Widgets in einer Tabelle, das in einem neu erstellten Toplevel-Fenster enthalten ist.  Um dies zu testen, starten Sie `wish` und führen Sie die Auswertung der ausgewählten Datei mit dem Befehl `source` durch, ähnlich wie im Fall des [vorherigen Beispiels](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen).
+Die Dateien `browse.tcl` und `browseTree.tcl` im Verzeichnis `demos` enthalten eine Prozedur `demo::displayChildren`, die Informationen über die untergeordneten Elemente eines beliebigen Widgets in einer Tablelist anzeigt, die in einem neu erstellten Toplevel-Fenster enthalten ist.  Um dies zu testen, starten Sie `wish` und führen Sie die Auswertung der ausgewählten Datei mit dem Befehl `source` durch, ähnlich wie im Fall des [vorherigen Beispiels](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen).
 
 Beide Skripte geben die folgende Meldung in `stdout` aus:
 
@@ -606,19 +606,19 @@ To display information about the children of an arbitrary widget, enter
 demo::displayChildren .
 ```
 
-Dann werden Sie feststellen, dass ein Tablelist-Widget mit der Bezeichnung `.browseTop.tf.tbl` in einem neuen Toplevel-Fenster erstellt wird und dessen Name als `stdout` ausgegeben wird.
+Dann werden Sie feststellen, dass ein Tablelist-Widget mit der Bezeichnung `.browseTop.tf.tbl` in einem neuen Toplevel-Fenster erstellt wird und dessen Name auf `stdout` ausgegeben wird.
 
 Die von der Prozedur `demo::displayChildren` in der Datei `browse.tcl` erstellte Tablelist ist eine mehrspaltige listbox:
 
 ![Widget Browser](browse.png)
 
-Die Tabelle, die von der gleichnamigen Prozedur in der Datei `browseTree.tcl` erstellt wurde, ist ein mehrspaltiges Baum-Widget:
+Die Tablelist, die von der gleichnamigen Prozedur in der Datei `browseTree.tcl` erstellt wurde, ist ein mehrspaltiges Baum-Widget:
 
 ![Widget Browser](browseTree.png)
 
-Der Befehl `demo::displayChildren` fügt einige Daten der untergeordneten Elemente des durch `<widgetName>` festgelegten Widgets in eine vertikal scrollbare Tablelist mit 9 Spalten dynamischer Breite und interaktiver Sortierfunktion ein und gibt den Namen des neu erstellten Tablelist-Widgets zurück.  Durch Doppelklick auf ein Element (z. B. der Container, der den Pfadnamen `.browseTop` in `browse.tcl` und den Namen `browseTop` in `browseTree.tcl` enthält) oder durch Aufrufen des ersten Eintrags eines Popup-Menüs im Hauptbereich der Tablelist können Sie die Daten der untergeordneten Elemente des Widgets anzeigen, die dem aktiven Eintrag entsprechen, und mit dem zweiten Menüeintrag können Sie dessen Konfigurationsoptionen anzeigen (Einzelheiten finden Sie im [vorherigen Beispiel](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen)).  Um eine Ebene höher zu gelangen, klicken Sie auf die Schaltfläche „Übergeordnet“.
+Der Befehl `demo::displayChildren` fügt einige Daten der untergeordneten Elemente des durch `<widgetName>` festgelegten Widgets in eine vertikal scrollbare Tablelist mit 9 Spalten dynamischer Breite und interaktiver Sortierfunktion ein und gibt den Namen des neu erstellten Tablelist-Widgets zurück.  Durch Doppelklick auf ein Element (z. B. das Element, das den Pfadnamen `.browseTop` in `browse.tcl` und den Namen `browseTop` in `browseTree.tcl` enthält) oder durch Aufrufen des ersten Eintrags eines Popup-Menüs im Datenbereich der Tablelist können Sie die Daten der untergeordneten Elemente des Widgets anzeigen, das dem aktiven Eintrag entspricht, und mit dem zweiten Menüeintrag können Sie dessen Konfigurationsoptionen anzeigen (Einzelheiten finden Sie im [vorherigen Beispiel](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen)).  Um eine Ebene höher zu gelangen, klicken Sie auf die Schaltfläche „Übergeordnet“.
 
-Die Skripte `browse.tcl` und `browseTree.tcl` weisen viele gemeinsame Codeabschnitte auf. Wir beschränken uns in der folgenden BESCHREIBUNG auf das zweite Skript.
+Die Skripte `browse.tcl` und `browseTree.tcl` weisen viele gemeinsame Codeabschnitte auf. Wir beschränken uns in der folgenden Beschreibung auf das zweite Skript.
 
 ```
 package require tablelist
@@ -767,7 +767,7 @@ proc demo::displayChildren w {
 }
 ```
 
-Die Prozedur ruft den Befehl `tablelist::tablelist` auf, um ein Tablelist-Widget zu erstellen. Der an diesen Befehl übergebene Wert der Option `-columns` legt die Breiten, Titel und Ausrichtungen der 9 Spalten fest.  Die Breite jeder Spalte wird als `0` angegeben, was festlegt, dass die Breite der Spalte gerade so groß sein soll, dass alle Elemente der Spalte darin Platz finden, einschließlich ihres Titels, der als Zeichenfolge auf die Breitenangabe folgt.  Auf jeden Titel folgt eine Ausrichtung, die angibt, wie sowohl die Elemente als auch der Titel der jeweiligen Spalte ausgerichtet werden sollen.
+Die Prozedur ruft den Befehl `tablelist::tablelist` auf, um ein Tablelist-Widget zu erstellen. Der an diesen Befehl übergebene Wert der Option `-columns` legt die Breiten, Titel und Ausrichtungen der 9 Spalten fest.  Die Breite jeder Spalte wird als `0` angegeben, was festlegt, dass die Breite der Spalte gerade so groß sein soll, dass alle Elemente der Spalte darin Platz finden, einschließlich ihres Titels, der als Zeichenkette auf die Breitenangabe folgt.  Auf jeden Titel folgt eine Ausrichtung, die angibt, wie sowohl die Elemente als auch der Titel der jeweiligen Spalte ausgerichtet werden sollen.
 
 Wir möchten nicht nur die Daten der untergeordneten Elemente des angegebenen Widgets anzeigen, sondern auch die seiner weiteren Nachkommen. Zu diesem Zweck benötigen wir einen Befehl, der immer dann aufgerufen wird, wenn ein Element, das einem Widget mit untergeordneten Elementen entspricht, erweitert wird. Dieser Befehl wird als Wert der Option `-expandcommand` angegeben.  Wie später erläutert wird, fügt die Prozedur `demo::expandCmd` die untergeordneten Elemente der Zeile ein, die gerade erweitert werden soll, sofern diese noch keine untergeordneten Elemente hat.
 
@@ -777,13 +777,13 @@ Wir legen für die Option `-width` des Widgets den Wert `0` fest, was bedeutet, 
 
 Nachdem wir das Tablelist-Widget erstellt haben, stellen wir sicher, dass die Elemente der Spalten 2, 3, 4 und 5 (in denen die x- und y-Koordinaten sowie die Breiten und Höhen der untergeordneten Elemente angezeigt werden) beim Sortieren der Elemente nach einer dieser Spalten als Ganzzahlen verglichen werden.  Dies erreichen wir mithilfe der Tablelist-Operation `columnconfigure`.
 
-Mit demselben Unterbefehl `columnconfigure` können wir festlegen, dass bei der Anzeige der Elemente der Spalten 6 und 7 (mit den Titeln `"Mapped"` bzw. `"Viewable"`, ) die booleschen Werte `1` und `0` durch die Zeichenfolgen `"yes"` und `"no"` ersetzt werden, Der unten gezeigte Befehl `demo::formatBoolean` gibt die folgenden Informationen zurück.
+Mit demselben Unterbefehl `columnconfigure` können wir festlegen, dass bei der Anzeige der Elemente der Spalten 6 und 7 (mit den Titeln `"Mapped"` bzw. `"Viewable"`) die booleschen Werte `1` und `0` durch die Zeichenketten `"yes"` und `"no"` ersetzt werden, die der unten gezeigte Befehl `demo::formatBoolean` zurückgibt.
 
 In einer skalierungsfähigen Anwendung sollte der Wert der Tablelistoption `-treestyle` den DPI-Skalierungsgrad des Bildschirms widerspiegeln.  Unter Windows Vista, 7, 8 und 10+ erfüllt der Standardwert dieser Option diese Anforderung bereits, und unter Mac OS X/11+ skaliert die Desktop-Engine alles automatisch nach Bedarf.  Unter X11 setzen wir die Option `-treestyle` bei vorhandener SVG-Unterstützung auf `bicolor` und andernfalls auf einen der Werte `bicolor100`, ..., `bicolor200` (abhängig vom Wert der Variablen `::tablelist::scalingpct`).
 
 Nachdem wir die Option `-treestyle` unter X11 konfiguriert haben, durchlaufen wir die Elemente der Liste, die die Pfadnamen aller Kopfzeilenbeschriftungen des Tablelist-Widgets enthält und vom Unterbefehl `labels` des dem Widget entsprechenden Tcl-Befehls zurückgegeben wird.  Für jedes Element der Liste binden wir die Prozedur `demo::updateItemsDelayed` an das Ereignis `<Configure>`. Auf diese Weise stellen wir sicher, dass die Prozedur immer dann aufgerufen wird, wenn sich die Größe der durch dieses Listenelement angegebenen Kopfzeile ändert.
 
-Die vier Aufrufe des Befehls `bind` im Anschluss an die Erstellung des Pop-up-Menüs verwenden ein Bindungs-Tag, dessen Name vom Pfadnamen des Tablelist-Widgets abhängt und vom Unterbefehl `bodytag` des mit dem Tablelist-Widget verknüpften Tcl-Befehls zurückgegeben wird.  Der Vorteil der Verwendung dieses Tags anstelle des Pfadnamens des Hauptteils der Tablelist besteht darin, dass dieses Bindungs-Tag nicht nur mit dem Hauptteil, sondern auch mit den Trennrahmen und den Beschriftungen, die eingebettete Bilder anzeigen, verknüpft ist.  Dies ist in unserem Beispiel wichtig, da wir sicherstellen möchten, dass die Ereignisse `<<Button3>>` und `<Double-1>` innerhalb einer Beschriftung, die eingebettete Bilder enthält, auf dieselbe Weise behandelt werden wie im restlichen Hauptteil der Tablelist.  Sowohl das virtuelle Ereignis `<<Button3>>` (verwendet in den ersten drei `bind`-Befehlen) als auch das Bindungs-Tag `TablelistBody` (verwendet im ersten Bindungsskript) werden vom Tablelist-Paket erstellt.  Die ersten drei `bind`-Befehle stellen sicher, dass ein virtuelles Ereignis `<<Button3>>` das nächstgelegene Element auswählt und aktiviert und ein Popup-Menü mit zwei Befehlseinträgen anzeigt, die sich auf das durch dieses Element beschriebene Widget beziehen.
+Die vier Aufrufe des Befehls `bind` im Anschluss an die Erstellung des Pop-up-Menüs verwenden ein Bindungs-Tag, dessen Name vom Pfadnamen des Tablelist-Widgets abhängt und vom Unterbefehl `bodytag` des mit dem Tablelist-Widget verknüpften Tcl-Befehls zurückgegeben wird.  Der Vorteil der Verwendung dieses Tags anstelle des Pfadnamens des Datenbereichs der Tablelist besteht darin, dass dieses Bindungs-Tag nicht nur mit dem Datenbereich, sondern auch mit den Trennrahmen und den Beschriftungen, die eingebettete Bilder anzeigen, verknüpft ist.  Dies ist in unserem Beispiel wichtig, da wir sicherstellen möchten, dass die Ereignisse `<<Button3>>` und `<Double-1>` innerhalb einer Beschriftung, die eingebettete Bilder enthält, auf dieselbe Weise behandelt werden wie im restlichen Datenbereich der Tablelist.  Sowohl das virtuelle Ereignis `<<Button3>>` (verwendet in den ersten drei `bind`-Befehlen) als auch das Bindungs-Tag `TablelistBody` (verwendet im ersten Bindungsskript) werden vom Tablelist-Paket erstellt.  Die ersten drei `bind`-Befehle stellen sicher, dass ein virtuelles Ereignis `<<Button3>>` das nächstgelegene Element auswählt und aktiviert und ein Popup-Menü mit zwei Befehlseinträgen anzeigt, die sich auf das durch dieses Element beschriebene Widget beziehen.
 
 Wir füllen die Tablelist, indem wir die Prozedur `demo::putChildren` aufrufen, die wie folgt implementiert ist:
 
@@ -861,7 +861,7 @@ Das letzte Argument dieser Prozedur gibt den Baumknoten an, der zum übergeordne
 
 Für jedes untergeordnete Widget rufen wir die Tablelistoperation `cellconfigure` auf, um den Wert der Option `-image` in der ersten Zelle der entsprechenden Zeile festzulegen, die den Namen des untergeordneten Elements enthält.  Auf diese Weise bettet die Prozedur das Bild `$leafImg` oder `$compImg` in die erste Zelle ein, je nachdem, ob es sich bei dem betreffenden untergeordneten Widget um ein Blatt- oder ein zusammengesetztes Widget handelt.  (Zur Erinnerung: Beide Bilder wurden außerhalb dieser Prozedur im Rahmen der Initialisierung des Namespaces `demo` erstellt.)
 
-Wir kennzeichnen jede neu erstellte Zeile, die einem untergeordneten Widget entspricht, das selbst untergeordnete Elemente hat, als „zusammengeklappt“, indem wir den Unterbefehl `collapse` aufrufen.  Dadurch wird dem Inhalt der ersten Spalte ein Steuerelement zum Ein- und Ausblenden vorangestellt, dessen Spaltenindex `0` dem Standardwert der Konfigurationsoptionen `-treecolumn` entspricht.
+Wir kennzeichnen jede neu erstellte Zeile, die einem untergeordneten Widget entspricht, das selbst untergeordnete Elemente hat, als „zusammengeklappt“, indem wir den Unterbefehl `collapse` aufrufen.  Dadurch wird dem Inhalt der ersten Spalte ein Steuerelement zum Ein- und Ausblenden vorangestellt, dessen Spaltenindex `0` dem Standardwert der Konfigurationsoption `-treecolumn` entspricht.
 
 Wir verwenden den Unterbefehl `rowattrib` von „tablelist“, um den vollständigen Pfadnamen jedes untergeordneten Widgets als privates Attribut zu speichern, das der entsprechenden Zeile in der Tablelist zugeordnet ist, da dieser später an mehreren Stellen benötigt wird.
 
@@ -888,7 +888,7 @@ proc demo::expandCmd {tbl row} {
 }
 ```
 
-Die Prozedur ruft den Unterbefehl `childcount` auf, um zu prüfen, ob die untergeordneten Elemente der Zeile, die gerade erweitert werden soll, bereits in das Tablelist-Widget eingefügt wurden, und fügt sie ein, falls dies nicht der Fall ist.  Außerdem stellt es mithilfe des Tablelist-Unterbefehls `refreshsorting` sicher, dass die untergeordneten Elemente in der Reihenfolge angezeigt werden, die der letzten Sortierung (falls vorhanden) entspricht. Eine etwaige Sortierung (falls erforderlich) wird ausschließlich auf die untergeordneten Elemente angewendet, die gerade in das Tablelist-Widget eingefügt wurden.
+Die Prozedur ruft den Unterbefehl `childcount` auf, um zu prüfen, ob die untergeordneten Elemente der Zeile, die gerade erweitert werden soll, bereits in das Tablelist-Widget eingefügt wurden, und fügt sie ein, falls dies nicht der Fall ist.  Außerdem stellt sie mithilfe des Tablelist-Unterbefehls `refreshsorting` sicher, dass die untergeordneten Elemente in der Reihenfolge angezeigt werden, die der letzten Sortierung (falls vorhanden) entspricht. Eine etwaige Sortierung (falls erforderlich) wird ausschließlich auf die untergeordneten Elemente angewendet, die gerade in das Tablelist-Widget eingefügt wurden.
 
 Die oben erwähnten Prozeduren `demo::formatBoolean` und `demo::labelCmd` sind trivial:
 
@@ -1053,7 +1053,7 @@ proc demo::restoreExpandedStates {tbl nodeIdx expandedWidgetsName} {
 }
 ```
 
-Die Prozedur ruft mithilfe des Unterbefehls `childkeys` die Liste der vollständigen Schlüssel der untergeordneten Knoten des durch `nodeIdx` angegebenen übergeordneten Knotens ab.  Anschließend durchläuft es diese Liste schrittweise und ruft für jeden Schlüssel, dessen entsprechende Zeile zuvor erweitert wurde, den Unterbefehl `expand` der Tablelist auf; anschließend ruft es sich selbst rekursiv auf, um den erweiterten Zustand der untergeordneten Elemente dieser Zeile wiederherzustellen.
+Die Prozedur ruft mithilfe des Unterbefehls `childkeys` die Liste der vollständigen Schlüssel der untergeordneten Knoten des durch `nodeIdx` angegebenen übergeordneten Knotens ab.  Anschließend durchläuft sie diese Liste schrittweise und ruft für jeden Schlüssel, dessen entsprechende Zeile zuvor erweitert wurde, den Unterbefehl `expand` der Tablelist auf; anschließend ruft sie sich selbst rekursiv auf, um den erweiterten Zustand der untergeordneten Elemente dieser Zeile wiederherzustellen.
 
 ### Ein skalierbarer Verzeichnis-Viewer auf Basis einer Tablelist
 
@@ -1061,7 +1061,7 @@ Das Skript `dirViewer.tcl` im Verzeichnis `demos` zeigt den Inhalt der im System
 
 ![Verzeichnis-Viewer](dirViewer.png)
 
-Durch Doppelklicken auf einen Eintrag oder durch Aufrufen des entsprechenden Menüpunkts im Popup-Menü innerhalb der Tablelist können Sie den Inhalt des Ordners anzeigen, der dem aktiven Eintrag entspricht. Um eine Ebene höher zu gelangen, klicken Sie auf die Schaltfläche „Übergeordneter Ordner“.
+Durch Doppelklicken auf einen Eintrag oder durch Aufrufen des einzigen Eintrags eines Popup-Menüs im Datenbereich der Tablelist können Sie den Inhalt des Ordners anzeigen, der dem aktiven Eintrag entspricht. Um eine Ebene höher zu gelangen, klicken Sie auf die Schaltfläche „Übergeordneter Ordner“.
 
 Es gibt viele Ähnlichkeiten zwischen diesem Skript und dem im [vorherigen Abschnitt](#zwei-skalierbare-widget-browser-auf-basis-einer-tablelist) behandelten Skript. Im Folgenden werden wir nur einige wenige Prozeduren vorstellen, die Tablelist-Befehle aufrufen, die in den obigen Beispielen nicht vorkommen:
 
@@ -1156,7 +1156,7 @@ proc displayContents dir {
 }
 ```
 
-Die Prozedur `displayContents` erstellt das Tablelist-Widget und die beiden Bildlaufleisten als untergeordnete Elemente eines Frames der Klasse `ScrollArea`.  Für diese Klasse enthält die Datei `option.tcl`, die in das Hauptskript `source`d eingebunden ist, einige Einstellungen zum Look & Feel, die denen in unserem [ersten Beispiel](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen) ähneln:
+Die Prozedur `displayContents` erstellt das Tablelist-Widget und die beiden Scrollbars als untergeordnete Elemente eines Frames der Klasse `ScrollArea`.  Für diese Klasse enthält die Datei `option.tcl`, die in das Hauptskript mittels `source` eingebunden ist, einige Einstellungen zum Look & Feel, die denen in unserem [ersten Beispiel](#ein-tablelist-widget-zum-anzeigen-und-bearbeiten-von-konfigurationsoptionen) ähneln:
 
 ```
 option add *ScrollArea.borderWidth                      1
@@ -1252,7 +1252,7 @@ proc putContents {dir tbl nodeIdx} {
 }
 ```
 
-Der Hauptunterschied zwischen der oben beschriebenen Prozedur `putContents` und der im [vorherigen Abschnitt]](#zwei-skalierbare-widget-browser-auf-basis-einer-tablelist) beschriebenen Prozedur `demo::putChildren` betrifft die Art und Weise, wie untergeordnete Elemente in das Tablelist-Widget eingefügt werden.  Anstatt sie einzeln mit Hilfe des Tablelist-Unterbefehls `insertchild(ren)` einzufügen, fügen wir hier die entsprechenden Daten zu einer Liste von Elementen hinzu und rufen dann den wesentlich leistungsfähigeren Unterbefehl `insertchildlist` auf.  Anstatt die Elemente zunächst einzufügen und sie dann über `refreshsorting` zu sortieren, führen wir außerdem zunächst die erforderlichen Sortierungen an der oben genannten Liste von Elementen durch, indem wir den Unterbefehl `applysorting` aufrufen.  Auch dies ist wesentlich schneller als das Sortieren der bereits eingefügten untergeordneten Elemente.
+Der Hauptunterschied zwischen der oben beschriebenen Prozedur `putContents` und der im [vorherigen Abschnitt](#zwei-skalierbare-widget-browser-auf-basis-einer-tablelist) beschriebenen Prozedur `demo::putChildren` betrifft die Art und Weise, wie untergeordnete Elemente in das Tablelist-Widget eingefügt werden.  Anstatt sie einzeln mit Hilfe des Tablelist-Unterbefehls `insertchild(ren)` einzufügen, fügen wir hier die entsprechenden Daten zu einer Liste von Elementen hinzu und rufen dann den wesentlich leistungsfähigeren Unterbefehl `insertchildlist` auf.  Anstatt die Elemente zunächst einzufügen und sie dann über `refreshsorting` zu sortieren, führen wir außerdem zunächst die erforderlichen Sortierungen an der oben genannten Liste von Elementen durch, indem wir den Unterbefehl `applysorting` aufrufen.  Auch dies ist wesentlich schneller als das Sortieren der bereits eingefügten untergeordneten Elemente.
 
 Diese Prozedur veranschaulicht zudem eine effektive Technik, die auf der Spaltenkonfigurationsoption `-formatcommand` basiert:  In der internen Liste des Tablelist-Widgets werden den Namen und Änderungszeiten der Verzeichnisse und Dateien jeweils ein `D` bzw. `F` vorangestellt.  Dadurch wird sichergestellt, dass die Verzeichnisse vor den Dateien sortiert werden (bei aufsteigender Sortierung). Bei der Anzeige der Elemente ruft der Tablelist-Code automatisch die Prozedur `formatString` auf, die das erste Zeichen entfernt.  Ebenso wird in der internen Liste des Widgets die Größe eines Verzeichnisses auf `-1` gesetzt, wodurch es vor den Größen der Dateien sortiert wird. Die Prozedur `formatSize`, die bei der Anzeige der Elemente automatisch aufgerufen wird, ersetzt diesen Wert durch eine leere Zeichenkette:
 
@@ -1331,7 +1331,7 @@ Die letzte Zeile des Skripts ruft die Prozedur `displayContents` mit einer leere
 
 ### Das Erscheinungsbild eines Tablelist-Widgets verbessern
 
-Das Skript `styles.tcl` im Verzeichnis `demos` veranschaulicht einige Möglichkeiten, wie Sie Tablelist-Widgets intelligenter gestalten und die Lesbarkeit ihrer Einträge verbessern kann. Es erstellt 8 Tablelist-Widgets, die in der folgenden Abbildung dargestellt sind:
+Das Skript `styles.tcl` im Verzeichnis `demos` veranschaulicht einige Möglichkeiten, wie Sie Tablelist-Widgets intelligenter gestalten und die Lesbarkeit ihrer Einträge verbessern können. Es erstellt 8 Tablelist-Widgets, die in der folgenden Abbildung dargestellt sind:
 
 ![Styles](styles.png)
 
@@ -1481,7 +1481,7 @@ source [file join $dir serialParams.tcl]
 . . .
 ```
 
-Die Größe der Bilder, die in der Datei `images.tcl` erstellt werden – die im Hauptskript als „`source`d“ bezeichnet wird –, hängt vom Skalierungsgrad des Bildschirms ab.  Beispiel:
+Die Größe der Bilder, die in der Datei `images.tcl` erstellt werden, die in das Hauptskript mittels `source` eingebunden ist, hängt vom Skalierungsgrad des Bildschirms ab.  Beispiel:
 
 ```
 if {$tk_version >= 8.7 || [catch {package require tksvg}] == 0} {
@@ -1499,9 +1499,9 @@ if {$tk_version >= 8.7 || [catch {package require tksvg}] == 0} {
 }
 ```
 
-Wir rufen die Befehle `tablelist::addBWidgetEntry`, `tablelist::addBWidgetSpinBox` und `tablelist::addBWidgetComboBox` auf, um die Widgets „Entry“, „SpinBox“ und „ComboBox“ aus dem BWidget-Paket für die interaktive Zellbearbeitung zu registrieren.  Diese Befehle geben die Werte `"Entry"`, `"SpinBox"` und `"ComboBox"` zurück, die wir anschließend in der Konfigurationsoption `-editwindow` verwenden, um das Bearbeitungsfenster für die Spalten Nr. 2, …, 10 festzulegen.  In den Spalten Nr. 1 und 10 verwenden wir die Tk-Core-Widgets „checkbutton“ und „menubutton“, die automatisch für die interaktive Zellbearbeitung registriert werden.
+Wir rufen die Befehle `tablelist::addBWidgetEntry`, `tablelist::addBWidgetSpinBox` und `tablelist::addBWidgetComboBox` auf, um die Widgets „Entry“, „SpinBox“ und „ComboBox“ aus dem BWidget-Paket für die interaktive Zellbearbeitung zu registrieren.  Diese Befehle geben die Werte `"Entry"`, `"SpinBox"` und `"ComboBox"` zurück, die wir anschließend in der Spaltenkonfigurationsoption `-editwindow` verwenden, um das Bearbeitungsfenster für die Spalten Nr. 2, …, 10 festzulegen.  In den Spalten Nr. 1 und 10 verwenden wir die Tk-Core-Widgets „checkbutton“ und „menubutton“, die automatisch für die interaktive Zellbearbeitung registriert werden.
 
-Beachten Sie die Verwendung der Konfigurationsoption `-name`, die es uns ermöglicht, auf die Spalten anhand ihrer Namen statt anhand numerischer Spaltenindizes zuzugreifen.  Dies ist wichtig, da die Datei `option.tcl`, die im Hauptskript als „`source`d“ bezeichnet wird, die folgende Zeile enthält:
+Beachten Sie die Verwendung der Spaltenkonfigurationsoption `-name`, die es uns ermöglicht, auf die Spalten anhand ihrer Namen statt anhand numerischer Spaltenindizes zuzugreifen.  Dies ist wichtig, da die Datei `option.tcl`, die in das Hauptskript mittels `source` eingebunden ist, die folgende Zeile enthält:
 
 ```
 option add *Tablelist.movableColumns    yes
@@ -1509,7 +1509,7 @@ option add *Tablelist.movableColumns    yes
 
 Die unten aufgeführten Prozeduren `editStartCmd` und `editEndCmd` verwenden den Unterbefehl `columncget`, um den Namen der Spalte anhand des numerischen Spaltenindex abzurufen.
 
-Übrigens sind in der Datei `option.tcl` zwei weitere Optionen für die Datenbank enthalten:
+Übrigens sind in der Datei `option.tcl` zwei weitere Einstellungen der Optionsdatenbank enthalten:
 
 ```
 option add *Tablelist.labelCommand      tablelist::sortByColumn
@@ -1520,7 +1520,7 @@ Die in diesen Einstellungen festgelegten Befehle `tablelist::sortByColumn` und `
 
 Beachten Sie außerdem, dass wir die Option `-allowduplicates` der Spalte, die die Namen der seriellen Leitungen enthält, auf „false“ gesetzt haben, um sicherzustellen, dass diese Namen bei der interaktiven Bearbeitung eindeutig bleiben.
 
-Die Datei `serialParams.tcl`, die im Hauptskript als „`source`d“ bezeichnet wird, enthält den folgenden Code, der sich hauptsächlich auf die Einstellung `-labelwindow checkbutton` für Spalte Nr. 1 sowie die Konfigurationsoption `-aftercopycommand`:
+Die Datei `serialParams.tcl`, die in das Hauptskript mittels `source` eingebunden ist, enthält den folgenden Code, der sich hauptsächlich auf die Einstellung `-labelwindow checkbutton` für Spalte Nr. 1 sowie die Konfigurationsoption `-aftercopycommand` bezieht:
 
 ```
 #
@@ -1618,7 +1618,7 @@ proc afterCopyCmd {tbl col} {
 }
 ```
 
-Zu der oben genannten Prozedur `configCkbtn` siehe ANMERKUNG 2 in der BESCHREIBUNG der Konfigurationsoptionen `-labelwindow`.
+Zu der oben genannten Prozedur `configCkbtn` siehe HINWEIS 2 in der Beschreibung der Spaltenkonfigurationsoption `-labelwindow`.
 
 Die Prozedur `editStartCmd`, die als Wert der Konfigurationsoption `-editstartcommand` festgelegt wird, benötigt den Pfadnamen des Bearbeitungsfensters, um das Widget auf verschiedene Weise konfigurieren zu können.  Dies ist ein häufiger Fall, und Tablelist stellt zu diesem Zweck den Unterbefehl `editwinpath` bereit:
 
@@ -1763,10 +1763,10 @@ proc editEndCmd {tbl row col text} {
 }
 ```
 
-Anstatt die Spalte „Verfügbar“ über ein *temporäres* checkbutton bearbeitbar zu machen und die Bilder `"checkedImg"` und `"uncheckedImg"` in ihren Zellen anzuzeigen, können wir den Unterbefehl `embedcheckbuttons` verwenden, um die Spalten mit *dauerhaft* eingebetteten checkbuttons zu füllen. Die erforderlichen Änderungen lauten wie folgt:
+Anstatt die Spalte „Verfügbar“ über einen *temporären* Checkbutton bearbeitbar zu machen und die Bilder `"checkedImg"` und `"uncheckedImg"` in ihren Zellen anzuzeigen, können wir den Unterbefehl `embedcheckbuttons` verwenden, um die Spalte mit *dauerhaft* eingebetteten checkbuttons zu füllen. Die erforderlichen Änderungen lauten wie folgt:
 
 - Entfernen Sie die Teile des obigen Codes, die in der Farbe „[red]{.red}“ dargestellt sind.
-- Führen Sie die Prozedur `ckbtnCmd` wie folgt aus:
+- Implementieren Sie die Prozedur `ckbtnCmd` wie folgt:
 
   ```
   proc ckbtnCmd {tbl row col} { return [updateHdrCkbtn $tbl $col] }
@@ -1792,11 +1792,11 @@ Wie oben erwähnt, ähneln die Skripte `tileWidgets.tcl`, `iwidgets.tcl` und `mi
 
 ### Ein Tablelist-Widget mit skalierbaren eingebetteten Fenstern
 
-Das Skript `embeddedWindows.tcl` im Verzeichnis `demos` erstellt ein Tablelist-Widget, dessen Elemente den Skripten der Tk-Bibliothek entsprechen.  Die Größe jeder Datei (in Byte) wird nicht nur als Zahl angezeigt, sondern auch mithilfe eines Rahmens mit rotem Hintergrund veranschaulicht, der als untergeordnetes Element eines eingebetteten Rahmens mit elfenbeinfarbenem Hintergrund erstellt wird. Die Dateien können durch Klicken auf die entsprechenden eingebetteten Widgets angezeigt werden.
+Das Skript `embeddedWindows.tcl` im Verzeichnis `demos` erstellt ein Tablelist-Widget, dessen Elemente den Skripten der Tk-Bibliothek entsprechen.  Die Größe jeder Datei (in Byte) wird nicht nur als Zahl angezeigt, sondern auch mithilfe eines Rahmens mit rotem Hintergrund veranschaulicht, der als untergeordnetes Element eines eingebetteten Rahmens mit elfenbeinfarbenem Hintergrund erstellt wird. Die Dateien können durch Klicken auf die entsprechenden eingebetteten Button-Widgets angezeigt werden.
 
 Der folgende Screenshot zeigt das Tablelist-Widget, wobei sich der Mauszeiger über der ersten Kopfzeile befindet, wodurch diese Kopfzeile im Zustand `active` angezeigt wird:
 
-![Eingebettetes Windows](embeddedWindows.png)
+![Eingebettete Fenster](embeddedWindows.png)
 
 Zunächst erstellen wir das „tablelist“-Widget und füllen es mit Daten:
 
@@ -1890,9 +1890,9 @@ Das Bild, das die Aktion „Anzeigen“ darstellt, wird entweder aus der Datei `
 
 Wir fügen die Größe jeder Datei nicht nur in die Spalte mit dem Titel  `"File Size"`,  sondern auch in die Spalte  `"Bar Chart"` ein.  Da wir diese Spalte mit `-formatcommand emptyStr` konfiguriert haben, bleibt der Text darin verborgen. Er wird jedoch benötigt, wenn die Einträge nach dieser Spalte sortiert werden.
 
-Nachdem wir den Hauptteil der Tablelist gefüllt haben, erstellen wir ein Kopfzeilenelement, das die Gesamtanzahl und die Größe der Dateien der Bibliothek anzeigt, indem wir den Unterbefehl  `header insert`  aufrufen, und ändern dessen Farbe mithilfe des Unterbefehls  `header rowconfigure` .
+Nachdem wir den Datenbereich der Tablelist gefüllt haben, erstellen wir ein Kopfzeilenelement, das die Gesamtanzahl und die Größe der Dateien der Bibliothek anzeigt, indem wir den Unterbefehl  `header insert`  aufrufen, und ändern dessen Vordergrundfarbe mithilfe des Unterbefehls  `header rowconfigure` .
 
-Um die eingebetteten Fenster erstellen zu können, müssen wir zunächst die entsprechenden Erstellungsskripte implementieren, wie in der BESCHREIBUNG der Konfigurationsoptionen `-window` angegeben. Hier ist das Skript, das einen Rahmen erstellt, der in die Spalten mit dem Balkendiagramm eingebettet werden soll:
+Um die eingebetteten Fenster erstellen zu können, müssen wir zunächst die entsprechenden Erstellungsskripte implementieren, wie in der Beschreibung der Zellenkonfigurationsoption `-window` angegeben. Hier ist das Skript, das einen Rahmen erstellt, der in die Spalte mit dem Balkendiagramm eingebettet werden soll:
 
 ```
 #------------------------------------------------------------------------------
@@ -1929,7 +1929,7 @@ proc createFrame {tbl row col w} {
 
 Beachten Sie, dass wir die Werte der Optionen `-width` und `-height` für den Rahmen skalierungsbewusst festlegen.
 
-Da der Frame in den Hauptbereich der Tablelist eingebettet wird, möchten wir, dass Mausereignisse im Frame und in dessen untergeordneten Frames genauso behandelt werden wie im restlichen Hauptbereich der Tablelist.  Zu diesem Zweck ersetzen wir das Bindungs-Tag `Frame` (das ohnehin keine eigenen Bindungen enthält) durch `TablelistBody` und stellen so sicher, dass die diesem Tag zugeordneten Standard-Bindungsskripte auch für den übergeordneten Frame und dessen untergeordneten Frame gültig sind.
+Da der Frame in den Datenbereich der Tablelist eingebettet wird, möchten wir, dass Mausereignisse im Frame und in dessen untergeordneten Frames genauso behandelt werden wie im restlichen Datenbereich der Tablelist.  Zu diesem Zweck ersetzen wir das Bindungs-Tag `Frame` (das ohnehin keine eigenen Bindungen enthält) durch `TablelistBody` und stellen so sicher, dass die diesem Tag zugeordneten Standard-Bindungsskripte auch für den übergeordneten Frame und dessen untergeordneten Frame gültig sind.
 
 Den roten untergeordneten Rahmen platzieren wir mit `place` in seinem Elternrahmen, und zwar mit den Optionen `-relheight` und `-relwidth`, damit er die Fläche innerhalb des Rahmens seines Elternteils vertikal ausfüllt und seine Breite beim Ändern der Größe des Elternrahmens proportional zur Größe der zugehörigen Datei bleibt (das geschieht beim Ändern der Spaltenbreite, wie unten zu sehen).
 
@@ -2024,9 +2024,9 @@ Beachten Sie, dass aufgrund der Einstellung  `-stretchwindow yes`  für Spalte N
 
 ### Tile-basierte Demo-Skripte
 
-Die Tablelist-Distribution enthält auch tilebasierte Entsprechungen der oben besprochenen Demo-Skripte. Wie im Abschnitt [Mehr zu Tablelist_tile](#mehr-zu-tablelist-tile) dieses Tutorials beschrieben, ist es recht einfach, eine Anwendung, die das Tablelist-Paket verwendet, auf eine auf Tablelist_tile basierende Anwendung zu portieren.  Schauen wir uns zum Beispiel an, wie Sie das Demo-Skript `bwidget.tcl` in ein tilebasiertes Skript namens `bwidget_tile.tcl` durch eine Transformation umwandelt. Die Änderungen sind unten in der Farbe [red]{.red} dargestellt:
+Die Tablelist-Distribution enthält auch tilebasierte Entsprechungen der oben besprochenen Demo-Skripte. Wie im Abschnitt [Mehr zu Tablelist_tile](#mehr-zu-tablelist-tile) dieses Tutorials beschrieben, ist es recht einfach, eine Anwendung, die das Tablelist-Paket verwendet, auf eine auf Tablelist_tile basierende Anwendung zu portieren.  Schauen wir uns zum Beispiel an, wie Sie das Demo-Skript `bwidget.tcl` in ein tilebasiertes Skript namens `bwidget_tile.tcl` umwandeln. Die Änderungen sind unten in der Farbe [red]{.red} dargestellt:
 
-Zunächst ersetzen wir die Startlinie
+Zunächst ersetzen wir die erste Zeile
 
 ```
 package require tablelist
@@ -2038,7 +2038,7 @@ mit
 package require tablelist_tile
 ```
 
-und der Befehl
+und den Befehl
 
 ```
 source [file join $dir option.tcl]
@@ -2050,7 +2050,7 @@ mit
 source [file join $dir option_tile.tcl]
 ```
 
-Um sicherzustellen, dass das Gesamterscheinungsbild der Benutzeroberfläche dem aktuell verwendeten Thema entspricht, erstellen wir einen Themen-spezifischen Container für unsere Widgets:
+Um sicherzustellen, dass das Gesamterscheinungsbild der Benutzeroberfläche dem aktuell verwendeten Theme entspricht, erstellen wir einen themespezifischen Container für unsere Widgets:
 
 ```
 #
@@ -2060,25 +2060,25 @@ Um sicherzustellen, dass das Gesamterscheinungsbild der Benutzeroberfläche dem 
 set f [ttk::frame .f]
 ```
 
-Das bedeutet, dass wir die Anweisung ersetzen müssen
+Das bedeutet, dass wir die Anweisung
 
 ```
 set tbl .tbl
 ```
 
-Festlegen des Pfadnamens unseres Tablelist-Widgets mit
+die den Pfadnamen unseres Tablelist-Widgets festlegt, durch Folgendes ersetzen müssen:
 
 ```
 set tbl $f.tbl
 ```
 
-Ebenso könnten Sie anstelle einer mit dem Befehl erstellten Tk-Schaltfläche
+Ebenso verwenden wir anstelle einer Tk-Schaltfläche, die mit dem folgenden Befehl erstellt wird,
 
 ```
 set btn [button .btn -text "Close" -command exit]
 ```
 
-Wir verwenden eine Tile-Schaltfläche, die ein untergeordnetes Element des oben genannten Tile-Rahmens ist:
+eine Tile-Schaltfläche, die ein untergeordnetes Element des oben genannten Tile-Rahmens ist:
 
 ```
 set btn [ttk::button $f.btn -text "Close" -command exit]
@@ -2090,7 +2090,7 @@ Wir verwalten diesen Frame wie gewohnt:
 pack $f -expand yes -fill both
 ```
 
-Das Skript `option_tile.tcl` ist nahezu identisch mit `option.tcl`.  Sein tilespezifischer Teil verwendet die Werte, die der Befehl `tablelist::setThemeDefaults` in das Array `tablelist::themeDefaults` schreibt, um sicherzustellen, dass die Body-Elemente mit Streifen angezeigt werden, und in `X11` erhält die Auswahl in allen von der Anwendung erstellten Widgets das gleiche themenspezifische Erscheinungsbild:
+Das Skript `option_tile.tcl` ist nahezu identisch mit `option.tcl`.  Sein tilespezifischer Teil verwendet die Werte, die der Befehl `tablelist::setThemeDefaults` in das Array `tablelist::themeDefaults` schreibt, um sicherzustellen, dass die Elemente des Datenbereichs mit Streifen angezeigt werden, und in `X11` erhält die Auswahl in allen von der Anwendung erstellten Widgets das gleiche themespezifische Erscheinungsbild:
 
 ```
 set currentTheme [tablelist::getCurrentTheme]
@@ -2107,11 +2107,11 @@ if {[tk windowingsystem] eq "x11"} {
 option add *selectBorderWidth     $tablelist::themeDefaults(-selectborderwidth)
 ```
 
-Das Demo-Skript `tileWidgets.tcl` nutzt nicht nur das Paket „Tablelist_tile“ zur Erstellung eines Tablelist-Widgets mit einem modernen, themenspezifischen Erscheinungsbild, sondern auch die Widgets „Tile Entry“, „Spinbox“, „Combobox“, „Checkbutton“ und „Menubutoon“ für die interaktive Bearbeitung von Zellen.  Das resultierende Fenster hat ein ansprechendes, themenspezifisches Erscheinungsbild:
+Das Demo-Skript `tileWidgets.tcl` nutzt nicht nur das Paket „Tablelist_tile“ zur Erstellung eines Tablelist-Widgets mit einem modernen, themespezifischen Erscheinungsbild, sondern auch die Widgets „Tile Entry“, „Spinbox“, „Combobox“, „Checkbutton“ und „Menubutoon“ für die interaktive Bearbeitung von Zellen.  Das resultierende Fenster hat ein ansprechendes, themespezifisches Erscheinungsbild:
 
 ![Konfiguration der seriellen Schnittstelle](tileWidgets.png)
 
-Das Skript `tileWidgets.tcl` beginnt damit, das Thema `default` unter X11 bei Bedarf anzupassen, indem es die öffentliche Prozedur `themepatch::patch` des Pakets „themepatch“ aufruft, das im Lieferumfang von Tablelist enthalten ist (im Gegensatz zum Paket „scaleutil“ wird es jedoch nicht vom Tablelist-Code verwendet und muss daher explizit über `package require themepatch` geladen werden):
+Das Skript `tileWidgets.tcl` beginnt damit, das Theme `default` unter X11 bei Bedarf anzupassen, indem es die öffentliche Prozedur `themepatch::patch` des Pakets „themepatch“ aufruft, das im Lieferumfang von Tablelist enthalten ist (im Gegensatz zum Paket „scaleutil“ wird es jedoch nicht vom Tablelist-Code verwendet und muss daher explizit über `package require themepatch` geladen werden):
 
 ```
 if {[tk windowingsystem] eq "x11" &&
@@ -2124,7 +2124,7 @@ if {[tk windowingsystem] eq "x11" &&
 }
 ```
 
-Aufgrund dieses (optionalen) Schritts haben die skalierungsfähigen ttk::checkbutton-Widgets, die in der Spalte „Verfügbar“ verwendet werden, ein modernes Erscheinungsbild und Verhalten, genau wie die der Themen `aqua` und `vista`:
+Aufgrund dieses (optionalen) Schritts haben die skalierungsfähigen ttk::checkbutton-Widgets, die in der Spalte „Verfügbar“ verwendet werden, ein modernes Erscheinungsbild und Verhalten, genau wie die der Themes `aqua` und `vista`:
 
 ![ttk::checkbutton](ttk_checkbutton.png)
 
@@ -2180,8 +2180,8 @@ Der Hauptvorteil des Layouts `Wide.TSpinbox` gegenüber dem Stil `TSpinbox` lieg
 
 Die tilebasierte Version des Demo-Skripts `embeddedWindows.tcl` enthält etwas mehr Änderungen, von denen die meisten jedoch nicht spezifisch für Tablelist sind.  Einzelheiten finden Sie in der Datei `embeddedWindows_tile.tcl` im Verzeichnis `demos`.  Hier ist ein Screenshot des resultierenden Fensters:
 
-![Eingebettetes Windows](embeddedWindows_tile.png)
+![Eingebettete Fenster](embeddedWindows_tile.png)
 
-Beachten Sie abschließend, dass die folgenden tilebasierten Demo-Skripte *vollständige* Unterstützung für den Dark-Mode-Modus unter macOS 10.14 (Mojave) und höher mit Tk 8.6.10 oder höher sowie für die Themen `awdark`, `awlight` sowie die sechs weiteren Themen, die im plattformübergreifenden Paket [awthemes](https://sourceforge.net/projects/tcl-awthemes/) 10.3 oder höher von Brad Lanam] enthalten sind: `browse_tile.tcl`, `browseTree_tile.tcl`, `config_tile.tcl`, `dirViewer_tile.tcl`, `embeddedWindows_tile.tcl`, `tileWidgets.tcl` und `tileWidgets2.tcl`.  Zwar ist die Unterstützung für den Aqua-Dark-Mode bereits seit Version 8.6.10 in Tk vorhanden, doch für ein optimales Benutzererlebnis auf dem Mac wird empfohlen, diese Skripte mit Tk 8.6.11 oder höher auszuführen, da in Tk 8.6.11 einige Verbesserungen hinsichtlich der Darstellung vorgenommen wurden.
+Beachten Sie abschließend, dass die folgenden tilebasierten Demo-Skripte *vollständige* Unterstützung für den Dark-Mode-Modus unter macOS 10.14 (Mojave) und höher mit Tk 8.6.10 oder höher sowie für die Themes `awdark`, `awlight` sowie die sechs weiteren Themes, die im plattformübergreifenden Paket [awthemes](https://sourceforge.net/projects/tcl-awthemes/) 10.3 oder höher von Brad Lanam enthalten sind, bieten: `browse_tile.tcl`, `browseTree_tile.tcl`, `config_tile.tcl`, `dirViewer_tile.tcl`, `embeddedWindows_tile.tcl`, `tileWidgets.tcl` und `tileWidgets2.tcl`.  Zwar ist die Unterstützung für den Aqua-Dark-Mode bereits seit Version 8.6.10 in Tk vorhanden, doch für ein optimales Benutzererlebnis auf dem Mac wird empfohlen, diese Skripte mit Tk 8.6.11 oder höher auszuführen, da in Tk 8.6.11 einige Verbesserungen hinsichtlich der Darstellung vorgenommen wurden.
 
 [Inhalt](#inhalt)     [Startseite](index.md)

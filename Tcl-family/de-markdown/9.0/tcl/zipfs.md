@@ -90,7 +90,7 @@ Pfade in eingebundenen Archiven sind auf allen Plattformen groß-/kleinschreibun
 
     In der Form mit einem Argument gibt der Befehl den Dateipfad des ZIP-Archivs zurück, das am angegebenen Mountpunkt eingebunden ist.
 
-    In der dritten Form bindet der Befehl das ZIP-Archiv *zipfile* als Tcl-virtuelles Dateisystem am *mountpoint* ein. Nach Ausführung dieses Befehls erscheinen die in *zipfile* enthaltenen Dateien für Tcl als reguläre Dateien am Mountpunkt. Wenn *mountpoint* als leerer String angegeben wird, wird standardmäßig **\[zipfs root\]** verwendet. Der Befehl gibt den normalisierten Mountpunkt-Pfad zurück.
+    In der dritten Form bindet der Befehl das ZIP-Archiv *zipfile* als Tcl-virtuelles Dateisystem am *mountpoint* ein. Nach Ausführung dieses Befehls erscheinen die in *zipfile* enthaltenen Dateien für Tcl als reguläre Dateien am Mountpunkt. Wenn *mountpoint* als leere Zeichenkette angegeben wird, wird standardmäßig **\[zipfs root\]** verwendet. Der Befehl gibt den normalisierten Mountpunkt-Pfad zurück.
 
     Wenn *mountpoint* nicht unter der zipfs-Dateisystemwurzel liegt, wird er relativ dazu normalisiert. Beispielsweise würde ein Mountpunkt, der als **mt** oder **/mt** übergeben wird, zu **//zipfs:/mt** normalisiert (wenn **zipfs root** "//zipfs:/" zurückgibt). Es wird ein Fehler ausgelöst, wenn der Mountpunkt ein Laufwerk oder ein UNC-Volume enthält.
 
@@ -100,7 +100,7 @@ Pfade in eingebundenen Archiven sind auf allen Plattformen groß-/kleinschreibun
 : Bindet den ZIP-Archivinhalt *data* als Tcl-virtuelles Dateisystem am *mountpoint* ein.
 
 [zipfs]{.cmd} [root]{.sub}
-: Gibt einen konstanten String zurück, der den Mountpunkt für zipfs-Volumes auf der aktuellen Plattform angibt. Der Benutzer sollte sich nicht darauf verlassen, dass der Mountpunkt auf allen Plattformen derselbe konstante String ist.
+: Gibt eine konstante Zeichenkette zurück, die den Mountpunkt für zipfs-Volumes auf der aktuellen Plattform angibt. Der Benutzer sollte sich nicht darauf verlassen, dass der Mountpunkt auf allen Plattformen dieselbe konstante Zeichenkette ist.
 
 [zipfs]{.cmd} [unmount]{.sub} [mountpoint]{.arg}
 : Hängt ein zuvor am *mountpoint* eingebundenes ZIP-Archiv ab. Der Befehl schlägt mit einer Fehlerausnahme fehl, wenn noch Dateien innerhalb des eingebundenen Archivs geöffnet sind.
@@ -118,7 +118,7 @@ Dieses Paket stellt außerdem mehrere Befehle bereit, die bei der Erstellung von
 [zipfs]{.cmd} [mkimg]{.sub} [outfile]{.arg} [indir]{.arg} [strip]{.optarg} [password]{.optarg} [infile]{.optarg}
 : Erstellt ein Image (potenziell eine neue ausführbare Datei) ähnlich wie **zipfs mkzip**; siehe diesen Befehl für eine Beschreibung der meisten Parameter dieses Befehls, da sie sich hier identisch verhalten. Wenn *outfile* existiert, wird es stillschweigend überschrieben.
 
-    Wenn der Parameter *infile* angegeben ist, wird diese Datei vor das ZIP-Archiv gesetzt, andernfalls wird die von [info nameofexecutable][info] zurückgegebene Datei verwendet (d. h. die ausführbare Datei des laufenden Prozesses, typischerweise [wish] oder [tclsh]). Wenn der Parameter *password* nicht der leere String ist, wird eine verschleierte Version dieses Passworts (siehe **zipfs mkkey**) zwischen Image- und ZIP-Teil der Ausgabedatei platziert und der Inhalt des ZIP-Teils mit diesem Passwort geschützt. Wenn das Ausgangs-Image bereits ein ZIP-Archiv angehängt hat, wird es aus der Kopie in *outfile* entfernt, bevor das neue ZIP-Archiv hinzugefügt wird.
+    Wenn der Parameter *infile* angegeben ist, wird diese Datei vor das ZIP-Archiv gesetzt, andernfalls wird die von [info nameofexecutable][info] zurückgegebene Datei verwendet (d. h. die ausführbare Datei des laufenden Prozesses, typischerweise [wish] oder [tclsh]). Wenn der Parameter *password* nicht die leere Zeichenkette ist, wird eine verschleierte Version dieses Passworts (siehe **zipfs mkkey**) zwischen Image- und ZIP-Teil der Ausgabedatei platziert und der Inhalt des ZIP-Teils mit diesem Passwort geschützt. Wenn das Ausgangs-Image bereits ein ZIP-Archiv angehängt hat, wird es aus der Kopie in *outfile* entfernt, bevor das neue ZIP-Archiv hinzugefügt wird.
 
     Wenn es eine Datei **main.tcl** im Wurzelverzeichnis des resultierenden Archivs gibt und die Image-Datei, an die das Archiv angehängt ist, eine [tclsh]- (oder [wish]-)Instanz ist (standardmäßig wahr, hängt aber von der Konfiguration ab), dann ist das resultierende Image eine ausführbare Datei, die nach dem Einbinden des ZIP-Archivs das Skript in **main.tcl** per [source] ausführt und nach Ausführung dieses Skripts per [exit] beendet.
 

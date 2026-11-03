@@ -83,7 +83,7 @@ Das Verhalten der mathematischen Operator-Befehle ist wie folgt:
 **/** *number* ?*number* ...?
 : Ist nur ein einzelnes *number*-Argument angegeben, gibt der Befehl den Kehrwert dieses numerischen Werts zurück (*d. h.* den Wert, der durch Division von 1.0 durch diesen Wert entsteht). Andernfalls gibt er die Zahl zurück, die entsteht, wenn das erste numerische Argument durch alle folgenden numerischen Argumente dividiert wird. Alle *number*-Argumente müssen numerische Werte sein. Mindestens ein Argument muss angegeben sein.
 
-    Beachten Sie, dass bei führenden Integer-Werten in der Argumentliste für diese anfänglichen Schritte Integer-Division verwendet wird (*d. h.* die Zwischenergebnisse sind so, als würden die Funktionen *floor* und *int* in dieser Reihenfolge angewendet). Sind alle Werte der Operation Integer, ist das Ergebnis ein Integer.
+    Beachten Sie, dass bei führenden ganzzahligen Werten in der Argumentliste für diese anfänglichen Schritte Ganzzahldivision verwendet wird (*d. h.* die Zwischenergebnisse sind so, als würden die Funktionen *floor* und *int* in dieser Reihenfolge angewendet). Sind alle Werte der Operation Ganzzahlen, ist das Ergebnis eine Ganzzahl.
 
 **%** *number number*
 : Gibt den integralen Modulus (*d. h.* Rest) des ersten Arguments bezüglich des zweiten zurück. Jedes *number* muss einen integralen Wert haben. Außerdem hat das Ergebnis dasselbe Vorzeichen wie das zweite *number*, das nicht Null sein darf.
@@ -95,7 +95,7 @@ Das Verhalten der mathematischen Operator-Befehle ist wie folgt:
     ```
 
 **\*\*** ?*number* ...?
-: Gibt das Ergebnis zurück, bei dem jeder Wert potenziert wird mit dem Ergebnis nach rekursiver Verarbeitung der folgenden Argumente, sodass "**\*\* 2 3 4**" dasselbe ist wie "**\*\* 2 \[\*\* 3 4\]**". Jedes *number* kann ein beliebiger numerischer Wert sein, wobei die zweite Zahl nicht bruchteilig sein darf, wenn die erste negativ ist. Der maximale Exponentenwert, den Tcl verarbeiten kann, wenn die erste Zahl ein Integer > 1 ist, beträgt 268435455. Sind keine Argumente angegeben, ist das Ergebnis eins; ist nur ein Argument angegeben, ist das Ergebnis dieses Argument. Das Ergebnis hat nur dann einen integralen Wert, wenn alle Argumente integrale Werte sind.
+: Gibt das Ergebnis zurück, bei dem jeder Wert potenziert wird mit dem Ergebnis nach rekursiver Verarbeitung der folgenden Argumente, sodass "**\*\* 2 3 4**" dasselbe ist wie "**\*\* 2 \[\*\* 3 4\]**". Jedes *number* kann ein beliebiger numerischer Wert sein, wobei die zweite Zahl nicht bruchteilig sein darf, wenn die erste negativ ist. Der maximale Exponentenwert, den Tcl verarbeiten kann, wenn die erste Zahl eine Ganzzahl > 1 ist, beträgt 268435455. Sind keine Argumente angegeben, ist das Ergebnis eins; ist nur ein Argument angegeben, ist das Ergebnis dieses Argument. Das Ergebnis hat nur dann einen integralen Wert, wenn alle Argumente integrale Werte sind.
 
 
 ## Vergleichsoperatoren
@@ -132,7 +132,7 @@ Das Verhalten der Vergleichsoperator-Befehle (die überwiegend numerische Argume
 Das Verhalten der bitweisen Operator-Befehle (die alle nur mit integralen Argumenten arbeiten) ist wie folgt:
 
 **~** *number*
-: Gibt die bitweise Negation von *number* zurück. *Number* kann ein Integer beliebiger Größe sein. Beachten Sie, dass das Ergebnis dieser Operation stets das entgegengesetzte Vorzeichen zum Eingabe-*number* hat.
+: Gibt die bitweise Negation von *number* zurück. *Number* kann eine Ganzzahl beliebiger Größe sein. Beachten Sie, dass das Ergebnis dieser Operation stets das entgegengesetzte Vorzeichen zum Eingabe-*number* hat.
 
 **&** ?*number* ...?
 : Gibt das bitweise UND aller beliebig vielen Argumente zurück. Jedes *number* muss einen integralen Wert haben. Sind keine Argumente angegeben, ist das Ergebnis minus eins.

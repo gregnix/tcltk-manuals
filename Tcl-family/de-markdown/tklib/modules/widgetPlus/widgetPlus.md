@@ -50,7 +50,7 @@ widgetPlus – Erweiterte Widgets Entry, Spinbox und Combobox mit Undo/Redo und 
 
 Das Paket „**widgetPlus**“ erweitert die Widgets „**entry**“, **spinbox**, **ttk::entry**, **ttk::spinbox** und **ttk::combobox**.
 
-Neu sind Undo und Redo, ein Ereignis **<<Selection>>** und für die nicht thematisierten **Tk**-Widgets die Option **-inactiveselectbackground**, dazu kleinere Korrekturen an den Bindings.  Die neuen Funktionen orientieren sich eng an denen des **text**-Widgets.
+Neu sind Undo und Redo, ein Ereignis **<<Selection>>** und für die nicht thematisierten **Tk**-Widgets die Option **-inactiveselectbackground**, dazu kleinere Korrekturen an den Bindungen.  Die neuen Funktionen orientieren sich eng an denen des **text**-Widgets.
 
 Die überarbeiteten Widgets **entry**, **spinbox**, **ttk::entry**, **ttk::spinbox** sowie **ttk::combobox** werden durch die Befehle **widgetPlus::entryPlus**, **widgetPlus::spinboxPlus**, **widgetPlus::ttkEntryPlus**, **widgetPlus::ttkSpinboxPlus** bzw. **widgetPlus::ttkComboboxPlus** erstellt.
 
@@ -128,11 +128,11 @@ Zusätzlich zu den üblichen Befehlen der Widgets **entry**, **spinbox**, **ttk:
 : Macht die letzte Änderung rückgängig, wenn **-undo** **true** ist. Eine Änderung ist ein einzelner Befehl **insert** oder **delete** auf dem *Undo-Stapel*. Ist der *Undo-Stapel* leer, entsteht ein Fehler. Ist **-undo** **false**, geschieht nichts.
 
 
-# Bindings
+# Bindungen
 
 ## Klassenbindungen
 
-Das Klassen-Binding-Tag für verschiedene Widgets weist folgende Standardwerte auf:
+Das Klassen-Bindungs-Tag für verschiedene Widgets weist folgende Standardwerte auf:
 
 - **entry** verwendet **Entry**
 
@@ -186,40 +186,40 @@ Die virtuellen Ereignisse „**<<Undo>>**“ und „**<<Redo>>**“ werden diese
 
 ## entryPlus
 
-Die [entryPlus]-Bindings basieren auf denen des Bindtags **Entry**, wobei folgende Änderungen vorgenommen wurden:
+Die [entryPlus]-Bindungen basieren auf denen des Bindtags **Entry**, wobei folgende Änderungen vorgenommen wurden:
 
-- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
+- Neue Bindungen zu **<<Undo>>** und **<<Redo>>**.
 
 - Eine Anpassung der Bindung **<<Paste>>**, damit diese sich unter X11 genauso verhält wie unter anderen Fenstersystemen (d. h., sie löscht die vorhandene Auswahl, sofern eine solche vorhanden ist).
 
 - Die Entfernung der veralteten Bindung „**<Insert>**“.
 
-- Neue Bindings zu **<FocusIn>** und **<FocusOut>**, um die Implementierung der Option **-inactiveselectbackground** zu erleichtern.
+- Neue Bindungen zu **<FocusIn>** und **<FocusOut>**, um die Implementierung der Option **-inactiveselectbackground** zu erleichtern.
 
 
 ## spinboxPlus
 
-Die [spinboxPlus]-Bindings basieren auf denen des Bindtags **Spinbox**, wobei dieselben Änderungen vorgenommen wurden wie bei der Konvertierung von **Entry** in [entryPlus].
+Die [spinboxPlus]-Bindungen basieren auf denen des Bindtags **Spinbox**, wobei dieselben Änderungen vorgenommen wurden wie bei der Konvertierung von **Entry** in [entryPlus].
 
 ## TEntryPlus
 
-Die [TEntryPlus]-Bindings basieren auf denen des Bindtags **TEntry**, wobei folgende Änderungen vorgenommen wurden:
+Die [TEntryPlus]-Bindungen basieren auf denen des Bindtags **TEntry**, wobei folgende Änderungen vorgenommen wurden:
 
-- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
+- Neue Bindungen zu **<<Undo>>** und **<<Redo>>**.
 
 
 ## TSpinboxPlus
 
-Die [TSpinboxPlus]-Bindings basieren auf denen des Bindtags **TSpinbox**, wobei folgende Änderungen vorgenommen wurden:
+Die [TSpinboxPlus]-Bindungen basieren auf denen des Bindtags **TSpinbox**, wobei folgende Änderungen vorgenommen wurden:
 
-- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
+- Neue Bindungen zu **<<Undo>>** und **<<Redo>>**.
 
 
 ## TComboboxPlus
 
-Die [TComboboxPlus]-Bindings basieren auf denen des Bindtags **TCombobox**, wobei folgende Änderungen vorgenommen wurden:
+Die [TComboboxPlus]-Bindungen basieren auf denen des Bindtags **TCombobox**, wobei folgende Änderungen vorgenommen wurden:
 
-- Neue Bindings zu **<<Undo>>** und **<<Redo>>**.
+- Neue Bindungen zu **<<Undo>>** und **<<Redo>>**.
 
 
 # Virtuelles Ereignis <<selection>>

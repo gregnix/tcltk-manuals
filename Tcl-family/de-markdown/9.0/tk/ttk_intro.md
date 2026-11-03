@@ -16,9 +16,9 @@ Copyright:
 
 ttk::intro - Einführung in die Tk-Theme-Engine
 
-# Einleitung
+# Überblick
 
-Das Tk-Widget-Set mit Themes basiert auf einer überarbeiteten und erweiterten Version der in TIP #48 (https://tip.tcl-lang.org/48) spezifizierten Style-Engine. Die wichtigsten Konzepte werden unten beschrieben. Die Grundidee ist, soweit möglich den Code für das Verhalten eines Widgets vom Code für sein Erscheinungsbild zu trennen. Widget-Klassen-Bindungen sind vor allem dafür zuständig, den Widget-Zustand zu pflegen und Rückruffunktionen aufzurufen; alle Aspekte des Erscheinungsbilds werden über den Style des Widgets gesteuert (d. h. den Style der Elemente des Widgets).
+Das Tk-Widget-Set mit Themes basiert auf einer überarbeiteten und erweiterten Version der in TIP #48 (<https://tip.tcl-lang.org/48>) spezifizierten Style-Engine. Die wichtigsten Konzepte werden unten beschrieben. Die Grundidee ist, soweit möglich den Code für das Verhalten eines Widgets vom Code für sein Erscheinungsbild zu trennen. Widget-Klassen-Bindungen sind vor allem dafür zuständig, den Widget-Zustand zu pflegen und Rückruffunktionen aufzurufen; alle Aspekte des Erscheinungsbilds werden über den Style des Widgets gesteuert (d. h. den Style der Elemente des Widgets).
 
 # Themes
 
@@ -56,7 +56,7 @@ Wie Widgets haben Elemente *Optionen*, die festlegen, was und wie angezeigt wird
 
 # Layouts
 
-Ein *Layout* legt fest, welche Elemente ein Widget bilden und wie sie angeordnet sind. Die Layout-Engine nutzt eine vereinfachte Variante des [pack]-Algorithmus: Ausgehend von einer anfänglichen Höhlung in Widgetgröße werden Elemente entlang der mit **-side** angegebenen Seite ein Parzelle in der Höhlung zugewiesen und gemäß **-sticky** darin platziert. Das Layout einer horizontalen Scrollbar ist z. B.:
+Ein *Layout* legt fest, welche Elemente ein Widget bilden und wie sie angeordnet sind. Die Layout-Engine nutzt eine vereinfachte Variante des [pack]-Algorithmus: Ausgehend von einer anfänglichen Höhlung in Widgetgröße wird Elementen entlang der mit **-side** angegebenen Seite eine Parzelle in der Höhlung zugewiesen und gemäß **-sticky** darin platziert. Das Layout einer horizontalen Scrollbar ist z. B.:
 
 ```
 ttk::style layout Horizontal.TScrollbar {
@@ -90,7 +90,7 @@ bind TButton <ButtonRelease-1>	\
     { %W instate {pressed} { %W state !pressed ; %W invoke } }
 ```
 
-Das Widget wird **active**, wenn der Mauszeiger es betritt, und inaktiv beim Verlassen. Beim Drücken der Maustaste wird es **pressed**, bei ButtonRelease **!pressed**. Wird die Taste bei gedrückter Button-1 außerhalb des Widgets gezogen, wird der Druck aufgehoben; beim Zurückziehen wieder **pressed**. Beim Loslassen wird **-command** aufgerufen, aber nur, wenn der Button gerade im Zustand **pressed** ist. (Die tatsächlichen Bindungen sind etwas komplexer, aber nicht viel.)
+Das Widget wird **active**, wenn der Mauszeiger es betritt, und inaktiv beim Verlassen. Beim Drücken der Maustaste wird es **pressed**, bei ButtonRelease **!pressed**. Wird der Mauszeiger bei gedrückter Button-1 aus dem Widget gezogen, wird der Druck aufgehoben; beim Zurückziehen wird es wieder **pressed**. Beim Loslassen wird **-command** aufgerufen, aber nur, wenn der Button gerade im Zustand **pressed** ist. (Die tatsächlichen Bindungen sind etwas komplexer, aber nicht viel.)
 
 # Styles
 

@@ -34,7 +34,7 @@ Der Befehl **focus** verwaltet den Tk-Eingabefokus. Zu jedem Zeitpunkt ist auf j
 
 Tk merkt sich für jedes Toplevel ein Fokusfenster (den zuletzt fokussierten Nachkommen dieses Toplevels). Gibt der Fenstermanager einem Toplevel den Fokus, leitet Tk ihn automatisch auf das gemerkte Fenster um. Innerhalb eines Toplevels verwendet Tk standardmäßig ein *explizites* Fokusmodell: Das Bewegen der Maus innerhalb eines Toplevels ändert den Fokus normalerweise nicht; er wechselt nur, wenn ein Widget den Fokus ausdrücklich anfordert (z. B. durch einen Mausklick auf einen Button) oder wenn der Benutzer eine Taste wie Tab drückt, die den Fokus verschiebt.
 
-Die Tcl-Prozedur [tk\_focusFollowsMouse][focusNext] kann aufgerufen werden, um ein *implizites* Fokusmodell einzurichten: Tk wird so konfiguriert, dass ein Fenster den Fokus erhält, sobald die Maus hineinbewegt wird. Die Tcl-Prozeduren [tk\_focusNext][focusNext] und [tk\_focusPrev][focusNext] implementieren eine Fokusreihenfolge unter den Fenstern eines Toplevels; sie werden unter anderem in den Standard-Bindings für Tab und Shift-Tab verwendet.
+Die Tcl-Prozedur [tk\_focusFollowsMouse][focusNext] kann aufgerufen werden, um ein *implizites* Fokusmodell einzurichten: Tk wird so konfiguriert, dass ein Fenster den Fokus erhält, sobald die Maus hineinbewegt wird. Die Tcl-Prozeduren [tk\_focusNext][focusNext] und [tk\_focusPrev][focusNext] implementieren eine Fokusreihenfolge unter den Fenstern eines Toplevels; sie werden unter anderem in den Standard-Bindungen für Tab und Shift-Tab verwendet.
 
 Der Befehl **focus** kann eine der folgenden Formen annehmen:
 
@@ -60,7 +60,7 @@ Erhält ein internes Fenster den Eingabefokus, setzt Tk den X-Fokus nicht tatsä
 
 # Beispiele
 
-Um ein Fenster nur dann in den Fokus-Traversierungsring einzubeziehen, wenn eine Variable gesetzt ist, fügen Sie die folgenden Bindings den Widgets *vor* und *nach* diesem Fenster im Ring hinzu:
+Um ein Fenster nur dann in den Fokus-Traversierungsring einzubeziehen, wenn eine Variable gesetzt ist, fügen Sie die folgenden Bindungen den Widgets *vor* und *nach* diesem Fenster im Ring hinzu:
 
 ```
 button .before -text "Before"

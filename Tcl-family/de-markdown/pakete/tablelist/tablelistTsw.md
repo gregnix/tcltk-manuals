@@ -12,7 +12,7 @@ csaba.nemethi@t-online.de
 
 ## Inhalt
 
-- [Übersicht](#berblick)
+- [Überblick](#berblick)
 - [Der Befehl tablelist::addToggleswitch](#der-befehl-tablelist-addtoggleswitch)
 
 [Startseite](index.md)
@@ -21,7 +21,7 @@ csaba.nemethi@t-online.de
 
 ## Überblick
 
-Das Widget-Paket „Tsw“ für Kippschalter ist eine Bibliothek-Erweiterung für Tcl/Tk ab Version 8.6, die in reinem Tcl/Tk-Code geschrieben ist. Der Download-Link lautet
+Das Widget-Paket „Tsw“ für Kippschalter ist eine Bibliothekserweiterung für Tcl/Tk ab Version 8.6, die in reinem Tcl/Tk-Code geschrieben ist. Der Download-Link lautet
 
 https://www.nemethi.de
 
@@ -49,7 +49,7 @@ tablelist::addToggleswitch ?name?
 ```
 
 **BESCHREIBUNG**
-: Dieser Befehl registriert das „toggleswitch“-Widget für die interaktive Zellenbearbeitung in „tablelist“-Widgets. Das optionale Argument legt den Namen fest, der für das „toggleswitch“-Widget als Wert der Spalten- oder Zellenkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster [Tk core](tablelistTkCore.md) und [tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `toggleswitch`.  Der Befehl gibt sein Argument `name` zurück.
+: Dieser Befehl registriert das „toggleswitch“-Widget für die interaktive Zellenbearbeitung in „tablelist“-Widgets. Das optionale Argument legt den Namen fest, der für das „toggleswitch“-Widget als Wert der Spalten- oder Zellenkonfigurationsoption `-editwindow` verwendet werden soll.  Es kann sich um eine beliebige Zeichenkette handeln, die sich von den Namen der Bearbeitungsfenster im [Tk-Kern](tablelistTkCore.md) und in [Tile](tablelistTile.md) unterscheidet.  Der Standardwert ist `toggleswitch`.  Der Befehl gibt sein Argument `name` zurück.
 
 : Das temporäre, eingebettete Kippschalter-Widget, das für die interaktive Zellenbearbeitung verwendet wird, wird so erstellt, dass die Option `-size` auf `1` gesetzt ist.  Sie können das Skript verwenden, das der Konfigurationsoption `-editstartcommand` der Tablelist entspricht, um die ursprünglichen Einstellungen nach Ihren Bedürfnissen zu überschreiben.
 

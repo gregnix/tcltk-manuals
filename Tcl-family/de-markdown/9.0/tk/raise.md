@@ -30,7 +30,7 @@ raise - Ändert die Position eines Fensters in der Stapelreihenfolge
 
 Ist das Argument *aboveThis* weggelassen, hebt **raise** *window* so an, dass es über allen Geschwister-Fenstern in der Stapelreihenfolge liegt (es wird von keinem Geschwister verdeckt und verdeckt überlappende Geschwister). Ist *aboveThis* angegeben, muss es der Pfadname eines Fensters sein, das Geschwister von *window* ist oder Nachkomme eines Geschwisters von *window*. Dann fügt **raise** *window* in die Stapelreihenfolge direkt über *aboveThis* ein (oder über den Vorfahren von *aboveThis*, der Geschwister von *window* ist); das kann *window* anheben oder absenken.
 
-Alle [toplevel]-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Window-Manager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
+Alle [toplevel]-Fenster können zueinander umgestapelt werden, unabhängig von ihren Pfadnamen; der Fenstermanager ist jedoch nicht verpflichtet, Umstapelungswünsche strikt zu erfüllen.
 
 Unter macOS führt das Anheben eines iconisierten [toplevel]-Fensters zur De-Iconifizierung.
 

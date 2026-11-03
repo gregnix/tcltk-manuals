@@ -35,30 +35,30 @@ catch - Wertet ein Skript aus und fängt außergewöhnliche Rückgaben ab
 
 # Beschreibung
 
-Der Befehl **catch** verhindert, dass Fehler die Befehlsauswertung abbrechen. **catch** ruft den Tcl-Interpreter rekursiv auf, um *script* auszuführen, und kehrt stets ohne Fehler zurück — unabhängig davon, ob bei der Ausführung von *script* Fehler auftreten.
+Mit dem Befehl **catch** lässt sich verhindern, dass Fehler die Befehlsauswertung abbrechen. Der Befehl **catch** ruft den Tcl-Interpreter rekursiv auf, um *script* auszuführen. Er kehrt immer zurück, ohne einen Fehler auszulösen, unabhängig davon, welche Fehler bei der Ausführung von *script* auftreten.
 
-Löst *script* einen Fehler aus, gibt **catch** eine von Null verschiedene Ganzzahl zurück, die dem außergewöhnlichen Rückgabecode der Skriptauswertung entspricht. Tcl definiert den normalen Rückgabecode als Null (0) bzw. **TCL\_OK**. Vier außergewöhnliche Rückgabecodes sind: 1 (**TCL\_ERROR**), 2 (**TCL\_RETURN**), 3 (**TCL\_BREAK**) und 4 (**TCL\_CONTINUE**). Fehler während der Skriptauswertung entsprechen **TCL\_ERROR**. Die anderen außergewöhnlichen Codes liefern [return], [break] und [continue] sowie in der Dokumentation beschriebene Sonderfälle. Tcl-Pakete können neue Befehle definieren, die andere Ganzzahlen als Rückgabecodes liefern, und auch Skripte mit [return -code][return] können andere Rückgabecodes als die fünf von Tcl definierten haben.
+Löst *script* einen Fehler aus, gibt **catch** einen von null verschiedenen Ganzzahlwert zurück, der dem außergewöhnlichen Rückgabecode entspricht, den die Auswertung von *script* geliefert hat. Tcl definiert den normalen Rückgabecode einer Skriptauswertung als null (0) bzw. **TCL\_OK**. Außerdem definiert Tcl vier außergewöhnliche Rückgabecodes: 1 (**TCL\_ERROR**), 2 (**TCL\_RETURN**), 3 (**TCL\_BREAK**) und 4 (**TCL\_CONTINUE**). Fehler während der Auswertung eines Skripts werden durch den Rückgabecode **TCL\_ERROR** angezeigt. Die übrigen außergewöhnlichen Rückgabecodes werden von den Befehlen [return], [break] und [continue] sowie in anderen, jeweils dokumentierten Sonderfällen zurückgegeben. Tcl-Pakete können neue Befehle definieren, die auch andere Ganzzahlwerte als Rückgabecodes zurückgeben, und auch Skripte, die den Befehl [return -code][return] verwenden, können andere Rückgabecodes als die fünf von Tcl definierten haben.
 
-Ist *resultVarName* angegeben, wird die benannte Variable auf das Ergebnis der Skriptauswertung gesetzt. Ist der Rückgabecode 1 (**TCL\_ERROR**), enthält *resultVarName* eine Fehlermeldung. Ist der Rückgabecode 0 (**TCL\_OK**), enthält *resultVarName* den von *script* zurückgegebenen Wert.
+Ist das Argument *resultVarName* angegeben, wird die Variable, die es benennt, auf das Ergebnis der Skriptauswertung gesetzt. Ist der Rückgabecode des Skripts 1 (**TCL\_ERROR**), ist der in *resultVarName* gespeicherte Wert eine Fehlermeldung. Ist der Rückgabecode des Skripts 0 (**TCL\_OK**), ist der in *resultVarName* gespeicherte Wert der Wert, den *script* zurückgegeben hat.
 
-Ist *optionsVarName* angegeben, wird die benannte Variable auf ein Dictionary der Rückgabeoptionen gesetzt. Tcl definiert stets die Einträge **-code** und **-level**. Ist der Rückgabecode nicht **TCL\_RETURN**, ist **-level** 0 und **-code** entspricht dem Rückgabecode. Nur bei **TCL\_RETURN** können **-level** und **-code** andere Werte annehmen (siehe [return]).
+Ist das Argument *optionsVarName* angegeben, wird die Variable, die es benennt, auf ein Dictionary der Rückgabeoptionen gesetzt, die die Auswertung von *script* zurückgegeben hat. Tcl legt zwei Einträge fest, die in diesem Dictionary immer definiert sind: **-code** und **-level**. Ist der Rückgabecode der Auswertung von *script* nicht **TCL\_RETURN**, hat der Eintrag **-level** den Wert 0, und der Eintrag **-code** hat denselben Wert wie der Rückgabecode. Nur wenn der Rückgabecode **TCL\_RETURN** ist, haben die Einträge **-level** und **-code** andere Werte; dies ist in der Dokumentation des Befehls [return] näher beschrieben.
 
-Bei **TCL\_ERROR** enthält das Dictionary vier weitere Einträge: **-errorinfo**, **-errorcode**, **-errorline** und [**-errorstack**.]{version="8.6"} **-errorinfo** ist ein formatierter Stack-Trace für Menschen. **-errorcode** ist zusätzliche Fehlerinformation als Liste für Programme. **-errorline** ist die Zeilennummer in *script*, in der der Fehler auftrat. [**-errorstack** ist eine Liste gerader Länge aus Token-Parameter-Paaren beim Stack-Unwinden: Token **CALL** mit Prozedurname und Argumenten der Ebene, oder **UP** mit relativer Ebene (wie bei [uplevel]) zur vorherigen **CALL**. Unterschiede zu **-errorinfo**:]{version="8.6"}
+Ist der Rückgabecode der Auswertung von *script* **TCL\_ERROR**, sind im Dictionary der Rückgabeoptionen, das in *optionsVarName* gespeichert wird, vier weitere Einträge definiert: **-errorinfo**, **-errorcode**, **-errorline** und [**-errorstack**.]{version="8.6"} Der Wert des Eintrags **-errorinfo** ist ein formatierter Stack-Trace mit weiteren Informationen über den Kontext, in dem der Fehler aufgetreten ist. Der formatierte Stack-Trace ist dazu gedacht, von einem Menschen gelesen zu werden. Der Wert des Eintrags **-errorcode** ist eine zusätzliche Information über den Fehler, die als Liste gespeichert ist. Der Wert von **-errorcode** ist zur weiteren Verarbeitung durch Programme gedacht und für Menschen unter Umständen nicht besonders gut lesbar. Der Wert des Eintrags **-errorline** ist eine Ganzzahl, die angibt, welche Zeile von *script* gerade ausgewertet wurde, als der Fehler auftrat. [Der Wert des Eintrags **-errorstack** ist eine Liste gerader Länge aus Token-Parameter-Paaren, die beim Abbau des Stacks gesammelt werden. Das Token kann „**CALL**“ sein; dann ist der Parameter eine Liste aus dem Prozedurnamen und den Argumenten auf der entsprechenden Ebene. Oder es kann „**UP**“ sein; dann ist der Parameter die relative Ebene (wie bei [uplevel]) des vorherigen **CALL**. Die wesentlichen Unterschiede zu **-errorinfo** sind:]{version="8.6"}
 
-1. [maschinenlesbare Form, geeignet für \[[foreach] {tok prm} …\],]{version="8.6"}
+1. [Es ist eine maschinenlesbare Form, die sich mit \[[foreach] {tok prm} ...\] verarbeiten lässt,]{version="8.6"}
 
-2. [echte (substituierte) Argumentwerte statt statischem Aufruftext,]{version="8.6"}
+2. [es enthält die tatsächlichen (ersetzten) Werte, die an die Funktionen übergeben wurden, statt des statischen Texts der Aufrufstellen, und]{version="8.6"}
 
-3. [gröbere Granularität: ein Element pro Stack-Frame (keine separaten Elemente für [foreach]-Konstrukte).]{version="8.6"}
+3. [es ist gröber gegliedert und enthält nur ein Element pro Stack-Frame (wie bei Prozeduren; zum Beispiel keine eigenen Elemente für [foreach]-Konstrukte).]{version="8.6"}
 
 
-Die Werte von **-errorinfo** und **-errorcode** des letzten Fehlers stehen auch in **::errorInfo** und **::errorCode**. [**-errorstack** entspricht [info errorstack][info].]{version="8.6"}
+Die Werte der Einträge **-errorinfo** und **-errorcode** des letzten Fehlers stehen außerdem als Werte der globalen Variablen **::errorInfo** bzw. **::errorCode** zur Verfügung. [Der Wert des Eintrags **-errorstack** ist über [info errorstack][info] zugänglich.]{version="8.6"}
 
-Tcl-Pakete können weitere Dictionary-Einträge setzen; Skripte können mit [return] zusätzliche Rückgabeoptionen setzen.
+Tcl-Pakete können Befehle bereitstellen, die weitere Einträge im Dictionary der Rückgabeoptionen setzen. Außerdem können Skripte mit dem Befehl [return] zusätzlich zu den oben definierten Rückgabeoptionen weitere setzen.
 
 # Beispiele
 
-**catch** eignet sich in [if], um nach Erfolg eines Skripts zu verzweigen:
+Der Befehl **catch** kann in einem [if] verwendet werden, um abhängig vom Erfolg eines Skripts zu verzweigen.
 
 ```
 if { [catch {open $someFile w} fid] } {
@@ -67,7 +67,7 @@ if { [catch {open $someFile w} fid] } {
 }
 ```
 
-Weitere **catch**-Beispiele stehen in der Dokumentation zu [return].
+Komplexere Beispiele für die Verwendung von **catch** finden Sie in der Dokumentation des Befehls [return].
 
 
 [break]: break.md

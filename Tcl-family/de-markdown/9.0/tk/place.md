@@ -40,7 +40,7 @@ Der Placer ist ein Geometriemanager für Tk. Er ermöglicht einfache feste Platz
 : Veranlasst den Placer, die Geometrie eines Inhalts zu verwalten, dessen Pfadname *window* ist. Die übrigen Argumente bestehen aus einem oder mehreren *option-value*-Paaren, die festlegen, wie die Geometrie von *window* verwaltet wird. *Option* kann jeden von **place configure** akzeptierten Wert haben.
 
 [place]{.cmd} [configure]{.sub} [window]{.arg} [option]{.optarg} [value option value]{.optdot}
-: Abfragen oder Ändern der Geometrie-Optionen des durch *window* angegebenen Inhalts. Ist keine *option* angegeben, gibt der Befehl eine Liste der verfügbaren Optionen zurück (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zur benannten Option zurück (identisch mit dem entsprechenden Teillistenwert bei Abfrage aller Optionen). Sind ein oder mehrere *option-value*-Paare angegeben, werden die Optionen auf die angegebenen Werte gesetzt; der Befehl gibt dann einen leeren String zurück.
+: Abfragen oder Ändern der Geometrie-Optionen des durch *window* angegebenen Inhalts. Ist keine *option* angegeben, gibt der Befehl eine Liste der verfügbaren Optionen zurück (Format siehe [Tk\_ConfigureInfo][ConfigWidg]). Ist *option* ohne *value* angegeben, gibt der Befehl eine Liste zur benannten Option zurück (identisch mit dem entsprechenden Teillistenwert bei Abfrage aller Optionen). Sind ein oder mehrere *option-value*-Paare angegeben, werden die Optionen auf die angegebenen Werte gesetzt; der Befehl gibt dann eine leere Zeichenkette zurück.
 
     Folgende *option-value*-Paare werden unterstützt:
 
@@ -83,10 +83,10 @@ Der Placer ist ein Geometriemanager für Tk. Er ermöglicht einfache feste Platz
     Wird derselbe Wert mit zwei verschiedenen Optionen angegeben, etwa **-x** und **-relx**, gilt die zuletzt gesetzte Option; die ältere wird ignoriert.
 
 [place]{.cmd} [content]{.sub} [window]{.arg}
-: Gibt eine Liste aller Inhaltsfenster zurück, für die *window* der Container ist. Gibt es keinen Inhalt für *window*, wird ein leerer String zurückgegeben.
+: Gibt eine Liste aller Inhaltsfenster zurück, für die *window* der Container ist. Gibt es keinen Inhalt für *window*, wird eine leere Zeichenkette zurückgegeben.
 
 [place]{.cmd} [forget]{.sub} [window]{.arg}
-: Der Placer verwaltet die Geometrie von *window* nicht mehr. Als Nebeneffekt wird *window* unmapped, sodass es nicht auf dem Bildschirm erscheint. Wird *window* nicht vom Placer verwaltet, hat der Befehl keine Wirkung. Rückgabe ist ein leerer String.
+: Der Placer verwaltet die Geometrie von *window* nicht mehr. Als Nebeneffekt wird *window* unmapped, sodass es nicht auf dem Bildschirm erscheint. Wird *window* nicht vom Placer verwaltet, hat der Befehl keine Wirkung. Rückgabe ist eine leere Zeichenkette.
 
 [place]{.cmd} [info]{.sub} [window]{.arg}
 : Gibt eine Liste mit der aktuellen Konfiguration von *window* zurück. Die Liste besteht aus *option-value*-Paaren im gleichen Format wie für **place configure**.

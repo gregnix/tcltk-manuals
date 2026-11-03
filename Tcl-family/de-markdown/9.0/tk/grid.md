@@ -97,7 +97,7 @@ Der Befehl **grid** dient der Kommunikation mit dem Grid-Geometrie-Manager, der 
 : Bei *x*- und *y*-Werten in Bildschirmeinheiten relativ zum Container-Fenster werden Spalten- und Zeilennummer an dieser Position zurückgegeben. Liegt die Position oberhalb oder links vom Raster, wird **-1** zurückgegeben.
 
 [grid]{.cmd} [propagate]{.sub} [window]{.arg} [boolean]{.optarg}
-: Hat *boolean* einen wahren booleschen Wert wie **1** oder **on**, ist Propagation für *window* aktiviert; *window* muss ein Fenstername sein (siehe [Geometrie-Propagation] unten). Hat *boolean* einen falschen booleschen Wert, ist Propagation für *window* deaktiviert. In beiden Fällen wird ein leerer String zurückgegeben. Fehlt *boolean*, gibt der Befehl **0** oder **1** zurück, je nachdem, ob Propagation für *window* derzeit aktiv ist.
+: Hat *boolean* einen wahren booleschen Wert wie **1** oder **on**, ist Propagation für *window* aktiviert; *window* muss ein Fenstername sein (siehe [Geometrie-Propagation] unten). Hat *boolean* einen falschen booleschen Wert, ist Propagation für *window* deaktiviert. In beiden Fällen wird eine leere Zeichenkette zurückgegeben. Fehlt *boolean*, gibt der Befehl **0** oder **1** zurück, je nachdem, ob Propagation für *window* derzeit aktiv ist.
 
     Propagation ist standardmäßig aktiviert.
 

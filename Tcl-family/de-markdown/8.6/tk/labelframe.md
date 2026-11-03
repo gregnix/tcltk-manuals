@@ -36,10 +36,10 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 # Widget-spezifische Optionen
 
 **-background** (**background**/**Background**)
-: Diese Option ist identisch mit der Standard-Option **-background**, außer dass ihr Wert auch als leerer String angegeben werden kann. In diesem Fall zeigt das Widget keinen Hintergrund oder Rahmen an, und es werden keine Farben aus seiner Farbkarte für Hintergrund und Rahmen verbraucht.
+: Diese Option ist identisch mit der Standard-Option **-background**, außer dass ihr Wert auch als leere Zeichenkette angegeben werden kann. In diesem Fall zeigt das Widget keinen Hintergrund oder Rahmen an, und es werden keine Farben aus seiner Farbkarte für Hintergrund und Rahmen verbraucht.
 
 **-class** (**class**/**Class**)
-: Legt eine Klasse für das Fenster fest. Diese Klasse wird verwendet, wenn die Optionsdatenbank für die anderen Optionen des Fensters abgefragt wird, und sie wird später auch für andere Zwecke wie Bindings verwendet. Die Option **-class** kann nicht mit dem Widget-Befehl **configure** geändert werden.
+: Legt eine Klasse für das Fenster fest. Diese Klasse wird verwendet, wenn die Optionsdatenbank für die anderen Optionen des Fensters abgefragt wird, und sie wird später auch für andere Zwecke wie Bindungen verwendet. Die Option **-class** kann nicht mit dem Widget-Befehl **configure** geändert werden.
 
 **-colormap** (**colormap**/**Colormap**)
 : Legt eine Farbkarte fest, die für das Fenster verwendet werden soll. Der Wert kann entweder **new** sein, in welchem Fall eine neue Farbkarte für das Fenster und seine Kinder erstellt wird, oder der Name eines anderen Fensters (das auf dem gleichen Bildschirm und mit der gleichen visuellen Darstellung wie *pathName* sein muss), in welchem Fall das neue Fenster die Farbkarte vom angegebenen Fenster verwendet. Wenn die Option **-colormap** nicht angegeben ist, verwendet das neue Fenster die gleiche Farbkarte wie sein Eltern-Element. Diese Option kann nicht mit dem Widget-Befehl **configure** geändert werden.
@@ -48,7 +48,7 @@ Siehe die Handbuchseite [options] für Einzelheiten zu den Standardoptionen.
 : Legt die gewünschte Höhe für das Fenster in einer der von [Tk\_GetPixels][GetPixels] akzeptierten Formen fest. Wenn diese Option kleiner oder gleich null ist, fordert das Fenster überhaupt keine Größe an.
 
 **-labelanchor** (**labelAnchor**/**LabelAnchor**)
-: Legt fest, wo die Beschriftung platziert wird. Eine Beschriftung wird nur angezeigt, wenn die Option **-text** nicht der leere String ist. Gültige Werte für diese Option sind (im Uhrzeigersinn aufgeführt) **nw**, **n**, **ne**, **en**, **e**, **es**, **se**, **s**, **sw**, **ws**, **w** und **wn**. Der Standardwert ist **nw**.
+: Legt fest, wo die Beschriftung platziert wird. Eine Beschriftung wird nur angezeigt, wenn die Option **-text** nicht die leere Zeichenkette ist. Gültige Werte für diese Option sind (im Uhrzeigersinn aufgeführt) **nw**, **n**, **ne**, **en**, **e**, **es**, **se**, **s**, **sw**, **ws**, **w** und **wn**. Der Standardwert ist **nw**.
 
 **-labelwidget** (**labelWidget**/**LabelWidget**)
 : Legt ein Widget fest, das als Beschriftung verwendet wird. Dies überschreibt jede **-text**-Option. Das Widget muss existieren, bevor es als **-labelwidget** verwendet wird, und wenn es kein Nachfahre dieses Fensters ist, wird es in der Stapelreihenfolge darüber angehoben.
@@ -80,12 +80,12 @@ pathName option ?arg arg ...?
 : Gibt den aktuellen Wert der durch *option* gegebenen Konfigurationsoption zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
 
 *pathName* **configure** ?*option*? ?*value option value ...*?
-: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl einen leeren String zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
+: Abfrage oder Änderung der Konfigurationsoptionen des Widgets. Wenn keine *option* angegeben ist, gibt eine Liste zurück, die alle verfügbaren Optionen für *pathName* beschreibt (siehe [Tk\_ConfigureInfo][ConfigWidg] für Informationen über das Format dieser Liste). Wenn *option* ohne *value* angegeben ist, gibt der Befehl eine Liste zurück, die die eine benannte Option beschreibt (diese Liste ist identisch mit der entsprechenden Unterliste des zurückgegebenen Wertes, wenn keine *option* angegeben ist). Wenn ein oder mehrere *option-value*-Paare angegeben sind, ändert der Befehl die gegebene(n) Widget-Option(en) auf die gegebenen Werte; in diesem Fall gibt der Befehl eine leere Zeichenkette zurück. *Option* kann jeden der vom Befehl **labelframe** akzeptierten Werte haben.
 
 
-# Bindings
+# Bindungen
 
-Wenn ein neues labelframe erstellt wird, hat es keine Standard-Event-Bindings: labelframes sind nicht für Interaktion gedacht.
+Wenn ein neues labelframe erstellt wird, hat es keine Standard-Event-Bindungen: labelframes sind nicht für Interaktion gedacht.
 
 # Beispiel
 

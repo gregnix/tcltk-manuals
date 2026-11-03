@@ -36,7 +36,7 @@ Siehe auch die Tcl'2004-Konferenzpräsentation unter <https://tktable.sourceforg
 
 Jedem Widget wird ein *style* zugewiesen, der die Menge der Elemente bestimmt, aus denen das Widget besteht, und wie sie angeordnet sind, sowie dynamische und Standard-Einstellungen für Elementoptionen. Standardmäßig entspricht der Stilname der Widget-Klasse; dies kann mit der Option **-style** überschrieben werden.
 
-Ein *theme* ist eine Sammlung von Elementen und Styles, die das Gesamterscheinungsbild einer Anwendung steuert. Der Style „.“ ist der Theme-Wurzelstil, auf dem abgeleitete Styles basieren.
+Ein *Theme* ist eine Sammlung von Elementen und Styles, die das Gesamterscheinungsbild einer Anwendung steuert. Der Style „.“ ist der Theme-Wurzelstil, auf dem abgeleitete Styles basieren.
 
 # Beschreibung
 
@@ -47,9 +47,9 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 
 [ttk::style]{.cmd} [element]{.sub} [args]{.arg}
 : siehe unten ...
+
     [ttk::style]{.cmd} [element]{.sub} [create]{.lit} [elementName]{.arg} [type]{.arg} [args...]{.optarg}
     : Erstellt ein neues Element im aktuellen Theme vom Typ *type*. Der einzige plattformübergreifende eingebaute Elementtyp ist *image* (siehe [ttk\_image][ttk_image](n)); Themes können weitere Elementtypen definieren (siehe **Ttk\_RegisterElementFactory**). Auf geeigneten Windows-Versionen ist eine Elementfabrik registriert, die Windows-Theme-Elemente erzeugt (siehe [ttk\_vsapi][ttk_vsapi](n)).
-
 
     [ttk::style]{.cmd} [element]{.sub} [names]{.lit}
     : Gibt die Liste der im aktuellen Theme definierten Elemente zurück.
@@ -62,16 +62,16 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 : Definiert das Widget-Layout für Style *style*. Siehe [Layouts] unten für das Format von *layoutSpec*. Wird *layoutSpec* weggelassen, wird die Layout-Spezifikation für Style *style* zurückgegeben.
 
 [ttk::style]{.cmd} [lookup]{.sub} [style]{.arg} [-option]{.arg} [state ?default]{.optarg}
-: Gibt den für *-option* in Style *style* im Zustand *state* festgelegten Wert zurück, unter Verwendung der Standard-Lookup-Regeln für Elementoptionen. *state* ist eine Liste von Zustandsnamen; fehlt sie, entspricht der Standard alle Bits aus („normal“-Zustand). Ist das Argument *default* vorhanden, wird es als Fallback verwendet, falls keine Spezifikation für *-option* gefunden wird. Existiert *style* nicht, wird er erstellt.
+: Gibt den für *-option* in Style *style* im Zustand *state* festgelegten Wert zurück, unter Verwendung der Standard-Lookup-Regeln für Elementoptionen. *state* ist eine Liste von Zustandsnamen; fehlt sie, sind standardmäßig alle Bits aus (der Zustand „normal“). Ist das Argument *default* vorhanden, wird es als Fallback verwendet, falls keine Spezifikation für *-option* gefunden wird. Existiert *style* nicht, wird er erstellt.
 
 [ttk::style]{.cmd} [map]{.sub} [style]{.arg} [-option { statespec value... }]{.optarg}
 : Legt dynamische (zustandsabhängige) Werte der angegebenen Option(en) in *style* fest. Jedes Paar *statespec / value* wird der Reihe nach geprüft; der Wert des ersten passenden *statespec* wird verwendet. Existiert *style* nicht, wird er erstellt. Sind nur *style* und *-option* angegeben, werden die dynamischen Werte der Option *-option* von Style *style* abgerufen. Ist nur *style* angegeben, werden die dynamischen Werte aller Optionen von Style *style* abgerufen.
 
 [ttk::style]{.cmd} [theme]{.sub} [args]{.arg}
 : siehe unten ...
+
     [ttk::style]{.cmd} [theme]{.sub} [create]{.lit} [themeName]{.arg} [[-parent]{.lit} [basedon]{.arg}]{.optarg} [[-settings]{.lit} [script...]{.arg}]{.optarg}
     : Erstellt ein neues Theme. Existiert *themeName* bereits, ist das ein Fehler. Ist **-parent** angegeben, erbt das neue Theme Styles, Elemente und Layouts vom Eltern-Theme *basedon*. Ist **-settings** vorhanden, wird *script* im Kontext des neuen Themes gemäß **ttk::style theme settings** ausgewertet.
-
 
     [ttk::style]{.cmd} [theme]{.sub} [names]{.lit}
     : Gibt eine Liste aller bekannten Themes zurück.
@@ -89,7 +89,7 @@ Der Befehl **ttk::style** akzeptiert folgende Argumente:
 
 # Layouts
 
-Ein *layout* legt eine Liste von Elementen fest, jedes gefolgt von einer oder mehreren Optionen zur Anordnung des Elements. Der Layout-Mechanismus verwendet eine vereinfachte Variante des Geometriemanagers [pack]: Ausgehend von einem anfänglichen Hohlraum (*cavity*) erhält jedes Element ein *parcel* (Zuweisungsbereich). Anschließend wird das vom Element tatsächlich genutzte *parcel* innerhalb des zugewiesenen Bereichs angepasst. Gültige Optionen sind:
+Ein *Layout* legt eine Liste von Elementen fest, jedes gefolgt von einer oder mehreren Optionen zur Anordnung des Elements. Der Layout-Mechanismus verwendet eine vereinfachte Variante des Geometriemanagers [pack]: Ausgehend von einem anfänglichen Hohlraum (*cavity*) erhält jedes Element ein *parcel* (Zuweisungsbereich). Anschließend wird das vom Element tatsächlich genutzte *parcel* innerhalb des zugewiesenen Bereichs angepasst. Gültige Optionen sind:
 
 [-children]{.lit} [{ sublayout... }]{.arg}
 : Legt eine Liste von Elementen fest, die innerhalb des Elements platziert werden.
