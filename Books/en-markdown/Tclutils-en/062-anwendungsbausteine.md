@@ -388,19 +388,19 @@ gives 2000.
 ## tuappinfo
 
 [tuappinfo]{.index} collects information about Tcl, the program, the
-platform, the environment, search paths and loaded packages in a text
-report, for example for an info dialog or an error report to the
-developer. The caller handles the display.
+platform, the environment, search paths, loaded packages and libraries
+in a text report, for example for an info dialog or an error report to
+the developer. The caller handles the display.
 
 ```tcl
-::tclutils::tuappinfo::trackTm datei
+::tclutils::tuappinfo::trackTm file
 ::tclutils::tuappinfo::buildReport ?-title text? ?-anonymize 0|1?
-::tclutils::tuappinfo::writeLog datei ?-title text? ?-anonymize 0|1?
+::tclutils::tuappinfo::writeLog file ?-title text? ?-anonymize 0|1?
 ```
 
 | Option | Default | Effect |
 |---|---|---|
-| `-title` | `Application Information` | heading `==== <titel> ====` |
+| `-title` | `Application Information` | heading `==== <title> ====` |
 | `-anonymize` | `0` | hide user, host and path information |
 
 `trackTm` records a module file for the last section and returns the
@@ -414,18 +414,46 @@ The report has these sections in this order:
 | Section | Content |
 |---|---|
 | Header | title, `Timestamp:`, `PID:` |
-| `--- Tcl / Tk ---` | `info patchlevel`, `tk_patchLevel` (only with Tk; up to 0.2 `tk_version`), `info nameofexecutable`, operating system and version, machine, `Host:` |
+| `--- Tcl / Tk ---` | `info patchlevel`, `Tcl library:` (`info library`); only with Tk `tk_patchLevel` (up to 0.2 `tk_version`), `Tk library:` and `Windowing system:` (`x11`, `win32`, `aqua`); `info nameofexecutable`, operating system and version, machine, `Host:` |
+| `--- Build ---` | the build of the loaded Tcl library from `tcl::pkgconfig`: `Flags:` (threaded, 64bit, debug, optimized), `bindir,install`, `libdir,runtime`, `scriptdir,runtime`, `dllfile,runtime`; under Linux `Library file:`; a `Note:` when the program is not in `bindir,install`; the installation's `tclConfig.sh` with `TCL_PREFIX` |
 | `--- Environment ---` | `USER`, `USERNAME`, `HOME`, `TEMP`, `TMP`, `PATH`, if set |
+| `--- Search variables ---` | `TCLLIBPATH`, every `TCL<x>_<y>_TM_PATH`, `LD_LIBRARY_PATH`, `DYLD_LIBRARY_PATH`, if set; one entry per line; otherwise `(none set)` |
 | `--- auto_path ---` | one entry per line |
-| `--- Loaded Packages ---` | each package with its `package provide` version |
-| `--- tm::path ---` | `tcl::tm::path list` |
+| `--- tcl_pkgPath ---` | only where the variable exists (not under Windows) |
+| `--- Loaded Packages ---` | each loaded package with its version and the file its `package ifneeded` script loads |
+| `--- Loaded Libraries ---` | `info loaded`: prefix and file of each loaded library, `(static)` for linked-in ones |
+| `--- tm::path ---` | `tcl::tm::path list` in search order |
 | `--- Loaded TM Modules ---` | the files recorded with `trackTm`, otherwise `(none tracked)` |
 
-Platform-dependent according to the code: `Host:` appears only if the
-environment variable `COMPUTERNAME` is set; Windows sets it, under
-Linux and macOS the line is usually missing. `USERNAME`, `TEMP` and
-`TMP` are typical Windows variables, `USER` and `HOME` typical ones
-under Linux and macOS.
+A folder in the search variables, in `auto_path`, `tcl_pkgPath` or
+`tm::path` that does not exist ends in ` (missing)`. The origin in
+`Loaded Packages` comes from the load script; it is missing for
+built-in packages such as `Tcl` and when the script contains no fixed
+file name. Proof of which library is really loaded is `Loaded
+Libraries`: if two packages of the same name lie in different folders,
+for example `sqlite3` from the distribution and from an own build, the
+file the interpreter loaded is listed there.
+
+`tcl::pkgconfig` belongs to the Tcl **library**, not to the program. If
+the program is not in the library's `bindir,install`, `Note:` reports a
+mixed installation: a `tclsh` under `/opt` that loaded the distribution's
+`libtcl` of the same name, or an installation moved after it was built
+(`bindir,install` then no longer exists). Under Linux `Library file:`
+names the `libtcl` actually loaded, from `/proc/<pid>/maps`. `tuappinfo`
+looks for the `tclConfig.sh` next to the library (`libdir,install`, for
+Debian in `tclX.Y` below it) and in `lib/` beside the program's `bin/`.
+`TCL_PATCH_LEVEL` appears only if it differs from `info patchlevel`; a
+`TCL_PREFIX` that no longer exists carries ` (missing)`. This is what one
+needs before building an extension for exactly this Tcl.
+
+Platform-dependent according to the code: `Host:` comes from
+`info hostname`, only if that is empty from `COMPUTERNAME`. `USERNAME`,
+`TEMP` and `TMP` are typical Windows variables, `USER` and `HOME`
+typical ones under Linux and macOS. `LD_LIBRARY_PATH` takes effect under
+Linux, `DYLD_LIBRARY_PATH` under macOS; under Windows the system looks
+for libraries through `PATH`. `tuappinfo` splits the search variables
+other than `TCLLIBPATH` as the system does: with `;` under Windows,
+otherwise with `:`.
 
 `-anonymize 1` replaces:
 
@@ -437,30 +465,55 @@ under Linux and macOS.
 | `TEMP`, `TMP` | `<TEMP>` |
 | `PATH` | `<anonymized>` |
 | paths below the home directory | `<HOME>/…` |
-| all other paths | `<path>/<letzter Teil>` |
+| all other paths | `<path>/<last part>` |
 | recorded module files | `<tm-xxxxxxxx>.tm` |
 
 `xxxxxxxx` is a stable, non-cryptographic hash of eight hex digits;
-equal names give equal values. The path rule applies to `Executable`
-and to each entry in `auto_path` and `tm::path`. The home directory is
-`$HOME`, without `HOME` `$USERPROFILE`; a path counts as below it if it
-is equal to it or starts with
-`<heim>/`. `/usr/share/tcltk` becomes `<path>/tcltk`,
-`$HOME/lib/tm` becomes `<HOME>/lib/tm`. Separators appear as `/`;
-under Windows `tuappinfo` compares the home directory without regard
-to case. `Platform`, `Machine`, the versions and the package list stay
-unchanged.
+equal names give equal values. The path rule applies to `Executable`,
+the two library folders, the paths under `Build` and each entry of the
+search variables, of
+`auto_path`, `tcl_pkgPath` and `tm::path`, to the origin of the
+packages and to the loaded libraries. The home directory is `$HOME`,
+without `HOME` `$USERPROFILE`; a path counts as below it if it is equal
+to it or starts with `<home>/`. `/usr/share/tcltk` becomes
+`<path>/tcltk`, `$HOME/lib/tm` becomes `<HOME>/lib/tm`. Separators
+appear as `/`; under Windows `tuappinfo` compares the home directory
+without regard to case. `Platform`, `Machine`, the versions, the
+package names and ` (missing)` stay unchanged.
 
 ```tcl
 package require tclutils::tuappinfo
 ::tclutils::tuappinfo::trackTm /opt/app/lib/tm/foo-1.0.tm
-set r [::tclutils::tuappinfo::buildReport -title "MeineApp 1.0"]
-lindex [split $r \n] 0                ;# -> ==== MeineApp 1.0 ====
+set r [::tclutils::tuappinfo::buildReport -title "MyApp 1.0"]
+lindex [split $r \n] 0                ;# -> ==== MyApp 1.0 ====
 string match "*(none tracked)*" $r    ;# -> 0
 ```
 
 The other lines depend on the computer: under Linux, for example,
 `Tcl version: 9.0.4`, `Platform: Linux <kernel>`, `HOME: /home/<name>`.
+An excerpt with Tcl 9.0 after `package require sqlite3`:
+
+```text
+--- Search variables ---
+TCLLIBPATH:
+    /home/<name>/lib/tcl9only
+LD_LIBRARY_PATH:
+    /opt/tcl9/lib
+
+--- Loaded Packages ---
+  sqlite3                          3.53.0     /opt/tcl9/lib/sqlite3.53.0/libtcl9sqlite3.53.0.so
+
+--- Loaded Libraries ---
+  Sqlite3          /opt/tcl9/lib/sqlite3.53.0/libtcl9sqlite3.53.0.so
+```
+
+The example `examples/demo-tuappinfo.tcl` loads the packages named on
+the command line and then prints the report; `-anonymize` switches
+anonymisation on:
+
+```bash
+tclsh examples/demo-tuappinfo.tcl sqlite3
+```
 
 | Case | Code |
 |---|---|

@@ -72,7 +72,7 @@ oder `wget`. Alle drei Wege prüfen das Zertifikat. `-cafile` und
 | Option | Vorgabe | Wirkung |
 |---|---|---|
 | `-timeout` | 30000 | Millisekunden |
-| `-redirects` | 5 | danach `{TCLUTILS TUFETCH REDIRECT}` |
+| `-redirects` | 5 | danach `{TCLUTILS TUFETCH REDIRECT}`; jede Umleitung geprüft |
 | `-method` | `get` | `get` oder `post` |
 | `-headers` | | flache Liste Name Wert |
 | `-data` | | Rumpf, zusammen mit `-method post` |
@@ -96,6 +96,21 @@ Code). `tuhttps` meldet den Fall
 als `{TCLUTILS TUHTTPS CAFILE}`. Ohne `tls` kommt dort
 `{TCLUTILS TUHTTPS NOTLS}` — die tls-Prüfung läuft vor der
 `-cafile`-Prüfung.
+
+Seit 0.5 prüft `tufetch` jede Umleitung. Ein relatives `Location`
+(`b`, `/b`, `?x=1`) wird gegen die aktuelle Adresse aufgelöst; bis 0.4
+ging es unverändert an `http::geturl` und scheiterte. Das Ziel muss
+`http` oder `https` sein, und von `https` nach `http` geht es nicht:
+beides ist `REDIRECT`. curl bekommt `--proto-redir` mit derselben
+Regel, wget kennt keinen solchen Schalter. Auf dem nativen Weg schreibt
+`download` über eine temporäre Datei; bricht das Schreiben ab, bleibt
+die alte Datei stehen.
+
+`tudav` schickt die Zugangsdaten nur an den Ursprung der Basisadresse
+(Schema, Host, Port). Ein `href` auf einem anderen Host wird ohne
+`Authorization` geholt und endet meist mit 401; für einen zweiten Host
+einen zweiten Client öffnen. Andere Schemata als `http`/`https` sind
+`{TCLUTILS TUDAV URL}`.
 
 Weitere Codes von `tufetch`: `{TCLUTILS TUFETCH HTTP <Klasse> <Status>}`
 (etwa `HTTP 4XX 404`), `URL` (nur `http://` und `https://`), `TIMEOUT`,

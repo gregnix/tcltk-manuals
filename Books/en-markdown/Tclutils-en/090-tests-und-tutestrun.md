@@ -19,8 +19,8 @@ Result for tclutils 0.69.0 under Linux (Xvfb), macOS and Windows:
 
 | Run | Files | Tests | passed | skipped | failed |
 |---|---|---|---|---|---|
-| Tcl 8.6.14 with tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 156 | 2642 | 2617 | 25 | 0 |
-| Tcl 9.0.4 (built from source) with tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 156 | 2642 | 2625 | 17 | 0 |
+| Tcl 8.6.14 with tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 156 | 2669 | 2644 | 25 | 0 |
+| Tcl 9.0.4 (built from source) with tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 156 | 2669 | 2652 | 17 | 0 |
 | macOS (Darwin 27, arm64), Tcl/Tk 9.0.4 (Aqua), state before the write-error tests | 154 | 2582 | 2567 | 15 | 0 |
 | Windows, Tcl 8.6.17 (system encoding cp1252), state before the write-error tests | 154 | 2582 | 2545 | 37 | 0 |
 | Windows, Tcl 9.0.4, state before the write-error tests | 154 | 2582 | 2549 | 33 | 0 |
@@ -78,17 +78,21 @@ directly without the runner remains exposed to the `site-tcl` problem.
 
 ---
 
-## Checking the origin: tupkgfinder 0.2
+## Checking the origin: tupkgfinder 0.3
 
 The package database knows only one `ifneeded` per version. If the same
 version lies twice on the paths, the second copy is not visible there.
-[tupkgfinder]{.index} 0.2 therefore searches by itself:
+[tupkgfinder]{.index} therefore searches by itself:
 
 - `candidates` — every copy of a package on module paths and
   `auto_path`, as a dict `{package version kind path}`.
-- `shadows` — per package with more than one copy: which one is active, and
-  for each copy a `status` (`active`, `same version`, `other
-  version`). `duplicate` is 1 if a version is present twice.
+- `shadows` — per package with more than one copy: which version a fresh
+  `package require` would take (`active`), by which route (`via`:
+  `loaded`, `module` or `pkgIndex`), and for each copy a `status`:
+  `active`, `same version` (a second copy of the active version, never
+  used), `hidden by module` (a higher version in a `pkgIndex.tcl` that
+  Tcl never reads because a module already fits) or `other version`.
+  `duplicate` is 1 if a version is present twice.
 
 ```tcl
 package require tclutils::tupkgfinder
@@ -103,9 +107,11 @@ foreach d [::tclutils::tupkgfinder::shadows -pattern tclutils::*] {
 Nothing is loaded in the process. The output is
 `0.4 tm …/lib/tm/tclutils/tunum-0.4.tm`; `shadows` found no
 duplicate copy, and `tclutils::tunum` was not loaded afterwards.
-For packages with unregistered copies, `shadows` runs an
-unsatisfiable `package require`; in doing so Tcl reads the
-`pkgIndex.tcl` files but loads nothing.
+`shadows` searches in a child interpreter that is deleted afterwards;
+the program's package database stays as it was. Up to 0.2 the search
+ran in the program itself and registered every version from the
+`pkgIndex.tcl` files there. A later `package require` could then take a
+higher version from an index instead of the module.
 
 `kind` is `tm` (path of the `.tm` file) or `pkgIndex` (path of the
 `pkgIndex.tcl`; only literal `package ifneeded NAME VERSION` lines
@@ -168,7 +174,7 @@ the Windows tests `tutask` 2.8w/4.4w for `pipe` were added.
 
 - `tests/all.tcl` → tutestrun: own trees first, banner, limit.
 - Source the runner from the tree, do not require it blindly.
-- `tupkgfinder::shadows` finds duplicate copies.
+- `tupkgfinder::shadows` finds duplicate and hidden copies.
 - `tulint` checks error classes from the quality book.
 
 ---

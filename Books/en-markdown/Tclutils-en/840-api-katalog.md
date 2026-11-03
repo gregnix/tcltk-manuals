@@ -36,10 +36,12 @@ Source: `lib/tm/tclutils/tuagrep-0.2.tm`. Limited to `namespace export`.
 
 ## `tuappinfo`
 
-Source: `lib/tm/tclutils/tuappinfo-0.3.tm`. No export list found with the simple source pattern; visible procedures without a leading underscore are listed.
+Source: `lib/tm/tclutils/tuappinfo-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
-
+::tclutils::tuappinfo::trackTm {file}
+::tclutils::tuappinfo::buildReport {args}
+::tclutils::tuappinfo::writeLog {file args}
 ```
 
 ## `tuarchitecture`
@@ -333,7 +335,7 @@ Source: `lib/tm/tclutils/tudav-0.3.tm`. Limited to `namespace export`.
 
 ## `tudeploy`
 
-Source: `lib/tm/tclutils/tudeploy-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tudeploy-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tudeploy::baseDirs {}
@@ -463,7 +465,7 @@ Source: `lib/tm/tclutils/tuexpand-0.2.tm`. Limited to `namespace export`.
 
 ## `tufetch`
 
-Source: `lib/tm/tclutils/tufetch-0.4.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tufetch-0.5.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tufetch::get {url args}
@@ -973,6 +975,8 @@ Source: `lib/tm/tclutils/tuodf-0.2.tm`. Limited to `namespace export`.
 ::tclutils::tuodf::parts {odtFile}
 ::tclutils::tuodf::paragraphs {odtFile}
 ::tclutils::tuodf::text {odtFile}
+::tclutils::tuodf::sheets {odsFile}
+::tclutils::tuodf::rows {odsFile args}
 ```
 
 ## `tuopen`
@@ -1079,7 +1083,7 @@ Source: `lib/tm/tclutils/tupie-0.3.tm`. Limited to `namespace export`.
 
 ## `tupkgfinder`
 
-Source: `lib/tm/tclutils/tupkgfinder-0.2.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tupkgfinder-0.3.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tupkgfinder::paths {}
@@ -1088,6 +1092,8 @@ Source: `lib/tm/tclutils/tupkgfinder-0.2.tm`. Limited to `namespace export`.
 ::tclutils::tupkgfinder::which {packageName}
 ::tclutils::tupkgfinder::findFileSystem {pattern args}
 ::tclutils::tupkgfinder::report {packageName}
+::tclutils::tupkgfinder::candidates {args}
+::tclutils::tupkgfinder::shadows {args}
 ```
 
 ## `tupng`
@@ -1560,7 +1566,7 @@ Source: `lib/tm/tclutils/tuuniq-0.2.tm`. Limited to `namespace export`.
 
 ## `tuurl`
 
-Source: `lib/tm/tclutils/tuurl-0.1.tm`. Limited to `namespace export`.
+Source: `lib/tm/tclutils/tuurl-0.2.tm`. Limited to `namespace export`.
 
 ```tcl
 ::tclutils::tuurl::encode {str args}

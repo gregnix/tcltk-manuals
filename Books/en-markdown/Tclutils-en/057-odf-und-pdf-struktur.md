@@ -78,6 +78,8 @@ package require tclutils::tuodf
 ::tclutils::tuodf::part       datei name
 ::tclutils::tuodf::paragraphs datei
 ::tclutils::tuodf::text       datei
+::tclutils::tuodf::sheets     datei
+::tclutils::tuodf::rows       datei ?-sheet NAME|INDEX?
 ```
 
 `createText` returns the file path. The container is a ZIP.
@@ -107,6 +109,14 @@ lists, in the cells of an `.ods` and on the slides of an `.odp` as well;
 the structure itself (rows, columns, levels) is not kept. A
 missing ZIP file is reported by `tuzip`, not with an error code of
 `tuodf`'s own.
+
+`rows` reads the tables of an `.ods`, one sheet at a time (`sheets`
+names them). A row is a list of cell texts: what the cell shows, several
+paragraphs joined by `\n`. A cell hidden by merging is empty. Repeated
+empty cells and rows at the end are dropped; a repeated cell with
+content counts at most 1000 times. An unknown sheet is
+`{TCLUTILS TUODF SHEET name}`. Numeric references such as `&#252;` are
+decoded since 30.10.2026; a number past Unicode becomes U+FFFD.
 
 ---
 

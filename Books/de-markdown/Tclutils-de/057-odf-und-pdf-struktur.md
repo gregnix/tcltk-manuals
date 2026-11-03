@@ -77,6 +77,8 @@ package require tclutils::tuodf
 ::tclutils::tuodf::part       datei name
 ::tclutils::tuodf::paragraphs datei
 ::tclutils::tuodf::text       datei
+::tclutils::tuodf::sheets     datei
+::tclutils::tuodf::rows       datei ?-sheet NAME|INDEX?
 ```
 
 `createText` gibt den Dateipfad zurück. Der Behälter ist ein ZIP.
@@ -104,6 +106,13 @@ aneinander, deshalb endet das Ergebnis mit einem Zeilenumbruch.
 (`text:h`), in der Reihenfolge des Dokuments. Absätze in Tabellen, Listen,
 Tabellenzellen einer `.ods` und Folien einer `.odp` findet es mit; den
 Aufbau selbst (Zeilen, Spalten, Ebenen) gibt es nicht wieder.
+Die Tabellen einer `.ods` liest `rows`, je Blatt (`sheets` nennt die
+Namen). Eine Zeile ist eine Liste von Zelltexten: was die Zelle zeigt,
+mehrere Absätze mit `\n`. Eine durch Verbinden verdeckte Zelle ist leer.
+Wiederholte leere Zellen und Zeilen am Ende fallen weg, eine wiederholte
+Zelle mit Inhalt zählt höchstens 1000-mal. Ein unbekanntes Blatt ist
+`{TCLUTILS TUODF SHEET name}`. Zahlreferenzen wie `&#252;` werden seit
+dem 30.10.2026 aufgelöst, eine Zahl jenseits von Unicode wird U+FFFD.
 Eine fehlende ZIP-Datei meldet `tuzip`, nicht einen eigenen Code von
 `tuodf`.
 

@@ -384,8 +384,8 @@ ergibt 2048, `2KB` ergibt 2000.
 ## tuappinfo
 
 [tuappinfo]{.index} sammelt Angaben über Tcl, Programm, Plattform, Umgebung,
-Suchpfade und geladene Pakete in einem Textbericht, etwa für einen
-Info-Dialog oder eine Fehlermeldung an den Entwickler. Die Anzeige
+Suchpfade, geladene Pakete und Bibliotheken in einem Textbericht, etwa für
+einen Info-Dialog oder eine Fehlermeldung an den Entwickler. Die Anzeige
 übernimmt der Aufrufer.
 
 ```tcl
@@ -411,18 +411,46 @@ Der Bericht hat diese Abschnitte in dieser Reihenfolge:
 | Abschnitt | Inhalt |
 |---|---|
 | Kopf | Titel, `Timestamp:`, `PID:` |
-| `--- Tcl / Tk ---` | `info patchlevel`, `tk_patchLevel` (nur mit Tk; bis 0.2 `tk_version`), `info nameofexecutable`, Betriebssystem und Version, Maschine, `Host:` |
+| `--- Tcl / Tk ---` | `info patchlevel`, `Tcl library:` (`info library`); nur mit Tk `tk_patchLevel` (bis 0.2 `tk_version`), `Tk library:` und `Windowing system:` (`x11`, `win32`, `aqua`); `info nameofexecutable`, Betriebssystem und Version, Maschine, `Host:` |
+| `--- Build ---` | der Bau der geladenen Tcl-Bibliothek aus `tcl::pkgconfig`: `Flags:` (threaded, 64bit, debug, optimized), `bindir,install`, `libdir,runtime`, `scriptdir,runtime`, `dllfile,runtime`; unter Linux `Library file:`; ein `Note:`, wenn das Programm nicht in `bindir,install` liegt; die `tclConfig.sh` der Installation mit `TCL_PREFIX` |
 | `--- Environment ---` | `USER`, `USERNAME`, `HOME`, `TEMP`, `TMP`, `PATH`, soweit gesetzt |
+| `--- Search variables ---` | `TCLLIBPATH`, jedes `TCL<x>_<y>_TM_PATH`, `LD_LIBRARY_PATH`, `DYLD_LIBRARY_PATH`, soweit gesetzt; ein Eintrag pro Zeile; sonst `(none set)` |
 | `--- auto_path ---` | ein Eintrag pro Zeile |
-| `--- Loaded Packages ---` | jedes Paket mit `package provide`-Version |
-| `--- tm::path ---` | `tcl::tm::path list` |
+| `--- tcl_pkgPath ---` | nur, wo es die Variable gibt (nicht unter Windows) |
+| `--- Loaded Packages ---` | jedes geladene Paket mit Version und der Datei, die sein `package ifneeded`-Skript lädt |
+| `--- Loaded Libraries ---` | `info loaded`: Präfix und Datei jeder geladenen Bibliothek, `(static)` für fest eingebundene |
+| `--- tm::path ---` | `tcl::tm::path list` in Suchreihenfolge |
 | `--- Loaded TM Modules ---` | die mit `trackTm` gemerkten Dateien, sonst `(none tracked)` |
 
-Plattformabhängig laut Code: `Host:` steht nur da, wenn die
-Umgebungsvariable `COMPUTERNAME` gesetzt ist; Windows setzt sie, unter
-Linux und macOS fehlt die Zeile in der Regel. `USERNAME`, `TEMP` und
-`TMP` sind typische Windows-Variablen, `USER` und `HOME` typische unter
-Linux und macOS.
+Ein Ordner in den Suchvariablen, in `auto_path`, `tcl_pkgPath` oder
+`tm::path`, den es nicht gibt, endet auf ` (missing)`. Die Herkunft in
+`Loaded Packages` stammt aus dem Ladeskript; sie fehlt bei eingebauten
+Paketen wie `Tcl` und wenn das Skript keinen festen Dateinamen enthält.
+Beweis dafür, welche Bibliothek wirklich geladen ist, ist `Loaded
+Libraries`: Liegen zwei Pakete gleichen Namens in verschiedenen Ordnern,
+etwa `sqlite3` aus der Distribution und aus einem eigenen Build, steht
+dort die Datei, die der Interpreter geladen hat.
+
+`tcl::pkgconfig` gehört zur Tcl-**Bibliothek**, nicht zum Programm. Liegt
+das Programm nicht in `bindir,install` der Bibliothek, meldet `Note:` eine
+gemischte Installation: ein `tclsh` aus `/opt`, das die gleichnamige
+`libtcl` der Distribution geladen hat, oder eine nach dem Bauen
+verschobene Installation (`bindir,install` gibt es dann nicht mehr). Unter
+Linux nennt `Library file:` die tatsächlich geladene `libtcl` aus
+`/proc/<pid>/maps`. Die `tclConfig.sh` sucht `tuappinfo` neben der
+Bibliothek (`libdir,install`, bei Debian in `tclX.Y` darunter) und in
+`lib/` neben dem `bin/` des Programms. `TCL_PATCH_LEVEL` erscheint nur,
+wenn er von `info patchlevel` abweicht; ein `TCL_PREFIX`, den es nicht mehr
+gibt, trägt ` (missing)`. Das braucht man, bevor man für genau dieses Tcl
+eine Erweiterung baut.
+
+Plattformabhängig laut Code: `Host:` kommt aus `info hostname`, nur wenn
+das leer ist aus `COMPUTERNAME`. `USERNAME`, `TEMP` und `TMP` sind
+typische Windows-Variablen, `USER` und `HOME` typische unter Linux und
+macOS. `LD_LIBRARY_PATH` wirkt unter Linux, `DYLD_LIBRARY_PATH` unter
+macOS; unter Windows sucht das System Bibliotheken über `PATH`. Die
+Suchvariablen außer `TCLLIBPATH` trennt `tuappinfo` wie das System:
+unter Windows mit `;`, sonst mit `:`.
 
 `-anonymize 1` ersetzt:
 
@@ -439,14 +467,17 @@ Linux und macOS.
 
 `xxxxxxxx` ist ein gleichbleibender, nicht kryptografischer Hash aus
 acht Hexziffern; gleiche Namen ergeben gleiche Werte. Die Pfadregel
-gilt für `Executable` und für jeden Eintrag in `auto_path` und
-`tm::path`. Heimatverzeichnis ist `$HOME`, ohne `HOME` `$USERPROFILE`;
-ein Pfad gilt als darunter, wenn er gleich ist oder mit
-`<heim>/` beginnt. Aus `/usr/share/tcltk` wird `<path>/tcltk`, aus
-`$HOME/lib/tm` wird `<HOME>/lib/tm`. Trennzeichen erscheinen als `/`;
-unter Windows vergleicht `tuappinfo` das Heimatverzeichnis ohne
-Unterschied von Groß/Klein. Unverändert bleiben `Platform`, `Machine`,
-die Versionen und die Paketliste.
+gilt für `Executable`, die beiden Bibliotheksordner, die Pfade unter
+`Build` und jeden Eintrag
+der Suchvariablen, von `auto_path`, `tcl_pkgPath` und `tm::path`, für
+die Herkunft der Pakete und für die geladenen Bibliotheken.
+Heimatverzeichnis ist `$HOME`, ohne `HOME` `$USERPROFILE`; ein Pfad gilt
+als darunter, wenn er gleich ist oder mit `<heim>/` beginnt. Aus
+`/usr/share/tcltk` wird `<path>/tcltk`, aus `$HOME/lib/tm` wird
+`<HOME>/lib/tm`. Trennzeichen erscheinen als `/`; unter Windows
+vergleicht `tuappinfo` das Heimatverzeichnis ohne Unterschied von
+Groß/Klein. Unverändert bleiben `Platform`, `Machine`, die Versionen,
+die Paketnamen und ` (missing)`.
 
 ```tcl
 package require tclutils::tuappinfo
@@ -458,6 +489,29 @@ string match "*(none tracked)*" $r    ;# -> 0
 
 Die übrigen Zeilen hängen vom Rechner ab: unter Linux etwa
 `Tcl version: 9.0.4`, `Platform: Linux <kernel>`, `HOME: /home/<name>`.
+Ein Ausschnitt mit Tcl 9.0 nach `package require sqlite3`:
+
+```text
+--- Search variables ---
+TCLLIBPATH:
+    /home/<name>/lib/tcl9only
+LD_LIBRARY_PATH:
+    /opt/tcl9/lib
+
+--- Loaded Packages ---
+  sqlite3                          3.53.0     /opt/tcl9/lib/sqlite3.53.0/libtcl9sqlite3.53.0.so
+
+--- Loaded Libraries ---
+  Sqlite3          /opt/tcl9/lib/sqlite3.53.0/libtcl9sqlite3.53.0.so
+```
+
+Das Beispiel `examples/demo-tuappinfo.tcl` lädt die auf der
+Befehlszeile genannten Pakete und gibt dann den Bericht aus;
+`-anonymize` schaltet die Anonymisierung ein:
+
+```bash
+tclsh examples/demo-tuappinfo.tcl sqlite3
+```
 
 | Fall | Code |
 |---|---|

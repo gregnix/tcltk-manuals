@@ -84,7 +84,8 @@
 
 [shadow copy]{.index}
 :   Second copy of a package on the search paths that `package require`
-    does not pick (`tupkgfinder::shadows`).
+    does not pick, or a higher version in a `pkgIndex.tcl` that a module
+    hides (`tupkgfinder::shadows`).
 
 ## Summary
 

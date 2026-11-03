@@ -84,6 +84,9 @@
   erwarten — die Absätze hängen an `\n`, der Text endet damit.
 - Eine zweite Kopie derselben Version im Modulpfad übersehen —
   `tupkgfinder::shadows`.
+- Ein Paket als Modul und daneben in einer `pkgIndex.tcl` mit höherer
+  Nummer — das Modul gewinnt, der Index wird nicht gelesen; `shadows`
+  zeigt `hidden by module`.
 - `$t wait` außerhalb eines Tasks in einem Tk-Handler aufrufen —
   verschachteltes `vwait`; im Handler nur `spawn`.
 - `await` außerhalb einer Koroutine — `TUTASK NOTASK`; in `spawn` oder

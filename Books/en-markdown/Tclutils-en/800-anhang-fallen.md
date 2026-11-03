@@ -85,6 +85,9 @@
   paragraph — the paragraphs are joined with `\n`, the text ends with it.
 - Overlooking a second copy of the same version in the module path —
   `tupkgfinder::shadows`.
+- A package as a module and also in a `pkgIndex.tcl` with a higher
+  number — the module wins, the index is not read; `shadows` shows
+  `hidden by module`.
 - Calling `$t wait` outside a task in a Tk handler —
   nested `vwait`; in the handler only `spawn`.
 - `await` outside a coroutine — `TUTASK NOTASK`; wrap it in `spawn` or

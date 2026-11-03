@@ -84,7 +84,8 @@
 
 [Schatten-Kopie]{.index}
 :   Zweite Kopie eines Pakets auf den Suchpfaden, die `package require`
-    nicht nimmt (`tupkgfinder::shadows`).
+    nicht nimmt, oder eine höhere Fassung in einer `pkgIndex.tcl`, die
+    ein Modul verdeckt (`tupkgfinder::shadows`).
 
 ## Zusammenfassung
 

@@ -36,10 +36,12 @@ Quelle: `lib/tm/tclutils/tuagrep-0.2.tm`. Auf `namespace export` begrenzt.
 
 ## `tuappinfo`
 
-Quelle: `lib/tm/tclutils/tuappinfo-0.3.tm`. Keine Exportliste im einfachen Quelltextmuster ermittelt; sichtbare Prozeduren ohne führenden Unterstrich aufgeführt.
+Quelle: `lib/tm/tclutils/tuappinfo-0.3.tm`. Auf `namespace export` begrenzt.
 
 ```tcl
-
+::tclutils::tuappinfo::trackTm {file}
+::tclutils::tuappinfo::buildReport {args}
+::tclutils::tuappinfo::writeLog {file args}
 ```
 
 ## `tuarchitecture`
@@ -333,7 +335,7 @@ Quelle: `lib/tm/tclutils/tudav-0.3.tm`. Auf `namespace export` begrenzt.
 
 ## `tudeploy`
 
-Quelle: `lib/tm/tclutils/tudeploy-0.2.tm`. Auf `namespace export` begrenzt.
+Quelle: `lib/tm/tclutils/tudeploy-0.3.tm`. Auf `namespace export` begrenzt.
 
 ```tcl
 ::tclutils::tudeploy::baseDirs {}
@@ -463,7 +465,7 @@ Quelle: `lib/tm/tclutils/tuexpand-0.2.tm`. Auf `namespace export` begrenzt.
 
 ## `tufetch`
 
-Quelle: `lib/tm/tclutils/tufetch-0.4.tm`. Auf `namespace export` begrenzt.
+Quelle: `lib/tm/tclutils/tufetch-0.5.tm`. Auf `namespace export` begrenzt.
 
 ```tcl
 ::tclutils::tufetch::get {url args}
@@ -973,6 +975,8 @@ Quelle: `lib/tm/tclutils/tuodf-0.2.tm`. Auf `namespace export` begrenzt.
 ::tclutils::tuodf::parts {odtFile}
 ::tclutils::tuodf::paragraphs {odtFile}
 ::tclutils::tuodf::text {odtFile}
+::tclutils::tuodf::sheets {odsFile}
+::tclutils::tuodf::rows {odsFile args}
 ```
 
 ## `tuopen`
@@ -1079,7 +1083,7 @@ Quelle: `lib/tm/tclutils/tupie-0.3.tm`. Auf `namespace export` begrenzt.
 
 ## `tupkgfinder`
 
-Quelle: `lib/tm/tclutils/tupkgfinder-0.2.tm`. Auf `namespace export` begrenzt.
+Quelle: `lib/tm/tclutils/tupkgfinder-0.3.tm`. Auf `namespace export` begrenzt.
 
 ```tcl
 ::tclutils::tupkgfinder::paths {}
@@ -1088,6 +1092,8 @@ Quelle: `lib/tm/tclutils/tupkgfinder-0.2.tm`. Auf `namespace export` begrenzt.
 ::tclutils::tupkgfinder::which {packageName}
 ::tclutils::tupkgfinder::findFileSystem {pattern args}
 ::tclutils::tupkgfinder::report {packageName}
+::tclutils::tupkgfinder::candidates {args}
+::tclutils::tupkgfinder::shadows {args}
 ```
 
 ## `tupng`
@@ -1560,7 +1566,7 @@ Quelle: `lib/tm/tclutils/tuuniq-0.2.tm`. Auf `namespace export` begrenzt.
 
 ## `tuurl`
 
-Quelle: `lib/tm/tclutils/tuurl-0.1.tm`. Auf `namespace export` begrenzt.
+Quelle: `lib/tm/tclutils/tuurl-0.2.tm`. Auf `namespace export` begrenzt.
 
 ```tcl
 ::tclutils::tuurl::encode {str args}

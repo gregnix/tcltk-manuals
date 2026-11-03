@@ -86,7 +86,7 @@ Test, Doc oder man-Seite; 25 davon nicht direkt im Umbrella.
 | `tusvg` | 0.4 | `write` über `replaceFile` (Verhalten) |
 | `tupngdraw` | 0.14 | `write` über `replaceFile` (Verhalten) |
 | `tupng` | 0.6 | `write*` über `replaceFile` (Verhalten) |
-| `tuappinfo` | 0.3 | Tk-Zeile mit Patchlevel; `writeLog` UTF-8 über `replaceFile` (Verhalten) |
+| `tuappinfo` | 0.3 | Tk-Zeile mit Patchlevel; `writeLog` UTF-8 über `replaceFile` (Verhalten); neu Suchvariablen, `tcl_pkgPath`, Herkunft der Pakete, geladene Bibliotheken (`info loaded`), fehlende Ordner markiert, `Host` überall, Abschnitt `Build` |
 | `tuodf` | 0.2 | `paragraphs` liefert auch Überschriften (Verhalten) |
 
 Beim Überkopieren eines älteren Baums `tucsv-0.1.tm`, `tusqlite-0.1.tm`,
@@ -231,7 +231,7 @@ Sonst blieben die Modulversionen gleich; der Umbrella stand auf 0.65.0.
 | `tupath` | 0.1 | `clean` behält die Wurzel (`C:/` unter Windows) |
 | `tusettings` | 0.1 | neu: INI-Settings, `dir`, Recent-Liste |
 | `tutestrun` | 0.1 | neu: gemeinsamer Runner, nicht im Umbrella |
-| `tupkgfinder` | 0.2 | `candidates`, `shadows` |
+| `tupkgfinder` | 0.3 | `candidates`, `shadows` (Kind-Interpreter, `hidden by module`) |
 
 Aus 0.63.0 weiter relevant: `tuhttps` 0.1 (neu), `tufetch` 0.4,
 `tudav` 0.2, `tupostgrest` 0.2, `tuprovider::ftp` 0.2 (tcllib erst beim

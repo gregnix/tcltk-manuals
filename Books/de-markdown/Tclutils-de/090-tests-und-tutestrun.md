@@ -19,8 +19,8 @@ Ergebnis für tclutils 0.69.0 unter Linux (Xvfb), macOS und Windows:
 
 | Lauf | Dateien | Tests | bestanden | übersprungen | fehlgeschlagen |
 |---|---|---|---|---|---|
-| Tcl 8.6.14 mit tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 156 | 2642 | 2617 | 25 | 0 |
-| Tcl 9.0.4 (aus den Quellen gebaut) mit tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 156 | 2642 | 2625 | 17 | 0 |
+| Tcl 8.6.14 mit tls 1.7.22, Thread 2.8.9, tDOM 0.9.3 | 156 | 2669 | 2644 | 25 | 0 |
+| Tcl 9.0.4 (aus den Quellen gebaut) mit tls 2.0 (OpenSSL 3.0.13), Thread 3.0.6, tDOM 0.9.7 | 156 | 2669 | 2652 | 17 | 0 |
 | macOS (Darwin 27, arm64), Tcl/Tk 9.0.4 (Aqua), Stand vor den Schreibfehler-Tests | 154 | 2582 | 2567 | 15 | 0 |
 | Windows, Tcl 8.6.17 (Systemkodierung cp1252), Stand vor den Schreibfehler-Tests | 154 | 2582 | 2545 | 37 | 0 |
 | Windows, Tcl 9.0.4, Stand vor den Schreibfehler-Tests | 154 | 2582 | 2549 | 33 | 0 |
@@ -79,17 +79,21 @@ ausgesetzt.
 
 ---
 
-## Herkunft prüfen: tupkgfinder 0.2
+## Herkunft prüfen: tupkgfinder 0.3
 
 Die Paketdatenbank kennt pro Version nur ein `ifneeded`. Liegt dieselbe
 Version zweimal auf den Pfaden, sieht man die zweite Kopie dort nicht.
-[tupkgfinder]{.index} 0.2 sucht deshalb selbst:
+[tupkgfinder]{.index} sucht deshalb selbst:
 
 - `candidates` — jede Kopie eines Pakets auf Modulpfaden und
   `auto_path`, als Dict `{package version kind path}`.
-- `shadows` — pro Paket mit mehr als einer Kopie: welche aktiv ist, und
-  für jede Kopie ein `status` (`active`, `same version`, `other
-  version`). `duplicate` ist 1, wenn eine Version doppelt liegt.
+- `shadows` — pro Paket mit mehr als einer Kopie: welche Fassung ein
+  frisches `package require` nähme (`active`), auf welchem Weg (`via`:
+  `loaded`, `module` oder `pkgIndex`), und für jede Kopie ein `status`:
+  `active`, `same version` (zweite Kopie der aktiven Fassung, nie
+  benutzt), `hidden by module` (höhere Fassung in einer `pkgIndex.tcl`,
+  die Tcl nie liest, weil schon ein Modul passt) oder `other version`.
+  `duplicate` ist 1, wenn eine Version doppelt liegt.
 
 ```tcl
 package require tclutils::tupkgfinder
@@ -104,9 +108,11 @@ foreach d [::tclutils::tupkgfinder::shadows -pattern tclutils::*] {
 Geladen wird dabei nichts. Die Ausgabe ist
 `0.4 tm …/lib/tm/tclutils/tunum-0.4.tm`; `shadows` fand keine
 doppelte Kopie, und `tclutils::tunum` war danach nicht geladen.
-`shadows` lässt für Pakete mit nicht registrierten Kopien ein
-unerfüllbares `package require` laufen; dabei liest Tcl die
-`pkgIndex.tcl`-Dateien, lädt aber nichts.
+`shadows` sucht in einem Kind-Interpreter, der danach gelöscht wird;
+die Paketdatenbank des Programms bleibt, wie sie war. Bis 0.2 lief die
+Suche im Programm selbst und registrierte dort alle Fassungen aus den
+`pkgIndex.tcl`-Dateien. Ein späteres `package require` konnte dann eine
+höhere Fassung aus einem Index nehmen statt des Moduls.
 
 `kind` ist `tm` (Pfad der `.tm`-Datei) oder `pkgIndex` (Pfad der
 `pkgIndex.tcl`; nur wörtliche `package ifneeded NAME VERSION`-Zeilen
@@ -169,7 +175,7 @@ kamen die Windows-Tests `tutask` 2.8w/4.4w für `pipe` hinzu.
 
 - `tests/all.tcl` → tutestrun: eigene Bäume zuerst, Banner, Limit.
 - Runner aus dem Baum sourcen, nicht blind require.
-- Doppelte Kopien findet `tupkgfinder::shadows`.
+- Doppelte und verdeckte Kopien findet `tupkgfinder::shadows`.
 - Fehlerklassen aus dem Qualitätsbuch prüft `tulint`.
 
 ---

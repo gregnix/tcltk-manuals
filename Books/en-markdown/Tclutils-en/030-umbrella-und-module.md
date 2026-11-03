@@ -8,7 +8,7 @@ package require tclutils    ;# -> 0.69.0
 
 The file is `lib/tm/tclutils-0.69.0.tm`. It requires 121 modules with
 `package require tclutils::…`, among them `common` 0.2, `tutask` 0.2,
-`tusettings` 0.1, `tupdftext` 0.1, `tufetch` 0.4, `tuhttps` 0.1 and
+`tusettings` 0.1, `tupdftext` 0.1, `tufetch` 0.5, `tuhttps` 0.1 and
 `tuflow` 0.4. `tuflow` requires `tudiagram` when it loads. Afterwards
 122 packages `tclutils::*` are loaded.
 
@@ -44,7 +44,7 @@ the list is in [Appendix B](810-anhang-module.md). New in 0.67.0 is
 [Text from PDF Files](055-pdf-text.md). In 0.66.0 `tutask` became 0.2,
 chapter [Tasks with tutask](085-tutask.md). In 0.65.0 `tutask` 0.1 was added
 to the umbrella. From 0.64.0 remain `tusettings` 0.1, `tunum` 0.4 and
-`tupkgfinder` 0.2; `tustr` and `tudate` are at 0.3 since 0.69.0.
+`tupkgfinder` 0.2 (0.3 after 0.69.0); `tustr` and `tudate` are at 0.3 since 0.69.0.
 
 FTP is in the umbrella (`tuprovider::ftp` 0.2) and requires tcllib `ftp`
 only on `open`. SFTP is not. TDBC is not.
