@@ -33,7 +33,8 @@ Container check, working directory `/tmp`, `HOME=/root`:
 | `file home` | error, unknown | `/root` |
 | `file tildeexpand ~/x` | error, unknown | `/root/x` |
 
-On lxpro with the Debian packages, started in the home directory, the
+On the Debian workstation with the Debian packages, started in the home
+directory, the
 same picture: `tclsh` 8.6.18 returns the home directory for
 `file normalize ~` and 1 for `file exists ~`, `tclsh9.0` 9.0.4 and
 `tclsh9.1` 9.1.0 return `<home directory>/~` and 0.
@@ -154,7 +155,7 @@ exec {*}[auto_execok xdg-user-dir] DOWNLOAD
 ```
 
 `xdg-user-dir` belongs to the Debian package `xdg-user-dirs`. It is
-missing in the container; howto 05 fails there.
+missing in the container; howto 05 skips there.
 `beispiele/xdg-ordner.tcl` falls back to `HOME` in this case.
 Hard-coding a folder like `~/Documents` is the most common mistake of
 this section.

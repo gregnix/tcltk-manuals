@@ -32,8 +32,10 @@ Tcl/Tk 9.0.4, selbst gebaut unter `/opt/tcl9`, auf Debian und Ubuntu
 mit X11. Wo sich 8.6 und 9.0 unterscheiden, steht es im Text, ebenso,
 wenn ein Wert nur mit einem Fenstermanager oder nur unter Xfce gilt.
 
-Grundlage sind fünf Howto-Serien des Autors. Sie sind nicht
-veröffentlicht; Angaben wie „(`serie-linux`, Howto 08)“ nennen das
+Grundlage sind fünf Howto-Serien des Autors. `serie-linux`,
+`serie-xvfb` und `serie-xfce` sind veröffentlicht, im Repository
+`tcltk-manuals` unter [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien); `serie-tcltk-bauen` und
+`serie-tcl9-app` nicht. Angaben wie „(`serie-linux`, Howto 08)“ nennen das
 Skript, mit dem ein Wert geprüft wurde. Jede Serie hat ein
 `README.md` mit den geprüften Werten, ein `TUTORIAL.md`, eine
 Kurzreferenz `howto/00-referenz.md` und je Howto eine Erklärung

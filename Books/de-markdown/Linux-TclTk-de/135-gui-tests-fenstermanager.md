@@ -207,7 +207,8 @@ vorher nicht genau mittig oder nicht transient.
 
 `beispiele/spaeter-rahmen.tcl` zeigt beides nebeneinander. Mit 8.6.14
 und 9.0.4, ohne Fenstermanager und mit openbox, war das Ergebnis
-gleich, ebenso auf lxpro unter Xvfb ohne Fenstermanager mit 8.6.18,
+gleich, ebenso auf dem Debian-Arbeitsplatz unter Xvfb ohne
+Fenstermanager mit 8.6.18,
 9.0.4 und 9.1.0:
 
 ```text

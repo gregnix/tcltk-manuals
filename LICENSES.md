@@ -77,9 +77,17 @@ original pages stay with each page.
 | `de-markdown/pdf4tcllib-de`, `en-markdown/pdf4tcllib-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 | `de-markdown/Tkutils-de`, `en-markdown/Tkutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 | `de-markdown/Mdserver-de`, `en-markdown/Mdserver-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/Utils-Stack-de`, `en-markdown/Utils-Stack-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/Linux-TclTk-de`, `en-markdown/Linux-TclTk-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
 
 Der Lizenztext steht als letztes Kapitel in jedem Buch-PDF (bookkit,
 `book-build.tcl`). / The license text is the last chapter of every book PDF.
+
+## Howto-Serien / Howto series (`Serien/`)
+
+Jede Serie hat ihre eigene `LICENSE`: Texte CC BY-SA 4.0, Tcl-Skripte
+MIT, © 2026 Gregor Ebbing. / Each series has its own `LICENSE`: texts
+CC BY-SA 4.0, Tcl scripts MIT.
 
 ## Skripte / Scripts (`scripts/`)
 

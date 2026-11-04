@@ -31,8 +31,10 @@ The examples use Tcl 8.6 from the distribution package and Tcl/Tk
 Where 8.6 and 9.0 differ, the text says so, likewise when a value only
 holds with one window manager or only under Xfce.
 
-The basis is five howto series by the author. They are not
-published; notes like "(`serie-linux`, howto 08)" name the script a
+The basis is five howto series by the author. `serie-linux`,
+`serie-xvfb` and `serie-xfce` are published, in the repository
+`tcltk-manuals` under [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien); `serie-tcltk-bauen` and
+`serie-tcl9-app` are not. Notes like "(`serie-linux`, howto 08)" name the script a
 value was checked with. Each series has a
 `README.md` with the checked values, a `TUTORIAL.md`, a short reference
 `howto/00-referenz.md`, and for each howto an explanation `NN-*.md`

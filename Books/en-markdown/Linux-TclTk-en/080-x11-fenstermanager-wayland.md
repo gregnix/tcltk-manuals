@@ -226,7 +226,7 @@ focus from other programs, screenshots, scaling with multiple
 screens) depends on the compositor. On the author's workstation, Xfce
 runs under X11 (`serie-xfce`: `XDG_SESSION_TYPE=x11`,
 `WAYLAND_DISPLAY` empty); the Debian book also reports `x11` for
-lxpro. A real Wayland session (GNOME, KDE, Xfce with Wayland) has
+the Debian workstation. A real Wayland session (GNOME, KDE, Xfce with Wayland) has
 **not been checked** for this book.
 
 ### XWayland under Weston

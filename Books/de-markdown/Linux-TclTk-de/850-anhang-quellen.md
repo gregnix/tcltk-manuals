@@ -13,7 +13,8 @@ Fehlermeldungen und Befehle, stehen im Code-Block.
 
 ### Howto-Serien des Autors
 
-Die Serien sind Begleitmaterial des Autors und nicht veröffentlicht.
+Die Serien sind Begleitmaterial des Autors; `serie-linux`, `serie-xvfb`
+und `serie-xfce` liegen unter [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien).
 Jede enthält
 `README.md` mit dem Abschnitt „Gemessen“, `TUTORIAL.md`,
 `howto/00-referenz.md` und je Howto eine Erklärung `NN-*.md` mit Demo
@@ -33,7 +34,7 @@ Die Werte für Xfce mit 29 Pixel Titelleiste stammen aus `serie-xvfb`
 ### Container-Prüfung
 
 Am 2026-10-20 in einem Container mit Ubuntu 24.04.5 LTS, Kernel
-6.18.44, x86_64, glibc 2.39. Ausgeführt von Claude.
+6.18.44, x86_64, glibc 2.39.
 
 - Tcl/Tk 8.6.14 aus den Ubuntu-Paketen `tcl8.6`, `tk8.6`.
 - Tcl/Tk 9.0.4 als Quellbau unter `/opt/tcl9`, Quellen daneben unter
@@ -177,16 +178,6 @@ wichtigsten:
   Tk-Fassungen nur über freetype (`readelf -d`).
 - *Tcl/Tk 9.0 bauen*: `libxi-dev` nötig wegen `XInput2.h`. Im
   Quelltext von Tk 9.0.4 kommt `XInput2` nicht vor.
-
----
-
-## KI-Unterstützung
-
-Text, Skripte und Beispiele sind im Dialog mit **Claude** (Anthropic)
-erarbeitet, im Oktober 2026. Claude hat die Howto-Serien ausgewertet und
-zu Kapiteln geordnet, die Beispielskripte geschrieben, die
-Container-Prüfung ausgeführt und den Tk-Quelltext gelesen. Die
-Ergebnisse vom Debian-Arbeitsplatz stammen aus den Serien des Autors.
 
 ---
 

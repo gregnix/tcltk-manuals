@@ -120,7 +120,8 @@ es SKIP.
 
 ## Howto-Serien
 
-Die Serien sind nicht veröffentlicht. Festgehalten ist hier, wie sie im
+Drei der Serien sind veröffentlicht (Kapitel 1). Festgehalten ist hier,
+wie alle fünf im
 Container liefen und mit welchem Ergebnis:
 
 ```bash

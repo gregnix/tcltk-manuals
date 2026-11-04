@@ -120,7 +120,8 @@ without it.
 
 ## Howto series
 
-The series are not published. Recorded here is how they ran in the
+Three of the series are published (chapter 1). Recorded here is how all
+five ran in the
 container and with what result:
 
 ```bash

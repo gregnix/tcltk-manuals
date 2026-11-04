@@ -1,6 +1,6 @@
 # Tcl/Tk unter Linux
 
-*Stand: 2026-11-03*
+*Stand: 2026-11-04*
 
 Ein deutschsprachiges Werkstattbuch für [Tcl/Tk]{.index} unter Linux:
 Plattformwert, mehrere Interpreter, XDG, Suchpfade der Distribution,
@@ -12,9 +12,11 @@ Die Beispiele verwenden Tcl 8.6 aus der Distribution und Tcl/Tk 9.0.4
 unter `/opt/tcl9`, auf Debian und Ubuntu mit X11 und Xfce 4.20.
 Grundlage sind fünf Howto-Serien des Autors (`serie-linux`,
 `serie-xvfb`, `serie-xfce`, `serie-tcltk-bauen`, `serie-tcl9-app`).
-Die Serien sind nicht veröffentlicht; Angaben wie „(`serie-linux`,
-Howto 08)“ nennen das Skript, mit dem ein Wert geprüft wurde. Zum
-Nachprüfen liegen die Skripte in `beispiele/` beim Buch.
+`serie-linux`, `serie-xvfb` und `serie-xfce` liegen im Repository
+`tcltk-manuals` unter [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien); die beiden anderen sind nicht
+veröffentlicht. Angaben wie „(`serie-linux`, Howto 08)“ nennen das
+Skript, mit dem ein Wert geprüft wurde. Zum
+Nachprüfen liegen die Skripte im Ordner `beispiele/` dieser Ausgabe.
 Rechner, Versionen und offene Prüfungen: Anhang F.
 
 Wichtig für Leser, die von Tk 8.6 kommen: Tk 9 meldet das Mausrad unter

@@ -164,10 +164,11 @@ this extension is compiled for Tcl 8.6
 "load /usr/lib/tcltk/sqlite3/libsqlite3.53.4.so"
 ```
 
-On lxpro under Debian's `tclsh9.0` and `tclsh9.1`. The index of
-`libsqlite3-tcl` offers the library for 8.6 to every version. Remedy
-and background in [Search paths](050-suchpfade.md), section *sqlite3
-under Debian's Tcl 9*.
+Under Debian's `tclsh9.0` and `tclsh9.1` with `libsqlite3-tcl` up to
+3.53.4-2; these versions are built for Tcl 8.6 only. Since 3.54.1-1
+the package ships a library for Tcl 9, and the message no longer
+appears. Background and a way for older versions in
+[Search paths](050-suchpfade.md), section *sqlite3 under Debian's Tcl 9*.
 
 ## Keine Berechtigung (permission denied) when installing to /usr/bin
 

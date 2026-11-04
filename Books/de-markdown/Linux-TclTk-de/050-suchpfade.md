@@ -39,7 +39,7 @@ in anderer Reihenfolge, aber nicht den Bibliotheksordner der Fassung.
 Der steht nur in `auto_path`, bei 8.6 vorn: `/usr/share/tcltk/tcl8.6`.
 Bei Debians `tclsh9.0` fehlt in `tcl_pkgPath` entsprechend
 `/usr/lib/tcl9.0`, bei `tclsh9.1` `/usr/lib/tcl9.1`.
-Debian unstable mit 8.6.18 auf lxpro liefert dieselbe Liste in
+Debian unstable mit 8.6.18 liefert dieselbe Liste in
 derselben Reihenfolge.
 
 Paketierte Bibliotheken liegen dort mit Versionsnummer im
@@ -54,7 +54,8 @@ System-Tcl sie ohne weitere Einstellung, und `apt` fasst sie nicht an.
 
 ## auto_path der Debian-Pakete für Tcl 9
 
-Auf lxpro, `tclsh9.0` aus dem Paket `tcl9.0`, ohne die Einträge aus
+Auf Debian unstable, `tclsh9.0` aus dem Paket `tcl9.0`, ohne die
+Einträge aus
 `TCLLIBPATH`:
 
 ```text
@@ -86,8 +87,9 @@ als ein einziger Eintrag:
 /usr/lib/tcltk /usr/share/tcltk/tcl9/9.0
 ```
 
-Module unter `/usr/share/tcltk/tcl9` findet Tcl 9 so nicht. Auf lxpro
-gibt es diese Ordner nicht, es fehlt also derzeit nichts.
+Module unter `/usr/share/tcltk/tcl9` findet Tcl 9 so nicht. Auf dem
+geprüften Debian unstable gibt es diese Ordner nicht, es fehlt also
+derzeit nichts.
 
 ---
 
@@ -112,7 +114,7 @@ Im Container brachte `/opt/tcl9/lib` eigene Fassungen mit: Tcllib 1.9
 Insgesamt kannte `tclsh9.0` nach einem `package require` auf ein
 fehlendes Paket 628 Paketnamen, `tclsh8.6` 584.
 
-Was `package require` auf lxpro (Debian forky/sid, Debian-Pakete,
+Was `package require` auf Debian forky/sid (Debian-Pakete,
 ohne `TCLLIBPATH`) liefert; `serie-tcltk-bauen`, Howto 10, nennt noch
 Thread 3.0.6 und tdbc 1.1.14:
 
@@ -201,7 +203,7 @@ db config dqs_ddl 0           ;# ebenso in CREATE TABLE …
 
 `tdbc::sqlite3` ist reines Tcl und braucht keinen eigenen Bau. Unter
 8.6 lädt Debians Modul, unter Tcl 9 jedes `sqlite3-1.1.15.tm` in einem
-tm-Pfad der Fassung, auf lxpro über `TCL9_0_TM_PATH`. Hat das Programm
+tm-Pfad der Fassung, etwa über `TCL9_0_TM_PATH`. Hat das Programm
 vorher ein Paket aus einem Index geladen, gewinnt bei gleicher Fassung
 der Index (Abschnitt *Welche Kopie gewinnt*).
 

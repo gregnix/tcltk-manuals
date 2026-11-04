@@ -4,7 +4,7 @@
 
 Handbuchseiten zu Tcl/Tk, Tcllib, Tklib und weiteren Erweiterungen als
 Markdown und PDF, englisch (Original) und deutsch (Übersetzung), dazu
-Bücher zu Tcl-Bibliotheken.
+Bücher zu Tcl-Bibliotheken und Howto-Serien zu den Büchern.
 
 > **Inoffiziell.** Eine unabhängige Sammlung, keine Veröffentlichung der
 > jeweiligen Projekte. Die Originaltexte stammen von deren Autoren und
@@ -20,13 +20,14 @@ Bücher zu Tcl-Bibliotheken.
 ## Inhalt
 
 Drei Gruppen, jede mit `en-markdown/`, `de-markdown/`, `en-pdf/` und
-`de-pdf/`.
+`de-pdf/`, dazu die Howto-Serien in `Serien/`.
 
 | Gruppe | Ordner | PDFs |
 |---|---|---|
 | `Tcl-family/` (Tcl-Familie) | `9.0/`, `8.6/` (Tcl und Tk; englisch auch die C-API in `tcl-c/`, `tk-c/`), `tcllib/`, `tklib/`, `pakete/` (Csaba Nemethi: tablelist, mentry, scrollutil, wcb, tsw) | `tcltk-9.0`, `tcltk-8.6`, `tcltk-*-capi` (en), `tcllib`, `tklib`, `tablelist`, `mentry`, `scrollutil`, `wcb`, `tsw`; **`tcl-family-index`**, **`nemethi-index`** |
 | `Extensions/` (Erweiterungen) | TDBC, Thread, [incr Tcl], BWidget, tDOM, tcltls, tclvfs, tcludp, tclhttpd, expect, mpexpr, mclistbox, tclws | `erweiterungen`, `bwidget` (nur BWidget) |
-| `Books/` (Bücher) | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcl-en`, `pdf4tcllib-de`, `pdf4tcllib-en`, `Tkutils-de`, `Tkutils-en`, `Mdserver-de`, `Mdserver-en` | gleichnamig |
+| `Books/` (Bücher) | `Tclutils-de`, `Tclutils-en`, `pdf4tcl-de`, `pdf4tcl-en`, `pdf4tcllib-de`, `pdf4tcllib-en`, `Tkutils-de`, `Tkutils-en`, `Mdserver-de`, `Mdserver-en`, `Utils-Stack-de`, `Utils-Stack-en`, `Linux-TclTk-de`, `Linux-TclTk-en` | gleichnamig |
+| `Serien/` (Howto-Serien) | `serie-linux`, `serie-xvfb`, `serie-xfce`: lauffähige Tcl-Demos mit Erklärung, zum Buch *Tcl/Tk unter Linux* | – |
 
 **Gesamtindex:** `Tcl-family/de-pdf/tcl-family-index-de.pdf` und
 `Tcl-family/en-pdf/tcl-family-index-en.pdf` führen die Stichwörter aller

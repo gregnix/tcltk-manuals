@@ -33,7 +33,8 @@ Befehle. Container-Prüfung, Arbeitsordner `/tmp`, `HOME=/root`:
 | `file home` | Fehler, unbekannt | `/root` |
 | `file tildeexpand ~/x` | Fehler, unbekannt | `/root/x` |
 
-Auf lxpro mit den Debian-Paketen, im Heimatordner gestartet, dasselbe
+Auf dem Debian-Arbeitsplatz mit den Debian-Paketen, im Heimatordner
+gestartet, dasselbe
 Bild: `tclsh` 8.6.18 liefert für `file normalize ~` den Heimatordner
 und für `file exists ~` 1, `tclsh9.0` 9.0.4 und `tclsh9.1` 9.1.0
 liefern `<Heimatordner>/~` und 0.
@@ -155,7 +156,7 @@ exec {*}[auto_execok xdg-user-dir] DOWNLOAD
 ```
 
 `xdg-user-dir` gehört zum Debian-Paket `xdg-user-dirs`. Im Container
-fehlt es; Howto 05 schlägt dort fehl. `beispiele/xdg-ordner.tcl` fällt
+fehlt es; Howto 05 überspringt dort. `beispiele/xdg-ordner.tcl` fällt
 in diesem Fall auf `HOME` zurück. Einen Ordner wie `~/Documents` fest
 einzutragen ist der häufigste Fehler dieses Abschnitts.
 

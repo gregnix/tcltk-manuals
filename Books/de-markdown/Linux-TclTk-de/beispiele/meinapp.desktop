@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=MeineApp
+Name[de]=Meine Anwendung
+Comment=Beispiel aus "Tcl/Tk unter Linux"
+Exec=/opt/meineapp/bin/meineapp %F
+Icon=meineapp
+Terminal=false
+Categories=Utility;
+StartupWMClass=Meineapp

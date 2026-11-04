@@ -207,7 +207,8 @@ dialog beforehand not exactly centered or not transient.
 
 `beispiele/spaeter-rahmen.tcl` shows both side by side. With 8.6.14
 and 9.0.4, without a window manager and with openbox, the result was
-the same, likewise on lxpro under Xvfb without a window manager with 8.6.18,
+the same, likewise on the Debian workstation under Xvfb without a window
+manager with 8.6.18,
 9.0.4 and 9.1.0:
 
 ```text

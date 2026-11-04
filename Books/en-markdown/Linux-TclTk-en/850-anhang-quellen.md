@@ -13,7 +13,8 @@ messages and commands, are shown in code blocks.
 
 ### The author's howto series
 
-The series are the author's companion material and not published.
+The series are the author's companion material; `serie-linux`,
+`serie-xvfb` and `serie-xfce` are under [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien).
 Each contains
 `README.md` with the section "Gemessen" (measured), `TUTORIAL.md`,
 `howto/00-referenz.md` and, for each howto, an explanation `NN-*.md`
@@ -33,7 +34,7 @@ The values for Xfce with a 29-pixel title bar come from `serie-xvfb`
 ### Container check
 
 On 2026-10-20 in a container with Ubuntu 24.04.5 LTS, kernel 6.18.44,
-x86_64, glibc 2.39. Run by Claude.
+x86_64, glibc 2.39.
 
 - Tcl/Tk 8.6.14 from the Ubuntu packages `tcl8.6`, `tk8.6`.
 - Tcl/Tk 9.0.4 as a source build under `/opt/tcl9`, sources next to it
@@ -178,16 +179,6 @@ Where results differ, the chapter says so. The most important ones:
   appears for all Tk versions only via freetype (`readelf -d`).
 - *Tcl/Tk 9.0 bauen*: `libxi-dev` needed because of `XInput2.h`. In
   the Tk 9.0.4 source code, `XInput2` does not occur.
-
----
-
-## AI assistance
-
-Text, scripts and examples were developed in dialog with **Claude**
-(Anthropic), in October 2026. Claude evaluated the howto series and
-arranged them into chapters, wrote the example scripts, ran the
-container check and read the Tk source code. The results from the
-Debian workstation come from the author's series.
 
 ---
 

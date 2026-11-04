@@ -1,6 +1,6 @@
 # Tcl/Tk on Linux
 
-*As of: 2026-11-03*
+*As of: 2026-11-04*
 
 A workshop book on [Tcl/Tk]{.index} on Linux: platform values, several
 interpreters, XDG, the distribution's search paths, encoding from the
@@ -15,10 +15,11 @@ names.
 The examples use Tcl 8.6 from the distribution and Tcl/Tk 9.0.4 under
 `/opt/tcl9`, on Debian and Ubuntu with X11 and Xfce 4.20. They are
 based on five howto series by the author (`serie-linux`, `serie-xvfb`,
-`serie-xfce`, `serie-tcltk-bauen`, `serie-tcl9-app`). The series are
-not published; notes like "(`serie-linux`, howto 08)" name the script
-a value was checked with. To check for yourself, use the scripts in
-`beispiele/` that come with the book. Machines, versions and open
+`serie-xfce`, `serie-tcltk-bauen`, `serie-tcl9-app`). `serie-linux`,
+`serie-xvfb` and `serie-xfce` are in the repository `tcltk-manuals`
+under [`Serien/`](https://github.com/gregnix/tcltk-manuals/tree/main/Serien); the other two are not published. Notes like
+"(`serie-linux`, howto 08)" name the script a value was checked with. To check for yourself, use the scripts in
+the folder `beispiele/` of this edition. Machines, versions and open
 checks: Appendix F.
 
 Important for readers coming from Tk 8.6: Tk 9 reports the mouse wheel

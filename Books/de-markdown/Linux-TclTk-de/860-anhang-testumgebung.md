@@ -46,7 +46,7 @@ Xfce-Werte stammen deshalb nur aus `serie-xfce`.
 | `beispiele/spaeter-rahmen.tcl` | Dialoglage bei spätem Rahmen | Tests |
 | `beispiele/utf8-wache.tcl` | UTF-8-Skript unter `LANG=C` mit 8.6 | Kodierung und Locale |
 | `beispiele/xdg-ordner.tcl` | XDG-Ordner und Benutzerordner, 8.6 und 9 | Pfade, Umgebung, XDG |
-| `serie-*/run-all.tcl` | alle Howtos einer Serie (nicht veröffentlicht) | siehe Kapitel 1 |
+| `serie-*/run-all.tcl` | alle Howtos einer Serie (drei veröffentlicht, Kapitel 1) | siehe Kapitel 1 |
 
 ---
 

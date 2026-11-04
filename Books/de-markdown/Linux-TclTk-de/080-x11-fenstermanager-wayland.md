@@ -224,8 +224,8 @@ Was unter XWayland anders ist (globale Fensterpositionen, Fokus aus
 fremden Programmen holen, Bildschirmfotos, Skalierung bei mehreren
 Bildschirmen), hängt am Compositor. Auf dem Arbeitsplatz des Autors
 läuft Xfce unter X11 (`serie-xfce`: `XDG_SESSION_TYPE=x11`,
-`WAYLAND_DISPLAY` leer); das Debian-Buch meldet für lxpro ebenfalls
-`x11`. Eine echte Wayland-Sitzung (GNOME, KDE, Xfce mit Wayland) ist
+`WAYLAND_DISPLAY` leer); das Debian-Buch meldet für den
+Debian-Arbeitsplatz ebenfalls `x11`. Eine echte Wayland-Sitzung (GNOME, KDE, Xfce mit Wayland) ist
 für dieses Buch **nicht geprüft**.
 
 ### XWayland unter Weston

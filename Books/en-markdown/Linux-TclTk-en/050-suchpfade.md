@@ -39,7 +39,7 @@ in a different order, but not the library directory of the version.
 That one is only in `auto_path`, at the front for 8.6: `/usr/share/tcltk/tcl8.6`.
 Correspondingly, Debian's `tclsh9.0` lacks `/usr/lib/tcl9.0` in
 `tcl_pkgPath`, and `tclsh9.1` lacks `/usr/lib/tcl9.1`.
-Debian unstable with 8.6.18 on lxpro returns the same list in
+Debian unstable with 8.6.18 returns the same list in
 the same order.
 
 Packaged libraries live there with the version number in the
@@ -54,7 +54,8 @@ system Tcl finds them without further configuration, and `apt` does not touch th
 
 ## auto_path of the Debian packages for Tcl 9
 
-On lxpro, `tclsh9.0` from the package `tcl9.0`, without the entries from
+On Debian unstable, `tclsh9.0` from the package `tcl9.0`, without the
+entries from
 `TCLLIBPATH`:
 
 ```text
@@ -87,7 +88,8 @@ as a single entry:
 ```
 
 Tcl 9 does not find modules under `/usr/share/tcltk/tcl9` this way. On
-lxpro these directories do not exist, so nothing is missing at present.
+the Debian unstable system checked, these directories do not exist, so
+nothing is missing at present.
 
 ---
 
@@ -112,7 +114,7 @@ In the container, `/opt/tcl9/lib` brought its own versions: Tcllib 1.9
 In total, after a `package require` for a
 missing package, `tclsh9.0` knew 628 package names, `tclsh8.6` 584.
 
-What `package require` returns on lxpro (Debian forky/sid, Debian packages,
+What `package require` returns on Debian forky/sid (Debian packages,
 without `TCLLIBPATH`); `serie-tcltk-bauen`, howto 10, still lists
 Thread 3.0.6 and tdbc 1.1.14:
 
@@ -201,7 +203,7 @@ db config dqs_ddl 0           ;# likewise in CREATE TABLE …
 
 `tdbc::sqlite3` is pure Tcl and needs no build of its own. Under 8.6
 Debian's module loads, under Tcl 9 any `sqlite3-1.1.15.tm` in a tm path
-of the version, on lxpro via `TCL9_0_TM_PATH`. If the program has loaded
+of the version, for example via `TCL9_0_TM_PATH`. If the program has loaded
 a package from an index before, the index wins at the same version
 (section *Which copy wins*).
 

@@ -16,7 +16,7 @@ laufende Tcl erkennt und wie sich die beiden Sorten unterscheiden.
 |----------|-----|--------|----------|
 | Distributionspaket Tcl 8.6 | `/usr/bin` | `tclsh8.6`, `wish8.6`, oft `tclsh` | Debian forky 8.6.18, Ubuntu 24.04 8.6.14 |
 | Distributionspaket Tcl 9.0 | `/usr/bin` | `tclsh9.0`, `wish9.0` | Debian forky 9.0.4 (`serie-tcltk-bauen`) |
-| Distributionspaket Tcl 9.1 | `/usr/bin` | `tclsh9.1`, `wish9.1` | Debian forky und unstable 9.1.0, lxpro |
+| Distributionspaket Tcl 9.1 | `/usr/bin` | `tclsh9.1`, `wish9.1` | Debian forky und unstable 9.1.0 |
 | Quellbau | `/opt/tcl9` | `/opt/tcl9/bin/tclsh9.0`, `wish9.0` | Container 9.0.4 |
 
 Welche Pakete die Debian-Zweige führen, darunter [`tcl9.0`]{.index}
@@ -34,10 +34,10 @@ November 2026 angekündigt, Tcl/Tk 9.0 für forky zu streichen; dann
 bliebe 9.1 neben 8.6. Standard bleibt 8.6: Pakete mit C-Teil
 baut Debian nur gegen 8.6, solange die Pakete `tcltk-defaults` nichts
 anderes sagen. Das Debian-Buch, Kapitel *Tcl
-unter Linux*, nennt die Lage auf den Rechnern des Autors: auf lxpro
-die Pakete für 8.6.18, 9.0.4 und 9.1.0 unter `/usr` und ein selbst
-gebautes 9.1.0 unter `/opt/tcl91`, auf decoder ein selbst gebautes 9.0.4 unter
-`/opt/tcl9`. Ubuntu 24.04 im Container hat nur 8.6.14 als Paket.
+unter Linux*, nennt die Lage auf den Rechnern des Autors: auf dem
+Debian-Arbeitsplatz die Pakete für 8.6.18, 9.0.4 und 9.1.0 unter
+`/usr` und ein selbst gebautes 9.1.0 unter `/opt/tcl91`, auf einem
+zweiten Rechner ein selbst gebautes 9.0.4 unter `/opt/tcl9`. Ubuntu 24.04 im Container hat nur 8.6.14 als Paket.
 
 Die Regeln aus dem Debian-Buch gelten hier unverändert: Ein eigenes Tcl
 nie nach `/usr` installieren, sondern nach `/opt`. Das Bauen selbst
@@ -88,7 +88,7 @@ Ordner `/opt/tcl9/lib/tcl9.0` aus `scriptdir,runtime` gibt es im
 Container nicht; er ist ein Rest der Bauvorgabe.
 
 Die Debian-Pakete für Tcl 9 legen die Bibliothek ohne Zipfs ab. Auf
-lxpro meldet `tclsh9.0` den Ordner `/usr/lib/tcl9.0`, `tclsh9.1` den
+dem Debian-Arbeitsplatz meldet `tclsh9.0` den Ordner `/usr/lib/tcl9.0`, `tclsh9.1` den
 Ordner `/usr/lib/tcl9.1`.
 
 ---
@@ -97,7 +97,8 @@ Ordner `/usr/lib/tcl9.1`.
 
 Debian trennt Tcl und Tk in eigene Pakete. Wer nur `tcl9.1` installiert,
 hat kein `wish9.1`, und `package require Tk` in `tclsh9.1` meldet
-trotzdem eine Fassung. Auf lxpro, ohne das Paket `tk9.1`:
+trotzdem eine Fassung. Auf dem Debian-Arbeitsplatz, ohne das Paket
+`tk9.1`:
 
 ```text
 % package require Tk
@@ -124,8 +125,8 @@ und `wish9.1` ist da.
 Ein Tcl unter `/opt` ist nur dann getrennt, wenn es auch seine eigene
 `libtcl` lädt. Die Datei heißt bei Debian und beim Quellbau gleich,
 `libtcl9.0.so`. Findet der Lader zuerst Debians Datei, läuft das
-Programm aus `/opt` mit Debians Bibliothek. Auf lxpro mit einem
-BAWT-Build 9.0.1 unter `/opt/Tcl`:
+Programm aus `/opt` mit Debians Bibliothek. Auf dem
+Debian-Arbeitsplatz mit einem BAWT-Build 9.0.1 unter `/opt/Tcl`:
 
 | Aufruf | `info patchlevel` | `$tcl_library` |
 |--------|-------------------|----------------|
@@ -152,7 +153,8 @@ Ein Alias reicht nicht: Er gilt nur in der interaktiven Shell, nicht in
 Skripten und Makefiles. Der Quellbau im Container nach `/opt/tcl9`
 braucht keine Startdatei: `readelf -d /opt/tcl9/bin/tclsh9.0` zeigt
 `RUNPATH` `/opt/tcl9/lib`, das Programm findet seine eigene Bibliothek
-vor der des Systems. Beim BAWT-Build auf lxpro greift kein solcher
+vor der des Systems. Beim BAWT-Build auf dem Debian-Arbeitsplatz greift
+kein solcher
 Eintrag; was dort steht, zeigt `readelf -d` auf dem Rechner selbst.
 
 ---

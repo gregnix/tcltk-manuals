@@ -47,7 +47,7 @@ only from `serie-xfce`.
 | `beispiele/spaeter-rahmen.tcl` | dialog position with a late frame | Tests |
 | `beispiele/utf8-wache.tcl` | UTF-8 script under `LANG=C` with 8.6 | Encoding and locale |
 | `beispiele/xdg-ordner.tcl` | XDG directories and user directories, 8.6 and 9 | Paths, environment, XDG |
-| `serie-*/run-all.tcl` | all howtos of a series (not published) | see chapter 1 |
+| `serie-*/run-all.tcl` | all howtos of a series (three published, chapter 1) | see chapter 1 |
 
 ---
 
