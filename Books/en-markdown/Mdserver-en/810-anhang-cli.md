@@ -12,6 +12,8 @@ From `mdstack/tools/mdserver/`, unless stated otherwise.
 tclsh mdserver.tcl --root /srv/md --port 8080 --bind 127.0.0.1 \
     --trusted-proxy 127.0.0.1 --control 8099 --title Dokumente
 tclsh mdctl.tcl --port 8099 ping
+tclsh mdctl.tcl --port 8099 status
+tclsh mdctl.tcl --port 8099 reload
 tclsh mdctl.tcl --port 8099 stop
 tclsh mdctl.tcl --host 127.0.0.1 --port 8099 --timeout 5000 stop
 ```
@@ -27,6 +29,8 @@ tclsh mdserver.tcl --root /srv/md --pdf-search 1     # Warnung, wenn tclutils fe
 tclsh mdserver.tcl --root /srv/md --pdf-search 0     # nur Markdown
 tclsh mdserver.tcl --root /srv/md --office-search 0  # Markdown and PDF only
 tclsh mdserver.tcl --root /srv/md --csv-view 0       # send CSV files unchanged
+tclsh mdserver.tcl --root /srv/md --office-view 0    # download office files instead of showing them
+tclsh mdserver.tcl --root /srv/md --viewcache 64     # more room for office and CSV pages
 tclsh mdserver.tcl --root /srv/md --pdf-worker 0     # PDFs im Serverprozess lesen
 ```
 
@@ -35,11 +39,21 @@ PDFs in the server process.
 
 ---
 
+## Limits
+
+```bash
+tclsh mdserver.tcl --root /srv/md --maxconn 500 --maxperaddr 64
+tclsh mdserver.tcl --root /srv/md --maxperaddr 0      # no limit per client
+```
+
+---
+
 ## Locally
 
 ```bash
 tclsh mdserver.tcl --root ../../docs --port 8080
 tclsh mdserver.tcl --root demo/docs --port 8080
+tclsh mdserver.tcl --root ../../docs --bind '*'    # in a trusted network
 tclsh mdserver.tcl --help
 ```
 
@@ -61,14 +75,19 @@ tclsh mdserver.tcl --root /srv/md --style sidebar --theme solarized
 
 ```
 /?q=control+port                  Volltextsuche (auch PDFs, je Seite)
+/?q=                              Suchtipps
+/?q=proxy&seite=2                 zweite Seite der Treffer
+/?q=proxy&format=json             Treffer als JSON
+/tabelle.xlsx?raw=1               die Datei statt der Seite
 /?nav=index                       alle Dokumente
 /doc.md?theme=dunkel              Dunkelmodus (site)
 /doc.md?style=plain&toc=0         älterer Stil ohne TOC
 /__mdserver/health                ok oder 503
 ```
 
-In order: full-text search (also PDFs, per page), all documents, dark
-mode (`site`), older style without TOC, health.
+In order: full-text search (also PDFs, per page), search tips, second
+page of hits, hits as JSON, the file instead of the page, all documents,
+dark mode (`site`), older style without TOC, health.
 
 ---
 

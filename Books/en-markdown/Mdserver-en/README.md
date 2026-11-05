@@ -1,11 +1,13 @@
 # mdserver — Manual
 
-*As of: 2026-10-27*
+*As of: 2026-11-05*
 
 Manual for the HTTP service [mdserver]{.index} **0.4**: Markdown served
 as HTML at request time, without Tk. With page layout `site`, full-text
-search over Markdown and (with tclutils) PDFs, and generated book
-landing pages. Module `tools/mdserver/lib/mdserver-0.4.tm` in the
+search over Markdown and (with tclutils) PDFs, office and CSV files,
+office and CSV files as a page, and generated book landing pages.
+Modules `tools/mdserver/lib/mdserver-0.4.tm`,
+`lib/mdserver/search-0.4.tm` and `lib/mdserver/view-0.4.tm` in the
 mdstack tree. The package documentation stays under
 `mdstack/tools/mdserver/doc/`.
 
@@ -13,7 +15,7 @@ This is the English edition. The German original is in `Mdserver-de/`
 next to this directory; both have the same file names.
 
 Tested with mdstack (parser 0.9.2, html 0.2), docir 0.1.1 (mdSource
-0.2, html 0.2), tclutils 0.68.0, Tcl 8.6.14 and 9.0.4.
+0.2, html 0.2), tclutils 0.69.0, Tcl 8.6.14 and 9.0.4.
 
 LXC, Samba, nginx and firewall: the textbook *Nginx* and the two LAN
 books. This book is the program, as a manual (`booktype manual`, rules

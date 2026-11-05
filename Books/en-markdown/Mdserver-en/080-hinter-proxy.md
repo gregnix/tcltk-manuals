@@ -14,6 +14,9 @@ nginx configuration, LXC and firewall are in *Nginx* and the LAN books.
 tclsh mdserver.tcl --root /srv/md --bind 127.0.0.1 --trusted-proxy 127.0.0.1
 ```
 
+`--bind 127.0.0.1` is the default; it stands here so the line leaves
+nothing to chance.
+
 `X-Forwarded-For` is read **only** if the peer is listed in
 `--trusted-proxy`. Otherwise anyone who reaches the port writes any
 address they like into the log.
@@ -37,6 +40,12 @@ Directory traversal is blocked. Every path component is resolved and
 checked against the root again: a link leading out of the root is
 **403**. `--root /srv/md` does not match `/srv/mdxyz`.
 
+The same holds for everything mdserver lists: header bar, sidebar, cards
+and `Alle Dokumente` show neither name nor title of a link leading out
+of the root. A folder link to one of its own parents is skipped in these
+lists instead of running in a circle. If `--root` itself is a link, its
+target is the root.
+
 Hidden files: `--dotfiles` (default off). Every path with a component
 that starts with a dot (`/.git/HEAD`, `/a/.env`) is then also **403**.
 The search leaves out the same folders and follows no symlink.
@@ -47,7 +56,10 @@ The search leaves out the same folders and follows no symlink.
 
 `POST` and other writing methods: 405. Line and header limits:
 `--maxline`, `--maxheader`. Slow loris: read timeout, one coroutine per
-connection.
+connection, plus `--maxconn` (200) and `--maxperaddr` (32). Behind the
+proxy, `--maxperaddr` does not count for its address as long as that is
+in `--trusted-proxy`; otherwise all further users would be turned away
+after 32 at once (chapter *HTTP Behaviour*).
 
 ---
 

@@ -13,9 +13,14 @@ in style `site`.
 **clean URL** — path without `.md`; the server looks for the file with
 the extension, also in subfolders.
 
-**concurrency** — one coroutine per connection, non-blocking I/O.
+**concurrency** — one coroutine per connection, non-blocking I/O, all
+in one thread.
 
-**control port** — localhost channel `ping` / `stop` (`mdctl.tcl`).
+**connection limit** — at most so many open connections, in all
+(`--maxconn`) and per client (`--maxperaddr`); over that 503.
+
+**control port** — localhost channel `ping`, `status`, `reload`, `stop`
+(`mdctl.tcl`).
 
 **dark mode** — dark colours in style `site`; following the system
 setting or via `theme=dunkel`.
@@ -27,13 +32,28 @@ with tclutils also over PDFs, ANDed.
 
 **health endpoint** — default `/__mdserver/health`.
 
+**listen address** — address on which mdserver accepts connections
+(`--bind`); default `127.0.0.1`, `*` for all interfaces.
+
 **manual page** — a man page converted to Markdown, first H1 `# NAME`;
 mdserver names it after `CommandName` or the NAME line.
+
+**office view** — a `.docx`, `.odt`, `.odp`, `.xlsx` or `.ods` as a
+page instead of a download (`--office-view`).
+
+**page cache** — finished office and CSV pages, kept until the file
+changes (`--viewcache`).
 
 **PDF worker** — a `tclsh` of its own per PDF (`lib/pdftext-worker.tcl`)
 that reads the text for the search, so that the server keeps answering.
 
 **range** — part of a file (206), for large PDFs.
+
+**search index** — text, title and words of all searched files, each
+with its mtime; built in the background after the start.
+
+**search tips** — foldable help on the search syntax on the result
+page, with examples from the documents themselves.
 
 **site style** — default page style: whole layout with header bar,
 sidebar, breadcrumbs, `Auf dieser Seite`.

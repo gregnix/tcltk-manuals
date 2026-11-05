@@ -6,10 +6,37 @@ Operating errors that look like "the server hangs".
 
 ---
 
-## No `--bind` in the LAN
+## Not Reachable in the LAN After the Update
 
-The port is open on all interfaces, without authentication. Behind
-nginx, `127.0.0.1` belongs there.
+Since November 2026 mdserver listens on `127.0.0.1` only without
+`--bind`. Whoever started it without `--bind` for the whole network so
+far now needs `--bind '*'` (with quotes) or the address of the
+interface. Behind nginx it stays `127.0.0.1`.
+
+---
+
+## `--bind '*'` Without Authentication
+
+The port is open on all interfaces, without authentication. The start
+banner warns ("Achtung: von anderen Rechnern erreichbar", reachable from
+other machines). Only in a trusted network, otherwise a proxy with
+authentication in front.
+
+---
+
+## 503 Behind the Proxy With Many Users
+
+`--maxperaddr` (32) counts per client address. Behind a proxy that is
+always the same one. The proxy's address belongs in `--trusted-proxy`;
+then only `--maxconn` counts.
+
+---
+
+## Search Finds Too Little After the Start
+
+The search index is built in the background after the start, a while
+for large collections. Until then the result page says how many files
+are still missing. Search again later.
 
 ---
 
@@ -54,6 +81,15 @@ mdstack alone is not enough. `mdstack::html` 0.2 needs five docir
 modules. From the repository: put `docir/` next to `mdstack/`. In an
 installation: `docir-0.1.1.tm` and `docir/` into the `lib/` next to
 `mdserver.tcl` (chapter *Starting*).
+
+---
+
+## `lib/mdserver/` Missing
+
+Whoever copied only `mdserver-0.4.tm` after the update gets
+`mdserver::search 0.4 not found` or `mdserver::view 0.4 not found` at
+the start. The folder `lib/mdserver/` with `search-0.4.tm` and
+`view-0.4.tm` belongs to it.
 
 ---
 
@@ -129,11 +165,11 @@ layer never gives a hit.
 
 ---
 
-## A CSV Cannot Be Downloaded
+## A CSV or Office File Cannot Be Downloaded
 
-In style `site` a link to a `.csv` opens the table page. The file itself
-comes from `file.csv?raw=1` (link at the top of the page), for all files
-`--csv-view 0`.
+A link to a `.csv` or an office file opens the table or text page, in
+every style. The file itself comes from `?raw=1` (link at the top of the
+page), for all files `--csv-view 0` or `--office-view 0`.
 
 ---
 

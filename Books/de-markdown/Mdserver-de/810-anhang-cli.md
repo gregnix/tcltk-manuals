@@ -12,6 +12,8 @@ Aus `mdstack/tools/mdserver/`, sofern nicht anders angegeben.
 tclsh mdserver.tcl --root /srv/md --port 8080 --bind 127.0.0.1 \
     --trusted-proxy 127.0.0.1 --control 8099 --title Dokumente
 tclsh mdctl.tcl --port 8099 ping
+tclsh mdctl.tcl --port 8099 status
+tclsh mdctl.tcl --port 8099 reload
 tclsh mdctl.tcl --port 8099 stop
 tclsh mdctl.tcl --host 127.0.0.1 --port 8099 --timeout 5000 stop
 ```
@@ -27,7 +29,18 @@ tclsh mdserver.tcl --root /srv/md --pdf-search 1     # Warnung, wenn tclutils fe
 tclsh mdserver.tcl --root /srv/md --pdf-search 0     # nur Markdown
 tclsh mdserver.tcl --root /srv/md --office-search 0  # nur Markdown und PDF
 tclsh mdserver.tcl --root /srv/md --csv-view 0       # CSV-Dateien unverändert ausliefern
+tclsh mdserver.tcl --root /srv/md --office-view 0    # Office-Dateien herunterladen statt zeigen
+tclsh mdserver.tcl --root /srv/md --viewcache 64     # mehr Platz für Office- und CSV-Seiten
 tclsh mdserver.tcl --root /srv/md --pdf-worker 0     # PDFs im Serverprozess lesen
+```
+
+---
+
+## Grenzen
+
+```bash
+tclsh mdserver.tcl --root /srv/md --maxconn 500 --maxperaddr 64
+tclsh mdserver.tcl --root /srv/md --maxperaddr 0      # keine Grenze je Absender
 ```
 
 ---
@@ -37,6 +50,7 @@ tclsh mdserver.tcl --root /srv/md --pdf-worker 0     # PDFs im Serverprozess les
 ```bash
 tclsh mdserver.tcl --root ../../docs --port 8080
 tclsh mdserver.tcl --root demo/docs --port 8080
+tclsh mdserver.tcl --root ../../docs --bind '*'    # im vertrauten Netz
 tclsh mdserver.tcl --help
 ```
 
@@ -56,6 +70,10 @@ tclsh mdserver.tcl --root /srv/md --style sidebar --theme solarized
 
 ```
 /?q=control+port                  Volltextsuche (auch PDFs, je Seite)
+/?q=                              Suchtipps
+/?q=proxy&seite=2                 zweite Seite der Treffer
+/?q=proxy&format=json             Treffer als JSON
+/tabelle.xlsx?raw=1               die Datei statt der Seite
 /?nav=index                       alle Dokumente
 /doc.md?theme=dunkel              Dunkelmodus (site)
 /doc.md?style=plain&toc=0         älterer Stil ohne TOC

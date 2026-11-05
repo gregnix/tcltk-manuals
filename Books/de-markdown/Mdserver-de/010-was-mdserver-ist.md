@@ -5,9 +5,13 @@
 [mdserver]{.index} **0.4** ist ein HTTP-Dienst in reinem Tcl (kein Tk).
 Er liefert Markdown-Dateien zur Laufzeit als HTML aus. Eine Coroutine
 pro Verbindung, non-blocking I/O: ein langsamer Client blockiert die
-anderen nicht.
+anderen nicht. Alles läuft in einem Thread; eine teure Anfrage hält die
+anderen auf, bis sie fertig ist (Kapitel *HTTP-Verhalten*, Abschnitt
+*Antwortzeiten*).
 
-Modul: `mdstack/tools/mdserver/lib/mdserver-0.4.tm`. Startskript:
+Module: `mdstack/tools/mdserver/lib/mdserver-0.4.tm`, die Suche in
+`lib/mdserver/search-0.4.tm` und die Office- und CSV-Ansicht in
+`lib/mdserver/view-0.4.tm`. Startskript:
 `mdstack/tools/mdserver/mdserver.tcl`.
 
 Dieses Handbuch beschreibt Start und Optionen, Navigation und Themes,
@@ -25,7 +29,9 @@ von Version zu Version stehen in der Paketdoku unter
 - Seitenlayout `site` als Vorgabe: Kopfleiste, Seitenleiste,
   Brotkrumen, „Auf dieser Seite“, Ordner als Kacheln, Dunkelmodus
 - Volltextsuche über alle `.md` der Wurzel: `/?q=Wörter`, mit tclutils
-  auch über PDFs, ein Treffer je Seite
+  auch über PDFs (ein Treffer je Seite), Office- und CSV-Dateien; mit
+  Suchtipps und Hilfe, wenn nichts gefunden wird
+- Office- und CSV-Dateien als Seite statt als Download (mit tclutils)
 - Ältere Stile `plain`, `sidebar`, `sticky`, `collapsible` mit Theme
   und TOC per Option und per URL
 - Navigation: Startseite, Gesamt-Index, Bereiche aus den Top-Level-Ordnern
@@ -39,9 +45,10 @@ Dual: Tcl **8.6** und **9.0**.
 ## Was es nicht tut
 
 Kein Parser eigener Syntax — rendert über mdstack und docir. Kein
-Reverse-Proxy, keine Anmeldung, keine Firewall. Hinter einem Proxy mit
-Anmeldung gehört `--bind 127.0.0.1`. Die LAN-Installation steht in den
-Büchern *Proxmox LXC nginx* und *Dokumentenserver LAN*.
+Reverse-Proxy, keine Anmeldung, keine Firewall. Ohne `--bind` horcht
+mdserver nur auf `127.0.0.1`; das passt hinter einem Proxy mit Anmeldung.
+Die LAN-Installation steht in den Büchern *Proxmox LXC nginx* und
+*Dokumentenserver LAN*.
 
 ---
 
@@ -60,7 +67,7 @@ Büchern *Proxmox LXC nginx* und *Dokumentenserver LAN*.
 | `mdstack::theme` | 0.1 | 0.1 | empfohlen |
 | `tclutils::tupdftext` | 0.1 | 0.1 (tclutils 0.68.0) | nur PDF-Suche |
 | `tclutils::tutask` | 0.2 | 0.2 (tclutils 0.68.0) | nur PDF-Worker |
-| `tclutils::tuodf`, `tudocx`, `tuxlsx` | 0.1 | 0.2, 0.1, 0.1 (tclutils 0.69.0) | nur Office-Dateien in der Suche |
+| `tclutils::tuodf`, `tudocx`, `tuxlsx` | 0.1 | 0.2, 0.1, 0.1 (tclutils 0.69.0) | nur Office-Dateien in Suche und Ansicht |
 | `tclutils::tucsv` | 0.2 | 0.2 (tclutils 0.69.0) | nur CSV als Tabelle |
 | `tclutils::tujson` | 0.1 | 0.1 (tclutils 0.69.0) | nur Suche als JSON |
 | `tclutils::common` | 0.3 | 0.3 (tclutils 0.69.0) | nein; PDF-Cache über `replaceFile`, sonst dasselbe von Hand |
@@ -97,7 +104,9 @@ Wo die Module liegen müssen, zeigt das Kapitel *Starten*.
 - Ein Dienst, ein Prozess, Markdown wird HTML.
 - 0.4 ist die Paketfassung aus `package provide mdserver`.
 - mdstack allein reicht nicht: fünf docir-Module gehören dazu.
-- tclutils ist freiwillig und schaltet die PDF-Suche ein.
+- tclutils ist freiwillig und schaltet PDF-, Office- und CSV-Dateien in
+  Suche und Ansicht ein.
+- Suche und Office-/CSV-Ansicht sind eigene Module neben dem Server-Modul.
 - Bind Loopback, wenn nginx davor sitzt.
 
 ---

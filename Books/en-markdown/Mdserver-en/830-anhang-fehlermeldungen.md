@@ -43,6 +43,16 @@ ERROR: mdserver 0.4 nicht gefunden: can't find package mdserver 0.4
 module. Check `lib/mdserver-0.4.tm` next to `mdserver.tcl`.
 
 ```
+ERROR: mdserver::search 0.4 not found (can't find package mdserver::search 0.4).
+       lib/mdserver/search-0.4.tm muss neben lib/mdserver-0.4.tm liegen.
+```
+
+("… must lie next to …".) The search is a module of its own. Put the
+folder `lib/mdserver/` with `search-0.4.tm` next to `mdserver-0.4.tm`.
+The same message with `mdserver::view` and `view-0.4.tm` means: the
+office and CSV view is missing.
+
+```
 ERROR: mdparser 0.2 not found: can't find package mdstack::parser 0.2
 ```
 
@@ -156,7 +166,7 @@ mdctl: keine Antwort von 127.0.0.1:8099
 | 416 | range not satisfiable (start beyond the end of the file); an unreadable Range header gives 200 |
 | 431 | one header line longer than `--maxline`, or all headers longer than `--maxheader` |
 | 501 | `?format=json` without `tclutils::tujson`: `format=json needs tclutils::tujson` |
-| 503 | health: root not readable |
+| 503 | health: root not readable; too many open connections (`--maxconn`, `--maxperaddr`), with `Retry-After: 1` |
 
 ---
 

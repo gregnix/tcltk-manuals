@@ -5,7 +5,8 @@
 `site` is the default style. It builds every page the same way, with a
 single stylesheet (`styles/site.css`) and no JavaScript. On top comes a
 [full-text search]{.index} over all Markdown files of the root, with
-tclutils also over PDFs, office and CSV files.
+tclutils also over PDFs, office and CSV files. With tclutils, mdserver
+also shows office and CSV files as a page.
 
 Why a style of its own: the older ones turned `<body>` into a grid. A
 long sidebar then pushed the text below a gap of its height.
@@ -76,10 +77,11 @@ the top the folder title, below it the first paragraph of the
 | Bücher (books) | folders with `book.tcl`, or a folder that holds books directly | badge "Buch", title, subtitle, languages |
 | Bereiche (sections) | other folders, if a `.md` or `.pdf` lies below them | title, first paragraph of `index.md` or `README.md` |
 | Dokumente (documents) | `.md` files except `index.md`, plus `.pdf` | H1 and first paragraph; for a PDF the file name, "PDF" and size |
-| Dateien (files) | everything else except `.md`, `.pdf`, `.tcl`, `.tsv`, `.css`; a `.csv` opens as a table | name, type, size in KB |
+| Dateien (files) | everything else except `.md`, `.pdf`, `.tcl`, `.tsv`, `.css`; a `.csv` or office file opens as a page | name, kind, size ("Word, 36 KB") |
 
-A folder that holds only PDFs counts as a folder of documents. It
-appears in the header bar, in the sidebar and among the cards. The
+A folder that holds only PDFs, office or CSV files counts as a folder of
+documents. It appears in the header bar, in the sidebar and among the
+cards. The
 sidebar of a folder lists its PDFs after the Markdown documents, marked
 "PDF".
 
@@ -133,8 +135,46 @@ as the header.
 | length | at most 2000 rows, below them a note with the total |
 | the file itself | `file.csv?raw=1` |
 
-The content is in the search as well (`typ:csv`). The older styles send
-the file unchanged. `--csv-view 0` turns the table page off.
+The content is in the search as well (`typ:csv`). The older styles show
+the same table page in their look. `--csv-view 0` turns the table page
+off; then the file is sent unchanged.
+
+---
+
+## Office Files as a Page
+
+With `--office-view auto` (the default) a click on an
+[office file]{.index} shows a page instead of a download, for every
+format whose module loads from tclutils:
+
+| File | Page | Module |
+|---|---|---|
+| `.docx` | paragraphs | `tudocx` |
+| `.odt`, `.odp` | paragraphs | `tuodf` |
+| `.xlsx` | one table per sheet, at most 2000 rows | `tuxlsx` |
+| `.ods` | one table per sheet, at most 2000 rows | `tuodf` |
+
+At the top stand the kind, the number of paragraphs or sheets and the
+link "herunterladen" (download) to `file.docx?raw=1`. A file that cannot
+be read shows the message and the same link. The start banner names the
+formats:
+
+```
+  Ansicht: .docx .odt .odp .ods .xlsx als Seite
+```
+
+**Page cache.** Reading a large table is expensive: an `.xlsx` with
+20,000 rows took 4.5 s, on every request, and every other request
+waited meanwhile. So a finished office or CSV page is kept until the
+file's modification time or size changes. From the second request on
+the same page takes 10 ms, also in another theme or style.
+`--viewcache` sets the limit in MB (default 32); when it is reached, the
+page not used for the longest time drops out. `--viewcache 0` turns the
+cache off.
+
+The modification time counts in seconds. Whoever changes a file within
+the same second to exactly the same size sees the old state until the
+next change.
 
 ---
 
@@ -157,7 +197,8 @@ Rules:
 - The search runs over the text without Markdown characters and without
   link targets.
 - Hits in the title (first H1) count more than hits in the text.
-- At most 50 hits, best first.
+- Best first, 50 per page; from 51 hits on it reads "1–50 von 213"
+  (of 213), with *zurück* and *weiter* (back, next; `seite=N`).
 
 [Search syntax]{.index} beyond plain words:
 
@@ -182,6 +223,27 @@ each with its title. The search itself still covers everything until a
 scope is chosen. From a book chapter that means: one click, and the
 search stays in the book.
 
+[Help on the result page]{.index} is there for readers who do not know
+the syntax. All of it works without JavaScript:
+
+| Part | What it shows |
+|---|---|
+| *Suchtipps* (search tips) | a foldable table of input, effect, example. The examples are links from the documents themselves: a frequent title word, an existing folder for `in:`, only the types that are on. Open on the empty search (`/?q=`) |
+| *Gesucht:* (searched for) | the query as understood, in parts (word, phrase, without, OR pair, scope, type); the × next to each searches without that part |
+| *Nichts gefunden* (nothing found) | "Überall suchen" (search everywhere) with the hit count when a scope or type is set; the count without the minus words and with the phrases as single words; "Meinten Sie" (did you mean) with up to three similar words from the documents; a note when a lower-case `or` or `oder` stands between words |
+| counts | hits per type and the three folders with the most hits, as links |
+
+"Meinten Sie" takes words with at most two differences (edit distance),
+folded like the search: `fenstr` suggests `fenster`.
+
+In the header bar the search field reads `Suchen: "Wortfolge" -ohne`
+(search: "phrase" -without); next to it `?` leads to the search tips.
+The key `/` jumps to the search field; that is the only
+small script, and it stays quiet when an input field already has the
+focus. While typing, the field suggests up to 200 document titles,
+higher levels first. That is a `<datalist>` from the search index,
+without a script.
+
 Each hit shows the title as a link, below it the folder path
 (`Bücher › Beispiel`, folder titles as in the breadcrumbs; empty for a
 file in the root) and a snippet of about 220 characters. It starts
@@ -193,6 +255,25 @@ search words are marked in it, also in mixed spellings: `groesse` marks
 and kept with its mtime; a new search rereads only changed files. Dot
 folders stay out (except with `--dotfiles 1`), symlinks always — as
 when serving.
+
+mdserver builds the [search index]{.index} right after the start, in
+the background: in steps of at most 50 ms, serving other requests in
+between. With 30,000 files that takes about 45 s, and pages come in
+about 10 ms meanwhile. A search does not wait for it. It answers with
+what is read so far and says so:
+
+```
+Der Suchindex wird nach dem Start noch aufgebaut; 22795 Dateien sind noch
+nicht gelesen und fehlen in dieser Liste. Später noch einmal suchen.
+```
+
+("The search index is still being built after the start; 22795 files
+are not read yet and are missing from this list. Search again later.")
+When at most 500 files are missing, the search reads the rest itself;
+with a small collection the build goes unnoticed. The title suggestions
+in the search field appear once the index is there. With
+`--pdf-worker 0` there is no build in the background; then the first
+search reads everything, the PDFs included.
 
 **PDFs.** If [`tclutils::tupdftext`]{.index} loads (tclutils 0.67.0 or
 later, on the module path or through `TCLUTILS_TM`), `?q=` also searches
@@ -292,17 +373,27 @@ formats:
 `tclutils::tujson`; without it mdserver answers **501**.
 
 ```json
-{"query":"proxy_pass","pending":0,"hits":[{"url":"/a/eins.md",
- "title":"Netzwerk","path":"A","snippet":"… der proxy_pass Wert.","score":1}]}
+{"query":"proxy_pass","pending":0,"indexing":0,"total":1,"page":1,"pages":1,
+ "hits":[{"url":"/a/eins.md","title":"Netzwerk","path":"A",
+ "snippet":"… der proxy_pass Wert.","score":1}]}
 ```
 
-`snippet` is plain text without `<mark>`; `pending` counts the PDFs the
-worker is still reading. A script or an editor can use the search this
-way without taking HTML apart.
+`snippet` is plain text without `<mark>`. `pending` counts the PDFs the
+worker is still reading, `indexing` the files the index has not read yet
+after the start. `total` counts all hits, `hits` are the 50 of page
+`page` (`&seite=N`). A script or an editor can use the search this way
+without taking HTML apart.
 
 **Older styles.** `?q=` works there too. The answer is a plain list
-"Suche: …" with title and folder path, without snippet. There is no
-search field.
+"Suche: …" with title and folder path, without snippet, plus *Gesucht:*,
+the help for *Nichts gefunden* and the pages. There is no search field.
+
+**Search and view as modules.** The code of the search lives in
+`lib/mdserver/search-0.4.tm` (class `mdserver::Search`), the office and
+CSV pages in `lib/mdserver/view-0.4.tm` (`mdserver::View`). Both are
+mixins of the server class: their methods run in the server object and
+share its variables. On their own they are of no use; in an installation
+the files have to lie next to `mdserver-0.4.tm` (chapter *Starting*).
 
 ---
 
@@ -314,13 +405,18 @@ search field.
 - Dark following the system or `theme=dunkel`; menu button below
   820 px.
 - Manual pages with `# NAME` are named after the command.
-- `/?q=` searches with AND, ignoring case, with umlaut folding.
+- `/?q=` searches with AND, ignoring case, with umlaut folding, 50 hits
+  per page.
+- Search tips, *Gesucht:*, help for *Nichts gefunden* with "Meinten Sie".
+- The search index is built in the background after the start; a search
+  meanwhile says how much is missing.
 - With tclutils (0.67.0 or later) also in PDFs, one hit per page
   (`file.pdf#page=N`); the text is cached outside the root.
 - Phrases in quotes, `-word`, `OR`, `in:` and `typ:`; *Bereich* and
   *Typ* on the result page.
-- With tclutils 0.69.0 also office files (ODF, DOCX, XLSX), CSV as a
-  table and the search as JSON (`format=json`).
+- With tclutils 0.69.0 also office files (ODF, DOCX, XLSX) in search
+  and view, CSV as a table and the search as JSON (`format=json`).
+- Office and CSV pages are kept until the file changes (`--viewcache`).
 
 ---
 

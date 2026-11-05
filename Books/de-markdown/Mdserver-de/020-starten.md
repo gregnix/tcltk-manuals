@@ -20,9 +20,21 @@ tclsh mdserver.tcl \
     --title Dokumente
 ```
 
-Ohne `--bind` horcht der Prozess auf **allen** Schnittstellen. Der Port
-ist dann ohne Anmeldung erreichbar. Die Startmeldung sagt es:
-`0.0.0.0:8080 (alle Schnittstellen)`.
+`--bind 127.0.0.1` ist die [Vorgabe]{.index}; hier steht es, damit die
+Zeile auch mit einer älteren Fassung dasselbe tut. Ohne `--bind` horcht
+mdserver nur auf diesem Rechner. Andere Rechner erreichen den Port erst
+mit `--bind '*'` (alle Schnittstellen) oder einer Adresse. Dann ist er
+ohne Anmeldung offen, und die Startmeldung sagt es:
+
+```
+  HTTP:  0.0.0.0:8080 (alle Schnittstellen)
+         http://localhost:8080/
+  Achtung: von anderen Rechnern erreichbar (--bind *); ohne Anmeldung davor nur im vertrauten Netz
+```
+
+Bis Anfang November 2026 hieß ein fehlendes `--bind` alle
+Schnittstellen. Wer sich darauf verlassen hat, braucht jetzt
+`--bind '*'`.
 
 Ohne `--style` gilt `site`, das ganze Seitenlayout. Das frühere
 Aussehen gibt `--style plain`.
@@ -38,6 +50,15 @@ tclsh mdserver.tcl --root ../../docs --port 8080
 Dann `http://127.0.0.1:8080/`. Startseite: `index.md` in der Wurzel.
 Fehlt sie, zeigt `site` die Ordner und Dokumente als Kacheln.
 
+Im Heimnetz, ohne Proxy, für vertraute Rechner:
+
+```bash
+tclsh mdserver.tcl --root ../../docs --port 8080 --bind '*'
+```
+
+Die Anführungszeichen braucht die Shell, sonst setzt sie für `*` die
+Dateinamen des Ordners ein.
+
 ---
 
 ## Module finden
@@ -48,7 +69,7 @@ zum Skript und nur, wenn es sie gibt:
 
 | Pfad | Inhalt |
 |---|---|
-| `lib` | `mdserver-0.4.tm` und `pdftext-worker.tcl`, bei einer Installation alle Module |
+| `lib` | `mdserver-0.4.tm`, `mdserver/search-0.4.tm`, `mdserver/view-0.4.tm` und `pdftext-worker.tcl`, bei einer Installation alle Module |
 | `../lib` | Alternative für eine eigene Ablage |
 | `../../lib` | das `lib/` von mdstack (`mdstack::parser`, `::html`, `::theme`) |
 | `../../../docir/lib/tm` | ein docir-Repo neben mdstack |
@@ -81,6 +102,9 @@ mdserver/
     collapsible.css
   lib/
     mdserver-0.4.tm
+    mdserver/
+      search-0.4.tm
+      view-0.4.tm
     pdftext-worker.tcl
     mdstack/
       parser-0.9.2.tm
@@ -94,9 +118,10 @@ mdserver/
       diagram-0.1.tm
 ```
 
-Die Unterordner `mdstack/` und `docir/` sind Teil des Paketnamens:
-für `docir::html` sucht Tcl die Datei `docir/html-0.2.tm`. Flach nebeneinander
-gelegt findet `package require` sie nicht.
+Die Unterordner `mdserver/`, `mdstack/` und `docir/` sind Teil des
+Paketnamens: für `docir::html` sucht Tcl die Datei `docir/html-0.2.tm`,
+für `mdserver::view` die Datei `mdserver/view-0.4.tm`. Flach
+nebeneinander gelegt findet `package require` sie nicht.
 
 Für die PDF-Suche kommt tclutils dazu. Der Launcher sucht es nicht
 selbst: entweder liegen `tclutils/common-0.3.tm`,
@@ -125,10 +150,10 @@ kein lesbares Verzeichnis mehr ist.
 
 - `--root` ist der Dokumentenbaum.
 - Hinter Proxy: Loopback, trusted-proxy, Control-Port.
-- Leer gelassenes `--bind` ist eine bewusste Öffnung, kein Default für
-  das LAN.
+- Ohne `--bind` nur dieser Rechner; `--bind '*'` öffnet bewusst für das
+  Netz, und die Startmeldung warnt.
 - Installation: alle Module in `lib/` neben dem Skript, mit den
-  Unterordnern `mdstack/` und `docir/`.
+  Unterordnern `mdserver/`, `mdstack/` und `docir/`.
 - PDF-Suche: tclutils in `lib/` oder über `TCLUTILS_TM`.
 
 ---

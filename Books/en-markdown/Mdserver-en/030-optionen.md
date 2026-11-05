@@ -2,8 +2,9 @@
 
 ## Introduction
 
-`tclsh mdserver.tcl [options]`. An empty default for `--bind` and
-`--trusted-proxy` means: all interfaces, `X-Forwarded-For` is ignored.
+`tclsh mdserver.tcl [options]`. The defaults are the careful ones:
+`--bind 127.0.0.1` (this machine only), `--trusted-proxy` empty
+(`X-Forwarded-For` is ignored), and limits for open connections.
 
 ---
 
@@ -12,17 +13,22 @@
 | Option | Default | Meaning |
 |---|---|---|
 | `--port` | `8080` | HTTP port |
-| `--bind` | empty | listen address. Empty = all interfaces |
+| `--bind` | `127.0.0.1` | listen address. `*`, empty or `0.0.0.0` = all interfaces; the start banner then warns |
+| `--maxconn` | `200` | open connections in all; over that an immediate 503 with `Retry-After: 1`. `0` = no limit |
+| `--maxperaddr` | `32` | open connections per client address; over that 503. Addresses in `--trusted-proxy` are not counted. `0` = no limit |
 | `--dotfiles` | `0` | serve `.git`, `.env` |
 | `--pdf-search` | `auto` | PDFs in the search: `auto` (when `tclutils::tupdftext` loads), `1`, `0` |
 | `--pdf-cache` | `$HOME/.cache/mdserver-pdf` | cache for the PDF text, outside the root. Without `HOME`, below the working directory |
 | `--pdf-worker` | `1` | read PDFs in a second `tclsh`; `0`: in the server process |
 | `--office-search` | `auto` | `.odt`, `.ods`, `.odp`, `.docx`, `.xlsx` in the search: `auto` (each format whose module loads), `1`, `0` |
-| `--csv-view` | `auto` | `.csv` as a table in style `site` and in the search: `auto` (when `tclutils::tucsv` 0.2 loads), `1`, `0` |
+| `--csv-view` | `auto` | `.csv` as a table page and in the search: `auto` (when `tclutils::tucsv` 0.2 loads), `1`, `0` |
+| `--office-view` | `auto` | office files as a page instead of a download: `auto` (every format whose module loads), `1`, `0` |
+| `--viewcache` | `32` | MB for finished office and CSV pages; a page is kept until the file's modification time or size changes. `0` = off |
 | `--trusted-proxy` | empty | peers whose `X-Forwarded-For` counts. Exact address, no mask |
 | `--maxline` | `8190` | bytes per line. Request line over that: 414, header line over that: 431. `0` = no limit |
 | `--maxheader` | `16384` | bytes of all headers; over that 431. `0` = no limit |
 | `--healthpath` | `/__mdserver/health` | health path |
+| `--statuspath` | empty | status as text over HTTP (as `mdctl.tcl status`); empty = off. Only behind authentication |
 | `--root` | `.` | document root |
 | `--theme` | `hell` | `hell`, `dunkel`, `solarized` (light, dark, solarized). In `site` only `dunkel` counts |
 | `--style` | `site` | page style: `site`, `plain`, `sidebar`, `sticky`, `collapsible` |
@@ -39,7 +45,7 @@
 
 Several proxies: `--trusted-proxy "127.0.0.1 10.0.0.5"`.
 
-For `--pdf-search`, `--pdf-worker`, `--office-search` and `--csv-view`,
+For `--pdf-search`, `--pdf-worker`, `--office-search`, `--office-view` and `--csv-view`,
 `off`, `no` and `false` also mean off. `--pdf-search 1` warns at the start when
 `tclutils::tupdftext` is missing; `auto` then turns the search off
 quietly.
@@ -74,7 +80,8 @@ folders stay out of what is searched.
 
 ## Summary
 
-- The dangerous defaults are bind and trusted proxy: empty.
+- The defaults are careful: `127.0.0.1` only, no trusted proxy, at most
+  200 connections, 32 per client.
 - The default style is `site`; `--style plain` gives the old look.
 - Styles are in `tools/mdserver/styles/` next to `lib/`.
 - The control port is optional, but the clean way to stop under systemd.

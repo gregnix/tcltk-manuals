@@ -4,7 +4,7 @@
 set title     "mdserver — Handbuch"
 set author    ""
 set subtitle  "Markdown im LAN: HTTP, Seitenlayout, Suche, Control-Port"
-set date      "2026-10-27"
+set date      "2026-11-05"
 set lang      "de"
 set titlePage 1
 set booktype  manual                 ;# Handbuch, siehe bookkit/doc/de/STYLE.md

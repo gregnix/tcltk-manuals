@@ -6,10 +6,36 @@ Betriebsfehler, die wie „der Server hängt“ aussehen.
 
 ---
 
-## Ohne `--bind` im LAN
+## Nach dem Update nicht mehr im LAN erreichbar
 
-Der Port ist auf allen Schnittstellen offen, ohne Anmeldung. Hinter nginx
-gehört `127.0.0.1` hin.
+Seit November 2026 horcht mdserver ohne `--bind` nur auf `127.0.0.1`.
+Wer ihn bisher ohne `--bind` für das ganze Netz gestartet hat, braucht
+jetzt `--bind '*'` (mit Anführungszeichen) oder die Adresse der
+Schnittstelle. Hinter nginx bleibt es bei `127.0.0.1`.
+
+---
+
+## `--bind '*'` ohne Anmeldung
+
+Der Port ist auf allen Schnittstellen offen, ohne Anmeldung. Die
+Startmeldung warnt („Achtung: von anderen Rechnern erreichbar“). Nur im
+vertrauten Netz, sonst Proxy mit Anmeldung davor.
+
+---
+
+## Hinter dem Proxy 503 bei vielen Nutzern
+
+`--maxperaddr` (32) zählt je Absenderadresse. Hinter einem Proxy ist das
+immer dieselbe. Die Adresse des Proxys gehört in `--trusted-proxy`; dann
+zählt nur noch `--maxconn`.
+
+---
+
+## Suche findet nach dem Start zu wenig
+
+Der Suchindex entsteht nach dem Start im Hintergrund, bei großen
+Beständen eine Weile. Bis dahin sagt die Ergebnisseite, wie viele
+Dateien noch fehlen. Später noch einmal suchen.
 
 ---
 
@@ -54,6 +80,15 @@ mdstack allein reicht nicht. `mdstack::html` 0.2 braucht fünf
 docir-Module. Aus dem Repo: `docir/` neben `mdstack/` legen. Bei einer
 Installation: `docir-0.1.1.tm` und `docir/` in das `lib/` neben
 `mdserver.tcl` (Kapitel *Starten*).
+
+---
+
+## `lib/mdserver/` fehlt
+
+Wer nach dem Update nur `mdserver-0.4.tm` kopiert hat, bekommt beim Start
+`mdserver::search 0.4 not found` oder `mdserver::view 0.4 not found`.
+Der Ordner `lib/mdserver/` mit `search-0.4.tm` und `view-0.4.tm` gehört
+dazu.
 
 ---
 
@@ -130,11 +165,12 @@ verbinden zwei Wörter zu „eins von beiden“.
 
 ---
 
-## Eine CSV lässt sich nicht herunterladen
+## Eine CSV- oder Office-Datei lässt sich nicht herunterladen
 
-Im Stil `site` öffnet ein Link auf eine `.csv` die Tabellenseite. Die
-Datei selbst liefert `datei.csv?raw=1` (Link oben auf der Seite), für
-alle Dateien `--csv-view 0`.
+Ein Link auf eine `.csv` oder eine Office-Datei öffnet die Tabellen-
+oder Textseite, in jedem Stil. Die Datei selbst liefert `?raw=1` (Link
+oben auf der Seite), für alle Dateien `--csv-view 0` bzw.
+`--office-view 0`.
 
 ---
 

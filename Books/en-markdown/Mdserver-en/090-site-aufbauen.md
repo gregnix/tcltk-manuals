@@ -19,6 +19,8 @@ arbeit/
     tools/
       mdserver/
         lib/mdserver-0.4.tm
+        lib/mdserver/search-0.4.tm
+        lib/mdserver/view-0.4.tm
         lib/pdftext-worker.tcl
         styles/
         mdserver.tcl

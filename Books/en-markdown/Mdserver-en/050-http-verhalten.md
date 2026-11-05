@@ -22,8 +22,12 @@ second number in the script.
 | `/directory/` | `index.md`, else book landing page (with `book.tcl`), else directory page |
 | `/book/index.md` without the file | book landing page, if `book.tcl` lies next to it |
 | `/?q=words` | full-text search |
+| `/?q=words&format=json` | search as JSON |
+| `/table.csv`, `/letter.docx` … | table or text page (`--csv-view`, `--office-view`) |
+| `/table.csv?raw=1` | the file itself |
 | `/?nav=index` | all documents as a tree |
 | `/__mdserver/health` | `ok` or 503 |
+| `--statuspath` | status as text, only when switched on |
 | `.css` `.js` images `.pdf` | file |
 | path with a dot component | 403 with `--dotfiles 0` |
 | unknown | 404 |
@@ -60,6 +64,50 @@ upwards, rendered through mdstack — with the same `?style=` parameters.
   longer than `--maxheader`: **431**.
 - After that the server goes on serving normally.
 
+On top come [connection limits]{.index}. mdserver keeps one coroutine per
+open connection until the request has arrived or the read timeout (15 s)
+strikes. Whoever opens many connections and sends nothing would
+otherwise keep the one thread busy alone.
+
+| Option | Default | over that |
+|---|---|---|
+| `--maxconn` | 200 in all | **503** with `Retry-After: 1` |
+| `--maxperaddr` | 32 per client address | **503** with `Retry-After: 1` |
+
+Over the limit mdserver answers without reading the request and closes.
+The log names the address and the reason:
+
+```
+[09:20:11] 503 127.0.0.1 -- zu viele Verbindungen von 127.0.0.1 (32)
+```
+
+("too many connections from …".) Behind a proxy all requests come from
+its address. That is why addresses in `--trusted-proxy` are not counted
+per address, only in all.
+
+---
+
+## Response Times
+
+Many small requests at the same time are no problem. An expensive
+request, however, holds up all others until it is done; there is only
+one thread. The figures come from a machine with two cores, Tcl 8.6,
+Markdown files of about 5 KB each:
+
+| Situation | 3,000 files | 30,000 files |
+|---|---|---|
+| small page, idle | 5 ms | 5 ms |
+| 20 clients at once, small page | 0.1 s for all | 0.1 s for all |
+| search index after the start (in the background) | 4–8 s | about 45 s |
+| small page while the index is built | 10 ms | 10 ms |
+| search | 0.1 s | 1 s |
+| search without hits, with "Meinten Sie" | 0.1 s | 1 s |
+| `Alle Dokumente` | 0.1–0.2 s | 0.8 s |
+
+Under Tcl 9.0 the values are of the same order. An `.xlsx` with 20,000
+rows as a page costs 4.5–7 s on the first request, 10 ms after that
+(`--viewcache`, chapter *Page Layout and Search*).
+
 ---
 
 ## Log
@@ -84,6 +132,7 @@ The note at the end says which way was taken:
 |---|---|
 | `markdown`, `index.md`, `book landing` | Markdown page, `index.md` of a folder, generated book landing page |
 | `directory index`, `site index`, `search` | directory page, `Alle Dokumente`, search |
+| `view csv`, `view xlsx` … | table or text page of a CSV or office file |
 | MIME type (`application/pdf`) | whole file, also after an `If-Range` that does not match |
 | `bytes A-B/SIZE`, `range` | 206, 416 |
 | `not modified` | 304 |
@@ -106,6 +155,10 @@ the note `search`.
 - Clean URLs without `.md`, also in subfolders.
 - Range and 304 apply to files, not only to Markdown.
 - 416 only for an unsatisfiable range; a broken Range header gives 200.
+- Too many open connections: an immediate 503 (`--maxconn`,
+  `--maxperaddr`).
+- An expensive request holds up the others; the search over 30,000 files
+  about 1 s.
 
 ---
 

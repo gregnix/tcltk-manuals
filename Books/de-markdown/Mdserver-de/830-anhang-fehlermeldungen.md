@@ -42,6 +42,16 @@ Der Launcher findet sein eigenes Modul nicht. `lib/mdserver-0.4.tm`
 neben `mdserver.tcl` prüfen.
 
 ```
+ERROR: mdserver::search 0.4 not found (can't find package mdserver::search 0.4).
+       lib/mdserver/search-0.4.tm muss neben lib/mdserver-0.4.tm liegen.
+```
+
+Die Suche ist ein eigenes Modul. Den Ordner `lib/mdserver/` mit
+`search-0.4.tm` neben `mdserver-0.4.tm` legen. Dieselbe Meldung mit
+`mdserver::view` und `view-0.4.tm` heißt: die Office- und CSV-Ansicht
+fehlt.
+
+```
 ERROR: mdparser 0.2 not found: can't find package mdstack::parser 0.2
 ```
 
@@ -155,7 +165,7 @@ keine Antwort. Rückgabe 1.
 | 416 | Bereich nicht erfüllbar (Anfang hinter Dateiende); unlesbarer Range-Kopf gibt 200 |
 | 431 | eine Kopfzeile länger als `--maxline` oder alle Köpfe länger als `--maxheader` |
 | 501 | `?format=json` ohne `tclutils::tujson`: `format=json needs tclutils::tujson` |
-| 503 | Health: Wurzel nicht lesbar |
+| 503 | Health: Wurzel nicht lesbar; zu viele offene Verbindungen (`--maxconn`, `--maxperaddr`), mit `Retry-After: 1` |
 
 ---
 

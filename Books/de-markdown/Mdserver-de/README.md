@@ -1,15 +1,16 @@
 # mdserver — Handbuch
 
-*Stand: 2026-10-27*
+*Stand: 2026-11-05*
 
 Handbuch für den HTTP-Dienst [mdserver]{.index} **0.4**: Markdown zur
 Laufzeit als HTML, ohne Tk. Mit Seitenlayout `site`, Volltextsuche über
-Markdown und (mit tclutils) PDFs und erzeugten Buch-Startseiten.
-Modul `tools/mdserver/lib/mdserver-0.4.tm` im mdstack-Baum. Die
-Paketdoku bleibt unter `mdstack/tools/mdserver/doc/`.
+Markdown und (mit tclutils) PDFs, Office- und CSV-Dateien, Office- und
+CSV-Dateien als Seite und erzeugten Buch-Startseiten. Module
+`tools/mdserver/lib/mdserver-0.4.tm`, `lib/mdserver/search-0.4.tm` und
+`lib/mdserver/view-0.4.tm` im mdstack-Baum. Die Paketdoku bleibt unter `mdstack/tools/mdserver/doc/`.
 
 Geprüft mit mdstack (parser 0.9.2, html 0.2), docir 0.1.1 (mdSource
-0.2, html 0.2), tclutils 0.68.0, Tcl 8.6.14 und 9.0.4.
+0.2, html 0.2), tclutils 0.69.0, Tcl 8.6.14 und 9.0.4.
 
 LXC, Samba, nginx und Firewall: Lehrbuch *Nginx* und die beiden
 LAN-Bücher. Dieses Buch ist das Programm, als Handbuch
