@@ -2,38 +2,64 @@ Copyright (c) 2026 Gregor Ebbing
 
 Text: Creative Commons Attribution-ShareAlike 4.0 International
 (CC BY-SA 4.0)
-The author's code examples: MIT License (below)
+Code: MIT License (below)
+Third-party material: license of the original
+
+---
+
+Scope
+
+The following licenses apply only to content for which the author
+holds the rights. Material taken from other projects is excluded
+(see "Third-party material").
 
 ---
 
 Text
 
-This book is licensed under the Creative Commons license
-"Attribution-ShareAlike 4.0 International" (CC BY-SA 4.0).
+Unless stated otherwise, all text written by the author for this book
+is licensed under the Creative Commons license
+"Attribution-ShareAlike 4.0 International" (CC BY-SA 4.0). This
+applies in particular to the chapters, appendices, README and other
+documentation.
 
-You may copy and redistribute the material in any medium or format and
-remix, transform and build upon it, for any purpose, even commercially,
-under the following terms:
+You are free to copy and redistribute the material in any medium or
+format, and to remix, transform and build upon it for any purpose,
+even commercially, under the following terms:
 
-* Attribution: You must give appropriate credit, provide a link to the
-  license, and indicate if changes were made.
+* Attribution: You must give appropriate credit, provide a link to
+  the license, and indicate if changes were made.
 
-* ShareAlike: If you remix, transform, or build upon the material, you
-  must distribute your contributions under the same license as the
-  original.
+* ShareAlike: If you remix, transform, or build upon the material,
+  you must distribute your contributions under the same license as
+  the original.
 
-The full license text is binding:
+The full legal code is binding:
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 ---
 
-Code examples
+Code
 
-The author's code examples (in the code blocks of the book and as
-scripts next to it) are additionally released under the MIT License.
-Code examples and quoted text taken from other projects (Tcl/Tk,
-pdf4tcl and others) keep the license of their original; the source is
-named where they appear.
+The programs and scripts written by the author for this book
+(examples, test scripts, tools) are licensed under the MIT License.
+
+Code examples within the text are additionally licensed under the
+MIT License. They may be used in your own code without the conditions
+of the CC license.
+
+---
+
+Third-party material
+
+Excerpts from other projects, such as examples from the Tcl/Tk,
+tcllib or Tablelist manual pages, are marked with their source and
+remain under the license of the original as stated by the respective
+project (for Tcl/Tk and tcllib the file license.terms). Larger
+excerpts, if any, are listed with source, copyright holder and
+license in THIRD-PARTY.md.
+
+---
 
 MIT License
 

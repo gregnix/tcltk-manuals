@@ -3,14 +3,24 @@ Copyright (c) 2026 Gregor Ebbing
 Text: Creative Commons Namensnennung - Weitergabe unter gleichen
 Bedingungen 4.0 International (CC BY-SA 4.0)
 Code: MIT-Lizenz (unten)
+Übernommenes Material: Lizenz des Originals
+
+---
+
+Geltungsbereich
+
+Die folgenden Lizenzen gelten nur für Inhalte, an denen der Autor die
+Rechte hat. Übernommene Inhalte anderer Projekte sind davon
+ausgenommen (siehe „Übernommenes Material“).
 
 ---
 
 Text
 
-Die Texte der Lernserien (README, TUTORIAL und die Markdown-Dateien
-der Howtos) sind unter der Creative-Commons-Lizenz
-„Attribution-ShareAlike 4.0 International“ (CC BY-SA 4.0) lizenziert.
+Alle vom Autor verfassten Texte der Lernserien stehen, soweit nicht
+anders gekennzeichnet, unter der Creative-Commons-Lizenz
+„Attribution-ShareAlike 4.0 International“ (CC BY-SA 4.0). Das gilt
+insbesondere für README, TUTORIAL und die Markdown-Dateien der Howtos.
 
 Sie dürfen das Material in jedwedem Format oder Medium vervielfältigen
 und weiterverbreiten sowie es remixen, verändern und darauf aufbauen,
@@ -34,11 +44,25 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Code
 
-Die Tcl-Skripte des Autors (Howtos, Läufer, Kern und Werkzeuge) und
-die Codeblöcke in den Texten stehen unter der MIT-Lizenz. Übernommene
-Codebeispiele und zitierte Texte aus anderen Projekten (Tcl/Tk,
-Tablelist und andere) behalten die Lizenz ihres Originals; die Quelle ist
-jeweils angegeben.
+Die vom Autor geschriebenen Tcl-Skripte (Howtos, Läufer, Kern und
+Werkzeuge) stehen unter der MIT-Lizenz.
+
+Codebeispiele innerhalb der Texte stehen zusätzlich unter der
+MIT-Lizenz. Sie dürfen ohne die Bedingungen der CC-Lizenz in eigenen
+Code übernommen werden.
+
+---
+
+Übernommenes Material
+
+Ausschnitte aus anderen Projekten, etwa Beispiele aus den
+Handbuchseiten von Tcl/Tk, tcllib oder Tablelist, sind mit ihrer
+Quelle gekennzeichnet und bleiben unter der Lizenz ihres Originals,
+wie sie das jeweilige Projekt angibt (bei Tcl/Tk und tcllib die Datei
+license.terms). Größere Übernahmen stehen, falls vorhanden, mit Quelle,
+Rechteinhaber und Lizenz in THIRD-PARTY.md.
+
+---
 
 MIT License
 

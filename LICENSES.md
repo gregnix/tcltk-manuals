@@ -72,13 +72,23 @@ original pages stay with each page.
 
 | Ordner / folder | Lizenz / license |
 |---|---|
-| `de-markdown/Tclutils-de`, `en-markdown/Tclutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/pdf4tcl-de`, `en-markdown/pdf4tcl-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/pdf4tcllib-de`, `en-markdown/pdf4tcllib-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/Tkutils-de`, `en-markdown/Tkutils-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/Mdserver-de`, `en-markdown/Mdserver-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/Utils-Stack-de`, `en-markdown/Utils-Stack-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
-| `de-markdown/Linux-TclTk-de`, `en-markdown/Linux-TclTk-en` | Text CC BY-SA 4.0, Code-Beispiele MIT (`LICENSE`) |
+| `de-markdown/Tclutils-de`, `en-markdown/Tclutils-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/pdf4tcl-de`, `en-markdown/pdf4tcl-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/pdf4tcllib-de`, `en-markdown/pdf4tcllib-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/Tkutils-de`, `en-markdown/Tkutils-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/Mdserver-de`, `en-markdown/Mdserver-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/Utils-Stack-de`, `en-markdown/Utils-Stack-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+| `de-markdown/Linux-TclTk-de`, `en-markdown/Linux-TclTk-en` | Text CC BY-SA 4.0, Code MIT (`LICENSE`) |
+
+Die Lizenzen gelten nur für Inhalte, an denen der Autor die Rechte hat.
+Codebeispiele in den Texten stehen zusätzlich unter MIT und dürfen ohne
+die CC-Bedingungen übernommen werden. Übernommene Ausschnitte anderer
+Projekte behalten die Lizenz ihres Originals.
+
+The licenses cover only content the author holds the rights to. Code
+examples within the text are additionally MIT licensed and may be used
+without the CC conditions. Excerpts from other projects keep the license
+of their original.
 
 Der Lizenztext steht als letztes Kapitel in jedem Buch-PDF (bookkit,
 `book-build.tcl`). / The license text is the last chapter of every book PDF.
@@ -86,8 +96,10 @@ Der Lizenztext steht als letztes Kapitel in jedem Buch-PDF (bookkit,
 ## Howto-Serien / Howto series (`Serien/`)
 
 Jede Serie hat ihre eigene `LICENSE`: Texte CC BY-SA 4.0, Tcl-Skripte
-MIT, © 2026 Gregor Ebbing. / Each series has its own `LICENSE`: texts
-CC BY-SA 4.0, Tcl scripts MIT.
+und Codebeispiele MIT, übernommene Ausschnitte unter ihrer
+Originallizenz, © 2026 Gregor Ebbing. / Each series has its own
+`LICENSE`: texts CC BY-SA 4.0, Tcl scripts and code examples MIT,
+excerpts from other projects under their original license.
 
 ## Skripte / Scripts (`scripts/`)
 
