@@ -2,7 +2,8 @@
 
 Der Katalog nennt die Prozedursignaturen der öffentlichen Befehle, in der
 Reihenfolge der Quelldatei `lib/tm/tkutils/<modul>-<version>.tm`. Er ist
-aus den Quellen von tkutils 0.49.0 erzeugt. Optionen, Rückgaben,
+aus den Quellen von tkutils 0.49.0 und dem Stand danach (`tkudialog` 0.4,
+`tkulayoutcanvas` 0.2, `tkutemplate` 0.1) erzeugt. Optionen, Rückgaben,
 Fehlercodes und Nebenwirkungen stehen in den Kapiteln und in
 `docs/<modul>.md`.
 
@@ -10,7 +11,7 @@ Fehlercodes und Nebenwirkungen stehen in den Kapiteln und in
 nimmt Optionen oder eine variable Zahl von Argumenten; ein Paar
 `{name wert}` ist ein Argument mit Vorgabe.
 
-Module mit Einträgen: **78** von 79. `tkutltools` hat keine eigenen
+Module mit Einträgen: **79** von 80. `tkutltools` hat keine eigenen
 Befehle; es lädt die zehn `tkutl*`-Helfer.
 
 ## `tkuaction`
@@ -224,7 +225,7 @@ Quelle: `lib/tm/tkutils/tkudhash-0.1.tm`.
 
 ## `tkudialog`
 
-Quelle: `lib/tm/tkutils/tkudialog-0.3.tm`.
+Quelle: `lib/tm/tkutils/tkudialog-0.4.tm`.
 
 ```tcl
 ::tkutils::tkudialog::choose {win id}
@@ -534,7 +535,7 @@ Quelle: `lib/tm/tkutils/tkulauncher-0.4.tm`.
 
 ## `tkulayoutcanvas`
 
-Quelle: `lib/tm/tkutils/tkulayoutcanvas-0.1.tm`.
+Quelle: `lib/tm/tkutils/tkulayoutcanvas-0.2.tm`.
 
 ```tcl
 ::tkutils::tkulayoutcanvas::widget {path args}
@@ -907,6 +908,25 @@ Quelle: `lib/tm/tkutils/tkutags-0.1.tm`.
 ::tkutils::tkutags::addTag {path tag}
 ::tkutils::tkutags::removeTag {path tag}
 ::tkutils::tkutags::clear {path}
+```
+
+## `tkutemplate`
+
+Quelle: `lib/tm/tkutils/tkutemplate-0.1.tm`.
+
+```tcl
+::tkutils::tkutemplate::widget {path args}
+::tkutils::tkutemplate::getTemplate {path}
+::tkutils::tkutemplate::setTemplate {path tpl}
+::tkutils::tkutemplate::setSample {path data}
+::tkutils::tkutemplate::select {path id}
+::tkutils::tkutemplate::setBlock {path id args}
+::tkutils::tkutemplate::addBlock {path id {type text}}
+::tkutils::tkutemplate::deleteBlock {path id}
+::tkutils::tkutemplate::moveBlock {path id dir}
+::tkutils::tkutemplate::loadFile {path file}
+::tkutils::tkutemplate::saveFile {path file}
+::tkutils::tkutemplate::preview {path {file ""}}
 ```
 
 ## `tkutical`

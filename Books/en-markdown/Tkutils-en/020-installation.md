@@ -74,6 +74,11 @@ Over a 0.46.0 tree, the file `lib/tm/tkutils-0.46.0.tm` instead of
 - `tkutlfmt-0.2.tm`, `tkutlfooter-0.2.tm`, `tkutlstate-0.2.tm`
 - `tkulauncher-0.2.tm`, `tkuload-0.2.tm`
 
+After 0.49.0 (no new version number yet): `tkudialog` 0.4,
+`tkulayoutcanvas` 0.2, new `tkutemplate` 0.1. Whoever copies this state
+over 0.49.0 deletes `tkudialog-0.3.tm` and `tkulayoutcanvas-0.1.tm` in
+`lib/tm/tkutils/`.
+
 The lists come from comparing the trees of 0.46.0 to 0.49.0. If an older
 file stays behind, `package require` still loads the higher version;
 `tools/check-modules.tcl` reports the duplicate.
@@ -157,8 +162,13 @@ macOS (Darwin 27, arm64, Tcl/Tk 9.0.4 with Aqua) the suite passed without
 failures before the write-error tests: 83 files, 938 tests, 896 passed,
 42 skipped. On Windows the same state also passed without failures:
 Tcl/Tk 8.6.17 927 passed, 11 skipped; Tcl/Tk 9.0.4 935 passed, 3
-skipped. Environment and results of
-0.46.0: [Appendix G](860-anhang-testumgebung.md).
+skipped.
+
+State after 0.49.0 (`tkudialog` 0.4, `tkulayoutcanvas` 0.2, `tkutemplate`
+0.1), Linux under Xvfb, without tical, with pdf4tcl 0.9.4.74: 84 files,
+975 tests, 0 failures. Under Tcl/Tk 8.6.14 932 passed and 43 skipped,
+under 9.0.4 941 and 34; 30 of them need tical in each case. Environment
+and results of 0.46.0: [Appendix G](860-anhang-testumgebung.md).
 
 ---
 

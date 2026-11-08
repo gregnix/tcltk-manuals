@@ -1,11 +1,11 @@
 # tkutils
 
-*Stand: 2026-10-27*
+*Stand: 2026-11-08*
 
 Handbuch für [tkutils]{.index} **0.49.0**: Tk-Widgets über den Engines
 aus tclutils. Dialoge, Dateiliste, tablelist und ihre Helfer, Geometrie,
-Aktionen, Gerüst, Eingabe, Kalender und Notizen, Datenansicht, Designer,
-Bilder und die App tkdevtools.
+Aktionen, Gerüst, Eingabe, Kalender und Notizen, Datenansicht, Designer
+und Vorlagen, Bilder und die App tkdevtools.
 
 Paarung: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils **0.5**
 (mindestens tclutils 0.64.0; den CSV-Export von `tkutablelist` erst mit

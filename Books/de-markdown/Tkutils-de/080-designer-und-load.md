@@ -89,9 +89,10 @@ Details: `docs/tkuload.md` im tkutils-Baum.
 
 ## Seitenlayout: tkulayoutcanvas
 
-[tkulayoutcanvas]{.index} 0.1 setzt benannte Blöcke auf eine Seite in
+[tkulayoutcanvas]{.index} 0.2 setzt benannte Blöcke auf eine Seite in
 Millimetern. Die Engine ist `tclutils::tulayout`. Feine Schrift und
-Spalten bleiben in der Anwendung.
+Spalten bleiben in der Anwendung oder in `tkutemplate` (nächster
+Abschnitt).
 
 ```tcl
 ::tkutils::tkulayoutcanvas::widget     $pfad ?option wert ...?
@@ -111,9 +112,114 @@ Spalten bleiben in der Anwendung.
 | `-scale` | `3.0` | Pixel je mm |
 | `-blocks` | `{}` | Dict der Blöcke |
 | `-definitions` | `{}` | Katalog: Beschriftung und Größe je Id |
+| `-blockorder` | `{}` | Reihenfolge der Blöcke; sonst aus den Definitionen, sonst sortiert |
+| `-onchange` | `{}` | `befehl $pfad $blöcke` nach Ziehen oder Eingabe |
+| `-onselect` | `{}` | `befehl $pfad $id`, wenn ein Block gewählt wird (Seite, Liste, `select`); neu in 0.2 |
 
 `mergePreset` übernimmt aus einer Vorlage nur die genannten Schlüssel,
 Vorgabe `x`, `y`, `w` und `show`.
+
+Ein Block mit `y 0` oder `lockedY 1` steht im Fluss: Seine Lage ergibt
+erst der Renderer. Die Seite zeigt ihn seit 0.2 zwei Millimeter unter dem
+sichtbaren Block davor, wo ihn ein Renderer hinsetzt, der so fließt. Bis
+0.1 stapelte sie solche Blöcke ab dem oberen Rand in Schritten von 12 mm.
+
+```tcl
+package require tkutils::tkulayoutcanvas
+tkutils::tkulayoutcanvas::widget .lc -blockorder {kopf tabelle fuss} -blocks {
+    kopf    {x 20 y 25 w 170 h 15}
+    tabelle {x 20 y 55 w 170 h 40}
+    fuss    {x 20 y 0  w 170 h 10}
+} -onselect {apply {{p id} { puts "gewählt: $id" }}}
+pack .lc -fill both -expand 1
+tkutils::tkulayoutcanvas::select .lc kopf   ;# gibt "gewählt: kopf" aus
+dict get [tkutils::tkulayoutcanvas::getBlocks .lc] fuss y   ;# -> 0.0
+```
+
+Die Seite zeigt `fuss` bei 97 mm: `tabelle` endet bei 55 + 40 = 95 mm.
+
+`getBlocks` liefert nur die Schlüssel, die `tulayout` kennt (`label x y w
+h show lockedY`). Wer Blöcke mit weiteren Schlüsseln durch die Seite
+schickt, mischt das Ergebnis mit `tulayout::mergeLayout` zurück, sonst
+fehlen sie danach.
+
+---
+
+## Vorlagen: tkutemplate
+
+[tkutemplate]{.index} 0.1 bearbeitet eine ganze Dokumentvorlage im Format
+von `pdf4tcltemplate` (pdf4tcllib): Papier, Ränder, Farben und Blöcke mit
+Typ (`text`, `pairs`, `table`, `image`, `rule`), Schrift, Ausrichtung,
+Text mit Platzhaltern und Tabellenspalten. Die Lage der Blöcke setzt
+`tkulayoutcanvas`; alles andere steht in drei Reitern daneben: *Block*,
+*Columns*, *Page*. Was von der Seite zurückkommt, mischt `tkutemplate` mit
+`mergeLayout` (Schlüssel `x y w show`) in die Vorlage; kein anderes
+Attribut geht verloren.
+
+```tcl
+::tkutils::tkutemplate::widget      $pfad ?option wert ...?
+::tkutils::tkutemplate::getTemplate $pfad
+::tkutils::tkutemplate::setTemplate $pfad $vorlage
+::tkutils::tkutemplate::setSample   $pfad $daten
+::tkutils::tkutemplate::select      $pfad $id
+::tkutils::tkutemplate::addBlock    $pfad $id ?typ?
+::tkutils::tkutemplate::deleteBlock $pfad $id
+::tkutils::tkutemplate::moveBlock   $pfad $id up|down
+::tkutils::tkutemplate::setBlock    $pfad $id schlüssel wert ?schlüssel wert ...?
+::tkutils::tkutemplate::loadFile    $pfad $datei
+::tkutils::tkutemplate::saveFile    $pfad $datei
+::tkutils::tkutemplate::preview     $pfad ?datei?
+```
+
+| Option | Vorgabe | Wirkung |
+|---|---|---|
+| `-template` | `{blocks {}}` | die Vorlage |
+| `-sample` | `{}` | Musterdaten für die Vorschau |
+| `-onchange` | `{}` | `befehl $pfad $vorlage` nach jeder Änderung |
+| `-scale`, `-gridmm` | `2.5`, `5` | Pixel je mm, Raster in mm |
+| `-font`, `-fontbold` | `{}` | Schriften der Vorschau; sonst die TrueType-Schriften von pdf4tcllib |
+
+`setBlock` prüft, was es setzt: Zahlen, Wahrheitswerte, `type`, `page`,
+`align`, Farbe als Name aus dem Thema oder `r g b`. Ein leerer Wert
+entfernt den Schlüssel, außer bei `type` und `cols`. Ein Block, der zur
+Tabelle wird, bekommt zwei Spalten, ein Bild eine Höhe. `moveBlock`
+ändert die Reihenfolge, und die zählt: Ein Block mit `y 0` folgt dem
+davor.
+
+```tcl
+package require tkutils::tkutemplate
+tkutils::tkutemplate::widget .te -template {
+    paper a4 margin 20 size 10
+    blocks {
+        kopf    {x 20 y 18 w 110 size 18 bold 1}
+        tabelle {type table x 20 y 100 w 170 cols {pos text}}
+        schluss {x 20 y 0 w 170 gap 8 text "Danke, {name}."}
+    }
+} -sample {kopf Gärtnerei name Kunde tabelle {{pos 1 text Rose}}}
+pack .te -fill both -expand 1
+tkutils::tkutemplate::setBlock .te kopf size 20 align center
+dict get [tkutils::tkutemplate::getTemplate .te] blocks kopf
+    ;# -> x 20 y 18 w 110 size 20 bold 1 align center
+catch {tkutils::tkutemplate::setBlock .te kopf align mitte} m o
+dict get $o -errorcode            ;# -> TKUTILS TKUTEMPLATE VALUE
+```
+
+**Vorschau.** `preview` zeichnet die Vorlage mit `-sample` in ein PDF
+und gibt die Datei zurück (ohne Angabe eine temporäre); der Knopf
+*Preview* öffnet sie mit `tclutils::tuopen`. Blöcke ohne Musterdaten
+bekommen einen Platzhalter, damit jeder Block im PDF steht.
+`pdf4tcltemplate` und `pdf4tcl` lädt erst die Vorschau; der Editor selbst
+braucht nur Tk, tclutils und `tkulayoutcanvas`. Fehlt eins von beiden,
+meldet `preview` `{TKUTILS TKUTEMPLATE PREVIEW}`. pdf4tcllib lädt auch
+ohne pdf4tcl; `preview` prüft deshalb beide.
+
+**Dateien.** `saveFile` schreibt die Vorlage als Tcl, einen Block je
+Zeile; `loadFile` liest sie zurück, das Ergebnis gleicht der
+gespeicherten Vorlage. Die Höhe, die die Seite zeigt, ist eine Schätzung
+aus Typ und Musterdaten und wird nicht gespeichert.
+
+Launcher `bin/tkutemplate.tcl ?vorlage.tcl?`, Demo
+`examples/demo-tkutemplate.tcl`.
 
 ---
 
@@ -125,11 +231,17 @@ Vorgabe `x`, `y`, `w` und `show`.
   `setValue`/`getValue`/`fill`/`collect`.
 - Pflicht für Dateiblick: nein.
 - `tkulayoutcanvas` setzt Blöcke in Millimetern. Die Engine ist `tulayout`.
+  Blöcke im Fluss stehen in der Vorschau unter dem Block davor.
+- `tkutemplate` bearbeitet eine ganze Vorlage für `pdf4tcltemplate`; die
+  Vorschau braucht pdf4tcllib und pdf4tcl.
 
 ::: {.info}
 **Getestet mit** Tcl/Tk 8.6.14 und 9.0.4 unter Linux und Xvfb: das
 Beispiel mit `slot`, die Größen des Platzhalters, die Fehler von
 `tkuload`.
+
+Die Beispiele zu `tkulayoutcanvas` 0.2 und `tkutemplate` 0.1 unter
+Tcl/Tk 8.6.14 und 9.0.4; die Vorschau mit pdf4tcl 0.9.4.74.
 
 **Nicht getestet:** die App Dateiblick.
 :::

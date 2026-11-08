@@ -24,6 +24,10 @@
 | `ITEM_EXISTS` in tkufiletree | vor 0.46.0: Punkt-Dateien doppelt unter Windows |
 | `{TKUTILS TKCANVASPNG WINDOW}` / `EMPTY` | tkucanvaspng: Fenster fehlt / Fläche leer |
 | `{TKUTILS TKUICON NOSVG}` | tkuicon: SVG ohne tksvg unter Tk 8.6 |
+| `{TKUTILS TKUTEMPLATE VALUE}` | tkutemplate: unzulässiger Wert in `setBlock`, keine Vorlage beim Laden |
+| `{TKUTILS TKUTEMPLATE BLOCK}` | tkutemplate: unbekannter oder doppelter Block |
+| `{TKUTILS TKUTEMPLATE PREVIEW}` | tkutemplate: pdf4tcltemplate oder pdf4tcl fehlt, oder das Zeichnen scheitert |
+| `{TKUTILS TKUTEMPLATE FILE}` | tkutemplate: Datei nicht lesbar oder schreibbar |
 
 Die Optionsprüfung von [tkuopts]{.index} benutzen 20 Module, darunter
 `tkufilelist`, `tkufiletree`, `tkupath` und `tkulauncher`.

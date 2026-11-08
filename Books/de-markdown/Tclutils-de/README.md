@@ -1,6 +1,6 @@
 # tclutils
 
-*Stand: 2026-10-27*
+*Stand: 2026-11-08*
 
 Handbuch für [tclutils]{.index} **0.69.0**: Pure-Tcl-Module ohne Tk —
 Textfilter, Zeichen und Pfade, Datenformate, TDBC, PDF-Text, ODF, Provider,

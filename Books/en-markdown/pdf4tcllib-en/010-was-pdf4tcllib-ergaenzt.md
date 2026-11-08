@@ -25,8 +25,8 @@ the book *pdf4tcl*; here it appears only where the task needs it.
 
 | Part | Version |
 |---|---|
-| pdf4tcllib | 0.6.7 |
-| pdf4tcl | 0.9.4.73 (pdf4tcllib requires at least 0.9.4.23) |
+| pdf4tcllib | 0.6.8 |
+| pdf4tcl | 0.9.4.74 (pdf4tcllib requires at least 0.9.4.23) |
 | Tcl | 8.6 and 9.0 |
 | Font | DejaVu Sans Condensed (TrueType) |
 
@@ -38,7 +38,7 @@ text comes from these scripts.
 
 ## The Modules
 
-pdf4tcllib is a single file, `pdf4tcllib-0.6.7.tm`, with several
+pdf4tcllib is a single file, `pdf4tcllib-0.6.8.tm`, with several
 namespaces. Next to it are packages that build on it and are loaded
 individually.
 
@@ -47,9 +47,9 @@ individually.
 | `fonts` | find and load a TrueType font, return font names | [Fonts](020-einrichten-und-schriften.md) |
 | `unicode` | replace characters the font does not have | [Unicode](030-unicode-sicher-ausgeben.md) |
 | `units`, `page` | units, type area, header and footer | [Page context](040-einheiten-und-seitenkontext.md) |
-| `text` | wrapping, measuring width, truncating, superscript and subscript | [Setting text](050-text-setzen.md) |
+| `text` | wrapping, measuring width, truncating, superscript and subscript | [Setting text](050-text-setzen.md), [Drawing helpers](155-zeichenhilfen.md) |
 | `table` | tables with page breaks, groups, crosstabs | [Tables](080-tabellen.md) |
-| `drawing`, `image` | shapes, gradients, arrows, images | [Images](140-bilder.md), [Arrows](150-pfeile-und-callouts.md) |
+| `drawing`, `image` | shapes, gradients, arrows, images | [Images](140-bilder.md), [Arrows](150-pfeile-und-callouts.md), [Drawing helpers](155-zeichenhilfen.md) |
 | `form` | labeled form fields in rows | [Form layout](120-formular-layout.md) |
 | `math` | formulas in text | [Formulas](160-formeln.md) |
 | `tag`, `state`, `measure`, `layout` | accessibility, graphics state, measuring height in advance, stacking blocks | [Accessible](180-barrierefreie-pdfs.md), [State](190-grafikzustand.md), [Stacking](200-messen-und-stapeln.md) |
@@ -59,15 +59,15 @@ individually.
 | `pdf4tcltoc` | table of contents with real page numbers | [Table of contents](110-inhaltsverzeichnis.md) |
 | `pdf4tclchart` | bar, line and pie charts | [Charts](100-diagramme.md) |
 | `pdf4tclflow` | text across columns and pages | [Column flow](070-spaltenfluss-wasserzeichen.md) |
+| `pdf4tcltemplate` | documents from template and data | [Templates](205-belege-aus-vorlagen.md) |
 | `pdf4tcllabels` | label sheets | [Label sheets](130-etikettenboegen.md) |
 | `pdf4tcltreeview` | a `ttk::treeview` as a table or outline | [Treeview](170-treeview.md) |
-| `pdf4tclforms` | fillable forms from a description | only [Appendix B](810-anhang-api.md) |
-| `pdf4tcltable` | a `tablelist` widget as PDF | only [Appendix B](810-anhang-api.md) |
-| `pdf4tcltext` | a Tk `text` widget as PDF | only [Appendix B](810-anhang-api.md) |
-| `pdf4tclcanvas` | a Tk `canvas` drawing as PDF | only [Appendix B](810-anhang-api.md) |
+| `pdf4tclforms` | fillable forms from a dict, filling and reading | [Forms from a dict](125-formular-dict.md) |
+| `pdf4tcltable` | a `tablelist` widget as PDF | [Tablelist](172-tablelist.md) |
+| `pdf4tcltext` | a Tk `text` widget as PDF | [Text widget](174-text-widget.md) |
+| `pdf4tclcanvas` | a Tk `canvas` drawing as PDF | [Canvas](176-canvas.md) |
 
-The last four have no chapter of their own in the book; their calls are
-in Appendix B, their messages in Appendix D.
+The packages for Tk widgets need Tk and therefore a display.
 
 ---
 
@@ -146,17 +146,20 @@ otherwise. How the two must fit together is covered in the chapter
 
 - **Part 1** (this chapter through chapter 4) sets up what all
   other chapters assume: font, Unicode, page context.
-- **Parts 2 to 4** are tasks: text, tables, charts,
-  table of contents, labels, forms. They can be read
+- **Parts 2 to 4** are tasks: text, tables, charts, table of contents,
+  forms, labels, images, drawing helpers. They can be read
   individually.
-- **Part 5** makes a document accessible and shows how to measure blocks
-  in advance and stack them one below the other.
+- **Part 5** brings Tk widgets into the PDF: tablelist, text, canvas,
+  treeview.
+- **Part 6** makes a document accessible, shows how to measure blocks
+  in advance and stack them one below the other, and builds documents
+  from templates.
 - The **case study** builds a report from the data to the
   table of contents.
 - The **appendices** collect pitfalls, the API per module and the messages.
 
 ::: {.info}
-**Tested with** pdf4tcllib 0.6.7, pdf4tcl 0.9.4.73, Tcl 8.6.18 and
+**Tested with** pdf4tcllib 0.6.8, pdf4tcl 0.9.4.74, Tcl 8.6.18 and
 9.0.4, Debian with DejaVu fonts.
 :::
 

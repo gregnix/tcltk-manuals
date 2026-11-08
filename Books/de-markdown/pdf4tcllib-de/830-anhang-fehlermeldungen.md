@@ -1,6 +1,6 @@
 # Fehlermeldungen
 
-Die Meldungen von pdf4tcllib 0.6.7 und den Zusatzpaketen, nach Modul,
+Die Meldungen von pdf4tcllib 0.6.8 und den Zusatzpaketen, nach Modul,
 mit der üblichen Ursache. Die Texte sind englisch und stehen hier so,
 wie Tcl sie ausgibt; `…` steht für den eingesetzten Wert.
 
@@ -156,13 +156,23 @@ vergrößern oder `-labelsize` kleiner.
 
 ---
 
-## Spaltenfluss und Verzeichnis
+## Spaltenfluss, Vorlagen und Verzeichnis
 
 ### flow::…: -columns must be at least 1
 
 ### flow::boxes: … columns with a gap of … pt leave no width in … pt
 
 Zu viele Spalten oder ein zu großes `-gap` für die Breite.
+
+### template: block "…": unknown type "…", known: text, pairs, table, image, rule
+
+Code `{PDF4TCLLIB TEMPLATE TYPE}`. Weitere Arten: `LAYOUT`, `PAPER`,
+`BLOCK`, `VALUE` aus `check`, dazu `OPTION`, `ORIENT` und `DATA` aus
+`render` ([Belege aus Vorlagen](205-belege-aus-vorlagen.md)).
+
+### template: the document must use -orient 1 (y from the top)
+
+Das Dokument mit `pdf4tcl::new … -orient true` anlegen.
 
 ### toc::heading: level must be 1..6, got "…"
 

@@ -78,10 +78,11 @@ Nicht im Umbrella — einzeln requiren:
 | `tkutltools` und `tkutlclip`, `tkutldrag`, `tkutlfilter`, `tkutlfind`, `tkutlfmt`, `tkutlfooter`, `tkutlgroup`, `tkutlsort`, `tkutlstate`, `tkutltree` | Tablelist (`tablelist_tile`) |
 | `tkuload`, `tkurender` | — (Designer-Kern) |
 | `tkumdview`, `tkupdfinspect`, `tkulayoutcanvas` | tclutils-Engines |
+| `tkutemplate` | `tkulayoutcanvas`; für die Vorschau pdf4tcllib und pdf4tcl |
 | `tkusysinfo` | `tclutils::tusysinfo` (tclutils 0.69.0) |
 
-Das sind **24** Module; zusammen mit den 55 aus dem Umbrella ergibt das die
-**79** Module des Baums.
+Das sind **25** Module; zusammen mit den 55 aus dem Umbrella ergibt das die
+**80** Module des Baums.
 
 ```tcl
 package require tkutils

@@ -58,6 +58,9 @@ Kurze Liste, nach Thema. Die Begründung steht im genannten Kapitel.
 - `-firsty` gilt nur für die erste Spalte; `-align` wirkt nicht.
 - `drawing::watermark` vor allem anderen zeichnen; mit `-orient 0` liegt
   es außerhalb der Seite.
+- `template::render` rechnet nichts; Beträge als Text übergeben. Blöcke
+  mit `page all` brauchen ein festes `y`
+  ([Vorlagen](205-belege-aus-vorlagen.md)).
 
 ## Tabellen und Diagramme
 

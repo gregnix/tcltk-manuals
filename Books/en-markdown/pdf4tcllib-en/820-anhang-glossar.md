@@ -42,6 +42,9 @@ headings, paragraphs, tables and figures; `$pdf tagged 1`.
 **Type area** (Satzspiegel) — the area inside the margins where the
 content goes; `left`, `top`, `text_w`, `text_h` in the page context.
 
+**Template** (Vorlage) — dict with paper, margins and blocks from which
+`template::render` draws a document together with the data.
+
 ---
 
 *Next chapter: [Error Messages](830-anhang-fehlermeldungen.md)*

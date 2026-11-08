@@ -168,7 +168,7 @@ erscheinen mit Punkt.
 
 ## Barrierefrei
 
-In einem barrierefreien PDF (Teil 5) ist jedes Diagramm ein Element
+In einem barrierefreien PDF (Teil 6) ist jedes Diagramm ein Element
 `Figure` mit dem Ersatztext aus `-alt` oder dem Titel. Balken, Linien und
 Beschriftungen sind der Inhalt dieses Elements, und der Ersatztext steht
 für sie. Ein Vorleseprogramm sagt also „Abbildung: Ergebnis je Monat“

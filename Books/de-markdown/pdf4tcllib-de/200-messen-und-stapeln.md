@@ -253,4 +253,4 @@ für `stack`.
 
 ---
 
-*Nächstes Kapitel: [Fallstudie: Lagerbericht](210-fallstudie-bericht.md)*
+*Nächstes Kapitel: [Belege aus Vorlagen](205-belege-aus-vorlagen.md)*

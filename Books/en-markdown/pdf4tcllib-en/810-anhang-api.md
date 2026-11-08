@@ -1,6 +1,6 @@
 # API per Module
 
-Quick reference for pdf4tcllib 0.6.7 and the add-on packages. The call
+Quick reference for pdf4tcllib 0.6.8 and the add-on packages. The call
 forms are read from the procedures themselves (`info args`); arguments
 in `?…?` have a default. Many argument names are German, for example
 `datei` (file), `breite` (width), `zeilen` (rows), `spalten` (columns),
@@ -16,23 +16,22 @@ All names live in the namespace `pdf4tcllib::`, which is left out here:
 
 | Package | Version | Namespace | Chapter |
 |---|---|---|---|
-| `pdf4tcllib` | 0.6.7 | `fonts unicode text math page tag state measure layout table drawing image units form` | 2 to 20 |
+| `pdf4tcllib` | 0.6.8 | `fonts unicode text math page tag state measure layout table drawing image units form` | 2 to 18, 23 to 25 |
 | `pdf4tclchart` | 0.1.2 | `chart` | 10 |
 | `pdf4tclflow` | 0.1 | `flow` | 7 |
+| `pdf4tcltemplate` | 0.1 | `template` | 26 |
 | `pdf4tcltoc` | 0.1.1 | `toc` | 11 |
-| `pdf4tcllabels` | 0.3 | `labels` | 13 |
-| `pdf4tclforms` | 0.2.3 | `forms` | – |
-| `pdf4tclcanvas` | 0.1 | `canvas` | – |
-| `pdf4tcltable` | 0.3.2 | `tablelist` | – |
-| `pdf4tcltext` | 0.3 | `textwidget` | – |
-| `pdf4tcltreeview` | 0.1.1 | `treeview` | 17 |
-
-"–": no chapter of its own in the book, only the calls here.
+| `pdf4tcllabels` | 0.3 | `labels` | 14 |
+| `pdf4tclforms` | 0.2.3 | `forms` | 13 |
+| `pdf4tclcanvas` | 0.1 | `canvas` | 21 |
+| `pdf4tcltable` | 0.3.2 | `tablelist` | 19 |
+| `pdf4tcltext` | 0.4 | `textwidget` | 20 |
+| `pdf4tcltreeview` | 0.1.1 | `treeview` | 22 |
 
 ```tcl
 package require pdf4tcl
 package require pdf4tcllib
-puts [pdf4tcllib::version]          ;# 0.6.7
+puts [pdf4tcllib::version]          ;# 0.6.8
 ```
 
 ---
@@ -317,6 +316,21 @@ flow::configure ?-option wert …?
 
 Without `-newpage`, `columns` returns the remainder instead of breaking;
 `-newpage` is a script and runs in the caller's scope.
+
+---
+
+## Templates: template (pdf4tcltemplate)
+
+```tcl
+template::render pdf template data ?-font f? ?-fontbold f?
+                 ?-startpage 0|1? ?-newpage script?
+template::check template
+template::blockOrder template
+template::paperSize paper
+```
+
+`render` returns `pages` and `y` (mm); `check` the template with
+defaults. Block types `text pairs table image rule`.
 
 ---
 

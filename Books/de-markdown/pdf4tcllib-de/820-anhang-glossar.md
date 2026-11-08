@@ -36,6 +36,9 @@ Seite.
 **Strukturbaum** — die Gliederung eines barrierefreien PDFs in
 Überschriften, Absätze, Tabellen und Abbildungen; `$pdf tagged 1`.
 
+**Vorlage** — Dict mit Papier, Rändern und Blöcken, aus dem
+`template::render` zusammen mit den Daten einen Beleg zeichnet.
+
 **Zugriffsprozedur** — `fonts::fontSans` und Verwandte; liefern den
 Namen, unter dem `fonts::init` eine Schrift angemeldet hat.
 

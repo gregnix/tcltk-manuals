@@ -1,11 +1,11 @@
 # tkutils
 
-*As of: 2026-10-27*
+*As of: 2026-11-08*
 
 Manual for [tkutils]{.index} **0.49.0**: Tk widgets on top of the engines
 in tclutils. Dialogs, file list, tablelist and its helpers, geometry,
-actions, scaffolding, input, calendar and notes, data views, designer,
-images and the tkdevtools app.
+actions, scaffolding, input, calendar and notes, data views, designer
+and templates, images and the tkdevtools app.
 
 Pairing: tclutils **0.69.0** + tkutils **0.49.0** + ctrlutils **0.5**
 (at least tclutils 0.64.0; the CSV export of `tkutablelist` only with

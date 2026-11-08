@@ -1210,7 +1210,8 @@ decimal, also with a leading zero; the same applies under Tcl 8.6 and
 the top left: paper sizes, conversion to pixels, grid and blocks. A
 block is a dict; a layout has a sub-dict `blocks` from block ID to
 block. The Tk editor for it is described in the book *tkutils*
-(`tkulayoutcanvas`).
+(`tkulayoutcanvas`; for whole templates with fonts and columns
+`tkutemplate`).
 
 | Key | Meaning |
 |---|---|
@@ -1266,6 +1267,13 @@ The default for `-defaults` is `x 0 y 0 w 40 h 8 show 1`, for `-keys`
 missing in the base and takes over values unchanged, without
 normalizing them. `blockRect` takes the height from `-height`,
 otherwise from the block, otherwise 8.
+
+A block may carry more keys, such as font, text or columns for a
+renderer. `normalizeBlock`, and with it `validateBlocks` and
+`ensureBlocks`, keeps none of them. Whoever sends such blocks through an
+editor that knows only the position merges the result back into the
+original layout with `mergeLayout`: then only `x y w show` change and
+everything else stays.
 
 ```tcl
 set blocks {

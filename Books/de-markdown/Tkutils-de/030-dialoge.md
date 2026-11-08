@@ -1,6 +1,6 @@
 # Dialoge
 
-## tkudialog 0.3
+## tkudialog 0.4
 
 [tkudialog]{.index} ersetzt `tk_messageBox`-Muster mit ttk. Der Meldungstext
 ist markierbar und kopierbar (Strg-C oder Knopf *Copy*). Dazu kommen
@@ -138,6 +138,14 @@ Meldung `bad window path name ".nix" given as -parent` (für `-parent
 .nix`). Ein Parent, der noch nicht sichtbar ist, macht den Dialog nicht
 transient; er wird dann auf dem Bildschirm zentriert.
 
+Ein Fenstermanager, der seinen Rahmen erst spät um den Dialog legt,
+verschob ihn bis 0.3 um die Breite des Rahmens und die Höhe der
+Titelleiste, etwa unter xfwm. Seit 0.4 beobachtet der Dialog eine Sekunde lang
+nach dem Erscheinen seine Lage. Jede Verschiebung um weniger als 100 Pixel
+nimmt er zurück, höchstens dreimal; den Rahmen rechnet er aus
+`wm geometry` heraus. Eine größere Verschiebung gilt als Wille des
+Fenstermanagers oder des Benutzers und bleibt.
+
 ---
 
 ## Optionen werden geprüft
@@ -161,7 +169,10 @@ Die Meldung lautet `unknown option "-parnet"`, in der zweiten Zeile
 ## Versionen
 
 Die Datei **0.2** ist entfernt; `package require tkutils::tkudialog 0.2`
-lädt 0.3 (kompatibel für einfache Labels). Doc: `docs/tkudialog.md`.
+lädt die neueste 0.x (kompatibel für einfache Labels). 0.4 ändert nur die
+Platzierung; die Befehle und Optionen sind die von 0.3, und
+`package require tkutils::tkudialog 0.3` lädt 0.4. Doc:
+`docs/tkudialog.md`.
 
 ---
 

@@ -3,8 +3,8 @@
 ## Introduction
 
 Many Tk programs show their data in a `ttk::treeview`: warehouses with
-items, projects with tasks, folders with files. The request "that as a
-PDF" then means: exactly what is in the window. The package
+items, projects with tasks, folders with files. As with the tablelist,
+what is in the window should go into the PDF. The package
 [pdf4tcltreeview]{.index} reads out the widget and draws it, either as
 a table with an indented tree column or as an outline.
 

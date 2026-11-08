@@ -251,4 +251,4 @@ use `top` and `bottom`. The modified copy therefore applies only to
 
 ---
 
-*Next chapter: [Case Study: Warehouse Report](210-fallstudie-bericht.md)*
+*Next chapter: [Documents from Templates](205-belege-aus-vorlagen.md)*

@@ -24,6 +24,10 @@
 | `ITEM_EXISTS` in tkufiletree | before 0.46.0: dot files twice on Windows |
 | `{TKUTILS TKCANVASPNG WINDOW}` / `EMPTY` | tkucanvaspng: window missing / canvas empty |
 | `{TKUTILS TKUICON NOSVG}` | tkuicon: SVG without tksvg under Tk 8.6 |
+| `{TKUTILS TKUTEMPLATE VALUE}` | tkutemplate: value not allowed in `setBlock`, no template when loading |
+| `{TKUTILS TKUTEMPLATE BLOCK}` | tkutemplate: unknown or duplicate block |
+| `{TKUTILS TKUTEMPLATE PREVIEW}` | tkutemplate: pdf4tcltemplate or pdf4tcl missing, or drawing fails |
+| `{TKUTILS TKUTEMPLATE FILE}` | tkutemplate: file not readable or writable |
 
 The option check of [tkuopts]{.index} is used by 20 modules, among them
 `tkufilelist`, `tkufiletree`, `tkupath` and `tkulauncher`. They report

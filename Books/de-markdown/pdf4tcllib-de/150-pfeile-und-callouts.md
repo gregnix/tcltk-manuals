@@ -205,7 +205,7 @@ Pfeile, Spitzen, Kästen und Zeiger sind im barrierefreien PDF
 Zierrat (Artefakte); ein Vorleseprogramm überspringt sie. Der Text einer
 Sprechblase ist Inhalt und steht als Absatz im Strukturbaum. Ein
 Schaubild als Ganzes braucht einen Ersatztext, sonst bleibt von ihm nur
-eine Folge von Wörtern ohne Pfeile; mehr dazu in Teil 5.
+eine Folge von Wörtern ohne Pfeile; mehr dazu in Teil 6.
 
 ---
 
@@ -220,4 +220,4 @@ eine Folge von Wörtern ohne Pfeile; mehr dazu in Teil 5.
 
 ---
 
-*Nächstes Kapitel: [Formeln](160-formeln.md)*
+*Nächstes Kapitel: [Zeichenhilfen](155-zeichenhilfen.md)*

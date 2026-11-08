@@ -9,7 +9,13 @@
   does not read the variables; `can't find package tkutils` or
   `can't find package tclutils::…`.
 - Umbrella without Tablelist — `can't find package Tablelist`.
-- Expecting `tkudialog` 0.2 — file removed, behavior = 0.3.
+- Expecting `tkudialog` 0.2 — file removed, behavior = 0.3; 0.4 only
+  makes the placement firmer.
+- Sending blocks with keys of your own (font, text, columns) through
+  `tkulayoutcanvas` and taking over `getBlocks` — the keys are gone
+  afterwards; merge back with `tulayout::mergeLayout`.
+- `tkutemplate::preview` with pdf4tcllib but without pdf4tcl —
+  `{TKUTILS TKUTEMPLATE PREVIEW}`; pdf4tcllib loads without pdf4tcl too.
 - Calling `tkudialog::message`/`warning` — they are called
   `showInfo`/`showWarning`.
 - `input` returns `""` — cancel or empty field, both the same.

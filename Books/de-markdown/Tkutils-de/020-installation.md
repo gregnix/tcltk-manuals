@@ -74,6 +74,11 @@ liegen zwei Versionen nebeneinander.
 - `tkutlfmt-0.2.tm`, `tkutlfooter-0.2.tm`, `tkutlstate-0.2.tm`
 - `tkulauncher-0.2.tm`, `tkuload-0.2.tm`
 
+Nach 0.49.0 (noch ohne neue Versionsnummer): `tkudialog` 0.4,
+`tkulayoutcanvas` 0.2, neu `tkutemplate` 0.1. Wer diesen Stand über 0.49.0
+kopiert, löscht in `lib/tm/tkutils/` die Dateien `tkudialog-0.3.tm` und
+`tkulayoutcanvas-0.1.tm`.
+
 Die Listen stammen aus dem Vergleich der Bäume von 0.46.0 bis 0.49.0.
 Bleibt eine ältere Datei liegen, lädt `package require` trotzdem die
 höhere Version; `tools/check-modules.tcl` meldet die Doppelung.
@@ -157,7 +162,12 @@ Unter 8.6.14 überspringt die Suite die SVG-Tests von `tkuicon` und
 die Suite vor den Schreibfehler-Tests ohne Fehler: 83 Dateien, 938 Tests,
 896 bestanden, 42 übersprungen. Unter Windows im selben Stand ebenfalls
 ohne Fehler: Tcl/Tk 8.6.17 927 bestanden, 11 übersprungen; Tcl/Tk 9.0.4
-935 bestanden, 3 übersprungen. Umgebung
+935 bestanden, 3 übersprungen.
+
+Stand nach 0.49.0 (`tkudialog` 0.4, `tkulayoutcanvas` 0.2, `tkutemplate`
+0.1), Linux unter Xvfb, ohne tical, mit pdf4tcl 0.9.4.74: 84 Dateien,
+975 Tests, 0 Fehler. Unter Tcl/Tk 8.6.14 932 bestanden und 43
+übersprungen, unter 9.0.4 941 und 34; je 30 davon brauchen tical. Umgebung
 und Ergebnisse von 0.46.0: [Anhang G](860-anhang-testumgebung.md).
 
 ---

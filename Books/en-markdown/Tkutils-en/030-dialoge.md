@@ -1,6 +1,6 @@
 # Dialogs
 
-## tkudialog 0.3
+## tkudialog 0.4
 
 [tkudialog]{.index} replaces `tk_messageBox` patterns with ttk. The
 message text can be selected and copied (Ctrl-C or the *Copy* button).
@@ -137,6 +137,13 @@ message `bad window path name ".nix" given as -parent` (for
 `-parent .nix`). A parent that is not yet visible does not make the
 dialog transient; it is then centered on the screen.
 
+A window manager that puts its frame around the dialog late moved it, up
+to 0.3, by the width of the frame and the height of the title bar, for
+example under xfwm. Since 0.4 the dialog watches its position for one second
+after it appears. Every move by less than 100 pixels it takes back, at
+most three times; it works out the frame from `wm geometry`. A larger
+move counts as the will of the window manager or the user and stays.
+
 ---
 
 ## Options Are Checked
@@ -161,7 +168,10 @@ listing the valid options in the order of the code
 ## Versions
 
 The file **0.2** is gone; `package require tkutils::tkudialog 0.2` loads
-0.3 (compatible for plain labels). Doc: `docs/tkudialog.md`.
+the newest 0.x (compatible for plain labels). 0.4 changes only the
+placement; commands and options are those of 0.3, and
+`package require tkutils::tkudialog 0.3` loads 0.4. Doc:
+`docs/tkudialog.md`.
 
 ---
 

@@ -62,9 +62,12 @@ under *Platform* the path probe.
 **Package shadows.** Every copy of a package in module paths and
 `auto_path` (`tupkgfinder::shadows`). Marked red is a second copy of the
 same version that is never loaded — for example an installation next to
-the working tree. The row has a light red background, the active copy is
-written in green, other versions in gray. Which one wins depends on the
-path order.
+the working tree —, and since the state after 0.49.0 also a higher
+version in a `pkgIndex.tcl` that Tcl never reads because a module already
+fits (status `hidden by module`). The row has a light red background, the
+active copy is written in green, other versions in gray. Which one wins
+depends on the path order. The status line counts both cases: packages
+with one version twice and packages with a hidden version.
 
 **Paths (Platform).** `file pathtype`, `split`, `dirname`, `normalize`,
 `nativename` and `tupath::clean` for one path, plus the classification

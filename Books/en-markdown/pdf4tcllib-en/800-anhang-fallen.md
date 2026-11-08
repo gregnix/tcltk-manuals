@@ -59,6 +59,8 @@ Short list, by topic. The reasons are in the chapter named.
 - `-firsty` applies only to the first column; `-align` has no effect.
 - Draw `drawing::watermark` before everything else; with `-orient 0` it
   lands outside the page.
+- `template::render` computes nothing; pass amounts as text. Blocks with
+  `page all` need a fixed `y` ([Templates](205-belege-aus-vorlagen.md)).
 
 ## Tables and Charts
 

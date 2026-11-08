@@ -205,7 +205,7 @@ In the accessible PDF, arrows, heads, boxes and pointers are decoration
 (artifacts); a screen reader skips them. The text of a callout is
 content and appears as a paragraph in the structure tree. A diagram as
 a whole needs an alternate text; otherwise all that remains of it is a
-sequence of words without arrows. More on this in Part 5.
+sequence of words without arrows. More on this in Part 6.
 
 ---
 
@@ -220,4 +220,4 @@ sequence of words without arrows. More on this in Part 5.
 
 ---
 
-*Next chapter: [Formulas](160-formeln.md)*
+*Next chapter: [Drawing Helpers](155-zeichenhilfen.md)*

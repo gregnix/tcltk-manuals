@@ -1,11 +1,12 @@
 # pdf4tcllib
 
-*As of: 2026-10-25*
+*As of: 2026-11-08*
 
-An English-language workshop book on [pdf4tcllib]{.index} 0.6.7:
+An English-language workshop book on [pdf4tcllib]{.index} 0.6.8:
 fonts and Unicode, page context, text, tables with page breaks,
-charts, table of contents, labels, forms and accessible
-PDFs, on pdf4tcl 0.9.4.73.
+charts, table of contents, labels, forms, drawing helpers, Tk widgets
+(tablelist, text, canvas, treeview) in the PDF, accessible PDFs and
+documents from templates, on pdf4tcl 0.9.4.74.
 
 This is the English translation of the German book. The German original
 is in `pdf4tcllib-de/` next to this directory; both have the same file
@@ -31,14 +32,14 @@ and scripts agree and the scripts run is checked by:
 tclsh beispiele/pruefe-beispiele.tcl -run
 ```
 
-The treeview example needs Tk and therefore a display; without `DISPLAY`
-it is skipped. On a server without a screen:
+The examples of Part 5 (Tk widgets) need Tk and therefore a display,
+the tablelist example also tklib; without `DISPLAY` they are skipped. On a server without a screen:
 
 ```bash
 xvfb-run tclsh beispiele/pruefe-beispiele.tcl -run
 ```
 
-The images for chapter 14 are in `../beispiele/bilder/`.
+The images for chapter 15 are in `../beispiele/bilder/`.
 
 ## License
 

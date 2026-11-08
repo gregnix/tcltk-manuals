@@ -1209,7 +1209,8 @@ auch für ein `gesamt` nur aus Ziffern:
 links: Papierformate, Umrechnung in Pixel, Raster und Blöcke. Ein Block
 ist ein Dict; ein Layout hat ein Unter-Dict `blocks` von Block-ID zu
 Block. Den Tk-Editor dazu beschreibt das Buch *tkutils*
-(`tkulayoutcanvas`).
+(`tkulayoutcanvas`, für ganze Vorlagen mit Schrift und Spalten
+`tkutemplate`).
 
 | Schlüssel | Bedeutung |
 |---|---|
@@ -1265,6 +1266,13 @@ Die Vorgabe für `-defaults` ist `x 0 y 0 w 40 h 8 show 1`, für `-keys`
 Basis fehlen, und übernimmt Werte unverändert, ohne sie zu
 normalisieren. `blockRect` nimmt die Höhe aus `-height`, sonst aus dem
 Block, sonst 8.
+
+Ein Block darf mehr Schlüssel tragen, etwa Schrift, Text oder Spalten für
+einen Renderer. `normalizeBlock` und damit `validateBlocks` und
+`ensureBlocks` behalten davon nichts. Wer solche Blöcke durch einen
+Editor schickt, der nur die Lage kennt, mischt das Ergebnis mit
+`mergeLayout` in das ursprüngliche Layout zurück: Dann ändern sich nur
+`x y w show`, alles andere bleibt.
 
 ```tcl
 set blocks {

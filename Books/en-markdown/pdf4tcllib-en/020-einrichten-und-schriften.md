@@ -12,7 +12,7 @@ how to check what `fonts::init` has found.
 
 ## Loading the Module
 
-pdf4tcllib is a Tcl module: a file `pdf4tcllib-0.6.7.tm` in the folder
+pdf4tcllib is a Tcl module: a file `pdf4tcllib-0.6.8.tm` in the folder
 `lib/`, next to it the add-on packages (`pdf4tcltoc-0.1.tm` etc.). Tcl finds
 them through the module path:
 

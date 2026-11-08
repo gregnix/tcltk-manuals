@@ -1,17 +1,17 @@
 # Widgets (Overview)
 
-Overview in the tkutils tree: `docs/guide/tkutils-modules.md`. **79**
+Overview in the tkutils tree: `docs/guide/tkutils-modules.md`. **80**
 modules, each with a test, a doc and a man page
 (`tools/check-docman.tcl` reports no missing files). The umbrella loads
 53 directly and `tkutablelist` and `tkuopts` indirectly; the code of the
 umbrella is authoritative. No parallel versions: `tkutablelist` only
-0.5, `tkudialog` only 0.3.
+0.5, `tkudialog` only 0.4 (after 0.49.0; 0.3 in 0.49.0).
 
 ## Excerpt
 
 | Widget | Role |
 |---|---|
-| tkudialog 0.3 | showInfo/Warning/Error, confirm, input, form, build/show |
+| tkudialog 0.4 | showInfo/Warning/Error, confirm, input, form, build/show |
 | tkufiledialog 0.2 | open/save/directory |
 | tkufilelist 0.2 / tkufiletree 0.2 | provider UI |
 | tkupath 0.3 | path bar, also drive and UNC |
@@ -38,14 +38,15 @@ umbrella is authoritative. No parallel versions: `tkutablelist` only
 | tkutical 0.4, tkumonthcanvas 0.5 | tical 1.0 (`-events`: 1.1) |
 | tkucanvaspng 0.2 | tclutils::tupngdraw |
 | tkutltools 0.3, tkutl* (0.1 to 0.4) | Tablelist (`tablelist_tile`) |
-| tkumdview, tkupdfinspect, tkulayoutcanvas (0.1 each) | tclutils engines |
+| tkumdview, tkupdfinspect (0.1 each), tkulayoutcanvas 0.2 | tclutils engines |
+| tkutemplate 0.1 | tkulayoutcanvas; preview: pdf4tcllib, pdf4tcl |
 | tkusysinfo 0.1 | tclutils::tusysinfo (tclutils 0.69.0) |
 
 ---
 
 ## Summary
 
-- 79 modules: 55 through the umbrella, 24 separately.
+- 80 modules: 55 through the umbrella, 25 separately.
 - The versions in this appendix are the files in the 0.49.0 tree.
 
 ---

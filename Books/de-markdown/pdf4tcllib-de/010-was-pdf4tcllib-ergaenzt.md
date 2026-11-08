@@ -25,8 +25,8 @@ das Buch *pdf4tcl*; hier steht es nur, wo es für die Aufgabe nötig ist.
 
 | Teil | Version |
 |---|---|
-| pdf4tcllib | 0.6.7 |
-| pdf4tcl | 0.9.4.73 (pdf4tcllib verlangt mindestens 0.9.4.23) |
+| pdf4tcllib | 0.6.8 |
+| pdf4tcl | 0.9.4.74 (pdf4tcllib verlangt mindestens 0.9.4.23) |
 | Tcl | 8.6 und 9.0 |
 | Schrift | DejaVu Sans Condensed (TrueType) |
 
@@ -38,7 +38,7 @@ Skripten.
 
 ## Die Module
 
-pdf4tcllib ist eine Datei, `pdf4tcllib-0.6.7.tm`, mit mehreren
+pdf4tcllib ist eine Datei, `pdf4tcllib-0.6.8.tm`, mit mehreren
 Namensräumen. Daneben liegen Pakete, die darauf aufbauen und einzeln
 geladen werden.
 
@@ -47,9 +47,9 @@ geladen werden.
 | `fonts` | TrueType-Schrift suchen und laden, Schriftnamen liefern | [Schriften](020-einrichten-und-schriften.md) |
 | `unicode` | Zeichen, die die Schrift nicht hat, ersetzen | [Unicode](030-unicode-sicher-ausgeben.md) |
 | `units`, `page` | Einheiten, Satzspiegel, Kopf- und Fußzeile | [Seitenkontext](040-einheiten-und-seitenkontext.md) |
-| `text` | Umbruch, Breite messen, Kürzen, Hoch- und Tiefstellen | [Text setzen](050-text-setzen.md) |
+| `text` | Umbruch, Breite messen, Kürzen, Hoch- und Tiefstellen | [Text setzen](050-text-setzen.md), [Zeichenhilfen](155-zeichenhilfen.md) |
 | `table` | Tabellen mit Seitenumbruch, Gruppen, Kreuztabellen | [Tabellen](080-tabellen.md) |
-| `drawing`, `image` | Formen, Verläufe, Pfeile, Bilder | [Bilder](140-bilder.md), [Pfeile](150-pfeile-und-callouts.md) |
+| `drawing`, `image` | Formen, Verläufe, Pfeile, Bilder | [Bilder](140-bilder.md), [Pfeile](150-pfeile-und-callouts.md), [Zeichenhilfen](155-zeichenhilfen.md) |
 | `form` | Beschriftete Formularfelder in Zeilen | [Formular-Layout](120-formular-layout.md) |
 | `math` | Formeln im Text | [Formeln](160-formeln.md) |
 | `tag`, `state`, `measure`, `layout` | Barrierefreiheit, Grafikzustand, Höhe vorab messen, Blöcke stapeln | [Barrierefrei](180-barrierefreie-pdfs.md), [Zustand](190-grafikzustand.md), [Stapeln](200-messen-und-stapeln.md) |
@@ -59,15 +59,15 @@ geladen werden.
 | `pdf4tcltoc` | Inhaltsverzeichnis mit echten Seitenzahlen | [Inhaltsverzeichnis](110-inhaltsverzeichnis.md) |
 | `pdf4tclchart` | Balken-, Linien- und Tortendiagramme | [Diagramme](100-diagramme.md) |
 | `pdf4tclflow` | Text über Spalten und Seiten | [Spaltenfluss](070-spaltenfluss-wasserzeichen.md) |
+| `pdf4tcltemplate` | Belege aus Vorlage und Daten | [Vorlagen](205-belege-aus-vorlagen.md) |
 | `pdf4tcllabels` | Etikettenbögen | [Etikettenbögen](130-etikettenboegen.md) |
 | `pdf4tcltreeview` | ein `ttk::treeview` als Tabelle oder Gliederung | [Treeview](170-treeview.md) |
-| `pdf4tclforms` | ausfüllbare Formulare aus einer Beschreibung | nur [Anhang B](810-anhang-api.md) |
-| `pdf4tcltable` | ein `tablelist`-Widget als PDF | nur [Anhang B](810-anhang-api.md) |
-| `pdf4tcltext` | ein Tk-`text`-Widget als PDF | nur [Anhang B](810-anhang-api.md) |
-| `pdf4tclcanvas` | eine Tk-`canvas`-Zeichnung als PDF | nur [Anhang B](810-anhang-api.md) |
+| `pdf4tclforms` | ausfüllbare Formulare aus einem Dict, füllen und lesen | [Formulare aus einem Dict](125-formular-dict.md) |
+| `pdf4tcltable` | ein `tablelist`-Widget als PDF | [Tablelist](172-tablelist.md) |
+| `pdf4tcltext` | ein Tk-`text`-Widget als PDF | [Text-Widget](174-text-widget.md) |
+| `pdf4tclcanvas` | eine Tk-`canvas`-Zeichnung als PDF | [Canvas](176-canvas.md) |
 
-Die vier letzten haben im Buch kein eigenes Kapitel; ihre Aufrufe stehen
-in Anhang B, ihre Meldungen in Anhang D.
+Die Pakete für Tk-Widgets brauchen Tk und damit eine Anzeige.
 
 ---
 
@@ -147,16 +147,18 @@ aus. Wie beide zusammenpassen müssen, steht im Kapitel
 - **Teil 1** (dieses Kapitel bis Kapitel 4) richtet ein, was alle
   anderen Kapitel voraussetzen: Schrift, Unicode, Seitenkontext.
 - **Teile 2 bis 4** sind Aufgaben: Text, Tabellen, Diagramme,
-  Inhaltsverzeichnis, Etiketten, Formulare. Sie lassen sich einzeln
-  lesen.
-- **Teil 5** macht ein Dokument barrierefrei und zeigt, wie man Blöcke
-  vorab misst und untereinander setzt.
+  Inhaltsverzeichnis, Formulare, Etiketten, Bilder, Zeichenhilfen. Sie
+  lassen sich einzeln lesen.
+- **Teil 5** bringt Tk-Widgets ins PDF: tablelist, Text, Canvas,
+  Treeview.
+- **Teil 6** macht ein Dokument barrierefrei, zeigt, wie man Blöcke
+  vorab misst und untereinander setzt, und baut Belege aus Vorlagen.
 - Die **Fallstudie** baut einen Bericht von den Daten bis zum
   Inhaltsverzeichnis.
 - Die **Anhänge** sammeln Fallen, die API je Modul und die Meldungen.
 
 ::: {.info}
-**Getestet mit** pdf4tcllib 0.6.7, pdf4tcl 0.9.4.73, Tcl 8.6.18 und
+**Getestet mit** pdf4tcllib 0.6.8, pdf4tcl 0.9.4.74, Tcl 8.6.18 und
 9.0.4, Debian mit DejaVu-Schriften.
 :::
 

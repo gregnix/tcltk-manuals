@@ -8,7 +8,13 @@
   die Variablen nicht; `can't find package tkutils` bzw.
   `can't find package tclutils::…`.
 - Umbrella ohne Tablelist — `can't find package Tablelist`.
-- `tkudialog` 0.2 erwarten — Datei entfernt, Verhalten = 0.3.
+- `tkudialog` 0.2 erwarten — Datei entfernt, Verhalten = 0.3; 0.4 setzt
+  nur die Platzierung fester.
+- Blöcke mit eigenen Schlüsseln (Schrift, Text, Spalten) durch
+  `tkulayoutcanvas` schicken und `getBlocks` übernehmen — die Schlüssel
+  fehlen danach; mit `tulayout::mergeLayout` zurückmischen.
+- `tkutemplate::preview` mit pdf4tcllib, aber ohne pdf4tcl —
+  `{TKUTILS TKUTEMPLATE PREVIEW}`; pdf4tcllib lädt auch ohne pdf4tcl.
 - `tkudialog::message`/`warning` aufrufen — heißen `showInfo`/`showWarning`.
 - `input` liefert `""` — Abbruch oder leeres Feld, beides gleich.
 - `tkutablelist` 0.3 requiren und alte PRIMARY-Auswahl erwarten — es kommt

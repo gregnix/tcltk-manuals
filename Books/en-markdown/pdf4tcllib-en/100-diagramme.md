@@ -165,7 +165,7 @@ decimal places appear with a point.
 
 ## Accessibility
 
-In an accessible PDF (Part 5), each chart is a `Figure` element with
+In an accessible PDF (Part 6), each chart is a `Figure` element with
 the alternate text from `-alt` or the title. Bars, lines and labels are
 the content of this element, and the alternate text stands for them. A
 screen reader therefore says "Abbildung: Ergebnis je Monat" ("Figure:

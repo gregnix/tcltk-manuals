@@ -3,8 +3,8 @@
 ## Einführung
 
 Viele Tk-Programme zeigen ihre Daten in einem `ttk::treeview`: Lager mit
-Artikeln, Projekte mit Aufgaben, Ordner mit Dateien. Der Wunsch „das als
-PDF“ heißt dann: genau das, was im Fenster steht. Das Paket
+Artikeln, Projekte mit Aufgaben, Ordner mit Dateien. Wie bei der
+tablelist soll ins PDF, was im Fenster steht. Das Paket
 [pdf4tcltreeview]{.index} liest das Widget aus und zeichnet es, entweder
 als Tabelle mit eingerückter Baumspalte oder als Gliederung.
 

@@ -63,9 +63,12 @@ unter *Platform* die Pfadprobe.
 **Package shadows.** Jede Kopie eines Pakets in Modulpfaden und
 `auto_path` (`tupkgfinder::shadows`). Rot markiert ist eine zweite Kopie
 derselben Version, die nie geladen wird — etwa eine Installation neben dem
-Arbeitsbaum. Die Zeile ist hellrot hinterlegt, die aktive Kopie grün
-geschrieben, andere Versionen grau. Welche gewinnt, hängt von der
-Pfadreihenfolge ab.
+Arbeitsbaum —, und seit dem Stand nach 0.49.0 auch eine höhere Version in
+einer `pkgIndex.tcl`, die Tcl nie liest, weil schon ein Modul passt
+(Status `hidden by module`). Die Zeile ist hellrot hinterlegt, die aktive
+Kopie grün geschrieben, andere Versionen grau. Welche gewinnt, hängt von
+der Pfadreihenfolge ab. Die Statuszeile zählt beide Fälle: Pakete mit
+einer Version doppelt und Pakete mit einer verdeckten Version.
 
 **Paths (Platform).** `file pathtype`, `split`, `dirname`, `normalize`,
 `nativename` und `tupath::clean` für einen Pfad, dazu die Einordnung nach

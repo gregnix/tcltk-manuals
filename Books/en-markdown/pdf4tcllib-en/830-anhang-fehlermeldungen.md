@@ -1,6 +1,6 @@
 # Error Messages
 
-The messages of pdf4tcllib 0.6.7 and the add-on packages, by module,
+The messages of pdf4tcllib 0.6.8 and the add-on packages, by module,
 with the usual cause. The texts are shown exactly as Tcl prints them;
 `…` stands for the inserted value.
 
@@ -158,13 +158,23 @@ or make `-labelsize` smaller.
 
 ---
 
-## Column Flow and Table of Contents
+## Column Flow, Templates and Table of Contents
 
 ### flow::…: -columns must be at least 1
 
 ### flow::boxes: … columns with a gap of … pt leave no width in … pt
 
 Too many columns or too large a `-gap` for the width.
+
+### template: block "…": unknown type "…", known: text, pairs, table, image, rule
+
+Code `{PDF4TCLLIB TEMPLATE TYPE}`. Further kinds: `LAYOUT`, `PAPER`,
+`BLOCK`, `VALUE` from `check`, plus `OPTION`, `ORIENT` and `DATA` from
+`render` ([Documents from Templates](205-belege-aus-vorlagen.md)).
+
+### template: the document must use -orient 1 (y from the top)
+
+Create the document with `pdf4tcl::new … -orient true`.
 
 ### toc::heading: level must be 1..6, got "…"
 

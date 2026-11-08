@@ -1,6 +1,6 @@
 # tclutils
 
-*As of: 2026-10-27*
+*As of: 2026-11-08*
 
 Manual for [tclutils]{.index} **0.69.0**: pure-Tcl modules without Tk —
 text filters, characters and paths, data formats, TDBC, PDF text, ODF, providers,

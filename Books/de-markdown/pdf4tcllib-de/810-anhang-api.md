@@ -1,6 +1,6 @@
 # API je Modul
 
-Kurzreferenz pdf4tcllib 0.6.7 und der Zusatzpakete. Die Aufrufformen
+Kurzreferenz pdf4tcllib 0.6.8 und der Zusatzpakete. Die Aufrufformen
 sind aus den Prozeduren selbst ausgelesen (`info args`); Argumente mit
 `?…?` haben eine Vorgabe. Die Optionen sind eine Auswahl. Vollständig
 und auf Englisch: `docs/en/reference/` im Quellbaum von pdf4tcllib.
@@ -14,23 +14,22 @@ ist: `fonts::init` heißt ausgeschrieben `pdf4tcllib::fonts::init`.
 
 | Paket | Version | Namensraum | Kapitel |
 |---|---|---|---|
-| `pdf4tcllib` | 0.6.7 | `fonts unicode text math page tag state measure layout table drawing image units form` | 2 bis 20 |
+| `pdf4tcllib` | 0.6.8 | `fonts unicode text math page tag state measure layout table drawing image units form` | 2 bis 18, 23 bis 25 |
 | `pdf4tclchart` | 0.1.2 | `chart` | 10 |
 | `pdf4tclflow` | 0.1 | `flow` | 7 |
+| `pdf4tcltemplate` | 0.1 | `template` | 26 |
 | `pdf4tcltoc` | 0.1.1 | `toc` | 11 |
-| `pdf4tcllabels` | 0.3 | `labels` | 13 |
-| `pdf4tclforms` | 0.2.3 | `forms` | – |
-| `pdf4tclcanvas` | 0.1 | `canvas` | – |
-| `pdf4tcltable` | 0.3.2 | `tablelist` | – |
-| `pdf4tcltext` | 0.3 | `textwidget` | – |
-| `pdf4tcltreeview` | 0.1.1 | `treeview` | 17 |
-
-„–“: im Buch kein eigenes Kapitel, nur die Aufrufe hier.
+| `pdf4tcllabels` | 0.3 | `labels` | 14 |
+| `pdf4tclforms` | 0.2.3 | `forms` | 13 |
+| `pdf4tclcanvas` | 0.1 | `canvas` | 21 |
+| `pdf4tcltable` | 0.3.2 | `tablelist` | 19 |
+| `pdf4tcltext` | 0.4 | `textwidget` | 20 |
+| `pdf4tcltreeview` | 0.1.1 | `treeview` | 22 |
 
 ```tcl
 package require pdf4tcl
 package require pdf4tcllib
-puts [pdf4tcllib::version]          ;# 0.6.7
+puts [pdf4tcllib::version]          ;# 0.6.8
 ```
 
 ---
@@ -315,6 +314,21 @@ flow::configure ?-option wert …?
 
 Ohne `-newpage` gibt `columns` den Rest zurück, statt umzubrechen;
 `-newpage` ist ein Skript und läuft im Bereich des Aufrufers.
+
+---
+
+## Vorlagen: template (pdf4tcltemplate)
+
+```tcl
+template::render pdf vorlage daten ?-font f? ?-fontbold f?
+                 ?-startpage 0|1? ?-newpage skript?
+template::check vorlage
+template::blockOrder vorlage
+template::paperSize papier
+```
+
+`render` gibt `pages` und `y` (mm) zurück; `check` die Vorlage mit
+Vorgaben. Blocktypen `text pairs table image rule`.
 
 ---
 

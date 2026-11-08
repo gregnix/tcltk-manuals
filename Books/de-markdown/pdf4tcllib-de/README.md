@@ -1,11 +1,12 @@
 # pdf4tcllib
 
-*Stand: 2026-10-25*
+*Stand: 2026-11-08*
 
-Ein deutschsprachiges Werkstattbuch für [pdf4tcllib]{.index} 0.6.7:
+Ein deutschsprachiges Werkstattbuch für [pdf4tcllib]{.index} 0.6.8:
 Schriften und Unicode, Seitenkontext, Text, Tabellen mit Seitenumbruch,
-Diagramme, Inhaltsverzeichnis, Etiketten, Formulare und barrierefreie
-PDFs, auf pdf4tcl 0.9.4.73.
+Diagramme, Inhaltsverzeichnis, Etiketten, Formulare, Zeichenhilfen,
+Tk-Widgets (tablelist, Text, Canvas, Treeview) im PDF, barrierefreie
+PDFs und Belege aus Vorlagen, auf pdf4tcl 0.9.4.74.
 
 pdf4tcl zeichnet; wie das geht, erklärt das Buch *pdf4tcl*. Dieses Buch
 baut darauf auf und löst die Aufgaben, die in Berichten und Listen immer
@@ -29,14 +30,15 @@ prüft:
 tclsh beispiele/pruefe-beispiele.tcl -run
 ```
 
-Das Treeview-Beispiel braucht Tk und damit eine Anzeige; ohne `DISPLAY`
-wird es übersprungen. Auf einem Server ohne Bildschirm:
+Die Beispiele aus Teil 5 (Tk-Widgets) brauchen Tk und damit eine
+Anzeige, das tablelist-Beispiel außerdem tklib; ohne `DISPLAY` werden
+sie übersprungen. Auf einem Server ohne Bildschirm:
 
 ```bash
 xvfb-run tclsh beispiele/pruefe-beispiele.tcl -run
 ```
 
-Die Bilder für Kapitel 14 liegen in `../beispiele/bilder/`.
+Die Bilder für Kapitel 15 liegen in `../beispiele/bilder/`.
 
 ## Lizenz
 
