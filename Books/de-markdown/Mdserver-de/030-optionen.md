@@ -2,7 +2,9 @@
 
 ## Einführung
 
-`tclsh mdserver.tcl [Optionen]`. Die Vorgaben sind die vorsichtigen:
+`tclsh mdserver.tcl [Optionen]`. Alle Optionen außer `--config` und
+`--help` können auch in einer Einstellungsdatei stehen (Kapitel
+*Einstellungsdatei und GUI*). Die Vorgaben sind die vorsichtigen:
 `--bind 127.0.0.1` (nur dieser Rechner), `--trusted-proxy` leer
 (`X-Forwarded-For` wird ignoriert), dazu Grenzen für offene
 Verbindungen.
@@ -13,6 +15,7 @@ Verbindungen.
 
 | Option | Standard | Bedeutung |
 |---|---|---|
+| `--config` | — | Einstellungsdatei, eine Option je Zeile; die Befehlszeile geht vor |
 | `--port` | `8080` | HTTP-Port |
 | `--bind` | `127.0.0.1` | Horchadresse. `*`, leer oder `0.0.0.0` = alle Schnittstellen; die Startmeldung warnt dann |
 | `--maxconn` | `200` | offene Verbindungen insgesamt; darüber sofort 503 mit `Retry-After: 1`. `0` = ohne Grenze |
@@ -30,6 +33,9 @@ Verbindungen.
 | `--maxheader` | `16384` | Bytes aller Köpfe; darüber 431. `0` = ohne Grenze |
 | `--healthpath` | `/__mdserver/health` | Health-Pfad |
 | `--statuspath` | leer | Status als Text über HTTP (wie `mdctl.tcl status`); leer = aus. Nur hinter einer Anmeldung |
+| `--access` | leer | `zugriff.txt` (`pfad;gruppen`), außerhalb der Wurzel; leer = alles offen |
+| `--users` | leer | `benutzer.txt` (`name;gruppen;hash`), außerhalb der Wurzel; ohne: nur `gast` |
+| `--auth-http` | `0` | Anmeldung auch über HTTP, nur zum Testen |
 | `--root` | `.` | Dokumentwurzel |
 | `--theme` | `hell` | `hell`, `dunkel`, `solarized`. In `site` zählt nur `dunkel` |
 | `--style` | `site` | Seitenstil: `site`, `plain`, `sidebar`, `sticky`, `collapsible` |
@@ -38,7 +44,7 @@ Verbindungen.
 | `--navmax` | `6` | Sektionen inline; mehr ins Dropdown. `0` = nie klappen. Nur ältere Stile |
 | `--title` | `mdserver` | Site-Titel, in `site` links in der Kopfleiste |
 | `--toc` | `1` | Inhaltsverzeichnis oben, nur ältere Stile |
-| `--control` | leer | Control-Port, nur localhost |
+| `--control` | leer | Control-Port, horcht immer nur auf `127.0.0.1` |
 | `--no-log` | — | kein Zugriffsprotokoll |
 | `--cert` `--key` | leer | TLS |
 | `--tlsport` | `8443` | HTTPS-Port |
@@ -83,7 +89,9 @@ bleiben bei `--dotfiles 0` aus dem Suchbestand.
 - Die Vorgaben sind vorsichtig: nur `127.0.0.1`, kein vertrauter Proxy,
   höchstens 200 Verbindungen, 32 je Absender.
 - Vorgabestil ist `site`; `--style plain` gibt das alte Aussehen.
-- Stile liegen in `tools/mdserver/styles/` neben `lib/`.
+- Stile liegen in `styles/` neben `lib/` im Repository mdserver.
+- `--access`, `--users`: Zugriff (Kapitel *Zugriff*); `--config`: alle
+  Optionen in einer Datei.
 - Control-Port ist optional, für systemd-Stop aber der saubere Weg.
 
 ---

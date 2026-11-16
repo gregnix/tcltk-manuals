@@ -391,11 +391,11 @@ Liste „Suche: …“ mit Titel und Ordnerpfad, ohne Ausschnitt, dazu
 gibt es dort nicht.
 
 **Suche und Ansicht als Module.** Der Code der Suche liegt in
-`lib/mdserver/search-0.4.tm` (Klasse `mdserver::Search`), die Office- und
-CSV-Seiten in `lib/mdserver/view-0.4.tm` (`mdserver::View`). Beide sind
+`lib/mdserver/search-0.5.tm` (Klasse `mdserver::Search`), die Office- und
+CSV-Seiten in `lib/mdserver/view-0.5.tm` (`mdserver::View`). Beide sind
 Mixins der Server-Klasse: ihre Methoden laufen im Server-Objekt und
 teilen dessen Variablen. Allein sind sie nicht zu gebrauchen; bei einer
-Installation müssen die Dateien neben `mdserver-0.4.tm` liegen (Kapitel
+Installation müssen die Dateien neben `mdserver-0.5.tm` liegen (Kapitel
 *Starten*).
 
 ---

@@ -19,7 +19,67 @@ Schnittstelle. Hinter nginx bleibt es bei `127.0.0.1`.
 
 Der Port ist auf allen Schnittstellen offen, ohne Anmeldung. Die
 Startmeldung warnt („Achtung: von anderen Rechnern erreichbar“). Nur im
-vertrauten Netz, sonst Proxy mit Anmeldung davor.
+vertrauten Netz, sonst Proxy mit Anmeldung davor oder der eigene
+Zugriff (`--access`, Kapitel *Zugriff*).
+
+---
+
+## Mit Zugriff sieht niemand etwas
+
+`zugriff.txt` hat keine Zeile für `/`. Was keine passende Zeile hat, ist
+für niemanden offen, auch die Startseite. Das Protokoll sagt es beim
+Start (`keine Zeile fuer "/"`). Fast immer gehört `/;mitarbeiter` oder
+`/;gast` hinein; die GUI bietet „Regel / anlegen…“ an.
+
+---
+
+## Niemand kann sich anmelden
+
+Die Anmeldung geht nur über HTTPS. Ohne `--cert` und `--key` gibt es
+kein HTTPS, und jede Anmeldung über HTTP bekommt 403. Die Startmeldung
+warnt („Anmeldung nur ueber HTTPS, und HTTPS ist nicht aktiv“). Ohne
+`--users` gibt es niemanden, der sich anmelden könnte; dann gilt nur
+`gast`.
+
+---
+
+## Nach fünf Versuchen geht auch das richtige Passwort nicht
+
+Fünf falsche Passwörter sperren die Adresse 10 Minuten lang (429). Das
+gilt auch für das richtige. Abwarten; ein Neustart des Servers hebt die
+Sperre auf. Die Sperre gilt der Gegenstelle der Verbindung, nicht
+`X-Forwarded-For`: hinter einem Proxy ist das für alle der Proxy, und
+einer sperrt alle aus.
+
+---
+
+## `zugriff.txt` in der Wurzel
+
+Der Server startet nicht: `--access … liegt in der Dokumentenwurzel und
+wuerde ausgeliefert`. Dasselbe für `benutzer.txt`. Beide neben die
+Einstellungsdatei legen, außerhalb von `--root`. Eine Einstellungsdatei
+ohne `root` hat die Wurzel `.`, also ihren eigenen Ordner — dann liegen
+die Dateien daneben doch „in der Wurzel“.
+
+---
+
+## Änderung in `mdserver.conf` wirkt nicht
+
+`reload` liest nur `zugriff.txt` und `benutzer.txt`. Alle anderen
+Einstellungen, auch ein neuer Steuerport, gelten erst nach einem
+Neustart. Ein `mdctl.tcl reload` an einen Port, den der laufende Server
+noch nicht kennt, endet mit `connection refused`.
+
+---
+
+## Älterer Stand: Benutzername mit „s“
+
+Bis zum Stand vom 16.11.2026 prüfte mdserver Benutzernamen mit dem
+Glob-Muster `*[:;\s]*`. Dort heißt `\s` nicht Leerraum, sondern „`\`
+oder `s`“: `hans`, `klaus` und jeder andere Name mit einem `s` galten
+als ungültig. Der Server startete mit so einem Namen in `benutzer.txt`
+nicht, `mdctl.tcl passwd` und die GUI lehnten ihn ab. Behoben (Tests
+`access-10`, `gui-18`).
 
 ---
 
@@ -77,18 +137,30 @@ startet mit `--style plain`.
 ## `can't find package docir::mdSource`
 
 mdstack allein reicht nicht. `mdstack::html` 0.2 braucht fünf
-docir-Module. Aus dem Repo: `docir/` neben `mdstack/` legen. Bei einer
-Installation: `docir-0.1.1.tm` und `docir/` in das `lib/` neben
-`mdserver.tcl` (Kapitel *Starten*).
+docir-Module. Aus den Repositories: `docir/` neben `mdserver/` legen
+oder `DOCIR_TM` setzen. Bei einer Installation: `docir-0.1.1.tm` und
+`docir/` in das `lib/` neben `mdserver.tcl` (Kapitel *Starten*).
+
+---
+
+## Nach dem Umzug: mdstack nicht gefunden
+
+Bis 0.4 lag mdserver in `mdstack/tools/mdserver/` und fand mdstack über
+`../../lib`. Seit 0.5 ist er ein eigenes Repository und sucht mdstack
+als Nachbarn (`../mdstack/lib`) oder in `MDSTACK_LIB`. Wer nur den
+alten Ordner `tools/mdserver/` irgendwohin kopiert hat, bekommt
+`mdstack nicht gefunden` mit der Liste der durchsuchten Ordner. Unter
+systemd gehören `MDSTACK_LIB` und `DOCIR_TM` als `Environment=` in die
+Unit, wenn die Repositories nicht nebeneinander liegen.
 
 ---
 
 ## `lib/mdserver/` fehlt
 
-Wer nach dem Update nur `mdserver-0.4.tm` kopiert hat, bekommt beim Start
-`mdserver::search 0.4 not found` oder `mdserver::view 0.4 not found`.
-Der Ordner `lib/mdserver/` mit `search-0.4.tm` und `view-0.4.tm` gehört
-dazu.
+Wer nach dem Update nur `mdserver-0.5.tm` kopiert hat, bekommt beim Start
+`mdserver::search 0.5 not found` oder dieselbe Meldung für `view` oder
+`access`. Der Ordner `lib/mdserver/` mit `search-0.5.tm`, `view-0.5.tm`,
+`access-0.5.tm` und `conf-0.5.tm` gehört dazu.
 
 ---
 

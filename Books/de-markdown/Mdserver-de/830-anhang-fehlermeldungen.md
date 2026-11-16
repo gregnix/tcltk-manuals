@@ -34,40 +34,97 @@ Pfad zu `--cert` oder `--key` falsch. Relativ gilt zum
 Arbeitsverzeichnis.
 
 ```
-ERROR: mdserver 0.4 nicht gefunden: can't find package mdserver 0.4
-       mdserver-0.4.tm muss in lib/ liegen.
+ERROR: mdstack nicht gefunden: can't find package mdstack::parser 0.2
+       Gesucht in:
+         /opt/mdserver/lib
+         /opt/mdstack/lib  (fehlt)
+         /opt/docir/lib/tm  (fehlt)
+         und auf dem Modulpfad
+       mdstack neben mdserver legen (../mdstack/lib) oder MDSTACK_LIB setzen;
+       docir ebenso (../docir/lib/tm oder DOCIR_TM).
 ```
 
-Der Launcher findet sein eigenes Modul nicht. `lib/mdserver-0.4.tm`
+mdstack oder docir fehlt. Die Liste nennt die Ordner, die der Launcher
+durchsucht hat, in seiner Reihenfolge; `(fehlt)` heißt, den Ordner gibt
+es nicht. Statt `mdstack::parser` kann `docir::mdSource`, `docir::html`,
+`docir::diag` oder `docir::diagram` genannt sein: dann ist mdstack da,
+docir nicht. Die Meldung nennt die verlangte Mindestfassung 0.2; jede
+neuere 0.x passt.
+
+```
+ERROR: mdserver 0.5 nicht gefunden: can't find package mdserver 0.5
+       mdserver-0.5.tm muss in lib/ liegen.
+```
+
+Der Launcher findet sein eigenes Modul nicht. `lib/mdserver-0.5.tm`
 neben `mdserver.tcl` prüfen.
 
 ```
-ERROR: mdserver::search 0.4 not found (can't find package mdserver::search 0.4).
-       lib/mdserver/search-0.4.tm muss neben lib/mdserver-0.4.tm liegen.
+ERROR: mdserver::search 0.5 not found (can't find package mdserver::search 0.5).
+       lib/mdserver/search-0.5.tm muss neben lib/mdserver-0.5.tm liegen.
 ```
 
-Die Suche ist ein eigenes Modul. Den Ordner `lib/mdserver/` mit
-`search-0.4.tm` neben `mdserver-0.4.tm` legen. Dieselbe Meldung mit
-`mdserver::view` und `view-0.4.tm` heißt: die Office- und CSV-Ansicht
-fehlt.
+Suche, Ansicht und Zugriff sind eigene Module. Den Ordner
+`lib/mdserver/` neben `mdserver-0.5.tm` legen. Dieselbe Meldung gibt es
+für `mdserver::view` und `mdserver::access`.
+
+---
+
+## Einstellungsdatei
 
 ```
-ERROR: mdparser 0.2 not found: can't find package mdstack::parser 0.2
+ERROR: mdserver.conf Zeile 4: unbekannte Option "portx"
+ERROR: mdserver.conf Zeile 2: port: keine Zahl: abc
+ERROR: mdserver.conf Zeile 7: style: einer von site, plain, sidebar, sticky, collapsible, nicht kacheln
+ERROR: mdserver.conf Zeile 9: port steht schon in Zeile 2
+ERROR: mdserver.conf Zeile 5: no-log ist ein Schalter (ohne Wert, oder 0/1)
 ```
 
-Das mdstack-`lib/` fehlt. Der Launcher sucht es selbst unter `../../lib`;
-bei einer Installation gehört `mdstack/parser-0.9.2.tm` in das `lib/`
-neben dem Skript. Die Meldung nennt die verlangte Mindestfassung 0.2;
-jede neuere 0.x passt.
+Der Server startet nicht. Datei und Zeile stehen vorn. Optionen ohne
+`--` schreiben; ein Schalter steht ohne Wert.
+
+---
+
+## Zugriff
 
 ```
-ERROR: mdhtml 0.1 not found: can't find package docir::mdSource
+ERROR: --access /srv/md/zugriff.txt liegt in der Dokumentenwurzel und wuerde ausgeliefert -- ausserhalb ablegen
+ERROR: --users /etc/mdserver/benutzer.txt ist nicht lesbar
 ```
 
-`mdstack::html` ist da, docir nicht. Der Launcher sucht ein docir
-neben mdstack (`../../../docir/lib/tm`). Sonst `docir-0.1.1.tm` und
-`docir/` in das `lib/` legen. Statt `docir::mdSource` kann auch
-`docir::html`, `docir::diag` oder `docir::diagram` genannt sein.
+Der Server startet nicht. `zugriff.txt` und `benutzer.txt` gehören
+außerhalb von `--root` und müssen für den Dienst lesbar sein.
+
+```
+ERROR: zugriff.txt Zeile 3: erwartet pfad;gruppen: /fibu/
+ERROR: zugriff.txt Zeile 4: der Pfad beginnt mit /: fibu/;fibu
+ERROR: benutzer.txt Zeile 2: erwartet name;gruppen;hash
+ERROR: benutzer.txt Zeile 3: kein Hash (mdctl.tcl passwd)
+ERROR: benutzer.txt Zeile 4: anna steht zweimal
+```
+
+Beim Start: der Server startet nicht. Bei `reload` steht dieselbe Zeile
+im Protokoll (`Zugriff: neu laden fehlgeschlagen, es gilt der alte
+Stand: …`), und der alte Stand bleibt.
+
+Im Protokoll beim Start, kein Abbruch:
+
+```
+Zugriff: Gruppe "fibu" (zugriff.txt Zeile 3) hat niemand
+Zugriff: keine Zeile fuer "/" -- was keine Zeile hat, ist fuer niemanden offen
+```
+
+Die erste Zeile ist meist ein Tippfehler. Ein zweites `;` statt eines
+Leerzeichens (`/lohn/;lohn;management`) macht aus beiden Namen eine
+Gruppe `lohn;management`, die ebenfalls niemand hat. Die zweite Zeile
+heißt: ohne Grundregel sieht niemand etwas (Anhang *Fallen*).
+
+In der Startmeldung, kein Abbruch:
+
+```
+  Achtung: Anmeldung nur ueber HTTPS, und HTTPS ist nicht aktiv (--cert/--key)
+  Achtung: --auth-http 1 -- Passwoerter auch unverschluesselt ueber HTTP
+```
 
 ```
 WARNING: mdstack::theme 0.1 not found -- themes disabled: …
@@ -140,7 +197,8 @@ mdctl: 127.0.0.1:8099 nicht erreichbar: couldn't open socket: connection refused
 ```
 
 Kein mdserver mit `--control 8099` aktiv, oder er läuft auf einem
-anderen Port.
+anderen Port. Nach einem neuen `control` in der Einstellungsdatei: der
+laufende Server kennt den Port erst nach einem Neustart.
 
 ```
 mdctl: keine Antwort von 127.0.0.1:8099
@@ -149,6 +207,16 @@ mdctl: keine Antwort von 127.0.0.1:8099
 Verbindung kam zustande, aber innerhalb von `--timeout` (Vorgabe 10 s)
 keine Antwort. Rückgabe 1.
 
+```
+mdctl: anna ist neu -- Gruppen angeben, z. B. "office fibu"
+mdctl: mindestens 8 Zeichen
+mdctl: die beiden Eingaben sind verschieden
+mdctl: Name ohne : ; und Leerzeichen
+mdctl: Gruppen durch Leerzeichen trennen, nicht durch ;
+```
+
+Meldungen von `mdctl.tcl passwd`; die Datei bleibt unverändert.
+
 ---
 
 ## HTTP-Status
@@ -156,13 +224,16 @@ keine Antwort. Rückgabe 1.
 | Status | Bedeutung |
 |---|---|
 | 301 | Verzeichnis ohne Schrägstrich |
+| 303 | nach dem Anmelden über `/__mdserver/login` zurück zur Seite |
 | 304 | unverändert |
 | 400 | im Pfad ein `%` ohne zwei Hexziffern, `%00` oder NUL |
-| 403 | Pfad außerhalb der Wurzel (auch Symlink hinaus), Punkt-Datei bei `--dotfiles 0` |
-| 404 | nicht gefunden |
+| 401 | mit Zugriff: Anmeldung nötig (Pfad nicht für `gast` offen, auch wenn es ihn nicht gibt) |
+| 403 | Pfad außerhalb der Wurzel (auch Symlink hinaus), Punkt-Datei bei `--dotfiles 0`; mit Zugriff: Anmeldung über HTTP |
+| 404 | nicht gefunden; mit Zugriff auch: angemeldet, aber ohne Recht |
 | 405 | Methode nicht GET/HEAD |
 | 414 | Anfragezeile länger als `--maxline` |
 | 416 | Bereich nicht erfüllbar (Anfang hinter Dateiende); unlesbarer Range-Kopf gibt 200 |
+| 429 | mit Zugriff: fünf falsche Passwörter von dieser Adresse in 10 Minuten |
 | 431 | eine Kopfzeile länger als `--maxline` oder alle Köpfe länger als `--maxheader` |
 | 501 | `?format=json` ohne `tclutils::tujson`: `format=json needs tclutils::tujson` |
 | 503 | Health: Wurzel nicht lesbar; zu viele offene Verbindungen (`--maxconn`, `--maxperaddr`), mit `Retry-After: 1` |

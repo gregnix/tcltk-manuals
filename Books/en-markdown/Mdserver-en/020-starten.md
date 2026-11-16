@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Working directory: `mdstack/tools/mdserver/` or any path from which
+Working directory: the repository `mdserver/` or any path from which
 `mdserver.tcl` can be found. The [document root]{.index} is `--root`,
 not the script directory.
 
@@ -46,7 +46,7 @@ look is `--style plain`.
 ## Locally for Reading
 
 ```bash
-tclsh mdserver.tcl --root ../../docs --port 8080
+tclsh mdserver.tcl --root ../meinprojekt/docs --port 8080
 ```
 
 Then `http://127.0.0.1:8080/`. Start page: `index.md` in the root. If
@@ -55,47 +55,63 @@ there is none, `site` shows the folders and documents as cards.
 In a home network, without a proxy, for trusted machines:
 
 ```bash
-tclsh mdserver.tcl --root ../../docs --port 8080 --bind '*'
+tclsh mdserver.tcl --root ../meinprojekt/docs --port 8080 --bind '*'
 ```
 
 The shell needs the quotes; otherwise it replaces `*` with the file
-names of the folder.
+names of the folder. Whoever needs `--bind '*'` without showing everything
+to everybody on the network turns on access control (chapter *Access*).
 
 ---
 
 ## Finding the Modules
 
-Before `package require mdserver 0.4`, the [launcher]{.index}
-`mdserver.tcl` adds these folders to the module path, relative to the
-script and only if they exist:
+mdserver needs `mdstack::parser` and `mdstack::html` from mdstack
+(`mdstack::theme` optionally), and `mdstack::html` needs docir. All
+three are repositories of their own. Before `package require`, the
+[launcher]{.index} `mdserver.tcl` adds these folders to the
+[module path]{.index}, only if they exist (`lib/modulpfad.tcl`):
 
-| Path | Contents |
-|---|---|
-| `lib` | `mdserver-0.4.tm`, `mdserver/search-0.4.tm`, `mdserver/view-0.4.tm` and `pdftext-worker.tcl`; in an installation, all modules |
-| `../lib` | alternative for a location of your own |
-| `../../lib` | the `lib/` of mdstack (`mdstack::parser`, `::html`, `::theme`) |
-| `../../../docir/lib/tm` | a docir repository next to mdstack |
+| Order | Folder | Contents |
+|---|---|---|
+| 1 | `lib` next to the script | the mdserver modules; in an installation, all modules |
+| 2 | `MDSTACK_LIB`, `DOCIR_TM` | the `lib/` of mdstack and the `lib/tm` of docir, when set |
+| 3 | `../mdstack/lib`, `../docir/lib/tm` | mdstack and docir as neighbours of the repository |
+| 4 | the usual module path | installed packages |
 
-Run from the repository, the server therefore needs no `TCLLIBPATH`
-when `docir/` lies next to `mdstack/`:
+With the three repositories side by side, the server runs without any
+setting:
 
 ```
 arbeit/
+  mdserver/
+    mdserver.tcl
+    lib/mdserver-0.5.tm
   mdstack/
     lib/mdstack/...
-    tools/mdserver/mdserver.tcl
   docir/
     lib/tm/docir-0.1.1.tm
     lib/tm/docir/...
 ```
 
-For an installation outside the repository, everything goes into the
+When they lie elsewhere, two environment variables point there:
+
+```bash
+MDSTACK_LIB=/opt/mdstack/lib DOCIR_TM=/opt/docir/lib/tm \
+    tclsh mdserver.tcl --root /srv/md
+```
+
+If mdstack or docir is missing, the message names every folder searched
+(appendix *Error Messages*).
+
+For an installation without the repositories, everything goes into the
 `lib/` next to the script. Exactly these files, not a whole mdstack:
 
 ```
 mdserver/
   mdserver.tcl
   mdctl.tcl
+  mdserver-gui.tcl
   mkcert.tcl
   styles/
     site.css
@@ -103,10 +119,13 @@ mdserver/
     sticky-top.css
     collapsible.css
   lib/
-    mdserver-0.4.tm
+    modulpfad.tcl
+    mdserver-0.5.tm
     mdserver/
-      search-0.4.tm
-      view-0.4.tm
+      search-0.5.tm
+      view-0.5.tm
+      access-0.5.tm
+      conf-0.5.tm
     pdftext-worker.tcl
     mdstack/
       parser-0.9.2.tm
@@ -123,7 +142,7 @@ mdserver/
 The subfolders `mdserver/`, `mdstack/` and `docir/` are part of the
 package name: for `docir::html` Tcl looks for the file
 `docir/html-0.2.tm`, for `mdserver::view` the file
-`mdserver/view-0.4.tm`. Laid out flat side by side, `package require`
+`mdserver/view-0.5.tm`. Laid out flat side by side, `package require`
 does not find them.
 
 The PDF search needs tclutils as well. The launcher does not look for
@@ -155,8 +174,9 @@ longer a readable directory.
 - Behind a proxy: loopback, trusted proxy, control port.
 - Without `--bind`, this machine only; `--bind '*'` opens to the network
   on purpose, and the start banner warns.
-- Installation: all modules in `lib/` next to the script, with the
-  subfolders `mdserver/`, `mdstack/` and `docir/`.
+- mdstack and docir: neighbouring folders, `MDSTACK_LIB`/`DOCIR_TM`, or
+  all modules in `lib/` next to the script, with the subfolders
+  `mdserver/`, `mdstack/` and `docir/`.
 - PDF search: tclutils in `lib/` or through `TCLUTILS_TM`.
 
 ---

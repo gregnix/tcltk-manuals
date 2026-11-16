@@ -7,29 +7,21 @@ apart: the root contains only what may be served.
 
 ---
 
-## Minimal Tree from the Repository
+## Minimal Tree from the Repositories
 
 ```
 arbeit/
+  mdserver/
+    mdserver.tcl
+    mdctl.tcl
+    mkcert.tcl
+    lib/mdserver-0.5.tm
+    lib/mdserver/...
+    styles/
   mdstack/
-    lib/
-      mdstack/parser-0.9.2.tm
-      mdstack/html-0.2.tm
-      mdstack/theme-0.1.tm
-    tools/
-      mdserver/
-        lib/mdserver-0.4.tm
-        lib/mdserver/search-0.4.tm
-        lib/mdserver/view-0.4.tm
-        lib/pdftext-worker.tcl
-        styles/
-        mdserver.tcl
-        mdctl.tcl
-        mkcert.tcl
+    lib/mdstack/...
   docir/
-    lib/tm/
-      docir-0.1.1.tm
-      docir/...
+    lib/tm/...
   meinprojekt/
     docs/
       index.md
@@ -38,19 +30,19 @@ arbeit/
         index.md
 ```
 
-`docs/` is `--root`. `tools/mdserver/` is the service. Without the
-mdstack `lib/` and without `docir/` next to it, it does not start. The
-launcher finds both by itself (chapter *Starting*). For an installation
-without the repository the modules go into `lib/` next to
-`mdserver.tcl` — the exact list is there as well.
+`docs/` is `--root`. `mdserver/` is the service. Without mdstack and
+docir it does not start; as neighbouring folders the launcher finds
+both by itself (chapter *Starting*). For an installation without the
+repositories the modules go into `lib/` next to `mdserver.tcl` — the
+exact list is there as well.
 
 ---
 
 ## Start
 
 ```bash
-cd arbeit/mdstack/tools/mdserver
-tclsh mdserver.tcl --root ../../../meinprojekt/docs --port 8080 \
+cd arbeit/mdserver
+tclsh mdserver.tcl --root ../meinprojekt/docs --port 8080 \
     --title "Mein Projekt" --control 8099
 ```
 
@@ -96,13 +88,18 @@ One root for the LAN, service and keys beside it:
   mdctl.tcl
   lib/
   styles/
-/etc/mdserver/                    Schlüssel, außerhalb von --root
+/opt/mdstack/  /opt/docir/        Nachbarn, findet der Launcher selbst
+/etc/mdserver/                    außerhalb von --root
+  mdserver.conf                   Einstellungen (--config)
+  zugriff.txt                     Rechte (--access)
+  benutzer.txt                    Benutzer (--users)
   server.crt
   server.key
 ```
 
 (The comments in the tree are German: start page, from nroff2md,
-searchable with tclutils, service, keys outside `--root`.)
+searchable with tclutils, service, neighbours the launcher finds by
+itself, outside `--root`, settings, rights, users.)
 
 **Books.** The bookkit folders `book-xyz/` go unchanged into
 `buecher/`, together with the built `.pdf` and `.html` next to the book
@@ -123,20 +120,32 @@ That only fits when the manual itself is `--root`. In `/srv/md/tcltk/`,
 `/dict` would point nowhere. `--linkmode file` writes `dict.md`,
 relative and therefore right in every folder.
 
-**Keys.** `server.crt` and `server.key` lie outside `--root`, for
-example in `/etc/mdserver/`. Never in `/srv/md/`: there mdserver serves
-them. Behind nginx mdserver needs no key at all.
+**Keys and access.** `server.crt`, `server.key`, `zugriff.txt` and
+`benutzer.txt` lie outside `--root`, for example in `/etc/mdserver/`
+next to `mdserver.conf`. Never in `/srv/md/`: there mdserver serves
+every file. For `zugriff.txt` and `benutzer.txt` the server refuses to
+start, for the keys it does not. Behind nginx without a login of its
+own, mdserver needs no key at all.
+
+**As a service.** A complete example of exactly this layout is in the
+mdserver repository under `beispiel/server/`: mdserver in an
+unprivileged LXC container with an address of its own in the home
+network, documents and program mounted read-only, service user
+`mdserver`, settings file, access control and HTTPS. The guide is
+`README.md` there (in German); `install.sh` does the steps inside the
+container. Under Proxmox, creating the container by hand is not needed;
+the rest is the same.
 
 ---
 
 ## Demo
 
-`tools/mdserver/demo/` holds `start.tcl` and sample documents in
-`docs/`, among them a book. For looking at the service, not as a
-production root.
+`demo/` in the mdserver repository holds `start.tcl` and sample
+documents in `docs/`, among them a book. For looking at the service,
+not as a production root.
 
 ```bash
-cd tools/mdserver
+cd mdserver
 tclsh mdserver.tcl --root demo/docs --port 8080
 ```
 
@@ -144,8 +153,11 @@ tclsh mdserver.tcl --root demo/docs --port 8080
 
 ## Summary
 
-- Root = content. Script tree = service. Keys elsewhere.
-- The mdstack `lib/` and docir belong to the service.
+- Root = content. Script tree = service. Keys, settings and access
+  elsewhere.
+- Complete example as a service in an LXC container: `beispiel/server/`
+  in the mdserver repository.
+- mdstack and docir belong to the service, most simply as neighbours.
 - `index.md` in the root is the start page.
 - Books need no webindex run; bookkit folders into `buecher/`.
 - Manual in a subfolder: `nroff2md --linkmode file`.

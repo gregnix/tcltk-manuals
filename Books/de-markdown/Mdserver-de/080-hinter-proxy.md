@@ -2,9 +2,15 @@
 
 ## Einführung
 
-Öffentlich oder im LAN mit Anmeldung: Reverse-Proxy davor, mdserver auf
-Loopback. Dieses Kapitel ist der Vertrag des Dienstes. nginx-Konfiguration,
-LXC und Firewall stehen in *Nginx* und den LAN-Büchern.
+Öffentlich oder im LAN mit Anmeldung am Proxy: Reverse-Proxy davor,
+mdserver auf Loopback. Dieses Kapitel ist der Vertrag des Dienstes.
+nginx-Konfiguration, LXC und Firewall stehen in *Nginx* und den
+LAN-Büchern.
+
+Meldet der Proxy selbst an, braucht mdserver kein `--access`. Den Namen
+des Angemeldeten vom Proxy zu übernehmen, damit `zugriff.txt` auch
+dann gilt, kann mdserver noch nicht; Rechte je Ordner gibt es bisher
+nur mit der eigenen Anmeldung (Kapitel *Zugriff*).
 
 ---
 
@@ -71,4 +77,4 @@ weiteren abgewiesen (Kapitel *HTTP-Verhalten*).
 
 ---
 
-*Nächstes Kapitel: [Site aufbauen](090-site-aufbauen.md)*
+*Nächstes Kapitel: [Einstellungsdatei und GUI](085-einstellungsdatei-gui.md)*

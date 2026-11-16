@@ -389,11 +389,11 @@ without taking HTML apart.
 the help for *Nichts gefunden* and the pages. There is no search field.
 
 **Search and view as modules.** The code of the search lives in
-`lib/mdserver/search-0.4.tm` (class `mdserver::Search`), the office and
-CSV pages in `lib/mdserver/view-0.4.tm` (`mdserver::View`). Both are
+`lib/mdserver/search-0.5.tm` (class `mdserver::Search`), the office and
+CSV pages in `lib/mdserver/view-0.5.tm` (`mdserver::View`). Both are
 mixins of the server class: their methods run in the server object and
 share its variables. On their own they are of no use; in an installation
-the files have to lie next to `mdserver-0.4.tm` (chapter *Starting*).
+the files have to lie next to `mdserver-0.5.tm` (chapter *Starting*).
 
 ---
 

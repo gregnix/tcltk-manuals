@@ -3,8 +3,8 @@
 
 set title     "mdserver — Manual"
 set author    ""
-set subtitle  "Markdown in the LAN: HTTP, page layout, search, control port"
-set date      "2026-11-05"
+set subtitle  "Markdown in the LAN: HTTP, page layout, search, access, control port"
+set date      "2026-11-16"
 set lang      "en"
 set titlePage 1
 set booktype  manual                 ;# manual, see bookkit/doc/STYLE.md
@@ -21,7 +21,9 @@ set chapters {
     050-http-verhalten.md
     060-control-port.md
     070-tls.md
+    075-zugriff.md
     080-hinter-proxy.md
+    085-einstellungsdatei-gui.md
     090-site-aufbauen.md
     800-anhang-fallen.md
     810-anhang-cli.md

@@ -2,24 +2,26 @@
 
 ## Introduction
 
-[mdserver]{.index} **0.4** is an HTTP service in pure Tcl (no Tk). It
+[mdserver]{.index} **0.5** is an HTTP service in pure Tcl (no Tk). It
 serves Markdown files as HTML, rendered at request time. One coroutine
 per connection, non-blocking I/O: a slow client does not block the
 others. Everything runs in one thread; an expensive request holds up the
 others until it is done (chapter *HTTP Behaviour*, section *Response
 Times*).
 
-Modules: `mdstack/tools/mdserver/lib/mdserver-0.4.tm`, the search in
-`lib/mdserver/search-0.4.tm` and the office and CSV view in
-`lib/mdserver/view-0.4.tm`. Start script:
-`mdstack/tools/mdserver/mdserver.tcl`.
+mdserver is a repository of its own, `mdserver`; up to 0.4 it lived
+under `mdstack/tools/mdserver/`. Start script: `mdserver.tcl`. Modules:
+`lib/mdserver-0.5.tm`, and in `lib/mdserver/` the search
+(`search-0.5.tm`), the office and CSV view (`view-0.5.tm`), access
+control (`access-0.5.tm`) and the settings file (`conf-0.5.tm`).
 
 This manual covers starting and options, navigation and themes, page
-layout and search, HTTP behaviour, the control port, TLS, running
-behind a proxy and building a site. The appendices collect pitfalls,
-command lines, a glossary and error messages. Changes from version to
-version are in the package documentation under
-`mdstack/tools/mdserver/`; this book describes the current state.
+layout and search, HTTP behaviour, the control port, TLS, access and
+login, running behind a proxy, the settings file with its GUI and
+building a site. The appendices collect pitfalls, command lines, a
+glossary and error messages. Changes from version to version are in the
+package documentation in the mdserver repository (`doc/`); this book
+describes the current state.
 
 The pages mdserver generates are in German. This book quotes their
 labels as they appear (`Start`, `Alle Dokumente`, `Auf dieser Seite`)
@@ -43,15 +45,18 @@ and gives the meaning on first use.
 - Static files (PDF, images, CSS)
 - Directory page when there is no `index.md`
 - Book folders with `book.tcl`: chapter navigation, generated landing page
+- Access control if wanted: login over HTTPS, rights per folder and group
+- Settings file (`--config`) and a GUI for settings, users and rules
 
 Dual: Tcl **8.6** and **9.0**.
 
 ## What It Does Not Do
 
 No parser of its own — it renders through mdstack and docir. No reverse
-proxy, no authentication, no firewall. Without `--bind`, mdserver listens
-on `127.0.0.1` only; that fits behind a proxy that does the
-authentication. The LAN installation is covered in the books *Proxmox
+proxy, no firewall, no login against foreign accounts (Microsoft 365,
+for example); its own login is HTTP Basic over HTTPS (chapter *Access*).
+Without `--bind`, mdserver listens on `127.0.0.1` only; that fits behind
+a proxy that does the authentication. The LAN installation is covered in the books *Proxmox
 LXC nginx* and *Dokumentenserver LAN*.
 
 ---
@@ -99,19 +104,23 @@ HTTPS needs the package `tls`; on Debian:
 apt install tcl-tls
 ```
 
-Where the modules have to be is shown in the chapter *Starting*.
+mdstack and docir are repositories of their own. How mdserver finds
+them (neighbouring folders, `MDSTACK_LIB`, `DOCIR_TM`) and where the
+modules have to be in an installation is shown in the chapter
+*Starting*.
 
 ---
 
 ## Summary
 
 - One service, one process, Markdown becomes HTML.
-- 0.4 is the package version from `package provide mdserver`.
+- 0.5 is the package version from `package provide mdserver`; since 0.5
+  a repository of its own.
 - mdstack alone is not enough: five docir modules belong to it.
 - tclutils is optional and turns on PDF, office and CSV files in search
   and view.
-- Search and office/CSV view are modules of their own next to the server
-  module.
+- Search, office/CSV view, access control and settings file are modules
+  of their own next to the server module.
 - Bind to loopback when nginx sits in front.
 
 ---

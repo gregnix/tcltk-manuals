@@ -28,7 +28,7 @@ page. It takes the rendered content and builds the page around it. The
 details are in the next chapter. The four older styles, in contrast,
 append a CSS file after the default CSS.
 
-CSS in `tools/mdserver/styles/`: `site.css`, `sidebar.css`,
+CSS in `styles/` next to `lib/`: `site.css`, `sidebar.css`,
 `sticky-top.css`, `collapsible.css`. If the file is missing, the page
 comes without style — no error. Another location: `--stylesdir`.
 

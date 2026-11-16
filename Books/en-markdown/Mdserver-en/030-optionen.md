@@ -2,7 +2,9 @@
 
 ## Introduction
 
-`tclsh mdserver.tcl [options]`. The defaults are the careful ones:
+`tclsh mdserver.tcl [options]`. Every option except `--config` and
+`--help` can also go into a settings file (chapter *Settings File and
+GUI*). The defaults are the careful ones:
 `--bind 127.0.0.1` (this machine only), `--trusted-proxy` empty
 (`X-Forwarded-For` is ignored), and limits for open connections.
 
@@ -12,6 +14,7 @@
 
 | Option | Default | Meaning |
 |---|---|---|
+| `--config` | — | settings file, one option per line; the command line wins |
 | `--port` | `8080` | HTTP port |
 | `--bind` | `127.0.0.1` | listen address. `*`, empty or `0.0.0.0` = all interfaces; the start banner then warns |
 | `--maxconn` | `200` | open connections in all; over that an immediate 503 with `Retry-After: 1`. `0` = no limit |
@@ -29,6 +32,9 @@
 | `--maxheader` | `16384` | bytes of all headers; over that 431. `0` = no limit |
 | `--healthpath` | `/__mdserver/health` | health path |
 | `--statuspath` | empty | status as text over HTTP (as `mdctl.tcl status`); empty = off. Only behind authentication |
+| `--access` | empty | `zugriff.txt` (`path;groups`), outside the root; empty = everything open |
+| `--users` | empty | `benutzer.txt` (`name;groups;hash`), outside the root; without it: `gast` only |
+| `--auth-http` | `0` | login over HTTP too, for testing only |
 | `--root` | `.` | document root |
 | `--theme` | `hell` | `hell`, `dunkel`, `solarized` (light, dark, solarized). In `site` only `dunkel` counts |
 | `--style` | `site` | page style: `site`, `plain`, `sidebar`, `sticky`, `collapsible` |
@@ -37,7 +43,7 @@
 | `--navmax` | `6` | sections inline; more go into the dropdown. `0` = never fold. Older styles only |
 | `--title` | `mdserver` | site title, in `site` on the left of the header bar |
 | `--toc` | `1` | table of contents at the top, older styles only |
-| `--control` | empty | control port, localhost only |
+| `--control` | empty | control port, always listens on `127.0.0.1` only |
 | `--no-log` | — | no access log |
 | `--cert` `--key` | empty | TLS |
 | `--tlsport` | `8443` | HTTPS port |
@@ -83,7 +89,9 @@ folders stay out of what is searched.
 - The defaults are careful: `127.0.0.1` only, no trusted proxy, at most
   200 connections, 32 per client.
 - The default style is `site`; `--style plain` gives the old look.
-- Styles are in `tools/mdserver/styles/` next to `lib/`.
+- Styles are in `styles/` next to `lib/` in the mdserver repository.
+- `--access`, `--users`: access control (chapter *Access*); `--config`:
+  all options in one file.
 - The control port is optional, but the clean way to stop under systemd.
 
 ---

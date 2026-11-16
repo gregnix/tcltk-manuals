@@ -1,5 +1,11 @@
 # Glossar
 
+**Anmeldung** — HTTP Basic über HTTPS gegen `benutzer.txt`; das
+Passwort prüft PBKDF2, fünf Fehlversuche sperren die Adresse 10 Minuten.
+
+**benutzer.txt** — Benutzer mit Gruppen und Passwort-Hash
+(`name;gruppen;hash`, `--users`), außerhalb der Wurzel.
+
 **Brotkrumen** — Pfadzeile über dem Text im Stil `site`: Start ›
 Ordnertitel › Seitentitel.
 
@@ -16,6 +22,18 @@ auch in Unterordnern.
 **Dunkelmodus** — dunkle Farben im Stil `site`; nach Systemeinstellung
 oder per `theme=dunkel`.
 
+**Einstellungsdatei** — alle Optionen in einer Datei, eine je Zeile
+(`--config`); relative Pfade vom Ordner der Datei aus.
+
+**gast** — Gruppe, die jeder hat, auch ohne Anmeldung; ein Ordner mit
+`gast` ist öffentlich.
+
+**Grundregel** — die Zeile für `/` in `zugriff.txt`; sie gilt für alles
+ohne genauere Zeile.
+
+**Gruppe** — Name in `zugriff.txt` und `benutzer.txt`, über den Rechte
+vergeben werden.
+
 **Horchadresse** — Adresse, auf der mdserver Verbindungen annimmt
 (`--bind`); Vorgabe `127.0.0.1`, `*` für alle Schnittstellen.
 
@@ -26,6 +44,11 @@ oder per `theme=dunkel`.
 
 **Kachel** — Karte für ein Buch, einen Ordner oder ein Dokument auf
 einer Verzeichnisseite im Stil `site`.
+
+**mitarbeiter** — Gruppe, die jeder Angemeldete hat.
+
+**Modulpfad** — wo der Launcher Module sucht: `lib/`, `MDSTACK_LIB`,
+`DOCIR_TM`, Nachbarordner `../mdstack/lib` und `../docir/lib/tm`.
 
 **Nebenläufigkeit** — eine Coroutine je Verbindung, non-blocking I/O,
 alles in einem Thread.
@@ -58,7 +81,13 @@ insgesamt (`--maxconn`) und je Absender (`--maxperaddr`); darüber 503.
 **Volltextsuche** — `/?q=Wörter` über alle `.md` der Wurzel, mit
 tclutils auch über PDFs, UND-verknüpft.
 
+**Wer sieht was** — Reiter der GUI, der für einen Leser zeigt, welche
+Ordner er sieht.
+
 **Wurzel** — `--root`, der Dokumentenbaum.
+
+**zugriff.txt** — Rechte je Pfad (`pfad;gruppen`, `--access`); die
+längste passende Zeile gilt.
 
 **Zwischenablage** — fertige Office- und CSV-Seiten, die liegen bleiben,
 bis sich die Datei ändert (`--viewcache`).

@@ -4,8 +4,8 @@
 
 `--control PORT` opens a control channel **on localhost only**. Through
 it the process ends cleanly — without `fuser -k`, without searching for
-the PID. It also tells how the service is doing (`status`) and clears
-the caches (`reload`).
+the PID. It also tells how the service is doing (`status`), clears
+the caches and rereads access control (`reload`).
 
 ---
 
@@ -42,7 +42,7 @@ mdserver runs — hence `mdctl.tcl`.
 `status` tells what the service has done since the start:
 
 ```
-mdserver: 0.4, Tcl 8.6.14
+mdserver: 0.5, Tcl 8.6.14
 started: … 10:37:35 (up 2 h 14 min)
 root: /srv/md
 http: 127.0.0.1:8080
@@ -79,7 +79,8 @@ tclsh mdserver.tcl --root /srv/md --statuspath /__mdserver/status
 ```
 
 The default is off. The page names paths and counters; it belongs behind
-authentication.
+authentication, with access control for instance `/__mdserver/;technik`
+in `zugriff.txt` (chapter *Access*).
 
 ---
 
@@ -87,9 +88,14 @@ authentication.
 
 `reload` forgets the office and CSV pages of the page cache and the
 titles of the lists, and reads the search index again in the
-background. Until the new one is there, the old one answers.
+background. Until the new one is there, the old one answers. With access
+control, `reload` also rereads `zugriff.txt` and `benutzer.txt`; if one
+of them is wrong, the old state stays, and the log names file and line.
 
-It is rarely needed. Search and page cache recognise a changed file by
+Other options, including those from a settings file, are not reread by
+`reload`; they take effect after a restart.
+
+For search and page cache it is rarely needed. They recognise a changed file by
 modification time and size. `reload` is for the case where both stay
 the same, such as a folder restored with old timestamps.
 
@@ -123,14 +129,18 @@ TimeoutStopSec=15
 without TclX has no signal handling — the process ends in the middle of
 a response.
 
-Example unit file: `mdserver.service.beispiel` next to the script.
-Container, nginx, Samba: the LAN books.
+Example unit file: `mdserver.service.beispiel` next to the script;
+with a settings file in an LXC container: `beispiel/server/` (chapter
+*Building a Site*). Under systemd the start banner leaves out the line
+"Press Ctrl+C to stop.". Container, nginx, Samba: the LAN books.
 
 ---
 
 ## Summary
 
 - Control port = localhost, `ping`, `status`, `reload`, `stop`.
+- `reload` also rereads `zugriff.txt` and `benutzer.txt`, other options
+  not.
 - `status` shows connections, requests, search index and the slowest
   requests; `--statuspath` the same over HTTP, off by default.
 - Stop waits 5 s for running responses.

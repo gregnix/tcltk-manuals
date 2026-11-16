@@ -28,7 +28,7 @@ Er nimmt den gerenderten Inhalt und baut die Seite darum. Die Einzelheiten
 stehen im nächsten Kapitel. Die vier älteren Stile hängen dagegen eine
 CSS-Datei hinter das Standard-CSS.
 
-CSS in `tools/mdserver/styles/`: `site.css`, `sidebar.css`,
+CSS in `styles/` neben `lib/`: `site.css`, `sidebar.css`,
 `sticky-top.css`, `collapsible.css`. Fehlt die Datei, kommt die Seite
 ohne Stil — kein Fehler. Anderer Ort: `--stylesdir`.
 

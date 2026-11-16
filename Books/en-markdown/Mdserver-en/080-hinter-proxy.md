@@ -2,9 +2,15 @@
 
 ## Introduction
 
-Public, or in the LAN with authentication: a reverse proxy in front,
-mdserver on loopback. This chapter is the contract of the service.
-nginx configuration, LXC and firewall are in *Nginx* and the LAN books.
+Public, or in the LAN with authentication at the proxy: a reverse proxy
+in front, mdserver on loopback. This chapter is the contract of the
+service. nginx configuration, LXC and firewall are in *Nginx* and the
+LAN books.
+
+If the proxy does the login, mdserver needs no `--access`. Taking over
+the logged-in name from the proxy, so that `zugriff.txt` applies there
+too, is not built in yet; rights per folder exist so far only with
+mdserver's own login (chapter *Access*).
 
 ---
 
@@ -72,4 +78,4 @@ after 32 at once (chapter *HTTP Behaviour*).
 
 ---
 
-*Next chapter: [Building a Site](090-site-aufbauen.md)*
+*Next chapter: [Settings File and GUI](085-einstellungsdatei-gui.md)*

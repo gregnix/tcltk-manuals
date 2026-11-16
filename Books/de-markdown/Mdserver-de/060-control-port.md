@@ -4,8 +4,8 @@
 
 `--control PORT` öffnet einen Steuerkanal **nur auf localhost**. Darüber
 endet der Prozess sauber — ohne `fuser -k`, ohne PID-Suche. Er sagt
-auch, wie es dem Dienst geht (`status`), und leert die Zwischenspeicher
-(`reload`).
+auch, wie es dem Dienst geht (`status`), leert die Zwischenspeicher und
+liest den Zugriff neu (`reload`).
 
 ---
 
@@ -42,7 +42,7 @@ mdserver läuft — deshalb `mdctl.tcl`.
 `status` sagt, was der Dienst seit dem Start getan hat:
 
 ```
-mdserver: 0.4, Tcl 8.6.14
+mdserver: 0.5, Tcl 8.6.14
 started: … 10:37:35 (up 2 h 14 min)
 root: /srv/md
 http: 127.0.0.1:8080
@@ -79,7 +79,8 @@ tclsh mdserver.tcl --root /srv/md --statuspath /__mdserver/status
 ```
 
 Die Vorgabe ist aus. Die Seite nennt Pfade und Zähler; sie gehört
-hinter eine Anmeldung.
+hinter eine Anmeldung, mit eigenem Zugriff etwa `/__mdserver/;technik`
+in `zugriff.txt` (Kapitel *Zugriff*).
 
 ---
 
@@ -87,9 +88,14 @@ hinter eine Anmeldung.
 
 `reload` vergisst die Office- und CSV-Seiten der Zwischenablage und die
 Titel der Listen und liest den Suchindex im Hintergrund neu. Bis der
-neue steht, antwortet der alte.
+neue steht, antwortet der alte. Mit Zugriff liest `reload` außerdem
+`zugriff.txt` und `benutzer.txt` neu; ist eine davon falsch, bleibt der
+alte Stand, und das Protokoll nennt Datei und Zeile.
 
-Nötig ist das selten. Suche und Zwischenablage erkennen eine geänderte
+Andere Optionen, auch die aus einer Einstellungsdatei, liest `reload`
+nicht; sie gelten erst nach einem Neustart.
+
+Für Suche und Zwischenablage ist das selten nötig. Sie erkennen eine geänderte
 Datei an Änderungszeit und Größe. `reload` ist für den Fall, dass beides
 gleich bleibt, etwa ein Ordner, der mit alten Zeitstempeln
 zurückgespielt wurde.
@@ -124,14 +130,18 @@ TimeoutStopSec=15
 TclX hat keine Signalbehandlung — der Prozess endet mitten in der
 Antwort.
 
-Unit-Datei als Beispiel: `mdserver.service.beispiel` neben dem Skript.
-Container, nginx, Samba: LAN-Bücher.
+Unit-Datei als Beispiel: `mdserver.service.beispiel` neben dem Skript;
+mit Einstellungsdatei im LXC-Container: `beispiel/server/` (Kapitel
+*Site aufbauen*). Unter systemd lässt die Startmeldung die Zeile
+„Press Ctrl+C to stop.“ weg. Container, nginx, Samba: LAN-Bücher.
 
 ---
 
 ## Zusammenfassung
 
 - Control-Port = localhost, `ping`, `status`, `reload`, `stop`.
+- `reload` liest auch `zugriff.txt` und `benutzer.txt` neu, andere
+  Optionen nicht.
 - `status` zeigt Verbindungen, Anfragen, Suchindex und die langsamsten
   Anfragen; `--statuspath` dasselbe über HTTP, Vorgabe aus.
 - Stop wartet 5 s auf laufende Antworten.

@@ -7,29 +7,21 @@ getrennt halten: die Wurzel enthält nur, was ausgeliefert werden darf.
 
 ---
 
-## Mindestbaum aus dem Repo
+## Mindestbaum aus den Repositories
 
 ```
 arbeit/
+  mdserver/
+    mdserver.tcl
+    mdctl.tcl
+    mkcert.tcl
+    lib/mdserver-0.5.tm
+    lib/mdserver/...
+    styles/
   mdstack/
-    lib/
-      mdstack/parser-0.9.2.tm
-      mdstack/html-0.2.tm
-      mdstack/theme-0.1.tm
-    tools/
-      mdserver/
-        lib/mdserver-0.4.tm
-        lib/mdserver/search-0.4.tm
-        lib/mdserver/view-0.4.tm
-        lib/pdftext-worker.tcl
-        styles/
-        mdserver.tcl
-        mdctl.tcl
-        mkcert.tcl
+    lib/mdstack/...
   docir/
-    lib/tm/
-      docir-0.1.1.tm
-      docir/...
+    lib/tm/...
   meinprojekt/
     docs/
       index.md
@@ -38,19 +30,19 @@ arbeit/
         index.md
 ```
 
-`docs/` ist `--root`. `tools/mdserver/` ist der Dienst. Ohne das
-mdstack-`lib/` und ohne `docir/` daneben startet er nicht. Der Launcher
-findet beide selbst (Kapitel *Starten*). Für eine Installation ohne
-Repo gehören die Module in `lib/` neben `mdserver.tcl` — die genaue
-Liste steht ebenfalls dort.
+`docs/` ist `--root`. `mdserver/` ist der Dienst. Ohne mdstack und
+docir startet er nicht; als Nachbarordner findet der Launcher beide
+selbst (Kapitel *Starten*). Für eine Installation ohne die Repositories
+gehören die Module in `lib/` neben `mdserver.tcl` — die genaue Liste
+steht ebenfalls dort.
 
 ---
 
 ## Start
 
 ```bash
-cd arbeit/mdstack/tools/mdserver
-tclsh mdserver.tcl --root ../../../meinprojekt/docs --port 8080 \
+cd arbeit/mdserver
+tclsh mdserver.tcl --root ../meinprojekt/docs --port 8080 \
     --title "Mein Projekt" --control 8099
 ```
 
@@ -96,7 +88,11 @@ Eine Wurzel für das LAN, Dienst und Schlüssel daneben:
   mdctl.tcl
   lib/
   styles/
-/etc/mdserver/                    Schlüssel, außerhalb von --root
+/opt/mdstack/  /opt/docir/        Nachbarn, findet der Launcher selbst
+/etc/mdserver/                    außerhalb von --root
+  mdserver.conf                   Einstellungen (--config)
+  zugriff.txt                     Rechte (--access)
+  benutzer.txt                    Benutzer (--users)
   server.crt
   server.key
 ```
@@ -119,20 +115,32 @@ Das passt nur, wenn das Handbuch selbst `--root` ist. In `/srv/md/tcltk/`
 zeigte `/dict` ins Leere. `--linkmode file` schreibt `dict.md`, relativ
 und damit in jedem Ordner richtig.
 
-**Schlüssel.** `server.crt` und `server.key` liegen außerhalb von
-`--root`, etwa in `/etc/mdserver/`. Nie in `/srv/md/`: dort liefert
-mdserver sie aus. Hinter nginx braucht mdserver gar keinen Schlüssel.
+**Schlüssel und Zugriff.** `server.crt`, `server.key`, `zugriff.txt` und
+`benutzer.txt` liegen außerhalb von `--root`, etwa in `/etc/mdserver/`
+neben `mdserver.conf`. Nie in `/srv/md/`: dort liefert mdserver jede
+Datei aus. Für `zugriff.txt` und `benutzer.txt` verweigert der Server
+den Start, für die Schlüssel nicht. Hinter nginx ohne eigene Anmeldung
+braucht mdserver gar keinen Schlüssel.
+
+**Als Dienst.** Ein fertiges Beispiel für genau diesen Aufbau liegt im
+Repository mdserver unter `beispiel/server/`: mdserver in einem
+unprivilegierten LXC-Container mit eigener Adresse im Heimnetz,
+Dokumente und Programm nur lesend eingebunden, Dienstbenutzer
+`mdserver`, Einstellungsdatei, Zugriff und HTTPS. Die Anleitung steht
+dort in `README.md`, die Schritte im Container erledigt `install.sh`.
+Unter Proxmox entfällt das Anlegen des Containers von Hand; der Rest ist
+gleich.
 
 ---
 
 ## Demo
 
-Unter `tools/mdserver/demo/` liegen `start.tcl` und Beispieldocs in
-`docs/`, darunter ein Buch. Zum Ansehen des Dienstes, nicht als
-Produktionswurzel.
+Unter `demo/` im Repository mdserver liegen `start.tcl` und
+Beispieldocs in `docs/`, darunter ein Buch. Zum Ansehen des Dienstes,
+nicht als Produktionswurzel.
 
 ```bash
-cd tools/mdserver
+cd mdserver
 tclsh mdserver.tcl --root demo/docs --port 8080
 ```
 
@@ -140,8 +148,11 @@ tclsh mdserver.tcl --root demo/docs --port 8080
 
 ## Zusammenfassung
 
-- Wurzel = Inhalte. Skriptbaum = Dienst. Schlüssel woanders.
-- mdstack-`lib/` und docir gehören zum Dienst.
+- Wurzel = Inhalte. Skriptbaum = Dienst. Schlüssel, Einstellungen und
+  Zugriff woanders.
+- Fertiges Beispiel als Dienst im LXC-Container: `beispiel/server/` im
+  Repository mdserver.
+- mdstack und docir gehören zum Dienst, am einfachsten als Nachbarn.
 - `index.md` in der Wurzel ist die Startseite.
 - Bücher brauchen keinen webindex-Lauf; bookkit-Ordner nach `buecher/`.
 - Handbuch im Unterordner: `nroff2md --linkmode file`.

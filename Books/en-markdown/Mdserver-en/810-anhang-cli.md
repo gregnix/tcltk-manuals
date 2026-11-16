@@ -2,7 +2,7 @@
 
 ## Introduction
 
-From `mdstack/tools/mdserver/`, unless stated otherwise.
+From the repository `mdserver/`, unless stated otherwise.
 
 ---
 
@@ -16,6 +16,38 @@ tclsh mdctl.tcl --port 8099 status
 tclsh mdctl.tcl --port 8099 reload
 tclsh mdctl.tcl --port 8099 stop
 tclsh mdctl.tcl --host 127.0.0.1 --port 8099 --timeout 5000 stop
+```
+
+---
+
+## Settings File and GUI
+
+```bash
+tclsh mdserver.tcl --config /etc/mdserver/mdserver.conf
+tclsh mdserver.tcl --config /etc/mdserver/mdserver.conf --port 9000   # command line wins
+wish mdserver-gui.tcl /etc/mdserver/mdserver.conf
+wish mdserver-gui.tcl                                   # new mdserver.conf here
+```
+
+---
+
+## Access
+
+```bash
+tclsh mdserver.tcl --root /srv/md --bind '*' --cert server.crt --key server.key \
+    --access /etc/mdserver/zugriff.txt --users /etc/mdserver/benutzer.txt --control 8099
+tclsh mdctl.tcl passwd --users /etc/mdserver/benutzer.txt anna "office fibu"   # create
+tclsh mdctl.tcl passwd --users /etc/mdserver/benutzer.txt anna                 # new password
+tclsh mdctl.tcl --port 8099 reload                     # reread access and users
+tclsh mdserver.tcl --root /srv/md --access z.txt --users b.txt --auth-http 1   # test only
+```
+
+---
+
+## mdstack and docir Elsewhere
+
+```bash
+MDSTACK_LIB=/opt/mdstack/lib DOCIR_TM=/opt/docir/lib/tm tclsh mdserver.tcl --root /srv/md
 ```
 
 ---
@@ -51,9 +83,9 @@ tclsh mdserver.tcl --root /srv/md --maxperaddr 0      # no limit per client
 ## Locally
 
 ```bash
-tclsh mdserver.tcl --root ../../docs --port 8080
+tclsh mdserver.tcl --root ../meinprojekt/docs --port 8080
 tclsh mdserver.tcl --root demo/docs --port 8080
-tclsh mdserver.tcl --root ../../docs --bind '*'    # in a trusted network
+tclsh mdserver.tcl --root ../meinprojekt/docs --bind '*'    # in a trusted network
 tclsh mdserver.tcl --help
 ```
 
@@ -82,12 +114,14 @@ tclsh mdserver.tcl --root /srv/md --style sidebar --theme solarized
 /?nav=index                       alle Dokumente
 /doc.md?theme=dunkel              Dunkelmodus (site)
 /doc.md?style=plain&toc=0         älterer Stil ohne TOC
-/__mdserver/health                ok oder 503
+/__mdserver/health                ok oder 503, auch mit Zugriff ohne Anmeldung
+/__mdserver/login                 Anmelden (mit Zugriff)
 ```
 
 In order: full-text search (also PDFs, per page), search tips, second
 page of hits, hits as JSON, the file instead of the page, all documents,
-dark mode (`site`), older style without TOC, health.
+dark mode (`site`), older style without TOC, health (open even with
+access control), log in (with access control).
 
 ---
 
@@ -104,10 +138,20 @@ tclsh mkcert.tcl --check
 
 ## Tcl/Tk Manual
 
-From `mdstack/tools/`:
+From `mdstack/tools/` (nroff2md belongs to mdstack):
 
 ```bash
 tclsh nroff2md.tcl --batch tcltkdoc/ /srv/md/tcltk/ --linkmode file
+```
+
+---
+
+## Tests
+
+```bash
+make test                     # tclsh tests/all.tcl
+make test-xvfb                # with GUI tests, without a screen
+TCLSH=tclsh9.0 make test
 ```
 
 ---

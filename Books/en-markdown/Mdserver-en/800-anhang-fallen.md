@@ -20,7 +20,68 @@ interface. Behind nginx it stays `127.0.0.1`.
 The port is open on all interfaces, without authentication. The start
 banner warns ("Achtung: von anderen Rechnern erreichbar", reachable from
 other machines). Only in a trusted network, otherwise a proxy with
-authentication in front.
+authentication in front or mdserver's own access control (`--access`,
+chapter *Access*).
+
+---
+
+## With Access Control Nobody Sees Anything
+
+`zugriff.txt` has no line for `/`. What has no matching line is open to
+nobody, the start page included. The log says so at start (`keine Zeile
+fuer "/"`, no line for "/"). Almost always `/;mitarbeiter` or `/;gast`
+belongs in the file; the GUI offers "Regel / anlegen…" (create rule
+for /).
+
+---
+
+## Nobody Can Log In
+
+Login works over HTTPS only. Without `--cert` and `--key` there is no
+HTTPS, and every login over HTTP gets 403. The start banner warns
+("Anmeldung nur ueber HTTPS, und HTTPS ist nicht aktiv", login over
+HTTPS only, and HTTPS is not active). Without `--users` there is nobody
+who could log in; then only `gast` applies.
+
+---
+
+## After Five Attempts the Right Password Fails Too
+
+Five wrong passwords lock the address for 10 minutes (429). That holds
+for the right one as well. Wait; restarting the server lifts the lock.
+The lock applies to the peer of the connection, not to
+`X-Forwarded-For`: behind a proxy that is the proxy for everyone, and
+one person locks everyone out.
+
+---
+
+## `zugriff.txt` in the Root
+
+The server does not start: `--access … liegt in der Dokumentenwurzel
+und wuerde ausgeliefert` (lies in the document root and would be
+served). The same for `benutzer.txt`. Put both next to the settings
+file, outside `--root`. A settings file without `root` has the root
+`.`, its own folder — then the files next to it do lie "in the root".
+
+---
+
+## A Change in `mdserver.conf` Has No Effect
+
+`reload` reads only `zugriff.txt` and `benutzer.txt`. All other
+settings, a new control port included, take effect after a restart. A
+`mdctl.tcl reload` to a port the running server does not know yet ends
+with `connection refused`.
+
+---
+
+## Older State: User Names with "s"
+
+Up to the state of 16 November 2026, mdserver checked user names with
+the glob pattern `*[:;\s]*`. There `\s` does not mean white space but
+"`\` or `s`": `hans`, `klaus` and every other name with an `s` counted
+as invalid. The server did not start with such a name in
+`benutzer.txt`; `mdctl.tcl passwd` and the GUI refused it. Fixed (tests
+`access-10`, `gui-18`).
 
 ---
 
@@ -78,18 +139,30 @@ look starts with `--style plain`.
 ## `can't find package docir::mdSource`
 
 mdstack alone is not enough. `mdstack::html` 0.2 needs five docir
-modules. From the repository: put `docir/` next to `mdstack/`. In an
-installation: `docir-0.1.1.tm` and `docir/` into the `lib/` next to
-`mdserver.tcl` (chapter *Starting*).
+modules. From the repositories: put `docir/` next to `mdserver/` or set
+`DOCIR_TM`. In an installation: `docir-0.1.1.tm` and `docir/` into the
+`lib/` next to `mdserver.tcl` (chapter *Starting*).
+
+---
+
+## After the Move: mdstack Not Found
+
+Up to 0.4, mdserver lay in `mdstack/tools/mdserver/` and found mdstack
+through `../../lib`. Since 0.5 it is a repository of its own and looks
+for mdstack as a neighbour (`../mdstack/lib`) or in `MDSTACK_LIB`.
+Whoever only copied the old folder `tools/mdserver/` somewhere gets
+`mdstack nicht gefunden` (mdstack not found) with the list of folders
+searched. Under systemd, `MDSTACK_LIB` and `DOCIR_TM` go into the unit
+as `Environment=` when the repositories do not lie side by side.
 
 ---
 
 ## `lib/mdserver/` Missing
 
-Whoever copied only `mdserver-0.4.tm` after the update gets
-`mdserver::search 0.4 not found` or `mdserver::view 0.4 not found` at
-the start. The folder `lib/mdserver/` with `search-0.4.tm` and
-`view-0.4.tm` belongs to it.
+Whoever copied only `mdserver-0.5.tm` after the update gets
+`mdserver::search 0.5 not found` or the same message for `view` or
+`access` at the start. The folder `lib/mdserver/` with `search-0.5.tm`,
+`view-0.5.tm`, `access-0.5.tm` and `conf-0.5.tm` belongs to it.
 
 ---
 
